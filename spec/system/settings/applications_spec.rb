@@ -104,7 +104,12 @@ RSpec.describe 'Settings applications page' do
     let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
     let!(:access_token) { Fabricate(:accessible_access_token, application: application) }
 
-    before { stub_redis_pipeline }
+    before do
+      # Disable wrapstodon to avoid redis calls that we don't want to stub
+      Setting.wrapstodon = false
+
+      stub_redis_pipeline
+    end
 
     it 'destroys the record and tells the broader universe about that' do
       visit settings_applications_path

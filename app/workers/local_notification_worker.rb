@@ -3,14 +3,9 @@
 class LocalNotificationWorker
   include Sidekiq::Worker
 
-  def perform(receiver_account_id, activity_id = nil, activity_class_name = nil, type = nil)
-    if activity_id.nil? && activity_class_name.nil?
-      activity = Mention.find(receiver_account_id)
-      receiver = activity.account
-    else
-      receiver = Account.find(receiver_account_id)
-      activity = activity_class_name.constantize.find(activity_id)
-    end
+  def perform(receiver_account_id, activity_id, activity_class_name, type = nil, options = {})
+    receiver = Account.find(receiver_account_id)
+    activity = activity_class_name.constantize.find(activity_id)
 
     # For most notification types, only one notification should exist, and the older one is
     # preferred. For updates, such as when a status is edited, the new notification
@@ -23,7 +18,7 @@ class LocalNotificationWorker
       return
     end
 
-    NotifyService.new.call(receiver, type || activity_class_name.underscore, activity)
+    NotifyService.new.call(receiver, type || activity_class_name.underscore, activity, **options.symbolize_keys)
   rescue ActiveRecord::RecordNotFound
     true
   end

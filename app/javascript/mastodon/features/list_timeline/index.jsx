@@ -73,11 +73,10 @@ class ListTimeline extends PureComponent {
     this.disconnect = dispatch(connectListStream(id));
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    const { dispatch } = this.props;
-    const { id } = nextProps.params;
+  componentDidUpdate (prevProps) {
+    const { dispatch, params: {id} } = this.props;
 
-    if (id !== this.props.params.id) {
+    if (id !== prevProps.params.id) {
       if (this.disconnect) {
         this.disconnect();
         this.disconnect = null;

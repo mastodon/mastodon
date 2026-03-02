@@ -39,7 +39,7 @@ class PreviewCard < ApplicationRecord
   include Attachmentable
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  LIMIT = Rails.configuration.x.use_vips ? 8.megabytes : 2.megabytes
+  LIMIT = 8.megabytes
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -63,7 +63,7 @@ class PreviewCard < ApplicationRecord
   belongs_to :author_account, class_name: 'Account', optional: true
 
   has_attached_file :image,
-                    processors: [Rails.configuration.x.use_vips ? :lazy_thumbnail : :thumbnail, :blurhash_transcoder],
+                    processors: [:lazy_thumbnail, :blurhash_transcoder],
                     styles: ->(f) { image_styles(f) },
                     convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' },
                     validate_media_type: false

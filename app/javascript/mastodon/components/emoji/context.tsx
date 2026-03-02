@@ -92,8 +92,11 @@ export const CustomEmojiContext = createContext<ExtraCustomEmojiMap>({});
 export const CustomEmojiProvider = ({
   children,
   emojis: rawEmojis,
-}: PropsWithChildren<{ emojis?: CustomEmojiMapArg }>) => {
-  const emojis = useMemo(() => cleanExtraEmojis(rawEmojis) ?? {}, [rawEmojis]);
+}: PropsWithChildren<{ emojis?: CustomEmojiMapArg | null }>) => {
+  const emojis = useMemo(() => cleanExtraEmojis(rawEmojis), [rawEmojis]);
+  if (!emojis) {
+    return children;
+  }
   return (
     <CustomEmojiContext.Provider value={emojis}>
       {children}

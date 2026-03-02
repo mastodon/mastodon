@@ -64,6 +64,7 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
       title={intl.formatMessage(meta ?? title)}
       icon='retweet'
       iconComponent={iconComponent}
+      className='status__action-bar__button'
       onClick={!disabled ? handleClick : undefined}
       counter={
         counters
@@ -195,6 +196,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
           isMenuDisabled ? messages.all_disabled : messages.reblog_or_quote,
         )}
         icon='retweet'
+        className='status__action-bar__button'
         iconComponent={boostIcon}
         counter={
           counters

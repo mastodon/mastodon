@@ -111,6 +111,7 @@ pt-PT:
         thumbnail: Uma imagem de cerca de 2:1, apresentada ao lado da informação do seu servidor.
         trendable_by_default: Ignorar a revisão manual do conteúdo em destaque. Os itens individuais poderão ainda assim ser posteriormente removidos das tendências.
         trends: As tendências mostram quais as publicações, etiquetas e notícias que estão a ganhar destaque no seu servidor.
+        wrapstodon: Ofereça aos utilizadores locais a possibilidade de gerar um resumo divertido da sua utilização do Mastodon durante o ano. Esta funcionalidade está disponível entre 10 e 31 de Dezembro de cada ano e é oferecida aos utilizadores que fizeram pelo menos uma publicação Pública ou Não listada e utilizaram pelo menos uma etiqueta durante o ano.
       form_challenge:
         current_password: Está a entrar numa área segura
       imports:
@@ -163,6 +164,7 @@ pt-PT:
         name: Nome público da função, se esta estiver definida para ser apresentada com um emblema
         permissions_as_keys: Utilizadores com esta função terão acesso a...
         position: Funções mais altas decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas com certas funções com uma menor prioridade
+        require_2fa: Aos utilizadores com esta função será requerido que configurem a autenticação de dois fatores para utilizar o Mastodon
       username_block:
         allow_with_approval: Em vez de impedir totalmente a inscrição, as inscrições correspondentes exigirão a sua aprovação
         comparison: Tenha em atenção o Problema de Scunthorpe ao bloquear correspondências parciais
@@ -238,6 +240,8 @@ pt-PT:
         setting_always_send_emails: Enviar sempre notificações por e-mail
         setting_auto_play_gif: Reproduzir GIF automaticamente
         setting_boost_modal: Controlar visibilidade da partilha
+        setting_color_scheme: Esquema de cores
+        setting_contrast: Contraste
         setting_default_language: Idioma de publicação
         setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
@@ -312,6 +316,7 @@ pt-PT:
         thumbnail: Miniatura do servidor
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Ativar destaques
+        wrapstodon: Ativar Wrapstodon
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
@@ -372,7 +377,9 @@ pt-PT:
         jurisdiction: Jurisdição legal
         min_age: Idade mínima
       user:
+        date_of_birth_1i: Ano
         date_of_birth_2i: Mês
+        date_of_birth_3i: Dia
         role: Função
         time_zone: Fuso horário
       user_role:
@@ -381,6 +388,7 @@ pt-PT:
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
+        require_2fa: Requerer autenticação de dois fatores
       username_block:
         allow_with_approval: Permitir inscrições com aprovação
         comparison: Método de comparação

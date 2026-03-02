@@ -31,9 +31,10 @@ class IpBlock < ApplicationRecord
 
   after_commit :reset_cache
 
-  def to_log_human_identifier
+  def to_cidr
     "#{ip}/#{ip.prefix}"
   end
+  alias to_log_human_identifier to_cidr
 
   class << self
     def blocked?(remote_ip)

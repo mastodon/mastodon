@@ -9,7 +9,6 @@ zh-HK:
   accounts:
     followers:
       other: 關注者
-    following: 正在關注
     instance_actor_flash: 這個帳戶是結盟用的本伺服器的虛擬象徵，並不代表任何個別用戶。請不要把帳號停權。
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
@@ -618,7 +617,6 @@ zh-HK:
       resolved_msg: 舉報個案已被處理！
       skip_to_actions: 跳到行動
       status: 狀態
-      statuses: 被檢舉的內容
       statuses_description_html: 違規內容將被引用在被檢舉帳號的通訊中
       summary:
         action_preambles:
@@ -1634,11 +1632,9 @@ zh-HK:
     enabled: 自動刪除舊嘟文
     enabled_hint: 當您的嘟文達到指定的時間門檻後，自動刪除嘟文，除非他們符合其中以下例外條件之一
     exceptions: 例外
-    explanation: 由於刪除嘟文對伺服器而言是相當耗費資源的操作，將僅於伺服器不繁忙時慢慢執行。由此緣故，您的嘟文將可能超過設定之時間門檻一會兒後才被刪除。
     ignore_favs: 忽略最愛
     ignore_reblogs: 忽略轉嘟
     interaction_exceptions: 根據互動的例外
-    interaction_exceptions_explanation: 請注意嘟文是無法保證被刪除的，如果在一次處理過後嘟文低於最愛或轉嘟的門檻。
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含媒體內容的嘟文
@@ -1672,11 +1668,6 @@ zh-HK:
       too_late: 對此次警告提出申訴已經太遲
   tags:
     does_not_match_previous_name: 和舊有名稱並不符合
-  themes:
-    contrast: 高對比
-    default: 萬象
-    mastodon-light: 萬象（亮色主題）
-    system: 自動（使用系統主題）
   time:
     formats:
       default: "%Y年%b月%d日 %H:%M"

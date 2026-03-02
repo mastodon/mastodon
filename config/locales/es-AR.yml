@@ -7,10 +7,14 @@ es-AR:
     hosted_on: Mastodon alojado en %{domain}
     title: Información
   accounts:
+    errors:
+      cannot_be_added_to_collections: Esta cuenta no puede ser agregada a colecciones.
     followers:
       one: Seguidor
       other: Seguidores
-    following: Siguiendo
+    following:
+      one: Siguiendo
+      other: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual usado para representar al servidor en sí mismo y no a ningún usuario individual. Se usa para propósitos de la federación y no debe ser suspendido.
     last_active: última actividad
     link_verified_on: La propiedad de este enlace fue verificada el %{date}
@@ -52,6 +56,7 @@ es-AR:
         label: Cambiar rol
         no_role: Sin rol
         title: Cambiar rol para %{username}
+      collections: Colecciones
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmación
@@ -262,6 +267,7 @@ es-AR:
         demote_user_html: "%{name} bajó de nivel al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
+        destroy_collection_html: "%{name} eliminó la colección de %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} no permitió la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
@@ -301,6 +307,7 @@ es-AR:
         unsilence_account_html: "%{name} quitó el límite de la cuenta de %{target}"
         unsuspend_account_html: "%{name} quitó la suspensión de la cuenta de %{target}"
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
+        update_collection_html: "%{name} actualizó la colección de %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la dirección IP %{target}"
@@ -336,6 +343,15 @@ es-AR:
       unpublish: Eliminar publicación
       unpublished_msg: "¡Se dejó de publicar el anuncio exitosamente!"
       updated_msg: "¡Anuncio actualizado exitosamente!"
+    collections:
+      accounts: Cuentas
+      collection_title: Colección de %{name}
+      contents: Contenidos
+      number_of_accounts:
+        one: 1 cuenta
+        other: "%{count} cuentas"
+      open: Abrir
+      view_publicly: Ver públicamente
     critical_update_pending: Actualización crítica pendiente
     custom_emojis:
       assign_category: Asignar categoría
@@ -675,6 +691,7 @@ es-AR:
       cancel: Cancelar
       category: Categoría
       category_description_html: El motivo por el que se denunció esta cuenta o contenido será citado en las comunicaciones con la cuenta denunciada
+      collections: Colecciones (%{count})
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
@@ -704,12 +721,13 @@ es-AR:
       report: 'Denuncia #%{id}'
       reported_account: Cuenta denunciada
       reported_by: Denunciada por
+      reported_content: Contenido denunciado
       reported_with_application: Denunciado con aplicación
       resolved: Resueltas
       resolved_msg: "¡Denuncia exitosamente resuelta!"
       skip_to_actions: Ir directamente a las acciones
       status: Estado
-      statuses: Contenido denunciado
+      statuses: Mensajes (%{count})
       statuses_description_html: El contenido ofensivo se citará en la comunicación con la cuenta denunciada
       summary:
         action_preambles:
@@ -798,6 +816,7 @@ es-AR:
         view_devops_description: Permite a los usuarios acceder a los paneles de Sidekiq y pgHero
         view_feeds: Ver líneas temporales y por temas
         view_feeds_description: Permite a los usuarios acceder a las líneas temporales en vivo y por temas, sin importar la configuración del servidor
+      requires_2fa: Requiere autenticación de dos factores
       title: Roles
     rules:
       add_new: Agregar regla
@@ -846,6 +865,7 @@ es-AR:
         publish_statistics: Publicar estadísticas
         title: Descubrí
         trends: Tendencias
+        wrapstodon: MastodonAnual
       domain_blocks:
         all: A todos
         disabled: A nadie
@@ -1316,6 +1336,13 @@ es-AR:
     hint_html: "<strong>Dato:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña no válida
     prompt: Confirmar contraseña para seguir
+  color_scheme:
+    auto: Automático
+    dark: Oscuro
+    light: Claro
+  contrast:
+    auto: Automático
+    high: Alto
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
@@ -1706,16 +1733,22 @@ es-AR:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
+    moderation_warning:
+      subject: Recibiste una advertencia de moderación
     poll:
       subject: Terminó una encuesta de %{name}
     quote:
       body: 'Tu mensaje fue citado por %{name}:'
       subject: "%{name} citó tu mensaje"
       title: Nueva cita
+    quoted_update:
+      subject: "%{name} editó un mensaje que citaste"
     reblog:
       body: "%{name} adhirió a tu mensaje:"
       subject: "%{name} adhirió a tu mensaje"
       title: Nueva adhesión
+    severed_relationships:
+      subject: Perdiste seguidores y/o cuentas seguidas, debido a una decisión de moderación
     status:
       subject: "%{name} acaba de enviar un mensaje"
     update:
@@ -1772,7 +1805,7 @@ es-AR:
     privacy: Privacidad
     privacy_hint_html: Controlá cuánto querés revelar a los demás. La gente descubre perfiles interesantes y aplicaciones copadas explorando los seguimientos de otras personas y viendo qué aplicaciones usan, pero puede que prefieras mantener esto oculto.
     reach: Alcance
-    reach_hint_html: Controla si querés ser descubierto y seguido por nuevas cuentas. ¿Querés que tus mensajes aparezcan en la sección de Explorar? ¿Querés que otras personas te vean en las recomendaciones para seguir? ¿Querés aceptar automáticamente a todos los nuevos seguidores, o querés tener el control sobre cada uno de ellos?
+    reach_hint_html: Controlá si querés ser descubierto y seguido por nuevas cuentas. ¿Querés que tus mensajes aparezcan en la sección de Explorar? ¿Querés que otras personas te vean en las recomendaciones para seguir? ¿Querés aceptar automáticamente a todos los nuevos seguidores, o querés tener el control sobre cada uno de ellos?
     search: Búsqueda
     search_hint_html: Controlá cómo querés ser encontrado. ¿Querés que la gente te encuentre por lo que publicaste? ¿Querés que desde fuera de Mastodon se encuentre tu perfil al buscar en la web? Por favor, tené en cuenta que la exclusión total de información pública de todos los motores de búsqueda no puede ser garantizada.
     title: Privacidad y alcance
@@ -1957,11 +1990,11 @@ es-AR:
     enabled: Eliminar automáticamente mensajes antiguos
     enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen un umbral de edad especificado, a menos que coincidan con una de las excepciones a continuación
     exceptions: Exepciones
-    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente con el tiempo cuando el servidor no está ocupado. Por esta razón, tus mensajes pueden ser borrados un poco después de que alcancen el umbral de edad.
+    explanation: La eliminación automática se ejecuta con baja prioridad. Puede haber un retraso entre alcanzar el umbral de edad y eliminar los mensajes.
     ignore_favs: Ignorar mensajes marcados como favoritos
     ignore_reblogs: Ignorar adhesiones
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Tené en cuenta que no hay garantía de que los mensajes se eliminen si van por debajo del umbral de los mensajes marcados como favorito o de las adhesiones después de haberlos superado una vez.
+    interaction_exceptions_explanation: Los mensajes que excedan temporalmente el umbral de favoritos o de adhesiones pueden ser retenidos incluso si más tarde se reducen.
     keep_direct: Conservar mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Conservar mensajes con archivos adjuntos
@@ -2003,10 +2036,7 @@ es-AR:
     review_link: Revisar los términos del servicio
     title: Los términos del servicio de %{domain} están cambiando
   themes:
-    contrast: Alto contraste
-    default: Oscuro
-    mastodon-light: Claro
-    system: Automático (usar tema del sistema)
+    default: Mastodon
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"
@@ -2031,6 +2061,8 @@ es-AR:
     recovery_codes: Resguardar códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación se regeneraron exitosamente
     recovery_instructions_html: Si alguna vez perdés el acceso a tu aplicación de 2FA, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
+    resume_app_authorization: Reanudar autorización de aplicación
+    role_requirement: "%{domain} requiere que configurés la autenticación de dos factores antes de poder usar Mastodon."
     webauthn: Llaves de seguridad
   user_mailer:
     announcement_published:
@@ -2174,8 +2206,12 @@ es-AR:
       error: Hubo un problema al eliminar tu llave de seguridad. Por favor, intentá de nuevo.
       success: Se eliminó exitosamente tu llave de seguridad.
     invalid_credential: Llave de seguridad no válida
+    nickname: Apodo de la llave
     nickname_hint: Ingresá el apodo de tu nueva llave de seguridad
     not_enabled: Todavía no habilitaste WebAuthn
     not_supported: Este navegador web no soporta llaves de seguridad
     otp_required: Para usar llaves de seguridad, por favor, primero habilitá la autenticación de dos factores.
     registered_on: Registrado el %{date}
+  wrapstodon:
+    description: "¡Enterate cómo %{name} usó Mastodon este año!"
+    title: MastodonAnual %{year} para %{name}

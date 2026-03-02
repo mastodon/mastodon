@@ -471,12 +471,36 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'with a reply' do
+      context 'with a reply without explicitly setting a conversation' do
         let(:original_status) { Fabricate(:status) }
 
         let(:object_json) do
           build_object(
             inReplyTo: ActivityPub::TagManager.instance.uri_for(original_status)
+          )
+        end
+
+        it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.thread).to eq original_status
+          expect(status.reply?).to be true
+          expect(status.in_reply_to_account).to eq original_status.account
+          expect(status.conversation).to eq original_status.conversation
+        end
+      end
+
+      context 'with a reply explicitly setting a conversation' do
+        let(:original_status) { Fabricate(:status) }
+
+        let(:object_json) do
+          build_object(
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(original_status),
+            conversation: ActivityPub::TagManager.instance.uri_for(original_status.conversation),
+            context: ActivityPub::TagManager.instance.uri_for(original_status.conversation)
           )
         end
 

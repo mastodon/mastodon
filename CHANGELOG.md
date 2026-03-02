@@ -2,9 +2,141 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.7] - 2026-02-24
+
+### Security
+
+- Reject unconfirmed FASPs (#37926 by @oneiros, [GHSA-qgmm-vr4c-ggjg](https://github.com/mastodon/mastodon/security/advisories/GHSA-qgmm-vr4c-ggjg))
+- Re-use custom socket class for FASP requests (#37925 by @oneiros, [GHSA-46w6-g98f-wxqm](https://github.com/mastodon/mastodon/security/advisories/GHSA-46w6-g98f-wxqm))
+
+### Added
+
+- Add `--suspended-only` option to `tootctl emoji purge` (#37828 and #37861 by @ClearlyClaire and @mjankowski)
+
+### Fixed
+
+- Fix emoji data not being properly cached (#37858 by @ChaosExAnima)
+- Fix delete & redraft of pending posts (#37839 by @ClearlyClaire)
+- Fix processing separate key documents without the ActivityStreams context (#37826 by @ClearlyClaire)
+- Fix custom emojis not being purged on domain suspension (#37808 by @ClearlyClaire)
+- Fix users without special permissions being able to stream disabled timelines (#37791 by @ClearlyClaire)
+- Fix processing of object updates with duplicate hashtags (#37756 by @ClearlyClaire)
+
+## [4.5.6] - 2026-02-03
+
+### Security
+
+- Fix ActivityPub collection caching logic for pinned posts and featured tags not checking blocked accounts ([GHSA-ccpr-m53r-mfwr](https://github.com/mastodon/mastodon/security/advisories/GHSA-ccpr-m53r-mfwr))
+
+### Changed
+
+- Shorten caching of quote posts pending approval (#37570 and #37592 by @ClearlyClaire)
+
+### Fixed
+
+- Fix relationship cache not being cleared when handling account migrations (#37664 by @ClearlyClaire)
+- Fix quote cancel button not appearing after edit then delete-and-redraft (#37066 by @PGrayCS)
+- Fix followers with profile subscription (bell icon) being notified of post edits (#37646 by @ClearlyClaire)
+- Fix error when encountering invalid tag in updated object (#37635 by @ClearlyClaire)
+- Fix cross-server conversation tracking (#37559 by @ClearlyClaire)
+- Fix recycled connections not being immediately closed (#37335 and #37674 by @ClearlyClaire and @shleeable)
+
+## [4.5.5] - 2026-01-20
+
+### Security
+
+- Fix missing limits on various federated properties [GHSA-gg8q-rcg7-p79g](https://github.com/mastodon/mastodon/security/advisories/GHSA-gg8q-rcg7-p79g)
+- Fix remote user suspension bypass [GHSA-5h2f-wg8j-xqwp](https://github.com/mastodon/mastodon/security/advisories/GHSA-5h2f-wg8j-xqwp)
+- Fix missing length limits on some user-provided fields [GHSA-6x3w-9g92-gvf3](https://github.com/mastodon/mastodon/security/advisories/GHSA-6x3w-9g92-gvf3)
+- Fix missing access check for push notification settings update [GHSA-f3q8-7vw3-69v4](https://github.com/mastodon/mastodon/security/advisories/GHSA-f3q8-7vw3-69v4)
+
+### Changed
+
+- Skip tombstone creation on deleting from 404 (#37533 by @ClearlyClaire)
+
+### Fixed
+
+- Fix potential duplicate handling of quote accept/reject/delete (#37537 by @ClearlyClaire)
+- Fix `FeedManager#filter_from_home` error when handling a reblog of a deleted status (#37486 by @ClearlyClaire)
+- Fix needlessly complicated SQL query in status batch removal (#37469 by @ClearlyClaire)
+- Fix `quote_approval_policy` being reset to user defaults when omitted in status update (#37436 and #37474 by @mjankowski and @shleeable)
+- Fix `Vary` parsing in cache control enforcement (#37426 by @MegaManSec)
+- Fix missing URI scheme test in `QuoteRequest` handling (#37425 by @MegaManSec)
+- Fix thread-unsafe ActivityPub activity dispatch (#37423 by @MegaManSec)
+- Fix URI generation for reblogs by accounts with numerical ActivityPub identifiers (#37415 by @oneiros)
+- Fix SignatureParser accepting duplicate parameters in HTTP Signature header (#37375 by @shleeable)
+- Fix emoji with variant selector not being rendered properly (#37320 by @ChaosExAnima)
+- Fix mobile admin sidebar displaying under batch table toolbar (#37307 by @diondiondion)
+
+## [4.5.4] - 2026-01-07
+
+### Security
+
+- Fix SSRF protection bypass ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-xfrj-c749-jxxq))
+- Fix missing ownership check in severed relationships controller ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-ww85-x9cp-5v24))
+
+### Changed
+
+- Change HTTP Signature verification status from 401 to 503 on temporary failure to get remote actor (#37221 by @ClearlyClaire)
+
+### Fixed
+
+- Fix custom emojis not being rendered in profile fields (#37365 by @ClearlyClaire)
+- Fix serialization of context pages (#37376 by @ClearlyClaire)
+- Fix quotes with CWs but no text not having fallback link (#37361 by @ClearlyClaire)
+- Fix outdated link target for “locked” warning (#37366 by @ClearlyClaire)
+- Fix local custom emojis sometimes being rendered in remote posts (#37284 by @ChaosExAnima)
+- Fix some assets not being loaded from configured CDN (#37310 by @ChaosExAnima)
+- Fix notifications page error in Tor browser (#37285 by @diondiondion)
+- Fix custom emojis not being displayed in CWs and fav/boost notifications (#37272 and #37306 by @ChaosExAnima and @ClearlyClaire)
+- Fix default `Admin` role not including `view_feeds` permission (#37301 by @ClearlyClaire)
+- Fix hashtag autocomplete replacing suggestion's first characters with input (#37281 by @ClearlyClaire)
+- Fix mentions of domain-blocked users being processed (#37257 by @ClearlyClaire)
+
+## [4.5.3] - 2025-12-08
+
+### Security
+
+- Fix inconsistent error handling leaking information on existence of private posts ([GHSA-gwhw-gcjx-72v8](https://github.com/mastodon/mastodon/security/advisories/GHSA-gwhw-gcjx-72v8))
+
+### Fixed
+
+- Fix “Delete and Redraft” on a non-quote being treated as a quote post in some cases (#37140 by @ClearlyClaire)
+- Fix YouTube embeds by sending referer (#37126 by @ChaosExAnima)
+- Fix streamed quoted polls not being hydrated correctly (#37118 by @ClearlyClaire)
+- Fix creation of duplicate conversations (#37108 by @oneiros)
+- Fix extraneous `noreferrer` in external links (#37107 by @ChaosExAnima)
+- Fix edge case error handling in some database migrations (#37079 by @ClearlyClaire)
+- Fix error handling when re-fetching already-known statuses (#37077 by @ClearlyClaire)
+- Fix post navigation in single-column mode when Advanced UI is enabled (#37044 by @diondiondion)
+- Fix `tootctl status remove` removing quoted posts and remote quotes of local posts (#37009 by @ClearlyClaire)
+- Fix known expensive S3 batch delete operation failing because of short timeouts (#37004 by @ClearlyClaire)
+- Fix compose autosuggest always lowercasing input token (#36995 by @ClearlyClaire)
+
+## [4.5.2] - 2025-11-20
+
+### Changed
+
+- Change private quote education modal to not show up on self-quotes (#36926 by @ClearlyClaire)
+
+### Fixed
+
+- Fix missing fallback link in CW-only quote posts (#36963 by @ClearlyClaire)
+- Fix statuses without text being hidden while loading (#36962 by @ClearlyClaire)
+- Fix `g` + `h` keyboard shortcut not working when a post is focused (#36935 by @diondiondion)
+- Fix quoting overwriting current content warning (#36934 by @ClearlyClaire)
+- Fix scroll-to-status in threaded view being unreliable (#36927 by @ClearlyClaire)
+- Fix path resolution for emoji worker (#36897 by @ChaosExAnima)
+- Fix `tootctl upgrade storage-schema` failing with `ArgumentError` (#36914 by @shugo)
+- Fix cross-origin handling of CSS modules (#36890 by @ClearlyClaire)
+- Fix error with remote tags including percent signs (#36886 and #36925 by @ChaosExAnima and @ClearlyClaire)
+- Fix bogus quote approval policy not always being replaced correctly (#36885 by @ClearlyClaire)
+- Fix hashtag completion not being inserted correctly (#36884 by @ClearlyClaire)
+- Fix Cmd/Ctrl + Enter in the composer triggering confirmation dialog action (#36870 by @diondiondion)
+
 ## [4.5.1] - 2025-11-13
 
-### Fixes
+### Fixed
 
 - Fix Cmd/Ctrl + Enter not submitting Alt text modal on some browsers (#36866 by @diondiondion)
 - Fix posts coming from public/hashtag streaming being marked as unquotable (#36860 and #36869 by @ClearlyClaire)

@@ -68,6 +68,26 @@ RSpec.describe FollowerAccountsController do
           end
         end
 
+        context 'when request is signed in and user blocks an account' do
+          let(:account) { Fabricate :account }
+
+          before do
+            Fabricate :block, account:, target_account: follower_bob
+            sign_in(account.user)
+          end
+
+          it 'returns followers without blocked' do
+            expect(response)
+              .to have_http_status(200)
+            expect(response.parsed_body)
+              .to include(
+                orderedItems: contain_exactly(
+                  include(follow_from_chris.account.id.to_s)
+                )
+              )
+          end
+        end
+
         context 'when account is permanently suspended' do
           before do
             alice.suspend!

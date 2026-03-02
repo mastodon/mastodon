@@ -75,7 +75,7 @@ export const DisabledAccountBanner: React.FC = () => {
       </a>
       <button
         type='button'
-        className='button button--block button-tertiary'
+        className='button button--block button-secondary'
         onClick={handleLogOutClick}
       >
         <FormattedMessage

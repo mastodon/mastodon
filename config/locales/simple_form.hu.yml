@@ -88,6 +88,7 @@ hu:
         activity_api_enabled: Helyi bejegyzések, aktív felhasználók és új regisztrációk száma heti bontásban
         app_icon: WEBP, PNG, GIF vagy JPG. Mobileszközökön az alkalmazás alapértelmezett ikonját felülírja egy egyéni ikonnal.
         backups_retention_period: A felhasználók archívumokat állíthatnak elő a bejegyzéseikből, hogy később letöltsék azokat. Ha pozitív értékre van állítva, akkor a megadott számú nap után automatikusan törölve lesznek a tárhelyedről.
+        bootstrap_timeline_accounts: Ezek a fiókok rögzítve lesznek az új felhasználók követési ajánlásai tetején. Add meg a fiókok vesszővel elválasztott listáját.
         closed_registrations_message: Akkor jelenik meg, amikor a regisztráció le van zárva
         content_cache_retention_period: Minden más kiszolgálóról származó bejegyzés (megtolásokkal és válaszokkal együtt) törölve lesz a megadott számú nap elteltével, függetlenül a helyi felhasználók ezekkel a bejegyzésekkel történő interakcióitól. Ebben azok a bejegyzések is benne vannak, melyeket a helyi felhasználó könyvjelzőzött vagy kedvencnek jelölt. A különböző kiszolgálók felhasználói közötti privát üzenetek is el fognak veszni visszaállíthatatlanul. Ennek a beállításnak a használata különleges felhasználási esetekre javasolt, mert számos felhasználói elvárás fog eltörni, ha általános céllal használják.
         custom_css: A Mastodon webes verziójában használhatsz egyéni stílusokat.
@@ -110,6 +111,7 @@ hu:
         thumbnail: Egy durván 2:1 arányú kép, amely a kiszolgálóinformációk mellett jelenik meg.
         trendable_by_default: Kézi felülvizsgálat kihagyása a felkapott tartalmaknál. Az egyes elemek utólag távolíthatók el a trendek közül.
         trends: A trendek azt mondják meg, hogy mely bejegyzések, hashtagek és hírbejegyzések felkapottak a kiszolgálódon.
+        wrapstodon: Kínáld fel a lehetőséget a helyi felhasználóknak, hogy egy vidám összefoglalóban összesíthessék a Mastodon használatukat az év folyamán. Ez a lehetőség minden évben december 10. és 31. között érhető el, azoknak, aki létrehoztak legalább egy nyilvános vagy csendes nyilvános bejegyzést és használtak legalább egy hashtaget az év folyamán.
       form_challenge:
         current_password: Beléptél egy biztonsági térben
       imports:
@@ -162,6 +164,7 @@ hu:
         name: A szerep nyilvános neve, ha a szerepet úgy állították be, hogy jelvényként látható legyen
         permissions_as_keys: A felhasználók ezzel a szereppel elérhetik a...
         position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
+        require_2fa: Az ezzel a szereppel rendelkező felhasználóknak be kell állítaniuk a kétlépcsős hitelesítést a Mastodon használatához
       username_block:
         allow_with_approval: A regisztráció azonnali megakadályozása helyett az illeszkedő regisztrációkhoz jóváhagyás szükséges
         comparison: Vegye figyelembe a Scunthorpe-problémát, amikor részleges egyezéseket blokkol
@@ -221,6 +224,7 @@ hu:
         email: E-mail cím
         expires_in: Elévülés dátuma
         fields: Profil metaadatai
+        filter_action: Szűrési művelet
         header: Fejléc
         honeypot: "%{label} (ne töltsd ki)"
         inbox_url: Továbbító inbox-hoz tartozó URL
@@ -237,6 +241,8 @@ hu:
         setting_always_send_emails: E-mail-értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megtolás láthatóságának beállítása
+        setting_color_scheme: Színséma
+        setting_contrast: Kontraszt
         setting_default_language: Bejegyzések nyelve
         setting_default_privacy: Közzététel láthatósága
         setting_default_quote_policy: Ki idézhet
@@ -311,6 +317,7 @@ hu:
         thumbnail: Kiszolgáló bélyegképe
         trendable_by_default: Trendek engedélyezése előzetes ellenőrzés nélkül
         trends: Trendek engedélyezése
+        wrapstodon: Wrapstodon engedélyezése
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
@@ -371,7 +378,9 @@ hu:
         jurisdiction: Joghatóság
         min_age: Minimális életkor
       user:
+        date_of_birth_1i: Év
         date_of_birth_2i: Hónap
+        date_of_birth_3i: Nap
         role: Szerep
         time_zone: Időzóna
       user_role:
@@ -380,6 +389,7 @@ hu:
         name: Név
         permissions_as_keys: Engedélyek
         position: Prioritás
+        require_2fa: Kétlépcsős hitelesítés megkövetelése
       username_block:
         allow_with_approval: Regisztráció engedélyezése jóváhagyással
         comparison: Összehasonlítás módja

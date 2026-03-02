@@ -174,15 +174,15 @@ class ActivityPub::Parser::StatusParser
     allowed_actors = as_array(subpolicy).dup
     allowed_actors.uniq!
 
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] if allowed_actors.delete(@options[:followers_collection])
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:following] if allowed_actors.delete(@options[:following_collection])
+    flags |= InteractionPolicy::POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
+    flags |= InteractionPolicy::POLICY_FLAGS[:followers] if allowed_actors.delete(@options[:followers_collection])
+    flags |= InteractionPolicy::POLICY_FLAGS[:following] if allowed_actors.delete(@options[:following_collection])
 
     # Remove the special-meaning actor URI
     allowed_actors.delete(@options[:actor_uri])
 
     # Any unrecognized actor is marked as unsupported
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:unsupported_policy] unless allowed_actors.empty?
+    flags |= InteractionPolicy::POLICY_FLAGS[:unsupported_policy] unless allowed_actors.empty?
 
     flags
   end

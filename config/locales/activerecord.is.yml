@@ -32,6 +32,12 @@ is:
           attributes:
             url:
               invalid: er ekki gild vefslóð
+        collection:
+          attributes:
+            collection_items:
+              too_many: eru of mörg, ekki fleiri en %{count} eru leyfileg
+            tag:
+              unusable: gæti verið ekki notað
         doorkeeper/application:
           attributes:
             website:

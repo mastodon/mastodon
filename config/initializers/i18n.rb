@@ -64,6 +64,7 @@ Rails.application.configure do
     :mr,
     :ms,
     :my,
+    :'nan-TW',
     :nl,
     :nn,
     :no,

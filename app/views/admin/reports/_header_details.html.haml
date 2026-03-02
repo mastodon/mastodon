@@ -10,7 +10,7 @@
     .report-header__details__item__content
       - if report.account.instance_actor?
         = site_hostname
-      - elsif report.account.local?
+      - elsif report.local?
         = admin_account_link_to report.account
       - else
         = report.account.domain
@@ -28,7 +28,7 @@
         = t('admin.reports.resolved')
       - else
         = t('admin.reports.unresolved')
-  - if report.account.local? && !report.target_account.local?
+  - if report.local? && !report.target_account.local?
     .report-header__details__item
       .report-header__details__item__header
         %strong= t('admin.reports.forwarded')

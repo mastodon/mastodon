@@ -1,0 +1,50 @@
+.tag {
+  border-radius: 9999px;
+  border: 1px solid var(--color-border-primary);
+  appearance: none;
+  background: none;
+  padding: 6px 8px;
+  transition: all 0.2s ease-in-out;
+  color: var(--color-text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+button.tag:hover,
+button.tag:focus {
+  border-color: var(--color-bg-brand-base-hover);
+}
+
+button.tag:focus-visible {
+  outline: var(--outline-focus-default);
+  outline-offset: 2px;
+}
+
+.active {
+  border-color: var(--color-text-brand);
+  background: var(--color-bg-brand-softer);
+  color: var(--color-text-brand);
+}
+
+.icon {
+  height: 1.2em;
+  width: 1.2em;
+}
+
+.closeButton {
+  svg {
+    height: 1.2em;
+    width: 1.2em;
+  }
+}
+
+.active .closeButton {
+  color: inherit;
+}
+
+.tagsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

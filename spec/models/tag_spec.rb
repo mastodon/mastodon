@@ -40,21 +40,40 @@ RSpec.describe Tag do
       I18n.t('tags.does_not_match_previous_name')
     end
 
-    it 'invalid with #' do
-      expect(described_class.new(name: '#hello_world')).to_not be_valid
+    describe 'when skipping normalizations' do
+      subject { described_class.new }
+
+      before { subject.attributes[:name] = name }
+
+      context 'with a # in string' do
+        let(:name) { '#hello_world' }
+
+        it { is_expected.to_not be_valid }
+      end
+
+      context 'with a . in string' do
+        let(:name) { '.abcdef123' }
+
+        it { is_expected.to_not be_valid }
+      end
+
+      context 'with a space in string' do
+        let(:name) { 'hello world' }
+
+        it { is_expected.to_not be_valid }
+      end
     end
 
-    it 'invalid with .' do
-      expect(described_class.new(name: '.abcdef123')).to_not be_valid
-    end
+    it { is_expected.to allow_value('ａｅｓｔｈｅｔｉｃ').for(:name) }
+  end
 
-    it 'invalid with spaces' do
-      expect(described_class.new(name: 'hello world')).to_not be_valid
-    end
+  describe 'Normalizations' do
+    it { is_expected.to normalize(:display_name).from('#HelloWorld').to('HelloWorld') }
+    it { is_expected.to normalize(:display_name).from('Hello❤️World').to('HelloWorld') }
 
-    it 'valid with ａｅｓｔｈｅｔｉｃ' do
-      expect(described_class.new(name: 'ａｅｓｔｈｅｔｉｃ')).to be_valid
-    end
+    it { is_expected.to normalize(:name).from('#hello_world').to('hello_world') }
+    it { is_expected.to normalize(:name).from('hello world').to('helloworld') }
+    it { is_expected.to normalize(:name).from('.abcdef123').to('abcdef123') }
   end
 
   describe 'HASHTAG_RE' do
@@ -78,6 +97,10 @@ RSpec.describe Tag do
 
     it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
+    end
+
+    it 'does not match URLs with hashtag-like anchors after a dot' do
+      expect(subject.match('https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America,_Inc.#Decision')).to be_nil
     end
 
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
@@ -201,7 +224,7 @@ RSpec.describe Tag do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
       downcase_string = 'abcabcａｂｃａｂｃやゆよ'
 
-      tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
+      tag = Fabricate(:tag, name: downcase_string)
       expect(described_class.find_normalized(upcase_string)).to eq tag
     end
   end
@@ -230,7 +253,7 @@ RSpec.describe Tag do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
       downcase_string = 'abcabcａｂｃａｂｃやゆよ'
 
-      tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
+      tag = Fabricate(:tag, name: downcase_string)
       expect(described_class.matches_name(upcase_string)).to eq [tag]
     end
 
@@ -245,23 +268,50 @@ RSpec.describe Tag do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
       downcase_string = 'abcabcａｂｃａｂｃやゆよ'
 
-      tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
+      tag = Fabricate(:tag, name: downcase_string)
       expect(described_class.matching_name(upcase_string)).to eq [tag]
     end
   end
 
   describe '.find_or_create_by_names' do
-    let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
-    let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+    context 'when called with a block' do
+      let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
+      let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+      let(:args) { [upcase_string, downcase_string] }
 
-    it 'runs a passed block once per tag regardless of duplicates' do
-      count = 0
+      it 'runs the block once per normalized tag regardless of duplicates' do
+        expect { |block| described_class.find_or_create_by_names(args, &block) }
+          .to yield_control.once
+      end
+    end
 
-      described_class.find_or_create_by_names([upcase_string, downcase_string]) do |_tag|
-        count += 1
+    context 'when passed an array' do
+      it 'creates multiples tags' do
+        expect { described_class.find_or_create_by_names(%w(tips tags toes)) }
+          .to change(described_class, :count).by(3)
+      end
+    end
+
+    context 'when passed a string' do
+      it 'creates a single tag' do
+        expect { described_class.find_or_create_by_names('test') }
+          .to change(described_class, :count).by(1)
+      end
+    end
+  end
+
+  describe '.find_or_create_by_names_race_condition' do
+    it 'handles simultaneous inserts of the same tag in different cases without error' do
+      tag_name_upper = 'Rails'
+      tag_name_lower = 'rails'
+
+      multi_threaded_execution(2) do |index|
+        described_class.find_or_create_by_names(index.zero? ? tag_name_upper : tag_name_lower)
       end
 
-      expect(count).to eq 1
+      tags = described_class.where('lower(name) = ?', tag_name_lower.downcase)
+      expect(tags.count).to eq(1)
+      expect(tags.first.name.downcase).to eq(tag_name_lower.downcase)
     end
   end
 

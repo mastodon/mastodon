@@ -93,7 +93,7 @@ zh-CN:
         content_cache_retention_period: 来自其它实例的所有嘟文（包括转嘟与回复）都将在指定天数后被删除，不论本实例用户是否与这些嘟文产生过交互。这包括被本实例用户喜欢和收藏的嘟文。实例间用户的私下提及也将丢失并无法恢复。此设置针对的是特殊用途的实例，用于一般用途时会打破许多用户的期望。
         custom_css: 你可以为网页版 Mastodon 应用自定义样式。
         favicon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖 Mastodon 的默认图标。
-        landing_page: 选择新访客首次访问您的服务器时看到的页面。 如果选择“热门”，则需要在“发现”设置中启用热门趋势。 如果选择“本站动态”，则在“发现”设置中“展示本站嘟文的实时动态访问权限”一项需要设置为“所有人”。
+        landing_page: 选择新访客首次访问你的服务器时看到的页面。 如果选择“热门”，则需要在“发现”设置中启用热门趋势。 如果选择“本站动态”，则在“发现”设置中“展示本站嘟文的实时动态访问权限”一项需要设置为“所有人”。
         mascot: 覆盖高级网页界面中的绘图形象。
         media_cache_retention_period: 来自外站用户嘟文的媒体文件将被缓存到你的实例上。当该值被设为正值时，缓存的媒体文件将在指定天数后被清除。如果媒体文件在被清除后重新被请求，且源站内容仍然可用，它将被重新下载。由于链接预览卡拉取第三方站点的频率受到限制，建议将此值设置为至少 14 天，如果小于该值，链接预览卡将不会按需更新。
         min_age: 用户注册时必须确认出生日期
@@ -111,6 +111,7 @@ zh-CN:
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
         trends: 热门页中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
+        wrapstodon: 为本站用户提供生成他们过去一年使用 Mastodon 情况的趣味总结的功能。此功能在每年12月10日至12月31日提供给这一年发布过至少1条公开嘟文（无论是否设置为在时间线上显示）及至少使用过1个话题标签的用户。
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -162,6 +163,7 @@ zh-CN:
         name: 角色的公开名称，将在外显为徽章时使用
         permissions_as_keys: 具有此角色的用户将有权访问...
         position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
+        require_2fa: 具有此角色的用户将被要求设置双因素认证以使用 Mastodon
       username_block:
         allow_with_approval: 不直接禁止注册，而是使匹配的新注册需要你的批准
         comparison: 屏蔽部分匹配时请注意潜在的Scunthrope问题（正常单词内部包含被屏蔽的部分）
@@ -221,6 +223,7 @@ zh-CN:
         email: 邮箱地址
         expires_in: 失效时间
         fields: 个人资料附加信息
+        filter_action: 过滤器操作
         header: 封面图
         honeypot: "%{label} (请勿填写)"
         inbox_url: 中继站收件箱的 URL
@@ -237,6 +240,8 @@ zh-CN:
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 控制转嘟可见性
+        setting_color_scheme: 配色方案
+        setting_contrast: 对比度
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文可见性
         setting_default_quote_policy: 谁可以引用
@@ -311,6 +316,7 @@ zh-CN:
         thumbnail: 本站缩略图
         trendable_by_default: 允许在未审核的情况下将话题置为热门
         trends: 启用热门
+        wrapstodon: 启用 Wrapstodon 年度回顾
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
@@ -371,7 +377,9 @@ zh-CN:
         jurisdiction: 法律管辖区
         min_age: 最低年龄
       user:
+        date_of_birth_1i: 年
         date_of_birth_2i: 月
+        date_of_birth_3i: 日
         role: 角色
         time_zone: 时区
       user_role:
@@ -380,6 +388,7 @@ zh-CN:
         name: 名称
         permissions_as_keys: 权限
         position: 优先级
+        require_2fa: 需要双因素认证
       username_block:
         allow_with_approval: 注册时需要批准
         comparison: 比较方法

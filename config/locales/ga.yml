@@ -7,13 +7,20 @@ ga:
     hosted_on: Mastodon arna óstáil ar %{domain}
     title: Maidir le
   accounts:
+    errors:
+      cannot_be_added_to_collections: Ní féidir an cuntas seo a chur le bailiúcháin.
     followers:
       few: Leantóirí
       many: Leantóirí
       one: Leantóir
       other: LeantóiríLeantóirí
       two: Leantóirí
-    following: Ag leanúint
+    following:
+      few: Ag leanúint
+      many: Ag leanúint
+      one: Ag leanúint
+      other: Ag leanúint
+      two: Ag leanúint
     instance_actor_flash: Is gníomhaí fíorúil é an cuntas seo a úsáidtear chun an freastalaí féin agus ní aon úsáideoir aonair a léiriú. Úsáidtear é chun críocha cónaidhme agus níor cheart é a chur ar fionraí.
     last_active: deireanach gníomhach
     link_verified_on: Seiceáladh úinéireacht an naisc seo ar %{date}
@@ -58,6 +65,7 @@ ga:
         label: Athraigh ról
         no_role: Gan ról
         title: Athraigh ról do %{username}
+      collections: Bailiúcháin
       confirm: Deimhnigh
       confirmed: Deimhnithe
       confirming: Ag deimhniú
@@ -271,6 +279,7 @@ ga:
         demote_user_html: "%{name} úsáideoir scriosta %{target}"
         destroy_announcement_html: "%{name} fógra scriosta %{target}"
         destroy_canonical_email_block_html: "%{name} ríomhphost díchoiscthe leis an hash %{target}"
+        destroy_collection_html: Bhain %{name} bailiúchán le %{target}
         destroy_custom_emoji_html: Scriosadh %{name} emoji %{target}
         destroy_domain_allow_html: Dhiúltaigh %{name} cónaidhm le fearann ​​%{target}
         destroy_domain_block_html: "%{name} fearann ​​%{target} bainte de"
@@ -310,6 +319,7 @@ ga:
         unsilence_account_html: Chealaigh %{name} teorainn chuntas %{target}
         unsuspend_account_html: Níor chuir %{name} cuntas %{target} ar fionraí
         update_announcement_html: "%{name} fógra nuashonraithe %{target}"
+        update_collection_html: Nuashonraigh %{name} bailiúchán le %{target}
         update_custom_emoji_html: "%{name} emoji nuashonraithe %{target}"
         update_domain_block_html: "%{name} nuashonraithe bloc fearainn le haghaidh %{target}"
         update_ip_block_html: D'athraigh %{name} riail an IP %{target}
@@ -345,6 +355,18 @@ ga:
       unpublish: Dífhoilsiú
       unpublished_msg: D’éirigh leis an bhfógra neamhfhoilsithe!
       updated_msg: D'éirigh leis an bhfógra a nuashonrú!
+    collections:
+      accounts: Cuntais
+      collection_title: Bailiúchán le %{name}
+      contents: Ábhar
+      number_of_accounts:
+        few: "%{count} cuntais"
+        many: "%{count} cuntais"
+        one: 1 chuntas
+        other: "%{count} cuntais"
+        two: "%{count} cuntais"
+      open: Oscail
+      view_publicly: Féach go poiblí
     critical_update_pending: Nuashonrú criticiúil ar feitheamh
     custom_emojis:
       assign_category: Sann catagóir
@@ -711,6 +733,7 @@ ga:
       cancel: Cealaigh
       category: Catagóir
       category_description_html: Luafar an chúis ar tuairiscíodh an cuntas seo agus/nó an t-ábhar seo i gcumarsáid leis an gcuntas tuairiscithe
+      collections: Bailiúcháin (%{count})
       comment:
         none: Dada
       comment_description_html: 'Chun tuilleadh eolais a sholáthar, scríobh %{name}:'
@@ -740,12 +763,13 @@ ga:
       report: 'Tuairiscigh # %{id}'
       reported_account: Cuntas tuairiscithe
       reported_by: Tuairiscithe ag
+      reported_content: Ábhar tuairiscithe
       reported_with_application: Tuairiscíodh leis an iarratas
       resolved: Réitithe
       resolved_msg: D'éirigh le réiteach an tuairisc!
       skip_to_actions: Léim ar ghníomhartha
       status: Stádas
-      statuses: Ábhar tuairiscithe
+      statuses: Poist (%{count})
       statuses_description_html: Luafar ábhar ciontach i gcumarsáid leis an gcuntas tuairiscithe
       summary:
         action_preambles:
@@ -840,6 +864,7 @@ ga:
         view_devops_description: Ligeann sé d’úsáideoirí rochtain a fháil ar dheais Sidekiq agus pgHero
         view_feeds: Féach ar fhothaí beo agus topaicí
         view_feeds_description: Ceadaíonn sé d’úsáideoirí rochtain a fháil ar na fothaí beo agus topaicí beag beann ar shocruithe an fhreastalaí
+      requires_2fa: Éilíonn fíordheimhniú dhá fhachtóir
       title: Róil
     rules:
       add_new: Cruthaigh riail
@@ -888,6 +913,7 @@ ga:
         publish_statistics: Staitisticí a fhoilsiú
         title: Fionnachtain
         trends: Treochtaí
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Do chách
         disabled: Do dhuine ar bith
@@ -1375,6 +1401,13 @@ ga:
     hint_html: "<strong>Leid:</strong> Ní iarrfaimid do phasfhocal ort arís go ceann uair an chloig eile."
     invalid_password: Pasfhocal neamhbhailí
     prompt: Deimhnigh an pasfhocal chun leanúint ar aghaidh
+  color_scheme:
+    auto: Uath
+    dark: Dorcha
+    light: Solas
+  contrast:
+    auto: Uath
+    high: Ard
   crypto:
     errors:
       invalid_key: nach eochair bhailí Ed25519 nó Curve25519 í
@@ -1825,16 +1858,22 @@ ga:
       body: 'Luaigh %{name} thú i:'
       subject: Luaigh %{name} thú
       title: Lua nua
+    moderation_warning:
+      subject: Tá rabhadh modhnóireachta faighte agat
     poll:
       subject: Tháinig deireadh le vótaíocht le %{name}
     quote:
       body: 'Luaigh %{name} do phost:'
       subject: Luaigh %{name} do phost
       title: Luachan nua
+    quoted_update:
+      subject: Chuir %{name} post in eagar a luaigh tú
     reblog:
       body: 'Treisíodh do phostáil le %{name}:'
       subject: Mhol %{name} do phostáil
       title: Moladh nua
+    severed_relationships:
+      subject: Tá naisc caillte agat mar gheall ar chinneadh modhnóireachta
     status:
       subject: Tá %{name} díreach postáilte
     update:
@@ -2088,11 +2127,11 @@ ga:
     enabled: Scrios seanphostálacha go huathoibríoch
     enabled_hint: Scriostar do phostálacha go huathoibríoch nuair a shroicheann siad tairseach aoise sonraithe, ach amháin má thagann siad le ceann de na heisceachtaí thíos
     exceptions: Eisceachtaí
-    explanation: Toisc gur oibríocht chostasach é postálacha a scriosadh, déantar é seo go mall le himeacht ama nuair nach mbíonn an freastalaí gnóthach ar bhealach eile. Ar an ábhar sin, d’fhéadfadh sé go scriosfar do phostálacha tamall tar éis dóibh an tairseach aoise a bhaint amach.
+    explanation: Déantar scriosadh uathoibrithe le tosaíocht íseal. D’fhéadfadh moill a bheith ann idir an aois a shroichtear agus an bhaint.
     ignore_favs: Tabhair neamhaird ar toghanna
     ignore_reblogs: Déan neamhaird de boosts
     interaction_exceptions: Eisceachtaí bunaithe ar idirghníomhaíochtaí
-    interaction_exceptions_explanation: Tabhair faoi deara nach bhfuil aon ráthaíocht go scriosfar postálacha má théann siad faoi bhun na tairsí is ansa leat nó an teanndáileog tar éis dóibh dul thar iad uair amháin.
+    interaction_exceptions_explanation: Féadfar poist a sháraíonn an tairseach is fearr leat nó an tairseach borrtha a choinneáil fiú má laghdaítear iad níos déanaí.
     keep_direct: Coinnigh teachtaireachtaí díreacha
     keep_direct_hint: Ní scriosann sé aon cheann de do theachtaireachtaí díreacha
     keep_media: Coinnigh postálacha le ceangaltáin meán
@@ -2134,10 +2173,7 @@ ga:
     review_link: Athbhreithnigh téarmaí seirbhíse
     title: Tá téarmaí seirbhíse %{domain} ag athrú
   themes:
-    contrast: Mastodon (Codarsnacht ard)
-    default: Mastodon (Dorcha)
-    mastodon-light: Mastodon (Solas)
-    system: Uathoibríoch (úsáid téama córais)
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -2162,6 +2198,8 @@ ga:
     recovery_codes: Cóid aisghabhála cúltaca
     recovery_codes_regenerated: D'éirigh le hathghiniúint cóid athshlánaithe
     recovery_instructions_html: Má chailleann tú rochtain ar do ghuthán riamh, is féidir leat ceann de na cóid athshlánaithe thíos a úsáid chun rochtain a fháil ar do chuntas arís. <strong>Coinnigh na cóid athshlánaithe slán</strong>. Mar shampla, is féidir leat iad a phriontáil agus iad a stóráil le doiciméid thábhachtacha eile.
+    resume_app_authorization: Údarú iarratais atosú
+    role_requirement: Éilíonn %{domain} ort Fíordheimhniú Dhá Fhachtóir a shocrú sula bhféadfaidh tú Mastodon a úsáid.
     webauthn: Eochracha slándála
   user_mailer:
     announcement_published:
@@ -2308,8 +2346,12 @@ ga:
       error: Bhí fadhb ann agus d'eochair shlándála á scriosadh. Arís, le d'thoil.
       success: Scriosadh d'eochair shlándála go rathúil.
     invalid_credential: Eochair shlándála neamhbhailí
+    nickname: Leasainm
     nickname_hint: Cuir isteach leasainm d'eochair shlándála nua
     not_enabled: Níl WebAuthn cumasaithe agat fós
     not_supported: Ní thacaíonn an brabhsálaí seo le heochracha slándála
     otp_required: Chun eochracha slándála a úsáid cumasaigh fíordheimhniú dhá fhachtóir ar dtús.
     registered_on: Cláraithe ar %{date}
+  wrapstodon:
+    description: Féach conas a d'úsáid %{name} Mastodon i mbliana!
+    title: Wrapstodon %{year} do %{name}

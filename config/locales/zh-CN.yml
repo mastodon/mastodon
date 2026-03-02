@@ -7,9 +7,12 @@ zh-CN:
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
   accounts:
+    errors:
+      cannot_be_added_to_collections: 此账号无法被添加到收藏列表内。
     followers:
       other: 关注者
-    following: 正在关注
+    following:
+      other: 正在关注
     instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于联合目的，不应该被停用。
     last_active: 上次活跃
     link_verified_on: 此链接的所有权已在 %{date} 验证
@@ -50,6 +53,7 @@ zh-CN:
         label: 更改角色
         no_role: 没有角色
         title: 更改 %{username} 的角色
+      collections: 收藏列表
       confirm: 确认
       confirmed: 已确认
       confirming: 等待确认
@@ -259,6 +263,7 @@ zh-CN:
         demote_user_html: "%{name} 撤销了用户 %{target} 的管理权限"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解封了 hash 为 %{target} 的邮箱地址"
+        destroy_collection_html: "%{name} 移除了 %{target} 的收藏列表"
         destroy_custom_emoji_html: "%{name} 删除了自定义表情 %{target}"
         destroy_domain_allow_html: "%{name} 拒绝了与站点 %{target} 的联合"
         destroy_domain_block_html: "%{name} 解除了对站点 %{target} 的屏蔽"
@@ -298,6 +303,7 @@ zh-CN:
         unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account_html: "%{name} 解封了用户 %{target}"
         update_announcement_html: "%{name} 更新了公告 %{target}"
+        update_collection_html: "%{name} 更新了 %{target} 的收藏列表"
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
@@ -333,6 +339,14 @@ zh-CN:
       unpublish: 取消发布
       unpublished_msg: 公告已取消发布！
       updated_msg: 公告已成功更新！
+    collections:
+      accounts: 账号
+      collection_title: "%{name} 的收藏列表"
+      contents: 内容
+      number_of_accounts:
+        other: "%{count} 个账号"
+      open: 打开
+      view_publicly: 以公开身份查看
     critical_update_pending: 紧急更新待处理
     custom_emojis:
       assign_category: 指定类别
@@ -663,6 +677,7 @@ zh-CN:
       cancel: 取消
       category: 类别
       category_description_html: 在与被举报账号的通信时，将引用该账号和/或内容被举报的原因
+      collections: 收藏列表 (%{count})
       comment:
         none: 没有
       comment_description_html: "%{name} 补充道："
@@ -692,12 +707,13 @@ zh-CN:
       report: '举报 #%{id}'
       reported_account: 举报用户
       reported_by: 举报人
+      reported_content: 被举报内容
       reported_with_application: 举报人使用的应用
       resolved: 已处理
       resolved_msg: 举报处理成功！
       skip_to_actions: 跳转到操作
       status: 状态
-      statuses: 被举报内容
+      statuses: 嘟文 (%{count})
       statuses_description_html: 在与该账号的通信中将引用违规内容
       summary:
         action_preambles:
@@ -784,6 +800,7 @@ zh-CN:
         view_devops_description: 允许用户访问 Sidekiq 和 pgHero 控制面板
         view_feeds: 查看实时动态和话题
         view_feeds_description: 允许用户无视服务器设置访问实时动态和话题
+      requires_2fa: 需要双因素认证
       title: 角色
     rules:
       add_new: 添加规则
@@ -832,6 +849,7 @@ zh-CN:
         publish_statistics: 发布统计数据
         title: 发现
         trends: 热门
+        wrapstodon: Wrapstodon 年度回顾
       domain_blocks:
         all: 对每个人
         disabled: 不对任何人
@@ -1297,6 +1315,13 @@ zh-CN:
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求你输入密码。"
     invalid_password: 无效密码
     prompt: 确认密码以继续
+  color_scheme:
+    auto: 自动
+    dark: 深色
+    light: 浅色
+  contrast:
+    auto: 自动
+    high: 高
   crypto:
     errors:
       invalid_key: 不是有效的 Ed25519 或者 Curve25519 密钥
@@ -1633,7 +1658,7 @@ zh-CN:
       disabled_account: 此后，你的当前账号将无法使用。但是，你仍然有权导出数据或者重新激活。
       followers: 这步操作将把全部关注者从当前账号移动到新账号
       only_redirect_html: 或者，你可以<a href="%{path}">只在你的账号资料上设置一个跳转</a>。
-      other_data: 其他数据不会自动移动（包括您的嘟文及您关注的账号列表）
+      other_data: 其他数据不会自动移动（包括你的嘟文及你关注的账号列表）
       redirect: 在收到一个跳转通知后，你当前的账号资料将会更新，并被排除在搜索范围外
   moderation:
     title: 审核
@@ -1667,16 +1692,22 @@ zh-CN:
       body: "%{name} 提到了你："
       subject: "%{name} 提到了你"
       title: 新的提及
+    moderation_warning:
+      subject: 你收到了一条管理警告
     poll:
       subject: "%{name} 创建的一个投票已经结束"
     quote:
       body: 你的嘟文被 %{name} 引用了：
       subject: "%{name} 引用了你的嘟文"
       title: 新引用
+    quoted_update:
+      subject: "%{name} 编辑了一条你之前引用过的嘟文"
     reblog:
       body: 你的嘟文被 %{name} 转嘟了：
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
+    severed_relationships:
+      subject: 由于管理决定，你已失去网络上的关注关系
     status:
       subject: "%{name} 刚刚发布嘟文"
     update:
@@ -1914,11 +1945,11 @@ zh-CN:
     enabled: 自动删除旧嘟文
     enabled_hint: 自动删除你发布的超过指定期限的嘟文，除非满足下列条件之一
     exceptions: 例外
-    explanation: 删除嘟文会占用大量服务器资源，所以这个操作将在服务器空闲时完成。因此，你的嘟文可能会在达到删除期限之后一段时间才会被删除。
-    ignore_favs: 喜欢数阈值
+    explanation: 自动删除以较低优先级执行。嘟文可能会在达到删除期限之后一段时间才会被删除。
+    ignore_favs: 忽略喜欢
     ignore_reblogs: 转嘟数阈值
     interaction_exceptions: 基于互动的例外
-    interaction_exceptions_explanation: 请注意，如果嘟文的转嘟数和喜欢数超过保留阈值之后，又降到阈值以下，则可能不会被删除。
+    interaction_exceptions_explanation: 嘟文的转嘟数和喜欢数若超过保留阈值，即便之后又降到阈值以下，也可能不会被删除。
     keep_direct: 保留私信
     keep_direct_hint: 不删除你的任何私信
     keep_media: 保留带媒体附件的嘟文
@@ -1960,10 +1991,7 @@ zh-CN:
     review_link: 查看服务条款
     title: "%{domain} 更新了服务条款"
   themes:
-    contrast: Mastodon（高对比度）
-    default: Mastodon（暗色主题）
-    mastodon-light: Mastodon（亮色主题）
-    system: 自动切换（使用系统主题）
+    default: Mastodon
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -1988,6 +2016,8 @@ zh-CN:
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对账号的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
+    resume_app_authorization: 恢复应用程序授权
+    role_requirement: "%{domain} 要求你设置双因素认证以使用 Mastodon。"
     webauthn: 安全密钥
   user_mailer:
     announcement_published:
@@ -2130,8 +2160,12 @@ zh-CN:
       error: 删除你的安全密钥时出错。请重试。
       success: 你的安全密钥已成功删除。
     invalid_credential: 无效的安全密钥
+    nickname: 昵称
     nickname_hint: 输入你的新安全密钥的昵称
     not_enabled: 你尚未启用WebAuthn
     not_supported: 此浏览器不支持安全密钥
     otp_required: 要使用安全密钥，请先启用双因素认证。
     registered_on: 注册于 %{date}
+  wrapstodon:
+    description: 来看看%{name}今年是怎么使用Mastodon的！
+    title: "%{name}的%{year}年Wrapstodon年度回顾"

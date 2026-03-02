@@ -2,7 +2,9 @@
 // See: https://github.com/nolanlawson/emoji-picker-element/blob/master/src/picker/utils/testColorEmojiSupported.js
 
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
+import { assetHost } from '@/mastodon/utils/config';
 import { isDevelopment } from '@/mastodon/utils/environment';
+import { isDarkMode } from '@/mastodon/utils/theme';
 
 import {
   EMOJI_MODE_NATIVE,
@@ -27,7 +29,8 @@ export function useEmojiAppState(): EmojiAppState {
     currentLocale: locale,
     locales: [locale],
     mode,
-    darkTheme: document.body.classList.contains('theme-default'),
+    darkTheme: isDarkMode(),
+    assetHost,
   };
 }
 

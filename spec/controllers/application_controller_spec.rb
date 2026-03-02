@@ -85,38 +85,6 @@ RSpec.describe ApplicationController do
     end
   end
 
-  describe 'helper_method :current_theme' do
-    it 'returns "default" when theme wasn\'t changed in admin settings' do
-      allow(Setting).to receive(:default_settings).and_return({ 'theme' => 'default' })
-
-      expect(controller.view_context.current_theme).to eq 'default'
-    end
-
-    it 'returns instances\'s theme when user is not signed in' do
-      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
-
-      expect(controller.view_context.current_theme).to eq 'contrast'
-    end
-
-    it 'returns instances\'s default theme when user didn\'t set theme' do
-      current_user = Fabricate(:user)
-      current_user.settings.update(theme: 'contrast', noindex: false)
-      current_user.save
-      sign_in current_user
-
-      expect(controller.view_context.current_theme).to eq 'contrast'
-    end
-
-    it 'returns user\'s theme when it is set' do
-      current_user = Fabricate(:user)
-      current_user.settings.update(theme: 'mastodon-light')
-      current_user.save
-      sign_in current_user
-
-      expect(controller.view_context.current_theme).to eq 'mastodon-light'
-    end
-  end
-
   context 'with ActionController::RoutingError' do
     subject do
       routes.draw { get 'routing_error' => 'anonymous#routing_error' }

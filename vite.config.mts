@@ -1,5 +1,5 @@
-import path from 'node:path';
 import { readdir } from 'node:fs/promises';
+import path from 'node:path';
 
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import legacy from '@vitejs/plugin-legacy';
@@ -18,11 +18,11 @@ import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
+import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
 import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
-import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
+import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 
@@ -120,6 +120,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       manifest: true,
       outDir,
       assetsDir: 'assets',
+      assetsInlineLimit: (filePath, _) =>
+        /\.woff2?$/.exec(filePath) ? false : undefined,
       rollupOptions: {
         input: await findEntrypoints(),
         output: {
@@ -153,6 +155,14 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
           },
         },
       },
+    },
+    experimental: {
+      /**
+       * Setting this causes Vite to not rely on the base config for import URLs,
+       * and instead uses import.meta.url, which is what we want for proper CDN support.
+       * @see https://github.com/mastodon/mastodon/pull/37310
+       */
+      renderBuiltUrl: () => undefined,
     },
     worker: {
       format: 'es',
@@ -204,7 +214,10 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       svgr(),
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
-      !!process.env.ANALYZE_BUNDLE_SIZE && (visualizer() as PluginOption),
+      !!process.env.ANALYZE_BUNDLE_SIZE &&
+        (visualizer({
+          template: process.env.CI ? 'raw-data' : 'treemap',
+        }) as PluginOption),
       MastodonNameLookup(),
     ],
   } satisfies UserConfig;

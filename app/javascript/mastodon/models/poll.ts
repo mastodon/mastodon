@@ -25,8 +25,10 @@ export function createPollOptionTranslationFromServerJSON(translation: {
   } as PollOptionTranslation;
 }
 
-export interface Poll
-  extends Omit<ApiPollJSON, 'emojis' | 'options' | 'own_votes'> {
+export interface Poll extends Omit<
+  ApiPollJSON,
+  'emojis' | 'options' | 'own_votes'
+> {
   emojis: CustomEmoji[];
   options: PollOption[];
   own_votes?: number[];

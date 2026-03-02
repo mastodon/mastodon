@@ -182,15 +182,25 @@ function loaded() {
       ({ target }) => {
         if (!(target instanceof HTMLInputElement)) return;
 
-        if (target.value && target.value.length > 0) {
+        const checkedUsername = target.value;
+        if (checkedUsername && checkedUsername.length > 0) {
           axios
-            .get('/api/v1/accounts/lookup', { params: { acct: target.value } })
+            .get('/api/v1/accounts/lookup', {
+              params: { acct: checkedUsername },
+            })
             .then(() => {
-              target.setCustomValidity(formatMessage(messages.usernameTaken));
+              // Only update the validity if the result is for the currently-typed username
+              if (checkedUsername === target.value) {
+                target.setCustomValidity(formatMessage(messages.usernameTaken));
+              }
+
               return true;
             })
             .catch(() => {
-              target.setCustomValidity('');
+              // Only update the validity if the result is for the currently-typed username
+              if (checkedUsername === target.value) {
+                target.setCustomValidity('');
+              }
             });
         } else {
           target.setCustomValidity('');
@@ -366,9 +376,9 @@ on('change', '#account_statuses_cleanup_policy_enabled', ({ target }) => {
   if (!(target instanceof HTMLInputElement) || !target.form) return;
 
   target.form
-    .querySelectorAll<
-      HTMLInputElement | HTMLSelectElement
-    >('input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select')
+    .querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+      'input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select',
+    )
     .forEach((input) => {
       setInputDisabled(input, !target.checked);
     });

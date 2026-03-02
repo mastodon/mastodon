@@ -7,12 +7,18 @@ be:
     hosted_on: Mastodon месціцца на %{domain}
     title: Пра нас
   accounts:
+    errors:
+      cannot_be_added_to_collections: Гэты ўліковы запіс нельга дадаць у калекцыі.
     followers:
       few: Падпісчыка
       many: Падпісчыкаў
       one: Падпісчык
       other: Падпісчыкі
-    following: Падпіскі
+    following:
+      few: Падпіскі
+      many: Падпісак
+      one: Падпіска
+      other: Падпісак
     instance_actor_flash: Гэты ўліковы запіс - лічбавы аватар, неабходны для рэпрэзентацыі самога сервера, а не якой-небудзь асобы. Ён выкарыстоўваецца для федэралізацыі і не можа быць замарожаны.
     last_active: апошняя актыўнасць
     link_verified_on: Права ўласнасці на гэтую спасылку праверана %{date}
@@ -56,6 +62,7 @@ be:
         label: Змяніць ролю
         no_role: Няма ролі
         title: Змяніць ролю для %{username}
+      collections: Калекцыі
       confirm: Пацвердзіць
       confirmed: Пацверджаны
       confirming: Ідзе пацвярджэнне
@@ -268,6 +275,7 @@ be:
         demote_user_html: "%{name} прыбраў карыстальніка %{target}"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
         destroy_canonical_email_block_html: "%{name} разблакіраваў эл. пошту з хэшам %{target}"
+        destroy_collection_html: "%{name} выдаліў(-ла) калекцыю %{target}"
         destroy_custom_emoji_html: "%{name} выдаліў(-ла) эмодзі %{target}"
         destroy_domain_allow_html: "%{name} зняў(-ла) дазвол на аб’яднанне з даменам %{target}"
         destroy_domain_block_html: "%{name} разблакаваў дамен %{target}"
@@ -307,6 +315,7 @@ be:
         unsilence_account_html: "%{name} зняў ліміт з уліковага запісу %{target}"
         unsuspend_account_html: Уліковы запіс %{target} адноўлены %{name}
         update_announcement_html: "%{name} абнавіў(-ла) аб’яву %{target}"
+        update_collection_html: "%{name} абнавіў(-ла) калекцыю %{target}"
         update_custom_emoji_html: "%{name} абнавіў эмодзі %{target}"
         update_domain_block_html: "%{name} абнавіў блакіроўку дамена для %{target}"
         update_ip_block_html: "%{name} змяніў правіла для IP %{target}"
@@ -342,6 +351,17 @@ be:
       unpublish: Зняць з публікацыі
       unpublished_msg: Аб’ява схавана!
       updated_msg: Аб’ява абноўлена!
+    collections:
+      accounts: Уліковыя запісы
+      collection_title: Калекцыя %{name}
+      contents: Змесціва
+      number_of_accounts:
+        few: "%{count} уліковыя запісы"
+        many: "%{count} уліковых запісаў"
+        one: 1 уліковы запіс
+        other: "%{count} уліковых запісаў"
+      open: Адкрыць
+      view_publicly: Глядзець публічна
     critical_update_pending: Чакаецца абнаўленне
     custom_emojis:
       assign_category: Прызначыць катэгорыю
@@ -699,6 +719,7 @@ be:
       cancel: Скасаваць
       category: Катэгорыя
       category_description_html: Прычына паведамлення аб гэтым уліковым запісе і/або кантэнце будзе згадана ў сувязі з уліковым запісам, на які пададзена скарга
+      collections: Калекцыі (%{count})
       comment:
         none: Пуста
       comment_description_html: 'Каб даць больш інфармацыі, %{name} напісаў:'
@@ -728,12 +749,13 @@ be:
       report: 'Скарга #%{id}'
       reported_account: Уліковы запіс парушальніка
       reported_by: Адпраўнік скаргі
+      reported_content: Змесціва, на якое паскардзіліся
       reported_with_application: Паведамлена праз праграму
       resolved: Вырашана
       resolved_msg: Скарга была паспяхова вырашана!
       skip_to_actions: Прапусціць дзеянні
       status: Стан
-      statuses: Змесціва, на якое паскардзіліся
+      statuses: Допісы (%{count})
       statuses_description_html: Крыўднае змесціва будзе згадвацца ў зносінах з уліковым запісам, на які пададзена скарга
       summary:
         action_preambles:
@@ -826,6 +848,7 @@ be:
         view_devops_description: Дае доступ да панэляў кіравання Sidekiq і pgHero
         view_feeds: Глядзець жывую і тэматычныя стужкі
         view_feeds_description: Даць карыстальнікам доступ да жывой і тэматычных стужак, незалежна ад налад сервера
+      requires_2fa: Патрабуе двухфактарную аўтэнтыфікацыю
       title: Ролі
     rules:
       add_new: Дадаць правіла
@@ -874,6 +897,7 @@ be:
         publish_statistics: Апублікаваць статыстыку
         title: Выяўленне
         trends: Трэнды
+        wrapstodon: Вынікадон
       domain_blocks:
         all: Для ўсіх
         disabled: Нікому
@@ -1354,6 +1378,13 @@ be:
     hint_html: "<strong>Парада:</strong> Мы не будзем запытваць ваш пароль зноўку на працягу наступнай гадзіны."
     invalid_password: Няправільны пароль
     prompt: Пацвердзіць пароль, каб працягнуць
+  color_scheme:
+    auto: Аўта
+    dark: Цёмная
+    light: Светлая
+  contrast:
+    auto: Аўта
+    high: Высокі
   crypto:
     errors:
       invalid_key: гэта не сапраўдны Ed25519 або Curve25519 ключ
@@ -1784,16 +1815,22 @@ be:
       body: 'Вас згадаў %{name} у:'
       subject: Вас згадаў %{name}
       title: Новае згадванне
+    moderation_warning:
+      subject: Вы атрымалі папярэджанне ад мадэратараў
     poll:
       subject: Апытанне ад %{name} скончылася
     quote:
       body: 'Ваш допіс працытаваў карыстальнік %{name}:'
       subject: Карыстальнік %{name} працытаваў Ваш допіс
       title: Цытаваць
+    quoted_update:
+      subject: "%{name} адрэдагаваў допіс, як Вы цытавалі"
     reblog:
       body: "%{name} пашырыў(-ла) Ваш допіс:"
-      subject: "%{name} пашырыў ваш допіс"
+      subject: "%{name} пашырыў(-ла) Ваш допіс"
       title: Новае пашырэнне
+    severed_relationships:
+      subject: Вы страцілі сувязі праз рашэнне мадэратараў
     status:
       subject: Новы допіс ад %{name}
     update:
@@ -1814,7 +1851,7 @@ be:
           trillion: трлн
   otp_authentication:
     code_hint: Каб пацвердзіць, увядзіце код, згенераваны праграмай-аўтэнтыфікатарам
-    description_html: Калі вы ўключыце <strong>двухфактарную аўтэнтыфікацыю</strong> праз праграму-аўтэнтыфікатар, то каб увайсці ва ўліковы запіс, вам трэба мець тэлефон, які будзе генераваць токены для ўводу.
+    description_html: Калі вы ўключыце <strong>двухфактарную аўтэнтыфікацыю</strong> праз праграму-аўтэнтыфікатар, то для ўваходу ва ўліковы запіс вам трэба будзе мець тэлефон, які будзе генераваць токены для ўводу.
     enable: Уключыць
     instructions_html: "<strong>Скануйце гэты QR-код у Google Authenticator або ў аналагічнай TOTP-праграме на вашым тэлефоне</strong>. З гэтага моманту праграма будзе генераваць токены, якія вам трэба будзе ўводзіць пры ўваходзе ва ўліковы запіс."
     manual_instructions: 'Калі вы не можаце сканаваць QR-код і трэба ўвесці яго ўручную, вось ключ у форме тэксту:'
@@ -2000,7 +2037,7 @@ be:
         many: "%{count} відэафайлаў"
         one: "%{count} відэафайл"
         other: "%{count} відэафайла"
-    boosted_from_html: Пашырыў уліковы запіс %{acct_link}
+    boosted_from_html: Пашырыў(-ла) з %{acct_link}
     content_warning: 'Папярэджанне аб змесціве: %{warning}'
     content_warnings:
       hide: Схаваць допіс
@@ -2043,11 +2080,11 @@ be:
     enabled: Аўтаматычна выдаляць старыя допісы
     enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў
     exceptions: Выключэнні
-    explanation: Выдаленне допісаў — гэта цяжкая аперацыя. Яна павольна выконваецца ў часы, калі сервер не загружаны іншай працай. Праз гэта вашыя допісы могуць быць выдаленыя праз пэўны час пасля вызначанага тэрміну.
+    explanation: Аўтаматычнае выдаленне выконваецца з нізкім прыярытэтам. Магчымая затрымка паміж дасягненнем парогавага ўзросту і выдаленнем.
     ignore_favs: Ігнараваць упадабаныя
     ignore_reblogs: Ігнараваць пашырэнні
     interaction_exceptions: Выключэнні, заснаваныя на ўзаемадзеянні
-    interaction_exceptions_explanation: Звярніце ўвагу, што няма гарантыі выдалення пастоў, калі колькасць іх упадабанняў ці пашырэннняў упадзе ніжэй за ліміт, хаця некалі гэтая колькасць перавышала яго.
+    interaction_exceptions_explanation: Допісы, у якіх колькасць упадабанняў ці пашырэнняў часова перавышае парог, могуць захавацца, нават калі гэтая колькасць пазней зменшыцца.
     keep_direct: Захаваць асабістыя паведамленні
     keep_direct_hint: Не выдаляе асабістыя паведамленні
     keep_media: Захоўваць допісы з медыя ўлажэннямі
@@ -2089,10 +2126,7 @@ be:
     review_link: Прачытаць умовы карыстання
     title: На %{domain} змяняюцца ўмовы карыстання
   themes:
-    contrast: Mastodon (высокі кантраст)
-    default: Mastodon (цёмная)
-    mastodon-light: Mastodon (светлая)
-    system: Аўтаматычна (выкарыстоўваць сістэмную тэму)
+    default: Mastodon
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
@@ -2117,6 +2151,8 @@ be:
     recovery_codes: Абнавіць коды аднаўлення
     recovery_codes_regenerated: Новыя коды аднаўлення паспяхова створаныя
     recovery_instructions_html: Калі раптам вы страціце доступ да свайго тэлефона, вы можаце скарыстаць адзін з кодаў аднаўлення ніжэй каб аднавіць доступ да свайго ўліковага запісу. <strong>Захоўвайце іх у бяспечным месцы</strong>. Напрыклад, вы можаце раздрукаваць іх і захоўваць разам з іншымі важнымі дакументамі.
+    resume_app_authorization: Працягнуць аўтарызацыю
+    role_requirement: "%{domain} патрабуе, каб Вы ўключылі двухфактарную аўтэнтыфікацыю для таго, каб Вы маглі карыстацца Mastodon."
     webauthn: Ключы бяспекі
   user_mailer:
     announcement_published:
@@ -2262,8 +2298,12 @@ be:
       error: Узнікла праблема з выдаленнем ключа бяспекі. Паспрабуйце яшчэ раз.
       success: Ваш ключ бяспекі быў паспяхова выдалены.
     invalid_credential: Няправільны ключ бяспекі
+    nickname: Псеўданім
     nickname_hint: Увядзіце псеўданім вашага новага ключа бяспекі
     not_enabled: Вы яшчэ не ўключылі WebAuthn
     not_supported: Гэты браўзер не падтрымлівае ключы бяспекі
     otp_required: Каб выкарыстоўваць ключы бяспекі, спачатку ўключыце двухфактарную аўтэнтыфікацыю.
     registered_on: Зарэгістраваны %{date}
+  wrapstodon:
+    description: Паглядзіце, як %{name} карыстаў(-ла)ся Mastodon у гэтым годзе!
+    title: Вынікадон %{year} для %{name}

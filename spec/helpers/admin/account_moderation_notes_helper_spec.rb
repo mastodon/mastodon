@@ -17,7 +17,7 @@ RSpec.describe Admin::AccountModerationNotesHelper do
     end
 
     context 'with account' do
-      let(:account) { Fabricate(:account) }
+      let(:account) { Fabricate.build(:account, id: 123) }
 
       it 'returns a labeled avatar link to the account' do
         expect(parsed_html.a[:href]).to eq admin_account_path(account.id)
@@ -39,7 +39,7 @@ RSpec.describe Admin::AccountModerationNotesHelper do
     end
 
     context 'with account' do
-      let(:account) { Fabricate(:account) }
+      let(:account) { Fabricate.build(:account, id: 123) }
 
       it 'returns an inline link to the account' do
         expect(parsed_html.a[:href]).to eq admin_account_path(account.id)

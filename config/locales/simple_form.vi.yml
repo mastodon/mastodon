@@ -26,9 +26,9 @@ vi:
         types:
           disable: Tạm không cho đăng nhập tài khoản.
           none: Cảnh cáo tài khoản này, không áp đặt trừng phạt.
-          sensitive: Tất cả media tải lên sẽ bị gắn nhãn nhạy cảm.
-          silence: Cấm người này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
-          suspend: Vô hiệu hóa và xóa sạch dữ liệu của tài khoản này. Có thể khôi phục trước 30 ngày.
+          sensitive: Gán nhãn nhạy cảm cho tất cả media của tài khoản này.
+          silence: Cấm đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
+          suspend: Vô hiệu hóa và xóa mọi nội dung. Có thể đảo ngược quyết định trước 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm chú thích riêng
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
@@ -58,7 +58,7 @@ vi:
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì sẽ không hiện những lượt đăng lại khác trên bảng tin
         setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
         setting_boost_modal: Nếu được bật, trước khi đăng lại sẽ mở hộp thoại xác nhận - trong đó bạn có thể thay đổi mức độ hiển thị tút của mình.
-        setting_default_quote_policy_private: Tút chỉ dành cho người theo dõi trên Mastodon không thể được người khác trích dẫn.
+        setting_default_quote_policy_private: Không thể trích dẫn tút chỉ dành cho người theo dõi trên Mastodon.
         setting_default_quote_policy_unlisted: Khi ai đó trích dẫn bạn, tút của họ cũng sẽ bị ẩn khỏi bảng tin công khai.
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
         setting_display_media_default: Click để xem
@@ -111,6 +111,7 @@ vi:
         thumbnail: 'Một hình ảnh tỉ lệ 2: 1 được hiển thị cùng với thông tin máy chủ của bạn.'
         trendable_by_default: Bỏ qua việc duyệt thủ công nội dung xu hướng. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
         trends: Hiển thị những tút, hashtag và tin tức đang được thảo luận nhiều trên máy chủ của bạn.
+        wrapstodon: Cho phép người dùng máy chủ tạo bản tóm tắt vui nhộn về việc sử dụng Mastodon của họ trong năm. Tính năng này có sẵn từ ngày 10 đến ngày 31 tháng 12 hàng năm, và được cung cấp cho người dùng đã đăng ít nhất một tút Công khai hoặc Riêng tư và sử dụng ít nhất một hashtag trong năm.
       form_challenge:
         current_password: Biểu mẫu này an toàn
       imports:
@@ -162,6 +163,7 @@ vi:
         name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
         permissions_as_keys: Người có vai trò này sẽ có quyền truy cập vào...
         position: Vai trò cao hơn sẽ có quyền quyết định xung đột trong các tình huống. Các vai trò có mức độ ưu tiên thấp hơn chỉ có thể thực hiện một số hành động nhất định
+        require_2fa: Tài khoản với vai trò này sẽ bị bắt buộc thiết lập xác thực 2 bước để dùng Mastodon
       username_block:
         allow_with_approval: Thay vì cấm đăng ký ngay lập tức, bạn sẽ duyệt phù hợp trước khi đăng ký
         comparison: Xin hãy lưu ý đến Vấn đề Scunthorpe khi chặn các từ trùng khớp một phần
@@ -217,10 +219,11 @@ vi:
         context: Áp dụng
         current_password: Mật khẩu hiện tại
         data: Dữ liệu
-        display_name: Biệt danh
+        display_name: Tên gọi
         email: Địa chỉ email
         expires_in: Hết hạn sau
         fields: Metadata
+        filter_action: Lọc hành động
         header: Ảnh bìa
         honeypot: "%{label} (đừng điền vào)"
         inbox_url: Hộp thư relay
@@ -237,6 +240,8 @@ vi:
         setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Tự động phát ảnh GIF
         setting_boost_modal: Kiểm soát khả năng đăng lại
+        setting_color_scheme: Bảng màu
+        setting_contrast: Độ tương phản
         setting_default_language: Ngôn ngữ tút
         setting_default_privacy: Kiểu tút
         setting_default_quote_policy: Ai có thể trích dẫn
@@ -311,6 +316,7 @@ vi:
         thumbnail: Hình thu nhỏ của máy chủ
         trendable_by_default: Cho phép lên xu hướng mà không cần duyệt trước
         trends: Bật xu hướng
+        wrapstodon: Bật Wrapstodon
       interactions:
         must_be_follower: Những người không theo dõi bạn
         must_be_following: Những người bạn không theo dõi
@@ -371,7 +377,9 @@ vi:
         jurisdiction: Quyền tài phán pháp lý
         min_age: Độ tuổi tối thiểu
       user:
+        date_of_birth_1i: Năm
         date_of_birth_2i: Tháng
+        date_of_birth_3i: Ngày
         role: Vai trò
         time_zone: Múi giờ
       user_role:
@@ -380,6 +388,7 @@ vi:
         name: Tên
         permissions_as_keys: Quyền
         position: Mức độ ưu tiên
+        require_2fa: Bắt buộc xác thực 2 bước
       username_block:
         allow_with_approval: Cho đăng ký nhưng duyệt thủ công
         comparison: Phương pháp so sánh

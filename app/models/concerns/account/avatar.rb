@@ -4,7 +4,7 @@ module Account::Avatar
   extend ActiveSupport::Concern
 
   AVATAR_IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  AVATAR_LIMIT = Rails.configuration.x.use_vips ? 8.megabytes : 2.megabytes
+  AVATAR_LIMIT = 8.megabytes
   AVATAR_DIMENSIONS = [400, 400].freeze
   AVATAR_GEOMETRY = [AVATAR_DIMENSIONS.first, AVATAR_DIMENSIONS.last].join('x')
 
@@ -24,6 +24,8 @@ module Account::Avatar
     validates_attachment_content_type :avatar, content_type: AVATAR_IMAGE_MIME_TYPES
     validates_attachment_size :avatar, less_than: AVATAR_LIMIT
     remotable_attachment :avatar, AVATAR_LIMIT, suppress_errors: false
+
+    validates :avatar_description, length: { maximum: MediaAttachment::MAX_DESCRIPTION_LENGTH }
   end
 
   def avatar_original_url

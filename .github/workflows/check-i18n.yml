@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -42,8 +42,7 @@ jobs:
 
       - name: Check for missing strings in English YML
         run: |
-          bin/i18n-tasks add-missing -l en
-          git diff --exit-code
+          bin/i18n-tasks missing -t used -l en
 
       - name: Check for wrong string interpolations
         run: bin/i18n-tasks check-consistent-interpolations

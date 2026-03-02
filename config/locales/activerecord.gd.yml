@@ -32,6 +32,12 @@ gd:
           attributes:
             url:
               invalid: "– chan eil seo ’na URL dligheach"
+        collection:
+          attributes:
+            collection_items:
+              too_many: "– tha cus dhiubh ann, chan eil còrr is %{count} ceadaichte"
+            tag:
+              unusable: "– chan fhaodar seo a chleachdadh"
         doorkeeper/application:
           attributes:
             website:

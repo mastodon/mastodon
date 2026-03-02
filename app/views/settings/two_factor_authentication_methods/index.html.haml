@@ -2,7 +2,10 @@
   = t('settings.two_factor_authentication')
 
 - content_for :heading_actions do
-  = link_to t('two_factor_authentication.disable'), disable_settings_two_factor_authentication_methods_path, class: 'button button--destructive', method: :post
+  = link_to t('two_factor_authentication.disable'), disable_settings_two_factor_authentication_methods_path, class: 'button button--destructive', method: :post unless current_user.role.require_2fa?
+
+- if current_user.role.require_2fa?
+  .flash-message= t('two_factor_authentication.role_requirement', domain: site_hostname)
 
 %p.hint
   %span.positive-hint

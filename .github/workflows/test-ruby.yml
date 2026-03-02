@@ -32,7 +32,7 @@ jobs:
       SECRET_KEY_BASE_DUMMY: 1
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -43,7 +43,7 @@ jobs:
           onlyProduction: 'true'
 
       - name: Cache assets from compilation
-        uses: actions/cache@v4
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             public/assets
@@ -65,7 +65,7 @@ jobs:
         run: |
           tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs* tmp/cache/vite/last-build*.json
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: matrix.mode == 'test'
         with:
           path: |-
@@ -128,9 +128,9 @@ jobs:
           - '3.3'
           - '.ruby-version'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
           name: ${{ github.sha }}
@@ -151,7 +151,7 @@ jobs:
           bin/flatware fan bin/rails db:test:prepare
 
       - name: Cache RSpec persistence file
-        uses: actions/cache@v4
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             tmp/rspec/examples.txt
@@ -167,96 +167,9 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5
         with:
           files: coverage/lcov/*.lcov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-  test-imagemagick:
-    name: ImageMagick tests
-    runs-on: ubuntu-latest
-
-    needs:
-      - build
-
-    services:
-      postgres:
-        image: postgres:14-alpine
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10ms
-          --health-timeout 3s
-          --health-retries 50
-        ports:
-          - 5432:5432
-
-      redis:
-        image: redis:7-alpine
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10ms
-          --health-timeout 3s
-          --health-retries 50
-        ports:
-          - 6379:6379
-
-    env:
-      DB_HOST: localhost
-      DB_USER: postgres
-      DB_PASS: postgres
-      COVERAGE: ${{ matrix.ruby-version == '.ruby-version' }}
-      RAILS_ENV: test
-      ALLOW_NOPAM: true
-      PAM_ENABLED: true
-      PAM_DEFAULT_SERVICE: pam_test
-      PAM_CONTROLLED_SERVICE: pam_test_controlled
-      OIDC_ENABLED: true
-      OIDC_SCOPE: read
-      SAML_ENABLED: true
-      CAS_ENABLED: true
-      BUNDLE_WITH: 'pam_authentication test'
-      GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
-      MASTODON_USE_LIBVIPS: false
-
-    strategy:
-      fail-fast: false
-      matrix:
-        ruby-version:
-          - '3.2'
-          - '3.3'
-          - '.ruby-version'
-    steps:
-      - uses: actions/checkout@v5
-
-      - uses: actions/download-artifact@v6
-        with:
-          path: './'
-          name: ${{ github.sha }}
-
-      - name: Expand archived asset artifacts
-        run: |
-          tar xvzf artifacts.tar.gz
-
-      - name: Set up Ruby environment
-        uses: ./.github/actions/setup-ruby
-        with:
-          ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick libpam-dev
-
-      - name: Load database schema
-        run: './bin/rails db:create db:schema:load db:seed'
-
-      - run: bin/rspec --tag attachment_processing
-
-      - name: Upload coverage reports to Codecov
-        if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v5
-        with:
-          files: coverage/lcov/mastodon.lcov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -309,9 +222,9 @@ jobs:
           - '.ruby-version'
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
           name: ${{ github.sha }}
@@ -334,7 +247,7 @@ jobs:
 
       - name: Cache Playwright Chromium browser
         id: playwright-cache
-        uses: actions/cache@v4
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-browsers-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
@@ -350,14 +263,14 @@ jobs:
       - run: bin/rspec spec/system --tag streaming --tag js
 
       - name: Archive logs
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
           name: e2e-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
           name: e2e-screenshots-${{ matrix.ruby-version }}
@@ -447,9 +360,9 @@ jobs:
             search-image: opensearchproject/opensearch:2
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
           name: ${{ github.sha }}
@@ -469,14 +382,14 @@ jobs:
       - run: bin/rspec --tag search
 
       - name: Archive logs
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
           name: test-search-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
           name: test-search-screenshots

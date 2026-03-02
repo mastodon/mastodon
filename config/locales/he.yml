@@ -7,12 +7,18 @@ he:
     hosted_on: מסטודון שיושב בכתובת %{domain}
     title: אודות
   accounts:
+    errors:
+      cannot_be_added_to_collections: לא ניתן להוסיף חשבון זה לאוספים.
     followers:
       many: עוקבים
       one: עוקב
       other: עוקבים
       two: עוקבים
-    following: נעקבים
+    following:
+      many: נעקבים
+      one: נעקבים
+      other: נעקבים
+      two: נעקביים
     instance_actor_flash: חשבון זה הינו פועל וירטואלי המשמש לייצוג השרת עצמו ולא אף משתמש ספציפי. הוא משמש למטרות פדרציה ואין להשעותו.
     last_active: פעילות אחרונה
     link_verified_on: בעלות על קישורית זו נבדקה לאחרונה ב-%{date}
@@ -56,6 +62,7 @@ he:
         label: שינוי תפקיד
         no_role: ללא תפקיד
         title: שינוי תפקיד עבור %{username}
+      collections: אוספים
       confirm: אישור
       confirmed: אושר
       confirming: בתהליך אישור
@@ -268,6 +275,7 @@ he:
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
         destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
         destroy_canonical_email_block_html: "%{name} הסירו חסימה מדואל %{target}"
+        destroy_collection_html: האוסף של %{target} הוסר ע"י %{name}
         destroy_custom_emoji_html: "%{name} מחק אמוג'י של %{target}"
         destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
         destroy_domain_block_html: החסימה על מתחם %{target} הוסרה ע"י %{name}
@@ -307,6 +315,7 @@ he:
         unsilence_account_html: "%{name} ביטל/ה ההגבלה מהחשבון של %{target}"
         unsuspend_account_html: "%{name} ביטל/ה את ההשעיה של החשבון של %{target}"
         update_announcement_html: "%{name} עדכן/ה הכרזה %{target}"
+        update_collection_html: האוסף של %{target} עודכן ע"י %{name}
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
         update_ip_block_html: "%{name} שינה כלל עבור IP %{target}"
@@ -342,6 +351,17 @@ he:
       unpublish: ביטול פרסום
       unpublished_msg: פרסום ההכרזה בוטל בהצלחה!
       updated_msg: ההכרזה עודכנה בהצלחה!
+    collections:
+      accounts: חשבונות
+      collection_title: אוספים מאת %{name}
+      contents: תוכן
+      number_of_accounts:
+        many: "%{count} חשבונות"
+        one: חשבון אחד
+        other: "%{count} חשבונות"
+        two: חשבונותיים
+      open: פתיחה
+      view_publicly: צפיה בפומבי
     critical_update_pending: עידכון קריטי ממתין
     custom_emojis:
       assign_category: הקצאת קטגוריה
@@ -699,6 +719,7 @@ he:
       cancel: ביטול
       category: קטגוריה
       category_description_html: הסיבה בגללה חשבון זה ו/או תוכנו דווחו תצוטט בתקשורת עם החשבון המדווח
+      collections: אוספים (%{count})
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
@@ -728,12 +749,13 @@ he:
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
+      reported_content: התוכן עליו דווח
       reported_with_application: דיווחים באמצעות יישומון
       resolved: פתור
       resolved_msg: הדו"ח נפתר בהצלחה!
       skip_to_actions: דלג/י לפעולות
       status: מצב
-      statuses: התוכן עליו דווח
+      statuses: הודעות (%{count})
       statuses_description_html: התוכן הפוגע יצוטט בתקשורת עם החשבון המדווח
       summary:
         action_preambles:
@@ -826,6 +848,7 @@ he:
         view_devops_description: מאפשר למשתמשים לגשת ללוחות המחוונים של Sidekiq ושל pgHero
         view_feeds: צפיה בפיד החי ונושאים
         view_feeds_description: מאפשר למשמתמשיםות גישה לפיד החי ופיד נושאים בלי קשר להגדרות השרת
+      requires_2fa: נדרשת הזדהות בשני גורמים
       title: תפקידים
     rules:
       add_new: הוספת כלל
@@ -874,6 +897,7 @@ he:
         publish_statistics: פרסום הסטטיסטיקות בפומבי
         title: תגליות
         trends: נושאים חמים
+        wrapstodon: סיכומודון
       domain_blocks:
         all: לכולם
         disabled: לאף אחד
@@ -1354,6 +1378,13 @@ he:
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
     invalid_password: סיסמה שגויה
     prompt: יש לאשר את הסיסמה כדי להמשיך
+  color_scheme:
+    auto: אוטומטי
+    dark: אפל
+    light: בהיר
+  contrast:
+    auto: אוטומטי
+    high: גבוהה
   crypto:
     errors:
       invalid_key: זהו לא מפתח Ed25519 או Curve25519 קביל
@@ -1784,16 +1815,22 @@ he:
       body: 'התקבלה פניה עבורך מאת %{name} ב:'
       subject: התקבלה פניה עבורך מאת %{name}
       title: אזכור חדש
+    moderation_warning:
+      subject: קיבלת אזהרה מצוות ניהול התוכן
     poll:
       subject: סקר מאת %{name} הסתיים
     quote:
       body: 'הודעתך צוטטה על ידי %{name}:'
       subject: "%{name} ציטט.ה את הודעתך"
       title: ציטוט חדש
+    quoted_update:
+      subject: "%{name} ערך הודעה שהשתמשת בה בציטוט"
     reblog:
       body: 'הודעתך הודהדה על ידי %{name}:'
       subject: הודעתך הודהדה על ידי%{name}
       title: הדהוד חדש
+    severed_relationships:
+      subject: איבדת קשרים עם משתמשים אחרים עקב החלטת צוות ניהול התוכן
     status:
       subject: "%{name} בדיוק פרסם"
     update:
@@ -2043,11 +2080,11 @@ he:
     enabled: מחק הודעות ישנות אוטומטית
     enabled_hint: מוחק אוטומטית את הודעותיך לכשהגיעו לסף גיל שנקבע מראש, אלא אם הן תואמות את אחת ההחרגות למטה
     exceptions: החרגות
-    explanation: היות ומחיקת הודעות היא פעולה יקרה במשאבים, היא נעשית לאט לאורך זמן כאשר השרת לא עסוק במשימות אחרות. לכן, ייתכן שההודעות שלך ימחקו מעט אחרי שיגיעו לסף הגיל שהוגדר.
+    explanation: מחיקה אוטומטית מבוצעת בעדיפות נמוכה. יתכן עיכוב מההגעה לסף הגיל ועד להסרה בפועל.
     ignore_favs: התעלם ממחובבים
     ignore_reblogs: התעלם מהדהודים
     interaction_exceptions: החרגות מבוססות אינטראקציות
-    interaction_exceptions_explanation: כדאי לשים לב שאין ערובה למחיקת הודעות אם הן יורדות מתחת לסף החיבובים או ההדהודים לאחר הסריקה הראשונית.
+    interaction_exceptions_explanation: פרסומים שעברו זמנית שת סף החיבובים או ההדהודים עשויים להשמר גם אם מאוחר יותר בוטלו החיבובים או ההדהודים.
     keep_direct: שמירת הודעות ישירות
     keep_direct_hint: לא מוחק אך אחת מההודעות הישירות שלך
     keep_media: שמור הודעות עם מדיה
@@ -2089,10 +2126,7 @@ he:
     review_link: קריאת תנאי השירות
     title: תנאי השירות של %{domain} משתנים
   themes:
-    contrast: מסטודון (ניגודיות גבוהה)
-    default: מסטודון (כהה)
-    mastodon-light: מסטודון (בהיר)
-    system: אוטומטי (לפי המערכת)
+    default: מסטודון
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2117,6 +2151,8 @@ he:
     recovery_codes: קודי אחזור
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
+    resume_app_authorization: חזרה לאישור יישומון
+    role_requirement: "%{domain} דורש ממך להקים הזדהות בשני גורמים לפני שתוכלו להשתמש במסטודון."
     webauthn: מפתחות אבטחה
   user_mailer:
     announcement_published:
@@ -2262,8 +2298,12 @@ he:
       error: היתה בעיה במחיקת מפתח האבטחה. נסה בשנית.
       success: מפתח האבטחה נמחק בהצלחה.
     invalid_credential: אסימון אבטחה לא תקין
+    nickname: כינוי
     nickname_hint: הכנס.י כינוי למפתח האבטחה החדש שלך
     not_enabled: לא אפשרת את WebAuthn עדיין
     not_supported: דפדפן זה לא תומך במפתחות אבטחה
     otp_required: על מנת להשתמש במפתחות אבטחה אנא אפשר.י אימות דו-שלבי קודם.
     registered_on: נרשם ב %{date}
+  wrapstodon:
+    description: ראו איך %{name} השתמשו במסטודון השנה!
+    title: סיכומודון %{year} עבור %{name}

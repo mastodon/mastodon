@@ -6,6 +6,7 @@ interface BaseMenuItem {
   text: string;
   description?: string;
   icon?: IconProp;
+  iconId?: string;
   highlighted?: boolean;
   disabled?: boolean;
   dangerous?: boolean;

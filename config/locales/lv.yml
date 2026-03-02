@@ -11,7 +11,6 @@ lv:
       one: Sekotājs
       other: Sekotāji
       zero: Sekotāju
-    following: Seko
     instance_actor_flash: Šis konts ir virtuāls aktieris, ko izmanto, lai pārstāvētu pašu serveri, nevis atsevišķu lietotāju. To izmanto federācijas nolūkos, un to nevajadzētu apturēt.
     last_active: pēdējā aktivitāte
     link_verified_on: Šīs saites piederība tika pārbaudīta %{date}
@@ -702,7 +701,6 @@ lv:
       resolved_msg: Ziņojums sekmīgi atrisināts.
       skip_to_actions: Pāriet uz darbībām
       status: Statuss
-      statuses: Ziņotais saturs
       statuses_description_html: Pārkāpuma saturs tiks minēts saziņā ar paziņoto kontu
       summary:
         action_preambles:
@@ -1153,7 +1151,7 @@ lv:
       new_trending_statuses:
         title: Populārākās ziņas
       new_trending_tags:
-        title: Izplatīti tēmturi
+        title: Populārākie tēmturi
       subject: Tiek pārskatītas jaunas tendences %{instance}
   aliases:
     add_new: Izveidot aizstājvārdu
@@ -1912,15 +1910,15 @@ lv:
     title: "%{name}: “%{quote}”"
     visibilities:
       public: Publisks
+      unlisted: Klusi publisks
+      unlisted_long: Netiks rādīts Mastodon meklēšanas rezultātos, populārākajos, un publiskajās laikjoslās
   statuses_cleanup:
     enabled: Automātiski dzēst vecās ziņas
     enabled_hint: Automātiski izdzēš Tavus ierakstus, tiklīdz tie sasniedz noteiktu vecuma slieksni, ja vien tie neatbilst kādam no zemāk norādītajiem izņēmumiem
     exceptions: Izņēmumi
-    explanation: Tā kā ziņu dzēšana ir dārga darbība, tā tiek veikta lēnām laika gaitā, kad serveris nav citādi aizņemts. Šī iemesla dēļ tavas ziņas var tikt izdzēstas kādu laiku pēc vecuma sliekšņa sasniegšanas.
     ignore_favs: Ignorēt izlasi
     ignore_reblogs: Ignorēt izcēlumus
     interaction_exceptions: Izņēmumi, kuru pamatā ir mijiedarbība
-    interaction_exceptions_explanation: Ņemiet vērā, ka nav garantijas, ka ziņas tiks dzēstas, ja tās pārsniegs izlases vai izcēluma slieksni.
     keep_direct: Saglabāt tiešos ziņojumus
     keep_direct_hint: Nedzēš nevienu tavu tiešo ziņojumu
     keep_media: Saglabāt ziņas ar multivides pielikumiem
@@ -1961,11 +1959,6 @@ lv:
     past_preamble_html: Kopš jūsu pēdējā apmeklējuma esam veikuši dažas izmaiņas pakalpojumu izmantošanas noteikumus. Iesakām pārskatīt atjauninātos noteikumus.
     review_link: Pārskatīt pakalpojumu izmantošanas noteikumus
     title: Mainās %{domain} pakalpojuma izmantošanas noteikumi
-  themes:
-    contrast: Mastodon (Augsts kontrasts)
-    default: Mastodon (Tumšs)
-    mastodon-light: Mastodon (Gaišs)
-    system: Automātisks (ievēro sistēmas izskatu)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -2090,7 +2083,7 @@ lv:
         other: "%{people} cilvēki pēdējās 2 dienās"
         zero: "%{people} cilvēku pēdējās divās dienās"
       hashtags_subtitle: Izpēti, kas pēdējās divās dienās ir piesasitījis cilvēku uzmanību
-      hashtags_title: Izplatīti tēmturi
+      hashtags_title: Populārākie tēmturi
       hashtags_view_more: Skatīt vairāk izplatītu tēmturu
       post_action: Rakstīt
       post_step: Pasveicini pasauli ar tekstu, fotoattēliem, video vai aptaujām!

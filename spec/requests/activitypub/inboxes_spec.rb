@@ -20,6 +20,19 @@ RSpec.describe 'ActivityPub Inboxes' do
         end
       end
 
+      context 'with an excessively large payload' do
+        subject { post inbox_path, params: { this: :that, those: :these }.to_json, sign_with: remote_account }
+
+        before { stub_const('ActivityPub::Activity::MAX_JSON_SIZE', 1.byte) }
+
+        it 'returns http content too large' do
+          subject
+
+          expect(response)
+            .to have_http_status(413)
+        end
+      end
+
       context 'with a specific account' do
         subject { post account_inbox_path(account_username: account.username), params: {}.to_json, sign_with: remote_account }
 

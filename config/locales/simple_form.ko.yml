@@ -54,6 +54,7 @@ ko:
         password: 최소 8글자
         phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
+        setting_advanced_layout: 마스토돈을 멀티컬럼으로 보여주어 타임라인, 알림, 그리고 내가 원하는 컬럼을 한 번에 볼 수 있도록 합니다. 작은 화면에선 추천하지 않습니다.
         setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
         setting_always_send_emails: 기본적으로 마스토돈을 활동적으로 사용하고 있을 때에는 이메일 알림이 보내지지 않습니다
         setting_boost_modal: 활성화하면 부스트하기 전에 부스트의 공개설정을 바꿀 수 있는 확인창이 먼저 뜨게 됩니다.
@@ -213,7 +214,7 @@ ko:
         context: 필터 컨텍스트
         current_password: 현재 암호 입력
         data: 데이터
-        display_name: 표시 이름
+        display_name: 표시되는 이름
         email: 이메일 주소
         expires_in: 만기
         fields: 부가 필드
@@ -233,6 +234,8 @@ ko:
         setting_always_send_emails: 항상 이메일 알림 보내기
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 공개범위 제어
+        setting_color_scheme: 색상 구성
+        setting_contrast: 대비
         setting_default_language: 게시물 언어
         setting_default_privacy: 게시물 공개 범위
         setting_default_quote_policy: 인용할 수 있는 사람
@@ -307,6 +310,7 @@ ko:
         thumbnail: 서버 썸네일
         trendable_by_default: 사전 리뷰 없이 트렌드에 오르는 것을 허용
         trends: 유행 활성화
+        wrapstodon: 랩스토돈 활성화
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -367,7 +371,9 @@ ko:
         jurisdiction: 법적 관할권
         min_age: 최소 연령
       user:
+        date_of_birth_1i: 년
         date_of_birth_2i: 월
+        date_of_birth_3i: 일
         role: 역할
         time_zone: 시간대
       user_role:

@@ -8,6 +8,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import type { List as ImmutableList } from 'immutable';
 
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
+import { Select } from '@/mastodon/components/form_fields';
 import type { RootState } from '@/mastodon/store';
 import { useAppSelector } from '@/mastodon/store';
 
@@ -104,7 +105,7 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
               defaultMessage='Language'
             />
           </label>
-          <select onChange={handleLocaleChange} id='language-select'>
+          <Select onChange={handleLocaleChange} id='language-select'>
             {localeOptions.map((option) => (
               <option
                 key={option.value}
@@ -114,7 +115,7 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
                 {option.text}
               </option>
             ))}
-          </select>
+          </Select>
         </div>
       )}
     </Section>

@@ -30,7 +30,8 @@ const dotenvFilePath = path.resolve(
 );
 
 dotenv.config({
-  path: dotenvFilePath
+  path: dotenvFilePath,
+  quiet: true,
 });
 
 initializeLogLevel(process.env, environment);
@@ -375,6 +376,7 @@ const startServer = async () => {
     req.scopes = result.rows[0].scopes.split(' ');
     req.accountId = result.rows[0].account_id;
     req.chosenLanguages = result.rows[0].chosen_languages;
+    req.permissions = result.rows[0].permissions;
 
     return {
       accessTokenId: result.rows[0].id,
@@ -600,13 +602,13 @@ const startServer = async () => {
 
   /**
    * @param {string} kind
-   * @param {ResolvedAccount} account
+   * @param {Request} req
    * @returns {Promise.<{ localAccess: boolean, remoteAccess: boolean }>}
    */
-  const getFeedAccessSettings = async (kind, account) => {
+  const getFeedAccessSettings = async (kind, req) => {
     const access = { localAccess: true, remoteAccess: true };
 
-    if (account.permissions & PERMISSION_VIEW_FEEDS) {
+    if (req.permissions & PERMISSION_VIEW_FEEDS) {
       return access;
     }
 
@@ -918,7 +920,7 @@ const startServer = async () => {
 
     res.write(':)\n');
 
-    const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
+    const heartbeat = setInterval(() => res.write(':thump\n\n'), 15000);
 
     req.on('close', () => {
       req.log.info({ accountId: req.accountId }, `Ending stream`);

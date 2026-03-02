@@ -10,7 +10,6 @@ ie:
     followers:
       one: Sequitor
       other: Sequitores
-    following: Sequent
     instance_actor_flash: Ti-ci conto es un virtual actor usat por representer li servitor self e null individual usator. It es usat por federational rasones e deve ne esser suspendet.
     last_active: ultim activitá
     link_verified_on: Proprietá de ti-ci ligament esset verificat ye %{date}
@@ -613,7 +612,6 @@ ie:
       resolved_msg: Raporte successosimen soluet!
       skip_to_actions: Ear rect al actiones
       status: Statu
-      statuses: Contenete raportat
       statuses_description_html: Ofensiv contenete va esser citat in comunication con li raportat conto
       summary:
         action_preambles:
@@ -1622,11 +1620,9 @@ ie:
     enabled: Automaticmen deleter old postas
     enabled_hint: Deleter automaticmen tui postas quande ili atinge un cert etá, except si ili concorda con un del exceptiones ci infra
     exceptions: Exceptiones
-    explanation: Deletion de postas es un operation expensiv, e pro to es efectuat lentmen quande li servitor ne es ocupat. Pro to, on posse deleter tui postas un cert témpor pos atinger un cert etá.
     ignore_favs: Ignorar favorites
     ignore_reblogs: Ignorar boosts
     interaction_exceptions: Exceptiones basat sur interactiones
-    interaction_exceptions_explanation: Nota que it ne es garantit que un posta va esser deletet si su númere de favoritisationes o boosts descresce sub li sill pos que it ha esset súper it.
     keep_direct: Retener missages direct
     keep_direct_hint: Ne delete quelcunc de tui direct missages
     keep_media: Conservar postas con medie-atachamentes
@@ -1660,11 +1656,6 @@ ie:
       too_late: It es tro tard por apellar ti admoniment
   tags:
     does_not_match_previous_name: ne concorda li anteyan nómine
-  themes:
-    contrast: Mastodon (Alt contraste)
-    default: Mastodon (Obscur)
-    mastodon-light: Mastodon (Luminosi)
-    system: Automatic (usar tema del sistema)
   time:
     formats:
       default: "%d.%m.%Y ye %H:%M"

@@ -5,7 +5,7 @@ da:
       account:
         attribution_domains: Ét pr. linje. Beskytter mod falske tilskrivninger.
         discoverable: Dine offentlige indlæg og profil kan blive fremhævet eller anbefalet i forskellige områder af Mastodon, og profilen kan blive foreslået til andre brugere.
-        display_name: Dit fulde navn eller dit sjove navn.
+        display_name: Dit fulde navn eller et kaldenavn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
         indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
         note: 'Du kan @omtale andre personer eller #hashtags.'
@@ -108,9 +108,10 @@ da:
         site_title: Hvordan folk kan henvise til serveren udover domænenavnet.
         status_page_url: URL'en til en side, hvor status for denne server kan ses under en afbrydelse
         theme: Tema, som udloggede besøgende og nye brugere ser.
-        thumbnail: Et ca. 2:1 billede vist sammen med serveroplysningerne.
+        thumbnail: Et ca. 2:1 billede vist sammen med dine serveroplysninger.
         trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
-        trends: Tendenser viser, hvilke indlæg, hashtags og nyheder opnår momentum på serveren.
+        trends: Trends viser, hvilke indlæg, hashtags og nyhedshistorier der opnår momentum på din server.
+        wrapstodon: Tilbyd lokale brugere at generere en sjov oversigt over deres brug af Mastodon i løbet af året. Denne funktion er tilgængelig mellem den 10. og 31. december hvert år og tilbydes til brugere, der har lavet mindst ét offentligt eller stille offentligt indlæg og brugt mindst ét hashtag i løbet af året.
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
@@ -130,7 +131,7 @@ da:
         hint: Valgfrit. Oplys yderligere detaljer om reglen
         text: Beskriv på en kort og enkel form en regel/krav for brugere på denne server
       sessions:
-        otp: 'Angiv tofaktorkoden generet af din mobil-app eller brug en af genoprettelseskoderne:'
+        otp: 'Angiv tofaktorkoden generet af din mobil-app eller brug en af dine gendannelseskoder:'
         webauthn: Er det en USB-nøgle, så sørg for at isætte den og, om nødvendigt, åbne den manuelt.
       settings:
         indexable: Din profilside kan fremgå i søgeresultater på Google, Bing mv.
@@ -139,7 +140,7 @@ da:
         name: Kun bogstavtyper (store/små) kan ændres, eksempelvis for at gøre det mere læsbart
       terms_of_service:
         changelog: Kan struktureres med Markdown-syntaks.
-        effective_date: En rimelig tidsramme kan variere fra 10 til 30 dage fra den dato, hvor man underretter sine brugere.
+        effective_date: En rimelig tidsramme kan variere fra 10 til 30 dage fra den dato, hvor du underretter dine brugere.
         text: Kan struktureres med Markdown-syntaks.
       terms_of_service_generator:
         admin_email: Juridiske bekendtgørelser omfatter imødegåelsesbekendtgørelser, retskendelser, nedtagelses- og retshåndhævelsesanmodninger.
@@ -163,6 +164,7 @@ da:
         name: Offentligt rollennavn, hvis rollen er opsat til fremstå som et badge
         permissions_as_keys: Brugere med denne rolle vil kunne tilgå...
         position: Højere rolle bestemmer konfliktløsning i visse situationer. Visse handlinger kan kun udføres på roller med lavere prioritet
+        require_2fa: Brugere med denne rolle skal oprette tofaktorgodkendelse for at kunne bruge Mastodon
       username_block:
         allow_with_approval: I stedet for at forhindre tilmelding helt, vil matchende tilmeldinger kræve din godkendelse
         comparison: Vær opmærksom på Scunthorpe-problemet ved blokering af delvise match
@@ -179,7 +181,7 @@ da:
           name: Etiket
           value: Indhold
         indexable: Medtag offentlige indlæg i søgeresultater
-        show_collections: Vis følger og følgere på profil
+        show_collections: Vis fulgte og følgere på profil
         unlocked: Acceptér automatisk nye følgere
       account_alias:
         acct: Brugernavn på den gamle konto
@@ -222,12 +224,13 @@ da:
         email: E-mailadresse
         expires_in: Udløb efter
         fields: Profilmetadata
+        filter_action: Filterhandling
         header: Bannerbillede
         honeypot: "%{label} (udfyld ikke)"
         inbox_url: URL til videreformidlingsindbakken
         irreversible: Fjern istedet for skjul
         locale: Grænsefladesprog
-        max_uses: Maks. antal afbenyttelser
+        max_uses: Maks. antal anvendelser
         new_password: Ny adgangskode
         note: Biografi
         otp_attempt: Tofaktorkode
@@ -238,6 +241,8 @@ da:
         setting_always_send_emails: Send altid e-mailnotifikationer
         setting_auto_play_gif: Autoafspil animerede GIF'er
         setting_boost_modal: Kontrollér synlighed af fremhævelse
+        setting_color_scheme: Farveskema
+        setting_contrast: Kontrast
         setting_default_language: Sprog for indlæg
         setting_default_privacy: Indlægssynlighed
         setting_default_quote_policy: Hvem kan citere
@@ -312,6 +317,7 @@ da:
         thumbnail: Serverminiaturebillede
         trendable_by_default: Tillad ikke-reviderede trends
         trends: Aktivér trends
+        wrapstodon: Aktivér Wrapstodon
       interactions:
         must_be_follower: Blokér notifikationer fra bruger, der ikke følger dig
         must_be_following: Blokér notifikationer fra brugere, du ikke følger
@@ -372,7 +378,9 @@ da:
         jurisdiction: Juridisk jurisdiktion
         min_age: Minimumsalder
       user:
+        date_of_birth_1i: År
         date_of_birth_2i: Måned
+        date_of_birth_3i: Dag
         role: Rolle
         time_zone: Tidszone
       user_role:
@@ -381,6 +389,7 @@ da:
         name: Navn
         permissions_as_keys: Tilladelser
         position: Prioritet
+        require_2fa: Kræv tofaktorgodkendelse
       username_block:
         allow_with_approval: Tillad registreringer med godkendelse
         comparison: Sammenligningsmetode

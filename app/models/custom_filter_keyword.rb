@@ -17,7 +17,9 @@ class CustomFilterKeyword < ApplicationRecord
 
   belongs_to :custom_filter
 
-  validates :keyword, presence: true
+  KEYWORD_LENGTH_LIMIT = 512
+
+  validates :keyword, presence: true, length: { maximum: KEYWORD_LENGTH_LIMIT }
 
   alias_attribute :phrase, :keyword
 

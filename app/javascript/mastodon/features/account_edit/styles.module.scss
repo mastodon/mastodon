@@ -1,0 +1,208 @@
+// Profile Edit Page
+
+.profileImage {
+  height: 120px;
+  background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-primary);
+  overflow: hidden;
+
+  @container (width >= 500px) {
+    height: 160px;
+  }
+
+  > img {
+    object-fit: cover;
+    object-position: top center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.avatar {
+  margin-top: -64px;
+  margin-left: 18px;
+  border: 1px solid var(--color-border-primary);
+}
+
+// Featured Tags Page
+
+.wrapper {
+  padding: 24px;
+}
+
+.autoComplete,
+.tagSuggestions {
+  margin: 12px 0;
+}
+
+.tagSuggestions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  // Add more padding to the suggestions label
+  > span {
+    margin-right: 4px;
+  }
+}
+
+.tagItem {
+  > h4 {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  > p {
+    color: var(--color-text-secondary);
+  }
+}
+
+// Modals
+
+.inputWrapper {
+  position: relative;
+}
+
+// Override input styles
+.inputWrapper .inputText {
+  font-size: 15px;
+  padding-right: 32px;
+}
+
+textarea.inputText {
+  min-height: 82px;
+  height: 100%;
+
+  // 160px is approx the height of the modal header and footer
+  max-height: calc(80vh - 160px);
+}
+
+.inputWrapper :global(.emoji-picker-dropdown) {
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  height: 24px;
+  z-index: 1;
+
+  :global(.icon-button) {
+    color: var(--color-text-secondary);
+  }
+}
+
+.toggleInputWrapper {
+  > div {
+    padding: 12px 0;
+
+    &:not(:first-child) {
+      border-top: 1px solid var(--color-border-primary);
+    }
+  }
+}
+
+// Column component
+
+.column {
+  border: 1px solid var(--color-border-primary);
+  border-top-width: 0;
+}
+
+.columnHeader {
+  :global(.column-header__buttons) {
+    align-items: center;
+    padding-inline-end: 16px;
+    height: auto;
+  }
+}
+
+// Edit button component
+
+.editButton {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+
+  &:global(.button) {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-size: 13px;
+    padding: 4px 8px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: var(--color-bg-brand-softer);
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.deleteButton {
+  --default-icon-color: var(--color-text-error);
+  --hover-bg-color: var(--color-bg-error-base-hover);
+  --hover-icon-color: var(--color-text-on-error-base);
+}
+
+// Item list component
+
+.itemList {
+  > li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+
+    > :first-child {
+      flex-grow: 1;
+    }
+  }
+}
+
+.itemListButtons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+// Section component
+
+.section {
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border-primary);
+  font-size: 15px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  flex-grow: 1;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.sectionSubtitle {
+  color: var(--color-text-secondary);
+}
+
+// Counter component
+
+.counter {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.counterError {
+  color: var(--color-text-error);
+}

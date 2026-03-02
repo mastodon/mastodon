@@ -14,7 +14,7 @@ RSpec.describe 'ActivityPub Collections' do
   end
 
   describe 'GET #show' do
-    subject { get account_collection_path(id: id, account_username: account.username), headers: nil, sign_with: remote_account }
+    subject { get account_actor_collection_path(id: id, account_username: account.username), headers: nil, sign_with: remote_account }
 
     context 'when id is "featured"' do
       let(:id) { 'featured' }
@@ -129,17 +129,6 @@ RSpec.describe 'ActivityPub Collections' do
             end
           end
         end
-      end
-    end
-
-    context 'when id is not "featured"' do
-      let(:id) { 'hoge' }
-
-      it 'returns http not found' do
-        subject
-
-        expect(response)
-          .to have_http_status(404)
       end
     end
   end

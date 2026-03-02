@@ -1,0 +1,97 @@
+.step {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.title {
+  font-size: 22px;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.description {
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+/* Make form stretch full height of the column */
+.form {
+  --bottom-spacing: 0;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-bottom: var(--bottom-spacing);
+
+  @media (width < 760px) {
+    --bottom-spacing: var(--mobile-bottom-nav-height);
+  }
+}
+
+.selectedSuggestionIcon {
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+  padding: 2px;
+  border-radius: 100%;
+  color: var(--color-text-on-brand-base);
+  background: var(--color-bg-brand-base);
+
+  [data-highlighted='true'] & {
+    color: var(--color-bg-brand-base);
+    background: var(--color-text-on-brand-base);
+  }
+}
+
+.formFieldStack {
+  flex-grow: 1;
+}
+
+.scrollableWrapper {
+  display: flex;
+  flex: 1;
+  margin-inline: -8px;
+}
+
+.scrollableInner {
+  margin-inline: -8px;
+}
+
+.submitDisabledCallout {
+  align-self: center;
+}
+
+.stickyFooter {
+  position: sticky;
+  bottom: var(--bottom-spacing);
+  padding: 16px;
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-bg-primary) 32px
+  );
+}
+
+.itemCountReadout {
+  text-align: center;
+}
+
+.actionWrapper {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  min-width: 240px;
+  margin-inline: auto;
+  gap: 8px;
+}
+
+.accountBadge {
+  margin-inline-start: 56px;
+
+  @container (width < 360px) {
+    margin-top: 4px;
+    margin-inline-start: 46px;
+  }
+}

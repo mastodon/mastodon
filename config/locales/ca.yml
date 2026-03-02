@@ -7,10 +7,11 @@ ca:
     hosted_on: Mastodon allotjat a %{domain}
     title: Quant a
   accounts:
+    errors:
+      cannot_be_added_to_collections: Aquest compte no es pot afegir a coŀleccions.
     followers:
       one: Seguidor
       other: Seguidors
-    following: Seguint
     instance_actor_flash: Aquest compte és un actor virtual usat per a representar el mateix servidor i no cap usuari individual. Es fa servir per a federar i no s'hauria d'esborrar.
     last_active: última activitat
     link_verified_on: La propietat d'aquest enllaç va quedar verificada el %{date}
@@ -706,7 +707,6 @@ ca:
       resolved_msg: Informe resolt correctament!
       skip_to_actions: Salta a les accions
       status: Estat
-      statuses: Contingut reportat
       statuses_description_html: El contingut ofensiu se citarà en comunicació amb el compte denunciat
       summary:
         action_preambles:
@@ -839,10 +839,15 @@ ca:
         publish_statistics: Publica estadístiques
         title: Descobriment
         trends: Tendències
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Per a tothom
         disabled: Per a ningú
         users: Per als usuaris locals en línia
+      feed_access:
+        modes:
+          authenticated: Només usuaris autenticats
+          public: Tothom
       registrations:
         moderation_recommandation: Assegureu-vos de tenir un equip de moderadors adient i actiu abans d'obrir l'alta de comptes al públic!
         preamble: Controla qui pot crear un compte en el teu servidor.
@@ -1295,6 +1300,13 @@ ca:
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
     invalid_password: Contrasenya no vàlida
     prompt: Confirmi la contrasenya per a continuar
+  color_scheme:
+    auto: Auto
+    dark: Fosc
+    light: Clar
+  contrast:
+    auto: Auto
+    high: Alt
   crypto:
     errors:
       invalid_key: no és una clau Ed25519 o Curve25519 vàlida
@@ -1651,6 +1663,7 @@ ca:
       disabled_account: El teu compte actual no serà plenament utilitzable després. Tanmateix, tindràs accés a exportació de dades així com reactivació.
       followers: Aquesta acció mourà tots els seguidors des de l'actual al compte nou
       only_redirect_html: Alternativament, pots <a href="%{path}">posar només una redirecció en el teu perfil</a>.
+      other_data: No es mourà cap altra dada automàticament (incloses les vostres publicacions ni els comptes que seguiu)
       redirect: El perfil del teu compte actual serà actualitzat amb un avís de redirecció i serà exclòs de les cerques
   moderation:
     title: Moderació
@@ -1684,16 +1697,22 @@ ca:
       body: "%{name} t'ha mencionat en:"
       subject: "%{name} t'ha mencionat"
       title: Nova menció
+    moderation_warning:
+      subject: Heu rebut un avís de moderació
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     quote:
       body: 'La vostra publicació ha estat citada per %{name}:'
       subject: "%{name} ha citat la vostra publicació"
       title: Nova citació
+    quoted_update:
+      subject: "%{name} ha editat una publicació que heu citat"
     reblog:
       body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
+    severed_relationships:
+      subject: Heu perdut connexions degut a una decisió de moderació
     status:
       subject: "%{name} ha publicat"
     update:
@@ -1926,16 +1945,15 @@ ca:
       private: Només seguidors
       public: Públic
       public_long: Tothom dins o fora Mastodon
+      unlisted: Pública però discreta
       unlisted_long: Amagat dels resultats de cerca de Mastodon, de les tendències i de les línies temporals
   statuses_cleanup:
     enabled: Esborra automàticament tuts antics
     enabled_hint: Suprimeix automàticament els teus tuts quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
-    explanation: Com que suprimir tuts és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que els teus tuts se suprimeixin un temps després d’assolir el llindar d’edat.
     ignore_favs: Ignora favorits
     ignore_reblogs: Ignora impulsos
     interaction_exceptions: Excepcions basades en interaccions
-    interaction_exceptions_explanation: Has de tenir en compte que no es garanteix que es suprimeixen els tuts si passen per sota del llindar de favorit o impuls després d'haver-lo superat.
     keep_direct: Mantenir missatges directes
     keep_direct_hint: No esborra cap dels teus missatges directes
     keep_media: Mantenir els tuts amb contingut gràfic
@@ -1976,11 +1994,6 @@ ca:
     past_preamble_html: Hem fet canvis a les condicions de servei des de la vostra darrera visita. Us recomanem que hi doneu un cop d'ull.
     review_link: Revisió de les condicions de servei
     title: Les condicions de servei de %{domain} han canviat
-  themes:
-    contrast: Mastodon (alt contrast)
-    default: Mastodon (fosc)
-    mastodon-light: Mastodon (clar)
-    system: Automàtic (utilitza el tema del sistema)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -2148,8 +2161,12 @@ ca:
       error: Hi ha hagut un problema al esborrar la teva clau de seguretat. Tornau-ho a provar.
       success: La teva clau de seguretat s'ha esborrat correctament.
     invalid_credential: Clau de seguretat invàlida
+    nickname: Sobrenom
     nickname_hint: Introdueix el sobrenom de la teva clau de seguretat nova
     not_enabled: Encara no has activat WebAuthn
     not_supported: Aquest navegador no suporta claus de seguretat
     otp_required: Per a usar claus de seguretat, activeu primer l'autenticació de dos factors.
     registered_on: Registrat en %{date}
+  wrapstodon:
+    description: Mira com %{name} ha fet servir Mastodon enguany.
+    title: Wrapstodon %{year} per a %{name}

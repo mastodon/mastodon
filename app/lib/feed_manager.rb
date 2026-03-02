@@ -214,10 +214,10 @@ class FeedManager
     # This is a bit tricky because we need posts tagged with this hashtag that are not
     # also tagged with another followed hashtag or from a followed user
     scope = from_tag.statuses
-                    .where(id: timeline_status_ids)
-                    .where.not(account: into_account)
-                    .where.not(account: into_account.following)
-                    .tagged_with_none(TagFollow.where(account: into_account).pluck(:tag_id))
+      .where(id: timeline_status_ids)
+      .where.not(account: into_account)
+      .where.not(account: into_account.following)
+      .tagged_with_none(TagFollow.where(account: into_account).pluck(:tag_id))
 
     scope.select(:id, :reblog_of_id).reorder(nil).find_each do |status|
       remove_from_feed(:home, into_account.id, status, aggregate_reblogs: into_account.user&.aggregates_reblogs?)
@@ -450,6 +450,7 @@ class FeedManager
     return :filter    if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     return :skip_home if timeline_type != :list && crutches[:exclusive_list_users][status.account_id].present?
     return :filter    if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
+    return :filter    if status.reblog? && status.reblog.blank?
 
     check_for_blocks = crutches[:active_mentions][status.id] || []
     check_for_blocks.push(status.account_id)

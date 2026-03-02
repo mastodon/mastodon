@@ -6,6 +6,12 @@ RSpec.describe Account do
   it_behaves_like 'Account::Search'
   it_behaves_like 'Reviewable'
 
+  describe 'Associations' do
+    it { is_expected.to have_many(:account_notes).inverse_of(:account) }
+    it { is_expected.to have_many(:action_logs).class_name('Admin::ActionLog') }
+    it { is_expected.to have_many(:targeted_account_notes).inverse_of(:target_account) }
+  end
+
   context 'with an account record' do
     subject { Fabricate(:account) }
 
@@ -564,6 +570,8 @@ RSpec.describe Account do
         it { is_expected.to_not allow_values('username', 'Username').for(:username) }
       end
 
+      it { is_expected.to validate_length_of(:username).is_at_most(described_class::USERNAME_LENGTH_HARD_LIMIT) }
+
       it { is_expected.to allow_values('the-doctor', username_over_limit).for(:username) }
       it { is_expected.to_not allow_values('the doctor').for(:username) }
 
@@ -779,6 +787,59 @@ RSpec.describe Account do
       end
 
       expect(subject.reload.followers_count).to eq 15
+    end
+  end
+
+  describe '#featureable_by?' do
+    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:, feature_approval_policy:) }
+
+    let(:local_account) { Fabricate(:account) }
+
+    context 'when account is local' do
+      let(:local) { true }
+      let(:feature_approval_policy) { nil }
+
+      context 'when account is discoverable' do
+        let(:discoverable) { true }
+
+        it 'returns `true`' do
+          expect(subject.featureable_by?(local_account)).to be true
+        end
+      end
+
+      context 'when account is not discoverable' do
+        let(:discoverable) { false }
+
+        it 'returns `false`' do
+          expect(subject.featureable_by?(local_account)).to be false
+        end
+      end
+    end
+
+    context 'when account is remote' do
+      let(:local) { false }
+      let(:discoverable) { true }
+      let(:feature_approval_policy) { (0b10 << 16) | 0 }
+
+      it 'returns `false`' do
+        expect(subject.featureable_by?(local_account)).to be false
+      end
+
+      context 'when collections federation is enabled', feature: :collections_federation do
+        context 'when the policy allows it' do
+          it 'returns `true`' do
+            expect(subject.featureable_by?(local_account)).to be true
+          end
+        end
+
+        context 'when the policy forbids it' do
+          let(:feature_approval_policy) { 0 }
+
+          it 'returns `false`' do
+            expect(subject.featureable_by?(local_account)).to be false
+          end
+        end
+      end
     end
   end
 end

@@ -1,0 +1,54 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 16px;
+
+  &:not(.wrapperWithoutBorder) {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+}
+
+.content {
+  position: relative;
+  flex-grow: 1;
+  padding-block: 15px;
+}
+
+.link {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-text-primary);
+
+  &:hover {
+    color: var(--color-text-brand);
+  }
+
+  &::after {
+    // Increase clickable area by extending link across parent
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.info {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.metaList {
+  --gap: 0.75ch;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+
+  & > li:not(:last-child)::after {
+    content: '·';
+    margin-inline-start: var(--gap);
+  }
+}

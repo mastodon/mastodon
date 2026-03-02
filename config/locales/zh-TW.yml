@@ -7,9 +7,12 @@ zh-TW:
     hosted_on: 於 %{domain} 託管之 Mastodon 站點
     title: 關於本站
   accounts:
+    errors:
+      cannot_be_added_to_collections: 此帳號無法被加至集合中。
     followers:
       other: 跟隨者
-    following: 正在跟隨
+    following:
+      other: 正在跟隨
     instance_actor_flash: 此帳號是用來代表此伺服器的虛擬執行者，而非個別使用者。它的用途為維繫聯邦宇宙，且不應被停權。
     last_active: 上次活躍時間
     link_verified_on: 此連結之所有權已於 %{date} 檢查過
@@ -50,6 +53,7 @@ zh-TW:
         label: 變更角色
         no_role: 沒有角色
         title: 為 %{username} 變更角色
+      collections: 收藏名單
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
@@ -259,6 +263,7 @@ zh-TW:
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 已刪除公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 已解除封鎖 hash 為 %{target} 之電子郵件"
+        destroy_collection_html: "%{name} 已刪除 %{target} 的收藏名單"
         destroy_custom_emoji_html: "%{name} 已刪除 emoji 表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 已解除封鎖網域 %{target}"
@@ -298,6 +303,7 @@ zh-TW:
         unsilence_account_html: "%{name} 已取消使用者 %{target} 的靜音狀態"
         unsuspend_account_html: "%{name} 已取消停權 %{target} 的帳號"
         update_announcement_html: "%{name} 已更新公告 %{target}"
+        update_collection_html: "%{name} 已更新 %{target} 的收藏名單"
         update_custom_emoji_html: "%{name} 已更新自訂 emoji 表情符號 %{target}"
         update_domain_block_html: "%{name} 已更新 %{target} 之網域封鎖"
         update_ip_block_html: "%{name} 已變更 IP %{target} 之規則"
@@ -333,6 +339,14 @@ zh-TW:
       unpublish: 取消發布
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
+    collections:
+      accounts: 帳號
+      collection_title: "%{name} 的收藏名單"
+      contents: 內容
+      number_of_accounts:
+        other: "%{count} 個帳號"
+      open: 開啟
+      view_publicly: 公開檢視
     critical_update_pending: 重要更新待升級
     custom_emojis:
       assign_category: 指定分類
@@ -663,6 +677,7 @@ zh-TW:
       cancel: 取消
       category: 分類
       category_description_html: 此帳號及/或被檢舉內容之原因將被引用於檢舉帳號通知中
+      collections: 收藏名單 (%{count})
       comment:
         none: 無
       comment_description_html: 提供更多資訊，%{name} 寫道：
@@ -692,12 +707,13 @@ zh-TW:
       report: '檢舉 #%{id}'
       reported_account: 被檢舉使用者
       reported_by: 檢舉人
+      reported_content: 被檢舉的內容
       reported_with_application: 透過應用程式檢舉
       resolved: 已解決
       resolved_msg: 檢舉報告已處理完成！
       skip_to_actions: 跳過行動
       status: 嘟文
-      statuses: 被檢舉的內容
+      statuses: 嘟文 (%{count})
       statuses_description_html: 侵犯性違規內容將被引用於檢舉帳號通知中
       summary:
         action_preambles:
@@ -784,6 +800,7 @@ zh-TW:
         view_devops_description: 允許使用者存取 Sidekiq 與 pgHero 儀表板
         view_feeds: 檢視即時內容與主題
         view_feeds_description: 允許使用者無論伺服器設定為何皆可存取即時內容與主題
+      requires_2fa: 要求兩階段驗證
       title: 角色
     rules:
       add_new: 新增規則
@@ -834,6 +851,7 @@ zh-TW:
         publish_statistics: 公開統計資料
         title: 探索
         trends: 熱門趨勢
+        wrapstodon: Mastodon 年度回顧
       domain_blocks:
         all: 至任何人
         disabled: 至沒有人
@@ -1299,6 +1317,13 @@ zh-TW:
     hint_html: "<strong>温馨小提醒：</strong> 我們於接下來一小時內不會再要求您輸入密碼。"
     invalid_password: 密碼錯誤
     prompt: 輸入密碼以繼續
+  color_scheme:
+    auto: 自動
+    dark: 闇黑
+    light: 淺色
+  contrast:
+    auto: 自動
+    high: 高
   crypto:
     errors:
       invalid_key: 這不是一把有效的 Ed25519 或 Curve25519 金鑰
@@ -1427,7 +1452,7 @@ zh-TW:
       statuses_hint_html: 此過濾器會套用至所選之各別嘟文，無論其是否符合下列關鍵字。<a href="%{path}">審閱或自過濾條件移除嘟文</a>。
       title: 編輯過濾條件
     errors:
-      deprecated_api_multiple_keywords: 這些參數無法自此應用程式中更改，因為它們適用於一或多個過濾器關鍵字。請使用較新的應用程式或是網頁介面。
+      deprecated_api_multiple_keywords: 這些參數無法自此應用程式中更改，因為它們適用於一個以上之過濾器關鍵字。請使用較新的應用程式或是網頁介面。
       invalid_context: 沒有提供內文或內文無效
     index:
       contexts: "%{contexts} 中的過濾器"
@@ -1669,16 +1694,22 @@ zh-TW:
       body: "%{name} 於嘟文中提及您："
       subject: "%{name} 於嘟文中提及您"
       title: 新的提及
+    moderation_warning:
+      subject: 您已收到管理員警告
     poll:
       subject: 由 %{name} 發起的投票已結束
     quote:
       body: 您的嘟文被 %{name} 引用：
       subject: "%{name} 已引用您的嘟文"
       title: 新引用
+    quoted_update:
+      subject: "%{name} 已編輯一則您曾引用之嘟文"
     reblog:
       body: 您的嘟文被 %{name} 轉嘟：
       subject: "%{name} 已轉嘟您的嘟文"
       title: 新的轉嘟
+    severed_relationships:
+      subject: 由於管理員之決定，您已失去您的社交網路
     status:
       subject: "%{name} 剛剛嘟文"
     update:
@@ -1721,11 +1752,11 @@ zh-TW:
       invalid_choice: 您所選的投票選項並不存在
       over_character_limit: 不能多於 %{max} 個字元
       self_vote: 您無法於您的嘟文投票
-      too_few_options: 必須包含至少一個項目
+      too_few_options: 必須包含一個項目以上
       too_many_options: 不能包含多於 %{max} 個項目
     vote: 投票
   posting_defaults:
-    explanation: 這些設定將作為您建立新嘟文時之預設值，但您能於編輯器中編輯個別嘟文之設定。
+    explanation: 這些設定將作為您建立新嘟文時之預設值，但您能於嘟文編輯器中編輯個別嘟文之設定。
   preferences:
     other: 其他
     posting_defaults: 嘟文預設值
@@ -1738,7 +1769,7 @@ zh-TW:
     reach_hint_html: 控制您希望被新使用者探索或跟隨之方式。想使您的嘟文出現於探索頁面嗎？想使其他人透過他們的跟隨建議找到您嗎？想自動接受所有新跟隨者嗎？或是想逐一控制跟隨請求嗎？
     search: 搜尋
     search_hint_html: 控制您希望如何被發現。您想透過您的公開嘟文被人們發現嗎？您想透過網頁搜尋被 Mastodon 以外的人找到您的個人檔案嗎？請注意，公開資訊可能無法全面地被所有搜尋引擎所排除。
-    title: 隱私權及觸及
+    title: 隱私權與觸及
   privacy_policy:
     title: 隱私權政策
   reactions:
@@ -1916,11 +1947,11 @@ zh-TW:
     enabled: 自動刪除舊嘟文
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外
     exceptions: 例外
-    explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文將於到達保存期限後一段時間才會被刪除。
+    explanation: 自動刪除將以低優先度執行。達到刪除效期門檻與實際刪除時間可能有些許延遲。
     ignore_favs: 忽略最愛數
     ignore_reblogs: 忽略轉嘟數
     interaction_exceptions: 基於互動的例外規則
-    interaction_exceptions_explanation: 請注意嘟文是無法保證被刪除的，如果於一次處理過後嘟文低於最愛或轉嘟的門檻。
+    interaction_exceptions_explanation: 暫時超過最愛或轉嘟門檻之嘟文若稍候下降後，可能將被保留。
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含多媒體附加檔案之嘟文
@@ -1962,10 +1993,7 @@ zh-TW:
     review_link: 檢視服務條款
     title: "%{domain} 之服務條款正在悄悄發生變化"
   themes:
-    contrast: Mastodon（高對比）
-    default: Mastodon（深色）
-    mastodon-light: Mastodon（亮色）
-    system: 自動（使用系統佈景主題）
+    default: Mastodon
   time:
     formats:
       default: "%Y 年 %b 月 %d 日 %H:%M"
@@ -1990,6 +2018,8 @@ zh-TW:
     recovery_codes: 備份備用驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
     recovery_instructions_html: 若您的手機無法使用，您可以使用下列任意一個備用驗證碼來重新獲得帳號的存取權。<strong>請妥善保管好您的備用驗證碼</strong>（例如，可以將它們列印出來，與您的其他重要文件放在一起）。
+    resume_app_authorization: 恢復應用程式授權
+    role_requirement: "%{domain} 要求您設定兩階段驗證以使用 Mastodon。"
     webauthn: 安全金鑰
   user_mailer:
     announcement_published:
@@ -2136,8 +2166,12 @@ zh-TW:
       error: 移除安全金鑰時出現了問題。請再試一次。
       success: 您已成功將安全金鑰移除。
     invalid_credential: 無效的安全金鑰
+    nickname: 暱稱
     nickname_hint: 輸入您新安全金鑰的暱稱
     not_enabled: 您尚未啟用 WebAuthn
     not_supported: 此瀏覽器並不支援安全金鑰
     otp_required: 請先啟用兩階段驗證以使用安全金鑰。
     registered_on: 註冊於 %{date}
+  wrapstodon:
+    description: 來瞧瞧 %{name} 今年是如何使用 Mastodon 吧！
+    title: "%{name} 的 %{year} Mastodon 年度回顧 (Wrapstodon)"

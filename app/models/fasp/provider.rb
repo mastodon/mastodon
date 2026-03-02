@@ -37,6 +37,7 @@ class Fasp::Provider < ApplicationRecord
   before_create :create_keypair
   after_commit :update_remote_capabilities
 
+  scope :confirmed, -> { where(confirmed: true) }
   scope :with_capability, lambda { |capability_name|
     where('fasp_providers.capabilities @> ?::jsonb', "[{\"id\": \"#{capability_name}\", \"enabled\": true}]")
   }

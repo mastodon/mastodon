@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe '/api/v1/accounts' do
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { '' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication'
 
   describe 'GET /api/v1/accounts?id[]=:id' do
     let(:account) { Fabricate(:account) }
@@ -95,6 +92,28 @@ RSpec.describe '/api/v1/accounts' do
         expect(response.parsed_body)
           .to include(
             error: 'This method requires an client credentials authentication'
+          )
+      end
+    end
+
+    context 'when missing username value' do
+      subject do
+        post '/api/v1/accounts', headers: headers, params: { password: '12345678', email: 'hello@world.tld', agreement: 'true' }
+      end
+
+      it 'returns http unprocessable entity with username error message' do
+        expect { subject }
+          .to not_change(User, :count)
+          .and not_change(Account, :count)
+
+        expect(response)
+          .to have_http_status(422)
+        expect(response.media_type)
+          .to eq('application/json')
+        expect(response.parsed_body)
+          .to include(
+            error: /Validation failed/,
+            details: include(username: contain_exactly(include(error: 'ERR_BLANK', description: /can't be blank/)))
           )
       end
     end

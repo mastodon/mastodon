@@ -5,7 +5,7 @@ ruby '>= 3.2.0', '< 3.5.0'
 
 gem 'propshaft'
 gem 'puma', '~> 7.0'
-gem 'rails', '~> 8.0'
+gem 'rails', '~> 8.1.0'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
@@ -24,11 +24,11 @@ gem 'ruby-vips', '~> 2.2', require: false
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.18.0', require: false
+gem 'bootsnap', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
-gem 'devise', '~> 4.9'
+gem 'devise'
 gem 'devise-two-factor'
 
 group :pam_authentication, optional: true do
@@ -40,7 +40,7 @@ gem 'net-ldap', '~> 0.18'
 gem 'omniauth', '~> 2.0'
 gem 'omniauth-cas', '~> 3.0.0.beta.1'
 gem 'omniauth_openid_connect', '~> 0.8.0'
-gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'omniauth-rails_csrf_protection', '~> 2.0'
 gem 'omniauth-saml', '~> 2.0'
 
 gem 'color_diff', '~> 0.1'
@@ -55,7 +55,7 @@ gem 'hiredis-client'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.3.0'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.7.0', require: false
+gem 'httplog', '~> 1.8.0', require: false
 gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'
@@ -71,7 +71,7 @@ gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'premailer-rails'
-gem 'public_suffix', '~> 6.0'
+gem 'public_suffix', '~> 7.0'
 gem 'pundit', '~> 2.3'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', require: 'rack/cors'
@@ -109,12 +109,12 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-active_job', '~> 0.10.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.24.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.24.0', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.30.0', require: false
-  gem 'opentelemetry-instrumentation-http', '~> 0.27.0', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.33.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.27.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.31.0', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.27.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.27.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.35.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-rails', '~> 0.39.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.28.0', require: false
@@ -138,7 +138,7 @@ group :test do
   # Browser integration testing
   gem 'capybara', '~> 3.39'
   gem 'capybara-playwright-driver'
-  gem 'playwright-ruby-client', '1.56.0', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
+  gem 'playwright-ruby-client', '1.57.1', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
 
   # Used to reset the database between system tests
   gem 'database_cleaner-active_record'
@@ -187,7 +187,7 @@ group :development do
   gem 'letter_opener_web', '~> 3.0'
 
   # Security analysis CLI tools
-  gem 'brakeman', '~> 7.0', require: false
+  gem 'brakeman', '~> 8.0', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   # Linter CLI for HAML files

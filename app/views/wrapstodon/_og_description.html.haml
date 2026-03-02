@@ -1,0 +1,4 @@
+- description = t('wrapstodon.description', name: display_name(account))
+
+%meta{ name: 'description', content: description }/
+= opengraph 'og:description', description

@@ -72,8 +72,8 @@ es-MX:
         revoke: "¿Está seguro?"
       index:
         authorized_at: Autorizado el %{date}
-        description_html: Estas son aplicaciones que pueden acceder a tu cuenta utilizando la API. Si hay alguna aplicación que no reconozcas aquí, o una aplicación esta teniendo comportamientos extraños, puedes revocar el acceso.
-        last_used_at: Usado por ultima vez el %{date}
+        description_html: Estas son aplicaciones que pueden acceder a tu cuenta mediante la API. Si hay aplicaciones que no reconoces aquí, o si alguna aplicación no funciona correctamente, puedes revocar su acceso.
+        last_used_at: Última vez utilizado el %{date}
         never_used: Nunca usado
         scopes: Permisos
         superapp: Interno
@@ -82,8 +82,11 @@ es-MX:
       messages:
         access_denied: El propietario del recurso o servidor de autorización denegó la petición.
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
-        invalid_client: La autentificación del cliente falló ya que es un cliente desconocido, no está incluída la autentificación del cliente o el método de autentificación no es compatible.
-        invalid_code_challenge_method: El método de desafío de código debe ser S256, «plain» no está soportado.
+        invalid_client: La autenticación del cliente falló debido a un cliente desconocido, no se incluyó la autenticación del cliente o el método de autenticación no es compatible.
+        invalid_code_challenge_method:
+          one: El code_challenge_method debe ser %{challenge_methods}.
+          other: El code_challenge_method debe ser uno de %{challenge_methods}.
+          zero: El servidor de autorización no admite PKCE, ya que no hay valores code_challenge_method aceptados.
         invalid_grant: La concesión de autorización ofrecida es inválida, venció, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La URI de redirección incluida no es válida.
         invalid_request:
@@ -97,7 +100,7 @@ es-MX:
           revoked: El autentificador de acceso fue revocado
           unknown: El autentificador de acceso es inválido
         resource_owner_authenticator_not_configured: El propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_authenticator está sin configurar.
-        server_error: El servidor de la autorización entontró una condición inesperada que le impidió cumplir con la solicitud.
+        server_error: El servidor de autorización encontró una condición inesperada que le impidió completar la solicitud.
         temporarily_unavailable: El servidor de la autorización es actualmente incapaz de manejar la petición debido a una sobrecarga temporal o un trabajo de mantenimiento del servidor.
         unauthorized_client: El cliente no está autorizado a realizar esta petición utilizando este método.
         unsupported_grant_type: El tipo de concesión de autorización no está soportado por el servidor de autorización.
@@ -117,7 +120,7 @@ es-MX:
       access:
         read: Acceso de solo lectura
         read/write: Acceso de lectura y escritura
-        write: Acceso de sólo escritura
+        write: Acceso de solo escritura
       title:
         accounts: Cuentas
         admin/accounts: Administración de cuentas
@@ -139,7 +142,7 @@ es-MX:
         profile: Tu perfil de Mastodon
         push: Notificaciones push
         reports: Reportes
-        search: Busqueda
+        search: Búsqueda
         statuses: Publicaciones
     layouts:
       admin:

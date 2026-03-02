@@ -104,7 +104,7 @@ const LoginOrSignUp: React.FC = () => {
         <a
           href={sso_redirect}
           data-method='post'
-          className='button button--block button-tertiary'
+          className='button button--block button-secondary'
         >
           <FormattedMessage
             id='sign_in_banner.sso_redirect'
@@ -143,7 +143,7 @@ const LoginOrSignUp: React.FC = () => {
     return (
       <div className='ui__navigation-bar__sign-up'>
         {signupButton}
-        <a href='/auth/sign_in' className='button button-tertiary'>
+        <a href='/auth/sign_in' className='button button-secondary'>
           <FormattedMessage
             id='sign_in_banner.sign_in'
             defaultMessage='Login'

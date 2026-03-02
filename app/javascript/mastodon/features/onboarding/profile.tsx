@@ -16,6 +16,7 @@ import { closeOnboarding } from 'mastodon/actions/onboarding';
 import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
+import { TextAreaField, TextInputField } from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { me } from 'mastodon/initial_state';
@@ -212,62 +213,47 @@ export const Profile: React.FC<{
           </div>
 
           <div className='fields-group'>
-            <div
-              className={classNames('input with_block_label', {
-                field_with_errors: !!errors?.display_name,
-              })}
-            >
-              <label htmlFor='display_name'>
+            <TextInputField
+              maxLength={30}
+              label={
                 <FormattedMessage
                   id='onboarding.profile.display_name'
                   defaultMessage='Display name'
                 />
-              </label>
-              <span className='hint'>
+              }
+              hint={
                 <FormattedMessage
                   id='onboarding.profile.display_name_hint'
                   defaultMessage='Your full name or your fun name…'
                 />
-              </span>
-              <div className='label_input'>
-                <input
-                  id='display_name'
-                  type='text'
-                  value={displayName}
-                  onChange={handleDisplayNameChange}
-                  maxLength={30}
-                />
-              </div>
-            </div>
+              }
+              value={displayName}
+              onChange={handleDisplayNameChange}
+              hasError={!!errors?.display_name}
+              id='display_name'
+            />
           </div>
 
           <div className='fields-group'>
-            <div
-              className={classNames('input with_block_label', {
-                field_with_errors: !!errors?.note,
-              })}
-            >
-              <label htmlFor='note'>
+            <TextAreaField
+              maxLength={500}
+              label={
                 <FormattedMessage
                   id='onboarding.profile.note'
                   defaultMessage='Bio'
                 />
-              </label>
-              <span className='hint'>
+              }
+              hint={
                 <FormattedMessage
                   id='onboarding.profile.note_hint'
                   defaultMessage='You can @mention other people or #hashtags…'
                 />
-              </span>
-              <div className='label_input'>
-                <textarea
-                  id='note'
-                  value={note}
-                  onChange={handleNoteChange}
-                  maxLength={500}
-                />
-              </div>
-            </div>
+              }
+              value={note}
+              onChange={handleNoteChange}
+              hasError={!!errors?.note}
+              id='note'
+            />
           </div>
 
           <label className='app-form__toggle'>

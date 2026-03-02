@@ -83,7 +83,10 @@ vi:
         access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác minh ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
-        invalid_code_challenge_method: Phương pháp thử thách mã phải là S256, phương pháp plain không được hỗ trợ.
+        invalid_code_challenge_method:
+          one: Code_challenge_method phải là %{challenge_methods}.
+          other: Code_challenge_method phải là một trong %{challenge_methods}.
+          zero: Máy chủ xác thực không hỗ trợ PKCE vì không chấp nhận giá trị code_challenge_method.
         invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị gỡ hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
         invalid_redirect_uri: URL chuyển hướng không hợp lệ.
         invalid_request:
@@ -130,11 +133,11 @@ vi:
         crypto: Mã hóa đầu cuối
         favourites: Lượt thích
         filters: Bộ lọc
-        follow: Theo dõi, Ẩn và Chặn
+        follow: Theo dõi, Phớt lờ và Chặn
         follows: Đang theo dõi
         lists: Danh sách
         media: Tập tin đính kèm
-        mutes: Đã ẩn
+        mutes: Đã phớt lờ
         notifications: Thông báo
         profile: Hồ sơ Mastodon của bạn
         push: Thông báo đẩy
@@ -177,7 +180,7 @@ vi:
       read:filters: xem bộ lọc
       read:follows: xem những người theo dõi
       read:lists: xem danh sách
-      read:mutes: xem những người đã ẩn
+      read:mutes: xem những tài khoản đã phớt lờ
       read:notifications: xem thông báo
       read:reports: xem báo cáo của bạn
       read:search: tìm kiếm
@@ -186,13 +189,13 @@ vi:
       write:accounts: sửa đổi trang hồ sơ
       write:blocks: chặn người và máy chủ
       write:bookmarks: sửa đổi những tút lưu
-      write:conversations: ẩn và xóa thảo luận
+      write:conversations: phớt lờ và xóa thảo luận
       write:favourites: thích tút
       write:filters: tạo bộ lọc
       write:follows: theo dõi ai đó
       write:lists: tạo danh sách
       write:media: tải lên tập tin
-      write:mutes: ẩn người và thảo luận
+      write:mutes: phớt lờ tài khoản và thảo luận
       write:notifications: xóa thông báo
       write:reports: báo cáo
       write:statuses: đăng tút

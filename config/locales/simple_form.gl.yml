@@ -111,6 +111,7 @@ gl:
         thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
         trendable_by_default: Omitir a revisión manual dos contidos populares. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
         trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
+        wrapstodon: Ofrecerlle ás usuarias locais crear un divertido resumo do seu uso de Mastodon durante o ano. Esta ferramenta está dispoñible entre o 10 e o 31 de Decembro de cada ano, e ofréceselle ás usuarias que publicaron polo menos unha mensaxe Pública ou Pública Limitada e utilizaron polo menos un cancelo durante o ano.
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
@@ -163,6 +164,7 @@ gl:
         name: Nome público do rol, se o rol se mostra como unha insignia
         permissions_as_keys: As usuarias con este rol terán acceso a...
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
+        require_2fa: Váiselle pedir ás usuarias con este rol que configuren un segundo factor de autenticación para usar Mastodon
       username_block:
         allow_with_approval: No lugar de evitar a cración directa de contas, as contas mediante regras van precisar a túa aprobación
         comparison: Ten en conta o Sunthorpe Problem cando se bloquean coincidencias parciais
@@ -222,6 +224,7 @@ gl:
         email: Enderezo de correo
         expires_in: Caduca tras
         fields: Metadatos do perfil
+        filter_action: Acción de filtrado
         header: Cabeceira
         honeypot: "%{label} (non completar)"
         inbox_url: URL da caixa de entrada do repetidor
@@ -238,6 +241,8 @@ gl:
         setting_always_send_emails: Enviar sempre notificacións por correo electrónico
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Controlar a visibilidade das promocións
+        setting_color_scheme: Abano de cores
+        setting_contrast: Contraste
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidade da publicación
         setting_default_quote_policy: Quen pode citar
@@ -312,6 +317,7 @@ gl:
         thumbnail: Icona do servidor
         trendable_by_default: Permitir tendencias sen aprobación previa
         trends: Activar tendencias
+        wrapstodon: Activar Wrapstodon
       interactions:
         must_be_follower: Bloquea as notificacións de persoas que non te seguen
         must_be_following: Bloquea as notificacións de persoas que non segues
@@ -372,7 +378,9 @@ gl:
         jurisdiction: Xurisdición legal
         min_age: Idade mínima
       user:
+        date_of_birth_1i: Ano
         date_of_birth_2i: Mes
+        date_of_birth_3i: Día
         role: Rol
         time_zone: Fuso horario
       user_role:
@@ -381,6 +389,7 @@ gl:
         name: Nome
         permissions_as_keys: Permisos
         position: Prioridade
+        require_2fa: Requerir un segundo factor de autenticación
       username_block:
         allow_with_approval: Permitir crear contas con aprobación
         comparison: Método de comparación

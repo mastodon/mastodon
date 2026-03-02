@@ -50,6 +50,21 @@ RSpec.describe 'API V1 Statuses Translations' do
         end
       end
 
+      context 'with a public status marked with the same language as the current locale when translation backend cannot do same-language translation' do
+        let(:status) { Fabricate(:status, account: user.account, text: 'Esto está en español pero está marcado como inglés.', language: 'en') }
+
+        it 'returns http forbidden with error message' do
+          subject
+
+          expect(response)
+            .to have_http_status(403)
+          expect(response.media_type)
+            .to eq('application/json')
+          expect(response.parsed_body)
+            .to include(error: /not allowed/)
+        end
+      end
+
       context 'with a private status' do
         let(:status) { Fabricate(:status, visibility: :private, account: user.account, text: 'Hola', language: 'es') }
 

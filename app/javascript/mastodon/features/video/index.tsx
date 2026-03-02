@@ -139,8 +139,8 @@ const persistVolume = (volume: number, muted: boolean) => {
 };
 
 const restoreVolume = (video: HTMLVideoElement) => {
-  const volume = (playerSettings.get('volume') as number | undefined) ?? 0.5;
-  const muted = (playerSettings.get('muted') as boolean | undefined) ?? false;
+  const volume = playerSettings.get('volume') ?? 0.5;
+  const muted = playerSettings.get('muted') ?? false;
 
   video.volume = volume;
   video.muted = muted;

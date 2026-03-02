@@ -10,7 +10,6 @@ sco:
     followers:
       one: Follaer
       other: Follaers
-    following: Follaein
     instance_actor_flash: This accoont is a virtual actor uised tae represent the server itsel an no onie individual uiser. It is uised fir federation purposes an shuidnae be suspendit.
     last_active: last active
     link_verified_on: Ainership o this link wis checkt on %{date}
@@ -581,7 +580,6 @@ sco:
       resolved_msg: Clype successfully resolvt!
       skip_to_actions: Jouk tae actions
       status: Status
-      statuses: Clyped on content
       statuses_description_html: Offendin content wull be citit in communication wi the clyped on accoont
       target_origin: Origin o clyped on accoont
       title: Clypes
@@ -1395,11 +1393,9 @@ sco:
     enabled: Automatically delete auld posts
     enabled_hint: Automatically deletes yer posts ance they reach a specified age threshold, unless they match ane o the exceptions ablow
     exceptions: Exceptions
-    explanation: Acause deletin posts is an expensive operation, this is duin slow ower time whan the server isnae itherwise busy. Fir this raison, yer posts wull mibbie be deletit a wee while efter they reach the age threshaud.
     ignore_favs: Ignore favourites
     ignore_reblogs: Ignore heezes
     interaction_exceptions: Exceptions based on interactions
-    interaction_exceptions_explanation: Note thit there nae guarantee fir posts tae get deletit if they gae ablow the favourite or heeze threshaud efter haein ance went ower them.
     keep_direct: Keep direck messages
     keep_direct_hint: Disnae delete onie o yer direck messages
     keep_media: Keep posts wi media attachments
@@ -1432,10 +1428,6 @@ sco:
       too_late: It is ower late fir tae appeal this strike
   tags:
     does_not_match_previous_name: disnae match the previous nemm
-  themes:
-    contrast: Mastodon (Heich contrast)
-    default: Mastodon (Daurk)
-    mastodon-light: Mastodon (Licht)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

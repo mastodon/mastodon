@@ -15,9 +15,16 @@ ms:
       user/invite_request:
         text: Sebab
     errors:
+      attributes:
+        domain:
+          invalid: bukanlah nama domain yang sah
+      messages:
+        invalid_domain_on_line: "%{value} bukanlah nama domain yang sah"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: mengandungi nilai dengan label yang hilang
             username:
               invalid: hanya mengandungi aksara, nombor dan garis bawah sahaja
               reserved: dikhaskan
@@ -25,6 +32,12 @@ ms:
           attributes:
             url:
               invalid: bukanlah URL yang sah
+        collection:
+          attributes:
+            collection_items:
+              too_many: terlalu banyak, tidak lebih daripada %{count} dibenarkan
+            tag:
+              unusable: mungkin tidak digunakan
         doorkeeper/application:
           attributes:
             website:
@@ -33,12 +46,23 @@ ms:
           attributes:
             data:
               malformed: tersalah bentuk
+        list_account:
+          attributes:
+            account_id:
+              taken: sudah dalam senarai
+          must_be_following: hendaklah akaun yang diikuti
         status:
           attributes:
             reblog:
               taken: hantaran sudah wujud
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: terlalu awal, hendaklah selepas %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: di bawah had umur
             email:
               blocked: menggunakan pembekal e-mel yang tidak dibenarkan
               unreachable: nampaknya tidak wujud
