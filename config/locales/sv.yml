@@ -53,6 +53,7 @@ sv:
         label: Ändra roll
         no_role: Ingen roll
         title: Ändra roll för %{username}
+      collections: Samlingar
       confirm: Bekräfta
       confirmed: Bekräftad
       confirming: Bekräftande
@@ -263,6 +264,7 @@ sv:
         demote_user_html: "%{name} nedgraderade användare %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
         destroy_canonical_email_block_html: "%{name} avblockerade e-post med hash%{target}"
+        destroy_collection_html: "%{name} tog bort samlingen av %{target}"
         destroy_custom_emoji_html: "%{name} raderade emoji %{target}"
         destroy_domain_allow_html: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
@@ -302,6 +304,7 @@ sv:
         unsilence_account_html: "%{name} tog bort begränsning av %{target}s konto"
         unsuspend_account_html: "%{name} ångrade avstängningen av %{target}s konto"
         update_announcement_html: "%{name} uppdaterade kungörelsen %{target}"
+        update_collection_html: "%{name} uppdaterade samlingen av %{target}"
         update_custom_emoji_html: "%{name} uppdaterade emoji %{target}"
         update_domain_block_html: "%{name} uppdaterade domän-block för %{target}"
         update_ip_block_html: "%{name} ändrade regel för IP %{target}"
@@ -339,9 +342,13 @@ sv:
       updated_msg: Kungörelsen uppdaterades!
     collections:
       accounts: Konton
+      collection_title: Samling av %{name}
+      contents: Innehåll
       number_of_accounts:
         one: 1 konto
         other: "%{count} konton"
+      open: Öppna
+      view_publicly: Visa offentligt
     critical_update_pending: Kritisk uppdatering väntar
     custom_emojis:
       assign_category: Tilldela kategori
@@ -681,6 +688,7 @@ sv:
       cancel: Avbryt
       category: Kategori
       category_description_html: Anledningen till att kontot och/eller innehållet rapporterades kommer att visas i kommunikation med det rapporterade kontot
+      collections: Samlingar (%{count})
       comment:
         none: Ingen
       comment_description_html: 'För att ge mer information, skrev %{name}:'
@@ -716,6 +724,7 @@ sv:
       resolved_msg: Anmälan har lösts framgångsrikt!
       skip_to_actions: Hoppa till åtgärder
       status: Status
+      statuses: Inlägg (%{count})
       statuses_description_html: Stötande innehåll kommer att citeras i kommunikationen med det rapporterade kontot
       summary:
         action_preambles:
@@ -804,6 +813,7 @@ sv:
         view_devops_description: Ger användare tillgång till instrumentpanelerna Sidekiq och pgHero
         view_feeds: Visa live- och ämnesflöden
         view_feeds_description: Ger användare tillgång till live-och ämnesflöden oavsett serverinställningar
+      requires_2fa: Kräver tvåfaktorsautentisering
       title: Roller
     rules:
       add_new: Lägg till regel
@@ -2022,6 +2032,8 @@ sv:
     past_preamble_html: Vi har ändrat våra användarvillkor sedan ditt senaste besök. Vi uppmanar dig att granska de uppdaterade villkoren.
     review_link: Granska villkoren för tjänsten
     title: Villkoren för tjänsten i %{domain} ändras
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2046,6 +2058,8 @@ sv:
     recovery_codes: Backup återställningskod
     recovery_codes_regenerated: Återställningskoder genererades på nytt
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
+    resume_app_authorization: Fortsätt app-autentisering
+    role_requirement: "%{domain} kräver att du ställer in tvåfaktorsautentisering innan du kan använda Mastodon."
     webauthn: Säkerhetsnycklar
   user_mailer:
     announcement_published:
