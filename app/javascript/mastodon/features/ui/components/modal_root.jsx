@@ -97,6 +97,7 @@ export const MODAL_COMPONENTS = {
   'ACCOUNT_EDIT_NAME': () => import('@/mastodon/features/account_edit/components/name_modal').then(module => ({ default: module.NameModal })),
   'ACCOUNT_EDIT_BIO': () => import('@/mastodon/features/account_edit/components/bio_modal').then(module => ({ default: module.BioModal })),
   'ACCOUNT_EDIT_PROFILE_DISPLAY': () => import('@/mastodon/features/account_edit/components/profile_display_modal').then(module => ({ default: module.ProfileDisplayModal })),
+  'ACCOUNT_EDIT_VERIFY_LINKS': () => import('@/mastodon/features/account_edit/components/verified_modal').then(module => ({ default: module.VerifiedModal })),
 };
 
 export default class ModalRoot extends PureComponent {

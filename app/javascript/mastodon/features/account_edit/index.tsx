@@ -101,6 +101,9 @@ export const AccountEdit: FC = () => {
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
   }, [handleOpenModal]);
+  const handleCustomFieldsVerifiedHelp = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_VERIFY_LINKS');
+  }, [handleOpenModal]);
   const handleProfileDisplayEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_PROFILE_DISPLAY');
   }, [handleOpenModal]);
@@ -172,7 +175,18 @@ export const AccountEdit: FC = () => {
           title={messages.customFieldsTitle}
           description={messages.customFieldsPlaceholder}
           showDescription
-        />
+        >
+          <Button
+            onClick={handleCustomFieldsVerifiedHelp}
+            className={classes.verifiedLinkHelpButton}
+            plain
+          >
+            <FormattedMessage
+              id='account_edit.custom_fields.verified_hint'
+              defaultMessage='How do I add a verified link?'
+            />
+          </Button>
+        </AccountEditSection>
 
         <AccountEditSection
           title={messages.featuredHashtagsTitle}
