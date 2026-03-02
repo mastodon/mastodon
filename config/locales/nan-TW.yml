@@ -263,6 +263,7 @@ nan-TW:
         demote_user_html: "%{name} kā用者 %{target} 降級"
         destroy_announcement_html: "%{name} kā公告 %{target} thâi掉ah"
         destroy_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue取消封鎖ah"
+        destroy_collection_html: "%{name} kā %{target} ê收藏thâi掉"
         destroy_custom_emoji_html: "%{name} kā 新ê emoji %{target} thâi掉ah"
         destroy_domain_allow_html: "%{name} 無允准 %{target} 域名加入聯邦"
         destroy_domain_block_html: "%{name} 取消封鎖域名 %{target}"
@@ -302,6 +303,7 @@ nan-TW:
         unsilence_account_html: "%{name} 取消限制 %{target} ê口座"
         unsuspend_account_html: "%{name} kā %{target} ê口座恢復權限ah"
         update_announcement_html: "%{name} kā公告 %{target} 更新ah"
+        update_collection_html: "%{name} kā %{target} ê收藏更新"
         update_custom_emoji_html: "%{name} kā 新ê emoji %{target} 更新ah"
         update_domain_block_html: "%{name} kā %{target} ê域名封鎖更新ah"
         update_ip_block_html: "%{name} 改變 IP %{target} ê規則"
@@ -675,6 +677,7 @@ nan-TW:
       cancel: 取消
       category: 類別
       category_description_html: Tsit ê 受檢舉ê口座kap/á是內容，ē佇kap tsit ê口座ê聯絡內底引用。
+      collections: 收藏 (%{count})
       comment:
         none: 無
       comment_description_html: 為著提供其他資訊，%{name} 寫：
@@ -710,6 +713,7 @@ nan-TW:
       resolved_msg: 檢舉成功解決ah！
       skip_to_actions: 跳kàu行動
       status: 狀態
+      statuses: PO文 (%{count})
       statuses_description_html: 冒犯ê內容ē引用tī kap受檢舉口座ê聯絡
       summary:
         action_preambles:
@@ -1815,6 +1819,19 @@ nan-TW:
     activity: 上尾ê活動
     browser: 瀏覽器
     browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: 毋知影ê瀏覽器
+      huawei_browser: 華為ê瀏覽器
+      ie: Internet Explorer
+      micro_messenger: 微信
+      nokia: Nokia S40 Ovi 瀏覽器
+      opera: Opera
+      otter: Otter
       qq: QQ 瀏覽器
       safari: Safari
       uc_browser: UC 瀏覽器
