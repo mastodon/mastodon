@@ -42,6 +42,10 @@ class CollectionItem < ApplicationRecord
   scope :not_blocked_by, ->(account) { where.not(accounts: { id: account.blocking }) }
   scope :local, -> { joins(:collection).merge(Collection.local) }
 
+  def revoke!
+    update!(state: :revoked)
+  end
+
   def local_item_with_remote_account?
     local? && account&.remote?
   end
