@@ -3,7 +3,11 @@ import { useCallback } from 'react';
 import { FormattedMessage, defineMessages } from 'react-intl';
 
 import { Button } from 'flavours/glitch/components/button';
-import { ModalShell } from 'flavours/glitch/components/modal_shell';
+import {
+  ModalShell,
+  ModalShellActions,
+  ModalShellBody,
+} from 'flavours/glitch/components/modal_shell';
 
 export interface BaseConfirmationModalProps {
   onClose: () => void;
@@ -66,14 +70,14 @@ export const ConfirmationModal: React.FC<
 
   return (
     <ModalShell>
-      <ModalShell.Body>
+      <ModalShellBody>
         <h1 id={titleId}>{title}</h1>
         {message && <p>{message}</p>}
 
         {extraContent ?? children}
-      </ModalShell.Body>
+      </ModalShellBody>
 
-      <ModalShell.Actions>
+      <ModalShellActions>
         <button onClick={onClose} className='link-button' type='button'>
           {cancel ?? (
             <FormattedMessage
@@ -107,7 +111,7 @@ export const ConfirmationModal: React.FC<
           {confirm}
         </Button>
         {/* eslint-enable */}
-      </ModalShell.Actions>
+      </ModalShellActions>
     </ModalShell>
   );
 };

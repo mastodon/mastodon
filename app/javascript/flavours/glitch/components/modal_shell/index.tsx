@@ -1,16 +1,14 @@
 import classNames from 'classnames';
 
-interface SimpleComponentProps {
+interface ModalShellProps {
   className?: string;
   children?: React.ReactNode;
 }
 
-interface ModalShellComponent extends React.FC<SimpleComponentProps> {
-  Body: React.FC<SimpleComponentProps>;
-  Actions: React.FC<SimpleComponentProps>;
-}
-
-export const ModalShell: ModalShellComponent = ({ children, className }) => {
+export const ModalShell: React.FC<ModalShellProps> = ({
+  children,
+  className,
+}) => {
   return (
     <div
       className={classNames(
@@ -24,7 +22,7 @@ export const ModalShell: ModalShellComponent = ({ children, className }) => {
   );
 };
 
-const ModalShellBody: ModalShellComponent['Body'] = ({
+export const ModalShellBody: React.FC<ModalShellProps> = ({
   children,
   className,
 }) => {
@@ -39,7 +37,7 @@ const ModalShellBody: ModalShellComponent['Body'] = ({
   );
 };
 
-const ModalShellActions: ModalShellComponent['Actions'] = ({
+export const ModalShellActions: React.FC<ModalShellProps> = ({
   children,
   className,
 }) => {
@@ -51,6 +49,3 @@ const ModalShellActions: ModalShellComponent['Actions'] = ({
     </div>
   );
 };
-
-ModalShell.Body = ModalShellBody;
-ModalShell.Actions = ModalShellActions;
