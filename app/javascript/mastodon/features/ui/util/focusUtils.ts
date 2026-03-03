@@ -97,7 +97,10 @@ export function focusColumn(index = 1) {
   const scrollParent = isMultiColumnLayout
     ? container
     : document.documentElement;
-  const columnHeaderHeight = isMultiColumnLayout ? 0 : 62;
+  const columnHeaderHeight =
+    parseInt(
+      getComputedStyle(scrollParent).getPropertyValue('--column-header-height'),
+    ) || 0;
 
   if (
     scrollParent.scrollTop > item.offsetTop - columnHeaderHeight ||
