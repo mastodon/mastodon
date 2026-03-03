@@ -1,0 +1,17 @@
+.closeButton {
+  position: absolute;
+  top: 5px;
+  inset-inline-end: 2px;
+  padding: 10px;
+
+  --default-icon-color: var(--color-text-on-media);
+  --default-bg-color: transparent;
+  --hover-icon-color: var(--color-text-on-media);
+  --hover-bg-color: rgb(from var(--color-text-on-media) r g b / 10%);
+  --focus-outline-color: var(--color-text-on-media);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
