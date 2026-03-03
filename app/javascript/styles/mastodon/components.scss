@@ -285,6 +285,7 @@
   --default-bg-color: transparent;
   --hover-icon-color: var(--color-text-primary);
   --hover-bg-color: var(--color-bg-brand-softer);
+  --focus-outline-color: var(--color-text-brand);
 
   display: inline-flex;
   color: var(--default-icon-color);
@@ -313,7 +314,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-text-brand);
+    outline: 2px solid var(--focus-outline-color);
   }
 
   &.disabled {
@@ -2983,8 +2984,6 @@ a.account__display-name {
     }
 
     &__main {
-      --column-header-height: 62px;
-
       box-sizing: border-box;
       width: 100%;
       flex: 0 1 auto;
@@ -5014,6 +5013,13 @@ a.status-card {
     &:focus {
       .spoiler-button__overlay__label {
         background-color: rgb(from var(--color-bg-media-base) r g b / 90%);
+      }
+    }
+
+    &:focus-visible {
+      .spoiler-button__overlay__label {
+        outline: 2px solid var(--color-text-on-media);
+        outline-offset: -4px;
       }
     }
   }
@@ -7077,6 +7083,13 @@ a.status-card {
     font-size: 14px;
     font-weight: 700;
     line-height: 20px;
+
+    &:focus-visible {
+      outline: none;
+      box-shadow:
+        inset 0 0 0 2px var(--color-text-on-media),
+        0 0 0 2px var(--color-bg-media);
+    }
   }
 }
 
@@ -7106,6 +7119,13 @@ a.status-card {
   cursor: pointer;
   pointer-events: auto;
 
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      inset 0 0 0 2px var(--color-text-on-media),
+      0 0 0 2px var(--color-bg-media);
+  }
+
   &--non-interactive {
     pointer-events: none;
   }
@@ -7129,6 +7149,16 @@ a.status-card {
   max-height: 30em;
   overflow-y: auto;
   z-index: 10;
+
+  &:focus-visible {
+    box-shadow:
+      var(--dropdown-shadow),
+      inset 0 0 0 2px var(--color-text-on-media);
+
+    // Extend background color for better visibility of the
+    // inset box-shadow "outline"
+    outline: 2px solid var(--color-bg-media);
+  }
 
   &--solid {
     color: var(--color-text-primary);
@@ -7370,6 +7400,7 @@ a.status-card {
   color: var(--color-text-primary);
   position: relative;
   z-index: -1;
+  border-radius: inherit;
 
   &,
   img {
@@ -7379,6 +7410,23 @@ a.status-card {
 
   img {
     object-fit: cover;
+  }
+
+  &:focus {
+    outline: none;
+    border-radius: inherit;
+  }
+
+  // Double focus outline for better visibility on photos
+  &:focus-visible::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    z-index: 1;
+    border-radius: inherit;
+    border: 2px solid var(--color-text-on-inverted);
+    outline: 2px solid var(--color-bg-inverted);
+    pointer-events: none;
   }
 }
 
@@ -9092,10 +9140,6 @@ noscript {
 .status__wrapper,
 .conversation {
   position: relative;
-
-  // When scrolling these elements into view, take into account
-  // the column header height
-  scroll-margin-top: var(--column-header-height, 0);
 
   &.unread {
     &::before {
