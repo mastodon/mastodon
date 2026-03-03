@@ -5,6 +5,8 @@ import { useContext, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { FieldsetNameContext } from './fieldset';
 import classes from './form_field_wrapper.module.scss';
 
@@ -22,6 +24,8 @@ interface FieldWrapperProps {
   inputId?: string;
   inputPlacement?: 'inline-start' | 'inline-end';
   children: (inputProps: InputProps) => ReactNode;
+  className?: string;
+  afterInput?: ReactNode;
 }
 
 /**
@@ -29,8 +33,8 @@ interface FieldWrapperProps {
  */
 export type CommonFieldWrapperProps = Pick<
   FieldWrapperProps,
-  'label' | 'hint' | 'hasError'
->;
+  'label' | 'hint' | 'hasError' | 'afterInput'
+> & { wrapperClassName?: string };
 
 /**
  * A simple form field wrapper for adding a label and hint to enclosed components.
@@ -46,6 +50,8 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   hasError,
   inputPlacement,
   children,
+  className,
+  afterInput,
 }) => {
   const uniqueId = useId();
   const inputId = inputIdProp || `${uniqueId}-input`;
@@ -68,7 +74,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
 
   return (
     <div
-      className={classes.wrapper}
+      className={classNames(classes.wrapper, className)}
       data-has-error={hasError}
       data-input-placement={inputPlacement}
     >
@@ -92,6 +98,8 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
       </div>
 
       {inputPlacement !== 'inline-start' && input}
+
+      {afterInput}
     </div>
   );
 };

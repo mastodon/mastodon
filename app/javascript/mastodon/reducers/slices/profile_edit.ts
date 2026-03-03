@@ -24,6 +24,7 @@ import type {
 import type { AppDispatch } from '@/mastodon/store';
 import {
   createAppAsyncThunk,
+  createAppSelector,
   createDataLoadingThunk,
 } from '@/mastodon/store/typed_functions';
 import type { SnakeToCamelCase } from '@/mastodon/utils/types';
@@ -225,6 +226,16 @@ export const patchProfile = createDataLoadingThunk(
   (params: Partial<ApiProfileUpdateParams>) => apiPatchProfile(params),
   transformProfile,
   { useLoadingBar: false },
+);
+
+export const selectFieldById = createAppSelector(
+  [(state) => state.profileEdit.profile?.fields, (_, id: string) => id],
+  (fields, fieldId) => {
+    if (!fields) {
+      return undefined;
+    }
+    return fields.find((field) => field.id === fieldId) ?? null;
+  },
 );
 
 export const removeField = createAppAsyncThunk(
