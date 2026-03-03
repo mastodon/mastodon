@@ -459,6 +459,7 @@ RSpec.describe '/api/v1/statuses' do
 
       let(:scopes) { 'write:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
+      let!(:media) { Fabricate(:media_attachment, status: status) }
 
       it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
@@ -468,6 +469,15 @@ RSpec.describe '/api/v1/statuses' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.parsed_body).to include(
+          id: status.id.to_s,
+          media_attachments: contain_exactly(
+            a_hash_including(
+              id: media.id.to_s,
+              url: %r{/system/media_attachments/files/}
+            )
+          )
+        )
         expect(Status.find_by(id: status.id)).to be_nil
         expect(RemovalWorker).to have_enqueued_sidekiq_job(status.id, { 'redraft' => true })
       end
