@@ -105,8 +105,8 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
     );
   }, [collection, dispatch]);
 
-  const location = useLocation<{ newCollection?: boolean }>();
-  const wasJustCreated = location.state.newCollection;
+  const location = useLocation<{ newCollection?: boolean } | undefined>();
+  const wasJustCreated = location.state?.newCollection;
   useEffect(() => {
     if (wasJustCreated) {
       handleShare();
