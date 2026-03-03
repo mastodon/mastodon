@@ -2,8 +2,10 @@
 
 module Elasticsearch
   module ClientExtensions
-    def verify_elasticsearch(*)
-      @verified = true
+    def verify_elasticsearch(*args, &block)
+      @transport.perform_request(*args, &block).tap do
+        @verified = true
+      end
     end
   end
 end
