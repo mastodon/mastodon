@@ -283,6 +283,7 @@ cy:
         demote_user_html: Mae %{name} wedi israddio defnyddiwr %{target}
         destroy_announcement_html: Mae %{name} wedi dileu cyhoeddiad %{target}
         destroy_canonical_email_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
+        destroy_collection_html: Mae %{name} wedi tynnu casgliad gan %{target}
         destroy_custom_emoji_html: Mae %{name} wedi dileu emoji %{target}
         destroy_domain_allow_html: Mae %{name} wedi gwrthod ffederasiwn gyda pharth %{target}
         destroy_domain_block_html: Mae %{name} wedi dad rwystro parth %{target}
@@ -322,6 +323,7 @@ cy:
         unsilence_account_html: Mae %{name} wedi dadwneud terfyn cyfrif %{target}
         unsuspend_account_html: Mae %{name} wedi dad atal cyfrif %{target}
         update_announcement_html: Mae %{name} wedi diweddaru cyhoeddiad %{target}
+        update_collection_html: Mae casgliad %{name} wedi'i ddiweddaru gan %{target}
         update_custom_emoji_html: Mae %{name} wedi diweddaru emoji %{target}
         update_domain_block_html: Mae %{name} wedi diweddaru bloc parth %{target}
         update_ip_block_html: Mae %{name} wedi newid rheol IP %{target}
@@ -745,6 +747,7 @@ cy:
       cancel: Canslo
       category: Categori
       category_description_html: Bydd y rheswm dros adrodd am y cyfrif a/neu’r cynnwys hwn yn cael ei ddyfynnu wrth gyfathrebu â’r cyfrif a adroddwyd
+      collections: "(%{count}) casgliad"
       comment:
         none: Dim
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
@@ -780,6 +783,7 @@ cy:
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
       skip_to_actions: Mynd i gamau gweithredu
       status: Statws
+      statuses: "(%{count}) postiad"
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
       summary:
         action_preambles:
