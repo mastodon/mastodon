@@ -24,6 +24,22 @@
   border: 1px solid var(--color-border-primary);
 }
 
+.field {
+  padding: 12px 0;
+  display: flex;
+  gap: 4px;
+  align-items: start;
+
+  > div {
+    flex-grow: 1;
+  }
+}
+
+.fieldName {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
 .verifiedLinkHelpButton {
   font-size: 13px;
   font-weight: 600;
@@ -71,103 +87,6 @@
 
   > p {
     color: var(--color-text-secondary);
-  }
-}
-
-// Modals
-
-.inputWrapper {
-  position: relative;
-}
-
-// Override input styles
-.inputWrapper .inputText {
-  font-size: 15px;
-  padding-right: 32px;
-}
-
-textarea.inputText {
-  min-height: 82px;
-  height: 100%;
-
-  // 160px is approx the height of the modal header and footer
-  max-height: calc(80vh - 160px);
-}
-
-.inputWrapper :global(.emoji-picker-dropdown) {
-  position: absolute;
-  bottom: 10px;
-  right: 8px;
-  height: 24px;
-  z-index: 1;
-
-  :global(.icon-button) {
-    color: var(--color-text-secondary);
-  }
-}
-
-.toggleInputWrapper {
-  > div {
-    padding: 12px 0;
-
-    &:not(:first-child) {
-      border-top: 1px solid var(--color-border-primary);
-    }
-  }
-}
-
-.verifiedSteps {
-  font-size: 15px;
-
-  li {
-    counter-increment: steps;
-    padding-left: 34px;
-    margin-top: 24px;
-    position: relative;
-
-    h2 {
-      font-weight: 600;
-    }
-
-    &::before {
-      content: counter(steps);
-      position: absolute;
-      left: 0;
-      border: 1px solid var(--color-border-primary);
-      border-radius: 9999px;
-      font-weight: 600;
-      padding: 4px;
-      width: 16px;
-      height: 16px;
-      line-height: 16px;
-      text-align: center;
-    }
-  }
-}
-
-.details {
-  color: var(--color-text-secondary);
-  font-size: 13px;
-  margin-top: 8px;
-
-  summary {
-    cursor: pointer;
-    font-weight: 600;
-    list-style: none;
-    margin-bottom: 8px;
-    text-decoration: underline;
-    text-decoration-style: dotted;
-  }
-
-  :global(.icon) {
-    width: 1.4em;
-    height: 1.4em;
-    vertical-align: middle;
-    transition: transform 0.2s ease-in-out;
-  }
-
-  &[open] :global(.icon) {
-    transform: rotate(-180deg);
   }
 }
 

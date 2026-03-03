@@ -10,10 +10,10 @@ import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmatio
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import classes from '../styles.module.scss';
+import { CharCounter } from '../components/char_counter';
+import { EmojiPicker } from '../components/emoji_picker';
 
-import { CharCounter } from './char_counter';
-import { EmojiPicker } from './emoji_picker';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   addTitle: {
