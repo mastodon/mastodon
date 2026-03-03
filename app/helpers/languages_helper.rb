@@ -230,7 +230,7 @@ module LanguagesHelper
     'nan-TW': ['Hokkien (Taiwan)', '臺語 (Hô-ló話)'].freeze,
   }.freeze
 
-  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).merge(NAN_TW_CODE).freeze
+  SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).merge(ISO_639_3_REGIONAL).freeze
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
   # names, but for some translations, we need the names of the
