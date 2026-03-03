@@ -9,7 +9,8 @@ import ExpandArrowIcon from '@/material-icons/400-24px/expand_more.svg?react';
 
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
-import classes from '../styles.module.scss';
+
+import classes from './styles.module.scss';
 
 const selectAccountUrl = createAppSelector(
   [(state) => state.meta.get('me') as string, (state) => state.accounts],

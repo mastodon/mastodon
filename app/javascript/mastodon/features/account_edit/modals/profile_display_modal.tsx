@@ -12,7 +12,8 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
 import { messages } from '../index';
-import classes from '../styles.module.scss';
+
+import classes from './styles.module.scss';
 
 export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
   const intl = useIntl();
