@@ -188,8 +188,8 @@ export const AccountEdit: FC = () => {
           showDescription={!hasFields}
         >
           <ol>
-            {profile.fields.map((field, index) => (
-              <li key={index} className={classes.field}>
+            {profile.fields.map((field) => (
+              <li key={field.id} className={classes.field}>
                 <div>
                   <EmojiHTML
                     htmlString={field.name}
@@ -200,7 +200,7 @@ export const AccountEdit: FC = () => {
                 </div>
                 <AccountFieldActions
                   item={intl.formatMessage(messages.customFieldsName)}
-                  {...field}
+                  id={field.id}
                 />
               </li>
             ))}
