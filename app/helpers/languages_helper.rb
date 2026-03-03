@@ -226,7 +226,7 @@ module LanguagesHelper
   # Since nan is not translated but nan-TW is translated,
   # to enable the ISO-639-3 language-code with the regional variant but no
   # official name, we use a specific hash for nan-TW
-  NAN_TW_CODE = {
+  ISO_639_3_REGIONAL = {
     'nan-TW': ['Hokkien (Taiwan)', '臺語 (Hô-ló話)'].freeze,
   }.freeze
 
