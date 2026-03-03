@@ -206,8 +206,17 @@
 .inputWrapper div:has(:global(.emoji-picker-dropdown)) {
   position: relative;
 
-  > input {
+  > input,
+  > textarea {
     padding-inline-end: 36px;
+  }
+
+  > textarea {
+    min-height: 82px;
+    height: 100%;
+
+    // 160px is approx the height of the modal header and footer
+    max-height: calc(80vh - 160px);
   }
 }
 
