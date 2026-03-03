@@ -1,13 +1,15 @@
 import type {
   ChangeEvent,
+  ComponentPropsWithoutRef,
   Dispatch,
   FC,
   ReactNode,
   SetStateAction,
 } from 'react';
-import { useCallback, useRef } from 'react';
+import { useCallback, useId, useRef } from 'react';
 
 import { TextInputField } from '@/mastodon/components/form_fields';
+import type { OmitUnion } from '@/mastodon/utils/types';
 
 import { insertEmojiAtPosition } from '../../emoji/utils';
 import classes from '../styles.module.scss';
@@ -24,24 +26,17 @@ interface InputProps {
   recommended?: boolean;
 }
 
-export const TextInput: FC<InputProps> = ({
-  onChange,
-  value,
-  maxLength,
-  recommended = false,
-  ...props
-}) => {
+export const TextInput: FC<
+  OmitUnion<ComponentPropsWithoutRef<'input'>, InputProps>
+> = ({ onChange, value, maxLength, recommended = false, ...props }) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const counterId = useId();
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      let newValue = event.currentTarget.value;
-      if (!recommended && maxLength && newValue.length > maxLength) {
-        newValue = newValue.slice(0, maxLength);
-      }
-      onChange(newValue);
+      onChange(event.target.value);
     },
-    [maxLength, onChange, recommended],
+    [onChange],
   );
 
   const handlePickEmoji = useCallback(
@@ -61,6 +56,7 @@ export const TextInput: FC<InputProps> = ({
       onChange={handleChange}
       wrapperClassName={classes.inputWrapper}
       ref={inputRef}
+      aria-describedby={counterId}
       afterInput={
         <>
           <EmojiPicker onPick={handlePickEmoji} />
@@ -69,6 +65,7 @@ export const TextInput: FC<InputProps> = ({
               currentLength={value.length}
               maxLength={maxLength}
               recommended={recommended}
+              id={counterId}
             />
           )}
         </>
