@@ -130,6 +130,8 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.where(account: current_account).find(params[:id])
     authorize @status, :destroy?
 
+    # JSON is generated before `discard_with_reblogs` in order to have the proper URL
+    # for media attachments, as it would otherwise redirect to the media proxy
     json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
 
     @status.discard_with_reblogs
