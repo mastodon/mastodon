@@ -3,17 +3,23 @@ import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import type { Map as ImmutableMap } from 'immutable';
+
 import { Button } from '@/mastodon/components/button';
-import { TextInputField } from '@/mastodon/components/form_fields';
 import {
   removeField,
   selectFieldById,
 } from '@/mastodon/reducers/slices/profile_edit';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
 
+import { ConfirmationModal } from '../../ui/components/confirmation_modals';
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
-import { CharCounter } from '../components/char_counter';
+import { TextInput } from '../components/text_input';
 
 const messages = defineMessages({
   editTitle: {
@@ -40,65 +46,67 @@ const messages = defineMessages({
     id: 'account_edit.field_edit_modal.value_hint',
     defaultMessage: 'E.g. “example.me”',
   },
+  save: {
+    id: 'account_edit.save',
+    defaultMessage: 'Save',
+  },
 });
+
+const selectFieldLimits = createAppSelector(
+  [
+    (state) =>
+      state.server.getIn(['server', 'configuration', 'accounts']) as
+        | ImmutableMap<string, number>
+        | undefined,
+  ],
+  (accounts) => ({
+    nameLimit: accounts?.get('profile_field_name_limit'),
+    valueLimit: accounts?.get('profile_field_value_limit'),
+  }),
+);
 
 export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
   onClose,
   fieldKey,
 }) => {
   const intl = useIntl();
-  const field = useAppSelector((state) =>
-    fieldKey ? selectFieldById(state, fieldKey) : null,
-  );
+  const field = useAppSelector((state) => selectFieldById(state, fieldKey));
   const [newLabel, setNewLabel] = useState(field?.name ?? '');
   const [newValue, setNewValue] = useState(field?.value ?? '');
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = event.currentTarget;
-      if (name === 'label') {
-        setNewLabel(value);
-      } else if (name === 'value') {
-        setNewValue(value);
-      }
-    },
-    [],
-  );
+
+  const { nameLimit, valueLimit } = useAppSelector(selectFieldLimits);
+
+  const handleSave = useCallback(() => {
+    console.log('save');
+  }, []);
 
   return (
-    <DialogModal
+    <ConfirmationModal
       onClose={onClose}
       title={
         field
           ? intl.formatMessage(messages.editTitle)
           : intl.formatMessage(messages.addTitle)
       }
+      confirm={intl.formatMessage(messages.save)}
+      onConfirm={handleSave}
     >
-      <TextInputField
+      <TextInput
         value={newLabel}
-        name='label'
-        onChange={handleChange}
+        onChange={setNewLabel}
         label={intl.formatMessage(messages.editLabelField)}
         hint={intl.formatMessage(messages.editLabelHint)}
-      />
-      <CharCounter
-        currentLength={newLabel.length}
-        maxLength={255}
-        recommended
+        maxLength={nameLimit}
       />
 
-      <TextInputField
+      <TextInput
         value={newValue}
-        name='value'
-        onChange={handleChange}
+        onChange={setNewValue}
         label={intl.formatMessage(messages.editValueField)}
         hint={intl.formatMessage(messages.editValueHint)}
+        maxLength={valueLimit}
       />
-      <CharCounter
-        currentLength={newLabel.length}
-        maxLength={255}
-        recommended
-      />
-    </DialogModal>
+    </ConfirmationModal>
   );
 };
 

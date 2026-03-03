@@ -196,3 +196,29 @@
 .counterError {
   color: var(--color-text-error);
 }
+
+// Text input component
+
+.inputWrapper + .inputWrapper {
+  margin-top: 16px;
+}
+
+.inputWrapper div:has(:global(.emoji-picker-dropdown)) {
+  position: relative;
+
+  > input {
+    padding-inline-end: 36px;
+  }
+}
+
+.inputWrapper :global(.emoji-picker-dropdown) {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 24px;
+  z-index: 1;
+
+  :global(.icon-button) {
+    color: var(--color-text-secondary);
+  }
+}

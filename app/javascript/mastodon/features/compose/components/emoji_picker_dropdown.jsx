@@ -396,6 +396,7 @@ class EmojiPickerDropdown extends PureComponent {
           active={active}
           iconComponent={MoodIcon}
           onClick={this.onToggle}
+          id="emoji"
           inverted
         />
 

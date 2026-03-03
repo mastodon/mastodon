@@ -69,7 +69,11 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   }
 
   const input = (
-    <div className={classes.inputWrapper}>{children(inputProps)}</div>
+    <div className={classes.inputWrapper}>
+      {children(inputProps)}
+
+      {afterInput}
+    </div>
   );
 
   return (
@@ -98,8 +102,6 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
       </div>
 
       {inputPlacement !== 'inline-start' && input}
-
-      {afterInput}
     </div>
   );
 };
