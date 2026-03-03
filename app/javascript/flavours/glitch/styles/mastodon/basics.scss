@@ -19,6 +19,15 @@ html {
   &.rtl {
     --text-x-direction: -1;
   }
+
+  // Compensate for column header height when scrolling elements into view
+  --column-header-height: 62px;
+
+  scroll-padding-top: var(--column-header-height);
+
+  &:has(.layout-multi-column) {
+    --column-header-height: 0;
+  }
 }
 
 html.has-modal {
