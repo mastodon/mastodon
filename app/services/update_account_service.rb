@@ -11,6 +11,7 @@ class UpdateAccountService < BaseService
       authorize_all_follow_requests(account) if was_locked && !account.locked
       check_links(account)
       process_hashtags(account)
+      process_attribution_domains(account)
     end
   rescue Mastodon::DimensionsValidationError, Mastodon::StreamValidationError => e
     account.errors.add(:avatar, e.message)
@@ -35,5 +36,24 @@ class UpdateAccountService < BaseService
 
   def process_hashtags(account)
     account.tags_as_strings = Extractor.extract_hashtags(account.note)
+  end
+
+  def process_attribution_domains(account)
+    return unless account.attribute_previously_changed?(:attribution_domains)
+
+    # Go through the most recent cards, and do the rest in a background job
+    preview_cards = PreviewCard.where(unverified_author_account: account).reorder(id: :desc).limit(1_000).to_a
+    should_queue_worker = preview_cards.size == 1_000
+
+    preview_cards = preview_cards.filter do |preview_card|
+      domain = Addressable::URI.parse(preview_card.url).normalized_host
+      account.can_be_attributed_from?(domain)
+    rescue Addressable::URI::InvalidURIError
+      false
+    end
+
+    PreviewCard.where(id: preview_cards.pluck(:id), unverified_author_account: account).update_all(author_account_id: account.id, unverified_author_account_id: nil)
+
+    UpdateLinkCardAttributionWorker.perform_async(account.id) if should_queue_worker
   end
 end
