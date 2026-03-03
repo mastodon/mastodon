@@ -100,8 +100,6 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
       </div>
 
       {inputPlacement !== 'inline-start' && input}
-
-      {afterInput}
     </div>
   );
 };

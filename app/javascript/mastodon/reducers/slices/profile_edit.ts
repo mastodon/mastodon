@@ -229,9 +229,9 @@ export const patchProfile = createDataLoadingThunk(
 );
 
 export const selectFieldById = createAppSelector(
-  [(state) => state.profileEdit.profile?.fields, (_, id: string) => id],
+  [(state) => state.profileEdit.profile?.fields, (_, id?: string) => id],
   (fields, fieldId) => {
-    if (!fields) {
+    if (!fields || !fieldId) {
       return undefined;
     }
     return fields.find((field) => field.id === fieldId) ?? null;
