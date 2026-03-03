@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { EditButton } from './components/edit_button';
+import { AccountFieldActions } from './components/field_actions';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
@@ -54,6 +55,10 @@ export const messages = defineMessages({
     id: 'account_edit.custom_fields.placeholder',
     defaultMessage:
       'Add your pronouns, external links, or anything else you’d like to share.',
+  },
+  customFieldsName: {
+    id: 'account_edit.custom_fields.name',
+    defaultMessage: 'field',
   },
   customFieldsTipTitle: {
     id: 'account_edit.custom_fields.tip_title',
@@ -182,6 +187,24 @@ export const AccountEdit: FC = () => {
           description={messages.customFieldsPlaceholder}
           showDescription={!hasFields}
         >
+          <ol>
+            {profile.fields.map((field, index) => (
+              <li key={index} className={classes.field}>
+                <div>
+                  <EmojiHTML
+                    htmlString={field.name}
+                    className={classes.fieldName}
+                    {...htmlHandlers}
+                  />
+                  <EmojiHTML htmlString={field.value} {...htmlHandlers} />
+                </div>
+                <AccountFieldActions
+                  item={intl.formatMessage(messages.customFieldsName)}
+                  {...field}
+                />
+              </li>
+            ))}
+          </ol>
           <Button
             onClick={handleCustomFieldsVerifiedHelp}
             className={classes.verifiedLinkHelpButton}
