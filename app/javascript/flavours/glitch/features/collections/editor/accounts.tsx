@@ -21,7 +21,11 @@ import { EmptyState } from 'flavours/glitch/components/empty_state';
 import { FormStack, Combobox } from 'flavours/glitch/components/form_fields';
 import { Icon } from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
+import {
+  Article,
+  ItemList,
+  Scrollable,
+} from 'flavours/glitch/components/scrollable_list/components';
 import { useSearchAccounts } from 'flavours/glitch/features/lists/use_search_accounts';
 import { useAccount } from 'flavours/glitch/hooks/useAccount';
 import { me } from 'flavours/glitch/initial_state';
@@ -390,9 +394,8 @@ export const CollectionAccounts: React.FC<{
           </Callout>
         )}
 
-        <div className={classes.scrollableWrapper}>
-          <ScrollableList
-            scrollKey='collection-items'
+        <Scrollable className={classes.scrollableWrapper}>
+          <ItemList
             className={classes.scrollableInner}
             emptyMessage={
               <EmptyState
@@ -413,18 +416,22 @@ export const CollectionAccounts: React.FC<{
                 }
               />
             }
-            // TODO: Re-add `bindToDocument={!multiColumn}`
           >
-            {accountIds.map((accountId) => (
-              <AddedAccountItem
+            {accountIds.map((accountId, index) => (
+              <Article
                 key={accountId}
-                accountId={accountId}
-                isRemovable={!isEditMode || !hasMinAccounts}
-                onRemove={handleRemoveAccountItem}
-              />
+                aria-posinset={index}
+                aria-setsize={accountIds.length}
+              >
+                <AddedAccountItem
+                  accountId={accountId}
+                  isRemovable={!isEditMode || !hasMinAccounts}
+                  onRemove={handleRemoveAccountItem}
+                />
+              </Article>
             ))}
-          </ScrollableList>
-        </div>
+          </ItemList>
+        </Scrollable>
       </FormStack>
       {!isEditMode && (
         <div className={classes.stickyFooter}>
