@@ -65,7 +65,7 @@ export const EmojiTextInputField: FC<
           <EmojiPickerButton onPick={handlePickEmoji} />
           {maxLength && (
             <CharacterCounter
-              currentLength={value?.length ?? 0}
+              currentString={value ?? ''}
               maxLength={maxLength}
               recommended={recommended}
               id={counterId}
@@ -114,7 +114,7 @@ export const EmojiTextAreaField: FC<
           <EmojiPickerButton onPick={handlePickEmoji} />
           {maxLength && (
             <CharacterCounter
-              currentLength={value?.length ?? 0}
+              currentString={value ?? ''}
               maxLength={maxLength}
               recommended={recommended}
               id={counterId}

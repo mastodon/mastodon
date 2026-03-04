@@ -13,22 +13,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Required: Story = {
   args: {
-    currentLength: 50,
+    currentString: 'Hello, world!',
     maxLength: 100,
   },
 };
 
 export const ExceedingLimit: Story = {
   args: {
-    currentLength: 120,
-    maxLength: 100,
+    currentString: 'Hello, world!',
+    maxLength: 10,
   },
 };
 
 export const Recommended: Story = {
   args: {
-    currentLength: 100,
-    maxLength: 80,
+    currentString: 'Hello, world!',
+    maxLength: 10,
     recommended: true,
   },
 };
