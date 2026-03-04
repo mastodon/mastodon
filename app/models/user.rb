@@ -157,14 +157,6 @@ class User < ApplicationRecord
     end
   end
 
-  def valid_invitation?
-    invite_id.present? && invite.valid_for_use?
-  end
-
-  def valid_bypassing_invitation?
-    valid_invitation? && invite.bypass_approval?
-  end
-
   def disable!
     update!(disabled: true)
 
