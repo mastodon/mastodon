@@ -5,54 +5,37 @@ require 'rails_helper'
 RSpec.describe UnfollowService do
   subject { described_class.new }
 
-  let(:sender) { Fabricate(:account, username: 'alice') }
+  let(:follower) { Fabricate(:account) }
+  let(:followee) { Fabricate(:account) }
 
-  describe 'local' do
-    let(:bob) { Fabricate(:account, username: 'bob') }
+  before do
+    follower.follow!(followee)
+  end
 
-    before { sender.follow!(bob) }
-
+  describe 'a local user unfollowing another local user' do
     it 'destroys the following relation' do
-      subject.call(sender, bob)
-
-      expect(sender)
-        .to_not be_following(bob)
+      expect { subject.call(follower, followee) }
+        .to change { follower.following?(followee) }.from(true).to(false)
     end
   end
 
-  describe 'remote ActivityPub', :inline_jobs do
-    let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
+  describe 'a local user unfollowing a remote ActivityPub user' do
+    let(:followee) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
-    before do
-      sender.follow!(bob)
-      stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
-    end
-
-    it 'destroys the following relation and sends unfollow activity' do
-      subject.call(sender, bob)
-
-      expect(sender)
-        .to_not be_following(bob)
-      expect(a_request(:post, 'http://example.com/inbox'))
-        .to have_been_made.once
+    it 'destroys the following relation and sends undo activity' do
+      expect { subject.call(follower, followee) }
+        .to change { follower.following?(followee) }.from(true).to(false)
+        .and enqueue_sidekiq_job(ActivityPub::DeliveryWorker).with(match_json_values(type: 'Undo'), follower.id, followee.inbox_url)
     end
   end
 
-  describe 'remote ActivityPub (reverse)', :inline_jobs do
-    let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
-
-    before do
-      bob.follow!(sender)
-      stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
-    end
+  describe 'a remote ActivityPub user unfollowing a local user' do
+    let(:follower) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
     it 'destroys the following relation and sends a reject activity' do
-      subject.call(bob, sender)
-
-      expect(sender)
-        .to_not be_following(bob)
-      expect(a_request(:post, 'http://example.com/inbox'))
-        .to have_been_made.once
+      expect { subject.call(follower, followee) }
+        .to change { follower.following?(followee) }.from(true).to(false)
+        .and enqueue_sidekiq_job(ActivityPub::DeliveryWorker).with(match_json_values(type: 'Reject'), followee.id, follower.inbox_url)
     end
   end
 end
