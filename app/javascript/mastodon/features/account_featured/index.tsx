@@ -156,6 +156,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
             <ItemList>
               {featuredTags.map((tag, index) => (
                 <Article
+                  focusable
                   key={tag.get('id')}
                   aria-posinset={index + 1}
                   aria-setsize={featuredTags.size}
@@ -177,6 +178,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
             <ItemList>
               {featuredAccountIds.map((featuredAccountId, index) => (
                 <Article
+                  focusable
                   key={featuredAccountId}
                   aria-posinset={index + 1}
                   aria-setsize={featuredAccountIds.size}

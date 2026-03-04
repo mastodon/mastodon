@@ -77,6 +77,7 @@ export const CollectionListItem: React.FC<{
 
   return (
     <Article
+      focusable
       className={classNames(
         classes.wrapper,
         withoutBorder && classes.wrapperWithoutBorder,

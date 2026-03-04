@@ -64,15 +64,16 @@ ItemList.displayName = 'ItemList';
 export const Article = forwardRef<
   HTMLElement,
   ComponentPropsWithoutRef<'article'> & {
+    focusable?: boolean;
     'data-id'?: string;
     'aria-posinset': number;
     'aria-setsize': number;
   }
->(({ className, children, ...otherProps }, ref) => {
+>(({ focusable, className, children, ...otherProps }, ref) => {
   return (
     <article
       ref={ref}
-      className={classNames('focusable', className)}
+      className={classNames(className, { focusable })}
       tabIndex={-1}
       {...otherProps}
     >
