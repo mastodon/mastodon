@@ -157,10 +157,6 @@ class User < ApplicationRecord
     end
   end
 
-  def invited?
-    invite_id.present?
-  end
-
   def valid_invitation?
     invite_id.present? && invite.valid_for_use?
   end

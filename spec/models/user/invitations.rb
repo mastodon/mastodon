@@ -24,4 +24,22 @@ RSpec.shared_examples 'User::Invitations' do
       it { is_expected.to_not allow_values(nil).for(:invite_request) }
     end
   end
+
+  describe '#invited?' do
+    subject { user.invited? }
+
+    let(:user) { Fabricate.build :user }
+
+    context 'when invite is present' do
+      before { user.invite = Fabricate(:invite) }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when invite is not present' do
+      before { user.invite = nil }
+
+      it { is_expected.to be(false) }
+    end
+  end
 end

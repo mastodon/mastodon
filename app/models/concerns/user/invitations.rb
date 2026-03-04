@@ -11,6 +11,10 @@ module User::Invitations
     validates :invite_request, presence: true, on: :create, if: :invite_text_required?
   end
 
+  def invited?
+    invite_id.present?
+  end
+
   private
 
   def invite_text_required?
