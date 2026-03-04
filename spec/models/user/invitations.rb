@@ -5,5 +5,6 @@ require 'rails_helper'
 RSpec.shared_examples 'User::Invitations' do
   describe 'Associations' do
     it { is_expected.to belong_to(:invite).optional.counter_cache(:uses) }
+    it { is_expected.to have_many(:invites).inverse_of(:user).dependent(false) }
   end
 end
