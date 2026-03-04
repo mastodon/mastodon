@@ -15,6 +15,14 @@ module User::Invitations
     invite_id.present?
   end
 
+  def valid_invitation?
+    invite_id.present? && invite.valid_for_use?
+  end
+
+  def valid_bypassing_invitation?
+    valid_invitation? && invite.bypass_approval?
+  end
+
   private
 
   def invite_text_required?
