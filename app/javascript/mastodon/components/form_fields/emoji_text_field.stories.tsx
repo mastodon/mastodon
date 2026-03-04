@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { InputProps } from './emoji_text_field';
+import type { EmojiInputProps } from './emoji_text_field';
 import { EmojiTextAreaField, EmojiTextInputField } from './emoji_text_field';
 
 const meta = {
@@ -16,7 +16,7 @@ const meta = {
     const [value, setValue] = useState(initialValue);
     return <EmojiTextInputField {...args} value={value} onChange={setValue} />;
   },
-} satisfies Meta<InputProps & { disabled?: boolean }>;
+} satisfies Meta<EmojiInputProps & { disabled?: boolean }>;
 
 export default meta;
 

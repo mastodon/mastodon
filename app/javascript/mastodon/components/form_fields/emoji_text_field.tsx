@@ -1,9 +1,11 @@
 import type {
   ChangeEvent,
+  ChangeEventHandler,
   ComponentPropsWithoutRef,
   Dispatch,
   FC,
   ReactNode,
+  RefObject,
   SetStateAction,
 } from 'react';
 import { useCallback, useId, useRef } from 'react';
@@ -15,21 +17,66 @@ import { CharacterCounter } from '../character_counter';
 import { EmojiPickerButton } from '../emoji/picker_button';
 
 import classes from './emoji_text_field.module.scss';
-import { TextAreaField } from './text_area_field';
+import type {
+  CommonFieldWrapperProps,
+  InputProps} from './form_field_wrapper';
+import {
+  FormFieldWrapper
+} from './form_field_wrapper';
+import { TextArea } from './text_area_field';
 import type { TextAreaProps } from './text_area_field';
-import { TextInputField } from './text_input_field';
+import { TextInput } from './text_input_field';
 
-export interface InputProps {
+export type EmojiInputProps = {
   value?: string;
   onChange?: Dispatch<SetStateAction<string>>;
-  label?: ReactNode;
-  hint?: ReactNode;
   maxLength?: number;
   recommended?: boolean;
-}
+} & Omit<CommonFieldWrapperProps, 'wrapperClassName'>;
 
 export const EmojiTextInputField: FC<
-  OmitUnion<ComponentPropsWithoutRef<'input'>, InputProps>
+  OmitUnion<ComponentPropsWithoutRef<'input'>, EmojiInputProps>
+> = ({
+  onChange,
+  value,
+  label,
+  hint,
+  hasError,
+  maxLength,
+  recommended,
+  disabled,
+  ...otherProps
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const wrapperProps = {
+    label,
+    hint,
+    hasError,
+    maxLength,
+    recommended,
+    disabled,
+    inputRef,
+    value,
+    onChange,
+  };
+
+  return (
+    <EmojiFieldWrapper {...wrapperProps}>
+      {(inputProps) => (
+        <TextInput
+          {...inputProps}
+          {...otherProps}
+          value={value}
+          ref={inputRef}
+        />
+      )}
+    </EmojiFieldWrapper>
+  );
+};
+
+export const EmojiTextAreaField: FC<
+  OmitUnion<Omit<TextAreaProps, 'style'>, EmojiInputProps>
 > = ({
   onChange,
   value,
@@ -37,17 +84,57 @@ export const EmojiTextInputField: FC<
   maxLength,
   recommended = false,
   disabled,
-  ...props
+  hint,
+  hasError,
+  ...otherProps
 }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const counterId = useId();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      onChange?.(event.target.value);
-    },
-    [onChange],
+  const wrapperProps = {
+    label,
+    hint,
+    hasError,
+    maxLength,
+    recommended,
+    disabled,
+    inputRef: textareaRef,
+    value,
+    onChange,
+  };
+
+  return (
+    <EmojiFieldWrapper {...wrapperProps}>
+      {(inputProps) => (
+        <TextArea
+          {...otherProps}
+          {...inputProps}
+          value={value}
+          ref={textareaRef}
+        />
+      )}
+    </EmojiFieldWrapper>
   );
+};
+
+const EmojiFieldWrapper: FC<
+  EmojiInputProps & {
+    disabled?: boolean;
+    children: (
+      inputProps: InputProps & { onChange: ChangeEventHandler },
+    ) => ReactNode;
+    inputRef: RefObject<HTMLTextAreaElement | HTMLInputElement>;
+  }
+> = ({
+  value,
+  onChange,
+  children,
+  disabled,
+  inputRef,
+  maxLength,
+  recommended = false,
+  ...otherProps
+}) => {
+  const counterId = useId();
 
   const handlePickEmoji = useCallback(
     (emoji: string) => {
@@ -56,79 +143,25 @@ export const EmojiTextInputField: FC<
         return insertEmojiAtPosition(prev, emoji, position);
       });
     },
-    [onChange],
+    [onChange, inputRef],
   );
-
-  return (
-    <TextInputField
-      {...props}
-      label={label}
-      value={value}
-      onChange={handleChange}
-      wrapperClassName={classes.fieldWrapper}
-      disabled={disabled}
-      ref={inputRef}
-      aria-describedby={counterId}
-      afterInput={
-        <>
-          <EmojiPickerButton onPick={handlePickEmoji} disabled={disabled} />
-          {maxLength && (
-            <CharacterCounter
-              currentString={value ?? ''}
-              maxLength={maxLength}
-              recommended={recommended}
-              id={counterId}
-            />
-          )}
-        </>
-      }
-    />
-  );
-};
-
-export const EmojiTextAreaField: FC<
-  OmitUnion<Omit<TextAreaProps, 'style'>, InputProps>
-> = ({
-  onChange,
-  value,
-  label,
-  maxLength,
-  recommended = false,
-  disabled,
-  ...props
-}) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const counterId = useId();
 
   const handleChange = useCallback(
-    (event: ChangeEvent<HTMLTextAreaElement>) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       onChange?.(event.target.value);
     },
     [onChange],
   );
 
-  const handlePickEmoji = useCallback(
-    (emoji: string) => {
-      onChange?.((prev) => {
-        const position = textareaRef.current?.selectionStart ?? prev.length;
-        return insertEmojiAtPosition(prev, emoji, position);
-      });
-    },
-    [onChange],
-  );
-
   return (
-    <TextAreaField
-      {...props}
-      label={label}
-      value={value}
-      onChange={handleChange}
-      wrapperClassName={classes.fieldWrapper}
-      disabled={disabled}
-      ref={textareaRef}
-      aria-describedby={counterId}
-      afterInput={
+    <FormFieldWrapper
+      className={classes.fieldWrapper}
+      describedById={counterId}
+      {...otherProps}
+    >
+      {(inputProps) => (
         <>
+          {children({ ...inputProps, onChange: handleChange })}
           <EmojiPickerButton onPick={handlePickEmoji} disabled={disabled} />
           {maxLength && (
             <CharacterCounter
@@ -139,7 +172,7 @@ export const EmojiTextAreaField: FC<
             />
           )}
         </>
-      }
-    />
+      )}
+    </FormFieldWrapper>
   );
 };
