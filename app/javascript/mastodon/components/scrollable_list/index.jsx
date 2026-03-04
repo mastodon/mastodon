@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Children, cloneElement, PureComponent } from 'react';
 
-import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
 
 import { List as ImmutableList } from 'immutable';
@@ -12,13 +11,14 @@ import { throttle } from 'lodash';
 
 import { ScrollContainer } from 'mastodon/containers/scroll_container';
 
-import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
-import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
-import IntersectionObserverWrapper from '../features/ui/util/intersection_observer_wrapper';
+import IntersectionObserverArticleContainer from '../../containers/intersection_observer_article_container';
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../../features/ui/util/fullscreen';
+import IntersectionObserverWrapper from '../../features/ui/util/intersection_observer_wrapper';
 
-import { LoadMore } from './load_more';
-import { LoadPending } from './load_pending';
-import { LoadingIndicator } from './loading_indicator';
+import { LoadMore } from '../load_more';
+import { LoadPending } from '../load_pending';
+import { LoadingIndicator } from '../loading_indicator';
+import { Scrollable, ItemList } from './components';
 
 const MOUSE_IDLE_DELAY = 300;
 
@@ -336,24 +336,20 @@ class ScrollableList extends PureComponent {
 
     if (showLoading) {
       scrollableArea = (
-        <div className='scrollable scrollable--flex' ref={this.setRef}>
+        <Scrollable ref={this.setRef}>
           {prepend}
 
-          <div role='feed' className='item-list' />
-
-          <div className='scrollable__append'>
-            <LoadingIndicator />
-          </div>
+          <ItemList isLoading />
 
           {footer}
-        </div>
+        </Scrollable>
       );
     } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable scrollable--flex', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
+        <Scrollable fullscreen={fullscreen} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           {prepend}
 
-          <div role='feed' className={classNames('item-list', className)}>
+          <ItemList className={className}>
             {loadPending}
 
             {Children.map(this.props.children, (child, index) => (
@@ -378,14 +374,14 @@ class ScrollableList extends PureComponent {
             {loadMore}
 
             {!hasMore && append}
-          </div>
+          </ItemList>
 
           {footer}
-        </div>
+        </Scrollable>
       );
     } else {
       scrollableArea = (
-        <div className={classNames('scrollable scrollable--flex', { fullscreen })} ref={this.setRef}>
+        <Scrollable fullscreen={fullscreen} ref={this.setRef}>
           {alwaysPrepend && prepend}
 
           <div className='empty-column-indicator'>
@@ -393,7 +389,7 @@ class ScrollableList extends PureComponent {
           </div>
 
           {footer}
-        </div>
+        </Scrollable>
       );
     }
 
