@@ -37,7 +37,16 @@ RSpec::Matchers.define :have_standard_headers do |type|
       .and(have_header('List-Unsubscribe', %r{<https://#{Rails.configuration.x.local_domain}/unsubscribe\?token=.+>}))
       .and(have_header('List-Unsubscribe', /&type=#{type}/))
       .and(have_header('List-Unsubscribe-Post', 'List-Unsubscribe=One-Click'))
-      .and(deliver_to("#{@user.account.username} <#{@user.email}>"))
-      .and(deliver_from(Rails.configuration.action_mailer.default_options[:from]))
+    expect(mail.to)
+      .to contain_exactly(@user.email)
+    expect(mail.from)
+      .to contain_exactly(Rails.configuration.action_mailer.default_options[:from])
+  end
+end
+
+RSpec::Matchers.define :have_header do |header, value|
+  match(notify_expectation_failures: true) do |mail|
+    expect(mail.header[header].value)
+      .to match(value)
   end
 end
