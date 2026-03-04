@@ -10,6 +10,7 @@ import jsxA11Y from 'eslint-plugin-jsx-a11y';
 import promisePlugin from 'eslint-plugin-promise';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+// @ts-expect-error -- No types available for this package
 import storybook from 'eslint-plugin-storybook';
 import { globalIgnores } from 'eslint/config';
 import globals from 'globals';
@@ -387,6 +388,7 @@ export default tseslint.config([
     files: ['**/*.stories.ts', '**/*.stories.tsx', '.storybook/*'],
     rules: {
       'import/no-default-export': 'off',
+      'react-hooks/rules-of-hooks': 'off',
     },
   },
   {

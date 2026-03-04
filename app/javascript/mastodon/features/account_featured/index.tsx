@@ -12,6 +12,11 @@ import { Account } from 'mastodon/components/account';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RemoteHint } from 'mastodon/components/remote_hint';
+import {
+  Article,
+  ItemList,
+  Scrollable,
+} from 'mastodon/components/scrollable_list/components';
 import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import Column from 'mastodon/features/ui/components/column';
@@ -115,7 +120,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     <Column>
       <ColumnBackButton />
 
-      <div className='scrollable scrollable--flex'>
+      <Scrollable>
         {accountId && (
           <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
         )}
@@ -127,15 +132,17 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                 defaultMessage='Collections'
               />
             </h4>
-            <section>
+            <ItemList>
               {publicCollections.map((item, index) => (
                 <CollectionListItem
                   key={item.id}
                   collection={item}
                   withoutBorder={index === publicCollections.length - 1}
+                  positionInList={index + 1}
+                  listSize={publicCollections.length}
                 />
               ))}
-            </section>
+            </ItemList>
           </>
         )}
         {!featuredTags.isEmpty() && (
@@ -146,9 +153,18 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                 defaultMessage='Hashtags'
               />
             </h4>
-            {featuredTags.map((tag) => (
-              <FeaturedTag key={tag.get('id')} tag={tag} account={acct} />
-            ))}
+            <ItemList>
+              {featuredTags.map((tag, index) => (
+                <Article
+                  focusable
+                  key={tag.get('id')}
+                  aria-posinset={index + 1}
+                  aria-setsize={featuredTags.size}
+                >
+                  <FeaturedTag tag={tag} account={acct} />
+                </Article>
+              ))}
+            </ItemList>
           </>
         )}
         {!featuredAccountIds.isEmpty() && (
@@ -159,13 +175,22 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                 defaultMessage='Profiles'
               />
             </h4>
-            {featuredAccountIds.map((featuredAccountId) => (
-              <Account key={featuredAccountId} id={featuredAccountId} />
-            ))}
+            <ItemList>
+              {featuredAccountIds.map((featuredAccountId, index) => (
+                <Article
+                  focusable
+                  key={featuredAccountId}
+                  aria-posinset={index + 1}
+                  aria-setsize={featuredAccountIds.size}
+                >
+                  <Account id={featuredAccountId} />
+                </Article>
+              ))}
+            </ItemList>
           </>
         )}
         <RemoteHint accountId={accountId} />
-      </div>
+      </Scrollable>
     </Column>
   );
 };
