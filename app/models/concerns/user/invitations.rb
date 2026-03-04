@@ -10,6 +10,8 @@ module User::Invitations
 
     validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
+    accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
+
     attr_reader :invite_code
   end
 
