@@ -6,6 +6,11 @@ import { Helmet } from 'react-helmet';
 import { useLocation, useParams } from 'react-router';
 
 import { openModal } from '@/mastodon/actions/modal';
+import {
+  Article,
+  ItemList,
+  Scrollable,
+} from '@/mastodon/components/scrollable_list/components';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
@@ -19,7 +24,6 @@ import {
   LinkedDisplayName,
 } from 'mastodon/components/display_name';
 import { IconButton } from 'mastodon/components/icon_button';
-import ScrollableList from 'mastodon/components/scrollable_list';
 import { Tag } from 'mastodon/components/tags/tag';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { me } from 'mastodon/initial_state';
@@ -202,24 +206,27 @@ export const CollectionDetailPage: React.FC<{
         multiColumn={multiColumn}
       />
 
-      <ScrollableList
-        scrollKey='collection-detail'
-        emptyMessage={intl.formatMessage(messages.empty)}
-        showLoading={isLoading}
-        bindToDocument={!multiColumn}
-        alwaysPrepend
-        prepend={
-          collection ? <CollectionHeader collection={collection} /> : null
-        }
-      >
-        {collection?.items.map(({ account_id }) => (
-          <CollectionAccountItem
-            key={account_id}
-            accountId={account_id}
-            collectionOwnerId={collection.account_id}
-          />
-        ))}
-      </ScrollableList>
+      <Scrollable>
+        {collection && <CollectionHeader collection={collection} />}
+        <ItemList
+          isLoading={isLoading}
+          emptyMessage={intl.formatMessage(messages.empty)}
+        >
+          {collection?.items.map(({ account_id }, index, items) => (
+            <Article
+              key={account_id}
+              data-id={account_id}
+              aria-posinset={index + 1}
+              aria-setsize={items.length}
+            >
+              <CollectionAccountItem
+                accountId={account_id}
+                collectionOwnerId={collection.account_id}
+              />
+            </Article>
+          ))}
+        </ItemList>
+      </Scrollable>
 
       <Helmet>
         <title>{pageTitle}</title>
