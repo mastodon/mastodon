@@ -238,6 +238,48 @@ export const selectFieldById = createAppSelector(
   },
 );
 
+export const updateField = createAppAsyncThunk(
+  `${profileEditSlice.name}/updateField`,
+  async (
+    arg: { id?: string; name: string; value: string },
+    { getState, dispatch },
+  ) => {
+    const fields = getState().profileEdit.profile?.fields;
+    if (!fields) {
+      throw new Error('Profile fields not found');
+    }
+
+    const maxFields = getState().server.getIn([
+      'server',
+      'configuration',
+      'accounts',
+      'max_fields',
+    ]) as number | undefined;
+    if (maxFields && fields.length >= maxFields && !arg.id) {
+      throw new Error('Maximum number of profile fields reached');
+    }
+
+    // Replace the field data if there is an ID, otherwise append a new field.
+    const newFields: Pick<ApiAccountFieldJSON, 'name' | 'value'>[] = [];
+    for (const field of fields) {
+      if (field.id === arg.id) {
+        newFields.push({ name: arg.name, value: arg.value });
+      } else {
+        newFields.push({ name: field.name, value: field.value });
+      }
+    }
+    if (!arg.id) {
+      newFields.push({ name: arg.name, value: arg.value });
+    }
+
+    await dispatch(
+      patchProfile({
+        fields_attributes: newFields,
+      }),
+    );
+  },
+);
+
 export const removeField = createAppAsyncThunk(
   `${profileEditSlice.name}/removeField`,
   async (arg: { key: string }, { getState, dispatch }) => {

@@ -10,6 +10,7 @@ import { EmojiTextInputField } from '@/mastodon/components/form_fields';
 import {
   removeField,
   selectFieldById,
+  updateField,
 } from '@/mastodon/reducers/slices/profile_edit';
 import {
   createAppSelector,
@@ -20,6 +21,8 @@ import {
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
+
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   editTitle: {
@@ -75,10 +78,23 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
   const [newValue, setNewValue] = useState(field?.value ?? '');
 
   const { nameLimit, valueLimit } = useAppSelector(selectFieldLimits);
+  const isPending = useAppSelector((state) => state.profileEdit.isPending);
 
+  const disabled =
+    !nameLimit ||
+    !valueLimit ||
+    newLabel.length > nameLimit ||
+    newValue.length > valueLimit;
+
+  const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
-    console.log('save');
-  }, []);
+    if (disabled || isPending) {
+      return;
+    }
+    void dispatch(
+      updateField({ id: fieldKey, name: newLabel, value: newValue }),
+    ).then(onClose);
+  }, [disabled, dispatch, fieldKey, isPending, newLabel, newValue, onClose]);
 
   return (
     <ConfirmationModal
@@ -90,6 +106,9 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
       }
       confirm={intl.formatMessage(messages.save)}
       onConfirm={handleSave}
+      updating={isPending}
+      disabled={disabled}
+      className={classes.wrapper}
     >
       <EmojiTextInputField
         value={newLabel}
@@ -148,14 +167,9 @@ export const DeleteFieldModal: FC<DialogModalProps & { fieldKey: string }> = ({
 };
 
 export const RearrangeFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
-  const fields = useAppSelector(
-    (state) => state.profileEdit.profile?.fields ?? [],
-  );
   return (
-    <DialogModal onClose={onClose} title='foo'>
-      {fields.map((field, index) => (
-        <p key={index}>{field.name}</p>
-      ))}
+    <DialogModal onClose={onClose} title='Not implemented yet'>
+      <p>Not implemented yet</p>
     </DialogModal>
   );
 };
