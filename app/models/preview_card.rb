@@ -33,6 +33,7 @@
 #  published_at                 :datetime
 #  image_description            :string           default(""), not null
 #  author_account_id            :bigint(8)
+#  unverified_author_account_id :bigint(8)
 #
 
 class PreviewCard < ApplicationRecord
@@ -61,6 +62,7 @@ class PreviewCard < ApplicationRecord
 
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
   belongs_to :author_account, class_name: 'Account', optional: true
+  belongs_to :unverified_author_account, class_name: 'Account', optional: true
 
   has_attached_file :image,
                     processors: [:lazy_thumbnail, :blurhash_transcoder],
