@@ -88,7 +88,6 @@ class User < ApplicationRecord
   has_many :ips, class_name: 'UserIp', inverse_of: :user, dependent: nil
 
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
-  validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
   validates :email, presence: true, email_address: true
 
@@ -522,10 +521,6 @@ class User < ApplicationRecord
 
   def validate_role_elevation
     errors.add(:role_id, :elevated) if defined?(@current_account) && role&.overrides?(@current_account&.user_role)
-  end
-
-  def invite_text_required?
-    Setting.require_invite_text && !open_registrations? && !invited? && !external? && !bypass_registration_checks?
   end
 
   def trigger_webhooks

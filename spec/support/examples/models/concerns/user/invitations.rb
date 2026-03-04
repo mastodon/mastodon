@@ -8,4 +8,20 @@ RSpec.shared_examples 'User::Invitations' do
     it { is_expected.to have_many(:invites).inverse_of(:user).dependent(false) }
     it { is_expected.to have_one(:invite_request).inverse_of(:user).dependent(:destroy).class_name(UserInviteRequest) }
   end
+
+  describe 'Validations' do
+    subject { Fabricate.build :user }
+
+    context 'when invite request is required by settings' do
+      before do
+        Setting.require_invite_text = true
+        Setting.registrations_mode = 'none'
+        subject.invite_id = nil
+        subject.external = false
+        subject.bypass_registration_checks = false
+      end
+
+      it { is_expected.to_not allow_values(nil).for(:invite_request) }
+    end
+  end
 end
