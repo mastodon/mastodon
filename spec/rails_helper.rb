@@ -43,7 +43,6 @@ require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
-require 'email_spec/rspec'
 require 'pundit/rspec'
 require 'test_prof/recipes/rspec/before_all'
 
