@@ -25,7 +25,6 @@ interface FieldWrapperProps {
   inputPlacement?: 'inline-start' | 'inline-end';
   children: (inputProps: InputProps) => ReactNode;
   className?: string;
-  afterInput?: ReactNode;
 }
 
 /**
@@ -33,7 +32,7 @@ interface FieldWrapperProps {
  */
 export type CommonFieldWrapperProps = Pick<
   FieldWrapperProps,
-  'label' | 'hint' | 'hasError' | 'afterInput'
+  'label' | 'hint' | 'hasError'
 > & { wrapperClassName?: string };
 
 /**
@@ -51,7 +50,6 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   inputPlacement,
   children,
   className,
-  afterInput,
 }) => {
   const uniqueId = useId();
   const inputId = inputIdProp || `${uniqueId}-input`;
@@ -69,11 +67,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   }
 
   const input = (
-    <div className={classes.inputWrapper}>
-      {children(inputProps)}
-
-      {afterInput}
-    </div>
+    <div className={classes.inputWrapper}>{children(inputProps)}</div>
   );
 
   return (

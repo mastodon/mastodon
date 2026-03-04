@@ -26,16 +26,7 @@ export const TextAreaField = forwardRef<
   TextAreaProps & CommonFieldWrapperProps
 >(
   (
-    {
-      id,
-      label,
-      hint,
-      required,
-      hasError,
-      wrapperClassName,
-      afterInput,
-      ...otherProps
-    },
+    { id, label, hint, required, hasError, wrapperClassName, ...otherProps },
     ref,
   ) => (
     <FormFieldWrapper
@@ -45,7 +36,6 @@ export const TextAreaField = forwardRef<
       hasError={hasError}
       inputId={id}
       className={wrapperClassName}
-      afterInput={afterInput}
     >
       {(inputProps) => <TextArea {...otherProps} {...inputProps} ref={ref} />}
     </FormFieldWrapper>

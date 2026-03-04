@@ -25,16 +25,7 @@ interface Props extends TextInputProps, CommonFieldWrapperProps {}
 
 export const TextInputField = forwardRef<HTMLInputElement, Props>(
   (
-    {
-      id,
-      label,
-      hint,
-      hasError,
-      required,
-      wrapperClassName,
-      afterInput,
-      ...otherProps
-    },
+    { id, label, hint, hasError, required, wrapperClassName, ...otherProps },
     ref,
   ) => (
     <FormFieldWrapper
@@ -44,7 +35,6 @@ export const TextInputField = forwardRef<HTMLInputElement, Props>(
       hasError={hasError}
       inputId={id}
       className={wrapperClassName}
-      afterInput={afterInput}
     >
       {(inputProps) => <TextInput {...otherProps} {...inputProps} ref={ref} />}
     </FormFieldWrapper>
