@@ -21,7 +21,13 @@ export const CharacterCounter = polymorphicForwardRef<
   CharacterCounterProps
 >(
   (
-    { currentString, maxLength, as: Component = 'span', recommended = false },
+    {
+      currentString,
+      maxLength,
+      as: Component = 'span',
+      recommended = false,
+      ...props
+    },
     ref,
   ) => {
     const currentLength = useMemo(
@@ -30,6 +36,7 @@ export const CharacterCounter = polymorphicForwardRef<
     );
     return (
       <Component
+        {...props}
         ref={ref}
         className={classNames(
           classes.counter,
