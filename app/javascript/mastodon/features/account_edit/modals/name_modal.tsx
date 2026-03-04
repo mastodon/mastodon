@@ -3,12 +3,11 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { EmojiTextInputField } from '@/mastodon/components/form_fields';
 import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-
-import { TextInput } from '../components/text_input';
 
 const messages = defineMessages({
   addTitle: {
@@ -63,7 +62,7 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       noCloseOnConfirm
       noFocusButton
     >
-      <TextInput
+      <EmojiTextInputField
         value={newName}
         onChange={setNewName}
         aria-labelledby={titleId}

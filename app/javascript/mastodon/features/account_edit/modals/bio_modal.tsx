@@ -3,12 +3,11 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { EmojiTextAreaField } from '@/mastodon/components/form_fields';
 import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-
-import { TextAreaInput } from '../components/text_input';
 
 const messages = defineMessages({
   addTitle: {
@@ -61,7 +60,8 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       disabled={!!maxLength && newBio.length > maxLength}
       noFocusButton
     >
-      <TextAreaInput
+      <EmojiTextAreaField
+        label=''
         value={newBio}
         onChange={setNewBio}
         aria-labelledby={titleId}

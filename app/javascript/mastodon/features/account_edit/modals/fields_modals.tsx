@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import type { Map as ImmutableMap } from 'immutable';
 
 import { Button } from '@/mastodon/components/button';
+import { EmojiTextInputField } from '@/mastodon/components/form_fields';
 import {
   removeField,
   selectFieldById,
@@ -19,7 +20,6 @@ import {
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
 import { DialogModal } from '../../ui/components/dialog_modal';
-import { TextInput } from '../components/text_input';
 
 const messages = defineMessages({
   editTitle: {
@@ -91,7 +91,7 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
       confirm={intl.formatMessage(messages.save)}
       onConfirm={handleSave}
     >
-      <TextInput
+      <EmojiTextInputField
         value={newLabel}
         onChange={setNewLabel}
         label={intl.formatMessage(messages.editLabelField)}
@@ -99,7 +99,7 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
         maxLength={nameLimit}
       />
 
-      <TextInput
+      <EmojiTextInputField
         value={newValue}
         onChange={setNewValue}
         label={intl.formatMessage(messages.editValueField)}
