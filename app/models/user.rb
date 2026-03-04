@@ -87,8 +87,6 @@ class User < ApplicationRecord
   has_many :webauthn_credentials, dependent: :destroy
   has_many :ips, class_name: 'UserIp', inverse_of: :user, dependent: nil
 
-  accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
-
   validates :email, presence: true, email_address: true, length: { maximum: 320 }
   validates :email, email_mx: { attempt_ip: :sign_up_ip }, if: :validate_email_dns?
 
