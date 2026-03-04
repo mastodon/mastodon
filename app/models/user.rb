@@ -61,6 +61,7 @@ class User < ApplicationRecord
   include User::Activity
   include User::Confirmation
   include User::HasSettings
+  include User::Invitations
   include User::LdapAuthenticable
   include User::Omniauthable
   include User::PamAuthenticable
@@ -75,7 +76,6 @@ class User < ApplicationRecord
          :confirmable
 
   belongs_to :account, inverse_of: :user
-  belongs_to :invite, counter_cache: :uses, optional: true
   belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
   belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
