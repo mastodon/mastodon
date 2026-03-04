@@ -81,4 +81,44 @@ RSpec.shared_examples 'User::Invitations' do
       end
     end
   end
+
+  describe '#invite_code=' do
+    let(:user) { Fabricate.build :user }
+
+    before { user.invite_code = code }
+
+    context 'when code is nil' do
+      let(:code) { nil }
+
+      it 'sets invite code to nil and does not populate invite' do
+        expect(user.invite)
+          .to be_nil
+        expect(user.invite_code)
+          .to be_nil
+      end
+    end
+
+    context 'when code is present but does not match an invite' do
+      let(:code) { 'ABC123' }
+
+      it 'sets invite code to value and does not populate invite' do
+        expect(user.invite)
+          .to be_nil
+        expect(user.invite_code)
+          .to eq(code)
+      end
+    end
+
+    context 'when code is present and does match an invite' do
+      let(:code) { invite.code }
+      let(:invite) { Fabricate :invite }
+
+      it 'sets invite code to value and does not populate invite' do
+        expect(user.invite)
+          .to eq(invite)
+        expect(user.invite_code)
+          .to eq(code)
+      end
+    end
+  end
 end
