@@ -161,6 +161,8 @@ class FetchLinkCardService < BaseService
     @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
 
     if linked_account.present?
+      # There is an overlap in the two conditions when `provider` is trendable. This is on purpose to give users
+      # a heads-up before we remove the `provider&.trendable?` condition.
       @card.author_account = linked_account if linked_account.can_be_attributed_from?(domain) || provider&.trendable?
       @card.unverified_author_account = linked_account if linked_account.local? && !linked_account.can_be_attributed_from?(domain)
     end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UpdateAccountService < BaseService
+  PREVIEW_CARD_REATTRIBUTION_LIMIT = 1_000
+
   def call(account, params, raise_error: false)
     was_locked    = account.locked
     update_method = raise_error ? :update! : :update
@@ -42,12 +44,11 @@ class UpdateAccountService < BaseService
     return unless account.attribute_previously_changed?(:attribution_domains)
 
     # Go through the most recent cards, and do the rest in a background job
-    preview_cards = PreviewCard.where(unverified_author_account: account).reorder(id: :desc).limit(1_000).to_a
-    should_queue_worker = preview_cards.size == 1_000
+    preview_cards = PreviewCard.where(unverified_author_account: account).reorder(id: :desc).limit(PREVIEW_CARD_REATTRIBUTION_LIMIT).to_a
+    should_queue_worker = preview_cards.size == PREVIEW_CARD_REATTRIBUTION_LIMIT
 
     preview_cards = preview_cards.filter do |preview_card|
-      domain = Addressable::URI.parse(preview_card.url).normalized_host
-      account.can_be_attributed_from?(domain)
+      account.can_be_attributed_from?(preview_card.domain)
     rescue Addressable::URI::InvalidURIError
       false
     end
