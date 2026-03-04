@@ -19,7 +19,11 @@ import {
   LinkedDisplayName,
 } from 'flavours/glitch/components/display_name';
 import { IconButton } from 'flavours/glitch/components/icon_button';
-import ScrollableList from 'flavours/glitch/components/scrollable_list';
+import {
+  Article,
+  ItemList,
+  Scrollable,
+} from 'flavours/glitch/components/scrollable_list/components';
 import { Tag } from 'flavours/glitch/components/tags/tag';
 import { useAccount } from 'flavours/glitch/hooks/useAccount';
 import { me } from 'flavours/glitch/initial_state';
@@ -202,24 +206,27 @@ export const CollectionDetailPage: React.FC<{
         multiColumn={multiColumn}
       />
 
-      <ScrollableList
-        scrollKey='collection-detail'
-        emptyMessage={intl.formatMessage(messages.empty)}
-        showLoading={isLoading}
-        bindToDocument={!multiColumn}
-        alwaysPrepend
-        prepend={
-          collection ? <CollectionHeader collection={collection} /> : null
-        }
-      >
-        {collection?.items.map(({ account_id }) => (
-          <CollectionAccountItem
-            key={account_id}
-            accountId={account_id}
-            collectionOwnerId={collection.account_id}
-          />
-        ))}
-      </ScrollableList>
+      <Scrollable>
+        {collection && <CollectionHeader collection={collection} />}
+        <ItemList
+          isLoading={isLoading}
+          emptyMessage={intl.formatMessage(messages.empty)}
+        >
+          {collection?.items.map(({ account_id }, index, items) => (
+            <Article
+              key={account_id}
+              data-id={account_id}
+              aria-posinset={index + 1}
+              aria-setsize={items.length}
+            >
+              <CollectionAccountItem
+                accountId={account_id}
+                collectionOwnerId={collection.account_id}
+              />
+            </Article>
+          ))}
+        </ItemList>
+      </Scrollable>
 
       <Helmet>
         <title>{pageTitle}</title>
