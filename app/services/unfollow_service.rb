@@ -26,6 +26,10 @@ class UnfollowService < BaseService
     follow = Follow.find_by(account: @follower, target_account: @followee)
     return unless follow
 
+    # List members are removed immediately with the follow relationship removal,
+    # so we need to fetch the list IDs first
+    list_ids = @follower.owned_lists.with_list_account(@followee).pluck(:list_id) unless @options[:skip_unmerge]
+
     follow.destroy!
 
     if @followee.local? && @follower.remote? && @follower.activitypub?
@@ -36,7 +40,7 @@ class UnfollowService < BaseService
 
     unless @options[:skip_unmerge]
       UnmergeWorker.perform_async(@followee.id, @follower.id, 'home')
-      UnmergeWorker.push_bulk(@follower.owned_lists.with_list_account(@followee).pluck(:list_id)) do |list_id|
+      UnmergeWorker.push_bulk(list_ids) do |list_id|
         [@followee.id, list_id, 'list']
       end
     end
