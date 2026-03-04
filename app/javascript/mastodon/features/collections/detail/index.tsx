@@ -6,11 +6,6 @@ import { Helmet } from 'react-helmet';
 import { useLocation, useParams } from 'react-router';
 
 import { openModal } from '@/mastodon/actions/modal';
-import {
-  Article,
-  ItemList,
-  Scrollable,
-} from '@/mastodon/components/scrollable_list/components';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
@@ -24,6 +19,11 @@ import {
   LinkedDisplayName,
 } from 'mastodon/components/display_name';
 import { IconButton } from 'mastodon/components/icon_button';
+import {
+  Article,
+  ItemList,
+  Scrollable,
+} from 'mastodon/components/scrollable_list/components';
 import { Tag } from 'mastodon/components/tags/tag';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { me } from 'mastodon/initial_state';
