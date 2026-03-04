@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { FieldsetNameContext } from './fieldset';
 import classes from './form_field_wrapper.module.scss';
 
-interface InputProps {
+export interface InputProps {
   id: string;
   required?: boolean;
   'aria-describedby'?: string;
@@ -22,6 +22,7 @@ interface FieldWrapperProps {
   required?: boolean;
   hasError?: boolean;
   inputId?: string;
+  describedById?: string;
   inputPlacement?: 'inline-start' | 'inline-end';
   children: (inputProps: InputProps) => ReactNode;
   className?: string;
@@ -45,6 +46,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   inputId: inputIdProp,
   label,
   hint,
+  describedById,
   required,
   hasError,
   inputPlacement,
@@ -63,7 +65,9 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
     id: inputId,
   };
   if (hasHint) {
-    inputProps['aria-describedby'] = hintId;
+    inputProps['aria-describedby'] = describedById
+      ? `${describedById} ${hintId}`
+      : hintId;
   }
 
   const input = (
