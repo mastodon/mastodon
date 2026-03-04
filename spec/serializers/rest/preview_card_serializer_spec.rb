@@ -6,9 +6,15 @@ RSpec.describe REST::PreviewCardSerializer do
   subject do
     serialized_record_json(
       preview_card,
-      described_class
+      described_class,
+      options: {
+        scope: current_user,
+        scope_name: :current_user,
+      }
     )
   end
+
+  let(:current_user) { nil }
 
   context 'when preview card does not have author data' do
     let(:preview_card) { Fabricate.build :preview_card }
