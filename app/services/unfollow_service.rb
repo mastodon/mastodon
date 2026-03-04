@@ -6,16 +6,16 @@ class UnfollowService < BaseService
   include Lockable
 
   # Unfollow and notify the remote user
-  # @param [Account] source_account Where to unfollow from
-  # @param [Account] target_account Which to unfollow
+  # @param [Account] follower Where to unfollow from
+  # @param [Account] followee Which to unfollow
   # @param [Hash] options
   # @option [Boolean] :skip_unmerge
-  def call(source_account, target_account, options = {})
-    @source_account = source_account
-    @target_account = target_account
-    @options        = options
+  def call(follower, followee, options = {})
+    @follower = follower
+    @followee = followee
+    @options  = options
 
-    with_redis_lock("relationship:#{[source_account.id, target_account.id].sort.join(':')}") do
+    with_redis_lock("relationship:#{[follower.id, followee.id].sort.join(':')}") do
       unfollow! || undo_follow_request!
     end
   end
@@ -23,21 +23,21 @@ class UnfollowService < BaseService
   private
 
   def unfollow!
-    follow = Follow.find_by(account: @source_account, target_account: @target_account)
+    follow = Follow.find_by(account: @follower, target_account: @followee)
     return unless follow
 
     follow.destroy!
 
-    if @target_account.local? && @source_account.remote? && @source_account.activitypub?
+    if @followee.local? && @follower.remote? && @follower.activitypub?
       send_reject_follow(follow)
-    elsif @target_account.remote? && @target_account.activitypub?
+    elsif @followee.remote? && @followee.activitypub?
       send_undo_follow(follow)
     end
 
     unless @options[:skip_unmerge]
-      UnmergeWorker.perform_async(@target_account.id, @source_account.id, 'home')
-      UnmergeWorker.push_bulk(@source_account.owned_lists.with_list_account(@target_account).pluck(:list_id)) do |list_id|
-        [@target_account.id, list_id, 'list']
+      UnmergeWorker.perform_async(@followee.id, @follower.id, 'home')
+      UnmergeWorker.push_bulk(@follower.owned_lists.with_list_account(@followee).pluck(:list_id)) do |list_id|
+        [@followee.id, list_id, 'list']
       end
     end
 
@@ -45,12 +45,12 @@ class UnfollowService < BaseService
   end
 
   def undo_follow_request!
-    follow_request = FollowRequest.find_by(account: @source_account, target_account: @target_account)
+    follow_request = FollowRequest.find_by(account: @follower, target_account: @followee)
     return unless follow_request
 
     follow_request.destroy!
 
-    send_undo_follow(follow_request) unless @target_account.local?
+    send_undo_follow(follow_request) unless @followee.local?
 
     follow_request
   end
