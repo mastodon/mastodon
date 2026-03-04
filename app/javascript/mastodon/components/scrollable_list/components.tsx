@@ -68,9 +68,14 @@ export const Article = forwardRef<
     'aria-posinset': number;
     'aria-setsize': number;
   }
->(({ children, className, ...otherProps }, ref) => {
+>(({ className, children, ...otherProps }, ref) => {
   return (
-    <article ref={ref} tabIndex={-1} {...otherProps}>
+    <article
+      ref={ref}
+      className={classNames('focusable', className)}
+      tabIndex={-1}
+      {...otherProps}
+    >
       {children}
     </article>
   );
