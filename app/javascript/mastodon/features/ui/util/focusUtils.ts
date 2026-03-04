@@ -169,7 +169,9 @@ export function focusItemSibling(index: number, direction: 1 | -1) {
   }
 
   // Check if the sibling is a post or a 'follow suggestions' widget
-  let targetElement = siblingItem.querySelector<HTMLElement>('.focusable');
+  let targetElement = siblingItem.matches('.focusable')
+    ? siblingItem
+    : siblingItem.querySelector<HTMLElement>('.focusable');
 
   // Otherwise, check if the item is a 'load more' button.
   if (!targetElement && siblingItem.matches('.load-more')) {
