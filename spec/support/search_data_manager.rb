@@ -1,20 +1,6 @@
 # frozen_string_literal: true
 
 class SearchDataManager
-  def prepare_test_data
-    4.times do |i|
-      username = "search_test_account_#{i}"
-      account = Fabricate.create(:account, username: username, indexable: i.even?, discoverable: i.even?, note: "Lover of #{i}.")
-      2.times do |j|
-        Fabricate.create(:status, account: account, text: "#{username}'s #{j} post", visibility: j.even? ? :public : :private)
-      end
-    end
-
-    3.times do |i|
-      Fabricate.create(:tag, name: "search_test_tag_#{i}")
-    end
-  end
-
   def indexes
     [
       AccountsIndex,
@@ -34,12 +20,6 @@ class SearchDataManager
   def remove_indexes
     indexes.each(&:delete!)
   end
-
-  def cleanup_test_data
-    Status.destroy_all
-    Account.destroy_all
-    Tag.destroy_all
-  end
 end
 
 RSpec.configure do |config|
@@ -48,18 +28,8 @@ RSpec.configure do |config|
       Chewy.settings[:enabled] = true
       # Configure chewy to use `urgent` strategy to index documents
       Chewy.strategy(:urgent)
-
-      # Create search data
-      search_data_manager.prepare_test_data
     else
       Chewy.settings[:enabled] = false
-    end
-  end
-
-  config.after :suite do
-    if search_examples_present?
-      # Clean up after search data
-      search_data_manager.cleanup_test_data
     end
   end
 
