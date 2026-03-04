@@ -17,12 +17,8 @@ import { CharacterCounter } from '../character_counter';
 import { EmojiPickerButton } from '../emoji/picker_button';
 
 import classes from './emoji_text_field.module.scss';
-import type {
-  CommonFieldWrapperProps,
-  InputProps} from './form_field_wrapper';
-import {
-  FormFieldWrapper
-} from './form_field_wrapper';
+import type { CommonFieldWrapperProps, InputProps } from './form_field_wrapper';
+import { FormFieldWrapper } from './form_field_wrapper';
 import { TextArea } from './text_area_field';
 import type { TextAreaProps } from './text_area_field';
 import { TextInput } from './text_input_field';
