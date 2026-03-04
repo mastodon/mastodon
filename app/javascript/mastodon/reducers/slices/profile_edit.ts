@@ -27,6 +27,7 @@ import {
   createAppSelector,
   createDataLoadingThunk,
 } from '@/mastodon/store/typed_functions';
+import { hashObjectArray } from '@/mastodon/utils/hash';
 import type { SnakeToCamelCase } from '@/mastodon/utils/types';
 
 type ProfileData = {
@@ -187,16 +188,11 @@ const transformTag = (result: ApiFeaturedTagJSON): TagData => ({
   lastStatusAt: result.last_status_at,
 });
 
-let fieldIndex = 0;
-
 const transformProfile = (result: ApiProfileJSON): ProfileData => ({
   id: result.id,
   displayName: result.display_name,
   bio: result.note,
-  fields: result.fields.map((field) => ({
-    ...field,
-    id: `field-${fieldIndex++}`,
-  })),
+  fields: hashObjectArray(result.fields),
   avatar: result.avatar,
   avatarStatic: result.avatar_static,
   avatarDescription: result.avatar_description,
