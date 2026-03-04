@@ -24,13 +24,15 @@ class UnfollowService < BaseService
 
   def unfollow!
     follow = Follow.find_by(account: @source_account, target_account: @target_account)
-
     return unless follow
 
     follow.destroy!
 
-    create_notification(follow) if !@target_account.local? && @target_account.activitypub?
-    create_reject_notification(follow) if @target_account.local? && !@source_account.local? && @source_account.activitypub?
+    if @target_account.local? && @source_account.remote? && @source_account.activitypub?
+      send_reject_follow(follow)
+    elsif @target_account.remote? && @target_account.activitypub?
+      send_undo_follow(follow)
+    end
 
     unless @options[:skip_unmerge]
       UnmergeWorker.perform_async(@target_account.id, @source_account.id, 'home')
@@ -44,21 +46,20 @@ class UnfollowService < BaseService
 
   def undo_follow_request!
     follow_request = FollowRequest.find_by(account: @source_account, target_account: @target_account)
-
     return unless follow_request
 
     follow_request.destroy!
 
-    create_notification(follow_request) unless @target_account.local?
+    send_undo_follow(follow_request) unless @target_account.local?
 
     follow_request
   end
 
-  def create_notification(follow)
+  def send_undo_follow(follow)
     ActivityPub::DeliveryWorker.perform_async(build_json(follow), follow.account_id, follow.target_account.inbox_url)
   end
 
-  def create_reject_notification(follow)
+  def send_reject_follow(follow)
     ActivityPub::DeliveryWorker.perform_async(build_reject_json(follow), follow.target_account_id, follow.account.inbox_url)
   end
 
