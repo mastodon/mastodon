@@ -128,7 +128,6 @@ class User < ApplicationRecord
 
   delegate :can?, to: :role
 
-  attr_reader :invite_code
   attr_writer :current_account
 
   attribute :external, :boolean, default: false
@@ -292,11 +291,6 @@ class User < ApplicationRecord
 
   def web_push_subscription(session)
     session.web_push_subscription.nil? ? nil : session.web_push_subscription
-  end
-
-  def invite_code=(code)
-    self.invite  = Invite.find_by(code: code) if code.present?
-    @invite_code = code
   end
 
   def password_required?

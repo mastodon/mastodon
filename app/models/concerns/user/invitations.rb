@@ -9,6 +9,8 @@ module User::Invitations
     has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
 
     validates :invite_request, presence: true, on: :create, if: :invite_text_required?
+
+    attr_reader :invite_code
   end
 
   def invited?
@@ -17,6 +19,11 @@ module User::Invitations
 
   def valid_invitation?
     invite_id.present? && invite.valid_for_use?
+  end
+
+  def invite_code=(code)
+    self.invite = Invite.find_by(code:) if code.present?
+    @invite_code = code
   end
 
   private
