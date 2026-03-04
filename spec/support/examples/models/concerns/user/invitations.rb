@@ -25,6 +25,10 @@ RSpec.shared_examples 'User::Invitations' do
     end
   end
 
+  describe 'Nesting' do
+    it { is_expected.to accept_nested_attributes_for(:invite_request) }
+  end
+
   describe '#invited?' do
     subject { user.invited? }
 
