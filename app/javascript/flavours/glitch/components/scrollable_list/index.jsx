@@ -235,7 +235,7 @@ class ScrollableList extends PureComponent {
     // Reset the scroll position when a new child comes in in order not to
     // jerk the scrollbar around if you're already scrolled down the page.
     if (snapshot !== null) {
-      this.updateScrollBottom(snapshot);
+      this.setScrollTop(this.getScrollHeight() - snapshot);
     }
   }
 
