@@ -42,4 +42,43 @@ RSpec.shared_examples 'User::Invitations' do
       it { is_expected.to be(false) }
     end
   end
+
+  describe '#valid_invitation?' do
+    subject { user.valid_invitation? }
+
+    let(:user) { Fabricate.build :user }
+    let(:invite) { Fabricate :invite }
+
+    context 'when invite is present' do
+      before { user.invite = invite }
+
+      context 'when invite is valid for use' do
+        before { allow(invite).to receive(:valid_for_use?).and_return(true) }
+
+        it { is_expected.to be(true) }
+      end
+
+      context 'when invite is not valid for use' do
+        before { allow(invite).to receive(:valid_for_use?).and_return(false) }
+
+        it { is_expected.to be(false) }
+      end
+    end
+
+    context 'when invite is not present' do
+      before { user.invite = nil }
+
+      context 'when invite is valid for use' do
+        before { allow(invite).to receive(:valid_for_use?).and_return(true) }
+
+        it { is_expected.to be(false) }
+      end
+
+      context 'when invite is not valid for use' do
+        before { allow(invite).to receive(:valid_for_use?).and_return(false) }
+
+        it { is_expected.to be(false) }
+      end
+    end
+  end
 end
