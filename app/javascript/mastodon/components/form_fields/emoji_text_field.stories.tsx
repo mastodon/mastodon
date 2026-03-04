@@ -9,13 +9,14 @@ const meta = {
   title: 'Components/Form Fields/EmojiTextInputField',
   args: {
     label: 'Label',
+    hint: 'Hint text',
     value: 'Insert text with emoji',
   },
   render({ value: initialValue = '', ...args }) {
     const [value, setValue] = useState(initialValue);
     return <EmojiTextInputField {...args} value={value} onChange={setValue} />;
   },
-} satisfies Meta<InputProps>;
+} satisfies Meta<InputProps & { disabled?: boolean }>;
 
 export default meta;
 
@@ -33,6 +34,12 @@ export const WithRecommended: Story = {
   args: {
     maxLength: 20,
     recommended: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
   },
 };
 

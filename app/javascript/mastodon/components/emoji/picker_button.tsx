@@ -3,11 +3,15 @@ import type { FC } from 'react';
 
 import EmojiPickerDropdown from '@/mastodon/features/compose/containers/emoji_picker_dropdown_container';
 
-export const EmojiPickerButton: FC<{ onPick: (emoji: string) => void }> = ({
-  onPick,
-}) => {
+export const EmojiPickerButton: FC<{
+  onPick: (emoji: string) => void;
+  disabled?: boolean;
+}> = ({ onPick, disabled }) => {
   const handlePick = useCallback(
     (emoji: unknown) => {
+      if (disabled) {
+        return;
+      }
       if (typeof emoji === 'object' && emoji !== null) {
         if ('native' in emoji && typeof emoji.native === 'string') {
           onPick(emoji.native);
@@ -19,7 +23,7 @@ export const EmojiPickerButton: FC<{ onPick: (emoji: string) => void }> = ({
         }
       }
     },
-    [onPick],
+    [disabled, onPick],
   );
-  return <EmojiPickerDropdown onPickEmoji={handlePick} />;
+  return <EmojiPickerDropdown onPickEmoji={handlePick} disabled={disabled} />;
 };

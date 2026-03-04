@@ -5,6 +5,10 @@
   > textarea {
     padding-inline-end: 36px;
   }
+
+  > textarea {
+    min-height: 40px; // Button size with 8px margin
+  }
 }
 
 .fieldWrapper :global(.emoji-picker-dropdown) {
