@@ -26,6 +26,8 @@ class StatusesController < ApplicationController
     respond_to do |format|
       format.html do
         expires_in 10.seconds, public: true if current_account.nil?
+
+        redirect_to short_account_status_path(@account, @status) if account_id_param.present? && username_param.blank?
       end
 
       format.json do
