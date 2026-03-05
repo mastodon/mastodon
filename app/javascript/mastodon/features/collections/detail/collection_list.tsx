@@ -1,7 +1,8 @@
-import { Fragment } from 'react';
+import { Fragment, useCallback, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { Button } from '@/mastodon/components/button';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Account } from 'mastodon/components/account';
@@ -53,6 +54,42 @@ const AccountItem: React.FC<{
   return <Account minimal={withoutButton} withMenu={false} id={accountId} />;
 };
 
+const SensitiveScreen: React.FC<{
+  sensitive: boolean | undefined;
+  focusTargetRef: React.RefObject<HTMLHeadingElement>;
+  children: React.ReactNode;
+}> = ({ sensitive, focusTargetRef, children }) => {
+  const [isVisible, setIsVisible] = useState(!sensitive);
+
+  const showAnyway = useCallback(() => {
+    setIsVisible(true);
+    setTimeout(() => {
+      focusTargetRef.current?.focus();
+    }, 0);
+  }, [focusTargetRef]);
+
+  if (isVisible) {
+    return children;
+  }
+
+  return (
+    <div className={classes.sensitiveWarning}>
+      <FormattedMessage
+        id='collections.detail.sensitive_note'
+        defaultMessage='This collection contains accounts and content that may be sensitive to some users.'
+        tagName='p'
+      />
+      <Button onClick={showAnyway}>
+        <FormattedMessage
+          id='content_warning.show'
+          defaultMessage='Show anyway'
+          tagName={Fragment}
+        />
+      </Button>
+    </div>
+  );
+};
+
 /**
  * Returns the collection's account items. If the current user's account
  * is part of the collection, it will be returned separately.
@@ -89,7 +126,9 @@ export const CollectionAccountsList: React.FC<{
   isLoading: boolean;
 }> = ({ collection, isLoading }) => {
   const intl = useIntl();
+  const listHeadingRef = useRef<HTMLHeadingElement>(null);
 
+  const isOwnCollection = collection?.account_id === me;
   const { items, currentUserInCollection } = getCollectionItems(collection);
 
   return (
@@ -119,7 +158,11 @@ export const CollectionAccountsList: React.FC<{
               collectionOwnerId={collection.account_id}
             />
           </Article>
-          <h3 className={classes.columnSubheading}>
+          <h3
+            className={classes.columnSubheading}
+            tabIndex={-1}
+            ref={listHeadingRef}
+          >
             <FormattedMessage
               id='collections.detail.other_accounts_in_collection'
               defaultMessage='Others in this collection:'
@@ -128,23 +171,33 @@ export const CollectionAccountsList: React.FC<{
           </h3>
         </>
       ) : (
-        <h3 className='column-subheading sr-only'>
+        <h3
+          className='column-subheading sr-only'
+          tabIndex={-1}
+          ref={listHeadingRef}
+        >
           {intl.formatMessage(messages.accounts)}
         </h3>
       )}
-      {collection &&
-        items.map(({ account_id }, index, items) => (
-          <Article
-            key={account_id}
-            aria-posinset={index + (currentUserInCollection ? 2 : 1)}
-            aria-setsize={items.length}
-          >
-            <AccountItem
-              accountId={account_id}
-              collectionOwnerId={collection.account_id}
-            />
-          </Article>
-        ))}
+      {collection && (
+        <SensitiveScreen
+          sensitive={!isOwnCollection && collection.sensitive}
+          focusTargetRef={listHeadingRef}
+        >
+          {items.map(({ account_id }, index, items) => (
+            <Article
+              key={account_id}
+              aria-posinset={index + (currentUserInCollection ? 2 : 1)}
+              aria-setsize={items.length}
+            >
+              <AccountItem
+                accountId={account_id}
+                collectionOwnerId={collection.account_id}
+              />
+            </Article>
+          ))}
+        </SensitiveScreen>
+      )}
     </ItemList>
   );
 };
