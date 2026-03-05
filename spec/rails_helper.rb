@@ -57,8 +57,6 @@ Sidekiq.default_configuration.logger = nil
 
 DatabaseCleaner.strategy = [:deletion]
 
-Chewy.settings[:enabled] = false
-
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
 
