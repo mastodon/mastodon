@@ -111,6 +111,12 @@ export const AccountEdit: FC = () => {
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
   }, [handleOpenModal]);
+  const handleCustomFieldAdd = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_FIELD_EDIT');
+  }, [handleOpenModal]);
+  const handleCustomFieldReorder = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_FIELDS_REORDER');
+  }, [handleOpenModal]);
   const handleCustomFieldsVerifiedHelp = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_VERIFY_LINKS');
   }, [handleOpenModal]);
@@ -186,6 +192,27 @@ export const AccountEdit: FC = () => {
           title={messages.customFieldsTitle}
           description={messages.customFieldsPlaceholder}
           showDescription={!hasFields}
+          buttons={
+            <>
+              {profile.fields.length > 1 && (
+                <Button
+                  className={classes.editButton}
+                  onClick={handleCustomFieldReorder}
+                >
+                  <FormattedMessage
+                    id='account_edit.custom_fields.reorder_button'
+                    defaultMessage='Reorder fields'
+                  />
+                </Button>
+              )}
+              {hasFields && (
+                <EditButton
+                  item={messages.customFieldsName}
+                  onClick={handleCustomFieldAdd}
+                />
+              )}
+            </>
+          }
         >
           {hasFields && (
             <ol>
