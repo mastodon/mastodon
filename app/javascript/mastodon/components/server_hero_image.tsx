@@ -16,6 +16,7 @@ export const ServerHeroImage: React.FC<Props> = ({
   srcSet,
   blurhash,
   className,
+  alt = ''
 }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -29,7 +30,7 @@ export const ServerHeroImage: React.FC<Props> = ({
       role='presentation'
     >
       {blurhash && <Blurhash hash={blurhash} className='image__preview' />}
-      <img src={src} srcSet={srcSet} alt='' onLoad={handleLoad} />
+      <img src={src} srcSet={srcSet} alt={alt} onLoad={handleLoad} />
     </div>
   );
 };
