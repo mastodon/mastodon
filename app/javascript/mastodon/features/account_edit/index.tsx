@@ -100,6 +100,16 @@ export const AccountEdit: FC = () => {
     void dispatch(fetchProfile());
   }, [dispatch]);
 
+  const maxFieldCount = useAppSelector(
+    (state) =>
+      (state.server.getIn([
+        'server',
+        'configuration',
+        'accounts',
+        'max_profile_fields',
+      ]) as number | undefined) ?? 4,
+  );
+
   const handleOpenModal = useCallback(
     (type: ModalType, props?: Record<string, unknown>) => {
       dispatch(openModal({ modalType: type, modalProps: props ?? {} }));
@@ -210,6 +220,7 @@ export const AccountEdit: FC = () => {
                 <EditButton
                   item={messages.customFieldsName}
                   onClick={handleCustomFieldAdd}
+                  disabled={profile.fields.length >= maxFieldCount}
                 />
               )}
             </>
