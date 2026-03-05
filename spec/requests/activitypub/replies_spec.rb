@@ -252,13 +252,13 @@ RSpec.describe 'ActivityPub Replies' do
   def inlined_replies
     response
       .parsed_body[:first][:items]
-      .select { |x| x.is_a?(Hash) }
+      .grep(Hash)
   end
 
   def remote_replies
     response
       .parsed_body[:first][:items]
-      .reject { |x| x.is_a?(Hash) }
+      .grep_v(Hash)
   end
 
   def parsed_uri_query_values(uri)
