@@ -82,10 +82,11 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   const { collections, status } = useAppSelector((state) =>
     selectAccountCollections(state, accountId ?? null),
   );
-  const publicCollections = collections.filter(
-    // This filter only applies when viewing your own profile, where the endpoint
-    // returns all collections, but we hide unlisted ones here to avoid confusion
-    (item) => item.discoverable,
+  const listedCollections = collections.filter(
+    // Hide unlisted and empty collections to avoid confusion
+    // (Unlisted collections will only be part of the payload
+    // when viewing your own profile.)
+    (item) => item.discoverable && !!item.item_count,
   );
 
   if (accountId === null) {
@@ -124,7 +125,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         {accountId && (
           <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
         )}
-        {publicCollections.length > 0 && status === 'idle' && (
+        {listedCollections.length > 0 && status === 'idle' && (
           <>
             <h4 className='column-subheading'>
               <FormattedMessage
@@ -133,13 +134,13 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
               />
             </h4>
             <ItemList>
-              {publicCollections.map((item, index) => (
+              {listedCollections.map((item, index) => (
                 <CollectionListItem
                   key={item.id}
                   collection={item}
-                  withoutBorder={index === publicCollections.length - 1}
+                  withoutBorder={index === listedCollections.length - 1}
                   positionInList={index + 1}
-                  listSize={publicCollections.length}
+                  listSize={listedCollections.length}
                 />
               ))}
             </ItemList>
