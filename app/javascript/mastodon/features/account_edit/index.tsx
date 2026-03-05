@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { EditButton } from './components/edit_button';
+import { AccountField } from './components/field';
 import { AccountFieldActions } from './components/field_actions';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
@@ -219,12 +220,7 @@ export const AccountEdit: FC = () => {
               {profile.fields.map((field) => (
                 <li key={field.id} className={classes.field}>
                   <div>
-                    <EmojiHTML
-                      htmlString={field.name}
-                      className={classes.fieldName}
-                      {...htmlHandlers}
-                    />
-                    <EmojiHTML htmlString={field.value} {...htmlHandlers} />
+                    <AccountField {...field} {...htmlHandlers} />
                   </div>
                   <AccountFieldActions
                     item={intl.formatMessage(messages.customFieldsName)}
