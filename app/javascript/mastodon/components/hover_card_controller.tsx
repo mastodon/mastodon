@@ -23,6 +23,7 @@ export const HoverCardController: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [accountId, setAccountId] = useState<string | undefined>();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
+  const isUsingTouchRef = useRef(false);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [setLeaveTimeout, cancelLeaveTimeout] = useTimeout();
   const [setEnterTimeout, cancelEnterTimeout, delayEnterTimeout] = useTimeout();
@@ -60,12 +61,23 @@ export const HoverCardController: React.FC = () => {
       setAccountId(undefined);
     };
 
+    const handleTouchStart = () => {
+      // Keeping track of touch events to prevent the
+      // hover card from being displayed on touch devices
+      isUsingTouchRef.current = true;
+    };
+
     const handleMouseEnter = (e: MouseEvent) => {
       const { target } = e;
 
       // We've exited the window
       if (!(target instanceof HTMLElement)) {
         close();
+        return;
+      }
+
+      // Bail out if a touch is active
+      if (isUsingTouchRef.current) {
         return;
       }
 
@@ -127,8 +139,15 @@ export const HoverCardController: React.FC = () => {
     };
 
     const handleMouseMove = () => {
+      if (isUsingTouchRef.current) {
+        isUsingTouchRef.current = false;
+      }
       delayEnterTimeout(enterDelay);
     };
+
+    document.body.addEventListener('touchstart', handleTouchStart, {
+      passive: true,
+    });
 
     document.body.addEventListener('mouseenter', handleMouseEnter, {
       passive: true,
@@ -151,6 +170,7 @@ export const HoverCardController: React.FC = () => {
     });
 
     return () => {
+      document.body.removeEventListener('touchstart', handleTouchStart);
       document.body.removeEventListener('mouseenter', handleMouseEnter);
       document.body.removeEventListener('mousemove', handleMouseMove);
       document.body.removeEventListener('mouseleave', handleMouseLeave);
