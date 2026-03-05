@@ -89,7 +89,7 @@ RSpec.describe 'Profile API' do
         expect(response.parsed_body)
           .to include(
             error: /Validation failed/,
-            details: include(note: contain_exactly(include(error: 'ERR_TOO_LONG', description: /character limit/)))
+            details: include(note: contain_exactly(include(error: 'ERR_TOO_LONG', description: /too long/)))
           )
       end
     end
