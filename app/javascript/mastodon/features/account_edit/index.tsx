@@ -9,6 +9,7 @@ import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
+import { DismissibleCallout } from '@/mastodon/components/callout/dismissible';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
@@ -20,6 +21,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { EditButton } from './components/edit_button';
+import { AccountFieldActions } from './components/field_actions';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
@@ -53,6 +55,14 @@ export const messages = defineMessages({
     id: 'account_edit.custom_fields.placeholder',
     defaultMessage:
       'Add your pronouns, external links, or anything else you’d like to share.',
+  },
+  customFieldsName: {
+    id: 'account_edit.custom_fields.name',
+    defaultMessage: 'field',
+  },
+  customFieldsTipTitle: {
+    id: 'account_edit.custom_fields.tip_title',
+    defaultMessage: 'Tip: Adding verified links',
   },
   featuredHashtagsTitle: {
     id: 'account_edit.featured_hashtags.title',
@@ -101,6 +111,9 @@ export const AccountEdit: FC = () => {
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
   }, [handleOpenModal]);
+  const handleCustomFieldsVerifiedHelp = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_VERIFY_LINKS');
+  }, [handleOpenModal]);
   const handleProfileDisplayEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_PROFILE_DISPLAY');
   }, [handleOpenModal]);
@@ -123,6 +136,7 @@ export const AccountEdit: FC = () => {
   const headerSrc = autoPlayGif ? profile.header : profile.headerStatic;
   const hasName = !!profile.displayName;
   const hasBio = !!profile.bio;
+  const hasFields = profile.fields.length > 0;
   const hasTags = profile.featuredTags.length > 0;
 
   return (
@@ -171,8 +185,48 @@ export const AccountEdit: FC = () => {
         <AccountEditSection
           title={messages.customFieldsTitle}
           description={messages.customFieldsPlaceholder}
-          showDescription
-        />
+          showDescription={!hasFields}
+        >
+          <ol>
+            {profile.fields.map((field) => (
+              <li key={field.id} className={classes.field}>
+                <div>
+                  <EmojiHTML
+                    htmlString={field.name}
+                    className={classes.fieldName}
+                    {...htmlHandlers}
+                  />
+                  <EmojiHTML htmlString={field.value} {...htmlHandlers} />
+                </div>
+                <AccountFieldActions
+                  item={intl.formatMessage(messages.customFieldsName)}
+                  id={field.id}
+                />
+              </li>
+            ))}
+          </ol>
+          <Button
+            onClick={handleCustomFieldsVerifiedHelp}
+            className={classes.verifiedLinkHelpButton}
+            plain
+          >
+            <FormattedMessage
+              id='account_edit.custom_fields.verified_hint'
+              defaultMessage='How do I add a verified link?'
+            />
+          </Button>
+          {!hasFields && (
+            <DismissibleCallout
+              id='profile_edit_fields_tip'
+              title={intl.formatMessage(messages.customFieldsTipTitle)}
+            >
+              <FormattedMessage
+                id='account_edit.custom_fields.tip_content'
+                defaultMessage='You can easily add credibility to your Mastodon account by verifying links to any websites you own.'
+              />
+            </DismissibleCallout>
+          )}
+        </AccountEditSection>
 
         <AccountEditSection
           title={messages.featuredHashtagsTitle}
