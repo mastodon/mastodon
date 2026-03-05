@@ -35,7 +35,8 @@ const SimpleAuthorName: React.FC<{ id: string }> = ({ id }) => {
 const AccountItem: React.FC<{
   accountId: string | undefined;
   collectionOwnerId: string;
-}> = ({ accountId, collectionOwnerId }) => {
+  withBorder?: boolean;
+}> = ({ accountId, withBorder = true, collectionOwnerId }) => {
   const relationship = useRelationship(accountId);
 
   if (!accountId) {
@@ -51,7 +52,14 @@ const AccountItem: React.FC<{
     (collectionOwnerId === me &&
       (relationship.following || relationship.requested));
 
-  return <Account minimal={withoutButton} withMenu={false} id={accountId} />;
+  return (
+    <Account
+      minimal={withoutButton}
+      withMenu={false}
+      withBorder={withBorder}
+      id={accountId}
+    />
+  );
 };
 
 const SensitiveScreen: React.FC<{
@@ -154,6 +162,7 @@ export const CollectionAccountsList: React.FC<{
             aria-setsize={items.length}
           >
             <AccountItem
+              withBorder={false}
               accountId={currentUserInCollection.account_id}
               collectionOwnerId={collection.account_id}
             />
