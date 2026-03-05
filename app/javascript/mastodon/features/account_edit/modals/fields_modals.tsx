@@ -215,11 +215,3 @@ export const DeleteFieldModal: FC<DialogModalProps & { fieldKey: string }> = ({
     </DialogModal>
   );
 };
-
-export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
-  return (
-    <DialogModal onClose={onClose} title='Not implemented yet'>
-      <p>Not implemented yet</p>
-    </DialogModal>
-  );
-};

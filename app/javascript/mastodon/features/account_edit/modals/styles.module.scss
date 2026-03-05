@@ -25,6 +25,27 @@
   }
 }
 
+.field {
+  padding: 12px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+
+  :global(.icon) {
+    grid-row: span 2;
+    padding: 8px 0;
+    align-self: center;
+    border-radius: 4px;
+    background: var(--color-bg-secondary);
+    cursor: grab;
+  }
+}
+
+.field + .field {
+  border-top: 1px solid var(--color-border-primary);
+}
+
 .verifiedSteps {
   font-size: 15px;
 
