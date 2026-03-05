@@ -1,12 +1,15 @@
 import type { FC } from 'react';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import type {
-  UniqueIdentifier,
-  DragStartEvent,
   DragEndEvent,
+  ScreenReaderInstructions,
+  Announcements,
+  Active,
 } from '@dnd-kit/core';
 import {
   useSensors,
@@ -17,11 +20,17 @@ import {
   closestCenter,
 } from '@dnd-kit/core';
 import {
+  restrictToVerticalAxis,
+  restrictToParentElement,
+} from '@dnd-kit/modifiers';
+import {
   arrayMove,
   sortableKeyboardCoordinates,
   SortableContext,
   useSortable,
+  verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 import { Icon } from '@/mastodon/components/icon';
 import { selectFieldById } from '@/mastodon/reducers/slices/profile_edit';
@@ -39,6 +48,31 @@ const messages = defineMessages({
     id: 'account_edit.field_reorder_modal.title',
     defaultMessage: 'Rearrange fields',
   },
+  screenReaderInstructions: {
+    id: 'account_edit.field_reorder_modal.drag_instructions',
+    defaultMessage:
+      'To rearrange custom fields, press space or enter. While dragging, use the arrow keys to move the field up or down. Press space or enter again to drop the field in its new position, or press escape to cancel.',
+  },
+  onDragStart: {
+    id: 'account_edit.field_reorder_modal.drag_start',
+    defaultMessage: 'Picked up field "{item}".',
+  },
+  onDragMove: {
+    id: 'account_edit.field_reorder_modal.drag_move',
+    defaultMessage: 'Field "{item}" was moved.',
+  },
+  onDragMoveOver: {
+    id: 'account_edit.field_reorder_modal.drag_over',
+    defaultMessage: 'Field "{item}" was moved over "{over}".',
+  },
+  onDragEnd: {
+    id: 'account_edit.field_reorder_modal.drag_end',
+    defaultMessage: 'Field "{item}" was dropped.',
+  },
+  onDragCancel: {
+    id: 'account_edit.field_reorder_modal.drag_cancel',
+    defaultMessage: 'Dragging was cancelled. Field "{item}" was dropped.',
+  },
   save: {
     id: 'account_edit.save',
     defaultMessage: 'Save',
@@ -47,45 +81,25 @@ const messages = defineMessages({
 
 export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
   const intl = useIntl();
-  const { profile } = useAppSelector((state) => state.profileEdit);
+  const { profile, isPending } = useAppSelector((state) => state.profileEdit);
   const fields = profile?.fields ?? [];
   const [fieldKeys, setFieldKeys] = useState<string[]>(
     fields.map((field) => field.id),
   );
 
-  const [, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const handleDragEnd = useCallback((event: DragEndEvent) => {
+    const { active, over } = event;
 
-  const handleDragStart = useCallback(
-    (event: DragStartEvent) => {
-      const { active } = event;
+    setFieldKeys((prev) => {
+      if (!over) {
+        return prev;
+      }
+      const oldIndex = prev.indexOf(active.id as string);
+      const newIndex = prev.indexOf(over.id as string);
 
-      setActiveId(active.id);
-    },
-    [setActiveId],
-  );
-
-  const handleDragEnd = useCallback(
-    (event: DragEndEvent) => {
-      const { active, over } = event;
-
-      setFieldKeys((prev) => {
-        if (!over) {
-          return prev;
-        }
-        const oldIndex = prev.indexOf(active.id as string);
-        const newIndex = prev.indexOf(over.id as string);
-
-        return arrayMove(prev, oldIndex, newIndex);
-      });
-
-      setActiveId(null);
-    },
-    [setActiveId],
-  );
-
-  const handleDragCancel = useCallback(() => {
-    setActiveId(null);
-  }, [setActiveId]);
+      return arrayMove(prev, oldIndex, newIndex);
+    });
+  }, []);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -96,6 +110,50 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
+  );
+
+  const accessibility: {
+    screenReaderInstructions: ScreenReaderInstructions;
+    announcements: Announcements;
+  } = useMemo(
+    () => ({
+      screenReaderInstructions: {
+        draggable: intl.formatMessage(messages.screenReaderInstructions),
+      },
+
+      announcements: {
+        onDragStart({ active }) {
+          return intl.formatMessage(messages.onDragStart, {
+            item: labelFromActive(active),
+          });
+        },
+
+        onDragOver({ active, over }) {
+          if (over && active.id !== over.id) {
+            return intl.formatMessage(messages.onDragMoveOver, {
+              item: labelFromActive(active),
+              over: labelFromActive(over),
+            });
+          }
+          return intl.formatMessage(messages.onDragMove, {
+            item: labelFromActive(active),
+          });
+        },
+
+        onDragEnd({ active }) {
+          return intl.formatMessage(messages.onDragEnd, {
+            item: labelFromActive(active),
+          });
+        },
+
+        onDragCancel({ active }) {
+          return intl.formatMessage(messages.onDragCancel, {
+            item: labelFromActive(active),
+          });
+        },
+      },
+    }),
+    [intl],
   );
 
   const handleSave = useCallback(() => {
@@ -109,16 +167,20 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
       confirm={intl.formatMessage(messages.save)}
       onConfirm={handleSave}
       className={classes.wrapper}
+      updating={isPending}
     >
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
-        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
-        onDragCancel={handleDragCancel}
-        onDragAbort={handleDragCancel}
+        modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+        accessibility={accessibility}
       >
-        <SortableContext items={fieldKeys}>
+        <SortableContext
+          items={fieldKeys}
+          strategy={verticalListSortingStrategy}
+          disabled={isPending}
+        >
           <ol>
             {fieldKeys.map((key) => (
               <ReorderFieldItem key={key} id={key} />
@@ -131,22 +193,58 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
 };
 
 const ReorderFieldItem: FC<{ id: string }> = ({ id }) => {
-  const { attributes, listeners, setNodeRef } = useSortable({ id });
   const field = useAppSelector((state) => selectFieldById(state, id));
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+    newIndex,
+    overIndex,
+  } = useSortable({
+    id,
+    data: {
+      label: field?.name ?? id,
+    },
+  });
 
   if (!field) {
     return null;
   }
 
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
+
   return (
     <li
       ref={setNodeRef}
-      className={classes.field}
-      {...attributes}
-      {...listeners}
+      className={classNames(
+        classes.field,
+        isDragging && classes.fieldDragging,
+        !isDragging && newIndex > 0 && classes.fieldNotFirst,
+        !isDragging && newIndex + 1 === overIndex && classes.fieldActiveUnder,
+      )}
+      style={style}
     >
-      <Icon icon={DragIndicatorIcon} id='drag' />
+      <Icon
+        icon={DragIndicatorIcon}
+        id='drag'
+        className={classes.fieldHandle}
+        {...listeners}
+        {...attributes}
+      />
       <AccountField {...field} />
     </li>
   );
 };
+
+function labelFromActive(item: Pick<Active, 'id' | 'data'>) {
+  if (item.data.current?.label) {
+    return item.data.current.label as string;
+  }
+  return item.id as string;
+}

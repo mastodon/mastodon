@@ -31,19 +31,44 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   column-gap: 12px;
+  box-sizing: border-box;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
 
-  :global(.icon) {
-    grid-row: span 2;
-    padding: 8px 0;
-    align-self: center;
-    border-radius: 4px;
-    background: var(--color-bg-secondary);
-    cursor: grab;
+.fieldNotFirst {
+  border-top-color: var(--color-border-primary);
+}
+
+.fieldActiveUnder {
+  border-bottom-color: var(--color-border-primary);
+}
+
+.fieldHandle {
+  grid-row: span 2;
+  padding: 8px 0;
+  align-self: center;
+  border-radius: 4px;
+  background: var(--color-bg-secondary);
+  cursor: grab;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: var(--color-bg-brand-softer);
   }
 }
 
-.field + .field {
-  border-top: 1px solid var(--color-border-primary);
+.fieldDragging {
+  cursor: grabbing;
+
+  p {
+    opacity: 0.7;
+  }
+
+  .fieldHandle {
+    cursor: grabbing;
+    background: var(--color-bg-brand-soft);
+  }
 }
 
 .verifiedSteps {
