@@ -10,6 +10,7 @@ export {
   type ComboboxItemState,
 } from './combobox_field';
 export { CopyLinkField } from './copy_link_field';
+export { EmojiTextInputField, EmojiTextAreaField } from './emoji_text_field';
 export { RadioButtonField, RadioButton } from './radio_button_field';
 export { ToggleField, Toggle } from './toggle_field';
 export { SelectField, Select } from './select_field';

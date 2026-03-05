@@ -21,23 +21,26 @@ const messages = defineMessages({
   },
 });
 
+interface ConfirmationModalProps {
+  title: React.ReactNode;
+  titleId?: string;
+  message?: React.ReactNode;
+  confirm: React.ReactNode;
+  cancel?: React.ReactNode;
+  secondary?: React.ReactNode;
+  onSecondary?: () => void;
+  onConfirm: () => void;
+  noCloseOnConfirm?: boolean;
+  extraContent?: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
+  updating?: boolean;
+  disabled?: boolean;
+  noFocusButton?: boolean;
+}
+
 export const ConfirmationModal: React.FC<
-  {
-    title: React.ReactNode;
-    titleId?: string;
-    message?: React.ReactNode;
-    confirm: React.ReactNode;
-    cancel?: React.ReactNode;
-    secondary?: React.ReactNode;
-    onSecondary?: () => void;
-    onConfirm: () => void;
-    noCloseOnConfirm?: boolean;
-    extraContent?: React.ReactNode;
-    children?: React.ReactNode;
-    updating?: boolean;
-    disabled?: boolean;
-    noFocusButton?: boolean;
-  } & BaseConfirmationModalProps
+  ConfirmationModalProps & BaseConfirmationModalProps
 > = ({
   title,
   titleId,
@@ -50,6 +53,7 @@ export const ConfirmationModal: React.FC<
   onSecondary,
   extraContent,
   children,
+  className,
   updating,
   disabled,
   noCloseOnConfirm = false,
@@ -70,7 +74,7 @@ export const ConfirmationModal: React.FC<
 
   return (
     <ModalShell>
-      <ModalShellBody>
+      <ModalShellBody className={className}>
         <h1 id={titleId}>{title}</h1>
         {message && <p>{message}</p>}
 
