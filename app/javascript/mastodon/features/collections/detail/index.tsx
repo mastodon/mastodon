@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -6,11 +6,9 @@ import { Helmet } from 'react-helmet';
 import { useLocation, useParams } from 'react-router';
 
 import { openModal } from '@/mastodon/actions/modal';
-import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { Account } from 'mastodon/components/account';
 import { Avatar } from 'mastodon/components/avatar';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
@@ -19,26 +17,19 @@ import {
   LinkedDisplayName,
 } from 'mastodon/components/display_name';
 import { IconButton } from 'mastodon/components/icon_button';
-import {
-  Article,
-  ItemList,
-  Scrollable,
-} from 'mastodon/components/scrollable_list/components';
+import { Scrollable } from 'mastodon/components/scrollable_list/components';
 import { Tag } from 'mastodon/components/tags/tag';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { me } from 'mastodon/initial_state';
 import { fetchCollection } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { CollectionAccountsList } from './collection_list';
 import { CollectionMetaData } from './collection_list_item';
 import { CollectionMenu } from './collection_menu';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
-  empty: {
-    id: 'collections.accounts.empty_title',
-    defaultMessage: 'This collection is empty',
-  },
   loading: {
     id: 'collections.detail.loading',
     defaultMessage: 'Loading collection…',
@@ -47,16 +38,7 @@ const messages = defineMessages({
     id: 'collections.detail.share',
     defaultMessage: 'Share this collection',
   },
-  accounts: {
-    id: 'collections.detail.accounts_heading',
-    defaultMessage: 'Accounts',
-  },
 });
-
-const SimpleAuthorName: React.FC<{ id: string }> = ({ id }) => {
-  const account = useAccount(id);
-  return <DisplayName account={account} variant='simple' />;
-};
 
 export const AuthorNote: React.FC<{ id: string; previewMode?: boolean }> = ({
   id,
@@ -158,28 +140,6 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   );
 };
 
-const AccountItem: React.FC<{
-  accountId: string | undefined;
-  collectionOwnerId: string;
-}> = ({ accountId, collectionOwnerId }) => {
-  const relationship = useRelationship(accountId);
-
-  if (!accountId) {
-    return null;
-  }
-
-  // When viewing your own collection, only show the Follow button
-  // for accounts you're not following (anymore).
-  // Otherwise, always show the follow button in its various states.
-  const withoutButton =
-    accountId === me ||
-    !relationship ||
-    (collectionOwnerId === me &&
-      (relationship.following || relationship.requested));
-
-  return <Account minimal={withoutButton} withMenu={false} id={accountId} />;
-};
-
 export const CollectionDetailPage: React.FC<{
   multiColumn?: boolean;
 }> = ({ multiColumn }) => {
@@ -197,8 +157,6 @@ export const CollectionDetailPage: React.FC<{
     }
   }, [dispatch, id]);
 
-  const { items, currentUserInCollection } = getCollectionItems(collection);
-
   const pageTitle = collection?.name ?? intl.formatMessage(messages.loading);
 
   return (
@@ -213,59 +171,7 @@ export const CollectionDetailPage: React.FC<{
 
       <Scrollable>
         {collection && <CollectionHeader collection={collection} />}
-        <ItemList
-          isLoading={isLoading}
-          emptyMessage={intl.formatMessage(messages.empty)}
-        >
-          {collection && currentUserInCollection ? (
-            <>
-              <h3 className={classes.columnSubheading}>
-                <FormattedMessage
-                  id='collections.detail.author_added_you'
-                  defaultMessage='{author} added you to this collection'
-                  values={{
-                    author: <SimpleAuthorName id={collection.account_id} />,
-                  }}
-                  tagName={Fragment}
-                />
-              </h3>
-              <Article
-                key={currentUserInCollection.account_id}
-                aria-posinset={1}
-                aria-setsize={items.length}
-              >
-                <AccountItem
-                  accountId={currentUserInCollection.account_id}
-                  collectionOwnerId={collection.account_id}
-                />
-              </Article>
-              <h3 className={classes.columnSubheading}>
-                <FormattedMessage
-                  id='collections.detail.other_accounts_in_collection'
-                  defaultMessage='Others in this collection:'
-                  tagName={Fragment}
-                />
-              </h3>
-            </>
-          ) : (
-            <h3 className='column-subheading sr-only'>
-              {intl.formatMessage(messages.accounts)}
-            </h3>
-          )}
-          {collection &&
-            items.map(({ account_id }, index, items) => (
-              <Article
-                key={account_id}
-                aria-posinset={index + (currentUserInCollection ? 2 : 1)}
-                aria-setsize={items.length}
-              >
-                <AccountItem
-                  accountId={account_id}
-                  collectionOwnerId={collection.account_id}
-                />
-              </Article>
-            ))}
-        </ItemList>
+        <CollectionAccountsList collection={collection} isLoading={isLoading} />
       </Scrollable>
 
       <Helmet>
@@ -275,34 +181,3 @@ export const CollectionDetailPage: React.FC<{
     </Column>
   );
 };
-
-/**
- * Returns the collection's account items. If the current user's account
- * is part of the collection, it will be returned separately.
- */
-function getCollectionItems(collection: ApiCollectionJSON | undefined) {
-  if (!collection)
-    return {
-      currentUserInCollection: null,
-      items: [],
-    };
-
-  const { account_id, items } = collection;
-
-  const isOwnCollection = account_id === me;
-  const currentUserIndex = items.findIndex(
-    (account) => account.account_id === me,
-  );
-
-  if (isOwnCollection || currentUserIndex === -1) {
-    return {
-      currentUserInCollection: null,
-      items,
-    };
-  } else {
-    return {
-      currentUserInCollection: items.at(currentUserIndex) ?? null,
-      items: items.toSpliced(currentUserIndex, 1),
-    };
-  }
-}
