@@ -2074,7 +2074,10 @@ body > [data-popper-placement] {
 
 .account {
   padding: 10px; // glitch: reduced padding
-  border-bottom: 1px solid var(--color-border-primary);
+
+  &:not(&--without-border) {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
 
   .account__display-name {
     flex: 1 1 auto;
