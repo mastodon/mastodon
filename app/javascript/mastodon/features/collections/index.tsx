@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
-import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
+import CollectionsFilledIcon from '@/material-icons/400-24px/category-fill.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
@@ -73,8 +73,8 @@ export const Collections: React.FC<{
     >
       <ColumnHeader
         title={intl.formatMessage(messages.heading)}
-        icon='list-ul'
-        iconComponent={ListAltIcon}
+        icon='collections'
+        iconComponent={CollectionsFilledIcon}
         multiColumn={multiColumn}
         extraButton={
           <Link
