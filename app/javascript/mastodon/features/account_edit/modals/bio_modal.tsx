@@ -9,6 +9,8 @@ import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmatio
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import classes from './styles.module.scss';
+
 const messages = defineMessages({
   addTitle: {
     id: 'account_edit.bio_modal.add_title',
@@ -66,6 +68,7 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
         onChange={setNewBio}
         aria-labelledby={titleId}
         maxLength={maxLength}
+        className={classes.bioField}
         // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
         autoFocus
         autoSize

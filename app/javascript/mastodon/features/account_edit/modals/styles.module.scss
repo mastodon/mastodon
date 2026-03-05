@@ -2,6 +2,17 @@
   display: flex;
   gap: 16px;
   flex-direction: column;
+  font-size: 15px;
+}
+
+.bioField {
+  // Override specificity of emoji text area selector.
+  &.bioField.bioField {
+    min-height: 82px;
+  }
+
+  // 160px is approx the height of the modal header and footer
+  max-height: calc(80vh - 160px);
 }
 
 .toggleInputWrapper {

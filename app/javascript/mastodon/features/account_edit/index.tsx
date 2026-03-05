@@ -187,24 +187,26 @@ export const AccountEdit: FC = () => {
           description={messages.customFieldsPlaceholder}
           showDescription={!hasFields}
         >
-          <ol>
-            {profile.fields.map((field) => (
-              <li key={field.id} className={classes.field}>
-                <div>
-                  <EmojiHTML
-                    htmlString={field.name}
-                    className={classes.fieldName}
-                    {...htmlHandlers}
+          {hasFields && (
+            <ol>
+              {profile.fields.map((field) => (
+                <li key={field.id} className={classes.field}>
+                  <div>
+                    <EmojiHTML
+                      htmlString={field.name}
+                      className={classes.fieldName}
+                      {...htmlHandlers}
+                    />
+                    <EmojiHTML htmlString={field.value} {...htmlHandlers} />
+                  </div>
+                  <AccountFieldActions
+                    item={intl.formatMessage(messages.customFieldsName)}
+                    id={field.id}
                   />
-                  <EmojiHTML htmlString={field.value} {...htmlHandlers} />
-                </div>
-                <AccountFieldActions
-                  item={intl.formatMessage(messages.customFieldsName)}
-                  id={field.id}
-                />
-              </li>
-            ))}
-          </ol>
+                </li>
+              ))}
+            </ol>
+          )}
           <Button
             onClick={handleCustomFieldsVerifiedHelp}
             className={classes.verifiedLinkHelpButton}
