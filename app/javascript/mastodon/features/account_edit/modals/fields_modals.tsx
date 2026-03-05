@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -77,6 +77,11 @@ const selectFieldLimits = createAppSelector(
 
 const RECOMMENDED_LIMIT = 40;
 
+const selectEmojiCodes = createAppSelector(
+  [(state) => state.custom_emojis],
+  (emojis) => emojis.map((emoji) => emoji.get('shortcode')).toArray(),
+);
+
 export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
   onClose,
   fieldKey,
@@ -94,6 +99,16 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
     !valueLimit ||
     newLabel.length > nameLimit ||
     newValue.length > valueLimit;
+
+  const customEmojiCodes = useAppSelector(selectEmojiCodes);
+  const hasLinkAndEmoji = useMemo(() => {
+    const text = `${newLabel} ${newValue}`; // Combine text, as we're searching it all.
+    const hasLink = /https?:\/\//.test(text);
+    const hasEmoji = customEmojiCodes.some((code) =>
+      text.includes(`:${code}:`),
+    );
+    return hasLink && hasEmoji;
+  }, [customEmojiCodes, newLabel, newValue]);
 
   const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
@@ -138,6 +153,15 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
         recommended
         max={valueLimit}
       />
+
+      {hasLinkAndEmoji && (
+        <Callout variant='warning'>
+          <FormattedMessage
+            id='account_edit.field_edit_modal.link_emoji_warning'
+            defaultMessage='We recommend against the use of custom emoji in combination with urls. Custom fields containing both will display as text only instead of as a link, in order to prevent user confusion.'
+          />
+        </Callout>
+      )}
 
       {(newLabel.length > RECOMMENDED_LIMIT ||
         newValue.length > RECOMMENDED_LIMIT) && (
