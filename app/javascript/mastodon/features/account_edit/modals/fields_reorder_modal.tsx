@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, KeyboardEventHandler } from 'react';
 import { useState, useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
@@ -32,6 +32,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import { Icon } from '@/mastodon/components/icon';
 import { selectFieldById } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppSelector } from '@/mastodon/store';
@@ -87,6 +88,10 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
     fields.map((field) => field.id),
   );
 
+  const [isDragging, setIsDragging] = useState(false);
+  const handleDragStart = useCallback(() => {
+    setIsDragging(true);
+  }, []);
   const handleDragEnd = useCallback((event: DragEndEvent) => {
     const { active, over } = event;
 
@@ -99,7 +104,27 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
 
       return arrayMove(prev, oldIndex, newIndex);
     });
+    setIsDragging(false);
   }, []);
+
+  // Combines the Escape shortcut for closing the modal and for cancelling the drag, depending on the current state.
+  const handleEscape: KeyboardEventHandler = useCallback(
+    (event) => {
+      const key = normalizeKey(event.key);
+      if (key === 'Escape') {
+        // Stops propagation to avoid triggering the handler in ModalRoot.
+        event.stopPropagation();
+
+        // Trigger the drag cancel here, since onDragCancel triggers before this handler.
+        if (isDragging) {
+          setIsDragging(false);
+        } else {
+          onClose();
+        }
+      }
+    },
+    [isDragging, onClose],
+  );
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -161,34 +186,39 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
   }, []);
 
   return (
-    <ConfirmationModal
-      onClose={onClose}
-      title={intl.formatMessage(messages.rearrangeTitle)}
-      confirm={intl.formatMessage(messages.save)}
-      onConfirm={handleSave}
-      className={classes.wrapper}
-      updating={isPending}
-    >
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis, restrictToParentElement]}
-        accessibility={accessibility}
+    // Add a wrapper here in the capture phase, so that it can be intercepted before the window listener in ModalRoot.
+    <div onKeyUpCapture={handleEscape}>
+      <ConfirmationModal
+        onClose={onClose}
+        title={intl.formatMessage(messages.rearrangeTitle)}
+        confirm={intl.formatMessage(messages.save)}
+        onConfirm={handleSave}
+        className={classes.wrapper}
+        updating={isPending}
+        noFocusButton
       >
-        <SortableContext
-          items={fieldKeys}
-          strategy={verticalListSortingStrategy}
-          disabled={isPending}
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+          accessibility={accessibility}
         >
-          <ol>
-            {fieldKeys.map((key) => (
-              <ReorderFieldItem key={key} id={key} />
-            ))}
-          </ol>
-        </SortableContext>
-      </DndContext>
-    </ConfirmationModal>
+          <SortableContext
+            items={fieldKeys}
+            strategy={verticalListSortingStrategy}
+            disabled={isPending}
+          >
+            <ol>
+              {fieldKeys.map((key) => (
+                <ReorderFieldItem key={key} id={key} />
+              ))}
+            </ol>
+          </SortableContext>
+        </DndContext>
+      </ConfirmationModal>
+    </div>
   );
 };
 
