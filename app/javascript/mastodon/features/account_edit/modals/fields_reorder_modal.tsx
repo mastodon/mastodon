@@ -32,6 +32,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import { Icon } from '@/mastodon/components/icon';
 import type { FieldData } from '@/mastodon/reducers/slices/profile_edit';
@@ -214,6 +215,8 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
     }
   }, [dispatch, fieldKeys, fields, onClose]);
 
+  const emojis = useAppSelector((state) => state.custom_emojis);
+
   return (
     // Add a wrapper here in the capture phase, so that it can be intercepted before the window listener in ModalRoot.
     <div onKeyUpCapture={handleEscape}>
@@ -239,11 +242,13 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
             strategy={verticalListSortingStrategy}
             disabled={isPending}
           >
-            <ol>
-              {fieldKeys.map((key) => (
-                <ReorderFieldItem key={key} id={key} />
-              ))}
-            </ol>
+            <CustomEmojiProvider emojis={emojis}>
+              <ol>
+                {fieldKeys.map((key) => (
+                  <ReorderFieldItem key={key} id={key} />
+                ))}
+              </ol>
+            </CustomEmojiProvider>
           </SortableContext>
         </DndContext>
       </ConfirmationModal>
