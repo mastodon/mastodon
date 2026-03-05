@@ -31,18 +31,26 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   column-gap: 12px;
-  box-sizing: border-box;
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
   touch-action: none;
+  position: relative;
 }
 
-.fieldNotFirst {
-  border-top-color: var(--color-border-primary);
+.fieldNotFirst::before,
+.fieldActiveUnder::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border-primary);
 }
 
-.fieldActiveUnder {
-  border-bottom-color: var(--color-border-primary);
+.fieldNotFirst::before {
+  top: 0;
+}
+
+.fieldActiveUnder::after {
+  bottom: -1px; // -1px to cover the border of the next field
 }
 
 .fieldHandle {
