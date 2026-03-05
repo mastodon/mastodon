@@ -15,7 +15,6 @@ import { Account } from 'mastodon/components/account';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
-import { Callout } from 'mastodon/components/callout';
 import { DisplayName } from 'mastodon/components/display_name';
 import { EmptyState } from 'mastodon/components/empty_state';
 import { FormStack, Combobox } from 'mastodon/components/form_fields';
@@ -40,7 +39,6 @@ import { getCollectionEditorState } from './state';
 import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
-const MIN_ACCOUNT_COUNT = 1;
 const MAX_ACCOUNT_COUNT = 25;
 
 function isOlderThanAWeek(date?: string): boolean {
@@ -164,9 +162,6 @@ export const CollectionAccounts: React.FC<{
   );
 
   const hasMaxAccounts = accountIds.length === MAX_ACCOUNT_COUNT;
-  const hasMinAccounts = accountIds.length === MIN_ACCOUNT_COUNT;
-  const hasTooFewAccounts = accountIds.length < MIN_ACCOUNT_COUNT;
-  const canSubmit = !hasTooFewAccounts;
 
   const {
     accountIds: suggestedAccountIds,
@@ -319,17 +314,13 @@ export const CollectionAccounts: React.FC<{
     (e: React.FormEvent) => {
       e.preventDefault();
 
-      if (!canSubmit) {
-        return;
-      }
-
       if (!id) {
         history.push(`/collections/new/details`, {
           account_ids: accountIds,
         });
       }
     },
-    [canSubmit, id, history, accountIds],
+    [id, history, accountIds],
   );
 
   const inputId = useId();
@@ -384,16 +375,6 @@ export const CollectionAccounts: React.FC<{
           />
         )}
 
-        {hasMinAccounts && (
-          <Callout>
-            <FormattedMessage
-              id='collections.hints.can_not_remove_more_accounts'
-              defaultMessage='Collections must contain at least {count, plural, one {# account} other {# accounts}}. Removing more accounts is not possible.'
-              values={{ count: MIN_ACCOUNT_COUNT }}
-            />
-          </Callout>
-        )}
-
         <Scrollable className={classes.scrollableWrapper}>
           <ItemList
             className={classes.scrollableInner}
@@ -425,7 +406,7 @@ export const CollectionAccounts: React.FC<{
               >
                 <AddedAccountItem
                   accountId={accountId}
-                  isRemovable={!isEditMode || !hasMinAccounts}
+                  isRemovable={!isEditMode}
                   onRemove={handleRemoveAccountItem}
                 />
               </Article>
@@ -435,39 +416,25 @@ export const CollectionAccounts: React.FC<{
       </FormStack>
       {!isEditMode && (
         <div className={classes.stickyFooter}>
-          {hasTooFewAccounts ? (
-            <Callout icon={false} className={classes.submitDisabledCallout}>
-              <FormattedMessage
-                id='collections.hints.add_more_accounts'
-                defaultMessage='Add at least {count, plural, one {# account} other {# accounts}} to continue'
-                values={{ count: MIN_ACCOUNT_COUNT }}
-              />
-            </Callout>
-          ) : (
-            <div className={classes.actionWrapper}>
-              <FormattedMessage
-                id='collections.hints.accounts_counter'
-                defaultMessage='{count} / {max} accounts'
-                values={{ count: accountIds.length, max: MAX_ACCOUNT_COUNT }}
-              >
-                {(text) => (
-                  <div className={classes.itemCountReadout}>{text}</div>
-                )}
-              </FormattedMessage>
-              {canSubmit && (
-                <Button type='submit'>
-                  {id ? (
-                    <FormattedMessage id='lists.save' defaultMessage='Save' />
-                  ) : (
-                    <FormattedMessage
-                      id='collections.continue'
-                      defaultMessage='Continue'
-                    />
-                  )}
-                </Button>
+          <div className={classes.actionWrapper}>
+            <FormattedMessage
+              id='collections.hints.accounts_counter'
+              defaultMessage='{count} / {max} accounts'
+              values={{ count: accountIds.length, max: MAX_ACCOUNT_COUNT }}
+            >
+              {(text) => <div className={classes.itemCountReadout}>{text}</div>}
+            </FormattedMessage>
+            <Button type='submit'>
+              {id ? (
+                <FormattedMessage id='lists.save' defaultMessage='Save' />
+              ) : (
+                <FormattedMessage
+                  id='collections.continue'
+                  defaultMessage='Continue'
+                />
               )}
-            </div>
-          )}
+            </Button>
+          </div>
         </div>
       )}
     </form>
