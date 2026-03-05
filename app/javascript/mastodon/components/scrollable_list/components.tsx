@@ -36,7 +36,7 @@ export const ItemList = forwardRef<
     emptyMessage?: React.ReactNode;
   }
 >(({ isLoading, emptyMessage, className, children, ...otherProps }, ref) => {
-  if (Children.count(children) === 0 && emptyMessage) {
+  if (!isLoading && Children.count(children) === 0 && emptyMessage) {
     return <div className='empty-column-indicator'>{emptyMessage}</div>;
   }
 
