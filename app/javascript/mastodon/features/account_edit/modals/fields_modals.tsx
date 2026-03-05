@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import type { Map as ImmutableMap } from 'immutable';
 
 import { Button } from '@/mastodon/components/button';
+import { Callout } from '@/mastodon/components/callout';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
 import {
   removeField,
@@ -49,12 +50,18 @@ const messages = defineMessages({
     id: 'account_edit.field_edit_modal.value_hint',
     defaultMessage: 'E.g. “example.me”',
   },
+  limitHeader: {
+    id: 'account_edit.field_edit_modal.limit_header',
+    defaultMessage: 'Recommended character limit exceeded',
+  },
   save: {
     id: 'account_edit.save',
     defaultMessage: 'Save',
   },
 });
 
+// We have two different values- the hard limit set by the server,
+// and the soft limit for mobile display.
 const selectFieldLimits = createAppSelector(
   [
     (state) =>
@@ -67,6 +74,8 @@ const selectFieldLimits = createAppSelector(
     valueLimit: accounts?.get('profile_field_value_limit'),
   }),
 );
+
+const RECOMMENDED_LIMIT = 40;
 
 export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
   onClose,
@@ -115,7 +124,9 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
         onChange={setNewLabel}
         label={intl.formatMessage(messages.editLabelField)}
         hint={intl.formatMessage(messages.editLabelHint)}
-        maxLength={nameLimit}
+        maxLength={RECOMMENDED_LIMIT}
+        recommended
+        max={nameLimit}
       />
 
       <EmojiTextInputField
@@ -123,8 +134,23 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
         onChange={setNewValue}
         label={intl.formatMessage(messages.editValueField)}
         hint={intl.formatMessage(messages.editValueHint)}
-        maxLength={valueLimit}
+        maxLength={RECOMMENDED_LIMIT}
+        recommended
+        max={valueLimit}
       />
+
+      {(newLabel.length > RECOMMENDED_LIMIT ||
+        newValue.length > RECOMMENDED_LIMIT) && (
+        <Callout
+          variant='warning'
+          title={intl.formatMessage(messages.limitHeader)}
+        >
+          <FormattedMessage
+            id='account_edit.field_edit_modal.limit_message'
+            defaultMessage='Mobile users might not see your field in full.'
+          />
+        </Callout>
+      )}
     </ConfirmationModal>
   );
 };
