@@ -1,0 +1,70 @@
+.wrapper {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.toggleInputWrapper {
+  > div {
+    padding: 12px 0;
+
+    &:not(:first-child) {
+      border-top: 1px solid var(--color-border-primary);
+    }
+  }
+}
+
+.verifiedSteps {
+  font-size: 15px;
+
+  li {
+    counter-increment: steps;
+    padding-left: 34px;
+    margin-top: 24px;
+    position: relative;
+
+    h2 {
+      font-weight: 600;
+    }
+
+    &::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      border: 1px solid var(--color-border-primary);
+      border-radius: 9999px;
+      font-weight: 600;
+      padding: 4px;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+    }
+  }
+}
+
+.details {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-top: 8px;
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    margin-bottom: 8px;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+
+  :global(.icon) {
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: middle;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &[open] :global(.icon) {
+    transform: rotate(-180deg);
+  }
+}
