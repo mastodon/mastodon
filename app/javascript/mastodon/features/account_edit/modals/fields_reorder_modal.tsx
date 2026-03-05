@@ -34,8 +34,16 @@ import { CSS } from '@dnd-kit/utilities';
 
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import { Icon } from '@/mastodon/components/icon';
-import { selectFieldById } from '@/mastodon/reducers/slices/profile_edit';
-import { useAppSelector } from '@/mastodon/store';
+import type { FieldData } from '@/mastodon/reducers/slices/profile_edit';
+import {
+  patchProfile,
+  selectFieldById,
+} from '@/mastodon/reducers/slices/profile_edit';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
 import DragIndicatorIcon from '@/material-icons/400-24px/drag_indicator.svg?react';
 
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
@@ -80,10 +88,17 @@ const messages = defineMessages({
   },
 });
 
+const selectFields = createAppSelector(
+  [(state) => state.profileEdit],
+  ({ isPending, profile }) => ({
+    isPending: isPending,
+    fields: profile?.fields ?? [],
+  }),
+);
+
 export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
   const intl = useIntl();
-  const { profile, isPending } = useAppSelector((state) => state.profileEdit);
-  const fields = profile?.fields ?? [];
+  const { fields, isPending } = useAppSelector(selectFields);
   const [fieldKeys, setFieldKeys] = useState<string[]>(
     fields.map((field) => field.id),
   );
@@ -181,9 +196,23 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
     [intl],
   );
 
+  const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
-    // TODO
-  }, []);
+    const newFields: Pick<FieldData, 'name' | 'value'>[] = [];
+    for (const key of fieldKeys) {
+      const field = fields.find((f) => f.id === key);
+      if (!field) {
+        console.warn(`Field with id ${key} not found, closing modal.`);
+        onClose();
+        return;
+      }
+      newFields.push({ name: field.name, value: field.value });
+
+      void dispatch(patchProfile({ fields_attributes: newFields })).then(
+        onClose,
+      );
+    }
+  }, [dispatch, fieldKeys, fields, onClose]);
 
   return (
     // Add a wrapper here in the capture phase, so that it can be intercepted before the window listener in ModalRoot.
