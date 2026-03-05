@@ -73,6 +73,7 @@ interface AccountProps {
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
   withMenu?: boolean;
+  withBorder?: boolean;
   extraAccountInfo?: React.ReactNode;
   children?: React.ReactNode;
 }
@@ -85,6 +86,7 @@ export const Account: React.FC<AccountProps> = ({
   defaultAction,
   withBio,
   withMenu = true,
+  withBorder = true,
   extraAccountInfo,
   children,
 }) => {
@@ -290,6 +292,7 @@ export const Account: React.FC<AccountProps> = ({
     <div
       className={classNames('account', {
         'account--minimal': minimal,
+        'account--without-border': !withBorder,
       })}
     >
       <div

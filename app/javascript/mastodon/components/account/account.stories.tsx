@@ -50,6 +50,10 @@ const meta = {
       type: 'boolean',
       description: 'Whether to display the account menu or not',
     },
+    withBorder: {
+      type: 'boolean',
+      description: 'Whether to display the bottom border or not',
+    },
   },
   args: {
     name: 'Test User',
@@ -60,6 +64,7 @@ const meta = {
     defaultAction: 'mute',
     withBio: false,
     withMenu: true,
+    withBorder: true,
   },
   parameters: {
     state: {
@@ -100,6 +105,12 @@ export const WithBio: Story = {
 export const NoMenu: Story = {
   args: {
     withMenu: false,
+  },
+};
+
+export const NoBorder: Story = {
+  args: {
+    withBorder: false,
   },
 };
 
