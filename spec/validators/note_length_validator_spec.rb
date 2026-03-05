@@ -50,7 +50,7 @@ RSpec.describe NoteLengthValidator do
   private
 
   def too_long_message
-    I18n.t('statuses.over_character_limit', max: 100)
+    I18n.t('errors.messages.too_long', count: 100)
   end
 
   def starting_string
