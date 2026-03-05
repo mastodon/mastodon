@@ -4,7 +4,7 @@ class ResolveURLService < BaseService
   include JsonLdHelper
   include Authorization
 
-  USERNAME_STATUS_RE = %r{/@(?<username>#{Account::USERNAME_RE})/(?<status_id>[0-9]+)\Z}
+  USERNAME_STATUS_RE = %r{/@(?<username>#{Account::USERNAME_RE})/(statuses/)?(?<status_id>[0-9a-zA-Z]+)\Z}
 
   def call(url, on_behalf_of: nil)
     @url          = url
