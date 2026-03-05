@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { Fragment, useCallback, useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -52,6 +52,11 @@ const messages = defineMessages({
     defaultMessage: 'Accounts',
   },
 });
+
+const SimpleAuthorName: React.FC<{ id: string }> = ({ id }) => {
+  const account = useAccount(id);
+  return <DisplayName account={account} variant='simple' />;
+};
 
 export const AuthorNote: React.FC<{ id: string; previewMode?: boolean }> = ({
   id,
@@ -149,12 +154,11 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         collection={collection}
         className={classes.metaData}
       />
-      <h2 className='sr-only'>{intl.formatMessage(messages.accounts)}</h2>
     </div>
   );
 };
 
-const CollectionAccountItem: React.FC<{
+const AccountItem: React.FC<{
   accountId: string | undefined;
   collectionOwnerId: string;
 }> = ({ accountId, collectionOwnerId }) => {
@@ -185,7 +189,6 @@ export const CollectionDetailPage: React.FC<{
   const collection = useAppSelector((state) =>
     id ? state.collections.collections[id] : undefined,
   );
-
   const isLoading = !!id && !collection;
 
   useEffect(() => {
@@ -193,6 +196,8 @@ export const CollectionDetailPage: React.FC<{
       void dispatch(fetchCollection({ collectionId: id }));
     }
   }, [dispatch, id]);
+
+  const { items, currentUserInCollection } = getCollectionItems(collection);
 
   const pageTitle = collection?.name ?? intl.formatMessage(messages.loading);
 
@@ -212,19 +217,54 @@ export const CollectionDetailPage: React.FC<{
           isLoading={isLoading}
           emptyMessage={intl.formatMessage(messages.empty)}
         >
-          {collection?.items.map(({ account_id }, index, items) => (
-            <Article
-              key={account_id}
-              data-id={account_id}
-              aria-posinset={index + 1}
-              aria-setsize={items.length}
-            >
-              <CollectionAccountItem
-                accountId={account_id}
-                collectionOwnerId={collection.account_id}
-              />
-            </Article>
-          ))}
+          {collection && currentUserInCollection ? (
+            <>
+              <h3 className={classes.columnSubheading}>
+                <FormattedMessage
+                  id='collections.detail.author_added_you'
+                  defaultMessage='{author} added you to this collection'
+                  values={{
+                    author: <SimpleAuthorName id={collection.account_id} />,
+                  }}
+                  tagName={Fragment}
+                />
+              </h3>
+              <Article
+                key={currentUserInCollection.account_id}
+                aria-posinset={1}
+                aria-setsize={items.length}
+              >
+                <AccountItem
+                  accountId={currentUserInCollection.account_id}
+                  collectionOwnerId={collection.account_id}
+                />
+              </Article>
+              <h3 className={classes.columnSubheading}>
+                <FormattedMessage
+                  id='collections.detail.other_accounts_in_collection'
+                  defaultMessage='Others in this collection:'
+                  tagName={Fragment}
+                />
+              </h3>
+            </>
+          ) : (
+            <h3 className='column-subheading sr-only'>
+              {intl.formatMessage(messages.accounts)}
+            </h3>
+          )}
+          {collection &&
+            items.map(({ account_id }, index, items) => (
+              <Article
+                key={account_id}
+                aria-posinset={index + (currentUserInCollection ? 2 : 1)}
+                aria-setsize={items.length}
+              >
+                <AccountItem
+                  accountId={account_id}
+                  collectionOwnerId={collection.account_id}
+                />
+              </Article>
+            ))}
         </ItemList>
       </Scrollable>
 
@@ -235,3 +275,34 @@ export const CollectionDetailPage: React.FC<{
     </Column>
   );
 };
+
+/**
+ * Returns the collection's account items. If the current user's account
+ * is part of the collection, it will be returned separately.
+ */
+function getCollectionItems(collection: ApiCollectionJSON | undefined) {
+  if (!collection)
+    return {
+      currentUserInCollection: null,
+      items: [],
+    };
+
+  const { account_id, items } = collection;
+
+  const isOwnCollection = account_id === me;
+  const currentUserIndex = items.findIndex(
+    (account) => account.account_id === me,
+  );
+
+  if (isOwnCollection || currentUserIndex === -1) {
+    return {
+      currentUserInCollection: null,
+      items,
+    };
+  } else {
+    return {
+      currentUserInCollection: items.at(currentUserIndex) ?? null,
+      items: items.toSpliced(currentUserIndex, 1),
+    };
+  }
+}
