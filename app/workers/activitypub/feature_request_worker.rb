@@ -17,6 +17,6 @@ class ActivityPub::FeatureRequestWorker < ActivityPub::RawDistributionWorker
   end
 
   def payload
-    @payload ||= Oj.dump(serialize_payload(@collection_item, ActivityPub::FeatureRequestSerializer, signer: @account))
+    @payload ||= JSON.generate(serialize_payload(@collection_item, ActivityPub::FeatureRequestSerializer, signer: @account))
   end
 end

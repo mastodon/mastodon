@@ -222,7 +222,7 @@ RSpec.describe 'Filters' do
 
         expect(keyword.reload.keyword).to eq 'updated'
 
-        expect(redis).to have_received(:publish).with("timeline:#{user.account.id}", Oj.dump(event: :filters_changed)).once
+        expect(redis).to have_received(:publish).with("timeline:#{user.account.id}", JSON.generate(event: :filters_changed)).once
       end
     end
 

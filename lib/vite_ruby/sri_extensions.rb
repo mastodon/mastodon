@@ -15,7 +15,7 @@ module ViteRuby::ManifestIntegrityExtension
   end
 
   def load_name_lookup_cache
-    Oj.load(config.build_output_dir.join('.vite/manifest-lookup.json').read)
+    JSON.parse(config.build_output_dir.join('.vite/manifest-lookup.json').read)
   end
 
   # Upstream's `virtual` type is a hack, re-implement it with efficient exact name lookup

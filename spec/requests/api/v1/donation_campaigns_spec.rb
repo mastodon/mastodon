@@ -78,7 +78,7 @@ RSpec.describe 'Donation campaigns' do
         end
 
         before do
-          stub_request(:get, "#{api_url}?platform=web&seed=#{seed}&locale=en").to_return(body: Oj.dump(campaign_json), status: 200)
+          stub_request(:get, "#{api_url}?platform=web&seed=#{seed}&locale=en").to_return(body: JSON.generate(campaign_json), status: 200)
         end
 
         it 'returns the expected campaign' do
@@ -96,7 +96,7 @@ RSpec.describe 'Donation campaigns' do
           expect(Rails.cache.read("donation_campaign_request:#{seed}:en", raw: true))
             .to eq 'campaign-1:en'
 
-          expect(Oj.load(Rails.cache.read('donation_campaign:campaign-1:en', raw: true)))
+          expect(JSON.parse(Rails.cache.read('donation_campaign:campaign-1:en', raw: true)))
             .to match(campaign_json)
         end
       end

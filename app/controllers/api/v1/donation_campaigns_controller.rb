@@ -35,7 +35,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
     return if key.blank?
 
     campaign = Rails.cache.read("donation_campaign:#{key}", raw: true)
-    Oj.load(campaign) if campaign.present?
+    JSON.parse(campaign) if campaign.present?
   end
 
   def save_to_cache!(campaign)
@@ -44,7 +44,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
     Rails.cache.write_multi(
       {
         request_key => campaign_key(campaign),
-        "donation_campaign:#{campaign_key(campaign)}" => Oj.dump(campaign),
+        "donation_campaign:#{campaign_key(campaign)}" => JSON.generate(campaign),
       },
       expires_in: 1.hour,
       raw: true
@@ -57,10 +57,10 @@ class Api::V1::DonationCampaignsController < Api::BaseController
       url.query_values = { platform: 'web', seed: seed, locale: locale, environment: Rails.configuration.x.donation_campaigns.environment }.compact
 
       Request.new(:get, url.to_s).perform do |res|
-        return Oj.load(res.body_with_limit, mode: :strict) if res.code == 200
+        return JSON.parse(res.body_with_limit) if res.code == 200
       end
     end
-  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Oj::ParseError
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, JSON::ParserError
     nil
   end
 
