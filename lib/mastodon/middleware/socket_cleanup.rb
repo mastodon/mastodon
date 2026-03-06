@@ -22,6 +22,9 @@ module Mastodon
 
       def clean_up_redis_socket!
         RedisConnection.pool.checkin if Thread.current[:redis]
+      rescue ConnectionPool::Error
+        nil
+      ensure
         Thread.current[:redis] = nil
       end
 
