@@ -232,7 +232,7 @@ class ActivityPub::ProcessAccountService < BaseService
       url = first_of_value(value['url'])
       url = url['href'] if url.is_a?(Hash)
       description = value['summary'].presence || value['name'].presence
-      description = description.strip[0...MediaAttachment::MAX_DESCRIPTION_LENGTH] if description.present?
+      description = description.strip[0...MediaAttachment::MAX_DESCRIPTION_HARD_LENGTH_LIMIT] if description.present?
     else
       url = value
     end
