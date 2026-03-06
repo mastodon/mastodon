@@ -111,7 +111,7 @@
   gap: 10px;
   margin-top: -10px;
   padding-bottom: 16px;
-  padding-left: calc(26px + var(--avatar-width));
+  padding-inline: calc(26px + var(--avatar-width)) 16px;
 
   :global(.button) {
     min-width: 30%;
