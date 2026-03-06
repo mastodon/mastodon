@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_account
   helper_method :current_session
   helper_method :single_user_mode?
-  helper_method :sso_account_settings
   helper_method :limited_federation_mode?
   helper_method :skip_csrf_meta_tags?
 
@@ -105,10 +104,6 @@ class ApplicationController < ActionController::Base
 
   def single_user_mode?
     @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.without_internal.exists?
-  end
-
-  def sso_account_settings
-    ENV.fetch('SSO_ACCOUNT_SETTINGS', nil)
   end
 
   def current_account

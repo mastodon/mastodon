@@ -30,4 +30,8 @@ module RegistrationHelper
   def use_seamless_external_login?
     Devise.pam_authentication || Devise.ldap_authentication
   end
+
+  def sso_account_settings
+    ENV.fetch('SSO_ACCOUNT_SETTINGS', nil)
+  end
 end
