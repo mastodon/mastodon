@@ -56,6 +56,7 @@ nn:
         label: Endre rolle
         no_role: Inga rolle
         title: Endre rolle for %{username}
+      collections: Samlingar
       confirm: Stadfest
       confirmed: Stadfesta
       confirming: Stadfestar
@@ -266,6 +267,7 @@ nn:
         demote_user_html: "%{name} degraderte brukaren %{target}"
         destroy_announcement_html: "%{name} sletta kunngjeringa %{target}"
         destroy_canonical_email_block_html: "%{name} avblokkerte e-post med hash %{target}"
+        destroy_collection_html: "%{name} fjerna samlinga av %{target}"
         destroy_custom_emoji_html: "%{name} sletta emojien %{target}"
         destroy_domain_allow_html: "%{name} forbydde føderasjon med domenet %{target}"
         destroy_domain_block_html: "%{name} avblokkerte domenet %{target}"
@@ -305,6 +307,7 @@ nn:
         unsilence_account_html: "%{name} fjerna grensa på kontoen til %{target}"
         unsuspend_account_html: "%{name} oppheva utvisinga av %{target} sin konto"
         update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
+        update_collection_html: "%{name} oppdaterte samlinga av %{target}"
         update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
         update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
@@ -340,6 +343,15 @@ nn:
       unpublish: Avpubliser
       unpublished_msg: Du avpubliserte kunngjeringa.
       updated_msg: Du oppdaterte kunngjeringa.
+    collections:
+      accounts: Kontoar
+      collection_title: Samling av %{name}
+      contents: Innhald
+      number_of_accounts:
+        one: 1 konto
+        other: "%{count} kontoar"
+      open: Opna
+      view_publicly: Vis offentleg
     critical_update_pending: Kritisk oppdatering ventar
     custom_emojis:
       assign_category: Vel kategori
@@ -679,6 +691,7 @@ nn:
       cancel: Avbryt
       category: Kategori
       category_description_html: Årsaka til at kontoen og/eller innhaldet vart rapportert vil bli inkludert i kommunikasjonen med den rapporterte kontoen
+      collections: Samlingar (%{count})
       comment:
         none: Ingen
       comment_description_html: 'For å gje meir informasjon, skreiv %{name}:'
@@ -708,11 +721,13 @@ nn:
       report: 'Rapporter #%{id}'
       reported_account: Rapportert konto
       reported_by: Rapportert av
+      reported_content: Rapportert innhald
       reported_with_application: Rapportert med app
       resolved: Oppløyst
       resolved_msg: Rapporten er løyst!
       skip_to_actions: Gå til handlingar
       status: Status
+      statuses: Innlegg (%{count})
       statuses_description_html: Støytande innhald vil bli inkludert i kommunikasjonen med den rapporterte kontoen
       summary:
         action_preambles:

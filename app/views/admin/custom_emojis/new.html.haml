@@ -12,7 +12,7 @@
   .fields-group
     = f.input :image,
               wrapper: :with_label,
-              input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES.join(',') },
+              input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES },
               hint: t('admin.custom_emojis.image_hint', size: number_to_human_size(CustomEmoji::LIMIT))
 
   .actions

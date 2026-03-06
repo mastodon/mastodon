@@ -53,6 +53,7 @@ nan-TW:
         label: 改角色
         no_role: 無角色
         title: 替 %{username} 改角色
+      collections: 收藏
       confirm: 確認
       confirmed: 確認ah
       confirming: Teh確認
@@ -262,6 +263,7 @@ nan-TW:
         demote_user_html: "%{name} kā用者 %{target} 降級"
         destroy_announcement_html: "%{name} kā公告 %{target} thâi掉ah"
         destroy_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue取消封鎖ah"
+        destroy_collection_html: "%{name} kā %{target} ê收藏thâi掉"
         destroy_custom_emoji_html: "%{name} kā 新ê emoji %{target} thâi掉ah"
         destroy_domain_allow_html: "%{name} 無允准 %{target} 域名加入聯邦"
         destroy_domain_block_html: "%{name} 取消封鎖域名 %{target}"
@@ -301,6 +303,7 @@ nan-TW:
         unsilence_account_html: "%{name} 取消限制 %{target} ê口座"
         unsuspend_account_html: "%{name} kā %{target} ê口座恢復權限ah"
         update_announcement_html: "%{name} kā公告 %{target} 更新ah"
+        update_collection_html: "%{name} kā %{target} ê收藏更新"
         update_custom_emoji_html: "%{name} kā 新ê emoji %{target} 更新ah"
         update_domain_block_html: "%{name} kā %{target} ê域名封鎖更新ah"
         update_ip_block_html: "%{name} 改變 IP %{target} ê規則"
@@ -336,6 +339,14 @@ nan-TW:
       unpublish: 取消公佈
       unpublished_msg: 公告成功取消ah！
       updated_msg: 公告成功更新ah！
+    collections:
+      accounts: 口座
+      collection_title: "%{name} ê收藏"
+      contents: 內容
+      number_of_accounts:
+        other: "%{count} ê口座"
+      open: 開
+      view_publicly: 公開看
     critical_update_pending: 愛處理ê重大更新
     custom_emojis:
       assign_category: 分配類別
@@ -666,6 +677,7 @@ nan-TW:
       cancel: 取消
       category: 類別
       category_description_html: Tsit ê 受檢舉ê口座kap/á是內容，ē佇kap tsit ê口座ê聯絡內底引用。
+      collections: 收藏 (%{count})
       comment:
         none: 無
       comment_description_html: 為著提供其他資訊，%{name} 寫：
@@ -695,11 +707,13 @@ nan-TW:
       report: '檢舉 #%{id}'
       reported_account: 受檢舉ê口座
       reported_by: 檢舉人
+      reported_content: 受檢舉ê內容
       reported_with_application: 用應用程式檢舉
       resolved: 解決ah
       resolved_msg: 檢舉成功解決ah！
       skip_to_actions: 跳kàu行動
       status: 狀態
+      statuses: PO文 (%{count})
       statuses_description_html: 冒犯ê內容ē引用tī kap受檢舉口座ê聯絡
       summary:
         action_preambles:
@@ -1805,6 +1819,19 @@ nan-TW:
     activity: 上尾ê活動
     browser: 瀏覽器
     browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: 毋知影ê瀏覽器
+      huawei_browser: 華為ê瀏覽器
+      ie: Internet Explorer
+      micro_messenger: 微信
+      nokia: Nokia S40 Ovi 瀏覽器
+      opera: Opera
+      otter: Otter
       qq: QQ 瀏覽器
       safari: Safari
       uc_browser: UC 瀏覽器
@@ -1859,8 +1886,26 @@ nan-TW:
     webauthn_authentication: 安全鎖匙
   statuses:
     default_language: Kap界面ê語言sio kâng
+    visibilities:
+      private: Kan-ta hōo跟tuè ê lâng
+      public: 公開ê
+      public_long: 逐ê lâng（無論佇Mastodon以內á是以外）
+      unlisted: 恬靜公開
+      unlisted_long: Mài顯示tī Mastodon ê tshiau-tshuē結果、趨勢kap公共ê時間線。
+  statuses_cleanup:
+    enabled: 自動thâi掉舊ê PO文
+    enabled_hint: PO文一下kàu指定ê期限，會自動thâi掉PO文，除非in符合下kha其中一个特例
+    exceptions: 特例
+    explanation: 自動thâi掉會行佇低優先級。佇kàu thâi掉ê期限kap thâi掉中間huân勢有延tshiân。
+    ignore_favs: 忽略收藏數
+    ignore_reblogs: 忽略轉PO數
+    interaction_exceptions: Tshāi佇互動ê特例
+    interaction_exceptions_explanation: 超過收藏kap轉送ê底限ê PO文可能會受保留，就算in後來降落。
+    keep_direct: 保留私人ê短phue
   terms_of_service:
     title: 服務規定
+  themes:
+    default: Mastodon
   two_factor_authentication:
     disable: 停止用雙因素認證
   user_mailer:

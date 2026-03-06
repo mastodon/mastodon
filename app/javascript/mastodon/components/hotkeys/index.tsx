@@ -118,6 +118,7 @@ const hotkeyMatcherMap = {
   openMedia: just('e'),
   onTranslate: just('t'),
   goToHome: sequence('g', 'h'),
+  goToExplore: sequence('g', 'e'),
   goToNotifications: sequence('g', 'n'),
   goToLocal: sequence('g', 'l'),
   goToFederated: sequence('g', 't'),

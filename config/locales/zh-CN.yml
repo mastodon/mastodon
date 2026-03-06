@@ -263,6 +263,7 @@ zh-CN:
         demote_user_html: "%{name} 撤销了用户 %{target} 的管理权限"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解封了 hash 为 %{target} 的邮箱地址"
+        destroy_collection_html: "%{name} 移除了 %{target} 的收藏列表"
         destroy_custom_emoji_html: "%{name} 删除了自定义表情 %{target}"
         destroy_domain_allow_html: "%{name} 拒绝了与站点 %{target} 的联合"
         destroy_domain_block_html: "%{name} 解除了对站点 %{target} 的屏蔽"
@@ -302,6 +303,7 @@ zh-CN:
         unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account_html: "%{name} 解封了用户 %{target}"
         update_announcement_html: "%{name} 更新了公告 %{target}"
+        update_collection_html: "%{name} 更新了 %{target} 的收藏列表"
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
@@ -675,7 +677,7 @@ zh-CN:
       cancel: 取消
       category: 类别
       category_description_html: 在与被举报账号的通信时，将引用该账号和/或内容被举报的原因
-      collections: 收藏列表
+      collections: 收藏列表 (%{count})
       comment:
         none: 没有
       comment_description_html: "%{name} 补充道："
@@ -711,7 +713,7 @@ zh-CN:
       resolved_msg: 举报处理成功！
       skip_to_actions: 跳转到操作
       status: 状态
-      statuses: 嘟文
+      statuses: 嘟文 (%{count})
       statuses_description_html: 在与该账号的通信中将引用违规内容
       summary:
         action_preambles:

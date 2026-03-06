@@ -279,6 +279,7 @@ ga:
         demote_user_html: "%{name} úsáideoir scriosta %{target}"
         destroy_announcement_html: "%{name} fógra scriosta %{target}"
         destroy_canonical_email_block_html: "%{name} ríomhphost díchoiscthe leis an hash %{target}"
+        destroy_collection_html: Bhain %{name} bailiúchán le %{target}
         destroy_custom_emoji_html: Scriosadh %{name} emoji %{target}
         destroy_domain_allow_html: Dhiúltaigh %{name} cónaidhm le fearann ​​%{target}
         destroy_domain_block_html: "%{name} fearann ​​%{target} bainte de"
@@ -318,6 +319,7 @@ ga:
         unsilence_account_html: Chealaigh %{name} teorainn chuntas %{target}
         unsuspend_account_html: Níor chuir %{name} cuntas %{target} ar fionraí
         update_announcement_html: "%{name} fógra nuashonraithe %{target}"
+        update_collection_html: Nuashonraigh %{name} bailiúchán le %{target}
         update_custom_emoji_html: "%{name} emoji nuashonraithe %{target}"
         update_domain_block_html: "%{name} nuashonraithe bloc fearainn le haghaidh %{target}"
         update_ip_block_html: D'athraigh %{name} riail an IP %{target}
@@ -731,7 +733,7 @@ ga:
       cancel: Cealaigh
       category: Catagóir
       category_description_html: Luafar an chúis ar tuairiscíodh an cuntas seo agus/nó an t-ábhar seo i gcumarsáid leis an gcuntas tuairiscithe
-      collections: Bailiúcháin
+      collections: Bailiúcháin (%{count})
       comment:
         none: Dada
       comment_description_html: 'Chun tuilleadh eolais a sholáthar, scríobh %{name}:'
@@ -767,7 +769,7 @@ ga:
       resolved_msg: D'éirigh le réiteach an tuairisc!
       skip_to_actions: Léim ar ghníomhartha
       status: Stádas
-      statuses: Poist
+      statuses: Poist (%{count})
       statuses_description_html: Luafar ábhar ciontach i gcumarsáid leis an gcuntas tuairiscithe
       summary:
         action_preambles:

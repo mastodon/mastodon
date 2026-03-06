@@ -327,16 +327,16 @@ class Account < ApplicationRecord
     old_fields = self[:fields] || []
     old_fields = [] if old_fields.is_a?(Hash)
 
-    if attributes.is_a?(Hash)
-      attributes.each_value do |attr|
-        next if attr[:name].blank? && attr[:value].blank?
+    attributes = attributes.values if attributes.is_a?(Hash)
 
-        previous = old_fields.find { |item| item['value'] == attr[:value] }
+    attributes.each do |attr|
+      next if attr[:name].blank? && attr[:value].blank?
 
-        attr[:verified_at] = previous['verified_at'] if previous && previous['verified_at'].present?
+      previous = old_fields.find { |item| item['value'] == attr[:value] }
 
-        fields << attr
-      end
+      attr[:verified_at] = previous['verified_at'] if previous && previous['verified_at'].present?
+
+      fields << attr
     end
 
     self[:fields] = fields
@@ -469,8 +469,11 @@ class Account < ApplicationRecord
     save!
   end
 
-  def featureable?
-    local? && discoverable?
+  def featureable_by?(other_account)
+    return discoverable? if local?
+    return false unless Mastodon::Feature.collections_federation_enabled?
+
+    feature_policy_for_account(other_account).in?(%i(automatic manual))
   end
 
   private

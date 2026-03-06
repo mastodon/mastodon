@@ -1,6 +1,8 @@
 import type { MutableRefObject, RefCallback } from 'react';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
+import { useMutationObserver, useResizeObserver } from './useObserver';
+
 /**
  * Hook to manage overflow of items in a container with a "more" button.
  *
@@ -182,48 +184,30 @@ export function useOverflowObservers({
   // This is the item container element.
   const listRef = useRef<HTMLElement | null>(null);
 
-  // Set up observers to watch for size and content changes.
-  const resizeObserverRef = useRef<ResizeObserver | null>(null);
-  const mutationObserverRef = useRef<MutationObserver | null>(null);
-
-  // Helper to get or create the resize observer.
-  const resizeObserver = useCallback(() => {
-    const observer = (resizeObserverRef.current ??= new ResizeObserver(
-      onRecalculate,
-    ));
-    return observer;
-  }, [onRecalculate]);
+  const resizeObserver = useResizeObserver(onRecalculate);
 
   // Iterate through children and observe them for size changes.
   const handleChildrenChange = useCallback(() => {
     const listEle = listRef.current;
-    const observer = resizeObserver();
-
     if (listEle) {
       for (const child of listEle.children) {
         if (child instanceof HTMLElement) {
-          observer.observe(child);
+          resizeObserver.observe(child);
         }
       }
     }
     onRecalculate();
   }, [onRecalculate, resizeObserver]);
 
-  // Helper to get or create the mutation observer.
-  const mutationObserver = useCallback(() => {
-    const observer = (mutationObserverRef.current ??= new MutationObserver(
-      handleChildrenChange,
-    ));
-    return observer;
-  }, [handleChildrenChange]);
+  const mutationObserver = useMutationObserver(handleChildrenChange);
 
   // Set up observers.
   const handleObserve = useCallback(() => {
     if (wrapperRef.current) {
-      resizeObserver().observe(wrapperRef.current);
+      resizeObserver.observe(wrapperRef.current);
     }
     if (listRef.current) {
-      mutationObserver().observe(listRef.current, { childList: true });
+      mutationObserver.observe(listRef.current, { childList: true });
       handleChildrenChange();
     }
   }, [handleChildrenChange, mutationObserver, resizeObserver]);
@@ -233,12 +217,12 @@ export function useOverflowObservers({
   const wrapperRefCallback = useCallback(
     (node: HTMLElement | null) => {
       if (node) {
-        wrapperRef.current = node;
+        wrapperRef.current = node; // eslint-disable-line react-hooks/immutability -- https://github.com/facebook/react/issues/34955
         handleObserve();
         if (typeof onWrapperRef === 'function') {
           onWrapperRef(node);
         } else if (onWrapperRef && 'current' in onWrapperRef) {
-          onWrapperRef.current = node;
+          onWrapperRef.current = node; // eslint-disable-line react-hooks/immutability -- https://github.com/facebook/react/issues/34955
         }
       }
     },
@@ -254,27 +238,12 @@ export function useOverflowObservers({
         if (typeof onListRef === 'function') {
           onListRef(node);
         } else if (onListRef && 'current' in onListRef) {
-          onListRef.current = node;
+          onListRef.current = node; // eslint-disable-line react-hooks/immutability -- https://github.com/facebook/react/issues/34955
         }
       }
     },
     [handleObserve, onListRef],
   );
-
-  useEffect(() => {
-    handleObserve();
-
-    return () => {
-      if (resizeObserverRef.current) {
-        resizeObserverRef.current.disconnect();
-        resizeObserverRef.current = null;
-      }
-      if (mutationObserverRef.current) {
-        mutationObserverRef.current.disconnect();
-        mutationObserverRef.current = null;
-      }
-    };
-  }, [handleObserve]);
 
   return {
     wrapperRefCallback,

@@ -5,8 +5,10 @@
 .filterSelectButton {
   appearance: none;
   border: none;
+  color: inherit;
   background: none;
   padding: 8px 0;
+  font-size: 15px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -40,6 +42,10 @@
     display: flex;
     align-items: center;
     font-size: 15px;
+  }
+
+  [data-color-scheme='dark'] & {
+    border: 1px solid var(--color-border-primary);
   }
 }
 

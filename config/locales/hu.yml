@@ -146,8 +146,8 @@ hu:
       security_measures:
         only_password: Csak jelszó
         password_and_2fa: Jelszó és kétlépcsős hitelesítés
-      sensitive: Kényes
-      sensitized: Kényesnek jelölve
+      sensitive: Érzékeny
+      sensitized: Érzékenynek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -165,7 +165,7 @@ hu:
       unblock_email: E-mail-cím tiltásának feloldása
       unblocked_email_msg: A(z) %{username} e-mail-cím tiltása sikeresen feloldva
       unconfirmed_email: Nem megerősített e-mail
-      undo_sensitized: Kényesnek jelölés visszavonása
+      undo_sensitized: Érzékenynek jelölés visszavonása
       undo_silenced: Némítás visszavonása
       undo_suspension: Felfüggesztés visszavonása
       unsilenced_msg: A %{username} fiók korlátozásait sikeresen levettük
@@ -267,6 +267,7 @@ hu:
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
         destroy_canonical_email_block_html: "%{name} engedélyezte a(z) %{target} hashű e-mailt"
+        destroy_collection_html: "%{name} eltávolította %{target} felhasználó gyűjteményét"
         destroy_custom_emoji_html: "%{name} törölte a(z) %{target} emodzsit"
         destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
@@ -306,6 +307,7 @@ hu:
         unsilence_account_html: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account_html: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement_html: "%{name} frissítette a %{target} közleményt"
+        update_collection_html: "%{name} frissítette %{target} felhasználó gyűjteményét"
         update_custom_emoji_html: "%{name} frissítette az emodzsit: %{target}"
         update_domain_block_html: "%{name} frissítette a %{target} domain tiltását"
         update_ip_block_html: "%{name} módosította a(z) %{target} IP-címre vonatkozó szabályt"
@@ -689,7 +691,7 @@ hu:
       cancel: Mégse
       category: Kategória
       category_description_html: A fiók vagy tartalom bejelentésének oka a jelentett fiókkal kapcsolatos kommunikációban idézve lesz
-      collections: Gyűjtemények
+      collections: Gyûjtemények (%{count})
       comment:
         none: Egyik sem
       comment_description_html: 'Hogy további információkat adjon, %{name} ezt írta:'
@@ -725,7 +727,7 @@ hu:
       resolved_msg: A bejelentést sikeresen megoldottuk!
       skip_to_actions: Tovább az intézkedésekhez
       status: Állapot
-      statuses: Bejegyzések
+      statuses: Bejegyzések (%{count})
       statuses_description_html: A sértő tartalmat idézni fogjuk a bejelentett fiókkal való kommunikáció során
       summary:
         action_preambles:

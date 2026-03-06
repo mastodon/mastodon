@@ -11,7 +11,10 @@ class AddAccountToCollectionService
 
     @collection_item = create_collection_item
 
-    distribute_add_activity if @account.local? && Mastodon::Feature.collections_federation_enabled?
+    if Mastodon::Feature.collections_federation_enabled?
+      distribute_add_activity if @account.local?
+      distribute_feature_request_activity if @account.remote?
+    end
 
     @collection_item
   end
@@ -26,10 +29,14 @@ class AddAccountToCollectionService
   end
 
   def distribute_add_activity
-    ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, @collection.account_id)
+    ActivityPub::AccountRawDistributionWorker.perform_async(add_activity_json, @collection.account_id)
   end
 
-  def activity_json
+  def distribute_feature_request_activity
+    ActivityPub::FeatureRequestWorker.perform_async(@collection_item.id)
+  end
+
+  def add_activity_json
     ActiveModelSerializers::SerializableResource.new(@collection_item, serializer: ActivityPub::AddFeaturedItemSerializer, adapter: ActivityPub::Adapter).to_json
   end
 end

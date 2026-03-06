@@ -12,6 +12,9 @@ fo:
     followers:
       one: Fylgjari
       other: Fylgjarar
+    following:
+      one: Fylgi
+      other: Fylgi
     instance_actor_flash: Hendan kontan er ein tykisligur aktørur, sum verður brúktur til at umboða ambætaran sjálvan og ikki nakran ávísan brúkara. Hon verður brúkt til sameind endamál og eigur ikki at vera tikin úr gildi.
     last_active: virkin seinast
     link_verified_on: Eigaraskapur av hesum leinki var eftirkannaður tann %{date}
@@ -53,6 +56,7 @@ fo:
         label: Broyt leiklut
         no_role: Eingin leiklutur
         title: Broyt leiklut hjá %{username}
+      collections: Søvn
       confirm: Vátta
       confirmed: Váttað
       confirming: Váttar
@@ -263,6 +267,7 @@ fo:
         demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
         destroy_announcement_html: "%{name} strikaðar fráboðanir %{target}"
         destroy_canonical_email_block_html: "%{name} strikaði blokeringina av teldupostin við hashkodu %{target}"
+        destroy_collection_html: "%{name} slettaði savnið hjá %{target}"
         destroy_custom_emoji_html: "%{name} strikaði kensluteknið %{target}"
         destroy_domain_allow_html: "%{name} havnaði sameining við navnaøkið %{target}"
         destroy_domain_block_html: "%{name} strikaði blokering av navnaøkinum %{target}"
@@ -302,6 +307,7 @@ fo:
         unsilence_account_html: "%{name} strikaði avmarkingina av kontuni hjá %{target}"
         unsuspend_account_html: "%{name} setti kontuna hjá %{target} í gildi aftur"
         update_announcement_html: "%{name} dagførdi kunngerðina %{target}"
+        update_collection_html: "%{name} dagførdi savnið hjá %{target}"
         update_custom_emoji_html: "%{name} dagførdi kensluteknið %{target}"
         update_domain_block_html: "%{name} dagførdi navnaøkisblokeringina hjá %{target}"
         update_ip_block_html: "%{name} broytti IP-reglurnar %{target}"
@@ -337,6 +343,15 @@ fo:
       unpublish: Tak útgávu aftur
       unpublished_msg: Kunngerð tikin aftur!
       updated_msg: Kunngerð dagførd!
+    collections:
+      accounts: Kontur
+      collection_title: Savn hjá %{name}
+      contents: Innihald
+      number_of_accounts:
+        one: 1 konta
+        other: "%{count} kontur"
+      open: Opin
+      view_publicly: Vís fyri øllum
     critical_update_pending: Kritisk dagføring bíðar
     custom_emojis:
       assign_category: Tilluta bólk
@@ -676,6 +691,7 @@ fo:
       cancel: Angra
       category: Bólkur
       category_description_html: Orsøkin, at hendan kontan og/ella tilfarið var melda verður fráboðað í samskifti við meldaðu kontuni
+      collections: Søvn (%{count})
       comment:
         none: Eingin
       comment_description_html: 'Fyri at veita fleiri upplýsingar skrivaði %{name}:'
@@ -705,11 +721,13 @@ fo:
       report: 'Melding #%{id}'
       reported_account: Meldað konta
       reported_by: Meldað av
+      reported_content: Meldað innihald
       reported_with_application: Fráboðað við umsókn
       resolved: Loyst
       resolved_msg: Melding avgreidd!
       skip_to_actions: Leyp til atgerðir
       status: Støða
+      statuses: Postar (%{count})
       statuses_description_html: Tilfarið, sum brotið viðvíkur, fer at vera siterað í samskifti við meldaðu kontuni
       summary:
         action_preambles:

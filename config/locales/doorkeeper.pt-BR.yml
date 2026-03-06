@@ -83,6 +83,10 @@ pt-BR:
         access_denied: O proprietário do recurso ou servidor de autorização recusou a solicitação.
         credential_flow_not_configured: Fluxo das Credenciais de Senha do Proprietário do Recurso falhou porque Doorkeeper.configure.resource_owner_from_credentials não foi configurado.
         invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação foi incluído ou o método de autenticação não é suportado.
+        invalid_code_challenge_method:
+          one: O code_challenge_method deve ser %{challenge_methods}.
+          other: O code_challenge_method deve ser um de %{challenge_methods}.
+          zero: O servidor de autorização não suporta PKCE por não haver valores aceitos de code_challenge_method.
         invalid_grant: A garantia de autorização está inválida, expirou ou foi revogada, não é equivalente ao link de redirecionamento usado na solicitação de autorização ou foi emitido por outro cliente.
         invalid_redirect_uri: O link de redirecionamento é inválido.
         invalid_request:
@@ -179,7 +183,7 @@ pt-BR:
       read:mutes: ver seus silenciados
       read:notifications: ver suas notificações
       read:reports: ver suas denúncias
-      read:search: pesquisar em seu nome
+      read:search: buscar em seu nome
       read:statuses: ver todos os toots
       write: alterar todos os dados da sua conta
       write:accounts: alterar seu perfil

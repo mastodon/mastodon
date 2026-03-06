@@ -5,10 +5,12 @@ import { useContext, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { FieldsetNameContext } from './fieldset';
 import classes from './form_field_wrapper.module.scss';
 
-interface InputProps {
+export interface InputProps {
   id: string;
   required?: boolean;
   'aria-describedby'?: string;
@@ -20,8 +22,10 @@ interface FieldWrapperProps {
   required?: boolean;
   hasError?: boolean;
   inputId?: string;
+  describedById?: string;
   inputPlacement?: 'inline-start' | 'inline-end';
   children: (inputProps: InputProps) => ReactNode;
+  className?: string;
 }
 
 /**
@@ -30,7 +34,7 @@ interface FieldWrapperProps {
 export type CommonFieldWrapperProps = Pick<
   FieldWrapperProps,
   'label' | 'hint' | 'hasError'
->;
+> & { wrapperClassName?: string };
 
 /**
  * A simple form field wrapper for adding a label and hint to enclosed components.
@@ -42,10 +46,12 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   inputId: inputIdProp,
   label,
   hint,
+  describedById,
   required,
   hasError,
   inputPlacement,
   children,
+  className,
 }) => {
   const uniqueId = useId();
   const inputId = inputIdProp || `${uniqueId}-input`;
@@ -59,7 +65,9 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
     id: inputId,
   };
   if (hasHint) {
-    inputProps['aria-describedby'] = hintId;
+    inputProps['aria-describedby'] = describedById
+      ? `${describedById} ${hintId}`
+      : hintId;
   }
 
   const input = (
@@ -68,7 +76,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
 
   return (
     <div
-      className={classes.wrapper}
+      className={classNames(classes.wrapper, className)}
       data-has-error={hasError}
       data-input-placement={inputPlacement}
     >

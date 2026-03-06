@@ -267,6 +267,7 @@ is:
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
         destroy_canonical_email_block_html: "%{name} tók af útilokun á tölvupósti með tætigildið %{target}"
+        destroy_collection_html: "%{name} fjarlægði safn frá %{target}"
         destroy_custom_emoji_html: "%{name} eyddi emoji-tákni %{target}"
         destroy_domain_allow_html: "%{name} bannaði skýjasamband með léninu %{target}"
         destroy_domain_block_html: "%{name} aflétti útilokun af léninu %{target}"
@@ -306,6 +307,7 @@ is:
         unsilence_account_html: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr frysti"
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
+        update_collection_html: "%{name} uppfærði safn frá %{target}"
         update_custom_emoji_html: "%{name} uppfærði lyndistáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
         update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
@@ -689,7 +691,7 @@ is:
       cancel: Hætta við
       category: Flokkur
       category_description_html: Ástæðan fyrir því að þessi notandaaðgangur og/eða efni hans var kært mun verða tiltekin í samskiptum við kærðan notandaaðgang
-      collections: Söfn
+      collections: Söfn (%{count})
       comment:
         none: Ekkert
       comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
@@ -725,7 +727,7 @@ is:
       resolved_msg: Það tókst að leysa kæruna!
       skip_to_actions: Sleppa og fara í aðgerðir
       status: Staða
-      statuses: Færslur
+      statuses: Færslur (%{count})
       statuses_description_html: Óviðeigandi efni verður tiltekið í samskiptum við kærðan notandaaðgang
       summary:
         action_preambles:

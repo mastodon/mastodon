@@ -1,28 +1,35 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
-import { AccountBio } from '@/mastodon/components/account_bio';
 import { Avatar } from '@/mastodon/components/avatar';
-import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column_header';
-import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
-import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
+import { Button } from '@/mastodon/components/button';
+import { DismissibleCallout } from '@/mastodon/components/callout/dismissible';
+import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
+import { EmojiHTML } from '@/mastodon/components/emoji/html';
+import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { autoPlayGif } from '@/mastodon/initial_state';
-import { useAppDispatch } from '@/mastodon/store';
+import { fetchProfile } from '@/mastodon/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
+import { EditButton } from './components/edit_button';
+import { AccountFieldActions } from './components/field_actions';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
-const messages = defineMessages({
+export const messages = defineMessages({
+  columnTitle: {
+    id: 'account_edit.column_title',
+    defaultMessage: 'Edit Profile',
+  },
   displayNameTitle: {
     id: 'account_edit.display_name.title',
     defaultMessage: 'Display name',
@@ -49,6 +56,14 @@ const messages = defineMessages({
     defaultMessage:
       'Add your pronouns, external links, or anything else you’d like to share.',
   },
+  customFieldsName: {
+    id: 'account_edit.custom_fields.name',
+    defaultMessage: 'field',
+  },
+  customFieldsTipTitle: {
+    id: 'account_edit.custom_fields.tip_title',
+    defaultMessage: 'Tip: Adding verified links',
+  },
   featuredHashtagsTitle: {
     id: 'account_edit.featured_hashtags.title',
     defaultMessage: 'Featured hashtags',
@@ -57,6 +72,10 @@ const messages = defineMessages({
     id: 'account_edit.featured_hashtags.placeholder',
     defaultMessage:
       'Help others identify, and have quick access to, your favorite topics.',
+  },
+  featuredHashtagsItem: {
+    id: 'account_edit.featured_hashtags.item',
+    defaultMessage: 'hashtags',
   },
   profileTabTitle: {
     id: 'account_edit.profile_tab.title',
@@ -68,12 +87,18 @@ const messages = defineMessages({
   },
 });
 
-export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
+export const AccountEdit: FC = () => {
   const accountId = useCurrentAccountId();
   const account = useAccount(accountId);
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
+
+  const { profile } = useAppSelector((state) => state.profileEdit);
+  useEffect(() => {
+    void dispatch(fetchProfile());
+  }, [dispatch]);
+
   const handleOpenModal = useCallback(
     (type: ModalType, props?: Record<string, unknown>) => {
       dispatch(openModal({ modalType: type, modalProps: props ?? {} }));
@@ -86,39 +111,39 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
   }, [handleOpenModal]);
+  const handleCustomFieldsVerifiedHelp = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_VERIFY_LINKS');
+  }, [handleOpenModal]);
+  const handleProfileDisplayEdit = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_PROFILE_DISPLAY');
+  }, [handleOpenModal]);
 
-  if (!accountId) {
-    return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
+  const history = useHistory();
+  const handleFeaturedTagsEdit = useCallback(() => {
+    history.push('/profile/featured_tags');
+  }, [history]);
+
+  // Normally we would use the account emoji, but we want all custom emojis to be available to render after editing.
+  const emojis = useAppSelector((state) => state.custom_emojis);
+  const htmlHandlers = useElementHandledLink({
+    hashtagAccountId: profile?.id,
+  });
+
+  if (!accountId || !account || !profile) {
+    return <AccountEditEmptyColumn notFound={!accountId} />;
   }
 
-  if (!account) {
-    return (
-      <Column bindToDocument={!multiColumn} className={classes.column}>
-        <LoadingIndicator />
-      </Column>
-    );
-  }
-
-  const headerSrc = autoPlayGif ? account.header : account.header_static;
+  const headerSrc = autoPlayGif ? profile.header : profile.headerStatic;
+  const hasName = !!profile.displayName;
+  const hasBio = !!profile.bio;
+  const hasFields = profile.fields.length > 0;
+  const hasTags = profile.featuredTags.length > 0;
 
   return (
-    <Column bindToDocument={!multiColumn} className={classes.column}>
-      <ColumnHeader
-        title={intl.formatMessage({
-          id: 'account_edit.column_title',
-          defaultMessage: 'Edit Profile',
-        })}
-        className={classes.columnHeader}
-        showBackButton
-        extraButton={
-          <Link to={`/@${account.acct}`} className='button'>
-            <FormattedMessage
-              id='account_edit.column_button'
-              defaultMessage='Done'
-            />
-          </Link>
-        }
-      />
+    <AccountEditColumn
+      title={intl.formatMessage(messages.columnTitle)}
+      to={`/@${account.acct}`}
+    >
       <header>
         <div className={classes.profileImage}>
           {headerSrc && <img src={headerSrc} alt='' />}
@@ -126,41 +151,115 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         <Avatar account={account} size={80} className={classes.avatar} />
       </header>
 
-      <AccountEditSection
-        title={messages.displayNameTitle}
-        description={messages.displayNamePlaceholder}
-        showDescription={account.display_name.length === 0}
-        onEdit={handleNameEdit}
-      >
-        <DisplayNameSimple account={account} />
-      </AccountEditSection>
+      <CustomEmojiProvider emojis={emojis}>
+        <AccountEditSection
+          title={messages.displayNameTitle}
+          description={messages.displayNamePlaceholder}
+          showDescription={!hasName}
+          buttons={
+            <EditButton
+              onClick={handleNameEdit}
+              item={messages.displayNameTitle}
+              edit={hasName}
+            />
+          }
+        >
+          <EmojiHTML htmlString={profile.displayName} {...htmlHandlers} />
+        </AccountEditSection>
 
-      <AccountEditSection
-        title={messages.bioTitle}
-        description={messages.bioPlaceholder}
-        showDescription={!account.note_plain}
-        onEdit={handleBioEdit}
-      >
-        <AccountBio accountId={accountId} />
-      </AccountEditSection>
+        <AccountEditSection
+          title={messages.bioTitle}
+          description={messages.bioPlaceholder}
+          showDescription={!hasBio}
+          buttons={
+            <EditButton
+              onClick={handleBioEdit}
+              item={messages.bioTitle}
+              edit={hasBio}
+            />
+          }
+        >
+          <EmojiHTML htmlString={profile.bio} {...htmlHandlers} />
+        </AccountEditSection>
 
-      <AccountEditSection
-        title={messages.customFieldsTitle}
-        description={messages.customFieldsPlaceholder}
-        showDescription
-      />
+        <AccountEditSection
+          title={messages.customFieldsTitle}
+          description={messages.customFieldsPlaceholder}
+          showDescription={!hasFields}
+        >
+          <ol>
+            {profile.fields.map((field) => (
+              <li key={field.id} className={classes.field}>
+                <div>
+                  <EmojiHTML
+                    htmlString={field.name}
+                    className={classes.fieldName}
+                    {...htmlHandlers}
+                  />
+                  <EmojiHTML htmlString={field.value} {...htmlHandlers} />
+                </div>
+                <AccountFieldActions
+                  item={intl.formatMessage(messages.customFieldsName)}
+                  id={field.id}
+                />
+              </li>
+            ))}
+          </ol>
+          <Button
+            onClick={handleCustomFieldsVerifiedHelp}
+            className={classes.verifiedLinkHelpButton}
+            plain
+          >
+            <FormattedMessage
+              id='account_edit.custom_fields.verified_hint'
+              defaultMessage='How do I add a verified link?'
+            />
+          </Button>
+          {!hasFields && (
+            <DismissibleCallout
+              id='profile_edit_fields_tip'
+              title={intl.formatMessage(messages.customFieldsTipTitle)}
+            >
+              <FormattedMessage
+                id='account_edit.custom_fields.tip_content'
+                defaultMessage='You can easily add credibility to your Mastodon account by verifying links to any websites you own.'
+              />
+            </DismissibleCallout>
+          )}
+        </AccountEditSection>
 
-      <AccountEditSection
-        title={messages.featuredHashtagsTitle}
-        description={messages.featuredHashtagsPlaceholder}
-        showDescription
-      />
+        <AccountEditSection
+          title={messages.featuredHashtagsTitle}
+          description={messages.featuredHashtagsPlaceholder}
+          showDescription={!hasTags}
+          buttons={
+            <EditButton
+              onClick={handleFeaturedTagsEdit}
+              edit={hasTags}
+              item={messages.featuredHashtagsItem}
+            />
+          }
+        >
+          {profile.featuredTags.map((tag) => `#${tag.name}`).join(', ')}
+        </AccountEditSection>
 
-      <AccountEditSection
-        title={messages.profileTabTitle}
-        description={messages.profileTabSubtitle}
-        showDescription
-      />
-    </Column>
+        <AccountEditSection
+          title={messages.profileTabTitle}
+          description={messages.profileTabSubtitle}
+          showDescription
+          buttons={
+            <Button
+              className={classes.editButton}
+              onClick={handleProfileDisplayEdit}
+            >
+              <FormattedMessage
+                id='account_edit.profile_tab.button_label'
+                defaultMessage='Customize'
+              />
+            </Button>
+          }
+        />
+      </CustomEmojiProvider>
+    </AccountEditColumn>
   );
 };

@@ -36,14 +36,11 @@ RSpec.describe 'Admin Confirmations' do
       it 'resends the confirmation mail' do
         visit admin_account_path(id: user.account.id)
 
-        emails = capture_emails { resend_confirmation }
+        expect { resend_confirmation }
+          .to send_email(to: user.email)
         expect(page)
           .to have_title(I18n.t('admin.accounts.title'))
           .and have_content(I18n.t('admin.accounts.resend_confirmation.success'))
-
-        expect(emails.first)
-          .to be_present
-          .and deliver_to(user.email)
       end
     end
 

@@ -62,6 +62,7 @@ he:
         label: שינוי תפקיד
         no_role: ללא תפקיד
         title: שינוי תפקיד עבור %{username}
+      collections: אוספים
       confirm: אישור
       confirmed: אושר
       confirming: בתהליך אישור
@@ -274,6 +275,7 @@ he:
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
         destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
         destroy_canonical_email_block_html: "%{name} הסירו חסימה מדואל %{target}"
+        destroy_collection_html: האוסף של %{target} הוסר ע"י %{name}
         destroy_custom_emoji_html: "%{name} מחק אמוג'י של %{target}"
         destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
         destroy_domain_block_html: החסימה על מתחם %{target} הוסרה ע"י %{name}
@@ -313,6 +315,7 @@ he:
         unsilence_account_html: "%{name} ביטל/ה ההגבלה מהחשבון של %{target}"
         unsuspend_account_html: "%{name} ביטל/ה את ההשעיה של החשבון של %{target}"
         update_announcement_html: "%{name} עדכן/ה הכרזה %{target}"
+        update_collection_html: האוסף של %{target} עודכן ע"י %{name}
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
         update_ip_block_html: "%{name} שינה כלל עבור IP %{target}"
@@ -348,6 +351,17 @@ he:
       unpublish: ביטול פרסום
       unpublished_msg: פרסום ההכרזה בוטל בהצלחה!
       updated_msg: ההכרזה עודכנה בהצלחה!
+    collections:
+      accounts: חשבונות
+      collection_title: אוספים מאת %{name}
+      contents: תוכן
+      number_of_accounts:
+        many: "%{count} חשבונות"
+        one: חשבון אחד
+        other: "%{count} חשבונות"
+        two: חשבונותיים
+      open: פתיחה
+      view_publicly: צפיה בפומבי
     critical_update_pending: עידכון קריטי ממתין
     custom_emojis:
       assign_category: הקצאת קטגוריה
@@ -705,6 +719,7 @@ he:
       cancel: ביטול
       category: קטגוריה
       category_description_html: הסיבה בגללה חשבון זה ו/או תוכנו דווחו תצוטט בתקשורת עם החשבון המדווח
+      collections: אוספים (%{count})
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
@@ -734,11 +749,13 @@ he:
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
+      reported_content: התוכן עליו דווח
       reported_with_application: דיווחים באמצעות יישומון
       resolved: פתור
       resolved_msg: הדו"ח נפתר בהצלחה!
       skip_to_actions: דלג/י לפעולות
       status: מצב
+      statuses: הודעות (%{count})
       statuses_description_html: התוכן הפוגע יצוטט בתקשורת עם החשבון המדווח
       summary:
         action_preambles:

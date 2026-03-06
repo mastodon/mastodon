@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.7] - 2026-02-24
+
+### Security
+
+- Reject unconfirmed FASPs (#37926 by @oneiros, [GHSA-qgmm-vr4c-ggjg](https://github.com/mastodon/mastodon/security/advisories/GHSA-qgmm-vr4c-ggjg))
+- Re-use custom socket class for FASP requests (#37925 by @oneiros, [GHSA-46w6-g98f-wxqm](https://github.com/mastodon/mastodon/security/advisories/GHSA-46w6-g98f-wxqm))
+
+### Added
+
+- Add `--suspended-only` option to `tootctl emoji purge` (#37828 and #37861 by @ClearlyClaire and @mjankowski)
+
+### Fixed
+
+- Fix emoji data not being properly cached (#37858 by @ChaosExAnima)
+- Fix delete & redraft of pending posts (#37839 by @ClearlyClaire)
+- Fix processing separate key documents without the ActivityStreams context (#37826 by @ClearlyClaire)
+- Fix custom emojis not being purged on domain suspension (#37808 by @ClearlyClaire)
+- Fix users without special permissions being able to stream disabled timelines (#37791 by @ClearlyClaire)
+- Fix processing of object updates with duplicate hashtags (#37756 by @ClearlyClaire)
+
 ## [4.5.6] - 2026-02-03
 
 ### Security

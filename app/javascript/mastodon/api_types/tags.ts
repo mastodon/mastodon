@@ -4,11 +4,19 @@ interface ApiHistoryJSON {
   uses: string;
 }
 
-export interface ApiHashtagJSON {
+interface ApiHashtagBase {
   id: string;
   name: string;
   url: string;
+}
+
+export interface ApiHashtagJSON extends ApiHashtagBase {
   history: [ApiHistoryJSON, ...ApiHistoryJSON[]];
   following?: boolean;
   featuring?: boolean;
+}
+
+export interface ApiFeaturedTagJSON extends ApiHashtagBase {
+  statuses_count: string;
+  last_status_at: string | null;
 }

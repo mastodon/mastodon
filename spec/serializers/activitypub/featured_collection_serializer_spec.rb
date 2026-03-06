@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::FeaturedCollectionSerializer do
+  include RoutingHelper
+
   subject { serialized_record_json(collection, described_class, adapter: ActivityPub::Adapter) }
 
   let(:collection) do
@@ -35,12 +37,14 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
           'type' => 'FeaturedItem',
           'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_items.first.account),
           'featuredObjectType' => 'Person',
+          'featureAuthorization' => ap_account_feature_authorization_url(collection_items.first.account_id, collection_items.first),
         },
         {
           'id' => ActivityPub::TagManager.instance.uri_for(collection_items.last),
           'type' => 'FeaturedItem',
           'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_items.last.account),
           'featuredObjectType' => 'Person',
+          'featureAuthorization' => ap_account_feature_authorization_url(collection_items.last.account_id, collection_items.last),
         },
       ],
       'published' => match_api_datetime_format,
