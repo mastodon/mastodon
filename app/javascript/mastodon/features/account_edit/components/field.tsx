@@ -12,7 +12,7 @@ export const AccountField: FC<
   return (
     <>
       <EmojiHTML
-        as='p'
+        as='h2'
         htmlString={field.name}
         className={classes.fieldName}
         onElement={onElement}

@@ -58,6 +58,10 @@ const messages = defineMessages({
     id: 'account_edit.field_reorder_modal.title',
     defaultMessage: 'Rearrange fields',
   },
+  handleLabel: {
+    id: 'account_edit.field_reorder_modal.handle_label',
+    defaultMessage: 'Drag field "{item}"',
+  },
   screenReaderInstructions: {
     id: 'account_edit.field_reorder_modal.drag_instructions',
     defaultMessage:
@@ -257,6 +261,7 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
 };
 
 const ReorderFieldItem: FC<{ id: string }> = ({ id }) => {
+  const intl = useIntl();
   const field = useAppSelector((state) => selectFieldById(state, id));
   const {
     attributes,
@@ -298,6 +303,9 @@ const ReorderFieldItem: FC<{ id: string }> = ({ id }) => {
         icon={DragIndicatorIcon}
         id='drag'
         className={classes.fieldHandle}
+        aria-label={intl.formatMessage(messages.handleLabel, {
+          item: field.name,
+        })}
         {...listeners}
         {...attributes}
       />

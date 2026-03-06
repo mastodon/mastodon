@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { EmojiTextAreaField } from '@/mastodon/components/form_fields';
+import type { TextAreaProps } from '@/mastodon/components/form_fields/text_area_field';
 import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
@@ -51,6 +52,12 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     }
   }, [dispatch, isPending, newBio, onClose]);
 
+  // TypeScript isn't correctly picking up minRows when on the element directly.
+  const textAreaProps = {
+    autoSize: true,
+    minRows: 3,
+  } as const satisfies TextAreaProps;
+
   return (
     <ConfirmationModal
       title={intl.formatMessage(bio ? messages.editTitle : messages.addTitle)}
@@ -69,9 +76,9 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
         aria-labelledby={titleId}
         maxLength={maxLength}
         className={classes.bioField}
+        {...textAreaProps}
         // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
         autoFocus
-        autoSize
       />
     </ConfirmationModal>
   );

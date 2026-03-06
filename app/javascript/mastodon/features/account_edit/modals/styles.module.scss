@@ -6,11 +6,6 @@
 }
 
 .bioField {
-  // Override specificity of emoji text area selector.
-  &.bioField.bioField {
-    min-height: 82px;
-  }
-
   // 160px is approx the height of the modal header and footer
   max-height: calc(80vh - 160px);
 }
@@ -64,6 +59,11 @@
 
   &:hover {
     background: var(--color-bg-brand-softer);
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: 2px;
   }
 }
 

@@ -139,9 +139,9 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
         onChange={setNewLabel}
         label={intl.formatMessage(messages.editLabelField)}
         hint={intl.formatMessage(messages.editLabelHint)}
-        maxLength={RECOMMENDED_LIMIT}
+        maxLength={nameLimit}
+        counterMax={RECOMMENDED_LIMIT}
         recommended
-        max={nameLimit}
       />
 
       <EmojiTextInputField
@@ -149,9 +149,9 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
         onChange={setNewValue}
         label={intl.formatMessage(messages.editValueField)}
         hint={intl.formatMessage(messages.editValueHint)}
-        maxLength={RECOMMENDED_LIMIT}
+        maxLength={valueLimit}
+        counterMax={RECOMMENDED_LIMIT}
         recommended
-        max={valueLimit}
       />
 
       {hasLinkAndEmoji && (
