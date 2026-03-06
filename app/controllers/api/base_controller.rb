@@ -64,13 +64,15 @@ class Api::BaseController < ApplicationController
 
   def require_user!
     if !current_user
-      render json: { error: 'This method requires an authenticated user' }, status: 422
+      render json: { error: 'This method requires an authenticated user', error_code: 'auth_required' }, status: 422
     elsif !current_user.confirmed?
-      render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
+      render json: { error: 'Your login is missing a confirmed e-mail address', error_code: 'unconfirmed_email' }, status: 403
     elsif !current_user.approved?
-      render json: { error: 'Your login is currently pending approval' }, status: 403
+      render json: { error: 'Your login is currently pending approval', error_code: 'account_pending_approval' }, status: 403
+    elsif current_user.missing_2fa?
+      render json: { error: 'Your account requires two-factor authentication', error_code: 'unmet_2fa_requirement', action_url: mfa_setup_path }, status: 403
     elsif !current_user.functional?
-      render json: { error: 'Your login is currently disabled' }, status: 403
+      render json: { error: 'Your login is currently disabled', error_code: 'account_disabled' }, status: 403
     else
       update_user_sign_in
     end
