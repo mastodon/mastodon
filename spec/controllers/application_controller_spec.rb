@@ -112,7 +112,7 @@ RSpec.describe ApplicationController do
     it_behaves_like 'error response', 422
   end
 
-  describe 'before_action :check_suspension' do
+  describe 'before_action :require_functional!' do
     before do
       routes.draw { get 'success' => 'anonymous#success' }
     end
@@ -122,16 +122,28 @@ RSpec.describe ApplicationController do
       expect(response).to have_http_status(200)
     end
 
-    it 'does nothing if user who signed in is not suspended' do
+    it 'does nothing if user who signed in is functional' do
       sign_in(Fabricate(:account, suspended: false).user)
       get 'success'
       expect(response).to have_http_status(200)
     end
 
-    it 'redirects to account status page' do
+    it 'redirects to account status page if the account is suspended' do
       sign_in(Fabricate(:account, suspended: true).user)
       get 'success'
       expect(response).to redirect_to(edit_user_registration_path)
+    end
+
+    it 'redirects to account status page if the account is pending deletion' do
+      sign_in(Fabricate(:account, deleted: true).user)
+      get 'success'
+      expect(response).to redirect_to(edit_user_registration_path)
+    end
+
+    it 'redirects to auth setup page if the account is unconfirmed' do
+      sign_in(Fabricate(:user, confirmed_at: nil))
+      get 'success'
+      expect(response).to redirect_to(auth_setup_path)
     end
   end
 

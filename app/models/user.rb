@@ -107,13 +107,13 @@ class User < ApplicationRecord
   validates :date_of_birth, presence: true, date_of_birth: true, on: :create, if: -> { Setting.min_age.present? && !bypass_registration_checks? }
   validate :validate_role_elevation
 
-  scope :account_not_suspended, -> { joins(:account).merge(Account.without_suspended) }
+  scope :account_available, -> { joins(:account).merge(Account.without_suspended.without_deleted) }
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
-  scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
+  scope :active, -> { confirmed.signed_in_recently.account_available }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :matches_ip, ->(value) { left_joins(:ips).merge(IpBlock.contained_by(value)).group(users: [:id]) }
 

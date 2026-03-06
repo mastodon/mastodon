@@ -33,6 +33,33 @@ RSpec.describe 'Statuses' do
         end
       end
 
+      context 'when account is permanently deleted' do
+        before do
+          account.mark_deleted!
+          account.deletion_request.destroy
+        end
+
+        it 'returns http gone' do
+          get "/@#{account.username}/#{status.id}"
+
+          expect(response)
+            .to have_http_status(410)
+        end
+      end
+
+      context 'when account is temporarily deleted' do
+        before do
+          account.mark_deleted!
+        end
+
+        it 'returns http forbidden' do
+          get "/@#{account.username}/#{status.id}"
+
+          expect(response)
+            .to have_http_status(403)
+        end
+      end
+
       context 'when status is a reblog' do
         let(:original_account) { Fabricate(:account, domain: 'example.com') }
         let(:original_status) { Fabricate(:status, account: original_account, url: 'https://example.com/123') }
