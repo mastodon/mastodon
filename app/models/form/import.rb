@@ -67,10 +67,8 @@ class Form::Import
     return false unless valid?
 
     ApplicationRecord.transaction do
-      now = Time.now.utc
       @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched?)
-      nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
-      @bulk_import.update(total_items: nb_items)
+      @bulk_import.update(total_items: bulk_import_created_row_count)
     end
   end
 
@@ -103,6 +101,10 @@ class Form::Import
     when :lists
       ['List name', 'Account address']
     end
+  end
+
+  def bulk_import_created_row_count
+    @bulk_import.rows.insert_all(parsed_rows_data, record_timestamps: true).length
   end
 
   def csv_data
@@ -138,6 +140,10 @@ class Form::Import
 
     csv_data.rewind
     @csv_row_count = csv_data.take(ROWS_PROCESSING_LIMIT + 2).count
+  end
+
+  def parsed_rows_data
+    parsed_rows.map { |attrs| { data: attrs } }
   end
 
   def parsed_rows
