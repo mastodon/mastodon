@@ -289,7 +289,7 @@ class Account < ApplicationRecord
   end
 
   def keypair
-    @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
+    keypairs.usable.first || Keypair.from_legacy_account(self)
   end
 
   def tags_as_strings=(tag_names)
@@ -459,11 +459,11 @@ class Account < ApplicationRecord
   end
 
   before_validation :prepare_contents, if: :local?
-  before_create :generate_keys
+  after_create_commit :generate_keys
   before_destroy :clean_feed_manager
 
   def ensure_keys!
-    return unless local? && private_key.blank? && public_key.blank?
+    return unless local? && private_key.blank? && public_key.blank? && keypairs.empty?
 
     generate_keys
     save!
@@ -484,11 +484,10 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local? && private_key.blank? && public_key.blank?
+    return unless local? && private_key.blank? && public_key.blank? && keypairs.empty?
 
     keypair = OpenSSL::PKey::RSA.new(2048)
-    self.private_key = keypair.to_pem
-    self.public_key  = keypair.public_key.to_pem
+    keypairs.create!(uri: ActivityPub::TagManager.instance.key_uri_for(self), type: :rsa, public_key: keypair.public_key.to_pem, private_key: keypair.to_pem)
   end
 
   def normalize_domain

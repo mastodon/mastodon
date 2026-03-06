@@ -116,7 +116,7 @@ RSpec.describe 'ActivityPub Outboxes' do
     context 'with signature' do
       subject { get account_outbox_path(account_username: account.username, page: page), headers: nil, sign_with: remote_account }
 
-      let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+      let(:remote_account) { Fabricate(:account_with_private_key, domain: 'example.com') }
       let(:page) { 'true' }
 
       context 'when signed request account does not follow account' do

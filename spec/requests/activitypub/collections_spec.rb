@@ -65,7 +65,7 @@ RSpec.describe 'ActivityPub Collections' do
       end
 
       context 'with signature' do
-        let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+        let(:remote_account) { Fabricate(:account_with_private_key, domain: 'example.com') }
 
         context 'when getting a featured resource' do
           it 'returns http success and correct media type and expected items' do
