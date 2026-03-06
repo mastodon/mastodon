@@ -2,7 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.shared_examples 'User::Invitations' do
+RSpec.describe User::Invitations do
+  subject { User.new }
+
   describe 'Associations' do
     it { is_expected.to belong_to(:invite).optional.counter_cache(:uses) }
     it { is_expected.to have_many(:invites).inverse_of(:user).dependent(false) }
