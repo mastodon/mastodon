@@ -434,6 +434,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def tombstone_exists?
+    # TODO: take status published/updated into account to allow recovering soft-deleted posts
     Tombstone.exists?(uri: object_uri)
   end
 
