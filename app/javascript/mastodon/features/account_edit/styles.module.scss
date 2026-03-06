@@ -35,11 +35,6 @@
   }
 }
 
-.fieldName {
-  color: var(--color-text-secondary);
-  font-size: 13px;
-}
-
 .verifiedLinkHelpButton {
   font-size: 13px;
   font-weight: 600;
@@ -127,6 +122,11 @@
     &:hover {
       background-color: var(--color-bg-brand-softer);
     }
+
+    &:disabled {
+      background-color: var(--color-bg-primary);
+      opacity: 0.5;
+    }
   }
 
   svg {
@@ -139,6 +139,18 @@
   --default-icon-color: var(--color-text-error);
   --hover-bg-color: var(--color-bg-error-base-hover);
   --hover-icon-color: var(--color-text-on-error-base);
+}
+
+// Field component
+
+.fieldName {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.fieldValue {
+  color: var(--color-text-primary);
+  font-size: 15px;
 }
 
 // Item list component
