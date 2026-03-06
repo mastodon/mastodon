@@ -26,4 +26,12 @@ module RegistrationHelper
       t('auth.user_privacy_agreement_html', privacy_policy_path: privacy_policy_path)
     end
   end
+
+  def use_seamless_external_login?
+    Devise.pam_authentication || Devise.ldap_authentication
+  end
+
+  def sso_account_settings
+    ENV.fetch('SSO_ACCOUNT_SETTINGS', nil)
+  end
 end
