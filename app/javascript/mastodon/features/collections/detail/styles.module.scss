@@ -57,6 +57,18 @@
   font-size: 15px;
 }
 
+.columnSubheading {
+  background: var(--color-bg-secondary);
+  padding: 15px 20px;
+  font-size: 15px;
+  font-weight: 500;
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
+}
+
 .displayNameWithAvatar {
   display: inline-flex;
   gap: 4px;
@@ -75,4 +87,19 @@
   > :global(.account__avatar) {
     align-self: center;
   }
+}
+
+.sensitiveWarning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 460px;
+  margin: auto;
+  padding: 60px 30px;
+  gap: 20px;
+  text-align: center;
+  text-wrap: balance;
+  font-size: 15px;
+  line-height: 1.5;
+  cursor: default;
 }

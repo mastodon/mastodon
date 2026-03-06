@@ -45,11 +45,14 @@ end
 RSpec.configure do |config|
   config.before :suite do
     if search_examples_present?
+      Chewy.settings[:enabled] = true
       # Configure chewy to use `urgent` strategy to index documents
       Chewy.strategy(:urgent)
 
       # Create search data
       search_data_manager.prepare_test_data
+    else
+      Chewy.settings[:enabled] = false
     end
   end
 

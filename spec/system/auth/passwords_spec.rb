@@ -50,9 +50,8 @@ RSpec.describe 'Auth Passwords' do
 
     def submit_email_reset
       fill_in 'user_email', with: user.email
-      click_on I18n.t('auth.reset_password')
-      open_last_email
-      visit_in_email(I18n.t('devise.mailer.reset_password_instructions.action'))
+      emails = capture_emails { click_on I18n.t('auth.reset_password') }
+      visit email_links(emails.first).first
     end
 
     def set_new_password

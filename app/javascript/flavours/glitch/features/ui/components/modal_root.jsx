@@ -102,10 +102,19 @@ export const MODAL_COMPONENTS = {
   'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
   'ACCOUNT_NOTE': () => import('@/flavours/glitch/features/account_timeline/modals/note_modal').then(module => ({ default: module.AccountNoteModal })),
   'ACCOUNT_FIELD_OVERFLOW': () => import('@/flavours/glitch/features/account_timeline/modals/field_modal').then(module => ({ default: module.AccountFieldModal })),
-  'ACCOUNT_EDIT_NAME': () => import('@/flavours/glitch/features/account_edit/components/name_modal').then(module => ({ default: module.NameModal })),
-  'ACCOUNT_EDIT_BIO': () => import('@/flavours/glitch/features/account_edit/components/bio_modal').then(module => ({ default: module.BioModal })),
-  'ACCOUNT_EDIT_PROFILE_DISPLAY': () => import('@/flavours/glitch/features/account_edit/components/profile_display_modal').then(module => ({ default: module.ProfileDisplayModal })),
+  'ACCOUNT_EDIT_NAME': accountEditModal('NameModal'),
+  'ACCOUNT_EDIT_BIO': accountEditModal('BioModal'),
+  'ACCOUNT_EDIT_PROFILE_DISPLAY': accountEditModal('ProfileDisplayModal'),
+  'ACCOUNT_EDIT_VERIFY_LINKS': accountEditModal('VerifiedModal'),
+  'ACCOUNT_EDIT_FIELD_EDIT': accountEditModal('EditFieldModal'),
+  'ACCOUNT_EDIT_FIELD_DELETE': accountEditModal('DeleteFieldModal'),
+  'ACCOUNT_EDIT_FIELDS_REORDER': accountEditModal('ReorderFieldsModal'),
 };
+
+/** @arg {keyof import('@/flavours/glitch/features/account_edit/modals')} type */
+function accountEditModal(type) {
+  return () => import('@/flavours/glitch/features/account_edit/modals').then(module => ({ default: module[type] }));
+}
 
 export default class ModalRoot extends PureComponent {
 
