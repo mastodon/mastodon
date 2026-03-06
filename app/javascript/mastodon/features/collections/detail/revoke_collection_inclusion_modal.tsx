@@ -15,7 +15,8 @@ const messages = defineMessages({
   },
   revokeCollectionInclusionMessage: {
     id: 'confirmations.revoke_collection_inclusion.message',
-    defaultMessage: 'This action cannot be undone.',
+    defaultMessage:
+      "This action is permanent, and the curator won't be able to re-add you to the collection later on.",
   },
   revokeCollectionInclusionConfirm: {
     id: 'confirmations.revoke_collection_inclusion.confirm',
