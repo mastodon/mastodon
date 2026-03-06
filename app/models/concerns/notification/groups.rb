@@ -3,6 +3,8 @@
 module Notification::Groups
   extend ActiveSupport::Concern
 
+  include Redisable
+
   # `set_group_key!` needs to be updated if this list changes
   GROUPABLE_NOTIFICATION_TYPES = %i(favourite reblog follow admin.sign_up).freeze
   MAXIMUM_GROUP_SPAN_HOURS = 12
@@ -26,11 +28,11 @@ module Notification::Groups
     hour_bucket = activity.created_at.utc.to_i / 1.hour.to_i
 
     # Reuse previous group if it does not span too large an amount of time
-    previous_bucket = redis.get(redis_key).to_i
+    previous_bucket = with_redis { |redis| redis.get(redis_key) }.to_i
     hour_bucket = previous_bucket if hour_bucket < previous_bucket + MAXIMUM_GROUP_SPAN_HOURS
 
     # We do not concern ourselves with race conditions since we use hour buckets
-    redis.set(redis_key, hour_bucket, ex: MAXIMUM_GROUP_SPAN_HOURS.hours.to_i)
+    with_redis { |redis| redis.set(redis_key, hour_bucket, ex: MAXIMUM_GROUP_SPAN_HOURS.hours.to_i) }
 
     self.group_key = "#{type_prefix}-#{hour_bucket}"
   end

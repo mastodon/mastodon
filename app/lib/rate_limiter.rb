@@ -28,20 +28,22 @@ class RateLimiter
   end
 
   def record!
-    count = redis.get(key)
+    count = with_redis { |redis| redis.get(key) }
 
     if count.nil?
-      redis.set(key, 0)
-      redis.expire(key, (@period - (last_epoch_time % @period) + 1).to_i)
+      with_redis do |redis|
+        redis.set(key, 0)
+        redis.expire(key, (@period - (last_epoch_time % @period) + 1).to_i)
+      end
     end
 
     raise Mastodon::RateLimitExceededError if count.present? && count.to_i >= @limit
 
-    redis.incr(key)
+    with_redis { |redis| redis.incr(key) }
   end
 
   def rollback!
-    redis.decr(key)
+    with_redis { |redis| redis.decr(key) }
   end
 
   def to_headers(now = Time.now.utc)

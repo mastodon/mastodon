@@ -90,11 +90,11 @@ class ActivityPub::Activity
   end
 
   def delete_arrived_first?(uri)
-    redis.exists?("delete_upon_arrival:#{@account.id}:#{uri}")
+    with_redis { |redis| redis.exists?("delete_upon_arrival:#{@account.id}:#{uri}") }
   end
 
   def delete_later!(uri)
-    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, true)
+    with_redis { |redis| redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, true) }
   end
 
   def status_from_object

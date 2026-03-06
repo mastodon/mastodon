@@ -91,11 +91,11 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   # The most important thing about `last_inspected` is that any toot older than it is guaranteed
   # not to be kept by the policy regardless of its age.
   def record_last_inspected(last_id)
-    redis.set("account_cleanup:#{account_id}", last_id, ex: 2.weeks.seconds)
+    with_redis { |redis| redis.set("account_cleanup:#{account_id}", last_id, ex: 2.weeks.seconds) }
   end
 
   def last_inspected
-    redis.get("account_cleanup:#{account_id}")&.to_i
+    with_redis { |redis| redis.get("account_cleanup:#{account_id}") }&.to_i
   end
 
   def invalidate_last_inspected(status, action)
@@ -120,9 +120,9 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     if EXCEPTION_BOOLS.filter_map { |name| attribute_change_to_be_saved(name) }.include?([true, false])
       # Policy has been widened in such a way that any previously-inspected status
       # may need to be deleted, so we'll have to start again.
-      redis.del("account_cleanup:#{account_id}")
+      with_redis { |redis| redis.del("account_cleanup:#{account_id}") }
     end
-    redis.del("account_cleanup:#{account_id}") if EXCEPTION_THRESHOLDS.filter_map { |name| attribute_change_to_be_saved(name) }.any? { |old, new| old.present? && (new.nil? || new > old) }
+    with_redis { |redis| redis.del("account_cleanup:#{account_id}") } if EXCEPTION_THRESHOLDS.filter_map { |name| attribute_change_to_be_saved(name) }.any? { |old, new| old.present? && (new.nil? || new > old) }
   end
 
   def validate_local_account

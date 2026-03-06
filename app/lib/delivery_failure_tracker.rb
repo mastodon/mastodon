@@ -14,17 +14,17 @@ class DeliveryFailureTracker
   end
 
   def track_failure!
-    redis.sadd(exhausted_deliveries_key, failure_time)
+    with_redis { |redis| redis.sadd(exhausted_deliveries_key, failure_time) }
     UnavailableDomain.create(domain: @host) if reached_failure_threshold?
   end
 
   def track_success!
-    redis.del(exhausted_deliveries_key)
+    with_redis { |redis| redis.del(exhausted_deliveries_key) }
     UnavailableDomain.find_by(domain: @host)&.destroy
   end
 
   def clear_failures!
-    redis.del(exhausted_deliveries_key)
+    with_redis { |redis| redis.del(exhausted_deliveries_key) }
   end
 
   def days
@@ -34,7 +34,7 @@ class DeliveryFailureTracker
   end
 
   def failures
-    redis.scard(exhausted_deliveries_key) || 0
+    with_redis { |redis| redis.scard(exhausted_deliveries_key) } || 0
   end
 
   def available?
@@ -42,7 +42,7 @@ class DeliveryFailureTracker
   end
 
   def exhausted_deliveries_days
-    @exhausted_deliveries_days ||= redis.smembers(exhausted_deliveries_key).sort.map { |date| Date.new(date.slice(0, 4).to_i, date.slice(4, 2).to_i, date.slice(6, 2).to_i) }.uniq
+    @exhausted_deliveries_days ||= with_redis { |redis| redis.smembers(exhausted_deliveries_key) }.sort.map { |date| Date.new(date.slice(0, 4).to_i, date.slice(4, 2).to_i, date.slice(6, 2).to_i) }.uniq
   end
 
   alias reset! track_success!
@@ -70,7 +70,7 @@ class DeliveryFailureTracker
     end
 
     def warning_domains
-      domains = redis.keys(exhausted_deliveries_key_by('*')).map do |key|
+      domains = with_redis { |redis| redis.keys(exhausted_deliveries_key_by('*')) }.map do |key|
         key.delete_prefix(exhausted_deliveries_key_by(''))
       end
 
@@ -79,10 +79,10 @@ class DeliveryFailureTracker
 
     def warning_domains_map(domains = nil)
       if domains.nil?
-        warning_domains.index_with { |domain| redis.scard(exhausted_deliveries_key_by(domain)) }
+        warning_domains.index_with { |domain| with_redis { |redis| redis.scard(exhausted_deliveries_key_by(domain)) } }
       else
         domains -= UnavailableDomain.where(domain: domains).pluck(:domain)
-        domains.index_with { |domain| redis.scard(exhausted_deliveries_key_by(domain)) }.filter { |_, days| days.positive? }
+        domains.index_with { |domain| with_redis { |redis| redis.scard(exhausted_deliveries_key_by(domain)) } }.filter { |_, days| days.positive? }
       end
     end
 

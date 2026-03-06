@@ -204,7 +204,7 @@ class PostStatusService < BaseService
   end
 
   def idempotency_duplicate?
-    @idempotency_duplicate = redis.get(idempotency_key)
+    @idempotency_duplicate = with_redis { |redis| redis.get(idempotency_key) }
   end
 
   def with_idempotency

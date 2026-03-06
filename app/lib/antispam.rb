@@ -59,11 +59,11 @@ class Antispam
   end
 
   def spammy_texts
-    redis.smembers('antispam:spammy_texts')
+    with_redis { |redis| redis.smembers('antispam:spammy_texts') }
   end
 
   def all_time_spammy_texts
-    redis.smembers('antispam:all_time_spammy_texts')
+    with_redis { |redis| redis.smembers('antispam:all_time_spammy_texts') }
   end
 
   def suspicious_reply_or_mention?
