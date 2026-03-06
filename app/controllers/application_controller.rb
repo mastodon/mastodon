@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_account
   helper_method :current_session
   helper_method :single_user_mode?
-  helper_method :use_seamless_external_login?
   helper_method :sso_account_settings
   helper_method :limited_federation_mode?
   helper_method :skip_csrf_meta_tags?
@@ -106,10 +105,6 @@ class ApplicationController < ActionController::Base
 
   def single_user_mode?
     @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.without_internal.exists?
-  end
-
-  def use_seamless_external_login?
-    Devise.pam_authentication || Devise.ldap_authentication
   end
 
   def sso_account_settings
