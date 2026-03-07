@@ -19,13 +19,14 @@
 #
 
 class Announcement < ApplicationRecord
+  include Reactions
+
   scope :unpublished, -> { where(published: false) }
   scope :published, -> { where(published: true) }
   scope :chronological, -> { order(coalesced_chronology_timestamps.asc) }
   scope :reverse_chronological, -> { order(coalesced_chronology_timestamps.desc) }
 
   has_many :announcement_mutes, dependent: :destroy
-  has_many :announcement_reactions, dependent: :destroy
 
   validates :text, presence: true
   validates :starts_at, presence: true, if: :ends_at?
@@ -81,45 +82,11 @@ class Announcement < ApplicationRecord
     @emojis ||= CustomEmoji.from_text(text)
   end
 
-  def reactions(account = nil)
-    grouped_ordered_announcement_reactions.select(
-      [:name, :custom_emoji_id, 'COUNT(*) as count'].tap do |values|
-        values << value_for_reaction_me_column(account)
-      end
-    ).to_a.tap do |records|
-      ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji).call
-    end
-  end
-
   def scope_for_notification
     User.confirmed.joins(:account).merge(Account.without_suspended)
   end
 
   private
-
-  def grouped_ordered_announcement_reactions
-    announcement_reactions
-      .group(:announcement_id, :name, :custom_emoji_id)
-      .order(
-        Arel.sql('MIN(created_at)').asc
-      )
-  end
-
-  def value_for_reaction_me_column(account)
-    if account.nil?
-      'FALSE AS me'
-    else
-      <<~SQL.squish
-        EXISTS(
-          SELECT 1
-          FROM announcement_reactions inner_reactions
-          WHERE inner_reactions.account_id = #{account.id}
-            AND inner_reactions.announcement_id = announcement_reactions.announcement_id
-            AND inner_reactions.name = announcement_reactions.name
-        ) AS me
-      SQL
-    end
-  end
 
   def set_published
     return unless scheduled_at.blank? || scheduled_at.past?
