@@ -99,6 +99,10 @@ module User::HasSettings
     settings['web.use_pending_items']
   end
 
+  def setting_disable_infinite_scroll
+    settings['web.disable_infinite_scroll']
+  end
+
   def setting_trends
     settings['web.trends']
   end
