@@ -2,6 +2,12 @@
   display: flex;
   gap: 16px;
   flex-direction: column;
+  font-size: 15px;
+}
+
+.bioField {
+  // 160px is approx the height of the modal header and footer
+  max-height: calc(80vh - 160px);
 }
 
 .toggleInputWrapper {
@@ -11,6 +17,66 @@
     &:not(:first-child) {
       border-top: 1px solid var(--color-border-primary);
     }
+  }
+}
+
+.field {
+  padding: 12px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  touch-action: none;
+  position: relative;
+}
+
+.fieldNotFirst::before,
+.fieldActiveUnder::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border-primary);
+}
+
+.fieldNotFirst::before {
+  top: 0;
+}
+
+.fieldActiveUnder::after {
+  bottom: -1px; // -1px to cover the border of the next field
+}
+
+.fieldHandle {
+  grid-row: span 2;
+  padding: 8px 0;
+  align-self: center;
+  border-radius: 4px;
+  background: var(--color-bg-secondary);
+  cursor: grab;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: var(--color-bg-brand-softer);
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: 2px;
+  }
+}
+
+.fieldDragging {
+  cursor: grabbing;
+
+  p {
+    opacity: 0.7;
+  }
+
+  .fieldHandle {
+    cursor: grabbing;
+    background: var(--color-bg-brand-soft);
   }
 }
 
