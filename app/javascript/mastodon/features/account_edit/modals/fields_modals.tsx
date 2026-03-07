@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import type { Map as ImmutableMap } from 'immutable';
 
 import { Button } from '@/mastodon/components/button';
+import { Callout } from '@/mastodon/components/callout';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
 import {
   removeField,
@@ -49,12 +50,18 @@ const messages = defineMessages({
     id: 'account_edit.field_edit_modal.value_hint',
     defaultMessage: 'E.g. “example.me”',
   },
+  limitHeader: {
+    id: 'account_edit.field_edit_modal.limit_header',
+    defaultMessage: 'Recommended character limit exceeded',
+  },
   save: {
     id: 'account_edit.save',
     defaultMessage: 'Save',
   },
 });
 
+// We have two different values- the hard limit set by the server,
+// and the soft limit for mobile display.
 const selectFieldLimits = createAppSelector(
   [
     (state) =>
@@ -66,6 +73,13 @@ const selectFieldLimits = createAppSelector(
     nameLimit: accounts?.get('profile_field_name_limit'),
     valueLimit: accounts?.get('profile_field_value_limit'),
   }),
+);
+
+const RECOMMENDED_LIMIT = 40;
+
+const selectEmojiCodes = createAppSelector(
+  [(state) => state.custom_emojis],
+  (emojis) => emojis.map((emoji) => emoji.get('shortcode')).toArray(),
 );
 
 export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
@@ -85,6 +99,16 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
     !valueLimit ||
     newLabel.length > nameLimit ||
     newValue.length > valueLimit;
+
+  const customEmojiCodes = useAppSelector(selectEmojiCodes);
+  const hasLinkAndEmoji = useMemo(() => {
+    const text = `${newLabel} ${newValue}`; // Combine text, as we're searching it all.
+    const hasLink = /https?:\/\//.test(text);
+    const hasEmoji = customEmojiCodes.some((code) =>
+      text.includes(`:${code}:`),
+    );
+    return hasLink && hasEmoji;
+  }, [customEmojiCodes, newLabel, newValue]);
 
   const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
@@ -116,6 +140,8 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
         label={intl.formatMessage(messages.editLabelField)}
         hint={intl.formatMessage(messages.editLabelHint)}
         maxLength={nameLimit}
+        counterMax={RECOMMENDED_LIMIT}
+        recommended
       />
 
       <EmojiTextInputField
@@ -124,7 +150,31 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
         label={intl.formatMessage(messages.editValueField)}
         hint={intl.formatMessage(messages.editValueHint)}
         maxLength={valueLimit}
+        counterMax={RECOMMENDED_LIMIT}
+        recommended
       />
+
+      {hasLinkAndEmoji && (
+        <Callout variant='warning'>
+          <FormattedMessage
+            id='account_edit.field_edit_modal.link_emoji_warning'
+            defaultMessage='We recommend against the use of custom emoji in combination with urls. Custom fields containing both will display as text only instead of as a link, in order to prevent user confusion.'
+          />
+        </Callout>
+      )}
+
+      {(newLabel.length > RECOMMENDED_LIMIT ||
+        newValue.length > RECOMMENDED_LIMIT) && (
+        <Callout
+          variant='warning'
+          title={intl.formatMessage(messages.limitHeader)}
+        >
+          <FormattedMessage
+            id='account_edit.field_edit_modal.limit_message'
+            defaultMessage='Mobile users might not see your field in full.'
+          />
+        </Callout>
+      )}
     </ConfirmationModal>
   );
 };
@@ -162,14 +212,6 @@ export const DeleteFieldModal: FC<DialogModalProps & { fieldKey: string }> = ({
         defaultMessage='Are you sure you want to delete this custom field? This action can’t be undone.'
         tagName='p'
       />
-    </DialogModal>
-  );
-};
-
-export const RearrangeFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
-  return (
-    <DialogModal onClose={onClose} title='Not implemented yet'>
-      <p>Not implemented yet</p>
     </DialogModal>
   );
 };

@@ -8,7 +8,7 @@ vi:
     title: Giới thiệu
   accounts:
     errors:
-      cannot_be_added_to_collections: Tài khoản này không thể thêm vào bộ sưu tập.
+      cannot_be_added_to_collections: Tài khoản này không thể thêm vào gói khởi đầu.
     followers:
       other: Người theo dõi
     following:
@@ -53,7 +53,7 @@ vi:
         label: Đổi vai trò
         no_role: Chưa có vai trò
         title: Thay đổi vai trò %{username}
-      collections: Collection
+      collections: Những gói khởi đầu
       confirm: Phê duyệt
       confirmed: Đã xác minh
       confirming: Chờ xác nhận
@@ -263,7 +263,7 @@ vi:
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
         destroy_announcement_html: "%{name} đã xóa thông báo %{target}"
         destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email biến thể %{target}"
-        destroy_collection_html: "%{name} đã gỡ collection của %{target}"
+        destroy_collection_html: "%{name} đã gỡ gói khởi đầu của %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
         destroy_domain_block_html: "%{name} đã bỏ chặn máy chủ %{target}"
@@ -303,7 +303,7 @@ vi:
         unsilence_account_html: "%{name} đã bỏ ẩn %{target}"
         unsuspend_account_html: "%{name} đã bỏ vô hiệu hóa %{target}"
         update_announcement_html: "%{name} đã cập nhật thông báo %{target}"
-        update_collection_html: "%{name} đã cập nhật collection của %{target}"
+        update_collection_html: "%{name} đã cập nhật gói khởi đầu của %{target}"
         update_custom_emoji_html: "%{name} đã cập nhật emoji %{target}"
         update_domain_block_html: "%{name} đã cập nhật chặn máy chủ %{target}"
         update_ip_block_html: "%{name} đã cập nhật chặn IP %{target}"
@@ -341,7 +341,7 @@ vi:
       updated_msg: Cập nhật thông báo thành công!
     collections:
       accounts: Tài khoản
-      collection_title: Collection bởi %{name}
+      collection_title: Gói khởi đầu bởi %{name}
       contents: Nội dung
       number_of_accounts:
         other: "%{count} tài khoản"
@@ -677,7 +677,7 @@ vi:
       cancel: Hủy bỏ
       category: Phân loại
       category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
-      collections: Collection (%{count})
+      collections: Gói khởi đầu (%{count})
       comment:
         none: Không có mô tả
       comment_description_html: "%{name} cho biết thêm:"

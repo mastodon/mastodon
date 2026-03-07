@@ -33,6 +33,7 @@ export const VerifiedModal: FC<DialogModalProps> = ({ onClose }) => {
         />
       }
       noCancelButton
+      wrapperClassName={classes.wrapper}
     >
       <FormattedMessage
         id='account_edit.verified_modal.details'

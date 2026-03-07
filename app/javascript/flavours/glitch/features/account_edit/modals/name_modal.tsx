@@ -66,7 +66,7 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
         value={newName}
         onChange={setNewName}
         aria-labelledby={titleId}
-        maxLength={maxLength}
+        counterMax={maxLength}
         label=''
         // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
         autoFocus

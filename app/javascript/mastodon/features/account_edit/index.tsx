@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { EditButton } from './components/edit_button';
+import { AccountField } from './components/field';
 import { AccountFieldActions } from './components/field_actions';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
@@ -99,6 +100,16 @@ export const AccountEdit: FC = () => {
     void dispatch(fetchProfile());
   }, [dispatch]);
 
+  const maxFieldCount = useAppSelector(
+    (state) =>
+      (state.server.getIn([
+        'server',
+        'configuration',
+        'accounts',
+        'max_profile_fields',
+      ]) as number | undefined) ?? 4,
+  );
+
   const handleOpenModal = useCallback(
     (type: ModalType, props?: Record<string, unknown>) => {
       dispatch(openModal({ modalType: type, modalProps: props ?? {} }));
@@ -110,6 +121,12 @@ export const AccountEdit: FC = () => {
   }, [handleOpenModal]);
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
+  }, [handleOpenModal]);
+  const handleCustomFieldAdd = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_FIELD_EDIT');
+  }, [handleOpenModal]);
+  const handleCustomFieldReorder = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_FIELDS_REORDER');
   }, [handleOpenModal]);
   const handleCustomFieldsVerifiedHelp = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_VERIFY_LINKS');
@@ -186,25 +203,44 @@ export const AccountEdit: FC = () => {
           title={messages.customFieldsTitle}
           description={messages.customFieldsPlaceholder}
           showDescription={!hasFields}
-        >
-          <ol>
-            {profile.fields.map((field) => (
-              <li key={field.id} className={classes.field}>
-                <div>
-                  <EmojiHTML
-                    htmlString={field.name}
-                    className={classes.fieldName}
-                    {...htmlHandlers}
+          buttons={
+            <>
+              {profile.fields.length > 1 && (
+                <Button
+                  className={classes.editButton}
+                  onClick={handleCustomFieldReorder}
+                >
+                  <FormattedMessage
+                    id='account_edit.custom_fields.reorder_button'
+                    defaultMessage='Reorder fields'
                   />
-                  <EmojiHTML htmlString={field.value} {...htmlHandlers} />
-                </div>
-                <AccountFieldActions
-                  item={intl.formatMessage(messages.customFieldsName)}
-                  id={field.id}
+                </Button>
+              )}
+              {hasFields && (
+                <EditButton
+                  item={messages.customFieldsName}
+                  onClick={handleCustomFieldAdd}
+                  disabled={profile.fields.length >= maxFieldCount}
                 />
-              </li>
-            ))}
-          </ol>
+              )}
+            </>
+          }
+        >
+          {hasFields && (
+            <ol>
+              {profile.fields.map((field) => (
+                <li key={field.id} className={classes.field}>
+                  <div>
+                    <AccountField {...field} {...htmlHandlers} />
+                  </div>
+                  <AccountFieldActions
+                    item={intl.formatMessage(messages.customFieldsName)}
+                    id={field.id}
+                  />
+                </li>
+              ))}
+            </ol>
+          )}
           <Button
             onClick={handleCustomFieldsVerifiedHelp}
             className={classes.verifiedLinkHelpButton}
