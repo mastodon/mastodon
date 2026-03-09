@@ -80,7 +80,7 @@ RSpec.describe ActivityPub::Activity::Add do
     end
   end
 
-  context 'when the target is a collection' do
+  context 'when the target is a collection', feature: :collections_federation do
     subject { described_class.new(activity_json, collection.account) }
 
     let(:collection) { Fabricate(:remote_collection) }
