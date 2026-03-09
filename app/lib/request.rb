@@ -295,7 +295,7 @@ class Request
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
             addresses = dns.getaddresses(host)
-            addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
+            addresses = addresses.grep(Resolv::IPv6).take(2) + addresses.grep_v(Resolv::IPv6).take(2)
           end
         end
 

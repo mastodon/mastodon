@@ -103,3 +103,24 @@
   line-height: 1.5;
   cursor: default;
 }
+
+.revokeControlWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: -10px;
+  padding-bottom: 16px;
+  padding-inline: calc(26px + var(--avatar-width)) 16px;
+
+  :global(.button) {
+    min-width: 30%;
+    white-space: normal;
+  }
+
+  --avatar-width: 46px;
+
+  @container (width < 360px) {
+    --avatar-width: 35px;
+  }
+}

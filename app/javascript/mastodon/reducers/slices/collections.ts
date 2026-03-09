@@ -9,6 +9,7 @@ import {
   apiDeleteCollection,
   apiAddCollectionItem,
   apiRemoveCollectionItem,
+  apiRevokeCollectionInclusion,
 } from '@/mastodon/api/collections';
 import type {
   ApiCollectionJSON,
@@ -17,6 +18,7 @@ import type {
 } from '@/mastodon/api_types/collections';
 import { me } from '@/mastodon/initial_state';
 import {
+  createAppAsyncThunk,
   createAppSelector,
   createDataLoadingThunk,
 } from '@/mastodon/store/typed_functions';
@@ -158,7 +160,10 @@ const collectionSlice = createSlice({
      * Removing an account from a collection
      */
 
-    builder.addCase(removeCollectionItem.fulfilled, (state, action) => {
+    const removeAccountFromCollection = (
+      state: CollectionState,
+      action: { meta: { arg: { itemId: string; collectionId: string } } },
+    ) => {
       const { itemId, collectionId } = action.meta.arg;
 
       const collection = state.collections[collectionId];
@@ -167,7 +172,17 @@ const collectionSlice = createSlice({
           (item) => item.id !== itemId,
         );
       }
-    });
+    };
+
+    builder.addCase(
+      removeCollectionItem.fulfilled,
+      removeAccountFromCollection,
+    );
+
+    builder.addCase(
+      revokeCollectionInclusion.fulfilled,
+      removeAccountFromCollection,
+    );
   },
 });
 
@@ -216,6 +231,12 @@ export const removeCollectionItem = createDataLoadingThunk(
   `${collectionSlice.name}/removeCollectionItem`,
   ({ collectionId, itemId }: { collectionId: string; itemId: string }) =>
     apiRemoveCollectionItem(collectionId, itemId),
+);
+
+export const revokeCollectionInclusion = createAppAsyncThunk(
+  `${collectionSlice.name}/revokeCollectionInclusion`,
+  ({ collectionId, itemId }: { collectionId: string; itemId: string }) =>
+    apiRevokeCollectionInclusion(collectionId, itemId),
 );
 
 export const collections = collectionSlice.reducer;
