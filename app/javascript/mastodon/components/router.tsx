@@ -17,6 +17,9 @@ import { isDevelopment } from 'mastodon/utils/environment';
 interface MastodonLocationState {
   fromMastodon?: boolean;
   mastodonModalKey?: string;
+  // Prevent the rightmost column in advanced UI from scrolling
+  // into view on location changes
+  preventMultiColumnAutoScroll?: string;
 }
 
 export type LocationState = MastodonLocationState | null | undefined;
