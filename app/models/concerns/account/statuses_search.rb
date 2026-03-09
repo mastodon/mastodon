@@ -3,11 +3,6 @@
 module Account::StatusesSearch
   extend ActiveSupport::Concern
 
-  included do
-    after_update_commit :enqueue_update_public_statuses_index, if: :saved_change_to_indexable?
-    after_destroy_commit :enqueue_remove_from_public_statuses_index, if: :indexable?
-  end
-
   def enqueue_update_public_statuses_index
     if indexable?
       enqueue_add_to_public_statuses_index
