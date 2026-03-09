@@ -173,6 +173,7 @@ class Status < ApplicationRecord
                    preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                    account: [:account_stat, user: :role],
                    active_mentions: :account,
+                   tagged_objects: :object,
                    reblog: [
                      :application,
                      :media_attachments,
