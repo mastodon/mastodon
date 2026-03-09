@@ -182,9 +182,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_metadata!
-    @raw_tags     = []
+    @raw_tags = []
     @raw_mentions = []
-    @raw_emojis   = []
+    @raw_tagged_objects = []
+    @raw_emojis = []
 
     as_array(@json['tag']).each do |tag|
       if equals_or_includes?(tag['type'], 'Hashtag')
@@ -193,10 +194,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         @raw_mentions << tag['href'] if tag['href'].present?
       elsif equals_or_includes?(tag['type'], 'Emoji')
         @raw_emojis << tag
+      elsif equals_or_includes?(tag['type'], 'FeaturedCollection')
+        @raw_tagged_objects << tag if tag['id']
       end
     end
 
     update_tags!
+    update_tagged_objects!
     update_mentions!
     update_emojis!
     update_quote!
@@ -227,6 +231,24 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         featured_tag.decrement(@status)
       end
     end
+  end
+
+  def update_tagged_objects!
+    current_tagged_objects = @raw_tagged_objects.filter_map do |tagged_object|
+      url = tagged_object['id']
+
+      # TODO: We probably want to resolve unknown objects at authoring time
+      ActivityPub::TagManager.instance.uri_to_resource(url, Collection)
+    end
+
+    # Any previously-unresolved URI would be resolved here
+    @status.tagged_objects.upsert_all(
+      current_tagged_objects.uniq.map { |object| { object_type: object.class.name, object_id: object.id, uri: ActivityPub::TagManager.instance.uri_for(object), ap_type: 'FeaturedCollection' } },
+      unique_by: %w(status_id uri)
+    )
+
+    # Remove unused links
+    @status.tagged_objects.where.not(uri: current_tagged_objects.map { |object| ActivityPub::TagManager.instance.uri_for(object) }).delete_all
   end
 
   def update_mentions!
