@@ -29,7 +29,7 @@ interface ConfirmationModalProps {
   cancel?: React.ReactNode;
   secondary?: React.ReactNode;
   onSecondary?: () => void;
-  onConfirm: () => void;
+  onConfirm: () => void | Promise<void>;
   noCloseOnConfirm?: boolean;
   extraContent?: React.ReactNode;
   children?: React.ReactNode;
@@ -64,7 +64,7 @@ export const ConfirmationModal: React.FC<
       onClose();
     }
 
-    onConfirm();
+    void onConfirm();
   }, [onClose, onConfirm, noCloseOnConfirm]);
 
   const handleSecondary = useCallback(() => {

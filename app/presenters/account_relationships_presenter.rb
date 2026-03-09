@@ -60,7 +60,7 @@ class AccountRelationshipsPresenter
     Rails.cache.write_multi(to_cache, expires_in: 1.day)
 
     # Return formatted value
-    @accounts.each_with_object({}) { |account, h| h[account.id] = blocks_by_domain[account.domain] }
+    @accounts.to_h { |account| [account.id, blocks_by_domain[account.domain]] }
   end
 
   def cached

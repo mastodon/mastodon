@@ -86,6 +86,7 @@ export const MODAL_COMPONENTS = {
   'REPORT': ReportModal,
   'REPORT_COLLECTION': ReportCollectionModal,
   'SHARE_COLLECTION': () => import('@/flavours/glitch/features/collections/detail/share_modal').then(module => ({ default: module.CollectionShareModal })),
+  'REVOKE_COLLECTION_INCLUSION': () => import('@/flavours/glitch/features/collections/detail/revoke_collection_inclusion_modal').then(module => ({ default: module.RevokeCollectionInclusionModal })),
   'SETTINGS': SettingsModal,
   'DEPRECATED_SETTINGS': () => Promise.resolve({ default: DeprecatedSettingsModal }),
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
