@@ -2,17 +2,23 @@ import { Fragment, useCallback, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { Button } from '@/mastodon/components/button';
-import { useRelationship } from '@/mastodon/hooks/useRelationship';
-import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
+import { openModal } from 'mastodon/actions/modal';
+import type {
+  ApiCollectionJSON,
+  CollectionAccountItem,
+} from 'mastodon/api_types/collections';
 import { Account } from 'mastodon/components/account';
+import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
 import {
   Article,
   ItemList,
 } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
+import { useDismissible } from 'mastodon/hooks/useDismissible';
+import { useRelationship } from 'mastodon/hooks/useRelationship';
 import { me } from 'mastodon/initial_state';
+import { useAppDispatch } from 'mastodon/store';
 
 import classes from './styles.module.scss';
 
@@ -59,6 +65,52 @@ const AccountItem: React.FC<{
       withBorder={withBorder}
       id={accountId}
     />
+  );
+};
+
+const RevokeControls: React.FC<{
+  collectionId: string;
+  collectionItem: CollectionAccountItem;
+}> = ({ collectionId, collectionItem }) => {
+  const dispatch = useAppDispatch();
+
+  const confirmRevoke = useCallback(() => {
+    void dispatch(
+      openModal({
+        modalType: 'REVOKE_COLLECTION_INCLUSION',
+        modalProps: {
+          collectionId,
+          collectionItemId: collectionItem.id,
+        },
+      }),
+    );
+  }, [collectionId, collectionItem.id, dispatch]);
+
+  const { wasDismissed, dismiss } = useDismissible(
+    `collection-revoke-hint-${collectionItem.id}`,
+  );
+
+  if (wasDismissed) {
+    return null;
+  }
+
+  return (
+    <div className={classes.revokeControlWrapper}>
+      <Button secondary onClick={dismiss}>
+        <FormattedMessage
+          id='collections.detail.accept_inclusion'
+          defaultMessage='Okay'
+          tagName={Fragment}
+        />
+      </Button>
+      <Button secondary onClick={confirmRevoke}>
+        <FormattedMessage
+          id='collections.detail.revoke_inclusion'
+          defaultMessage='Remove me'
+          tagName={Fragment}
+        />
+      </Button>
+    </div>
   );
 };
 
@@ -165,6 +217,10 @@ export const CollectionAccountsList: React.FC<{
               withBorder={false}
               accountId={currentUserInCollection.account_id}
               collectionOwnerId={collection.account_id}
+            />
+            <RevokeControls
+              collectionId={collection.id}
+              collectionItem={currentUserInCollection}
             />
           </Article>
           <h3
