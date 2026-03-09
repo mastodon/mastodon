@@ -80,6 +80,7 @@ class PostStatusService < BaseService
     process_mentions_service.call(@status, save_records: false)
     safeguard_mentions!(@status)
     safeguard_private_mention_quote!(@status)
+    attach_tagged_objects!(@status)
     attach_quote!(@status)
 
     antispam = Antispam.new(@status)
@@ -109,6 +110,10 @@ class PostStatusService < BaseService
     status.quote.ensure_quoted_access
 
     status.quote.accept! if @quoted_status.local? && StatusPolicy.new(@status.account, @quoted_status).quote?
+  end
+
+  def attach_tagged_objects!(status)
+    ProcessLinksService.new.call(status)
   end
 
   def safeguard_mentions!(status)
