@@ -47,6 +47,7 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
           openModal({
             modalType: 'INTERACTION',
             modalProps: {
+              intent: 'reblog',
               accountId: status.getIn(['account', 'id']),
               url: status.get('uri'),
             },
@@ -120,6 +121,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
       openModal({
         modalType: 'INTERACTION',
         modalProps: {
+          intent: 'reblog',
           accountId: status.getIn(['account', 'id']),
           url: status.get('uri'),
         },

@@ -110,6 +110,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
+            intent: 'vote',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
