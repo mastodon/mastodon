@@ -158,24 +158,23 @@ class SwitchingColumnsArea extends PureComponent {
     const { signedIn } = this.props.identity;
     const pathName = this.props.location.pathname;
 
-    let redirect;
-
+    let rootRedirect;
     if (signedIn) {
       if (forceOnboarding) {
-        redirect = <Redirect from='/' to='/start' exact />;
+        rootRedirect = '/start';
       } else if (singleColumn) {
-        redirect = <Redirect from='/' to='/home' exact />;
+        rootRedirect = '/home';
       } else {
-        redirect = <Redirect from='/' to='/deck/getting-started' exact />;
+        rootRedirect = '/deck/getting-started';
       }
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
-      redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
+      rootRedirect = `/@${initialState.accounts[owner].username}`;
     } else if (trendsEnabled && landingPage === 'trends') {
-      redirect = <Redirect from='/' to='/explore' exact />;
+      rootRedirect = '/explore';
     } else if (localLiveFeedAccess === 'public' && landingPage === 'local_feed') {
-      redirect = <Redirect from='/' to='/public/local' exact />;
+      rootRedirect = '/public/local';
     } else {
-      redirect = <Redirect from='/' to='/about' exact />;
+      rootRedirect = '/about';
     }
 
     const profileRedesignRoutes = [];
@@ -196,7 +195,7 @@ class SwitchingColumnsArea extends PureComponent {
       <ColumnsContextProvider multiColumn={!singleColumn}>
         <ColumnsArea ref={this.setRef} singleColumn={singleColumn}>
           <WrappedSwitch>
-            {redirect}
+            <Redirect from='/' to={{pathname: rootRedirect, state: this.props.location.state}} exact />
 
             {singleColumn ? <Redirect from='/deck' to='/home' exact /> : null}
             {singleColumn && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={{...this.props.location, pathname: pathName.slice(5)}} /> : null}
