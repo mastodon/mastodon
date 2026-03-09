@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ActivityPub::ProcessFeaturedItemService do
   subject { described_class.new }
 
-  let(:collection) { Fabricate(:remote_collection) }
+  let(:collection) { Fabricate(:remote_collection, uri: 'https://other.example.com/collection/1') }
   let(:featured_item_json) do
     {
       '@context' => 'https://www.w3.org/ns/activitystreams',
@@ -24,9 +24,25 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
     allow(ActivityPub::VerifyFeaturedItemService).to receive(:new).and_return(stubbed_service)
   end
 
+  shared_examples 'non-matching URIs' do
+    context "when the item's URI does not match the collection's" do
+      let(:collection) { Fabricate(:remote_collection) }
+
+      it 'does not create a collection item and returns `nil`' do
+        expect do
+          expect(subject.call(collection, object)).to be_nil
+        end.to_not change(CollectionItem, :count)
+      end
+    end
+  end
+
   context 'when the collection item is inlined' do
+    let(:object) { featured_item_json }
+
+    it_behaves_like 'non-matching URIs'
+
     it 'creates and verifies the item' do
-      expect { subject.call(collection, featured_item_json) }.to change(collection.collection_items, :count).by(1)
+      expect { subject.call(collection, object) }.to change(collection.collection_items, :count).by(1)
 
       expect(stubbed_service).to have_received(:call)
 
@@ -37,8 +53,9 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
   end
 
   context 'when only the id of the collection item is given' do
+    let(:object) { featured_item_json['id'] }
     let(:featured_item_request) do
-      stub_request(:get, featured_item_json['id'])
+      stub_request(:get, object)
         .to_return_json(
           status: 200,
           body: featured_item_json,
@@ -50,8 +67,10 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
       featured_item_request
     end
 
+    it_behaves_like 'non-matching URIs'
+
     it 'fetches the collection item' do
-      expect { subject.call(collection, featured_item_json['id']) }.to change(collection.collection_items, :count).by(1)
+      expect { subject.call(collection, object) }.to change(collection.collection_items, :count).by(1)
 
       expect(featured_item_request).to have_been_requested
 
