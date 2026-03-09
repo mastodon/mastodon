@@ -136,7 +136,9 @@ class SwitchingColumnsArea extends PureComponent {
   }
 
   handleChildrenContentChange() {
-    if (!this.props.singleColumn) {
+    const {preventMultiColumnAutoScroll} = this.props.location.state ?? {};
+
+    if (!this.props.singleColumn && !preventMultiColumnAutoScroll) {
       const isRtlLayout = document.getElementsByTagName('body')[0]
         ?.classList.contains('rtl');
   	  const modifier = isRtlLayout ? -1 : 1;
