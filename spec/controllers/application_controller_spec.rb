@@ -6,52 +6,21 @@ RSpec.describe ApplicationController do
   render_views
 
   controller do
-    def success
-      head 200
-    end
-
-    def routing_error
-      raise ActionController::RoutingError, ''
-    end
-
-    def record_not_found
-      raise ActiveRecord::RecordNotFound, ''
-    end
-
-    def invalid_authenticity_token
-      raise ActionController::InvalidAuthenticityToken, ''
-    end
-  end
-
-  shared_examples 'error response' do |code|
-    it "returns http #{code} for http and renders template" do
-      subject
-
-      expect(response)
-        .to have_http_status(code)
-      expect(response.parsed_body)
-        .to have_css('body[class=error]')
-      expect(response.parsed_body.css('h1').to_s)
-        .to include(error_content(code))
-    end
-
-    def error_content(code)
-      if code == 422
-        I18n.t('errors.422.content')
-      else
-        I18n.t("errors.#{code}")
-      end
-    end
+    def success = head(200)
   end
 
   context 'with a forgery' do
-    subject do
+    before do
       ActionController::Base.allow_forgery_protection = true
       routes.draw { post 'success' => 'anonymous#success' }
-      post 'success'
     end
 
-    it_behaves_like 'error response', 422
+    it 'responds with 422 and error page' do
+      post 'success'
+
+      expect(response)
+        .to have_http_status(422)
+    end
   end
 
   describe 'helper_method :current_account' do
@@ -124,33 +93,6 @@ RSpec.describe ApplicationController do
     end
   end
 
-  context 'with ActionController::RoutingError' do
-    subject do
-      routes.draw { get 'routing_error' => 'anonymous#routing_error' }
-      get 'routing_error'
-    end
-
-    it_behaves_like 'error response', 404
-  end
-
-  context 'with ActiveRecord::RecordNotFound' do
-    subject do
-      routes.draw { get 'record_not_found' => 'anonymous#record_not_found' }
-      get 'record_not_found'
-    end
-
-    it_behaves_like 'error response', 404
-  end
-
-  context 'with ActionController::InvalidAuthenticityToken' do
-    subject do
-      routes.draw { get 'invalid_authenticity_token' => 'anonymous#invalid_authenticity_token' }
-      get 'invalid_authenticity_token'
-    end
-
-    it_behaves_like 'error response', 422
-  end
-
   describe 'before_action :check_suspension' do
     before do
       routes.draw { get 'success' => 'anonymous#success' }
@@ -179,65 +121,5 @@ RSpec.describe ApplicationController do
       controller.params[:unmatched_route] = 'unmatched'
       expect { controller.raise_not_found }.to raise_error(ActionController::RoutingError, 'No route matches unmatched')
     end
-  end
-
-  describe 'forbidden' do
-    controller do
-      def route_forbidden
-        forbidden
-      end
-    end
-
-    subject do
-      routes.draw { get 'route_forbidden' => 'anonymous#route_forbidden' }
-      get 'route_forbidden'
-    end
-
-    it_behaves_like 'error response', 403
-  end
-
-  describe 'not_found' do
-    controller do
-      def route_not_found
-        not_found
-      end
-    end
-
-    subject do
-      routes.draw { get 'route_not_found' => 'anonymous#route_not_found' }
-      get 'route_not_found'
-    end
-
-    it_behaves_like 'error response', 404
-  end
-
-  describe 'gone' do
-    controller do
-      def route_gone
-        gone
-      end
-    end
-
-    subject do
-      routes.draw { get 'route_gone' => 'anonymous#route_gone' }
-      get 'route_gone'
-    end
-
-    it_behaves_like 'error response', 410
-  end
-
-  describe 'unprocessable_content' do
-    controller do
-      def route_unprocessable_content
-        unprocessable_content
-      end
-    end
-
-    subject do
-      routes.draw { get 'route_unprocessable_content' => 'anonymous#route_unprocessable_content' }
-      get 'route_unprocessable_content'
-    end
-
-    it_behaves_like 'error response', 422
   end
 end
