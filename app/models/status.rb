@@ -362,7 +362,7 @@ class Status < ApplicationRecord
 
   class << self
     def favourites_map(status_ids, account_id)
-      Favourite.select(:status_id).where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |f, h| h[f.status_id] = true }
+      Favourite.select(:status_id).where(status_id: status_ids).where(account_id: account_id).to_h { |f| [f.status_id, true] }
     end
 
     def bookmarks_map(status_ids, account_id)
@@ -370,15 +370,15 @@ class Status < ApplicationRecord
     end
 
     def reblogs_map(status_ids, account_id)
-      unscoped.select(:reblog_of_id).where(reblog_of_id: status_ids).where(account_id: account_id).each_with_object({}) { |s, h| h[s.reblog_of_id] = true }
+      unscoped.select(:reblog_of_id).where(reblog_of_id: status_ids).where(account_id: account_id).to_h { |s| [s.reblog_of_id, true] }
     end
 
     def mutes_map(conversation_ids, account_id)
-      ConversationMute.select(:conversation_id).where(conversation_id: conversation_ids).where(account_id: account_id).each_with_object({}) { |m, h| h[m.conversation_id] = true }
+      ConversationMute.select(:conversation_id).where(conversation_id: conversation_ids).where(account_id: account_id).to_h { |m| [m.conversation_id, true] }
     end
 
     def pins_map(status_ids, account_id)
-      StatusPin.select(:status_id).where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |p, h| h[p.status_id] = true }
+      StatusPin.select(:status_id).where(status_id: status_ids).where(account_id: account_id).to_h { |p| [p.status_id, true] }
     end
 
     def from_text(text)

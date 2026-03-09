@@ -5,12 +5,12 @@ module Account::Mappings
 
   class_methods do
     def following_map(target_account_ids, account_id)
-      Follow.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow, mapping|
-        mapping[follow.target_account_id] = {
+      Follow.where(target_account_id: target_account_ids, account_id: account_id).to_h do |follow|
+        [follow.target_account_id, {
           reblogs: follow.show_reblogs?,
           notify: follow.notify?,
           languages: follow.languages,
-        }
+        }]
       end
     end
 
@@ -36,21 +36,21 @@ module Account::Mappings
     end
 
     def muting_map(target_account_ids, account_id)
-      Mute.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |mute, mapping|
-        mapping[mute.target_account_id] = {
+      Mute.where(target_account_id: target_account_ids, account_id: account_id).to_h do |mute|
+        [mute.target_account_id, {
           notifications: mute.hide_notifications?,
           expires_at: mute.expires_at,
-        }
+        }]
       end
     end
 
     def requested_map(target_account_ids, account_id)
-      FollowRequest.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow_request, mapping|
-        mapping[follow_request.target_account_id] = {
+      FollowRequest.where(target_account_id: target_account_ids, account_id: account_id).to_h do |follow_request|
+        [follow_request.target_account_id, {
           reblogs: follow_request.show_reblogs?,
           notify: follow_request.notify?,
           languages: follow_request.languages,
-        }
+        }]
       end
     end
 
@@ -69,10 +69,10 @@ module Account::Mappings
     end
 
     def account_note_map(target_account_ids, account_id)
-      AccountNote.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |note, mapping|
-        mapping[note.target_account_id] = {
+      AccountNote.where(target_account_id: target_account_ids, account_id: account_id).to_h do |note|
+        [note.target_account_id, {
           comment: note.comment,
-        }
+        }]
       end
     end
 
