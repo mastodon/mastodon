@@ -33,6 +33,10 @@ const messages = defineMessages({
     id: 'collections.report_collection',
     defaultMessage: 'Report this collection',
   },
+  revoke: {
+    id: 'collections.revoke_collection_inclusion',
+    defaultMessage: 'Remove myself from this collection',
+  },
   more: { id: 'status.more', defaultMessage: 'More' },
 });
 
@@ -71,6 +75,22 @@ export const CollectionMenu: React.FC<{
     );
   }, [collection, dispatch]);
 
+  const currentAccountInCollection = collection.items.find(
+    (item) => item.account_id === me,
+  );
+
+  const openRevokeConfirmation = useCallback(() => {
+    void dispatch(
+      openModal({
+        modalType: 'REVOKE_COLLECTION_INCLUSION',
+        modalProps: {
+          collectionId: collection.id,
+          collectionItemId: currentAccountInCollection?.id,
+        },
+      }),
+    );
+  }, [collection.id, currentAccountInCollection?.id, dispatch]);
+
   const menu = useMemo(() => {
     if (isOwnCollection) {
       const commonItems: MenuItem[] = [
@@ -99,34 +119,43 @@ export const CollectionMenu: React.FC<{
       } else {
         return commonItems;
       }
-    } else if (ownerAccount) {
-      const items: MenuItem[] = [
-        {
-          text: intl.formatMessage(messages.report),
-          action: openReportModal,
-        },
-      ];
-      const featuredCollectionsPath = `/@${ownerAccount.acct}/featured`;
-      // Don't show menu link to featured collections while on that very page
-      if (
-        !matchPath(location.pathname, {
-          path: featuredCollectionsPath,
-          exact: true,
-        })
-      ) {
-        items.unshift(
-          ...[
-            {
-              text: intl.formatMessage(messages.viewOtherCollections),
-              to: featuredCollectionsPath,
-            },
-            null,
-          ],
-        );
-      }
-      return items;
     } else {
-      return [];
+      const items: MenuItem[] = [];
+
+      if (ownerAccount) {
+        const featuredCollectionsPath = `/@${ownerAccount.acct}/featured`;
+        // Don't show menu link to featured collections while on that very page
+        if (
+          !matchPath(location.pathname, {
+            path: featuredCollectionsPath,
+            exact: true,
+          })
+        ) {
+          items.push(
+            ...[
+              {
+                text: intl.formatMessage(messages.viewOtherCollections),
+                to: featuredCollectionsPath,
+              },
+              null,
+            ],
+          );
+        }
+      }
+
+      if (currentAccountInCollection) {
+        items.push({
+          text: intl.formatMessage(messages.revoke),
+          action: openRevokeConfirmation,
+        });
+      }
+
+      items.push({
+        text: intl.formatMessage(messages.report),
+        action: openReportModal,
+      });
+
+      return items;
     }
   }, [
     isOwnCollection,
@@ -134,6 +163,8 @@ export const CollectionMenu: React.FC<{
     id,
     openDeleteConfirmation,
     context,
+    currentAccountInCollection,
+    openRevokeConfirmation,
     ownerAccount,
     openReportModal,
   ]);
