@@ -11,10 +11,8 @@ RSpec.configure do |config|
     end
   end
 
-  config.around :each, :search do |example|
-    search_indices.each(&:reset!)
-    example.run
-    search_indices.each(&:delete!)
+  config.after :each, :search do
+    search_indices.each(&:delete)
   end
 
   private
