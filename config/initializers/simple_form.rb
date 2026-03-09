@@ -2,36 +2,8 @@
 
 # Use this setup block to configure all options available in SimpleForm.
 
-module AppendComponent
-  def append(_wrapper_options = nil)
-    @append ||= begin
-      options[:append].to_s.html_safe if options[:append].present? # rubocop:disable Rails/OutputSafety
-    end
-  end
-end
-
-module RecommendedComponent
-  def recommended(_wrapper_options = nil)
-    return unless options[:recommended]
-
-    key = options[:recommended].is_a?(Symbol) ? options[:recommended] : :recommended
-    options[:label_text] = ->(raw_label_text, _required_label_text, _label_present) { safe_join([raw_label_text, ' ', content_tag(:span, I18n.t(key, scope: 'simple_form'), class: key)]) }
-
-    nil
-  end
-end
-
-module WarningHintComponent
-  def warning_hint(_wrapper_options = nil)
-    @warning_hint ||= begin
-      options[:warning_hint].to_s.html_safe if options[:warning_hint].present? # rubocop:disable Rails/OutputSafety
-    end
-  end
-end
-
-SimpleForm.include_component(AppendComponent)
-SimpleForm.include_component(RecommendedComponent)
-SimpleForm.include_component(WarningHintComponent)
+# config/initializers/simple_form.rb
+Rails.root.glob('lib/components/**/*.rb').each { |f| require f }
 
 SimpleForm.setup do |config|
   # Wrappers are used by the form builder to generate a
