@@ -13,6 +13,10 @@ class REST::CollectionSerializer < ActiveModel::Serializer
     object.id.to_s
   end
 
+  def description
+    object.local? ? object.description : object.description_html
+  end
+
   def items
     object.items_for(current_user&.account)
   end
