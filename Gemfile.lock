@@ -709,7 +709,8 @@ GEM
     readline (0.0.4)
       reline
     redcarpet (3.6.1)
-    redis (4.8.1)
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
     redis-client (0.28.0)
       connection_pool
     regexp_parser (2.11.3)
@@ -1055,7 +1056,7 @@ DEPENDENCIES
   rails-i18n (~> 8.0)
   rdf-normalize (~> 0.5)
   redcarpet (~> 3.6)
-  redis (~> 4.5)
+  redis (~> 5)
   rqrcode (~> 3.0)
   rspec-github (~> 3.0)
   rspec-rails (~> 8.0)
