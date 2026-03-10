@@ -26,13 +26,10 @@ RSpec.describe Account::StatusesSearch, :inline_jobs do
       end
 
       context 'when the non-indexable account becomes indexable' do
-        before { account.update! indexable: true }
-
         it 'does have public index statuses' do
-          expect(public_statuses_results.count)
-            .to eq(account.statuses.public_visibility.count)
-          expect(statuses_results.count)
-            .to eq(account.statuses.count)
+          expect { account.update! indexable: true }
+            .to change(public_statuses_results, :count).to(account.statuses.public_visibility.count)
+            .and not_change(statuses_results, :count).from(account.statuses.count)
         end
       end
     end
@@ -50,13 +47,10 @@ RSpec.describe Account::StatusesSearch, :inline_jobs do
       end
 
       context 'when the indexable account becomes non-indexable' do
-        before { account.update! indexable: false }
-
         it 'does not have public index statuses' do
-          expect(public_statuses_results.count)
-            .to eq(0)
-          expect(statuses_results.count)
-            .to eq(account.statuses.count)
+          expect { account.update! indexable: false }
+            .to change(public_statuses_results, :count).to(0)
+            .and not_change(statuses_results, :count).from(account.statuses.count)
         end
       end
     end

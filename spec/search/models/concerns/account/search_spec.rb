@@ -7,10 +7,10 @@ RSpec.describe Account::Search do
     let(:results) { AccountsIndex.filter(term: { username: account.username }) }
 
     context 'with a non-discoverable account' do
-      let(:account) { Fabricate :account, discoverable: false }
+      let(:account) { Fabricate :account, discoverable: false, note: 'Account note' }
 
-      context 'when looking for the account' do
-        it 'is missing from the AccountsIndex' do
+      context 'when looking for the non discoverable account' do
+        it 'is missing account bio in the AccountsIndex' do
           expect(results.count)
             .to eq(1)
           expect(results.first.text)
@@ -19,13 +19,10 @@ RSpec.describe Account::Search do
       end
 
       context 'when the account becomes discoverable' do
-        before { account.update! discoverable: true }
-
-        it 'is present in the AccountsIndex' do
-          expect(results.count)
-            .to eq(1)
-          expect(results.first.text)
-            .to eq(account.note)
+        it 'has an account bio in the AccountsIndex' do
+          expect { account.update! discoverable: true }
+            .to change { results.first.text }.from(be_blank).to(account.note)
+            .and not_change(results, :count).from(1)
         end
       end
     end
@@ -43,13 +40,10 @@ RSpec.describe Account::Search do
       end
 
       context 'when the account becomes non-discoverable' do
-        before { account.update! discoverable: false }
-
         it 'is missing from the AccountsIndex' do
-          expect(results.count)
-            .to eq(1)
-          expect(results.first.text)
-            .to be_nil
+          expect { account.update! discoverable: false }
+            .to change { results.first.text }.from(account.note).to(be_blank)
+            .and not_change(results, :count).from(1)
         end
       end
     end
