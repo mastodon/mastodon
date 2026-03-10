@@ -36,9 +36,8 @@ const messages = defineMessages({
 
 export const CollectionShareModal: React.FC<{
   collection: ApiCollectionJSON;
-  onBeforeClose: () => void;
   onClose: () => void;
-}> = ({ collection, onBeforeClose, onClose }) => {
+}> = ({ collection, onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const location = useLocation<{ newCollection?: boolean } | undefined>();
@@ -53,11 +52,6 @@ export const CollectionShareModal: React.FC<{
     });
   }, [collectionLink]);
 
-  const closeModal = useCallback(() => {
-    onBeforeClose();
-    onClose();
-  }, [onBeforeClose, onClose]);
-
   const handleShareViaPost = useCallback(() => {
     const shareMessage = isOwnCollection
       ? intl.formatMessage(messages.shareTextOwn, {
@@ -67,10 +61,10 @@ export const CollectionShareModal: React.FC<{
           link: collectionLink,
         });
 
-    closeModal();
+    onClose();
     dispatch(changeCompose(shareMessage));
     dispatch(focusCompose());
-  }, [closeModal, collectionLink, dispatch, intl, isOwnCollection]);
+  }, [onClose, collectionLink, dispatch, intl, isOwnCollection]);
 
   return (
     <ModalShell>
@@ -97,7 +91,7 @@ export const CollectionShareModal: React.FC<{
           iconComponent={CloseIcon}
           icon='close'
           className={classes.closeButtonDesktop}
-          onClick={closeModal}
+          onClick={onClose}
         />
 
         <div className={classes.preview}>

@@ -82,10 +82,9 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   collection,
 }) => {
   const intl = useIntl();
-  const history = useHistory();
-  const { pathname } = useLocation();
   const { name, description, tag, account_id } = collection;
   const dispatch = useAppDispatch();
+  const history = useHistory();
 
   const handleShare = useCallback(() => {
     dispatch(
@@ -93,23 +92,20 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         modalType: 'SHARE_COLLECTION',
         modalProps: {
           collection,
-          onBeforeClose: () => {
-            // Clear `newCollection` location state
-            // so modal doesn't immediately re-open on close
-            history.replace(pathname);
-          },
         },
       }),
     );
-  }, [collection, dispatch, history, pathname]);
+  }, [collection, dispatch]);
 
   const location = useLocation<{ newCollection?: boolean } | undefined>();
-  const wasJustCreated = location.state?.newCollection;
+  const isNewCollection = location.state?.newCollection;
   useEffect(() => {
-    if (wasJustCreated) {
+    if (isNewCollection) {
+      // Replace with current pathname to clear `newCollection` state
+      history.replace(location.pathname);
       handleShare();
     }
-  }, [handleShare, wasJustCreated]);
+  }, [history, handleShare, isNewCollection, location.pathname]);
 
   return (
     <div className={classes.header}>
