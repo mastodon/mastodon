@@ -20,6 +20,7 @@ RSpec.configure do |config|
   def search_indices
     [
       AccountsIndex,
+      InstancesIndex,
       PublicStatusesIndex,
       StatusesIndex,
       TagsIndex,
