@@ -1,13 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
 import type {
-  ApiCollectionJSON,
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
 } from 'mastodon/api_types/collections';
@@ -26,67 +25,62 @@ import {
 } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch } from 'mastodon/store';
 
-import type { TempCollectionState } from './state';
-import { getCollectionEditorState } from './state';
+import { useCollectionEditorState } from './state';
 import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
-export const CollectionDetails: React.FC<{
-  collection?: ApiCollectionJSON | null;
-}> = ({ collection }) => {
+export const CollectionDetails: React.FC = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const location = useLocation<TempCollectionState>();
 
   const {
     id,
-    initialName,
-    initialDescription,
-    initialTopic,
-    initialItemIds,
-    initialDiscoverable,
-    initialSensitive,
-  } = getCollectionEditorState(collection, location.state);
-
-  const [name, setName] = useState(initialName);
-  const [description, setDescription] = useState(initialDescription);
-  const [topic, setTopic] = useState(initialTopic);
-  const [discoverable, setDiscoverable] = useState(initialDiscoverable);
-  const [sensitive, setSensitive] = useState(initialSensitive);
+    name,
+    setName,
+    description,
+    setDescription,
+    topic,
+    setTopic,
+    discoverable,
+    setDiscoverable,
+    sensitive,
+    setSensitive,
+    accountIds,
+  } = useCollectionEditorState();
 
   const handleNameChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setName(event.target.value);
     },
-    [],
+    [setName],
   );
 
   const handleDescriptionChange = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       setDescription(event.target.value);
     },
-    [],
+    [setDescription],
   );
 
   const handleTopicChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setTopic(event.target.value);
     },
-    [],
+    [setTopic],
   );
 
   const handleDiscoverableChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setDiscoverable(event.target.value === 'public');
     },
-    [],
+    [setDiscoverable],
   );
 
   const handleSensitiveChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setSensitive(event.target.checked);
     },
-    [],
+    [setSensitive],
   );
 
   const handleSubmit = useCallback(
@@ -112,7 +106,7 @@ export const CollectionDetails: React.FC<{
           description,
           discoverable,
           sensitive,
-          account_ids: initialItemIds,
+          account_ids: accountIds,
         };
         if (topic) {
           payload.tag_name = topic;
@@ -124,9 +118,7 @@ export const CollectionDetails: React.FC<{
           }),
         ).then((result) => {
           if (isFulfilled(result)) {
-            history.replace(
-              `/collections/${result.payload.collection.id}/edit/details`,
-            );
+            history.replace(`/collections`);
             history.push(`/collections/${result.payload.collection.id}`, {
               newCollection: true,
             });
@@ -143,7 +135,7 @@ export const CollectionDetails: React.FC<{
       sensitive,
       dispatch,
       history,
-      initialItemIds,
+      accountIds,
     ],
   );
 
