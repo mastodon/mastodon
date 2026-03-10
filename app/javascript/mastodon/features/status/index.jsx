@@ -190,6 +190,7 @@ class Status extends ImmutablePureComponent {
       dispatch(openModal({
         modalType: 'INTERACTION',
         modalProps: {
+          intent: 'favourite',
           accountId: status.getIn(['account', 'id']),
           url: status.get('uri'),
         },
@@ -219,6 +220,7 @@ class Status extends ImmutablePureComponent {
       dispatch(openModal({
         modalType: 'INTERACTION',
         modalProps: {
+          intent: 'reply',
           accountId: status.getIn(['account', 'id']),
           url: status.get('uri'),
         },
@@ -236,6 +238,7 @@ class Status extends ImmutablePureComponent {
       dispatch(openModal({
         modalType: 'INTERACTION',
         modalProps: {
+          intent: 'reblog',
           accountId: status.getIn(['account', 'id']),
           url: status.get('uri'),
         },
@@ -274,13 +277,13 @@ class Status extends ImmutablePureComponent {
           // Error handling - could show error message
         });
     } else {
-      dispatch(openModal({ 
-        modalType: 'CONFIRM_DELETE_STATUS', 
-        modalProps: { 
-          statusId: status.get('id'), 
+      dispatch(openModal({
+        modalType: 'CONFIRM_DELETE_STATUS',
+        modalProps: {
+          statusId: status.get('id'),
           withRedraft,
           onDeleteSuccess: handleDeleteSuccess
-        } 
+        }
       }));
     }
   };
@@ -498,7 +501,7 @@ class Status extends ImmutablePureComponent {
     // Only highlight replies after the initial load
     if (prevProps.descendantsIds.length && isSameStatus) {
       const newRepliesIds = difference(descendantsIds, prevProps.descendantsIds);
-      
+
       if (newRepliesIds.length) {
         this.setState({newRepliesIds});
       }
@@ -631,7 +634,7 @@ class Status extends ImmutablePureComponent {
             </Hotkeys>
 
             {descendants}
-            
+
             <RefreshController
               isLocal={isLocal}
               statusId={status.get('id')}
