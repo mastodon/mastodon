@@ -193,13 +193,3 @@ class StreamingClient
     @connection.wait_for_event(:closed)
   end
 end
-
-module StreamingClientHelper
-  def streaming_client
-    @streaming_client ||= StreamingClient.new
-  end
-end
-
-RSpec.configure do |config|
-  config.include StreamingClientHelper, :streaming
-end
