@@ -25,6 +25,8 @@ const messages = defineMessages({
   },
 });
 
+type InteractionIntent = 'follow' | 'reblog' | 'favourite' | 'reply' | 'vote';
+
 interface LoginFormMessage {
   type:
     | 'fetchInteractionURL'
@@ -32,6 +34,8 @@ interface LoginFormMessage {
     | 'fetchInteractionURL-success';
   uri_or_domain: string;
   template?: string;
+  param?: string;
+  intent?: InteractionIntent;
 }
 
 const PERSISTENCE_KEY = 'mastodon_home';
@@ -110,7 +114,11 @@ const isValueValid = (value: string) => {
   }
 };
 
-const sendToFrame = (frame: HTMLIFrameElement | null, value: string): void => {
+const sendToFrame = (
+  frame: HTMLIFrameElement | null,
+  value: string,
+  intent: string,
+): void => {
   if (valueToDomain(value.trim()) === localDomain) {
     window.location.href = '/auth/sign_in';
     return;
@@ -120,6 +128,7 @@ const sendToFrame = (frame: HTMLIFrameElement | null, value: string): void => {
     {
       type: 'fetchInteractionURL',
       uri_or_domain: value.trim(),
+      intent,
     },
     window.origin,
   );
@@ -127,7 +136,8 @@ const sendToFrame = (frame: HTMLIFrameElement | null, value: string): void => {
 
 const LoginForm: React.FC<{
   resourceUrl: string;
-}> = ({ resourceUrl }) => {
+  intent: string;
+}> = ({ resourceUrl, intent }) => {
   const intl = useIntl();
   const [value, setValue] = useState(
     localStorage.getItem(PERSISTENCE_KEY) ?? '',
@@ -161,7 +171,7 @@ const LoginForm: React.FC<{
           try {
             const url = new URL(
               event.data.template.replace(
-                '{uri}',
+                `{${event.data.param}}`,
                 encodeURIComponent(resourceUrl),
               ),
             );
@@ -242,8 +252,8 @@ const LoginForm: React.FC<{
 
   const handleSubmit = useCallback(() => {
     setIsSubmitting(true);
-    sendToFrame(iframeRef.current, value);
-  }, [setIsSubmitting, value]);
+    sendToFrame(iframeRef.current, value, intent);
+  }, [setIsSubmitting, value, intent]);
 
   const handleFocus = useCallback(() => {
     setExpanded(true);
@@ -287,7 +297,7 @@ const LoginForm: React.FC<{
             setError(false);
             setValue(selectedOptionValue);
             setIsSubmitting(true);
-            sendToFrame(iframeRef.current, selectedOptionValue);
+            sendToFrame(iframeRef.current, selectedOptionValue, intent);
           }
 
           break;
@@ -300,6 +310,7 @@ const LoginForm: React.FC<{
       setValue,
       selectedOption,
       options,
+      intent,
     ],
   );
 
@@ -318,9 +329,9 @@ const LoginForm: React.FC<{
       setValue(option);
       setError(false);
       setIsSubmitting(true);
-      sendToFrame(iframeRef.current, option);
+      sendToFrame(iframeRef.current, option, intent);
     },
-    [options, setSelectedOption, setValue, setError],
+    [options, setSelectedOption, setValue, setError, intent],
   );
 
   const domain = (valueToDomain(value) ?? '').trim();
@@ -404,7 +415,8 @@ const LoginForm: React.FC<{
 const InteractionModal: React.FC<{
   accountId: string;
   url: string;
-}> = ({ accountId, url }) => {
+  intent: string;
+}> = ({ accountId, url, intent }) => {
   const dispatch = useAppDispatch();
   const signupUrl = useAppSelector(
     (state) =>
@@ -479,7 +491,7 @@ const InteractionModal: React.FC<{
         </p>
       </div>
 
-      <LoginForm resourceUrl={url} />
+      <LoginForm resourceUrl={url} intent={intent} />
 
       <p>
         <FormattedMessage
