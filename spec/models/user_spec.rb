@@ -208,9 +208,13 @@ RSpec.describe User do
     context 'with a new user' do
       let(:user) { Fabricate.build :user }
 
+      before { allow(ActivityTracker).to receive(:record) }
+
       it 'does not persist the user' do
         expect { user.update_sign_in! }
           .to_not change(user, :persisted?).from(false)
+        expect(ActivityTracker)
+          .to_not have_received(:record).with('activity:logins', anything)
       end
     end
   end
