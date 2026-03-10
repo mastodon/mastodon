@@ -43,4 +43,13 @@ RSpec.describe REST::CollectionSerializer do
         'items' => []
       )
   end
+
+  context 'when the collection is remote' do
+    let(:collection) { Fabricate(:remote_collection, description_html: '<p>remote</p>') }
+
+    it 'includes the html description' do
+      expect(subject)
+        .to include('description' => '<p>remote</p>')
+    end
+  end
 end

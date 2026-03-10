@@ -50,6 +50,8 @@ You can contribute in the following ways:
 
 Please review the org-level [contribution guidelines] for high-level acceptance
 criteria guidance and the [DEVELOPMENT] guide for environment-specific details.
+You should also read the project's [AI Contribution Policy] to understand how we approach
+AI-assisted contributions.
 
 ## API Changes and Additions
 
@@ -80,7 +82,7 @@ reviewed and merged into the codebase.
 
 Our time is limited and PRs making large, unsolicited changes are unlikely to
 get a response. Changes which link to an existing confirmed issue, or which come
-from a "help wanted" issue or other request are more likely to be reviewed.
+from a "help wanted" issue or other request, are more likely to be reviewed.
 
 The smaller and more narrowly focused the changes in a PR are, the easier they
 are to review and potentially merge. If the change only makes sense in some
@@ -130,3 +132,4 @@ and API docs. Improvements are made via PRs to the [documentation repository].
 [keepachangelog]: https://keepachangelog.com/en/1.0.0/
 [Mastodon documentation]: https://docs.joinmastodon.org
 [SECURITY]: SECURITY.md
+[AI Contribution Policy]: https://github.com/mastodon/.github/blob/main/AI_POLICY.md
