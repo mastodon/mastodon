@@ -21,7 +21,7 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollectionAccounts } from './accounts';
 import { CollectionDetails } from './details';
-import { CollectionStateProvider } from './state';
+import { CollectionEditorStateProvider } from './state';
 
 export const messages = defineMessages({
   create: {
@@ -94,7 +94,7 @@ export const CollectionEditorPage: React.FC<{
         {isLoading ? (
           <LoadingIndicator />
         ) : (
-          <CollectionStateProvider collection={collection}>
+          <CollectionEditorStateProvider collection={collection}>
             <Switch>
               <Route
                 exact
@@ -109,7 +109,7 @@ export const CollectionEditorPage: React.FC<{
                 render={() => <CollectionDetails />}
               />
             </Switch>
-          </CollectionStateProvider>
+          </CollectionEditorStateProvider>
         )}
       </div>
 

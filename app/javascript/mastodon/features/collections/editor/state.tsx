@@ -41,7 +41,7 @@ const onlyExistingIds = (id?: string): id is string => !!id;
 const getCollectionItemIds = (items: ApiCollectionJSON['items']) =>
   items.map((item) => item.account_id).filter(onlyExistingIds);
 
-export const CollectionStateProvider: React.FC<{
+export const CollectionEditorStateProvider: React.FC<{
   collection: ApiCollectionJSON | undefined;
   children: ReactNode;
 }> = ({ collection, children }) => {
