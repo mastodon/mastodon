@@ -99,8 +99,8 @@ GEM
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1220.0)
-    aws-sdk-core (3.242.0)
+    aws-partitions (1.1222.0)
+    aws-sdk-core (3.243.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -111,8 +111,8 @@ GEM
     aws-sdk-kms (1.122.0)
       aws-sdk-core (~> 3, >= 3.241.4)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.213.0)
-      aws-sdk-core (~> 3, >= 3.241.4)
+    aws-sdk-s3 (1.215.0)
+      aws-sdk-core (~> 3, >= 3.243.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
@@ -170,7 +170,7 @@ GEM
     cocoon (1.2.15)
     color_diff (0.2)
     concurrent-ruby (1.3.6)
-    connection_pool (2.5.5)
+    connection_pool (3.0.2)
     cose (1.3.1)
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 1.0)
@@ -224,10 +224,6 @@ GEM
       base64
       faraday (>= 1, < 3)
       multi_json
-    email_spec (2.3.0)
-      htmlentities (~> 4.3.3)
-      launchy (>= 2.1, < 4.0)
-      mail (~> 2.7)
     email_validator (2.2.4)
       activemodel
     erb (6.0.2)
@@ -237,7 +233,7 @@ GEM
     excon (1.3.2)
       logger
     fabrication (3.0.0)
-    faker (3.6.0)
+    faker (3.6.1)
       i18n (>= 1.8.11, < 2)
     faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
@@ -308,10 +304,10 @@ GEM
     highline (3.1.2)
       reline
     hiredis (0.6.3)
-    hiredis-client (0.26.4)
-      redis-client (= 0.26.4)
+    hiredis-client (0.27.0)
+      redis-client (= 0.27.0)
     hkdf (0.3.0)
-    htmlentities (4.3.4)
+    htmlentities (4.4.2)
     http (5.3.1)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
@@ -376,7 +372,7 @@ GEM
     json-ld-preloaded (3.3.2)
       json-ld (~> 3.3)
       rdf (~> 3.3)
-    json-schema (6.1.0)
+    json-schema (6.2.0)
       addressable (~> 2.8)
       bigdecimal (>= 3.1, < 5)
     jsonapi-renderer (0.2.2)
@@ -414,12 +410,12 @@ GEM
       rexml
     link_header (0.0.8)
     lint_roller (1.1.0)
-    linzer (0.7.7)
-      cgi (~> 0.4.2)
+    linzer (0.7.8)
+      cgi (>= 0.4.2, < 0.6.0)
       forwardable (~> 1.3, >= 1.3.3)
       logger (~> 1.7, >= 1.7.0)
-      net-http (~> 0.6.0)
-      openssl (~> 3.0, >= 3.0.0)
+      net-http (>= 0.6, < 0.10)
+      openssl (>= 3, < 5)
       rack (>= 2.2, < 4.0)
       starry (~> 0.2)
       stringio (~> 3.1, >= 3.1.2)
@@ -713,7 +709,7 @@ GEM
       reline
     redcarpet (3.6.1)
     redis (4.8.1)
-    redis-client (0.26.4)
+    redis-client (0.27.0)
       connection_pool
     regexp_parser (2.11.3)
     reline (0.6.3)
@@ -977,7 +973,6 @@ DEPENDENCIES
   discard (~> 1.2)
   doorkeeper (~> 5.6)
   dotenv
-  email_spec
   fabrication
   faker (~> 3.2)
   faraday-httpclient

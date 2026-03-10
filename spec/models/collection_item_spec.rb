@@ -21,9 +21,13 @@ RSpec.describe CollectionItem do
 
       let(:remote_collection) { Fabricate.build(:collection, local: false) }
 
-      it { is_expected.to validate_absence_of(:approval_uri) }
-
       it { is_expected.to validate_presence_of(:uri) }
+
+      context 'when account is not present' do
+        subject { Fabricate.build(:collection_item, collection: remote_collection, account: nil) }
+
+        it { is_expected.to validate_presence_of(:approval_uri) }
+      end
     end
 
     context 'when account is not present' do

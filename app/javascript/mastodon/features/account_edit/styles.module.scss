@@ -24,6 +24,33 @@
   border: 1px solid var(--color-border-primary);
 }
 
+.field {
+  padding: 12px 0;
+  display: flex;
+  gap: 4px;
+  align-items: start;
+
+  > div {
+    flex-grow: 1;
+  }
+}
+
+.verifiedLinkHelpButton {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:global(.button) {
+    color: var(--color-text-primary);
+
+    &:active,
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
 // Featured Tags Page
 
 .wrapper {
@@ -55,48 +82,6 @@
 
   > p {
     color: var(--color-text-secondary);
-  }
-}
-
-// Modals
-
-.inputWrapper {
-  position: relative;
-}
-
-// Override input styles
-.inputWrapper .inputText {
-  font-size: 15px;
-  padding-right: 32px;
-}
-
-textarea.inputText {
-  min-height: 82px;
-  height: 100%;
-
-  // 160px is approx the height of the modal header and footer
-  max-height: calc(80vh - 160px);
-}
-
-.inputWrapper :global(.emoji-picker-dropdown) {
-  position: absolute;
-  bottom: 10px;
-  right: 8px;
-  height: 24px;
-  z-index: 1;
-
-  :global(.icon-button) {
-    color: var(--color-text-secondary);
-  }
-}
-
-.toggleInputWrapper {
-  > div {
-    padding: 12px 0;
-
-    &:not(:first-child) {
-      border-top: 1px solid var(--color-border-primary);
-    }
   }
 }
 
@@ -137,6 +122,11 @@ textarea.inputText {
     &:hover {
       background-color: var(--color-bg-brand-softer);
     }
+
+    &:disabled {
+      background-color: var(--color-bg-primary);
+      opacity: 0.5;
+    }
   }
 
   svg {
@@ -149,6 +139,18 @@ textarea.inputText {
   --default-icon-color: var(--color-text-error);
   --hover-bg-color: var(--color-bg-error-base-hover);
   --hover-icon-color: var(--color-text-on-error-base);
+}
+
+// Field component
+
+.fieldName {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.fieldValue {
+  color: var(--color-text-primary);
+  font-size: 15px;
 }
 
 // Item list component
@@ -194,15 +196,4 @@ textarea.inputText {
 
 .sectionSubtitle {
   color: var(--color-text-secondary);
-}
-
-// Counter component
-
-.counter {
-  margin-top: 4px;
-  font-size: 13px;
-}
-
-.counterError {
-  color: var(--color-text-error);
 }

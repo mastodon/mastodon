@@ -12,6 +12,7 @@ import {
   apiPostFeaturedTag,
 } from '@/mastodon/api/accounts';
 import { apiGetSearch } from '@/mastodon/api/search';
+import type { ApiAccountFieldJSON } from '@/mastodon/api_types/accounts';
 import type {
   ApiProfileJSON,
   ApiProfileUpdateParams,
@@ -23,19 +24,24 @@ import type {
 import type { AppDispatch } from '@/mastodon/store';
 import {
   createAppAsyncThunk,
+  createAppSelector,
   createDataLoadingThunk,
 } from '@/mastodon/store/typed_functions';
+import { hashObjectArray } from '@/mastodon/utils/hash';
 import type { SnakeToCamelCase } from '@/mastodon/utils/types';
 
 type ProfileData = {
   [Key in keyof Omit<
     ApiProfileJSON,
-    'note' | 'featured_tags'
+    'note' | 'fields' | 'featured_tags'
   > as SnakeToCamelCase<Key>]: ApiProfileJSON[Key];
 } & {
   bio: ApiProfileJSON['note'];
+  fields: FieldData[];
   featuredTags: TagData[];
 };
+
+export type FieldData = ApiAccountFieldJSON & { id: string };
 
 export type TagData = {
   [Key in keyof Omit<
@@ -186,7 +192,7 @@ const transformProfile = (result: ApiProfileJSON): ProfileData => ({
   id: result.id,
   displayName: result.display_name,
   bio: result.note,
-  fields: result.fields,
+  fields: hashObjectArray(result.fields),
   avatar: result.avatar,
   avatarStatic: result.avatar_static,
   avatarDescription: result.avatar_description,
@@ -216,6 +222,83 @@ export const patchProfile = createDataLoadingThunk(
   (params: Partial<ApiProfileUpdateParams>) => apiPatchProfile(params),
   transformProfile,
   { useLoadingBar: false },
+);
+
+export const selectFieldById = createAppSelector(
+  [(state) => state.profileEdit.profile?.fields, (_, id?: string) => id],
+  (fields, fieldId) => {
+    if (!fields || !fieldId) {
+      return undefined;
+    }
+    return fields.find((field) => field.id === fieldId) ?? null;
+  },
+);
+
+export const updateField = createAppAsyncThunk(
+  `${profileEditSlice.name}/updateField`,
+  async (
+    arg: { id?: string; name: string; value: string },
+    { getState, dispatch },
+  ) => {
+    const fields = getState().profileEdit.profile?.fields;
+    if (!fields) {
+      throw new Error('Profile fields not found');
+    }
+
+    const maxFields = getState().server.getIn([
+      'server',
+      'configuration',
+      'accounts',
+      'max_fields',
+    ]) as number | undefined;
+    if (maxFields && fields.length >= maxFields && !arg.id) {
+      throw new Error('Maximum number of profile fields reached');
+    }
+
+    // Replace the field data if there is an ID, otherwise append a new field.
+    const newFields: Pick<ApiAccountFieldJSON, 'name' | 'value'>[] = [];
+    for (const field of fields) {
+      if (field.id === arg.id) {
+        newFields.push({ name: arg.name, value: arg.value });
+      } else {
+        newFields.push({ name: field.name, value: field.value });
+      }
+    }
+    if (!arg.id) {
+      newFields.push({ name: arg.name, value: arg.value });
+    }
+
+    await dispatch(
+      patchProfile({
+        fields_attributes: newFields,
+      }),
+    );
+  },
+);
+
+export const removeField = createAppAsyncThunk(
+  `${profileEditSlice.name}/removeField`,
+  async (arg: { key: string }, { getState, dispatch }) => {
+    const fields = getState().profileEdit.profile?.fields;
+    if (!fields) {
+      throw new Error('Profile fields not found');
+    }
+    const field = fields.find((f) => f.id === arg.key);
+    if (!field) {
+      throw new Error('Field not found');
+    }
+    const newFields = fields
+      .filter((f) => f.id !== arg.key)
+      .map((f) => ({
+        name: f.name,
+        value: f.value,
+      }));
+    await dispatch(
+      patchProfile({
+        fields_attributes: newFields,
+      }),
+    );
+  },
 );
 
 export const fetchFeaturedTags = createDataLoadingThunk(

@@ -1,0 +1,136 @@
+.wrapper {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.bioField {
+  // 160px is approx the height of the modal header and footer
+  max-height: calc(80vh - 160px);
+}
+
+.toggleInputWrapper {
+  > div {
+    padding: 12px 0;
+
+    &:not(:first-child) {
+      border-top: 1px solid var(--color-border-primary);
+    }
+  }
+}
+
+.field {
+  padding: 12px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  touch-action: none;
+  position: relative;
+}
+
+.fieldNotFirst::before,
+.fieldActiveUnder::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border-primary);
+}
+
+.fieldNotFirst::before {
+  top: 0;
+}
+
+.fieldActiveUnder::after {
+  bottom: -1px; // -1px to cover the border of the next field
+}
+
+.fieldHandle {
+  grid-row: span 2;
+  padding: 8px 0;
+  align-self: center;
+  border-radius: 4px;
+  background: var(--color-bg-secondary);
+  cursor: grab;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: var(--color-bg-brand-softer);
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: 2px;
+  }
+}
+
+.fieldDragging {
+  cursor: grabbing;
+
+  p {
+    opacity: 0.7;
+  }
+
+  .fieldHandle {
+    cursor: grabbing;
+    background: var(--color-bg-brand-soft);
+  }
+}
+
+.verifiedSteps {
+  font-size: 15px;
+
+  li {
+    counter-increment: steps;
+    padding-left: 34px;
+    margin-top: 24px;
+    position: relative;
+
+    h2 {
+      font-weight: 600;
+    }
+
+    &::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      border: 1px solid var(--color-border-primary);
+      border-radius: 9999px;
+      font-weight: 600;
+      padding: 4px;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+    }
+  }
+}
+
+.details {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-top: 8px;
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    margin-bottom: 8px;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+
+  :global(.icon) {
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: middle;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &[open] :global(.icon) {
+    transform: rotate(-180deg);
+  }
+}

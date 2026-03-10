@@ -15,11 +15,10 @@ interface DialogModalProps {
   title: ReactNode;
   onClose: () => void;
   description?: ReactNode;
-  formClassName?: string;
+  wrapperClassName?: string;
   children?: ReactNode;
   noCancelButton?: boolean;
-  onSave?: () => void;
-  saveLabel?: ReactNode;
+  buttons?: ReactNode;
 }
 
 export const DialogModal: FC<DialogModalProps> = ({
@@ -27,15 +26,12 @@ export const DialogModal: FC<DialogModalProps> = ({
   title,
   onClose,
   description,
-  formClassName,
+  wrapperClassName,
   children,
   noCancelButton = false,
-  onSave,
-  saveLabel,
+  buttons,
 }) => {
   const intl = useIntl();
-
-  const showButtons = !noCancelButton || onSave;
 
   return (
     <div className={classNames('modal-root__modal dialog-modal', className)}>
@@ -61,13 +57,16 @@ export const DialogModal: FC<DialogModalProps> = ({
           </div>
         )}
         <div
-          className={classNames('dialog-modal__content__form', formClassName)}
+          className={classNames(
+            'dialog-modal__content__form',
+            wrapperClassName,
+          )}
         >
           {children}
         </div>
       </div>
 
-      {showButtons && (
+      {(buttons || !noCancelButton) && (
         <div className='dialog-modal__content__actions'>
           {!noCancelButton && (
             <Button onClick={onClose} secondary>
@@ -77,16 +76,7 @@ export const DialogModal: FC<DialogModalProps> = ({
               />
             </Button>
           )}
-          {onSave && (
-            <Button onClick={onClose}>
-              {saveLabel ?? (
-                <FormattedMessage
-                  id='confirmation_modal.cancel'
-                  defaultMessage='Cancel'
-                />
-              )}
-            </Button>
-          )}
+          {buttons}
         </div>
       )}
     </div>

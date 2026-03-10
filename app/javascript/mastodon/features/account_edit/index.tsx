@@ -9,6 +9,7 @@ import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
+import { DismissibleCallout } from '@/mastodon/components/callout/dismissible';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
@@ -20,6 +21,8 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { EditButton } from './components/edit_button';
+import { AccountField } from './components/field';
+import { AccountFieldActions } from './components/field_actions';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
@@ -53,6 +56,14 @@ export const messages = defineMessages({
     id: 'account_edit.custom_fields.placeholder',
     defaultMessage:
       'Add your pronouns, external links, or anything else you’d like to share.',
+  },
+  customFieldsName: {
+    id: 'account_edit.custom_fields.name',
+    defaultMessage: 'field',
+  },
+  customFieldsTipTitle: {
+    id: 'account_edit.custom_fields.tip_title',
+    defaultMessage: 'Tip: Adding verified links',
   },
   featuredHashtagsTitle: {
     id: 'account_edit.featured_hashtags.title',
@@ -89,6 +100,16 @@ export const AccountEdit: FC = () => {
     void dispatch(fetchProfile());
   }, [dispatch]);
 
+  const maxFieldCount = useAppSelector(
+    (state) =>
+      (state.server.getIn([
+        'server',
+        'configuration',
+        'accounts',
+        'max_profile_fields',
+      ]) as number | undefined) ?? 4,
+  );
+
   const handleOpenModal = useCallback(
     (type: ModalType, props?: Record<string, unknown>) => {
       dispatch(openModal({ modalType: type, modalProps: props ?? {} }));
@@ -100,6 +121,15 @@ export const AccountEdit: FC = () => {
   }, [handleOpenModal]);
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
+  }, [handleOpenModal]);
+  const handleCustomFieldAdd = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_FIELD_EDIT');
+  }, [handleOpenModal]);
+  const handleCustomFieldReorder = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_FIELDS_REORDER');
+  }, [handleOpenModal]);
+  const handleCustomFieldsVerifiedHelp = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_VERIFY_LINKS');
   }, [handleOpenModal]);
   const handleProfileDisplayEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_PROFILE_DISPLAY');
@@ -123,6 +153,7 @@ export const AccountEdit: FC = () => {
   const headerSrc = autoPlayGif ? profile.header : profile.headerStatic;
   const hasName = !!profile.displayName;
   const hasBio = !!profile.bio;
+  const hasFields = profile.fields.length > 0;
   const hasTags = profile.featuredTags.length > 0;
 
   return (
@@ -171,8 +202,67 @@ export const AccountEdit: FC = () => {
         <AccountEditSection
           title={messages.customFieldsTitle}
           description={messages.customFieldsPlaceholder}
-          showDescription
-        />
+          showDescription={!hasFields}
+          buttons={
+            <>
+              {profile.fields.length > 1 && (
+                <Button
+                  className={classes.editButton}
+                  onClick={handleCustomFieldReorder}
+                >
+                  <FormattedMessage
+                    id='account_edit.custom_fields.reorder_button'
+                    defaultMessage='Reorder fields'
+                  />
+                </Button>
+              )}
+              {hasFields && (
+                <EditButton
+                  item={messages.customFieldsName}
+                  onClick={handleCustomFieldAdd}
+                  disabled={profile.fields.length >= maxFieldCount}
+                />
+              )}
+            </>
+          }
+        >
+          {hasFields && (
+            <ol>
+              {profile.fields.map((field) => (
+                <li key={field.id} className={classes.field}>
+                  <div>
+                    <AccountField {...field} {...htmlHandlers} />
+                  </div>
+                  <AccountFieldActions
+                    item={intl.formatMessage(messages.customFieldsName)}
+                    id={field.id}
+                  />
+                </li>
+              ))}
+            </ol>
+          )}
+          <Button
+            onClick={handleCustomFieldsVerifiedHelp}
+            className={classes.verifiedLinkHelpButton}
+            plain
+          >
+            <FormattedMessage
+              id='account_edit.custom_fields.verified_hint'
+              defaultMessage='How do I add a verified link?'
+            />
+          </Button>
+          {!hasFields && (
+            <DismissibleCallout
+              id='profile_edit_fields_tip'
+              title={intl.formatMessage(messages.customFieldsTipTitle)}
+            >
+              <FormattedMessage
+                id='account_edit.custom_fields.tip_content'
+                defaultMessage='You can easily add credibility to your Mastodon account by verifying links to any websites you own.'
+              />
+            </DismissibleCallout>
+          )}
+        </AccountEditSection>
 
         <AccountEditSection
           title={messages.featuredHashtagsTitle}

@@ -23,6 +23,10 @@ RSpec.describe Collection do
     context 'when collection is remote' do
       subject { Fabricate.build :collection, local: false }
 
+      it { is_expected.to_not validate_presence_of(:description) }
+
+      it { is_expected.to validate_presence_of(:description_html) }
+
       it { is_expected.to validate_presence_of(:uri) }
 
       it { is_expected.to validate_presence_of(:original_number_of_items) }
