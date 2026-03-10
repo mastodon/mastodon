@@ -55,7 +55,10 @@ const intentParams = (intent: string): [string, string] | null => {
   }
 };
 
-const findTemplateLink = (data: unknown, intent: string) => {
+const findTemplateLink = (
+  data: unknown,
+  intent: string,
+): [string, string] | [null, null] => {
   // Find the FEP-3b86 handler for the specific intent
   const [needle, param] = intentParams(intent) ?? [
     'http://ostatus.org/schema/1.0/subscribe',
@@ -64,21 +67,21 @@ const findTemplateLink = (data: unknown, intent: string) => {
 
   const match = findLink(needle, data);
 
-  if (match) {
-    return [match.template, param] as [string, string];
+  if (match?.template) {
+    return [match.template, param];
   }
 
   // If the specific intent wasn't found, try the FEP-3b86 handler for the `Object` intent
   let fallback = findLink('https://w3id.org/fep/3b86/Object', data);
-  if (fallback) {
-    return [fallback.template, 'object'] as [string, string];
+  if (fallback?.template) {
+    return [fallback.template, 'object'];
   }
 
   // If it's still not found, try the legacy OStatus subscribe handler
   fallback = findLink('http://ostatus.org/schema/1.0/subscribe', data);
 
-  if (fallback) {
-    return [fallback.template, 'uri'] as [string, string];
+  if (fallback?.template) {
+    return [fallback.template, 'uri'];
   }
 
   return [null, null];
