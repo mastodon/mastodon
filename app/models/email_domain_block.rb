@@ -59,7 +59,7 @@ class EmailDomainBlock < ApplicationRecord
 
     def blocking?(allow_with_approval: false)
       blocks = EmailDomainBlock.where(domain: domains_with_variants, allow_with_approval: allow_with_approval).by_domain_length
-      blocks.each { |block| block.history.add(@attempt_ip) } if @attempt_ip.present?
+      blocks.each { |block| block.history.add(@attempt_ip.to_s) } if @attempt_ip.present?
       blocks.any?
     end
 
