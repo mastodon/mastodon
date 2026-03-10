@@ -5,7 +5,8 @@
 # Table name: collections
 #
 #  id                       :bigint(8)        not null, primary key
-#  description              :text             not null
+#  description              :text
+#  description_html         :text
 #  discoverable             :boolean          not null
 #  item_count               :integer          default(0), not null
 #  language                 :string
@@ -30,7 +31,10 @@ class Collection < ApplicationRecord
   has_many :collection_reports, dependent: :delete_all
 
   validates :name, presence: true
-  validates :description, presence: true
+  validates :description, presence: true,
+                          if: :local?
+  validates :description_html, presence: true,
+                               if: :remote?
   validates :local, inclusion: [true, false]
   validates :sensitive, inclusion: [true, false]
   validates :discoverable, inclusion: [true, false]
