@@ -22,65 +22,77 @@ import { TextInputField } from 'mastodon/components/form_fields/text_input_field
 import {
   createCollection,
   updateCollection,
+  updateCollectionEditorField,
 } from 'mastodon/reducers/slices/collections';
-import { useAppDispatch } from 'mastodon/store';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { useCollectionEditorState } from './state';
 import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
 export const CollectionDetails: React.FC = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-
-  const {
-    id,
-    name,
-    setName,
-    description,
-    setDescription,
-    topic,
-    setTopic,
-    discoverable,
-    setDiscoverable,
-    sensitive,
-    setSensitive,
-    accountIds,
-  } = useCollectionEditorState();
+  const { id, name, description, topic, discoverable, sensitive, accountIds } =
+    useAppSelector((state) => state.collections.editor);
 
   const handleNameChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setName(event.target.value);
+      dispatch(
+        updateCollectionEditorField({
+          field: 'name',
+          value: event.target.value,
+        }),
+      );
     },
-    [setName],
+    [dispatch],
   );
 
   const handleDescriptionChange = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setDescription(event.target.value);
+      dispatch(
+        updateCollectionEditorField({
+          field: 'description',
+          value: event.target.value,
+        }),
+      );
     },
-    [setDescription],
+    [dispatch],
   );
 
   const handleTopicChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setTopic(event.target.value);
+      dispatch(
+        updateCollectionEditorField({
+          field: 'topic',
+          value: event.target.value,
+        }),
+      );
     },
-    [setTopic],
+    [dispatch],
   );
 
   const handleDiscoverableChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setDiscoverable(event.target.value === 'public');
+      dispatch(
+        updateCollectionEditorField({
+          field: 'discoverable',
+          value: event.target.value === 'public',
+        }),
+      );
     },
-    [setDiscoverable],
+    [dispatch],
   );
 
   const handleSensitiveChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSensitive(event.target.checked);
+      dispatch(
+        updateCollectionEditorField({
+          field: 'sensitive',
+          value: event.target.checked,
+        }),
+      );
     },
-    [setSensitive],
+    [dispatch],
   );
 
   const handleSubmit = useCallback(

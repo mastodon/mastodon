@@ -30,11 +30,12 @@ import { useAccount } from 'mastodon/hooks/useAccount';
 import { me } from 'mastodon/initial_state';
 import {
   addCollectionItem,
+  getCollectionItemIds,
   removeCollectionItem,
+  updateCollectionEditorField,
 } from 'mastodon/reducers/slices/collections';
 import { store, useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { useCollectionEditorState } from './state';
 import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
@@ -136,16 +137,21 @@ export const CollectionAccounts: React.FC<{
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const {
-    id,
-    accountIds,
-    // `setAccountIds` is only used when creating a new collection.
-    // In edit mode, the collection will be patched on the server instantly
-    setAccountIds,
-  } = useCollectionEditorState();
-
+  const { id, items } = collection ?? {};
   const isEditMode = !!id;
-  const collectionItems = collection?.items;
+  const collectionItems = items;
+
+  const addedAccountIds = useAppSelector(
+    (state) => state.collections.editor.accountIds,
+  );
+
+  // In edit mode, we're bypassing state and just return collection items directly,
+  // since they're edited "live", saving after each addition/deletion
+  const accountIds = useMemo(
+    () =>
+      isEditMode ? getCollectionItemIds(collectionItems) : addedAccountIds,
+    [isEditMode, collectionItems, addedAccountIds],
+  );
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -223,18 +229,28 @@ export const CollectionAccounts: React.FC<{
 
   const removeAccountItem = useCallback(
     (accountId: string) => {
-      setAccountIds((ids) => ids.filter((id) => id !== accountId));
+      dispatch(
+        updateCollectionEditorField({
+          field: 'accountIds',
+          value: accountIds.filter((id) => id !== accountId),
+        }),
+      );
     },
-    [setAccountIds],
+    [accountIds, dispatch],
   );
 
   const addAccountItem = useCallback(
     (accountId: string) => {
       confirmFollowStatus(accountId, () => {
-        setAccountIds((ids) => [...ids, accountId]);
+        dispatch(
+          updateCollectionEditorField({
+            field: 'accountIds',
+            value: [...accountIds, accountId],
+          }),
+        );
       });
     },
-    [confirmFollowStatus, setAccountIds],
+    [accountIds, confirmFollowStatus, dispatch],
   );
 
   const toggleAccountItem = useCallback(
