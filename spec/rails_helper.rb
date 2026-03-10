@@ -138,12 +138,6 @@ RSpec.configure do |config|
     example.run
   end
 
-  config.around(:each, type: :search) do |example|
-    Chewy.settings[:enabled] = true
-    example.run
-    Chewy.settings[:enabled] = false
-  end
-
   config.before :each, type: :cli do
     stub_reset_connection_pools
   end
