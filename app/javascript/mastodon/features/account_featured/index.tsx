@@ -103,7 +103,11 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     );
   }
 
-  if (featuredTags.isEmpty() && featuredAccountIds.isEmpty()) {
+  if (
+    featuredTags.isEmpty() &&
+    featuredAccountIds.isEmpty() &&
+    listedCollections.length === 0
+  ) {
     return (
       <AccountFeaturedWrapper accountId={accountId}>
         <EmptyMessage
