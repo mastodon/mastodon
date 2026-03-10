@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { useLocation, useParams } from 'react-router';
+import { useHistory, useLocation, useParams } from 'react-router';
 
 import { openModal } from '@/mastodon/actions/modal';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
@@ -82,6 +82,8 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   collection,
 }) => {
   const intl = useIntl();
+  const history = useHistory();
+  const { pathname } = useLocation();
   const { name, description, tag, account_id } = collection;
   const dispatch = useAppDispatch();
 
@@ -91,10 +93,15 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         modalType: 'SHARE_COLLECTION',
         modalProps: {
           collection,
+          onBeforeClose: () => {
+            // Clear `newCollection` location state
+            // so modal doesn't immediately re-open on close
+            history.replace(pathname);
+          },
         },
       }),
     );
-  }, [collection, dispatch]);
+  }, [collection, dispatch, history, pathname]);
 
   const location = useLocation<{ newCollection?: boolean } | undefined>();
   const wasJustCreated = location.state?.newCollection;
