@@ -1,0 +1,52 @@
+# frozen_string_literal: true
+
+class ActivityPub::ProcessFeaturedCollectionService
+  include JsonLdHelper
+  include Lockable
+  include Redisable
+
+  ITEMS_LIMIT = 150
+
+  def call(account, json)
+    @account = account
+    @json = json
+    return if non_matching_uri_hosts?(@account.uri, @json['id'])
+
+    with_redis_lock("collection:#{@json['id']}") do
+      return if @account.collections.exists?(uri: @json['id'])
+
+      @collection = @account.collections.create!(
+        local: false,
+        uri: @json['id'],
+        name: @json['name'],
+        description_html: extract_and_sanitize_description,
+        language:,
+        sensitive: @json['sensitive'],
+        discoverable: @json['discoverable'],
+        original_number_of_items: @json['totalItems'] || 0,
+        tag_name: @json.dig('topic', 'name')
+      )
+
+      process_items!
+
+      @collection
+    end
+  end
+
+  private
+
+  def extract_and_sanitize_description
+    text = @json['summaryMap']&.values&.first || @json['summary']
+    Sanitize.fragment(text, Sanitize::Config::MASTODON_STRICT)
+  end
+
+  def language
+    @json['summaryMap']&.keys&.first
+  end
+
+  def process_items!
+    @json['orderedItems'].take(ITEMS_LIMIT).each do |item_json|
+      ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json)
+    end
+  end
+end
