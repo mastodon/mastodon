@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { inputToHashtag } from '@/flavours/glitch/utils/hashtags';
 import type {
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
@@ -64,7 +65,7 @@ export const CollectionDetails: React.FC = () => {
       dispatch(
         updateCollectionEditorField({
           field: 'topic',
-          value: event.target.value,
+          value: inputToHashtag(event.target.value),
         }),
       );
     },
@@ -219,6 +220,9 @@ export const CollectionDetails: React.FC = () => {
           }
           value={topic}
           onChange={handleTopicChange}
+          autoCapitalize='off'
+          autoCorrect='off'
+          spellCheck='false'
           maxLength={40}
         />
 

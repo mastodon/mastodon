@@ -37,30 +37,30 @@ interface CollectionState {
       status: QueryStatus;
     }
   >;
-  editor: {
-    id: string | undefined;
-    name: string;
-    description: string;
-    topic: string;
-    language: string | null;
-    discoverable: boolean;
-    sensitive: boolean;
-    accountIds: string[];
-  };
+  editor: EditorState;
 }
 
-type EditorField = CollectionState['editor'];
+interface EditorState {
+  id: string | null;
+  name: string;
+  description: string;
+  topic: string;
+  language: string | null;
+  discoverable: boolean;
+  sensitive: boolean;
+  accountIds: string[];
+}
 
-interface UpdateEditorFieldPayload<K extends keyof EditorField> {
+interface UpdateEditorFieldPayload<K extends keyof EditorState> {
   field: K;
-  value: EditorField[K];
+  value: EditorState[K];
 }
 
 const initialState: CollectionState = {
   collections: {},
   accountCollections: {},
   editor: {
-    id: undefined,
+    id: null,
     name: '',
     description: '',
     topic: '',
@@ -79,7 +79,7 @@ const collectionSlice = createSlice({
       const collection = action.payload;
 
       state.editor = {
-        id: collection?.id,
+        id: collection?.id ?? null,
         name: collection?.name ?? '',
         description: collection?.description ?? '',
         topic: collection?.tag?.name ?? '',
@@ -92,7 +92,7 @@ const collectionSlice = createSlice({
     reset(state) {
       state.editor = initialState.editor;
     },
-    updateEditorField<K extends keyof EditorField>(
+    updateEditorField<K extends keyof EditorState>(
       state: CollectionState,
       action: PayloadAction<UpdateEditorFieldPayload<K>>,
     ) {
