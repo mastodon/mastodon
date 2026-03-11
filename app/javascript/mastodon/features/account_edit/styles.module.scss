@@ -173,7 +173,12 @@
 
 .imageButton {
   --default-bg-color: var(--color-bg-primary);
-  --hover-bg-color: var(--color-bg-brand-softer-solid);
+
+  &,
+  &:global(.active) {
+    // Overrides the transparent background added by default with .active
+    --hover-bg-color: var(--color-bg-brand-softer-solid);
+  }
 
   position: absolute;
   width: 28px;
