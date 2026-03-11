@@ -18,7 +18,7 @@ class ActivityPub::ProcessFeaturedCollectionService
       @collection = @account.collections.create!(
         local: false,
         uri: @json['id'],
-        name: @json['name'],
+        name: (@json['name'] || '')[0, Collection::NAME_LENGTH_HARD_LIMIT],
         description_html: extract_and_sanitize_description,
         language:,
         sensitive: @json['sensitive'],
@@ -36,7 +36,8 @@ class ActivityPub::ProcessFeaturedCollectionService
   private
 
   def extract_and_sanitize_description
-    text = @json['summaryMap']&.values&.first || @json['summary']
+    text = @json['summaryMap']&.values&.first || @json['summary'] || ''
+    text = text[0, Collection::DESCRIPTION_LENGTH_HARD_LIMIT]
     Sanitize.fragment(text, Sanitize::Config::MASTODON_STRICT)
   end
 
