@@ -1,18 +1,29 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import type { OffsetValue } from 'react-overlays/esm/usePopper';
 
+import type { ModalType } from '@/mastodon/actions/modal';
+import { openModal } from '@/mastodon/actions/modal';
 import { Dropdown } from '@/mastodon/components/dropdown_menu';
 import { IconButton } from '@/mastodon/components/icon_button';
 import type { MenuItem } from '@/mastodon/models/dropdown_menu';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import CameraIcon from '@/material-icons/400-24px/photo_camera.svg?react';
 import ReplaceImageIcon from '@/material-icons/400-24px/replace_image.svg?react';
+
+import classes from '../styles.module.scss';
 
 const messages = defineMessages({
   add: {
@@ -39,55 +50,104 @@ const messages = defineMessages({
   },
 });
 
+export type ImageLocation = 'avatar' | 'header';
+
+const selectImageInfo = createAppSelector(
+  [
+    (state) => state.profileEdit.profile,
+    (_, location: ImageLocation) => location,
+  ],
+  (profile, location) => {
+    if (!profile) {
+      return {
+        hasImage: false,
+        hasAlt: false,
+      };
+    }
+
+    return {
+      hasImage: !!profile[`${location}Static`],
+      hasAlt: !!profile[`${location}Description`],
+    };
+  },
+);
+
 export const AccountImageEdit: FC<{
   className?: string;
-  add?: boolean;
-  hasAltText?: boolean;
-}> = ({ className, add = false, hasAltText = false }) => {
+  location: ImageLocation;
+}> = ({ className, location }) => {
   const intl = useIntl();
+  const { hasAlt, hasImage } = useAppSelector((state) =>
+    selectImageInfo(state, location),
+  );
+  const dispatch = useAppDispatch();
+
+  const handleModal = useCallback(
+    (type: ModalType) => {
+      dispatch(openModal({ modalType: type, modalProps: { location } }));
+    },
+    [dispatch, location],
+  );
+
   const items = useMemo(
     () =>
       [
         {
           text: intl.formatMessage(messages.replace),
-          action: () => null,
+          action: () => {
+            handleModal('ACCOUNT_EDIT_IMAGE_UPLOAD');
+          },
           icon: ReplaceImageIcon,
         },
         {
-          text: intl.formatMessage(
-            hasAltText ? messages.altEdit : messages.altAdd,
-          ),
-          action: () => null,
-          icon: hasAltText ? EditIcon : AddIcon,
+          text: intl.formatMessage(hasAlt ? messages.altEdit : messages.altAdd),
+          action: () => {
+            handleModal('ACCOUNT_EDIT_IMAGE_ALT');
+          },
+          icon: hasAlt ? EditIcon : AddIcon,
         },
         null,
         {
           text: intl.formatMessage(messages.remove),
-          action: () => null,
+          action: () => {
+            handleModal('ACCOUNT_EDIT_IMAGE_DELETE');
+          },
           icon: DeleteIcon,
           dangerous: true,
         },
       ] satisfies MenuItem[],
-    [hasAltText, intl],
+    [handleModal, hasAlt, intl],
   );
 
-  const button = (
-    <IconButton
-      title={intl.formatMessage(messages.add)}
-      icon='camera'
-      iconComponent={CameraIcon}
-      className={className}
-    />
-  );
+  const handleAddImage = useCallback(() => {
+    handleModal('ACCOUNT_EDIT_IMAGE_UPLOAD');
+  }, [handleModal]);
 
-  if (add) {
-    return button;
+  const iconClassName = classNames(classes.imageButton, className);
+
+  if (!hasImage) {
+    return (
+      <IconButton
+        title={intl.formatMessage(messages.add)}
+        icon='camera'
+        iconComponent={CameraIcon}
+        className={iconClassName}
+        onClick={handleAddImage}
+      />
+    );
   }
 
   return (
-    <Dropdown items={items} placement='bottom-start' offset={popperOffset}>
-      {button}
-    </Dropdown>
+    <Dropdown
+      items={items}
+      placement='bottom-start'
+      offset={popperOffset}
+      className={classes.imageMenu}
+      icon='camera'
+      title={intl.formatMessage(messages.replace)}
+      iconComponent={CameraIcon}
+      iconClassName={iconClassName}
+    />
   );
 };
 

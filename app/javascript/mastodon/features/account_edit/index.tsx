@@ -165,11 +165,11 @@ export const AccountEdit: FC = () => {
       <header>
         <div className={classes.profileImage}>
           {headerSrc && <img src={headerSrc} alt='' />}
-          <AccountImageEdit className={classes.imageButton} />
+          <AccountImageEdit location='header' />
         </div>
         <div className={classes.avatar}>
           <Avatar account={account} size={80} />
-          <AccountImageEdit className={classes.imageButton} />
+          <AccountImageEdit location='avatar' />
         </div>
       </header>
 
