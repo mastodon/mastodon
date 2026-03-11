@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { inputToHashtag } from '@/mastodon/utils/hashtags';
 import type {
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
@@ -64,7 +65,7 @@ export const CollectionDetails: React.FC = () => {
       dispatch(
         updateCollectionEditorField({
           field: 'topic',
-          value: event.target.value,
+          value: inputToHashtag(event.target.value),
         }),
       );
     },
