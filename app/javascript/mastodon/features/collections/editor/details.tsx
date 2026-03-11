@@ -220,6 +220,9 @@ export const CollectionDetails: React.FC = () => {
           }
           value={topic}
           onChange={handleTopicChange}
+          autoCapitalize='off'
+          autoCorrect='off'
+          spellCheck='false'
           maxLength={40}
         />
 
