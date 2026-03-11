@@ -51,5 +51,14 @@ RSpec.describe REST::CollectionSerializer do
       expect(subject)
         .to include('description' => '<p>remote</p>')
     end
+
+    context 'when the description contains unwanted HTML' do
+      let(:description_html) { '<script>alert("hi!");</script><p>Nice people</p>' }
+      let(:collection) { Fabricate(:remote_collection, description_html:) }
+
+      it 'scrubs the HTML' do
+        expect(subject).to include('description' => '<p>Nice people</p>')
+      end
+    end
   end
 end

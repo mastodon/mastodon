@@ -22,6 +22,8 @@
 #
 class Collection < ApplicationRecord
   MAX_ITEMS = 25
+  NAME_LENGTH_HARD_LIMIT = 256
+  DESCRIPTION_LENGTH_HARD_LIMIT = 2048
 
   belongs_to :account
   belongs_to :tag, optional: true
@@ -31,10 +33,16 @@ class Collection < ApplicationRecord
   has_many :collection_reports, dependent: :delete_all
 
   validates :name, presence: true
-  validates :description, presence: true,
-                          if: :local?
-  validates :description_html, presence: true,
-                               if: :remote?
+  validates :name, length: { maximum: 40 }, if: :local?
+  validates :name, length: { maximum: NAME_LENGTH_HARD_LIMIT }, if: :remote?
+  validates :description,
+            presence: true,
+            length: { maximum: 100 },
+            if: :local?
+  validates :description_html,
+            presence: true,
+            length: { maximum: DESCRIPTION_LENGTH_HARD_LIMIT },
+            if: :remote?
   validates :local, inclusion: [true, false]
   validates :sensitive, inclusion: [true, false]
   validates :discoverable, inclusion: [true, false]

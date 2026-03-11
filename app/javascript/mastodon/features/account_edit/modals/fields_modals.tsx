@@ -18,6 +18,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
+import { isUrlWithoutProtocol } from '@/mastodon/utils/checks';
 
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
@@ -48,7 +49,7 @@ const messages = defineMessages({
   },
   editValueHint: {
     id: 'account_edit.field_edit_modal.value_hint',
-    defaultMessage: 'E.g. “example.me”',
+    defaultMessage: 'E.g. “https://example.me”',
   },
   limitHeader: {
     id: 'account_edit.field_edit_modal.limit_header',
@@ -109,6 +110,10 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
     );
     return hasLink && hasEmoji;
   }, [customEmojiCodes, newLabel, newValue]);
+  const hasLinkWithoutProtocol = useMemo(
+    () => isUrlWithoutProtocol(newValue),
+    [newValue],
+  );
 
   const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
@@ -172,6 +177,19 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
           <FormattedMessage
             id='account_edit.field_edit_modal.limit_message'
             defaultMessage='Mobile users might not see your field in full.'
+          />
+        </Callout>
+      )}
+
+      {hasLinkWithoutProtocol && (
+        <Callout variant='warning'>
+          <FormattedMessage
+            id='account_edit.field_edit_modal.url_warning'
+            defaultMessage='To add a link, please include {protocol} at the beginning.'
+            description='{protocol} is https://'
+            values={{
+              protocol: <code>https://</code>,
+            }}
           />
         </Callout>
       )}
