@@ -1,0 +1,3 @@
+<%= t('sessions.ip') %>: <%= session_detail.remote_ip %>
+<%= t('sessions.browser') %>: <%= t('sessions.description', browser: session_detail.browser, platform: session_detail.platform ) %>
+<%= l(session_detail.access_time, format: :with_time_zone) %>
