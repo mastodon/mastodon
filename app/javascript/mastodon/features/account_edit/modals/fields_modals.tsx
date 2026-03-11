@@ -48,7 +48,7 @@ const messages = defineMessages({
   },
   editValueHint: {
     id: 'account_edit.field_edit_modal.value_hint',
-    defaultMessage: 'E.g. “example.me”',
+    defaultMessage: 'E.g. “https://example.me”',
   },
   limitHeader: {
     id: 'account_edit.field_edit_modal.limit_header',
