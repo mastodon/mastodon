@@ -13,7 +13,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :set_strikes, only: [:edit, :update]
   before_action :require_not_suspended!, only: [:update]
   before_action :set_rules, only: :new
-  before_action :require_rules_acceptance!, only: :new
   before_action :set_registration_form_time, only: :new
 
   skip_before_action :check_self_destruct!, only: [:edit, :update]
@@ -127,16 +126,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_rules
     @rules = Rule.ordered.includes(:translations)
-  end
-
-  def require_rules_acceptance!
-    return if @rules.empty? || validated_accept_token?
-
-    @accept_token = session[:accept_token] = SecureRandom.hex
-    @invite_code = invite_code
     @rule_translations = @rules.map { |rule| rule.translation_for(I18n.locale) }
-
-    render :rules
   end
 
   def validated_accept_token?

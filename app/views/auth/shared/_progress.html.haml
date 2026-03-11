@@ -1,12 +1,6 @@
-- progress_index = { rules: 0, details: 1, confirm: 2, confirmed: 3, completed: 4 }[stage.to_sym]
+- progress_index = { details: 1, confirm: 2, confirmed: 3, completed: 4 }[stage.to_sym]
 
 %ol.progress-tracker
-  %li{ class: progress_index.positive? ? 'completed' : 'active' }
-    .circle
-      - if progress_index.positive?
-        = check_icon
-    .label= t('auth.progress.rules')
-  %li.separator{ class: progress_index.positive? ? 'completed' : nil }
   %li{ class: [progress_index > 1 && 'completed', progress_index == 1 && 'active'] }
     .circle
       - if progress_index > 1

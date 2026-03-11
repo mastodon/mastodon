@@ -1462,3 +1462,16 @@ code {
     }
   }
 }
+
+.rules-container {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  height: 200px;
+  padding: 8px;
+  overflow-y: scroll;
+  margin-bottom: 30px;
+
+  .rules-list {
+    margin-bottom: 0;
+  }
+}
