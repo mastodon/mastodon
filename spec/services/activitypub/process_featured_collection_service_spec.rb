@@ -56,17 +56,6 @@ RSpec.describe ActivityPub::ProcessFeaturedCollectionService do
     end
   end
 
-  context 'when the summary contains unwanted HTML' do
-    let(:summary) { '<script>alert("hi!");</script><p>Nice people</p>' }
-
-    it 'scrubs the HTML before persisting' do
-      expect { subject.call(account, featured_collection_json) }.to change(account.collections, :count).by(1)
-
-      new_collection = account.collections.last
-      expect(new_collection.description_html).to eq '<p>Nice people</p>'
-    end
-  end
-
   context 'when the json includes a summary map' do
     let(:featured_collection_json) do
       base_json.merge({

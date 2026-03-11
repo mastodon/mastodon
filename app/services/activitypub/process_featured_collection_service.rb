@@ -19,7 +19,7 @@ class ActivityPub::ProcessFeaturedCollectionService
         local: false,
         uri: @json['id'],
         name: (@json['name'] || '')[0, Collection::NAME_LENGTH_HARD_LIMIT],
-        description_html: extract_and_sanitize_description,
+        description_html: truncated_summary,
         language:,
         sensitive: @json['sensitive'],
         discoverable: @json['discoverable'],
@@ -35,10 +35,9 @@ class ActivityPub::ProcessFeaturedCollectionService
 
   private
 
-  def extract_and_sanitize_description
+  def truncated_summary
     text = @json['summaryMap']&.values&.first || @json['summary'] || ''
-    text = text[0, Collection::DESCRIPTION_LENGTH_HARD_LIMIT]
-    Sanitize.fragment(text, Sanitize::Config::MASTODON_STRICT)
+    text[0, Collection::DESCRIPTION_LENGTH_HARD_LIMIT]
   end
 
   def language
