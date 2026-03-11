@@ -230,8 +230,8 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-            <WrappedRoute path={['/start', '/start/profile']} exact component={OnboardingProfile} content={children} />
-            <WrappedRoute path='/start/follows' component={OnboardingFollows} content={children} />
+            <WrappedRoute path='/start/profile' exact component={OnboardingProfile} content={children} />
+            <WrappedRoute path={['/start', '/start/follows']} exact component={OnboardingFollows} content={children} />
             <WrappedRoute path='/directory' component={Directory} content={children} />
             <WrappedRoute path='/explore' component={Explore} content={children} />
             <WrappedRoute path='/search' component={Search} content={children} />
