@@ -5,6 +5,10 @@ class AccountWarningPresetPolicy < ApplicationPolicy
     role.can?(:manage_settings)
   end
 
+  def show?
+    role.can?(:manage_settings, :manage_reports, :manage_users)
+  end
+
   def create?
     role.can?(:manage_settings)
   end
