@@ -212,11 +212,9 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
         return;
       }
       newFields.push({ name: field.name, value: field.value });
-
-      void dispatch(patchProfile({ fields_attributes: newFields })).then(
-        onClose,
-      );
     }
+
+    void dispatch(patchProfile({ fields_attributes: newFields })).then(onClose);
   }, [dispatch, fieldKeys, fields, onClose]);
 
   const emojis = useAppSelector((state) => state.custom_emojis);
