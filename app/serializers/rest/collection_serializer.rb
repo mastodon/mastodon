@@ -14,7 +14,9 @@ class REST::CollectionSerializer < ActiveModel::Serializer
   end
 
   def description
-    object.local? ? object.description : object.description_html
+    return object.description if object.local?
+
+    Sanitize.fragment(object.description_html, Sanitize::Config::MASTODON_STRICT)
   end
 
   def items

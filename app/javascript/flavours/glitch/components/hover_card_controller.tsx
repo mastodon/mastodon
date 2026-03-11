@@ -14,6 +14,10 @@ import { useTimeout } from 'flavours/glitch/hooks/useTimeout';
 const offset = [-12, 4] as OffsetValue;
 const enterDelay = 750;
 const leaveDelay = 150;
+// Only open the card if the mouse was moved within this time,
+// to avoid triggering the card without intentional mouse movement
+// (e.g. when content changed underneath the mouse cursor)
+const activeMovementThreshold = 150;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
 const isHoverCardAnchor = (element: HTMLElement) =>
@@ -23,10 +27,10 @@ export const HoverCardController: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [accountId, setAccountId] = useState<string | undefined>();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
-  const isUsingTouchRef = useRef(false);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [setLeaveTimeout, cancelLeaveTimeout] = useTimeout();
   const [setEnterTimeout, cancelEnterTimeout, delayEnterTimeout] = useTimeout();
+  const [setMoveTimeout, cancelMoveTimeout] = useTimeout();
   const [setScrollTimeout] = useTimeout();
 
   const handleClose = useCallback(() => {
@@ -45,6 +49,8 @@ export const HoverCardController: React.FC = () => {
 
   useEffect(() => {
     let isScrolling = false;
+    let isUsingTouch = false;
+    let isActiveMouseMovement = false;
     let currentAnchor: HTMLElement | null = null;
     let currentTitle: string | null = null;
 
@@ -66,7 +72,7 @@ export const HoverCardController: React.FC = () => {
     const handleTouchStart = () => {
       // Keeping track of touch events to prevent the
       // hover card from being displayed on touch devices
-      isUsingTouchRef.current = true;
+      isUsingTouch = true;
     };
 
     const handleMouseEnter = (e: MouseEvent) => {
@@ -78,13 +84,14 @@ export const HoverCardController: React.FC = () => {
         return;
       }
 
-      // Bail out if a touch is active
-      if (isUsingTouchRef.current) {
+      // Bail out if we're scrolling, a touch is active,
+      // or if there was no active mouse movement
+      if (isScrolling || !isActiveMouseMovement || isUsingTouch) {
         return;
       }
 
       // We've entered an anchor
-      if (!isScrolling && isHoverCardAnchor(target)) {
+      if (isHoverCardAnchor(target)) {
         cancelLeaveTimeout();
 
         currentAnchor?.removeAttribute('aria-describedby');
@@ -99,10 +106,7 @@ export const HoverCardController: React.FC = () => {
       }
 
       // We've entered the hover card
-      if (
-        !isScrolling &&
-        (target === currentAnchor || target === cardRef.current)
-      ) {
+      if (target === currentAnchor || target === cardRef.current) {
         cancelLeaveTimeout();
       }
     };
@@ -141,10 +145,17 @@ export const HoverCardController: React.FC = () => {
     };
 
     const handleMouseMove = () => {
-      if (isUsingTouchRef.current) {
-        isUsingTouchRef.current = false;
+      if (isUsingTouch) {
+        isUsingTouch = false;
       }
+
       delayEnterTimeout(enterDelay);
+
+      cancelMoveTimeout();
+      isActiveMouseMovement = true;
+      setMoveTimeout(() => {
+        isActiveMouseMovement = false;
+      }, activeMovementThreshold);
     };
 
     document.body.addEventListener('touchstart', handleTouchStart, {
@@ -188,6 +199,8 @@ export const HoverCardController: React.FC = () => {
     setOpen,
     setAccountId,
     setAnchor,
+    setMoveTimeout,
+    cancelMoveTimeout,
   ]);
 
   return (

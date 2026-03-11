@@ -64,7 +64,7 @@ export const CollectionShareModal: React.FC<{
     onClose();
     dispatch(changeCompose(shareMessage));
     dispatch(focusCompose());
-  }, [collectionLink, dispatch, intl, isOwnCollection, onClose]);
+  }, [onClose, collectionLink, dispatch, intl, isOwnCollection]);
 
   return (
     <ModalShell>

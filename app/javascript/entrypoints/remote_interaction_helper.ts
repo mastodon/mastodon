@@ -39,26 +39,27 @@ const findLink = (rel: string, data: unknown): JRDLink | undefined => {
   }
 };
 
-const intentParams = (intent: string) => {
+const intentParams = (intent: string): [string, string] | null => {
   switch (intent) {
     case 'follow':
-      return ['https://w3id.org/fep/3b86/Follow', 'object'] as [string, string];
+      return ['https://w3id.org/fep/3b86/Follow', 'object'];
     case 'reblog':
-      return ['https://w3id.org/fep/3b86/Announce', 'object'] as [
-        string,
-        string,
-      ];
+      return ['https://w3id.org/fep/3b86/Announce', 'object'];
     case 'favourite':
-      return ['https://w3id.org/fep/3b86/Like', 'object'] as [string, string];
+      return ['https://w3id.org/fep/3b86/Like', 'object'];
     case 'vote':
     case 'reply':
-      return ['https://w3id.org/fep/3b86/Object', 'object'] as [string, string];
+      return ['https://w3id.org/fep/3b86/Object', 'object'];
     default:
       return null;
   }
 };
 
-const findTemplateLink = (data: unknown, intent: string) => {
+const findTemplateLink = (
+  data: unknown,
+  intent: string,
+): [string, string] | [null, null] => {
+  // Find the FEP-3b86 handler for the specific intent
   const [needle, param] = intentParams(intent) ?? [
     'http://ostatus.org/schema/1.0/subscribe',
     'uri',
@@ -66,14 +67,21 @@ const findTemplateLink = (data: unknown, intent: string) => {
 
   const match = findLink(needle, data);
 
-  if (match) {
-    return [match.template, param] as [string, string];
+  if (match?.template) {
+    return [match.template, param];
   }
 
-  const fallback = findLink('http://ostatus.org/schema/1.0/subscribe', data);
+  // If the specific intent wasn't found, try the FEP-3b86 handler for the `Object` intent
+  let fallback = findLink('https://w3id.org/fep/3b86/Object', data);
+  if (fallback?.template) {
+    return [fallback.template, 'object'];
+  }
 
-  if (fallback) {
-    return [fallback.template, 'uri'] as [string, string];
+  // If it's still not found, try the legacy OStatus subscribe handler
+  fallback = findLink('http://ostatus.org/schema/1.0/subscribe', data);
+
+  if (fallback?.template) {
+    return [fallback.template, 'uri'];
   }
 
   return [null, null];

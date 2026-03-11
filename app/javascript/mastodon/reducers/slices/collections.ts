@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { importFetchedAccounts } from '@/mastodon/actions/importer';
@@ -36,17 +37,69 @@ interface CollectionState {
       status: QueryStatus;
     }
   >;
+  editor: EditorState;
+}
+
+interface EditorState {
+  id: string | null;
+  name: string;
+  description: string;
+  topic: string;
+  language: string | null;
+  discoverable: boolean;
+  sensitive: boolean;
+  accountIds: string[];
+}
+
+interface UpdateEditorFieldPayload<K extends keyof EditorState> {
+  field: K;
+  value: EditorState[K];
 }
 
 const initialState: CollectionState = {
   collections: {},
   accountCollections: {},
+  editor: {
+    id: null,
+    name: '',
+    description: '',
+    topic: '',
+    language: null,
+    discoverable: true,
+    sensitive: false,
+    accountIds: [],
+  },
 };
 
 const collectionSlice = createSlice({
   name: 'collections',
   initialState,
-  reducers: {},
+  reducers: {
+    init(state, action: PayloadAction<ApiCollectionJSON | null>) {
+      const collection = action.payload;
+
+      state.editor = {
+        id: collection?.id ?? null,
+        name: collection?.name ?? '',
+        description: collection?.description ?? '',
+        topic: collection?.tag?.name ?? '',
+        language: collection?.language ?? '',
+        discoverable: collection?.discoverable ?? true,
+        sensitive: collection?.sensitive ?? false,
+        accountIds: getCollectionItemIds(collection?.items ?? []),
+      };
+    },
+    reset(state) {
+      state.editor = initialState.editor;
+    },
+    updateEditorField<K extends keyof EditorState>(
+      state: CollectionState,
+      action: PayloadAction<UpdateEditorFieldPayload<K>>,
+    ) {
+      const { field, value } = action.payload;
+      state.editor[field] = value;
+    },
+  },
   extraReducers(builder) {
     /**
      * Fetching account collections
@@ -104,6 +157,7 @@ const collectionSlice = createSlice({
     builder.addCase(updateCollection.fulfilled, (state, action) => {
       const { collection } = action.payload;
       state.collections[collection.id] = collection;
+      state.editor = initialState.editor;
     });
 
     /**
@@ -132,6 +186,7 @@ const collectionSlice = createSlice({
       const { collection } = actions.payload;
 
       state.collections[collection.id] = collection;
+      state.editor = initialState.editor;
 
       if (state.accountCollections[collection.account_id]) {
         state.accountCollections[collection.account_id]?.collectionIds.unshift(
@@ -240,6 +295,9 @@ export const revokeCollectionInclusion = createAppAsyncThunk(
 );
 
 export const collections = collectionSlice.reducer;
+export const collectionEditorActions = collectionSlice.actions;
+export const updateCollectionEditorField =
+  collectionSlice.actions.updateEditorField;
 
 /**
  * Selectors
@@ -278,3 +336,8 @@ export const selectAccountCollections = createAppSelector(
     } satisfies AccountCollectionQuery;
   },
 );
+
+const onlyExistingIds = (id?: string): id is string => !!id;
+
+export const getCollectionItemIds = (items?: ApiCollectionJSON['items']) =>
+  items?.map((item) => item.account_id).filter(onlyExistingIds) ?? [];
