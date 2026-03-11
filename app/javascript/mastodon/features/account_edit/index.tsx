@@ -205,24 +205,21 @@ export const AccountEdit: FC = () => {
           showDescription={!hasFields}
           buttons={
             <>
-              {profile.fields.length > 1 && (
-                <Button
-                  className={classes.editButton}
-                  onClick={handleCustomFieldReorder}
-                >
-                  <FormattedMessage
-                    id='account_edit.custom_fields.reorder_button'
-                    defaultMessage='Reorder fields'
-                  />
-                </Button>
-              )}
-              {hasFields && (
-                <EditButton
-                  item={messages.customFieldsName}
-                  onClick={handleCustomFieldAdd}
-                  disabled={profile.fields.length >= maxFieldCount}
+              <Button
+                className={classes.editButton}
+                onClick={handleCustomFieldReorder}
+                disabled={profile.fields.length <= 1}
+              >
+                <FormattedMessage
+                  id='account_edit.custom_fields.reorder_button'
+                  defaultMessage='Reorder fields'
                 />
-              )}
+              </Button>
+              <EditButton
+                item={messages.customFieldsName}
+                onClick={handleCustomFieldAdd}
+                disabled={profile.fields.length >= maxFieldCount}
+              />
             </>
           }
         >
