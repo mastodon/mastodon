@@ -221,7 +221,12 @@ export const patchProfile = createDataLoadingThunk(
   `${profileEditSlice.name}/patchProfile`,
   (params: Partial<ApiProfileUpdateParams>) => apiPatchProfile(params),
   transformProfile,
-  { useLoadingBar: false },
+  {
+    useLoadingBar: false,
+    condition(_, { getState }) {
+      return !getState().profileEdit.isPending;
+    },
+  },
 );
 
 export const selectFieldById = createAppSelector(
