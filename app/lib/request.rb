@@ -179,7 +179,7 @@ class Request
       return
     end
 
-    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding'), @verb, Addressable::URI.parse(request.uri))
+    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding', 'Accept'), @verb, Addressable::URI.parse(request.uri))
     request.headers['Signature'] = signature_value
   end
 
