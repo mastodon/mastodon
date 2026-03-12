@@ -80,6 +80,48 @@
   }
 }
 
+.uploadWrapper {
+  min-height: min(400px, 70vh);
+  justify-content: center;
+}
+
+.uploadStepSelect {
+  text-align: center;
+
+  h2 {
+    color: var(--color-text-primary);
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
+}
+
+.button {
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
+  color: var(--color-text-primary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 13px;
+  padding: 4px 8px;
+  transition: background-color 0.2s ease-in-out;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: var(--color-bg-brand-softer);
+  }
+
+  &:disabled {
+    background-color: var(--color-bg-primary);
+    opacity: 0.5;
+  }
+}
+
 .verifiedSteps {
   font-size: 15px;
 
