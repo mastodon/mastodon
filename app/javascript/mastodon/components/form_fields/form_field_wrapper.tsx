@@ -7,6 +7,8 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { A11yLiveRegion } from '../a11y_live_region';
+
 import { FieldsetNameContext } from './fieldset';
 import classes from './form_field_wrapper.module.scss';
 
@@ -16,11 +18,16 @@ export interface InputProps {
   'aria-describedby'?: string;
 }
 
+interface FieldStatus {
+  type: 'error' | 'warning' | 'success';
+  message?: string;
+}
+
 interface FieldWrapperProps {
   label: ReactNode;
   hint?: ReactNode;
   required?: boolean;
-  hasError?: boolean;
+  status?: FieldStatus['type'] | FieldStatus;
   inputId?: string;
   describedById?: string;
   inputPlacement?: 'inline-start' | 'inline-end';
@@ -33,7 +40,7 @@ interface FieldWrapperProps {
  */
 export type CommonFieldWrapperProps = Pick<
   FieldWrapperProps,
-  'label' | 'hint' | 'hasError'
+  'label' | 'hint' | 'status'
 > & { wrapperClassName?: string };
 
 /**
@@ -48,15 +55,17 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   hint,
   describedById,
   required,
-  hasError,
+  status,
   inputPlacement,
   children,
   className,
 }) => {
   const uniqueId = useId();
   const inputId = inputIdProp || `${uniqueId}-input`;
+  const statusId = `${inputIdProp || uniqueId}-status`;
   const hintId = `${inputIdProp || uniqueId}-hint`;
   const hasHint = !!hint;
+  const fieldStatus = getFieldStatus(status);
 
   const hasParentFieldset = !!useContext(FieldsetNameContext);
 
@@ -64,7 +73,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
     required,
     id: inputId,
   };
-  if (hasHint) {
+  if (hasHint || status || describedById) {
     inputProps['aria-describedby'] = describedById
       ? `${describedById} ${hintId}`
       : hintId;
@@ -77,7 +86,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   return (
     <div
       className={classNames(classes.wrapper, className)}
-      data-has-error={hasError}
+      data-has-error={fieldStatus?.type === 'error'}
       data-input-placement={inputPlacement}
     >
       {inputPlacement === 'inline-start' && input}
@@ -100,6 +109,10 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
       </div>
 
       {inputPlacement !== 'inline-start' && input}
+
+      <A11yLiveRegion className={classes.status} id={statusId}>
+        {fieldStatus?.message}
+      </A11yLiveRegion>
     </div>
   );
 };
@@ -121,3 +134,19 @@ const RequiredMark: FC<{ required?: boolean }> = ({ required }) =>
       <FormattedMessage id='form_field.optional' defaultMessage='(optional)' />
     </>
   );
+
+function getFieldStatus(status: FieldWrapperProps['status']) {
+  if (!status) {
+    return null;
+  }
+
+  if (typeof status === 'string') {
+    const fieldStatus: FieldStatus = {
+      type: status,
+      message: '',
+    };
+    return fieldStatus;
+  }
+
+  return status;
+}

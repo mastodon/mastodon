@@ -38,7 +38,7 @@ export const Optional: Story = {
 export const WithError: Story = {
   args: {
     required: false,
-    hasError: true,
+    status: { type: 'error', message: "This field can't be empty" },
   },
 };
 

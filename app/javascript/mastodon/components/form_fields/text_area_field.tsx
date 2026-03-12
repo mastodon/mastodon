@@ -26,14 +26,14 @@ export const TextAreaField = forwardRef<
   TextAreaProps & CommonFieldWrapperProps
 >(
   (
-    { id, label, hint, required, hasError, wrapperClassName, ...otherProps },
+    { id, label, hint, required, status, wrapperClassName, ...otherProps },
     ref,
   ) => (
     <FormFieldWrapper
       label={label}
       hint={hint}
       required={required}
-      hasError={hasError}
+      status={status}
       inputId={id}
       className={wrapperClassName}
     >
