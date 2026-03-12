@@ -102,10 +102,10 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.7.0'
+gem 'opentelemetry-api', '~> 1.8.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.31.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.32.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.10.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.24.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.24.0', require: false
