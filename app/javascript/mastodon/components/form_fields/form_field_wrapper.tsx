@@ -7,7 +7,8 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { A11yLiveRegion } from '../a11y_live_region';
+import { A11yLiveRegion } from 'mastodon/components/a11y_live_region';
+import type { FieldStatus } from 'mastodon/components/callout_inline';
 
 import { FieldsetNameContext } from './fieldset';
 import classes from './form_field_wrapper.module.scss';
@@ -18,16 +19,11 @@ export interface InputProps {
   'aria-describedby'?: string;
 }
 
-export interface FieldStatus {
-  type: 'error' | 'warning' | 'success';
-  message?: string;
-}
-
 interface FieldWrapperProps {
   label: ReactNode;
   hint?: ReactNode;
   required?: boolean;
-  status?: FieldStatus['type'] | FieldStatus;
+  status?: FieldStatus['variant'] | FieldStatus;
   inputId?: string;
   describedById?: string;
   inputPlacement?: 'inline-start' | 'inline-end';
@@ -87,7 +83,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   return (
     <div
       className={classNames(classes.wrapper, className)}
-      data-has-error={fieldStatus?.type === 'error'}
+      data-has-error={fieldStatus?.variant === 'error'}
       data-input-placement={inputPlacement}
     >
       {inputPlacement === 'inline-start' && input}
@@ -144,7 +140,7 @@ export function getFieldStatus(status: FieldWrapperProps['status']) {
 
   if (typeof status === 'string') {
     const fieldStatus: FieldStatus = {
-      type: status,
+      variant: status,
       message: '',
     };
     return fieldStatus;

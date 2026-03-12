@@ -3,18 +3,18 @@
 import type { ReactNode, FC } from 'react';
 import { createContext, useId } from 'react';
 
-import { A11yLiveRegion } from '../a11y_live_region';
+import { A11yLiveRegion } from 'mastodon/components/a11y_live_region';
+import type { FieldStatus } from 'mastodon/components/callout_inline';
 
 import classes from './fieldset.module.scss';
 import { getFieldStatus } from './form_field_wrapper';
-import type { FieldStatus } from './form_field_wrapper';
 import formFieldWrapperClasses from './form_field_wrapper.module.scss';
 
 interface FieldsetProps {
   legend: ReactNode;
   hint?: ReactNode;
   name?: string;
-  status?: FieldStatus | FieldStatus['type'];
+  status?: FieldStatus | FieldStatus['variant'];
   layout?: 'vertical' | 'horizontal';
   children: ReactNode;
 }

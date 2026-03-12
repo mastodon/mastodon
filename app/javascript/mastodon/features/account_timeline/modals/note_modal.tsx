@@ -143,7 +143,7 @@ const InnerNodeModal: FC<{
             className={classes.noteInput}
             status={
               state === 'error'
-                ? { type: 'error', message: errorText }
+                ? { variant: 'error', message: errorText }
                 : undefined
             }
             // eslint-disable-next-line jsx-a11y/no-autofocus -- We want to focus here as it's a modal.
