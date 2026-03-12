@@ -5,11 +5,11 @@
 # Table name: custom_filter_keywords
 #
 #  id               :bigint(8)        not null, primary key
-#  custom_filter_id :bigint(8)        not null
 #  keyword          :text             default(""), not null
 #  whole_word       :boolean          default(TRUE), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  custom_filter_id :bigint(8)        not null
 #
 
 class CustomFilterKeyword < ApplicationRecord

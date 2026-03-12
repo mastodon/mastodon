@@ -4,9 +4,9 @@
 #
 # Table name: account_summaries
 #
-#  account_id :bigint(8)        primary key
 #  language   :string
 #  sensitive  :boolean
+#  account_id :bigint(8)        primary key
 #
 
 class AccountSummary < ApplicationRecord

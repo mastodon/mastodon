@@ -5,18 +5,18 @@
 # Table name: bulk_imports
 #
 #  id                :bigint(8)        not null, primary key
-#  type              :integer          not null
-#  state             :integer          not null
-#  total_items       :integer          default(0), not null
-#  imported_items    :integer          default(0), not null
-#  processed_items   :integer          default(0), not null
 #  finished_at       :datetime
-#  overwrite         :boolean          default(FALSE), not null
+#  imported_items    :integer          default(0), not null
 #  likely_mismatched :boolean          default(FALSE), not null
 #  original_filename :string           default(""), not null
-#  account_id        :bigint(8)        not null
+#  overwrite         :boolean          default(FALSE), not null
+#  processed_items   :integer          default(0), not null
+#  state             :integer          not null
+#  total_items       :integer          default(0), not null
+#  type              :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  account_id        :bigint(8)        not null
 #
 class BulkImport < ApplicationRecord
   self.inheritance_column = false
