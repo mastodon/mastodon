@@ -102,6 +102,9 @@ export const MODAL_COMPONENTS = {
   'ACCOUNT_EDIT_FIELD_EDIT': accountEditModal('EditFieldModal'),
   'ACCOUNT_EDIT_FIELD_DELETE': accountEditModal('DeleteFieldModal'),
   'ACCOUNT_EDIT_FIELDS_REORDER': accountEditModal('ReorderFieldsModal'),
+  'ACCOUNT_EDIT_IMAGE_ALT': accountEditModal('ImageAltModal'),
+  'ACCOUNT_EDIT_IMAGE_DELETE': accountEditModal('ImageDeleteModal'),
+  'ACCOUNT_EDIT_IMAGE_UPLOAD': accountEditModal('ImageUploadModal'),
 };
 
 /** @arg {keyof import('@/mastodon/features/account_edit/modals')} type */

@@ -80,6 +80,48 @@ RSpec.describe ActivityPub::Activity::Add do
     end
   end
 
+  context 'when the target is the `featuredCollections` collection', feature: :collections_federation do
+    subject { described_class.new(activity_json, account) }
+
+    let(:account) { Fabricate(:remote_account, collections_url: 'https://example.com/actor/1/featured_collections') }
+    let(:featured_collection_json) do
+      {
+        '@context' => 'https://www.w3.org/ns/activitystreams',
+        'id' => 'https://other.example.com/featured_item/1',
+        'type' => 'FeaturedCollection',
+        'attributedTo' => account.uri,
+        'name' => 'Cool people',
+        'summary' => 'People you should follow.',
+        'totalItems' => 0,
+        'sensitive' => false,
+        'discoverable' => true,
+        'published' => '2026-03-09T15:19:25Z',
+      }
+    end
+    let(:activity_json) do
+      {
+        '@context' => 'https://www.w3.org/ns/activitystreams',
+        'type' => 'Add',
+        'actor' => account.uri,
+        'target' => 'https://example.com/actor/1/featured_collections',
+        'object' => featured_collection_json,
+      }
+    end
+    let(:stubbed_service) do
+      instance_double(ActivityPub::ProcessFeaturedCollectionService, call: true)
+    end
+
+    before do
+      allow(ActivityPub::ProcessFeaturedCollectionService).to receive(:new).and_return(stubbed_service)
+    end
+
+    it 'calls the service' do
+      subject.perform
+
+      expect(stubbed_service).to have_received(:call).with(account, featured_collection_json)
+    end
+  end
+
   context 'when the target is a collection', feature: :collections_federation do
     subject { described_class.new(activity_json, collection.account) }
 

@@ -12,6 +12,12 @@ class ActivityPub::Activity::Remove < ActivityPub::Activity
       else
         remove_featured
       end
+    when @account.collections_url
+      remove_collection
+    else
+      @collection = @account.collections.find_by(uri: @json['target'])
+
+      remove_collection_item if @collection
     end
   end
 
@@ -33,5 +39,17 @@ class ActivityPub::Activity::Remove < ActivityPub::Activity
 
     featured_tag = FeaturedTag.by_name(name).find_by(account: @account)
     featured_tag&.destroy!
+  end
+
+  def remove_collection
+    collection = @account.collections.find_by(uri: value_or_id(@object))
+
+    collection&.destroy!
+  end
+
+  def remove_collection_item
+    collection_item = @collection.collection_items.find_by(uri: value_or_id(@object))
+
+    collection_item&.destroy!
   end
 end
