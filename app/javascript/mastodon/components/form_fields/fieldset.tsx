@@ -5,6 +5,7 @@ import { createContext, useId } from 'react';
 
 import { A11yLiveRegion } from 'mastodon/components/a11y_live_region';
 import type { FieldStatus } from 'mastodon/components/callout_inline';
+import { CalloutInline } from 'mastodon/components/callout_inline';
 
 import classes from './fieldset.module.scss';
 import { getFieldStatus } from './form_field_wrapper';
@@ -42,8 +43,12 @@ export const Fieldset: FC<FieldsetProps> = ({
   const hasHint = !!hint;
 
   const fieldStatus = getFieldStatus(status);
+  const hasStatusMessage = !!fieldStatus?.message;
 
-  const descriptionIds = [hasHint ? hintId : '', fieldStatus ? statusId : '']
+  const descriptionIds = [
+    hasHint ? hintId : '',
+    hasStatusMessage ? statusId : '',
+  ]
     .filter((id) => !!id)
     .join(' ');
 
@@ -73,7 +78,7 @@ export const Fieldset: FC<FieldsetProps> = ({
 
       {/* Live region must be rendered even when empty */}
       <A11yLiveRegion className={classes.status} id={statusId}>
-        {fieldStatus?.message}
+        {hasStatusMessage && <CalloutInline {...fieldStatus} />}
       </A11yLiveRegion>
     </fieldset>
   );

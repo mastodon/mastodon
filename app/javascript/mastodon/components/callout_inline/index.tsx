@@ -25,7 +25,7 @@ const iconMap: Record<FieldStatus['variant'], React.FunctionComponent> = {
 
 export const CalloutInline: FC<
   Partial<FieldStatus> & React.ComponentPropsWithoutRef<'div'>
-> = ({ variant = 'error', className, children, ...props }) => {
+> = ({ variant = 'error', message, className, children, ...props }) => {
   return (
     <div
       {...props}
@@ -33,7 +33,7 @@ export const CalloutInline: FC<
       data-variant={variant}
     >
       <Icon id={variant} icon={iconMap[variant]} className={classes.icon} />
-      {children}
+      {message ?? children}
     </div>
   );
 };

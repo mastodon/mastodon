@@ -9,6 +9,7 @@ import classNames from 'classnames';
 
 import { A11yLiveRegion } from 'mastodon/components/a11y_live_region';
 import type { FieldStatus } from 'mastodon/components/callout_inline';
+import { CalloutInline } from 'mastodon/components/callout_inline';
 
 import { FieldsetNameContext } from './fieldset';
 import classes from './form_field_wrapper.module.scss';
@@ -62,11 +63,12 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   const hintId = `${inputIdProp || uniqueId}-hint`;
   const hasHint = !!hint;
   const fieldStatus = getFieldStatus(status);
+  const hasStatusMessage = !!fieldStatus?.message;
 
   const hasParentFieldset = !!useContext(FieldsetNameContext);
 
   const descriptionIds =
-    [hasHint ? hintId : '', fieldStatus ? statusId : '', describedById]
+    [hasHint ? hintId : '', hasStatusMessage ? statusId : '', describedById]
       .filter((id) => !!id)
       .join(' ') || undefined;
 
@@ -109,7 +111,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
 
       {/* Live region must be rendered even when empty */}
       <A11yLiveRegion className={classes.status} id={statusId}>
-        {fieldStatus?.message}
+        {hasStatusMessage && <CalloutInline {...fieldStatus} />}
       </A11yLiveRegion>
     </div>
   );

@@ -42,6 +42,16 @@ export const WithError: Story = {
   },
 };
 
+export const WithWarning: Story = {
+  args: {
+    required: false,
+    status: {
+      variant: 'warning',
+      message: 'Special characters are not allowed',
+    },
+  },
+};
+
 export const AutoSize: Story = {
   args: {
     autoSize: true,
