@@ -12,6 +12,10 @@ class ActivityPub::Activity::Add < ActivityPub::Activity
       else
         add_featured
       end
+    when @account.collections_url
+      return unless Mastodon::Feature.collections_federation_enabled?
+
+      add_collection
     else
       @collection = @account.collections.find_by(uri: @json['target'])
       add_collection_item if @collection && Mastodon::Feature.collections_federation_enabled?
@@ -32,6 +36,10 @@ class ActivityPub::Activity::Add < ActivityPub::Activity
     name = @object['name']&.delete_prefix('#')
 
     FeaturedTag.create!(account: @account, name: name) if name.present?
+  end
+
+  def add_collection
+    ActivityPub::ProcessFeaturedCollectionService.new.call(@account, @object)
   end
 
   def add_collection_item
