@@ -6,12 +6,12 @@
 # Table name: account_relationship_severance_events
 #
 #  id                              :bigint(8)        not null, primary key
-#  account_id                      :bigint(8)        not null
-#  relationship_severance_event_id :bigint(8)        not null
-#  created_at                      :datetime         not null
-#  updated_at                      :datetime         not null
 #  followers_count                 :integer          default(0), not null
 #  following_count                 :integer          default(0), not null
+#  created_at                      :datetime         not null
+#  updated_at                      :datetime         not null
+#  account_id                      :bigint(8)        not null
+#  relationship_severance_event_id :bigint(8)        not null
 #
 class AccountRelationshipSeveranceEvent < ApplicationRecord
   self.ignored_columns += %w(
