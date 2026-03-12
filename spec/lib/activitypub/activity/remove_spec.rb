@@ -87,5 +87,27 @@ RSpec.describe ActivityPub::Activity::Remove do
           .and change(CollectionItem, :count).by(-1)
       end
     end
+
+    context 'when removing a featured item' do
+      let(:collection) { Fabricate(:remote_collection, account: sender) }
+      let(:collection_item) { Fabricate(:collection_item, collection:, uri: 'https://example.com/featured_items/1') }
+      let(:json) do
+        {
+          '@context' => 'https://www.w3.org/ns/activitystreams',
+          'id' => 'foo',
+          'type' => 'Remove',
+          'actor' => ActivityPub::TagManager.instance.uri_for(sender),
+          'object' => collection_item.uri,
+          'target' => collection.uri,
+        }
+      end
+
+      before { json }
+
+      it 'deletes the collection item' do
+        expect { subject.perform }
+          .to change(collection.collection_items, :count).by(-1)
+      end
+    end
   end
 end
