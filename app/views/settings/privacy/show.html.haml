@@ -41,5 +41,25 @@
     .fields-group
       = ff.input :show_application, wrapper: :with_label
 
+  - if Mastodon::Feature.email_subscriptions_enabled? && current_user.can?(:manage_email_subscriptions)
+    %h2= t('privacy.email_subscriptions')
+
+    %p.lead= t('privacy.email_subscriptions_hint_html')
+
+    - if @email_subscriptions_count.positive? || @account.user_email_subscriptions_enabled?
+      .table-wrapper
+        %table.table.mini-table
+          %tbody
+            %tr
+              %th= t('email_subscriptions.status')
+              %td= @account.user_email_subscriptions_enabled? ? t('email_subscriptions.active') : t('email_subscriptions.inactive')
+            %tr
+              %th= t('email_subscriptions.subscribers')
+              %td= number_with_delimiter @email_subscriptions_count
+
+    = f.simple_fields_for :settings, current_user.settings do |ff|
+      .fields-group
+        = ff.input :email_subscriptions, wrapper: :with_label
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

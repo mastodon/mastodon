@@ -1231,7 +1231,6 @@ es:
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name}:"
-    settings: 'Cambiar preferencias de correo: %{link}'
     unsubscribe: Cancelar suscripción
     view: 'Vista:'
     view_profile: Ver perfil
@@ -1655,9 +1654,6 @@ es:
     title: Historial de autenticación
   mail_subscriptions:
     unsubscribe:
-      action: Sí, cancelar suscripción
-      complete: Has cancelado tu suscripción
-      confirmation_html: ¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu correo %{email}? Siempre podrás volver a suscribirte de nuevo desde los <a href="%{settings_path}">ajustes de notificación por correo</a>.
       emails:
         notification_emails:
           favourite: correos de notificación de favoritos
@@ -1665,9 +1661,6 @@ es:
           follow_request: correos de notificación de solicitud de seguidor
           mention: correos de notificación de menciones
           reblog: correos de notificación de impulsos
-      resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
-      success_html: Ya no recibirás %{type} de Mastodon en %{domain} a tu correo %{email}.
-      title: Cancelar suscripición
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a una publicación que ya contenga imágenes

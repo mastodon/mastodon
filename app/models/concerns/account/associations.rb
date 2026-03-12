@@ -38,6 +38,7 @@ module Account::Associations
         has_many :status_pins
         has_many :statuses
         has_many :keypairs
+        has_many :email_subscriptions
 
         has_one :deletion_request, class_name: 'AccountDeletionRequest'
         has_one :follow_recommendation_suppression

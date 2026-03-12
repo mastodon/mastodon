@@ -1248,7 +1248,6 @@ gd:
   application_mailer:
     notification_preferences: Atharraich roghainnean a’ phuist-d
     salutation: "%{name},"
-    settings: 'Atharraich roghainnean a’ phuist-d: %{link}'
     unsubscribe: Cuir crìoch air an fho-sgrìobhadh
     view: 'Faic:'
     view_profile: Seall a’ phròifil
@@ -1710,9 +1709,6 @@ gd:
     title: Eachdraidh an dearbhaidh
   mail_subscriptions:
     unsubscribe:
-      action: Tha, cuir crìoch air an fho-sgrìobhadh
-      complete: Chaidh crìoch a chur air an fho-sgrìobhadh
-      confirmation_html: A bheil thu cinnteach nach eil thu airson %{type} fhaighinn tuilleadh o Mhastodon air %{domain} dhan post-d agad aig %{email}? ’S urrainn dhut fo-sgrìobhadh a-rithist uair sam bith o <a href="%{settings_path}">roghainnean a’ puist-d agad</a>.
       emails:
         notification_emails:
           favourite: puist-d le brathan mu annsachdan
@@ -1720,9 +1716,6 @@ gd:
           follow_request: puist-d le brathan mu iarrtasan leantainn
           mention: puist-d le brathan mu iomraidhean
           reblog: puist-d le brathan mu bhrosnachaidhean
-      resubscribe_html: Ma chuir thu crìoch air an fho-sgrìobhadh le mearachd, ’s urrainn dhut fo-sgrìobhadh a-rithist o <a href="%{settings_path}">roghainnean a’ puist-d agad</a>.
-      success_html: Chan fhaigh thu %{type} o Mhastodon air %{domain} dhan phost-d agad aig %{email} tuilleadh.
-      title: Cuir crìoch air an fho-sgrìobhadh
   media_attachments:
     validations:
       images_and_video: Chan urrainn dhut video a cheangal ri post sa bheil dealbh mu thràth

@@ -1210,7 +1210,6 @@ vi:
   application_mailer:
     notification_preferences: Thay đổi thiết lập email
     salutation: "%{name},"
-    settings: 'Thay đổi thiết lập email: %{link}'
     unsubscribe: Hủy đăng ký
     view: 'Chi tiết:'
     view_profile: Xem trang hồ sơ
@@ -1614,9 +1613,6 @@ vi:
     title: Lịch sử đăng nhập
   mail_subscriptions:
     unsubscribe:
-      action: Đúng, hủy đăng ký
-      complete: Đã hủy đăng ký
-      confirmation_html: Bạn có chắc muốn hủy đăng ký %{type} Mastodon trên %{domain} tới %{email}? Bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
       emails:
         notification_emails:
           favourite: email thông báo lượt thích
@@ -1624,9 +1620,6 @@ vi:
           follow_request: email thông báo yêu cầu theo dõi
           mention: email thông báo lượt nhắc đến
           reblog: email thông báo lượt đăng lại
-      resubscribe_html: Nếu đổi ý, bạn có thể đăng ký lại từ <a href="%{settings_path}">cài đặt thông báo email</a>.
-      success_html: Bạn sẽ không còn nhận %{type} Mastodon trên %{domain} tới %{email}.
-      title: Hủy đăng ký
   media_attachments:
     validations:
       images_and_video: Không thể đính kèm video vào tút đã chứa hình ảnh

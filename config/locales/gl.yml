@@ -1231,7 +1231,6 @@ gl:
   application_mailer:
     notification_preferences: Cambiar preferencias de correo
     salutation: "%{name},"
-    settings: 'Cambiar preferencias de correo: %{link}'
     unsubscribe: Anular subscrición
     view: 'Vista:'
     view_profile: Ver perfil
@@ -1655,9 +1654,6 @@ gl:
     title: Historial de autenticación
   mail_subscriptions:
     unsubscribe:
-      action: Si, retirar subscrición
-      complete: Subscrición anulada
-      confirmation_html: Tes a certeza de querer retirar a subscrición a Mastodon en %{domain} para recibir %{type} no teu correo electrónico en %{email}? Poderás volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo</a>.
       emails:
         notification_emails:
           favourite: notificacións de favorecidas
@@ -1665,9 +1661,6 @@ gl:
           follow_request: notificacións de solicitudes de seguimento
           mention: notificacións de mencións
           reblog: notificacións de promocións
-      resubscribe_html: Se por un erro eliminaches a subscrición, podes volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo electrónico</a>.
-      success_html: Non vas recibir %{type} de Mastodon en %{domain} no enderezo %{email}.
-      title: Anular subscrición
   media_attachments:
     validations:
       images_and_video: Non podes anexar un vídeo a unha publicación que xa contén imaxes

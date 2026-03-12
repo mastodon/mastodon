@@ -1231,7 +1231,6 @@ hu:
   application_mailer:
     notification_preferences: E-mail-beállítások módosítása
     salutation: "%{name}!"
-    settings: 'E-mail-beállítások módosítása: %{link}'
     unsubscribe: Leiratkozás
     view: 'Megtekintés:'
     view_profile: Profil megtekintése
@@ -1655,9 +1654,6 @@ hu:
     title: Hitelesítési történet
   mail_subscriptions:
     unsubscribe:
-      action: Igen, leiratkozás
-      complete: Leiratkozva
-      confirmation_html: 'Biztos, hogy leiratkozol arról, hogy %{type} típusú üzeneteket kapj a(z) %{domain} Mastodon-kiszolgálótól erre a címedre: %{email}? Bármikor újra feliratkozhatsz az <a href="%{settings_path}">e-mail-értesítési beállításokban</a>.'
       emails:
         notification_emails:
           favourite: kedvencnek jelölés értesítő e-mailjei
@@ -1665,9 +1661,6 @@ hu:
           follow_request: követési kérések e-mailjei
           mention: megemlítés értesítő e-mailjei
           reblog: megtolás értesítő e-mailjei
-      resubscribe_html: Ha tévedésből iratkoztál le, újra feliratkozhatsz az <a href="%{settings_path}">e-mail-értesítési beállításoknál</a>.
-      success_html: 'Mostantól nem kapsz %{type} típusú üzeneket a(z) %{domain} Mastodon-kiszolgálón erre a címedre: %{email}.'
-      title: Leiratkozás
   media_attachments:
     validations:
       images_and_video: Nem csatolhatsz videót olyan bejegyzéshez, amelyhez már csatoltál képet

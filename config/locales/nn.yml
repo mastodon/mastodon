@@ -1229,7 +1229,6 @@ nn:
   application_mailer:
     notification_preferences: Endre e-post-innstillingane
     salutation: Hei %{name},
-    settings: 'Endre e-post-innstillingar: %{link}'
     unsubscribe: Meld av
     view: 'Sjå:'
     view_profile: Sjå profil
@@ -1653,9 +1652,6 @@ nn:
     title: Autentiseringshistorikk
   mail_subscriptions:
     unsubscribe:
-      action: Ja, meld av
-      complete: Meldt av
-      confirmation_html: Er du sikker på at du ikkje lenger ynskjer å motta %{type} frå Mastodon på %{domain} til e-posten din %{email}? Du kan alltids gjera om på dette i <a href="%{settings_path}">innstillingar for e-postvarsling</a>.
       emails:
         notification_emails:
           favourite: e-postar om favorittmarkeringar
@@ -1663,9 +1659,6 @@ nn:
           follow_request: e-postar om fylgjeførespurnadar
           mention: e-postar om omtaler
           reblog: e-postar om framhevingar
-      resubscribe_html: Om du har avslutta abonnementet ved ein feil, kan du abonnera på nytt i <a href="%{settings_path}">innstillingar for e-postvarsling</a>.
-      success_html: Du vil ikkje lenger få %{type} frå Mastodon på %{domain} til e-posten på %{email}.
-      title: Meld av
   media_attachments:
     validations:
       images_and_video: Kan ikkje leggja ved video til status som allereie inneheld bilete

@@ -1234,7 +1234,6 @@ fr-CA:
   application_mailer:
     notification_preferences: Modification des préférences de la messagerie
     salutation: "%{name},"
-    settings: 'Modifier les préférences de la messagerie : %{link}'
     unsubscribe: Se désabonner
     view: 'Voir :'
     view_profile: Voir le profil
@@ -1658,9 +1657,6 @@ fr-CA:
     title: Historique d'authentification
   mail_subscriptions:
     unsubscribe:
-      action: Oui, me désabonner
-      complete: Désabonné·e
-      confirmation_html: Êtes-vous sûr de vouloir vous désabonner de la réception de %{type} pour Mastodon sur %{domain} à votre adresse e-mail %{email} ? Vous pouvez toujours vous réabonner à partir de vos paramètres de <a href="%{settings_path}">notification par messagerie</a>.
       emails:
         notification_emails:
           favourite: e-mails de notifications de favoris
@@ -1668,9 +1664,6 @@ fr-CA:
           follow_request: e-mails de demandes d’abonnements
           mention: e-mails de notifications de mentions
           reblog: e-mails de notifications de partages
-      resubscribe_html: Si vous vous êtes désinscrit par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
-      success_html: Vous ne recevrez plus de %{type} pour Mastodon sur %{domain} à votre adresse e-mail à %{email}.
-      title: Se désabonner
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images

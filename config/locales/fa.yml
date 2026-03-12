@@ -1210,7 +1210,6 @@ fa:
   application_mailer:
     notification_preferences: تغییر ترجیحات رایانامه
     salutation: "%{name}،"
-    settings: 'تغییر ترجیحات رایانامه: %{link}'
     unsubscribe: لغو اشتراک
     view: 'نمایش:'
     view_profile: دیدن نمایه
@@ -1632,9 +1631,6 @@ fa:
     title: تاریخچهٔ تأیید هویت
   mail_subscriptions:
     unsubscribe:
-      action: بله. لغو اشتراک
-      complete: لغو اشتراک شد
-      confirmation_html: مطمئنید که می‌خواهید اشتراک %{type} را از ماستودون روی %{domain} برای رایانامهٔ %{email} لغو کنید؟ همواره می‌توانید از <a href="%{settings_path}">تنظیمات آگاهی رایانامه‌ای</a> دوباره مشترک شوید.
       emails:
         notification_emails:
           favourite: رایانامه‌های آگاهی برگزیدن
@@ -1642,9 +1638,6 @@ fa:
           follow_request: رایانامه‌های درخواست پی‌گیری
           mention: رایانامه‌های آگاهی اشاره
           reblog: رایانامه‌های آگاهی تقویت
-      resubscribe_html: اگر اشتراک را اشتباهی لغو کردید می‌توانید از <a href="%{settings_path}">تنظیمات آگاهی رایانامه‌ای</a> دوباره مشترک شوید.
-      success_html: دیگر %{type} را از ماستودون روی %{domain} برای رایانامهٔ %{email} نخواهید گرفت.
-      title: لغو اشتراک
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد

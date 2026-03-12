@@ -1231,7 +1231,6 @@ el:
   application_mailer:
     notification_preferences: Αλλαγή προτιμήσεων email
     salutation: "%{name},"
-    settings: 'Αλλαγή προτιμήσεων email: %{link}'
     unsubscribe: Κατάργηση εγγραφής
     view: 'Προβολή:'
     view_profile: Προβολή προφίλ
@@ -1655,9 +1654,6 @@ el:
     title: Ιστορικό ελέγχου ταυτότητας
   mail_subscriptions:
     unsubscribe:
-      action: Ναι, κατάργηση συνδρομής
-      complete: Η συνδρομή καταργήθηκε
-      confirmation_html: Σίγουρα θες να καταργήσεις την εγγραφή σου για %{type} για το Mastodon στο %{domain} στο email σου %{email}; Μπορείς πάντα να εγγραφείς ξανά από τις <a href="%{settings_path}">ρυθμίσεις ειδοποιήσεων email</a>.
       emails:
         notification_emails:
           favourite: ειδοποιήσεις email για αγαπημένα
@@ -1665,9 +1661,6 @@ el:
           follow_request: email για αιτήματα ακολούθησης
           mention: ειδοποιήσεις email για επισημάνσεις
           reblog: ειδοποιήσεις email για ενίσχυση
-      resubscribe_html: Αν έχεις καταργήσει την εγγραφή σου κατά λάθος, μπορείς να εγγραφείς εκ νέου από τις <a href="%{settings_path}">ρυθμίσεις ειδοποίησης email</a>.
-      success_html: Δεν θα λαμβάνεις πλέον %{type} για το Mastodon στο %{domain} στο email σου στο %{email}.
-      title: Κατάργηση συνδρομής
   media_attachments:
     validations:
       images_and_video: Δεν γίνεται να προσθέσεις βίντεο σε ανάρτηση που ήδη περιέχει εικόνες

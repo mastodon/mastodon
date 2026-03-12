@@ -1207,7 +1207,6 @@ ia:
   application_mailer:
     notification_preferences: Cambiar preferentias de e-mail
     salutation: "%{name},"
-    settings: 'Cambiar preferentias de e-mail: %{link}'
     unsubscribe: Cancellar subscription
     view: 'Visita:'
     view_profile: Vider profilo
@@ -1622,9 +1621,6 @@ ia:
     title: Historia de authentication
   mail_subscriptions:
     unsubscribe:
-      action: Si, cancellar subscription
-      complete: Desubscribite
-      confirmation_html: Es tu secur de voler cancellar le subscription al %{type} de Mastodon sur %{domain} pro tu adresse de e-mail %{email}? Tu pote sempre resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
       emails:
         notification_emails:
           favourite: notificationes de favorites in e-mail
@@ -1632,9 +1628,6 @@ ia:
           follow_request: requestas de sequimento in e-mail
           mention: notificationes de mentiones in e-mail
           reblog: notificationes de impulsos in e-mail
-      resubscribe_html: Si tu ha cancellate le subscription in error, tu pote resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
-      success_html: Tu non recipera plus %{type} pro Mastodon sur %{domain} a tu adresse de e-mail %{email}.
-      title: Desubcriber
   media_attachments:
     validations:
       images_and_video: Impossibile annexar un video a un message que jam contine imagines

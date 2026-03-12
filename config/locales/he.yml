@@ -1273,7 +1273,6 @@ he:
   application_mailer:
     notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
-    settings: 'שינוי הגדרות דוא"ל: %{link}'
     unsubscribe: בטל מנוי
     view: 'תצוגה:'
     view_profile: צפיה בפרופיל
@@ -1737,9 +1736,6 @@ he:
     title: הסטוריית אימותים
   mail_subscriptions:
     unsubscribe:
-      action: כן, לבטל הרשמה
-      complete: הפסקת הרשמה
-      confirmation_html: יש לאשר את ביטול ההרשמה להודעות %{type} ממסטודון בשרת %{domain} לכתובת הדואל %{email}. תמיד אפשר להרשם מחדש ב<a href="%{settings_path}">כיוונוני הודעות דואל</a>.
       emails:
         notification_emails:
           favourite: הודעות דואל לגבי חיבובים
@@ -1747,9 +1743,6 @@ he:
           follow_request: הודעות דואל לגבי בקשות מעקב
           mention: הודעות דואל לגבי איזכורים
           reblog: הודעות דואל לגבי הידהודים
-      resubscribe_html: אם ביטול ההרשמה היה בטעות, ניתן להרשם מחדש מתוך <a href="%{settings_path}">מסך הגדרות ההרשמה</a> שלך.
-      success_html: לא יגיעו אליך יותר הודעות %{type} משרת מסטודון %{domain} לכתובת הדואל %{email}.
-      title: הפסקת הרשמה
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו להודעה שכבר מכילה תמונות

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'MailSubscriptionsController' do
+RSpec.describe 'UnsubscriptionsController' do
   let(:user) { Fabricate(:user) }
   let(:token) { user.to_sgid(for: 'unsubscribe').to_s }
   let(:type) { 'follow' }
@@ -39,9 +39,8 @@ RSpec.describe 'MailSubscriptionsController' do
       expect(response).to have_http_status(200)
 
       expect(response.body).to include(
-        I18n.t('mail_subscriptions.unsubscribe.action')
+        I18n.t('unsubscriptions.show.action')
       )
-      expect(response.body).to include(user.email)
     end
   end
 
@@ -60,9 +59,8 @@ RSpec.describe 'MailSubscriptionsController' do
       expect(response).to have_http_status(200)
 
       expect(response.body).to include(
-        I18n.t('mail_subscriptions.unsubscribe.complete')
+        I18n.t('unsubscriptions.create.title')
       )
-      expect(response.body).to include(user.email)
     end
 
     it 'updates notification settings' do

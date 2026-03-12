@@ -1186,7 +1186,6 @@ bg:
   application_mailer:
     notification_preferences: Промяна на предпочитанията за е-поща
     salutation: "%{name},"
-    settings: 'Промяна на предпочитанията за имейл: %{link}'
     unsubscribe: Стоп на абонамента
     view: 'Преглед:'
     view_profile: Преглед на профила
@@ -1601,9 +1600,6 @@ bg:
     title: Историята на удостоверяване
   mail_subscriptions:
     unsubscribe:
-      action: Да, да се спре абонамента
-      complete: Спрян абонамент
-      confirmation_html: Наистина ли искате да спрете абонамента от получаването на %{type} за Mastodon в %{domain} към имейла си при %{email}? Може винаги пак да се абонирате от своите <a href="%{settings_path}">настройки за известяване по е-поща</a>.
       emails:
         notification_emails:
           favourite: е-писма за известия с любими
@@ -1611,9 +1607,6 @@ bg:
           follow_request: е-писма със заявки за следване
           mention: е-писма с известия за споменаване
           reblog: е-писма с известия за подсилване
-      resubscribe_html: Ако погрешка сте спрели абонамента, то може пак да се абонирате от своите <a href="%{settings_path}">настройки за известия по е-поща</a>.
-      success_html: Повече няма да получавате %{type} за Mastodon на %{domain} към имейла си при %{email}.
-      title: Спиране на абонамента
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения

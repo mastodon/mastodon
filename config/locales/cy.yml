@@ -1313,7 +1313,6 @@ cy:
   application_mailer:
     notification_preferences: Newid dewisiadau e-bost
     salutation: "%{name},"
-    settings: 'Newid dewisiadau e-bost: %{link}'
     unsubscribe: Dad-danysgrifio
     view: 'Gweld:'
     view_profile: Gweld proffil
@@ -1817,9 +1816,6 @@ cy:
     title: Hanes dilysu
   mail_subscriptions:
     unsubscribe:
-      action: Iawn, dad-danysgrifio
-      complete: Dad-danysgrifiwyd
-      confirmation_html: Ydych chi'n siŵr eich bod am ddad-danysgrifio rhag derbyn %{type} Mastodon ar %{domain} i'ch e-bost yn %{email}? Gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a> rhywbryd eto.
       emails:
         notification_emails:
           favourite: e-bost hysbysu hoffi
@@ -1827,9 +1823,6 @@ cy:
           follow_request: e-byst ceisiadau dilyn
           mention: e-byst hysbysu crybwylliadau
           reblog: e-byst hysbysiadau hybu
-      resubscribe_html: Os ydych wedi dad-danysgrifio trwy gamgymeriad, gallwch ail-danysgrifio drwy'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a>.
-      success_html: Ni fyddwch bellach yn derbyn %{type} ar gyfer Mastodon ar %{domain} i'ch e-bost am %{email}.
-      title: Dad-danysgrifio
   media_attachments:
     validations:
       images_and_video: Methu atodi fideo i bostiad sydd eisoes yn cynnwys delweddau

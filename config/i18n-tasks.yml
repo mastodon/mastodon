@@ -65,6 +65,7 @@ ignore_unused:
   - 'move_handler.carry_{mutes,blocks}_over_text'
   - 'admin_mailer.*.subject'
   - 'user_mailer.*.subject'
+  - 'email_subscription_mailer.*'
   - 'notification_mailer.*'
   - 'imports.overwrite_preambles.{following,blocking,muting,domain_blocking,bookmarks,lists}_html.*'
   - 'imports.preambles.{following,blocking,muting,domain_blocking,bookmarks,lists}_html.*'

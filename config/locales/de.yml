@@ -1231,7 +1231,6 @@ de:
   application_mailer:
     notification_preferences: E-Mail-Einstellungen ändern
     salutation: "%{name},"
-    settings: 'E-Mail-Einstellungen ändern: %{link}'
     unsubscribe: Abbestellen
     view: 'Siehe:'
     view_profile: Profil anzeigen
@@ -1655,9 +1654,6 @@ de:
     title: Anmeldeverlauf
   mail_subscriptions:
     unsubscribe:
-      action: Ja, abbestellen
-      complete: Abbestellt
-      confirmation_html: Möchtest du %{type} für Mastodon auf %{domain} an deine E-Mail-Adresse %{email} wirklich abbestellen? Du kannst dies später in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
       emails:
         notification_emails:
           favourite: E-Mail-Benachrichtigungen bei Favoriten
@@ -1665,9 +1661,6 @@ de:
           follow_request: E-Mail-Benachrichtigungen bei Follower-Anfragen
           mention: E-Mail-Benachrichtigungen bei Erwähnungen
           reblog: E-Mail-Benachrichtigungen bei geteilten Beiträgen
-      resubscribe_html: Falls du etwas irrtümlich abbestellt hast, kannst du das in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
-      success_html: Du wirst nicht länger %{type} für Mastodon auf %{domain} an deine E-Mail-Adresse %{email} erhalten.
-      title: Abbestellen
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag angehängt werden, der bereits Bilder enthält

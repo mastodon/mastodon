@@ -1210,7 +1210,6 @@ nan-TW:
   application_mailer:
     notification_preferences: 改電子phue ê偏好
     salutation: "%{name}、"
-    settings: 改電子phue ê偏好：%{link}
     unsubscribe: 取消訂
     view: 檢視：
     view_profile: 看個人資料
@@ -1614,9 +1613,6 @@ nan-TW:
     title: 認證歷史
   mail_subscriptions:
     unsubscribe:
-      action: Hennh，mài訂
-      complete: 無訂ah
-      confirmation_html: Lí kám確定beh取消訂 %{domain} ê Mastodon 內底 ê %{type} kàu lí ê電子批 %{email}？Lí ē當隨時對lí ê<a href="%{settings_path}">電子批通知設定</a>重訂。
       emails:
         notification_emails:
           favourite: 收藏通知電子批
@@ -1624,9 +1620,6 @@ nan-TW:
           follow_request: 跟tuè請求電子批
           mention: 提起通知電子批
           reblog: 轉送通知電子批
-      resubscribe_html: Nā出tshê取消訂，lí通重訂tuì lí ê<a href="%{settings_path}">電子批通知設定</a>。
-      success_html: Lí bē koh收著佇 %{domain} ê Mastodon內底ê %{type} kàu lí ê電子批 %{email}。
-      title: 取消訂
   media_attachments:
     validations:
       images_and_video: Bē當佇有影像ê PO文內底加影片
