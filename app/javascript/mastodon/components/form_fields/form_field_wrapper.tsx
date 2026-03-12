@@ -18,7 +18,7 @@ export interface InputProps {
   'aria-describedby'?: string;
 }
 
-interface FieldStatus {
+export interface FieldStatus {
   type: 'error' | 'warning' | 'success';
   message?: string;
 }
@@ -69,15 +69,16 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
 
   const hasParentFieldset = !!useContext(FieldsetNameContext);
 
+  const descriptionIds =
+    [hasHint ? hintId : '', fieldStatus ? statusId : '', describedById]
+      .filter((id) => !!id)
+      .join(' ') || undefined;
+
   const inputProps: InputProps = {
     required,
     id: inputId,
+    'aria-describedby': descriptionIds,
   };
-  if (hasHint || status || describedById) {
-    inputProps['aria-describedby'] = describedById
-      ? `${describedById} ${hintId}`
-      : hintId;
-  }
 
   const input = (
     <div className={classes.inputWrapper}>{children(inputProps)}</div>
@@ -110,6 +111,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
 
       {inputPlacement !== 'inline-start' && input}
 
+      {/* Live region must be rendered even when empty */}
       <A11yLiveRegion className={classes.status} id={statusId}>
         {fieldStatus?.message}
       </A11yLiveRegion>
@@ -135,7 +137,7 @@ const RequiredMark: FC<{ required?: boolean }> = ({ required }) =>
     </>
   );
 
-function getFieldStatus(status: FieldWrapperProps['status']) {
+export function getFieldStatus(status: FieldWrapperProps['status']) {
   if (!status) {
     return null;
   }

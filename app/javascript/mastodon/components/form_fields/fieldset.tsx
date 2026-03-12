@@ -3,14 +3,18 @@
 import type { ReactNode, FC } from 'react';
 import { createContext, useId } from 'react';
 
+import { A11yLiveRegion } from '../a11y_live_region';
+
 import classes from './fieldset.module.scss';
+import { getFieldStatus } from './form_field_wrapper';
+import type { FieldStatus } from './form_field_wrapper';
 import formFieldWrapperClasses from './form_field_wrapper.module.scss';
 
 interface FieldsetProps {
   legend: ReactNode;
   hint?: ReactNode;
   name?: string;
-  hasError?: boolean;
+  status?: FieldStatus | FieldStatus['type'];
   layout?: 'vertical' | 'horizontal';
   children: ReactNode;
 }
@@ -26,22 +30,29 @@ export const Fieldset: FC<FieldsetProps> = ({
   legend,
   hint,
   name,
-  hasError,
+  status,
   layout,
   children,
 }) => {
   const uniqueId = useId();
   const labelId = `${uniqueId}-label`;
   const hintId = `${uniqueId}-hint`;
+  const statusId = `${uniqueId}-status`;
   const fieldsetName = name || `${uniqueId}-fieldset-name`;
   const hasHint = !!hint;
+
+  const fieldStatus = getFieldStatus(status);
+
+  const descriptionIds = [hasHint ? hintId : '', fieldStatus ? statusId : '']
+    .filter((id) => !!id)
+    .join(' ');
 
   return (
     <fieldset
       className={classes.fieldset}
-      data-has-error={hasError}
+      data-has-error={status === 'error'}
       aria-labelledby={labelId}
-      aria-describedby={hintId}
+      aria-describedby={descriptionIds}
     >
       <div className={formFieldWrapperClasses.labelWrapper}>
         <div id={labelId} className={formFieldWrapperClasses.label}>
@@ -59,6 +70,11 @@ export const Fieldset: FC<FieldsetProps> = ({
           {children}
         </FieldsetNameContext.Provider>
       </div>
+
+      {/* Live region must be rendered even when empty */}
+      <A11yLiveRegion className={classes.status} id={statusId}>
+        {fieldStatus?.message}
+      </A11yLiveRegion>
     </fieldset>
   );
 };
