@@ -229,6 +229,26 @@ export const patchProfile = createDataLoadingThunk(
   },
 );
 
+export type ImageLocation = 'avatar' | 'header';
+
+export const selectImageInfo = createAppSelector(
+  [
+    (state) => state.profileEdit.profile,
+    (_, location: ImageLocation) => location,
+  ],
+  (profile, location) => {
+    if (!profile) {
+      return {};
+    }
+
+    return {
+      src: profile[location],
+      static: profile[`${location}Static`],
+      alt: profile[`${location}Description`],
+    };
+  },
+);
+
 export const selectFieldById = createAppSelector(
   [(state) => state.profileEdit.profile?.fields, (_, id?: string) => id],
   (fields, fieldId) => {
