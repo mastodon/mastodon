@@ -140,7 +140,7 @@ export const AccountImageEdit: FC<{
   return (
     <Dropdown
       items={items}
-      placement='bottom-start'
+      placement={location === 'header' ? 'bottom-end' : 'bottom-start'
       offset={popperOffset}
       className={classes.imageMenu}
       icon='camera'
