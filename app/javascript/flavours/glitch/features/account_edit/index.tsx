@@ -23,6 +23,7 @@ import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { EditButton } from './components/edit_button';
 import { AccountField } from './components/field';
 import { AccountFieldActions } from './components/field_actions';
+import { AccountImageEdit } from './components/image_edit';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
@@ -164,8 +165,12 @@ export const AccountEdit: FC = () => {
       <header>
         <div className={classes.profileImage}>
           {headerSrc && <img src={headerSrc} alt='' />}
+          <AccountImageEdit location='header' />
         </div>
-        <Avatar account={account} size={80} className={classes.avatar} />
+        <div className={classes.avatar}>
+          <Avatar account={account} size={80} />
+          <AccountImageEdit location='avatar' />
+        </div>
       </header>
 
       <CustomEmojiProvider emojis={emojis}>
