@@ -2010,7 +2010,9 @@ body > [data-popper-placement] {
 .account {
   padding: 16px;
 
-  &:not(&--without-border) {
+  // Using :where keeps specificity low, allowing for existing
+  // .account overrides to still apply
+  &:where(:not(&--without-border)) {
     border-bottom: 1px solid var(--color-border-primary);
   }
 
@@ -11509,6 +11511,9 @@ noscript {
 
 .column-footer {
   padding: 16px;
+  position: sticky;
+  bottom: 0;
+  background: var(--color-bg-primary);
 }
 
 .lists-scrollable {

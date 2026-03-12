@@ -5,15 +5,15 @@
 # Table name: invites
 #
 #  id         :bigint(8)        not null, primary key
-#  user_id    :bigint(8)        not null
+#  autofollow :boolean          default(FALSE), not null
 #  code       :string           default(""), not null
+#  comment    :text
 #  expires_at :datetime
 #  max_uses   :integer
 #  uses       :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  autofollow :boolean          default(FALSE), not null
-#  comment    :text
+#  user_id    :bigint(8)        not null
 #
 
 class Invite < ApplicationRecord

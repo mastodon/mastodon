@@ -5,13 +5,13 @@
 # Table name: featured_tags
 #
 #  id             :bigint(8)        not null, primary key
-#  account_id     :bigint(8)        not null
-#  tag_id         :bigint(8)        not null
-#  statuses_count :bigint(8)        default(0), not null
 #  last_status_at :datetime
+#  name           :string
+#  statuses_count :bigint(8)        default(0), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  name           :string
+#  account_id     :bigint(8)        not null
+#  tag_id         :bigint(8)        not null
 #
 
 class FeaturedTag < ApplicationRecord

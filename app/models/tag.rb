@@ -5,18 +5,18 @@
 # Table name: tags
 #
 #  id                  :bigint(8)        not null, primary key
-#  name                :string           default(""), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  usable              :boolean
-#  trendable           :boolean
-#  listable            :boolean
-#  reviewed_at         :datetime
-#  requested_review_at :datetime
+#  display_name        :string
 #  last_status_at      :datetime
+#  listable            :boolean
 #  max_score           :float
 #  max_score_at        :datetime
-#  display_name        :string
+#  name                :string           default(""), not null
+#  requested_review_at :datetime
+#  reviewed_at         :datetime
+#  trendable           :boolean
+#  usable              :boolean
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 
 class Tag < ApplicationRecord

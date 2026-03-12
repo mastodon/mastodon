@@ -5,12 +5,12 @@
 # Table name: account_migrations
 #
 #  id                :bigint(8)        not null, primary key
-#  account_id        :bigint(8)
 #  acct              :string           default(""), not null
 #  followers_count   :bigint(8)        default(0), not null
-#  target_account_id :bigint(8)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  account_id        :bigint(8)
+#  target_account_id :bigint(8)
 #
 
 class AccountMigration < ApplicationRecord

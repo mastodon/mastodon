@@ -293,11 +293,7 @@ svg.badgeIcon {
 
 .fieldOverflowButton {
   --default-bg-color: var(--color-bg-secondary-solid);
-  --hover-bg-color: color-mix(
-    in oklab,
-    var(--color-bg-brand-base),
-    var(--default-bg-color) var(--overlay-strength-brand)
-  );
+  --hover-bg-color: var(--color-bg-brand-softer-solid);
 
   position: absolute;
   right: 8px;

@@ -5,10 +5,10 @@
 # Table name: list_accounts
 #
 #  id                :bigint(8)        not null, primary key
-#  list_id           :bigint(8)        not null
 #  account_id        :bigint(8)        not null
 #  follow_id         :bigint(8)
 #  follow_request_id :bigint(8)
+#  list_id           :bigint(8)        not null
 #
 
 class ListAccount < ApplicationRecord

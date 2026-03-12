@@ -6,10 +6,10 @@
 #
 #  id                 :bigint(8)        not null, primary key
 #  inbox_url          :string           default(""), not null
-#  follow_activity_id :string
+#  state              :integer          default("idle"), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  state              :integer          default("idle"), not null
+#  follow_activity_id :string
 #
 
 class Relay < ApplicationRecord

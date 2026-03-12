@@ -5,10 +5,10 @@
 # Table name: software_updates
 #
 #  id            :bigint(8)        not null, primary key
-#  version       :string           not null
-#  urgent        :boolean          default(FALSE), not null
-#  type          :integer          default("patch"), not null
 #  release_notes :string           default(""), not null
+#  type          :integer          default("patch"), not null
+#  urgent        :boolean          default(FALSE), not null
+#  version       :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

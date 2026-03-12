@@ -81,6 +81,11 @@
       var(--color-bg-brand-base),
       var(--overlay-strength-brand)
     )};
+  --color-bg-brand-softer-solid: color-mix(
+    in srgb,
+    var(--color-bg-primary),
+    var(--color-bg-brand-base) var(--overlay-strength-brand)
+  );
 
   // Error
   --overlay-strength-error: 10%;

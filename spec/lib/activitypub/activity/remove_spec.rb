@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Remove do
-  let(:sender) { Fabricate(:account, featured_collection_url: 'https://example.com/featured') }
+  let(:sender) do
+    Fabricate(:remote_account,
+              featured_collection_url: 'https://example.com/featured',
+              collections_url: 'https://example.com/actor/1/featured_collections')
+  end
 
   describe '#perform' do
     subject { described_class.new(json, sender) }
@@ -57,6 +61,52 @@ RSpec.describe ActivityPub::Activity::Remove do
       it 'removes a pin' do
         expect { subject.perform }
           .to change { sender.featured_tags.exists?(tag: tag) }.to(false)
+      end
+    end
+
+    context 'when removing a featured collection' do
+      let(:collection) { Fabricate(:remote_collection, account: sender) }
+      let(:json) do
+        {
+          '@context' => 'https://www.w3.org/ns/activitystreams',
+          'id' => 'foo',
+          'type' => 'Remove',
+          'actor' => ActivityPub::TagManager.instance.uri_for(sender),
+          'object' => collection.uri,
+          'target' => sender.collections_url,
+        }
+      end
+
+      before do
+        Fabricate(:collection_item, collection:, uri: 'https://example.com/featured_items/1')
+      end
+
+      it 'deletes the collection' do
+        expect { subject.perform }
+          .to change(sender.collections, :count).by(-1)
+          .and change(CollectionItem, :count).by(-1)
+      end
+    end
+
+    context 'when removing a featured item' do
+      let(:collection) { Fabricate(:remote_collection, account: sender) }
+      let(:collection_item) { Fabricate(:collection_item, collection:, uri: 'https://example.com/featured_items/1') }
+      let(:json) do
+        {
+          '@context' => 'https://www.w3.org/ns/activitystreams',
+          'id' => 'foo',
+          'type' => 'Remove',
+          'actor' => ActivityPub::TagManager.instance.uri_for(sender),
+          'object' => collection_item.uri,
+          'target' => collection.uri,
+        }
+      end
+
+      before { json }
+
+      it 'deletes the collection item' do
+        expect { subject.perform }
+          .to change(collection.collection_items, :count).by(-1)
       end
     end
   end
