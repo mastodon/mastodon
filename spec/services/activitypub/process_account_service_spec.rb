@@ -63,6 +63,34 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
   end
 
+  context 'with collection URIs' do
+    let(:payload) do
+      {
+        'id' => 'https://foo.test',
+        'type' => 'Actor',
+        'inbox' => 'https://foo.test/inbox',
+        'featured' => 'https://foo.test/featured',
+        'followers' => 'https://foo.test/followers',
+        'following' => 'https://foo.test/following',
+        'featuredCollections' => 'https://foo.test/featured_collections',
+      }
+    end
+
+    before do
+      stub_request(:get, %r{^https://foo\.test/follow})
+        .to_return(status: 200, body: '', headers: {})
+    end
+
+    it 'parses and sets the URIs' do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account.featured_collection_url).to eq 'https://foo.test/featured'
+      expect(account.followers_url).to eq 'https://foo.test/followers'
+      expect(account.following_url).to eq 'https://foo.test/following'
+      expect(account.collections_url).to eq 'https://foo.test/featured_collections'
+    end
+  end
+
   context 'with attribution domains' do
     let(:payload) do
       {
