@@ -5,6 +5,7 @@
   background: var(--color-bg-secondary);
   border-bottom: 1px solid var(--color-border-primary);
   overflow: hidden;
+  position: relative;
 
   @container (width >= 500px) {
     height: 160px;
@@ -16,12 +17,27 @@
     width: 100%;
     height: 100%;
   }
+
+  .imageButton {
+    top: 16px;
+    right: 24px;
+  }
 }
 
 .avatar {
   margin-top: -64px;
   margin-left: 18px;
-  border: 1px solid var(--color-border-primary);
+  position: relative;
+  width: 82px;
+
+  > :global(.account__avatar) {
+    border: 1px solid var(--color-border-primary);
+  }
+
+  .imageButton {
+    bottom: -8px;
+    right: -8px;
+  }
 }
 
 .field {
@@ -151,6 +167,41 @@
 .fieldValue {
   color: var(--color-text-primary);
   font-size: 15px;
+}
+
+// Image edit component
+
+.imageButton {
+  --default-bg-color: var(--color-bg-primary);
+
+  &,
+  &:global(.active) {
+    // Overrides the transparent background added by default with .active
+    --hover-bg-color: var(--color-bg-brand-softer-solid);
+  }
+
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 9999px;
+  box-sizing: border-box;
+  padding: 4px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.imageMenu {
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 // Item list component

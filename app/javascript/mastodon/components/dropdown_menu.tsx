@@ -296,6 +296,7 @@ interface DropdownProps<Item extends object | null = MenuItem> {
   children?: React.ReactElement;
   icon?: string;
   iconComponent?: IconProp;
+  iconClassName?: string;
   items?: Item[];
   loading?: boolean;
   title?: string;
@@ -326,6 +327,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
   children,
   icon,
   iconComponent,
+  iconClassName,
   items,
   loading,
   title = 'Menu',
@@ -499,6 +501,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
         iconComponent={iconComponent}
         title={title}
         active={open}
+        className={iconClassName}
         {...buttonProps}
       />
     );
