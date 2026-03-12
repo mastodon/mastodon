@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { setDragUploadEnabled } from '@/mastodon/actions/compose_typed';
 import { selectImageInfo } from '@/mastodon/reducers/slices/profile_edit';
 import type { ImageLocation } from '@/mastodon/reducers/slices/profile_edit';
-import { useAppSelector } from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { DialogModal } from '../../ui/components/dialog_modal';
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
@@ -15,6 +16,15 @@ export const ImageUploadModal: FC<
 > = ({ onClose, location }) => {
   const { src } = useAppSelector((state) => selectImageInfo(state, location));
   const [step] = useState<'select' | 'crop' | 'alt'>('select');
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(setDragUploadEnabled(false));
+
+    return () => {
+      dispatch(setDragUploadEnabled(true));
+    };
+  }, [dispatch]);
 
   return (
     <DialogModal
