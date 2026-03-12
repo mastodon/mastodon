@@ -5,9 +5,9 @@
 # Table name: annual_report_statuses_per_account_counts
 #
 #  id             :bigint(8)        not null, primary key
+#  statuses_count :bigint(8)        not null
 #  year           :integer          not null
 #  account_id     :bigint(8)        not null
-#  statuses_count :bigint(8)        not null
 #
 
 class AnnualReport::StatusesPerAccountCount < ApplicationRecord

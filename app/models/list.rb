@@ -5,12 +5,12 @@
 # Table name: lists
 #
 #  id             :bigint(8)        not null, primary key
-#  account_id     :bigint(8)        not null
+#  exclusive      :boolean          default(FALSE), not null
+#  replies_policy :integer          default("list"), not null
 #  title          :string           default(""), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  replies_policy :integer          default("list"), not null
-#  exclusive      :boolean          default(FALSE), not null
+#  account_id     :bigint(8)        not null
 #
 
 class List < ApplicationRecord

@@ -4,11 +4,11 @@
 #
 # Table name: identities
 #
+#  id         :bigint(8)        not null, primary key
 #  provider   :string           default(""), not null
 #  uid        :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  id         :bigint(8)        not null, primary key
 #  user_id    :bigint(8)
 #
 
