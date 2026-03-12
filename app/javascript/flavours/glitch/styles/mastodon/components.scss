@@ -2075,7 +2075,9 @@ body > [data-popper-placement] {
 .account {
   padding: 10px; // glitch: reduced padding
 
-  &:not(&--without-border) {
+  // Using :where keeps specificity low, allowing for existing
+  // .account overrides to still apply
+  &:where(:not(&--without-border)) {
     border-bottom: 1px solid var(--color-border-primary);
   }
 
