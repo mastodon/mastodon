@@ -100,6 +100,26 @@
   }
 }
 
+.cropContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.cropActions {
+  margin-top: 8px; // 16px gap from DialogModal, plus 8px = 24px to look like normal action buttons.
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+
+  .zoomControl {
+    width: min(100%, 200px);
+    margin-right: auto;
+  }
+}
+
 .button {
   background-color: var(--color-bg-primary);
   border: 1px solid var(--color-border-primary);
