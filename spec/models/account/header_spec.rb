@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples 'AccountHeader' do |fabricator|
+RSpec.describe Account::Header do
   describe 'base64-encoded files', :attachment_processing do
     let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
-    let(:account) { Fabricate(fabricator, header: base64_attachment) }
+    let(:account) { Fabricate(:account, header: base64_attachment) }
 
     it 'saves header' do
       expect(account.persisted?).to be true

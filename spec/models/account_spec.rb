@@ -772,9 +772,6 @@ RSpec.describe Account do
     end
   end
 
-  it_behaves_like 'AccountAvatar', :account
-  it_behaves_like 'AccountHeader', :account
-
   describe '#increment_count!' do
     subject { Fabricate(:account) }
 

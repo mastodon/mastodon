@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples 'AccountAvatar' do |fabricator|
+RSpec.describe Account::Avatar do
   describe 'static avatars', :attachment_processing do
     describe 'with a square GIF' do
       it 'creates a png static style' do
-        account = Fabricate(fabricator, avatar: attachment_fixture('avatar.gif'))
+        account = Fabricate(:account, avatar: attachment_fixture('avatar.gif'))
         expect(account.avatar_static_url).to_not eq account.avatar_original_url
       end
     end
 
     describe 'with a higher-than-wide GIF' do
       it 'creates a png static style' do
-        account = Fabricate(fabricator, avatar: attachment_fixture('avatar-high.gif'))
+        account = Fabricate(:account, avatar: attachment_fixture('avatar-high.gif'))
         expect(account.avatar_static_url).to_not eq account.avatar_original_url
       end
     end
 
     describe 'when non-GIF' do
       it 'does not create extra static style' do
-        account = Fabricate(fabricator, avatar: attachment_fixture('attachment.jpg'))
+        account = Fabricate(:account, avatar: attachment_fixture('attachment.jpg'))
         expect(account.avatar_static_url).to eq account.avatar_original_url
       end
     end
@@ -26,7 +26,7 @@ RSpec.shared_examples 'AccountAvatar' do |fabricator|
 
   describe 'base64-encoded files', :attachment_processing do
     let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
-    let(:account) { Fabricate(fabricator, avatar: base64_attachment) }
+    let(:account) { Fabricate(:account, avatar: base64_attachment) }
 
     it 'saves avatar' do
       expect(account.persisted?).to be true
