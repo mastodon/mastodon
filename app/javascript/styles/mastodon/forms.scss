@@ -77,7 +77,6 @@ code {
 
   .input {
     margin-bottom: 16px;
-    overflow: hidden;
 
     &:last-child {
       margin-bottom: 0;
@@ -523,13 +522,20 @@ code {
     color: var(--color-text-primary);
     display: block;
     width: 100%;
-    outline: 0;
     font-family: inherit;
     resize: vertical;
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     padding: 10px 16px;
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+    outline-color: transparent;
+    transition: outline-color 0.15s ease-out;
+
+    &:focus {
+      outline: var(--outline-focus-default);
+    }
 
     &:invalid {
       box-shadow: none;
@@ -613,6 +619,11 @@ code {
       margin-inline-end: 0;
     }
 
+    &:focus-visible {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
+
     &:active,
     &:focus,
     &:hover {
@@ -652,6 +663,11 @@ code {
     padding-inline-start: 10px;
     padding-inline-end: 30px;
     height: 41px;
+
+    &:focus-visible {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
 
     @media screen and (width <= 600px) {
       font-size: 16px;
