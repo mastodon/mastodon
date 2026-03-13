@@ -7,6 +7,10 @@ RSpec.describe AccountMigration do
     describe 'acct' do
       it { is_expected.to normalize(:acct).from('  @username@domain  ').to('username@domain') }
     end
+
+    describe 'current_username' do
+      it { is_expected.to normalize(:current_username).from('  @username  ').to('username') }
+    end
   end
 
   describe 'Validations' do
