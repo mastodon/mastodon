@@ -342,7 +342,7 @@ const StepAlt: FC<{
   imageBlob: Blob;
   onCancel: () => void;
   onComplete: (altText: string) => void;
-}> = ({ imageBlob, onCancel }) => {
+}> = ({ imageBlob, onCancel, onComplete }) => {
   const [altText, setAltText] = useState('');
 
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
@@ -351,6 +351,10 @@ const StepAlt: FC<{
     },
     [],
   );
+
+  const handleComplete = useCallback(() => {
+    onComplete(altText);
+  }, [altText, onComplete]);
 
   const imageSrc = useMemo(() => URL.createObjectURL(imageBlob), [imageBlob]);
   const altLimit = useAppSelector(
@@ -410,7 +414,7 @@ const StepAlt: FC<{
           />
         </Button>
 
-        <Button>
+        <Button onClick={handleComplete}>
           <FormattedMessage
             id='account_edit.upload_modal.done'
             defaultMessage='Done'
