@@ -113,10 +113,13 @@ export const ImageUploadModal: FC<
       wrapperClassName={classes.uploadWrapper}
       noCancelButton
     >
-      {step === 'select' && <StepUpload onFile={handleFile} />}
+      {step === 'select' && (
+        <StepUpload location={location} onFile={handleFile} />
+      )}
       {step === 'crop' && imageSrc && (
         <StepCrop
           src={imageSrc}
+          location={location}
           onCancel={handleCancel}
           onComplete={handleCrop}
         />
@@ -140,7 +143,10 @@ const ALLOWED_MIME_TYPES = [
   'image/webp',
 ];
 
-const StepUpload: FC<{ onFile: (file: File) => void }> = ({ onFile }) => {
+const StepUpload: FC<{
+  location: ImageLocation;
+  onFile: (file: File) => void;
+}> = ({ location, onFile }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const handleUploadClick = useCallback(() => {
     inputRef.current?.click();
@@ -239,8 +245,12 @@ const StepUpload: FC<{ onFile: (file: File) => void }> = ({ onFile }) => {
       />
       <FormattedMessage
         id='account_edit.upload_modal.step_upload.hint'
-        defaultMessage='WEBP, PNG, GIF or JPG format, up to 8MB{br}Image will be downscaled to 400x400px'
-        values={{ br: <br /> }}
+        defaultMessage='WEBP, PNG, GIF or JPG format, up to {limit}MB.{br}Image will be scaled to {size}px.'
+        values={{
+          br: <br />,
+          limit: 8,
+          size: location === 'avatar' ? '400x400' : '1500x500',
+        }}
         tagName='p'
       />
       <Button
@@ -272,10 +282,10 @@ const zoomLabel = defineMessage({
 
 const StepCrop: FC<{
   src: string;
-  aspect?: number;
+  location: ImageLocation;
   onCancel: () => void;
   onComplete: (crop: Area) => void;
-}> = ({ src, aspect = 1, onCancel, onComplete }) => {
+}> = ({ src, location, onCancel, onComplete }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [croppedArea, setCroppedArea] = useState<Area | null>(null);
   const [zoom, setZoom] = useState(1);
@@ -306,7 +316,7 @@ const StepCrop: FC<{
           zoom={zoom}
           onCropChange={setCrop}
           onCropComplete={handleCropComplete}
-          aspect={aspect}
+          aspect={location === 'avatar' ? 1 : 3 / 1}
           disableAutomaticStylesInjection
         />
       </div>
@@ -430,7 +440,7 @@ async function calculateCroppedImage(
   crop: Area,
 ): Promise<Blob> {
   const image = await dataUriToImage(imageSrc);
-  const canvas = new OffscreenCanvas(crop.width, crop.width);
+  const canvas = new OffscreenCanvas(crop.width, crop.height);
   const ctx = canvas.getContext('2d');
   if (!ctx) {
     throw new Error('Failed to get canvas context');
@@ -448,7 +458,7 @@ async function calculateCroppedImage(
     0,
     0,
     crop.width,
-    crop.width,
+    crop.height,
   );
 
   return canvas.convertToBlob({
