@@ -11,11 +11,6 @@ const meta = {
     checked: false,
     disabled: false,
   },
-  argTypes: {
-    size: {
-      control: { type: 'range', min: 10, max: 64, step: 1 },
-    },
-  },
 } satisfies Meta<typeof RangeInputField>;
 
 export default meta;
