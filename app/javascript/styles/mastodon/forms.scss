@@ -470,13 +470,19 @@ code {
     }
   }
 
-  .input.radio_buttons .radio label {
-    margin-bottom: 5px;
-    font-family: inherit;
-    font-size: 14px;
-    color: var(--color-text-primary);
-    display: block;
-    width: auto;
+  .input.radio_buttons .radio {
+    label {
+      margin-bottom: 5px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--color-text-primary);
+      display: block;
+      width: auto;
+    }
+
+    input[type='radio'] {
+      accent-color: var(--color-text-brand);
+    }
   }
 
   .check_boxes {
@@ -499,6 +505,12 @@ code {
         top: 5px;
         margin: 0;
       }
+    }
+  }
+
+  label.checkbox {
+    input[type='checkbox'] {
+      accent-color: var(--color-text-brand);
     }
   }
 
