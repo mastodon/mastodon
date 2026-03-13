@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
@@ -12,7 +12,10 @@ import { Callout } from '@/mastodon/components/callout';
 import { CharacterCounter } from '@/mastodon/components/character_counter';
 import { TextAreaField } from '@/mastodon/components/form_fields';
 import { RangeInput } from '@/mastodon/components/form_fields/range_input_field';
-import { selectImageInfo } from '@/mastodon/reducers/slices/profile_edit';
+import {
+  selectImageInfo,
+  uploadImage,
+} from '@/mastodon/reducers/slices/profile_edit';
 import type { ImageLocation } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
@@ -34,7 +37,7 @@ export const ImageUploadModal: FC<
 
   // State for individual steps.
   const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const [_imageBlob, setImageBlob] = useState<Blob | null>(null);
+  const [imageBlob, setImageBlob] = useState<Blob | null>(null);
 
   const handleFile = useCallback((file: File) => {
     const reader = new FileReader();
@@ -62,13 +65,28 @@ export const ImageUploadModal: FC<
     [imageSrc],
   );
 
+  const dispatch = useAppDispatch();
+  const handleSave = useCallback(
+    (altText: string) => {
+      if (!imageBlob) {
+        setStep('crop');
+        return;
+      }
+      void dispatch(uploadImage({ location, imageBlob, altText })).then(
+        onClose,
+      );
+    },
+    [dispatch, imageBlob, location, onClose],
+  );
+
   const handleCancel = useCallback(() => {
     switch (step) {
       case 'crop':
-        setStep('select');
         setImageSrc(null);
+        setStep('select');
         break;
       case 'alt':
+        setImageBlob(null);
         setStep('crop');
         break;
       default:
@@ -103,7 +121,13 @@ export const ImageUploadModal: FC<
           onComplete={handleCrop}
         />
       )}
-      {step === 'alt' && <StepAlt onCancel={handleCancel} />}
+      {step === 'alt' && imageBlob && (
+        <StepAlt
+          imageBlob={imageBlob}
+          onCancel={handleCancel}
+          onComplete={handleSave}
+        />
+      )}
     </DialogModal>
   );
 };
@@ -315,8 +339,10 @@ const StepCrop: FC<{
 };
 
 const StepAlt: FC<{
+  imageBlob: Blob;
   onCancel: () => void;
-}> = () => {
+  onComplete: (altText: string) => void;
+}> = ({ imageBlob, onCancel }) => {
   const [altText, setAltText] = useState('');
 
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
@@ -326,24 +352,41 @@ const StepAlt: FC<{
     [],
   );
 
+  const imageSrc = useMemo(() => URL.createObjectURL(imageBlob), [imageBlob]);
+  const altLimit = useAppSelector(
+    (state) =>
+      state.server.getIn(
+        ['server', 'configuration', 'media_attachments', 'description_limit'],
+        150,
+      ) as number,
+  );
+
   return (
     <>
-      <TextAreaField
-        label={
-          <FormattedMessage
-            id='account_edit.upload_modal.step_alt.text_label'
-            defaultMessage='Alt text'
-          />
-        }
-        hint={
-          <FormattedMessage
-            id='account_edit.upload_modal.step_alt.text_hint'
-            defaultMessage='E.g. “Close-up photo of me wearing glasses and a blue shirt”'
-          />
-        }
-        onChange={handleChange}
-      />
-      <CharacterCounter currentString={altText} maxLength={500} />
+      <img src={imageSrc} alt='' className={classes.altImage} />
+
+      <div>
+        <TextAreaField
+          label={
+            <FormattedMessage
+              id='account_edit.upload_modal.step_alt.text_label'
+              defaultMessage='Alt text'
+            />
+          }
+          hint={
+            <FormattedMessage
+              id='account_edit.upload_modal.step_alt.text_hint'
+              defaultMessage='E.g. “Close-up photo of me wearing glasses and a blue shirt”'
+            />
+          }
+          onChange={handleChange}
+        />
+        <CharacterCounter
+          currentString={altText}
+          maxLength={altLimit}
+          className={classes.altCounter}
+        />
+      </div>
 
       <Callout
         title={
@@ -358,6 +401,22 @@ const StepAlt: FC<{
           defaultMessage='Adding alt text to media helps people using screen readers to understand your content.'
         />
       </Callout>
+
+      <div className={classes.cropActions}>
+        <Button onClick={onCancel} secondary>
+          <FormattedMessage
+            id='account_edit.upload_modal.back'
+            defaultMessage='Back'
+          />
+        </Button>
+
+        <Button>
+          <FormattedMessage
+            id='account_edit.upload_modal.done'
+            defaultMessage='Done'
+          />
+        </Button>
+      </div>
     </>
   );
 };
@@ -367,7 +426,7 @@ async function calculateCroppedImage(
   crop: Area,
 ): Promise<Blob> {
   const image = await dataUriToImage(imageSrc);
-  const canvas = new OffscreenCanvas(image.naturalWidth, image.naturalHeight);
+  const canvas = new OffscreenCanvas(crop.width, crop.width);
   const ctx = canvas.getContext('2d');
   if (!ctx) {
     throw new Error('Failed to get canvas context');
@@ -375,35 +434,18 @@ async function calculateCroppedImage(
 
   ctx.imageSmoothingQuality = 'high';
 
-  // Save original state.
-  ctx.save();
-
-  // Move the crop origin to the canvas origin (0,0).
-  const cropX = crop.x;
-  const cropY = crop.y;
-  ctx.translate(-cropX, -cropY);
-
-  // Move the origin to the center of the original position.
-  const centerX = image.naturalWidth / 2;
-  const centerY = image.naturalHeight / 2;
-  ctx.translate(centerX, centerY);
-  ctx.translate(-centerX, -centerY);
-
   // Draw the image
   ctx.drawImage(
     image,
+    crop.x,
+    crop.y,
+    crop.width,
+    crop.height,
     0,
     0,
-    image.naturalWidth,
-    image.naturalHeight,
-    0,
-    0,
-    image.naturalWidth,
-    image.naturalHeight,
+    crop.width,
+    crop.width,
   );
-
-  // Restore the original state.
-  ctx.restore();
 
   return canvas.convertToBlob({
     quality: 0.7,
