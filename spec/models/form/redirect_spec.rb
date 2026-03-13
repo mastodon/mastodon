@@ -29,4 +29,11 @@ RSpec.describe Form::Redirect do
       end
     end
   end
+
+  describe 'Normalizations' do
+    it { is_expected.to normalize(:acct).from(nil).to('') }
+    it { is_expected.to normalize(:acct).from('  @username  ').to('username') }
+
+    it { is_expected.to normalize(:current_username).from('  @username  ').to('username') }
+  end
 end
