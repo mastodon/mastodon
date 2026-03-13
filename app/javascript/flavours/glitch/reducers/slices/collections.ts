@@ -23,6 +23,7 @@ import {
   createAppSelector,
   createDataLoadingThunk,
 } from '@/flavours/glitch/store/typed_functions';
+import { inputToHashtag } from '@/flavours/glitch/utils/hashtags';
 
 type QueryStatus = 'idle' | 'loading' | 'error';
 
@@ -82,7 +83,7 @@ const collectionSlice = createSlice({
         id: collection?.id ?? null,
         name: collection?.name ?? '',
         description: collection?.description ?? '',
-        topic: collection?.tag?.name ?? '',
+        topic: inputToHashtag(collection?.tag?.name ?? ''),
         language: collection?.language ?? '',
         discoverable: collection?.discoverable ?? true,
         sensitive: collection?.sensitive ?? false,

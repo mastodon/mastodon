@@ -86,14 +86,14 @@ interface Props<T extends ComboboxItem>
  */
 
 export const ComboboxFieldWithRef = <T extends ComboboxItem>(
-  { id, label, hint, hasError, required, ...otherProps }: Props<T>,
+  { id, label, hint, status, required, ...otherProps }: Props<T>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) => (
   <FormFieldWrapper
     label={label}
     hint={hint}
     required={required}
-    hasError={hasError}
+    status={status}
     inputId={id}
   >
     {(inputProps) => <Combobox {...otherProps} {...inputProps} ref={ref} />}

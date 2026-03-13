@@ -1,12 +1,15 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
-import { inputToHashtag } from '@/flavours/glitch/utils/hashtags';
+import {
+  hasSpecialCharacters,
+  inputToHashtag,
+} from '@/flavours/glitch/utils/hashtags';
 import type {
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
@@ -31,6 +34,7 @@ import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
 export const CollectionDetails: React.FC = () => {
+  const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { id, name, description, topic, discoverable, sensitive, accountIds } =
@@ -152,6 +156,11 @@ export const CollectionDetails: React.FC = () => {
     ],
   );
 
+  const topicHasSpecialCharacters = useMemo(
+    () => hasSpecialCharacters(topic),
+    [topic],
+  );
+
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
       <FormStack className={classes.formFieldStack}>
@@ -224,6 +233,18 @@ export const CollectionDetails: React.FC = () => {
           autoCorrect='off'
           spellCheck='false'
           maxLength={40}
+          status={
+            topicHasSpecialCharacters
+              ? {
+                  variant: 'warning',
+                  message: intl.formatMessage({
+                    id: 'collections.topic_special_chars_hint',
+                    defaultMessage:
+                      'Special characters will be removed when saving',
+                  }),
+                }
+              : undefined
+          }
         />
 
         <Fieldset
