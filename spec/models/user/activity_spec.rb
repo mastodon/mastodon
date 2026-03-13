@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.shared_examples 'User::Activity' do
+RSpec.describe User::Activity do
   before { stub_const 'User::ACTIVE_DURATION', 7.days }
 
   describe 'Scopes' do
@@ -11,14 +11,14 @@ RSpec.shared_examples 'User::Activity' do
 
     describe '.signed_in_recently' do
       it 'returns users who have signed in during the recent period' do
-        expect(described_class.signed_in_recently)
+        expect(User.signed_in_recently)
           .to contain_exactly(recent_sign_in_user)
       end
     end
 
     describe '.not_signed_in_recently' do
       it 'returns users who have not signed in during the recent period' do
-        expect(described_class.not_signed_in_recently)
+        expect(User.not_signed_in_recently)
           .to contain_exactly(no_recent_sign_in_user)
       end
     end
