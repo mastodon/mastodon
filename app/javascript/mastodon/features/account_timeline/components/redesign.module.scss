@@ -107,7 +107,7 @@
 }
 
 $button-breakpoint: 420px;
-$button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+$button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .buttonsDesktop {
   @container (width < #{$button-breakpoint}) {
@@ -132,7 +132,7 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
   }
 
   @supports (not (container-type: inline-size)) {
-    @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+    @media (min-width: ($button-fallback-breakpoint + 1px)) {
       display: none;
     }
   }
