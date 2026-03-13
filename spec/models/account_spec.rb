@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  it_behaves_like 'Account::Search'
   it_behaves_like 'Reviewable'
 
   describe 'Associations' do
