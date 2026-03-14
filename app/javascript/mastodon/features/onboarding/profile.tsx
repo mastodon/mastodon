@@ -230,7 +230,7 @@ export const Profile: React.FC<{
               }
               value={displayName}
               onChange={handleDisplayNameChange}
-              hasError={!!errors?.display_name}
+              status={errors?.display_name ? 'error' : undefined}
               id='display_name'
             />
           </div>
@@ -252,7 +252,7 @@ export const Profile: React.FC<{
               }
               value={note}
               onChange={handleNoteChange}
-              hasError={!!errors?.note}
+              status={errors?.note ? 'error' : undefined}
               id='note'
             />
           </div>

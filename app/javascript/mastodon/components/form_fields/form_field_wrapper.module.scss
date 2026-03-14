@@ -46,6 +46,14 @@
   font-size: 13px;
 }
 
+.status {
+  // If there's no content, we need to compensate for the parent's
+  // flex gap to avoid extra spacing below the field.
+  &:empty {
+    margin-top: calc(-1 * var(--form-field-label-gap));
+  }
+}
+
 .inputWrapper {
   display: block;
 }

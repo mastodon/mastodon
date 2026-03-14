@@ -59,3 +59,8 @@ export const inputToHashtag = (input: string): string => {
 
   return `#${words.join('')}${trailingSpace}`;
 };
+
+export const hasSpecialCharacters = (input: string) => {
+  // Regex matches any character NOT a letter/digit, except the #
+  return /[^a-zA-Z0-9# ]/.test(input);
+};

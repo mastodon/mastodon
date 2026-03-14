@@ -37,7 +37,7 @@ export const EmojiTextInputField: FC<
   value,
   label,
   hint,
-  hasError,
+  status,
   maxLength,
   counterMax = maxLength,
   recommended,
@@ -49,7 +49,7 @@ export const EmojiTextInputField: FC<
   const wrapperProps = {
     label,
     hint,
-    hasError,
+    status,
     counterMax,
     recommended,
     disabled,
@@ -84,7 +84,7 @@ export const EmojiTextAreaField: FC<
   recommended,
   disabled,
   hint,
-  hasError,
+  status,
   ...otherProps
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -92,7 +92,7 @@ export const EmojiTextAreaField: FC<
   const wrapperProps = {
     label,
     hint,
-    hasError,
+    status,
     counterMax,
     recommended,
     disabled,
