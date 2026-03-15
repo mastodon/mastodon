@@ -9,7 +9,7 @@ class TranslationService::LibreTranslate < TranslationService
   end
 
   def translate(texts, source_language, target_language)
-    body = Oj.dump(q: texts, source: source_language.presence || 'auto', target: target_language, format: 'html', api_key: @api_key)
+    body = { q: texts, source: source_language.presence || 'auto', target: target_language, format: 'html', api_key: @api_key }.to_json
     request(:post, '/translate', body: body) do |res|
       transform_response(res.body_with_limit, source_language)
     end
