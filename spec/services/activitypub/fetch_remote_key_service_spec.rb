@@ -51,7 +51,7 @@ RSpec.describe ActivityPub::FetchRemoteKeyService do
 
   before do
     stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
-    stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+    stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.generate(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
   end
 
   describe '#call' do
