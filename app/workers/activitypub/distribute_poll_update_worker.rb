@@ -43,7 +43,7 @@ class ActivityPub::DistributePollUpdateWorker
   end
 
   def payload
-    @payload ||= Oj.dump(serialize_payload(@status, ActivityPub::UpdatePollSerializer, signer: @account))
+    @payload ||= serialize_payload(@status, ActivityPub::UpdatePollSerializer, signer: @account).to_json
   end
 
   def relay!
