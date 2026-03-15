@@ -14,7 +14,7 @@ class RemoveStatusService < BaseService
   # @option  [Boolean] :original_removed
   # @option  [Boolean] :skip_streaming
   def call(status, **options)
-    @payload  = Oj.dump(event: :delete, payload: status.id.to_s)
+    @payload  = { event: :delete, payload: status.id.to_s }.to_json
     @status   = status
     @account  = status.account
     @options  = options
