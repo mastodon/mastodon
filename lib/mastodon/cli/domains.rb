@@ -214,7 +214,7 @@ module Mastodon::CLI
 
     def stats_to_json(stats)
       stats.compact!
-      say(Oj.dump(stats))
+      say(stats.to_json)
     end
   end
 end
