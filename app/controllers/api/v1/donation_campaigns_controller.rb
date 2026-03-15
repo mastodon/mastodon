@@ -44,7 +44,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
     Rails.cache.write_multi(
       {
         request_key => campaign_key(campaign),
-        "donation_campaign:#{campaign_key(campaign)}" => Oj.dump(campaign),
+        "donation_campaign:#{campaign_key(campaign)}" => campaign.to_json,
       },
       expires_in: 1.hour,
       raw: true
