@@ -23,7 +23,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       ],
     }
   end
-  let(:json) { Oj.load(Oj.dump(payload)) }
+  let(:json) { Oj.load(JSON.generate(payload)) }
 
   let(:alice) { Fabricate(:account) }
   let(:bob) { Fabricate(:account) }

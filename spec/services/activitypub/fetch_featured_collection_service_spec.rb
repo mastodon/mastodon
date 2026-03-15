@@ -101,7 +101,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
         let(:collection_or_uri) { actor.featured_collection_url }
 
         before do
-          stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it_behaves_like 'sets pinned posts'
@@ -122,7 +122,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
 
     context 'when the endpoint is a Collection' do
       before do
-        stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets pinned posts'
@@ -139,7 +139,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
       end
 
       before do
-        stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets pinned posts'
@@ -175,7 +175,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
       end
 
       before do
-        stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets pinned posts'

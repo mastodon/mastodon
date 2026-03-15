@@ -55,7 +55,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
 
     context 'when the endpoint is a Collection of actor URIs' do
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -72,7 +72,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -93,7 +93,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -185,7 +185,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
 
       before do
         stub_const('ActivityPub::SynchronizeFollowersService::MAX_COLLECTION_PAGES', 1)
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it 'confirms pending follow request but does not remove extra followers' do
@@ -213,7 +213,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
 
       context 'when the endpoint is a Collection of actor URIs' do
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it_behaves_like 'synchronizes followers'
@@ -230,7 +230,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
         end
 
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it_behaves_like 'synchronizes followers'
@@ -251,7 +251,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
         end
 
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it_behaves_like 'synchronizes followers'
@@ -263,7 +263,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
 
       context 'when the endpoint is a Collection of actor URIs' do
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it 'does not remove followers' do
@@ -286,7 +286,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
         end
 
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it 'does not remove followers' do
@@ -313,7 +313,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
         end
 
         before do
-          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, collection_uri).to_return(status: 200, body: JSON.generate(payload), headers: { 'Content-Type': 'application/activity+json' })
         end
 
         it 'does not remove followers' do
