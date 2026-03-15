@@ -86,7 +86,7 @@ RSpec.describe ActivityPub::Activity::QuoteRequest do
 
     context 'when trying to quote a quotable local status' do
       before do
-        stub_request(:get, 'https://example.com/unknown-status').to_return(status: 200, body: Oj.dump(status_json), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/unknown-status').to_return(status: 200, body: JSON.generate(status_json), headers: { 'Content-Type': 'application/activity+json' })
         quoted_post.update(quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16)
       end
 

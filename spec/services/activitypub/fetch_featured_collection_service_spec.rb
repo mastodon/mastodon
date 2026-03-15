@@ -75,11 +75,11 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
 
     shared_examples 'sets pinned posts' do
       before do
-        stub_request(:get, 'https://example.com/account/pinned/known').to_return(status: 200, body: Oj.dump(status_json_pinned_known), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/account/pinned/unknown-inlined').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_inlined), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/account/pinned/known').to_return(status: 200, body: JSON.generate(status_json_pinned_known), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/account/pinned/unknown-inlined').to_return(status: 200, body: JSON.generate(status_json_pinned_unknown_inlined), headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, 'https://example.com/account/pinned/unknown-unreachable').to_return(status: 404)
-        stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/account/collections/featured').to_return(status: 200, body: Oj.dump(featured_with_null), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: JSON.generate(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/account/collections/featured').to_return(status: 200, body: JSON.generate(featured_with_null), headers: { 'Content-Type': 'application/activity+json' })
 
         subject
       end
@@ -148,7 +148,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
         let(:items) { 'https://example.com/account/pinned/unknown-reachable' }
 
         before do
-          stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: JSON.generate(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
           subject
         end
 
@@ -184,7 +184,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
         let(:items) { 'https://example.com/account/pinned/unknown-reachable' }
 
         before do
-          stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
+          stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: JSON.generate(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
           subject
         end
 
