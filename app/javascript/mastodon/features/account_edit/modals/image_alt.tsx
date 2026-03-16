@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { CharacterCounter } from '@/mastodon/components/character_counter';
+import { Details } from '@/mastodon/components/details';
 import { TextAreaField } from '@/mastodon/components/form_fields';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
@@ -121,6 +122,26 @@ export const ImageAltTextField: FC<{
           className={classes.altCounter}
         />
       </div>
+
+      <Details
+        summary={
+          <FormattedMessage
+            id='account_edit.image_alt_modal.details_title'
+            defaultMessage='Tips: Alt text for profile photos'
+          />
+        }
+        className={classes.altHint}
+      >
+        <FormattedMessage
+          id='account_edit.image_alt_modal.details_content'
+          defaultMessage='DO: <ul> <li>Describe yourself as pictured</li> <li>Use third person language (e.g. “Alex” instead of “me”)</li> <li>Be succinct – a few words is often enough</li> </ul> DON’T: <ul> <li>Start with “Photo of” – it’s redundant for screen readers</li> </ul> EXAMPLE: <ul> <li>“Alex wearing a green shirt and glasses”</li> </ul>'
+          values={{
+            ul: (chunks) => <ul>{chunks}</ul>,
+            li: (chunks) => <li>{chunks}</li>,
+          }}
+          tagName='div'
+        />
+      </Details>
     </>
   );
 };
