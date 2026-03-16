@@ -12,13 +12,21 @@ class ActivityPub::ProcessFeaturedItemService
     with_redis_lock("collection_item:#{item_json['id']}") do
       return if collection.collection_items.exists?(uri: item_json['id'])
 
-      @collection_item = collection.collection_items.create!(
-        uri: item_json['id'],
-        object_uri: item_json['featuredObject'],
-        approval_uri: item_json['featureAuthorization']
-      )
+      local_account = ActivityPub::TagManager.instance.uris_to_local_accounts([item_json['featuredObject']]).first
 
-      verify_authorization!
+      if local_account.present?
+        # This is a local account that has authorized this item already
+        @collection_item = collection.collection_items.accepted_partial(local_account).first
+        @collection_item&.update!(uri: item_json['id'])
+      else
+        @collection_item = collection.collection_items.create!(
+          uri: item_json['id'],
+          object_uri: item_json['featuredObject'],
+          approval_uri: item_json['featureAuthorization']
+        )
+
+        verify_authorization!
+      end
 
       @collection_item
     end

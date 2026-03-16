@@ -1893,9 +1893,49 @@ nan-TW:
       user_domain_block: Lí kā %{target_name} 封鎖ah
     lost_followers: 失去ê 跟tuè lí ê
     lost_follows: 失去ê lí 跟tuè ê
+    preamble: Lí封鎖域名，á是lí ê管理員決定beh kā別ê服侍器停止權限ê時，Lí可能會失去跟tuè lí ê，á是lí跟tuè ê。若發生，lí會當kā中止聯絡ê ê列單載落去，來檢視或者有可能佇別站kā輸入。
+    purged: 關係tsit台服侍器有予lí ê服侍器管理員清掉ê資訊。
+    type: 事件
   statuses:
+    attached:
+      audio:
+        other: "%{count} 段聲音"
+      description: 附件： %{attached}
+      image:
+        other: "%{count} 幅圖"
+      video:
+        other: "%{count} 段影片"
+    boosted_from_html: 對 %{acct_link} 轉送
+    content_warning: 內容警告： %{warning}
+    content_warnings:
+      hide: Am-khàm PO文
+      show: 顯示其他ê內容
     default_language: Kap界面ê語言sio kâng
+    disallowed_hashtags:
+      other: 包含bē用得ê標籤： %{tags}
+    edited_at_html: 佇 %{date} 編輯
+    errors:
+      in_reply_not_found: Lí試應ê PO文假若無佇leh。
+      quoted_status_not_found: Lí試引用ê PO文假若無佇leh。
+      quoted_user_not_mentioned: Bē當佇私人ê提起引用無提起ê用者。
+    over_character_limit: 超過 %{max} 字ê限制ah
+    pin_errors:
+      direct: Kan-ta受提起ê用者tsiah通看ê PO文bē當釘
+      limit: Lí已經kā PO文釘kàu盡磅ah。
+      ownership: Bē當釘別lâng êPO文
+      reblog: 轉送ê PO文 bē當釘
+    quote_error:
+      not_available: PO文bē當看
+      pending_approval: PO文當leh等審查
+      revoked: PO文已經hōo作者thâi掉
+    quote_policies:
+      followers: Kan-ta hōo跟tuè ê lâng
+      nobody: Kan-ta我
+      public: Ta̍k ê lâng
+    quote_post_author: 引用 %{acct} ê PO文ah
+    title: "%{name}：「%{quote}」"
     visibilities:
+      direct: 私人ê提起
       private: Kan-ta hōo跟tuè ê lâng
       public: 公開ê
       public_long: 逐ê lâng（無論佇Mastodon以內á是以外）
@@ -1911,6 +1951,8 @@ nan-TW:
     interaction_exceptions: Tshāi佇互動ê特例
     interaction_exceptions_explanation: 超過收藏kap轉送ê底限ê PO文可能會受保留，就算in後來降落。
     keep_direct: 保留私人ê短phue
+    keep_direct_hint: Bē thâi掉任何lí ê私人ê提起
+    keep_media: 保留有媒體附件ê PO文
   terms_of_service:
     title: 服務規定
   themes:
