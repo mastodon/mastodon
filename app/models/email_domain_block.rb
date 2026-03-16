@@ -70,7 +70,7 @@ class EmailDomainBlock < ApplicationRecord
         segments = uri.normalized_host.split('.')
 
         segments.map.with_index { |_, i| segments[i..].join('.') }
-      end
+      end.uniq
     end
 
     def extract_uris(domain_or_domains)
