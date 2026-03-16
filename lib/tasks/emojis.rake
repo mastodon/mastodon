@@ -109,7 +109,7 @@ namespace :emojis do
     emojis_light = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️🪽🪿'
     emojis_dark = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴🐞🕺📱📲🚲🪮🐦‍⬛'
 
-    map = Oj.load(File.read(src))
+    map = JSON.parse(File.read(src))
 
     emojis_light.each_grapheme_cluster do |emoji|
       gen_border map[emoji], 'black'
