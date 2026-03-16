@@ -202,7 +202,11 @@ export const AccountEdit: FC = () => {
             />
           }
         >
-          <AccountBio accountId={profile.id} className={classes.bio} />
+          <AccountBio
+            showDropdown
+            accountId={profile.id}
+            className={classes.bio}
+          />
         </AccountEditSection>
 
         <AccountEditSection
