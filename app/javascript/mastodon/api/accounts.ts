@@ -69,3 +69,9 @@ export const apiGetProfile = () => apiRequestGet<ApiProfileJSON>('v1/profile');
 
 export const apiPatchProfile = (params: ApiProfileUpdateParams | FormData) =>
   apiRequestPatch<ApiProfileJSON>('v1/profile', params);
+
+export const apiDeleteProfileAvatar = () =>
+  apiRequestDelete('v1/profile/avatar');
+
+export const apiDeleteProfileHeader = () =>
+  apiRequestDelete('v1/profile/header');

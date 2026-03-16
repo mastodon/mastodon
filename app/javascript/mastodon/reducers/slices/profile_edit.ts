@@ -6,6 +6,8 @@ import { debounce } from 'lodash';
 import { fetchAccount } from '@/mastodon/actions/accounts';
 import {
   apiDeleteFeaturedTag,
+  apiDeleteProfileAvatar,
+  apiDeleteProfileHeader,
   apiGetCurrentFeaturedTags,
   apiGetProfile,
   apiGetTagSuggestions,
@@ -118,6 +120,16 @@ const profileEditSlice = createSlice({
     });
     builder.addCase(uploadImage.fulfilled, (state, action) => {
       state.profile = action.payload;
+      state.isPending = false;
+    });
+
+    builder.addCase(deleteImage.pending, (state) => {
+      state.isPending = true;
+    });
+    builder.addCase(deleteImage.rejected, (state) => {
+      state.isPending = false;
+    });
+    builder.addCase(deleteImage.fulfilled, (state) => {
       state.isPending = false;
     });
 
@@ -278,6 +290,27 @@ export const uploadImage = createDataLoadingThunk(
   (response, { dispatch }) => {
     dispatch(fetchAccount(response.id));
     return transformProfile(response);
+  },
+  {
+    useLoadingBar: false,
+  },
+);
+
+export const deleteImage = createDataLoadingThunk(
+  `${profileEditSlice.name}/deleteImage`,
+  (arg: { location: ImageLocation }) => {
+    if (arg.location === 'avatar') {
+      return apiDeleteProfileAvatar();
+    } else {
+      return apiDeleteProfileHeader();
+    }
+  },
+  async (_, { dispatch, getState }) => {
+    await dispatch(fetchProfile());
+    const accountId = getState().profileEdit.profile?.id;
+    if (accountId) {
+      dispatch(fetchAccount(accountId));
+    }
   },
   {
     useLoadingBar: false,
