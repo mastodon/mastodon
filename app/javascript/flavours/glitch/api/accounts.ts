@@ -67,5 +67,5 @@ export const apiGetFamiliarFollowers = (id: string) =>
 
 export const apiGetProfile = () => apiRequestGet<ApiProfileJSON>('v1/profile');
 
-export const apiPatchProfile = (params: ApiProfileUpdateParams) =>
+export const apiPatchProfile = (params: ApiProfileUpdateParams | FormData) =>
   apiRequestPatch<ApiProfileJSON>('v1/profile', params);

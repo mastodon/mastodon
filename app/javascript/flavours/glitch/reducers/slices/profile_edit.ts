@@ -109,6 +109,17 @@ const profileEditSlice = createSlice({
       state.isPending = false;
     });
 
+    builder.addCase(uploadImage.pending, (state) => {
+      state.isPending = true;
+    });
+    builder.addCase(uploadImage.rejected, (state) => {
+      state.isPending = false;
+    });
+    builder.addCase(uploadImage.fulfilled, (state, action) => {
+      state.profile = action.payload;
+      state.isPending = false;
+    });
+
     builder.addCase(addFeaturedTag.pending, (state) => {
       state.isPending = true;
     });
@@ -226,6 +237,41 @@ export const patchProfile = createDataLoadingThunk(
     condition(_, { getState }) {
       return !getState().profileEdit.isPending;
     },
+  },
+);
+
+export type ImageLocation = 'avatar' | 'header';
+
+export const selectImageInfo = createAppSelector(
+  [
+    (state) => state.profileEdit.profile,
+    (_, location: ImageLocation) => location,
+  ],
+  (profile, location) => {
+    if (!profile) {
+      return {};
+    }
+
+    return {
+      src: profile[location],
+      static: profile[`${location}Static`],
+      alt: profile[`${location}Description`],
+    };
+  },
+);
+
+export const uploadImage = createDataLoadingThunk(
+  `${profileEditSlice.name}/uploadImage`,
+  (arg: { location: ImageLocation; imageBlob: Blob; altText: string }) => {
+    // Note: Alt text is not actually supported by the API yet.
+    const formData = new FormData();
+    formData.append(arg.location, arg.imageBlob);
+
+    return apiPatchProfile(formData);
+  },
+  transformProfile,
+  {
+    useLoadingBar: false,
   },
 );
 

@@ -105,7 +105,11 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   layout: state.getIn(['meta', 'layout']),
   hasComposingContents: state.getIn(['compose', 'text']).trim().length !== 0 || state.getIn(['compose', 'media_attachments']).size > 0 || state.getIn(['compose', 'poll']) !== null || state.getIn(['compose', 'quoted_status_id']) !== null,
-  canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
+  canUploadMore:
+    !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type')))
+    && state.getIn(['compose', 'media_attachments']).size < state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']),
+  isUploadEnabled:
+    state.getIn(['compose', 'isDragDisabled']) !== true,
   isWide: state.getIn(['local_settings', 'stretch']),
   fullWidthColumns: state.getIn(['local_settings', 'fullwidth_columns']),
   unreadNotifications: selectUnreadNotificationGroupsCount(state),
@@ -339,6 +343,9 @@ class UI extends PureComponent {
   };
 
   handleDragEnter = (e) => {
+    if (!this.props.isUploadEnabled) {
+      return;
+    }
     e.preventDefault();
 
     if (!this.dragTargets) {
@@ -355,6 +362,9 @@ class UI extends PureComponent {
   };
 
   handleDragOver = (e) => {
+    if (!this.props.isUploadEnabled) {
+      return;
+    }
     if (this.dataTransferIsText(e.dataTransfer)) return false;
 
     e.preventDefault();
@@ -370,6 +380,9 @@ class UI extends PureComponent {
   };
 
   handleDrop = (e) => {
+    if (!this.props.isUploadEnabled) {
+      return;
+    }
     if (this.dataTransferIsText(e.dataTransfer)) return;
 
     e.preventDefault();
@@ -442,7 +455,6 @@ class UI extends PureComponent {
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
     document.addEventListener('dragleave', this.handleDragLeave, false);
-    document.addEventListener('dragend', this.handleDragEnd, false);
 
     if ('serviceWorker' in  navigator) {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
@@ -502,7 +514,6 @@ class UI extends PureComponent {
     document.removeEventListener('dragover', this.handleDragOver);
     document.removeEventListener('drop', this.handleDrop);
     document.removeEventListener('dragleave', this.handleDragLeave);
-    document.removeEventListener('dragend', this.handleDragEnd);
   }
 
   setRef = c => {

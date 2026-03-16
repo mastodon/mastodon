@@ -12,11 +12,9 @@ import { openModal } from '@/flavours/glitch/actions/modal';
 import { Dropdown } from '@/flavours/glitch/components/dropdown_menu';
 import { IconButton } from '@/flavours/glitch/components/icon_button';
 import type { MenuItem } from '@/flavours/glitch/models/dropdown_menu';
-import {
-  createAppSelector,
-  useAppDispatch,
-  useAppSelector,
-} from '@/flavours/glitch/store';
+import type { ImageLocation } from '@/flavours/glitch/reducers/slices/profile_edit';
+import { selectImageInfo } from '@/flavours/glitch/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
@@ -50,36 +48,15 @@ const messages = defineMessages({
   },
 });
 
-export type ImageLocation = 'avatar' | 'header';
-
-const selectImageInfo = createAppSelector(
-  [
-    (state) => state.profileEdit.profile,
-    (_, location: ImageLocation) => location,
-  ],
-  (profile, location) => {
-    if (!profile) {
-      return {
-        hasImage: false,
-        hasAlt: false,
-      };
-    }
-
-    return {
-      hasImage: !!profile[`${location}Static`],
-      hasAlt: !!profile[`${location}Description`],
-    };
-  },
-);
-
 export const AccountImageEdit: FC<{
   className?: string;
   location: ImageLocation;
 }> = ({ className, location }) => {
   const intl = useIntl();
-  const { hasAlt, hasImage } = useAppSelector((state) =>
+  const { alt, src } = useAppSelector((state) =>
     selectImageInfo(state, location),
   );
+  const hasAlt = !!alt;
   const dispatch = useAppDispatch();
 
   const handleModal = useCallback(
@@ -125,7 +102,7 @@ export const AccountImageEdit: FC<{
 
   const iconClassName = classNames(classes.imageButton, className);
 
-  if (!hasImage) {
+  if (!src) {
     return (
       <IconButton
         title={intl.formatMessage(messages.add)}

@@ -26,6 +26,7 @@ export const CharacterCounter = polymorphicForwardRef<
       maxLength,
       as: Component = 'span',
       recommended = false,
+      className,
       ...props
     },
     ref,
@@ -39,6 +40,7 @@ export const CharacterCounter = polymorphicForwardRef<
         {...props}
         ref={ref}
         className={classNames(
+          className,
           classes.counter,
           currentLength > maxLength && !recommended && classes.counterError,
         )}
