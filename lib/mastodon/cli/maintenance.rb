@@ -26,7 +26,6 @@ module Mastodon::CLI
     class ListAccount < ApplicationRecord; end
     class PollVote < ApplicationRecord; end
     class Mention < ApplicationRecord; end
-    class Notification < ApplicationRecord; end
     class NotificationPermission < ApplicationRecord; end
     class NotificationRequest < ApplicationRecord; end
     class AccountDomainBlock < ApplicationRecord; end
@@ -40,8 +39,6 @@ module Mastodon::CLI
     class CanonicalEmailBlock < ApplicationRecord; end
     class Appeal < ApplicationRecord; end
     class Webhook < ApplicationRecord; end
-    class BulkImport < ApplicationRecord; end
-    class SoftwareUpdate < ApplicationRecord; end
     class SeveredRelationship < ApplicationRecord; end
     class TagFollow < ApplicationRecord; end
 
@@ -55,6 +52,18 @@ module Mastodon::CLI
     end
 
     class MediaAttachment < ApplicationRecord
+      self.inheritance_column = nil
+    end
+
+    class Notification < ApplicationRecord
+      self.inheritance_column = nil
+    end
+
+    class BulkImport < ApplicationRecord
+      self.inheritance_column = nil
+    end
+
+    class SoftwareUpdate < ApplicationRecord
       self.inheritance_column = nil
     end
 
