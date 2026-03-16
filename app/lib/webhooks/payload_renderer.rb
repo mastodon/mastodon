@@ -58,7 +58,7 @@ class Webhooks::PayloadRenderer
   /iox
 
   def initialize(json)
-    @document = DocumentTraverser.new(Oj.load(json))
+    @document = DocumentTraverser.new(JSON.parse(json))
   end
 
   def render(template)
