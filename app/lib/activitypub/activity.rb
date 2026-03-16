@@ -59,6 +59,8 @@ class ActivityPub::Activity
         ActivityPub::Activity::Move
       when 'QuoteRequest'
         ActivityPub::Activity::QuoteRequest
+      when 'FeatureRequest'
+        ActivityPub::Activity::FeatureRequest
       end
     end
   end
