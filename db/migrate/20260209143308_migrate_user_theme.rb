@@ -25,7 +25,7 @@ class MigrateUserTheme < ActiveRecord::Migration[8.0]
 
       settings['theme'] = 'default'
 
-      user.update_column('settings', Oj.dump(settings))
+      user.update_column('settings', JSON.generate(settings))
     end
   end
 end

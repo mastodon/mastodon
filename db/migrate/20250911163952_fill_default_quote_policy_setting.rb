@@ -26,7 +26,7 @@ class FillDefaultQuotePolicySetting < ActiveRecord::Migration[8.0]
         should_update_settings = true
       end
 
-      user.update_column('settings', Oj.dump(settings)) if should_update_settings
+      user.update_column('settings', JSON.generate(settings)) if should_update_settings
     end
   end
 end
