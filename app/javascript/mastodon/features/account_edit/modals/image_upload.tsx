@@ -245,11 +245,13 @@ const StepUpload: FC<{
       />
       <FormattedMessage
         id='account_edit.upload_modal.step_upload.hint'
-        defaultMessage='WEBP, PNG, GIF or JPG format, up to {limit}MB.{br}Image will be scaled to {size}px.'
+        defaultMessage='WEBP, PNG, GIF or JPG format, up to {limit}MB.{br}Image will be scaled to {width}x{height}px.'
+        description='Guideline for avatar and header images.'
         values={{
           br: <br />,
           limit: 8,
-          size: location === 'avatar' ? '400x400' : '1500x500',
+          width: location === 'avatar' ? 400 : 1500,
+          height: location === 'avatar' ? 400 : 500,
         }}
         tagName='p'
       />

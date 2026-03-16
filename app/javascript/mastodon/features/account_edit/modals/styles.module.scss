@@ -121,34 +121,12 @@
 }
 
 .altImage {
-  height: 300px;
+  max-height: 300px;
   object-fit: contain;
 }
 
 .altCounter {
   color: var(--color-text-secondary);
-}
-
-.button {
-  background-color: var(--color-bg-primary);
-  border: 1px solid var(--color-border-primary);
-  color: var(--color-text-primary);
-  border-radius: 8px;
-  box-sizing: border-box;
-  font-size: 13px;
-  padding: 4px 8px;
-  transition: background-color 0.2s ease-in-out;
-
-  &:active,
-  &:focus,
-  &:hover {
-    background-color: var(--color-bg-brand-softer);
-  }
-
-  &:disabled {
-    background-color: var(--color-bg-primary);
-    opacity: 0.5;
-  }
 }
 
 .verifiedSteps {
