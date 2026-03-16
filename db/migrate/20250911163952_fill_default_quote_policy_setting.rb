@@ -8,7 +8,7 @@ class FillDefaultQuotePolicySetting < ActiveRecord::Migration[8.0]
 
   def up
     User.where.not(settings: nil).find_each do |user|
-      settings = Oj.load(user.attributes_before_type_cast['settings'])
+      settings = JSON.parse(user.attributes_before_type_cast['settings'])
       next if settings.nil?
 
       should_update_settings = false
