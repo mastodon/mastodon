@@ -31,7 +31,7 @@ class TranslationService::DeepL < TranslationService
 
   def fetch_languages(type)
     request(:get, "/v2/languages?type=#{type}") do |res|
-      Oj.load(res.body_with_limit).map { |language| normalize_language(language['language']) }
+      JSON.parse(res.body_with_limit).map { |language| normalize_language(language['language']) }
     end
   end
 
