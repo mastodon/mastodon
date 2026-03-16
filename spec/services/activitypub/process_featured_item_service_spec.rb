@@ -3,17 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::ProcessFeaturedItemService do
+  include RoutingHelper
+
   subject { described_class.new }
 
   let(:collection) { Fabricate(:remote_collection, uri: 'https://other.example.com/collection/1') }
+  let(:featured_object_uri) { 'https://example.com/actor/1' }
+  let(:feature_authorization_uri) { 'https://example.com/auth/1' }
   let(:featured_item_json) do
     {
       '@context' => 'https://www.w3.org/ns/activitystreams',
       'id' => 'https://other.example.com/featured_item/1',
       'type' => 'FeaturedItem',
-      'featuredObject' => 'https://example.com/actor/1',
+      'featuredObject' => featured_object_uri,
       'featuredObjectType' => 'Person',
-      'featureAuthorization' => 'https://example.com/auth/1',
+      'featureAuthorization' => feature_authorization_uri,
     }
   end
   let(:stubbed_service) do
@@ -49,6 +53,19 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
       new_item = collection.collection_items.last
       expect(new_item.object_uri).to eq 'https://example.com/actor/1'
       expect(new_item.approval_uri).to eq 'https://example.com/auth/1'
+    end
+
+    context 'when an item exists for a local featured account' do
+      let!(:collection_item) do
+        Fabricate(:collection_item, collection:, state: :accepted)
+      end
+      let(:featured_object_uri) { ActivityPub::TagManager.instance.uri_for(collection_item.account) }
+      let(:feature_authorization_uri) { ap_account_feature_authorization_url(collection_item.account_id, collection_item) }
+
+      it 'updates the URI of the existing record' do
+        expect { subject.call(collection, object) }.to_not change(collection.collection_items, :count)
+        expect(collection_item.reload.uri).to eq 'https://other.example.com/featured_item/1'
+      end
     end
   end
 
