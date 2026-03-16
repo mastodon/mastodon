@@ -103,6 +103,10 @@ RSpec.describe Tag do
       expect(subject.match('https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America,_Inc.#Decision')).to be_nil
     end
 
+    it 'matches a hashtag preceded by a non-break space' do
+      expect(subject.match('test #foo').to_s).to eq '#foo'
+    end
+
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
       expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq '#ａｅｓｔｈｅｔｉｃ'
     end
