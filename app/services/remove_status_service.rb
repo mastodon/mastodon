@@ -103,7 +103,7 @@ class RemoveStatusService < BaseService
   end
 
   def signed_activity_json
-    @signed_activity_json ||= Oj.dump(serialize_payload(@status, @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteNoteSerializer, signer: @account, always_sign: true))
+    @signed_activity_json ||= serialize_payload(@status, @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteNoteSerializer, signer: @account, always_sign: true).to_json
   end
 
   def remove_reblogs

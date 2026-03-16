@@ -26,6 +26,6 @@ class CreateFeaturedTagService < BaseService
   private
 
   def build_json(featured_tag)
-    Oj.dump(serialize_payload(featured_tag, ActivityPub::AddHashtagSerializer, signer: @account))
+    serialize_payload(featured_tag, ActivityPub::AddHashtagSerializer, signer: @account).to_json
   end
 end

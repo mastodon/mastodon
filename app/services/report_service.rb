@@ -98,7 +98,7 @@ class ReportService < BaseService
   end
 
   def payload
-    Oj.dump(serialize_payload(@report, ActivityPub::FlagSerializer, account: some_local_account))
+    serialize_payload(@report, ActivityPub::FlagSerializer, account: some_local_account).to_json
   end
 
   def some_local_account
