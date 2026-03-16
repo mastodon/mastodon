@@ -16,7 +16,7 @@ class ActivityPub::ProcessFeaturedItemService
 
       if local_account.present?
         # This is a local account that has authorized this item already
-        @collection_item = collection.collection_items.accepted_partial(local_account)
+        @collection_item = collection.collection_items.accepted_partial(local_account).first
         @collection_item&.update!(uri: item_json['id'])
       else
         @collection_item = collection.collection_items.create!(
