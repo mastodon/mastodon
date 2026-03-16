@@ -68,7 +68,7 @@ class TranslationService::DeepL < TranslationService
   end
 
   def transform_response(json)
-    data = Oj.load(json, mode: :strict)
+    data = JSON.parse(json)
     raise UnexpectedResponseError unless data.is_a?(Hash)
 
     data['translations'].map do |translation|
