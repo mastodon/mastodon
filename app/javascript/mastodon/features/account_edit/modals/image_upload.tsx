@@ -8,9 +8,6 @@ import Cropper from 'react-easy-crop';
 
 import { setDragUploadEnabled } from '@/mastodon/actions/compose_typed';
 import { Button } from '@/mastodon/components/button';
-import { Callout } from '@/mastodon/components/callout';
-import { CharacterCounter } from '@/mastodon/components/character_counter';
-import { TextAreaField } from '@/mastodon/components/form_fields';
 import { RangeInput } from '@/mastodon/components/form_fields/range_input_field';
 import {
   selectImageInfo,
@@ -22,6 +19,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { DialogModal } from '../../ui/components/dialog_modal';
 import type { DialogModalProps } from '../../ui/components/dialog_modal';
 
+import { ImageAltTextField } from './image_alt';
 import classes from './styles.module.scss';
 
 import 'react-easy-crop/react-easy-crop.css';
@@ -357,66 +355,19 @@ const StepAlt: FC<{
 }> = ({ imageBlob, onCancel, onComplete }) => {
   const [altText, setAltText] = useState('');
 
-  const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
-    (event) => {
-      setAltText(event.currentTarget.value);
-    },
-    [],
-  );
-
   const handleComplete = useCallback(() => {
     onComplete(altText);
   }, [altText, onComplete]);
 
   const imageSrc = useMemo(() => URL.createObjectURL(imageBlob), [imageBlob]);
-  const altLimit = useAppSelector(
-    (state) =>
-      state.server.getIn(
-        ['server', 'configuration', 'media_attachments', 'description_limit'],
-        150,
-      ) as number,
-  );
 
   return (
     <>
-      <img src={imageSrc} alt='' className={classes.altImage} />
-
-      <div>
-        <TextAreaField
-          label={
-            <FormattedMessage
-              id='account_edit.upload_modal.step_alt.text_label'
-              defaultMessage='Alt text'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='account_edit.upload_modal.step_alt.text_hint'
-              defaultMessage='E.g. “Close-up photo of me wearing glasses and a blue shirt”'
-            />
-          }
-          onChange={handleChange}
-        />
-        <CharacterCounter
-          currentString={altText}
-          maxLength={altLimit}
-          className={classes.altCounter}
-        />
-      </div>
-
-      <Callout
-        title={
-          <FormattedMessage
-            id='account_edit.upload_modal.step_alt.callout_title'
-            defaultMessage='Let’s make Mastodon accessible for all'
-          />
-        }
-      >
-        <FormattedMessage
-          id='account_edit.upload_modal.step_alt.callout_text'
-          defaultMessage='Adding alt text to media helps people using screen readers to understand your content.'
-        />
-      </Callout>
+      <ImageAltTextField
+        imageSrc={imageSrc}
+        altText={altText}
+        onChange={setAltText}
+      />
 
       <div className={classes.cropActions}>
         <Button onClick={onCancel} secondary>

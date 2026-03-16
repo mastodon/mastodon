@@ -3,8 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { debounce } from 'lodash';
 
+import { fetchAccount } from '@/mastodon/actions/accounts';
 import {
   apiDeleteFeaturedTag,
+  apiDeleteProfileAvatar,
+  apiDeleteProfileHeader,
   apiGetCurrentFeaturedTags,
   apiGetProfile,
   apiGetTagSuggestions,
@@ -120,6 +123,16 @@ const profileEditSlice = createSlice({
       state.isPending = false;
     });
 
+    builder.addCase(deleteImage.pending, (state) => {
+      state.isPending = true;
+    });
+    builder.addCase(deleteImage.rejected, (state) => {
+      state.isPending = false;
+    });
+    builder.addCase(deleteImage.fulfilled, (state) => {
+      state.isPending = false;
+    });
+
     builder.addCase(addFeaturedTag.pending, (state) => {
       state.isPending = true;
     });
@@ -231,7 +244,10 @@ export const fetchProfile = createDataLoadingThunk(
 export const patchProfile = createDataLoadingThunk(
   `${profileEditSlice.name}/patchProfile`,
   (params: Partial<ApiProfileUpdateParams>) => apiPatchProfile(params),
-  transformProfile,
+  (response, { dispatch }) => {
+    dispatch(fetchAccount(response.id));
+    return transformProfile(response);
+  },
   {
     useLoadingBar: false,
     condition(_, { getState }) {
@@ -263,13 +279,39 @@ export const selectImageInfo = createAppSelector(
 export const uploadImage = createDataLoadingThunk(
   `${profileEditSlice.name}/uploadImage`,
   (arg: { location: ImageLocation; imageBlob: Blob; altText: string }) => {
-    // Note: Alt text is not actually supported by the API yet.
     const formData = new FormData();
     formData.append(arg.location, arg.imageBlob);
+    if (arg.altText) {
+      formData.append(`${arg.location}_description`, arg.altText);
+    }
 
     return apiPatchProfile(formData);
   },
-  transformProfile,
+  (response, { dispatch }) => {
+    dispatch(fetchAccount(response.id));
+    return transformProfile(response);
+  },
+  {
+    useLoadingBar: false,
+  },
+);
+
+export const deleteImage = createDataLoadingThunk(
+  `${profileEditSlice.name}/deleteImage`,
+  (arg: { location: ImageLocation }) => {
+    if (arg.location === 'avatar') {
+      return apiDeleteProfileAvatar();
+    } else {
+      return apiDeleteProfileHeader();
+    }
+  },
+  async (_, { dispatch, getState }) => {
+    await dispatch(fetchProfile());
+    const accountId = getState().profileEdit.profile?.id;
+    if (accountId) {
+      dispatch(fetchAccount(accountId));
+    }
+  },
   {
     useLoadingBar: false,
   },

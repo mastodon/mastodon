@@ -40,6 +40,19 @@
   }
 }
 
+.bio {
+  unicode-bidi: plaintext;
+
+  p:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
 .field {
   padding: 12px 0;
   display: flex;
