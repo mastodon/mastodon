@@ -267,9 +267,11 @@ export const selectImageInfo = createAppSelector(
 export const uploadImage = createDataLoadingThunk(
   `${profileEditSlice.name}/uploadImage`,
   (arg: { location: ImageLocation; imageBlob: Blob; altText: string }) => {
-    // Note: Alt text is not actually supported by the API yet.
     const formData = new FormData();
     formData.append(arg.location, arg.imageBlob);
+    if (arg.altText) {
+      formData.append(`${arg.location}_description`, arg.altText);
+    }
 
     return apiPatchProfile(formData);
   },
