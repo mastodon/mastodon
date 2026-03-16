@@ -2,21 +2,21 @@ import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
+import babel from '@rolldown/plugin-babel';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import postcssPresetEnv from 'postcss-preset-env';
-import Compress from 'rollup-plugin-gzip';
-import { visualizer } from 'rollup-plugin-visualizer';
 import {
   PluginOption,
   defineConfig,
   UserConfigFnPromise,
   UserConfig,
 } from 'vite';
+import { analyzer, unstableRolldownAdapter } from 'vite-bundle-analyzer';
+import { compression, defineAlgorithm } from 'vite-plugin-compression2';
 import manifestSRI from 'vite-plugin-manifest-sri';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
@@ -48,6 +48,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         '~/': `${jsRoot}/`,
         '@/': `${jsRoot}/`,
       },
+      tsconfigPaths: true,
     },
     css: {
       modules: {
@@ -122,7 +123,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       assetsDir: 'assets',
       assetsInlineLimit: (filePath, _) =>
         /\.woff2?$/.exec(filePath) ? false : undefined,
-      rollupOptions: {
+      rolldownOptions: {
         input: await findEntrypoints(),
         output: {
           chunkFileNames({ facadeModuleId, name }) {
@@ -168,12 +169,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       format: 'es',
     },
     plugins: [
-      tsconfigPaths({ projects: [path.resolve(__dirname, 'tsconfig.json')] }),
-      react({
-        babel: {
-          plugins: ['formatjs', 'transform-react-remove-prop-types'],
-        },
-      }),
+      react(),
+      babel({ plugins: ['formatjs', 'transform-react-remove-prop-types'] }),
       MastodonThemes(),
       MastodonAssetsManifest(),
       MastodonServiceWorkerLocales(),
@@ -182,7 +179,18 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         renderLegacyChunks: false,
         modernPolyfills: true,
       }),
-      isProdBuild && (Compress() as PluginOption),
+      isProdBuild &&
+        compression({
+          algorithms: [
+            defineAlgorithm('gzip', { level: 9 }),
+            defineAlgorithm('brotliCompress', {
+              params: {
+                [require('zlib').constants.BROTLI_PARAM_QUALITY]: 11,
+              },
+            }),
+          ],
+          threshold: 2000, // only compress files larger than 2kB
+        }),
       command === 'build' &&
         manifestSRI({
           manifestPaths: ['.vite/manifest.json'],
@@ -214,11 +222,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       svgr(),
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
-      !!process.env.ANALYZE_BUNDLE_SIZE &&
-        (visualizer({
-          template: process.env.CI ? 'raw-data' : 'treemap',
-        }) as PluginOption),
       MastodonNameLookup(),
+      !!process.env.ANALYZE_BUNDLE_SIZE && unstableRolldownAdapter(analyzer()),
     ],
   } satisfies UserConfig;
 };
