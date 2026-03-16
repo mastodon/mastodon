@@ -68,7 +68,7 @@ namespace :repo do
                   end
                 end
 
-                pull_request = Oj.load(response.to_s)
+                pull_request = JSON.parse(response.to_s)
                 pull_request['user']['login']
               end
 
