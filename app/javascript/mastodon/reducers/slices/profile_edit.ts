@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { debounce } from 'lodash';
 
+import { fetchAccount } from '@/mastodon/actions/accounts';
 import {
   apiDeleteFeaturedTag,
   apiGetCurrentFeaturedTags,
@@ -231,7 +232,10 @@ export const fetchProfile = createDataLoadingThunk(
 export const patchProfile = createDataLoadingThunk(
   `${profileEditSlice.name}/patchProfile`,
   (params: Partial<ApiProfileUpdateParams>) => apiPatchProfile(params),
-  transformProfile,
+  (response, { dispatch }) => {
+    dispatch(fetchAccount(response.id));
+    return transformProfile(response);
+  },
   {
     useLoadingBar: false,
     condition(_, { getState }) {
@@ -269,7 +273,10 @@ export const uploadImage = createDataLoadingThunk(
 
     return apiPatchProfile(formData);
   },
-  transformProfile,
+  (response, { dispatch }) => {
+    dispatch(fetchAccount(response.id));
+    return transformProfile(response);
+  },
   {
     useLoadingBar: false,
   },
