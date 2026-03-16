@@ -22,7 +22,7 @@ namespace :repo do
 
     while url.present?
       response     = HTTP.get(url)
-      contributors = Oj.load(response.body)
+      contributors = JSON.parse(response.body)
 
       contributors.each do |c|
         file << "* [#{c['login']}](#{c['html_url']})\n" if c['login']
