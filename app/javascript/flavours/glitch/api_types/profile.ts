@@ -27,6 +27,8 @@ export interface ApiProfileJSON {
 export type ApiProfileUpdateParams = Partial<
   Pick<
     ApiProfileJSON,
+    | 'avatar_description'
+    | 'header_description'
     | 'display_name'
     | 'note'
     | 'locked'
