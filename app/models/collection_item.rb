@@ -32,7 +32,7 @@ class CollectionItem < ApplicationRecord
   validates :approval_uri, presence: true, unless: -> { local? || account&.local? }
   validates :account, presence: true, if: :accepted?
   validates :object_uri, presence: true, if: -> { account.nil? }
-  validates :uri, presence: true, if: :remote?
+  validates :uri, presence: true, if: :remote_item_with_remote_account?
 
   before_validation :set_position, on: :create
   before_validation :set_activity_uri, only: :create, if: :local_item_with_remote_account?
@@ -41,6 +41,7 @@ class CollectionItem < ApplicationRecord
   scope :with_accounts, -> { includes(account: [:account_stat, :user]) }
   scope :not_blocked_by, ->(account) { where.not(accounts: { id: account.blocking }) }
   scope :local, -> { joins(:collection).merge(Collection.local) }
+  scope :accepted_partial, ->(account) { joins(:account).merge(Account.local).accepted.where(uri: nil, account_id: account.id) }
 
   def revoke!
     update!(state: :revoked)
@@ -48,6 +49,10 @@ class CollectionItem < ApplicationRecord
 
   def local_item_with_remote_account?
     local? && account&.remote?
+  end
+
+  def remote_item_with_remote_account?
+    remote? && account&.remote?
   end
 
   def object_type
