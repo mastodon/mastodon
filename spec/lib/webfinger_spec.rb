@@ -37,6 +37,16 @@ RSpec.describe Webfinger do
       end
     end
 
+    context 'when response body is not parsable' do
+      it 'raises an error' do
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com')
+          .to_return(body: 'XXX', headers: { 'Content-Type': 'application/jrd+json' })
+
+        expect { subject }
+          .to raise_error(Webfinger::Error)
+      end
+    end
+
     context 'when webfinger fails and host meta is used' do
       before { stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(status: 404) }
 

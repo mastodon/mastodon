@@ -2,21 +2,21 @@
 
 require 'rails_helper'
 
-RSpec.shared_examples 'User::Confirmation' do
+RSpec.describe User::Confirmation do
   describe 'Scopes' do
     let!(:unconfirmed_user) { Fabricate :user, confirmed_at: nil }
     let!(:confirmed_user) { Fabricate :user, confirmed_at: Time.now.utc }
 
     describe '.confirmed' do
       it 'returns users who are confirmed' do
-        expect(described_class.confirmed)
+        expect(User.confirmed)
           .to contain_exactly(confirmed_user)
       end
     end
 
     describe '.unconfirmed' do
       it 'returns users who are not confirmed' do
-        expect(described_class.unconfirmed)
+        expect(User.unconfirmed)
           .to contain_exactly(unconfirmed_user)
       end
     end

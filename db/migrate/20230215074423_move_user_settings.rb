@@ -90,7 +90,7 @@ class MoveUserSettings < ActiveRecord::Migration[6.1]
           end
         end
 
-        user.update_column('settings', Oj.dump(user_settings))
+        user.update_column('settings', JSON.generate(user_settings))
       end
     end
   end

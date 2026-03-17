@@ -40,7 +40,7 @@ class ActivityPub::Activity::FeatureRequest < ActivityPub::Activity
   end
 
   def queue_delivery!(collection_item, serializer)
-    json = Oj.dump(serialize_payload(collection_item, serializer))
+    json = JSON.generate(serialize_payload(collection_item, serializer))
     ActivityPub::DeliveryWorker.perform_async(json, @featured_account.id, @account.inbox_url)
   end
 end

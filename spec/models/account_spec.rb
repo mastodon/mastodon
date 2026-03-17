@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  it_behaves_like 'Account::Search'
   it_behaves_like 'Reviewable'
 
   describe 'Associations' do
@@ -772,9 +771,6 @@ RSpec.describe Account do
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end
-
-  it_behaves_like 'AccountAvatar', :account
-  it_behaves_like 'AccountHeader', :account
 
   describe '#increment_count!' do
     subject { Fabricate(:account) }
