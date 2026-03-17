@@ -436,10 +436,12 @@ function truncateRuleHints() {
     document.querySelectorAll<HTMLLIElement>('.rules-list li');
   if (!ruleListItems.length) return;
 
-  ruleListItems.forEach(toggleRuleHint);
+  ruleListItems.forEach((item) => {
+    toggleRuleHint(item, true);
+  });
 }
 
-function toggleRuleHint(listItem: HTMLLIElement) {
+function toggleRuleHint(listItem: HTMLLIElement, isInitialSetup?: boolean) {
   const hint = listItem.querySelector<HTMLSpanElement>(
     '.rules-list__hint-text',
   );
@@ -458,7 +460,7 @@ function toggleRuleHint(listItem: HTMLLIElement) {
       hintToggleButton.removeAttribute('hidden');
       hintToggleButton.setAttribute('aria-expanded', 'false');
     }
-  } else {
+  } else if (!isInitialSetup) {
     const { fullHint } = hint.dataset;
     if (fullHint) {
       // Restore full hint from data attribute, then delete attribute
