@@ -126,11 +126,11 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
     all_items.each do |item|
       next if [top_note_uri, reply_note_uri].include? item
 
-      stub_request(:get, item).to_return(status: 200, body: Oj.dump(empty_object), headers: { 'Content-Type': 'application/activity+json' })
+      stub_request(:get, item).to_return(status: 200, body: JSON.generate(empty_object), headers: { 'Content-Type': 'application/activity+json' })
     end
 
-    stub_request(:get, top_note_uri).to_return(status: 200, body: Oj.dump(top_object), headers: { 'Content-Type': 'application/activity+json' })
-    stub_request(:get, reply_note_uri).to_return(status: 200, body: Oj.dump(reply_object), headers: { 'Content-Type': 'application/activity+json' })
+    stub_request(:get, top_note_uri).to_return(status: 200, body: JSON.generate(top_object), headers: { 'Content-Type': 'application/activity+json' })
+    stub_request(:get, reply_note_uri).to_return(status: 200, body: JSON.generate(reply_object), headers: { 'Content-Type': 'application/activity+json' })
   end
 
   shared_examples 'fetches all replies' do
@@ -180,8 +180,8 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
       end
 
       before do
-        stub_request(:get, top_collection_uri).to_return(status: 200, body: Oj.dump(replies_top), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, reply_collection_uri).to_return(status: 200, body: Oj.dump(replies_nested), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, top_collection_uri).to_return(status: 200, body: JSON.generate(replies_top), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, reply_collection_uri).to_return(status: 200, body: JSON.generate(replies_nested), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'fetches all replies'
@@ -254,8 +254,8 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
       end
 
       before do
-        stub_request(:get, top_page_2_uri).to_return(status: 200, body: Oj.dump(top_page_two), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, reply_page_2_uri).to_return(status: 200, body: Oj.dump(reply_page_two), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, top_page_2_uri).to_return(status: 200, body: JSON.generate(top_page_two), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, reply_page_2_uri).to_return(status: 200, body: JSON.generate(reply_page_two), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'fetches all replies'

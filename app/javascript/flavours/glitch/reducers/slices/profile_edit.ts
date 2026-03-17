@@ -3,8 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { debounce } from 'lodash';
 
+import { fetchAccount } from '@/flavours/glitch/actions/accounts';
 import {
   apiDeleteFeaturedTag,
+  apiDeleteProfileAvatar,
+  apiDeleteProfileHeader,
   apiGetCurrentFeaturedTags,
   apiGetProfile,
   apiGetTagSuggestions,
@@ -106,6 +109,27 @@ const profileEditSlice = createSlice({
     });
     builder.addCase(patchProfile.fulfilled, (state, action) => {
       state.profile = action.payload;
+      state.isPending = false;
+    });
+
+    builder.addCase(uploadImage.pending, (state) => {
+      state.isPending = true;
+    });
+    builder.addCase(uploadImage.rejected, (state) => {
+      state.isPending = false;
+    });
+    builder.addCase(uploadImage.fulfilled, (state, action) => {
+      state.profile = action.payload;
+      state.isPending = false;
+    });
+
+    builder.addCase(deleteImage.pending, (state) => {
+      state.isPending = true;
+    });
+    builder.addCase(deleteImage.rejected, (state) => {
+      state.isPending = false;
+    });
+    builder.addCase(deleteImage.fulfilled, (state) => {
       state.isPending = false;
     });
 
@@ -220,12 +244,76 @@ export const fetchProfile = createDataLoadingThunk(
 export const patchProfile = createDataLoadingThunk(
   `${profileEditSlice.name}/patchProfile`,
   (params: Partial<ApiProfileUpdateParams>) => apiPatchProfile(params),
-  transformProfile,
+  (response, { dispatch }) => {
+    dispatch(fetchAccount(response.id));
+    return transformProfile(response);
+  },
   {
     useLoadingBar: false,
     condition(_, { getState }) {
       return !getState().profileEdit.isPending;
     },
+  },
+);
+
+export type ImageLocation = 'avatar' | 'header';
+
+export const selectImageInfo = createAppSelector(
+  [
+    (state) => state.profileEdit.profile,
+    (_, location: ImageLocation) => location,
+  ],
+  (profile, location) => {
+    if (!profile) {
+      return {};
+    }
+
+    return {
+      src: profile[location],
+      static: profile[`${location}Static`],
+      alt: profile[`${location}Description`],
+    };
+  },
+);
+
+export const uploadImage = createDataLoadingThunk(
+  `${profileEditSlice.name}/uploadImage`,
+  (arg: { location: ImageLocation; imageBlob: Blob; altText: string }) => {
+    const formData = new FormData();
+    formData.append(arg.location, arg.imageBlob);
+    if (arg.altText) {
+      formData.append(`${arg.location}_description`, arg.altText);
+    }
+
+    return apiPatchProfile(formData);
+  },
+  (response, { dispatch }) => {
+    dispatch(fetchAccount(response.id));
+    return transformProfile(response);
+  },
+  {
+    useLoadingBar: false,
+  },
+);
+
+export const deleteImage = createDataLoadingThunk(
+  `${profileEditSlice.name}/deleteImage`,
+  (arg: { location: ImageLocation }) => {
+    if (arg.location === 'avatar') {
+      return apiDeleteProfileAvatar();
+    } else {
+      return apiDeleteProfileHeader();
+    }
+  },
+  async (_, { dispatch, getState }) => {
+    await dispatch(fetchProfile());
+    const accountId = getState().profileEdit.profile?.id;
+    if (accountId) {
+      dispatch(fetchAccount(accountId));
+    }
+  },
+  {
+    useLoadingBar: false,
   },
 );
 

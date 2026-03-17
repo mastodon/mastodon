@@ -80,6 +80,66 @@
   }
 }
 
+.uploadWrapper {
+  min-height: min(400px, 70vh);
+  justify-content: center;
+}
+
+.uploadStepSelect {
+  text-align: center;
+
+  h2 {
+    color: var(--color-text-primary);
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
+}
+
+.cropContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.cropActions {
+  margin-top: 8px; // 16px gap from DialogModal, plus 8px = 24px to look like normal action buttons.
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+
+  .zoomControl {
+    width: min(100%, 200px);
+    margin-right: auto;
+  }
+}
+
+.altImage {
+  max-height: 150px;
+  object-fit: contain;
+  align-self: flex-start;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--avatar-border-radius);
+}
+
+.altCounter {
+  color: var(--color-text-secondary);
+}
+
+.altHint {
+  ul {
+    padding-left: 1em;
+    list-style: disc;
+    margin-bottom: 1em;
+  }
+}
+
 .verifiedSteps {
   font-size: 15px;
 
@@ -106,31 +166,5 @@
       line-height: 16px;
       text-align: center;
     }
-  }
-}
-
-.details {
-  color: var(--color-text-secondary);
-  font-size: 13px;
-  margin-top: 8px;
-
-  summary {
-    cursor: pointer;
-    font-weight: 600;
-    list-style: none;
-    margin-bottom: 8px;
-    text-decoration: underline;
-    text-decoration-style: dotted;
-  }
-
-  :global(.icon) {
-    width: 1.4em;
-    height: 1.4em;
-    vertical-align: middle;
-    transition: transform 0.2s ease-in-out;
-  }
-
-  &[open] :global(.icon) {
-    transform: rotate(-180deg);
   }
 }

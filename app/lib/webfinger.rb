@@ -12,7 +12,7 @@ class Webfinger
 
     def initialize(uri, body)
       @uri  = uri
-      @json = Oj.load(body, mode: :strict)
+      @json = JSON.parse(body)
 
       validate_response!
     end

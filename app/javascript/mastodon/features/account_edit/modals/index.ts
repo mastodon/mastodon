@@ -1,7 +1,7 @@
 export * from './bio_modal';
 export * from './fields_modals';
 export * from './fields_reorder_modal';
-export * from './image_alt';
+export { ImageAltModal } from './image_alt';
 export * from './image_delete';
 export * from './image_upload';
 export * from './name_modal';

@@ -152,7 +152,7 @@ class StreamingClient
   end
 
   def subscribe(channel, **params)
-    send(Oj.dump({ type: 'subscribe', stream: channel }.merge(params)))
+    send(JSON.generate({ type: 'subscribe', stream: channel }.merge(params)))
   end
 
   def wait_for(event = nil)

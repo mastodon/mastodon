@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
+import { AccountBio } from '@/mastodon/components/account_bio';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
 import { DismissibleCallout } from '@/mastodon/components/callout/dismissible';
@@ -201,7 +202,11 @@ export const AccountEdit: FC = () => {
             />
           }
         >
-          <EmojiHTML htmlString={profile.bio} {...htmlHandlers} />
+          <AccountBio
+            showDropdown
+            accountId={profile.id}
+            className={classes.bio}
+          />
         </AccountEditSection>
 
         <AccountEditSection

@@ -54,8 +54,8 @@ RSpec.describe ActivityPub::Forwarder do
 
     it 'correctly forwards to expected remote followers' do
       expect { subject.forward! }
-        .to enqueue_sidekiq_job(ActivityPub::LowPriorityDeliveryWorker).with(Oj.dump(payload), anything, eve.preferred_inbox_url)
-        .and enqueue_sidekiq_job(ActivityPub::LowPriorityDeliveryWorker).with(Oj.dump(payload), anything, mallory.preferred_inbox_url)
+        .to enqueue_sidekiq_job(ActivityPub::LowPriorityDeliveryWorker).with(JSON.generate(payload), anything, eve.preferred_inbox_url)
+        .and enqueue_sidekiq_job(ActivityPub::LowPriorityDeliveryWorker).with(JSON.generate(payload), anything, mallory.preferred_inbox_url)
     end
   end
 end

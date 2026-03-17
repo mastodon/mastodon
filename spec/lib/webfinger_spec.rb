@@ -10,7 +10,7 @@ RSpec.describe Webfinger do
       let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
       it 'correctly parses the response' do
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.generate(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
 
         expect(subject.self_link_href).to eq 'https://example.com/alice'
       end
@@ -20,7 +20,7 @@ RSpec.describe Webfinger do
       let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' }] } }
 
       it 'correctly parses the response' do
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.generate(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
 
         expect(subject.self_link_href).to eq 'https://example.com/alice'
       end
@@ -30,7 +30,7 @@ RSpec.describe Webfinger do
       let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/json"' }] } }
 
       it 'raises an error' do
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.generate(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
 
         expect { subject }
           .to raise_error(Webfinger::Error)
@@ -53,7 +53,7 @@ RSpec.describe Webfinger do
 
         before do
           stub_request(:get, 'https://example.com/.well-known/host-meta').to_return(body: host_meta, headers: { 'Content-Type': 'application/jrd+json' })
-          stub_request(:get, 'https://example.com/.well-known/nonStandardWebfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+          stub_request(:get, 'https://example.com/.well-known/nonStandardWebfinger?resource=acct:alice@example.com').to_return(body: JSON.generate(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
         end
 
         it 'uses host meta details' do
