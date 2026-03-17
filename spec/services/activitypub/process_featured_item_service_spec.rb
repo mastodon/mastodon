@@ -52,7 +52,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
 
       new_item = collection.collection_items.last
       expect(new_item.object_uri).to eq 'https://example.com/actor/1'
-      expect(new_item.approval_uri).to eq 'https://example.com/auth/1'
+      expect(new_item.approval_uri).to be_nil
     end
 
     context 'when an item exists for a local featured account' do
@@ -93,7 +93,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
 
       new_item = collection.collection_items.last
       expect(new_item.object_uri).to eq 'https://example.com/actor/1'
-      expect(new_item.approval_uri).to eq 'https://example.com/auth/1'
+      expect(new_item.approval_uri).to be_nil
     end
   end
 end

@@ -161,8 +161,8 @@ class StreamingClient
 
   def wait_for_message
     message = @connection.wait_for_event(:message)
-    event = Oj.load(message)
-    event['payload'] = Oj.load(event['payload']) if event['payload']
+    event = JSON.parse(message)
+    event['payload'] = JSON.parse(event['payload']) if event['payload']
 
     event.deep_symbolize_keys
   end

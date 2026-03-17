@@ -29,7 +29,7 @@ class CollectionItem < ApplicationRecord
 
   validates :position, numericality: { only_integer: true, greater_than: 0 }
   validates :activity_uri, presence: true, if: :local_item_with_remote_account?
-  validates :approval_uri, presence: true, unless: -> { local? || account&.local? }
+  validates :approval_uri, presence: true, unless: -> { local? || account&.local? || !accepted? }
   validates :account, presence: true, if: :accepted?
   validates :object_uri, presence: true, if: -> { account.nil? }
   validates :uri, presence: true, if: :remote_item_with_remote_account?

@@ -1078,8 +1078,8 @@ RSpec.describe ActivityPub::Activity::Create do
           )
         end
 
-        before do
-          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: JSON.generate({
+        let(:quote_authorization_json) do
+          {
             '@context': [
               'https://www.w3.org/ns/activitystreams',
               {
@@ -1104,7 +1104,11 @@ RSpec.describe ActivityPub::Activity::Create do
             attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
             interactingObject: object_json[:id],
             interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
-          }))
+          }
+        end
+
+        before do
+          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
         end
 
         it 'creates a status with a verified quote' do
@@ -1134,8 +1138,8 @@ RSpec.describe ActivityPub::Activity::Create do
           )
         end
 
-        before do
-          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: JSON.generate({
+        let(:quote_authorization_json) do
+          {
             '@context': [
               'https://www.w3.org/ns/activitystreams',
               {
@@ -1160,7 +1164,11 @@ RSpec.describe ActivityPub::Activity::Create do
             attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
             interactingObject: object_json[:id],
             interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
-          }))
+          }
+        end
+
+        before do
+          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
         end
 
         it 'creates a status without the verified quote' do
@@ -1267,7 +1275,7 @@ RSpec.describe ActivityPub::Activity::Create do
       before do
         stub_request(:get, object_json[:id])
           .with(headers: { Authorization: "Bearer #{token}" })
-          .to_return(body: JSON.generate(object_json), headers: { 'Content-Type': 'application/activity+json' })
+          .to_return(body: object_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
 
         subject.perform
       end

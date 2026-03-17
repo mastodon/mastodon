@@ -5,6 +5,7 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
     return accept_follow_for_relay if relay_follow?
     return accept_follow!(follow_request_from_object) unless follow_request_from_object.nil?
     return accept_quote!(quote_request_from_object) unless quote_request_from_object.nil?
+    return accept_feature_request! if Mastodon::Feature.collections_federation_enabled? && feature_request_from_object.present?
 
     case @object['type']
     when 'Follow'
@@ -42,6 +43,17 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
     return unless quote.present? && quote.status.local?
 
     accept_quote!(quote)
+  end
+
+  def accept_feature_request!
+    approval_uri = value_or_id(first_of_value(@json['result']))
+    return if approval_uri.nil? || unsupported_uri_scheme?(approval_uri) || non_matching_uri_hosts?(approval_uri, @account.uri)
+
+    collection_item = feature_request_from_object
+    collection_item.update!(approval_uri:, state: :accepted)
+
+    activity_json = ActiveModelSerializers::SerializableResource.new(collection_item, serializer: ActivityPub::AddFeaturedItemSerializer, adapter: ActivityPub::Adapter).to_json
+    ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, collection_item.collection.account_id)
   end
 
   def accept_quote!(quote)
