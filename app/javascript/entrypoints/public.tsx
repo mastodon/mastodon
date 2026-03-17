@@ -149,6 +149,8 @@ function loaded() {
     document.querySelector('#user_settings_attributes_default_privacy'),
   );
 
+  truncateRuleHints();
+
   const reactComponents = document.querySelectorAll('[data-component]');
 
   if (reactComponents.length > 0) {
@@ -425,21 +427,58 @@ on('submit', '#registration_new_user,#new_user', () => {
   });
 });
 
+// Truncate long rule hints
+
+const MAX_RULE_HINT_LENGTH = 100;
+
+function truncateRuleHints() {
+  const ruleListItems =
+    document.querySelectorAll<HTMLLIElement>('.rules-list li');
+  if (!ruleListItems.length) return;
+
+  ruleListItems.forEach(toggleRuleHint);
+}
+
+function toggleRuleHint(listItem: HTMLLIElement) {
+  const hint = listItem.querySelector<HTMLSpanElement>(
+    '.rules-list__hint-text',
+  );
+  if (!hint) return;
+
+  const hintText = hint.innerHTML;
+  const hintToggleButton = listItem.querySelector('button');
+
+  if (hintText.length > MAX_RULE_HINT_LENGTH) {
+    // Store full hint in a data attribute, then truncate it with an '…'
+    hint.dataset.fullHint = hintText;
+    hint.innerHTML = `${hintText.slice(0, MAX_RULE_HINT_LENGTH - 1).trim()}…`;
+
+    // Reveal toggle button if needed
+    if (hintToggleButton) {
+      console.log('Revealing button', hintToggleButton);
+      hintToggleButton.removeAttribute('hidden');
+      hintToggleButton.setAttribute('aria-expanded', 'false');
+    }
+  } else {
+    const { fullHint } = hint.dataset;
+    if (fullHint) {
+      hint.innerHTML = fullHint;
+      delete hint.dataset.fullHint;
+      hintToggleButton?.setAttribute('aria-expanded', 'true');
+      hint.parentElement?.focus();
+    }
+  }
+}
+
 on('click', '.rules-list button', ({ target }) => {
   if (!(target instanceof HTMLElement)) {
     return;
   }
 
-  const button = target.closest('button');
+  const listItem = target.closest('li');
 
-  if (!button) {
-    return;
-  }
-
-  if (button.ariaExpanded === 'true') {
-    button.ariaExpanded = 'false';
-  } else {
-    button.ariaExpanded = 'true';
+  if (listItem) {
+    toggleRuleHint(listItem);
   }
 });
 
