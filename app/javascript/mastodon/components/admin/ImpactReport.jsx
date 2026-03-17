@@ -49,7 +49,7 @@ export default class ImpactReport extends PureComponent {
 
     return (
       <div className='dimension'>
-        <h2><FormattedMessage id='admin.impact_report.title' defaultMessage='Impact summary' /></h2>
+        <FormattedMessage id='admin.impact_report.title' defaultMessage='Impact summary' tagName="h2" />
 
         <table>
           <tbody>

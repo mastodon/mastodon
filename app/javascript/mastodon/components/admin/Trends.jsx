@@ -66,7 +66,7 @@ export default class Trends extends PureComponent {
 
     return (
       <div className='trends trends--compact'>
-        <h2><FormattedMessage id='trends.trending_now' defaultMessage='Trending now' /></h2>
+        <FormattedMessage id='trends.trending_now' defaultMessage='Trending now' tagName='h2' />
 
         {content}
       </div>
