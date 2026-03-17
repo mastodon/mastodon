@@ -21,9 +21,9 @@ class ActivityPub::ProcessFeaturedItemService
       else
         @collection_item = collection.collection_items.create!(
           uri: item_json['id'],
-          object_uri: item_json['featuredObject'],
-          approval_uri: item_json['featureAuthorization']
+          object_uri: item_json['featuredObject']
         )
+        @approval_uri = item_json['featureAuthorization']
 
         verify_authorization!
       end
@@ -35,8 +35,8 @@ class ActivityPub::ProcessFeaturedItemService
   private
 
   def verify_authorization!
-    ActivityPub::VerifyFeaturedItemService.new.call(@collection_item)
+    ActivityPub::VerifyFeaturedItemService.new.call(@collection_item, @approval_uri)
   rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-    ActivityPub::VerifyFeaturedItemWorker.perform_in(rand(30..600).seconds, @collection_item.id)
+    ActivityPub::VerifyFeaturedItemWorker.perform_in(rand(30..600).seconds, @collection_item.id, @approval_uri)
   end
 end

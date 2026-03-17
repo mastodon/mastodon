@@ -12,14 +12,14 @@ RSpec.describe ActivityPub::VerifyFeaturedItemService do
               account: nil,
               state: :pending,
               uri: 'https://other.example.com/items/1',
-              object_uri: 'https://example.com/actor/1',
-              approval_uri: verification_json['id'])
+              object_uri: 'https://example.com/actor/1')
   end
+  let(:approval_uri) { 'https://example.com/auth/1' }
   let(:verification_json) do
     {
       '@context' => 'https://www.w3.org/ns/activitystreams',
       'type' => 'FeatureAuthorization',
-      'id' => 'https://example.com/auth/1',
+      'id' => approval_uri,
       'interactionTarget' => 'https://example.com/actor/1',
       'interactingObject' => collection.uri,
     }
@@ -41,12 +41,13 @@ RSpec.describe ActivityPub::VerifyFeaturedItemService do
       before { featured_account }
 
       it 'verifies and creates the item' do
-        subject.call(collection_item)
+        subject.call(collection_item, approval_uri)
 
         expect(verification_request).to have_been_requested
 
         expect(collection_item.account_id).to eq featured_account.id
         expect(collection_item).to be_accepted
+        expect(collection_item.approval_uri).to eq approval_uri
       end
     end
 
@@ -59,13 +60,14 @@ RSpec.describe ActivityPub::VerifyFeaturedItemService do
       end
 
       it 'fetches the actor and creates the item' do
-        subject.call(collection_item)
+        subject.call(collection_item, approval_uri)
 
         expect(stubbed_service).to have_received(:call)
         expect(verification_request).to have_been_requested
 
         expect(collection_item.account_id).to eq featured_account.id
         expect(collection_item).to be_accepted
+        expect(collection_item.approval_uri).to eq approval_uri
       end
     end
   end
@@ -77,7 +79,7 @@ RSpec.describe ActivityPub::VerifyFeaturedItemService do
     end
 
     it 'creates item without attached account and in proper state' do
-      subject.call(collection_item)
+      subject.call(collection_item, approval_uri)
 
       expect(collection_item.account_id).to be_nil
       expect(collection_item).to be_rejected
