@@ -453,17 +453,18 @@ function toggleRuleHint(listItem: HTMLLIElement) {
     hint.dataset.fullHint = hintText;
     hint.innerHTML = `${hintText.slice(0, MAX_RULE_HINT_LENGTH - 1).trim()}…`;
 
-    // Reveal toggle button if needed
     if (hintToggleButton) {
-      console.log('Revealing button', hintToggleButton);
+      // Reveal toggle button if needed
       hintToggleButton.removeAttribute('hidden');
       hintToggleButton.setAttribute('aria-expanded', 'false');
     }
   } else {
     const { fullHint } = hint.dataset;
     if (fullHint) {
+      // Restore full hint from data attribute, then delete attribute
       hint.innerHTML = fullHint;
       delete hint.dataset.fullHint;
+
       hintToggleButton?.setAttribute('aria-expanded', 'true');
       hint.parentElement?.focus();
     }
