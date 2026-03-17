@@ -11,8 +11,9 @@ const meta = {
   component: RelativeTimestamp,
   args: {
     timestamp: new Date(Date.now() - DAY * 3).toISOString(),
-    short: true,
+    long: false,
     noTime: false,
+    noFuture: false,
   },
   argTypes: {
     timestamp: {
@@ -35,13 +36,20 @@ export const Plain: Story = {};
 
 export const Long: Story = {
   args: {
-    short: false,
+    long: true,
   },
 };
 
 export const DateOnly: Story = {
   args: {
     noTime: true,
+  },
+};
+
+export const NoFuture: Story = {
+  args: {
+    timestamp: new Date(Date.now() + DAY * 3).toISOString(),
+    noFuture: true,
   },
 };
 

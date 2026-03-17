@@ -79,14 +79,18 @@ const DAYS_LIMIT = 7;
 
 export const RelativeTimestamp: FC<{
   timestamp: string;
-  short?: boolean;
+  long?: boolean;
   noTime?: boolean;
-}> = ({ timestamp, short = true, noTime = false }) => {
+  noFuture?: boolean;
+}> = ({ timestamp, long = false, noTime = false, noFuture = false }) => {
   const intl = useIntl();
 
   const [now, setNow] = useState(() => Date.now());
 
-  const date = useMemo(() => new Date(timestamp), [timestamp]);
+  const date = useMemo(() => {
+    const date = new Date(timestamp);
+    return noFuture ? new Date(Math.min(date.getTime(), now)) : date;
+  }, [noFuture, now, timestamp]);
   const daysOnly = !timestamp.includes('T') || noTime;
   const delta = useMemo(
     () => relativeTimeParts(date.getTime(), now),
@@ -123,9 +127,9 @@ export const RelativeTimestamp: FC<{
       value: delta.value,
       unit: delta.unit,
       intl,
-      short,
+      short: !long,
     });
-  }, [date, daysOnly, delta.unit, delta.value, intl, now, short]);
+  }, [date, daysOnly, delta.unit, delta.value, intl, now, long]);
 
   return (
     <time dateTime={timestamp} title={intl.formatDate(date, dateFormatOptions)}>
