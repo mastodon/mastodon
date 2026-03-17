@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { DAY } from '@/mastodon/utils/time';
+
 import { RelativeTimestamp as LegacyRelativeTimestamp } from '../relative_timestamp';
 
 import { RelativeTimestamp } from './index';
-
-const defaultTimestamp = new Date(1772449618000).toISOString();
 
 const meta = {
   title: 'Components/RelativeTimestamp',
   component: RelativeTimestamp,
   args: {
-    timestamp: defaultTimestamp,
+    timestamp: new Date(Date.now() - DAY * 3).toISOString(),
     short: true,
+    noTime: false,
   },
   argTypes: {
     timestamp: {
@@ -20,9 +21,6 @@ const meta = {
   },
   render(props) {
     const { timestamp } = props;
-    if (!timestamp) {
-      return <span>Invalid timestamp</span>;
-    }
     const dateString = toDateString(timestamp);
 
     return <RelativeTimestamp {...props} timestamp={dateString} />;
@@ -35,31 +33,22 @@ type Story = StoryObj<typeof RelativeTimestamp>;
 
 export const Plain: Story = {};
 
+export const Long: Story = {
+  args: {
+    short: false,
+  },
+};
+
 export const DateOnly: Story = {
-  render(props) {
-    const { timestamp } = props;
-    if (!timestamp) {
-      return <span>Invalid timestamp</span>;
-    }
-    const dateTimeString = toDateString(timestamp);
-
-    const dateString = dateTimeString.split('T')[0];
-    if (!dateString) {
-      return <span>Invalid timestamp</span>;
-    }
-
-    return <RelativeTimestamp {...props} timestamp={dateString} />;
+  args: {
+    noTime: true,
   },
 };
 
 export const Legacy: Story = {
   render(props) {
     const { timestamp } = props;
-    if (!timestamp) {
-      return <span>Invalid timestamp</span>;
-    }
     const dateString = toDateString(timestamp);
-
     const isFuture = new Date(dateString).getTime() > Date.now();
 
     return (
@@ -73,9 +62,14 @@ export const Legacy: Story = {
 };
 
 // Storybook has a known bug with changing a date control from a string to number.
-function toDateString(timestamp: number | string) {
+function toDateString(timestamp?: number | string) {
+  if (!timestamp) {
+    return new Date().toISOString();
+  }
+
   if (typeof timestamp === 'number') {
     return new Date(timestamp).toISOString();
   }
+
   return timestamp;
 }

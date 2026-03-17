@@ -14,13 +14,34 @@ export function relativeTimeParts(
 
   if (absDelta < MINUTE) {
     return { value: Math.floor(delta / SECOND), unit: 'second' };
-  } else if (absDelta < HOUR) {
+  }
+
+  if (absDelta < HOUR) {
     return { value: Math.floor(delta / MINUTE), unit: 'minute' };
-  } else if (absDelta < DAY) {
+  }
+
+  if (absDelta < DAY) {
     return { value: Math.floor(delta / HOUR), unit: 'hour' };
   }
 
-  return { value: Math.floor(delta / DAY), unit: 'day' };
+  // Round instead of use floor as days are big enough that the value is usually off by a few hours.
+  return { value: Math.round(delta / DAY), unit: 'day' };
+}
+
+export function isToday(ts: number, now = Date.now()): boolean {
+  const date = new Date(ts);
+  const nowDate = new Date(now);
+  return (
+    date.getDate() === nowDate.getDate() &&
+    date.getMonth() === nowDate.getMonth() &&
+    date.getFullYear() === nowDate.getFullYear()
+  );
+}
+
+export function isSameYear(ts: number, now = Date.now()): boolean {
+  const date = new Date(ts);
+  const nowDate = new Date(now);
+  return date.getFullYear() === nowDate.getFullYear();
 }
 
 export function unitToTime(unit: TimeUnit): number {
