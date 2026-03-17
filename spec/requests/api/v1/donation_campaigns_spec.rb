@@ -91,7 +91,7 @@ RSpec.describe 'Donation campaigns' do
         end
 
         before do
-          stub_request(:get, "#{api_url}?platform=web&seed=#{seed}&locale=en").to_return(body: JSON.generate(campaign_json), status: 200)
+          stub_request(:get, "#{api_url}?platform=web&seed=#{seed}&locale=en").to_return(body: campaign_json.to_json, status: 200)
         end
 
         it 'returns the expected campaign' do

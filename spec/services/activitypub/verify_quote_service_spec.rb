@@ -76,7 +76,7 @@ RSpec.describe ActivityPub::VerifyQuoteService do
 
     before do
       stub_request(:get, approval_uri)
-        .to_return(status: 200, body: JSON.generate(json), headers: { 'Content-Type': 'application/activity+json' })
+        .to_return(status: 200, body: json.to_json, headers: { 'Content-Type': 'application/activity+json' })
     end
 
     context 'with a valid activity for already-fetched posts' do
@@ -179,7 +179,7 @@ RSpec.describe ActivityPub::VerifyQuoteService do
 
     context 'with a valid activity for already-fetched posts, with a pre-fetched approval' do
       it 'updates the status without fetching the activity' do
-        expect { subject.call(quote, prefetched_approval: JSON.generate(json)) }
+        expect { subject.call(quote, prefetched_approval: json.to_json) }
           .to change(quote, :state).to('accepted')
 
         expect(a_request(:get, approval_uri))
