@@ -10,8 +10,6 @@ RSpec.describe User do
   let(:account) { Fabricate(:account, username: 'alice') }
 
   it_behaves_like 'two_factor_backupable'
-  it_behaves_like 'User::Activity'
-  it_behaves_like 'User::Confirmation'
 
   describe 'otp_secret' do
     it 'encrypts the saved value' do

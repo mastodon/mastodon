@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.shared_examples 'Status::Visibility' do
+RSpec.describe Status::Visibility do
   describe 'Validations' do
     context 'when status is a reblog' do
       subject { Fabricate.build :status, reblog: Fabricate(:status) }

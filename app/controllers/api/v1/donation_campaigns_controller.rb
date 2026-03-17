@@ -60,7 +60,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
         return JSON.parse(res.body_with_limit) if res.code == 200
       end
     end
-  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Oj::ParseError
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, JSON::ParserError
     nil
   end
 
