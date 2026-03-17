@@ -47,7 +47,7 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
 
   def accept_feature_request!
     approval_uri = value_or_id(first_of_value(@json['result']))
-    return if approval_uri.nil? || unsupported_uri_scheme?(approval_uri)
+    return if approval_uri.nil? || unsupported_uri_scheme?(approval_uri) || non_matching_uri_hosts?(approval_uri, @account.uri)
 
     collection_item = feature_request_from_object
     collection_item.update!(approval_uri:, state: :accepted)

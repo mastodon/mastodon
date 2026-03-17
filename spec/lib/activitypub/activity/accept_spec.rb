@@ -224,6 +224,12 @@ RSpec.describe ActivityPub::Activity::Accept do
           it_behaves_like 'ignoring activity'
         end
 
+        context "when approval_uri does not match the sender's uri" do
+          let(:approval_uri) { 'https://other.localhost/authorizations/1' }
+
+          it_behaves_like 'ignoring activity'
+        end
+
         context 'when approval_uri is missing' do
           let(:approval_uri) { nil }
 
