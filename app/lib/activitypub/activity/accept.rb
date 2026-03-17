@@ -84,10 +84,4 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
   def target_uri
     @target_uri ||= value_or_id(@object['actor'])
   end
-
-  def feature_request_from_object
-    return @collection_item if instance_variable_defined?(:@collection_item)
-
-    @collection_item = CollectionItem.local.find_by(activity_uri: value_or_id(@object), account_id: @account.id)
-  end
 end
