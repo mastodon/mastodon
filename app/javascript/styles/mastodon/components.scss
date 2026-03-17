@@ -1366,6 +1366,9 @@ body > [data-popper-placement] {
   .autosuggest-textarea > .autosuggest-textarea__textarea:lang(#{$lang}) {
     writing-mode: vertical-lr;
     min-height: 209px; // writable
+    max-height: 209px; // suppress autosizing by react-textarea-autosize
+    overflow-x: auto;
+    scrollbar-color: unset;
   }
 
   .detailed-status > .status__content > .status__content__text:lang(#{$lang}) {

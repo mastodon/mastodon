@@ -150,7 +150,7 @@ RSpec.describe ResolveAccountService do
   end
 
   context 'with webfinger response subject missing a host value' do
-    let(:body) { JSON.generate({ subject: 'user@' }) }
+    let(:body) { { subject: 'user@' }.to_json }
     let(:url) { 'https://host.example/.well-known/webfinger?resource=acct:user@host.example' }
 
     before do

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rails_helper'
+
 RSpec.describe Account::Avatar do
   describe 'static avatars', :attachment_processing do
     describe 'with a square GIF' do
