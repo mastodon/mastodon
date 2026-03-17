@@ -78,7 +78,7 @@ class TranslationService::DeepL < TranslationService
         provider: 'DeepL.com'
       )
     end
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     raise UnexpectedResponseError
   end
 end
