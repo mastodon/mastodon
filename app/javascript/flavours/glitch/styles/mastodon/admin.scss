@@ -267,7 +267,7 @@ $content-width: 840px;
         }
       }
 
-      h2 small {
+      h1 small {
         font-size: 12px;
         display: block;
         font-weight: 500;
@@ -281,22 +281,16 @@ $content-width: 840px;
       }
     }
 
-    h2 {
+    :where(h1),
+    .heading-large {
       color: var(--color-text-primary);
       font-size: 24px;
       line-height: 36px;
       font-weight: 700;
     }
 
-    h3 {
-      color: var(--color-text-primary);
-      font-size: 20px;
-      line-height: 28px;
-      font-weight: 400;
-      margin-bottom: 30px;
-    }
-
-    h4 {
+    :where(h2):not(.heading-medium),
+    .heading-small {
       text-transform: uppercase;
       font-size: 13px;
       font-weight: 700;
@@ -304,6 +298,14 @@ $content-width: 840px;
       padding-top: 24px;
       margin-bottom: 8px;
       border-top: 1px solid var(--color-border-primary);
+    }
+
+    .heading-medium {
+      color: var(--color-text-primary);
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 400;
+      margin-bottom: 30px;
     }
 
     h6 {
