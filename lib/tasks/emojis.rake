@@ -109,7 +109,7 @@ namespace :emojis do
     emojis_light = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️🪽🪿'
     emojis_dark = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴🐞🕺📱📲🚲🪮🐦‍⬛'
 
-    map = Oj.load(File.read(src))
+    map = JSON.parse(File.read(src))
 
     emojis_light.each_grapheme_cluster do |emoji|
       gen_border map[emoji], 'black'
@@ -193,7 +193,7 @@ namespace :emojis do
     require 'vips'
 
     src = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_data.json')
-    sheet = Oj.load(File.read(src))
+    sheet = JSON.load_file(src)
 
     max = 0
     sheet['emojis'].each_value do |row|
