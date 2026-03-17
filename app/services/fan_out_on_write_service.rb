@@ -171,10 +171,10 @@ class FanOutOnWriteService < BaseService
   end
 
   def anonymous_payload
-    @anonymous_payload ||= JSON.generate({
+    @anonymous_payload ||= {
       event: update? ? :'status.update' : :update,
       payload: rendered_status,
-    }.as_json)
+    }.to_json
   end
 
   def rendered_status
