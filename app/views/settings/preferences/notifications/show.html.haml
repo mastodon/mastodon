@@ -7,7 +7,7 @@
 = simple_form_for current_user, url: settings_preferences_notifications_path, html: { id: :edit_notification } do |f|
   = render 'shared/error_messages', object: current_user
 
-  %h4= t 'notifications.email_events'
+  %h2= t 'notifications.email_events'
 
   %p.hint= t 'notifications.email_events_hint'
 
@@ -24,7 +24,7 @@
       = ff.input :always_send_emails, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_always_send_emails'), hint: I18n.t('simple_form.hints.defaults.setting_always_send_emails')
 
     - if current_user.can?(:manage_reports, :manage_appeals, :manage_users, :manage_taxonomies) || (SoftwareUpdate.check_enabled? && current_user.can?(:view_devops))
-      %h4= t 'notifications.administration_emails'
+      %h2= t 'notifications.administration_emails'
 
       .fields-group
         = ff.input :'notification_emails.report', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.report') if current_user.can?(:manage_reports)

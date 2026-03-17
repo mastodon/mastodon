@@ -2,7 +2,7 @@
   = t('settings.edit_profile')
 
 - content_for :heading do
-  %h2= t('settings.profile')
+  %h1= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
 = simple_form_for @account, url: settings_profile_path, html: { id: :edit_profile } do |f|
@@ -10,7 +10,7 @@
 
   %p.lead= t('edit_profile.hint_html')
 
-  %h4= t('edit_profile.basic_information')
+  %h2= t('edit_profile.basic_information')
 
   .fields-row
     .fields-row__column.fields-row__column-6
@@ -62,7 +62,7 @@
             = material_symbol 'delete'
             = t('generic.delete')
 
-  %h4= t('edit_profile.other')
+  %h2= t('edit_profile.other')
 
   .fields-group
     = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')

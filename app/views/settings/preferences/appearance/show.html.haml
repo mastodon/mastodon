@@ -61,7 +61,7 @@
         = t('appearance.localization.glitch_guide_link_text')
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
-    %h4= t 'appearance.animations_and_accessibility'
+    %h2= t 'appearance.animations_and_accessibility'
 
     .fields-group
       = ff.input :'web.use_pending_items',
@@ -77,12 +77,12 @@
       = ff.input :'web.use_system_font', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_system_font_ui')
       = ff.input :'web.use_system_scrollbars', wrapper: :with_label, hint: I18n.t('simple_form.hints.defaults.setting_system_scrollbars_ui'), label: I18n.t('simple_form.labels.defaults.setting_system_scrollbars_ui')
 
-    %h4= t 'appearance.discovery'
+    %h2= t 'appearance.discovery'
 
     .fields-group
       = ff.input :'web.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_trends')
 
-    %h4= t 'appearance.boosting_preferences'
+    %h2= t 'appearance.boosting_preferences'
 
     .fields-group
       = ff.input :'web.reblog_modal',
@@ -96,7 +96,7 @@
                  wrapper: :with_label
     .flash-message.hidden-on-touch-devices= t('appearance.boosting_preferences_info_html', icon: material_symbol('repeat'))
 
-    %h4= t 'appearance.sensitive_content'
+    %h2= t 'appearance.sensitive_content'
 
     .fields-group
       = ff.input :'web.display_media',
@@ -119,7 +119,7 @@
     .fields-group
       = ff.input :'web.expand_content_warnings', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_expand_spoilers')
 
-    %h4= t 'appearance.advanced_settings'
+    %h2= t 'appearance.advanced_settings'
 
     .fields-group
       = ff.input :'web.advanced_layout',

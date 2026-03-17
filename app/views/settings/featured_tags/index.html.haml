@@ -2,7 +2,7 @@
   = t('settings.featured_tags')
 
 - content_for :heading do
-  %h2= t('settings.profile')
+  %h1= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
 = simple_form_for @featured_tag, url: settings_featured_tags_path do |f|
@@ -23,7 +23,7 @@
 - @featured_tags.each do |featured_tag|
   .directory__tag
     %div
-      %h4
+      %h2
         = material_symbol 'tag'
         = featured_tag.display_name
         %small

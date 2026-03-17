@@ -2,7 +2,7 @@
   = t('admin.settings.content_retention.title')
 
 - content_for :heading do
-  %h2= t('admin.settings.title')
+  %h1= t('admin.settings.title')
   = render partial: 'admin/settings/shared/links'
 
 = simple_form_for @admin_settings, url: admin_settings_content_retention_path do |f|
@@ -18,7 +18,7 @@
               input_html: { pattern: '[0-9]+' },
               wrapper: :with_block_label
 
-  %h4= t('admin.settings.content_retention.danger_zone')
+  %h2= t('admin.settings.content_retention.danger_zone')
 
   .fields-group
     = f.input :content_cache_retention_period,
