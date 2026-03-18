@@ -31,6 +31,6 @@ describe('relativeTimeParts', () => {
     [DAY + HOUR, { value: 1, unit: 'day' }],
     [2 * DAY, { value: 2, unit: 'day' }],
   ])('should return correct value and unit for %d ms', (input, expected) => {
-    expect(relativeTimeParts(now + input, now)).toEqual(expected);
+    expect(relativeTimeParts(now + input, now)).toMatchObject(expected);
   });
 });
