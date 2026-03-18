@@ -77,7 +77,7 @@ class PostStatusService < BaseService
 
   def process_status!
     @status = @account.statuses.new(status_attributes)
-    process_mentions_service.call(@status, save_records: false)
+    process_mentions_service.call(@status)
     safeguard_mentions!(@status)
     safeguard_private_mention_quote!(@status)
     attach_quote!(@status)

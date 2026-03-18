@@ -6,10 +6,8 @@ class ProcessMentionsService < BaseService
   # Scan status for mentions and fetch remote mentioned users,
   # and create local mention pointers
   # @param [Status] status
-  # @param [Boolean] save_records Whether to save records in database
-  def call(status, save_records: true)
+  def call(status)
     @status = status
-    @save_records = save_records
 
     return unless @status.local?
 
@@ -64,7 +62,7 @@ class ProcessMentionsService < BaseService
       "@#{mentioned_account.acct}"
     end
 
-    @status.save! if @save_records
+    @status.save! if @status.persisted?
   end
 
   def assign_mentions!
@@ -79,8 +77,10 @@ class ProcessMentionsService < BaseService
       dropped_mentions.each(&:destroy)
     end
 
+    return unless @status.persisted?
+
     @current_mentions.each do |mention|
-      mention.save if (mention.new_record? || mention.silent_changed?) && @save_records
+      mention.save if mention.new_record? || mention.silent_changed?
     end
 
     # If previous mentions are no longer contained in the text, convert them
