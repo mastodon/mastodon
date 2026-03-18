@@ -32,6 +32,19 @@ RSpec.describe 'Settings Migration Redirects' do
         .to have_content(I18n.t('migrations.cancelled_msg'))
     end
 
+    context 'when user has blank encrypted password' do
+      before { user.update! encrypted_password: '' }
+
+      it 'saves a redirect via username confirmation' do
+        visit new_settings_migration_redirect_path
+
+        fill_in 'form_redirect_acct', with: 'new@example.host'
+        fill_in 'form_redirect_current_username', with: "  @#{user.account.username} "
+        expect { click_on I18n.t('migrations.set_redirect') }
+          .to(change { user.reload.account.moved_to_account_id }.from(nil))
+      end
+    end
+
     private
 
     def stub_resolver
