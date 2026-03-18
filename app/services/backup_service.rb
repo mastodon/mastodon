@@ -62,9 +62,7 @@ class BackupService < BaseService
 
     build_zip_file(tmp_file)
 
-    archive_filename = "#{['archive', Time.current.to_fs(:number), SecureRandom.hex(16)].join('-')}.zip"
-
-    @backup.dump      = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_file, filename: archive_filename)
+    @backup.dump = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_file, filename: archive_filename)
     @backup.processed = true
     @backup.save!
   ensure
@@ -80,6 +78,14 @@ class BackupService < BaseService
       dump_bookmarks!(zip)
       dump_actor!(zip)
     end
+  end
+
+  def archive_filename
+    "#{archive_id}.zip"
+  end
+
+  def archive_id
+    [:archive, Time.current.to_fs(:number), SecureRandom.hex(16)].join('-')
   end
 
   def dump_media_attachments!(zipfile)
