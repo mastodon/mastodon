@@ -60,13 +60,7 @@ class BackupService < BaseService
   def build_archive!
     tmp_file = Tempfile.new(%w(archive .zip))
 
-    Zip::File.open(tmp_file, create: true) do |zipfile|
-      dump_outbox!(zipfile)
-      dump_media_attachments!(zipfile)
-      dump_likes!(zipfile)
-      dump_bookmarks!(zipfile)
-      dump_actor!(zipfile)
-    end
+    build_zip_file(tmp_file)
 
     archive_filename = "#{['archive', Time.current.to_fs(:number), SecureRandom.hex(16)].join('-')}.zip"
 
@@ -76,6 +70,16 @@ class BackupService < BaseService
   ensure
     tmp_file.close
     tmp_file.unlink
+  end
+
+  def build_zip_file(file)
+    Zip::File.open(file, create: true) do |zip|
+      dump_outbox!(zip)
+      dump_media_attachments!(zip)
+      dump_likes!(zip)
+      dump_bookmarks!(zip)
+      dump_actor!(zip)
+    end
   end
 
   def dump_media_attachments!(zipfile)
