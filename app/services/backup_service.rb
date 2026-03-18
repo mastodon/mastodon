@@ -7,6 +7,7 @@ class BackupService < BaseService
   include ContextHelper
 
   CHUNK_SIZE = 1.megabyte
+  PLACEHOLDER = '!PLACEHOLDER!'
 
   attr_reader :account, :backup
 
@@ -22,9 +23,9 @@ class BackupService < BaseService
   def build_outbox_json!(file)
     skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
     skeleton[:@context] = full_context
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
+    prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     file.write(prepend)
 
@@ -115,9 +116,9 @@ class BackupService < BaseService
   def dump_likes!(zipfile)
     skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
+    prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     zipfile.get_output_stream('likes.json') do |io|
       io.write(prepend)
@@ -139,9 +140,9 @@ class BackupService < BaseService
   def dump_bookmarks!(zipfile)
     skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
-    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
-    prepend, append = skeleton.split('"!PLACEHOLDER!"')
+    prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     zipfile.get_output_stream('bookmarks.json') do |io|
       io.write(prepend)
