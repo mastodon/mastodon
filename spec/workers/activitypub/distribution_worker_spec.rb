@@ -19,9 +19,10 @@ RSpec.describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to followers' do
-        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything]]) do
-          subject.perform(status.id)
-        end
+        subject.perform(status.id)
+
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything)
       end
     end
 
@@ -31,9 +32,10 @@ RSpec.describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to followers' do
-        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything]]) do
-          subject.perform(status.id)
-        end
+        subject.perform(status.id)
+
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything)
       end
     end
 
@@ -46,9 +48,10 @@ RSpec.describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to mentioned accounts' do
-        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'https://foo.bar/inbox', anything]]) do
-          subject.perform(status.id)
-        end
+        subject.perform(status.id)
+
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'https://foo.bar/inbox', anything)
       end
     end
 
@@ -67,9 +70,10 @@ RSpec.describe ActivityPub::DistributionWorker do
             object: ActivityPub::TagManager.instance.uri_for(status),
           }
 
-          expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(expected_json), reblog.account.id, 'http://example.com', anything]]) do
-            subject.perform(reblog.id)
-          end
+          subject.perform(reblog.id)
+
+          expect(ActivityPub::DeliveryWorker)
+            .to have_enqueued_sidekiq_job(match_json_values(expected_json), reblog.account.id, 'http://example.com', anything)
         end
       end
 
@@ -86,9 +90,10 @@ RSpec.describe ActivityPub::DistributionWorker do
             }),
           }
 
-          expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(expected_json), reblog.account.id, 'http://example.com', anything]]) do
-            subject.perform(reblog.id)
-          end
+          subject.perform(reblog.id)
+
+          expect(ActivityPub::DeliveryWorker)
+            .to have_enqueued_sidekiq_job(match_json_values(expected_json), reblog.account.id, 'http://example.com', anything)
         end
       end
     end
