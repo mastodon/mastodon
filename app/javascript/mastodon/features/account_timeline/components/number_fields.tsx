@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -18,9 +19,7 @@ import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
 
-export const AccountNumberFields: FC<{ accountId: string }> = ({
-  accountId,
-}) => {
+const LegacyNumberFields: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();
   const account = useAccount(accountId);
 
@@ -29,23 +28,16 @@ export const AccountNumberFields: FC<{ accountId: string }> = ({
   }
 
   return (
-    <div
-      className={classNames(
-        'account__header__extra__links',
-        isRedesignEnabled() && classes.fieldNumbersWrapper,
-      )}
-    >
-      {!isRedesignEnabled() && (
-        <NavLink
-          to={`/@${account.acct}`}
-          title={intl.formatNumber(account.statuses_count)}
-        >
-          <ShortNumber
-            value={account.statuses_count}
-            renderer={StatusesCounter}
-          />
-        </NavLink>
-      )}
+    <div className='account__header__extra__links'>
+      <NavLink
+        to={`/@${account.acct}`}
+        title={intl.formatNumber(account.statuses_count)}
+      >
+        <ShortNumber
+          value={account.statuses_count}
+          renderer={StatusesCounter}
+        />
+      </NavLink>
 
       <NavLink
         exact
@@ -68,25 +60,92 @@ export const AccountNumberFields: FC<{ accountId: string }> = ({
           renderer={FollowersCounter}
         />
       </NavLink>
-
-      {isRedesignEnabled() && (
-        <FormattedMessage
-          id='account.joined_long'
-          defaultMessage='Joined on {date}'
-          values={{
-            date: (
-              <strong>
-                <FormattedDateWrapper
-                  value={account.created_at}
-                  year='numeric'
-                  month='short'
-                  day='2-digit'
-                />
-              </strong>
-            ),
-          }}
-        />
-      )}
     </div>
   );
 };
+
+const RedesignNumberFields: FC<{ accountId: string }> = ({ accountId }) => {
+  const intl = useIntl();
+  const account = useAccount(accountId);
+  const createdThisYear = useMemo(
+    () => account?.created_at.includes(new Date().getFullYear().toString()),
+    [account?.created_at],
+  );
+
+  if (!account) {
+    return null;
+  }
+
+  return (
+    <dl
+      className={classNames(
+        'account__header__extra__links',
+        classes.fieldNumbersWrapper,
+      )}
+    >
+      <div>
+        <FormattedMessage
+          id='account.posts'
+          defaultMessage='Posts'
+          tagName='dt'
+        />
+        <dd>
+          <ShortNumber value={account.statuses_count} />
+        </dd>
+      </div>
+
+      <NavLink
+        exact
+        to={`/@${account.acct}/followers`}
+        title={intl.formatNumber(account.followers_count)}
+      >
+        <FormattedMessage
+          id='account.followers'
+          defaultMessage='Followers'
+          tagName='dt'
+        />
+        <dd>
+          <ShortNumber value={account.followers_count} />
+        </dd>
+      </NavLink>
+
+      <NavLink
+        exact
+        to={`/@${account.acct}/following`}
+        title={intl.formatNumber(account.following_count)}
+      >
+        <FormattedMessage
+          id='account.following'
+          defaultMessage='Following'
+          tagName='dt'
+        />
+        <dd>
+          <ShortNumber value={account.following_count} />
+        </dd>
+      </NavLink>
+
+      <div>
+        <FormattedMessage
+          id='account.joined_short'
+          defaultMessage='Joined'
+          tagName='dt'
+        />
+        <dd>
+          {createdThisYear ? (
+            <FormattedDateWrapper
+              value={account.created_at}
+              month='short'
+              day='2-digit'
+            />
+          ) : (
+            <FormattedDateWrapper value={account.created_at} year='numeric' />
+          )}
+        </dd>
+      </div>
+    </dl>
+  );
+};
+
+export const AccountNumberFields = isRedesignEnabled()
+  ? RedesignNumberFields
+  : LegacyNumberFields;
