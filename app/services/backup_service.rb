@@ -129,7 +129,7 @@ class BackupService < BaseService
     zipfile.get_output_stream(STREAM_LIKES) do |io|
       io.write(prepend)
 
-      Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches.with_index do |statuses, batch|
+      favourite_statuses.find_in_batches.with_index do |statuses, batch|
         io.write(',') unless batch.zero?
 
         io.write(statuses.map do |status|
@@ -143,6 +143,10 @@ class BackupService < BaseService
     end
   end
 
+  def favourite_statuses
+    Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites)
+  end
+
   def dump_bookmarks!(zipfile)
     skeleton = serialize(collection_presenter(STREAM_BOOKMARKS), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
@@ -153,7 +157,7 @@ class BackupService < BaseService
     zipfile.get_output_stream(STREAM_BOOKMARKS) do |io|
       io.write(prepend)
 
-      Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches.with_index do |statuses, batch|
+      bookmark_statuses.find_in_batches.with_index do |statuses, batch|
         io.write(',') unless batch.zero?
 
         io.write(statuses.map do |status|
@@ -165,6 +169,10 @@ class BackupService < BaseService
 
       io.write(append)
     end
+  end
+
+  def bookmark_statuses
+    Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks)
   end
 
   def collection_presenter(id, size: 0)
