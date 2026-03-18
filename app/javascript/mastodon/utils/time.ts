@@ -6,29 +6,31 @@ export const MINUTE = SECOND * 60;
 export const HOUR = MINUTE * 60;
 export const DAY = HOUR * 24;
 
+export const MAX_TIMEOUT = 2147483647; // Maximum delay for setTimeout in browsers (approximately 24.8 days)
+
 export type TimeUnit = 'second' | 'minute' | 'hour' | 'day';
 
 export function relativeTimeParts(
   ts: number,
   now = Date.now(),
-): { value: number; unit: TimeUnit } {
+): { value: number; unit: TimeUnit; delta: number } {
   const delta = ts - now;
   const absDelta = Math.abs(delta);
 
   if (absDelta < MINUTE) {
-    return { value: Math.floor(delta / SECOND), unit: 'second' };
+    return { value: Math.floor(delta / SECOND), unit: 'second', delta };
   }
 
   if (absDelta < HOUR) {
-    return { value: Math.floor(delta / MINUTE), unit: 'minute' };
+    return { value: Math.floor(delta / MINUTE), unit: 'minute', delta };
   }
 
   if (absDelta < DAY) {
-    return { value: Math.floor(delta / HOUR), unit: 'hour' };
+    return { value: Math.floor(delta / HOUR), unit: 'hour', delta };
   }
 
   // Round instead of use floor as days are big enough that the value is usually off by a few hours.
-  return { value: Math.round(delta / DAY), unit: 'day' };
+  return { value: Math.round(delta / DAY), unit: 'day', delta };
 }
 
 export function isToday(ts: number, now = Date.now()): boolean {

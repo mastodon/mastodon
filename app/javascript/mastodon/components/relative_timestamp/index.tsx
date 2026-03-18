@@ -5,7 +5,9 @@ import { useIntl } from 'react-intl';
 
 import {
   formatTime,
+  MAX_TIMEOUT,
   relativeTimeParts,
+  SECOND,
   unitToTime,
 } from '@/mastodon/utils/time';
 
@@ -31,31 +33,46 @@ export const RelativeTimestamp: FC<{
     const date = new Date(timestamp);
     return noFuture ? new Date(Math.min(date.getTime(), now)) : date;
   }, [noFuture, now, timestamp]);
-  const daysOnly = !timestamp.includes('T') || noTime;
-  const { unit } = useMemo(
-    () => relativeTimeParts(date.getTime(), now),
-    [date, now],
-  );
+  const ts = date.getTime();
 
   useEffect(() => {
-    const timerId = setInterval(() => {
-      setNow(Date.now());
-    }, unitToTime(unit));
+    let timeoutId = 0;
+    const scheduleNextUpdate = () => {
+      const { unit, delta } = relativeTimeParts(ts);
+      const unitDelay = unitToTime(unit);
+      const remainder = Math.abs(delta % unitDelay);
+      const minDelay = 10 * SECOND;
+      const delay = Math.min(
+        Math.max(delta < 0 ? unitDelay - remainder : remainder, minDelay),
+        MAX_TIMEOUT,
+      );
+
+      timeoutId = window.setTimeout(() => {
+        setNow(Date.now());
+        scheduleNextUpdate();
+      }, delay);
+    };
+
+    scheduleNextUpdate();
 
     return () => {
-      clearInterval(timerId);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
-  }, [unit]);
+  }, [ts]);
 
+  const daysOnly = !timestamp.includes('T') || noTime;
   const relativeTime = useMemo(
     () =>
       formatTime({
-        timestamp: date.getTime(),
+        timestamp: ts,
         intl,
         short: !long,
         noTime: daysOnly,
+        now,
       }),
-    [date, intl, long, daysOnly],
+    [ts, intl, long, daysOnly, now],
   );
 
   return (
