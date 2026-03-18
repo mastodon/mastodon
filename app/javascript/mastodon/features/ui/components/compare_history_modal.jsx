@@ -50,7 +50,7 @@ class CompareHistoryModal extends PureComponent {
     const content = currentVersion.get('content');
     const spoilerContent = escapeTextContentForBrowser(currentVersion.get('spoiler_text'));
 
-    const formattedDate = <RelativeTimestamp timestamp={currentVersion.get('created_at')} short={false} />;
+    const formattedDate = <RelativeTimestamp timestamp={currentVersion.get('created_at')} long />;
     const formattedName = <InlineAccount accountId={currentVersion.get('account')} />;
 
     const label = currentVersion.get('original') ? (

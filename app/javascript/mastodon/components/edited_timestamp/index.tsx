@@ -60,10 +60,7 @@ export const EditedTimestamp: React.FC<{
   const renderItem = useCallback(
     (item: HistoryItem, index: number, onClick: React.MouseEventHandler) => {
       const formattedDate = (
-        <RelativeTimestamp
-          timestamp={item.get('created_at') as string}
-          short={false}
-        />
+        <RelativeTimestamp timestamp={item.get('created_at') as string} long />
       );
       const formattedName = (
         <InlineAccount accountId={item.get('account') as string} />

@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { DAY } from '@/mastodon/utils/time';
 
-import { RelativeTimestamp as LegacyRelativeTimestamp } from '../relative_timestamp';
-
 import { RelativeTimestamp } from './index';
 
 const meta = {
@@ -50,22 +48,6 @@ export const NoFuture: Story = {
   args: {
     timestamp: new Date(Date.now() + DAY * 3).toISOString(),
     noFuture: true,
-  },
-};
-
-export const Legacy: Story = {
-  render(props) {
-    const { timestamp } = props;
-    const dateString = toDateString(timestamp);
-    const isFuture = new Date(dateString).getTime() > Date.now();
-
-    return (
-      <LegacyRelativeTimestamp
-        {...props}
-        timestamp={dateString}
-        futureDate={isFuture}
-      />
-    );
   },
 };
 
