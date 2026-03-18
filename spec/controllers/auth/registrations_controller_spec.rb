@@ -298,7 +298,6 @@ RSpec.describe Auth::RegistrationsController do
 
     context 'with Approval-based registrations with valid invite and required invite text' do
       subject do
-        inviter = Fabricate(:user, confirmed_at: 2.days.ago)
         Setting.registrations_mode = 'approved'
         Setting.require_invite_text = true
         request.headers['Accept-Language'] = accept_language
@@ -306,7 +305,9 @@ RSpec.describe Auth::RegistrationsController do
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', invite_code: invite.code, agreement: 'true' } }
       end
 
-      it 'redirects to setup and creates user' do
+      let!(:inviter) { Fabricate(:user, confirmed_at: 2.days.ago) }
+
+      it 'redirects to setup and creates user in a non-approved state' do
         subject
 
         expect(response).to redirect_to auth_setup_path
@@ -315,8 +316,27 @@ RSpec.describe Auth::RegistrationsController do
           .to be_present
           .and have_attributes(
             locale: eq(accept_language),
-            approved: be(true)
+            approved: be(false)
           )
+      end
+
+      context 'when the inviting user has the permission to bypass approval' do
+        before do
+          inviter.role.update!(permissions: inviter.role.permissions | UserRole::FLAGS[:invite_bypass_approval])
+        end
+
+        it 'redirects to setup and creates user in an approved state' do
+          subject
+
+          expect(response).to redirect_to auth_setup_path
+
+          expect(User.find_by(email: 'test@example.com'))
+            .to be_present
+            .and have_attributes(
+              locale: eq(accept_language),
+              approved: be(true)
+            )
+        end
       end
     end
 
