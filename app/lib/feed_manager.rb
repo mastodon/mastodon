@@ -142,7 +142,7 @@ class FeedManager
   def unpush_from_direct(account, status, update: false)
     return false unless remove_from_feed(:direct, account.id, status)
 
-    redis.publish("timeline:direct:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s)) unless update
+    redis.publish("timeline:direct:#{account.id}", { event: :delete, payload: status.id.to_s }.to_json) unless update
     true
   end
 
