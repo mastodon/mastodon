@@ -8,7 +8,7 @@ class GlitchMigrateUserSkin < ActiveRecord::Migration[8.0]
 
   def up
     User.where.not(settings: nil).find_each do |user|
-      settings = Oj.load(user.attributes_before_type_cast['settings'])
+      settings = JSON.parse(user.attributes_before_type_cast['settings'])
       next if settings.nil? || settings['skin'].blank? || %w(system default mastodon-light contrast).exclude?(settings['skin'])
 
       case settings['skin']
@@ -25,7 +25,7 @@ class GlitchMigrateUserSkin < ActiveRecord::Migration[8.0]
 
       settings['skin'] = 'default'
 
-      user.update_column('settings', Oj.dump(settings))
+      user.update_column('settings', JSON.generate(settings))
     end
   end
 end
