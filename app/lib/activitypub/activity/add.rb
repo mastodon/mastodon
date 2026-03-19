@@ -17,7 +17,7 @@ class ActivityPub::Activity::Add < ActivityPub::Activity
 
       add_collection
     else
-      @collection = @account.collections.find_by(uri: @json['target'])
+      @collection = @account.collections.find_by(uri: value_or_id(@json['target']))
       add_collection_item if @collection && Mastodon::Feature.collections_federation_enabled?
     end
   end
