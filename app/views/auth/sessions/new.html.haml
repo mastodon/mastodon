@@ -38,7 +38,10 @@
 
 - if devise_mapping.omniauthable? && resource_class.omniauth_providers.any?
   .simple_form.alternative-login
-    %h2= omniauth_only? ? t('auth.log_in_with') : t('auth.or_log_in_with')
+    - if omniauth_only?
+      %h1= t('auth.log_in_with')
+    - else
+      %h2= t('auth.or_log_in_with')
 
     .actions
       - resource_class.omniauth_providers.each do |provider|

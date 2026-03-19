@@ -1,14 +1,19 @@
 import { createRoot } from 'react-dom/client';
 
 import { IntlMessageFormat } from 'intl-messageformat';
-import type { MessageDescriptor, PrimitiveType } from 'react-intl';
+import type {
+  FormatDateOptions,
+  IntlShape,
+  MessageDescriptor,
+  PrimitiveType,
+} from 'react-intl';
 import { defineMessages } from 'react-intl';
 
 import axios from 'axios';
 import { on } from 'delegated-events';
 import { throttle } from 'lodash';
 
-import { timeAgoString } from 'flavours/glitch/components/relative_timestamp';
+import { formatTime } from '@/flavours/glitch/utils/time';
 import emojify from 'flavours/glitch/features/emoji/emoji';
 import loadKeyboardExtensions from 'flavours/glitch/load_keyboard_extensions';
 import { loadLocale, getLocale } from 'flavours/glitch/locales';
@@ -58,7 +63,7 @@ function loaded() {
   const formatMessage = (
     { id, defaultMessage }: MessageDescriptor,
     values?: Record<string, PrimitiveType>,
-  ) => {
+  ): string => {
     let message: string | undefined = undefined;
 
     if (id) message = localeData[id];
@@ -126,23 +131,23 @@ function loaded() {
     .querySelectorAll<HTMLTimeElement>('time.time-ago')
     .forEach((content) => {
       const datetime = new Date(content.dateTime);
-      const now = new Date();
 
       const timeGiven = content.dateTime.includes('T');
       content.title = timeGiven
         ? dateTimeFormat.format(datetime)
         : dateFormat.format(datetime);
-      content.textContent = timeAgoString(
-        {
-          formatMessage,
-          formatDate: (date: Date, options) =>
+      const now = Date.now();
+      content.textContent = formatTime({
+        // We don't want to show future dates.
+        timestamp: Math.min(datetime.getTime(), now),
+        now,
+        intl: {
+          formatMessage: formatMessage as IntlShape['formatMessage'],
+          formatDate: (date: Date, options: FormatDateOptions) =>
             new Intl.DateTimeFormat(locale, options).format(date),
         },
-        datetime,
-        now.getTime(),
-        now.getFullYear(),
-        timeGiven,
-      );
+        noTime: !timeGiven,
+      });
     });
 
   updateDefaultQuotePrivacyFromPrivacy(

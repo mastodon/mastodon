@@ -53,12 +53,7 @@ export const CollectionMetaData: React.FC<{
         id='collections.last_updated_at'
         defaultMessage='Last updated: {date}'
         values={{
-          date: (
-            <RelativeTimestamp
-              timestamp={collection.updated_at}
-              short={false}
-            />
-          ),
+          date: <RelativeTimestamp timestamp={collection.updated_at} long />,
         }}
         tagName='li'
       />
