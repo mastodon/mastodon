@@ -9,6 +9,11 @@ class BackupService < BaseService
   CHUNK_SIZE = 1.megabyte
   PLACEHOLDER = '!PLACEHOLDER!'
 
+  STREAM_ACTOR = 'actor.json'
+  STREAM_BOOKMARKS = 'bookmarks.json'
+  STREAM_LIKES = 'likes.json'
+  STREAM_OUTBOX = 'outbox.json'
+
   attr_reader :account, :backup
 
   def call(backup)
@@ -21,7 +26,7 @@ class BackupService < BaseService
   private
 
   def build_outbox_json!(file)
-    skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
+    skeleton = serialize(collection_presenter(STREAM_OUTBOX, size: account.statuses.count), ActivityPub::CollectionSerializer)
     skeleton[:@context] = full_context
     skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
@@ -55,22 +60,32 @@ class BackupService < BaseService
   def build_archive!
     tmp_file = Tempfile.new(%w(archive .zip))
 
-    Zip::File.open(tmp_file, create: true) do |zipfile|
-      dump_outbox!(zipfile)
-      dump_media_attachments!(zipfile)
-      dump_likes!(zipfile)
-      dump_bookmarks!(zipfile)
-      dump_actor!(zipfile)
-    end
+    build_zip_file(tmp_file)
 
-    archive_filename = "#{['archive', Time.current.to_fs(:number), SecureRandom.hex(16)].join('-')}.zip"
-
-    @backup.dump      = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_file, filename: archive_filename)
+    @backup.dump = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_file, filename: archive_filename)
     @backup.processed = true
     @backup.save!
   ensure
     tmp_file.close
     tmp_file.unlink
+  end
+
+  def build_zip_file(file)
+    Zip::File.open(file, create: true) do |zip|
+      dump_outbox!(zip)
+      dump_media_attachments!(zip)
+      dump_likes!(zip)
+      dump_bookmarks!(zip)
+      dump_actor!(zip)
+    end
+  end
+
+  def archive_filename
+    "#{archive_id}.zip"
+  end
+
+  def archive_id
+    [:archive, Time.current.to_fs(:number), SecureRandom.hex(16)].join('-')
   end
 
   def dump_media_attachments!(zipfile)
@@ -89,7 +104,7 @@ class BackupService < BaseService
   end
 
   def dump_outbox!(zipfile)
-    zipfile.get_output_stream('outbox.json') do |io|
+    zipfile.get_output_stream(STREAM_OUTBOX) do |io|
       build_outbox_json!(io)
     end
   end
@@ -99,31 +114,32 @@ class BackupService < BaseService
 
     actor[:icon][:url]  = "avatar#{File.extname(actor[:icon][:url])}"  if actor[:icon]
     actor[:image][:url] = "header#{File.extname(actor[:image][:url])}" if actor[:image]
-    actor[:outbox]      = 'outbox.json'
-    actor[:likes]       = 'likes.json'
-    actor[:bookmarks]   = 'bookmarks.json'
+    actor[:outbox]      = STREAM_OUTBOX
+    actor[:likes]       = STREAM_LIKES
+    actor[:bookmarks]   = STREAM_BOOKMARKS
 
     download_to_zip(zipfile, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
     download_to_zip(zipfile, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
 
     json = JSON.generate(actor)
 
-    zipfile.get_output_stream('actor.json') do |io|
+    zipfile.get_output_stream(STREAM_ACTOR) do |io|
       io.write(json)
     end
   end
 
   def dump_likes!(zipfile)
-    skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
+    skeleton = serialize(collection_presenter(STREAM_LIKES), ActivityPub::CollectionSerializer)
+
     skeleton.delete(:totalItems)
     skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
     prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
-    zipfile.get_output_stream('likes.json') do |io|
+    zipfile.get_output_stream(STREAM_LIKES) do |io|
       io.write(prepend)
 
-      Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites).find_in_batches.with_index do |statuses, batch|
+      favourite_statuses.find_in_batches.with_index do |statuses, batch|
         io.write(',') unless batch.zero?
 
         io.write(statuses.map do |status|
@@ -135,19 +151,23 @@ class BackupService < BaseService
 
       io.write(append)
     end
+  end
+
+  def favourite_statuses
+    Status.reorder(nil).joins(:favourites).includes(:account).merge(account.favourites)
   end
 
   def dump_bookmarks!(zipfile)
-    skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
+    skeleton = serialize(collection_presenter(STREAM_BOOKMARKS), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
     skeleton[:orderedItems] = [PLACEHOLDER]
     skeleton = JSON.generate(skeleton)
     prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
-    zipfile.get_output_stream('bookmarks.json') do |io|
+    zipfile.get_output_stream(STREAM_BOOKMARKS) do |io|
       io.write(prepend)
 
-      Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks).find_in_batches.with_index do |statuses, batch|
+      bookmark_statuses.find_in_batches.with_index do |statuses, batch|
         io.write(',') unless batch.zero?
 
         io.write(statuses.map do |status|
@@ -161,12 +181,16 @@ class BackupService < BaseService
     end
   end
 
-  def collection_presenter
+  def bookmark_statuses
+    Status.reorder(nil).joins(:bookmarks).includes(:account).merge(account.bookmarks)
+  end
+
+  def collection_presenter(id, size: 0)
     ActivityPub::CollectionPresenter.new(
-      id: 'outbox.json',
-      type: :ordered,
-      size: account.statuses_count,
-      items: []
+      id:,
+      items: [],
+      size:,
+      type: :ordered
     )
   end
 
