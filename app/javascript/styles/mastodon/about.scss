@@ -85,6 +85,11 @@ $fluid-breakpoint: $maximum-width + 20px;
       display: none;
     }
 
+    &[aria-expanded='true'] .icon-expand,
+    &[aria-expanded='false'] .icon-collapse {
+      display: none;
+    }
+
     .icon {
       width: 1lh;
       height: 1lh;
