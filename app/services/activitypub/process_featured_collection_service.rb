@@ -27,7 +27,7 @@ class ActivityPub::ProcessFeaturedCollectionService
         tag_name: @json.dig('topic', 'name')
       )
 
-      process_items!
+      process_items! if @json['totalItems'].positive?
 
       @collection
     end
