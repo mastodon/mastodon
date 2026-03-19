@@ -308,16 +308,34 @@ svg.badgeIcon {
 }
 
 .fieldNumbersWrapper {
+  display: flex;
   font-size: 13px;
   padding: 0;
+  margin: 8px 0;
+  gap: 20px;
+
+  li {
+    @container (width < 420px) {
+      flex: 1 1 0px;
+    }
+  }
 
   a {
+    color: inherit;
     font-weight: unset;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      color: var(--color-text-brand-soft);
+    }
   }
 
   strong {
+    display: block;
     font-weight: 600;
     color: var(--color-text-primary);
+    font-size: 15px;
   }
 }
 
