@@ -314,21 +314,25 @@ svg.badgeIcon {
   margin: 8px 0;
   gap: 20px;
 
-  > div,
-  > a {
-    display: block;
-
+  li {
     @container (width < 420px) {
       flex: 1 1 0px;
     }
   }
 
   a {
+    color: inherit;
     font-weight: unset;
     padding: 0;
+
+    &:hover,
+    &:focus {
+      color: var(--color-text-brand-soft);
+    }
   }
 
-  dd {
+  strong {
+    display: block;
     font-weight: 600;
     color: var(--color-text-primary);
     font-size: 15px;

@@ -77,60 +77,48 @@ const RedesignNumberFields: FC<{ accountId: string }> = ({ accountId }) => {
   }
 
   return (
-    <dl
+    <ul
       className={classNames(
         'account__header__extra__links',
         classes.fieldNumbersWrapper,
       )}
     >
-      <div>
-        <FormattedMessage
-          id='account.posts'
-          defaultMessage='Posts'
-          tagName='dt'
-        />
-        <dd>
+      <li>
+        <FormattedMessage id='account.posts' defaultMessage='Posts' />
+        <strong>
           <ShortNumber value={account.statuses_count} />
-        </dd>
-      </div>
+        </strong>
+      </li>
 
-      <NavLink
-        exact
-        to={`/@${account.acct}/followers`}
-        title={intl.formatNumber(account.followers_count)}
-      >
-        <FormattedMessage
-          id='account.followers'
-          defaultMessage='Followers'
-          tagName='dt'
-        />
-        <dd>
-          <ShortNumber value={account.followers_count} />
-        </dd>
-      </NavLink>
+      <li>
+        <NavLink
+          exact
+          to={`/@${account.acct}/followers`}
+          title={intl.formatNumber(account.followers_count)}
+        >
+          <FormattedMessage id='account.followers' defaultMessage='Followers' />
+          <strong>
+            <ShortNumber value={account.followers_count} />
+          </strong>
+        </NavLink>
+      </li>
 
-      <NavLink
-        exact
-        to={`/@${account.acct}/following`}
-        title={intl.formatNumber(account.following_count)}
-      >
-        <FormattedMessage
-          id='account.following'
-          defaultMessage='Following'
-          tagName='dt'
-        />
-        <dd>
-          <ShortNumber value={account.following_count} />
-        </dd>
-      </NavLink>
+      <li>
+        <NavLink
+          exact
+          to={`/@${account.acct}/following`}
+          title={intl.formatNumber(account.following_count)}
+        >
+          <FormattedMessage id='account.following' defaultMessage='Following' />
+          <strong>
+            <ShortNumber value={account.following_count} />
+          </strong>
+        </NavLink>
+      </li>
 
-      <div>
-        <FormattedMessage
-          id='account.joined_short'
-          defaultMessage='Joined'
-          tagName='dt'
-        />
-        <dd>
+      <li>
+        <FormattedMessage id='account.joined_short' defaultMessage='Joined' />
+        <strong>
           {createdThisYear ? (
             <FormattedDateWrapper
               value={account.created_at}
@@ -140,9 +128,9 @@ const RedesignNumberFields: FC<{ accountId: string }> = ({ accountId }) => {
           ) : (
             <FormattedDateWrapper value={account.created_at} year='numeric' />
           )}
-        </dd>
-      </div>
-    </dl>
+        </strong>
+      </li>
+    </ul>
   );
 };
 
