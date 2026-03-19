@@ -29,7 +29,7 @@ class BackupService < BaseService
     skeleton = serialize(collection_presenter(STREAM_OUTBOX, size: account.statuses.count), ActivityPub::CollectionSerializer)
     skeleton[:@context] = full_context
     skeleton[:orderedItems] = [PLACEHOLDER]
-    skeleton = JSON.generate(skeleton)
+    skeleton = skeleton.to_json
     prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     file.write(prepend)
@@ -48,7 +48,7 @@ class BackupService < BaseService
           end
         end
 
-        JSON.generate(item)
+        item.to_json
       end.join(','))
 
       GC.start
@@ -121,10 +121,8 @@ class BackupService < BaseService
     download_to_zip(zipfile, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
     download_to_zip(zipfile, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
 
-    json = JSON.generate(actor)
-
     zipfile.get_output_stream(STREAM_ACTOR) do |io|
-      io.write(json)
+      io.write(actor.to_json)
     end
   end
 
@@ -133,7 +131,7 @@ class BackupService < BaseService
 
     skeleton.delete(:totalItems)
     skeleton[:orderedItems] = [PLACEHOLDER]
-    skeleton = JSON.generate(skeleton)
+    skeleton = skeleton.to_json
     prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     zipfile.get_output_stream(STREAM_LIKES) do |io|
@@ -143,7 +141,7 @@ class BackupService < BaseService
         io.write(',') unless batch.zero?
 
         io.write(statuses.map do |status|
-          JSON.generate(ActivityPub::TagManager.instance.uri_for(status))
+          ActivityPub::TagManager.instance.uri_for(status).to_json
         end.join(','))
 
         GC.start
@@ -161,7 +159,7 @@ class BackupService < BaseService
     skeleton = serialize(collection_presenter(STREAM_BOOKMARKS), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
     skeleton[:orderedItems] = [PLACEHOLDER]
-    skeleton = JSON.generate(skeleton)
+    skeleton = skeleton.to_json
     prepend, append = skeleton.split(PLACEHOLDER.to_json)
 
     zipfile.get_output_stream(STREAM_BOOKMARKS) do |io|
@@ -171,7 +169,7 @@ class BackupService < BaseService
         io.write(',') unless batch.zero?
 
         io.write(statuses.map do |status|
-          JSON.generate(ActivityPub::TagManager.instance.uri_for(status))
+          ActivityPub::TagManager.instance.uri_for(status).to_json
         end.join(','))
 
         GC.start
