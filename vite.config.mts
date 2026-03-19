@@ -2,6 +2,7 @@ import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
+import babel from '@rolldown/plugin-babel';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import postcssPresetEnv from 'postcss-preset-env';
@@ -122,7 +123,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       assetsDir: 'assets',
       assetsInlineLimit: (filePath, _) =>
         /\.woff2?$/.exec(filePath) ? false : undefined,
-      rollupOptions: {
+      rolldownOptions: {
         input: await findEntrypoints(),
         output: {
           chunkFileNames({ facadeModuleId, name }) {
@@ -168,10 +169,9 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       format: 'es',
     },
     plugins: [
-      react({
-        babel: {
-          plugins: ['formatjs', 'transform-react-remove-prop-types'],
-        },
+      react(),
+      babel({
+        plugins: ['formatjs', 'transform-react-remove-prop-types'],
       }),
       MastodonThemes(),
       MastodonAssetsManifest(),
