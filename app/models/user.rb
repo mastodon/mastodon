@@ -168,6 +168,10 @@ class User < ApplicationRecord
     invite_id.present? && invite.valid_for_use?
   end
 
+  def valid_bypassing_invitation?
+    valid_invitation? && invite.bypass_approval?
+  end
+
   def disable!
     update!(disabled: true)
 
@@ -420,7 +424,7 @@ class User < ApplicationRecord
       if requires_approval?
         false
       else
-        open_registrations? || valid_invitation? || external?
+        open_registrations? || valid_bypassing_invitation? || external?
       end
     end
   end
