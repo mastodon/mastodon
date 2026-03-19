@@ -16,7 +16,6 @@ import {
 import manifestSRI from 'vite-plugin-manifest-sri';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
@@ -44,6 +43,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     base: `/${outDirName}/`,
     envDir: __dirname,
     resolve: {
+      tsconfigPaths: true,
       alias: {
         '~/': `${jsRoot}/`,
         '@/': `${jsRoot}/`,
@@ -168,7 +168,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       format: 'es',
     },
     plugins: [
-      tsconfigPaths({ projects: [path.resolve(__dirname, 'tsconfig.json')] }),
       react({
         babel: {
           plugins: ['formatjs', 'transform-react-remove-prop-types'],
