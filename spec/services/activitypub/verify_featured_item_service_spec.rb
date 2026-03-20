@@ -55,7 +55,7 @@ RSpec.describe ActivityPub::VerifyFeaturedItemService do
       let(:stubbed_service) { instance_double(ActivityPub::FetchRemoteAccountService) }
 
       before do
-        allow(stubbed_service).to receive(:call).with('https://example.com/actor/1') { featured_account }
+        allow(stubbed_service).to receive(:call).with('https://example.com/actor/1', request_id: nil) { featured_account }
         allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(stubbed_service)
       end
 

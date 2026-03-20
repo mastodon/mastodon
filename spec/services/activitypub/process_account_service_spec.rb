@@ -81,13 +81,16 @@ RSpec.describe ActivityPub::ProcessAccountService do
         .to_return(status: 200, body: '', headers: {})
     end
 
-    it 'parses and sets the URIs' do
+    it 'parses and sets the URIs, queues jobs to synchronize' do
       account = subject.call('alice', 'example.com', payload)
 
       expect(account.featured_collection_url).to eq 'https://foo.test/featured'
       expect(account.followers_url).to eq 'https://foo.test/followers'
       expect(account.following_url).to eq 'https://foo.test/following'
       expect(account.collections_url).to eq 'https://foo.test/featured_collections'
+
+      expect(ActivityPub::SynchronizeFeaturedCollectionWorker).to have_enqueued_sidekiq_job
+      expect(ActivityPub::SynchronizeFeaturedCollectionsCollectionWorker).to have_enqueued_sidekiq_job
     end
   end
 
