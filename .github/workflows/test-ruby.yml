@@ -73,6 +73,37 @@ jobs:
           name: ${{ github.sha }}
           retention-days: 0
 
+  bundle:
+    runs-on: ubuntu-latest
+
+    needs:
+      - build
+
+    env:
+      RAILS_ENV: test
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version:
+          - '3.3'
+          - '3.4'
+          - '.ruby-version'
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
+        with:
+          ruby-version: ${{ matrix.ruby-version}}
+
+      - name: Ruby version check
+        run: ruby --version
+
+      - name: Rails information
+        run: bin/rails version
+
   test:
     runs-on: ubuntu-latest
 
@@ -107,7 +138,7 @@ jobs:
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
-      COVERAGE: ${{ matrix.ruby-version == '.ruby-version' }}
+      COVERAGE: true
       RAILS_ENV: test
       ALLOW_NOPAM: true
       PAM_ENABLED: true
@@ -118,15 +149,8 @@ jobs:
       SAML_ENABLED: true
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
-      GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
+      GITHUB_RSPEC: ${{ github.event.pull_request && 'true' }}
 
-    strategy:
-      fail-fast: false
-      matrix:
-        ruby-version:
-          - '3.3'
-          - '3.4'
-          - '.ruby-version'
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
@@ -142,7 +166,6 @@ jobs:
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
         with:
-          ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
@@ -166,7 +189,6 @@ jobs:
       - run: bin/flatware rspec -r ./spec/flatware_helper.rb
 
       - name: Upload coverage reports to Codecov
-        if: matrix.ruby-version == '.ruby-version'
         uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5
         with:
           files: coverage/lcov/*.lcov
@@ -213,14 +235,6 @@ jobs:
       LOCAL_DOMAIN: localhost:3000
       LOCAL_HTTPS: false
 
-    strategy:
-      fail-fast: false
-      matrix:
-        ruby-version:
-          - '3.3'
-          - '3.4'
-          - '.ruby-version'
-
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
@@ -236,7 +250,6 @@ jobs:
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
         with:
-          ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
@@ -266,14 +279,14 @@ jobs:
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
-          name: e2e-logs-${{ matrix.ruby-version }}
+          name: e2e-logs
           path: log/
 
       - name: Archive test screenshots
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
-          name: e2e-screenshots-${{ matrix.ruby-version }}
+          name: e2e-screenshots
           path: tmp/capybara/
 
   test-search:
@@ -347,17 +360,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby-version:
-          - '3.3'
-          - '3.4'
-          - '.ruby-version'
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.29
-        include:
-          - ruby-version: '.ruby-version'
-            search-image: docker.elastic.co/elasticsearch/elasticsearch:8.19.2
-          - ruby-version: '.ruby-version'
-            search-image: opensearchproject/opensearch:2
+          - docker.elastic.co/elasticsearch/elasticsearch:8.19.2
+          - opensearchproject/opensearch:2
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -370,7 +376,6 @@ jobs:
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
         with:
-          ruby-version: ${{ matrix.ruby-version}}
           additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
@@ -385,5 +390,5 @@ jobs:
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:
-          name: test-search-logs-${{ matrix.ruby-version }}
+          name: test-search-logs
           path: log/
