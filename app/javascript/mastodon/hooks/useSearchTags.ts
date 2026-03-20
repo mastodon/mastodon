@@ -19,7 +19,7 @@ const messages = defineMessages({
   },
 });
 
-const fetchHashtagSuggestions = ({
+const fetchSearchHashtags = ({
   q,
   limit,
   signal,
@@ -63,7 +63,7 @@ export function useSearchTags({
 
       searchRequestRef.current = new AbortController();
 
-      void fetchHashtagSuggestions({
+      void fetchSearchHashtags({
         q: trimmedQuery,
         limit,
         signal: searchRequestRef.current.signal,
