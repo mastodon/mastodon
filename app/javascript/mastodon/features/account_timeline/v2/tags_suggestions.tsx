@@ -46,7 +46,7 @@ export const TagSuggestions: FC = () => {
   const [showSuccessNotice, setSuccessNotice] = useState(false);
 
   const handleAdd = useCallback(() => {
-    if (!suggestedTags?.length) {
+    if (!suggestedTags?.length || !me) {
       return;
     }
 
@@ -54,9 +54,7 @@ export const TagSuggestions: FC = () => {
       await dispatch(
         addFeaturedTags({ names: suggestedTags.map((tag) => tag.name) }),
       );
-      if (me) {
-        await dispatch(fetchFeaturedTags({ accountId: me }));
-      }
+      await dispatch(fetchFeaturedTags({ accountId: me }));
       setSuccessNotice(true);
       dismiss();
     };
