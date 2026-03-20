@@ -3,7 +3,7 @@
 class ActivityPub::VerifyFeaturedItemService
   include JsonLdHelper
 
-  def call(collection_item, approval_uri)
+  def call(collection_item, approval_uri, request_id: nil)
     @collection_item = collection_item
     @authorization = fetch_resource(approval_uri, true, raise_on_error: :temporary)
 
@@ -16,7 +16,7 @@ class ActivityPub::VerifyFeaturedItemService
     return unless matching_type? && matching_collection_uri?
 
     account = Account.where(uri: @collection_item.object_uri).first
-    account ||= ActivityPub::FetchRemoteAccountService.new.call(@collection_item.object_uri)
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(@collection_item.object_uri, request_id:)
     return if account.blank?
 
     @collection_item.update!(account:, approval_uri:, state: :accepted)
