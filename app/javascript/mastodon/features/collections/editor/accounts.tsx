@@ -374,6 +374,7 @@ export const CollectionAccounts: React.FC<{
           onSelectItem={
             isEditMode ? instantToggleAccountItem : toggleAccountItem
           }
+          closeOnSelect={false}
         />
         {hasMaxAccounts && (
           <FormattedMessage
