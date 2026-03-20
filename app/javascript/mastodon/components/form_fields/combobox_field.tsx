@@ -82,6 +82,10 @@ interface ComboboxProps<T extends ComboboxItem> extends Omit<
    * Set to false to keep the menu open when an item is selected
    */
   closeOnSelect?: boolean;
+  /**
+   * Prevent the menu from opening, e.g. to prevent the empty state from showing
+   */
+  suppressMenu?: boolean;
 }
 
 interface Props<T extends ComboboxItem>
@@ -136,6 +140,7 @@ const ComboboxWithRef = <T extends ComboboxItem>(
     onChange,
     onKeyDown,
     closeOnSelect = true,
+    suppressMenu = false,
     icon = SearchIcon,
     className,
     ...otherProps
@@ -160,7 +165,7 @@ const ComboboxWithRef = <T extends ComboboxItem>(
   const showStatusMessageInMenu =
     !!statusMessage && value.length > 0 && items.length === 0;
   const hasMenuContent =
-    !disabled && (items.length > 0 || showStatusMessageInMenu);
+    !disabled && !suppressMenu && (items.length > 0 || showStatusMessageInMenu);
   const isMenuOpen = shouldMenuOpen && hasMenuContent;
 
   const openMenu = useCallback(() => {
