@@ -2,13 +2,10 @@
 
 class ActivityPub::Activity::Delete < ActivityPub::Activity
   def perform
+    return delete_person if @account.uri == object_uri
     return delete_feature_authorization! unless !Mastodon::Feature.collections_federation_enabled? || feature_authorization_from_object.nil?
 
-    if @account.uri == object_uri
-      delete_person
-    else
-      delete_object
-    end
+    delete_object
   end
 
   private
