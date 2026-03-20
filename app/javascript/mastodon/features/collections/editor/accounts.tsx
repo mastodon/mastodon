@@ -25,8 +25,8 @@ import {
   ItemList,
   Scrollable,
 } from 'mastodon/components/scrollable_list/components';
-import { useSearchAccounts } from 'mastodon/features/lists/use_search_accounts';
 import { useAccount } from 'mastodon/hooks/useAccount';
+import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { me } from 'mastodon/initial_state';
 import {
   addCollectionItem,
