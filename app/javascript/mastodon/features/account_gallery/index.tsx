@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { List as ImmutableList, isList } from 'immutable';
 
+import { isServerFeatureEnabled } from '@/mastodon/utils/environment';
 import { openModal } from 'mastodon/actions/modal';
 import { expandAccountMediaTimeline } from 'mastodon/actions/timelines';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
@@ -26,6 +27,8 @@ import { MediaItem } from './components/media_item';
 
 const emptyList = ImmutableList<MediaAttachment>();
 
+const redesignEnabled = isServerFeatureEnabled('profile_redesign');
+
 const selectGalleryTimeline = createAppSelector(
   [
     (_state, accountId?: string | null) => accountId,
@@ -45,7 +48,7 @@ const selectGalleryTimeline = createAppSelector(
     let items = emptyList;
     const { show_media, show_media_replies } = account;
     // If the account disabled showing media, don't display anything.
-    if (!show_media) {
+    if (!show_media && redesignEnabled) {
       return {
         items,
         hasMore: false,
@@ -54,8 +57,9 @@ const selectGalleryTimeline = createAppSelector(
       };
     }
 
+    const showingReplies = show_media_replies && redesignEnabled;
     const timeline = timelines.get(
-      `account:${accountId}:media${show_media_replies ? ':with_replies' : ''}`,
+      `account:${accountId}:media${showingReplies ? ':with_replies' : ''}`,
     );
     const statusIds = timeline?.get('items');
 
@@ -74,7 +78,7 @@ const selectGalleryTimeline = createAppSelector(
       items,
       hasMore: !!timeline?.get('hasMore'),
       isLoading: !!timeline?.get('isLoading'),
-      showingReplies: show_media_replies,
+      showingReplies,
     };
   },
 );
