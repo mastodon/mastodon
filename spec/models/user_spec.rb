@@ -405,6 +405,31 @@ RSpec.describe User do
     end
   end
 
+  describe '#revoke_access!' do
+    subject(:user) { Fabricate(:user, disabled: false, current_sign_in_at: current_sign_in_at, last_sign_in_at: nil) }
+
+    let(:current_sign_in_at) { Time.zone.now }
+
+    let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id) }
+
+    let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
+
+    before do
+      allow(redis)
+        .to receive(:pipelined)
+        .and_yield(redis_pipeline_stub)
+    end
+
+    it 'revokes tokens' do
+      user.revoke_access!
+
+      expect(redis_pipeline_stub)
+        .to have_received(:publish).with("timeline:access_token:#{token.id}", { event: :kill }.to_json).once
+
+      expect(token.reload.revoked?).to be true
+    end
+  end
+
   describe '#enable!' do
     subject(:user) { Fabricate(:user, disabled: true) }
 

@@ -75,6 +75,23 @@ RSpec.describe 'Streaming', :inline_jobs, :streaming do
     end
   end
 
+  context 'when destroying a session activation tied to the used token' do
+    let(:session_activation) { Fabricate(:session_activation, user: user) }
+    let(:token) { session_activation.access_token }
+
+    it 'disconnects the client' do
+      streaming_client.connect
+
+      expect(streaming_client.status).to eq(101)
+      expect(streaming_client.open?).to be(true)
+
+      session_activation.destroy!
+
+      expect(streaming_client.wait_for(:closed).code).to be(1000)
+      expect(streaming_client.open?).to be(false)
+    end
+  end
+
   context 'with a disabled user account' do
     before do
       user.disable!

@@ -7,9 +7,10 @@ class ActivityPub::ProcessFeaturedCollectionService
 
   ITEMS_LIMIT = 150
 
-  def call(account, json)
+  def call(account, json, request_id: nil)
     @account = account
     @json = json
+    @request_id = request_id
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
 
     with_redis_lock("collection:#{@json['id']}") do
@@ -46,7 +47,7 @@ class ActivityPub::ProcessFeaturedCollectionService
 
   def process_items!
     @json['orderedItems'].take(ITEMS_LIMIT).each do |item_json|
-      ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json)
+      ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json, @request_id)
     end
   end
 end
