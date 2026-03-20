@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -9,6 +9,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 import {
   hasSpecialCharacters,
   inputToHashtag,
+  trimHashFromStart,
 } from '@/flavours/glitch/utils/hashtags';
 import type {
   ApiCreateCollectionPayload,
@@ -17,12 +18,15 @@ import type {
 import { Button } from 'flavours/glitch/components/button';
 import {
   CheckboxField,
+  ComboboxField,
   Fieldset,
   FormStack,
   RadioButtonField,
   TextAreaField,
 } from 'flavours/glitch/components/form_fields';
 import { TextInputField } from 'flavours/glitch/components/form_fields/text_input_field';
+import { useSearchTags } from 'flavours/glitch/hooks/useSearchTags';
+import type { TagSearchResult } from 'flavours/glitch/hooks/useSearchTags';
 import {
   createCollection,
   updateCollection,
@@ -34,7 +38,6 @@ import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
 export const CollectionDetails: React.FC = () => {
-  const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { id, name, description, topic, discoverable, sensitive, accountIds } =
@@ -58,18 +61,6 @@ export const CollectionDetails: React.FC = () => {
         updateCollectionEditorField({
           field: 'description',
           value: event.target.value,
-        }),
-      );
-    },
-    [dispatch],
-  );
-
-  const handleTopicChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch(
-        updateCollectionEditorField({
-          field: 'topic',
-          value: inputToHashtag(event.target.value),
         }),
       );
     },
@@ -156,11 +147,6 @@ export const CollectionDetails: React.FC = () => {
     ],
   );
 
-  const topicHasSpecialCharacters = useMemo(
-    () => hasSpecialCharacters(topic),
-    [topic],
-  );
-
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
       <FormStack className={classes.formFieldStack}>
@@ -213,39 +199,7 @@ export const CollectionDetails: React.FC = () => {
           maxLength={100}
         />
 
-        <TextInputField
-          required={false}
-          label={
-            <FormattedMessage
-              id='collections.collection_topic'
-              defaultMessage='Topic'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='collections.topic_hint'
-              defaultMessage='Add a hashtag that helps others understand the main topic of this collection.'
-            />
-          }
-          value={topic}
-          onChange={handleTopicChange}
-          autoCapitalize='off'
-          autoCorrect='off'
-          spellCheck='false'
-          maxLength={40}
-          status={
-            topicHasSpecialCharacters
-              ? {
-                  variant: 'warning',
-                  message: intl.formatMessage({
-                    id: 'collections.topic_special_chars_hint',
-                    defaultMessage:
-                      'Special characters will be removed when saving',
-                  }),
-                }
-              : undefined
-          }
-        />
+        <TopicField />
 
         <Fieldset
           legend={
@@ -335,3 +289,95 @@ export const CollectionDetails: React.FC = () => {
     </form>
   );
 };
+
+const TopicField: React.FC = () => {
+  const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const { id, topic } = useAppSelector((state) => state.collections.editor);
+
+  const collection = useAppSelector((state) =>
+    id ? state.collections.collections[id] : undefined,
+  );
+  const [isInitialValue, setIsInitialValue] = useState(
+    () => trimHashFromStart(topic) === (collection?.tag?.name ?? ''),
+  );
+
+  const { tags, isLoading, searchTags } = useSearchTags({
+    query: topic,
+  });
+
+  const handleTopicChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsInitialValue(false);
+      dispatch(
+        updateCollectionEditorField({
+          field: 'topic',
+          value: inputToHashtag(event.target.value),
+        }),
+      );
+      searchTags(event.target.value);
+    },
+    [dispatch, searchTags],
+  );
+
+  const handleSelectTopicSuggestion = useCallback(
+    (item: TagSearchResult) => {
+      dispatch(
+        updateCollectionEditorField({
+          field: 'topic',
+          value: inputToHashtag(item.name),
+        }),
+      );
+    },
+    [dispatch],
+  );
+
+  const topicHasSpecialCharacters = useMemo(
+    () => hasSpecialCharacters(topic),
+    [topic],
+  );
+
+  return (
+    <ComboboxField
+      required={false}
+      icon={null}
+      label={
+        <FormattedMessage
+          id='collections.collection_topic'
+          defaultMessage='Topic'
+        />
+      }
+      hint={
+        <FormattedMessage
+          id='collections.topic_hint'
+          defaultMessage='Add a hashtag that helps others understand the main topic of this collection.'
+        />
+      }
+      value={topic}
+      items={tags}
+      isLoading={isLoading}
+      renderItem={renderItem}
+      onSelectItem={handleSelectTopicSuggestion}
+      onChange={handleTopicChange}
+      autoCapitalize='off'
+      autoCorrect='off'
+      spellCheck='false'
+      maxLength={40}
+      status={
+        topicHasSpecialCharacters
+          ? {
+              variant: 'warning',
+              message: intl.formatMessage({
+                id: 'collections.topic_special_chars_hint',
+                defaultMessage:
+                  'Special characters will be removed when saving',
+              }),
+            }
+          : undefined
+      }
+      suppressMenu={isInitialValue}
+    />
+  );
+};
+
+const renderItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;
