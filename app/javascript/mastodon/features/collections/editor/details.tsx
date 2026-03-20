@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { languages } from '@/mastodon/initial_state';
 import {
   hasSpecialCharacters,
   inputToHashtag,
@@ -22,6 +23,7 @@ import {
   Fieldset,
   FormStack,
   RadioButtonField,
+  SelectField,
   TextAreaField,
 } from 'mastodon/components/form_fields';
 import { TextInputField } from 'mastodon/components/form_fields/text_input_field';
@@ -201,6 +203,8 @@ export const CollectionDetails: React.FC = () => {
 
         <TopicField />
 
+        <LanguageField />
+
         <Fieldset
           legend={
             <FormattedMessage
@@ -356,7 +360,7 @@ const TopicField: React.FC = () => {
       value={topic}
       items={tags}
       isLoading={isLoading}
-      renderItem={renderItem}
+      renderItem={renderTagItem}
       onSelectItem={handleSelectTopicSuggestion}
       onChange={handleTopicChange}
       autoCapitalize='off'
@@ -380,4 +384,52 @@ const TopicField: React.FC = () => {
   );
 };
 
-const renderItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;
+const renderTagItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;
+
+const LanguageField: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const initialLanguage = useAppSelector(
+    (state) => state.compose.get('default_language') as string,
+  );
+  const { language } = useAppSelector((state) => state.collections.editor);
+
+  const selectedLanguage = language ?? initialLanguage;
+
+  const handleLanguageChange = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      dispatch(
+        updateCollectionEditorField({
+          field: 'language',
+          value: event.target.value,
+        }),
+      );
+    },
+    [dispatch],
+  );
+
+  return (
+    <SelectField
+      label={
+        <FormattedMessage
+          id='collections.collection_language'
+          defaultMessage='Language'
+        />
+      }
+      value={selectedLanguage}
+      onChange={handleLanguageChange}
+    >
+      <option value=''>
+        <FormattedMessage
+          id='collections.collection_language_none'
+          defaultMessage='None'
+          tagName={Fragment}
+        />
+      </option>
+      {languages?.map(([code, name, localName]) => (
+        <option key={code} value={code}>
+          {localName} ({name})
+        </option>
+      ))}
+    </SelectField>
+  );
+};
