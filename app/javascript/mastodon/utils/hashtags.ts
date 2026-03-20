@@ -28,6 +28,12 @@ export const HASHTAG_PATTERN_REGEX = buildHashtagPatternRegex();
 
 export const HASHTAG_REGEX = buildHashtagRegex();
 
+export const trimHashFromStart = (input: string) => {
+  return input.startsWith('#') || input.startsWith('＃')
+    ? input.slice(1)
+    : input;
+};
+
 /**
  * Formats an input string as a hashtag:
  * - Prepends `#` unless present
@@ -41,11 +47,7 @@ export const inputToHashtag = (input: string): string => {
 
   const trailingSpace = /\s+$/.exec(input)?.[0] ?? '';
   const trimmedInput = input.trimEnd();
-
-  const withoutHash =
-    trimmedInput.startsWith('#') || trimmedInput.startsWith('＃')
-      ? trimmedInput.slice(1)
-      : trimmedInput;
+  const withoutHash = trimHashFromStart(trimmedInput);
 
   // Split by space, filter empty strings, and capitalise the start of each word but the first
   const words = withoutHash

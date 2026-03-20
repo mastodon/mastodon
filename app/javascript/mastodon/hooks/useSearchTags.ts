@@ -4,8 +4,9 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { useDebouncedCallback } from 'use-debounce';
 
-import { apiGetSearch } from '../api/search';
-import type { ApiHashtagJSON } from '../api_types/tags';
+import { apiGetSearch } from 'mastodon/api/search';
+import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
+import { trimHashFromStart } from 'mastodon/utils/hashtags';
 
 export type TagSearchResult = Omit<ApiHashtagJSON, 'url' | 'history'> & {
   label?: string;
@@ -51,7 +52,9 @@ export function useSearchTags({
         searchRequestRef.current.abort();
       }
 
-      if (value.trim().length === 0) {
+      const trimmedQuery = trimHashFromStart(value.trim());
+
+      if (trimmedQuery.length === 0) {
         setFetchedTags([]);
         return;
       }
@@ -61,7 +64,7 @@ export function useSearchTags({
       searchRequestRef.current = new AbortController();
 
       void fetchHashtagSuggestions({
-        q: value,
+        q: trimmedQuery,
         limit,
         signal: searchRequestRef.current.signal,
       })
@@ -87,12 +90,12 @@ export function useSearchTags({
 
   // Add dedicated item for adding the current query
   const tags = useMemo(() => {
-    if (!query?.trim() || !fetchedTags.length) {
+    const trimmedQuery = query ? trimHashFromStart(query.trim()) : '';
+    if (!trimmedQuery || !fetchedTags.length) {
       return fetchedTags;
     }
 
     const results: TagSearchResult[] = [...fetchedTags]; // Make array mutable
-    const trimmedQuery = query.trim();
     if (
       trimmedQuery.length > 0 &&
       results.every(
