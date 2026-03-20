@@ -104,24 +104,24 @@ const profileEditSlice = createSlice({
       state.isPending = false;
     });
 
-    builder.addCase(addFeaturedTag.pending, (state) => {
+    builder.addCase(addFeaturedTags.pending, (state) => {
       state.isPending = true;
     });
-    builder.addCase(addFeaturedTag.rejected, (state) => {
+    builder.addCase(addFeaturedTags.rejected, (state) => {
       state.isPending = false;
     });
-    builder.addCase(addFeaturedTag.fulfilled, (state, action) => {
+    builder.addCase(addFeaturedTags.fulfilled, (state, action) => {
       if (!state.profile) {
         return;
       }
 
       state.profile.featuredTags = [
         ...state.profile.featuredTags,
-        transformTag(action.payload),
+        ...action.payload.map(transformTag),
       ].toSorted((a, b) => a.name.localeCompare(b.name));
       if (state.tagSuggestions) {
         state.tagSuggestions = state.tagSuggestions.filter(
-          (tag) => tag.name !== action.meta.arg.name,
+          (tag) => !action.meta.arg.names.includes(tag.name),
         );
       }
       state.isPending = false;
@@ -350,20 +350,11 @@ export const fetchSuggestedTags = createDataLoadingThunk(
   { useLoadingBar: false },
 );
 
-export const addFeaturedTag = createDataLoadingThunk(
+export const addFeaturedTags = createDataLoadingThunk(
   `${profileEditSlice.name}/addFeaturedTag`,
-  ({ name }: { name: string }) => apiPostFeaturedTag(name),
-  {
-    condition(arg, { getState }) {
-      const state = getState();
-      return (
-        !!state.profileEdit.profile &&
-        !state.profileEdit.profile.featuredTags.some(
-          (tag) => tag.name === arg.name,
-        )
-      );
-    },
-  },
+  ({ names }: { names: string[] }) =>
+    Promise.all(names.map((n) => apiPostFeaturedTag(n))),
+  { useLoadingBar: false },
 );
 
 export const deleteFeaturedTag = createDataLoadingThunk(
