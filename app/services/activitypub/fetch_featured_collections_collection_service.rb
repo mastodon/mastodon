@@ -20,14 +20,11 @@ class ActivityPub::FetchFeaturedCollectionsCollectionService < BaseService
   def process_items(items)
     return if items.nil?
 
-    process_service = ActivityPub::ProcessFeaturedCollectionService.new
-    fetch_service = ActivityPub::FetchRemoteFeaturedCollectionService.new
-
     items.take(MAX_ITEMS).each do |collection_json|
       if collection_json.is_a?(String)
-        fetch_service.call(collection_json, request_id: @request_id)
+        ActivityPub::FetchRemoteFeaturedCollectionService.new.call(collection_json, request_id: @request_id)
       else
-        process_service.call(@account, collection_json, request_id: @request_id)
+        ActivityPub::ProcessFeaturedCollectionService.new.call(@account, collection_json, request_id: @request_id)
       end
     end
   end
