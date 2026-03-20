@@ -28,6 +28,7 @@ import {
 } from '../actions/timelines_typed';
 import { compareId } from '../compare_id';
 
+/** @type {ImmutableMap<string, typeof initialTimeline>} */
 const initialState = ImmutableMap();
 
 const initialTimeline = ImmutableMap({
@@ -36,7 +37,9 @@ const initialTimeline = ImmutableMap({
   top: true,
   isLoading: false,
   hasMore: true,
+  /** @type {ImmutableList<string>} */
   pendingItems: ImmutableList(),
+  /** @type {ImmutableList<string>} */
   items: ImmutableList(),
 });
 
@@ -203,6 +206,7 @@ const reconnectTimeline = (state, usePendingItems) => {
   });
 };
 
+/** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export default function timelines(state = initialState, action) {
   switch(action.type) {
   case TIMELINE_LOAD_PENDING:
