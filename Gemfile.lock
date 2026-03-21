@@ -1,17 +1,4 @@
 GIT
-  remote: https://github.com/briandunn/flatware.git
-  revision: 63e2ce7c26f17374e44e8c82d2457e2001070cc2
-  specs:
-    flatware (2.3.4)
-      benchmark
-      drb
-      logger
-      thor (< 2.0)
-    flatware-rspec (2.3.4)
-      flatware (= 2.3.4)
-      rspec (>= 3.8)
-
-GIT
   remote: https://github.com/mastodon/webpush.git
   revision: 9631ac63045cfabddacc69fc06e919b4c13eb913
   ref: 9631ac63045cfabddacc69fc06e919b4c13eb913
@@ -269,6 +256,9 @@ GEM
       drb
       logger
       thor (< 2.0)
+    flatware-rspec (2.4.0)
+      flatware (= 2.4.0)
+      rspec (>= 3.8)
     fog-core (2.6.0)
       builder
       excon (~> 1.0)
@@ -988,7 +978,7 @@ DEPENDENCIES
   faraday-httpclient
   fast_blank (~> 1.0)
   fastimage
-  flatware-rspec!
+  flatware-rspec
   fog-core (<= 2.6.0)
   fog-openstack (~> 1.0)
   haml-rails (~> 3.0)
