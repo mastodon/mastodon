@@ -19,7 +19,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemWorker do
     it 'calls the service to process the item' do
       subject.perform(collection.id, object)
 
-      expect(stubbed_service).to have_received(:call).with(collection, object)
+      expect(stubbed_service).to have_received(:call).with(collection, object, request_id: nil)
     end
   end
 end

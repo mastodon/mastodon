@@ -5,7 +5,8 @@ class ActivityPub::ProcessFeaturedItemService
   include Lockable
   include Redisable
 
-  def call(collection, uri_or_object)
+  def call(collection, uri_or_object, request_id: nil)
+    @request_id = request_id
     item_json = uri_or_object.is_a?(String) ? fetch_resource(uri_or_object, true) : uri_or_object
     return if non_matching_uri_hosts?(collection.uri, item_json['id'])
 
@@ -35,8 +36,8 @@ class ActivityPub::ProcessFeaturedItemService
   private
 
   def verify_authorization!
-    ActivityPub::VerifyFeaturedItemService.new.call(@collection_item, @approval_uri)
+    ActivityPub::VerifyFeaturedItemService.new.call(@collection_item, @approval_uri, request_id: @request_id)
   rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-    ActivityPub::VerifyFeaturedItemWorker.perform_in(rand(30..600).seconds, @collection_item.id, @approval_uri)
+    ActivityPub::VerifyFeaturedItemWorker.perform_in(rand(30..600).seconds, @collection_item.id, @approval_uri, @request_id)
   end
 end

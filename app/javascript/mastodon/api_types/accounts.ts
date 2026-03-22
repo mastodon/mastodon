@@ -53,6 +53,9 @@ export interface BaseApiAccountJSON {
   id: string;
   last_status_at: string;
   locked: boolean;
+  show_media: boolean;
+  show_media_replies: boolean;
+  show_featured: boolean;
   noindex?: boolean;
   note: string;
   roles?: ApiAccountJSON[];

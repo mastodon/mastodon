@@ -18,5 +18,13 @@ RSpec.describe DeleteCollectionItemService do
 
       expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
     end
+
+    context 'when `revoke` is set to true' do
+      it 'revokes the collection item' do
+        subject.call(collection_item, revoke: true)
+
+        expect(collection_item.reload).to be_revoked
+      end
+    end
   end
 end

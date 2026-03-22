@@ -23,7 +23,7 @@ import { identityContextPropShape, withIdentity } from 'mastodon/identity_contex
 import { layoutFromWindow } from 'mastodon/is_mobile';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 import { checkAnnualReport } from '@/mastodon/reducers/slices/annual_report';
-import { isClientFeatureEnabled } from '@/mastodon/utils/environment';
+import { isServerFeatureEnabled } from '@/mastodon/utils/environment';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -182,7 +182,7 @@ class SwitchingColumnsArea extends PureComponent {
     }
 
     const profileRedesignRoutes = [];
-    if (isClientFeatureEnabled('profile_editing')) {
+    if (isServerFeatureEnabled('profile_redesign')) {
       profileRedesignRoutes.push(
         <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />,
         <WrappedRoute key="featured_tags" path='/profile/featured_tags' component={AccountEditFeaturedTags} content={children} />

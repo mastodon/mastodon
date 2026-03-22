@@ -25,8 +25,8 @@ import {
   ItemList,
   Scrollable,
 } from 'flavours/glitch/components/scrollable_list/components';
-import { useSearchAccounts } from 'flavours/glitch/features/lists/use_search_accounts';
 import { useAccount } from 'flavours/glitch/hooks/useAccount';
+import { useSearchAccounts } from 'flavours/glitch/hooks/useSearchAccounts';
 import { me } from 'flavours/glitch/initial_state';
 import {
   addCollectionItem,
@@ -374,6 +374,7 @@ export const CollectionAccounts: React.FC<{
           onSelectItem={
             isEditMode ? instantToggleAccountItem : toggleAccountItem
           }
+          closeOnSelect={false}
         />
         {hasMaxAccounts && (
           <FormattedMessage
