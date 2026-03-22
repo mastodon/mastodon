@@ -99,6 +99,7 @@ class Account < ApplicationRecord
   include Attachmentable # Load prior to Avatar & Header concerns
 
   include Account::Associations
+  include Account::AttributionDomains
   include Account::Avatar
   include Account::Counters
   include Account::FaspConcern
@@ -113,9 +114,14 @@ class Account < ApplicationRecord
   include Account::Silences
   include Account::StatusesSearch
   include Account::Suspensions
-  include Account::AttributionDomains
+  include Blocking
+  include DomainBlocking
   include DomainMaterializable
   include DomainNormalizable
+  include FollowerHashing
+  include Following
+  include Muting
+  include MutingConversations
   include Paginable
   include Reviewable
 
