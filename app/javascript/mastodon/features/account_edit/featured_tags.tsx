@@ -29,7 +29,7 @@ import classes from './styles.module.scss';
 const messages = defineMessages({
   columnTitle: {
     id: 'account_edit_tags.column_title',
-    defaultMessage: 'Edit featured hashtags',
+    defaultMessage: 'Edit Tags',
   },
 });
 
