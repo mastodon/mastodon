@@ -73,4 +73,36 @@ RSpec.describe ActivityPub::ProcessFeaturedCollectionService do
       expect(new_collection.description_html).to eq '<p>A list of remote actors you should follow.</p>'
     end
   end
+
+  context 'when the collection already exists' do
+    let(:collection) { Fabricate(:remote_collection, account:, uri: base_json['id'], name: 'placeholder') }
+
+    before do
+      Fabricate(:collection_item, collection:, uri: 'https://example.com/featured_items/1')
+      Fabricate(:collection_item, collection:, uri: 'https://example.com/featured_items/3')
+    end
+
+    it 'updates the existing collection, removes the item that no longer exists and queues a jobs to fetch the other items' do
+      expect { subject.call(account, featured_collection_json) }
+        .to change(collection.collection_items, :count).by(-1)
+
+      expect(collection.reload.name).to eq 'Good people from other servers'
+      expect(ActivityPub::ProcessFeaturedItemWorker).to have_enqueued_sidekiq_job.exactly(2).times
+    end
+
+    context 'when the updated collection no longer contains any items' do
+      let(:featured_collection_json) do
+        base_json.merge({
+          'summary' => summary,
+          'totalItems' => 0,
+          'orderedItems' => nil,
+        })
+      end
+
+      it 'removes all items' do
+        expect { subject.call(account, featured_collection_json) }
+          .to change(collection.collection_items, :count).by(-2)
+      end
+    end
+  end
 end

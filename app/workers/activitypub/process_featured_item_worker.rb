@@ -6,10 +6,10 @@ class ActivityPub::ProcessFeaturedItemWorker
 
   sidekiq_options queue: 'pull', retry: 3
 
-  def perform(collection_id, id_or_json, request_id = nil)
+  def perform(collection_id, id_or_json, position = nil, request_id = nil)
     collection = Collection.find(collection_id)
 
-    ActivityPub::ProcessFeaturedItemService.new.call(collection, id_or_json, request_id:)
+    ActivityPub::ProcessFeaturedItemService.new.call(collection, id_or_json, position:, request_id:)
   rescue ActiveRecord::RecordNotFound
     true
   end

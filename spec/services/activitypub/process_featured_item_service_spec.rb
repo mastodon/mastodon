@@ -8,6 +8,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
   subject { described_class.new }
 
   let(:collection) { Fabricate(:remote_collection, uri: 'https://other.example.com/collection/1') }
+  let(:position) { 3 }
   let(:featured_object_uri) { 'https://example.com/actor/1' }
   let(:feature_authorization_uri) { 'https://example.com/auth/1' }
   let(:featured_item_json) do
@@ -34,7 +35,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
 
       it 'does not create a collection item and returns `nil`' do
         expect do
-          expect(subject.call(collection, object)).to be_nil
+          expect(subject.call(collection, object, position:)).to be_nil
         end.to_not change(CollectionItem, :count)
       end
     end
@@ -45,14 +46,29 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
 
     it_behaves_like 'non-matching URIs'
 
-    it 'creates and verifies the item' do
-      expect { subject.call(collection, object) }.to change(collection.collection_items, :count).by(1)
+    context 'when item does not yet exist' do
+      it 'creates and verifies the item' do
+        expect { subject.call(collection, object, position:) }.to change(collection.collection_items, :count).by(1)
 
-      expect(stubbed_service).to have_received(:call)
+        expect(stubbed_service).to have_received(:call)
 
-      new_item = collection.collection_items.last
-      expect(new_item.object_uri).to eq 'https://example.com/actor/1'
-      expect(new_item.approval_uri).to be_nil
+        new_item = collection.collection_items.last
+        expect(new_item.object_uri).to eq 'https://example.com/actor/1'
+        expect(new_item.approval_uri).to be_nil
+        expect(new_item.position).to eq 3
+      end
+    end
+
+    context 'when item exists at a different position' do
+      let!(:collection_item) do
+        Fabricate(:collection_item, collection:, uri: featured_item_json['id'], position: 2)
+      end
+
+      it 'updates the position' do
+        expect { subject.call(collection, object, position:) }.to_not change(collection.collection_items, :count)
+
+        expect(collection_item.reload.position).to eq 3
+      end
     end
 
     context 'when an item exists for a local featured account' do
@@ -63,7 +79,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
       let(:feature_authorization_uri) { ap_account_feature_authorization_url(collection_item.account_id, collection_item) }
 
       it 'updates the URI of the existing record' do
-        expect { subject.call(collection, object) }.to_not change(collection.collection_items, :count)
+        expect { subject.call(collection, object, position:) }.to_not change(collection.collection_items, :count)
         expect(collection_item.reload.uri).to eq 'https://other.example.com/featured_item/1'
       end
     end
@@ -87,7 +103,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
     it_behaves_like 'non-matching URIs'
 
     it 'fetches the collection item' do
-      expect { subject.call(collection, object) }.to change(collection.collection_items, :count).by(1)
+      expect { subject.call(collection, object, position:) }.to change(collection.collection_items, :count).by(1)
 
       expect(featured_item_request).to have_been_requested
 
