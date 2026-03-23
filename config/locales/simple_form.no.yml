@@ -54,6 +54,7 @@
         scopes: Hvilke API-er programmet vil bli gitt tilgang til. Dersom du velger et toppnivåomfang, trenger du ikke å velge individuelle API-er.
         setting_aggregate_reblogs: Ikke vis nye fremhevinger for innlegg som nylig har blitt fremhevet (påvirker kun nylige fremhevinger)
         setting_always_send_emails: E-postvarsler sendes normalt sett ikke mens du aktivt bruker Mastodon
+        setting_default_quote_policy: Denne innstillingen vil bare tre i kraft for innlegg laget med neste Mastodon-versjon, men du kan sette ønsket innstilling i forkant.
         setting_default_sensitive: Følsomme media blir i utgangspunktet skjult, og kan vises frem ved hjelp av et klikk
         setting_display_media_default: Skjul media som er merket som følsomt
         setting_display_media_hide_all: Skjul alltid all media
@@ -210,6 +211,7 @@
         setting_display_media_show_all: Vis alle
         setting_expand_spoilers: Utvid alltid innlegg som er merket med innholdsvarsler
         setting_hide_network: Skjul nettverket ditt
+        setting_missing_alt_text_modal: Vis bekreftelsesdialog før du legger ut media uten alt tekst
         setting_reduce_motion: Reduser bevegelser i animasjoner
         setting_system_font_ui: Bruk systemets standardfont
         setting_theme: Sidens tema
@@ -307,6 +309,8 @@
       terms_of_service_generator:
         domain: Domene
       user:
+        date_of_birth_1i: Dag
+        date_of_birth_3i: År
         role: Rolle
         time_zone: Tidssone
       user_role:

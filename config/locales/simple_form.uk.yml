@@ -3,7 +3,7 @@ uk:
   simple_form:
     hints:
       account:
-        attribution_domains: Один на рядок. Захищає від фальшивих атрибутів.
+        attribution_domains: Один на рядок. Захищає від фальшивих приписувань авторства.
         discoverable: Ваші дописи та профіль можуть бути рекомендовані в різних частинах Mastodon і ваш профіль може бути запропонований іншим користувачам.
         display_name: Ваше повне ім'я або ваш псевдонім.
         fields: Ваша домашня сторінка, займенники, вік, все, що вам заманеться.
@@ -160,6 +160,7 @@ uk:
         url: Куди надсилатимуться події
     labels:
       account:
+        attribution_domains: Сайти, яким можна вказувати вас як автора
         discoverable: Функції профілю та дописів у алгоритмах виявлення
         fields:
           name: Мітка
@@ -226,10 +227,11 @@ uk:
         setting_boost_modal: Показувати діалог підтвердження під час поширення
         setting_default_language: Мова дописів
         setting_default_privacy: Видимість дописів
+        setting_default_quote_policy: Кому можна цитувати
         setting_default_sensitive: Позначати медіа делікатними
         setting_delete_modal: Показувати діалог підтвердження під час видалення допису
         setting_disable_hover_cards: Вимкнути попередній перегляд профілю під час наведення мишки
-        setting_disable_swiping: Вимкнути рух посування
+        setting_disable_swiping: Вимкнути жести гортання
         setting_display_media: Показ медіа
         setting_display_media_default: За промовчанням
         setting_display_media_hide_all: Сховати всі

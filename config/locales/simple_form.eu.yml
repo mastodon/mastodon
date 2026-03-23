@@ -56,6 +56,7 @@ eu:
         scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
         setting_aggregate_reblogs: Ez erakutsi bultzada berriak berriki bultzada jaso duten tootentzat (berriki jasotako bultzadei eragiten die bakarrik)
         setting_always_send_emails: Normalean eposta jakinarazpenak ez dira bidaliko Mastodon aktiboki erabiltzen ari zaren bitartean
+        setting_default_quote_policy: Ezarpen honek Mastodon-en hurrengo bertsioarekin sortutako bidalketetan soilik izango du eragina, baina prestatzen joateko zure ezarpenak hauta ditzakezu.
         setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
@@ -140,8 +141,14 @@ eu:
         admin_email: Legezko abisuak, kontraindikazioak, agindu judizialak, erretiratzeko eskaerak eta legea betetzeko eskaerak barne.
         arbitration_address: Goiko helbide fisikoa edo "N/A" bera izan daiteke posta elektronikoa erabiliz gero.
         arbitration_website: Web formularioa izan daiteke, edo "N/A" posta elektronikoa erabiliz gero.
+        choice_of_law: Edozein gatazka juridiko gobernatuko duten epaitegien hiria, eskualdea, lurraldea edo estatua.
+        dmca_email: Goiko "Lege-oharretarako helbide elektronikoa" atalean erabilitako helbide elektroniko bera izan daiteke.
+        domain: Ematen ari zaren lineako zerbitzuaren identifikazio bakarra.
+        jurisdiction: Zerrendatu fakturak ordaintzen dituen pertsona bizi den herrialdea. Enpresa edo bestelako erakunde bat bada, adierazi egoitza duen herrialdea eta, kasuan kasu, hiria, eskualdea, lurraldea edo estatua.
+        min_age: Ez luke izan behar zure jurisdikzioko legeek eskatzen duten gutxieneko adinetik beherakoa.
       user:
         chosen_languages: Markatzean, hautatutako hizkuntzetan dauden tutak besterik ez dira erakutsiko.
+        role: Rolak erabiltzaileak dituen baimenak zeintzuk diren kontrolatzen du.
       user_role:
         color: Rolarentzat erabiltzaile interfazean erabiliko den kolorea, formatu hamaseitarreko RGB bezala
         highlighted: Honek rola publikoki ikusgai jartzen du
@@ -221,8 +228,10 @@ eu:
         setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
         setting_default_language: Argitalpenen hizkuntza
         setting_default_privacy: Mezuen pribatutasuna
+        setting_default_quote_policy: Nork aipa dezake
         setting_default_sensitive: Beti markatu edukiak hunkigarri gisa
         setting_delete_modal: Erakutsi baieztapen elkarrizketa-koadroa toot bat ezabatu aurretik
+        setting_disable_hover_cards: Desgaitu profilaren aurrebista gainetik igarotzean
         setting_disable_swiping: Desgaitu hatza pasatzeko mugimenduak
         setting_display_media: Multimedia bistaratzea
         setting_display_media_default: Lehenetsia
@@ -230,8 +239,10 @@ eu:
         setting_display_media_show_all: Erakutsi guztia
         setting_expand_spoilers: Zabaldu beti edukiaren abisuak dituzten argitalpenak
         setting_hide_network: Ezkutatu zure sarea
+        setting_missing_alt_text_modal: Erakutsi baieztatzeko koadroa testu alternatiborik gabeko multimedia argitaratu aurretik
         setting_reduce_motion: Murriztu animazioen mugimenduak
         setting_system_font_ui: Erabili sistemako tipografia lehenetsia
+        setting_system_scrollbars_ui: Erabili sistemako desplazamendu-barra lehenetsia
         setting_theme: Gunearen azala
         setting_trends: Erakutsi gaurko joerak
         setting_unfollow_modal: Erakutsi baieztapen elkarrizketa-koadroa inor jarraitzeari utzi aurretik
@@ -250,6 +261,7 @@ eu:
         name: Traola
       filters:
         actions:
+          blur: Ezkutatu multimedia-edukia ohar batekin
           hide: Ezkutatu guztiz
           warn: Ezkutatu ohar batekin
       form_admin_settings:
@@ -329,9 +341,18 @@ eu:
         usable: Baimendu bidalketek traola lokal hau erabiltzea
       terms_of_service:
         changelog: Zer aldatu da?
+        effective_date: Indarrean sartzeko data
         text: Zerbitzuaren baldintzak
       terms_of_service_generator:
+        admin_email: Lege-oharretarako helbide elektronikoa
+        arbitration_address: Arbitraje-jakinarazpenak bidaltzeko helbide fisikoa
+        arbitration_website: Arbitraje-jakinarazpenak bidaltzeko webgunea
+        choice_of_law: Aplikatu beharreko legedia
+        dmca_address: DMCA/egile-eskubideen jakinarazpenetarako helbide fisikoa
+        dmca_email: DMCA/egile-eskubideen jakinarazpenetarako helbide elektronikoa
         domain: Domeinua
+        jurisdiction: Jurisdikzio legala
+        min_age: Gutxieneko adina
       user:
         date_of_birth_1i: Eguna
         date_of_birth_2i: Hilabetea
