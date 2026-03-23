@@ -15,7 +15,11 @@ ms:
       user/invite_request:
         text: Sebab
     errors:
+      attributes:
+        domain:
+          invalid: bukanlah nama domain yang sah
       messages:
+        invalid_domain_on_line: "%{value} bukanlah nama domain yang sah"
         too_many_lines: is over the limit of %{limit} lines
       models:
         account:
