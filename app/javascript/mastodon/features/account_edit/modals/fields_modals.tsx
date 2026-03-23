@@ -57,10 +57,6 @@ const messages = defineMessages({
     id: 'account_edit.field_edit_modal.value_hint',
     defaultMessage: 'E.g. “https://example.me”',
   },
-  limitHeader: {
-    id: 'account_edit.field_edit_modal.limit_header',
-    defaultMessage: 'Recommended character limit exceeded',
-  },
   save: {
     id: 'account_edit.save',
     defaultMessage: 'Save',
@@ -222,13 +218,10 @@ export const EditFieldModal = forwardRef<
 
       {(newLabel.length > RECOMMENDED_LIMIT ||
         newValue.length > RECOMMENDED_LIMIT) && (
-        <Callout
-          variant='warning'
-          title={intl.formatMessage(messages.limitHeader)}
-        >
+        <Callout variant='warning'>
           <FormattedMessage
-            id='account_edit.field_edit_modal.limit_message'
-            defaultMessage='Mobile users might not see your field in full.'
+            id='account_edit.field_edit_modal.limit_warning'
+            defaultMessage='Recommended character limit exceeded. Mobile users might not see your field in full.'
           />
         </Callout>
       )}
