@@ -15,9 +15,9 @@ class FetchLinkCardService < BaseService
     )
   }iox
 
-  def call(status)
+  def call(status, original_url = nil)
     @status       = status
-    @original_url = parse_urls
+    @original_url = original_url || parse_urls
 
     return if @original_url.nil? || @status.with_preview_card? || @status.with_media? || @status.quote.present?
 
