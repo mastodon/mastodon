@@ -28,7 +28,7 @@ class ActivityPub::ProcessFeaturedCollectionService
           tag_name: @json.dig('topic', 'name')
         )
 
-        process_items! if @json['totalItems'].positive?
+        process_items!
       end
 
       @collection
@@ -48,7 +48,8 @@ class ActivityPub::ProcessFeaturedCollectionService
 
   def process_items!
     uris = []
-    @json['orderedItems'].take(ITEMS_LIMIT).each_with_index do |item_json, index|
+    items = @json['orderedItems'] || []
+    items.each_with_index do |item_json, index|
       uris << value_or_id(item_json)
       ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json, index, @request_id)
     end
