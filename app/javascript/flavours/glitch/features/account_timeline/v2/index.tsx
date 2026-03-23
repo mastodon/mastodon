@@ -18,7 +18,10 @@ import { LoadingIndicator } from '@/flavours/glitch/components/loading_indicator
 import { RemoteHint } from '@/flavours/glitch/components/remote_hint';
 import StatusList from '@/flavours/glitch/components/status_list';
 import BundleColumnError from '@/flavours/glitch/features/ui/components/bundle_column_error';
-import { useAccountId } from '@/flavours/glitch/hooks/useAccountId';
+import {
+  useAccountId,
+  useCurrentAccountId,
+} from '@/flavours/glitch/hooks/useAccountId';
 import { useAccountVisibility } from '@/flavours/glitch/hooks/useAccountVisibility';
 import { selectTimelineByKey } from '@/flavours/glitch/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
@@ -34,6 +37,7 @@ import {
   usePinnedStatusIds,
 } from './pinned_statuses';
 import classes from './styles.module.scss';
+import { TagSuggestions } from './tags_suggestions';
 
 const emptyList = ImmutableList<string>();
 
@@ -135,6 +139,7 @@ const Prepend: FC<{
   accountId: string;
   forceEmpty: boolean;
 }> = ({ forceEmpty, accountId }) => {
+  const me = useCurrentAccountId();
   if (forceEmpty) {
     return <AccountHeader accountId={accountId} hideTabs />;
   }
@@ -144,6 +149,7 @@ const Prepend: FC<{
       <AccountHeader accountId={accountId} hideTabs />
       <AccountFilters />
       <FeaturedTags accountId={accountId} />
+      {me === accountId && <TagSuggestions />}
     </>
   );
 };

@@ -6,7 +6,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { Combobox } from '@/flavours/glitch/components/form_fields';
 import { useSearchTags } from '@/flavours/glitch/hooks/useSearchTags';
 import type { TagSearchResult } from '@/flavours/glitch/hooks/useSearchTags';
-import { addFeaturedTag } from '@/flavours/glitch/reducers/slices/profile_edit';
+import { addFeaturedTags } from '@/flavours/glitch/reducers/slices/profile_edit';
 import { useAppDispatch } from '@/flavours/glitch/store';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 
@@ -47,7 +47,7 @@ export const AccountEditTagSearch: FC = () => {
     (item: TagSearchResult) => {
       resetSearch();
       setQuery('');
-      void dispatch(addFeaturedTag({ name: item.name }));
+      void dispatch(addFeaturedTags({ names: [item.name] }));
     },
     [dispatch, resetSearch],
   );
