@@ -89,5 +89,20 @@ RSpec.describe ActivityPub::ProcessFeaturedCollectionService do
       expect(collection.reload.name).to eq 'Good people from other servers'
       expect(ActivityPub::ProcessFeaturedItemWorker).to have_enqueued_sidekiq_job.exactly(2).times
     end
+
+    context 'when the updated collection no longer contains any items' do
+      let(:featured_collection_json) do
+        base_json.merge({
+          'summary' => summary,
+          'totalItems' => 0,
+          'orderedItems' => nil,
+        })
+      end
+
+      it 'removes all items' do
+        expect { subject.call(account, featured_collection_json) }
+          .to change(collection.collection_items, :count).by(-2)
+      end
+    end
   end
 end

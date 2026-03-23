@@ -54,6 +54,6 @@ class ActivityPub::ProcessFeaturedCollectionService
       ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json, index, @request_id)
     end
     uris.compact!
-    @collection.collection_items.where.not(uri: uris).delete_all if uris.any?
+    @collection.collection_items.where.not(uri: uris).delete_all
   end
 end
