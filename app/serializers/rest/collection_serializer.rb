@@ -5,7 +5,7 @@ class REST::CollectionSerializer < ActiveModel::Serializer
              :local, :sensitive, :discoverable, :item_count,
              :created_at, :updated_at
 
-  belongs_to :tag, serializer: REST::StatusSerializer::TagSerializer
+  belongs_to :tag, serializer: REST::ShallowTagSerializer
 
   has_many :items, serializer: REST::CollectionItemSerializer
 

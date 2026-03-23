@@ -20,6 +20,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
         { type: 'Mention', href: bogus_mention },
+        { type: 'FeaturedCollection', id: ActivityPub::TagManager.instance.uri_for(featured_collection) },
       ],
     }
   end
@@ -27,6 +28,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
   let(:alice) { Fabricate(:account) }
   let(:bob) { Fabricate(:account) }
+  let(:featured_collection) { Fabricate(:collection) }
 
   let(:mentions) { [] }
   let(:tags) { [] }
@@ -273,6 +275,16 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       it 'does not create any edits or mark status edited' do
         expect(status.reload.edits).to be_empty
         expect(status).to_not be_edited
+      end
+    end
+
+    context 'when originally without tagged objects' do
+      before do
+        subject.call(status, json, json)
+      end
+
+      it 'updates tags' do
+        expect(status.tagged_objects.reload.map(&:object)).to contain_exactly(featured_collection)
       end
     end
 
