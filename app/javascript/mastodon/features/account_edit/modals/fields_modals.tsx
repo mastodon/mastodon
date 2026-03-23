@@ -11,6 +11,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import { Callout } from '@/mastodon/components/callout';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
@@ -114,8 +115,11 @@ export const EditFieldModal = forwardRef<
 >(({ onClose, fieldKey, lastLabel, lastValue }, ref) => {
   const intl = useIntl();
   const field = useAppSelector((state) => selectFieldById(state, fieldKey));
-  const [newLabel, setNewLabel] = useState(field?.name ?? lastLabel ?? '');
-  const [newValue, setNewValue] = useState(field?.value ?? lastValue ?? '');
+  const oldLabel = lastLabel ?? field?.name;
+  const oldValue = lastValue ?? field?.value;
+  const [newLabel, setNewLabel] = useState(oldLabel ?? '');
+  const [newValue, setNewValue] = useState(oldValue ?? '');
+  const isDirty = newLabel !== oldLabel || newValue !== oldValue;
 
   const { nameLimit, valueLimit } = useAppSelector(selectFieldLimits);
   const isPending = useAppSelector((state) => state.profileEdit.isPending);
@@ -123,6 +127,7 @@ export const EditFieldModal = forwardRef<
   const disabled =
     !newLabel.trim() ||
     !newValue.trim() ||
+    !isDirty ||
     !nameLimit ||
     !valueLimit ||
     newLabel.length > nameLimit ||
@@ -149,14 +154,22 @@ export const EditFieldModal = forwardRef<
     }
     void dispatch(
       updateField({ id: fieldKey, name: newLabel, value: newValue }),
-    ).then(onClose);
-  }, [disabled, dispatch, fieldKey, isPending, newLabel, newValue, onClose]);
+    ).then(() => {
+      // Close without confirmation.
+      dispatch(
+        closeModal({
+          modalType: 'ACCOUNT_EDIT_FIELD_EDIT',
+          ignoreFocus: false,
+        }),
+      );
+    });
+  }, [disabled, dispatch, fieldKey, isPending, newLabel, newValue]);
 
   useImperativeHandle(
     ref,
     () => ({
       getCloseConfirmationMessage: () => {
-        if (disabled && !newLabel && !newValue) {
+        if (!newLabel || !newValue || !isDirty) {
           return null;
         }
         return {
@@ -170,11 +183,12 @@ export const EditFieldModal = forwardRef<
         };
       },
     }),
-    [disabled, fieldKey, intl, newLabel, newValue],
+    [fieldKey, intl, isDirty, newLabel, newValue],
   );
 
   return (
     <ConfirmationModal
+      noCloseOnConfirm
       onClose={onClose}
       title={
         field
