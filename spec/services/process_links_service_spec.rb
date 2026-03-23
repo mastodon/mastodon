@@ -16,4 +16,13 @@ RSpec.describe ProcessLinksService do
         .to change { status.tagged_objects.count }.by(1)
     end
   end
+
+  context 'when status has a generic link' do
+    let(:status) { Fabricate(:status, account: account, text: 'Hello check out my personal web page: https://example.com/test', visibility: :public) }
+
+    it 'skips the link and does not create a tagged object' do
+      expect { expect { subject.call(status) }.to_not raise_error }
+        .to not_change { status.tagged_objects.count }.from(0)
+    end
+  end
 end
