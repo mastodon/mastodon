@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { FC, ReactElement, ReactNode } from 'react';
 
 import { useIntl } from 'react-intl';
 
@@ -19,7 +19,7 @@ import classes from './styles.module.css';
 export interface CalloutProps {
   variant?:
     | 'default'
-    // | 'subtle'
+    | 'subtle'
     | 'feature'
     | 'inverted'
     | 'success'
@@ -31,9 +31,9 @@ export interface CalloutProps {
   /** Set to false to hide the icon. */
   icon?: IconProp | boolean;
   onPrimary?: () => void;
-  primaryLabel?: string;
+  primaryLabel?: string | ReactElement;
   onSecondary?: () => void;
-  secondaryLabel?: string;
+  secondaryLabel?: string | ReactElement;
   onClose?: () => void;
   id?: string;
   extraContent?: ReactNode;
@@ -41,7 +41,7 @@ export interface CalloutProps {
 
 const variantClasses = {
   default: classes.variantDefault as string,
-  // subtle: classes.variantSubtle as string,
+  subtle: classes.variantSubtle as string,
   feature: classes.variantFeature as string,
   inverted: classes.variantInverted as string,
   success: classes.variantSuccess as string,

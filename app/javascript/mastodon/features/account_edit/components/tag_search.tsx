@@ -6,7 +6,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import { Combobox } from '@/mastodon/components/form_fields';
 import { useSearchTags } from '@/mastodon/hooks/useSearchTags';
 import type { TagSearchResult } from '@/mastodon/hooks/useSearchTags';
-import { addFeaturedTag } from '@/mastodon/reducers/slices/profile_edit';
+import { addFeaturedTags } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch } from '@/mastodon/store';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 
@@ -47,7 +47,7 @@ export const AccountEditTagSearch: FC = () => {
     (item: TagSearchResult) => {
       resetSearch();
       setQuery('');
-      void dispatch(addFeaturedTag({ name: item.name }));
+      void dispatch(addFeaturedTags({ names: [item.name] }));
     },
     [dispatch, resetSearch],
   );
