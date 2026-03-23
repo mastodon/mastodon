@@ -49,7 +49,7 @@ class ActivityPub::ProcessFeaturedCollectionService
   def process_items!
     uris = []
     items = @json['orderedItems'] || []
-    items.each_with_index do |item_json, index|
+    items.take(ITEMS_LIMIT).each_with_index do |item_json, index|
       uris << value_or_id(item_json)
       ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json, index, @request_id)
     end
