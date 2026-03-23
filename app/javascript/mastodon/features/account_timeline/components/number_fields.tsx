@@ -91,28 +91,24 @@ const RedesignNumberFields: FC<{ accountId: string }> = ({ accountId }) => {
       </li>
 
       <li>
+        <FormattedMessage id='account.followers' defaultMessage='Followers' />
         <NavLink
           exact
           to={`/@${account.acct}/followers`}
           title={intl.formatNumber(account.followers_count)}
         >
-          <FormattedMessage id='account.followers' defaultMessage='Followers' />
-          <strong>
-            <ShortNumber value={account.followers_count} />
-          </strong>
+          <ShortNumber value={account.followers_count} />
         </NavLink>
       </li>
 
       <li>
+        <FormattedMessage id='account.following' defaultMessage='Following' />
         <NavLink
           exact
           to={`/@${account.acct}/following`}
           title={intl.formatNumber(account.following_count)}
         >
-          <FormattedMessage id='account.following' defaultMessage='Following' />
-          <strong>
-            <ShortNumber value={account.following_count} />
-          </strong>
+          <ShortNumber value={account.following_count} />
         </NavLink>
       </li>
 
