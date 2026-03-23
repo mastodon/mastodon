@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
-import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Area } from 'react-easy-crop';
 import Cropper from 'react-easy-crop';
@@ -24,16 +24,42 @@ import classes from './styles.module.scss';
 
 import 'react-easy-crop/react-easy-crop.css';
 
+const messages = defineMessages({
+  avatarAdd: {
+    id: 'account_edit.upload_modal.title_add.avatar',
+    defaultMessage: 'Add profile photo',
+  },
+  headerAdd: {
+    id: 'account_edit.upload_modal.title_add.header',
+    defaultMessage: 'Add cover photo',
+  },
+  avatarReplace: {
+    id: 'account_edit.upload_modal.title_replace.avatar',
+    defaultMessage: 'Replace profile photo',
+  },
+  headerReplace: {
+    id: 'account_edit.upload_modal.title_replace.header',
+    defaultMessage: 'Replace cover photo',
+  },
+  zoomLabel: {
+    id: 'account_edit.upload_modal.step_crop.zoom',
+    defaultMessage: 'Zoom',
+  },
+});
+
 export const ImageUploadModal: FC<
   DialogModalProps & { location: ImageLocation }
 > = ({ onClose, location }) => {
   const { src: oldSrc } = useAppSelector((state) =>
     selectImageInfo(state, location),
   );
-  const hasImage = !!oldSrc;
-  const [step, setStep] = useState<'select' | 'crop' | 'alt'>('select');
+  const intl = useIntl();
+  const title = intl.formatMessage(
+    oldSrc ? messages[`${location}Replace`] : messages[`${location}Add`],
+  );
 
   // State for individual steps.
+  const [step, setStep] = useState<'select' | 'crop' | 'alt'>('select');
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [imageBlob, setImageBlob] = useState<Blob | null>(null);
 
@@ -94,19 +120,7 @@ export const ImageUploadModal: FC<
 
   return (
     <DialogModal
-      title={
-        hasImage ? (
-          <FormattedMessage
-            id='account_edit.upload_modal.title_replace'
-            defaultMessage='Replace profile photo'
-          />
-        ) : (
-          <FormattedMessage
-            id='account_edit.upload_modal.title_add'
-            defaultMessage='Add profile photo'
-          />
-        )
-      }
+      title={title}
       onClose={onClose}
       wrapperClassName={classes.uploadWrapper}
       noCancelButton
@@ -275,11 +289,6 @@ const StepUpload: FC<{
   );
 };
 
-const zoomLabel = defineMessage({
-  id: 'account_edit.upload_modal.step_crop.zoom',
-  defaultMessage: 'Zoom',
-});
-
 const StepCrop: FC<{
   src: string;
   location: ImageLocation;
@@ -323,7 +332,7 @@ const StepCrop: FC<{
 
       <div className={classes.cropActions}>
         <RangeInputField
-          label={intl.formatMessage(zoomLabel)}
+          label={intl.formatMessage(messages.zoomLabel)}
           min={1}
           max={3}
           step={0.1}
