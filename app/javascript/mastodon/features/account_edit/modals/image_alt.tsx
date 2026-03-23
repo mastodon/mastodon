@@ -69,6 +69,7 @@ export const ImageAltModal: FC<
           imageSrc={imageSrc}
           altText={altText}
           onChange={setAltText}
+          hideTip={location === 'header'}
         />
       </div>
     </ConfirmationModal>
@@ -79,7 +80,8 @@ export const ImageAltTextField: FC<{
   imageSrc: string;
   altText: string;
   onChange: (altText: string) => void;
-}> = ({ imageSrc, altText, onChange }) => {
+  hideTip?: boolean;
+}> = ({ imageSrc, altText, onChange, hideTip }) => {
   const altLimit = useAppSelector(
     (state) =>
       state.server.getIn(
@@ -123,25 +125,27 @@ export const ImageAltTextField: FC<{
         />
       </div>
 
-      <Details
-        summary={
+      {!hideTip && (
+        <Details
+          summary={
+            <FormattedMessage
+              id='account_edit.image_alt_modal.details_title'
+              defaultMessage='Tips: Alt text for profile photos'
+            />
+          }
+          className={classes.altHint}
+        >
           <FormattedMessage
-            id='account_edit.image_alt_modal.details_title'
-            defaultMessage='Tips: Alt text for profile photos'
+            id='account_edit.image_alt_modal.details_content'
+            defaultMessage='DO: <ul> <li>Describe yourself as pictured</li> <li>Use third person language (e.g. “Alex” instead of “me”)</li> <li>Be succinct – a few words is often enough</li> </ul> DON’T: <ul> <li>Start with “Photo of” – it’s redundant for screen readers</li> </ul> EXAMPLE: <ul> <li>“Alex wearing a green shirt and glasses”</li> </ul>'
+            values={{
+              ul: (chunks) => <ul>{chunks}</ul>,
+              li: (chunks) => <li>{chunks}</li>,
+            }}
+            tagName='div'
           />
-        }
-        className={classes.altHint}
-      >
-        <FormattedMessage
-          id='account_edit.image_alt_modal.details_content'
-          defaultMessage='DO: <ul> <li>Describe yourself as pictured</li> <li>Use third person language (e.g. “Alex” instead of “me”)</li> <li>Be succinct – a few words is often enough</li> </ul> DON’T: <ul> <li>Start with “Photo of” – it’s redundant for screen readers</li> </ul> EXAMPLE: <ul> <li>“Alex wearing a green shirt and glasses”</li> </ul>'
-          values={{
-            ul: (chunks) => <ul>{chunks}</ul>,
-            li: (chunks) => <li>{chunks}</li>,
-          }}
-          tagName='div'
-        />
-      </Details>
+        </Details>
+      )}
     </>
   );
 };

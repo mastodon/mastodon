@@ -138,6 +138,7 @@ export const ImageUploadModal: FC<
       )}
       {step === 'alt' && imageBlob && (
         <StepAlt
+          location={location}
           imageBlob={imageBlob}
           onCancel={handleCancel}
           onComplete={handleSave}
@@ -361,7 +362,8 @@ const StepAlt: FC<{
   imageBlob: Blob;
   onCancel: () => void;
   onComplete: (altText: string) => void;
-}> = ({ imageBlob, onCancel, onComplete }) => {
+  location: ImageLocation;
+}> = ({ imageBlob, onCancel, onComplete, location }) => {
   const [altText, setAltText] = useState('');
 
   const handleComplete = useCallback(() => {
@@ -376,6 +378,7 @@ const StepAlt: FC<{
         imageSrc={imageSrc}
         altText={altText}
         onChange={setAltText}
+        hideTip={location === 'header'}
       />
 
       <div className={classes.cropActions}>
