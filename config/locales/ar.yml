@@ -899,6 +899,10 @@ ar:
         all: للجميع
         disabled: لا أحد
         users: للمستخدمين المتصلين محليا
+      landing_page:
+        values:
+          about: عن
+          trends: المتداوَلة
       registrations:
         moderation_recommandation: الرجاء التأكد من أن لديك فريق إشراف كافي وفعال قبل فتح التسجيلات للجميع!
         preamble: تحكّم في مَن الذي يمكنه إنشاء حساب على خادمك الخاص.
@@ -952,6 +956,7 @@ ar:
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       open: افتح المنشور
       original_status: المنشور الأصلي
+      quotes: الاقتباسات
       reblogs: المعاد تدوينها
       replied_to_html: تم الرد على %{acct_link}
       status_changed: عُدّل المنشور
@@ -959,6 +964,7 @@ ar:
       title: منشورات الحساب - @%{name}
       trending: المتداولة
       view_publicly: رؤية الجزء العلني
+      view_quoted_post: عرض المنشور المقتبس
       visibility: مدى الظهور
       with_media: تحتوي على وسائط
     strikes:
@@ -1252,6 +1258,7 @@ ar:
     hint_html: إذا كنت ترغب في الانتقال من حساب آخر إلى هذا الحساب الحالي، يمكنك إنشاء اسم مستعار هنا، والذي هو مطلوب قبل أن تتمكن من المضي قدما في نقل متابِعيك من الحساب القديم إلى هذا الحساب. هذا الإجراء بحد ذاته هو <strong>غير مؤذي و قابل للعكس</strong>. <strong>تتم بداية تهجير الحساب من الحساب القديم</strong>.
     remove: إلغاء ربط الكنية
   appearance:
+    advanced_settings: الإعدادات المتقدمة
     animations_and_accessibility: الإتاحة والحركة
     discovery: الاستكشاف
     localization:
@@ -1734,6 +1741,9 @@ ar:
       expires_at: تنتهي مدة صلاحيتها في
       uses: عدد الاستخدامات
     title: دعوة أشخاص
+  link_preview:
+    potentially_sensitive_content:
+      hide_button: إخفاء
   lists:
     errors:
       limit: لقد بلغت الحد الأقصى للقوائم
@@ -2054,6 +2064,9 @@ ar:
         zero: "%{count} فيديوهات"
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى: %{warning}'
+    content_warnings:
+      hide: إخفاء المنشور
+      show: إظهار المزيد
     default_language: نفس لغة الواجهة
     disallowed_hashtags:
       few: 'يحتوي على وسوم غير مسموح بها: %{tags}'

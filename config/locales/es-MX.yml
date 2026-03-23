@@ -40,14 +40,14 @@ es-MX:
       avatar: Foto de perfil
       by_domain: Dominio
       change_email:
-        changed_msg: Correo cambiado exitosamente!
+        changed_msg: "¡Correo electrónico cambiado correctamente!"
         current_email: Correo electrónico actual
         label: Cambiar el correo electrónico
         new_email: Nuevo correo electrónico
         submit: Cambiar el correo electrónico
         title: Cambiar el correo electrónico de %{username}
       change_role:
-        changed_msg: Rol cambiado exitosamente!
+        changed_msg: "¡Rol cambiado correctamente!"
         edit_roles: Administrar roles de usuario
         label: Cambiar de rol
         no_role: Sin rol
@@ -62,7 +62,7 @@ es-MX:
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
       disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
-      disable_two_factor_authentication: Desactivar autenticación de dos factores
+      disable_two_factor_authentication: Desactivar autenticación de dos pasos
       disabled: Deshabilitada
       display_name: Nombre para mostrar
       domain: Dominio
@@ -105,7 +105,7 @@ es-MX:
       no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
       no_role_assigned: Sin rol asignado
-      not_subscribed: No se está suscrito
+      not_subscribed: No suscrito
       pending: Revisión pendiente
       perform_full_suspension: Suspender
       previous_strikes: Amonestaciones previas
@@ -139,10 +139,10 @@ es-MX:
       search_same_ip: Otros usuarios con la misma IP
       security: Seguridad
       security_measures:
-        only_password: Sólo contraseña
+        only_password: Solo contraseña
         password_and_2fa: Contraseña y 2FA
       sensitive: Sensible
-      sensitized: marcado como sensible
+      sensitized: Marcado como sensible
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
@@ -161,10 +161,10 @@ es-MX:
       unblocked_email_msg: Desbloqueo exitoso de la dirección de correo de %{username}
       unconfirmed_email: Correo electrónico sin confirmar
       undo_sensitized: Desmarcar como sensible
-      undo_silenced: Des-silenciar
-      undo_suspension: Des-suspender
+      undo_silenced: Deshacer límite
+      undo_suspension: Deshacer suspensión
       unsilenced_msg: Se quitó con éxito el límite de la cuenta %{username}
-      unsubscribe: Desuscribir
+      unsubscribe: Cancelar suscripción
       unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
@@ -273,7 +273,7 @@ es-MX:
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
         destroy_username_block_html: "%{name} eliminó la regla para los nombres de usuario que contienen %{target}"
-        disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
+        disable_2fa_user_html: "%{name} desactivó el requisito de dos pasos para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
         disable_relay_html: "%{name} desactivó el relé %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desactivó la autenticación por token de correo electrónico para %{target}"
@@ -312,7 +312,7 @@ es-MX:
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
-      title: Log de auditoría
+      title: Registro de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
       back: Volver a la sección de anuncios
@@ -345,7 +345,7 @@ es-MX:
       copy_failed_msg: No se pudo realizar una copia local de ese emoji
       create_new_category: Crear una nueva categoría
       created_msg: "¡Emoji creado con éxito!"
-      delete: Borrar
+      delete: Eliminar
       destroyed_msg: "¡Emojo destruido con éxito!"
       disable: Deshabilitar
       disabled: Desactivado
@@ -359,7 +359,7 @@ es-MX:
       listed: Listados
       new:
         title: Añadir nuevo emoji personalizado
-      no_emoji_selected: No se cambió ningún emoji ya que no se seleccionó ninguno
+      no_emoji_selected: No se modificó ningún emoji, ya que no se seleccionó ninguno
       not_permitted: No tienes permiso para realizar esta acción
       overwrite: Sobrescribir
       shortcode: Código de atajo
@@ -373,8 +373,8 @@ es-MX:
       upload: Subir
     dashboard:
       active_users: usuarios activos
-      interactions: interaccciones
-      media_storage: Almacenamiento
+      interactions: interacciones
+      media_storage: Almacenamiento multimedia
       new_users: nuevos usuarios
       opened_reports: informes abiertos
       pending_appeals_html:
@@ -413,7 +413,7 @@ es-MX:
       confirm_suspension:
         cancel: Cancelar
         confirm: Suspender
-        permanent_action: Deshacer la suspensión no recuperará ningún data o relaciones.
+        permanent_action: Anular la suspensión no restaurará ningún dato ni relación.
         preamble_html: Estás a punto de suspender a <strong>%{domain}</strong> y sus subdominios.
         remove_all_data: Esto eliminará todo el contenido, multimedia y datos de perfil de las cuentas de este dominio de tu servidor.
         stop_communication: Tu servidor dejará de comunicarse con estos servidores.
@@ -436,7 +436,7 @@ es-MX:
           silence: Limitar
           suspend: Suspender
         title: Nuevo bloque de dominio
-      no_domain_block_selected: No se cambió ningún bloqueo de dominio ya que ninguno fue seleccionado
+      no_domain_block_selected: No se modificó ningún bloqueo de dominio, ya que no se seleccionó ninguno
       not_permitted: No tienes permiso para realizar esta acción
       obfuscate: Ocultar nombre de dominio
       obfuscate_hint: Oculta parcialmente el nombre de dominio en la lista si mostrar la lista de limitaciones de dominio está habilitado
@@ -457,7 +457,7 @@ es-MX:
         one: "%{count} intentos durante la última semana"
         other: "%{count} intentos de registro en la última semana"
       created_msg: Dominio de correo bloqueado con éxito
-      delete: Borrar
+      delete: Eliminar
       dns:
         types:
           mx: Registro MX
@@ -594,7 +594,7 @@ es-MX:
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
-      purge_description_html: Si crees que este dominio está desconectado, puedes borrar todos los registros de cuentas y los datos asociados de este dominio de tu almacenamiento. Esto puede llevar un tiempo.
+      purge_description_html: Si crees que este dominio ya no está activo, puedes eliminar de tu almacenamiento todos los registros de la cuenta y los datos asociados a este dominio. Esto puede tardar un rato.
       title: Instancias conocidas
       total_blocked_by_us: Bloqueado por nosotros
       total_followed_by_them: Seguidos por ellos
@@ -624,13 +624,13 @@ es-MX:
         '94670856': 3 años
       new:
         title: Crear nueva regla IP
-      no_ip_block_selected: No se han cambiado reglas IP ya que no se ha seleccionado ninguna
+      no_ip_block_selected: No se modificó ninguna regla de IP, ya que no se seleccionó ninguna
       title: Reglas IP
     relationships:
       title: Relaciones de %{acct}
     relays:
-      add_new: Añadir un nuevo relés
-      delete: Borrar
+      add_new: Añadir nuevo relé
+      delete: Eliminar
       description_html: Un <strong>relés de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de publicaciones públicas entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
       disable: Deshabilitar
       disabled: Deshabilitado
@@ -659,7 +659,7 @@ es-MX:
         mark_as_sensitive_description_html: Los archivos multimedia en las publicaciones reportadas se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
-        silence_description_html: La cuenta será visible sólo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los reportes contra esta cuenta.
+        silence_description_html: La cuenta será visible solo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los reportes contra esta cuenta.
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y eventualmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los reportes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
@@ -758,7 +758,7 @@ es-MX:
       privileges:
         administrator: Administrador
         administrator_description: Los usuarios con este permiso saltarán todos los permisos
-        delete_user_data: Borrar Datos de Usuario
+        delete_user_data: Eliminar datos de usuario
         delete_user_data_description: Permite a los usuarios eliminar los datos de otros usuarios sin demora
         invite_users: Invitar usuarios
         invite_users_description: Permite a los usuarios invitar a nuevas personas al servidor
@@ -785,7 +785,7 @@ es-MX:
         manage_taxonomies: Administrar Taxonomías
         manage_taxonomies_description: Permite a los usuarios revisar el contenido en tendencia y actualizar la configuración de las etiquetas
         manage_user_access: Administrar Acceso de Usuarios
-        manage_user_access_description: Permite a los usuarios desactivar la autenticación de dos factores de otros usuarios, cambiar su dirección de correo electrónico y restablecer su contraseña
+        manage_user_access_description: Permite a los usuarios desactivar la autenticación de dos pasos de otros usuarios, cambiar su dirección de correo electrónico y restablecer su contraseña
         manage_users: Administrar Usuarios
         manage_users_description: Permite a los usuarios ver los detalles de otros usuarios y realizar acciones de moderación contra ellos
         manage_webhooks: Administrar Webhooks
@@ -1126,7 +1126,7 @@ es-MX:
       updated_msg: Regla de nombre de usuario actualizada correctamente
     warning_presets:
       add_new: Añadir nuevo
-      delete: Borrar
+      delete: Eliminar
       edit_preset: Editar aviso predeterminado
       empty: Aún no has definido ningún preajuste de advertencia.
       title: Preajustes de advertencia
@@ -1238,7 +1238,7 @@ es-MX:
       registration_complete: "¡Tu registro en %{domain} ha sido completado!"
       welcome_title: "¡Bienvenido, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
-    delete_account: Borrar cuenta
+    delete_account: Eliminar cuenta
     delete_account_html: Si deseas eliminar tu cuenta, puedes <a href="%{path}">proceder aquí</a>. Se te pedirá una confirmación.
     description:
       prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
@@ -1248,7 +1248,7 @@ es-MX:
     dont_have_your_security_key: "¿No tienes tu clave de seguridad?"
     forgot_password: "¿Olvidaste tu contraseña?"
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
-    link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
+    link_to_otp: Ingresa un código de dos pasos desde tu teléfono o un código de recuperación
     link_to_webauth: Utilice su dispositivo de clave de seguridad
     log_in_with: Iniciar sesión con
     login: Iniciar sesión
@@ -1426,10 +1426,10 @@ es-MX:
     mutes: Tienes en silencio
     storage: Almacenamiento
   featured_tags:
-    add_new: Añadir nuevo
+    add_new: Añadir nueva
     errors:
       limit: Ya has alcanzado la cantidad máxima de etiquetas
-    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
+    hint_html: "<strong>Destaca tus etiquetas más importantes en tu perfil.</strong> Una herramienta fantástica para llevar un registro de tus trabajos creativos y proyectos a largo plazo; las etiquetas destacadas aparecen en un lugar visible de tu perfil y te permiten acceder rápidamente a tus propias publicaciones."
   filters:
     contexts:
       account: Perfiles
@@ -1448,7 +1448,7 @@ es-MX:
       invalid_context: Se suminstró un contexto inválido o vacío
     index:
       contexts: Filtros en %{contexts}
-      delete: Borrar
+      delete: Eliminar
       empty: No tienes filtros.
       expires_in: Caduca en %{distance}
       expires_on: Expira el %{date}
@@ -1617,7 +1617,7 @@ es-MX:
       password: contraseña
       sign_in_token: código de seguridad por correo electrónico
       webauthn: claves de seguridad
-    description_html: Si ve una actividad que no reconoce, considere cambiar su contraseña y habilitar la autenticación de dos factores.
+    description_html: Si observas alguna actividad que no reconoces, considera cambiar tu contraseña y habilitar la autenticación de dos pasos.
     empty: No hay historial de autenticación disponible
     failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
     successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
@@ -1736,7 +1736,7 @@ es-MX:
           trillion: B
   otp_authentication:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
-    description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
+    description_html: Si habilitas <strong>autenticación de dos pasos</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
     enable: Activar
     instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrás que ingresar cuando quieras iniciar sesión."
     manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
@@ -1876,7 +1876,7 @@ es-MX:
     appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
-    delete: Borrar cuenta
+    delete: Eliminar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar
@@ -1887,11 +1887,11 @@ es-MX:
     notifications: Notificaciones por correo electrónico
     preferences: Preferencias
     profile: Perfil
-    relationships: Siguiendo y seguidores
+    relationships: Seguimientos
     severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación automática de publicaciones
     strikes: Amonestaciones de moderación
-    two_factor_authentication: Autenticación de dos factores
+    two_factor_authentication: Autenticación de dos pasos
     webauthn_authentication: Claves de seguridad
   severed_relationships:
     download: Descargar (%{count})
@@ -1901,7 +1901,7 @@ es-MX:
       user_domain_block: Bloqueaste %{target_name}
     lost_followers: Seguidores perdidos
     lost_follows: Cuentas seguidas perdidas
-    preamble: Puedes perder cuentas seguidas y seguidores cuando bloqueas un dominio o cuando tus moderadores deciden suspender un servidor remoto. Cuando esto suceda, podrás descargar listas de relaciones cortadas, para ser inspeccionadas y posiblemente importadas en otro servidor.
+    preamble: Es posible que pierdas seguidores y seguidos cuando bloquees un dominio o cuando tus moderadores decidan suspender un servidor remoto. Cuando eso ocurra, podrás descargar listas de relaciones interrumpidas, para inspeccionarlas y posiblemente importarlas a otro servidor.
     purged: La información sobre este servidor ha sido purgada por los administradores de tu servidor.
     type: Evento
   statuses:
@@ -1954,7 +1954,7 @@ es-MX:
       unlisted: Pública, pero silenciosa
       unlisted_long: Ocultado de los resultados de búsqueda, tendencias y cronologías públicas de Mastodon
   statuses_cleanup:
-    enabled: Borrar automáticamente publicaciones antiguas
+    enabled: Eliminar automáticamente las publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
     exceptions: Excepciones
     explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
@@ -2020,13 +2020,13 @@ es-MX:
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar
-    disabled_success: Autenticación de doble factor desactivada correctamente
+    disabled_success: Autenticación de dos pasos desactivada correctamente
     edit: Editar
-    enabled: La autenticación de dos factores está activada
-    enabled_success: Verificación de dos factores activada exitosamente
-    generate_recovery_codes: generar códigos de recuperación
+    enabled: La autenticación de dos pasos está activada
+    enabled_success: Verificación de dos pasos activada exitosamente
+    generate_recovery_codes: Generar códigos de recuperación
     lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
-    methods: Métodos de autenticación de doble factor
+    methods: Métodos de autenticación de dos pasos
     otp: Aplicación de autenticación
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
     recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
@@ -2057,13 +2057,13 @@ es-MX:
       details: 'Estos son los detalles del intento de inicio de sesión:'
       explanation: Alguien ha intentado iniciar sesión en tu cuenta pero proporcionó un segundo factor de autenticación inválido.
       further_actions_html: Si no fuiste tú, se recomienda %{action} inmediatamente ya que puede estar comprometido.
-      subject: Fallo de autenticación de segundo factor
-      title: Falló la autenticación de segundo factor
+      subject: Fallo en la autenticación de dos pasos
+      title: Falló la autenticación de dos pasos
     suspicious_sign_in:
       change_password: cambies tu contraseña
       details: 'Aquí están los detalles del inicio de sesión:'
       explanation: Hemos detectado un inicio de sesión en tu cuenta desde una nueva dirección IP.
-      further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
+      further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos pasos para mantener tu cuenta segura.
       subject: Tu cuenta ha sido accedida desde una nueva dirección IP
       title: Un nuevo inicio de sesión
     terms_of_service_changed:
@@ -2149,7 +2149,7 @@ es-MX:
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
     go_to_sso_account_settings: Diríjete a la configuración de la cuenta de su proveedor de identidad
-    invalid_otp_token: Código de dos factores incorrecto
+    invalid_otp_token: Código de dos pasos incorrecto
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     rate_limited: Demasiados intentos de autenticación, inténtalo de nuevo más tarde.
     seamless_external_login: Has iniciado sesión desde un servicio externo, por lo que los ajustes de contraseña y correo electrónico no están disponibles.
@@ -2177,5 +2177,5 @@ es-MX:
     nickname_hint: Introduzca el apodo de su nueva clave de seguridad
     not_enabled: Aún no has activado WebAuthn
     not_supported: Este navegador no soporta claves de seguridad
-    otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de doble factor.
+    otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de dos pasos.
     registered_on: Registrado el %{date}
