@@ -214,7 +214,7 @@ export const AccountEdit: FC = () => {
           description={messages.customFieldsPlaceholder}
           showDescription={!hasFields}
           buttons={
-            <>
+            <div className={classes.fieldButtons}>
               <Button
                 className={classes.editButton}
                 onClick={handleCustomFieldReorder}
@@ -230,7 +230,7 @@ export const AccountEdit: FC = () => {
                 onClick={handleCustomFieldAdd}
                 disabled={profile.fields.length >= maxFieldCount}
               />
-            </>
+            </div>
           }
         >
           {hasFields && (
