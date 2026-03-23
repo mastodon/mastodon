@@ -113,10 +113,22 @@
   gap: 8px;
   align-items: center;
   justify-content: flex-end;
+}
 
-  .zoomControl {
-    width: min(100%, 200px);
-    margin-right: auto;
+.zoomControl {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 200px);
+  margin-right: auto;
+
+  label {
+    font-size: 13px;
+  }
+
+  input {
+    margin: 0;
+    display: block;
   }
 }
 

@@ -8,7 +8,7 @@ import Cropper from 'react-easy-crop';
 
 import { setDragUploadEnabled } from '@/mastodon/actions/compose_typed';
 import { Button } from '@/mastodon/components/button';
-import { RangeInput } from '@/mastodon/components/form_fields/range_input_field';
+import { RangeInputField } from '@/mastodon/components/form_fields/range_input_field';
 import {
   selectImageInfo,
   uploadImage,
@@ -322,14 +322,14 @@ const StepCrop: FC<{
       </div>
 
       <div className={classes.cropActions}>
-        <RangeInput
+        <RangeInputField
+          label={intl.formatMessage(zoomLabel)}
           min={1}
           max={3}
           step={0.1}
           value={zoom}
           onChange={handleZoomChange}
-          className={classes.zoomControl}
-          aria-label={intl.formatMessage(zoomLabel)}
+          wrapperClassName={classes.zoomControl}
         />
         <Button onClick={onCancel} secondary>
           <FormattedMessage
