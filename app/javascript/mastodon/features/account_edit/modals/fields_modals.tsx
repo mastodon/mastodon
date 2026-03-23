@@ -1,4 +1,10 @@
-import { useCallback, useMemo, useState } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -59,6 +65,15 @@ const messages = defineMessages({
     id: 'account_edit.save',
     defaultMessage: 'Save',
   },
+  discardMessage: {
+    id: 'account_edit.field_edit_modal.discard_message',
+    defaultMessage:
+      'You have unsaved changes. Are you sure you want to discard them?',
+  },
+  discardConfirm: {
+    id: 'account_edit.field_edit_modal.discard_confirm',
+    defaultMessage: 'Discard',
+  },
 });
 
 // We have two different values- the hard limit set by the server,
@@ -83,19 +98,35 @@ const selectEmojiCodes = createAppSelector(
   (emojis) => emojis.map((emoji) => emoji.get('shortcode')).toArray(),
 );
 
-export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
-  onClose,
-  fieldKey,
-}) => {
+interface ConfirmationMessage {
+  message: string;
+  confirm: string;
+  props: { fieldKey?: string; lastLabel: string; lastValue: string };
+}
+
+interface ModalRef {
+  getCloseConfirmationMessage: () => null | ConfirmationMessage;
+}
+
+export const EditFieldModal = forwardRef<
+  ModalRef,
+  DialogModalProps & {
+    fieldKey?: string;
+    lastLabel?: string;
+    lastValue?: string;
+  }
+>(({ onClose, fieldKey, lastLabel, lastValue }, ref) => {
   const intl = useIntl();
   const field = useAppSelector((state) => selectFieldById(state, fieldKey));
-  const [newLabel, setNewLabel] = useState(field?.name ?? '');
-  const [newValue, setNewValue] = useState(field?.value ?? '');
+  const [newLabel, setNewLabel] = useState(field?.name ?? lastLabel ?? '');
+  const [newValue, setNewValue] = useState(field?.value ?? lastValue ?? '');
 
   const { nameLimit, valueLimit } = useAppSelector(selectFieldLimits);
   const isPending = useAppSelector((state) => state.profileEdit.isPending);
 
   const disabled =
+    !newLabel.trim() ||
+    !newValue.trim() ||
     !nameLimit ||
     !valueLimit ||
     newLabel.length > nameLimit ||
@@ -124,6 +155,27 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
       updateField({ id: fieldKey, name: newLabel, value: newValue }),
     ).then(onClose);
   }, [disabled, dispatch, fieldKey, isPending, newLabel, newValue, onClose]);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      getCloseConfirmationMessage: () => {
+        if (disabled && !newLabel && !newValue) {
+          return null;
+        }
+        return {
+          message: intl.formatMessage(messages.discardMessage),
+          confirm: intl.formatMessage(messages.discardConfirm),
+          props: {
+            fieldKey,
+            lastLabel: newLabel,
+            lastValue: newValue,
+          },
+        };
+      },
+    }),
+    [disabled, fieldKey, intl, newLabel, newValue],
+  );
 
   return (
     <ConfirmationModal
@@ -195,7 +247,8 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
       )}
     </ConfirmationModal>
   );
-};
+});
+EditFieldModal.displayName = 'EditFieldModal';
 
 export const DeleteFieldModal: FC<DialogModalProps & { fieldKey: string }> = ({
   onClose,
