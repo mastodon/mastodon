@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { CharacterCounter } from '@/mastodon/components/character_counter';
 import { Details } from '@/mastodon/components/details';
 import { TextAreaField } from '@/mastodon/components/form_fields';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
@@ -101,29 +100,23 @@ export const ImageAltTextField: FC<{
     <>
       <img src={imageSrc} alt='' className={classes.altImage} />
 
-      <div>
-        <TextAreaField
-          label={
-            <FormattedMessage
-              id='account_edit.image_alt_modal.text_label'
-              defaultMessage='Alt text'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='account_edit.image_alt_modal.text_hint'
-              defaultMessage='Alt text helps screen reader users to understand your content.'
-            />
-          }
-          onChange={handleChange}
-          value={altText}
-        />
-        <CharacterCounter
-          currentString={altText}
-          maxLength={altLimit}
-          className={classes.altCounter}
-        />
-      </div>
+      <TextAreaField
+        label={
+          <FormattedMessage
+            id='account_edit.image_alt_modal.text_label'
+            defaultMessage='Alt text'
+          />
+        }
+        hint={
+          <FormattedMessage
+            id='account_edit.image_alt_modal.text_hint'
+            defaultMessage='Alt text helps screen reader users to understand your content.'
+          />
+        }
+        onChange={handleChange}
+        value={altText}
+        maxLength={altLimit}
+      />
 
       {!hideTip && (
         <Details
