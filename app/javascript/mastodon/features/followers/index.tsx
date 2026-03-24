@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import type { FC } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessage, FormattedMessage } from 'react-intl';
 
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -14,7 +14,13 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import type { EmptyMessageProps } from './components/empty';
 import { BaseEmptyMessage } from './components/empty';
+import { AccountListHeader } from './components/header';
 import { AccountList } from './components/list';
+
+const titleText = defineMessage({
+  id: 'followers.title',
+  defaultMessage: 'Following {name}',
+});
 
 const Followers: FC = () => {
   const accountId = useAccountId();
@@ -64,6 +70,15 @@ const Followers: FC = () => {
   return (
     <AccountList
       accountId={accountId}
+      header={
+        accountId && (
+          <AccountListHeader
+            accountId={accountId}
+            titleText={titleText}
+            total={account?.followers_count}
+          />
+        )
+      }
       footer={footer}
       emptyMessage={<EmptyMessage account={account} />}
       list={followerList}
