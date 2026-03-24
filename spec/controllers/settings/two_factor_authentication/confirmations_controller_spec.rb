@@ -62,25 +62,51 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
         end
 
         describe 'when creation succeeds' do
-          let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
+          context 'when user has already generated backup codes' do
+            before do
+              user.generate_otp_backup_codes!
+              user.save!
+              prepare_user_otp_consumption_response(true)
+              allow(controller).to receive(:current_user).and_return(user)
+            end
 
-          before do
-            prepare_user_otp_generation
-            prepare_user_otp_consumption_response(true)
-            allow(controller).to receive(:current_user).and_return(user)
+            it 'does not regenerate backup codes and redirects' do
+              allow(user).to receive(:generate_otp_backup_codes!)
+
+              expect { post_create_with_options }
+                .to change { user.reload.otp_secret }.to otp_secret_value
+
+              expect(user).to_not have_received(:generate_otp_backup_codes!)
+              expect(flash[:notice])
+                .to eq(I18n.t('two_factor_authentication.enabled_success'))
+              expect(response)
+                .to have_http_status(302)
+              expect(response)
+                .to redirect_to settings_two_factor_authentication_methods_path
+            end
           end
 
-          it 'renders page with success' do
-            expect { post_create_with_options }
-              .to change { user.reload.otp_secret }.to otp_secret_value
+          context 'when user has not generated backup codes yet' do
+            let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
 
-            expect(flash[:notice])
-              .to eq(I18n.t('two_factor_authentication.enabled_success'))
-            expect(response)
-              .to have_http_status(200)
-            expect(response.body)
-              .to include(*otp_backup_codes)
-              .and include(I18n.t('settings.two_factor_authentication'))
+            before do
+              prepare_user_otp_generation
+              prepare_user_otp_consumption_response(true)
+              allow(controller).to receive(:current_user).and_return(user)
+            end
+
+            it 'renders page with success' do
+              expect { post_create_with_options }
+                .to change { user.reload.otp_secret }.to otp_secret_value
+
+              expect(flash[:notice])
+                .to eq(I18n.t('two_factor_authentication.enabled_success'))
+              expect(response)
+                .to have_http_status(200)
+              expect(response.body)
+                .to include(*otp_backup_codes)
+                .and include(I18n.t('settings.two_factor_authentication'))
+            end
           end
         end
 

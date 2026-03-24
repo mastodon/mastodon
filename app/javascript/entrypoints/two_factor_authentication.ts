@@ -46,19 +46,27 @@ async function callback(
       },
 ) {
   try {
-    const response = await axios.post<{ redirect_path: string }>(
-      url,
-      JSON.stringify(body),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'X-CSRF-Token': getCSRFToken(),
-        },
+    const response = await axios.post<{
+      redirect_path?: string;
+      html_data?: string;
+    }>(url, JSON.stringify(body), {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'X-CSRF-Token': getCSRFToken(),
       },
-    );
+    });
 
-    window.location.replace(response.data.redirect_path);
+    if (response.data.redirect_path !== undefined) {
+      window.location.replace(response.data.redirect_path);
+    } else if (response.data.html_data !== undefined) {
+      const webAuthnCredentialRegistrationPage = document.getElementById(
+        'new-webauthn-credential',
+      );
+      if (webAuthnCredentialRegistrationPage) {
+        webAuthnCredentialRegistrationPage.outerHTML = response.data.html_data;
+      }
+    }
   } catch (error) {
     if (error instanceof AxiosError && error.response?.status === 422) {
       const errorMessage = document.getElementById(
@@ -146,7 +154,9 @@ ready(() => {
   }
 
   const webAuthnCredentialRegistrationForm =
-    document.querySelector<HTMLFormElement>('form#new_webauthn_credential');
+    document.querySelector<HTMLFormElement>(
+      'form#new_webauthn_credential_form',
+    );
   if (webAuthnCredentialRegistrationForm) {
     webAuthnCredentialRegistrationForm.addEventListener('submit', (event) => {
       event.preventDefault();
