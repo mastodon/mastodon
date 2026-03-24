@@ -63,11 +63,12 @@ RSpec.describe Admin::AccountsController do
         note2 = Fabricate(:account_moderation_note, target_account: account, content: 'Note 2 remarks')
 
         get :show, params: { id: account.id }
-        expect(response).to have_http_status(200)
 
-        expect(response.body)
-          .to include(note1.content)
-          .and include(note2.content)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.parsed_body)
+          .to have_css("#account_moderation_note_#{note1.id}", text: note1.content)
+          .and have_css("#account_moderation_note_#{note2.id}", text: note2.content)
       end
     end
 
