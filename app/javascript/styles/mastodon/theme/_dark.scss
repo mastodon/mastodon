@@ -60,13 +60,7 @@
   --color-bg-error-softest: var(--color-red-950);
 
   // Warning
-  --overlay-strength-warning: 10%;
-  --color-bg-warning-base: var(--color-yellow-700);
-  --color-bg-warning-base-hover: color-mix(
-    in oklab,
-    var(--color-bg-warning-base),
-    var(--color-bg-primary) var(--overlay-strength-warning)
-  );
+  --color-bg-warning-base: var(--color-yellow-700); // legacy
   --color-bg-warning-soft: var(--color-yellow-900);
   --color-bg-warning-softest: var(--color-yellow-950);
 
