@@ -3991,10 +3991,7 @@ a.account__display-name {
   box-sizing: border-box;
 
   .react-toggle:hover:not(.react-toggle--disabled) & {
-    background-color: rgb(
-      from var(--color-bg-brand-softest) r g b /
-        calc(50% + var(--overlay-strength-brand))
-    );
+    background-color: rgb(from var(--color-bg-brand-softest) r g b / calc(50%));
   }
 
   .react-toggle--checked & {
@@ -6254,9 +6251,7 @@ a.status-card {
       --default-icon-color: var(--color-text-on-media);
       --default-bg-color: transparent;
       --hover-icon-color: var(--color-text-on-media);
-      --hover-bg-color: rgb(
-        from var(--color-text-on-media) r g b / var(--overlay-strength-brand)
-      );
+      --hover-bg-color: rgb(from var(--color-text-on-media) r g b / 10%);
 
       .icon {
         filter: var(--overlay-icon-shadow);
@@ -6272,8 +6267,7 @@ a.status-card {
         --default-icon-color: var(--color-text-favourite-highlight);
         --hover-icon-color: var(--color-text-favourite-highlight);
         --hover-bg-color: rgb(
-          from var(--color-text-favourite-highlight) r g b /
-            var(--overlay-strength-brand)
+          from var(--color-text-favourite-highlight) r g b / 10%
         );
       }
 

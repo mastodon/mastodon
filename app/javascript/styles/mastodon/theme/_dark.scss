@@ -48,21 +48,10 @@
   --color-bg-disabled: var(--color-grey-700); // legacy
 
   // Brand
-  --overlay-strength-brand: 22%;
   --color-bg-brand-base: var(--color-indigo-700);
-  --color-bg-brand-base-hover: color-mix(
-    in oklab,
-    var(--color-bg-brand-base),
-    var(--color-bg-primary) var(--overlay-strength-brand)
-  );
-  --color-bg-brand-soft: #{utils.css-alpha(
-      #6f4df5,
-      calc(var(--overlay-strength-brand) * 2)
-    )};
-  --color-bg-brand-softest: #{utils.css-alpha(
-      var(--color-bg-brand-base),
-      var(--overlay-strength-brand)
-    )};
+  --color-bg-brand-base-hover: var(--color-indigo-800);
+  --color-bg-brand-soft: var(--color-indigo-900);
+  --color-bg-brand-softest: var(--color-indigo-950);
 
   // Error
   --overlay-strength-error: 10%;
