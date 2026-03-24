@@ -9,7 +9,7 @@ import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import type { TagData } from '@/mastodon/reducers/slices/profile_edit';
 import {
-  addFeaturedTag,
+  addFeaturedTags,
   deleteFeaturedTag,
   fetchProfile,
   fetchSuggestedTags,
@@ -128,7 +128,7 @@ const SuggestedTag: FC<{ name: string; disabled?: boolean }> = ({
 }) => {
   const dispatch = useAppDispatch();
   const handleAddTag = useCallback(() => {
-    void dispatch(addFeaturedTag({ name }));
+    void dispatch(addFeaturedTags({ names: [name] }));
   }, [dispatch, name]);
   return <Tag name={name} onClick={handleAddTag} disabled={disabled} />;
 };

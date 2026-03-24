@@ -361,7 +361,7 @@ es-MX:
       copy_failed_msg: No se pudo realizar una copia local de ese emoji
       create_new_category: Crear una nueva categoría
       created_msg: "¡Emoji creado con éxito!"
-      delete: Borrar
+      delete: Eliminar
       destroyed_msg: "¡Emojo destruido con éxito!"
       disable: Deshabilitar
       disabled: Desactivado
@@ -473,7 +473,7 @@ es-MX:
         one: "%{count} intentos durante la última semana"
         other: "%{count} intentos de registro en la última semana"
       created_msg: Dominio de correo bloqueado con éxito
-      delete: Borrar
+      delete: Eliminar
       dns:
         types:
           mx: Registro MX
@@ -610,7 +610,7 @@ es-MX:
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
-      purge_description_html: Si crees que este dominio está desconectado, puedes borrar todos los registros de cuentas y los datos asociados de este dominio de tu almacenamiento. Esto puede llevar un tiempo.
+      purge_description_html: Si crees que este dominio ya no está activo, puedes eliminar de tu almacenamiento todos los registros de la cuenta y los datos asociados a este dominio. Esto puede tardar un rato.
       title: Instancias conocidas
       total_blocked_by_us: Bloqueado por nosotros
       total_followed_by_them: Seguidos por ellos
@@ -646,7 +646,7 @@ es-MX:
       title: Relaciones de %{acct}
     relays:
       add_new: Añadir nuevo relé
-      delete: Borrar
+      delete: Eliminar
       description_html: Un <strong>relés de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de publicaciones públicas entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
       disable: Deshabilitar
       disabled: Deshabilitado
@@ -776,7 +776,7 @@ es-MX:
       privileges:
         administrator: Administrador
         administrator_description: Los usuarios con este permiso saltarán todos los permisos
-        delete_user_data: Borrar Datos de Usuario
+        delete_user_data: Eliminar datos de usuario
         delete_user_data_description: Permite a los usuarios eliminar los datos de otros usuarios sin demora
         invite_bypass_approval: Invitar a usuarios sin revisión
         invite_bypass_approval_description: Permite que las personas invitadas al servidor por estos usuarios no tengan que pasar por el proceso de aprobación de la moderación
@@ -1148,7 +1148,7 @@ es-MX:
       updated_msg: Regla de nombre de usuario actualizada correctamente
     warning_presets:
       add_new: Añadir nuevo
-      delete: Borrar
+      delete: Eliminar
       edit_preset: Editar aviso predeterminado
       empty: Aún no has definido ningún preajuste de advertencia.
       title: Preajustes de advertencia
@@ -1260,7 +1260,7 @@ es-MX:
       registration_complete: "¡Tu registro en %{domain} ha sido completado!"
       welcome_title: "¡Bienvenido, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
-    delete_account: Borrar cuenta
+    delete_account: Eliminar cuenta
     delete_account_html: Si deseas eliminar tu cuenta, puedes <a href="%{path}">proceder aquí</a>. Se te pedirá una confirmación.
     description:
       prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
@@ -1457,10 +1457,10 @@ es-MX:
     mutes: Tienes en silencio
     storage: Almacenamiento
   featured_tags:
-    add_new: Añadir nuevo
+    add_new: Añadir nueva
     errors:
       limit: Ya has alcanzado la cantidad máxima de etiquetas
-    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
+    hint_html: "<strong>Destaca tus etiquetas más importantes en tu perfil.</strong> Una herramienta fantástica para llevar un registro de tus trabajos creativos y proyectos a largo plazo; las etiquetas destacadas aparecen en un lugar visible de tu perfil y te permiten acceder rápidamente a tus propias publicaciones."
   filters:
     contexts:
       account: Perfiles
@@ -1479,7 +1479,7 @@ es-MX:
       invalid_context: Se suminstró un contexto inválido o vacío
     index:
       contexts: Filtros en %{contexts}
-      delete: Borrar
+      delete: Eliminar
       empty: No tienes filtros.
       expires_in: Caduca en %{distance}
       expires_on: Expira el %{date}
@@ -1913,7 +1913,7 @@ es-MX:
     appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
-    delete: Borrar cuenta
+    delete: Eliminar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar
@@ -1991,7 +1991,7 @@ es-MX:
       unlisted: Pública, pero silenciosa
       unlisted_long: Ocultado de los resultados de búsqueda, tendencias y cronologías públicas de Mastodon
   statuses_cleanup:
-    enabled: Borrar automáticamente publicaciones antiguas
+    enabled: Eliminar automáticamente las publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
     exceptions: Excepciones
     explanation: La eliminación automática se realiza con baja prioridad. Puede haber un retraso entre el momento en que se alcanza el límite de antigüedad y el momento en que se elimina.

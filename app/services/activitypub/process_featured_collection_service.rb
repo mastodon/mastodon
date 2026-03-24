@@ -14,21 +14,22 @@ class ActivityPub::ProcessFeaturedCollectionService
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
 
     with_redis_lock("collection:#{@json['id']}") do
-      return if @account.collections.exists?(uri: @json['id'])
+      Collection.transaction do
+        @collection = @account.collections.find_or_initialize_by(uri: @json['id'])
 
-      @collection = @account.collections.create!(
-        local: false,
-        uri: @json['id'],
-        name: (@json['name'] || '')[0, Collection::NAME_LENGTH_HARD_LIMIT],
-        description_html: truncated_summary,
-        language:,
-        sensitive: @json['sensitive'],
-        discoverable: @json['discoverable'],
-        original_number_of_items: @json['totalItems'] || 0,
-        tag_name: @json.dig('topic', 'name')
-      )
+        @collection.update!(
+          local: false,
+          name: (@json['name'] || '')[0, Collection::NAME_LENGTH_HARD_LIMIT],
+          description_html: truncated_summary,
+          language:,
+          sensitive: @json['sensitive'],
+          discoverable: @json['discoverable'],
+          original_number_of_items: @json['totalItems'] || 0,
+          tag_name: @json.dig('topic', 'name')
+        )
 
-      process_items! if @json['totalItems'].positive?
+        process_items!
+      end
 
       @collection
     end
@@ -46,8 +47,13 @@ class ActivityPub::ProcessFeaturedCollectionService
   end
 
   def process_items!
-    @json['orderedItems'].take(ITEMS_LIMIT).each do |item_json|
-      ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json, @request_id)
+    uris = []
+    items = @json['orderedItems'] || []
+    items.take(ITEMS_LIMIT).each_with_index do |item_json, index|
+      uris << value_or_id(item_json)
+      ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json, index, @request_id)
     end
+    uris.compact!
+    @collection.collection_items.where.not(uri: uris).delete_all
   end
 end

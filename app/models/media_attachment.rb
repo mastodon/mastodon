@@ -39,6 +39,7 @@ class MediaAttachment < ApplicationRecord
   enum :processing, { queued: 0, in_progress: 1, complete: 2, failed: 3 }, prefix: true
 
   MAX_DESCRIPTION_LENGTH = 1_500
+  MAX_DESCRIPTION_HARD_LENGTH_LIMIT = 10_000
 
   IMAGE_LIMIT = (ENV['MAX_IMAGE_SIZE'] || 16.megabytes).to_i
   VIDEO_LIMIT = (ENV['MAX_VIDEO_SIZE'] || 99.megabytes).to_i

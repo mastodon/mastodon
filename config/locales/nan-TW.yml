@@ -762,6 +762,8 @@ nan-TW:
         administrator_description: 有tsit ê權限ê用者ē忽略所有ê權限。
         delete_user_data: Thâi掉用者ê資料
         delete_user_data_description: 允准用者liâm-mi thâi掉其他用者ê資料
+        invite_bypass_approval: 邀請iáu bē審查ê用者
+        invite_bypass_approval_description: 允准予tsiah ê用者邀請kàu tsit臺服侍器ê lâng làng過管理審查許可
         invite_users: 邀請用者
         invite_users_description: 允准用者邀請新lâng來tsit ê服侍器
         manage_announcements: 管理公告
@@ -1238,7 +1240,7 @@ nan-TW:
       welcome_title: 歡迎 %{name}！
       wrong_email_hint: Nā是電子phue ê地址無正確，lí ē當tī口座設定kā改。
     delete_account: Thâi掉口座
-    delete_account_html: Nā lí behthâi掉lí ê口座，lí ē當<a href="%{path}">ji̍h tsia繼續</a>。Lí著確認動作。
+    delete_account_html: Nā lí beh thâi掉lí ê口座，lí ē當<a href="%{path}">ji̍h tsia繼續</a>。Lí著確認動作。
     description:
       prefix_invited_by_user: "@%{name} 邀請lí加入tsit ê Mastodon 服侍器！"
       prefix_sign_up: Tsit-má註冊Mastodon ê口座！
@@ -1258,6 +1260,7 @@ nan-TW:
     progress:
       confirm: 確認電子phue
       details: Lí ê詳細
+      list: 註冊流程
       review: Lán ê審查
       rules: 接受規則
     providers:
@@ -1273,6 +1276,7 @@ nan-TW:
       invited_by: Lí通用有tuì hia收著ê邀請加入 %{domain}：
       preamble: Tsiah-ê hōo %{domain} ê管理員設定kap實施。
       preamble_invited: 佇lí繼續進前，請思考 %{domain} ê管理員設立ê基本規則。
+      read_more: 讀詳細
       title: Tsi̍t-kuá基本規定。
       title_invited: Lí受邀請ah。
     security: 安全
@@ -1953,6 +1957,36 @@ nan-TW:
     keep_direct: 保留私人ê短phue
     keep_direct_hint: Bē thâi掉任何lí ê私人ê提起
     keep_media: 保留有媒體附件ê PO文
+    keep_media_hint: Bē thâi掉lí ê任何有媒體附件ê PO文
+    keep_pinned: 保留所釘ê PO文
+    keep_pinned_hint: Bē thâi掉任何lí所釘ê PO文
+    keep_polls: 保留投票
+    keep_polls_hint: Bē thâi掉任何lí ê投票
+    keep_self_bookmark: 保留lí加冊籤ê PO文
+    keep_self_bookmark_hint: Bē thâi掉lí家kī有加冊籤ê PO文
+    keep_self_fav: 保留lí收藏ê PO文
+    keep_self_fav_hint: Bē thâi掉lí家kī有收藏ê PO文
+    min_age:
+      '1209600': 2 禮拜
+      '15778476': 6 個月
+      '2629746': 1 個月
+      '31556952': 1 年
+      '5259492': 2 個月
+      '604800': 1 禮拜
+      '63113904': 2 年
+      '7889238': 3 個月
+    min_age_label: 保持PO文ê期間
+    min_favs: 保留超過下kha ê收藏數ê PO文
+    min_favs_hint: 若是lí ê PO文有kàu tsit ê收藏數，就bē受thâi掉。留空白表示毋管收藏數，PO文lóng thâi掉
+    min_reblogs: 保留超過下kha ê轉送數ê PO文
+    min_reblogs_hint: 若是lí ê PO文有kàu tsit ê轉送數，就bē受thâi掉。留空白表示毋管轉送數，PO文lóng thâi掉
+  stream_entries:
+    sensitive_content: 敏感ê內容
+  strikes:
+    errors:
+      too_late: Lí bē赴申訴tsit ê處份ah
+  tags:
+    does_not_match_previous_name: kap進前ê名無kâng
   terms_of_service:
     title: 服務規定
   themes:

@@ -136,6 +136,7 @@ class UpdateStatusService < BaseService
   def update_metadata!
     ProcessHashtagsService.new.call(@status)
     ProcessMentionsService.new.call(@status)
+    ProcessLinksService.new.call(@status)
   end
 
   def broadcast_updates!

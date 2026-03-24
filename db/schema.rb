@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_18_144837) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_19_142348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1245,6 +1245,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_18_144837) do
     t.index ["tag_id", "language"], name: "index_tag_trends_on_tag_id_and_language", unique: true
   end
 
+  create_table "tagged_objects", force: :cascade do |t|
+    t.string "ap_type", null: false
+    t.datetime "created_at", null: false
+    t.bigint "object_id"
+    t.string "object_type"
+    t.bigint "status_id", null: false
+    t.datetime "updated_at", null: false
+    t.string "uri"
+    t.index ["object_type", "object_id"], name: "index_tagged_objects_on_object"
+    t.index ["status_id", "object_type", "object_id"], name: "idx_on_status_id_object_type_object_id_d6ebe374bd", unique: true, where: "((object_type IS NOT NULL) AND (object_id IS NOT NULL))"
+    t.index ["status_id", "uri"], name: "index_tagged_objects_on_status_id_and_uri", unique: true, where: "(uri IS NOT NULL)"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.string "display_name"
@@ -1550,6 +1563,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_18_144837) do
   add_foreign_key "tag_follows", "accounts", on_delete: :cascade
   add_foreign_key "tag_follows", "tags", on_delete: :cascade
   add_foreign_key "tag_trends", "tags", on_delete: :cascade
+  add_foreign_key "tagged_objects", "statuses", on_delete: :cascade
   add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "user_invite_requests", "users", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade

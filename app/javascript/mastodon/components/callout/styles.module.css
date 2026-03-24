@@ -32,6 +32,10 @@
 .body {
   flex-grow: 1;
 
+  a {
+    color: inherit;
+  }
+
   h3 {
     font-weight: 500;
     margin-bottom: 5px;
@@ -51,6 +55,7 @@
   color: inherit;
   font-weight: 500;
   padding: 0;
+  text-wrap: nowrap;
   text-decoration: underline;
   transition: color 0.1s ease-in-out;
 
@@ -80,14 +85,14 @@
   }
 }
 
-/* .variantSubtle {
+.variantSubtle {
   border: 1px solid var(--color-bg-brand-softer);
   background-color: var(--color-bg-primary);
 
   .icon {
     background-color: var(--color-bg-brand-softer);
   }
-} */
+}
 
 .variantFeature {
   background-color: var(--color-bg-brand-base);

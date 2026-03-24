@@ -731,6 +731,30 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with tagged Featured Collections' do
+        let(:featured_collection) { Fabricate(:collection) }
+
+        let(:object_json) do
+          build_object(
+            tag: [
+              {
+                type: 'FeaturedCollection',
+                id: ActivityPub::TagManager.instance.uri_for(featured_collection),
+              },
+            ]
+          )
+        end
+
+        it 'creates the status with appropriate tagged objects' do
+          expect { subject.perform }
+            .to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+
+          expect(status.tagged_objects.map(&:object)).to contain_exactly(featured_collection)
+        end
+      end
+
       context 'with hashtags' do
         let(:object_json) do
           build_object(

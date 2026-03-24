@@ -135,6 +135,9 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.discoverable            = @json['discoverable'] || false
     @account.indexable               = @json['indexable'] || false
     @account.memorial                = @json['memorial'] || false
+    @account.show_featured           = @json['showFeatured'] if @json.key?('showFeatured')
+    @account.show_media              = @json['showMedia'] if @json.key?('showMedia')
+    @account.show_media_replies      = @json['showRepliesInMedia'] if @json.key?('showRepliesInMedia')
     @account.attribution_domains     = as_array(@json['attributionDomains'] || []).take(Account::ATTRIBUTION_DOMAINS_HARD_LIMIT).map { |item| value_or_id(item) }
   end
 
@@ -238,7 +241,7 @@ class ActivityPub::ProcessAccountService < BaseService
       url = first_of_value(value['url'])
       url = url['href'] if url.is_a?(Hash)
       description = value['summary'].presence || value['name'].presence
-      description = description.strip[0...MediaAttachment::MAX_DESCRIPTION_LENGTH] if description.present?
+      description = description.strip[0...MediaAttachment::MAX_DESCRIPTION_HARD_LENGTH_LIMIT] if description.present?
     else
       url = value
     end

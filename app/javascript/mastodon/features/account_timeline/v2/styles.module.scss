@@ -49,8 +49,12 @@
   }
 }
 
-.tagsWrapper {
+.tagsWrapper,
+.tagSuggestions {
   margin: 0 24px 8px;
+}
+
+.tagsWrapper {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;

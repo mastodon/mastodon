@@ -42,6 +42,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status
     @tags                 = []
     @mentions             = []
+    @tagged_objects       = []
     @unresolved_mentions  = []
     @silenced_account_ids = []
     @params               = {}
@@ -56,6 +57,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ApplicationRecord.transaction do
       @status = Status.create!(@params.merge(quote: @quote))
       attach_tags(@status)
+      attach_tagged_objects(@status)
       attach_mentions(@status)
       attach_counts(@status)
     end
@@ -181,6 +183,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
+  def attach_tagged_objects(status)
+    @tagged_objects.each do |tagged_object|
+      tagged_object.status = status
+      tagged_object.save
+    end
+  end
+
   def attach_mentions(status)
     @mentions.each do |mention|
       mention.status = status
@@ -210,6 +219,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_mention tag
       elsif equals_or_includes?(tag['type'], 'Emoji')
         process_emoji tag
+      elsif equals_or_includes?(tag['type'], 'FeaturedCollection')
+        process_tagged_collection tag
       end
     end
   end
@@ -264,6 +275,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     rescue Seahorse::Client::NetworkingError => e
       Rails.logger.warn "Error storing emoji: #{e}"
     end
+  end
+
+  def process_tagged_collection(tag)
+    return if tag['id'].blank?
+
+    # TODO: We probably want to resolve unknown objects and push them to an `@unresolved_tagged_objects` on failure
+    collection = ActivityPub::TagManager.instance.uri_to_resource(tag['id'], Collection)
+
+    @tagged_objects << TaggedObject.new(uri: ActivityPub::TagManager.instance.uri_for(collection), object: collection, ap_type: 'FeaturedCollection') if collection.present?
   end
 
   def process_attachments
