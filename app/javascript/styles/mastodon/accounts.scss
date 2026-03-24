@@ -221,7 +221,7 @@
   &.superapp {
     color: var(--color-text-success);
     background-color: var(--color-bg-success-softer);
-    border-color: var(--color-border-on-bg-success-softer);
+    border-color: var(--color-border-success-soft);
   }
 }
 
@@ -256,7 +256,7 @@
 .simple_form .not_recommended {
   color: var(--color-text-error);
   background-color: var(--color-bg-error-softer);
-  border-color: var(--color-border-on-bg-error-softer);
+  border-color: var(--color-border-error-soft);
 }
 
 .account__header__fields {
@@ -310,7 +310,7 @@
   }
 
   .verified {
-    border: 1px solid var(--color-border-on-bg-success-softer);
+    border: 1px solid var(--color-border-success-soft);
     background: var(--color-bg-success-softer);
 
     a {

@@ -184,7 +184,7 @@
       &:active,
       &:focus,
       &:hover {
-        border-color: var(--color-text-error);
+        border-color: var(--color-border-error);
         color: var(--color-text-error);
       }
     }
@@ -365,7 +365,7 @@
     color: var(--color-text-success);
     transition: none;
     background-color: var(--color-bg-success-softer);
-    border-color: var(--color-border-on-bg-success-softer);
+    border-color: var(--color-border-success-soft);
   }
 }
 
@@ -551,7 +551,7 @@ body > [data-popper-placement] {
   &__warning {
     color: var(--color-text-primary);
     background: var(--color-bg-warning-softer);
-    border: 1px solid var(--color-border-on-bg-warning-softer);
+    border: 1px solid var(--color-border-warning-soft);
     padding: 8px 10px;
     border-radius: 4px;
     font-size: 13px;
@@ -6918,7 +6918,7 @@ a.status-card {
   }
 
   .button.button-secondary {
-    border-color: var(--color-text-error);
+    border-color: var(--color-border-error);
     color: var(--color-text-error);
     flex: 0 0 auto;
 
@@ -9679,7 +9679,7 @@ noscript {
     }
 
     &.invalid &__input {
-      border-color: var(--color-text-error);
+      border-color: var(--color-border-error);
     }
 
     &.expanded .search__popout {
@@ -10017,7 +10017,7 @@ noscript {
 }
 
 .warning-banner {
-  border: 1px solid var(--color-border-on-bg-error-softer);
+  border: 1px solid var(--color-border-error-soft);
   background: var(--color-bg-error-softer);
 
   &__message {

@@ -122,21 +122,18 @@
   --color-border-primary: var(--color-grey-200);
   --color-border-brand: var(--color-text-brand);
   --color-border-brand-soft: var(--color-indigo-200);
-  --color-border-media: rgb(252 248 255 / 15%);
-  --color-border-verified: rgb(220, 3, 240);
-  --color-border-on-bg-error-softer: #{utils.css-alpha(
-      var(--color-text-error),
-      50%
-    )};
-  --color-border-on-bg-warning-softer: #{utils.css-alpha(
+  --color-border-error: var(--color-red-700);
+  --color-border-media: rgb(252 248 255 / 15%); // legacy
+  --color-border-error-soft: #{utils.css-alpha(var(--color-text-error), 50%)}; // legacy
+  --color-border-warning-soft: #{utils.css-alpha(
       var(--color-text-warning),
       50%
-    )};
-  --color-border-on-bg-success-softer: #{utils.css-alpha(
+    )}; // legacy
+
+  --color-border-success-soft: #{utils.css-alpha(
       var(--color-text-success),
       50%
-    )};
-  --color-border-on-bg-inverted: var(--color-border-primary);
+    )}; // legacy
 
   /* SHADOW TOKENS */
 
