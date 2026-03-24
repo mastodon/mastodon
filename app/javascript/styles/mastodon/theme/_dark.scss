@@ -42,14 +42,10 @@
 
   // Utility
   --color-bg-inverted: var(--color-grey-50);
-  --color-bg-media-base: var(--color-black);
-  --color-bg-media-strength: 65%;
-  --color-bg-media: #{utils.css-alpha(
-      var(--color-bg-media-base),
-      var(--color-bg-media-strength)
-    )};
-  --color-bg-overlay: var(--color-black);
-  --color-bg-disabled: var(--color-grey-700);
+  --color-bg-overlay: var(--color-black); // legacy
+  --color-bg-media-base: var(--color-black); // legacy
+  --color-bg-media: #{utils.css-alpha(var(--color-bg-media-base), 65%)}; // legacy
+  --color-bg-disabled: var(--color-grey-700); // legacy
 
   // Brand
   --overlay-strength-brand: 22%;
