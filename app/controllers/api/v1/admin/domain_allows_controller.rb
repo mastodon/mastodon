@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Admin::DomainAllowsController < Api::BaseController
-  include Authorization
-  include AccountableConcern
-
+class Api::V1::Admin::DomainAllowsController < Api::V1::Admin::BaseController
   LIMIT = 100
   MAX_LIMIT = 500
 

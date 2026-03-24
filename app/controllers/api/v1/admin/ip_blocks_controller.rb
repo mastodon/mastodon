@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Admin::IpBlocksController < Api::BaseController
-  include Authorization
-  include AccountableConcern
-
+class Api::V1::Admin::IpBlocksController < Api::V1::Admin::BaseController
   LIMIT = 100
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:ip_blocks' }, only: [:index, :show]
