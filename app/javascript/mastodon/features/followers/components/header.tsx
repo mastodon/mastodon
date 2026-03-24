@@ -17,19 +17,19 @@ export const AccountListHeader: FC<{
   const account = useAccount(accountId);
   return (
     <>
-      <h2 className={classes.title}>
+      <h1 className={classes.title}>
         {intl.formatMessage(titleText, {
           name: <DisplayNameSimple account={account} />,
         })}
-      </h2>
+      </h1>
       {!!total && (
-        <h3 className={classes.subtitle}>
+        <h2 className={classes.subtitle}>
           <FormattedMessage
             id='account_list.total'
             defaultMessage='{total, plural, one {# account} other {# accounts}}'
             values={{ total }}
           />
-        </h3>
+        </h2>
       )}
     </>
   );
