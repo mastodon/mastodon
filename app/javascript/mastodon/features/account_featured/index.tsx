@@ -111,8 +111,11 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     );
   }
 
+  const noTags =
+    featuredTags.isEmpty() || isServerFeatureEnabled('profile_redesign');
+
   if (
-    featuredTags.isEmpty() &&
+    noTags &&
     featuredAccountIds.isEmpty() &&
     listedCollections.length === 0
   ) {
@@ -158,7 +161,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
             </ItemList>
           </>
         )}
-        {!featuredTags.isEmpty() && (
+        {!noTags && (
           <>
             <h4 className='column-subheading'>
               <FormattedMessage
