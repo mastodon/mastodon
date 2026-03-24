@@ -50,13 +50,8 @@
   --color-bg-brand-softest: var(--color-indigo-50);
 
   // Error
-  --overlay-strength-error: 5%;
   --color-bg-error-base: var(--color-red-700);
-  --color-bg-error-base-hover: color-mix(
-    in oklab,
-    var(--color-bg-error-base),
-    black var(--overlay-strength-error)
-  );
+  --color-bg-error-base-hover: var(--color-red-800); // legacy
   --color-bg-error-soft: var(--color-red-100);
   --color-bg-error-softest: var(--color-red-50);
 
