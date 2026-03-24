@@ -5,6 +5,8 @@ class ActivityPub::ProcessFeaturedItemService
   include Lockable
   include Redisable
 
+  PROCESSING_DELAY = (30.seconds)..(10.minutes)
+
   def call(collection, uri_or_object, position: nil, request_id: nil)
     @collection = collection
     @request_id = request_id
@@ -47,6 +49,6 @@ class ActivityPub::ProcessFeaturedItemService
   def verify_authorization!
     ActivityPub::VerifyFeaturedItemService.new.call(@collection_item, @approval_uri, request_id: @request_id)
   rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-    ActivityPub::VerifyFeaturedItemWorker.perform_in(rand(30..600).seconds, @collection_item.id, @approval_uri, @request_id)
+    ActivityPub::VerifyFeaturedItemWorker.perform_in(rand(PROCESSING_DELAY), @collection_item.id, @approval_uri, @request_id)
   end
 end
