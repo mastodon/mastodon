@@ -31,13 +31,13 @@ es-AR:
           suspend: Evitá cualquier interacción desde o hacia esta cuenta y eliminá su contenido. Revertible en 30 días. Esto cierra todas las denuncias contra esta cuenta.
         warning_preset_id: Opcional. Todavía podés agregar texto personalizado al final del preajuste
       announcement:
-        all_day: Cuando esté seleccionado, sólo se mostrarán las fechas del rango de tiempo
+        all_day: Cuando esté seleccionado, solo se mostrarán las fechas del rango de tiempo
         ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
         scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
         starts_at: Opcional. En caso de que tu anuncio esté vinculado a un rango de tiempo específico
         text: Podés usar sintaxis de mensajes. Por favor, tené en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       appeal:
-        text: Sólo podés apelar un incumplimiento una vez
+        text: Solo podés apelar un incumplimiento una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -45,7 +45,7 @@ es-AR:
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
         current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
-        digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
+        digest: Solo enviado tras un largo periodo de inactividad, y solo si recibiste mensajes personales en tu ausencia
         email: Se te enviará un correo electrónico de confirmación
         header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copiá la dirección web desde la página principal del relé que querés usar
@@ -55,7 +55,7 @@ es-AR:
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un mensaje
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
         setting_advanced_layout: Mostrar Mastodon como una disposición de varias columnas, permitiéndote ver la línea temporal, las notificaciones y una tercera columna de tu elección. No recomendado para pantallas pequeñas.
-        setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (sólo afecta a las adhesiones recibidas recientemente)
+        setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (solo afecta a las adhesiones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_boost_modal: Al estar activado, la adhesión abrirá primero un diálogo de confirmación en el que podés cambiar su visibilidad.
         setting_default_quote_policy_private: Los mensajes solo para seguidores redactados en Mastodon no pueden ser citados por otras cuentas.
@@ -70,7 +70,7 @@ es-AR:
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
         username: Podés usar letras, números y subguiones ("_")
-        whole_word: Cuando la palabra clave o frase es sólo alfanumérica, sólo será aplicado si coincide con toda la palabra
+        whole_word: Cuando la palabra clave o frase sea solo alfanumérica, solamente será aplicado si coincide con toda la palabra
       domain_allow:
         domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
       email_domain_block:
@@ -97,7 +97,7 @@ es-AR:
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios de mensajes publicados por usuarios remotos se almacenan en la memoria caché en tu servidor. Cuando se establece un valor positivo, los medios se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si es que el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlace consultan a sitios web de terceros, se recomienda establecer este valor a, al menos, 14 días, o las tarjetas de previsualización de enlaces no se actualizarán a pedido antes de ese momento.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
-        peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, sólo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
+        peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, solo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
         require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
         site_contact_email: Cómo la gente puede estar en contacto con vos para consultas legales o de ayuda.
@@ -136,7 +136,7 @@ es-AR:
         indexable: Tu página de perfil podría aparecer en los resultados de búsqueda en Google, Bing y otros motores de búsqueda.
         show_application: Sin embargo, siempre podrás ver desde qué aplicación se envió tu mensaje.
       tag:
-        name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
+        name: Solo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       terms_of_service:
         changelog: Se puede estructurar con sintaxis Markdown.
         effective_date: Un plazo razonable puede oscilar entre 10 y 30 días a partir de la fecha de notificación a tus usuarios.
@@ -152,7 +152,7 @@ es-AR:
         jurisdiction: Listá el país donde vive quien paga las facturas. Si es una empresa u otra entidad, enumerá el país donde está basada y la ciudad, región, territorio o provincia/estado, según corresponda.
         min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
-        chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
+        chosen_languages: Cuando estén marcados, solo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
         date_of_birth:
           one: Tenemos que asegurarnos de que al menos tenés %{count} años de edad para usar %{domain}. No almacenaremos esta información.
           other: Tenemos que asegurarnos de que al menos tenés %{count} años de edad para usar %{domain}. No almacenaremos esta información.
@@ -162,7 +162,7 @@ es-AR:
         highlighted: Esto hace que el rol sea públicamente visible
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a…
-        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
+        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones solo pueden llevarse a cabo en roles con prioridad inferior
       username_block:
         allow_with_approval: En lugar de impedir el registro total, los registros coincidentes requerirán tu aprobación
         comparison: Por favor, tené en cuenta el Problema de Scunthorpe al bloquear coincidencias parciales

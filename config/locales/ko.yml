@@ -657,7 +657,7 @@ ko:
       add_to_report: 신고에 더 추가하기
       already_suspended_badges:
         local: 이 서버에서 이미 정지되었습니다
-        remote: 저 서버에서 이미 정지되었습니다
+        remote: 이미 해당 서버에서 정지함
       are_you_sure: 확실합니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당된 중재자
@@ -784,7 +784,7 @@ ko:
         view_dashboard_description: 사용자가 여러 통계정보를 볼 수 있는 대시보드에 접근할 수 있도록 허용
         view_devops: 데브옵스
         view_devops_description: Sidekiq과 pgHero 대시보드에 접근할 수 있도록 허용
-        view_feeds: 실시간, 해시태그 피드 보기
+        view_feeds: 실시간 및 화제 피드 보기
         view_feeds_description: 서버 설정에 관계 없이 실시간과 해시태그 피드에 접근할 수 있도록 허용
       title: 역할
     rules:
@@ -1746,7 +1746,7 @@ ko:
       unrecognized_emoji: 인식 되지 않은 에모지입니다
   redirects:
     prompt: 이 링크를 믿을 수 있다면, 클릭해서 계속하세요.
-    title: "%{instance}를 떠나려고 합니다."
+    title: "%{instance}을(를) 떠나려고 합니다."
   relationships:
     activity: 계정 활동
     confirm_follow_selected_followers: 정말로 선택된 팔로워들을 팔로우하시겠습니까?
@@ -1791,7 +1791,7 @@ ko:
     browsers:
       alipay: 알리페이
       blackberry: 블랙베리
-      chrome: 크롬
+      chrome: Chrome
       edge: 마이크로소프트 엣지
       electron: 일렉트론
       firefox: 파이어폭스
@@ -2009,7 +2009,7 @@ ko:
     backup_ready:
       explanation: 마스토돈 계정에 대한 전체 백업을 요청했습니다
       extra: 다운로드 할 준비가 되었습니다!
-      subject: 아카이브를 다운로드할 수 있습니다
+      subject: 다운로드할 아카이의 준비를 마침
       title: 아카이브 테이크아웃
     failed_2fa:
       details: '로그인 시도에 대한 상세 정보입니다:'

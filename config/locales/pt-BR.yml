@@ -13,18 +13,18 @@ pt-BR:
     following: Seguindo
     instance_actor_flash: Esta conta é um ator virtual usado para representar o próprio servidor e não um usuário individual. É utilizada para fins de federação e não deve ser suspensa.
     last_active: última atividade
-    link_verified_on: O link foi verificado em %{date}
+    link_verified_on: A propriedade do link foi verificada em %{date}
     nothing_here: Nada aqui!
     pin_errors:
-      following: Você deve estar seguindo a pessoa que você deseja sugerir
+      following: Você deve já estar seguindo a pessoa que você deseja sugerir
     posts:
       one: Publicação
       other: Publicações
     posts_tab_heading: Publicações
-    self_follow_error: Seguir sua conta não é permitido
+    self_follow_error: Não é permitido seguir sua própria conta
   admin:
     account_actions:
-      action: Tomar uma atitude
+      action: Efetuar uma ação
       already_silenced: Esta conta já foi limitada.
       already_suspended: Esta conta já foi suspensa.
       title: Moderar %{acct}
@@ -1198,8 +1198,8 @@ pt-BR:
   appearance:
     advanced_settings: Configurações avançadas
     animations_and_accessibility: Animações e acessibilidade
-    boosting_preferences: Adicionar preferências
-    boosting_preferences_info_html: "<strong>Dica:</strong> Independentemente das configurações, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} Boost irá impulsionar imediatamente."
+    boosting_preferences: Preferências de impulsionamento
+    boosting_preferences_info_html: "<strong>Dica:</strong> Independentemente das configurações, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} Impulsionar irá impulsionar imediatamente."
     discovery: Descobrir
     localization:
       body: Mastodon é traduzido por voluntários.
@@ -1478,8 +1478,8 @@ pt-BR:
       one: "<strong>%{count}</strong> item nessa página está selecionado."
       other: Todos os <strong>%{count}</strong> itens nessa página estão selecionados.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> item correspondente à sua pesquisa está selecionado."
-      other: Todos os <strong>%{count}</strong> itens correspondentes à sua pesquisa estão selecionados.
+      one: "<strong>%{count}</strong> item correspondente à sua busca está selecionado."
+      other: Todos os <strong>%{count}</strong> itens correspondentes à sua busca estão selecionados.
     cancel: Cancelar
     changes_saved_msg: Alterações salvas!
     confirm: Confirmar
@@ -1490,8 +1490,8 @@ pt-BR:
     order_by: Ordenar por
     save_changes: Salvar alterações
     select_all_matching_items:
-      one: Selecione %{count} item correspondente à sua pesquisa.
-      other: Selecione todos os %{count} itens correspondentes à sua pesquisa.
+      one: Selecione %{count} item correspondente à sua busca.
+      other: Selecione todos os %{count} itens correspondentes à sua busca.
     today: hoje
     validation_errors:
       one: Algo não está certo! Analise o erro abaixo
@@ -1633,7 +1633,7 @@ pt-BR:
           follow: seguir emails de notificação
           follow_request: emails de seguidores pendentes
           mention: emails de notificação de menções
-          reblog: emails de notificação de boosts
+          reblog: emails de notificação de impulsos
       resubscribe_html: Se você cancelou sua inscrição por engano, você pode se inscrever novamente em suas <a href="%{settings_path}"> configurações de notificações por e-mail</a>.
       success_html: Você não mais receberá %{type} no Mastodon em %{domain} ao seu endereço de e-mail %{email}.
       title: Cancelar inscrição
@@ -1818,7 +1818,7 @@ pt-BR:
       account: Publicações públicas de @%{acct}
       tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para esse dia
+    over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para hoje
     over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
     too_soon: a data deve ser no futuro
   self_destruct:
@@ -1953,7 +1953,7 @@ pt-BR:
       public: Público
       public_long: Qualquer um dentro ou fora do Mástodon
       unlisted: Publicação silenciada
-      unlisted_long: Oculto aos resultados de pesquisa em Mástodon
+      unlisted_long: Oculto aos resultados de busca, destaques e linhas do tempo públicas no Mastodon
   statuses_cleanup:
     enabled: Excluir publicações antigas automaticamente
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo
