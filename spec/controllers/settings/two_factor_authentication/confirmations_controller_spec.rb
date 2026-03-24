@@ -100,8 +100,8 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
           it 'renders page with error message' do
             subject
 
-            expect(response.body)
-              .to include(I18n.t('otp_authentication.wrong_code'))
+            expect(response.parsed_body)
+              .to have_css('.flash-message', text: I18n.t('otp_authentication.wrong_code'))
           end
 
           it_behaves_like 'renders expected page'
