@@ -42,6 +42,10 @@ export const messages = defineMessages({
     defaultMessage:
       'Your display name is how your name appears on your profile and in timelines.',
   },
+  displayNameLabel: {
+    id: 'account_edit.display_name.label',
+    defaultMessage: 'display name',
+  },
   bioTitle: {
     id: 'account_edit.bio.title',
     defaultMessage: 'Bio',
@@ -49,6 +53,10 @@ export const messages = defineMessages({
   bioPlaceholder: {
     id: 'account_edit.bio.placeholder',
     defaultMessage: 'Add a short introduction to help others identify you.',
+  },
+  bioLabel: {
+    id: 'account_edit.bio.label',
+    defaultMessage: 'bio',
   },
   customFieldsTitle: {
     id: 'account_edit.custom_fields.title',
@@ -59,7 +67,7 @@ export const messages = defineMessages({
     defaultMessage:
       'Add your pronouns, external links, or anything else you’d like to share.',
   },
-  customFieldsName: {
+  customFieldsLabel: {
     id: 'account_edit.custom_fields.name',
     defaultMessage: 'field',
   },
@@ -182,7 +190,7 @@ export const AccountEdit: FC = () => {
           buttons={
             <EditButton
               onClick={handleNameEdit}
-              item={messages.displayNameTitle}
+              item={messages.displayNameLabel}
               edit={hasName}
             />
           }
@@ -197,7 +205,7 @@ export const AccountEdit: FC = () => {
           buttons={
             <EditButton
               onClick={handleBioEdit}
-              item={messages.bioTitle}
+              item={messages.bioLabel}
               edit={hasBio}
             />
           }
@@ -226,7 +234,7 @@ export const AccountEdit: FC = () => {
                 />
               </Button>
               <EditButton
-                item={messages.customFieldsName}
+                item={messages.customFieldsLabel}
                 onClick={handleCustomFieldAdd}
                 disabled={profile.fields.length >= maxFieldCount}
               />
@@ -241,7 +249,7 @@ export const AccountEdit: FC = () => {
                     <AccountField {...field} {...htmlHandlers} />
                   </div>
                   <AccountFieldActions
-                    item={intl.formatMessage(messages.customFieldsName)}
+                    item={intl.formatMessage(messages.customFieldsLabel)}
                     id={field.id}
                   />
                 </li>

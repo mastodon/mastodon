@@ -46,7 +46,7 @@ export const EditButton: FC<EditButtonProps> = ({
 
   const itemText = typeof item === 'string' ? item : intl.formatMessage(item);
   const label = intl.formatMessage(messages[edit ? 'edit' : 'add'], {
-    item: itemText.toLocaleLowerCase(intl.locale),
+    item: itemText,
   });
 
   if (icon) {
