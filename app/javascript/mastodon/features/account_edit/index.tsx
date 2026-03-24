@@ -42,9 +42,13 @@ export const messages = defineMessages({
     defaultMessage:
       'Your display name is how your name appears on your profile and in timelines.',
   },
-  displayNameLabel: {
-    id: 'account_edit.display_name.label',
-    defaultMessage: 'display name',
+  displayNameAddLabel: {
+    id: 'account_edit.display_name.add_label',
+    defaultMessage: 'Add display name',
+  },
+  displayNameEditLabel: {
+    id: 'account_edit.display_name.edit_label',
+    defaultMessage: 'Edit display name',
   },
   bioTitle: {
     id: 'account_edit.bio.title',
@@ -54,9 +58,13 @@ export const messages = defineMessages({
     id: 'account_edit.bio.placeholder',
     defaultMessage: 'Add a short introduction to help others identify you.',
   },
-  bioLabel: {
+  bioAddLabel: {
     id: 'account_edit.bio.label',
-    defaultMessage: 'bio',
+    defaultMessage: 'Add bio',
+  },
+  bioEditLabel: {
+    id: 'account_edit.bio.edit_label',
+    defaultMessage: 'Edit bio',
   },
   customFieldsTitle: {
     id: 'account_edit.custom_fields.title',
@@ -67,9 +75,13 @@ export const messages = defineMessages({
     defaultMessage:
       'Add your pronouns, external links, or anything else you’d like to share.',
   },
-  customFieldsLabel: {
-    id: 'account_edit.custom_fields.name',
-    defaultMessage: 'field',
+  customFieldsAddLabel: {
+    id: 'account_edit.custom_fields.add_label',
+    defaultMessage: 'Add field',
+  },
+  customFieldsEditLabel: {
+    id: 'account_edit.custom_fields.edit_label',
+    defaultMessage: 'Edit field',
   },
   customFieldsTipTitle: {
     id: 'account_edit.custom_fields.tip_title',
@@ -84,9 +96,9 @@ export const messages = defineMessages({
     defaultMessage:
       'Help others identify, and have quick access to, your favorite topics.',
   },
-  featuredHashtagsItem: {
-    id: 'account_edit.featured_hashtags.item',
-    defaultMessage: 'hashtags',
+  featuredHashtagsEditLabel: {
+    id: 'account_edit.featured_hashtags.edit_label',
+    defaultMessage: 'Add hashtags',
   },
   profileTabTitle: {
     id: 'account_edit.profile_tab.title',
@@ -190,8 +202,12 @@ export const AccountEdit: FC = () => {
           buttons={
             <EditButton
               onClick={handleNameEdit}
-              item={messages.displayNameLabel}
-              edit={hasName}
+              label={intl.formatMessage(
+                hasName
+                  ? messages.displayNameEditLabel
+                  : messages.displayNameAddLabel,
+              )}
+              icon={hasName}
             />
           }
         >
@@ -205,8 +221,10 @@ export const AccountEdit: FC = () => {
           buttons={
             <EditButton
               onClick={handleBioEdit}
-              item={messages.bioLabel}
-              edit={hasBio}
+              label={intl.formatMessage(
+                hasBio ? messages.bioEditLabel : messages.bioAddLabel,
+              )}
+              icon={hasBio}
             />
           }
         >
@@ -234,7 +252,7 @@ export const AccountEdit: FC = () => {
                 />
               </Button>
               <EditButton
-                item={messages.customFieldsLabel}
+                label={intl.formatMessage(messages.customFieldsAddLabel)}
                 onClick={handleCustomFieldAdd}
                 disabled={profile.fields.length >= maxFieldCount}
               />
@@ -248,10 +266,7 @@ export const AccountEdit: FC = () => {
                   <div>
                     <AccountField {...field} {...htmlHandlers} />
                   </div>
-                  <AccountFieldActions
-                    item={intl.formatMessage(messages.customFieldsLabel)}
-                    id={field.id}
-                  />
+                  <AccountFieldActions id={field.id} />
                 </li>
               ))}
             </ol>
@@ -286,8 +301,8 @@ export const AccountEdit: FC = () => {
           buttons={
             <EditButton
               onClick={handleFeaturedTagsEdit}
-              edit={hasTags}
-              item={messages.featuredHashtagsItem}
+              icon={hasTags}
+              label={intl.formatMessage(messages.featuredHashtagsEditLabel)}
             />
           }
         >
