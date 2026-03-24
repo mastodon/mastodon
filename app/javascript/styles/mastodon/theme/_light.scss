@@ -33,22 +33,8 @@
   // Neutrals
   --color-bg-primary: var(--color-white);
   --overlay-strength-secondary: 4%;
-  --color-bg-secondary-base: #000550;
-  --color-bg-secondary: #{color-mix(
-      in oklab,
-      var(--color-bg-primary),
-      var(--color-bg-secondary-base) var(--overlay-strength-secondary)
-    )};
-  --color-bg-secondary-solid: #{color-mix(
-      in srgb,
-      var(--color-bg-primary),
-      var(--color-bg-secondary-base) var(--overlay-strength-secondary)
-    )};
-  --color-bg-tertiary: #{color-mix(
-      in oklab,
-      var(--color-bg-primary),
-      var(--color-bg-secondary-base) calc(2 * var(--overlay-strength-secondary))
-    )};
+  --color-bg-secondary: var(--color-grey-50);
+  --color-bg-tertiary: var(--color-grey-100); // legacy
 
   // Utility
   --color-bg-inverted: var(--color-grey-950);
