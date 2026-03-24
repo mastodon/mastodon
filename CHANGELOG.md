@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.8] - 2026-03-24
+
+### Security
+
+- Fix insufficient checks on quote authorizations ([GHSA-q4g8-82c5-9h33](https://github.com/mastodon/mastodon/security/advisories/GHSA-q4g8-82c5-9h33))
+- Fix open redirect in legacy path handler ([GHSA-xqw8-4j56-5hj6](https://github.com/mastodon/mastodon/security/advisories/GHSA-xqw8-4j56-5hj6))
+- Updated dependencies
+
+### Added
+
+- Add for searching already-known private GtS posts (#38057 by @ClearlyClaire)
+
+### Changed
+
+- Change media description length limit for remote media attachments from 1500 to 10000 characters (#37921 by @ClearlyClaire)
+- Change HTTP signatures to skip the `Accept` header (#38132 by @ClearlyClaire)
+- Change numeric AP endpoints to redirect to short account URLs when HTML is requested (#38056 by @ClearlyClaire)
+
+### Fixed
+
+- Fix some model definitions in `tootctl maintenance fix-duplicates` (#38214 by @ClearlyClaire)
+- Fix overly strict checks for current username on account migration page (#38183 by @mjankowski)
+- Fix OpenStack Swift Keystone token rate limiting (#38145 by @hugogameiro)
+- Fix poll expiration notification being re-triggered on implicit updates (#38078 by @ClearlyClaire)
+- Fix incorrect translation string in webauthn mailers (#38062 by @mjankowski)
+- Fix “Unblock” and “Unmute” actions being disabled when blocked (#38075 by @ClearlyClaire)
+- Fix username availability check being wrongly applied on race conditions (#37975 by @ClearlyClaire)
+- Fix hover card unintentionally being shown in some cases (#38039 and #38112 by @diondiondion)
+- Fix existing posts not being removed from lists when a list member is unfollowed (#38048 by @ClearlyClaire)
+
 ## [4.5.7] - 2026-02-24
 
 ### Security
