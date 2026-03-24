@@ -81,7 +81,8 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
               .to have_http_status(200)
             expect(response.body)
               .to include(*otp_backup_codes)
-              .and include(I18n.t('settings.two_factor_authentication'))
+            expect(response.parsed_body)
+              .to have_title(I18n.t('settings.two_factor_authentication'))
           end
         end
 
