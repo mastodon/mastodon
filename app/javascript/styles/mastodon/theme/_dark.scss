@@ -65,13 +65,7 @@
   --color-bg-warning-softest: var(--color-yellow-950);
 
   // Success
-  --overlay-strength-success: 15%;
-  --color-bg-success-base: var(--color-green-600);
-  --color-bg-success-base-hover: color-mix(
-    in oklab,
-    var(--color-bg-success-base),
-    var(--color-bg-primary) var(--overlay-strength-success)
-  );
+  --color-bg-success-base: var(--color-green-600); // legacy
   --color-bg-success-soft: var(--color-green-900);
   --color-bg-success-softest: var(--color-green-950);
 
