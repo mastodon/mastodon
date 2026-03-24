@@ -8,7 +8,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
                      :moved_to, :property_value, :discoverable, :suspended,
-                     :memorial, :indexable, :attribution_domains
+                     :memorial, :indexable, :attribution_domains, :profile_settings
 
   context_extensions :interaction_policies if Mastodon::Feature.collections_enabled?
 
@@ -16,7 +16,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
              :inbox, :outbox, :featured, :featured_tags,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
-             :discoverable, :indexable, :published, :memorial
+             :discoverable, :indexable, :published, :memorial,
+             :show_featured, :show_media
+
+  attribute :show_media_replies, key: :show_replies_in_media
 
   attribute :interaction_policy, if: -> { Mastodon::Feature.collections_enabled? }
   attribute :featured_collections, if: -> { Mastodon::Feature.collections_enabled? }

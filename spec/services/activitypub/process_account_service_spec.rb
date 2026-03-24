@@ -114,6 +114,30 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
   end
 
+  context 'with profile settings' do
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        showMedia: true,
+        showRepliesInMedia: false,
+        showFeatured: false,
+      }.with_indifferent_access
+    end
+
+    it 'sets the profile settings as expected' do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account)
+        .to have_attributes(
+          show_media: true,
+          show_media_replies: false,
+          show_featured: false
+        )
+    end
+  end
+
   context 'with inlined feature collection' do
     let(:payload) do
       {
