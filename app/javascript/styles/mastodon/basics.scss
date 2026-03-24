@@ -2,7 +2,7 @@
 
 html {
   color: var(--color-text-primary);
-  background: var(--color-bg-ambient);
+  background: var(--color-bg-primary);
 
   &.custom-scrollbars {
     scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
@@ -46,7 +46,7 @@ html.has-modal {
 
 body {
   font-family: $font-sans-serif, sans-serif;
-  background: var(--color-bg-ambient);
+  background: var(--color-bg-primary);
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
