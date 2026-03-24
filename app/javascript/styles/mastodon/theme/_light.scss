@@ -135,7 +135,7 @@
       50%
     )}; // legacy
 
-  /* SHADOW TOKENS */
+  /* SHADOW TOKENS (LEGACY) */
 
   --shadow-strength-primary: 30%;
   --color-shadow-primary: #{utils.css-alpha(
@@ -147,7 +147,7 @@
     0 8px 10px -6px var(--color-shadow-primary);
   --overlay-icon-shadow: drop-shadow(0 0 8px var(--color-shadow-primary));
 
-  /* GRAPHS/CHARTS TOKENS */
+  /* GRAPHS/CHARTS TOKENS (LEGACY) */
 
   --color-graph-primary-stroke: var(--color-text-brand);
   --color-graph-primary-fill: var(--color-bg-brand-softer);
@@ -156,7 +156,7 @@
   --color-graph-disabled-stroke: var(--color-text-disabled);
   --color-graph-disabled-fill: var(--color-bg-disabled);
 
-  /* LEGACY TOKENS */
+  /* RICH TEXT TOKENS (LEGACY) */
 
   --rich-text-container-color: rgb(255 216 231 / 100%);
   --rich-text-text-color: rgb(114 47 83 / 100%);
