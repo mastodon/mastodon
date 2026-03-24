@@ -31,7 +31,7 @@ fr:
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
         warning_preset_id: Facultatif. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
-        all_day: Coché, seules les dates de l’intervalle de temps seront affichées
+        all_day: Lorsque coché, seules les dates de l’intervalle de temps seront affichées
         ends_at: Facultatif. La fin de l'annonce surviendra automatiquement à ce moment
         scheduled_at: Laisser vide pour publier l’annonce immédiatement
         starts_at: Facultatif. Si votre annonce est liée à une période spécifique
@@ -92,7 +92,7 @@ fr:
         media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateurs distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
         min_age: Les utilisateurs seront invités à confirmer leur date de naissance lors de l'inscription
         peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
-        profile_directory: L'annuaire des profils répertorie tous les comptes qui choisi d'être découvrables.
+        profile_directory: L'annuaire des profils répertorie tous les comptes qui ont permis d'être découverts.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
         site_contact_email: Comment l'on peut vous joindre pour des requêtes d'assistance ou d'ordre juridique.
         site_contact_username: Comment les gens peuvent vous contacter sur Mastodon.
@@ -149,6 +149,9 @@ fr:
         min_age: Ne doit pas être en dessous de l’âge minimum requis par les lois de votre juridiction.
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
+        date_of_birth:
+          one: Nous devons vérifier que vous avez au moins %{count} an pour utiliser %{domain}. Cette information ne sera pas conservée.
+          other: Nous devons vérifier que vous avez au moins %{count} ans pour utiliser %{domain}. Cette information ne sera pas conservée.
         role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
       user_role:
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
@@ -277,7 +280,7 @@ fr:
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
         min_age: Âge minimum requis
-        peers_api_enabled: Publie la liste des serveurs découverts dans l'API
+        peers_api_enabled: Publier la liste des serveurs découverts dans l’API
         profile_directory: Activer l’annuaire des profils
         registrations_mode: Qui peut s’inscrire
         require_invite_text: Exiger une raison pour s’inscrire

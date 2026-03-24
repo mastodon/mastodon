@@ -569,6 +569,8 @@ ja:
         title: モデレーション
       moderation_notes:
         create: モデレーションノートを追加
+        description_html: 他のモデレーターと将来の自分にメモを残してください
+        destroyed_msg: インスタンス・モデレーションノートを正常に削除しました！
         title: モデレーションメモ
       private_comment: コメント (非公開)
       public_comment: コメント (公開)
@@ -1834,6 +1836,7 @@ ja:
       public: 誰でも
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: 非公開の返信
       private: フォロワー限定
       private_long: フォロワーにのみ表示されます
       public: 公開

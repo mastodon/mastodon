@@ -55,6 +55,7 @@ ro:
         scopes: La care API-uri aplicația are nevoie de acces. Dacă selectezi un scop principal nu mai e nevoie să selectezi fiecare sub-scop al acestuia.
         setting_aggregate_reblogs: Nu afișa impulsurile noi pentru postările care au fost deja recent impulsionate (afectează doar noile impulsuri primite)
         setting_always_send_emails: În mod normal, notificările prin e-mail nu vor fi trimise când utilizați în mod activ Mastodon
+        setting_default_quote_policy: Această setare va avea efect doar pentru postările create cu următoarea versiune Mastodon, dar puteți selecta preferințele dvs. în pregătire.
         setting_default_sensitive: Fișierele media sensibile sunt ascunse implicit și pot fi dezvăluite cu un clic
         setting_display_media_default: Ascunde conținutul media marcat ca sensibil (NSFW)
         setting_display_media_hide_all: Întotdeauna ascunde tot conținutul media
@@ -200,6 +201,7 @@ ro:
         setting_display_media_show_all: Arată toate
         setting_expand_spoilers: Întotdeauna extinde postările marcate cu avertismente referitoare la conținut
         setting_hide_network: Ascunde rețeaua
+        setting_missing_alt_text_modal: Afișați caseta de confirmare înainte de a posta conținut media fără text alternativ
         setting_reduce_motion: Redu mișcarea în animații
         setting_system_font_ui: Utilizează fontul standard as sistemului
         setting_theme: Tema siteului
@@ -233,6 +235,9 @@ ro:
       tag:
         listable: Permite acestui hashtag să apară în căutări și în directorul de profil
         trendable: Permite acestui hashtag să apară sub tendințe
+      user:
+        date_of_birth_1i: Zi
+        date_of_birth_3i: An
     'no': Nu
     recommended: Recomandat
     required:
