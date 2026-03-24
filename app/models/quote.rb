@@ -36,8 +36,12 @@ class Quote < ApplicationRecord
   validate :validate_visibility
   validate :validate_original_quoted_status
 
-  def accept!
-    update!(state: :accepted)
+  def accept!(approval_uri: nil)
+    if approval_uri.present?
+      update!(state: :accepted, approval_uri:)
+    else
+      update!(state: :accepted)
+    end
   end
 
   def reject!
