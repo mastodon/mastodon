@@ -340,6 +340,7 @@ const StepCrop: FC<{
           value={zoom}
           onChange={handleZoomChange}
           wrapperClassName={classes.zoomControl}
+          inputPlacement='inline-end'
         />
         <Button onClick={onCancel} secondary>
           <FormattedMessage

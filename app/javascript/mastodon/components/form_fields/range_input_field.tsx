@@ -14,7 +14,9 @@ export type RangeInputProps = Omit<
   markers?: { value: number; label: string }[] | number[];
 };
 
-interface Props extends RangeInputProps, CommonFieldWrapperProps {}
+interface Props extends RangeInputProps, CommonFieldWrapperProps {
+  inputPlacement?: 'inline-start' | 'inline-end'; // TODO: Move this to the common field wrapper props for other fields.
+}
 
 /**
  * A simple form field for single-line text.
@@ -25,7 +27,16 @@ interface Props extends RangeInputProps, CommonFieldWrapperProps {}
 
 export const RangeInputField = forwardRef<HTMLInputElement, Props>(
   (
-    { id, label, hint, status, required, wrapperClassName, ...otherProps },
+    {
+      id,
+      label,
+      hint,
+      status,
+      required,
+      wrapperClassName,
+      inputPlacement,
+      ...otherProps
+    },
     ref,
   ) => (
     <FormFieldWrapper
@@ -34,6 +45,7 @@ export const RangeInputField = forwardRef<HTMLInputElement, Props>(
       required={required}
       status={status}
       inputId={id}
+      inputPlacement={inputPlacement}
       className={wrapperClassName}
     >
       {(inputProps) => <RangeInput {...otherProps} {...inputProps} ref={ref} />}
