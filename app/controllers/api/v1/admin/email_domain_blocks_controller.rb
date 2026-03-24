@@ -8,7 +8,6 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::V1::Admin::BaseControll
   before_action :set_email_domain_blocks, only: :index
   before_action :set_email_domain_block, only: [:show, :destroy]
 
-  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   def index

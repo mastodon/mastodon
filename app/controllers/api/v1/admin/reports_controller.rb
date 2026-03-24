@@ -8,7 +8,6 @@ class Api::V1::Admin::ReportsController < Api::V1::Admin::BaseController
   before_action :set_reports, only: :index
   before_action :set_report, except: :index
 
-  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   FILTER_PARAMS = %i(

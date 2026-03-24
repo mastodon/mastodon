@@ -4,8 +4,6 @@ class Api::V1::Admin::AccountActionsController < Api::V1::Admin::BaseController
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }
   before_action :set_account
 
-  after_action :verify_authorized
-
   def create
     authorize @account, :show?
 

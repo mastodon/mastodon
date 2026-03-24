@@ -4,8 +4,6 @@ class Api::V1::Admin::MeasuresController < Api::V1::Admin::BaseController
   before_action -> { authorize_if_got_token! :'admin:read' }
   before_action :set_measures
 
-  after_action :verify_authorized
-
   def create
     authorize :dashboard, :index?
     render json: @measures, each_serializer: REST::Admin::MeasureSerializer

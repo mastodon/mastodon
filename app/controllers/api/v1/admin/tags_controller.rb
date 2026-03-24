@@ -8,7 +8,6 @@ class Api::V1::Admin::TagsController < Api::V1::Admin::BaseController
   before_action :set_tag, except: :index
 
   after_action :insert_pagination_headers, only: :index
-  after_action :verify_authorized
 
   LIMIT = 100
 

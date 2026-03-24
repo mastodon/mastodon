@@ -8,7 +8,6 @@ class Api::V1::Admin::IpBlocksController < Api::V1::Admin::BaseController
   before_action :set_ip_blocks, only: :index
   before_action :set_ip_block, only: [:show, :update, :destroy]
 
-  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   def index

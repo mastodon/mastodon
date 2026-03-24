@@ -10,7 +10,6 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::V1::Admin::BaseContr
   before_action :set_canonical_email_blocks_from_test, only: [:test]
   before_action :set_canonical_email_block, only: [:show, :destroy]
 
-  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   def index
