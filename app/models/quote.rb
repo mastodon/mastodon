@@ -45,8 +45,12 @@ class Quote < ApplicationRecord
   after_destroy_commit :decrement_counter_caches!
   after_update_commit :update_counter_caches!
 
-  def accept!
-    update!(state: :accepted)
+  def accept!(approval_uri: nil)
+    if approval_uri.present?
+      update!(state: :accepted, approval_uri:)
+    else
+      update!(state: :accepted)
+    end
 
     reset_parent_cache! if attribute_previously_changed?(:state)
   end
