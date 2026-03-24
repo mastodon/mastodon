@@ -62,24 +62,26 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
           }
         />
 
-        <ToggleField
-          checked={profile.showMediaReplies}
-          onChange={handleToggleChange}
-          disabled={!profile.showMedia || isPending}
-          name='show_media_replies'
-          label={
-            <FormattedMessage
-              id='account_edit.profile_tab.show_media_replies.title'
-              defaultMessage='Include replies on ‘Media’ tab'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='account_edit.profile_tab.show_media_replies.description'
-              defaultMessage='When enabled, Media tab shows both your posts and replies to other people’s posts.'
-            />
-          }
-        />
+        {profile.showMedia && (
+          <ToggleField
+            checked={profile.showMediaReplies}
+            onChange={handleToggleChange}
+            disabled={isPending}
+            name='show_media_replies'
+            label={
+              <FormattedMessage
+                id='account_edit.profile_tab.show_media_replies.title'
+                defaultMessage='Include replies on ‘Media’ tab'
+              />
+            }
+            hint={
+              <FormattedMessage
+                id='account_edit.profile_tab.show_media_replies.description'
+                defaultMessage='When enabled, Media tab shows both your posts and replies to other people’s posts.'
+              />
+            }
+          />
+        )}
 
         <ToggleField
           checked={profile.showFeatured}
