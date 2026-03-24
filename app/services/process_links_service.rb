@@ -28,6 +28,7 @@ class ProcessLinksService < BaseService
 
       # TODO: We probably want to resolve unknown objects at authoring time
       object = ActivityPub::TagManager.instance.uri_to_resource(url.to_s, Collection)
+      next if object.nil?
 
       tagged_object = @previous_objects.find { |x| x.object == object || x.uri == url }
       tagged_object ||= @current_objects.find { |x| x.object == object || x.uri == url }
