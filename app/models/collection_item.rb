@@ -62,7 +62,7 @@ class CollectionItem < ApplicationRecord
   private
 
   def set_position
-    return if position_changed?
+    return if position.present? && position_changed?
 
     self.position = self.class.where(collection_id:).maximum(:position).to_i + 1
   end

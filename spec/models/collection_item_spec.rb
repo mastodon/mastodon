@@ -62,6 +62,12 @@ RSpec.describe CollectionItem do
       expect(custom_item.position).to eq 7
     end
 
+    it 'automatically sets the position if excplicitly set to `nil`' do
+      item = collection.collection_items.create!(account:, position: nil)
+
+      expect(item.position).to eq 1
+    end
+
     it 'automatically sets `activity_uri` when account is remote' do
       item = collection.collection_items.create(account: Fabricate(:remote_account))
 

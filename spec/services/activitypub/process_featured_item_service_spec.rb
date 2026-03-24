@@ -47,15 +47,26 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
     it_behaves_like 'non-matching URIs'
 
     context 'when item does not yet exist' do
-      it 'creates and verifies the item' do
-        expect { subject.call(collection, object, position:) }.to change(collection.collection_items, :count).by(1)
+      context 'when a position is given' do
+        it 'creates and verifies the item' do
+          expect { subject.call(collection, object, position:) }.to change(collection.collection_items, :count).by(1)
 
-        expect(stubbed_service).to have_received(:call)
+          expect(stubbed_service).to have_received(:call)
 
-        new_item = collection.collection_items.last
-        expect(new_item.object_uri).to eq 'https://example.com/actor/1'
-        expect(new_item.approval_uri).to be_nil
-        expect(new_item.position).to eq 3
+          new_item = collection.collection_items.last
+          expect(new_item.object_uri).to eq 'https://example.com/actor/1'
+          expect(new_item.approval_uri).to be_nil
+          expect(new_item.position).to eq 3
+        end
+      end
+
+      context 'when no position is given' do
+        it 'creates the item' do
+          expect { subject.call(collection, object) }.to change(collection.collection_items, :count).by(1)
+          new_item = collection.collection_items.last
+
+          expect(new_item.position).to eq 1
+        end
       end
     end
 
