@@ -294,7 +294,13 @@ export const ColumnHeader: React.FC<Props> = ({
               </button>
             )}
             {!onClick && (
-              <span className='column-header__title'>{titleContents}</span>
+              <span
+                className='column-header__title'
+                tabIndex={-1}
+                id={getColumnSkipLinkId(columnIndex)}
+              >
+                {titleContents}
+              </span>
             )}
           </>
         )}
