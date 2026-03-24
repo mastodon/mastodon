@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useMemo, useState } from 'react';
+import { Fragment, useCallback, useMemo } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -10,7 +10,6 @@ import { languages } from '@/mastodon/initial_state';
 import {
   hasSpecialCharacters,
   inputToHashtag,
-  trimHashFromStart,
 } from '@/mastodon/utils/hashtags';
 import type {
   ApiCreateCollectionPayload,
@@ -297,14 +296,7 @@ export const CollectionDetails: React.FC = () => {
 const TopicField: React.FC = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const { id, topic } = useAppSelector((state) => state.collections.editor);
-
-  const collection = useAppSelector((state) =>
-    id ? state.collections.collections[id] : undefined,
-  );
-  const [isInitialValue, setIsInitialValue] = useState(
-    () => trimHashFromStart(topic) === (collection?.tag?.name ?? ''),
-  );
+  const { topic } = useAppSelector((state) => state.collections.editor);
 
   const { tags, isLoading, searchTags } = useSearchTags({
     query: topic,
@@ -312,7 +304,6 @@ const TopicField: React.FC = () => {
 
   const handleTopicChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsInitialValue(false);
       dispatch(
         updateCollectionEditorField({
           field: 'topic',
@@ -379,7 +370,7 @@ const TopicField: React.FC = () => {
             }
           : undefined
       }
-      suppressMenu={isInitialValue}
+      suppressMenu={!tags.length}
     />
   );
 };
