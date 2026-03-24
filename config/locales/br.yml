@@ -302,6 +302,7 @@ br:
       already_suspended_badges:
         local: Astalet endeo war ar servijer-mañ
       are_you_sure: Ha sur oc'h?
+      cancel: Nullañ
       comment:
         none: Hini ebet
       confirm: Kadarnaat
@@ -346,6 +347,7 @@ br:
         view_devops: DevOps
       title: Rolloù
     rules:
+      add_new: Ouzhpennañ ur reolenn
       delete: Dilemel
       edit: Kemmañ ar reolenn
       title: Reolennoù ar servijer
@@ -378,6 +380,7 @@ br:
       version: Handelv
     statuses:
       account: Aozer·ez
+      application: Arload
       batch:
         report: Disklêriañ
       deleted: Dilamet
@@ -418,6 +421,7 @@ br:
       upload_check_privacy_error_object_storage:
         action: Gwelet amañ evit kaout muioc'h a ditouroù
     tags:
+      name: Anv
       search: Klask
       title: Gerioù-klik
     title: Merañ
@@ -504,6 +508,8 @@ br:
     rules:
       title_invited: Pedet oc'h bet.
     security: Diogelroez
+    sign_in:
+      title: Kevreañ ouzh %{domain}
     status:
       account_status: Statud ar gont
   challenge:
@@ -530,6 +536,7 @@ br:
       x_seconds: "%{count}eil"
   deletes:
     proceed: Dilemel ar gont
+    success_msg: Ho kont a zo bet dilamet gant berzh
   disputes:
     strikes:
       appeal: Ober engalv
@@ -576,6 +583,7 @@ br:
         title: Toudoù silet
   generic:
     all: Pep tra
+    cancel: Nullañ
     changes_saved_msg: Enrollet eo bet ar cheñchamantoù gant berzh!
     confirm: Kadarnaat
     copy: Eilañ
@@ -730,10 +738,17 @@ br:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
+      unknown_platform: Savenn dianav
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Dizober
   settings:
     account: Kont

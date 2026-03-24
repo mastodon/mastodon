@@ -3,7 +3,7 @@ fr:
   activerecord:
     attributes:
       poll:
-        expires_at: Date d'expiration
+        expires_at: Date d'échéance
         options: Choix
       user:
         agreement: Contrat de service
@@ -25,7 +25,7 @@ fr:
         account:
           attributes:
             username:
-              invalid: seulement des lettres, des chiffres et des tirets bas
+              invalid: doit contenir uniquement des lettres, chiffres et tirets bas
               reserved: est réservé
         admin/webhook:
           attributes:

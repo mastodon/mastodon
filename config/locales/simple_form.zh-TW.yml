@@ -56,7 +56,7 @@ zh-TW:
         scopes: 允許使應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 不顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
         setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送電子郵件通知
-        setting_default_sensitive: 敏感內容媒體預設隱藏，且按一下即可重新顯示
+        setting_default_sensitive: 敏感內容媒體為預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感內容的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感內容的媒體
@@ -80,7 +80,7 @@ zh-TW:
         activity_api_enabled: 本站使用者的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
         app_icon: WEBP、PNG、GIF、或 JPG。於行動裝置上使用自訂圖示替代預設應用程式圖示。
         backups_retention_period: 使用者能產生他們嘟文的備份以便日後下載。當設定為正值時，這些嘟文備份將於指定之天數後自您的儲存空間中自動刪除。
-        bootstrap_timeline_accounts: 這些帳號將被釘選於新帳號跟隨推薦之上。
+        bootstrap_timeline_accounts: 這些帳號將被釘選於新帳號跟隨建議之上。
         closed_registrations_message: 於註冊關閉時顯示
         content_cache_retention_period: 所有來自其他伺服器之嘟文（包括轉嘟與回嘟）將於指定之天數後自動刪除，不論這些嘟文與本地使用者間的任何互動。這將包含本地使用者已標記為書籤或最愛之嘟文。不同站點使用者間之私訊亦將遺失且不可回復。此設定應適用於特殊情況，若常規使用將超乎多數使用者預期。
         custom_css: 您於 Mastodon 網頁版本中能套用客製化風格。
@@ -100,9 +100,9 @@ zh-TW:
         theme: 未登入之訪客或新使用者所見之佈景主題。
         thumbnail: 大約 2:1 圖片會顯示於您伺服器資訊之旁。
         timeline_preview: 未登入之訪客能夠瀏覽此伺服器上最新的公開嘟文。
-        trendable_by_default: 跳過手動審核熱門內容。仍能於登上熱門趨勢後移除個別內容。
-        trends: 熱門趨勢將顯示於您伺服器上正在吸引大量注意力的嘟文、主題標籤、或者新聞。
-        trends_as_landing_page: 顯示熱門趨勢內容至未登入使用者及訪客而不是關於此伺服器之描述。需要啟用熱門趨勢。
+        trendable_by_default: 跳過手動審核熱門內容。您仍能於登上熱門趨勢後移除個別內容。
+        trends: 熱門趨勢將顯示於您伺服器上正在吸引大量注意力之嘟文、主題標籤、或新聞。
+        trends_as_landing_page: 顯示熱門趨勢內容至未登入使用者及訪客而不是關於此伺服器之描述。需要啟用熱門趨勢功能。
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
@@ -234,7 +234,7 @@ zh-TW:
         type: 匯入類型
         username: 使用者名稱
         username_or_email: 使用者名稱或電子郵件地址
-        whole_word: 整個詞彙
+        whole_word: 完整詞彙
       email_domain_block:
         with_dns_records: 包括網域的 MX 記錄與 IP 位址
       featured_tag:
@@ -315,7 +315,7 @@ zh-TW:
       tag:
         listable: 允許此主題標籤於搜尋及個人檔案目錄中顯示
         name: 主題標籤
-        trendable: 允許此主題標籤於熱門趨勢下顯示
+        trendable: 允許此主題標籤於熱門趨勢中顯示
         usable: 允許嘟文使用此主題標籤
       user:
         role: 角色

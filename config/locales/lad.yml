@@ -663,6 +663,7 @@ lad:
         delete_data_html: Efasa el profil i kontenido de <strong>@%{acct}</strong> en 30 dias si no sea desuspendido en akel tiempo
         preview_preamble_html: "<strong>@%{acct}</strong> resivira una avertensya komo esta:"
         record_strike_html: Enrejistra un amonestamiento kontra <strong>@%{acct}</strong> para ke te ayude eskalar las violasyones de reglas de este kuento en el avenir
+        send_email_html: Embia un mesaj de avertensia a la posta elektronika de <strong>@%{acct}</strong>
         warning_placeholder: Adisionalas, opsionalas razones la aksyon de moderasyon.
       target_origin: Orijin del kuento raportado
       title: Raportos
@@ -1149,6 +1150,7 @@ lad:
     example_title: Teksto de enshemplo
     more_from_html: Mas de %{name}
     s_blog: Blog de %{name}
+    title: Atribusyon del otor
   challenge:
     confirm: Kontinua
     hint_html: "<strong>Konsejo:</strong> No retornaremos a demandarte por el kod durante la sigiente ora."
@@ -1683,6 +1685,7 @@ lad:
     preferences: Preferensyas
     profile: Profil publiko
     relationships: Segidos i suivantes
+    severed_relationships: Relasyones kortadas
     statuses_cleanup: Efasasyon otomatika de publikasyones
     strikes: Amonestamientos de moderasyon
     two_factor_authentication: Autentifikasyon en dos pasos
@@ -1690,6 +1693,8 @@ lad:
   severed_relationships:
     download: Abasha (%{count})
     event_type:
+      account_suspension: Suspensyon de kuento (%{target_name})
+      domain_block: Suspensyon de sirvidor (%{target_name})
       user_domain_block: Blokates a %{target_name}
     lost_followers: Suivantes pedridos
     lost_follows: Segimyentos pedridos
