@@ -620,7 +620,7 @@ function redesignMenuItems({
   );
 
   // Timeline options
-  if (relationship && !relationship.muting) {
+  if (relationship?.following && !relationship.muting) {
     items.push(
       {
         text: intl.formatMessage(
