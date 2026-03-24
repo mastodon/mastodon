@@ -12,7 +12,8 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
       expect(response).to have_http_status(200)
       expect(response.body)
         .to include(qr_code_markup)
-        .and include(I18n.t('settings.two_factor_authentication'))
+      expect(response.parsed_body)
+        .to have_title(I18n.t('settings.two_factor_authentication'))
     end
 
     def qr_code_markup
