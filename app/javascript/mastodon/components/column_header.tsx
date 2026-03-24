@@ -267,6 +267,15 @@ export const ColumnHeader: React.FC<Props> = ({
   const hasTitle = (hasIcon || backButton) && title;
   const columnIndex = useColumnIndexContext();
 
+  const titleContents = (
+    <>
+      {!backButton && hasIcon && (
+        <Icon id={icon} icon={iconComponent} className='column-header__icon' />
+      )}
+      {title}
+    </>
+  );
+
   const component = (
     <div className={wrapperClassName}>
       <h1 className={buttonClassName}>
@@ -274,21 +283,25 @@ export const ColumnHeader: React.FC<Props> = ({
           <>
             {backButton}
 
-            <button
-              onClick={handleTitleClick}
-              className='column-header__title'
-              type='button'
-              id={getColumnSkipLinkId(columnIndex)}
-            >
-              {!backButton && hasIcon && (
-                <Icon
-                  id={icon}
-                  icon={iconComponent}
-                  className='column-header__icon'
-                />
-              )}
-              {title}
-            </button>
+            {onClick && (
+              <button
+                onClick={handleTitleClick}
+                className='column-header__title'
+                type='button'
+                id={getColumnSkipLinkId(columnIndex)}
+              >
+                {titleContents}
+              </button>
+            )}
+            {!onClick && (
+              <span
+                className='column-header__title'
+                tabIndex={-1}
+                id={getColumnSkipLinkId(columnIndex)}
+              >
+                {titleContents}
+              </span>
+            )}
           </>
         )}
 
