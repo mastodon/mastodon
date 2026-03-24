@@ -53,6 +53,16 @@
   }
 }
 
+.fieldButtons {
+  display: flex;
+  gap: 8px;
+  align-items: end;
+
+  @container (width < 500px) {
+    flex-direction: column;
+  }
+}
+
 .field {
   padding: 12px 0;
   display: flex;
@@ -87,7 +97,8 @@
 }
 
 .autoComplete,
-.tagSuggestions {
+.tagSuggestions,
+.maxTagsWarning {
   margin: 12px 0;
 }
 

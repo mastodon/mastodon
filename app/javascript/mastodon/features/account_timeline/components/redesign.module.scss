@@ -320,22 +320,21 @@ svg.badgeIcon {
     }
   }
 
-  a {
-    color: inherit;
-    font-weight: unset;
-    padding: 0;
-
-    &:hover,
-    &:focus {
-      color: var(--color-text-brand-soft);
-    }
-  }
-
+  a,
   strong {
     display: block;
     font-weight: 600;
     color: var(--color-text-primary);
     font-size: 15px;
+  }
+
+  a {
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 }
 

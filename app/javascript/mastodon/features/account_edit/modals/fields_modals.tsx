@@ -1,10 +1,17 @@
-import { useCallback, useMemo, useState } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import { Callout } from '@/mastodon/components/callout';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
@@ -51,13 +58,18 @@ const messages = defineMessages({
     id: 'account_edit.field_edit_modal.value_hint',
     defaultMessage: 'E.g. “https://example.me”',
   },
-  limitHeader: {
-    id: 'account_edit.field_edit_modal.limit_header',
-    defaultMessage: 'Recommended character limit exceeded',
-  },
   save: {
     id: 'account_edit.save',
     defaultMessage: 'Save',
+  },
+  discardMessage: {
+    id: 'account_edit.field_edit_modal.discard_message',
+    defaultMessage:
+      'You have unsaved changes. Are you sure you want to discard them?',
+  },
+  discardConfirm: {
+    id: 'account_edit.field_edit_modal.discard_confirm',
+    defaultMessage: 'Discard',
   },
 });
 
@@ -83,19 +95,39 @@ const selectEmojiCodes = createAppSelector(
   (emojis) => emojis.map((emoji) => emoji.get('shortcode')).toArray(),
 );
 
-export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
-  onClose,
-  fieldKey,
-}) => {
+interface ConfirmationMessage {
+  message: string;
+  confirm: string;
+  props: { fieldKey?: string; lastLabel: string; lastValue: string };
+}
+
+interface ModalRef {
+  getCloseConfirmationMessage: () => null | ConfirmationMessage;
+}
+
+export const EditFieldModal = forwardRef<
+  ModalRef,
+  DialogModalProps & {
+    fieldKey?: string;
+    lastLabel?: string;
+    lastValue?: string;
+  }
+>(({ onClose, fieldKey, lastLabel, lastValue }, ref) => {
   const intl = useIntl();
   const field = useAppSelector((state) => selectFieldById(state, fieldKey));
-  const [newLabel, setNewLabel] = useState(field?.name ?? '');
-  const [newValue, setNewValue] = useState(field?.value ?? '');
+  const oldLabel = lastLabel ?? field?.name;
+  const oldValue = lastValue ?? field?.value;
+  const [newLabel, setNewLabel] = useState(oldLabel ?? '');
+  const [newValue, setNewValue] = useState(oldValue ?? '');
+  const isDirty = newLabel !== oldLabel || newValue !== oldValue;
 
   const { nameLimit, valueLimit } = useAppSelector(selectFieldLimits);
   const isPending = useAppSelector((state) => state.profileEdit.isPending);
 
   const disabled =
+    !newLabel.trim() ||
+    !newValue.trim() ||
+    !isDirty ||
     !nameLimit ||
     !valueLimit ||
     newLabel.length > nameLimit ||
@@ -122,11 +154,41 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
     }
     void dispatch(
       updateField({ id: fieldKey, name: newLabel, value: newValue }),
-    ).then(onClose);
-  }, [disabled, dispatch, fieldKey, isPending, newLabel, newValue, onClose]);
+    ).then(() => {
+      // Close without confirmation.
+      dispatch(
+        closeModal({
+          modalType: 'ACCOUNT_EDIT_FIELD_EDIT',
+          ignoreFocus: false,
+        }),
+      );
+    });
+  }, [disabled, dispatch, fieldKey, isPending, newLabel, newValue]);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      getCloseConfirmationMessage: () => {
+        if (!newLabel || !newValue || !isDirty) {
+          return null;
+        }
+        return {
+          message: intl.formatMessage(messages.discardMessage),
+          confirm: intl.formatMessage(messages.discardConfirm),
+          props: {
+            fieldKey,
+            lastLabel: newLabel,
+            lastValue: newValue,
+          },
+        };
+      },
+    }),
+    [fieldKey, intl, isDirty, newLabel, newValue],
+  );
 
   return (
     <ConfirmationModal
+      noCloseOnConfirm
       onClose={onClose}
       title={
         field
@@ -170,13 +232,10 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
 
       {(newLabel.length > RECOMMENDED_LIMIT ||
         newValue.length > RECOMMENDED_LIMIT) && (
-        <Callout
-          variant='warning'
-          title={intl.formatMessage(messages.limitHeader)}
-        >
+        <Callout variant='warning'>
           <FormattedMessage
-            id='account_edit.field_edit_modal.limit_message'
-            defaultMessage='Mobile users might not see your field in full.'
+            id='account_edit.field_edit_modal.limit_warning'
+            defaultMessage='Recommended character limit exceeded. Mobile users might not see your field in full.'
           />
         </Callout>
       )}
@@ -195,7 +254,8 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
       )}
     </ConfirmationModal>
   );
-};
+});
+EditFieldModal.displayName = 'EditFieldModal';
 
 export const DeleteFieldModal: FC<DialogModalProps & { fieldKey: string }> = ({
   onClose,

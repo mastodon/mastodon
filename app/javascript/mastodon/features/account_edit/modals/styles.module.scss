@@ -113,10 +113,14 @@
   gap: 8px;
   align-items: center;
   justify-content: flex-end;
+}
 
-  .zoomControl {
+.zoomControl {
+  margin-right: auto;
+  font-size: 13px;
+
+  input {
     width: min(100%, 200px);
-    margin-right: auto;
   }
 }
 
@@ -126,10 +130,6 @@
   align-self: flex-start;
   border: 1px solid var(--color-border-primary);
   border-radius: var(--avatar-border-radius);
-}
-
-.altCounter {
-  color: var(--color-text-secondary);
 }
 
 .altHint {

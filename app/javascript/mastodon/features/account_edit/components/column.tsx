@@ -2,6 +2,7 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import { Column } from '@/mastodon/components/column';
@@ -36,22 +37,27 @@ export const AccountEditColumn: FC<{
   const { multiColumn } = useColumnsContext();
 
   return (
-    <Column bindToDocument={!multiColumn} className={classes.column}>
-      <ColumnHeader
-        title={title}
-        className={classes.columnHeader}
-        showBackButton
-        extraButton={
-          <Link to={to} className='button'>
-            <FormattedMessage
-              id='account_edit.column_button'
-              defaultMessage='Done'
-            />
-          </Link>
-        }
-      />
+    <>
+      <Column bindToDocument={!multiColumn} className={classes.column}>
+        <ColumnHeader
+          title={title}
+          className={classes.columnHeader}
+          showBackButton
+          extraButton={
+            <Link to={to} className='button'>
+              <FormattedMessage
+                id='account_edit.column_button'
+                defaultMessage='Done'
+              />
+            </Link>
+          }
+        />
 
-      {children}
-    </Column>
+        {children}
+      </Column>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+    </>
   );
 };
