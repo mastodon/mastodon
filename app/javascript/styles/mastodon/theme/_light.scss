@@ -55,15 +55,10 @@
       #0012d8,
       calc(var(--overlay-strength-brand) * 2)
     )};
-  --color-bg-brand-softer: #{utils.css-alpha(
+  --color-bg-brand-softest: #{utils.css-alpha(
       #0012d8,
       var(--overlay-strength-brand)
     )};
-  --color-bg-brand-softer-solid: color-mix(
-    in srgb,
-    var(--color-bg-primary),
-    var(--color-bg-brand-base) var(--overlay-strength-brand)
-  );
 
   // Error
   --overlay-strength-error: 5%;
@@ -74,7 +69,7 @@
     black var(--overlay-strength-error)
   );
   --color-bg-error-soft: var(--color-red-100);
-  --color-bg-error-softer: var(--color-red-50);
+  --color-bg-error-softest: var(--color-red-50);
 
   // Warning
   --overlay-strength-warning: 10%;
@@ -85,7 +80,7 @@
     black var(--overlay-strength-warning)
   );
   --color-bg-warning-soft: var(--color-yellow-100);
-  --color-bg-warning-softer: var(--color-yellow-50);
+  --color-bg-warning-softest: var(--color-yellow-50);
 
   // Success
   --overlay-strength-success: 15%;
@@ -96,7 +91,7 @@
     black var(--overlay-strength-success)
   );
   --color-bg-success-soft: var(--color-green-100);
-  --color-bg-success-softer: var(--color-green-50);
+  --color-bg-success-softest: var(--color-green-50);
 
   /* BORDER TOKENS */
 
@@ -131,9 +126,9 @@
   /* GRAPHS/CHARTS TOKENS (LEGACY) */
 
   --color-graph-primary-stroke: var(--color-text-brand);
-  --color-graph-primary-fill: var(--color-bg-brand-softer);
+  --color-graph-primary-fill: var(--color-bg-brand-softest);
   --color-graph-warning-stroke: var(--color-text-warning);
-  --color-graph-warning-fill: var(--color-bg-warning-softer);
+  --color-graph-warning-fill: var(--color-bg-warning-softest);
   --color-graph-disabled-stroke: var(--color-text-disabled);
   --color-graph-disabled-fill: var(--color-bg-disabled);
 

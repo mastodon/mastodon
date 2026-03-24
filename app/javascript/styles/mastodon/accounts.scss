@@ -13,7 +13,7 @@
     &:active,
     &:focus {
       .card__bar {
-        background: var(--color-bg-brand-softer);
+        background: var(--color-bg-brand-softest);
       }
     }
   }
@@ -220,7 +220,7 @@
 .information-badge {
   &.superapp {
     color: var(--color-text-success);
-    background-color: var(--color-bg-success-softer);
+    background-color: var(--color-bg-success-softest);
     border-color: var(--color-border-success-soft);
   }
 }
@@ -255,7 +255,7 @@
 
 .simple_form .not_recommended {
   color: var(--color-text-error);
-  background-color: var(--color-bg-error-softer);
+  background-color: var(--color-bg-error-softest);
   border-color: var(--color-border-error-soft);
 }
 
@@ -311,7 +311,7 @@
 
   .verified {
     border: 1px solid var(--color-border-success-soft);
-    background: var(--color-bg-success-softer);
+    background: var(--color-bg-success-softest);
 
     a {
       color: var(--color-text-success);

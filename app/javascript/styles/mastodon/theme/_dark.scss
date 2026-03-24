@@ -59,15 +59,10 @@
       #6f4df5,
       calc(var(--overlay-strength-brand) * 2)
     )};
-  --color-bg-brand-softer: #{utils.css-alpha(
+  --color-bg-brand-softest: #{utils.css-alpha(
       var(--color-bg-brand-base),
       var(--overlay-strength-brand)
     )};
-  --color-bg-brand-softer-solid: color-mix(
-    in srgb,
-    var(--color-bg-primary),
-    var(--color-bg-brand-base) var(--overlay-strength-brand)
-  );
 
   // Error
   --overlay-strength-error: 10%;
@@ -78,7 +73,7 @@
     var(--color-bg-primary) var(--overlay-strength-error)
   );
   --color-bg-error-soft: var(--color-red-900);
-  --color-bg-error-softer: var(--color-red-950);
+  --color-bg-error-softest: var(--color-red-950);
 
   // Warning
   --overlay-strength-warning: 10%;
@@ -89,7 +84,7 @@
     var(--color-bg-primary) var(--overlay-strength-warning)
   );
   --color-bg-warning-soft: var(--color-yellow-900);
-  --color-bg-warning-softer: var(--color-yellow-950);
+  --color-bg-warning-softest: var(--color-yellow-950);
 
   // Success
   --overlay-strength-success: 15%;
@@ -100,7 +95,7 @@
     var(--color-bg-primary) var(--overlay-strength-success)
   );
   --color-bg-success-soft: var(--color-green-900);
-  --color-bg-success-softer: var(--color-green-950);
+  --color-bg-success-softest: var(--color-green-950);
 
   /* BORDER TOKENS */
 
@@ -135,9 +130,9 @@
   /* GRAPHS/CHARTS TOKENS (LEGACY) */
 
   --color-graph-primary-stroke: var(--color-text-brand);
-  --color-graph-primary-fill: var(--color-bg-brand-softer);
+  --color-graph-primary-fill: var(--color-bg-brand-softest);
   --color-graph-warning-stroke: var(--color-text-warning);
-  --color-graph-warning-fill: var(--color-bg-warning-softer);
+  --color-graph-warning-fill: var(--color-bg-warning-softest);
   --color-graph-disabled-stroke: var(--color-text-disabled);
   --color-graph-disabled-fill: var(--color-bg-disabled);
 

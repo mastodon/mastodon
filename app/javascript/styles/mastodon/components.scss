@@ -284,7 +284,7 @@
   --default-icon-color: var(--color-text-secondary);
   --default-bg-color: transparent;
   --hover-icon-color: var(--color-text-primary);
-  --hover-bg-color: var(--color-bg-brand-softer);
+  --hover-bg-color: var(--color-bg-brand-softest);
   --focus-outline-color: var(--color-border-brand);
 
   display: inline-flex;
@@ -364,7 +364,7 @@
   &.copied {
     color: var(--color-text-success);
     transition: none;
-    background-color: var(--color-bg-success-softer);
+    background-color: var(--color-bg-success-softest);
     border-color: var(--color-border-success-soft);
   }
 }
@@ -550,7 +550,7 @@ body > [data-popper-placement] {
 
   &__warning {
     color: var(--color-text-primary);
-    background: var(--color-bg-warning-softer);
+    background: var(--color-bg-warning-softest);
     border: 1px solid var(--color-border-warning-soft);
     padding: 8px 10px;
     border-radius: 4px;
@@ -619,7 +619,7 @@ body > [data-popper-placement] {
 
   .spoiler-input__input {
     padding: 12px 12px - 5px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     color: var(--color-text-brand);
   }
 
@@ -1466,7 +1466,7 @@ body > [data-popper-placement] {
   &:focus-visible {
     outline: 2px solid var(--color-border-brand);
     outline-offset: -2px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 }
 
@@ -1587,7 +1587,7 @@ body > [data-popper-placement] {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     opacity: 0;
     animation: fade 0.7s reverse both 0.3s;
     pointer-events: none;
@@ -1739,7 +1739,7 @@ body > [data-popper-placement] {
 .notification-ungrouped--direct,
 .notification-group--direct,
 .notification-group--annual-report {
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
 
   &:focus {
     background: var(--color-bg-brand-soft);
@@ -1877,7 +1877,7 @@ body > [data-popper-placement] {
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 
   .status__prepend {
@@ -1932,7 +1932,7 @@ body > [data-popper-placement] {
   line-height: 20px;
   letter-spacing: 0.25px;
   color: var(--color-text-secondary);
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
   border-radius: 8px;
   cursor: default;
 }
@@ -2060,7 +2060,7 @@ body > [data-popper-placement] {
 
   &__domain-pill {
     display: inline-flex;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     border-radius: 4px;
     border: 0;
     color: var(--color-text-brand);
@@ -2121,7 +2121,7 @@ body > [data-popper-placement] {
 
       &__handle {
         border: 2px dashed var(--color-border-on-brand-softer);
-        background: var(--color-bg-brand-softer);
+        background: var(--color-bg-brand-softest);
         padding: 12px 8px;
         color: var(--color-text-brand);
         border-radius: 4px;
@@ -3986,13 +3986,13 @@ a.account__display-name {
   height: 20px;
   padding: 0;
   border-radius: 10px;
-  background-color: rgb(from var(--color-bg-brand-softer) r g b / 50%);
+  background-color: rgb(from var(--color-bg-brand-softest) r g b / 50%);
   border: 1px solid rgb(from var(--color-border-brand) r g b / 50%);
   box-sizing: border-box;
 
   .react-toggle:hover:not(.react-toggle--disabled) & {
     background-color: rgb(
-      from var(--color-bg-brand-softer) r g b /
+      from var(--color-bg-brand-softest) r g b /
         calc(50% + var(--overlay-strength-brand))
     );
   }
@@ -4082,7 +4082,7 @@ a.account__display-name {
   &:focus-visible {
     outline: none;
     border-color: var(--color-border-brand);
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 
   &--logo {
@@ -4545,7 +4545,7 @@ a.status-card {
   z-index: 1;
 
   &.active {
-    box-shadow: 0 1px 0 var(--color-bg-brand-softer);
+    box-shadow: 0 1px 0 var(--color-bg-brand-softest);
 
     &::before {
       display: block;
@@ -4655,7 +4655,7 @@ a.status-card {
   &.active {
     .column-header__icon {
       color: var(--color-text-brand);
-      text-shadow: 0 0 10px var(--color-bg-brand-softer);
+      text-shadow: 0 0 10px var(--color-bg-brand-softest);
     }
   }
 
@@ -5150,7 +5150,7 @@ a.status-card {
         &:hover,
         &:active,
         &:focus {
-          background: var(--color-bg-brand-softer);
+          background: var(--color-bg-brand-softest);
           color: color-mix(
             in oklab,
             var(--color-text-primary),
@@ -5752,7 +5752,7 @@ a.status-card {
 .visibility-modal {
   &__quote-warning {
     color: var(--color-text-primary);
-    background: var(--color-bg-warning-softer);
+    background: var(--color-bg-warning-softest);
     padding: 16px;
     border-radius: 4px;
 
@@ -6986,7 +6986,7 @@ a.status-card {
     &:hover,
     &:active,
     &:focus {
-      background: var(--color-bg-brand-softer);
+      background: var(--color-bg-brand-softest);
     }
   }
 }
@@ -8691,7 +8691,7 @@ noscript {
       }
 
       &:focus {
-        background: var(--color-bg-brand-softer);
+        background: var(--color-bg-brand-softest);
       }
     }
   }
@@ -8953,7 +8953,7 @@ noscript {
   }
 
   &__root {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     font-size: 13px;
     display: flex;
     align-items: flex-end;
@@ -9037,7 +9037,7 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     color: color-mix(
       in oklab,
       var(--color-text-primary),
@@ -9092,7 +9092,7 @@ noscript {
 
     &.active {
       color: var(--color-text-brand);
-      background-color: var(--color-bg-brand-softer);
+      background-color: var(--color-bg-brand-softest);
       border-color: var(--color-border-brand);
       transition: all 100ms ease-in;
       transition-property: background-color, color;
@@ -9951,7 +9951,7 @@ noscript {
   margin-bottom: 5px;
   border-radius: 8px;
   border: 1px solid var(--color-border-brand-soft);
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
   overflow: hidden;
   flex-shrink: 0;
 
@@ -10018,7 +10018,7 @@ noscript {
 
 .warning-banner {
   border: 1px solid var(--color-border-error-soft);
-  background: var(--color-bg-error-softer);
+  background: var(--color-bg-error-softest);
 
   &__message {
     h1 {
@@ -10408,7 +10408,7 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 }
 
@@ -10510,7 +10510,7 @@ noscript {
     color: inherit;
     text-decoration: none;
     padding: 4px 12px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     border-radius: 4px;
     font-weight: 500;
 
@@ -10536,10 +10536,10 @@ noscript {
   padding: 16px 0;
   padding-bottom: 0;
   border-bottom: 1px solid var(--color-border-primary);
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
 
   &.focusable:focus-visible {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 
   &__header {
@@ -11398,7 +11398,7 @@ noscript {
   display: block;
   box-sizing: border-box;
   color: var(--color-text-primary);
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
   border: 1px solid var(--color-border-brand-soft);
   border-radius: 8px;
   padding: 8px (5px + 8px);
