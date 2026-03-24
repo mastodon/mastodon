@@ -22,8 +22,8 @@ RSpec.describe Settings::ImportsController do
     it 'assigns the expected imports', :aggregate_failures do
       expect(response).to have_http_status(200)
       expect(response.headers['Cache-Control']).to include('private, no-store')
-      expect(response.body)
-        .to include("bulk_import_#{import.id}")
+      expect(response.parsed_body)
+        .to have_css("#bulk_import_#{import.id}")
         .and not_include("bulk_import_#{other_import.id}")
     end
   end
