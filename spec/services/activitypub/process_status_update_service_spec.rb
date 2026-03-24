@@ -912,10 +912,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       }))
     end
 
-    it 'updates the approval URI but does not verify the quote' do
+    it 'does not update the approval URI and does not verify the quote' do
       expect { subject.call(status, json, json) }
         .to change(status, :quote).from(nil)
-      expect(status.quote.approval_uri).to eq approval_uri
+      expect(status.quote.approval_uri).to be_nil
       expect(status.quote.state).to_not eq 'accepted'
       expect(status.quote.quoted_status).to be_nil
     end
