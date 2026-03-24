@@ -32,6 +32,10 @@ class AccountRelationshipSeveranceEvent < ApplicationRecord
 
   before_create :set_relationships_count!
 
+  def identifier
+    "#{target_name}-#{created_at.to_date.iso8601}"
+  end
+
   private
 
   def set_relationships_count!
