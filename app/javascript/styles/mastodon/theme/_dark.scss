@@ -122,18 +122,15 @@
 
   /* BORDER TOKENS */
 
-  --border-strength-primary: 18%;
-  --color-border-primary: #{utils.css-alpha(
-      var(--color-indigo-200),
-      var(--border-strength-primary)
-    )};
+  --color-border-primary: var(--color-grey-800);
+  --color-border-brand: var(--color-text-brand);
+  --color-border-brand-soft: var(--color-indigo-800);
   --color-border-media: rgb(252 248 255 / 15%);
   --color-border-verified: rgb(220, 3, 240);
   --color-border-on-bg-secondary: #{utils.css-alpha(
       var(--color-indigo-200),
       calc(var(--border-strength-primary) / 1.5)
     )};
-  --color-border-on-bg-brand-softer: var(--color-border-primary);
   --color-border-on-bg-error-softer: #{utils.css-alpha(
       var(--color-text-error),
       50%
@@ -187,5 +184,5 @@
 
   /* BORDER TOKENS */
 
-  --border-strength-primary: 30%;
+  --color-border-primary: #{utils.css-alpha(var(--color-indigo-200), 30%)};
 }

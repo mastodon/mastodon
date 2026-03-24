@@ -119,16 +119,12 @@
 
   /* BORDER TOKENS */
 
-  --border-strength-primary: 15%;
-  --color-border-primary: color-mix(
-    in oklab,
-    var(--color-bg-primary),
-    var(--color-grey-950) var(--border-strength-primary)
-  );
+  --color-border-primary: var(--color-grey-200);
+  --color-border-brand: var(--color-text-brand);
+  --color-border-brand-soft: var(--color-indigo-200);
   --color-border-media: rgb(252 248 255 / 15%);
   --color-border-verified: rgb(220, 3, 240);
   --color-border-on-bg-secondary: var(--color-grey-200);
-  --color-border-on-bg-brand-softer: var(--color-indigo-200);
   --color-border-on-bg-error-softer: #{utils.css-alpha(
       var(--color-text-error),
       50%
@@ -184,6 +180,10 @@
 
   /* BORDER TOKENS */
 
-  --border-strength-primary: 30%;
+  --color-border-primary: color-mix(
+    in oklab,
+    var(--color-bg-primary),
+    var(--color-grey-950) 30%
+  );
   --color-border-on-bg-secondary: var(--color-grey-300);
 }
