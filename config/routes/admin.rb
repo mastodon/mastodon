@@ -108,7 +108,7 @@ namespace :admin do
       post :disable
     end
 
-    resource :secret, only: [], controller: 'webhooks/secrets' do
+    resource :secret, only: [], module: :webhooks do
       post :rotate
     end
   end
