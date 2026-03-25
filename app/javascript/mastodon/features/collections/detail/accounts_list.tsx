@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -100,14 +100,12 @@ const RevokeControls: React.FC<{
         <FormattedMessage
           id='collections.detail.accept_inclusion'
           defaultMessage='Okay'
-          tagName={Fragment}
         />
       </Button>
       <Button secondary onClick={confirmRevoke}>
         <FormattedMessage
           id='collections.detail.revoke_inclusion'
           defaultMessage='Remove me'
-          tagName={Fragment}
         />
       </Button>
     </div>
@@ -143,7 +141,6 @@ const SensitiveScreen: React.FC<{
         <FormattedMessage
           id='content_warning.show'
           defaultMessage='Show anyway'
-          tagName={Fragment}
         />
       </Button>
     </div>
@@ -205,7 +202,6 @@ export const CollectionAccountsList: React.FC<{
               values={{
                 author: <SimpleAuthorName id={collection.account_id} />,
               }}
-              tagName={Fragment}
             />
           </h3>
           <Article
@@ -231,7 +227,6 @@ export const CollectionAccountsList: React.FC<{
             <FormattedMessage
               id='collections.detail.other_accounts_in_collection'
               defaultMessage='Others in this collection:'
-              tagName={Fragment}
             />
           </h3>
         </>

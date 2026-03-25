@@ -137,11 +137,7 @@ const preview: Preview = {
       }, [currentLocale, currentLocaleData]);
 
       return (
-        <IntlProvider
-          locale={currentLocale}
-          messages={currentLocaleData}
-          textComponent='span'
-        >
+        <IntlProvider locale={currentLocale} messages={currentLocaleData}>
           <Story />
         </IntlProvider>
       );
