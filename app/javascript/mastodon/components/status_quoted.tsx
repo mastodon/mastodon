@@ -335,7 +335,6 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
 
   return (
     <div className='status__quote'>
-      {/* @ts-expect-error Status is not yet typed */}
       <StatusContainer
         isQuotedPost
         id={quotedStatusId}

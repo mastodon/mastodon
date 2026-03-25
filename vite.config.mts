@@ -1,6 +1,7 @@
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 
+import formatjs from '@formatjs/unplugin/vite';
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import babel from '@rolldown/plugin-babel';
 import legacy from '@vitejs/plugin-legacy';
@@ -171,8 +172,9 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     plugins: [
       react(),
       babel({
-        plugins: ['formatjs', 'transform-react-remove-prop-types'],
+        plugins: ['transform-react-remove-prop-types'],
       }),
+      formatjs(),
       MastodonThemes(),
       MastodonAssetsManifest(),
       MastodonServiceWorkerLocales(),

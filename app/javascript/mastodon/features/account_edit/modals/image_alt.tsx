@@ -130,7 +130,7 @@ export const ImageAltTextField: FC<{
         >
           <FormattedMessage
             id='account_edit.image_alt_modal.details_content'
-            defaultMessage='DO: <ul> <li>Describe yourself as pictured</li> <li>Use third person language (e.g. “Alex” instead of “me”)</li> <li>Be succinct – a few words is often enough</li> </ul> DON’T: <ul> <li>Start with “Photo of” – it’s redundant for screen readers</li> </ul> EXAMPLE: <ul> <li>“Alex wearing a green shirt and glasses”</li> </ul>'
+            defaultMessage='DO: <ul> <li>Describe yourself as pictured</li> <li>Use third person language (e.g. “Alex” instead of “me”)</li> <li>Be succinct – a few words is often enough</li> </ul> DON’T: <ul> <li>Start with “Photo of” – it’s redundant for screen readers</li> </ul> EXAMPLE: <ul> <li>“Alex wearing a green shirt and glasses”</li></ul>'
             values={{
               ul: (chunks) => <ul>{chunks}</ul>,
               li: (chunks) => <li>{chunks}</li>,

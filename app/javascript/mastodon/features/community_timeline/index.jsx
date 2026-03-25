@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
 import { connect } from 'react-redux';
 
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import { injectIntl } from '@/mastodon/components/intl';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { domain, localLiveFeedAccess } from 'mastodon/initial_state';
