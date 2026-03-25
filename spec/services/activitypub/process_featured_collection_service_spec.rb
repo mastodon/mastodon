@@ -52,7 +52,8 @@ RSpec.describe ActivityPub::ProcessFeaturedCollectionService do
       expect(new_collection.discoverable).to be true
       expect(new_collection.tag.formatted_name).to eq '#people'
 
-      expect(ActivityPub::ProcessFeaturedItemWorker).to have_enqueued_sidekiq_job.exactly(2).times
+      expect(ActivityPub::ProcessFeaturedItemWorker).to have_enqueued_sidekiq_job.with(new_collection.id, 'https://example.com/featured_items/1', 1, nil)
+      expect(ActivityPub::ProcessFeaturedItemWorker).to have_enqueued_sidekiq_job.with(new_collection.id, 'https://example.com/featured_items/2', 2, nil)
     end
   end
 
