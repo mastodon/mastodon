@@ -76,6 +76,7 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
     it 'only includes accepted items' do
       items = subject['orderedItems']
 
+      expect(subject['totalItems']).to eq 1
       expect(items.size).to eq 1
       expect(items.first['id']).to eq ActivityPub::TagManager.instance.uri_for(collection_items.last)
     end

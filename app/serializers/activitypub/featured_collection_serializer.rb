@@ -32,7 +32,7 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
   end
 
   def total_items
-    object.collection_items.size
+    object.accepted_collection_items.size
   end
 
   def published
