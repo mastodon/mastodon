@@ -48,29 +48,27 @@ ARG GID="991"
 
 # Apply Mastodon build options based on options above
 ENV \
-  # Apply Mastodon version information
   MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
   MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}" \
   SOURCE_COMMIT="${SOURCE_COMMIT}" \
-  # Apply Mastodon static files and YJIT options
-  RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES} \
-  RUBY_YJIT_ENABLE=${RUBY_YJIT_ENABLE} \
-  # Apply timezone
-  TZ=${TZ}
+  RAILS_SERVE_STATIC_FILES="${RAILS_SERVE_STATIC_FILES}" \
+  RUBY_YJIT_ENABLE="${RUBY_YJIT_ENABLE}" \
+  TZ="${TZ}"
 
+# Configure runtime environment
+# BIND: IP to bind Mastodon to when serving traffic
+# NODE_ENV/RAILS_ENV: production settings for Node.js and Ruby on Rails
+# DEBIAN_FRONTEND: suppress interactive prompts
+# PATH: add Ruby and Mastodon installation directories
+# MALLOC_CONF: optimize jemalloc 5.x performance
+# MASTODON_SIDEKIQ_READY_FILENAME: Sidekiq readiness check filename for Kubernetes
 ENV \
-  # Configure the IP to bind Mastodon to when serving traffic
   BIND="0.0.0.0" \
-  # Use production settings for Yarn, Node.js and related tools
   NODE_ENV="production" \
-  # Use production settings for Ruby on Rails
   RAILS_ENV="production" \
-  # Add Ruby and Mastodon installation to the PATH
   DEBIAN_FRONTEND="noninteractive" \
   PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin" \
-  # Optimize jemalloc 5.x performance
   MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0" \
-  # Sidekiq will touch tmp/sidekiq_process_has_started_and_will_begin_processing_jobs to indicate it is ready. This can be used for a readiness check in Kubernetes
   MASTODON_SIDEKIQ_READY_FILENAME=sidekiq_process_has_started_and_will_begin_processing_jobs
 
 # Set default shell used for running commands
@@ -156,8 +154,8 @@ RUN \
   patchelf \
   ;
 
-# Debian build stage for media libraries (libvips, ffmpeg)
-FROM ${BASE_REGISTRY}/debian:${DEBIAN_VERSION}-slim AS media-build
+# Build stage for media libraries (libvips, ffmpeg)
+FROM ${BASE_REGISTRY}/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS media-build
 
 ARG TARGETPLATFORM
 
@@ -223,12 +221,13 @@ RUN tar xf vips-${VIPS_VERSION}.tar.xz;
 
 WORKDIR /usr/local/libvips/src/vips-${VIPS_VERSION}
 
-# Configure and compile libvips
-RUN \
-  meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
-  cd build; \
-  ninja; \
-  ninja install;
+# Configure libvips
+RUN meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false
+
+WORKDIR /usr/local/libvips/src/vips-${VIPS_VERSION}/build
+
+# Compile and install libvips
+RUN ninja && ninja install
 
 # Create temporary ffmpeg specific build layer
 FROM media-build AS ffmpeg
@@ -272,7 +271,7 @@ RUN \
   --enable-shared \
   --enable-version3 \
   ; \
-  make -j$(nproc); \
+  make -j"$(nproc)"; \
   make install;
 
 # Create temporary build layer from base image for Ruby dependencies
