@@ -27,6 +27,8 @@ RSpec.describe 'Admin Export Domain Allows' do
         .to have_http_status(200)
       expect(response.body)
         .to eq(domain_allows_csv_file)
+      expect(response)
+        .to have_attachment('domain_allows.csv')
       expect(response.media_type)
         .to eq('text/csv')
     end
