@@ -26,9 +26,11 @@ class AccountConversation < ApplicationRecord
   belongs_to :conversation
   belongs_to :last_status, class_name: 'Status'
 
-  def participant_account_ids=(arr)
-    self[:participant_account_ids] = arr.sort
+  normalizes :participant_account_ids, with: ->(values) { Array(values).sort }
+
+  def participant_account_ids=(*)
     @participant_accounts = nil
+    super
   end
 
   def participant_accounts

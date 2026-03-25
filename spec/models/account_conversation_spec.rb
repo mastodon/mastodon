@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe AccountConversation do
+  describe 'Normalizations' do
+    it { is_expected.to normalize(:participant_account_ids).from([3, 2, 1]).to([1, 2, 3]) }
+  end
+
   describe '.add_status' do
     let!(:alice) { Fabricate(:account, username: 'alice') }
     let!(:bob)   { Fabricate(:account, username: 'bob') }
