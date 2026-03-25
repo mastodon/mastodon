@@ -42,6 +42,8 @@
   --color-bg-tertiary: var(--color-grey-800); // legacy
 
   // Utility
+  --color-bg-overlay-base: #{utils.css-alpha(var(--color-grey-950), 60%)};
+  --color-bg-overlay-highlight: #{utils.css-alpha(var(--color-white), 5%)};
   --color-bg-inverted: var(--color-grey-50);
   --color-bg-overlay: var(--color-black); // legacy
   --color-bg-media-base: var(--color-black); // legacy
