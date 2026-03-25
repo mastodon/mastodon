@@ -8,6 +8,8 @@ class Api::V1::Accounts::EmailSubscriptionsController < Api::BaseController
   def create
     @account.email_subscriptions.create!(email: params[:email], locale: I18n.locale)
     render_empty
+  rescue ActiveRecord::RecordInvalid => e
+    render json: ValidationErrorFormatter.new(e).as_json, status: 422
   end
 
   private

@@ -23,6 +23,7 @@ import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 import { isRedesignEnabled } from '../common';
 
 import { AccountName } from './account_name';
+import { AccountSubscriptionForm } from './account_subscription_form';
 import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
@@ -218,8 +219,13 @@ export const AccountHeader: React.FC<{
                     isRedesign && redesignClasses.bio,
                   )}
                 />
+
                 <AccountHeaderFields accountId={accountId} />
               </div>
+
+              {!me && account.email_subscriptions && (
+                <AccountSubscriptionForm accountId={accountId} />
+              )}
 
               <AccountNumberFields accountId={accountId} />
             </div>

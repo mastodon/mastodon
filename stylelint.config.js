@@ -51,6 +51,13 @@ module.exports = {
           true,
           { ignorePseudoClasses: ['global'] },
         ],
+
+        'property-no-unknown': [
+          true,
+          {
+            ignoreProperties: ['composes'],
+          },
+        ],
       },
     },
   ],
