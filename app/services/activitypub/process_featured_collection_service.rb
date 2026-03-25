@@ -51,7 +51,7 @@ class ActivityPub::ProcessFeaturedCollectionService
     items = @json['orderedItems'] || []
     items.take(ITEMS_LIMIT).each_with_index do |item_json, index|
       uris << value_or_id(item_json)
-      ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json, index, @request_id)
+      ActivityPub::ProcessFeaturedItemWorker.perform_async(@collection.id, item_json, index + 1, @request_id)
     end
     uris.compact!
     @collection.collection_items.where.not(uri: uris).delete_all
