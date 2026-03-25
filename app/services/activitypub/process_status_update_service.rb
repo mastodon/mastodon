@@ -5,6 +5,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include Redisable
   include Lockable
 
+  CRAWL_DELAY = 1.minute
+  PROCESSING_DELAY = (30.seconds)..(10.minutes)
+
   def call(status, activity_json, object_json, request_id: nil)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
 
@@ -128,7 +131,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       media_attachment.download_thumbnail! if media_attachment.thumbnail_remote_url_previously_changed?
       media_attachment.save
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-      RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+      RedownloadMediaWorker.perform_in(rand(PROCESSING_DELAY), media_attachment.id)
     rescue Seahorse::Client::NetworkingError => e
       Rails.logger.warn "Error storing media attachment: #{e}"
     end
@@ -279,7 +282,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     # Queue unresolved mentions for later
     unresolved_mentions.uniq.each do |uri|
-      MentionResolveWorker.perform_in(rand(30...600).seconds, @status.id, uri, { 'request_id' => @request_id })
+      MentionResolveWorker.perform_in(rand(PROCESSING_DELAY), @status.id, uri, { 'request_id' => @request_id })
     end
   end
 
@@ -361,7 +364,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @activity_json['context'])
     ActivityPub::VerifyQuoteService.new.call(quote, approval_uri, fetchable_quoted_uri: quote_uri, prefetched_quoted_object: embedded_quote, request_id: @request_id)
   rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, quote.id, quote_uri, { 'request_id' => @request_id, 'approval_uri' => approval_uri })
+    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(PROCESSING_DELAY), quote.id, quote_uri, { 'request_id' => @request_id, 'approval_uri' => approval_uri })
   end
 
   def update_counts!
@@ -419,7 +422,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def reset_preview_card!
     @status.reset_preview_card!
-    LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
+    LinkCrawlWorker.perform_in(rand(CRAWL_DELAY), @status.id)
   end
 
   def broadcast_updates!
