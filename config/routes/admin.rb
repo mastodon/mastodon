@@ -114,7 +114,7 @@ namespace :admin do
   end
 
   resources :reports, only: [:index, :show] do
-    resources :actions, only: [:create], controller: 'reports/actions' do
+    resources :actions, only: [:create], module: :reports do
       collection do
         post :preview
       end
