@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe AccountConversation do
-  let!(:alice) { Fabricate(:account, username: 'alice') }
-  let!(:bob)   { Fabricate(:account, username: 'bob') }
-  let!(:mark)  { Fabricate(:account, username: 'mark') }
-
   describe '.add_status' do
+    let!(:alice) { Fabricate(:account, username: 'alice') }
+    let!(:bob)   { Fabricate(:account, username: 'bob') }
+    let!(:mark)  { Fabricate(:account, username: 'mark') }
+
     it 'creates new record when no others exist' do
       status = Fabricate(:status, account: alice, visibility: :direct)
       status.mentions.create(account: bob)
@@ -52,6 +52,9 @@ RSpec.describe AccountConversation do
   end
 
   describe '.remove_status' do
+    let!(:alice) { Fabricate(:account, username: 'alice') }
+    let!(:bob)   { Fabricate(:account, username: 'bob') }
+
     it 'updates last status to a previous value' do
       last_status  = Fabricate(:status, account: alice, visibility: :direct)
       status       = Fabricate(:status, account: alice, visibility: :direct)
