@@ -2903,10 +2903,14 @@ a.account__display-name {
     &:focus,
     &:hover,
     &:active {
-      &:not(:disabled, [aria-disabled='true']) {
-        background: var(--color-bg-secondary);
+      &:where(:not(:disabled, [aria-disabled='true'])) {
+        background: var(--color-bg-brand-softest);
         outline: 0;
       }
+    }
+
+    &:focus-visible {
+      outline: var(--outline-focus-default);
     }
   }
 
@@ -3986,21 +3990,13 @@ a.account__display-name {
   height: 20px;
   padding: 0;
   border-radius: 10px;
-  background-color: rgb(from var(--color-bg-brand-softest) r g b / 50%);
-  border: 1px solid rgb(from var(--color-border-brand) r g b / 50%);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-primary);
   box-sizing: border-box;
-
-  .react-toggle:hover:not(.react-toggle--disabled) & {
-    background-color: rgb(from var(--color-bg-brand-softest) r g b / calc(50%));
-  }
 
   .react-toggle--checked & {
     background-color: var(--color-bg-brand-base);
     border-color: var(--color-bg-brand-base);
-  }
-
-  .react-toggle--checked:not(.react-toggle--disabled):hover & {
-    background-color: var(--color-bg-brand-base-hover);
   }
 }
 
@@ -4017,6 +4013,7 @@ a.account__display-name {
   height: 16px;
   border-radius: 50%;
   background-color: var(--color-text-on-brand-base);
+  box-shadow: 0 2px 4px 0 color-mix(var(--color-black), transparent 75%);
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
@@ -5845,7 +5842,8 @@ a.status-card {
 
     .icon-button {
       padding: 0;
-      color: var(--color-text-secondary);
+
+      --default-icon-color: inherit;
     }
 
     .icon {
@@ -5898,7 +5896,10 @@ a.status-card {
           background: var(--color-bg-brand-base);
 
           .icon-button {
-            color: inherit;
+            --default-icon-color: inherit;
+            --default-bg-color: transparent;
+            --hover-icon-color: inherit;
+            --hover-bg-color: var(--color-bg-brand-base-hover);
           }
         }
 
@@ -10510,7 +10511,10 @@ noscript {
 
     &:hover,
     &:focus,
-    &:active {
+    &:active,
+    .focusable:focus-visible &,
+    .detailed-status__wrapper-direct .detailed-status &,
+    .status__wrapper-direct & {
       background: var(--color-bg-brand-soft);
     }
   }
