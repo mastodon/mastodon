@@ -5,28 +5,29 @@
 
   --color-text-primary: var(--color-grey-950);
   --color-text-secondary: var(--color-grey-600);
-  --color-text-tertiary: var(--color-grey-500);
-  --color-text-on-inverted: var(--color-white);
+  --color-text-tertiary: var(--color-grey-500); // legacy
+  --color-text-inverted: var(--color-white);
   --color-text-brand: var(--color-indigo-700);
   --color-text-brand-soft: color-mix(
     in oklab,
     var(--color-text-primary),
     var(--color-text-brand)
-  );
+  ); // legacy
+
   --color-text-on-brand-base: var(--color-white);
-  --color-text-brand-on-inverted: var(--color-indigo-400);
+  --color-text-brand-on-inverted: var(--color-indigo-400); // legacy
   --color-text-error: var(--color-red-800);
   --color-text-on-error-base: var(--color-white);
-  --color-text-warning: var(--color-yellow-600);
+  --color-text-warning: var(--color-yellow-600); // legacy
   --color-text-on-warning-base: var(--color-white);
-  --color-text-success: var(--color-green-600);
+  --color-text-success: var(--color-green-600); // legacy
   --color-text-on-success-base: var(--color-white);
-  --color-text-disabled: var(--color-grey-300);
-  --color-text-on-disabled: var(--color-grey-200);
-  --color-text-bookmark-highlight: var(--color-text-error);
-  --color-text-favourite-highlight: var(--color-text-warning);
-  --color-text-on-media: var(--color-white);
-  --color-text-status-links: var(--color-text-brand);
+  --color-text-disabled: var(--color-grey-300); // legacy
+  --color-text-on-disabled: var(--color-grey-200); // legacy
+  --color-text-bookmark-highlight: var(--color-text-error); // legacy
+  --color-text-favourite-highlight: var(--color-text-warning); // legacy
+  --color-text-on-media: var(--color-white); // legacy
+  --color-text-status-links: var(--color-text-brand); // legacy
 
   /* BACKGROUND TOKENS */
 
