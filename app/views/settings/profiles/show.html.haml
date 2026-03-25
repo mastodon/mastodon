@@ -8,10 +8,11 @@
 - if Mastodon::Feature.profile_redesign_enabled?
   %aside.callout
     = material_symbol 'info'
-    .body
-      %p.title= t('edit_profile.redesign_title')
-      %p= t('edit_profile.redesign_body')
-    = link_to t('edit_profile.redesign_button'), '/profile/edit'
+    .content
+      .body
+        %p.title= t('edit_profile.redesign_title')
+        %p= t('edit_profile.redesign_body')
+      = link_to t('edit_profile.redesign_button'), '/profile/edit'
 
 = simple_form_for @account, url: settings_profile_path, html: { id: :edit_profile } do |f|
   = render 'shared/error_messages', object: @account
