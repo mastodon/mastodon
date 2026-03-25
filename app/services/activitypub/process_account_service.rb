@@ -289,8 +289,8 @@ class ActivityPub::ProcessAccountService < BaseService
 
       next unless value['owner'] == @account.uri
 
-      value['publicKeyPem']
-      { type: :rsa, public_key: :key, uri: key_id }
+      key = value['publicKeyPem']
+      { type: :rsa, public_key: key, uri: key_id }
     end
   end
 
