@@ -6,6 +6,7 @@ class ActivityPub::ProcessAccountService < BaseService
   include Redisable
   include Lockable
 
+  MAX_PUBLIC_KEYS = 10
   MAX_PROFILE_FIELDS = 50
   SUBDOMAINS_RATELIMIT = 10
   DISCOVERIES_PER_REQUEST = 400
@@ -33,8 +34,8 @@ class ActivityPub::ProcessAccountService < BaseService
     with_redis_lock("process_account:#{@uri}") do
       @account            = Account.remote.find_by(uri: @uri) if @options[:only_key]
       @account          ||= Account.find_remote(@username, @domain)
-      @old_public_key     = @account&.public_key
-      @old_protocol       = @account&.protocol
+      @old_public_keys = @account.present? ? (@account.keypairs.pluck(:public_key) + [@account.public_key.presence].compact) : []
+      @old_protocol = @account&.protocol
       @suspension_changed = false
 
       if @account.nil?
@@ -56,8 +57,9 @@ class ActivityPub::ProcessAccountService < BaseService
     end
 
     after_protocol_change! if protocol_changed?
-    after_key_change! if key_changed? && !@options[:signed_with_known_key]
-    clear_tombstones! if key_changed?
+    after_key_change! if all_public_keys_changed? && !@options[:signed_with_known_key]
+    # TODO: maybe tie tombstones to specific keys? i.e. we don't need to keep tombstones if all keys changed
+    clear_tombstones! if all_public_keys_changed?
     after_suspension_change! if suspension_changed?
 
     unless @options[:only_key] || @account.suspended?
@@ -145,7 +147,11 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_fetchable_key!
-    @account.public_key = public_key || ''
+    @account.keypairs.upsert_all(public_keys, unique_by: :uri)
+    @account.keypairs.where.not(uri: public_keys.pluck(:uri)).delete_all
+
+    # Unset legacy public key attribute
+    @account.public_key = ''
   end
 
   def set_fetchable_attributes!
@@ -257,14 +263,35 @@ class ActivityPub::ProcessAccountService < BaseService
     [url, description]
   end
 
-  def public_key
-    value = first_of_value(@json['publicKey'])
+  def public_keys
+    # TODO: handle FEP-521a
 
-    return if value.nil?
-    return value['publicKeyPem'] if value.is_a?(Hash)
+    @public_keys ||= as_array(@json['publicKey']).take(MAX_PUBLIC_KEYS).filter_map do |value|
+      next if value.nil?
 
-    key = fetch_resource_without_id_validation(value)
-    key['publicKeyPem'] if key
+      if value.is_a?(Hash)
+        next unless value['owner'] == @account.uri
+
+        key = value['publicKeyPem']
+        value = value['id']
+
+        # Key is contained within the actor document, no need to fetch anything else
+        next { type: :rsa, public_key: key, uri: value } if value.split('#').first == @account.uri
+      end
+
+      key_id = value
+
+      # Key is fetched without ID validation because of a GoToSocial bug
+      value = fetch_resource_without_id_validation(key_id)
+
+      # Special handling for GoToSocial which returns the whole actor for the key ID
+      value = first_of_value(value['publicKey']) if value.is_a?(Hash) && value.key?('publicKey')
+
+      next unless value['owner'] == @account.uri
+
+      value['publicKeyPem']
+      { type: :rsa, public_key: :key, uri: key_id }
+    end
   end
 
   def url
@@ -353,8 +380,8 @@ class ActivityPub::ProcessAccountService < BaseService
     @domain_block = DomainBlock.rule_for(@domain)
   end
 
-  def key_changed?
-    !@old_public_key.nil? && @old_public_key != @account.public_key
+  def all_public_keys_changed?
+    !@old_public_keys.empty? && @account.keypairs.none? { |keypair| keypair.usable? && @old_public_keys.include?(keypair.public_key) }
   end
 
   def suspension_changed?

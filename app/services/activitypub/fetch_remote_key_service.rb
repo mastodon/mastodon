@@ -14,7 +14,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
     raise Error, "Unable to fetch key JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?(@json) || (supported_security_context?(@json) && @json['owner'].present? && !actor_type?)
     raise Error, "Unexpected object type for key #{uri}" unless expected_type?
-    return find_actor(@json['id'], @json, suppress_errors) if actor_type?
+    return Keypair.from_legacy_account(find_actor(@json['id'], @json, suppress_errors), uri: uri) if actor_type?
 
     @owner = fetch_resource(owner_uri, true)
 
@@ -23,7 +23,8 @@ class ActivityPub::FetchRemoteKeyService < BaseService
     raise Error, "Unexpected object type for actor #{owner_uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_owner_type?
     raise Error, "publicKey id for #{owner_uri} does not correspond to #{@json['id']}" unless confirmed_owner?
 
-    find_actor(owner_uri, @owner, suppress_errors)
+    # TODO: change to fetch and persist key
+    Keypair.from_legacy_account(find_actor(owner_uri, @owner, suppress_errors), uri: uri)
   rescue Error => e
     Rails.logger.debug { "Fetching key #{uri} failed: #{e.message}" }
     raise unless suppress_errors
