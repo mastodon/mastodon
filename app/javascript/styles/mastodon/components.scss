@@ -114,7 +114,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-bg-brand-base);
+    outline: var(--outline-focus-default);
     outline-offset: 2px;
   }
 
@@ -169,12 +169,12 @@
     color: var(--color-text-brand);
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid var(--color-text-brand);
+    border: 1px solid var(--color-border-brand);
 
     &:active,
     &:focus,
     &:hover {
-      border-color: var(--color-text-brand);
+      border-color: var(--color-border-brand);
       color: var(--color-text-brand);
       background-color: transparent;
       text-decoration: none;
@@ -184,7 +184,7 @@
       &:active,
       &:focus,
       &:hover {
-        border-color: var(--color-text-error);
+        border-color: var(--color-border-error);
         color: var(--color-text-error);
       }
     }
@@ -284,8 +284,8 @@
   --default-icon-color: var(--color-text-secondary);
   --default-bg-color: transparent;
   --hover-icon-color: var(--color-text-primary);
-  --hover-bg-color: var(--color-bg-brand-softer);
-  --focus-outline-color: var(--color-text-brand);
+  --hover-bg-color: var(--color-bg-brand-softest);
+  --focus-outline-color: var(--color-border-brand);
 
   display: inline-flex;
   color: var(--default-icon-color);
@@ -364,8 +364,8 @@
   &.copied {
     color: var(--color-text-success);
     transition: none;
-    background-color: var(--color-bg-success-softer);
-    border-color: var(--color-border-on-bg-brand-softer);
+    background-color: var(--color-bg-success-softest);
+    border-color: var(--color-border-success-soft);
   }
 }
 
@@ -537,21 +537,21 @@ body > [data-popper-placement] {
     flex-direction: column;
     flex: 0 1 auto;
     border-radius: 4px;
-    border: 1px solid var(--color-border-on-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     transition: border-color 300ms linear;
     position: relative;
     background: var(--color-bg-secondary);
 
     &.active {
       transition: none;
-      border-color: var(--color-text-brand);
+      border-color: var(--color-border-brand);
     }
   }
 
   &__warning {
     color: var(--color-text-primary);
-    background: var(--color-bg-warning-softer);
-    border: 1px solid var(--color-border-on-bg-warning-softer);
+    background: var(--color-bg-warning-softest);
+    border: 1px solid var(--color-border-warning-soft);
     padding: 8px 10px;
     border-radius: 4px;
     font-size: 13px;
@@ -619,7 +619,7 @@ body > [data-popper-placement] {
 
   .spoiler-input__input {
     padding: 12px 12px - 5px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     color: var(--color-text-brand);
   }
 
@@ -885,7 +885,7 @@ body > [data-popper-placement] {
         line-height: 20px;
         letter-spacing: 0.1px;
         color: var(--color-text-brand);
-        background-color: var(--color-bg-secondary-solid);
+        background-color: var(--color-bg-secondary);
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -917,7 +917,7 @@ body > [data-popper-placement] {
   gap: 4px;
   color: var(--color-text-brand);
   background: transparent;
-  border: 1px solid var(--color-text-brand);
+  border: 1px solid var(--color-border-brand);
   border-radius: 6px;
   padding: 4px 8px;
   font-size: 13px;
@@ -1464,9 +1464,9 @@ body > [data-popper-placement] {
 
 .focusable {
   &:focus-visible {
-    outline: 2px solid var(--color-text-brand);
+    outline: 2px solid var(--color-border-brand);
     outline-offset: -2px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 }
 
@@ -1587,7 +1587,7 @@ body > [data-popper-placement] {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     opacity: 0;
     animation: fade 0.7s reverse both 0.3s;
     pointer-events: none;
@@ -1739,7 +1739,7 @@ body > [data-popper-placement] {
 .notification-ungrouped--direct,
 .notification-group--direct,
 .notification-group--annual-report {
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
 
   &:focus {
     background: var(--color-bg-brand-soft);
@@ -1877,7 +1877,7 @@ body > [data-popper-placement] {
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 
   .status__prepend {
@@ -1932,7 +1932,7 @@ body > [data-popper-placement] {
   line-height: 20px;
   letter-spacing: 0.25px;
   color: var(--color-text-secondary);
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
   border-radius: 8px;
   cursor: default;
 }
@@ -2060,7 +2060,7 @@ body > [data-popper-placement] {
 
   &__domain-pill {
     display: inline-flex;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     border-radius: 4px;
     border: 0;
     color: var(--color-text-brand);
@@ -2121,7 +2121,7 @@ body > [data-popper-placement] {
 
       &__handle {
         border: 2px dashed var(--color-border-on-brand-softer);
-        background: var(--color-bg-brand-softer);
+        background: var(--color-bg-brand-softest);
         padding: 12px 8px;
         color: var(--color-text-brand);
         border-radius: 4px;
@@ -2903,10 +2903,14 @@ a.account__display-name {
     &:focus,
     &:hover,
     &:active {
-      &:not(:disabled, [aria-disabled='true']) {
-        background: var(--color-bg-secondary);
+      &:where(:not(:disabled, [aria-disabled='true'])) {
+        background: var(--color-bg-brand-softest);
         outline: 0;
       }
+    }
+
+    &:focus-visible {
+      outline: var(--outline-focus-default);
     }
   }
 
@@ -3072,7 +3076,7 @@ a.account__display-name {
     }
 
     &:focus-visible {
-      border-top-color: var(--color-text-brand);
+      border-top-color: var(--color-border-brand);
       border-radius: 0;
     }
   }
@@ -3087,7 +3091,7 @@ a.account__display-name {
   border-top: 0;
 
   @media screen and (min-width: $no-gap-breakpoint) {
-    border-top: 10px solid var(--color-bg-ambient);
+    border-top: 10px solid var(--color-bg-primary);
   }
 }
 
@@ -3586,7 +3590,7 @@ a.account__display-name {
   &.focused {
     transition: none;
     outline: 0;
-    border-color: var(--color-text-brand);
+    border-color: var(--color-border-brand);
   }
 
   &.copied {
@@ -3986,24 +3990,13 @@ a.account__display-name {
   height: 20px;
   padding: 0;
   border-radius: 10px;
-  background-color: rgb(from var(--color-bg-brand-softer) r g b / 50%);
-  border: 1px solid rgb(from var(--color-text-brand) r g b / 50%);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-primary);
   box-sizing: border-box;
-
-  .react-toggle:hover:not(.react-toggle--disabled) & {
-    background-color: rgb(
-      from var(--color-bg-brand-softer) r g b /
-        calc(50% + var(--overlay-strength-brand))
-    );
-  }
 
   .react-toggle--checked & {
     background-color: var(--color-bg-brand-base);
     border-color: var(--color-bg-brand-base);
-  }
-
-  .react-toggle--checked:not(.react-toggle--disabled):hover & {
-    background-color: var(--color-bg-brand-base-hover);
   }
 }
 
@@ -4020,6 +4013,7 @@ a.account__display-name {
   height: 16px;
   border-radius: 50%;
   background-color: var(--color-text-on-brand-base);
+  box-shadow: 0 2px 4px 0 color-mix(var(--color-black), transparent 75%);
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
@@ -4081,8 +4075,8 @@ a.account__display-name {
 
   &:focus-visible {
     outline: none;
-    border-color: var(--color-text-brand);
-    background: var(--color-bg-brand-softer);
+    border-color: var(--color-border-brand);
+    background: var(--color-bg-brand-softest);
   }
 
   &--logo {
@@ -4457,7 +4451,7 @@ a.status-card {
     }
 
     &:focus-visible {
-      outline: 2px solid var(--color-text-brand);
+      outline: var(--outline-focus-default);
       outline-offset: -2px;
     }
   }
@@ -4545,7 +4539,7 @@ a.status-card {
   z-index: 1;
 
   &.active {
-    box-shadow: 0 1px 0 var(--color-bg-brand-softer);
+    box-shadow: 0 1px 0 var(--color-bg-brand-softest);
 
     &::before {
       display: block;
@@ -4655,7 +4649,7 @@ a.status-card {
   &.active {
     .column-header__icon {
       color: var(--color-text-brand);
-      text-shadow: 0 0 10px var(--color-bg-brand-softer);
+      text-shadow: 0 0 10px var(--color-bg-brand-softest);
     }
   }
 
@@ -5150,7 +5144,7 @@ a.status-card {
         &:hover,
         &:active,
         &:focus {
-          background: var(--color-bg-brand-softer);
+          background: var(--color-bg-brand-softest);
           color: color-mix(
             in oklab,
             var(--color-text-primary),
@@ -5752,7 +5746,7 @@ a.status-card {
 .visibility-modal {
   &__quote-warning {
     color: var(--color-text-primary);
-    background: var(--color-bg-warning-softer);
+    background: var(--color-bg-warning-softest);
     padding: 16px;
     border-radius: 4px;
 
@@ -5787,7 +5781,7 @@ a.status-card {
     display: flex;
     align-items: center;
     color: var(--color-text-primary);
-    background: var(--color-bg-secondary-solid);
+    background: var(--color-bg-secondary);
     border: 1px solid var(--color-border-primary);
     padding: 8px 12px;
     width: 100%;
@@ -5848,7 +5842,8 @@ a.status-card {
 
     .icon-button {
       padding: 0;
-      color: var(--color-text-secondary);
+
+      --default-icon-color: inherit;
     }
 
     .icon {
@@ -5901,7 +5896,10 @@ a.status-card {
           background: var(--color-bg-brand-base);
 
           .icon-button {
-            color: inherit;
+            --default-icon-color: inherit;
+            --default-bg-color: transparent;
+            --hover-icon-color: inherit;
+            --hover-bg-color: var(--color-bg-brand-base-hover);
           }
         }
 
@@ -6000,7 +5998,7 @@ a.status-card {
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px var(--color-text-brand);
+    box-shadow: 0 0 0 2px var(--color-border-brand);
   }
 
   &[aria-hidden='true'] {
@@ -6254,9 +6252,7 @@ a.status-card {
       --default-icon-color: var(--color-text-on-media);
       --default-bg-color: transparent;
       --hover-icon-color: var(--color-text-on-media);
-      --hover-bg-color: rgb(
-        from var(--color-text-on-media) r g b / var(--overlay-strength-brand)
-      );
+      --hover-bg-color: rgb(from var(--color-text-on-media) r g b / 10%);
 
       .icon {
         filter: var(--overlay-icon-shadow);
@@ -6272,8 +6268,7 @@ a.status-card {
         --default-icon-color: var(--color-text-favourite-highlight);
         --hover-icon-color: var(--color-text-favourite-highlight);
         --hover-bg-color: rgb(
-          from var(--color-text-favourite-highlight) r g b /
-            var(--overlay-strength-brand)
+          from var(--color-text-favourite-highlight) r g b / 10%
         );
       }
 
@@ -6918,7 +6913,7 @@ a.status-card {
   }
 
   .button.button-secondary {
-    border-color: var(--color-text-error);
+    border-color: var(--color-border-error);
     color: var(--color-text-error);
     flex: 0 0 auto;
 
@@ -6986,7 +6981,7 @@ a.status-card {
     &:hover,
     &:active,
     &:focus {
-      background: var(--color-bg-brand-softer);
+      background: var(--color-bg-brand-softest);
     }
   }
 }
@@ -7431,7 +7426,7 @@ a.status-card {
     inset: 2px;
     z-index: 1;
     border-radius: inherit;
-    border: 2px solid var(--color-text-on-inverted);
+    border: 2px solid var(--color-text-inverted);
     outline: 2px solid var(--color-bg-inverted);
     pointer-events: none;
   }
@@ -8150,7 +8145,7 @@ a.status-card {
 
     &.checked,
     &.indeterminate {
-      border-color: var(--color-text-brand);
+      border-color: var(--color-border-brand);
     }
 
     .icon {
@@ -8691,7 +8686,7 @@ noscript {
       }
 
       &:focus {
-        background: var(--color-bg-brand-softer);
+        background: var(--color-bg-brand-softest);
       }
     }
   }
@@ -8953,7 +8948,7 @@ noscript {
   }
 
   &__root {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     font-size: 13px;
     display: flex;
     align-items: flex-end;
@@ -9037,13 +9032,13 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     color: color-mix(
       in oklab,
       var(--color-text-primary),
       var(--color-text-secondary)
     );
-    border: 1px solid var(--color-border-on-bg-brand-softer);
+    border: 1px solid var(--color-border-brand-soft);
     border-radius: 3px;
     box-sizing: border-box;
     margin: 2px;
@@ -9092,8 +9087,8 @@ noscript {
 
     &.active {
       color: var(--color-text-brand);
-      background-color: var(--color-bg-brand-softer);
-      border-color: var(--color-text-brand);
+      background-color: var(--color-bg-brand-softest);
+      border-color: var(--color-border-brand);
       transition: all 100ms ease-in;
       transition-property: background-color, color;
     }
@@ -9156,7 +9151,7 @@ noscript {
       inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-inline-start: 4px solid var(--color-text-brand);
+      border-inline-start: 4px solid var(--color-border-brand);
       pointer-events: none;
     }
   }
@@ -9679,7 +9674,7 @@ noscript {
     }
 
     &.invalid &__input {
-      border-color: var(--color-text-error);
+      border-color: var(--color-border-error);
     }
 
     &.expanded .search__popout {
@@ -9950,8 +9945,8 @@ noscript {
   margin: 10px;
   margin-bottom: 5px;
   border-radius: 8px;
-  border: 1px solid var(--color-border-on-bg-brand-softer);
-  background: var(--color-bg-brand-softer);
+  border: 1px solid var(--color-border-brand-soft);
+  background: var(--color-bg-brand-softest);
   overflow: hidden;
   flex-shrink: 0;
 
@@ -10017,8 +10012,8 @@ noscript {
 }
 
 .warning-banner {
-  border: 1px solid var(--color-border-on-bg-error-softer);
-  background: var(--color-bg-error-softer);
+  border: 1px solid var(--color-border-error-soft);
+  background: var(--color-bg-error-softest);
 
   &__message {
     h1 {
@@ -10354,7 +10349,7 @@ noscript {
   width: auto;
   padding: 15px;
   margin: 0;
-  color: var(--color-text-on-inverted);
+  color: var(--color-text-inverted);
   background: var(--color-bg-inverted);
   backdrop-filter: blur(8px);
   border-radius: 8px;
@@ -10408,7 +10403,7 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 }
 
@@ -10510,13 +10505,16 @@ noscript {
     color: inherit;
     text-decoration: none;
     padding: 4px 12px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     border-radius: 4px;
     font-weight: 500;
 
     &:hover,
     &:focus,
-    &:active {
+    &:active,
+    .focusable:focus-visible &,
+    .detailed-status__wrapper-direct .detailed-status &,
+    .status__wrapper-direct & {
       background: var(--color-bg-brand-soft);
     }
   }
@@ -10536,10 +10534,10 @@ noscript {
   padding: 16px 0;
   padding-bottom: 0;
   border-bottom: 1px solid var(--color-border-primary);
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
 
   &.focusable:focus-visible {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 
   &__header {
@@ -11201,7 +11199,7 @@ noscript {
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    border-inline-start: 4px solid var(--color-text-brand);
+    border-inline-start: 4px solid var(--color-border-brand);
     pointer-events: none;
   }
 }
@@ -11398,8 +11396,8 @@ noscript {
   display: block;
   box-sizing: border-box;
   color: var(--color-text-primary);
-  background: var(--color-bg-brand-softer);
-  border: 1px solid var(--color-border-on-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
+  border: 1px solid var(--color-border-brand-soft);
   border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;

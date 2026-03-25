@@ -160,7 +160,7 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: var(--color-bg-brand-softer);
+      background-color: var(--color-bg-brand-softest);
     }
 
     &:disabled {
@@ -177,7 +177,7 @@
 
 .deleteButton {
   --default-icon-color: var(--color-text-error);
-  --hover-bg-color: var(--color-bg-error-base-hover);
+  --hover-bg-color: var(--color-bg-error-base);
   --hover-icon-color: var(--color-text-on-error-base);
 }
 
@@ -201,7 +201,7 @@
   &,
   &:global(.active) {
     // Overrides the transparent background added by default with .active
-    --hover-bg-color: var(--color-bg-brand-softer-solid);
+    --hover-bg-color: var(--color-bg-brand-softest);
   }
 
   position: absolute;

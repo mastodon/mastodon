@@ -13,7 +13,7 @@
     &:active,
     &:focus {
       .card__bar {
-        background: var(--color-bg-brand-softer);
+        background: var(--color-bg-brand-softest);
       }
     }
   }
@@ -220,8 +220,8 @@
 .information-badge {
   &.superapp {
     color: var(--color-text-success);
-    background-color: var(--color-bg-success-softer);
-    border-color: var(--color-border-on-bg-success-softer);
+    background-color: var(--color-bg-success-softest);
+    border-color: var(--color-border-success-soft);
   }
 }
 
@@ -229,7 +229,7 @@
   display: inline-flex;
   padding: 4px;
   padding-inline-end: 8px;
-  border: 1px solid var(--color-text-brand);
+  border: 1px solid var(--color-border-brand);
   color: var(--color-text-brand);
   font-weight: 500;
   font-size: 12px;
@@ -255,8 +255,8 @@
 
 .simple_form .not_recommended {
   color: var(--color-text-error);
-  background-color: var(--color-bg-error-softer);
-  border-color: var(--color-border-on-bg-error-softer);
+  background-color: var(--color-bg-error-softest);
+  border-color: var(--color-border-error-soft);
 }
 
 .account__header__fields {
@@ -310,8 +310,8 @@
   }
 
   .verified {
-    border: 1px solid var(--color-border-on-bg-success-softer);
-    background: var(--color-bg-success-softer);
+    border: 1px solid var(--color-border-success-soft);
+    background: var(--color-bg-success-softest);
 
     a {
       color: var(--color-text-success);

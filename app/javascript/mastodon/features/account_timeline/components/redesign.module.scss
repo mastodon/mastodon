@@ -93,7 +93,7 @@
   }
 
   svg {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     width: 28px;
     height: 28px;
     padding: 5px;
@@ -184,7 +184,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .badgeMuted {
   background-color: var(--color-bg-inverted);
-  color: var(--color-text-on-inverted);
+  color: var(--color-text-inverted);
 }
 
 .badgeBlocked {
@@ -270,7 +270,7 @@ svg.badgeIcon {
 }
 
 .fieldVerified {
-  background-color: var(--color-bg-success-softer);
+  background-color: var(--color-bg-success-softest);
 
   dt {
     padding-right: 24px;
@@ -292,8 +292,8 @@ svg.badgeIcon {
 }
 
 .fieldOverflowButton {
-  --default-bg-color: var(--color-bg-secondary-solid);
-  --hover-bg-color: var(--color-bg-brand-softer-solid);
+  --default-bg-color: var(--color-bg-secondary);
+  --hover-bg-color: var(--color-bg-brand-softest);
 
   position: absolute;
   right: 8px;
@@ -413,7 +413,7 @@ svg.badgeIcon {
 
   :global(.active) {
     color: var(--color-text-brand);
-    border-bottom: 4px solid var(--color-text-brand);
+    border-bottom: 4px solid var(--color-border-brand);
     padding-bottom: 14px;
   }
 }

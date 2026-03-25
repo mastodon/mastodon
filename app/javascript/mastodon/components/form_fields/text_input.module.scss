@@ -32,11 +32,11 @@
   &:focus:user-invalid,
   &:required:user-invalid,
   [data-has-error='true'] & {
-    outline-color: var(--color-text-error);
+    outline-color: var(--color-border-error);
   }
 
   &:focus {
-    outline-color: var(--color-text-brand);
+    outline-color: var(--color-border-brand);
   }
 
   &:required:user-valid {

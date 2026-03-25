@@ -32,7 +32,7 @@ code {
     display: block;
     background: linear-gradient(
       to bottom,
-      var(--color-bg-secondary-solid),
+      var(--color-bg-secondary),
       transparent
     );
     position: absolute;
@@ -573,7 +573,7 @@ code {
   input[type='datetime-local'] {
     &:focus:user-invalid:not(:placeholder-shown),
     &:required:user-invalid:not(:placeholder-shown) {
-      border-color: var(--color-text-error);
+      border-color: var(--color-border-error);
     }
   }
 
@@ -763,7 +763,7 @@ code {
   input[type='datetime-local'],
   textarea,
   select {
-    border-color: var(--color-text-error);
+    border-color: var(--color-border-error);
   }
 }
 
@@ -801,27 +801,27 @@ code {
 .flash-message {
   color: var(--color-text-brand);
   background: transparent;
-  border: 1px solid var(--color-text-brand);
+  border: 1px solid var(--color-border-brand);
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
   text-align: center;
 
   &.notice {
-    border: 1px solid var(--color-border-on-bg-success-softer);
-    background: var(--color-bg-success-softer);
+    border: 1px solid var(--color-border-success-soft);
+    background: var(--color-bg-success-softest);
     color: var(--color-text-success);
   }
 
   &.warning {
-    border: 1px solid var(--color-border-on-bg-warning-softer);
-    background: var(--color-bg-warning-softer);
+    border: 1px solid var(--color-border-warning-soft);
+    background: var(--color-bg-warning-softest);
     color: var(--color-text-warning);
   }
 
   &.alert {
-    border: 1px solid var(--color-border-on-bg-error-softer);
-    background: var(--color-bg-error-softer);
+    border: 1px solid var(--color-border-error-soft);
+    background: var(--color-bg-error-softest);
     color: var(--color-text-error);
   }
 
@@ -887,7 +887,7 @@ code {
     }
 
     &:focus {
-      background: var(--color-bg-brand-softer);
+      background: var(--color-bg-brand-softest);
     }
   }
 
@@ -1373,7 +1373,7 @@ code {
     cursor: pointer;
 
     &:hover {
-      background-color: var(--color-bg-brand-softer);
+      background-color: var(--color-bg-brand-softest);
     }
 
     img {
@@ -1404,7 +1404,7 @@ code {
     }
 
     &.invalid img {
-      outline: 1px solid var(--color-text-error);
+      outline: 1px solid var(--color-border-error);
       outline-offset: -1px;
     }
 
@@ -1414,7 +1414,7 @@ code {
       width: 100%;
       height: 100%;
       position: absolute;
-      background: var(--color-bg-error-softer);
+      background: var(--color-bg-error-softest);
       z-index: 2;
       border-radius: 8px;
     }
