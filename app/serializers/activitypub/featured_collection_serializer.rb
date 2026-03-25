@@ -46,4 +46,8 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
   def language_present?
     object.language.present?
   end
+
+  def collection_items
+    object.accepted_collection_items
+  end
 end
