@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { CharacterCounter } from '@/mastodon/components/character_counter';
 import { Details } from '@/mastodon/components/details';
 import { TextAreaField } from '@/mastodon/components/form_fields';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
@@ -84,7 +85,12 @@ export const ImageAltTextField: FC<{
   const altLimit = useAppSelector(
     (state) =>
       state.server.getIn(
-        ['server', 'configuration', 'media_attachments', 'description_limit'],
+        [
+          'server',
+          'configuration',
+          'accounts',
+          'max_header_description_length',
+        ],
         150,
       ) as number,
   );
@@ -100,23 +106,26 @@ export const ImageAltTextField: FC<{
     <>
       <img src={imageSrc} alt='' className={classes.altImage} />
 
-      <TextAreaField
-        label={
-          <FormattedMessage
-            id='account_edit.image_alt_modal.text_label'
-            defaultMessage='Alt text'
-          />
-        }
-        hint={
-          <FormattedMessage
-            id='account_edit.image_alt_modal.text_hint'
-            defaultMessage='Alt text helps screen reader users to understand your content.'
-          />
-        }
-        onChange={handleChange}
-        value={altText}
-        maxLength={altLimit}
-      />
+      <div>
+        <TextAreaField
+          label={
+            <FormattedMessage
+              id='account_edit.image_alt_modal.text_label'
+              defaultMessage='Alt text'
+            />
+          }
+          hint={
+            <FormattedMessage
+              id='account_edit.image_alt_modal.text_hint'
+              defaultMessage='Alt text helps screen reader users to understand your content.'
+            />
+          }
+          onChange={handleChange}
+          value={altText}
+          maxLength={altLimit}
+        />
+        <CharacterCounter currentString={altText} maxLength={altLimit} />
+      </div>
 
       {!hideTip && (
         <Details
