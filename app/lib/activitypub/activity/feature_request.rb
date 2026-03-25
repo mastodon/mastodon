@@ -23,8 +23,7 @@ class ActivityPub::Activity::FeatureRequest < ActivityPub::Activity
 
   def accept_request!
     collection_item = @collection.collection_items.create!(
-      account: @featured_account,
-      state: :accepted
+      collection_item_attributes(:accepted)
     )
 
     queue_delivery!(collection_item, ActivityPub::AcceptFeatureRequestSerializer)
@@ -32,11 +31,14 @@ class ActivityPub::Activity::FeatureRequest < ActivityPub::Activity
 
   def reject_request!
     collection_item = @collection.collection_items.build(
-      account: @featured_account,
-      state: :rejected
+      collection_item_attributes(:rejected)
     )
 
     queue_delivery!(collection_item, ActivityPub::RejectFeatureRequestSerializer)
+  end
+
+  def collection_item_attributes(state = :accepted)
+    { account: @featured_account, activity_uri: @json['id'], state: }
   end
 
   def queue_delivery!(collection_item, serializer)

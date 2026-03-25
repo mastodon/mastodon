@@ -32,6 +32,7 @@ RSpec.describe ActivityPub::Activity::FeatureRequest do
           .with(satisfying do |body|
             response_json = JSON.parse(body)
             response_json['type'] == 'Accept' &&
+              response_json['object'] == 'https://example.com/feature_requests/1' &&
               response_json['to'] == sender.uri
           end, recipient.id, sender.inbox_url)
       end
@@ -46,6 +47,7 @@ RSpec.describe ActivityPub::Activity::FeatureRequest do
           .with(satisfying do |body|
             response_json = JSON.parse(body)
             response_json['type'] == 'Reject' &&
+              response_json['object'] == 'https://example.com/feature_requests/1' &&
               response_json['to'] == sender.uri
           end, recipient.id, sender.inbox_url)
       end
