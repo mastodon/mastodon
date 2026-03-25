@@ -92,7 +92,7 @@ namespace :admin do
       post :stop_delivery
     end
 
-    resources :moderation_notes, controller: 'instances/moderation_notes', only: [:create, :destroy]
+    resources :moderation_notes, module: :instances, only: [:create, :destroy]
   end
 
   resources :rules, only: [:index, :new, :create, :edit, :update, :destroy] do
