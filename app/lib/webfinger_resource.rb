@@ -33,7 +33,7 @@ class WebfingerResource
 
   def account_from_url
     if account_show_page?
-      Account.find_local!(path_params[:username])
+      path_params.key?(:username) ? Account.find_local!(path_params[:username]) : Account.local.find(path_params[:id])
     elsif instance_actor_page?
       Account.representative
     else

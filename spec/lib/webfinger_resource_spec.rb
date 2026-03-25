@@ -38,6 +38,13 @@ RSpec.describe WebfingerResource do
         it { is_expected.to eq(account) }
       end
 
+      context 'with a valid HTTPS route to an existing user using the new API scheme' do
+        let(:account) { Fabricate(:account) }
+        let(:resource) { "https://example.com/ap/users/#{account.id}" }
+
+        it { is_expected.to eq(account) }
+      end
+
       context 'with a valid HTTPS route to a non-existing user' do
         let(:account) { Fabricate(:account) }
         let(:resource) { 'https://example.com/users/alice' }
