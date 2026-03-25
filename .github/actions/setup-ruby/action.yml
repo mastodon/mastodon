@@ -14,7 +14,7 @@ runs:
       shell: bash
       run: |
         sudo apt-get update
-        sudo apt-get install -y libicu-dev libidn11-dev libvips42 ${{ inputs.additional-system-dependencies }}
+        sudo apt-get install --no-install-recommends -y libicu-dev libidn11-dev libvips42 ${{ inputs.additional-system-dependencies }}
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@4eb9f110bac952a8b68ecf92e3b5c7a987594ba6 # v1
