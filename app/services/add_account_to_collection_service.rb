@@ -22,10 +22,8 @@ class AddAccountToCollectionService
   private
 
   def create_collection_item
-    @collection.collection_items.create!(
-      account: @account,
-      state: :accepted
-    )
+    state = @account.local? ? :accepted : :pending
+    @collection.collection_items.create!(account: @account, state:)
   end
 
   def distribute_add_activity

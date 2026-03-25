@@ -65,8 +65,12 @@ RSpec.describe CreateCollectionService do
         context 'when some accounts are remote' do
           let(:accounts) { Fabricate.times(2, :remote_account, feature_approval_policy: (0b10 << 16)) }
 
-          it 'federates `FeatureRequest` activities', feature: :collections_federation do
+          it 'marks the new items as `pending` and federates `FeatureRequest` activities', feature: :collections_federation do
             subject.call(params, author)
+
+            new_collection = author.collections.last
+            expect(new_collection.collection_items.size).to eq 2
+            expect(new_collection.collection_items).to all(be_pending)
 
             expect(ActivityPub::FeatureRequestWorker).to have_enqueued_sidekiq_job.exactly(2).times
           end
