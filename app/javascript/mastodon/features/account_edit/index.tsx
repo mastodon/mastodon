@@ -59,7 +59,7 @@ export const messages = defineMessages({
     defaultMessage: 'Add a short introduction to help others identify you.',
   },
   bioAddLabel: {
-    id: 'account_edit.bio.label',
+    id: 'account_edit.bio.add_label',
     defaultMessage: 'Add bio',
   },
   bioEditLabel: {
