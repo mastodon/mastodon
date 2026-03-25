@@ -1194,7 +1194,6 @@ ko:
   application_mailer:
     notification_preferences: 이메일 설정 변경
     salutation: "%{name} 님,"
-    settings: '이메일 설정 변경: %{link}'
     unsubscribe: 구독 해제
     view: '보기:'
     view_profile: 프로필 보기
@@ -1596,9 +1595,6 @@ ko:
     title: 인증 이력
   mail_subscriptions:
     unsubscribe:
-      action: 네, 구독 취소합니다
-      complete: 구독 취소됨
-      confirmation_html: 정말로 %{domain}에서 %{email}로 보내는 마스토돈의 %{type}에 대한 구독을 취소하시겠습니까? 언제든지 <a href="%{settings_path}">이메일 알림 설정</a>에서 다시 구독할 수 있습니다.
       emails:
         notification_emails:
           favourite: 좋아요 알림 이메일
@@ -1606,9 +1602,6 @@ ko:
           follow_request: 팔로우 요청 이메일
           mention: 멘션 알림 이메일
           reblog: 부스트 알림 이메일
-      resubscribe_html: 만약 실수로 구독 취소를 했다면 <a href="%{settings_path}">이메일 알림 설정</a>에서 다시 구독할 수 있습니다.
-      success_html: 이제 더이상 %{domain}의 마스토돈에서 %{email}로 %{type} 알림을 보내지 않습니다.
-      title: 구독 취소
   media_attachments:
     validations:
       images_and_video: 이미 사진이 첨부된 게시물엔 동영상을 첨부할 수 없습니다.

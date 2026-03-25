@@ -504,6 +504,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_23_105645) do
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
+  create_table "email_subscriptions", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "created_at", null: false
+    t.string "email", null: false
+    t.string "locale", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "email"], name: "index_email_subscriptions_on_account_id_and_email", unique: true
+    t.index ["account_id"], name: "index_email_subscriptions_on_account_id"
+    t.index ["confirmation_token"], name: "index_email_subscriptions_on_confirmation_token", unique: true, where: "(confirmation_token IS NOT NULL)"
+  end
+
   create_table "fasp_backfill_requests", force: :cascade do |t|
     t.string "category", null: false
     t.datetime "created_at", null: false
@@ -1486,6 +1499,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_23_105645) do
   add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
+  add_foreign_key "email_subscriptions", "accounts", on_delete: :cascade
   add_foreign_key "fasp_backfill_requests", "fasp_providers"
   add_foreign_key "fasp_debug_callbacks", "fasp_providers"
   add_foreign_key "fasp_follow_recommendations", "accounts", column: "recommended_account_id"

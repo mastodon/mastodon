@@ -1212,7 +1212,6 @@ zh-TW:
   application_mailer:
     notification_preferences: 變更電子郵件設定
     salutation: "%{name}、"
-    settings: 變更電子郵件設定︰%{link}
     unsubscribe: 取消訂閱
     view: 進入瀏覽：
     view_profile: 檢視個人檔案
@@ -1616,9 +1615,6 @@ zh-TW:
     title: 認證歷史紀錄
   mail_subscriptions:
     unsubscribe:
-      action: 是的，取消訂閱
-      complete: 取消訂閱
-      confirmation_html: 您確定要取要取消訂閱自 Mastodon 上 %{domain} 之 %{type} 至您電子郵件 %{email} 嗎？您隨時可以自<a href="%{settings_path}">電子郵件通知設定</a>重新訂閱。
       emails:
         notification_emails:
           favourite: 最愛通知電子郵件
@@ -1626,9 +1622,6 @@ zh-TW:
           follow_request: 跟隨請求通知電子郵件
           mention: 提及通知電子郵件
           reblog: 轉嘟通知電子郵件
-      resubscribe_html: 若您不慎錯誤地取消訂閱，您可以自<a href="%{settings_path}">電子郵件通知設定</a>重新訂閱。
-      success_html: 您將不再收到來自 Mastodon 上 %{domain} 之 %{type} 至您電子郵件 %{email}。
-      title: 取消訂閱
   media_attachments:
     validations:
       images_and_video: 無法於已有圖片之嘟文中加入影片

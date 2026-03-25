@@ -1124,7 +1124,6 @@ th:
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     salutation: "%{name},"
-    settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     unsubscribe: เลิกบอกรับ
     view: 'ดู:'
     view_profile: ดูโปรไฟล์
@@ -1510,9 +1509,6 @@ th:
     title: ประวัติการรับรองความถูกต้อง
   mail_subscriptions:
     unsubscribe:
-      action: ใช่ เลิกบอกรับ
-      complete: เลิกบอกรับแล้ว
-      confirmation_html: คุณแน่ใจหรือไม่ว่าต้องการเลิกบอกรับจากการรับ %{type} สำหรับ Mastodon ใน %{domain} ไปยังอีเมลของคุณที่ %{email}? คุณสามารถบอกรับใหม่ได้เสมอจาก <a href="%{settings_path}">การตั้งค่าการแจ้งเตือนอีเมล</a> ของคุณ
       emails:
         notification_emails:
           favourite: อีเมลการแจ้งเตือนการชื่นชอบ
@@ -1520,9 +1516,6 @@ th:
           follow_request: อีเมลคำขอติดตาม
           mention: อีเมลการแจ้งเตือนการกล่าวถึง
           reblog: อีเมลการแจ้งเตือนการดัน
-      resubscribe_html: หากคุณได้เลิกบอกรับโดยไม่ได้ตั้งใจ คุณสามารถบอกรับใหม่ได้จาก <a href="%{settings_path}">การตั้งค่าการแจ้งเตือนอีเมล</a> ของคุณ
-      success_html: คุณจะไม่ได้รับ %{type} สำหรับ Mastodon ใน %{domain} ไปยังอีเมลของคุณที่ %{email} อีกต่อไป
-      title: เลิกบอกรับ
   media_attachments:
     validations:
       images_and_video: ไม่สามารถแนบวิดีโอกับโพสต์ที่มีภาพอยู่แล้ว

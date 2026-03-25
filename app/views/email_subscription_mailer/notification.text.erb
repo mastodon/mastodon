@@ -1,0 +1,7 @@
+<%= t '.title', count: @statuses.size, name: display_name(@subscription.account), excerpt: truncate(@statuses.first.text, length: 17) %>
+
+===
+
+<%- @statuses.each do |status| %>
+<%= render 'notification_mailer/status', status: status %>
+<%- end %>

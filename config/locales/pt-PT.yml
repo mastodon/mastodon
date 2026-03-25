@@ -1229,7 +1229,6 @@ pt-PT:
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
-    settings: 'Alterar preferências de e-mail: %{link}'
     unsubscribe: Cancelar subscrição
     view: 'Ver:'
     view_profile: Ver perfil
@@ -1651,9 +1650,6 @@ pt-PT:
     title: Histórico de autenticação
   mail_subscriptions:
     unsubscribe:
-      action: Sim, cancelar subscrição
-      complete: Subscrição cancelada
-      confirmation_html: Tens a certeza que desejas cancelar a subscrição para receber %{type} pelo Mastodon em %{domain} no teu e-mail em %{email}? Podes sempre subscrever novamente nas tuas <a href="%{settings_path}">definições de notificação por e-mail</a>.
       emails:
         notification_emails:
           favourite: e-mails de notificação de favoritos
@@ -1661,9 +1657,6 @@ pt-PT:
           follow_request: e-mails de pedido de seguidor
           mention: e-mails de notificação de menção
           reblog: e-mails de notificação de partilhas
-      resubscribe_html: Se tiveres anulado a subscrição por engano, podes voltar a subscrevê-la nas <a href="%{settings_path}">definições de notificação por e-mail</a>.
-      success_html: Não receberás novamente %{type} do Mastodon em %{domain} para o teu e-mail em %{email}.
-      title: Cancelar subscrição
   media_attachments:
     validations:
       images_and_video: Não é possível anexar um vídeo a uma publicação que já contém imagens

@@ -1214,7 +1214,6 @@ et:
   application_mailer:
     notification_preferences: Muuda e-posti eelistusi
     salutation: "%{name}!"
-    settings: 'Muuda e-posti eelistusi: %{link}'
     unsubscribe: Loobu tellimisest
     view: 'Vaade:'
     view_profile: Vaata profiili
@@ -1636,9 +1635,6 @@ et:
     title: Autentimise ajalugu
   mail_subscriptions:
     unsubscribe:
-      action: Jah, lõpeta tellimine
-      complete: Tellimine lõpetatud
-      confirmation_html: Kas oled kindel, et soovid loobuda %{type} tellimisest oma e-postiaadressile %{email} Mastodonist kohas %{domain}? Saad alati uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
       emails:
         notification_emails:
           favourite: lemmikuks märkimise teavituskirjade
@@ -1646,9 +1642,6 @@ et:
           follow_request: jälgimistaotluste teavituskirjade
           mention: mainimiste teavituskirjade
           reblog: jagamiste teavituskirjade
-      resubscribe_html: Kui loobusid tellimisest ekslikult, saad uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
-      success_html: Sa ei saa enam %{type} teateid oma e-postile %{email} Mastodonist kohas %{domain}.
-      title: Loobu tellimisest
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video postitusele, milles on juba pildid

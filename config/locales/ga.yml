@@ -1296,7 +1296,6 @@ ga:
   application_mailer:
     notification_preferences: Athraigh roghanna ríomhphoist
     salutation: "%{name},"
-    settings: 'Athraigh sainroghanna ríomhphoist: %{link}'
     unsubscribe: Díliostáil
     view: 'Amharc:'
     view_profile: Féach ar phróifíl
@@ -1780,9 +1779,6 @@ ga:
     title: Stair fíordheimhnithe
   mail_subscriptions:
     unsubscribe:
-      action: Sea, díliostáil
-      complete: Gan liostáil
-      confirmation_html: An bhfuil tú cinnte gur mhaith leat díliostáil ó %{type} a fháil do Mastodon ar %{domain} chuig do ríomhphost ag %{email}? Is féidir leat liostáil arís i gcónaí ó do <a href="%{settings_path}">socruithe fógra ríomhphoist</a>.
       emails:
         notification_emails:
           favourite: ríomhphoist fógra is fearr leat
@@ -1790,9 +1786,6 @@ ga:
           follow_request: lean ríomhphoist iarratais
           mention: trácht ar ríomhphoist fógra
           reblog: ríomhphoist fógraí a threisiú
-      resubscribe_html: Má dhíliostáil tú de dhearmad, is féidir leat liostáil arís ó do <a href="%{settings_path}">socruithe fógra ríomhphoist</a>.
-      success_html: Ní bhfaighidh tú %{type} le haghaidh Mastodon ar %{domain} chuig do ríomhphost ag %{email} a thuilleadh.
-      title: Díliostáil
   media_attachments:
     validations:
       images_and_video: Ní féidir físeán a cheangal le postáil a bhfuil íomhánna ann cheana féin

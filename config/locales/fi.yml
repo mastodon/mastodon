@@ -1231,7 +1231,6 @@ fi:
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
     salutation: "%{name}"
-    settings: 'Muuta sähköpostiasetuksia: %{link}'
     unsubscribe: Lopeta tilaus
     view: 'Näytä:'
     view_profile: Näytä profiili
@@ -1655,9 +1654,6 @@ fi:
     title: Todennushistoria
   mail_subscriptions:
     unsubscribe:
-      action: Kyllä, peru tilaus
-      complete: Tilaus lopetettiin
-      confirmation_html: Haluatko varmasti lopettaa Mastodonin sähköposti-ilmoitusten vastaanottamisen aiheesta %{type} palvelimelta %{domain} osoitteeseesi %{email}? Voit tilata ilmoitusviestejä milloin tahansa uudelleen <a href="%{settings_path}">sähköposti-ilmoitusten asetuksista</a>.
       emails:
         notification_emails:
           favourite: sähköposti-ilmoituksia suosikkeihin lisäämisistä
@@ -1665,9 +1661,6 @@ fi:
           follow_request: sähköposti-ilmoituksia seurantapyynnöistä
           mention: sähköposti-ilmoituksia maininnoista
           reblog: sähköposti-ilmoituksia tehostuksista
-      resubscribe_html: Jos olet perunut tilauksen erehdyksessä, voit tilata ilmoitusviestejä uudelleen <a href="%{settings_path}">sähköposti-ilmoitusten asetuksista</a>.
-      success_html: Sinulle ei enää lähetetä Mastodonin %{type} palvelimelta %{domain} osoitteeseen %{email}.
-      title: Lopeta tilaus
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia

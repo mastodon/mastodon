@@ -193,8 +193,10 @@ class Account < ApplicationRecord
            :role,
            :locale,
            :shows_application?,
+           :email_subscriptions_enabled?,
            :prefers_noindex?,
            :time_zone,
+           :can?,
            to: :user,
            prefix: true,
            allow_nil: true

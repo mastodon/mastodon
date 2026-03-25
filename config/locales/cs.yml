@@ -1267,7 +1267,6 @@ cs:
   application_mailer:
     notification_preferences: Změnit předvolby e-mailu
     salutation: "%{name},"
-    settings: 'Změnit předvolby e-mailu: %{link}'
     unsubscribe: Přestat odebírat
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
@@ -1729,9 +1728,6 @@ cs:
     title: Historie přihlášení
   mail_subscriptions:
     unsubscribe:
-      action: Ano, odeberte odběr
-      complete: Odběr byl odhlášen
-      confirmation_html: Jste si jisti, že chcete odhlásit odběr %{type} pro Mastodon na %{domain} na váš e-mail %{email}? Vždy se můžete znovu přihlásit ve svém nastavení <a href="%{settings_path}">e-mailových oznámení</a>.
       emails:
         notification_emails:
           favourite: e-mailové oznámení při oblíbení
@@ -1739,9 +1735,6 @@ cs:
           follow_request: e-mail při žádost o sledování
           mention: e-mailové oznámení při zmínění
           reblog: e-mailové oznámení při boostu
-      resubscribe_html: Pokud jste se odhlásili omylem, můžete se znovu přihlásit ve svých nastavení <a href="%{settings_path}">e-mailových oznámení</a>.
-      success_html: Již nebudete dostávat %{type} pro Mastodon na %{domain} na vaši e-mailovou adresu %{email}.
-      title: Odhlásit odběr
   media_attachments:
     validations:
       images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video

@@ -1174,7 +1174,6 @@ lv:
   application_mailer:
     notification_preferences: Mainīt e-pasta uztādījumus
     salutation: "%{name},"
-    settings: 'Mainīt e-pasta uztādījumus: %{link}'
     unsubscribe: Atcelt abonēšanu
     view: 'Skatīt:'
     view_profile: Skatīt profilu
@@ -1598,9 +1597,6 @@ lv:
     title: Autentifikācijas vēsture
   mail_subscriptions:
     unsubscribe:
-      action: Jā, atcelt abonēšanu
-      complete: Anulēts
-      confirmation_html: Vai tiešām atteikties no %{type} saņemšanas savā e-pasta adresē %{email} par %{domain} esošo Mastodon? Vienmēr var abonēt no jauna savos <a href="%{settings_path}">e-pasta paziņojumu iestatījumos</a>.
       emails:
         notification_emails:
           favourite: izlases paziņojumu e-pasta ziņojumi
@@ -1608,9 +1604,6 @@ lv:
           follow_request: sekošanas pieprasījumu e-pasta ziņojumi
           mention: pieminēšanas paziņojumu e-pasta ziņojumi
           reblog: pastiprinājumu paziņojumu e-pasta ziņojumi
-      resubscribe_html: Ja abonements tika atcelts kļūdas dēļ, abonēt no jauna var savos <a href="%{settings_path}">e-pasta paziņojumu iestatījumos</a>.
-      success_html: Tu vairs savā e-pasta adresē %{email} nesaņemsi %{type} par %{domain} esošo Mastodon.
-      title: Atcelt abonēšanu
   media_attachments:
     validations:
       images_and_video: Nevar pievienot videoklipu tādai ziņai, kura jau satur attēlus

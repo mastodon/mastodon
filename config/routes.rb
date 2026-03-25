@@ -71,7 +71,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
 
-    resource :unsubscribe, only: [:show, :create], controller: :mail_subscriptions
+    resource :unsubscribe, only: [:show, :create], controller: :unsubscriptions
 
     namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
@@ -186,6 +186,10 @@ Rails.application.routes.draw do
   namespace :redirect do
     resources :accounts, only: :show
     resources :statuses, only: :show
+  end
+
+  namespace :email_subscriptions do
+    resource :confirmation, only: :show
   end
 
   resources :media, only: [:show] do

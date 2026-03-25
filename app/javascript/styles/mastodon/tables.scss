@@ -93,6 +93,26 @@
     }
   }
 
+  &.mini-table {
+    border-top: 1px solid var(--color-border-primary);
+    width: 50%;
+
+    & > tbody > tr > th,
+    & > tbody > tr > td {
+      padding: 12px 0;
+    }
+
+    & > tbody > tr > th {
+      color: var(--color-text-secondary);
+      font-weight: 400;
+    }
+
+    & > tbody > tr > td {
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+  }
+
   &.batch-table {
     & > thead > tr > th {
       background: var(--color-bg-primary);

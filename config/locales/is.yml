@@ -1233,7 +1233,6 @@ is:
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
-    settings: 'Breyta kjörstillingum tölvupósts: %{link}'
     unsubscribe: Taka úr áskrift
     view: 'Skoða:'
     view_profile: Skoða notandasnið
@@ -1659,9 +1658,6 @@ is:
     title: Auðkenningarferill
   mail_subscriptions:
     unsubscribe:
-      action: Já, hætta í áskrift
-      complete: Hætta í áskrift
-      confirmation_html: Ertu viss um að þú viljir hætta áskrift sendinga á %{type} fyrir Mastodon á %{domain} til póstfangsins þíns %{email}? Þú getur alltaf aftur gerst áskrifandi í <a href="%{settings_path}">stillingunum fyrir tilkynningar í tölvupósti</a>.
       emails:
         notification_emails:
           favourite: tilkynningum í tölvupósti um eftirlæti
@@ -1669,9 +1665,6 @@ is:
           follow_request: tilkynningum í tölvupósti um beiðnir um að fylgjast með
           mention: tilkynningum í tölvupósti um tilvísanir
           reblog: tilkynningum í tölvupósti um endurbirtingar
-      resubscribe_html: Ef þú hættir áskrift fyrir mistök, geturðu alltaf aftur gerst áskrifandi í <a href="%{settings_path}">stillingunum fyrir tilkynningar í tölvupósti</a>.
-      success_html: Þú munt ekki lengur fá sendingar með %{type} fyrir Mastodon á %{domain} á póstfangið þitt %{email}.
-      title: Taka úr áskrift
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir

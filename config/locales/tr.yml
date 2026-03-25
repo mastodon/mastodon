@@ -1231,7 +1231,6 @@ tr:
   application_mailer:
     notification_preferences: E-posta tercihlerini değiştir
     salutation: "%{name},"
-    settings: 'E-posta tercihlerini değiştir: %{link}'
     unsubscribe: Abonelikten çık
     view: 'Görüntüle:'
     view_profile: Profili görüntüle
@@ -1655,9 +1654,6 @@ tr:
     title: Kimlik doğrulama geçmişi
   mail_subscriptions:
     unsubscribe:
-      action: Evet, abonelikten çık
-      complete: Abonelikten çık
-      confirmation_html: '%{domain} üzerindeki Mastodon için %{type} almayı durdurarak %{email} adresinize aboneliğinizi iptal etmek istediğinizden emin misiniz? <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> her zaman yeniden abone olabilirsiniz.'
       emails:
         notification_emails:
           favourite: favori bildirim e-postaları
@@ -1665,9 +1661,6 @@ tr:
           follow_request: takip isteği bildirim e-postaları
           mention: bahsetme bildirim e-postaları
           reblog: öne çıkanlar bildirim e-postaları
-      resubscribe_html: Abonelikten yanlışlıkla çıktıysanız, <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> yeniden abone olabilirsiniz.
-      success_html: Artık %{email} adresindeki e-postanıza %{domain} üzerindeki Mastodon için %{type} almayacaksınız.
-      title: Abonelikten çık
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez

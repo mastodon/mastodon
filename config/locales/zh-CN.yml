@@ -1210,7 +1210,6 @@ zh-CN:
   application_mailer:
     notification_preferences: 更改邮件偏好
     salutation: "%{name}："
-    settings: 更改邮件偏好： %{link}
     unsubscribe: 取消订阅
     view: 点此链接查看详情：
     view_profile: 查看个人资料
@@ -1614,9 +1613,6 @@ zh-CN:
     title: 认证历史
   mail_subscriptions:
     unsubscribe:
-      action: 是，取消订阅
-      complete: 已取消订阅
-      confirmation_html: 你确定要退订来自 %{domain} 上的 Mastodon 的 %{type} 到你的邮箱 %{email} 吗？你可以随时在<a href="%{settings_path}">邮件通知设置</a>中重新订阅。
       emails:
         notification_emails:
           favourite: 嘟文被喜欢邮件通知
@@ -1624,9 +1620,6 @@ zh-CN:
           follow_request: 关注请求邮件通知
           mention: 账号被提及邮件通知
           reblog: 嘟文被转嘟邮件通知
-      resubscribe_html: 如果你不小心取消了订阅，可以在你的<a href="%{settings_path}">邮件通知设置</a>中重新订阅。
-      success_html: 你将不会在你的邮箱 %{email} 中收到 %{domain} 上的 Mastodon的 %{type}
-      title: 取消订阅
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片

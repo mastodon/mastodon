@@ -22,6 +22,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :memorial, if: :memorial?
 
   attribute :feature_approval, if: -> { Mastodon::Feature.collections_enabled? }
+  attribute :email_subscriptions, if: -> { Mastodon::Feature.email_subscriptions_enabled? }
 
   class AccountDecorator < SimpleDelegator
     def self.model_name
@@ -175,5 +176,9 @@ class REST::AccountSerializer < ActiveModel::Serializer
       manual: object.feature_policy_as_keys(:manual),
       current_user: object.feature_policy_for_account(current_user&.account),
     }
+  end
+
+  def email_subscriptions
+    object.user_can?(:manage_email_subscriptions) && object.user_email_subscriptions_enabled?
   end
 end

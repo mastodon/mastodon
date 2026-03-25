@@ -1180,7 +1180,6 @@ uk:
   application_mailer:
     notification_preferences: Змінити налаштування електронної пошти
     salutation: "%{name},"
-    settings: 'Змінити налаштування електронної пошти: %{link}'
     unsubscribe: Відписатися
     view: 'Перегляд:'
     view_profile: Показати профіль
@@ -1572,9 +1571,6 @@ uk:
     title: Історія входів
   mail_subscriptions:
     unsubscribe:
-      action: Так, відписатися
-      complete: Відписалися
-      confirmation_html: Ви впевнені, що хочете відписатися від отримання %{type} для Mastodon на %{domain} до своєї скриньки %{email}? Ви можете повторно підписатися у <a href="%{settings_path}">налаштуваннях сповіщень електронною поштою</a>.
       emails:
         notification_emails:
           favourite: отримувати сповіщення про вподобання електронною поштою
@@ -1582,9 +1578,6 @@ uk:
           follow_request: отримувати сповіщення про запити на стеження електронною поштою
           mention: отримувати сповіщення про згадки електронною поштою
           reblog: отримувати сповіщення про поширення електронною поштою
-      resubscribe_html: Якщо ви відписалися помилково, ви можете повторно підписатися в <a href="%{settings_path}">налаштуваннях сповіщень електронною поштою</a>.
-      success_html: Ви більше не отримуватимете %{type} для Mastodon %{domain} на адресу %{email}.
-      title: Відписатися
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до допису з зображеннями

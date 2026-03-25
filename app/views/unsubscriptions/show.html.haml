@@ -1,0 +1,26 @@
+- content_for :page_title do
+  - if @scope == :user
+    = t('.user.title', type: I18n.t(@type, scope: 'unsubscriptions.notification_emails'))
+  - elsif @scope == :email_subscription
+    = t('.email_subscription.title', name: display_name(@recipient.account))
+
+.simple_form
+  %h1.title
+    - if @scope == :user
+      = t('.user.title', type: I18n.t(@type, scope: 'unsubscriptions.notification_emails'))
+    - elsif @scope == :email_subscription
+      = t('.email_subscription.title', name: display_name(@recipient.account))
+  %p.lead
+    - if @scope == :user
+      = t('.user.confirmation_html')
+    - elsif @scope == :email_subscription
+      = t('.email_subscription.confirmation_html')
+
+  = form_with url: unsubscribe_path do |form|
+    = form.hidden_field :token,
+                        value: params[:token]
+    = form.hidden_field :type,
+                        value: params[:type]
+    = form.button t('.action'),
+                  type: :submit,
+                  class: 'btn'

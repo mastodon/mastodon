@@ -1227,7 +1227,6 @@ sl:
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
     salutation: "%{name},"
-    settings: 'Spremenite e-poštne nastavitve: %{link}'
     unsubscribe: Odjavi od naročnine
     view: 'Pogled:'
     view_profile: Ogled profila
@@ -1687,9 +1686,6 @@ sl:
     title: Zgodovina overjanja
   mail_subscriptions:
     unsubscribe:
-      action: Da, odjavi me
-      complete: Odjavljeni
-      confirmation_html: Ali se res želite odjaviti od prejemanja %{type} za Mastodon na %{domain} na svojo e-pošto %{email}? Kadarkoli se lahko znova prijavite iz svojih <a href="%{settings_path}">nastavitev e-poštnih obvestil</a>.
       emails:
         notification_emails:
           favourite: e-sporočil z obvestili o priljubljenosti
@@ -1697,9 +1693,6 @@ sl:
           follow_request: e-sporočil o zahtevah za sledenje
           mention: e-sporočil z obvestili o omembah
           reblog: e-sporočil z obvestili o izpostavljanju
-      resubscribe_html: Če ste se odjavili po pomoti, se lahko znova prijavite iz svojih <a href="%{settings_path}">nastavitev e-poštnih obvestil</a>.
-      success_html: Nič več ne boste prejemali %{type} za Mastodon na %{domain} na svoj e-naslov %{email}.
-      title: Odjavi od naročnine
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti objavi, ki že vsebuje slike

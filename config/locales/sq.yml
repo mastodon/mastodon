@@ -1220,7 +1220,6 @@ sq:
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime rreth email-esh
     salutation: "%{name},"
-    settings: 'Ndryshoni parapëlqime rreth email-esh: %{link}'
     unsubscribe: Shpajtohuni
     view: 'Parje:'
     view_profile: Shihni profilin
@@ -1640,9 +1639,6 @@ sq:
     title: Historik mirëfilltësimesh
   mail_subscriptions:
     unsubscribe:
-      action: Po, shpajtomëni
-      complete: U shpajtuat
-      confirmation_html: Jeni i sigurt se doni të shpajtoheni nga marrje %{type} për Mastodon te %{domain} në email-in tuaj %{email}? Mundeni përherë të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
       emails:
         notification_emails:
           favourite: email-e njoftimesh parapëlqimesh
@@ -1650,9 +1646,6 @@ sq:
           follow_request: email-e kërkesash ndjekjeje
           mention: email-e njoftimesh përmendjesh
           reblog: email-e njoftimesh përforcimesh
-      resubscribe_html: Nëse u shpajtuat gabimisht, mund të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
-      success_html: S’do të merrni më %{type} për Mastodon te %{domain} në email-in tuaj te %{email}.
-      title: Shpajtohuni
   media_attachments:
     validations:
       images_and_video: S’mund të bashkëngjitet video te një gjendje që përmban figura tashmë

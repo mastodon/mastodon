@@ -11,6 +11,7 @@ class Scheduler::UserCleanupScheduler
   def perform
     clean_unconfirmed_accounts!
     clean_discarded_statuses!
+    clean_unconfirmed_email_subscriptions!
   end
 
   private
@@ -30,6 +31,12 @@ class Scheduler::UserCleanupScheduler
       RemovalWorker.push_bulk(statuses) do |status|
         [status.id, { 'immediate' => true, 'skip_streaming' => true }]
       end
+    end
+  end
+
+  def clean_unconfirmed_email_subscriptions!
+    EmailSubscription.unconfirmed.where(created_at: ..UNCONFIRMED_ACCOUNTS_MAX_AGE_DAYS.days.ago).find_in_batches do |batch|
+      EmailSubscription.where(id: batch.map(&:id)).delete_all
     end
   end
 end

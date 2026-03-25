@@ -1230,7 +1230,6 @@ pl:
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
-    settings: 'Zmień ustawienia e-maili: %{link}'
     unsubscribe: Anuluj subskrypcję
     view: 'Zobacz:'
     view_profile: Wyświetl profil
@@ -1689,9 +1688,6 @@ pl:
     title: Historia uwierzytelniania
   mail_subscriptions:
     unsubscribe:
-      action: Tak, wypisuję się
-      complete: Anulowano subskrypcję
-      confirmation_html: Czy na pewno chcesz wypisać się z otrzymywania %{type} z Mastodona na %{domain} na adres %{email}? Zawsze możesz zapisać się ponownie ze strony <a href="%{settings_path}">ustawień powiadomień mejlowych</a>.
       emails:
         notification_emails:
           favourite: powiadomień mejlowych o polubieniach
@@ -1699,9 +1695,6 @@ pl:
           follow_request: mejli o prośbach o możliwość obserwowania
           mention: powiadomień mejlowych o wspomnieniach
           reblog: powiadomień mejlowych o podbiciach
-      resubscribe_html: W przypadku przypadkowego wypisania możesz zapisać się ponownie z <a href="%{settings_path}">ustawień powiadomień mejlowych</a>.
-      success_html: Już nie będziesz otrzymywać %{type} z Mastodona na %{domain} na adres %{email}.
-      title: Anuluj subskrypcję
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia

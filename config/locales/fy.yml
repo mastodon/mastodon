@@ -1189,7 +1189,6 @@ fy:
   application_mailer:
     notification_preferences: E-mailynstellingen wizigje
     salutation: "%{name},"
-    settings: 'E-mailfoarkarren wizigje: %{link}'
     unsubscribe: Ofmelde
     view: 'Besjoch:'
     view_profile: Profyl besjen
@@ -1597,9 +1596,6 @@ fy:
     title: Oanmeldskiednis
   mail_subscriptions:
     unsubscribe:
-      action: Ja, ôfmelde
-      complete: Ofmelden
-      confirmation_html: Binne jo wis dat jo jo ôfmelde wolle foar it ûntfangen fan %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}? Jo kinne jo altyd opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
       emails:
         notification_emails:
           favourite: e-mailmeldingen foar favoriten
@@ -1607,9 +1603,6 @@ fy:
           follow_request: e-mailmeldingen foar folchfersiken
           mention: e-mailmeldingen foar fermeldingen
           reblog: e-mailmeldingen foar boosts
-      resubscribe_html: As jo jo mei fersin ôfmeld hawwe, kinne jo jo opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      success_html: Jo ûntfange net langer %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}.
-      title: Ofmelde
   media_attachments:
     validations:
       images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde

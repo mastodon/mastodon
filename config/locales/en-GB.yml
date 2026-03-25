@@ -1229,7 +1229,6 @@ en-GB:
   application_mailer:
     notification_preferences: Change email preferences
     salutation: "%{name},"
-    settings: 'Change email preferences: %{link}'
     unsubscribe: Unsubscribe
     view: 'View:'
     view_profile: View profile
@@ -1651,9 +1650,6 @@ en-GB:
     title: Authentication history
   mail_subscriptions:
     unsubscribe:
-      action: Yes, unsubscribe
-      complete: Unsubscribed
-      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for Mastodon on %{domain} to your email at %{email}? You can always re-subscribe from your <a href="%{settings_path}">email notification settings</a>.
       emails:
         notification_emails:
           favourite: favourite notification emails
@@ -1661,9 +1657,6 @@ en-GB:
           follow_request: follow request emails
           mention: mention notification emails
           reblog: boost notification emails
-      resubscribe_html: If you've unsubscribed by mistake, you can re-subscribe from your <a href="%{settings_path}">email notification settings</a>.
-      success_html: You'll no longer receive %{type} for Mastodon on %{domain} to your email at %{email}.
-      title: Unsubscribe
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images

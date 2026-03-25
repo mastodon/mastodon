@@ -221,6 +221,7 @@ namespace :api, format: false do
         resources :identity_proofs, only: :index
         resources :featured_tags, only: :index
         resources :endorsements, only: :index
+        resources :email_subscriptions, only: :create
       end
 
       member do

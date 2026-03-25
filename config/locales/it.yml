@@ -1231,7 +1231,6 @@ it:
   application_mailer:
     notification_preferences: Modifica le preferenze e-mail
     salutation: "%{name},"
-    settings: 'Modifica le preferenze e-mail: %{link}'
     unsubscribe: Disiscriviti
     view: 'Guarda:'
     view_profile: Mostra profilo
@@ -1655,9 +1654,6 @@ it:
     title: Cronologia delle autenticazioni
   mail_subscriptions:
     unsubscribe:
-      action: Sì, annulla l'iscrizione
-      complete: Iscrizione annullata
-      confirmation_html: Si è sicuri di voler annullare l'iscrizione per non ricevere %{type} per Mastodon su %{domain} sulla tua e-mail %{email}? Puoi sempre reiscriverti dalle tue <a href="%{settings_path}">impostazioni di notifica e-mail</a>.
       emails:
         notification_emails:
           favourite: e-mail di notifica preferite
@@ -1665,9 +1661,6 @@ it:
           follow_request: segui le e-mail di richiesta
           mention: menziona le e-mail di notifica
           reblog: e-mail di notifica per le condivisioni
-      resubscribe_html: Se hai annullato l'iscrizione per errore, puoi reiscriverti tramite le <a href="%{settings_path}">impostazioni di notifica e-mail</a>.
-      success_html: Non riceverai più %{type} per Mastodon su %{domain} al tuo indirizzo e-mail %{email}.
-      title: Disiscriviti
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
