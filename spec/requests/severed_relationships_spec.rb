@@ -16,10 +16,8 @@ RSpec.describe 'Severed Relationships' do
         .to have_http_status(200)
       expect(response.content_type)
         .to start_with('text/csv')
-      expect(response.headers['Content-Disposition'])
-        .to match(<<~FILENAME.squish)
-          attachment; filename="following-example.com-#{Date.current}.csv"
-        FILENAME
+      expect(response)
+        .to have_attachment("following-example.com-#{Date.current}.csv")
       expect(response.body)
         .to include('Account address')
     end
@@ -44,10 +42,8 @@ RSpec.describe 'Severed Relationships' do
         .to have_http_status(200)
       expect(response.content_type)
         .to start_with('text/csv')
-      expect(response.headers['Content-Disposition'])
-        .to match(<<~FILENAME.squish)
-          attachment; filename="followers-example.com-#{Date.current}.csv"
-        FILENAME
+      expect(response)
+        .to have_attachment("followers-example.com-#{Date.current}.csv")
       expect(response.body)
         .to include('Account address')
     end
