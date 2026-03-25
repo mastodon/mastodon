@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -413,7 +413,6 @@ const LanguageField: React.FC = () => {
         <FormattedMessage
           id='collections.collection_language_none'
           defaultMessage='None'
-          tagName={Fragment}
         />
       </option>
       {languages?.map(([code, name, localName]) => (
