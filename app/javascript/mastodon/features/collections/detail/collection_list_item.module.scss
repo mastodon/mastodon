@@ -1,8 +1,9 @@
 .wrapper {
   display: flex;
-  align-items: center;
+  align-items: start;
+  margin-inline: 24px;
+  padding-block: 12px;
   gap: 16px;
-  padding-inline: 16px;
 
   &:not(.wrapperWithoutBorder) {
     border-bottom: 1px solid var(--color-border-primary);
@@ -12,12 +13,42 @@
 .content {
   position: relative;
   flex-grow: 1;
-  padding-block: 15px;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.avatarGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  gap: 2px;
+
+  &.avatarGridSensitive {
+    .avatar {
+      filter: blur(4px);
+    }
+  }
+}
+
+.avatar {
+  background: var(--color-bg-brand-softest);
+}
+
+.avatarSensitiveBadge {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  padding: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-warning-softest);
 }
 
 .link {
   display: block;
-  margin-bottom: 2px;
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
@@ -40,15 +71,12 @@
   color: var(--color-text-secondary);
 }
 
-.metaList {
-  --gap: 0.75ch;
+.menuButton {
+  padding: 4px;
+  margin-top: -2px;
 
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gap);
-
-  & > li:not(:last-child)::after {
-    content: '·';
-    margin-inline-start: var(--gap);
+  svg {
+    width: 20px;
+    height: 20px;
   }
 }

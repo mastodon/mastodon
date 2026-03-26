@@ -93,6 +93,8 @@ export const Collections: React.FC<{
         <ItemList emptyMessage={emptyMessage} isLoading={status === 'loading'}>
           {collections.map((item, index) => (
             <CollectionListItem
+              withTimestamp
+              withAuthorHandle={false}
               key={item.id}
               collection={item}
               positionInList={index + 1}

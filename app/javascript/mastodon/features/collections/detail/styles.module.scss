@@ -52,9 +52,19 @@
   font-size: 13px;
 }
 
-.metaData {
+.metaList {
+  --gap: 0.75ch;
+
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 16px;
+  gap: var(--gap);
   font-size: 15px;
+
+  & > li:not(:last-child)::after {
+    content: '·';
+    margin-inline-start: var(--gap);
+  }
 }
 
 .columnSubheading {

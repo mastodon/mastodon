@@ -95,7 +95,7 @@ export const Avatar: React.FC<Props> = ({
 };
 
 export const AvatarById: React.FC<
-  { accountId: string } & Omit<Props, 'account'>
+  { accountId: string | undefined } & Omit<Props, 'account'>
 > = ({ accountId, ...otherProps }) => {
   const account = useAccount(accountId);
   return <Avatar account={account} {...otherProps} />;
