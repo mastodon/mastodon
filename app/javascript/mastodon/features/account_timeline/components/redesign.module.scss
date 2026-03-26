@@ -9,6 +9,11 @@
 
 .barWrapper {
   border-bottom: none;
+  padding-inline: 24px;
+
+  @container (width < 500px) {
+    padding-inline: 16px;
+  }
 }
 
 .avatarWrapper {
