@@ -95,6 +95,8 @@ RSpec.describe ActivityPub::ProcessAccountService do
   end
 
   context 'with a single keypair' do
+    let(:public_key) { 'foo' }
+
     let(:payload) do
       {
         id: 'https://foo.test/actor',
@@ -104,7 +106,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         publicKey: {
           id: 'https://foo.test/actor#key1',
           owner: 'https://foo.test/actor',
-          publicKeyPem: 'foo',
+          publicKeyPem: public_key,
         },
       }.with_indifferent_access
     end
@@ -116,7 +118,8 @@ RSpec.describe ActivityPub::ProcessAccountService do
       expect(account.keypairs).to contain_exactly(
         have_attributes(
           uri: 'https://foo.test/actor#key1',
-          type: 'rsa'
+          type: 'rsa',
+          public_key:
         )
       )
     end
@@ -127,7 +130,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
       it 'invalidates the legacy key and stores the new key' do
         expect { subject.call('alice', 'example.com', payload) }
           .to change { alice.reload.public_key }.to('')
-          .and change { alice.reload.keypairs.to_a }.from([]).to(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#key1', type: 'rsa' })))
+          .and change { alice.reload.keypairs.to_a }.from([]).to(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#key1', type: 'rsa', public_key: })))
       end
     end
 
@@ -140,7 +143,104 @@ RSpec.describe ActivityPub::ProcessAccountService do
 
       it 'invalidates the legacy key and stores the new key' do
         expect { subject.call('alice', 'example.com', payload) }
-          .to change { alice.reload.keypairs.to_a }.from(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#old-key' }))).to(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#key1', type: 'rsa' })))
+          .to change { alice.reload.keypairs.to_a }.from(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#old-key' }))).to(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#key1', type: 'rsa', public_key: })))
+
+        expect(alice.reload.public_key)
+          .to eq ''
+      end
+    end
+  end
+
+  context 'when the key is in a separate document' do
+    let(:key_id) { 'https://foo.test/actor/main-key' }
+    let(:public_key) { 'foo' }
+
+    let(:payload) do
+      {
+        id: 'https://foo.test/actor',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        preferredUsername: 'alice',
+        publicKey: key_id,
+      }.deep_stringify_keys
+    end
+
+    let(:key_document) do
+      {
+        id: key_id,
+        owner: 'https://foo.test/actor',
+        publicKeyPem: public_key,
+      }.deep_stringify_keys
+    end
+
+    before do
+      stub_request(:get, key_id).to_return(status: 200, body: key_document.to_json, headers: { 'Content-Type': 'application/activity+json' })
+    end
+
+    it 'stores the key' do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account.public_key).to eq ''
+      expect(account.keypairs).to contain_exactly(
+        have_attributes(
+          uri: key_id,
+          public_key:,
+          type: 'rsa'
+        )
+      )
+    end
+
+    context 'when the key document is a bogus copy of the author (GoToSocial quirk)' do
+      let(:payload) do
+        {
+          id: 'https://foo.test/actor',
+          type: 'Actor',
+          inbox: 'https://foo.test/inbox',
+          preferredUsername: 'alice',
+          publicKey: {
+            id: key_id,
+            owner: 'https://foo.test/actor',
+            publicKeyPem: public_key,
+          },
+        }.deep_stringify_keys
+      end
+
+      let(:key_document) { payload }
+
+      it 'stores the key' do
+        account = subject.call('alice', 'example.com', payload)
+
+        expect(account.public_key).to eq ''
+        expect(account.keypairs).to contain_exactly(
+          have_attributes(
+            uri: key_id,
+            public_key:,
+            type: 'rsa'
+          )
+        )
+      end
+    end
+
+    context 'when the account was known with a legacy key' do
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice') }
+
+      it 'invalidates the legacy key and stores the new key' do
+        expect { subject.call('alice', 'example.com', payload) }
+          .to change { alice.reload.public_key }.to('')
+          .and change { alice.reload.keypairs.to_a }.from([]).to(contain_exactly(have_attributes({ uri: key_id, type: 'rsa', public_key: })))
+      end
+    end
+
+    context 'when the account was known with an old key' do
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice', public_key: '') }
+
+      before do
+        Fabricate(:keypair, account: alice, uri: 'https://foo.test/actor#old-key', type: :rsa)
+      end
+
+      it 'invalidates the legacy key and stores the new key' do
+        expect { subject.call('alice', 'example.com', payload) }
+          .to change { alice.reload.keypairs.to_a }.from(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#old-key' }))).to(contain_exactly(have_attributes({ uri: key_id, type: 'rsa', public_key: })))
 
         expect(alice.reload.public_key)
           .to eq ''
@@ -177,11 +277,13 @@ RSpec.describe ActivityPub::ProcessAccountService do
       expect(account.keypairs).to contain_exactly(
         have_attributes(
           uri: 'https://foo.test/actor#key1',
-          type: 'rsa'
+          type: 'rsa',
+          public_key: 'foo'
         ),
         have_attributes(
           uri: 'https://foo.test/actor#key2',
-          type: 'rsa'
+          type: 'rsa',
+          public_key: 'bar'
         )
       )
     end
@@ -192,7 +294,12 @@ RSpec.describe ActivityPub::ProcessAccountService do
       it 'invalidates the legacy key and stores the new keys' do
         expect { subject.call('alice', 'example.com', payload) }
           .to change { alice.reload.public_key }.to('')
-          .and change { alice.keypairs.to_a }.from([]).to(contain_exactly(have_attributes({ uri: 'https://foo.test/actor#key1', type: 'rsa' }), have_attributes({ uri: 'https://foo.test/actor#key2', type: 'rsa' })))
+          .and change { alice.keypairs.to_a }.from([]).to(
+            contain_exactly(
+              have_attributes({ uri: 'https://foo.test/actor#key1', type: 'rsa', public_key: 'foo' }),
+              have_attributes({ uri: 'https://foo.test/actor#key2', type: 'rsa', public_key: 'bar' })
+            )
+          )
       end
     end
   end
