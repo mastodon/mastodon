@@ -77,6 +77,37 @@ RSpec.describe 'ActivityPub Replies' do
       end
     end
 
+    context 'when account is permanently deleted' do
+      let(:parent_visibility) { :public }
+
+      before do
+        status.account.mark_deleted!
+        status.account.deletion_request.destroy
+      end
+
+      it 'returns http gone' do
+        subject
+
+        expect(response)
+          .to have_http_status(410)
+      end
+    end
+
+    context 'when account is pending deletion' do
+      let(:parent_visibility) { :public }
+
+      before do
+        status.account.mark_deleted!
+      end
+
+      it 'returns http forbidden' do
+        subject
+
+        expect(response)
+          .to have_http_status(403)
+      end
+    end
+
     context 'when status is public' do
       let(:parent_visibility) { :public }
 

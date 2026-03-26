@@ -5,13 +5,12 @@ module Account::Suspensions
 
   included do
     scope :suspended, -> { where.not(suspended_at: nil) }
-    scope :without_suspended, -> { where(suspended_at: nil) }
+    scope :without_suspended, -> { without_deleted.where(suspended_at: nil) }
   end
 
   def suspended?
     suspended_at.present? && !instance_actor?
   end
-  alias unavailable? suspended?
 
   def suspended_locally?
     suspended? && suspension_origin_local?
@@ -20,10 +19,17 @@ module Account::Suspensions
   def suspended_permanently?
     suspended? && deletion_request.nil?
   end
-  alias permanently_unavailable? suspended_permanently?
 
   def suspended_temporarily?
     suspended? && deletion_request.present?
+  end
+
+  def unavailable?
+    deleted? || suspended?
+  end
+
+  def permanently_unavailable?
+    unavailable? && deletion_request.nil?
   end
 
   def suspend!(date: Time.now.utc, origin: :local, block_email: true)

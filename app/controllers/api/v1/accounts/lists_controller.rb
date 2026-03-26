@@ -13,6 +13,6 @@ class Api::V1::Accounts::ListsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.find(params[:account_id])
+    @account = Account.without_deleted.find(params[:account_id])
   end
 end
