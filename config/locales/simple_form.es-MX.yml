@@ -37,11 +37,11 @@ es-MX:
         starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
         text: Puedes usar la sintaxis de publicaciones. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       appeal:
-        text: Sólo puede apelar una amonestación a la vez
+        text: Solo se puede apelar una amonestación una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
-        bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
+        bot: Indica a los demás que la cuenta realiza principalmente acciones automatizadas y que es posible que no esté supervisada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
@@ -53,9 +53,9 @@ es-MX:
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
         password: Usa al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
-        scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
+        scopes: A qué API tendrá acceso la aplicación. Si seleccionas un ámbito de nivel superior, no es necesario que selecciones ámbitos individuales.
         setting_advanced_layout: Mostrar Mastodon en un diseño de varias columnas, lo que te permite ver la cronología, las notificaciones y una tercera columna de tu elección. No se recomienda para pantallas pequeñas.
-        setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a las publicaciones recibidas recientemente)
+        setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que se hayan impulsado recientemente (solo afecta a los impulsos recibidos recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_boost_modal: Cuando está habilitado, impulsar abrirá primero un cuadro de confirmación en el que podrás cambiar la visibilidad de tu impulso.
         setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
@@ -134,6 +134,7 @@ es-MX:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
         webauthn: Si es una tecla USB, asegúrese de insertarla y, si es necesario, púlsela.
       settings:
+        email_subscriptions: Al desactivar la función, se conservan los suscriptores actuales, pero se deja de enviar correos electrónicos.
         indexable: Tu página de perfil puede aparecer en los resultados de búsqueda en Google, Bing, entre otros.
         show_application: Siempre podrás ver desde cuál aplicación realizaste una publicación.
       tag:
@@ -356,6 +357,7 @@ es-MX:
         hint: Información adicional
         text: Norma
       settings:
+        email_subscriptions: Habilitar suscripciones por correo electrónico
         indexable: Incluir la página de perfil en los motores de búsqueda
         show_application: Mostrar desde cuál aplicación enviaste una publicación
       tag:

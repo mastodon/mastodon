@@ -747,6 +747,7 @@ vi:
       categories:
         administration: Quản trị viên
         devops: Nhà phát triển
+        email: Email
         invites: Lời mời
         moderation: Kiểm duyệt
         special: Đặc biệt
@@ -774,6 +775,8 @@ vi:
         manage_blocks_description: Cho phép người dùng tự chặn các nhà cung cấp email và địa chỉ IP
         manage_custom_emojis: Quản lý emoji
         manage_custom_emojis_description: Cho phép quản lý các emoji tùy chỉnh trên máy chủ
+        manage_email_subscriptions: Quản lý đăng ký đọc qua email
+        manage_email_subscriptions_description: Cho phép người dùng đăng ký nhận thông báo qua email từ những người dùng có quyền này
         manage_federation: Quản lý liên hợp
         manage_federation_description: Cho phép chặn hoặc liên hợp với các máy chủ khác và kiểm soát khả năng phân phối
         manage_invites: Quản lý lời mời
@@ -1397,6 +1400,35 @@ vi:
     basic_information: Thông tin cơ bản
     hint_html: Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và hồ sơ hoàn chỉnh.
     other: Khác
+  email_subscription_mailer:
+    confirmation:
+      action: Xác nhận địa chỉ email
+      instructions_to_confirm: Xác nhận bạn muốn nhận email từ %{name} (@%{acct}) khi họ đăng tút mới.
+      instructions_to_ignore: Nếu bạn không chắc tại sao mình nhận được email này, bạn có thể xóa nó. Bạn sẽ không được đăng ký nếu không nhấn vào liên kết ở trên.
+      subject: Xác nhận địa chỉ email của bạn
+      title: Nhận cập nhật qua email từ %{name}?
+    notification:
+      create_account: Tạo một tài khoản Mastodon
+      footer:
+        privacy_html: Các email sẽ được gửi từ %{domain}, một máy chủ vận hành nhờ Mastodon. Để hiểu cách máy chủ này xử lý dữ liệu cá nhân của bạn, vui lòng tham khảo <a href="%{privacy_policy_path}">Chính sách bảo mật</a>.
+        reason_for_email_html: Bạn nhận được email này vì bạn đã đăng ký nhận tút mới qua email từ %{name}. Không muốn nhận email này? <a href="%{unsubscribe_path}">Hủy đăng ký đọc</a>
+      interact_with_this_post:
+        other: Hãy tương tác với những tút này và khám phá thêm nhiều điều thú vị.
+      subject:
+        other: Tút mới từ %{name}
+      title:
+        other: Những tút mới từ %{name}
+  email_subscriptions:
+    active: Hoạt động
+    confirmations:
+      show:
+        changed_your_mind: Thay đổi ý định?
+        success_html: Bạn sẽ bắt đầu nhận được email khi %{name} đăng tút mới. Thêm %{sender} vào danh bạ của bạn để những tút này không bị chuyển vào thư mục Spam.
+        title: Bạn đã đăng ký đọc
+        unsubscribe: Hủy đăng ký đọc
+    inactive: Không hoạt động
+    status: Trạng thái
+    subscribers: Người đăng ký đọc
   emoji_styles:
     auto: Tự động
     native: Nguyên bản
@@ -1611,15 +1643,6 @@ vi:
     failed_sign_in_html: Đăng nhập thất bại bằng %{method} từ %{ip} (%{browser})
     successful_sign_in_html: Đăng nhập bằng %{method} từ %{ip} (%{browser})
     title: Lịch sử đăng nhập
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          favourite: email thông báo lượt thích
-          follow: email thông báo người theo dõi mới
-          follow_request: email thông báo yêu cầu theo dõi
-          mention: email thông báo lượt nhắc đến
-          reblog: email thông báo lượt đăng lại
   media_attachments:
     validations:
       images_and_video: Không thể đính kèm video vào tút đã chứa hình ảnh
@@ -1757,6 +1780,8 @@ vi:
     posting_defaults: Mặc định cho tút
     public_timelines: Bảng tin
   privacy:
+    email_subscriptions: Gửi tút qua email
+    email_subscriptions_hint_html: Thêm biểu mẫu đăng ký email vào hồ sơ của bạn, biểu mẫu này sẽ hiển thị cho cả người dùng chưa đăng nhập. Khi khách truy cập nhập địa chỉ email của họ và chọn đăng ký, Mastodon sẽ gửi thông báo qua email về các tút công khai của bạn.
     hint_html: Tùy chỉnh cách mọi người tìm thấy hồ sơ và tút của bạn.
     privacy: Riêng tư
     privacy_hint_html: Kiểm soát mức độ tiết lộ chi tiết. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách xem bạn theo dõi ai và bạn đăng bằng ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
@@ -2016,6 +2041,28 @@ vi:
     resume_app_authorization: Tiếp tục xác thực bằng ứng dụng
     role_requirement: "%{domain} yêu cầu bạn thiết lập Xác thụec 2 bước trước khi sử dụng Mastodon."
     webauthn: Khóa bảo mật
+  unsubscriptions:
+    create:
+      action: Đến trang chủ máy chủ
+      email_subscription:
+        confirmation_html: Bạn sẽ không còn nhận được email từ %{name}.
+      title: Bạn đã hủy đăng ký đọc
+      user:
+        confirmation_html: Bạn sẽ không còn nhận %{type} từ Mastodon trên %{domain}.
+    notification_emails:
+      favourite: email thông báo lượt thích
+      follow: email thông báo người theo dõi mới
+      follow_request: email thông báo yêu cầu theo dõi
+      mention: email thông báo lượt nhắc đến
+      reblog: email thông báo lượt đăng lại
+    show:
+      action: Hủy đăng ký đọc
+      email_subscription:
+        confirmation_html: Bạn sẽ ngừng nhận email khi tài khoản này đăng tút mới.
+        title: Hủy đăng ký đọc %{name}?
+      user:
+        confirmation_html: Bạn sẽ không còn nhận %{type} từ Mastodon trên %{domain}.
+        title: Hủy đăng ký đọc %{type}?
   user_mailer:
     announcement_published:
       description: 'Quản trị viên %{domain} gửi một thông báo:'

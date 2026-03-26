@@ -762,6 +762,7 @@ el:
       categories:
         administration: Διαχείριση
         devops: DevOps
+        email: Email
         invites: Προσκλήσεις
         moderation: Συντονισμός
         special: Ειδικός
@@ -790,6 +791,8 @@ el:
         manage_blocks_description: Επιτρέπει στους χρήστες να αποκλείουν παρόχους email και διευθύνσεις IP
         manage_custom_emojis: Διαχείριση Προσαρμοσμένων Emojis
         manage_custom_emojis_description: Επιτρέπει στους χρήστες να διαχειρίζονται προσαρμοσμένα emojis στον διακομιστή
+        manage_email_subscriptions: Διαχείριση Συνδρομών Email
+        manage_email_subscriptions_description: Να επιτρέπεται στους χρήστες να εγγράφονται σε χρήστες με αυτήν την άδεια μέσω ηλεκτρονικού ταχυδρομείου
         manage_federation: Διαχείριση Ομοσπονδίας
         manage_federation_description: Επιτρέπει στους χρήστες να αποκλείουν ή να επιτρέπουν τις συναλλαγές με άλλους τομείς και να ελέγχουν την παράδοση
         manage_invites: Διαχείριση Προσκλήσεων
@@ -1418,6 +1421,38 @@ el:
     basic_information: Βασικές πληροφορίες
     hint_html: "<strong>Προσάρμοσε τί βλέπουν άτομα στο δημόσιο προφίλ σου και δίπλα στις αναρτήσεις σου.</strong> Είναι πιο πιθανό άλλα άτομα να σε ακολουθήσουν πίσω και να αλληλεπιδράσουν μαζί σου αν έχεις ολοκληρωμένο προφίλ και εικόνα προφίλ."
     other: Άλλο
+  email_subscription_mailer:
+    confirmation:
+      action: Επιβεβαιώστε τη διεύθυνση email
+      instructions_to_confirm: Επιβεβαιώστε ότι θα θέλατε να λαμβάνετε email από %{name} (@%{acct}) όταν δημοσιεύει νέες αναρτήσεις.
+      instructions_to_ignore: Αν δεν είστε σίγουροι γιατί λάβατε αυτό το email, μπορείτε να το διαγράψετε. Δεν θα εγγραφείτε αν δεν κάνετε κλικ στον παραπάνω σύνδεσμο.
+      subject: Επιβεβαιώστε τη διεύθυνση email σας
+      title: Να λαμβάνετε ενημερώσεις μέσω email από %{name};
+    notification:
+      create_account: Δημιουργήστε έναν λογαριασμό Mastodon
+      footer:
+        privacy_html: Τα email στέλνονται από το %{domain}, έναν διακομιστή που βασίζεται στο Mastodon. Για να καταλάβετε πώς ο διακομιστής αυτός επεξεργάζεται τα προσωπικά σας δεδομένα, ανατρέξτε στην <a href="%{privacy_policy_path}">Πολιτική Απορρήτου</a>.
+        reason_for_email_html: Λαμβάνετε αυτό το email επειδή έχετε κάνει εγγραφή για ενημερώσεις από %{name}. Δεν θέλετε να λαμβάνετε τέτοια email; <a href="%{unsubscribe_path}">Κατάργηση συνδρομής</a>
+      interact_with_this_post:
+        one: Αλληλεπιδράστε με αυτήν την ανάρτηση και ανακαλύψτε περισσότερες σαν αυτήν.
+        other: Αλληλεπιδράστε με αυτές τις αναρτήσεις και ανακαλύψτε περισσότερες.
+      subject:
+        one: 'Νέα ανάρτηση: "%{excerpt}"'
+        other: Νέες αναρτήσεις από %{name}
+      title:
+        one: 'Νέα ανάρτηση: "%{excerpt}"'
+        other: Νέες αναρτήσεις από %{name}
+  email_subscriptions:
+    active: Ενεργή
+    confirmations:
+      show:
+        changed_your_mind: Αλλάξατε γνώμη;
+        success_html: Τώρα θα αρχίσετε να λαμβάνετε email όταν ο χρήστης %{name} δημοσιεύει νέες αναρτήσεις. Προσθέστε το %{sender} στις επαφές σας, έτσι ώστε αυτές οι αναρτήσεις να μην καταλήγουν στο φάκελο Ανεπιθύμητα.
+        title: Έχετε εγγραφεί
+        unsubscribe: Κατάργηση συνδρομής
+    inactive: Ανενεργή
+    status: Κατάσταση
+    subscribers: Συνδρομητές
   emoji_styles:
     auto: Αυτόματο
     native: Εγγενές
@@ -1652,15 +1687,6 @@ el:
     failed_sign_in_html: Αποτυχημένη προσπάθεια σύνδεσης με %{method} από %{ip} (%{browser})
     successful_sign_in_html: Επιτυχής σύνδεση με %{method} από %{ip} (%{browser})
     title: Ιστορικό ελέγχου ταυτότητας
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          favourite: ειδοποιήσεις email για αγαπημένα
-          follow: ειδοποιήσεις email για ακολουθήσεις
-          follow_request: email για αιτήματα ακολούθησης
-          mention: ειδοποιήσεις email για επισημάνσεις
-          reblog: ειδοποιήσεις email για ενίσχυση
   media_attachments:
     validations:
       images_and_video: Δεν γίνεται να προσθέσεις βίντεο σε ανάρτηση που ήδη περιέχει εικόνες
@@ -1798,6 +1824,8 @@ el:
     posting_defaults: Προεπιλογές ανάρτησης
     public_timelines: Δημόσιες ροές
   privacy:
+    email_subscriptions: Αποστολή αναρτήσεων μέσω email
+    email_subscriptions_hint_html: Προσθέστε μια φόρμα εγγραφής μέσω email στο προφίλ σας που εμφανίζεται για αποσυνδεδεμένους χρήστες. Όταν οι επισκέπτες εισαγάγουν τη διεύθυνση email τους και επιλέξουν εγγραφή, το Mastodon θα στέλνει ενημερώσεις email για τις δημόσιες αναρτήσεις σας.
     hint_html: "<strong>Προσάρμοσε πώς θες το προφίλ και οι αναρτήσεις σου να ανακαλύπτονται.</strong>. Μια ποικιλία δυνατοτήτων στο Mastodon μπορούν να σε βοηθήσουν να απευθυνθείς σε μεγαλύτερο κοινό όταν ενεργοποιηθούν. Αφιέρωσε μερικά λεπτά για να εξετάσεις τις ρυθμίσεις και να σιγουρευτείς ότι σου ταιριάζουν."
     privacy: Απόρρητο
     privacy_hint_html: "'Έλεγξε πόσο θες να αποκαλύπτεις προς όφελος των άλλων. Οι άνθρωποι ανακαλύπτουν ενδιαφέροντα προφίλ και εφαρμογές με την περιήγηση των ακολούθων άλλων ατόμων και βλέποντας από ποιες εφαρμογές δημοσιεύουν, αλλά μπορεί να προτιμάς να το κρατάς κρυφό."
@@ -2061,6 +2089,28 @@ el:
     resume_app_authorization: Συνέχιση εξουσιοδότησης εφαρμογής
     role_requirement: Το %{domain} απαιτεί να ρυθμίσετε τον έλεγχο ταυτότητας δύο παραγόντων πριν χρησιμοποιήσετε το Mastodon.
     webauthn: Κλειδιά ασφαλείας
+  unsubscriptions:
+    create:
+      action: Μετάβαση στην αρχική σελίδα του διακομιστή
+      email_subscription:
+        confirmation_html: Δεν θα λαμβάνετε πλέον email από %{name}.
+      title: Έχετε καταργήσει τη συνδρομή
+      user:
+        confirmation_html: Δεν θα λαμβάνετε πλέον %{type} από το Mastodon στο %{domain}.
+    notification_emails:
+      favourite: ειδοποιήσεις email για αγαπημένα
+      follow: ειδοποιήσεις email για ακολουθήσεις
+      follow_request: email για αιτήματα ακολούθησης
+      mention: ειδοποιήσεις email για επισημάνσεις
+      reblog: ειδοποιήσεις email για ενισχύσεις
+    show:
+      action: Κατάργηση συνδρομής
+      email_subscription:
+        confirmation_html: Θα σταματήσετε να λαμβάνετε email όταν αυτός ο λογαριασμός δημοσιεύει νέες αναρτήσεις.
+        title: Κατάργηση συνδρομής από %{name};
+      user:
+        confirmation_html: Θα σταματήσετε να λαμβάνετε %{type} από το Mastodon στο %{domain}.
+        title: Κατάργηση συνδρομής από %{type};
   user_mailer:
     announcement_published:
       description: 'Οι διαχειριστές του %{domain} κάνουν μια ανακοίνωση:'

@@ -762,6 +762,7 @@ es:
       categories:
         administration: Administración
         devops: DevOps
+        email: Correo electrónico
         invites: Invitaciones
         moderation: Moderación
         special: Especial
@@ -790,6 +791,8 @@ es:
         manage_blocks_description: Permite a los usuarios bloquear proveedores de correo electrónico y direcciones IP
         manage_custom_emojis: Administrar Emojis Personalizados
         manage_custom_emojis_description: Permite a los usuarios gestionar emojis personalizados en el servidor
+        manage_email_subscriptions: Administrar suscripciones de correo electrónico
+        manage_email_subscriptions_description: Permitir a los usuarios suscribirse a usuarios con este permiso por correo electrónico
         manage_federation: Administrar Federación
         manage_federation_description: Permite a los usuarios bloquear o permitir la federación con otros dominios, y controlar la entregabilidad
         manage_invites: Administrar Invitaciones
@@ -1418,6 +1421,38 @@ es:
     basic_information: Información básica
     hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completas tu perfil y foto."
     other: Otros
+  email_subscription_mailer:
+    confirmation:
+      action: Confirmar dirección de correo electrónico
+      instructions_to_confirm: Confirma que quieres recibir correos electrónicos de %{name} (@%{acct}) cuando publique algo nuevo.
+      instructions_to_ignore: Si no estás seguro de por qué recibiste este correo electrónico, puedes eliminarlo. No te suscribirás si no haces clic en el enlace de arriba.
+      subject: Confirme tu dirección de correo electrónico
+      title: "¿Obtener actualizaciones por correo electrónico de %{name}?"
+    notification:
+      create_account: Crear una cuenta de Mastodon
+      footer:
+        privacy_html: Los correos electrónicos son enviados desde %{domain}, un servidor de Mastodon. Para conocer cómo este servidor procesa tus datos personales, consulta la <a href="%{privacy_policy_path}">Política de Privacidad</a>.
+        reason_for_email_html: Estás recibiendo este correo porque has optado por recibir actualizaciones por correo electrónico de %{name}. ¿No quieres recibir estos correos? <a href="%{unsubscribe_path}">Cancela la suscripción</a>
+      interact_with_this_post:
+        one: Interactúa con esta publicación y descubre otras similares.
+        other: Interactúa con estas publicaciones y descubre otras similares.
+      subject:
+        one: 'Nueva publicación: "%{excerpt}"'
+        other: Nuevas publicaciones de %{name}
+      title:
+        one: 'Nueva publicación: "%{excerpt}"'
+        other: Nuevas publicaciones de %{name}
+  email_subscriptions:
+    active: Activa
+    confirmations:
+      show:
+        changed_your_mind: "¿Cambiaste de opinión?"
+        success_html: Ahora empezarás a recibir correos electrónicos cuando %{name} publique algo nuevo. Añade %{sender} a tus contactos para que estas publicaciones no terminen en tu carpeta de Spam.
+        title: Estás suscrito
+        unsubscribe: Cancelar suscripición
+    inactive: Inactiva
+    status: Estado
+    subscribers: Suscriptores
   emoji_styles:
     auto: Automático
     native: Nativo
@@ -1652,15 +1687,6 @@ es:
     failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
     successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          favourite: correos de notificación de favoritos
-          follow: correos de notificación de nuevos seguidores
-          follow_request: correos de notificación de solicitud de seguidor
-          mention: correos de notificación de menciones
-          reblog: correos de notificación de impulsos
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a una publicación que ya contenga imágenes
@@ -1798,6 +1824,8 @@ es:
     posting_defaults: Configuración por defecto de publicaciones
     public_timelines: Líneas de tiempo públicas
   privacy:
+    email_subscriptions: Enviar mensajes por correo electrónico
+    email_subscriptions_hint_html: Añade un formulario de registro por correo electrónico a tu perfil, que aparece para los usuarios que no han iniciado sesión. Cuando los visitantes ingresen su dirección de correo electrónico y opten por ello, Mastodon enviará actualizaciones por correo electrónico para tus publicaciones públicas.
     hint_html: "<strong>Personaliza el descubrimiento de tu perfil y tus publicaciones.</strong> En Mastodon tienes distintas características que te ayudarán a alcanzar una mayor audiencia si las activas. Tómate un momento para revisar estas configuraciones y asegurarte de que cumplen tus necesidades."
     privacy: Privacidad
     privacy_hint_html: Controla cuánto deseas revelar a los demás. Las personas descubren perfiles y aplicaciones interesantes navegando por los seguidores de otras personas y viendo desde qué aplicaciones publican, pero puede que prefieras mantenerlo oculto.
@@ -2061,6 +2089,28 @@ es:
     resume_app_authorization: Reanudar autorización de aplicación
     role_requirement: "%{domain} requiere que establezcas la autenticación en dos pasos para poder usar Mastodon."
     webauthn: Claves de seguridad
+  unsubscriptions:
+    create:
+      action: Ir a la página de inicio del servidor
+      email_subscription:
+        confirmation_html: Ya no recibirás correos electrónicos de %{name}.
+      title: Ya no estás suscrito
+      user:
+        confirmation_html: Ya no recibirás %{type} de Mastodon en %{domain}.
+    notification_emails:
+      favourite: correos de notificación de favoritos
+      follow: correos de notificación de nuevos seguidores
+      follow_request: correos de notificación de solicitudes de seguimiento
+      mention: correos de notificación de menciones
+      reblog: correos de notificación de impulsos
+    show:
+      action: Cancelar suscripción
+      email_subscription:
+        confirmation_html: Dejarás de recibir correos cuando esta cuenta publique algo nuevo.
+        title: "¿Darse de baja de %{name}?"
+      user:
+        confirmation_html: Dejarás de recibir %{type} de Mastodon en %{domain}.
+        title: "¿Darse de baja de %{type}?"
   user_mailer:
     announcement_published:
       description: 'Los administradores de %{domain} están haciendo un anuncio:'
