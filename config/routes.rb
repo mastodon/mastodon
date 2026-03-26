@@ -200,7 +200,7 @@ Rails.application.routes.draw do
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show] do
-    resources :statuses, only: [:index], controller: 'filters/statuses' do
+    resources :statuses, only: [:index], module: :filters do
       collection do
         post :batch
       end
