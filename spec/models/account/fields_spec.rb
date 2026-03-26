@@ -174,10 +174,10 @@ RSpec.describe Account, '#fields' do
         expect(account.attributes['fields'])
           .to be_an(Array)
           .and contain_exactly(
-            include('name' => /Name/),
-            include('name' => /Name/),
-            include('name' => ''),
-            include('name' => '')
+            *(
+              ([include('name' => /Name/)] * 2) +
+              ([include('name' => '')] * (Account::DEFAULT_FIELDS_SIZE - 2))
+            )
           )
       end
     end
