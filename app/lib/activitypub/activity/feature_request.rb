@@ -7,7 +7,7 @@ class ActivityPub::Activity::FeatureRequest < ActivityPub::Activity
     return unless Mastodon::Feature.collections_federation_enabled?
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
 
-    @collection = @account.collections.find_by(uri: value_or_id(@json['instrument']))
+    @collection = find_or_fetch_collection
     @featured_account = ActivityPub::TagManager.instance.uris_to_local_accounts([value_or_id(@json['object'])]).first
 
     return if @collection.nil? || @featured_account.nil?
@@ -35,6 +35,17 @@ class ActivityPub::Activity::FeatureRequest < ActivityPub::Activity
     )
 
     queue_delivery!(collection_item, ActivityPub::RejectFeatureRequestSerializer)
+  end
+
+  def find_or_fetch_collection
+    uri = value_or_id(@json['instrument'])
+    collection = @account.collections.find_by(uri:)
+    return collection if collection.present?
+
+    collection = ActivityPub::FetchRemoteFeaturedCollectionService.new.call(uri)
+    return collection if collection.present? && collection.account == @account
+
+    nil
   end
 
   def collection_item_attributes(state = :accepted)
