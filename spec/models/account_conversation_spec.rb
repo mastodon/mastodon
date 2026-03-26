@@ -7,6 +7,24 @@ RSpec.describe AccountConversation do
     it { is_expected.to normalize(:participant_account_ids).from([3, 2, 1]).to([1, 2, 3]) }
   end
 
+  describe '#participant_accounts' do
+    subject { account_conversation.participant_accounts }
+
+    let(:account_conversation) { Fabricate.build :account_conversation, account: }
+    let(:accounts) { Fabricate.times 2, :account }
+    let(:account) { Fabricate :account }
+
+    context 'with IDs present' do
+      before { account_conversation.participant_account_ids = accounts.map(&:id) }
+
+      it { is_expected.to match_array(accounts) }
+    end
+
+    context 'without any IDs present' do
+      it { is_expected.to contain_exactly(account) }
+    end
+  end
+
   describe '.add_status' do
     let!(:alice) { Fabricate(:account, username: 'alice') }
     let!(:bob)   { Fabricate(:account, username: 'bob') }
