@@ -9,14 +9,14 @@ class WebfingerResource
     @resource = resource
   end
 
-  def username
+  def account
     case resource
     when %r{\A(https?://)?#{instance_actor_regexp}/?\Z}
-      Rails.configuration.x.local_domain
+      Account.representative
     when /\Ahttps?/i
-      username_from_url
+      account_from_url
     when /@/
-      username_from_acct
+      account_from_acct
     else
       raise InvalidRequest
     end
@@ -31,11 +31,11 @@ class WebfingerResource
     Regexp.union(hosts)
   end
 
-  def username_from_url
+  def account_from_url
     if account_show_page?
-      path_params[:username]
+      path_params.key?(:username) ? Account.find_local!(path_params[:username]) : Account.local.find(path_params[:id])
     elsif instance_actor_page?
-      Rails.configuration.x.local_domain
+      Account.representative
     else
       raise ActiveRecord::RecordNotFound
     end
@@ -53,10 +53,13 @@ class WebfingerResource
     Rails.application.routes.recognize_path(resource)
   end
 
-  def username_from_acct
+  def account_from_acct
     raise ActiveRecord::RecordNotFound unless domain_matches_local?
 
-    local_username
+    username = local_username
+    return Account.representative if username == Rails.configuration.x.local_domain || username == Rails.configuration.x.web_domain
+
+    Account.find_local!(username)
   end
 
   def split_acct
@@ -76,6 +79,6 @@ class WebfingerResource
   end
 
   def domain_matches_local?
-    TagManager.instance.local_domain?(local_domain) || TagManager.instance.web_domain?(local_domain)
+    TagManager.instance.local_domain?(local_domain) || TagManager.instance.web_domain?(local_domain) || Rails.configuration.x.alternate_domains.include?(local_domain)
   end
 end
