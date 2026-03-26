@@ -29,7 +29,7 @@ export const selectUserListWithoutMe = createAppSelector(
         .filter((id) => id !== currentAccountId)
         .toArray(),
       isLoading: !!list.get('isLoading', true),
-      hasMore: !!list.get('hasMore', false),
+      hasMore: !!list.get('next'),
     };
   },
 );
