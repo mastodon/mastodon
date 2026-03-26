@@ -128,7 +128,7 @@ class Tag < ApplicationRecord
     end
 
     def search_for(term, limit = 5, offset = 0, options = {})
-      stripped_term = term.strip
+      stripped_term = term.to_s.strip
       options.reverse_merge!({ exclude_unlistable: true, exclude_unreviewed: false })
 
       query = Tag.matches_name(stripped_term)
