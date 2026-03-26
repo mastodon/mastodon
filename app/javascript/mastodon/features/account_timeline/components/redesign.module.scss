@@ -9,6 +9,11 @@
 
 .barWrapper {
   border-bottom: none;
+  padding-inline: 24px;
+
+  @container (width < 500px) {
+    padding-inline: 16px;
+  }
 }
 
 .avatarWrapper {
@@ -125,7 +130,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   position: sticky;
   bottom: var(--mobile-bottom-nav-height);
   padding: 12px 16px;
-  margin: 0 -20px;
+  margin: 0 -16px;
 
   @container (width >= #{$button-breakpoint}) {
     display: none;
@@ -388,7 +393,7 @@ svg.badgeIcon {
   padding: 0 24px;
 
   @container (width < 500px) {
-    padding: 0 12px;
+    padding: 0 16px;
 
     a {
       flex: 1 1 0px;
