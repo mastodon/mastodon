@@ -762,6 +762,7 @@ de:
       categories:
         administration: Administration
         devops: DevOps
+        email: E-Mail
         invites: Einladungen
         moderation: Moderation
         special: Besonderheit
@@ -790,6 +791,7 @@ de:
         manage_blocks_description: E-Mail-Provider und IP-Adressen sperren
         manage_custom_emojis: Emojis
         manage_custom_emojis_description: Spezielle Emojis dieses Servers verwalten
+        manage_email_subscriptions: E-Mail-Benachrichtigungen verwalten
         manage_federation: Föderation
         manage_federation_description: Domains anderer Mastodon-Server sperren/zulassen – und Zustellbarkeit kontrollieren
         manage_invites: Einladungen
@@ -1418,6 +1420,28 @@ de:
     basic_information: Allgemeine Informationen
     hint_html: "<strong>Bestimme, was andere auf deinem öffentlichen Profil und neben deinen Beiträgen sehen können.</strong> Wenn du ein Profilbild festlegst und dein Profil vervollständigst, werden andere eher mit dir interagieren und dir folgen."
     other: Andere
+  email_subscription_mailer:
+    confirmation:
+      action: E-Mail-Adresse bestätigen
+      subject: Bestätige deine E-Mail-Adresse
+      title: E-Mail-Benachrichtigungen von %{name} erhalten?
+    notification:
+      create_account: Mastodon-Konto erstellen
+      subject:
+        one: 'Neuer Beitrag: „%{excerpt}“'
+        other: Neue Beiträge von %{name}
+      title:
+        one: 'Neuer Beitrag: „%{excerpt}“'
+        other: Neue Beiträge von %{name}
+  email_subscriptions:
+    active: Aktiviert
+    confirmations:
+      show:
+        changed_your_mind: Meinung geändert?
+        unsubscribe: Abbestellen
+    inactive: Deaktiviert
+    status: Status
+    subscribers: Abonnent*innen
   emoji_styles:
     auto: Automatisch
     native: Nativ
@@ -1652,15 +1676,6 @@ de:
     failed_sign_in_html: Fehlgeschlagener Anmeldeversuch mit %{method} von %{ip} (%{browser})
     successful_sign_in_html: Erfolgreiches Anmelden mit %{method} von %{ip} (%{browser})
     title: Anmeldeverlauf
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          favourite: E-Mail-Benachrichtigungen bei Favoriten
-          follow: E-Mail-Benachrichtigungen bei Followern
-          follow_request: E-Mail-Benachrichtigungen bei Follower-Anfragen
-          mention: E-Mail-Benachrichtigungen bei Erwähnungen
-          reblog: E-Mail-Benachrichtigungen bei geteilten Beiträgen
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag angehängt werden, der bereits Bilder enthält
@@ -1798,6 +1813,7 @@ de:
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Timelines
   privacy:
+    email_subscriptions: Sende Beiträge per E-Mail
     hint_html: "<strong>Bestimme selbst, wie dein Profil und deine Beiträge gefunden werden sollen.</strong> Zahlreiche Mastodon-Funktionen können dir für eine größere Reichweite behilflich sein. Nimm dir einen Moment Zeit, um diese Einstellungen zu überprüfen."
     privacy: Datenschutz
     privacy_hint_html: Bestimme, wie viele Informationen du für andere preisgeben möchtest. Viele Menschen entdecken interessante Profile und coole Apps, indem sie die Follower anderer Profile durchstöbern und die Apps sehen, über die Beiträge veröffentlicht wurden – möglicherweise möchtest du diese Informationen ausblenden.
@@ -2061,6 +2077,9 @@ de:
     resume_app_authorization: Autorisierung der App fortsetzen
     role_requirement: "%{domain} verlangt das Einrichten einer Zwei-Faktor-Authentisierung, bevor du Mastodon verwenden kannst."
     webauthn: Sicherheitsschlüssel
+  unsubscriptions:
+    show:
+      action: Abbestellen
   user_mailer:
     announcement_published:
       description: 'Ankündigung der Administrator*innen von %{domain}:'

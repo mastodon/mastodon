@@ -762,6 +762,7 @@ da:
       categories:
         administration: Administration
         devops: DevOps
+        email: E-mail
         invites: Invitationer
         moderation: Moderering
         special: Speciel
@@ -790,6 +791,8 @@ da:
         manage_blocks_description: Tillader brugere at blokere e-mailudbydere og IP-adresser
         manage_custom_emojis: Administrere tilpassede emojier
         manage_custom_emojis_description: Tillader brugere at administrere tilpassede emojier på serveren
+        manage_email_subscriptions: Administrer e-mail-abonnementer
+        manage_email_subscriptions_description: Giv brugere mulighed for at abonnere på andre brugere med denne tilladelse via e-mail
         manage_federation: Administrere federation
         manage_federation_description: Tillader brugere at blokere eller tillade federation med andre domæner og styre leverbarhed
         manage_invites: Administrere invitationer
@@ -1418,6 +1421,38 @@ da:
     basic_information: Oplysninger
     hint_html: "<strong>Tilpas, hvad folk ser på din offentlige profil og ved siden af dine indlæg.</strong> Andre personer er mere tilbøjelige til at følge dig tilbage og interagere med dig, når du har en udfyldt profil og et profilbillede."
     other: Andre
+  email_subscription_mailer:
+    confirmation:
+      action: Bekræft e-mailadresse
+      instructions_to_confirm: Bekræft, at du gerne vil modtage e-mails fra %{name} (@%{acct}), når vedkommende offentliggør nye indlæg.
+      instructions_to_ignore: Hvis du ikke ved, hvorfor du har modtaget denne e-mail, kan du slette den. Du bliver ikke tilmeldt, hvis du ikke klikker på linket ovenfor.
+      subject: Bekræft din e-mailadresse
+      title: Modtag e-mail opdateringer fra %{name}?
+    notification:
+      create_account: Opret en Mastodon-konto
+      footer:
+        privacy_html: E-mails sendes fra %{domain}, en server drevet af Mastodon. For at få mere at vide om, hvordan denne server behandler dine personoplysninger, kan du læse <a href="%{privacy_policy_path}">privatlivspolitikken</a>.
+        reason_for_email_html: Du modtager denne e-mail, fordi du har valgt at modtage e-mailopdateringer fra %{name}. Ønsker du ikke at modtage disse e-mails? <a href="%{unsubscribe_path}">Afmeld</a>
+      interact_with_this_post:
+        one: Interagér med dette indlæg, og find flere lignende indlæg.
+        other: Interagér med disse indlæg, og find flere.
+      subject:
+        one: 'Nyt indlæg: "%{excerpt}"'
+        other: Nye indlæg fra %{name}
+      title:
+        one: 'Nyt indlæg: "%{excerpt}"'
+        other: Nye indlæg fra %{name}
+  email_subscriptions:
+    active: Aktive
+    confirmations:
+      show:
+        changed_your_mind: Har du skiftet mening?
+        success_html: Du vil nu begynde at modtage e-mails, når %{name} offentliggør nye indlæg. Tilføj %{sender} til dine kontakter, så disse indlæg ikke ender i din spam-mappe.
+        title: Du er tilmeldt
+        unsubscribe: Afmeld
+    inactive: Inaktive
+    status: Status
+    subscribers: Abonnenter
   emoji_styles:
     auto: Auto
     native: Indbygget
@@ -1652,15 +1687,6 @@ da:
     failed_sign_in_html: Mislykket indlogning med %{method} fra %{ip} (%{browser})
     successful_sign_in_html: Gennemført indlogning med %{method} fra %{ip} (%{browser})
     title: Godkendelseshistorik
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          favourite: e-mailnotifikationer om favoritmarkeringer
-          follow: e-mailnotifikationer om nye følgere
-          follow_request: e-mailnotifikationer om følgeanmodninger
-          mention: e-mailnotifikationer om omtaler
-          reblog: e-mailnotifikationer om fremhævelser
   media_attachments:
     validations:
       images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
@@ -1798,6 +1824,8 @@ da:
     posting_defaults: Standarder for indlæg
     public_timelines: Offentlige tidslinjer
   privacy:
+    email_subscriptions: Send indlæg via e-mail
+    email_subscriptions_hint_html: Tilføj en tilmeldingsformular til din profil, som vises for brugere, der ikke er logget ind. Når besøgende indtaster deres e-mailadresse og tilmelder sig, sender Mastodon e-mailopdateringer om dine offentlige indlæg.
     hint_html: "<strong>Tilpas hvordan din profil og dine indlæg kan findes.</strong> En række funktioner i Mastodon kan hjælpe dig med at nå ud til et bredere publikum, hvis du aktiverer dem. Tjek indstillingerne herunder for at sikre, at de passer til dit brugsscenarie."
     privacy: Privatliv
     privacy_hint_html: Styr, hvor meget du vil afsløre til gavn for andre. Folk opdager interessante profiler og apps ved at gennemse andres følgere og se, hvilke apps de sender fra, men du foretrækker måske at holde det skjult.
@@ -2061,6 +2089,28 @@ da:
     resume_app_authorization: Genoptag godkendelse af applikation
     role_requirement: "%{domain} kræver, at du konfigurerer tofaktorgodkendelse, før du kan bruge Mastodon."
     webauthn: Sikkerhedsnøgler
+  unsubscriptions:
+    create:
+      action: Gå til serverens hjemmeside
+      email_subscription:
+        confirmation_html: Du vil ikke længere modtage e-mails fra %{name}.
+      title: Du er afmeldt
+      user:
+        confirmation_html: Du vil ikke længere modtage %{type} fra Mastodon på %{domain}.
+    notification_emails:
+      favourite: e-mail-notifikationer om favoritmarkeringer
+      follow: e-mail-notifikationer om nye følgere
+      follow_request: e-mail-notifikationer om følgeanmodninger
+      mention: e-mail-notifikationer om omtaler
+      reblog: e-mail-notifikationer om fremhævelser
+    show:
+      action: Afmeld
+      email_subscription:
+        confirmation_html: Du vil ikke længere modtage e-mails, når denne konto offentliggør nye indlæg.
+        title: Afmeld fra %{name}?
+      user:
+        confirmation_html: Du vil ikke længere modtage %{type} fra Mastodon på %{domain}.
+        title: Afmeld fra %{type}?
   user_mailer:
     announcement_published:
       description: 'Administratorerne på %{domain} udsender en annoncering:'

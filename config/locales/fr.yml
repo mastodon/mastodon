@@ -80,7 +80,7 @@ fr:
       enabled_msg: Le compte de %{username} a été dégelé avec succès
       followers: Abonné·e·s
       follows: Abonnements
-      header: Entête
+      header: Image de couverture
       inbox_url: URL d’entrée
       invite_request_text: Raisons de l’adhésion
       invited_by: Invité par
@@ -128,7 +128,7 @@ fr:
       remote_suspension_irreversible: Les données de ce compte ont été supprimées définitivement.
       remote_suspension_reversible_hint_html: Ce compte a été suspendu par son serveur d'accueil, et les données rattachées seront supprimées le %{date}. Jusqu'à cette date, il peut être restauré sans aucune perte par le serveur distant. Si vous souhaitez supprimer immédiatement toutes les données de ce compte, vous pouvez le faire ci-dessous.
       remove_avatar: Supprimer l’avatar
-      remove_header: Supprimer l’entête
+      remove_header: Supprimer l'image de couverture
       removed_avatar_msg: L’avatar de %{username} a été supprimé avec succès
       removed_header_msg: L’image d’en-tête de %{username} a été supprimée avec succès
       resend_confirmation:
@@ -1655,15 +1655,6 @@ fr:
     failed_sign_in_html: Tentative de connexion échouée avec %{method} de %{ip} (%{browser})
     successful_sign_in_html: Connexion réussie avec %{method} de %{ip} (%{browser})
     title: Historique d'authentification
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          favourite: e-mails de notifications de favoris
-          follow: e-mails de notifications d’abonnements
-          follow_request: e-mails de demandes d’abonnements
-          mention: e-mails de notifications de mentions
-          reblog: e-mails de notifications de partages
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images
