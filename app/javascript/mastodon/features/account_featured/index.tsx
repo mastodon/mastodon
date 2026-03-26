@@ -154,6 +154,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                   key={item.id}
                   collection={item}
                   withoutBorder={index === listedCollections.length - 1}
+                  withAuthorHandle={false}
                   positionInList={index + 1}
                   listSize={listedCollections.length}
                 />
