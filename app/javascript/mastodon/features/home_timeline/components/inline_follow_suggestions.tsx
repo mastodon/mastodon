@@ -115,7 +115,7 @@ const Source: React.FC<{ id: ApiSuggestionSourceJSON }> = ({ id }) => {
       title={hint}
     >
       <Icon id='' icon={InfoIcon} />
-      {label}
+      <span>{label}</span>
     </div>
   );
 };

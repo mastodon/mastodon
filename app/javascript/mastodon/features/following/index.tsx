@@ -65,6 +65,7 @@ const Followers: FC = () => {
       <FormattedMessage
         id='following.hide_other_following'
         defaultMessage='This user has chosen to not make the rest of who they follow visible'
+        tagName='span'
       />
     </div>
   );

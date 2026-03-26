@@ -435,7 +435,7 @@ class Status extends ImmutablePureComponent {
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend__icon'><Icon id='retweet' icon={RepeatIcon} /></div>
-          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name }} />
+          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name }} tagName='span' />
         </div>
       );
 
@@ -447,7 +447,7 @@ class Status extends ImmutablePureComponent {
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend__icon'><Icon id='at' icon={AlternateEmailIcon} /></div>
-          <FormattedMessage id='status.direct_indicator' defaultMessage='Private mention' />
+          <FormattedMessage id='status.direct_indicator' defaultMessage='Private mention' tagName='span' />
         </div>
       );
     } else if (showThread && status.get('in_reply_to_id')) {

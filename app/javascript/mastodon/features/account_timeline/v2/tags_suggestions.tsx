@@ -78,6 +78,7 @@ export const TagSuggestions: FC = () => {
           values={{
             link: (chunks) => <Link to='/profile/featured_tags'>{chunks}</Link>,
           }}
+          tagName='span'
         />
       </Callout>
     );
@@ -122,6 +123,7 @@ export const TagSuggestions: FC = () => {
             />
           ),
         }}
+        tagName='span'
       />
     </Callout>
   );

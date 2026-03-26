@@ -47,6 +47,7 @@ export const Collections: React.FC<{
       <FormattedMessage
         id='collections.error_loading_collections'
         defaultMessage='There was an error when trying to load your collections.'
+        tagName='span'
       />
     ) : (
       <>

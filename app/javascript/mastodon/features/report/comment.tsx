@@ -194,6 +194,7 @@ const Comment: React.FC<Props> = ({
                 id='report.forward'
                 defaultMessage='Forward to {target}'
                 values={{ target: domain }}
+                tagName='span'
               />
             </label>
           ))}
