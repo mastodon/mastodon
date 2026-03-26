@@ -39,6 +39,11 @@ module Mastodon
     end
   end
 
+  URI_PARSE_ERRORS = [
+    Addressable::URI::InvalidURIError,
+    IDN::Idna::IdnaError,
+  ].freeze
+
   HTTP_CONNECTION_ERRORS = [
     HTTP::ConnectionError,
     HTTP::Error,

@@ -56,7 +56,7 @@ class DeliveryFailureTracker
       urls.reject do |url|
         host = Addressable::URI.parse(url).normalized_host
         unavailable_domains_map[host]
-      rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+      rescue *Mastodon::URI_PARSE_ERRORS
         true
       end
     end

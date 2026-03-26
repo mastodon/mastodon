@@ -73,7 +73,7 @@ class TextFormatter
           tag.span(display_url, class: (cutoff ? 'ellipsis' : '')) +
           tag.span(suffix, class: 'invisible')
       end
-    rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+    rescue *Mastodon::URI_PARSE_ERRORS
       h(url)
     end
   end
