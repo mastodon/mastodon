@@ -283,6 +283,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
     );
     const type = media?.get('type') as string;
     const valid = length(description) <= MAX_LENGTH;
+    const status_id = media?.get('status_id') as string | undefined;
 
     const handleDescriptionChange = useCallback(
       (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -433,7 +434,8 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
               onPositionChange={handlePositionChange}
             />
 
-            {(type === 'audio' || type === 'video') && (
+            {/* This button is hidden for audio/video files with an associated status_id, as they are already posted */}
+            {(type === 'audio' || type === 'video') && !status_id && (
               <UploadButton
                 onSelectFile={handleThumbnailChange}
                 mimeTypes='image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp,image/avif'
