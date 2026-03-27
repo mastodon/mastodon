@@ -9,7 +9,7 @@ namespace :settings do
 
   namespace :preferences do
     resource :appearance, only: [:show, :update], controller: :appearance
-    resource :posting_defaults, only: [:show, :update], controller: :posting_defaults
+    resource :posting_defaults, only: [:show, :update]
     resource :notifications, only: [:show, :update]
     resource :other, only: [:show, :update], controller: :other
   end

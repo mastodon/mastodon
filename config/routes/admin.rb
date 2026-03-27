@@ -92,7 +92,7 @@ namespace :admin do
       post :stop_delivery
     end
 
-    resources :moderation_notes, controller: 'instances/moderation_notes', only: [:create, :destroy]
+    resources :moderation_notes, module: :instances, only: [:create, :destroy]
   end
 
   resources :rules, only: [:index, :new, :create, :edit, :update, :destroy] do
@@ -108,13 +108,13 @@ namespace :admin do
       post :disable
     end
 
-    resource :secret, only: [], controller: 'webhooks/secrets' do
+    resource :secret, only: [], module: :webhooks do
       post :rotate
     end
   end
 
   resources :reports, only: [:index, :show] do
-    resources :actions, only: [:create], controller: 'reports/actions' do
+    resources :actions, only: [:create], module: :reports do
       collection do
         post :preview
       end
