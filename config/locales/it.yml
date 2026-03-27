@@ -791,6 +791,8 @@ it:
         manage_blocks_description: Consente agli utenti di bloccare i provider di posta elettronica e gli indirizzi IP
         manage_custom_emojis: Gestisci emoji personalizzate
         manage_custom_emojis_description: Consente agli utenti di gestire emoji personalizzate sul server
+        manage_email_subscriptions: Gestisci le iscrizioni via email
+        manage_email_subscriptions_description: Consenti agli utenti di iscriversi tramite email agli utenti, con questa autorizzazione
         manage_federation: Gestisci Federazione
         manage_federation_description: Consente agli utenti di bloccare o consentire la federazione con altri domini e controllare la consegnabilità
         manage_invites: Gestisci Inviti
@@ -1419,6 +1421,21 @@ it:
     basic_information: Informazioni di base
     hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
     other: Altro
+    redesign_body: Ora è possibile modificare il profilo direttamente dalla pagina del profilo stesso.
+    redesign_button: Vai lì
+    redesign_title: È disponibile una nuova esperienza di modifica del profilo
+  email_subscription_mailer:
+    confirmation:
+      action: Conferma l'indirizzo email
+      instructions_to_confirm: Conferma di voler ricevere email da %{name} (@%{acct}) quando pubblicano nuovi post.
+      instructions_to_ignore: Se non sai perché hai ricevuto questa email, puoi cancellarla. L'iscrizione non sarà confermata se non clicchi sul link qui sopra.
+      subject: Conferma il tuo indirizzo email
+      title: Ricevere aggiornamenti via email da %{name}?
+    notification:
+      create_account: Crea un account Mastodon
+      footer:
+        privacy_html: Le email vengono inviate da %{domain}, un server gestito da Mastodon. Per comprendere come questo server elabora i tuoi dati personali, consulta l'<a href="%{privacy_policy_path}">Informativa sulla privacy</a>.
+        reason_for_email_html: Ricevi questa email perché hai scelto di ottenere aggiornamenti via email da %{name}. Non vuoi più ricevere queste email? <a href="%{unsubscribe_path}">Disiscriviti</a>
   emoji_styles:
     auto: Automatico
     native: Nativo

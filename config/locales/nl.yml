@@ -762,6 +762,7 @@ nl:
       categories:
         administration: Beheer
         devops: DevOps
+        email: E-mail
         invites: Uitnodigingen
         moderation: Moderatie
         special: Speciaal
@@ -790,6 +791,8 @@ nl:
         manage_blocks_description: Staat gebruikers toe om e-mailproviders en IP-adressen te blokkeren
         manage_custom_emojis: Lokale emoji's beheren
         manage_custom_emojis_description: Staat gebruikers toe om lokale emoji's op de server te beheren
+        manage_email_subscriptions: E-mailabonnementen beheren
+        manage_email_subscriptions_description: Sta gebruikers toe om zich per e-mail te abonneren op gebruikers met deze rechten
         manage_federation: Federatie beheren
         manage_federation_description: Staat gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en om de bezorging te bepalen
         manage_invites: Uitnodigingen beheren
@@ -1418,6 +1421,34 @@ nl:
     basic_information: Algemene informatie
     hint_html: "<strong>Wat mensen op jouw openbare profiel en naast je berichten zien aanpassen.</strong> Andere mensen gaan je waarschijnlijk eerder volgen en hebben vaker interactie met je, wanneer je profiel is ingevuld en je een profielfoto hebt."
     other: Overige
+    redesign_body: Het bewerken van je profiel is nu toegankelijk vanaf de profielpagina.
+    redesign_button: Ga erheen
+    redesign_title: Er is een nieuwe profielbewerkingservaring
+  email_subscription_mailer:
+    confirmation:
+      action: E-mailadres bevestigen
+      instructions_to_confirm: Bevestig dat je e-mails van %{name} (@%{acct}) wilt ontvangen wanneer deze gebruiker nieuwe berichten publiceert.
+      instructions_to_ignore: Wanneer je niet zeker weet waarom je deze e-mail hebt ontvangen, kun je deze verwijderen. Je bent niet geabonneerd wanneer je niet op de bovenstaande link klikt.
+      subject: Je e-mailadres bevestigen
+      title: E-mailupdates van %{name} ontvangen?
+    notification:
+      create_account: Een Mastodon-account registreren
+      subject:
+        one: 'Nieuw bericht: "%{excerpt}"'
+        other: Nieuwe berichten van %{name}
+      title:
+        one: 'Nieuw bericht: "%{excerpt}"'
+        other: Nieuwe berichten van %{name}
+  email_subscriptions:
+    active: Actief
+    confirmations:
+      show:
+        changed_your_mind: Van mening veranderd?
+        title: Je bent ingeschreven
+        unsubscribe: Uitschrijven
+    inactive: Inactief
+    status: Status
+    subscribers: Abonnees
   emoji_styles:
     auto: Auto
     native: Systeemeigen
@@ -1789,6 +1820,7 @@ nl:
     posting_defaults: Jouw nieuwe berichten
     public_timelines: Openbare tijdlijnen
   privacy:
+    email_subscriptions: Berichten per e-mail verzenden
     hint_html: "<strong>Hoe wil je dat jouw profiel en berichten kunnen worden gevonden?</strong> Een verscheidenheid aan functies in Mastodon kunnen je helpen om een groter publiek te bereiken als ze zijn ingeschakeld. Neem rustig de tijd om deze instellingen te bekijken, om er zo zeker van te zijn dat ze aan jouw wensen voldoen."
     privacy: Privacy
     privacy_hint_html: Hoeveel informatie wil je aan andere gebruikers kwijt? Mensen ontdekken interessante accounts en coole apps door te bekijken welke accounts jij volgt en door te bekijken welke app jij gebruikt voor het plaatsen van berichten. Het kan achter zo zijn dat je dit liever verborgen houdt.
@@ -2052,6 +2084,17 @@ nl:
     resume_app_authorization: Applicatie-machtiging hervatten
     role_requirement: "%{domain} vereist dat je Tweestapsverificatie instelt voordat je Mastodon kunt gebruiken."
     webauthn: Beveiligingssleutels
+  unsubscriptions:
+    create:
+      title: Je bent uitgeschreven
+    notification_emails:
+      favourite: e-mailmeldingen favorieten
+      follow: e-mailmeldingen volgers
+      follow_request: e-mailmeldingen volgverzoeken
+      mention: e-mailmeldingen vermeldingen
+      reblog: e-mailmeldingen boosts
+    show:
+      action: Uitschrijven
   user_mailer:
     announcement_published:
       description: 'De beheerders van %{domain} doen een mededeling:'

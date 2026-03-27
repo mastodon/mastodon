@@ -762,6 +762,7 @@ hu:
       categories:
         administration: Adminisztráció
         devops: DevOps
+        email: E-mail-cím
         invites: Meghívások
         moderation: Moderáció
         special: Speciális
@@ -790,6 +791,8 @@ hu:
         manage_blocks_description: Lehetővé teszi, hogy a felhasználók e-mail-szolgáltatókat és IP-címeket tiltsanak le
         manage_custom_emojis: Egyedi emodzsik kezelése
         manage_custom_emojis_description: Lehetővé teszi a felhasználó számára, hogy a kiszolgáló egyéni emodzsiait kezelje
+        manage_email_subscriptions: E-mail-feliratkozások kezelése
+        manage_email_subscriptions_description: Engedélyezés, hogy a felhasználók e-maillel feliratkozzanak az ilyen jogosultságú felhasználókra
         manage_federation: Föderáció kezelése
         manage_federation_description: Lehetővé teszi a felhasználó számára, hogy más domainnekkel való föderációt engedélyezzen vagy letiltson, illetve szabályozza a kézbesítést
         manage_invites: Meghívások kezelése
@@ -1418,6 +1421,30 @@ hu:
     basic_information: Általános információk
     hint_html: "<strong>Tedd egyedivé, mi látnak mások a profilodon és a bejegyzéseid mellett.</strong> Mások nagyobb eséllyel követnek vissza és lépnek veled kapcsolatba, ha van kitöltött profilod és profilképed."
     other: Egyéb
+    redesign_body: A profil szerkesztése most már közvetlenül elérhető a profiloldalon.
+    redesign_button: Ugrás oda
+    redesign_title: Az új profilszerkesztési élmény
+  email_subscription_mailer:
+    confirmation:
+      action: E-mail-cím megerősítése
+      subject: E-mail-cím megerősítése
+    notification:
+      subject:
+        one: 'Új bejegyzés: „%{excerpt}”'
+        other: 'Új bejegyzések tőle: %{name}'
+      title:
+        one: 'Új bejegyzés: „%{excerpt}”'
+        other: 'Új bejegyzések tőle: %{name}'
+  email_subscriptions:
+    active: Aktív
+    confirmations:
+      show:
+        changed_your_mind: Meggondoltad magad?
+        title: Feliratkoztál
+        unsubscribe: Leiratkozás
+    inactive: Inaktív
+    status: Állapot
+    subscribers: Feliratkozók
   emoji_styles:
     auto: Automatikus
     native: Natív
@@ -1789,6 +1816,7 @@ hu:
     posting_defaults: Bejegyzések alapértelmezései
     public_timelines: Nyilvános idővonalak
   privacy:
+    email_subscriptions: Bejegyzések küldése e-mailben
     hint_html: "<strong>Testreszabható a profil és a bejegyzések megjelenése.</strong> A Mastodon számos funkciója segíthet szélesebb közönség elérésében, ha engedélyezve van. Szánj egy percet a beállítások áttekintésére, hogy megbizonyosodj arról, hogy ezek megfelelnek a te felhasználási esetednek."
     privacy: Adatvédelem
     privacy_hint_html: Szabályozd, hogy mások számára miket szeretnél nyilvánosságra hozni. Az emberek érdekes profilokat és nagyszerű alkalmazásokat fedezhetnek fel, amikor böngésznek mások követései között és látják, hogy mely alkalmazásokból tesznek közzé bejegyzéseket, de az is lehet, hogy inkább elrejtenéd ezeket az infókat.
@@ -2052,6 +2080,14 @@ hu:
     resume_app_authorization: Alkalmazás jogosultság-ellenőrzésének folytatása
     role_requirement: A(z) %{domain} megköveteli a kétlépcsős hitelesítés beállítása a Mastodon használata előtt.
     webauthn: Biztonsági kulcsok
+  unsubscriptions:
+    create:
+      action: Ugrás a kiszolgáló kezdőlapjára
+      email_subscription:
+        confirmation_html: 'Már nem fogsz leveleket kapni róla: %{name}.'
+      title: Leiratkoztál
+    show:
+      action: Leiratkozás
   user_mailer:
     announcement_published:
       description: 'A(z) %{domain} adminisztrátorai a következő bejelentést teszik:'
