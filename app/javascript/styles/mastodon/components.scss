@@ -10400,9 +10400,13 @@ noscript {
   padding: 0 4px;
 
   &:hover,
-  &:focus,
   &:active {
-    background: var(--color-bg-brand-softest);
+    background: rgb(from var(--color-text-inverted) r g b / 10%);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-text-brand-on-inverted);
+    outline-offset: 2px;
   }
 }
 
