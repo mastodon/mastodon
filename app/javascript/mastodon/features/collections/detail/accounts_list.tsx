@@ -3,6 +3,7 @@ import { useCallback, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { Callout } from '@/mastodon/components/callout';
+import { FollowButton } from '@/mastodon/components/follow_button';
 import { openModal } from 'mastodon/actions/modal';
 import type {
   ApiCollectionJSON,
@@ -38,8 +39,9 @@ const SimpleAuthorName: React.FC<{ id: string }> = ({ id }) => {
 const AccountItem: React.FC<{
   accountId: string | undefined;
   collectionOwnerId: string;
+  withBio?: boolean;
   withBorder?: boolean;
-}> = ({ accountId, withBorder = true, collectionOwnerId }) => {
+}> = ({ accountId, withBio = true, withBorder = true, collectionOwnerId }) => {
   const relationship = useRelationship(accountId);
 
   if (!accountId) {
@@ -56,13 +58,17 @@ const AccountItem: React.FC<{
       (relationship.following || relationship.requested));
 
   return (
-    <Account
-      withBio
-      minimal={withoutButton}
-      withMenu={false}
-      withBorder={withBorder}
-      id={accountId}
-    />
+    <div className={classes.accountItemWrapper} data-with-border={withBorder}>
+      <Account
+        minimal
+        id={accountId}
+        withBio={withBio}
+        withBorder={false}
+        withMenu={false}
+        className={classes.accountItem}
+      />
+      {!withoutButton && <FollowButton accountId={accountId} />}
+    </div>
   );
 };
 
@@ -204,8 +210,8 @@ export const CollectionAccountsList: React.FC<{
         <>
           <h3 className={classes.columnSubheading}>
             <FormattedMessage
-              id='collections.detail.author_added_you'
-              defaultMessage='{author} added you to this collection'
+              id='collections.detail.you_were_added_to_this_collection'
+              defaultMessage='You were added to this collection'
               values={{
                 author: <SimpleAuthorName id={collection.account_id} />,
               }}
@@ -215,10 +221,11 @@ export const CollectionAccountsList: React.FC<{
             key={currentUserInCollection.account_id}
             aria-posinset={1}
             aria-setsize={items.length}
-            className={classes.accountItem}
+            className={classes.youWereAddedWrapper}
           >
             <AccountItem
               withBorder={false}
+              withBio={false}
               accountId={currentUserInCollection.account_id}
               collectionOwnerId={collection.account_id}
             />
@@ -233,8 +240,9 @@ export const CollectionAccountsList: React.FC<{
             ref={listHeadingRef}
           >
             <FormattedMessage
-              id='collections.detail.other_accounts_in_collection'
-              defaultMessage='Others in this collection:'
+              id='collections.detail.other_accounts_count'
+              defaultMessage='{count, plural, one {# other account} other {# other accounts}}'
+              values={{ count: collection.item_count - 1 }}
             />
           </h3>
         </>
@@ -268,7 +276,6 @@ export const CollectionAccountsList: React.FC<{
               key={account_id}
               aria-posinset={index + (currentUserInCollection ? 2 : 1)}
               aria-setsize={items.length}
-              className={classes.accountItem}
             >
               <AccountItem
                 accountId={account_id}

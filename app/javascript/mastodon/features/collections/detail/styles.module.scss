@@ -73,10 +73,29 @@
   font-weight: 500;
 }
 
-.accountItem {
-  :global(.account) {
-    padding-inline: 0;
+.accountItemWrapper {
+  display: flex;
+  align-items: start;
+  padding-block: 16px;
+
+  &[data-with-border='true'] {
+    border-bottom: 1px solid var(--color-border-primary);
   }
+}
+
+.accountItem {
+  --account-name-size: 15px;
+  --account-handle-color: var(--color-text-secondary);
+  --account-handle-size: 13px;
+  --account-bio-color: var(--color-text-primary);
+  --account-bio-size: 13px;
+  --account-outer-spacing: 0;
+
+  flex-grow: 1;
+}
+
+.youWereAddedWrapper {
+  padding-bottom: 16px;
 }
 
 .revokeControlWrapper {
@@ -84,8 +103,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
-  margin-top: -10px;
-  padding-bottom: 16px;
+  margin-bottom: 8px;
 
   :global(.button) {
     min-width: 30%;

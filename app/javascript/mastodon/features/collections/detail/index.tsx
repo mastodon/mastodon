@@ -92,7 +92,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   }, [history, handleShare, isNewCollection, location.pathname]);
 
   return (
-    <div className={classes.header}>
+    <header className={classes.header}>
       <div className={classes.titleWithMenu}>
         <div className={classes.titleWrapper}>
           {tag && <span className={classes.tag}>#{tag.name}</span>}
@@ -115,7 +115,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         </div>
       </div>
       {description && <p className={classes.description}>{description}</p>}
-    </div>
+    </header>
   );
 };
 
