@@ -37,15 +37,25 @@ const selectGalleryTimeline = createAppSelector(
     (state) => state.statuses,
   ],
   (accountId, timelines, accounts, statuses) => {
+    let items = emptyList;
     if (!accountId) {
-      return null;
+      return {
+        items,
+        hasMore: false,
+        isLoading: false,
+        withReplies: false,
+      };
     }
     const account = accounts.get(accountId);
     if (!account) {
-      return null;
+      return {
+        items,
+        hasMore: false,
+        isLoading: false,
+        withReplies: false,
+      };
     }
 
-    let items = emptyList;
     const { show_media, show_media_replies } = account;
     // If the account disabled showing media, don't display anything.
     if (!show_media && redesignEnabled) {
@@ -53,13 +63,13 @@ const selectGalleryTimeline = createAppSelector(
         items,
         hasMore: false,
         isLoading: false,
-        showingReplies: false,
+        withReplies: false,
       };
     }
 
-    const showingReplies = show_media_replies && redesignEnabled;
+    const withReplies = show_media_replies && redesignEnabled;
     const timeline = timelines.get(
-      `account:${accountId}:media${showingReplies ? ':with_replies' : ''}`,
+      `account:${accountId}:media${withReplies ? ':with_replies' : ''}`,
     );
     const statusIds = timeline?.get('items');
 
@@ -77,8 +87,8 @@ const selectGalleryTimeline = createAppSelector(
     return {
       items,
       hasMore: !!timeline?.get('hasMore'),
-      isLoading: !!timeline?.get('isLoading'),
-      showingReplies,
+      isLoading: timeline?.get('isLoading') ? true : false,
+      withReplies,
     };
   },
 );
@@ -89,11 +99,11 @@ export const AccountGallery: React.FC<{
   const dispatch = useAppDispatch();
   const accountId = useAccountId();
   const {
-    isLoading = true,
-    hasMore = false,
-    items: attachments = emptyList,
-    showingReplies: withReplies = false,
-  } = useAppSelector((state) => selectGalleryTimeline(state, accountId)) ?? {};
+    isLoading,
+    items: attachments,
+    hasMore,
+    withReplies,
+  } = useAppSelector((state) => selectGalleryTimeline(state, accountId));
 
   const { suspended, blockedBy, hidden } = useAccountVisibility(accountId);
 
@@ -215,7 +225,7 @@ export const AccountGallery: React.FC<{
         alwaysPrepend
         append={accountId && <RemoteHint accountId={accountId} />}
         scrollKey='account_gallery'
-        isLoading={isLoading}
+        showLoading={isLoading}
         hasMore={!forceEmptyState && hasMore}
         onLoadMore={handleLoadMore}
         emptyMessage={emptyMessage}
