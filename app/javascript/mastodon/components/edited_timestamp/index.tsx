@@ -121,6 +121,7 @@ export const EditedTimestamp: React.FC<{
               />
             ),
           }}
+          tagName='span'
         />
       </button>
     </Dropdown>

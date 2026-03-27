@@ -69,7 +69,9 @@ export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
           <Avatar withLink key={account.id} account={account} size={28} />
         ))}
       </AvatarGroup>
-      <FamiliarFollowersReadout familiarFollowers={familiarFollowers} />
+      <span>
+        <FamiliarFollowersReadout familiarFollowers={familiarFollowers} />
+      </span>
     </div>
   );
 };
