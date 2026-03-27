@@ -1,11 +1,5 @@
-import {
-  forwardRef,
-  useCallback,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react';
-import type { FC } from 'react';
+import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
+import type { FC, FocusEventHandler } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -13,7 +7,7 @@ import type { Map as ImmutableMap } from 'immutable';
 
 import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
-import { Callout } from '@/mastodon/components/callout';
+import type { FieldStatus } from '@/mastodon/components/form_fields';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
 import {
   removeField,
@@ -71,6 +65,26 @@ const messages = defineMessages({
     id: 'account_edit.field_edit_modal.discard_confirm',
     defaultMessage: 'Discard',
   },
+  errorBlank: {
+    id: 'form_error.blank',
+    defaultMessage: 'Field cannot be blank.',
+  },
+  warningLength: {
+    id: 'account_edit.field_edit_modal.length_warning',
+    defaultMessage:
+      'Recommended character limit exceeded. Mobile users might not see your field in full.',
+  },
+  warningUrlEmoji: {
+    id: 'account_edit.field_edit_modal.link_emoji_warning',
+    defaultMessage:
+      'We recommend against the use of custom emoji in combination with urls. Custom fields containing both will display as text only instead of as a link, in order to prevent user confusion.',
+  },
+  warningUrlProtocol: {
+    id: 'account_edit.field_edit_modal.url_warning',
+    defaultMessage:
+      'To add a link, please include {protocol} at the beginning.',
+    description: '{protocol} is https://',
+  },
 });
 
 // We have two different values- the hard limit set by the server,
@@ -124,34 +138,86 @@ export const EditFieldModal = forwardRef<
   const { nameLimit, valueLimit } = useAppSelector(selectFieldLimits);
   const isPending = useAppSelector((state) => state.profileEdit.isPending);
 
-  const disabled =
-    !newLabel.trim() ||
-    !newValue.trim() ||
-    !isDirty ||
-    !nameLimit ||
-    !valueLimit ||
-    newLabel.length > nameLimit ||
-    newValue.length > valueLimit;
+  const [fieldStatuses, setFieldStatuses] = useState<{
+    label?: FieldStatus;
+    value?: FieldStatus;
+  }>({});
 
   const customEmojiCodes = useAppSelector(selectEmojiCodes);
-  const hasLinkAndEmoji = useMemo(() => {
-    const text = `${newLabel} ${newValue}`; // Combine text, as we're searching it all.
-    const hasLink = /https?:\/\//.test(text);
-    const hasEmoji = customEmojiCodes.some((code) =>
-      text.includes(`:${code}:`),
-    );
-    return hasLink && hasEmoji;
-  }, [customEmojiCodes, newLabel, newValue]);
-  const hasLinkWithoutProtocol = useMemo(
-    () => isUrlWithoutProtocol(newValue),
-    [newValue],
+  const checkField = useCallback(
+    (value: string): FieldStatus | null => {
+      if (!value.trim()) {
+        return {
+          variant: 'error',
+          message: intl.formatMessage(messages.errorBlank),
+        };
+      }
+
+      if (value.length > RECOMMENDED_LIMIT) {
+        return {
+          variant: 'warning',
+          message: intl.formatMessage(messages.warningLength, {
+            max: RECOMMENDED_LIMIT,
+          }),
+        };
+      }
+
+      const hasLink = /https?:\/\//.test(value);
+      const hasEmoji = customEmojiCodes.some((code) =>
+        value.includes(`:${code}:`),
+      );
+      if (hasLink && hasEmoji) {
+        return {
+          variant: 'warning',
+          message: intl.formatMessage(messages.warningUrlEmoji),
+        };
+      }
+
+      if (isUrlWithoutProtocol(value)) {
+        return {
+          variant: 'warning',
+          message: intl.formatMessage(messages.warningUrlProtocol, {
+            protocol: 'https://',
+          }),
+        };
+      }
+
+      return null;
+    },
+    [customEmojiCodes, intl],
+  );
+
+  const handleBlur: FocusEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      const { name, value } = event.target;
+      const result = checkField(value);
+      if (name !== 'label' && name !== 'value') {
+        return;
+      }
+      setFieldStatuses((statuses) => ({
+        ...statuses,
+        [name]: result ?? undefined,
+      }));
+    },
+    [checkField],
   );
 
   const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
-    if (disabled || isPending) {
+    if (isPending) {
       return;
     }
+
+    const labelStatus = checkField(newLabel);
+    const valueStatus = checkField(newValue);
+    if (labelStatus || valueStatus) {
+      setFieldStatuses({
+        label: labelStatus ?? undefined,
+        value: valueStatus ?? undefined,
+      });
+      return;
+    }
+
     void dispatch(
       updateField({ id: fieldKey, name: newLabel, value: newValue }),
     ).then(() => {
@@ -163,7 +229,7 @@ export const EditFieldModal = forwardRef<
         }),
       );
     });
-  }, [disabled, dispatch, fieldKey, isPending, newLabel, newValue]);
+  }, [checkField, dispatch, fieldKey, isPending, newLabel, newValue]);
 
   useImperativeHandle(
     ref,
@@ -198,60 +264,33 @@ export const EditFieldModal = forwardRef<
       confirm={intl.formatMessage(messages.save)}
       onConfirm={handleSave}
       updating={isPending}
-      disabled={disabled}
       className={classes.wrapper}
     >
       <EmojiTextInputField
+        name='label'
         value={newLabel}
         onChange={setNewLabel}
+        onBlur={handleBlur}
         label={intl.formatMessage(messages.editLabelField)}
         hint={intl.formatMessage(messages.editLabelHint)}
+        status={fieldStatuses.label}
         maxLength={nameLimit}
         counterMax={RECOMMENDED_LIMIT}
         recommended
       />
 
       <EmojiTextInputField
+        name='value'
         value={newValue}
         onChange={setNewValue}
+        onBlur={handleBlur}
         label={intl.formatMessage(messages.editValueField)}
         hint={intl.formatMessage(messages.editValueHint)}
+        status={fieldStatuses.value}
         maxLength={valueLimit}
         counterMax={RECOMMENDED_LIMIT}
         recommended
       />
-
-      {hasLinkAndEmoji && (
-        <Callout variant='warning'>
-          <FormattedMessage
-            id='account_edit.field_edit_modal.link_emoji_warning'
-            defaultMessage='We recommend against the use of custom emoji in combination with urls. Custom fields containing both will display as text only instead of as a link, in order to prevent user confusion.'
-          />
-        </Callout>
-      )}
-
-      {(newLabel.length > RECOMMENDED_LIMIT ||
-        newValue.length > RECOMMENDED_LIMIT) && (
-        <Callout variant='warning'>
-          <FormattedMessage
-            id='account_edit.field_edit_modal.limit_warning'
-            defaultMessage='Recommended character limit exceeded. Mobile users might not see your field in full.'
-          />
-        </Callout>
-      )}
-
-      {hasLinkWithoutProtocol && (
-        <Callout variant='warning'>
-          <FormattedMessage
-            id='account_edit.field_edit_modal.url_warning'
-            defaultMessage='To add a link, please include {protocol} at the beginning.'
-            description='{protocol} is https://'
-            values={{
-              protocol: <code>https://</code>,
-            }}
-          />
-        </Callout>
-      )}
     </ConfirmationModal>
   );
 });
