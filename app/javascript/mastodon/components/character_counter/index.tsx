@@ -14,7 +14,8 @@ interface CharacterCounterProps {
   recommended?: boolean;
 }
 
-const segmenter = new Intl.Segmenter();
+const segmenter =
+  typeof Intl.Segmenter === 'function' ? new Intl.Segmenter() : null;
 
 export const CharacterCounter = polymorphicForwardRef<
   'span',
@@ -31,10 +32,12 @@ export const CharacterCounter = polymorphicForwardRef<
     },
     ref,
   ) => {
-    const currentLength = useMemo(
-      () => [...segmenter.segment(currentString)].length,
-      [currentString],
-    );
+    const currentLength = useMemo(() => {
+      if (!segmenter) {
+        return currentString.length;
+      }
+      return [...segmenter.segment(currentString)].length;
+    }, [currentString]);
     return (
       <Component
         {...props}
