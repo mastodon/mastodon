@@ -85,7 +85,7 @@ const RedesignNumberFields: FC<{ accountId: string }> = ({ accountId }) => {
     >
       <li>
         <FormattedMessage id='account.posts' defaultMessage='Posts' />
-        <strong>
+        <strong title={intl.formatNumber(account.statuses_count)}>
           <ShortNumber value={account.statuses_count} />
         </strong>
       </li>
@@ -114,7 +114,7 @@ const RedesignNumberFields: FC<{ accountId: string }> = ({ accountId }) => {
 
       <li>
         <FormattedMessage id='account.joined_short' defaultMessage='Joined' />
-        <strong>
+        <strong title={intl.formatDate(account.created_at)}>
           {createdThisYear ? (
             <FormattedDateWrapper
               value={account.created_at}
