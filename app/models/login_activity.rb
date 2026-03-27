@@ -18,7 +18,7 @@
 class LoginActivity < ApplicationRecord
   include BrowserDetection
 
-  enum :authentication_method, { password: 'password', otp: 'otp', webauthn: 'webauthn', sign_in_token: 'sign_in_token', omniauth: 'omniauth' }
+  enum :authentication_method, %w(password otp webauthn sign_in_token omniauth).index_by(&:itself)
 
   belongs_to :user
 
