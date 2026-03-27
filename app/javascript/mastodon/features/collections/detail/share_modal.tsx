@@ -97,7 +97,7 @@ export const CollectionShareModal: React.FC<{
         <div className={classes.preview}>
           <div>
             <h2 className={classes.previewHeading}>{collection.name}</h2>
-            <AuthorNote previewMode id={collection.account_id} />
+            <AuthorNote id={collection.account_id} />
           </div>
           <AvatarGroup>
             {collection.items.slice(0, 5).map(({ account_id }) => {

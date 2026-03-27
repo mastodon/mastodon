@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { Callout } from '@/mastodon/components/callout';
 import { openModal } from 'mastodon/actions/modal';
 import type {
   ApiCollectionJSON,
@@ -26,10 +27,6 @@ const messages = defineMessages({
   empty: {
     id: 'collections.accounts.empty_title',
     defaultMessage: 'This collection is empty',
-  },
-  accounts: {
-    id: 'collections.detail.accounts_heading',
-    defaultMessage: 'Accounts',
   },
 });
 
@@ -60,6 +57,7 @@ const AccountItem: React.FC<{
 
   return (
     <Account
+      withBio
       minimal={withoutButton}
       withMenu={false}
       withBorder={withBorder}
@@ -131,19 +129,27 @@ const SensitiveScreen: React.FC<{
   }
 
   return (
-    <div className={classes.sensitiveWarning}>
+    <Callout
+      variant='warning'
+      title={
+        <FormattedMessage
+          id='collections.detail.sensitive_content'
+          defaultMessage='Sensitive content'
+        />
+      }
+      primaryLabel={
+        <FormattedMessage
+          id='content_warning.show_short'
+          defaultMessage='Show'
+        />
+      }
+      onPrimary={showAnyway}
+    >
       <FormattedMessage
         id='collections.detail.sensitive_note'
-        defaultMessage='This collection contains accounts and content that may be sensitive to some users.'
-        tagName='p'
+        defaultMessage='The description and accounts may not be suitable for all viewers.'
       />
-      <Button onClick={showAnyway}>
-        <FormattedMessage
-          id='content_warning.show'
-          defaultMessage='Show anyway'
-        />
-      </Button>
-    </div>
+    </Callout>
   );
 };
 
@@ -192,6 +198,7 @@ export const CollectionAccountsList: React.FC<{
     <ItemList
       isLoading={isLoading}
       emptyMessage={intl.formatMessage(messages.empty)}
+      className={classes.itemList}
     >
       {collection && currentUserInCollection ? (
         <>
@@ -208,6 +215,7 @@ export const CollectionAccountsList: React.FC<{
             key={currentUserInCollection.account_id}
             aria-posinset={1}
             aria-setsize={items.length}
+            className={classes.accountItem}
           >
             <AccountItem
               withBorder={false}
@@ -232,11 +240,22 @@ export const CollectionAccountsList: React.FC<{
         </>
       ) : (
         <h3
-          className='column-subheading sr-only'
+          className={classes.columnSubheading}
           tabIndex={-1}
           ref={listHeadingRef}
         >
-          {intl.formatMessage(messages.accounts)}
+          {collection ? (
+            <FormattedMessage
+              id='collections.account_count'
+              defaultMessage='{count, plural, one {# account} other {# accounts}}'
+              values={{ count: collection.item_count }}
+            />
+          ) : (
+            <FormattedMessage
+              id='collections.detail.accounts_heading'
+              defaultMessage='Accounts'
+            />
+          )}
         </h3>
       )}
       {collection && (
@@ -249,6 +268,7 @@ export const CollectionAccountsList: React.FC<{
               key={account_id}
               aria-posinset={index + (currentUserInCollection ? 2 : 1)}
               aria-setsize={items.length}
+              className={classes.accountItem}
             >
               <AccountItem
                 accountId={account_id}
