@@ -592,7 +592,7 @@ vi:
         created_msg: Thêm lưu ý kiểm duyệt máy chủ thành công!
         description_html: Xem và để lại lưu ý cho các kiểm duyệt viên khác
         destroyed_msg: Xóa lưu ý kiểm duyệt máy chủ thành công!
-        placeholder: Thông tin về máy chủ này, hành động trước đây, hoặc bất cứ lưu ý giúp bạn kiểm duyệt máy chủ này trong tương lai.
+        placeholder: Thông tin về máy chủ này, hành động trước đây, hoặc mọi lưu ý giúp bạn kiểm duyệt máy chủ này trong tương lai.
         title: Lưu ý kiểm duyệt
       private_comment: Bình luận riêng
       public_comment: Bình luận công khai
@@ -877,7 +877,7 @@ vi:
         modes:
           approved: Yêu cầu phê duyệt để đăng ký
           none: Không ai có thể đăng ký
-          open: Bất cứ ai cũng có thể đăng ký
+          open: Bất kỳ ai cũng có thể đăng ký
         warning_hint: Chúng tôi khuyên bạn nên sử dụng "Duyệt đăng ký thủ công" trừ khi bạn tin tưởng đội ngũ kiểm duyệt của mình có thể xử lý kịp thời các đăng ký spam và độc hại.
       security:
         authorized_fetch: Yêu cầu xác thực từ các máy chủ liên hợp
@@ -1200,9 +1200,9 @@ vi:
     hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, bắt buộc bạn phải tạo tên người dùng mới thì mới có thể tiến hành chuyển được người theo dõi. Hành động này <strong>không ảnh hưởng gì và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
-    advanced_settings: Cài đặt nâng cao
+    advanced_settings: Nâng cao
     animations_and_accessibility: Hiệu ứng
-    boosting_preferences: Thiết lập đăng lại
+    boosting_preferences: Đăng lại
     boosting_preferences_info_html: "<strong>Mẹo:</strong> Bất kể cài đặt, <kbd>Shift</kbd> + <kbd>Click</kbd> trên biểu tượng %{icon} Đăng lại sẽ lập tức đăng lại."
     discovery: Khám phá
     localization:
@@ -1223,7 +1223,7 @@ vi:
     logout: Đăng xuất
     regenerate_token: Tạo lại mã truy cập
     token_regenerated: Mã truy cập được tạo lại thành công
-    warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
+    warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất kỳ ai!
     your_token: Mã truy cập của bạn
   auth:
     apply_for_account: Xin đăng ký
@@ -1400,6 +1400,9 @@ vi:
     basic_information: Thông tin cơ bản
     hint_html: Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và hồ sơ hoàn chỉnh.
     other: Khác
+    redesign_body: Giờ đây, hồ sơ đã có thể chỉnh sửa trực tiếp từ trang hồ sơ.
+    redesign_button: Tới đó
+    redesign_title: Đây là trải nghiệm sửa hồ sơ mới
   email_subscription_mailer:
     confirmation:
       action: Xác nhận địa chỉ email
@@ -1459,12 +1462,12 @@ vi:
       in_progress: Đang tổng hợp dữ liệu của bạn...
       request: Tải về dữ liệu của bạn
       size: Dung lượng
-    blocks: Người chặn
+    blocks: Tài khoản đã chặn
     bookmarks: Tút đã lưu
     csv: CSV
-    domain_blocks: Máy chủ chặn
+    domain_blocks: Máy chủ đã chặn
     lists: Danh sách
-    mutes: Tài khoản bị phớt lờ
+    mutes: Tài khoản đã phớt lờ
     storage: Tập tin
   featured_tags:
     add_new: Thêm mới
@@ -1529,7 +1532,7 @@ vi:
       other: Chọn tất cả%{count} mục trùng hợp với tìm kiếm của bạn.
     today: hôm nay
     validation_errors:
-      other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
+      other: Đã xảy ra %{count} lỗi! Xem chi tiết bên dưới
   imports:
     errors:
       empty: File CSV trống
@@ -1953,7 +1956,7 @@ vi:
     quote_policies:
       followers: Chỉ người theo dõi
       nobody: Chỉ tôi
-      public: Bất cứ ai
+      public: Bất kỳ ai
     quote_post_author: Trích dẫn từ tút của @%{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1962,7 +1965,7 @@ vi:
       public: Công khai
       public_long: Bất kỳ ai trong và ngoài Mastodon
       unlisted: Hạn chế
-      unlisted_long: Ẩn khỏi kết quả tìm kiếm, xu hướng và dòng thời gian công khai của Mastodon
+      unlisted_long: Ẩn khỏi kết quả tìm kiếm, xu hướng và bảng tin công khai
   statuses_cleanup:
     enabled: Tự động xóa những tút cũ
     enabled_hint: Trừ những ngoại lệ bên dưới

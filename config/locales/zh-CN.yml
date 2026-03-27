@@ -1400,6 +1400,9 @@ zh-CN:
     basic_information: 基本信息
     hint_html: "<strong>自定义公开资料和嘟文旁边显示的内容。</strong>当你填写完整的个人资料并设置了头像时，其他人更有可能关注你并与你互动。"
     other: 其他
+    redesign_body: 现在可以直接在个人资料页面编辑个人资料。
+    redesign_button: 前往
+    redesign_title: 全新个人资料编辑体验现已到来
   email_subscription_mailer:
     confirmation:
       action: 确认电子邮件地址
@@ -1411,9 +1414,9 @@ zh-CN:
       create_account: 创建 Mastodon 账号
       footer:
         privacy_html: 电子邮件发送自 %{domain}，由 Mastodon 驱动的社区实例。要了解本站如何处理你的个人信息，请参见<a href="%{privacy_policy_path}">隐私政策</a>。
-        reason_for_email_html: 你收到此邮件是因为你先前订阅了来自 %{name} 的嘟文邮件通知。不想收到这些电子邮件？可以<a href="%{unsubscribe_path}">取消订阅</a>
+        reason_for_email_html: 你收到此邮件是因为你先前订阅了来自 %{name} 的嘟文邮件通知。不想再收到这些电子邮件？可以<a href="%{unsubscribe_path}">取消订阅</a>
       interact_with_this_post:
-        other: 和嘟文互动，探索更多相关内容。
+        other: 和嘟文互动，发现更多类似嘟文。
       subject:
         other: 来自 %{name} 的新嘟文
       title:
@@ -1781,7 +1784,7 @@ zh-CN:
     public_timelines: 公共时间线
   privacy:
     email_subscriptions: 通过电子邮件发送嘟文
-    email_subscriptions_hint_html: 在你的个人资料中添加电子邮件订阅表单，此表单会显示给未登录的用户。当访客输入电子邮件地址并主动加入时，Mastodon 将在你更新公开嘟文时为这些访客发送电子邮件通知。
+    email_subscriptions_hint_html: 在你的个人资料中添加电子邮件订阅表单，此表单会显示给未登录的用户。当访客输入电子邮件地址并选择订阅时，Mastodon 将在你更新公开嘟文时为这些访客发送电子邮件通知。
     hint_html: "<strong>自定义你希望如何找到你的个人资料和嘟文。</strong>启用Mastodon中的各种功能可以帮助你扩大受众范围。请花点时间查看这些设置，确保它们适合你的使用情况。"
     privacy: 隐私
     privacy_hint_html: 控制你愿意向他人透露多少信息。通过浏览他人的关注列表和查看他们发嘟所用的应用，人们可以发现有趣的用户和酷炫的应用，但你可能更喜欢将其隐藏起来。
