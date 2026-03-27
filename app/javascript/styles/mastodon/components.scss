@@ -2011,7 +2011,15 @@ body > [data-popper-placement] {
 }
 
 .account {
-  padding: 16px;
+  --account-outer-spacing: 16px;
+  --account-name-color: var(--color-text-primary);
+  --account-name-size: 14px;
+  --account-handle-color: var(--color-text-secondary);
+  --account-handle-size: 14px;
+  --account-bio-color: var(--color-text-secondary);
+  --account-bio-size: 14px;
+
+  padding: var(--account-outer-spacing);
 
   // Using :where keeps specificity low, allowing for existing
   // .account overrides to still apply
@@ -2024,10 +2032,10 @@ body > [data-popper-placement] {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--color-text-secondary);
+    color: var(--account-handle-color);
     overflow: hidden;
     text-decoration: none;
-    font-size: 14px;
+    font-size: var(--account-handle-size);
 
     .display-name {
       margin-bottom: 4px;
@@ -2035,7 +2043,8 @@ body > [data-popper-placement] {
 
     .display-name strong {
       display: inline;
-      color: var(--color-text-primary);
+      font-size: var(--account-name-size);
+      color: var(--account-name-color);
     }
   }
 
@@ -2173,7 +2182,7 @@ body > [data-popper-placement] {
   }
 
   &__note {
-    font-size: 14px;
+    font-size: var(--account-bio-size);
     font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2182,7 +2191,7 @@ body > [data-popper-placement] {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-top: 10px;
-    color: var(--color-text-secondary);
+    color: var(--account-bio-color);
 
     &--missing {
       color: var(--color-text-tertiary);
