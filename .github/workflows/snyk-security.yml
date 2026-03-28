@@ -6,29 +6,43 @@ on:
   pull_request:
     branches: [ main, master ]
   schedule:
-    # Run daily at 2 AM UTC
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * *'       # Run daily at 2 AM UTC
   workflow_dispatch:
 
 jobs:
   snyk-scan:
     runs-on: ubuntu-latest
-    environment: snyk  
-    
+    environment: snyk 
+
     permissions:
       contents: read
       security-events: write
       actions: read
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
+      - name: Set up Ruby  # Required for Mastodon
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2    # Set your project's required Ruby version
+
+      - name: Install Node and Ruby dependencies
+        run: |
+          if [ -f "package.json" ]; then
+            npm install
+          fi
+          if [ -f "Gemfile" ]; then
+            gem install bundler
+            bundle install --jobs 4 --retry 3
+          fi
+
       - name: Verify Snyk token exists
         run: |
           if [ -z "${{ secrets.SNYK_TOKEN }}" ]; then
@@ -37,22 +51,18 @@ jobs:
           else
             echo "✅ SNYK_TOKEN secret is configured"
           fi
-      
-      - name: Install dependencies
-        if: hashFiles('package.json') != ''
-        run: npm install
-      
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+
+      - name: Snyk scan (all supported project types)
+        uses: snyk/actions/node@v3
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --all-projects --severity-threshold=medium
-      
-      - name: Run Snyk Monitor (track project)
+
+      - name: Snyk monitor (track all projects)
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-        uses: snyk/actions/node@master
+        uses: snyk/actions/node@v3
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
