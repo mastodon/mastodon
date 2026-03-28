@@ -5,7 +5,7 @@ ruby '>= 3.2.0', '< 3.5.0'
 
 gem 'propshaft'
 gem 'puma', '~> 7.0'
-gem 'rails', '~> 8.0'
+gem 'rails', '~> 8.1', '>= 8.1.2.1'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
@@ -19,7 +19,7 @@ gem 'blurhash', '~> 0.1'
 gem 'fog-core', '<= 2.6.0'
 gem 'fog-openstack', '~> 1.0', require: false
 gem 'jd-paperclip-azure', '~> 3.0', require: false
-gem 'kt-paperclip', '~> 7.2'
+gem 'kt-paperclip', '~> 7.3', '>= 7.3.0'
 gem 'ruby-vips', '~> 2.2', require: false
 
 gem 'active_model_serializers', '~> 0.10'
@@ -27,9 +27,9 @@ gem 'addressable', '~> 2.8'
 gem 'bootsnap', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
-gem 'chewy', '~> 7.3'
-gem 'devise', '~> 4.9'
-gem 'devise-two-factor'
+gem 'chewy', '~> 8.0', '>= 8.0.0'
+gem 'devise', '~> 5.0', '>= 5.0.0'
+gem 'devise-two-factor', '>= 6.3.0'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
@@ -41,12 +41,12 @@ gem 'omniauth', '~> 2.0'
 gem 'omniauth-cas', '~> 3.0.0.beta.1'
 gem 'omniauth_openid_connect', '~> 0.8.0'
 gem 'omniauth-rails_csrf_protection', '~> 2.0'
-gem 'omniauth-saml', '~> 2.0'
+gem 'omniauth-saml', '~> 2.2', '>= 2.2.5'
 
 gem 'color_diff', '~> 0.1'
 gem 'csv', '~> 3.2'
 gem 'discard', '~> 1.2'
-gem 'doorkeeper', '~> 5.6'
+gem 'doorkeeper', '~> 5.9', '>= 5.9.0'
 gem 'faraday-httpclient'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
@@ -66,7 +66,7 @@ gem 'linzer', '~> 0.7.7'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.7.0', require: 'mime/types/columnar'
 gem 'mutex_m'
-gem 'nokogiri', '~> 1.15'
+gem 'nokogiri', '~> 1.19', '>= 1.19.1'
 gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'
@@ -82,12 +82,12 @@ gem 'rqrcode', '~> 3.0'
 gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 7.0'
 gem 'scenic', '~> 1.7'
-gem 'sidekiq', '< 9'
+gem 'sidekiq', '>= 8.1.0', '< 9'
 gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'sidekiq-scheduler', '~> 6.0'
-gem 'sidekiq-unique-jobs', '> 8'
+gem 'sidekiq-unique-jobs', '>= 8.1.0'
 gem 'simple_form', '~> 5.2'
-gem 'simple-navigation', '~> 4.4'
+gem 'simple-navigation', '~> 4.4', '>= 4.4.1'
 gem 'stoplight'
 gem 'strong_migrations'
 gem 'tty-prompt', '~> 0.23', require: false
@@ -133,11 +133,11 @@ group :test do
   gem 'email_spec'
 
   # Extra RSpec extension methods and helpers for sidekiq
-  gem 'rspec-sidekiq', '~> 5.0'
+  gem 'rspec-sidekiq', '~> 5.3', '>= 5.3.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
-  gem 'capybara-playwright-driver'
+  gem 'capybara-playwright-driver', '>= 0.5.8'
   gem 'playwright-ruby-client', '1.57.1', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
 
   # Used to reset the database between system tests
@@ -167,7 +167,7 @@ end
 
 group :development do
   # Code linting CLI and plugins
-  gem 'rubocop', require: false
+  gem 'rubocop', '>= 1.84.0', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-i18n', require: false
   gem 'rubocop-performance', require: false
@@ -176,7 +176,7 @@ group :development do
   gem 'rubocop-rspec_rails', require: false
 
   # Annotates modules with schema
-  gem 'annotaterb', '~> 4.13', require: false
+  gem 'annotaterb', '~> 4.21', '>= 4.21.0', require: false
 
   # Enhanced error message pages for development
   gem 'better_errors', '~> 2.9'
@@ -191,7 +191,7 @@ group :development do
   gem 'bundler-audit', '~> 0.9', require: false
 
   # Linter CLI for HAML files
-  gem 'haml_lint', require: false
+  gem 'haml_lint', '>= 0.70.0', require: false
 
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false
@@ -214,7 +214,7 @@ group :development, :test do
   gem 'test-prof', require: false
 
   # RSpec runner for rails
-  gem 'rspec-rails', '~> 8.0'
+  gem 'rspec-rails', '~> 8.0', '>= 8.0.3'
 end
 
 group :production do
@@ -233,4 +233,4 @@ gem 'hcaptcha', '~> 7.1'
 
 gem 'mail', '~> 2.8'
 
-gem 'vite_rails', '~> 3.0.19'
+gem 'vite_rails', '~> 3.10.0'
