@@ -20,8 +20,15 @@
   outline-offset: 2px;
 }
 
+.fieldName {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .fieldValue {
   color: var(--color-text-primary);
   font-weight: 600;
   margin-top: 4px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
