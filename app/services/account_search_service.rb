@@ -131,11 +131,10 @@ class AccountSearchService < BaseService
         dis_max: {
           queries: [
             {
-              match: {
-                username: {
-                  query: @query,
-                  analyzer: 'word_join_analyzer',
-                },
+              multi_match: {
+                query: @query,
+                type: 'most_fields',
+                fields: %w(username username.*),
               },
             },
 
@@ -145,6 +144,14 @@ class AccountSearchService < BaseService
                   query: @query,
                   analyzer: 'word_join_analyzer',
                 },
+              },
+            },
+
+            {
+              multi_match: {
+                query: @query,
+                type: 'most_fields',
+                fields: %w(display_name display_name.*),
               },
             },
 
