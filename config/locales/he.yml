@@ -792,6 +792,7 @@ he:
       categories:
         administration: ניהול מערכת
         devops: DevOps
+        email: דוא״ל
         invites: הזמנות
         moderation: ניהול דיון
         special: מיוחדים
@@ -822,6 +823,8 @@ he:
         manage_blocks_description: מאפשר למשתמשים לחסום ספקי דוא"ל וכתובות IP
         manage_custom_emojis: ניהול סמלונים בהתאמה אישית
         manage_custom_emojis_description: מאפשר למשתמשים לנהל סמלונים בהתאמה אישית של השרת
+        manage_email_subscriptions: ניהול הרשמות דוא"ל
+        manage_email_subscriptions_description: לאפשר למשתמשיםות להרשים למשתמשיםות ע"י הרשאה בדוא"ל
         manage_federation: ניהול פדרציה
         manage_federation_description: מאפשר למשתמשים לחסום או לאפשר התממשקות עם שמות מתחם אחרים
         manage_invites: ניהול הזמנות
@@ -1460,6 +1463,47 @@ he:
     basic_information: מידע בסיסי
     hint_html: "<strong>התאמה אישית של מה שיראו אחרים בפרופיל הציבורי שלך וליד הודעותיך.</strong> אחרים עשויים יותר להחזיר עוקב וליצור אתך שיחה אם הפרופיל והתמונה יהיו מלאים."
     other: אחר
+    redesign_body: ניתן להגיע לעריכת הפרופיל ישירות מעמוד הפרופיל.
+    redesign_button: לך לשם
+    redesign_title: מעתה מוצעת חוויית עריכת פרופיל חדשה
+  email_subscription_mailer:
+    confirmation:
+      action: אישור כתובת דוא"ל
+      instructions_to_confirm: נא אשרו שתרצו לקבל דוא"ל מ%{name} (@%{acct}) כאשר הם מפרסמים הודעות חדשות.
+      instructions_to_ignore: אם אינך בטוח.ה מדוע קיבלת את הודעת הדוא"ל הזו, היו חופשיים למוחקה. לא תרשמו אם לא תלחצו על הקישור לעיל.
+      subject: אמתו את כתובת האימייל שלכם
+      title: לקבל הודעות דוא"ל מ%{name}?
+    notification:
+      create_account: יצירת חשבון מסטודון
+      footer:
+        privacy_html: דוא"ל ישלח מ- %{domain}, שרת הפועל על מסטודון. כדי להבין כיצד שרת זה מנהל את המידע האישי שלך, יש לפנות של <a href="%{privacy_policy_path}">מדיניות הפרטיוות</a>.
+        reason_for_email_html: קיבלתם הודעת דוא"ל זו כי ביקשתם לקבל עידכונים מאת %{name}. אין ברצונכן לקבל הודעות אלו? <a href="%{unsubscribe_path}">ביטול הרשמה</a>
+      interact_with_this_post:
+        many: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+        one: תקשרו עם ההודעה הזו כדי לגלות עוד כמוה.
+        other: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+        two: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+      subject:
+        many: הודעות חדשות מאת %{name}
+        one: 'הודעה חדשה: "%{excerpt}"'
+        other: הודעות חדשות מאת %{name}
+        two: הודעות חדשות מאת %{name}
+      title:
+        many: הודעות חדשות מאת %{name}
+        one: 'הודעה חדשה: "%{excerpt}"'
+        other: הודעות חדשות מאת %{name}
+        two: הודעות חדשות מאת %{name}
+  email_subscriptions:
+    active: פעילים
+    confirmations:
+      show:
+        changed_your_mind: שיניתם את דעתכם?
+        success_html: מעתה תקבלנה דוא"ל כאשר %{name} יפרסמו הודעות חדשות. הוספנה את %{sender} לאנשי הקשר כדי שההודעות האלו לא יגיעו אל פח הספאם שלכן.
+        title: נרשמת
+        unsubscribe: ביטול ההרשמה
+    inactive: לא פעילים
+    status: מצב
+    subscribers: מנויים
   emoji_styles:
     auto: אוטומטי
     native: מקומי
@@ -1871,6 +1915,8 @@ he:
     posting_defaults: ברירות מחדל בפרסום
     public_timelines: פידים פומביים
   privacy:
+    email_subscriptions: שליחת הודעות בדוא"ל
+    email_subscriptions_hint_html: הוסיפו רישום בדוא"ל לפרופיל שלכן שיופיע גם למשתמשים שאינם מחוברים. כאשר מבקרים יכניסו את כתובת הדוא"ל ויאשרו, מסטודון ישלח להם עדכוני דוא"ל על ההודעות הציבוריות שלכן.
     hint_html: "<strong>ניתן להתאים את הצורה שבה תירצו שיראו את פרופיל המשתמש וההודעות שלכם.</strong> מגוון אפשרויות במסטודון יכולות לעזור לכם להיחשף לקהל רחב יותר כאשר תפעילו אותן. הקדישו רגע לבדוק את ההגדרות הללו כדי לוודא שהן מתאימות לכם."
     privacy: פרטיות
     privacy_hint_html: הגדירו כמה תרצו לחשוף עצמכם לאחרים. משתמשים מגלים משתמשים מעניינים ואפליקציות מגניבות על ידי דפדוף ב-"מעקבים" של משתמשים אחרים ורואים מאילו אפליקציות הם מפרסמים, אבל אולי תעדיפו להסתיר את המידע הזה מפני אחרים.
@@ -2142,6 +2188,28 @@ he:
     resume_app_authorization: חזרה לאישור יישומון
     role_requirement: "%{domain} דורש ממך להקים הזדהות בשני גורמים לפני שתוכלו להשתמש במסטודון."
     webauthn: מפתחות אבטחה
+  unsubscriptions:
+    create:
+      action: מעבר לעמוד הבית של השרת
+      email_subscription:
+        confirmation_html: לא תקבלו יותר הודעות דןא"ל מאת %{name}.
+      title: ביטלת את ההרשמה
+      user:
+        confirmation_html: לא תקבלו יותר %{type} ממסטודון על %{domain}.
+    notification_emails:
+      favourite: הודעות דואל לגבי חיבובים
+      follow: הודעות דואל לגבי עוקבים חדשים
+      follow_request: הודעות דואל לגבי בקשות מעקב
+      mention: הודעות דואל לגבי איזכורים
+      reblog: הודעות דואל לגבי הידהודים
+    show:
+      action: ביטול ההרשמה
+      email_subscription:
+        confirmation_html: לא תקבלו יותר דואל כשחשבון זה יפרסם הודעות חדשות.
+        title: לבטל הרשמה אל %{name}?
+      user:
+        confirmation_html: לא תקבלו יותר %{type} ממסטודון על %{domain}.
+        title: לבטל הרשמה אל %{type}?
   user_mailer:
     announcement_published:
       description: 'צוות ההנהלה של %{domain} מפרסם הודעה:'

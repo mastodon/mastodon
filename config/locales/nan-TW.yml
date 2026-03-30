@@ -747,6 +747,7 @@ nan-TW:
       categories:
         administration: 管理員
         devops: DevOps
+        email: 電子phue箱
         invites: 邀請
         moderation: 管理
         special: 特別
@@ -774,6 +775,8 @@ nan-TW:
         manage_blocks_description: 允准用者封鎖電子phue ê 提供者kap IP地址
         manage_custom_emojis: 管理自訂ê Emoji
         manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
+        manage_email_subscriptions: 管理訂電子phue
+        manage_email_subscriptions_description: 允准用者用電子phue訂有chit ê權限ê用者
         manage_federation: 管理聯邦
         manage_federation_description: 允准用者封鎖á是允准kap其他域名相連，mā控制寄送ê能力
         manage_invites: 管理邀請
@@ -1397,6 +1400,34 @@ nan-TW:
     basic_information: 基本ê資訊
     hint_html: "<strong>自訂lâng佇lí ê個人資料kap lí ê Po文邊仔所通看ê。</strong>Nā是lí有添好個人資料kap標á，別lâng較有可能kā lí跟tuè轉去，kap lí互動。"
     other: 其他
+    redesign_body: 編輯個人檔案tsit-má ē當直接對個人資料頁接近使用。
+    redesign_button: Kàu hia
+    redesign_title: 有新ê個人資料編輯ê體驗
+  email_subscription_mailer:
+    confirmation:
+      action: 確認電子phue地址
+      instructions_to_confirm: 請確認當 %{name}(@%{acct})發送新ê PO文ê時陣，lí想欲收in ê電子批。
+      instructions_to_ignore: Lí若無確定是án-tsuánn lí收著tsit張phue，lí ē當kā thâi，Lí若無tshi̍h頂懸ê連結，就buē kā lí訂。
+      subject: 確認lí ê電子phue地址
+      title: Kám beh對 %{name}收著電子批ê更新？
+    notification:
+      create_account: 建立Mastodon ê口座
+      footer:
+        privacy_html: 電子批是由Mastodon ê服侍器 %{domain} 送出。Beh了解tsit台服侍器án-tsuánn處理lí ê個人資料，請參考<a href="%{privacy_policy_path}">隱私權政策</a>。
+        reason_for_email_html: 因為lí選擇收著對 %{name} 來ê電子phue更新，所以lí teh收著tsit張電子批。Kám無beh收著tsiah ê電子phue？<a href="%{unsubscribe_path}">取消訂</a>
+      interact_with_this_post:
+        other: Kap tsit（tsiah）ê PO文互動，發現其他相siâng ê PO文。
+      subject:
+        other: 對 %{name} 來ê新ê PO文
+      title:
+        other: 對 %{name} 來ê新ê PO文
+  email_subscriptions:
+    active: 有效ê
+    confirmations:
+      show:
+        changed_your_mind: Kám beh改變心意？
+        success_html: Lí對tsit-má開始，佇 %{name} 刊出新ê PO文ê時陣，ē收著電子批。加添 %{sender} kàu lí ê聯絡人，避免tsiah ê PO文hőng tàn kàu pùn-sò phue ê資料giap-á。
+        title: Lí有註冊ah
   emoji_styles:
     auto: 自動
     native: 原底ê

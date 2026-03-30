@@ -762,6 +762,7 @@ fi:
       categories:
         administration: Ylläpito
         devops: DevOps
+        email: Sähköposti
         invites: Kutsut
         moderation: Moderointi
         special: Erityistä
@@ -778,7 +779,7 @@ fi:
         administrator_description: Käyttäjät, joilla on tämä käyttöoikeus, ohittavat jokaisen käyttöoikeuden
         delete_user_data: Poistaa käyttäjän tiedot
         delete_user_data_description: Sallii käyttäjien poistaa muiden käyttäjien tiedot viipymättä
-        invite_bypass_approval: Kutsu käyttäjiä arvioimatta
+        invite_bypass_approval: Kutsua käyttäjiä arvioimatta
         invite_bypass_approval_description: Sallii näiden käyttäjien tälle palvelimelle kutsumien henkilöiden ohittaa moderoinnin hyväksyntä
         invite_users: Kutsua käyttäjiä
         invite_users_description: Sallii käyttäjien kutsua uusia käyttäjiä palvelimelle
@@ -790,6 +791,8 @@ fi:
         manage_blocks_description: Sallii käyttäjien estää sähköpostipalveluntarjoajia ja IP-osoitteita
         manage_custom_emojis: Hallita mukautettuja emojeita
         manage_custom_emojis_description: Sallii käyttäjien hallita palvelimen mukautettuja emojeita
+        manage_email_subscriptions: Hallita sähköpostitilauksia
+        manage_email_subscriptions_description: Sallii käyttäjien tilata sähköpostitse käyttäjiä, joilla on tämä käyttöoikeus
         manage_federation: Hallita federointia
         manage_federation_description: Sallii käyttäjien estää tai sallia federointi muiden verkkotunnusten kanssa ja hallita toimitusta
         manage_invites: Hallita kutsuja
@@ -1418,6 +1421,41 @@ fi:
     basic_information: Perustiedot
     hint_html: "<strong>Mukauta, mitä ihmiset näkevät julkisessa profiilissasi ja julkaisujesi vieressä.</strong> Sinua seurataan takaisin ja kanssasi ollaan vuorovaikutuksessa todennäköisemmin, kun sinulla on täytetty profiili ja profiilikuva."
     other: Muut
+    redesign_body: Profiilia pääsee muokkaamaan nyt suoraan profiilisivulta.
+    redesign_button: Siirry sinne
+    redesign_title: Profiilin muokkauskokemus on uudistunut
+  email_subscription_mailer:
+    confirmation:
+      action: Vahvista sähköpostiosoite
+      instructions_to_confirm: Vahvista, että haluat saada sähköpostia käyttäjältä %{name} (@%{acct}), kun hän julkaisee uutta.
+      instructions_to_ignore: Jos et ole varma, miksi sait tämän sähköpostiviestin, voit poistaa sen. Tilaus ei ala, ellet avaa edellä olevaa linkkiä.
+      subject: Vahvista sähköpostiosoitteesi
+      title: Otetaanko vastaan sähköpostipäivityksiä käyttäjältä %{name}?
+    notification:
+      create_account: Luo Mastodon-tili
+      footer:
+        privacy_html: Sähköposti lähetetään verkkotunnuksesta %{domain}, Mastodonin tarjoamalta palvelimelta. Jos haluat ymmärtää, miten tämä palvelin käsittelee henkilötietojasi, katso <a href="%{privacy_policy_path}">tietosuojakäytäntö</a>.
+        reason_for_email_html: Saat tämän sähköpostiviestin, koska olet tilannut sähköpostipäivitykset käyttäjältä %{name}. Etkö halua näitä sähköpostiviestejä? <a href="%{unsubscribe_path}">Lopeta tilaus</a>
+      interact_with_this_post:
+        one: Ole vuorovaikutuksessa tämän julkaisun kanssa ja löydä lisää sen kaltaista.
+        other: Olet vuorovaikutuksessa näiden julkaisujen kanssa ja löydä lisää.
+      subject:
+        one: 'Uusi julkaisu: ”%{excerpt}”'
+        other: Uusia julkaisuja käyttäjältä %{name}
+      title:
+        one: 'Uusi julkaisu: ”%{excerpt}”'
+        other: Uusia julkaisuja käyttäjältä %{name}
+  email_subscriptions:
+    active: Ota käyttöön
+    confirmations:
+      show:
+        changed_your_mind: Muutitko mieltäsi?
+        success_html: Alat nyt saada sähköpostia, kun %{name} julkaisee uutta. Lisää %{sender} yhteystietoihisi, jotta nämä julkaisut eivät joudu roskapostikansioon.
+        title: Olet aloittanut tilauksen
+        unsubscribe: Lopeta tilaus
+    inactive: Poissa käytöstä
+    status: Tila
+    subscribers: Tilaajia
   emoji_styles:
     auto: Automaattinen
     native: Natiivi
@@ -1789,6 +1827,8 @@ fi:
     posting_defaults: Julkaisun oletukset
     public_timelines: Julkiset aikajanat
   privacy:
+    email_subscriptions: Lähetä julkaisut sähköpostitse
+    email_subscriptions_hint_html: Lisää profiiliisi sähköpostintilauslomake, joka näkyy kirjautumattomille käyttäjille. Kun vierailijat syöttävät sähköpostiosoitteensa ja hyväksyvät tilauksen, Mastodon lähettää sähköpostipäivityksiä julkisista julkaisuistasi.
     hint_html: "<strong>Määritä, kuinka haluat profiilisi ja julkaisujesi löytyvän.</strong> Mastodonissa on monia ominaisuuksia, joiden käyttöönotto voi auttaa sinua tavoittamaan laajemman yleisön. Käytä hetki tarkistaaksesi, sopivatko nämä asetukset käyttöösi."
     privacy: Yksityisyys
     privacy_hint_html: Määritä, kuinka paljon muita avustavia tietoja haluat paljastaa. Käyttäjät löytävät kiinnostavia profiileja ja hienoja sovelluksia, kun he selaavat toisten seuraamia käyttäjiä ja kun he näkevät, millä sovelluksilla nämä julkaisevat. Saatat kuitenkin haluta piilottaa nämä tiedot.
@@ -2052,6 +2092,28 @@ fi:
     resume_app_authorization: Jatka sovelluksen valtuutusta
     role_requirement: "%{domain} vaatii ottamaan kaksivaiheisen todennuksen käyttöön ennen kuin voit käyttää Mastodonia."
     webauthn: Suojausavaimet
+  unsubscriptions:
+    create:
+      action: Siirry palvelimen etusivulle
+      email_subscription:
+        confirmation_html: Et saa enää sähköpostia käyttäjältä %{name}.
+      title: Olet lopettanut tilauksen
+      user:
+        confirmation_html: Et saa enää %{type} Mastodon-palvelimelta %{domain}.
+    notification_emails:
+      favourite: sähköposti-ilmoituksia suosikkeihin lisäämisistä
+      follow: sähköposti-ilmoituksia seuraamisista
+      follow_request: sähköpostia seurantapyynnöistä
+      mention: sähköposti-ilmoituksia maininnoista
+      reblog: sähköposti-ilmoituksia tehostuksista
+    show:
+      action: Lopeta tilaus
+      email_subscription:
+        confirmation_html: Lakkaat saamasta sähköpostia, kun tämä tili julkaisee uutta.
+        title: Lopetetaanko käyttäjän %{name} tilaus?
+      user:
+        confirmation_html: Lakkaat saamasta %{type} Mastodon-palvelimelta %{domain}.
+        title: Lopetetaanko tilaus aiheesta %{type}?
   user_mailer:
     announcement_published:
       description: 'Palvelimen %{domain} ylläpito tiedottaa:'
