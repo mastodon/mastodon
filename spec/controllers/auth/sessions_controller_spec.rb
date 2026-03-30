@@ -70,7 +70,7 @@ RSpec.describe Auth::SessionsController do
         end
 
         it 'shows a login error and does not log the user in' do
-          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
+          expect(flash[:alert]).to match(/#{failure_message_invalid_email}/i)
 
           expect(controller.current_user).to be_nil
         end
@@ -100,11 +100,14 @@ RSpec.describe Auth::SessionsController do
       let(:user) { Fabricate(:user, email: 'foo@bar.com', password: 'abcdefgh') }
 
       context 'when using a valid password' do
-        before do
+        subject do
           post :create, params: { user: { email: user.email, password: user.password } }
         end
 
         it 'redirects to home and logs the user in' do
+          expect { subject }
+            .to change(user.login_activities.where(success: true), :count).by(1)
+
           expect(response).to redirect_to(root_path)
 
           expect(controller.current_user).to eq user
@@ -160,7 +163,7 @@ RSpec.describe Auth::SessionsController do
         end
 
         it 'shows a login error and does not log the user in' do
-          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
+          expect(flash[:alert]).to match(/#{failure_message_invalid_email}/i)
 
           expect(controller.current_user).to be_nil
         end
@@ -223,8 +226,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders two factor authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.hints.sessions.otp'))
+            expect(response.parsed_body)
+              .to have_css('p.hint.authentication-hint', text: I18n.t('simple_form.hints.sessions.otp'))
           end
         end
 
@@ -239,8 +242,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders two factor authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.hints.sessions.otp'))
+            expect(response.parsed_body)
+              .to have_css('p.hint.authentication-hint', text: I18n.t('simple_form.hints.sessions.otp'))
           end
         end
 
@@ -250,8 +253,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders two factor authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.hints.sessions.otp'))
+            expect(response.parsed_body)
+              .to have_css('p.hint.authentication-hint', text: I18n.t('simple_form.hints.sessions.otp'))
           end
         end
 
@@ -265,10 +268,9 @@ RSpec.describe Auth::SessionsController do
 
           it 'does not log the user in, sets a flash message, and sends a suspicious sign in email', :inline_jobs do
             emails = capture_emails do
-              Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
-                post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
-                expect(controller.current_user).to be_nil
-              end
+              expect { process_maximum_two_factor_attempts }
+                .to change(user.login_activities.where(success: false), :count).by(1)
+
               post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
             end
 
@@ -285,6 +287,13 @@ RSpec.describe Auth::SessionsController do
                 to: contain_exactly(user.email),
                 subject: eq(I18n.t('user_mailer.failed_2fa.subject'))
               )
+          end
+
+          def process_maximum_two_factor_attempts
+            Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
+              post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+              expect(controller.current_user).to be_nil
+            end
           end
         end
 
@@ -378,8 +387,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders webauthn authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.title.sessions.webauthn'))
+            expect(response.parsed_body)
+              .to have_css('h3.title', text: I18n.t('simple_form.title.sessions.webauthn'))
           end
         end
 
@@ -389,8 +398,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders webauthn authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.title.sessions.webauthn'))
+            expect(response.parsed_body)
+              .to have_css('h3.title', text: I18n.t('simple_form.title.sessions.webauthn'))
           end
         end
 
@@ -410,6 +419,10 @@ RSpec.describe Auth::SessionsController do
           end
         end
       end
+    end
+
+    def failure_message_invalid_email
+      I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
     end
   end
 end

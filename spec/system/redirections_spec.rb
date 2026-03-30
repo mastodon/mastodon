@@ -31,6 +31,6 @@ RSpec.describe 'redirection confirmations' do
   end
 
   def redirect_title
-    I18n.t('redirects.title', instance: Rails.configuration.x.local_domain)
+    I18n.t('redirects.title', instance: local_domain_uri.host)
   end
 end

@@ -70,7 +70,6 @@ ie:
       featured_tag:
         name: 'Vi quelc hashtags usat max recentmen de te:'
       filters:
-        action: Selecter quel action a far quande un posta egala un filtre
         actions:
           hide: Celar completmen li contenete filtrat, quam si it ne existe
           warn: Celar li contenete filtrat detra un avise mentionant li titul del filtre
@@ -78,7 +77,6 @@ ie:
         activity_api_enabled: Númeres de postas publicat localmen, activ usatores, e nov adhesiones in periodes semanal
         app_icon: WEBP, PNG, GIF o JPG. Remplazza li predenifit favicon Mastodon sur mobiles con un icon customisat.
         backups_retention_period: Usatores posse generar archives de lor postas por adcargar plu tard. Si on specifica un valore positiv, li archives va esser automaticmen deletet de tui magazinage pos li specificat quantitá de dies.
-        bootstrap_timeline_accounts: Ti-ci contos va esser pinglat al parte superiori del recomandationes por nov usatores.
         closed_registrations_message: Monstrat quande adhesiones es cludet
         content_cache_retention_period: Omni postas de altri servitores (includente boosts e responses) va esser deletet pos li specificat quantitá de dies, sin egard a local usator-interactiones con les. To vale anc por postas queles un local usator ha marcat o favoritat it. Anc privat mentiones ínter usatores de diferent instanties va esser perdit e ínrestorabil. Talmen, ti-ci parametre es intentet por scopes special pro que it posse ruptes li expectationes de usatores.
         custom_css: On posse aplicar customisat stiles al web-version de Mastodon.
@@ -97,10 +95,8 @@ ie:
         status_page_url: URL de un págine monstrant li statu de ti-ci servitor durant un ruptura de servicie
         theme: Li dessine quel ínregistrat visitantes e nov usatores vide.
         thumbnail: Un image de dimensiones circa 2:1 monstrat along tui servitor-information.
-        timeline_preview: Ínregistrat visitantes va posser vider li max recent public postas disponibil che li servitor.
         trendable_by_default: Pretersaltar un manual revision de contenete in tendentie. Mem pos to on posse remover índividual pezzes de tendentie.
         trends: Tendenties monstra quel postas, hashtags e novas es ganiant atention sur tui servitor.
-        trends_as_landing_page: Monstrar populari contenete a ínregistrat visitantes vice un description del servitor. Besona que tendenties es activisat.
       form_challenge:
         current_password: Tu nu intra un area secur
       imports:
@@ -204,11 +200,8 @@ ie:
         setting_aggregate_reblogs: Gruppar boosts in témpor-lineas
         setting_always_send_emails: Sempre misser notificationes de e-posta
         setting_auto_play_gif: Reproducter automaticmen animat GIFs
-        setting_boost_modal: Monstrar dialog de confirmation ante boostar
         setting_default_language: Lingue in quel postar
-        setting_default_privacy: Privatie de postada
         setting_default_sensitive: Sempre marcar medie quam sensitiv
-        setting_delete_modal: Monstrar dialog de confirmation ante deleter un posta
         setting_disable_swiping: Desactivar motiones de glissar
         setting_display_media: Exposition de medie
         setting_display_media_default: Predefinitiones
@@ -262,10 +255,8 @@ ie:
         status_page_url: URL de statu-págine
         theme: Predefenit tema
         thumbnail: Miniatura del servitor
-        timeline_preview: Permisser accesse ínautenticat al public témpor-lineas
         trendable_by_default: Possibilisar tendenties sin priori inspection
         trends: Possibilisar tendenties
-        trends_as_landing_page: Usar tendenties quam frontispicie
       interactions:
         must_be_follower: Bloccar notificationes de tis qui ne seque te
         must_be_following: Bloccar notificationes de tis quem tu ne seque

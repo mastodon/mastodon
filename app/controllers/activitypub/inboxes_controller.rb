@@ -3,6 +3,7 @@
 class ActivityPub::InboxesController < ActivityPub::BaseController
   include JsonLdHelper
 
+  before_action :skip_large_payload
   before_action :skip_unknown_actor_activity
   before_action :require_actor_signature!
   skip_before_action :authenticate_user!
@@ -16,14 +17,18 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
 
   private
 
+  def skip_large_payload
+    head 413 if request.content_length > ActivityPub::Activity::MAX_JSON_SIZE
+  end
+
   def skip_unknown_actor_activity
     head 202 if unknown_affected_account?
   end
 
   def unknown_affected_account?
-    json = Oj.load(body, mode: :strict)
+    json = JSON.parse(body)
     json.is_a?(Hash) && %w(Delete Update).include?(json['type']) && json['actor'].present? && json['actor'] == value_or_id(json['object']) && !Account.exists?(uri: json['actor'])
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     false
   end
 
@@ -39,7 +44,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
     return @body if defined?(@body)
 
     @body = request.body.read
-    @body.force_encoding('UTF-8') if @body.present?
+    @body.presence&.force_encoding('UTF-8')
 
     request.body.rewind if request.body.respond_to?(:rewind)
 

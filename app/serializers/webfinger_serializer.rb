@@ -22,6 +22,8 @@ class WebfingerSerializer < ActiveModel::Serializer
       { rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: profile_page_href },
       { rel: 'self', type: 'application/activity+json', href: self_href },
       { rel: 'http://ostatus.org/schema/1.0/subscribe', template: "#{authorize_interaction_url}?uri={uri}" },
+      { rel: 'https://w3id.org/fep/3b86/Create', template: "#{share_url}?text={content}" },
+      { rel: 'https://w3id.org/fep/3b86/Object', template: "#{authorize_interaction_url}?uri={object}" },
     ].tap do |x|
       x << { rel: 'http://webfinger.net/rel/avatar', type: object.avatar.content_type, href: full_asset_url(object.avatar_original_url) } if show_avatar?
     end
@@ -33,7 +35,7 @@ class WebfingerSerializer < ActiveModel::Serializer
     media_present = object.avatar.present? && object.avatar.content_type.present?
 
     # Show avatar only if an instance shows profiles to logged out users
-    allowed_by_config = ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] != 'true' && !Rails.configuration.x.limited_federation_mode
+    allowed_by_config = ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] != 'true' && !Rails.configuration.x.mastodon.limited_federation_mode
 
     media_present && allowed_by_config
   end

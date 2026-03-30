@@ -8,9 +8,11 @@ const meta = {
   component: Button,
   args: {
     secondary: false,
+    plain: false,
     compact: false,
     dangerous: false,
     disabled: false,
+    loading: false,
     onClick: fn(),
   },
   argTypes: {
@@ -36,17 +38,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const buttonTest: Story['play'] = async ({ args, canvas, userEvent }) => {
-  await userEvent.click(canvas.getByRole('button'));
+  const button = await canvas.findByRole('button');
+  await userEvent.click(button);
   await expect(args.onClick).toHaveBeenCalled();
-};
-
-const disabledButtonTest: Story['play'] = async ({
-  args,
-  canvas,
-  userEvent,
-}) => {
-  await userEvent.click(canvas.getByRole('button'));
-  await expect(args.onClick).not.toHaveBeenCalled();
 };
 
 export const Primary: Story = {
@@ -60,6 +54,14 @@ export const Secondary: Story = {
   args: {
     secondary: true,
     children: 'Secondary button',
+  },
+  play: buttonTest,
+};
+
+export const Plain: Story = {
+  args: {
+    plain: true,
+    children: 'Plain button',
   },
   play: buttonTest,
 };
@@ -80,6 +82,18 @@ export const Dangerous: Story = {
   play: buttonTest,
 };
 
+const disabledButtonTest: Story['play'] = async ({
+  args,
+  canvas,
+  userEvent,
+}) => {
+  const button = await canvas.findByRole('button');
+  await userEvent.click(button);
+  // Disabled controls can't be focused
+  await expect(button).not.toHaveFocus();
+  await expect(args.onClick).not.toHaveBeenCalled();
+};
+
 export const PrimaryDisabled: Story = {
   args: {
     ...Primary.args,
@@ -94,4 +108,33 @@ export const SecondaryDisabled: Story = {
     disabled: true,
   },
   play: disabledButtonTest,
+};
+
+export const PlainDisabled: Story = {
+  args: {
+    ...Plain.args,
+    disabled: true,
+  },
+  play: disabledButtonTest,
+};
+
+const loadingButtonTest: Story['play'] = async ({
+  args,
+  canvas,
+  userEvent,
+}) => {
+  const button = await canvas.findByRole('button', {
+    name: 'Primary button Loading…',
+  });
+  await userEvent.click(button);
+  await expect(button).toHaveFocus();
+  await expect(args.onClick).not.toHaveBeenCalled();
+};
+
+export const Loading: Story = {
+  args: {
+    ...Primary.args,
+    loading: true,
+  },
+  play: loadingButtonTest,
 };

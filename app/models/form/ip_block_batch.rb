@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class Form::IpBlockBatch
-  include ActiveModel::Model
-  include Authorization
-  include AccountableConcern
-
-  attr_accessor :ip_block_ids, :action, :current_account
+class Form::IpBlockBatch < Form::BaseBatch
+  attr_accessor :ip_block_ids
 
   def save
     case action

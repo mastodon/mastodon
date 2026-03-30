@@ -15,6 +15,10 @@ module User::HasSettings
     settings['noindex']
   end
 
+  def email_subscriptions_enabled?
+    settings['email_subscriptions']
+  end
+
   def preferred_posting_language
     valid_locale_cascade(settings['default_language'], locale, I18n.locale)
   end
@@ -29,6 +33,10 @@ module User::HasSettings
 
   def setting_boost_modal
     settings['web.reblog_modal']
+  end
+
+  def setting_quick_boosting
+    settings['web.quick_boosting']
   end
 
   def setting_delete_modal
@@ -53,6 +61,14 @@ module User::HasSettings
 
   def setting_theme
     settings['theme']
+  end
+
+  def setting_color_scheme
+    settings['web.color_scheme']
+  end
+
+  def setting_contrast
+    settings['web.contrast']
   end
 
   def setting_display_media
@@ -105,6 +121,10 @@ module User::HasSettings
 
   def setting_default_privacy
     settings['default_privacy'] || (account.locked? ? 'private' : 'public')
+  end
+
+  def setting_default_quote_policy
+    settings['default_quote_policy'] || 'public'
   end
 
   def allows_report_emails?

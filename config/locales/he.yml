@@ -7,12 +7,18 @@ he:
     hosted_on: מסטודון שיושב בכתובת %{domain}
     title: אודות
   accounts:
+    errors:
+      cannot_be_added_to_collections: לא ניתן להוסיף חשבון זה לאוספים.
     followers:
       many: עוקבים
       one: עוקב
       other: עוקבים
       two: עוקבים
-    following: נעקבים
+    following:
+      many: נעקבים
+      one: נעקבים
+      other: נעקבים
+      two: נעקביים
     instance_actor_flash: חשבון זה הינו פועל וירטואלי המשמש לייצוג השרת עצמו ולא אף משתמש ספציפי. הוא משמש למטרות פדרציה ואין להשעותו.
     last_active: פעילות אחרונה
     link_verified_on: בעלות על קישורית זו נבדקה לאחרונה ב-%{date}
@@ -56,6 +62,7 @@ he:
         label: שינוי תפקיד
         no_role: ללא תפקיד
         title: שינוי תפקיד עבור %{username}
+      collections: אוספים
       confirm: אישור
       confirmed: אושר
       confirming: בתהליך אישור
@@ -196,6 +203,7 @@ he:
         create_relay: יצירת ממסר
         create_unavailable_domain: יצירת דומיין בלתי זמין
         create_user_role: יצירת תפקיד
+        create_username_block: יצירת חוק שמות משתמש
         demote_user: הורדת משתמש בדרגה
         destroy_announcement: מחיקת הכרזה
         destroy_canonical_email_block: מחיקת חסימת דואל
@@ -209,6 +217,7 @@ he:
         destroy_status: מחיקת הודעה
         destroy_unavailable_domain: מחיקת דומיין בלתי זמין
         destroy_user_role: מחיקת תפקיד
+        destroy_username_block: מחיקת חוק שמות משתמש
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
         disable_relay: השבתת ממסר
@@ -243,6 +252,7 @@ he:
         update_report: עדכון דו"ח עבירה
         update_status: סטטוס עדכון
         update_user_role: עדכון תפקיד
+        update_username_block: עדכון חוק שמות משתמש
       actions:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
@@ -261,9 +271,11 @@ he:
         create_relay_html: "%{name} יצרו את הממסר %{target}"
         create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
         create_user_role_html: "%{name} יצר את התפקיד של %{target}"
+        create_username_block_html: "%{name} הוסיפו חוק לשמות משתמש המכילים %{target}"
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
         destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
         destroy_canonical_email_block_html: "%{name} הסירו חסימה מדואל %{target}"
+        destroy_collection_html: האוסף של %{target} הוסר ע"י %{name}
         destroy_custom_emoji_html: "%{name} מחק אמוג'י של %{target}"
         destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
         destroy_domain_block_html: החסימה על מתחם %{target} הוסרה ע"י %{name}
@@ -274,6 +286,7 @@ he:
         destroy_status_html: ההודעה של %{target} הוסרה ע"י %{name}
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
         destroy_user_role_html: "%{name} ביטל את התפקיד של %{target}"
+        destroy_username_block_html: "%{name} הסירו חוק לשמות משתמש המכילים %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
         disable_relay_html: "%{name} השביתו את הממסר %{target}"
@@ -302,12 +315,14 @@ he:
         unsilence_account_html: "%{name} ביטל/ה ההגבלה מהחשבון של %{target}"
         unsuspend_account_html: "%{name} ביטל/ה את ההשעיה של החשבון של %{target}"
         update_announcement_html: "%{name} עדכן/ה הכרזה %{target}"
+        update_collection_html: האוסף של %{target} עודכן ע"י %{name}
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
         update_ip_block_html: "%{name} שינה כלל עבור IP %{target}"
         update_report_html: '%{name} עדכן/ה דו"ח %{target}'
         update_status_html: "%{name} עדכן/ה הודעה של %{target}"
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
+        update_username_block_html: "%{name} עידכנו חוק לשמות משתמש המכילים %{target}"
       deleted_account: חשבון מחוק
       empty: לא נמצאו יומנים.
       filter_by_action: סינון לפי פעולה
@@ -336,6 +351,17 @@ he:
       unpublish: ביטול פרסום
       unpublished_msg: פרסום ההכרזה בוטל בהצלחה!
       updated_msg: ההכרזה עודכנה בהצלחה!
+    collections:
+      accounts: חשבונות
+      collection_title: אוספים מאת %{name}
+      contents: תוכן
+      number_of_accounts:
+        many: "%{count} חשבונות"
+        one: חשבון אחד
+        other: "%{count} חשבונות"
+        two: חשבונותיים
+      open: פתיחה
+      view_publicly: צפיה בפומבי
     critical_update_pending: עידכון קריטי ממתין
     custom_emojis:
       assign_category: הקצאת קטגוריה
@@ -600,6 +626,13 @@ he:
         all: הכל
         limited: מוגבלים
         title: ניהול דיון
+      moderation_notes:
+        create: הוספת הערות מנחה דיונים
+        created_msg: הודעת מנחה לגבי שרת נוצרה בהצלחה!
+        description_html: צפייה והשארת הערות עבור מנחים אחרים או לעצמך לעתיד
+        destroyed_msg: הודעת מנחה לגבי שרת נמחקה בהצלחה!
+        placeholder: מידע לגבי שרת זה, פעולות שננקטו, או כל מידע אחר שיסייע לך להחליט כיצד למתן הודעות משרת זה בעתיד.
+        title: הודעות מנחה דיונים
       private_comment: הערה פרטית
       public_comment: תגובה פומבית
       purge: טיהור
@@ -686,6 +719,7 @@ he:
       cancel: ביטול
       category: קטגוריה
       category_description_html: הסיבה בגללה חשבון זה ו/או תוכנו דווחו תצוטט בתקשורת עם החשבון המדווח
+      collections: אוספים (%{count})
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
@@ -715,12 +749,13 @@ he:
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
+      reported_content: התוכן עליו דווח
       reported_with_application: דיווחים באמצעות יישומון
       resolved: פתור
       resolved_msg: הדו"ח נפתר בהצלחה!
       skip_to_actions: דלג/י לפעולות
       status: מצב
-      statuses: התוכן עליו דווח
+      statuses: הודעות (%{count})
       statuses_description_html: התוכן הפוגע יצוטט בתקשורת עם החשבון המדווח
       summary:
         action_preambles:
@@ -757,6 +792,7 @@ he:
       categories:
         administration: ניהול מערכת
         devops: DevOps
+        email: דוא״ל
         invites: הזמנות
         moderation: ניהול דיון
         special: מיוחדים
@@ -775,6 +811,8 @@ he:
         administrator_description: משתמשים עם הרשאה זו יוכלו לעקוף כל הרשאה
         delete_user_data: מחיקת כל נתוני המשתמש
         delete_user_data_description: מאפשר למשתמשים למחוק נתוני משתמשים אחרים ללא דיחוי
+        invite_bypass_approval: הזמנה להרשם ללא הליך בדיקה
+        invite_bypass_approval_description: להרשות למשתמשים אלו להזמין א.נשים להרשם לשרת תוך עקיפת מנגנון הפיקוח על ההרשמה
         invite_users: הזמנת משתמשים
         invite_users_description: מאפשר למשתמשים להזמין אנשים חדשים לשרת
         manage_announcements: ניהול הכרזות
@@ -785,6 +823,8 @@ he:
         manage_blocks_description: מאפשר למשתמשים לחסום ספקי דוא"ל וכתובות IP
         manage_custom_emojis: ניהול סמלונים בהתאמה אישית
         manage_custom_emojis_description: מאפשר למשתמשים לנהל סמלונים בהתאמה אישית של השרת
+        manage_email_subscriptions: ניהול הרשמות דוא"ל
+        manage_email_subscriptions_description: לאפשר למשתמשיםות להרשים למשתמשיםות ע"י הרשאה בדוא"ל
         manage_federation: ניהול פדרציה
         manage_federation_description: מאפשר למשתמשים לחסום או לאפשר התממשקות עם שמות מתחם אחרים
         manage_invites: ניהול הזמנות
@@ -811,6 +851,9 @@ he:
         view_dashboard_description: אפשר למשתמשים לגשת ללוח המחוונים
         view_devops: DevOps
         view_devops_description: מאפשר למשתמשים לגשת ללוחות המחוונים של Sidekiq ושל pgHero
+        view_feeds: צפיה בפיד החי ונושאים
+        view_feeds_description: מאפשר למשמתמשיםות גישה לפיד החי ופיד נושאים בלי קשר להגדרות השרת
+      requires_2fa: נדרשת הזדהות בשני גורמים
       title: תפקידים
     rules:
       add_new: הוספת כלל
@@ -859,10 +902,21 @@ he:
         publish_statistics: פרסום הסטטיסטיקות בפומבי
         title: תגליות
         trends: נושאים חמים
+        wrapstodon: סיכומודון
       domain_blocks:
         all: לכולם
         disabled: לאף אחד
         users: למשתמשים מקומיים מחוברים
+      feed_access:
+        modes:
+          authenticated: משתמשים מאומתים בלבד
+          disabled: נדרש תפקיד משתמש מסוים
+          public: כולם
+      landing_page:
+        values:
+          about: אודות
+          local_feed: פיד מקומי
+          trends: נושאים חמים
       registrations:
         moderation_recommandation: יש לוודא שלאתר יש צוות מנחות ומנחי שיחה מספק ושירותי בטרם תבחרו לפתוח הרשמה לכולם!
         preamble: שליטה בהרשאות יצירת חשבון בשרת שלך.
@@ -916,6 +970,7 @@ he:
       no_status_selected: לא בוצעו שינויים בהודעות שכן לא נבחרו כאלו
       open: פתח הודעה
       original_status: הודעה מקורית
+      quotes: ציטוטים
       reblogs: שיתופים
       replied_to_html: בתגובה לחשבון %{acct_link}
       status_changed: הודעה שונתה
@@ -923,7 +978,8 @@ he:
       title: פרסומי החשבון - @%{name}
       trending: נושאים חמים
       view_publicly: צפיה בפומבי
-      visibility: נראות
+      view_quoted_post: צפיה בהודעה המצוטטת
+      visibility: חשיפה
       with_media: עם מדיה
     strikes:
       actions:
@@ -1114,6 +1170,25 @@ he:
           two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
       title: המלצות ונושאים חמים
       trending: נושאים חמים
+    username_blocks:
+      add_new: הוספת חדש
+      block_registrations: חסימת הרשמות
+      comparison:
+        contains: מכיל
+        equals: שווה
+      contains_html: מכיל %{string}
+      created_msg: חוק שמות משתמשים נוצר בהצלחה
+      delete: מחיקה
+      edit:
+        title: עריכת חוק שמות משתמש
+      matches_exactly_html: מתאים ל־%{string}
+      new:
+        create: יצירת כלל
+        title: יצירת חוק חדש לשמות משתמש
+      no_username_block_selected: לא בוצעו שינויים בחוקי בחירת שמות שכן לא נבחרו כאלו
+      not_permitted: שמות אסורים
+      title: חוקי שמות
+      updated_msg: חוק שמות משתמשים עודכן בהצלחה
     warning_presets:
       add_new: הוספת חדש
       delete: למחוק
@@ -1188,10 +1263,10 @@ he:
     hint_html: אם ברצונך לעבור מחשבון אחר לחשבון הזה, כאן ניתן ליצור שם נרדף, הנדרש לפני שאפשר יהיה להמשיך עם העברת עוקבים מהחשבון הישן לזה. הפעולה עצמה <strong>הפיכה ובלתי מזיקה</strong>. <strong>הגירת החשבון מופעלת מהחשבון הישן</strong>.
     remove: הסרת שם נרדף
   appearance:
-    advanced_web_interface: ממשק ווב מתקדם
-    advanced_web_interface_hint: 'אם ברצונך לעשות שימוש במלוא רוחב המסך, ממשק הווב המתקדם מאפשר לך להגדיר עמודות רבות ושונות כדי לראות בו זמנית כמה מידע שתרצה/י: פיד הבית, התראות, פרהסיה ומספר כלשהו של רשימות ותגיות.'
+    advanced_settings: הגדרות מתקדמות
     animations_and_accessibility: הנפשות ונגישות
-    confirmation_dialogs: חלונות אישור
+    boosting_preferences: העדפות הדהודים
+    boosting_preferences_info_html: "<strong>עצה:</strong> ללא קשר לבחירה, <kbd>שיפט</kbd> + <kbd>קליק</kbd> על %{icon} איקון ההדהוד ירשם כהדהוד מיידי."
     discovery: תגליות
     localization:
       body: מסטודון מתורגם על ידי מתנדבים.
@@ -1201,7 +1276,6 @@ he:
   application_mailer:
     notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
-    settings: 'שינוי הגדרות דוא"ל: %{link}'
     unsubscribe: בטל מנוי
     view: 'תצוגה:'
     view_profile: צפיה בפרופיל
@@ -1251,6 +1325,7 @@ he:
     progress:
       confirm: אימות כתובת הדואל
       details: הפרטים שלך
+      list: התקדמות תהליך ההרשמה
       review: הבדיקה שלנו
       rules: הסכמה לתקנות
     providers:
@@ -1266,6 +1341,7 @@ he:
       invited_by: 'ניתן להצטרף אל %{domain} הודות להזמנה מאת:'
       preamble: אלו נקבעים ונאכפים ע"י המנחים של %{domain}.
       preamble_invited: לפני ההמשך יש להתחשב בחוקי המקום כפי שקבעו מנהלי הדיון על %{domain}.
+      read_more: לקריאה נוספת
       title: כמה חוקים בסיסיים.
       title_invited: קיבלת הזמנה.
     security: אבטחה
@@ -1308,6 +1384,13 @@ he:
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
     invalid_password: סיסמה שגויה
     prompt: יש לאשר את הסיסמה כדי להמשיך
+  color_scheme:
+    auto: אוטומטי
+    dark: אפל
+    light: בהיר
+  contrast:
+    auto: אוטומטי
+    high: גבוהה
   crypto:
     errors:
       invalid_key: זהו לא מפתח Ed25519 או Curve25519 קביל
@@ -1380,6 +1463,51 @@ he:
     basic_information: מידע בסיסי
     hint_html: "<strong>התאמה אישית של מה שיראו אחרים בפרופיל הציבורי שלך וליד הודעותיך.</strong> אחרים עשויים יותר להחזיר עוקב וליצור אתך שיחה אם הפרופיל והתמונה יהיו מלאים."
     other: אחר
+    redesign_body: ניתן להגיע לעריכת הפרופיל ישירות מעמוד הפרופיל.
+    redesign_button: לך לשם
+    redesign_title: מעתה מוצעת חוויית עריכת פרופיל חדשה
+  email_subscription_mailer:
+    confirmation:
+      action: אישור כתובת דוא"ל
+      instructions_to_confirm: נא אשרו שתרצו לקבל דוא"ל מ%{name} (@%{acct}) כאשר הם מפרסמים הודעות חדשות.
+      instructions_to_ignore: אם אינך בטוח.ה מדוע קיבלת את הודעת הדוא"ל הזו, היו חופשיים למוחקה. לא תרשמו אם לא תלחצו על הקישור לעיל.
+      subject: אמתו את כתובת האימייל שלכם
+      title: לקבל הודעות דוא"ל מ%{name}?
+    notification:
+      create_account: יצירת חשבון מסטודון
+      footer:
+        privacy_html: דוא"ל ישלח מ- %{domain}, שרת הפועל על מסטודון. כדי להבין כיצד שרת זה מנהל את המידע האישי שלך, יש לפנות של <a href="%{privacy_policy_path}">מדיניות הפרטיוות</a>.
+        reason_for_email_html: קיבלתם הודעת דוא"ל זו כי ביקשתם לקבל עידכונים מאת %{name}. אין ברצונכן לקבל הודעות אלו? <a href="%{unsubscribe_path}">ביטול הרשמה</a>
+      interact_with_this_post:
+        many: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+        one: תקשרו עם ההודעה הזו כדי לגלות עוד כמוה.
+        other: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+        two: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+      subject:
+        many: הודעות חדשות מאת %{name}
+        one: 'הודעה חדשה: "%{excerpt}"'
+        other: הודעות חדשות מאת %{name}
+        two: הודעות חדשות מאת %{name}
+      title:
+        many: הודעות חדשות מאת %{name}
+        one: 'הודעה חדשה: "%{excerpt}"'
+        other: הודעות חדשות מאת %{name}
+        two: הודעות חדשות מאת %{name}
+  email_subscriptions:
+    active: פעילים
+    confirmations:
+      show:
+        changed_your_mind: שיניתם את דעתכם?
+        success_html: מעתה תקבלנה דוא"ל כאשר %{name} יפרסמו הודעות חדשות. הוספנה את %{sender} לאנשי הקשר כדי שההודעות האלו לא יגיעו אל פח הספאם שלכן.
+        title: נרשמת
+        unsubscribe: ביטול ההרשמה
+    inactive: לא פעילים
+    status: מצב
+    subscribers: מנויים
+  emoji_styles:
+    auto: אוטומטי
+    native: מקומי
+    twemoji: Twemoji
   errors:
     '400': הבקשה שהגשת לא תקינה.
     '403': חסרות לך הרשאות לצפיה בעמוד זה.
@@ -1629,6 +1757,13 @@ he:
       expires_at: פג תוקף ב-
       uses: שימושים
     title: הזמנת אנשים
+  link_preview:
+    author_html: מאת %{name}
+    potentially_sensitive_content:
+      action: לחץ להצגה
+      confirm_visit: האם להמשיך ליעד הקישור?
+      hide_button: להסתיר
+      label: תוכן שעלול להיות רגיש
   lists:
     errors:
       limit: הגעת למספר הרשימות המירבי
@@ -1643,21 +1778,6 @@ he:
     failed_sign_in_html: נסיון כניסה כושל בשיטת %{method} מכתובת %{ip} (%{browser})
     successful_sign_in_html: נסיון כניסה מוצלח בשיטה %{method} מכתובת %{ip} (%{browser})
     title: הסטוריית אימותים
-  mail_subscriptions:
-    unsubscribe:
-      action: כן, לבטל הרשמה
-      complete: הפסקת הרשמה
-      confirmation_html: יש לאשר את ביטול ההרשמה להודעות %{type} ממסטודון בשרת %{domain} לכתובת הדואל %{email}. תמיד אפשר להרשם מחדש ב<a href="%{settings_path}">כיוונוני הודעות דואל</a>.
-      emails:
-        notification_emails:
-          favourite: הודעות דואל לגבי חיבובים
-          follow: הודעות דואל לגבי עוקבים חדשים
-          follow_request: הודעות דואל לגבי בקשות מעקב
-          mention: הודעות דואל לגבי איזכורים
-          reblog: הודעות דואל לגבי הידהודים
-      resubscribe_html: אם ביטול ההרשמה היה בטעות, ניתן להרשם מחדש מתוך <a href="%{settings_path}">מסך הגדרות ההרשמה</a> שלך.
-      success_html: לא יגיעו אליך יותר הודעות %{type} משרת מסטודון %{domain} לכתובת הדואל %{email}.
-      title: הפסקת הרשמה
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו להודעה שכבר מכילה תמונות
@@ -1693,7 +1813,7 @@ he:
       disabled_account: חשבונך הנוכחי לא יהיה שמיש לחלוטין לאחר מכן. עם זאת, ניתן יהיה לגשת ליצוא המידע, וכמו כן להפעילו מחדש.
       followers: פעולה זו תעביר את כל העוקבים מהחשבון הנוכחי לחשבון החדש
       only_redirect_html: לחילופין, ניתן להסתפק ב<a href="%{path}">הכוונה מחדש בפרופילך</a>.
-      other_data: שום מידע לא יועבר אוטומטית
+      other_data: אף מידע נוסף לא יועבר אוטומטית (ובכלל זה הודעותיך ורשימת נעקביך)
       redirect: פרופיל חשבונך הנוכחי יעודכן עם הודעת הכוונה מחדש ויוחרג מחיפושים
   moderation:
     title: ניהול קהילה
@@ -1727,12 +1847,22 @@ he:
       body: 'התקבלה פניה עבורך מאת %{name} ב:'
       subject: התקבלה פניה עבורך מאת %{name}
       title: אזכור חדש
+    moderation_warning:
+      subject: קיבלת אזהרה מצוות ניהול התוכן
     poll:
       subject: סקר מאת %{name} הסתיים
+    quote:
+      body: 'הודעתך צוטטה על ידי %{name}:'
+      subject: "%{name} ציטט.ה את הודעתך"
+      title: ציטוט חדש
+    quoted_update:
+      subject: "%{name} ערך הודעה שהשתמשת בה בציטוט"
     reblog:
       body: 'הודעתך הודהדה על ידי %{name}:'
       subject: הודעתך הודהדה על ידי%{name}
       title: הדהוד חדש
+    severed_relationships:
+      subject: איבדת קשרים עם משתמשים אחרים עקב החלטת צוות ניהול התוכן
     status:
       subject: "%{name} בדיוק פרסם"
     update:
@@ -1777,11 +1907,16 @@ he:
       self_vote: אין אפשרות להצביע במשאל שפרסמת בעצמך
       too_few_options: חייב להכיל יותר מפריט אחד
       too_many_options: לא יכול להכיל יותר מ-%{max} פריטים
+    vote: הצבעה
+  posting_defaults:
+    explanation: העדפות אלו ישמשו כברירות המחדל כשתצרו הודעה חדשה, ברם תוכלו לבחור אחרת בכל חיבור הודעה בעתיד.
   preferences:
     other: שונות
-    posting_defaults: ברירות מחדל להודעות
+    posting_defaults: ברירות מחדל בפרסום
     public_timelines: פידים פומביים
   privacy:
+    email_subscriptions: שליחת הודעות בדוא"ל
+    email_subscriptions_hint_html: הוסיפו רישום בדוא"ל לפרופיל שלכן שיופיע גם למשתמשים שאינם מחוברים. כאשר מבקרים יכניסו את כתובת הדוא"ל ויאשרו, מסטודון ישלח להם עדכוני דוא"ל על ההודעות הציבוריות שלכן.
     hint_html: "<strong>ניתן להתאים את הצורה שבה תירצו שיראו את פרופיל המשתמש וההודעות שלכם.</strong> מגוון אפשרויות במסטודון יכולות לעזור לכם להיחשף לקהל רחב יותר כאשר תפעילו אותן. הקדישו רגע לבדוק את ההגדרות הללו כדי לוודא שהן מתאימות לכם."
     privacy: פרטיות
     privacy_hint_html: הגדירו כמה תרצו לחשוף עצמכם לאחרים. משתמשים מגלים משתמשים מעניינים ואפליקציות מגניבות על ידי דפדוף ב-"מעקבים" של משתמשים אחרים ורואים מאילו אפליקציות הם מפרסמים, אבל אולי תעדיפו להסתיר את המידע הזה מפני אחרים.
@@ -1938,6 +2073,9 @@ he:
         two: "%{count} סרטונים"
     boosted_from_html: הודהד מ-%{acct_link}
     content_warning: 'אזהרת תוכן: %{warning}'
+    content_warnings:
+      hide: להסתיר הודעה
+      show: הצג עוד
     default_language: זהה לשפת ממשק
     disallowed_hashtags:
       many: 'מכיל את התגיות האסורות: %{tags}'
@@ -1946,35 +2084,41 @@ he:
       two: 'מכיל את התגיות האסורות: %{tags}'
     edited_at_html: נערך ב-%{date}
     errors:
-      in_reply_not_found: נראה שההודעה שאת/ה מנסה להגיב לה לא קיימת.
+      in_reply_not_found: נראה שההודעה שנסית להגיב לה לא קיימת.
+      quoted_status_not_found: נראה שההודעה שנסית לצטט לא קיימת.
+      quoted_user_not_mentioned: לא ניתן לצטט משתמש שאיננו מאוזכר בהודעה פרטית.
     over_character_limit: חריגה מגבול התווים של %{max}
     pin_errors:
       direct: לא ניתן לקבע הודעות שנראותן מוגבלת למכותבים בלבד
       limit: הגעת למספר המירבי של ההודעות המוצמדות
       ownership: הודעות של אחרים לא יכולות להיות מוצמדות
       reblog: אין אפשרות להצמיד הדהודים
+    quote_error:
+      not_available: ההודעה לא זמינה
+      pending_approval: ההודעה בהמתנה לאישור
+      revoked: ההודעה הוסרה על ידי המחבר.ת
     quote_policies:
-      followers: עוקבים ומאוזכרים
-      nobody: רק מאוזכרים ומאוזכרות
+      followers: לעוקבים בלבד
+      nobody: רק אני
       public: כולם
+    quote_post_author: ההודעה היא ציטוט של %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: ישיר
+      direct: אזכור פרטי
       private: לעוקבים בלבד
-      private_long: להצגה לעוקבים בלבד
       public: פומבי
-      public_long: כולם יוכלו לקרוא
-      unlisted: מוסתר
-      unlisted_long: פומבי, אבל לא להצגה בפיד הציבורי
+      public_long: כל הגולשים, מחוברים למסטודון או לא
+      unlisted: ציבורי שקט
+      unlisted_long: מוסתרת מתוצאות חיפוש במסטודון, נושאים חמים וציר הזמן הציבורי
   statuses_cleanup:
     enabled: מחק הודעות ישנות אוטומטית
     enabled_hint: מוחק אוטומטית את הודעותיך לכשהגיעו לסף גיל שנקבע מראש, אלא אם הן תואמות את אחת ההחרגות למטה
     exceptions: החרגות
-    explanation: היות ומחיקת הודעות היא פעולה יקרה במשאבים, היא נעשית לאט לאורך זמן כאשר השרת לא עסוק במשימות אחרות. לכן, ייתכן שההודעות שלך ימחקו מעט אחרי שיגיעו לסף הגיל שהוגדר.
+    explanation: מחיקה אוטומטית מבוצעת בעדיפות נמוכה. יתכן עיכוב מההגעה לסף הגיל ועד להסרה בפועל.
     ignore_favs: התעלם ממחובבים
     ignore_reblogs: התעלם מהדהודים
     interaction_exceptions: החרגות מבוססות אינטראקציות
-    interaction_exceptions_explanation: כדאי לשים לב שאין ערובה למחיקת הודעות אם הן יורדות מתחת לסף החיבובים או ההדהודים לאחר הסריקה הראשונית.
+    interaction_exceptions_explanation: פרסומים שעברו זמנית שת סף החיבובים או ההדהודים עשויים להשמר גם אם מאוחר יותר בוטלו החיבובים או ההדהודים.
     keep_direct: שמירת הודעות ישירות
     keep_direct_hint: לא מוחק אך אחת מההודעות הישירות שלך
     keep_media: שמור הודעות עם מדיה
@@ -2016,10 +2160,7 @@ he:
     review_link: קריאת תנאי השירות
     title: תנאי השירות של %{domain} משתנים
   themes:
-    contrast: מסטודון (ניגודיות גבוהה)
-    default: מסטודון (כהה)
-    mastodon-light: מסטודון (בהיר)
-    system: אוטומטי (לפי המערכת)
+    default: מסטודון
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2044,7 +2185,31 @@ he:
     recovery_codes: קודי אחזור
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
+    resume_app_authorization: חזרה לאישור יישומון
+    role_requirement: "%{domain} דורש ממך להקים הזדהות בשני גורמים לפני שתוכלו להשתמש במסטודון."
     webauthn: מפתחות אבטחה
+  unsubscriptions:
+    create:
+      action: מעבר לעמוד הבית של השרת
+      email_subscription:
+        confirmation_html: לא תקבלו יותר הודעות דןא"ל מאת %{name}.
+      title: ביטלת את ההרשמה
+      user:
+        confirmation_html: לא תקבלו יותר %{type} ממסטודון על %{domain}.
+    notification_emails:
+      favourite: הודעות דואל לגבי חיבובים
+      follow: הודעות דואל לגבי עוקבים חדשים
+      follow_request: הודעות דואל לגבי בקשות מעקב
+      mention: הודעות דואל לגבי איזכורים
+      reblog: הודעות דואל לגבי הידהודים
+    show:
+      action: ביטול ההרשמה
+      email_subscription:
+        confirmation_html: לא תקבלו יותר דואל כשחשבון זה יפרסם הודעות חדשות.
+        title: לבטל הרשמה אל %{name}?
+      user:
+        confirmation_html: לא תקבלו יותר %{type} ממסטודון על %{domain}.
+        title: לבטל הרשמה אל %{type}?
   user_mailer:
     announcement_published:
       description: 'צוות ההנהלה של %{domain} מפרסם הודעה:'
@@ -2189,8 +2354,12 @@ he:
       error: היתה בעיה במחיקת מפתח האבטחה. נסה בשנית.
       success: מפתח האבטחה נמחק בהצלחה.
     invalid_credential: אסימון אבטחה לא תקין
+    nickname: כינוי
     nickname_hint: הכנס.י כינוי למפתח האבטחה החדש שלך
     not_enabled: לא אפשרת את WebAuthn עדיין
     not_supported: דפדפן זה לא תומך במפתחות אבטחה
     otp_required: על מנת להשתמש במפתחות אבטחה אנא אפשר.י אימות דו-שלבי קודם.
     registered_on: נרשם ב %{date}
+  wrapstodon:
+    description: ראו איך %{name} השתמשו במסטודון השנה!
+    title: סיכומודון %{year} עבור %{name}

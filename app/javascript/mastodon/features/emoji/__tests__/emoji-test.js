@@ -86,7 +86,7 @@ describe('emoji', () => {
 
     it('does an emoji containing ZWJ properly', () => {
       expect(emojify('💂‍♀️💂‍♂️'))
-        .toEqual('<img draggable="false" class="emojione" alt="💂\u200D♀️" title=":female-guard:" src="/emoji/1f482-200d-2640-fe0f_border.svg"><img draggable="false" class="emojione" alt="💂\u200D♂️" title=":male-guard:" src="/emoji/1f482-200d-2642-fe0f_border.svg">');
+        .toEqual('<img draggable="false" class="emojione" alt="💂‍♀️" title=":female-guard:" src="/emoji/1f482-200d-2640-fe0f.svg"><img draggable="false" class="emojione" alt="💂‍♂️" title=":male-guard:" src="/emoji/1f482-200d-2642-fe0f.svg">');
     });
 
     it('keeps ordering as expected (issue fixed by PR 20677)', () => {

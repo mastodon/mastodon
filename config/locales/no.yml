@@ -10,7 +10,6 @@
     followers:
       one: Følger
       other: Følgere
-    following: Følger
     instance_actor_flash: Denne kontoen er en virtuell figur som brukes til å representere selve serveren og ikke noen individuell bruker. Den brukes til forbundsformål og bør ikke oppheves.
     last_active: sist aktiv
     link_verified_on: Eierskap av denne lenken ble sjekket %{date}
@@ -45,9 +44,11 @@
         title: Endre E-postadressen til %{username}
       change_role:
         changed_msg: Rollen ble endret!
+        edit_roles: Administrer brukerroller
         label: Endre rolle
         no_role: Ingen rolle
         title: Endre rolle for %{username}
+      collections: Samlinger
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
@@ -129,6 +130,7 @@
       resubscribe: Abonner på nytt
       role: Rolle
       search: Søk
+      search_same_email_domain: Andre brukere med det samme epost domenet
       search_same_ip: Andre brukere med den samme IP-en
       security: Sikkerhet
       security_measures:
@@ -169,6 +171,7 @@
         approve_appeal: Godkjenn anke
         approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
+        change_email_user: Endre brukerens e-postadresse
         change_role_user: Endre rolle for brukeren
         confirm_user: Bekreft brukeren
         create_account_warning: Opprett en advarsel
@@ -276,6 +279,7 @@
       filter_by_user: Sorter etter bruker
       title: Revisionslogg
     announcements:
+      back: Tilbake til kunngjøringer
       destroyed_msg: Kunngjøringen er slettet!
       edit:
         title: Rediger kunngjøring
@@ -292,6 +296,9 @@
       unpublish: Avpubliser
       unpublished_msg: Kunngjøring upublisert!
       updated_msg: Kunngjøringen er oppdatert!
+    collections:
+      accounts: Kontoer
+      collection_title: Samling av %{name}
     critical_update_pending: Kritisk oppdatering avventer
     custom_emojis:
       assign_category: Tilegn kategori
@@ -614,7 +621,6 @@
       resolved_msg: Rapport løst!
       skip_to_actions: Hopp over til handlinger
       status: Status
-      statuses: Rapportert innhold
       statuses_description_html: Innholdet som tilbys, vil bli nevnt i forbindelse med den rapporterte kontoen
       summary:
         action_preambles:
@@ -729,7 +735,6 @@
         title: Ikke la brukere indekseres av søkemotorer som standard
       discovery:
         follow_recommendations: Følg anbefalinger
-        preamble: Å fremheve interessant innhold er viktig i ombordstigning av nye brukere som kanskje ikke kjenner noen Mastodon. Kontroller hvordan ulike oppdagelsesfunksjoner fungerer på serveren.
         profile_directory: Profilkatalog
         public_timelines: Offentlige tidslinjer
         publish_statistics: Publiser statistikk
@@ -997,10 +1002,7 @@
     hint_html: Dersom du vil flytte fra en annen konto til den, kan du lage et alias her, som er påkrevd før du kan gå videre med å flytte følgere fra den gamle kontoen til den nye. Handlingen i seg selv er <strong>harmløs og reversibel</strong>. <strong>Kontoflyttingen har blitt satt i gang fra den gamle kontoen</strong>.
     remove: Fjern aliaslenking
   appearance:
-    advanced_web_interface: Avansert nettgrensesnitt
-    advanced_web_interface_hint: 'Hvis du ønsker å bruke hele skjermbredden din, lar det avanserte nettgrensesnittet deg sette opp mange forskjellige kolonner for å se så mye informasjon på én gang som du vil: Hjem, varslinger, fellestidslinjen, og ethvert antall lister og emneknagger.'
     animations_and_accessibility: Animasjoner og tilgjengelighet
-    confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdagelse
     localization:
       body: Mastodon er oversatt av frivillige.
@@ -1350,11 +1352,6 @@
     failed_sign_in_html: Mislykket innloggingsforsøk med %{method} fra %{ip} (%{browser})
     successful_sign_in_html: Vellykket innlogging med %{method} fra %{ip} (%{browser})
     title: Autentiseringshistorikk
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, avslutt abonnement
-      complete: Abonnement avsluttet
-      title: Avslutt abonnement
   media_attachments:
     validations:
       images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
@@ -1389,7 +1386,6 @@
       disabled_account: Din nåværende konto vil ikke være fullt brukbar etterpå. Men du vil ha tilgang til dataeksportering såvel som reaktivering.
       followers: Denne handlingen vil flytte alle følgere fra den nåværende kontoen til den nye kontoen
       only_redirect_html: Alternativt kan du velge å <a href="%{path}">bare legge ut en omdirigering på profilen din</a>.
-      other_data: Ingen andre data vil bli flyttet automatisk
       redirect: Profilen til din nåværende konto vil bli oppdatert med en omdirigeringsnotis og bli fjernet fra søk
   moderation:
     title: Moderasjon
@@ -1443,7 +1439,7 @@
           billion: Mrd
           million: Mln
           quadrillion: Kvd
-          thousand: T
+          thousand: k
           trillion: Trl
   otp_authentication:
     code_hint: Skriv inn koden generert av autentiseringsappen din for å bekrefte
@@ -1629,22 +1625,14 @@
       reblog: En fremheving kan ikke festes
     title: "%{name}: «%{quote}»"
     visibilities:
-      direct: Direkte
-      private: Privat
-      private_long: Synlig kun for følgere
       public: Offentlig
-      public_long: Synlig for alle
-      unlisted: Uoppført
-      unlisted_long: Synlig for alle, men ikke på offentlige tidslinjer
   statuses_cleanup:
     enabled: Slett gamle innlegg automatisk
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
-    explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
     ignore_favs: Ignorer favoritter
     ignore_reblogs: Ignorer fremhevinger
     interaction_exceptions: Unntak basert på interaksjoner
-    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
     keep_direct: Behold direktemeldinger
     keep_direct_hint: Sletter ingen av direktemeldingene dine
     keep_media: Behold innlegg med mediavedlegg
@@ -1680,10 +1668,6 @@
     does_not_match_previous_name: samsvarer ikke med det forrige navnet
   terms_of_service:
     title: Bruksvilkår
-  themes:
-    contrast: Mastodon (Høykontrast)
-    default: Mastodon
-    mastodon-light: Mastodon (Lyst)
   time:
     formats:
       default: "%-d. %b %Y, %H:%M"

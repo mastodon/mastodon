@@ -197,13 +197,16 @@ export const HashtagHeader: React.FC<{
             />
           )}
 
-          <Button
-            onClick={handleFollow}
-            text={intl.formatMessage(
-              tag.following ? messages.unfollowHashtag : messages.followHashtag,
-            )}
-            disabled={!signedIn}
-          />
+          {signedIn && (
+            <Button
+              onClick={handleFollow}
+              text={intl.formatMessage(
+                tag.following
+                  ? messages.unfollowHashtag
+                  : messages.followHashtag,
+              )}
+            />
+          )}
         </div>
       </div>
 

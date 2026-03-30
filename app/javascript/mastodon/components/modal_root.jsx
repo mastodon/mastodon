@@ -61,14 +61,6 @@ class ModalRoot extends PureComponent {
     this.history = this.props.history || createBrowserHistory();
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (!!nextProps.children && !this.props.children) {
-      this.activeElement = document.activeElement;
-
-      this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
-    }
-  }
-
   componentDidUpdate (prevProps) {
     if (!this.props.children && !!prevProps.children) {
       this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
@@ -85,9 +77,15 @@ class ModalRoot extends PureComponent {
 
       this._handleModalClose();
     }
+
     if (this.props.children && !prevProps.children) {
+      this.activeElement = document.activeElement;
+
+      this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
+
       this._handleModalOpen();
     }
+
     if (this.props.children) {
       this._ensureHistoryBuffer();
     }

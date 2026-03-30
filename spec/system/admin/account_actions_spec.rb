@@ -15,6 +15,13 @@ RSpec.describe 'Admin Account Actions' do
       expect(page)
         .to have_title(I18n.t('admin.account_actions.title', acct: account.pretty_acct))
 
+      # Invalid submission
+      expect { submit_form }
+        .to_not(change { account.strikes.count })
+      expect(page)
+        .to have_content(/can't be blank/)
+
+      # Valid submission
       choose(option: 'silence')
       expect { submit_form }
         .to change { account.strikes.count }.by(1)

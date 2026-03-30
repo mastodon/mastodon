@@ -5,12 +5,12 @@
 # Table name: rules
 #
 #  id         :bigint(8)        not null, primary key
-#  priority   :integer          default(0), not null
 #  deleted_at :datetime
+#  hint       :text             default(""), not null
+#  priority   :integer          default(0), not null
 #  text       :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  hint       :text             default(""), not null
 #
 class Rule < ApplicationRecord
   include Discard::Model
@@ -19,8 +19,8 @@ class Rule < ApplicationRecord
 
   self.discard_column = :deleted_at
 
-  has_many :translations, inverse_of: :rule, class_name: 'RuleTranslation', dependent: :destroy
-  accepts_nested_attributes_for :translations, reject_if: :all_blank, allow_destroy: true
+  has_many :translations, -> { order(language: :asc) }, inverse_of: :rule, class_name: 'RuleTranslation', dependent: :destroy
+  accepts_nested_attributes_for :translations, reject_if: ->(attributes) { attributes['text'].blank? }, allow_destroy: true
 
   validates :text, presence: true, length: { maximum: TEXT_SIZE_LIMIT }
 
@@ -42,6 +42,6 @@ class Rule < ApplicationRecord
 
   def translation_for(locale)
     @cached_translations ||= {}
-    @cached_translations[locale] ||= translations.where(language: [locale, locale.to_s.split('-').first]).order('length(language) desc').first || RuleTranslation.new(language: locale, text: text, hint: hint)
+    @cached_translations[locale] ||= translations.for_locale(locale).by_language_length.first || translations.build(language: locale, text: text, hint: hint)
   end
 end

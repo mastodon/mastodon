@@ -122,7 +122,7 @@ const ListAdder: React.FC<{
   const [listIds, setListIds] = useState<string[]>([]);
 
   useEffect(() => {
-    dispatch(fetchLists());
+    void dispatch(fetchLists());
 
     apiGetAccountLists(accountId)
       .then((data) => {

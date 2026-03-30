@@ -5,6 +5,7 @@ import {
   useCallback,
   cloneElement,
   Children,
+  useId,
 } from 'react';
 
 import classNames from 'classnames';
@@ -12,11 +13,12 @@ import { Link } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
-import Overlay from 'react-overlays/Overlay';
 import type {
   OffsetValue,
   UsePopperOptions,
+  Placement,
 } from 'react-overlays/esm/usePopper';
+import Overlay from 'react-overlays/Overlay';
 
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import {
@@ -24,6 +26,7 @@ import {
   closeDropdownMenu,
 } from 'mastodon/actions/dropdown_menu';
 import { openModal, closeModal } from 'mastodon/actions/modal';
+import { fetchStatus } from 'mastodon/actions/statuses';
 import { CircularProgress } from 'mastodon/components/circular_progress';
 import { isUserTouching } from 'mastodon/is_mobile';
 import {
@@ -34,18 +37,16 @@ import {
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { Icon } from './icon';
 import type { IconProp } from './icon';
 import { IconButton } from './icon_button';
 
 let id = 0;
 
-type RenderItemFn<Item = MenuItem> = (
+export type RenderItemFn<Item = MenuItem> = (
   item: Item,
   index: number,
-  handlers: {
-    onClick: (e: React.MouseEvent) => void;
-    onKeyUp: (e: React.KeyboardEvent) => void;
-  },
+  onClick: React.MouseEventHandler,
 ) => React.ReactNode;
 
 type ItemClickFn<Item = MenuItem> = (item: Item, index: number) => void;
@@ -63,7 +64,33 @@ interface DropdownMenuProps<Item = MenuItem> {
   onItemClick?: ItemClickFn<Item>;
 }
 
-export const DropdownMenu = <Item = MenuItem,>({
+export const DropdownMenuItemContent: React.FC<{ item: MenuItem }> = ({
+  item,
+}) => {
+  if (item === null) {
+    return null;
+  }
+
+  const { text, description, icon, iconId } = item;
+  return (
+    <>
+      {icon && (
+        <Icon
+          icon={icon}
+          id={iconId ?? text.toLowerCase().replaceAll(/[^a-z]+/g, '-')}
+        />
+      )}
+      <span className='dropdown-menu__item-content'>
+        {text}
+        {Boolean(description) && (
+          <span className='dropdown-menu__item-subtitle'>{description}</span>
+        )}
+      </span>
+    </>
+  );
+};
+
+export const DropdownMenu = <Item = MenuItem>({
   items,
   loading,
   scrollable,
@@ -74,7 +101,6 @@ export const DropdownMenu = <Item = MenuItem,>({
   onItemClick,
 }: DropdownMenuProps<Item>) => {
   const nodeRef = useRef<HTMLDivElement>(null);
-  const focusedItemRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
@@ -136,8 +162,11 @@ export const DropdownMenu = <Item = MenuItem,>({
     document.addEventListener('click', handleDocumentClick, { capture: true });
     document.addEventListener('keydown', handleKeyDown, { capture: true });
 
-    if (focusedItemRef.current && openedViaKeyboard) {
-      focusedItemRef.current.focus({ preventScroll: true });
+    if (openedViaKeyboard) {
+      const firstMenuItem = nodeRef.current?.querySelector<
+        HTMLAnchorElement | HTMLButtonElement
+      >('li:first-child > :is(a, button)');
+      firstMenuItem?.focus({ preventScroll: true });
     }
 
     return () => {
@@ -148,42 +177,29 @@ export const DropdownMenu = <Item = MenuItem,>({
     };
   }, [onClose, openedViaKeyboard]);
 
-  const handleFocusedItemRef = useCallback(
-    (c: HTMLAnchorElement | HTMLButtonElement | null) => {
-      focusedItemRef.current = c as HTMLElement;
-    },
-    [],
-  );
-
   const handleItemClick = useCallback(
     (e: React.MouseEvent | React.KeyboardEvent) => {
       const i = Number(e.currentTarget.getAttribute('data-index'));
       const item = items?.[i];
+      const isItemDisabled = Boolean(
+        item && typeof item === 'object' && 'disabled' in item && item.disabled,
+      );
 
-      onClose();
-
-      if (!item) {
+      if (!item || isItemDisabled) {
         return;
       }
+
+      onClose();
 
       if (typeof onItemClick === 'function') {
         e.preventDefault();
         onItemClick(item, i);
       } else if (isActionItem(item)) {
         e.preventDefault();
-        item.action();
+        item.action(e);
       }
     },
     [onClose, onItemClick, items],
-  );
-
-  const handleItemKeyUp = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        handleItemClick(e);
-      }
-    },
-    [handleItemClick],
   );
 
   const nativeRenderItem = (option: Item, i: number) => {
@@ -195,19 +211,19 @@ export const DropdownMenu = <Item = MenuItem,>({
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, dangerous } = option;
+    const { text, highlighted, disabled, dangerous } = option;
 
     let element: React.ReactElement;
 
     if (isActionItem(option)) {
       element = (
         <button
-          ref={i === 0 ? handleFocusedItemRef : undefined}
           onClick={handleItemClick}
-          onKeyUp={handleItemKeyUp}
           data-index={i}
+          aria-disabled={disabled}
+          type='button'
         >
-          {text}
+          <DropdownMenuItemContent item={option} />
         </button>
       );
     } else if (isExternalLinkItem(option)) {
@@ -217,24 +233,16 @@ export const DropdownMenu = <Item = MenuItem,>({
           target={option.target ?? '_target'}
           data-method={option.method}
           rel='noopener'
-          ref={i === 0 ? handleFocusedItemRef : undefined}
           onClick={handleItemClick}
-          onKeyUp={handleItemKeyUp}
           data-index={i}
         >
-          {text}
+          <DropdownMenuItemContent item={option} />
         </a>
       );
     } else {
       element = (
-        <Link
-          to={option.to}
-          ref={i === 0 ? handleFocusedItemRef : undefined}
-          onClick={handleItemClick}
-          onKeyUp={handleItemKeyUp}
-          data-index={i}
-        >
-          {text}
+        <Link to={option.to} onClick={handleItemClick} data-index={i}>
+          <DropdownMenuItemContent item={option} />
         </Link>
       );
     }
@@ -242,6 +250,7 @@ export const DropdownMenu = <Item = MenuItem,>({
     return (
       <li
         className={classNames('dropdown-menu__item', {
+          'dropdown-menu__item--highlighted': highlighted,
           'dropdown-menu__item--dangerous': dangerous,
         })}
         key={`${text}-${i}`}
@@ -275,10 +284,7 @@ export const DropdownMenu = <Item = MenuItem,>({
           })}
         >
           {items.map((option, i) =>
-            renderItemMethod(option, i, {
-              onClick: handleItemClick,
-              onKeyUp: handleItemKeyUp,
-            }),
+            renderItemMethod(option, i, handleItemClick),
           )}
         </ul>
       )}
@@ -286,38 +292,53 @@ export const DropdownMenu = <Item = MenuItem,>({
   );
 };
 
-interface DropdownProps<Item = MenuItem> {
+interface DropdownProps<Item extends object | null = MenuItem> {
   children?: React.ReactElement;
   icon?: string;
   iconComponent?: IconProp;
+  iconClassName?: string;
   items?: Item[];
   loading?: boolean;
   title?: string;
   disabled?: boolean;
   scrollable?: boolean;
+  placement?: Placement;
+  offset?: OffsetValue;
+  /**
+   * Prevent the `ScrollableList` with this scrollKey
+   * from being scrolled while the dropdown is open
+   */
   scrollKey?: string;
   status?: ImmutableMap<string, unknown>;
+  needsStatusRefresh?: boolean;
   forceDropdown?: boolean;
+  className?: string;
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
-  onOpen?: () => void;
+  onOpen?: // Must use a union type for the full function as a union with void is not allowed.
+    | ((event: React.MouseEvent | React.KeyboardEvent) => void)
+    | ((event: React.MouseEvent | React.KeyboardEvent) => boolean);
   onItemClick?: ItemClickFn<Item>;
 }
 
-const offset = [5, 5] as OffsetValue;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
-export const Dropdown = <Item = MenuItem,>({
+export const Dropdown = <Item extends object | null = MenuItem>({
   children,
   icon,
   iconComponent,
+  iconClassName,
   items,
   loading,
   title = 'Menu',
   disabled,
   scrollable,
+  placement = 'bottom',
+  offset = [5, 5],
   status,
+  needsStatusRefresh,
   forceDropdown = false,
+  className,
   renderItem,
   renderHeader,
   onOpen,
@@ -331,16 +352,16 @@ export const Dropdown = <Item = MenuItem,>({
   );
   const [currentId] = useState(id++);
   const open = currentId === openDropdownId;
-  const activeElement = useRef<HTMLElement | null>(null);
-  const targetRef = useRef<HTMLButtonElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const menuId = useId();
   const prefetchAccountId = status
     ? status.getIn(['account', 'id'])
     : undefined;
+  const statusId = status?.get('id') as string | undefined;
 
   const handleClose = useCallback(() => {
-    if (activeElement.current) {
-      activeElement.current.focus({ preventScroll: true });
-      activeElement.current = null;
+    if (buttonRef.current) {
+      buttonRef.current.focus({ preventScroll: true });
     }
 
     dispatch(
@@ -354,7 +375,7 @@ export const Dropdown = <Item = MenuItem,>({
   }, [dispatch, currentId]);
 
   const handleItemClick = useCallback(
-    (e: React.MouseEvent | React.KeyboardEvent) => {
+    (e: React.MouseEvent) => {
       const i = Number(e.currentTarget.getAttribute('data-index'));
       const item = items?.[i];
 
@@ -369,23 +390,45 @@ export const Dropdown = <Item = MenuItem,>({
         onItemClick(item, i);
       } else if (isActionItem(item)) {
         e.preventDefault();
-        item.action();
+        item.action(e);
       }
     },
     [handleClose, onItemClick, items],
   );
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent | React.KeyboardEvent) => {
-      const { type } = e;
+  const isKeypressRef = useRef(false);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      isKeypressRef.current = true;
+    }
+  }, []);
+
+  const unsetIsKeypress = useCallback(() => {
+    isKeypressRef.current = false;
+  }, []);
+
+  const toggleDropdown = useCallback(
+    (e: React.MouseEvent) => {
       if (open) {
         handleClose();
       } else {
-        onOpen?.();
+        const allow = onOpen?.(e);
+        if (allow === false) {
+          return;
+        }
 
         if (prefetchAccountId) {
           dispatch(fetchRelationships([prefetchAccountId]));
+        }
+
+        if (needsStatusRefresh && statusId) {
+          dispatch(
+            fetchStatus(statusId, {
+              forceFetch: true,
+              alsoFetchContext: false,
+            }),
+          );
         }
 
         if (isUserTouching() && !forceDropdown) {
@@ -395,6 +438,7 @@ export const Dropdown = <Item = MenuItem,>({
               modalProps: {
                 actions: items,
                 onClick: handleItemClick,
+                className,
               },
             }),
           );
@@ -402,10 +446,11 @@ export const Dropdown = <Item = MenuItem,>({
           dispatch(
             openDropdownMenu({
               id: currentId,
-              keyboard: type !== 'click',
+              keyboard: isKeypressRef.current,
               scrollKey,
             }),
           );
+          isKeypressRef.current = false;
         }
       }
     },
@@ -420,39 +465,10 @@ export const Dropdown = <Item = MenuItem,>({
       items,
       forceDropdown,
       handleClose,
+      statusId,
+      needsStatusRefresh,
+      className,
     ],
-  );
-
-  const handleMouseDown = useCallback(() => {
-    if (!open && document.activeElement instanceof HTMLElement) {
-      activeElement.current = document.activeElement;
-    }
-  }, [open]);
-
-  const handleButtonKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      switch (e.key) {
-        case ' ':
-        case 'Enter':
-          handleMouseDown();
-          break;
-      }
-    },
-    [handleMouseDown],
-  );
-
-  const handleKeyPress = useCallback(
-    (e: React.KeyboardEvent) => {
-      switch (e.key) {
-        case ' ':
-        case 'Enter':
-          handleClick(e);
-          e.stopPropagation();
-          e.preventDefault();
-          break;
-      }
-    },
-    [handleClick],
   );
 
   useEffect(() => {
@@ -465,14 +481,19 @@ export const Dropdown = <Item = MenuItem,>({
 
   let button: React.ReactElement;
 
+  const buttonProps = {
+    disabled,
+    onClick: toggleDropdown,
+    onKeyDown: handleKeyDown,
+    onKeyUp: unsetIsKeypress,
+    onBlur: unsetIsKeypress,
+    'aria-expanded': open,
+    'aria-controls': menuId,
+    ref: buttonRef,
+  };
+
   if (children) {
-    button = cloneElement(Children.only(children), {
-      onClick: handleClick,
-      onMouseDown: handleMouseDown,
-      onKeyDown: handleButtonKeyDown,
-      onKeyPress: handleKeyPress,
-      ref: targetRef,
-    });
+    button = cloneElement(Children.only(children), buttonProps);
   } else if (icon && iconComponent) {
     button = (
       <IconButton
@@ -480,12 +501,8 @@ export const Dropdown = <Item = MenuItem,>({
         iconComponent={iconComponent}
         title={title}
         active={open}
-        disabled={disabled}
-        onClick={handleClick}
-        onMouseDown={handleMouseDown}
-        onKeyDown={handleButtonKeyDown}
-        onKeyPress={handleKeyPress}
-        ref={targetRef}
+        className={iconClassName}
+        {...buttonProps}
       />
     );
   } else {
@@ -499,13 +516,13 @@ export const Dropdown = <Item = MenuItem,>({
       <Overlay
         show={open}
         offset={offset}
-        placement='bottom'
+        placement={placement}
         flip
-        target={targetRef}
+        target={buttonRef}
         popperConfig={popperConfig}
       >
         {({ props, arrowProps, placement }) => (
-          <div {...props}>
+          <div {...props} className={className} id={menuId}>
             <div className={`dropdown-animation dropdown-menu ${placement}`}>
               <div
                 className={`dropdown-menu__arrow ${placement}`}

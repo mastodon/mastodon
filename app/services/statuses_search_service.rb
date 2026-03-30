@@ -29,10 +29,11 @@ class StatusesSearchService < BaseService
     results             = request.collapse(field: :id).order(id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
     account_ids         = results.map(&:account_id)
     account_domains     = results.map(&:account_domain)
-    preloaded_relations = @account.relations_map(account_ids, account_domains)
 
-    results.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
-  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+    @account.preload_relations!(account_ids, account_domains)
+
+    results.reject { |status| StatusFilter.new(status, @account).filtered? }
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
     []
   end
 

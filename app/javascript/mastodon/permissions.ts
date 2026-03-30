@@ -1,3 +1,4 @@
+export const PEMRISSION_VIEW_FEEDS = 0x0000000000100000;
 export const PERMISSION_INVITE_USERS = 0x0000000000010000;
 export const PERMISSION_MANAGE_USERS = 0x0000000000000400;
 export const PERMISSION_MANAGE_TAXONOMIES = 0x0000000000000100;
@@ -22,3 +23,19 @@ export function canManageReports(permissions: number) {
     (permissions & PERMISSION_MANAGE_REPORTS) === PERMISSION_MANAGE_REPORTS
   );
 }
+
+export const canViewFeed = (
+  signedIn: boolean,
+  permissions: number,
+  setting: 'public' | 'authenticated' | 'disabled' | undefined,
+) => {
+  switch (setting) {
+    case 'public':
+      return true;
+    case 'authenticated':
+      return signedIn;
+    case 'disabled':
+    default:
+      return (permissions & PEMRISSION_VIEW_FEEDS) === PEMRISSION_VIEW_FEEDS;
+  }
+};

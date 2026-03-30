@@ -2,15 +2,15 @@
   = t('verification.verification')
 
 - content_for :heading do
-  %h2= t('settings.profile')
+  %h1= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
 .simple_form.form-section
-  %h3= t('verification.website_verification')
+  %h2.heading-medium= t('verification.website_verification')
 
   %p.lead= t('verification.hint_html')
 
-  %h4= t('verification.here_is_how')
+  %h3.heading-small= t('verification.here_is_how')
 
   %p.lead= t('verification.instructions_html')
 
@@ -22,19 +22,19 @@
   %p.lead= t('verification.extra_instructions_html')
 
   - if @verified_links.any?
-    %h4= t('verification.verified_links')
+    %h3.heading-small= t('verification.verified_links')
 
     %ul.lead
       - @verified_links.each do |field|
         %li
           %span.verified-badge
-            = material_symbol 'check', class: 'verified-badge__mark'
+            = material_symbol 'check', { class: 'verified-badge__mark' }
             %span= field.value
 
 = simple_form_for @account, url: settings_verification_path, html: { class: 'form-section' } do |f|
   = render 'shared/error_messages', object: @account
 
-  %h3= t('author_attribution.title')
+  %h2.heading-medium= t('author_attribution.title')
 
   %p.lead= t('author_attribution.hint_html')
 
@@ -51,9 +51,9 @@
           %strong.status-card__title= t('author_attribution.example_title')
       .more-from-author
         = logo_as_symbol(:icon)
-        = t('author_attribution.more_from_html', name: link_to(root_url, class: 'story__details__shared__author-link') { image_tag(@account.avatar.url, class: 'account__avatar', width: 16, height: 16, alt: '') + tag.bdi(display_name(@account)) })
+        = t('author_attribution.more_from_html', name: author_attribution_name(@account))
 
-  %h4= t('verification.here_is_how')
+  %h3.heading-small= t('verification.here_is_how')
 
   %p.lead= t('author_attribution.instructions')
 
@@ -65,7 +65,10 @@
   %p.lead= t('author_attribution.then_instructions')
 
   .fields-group
-    = f.input :attribution_domains, as: :text, wrapper: :with_block_label, input_html: { value: @account.attribution_domains.join("\n"), placeholder: "example1.com\nexample2.com\nexample3.com", rows: 4, autocapitalize: 'none', autocorrect: 'off' }
+    = f.input :attribution_domains,
+              as: :text,
+              input_html: { value: @account.attribution_domains.join("\n"), placeholder: "example1.com\nexample2.com\nexample3.com", rows: 4, autocapitalize: 'none', autocorrect: 'off' },
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

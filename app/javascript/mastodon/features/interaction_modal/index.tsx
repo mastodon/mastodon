@@ -7,15 +7,10 @@ import classNames from 'classnames';
 import { escapeRegExp } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
-import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
-import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
-import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import { DisplayName } from '@/mastodon/components/display_name';
 import { openModal, closeModal } from 'mastodon/actions/modal';
 import { apiRequest } from 'mastodon/api';
 import { Button } from 'mastodon/components/button';
-import { Icon } from 'mastodon/components/icon';
 import {
   domain as localDomain,
   registrationsOpen,
@@ -30,6 +25,8 @@ const messages = defineMessages({
   },
 });
 
+type InteractionIntent = 'follow' | 'reblog' | 'favourite' | 'reply' | 'vote';
+
 interface LoginFormMessage {
   type:
     | 'fetchInteractionURL'
@@ -37,6 +34,8 @@ interface LoginFormMessage {
     | 'fetchInteractionURL-success';
   uri_or_domain: string;
   template?: string;
+  param?: string;
+  intent?: InteractionIntent;
 }
 
 const PERSISTENCE_KEY = 'mastodon_home';
@@ -115,7 +114,11 @@ const isValueValid = (value: string) => {
   }
 };
 
-const sendToFrame = (frame: HTMLIFrameElement | null, value: string): void => {
+const sendToFrame = (
+  frame: HTMLIFrameElement | null,
+  value: string,
+  intent: string,
+): void => {
   if (valueToDomain(value.trim()) === localDomain) {
     window.location.href = '/auth/sign_in';
     return;
@@ -125,6 +128,7 @@ const sendToFrame = (frame: HTMLIFrameElement | null, value: string): void => {
     {
       type: 'fetchInteractionURL',
       uri_or_domain: value.trim(),
+      intent,
     },
     window.origin,
   );
@@ -132,7 +136,8 @@ const sendToFrame = (frame: HTMLIFrameElement | null, value: string): void => {
 
 const LoginForm: React.FC<{
   resourceUrl: string;
-}> = ({ resourceUrl }) => {
+  intent: string;
+}> = ({ resourceUrl, intent }) => {
   const intl = useIntl();
   const [value, setValue] = useState(
     localStorage.getItem(PERSISTENCE_KEY) ?? '',
@@ -166,7 +171,7 @@ const LoginForm: React.FC<{
           try {
             const url = new URL(
               event.data.template.replace(
-                '{uri}',
+                `{${event.data.param}}`,
                 encodeURIComponent(resourceUrl),
               ),
             );
@@ -247,8 +252,8 @@ const LoginForm: React.FC<{
 
   const handleSubmit = useCallback(() => {
     setIsSubmitting(true);
-    sendToFrame(iframeRef.current, value);
-  }, [setIsSubmitting, value]);
+    sendToFrame(iframeRef.current, value, intent);
+  }, [setIsSubmitting, value, intent]);
 
   const handleFocus = useCallback(() => {
     setExpanded(true);
@@ -292,7 +297,7 @@ const LoginForm: React.FC<{
             setError(false);
             setValue(selectedOptionValue);
             setIsSubmitting(true);
-            sendToFrame(iframeRef.current, selectedOptionValue);
+            sendToFrame(iframeRef.current, selectedOptionValue, intent);
           }
 
           break;
@@ -305,6 +310,7 @@ const LoginForm: React.FC<{
       setValue,
       selectedOption,
       options,
+      intent,
     ],
   );
 
@@ -323,9 +329,9 @@ const LoginForm: React.FC<{
       setValue(option);
       setError(false);
       setIsSubmitting(true);
-      sendToFrame(iframeRef.current, option);
+      sendToFrame(iframeRef.current, option, intent);
     },
-    [options, setSelectedOption, setValue, setError],
+    [options, setSelectedOption, setValue, setError, intent],
   );
 
   const domain = (valueToDomain(value) ?? '').trim();
@@ -386,6 +392,7 @@ const LoginForm: React.FC<{
                 className={classNames('search__popout__menu__item', {
                   selected: selectedOption === i,
                 })}
+                type='button'
               >
                 {option
                   .split(domainRegExp)
@@ -408,18 +415,16 @@ const LoginForm: React.FC<{
 const InteractionModal: React.FC<{
   accountId: string;
   url: string;
-  type: 'reply' | 'reblog' | 'favourite' | 'follow' | 'vote';
-}> = ({ accountId, url, type }) => {
+  intent: string;
+}> = ({ accountId, url, intent }) => {
   const dispatch = useAppDispatch();
-  const displayNameHtml = useAppSelector(
-    (state) => state.accounts.get(accountId)?.display_name_html ?? '',
-  );
   const signupUrl = useAppSelector(
     (state) =>
       (state.server.getIn(['server', 'registrations', 'url'], null) ||
         '/auth/sign_up') as string,
   );
-  const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
+  const account = useAppSelector((state) => state.accounts.get(accountId));
+  const name = <DisplayName account={account} variant='simple' />;
 
   const handleSignupClick = useCallback(() => {
     dispatch(
@@ -436,93 +441,6 @@ const InteractionModal: React.FC<{
       }),
     );
   }, [dispatch]);
-
-  let title: React.ReactNode,
-    icon: React.ReactNode,
-    actionPrompt: React.ReactNode;
-
-  switch (type) {
-    case 'reply':
-      icon = <Icon id='reply' icon={ReplyIcon} />;
-      title = (
-        <FormattedMessage
-          id='interaction_modal.title.reply'
-          defaultMessage="Reply to {name}'s post"
-          values={{ name }}
-        />
-      );
-      actionPrompt = (
-        <FormattedMessage
-          id='interaction_modal.action.reply'
-          defaultMessage='To continue, you need to reply from your account.'
-        />
-      );
-      break;
-    case 'reblog':
-      icon = <Icon id='retweet' icon={RepeatIcon} />;
-      title = (
-        <FormattedMessage
-          id='interaction_modal.title.reblog'
-          defaultMessage="Boost {name}'s post"
-          values={{ name }}
-        />
-      );
-      actionPrompt = (
-        <FormattedMessage
-          id='interaction_modal.action.reblog'
-          defaultMessage='To continue, you need to reblog from your account.'
-        />
-      );
-      break;
-    case 'favourite':
-      icon = <Icon id='star' icon={StarIcon} />;
-      title = (
-        <FormattedMessage
-          id='interaction_modal.title.favourite'
-          defaultMessage="Favorite {name}'s post"
-          values={{ name }}
-        />
-      );
-      actionPrompt = (
-        <FormattedMessage
-          id='interaction_modal.action.favourite'
-          defaultMessage='To continue, you need to favorite from your account.'
-        />
-      );
-      break;
-    case 'follow':
-      icon = <Icon id='user-plus' icon={PersonAddIcon} />;
-      title = (
-        <FormattedMessage
-          id='interaction_modal.title.follow'
-          defaultMessage='Follow {name}'
-          values={{ name }}
-        />
-      );
-      actionPrompt = (
-        <FormattedMessage
-          id='interaction_modal.action.follow'
-          defaultMessage='To continue, you need to follow from your account.'
-        />
-      );
-      break;
-    case 'vote':
-      icon = <Icon id='tasks' icon={InsertChartIcon} />;
-      title = (
-        <FormattedMessage
-          id='interaction_modal.title.vote'
-          defaultMessage="Vote in {name}'s poll"
-          values={{ name }}
-        />
-      );
-      actionPrompt = (
-        <FormattedMessage
-          id='interaction_modal.action.vote'
-          defaultMessage='To continue, you need to vote from your account.'
-        />
-      );
-      break;
-  }
 
   let signupButton;
 
@@ -546,7 +464,7 @@ const InteractionModal: React.FC<{
     );
   } else {
     signupButton = (
-      <button className='link-button' onClick={handleSignupClick}>
+      <button className='link-button' onClick={handleSignupClick} type='button'>
         <FormattedMessage
           id='sign_in_banner.create_account'
           defaultMessage='Create account'
@@ -559,12 +477,21 @@ const InteractionModal: React.FC<{
     <div className='modal-root__modal interaction-modal'>
       <div className='interaction-modal__lead'>
         <h3>
-          <span className='interaction-modal__icon'>{icon}</span> {title}
+          <FormattedMessage
+            id='interaction_modal.title'
+            defaultMessage='Sign in to continue'
+          />
         </h3>
-        <p>{actionPrompt}</p>
+        <p>
+          <FormattedMessage
+            id='interaction_modal.action'
+            defaultMessage="To interact with {name}'s post, you need to sign into your account on whatever Mastodon server you use."
+            values={{ name }}
+          />
+        </p>
       </div>
 
-      <LoginForm resourceUrl={url} />
+      <LoginForm resourceUrl={url} intent={intent} />
 
       <p>
         <FormattedMessage

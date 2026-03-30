@@ -4,6 +4,7 @@ module ContextHelper
   NAMED_CONTEXT_MAP = {
     activitystreams: 'https://www.w3.org/ns/activitystreams',
     security: 'https://w3id.org/security/v1',
+    webfinger: 'https://purl.archive.org/socialweb/webfinger',
   }.freeze
 
   CONTEXT_EXTENSION_MAP = {
@@ -25,13 +26,31 @@ module ContextHelper
     voters_count: { 'toot' => 'http://joinmastodon.org/ns#', 'votersCount' => 'toot:votersCount' },
     suspended: { 'toot' => 'http://joinmastodon.org/ns#', 'suspended' => 'toot:suspended' },
     attribution_domains: { 'toot' => 'http://joinmastodon.org/ns#', 'attributionDomains' => { '@id' => 'toot:attributionDomains', '@type' => '@id' } },
+    profile_settings: {
+      'toot' => 'http://joinmastodon.org/ns#',
+      'showFeatured' => 'toot:showFeatured',
+      'showMedia' => 'toot:showMedia',
+      'showRepliesInMedia' => 'toot:showRepliesInMedia',
+    },
     quote_requests: { 'QuoteRequest' => 'https://w3id.org/fep/044f#QuoteRequest' },
+    quotes: {
+      'quote' => 'https://w3id.org/fep/044f#quote',
+      'quoteUri' => 'http://fedibird.com/ns#quoteUri',
+      '_misskey_quote' => 'https://misskey-hub.net/ns#_misskey_quote',
+      'quoteAuthorization' => { '@id' => 'https://w3id.org/fep/044f#quoteAuthorization', '@type' => '@id' },
+    },
     interaction_policies: {
       'gts' => 'https://gotosocial.org/ns#',
       'interactionPolicy' => { '@id' => 'gts:interactionPolicy', '@type' => '@id' },
       'canQuote' => { '@id' => 'gts:canQuote', '@type' => '@id' },
       'automaticApproval' => { '@id' => 'gts:automaticApproval', '@type' => '@id' },
       'manualApproval' => { '@id' => 'gts:manualApproval', '@type' => '@id' },
+    },
+    quote_authorizations: {
+      'gts' => 'https://gotosocial.org/ns#',
+      'quoteAuthorization' => { '@id' => 'https://w3id.org/fep/044f#quoteAuthorization', '@type' => '@id' },
+      'interactingObject' => { '@id' => 'gts:interactingObject' },
+      'interactionTarget' => { '@id' => 'gts:interactionTarget' },
     },
   }.freeze
 

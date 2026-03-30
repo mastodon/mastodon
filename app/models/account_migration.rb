@@ -5,12 +5,12 @@
 # Table name: account_migrations
 #
 #  id                :bigint(8)        not null, primary key
-#  account_id        :bigint(8)
 #  acct              :string           default(""), not null
 #  followers_count   :bigint(8)        default(0), not null
-#  target_account_id :bigint(8)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  account_id        :bigint(8)
+#  target_account_id :bigint(8)
 #
 
 class AccountMigration < ApplicationRecord
@@ -25,7 +25,10 @@ class AccountMigration < ApplicationRecord
   before_validation :set_target_account
   before_validation :set_followers_count
 
+  attribute :current_username, :string
+
   normalizes :acct, with: ->(acct) { acct.strip.delete_prefix('@') }
+  normalizes :current_username, with: ->(value) { value.strip.delete_prefix('@') }
 
   validates :acct, presence: true, domain: { acct: true }
   validate :validate_migration_cooldown
@@ -33,7 +36,7 @@ class AccountMigration < ApplicationRecord
 
   scope :within_cooldown, -> { where(created_at: cooldown_duration_ago..) }
 
-  attr_accessor :current_password, :current_username
+  attr_accessor :current_password
 
   def self.cooldown_duration_ago
     Time.current - COOLDOWN_PERIOD
@@ -74,7 +77,7 @@ class AccountMigration < ApplicationRecord
       errors.add(:acct, I18n.t('migrations.errors.not_found'))
     else
       errors.add(:acct, I18n.t('migrations.errors.missing_also_known_as')) unless target_account.also_known_as.include?(ActivityPub::TagManager.instance.uri_for(account))
-      errors.add(:acct, I18n.t('migrations.errors.already_moved')) if account.moved_to_account_id.present? && account.moved_to_account_id == target_account.id
+      errors.add(:acct, I18n.t('migrations.errors.already_moved')) if account.moved? && account.moved_to_account_id == target_account.id
       errors.add(:acct, I18n.t('migrations.errors.move_to_self')) if account.id == target_account.id
     end
   end

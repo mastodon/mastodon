@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::AccountAction
-  include ActiveModel::Model
-  include AccountableConcern
-  include Authorization
-
+class Admin::AccountAction < Admin::BaseAction
   TYPES = %w(
     none
     disable
@@ -14,55 +10,13 @@ class Admin::AccountAction
   ).freeze
 
   attr_accessor :target_account,
-                :current_account,
-                :type,
-                :text,
-                :report_id,
                 :warning_preset_id
 
-  attr_reader :warning, :send_email_notification, :include_statuses
+  attribute :include_statuses, :boolean, default: true
 
-  alias send_email_notification? send_email_notification
   alias include_statuses? include_statuses
 
-  validates :type, :target_account, :current_account, presence: true
-  validates :type, inclusion: { in: TYPES }
-
-  def initialize(attributes = {})
-    @send_email_notification = true
-    @include_statuses        = true
-
-    super
-  end
-
-  def send_email_notification=(value)
-    @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
-  end
-
-  def include_statuses=(value)
-    @include_statuses = ActiveModel::Type::Boolean.new.cast(value)
-  end
-
-  def save!
-    raise ActiveRecord::RecordInvalid, self unless valid?
-
-    ApplicationRecord.transaction do
-      process_action!
-      process_strike!
-      process_reports!
-    end
-
-    process_notification!
-    process_queue!
-  end
-
-  def report
-    @report ||= Report.find(report_id) if report_id.present?
-  end
-
-  def with_report?
-    !report.nil?
-  end
+  validates :target_account, presence: true
 
   class << self
     def types_for_account(account)
@@ -89,6 +43,18 @@ class Admin::AccountAction
   private
 
   def process_action!
+    ApplicationRecord.transaction do
+      handle_type!
+      process_strike!
+      create_log!
+      process_reports!
+    end
+
+    process_notification!
+    process_queue!
+  end
+
+  def handle_type!
     case type
     when 'disable'
       handle_disable!
@@ -99,20 +65,6 @@ class Admin::AccountAction
     when 'suspend'
       handle_suspend!
     end
-  end
-
-  def process_strike!
-    @warning = target_account.strikes.create!(
-      account: current_account,
-      report: report,
-      action: type,
-      text: text_for_warning,
-      status_ids: status_ids
-    )
-
-    # A log entry is only interesting if the warning contains
-    # custom text from someone. Otherwise it's just noise.
-    log_action(:create, @warning) if @warning.text.present? && type == 'none'
   end
 
   def process_reports!
@@ -154,6 +106,12 @@ class Admin::AccountAction
     target_account.suspend!(origin: :local)
   end
 
+  def create_log!
+    # A log entry is only interesting if the warning contains
+    # custom text from someone. Otherwise it's just noise.
+    log_action(:create, @warning) if @warning&.text.present? && type == 'none'
+  end
+
   def text_for_warning
     [warning_preset&.text, text].compact.join("\n\n")
   end
@@ -166,17 +124,6 @@ class Admin::AccountAction
     queue_suspension_worker! if type == 'suspend'
   end
 
-  def process_notification!
-    return unless warnable?
-
-    UserMailer.warning(target_account.user, warning).deliver_later!
-    LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning')
-  end
-
-  def warnable?
-    send_email_notification? && target_account.local?
-  end
-
   def status_ids
     report.status_ids if with_report? && include_statuses?
   end
@@ -185,7 +132,7 @@ class Admin::AccountAction
     @reports ||= if type == 'none'
                    with_report? ? [report] : []
                  else
-                   Report.where(target_account: target_account).unresolved
+                   target_account.targeted_reports.unresolved
                  end
   end
 

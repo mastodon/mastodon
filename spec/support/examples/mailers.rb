@@ -17,8 +17,8 @@ RSpec::Matchers.define :have_thread_headers do
   match(notify_expectation_failures: true) do |mail|
     expect(mail)
       .to be_present
-      .and(have_header('In-Reply-To', conversation_header_regex))
-      .and(have_header('References', conversation_header_regex))
+      .and have_header('In-Reply-To', conversation_header_regex)
+      .and have_header('References', conversation_header_regex)
   end
 
   def conversation_header_regex = /<conversation-\d+.\d\d\d\d-\d\d-\d\d@#{Regexp.quote(Rails.configuration.x.local_domain)}>/
@@ -32,12 +32,21 @@ RSpec::Matchers.define :have_standard_headers do |type|
   match(notify_expectation_failures: true) do |mail|
     expect(mail)
       .to be_present
-      .and(have_header('To', "#{@user.account.username} <#{@user.email}>"))
-      .and(have_header('List-ID', "<#{type}.#{@user.account.username}.#{Rails.configuration.x.local_domain}>"))
-      .and(have_header('List-Unsubscribe', %r{<https://#{Rails.configuration.x.local_domain}/unsubscribe\?token=.+>}))
-      .and(have_header('List-Unsubscribe', /&type=#{type}/))
-      .and(have_header('List-Unsubscribe-Post', 'List-Unsubscribe=One-Click'))
-      .and(deliver_to("#{@user.account.username} <#{@user.email}>"))
-      .and(deliver_from(Rails.configuration.action_mailer.default_options[:from]))
+      .and have_header('To', "#{@user.account.username} <#{@user.email}>")
+      .and have_header('List-ID', "<#{type}.#{@user.account.username}.#{Rails.configuration.x.local_domain}>")
+      .and have_header('List-Unsubscribe', %r{<https://#{Rails.configuration.x.local_domain}/unsubscribe\?token=.+>})
+      .and have_header('List-Unsubscribe', /&type=#{type}/)
+      .and have_header('List-Unsubscribe-Post', 'List-Unsubscribe=One-Click')
+    expect(mail.to)
+      .to contain_exactly(@user.email)
+    expect(mail.from)
+      .to contain_exactly(Rails.configuration.action_mailer.default_options[:from])
+  end
+end
+
+RSpec::Matchers.define :have_header do |name, value|
+  match(notify_expectation_failures: true) do |mail|
+    expect(mail.header[name].value)
+      .to match(value)
   end
 end

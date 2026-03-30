@@ -12,9 +12,7 @@ module ActivityPub::CaseTransform
       when Hash then value.deep_transform_keys! { |key| camel_lower(key) }
       when Symbol then camel_lower(value.to_s).to_sym
       when String
-        camel_lower_cache[value] ||= if value.start_with?('_:')
-                                       "_:#{value.delete_prefix('_:').underscore.camelize(:lower)}"
-                                     elsif LanguagesHelper::ISO_639_1_REGIONAL.key?(value.to_sym)
+        camel_lower_cache[value] ||= if value.start_with?('_misskey') || LanguagesHelper::ISO_639_1_REGIONAL.key?(value.to_sym)
                                        value
                                      else
                                        value.underscore.camelize(:lower)

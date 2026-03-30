@@ -35,6 +35,7 @@ require_relative '../lib/paperclip/response_with_limit_adapter'
 require_relative '../lib/terrapin/multi_pipe_extensions'
 require_relative '../lib/mastodon/middleware/public_file_server'
 require_relative '../lib/mastodon/middleware/socket_cleanup'
+require_relative '../lib/mastodon/email_configuration_helper'
 require_relative '../lib/mastodon/feature'
 require_relative '../lib/mastodon/snowflake'
 require_relative '../lib/mastodon/version'
@@ -47,7 +48,6 @@ require_relative '../lib/chewy/strategy/mastodon'
 require_relative '../lib/chewy/strategy/bypass_with_warning'
 require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/action_dispatch/remote_ip_extensions'
-require_relative '../lib/stoplight/redis_data_store_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
@@ -58,7 +58,7 @@ Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 8.0
+    config.load_defaults 8.1
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -94,18 +94,14 @@ module Mastodon
       require 'mastodon/redis_configuration'
       ::REDIS_CONFIGURATION = Mastodon::RedisConfiguration.new
 
-      config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] != 'false'
-
-      if config.x.use_vips
-        require_relative '../lib/paperclip/vips_lazy_thumbnail'
-      else
-        require_relative '../lib/paperclip/lazy_thumbnail'
-      end
+      require_relative '../lib/paperclip/vips_lazy_thumbnail'
     end
 
     config.x.cache_buster = config_for(:cache_buster)
     config.x.captcha = config_for(:captcha)
+    config.x.email = config_for(:email)
     config.x.mastodon = config_for(:mastodon)
+    config.x.omniauth = config_for(:omniauth)
     config.x.translation = config_for(:translation)
     config.x.vapid = config_for(:vapid)
 
@@ -115,8 +111,6 @@ module Mastodon
     end
 
     config.to_prepare do
-      Doorkeeper::AuthorizationsController.layout 'modal'
-      Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.include ApplicationExtension
       Doorkeeper::AccessGrant.include AccessGrantExtension
       Doorkeeper::AccessToken.include AccessTokenExtension

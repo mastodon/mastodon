@@ -15,7 +15,7 @@ RSpec.describe UnallowDomainService do
 
   context 'with limited federation mode', :inline_jobs do
     before do
-      allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
+      allow(Rails.configuration.x.mastodon).to receive(:limited_federation_mode).and_return(true)
     end
 
     describe '#call' do
@@ -34,7 +34,7 @@ RSpec.describe UnallowDomainService do
 
   context 'without limited federation mode' do
     before do
-      allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(false)
+      allow(Rails.configuration.x.mastodon).to receive(:limited_federation_mode).and_return(false)
     end
 
     describe '#call' do

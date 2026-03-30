@@ -9,6 +9,7 @@
 #  capabilities            :jsonb            not null
 #  confirmed               :boolean          default(FALSE), not null
 #  contact_email           :string
+#  delivery_last_failed_at :datetime
 #  fediverse_account       :string
 #  name                    :string           not null
 #  privacy_policy          :jsonb
@@ -22,6 +23,8 @@
 class Fasp::Provider < ApplicationRecord
   include DebugConcern
 
+  RETRY_INTERVAL = 1.hour
+
   has_many :fasp_backfill_requests, inverse_of: :fasp_provider, class_name: 'Fasp::BackfillRequest', dependent: :delete_all
   has_many :fasp_debug_callbacks, inverse_of: :fasp_provider, class_name: 'Fasp::DebugCallback', dependent: :delete_all
   has_many :fasp_subscriptions, inverse_of: :fasp_provider, class_name: 'Fasp::Subscription', dependent: :delete_all
@@ -33,6 +36,11 @@ class Fasp::Provider < ApplicationRecord
 
   before_create :create_keypair
   after_commit :update_remote_capabilities
+
+  scope :confirmed, -> { where(confirmed: true) }
+  scope :with_capability, lambda { |capability_name|
+    where('fasp_providers.capabilities @> ?::jsonb', "[{\"id\": \"#{capability_name}\", \"enabled\": true}]")
+  }
 
   def capabilities
     read_attribute(:capabilities).map do |attributes|
@@ -114,6 +122,20 @@ class Fasp::Provider < ApplicationRecord
     save!
   end
 
+  def delivery_failure_tracker
+    @delivery_failure_tracker ||= DeliveryFailureTracker.new(base_url, resolution: :minutes)
+  end
+
+  def available?
+    delivery_failure_tracker.available? || retry_worthwile?
+  end
+
+  def update_availability!
+    self.delivery_last_failed_at = (Time.current unless delivery_failure_tracker.available?)
+
+    save!
+  end
+
   private
 
   def create_keypair
@@ -139,5 +161,9 @@ class Fasp::Provider < ApplicationRecord
     else
       Fasp::Request.new(self).delete(path)
     end
+  end
+
+  def retry_worthwile?
+    delivery_last_failed_at && delivery_last_failed_at < RETRY_INTERVAL.ago
   end
 end

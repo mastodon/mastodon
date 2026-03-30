@@ -21,8 +21,9 @@ class Scheduler::SelfDestructScheduler
 
   def sidekiq_overwhelmed?
     redis_mem_info = Sidekiq.default_configuration.redis_info
+    maxmemory = [redis_mem_info['maxmemory'].to_f, redis_mem_info['total_system_memory'].to_f].filter(&:positive?).min
 
-    Sidekiq::Stats.new.enqueued > MAX_ENQUEUED || redis_mem_info['used_memory'].to_f > redis_mem_info['total_system_memory'].to_f * MAX_REDIS_MEM_USAGE
+    Sidekiq::Stats.new.enqueued > MAX_ENQUEUED || redis_mem_info['used_memory'].to_f > maxmemory * MAX_REDIS_MEM_USAGE
   end
 
   def delete_accounts!
@@ -54,13 +55,10 @@ class Scheduler::SelfDestructScheduler
   end
 
   def delete_account!(account)
-    payload = ActiveModelSerializers::SerializableResource.new(
-      account,
-      serializer: ActivityPub::DeleteActorSerializer,
-      adapter: ActivityPub::Adapter
-    ).as_json
-
-    json = Oj.dump(ActivityPub::LinkedDataSignature.new(payload).sign!(account))
+    json = ActivityPub::LinkedDataSignature
+      .new(deletion_payload(account))
+      .sign!(account)
+      .to_json
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
       [json, account.id, inbox_url]
@@ -68,5 +66,13 @@ class Scheduler::SelfDestructScheduler
 
     # Do not call `Account#suspend!` because we don't want to issue a deletion request
     account.update!(suspended_at: Time.now.utc, suspension_origin: :local)
+  end
+
+  def deletion_payload(account)
+    ActiveModelSerializers::SerializableResource.new(
+      account,
+      serializer: ActivityPub::DeleteActorSerializer,
+      adapter: ActivityPub::Adapter
+    ).as_json
   end
 end

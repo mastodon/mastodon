@@ -1,7 +1,7 @@
 // This code is largely borrowed from:
 // https://github.com/missive/emoji-mart/blob/5f2ffcc/src/utils/emoji-index.js
 
-import * as data from './emoji_mart_data_light';
+import { emojis, categories } from './emoji_mart_data_light';
 import { getData, getSanitizedData, uniq, intersect } from './emoji_utils';
 
 let originalPool = {};
@@ -10,8 +10,8 @@ let emojisList = {};
 let emoticonsList = {};
 let customEmojisList = [];
 
-for (let emoji in data.emojis) {
-  let emojiData = data.emojis[emoji];
+for (let emoji in emojis) {
+  let emojiData = emojis[emoji];
   let { short_names, emoticons } = emojiData;
   let id = short_names[0];
 
@@ -84,14 +84,14 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
     if (include.length || exclude.length) {
       pool = {};
 
-      data.categories.forEach(category => {
+      categories.forEach(category => {
         let isIncluded = include && include.length ? include.indexOf(category.name.toLowerCase()) > -1 : true;
         let isExcluded = exclude && exclude.length ? exclude.indexOf(category.name.toLowerCase()) > -1 : false;
         if (!isIncluded || isExcluded) {
           return;
         }
 
-        category.emojis.forEach(emojiId => pool[emojiId] = data.emojis[emojiId]);
+        category.emojis.forEach(emojiId => pool[emojiId] = emojis[emojiId]);
       });
 
       if (custom.length) {
@@ -171,7 +171,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
   if (results) {
     if (emojisToShowFilter) {
-      results = results.filter((result) => emojisToShowFilter(data.emojis[result.id]));
+      results = results.filter((result) => emojisToShowFilter(emojis[result.id]));
     }
 
     if (results && results.length > maxResults) {

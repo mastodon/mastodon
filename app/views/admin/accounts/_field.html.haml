@@ -1,0 +1,9 @@
+-# locals: (field:, account:)
+%dl
+  %dt.emojify{ title: field.name }
+    = prerender_custom_emojis(h(field.name), account.emojis)
+  %dd{ title: field.value, class: field_verified_class(field.verified?) }
+    - if field.verified?
+      %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
+        = material_symbol 'check'
+    = prerender_custom_emojis(account_field_value_format(field, with_rel_me: false), account.emojis)

@@ -19,7 +19,7 @@ class Admin::Metrics::Dimension::InstanceLanguagesDimension < Admin::Metrics::Di
   end
 
   def sql_array
-    [sql_query_string, { domain: params[:domain], earliest_status_id: earliest_status_id, latest_status_id: latest_status_id, limit: @limit }]
+    [sql_query_string, { domain: params[:domain], earliest_status_id:, latest_status_id:, limit: @limit }]
   end
 
   def sql_query_string
@@ -34,14 +34,6 @@ class Admin::Metrics::Dimension::InstanceLanguagesDimension < Admin::Metrics::Di
       ORDER BY count(*) DESC
       LIMIT :limit
     SQL
-  end
-
-  def earliest_status_id
-    Mastodon::Snowflake.id_at(@start_at.beginning_of_day, with_random: false)
-  end
-
-  def latest_status_id
-    Mastodon::Snowflake.id_at(@end_at.end_of_day, with_random: false)
   end
 
   def params

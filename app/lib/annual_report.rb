@@ -5,20 +5,22 @@ class AnnualReport
 
   SOURCES = [
     AnnualReport::Archetype,
-    AnnualReport::TypeDistribution,
     AnnualReport::TopStatuses,
-    AnnualReport::MostUsedApps,
-    AnnualReport::CommonlyInteractedWithAccounts,
     AnnualReport::TimeSeries,
     AnnualReport::TopHashtags,
-    AnnualReport::MostRebloggedAccounts,
-    AnnualReport::Percentiles,
   ].freeze
 
-  SCHEMA = 1
+  SCHEMA = 2
 
   def self.table_name_prefix
     'annual_report_'
+  end
+
+  def self.current_campaign
+    return unless Setting.wrapstodon
+
+    datetime = Time.now.utc
+    datetime.year if datetime.month == 12 && (10..31).cover?(datetime.day)
   end
 
   def initialize(account, year)
@@ -26,10 +28,29 @@ class AnnualReport
     @year = year
   end
 
-  def self.prepare(year)
-    SOURCES.each do |klass|
-      klass.prepare(year)
+  def eligible?
+    with_read_replica do
+      SOURCES.all? { |klass| klass.new(@account, @year).eligible? }
     end
+  end
+
+  def state
+    return 'available' if GeneratedAnnualReport.exists?(account_id: @account.id, year: @year)
+
+    async_refresh = AsyncRefresh.new(refresh_key)
+
+    if async_refresh.running?
+      yield async_refresh if block_given?
+      'generating'
+    elsif AnnualReport.current_campaign == @year && eligible?
+      'eligible'
+    else
+      'ineligible'
+    end
+  end
+
+  def refresh_key
+    "wrapstodon:#{@account.id}:#{@year}"
   end
 
   def generate
@@ -39,7 +60,8 @@ class AnnualReport
       account: @account,
       year: @year,
       schema_version: SCHEMA,
-      data: data
+      data: data,
+      share_key: SecureRandom.hex(8)
     )
   end
 

@@ -43,6 +43,7 @@ module Status::SearchConcern
       properties << 'embed' if preview_card&.video?
       properties << 'sensitive' if sensitive?
       properties << 'reply' if reply?
+      properties << 'quote' if with_quote?
     end
   end
 end

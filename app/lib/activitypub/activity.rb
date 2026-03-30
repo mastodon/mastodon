@@ -5,6 +5,7 @@ class ActivityPub::Activity
   include Redisable
   include Lockable
 
+  MAX_JSON_SIZE = 1.megabyte
   SUPPORTED_TYPES = %w(Note Question).freeze
   CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
 
@@ -21,14 +22,13 @@ class ActivityPub::Activity
 
   class << self
     def factory(json, account, **)
-      @json = json
-      klass&.new(json, account, **)
+      klass_for(json)&.new(json, account, **)
     end
 
     private
 
-    def klass
-      case @json['type']
+    def klass_for(json)
+      case json['type']
       when 'Create'
         ActivityPub::Activity::Create
       when 'Announce'
@@ -59,6 +59,8 @@ class ActivityPub::Activity
         ActivityPub::Activity::Move
       when 'QuoteRequest'
         ActivityPub::Activity::QuoteRequest
+      when 'FeatureRequest'
+        ActivityPub::Activity::FeatureRequest
       end
     end
   end
@@ -116,6 +118,20 @@ class ActivityPub::Activity
     fetch_remote_original_status
   end
 
+  def quote_from_request_json(json)
+    quoted_status_uri = value_or_id(json['object'])
+    quoting_status_uri = value_or_id(json['instrument'])
+    return if quoting_status_uri.nil? || quoted_status_uri.nil?
+
+    quoting_status = status_from_uri(quoting_status_uri)
+    return unless quoting_status.present? && quoting_status.quote.present?
+
+    quoted_status = status_from_uri(quoted_status_uri)
+    return unless quoted_status.present? && quoted_status.account == @account && quoting_status.quote.quoted_status == quoted_status
+
+    quoting_status.quote
+  end
+
   def dereference_object!
     return unless @object.is_a?(String)
 
@@ -143,8 +159,18 @@ class ActivityPub::Activity
     @follow_request_from_object ||= FollowRequest.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end
 
+  def quote_request_from_object
+    @quote_request_from_object ||= Quote.find_by(quoted_account: @account, activity_uri: object_uri) unless object_uri.nil?
+  end
+
   def follow_from_object
     @follow_from_object ||= ::Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+  end
+
+  def feature_request_from_object
+    return @collection_item if instance_variable_defined?(:@collection_item)
+
+    @collection_item = CollectionItem.local.find_by(activity_uri: value_or_id(@object), account_id: @account.id)
   end
 
   def fetch_remote_original_status

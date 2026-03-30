@@ -6,13 +6,15 @@ class ActivityPub::SynchronizeFollowersService < BaseService
 
   MAX_COLLECTION_PAGES = 10
 
-  def call(account, partial_collection_url)
+  def call(account, partial_collection_url, expected_digest = nil)
     @account = account
     @expected_followers_ids = []
+    @digest = [expected_digest].pack('H*') if expected_digest.present?
 
     return unless process_collection!(partial_collection_url)
 
-    remove_unexpected_local_followers!
+    # Only remove followers if the digests match, as it is a destructive operation
+    remove_unexpected_local_followers! if expected_digest.blank? || @digest == "\x00" * 32
   end
 
   private
@@ -20,6 +22,8 @@ class ActivityPub::SynchronizeFollowersService < BaseService
   def process_page!(items)
     page_expected_followers = extract_local_followers(items)
     @expected_followers_ids.concat(page_expected_followers.pluck(:id))
+
+    items.each { |uri| Xorcist.xor!(@digest, Digest::SHA256.digest(uri)) } if @digest.present?
 
     handle_unexpected_outgoing_follows!(page_expected_followers)
   end
@@ -58,15 +62,15 @@ class ActivityPub::SynchronizeFollowersService < BaseService
   end
 
   def build_undo_follow_json(follow)
-    Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer))
+    serialize_payload(follow, ActivityPub::UndoFollowSerializer).to_json
   end
 
   # Only returns true if the whole collection has been processed
   def process_collection!(collection_uri, max_pages: MAX_COLLECTION_PAGES)
-    collection = fetch_collection(collection_uri)
+    collection = fetch_collection_page(collection_uri, reference_uri: @account.uri)
     return false unless collection.is_a?(Hash)
 
-    collection = fetch_collection(collection['first']) if collection['first'].present?
+    collection = fetch_collection_page(collection['first'], reference_uri: @account.uri) if collection['first'].present?
 
     while collection.is_a?(Hash)
       process_page!(as_array(collection_page_items(collection)))
@@ -76,25 +80,9 @@ class ActivityPub::SynchronizeFollowersService < BaseService
       return true if collection['next'].blank? # We reached the end of the collection
       return false if max_pages <= 0 # We reached our pages limit
 
-      collection = fetch_collection(collection['next'])
+      collection = fetch_collection_page(collection['next'])
     end
 
     false
-  end
-
-  def collection_page_items(collection)
-    case collection['type']
-    when 'Collection', 'CollectionPage'
-      collection['items']
-    when 'OrderedCollection', 'OrderedCollectionPage'
-      collection['orderedItems']
-    end
-  end
-
-  def fetch_collection(collection_or_uri)
-    return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
-
-    fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
   end
 end

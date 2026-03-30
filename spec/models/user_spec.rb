@@ -24,6 +24,7 @@ RSpec.describe User do
 
   describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
+    it { is_expected.to have_many(:login_activities) }
   end
 
   describe 'Validations' do
@@ -36,6 +37,15 @@ RSpec.describe User do
     end
 
     it { is_expected.to allow_value('admin@localhost').for(:email) }
+
+    context 'when registration form time is present' do
+      subject { Fabricate.build :user }
+
+      before { stub_const 'RegistrationFormTimeValidator::REGISTRATION_FORM_MIN_TIME', 3.seconds }
+
+      it { is_expected.to allow_value(10.seconds.ago).for(:registration_form_time) }
+      it { is_expected.to_not allow_value(1.second.ago).for(:registration_form_time).against(:base) }
+    end
   end
 
   describe 'Normalizations' do
@@ -61,34 +71,6 @@ RSpec.describe User do
         first_user = Fabricate(:user)
         second_user = Fabricate(:user)
         expect(described_class.recent).to eq [second_user, first_user]
-      end
-    end
-
-    describe 'confirmed' do
-      it 'returns an array of users who are confirmed' do
-        Fabricate(:user, confirmed_at: nil)
-        confirmed_user = Fabricate(:user, confirmed_at: Time.zone.now)
-        expect(described_class.confirmed).to contain_exactly(confirmed_user)
-      end
-    end
-
-    describe 'signed_in_recently' do
-      it 'returns a relation of users who have signed in during the recent period' do
-        recent_sign_in_user = Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
-        Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
-
-        expect(described_class.signed_in_recently)
-          .to contain_exactly(recent_sign_in_user)
-      end
-    end
-
-    describe 'not_signed_in_recently' do
-      it 'returns a relation of users who have not signed in during the recent period' do
-        no_recent_sign_in_user = Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
-        Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
-
-        expect(described_class.not_signed_in_recently)
-          .to contain_exactly(no_recent_sign_in_user)
       end
     end
 
@@ -126,14 +108,6 @@ RSpec.describe User do
         expect(described_class.matches_ip('2160:2160::/32')).to contain_exactly(user1)
       end
     end
-
-    def exceed_duration_window_days
-      described_class::ACTIVE_DURATION + 2.days
-    end
-
-    def within_duration_window_days
-      described_class::ACTIVE_DURATION - 2.days
-    end
   end
 
   describe 'email domains denylist integration' do
@@ -166,14 +140,43 @@ RSpec.describe User do
     end
   end
 
+  describe '#email_domain' do
+    subject { described_class.new(email: email).email_domain }
+
+    context 'when value is nil' do
+      let(:email) { nil }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when value is blank' do
+      let(:email) { '' }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when value has valid domain' do
+      let(:email) { 'user@host.example' }
+
+      it { is_expected.to eq('host.example') }
+    end
+
+    context 'when value has no split' do
+      let(:email) { 'user$host.example' }
+
+      it { is_expected.to be_nil }
+    end
+  end
+
   describe '#update_sign_in!' do
     context 'with an existing user' do
-      let!(:user) { Fabricate :user, last_sign_in_at: 10.days.ago, current_sign_in_at: 1.hour.ago, sign_in_count: 123 }
+      let!(:user) { Fabricate :user, last_sign_in_at: 10.days.ago, current_sign_in_at:, sign_in_count: 123 }
+      let(:current_sign_in_at) { 1.hour.ago }
 
       context 'with new sign in false' do
         it 'updates timestamps but not counts' do
           expect { user.update_sign_in!(new_sign_in: false) }
-            .to change(user, :last_sign_in_at)
+            .to change(user, :last_sign_in_at).to(current_sign_in_at)
             .and change(user, :current_sign_in_at)
             .and not_change(user, :sign_in_count)
         end
@@ -182,9 +185,20 @@ RSpec.describe User do
       context 'with new sign in true' do
         it 'updates timestamps and counts' do
           expect { user.update_sign_in!(new_sign_in: true) }
-            .to change(user, :last_sign_in_at)
+            .to change(user, :last_sign_in_at).to(current_sign_in_at)
             .and change(user, :current_sign_in_at)
             .and change(user, :sign_in_count).by(1)
+        end
+      end
+
+      context 'when the user does not have a current_sign_in_at value' do
+        let(:current_sign_in_at) { nil }
+
+        before { travel_to(1.minute.ago) }
+
+        it 'updates last sign in to now' do
+          expect { user.update_sign_in! }
+            .to change(user, :last_sign_in_at).to(Time.now.utc)
         end
       end
     end
@@ -192,82 +206,13 @@ RSpec.describe User do
     context 'with a new user' do
       let(:user) { Fabricate.build :user }
 
+      before { allow(ActivityTracker).to receive(:record) }
+
       it 'does not persist the user' do
         expect { user.update_sign_in! }
           .to_not change(user, :persisted?).from(false)
-      end
-    end
-  end
-
-  describe '#confirmed?' do
-    it 'returns true when a confirmed_at is set' do
-      user = Fabricate.build(:user, confirmed_at: Time.now.utc)
-      expect(user.confirmed?).to be true
-    end
-
-    it 'returns false if a confirmed_at is nil' do
-      user = Fabricate.build(:user, confirmed_at: nil)
-      expect(user.confirmed?).to be false
-    end
-  end
-
-  describe '#confirm' do
-    subject { user.confirm }
-
-    let(:new_email) { 'new-email@example.com' }
-
-    before do
-      allow(TriggerWebhookWorker).to receive(:perform_async)
-    end
-
-    context 'when the user is already confirmed' do
-      let!(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: true, unconfirmed_email: new_email) }
-
-      it 'sets email to unconfirmed_email and does not trigger web hook' do
-        expect { subject }.to change { user.reload.email }.to(new_email)
-
-        expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
-      end
-    end
-
-    context 'when the user is a new user' do
-      let(:user) { Fabricate(:user, confirmed_at: nil, unconfirmed_email: new_email) }
-
-      context 'when the user is already approved' do
-        before do
-          Setting.registrations_mode = 'approved'
-          user.approve!
-        end
-
-        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
-          expect { subject }.to change { user.reload.email }.to(new_email)
-
-          expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
-        end
-      end
-
-      context 'when the user does not require explicit approval' do
-        before do
-          Setting.registrations_mode = 'open'
-        end
-
-        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
-          expect { subject }.to change { user.reload.email }.to(new_email)
-
-          expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
-        end
-      end
-
-      context 'when the user requires explicit approval but is not approved' do
-        before do
-          Setting.registrations_mode = 'approved'
-        end
-
-        it 'sets email to unconfirmed_email and does not trigger web hook' do
-          expect { subject }.to change { user.reload.email }.to(new_email)
-
-          expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
-        end
+        expect(ActivityTracker)
+          .to_not have_received(:record).with('activity:logins', anything)
       end
     end
   end
@@ -448,12 +393,40 @@ RSpec.describe User do
 
     let(:current_sign_in_at) { Time.zone.now }
 
-    before do
+    it 'disables user' do
+      allow(redis).to receive(:publish)
+
       user.disable!
+
+      expect(user).to have_attributes(disabled: true)
+
+      expect(redis)
+        .to have_received(:publish).with("timeline:system:#{user.account.id}", { event: :kill }.to_json).once
+    end
+  end
+
+  describe '#revoke_access!' do
+    subject(:user) { Fabricate(:user, disabled: false, current_sign_in_at: current_sign_in_at, last_sign_in_at: nil) }
+
+    let(:current_sign_in_at) { Time.zone.now }
+
+    let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id) }
+
+    let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
+
+    before do
+      allow(redis)
+        .to receive(:pipelined)
+        .and_yield(redis_pipeline_stub)
     end
 
-    it 'disables user' do
-      expect(user).to have_attributes(disabled: true)
+    it 'revokes tokens' do
+      user.revoke_access!
+
+      expect(redis_pipeline_stub)
+        .to have_received(:publish).with("timeline:access_token:#{token.id}", { event: :kill }.to_json).once
+
+      expect(token.reload.revoked?).to be true
     end
   end
 
@@ -495,7 +468,7 @@ RSpec.describe User do
       expect { web_push_subscription.reload }
         .to raise_error(ActiveRecord::RecordNotFound)
       expect(redis_pipeline_stub)
-        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", { event: :kill }.to_json).once
     end
 
     def remove_activated_sessions

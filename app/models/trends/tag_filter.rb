@@ -30,9 +30,9 @@ class Trends::TagFilter
 
   def initial_scope
     Tag.select(Tag.arel_table[Arel.star])
-       .joins(:trend)
-       .eager_load(:trend)
-       .reorder(score: :desc)
+      .joins(:trend)
+      .eager_load(:trend)
+      .reorder(score: :desc)
   end
 
   def scope_for(key, value)

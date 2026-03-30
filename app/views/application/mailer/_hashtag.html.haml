@@ -1,5 +1,3 @@
-- accounts = hashtag.statuses.public_visibility.joins(:account).merge(Account.without_suspended.without_silenced).includes(:account).limit(3).map(&:account)
-
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-mini-wrapper-td
@@ -13,7 +11,7 @@
                   %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                     %tr
                       %td.email-mini-hashtag-img-td
-                        - accounts.each do |account|
+                        - recent_tag_users(hashtag).each do |account|
                           %span.email-mini-hashtag-img-span
                             = image_tag full_asset_url(account.avatar.url), alt: '', width: 16, height: 16
                       %td

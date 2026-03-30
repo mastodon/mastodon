@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../lib/mastodon/sidekiq_middleware'
+require_relative '../../lib/mastodon/worker_batch_middleware'
 
 Sidekiq.configure_server do |config|
   config.redis = REDIS_CONFIGURATION.sidekiq
@@ -72,14 +73,12 @@ Sidekiq.configure_server do |config|
 
   config.server_middleware do |chain|
     chain.add Mastodon::SidekiqMiddleware
-  end
-
-  config.server_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Server
   end
 
   config.client_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Client
+    chain.add Mastodon::WorkerBatchMiddleware
   end
 
   config.on(:startup) do
@@ -105,6 +104,7 @@ Sidekiq.configure_client do |config|
 
   config.client_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Client
+    chain.add Mastodon::WorkerBatchMiddleware
   end
 
   config.logger.level = Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)

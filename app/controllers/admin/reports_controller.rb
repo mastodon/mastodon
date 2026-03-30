@@ -50,7 +50,7 @@ module Admin
     private
 
     def filtered_reports
-      ReportFilter.new(filter_params).results.order(id: :desc).includes(:account, :target_account)
+      ReportFilter.new(filter_params).results.order(id: :desc).includes(:account, :target_account, :collections)
     end
 
     def filter_params
@@ -58,7 +58,7 @@ module Admin
     end
 
     def set_report
-      @report = Report.find(params[:id])
+      @report = Report.includes(collections: :accepted_collection_items).find(params[:id])
     end
   end
 end

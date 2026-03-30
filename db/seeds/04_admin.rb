@@ -7,7 +7,17 @@ if Rails.env.development?
   admin = Account.where(username: 'admin').first_or_initialize(username: 'admin')
   admin.save(validate: false)
 
-  user = User.where(email: "admin@#{domain}").first_or_initialize(email: "admin@#{domain}", password: 'mastodonadmin', password_confirmation: 'mastodonadmin', confirmed_at: Time.now.utc, role: UserRole.find_by(name: 'Owner'), account: admin, agreement: true, approved: true)
+  user = User.where(email: "admin@#{domain}").first_or_initialize(
+    email: "admin@#{domain}",
+    password: 'mastodonadmin',
+    password_confirmation: 'mastodonadmin',
+    confirmed_at: Time.now.utc,
+    role: UserRole.find_by(name: 'Owner'),
+    account: admin,
+    agreement: true,
+    approved: true,
+    bypass_registration_checks: true
+  )
   user.save!
   user.approve!
 end

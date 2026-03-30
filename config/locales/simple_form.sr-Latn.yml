@@ -70,7 +70,6 @@ sr-Latn:
       featured_tag:
         name: 'Evo nekih od heš oznaka koje ste u prethodnom periodu često koristili:'
       filters:
-        action: Izaberite koju radnju izvršiti kada objava odgovara filteru
         actions:
           hide: Potpuno sakrij filtrirani sadržaj, ponašajući se kao da ne postoji
           warn: Sakrij filtrirani sadržaj iza upozorenja u kome se navodi naziv filtera
@@ -78,7 +77,6 @@ sr-Latn:
         activity_api_enabled: Brojevi lokalno postavljenih objava, aktivnih korisnika i novih registracija na nedeljnoj bazi
         app_icon: WEBP, PNG, GIF ili JPG. Zamenjuje podrazumevanu ikonicu aplikacije na mobilnim uređajima prilagođenom ikonicom.
         backups_retention_period: Korisnici imaju mogućnost da generišu arhive svojih objava za kasnije preuzimanje. Kada se podese na pozitivnu vrednost, ove arhive će se automatski izbrisati iz vašeg skladišta nakon navedenog broja dana.
-        bootstrap_timeline_accounts: Ovi nalozi će biti zakačeni na vrh preporuka za praćenje novih korisnika.
         closed_registrations_message: Prikazuje se kada su registracije zatvorene
         content_cache_retention_period: Sve objave sa drugih servera (uključujući podržavanja i odgovore) će biti izbrisane nakon navedenog broja dana, bez obzira na bilo kakvu interakciju lokalnog korisnika sa tim objavama. Ovo uključuje objave u kojima ih je lokalni korisnik označio kao obeleživače ili omiljene. Privatna pominjanja između korisnika sa različitih instanci će takođe biti izgubljena i nemoguće ih je vratiti. Korišćenje ove postavke je namenjeno za slučajeve posebne namene i krši mnoga očekivanja korisnika kada se primeni za upotrebu opšte namene.
         custom_css: Možete da primenite prilagođene stilove na veb verziji Mastodon-a.
@@ -97,10 +95,8 @@ sr-Latn:
         status_page_url: URL stranice gde ljudi mogu da vide status servera dok je server oboren
         theme: Tema koju vide posetioci koji nisu prijavljeni i novi korisnici.
         thumbnail: Slika u razmeri od približno 2:1 koja se prikazuje pored informacija o Vašem serveru.
-        timeline_preview: Posetioci koji nisu prijavljeni će moći da pregledaju najnovije javne objave dostupne na serveru.
         trendable_by_default: Preskoči ručni pregled sadržaja koji je u trendu. Pojedinačne stavke se nakon toga i dalje mogu ukloniti iz trendova.
         trends: Trendovi pokazuju koje objave, heš oznake i vesti postaju sve popularnije na Vašem serveru.
-        trends_as_landing_page: Prikaži sadržaj u trendu odjavljenim korisnicima i posetiocima umesto opisa ovog servera. Zahteva da trendovi budu omogućeni.
       form_challenge:
         current_password: Ulazite u bezbedno područje
       imports:
@@ -204,11 +200,8 @@ sr-Latn:
         setting_aggregate_reblogs: Grupiši deljenja u vremenskim linijama
         setting_always_send_emails: Uvek šalji obaveštenja e-poštom
         setting_auto_play_gif: Automatski reprodukuj animirane GIF-ove
-        setting_boost_modal: Prikaži dijalog za potvrdu pre davanja podrške
         setting_default_language: Jezik objavljivanja
-        setting_default_privacy: Privatnost objava
         setting_default_sensitive: Uvek označi multimediju kao osetljivu
-        setting_delete_modal: Prikaži dijalog za potvrdu pre brisanja objave
         setting_disable_hover_cards: Onemogući pregled profila prelaskom kursora
         setting_disable_swiping: Onemogući pokrete prevlačenja
         setting_display_media: Prikaz medija
@@ -265,10 +258,8 @@ sr-Latn:
         status_page_url: URL statusne stranice
         theme: Podrazumevana tema
         thumbnail: Sličica servera
-        timeline_preview: Dozvoli neautorizovan pristup javnim vremenskim osama
         trendable_by_default: Dozvoli trendove bez prethodnog pregleda
         trends: Omogući trendove
-        trends_as_landing_page: Koristite trendove kao stranicu dočeka
       interactions:
         must_be_follower: Blokiraj obaveštenja od korisnika koji me ne prate
         must_be_following: Blokiraj obaveštenja od ljudi koje ne pratim

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { DropdownMenuItemContent } from 'mastodon/components/dropdown_menu';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import {
   isActionItem,
@@ -10,22 +11,28 @@ import {
 export const ActionsModal: React.FC<{
   actions: MenuItem[];
   onClick: React.MouseEventHandler;
-}> = ({ actions, onClick }) => (
-  <div className='modal-root__modal actions-modal'>
+  className?: string;
+}> = ({ actions, onClick, className }) => (
+  <div className={classNames('modal-root__modal actions-modal', className)}>
     <ul>
       {actions.map((option, i: number) => {
         if (option === null) {
           return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
         }
 
-        const { text, dangerous } = option;
+        const { text, highlighted, disabled, dangerous } = option;
 
         let element: React.ReactElement;
 
         if (isActionItem(option)) {
           element = (
-            <button onClick={onClick} data-index={i}>
-              {text}
+            <button
+              onClick={onClick}
+              data-index={i}
+              disabled={disabled}
+              type='button'
+            >
+              <DropdownMenuItemContent item={option} />
             </button>
           );
         } else if (isExternalLinkItem(option)) {
@@ -38,21 +45,22 @@ export const ActionsModal: React.FC<{
               onClick={onClick}
               data-index={i}
             >
-              {text}
+              <DropdownMenuItemContent item={option} />
             </a>
           );
         } else {
           element = (
             <Link to={option.to} onClick={onClick} data-index={i}>
-              {text}
+              <DropdownMenuItemContent item={option} />
             </Link>
           );
         }
 
         return (
           <li
-            className={classNames({
+            className={classNames('dropdown-menu__item', {
               'dropdown-menu__item--dangerous': dangerous,
+              'dropdown-menu__item--highlighted': highlighted,
             })}
             key={`${text}-${i}`}
           >

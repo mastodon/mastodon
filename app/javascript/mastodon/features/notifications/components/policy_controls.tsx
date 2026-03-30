@@ -122,98 +122,93 @@ export const PolicyControls: React.FC = () => {
           value={notificationPolicy.for_not_following}
           onChange={handleFilterNotFollowing}
           options={options}
-        >
-          <strong>
+          label={
             <FormattedMessage
               id='notifications.policy.filter_not_following_title'
               defaultMessage="People you don't follow"
             />
-          </strong>
-          <span className='hint'>
+          }
+          hint={
             <FormattedMessage
               id='notifications.policy.filter_not_following_hint'
               defaultMessage='Until you manually approve them'
             />
-          </span>
-        </SelectWithLabel>
+          }
+        />
 
         <SelectWithLabel
           value={notificationPolicy.for_not_followers}
           onChange={handleFilterNotFollowers}
           options={options}
-        >
-          <strong>
+          label={
             <FormattedMessage
               id='notifications.policy.filter_not_followers_title'
               defaultMessage='People not following you'
             />
-          </strong>
-          <span className='hint'>
+          }
+          hint={
             <FormattedMessage
               id='notifications.policy.filter_not_followers_hint'
               defaultMessage='Including people who have been following you fewer than {days, plural, one {one day} other {# days}}'
               values={{ days: 3 }}
             />
-          </span>
-        </SelectWithLabel>
+          }
+        />
 
         <SelectWithLabel
           value={notificationPolicy.for_new_accounts}
           onChange={handleFilterNewAccounts}
           options={options}
-        >
-          <strong>
+          label={
             <FormattedMessage
               id='notifications.policy.filter_new_accounts_title'
               defaultMessage='New accounts'
             />
-          </strong>
-          <span className='hint'>
+          }
+          hint={
             <FormattedMessage
               id='notifications.policy.filter_new_accounts.hint'
               defaultMessage='Created within the past {days, plural, one {one day} other {# days}}'
               values={{ days: 30 }}
             />
-          </span>
-        </SelectWithLabel>
+          }
+        />
 
         <SelectWithLabel
           value={notificationPolicy.for_private_mentions}
           onChange={handleFilterPrivateMentions}
           options={options}
-        >
-          <strong>
+          label={
             <FormattedMessage
               id='notifications.policy.filter_private_mentions_title'
               defaultMessage='Unsolicited private mentions'
             />
-          </strong>
-          <span className='hint'>
+          }
+          hint={
             <FormattedMessage
               id='notifications.policy.filter_private_mentions_hint'
               defaultMessage="Filtered unless it's in reply to your own mention or if you follow the sender"
             />
-          </span>
-        </SelectWithLabel>
+          }
+        />
 
         <SelectWithLabel
           value={notificationPolicy.for_limited_accounts}
           onChange={handleFilterLimitedAccounts}
           options={options}
-        >
-          <strong>
+          label={
             <FormattedMessage
               id='notifications.policy.filter_limited_accounts_title'
               defaultMessage='Moderated accounts'
             />
-          </strong>
-          <span className='hint'>
+          }
+          hint={
             <FormattedMessage
               id='notifications.policy.filter_limited_accounts_hint'
               defaultMessage='Limited by server moderators'
             />
-          </span>
-        </SelectWithLabel>
+          }
+        />
       </div>
     </section>
   );

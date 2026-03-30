@@ -5,18 +5,18 @@
 # Table name: bulk_imports
 #
 #  id                :bigint(8)        not null, primary key
-#  type              :integer          not null
-#  state             :integer          not null
-#  total_items       :integer          default(0), not null
-#  imported_items    :integer          default(0), not null
-#  processed_items   :integer          default(0), not null
 #  finished_at       :datetime
-#  overwrite         :boolean          default(FALSE), not null
+#  imported_items    :integer          default(0), not null
 #  likely_mismatched :boolean          default(FALSE), not null
 #  original_filename :string           default(""), not null
-#  account_id        :bigint(8)        not null
+#  overwrite         :boolean          default(FALSE), not null
+#  processed_items   :integer          default(0), not null
+#  state             :integer          not null
+#  total_items       :integer          default(0), not null
+#  type              :integer          not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  account_id        :bigint(8)        not null
 #
 class BulkImport < ApplicationRecord
   self.inheritance_column = false
@@ -48,13 +48,21 @@ class BulkImport < ApplicationRecord
   scope :archival_completed, -> { where(created_at: ..ARCHIVE_PERIOD.ago) }
   scope :confirmation_missed, -> { state_unconfirmed.where(created_at: ..CONFIRM_PERIOD.ago) }
 
+  def failure_count
+    processed_items - imported_items
+  end
+
+  def processing_complete?
+    processed_items == total_items
+  end
+
   def self.progress!(bulk_import_id, imported: false)
     # Use `increment_counter` so that the incrementation is done atomically in the database
     BulkImport.increment_counter(:processed_items, bulk_import_id)
     BulkImport.increment_counter(:imported_items, bulk_import_id) if imported
 
-    # Since the incrementation has been done atomically, concurrent access to `bulk_import` is now bening
+    # Since the incrementation has been done atomically, concurrent access to `bulk_import` is now benign
     bulk_import = BulkImport.find(bulk_import_id)
-    bulk_import.update!(state: :finished, finished_at: Time.now.utc) if bulk_import.processed_items == bulk_import.total_items
+    bulk_import.update!(state: :finished, finished_at: Time.now.utc) if bulk_import.processing_complete?
   end
 end

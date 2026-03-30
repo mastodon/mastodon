@@ -10,7 +10,6 @@ eo:
     followers:
       one: Sekvanto
       other: Sekvantoj
-    following: Sekvatoj
     instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniun individuan uzanton. Ĝi estas uzata por federaciaj celoj kaj ĝi devas ne esti suspendita.
     last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
@@ -190,6 +189,7 @@ eo:
         create_relay: Krei Relajson
         create_unavailable_domain: Krei Nehaveblan Domajnon
         create_user_role: Krei Rolon
+        create_username_block: Krei uzantnoman regulon
         demote_user: Malpromocii Uzanton
         destroy_announcement: Forigi Anoncon
         destroy_canonical_email_block: Forigi retpoŝtan blokon
@@ -203,6 +203,7 @@ eo:
         destroy_status: Forigi Afiŝon
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         destroy_user_role: Detrui Rolon
+        destroy_username_block: Forigi uzantnoman regulon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malŝalti Proprajn Bildosignojn
         disable_relay: Malebligi Relajson
@@ -237,6 +238,7 @@ eo:
         update_report: Ĝisdatigo de Raporto
         update_status: Ĝisdatigi Afiŝon
         update_user_role: Ĝisdatigi rolon
+        update_username_block: Ĝisdatigi uzantnoman regulon
       actions:
         approve_appeal_html: "%{name} aprobis apelacion kontraŭ reguliga decido de %{target}"
         approve_user_html: "%{name} aprobis la registriĝon de %{target}"
@@ -578,6 +580,12 @@ eo:
         all: Ĉiuj
         limited: Limigita
         title: Moderigado
+      moderation_notes:
+        create: Aldoni moderigan noton
+        created_msg: Noto pri moderigo de instanco sukcese kreita!
+        description_html: Vidu kaj lasu notojn por aliaj moderigantoj kaj via estonta memo
+        destroyed_msg: Noto pri moderigo de instanco sukcese forigita!
+        title: Notoj de moderigado
       private_comment: Privata komento
       public_comment: Publika komento
       purge: Purigu
@@ -696,7 +704,6 @@ eo:
       resolved_msg: Signalo sukcese solvita!
       skip_to_actions: Salti al agoj
       status: Afiŝo
-      statuses: Raportita enhavo
       statuses_description_html: Sentema enhavo referencitas kun la raportita konto
       summary:
         action_preambles:
@@ -786,17 +793,24 @@ eo:
       title: Roloj
     rules:
       add_new: Aldoni regulon
+      add_translation: Aldoni tradukon
       delete: Forigi
       description_html: Kvankam plej da personoj pretendas legi kaj asenti servkondiĉoj, personoj kutime ne komplete legi. <strong>Uzu mallonga kaj simpla listo.</strong>.
       edit: Redakti la regulon
       empty: Neniuj servilregulojn definitas ĝis nun.
+      move_down: Movi malsupren
+      move_up: Movi supren
       title: Reguloj de la servilo
+      translation: Traduko
+      translations: Tradukoj
     settings:
       about:
         manage_rules: Administri servilregulojn
         preamble: Donu specifan informon pri kiel la servilo operaciitas, administras kaj financitas.
         rules_hint: Havas apartan areon por regulojn kiujn via uzantoj devus sekvi.
         title: Pri
+      allow_referrer_origin:
+        title: Permesi al eksteraj retejoj vidi vian Mastodon-servilon kiel trafikfonton
       appearance:
         preamble: Personecigi retinterfaco de Mastodon.
         title: Aspekto
@@ -815,7 +829,7 @@ eo:
         title: Defaŭltigi, ke uzantoj ne estu aŭtomate aldonitaj al la serĉilo-indekso sen sia konsento
       discovery:
         follow_recommendations: Sekvorekomendoj
-        preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
+        privacy: Privateco
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
         publish_statistics: Publikigi statistikojn
@@ -1068,6 +1082,24 @@ eo:
           other: Uzita de %{count} personoj ekde lasta semajno
       title: Rekomendoj kaj Tendencoj
       trending: Popularaĵoj
+    username_blocks:
+      add_new: Aldoni novan
+      comparison:
+        contains: Enhavas
+        equals: Egalas
+      contains_html: Enhavas %{string}
+      created_msg: Sukcese kreita uzantnomo-regulo
+      delete: Forigi
+      edit:
+        title: Redakti uzantnoman regulon
+      matches_exactly_html: Egalas %{string}
+      new:
+        create: Krei regulon
+        title: Krei novan uzantnoman regulon
+      no_username_block_selected: Neniuj uzantnomaj reguloj estis ŝanĝitaj ĉar neniuj estis elektitaj
+      not_permitted: Ne permesita
+      title: Uzantnomaj reguloj
+      updated_msg: Sukcese ĝisdatigita uzantnoma regulo
     warning_presets:
       add_new: Aldoni novan
       delete: Forigi
@@ -1140,10 +1172,7 @@ eo:
     hint_html: Se vi volas translokiĝi de alia konto al ĉi tie, kreu alinomon. Ĝi estas <strong>sekura kaj inversebla</strong>. <strong>Ĝi komencitas de malnova konto</strong>.
     remove: Malligili alinomon
   appearance:
-    advanced_web_interface: Altnivela retpaĝa interfaco
-    advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara templinio, kaj ajna kvanto de listoj kaj kradvortoj.'
     animations_and_accessibility: Animacioj kaj alirebleco
-    confirmation_dialogs: Konfirmaj fenestroj
     discovery: Eltrovo
     localization:
       body: Mastodon estas tradukita de volontuloj.
@@ -1153,7 +1182,6 @@ eo:
   application_mailer:
     notification_preferences: Ŝanĝi retpoŝtajn preferojn
     salutation: "%{name},"
-    settings: 'Ŝanĝi retpoŝtajn preferojn: %{link}'
     unsubscribe: Malabonu
     view: 'Vidi:'
     view_profile: Vidi profilon
@@ -1290,7 +1318,7 @@ eo:
     warning:
       before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
       caches: Enhavo kiu kaŝmemorigitas de aliaj serviloj eble restas
-      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por eterne
+      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por ĉiam
       email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
       email_contact_html: Se ĝi ankoraŭ ne alvenas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por helpo
       email_reconfirmation_html: Se vi ne ricevas la konfirmretpoŝton, vi povas <a href="%{path}">denove peti</a>
@@ -1332,6 +1360,10 @@ eo:
     basic_information: Baza informo
     hint_html: "<strong>Personigi, kion homoj vidi en via publika profilo kaj apud viaj afiŝoj. </strong> Aliaj homoj estas pli probable resekvi vin kaj interagi kun vi se vi havus finigitan profilon kaj profilan foton."
     other: Alia
+  emoji_styles:
+    auto: Aŭtomata
+    native: Denaska
+    twemoji: Twemoji
   errors:
     '400': La peto kiun vi sendis estas nevalida au malformas.
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
@@ -1371,7 +1403,7 @@ eo:
     add_new: Aldoni novan
     errors:
       limit: Vi jam elstarigis la maksimuman kvanton da kradvortoj
-    hint_html: "<strong>Kio estas la trajtaj kradvortoj?</strong> Ili bone videblas en via publika profilo kaj permesas al homoj trarigardi viajn publikajn mesaĝojn specife laŭ tiuj kradvortoj. Ili estas bonaj iloj por sekvi la evoluon de kreadaj laboroj aŭ longdaŭraj projektoj."
+    hint_html: "<strong>Elstarigu viajn plej gravajn kradvortojn en via profilo.</strong> Bona ilo por sekvi viaj kreaĵoj aŭ longdaŭraj projektoj, elstarigitaj kradvortoj bone videblas en via publika profilo kaj ebligas rapidan aliron al viaj propraj afiŝoj."
   filters:
     contexts:
       account: Profiloj
@@ -1557,21 +1589,6 @@ eo:
     failed_sign_in_html: Malsukcese ensalutprovo per %{method} de %{ip} (%{browser})
     successful_sign_in_html: Sukcese ensaluto per %{method} de %{ip} (%{browser})
     title: Aŭtentiga historio
-  mail_subscriptions:
-    unsubscribe:
-      action: Jes, malabonu
-      complete: Malabonita
-      confirmation_html: Ĉu vi certas, ke vi volas malaboni je ricevi %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}? Vi ĉiam povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
-      emails:
-        notification_emails:
-          favourite: sciigoj retpoŝtaj de ŝatataj
-          follow: sciigoj retpoŝtaj de sekvoj
-          follow_request: retpoŝtajn petoj de sekvado
-          mention: sciigoj retpoŝtaj de mencioj
-          reblog: sciigoj retpoŝtaj de diskonigoj
-      resubscribe_html: Se vi malabonis erare, vi povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
-      success_html: Vi ne plu ricevos %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}.
-      title: Malaboni
   media_attachments:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
@@ -1607,7 +1624,6 @@ eo:
       disabled_account: Via nuna konto ne estos tute uzebla poste.
       followers: Ĉi tiu ago translokigos ĉi tiujn sekvantojn de la nuna konto al la nova konto
       only_redirect_html: Alie, vi povas <a href="%{path}">nur aldoni alidirekton en via profilo</a>.
-      other_data: Neniu alia datumo estos movita aŭtomate
       redirect: Via nuna profilo de konto ĝisdatigotas kun alidirektoavizo
   moderation:
     title: Moderigado
@@ -1643,6 +1659,10 @@ eo:
       title: Nova mencio
     poll:
       subject: Enketo de %{name} finitas
+    quote:
+      body: 'Via afiŝo estis citita de %{name}:'
+      subject: "%{name} citis vian afiŝon"
+      title: Nova citaĵo
     reblog:
       body: 'Via mesaĝo estis diskonigita de %{name}:'
       subject: "%{name} diskonigis vian afiŝon"
@@ -1691,6 +1711,9 @@ eo:
       self_vote: Vi ne povas voĉdoni en viaj propraj balotenketoj
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
+    vote: Voĉdoni
+  posting_defaults:
+    explanation: Ĉi tiuj agordoj estos uzataj kiel defaŭltaj kiam vi kreas novajn afiŝojn, sed vi povas redakti ilin per afiŝo en la redaktilo.
   preferences:
     other: Aliaj aferoj
     posting_defaults: Afiŝaj defaŭltoj
@@ -1853,6 +1876,7 @@ eo:
     edited_at_html: Redaktis je %{date}
     errors:
       in_reply_not_found: Mesaĝo kiun vi provas respondi ŝajnas ne ekzisti.
+      quoted_status_not_found: La afiŝo, kiun vi provas citi, ŝajne ne ekzistas.
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
       direct: Mesaĝoj kiu videbla nun al la uzantoj ne povas alpinglitis
@@ -1860,27 +1884,24 @@ eo:
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
     quote_policies:
-      followers: Sekvantoj kaj menciitaj uzantoj
-      nobody: Nur menciitaj uzantoj
-      public: Ĉiuj
+      followers: Nur sekvantoj
+      nobody: Nur mi
+      public: Iu ajn
     title: "%{name}: “%{quote}”"
     visibilities:
-      direct: Rekta
-      private: Montri nur al sekvantoj
-      private_long: Montri nur al sekvantoj
+      direct: Privada mencio
+      private: Nur sekvantoj
       public: Publika
-      public_long: Ĉiuj povas vidi
-      unlisted: Ne enlistigita
-      unlisted_long: Ĉiuj povas vidi, sed nelistigita en publikaj templinioj
+      public_long: Ĉiujn ajn ĉe kaj ekster Mastodon
+      unlisted: Diskrete publika
+      unlisted_long: Kaŝita de serĉrezultoj, tendencoj kaj publikaj templinioj de Mastodon
   statuses_cleanup:
     enabled: Aŭtomate forigi malnovajn postojn
     enabled_hint: Automate forigi viajn mesaĝojn kiam ili atingas la aĝlimon kaj havas escepton
     exceptions: Esceptoj
-    explanation: Forigi mesaĝojn estas rimeda ago, do ĉi tio malrapide sekve faratas kiam la servilo ne estas okupita.
     ignore_favs: Ignori stelumojn
     ignore_reblogs: Ignori diskonigojn
     interaction_exceptions: Esceptoj lau interagoj
-    interaction_exceptions_explanation: Sciu ke estas neniu garantio ke mesaĝo estos forigita se ĝi iras sub la limo de diskonigoj aŭ stelumoj post atingi ĝin.
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
     keep_media: Konservi afiŝojn kun aŭdovidaj aldonaĵoj
@@ -1916,11 +1937,9 @@ eo:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
   terms_of_service:
     title: Kondiĉoj de uzado
-  themes:
-    contrast: Mastodon (Forta kontrasto)
-    default: Mastodon (Malhela)
-    mastodon-light: Mastodon (Hela)
-    system: Aŭtomata (uzu sisteman temon)
+  terms_of_service_interstitial:
+    past_preamble_html: Ni ŝanĝis niajn servkondiĉojn ekde via lasta vizito. Ni instigas vin revizii la ĝisdatigitajn kondiĉojn.
+    title: La servkondiĉoj de %{domain} ŝanĝiĝas
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"
@@ -2092,4 +2111,4 @@ eo:
     not_enabled: Vi ankoraŭ ne ŝaltis WebAuth
     not_supported: Ĉi tiu legilo ne povas uzi sekurecŝlosilojn
     otp_required: Por uzi sekurecŝlosilojn, ebligu 2-faktoran autentigon unue.
-    registered_on: Registrigita je %{date}
+    registered_on: Registrita je %{date}

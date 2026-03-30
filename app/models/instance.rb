@@ -4,8 +4,8 @@
 #
 # Table name: instances
 #
-#  domain         :string           primary key
 #  accounts_count :bigint(8)
+#  domain         :string           primary key
 #
 
 class Instance < ApplicationRecord
@@ -21,6 +21,7 @@ class Instance < ApplicationRecord
     belongs_to :unavailable_domain
 
     has_many :accounts, dependent: nil
+    has_many :moderation_notes, class_name: 'InstanceModerationNote', dependent: :destroy
   end
 
   scope :searchable, -> { where.not(domain: DomainBlock.select(:domain)) }

@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Suggestions API' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read'
 
   describe 'GET /api/v2/suggestions' do
     let(:bob) { Fabricate(:account) }
@@ -33,6 +30,15 @@ RSpec.describe 'Suggestions API' do
           })
         end
       )
+    end
+
+    context 'when `follow_recommendation` FASP is enabled', feature: :fasp do
+      it 'enqueues a retrieval job and adds a header to inform the client' do
+        get '/api/v2/suggestions', headers: headers
+
+        expect(Fasp::FollowRecommendationWorker).to have_enqueued_sidekiq_job
+        expect(response.headers['Mastodon-Async-Refresh']).to be_present
+      end
     end
   end
 end

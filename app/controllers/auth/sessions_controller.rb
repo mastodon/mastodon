@@ -12,6 +12,8 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
 
+  around_action :preserve_stored_location, only: :destroy, if: :continue_after?
+
   prepend_before_action :check_suspicious!, only: [:create]
 
   include Auth::TwoFactorAuthenticationConcern
@@ -31,28 +33,9 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    tmp_stored_location = stored_location_for(:user)
     super
     session.delete(:challenge_passed_at)
     flash.delete(:notice)
-    store_location_for(:user, tmp_stored_location) if continue_after?
-  end
-
-  def webauthn_options
-    user = User.find_by(id: session[:attempt_user_id])
-
-    if user&.webauthn_enabled?
-      options_for_get = WebAuthn::Credential.options_for_get(
-        allow: user.webauthn_credentials.pluck(:external_id),
-        user_verification: 'discouraged'
-      )
-
-      session[:webauthn_challenge] = options_for_get.challenge
-
-      render json: options_for_get, status: 200
-    else
-      render json: { error: t('webauthn_credentials.not_enabled') }, status: 401
-    end
   end
 
   protected
@@ -95,6 +78,12 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   private
+
+  def preserve_stored_location
+    original_stored_location = stored_location_for(:user)
+    yield
+    store_location_for(:user, original_stored_location)
+  end
 
   def check_suspicious!
     user = find_user
@@ -151,12 +140,11 @@ class Auth::SessionsController < Devise::SessionsController
     sign_in(user)
     flash.delete(:notice)
 
-    LoginActivity.create(
-      user: user,
-      success: true,
-      authentication_method: security_measure,
-      ip: request.remote_ip,
-      user_agent: request.user_agent
+    user.login_activities.create(
+      request_details.merge(
+        authentication_method: security_measure,
+        success: true
+      )
     )
 
     UserMailer.suspicious_sign_in(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later! if @login_is_suspicious
@@ -167,13 +155,12 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def on_authentication_failure(user, security_measure, failure_reason)
-    LoginActivity.create(
-      user: user,
-      success: false,
-      authentication_method: security_measure,
-      failure_reason: failure_reason,
-      ip: request.remote_ip,
-      user_agent: request.user_agent
+    user.login_activities.create(
+      request_details.merge(
+        authentication_method: security_measure,
+        failure_reason: failure_reason,
+        success: false
+      )
     )
 
     # Only send a notification email every hour at most
@@ -182,18 +169,25 @@ class Auth::SessionsController < Devise::SessionsController
     UserMailer.failed_2fa(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later!
   end
 
+  def request_details
+    {
+      ip: request.remote_ip,
+      user_agent: request.user_agent,
+    }
+  end
+
   def second_factor_attempts_key(user)
     "2fa_auth_attempts:#{user.id}:#{Time.now.utc.hour}"
   end
 
-  def respond_to_on_destroy
+  def respond_to_on_destroy(**)
     respond_to do |format|
       format.json do
         render json: {
           redirect_to: after_sign_out_path_for(resource_name),
         }, status: 200
       end
-      format.all { super }
+      format.all { super(**) }
     end
   end
 end

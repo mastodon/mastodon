@@ -46,12 +46,12 @@ class EmojiFormatter
 
         if inside_shortname && text[i] == ':'
           inside_shortname = false
-          shortcode = text[shortname_start_index + 1..i - 1]
+          shortcode = text[(shortname_start_index + 1)..(i - 1)]
           char_after = text[i + 1]
 
           next unless (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
 
-          result << tree.document.create_text_node(text[last_index..shortname_start_index - 1]) if shortname_start_index.positive?
+          result << tree.document.create_text_node(text[last_index..(shortname_start_index - 1)]) if shortname_start_index.positive?
           result << tree.document.fragment(tag_for_emoji(shortcode, emoji))
 
           last_index = i + 1
@@ -71,7 +71,7 @@ class EmojiFormatter
   private
 
   def emoji_map
-    @emoji_map ||= custom_emojis.each_with_object({}) { |e, h| h[e.shortcode] = [full_asset_url(e.image.url), full_asset_url(e.image.url(:static))] }
+    @emoji_map ||= custom_emojis.to_h { |e| [e.shortcode, [full_asset_url(e.image.url), full_asset_url(e.image.url(:static))]] }
   end
 
   def tag_for_emoji(shortcode, emoji)

@@ -16,15 +16,23 @@ import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
+import { remoteTopicFeedAccess, me, localTopicFeedAccess } from 'mastodon/initial_state';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import { HashtagHeader } from './components/hashtag_header';
 import ColumnSettingsContainer from './containers/column_settings_container';
 
-const mapStateToProps = (state, props) => ({
-  hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}${props.params.local ? ':local' : ''}`, 'unread']) > 0,
-});
+const mapStateToProps = (state, props) => {
+  const local = props.params.local || (!me && remoteTopicFeedAccess !== 'public');
+  const hasFeedAccess = !!me || localTopicFeedAccess === 'public';
+
+  return ({
+    local,
+    hasFeedAccess,
+    hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}${local ? ':local' : ''}`, 'unread']) > 0,
+  });
+};
 
 class HashtagTimeline extends PureComponent {
   disconnects = [];
@@ -113,19 +121,21 @@ class HashtagTimeline extends PureComponent {
   }
 
   _unload () {
-    const { dispatch } = this.props;
-    const { id, local } = this.props.params;
+    const { dispatch, local } = this.props;
+    const { id } = this.props.params;
 
     this._unsubscribe();
     dispatch(clearTimeline(`hashtag:${id}${local ? ':local' : ''}`));
   }
 
   _load() {
-    const { dispatch } = this.props;
-    const { id, tags, local } = this.props.params;
+    const { dispatch, local, hasFeedAccess } = this.props;
+    const { id, tags } = this.props.params;
 
-    this._subscribe(dispatch, id, tags, local);
-    dispatch(expandHashtagTimeline(id, { tags, local }));
+    if (hasFeedAccess) {
+      this._subscribe(dispatch, id, tags, local);
+      dispatch(expandHashtagTimeline(id, { tags, local }));
+    }
   }
 
   componentDidMount () {
@@ -133,10 +143,10 @@ class HashtagTimeline extends PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    const { params } = this.props;
-    const { id, tags, local } = prevProps.params;
+    const { params, local } = this.props;
+    const { id, tags } = prevProps.params;
 
-    if (id !== params.id || !isEqual(tags, params.tags) || !isEqual(local, params.local)) {
+    if (id !== params.id || !isEqual(tags, params.tags) || !isEqual(local, prevProps.local)) {
       this._unload();
       this._load();
     }
@@ -151,15 +161,15 @@ class HashtagTimeline extends PureComponent {
   };
 
   handleLoadMore = maxId => {
-    const { dispatch, params } = this.props;
-    const { id, tags, local }  = params;
+    const { dispatch, params, local } = this.props;
+    const { id, tags }  = params;
 
     dispatch(expandHashtagTimeline(id, { maxId, tags, local }));
   };
 
   render () {
-    const { hasUnread, columnId, multiColumn } = this.props;
-    const { id, local } = this.props.params;
+    const { hasUnread, columnId, multiColumn, local, hasFeedAccess } = this.props;
+    const { id } = this.props.params;
     const pinned = !!columnId;
 
     return (
@@ -186,7 +196,20 @@ class HashtagTimeline extends PureComponent {
           scrollKey={`hashtag_timeline-${columnId}`}
           timelineId={`hashtag:${id}${local ? ':local' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
+          initialLoadingState={hasFeedAccess}
+          emptyMessage={
+            hasFeedAccess ? (
+              <FormattedMessage
+                id='empty_column.hashtag'
+                defaultMessage='There is nothing in this hashtag yet.'
+              />
+            ) : (
+              <FormattedMessage
+                id='error.no_hashtag_feed_access'
+                defaultMessage='Join or log in to view and follow this hashtag.'
+              />
+            )
+          }
           bindToDocument={!multiColumn}
         />
 

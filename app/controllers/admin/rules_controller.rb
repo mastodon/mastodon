@@ -17,6 +17,9 @@ module Admin
 
     def edit
       authorize @rule, :update?
+
+      missing_languages = RuleTranslation.languages - @rule.translations.pluck(:language)
+      missing_languages.each { |lang| @rule.translations.build(language: lang) }
     end
 
     def create

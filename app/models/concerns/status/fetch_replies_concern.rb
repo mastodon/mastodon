@@ -3,12 +3,11 @@
 module Status::FetchRepliesConcern
   extend ActiveSupport::Concern
 
-  # enable/disable fetching all replies
-  FETCH_REPLIES_ENABLED = ENV['FETCH_REPLIES_ENABLED'] == 'true'
-
   # debounce fetching all replies to minimize DoS
-  FETCH_REPLIES_COOLDOWN_MINUTES = (ENV['FETCH_REPLIES_COOLDOWN_MINUTES'] || 15).to_i.minutes
-  FETCH_REPLIES_INITIAL_WAIT_MINUTES = (ENV['FETCH_REPLIES_INITIAL_WAIT_MINUTES'] || 5).to_i.minutes
+  # Period to wait between fetching replies
+  FETCH_REPLIES_COOLDOWN_MINUTES = 15.minutes
+  # Period to wait after a post is first created before fetching its replies
+  FETCH_REPLIES_INITIAL_WAIT_MINUTES = 5.minutes
 
   included do
     scope :created_recently, -> { where(created_at: FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago..) }
@@ -36,7 +35,7 @@ module Status::FetchRepliesConcern
 
   def should_fetch_replies?
     # we aren't brand new, and we haven't fetched replies since the debounce window
-    FETCH_REPLIES_ENABLED && !local? && created_at <= FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago && (
+    !local? && distributable? && created_at <= FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago && (
       fetched_replies_at.nil? || fetched_replies_at <= FETCH_REPLIES_COOLDOWN_MINUTES.ago
     )
   end

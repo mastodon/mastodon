@@ -25,6 +25,11 @@
     = form.input :highlighted,
                  wrapper: :with_label
 
+  - if current_user.role.administrator? || current_user.role != form.object
+    .fields-group
+      = form.input :require_2fa,
+                   wrapper: :with_label
+
   %hr.spacer/
 
 - unless current_user.role == form.object
@@ -35,7 +40,7 @@
       %span.hint= t('simple_form.hints.user_role.permissions_as_keys')
 
     - (form.object.everyone? ? UserRole::Flags::CATEGORIES.slice(:invites) : UserRole::Flags::CATEGORIES).each do |category, permissions|
-      %h4= t(category, scope: 'admin.roles.categories')
+      %h2= t(category, scope: 'admin.roles.categories')
 
       = form.input :permissions_as_keys,
                    as: :check_boxes,

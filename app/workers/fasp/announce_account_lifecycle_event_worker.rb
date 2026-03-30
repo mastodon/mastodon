@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class Fasp::AnnounceAccountLifecycleEventWorker
-  include Sidekiq::Worker
-
-  sidekiq_options queue: 'fasp', retry: 5
+class Fasp::AnnounceAccountLifecycleEventWorker < Fasp::BaseWorker
+  sidekiq_options retry: 5
 
   def perform(uri, event_type)
     Fasp::Subscription.includes(:fasp_provider).category_account.lifecycle.each do |subscription|
-      announce(subscription, uri, event_type)
+      with_provider(subscription.fasp_provider) do
+        announce(subscription, uri, event_type)
+      end
     end
   end
 

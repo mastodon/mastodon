@@ -5,6 +5,15 @@ module Admin
     def index
       authorize :custom_emoji, :index?
 
+      # If filtering by local emojis, remove by_domain filter.
+      params.delete(:by_domain) if params[:local].present?
+
+      # If filtering by domain, ensure remote filter is set.
+      if params[:by_domain].present?
+        params.delete(:local)
+        params[:remote] = '1'
+      end
+
       @custom_emojis = filtered_custom_emojis.eager_load(:local_counterpart).page(params[:page])
       @form          = Form::CustomEmojiBatch.new
     end

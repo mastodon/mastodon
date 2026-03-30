@@ -21,7 +21,7 @@ import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadMore } from 'mastodon/components/load_more';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
-import ScrollContainer from 'mastodon/containers/scroll_container';
+import { ScrollContainer } from 'mastodon/containers/scroll_container';
 import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -82,6 +82,9 @@ export const Directory: React.FC<{
   const isLoading = useAppSelector(
     (state) =>
       state.user_lists.getIn(['directory', 'isLoading'], true) as boolean,
+  );
+  const hasMore = useAppSelector(
+    (state) => !!state.user_lists.getIn(['directory', 'next']),
   );
 
   useEffect(() => {
@@ -182,7 +185,7 @@ export const Directory: React.FC<{
 
       <LoadMore
         onClick={handleLoadMore}
-        visible={!initialLoad}
+        visible={!initialLoad && hasMore}
         loading={isLoading}
       />
     </div>
@@ -206,7 +209,6 @@ export const Directory: React.FC<{
       />
 
       {multiColumn && !pinned ? (
-        // @ts-expect-error ScrollContainer is not properly typed yet
         <ScrollContainer scrollKey='directory'>
           {scrollableArea}
         </ScrollContainer>

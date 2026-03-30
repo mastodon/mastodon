@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -10,13 +10,12 @@ import { connect } from 'react-redux';
 
 import CampaignIcon from '@/material-icons/400-24px/campaign.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
+import { injectIntl } from '@/mastodon/components/intl';
 import { SymbolLogo } from 'mastodon/components/logo';
 import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/announcements';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
-import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { criticalUpdatesPending } from 'mastodon/initial_state';
 import { withBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
@@ -27,6 +26,8 @@ import StatusListContainer from '../ui/containers/status_list_container';
 
 import { ColumnSettings } from './components/column_settings';
 import { CriticalUpdateBanner } from './components/critical_update_banner';
+import { Announcements } from './components/announcements';
+import { AnnualReportTimeline } from '../annual_report/timeline';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -127,7 +128,10 @@ class HomeTimeline extends PureComponent {
     const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements, matchesBreakpoint } = this.props;
     const pinned = !!columnId;
     const { signedIn } = this.props.identity;
-    const banners = [];
+    const banners = [
+      <CriticalUpdateBanner key='critical-update-banner' />,
+      <AnnualReportTimeline key='annual-report' />
+    ];
 
     let announcementsButton;
 
@@ -145,10 +149,6 @@ class HomeTimeline extends PureComponent {
       );
     }
 
-    if (criticalUpdatesPending) {
-      banners.push(<CriticalUpdateBanner key='critical-update-banner' />);
-    }
-
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
@@ -162,7 +162,7 @@ class HomeTimeline extends PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           extraButton={announcementsButton}
-          appendContent={hasAnnouncements && showAnnouncements && <AnnouncementsContainer />}
+          appendContent={hasAnnouncements && showAnnouncements && <Announcements />}
         >
           <ColumnSettings />
         </ColumnHeader>

@@ -1,0 +1,51 @@
+.radioButton {
+  --size: 16px;
+  --border-width: calc(var(--size) / 4);
+
+  appearance: none;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  margin: 0;
+  width: var(--size);
+  height: var(--size);
+  vertical-align: top;
+  border-radius: 100%;
+  border: var(--border-width) solid transparent;
+  box-shadow: 0 0 0 1px var(--color-border-primary);
+  background-color: var(--color-bg-primary);
+  transition: 0.15s ease-out;
+  transition-property: border-color;
+  cursor: pointer;
+
+  /* Increase clickable area, prevents misclicks and covers gap between control and label */
+  &::after {
+    content: '';
+    position: absolute;
+
+    --spread: calc(var(--border-width) + var(--form-field-label-gap, 8px));
+
+    inset-inline: calc(-1 * var(--spread));
+    inset-block: calc(-0.75 * var(--spread));
+  }
+
+  &:disabled {
+    background: var(--color-bg-tertiary);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  &:checked {
+    border-color: var(--color-bg-brand-base);
+    box-shadow: none;
+
+    &:disabled {
+      border-color: var(--color-text-disabled);
+    }
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: 2px;
+  }
+}

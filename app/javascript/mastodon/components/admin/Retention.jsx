@@ -145,7 +145,7 @@ export default class Retention extends PureComponent {
 
     return (
       <div className='retention'>
-        <h4>{title}</h4>
+        <h2>{title}</h2>
 
         {content}
       </div>

@@ -3,8 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  it_behaves_like 'Account::Search'
   it_behaves_like 'Reviewable'
+
+  describe 'Associations' do
+    it { is_expected.to have_many(:account_notes).inverse_of(:account) }
+    it { is_expected.to have_many(:action_logs).class_name('Admin::ActionLog') }
+    it { is_expected.to have_many(:targeted_account_notes).inverse_of(:target_account) }
+  end
 
   context 'with an account record' do
     subject { Fabricate(:account) }
@@ -386,36 +391,6 @@ RSpec.describe Account do
     end
   end
 
-  describe '.following_map' do
-    it 'returns an hash' do
-      expect(described_class.following_map([], 1)).to be_a Hash
-    end
-  end
-
-  describe '.followed_by_map' do
-    it 'returns an hash' do
-      expect(described_class.followed_by_map([], 1)).to be_a Hash
-    end
-  end
-
-  describe '.blocking_map' do
-    it 'returns an hash' do
-      expect(described_class.blocking_map([], 1)).to be_a Hash
-    end
-  end
-
-  describe '.requested_map' do
-    it 'returns an hash' do
-      expect(described_class.requested_map([], 1)).to be_a Hash
-    end
-  end
-
-  describe '.requested_by_map' do
-    it 'returns an hash' do
-      expect(described_class.requested_by_map([], 1)).to be_a Hash
-    end
-  end
-
   describe 'MENTION_RE' do
     subject { described_class::MENTION_RE }
 
@@ -536,6 +511,8 @@ RSpec.describe Account do
     context 'when account is local' do
       subject { Fabricate.build :account, domain: nil }
 
+      let(:domains_limit) { described_class::ATTRIBUTION_DOMAINS_LIMIT }
+
       context 'with an existing differently-cased username account' do
         before { Fabricate :account, username: 'the_doctor' }
 
@@ -569,16 +546,13 @@ RSpec.describe Account do
 
       it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
-      it { is_expected.to allow_value(fields_empty_name_value).for(:fields) }
-      it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
-
       it { is_expected.to validate_absence_of(:followers_url).on(:create) }
       it { is_expected.to validate_absence_of(:inbox_url).on(:create) }
       it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
       it { is_expected.to validate_absence_of(:uri).on(:create) }
 
-      it { is_expected.to allow_values([], ['example.com'], (1..100).to_a).for(:attribution_domains) }
-      it { is_expected.to_not allow_values(['example com'], ['@'], (1..101).to_a).for(:attribution_domains) }
+      it { is_expected.to allow_values([], ['example.com'], (1..domains_limit).to_a).for(:attribution_domains) }
+      it { is_expected.to_not allow_values(['example com'], ['@'], (1..(domains_limit + 1)).to_a).for(:attribution_domains) }
     end
 
     context 'when account is remote' do
@@ -591,6 +565,8 @@ RSpec.describe Account do
 
         it { is_expected.to_not allow_values('username', 'Username').for(:username) }
       end
+
+      it { is_expected.to validate_length_of(:username).is_at_most(described_class::USERNAME_LENGTH_HARD_LIMIT) }
 
       it { is_expected.to allow_values('the-doctor', username_over_limit).for(:username) }
       it { is_expected.to_not allow_values('the doctor').for(:username) }
@@ -610,18 +586,6 @@ RSpec.describe Account do
 
     def account_note_over_limit
       'a' * described_class::NOTE_LENGTH_LIMIT * 2
-    end
-
-    def fields_empty_name_value
-      Array.new(4) { { 'name' => '', 'value' => '' } }
-    end
-
-    def fields_over_limit
-      Array.new(described_class::DEFAULT_FIELDS_SIZE + 1) { { 'name' => 'Name', 'value' => 'Value', 'verified_at' => '01/01/1970' } }
-    end
-
-    def fields_empty_name
-      [{ 'name' => '', 'value' => 'Value', 'verified_at' => '01/01/1970' }]
     end
   end
 
@@ -667,19 +631,6 @@ RSpec.describe Account do
         expect(results)
           .to include(alice)
           .and not_include(bob)
-      end
-    end
-
-    describe 'alphabetic' do
-      it 'sorts by alphabetic order of domain and username' do
-        matches = [
-          { username: 'a', domain: 'a' },
-          { username: 'b', domain: 'a' },
-          { username: 'a', domain: 'b' },
-          { username: 'b', domain: 'b' },
-        ].map(&method(:Fabricate).curry(2).call(:account))
-
-        expect(described_class.without_internal.alphabetic).to eq matches
       end
     end
 
@@ -806,9 +757,6 @@ RSpec.describe Account do
     end
   end
 
-  it_behaves_like 'AccountAvatar', :account
-  it_behaves_like 'AccountHeader', :account
-
   describe '#increment_count!' do
     subject { Fabricate(:account) }
 
@@ -820,6 +768,59 @@ RSpec.describe Account do
       end
 
       expect(subject.reload.followers_count).to eq 15
+    end
+  end
+
+  describe '#featureable_by?' do
+    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:, feature_approval_policy:) }
+
+    let(:local_account) { Fabricate(:account) }
+
+    context 'when account is local' do
+      let(:local) { true }
+      let(:feature_approval_policy) { nil }
+
+      context 'when account is discoverable' do
+        let(:discoverable) { true }
+
+        it 'returns `true`' do
+          expect(subject.featureable_by?(local_account)).to be true
+        end
+      end
+
+      context 'when account is not discoverable' do
+        let(:discoverable) { false }
+
+        it 'returns `false`' do
+          expect(subject.featureable_by?(local_account)).to be false
+        end
+      end
+    end
+
+    context 'when account is remote' do
+      let(:local) { false }
+      let(:discoverable) { true }
+      let(:feature_approval_policy) { (0b10 << 16) | 0 }
+
+      it 'returns `false`' do
+        expect(subject.featureable_by?(local_account)).to be false
+      end
+
+      context 'when collections federation is enabled', feature: :collections_federation do
+        context 'when the policy allows it' do
+          it 'returns `true`' do
+            expect(subject.featureable_by?(local_account)).to be true
+          end
+        end
+
+        context 'when the policy forbids it' do
+          let(:feature_approval_policy) { 0 }
+
+          it 'returns `false`' do
+            expect(subject.featureable_by?(local_account)).to be false
+          end
+        end
+      end
     end
   end
 end

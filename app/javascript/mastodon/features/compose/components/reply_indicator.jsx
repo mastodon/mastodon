@@ -25,7 +25,7 @@ export const ReplyIndicator = () => {
       <div className='reply-indicator__line' />
 
       <Link to={`/@${account.get('acct')}`} className='detailed-status__display-avatar'>
-        <Avatar account={account} size={46} />
+        <Avatar key={`avatar-${account.get('id')}`} account={account} size={46} />
       </Link>
 
       <div className='reply-indicator__main'>
@@ -35,9 +35,7 @@ export const ReplyIndicator = () => {
 
         <EmbeddedStatusContent
           className='reply-indicator__content translate'
-          content={status.get('contentHtml')}
-          language={status.get('language')}
-          mentions={status.get('mentions')}
+          status={status}
         />
 
         {(status.get('poll') || status.get('media_attachments').size > 0) && (

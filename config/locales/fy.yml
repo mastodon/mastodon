@@ -10,7 +10,6 @@ fy:
     followers:
       one: Folger
       other: Folgers
-    following: Folgjend
     instance_actor_flash: Dizze account is in ‘virtual actor’ wêrmei’t de server himsels fertsjinwurdiget en is dus gjin yndividuele brûker. It wurdt foar federaasjedoeleinen brûkt en moat net útsteld wurde.
     last_active: lêst warber
     link_verified_on: Eigendom fan dizze keppeling is kontrolearre op %{date}
@@ -190,6 +189,7 @@ fy:
         create_relay: Relay oanmeitsje
         create_unavailable_domain: Net beskikber domein oanmeitsje
         create_user_role: Rol oanmeitsje
+        create_username_block: Brûkersnammeregel oanmeitsje
         demote_user: Brûker degradearje
         destroy_announcement: Meidieling fuortsmite
         destroy_canonical_email_block: E-mailblokkade fuortsmite
@@ -203,6 +203,7 @@ fy:
         destroy_status: Toot fuortsmite
         destroy_unavailable_domain: Net beskikber domein fuortsmite
         destroy_user_role: Rol permanint fuortsmite
+        destroy_username_block: Brûkersnammeregel fuortsmite
         disable_2fa_user: Twa-stapsferifikaasje útskeakelje
         disable_custom_emoji: Lokale emoji útskeakelje
         disable_relay: Relay útskeakelje
@@ -237,6 +238,7 @@ fy:
         update_report: Rapportaazje bywurkje
         update_status: Berjocht bywurkje
         update_user_role: Rol bywurkje
+        update_username_block: Brûkersnammeregel bywurkje
       actions:
         approve_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} goedkard"
         approve_user_html: "%{name} hat de registraasje fan %{target} goedkard"
@@ -255,6 +257,7 @@ fy:
         create_relay_html: "%{name} hat in relay oanmakke %{target}"
         create_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} beëinige"
         create_user_role_html: "%{name} hat de rol %{target} oanmakke"
+        create_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} tafoege"
         demote_user_html: Brûker %{target} is troch %{name} degradearre
         destroy_announcement_html: "%{name} hat de meidieling %{target} fuortsmiten"
         destroy_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} deblokkearre"
@@ -268,6 +271,7 @@ fy:
         destroy_status_html: Berjocht fan %{target} is troch %{name} fuortsmiten
         destroy_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} opnij starte"
         destroy_user_role_html: "%{name} hat de rol %{target} fuortsmiten"
+        destroy_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} fuortsmiten"
         disable_2fa_user_html: De fereaske twa-stapsferifikaasje foar %{target} is troch %{name} útskeakele
         disable_custom_emoji_html: Emoji %{target} is troch %{name} útskeakele
         disable_relay_html: "%{name} hat de relay %{target} útskeakele"
@@ -302,6 +306,7 @@ fy:
         update_report_html: Rapportaazje %{target} is troch %{name} bywurke
         update_status_html: "%{name} hat de berjochten %{target} bywurke"
         update_user_role_html: "%{name} hat de rol %{target} wizige"
+        update_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} bywurke"
       deleted_account: fuortsmiten account
       empty: Gjin lochboeken fûn.
       filter_by_action: Op aksje filterje
@@ -578,6 +583,13 @@ fy:
         all: Alle
         limited: Beheind
         title: Moderaasje
+      moderation_notes:
+        create: Moderaasje-opmerking oanmeitsje
+        created_msg: Oanmeitsjen fan servermoderaasje-opmerking slagge!
+        description_html: Opmerkingen besjen en foar josele en oare moderatoaren efterlitte
+        destroyed_msg: Fuortsmiten fan servermoderaasje-opmerking slagge!
+        placeholder: Ynformaasje oer dizze server, nommen aksjes of wat oars dy’t jo helpe kinne om dizze server yn de takomst te moderearjen.
+        title: Moderaasje-opmerkingen
       private_comment: Priveeopmerking
       public_comment: Iepenbiere opmerking
       purge: Folslein fuortsmite
@@ -696,7 +708,6 @@ fy:
       resolved_msg: Rapportaazje oplosse slagge!
       skip_to_actions: Gean daliks nei de maatregels
       status: Steat
-      statuses: Rapportearre ynhâld
       statuses_description_html: De problematyske ynhâld wurdt oan it rapportearre account meidield
       summary:
         action_preambles:
@@ -786,17 +797,26 @@ fy:
       title: Rollen
     rules:
       add_new: Rigel tafoegje
+      add_translation: Oersetting tafoegje
       delete: Fuortsmite
       description_html: Hoewol de measte minsken sizze dat se de brûksbetingsten lêzen hawwe en der mei akkoard gean, lêze minsken dizze meastentiids net oant dat der in probleem bard. <strong>Meitsje it ienfâldiger om de regels fan dizze server yn ien eachwink te sjen, troch se punt foar punt yn in list te setten.</strong> Probearje de ferskate regels koart en simpel te hâlden, mar probearje se ek net yn ferskate items ûnder te ferdielen.
       edit: Rigel bewurkje
       empty: Foar dizze server binne noch gjin regels opsteld.
+      move_down: Omleech ferpleatse
+      move_up: Omheech ferpleatse
       title: Serverrigels
+      translation: Oersetting
+      translations: Oersettingen
+      translations_explanation: Jo kinne eventueel oersettingen tafoegje foar de regels. De standertwearde wurdt toand as der gjin oerstte ferzje beskikber is. Soargje der altyd foar dat oanfoljende oersettingen bywurke bliuwe.
     settings:
       about:
         manage_rules: Serverregels beheare
         preamble: Jou wiidweidige ynformaasje oer hoe’t de server beheard, modereare en finansiere wurdt.
         rules_hint: Der is in spesjaal gebied foar regels wêr’t jo brûkers harren oan hâlde moatte.
         title: Oer
+      allow_referrer_origin:
+        desc: Wannear’t jo brûkers op koppelingen nei eksterne websites klikke, kin harren browser it adres fan jo Mastodon-server as de referrer ferstjoere. Skeakelje dit út as dit jo brûkers unyk identifisearje soe, bygelyks as dit in persoanlike Mastodon-server is.
+        title: Eksterne websites tastean om jo Mastodon-server as de boarne te sjen
       appearance:
         preamble: Mastodon’s webomjouwing oanpasse.
         title: Werjefte
@@ -815,7 +835,7 @@ fy:
         title: Brûkers standert net troch sykmasinen yndeksearje litte
       discovery:
         follow_recommendations: Oanrekommandearre accounts
-        preamble: It toanen fan ynteressante ynhâld is fan essinsjeel belang foar it oan board heljen fan nije brûkers dy’t mooglik net ien fan Mastodon kinne. Bepaal hoe’t ferskate funksjes foar it ûntdekken fan ynhâld en brûkers op jo server wurkje.
+        privacy: Privacy
         profile_directory: Profylmap
         public_timelines: Iepenbiere tiidlinen
         publish_statistics: Statistiken publisearje
@@ -1068,6 +1088,25 @@ fy:
           other: Dizze wike troch %{count} persoanen brûkt
       title: Oanrekommandaasjes & trends
       trending: Trending
+    username_blocks:
+      add_new: Nije tafoegje
+      block_registrations: Registraasjes blokkearje
+      comparison:
+        contains: Befettet
+        equals: Is lyk oan
+      contains_html: Befettet %{string}
+      created_msg: Brûkersnammeregel mei sukses oanmakke
+      delete: Fuortsmite
+      edit:
+        title: Brûkersnammeregel bywurkje
+      matches_exactly_html: Is lyk oan %{string}
+      new:
+        create: Regel oanmeitsje
+        title: Brûkersnammeregel oanmeitsje
+      no_username_block_selected: Der binne gjin brûkersnammeregels wizige, omdat der gjin ien selektearre waard
+      not_permitted: Net tastien
+      title: Brûkersnammeregels
+      updated_msg: Brûkersnammeregel mei sukses bywurke
     warning_presets:
       add_new: Nije tafoegje
       delete: Fuortsmite
@@ -1140,10 +1179,7 @@ fy:
     hint_html: Wannear’t jo fan in oare account ôf nei dizze account ferhúzje wolle, kinne jo hjir in alias oanmeitsje. Dit is nedich eardat jo troch gean kinne mei it ferhúzjen fan folgers fan de âlde nei dizze nije account. Dizze aksje is op eins <strong>net gefaarlik en omkearber</strong>. <strong>De accountmigraasje wurdt start fan de âlde account ôf</strong>.
     remove: Alias ûntkeppelje
   appearance:
-    advanced_web_interface: Avansearre webomjouwing
-    advanced_web_interface_hint: 'Wannear’t jo fan de hiele skermbreedte gebrûk meitsje wolle, stelt de avansearre webomjouwing jo yn steat om meardere ferskate kolommen te konfigurearjen. Hjirmei kinne jo safolle mooglik ynformaasje op itselde momint besjen, lykas: Start, meldingen, de globale tiidline, meardere listen en hashtags.'
     animations_and_accessibility: Animaasjes en tagonklikheid
-    confirmation_dialogs: Befêstigingen
     discovery: Untdekke
     localization:
       body: Mastodon wurdt troch frijwilligers oerset.
@@ -1153,7 +1189,6 @@ fy:
   application_mailer:
     notification_preferences: E-mailynstellingen wizigje
     salutation: "%{name},"
-    settings: 'E-mailfoarkarren wizigje: %{link}'
     unsubscribe: Ofmelde
     view: 'Besjoch:'
     view_profile: Profyl besjen
@@ -1332,6 +1367,10 @@ fy:
     basic_information: Algemiene ynformaasje
     hint_html: "<strong>Pas oan wat minsken op jo iepenbiere profyl en njonken jo berjochten sjogge.</strong> Oare minsken sille jo earder folgje en mei jo kommunisearje wannear’t jo profyl ynfolle is en jo in profylfoto hawwe."
     other: Oars
+  emoji_styles:
+    auto: Automatysk
+    native: Systeemeigen
+    twemoji: Twemoji
   errors:
     '400': De oanfraach dy’t jo yntsjinne hawwe wie ûnjildich of fout.
     '403': Jo hawwe gjin tastimming om dizze side te besjen.
@@ -1555,21 +1594,6 @@ fy:
     failed_sign_in_html: Mislearre oanmeldbesykjen mei %{method} fan %{ip} (%{browser})
     successful_sign_in_html: Mei sukses oanmeld mei %{method} fan %{ip} (%{browser})
     title: Oanmeldskiednis
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, ôfmelde
-      complete: Ofmelden
-      confirmation_html: Binne jo wis dat jo jo ôfmelde wolle foar it ûntfangen fan %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}? Jo kinne jo altyd opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      emails:
-        notification_emails:
-          favourite: e-mailmeldingen foar favoriten
-          follow: e-mailmeldingen foar nije folgers
-          follow_request: e-mailmeldingen foar folchfersiken
-          mention: e-mailmeldingen foar fermeldingen
-          reblog: e-mailmeldingen foar boosts
-      resubscribe_html: As jo jo mei fersin ôfmeld hawwe, kinne jo jo opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      success_html: Jo ûntfange net langer %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}.
-      title: Ofmelde
   media_attachments:
     validations:
       images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde
@@ -1605,7 +1629,6 @@ fy:
       disabled_account: Jo aktuele account is hjirnei net mear folslein brûkber. Jo hawwe echter wol tagong ta it eksportearjen fan jo gegevens en ta it opnij aktivearjen fan jo account.
       followers: Dizze aksje ferhuzet alle folgers fan de aktuele account ôf nei de nije account
       only_redirect_html: Jo kinne as alternatyf ek <a href="%{path}">allinnich de trochferwizing op jo profyl sette</a>.
-      other_data: Oare gegevens wurde net automatysk ferhuze
       redirect: Jo aktuele accountprofyl wurdt bywurke mei in trochferwizingsmelding en wurdt útsluten fan sykresultaten
   moderation:
     title: Moderaasje
@@ -1851,6 +1874,7 @@ fy:
     edited_at_html: Bewurke op %{date}
     errors:
       in_reply_not_found: It berjocht wêrop jo probearje te reagearjen liket net te bestean.
+      quoted_status_not_found: It berjocht dy’t jo probearje te sitearjen liket net te bestean.
     over_character_limit: Oer de limyt fan %{max} tekens
     pin_errors:
       direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
@@ -1859,22 +1883,14 @@ fy:
       reblog: In boost kin net fêstset wurde
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direkt
-      private: Allinnich folgers
-      private_long: Allinnich oan jo folgers toane
       public: Iepenbier
-      public_long: Elkenien kin it sjen
-      unlisted: Minder iepenbier
-      unlisted_long: Elkenien kin it sjen, mar net op iepenbiere tiidlinen
   statuses_cleanup:
     enabled: Automatysk âlde berjochten fuortsmite
     enabled_hint: Smyt jo berjochten automatysk fuort sa gau as se in bepaalde leeftiidsgrins berikke, útsein se oerienkomme mei ien fan de ûndersteande útsûnderingen
     exceptions: Utsûnderingen
-    explanation: Trochdat it fuortsmiten fan berjochten de server swier belêst, bart dit stadich op mominten dat de server net dwaande is. Om dizze reden kinne jo berjochten in amerijke neidat se de leeftiidsgrins berikt hawwe fuortsmiten wurde.
     ignore_favs: Favoriten negearje
     ignore_reblogs: Boosts negearje
     interaction_exceptions: Utsûnderingen op basis fan ynteraksjes
-    interaction_exceptions_explanation: Merk op dat der gjin garânsje is dat berjochten fuortsmiten wurde, wannear’t ien kear it tal favoriten of boosts boppe de ynstelde grinswearde west binne.
     keep_direct: Direkte berjochten behâlde
     keep_direct_hint: Smyt gjin inkeld direkt berjocht fan jo fuort
     keep_media: Berjochten mei mediabylagen behâlde
@@ -1910,11 +1926,11 @@ fy:
     does_not_match_previous_name: komt net oerien mei de foarige namme
   terms_of_service:
     title: Gebrûksbetingsten
-  themes:
-    contrast: Mastodon (heech kontrast)
-    default: Mastodon (donker)
-    mastodon-light: Mastodon (ljocht)
-    system: Automatysk (systeemtema brûke)
+  terms_of_service_interstitial:
+    future_preamble_html: Wy bringe inkelde wizigingen oan yn ús gebrûksbetingsten, dy’t fan krêft wurde op <strong>%{date}</strong>. Wy rekommandearje jo oan om de bywurke betingsten troch te nimmen.
+    past_preamble_html: Wy hawwe ús gebrûksbetingsten wizige sûnt jo lêste besite. Wy rekommandearje jo oan om de bywurke betingsten troch te nimmen.
+    review_link: Gebrûksbetingsten besjen
+    title: De gebrûksbetingsten fan %{domain} wizigje
   time:
     formats:
       default: "%d %B %Y om %H:%M"

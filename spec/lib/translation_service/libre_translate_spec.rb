@@ -29,6 +29,19 @@ RSpec.describe TranslationService::LibreTranslate do
   end
 
   describe '#translate' do
+    context 'with invalid body response' do
+      before do
+        stub_request(:post, 'https://libretranslate.example.com/translate')
+          .with(body: '{"q":["Hasta la vista"],"source":"es","target":"en","format":"html","api_key":"my-api-key"}')
+          .to_return(body: 'XXX')
+      end
+
+      it 'handles error and re-raises' do
+        expect { service.translate(['Hasta la vista'], 'es', 'en') }
+          .to raise_error(TranslationService::UnexpectedResponseError)
+      end
+    end
+
     it 'returns translation with specified source language' do
       stub_request(:post, 'https://libretranslate.example.com/translate')
         .with(body: '{"q":["Hasta la vista"],"source":"es","target":"en","format":"html","api_key":"my-api-key"}')

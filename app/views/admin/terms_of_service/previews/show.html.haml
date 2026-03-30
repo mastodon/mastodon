@@ -16,5 +16,12 @@
 %hr.spacer/
 
 .content__heading__actions
-  = link_to t('admin.terms_of_service.preview.send_preview', email: current_user.email), admin_terms_of_service_test_path(@terms_of_service), method: :post, class: 'button button-secondary'
-  = link_to t('admin.terms_of_service.preview.send_to_all', count: @user_count, display_count: number_with_delimiter(@user_count)), admin_terms_of_service_distribution_path(@terms_of_service), method: :post, class: 'button', data: { confirm: t('admin.reports.are_you_sure') }
+  = link_to t('admin.terms_of_service.preview.send_preview', email: current_user.email),
+            admin_terms_of_service_test_path(@terms_of_service),
+            class: 'button button-secondary',
+            method: :post
+  = link_to t('admin.terms_of_service.preview.send_to_all', count: @user_count, display_count: number_with_delimiter(@user_count)),
+            admin_terms_of_service_distribution_path(@terms_of_service),
+            class: 'button',
+            data: { confirm: t('admin.reports.are_you_sure') },
+            method: :post

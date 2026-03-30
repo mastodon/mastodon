@@ -103,4 +103,9 @@ class UserMailerPreview < ActionMailer::Preview
   def terms_of_service_changed
     UserMailer.terms_of_service_changed(User.first, TermsOfService.live.first)
   end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/announcement_published
+  def announcement_published
+    UserMailer.announcement_published(User.first, Announcement.last)
+  end
 end

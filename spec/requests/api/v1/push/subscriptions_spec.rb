@@ -166,17 +166,30 @@ RSpec.describe 'API V1 Push Subscriptions' do
   describe 'GET /api/v1/push/subscription' do
     subject { get '/api/v1/push/subscription', headers: headers }
 
-    before { create_subscription_with_token }
+    context 'with a subscription' do
+      before { create_subscription_with_token }
 
-    it 'shows subscription details' do
-      subject
+      it 'shows subscription details' do
+        subject
 
-      expect(response)
-        .to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-      expect(response.parsed_body)
-        .to include(endpoint: endpoint)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(endpoint: endpoint)
+      end
+    end
+
+    context 'without a subscription' do
+      it 'returns not found' do
+        subject
+
+        expect(response)
+          .to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
     end
   end
 

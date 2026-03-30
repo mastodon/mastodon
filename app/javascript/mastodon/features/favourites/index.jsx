@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -15,6 +15,7 @@ import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions
 import { Account } from 'mastodon/components/account';
 import ColumnHeader from 'mastodon/components/column_header';
 import { Icon }  from 'mastodon/components/icon';
+import { injectIntl } from '@/mastodon/components/intl';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import Column from 'mastodon/features/ui/components/column';
@@ -41,7 +42,7 @@ class Favourites extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  UNSAFE_componentWillMount () {
+  componentDidMount () {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchFavourites(this.props.params.statusId));
     }

@@ -14,7 +14,7 @@
 
   = render_captcha
 
-  %p.lead= t('auth.captcha_confirmation.help_html', email: mail_to(Setting.site_contact_email, nil))
+  %p.lead= t('auth.captcha_confirmation.help_html', email: mail_to(Setting.site_contact_email))
 
   .actions
     = form.button t('challenge.confirm'),

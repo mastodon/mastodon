@@ -16,10 +16,11 @@ export const apiFeatureTag = (tagId: string) =>
 export const apiUnfeatureTag = (tagId: string) =>
   apiRequestPost<ApiHashtagJSON>(`v1/tags/${tagId}/unfeature`);
 
-export const apiGetFollowedTags = async (url?: string) => {
+export const apiGetFollowedTags = async (url?: string, limit?: number) => {
   const response = await api().request<ApiHashtagJSON[]>({
     method: 'GET',
     url: url ?? '/api/v1/followed_tags',
+    params: { limit },
   });
 
   return {

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OauthMetadataPresenter < ActiveModelSerializers::Model
+class OAuthMetadataPresenter < ActiveModelSerializers::Model
   include RoutingHelper
 
   attributes :issuer, :authorization_endpoint, :token_endpoint,

@@ -7,7 +7,12 @@ pa:
     hosted_on: "%{domain} ਉੱਤੇ ਹੋਸਟ ਕੀਤਾ ਮਸਟਾਡੋਨ"
     title: ਇਸ ਬਾਰੇ
   accounts:
-    following: ਫ਼ਾਲੋ ਕੀਤੇ ਜਾ ਰਹੇ
+    followers:
+      one: ਫ਼ਾਲੋਅਰ
+      other: ਫ਼ਾਲੋਅਰ
+    posts:
+      one: ਪੋਸਟ
+      other: ਪੋਸਟਾਂ
     posts_tab_heading: ਪੋਸਟਾਂ
   admin:
     account_moderation_notes:
@@ -126,6 +131,9 @@ pa:
       thread: ਗੱਲਾਂਬਾਤਾਂ
     index:
       delete: ਹਟਾਓ
+      statuses:
+        one: "%{count} ਪੋਸਟ"
+        other: "%{count} ਪੋਸਟ"
   generic:
     all: ਸਭ
     copy: ਕਾਪੀ ਕਰੋ

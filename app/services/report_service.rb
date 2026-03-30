@@ -7,6 +7,7 @@ class ReportService < BaseService
     @source_account = source_account
     @target_account = target_account
     @status_ids     = options.delete(:status_ids).presence || []
+    @collection_ids = options.delete(:collection_ids).presence || []
     @comment        = options.delete(:comment).presence || ''
     @category       = options[:rule_ids].present? ? 'violation' : (options.delete(:category).presence || 'other')
     @rule_ids       = options.delete(:rule_ids).presence
@@ -32,6 +33,7 @@ class ReportService < BaseService
     @report = @source_account.reports.create!(
       target_account: @target_account,
       status_ids: reported_status_ids,
+      collection_ids: reported_collection_ids,
       comment: @comment,
       uri: @options[:uri],
       forwarded: forward_to_origin?,
@@ -75,7 +77,7 @@ class ReportService < BaseService
   end
 
   def forward_to_domains
-    @forward_to_domains ||= (@options[:forward_to_domains] || [@target_account.domain]).filter_map { |domain| TagManager.instance.normalize_domain(domain&.strip) }.uniq
+    @forward_to_domains ||= (@options[:forward_to_domains] || [@target_account.domain]).filter_map { |domain| TagManager.instance.normalize_domain(domain) }.uniq
   end
 
   def reported_status_ids
@@ -86,13 +88,24 @@ class ReportService < BaseService
     has_followers = @target_account.followers.with_domain(domain).exists?
     visibility = has_followers ? %i(public unlisted private) : %i(public unlisted)
     scope = @target_account.statuses.with_discarded
-    scope.merge!(scope.where(visibility: visibility).or(scope.where('EXISTS (SELECT 1 FROM mentions m JOIN accounts a ON m.account_id = a.id WHERE lower(a.domain) = ?)', domain)))
+    scope.merge!(scope.where(visibility: visibility).or(scope.where(domain_mentions(domain))))
     # Allow missing posts to not drop reports that include e.g. a deleted post
     scope.where(id: Array(@status_ids)).pluck(:id)
   end
 
+  def domain_mentions(domain)
+    Mention
+      .joins(:account)
+      .where(Account.arel_table[:domain].lower.eq domain)
+      .select(1).arel.exists
+  end
+
+  def reported_collection_ids
+    @target_account.collections.find(Array(@collection_ids)).pluck(:id)
+  end
+
   def payload
-    Oj.dump(serialize_payload(@report, ActivityPub::FlagSerializer, account: some_local_account))
+    serialize_payload(@report, ActivityPub::FlagSerializer, account: some_local_account).to_json
   end
 
   def some_local_account

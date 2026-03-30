@@ -92,7 +92,7 @@ class Api::BaseController < ApplicationController
   end
 
   def disallow_unauthenticated_api_access?
-    ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] == 'true' || Rails.configuration.x.limited_federation_mode
+    ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] == 'true' || Rails.configuration.x.mastodon.limited_federation_mode
   end
 
   private

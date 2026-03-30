@@ -30,8 +30,10 @@ class StatusReachFinder
       [
         replied_to_account_id,
         reblog_of_account_id,
+        quote_of_account_id,
         mentioned_account_ids,
         reblogs_account_ids,
+        quotes_account_ids,
         favourites_account_ids,
         replies_account_ids,
       ].tap do |arr|
@@ -46,12 +48,21 @@ class StatusReachFinder
     @status.in_reply_to_account_id if distributable?
   end
 
+  def quote_of_account_id
+    @status.quote&.quoted_account_id
+  end
+
   def reblog_of_account_id
     @status.reblog.account_id if @status.reblog?
   end
 
   def mentioned_account_ids
     @status.mentions.pluck(:account_id)
+  end
+
+  # Beware: Quotes can be created without the author having had access to the status
+  def quotes_account_ids
+    @status.quotes.pluck(:account_id) if distributable? || unsafe?
   end
 
   # Beware: Reblogs can be created without the author having had access to the status

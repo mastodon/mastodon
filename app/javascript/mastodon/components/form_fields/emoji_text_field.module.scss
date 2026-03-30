@@ -1,0 +1,24 @@
+.fieldWrapper div:has(:global(.emoji-picker-dropdown)) {
+  position: relative;
+
+  > input,
+  > textarea {
+    padding-inline-end: 36px;
+  }
+
+  > textarea {
+    min-height: 40px; // Button size with 8px margin
+  }
+}
+
+.fieldWrapper :global(.emoji-picker-dropdown) {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  height: 24px;
+  z-index: 1;
+
+  :global(.icon-button) {
+    color: var(--color-text-secondary);
+  }
+}

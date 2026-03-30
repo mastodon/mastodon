@@ -40,6 +40,23 @@ RSpec.describe Request do
     end
   end
 
+  describe '#initialize' do
+    subject { described_class.new(:get, url) }
+
+    context 'when URL has new lines' do
+      let(:url) { "https://host.example/image\nhttps://badhost.example/page.jpg" }
+
+      it 'encodes new lines in url value after normalization' do
+        expect(initialized_url_value)
+          .to eq('https://host.example/image%0Ahttps://badhost.example/page.jpg')
+      end
+    end
+
+    def initialized_url_value
+      subject.instance_variable_get(:@url).to_s
+    end
+  end
+
   describe '#perform' do
     context 'with valid host and non-persistent connection' do
       before { stub_request(:get, 'http://example.com').to_return(body: 'lorem ipsum') }

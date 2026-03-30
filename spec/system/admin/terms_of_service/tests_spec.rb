@@ -14,10 +14,8 @@ RSpec.describe 'Admin TermsOfService Tests' do
       expect(page)
         .to have_title(I18n.t('admin.terms_of_service.preview.title'))
 
-      emails = capture_emails { click_on I18n.t('admin.terms_of_service.preview.send_preview', email: user.email) }
-      expect(emails.first)
-        .to be_present
-        .and(deliver_to(user.email))
+      expect { click_on I18n.t('admin.terms_of_service.preview.send_preview', email: user.email) }
+        .to send_email(to: user.email)
       expect(page)
         .to have_title(I18n.t('admin.terms_of_service.preview.title'))
     end

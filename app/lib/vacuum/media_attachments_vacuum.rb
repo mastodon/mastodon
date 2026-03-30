@@ -17,12 +17,16 @@ class Vacuum::MediaAttachmentsVacuum
   def vacuum_cached_files!
     media_attachments_past_retention_period.find_in_batches do |media_attachments|
       AttachmentBatch.new(MediaAttachment, media_attachments).clear
+    rescue => e
+      Rails.logger.error("Skipping batch while removing cached media attachments due to error: #{e}")
     end
   end
 
   def vacuum_orphaned_records!
     orphaned_media_attachments.find_in_batches do |media_attachments|
       AttachmentBatch.new(MediaAttachment, media_attachments).delete
+    rescue => e
+      Rails.logger.error("Skipping batch while removing orphaned media attachments due to error: #{e}")
     end
   end
 

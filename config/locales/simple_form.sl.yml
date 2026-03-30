@@ -54,6 +54,7 @@ sl:
         password: Uporabite najmanj 8 znakov
         phrase: Se bo ujemal, ne glede na začetnice v besedilu ali opozorilo o vsebini objave
         scopes: Do katerih API-jev bo imel program dostop. Če izberete obseg najvišje ravni, vam ni treba izbrati posameznih.
+        setting_advanced_layout: Prikaži Mastodon v večstolpčni postavitvi, kar prikaže časovnico, obbvestila in tretji stolpec po izboru. Ne priporočamo za manjše zaslone.
         setting_aggregate_reblogs: Ne prikažite novih izpostavitev za objave, ki so bile nedavno izpostavljene (vpliva samo na novo prejete izpostavitve)
         setting_always_send_emails: Običajno e-obvestila ne bodo poslana, če ste na Mastodonu dejavni
         setting_default_sensitive: Občutljivi mediji so privzeto skriti in jih je mogoče razkriti s klikom
@@ -81,7 +82,6 @@ sl:
         activity_api_enabled: Številke krajevno objavljenih objav, dejavnih uporabnikov in novih registracij na tedenskih seznamih
         app_icon: WEBP, PNG, GIF ali JPG. Zamenja privzeto ikono programa na mobilnih napravah z ikono po meri.
         backups_retention_period: Uporabniki lahko ustvarijo arhive svojih objav za kasnejši prenos k sebi. Ko je nastavljeno na pozitivno vrednost, bodo ti arhivi po nastavljenem številu dni samodejno izbrisani.
-        bootstrap_timeline_accounts: Ti računi bodo pripeti na vrh priporočenih sledenj za nove uporabnike.
         closed_registrations_message: Prikazano, ko so registracije zaprte
         content_cache_retention_period: Vse objave z drugih strežnikov (vključno z izpostavitvami in odgovori) bodo izbrisani po nastavljenem številu dni, ne glede na krajevne interakcije s temi objavami. To vključuje objave, ki jih je krajevni uporabnik dodal med zaznamke ali priljubljene. Zasebne omembe med uporabniki na različnih strežnikih bodo prav tako izgubljene in jih ne bo moč obnoviti. Uporaba te nastavitve je namenjena strežnikom s posebnim namenom in nasprotuje mnogim pričakovanjem uporabnikov na strežnikih za splošni namen.
         custom_css: Spletni različici Mastodona lahko uveljavite sloge po meri.
@@ -101,10 +101,8 @@ sl:
         status_page_url: URL strani, kjer je moč videti stanje tega strežnika med prekinjenim delovanjem
         theme: Tema, ki jo vidijo odjavljeni obiskovalci in novi uporabniki.
         thumbnail: Slika v razmerju stranic približno 2:1, prikazana vzdolž podatkov o vašem strežniku.
-        timeline_preview: Odjavljeni obiskovalci bodo lahko brskali po najnovejših javnih objavah, ki so na voljo na strežniku.
         trendable_by_default: Preskočite ročni pregled vsebine v trendu. Posamezne elemente še vedno lahko odstranite iz trenda post festum.
         trends: Trendi prikažejo, katere objave, ključniki in novice privlačijo zanimanje na vašem strežniku.
-        trends_as_landing_page: Odjavljenim uporabnikom in obiskovalcem namesto opisa tega strežnika pokažite vsebine v trendu. Trendi morajo biti omogočeni.
       form_challenge:
         current_password: Vstopate v varovano območje
       imports:
@@ -223,20 +221,22 @@ sl:
         setting_aggregate_reblogs: Skupinske izpostavitve na časovnicah
         setting_always_send_emails: Vedno pošlji e-obvestila
         setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
-        setting_boost_modal: Pred izpostavljanjem pokaži potrditveno okno
+        setting_boost_modal: Nadziraj vidnost objav
+        setting_contrast: Kontrast
         setting_default_language: Jezik objavljanja
-        setting_default_privacy: Zasebnost objave
+        setting_default_privacy: Vidnost objav
+        setting_default_quote_policy: Kdo lahko citira
         setting_default_sensitive: Vedno označi medije kot občutljive
-        setting_delete_modal: Pred brisanjem objave prikaži okno za pritrditev
+        setting_delete_modal: Pred brisanjem objave me opozori
         setting_disable_hover_cards: Onemogoči predogled profila pod kazalcem
         setting_disable_swiping: Onemogoči poteze drsanja
         setting_display_media: Prikaz medijev
         setting_display_media_default: Privzeto
         setting_display_media_hide_all: Skrij vse
         setting_display_media_show_all: Prikaži vse
+        setting_emoji_style: Slog čustvenih simbolov
         setting_expand_spoilers: Vedno razširi objave, označene z opozorili o vsebini
         setting_hide_network: Skrij svoje omrežje
-        setting_missing_alt_text_modal: Pred objavo predstavnosti brez nadomestnega besedila pokaži potrditveno okno
         setting_reduce_motion: Zmanjšanje premikanja v animacijah
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_system_scrollbars_ui: Uporabi privzeti drsni trak sistema
@@ -269,6 +269,7 @@ sl:
         content_cache_retention_period: Obdobje hranjenja vsebine z ostalih strežnikov
         custom_css: CSS po meri
         favicon: Ikona spletne strani
+        landing_page: Ciljna stran za nove obiskovalce
         mascot: Maskota po meri (opuščeno)
         media_cache_retention_period: Obdobje hrambe predpomnilnika predstavnosti
         min_age: Spodnja starostna meja
@@ -287,10 +288,9 @@ sl:
         status_page_url: URL strani stanja
         theme: Privzeta tema
         thumbnail: Sličica strežnika
-        timeline_preview: Omogoči neoverjen dostop do javnih časovnic
         trendable_by_default: Dovoli trende brez predhodnega pregleda
         trends: Omogoči trende
-        trends_as_landing_page: Uporabi trende za pristopno stran
+        wrapstodon: Omogoči Wrapstodon
       interactions:
         must_be_follower: Blokiraj obvestila nesledilcev
         must_be_following: Blokiraj obvestila oseb, ki jim ne sledite
@@ -315,6 +315,7 @@ sl:
         follow_request: Pošlji e-pošto, ko vam nekdo želi slediti
         mention: Pošlji e-pošto, ko vas nekdo omeni
         pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
+        quote: Nekdo vas je citiral
         reblog: Pošlji e-sporočilo, ko nekdo izpostavi vašo objavo
         report: Novo poročilo je oddano
         software_updates:
@@ -350,9 +351,9 @@ sl:
         jurisdiction: Pravna pristojnost
         min_age: Najmanjša starost
       user:
-        date_of_birth_1i: Dan
+        date_of_birth_1i: Leto
         date_of_birth_2i: Mesec
-        date_of_birth_3i: Leto
+        date_of_birth_3i: Dan
         role: Vloga
         time_zone: Časovni pas
       user_role:
@@ -361,6 +362,9 @@ sl:
         name: Ime
         permissions_as_keys: Pravice
         position: Prioriteta
+      username_block:
+        allow_with_approval: Dovoli registracije z odobritvijo
+        comparison: Metoda primerjave
       webhook:
         events: Omogočeni dogodki
         template: Predloga obremenitev

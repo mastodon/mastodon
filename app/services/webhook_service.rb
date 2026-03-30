@@ -17,6 +17,8 @@ class WebhookService < BaseService
   end
 
   def serialize_event
-    Oj.dump(ActiveModelSerializers::SerializableResource.new(@event, serializer: REST::Admin::WebhookEventSerializer, scope: nil, scope_name: :current_user).as_json)
+    ActiveModelSerializers::SerializableResource
+      .new(@event, serializer: REST::Admin::WebhookEventSerializer, scope: nil, scope_name: :current_user)
+      .to_json
   end
 end

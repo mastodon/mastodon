@@ -19,7 +19,7 @@ class Admin::Metrics::Dimension::TagLanguagesDimension < Admin::Metrics::Dimensi
   end
 
   def sql_array
-    [sql_query_string, { tag_id: tag_id, earliest_status_id: earliest_status_id, latest_status_id: latest_status_id, limit: @limit }]
+    [sql_query_string, { tag_id: tag_id, earliest_status_id:, latest_status_id:, limit: @limit }]
   end
 
   def sql_query_string
@@ -37,14 +37,6 @@ class Admin::Metrics::Dimension::TagLanguagesDimension < Admin::Metrics::Dimensi
 
   def tag_id
     params[:id]
-  end
-
-  def earliest_status_id
-    Mastodon::Snowflake.id_at(@start_at.beginning_of_day, with_random: false)
-  end
-
-  def latest_status_id
-    Mastodon::Snowflake.id_at(@end_at.end_of_day, with_random: false)
   end
 
   def params

@@ -8,20 +8,11 @@ RSpec.describe 'Admin::Reset' do
     sign_in admin_user
     visit admin_account_path(account.id)
 
-    emails = capture_emails do
+    expect do
       expect { submit_reset }
-        .to change(Admin::ActionLog.where(target: account.user), :count).by(1)
-    end
-
-    expect(emails.first)
-      .to be_present
-      .and(deliver_to(account.user.email))
-      .and(have_subject(password_change_subject))
-
-    expect(emails.last)
-      .to be_present
-      .and(deliver_to(account.user.email))
-      .and(have_subject(reset_instructions_subject))
+        .to send_email(to: account.user.email, subject: password_change_subject)
+        .and send_email(to: account.user.email, subject: reset_instructions_subject)
+    end.to change(Admin::ActionLog.where(target: account.user), :count).by(1)
 
     expect(page)
       .to have_content(account.username)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
+class Api::V1::Timelines::TagController < Api::V1::Timelines::TopicController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :load_tag
 
@@ -13,10 +13,6 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
   end
 
   private
-
-  def require_auth?
-    !Setting.timeline_preview
-  end
 
   def load_tag
     @tag = Tag.find_normalized(params[:id])

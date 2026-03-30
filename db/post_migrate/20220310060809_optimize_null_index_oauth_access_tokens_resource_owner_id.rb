@@ -2,7 +2,7 @@
 
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
-class OptimizeNullIndexOauthAccessTokensResourceOwnerId < ActiveRecord::Migration[5.2]
+class OptimizeNullIndexOAuthAccessTokensResourceOwnerId < ActiveRecord::Migration[5.2]
   include Mastodon::MigrationHelpers
 
   disable_ddl_transaction!

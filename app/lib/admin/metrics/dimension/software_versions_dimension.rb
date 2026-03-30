@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dimension::BaseDimension
-  include Redisable
+  include Admin::Metrics::Dimension::StoreHelper
 
   def key
     'software_versions'
@@ -10,7 +10,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   protected
 
   def perform_query
-    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version, libvips_version, imagemagick_version, ffmpeg_version].compact
+    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version, libvips_version, ffmpeg_version].compact
   end
 
   def mastodon_version
@@ -45,13 +45,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def redis_version
-    value = redis_info['redis_version']
-
     {
       key: 'redis',
-      human_key: 'Redis',
-      value: value,
-      human_value: value,
+      human_key: store_name,
+      value: store_version,
+      human_value: store_version,
     }
   end
 
@@ -67,13 +65,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: version,
       human_value: version,
     }
-  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+  rescue Faraday::ConnectionFailed, Elastic::Transport::Transport::Error
     nil
   end
 
   def libvips_version
-    return unless Rails.configuration.x.use_vips
-
     {
       key: 'libvips',
       human_key: 'libvips',
@@ -82,31 +78,9 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
     }
   end
 
-  def imagemagick_version
-    return if Rails.configuration.x.use_vips
-
-    imagemagick_binary = Paperclip.options[:is_windows] ? 'magick convert' : 'convert'
-
-    version_output = Terrapin::CommandLine.new(imagemagick_binary, '-version').run
-    version_match = version_output.match(/Version: ImageMagick (\S+)/)[1].strip
-
-    return nil unless version_match
-
-    version = version_match
-
-    {
-      key: 'imagemagick',
-      human_key: 'ImageMagick',
-      value: version,
-      human_value: version,
-    }
-  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError, Paperclip::Errors::CommandNotFoundError, Paperclip::Errors::CommandFailedError
-    nil
-  end
-
   def ffmpeg_version
     version_output = Terrapin::CommandLine.new(Rails.configuration.x.ffprobe_binary, '-show_program_version -v 0 -of json').run
-    version = Oj.load(version_output, mode: :strict, symbol_keys: true).dig(:program_version, :version)
+    version = JSON.parse(version_output, symbolize_names: true).dig(:program_version, :version)
 
     {
       key: 'ffmpeg',
@@ -114,11 +88,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: version,
       human_value: version,
     }
-  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError, Oj::ParseError
+  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError, JSON::ParserError
     nil
-  end
-
-  def redis_info
-    @redis_info ||= redis.info
   end
 end

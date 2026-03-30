@@ -8,8 +8,9 @@ export interface ApiRelationshipJSON {
   following: boolean;
   id: string;
   languages: string[] | null;
-  muting_notifications: boolean;
   muting: boolean;
+  muting_notifications: boolean;
+  muting_expires_at: string | null;
   note: string;
   notifying: boolean;
   requested_by: boolean;

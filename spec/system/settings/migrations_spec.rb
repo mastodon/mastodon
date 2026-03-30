@@ -33,20 +33,36 @@ RSpec.describe 'Settings Migrations' do
   end
 
   describe 'Creating migrations' do
-    let(:user) { Fabricate(:user, password: '12345678') }
+    let(:user) { Fabricate(:user, password:) }
+    let(:password) { '12345678' }
 
     before { sign_in(user) }
 
     context 'when migration account is changed' do
       let(:acct) { Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)]) }
 
-      it 'updates moved to account' do
-        visit settings_migration_path
+      context 'when user has encrypted password' do
+        it 'updates moved to account' do
+          visit settings_migration_path
 
-        expect { fill_in_and_submit }
-          .to(change { user.account.reload.moved_to_account_id }.to(acct.id))
-        expect(page)
-          .to have_content(I18n.t('settings.migrate'))
+          expect { fill_in_and_submit }
+            .to(change { user.account.reload.moved_to_account_id }.to(acct.id))
+          expect(page)
+            .to have_content(I18n.t('settings.migrate'))
+        end
+      end
+
+      context 'when user has blank encrypted password value' do
+        before { user.update! encrypted_password: '' }
+
+        it 'updates moved to account using at-username value' do
+          visit settings_migration_path
+
+          expect { fill_in_and_submit_via_username("@#{user.account.username}") }
+            .to(change { user.account.reload.moved_to_account_id }.to(acct.id))
+          expect(page)
+            .to have_content(I18n.t('settings.migrate'))
+        end
       end
     end
 
@@ -92,8 +108,18 @@ RSpec.describe 'Settings Migrations' do
 
     def fill_in_and_submit
       fill_in 'account_migration_acct', with: acct.username
-      fill_in 'account_migration_current_password', with: '12345678'
+      if block_given?
+        yield
+      else
+        fill_in 'account_migration_current_password', with: password
+      end
       click_on I18n.t('migrations.proceed_with_move')
+    end
+
+    def fill_in_and_submit_via_username(username)
+      fill_in_and_submit do
+        fill_in 'account_migration_current_username', with: username
+      end
     end
   end
 end

@@ -9,7 +9,7 @@ class PublishScheduledStatusWorker
     scheduled_status = ScheduledStatus.find(scheduled_status_id)
     scheduled_status.destroy!
 
-    return true if scheduled_status.account.user.disabled?
+    return true if scheduled_status.account.user_disabled?
 
     PostStatusService.new.call(
       scheduled_status.account,
@@ -23,6 +23,7 @@ class PublishScheduledStatusWorker
     options.tap do |options_hash|
       options_hash[:application] = Doorkeeper::Application.find(options_hash.delete(:application_id)) if options[:application_id]
       options_hash[:thread]      = Status.find(options_hash.delete(:in_reply_to_id)) if options_hash[:in_reply_to_id]
+      options_hash[:quoted_status] = Status.find(options_hash.delete(:quoted_status_id)) if options_hash[:quoted_status_id]
     end
   end
 end

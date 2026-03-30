@@ -58,22 +58,9 @@ export const EditedTimestamp: React.FC<{
   }, []);
 
   const renderItem = useCallback(
-    (
-      item: HistoryItem,
-      index: number,
-      {
-        onClick,
-        onKeyUp,
-      }: {
-        onClick: React.MouseEventHandler;
-        onKeyUp: React.KeyboardEventHandler;
-      },
-    ) => {
+    (item: HistoryItem, index: number, onClick: React.MouseEventHandler) => {
       const formattedDate = (
-        <RelativeTimestamp
-          timestamp={item.get('created_at') as string}
-          short={false}
-        />
+        <RelativeTimestamp timestamp={item.get('created_at') as string} long />
       );
       const formattedName = (
         <InlineAccount accountId={item.get('account') as string} />
@@ -84,12 +71,14 @@ export const EditedTimestamp: React.FC<{
           id='status.history.created'
           defaultMessage='{name} created {date}'
           values={{ name: formattedName, date: formattedDate }}
+          tagName='span'
         />
       ) : (
         <FormattedMessage
           id='status.history.edited'
           defaultMessage='{name} edited {date}'
           values={{ name: formattedName, date: formattedDate }}
+          tagName='span'
         />
       );
 
@@ -98,7 +87,7 @@ export const EditedTimestamp: React.FC<{
           className='dropdown-menu__item edited-timestamp__history__item'
           key={item.get('created_at') as string}
         >
-          <button data-index={index} onClick={onClick} onKeyUp={onKeyUp}>
+          <button data-index={index} onClick={onClick} type='button'>
             {label}
           </button>
         </li>
@@ -118,7 +107,7 @@ export const EditedTimestamp: React.FC<{
       onItemClick={handleItemClick}
       forceDropdown
     >
-      <button className='dropdown-menu__text-button'>
+      <button className='dropdown-menu__text-button' type='button'>
         <FormattedMessage
           id='status.edited'
           defaultMessage='Edited {date}'
@@ -134,6 +123,7 @@ export const EditedTimestamp: React.FC<{
               />
             ),
           }}
+          tagName='span'
         />
       </button>
     </Dropdown>

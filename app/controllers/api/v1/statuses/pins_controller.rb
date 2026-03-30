@@ -26,20 +26,20 @@ class Api::V1::Statuses::PinsController < Api::V1::Statuses::BaseController
   def distribute_add_activity!
     json = ActiveModelSerializers::SerializableResource.new(
       @status,
-      serializer: ActivityPub::AddSerializer,
+      serializer: ActivityPub::AddNoteSerializer,
       adapter: ActivityPub::Adapter
     ).as_json
 
-    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(json), current_account.id)
+    ActivityPub::RawDistributionWorker.perform_async(json.to_json, current_account.id)
   end
 
   def distribute_remove_activity!
     json = ActiveModelSerializers::SerializableResource.new(
       @status,
-      serializer: ActivityPub::RemoveSerializer,
+      serializer: ActivityPub::RemoveNoteSerializer,
       adapter: ActivityPub::Adapter
     ).as_json
 
-    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(json), current_account.id)
+    ActivityPub::RawDistributionWorker.perform_async(json.to_json, current_account.id)
   end
 end

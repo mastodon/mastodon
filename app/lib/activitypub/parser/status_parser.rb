@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::Parser::StatusParser
+  include FormattingHelper
   include JsonLdHelper
 
   NORMALIZED_LOCALE_NAMES = LanguagesHelper::SUPPORTED_LOCALES.keys.index_by(&:downcase).freeze
@@ -8,6 +9,7 @@ class ActivityPub::Parser::StatusParser
   # @param [Hash] json
   # @param [Hash] options
   # @option options [String] :followers_collection
+  # @option options [String] :following_collection
   # @option options [String] :actor_uri
   # @option options [Hash]   :object
   def initialize(json, **options)
@@ -43,12 +45,28 @@ class ActivityPub::Parser::StatusParser
     end
   end
 
+  def processed_text
+    return text || '' unless converted_object_type?
+
+    [
+      title.presence && "<h2>#{title}</h2>",
+      spoiler_text.presence,
+      linkify(url || uri),
+    ].compact.join("\n\n")
+  end
+
   def spoiler_text
     if @object['summary'].present?
       @object['summary']
     elsif summary_language_map?
       @object['summaryMap'].values.first
     end
+  end
+
+  def processed_spoiler_text
+    return '' if converted_object_type?
+
+    spoiler_text || ''
   end
 
   def title
@@ -117,6 +135,14 @@ class ActivityPub::Parser::StatusParser
     flags
   end
 
+  def quote?
+    %w(quote _misskey_quote quoteUrl quoteUri).any? { |key| @object[key].present? }
+  end
+
+  def deleted_quote?
+    @object['quote'].is_a?(Hash) && @object['quote']['type'] == 'Tombstone'
+  end
+
   def quote_uri
     %w(quote _misskey_quote quoteUrl quoteUri).filter_map do |key|
       value_or_id(as_array(@object[key]).first)
@@ -136,27 +162,27 @@ class ActivityPub::Parser::StatusParser
     as_array(@object['quoteAuthorization']).first
   end
 
+  def converted_object_type?
+    equals_or_includes_any?(@object['type'], ActivityPub::Activity::CONVERTED_TYPES)
+  end
+
   private
 
   def quote_subpolicy(subpolicy)
     flags = 0
 
-    allowed_actors = as_array(subpolicy)
+    allowed_actors = as_array(subpolicy).dup
     allowed_actors.uniq!
 
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] if allowed_actors.delete(@options[:followers_collection])
-    # TODO: we don't actually store that collection URI
-    # flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:followed]
+    flags |= InteractionPolicy::POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
+    flags |= InteractionPolicy::POLICY_FLAGS[:followers] if allowed_actors.delete(@options[:followers_collection])
+    flags |= InteractionPolicy::POLICY_FLAGS[:following] if allowed_actors.delete(@options[:following_collection])
 
     # Remove the special-meaning actor URI
     allowed_actors.delete(@options[:actor_uri])
 
-    # Tagged users are always allowed, so remove them
-    allowed_actors -= as_array(@object['tag']).filter_map { |tag| tag['href'] if equals_or_includes?(tag['type'], 'Mention') }
-
-    # Any unrecognized actor is marked as unknown
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:unknown] unless allowed_actors.empty?
+    # Any unrecognized actor is marked as unsupported
+    flags |= InteractionPolicy::POLICY_FLAGS[:unsupported_policy] unless allowed_actors.empty?
 
     flags
   end

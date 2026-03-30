@@ -91,6 +91,8 @@ namespace :admin do
       post :restart_delivery
       post :stop_delivery
     end
+
+    resources :moderation_notes, module: :instances, only: [:create, :destroy]
   end
 
   resources :rules, only: [:index, :new, :create, :edit, :update, :destroy] do
@@ -106,13 +108,13 @@ namespace :admin do
       post :disable
     end
 
-    resource :secret, only: [], controller: 'webhooks/secrets' do
+    resource :secret, only: [], module: :webhooks do
       post :rotate
     end
   end
 
   resources :reports, only: [:index, :show] do
-    resources :actions, only: [:create], controller: 'reports/actions' do
+    resources :actions, only: [:create], module: :reports do
       collection do
         post :preview
       end
@@ -150,6 +152,8 @@ namespace :admin do
     resource :change_email, only: [:show, :update]
     resource :reset, only: [:create]
     resource :action, only: [:new, :create], controller: 'account_actions'
+
+    resources :collections, only: [:show]
 
     resources :statuses, only: [:index, :show] do
       collection do
@@ -228,4 +232,10 @@ namespace :admin do
   end
 
   resources :software_updates, only: [:index]
+
+  resources :username_blocks, except: [:show, :destroy] do
+    collection do
+      post :batch
+    end
+  end
 end

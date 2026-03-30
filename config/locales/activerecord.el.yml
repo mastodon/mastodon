@@ -32,6 +32,12 @@ el:
           attributes:
             url:
               invalid: δεν είναι έγκυρο URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: είναι πολλά, δεν επιτρέπονται περισσότερα από %{count}
+            tag:
+              unusable: δεν μπορεί να χρησιμοποιηθεί
         doorkeeper/application:
           attributes:
             website:

@@ -7,12 +7,13 @@ gd:
     hosted_on: Mastodon ’ga òstadh air %{domain}
     title: Mu dhèidhinn
   accounts:
+    errors:
+      cannot_be_added_to_collections: Cha ghabh an cunntas seo a chur ri cruinneachadh.
     followers:
       few: Luchd-leantainn
       one: Neach-leantainn
       other: Luchd-leantainn
       two: Luchd-leantainn
-    following: A’ leantainn
     instance_actor_flash: "’S e actar biortail a tha sa chunntas seo a riochdaicheas am frithealaiche fhèin seach cleachdaiche sònraichte. Tha e ’ga chleachdadh a chùm co-nasgaidh agus cha bu chòir dhut a chur à rèim."
     last_active: an gnìomh mu dheireadh
     link_verified_on: Chaidh dearbhadh cò leis a tha an ceangal seo %{date}
@@ -196,6 +197,7 @@ gd:
         create_relay: Cruthaich ath-sheachadan
         create_unavailable_domain: Cruthaich àrainn nach eil ri fhaighinn
         create_user_role: Cruthaich dreuchd
+        create_username_block: Cruthaich riaghailt ainm-cleachdaiche
         demote_user: Ìslich an cleachdaiche
         destroy_announcement: Sguab às am brath-fios
         destroy_canonical_email_block: Sguab às bacadh a’ phuist-d
@@ -209,6 +211,7 @@ gd:
         destroy_status: Sguab às am post
         destroy_unavailable_domain: Sguab às àrainn nach eil ri fhaighinn
         destroy_user_role: Mill an dreuchd
+        destroy_username_block: Sguab às riaghailt ainm-cleachdaiche
         disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
         disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
         disable_relay: Cuir an t-ath-sheachadan à comas
@@ -243,6 +246,7 @@ gd:
         update_report: Ùraich an gearan
         update_status: Ùraich am post
         update_user_role: Ùraich an dreuchd
+        update_username_block: Ùraich riaghailt ainm-cleachdaiche
       actions:
         approve_appeal_html: Dh’aontaich %{name} ri ath-thagradh air co-dhùnadh na maorsainneachd o %{target}
         approve_user_html: Dh’aontaich %{name} ri clàradh o %{target}
@@ -261,6 +265,7 @@ gd:
         create_relay_html: Chruthaich %{name} an t-ath-sheachadan %{target}
         create_unavailable_domain_html: Sguir %{name} ris an lìbhrigeadh dhan àrainn %{target}
         create_user_role_html: Chruthaich %{name} an dreuchd %{target}
+        create_username_block_html: Chuir %{name} riaghailt ris airson ainmean-cleachdaidh sa bheil %{target}
         demote_user_html: Dh’ìslich %{name} an cleachdaiche %{target}
         destroy_announcement_html: Sguab %{name} às am brath-fios %{target}
         destroy_canonical_email_block_html: Dhì-bhac %{name} am post-d air a bheil an hais %{target}
@@ -274,6 +279,7 @@ gd:
         destroy_status_html: Thug %{name} post aig %{target} air falbh
         destroy_unavailable_domain_html: Lean %{name} air adhart leis an lìbhrigeadh dhan àrainn %{target}
         destroy_user_role_html: Sguab %{name} às an dreuchd %{target}
+        destroy_username_block_html: Thug %{name} an riaghailt airson ainmean-cleachdaidh sa bheil %{target} air falbh
         disable_2fa_user_html: Chuir %{name} riatanas an dearbhaidh dà-cheumnaich à comas dhan chleachdaiche %{target}
         disable_custom_emoji_html: Chuir %{name} an Emoji %{target} à comas
         disable_relay_html: Chuir %{name} an t-ath-sheachadan %{target} à comas
@@ -308,6 +314,7 @@ gd:
         update_report_html: Dh’ùraich %{name} an gearan %{target}
         update_status_html: Dh’ùraich %{name} post le %{target}
         update_user_role_html: Dh’atharraich %{name} an dreuchd %{target}
+        update_username_block_html: Dh’ùraich %{name} an riaghailt airson ainmean-cleachdaidh sa bheil %{target}
       deleted_account: chaidh an cunntas a sguabadh às
       empty: Cha deach loga a lorg.
       filter_by_action: Criathraich a-rèir gnìomha
@@ -600,6 +607,13 @@ gd:
         all: Na h-uile
         limited: Cuingichte
         title: Maorsainneachd
+      moderation_notes:
+        create: Cuir ris nòta maorsainneachd
+        created_msg: Chaidh nòta maorsainneachd mun ionstans a chruthachadh!
+        description_html: Seall is sgrìobh nòtaichean do mhaoir eile is dhut fhèin san àm ri teachd
+        destroyed_msg: Chaidh nòta maorsainneachd mun ionstans a sguabadh às!
+        placeholder: Fiosrachadh mun ionstans seo, gnìomhan a chaidh a ghabhail no rud sam bith eile a chuidicheas thu le maorsainneachd an ionstans seo san àm ri teachd.
+        title: Nòtaichean na maorsainneachd
       private_comment: Beachd prìobhaideach
       public_comment: Beachd poblach
       purge: Purgaidich
@@ -720,7 +734,6 @@ gd:
       resolved_msg: Chaidh an gearan fhuasgladh!
       skip_to_actions: Geàrr leum dha na gnìomhan
       status: Staid
-      statuses: Susbaint le gearan
       statuses_description_html: Thèid iomradh a thoirt air an t-susbaint oilbheumach sa chonaltradh leis a’ chunntas mun a chaidh an gearan a thogail
       summary:
         action_preambles:
@@ -811,6 +824,8 @@ gd:
         view_dashboard_description: Leigidh seo le cleachdaichean an deas-bhòrd agus meatrachdan inntrigeadh
         view_devops: DevOps
         view_devops_description: Leigidh seo le cleachdaichean na deas-bhùird aig Sidekiq is pgHero inntrigeadh
+        view_feeds: Seall loidhnichean-ama beòtha ’s nan cuspairean
+        view_feeds_description: Leigidh seo le cleachdaichean loidhnichean-ama beòtha ’s nan cuspairean inntrigeadh ge b’ e dè roghainnean an fhrithealaiche
       title: Dreuchdan
     rules:
       add_new: Cuir riaghailt ris
@@ -859,10 +874,21 @@ gd:
         publish_statistics: Foillsich an stadastaireachd
         title: Rùrachadh
         trends: Treandaichean
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Dhan a h-uile duine
         disabled: Na seall idir
         users: Dhan luchd-chleachdaidh a clàraich a-steach gu h-ionadail
+      feed_access:
+        modes:
+          authenticated: Cleachdaichean a chlàraich a-steach a-mhàin
+          disabled: Iarr dreuchd shònraichte a’ chleachdaiche
+          public: A h-uile duine
+      landing_page:
+        values:
+          about: Mu dhèidhinn
+          local_feed: Loidhne-ama ionadail
+          trends: Treandaichean
       registrations:
         moderation_recommandation: Dèan cinnteach gu bheil sgioba maoir deiseil is deònach agad mus fhosgail thu an clàradh dhan a h-uile duine!
         preamble: Stiùirich cò dh’fhaodas cunntas a chruthachadh air an fhrithealaiche agad.
@@ -916,6 +942,7 @@ gd:
       no_status_selected: Cha deach post sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       open: Fosgail am post
       original_status: Am post tùsail
+      quotes: Luaidhean
       reblogs: Brosnachaidhean
       replied_to_html: Freagairt do %{acct_link}
       status_changed: Post air atharrachadh
@@ -923,6 +950,7 @@ gd:
       title: Postaichean a’ chunntais – @%{name}
       trending: A’ treandadh
       view_publicly: Seall gu poblach
+      view_quoted_post: Seall am post ’ga luaidh
       visibility: Faicsinneachd
       with_media: Le meadhanan riutha
     strikes:
@@ -1114,6 +1142,25 @@ gd:
           two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
       title: Molaidhean ⁊ treandaichean
       trending: A’ treandadh
+    username_blocks:
+      add_new: Cuir tè ùr ris
+      block_registrations: Bac clàradh
+      comparison:
+        contains: Anns a bheil
+        equals: Co-ionnan ri
+      contains_html: Anns a bheil %{string}
+      created_msg: Chaidh riaghailt ainm-cleachdaiche a chruthachadh
+      delete: Sguab às
+      edit:
+        title: Deasaich riaghailt ainm-cleachdaiche
+      matches_exactly_html: Co-ionnan ri %{string}
+      new:
+        create: Cruthaich riaghailt
+        title: Cruthaich riaghailt ainm-cleachdaiche ùr
+      no_username_block_selected: Cha deach riaghailt ainm-cleachdaiche sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      not_permitted: Chan eil seo ceadaichte
+      title: Riaghailtean ainm-chleachdaiche
+      updated_msg: Chaidh riaghailt ainm-cleachdaiche ùrachadh
     warning_presets:
       add_new: Cuir fear ùr ris
       delete: Sguab às
@@ -1188,10 +1235,10 @@ gd:
     hint_html: Nam bu mhiann leat imrich o chunntas eile dhan fhear seo, ’s urrainn dhut alias a chruthachadh an-seo agus feumaidh tu sin a dhèanamh mus urrainn dhut tòiseachadh air an luchd-leantainn agad imrich on seann-chunntas dhan fhear seo. Tha an gnìomh seo fhèin <strong>neo-chronail is chan eil e buan</strong>. <strong>Tòisichidh tu air imrich a’ chunntais on t-seann-chunntas</strong>.
     remove: Dì-cheangail an t-alias
   appearance:
-    advanced_web_interface: Eadar-aghaidh-lìn adhartach
-    advanced_web_interface_hint: 'Ma tha thu airson leud na sgrìn agad gu lèir a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat mòran cholbhan eadar-dhealaichte a cho-rèiteachadh airson uiread de dh''fhiosrachadh ''s a thogras tu fhaicinn aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, liostaichean is tagaichean hais a rèir do thoil.'
+    advanced_settings: Roghainnean adhartach
     animations_and_accessibility: Beòthachaidhean agus so-ruigsinneachd
-    confirmation_dialogs: Còmhraidhean dearbhaidh
+    boosting_preferences: Roghainnean brosnachaidh
+    boosting_preferences_info_html: "<strong>Gliocas:</strong> Ge b’ e dè na roghainnean, ma nì thu<kbd>Shift</kbd> + <kbd>Briogadh</kbd> air ìomhaigheag%{icon} a’ bhrosnachaidh, thèid a bhrosnachadh sa bhad."
     discovery: Rùrachadh
     localization:
       body: Tha Mastodon ’ga eadar-theangachadh le saor-thoilich.
@@ -1201,7 +1248,6 @@ gd:
   application_mailer:
     notification_preferences: Atharraich roghainnean a’ phuist-d
     salutation: "%{name},"
-    settings: 'Atharraich roghainnean a’ phuist-d: %{link}'
     unsubscribe: Cuir crìoch air an fho-sgrìobhadh
     view: 'Faic:'
     view_profile: Seall a’ phròifil
@@ -1308,6 +1354,13 @@ gd:
     hint_html: "<strong>Gliocas:</strong> Chan iarr sinn am facal-faire agad ort a-rithist fad uair a thìde."
     invalid_password: Facal-faire mì-dhligheach
     prompt: Dearbh am facal-faire airson leantainn air adhart
+  color_scheme:
+    auto: Fèin-obrachail
+    dark: Dorcha
+    light: Soilleir
+  contrast:
+    auto: Fèin-obrachail
+    high: Àrd
   crypto:
     errors:
       invalid_key: "– chan e iuchair Ed25519 no Curve25519 dhligheach a th’ ann"
@@ -1380,6 +1433,10 @@ gd:
     basic_information: Fiosrachadh bunasach
     hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
     other: Eile
+  emoji_styles:
+    auto: Fèin-obrachail
+    native: Tùsail
+    twemoji: Twemoji
   errors:
     '400': Cha robh an t-iarrtas a chuir thu a-null dligheach no bha droch-chruth air.
     '403': Chan eil cead agad gus an duilleag seo a shealltainn.
@@ -1530,10 +1587,10 @@ gd:
         other: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
         two: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
       following_html:
-        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
-        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
-        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
-        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn neach sam bith eile</strong>.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn neach sam bith eile</strong>.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn neach sam bith eile</strong>.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn neach sam bith eile</strong>.
       lists_html:
         few: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{count} cunntasan</strong> a chur ri liostaichean ùra.
         one: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{count} chunntas</strong> a chur ri liostaichean ùra.
@@ -1629,6 +1686,13 @@ gd:
       expires_at: Falbhaidh an ùine air
       uses: Cleachdadh
     title: Thoir cuireadh do dhaoine
+  link_preview:
+    author_html: Le %{name}
+    potentially_sensitive_content:
+      action: Dèan briogadh gus a shealltainn
+      confirm_visit: A bheil thu cinnteach gu bheil thu airson an ceangal seo fhosgladh?
+      hide_button: Falaich
+      label: Susbaint fhrionasach ma dh’fhaoidte
   lists:
     errors:
       limit: Ràinig thu na tha ceadaichte dhut de liostaichean
@@ -1643,21 +1707,6 @@ gd:
     failed_sign_in_html: Oidhirp clàraidh a-steach nach deach leis le %{method} o %{ip} (%{browser})
     successful_sign_in_html: Oidhirp clàraidh a-steach a shoirbhich leis le %{method} o %{ip} (%{browser})
     title: Eachdraidh an dearbhaidh
-  mail_subscriptions:
-    unsubscribe:
-      action: Tha, cuir crìoch air an fho-sgrìobhadh
-      complete: Chaidh crìoch a chur air an fho-sgrìobhadh
-      confirmation_html: A bheil thu cinnteach nach eil thu airson %{type} fhaighinn tuilleadh o Mhastodon air %{domain} dhan post-d agad aig %{email}? ’S urrainn dhut fo-sgrìobhadh a-rithist uair sam bith o <a href="%{settings_path}">roghainnean a’ puist-d agad</a>.
-      emails:
-        notification_emails:
-          favourite: puist-d le brathan mu annsachdan
-          follow: puist-d le brathan mu leantainn
-          follow_request: puist-d le brathan mu iarrtasan leantainn
-          mention: puist-d le brathan mu iomraidhean
-          reblog: puist-d le brathan mu bhrosnachaidhean
-      resubscribe_html: Ma chuir thu crìoch air an fho-sgrìobhadh le mearachd, ’s urrainn dhut fo-sgrìobhadh a-rithist o <a href="%{settings_path}">roghainnean a’ puist-d agad</a>.
-      success_html: Chan fhaigh thu %{type} o Mhastodon air %{domain} dhan phost-d agad aig %{email} tuilleadh.
-      title: Cuir crìoch air an fho-sgrìobhadh
   media_attachments:
     validations:
       images_and_video: Chan urrainn dhut video a cheangal ri post sa bheil dealbh mu thràth
@@ -1693,7 +1742,7 @@ gd:
       disabled_account: Cha ghabh an cunntas làithreach agad a chleachdadh gu slàn às a dhèidh. Gidheadh, bidh an dà chuid às-phortadh an dàta is ath-ghnìomhachadh ri fhaighinn dhut.
       followers: Imrichidh an gnìomh seo a h-uile neach-leantainn on chunntas làithreach dhan chunntas ùr
       only_redirect_html: Mar roghainn eile, ’s urrainn dhut <a href="%{path}">ath-stiùireadh a-mhàin a chur air a’ phròifil agad</a>.
-      other_data: Cha dèid dàta sam bith eile imrich gu fèin-obrachail
+      other_data: Cha dèid dàta sam bith eile imrich gu fèin-obrachail (a’ gabhail a-staigh nam postaichean ’s liosta nan cunntasan a leanas tu)
       redirect: Thèid pròifil a’ chunntais làithrich agad ùrachadh le brath ath-stiùiridh agus às-dhùnadh on lorg
   moderation:
     title: Maorsainneachd
@@ -1727,12 +1776,22 @@ gd:
       body: 'Thug %{name} iomradh ort an-seo:'
       subject: Thug %{name} iomradh ort
       title: Iomradh ùr
+    moderation_warning:
+      subject: Fhuair thu rabhadh on mhaorsainneachd
     poll:
       subject: Thàinig cunntas-bheachd le %{name} gu crìoch
+    quote:
+      body: 'Chaidh post a luaidh le %{name}:'
+      subject: Luaidh %{name} am post agad
+      title: Luaidh ùr
+    quoted_update:
+      subject: Dheasaich %{name} post a luaidh thu
     reblog:
       body: 'Chaidh am post agad a bhrosnachadh le %{name}:'
       subject: Bhrosnaich %{name} am post agad
       title: Brosnachadh ùr
+    severed_relationships:
+      subject: Chaill thu dàimhean ri linn co-dhùnadh na maorsainneachd
     status:
       subject: Tha %{name} air post a sgrìobhadh
     update:
@@ -1777,6 +1836,9 @@ gd:
       self_vote: Chan urrainn dhut bhòtadh sna chunntasan-bheachd agad fhèin
       too_few_options: "– feumaidh iomadh nì a bhith aige"
       too_many_options: "– chan fhaod còrr is %{max} nì a bhith ’na bhroinn"
+    vote: Bhòt
+  posting_defaults:
+    explanation: Thèid na roghainnean seo a chleachdadh nam bun-roghainnean nuair a chruthaicheas tu post ùr ach ’s urrainn dhut an deasachadh fhathast do gach post fa leth fhad ’s a bhios tu ri sgrìobhadh.
   preferences:
     other: Eile
     posting_defaults: Bun-roghainnean a’ phostaidh
@@ -1938,6 +2000,9 @@ gd:
         two: "%{count} video"
     boosted_from_html: Brosnachadh o %{acct_link}
     content_warning: 'Rabhadh susbainte: %{warning}'
+    content_warnings:
+      hide: Falaich am post
+      show: Seall barrachd dheth
     default_language: Co-ionnan ri cànan na h-eadar-aghaidh
     disallowed_hashtags:
       few: "– bha na tagaichean hais toirmisgte seo ann: %{tags}"
@@ -1947,34 +2012,40 @@ gd:
     edited_at_html: Air a dheasachadh %{date}
     errors:
       in_reply_not_found: Tha coltas nach eil am post dhan a tha thu airson freagairt ann.
+      quoted_status_not_found: Tha coltas nach eil am post dhan a tha thu airson luaidh ann.
+      quoted_user_not_mentioned: Chan urrainn dhut neach gun iomradh air a luaidh ann am post a tha ’na iomradh prìobhaideach.
     over_character_limit: chaidh thu thar crìoch charactaran de %{max}
     pin_errors:
       direct: Chan urrainn dhut post a phrìneachadh nach fhaic ach na cleachdaichean le iomradh orra
       limit: Tha an àireamh as motha de phostaichean prìnichte agad a tha ceadaichte
       ownership: Chan urrainn dhut post càich a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh
+    quote_error:
+      not_available: Chan eil am post ri fhaighinn
+      pending_approval: Cha deach dèiligeadh ris a’ phost fhathast
+      revoked: Chaidh am post a thoirt air falbh leis an ùghdar
     quote_policies:
-      followers: Luchd-leantainn ’s cleachdaichean le iomradh orra
-      nobody: Cleachdaichean le iomradh orra a-mhàin
+      followers: Luchd-leantainn a-mhàin
+      nobody: Mi fhìn a-mhàin
       public: A h-uile duine
+    quote_post_author: Luaidh air post le %{acct}
     title: "%{name}: “%{quote}”"
     visibilities:
-      direct: Dìreach
+      direct: Iomradh prìobhaideach
       private: Luchd-leantainn a-mhàin
-      private_long: Na seall ach dhan luchd-leantainn
       public: Poblach
-      public_long: Chì a h-uile duine seo
-      unlisted: Falaichte o liostaichean
-      unlisted_long: Chì a h-uile duine seo ach cha nochd e air loidhnichean-ama poblach
+      public_long: Neach sam bith taobh a-staigh no a-muigh Mhastodon
+      unlisted: Sàmhach
+      unlisted_long: Falaichte o na toraidhean-luirg, na treandaichean ’s na loidhnichean-ama poblach
   statuses_cleanup:
     enabled: Sguab às seann-phostaichean gu fèin-obrachail
     enabled_hint: Sguabaidh seo às na seann-phostaichean agad gu fèin-obrachail nuair a ruigeas iad stairsneach aoise sònraichte ach ma fhreagras iad ri gin dhe na h-eisgeachdan gu h-ìosal
     exceptions: Eisgeachdan
-    explanation: On a tha sguabadh às phostaichean ’na ghnìomh cosgail, thèid seo a dhèanamh gu slaodach thar ùine nuair nach eil am frithealaiche dripeil le nithean eile. Air an adhbhar sin, dh’fhaoidte gum mair na postaichean agad greiseag fhathast nuair a ruigeas iad stairsneach na h-aoise.
+    explanation: Tha prìomhachas ìosal air an sguabadh às fhèin-obrachail. Dh’fhaoidte gum bi dàil eadar ruigsinn stairsneach na h-aoise agus an toirt air falbh.
     ignore_favs: Leig seachad na h-annsachdan
     ignore_reblogs: Leig seachad na brosnachaidhean
     interaction_exceptions: Eisgeachdan stèidhichte air eadar-ghnìomhan
-    interaction_exceptions_explanation: Thoir an aire nach doir sinn barantas gun dèid postaichean a sguabadh às nuair a thèid iad fo stairsneach nan annsachdan no brosnachaidhean ma bha iad os a chionn uair.
+    interaction_exceptions_explanation: Faodaidh postaichean mairsinn ma thèid iad thar stairsneach nan annsachdan no brosnachaidhean rè seal fiù ma bhios an cunntas as ìsle an uairsin.
     keep_direct: Cùm na teachdaireachdan dìreach
     keep_direct_hint: Cha dèid gin dhe na teachdaireachdan dìreach agad a sguabadh às
     keep_media: Cùm postaichean le ceanglachan meadhain
@@ -2015,11 +2086,6 @@ gd:
     past_preamble_html: Dh’atharraich sinn teirmichean na seirbheise againn on turas mu dheireadh a thadhail thu oirnn. Mholamaid gun dèan thu lèirmheas air na teirmichean ùra.
     review_link: Dèan lèirmheas air teirmichean na seirbheise
     title: Tha teirmichean na seirbheise aig %{domain} gu bhith atharrachadh
-  themes:
-    contrast: Mastodon (iomsgaradh àrd)
-    default: Mastodon (dorcha)
-    mastodon-light: Mastodon (soilleir)
-    system: Fèin-obrachail (cleachd ùrlar an t-siostaim)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2189,8 +2255,12 @@ gd:
       error: Bha duilgheadas ann le bhith a’ sguabadh às an iuchair tèarainteachd agad. Feuch ris a-rithist.
       success: Chaidh an iuchair tèarainteachd agad a sguabadh às.
     invalid_credential: Iuchair tèarainteachd mì-dhligheach
+    nickname: Far-ainm
     nickname_hint: Cuir a-steach far-ainm na h-iuchrach tèarainteachd ùir agad
     not_enabled: Cha do chuir thu WebAuthn an comas fhathast
     not_supported: Cha chuir am brabhsair seo taic ri iuchraichean tèarainteachd
     otp_required: Mus cleachd thu iuchraichean tèarainteachd, feumaidh tu an dearbhadh dà-cheumnach a chur an comas.
     registered_on: Air a chlàradh %{date}
+  wrapstodon:
+    description: Seall mar a chleachd %{name} Mastodon am bliadhna!
+    title: Wrapstodon %{year} dha %{name}

@@ -37,20 +37,20 @@ class Api::V1::ConversationsController < Api::BaseController
 
   def paginated_conversations
     AccountConversation.where(account: current_account)
-                       .includes(
-                         account: [:account_stat, user: :role],
-                         last_status: [
-                           :media_attachments,
-                           :status_stat,
-                           :tags,
-                           {
-                             preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
-                             active_mentions: :account,
-                             account: [:account_stat, user: :role],
-                           },
-                         ]
-                       )
-                       .to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+      .includes(
+        account: [:account_stat, user: :role],
+        last_status: [
+          :media_attachments,
+          :status_stat,
+          :tags,
+          {
+            preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
+            active_mentions: :account,
+            account: [:account_stat, user: :role],
+          },
+        ]
+      )
+      .to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def next_path

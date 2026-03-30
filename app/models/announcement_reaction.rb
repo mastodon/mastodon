@@ -14,7 +14,7 @@
 #
 
 class AnnouncementReaction < ApplicationRecord
-  before_validation :set_custom_emoji
+  before_validation :set_custom_emoji, if: :name?
   after_commit :queue_publish
 
   belongs_to :account
@@ -27,7 +27,7 @@ class AnnouncementReaction < ApplicationRecord
   private
 
   def set_custom_emoji
-    self.custom_emoji = CustomEmoji.local.enabled.find_by(shortcode: name) if name.present?
+    self.custom_emoji = CustomEmoji.local.enabled.find_by(shortcode: name)
   end
 
   def queue_publish

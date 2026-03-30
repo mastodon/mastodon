@@ -33,7 +33,7 @@ function isNodeLinkHashtag(element: Node): element is HTMLLinkElement {
   return (
     element instanceof HTMLAnchorElement &&
     // it may be a <a> starting with a hashtag
-    (element.textContent?.[0] === '#' ||
+    (element.textContent.startsWith('#') ||
       // or a #<a>
       element.previousSibling?.textContent?.[
         element.previousSibling.textContent.length - 1
@@ -235,7 +235,7 @@ const HashtagBar: React.FC<{
       ))}
 
       {!expanded && hashtags.length > VISIBLE_HASHTAGS && (
-        <button className='link-button' onClick={handleClick}>
+        <button className='link-button' onClick={handleClick} type='button'>
           <FormattedMessage
             id='hashtags.and_other'
             defaultMessage='…and {count, plural, other {# more}}'

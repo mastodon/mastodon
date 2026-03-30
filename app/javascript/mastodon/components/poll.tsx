@@ -8,13 +8,12 @@ import classNames from 'classnames';
 import { animated, useSpring } from '@react-spring/web';
 import escapeTextContentForBrowser from 'escape-html';
 
+import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { fetchPoll, vote } from 'mastodon/actions/polls';
 import { Icon } from 'mastodon/components/icon';
-import emojify from 'mastodon/features/emoji/emoji';
 import { useIdentity } from 'mastodon/identity_context';
-import { makeEmojiMap } from 'mastodon/models/custom_emoji';
 import type * as Model from 'mastodon/models/poll';
 import type { Status } from 'mastodon/models/status';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -35,6 +34,9 @@ const messages = defineMessages({
     defaultMessage: '{votes, plural, one {# vote} other {# votes}}',
   },
 });
+
+const isPollExpired = (expiresAt: Model.Poll['expires_at']) =>
+  new Date(expiresAt).getTime() < Date.now();
 
 interface PollProps {
   pollId: string;
@@ -59,8 +61,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
     if (!poll) {
       return false;
     }
-    const expiresAt = poll.expires_at;
-    return poll.expired || new Date(expiresAt).getTime() < Date.now();
+    return poll.expired || isPollExpired(poll.expires_at);
   }, [poll]);
   const timeRemaining = useMemo(() => {
     if (!poll) {
@@ -69,7 +70,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
     if (expired) {
       return intl.formatMessage(messages.closed);
     }
-    return <RelativeTimestamp timestamp={poll.expires_at} futureDate />;
+    return <RelativeTimestamp timestamp={poll.expires_at} />;
   }, [expired, intl, poll]);
   const votesCount = useMemo(() => {
     if (!poll) {
@@ -109,7 +110,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'vote',
+            intent: 'vote',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
@@ -173,13 +174,14 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
             className='button button-secondary'
             disabled={voteDisabled}
             onClick={handleVote}
+            type='button'
           >
             <FormattedMessage id='poll.vote' defaultMessage='Vote' />
           </button>
         )}
         {!showResults && (
           <>
-            <button className='poll__link' onClick={handleReveal}>
+            <button className='poll__link' onClick={handleReveal} type='button'>
               <FormattedMessage id='poll.reveal' defaultMessage='See results' />
             </button>{' '}
             ·{' '}
@@ -187,7 +189,11 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
         )}
         {showResults && !disabled && (
           <>
-            <button className='poll__link' onClick={handleRefresh}>
+            <button
+              className='poll__link'
+              onClick={handleRefresh}
+              type='button'
+            >
               <FormattedMessage id='poll.refresh' defaultMessage='Refresh' />
             </button>{' '}
             ·{' '}
@@ -235,12 +241,11 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
     let titleHtml = option.translation?.titleHtml ?? option.titleHtml;
 
     if (!titleHtml) {
-      const emojiMap = makeEmojiMap(poll.emojis);
-      titleHtml = emojify(escapeTextContentForBrowser(title), emojiMap);
+      titleHtml = escapeTextContentForBrowser(title);
     }
 
     return titleHtml;
-  }, [option, poll, title]);
+  }, [option, title]);
 
   // Handlers
   const handleOptionChange = useCallback(() => {
@@ -306,10 +311,11 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
           </span>
         )}
 
-        <span
+        <EmojiHTML
           className='poll__option__text translate'
           lang={lang}
-          dangerouslySetInnerHTML={{ __html: titleHtml }}
+          htmlString={titleHtml}
+          extraEmojis={poll.emojis}
         />
 
         {!!voted && (
@@ -318,7 +324,7 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
               id='check'
               icon={CheckIcon}
               className='poll__voted__mark'
-              title={intl.formatMessage(messages.voted)}
+              aria-label={intl.formatMessage(messages.voted)}
             />
           </span>
         )}

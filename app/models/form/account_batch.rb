@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-class Form::AccountBatch
-  include ActiveModel::Model
-  include Authorization
-  include AccountableConcern
+class Form::AccountBatch < Form::BaseBatch
   include Payloadable
 
-  attr_accessor :account_ids, :action, :current_account,
-                :select_all_matching, :query
+  attr_accessor :account_ids,
+                :query,
+                :select_all_matching
 
   def save
     case action
@@ -128,7 +126,7 @@ class Form::AccountBatch
 
     # Suspending a single account closes their associated reports, so
     # mass-suspending would be consistent.
-    Report.where(target_account: account).unresolved.find_each do |report|
+    account.targeted_reports.unresolved.find_each do |report|
       authorize(report, :update?)
       log_action(:resolve, report)
       report.resolve!(current_account)

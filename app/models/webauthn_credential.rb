@@ -5,13 +5,13 @@
 # Table name: webauthn_credentials
 #
 #  id          :bigint(8)        not null, primary key
-#  external_id :string           not null
-#  public_key  :string           not null
 #  nickname    :string           not null
+#  public_key  :string           not null
 #  sign_count  :bigint(8)        default(0), not null
-#  user_id     :bigint(8)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  external_id :string           not null
+#  user_id     :bigint(8)
 #
 
 class WebauthnCredential < ApplicationRecord
@@ -21,5 +21,5 @@ class WebauthnCredential < ApplicationRecord
   validates :external_id, uniqueness: true
   validates :nickname, uniqueness: { scope: :user_id }
   validates :sign_count,
-            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: SIGN_COUNT_LIMIT - 1 }
+            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than: SIGN_COUNT_LIMIT }
 end

@@ -13,6 +13,7 @@ export const StatusesCounter = (
       count: pluralReady,
       counter: <strong>{displayNumber}</strong>,
     }}
+    tagName='span'
   />
 );
 
@@ -27,6 +28,7 @@ export const FollowingCounter = (
       count: pluralReady,
       counter: <strong>{displayNumber}</strong>,
     }}
+    tagName='span'
   />
 );
 
@@ -41,6 +43,7 @@ export const FollowersCounter = (
       count: pluralReady,
       counter: <strong>{displayNumber}</strong>,
     }}
+    tagName='span'
   />
 );
 
@@ -55,5 +58,6 @@ export const FollowersYouKnowCounter = (
       count: pluralReady,
       counter: <strong>{displayNumber}</strong>,
     }}
+    tagName='span'
   />
 );

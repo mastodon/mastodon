@@ -11,7 +11,14 @@ RSpec.describe 'Auth Passwords' do
   describe 'Resetting a password', :inline_jobs do
     let(:new_password) { 'New.Pass.123' }
 
-    before { allow(Devise).to receive(:pam_authentication).and_return(false) } # Avoid the "seamless external" path
+    before do
+      allow(Devise).to receive(:pam_authentication).and_return(false) # Avoid the "seamless external" path
+
+      # Disable wrapstodon to avoid redis calls that we don't want to stub
+      Setting.wrapstodon = false
+
+      allow(redis).to receive(:publish)
+    end
 
     it 'initiates reset, sends link, resets password from form, clears data' do
       visit new_user_password_path
@@ -30,6 +37,10 @@ RSpec.describe 'Auth Passwords' do
       expect(User.find(user.id))
         .to be_present
         .and be_valid_password(new_password)
+
+      # Disables the token associated with the session
+      expect(redis)
+        .to have_received(:publish).with("timeline:access_token:#{session_activation.access_token.id}", { event: :kill }.to_json).once
 
       # Deactivate session
       expect(user_session_count)
@@ -50,9 +61,8 @@ RSpec.describe 'Auth Passwords' do
 
     def submit_email_reset
       fill_in 'user_email', with: user.email
-      click_on I18n.t('auth.reset_password')
-      open_last_email
-      visit_in_email(I18n.t('devise.mailer.reset_password_instructions.action'))
+      emails = capture_emails { click_on I18n.t('auth.reset_password') }
+      visit email_links(emails.first).first
     end
 
     def set_new_password

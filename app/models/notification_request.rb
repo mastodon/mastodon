@@ -5,12 +5,12 @@
 # Table name: notification_requests
 #
 #  id                  :bigint(8)        not null, primary key
-#  account_id          :bigint(8)        not null
-#  from_account_id     :bigint(8)        not null
-#  last_status_id      :bigint(8)
 #  notifications_count :bigint(8)        default(0), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  account_id          :bigint(8)        not null
+#  from_account_id     :bigint(8)        not null
+#  last_status_id      :bigint(8)
 #
 
 class NotificationRequest < ApplicationRecord
@@ -49,6 +49,6 @@ class NotificationRequest < ApplicationRecord
   private
 
   def prepare_notifications_count
-    self.notifications_count = Notification.where(account: account, from_account: from_account, type: :mention, filtered: true).limit(MAX_MEANINGFUL_COUNT).count
+    self.notifications_count = Notification.where(account: account, from_account: from_account, type: [:mention, :quote], filtered: true).limit(MAX_MEANINGFUL_COUNT).count
   end
 end

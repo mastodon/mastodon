@@ -1,13 +1,56 @@
 @use 'variables' as *;
-@use 'functions' as *;
+
+html {
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+
+  &.custom-scrollbars {
+    scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
+  }
+
+  --outline-focus-default: 2px solid var(--color-border-brand);
+  --avatar-border-radius: 8px;
+  --max-media-height-small: 460px;
+  --max-media-height-large: 566px;
+
+  // Variable for easily inverting directional UI elements,
+  --text-x-direction: 1;
+
+  &.rtl {
+    --text-x-direction: -1;
+  }
+
+  // Compensate for column header height when scrolling elements into view
+  --column-header-height: 62px;
+
+  scroll-padding-top: var(--column-header-height);
+
+  &:has(.layout-multi-column) {
+    --column-header-height: 0;
+  }
+}
+
+html.has-modal {
+  &,
+  body {
+    touch-action: none;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    overflow: hidden !important;
+  }
+}
 
 body {
   font-family: $font-sans-serif, sans-serif;
-  background: var(--background-color);
+  background: var(--color-bg-primary);
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
-  color: $primary-text-color;
+  color: var(--color-text-primary);
   text-rendering: optimizelegibility;
 
   // Disable kerning for Japanese text to preserve monospaced alignment for readability
@@ -19,7 +62,7 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
   -webkit-tap-highlight-color: transparent;
 
-  &.system-font {
+  .system-font & {
     // system-ui => standard property (Chrome/Android WebView 56+, Opera 43+, Safari 11+)
     // -apple-system => Safari <11 specific
     // BlinkMacSystemFont => Chrome <56 on macOS specific
@@ -50,10 +93,12 @@ body {
     padding: 0;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+    box-sizing: border-box;
 
     &.layout-single-column {
       height: auto;
       min-height: 100vh;
+      min-height: 100dvh;
       overflow-y: scroll;
     }
 
@@ -61,20 +106,7 @@ body {
       position: absolute;
       width: 100%;
       height: 100%;
-    }
-
-    &.with-modals--active {
-      overflow-y: hidden;
-      overscroll-behavior: none;
-    }
-  }
-
-  &.with-modals {
-    overflow-x: hidden;
-    overflow-y: scroll;
-
-    &--active {
-      overflow-y: hidden;
+      padding-bottom: env(safe-area-inset-bottom);
     }
   }
 
@@ -115,6 +147,7 @@ body {
 
   &.admin {
     padding: 0;
+    background: var(--color-bg-primary);
   }
 
   &.error {
@@ -154,7 +187,7 @@ body {
 a {
   &:focus {
     border-radius: 4px;
-    outline: $ui-button-focus-outline;
+    outline: var(--outline-focus-default);
   }
 
   &:focus:not(:focus-visible) {
@@ -183,7 +216,8 @@ button {
   }
 
   & > noscript {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
@@ -191,6 +225,7 @@ button {
   &,
   & > div {
     min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
@@ -207,7 +242,7 @@ button {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.7;
-  color: lighten($error-red, 4%);
+  color: var(--color-text-error);
   text-align: center;
 
   & > div {
@@ -223,7 +258,7 @@ button {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--color-text-brand);
 
     &:hover,
     &:focus,
@@ -233,11 +268,11 @@ button {
   }
 
   &__footer {
-    color: $dark-text-color;
+    color: var(--color-text-secondary);
     font-size: 13px;
 
     a {
-      color: $dark-text-color;
+      color: var(--color-text-secondary);
     }
   }
 
@@ -245,7 +280,7 @@ button {
     display: inline;
     border: 0;
     background: transparent;
-    color: $dark-text-color;
+    color: var(--color-text-secondary);
     font: inherit;
     padding: 0;
     margin: 0;
@@ -262,7 +297,7 @@ button {
     }
 
     &.copied {
-      color: $valid-value-color;
+      color: var(--mas-status-success-color);
       transition: none;
     }
   }

@@ -26,6 +26,6 @@ class BlockService < BaseService
   end
 
   def build_json(block)
-    Oj.dump(serialize_payload(block, ActivityPub::BlockSerializer))
+    serialize_payload(block, ActivityPub::BlockSerializer).to_json
   end
 end

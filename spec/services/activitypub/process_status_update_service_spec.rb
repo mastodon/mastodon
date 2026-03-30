@@ -20,13 +20,15 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
         { type: 'Mention', href: bogus_mention },
+        { type: 'FeaturedCollection', id: ActivityPub::TagManager.instance.uri_for(featured_collection) },
       ],
     }
   end
-  let(:json) { Oj.load(Oj.dump(payload)) }
+  let(:json) { JSON.parse(payload.to_json) }
 
   let(:alice) { Fabricate(:account) }
   let(:bob) { Fabricate(:account) }
+  let(:featured_collection) { Fabricate(:collection) }
 
   let(:mentions) { [] }
   let(:tags) { [] }
@@ -136,6 +138,48 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       end
     end
 
+    context 'with an implicit update of a poll that has already expired' do
+      let(:account) { Fabricate(:account, domain: 'example.com') }
+      let!(:expiration) { 10.days.ago.utc }
+      let!(:status) do
+        Fabricate(:status,
+                  text: 'Hello world',
+                  account: account,
+                  poll_attributes: {
+                    options: %w(Foo Bar),
+                    account: account,
+                    multiple: false,
+                    hide_totals: false,
+                    expires_at: expiration,
+                  })
+      end
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://example.com/foo',
+          type: 'Question',
+          content: 'Hello world',
+          endTime: expiration.iso8601,
+          oneOf: [
+            poll_option_json('Foo', 4),
+            poll_option_json('Bar', 3),
+          ],
+        }
+      end
+
+      before do
+        travel_to(expiration - 1.day) do
+          Fabricate(:poll_vote, poll: status.poll)
+        end
+      end
+
+      it 'does not re-trigger notifications' do
+        expect { subject.call(status, json, json) }
+          .to_not enqueue_sidekiq_job(PollExpirationNotifyWorker)
+      end
+    end
+
     context 'when the status changes a poll despite being not explicitly marked as updated' do
       let(:account) { Fabricate(:account, domain: 'example.com') }
       let!(:expiration) { 10.days.from_now.utc }
@@ -234,6 +278,16 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       end
     end
 
+    context 'when originally without tagged objects' do
+      before do
+        subject.call(status, json, json)
+      end
+
+      it 'updates tags' do
+        expect(status.tagged_objects.reload.map(&:object)).to contain_exactly(featured_collection)
+      end
+    end
+
     context 'when originally without tags' do
       before do
         subject.call(status, json, json)
@@ -258,6 +312,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
           tag: [
             { type: 'Hashtag', name: 'foo' },
             { type: 'Hashtag', name: 'bar' },
+            { type: 'Hashtag', name: '#2024' },
+            { type: 'Hashtag', name: 'Foo Bar' },
+            { type: 'Hashtag', name: 'FooBar' },
           ],
         }
       end
@@ -269,7 +326,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
       it 'updates tags and featured tags' do
         expect { subject.call(status, json, json) }
-          .to change { status.tags.reload.pluck(:name) }.from(contain_exactly('test', 'foo')).to(contain_exactly('foo', 'bar'))
+          .to change { status.tags.reload.pluck(:name) }.from(contain_exactly('test', 'foo')).to(contain_exactly('foo', 'bar', 'foobar'))
           .and change { status.account.featured_tags.find_by(name: 'test').statuses_count }.by(-1)
           .and change { status.account.featured_tags.find_by(name: 'bar').statuses_count }.by(1)
           .and change { status.account.featured_tags.find_by(name: 'bar').last_status_at }.from(nil).to(be_present)
@@ -340,6 +397,42 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
         expect(status.edits.reload.last.ordered_media_attachment_ids)
           .to_not be_empty
+      end
+    end
+
+    context 'when originally without media attachments and text is removed' do
+      before do
+        stub_request(:get, 'https://example.com/foo.png').to_return(body: attachment_fixture('emojo.png'))
+      end
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          content: '',
+          updated: '2021-09-08T22:39:25Z',
+          attachment: [
+            { type: 'Image', mediaType: 'image/png', url: 'https://example.com/foo.png' },
+          ],
+        }
+      end
+
+      it 'updates media attachments, fetches attachment, records media and text removal in edit' do
+        subject.call(status, json, json)
+
+        expect(status.reload.ordered_media_attachments.first)
+          .to be_present
+          .and(have_attributes(remote_url: 'https://example.com/foo.png'))
+
+        expect(a_request(:get, 'https://example.com/foo.png'))
+          .to have_been_made
+
+        expect(status.edits.reload.last.ordered_media_attachment_ids)
+          .to_not be_empty
+
+        expect(status.edits.reload.last.text)
+          .to_not be_present
       end
     end
 
@@ -435,7 +528,75 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status has an existing unverified quote and adds an approval link' do
+  context 'when the status has an existing unverified quote and adds an approval link through an implicit update' do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    let(:quote_authorization_json) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+            gts: 'https://gotosocial.org/ns#',
+            interactionPolicy: {
+              '@id': 'gts:interactionPolicy',
+              '@type': '@id',
+            },
+            interactingObject: {
+              '@id': 'gts:interactingObject',
+              '@type': '@id',
+            },
+            interactionTarget: {
+              '@id': 'gts:interactionTarget',
+              '@type': '@id',
+            },
+          },
+        ],
+        type: 'QuoteAuthorization',
+        id: approval_uri,
+        attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+        interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
+    end
+
+    it 'updates the approval URI and verifies the quote' do
+      expect { subject.call(status, json, json) }
+        .to change(quote, :approval_uri).to(approval_uri)
+        .and change(quote, :state).to('accepted')
+    end
+  end
+
+  context 'when the status has an existing unverified quote and adds an approval link through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil) }
@@ -464,8 +625,8 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       }
     end
 
-    before do
-      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+    let(:quote_authorization_json) do
+      {
         '@context': [
           'https://www.w3.org/ns/activitystreams',
           {
@@ -490,7 +651,11 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
         interactingObject: ActivityPub::TagManager.instance.uri_for(status),
         interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
-      }))
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
     end
 
     it 'updates the approval URI and verifies the quote' do
@@ -500,7 +665,117 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status has an existing verified quote and removes an approval link' do
+  context 'when an approved quote of a local post gets updated through an explicit update, removing text' do
+    let(:quoted_account) { Fabricate(:account) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted) }
+    let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    it 'updates the quote post without changing the quote status' do
+      expect { subject.call(status, json, json) }
+        .to not_change(quote, :approval_uri)
+        .and not_change(quote, :state).from('accepted')
+        .and change(status, :text).from('Hello world').to('')
+    end
+  end
+
+  context 'when an approved quote of a local post gets updated through an explicit update' do
+    let(:quoted_account) { Fabricate(:account) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted) }
+    let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    it 'updates the quote post without changing the quote status' do
+      expect { subject.call(status, json, json) }
+        .to not_change(quote, :approval_uri)
+        .and not_change(quote, :state).from('accepted')
+        .and change(status, :text).from('Hello world').to('Hello universe')
+    end
+  end
+
+  context 'when an unapproved quote of a local post gets updated through an explicit update and claims approval' do
+    let(:quoted_account) { Fabricate(:account) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: 0) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :rejected) }
+    let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    it 'updates the quote post without changing the quote status' do
+      expect { subject.call(status, json, json) }
+        .to not_change(quote, :approval_uri)
+        .and not_change(quote, :state).from('rejected')
+        .and change(status, :text).from('Hello world').to('Hello universe')
+    end
+  end
+
+  context 'when the status has an existing verified quote and removes an approval link through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
@@ -535,7 +810,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status adds a verifiable quote' do
+  context 'when the status adds a verifiable quote through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
@@ -563,8 +838,8 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       }
     end
 
-    before do
-      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+    let(:quote_authorization_json) do
+      {
         '@context': [
           'https://www.w3.org/ns/activitystreams',
           {
@@ -589,7 +864,11 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
         interactingObject: ActivityPub::TagManager.instance.uri_for(status),
         interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
-      }))
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
     end
 
     it 'updates the approval URI and verifies the quote' do
@@ -600,7 +879,109 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status adds a unverifiable quote' do
+  context 'when the status adds a verifiable quote of a reblog through an explicit update' do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, reblog: Fabricate(:status)) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    let(:quote_authorization_json) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+            gts: 'https://gotosocial.org/ns#',
+            interactionPolicy: {
+              '@id': 'gts:interactionPolicy',
+              '@type': '@id',
+            },
+            interactingObject: {
+              '@id': 'gts:interactingObject',
+              '@type': '@id',
+            },
+            interactionTarget: {
+              '@id': 'gts:interactionTarget',
+              '@type': '@id',
+            },
+          },
+        ],
+        type: 'QuoteAuthorization',
+        id: approval_uri,
+        attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+        interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
+    end
+
+    it 'does not update the approval URI and does not verify the quote' do
+      expect { subject.call(status, json, json) }
+        .to change(status, :quote).from(nil)
+      expect(status.quote.approval_uri).to be_nil
+      expect(status.quote.state).to_not eq 'accepted'
+      expect(status.quote.quoted_status).to be_nil
+    end
+  end
+
+  context 'when the status adds a unverifiable quote through an implicit update' do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }
+    end
+
+    it 'does not add the quote' do
+      expect { subject.call(status, json, json) }
+        .to not_change(status, :quote).from(nil)
+    end
+  end
+
+  context 'when the status adds a unverifiable quote through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
@@ -635,7 +1016,29 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status removes a verified quote' do
+  context 'when the status removes a verified quote through an implicit update' do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': 'https://www.w3.org/ns/activitystreams',
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+      }
+    end
+
+    it 'does not remove the quote' do
+      expect { subject.call(status, json, json) }
+        .to not_change { status.reload.quote }.from(quote)
+    end
+  end
+
+  context 'when the status removes a verified quote through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
@@ -660,7 +1063,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status removes an unverified quote' do
+  context 'when the status removes an unverified quote through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil, state: :pending) }
@@ -684,7 +1087,44 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status swaps a verified quote with an unverifiable quote' do
+  context 'when the status swaps a verified quote with an unverifiable quote through an implicit update' do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let(:second_quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        quote: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    it 'does not update the URI or the quote verification status' do
+      expect { subject.call(status, json, json) }
+        .to not_change { status.reload.quote }.from(quote)
+        .and not_change { status.quote.quoted_status }.from(quoted_status)
+        .and not_change { status.quote.state }.from('accepted')
+    end
+  end
+
+  context 'when the status swaps a verified quote with an unverifiable quote through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:second_quoted_status) { Fabricate(:status, account: quoted_account) }
@@ -714,8 +1154,8 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       }
     end
 
-    before do
-      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+    let(:quote_authorization_json) do
+      {
         '@context': [
           'https://www.w3.org/ns/activitystreams',
           {
@@ -740,7 +1180,11 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
         interactingObject: ActivityPub::TagManager.instance.uri_for(status),
         interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
-      }))
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
     end
 
     it 'updates the URI and unverifies the quote' do
@@ -752,7 +1196,45 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status swaps a verified quote with another verifiable quote' do
+  context 'when the status swaps a verified quote with an ID-less Tombstone through an explicit update' do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let(:second_quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: { type: 'Tombstone' },
+      }
+    end
+
+    it 'updates the URI and unverifies the quote' do
+      expect { subject.call(status, json, json) }
+        .to change { status.quote.quoted_status }.from(quoted_status).to(nil)
+        .and change { status.quote.state }.from('accepted').to('deleted')
+
+      expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  context 'when the status swaps a verified quote with another verifiable quote through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:second_quoted_account) { Fabricate(:account, domain: 'second-quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
@@ -784,8 +1266,8 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       }
     end
 
-    before do
-      stub_request(:get, second_approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+    let(:quote_authorization_json) do
+      {
         '@context': [
           'https://www.w3.org/ns/activitystreams',
           {
@@ -810,7 +1292,11 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         attributedTo: ActivityPub::TagManager.instance.uri_for(second_quoted_status.account),
         interactingObject: ActivityPub::TagManager.instance.uri_for(status),
         interactionTarget: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
-      }))
+      }
+    end
+
+    before do
+      stub_request(:get, second_approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
     end
 
     it 'updates the URI and unverifies the quote' do

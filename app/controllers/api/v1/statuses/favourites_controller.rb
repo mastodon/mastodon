@@ -25,7 +25,7 @@ class Api::V1::Statuses::FavouritesController < Api::V1::Statuses::BaseControlle
 
     relationships = StatusRelationshipsPresenter.new([@status], current_account.id, favourites_map: { @status.id => false }, attributes_map: { @status.id => { favourites_count: count } })
     render json: @status, serializer: REST::StatusSerializer, relationships: relationships
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 end

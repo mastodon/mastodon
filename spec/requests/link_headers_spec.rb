@@ -11,7 +11,7 @@ RSpec.describe 'Link headers' do
 
       expect(response)
         .to have_http_link_header(webfinger_url(resource: account.to_webfinger_s)).for(rel: 'lrdd', type: 'application/jrd+json')
-        .and have_http_link_header(account_url(account)).for(rel: 'alternate', type: 'application/activity+json')
+        .and have_http_link_header(ActivityPub::TagManager.instance.uri_for(account)).for(rel: 'alternate', type: 'application/activity+json')
     end
   end
 end

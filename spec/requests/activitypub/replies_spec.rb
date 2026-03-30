@@ -100,8 +100,8 @@ RSpec.describe 'ActivityPub Replies' do
               first: be_a(Hash).and(
                 include(
                   items: be_an(Array)
-                  .and(have_attributes(size: 1))
-                  .and(all(satisfy { |item| targets_public_collection?(item) }))
+                    .and(have_attributes(size: 1))
+                    .and(all(satisfy { |item| targets_public_collection?(item) }))
                 )
               )
             )
@@ -220,6 +220,12 @@ RSpec.describe 'ActivityPub Replies' do
       it_behaves_like 'allowed access'
     end
 
+    context 'with no signature and requesting the numeric AP path' do
+      subject { get ap_account_status_replies_path(account_id: status.account_id, status_id: status.id, only_other_accounts: only_other_accounts) }
+
+      it_behaves_like 'allowed access'
+    end
+
     context 'with signature' do
       subject { get account_status_replies_path(account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts), headers: nil, sign_with: remote_querier }
 
@@ -246,13 +252,13 @@ RSpec.describe 'ActivityPub Replies' do
   def inlined_replies
     response
       .parsed_body[:first][:items]
-      .select { |x| x.is_a?(Hash) }
+      .grep(Hash)
   end
 
   def remote_replies
     response
       .parsed_body[:first][:items]
-      .reject { |x| x.is_a?(Hash) }
+      .grep_v(Hash)
   end
 
   def parsed_uri_query_values(uri)

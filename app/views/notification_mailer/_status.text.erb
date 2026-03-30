@@ -4,5 +4,9 @@
 >
 <% end %>
 > <%= raw word_wrap(extract_status_plain_text(status), break_sequence: "\n> ") %>
+<% if status.local? && status.quote %>
+>
+>> <%= raw word_wrap(extract_status_plain_text(status.quote.quoted_status), break_sequence: "\n>> ") %>
+<% end %>
 
 <%= raw t('application_mailer.view')%> <%= web_url("@#{status.account.pretty_acct}/#{status.id}") %>

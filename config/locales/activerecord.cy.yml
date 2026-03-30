@@ -32,6 +32,12 @@ cy:
           attributes:
             url:
               invalid: nid yw'n URL dilys
+        collection:
+          attributes:
+            collection_items:
+              too_many: yn ormod, does dim caniatâd i fwy na %{count}
+            tag:
+              unusable: does dim caniatâd i'w ddefnyddio
         doorkeeper/application:
           attributes:
             website:
