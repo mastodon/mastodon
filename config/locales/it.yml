@@ -1436,6 +1436,26 @@ it:
       footer:
         privacy_html: Le email vengono inviate da %{domain}, un server gestito da Mastodon. Per comprendere come questo server elabora i tuoi dati personali, consulta l'<a href="%{privacy_policy_path}">Informativa sulla privacy</a>.
         reason_for_email_html: Ricevi questa email perché hai scelto di ottenere aggiornamenti via email da %{name}. Non vuoi più ricevere queste email? <a href="%{unsubscribe_path}">Disiscriviti</a>
+      interact_with_this_post:
+        one: Interagisci con questo post e scopri altri contenuti simili.
+        other: Interagisci con questi post e scopri di più.
+      subject:
+        one: 'Nuovo post: "%{excerpt}"'
+        other: Nuovi post da %{name}
+      title:
+        one: 'Nuovo post: "%{excerpt}"'
+        other: Nuovi post da %{name}
+  email_subscriptions:
+    active: Attiva
+    confirmations:
+      show:
+        changed_your_mind: Hai cambiato idea?
+        success_html: Ora inizierai a ricevere email quando %{name} pubblicherà nuovi post. Aggiungi %{sender} ai tuoi contatti in modo che questi post non finiscano nella cartella Spam.
+        title: Ti sei registrato/a
+        unsubscribe: Disiscriviti
+    inactive: Inattiva
+    status: Stato
+    subscribers: Iscritti
   emoji_styles:
     auto: Automatico
     native: Nativo
@@ -1807,6 +1827,8 @@ it:
     posting_defaults: Predefinite di pubblicazione
     public_timelines: Timeline pubbliche
   privacy:
+    email_subscriptions: Invia i post via email
+    email_subscriptions_hint_html: Aggiungi al tuo profilo un modulo di iscrizione via email visibile agli utenti non autenticati. Quando i visitatori inseriscono il loro indirizzo email e acconsentono all'iscrizione, Mastodon invierà loro aggiornamenti via email relativi ai tuoi post pubblici.
     hint_html: "<strong>Personalizza il modo in cui vuoi che il tuo profilo e i tuoi post vengano trovati.</strong> Una varietà di funzionalità in Mastodon possono aiutarti a raggiungere un pubblico più ampio se abilitato. Prenditi un momento per rivedere queste impostazioni per assicurarti che si adattino al tuo caso d'uso."
     privacy: Privacy
     privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
@@ -2070,6 +2092,28 @@ it:
     resume_app_authorization: Riprendere l'autorizzazione dell'applicazione
     role_requirement: "%{domain} ti richiede di impostare l'autenticazione a due fattori prima di poter usare Mastodon."
     webauthn: Chiavi di sicurezza
+  unsubscriptions:
+    create:
+      action: Vai alla homepage del server
+      email_subscription:
+        confirmation_html: Non riceverai più email da %{name}.
+      title: Hai annullato l'iscrizione
+      user:
+        confirmation_html: Non riceverai più %{type} da Mastodon su %{domain}.
+    notification_emails:
+      favourite: email di notifica per i post apprezzati
+      follow: email di notifica per i nuovi follower
+      follow_request: email di notifica per le richieste di seguirti
+      mention: email di notifica per le menzioni
+      reblog: email di notifica per le condivisioni
+    show:
+      action: Disiscriviti
+      email_subscription:
+        confirmation_html: Smetterai di ricevere email quando questo account pubblicherà nuovi post.
+        title: Disiscriverti da %{name}?
+      user:
+        confirmation_html: Non riceverai più %{type} da Mastodon su %{domain}.
+        title: Disiscriverti da %{type}?
   user_mailer:
     announcement_published:
       description: 'Gli amministratori di %{domain} stanno facendo un annuncio:'

@@ -17,7 +17,7 @@ de:
       other: Folge ich
     instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert, und kein persönliches Profil. Es wird für Föderationszwecke verwendet und sollte daher nicht gesperrt werden.
     last_active: zuletzt aktiv
-    link_verified_on: Das Profil mit dieser E-Mail-Adresse wurde bereits am %{date} bestätigt
+    link_verified_on: Dieser Link wurde am %{date} Uhr verifiziert
     nothing_here: Keine Treffer mit dieser Auswahl
     pin_errors:
       following: Du musst dieser Person folgen, um sie empfehlen zu können
@@ -1420,7 +1420,7 @@ de:
     basic_information: Allgemeine Informationen
     hint_html: "<strong>Bestimme, was andere auf deinem öffentlichen Profil und neben deinen Beiträgen sehen können.</strong> Wenn du ein Profilbild festlegst und dein Profil vervollständigst, werden andere eher mit dir interagieren und dir folgen."
     other: Andere
-    redesign_body: Das Profil kann jetzt direkt über die Profilseite angepasst werden.
+    redesign_body: Dein Profil kannst du jetzt direkt auf deiner Profilseite bearbeiten.
     redesign_button: Loslegen
     redesign_title: Es gibt eine brandneue Möglichkeit, das Profil zu bearbeiten
   email_subscription_mailer:
@@ -1441,6 +1441,7 @@ de:
     confirmations:
       show:
         changed_your_mind: Meinung geändert?
+        title: Du hast dich angemeldet
         unsubscribe: Abbestellen
     inactive: Deaktiviert
     status: Status
@@ -2081,6 +2082,10 @@ de:
     role_requirement: "%{domain} verlangt das Einrichten einer Zwei-Faktor-Authentisierung, bevor du Mastodon verwenden kannst."
     webauthn: Sicherheitsschlüssel
   unsubscriptions:
+    create:
+      action: Zur Homepage des Servers gehen
+      email_subscription:
+        confirmation_html: Du erhältst keine E-Mails mehr von %{name}.
     show:
       action: Abbestellen
   user_mailer:
