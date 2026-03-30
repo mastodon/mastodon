@@ -71,12 +71,14 @@ export const EditedTimestamp: React.FC<{
           id='status.history.created'
           defaultMessage='{name} created {date}'
           values={{ name: formattedName, date: formattedDate }}
+          tagName='span'
         />
       ) : (
         <FormattedMessage
           id='status.history.edited'
           defaultMessage='{name} edited {date}'
           values={{ name: formattedName, date: formattedDate }}
+          tagName='span'
         />
       );
 
