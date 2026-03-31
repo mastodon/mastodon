@@ -20,6 +20,7 @@ class EmailSubscription < ApplicationRecord
   normalizes :email, with: ->(str) { str.squish.downcase }
 
   validates :email, presence: true, email_address: true, uniqueness: { scope: :account_id }
+  validates :email, email_mx: true, if: -> { email_changed? && !Rails.env.local? }
 
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :unconfirmed, -> { where(confirmed_at: nil) }
