@@ -282,7 +282,6 @@ module Mastodon::CLI
           deduplicate_remote_accounts!(accounts)
         end
       end
-
     ensure
       say 'Restoring index_accounts_on_username_and_domain_lower…'
 
@@ -399,7 +398,7 @@ module Mastodon::CLI
         AccountIdentityProof.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
     ensure
-      return unless ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
+      return unless db_table_exists?(:account_identity_proofs)
 
       say 'Restoring account identity proofs indexes…'
       database_connection.add_index :account_identity_proofs, %w(account_id provider provider_username), name: 'index_account_proofs_on_account_and_provider_and_username', unique: true
@@ -415,7 +414,7 @@ module Mastodon::CLI
         AnnouncementReaction.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
     ensure
-      return unless ActiveRecord::Base.connection.table_exists?(:announcement_reactions)
+      return unless db_table_exists?(:announcement_reactions)
 
       say 'Restoring announcement_reactions indexes…'
       database_connection.add_index :announcement_reactions, %w(account_id announcement_id name), name: 'index_announcement_reactions_on_account_id_and_announcement_id', unique: true
@@ -533,7 +532,7 @@ module Mastodon::CLI
         UnavailableDomain.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
     ensure
-      return unless ActiveRecord::Base.connection.table_exists?(:unavailable_domains)
+      return unless db_table_exists?(:unavailable_domains)
 
       say 'Restoring unavailable_domains indexes…'
       database_connection.add_index :unavailable_domains, ['domain'], name: 'index_unavailable_domains_on_domain', unique: true
@@ -638,7 +637,7 @@ module Mastodon::CLI
         WebauthnCredential.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
     ensure
-      return unless ActiveRecord::Base.connection.table_exists?(:webauthn_credentials)
+      return unless db_table_exists?(:webauthn_credentials)
 
       say 'Restoring webauthn_credentials indexes…'
       database_connection.add_index :webauthn_credentials, ['external_id'], name: 'index_webauthn_credentials_on_external_id', unique: true
@@ -654,7 +653,7 @@ module Mastodon::CLI
         Webhook.where(id: row['ids'].split(',')).order(id: :desc).drop(1).each(&:destroy)
       end
     ensure
-      return unless ActiveRecord::Base.connection.table_exists?(:webhooks)
+      return unless db_table_exists?(:webhooks)
 
       say 'Restoring webhooks indexes…'
       database_connection.add_index :webhooks, ['url'], name: 'index_webhooks_on_url', unique: true
