@@ -30,7 +30,7 @@ RSpec.describe EmailSubscriptionMailer do
           .to send_email(
             to: email_subscription.email,
             from: 'notifications@localhost',
-            subject: I18n.t('email_subscription_mailer.notification.subject', count: statuses.size, name: email_subscription.account.display_name, excerpt: statuses.first.text.truncate(17))
+            subject: I18n.t('email_subscription_mailer.notification.subject.singular', name: email_subscription.account.display_name, excerpt: statuses.first.text.truncate(17))
           )
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe EmailSubscriptionMailer do
           .to send_email(
             to: email_subscription.email,
             from: 'notifications@localhost',
-            subject: I18n.t('email_subscription_mailer.notification.subject', count: statuses.size, name: email_subscription.account.display_name, excerpt: ActionController::Base.helpers.truncate(statuses.first.text, length: 17))
+            subject: I18n.t('email_subscription_mailer.notification.subject.plural', name: email_subscription.account.display_name, excerpt: ActionController::Base.helpers.truncate(statuses.first.text, length: 17))
           )
       end
     end

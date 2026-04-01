@@ -30,7 +30,7 @@ class EmailSubscriptionMailer < ApplicationMailer
     @statuses = statuses
 
     I18n.with_locale(locale) do
-      mail subject: default_i18n_subject(count: @statuses.size, name: @subscription.account.display_name, excerpt: @statuses.first.text.truncate(17))
+      mail subject: I18n.t(@statuses.size == 1 ? 'singular' : 'plural', scope: 'email_subscription_mailer.notification.subject', name: @subscription.account.display_name, excerpt: @statuses.first.text.truncate(17))
     end
   end
 
