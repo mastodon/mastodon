@@ -225,7 +225,7 @@ export const AccountGallery: React.FC<{
         alwaysPrepend
         append={accountId && <RemoteHint accountId={accountId} />}
         scrollKey='account_gallery'
-        showLoading={isLoading}
+        isLoading={isLoading}
         hasMore={!forceEmptyState && hasMore}
         onLoadMore={handleLoadMore}
         emptyMessage={emptyMessage}
