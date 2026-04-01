@@ -7,6 +7,8 @@ import { LimitedAccountHint } from '@/mastodon/features/account_timeline/compone
 import { areCollectionsEnabled } from '@/mastodon/features/collections/utils';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 
+import classes from './styles.module.scss';
+
 interface EmptyMessageProps {
   suspended: boolean;
   hidden: boolean;
@@ -125,7 +127,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
 
   return (
     <div className='empty-column-indicator'>
-      <div>
+      <div className={classes.emptyWrapper}>
         {title && <h2>{title}</h2>}
         {message && <p>{message}</p>}
       </div>
