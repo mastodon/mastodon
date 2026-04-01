@@ -135,10 +135,21 @@ module SignatureVerification
   def keypair_refresh_key!(keypair)
     return if keypair.actor.local? || !keypair.actor.activitypub?
 
-    ActivityPub::FetchRemoteKeyService.new.call(keypair.uri, suppress_errors: false, only_key: !keypair.actor.possibly_stale?, force_refresh: true)
+    actor = if keypair.actor.respond_to?(:refresh!) && keypair.actor.possibly_stale?
+              keypair.actor.refresh!
+            else
+              ActivityPub::FetchRemoteActorService.new.call(keypair.actor.uri, only_key: true, suppress_errors: false)
+            end
+
+    keypair_uri = keypair.uri
+
+    keypair = actor.keypairs.find_by(uri: keypair_uri)
+    return keypair if keypair.present?
+
+    Keypair.from_legacy_account(actor, uri: keypair_uri) if actor.public_key.present?
   rescue Mastodon::PrivateNetworkAddressError => e
     raise Mastodon::SignatureVerificationError, "Requests to private network addresses are disallowed (tried to query #{e.host})"
-  rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteKeyService::Error, ActivityPub::FetchRemoteActorService::Error, Webfinger::Error => e
+  rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteActorService::Error, Webfinger::Error => e
     raise Mastodon::SignatureVerificationError, e.message
   end
 
