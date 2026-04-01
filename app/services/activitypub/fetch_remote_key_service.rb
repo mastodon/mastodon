@@ -46,9 +46,14 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def find_actor(uri, prefetched_body)
-    actor   = ActivityPub::TagManager.instance.uri_to_actor(uri)
-    actor ||= ActivityPub::FetchRemoteActorService.new.call(uri, prefetched_body: prefetched_body, suppress_errors: @suppress_errors)
-    actor
+    # `FetchRemoteKeyService` is called when we don't know of a key.
+    # This is most likely because we don't know of an account yet, but it could also be because we have stale data.
+    # Return the actor if it is known and has been updated recently, otherwise, process it in full.
+
+    actor = ActivityPub::TagManager.instance.uri_to_actor(uri)
+    return actor if actor.present? && !actor.possibly_stale?
+
+    ActivityPub::FetchRemoteActorService.new.call(uri, prefetched_body: prefetched_body, suppress_errors: @suppress_errors)
   end
 
   def expected_type?
