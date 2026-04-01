@@ -23,7 +23,7 @@ export const AccountFilters: FC = () => {
   }
   return (
     <>
-      <AccountTabs acct={acct} />
+      <AccountTabs />
       <div className={classes.filtersWrapper}>
         <FilterDropdown />
       </div>

@@ -14,10 +14,6 @@ import { useAppSelector } from '@/mastodon/store';
 import AtIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import DomainIcon from '@/material-icons/400-24px/language.svg?react';
-import LockIcon from '@/material-icons/400-24px/lock.svg?react';
-
-import { DomainPill } from '../../account/components/domain_pill';
-import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
 
@@ -34,7 +30,6 @@ const messages = defineMessages({
 });
 
 export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
-  const intl = useIntl();
   const account = useAccount(accountId);
   const me = useAppSelector((state) => state.meta.get('me') as string);
   const localDomain = useAppSelector(
@@ -46,32 +41,6 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   }
 
   const [username = '', domain = localDomain] = account.acct.split('@');
-
-  if (!isRedesignEnabled()) {
-    return (
-      <h1>
-        <DisplayName account={account} variant='simple' />
-        <small>
-          <span>
-            @{username}
-            <span className='invisible'>@{domain}</span>
-          </span>
-          <DomainPill
-            username={username}
-            domain={domain}
-            isSelf={me === account.id}
-          />
-          {account.locked && (
-            <Icon
-              id='lock'
-              icon={LockIcon}
-              aria-label={intl.formatMessage(messages.lockedInfo)}
-            />
-          )}
-        </small>
-      </h1>
-    );
-  }
 
   return (
     <div className={classes.name}>

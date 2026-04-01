@@ -8,40 +8,13 @@ import { NavLink } from 'react-router-dom';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 
-import { isRedesignEnabled } from '../common';
-
 import classes from './redesign.module.scss';
-
-export const AccountTabs: FC<{ acct: string }> = ({ acct }) => {
-  if (isRedesignEnabled()) {
-    return <RedesignTabs />;
-  }
-  return (
-    <div className='account__section-headline'>
-      <NavLink exact to={`/@${acct}/featured`}>
-        <FormattedMessage id='account.featured' defaultMessage='Featured' />
-      </NavLink>
-      <NavLink exact to={`/@${acct}`}>
-        <FormattedMessage id='account.posts' defaultMessage='Posts' />
-      </NavLink>
-      <NavLink exact to={`/@${acct}/with_replies`}>
-        <FormattedMessage
-          id='account.posts_with_replies'
-          defaultMessage='Posts and replies'
-        />
-      </NavLink>
-      <NavLink exact to={`/@${acct}/media`}>
-        <FormattedMessage id='account.media' defaultMessage='Media' />
-      </NavLink>
-    </div>
-  );
-};
 
 const isActive: Required<NavLinkProps>['isActive'] = (match, location) =>
   match?.url === location.pathname ||
   (!!match?.url && location.pathname.startsWith(`${match.url}/tagged/`));
 
-const RedesignTabs: FC = () => {
+export const AccountTabs: FC = () => {
   const accountId = useAccountId();
   const account = useAccount(accountId);
 
