@@ -13,12 +13,12 @@ class ActivityPub::Activity::Add < ActivityPub::Activity
         add_featured
       end
     when @account.collections_url
-      return unless Mastodon::Feature.collections_federation_enabled?
+      return unless Mastodon::Feature.collections_enabled?
 
       add_collection
     else
       @collection = @account.collections.find_by(uri: value_or_id(@json['target']))
-      add_collection_item if @collection && Mastodon::Feature.collections_federation_enabled?
+      add_collection_item if @collection && Mastodon::Feature.collections_enabled?
     end
   end
 

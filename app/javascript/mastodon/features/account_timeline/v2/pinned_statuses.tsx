@@ -18,7 +18,6 @@ import type { StatusHeaderRenderFn } from '@/mastodon/components/status/header';
 import { selectTimelineByKey } from '@/mastodon/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { isRedesignEnabled } from '../common';
 import { PinnedBadge } from '../components/badges';
 
 import { useAccountContext } from './context';
@@ -87,10 +86,6 @@ export const renderPinnedStatusHeader: StatusHeaderRenderFn = ({
 
 export const PinnedShowAllButton: FC = () => {
   const { onShowAllPinned } = useAccountContext();
-
-  if (!isRedesignEnabled()) {
-    return null;
-  }
 
   return (
     <Button

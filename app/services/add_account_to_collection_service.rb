@@ -11,10 +11,8 @@ class AddAccountToCollectionService
 
     @collection_item = create_collection_item
 
-    if Mastodon::Feature.collections_federation_enabled?
-      distribute_add_activity if @account.local?
-      distribute_feature_request_activity if @account.remote?
-    end
+    distribute_add_activity if @account.local?
+    distribute_feature_request_activity if @account.remote?
 
     @collection_item
   end

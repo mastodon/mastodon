@@ -4,7 +4,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { List as ImmutableList, isList } from 'immutable';
 
-import { isServerFeatureEnabled } from '@/mastodon/utils/environment';
 import { openModal } from 'mastodon/actions/modal';
 import { expandAccountMediaTimeline } from 'mastodon/actions/timelines';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
@@ -26,8 +25,6 @@ import {
 import { MediaItem } from './components/media_item';
 
 const emptyList = ImmutableList<MediaAttachment>();
-
-const redesignEnabled = isServerFeatureEnabled('profile_redesign');
 
 const selectGalleryTimeline = createAppSelector(
   [
@@ -58,7 +55,7 @@ const selectGalleryTimeline = createAppSelector(
 
     const { show_media, show_media_replies } = account;
     // If the account disabled showing media, don't display anything.
-    if (!show_media && redesignEnabled) {
+    if (!show_media) {
       return {
         items,
         hasMore: false,
@@ -67,7 +64,7 @@ const selectGalleryTimeline = createAppSelector(
       };
     }
 
-    const withReplies = show_media_replies && redesignEnabled;
+    const withReplies = show_media_replies;
     const timeline = timelines.get(
       `account:${accountId}:media${withReplies ? ':with_replies' : ''}`,
     );
@@ -225,7 +222,7 @@ export const AccountGallery: React.FC<{
         alwaysPrepend
         append={accountId && <RemoteHint accountId={accountId} />}
         scrollKey='account_gallery'
-        showLoading={isLoading}
+        isLoading={isLoading}
         hasMore={!forceEmptyState && hasMore}
         onLoadMore={handleLoadMore}
         emptyMessage={emptyMessage}

@@ -9,10 +9,8 @@ class CreateCollectionService
 
     @collection.save!
 
-    if Mastodon::Feature.collections_federation_enabled?
-      distribute_add_activity
-      distribute_feature_request_activities
-    end
+    distribute_add_activity
+    distribute_feature_request_activities
 
     @collection
   end

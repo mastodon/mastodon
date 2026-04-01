@@ -20,6 +20,11 @@
   outline-offset: 2px;
 }
 
+.fieldName,
+.fieldValue {
+  word-break: break-all;
+}
+
 .fieldValue {
   color: var(--color-text-primary);
   font-weight: 600;

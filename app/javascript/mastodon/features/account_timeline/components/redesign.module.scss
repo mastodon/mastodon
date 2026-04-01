@@ -391,3 +391,65 @@ svg.badgeIcon {
     padding-bottom: 14px;
   }
 }
+
+.bannerBase {
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--color-bg-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 16px 0;
+}
+
+.bannerTextAndActions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+
+  h2 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+}
+
+.bannerDisclaimer {
+  color: var(--color-text-secondary);
+  font-size: 11px;
+
+  a {
+    color: inherit;
+  }
+}
+
+.bannerBaseCentered {
+  composes: bannerBase;
+  min-height: 146px;
+  align-items: center;
+
+  .bannerTextAndActions {
+    text-align: center;
+  }
+}
+
+.bannerInputButton {
+  display: flex;
+  gap: 8px;
+  align-self: stretch;
+  align-items: flex-start;
+
+  & > div {
+    flex-grow: 1;
+  }
+
+  input[type='email'] {
+    padding: 7px 8px; // To align size with button
+    background: var(--color-bg-primary);
+  }
+}

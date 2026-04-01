@@ -29,7 +29,7 @@ RSpec.describe CreateCollectionService do
         expect(collection).to be_local
       end
 
-      it 'federates an `Add` activity', feature: :collections_federation do
+      it 'federates an `Add` activity' do
         subject.call(base_params, author)
 
         expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
@@ -65,7 +65,7 @@ RSpec.describe CreateCollectionService do
         context 'when some accounts are remote' do
           let(:accounts) { Fabricate.times(2, :remote_account, feature_approval_policy: (0b10 << 16)) }
 
-          it 'marks the new items as `pending` and federates `FeatureRequest` activities', feature: :collections_federation do
+          it 'marks the new items as `pending` and federates `FeatureRequest` activities' do
             subject.call(params, author)
 
             new_collection = author.collections.last

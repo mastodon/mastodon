@@ -7,7 +7,7 @@ class UpdateCollectionService
     @collection = collection
     @collection.update!(params)
 
-    distribute_update_activity if Mastodon::Feature.collections_federation_enabled?
+    distribute_update_activity
   end
 
   private

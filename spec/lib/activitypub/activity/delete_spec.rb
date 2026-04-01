@@ -120,7 +120,7 @@ RSpec.describe ActivityPub::Activity::Delete do
       end
     end
 
-    context 'with a FeatureAuthorization', feature: :collections_federation do
+    context 'with a FeatureAuthorization', feature: :collections do
       let(:recipient) { Fabricate(:account) }
       let(:approval_uri) { 'https://example.com/authorizations/1' }
       let(:collection) { Fabricate(:collection, account: recipient) }

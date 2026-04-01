@@ -5,7 +5,7 @@ class DeleteCollectionService
     @collection = collection
     @collection.destroy!
 
-    distribute_remove_activity if Mastodon::Feature.collections_federation_enabled?
+    distribute_remove_activity
   end
 
   private

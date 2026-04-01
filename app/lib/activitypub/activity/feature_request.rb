@@ -4,7 +4,7 @@ class ActivityPub::Activity::FeatureRequest < ActivityPub::Activity
   include Payloadable
 
   def perform
-    return unless Mastodon::Feature.collections_federation_enabled?
+    return unless Mastodon::Feature.collections_enabled?
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
 
     @collection = find_or_fetch_collection
