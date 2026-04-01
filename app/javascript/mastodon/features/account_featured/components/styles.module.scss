@@ -12,4 +12,13 @@
     font-size: 15px;
     line-height: 1.4;
   }
+
+  :global(.button) {
+    color: var(--color-text-on-brand-base);
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
 }
