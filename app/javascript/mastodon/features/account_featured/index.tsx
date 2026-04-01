@@ -55,8 +55,12 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
 
   useEffect(() => {
     if (accountId) {
-      void dispatch(fetchFeaturedTags({ accountId }));
       void dispatch(fetchEndorsedAccounts({ accountId }));
+
+      if (!isServerFeatureEnabled('profile_redesign')) {
+        void dispatch(fetchFeaturedTags({ accountId }));
+      }
+
       if (areCollectionsEnabled()) {
         void dispatch(fetchAccountCollections({ accountId }));
       }
