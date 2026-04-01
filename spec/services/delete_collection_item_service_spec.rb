@@ -14,7 +14,7 @@ RSpec.describe DeleteCollectionItemService do
     end
 
     context 'when the collection is local' do
-      it 'federates a `Remove` activity', feature: :collections_federation do
+      it 'federates a `Remove` activity' do
         subject.call(collection_item)
 
         expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
@@ -33,7 +33,7 @@ RSpec.describe DeleteCollectionItemService do
       let(:collection) { Fabricate(:remote_collection) }
       let!(:collection_item) { Fabricate(:collection_item, collection:, state: :accepted) }
 
-      it 'destroys the collection withouth federating anything', feature: :collections_federation do
+      it 'destroys the collection withouth federating anything' do
         expect { subject.call(collection_item, revoke: true) }.to change(collection.collection_items, :count).by(-1)
 
         expect(ActivityPub::AccountRawDistributionWorker).to_not have_enqueued_sidekiq_job

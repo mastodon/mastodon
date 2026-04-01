@@ -802,23 +802,17 @@ RSpec.describe Account do
       let(:discoverable) { true }
       let(:feature_approval_policy) { (0b10 << 16) | 0 }
 
-      it 'returns `false`' do
-        expect(subject.featureable_by?(local_account)).to be false
+      context 'when the policy allows it' do
+        it 'returns `true`' do
+          expect(subject.featureable_by?(local_account)).to be true
+        end
       end
 
-      context 'when collections federation is enabled', feature: :collections_federation do
-        context 'when the policy allows it' do
-          it 'returns `true`' do
-            expect(subject.featureable_by?(local_account)).to be true
-          end
-        end
+      context 'when the policy forbids it' do
+        let(:feature_approval_policy) { 0 }
 
-        context 'when the policy forbids it' do
-          let(:feature_approval_policy) { 0 }
-
-          it 'returns `false`' do
-            expect(subject.featureable_by?(local_account)).to be false
-          end
+        it 'returns `false`' do
+          expect(subject.featureable_by?(local_account)).to be false
         end
       end
     end

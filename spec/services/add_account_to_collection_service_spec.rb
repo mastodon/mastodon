@@ -22,14 +22,14 @@ RSpec.describe AddAccountToCollectionService do
       end
 
       context 'when the account is local' do
-        it 'federates an `Add` activity', feature: :collections_federation do
+        it 'federates an `Add` activity' do
           subject.call(collection, account)
 
           expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
         end
       end
 
-      context 'when the account is remote', feature: :collections_federation do
+      context 'when the account is remote' do
         let(:account) { Fabricate(:remote_account, feature_approval_policy: (0b10 << 16)) }
 
         it 'marks the item as `pending` and federates a `FeatureRequest` activity' do

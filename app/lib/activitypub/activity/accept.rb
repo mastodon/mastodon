@@ -5,7 +5,7 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
     return accept_follow_for_relay if relay_follow?
     return accept_follow!(follow_request_from_object) unless follow_request_from_object.nil?
     return accept_quote!(quote_request_from_object) unless quote_request_from_object.nil?
-    return accept_feature_request! if Mastodon::Feature.collections_federation_enabled? && feature_request_from_object.present?
+    return accept_feature_request! if Mastodon::Feature.collections_enabled? && feature_request_from_object.present?
 
     case @object['type']
     when 'Follow'

@@ -16,7 +16,7 @@ RSpec.describe UpdateCollectionService do
       end
 
       context 'when something actually changed' do
-        it 'federates an `Update` activity', feature: :collections_federation do
+        it 'federates an `Update` activity' do
           subject.call(collection, { name: 'updated' })
 
           expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
@@ -24,7 +24,7 @@ RSpec.describe UpdateCollectionService do
       end
 
       context 'when nothing changed' do
-        it 'does not federate an activity', feature: :collections_federation do
+        it 'does not federate an activity' do
           subject.call(collection, { name: collection.name })
 
           expect(ActivityPub::AccountRawDistributionWorker).to_not have_enqueued_sidekiq_job

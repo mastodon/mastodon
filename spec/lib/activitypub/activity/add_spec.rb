@@ -80,7 +80,7 @@ RSpec.describe ActivityPub::Activity::Add do
     end
   end
 
-  context 'when the target is the `featuredCollections` collection', feature: :collections_federation do
+  context 'when the target is the `featuredCollections` collection', feature: :collections do
     subject { described_class.new(activity_json, account) }
 
     let(:account) { Fabricate(:remote_account, collections_url: 'https://example.com/actor/1/featured_collections') }
@@ -122,7 +122,7 @@ RSpec.describe ActivityPub::Activity::Add do
     end
   end
 
-  context 'when the target is a collection', feature: :collections_federation do
+  context 'when the target is a collection', feature: :collections do
     subject { described_class.new(activity_json, collection.account) }
 
     let(:collection) { Fabricate(:remote_collection) }
