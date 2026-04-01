@@ -210,7 +210,7 @@ export const EditFieldModal = forwardRef<
 
     const labelStatus = checkField(newLabel);
     const valueStatus = checkField(newValue);
-    if (labelStatus || valueStatus) {
+    if (labelStatus?.variant === 'error' || valueStatus?.variant === 'error') {
       setFieldStatuses({
         label: labelStatus ?? undefined,
         value: valueStatus ?? undefined,
