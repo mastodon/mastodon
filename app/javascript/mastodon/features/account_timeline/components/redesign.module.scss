@@ -355,6 +355,11 @@ svg.badgeIcon {
   }
 }
 
+.tabs,
+.noTabs {
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
 .tabs {
   border-bottom: 1px solid var(--color-border-primary);
   display: flex;
@@ -390,6 +395,11 @@ svg.badgeIcon {
     border-bottom: 4px solid var(--color-border-brand);
     padding-bottom: 14px;
   }
+}
+
+.noTabs {
+  width: 100%;
+  border-width: 0 0 1px;
 }
 
 .bannerBase {
