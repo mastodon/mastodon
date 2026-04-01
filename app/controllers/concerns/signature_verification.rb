@@ -101,7 +101,7 @@ module SignatureVerification
     end
 
     if key_id.start_with?('acct:')
-      stoplight_wrapper.run { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
+      stoplight_wrapper.run { fetch_key_from_acct(key_id.delete_prefix('acct:')) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       keypair = Keypair.from_keyid(key_id)
       return keypair if keypair.present?
@@ -112,6 +112,15 @@ module SignatureVerification
     raise Mastodon::SignatureVerificationError, "Requests to private network addresses are disallowed (tried to query #{e.host})"
   rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteActorService::Error, ActivityPub::FetchRemoteKeyService::Error, Webfinger::Error => e
     raise Mastodon::SignatureVerificationError, e.message
+  end
+
+  def fetch_key_from_acct(acct)
+    # This is legacy and can't let us pick a specific key, so pick the first
+
+    account = ResolveAccountService.new.call(acct, suppress_errors: false)
+    return if account.nil?
+
+    account.keypairs.first || Keypair.from_legacy_account(account)
   end
 
   def stoplight_wrapper

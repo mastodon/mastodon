@@ -71,7 +71,29 @@ RSpec.describe 'signature verification concern' do
 
   context 'with an HTTP Signature (draft version)' do
     context 'with a known account' do
-      let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem) }
+      let!(:actor) { Fabricate(:account, username: 'bob', domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem) }
+
+      context 'with an acct key ID' do
+        let(:signature_header) do
+          'keyId="acct:bob@remote.domain",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="' # rubocop:disable Layout/LineLength
+        end
+
+        it 'successfuly verifies signature', :aggregate_failures do
+          expect(signature_header).to eq build_signature_string(actor_keypair, 'acct:bob@remote.domain', 'get /activitypub/success', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
+
+          get '/activitypub/success', headers: {
+            'Host' => 'www.example.com',
+            'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
+            'Signature' => signature_header,
+          }
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body).to match(
+            signed_request: true,
+            signature_actor_id: actor.id.to_s
+          )
+        end
+      end
 
       context 'with a valid signature on a GET request' do
         let(:signature_header) do
