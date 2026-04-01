@@ -64,6 +64,8 @@ RSpec.describe ActivityPub::FetchRemoteKeyService do
 
       it 'returns the expected account' do
         expect(keypair.account.uri).to eq 'https://example.com/alice'
+        expect(keypair.uri).to eq public_key_id
+        expect(keypair.public_key).to eq public_key_pem
       end
     end
 
@@ -76,6 +78,8 @@ RSpec.describe ActivityPub::FetchRemoteKeyService do
 
       it 'returns the expected account' do
         expect(keypair.account.uri).to eq 'https://example.com/alice'
+        expect(keypair.uri).to eq public_key_id
+        expect(keypair.public_key).to eq public_key_pem
       end
     end
 
