@@ -10,7 +10,7 @@ class RevokeCollectionItemService < BaseService
 
     @collection_item.revoke!
 
-    distribute_stamp_deletion! if Mastodon::Feature.collections_federation_enabled? && @collection_item.remote?
+    distribute_stamp_deletion! if @collection_item.remote?
   end
 
   private

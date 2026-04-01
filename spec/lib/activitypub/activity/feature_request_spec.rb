@@ -20,7 +20,7 @@ RSpec.describe ActivityPub::Activity::FeatureRequest do
     }
   end
 
-  describe '#perform', feature: :collections_federation do
+  describe '#perform', feature: :collections do
     subject { described_class.new(json, sender) }
 
     context 'when recipient is discoverable' do

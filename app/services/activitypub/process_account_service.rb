@@ -65,7 +65,7 @@ class ActivityPub::ProcessAccountService < BaseService
     unless @options[:only_key] || @account.suspended?
       check_featured_collection! if @json['featured'].present?
       check_featured_tags_collection! if @json['featuredTags'].present?
-      check_featured_collections_collection! if @json['featuredCollections'].present? && Mastodon::Feature.collections_federation_enabled?
+      check_featured_collections_collection! if @json['featuredCollections'].present? && Mastodon::Feature.collections_enabled?
       check_links! if @account.fields.any?(&:requires_verification?)
     end
 
