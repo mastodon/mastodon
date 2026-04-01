@@ -812,6 +812,7 @@ gd:
         delete_user_data: Sguabadh às dàta cleachdaiche
         delete_user_data_description: Leigidh seo le cleachdaichean dàta chleachdaichean eile a sguabadh às gun dàil
         invite_bypass_approval: Thoir cuireadh do chleachdaichean gun lèirmheas
+        invite_bypass_approval_description: Leigidh seo leis an fheadhainn a fhuair cuireadh dhan fhrithealaiche leis na cleachdaichean seo dearbhadh na maorsainneachd a leigeil seachad
         invite_users: Thoir cuireadh do chleachdaichean
         invite_users_description: Leigidh seo le cleachdaichean cuireadh dhan fhrithealaiche a chur gu daoine eile
         manage_announcements: Stiùireadh nam brathan-fios
@@ -1464,6 +1465,7 @@ gd:
     other: Eile
     redesign_body: "’S urrainn dhut a’ phròifil agad a dheasachadh air duilleag na pròifile fhèin."
     redesign_button: Tadhail air
+    redesign_title: Tha dòigh ùr air deasachadh na pròifil againn
   email_subscription_mailer:
     confirmation:
       action: Dearbh an seòladh puist-d
@@ -1473,11 +1475,20 @@ gd:
       title: A bheil thu airson naidheachdan %{name} fhaighinn air a’ phost-d?
     notification:
       create_account: Cruthaich cunntas Mastodon
+      footer:
+        privacy_html: Thèid puist-d a chur o %{domain}, seo frithealaiche le cumhachd Mhastodon. Airson tuigsinn mar a nì am frithealaiche seo pròiseasadh air an dàta phearsanta agad, faic am <a href="%{privacy_policy_path}">poileasaidh prìobhaideachd</a>.
+        reason_for_email_html: Fhuair thu am post-d seo on a chuir thu romhad naidheachdan %{name} fhaighinn air a’ phost-d. Nach eil thu airson na puist-d seo fhaighinn? <a href="%{unsubscribe_path}">Cuir crìoch air an fho-sgrìobhadh</a>
+      interact_with_this_post:
+        few: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
+        one: Dèan conaltradh leis a’ phost seo is lorg barrachd coltach ris.
+        other: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
+        two: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
   email_subscriptions:
     active: Gnìomhach
     confirmations:
       show:
         changed_your_mind: Na chuir thu romhad a chaochladh?
+        success_html: Gheibh thu puist-d a-nis nuair a dh’fhoillsicheas %{name} postaichean ùra. Cuir %{sender} ris an luchd-aithne agad ach nach dèid na postaichean seo a chur do phasgan an spama agad.
         title: Tha thu air clàradh
         unsubscribe: Cuir crìoch air an fho-sgrìobhadh
     inactive: Neo-ghnìomhach
@@ -1895,6 +1906,7 @@ gd:
     public_timelines: Loidhnichean-ama poblach
   privacy:
     email_subscriptions: Cuir postaichean air a’ phost-d
+    email_subscriptions_hint_html: Cuir foirm clàradh puist-d ris a’ phròifil agad a nochdas do chleachdaichean nach do rinn clàradh a-steach. Nuair a chuireas aoighean an seòladh puist-d aca a-steach is ma ghabhas iad ris, cuiridh Mastodon naidheachdan mu na postaichean poblach agad thuca air a’ phost-d.
     hint_html: "<strong>Gnàthaich an dòigh air an dèid a’ phròifil ’s na postaichean agad a lorg.</strong> Tha grunn ghleusan aig Mastodon a chuidicheas ach an ruig thu èisteachd nas fharsainge nuair a bhios iad an comas. Thoir sùil air na roghainnean seo a dhèanamh cinnteach gum freagair iad ri d’ fheumalachdan."
     privacy: Prìobhaideachd
     privacy_hint_html: Stiùirich na tha thu airson foillseachadh do chàch. Gheibh daoine lorg air pròifilean inntinneach is deagh aplacaidean a’ brabhsadh cò tha daoine eile a’ leantainn ’s a’ faicinn nan aplacaidean a chleachdas iad airson postadh ach dh’fhaoidte gum b’ fheàrr leat seo a chumail falaichte.
@@ -2137,6 +2149,8 @@ gd:
     past_preamble_html: Dh’atharraich sinn teirmichean na seirbheise againn on turas mu dheireadh a thadhail thu oirnn. Mholamaid gun dèan thu lèirmheas air na teirmichean ùra.
     review_link: Dèan lèirmheas air teirmichean na seirbheise
     title: Tha teirmichean na seirbheise aig %{domain} gu bhith atharrachadh
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2162,6 +2176,7 @@ gd:
     recovery_codes_regenerated: Chaidh na còdan aiseig ath-ghintinn
     recovery_instructions_html: Ma chailleas tu an t-inntrigeadh dhan fhòn agad, ’s urrainn dhut fear dhe na còdan aisig gu h-ìosal a chleachdadh airson faighinn a-steach dhan chunntas agad a-rithist. <strong>Cùm na còdan aisig sàbhailte</strong>. Mar eisimpleir, ’s urrainn dhut an clò-bhualadh ’s a chumail far a bheil thu a’ cumail na sgrìobhainnean cudromach eile agad.
     resume_app_authorization: Lean air ùghdarrachadh na h-aplacaid
+    role_requirement: Tha %{domain} ag iarraidh gun suidhich thu dearbhadh dà-cheumnach mus cleachd thu Mastodon.
     webauthn: Iuchraichean tèarainteachd
   unsubscriptions:
     create:
