@@ -182,6 +182,11 @@
 
 // Field component
 
+.fieldName,
+.fieldValue {
+  word-break: break-all;
+}
+
 .fieldName {
   color: var(--color-text-secondary);
   font-size: 13px;
