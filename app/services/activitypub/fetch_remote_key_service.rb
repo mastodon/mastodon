@@ -6,9 +6,11 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   class Error < StandardError; end
 
   # Returns actor that owns the key
-  def call(uri, suppress_errors: true)
+  def call(uri, suppress_errors: true, only_key: false, force_refresh: false)
     raise Error, 'No key URI given' if uri.blank?
 
+    @force_refresh = force_refresh
+    @only_key = only_key
     @suppress_errors = suppress_errors
     @uri = uri
     @json = fetch_resource(uri, false)
@@ -44,8 +46,8 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def find_actor(uri, prefetched_body)
-    actor   = ActivityPub::TagManager.instance.uri_to_actor(uri)
-    actor ||= ActivityPub::FetchRemoteActorService.new.call(uri, prefetched_body: prefetched_body, suppress_errors: @suppress_errors)
+    actor   = ActivityPub::TagManager.instance.uri_to_actor(uri) unless @force_refresh
+    actor ||= ActivityPub::FetchRemoteActorService.new.call(uri, prefetched_body: prefetched_body, suppress_errors: @suppress_errors, only_key: @only_key)
     actor
   end
 
