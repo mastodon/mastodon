@@ -111,9 +111,9 @@ const AccountItem: React.FC<{
           </NumberFields>
         }
       />
-      {!withoutButton && <FollowButton accountId={accountId} />}
+      {!withoutButton && <FollowButton compact accountId={accountId} />}
       {isOwnAccount && (
-        <Button secondary onClick={onRevoke}>
+        <Button secondary compact onClick={onRevoke}>
           <FormattedMessage
             id='collections.detail.revoke_inclusion'
             defaultMessage='Remove me'
