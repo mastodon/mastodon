@@ -83,6 +83,18 @@
   &[data-with-border='true'] {
     border-bottom: 1px solid var(--color-border-primary);
   }
+
+  :global(.account__note) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  // Hide 'No description provided' message added by `Account` component
+  :global(.account__note--missing) {
+    display: none;
+  }
 }
 
 .accountItem {
