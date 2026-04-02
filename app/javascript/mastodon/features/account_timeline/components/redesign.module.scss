@@ -9,11 +9,7 @@
 
 .barWrapper {
   border-bottom: none;
-  padding-inline: 24px;
-
-  @container (width < 500px) {
-    padding-inline: 16px;
-  }
+  padding-inline: 16px;
 }
 
 .avatarWrapper {
@@ -324,7 +320,7 @@ svg.badgeIcon {
 }
 
 .modalFieldsList {
-  padding: 24px;
+  padding: 16px;
 }
 
 .modalFieldItem {
@@ -363,11 +359,9 @@ svg.badgeIcon {
 .tabs {
   display: flex;
   gap: 12px;
-  padding: 0 24px;
+  padding: 0 16px;
 
   @container (width < 500px) {
-    padding: 0 16px;
-
     a {
       flex: 1 1 0px;
       text-align: center;

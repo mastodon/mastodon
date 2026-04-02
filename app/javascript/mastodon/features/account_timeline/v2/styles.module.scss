@@ -1,5 +1,5 @@
 .filtersWrapper {
-  padding: 16px 24px 8px;
+  padding: 16px 16px 8px;
 }
 
 .filterSelectButton {
@@ -51,7 +51,7 @@
 
 .tagsWrapper,
 .tagSuggestions {
-  margin: 0 24px 8px;
+  margin: 0 16px 8px;
 }
 
 .tagsWrapper {
@@ -76,11 +76,6 @@
 }
 
 .statusWrapper {
-  :global(.status) {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
   &:has(.pinnedViewAllButton) :global(.status):has(.pinnedStatusHeader) {
     border-bottom: none;
   }
@@ -97,7 +92,7 @@
   box-sizing: border-box;
   color: var(--color-text-primary);
   line-height: normal;
-  margin: 12px 24px;
+  margin: 12px 16px;
   padding: 8px;
   transition: border-color 0.2s ease-in-out;
   width: calc(100% - 48px);
