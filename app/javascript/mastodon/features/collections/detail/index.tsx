@@ -11,17 +11,20 @@ import { useAccountHandle } from '@/mastodon/components/display_name/default';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
+import { Callout } from 'mastodon/components/callout';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
+import { DisplayName } from 'mastodon/components/display_name';
 import { IconButton } from 'mastodon/components/icon_button';
 import { Scrollable } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
-import { domain } from 'mastodon/initial_state';
+import { domain, me } from 'mastodon/initial_state';
 import { fetchCollection } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollectionAccountsList } from './accounts_list';
 import { CollectionMenu } from './collection_menu';
+import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -62,13 +65,53 @@ export const AuthorNote: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
+export const RevokeControls: React.FC<{
+  collection: ApiCollectionJSON;
+}> = ({ collection }) => {
+  const authorAccount = useAccount(collection.account_id);
+  const confirmRevoke = useConfirmRevoke(collection);
+
+  return (
+    <Callout
+      title={
+        <FormattedMessage
+          id='collections.detail.you_are_in_this_collection'
+          defaultMessage="You're featured in this collection"
+        />
+      }
+      primaryLabel={
+        <FormattedMessage
+          id='collections.detail.revoke_inclusion'
+          defaultMessage='Remove me'
+        />
+      }
+      onPrimary={confirmRevoke}
+    >
+      <FormattedMessage
+        id='collections.detail.author_added_you_on_date'
+        defaultMessage='{author} added you on {date}'
+        values={{
+          author: <DisplayName account={authorAccount} variant='simple' />,
+          date: '{date}', // TODO: Data not yet provided by API
+        }}
+      />
+    </Callout>
+  );
+};
+
 const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   collection,
 }) => {
   const intl = useIntl();
-  const { name, description, tag, account_id } = collection;
+  const { name, description, tag, account_id, items } = collection;
   const dispatch = useAppDispatch();
   const history = useHistory();
+
+  const isOwnCollection = account_id === me;
+  const currentUserIndex = items.findIndex(
+    (account) => account.account_id === me,
+  );
+  const isCurrentUserInCollection = !isOwnCollection && currentUserIndex > -1;
 
   const handleShare = useCallback(() => {
     dispatch(
@@ -115,6 +158,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         </div>
       </div>
       {description && <p className={classes.description}>{description}</p>}
+      {isCurrentUserInCollection && <RevokeControls collection={collection} />}
     </header>
   );
 };

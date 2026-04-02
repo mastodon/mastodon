@@ -3,8 +3,11 @@ import { useCallback } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { showAlert } from 'mastodon/actions/alerts';
+import { openModal } from 'mastodon/actions/modal';
+import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import type { BaseConfirmationModalProps } from 'mastodon/features/ui/components/confirmation_modals/confirmation_modal';
 import { ConfirmationModal } from 'mastodon/features/ui/components/confirmation_modals/confirmation_modal';
+import { me } from 'mastodon/initial_state';
 import { revokeCollectionInclusion } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -23,6 +26,24 @@ const messages = defineMessages({
     defaultMessage: 'Remove me',
   },
 });
+
+export function useConfirmRevoke(collection?: ApiCollectionJSON) {
+  const dispatch = useAppDispatch();
+  const { id, items = [] } = collection ?? {};
+  const ownCollectionItemId = items.find((item) => item.account_id === me)?.id;
+
+  return useCallback(() => {
+    void dispatch(
+      openModal({
+        modalType: 'REVOKE_COLLECTION_INCLUSION',
+        modalProps: {
+          collectionId: id,
+          collectionItemId: ownCollectionItemId,
+        },
+      }),
+    );
+  }, [dispatch, id, ownCollectionItemId]);
+}
 
 export const RevokeCollectionInclusionModal: React.FC<
   {
