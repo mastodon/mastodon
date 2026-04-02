@@ -113,26 +113,3 @@
 
   flex-grow: 1;
 }
-
-.youWereAddedWrapper {
-  padding-bottom: 16px;
-}
-
-.revokeControlWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-
-  :global(.button) {
-    min-width: 30%;
-    white-space: normal;
-  }
-
-  --avatar-width: 46px;
-
-  @container (width < 360px) {
-    --avatar-width: 35px;
-  }
-}
