@@ -3,10 +3,12 @@ import { FormattedMessage } from 'react-intl';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import ElephantImage from '@/images/elephant_ui_missing.png';
+import ElephantDarkImage from '@/images/elephant_ui_dark.svg?react';
+import ElephantLightImage from '@/images/elephant_ui_light.svg?react';
 import { LimitedAccountHint } from '@/mastodon/features/account_timeline/components/limited_account_hint';
 import { areCollectionsEnabled } from '@/mastodon/features/collections/utils';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
+import { useTheme } from '@/mastodon/hooks/useTheme';
 
 import classes from './styles.module.scss';
 
@@ -25,6 +27,9 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
 }) => {
   const { acct } = useParams<{ acct?: string }>();
   const me = useCurrentAccountId();
+  const darkMode = useTheme();
+  const ElephantImage =
+    darkMode === 'dark' ? ElephantDarkImage : ElephantLightImage;
 
   if (!accountId) {
     return null;
@@ -129,7 +134,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
   return (
     <div className='empty-column-indicator'>
       <div className={classes.emptyWrapper}>
-        <img src={ElephantImage} alt='' />
+        <ElephantImage />
         {title && <h2>{title}</h2>}
         {message && <p>{message}</p>}
       </div>
