@@ -135,7 +135,7 @@ module SignatureVerification
   def keypair_refresh_key!(keypair)
     return if keypair.actor.local? || !keypair.actor.activitypub?
 
-    actor = if keypair.actor.respond_to?(:refresh!) && keypair.actor.possibly_stale?
+    actor = if keypair.actor.possibly_stale?
               # Doing a full profile refresh
               keypair.actor.refresh!
             else
