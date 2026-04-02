@@ -169,7 +169,7 @@ nl:
       undo_silenced: Niet langer beperken
       undo_suspension: Niet langer opschorten
       unsilenced_msg: Het opheffen van de beperkingen van %{username} zijn geslaagd
-      unsubscribe: Opzeggen
+      unsubscribe: Afmelden
       unsuspended_msg: Het niet langer opschorten van %{username} is geslaagd
       username: Gebruikersnaam
       view_domain: Samenvatting voor domein bekijken
@@ -1434,25 +1434,25 @@ nl:
     notification:
       create_account: Een Mastodon-account registreren
       footer:
-        privacy_html: E-mails worden verzonden van %{domain}, een server aangedreven door Mastodon. Raadpleeg het <a href="%{privacy_policy_path}">Privacybeleid</a> om te begrijpen hoe deze server jouw persoonsgegevens verwerkt.
-        reason_for_email_html: Je ontvangt deze e-mail omdat je hebt gekozen voor e-mail updates van %{name}. Wil je deze e-mails niet ontvangen? <a href="%{unsubscribe_path}">Afmelden</a>
+        privacy_html: E-mails worden verzonden van %{domain}, een door Mastodon mogelijk gemaakte server. Raadpleeg het <a href="%{privacy_policy_path}">Privacybeleid</a> om te begrijpen hoe deze server jouw persoonsgegevens verwerkt.
+        reason_for_email_html: Je ontvangt deze e-mail omdat je hebt gekozen voor e-mailupdates van %{name}. Wil je deze e-mails niet ontvangen? <a href="%{unsubscribe_path}">Afmelden</a>
       interact_with_this_post:
-        one: Reageer op dit bericht en ontdek meer zoals dit.
-        other: Reageer op deze berichten en ontdek meer soortgelijks.
+        one: Reageer op dit bericht en ontdek vergelijkbare inhoud.
+        other: Reageer op deze berichten en ontdek vergelijkbare inhoud.
       subject:
-        one: 'Nieuw bericht: "%{excerpt}"'
-        other: Nieuwe berichten van %{name}
+        plural: Nieuwe berichten van %{name}
+        singular: 'Nieuw bericht: "%{excerpt}"'
       title:
-        one: 'Nieuw bericht: "%{excerpt}"'
-        other: Nieuwe berichten van %{name}
+        plural: Nieuwe berichten van %{name}
+        singular: 'Nieuw bericht: "%{excerpt}"'
   email_subscriptions:
     active: Actief
     confirmations:
       show:
         changed_your_mind: Van mening veranderd?
-        success_html: Je ontvangt nu e-mails wanneer %{name} nieuwe berichten publiceert. Voeg %{sender} toe aan je contactpersonen, zodat deze berichten niet in je spam-map terechtkomen.
+        success_html: Je ontvangt nu e-mails wanneer %{name} nieuwe berichten publiceert. Voeg %{sender} toe aan je contactpersonen, zodat deze berichten niet in je spam terechtkomen.
         title: Je bent ingeschreven
-        unsubscribe: Uitschrijven
+        unsubscribe: Afmelden
     inactive: Inactief
     status: Status
     subscribers: Abonnees
@@ -1828,7 +1828,7 @@ nl:
     public_timelines: Openbare tijdlijnen
   privacy:
     email_subscriptions: Berichten per e-mail verzenden
-    email_subscriptions_hint_html: Voeg een e-mailaanmeldformulier toe aan je profiel dat verschijnt voor uitgelogde gebruikers. Wanneer bezoekers hun e-mailadres opgeven en zich aanmelden, zal Mastodon e-mail updates voor jouw openbare berichten verzenden.
+    email_subscriptions_hint_html: Voeg een e-mailaanmeldformulier toe aan je profiel dat verschijnt voor uitgelogde gebruikers. Wanneer bezoekers hun e-mailadres opgeven en zich abonneren, zal Mastodon e-mailupdates voor jouw openbare berichten verzenden.
     hint_html: "<strong>Hoe wil je dat jouw profiel en berichten kunnen worden gevonden?</strong> Een verscheidenheid aan functies in Mastodon kunnen je helpen om een groter publiek te bereiken als ze zijn ingeschakeld. Neem rustig de tijd om deze instellingen te bekijken, om er zo zeker van te zijn dat ze aan jouw wensen voldoen."
     privacy: Privacy
     privacy_hint_html: Hoeveel informatie wil je aan andere gebruikers kwijt? Mensen ontdekken interessante accounts en coole apps door te bekijken welke accounts jij volgt en door te bekijken welke app jij gebruikt voor het plaatsen van berichten. Het kan achter zo zijn dat je dit liever verborgen houdt.
@@ -2094,12 +2094,12 @@ nl:
     webauthn: Beveiligingssleutels
   unsubscriptions:
     create:
-      action: Ga naar de serverhomepage
+      action: Ga naar de startpagina van de server
       email_subscription:
-        confirmation_html: Je zult geen e-mails meer ontvangen van %{name}.
-      title: Je bent uitgeschreven
+        confirmation_html: Je zult geen e-mails meer van %{name} ontvangen.
+      title: Je bent afgemeld
       user:
-        confirmation_html: Je zult geen %{type} meer ontvangen van Mastodon op %{domain}.
+        confirmation_html: Je zult geen %{type} meer van Mastodon op %{domain} ontvangen.
     notification_emails:
       favourite: e-mailmeldingen favorieten
       follow: e-mailmeldingen volgers
@@ -2107,13 +2107,13 @@ nl:
       mention: e-mailmeldingen vermeldingen
       reblog: e-mailmeldingen boosts
     show:
-      action: Uitschrijven
+      action: Afmelden
       email_subscription:
         confirmation_html: Je zult geen e-mails meer ontvangen wanneer dit account nieuwe berichten publiceert.
-        title: Afmelden van %{name}?
+        title: Van %{name} afmelden?
       user:
-        confirmation_html: Je zult geen %{type} meer ontvangen van Mastodon op %{domain}.
-        title: Afmelden van %{type}?
+        confirmation_html: Je zult geen %{type} meer van Mastodon op %{domain} ontvangen.
+        title: Van %{type} afmelden?
   user_mailer:
     announcement_published:
       description: 'De beheerders van %{domain} doen een mededeling:'
