@@ -28,13 +28,6 @@ export const AccountNumberFields: FC<{ accountId: string }> = ({
   return (
     <NumberFields>
       <NumberFieldsItem
-        label={<FormattedMessage id='account.posts' defaultMessage='Posts' />}
-        hint={intl.formatNumber(account.statuses_count)}
-      >
-        <ShortNumber value={account.statuses_count} />
-      </NumberFieldsItem>
-
-      <NumberFieldsItem
         label={
           <FormattedMessage id='account.followers' defaultMessage='Followers' />
         }
@@ -52,6 +45,13 @@ export const AccountNumberFields: FC<{ accountId: string }> = ({
         link={`/@${account.acct}/following`}
       >
         <ShortNumber value={account.following_count} />
+      </NumberFieldsItem>
+
+      <NumberFieldsItem
+        label={<FormattedMessage id='account.posts' defaultMessage='Posts' />}
+        hint={intl.formatNumber(account.statuses_count)}
+      >
+        <ShortNumber value={account.statuses_count} />
       </NumberFieldsItem>
 
       <NumberFieldsItem
