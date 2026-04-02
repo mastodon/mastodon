@@ -12,7 +12,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   context_extensions :interaction_policies if Mastodon::Feature.collections_enabled?
 
-  attributes :id, :type, :following, :followers,
+  attributes :id, :webfinger, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
