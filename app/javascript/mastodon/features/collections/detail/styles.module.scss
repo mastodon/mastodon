@@ -1,4 +1,7 @@
 .header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   padding: 24px;
 }
 
@@ -49,7 +52,6 @@
 
 .description {
   font-size: 15px;
-  margin-top: 12px;
 }
 
 .headerButtonWrapper {
@@ -59,8 +61,14 @@
 
 .iconButton {
   box-sizing: content-box;
-  padding: 5px;
+  padding: 7px;
   border-radius: 4px;
+  border: 1px solid var(--color-border-primary);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .itemList {
@@ -81,6 +89,18 @@
   &[data-with-border='true'] {
     border-bottom: 1px solid var(--color-border-primary);
   }
+
+  :global(.account__note) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  // Hide 'No description provided' message added by `Account` component
+  :global(.account__note--missing) {
+    display: none;
+  }
 }
 
 .accountItem {
@@ -92,27 +112,4 @@
   --account-outer-spacing: 0;
 
   flex-grow: 1;
-}
-
-.youWereAddedWrapper {
-  padding-bottom: 16px;
-}
-
-.revokeControlWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-
-  :global(.button) {
-    min-width: 30%;
-    white-space: normal;
-  }
-
-  --avatar-width: 46px;
-
-  @container (width < 360px) {
-    --avatar-width: 35px;
-  }
 }
