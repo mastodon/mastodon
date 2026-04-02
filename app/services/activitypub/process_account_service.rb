@@ -32,8 +32,15 @@ class ActivityPub::ProcessAccountService < BaseService
     @options[:request_id] ||= "#{Time.now.utc.to_i}-#{username}@#{domain}"
 
     with_redis_lock("process_account:#{@uri}") do
-      @account            = Account.remote.find_by(uri: @uri) if @options[:only_key]
-      @account          ||= Account.find_remote(@username, @domain)
+      if @options[:only_key]
+        # `only_key` is used to update an existing account known by its `uri`.
+        # Lookup by handle and new account creation do not make sense in this case.
+        @account = Account.remote.find_by(uri: @uri)
+        return if @account.nil?
+      else
+        @account = Account.find_remote(@username, @domain)
+      end
+
       @old_public_keys = @account.present? ? (@account.keypairs.pluck(:public_key) + [@account.public_key.presence].compact) : []
       @old_protocol = @account&.protocol
       @suspension_changed = false
