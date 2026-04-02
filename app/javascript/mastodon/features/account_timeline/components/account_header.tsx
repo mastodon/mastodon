@@ -156,7 +156,7 @@ export const AccountHeader: React.FC<{
           <div
             className={classNames(
               'account__header__tabs__name',
-              redesignClasses.nameWrapper,
+              redesignClasses.displayNameWrapper,
             )}
           >
             <AccountName accountId={accountId} />
