@@ -182,7 +182,7 @@ export const CollectionDetails: React.FC = () => {
         />
 
         <TextAreaField
-          required
+          required={false}
           label={
             <FormattedMessage
               id='collections.collection_description'
