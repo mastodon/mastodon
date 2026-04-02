@@ -169,7 +169,7 @@ fi:
       undo_silenced: Kumoa rajoitus
       undo_suspension: Kumoa jäädytys
       unsilenced_msg: Tilin %{username} rajoitus kumottiin onnistuneesti
-      unsubscribe: Lopeta tilaus
+      unsubscribe: Peruuta tilaus
       unsuspended_msg: Tilin %{username} jäädytys kumottiin onnistuneesti
       username: Käyttäjänimi
       view_domain: Näytä verkkotunnuksen yhteenveto
@@ -1234,7 +1234,7 @@ fi:
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
     salutation: "%{name}"
-    unsubscribe: Lopeta tilaus
+    unsubscribe: Peruuta tilaus
     view: 'Näytä:'
     view_profile: Näytä profiili
     view_status: Näytä julkaisu
@@ -1435,16 +1435,16 @@ fi:
       create_account: Luo Mastodon-tili
       footer:
         privacy_html: Sähköposti lähetetään verkkotunnuksesta %{domain}, Mastodonin tarjoamalta palvelimelta. Jos haluat ymmärtää, miten tämä palvelin käsittelee henkilötietojasi, katso <a href="%{privacy_policy_path}">tietosuojakäytäntö</a>.
-        reason_for_email_html: Saat tämän sähköpostiviestin, koska olet tilannut sähköpostipäivitykset käyttäjältä %{name}. Etkö halua näitä sähköpostiviestejä? <a href="%{unsubscribe_path}">Lopeta tilaus</a>
+        reason_for_email_html: Saat tämän sähköpostiviestin, koska olet tilannut sähköpostipäivitykset käyttäjältä %{name}. Etkö halua näitä sähköpostiviestejä? <a href="%{unsubscribe_path}">Peruuta tilaus</a>
       interact_with_this_post:
         one: Ole vuorovaikutuksessa tämän julkaisun kanssa ja löydä lisää sen kaltaista.
         other: Olet vuorovaikutuksessa näiden julkaisujen kanssa ja löydä lisää.
       subject:
-        one: 'Uusi julkaisu: ”%{excerpt}”'
-        other: Uusia julkaisuja käyttäjältä %{name}
+        plural: Uusia julkaisuja käyttäjältä %{name}
+        singular: 'Uusi julkaisu: ”%{excerpt}”'
       title:
-        one: 'Uusi julkaisu: ”%{excerpt}”'
-        other: Uusia julkaisuja käyttäjältä %{name}
+        plural: Uusia julkaisuja käyttäjältä %{name}
+        singular: 'Uusi julkaisu: ”%{excerpt}”'
   email_subscriptions:
     active: Ota käyttöön
     confirmations:
@@ -1452,7 +1452,7 @@ fi:
         changed_your_mind: Muutitko mieltäsi?
         success_html: Alat nyt saada sähköpostia, kun %{name} julkaisee uutta. Lisää %{sender} yhteystietoihisi, jotta nämä julkaisut eivät joudu roskapostikansioon.
         title: Olet aloittanut tilauksen
-        unsubscribe: Lopeta tilaus
+        unsubscribe: Peruuta tilaus
     inactive: Poissa käytöstä
     status: Tila
     subscribers: Tilaajia
@@ -2097,7 +2097,7 @@ fi:
       action: Siirry palvelimen etusivulle
       email_subscription:
         confirmation_html: Et saa enää sähköpostia käyttäjältä %{name}.
-      title: Olet lopettanut tilauksen
+      title: Olet peruuttanut tilauksen
       user:
         confirmation_html: Et saa enää %{type} Mastodon-palvelimelta %{domain}.
     notification_emails:
@@ -2107,13 +2107,13 @@ fi:
       mention: sähköposti-ilmoituksia maininnoista
       reblog: sähköposti-ilmoituksia tehostuksista
     show:
-      action: Lopeta tilaus
+      action: Peruuta tilaus
       email_subscription:
         confirmation_html: Lakkaat saamasta sähköpostia, kun tämä tili julkaisee uutta.
-        title: Lopetetaanko käyttäjän %{name} tilaus?
+        title: Peruutetaanko käyttäjän %{name} tilaus?
       user:
         confirmation_html: Lakkaat saamasta %{type} Mastodon-palvelimelta %{domain}.
-        title: Lopetetaanko tilaus aiheesta %{type}?
+        title: Peruutetaanko tilaus aiheesta %{type}?
   user_mailer:
     announcement_published:
       description: 'Palvelimen %{domain} ylläpito tiedottaa:'

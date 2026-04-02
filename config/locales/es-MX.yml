@@ -1,8 +1,8 @@
 ---
 es-MX:
   about:
-    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
-    contact_missing: No especificado
+    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, con un diseño ético y descentralizada! ¡Sé dueño de tus datos con Mastodon!'
+    contact_missing: No establecido
     contact_unavailable: No disponible
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
@@ -16,8 +16,8 @@ es-MX:
       one: Siguiendo
       other: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al servidor en sí mismo y no a ningún usuario individual. Se utiliza para propósitos de la federación y no se debe suspender.
-    last_active: última conexión
-    link_verified_on: La propiedad de este vínculo fue verificada el %{date}
+    last_active: última actividad
+    link_verified_on: Se ha comprobado la propiedad de este enlace el %{date}
     nothing_here: "¡No hay nada aquí!"
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
@@ -1440,11 +1440,11 @@ es-MX:
         one: Interactúa con esta publicación y descubre otras similares.
         other: Interactúa con estas publicaciones y descubre más.
       subject:
-        one: 'Nueva publicación: "%{excerpt}"'
-        other: Nuevas publicaciones de %{name}
+        plural: Nuevas publicaciones de %{name}
+        singular: 'Nueva publicación: "%{excerpt}"'
       title:
-        one: 'Nueva publicación: "%{excerpt}"'
-        other: Nuevas publicaciones de %{name}
+        plural: Nuevas publicaciones de %{name}
+        singular: 'Nueva publicación: "%{excerpt}"'
   email_subscriptions:
     active: Activa
     confirmations:

@@ -19,10 +19,13 @@ export const AccountTabs: FC = () => {
   const account = useAccount(accountId);
 
   if (!account) {
-    return null;
+    return <hr className={classes.noTabs} />;
   }
 
   const { acct, show_featured, show_media } = account;
+  if (!show_featured && !show_media) {
+    return <hr className={classes.noTabs} />;
+  }
 
   return (
     <div className={classes.tabs}>
