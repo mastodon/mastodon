@@ -72,7 +72,7 @@ export const AccountHeader: React.FC<{
           modalType: 'IMAGE',
           modalProps: {
             src: account.avatar,
-            alt: '',
+            alt: account.avatar_description,
           },
         }),
       );
@@ -120,7 +120,7 @@ export const AccountHeader: React.FC<{
           {!suspendedOrHidden && (
             <img
               src={autoPlayGif ? account.header : account.header_static}
-              alt=''
+              alt={account.header_description}
               className='parallax'
             />
           )}
@@ -147,6 +147,7 @@ export const AccountHeader: React.FC<{
             >
               <Avatar
                 account={suspendedOrHidden ? undefined : account}
+                alt={account.avatar_description}
                 size={80}
               />
             </a>
