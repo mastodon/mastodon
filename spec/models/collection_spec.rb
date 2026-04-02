@@ -10,8 +10,6 @@ RSpec.describe Collection do
 
     it { is_expected.to validate_length_of(:name).is_at_most(40) }
 
-    it { is_expected.to validate_presence_of(:description) }
-
     it { is_expected.to validate_length_of(:description).is_at_most(100) }
 
     it { is_expected.to_not allow_value(nil).for(:local) }
@@ -28,10 +26,6 @@ RSpec.describe Collection do
       subject { Fabricate.build :collection, local: false }
 
       it { is_expected.to validate_length_of(:name).is_at_most(Collection::NAME_LENGTH_HARD_LIMIT) }
-
-      it { is_expected.to_not validate_presence_of(:description) }
-
-      it { is_expected.to validate_presence_of(:description_html) }
 
       it { is_expected.to validate_length_of(:description_html).is_at_most(Collection::DESCRIPTION_LENGTH_HARD_LIMIT) }
 
