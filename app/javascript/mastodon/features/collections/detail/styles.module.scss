@@ -61,8 +61,14 @@
 
 .iconButton {
   box-sizing: content-box;
-  padding: 5px;
+  padding: 7px;
   border-radius: 4px;
+  border: 1px solid var(--color-border-primary);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .itemList {
