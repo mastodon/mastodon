@@ -1427,19 +1427,30 @@ hu:
   email_subscription_mailer:
     confirmation:
       action: E-mail-cím megerősítése
+      instructions_to_confirm: Erősítsd meg, hogy e-mailt szeretnél kapni %{name} (@%{acct}) új bejegyzéseiről.
+      instructions_to_ignore: Ha nem tudod, hogy miért kaptad ezt az e-mailt, akkor törölheted. Ha nem kattint a fenti hivatkozásra, akkor nem lesz automatikusan feliratkoztatva.
       subject: E-mail-cím megerősítése
+      title: Fogadod %{name} e-mailes híreit?
     notification:
+      create_account: Mastodon-fiók létrehozása
+      footer:
+        privacy_html: 'Az e-mailek innen lesznek küldve: %{domain}, egy Mastodon-kiszolgálóról. Hogy megértsd, hogy ez a kiszolgáló hogyan dolgozza fel a személyes adataidat, nézd meg az <a href="%{privacy_policy_path}">Adatvédelmi szabályzatot</a>.'
+        reason_for_email_html: Azért kapod ezt az e-mailt, mert kérted, hogy e-mailben megkapd %{name} bejegyzéseit. Nem akarod megkapni ezeket a leveleket? <a href="%{unsubscribe_path}">Leiratkozás</a>
+      interact_with_this_post:
+        one: Interakció ezzel a bejegyzéssel, és hasonlóak felfedezése.
+        other: Interakció ezekkel a bejegyzéssel, és hasonlóak felfedezése.
       subject:
-        one: 'Új bejegyzés: „%{excerpt}”'
-        other: 'Új bejegyzések tőle: %{name}'
+        plural: 'Új bejegyzések tőle: %{name}'
+        singular: 'Új bejegyzés: „%{excerpt}”'
       title:
-        one: 'Új bejegyzés: „%{excerpt}”'
-        other: 'Új bejegyzések tőle: %{name}'
+        plural: 'Új bejegyzések tőle: %{name}'
+        singular: 'Új bejegyzés: „%{excerpt}”'
   email_subscriptions:
     active: Aktív
     confirmations:
       show:
         changed_your_mind: Meggondoltad magad?
+        success_html: Mostantól levelet fogsz kapni, ha %{name} új bejegyzést tesz közzé. Add hozzá a feladót (%{sender}) a névjegyeidhez, hogy ne kerüljön a Levélszemét mappádba.
         title: Feliratkoztál
         unsubscribe: Leiratkozás
     inactive: Inaktív
@@ -2086,8 +2097,22 @@ hu:
       email_subscription:
         confirmation_html: 'Már nem fogsz leveleket kapni róla: %{name}.'
       title: Leiratkoztál
+      user:
+        confirmation_html: 'Már nem fogsz %{type}et kapni a Mastodontól innnen: %{domain}.'
+    notification_emails:
+      favourite: kedvencnek jelölésről szóló értesítő levelek
+      follow: követésről szóló értesítő levelek
+      follow_request: követési kérésekről szóló értesítő levelek
+      mention: megemlítésről szóló értesítő levelek
+      reblog: megtolásról szóló értesítő levelek
     show:
       action: Leiratkozás
+      email_subscription:
+        confirmation_html: Nem fogsz többé leveleket kapni, ha ez a fiók új bejegyzéseket tesz közzé.
+        title: 'Leiratkozol róla: %{name}?'
+      user:
+        confirmation_html: 'Már nem fogsz %{type}et kapni a Mastodontól innnen: %{domain}.'
+        title: Leiratkozol a %{type}ről?
   user_mailer:
     announcement_published:
       description: 'A(z) %{domain} adminisztrátorai a következő bejelentést teszik:'

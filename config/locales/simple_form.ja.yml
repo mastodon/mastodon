@@ -58,6 +58,8 @@ ja:
         setting_aggregate_reblogs: 最近ブーストされた投稿が新たにブーストされても表示しません (設定後受信したものにのみ影響)
         setting_always_send_emails: 通常、Mastodon からメール通知は行われません。
         setting_boost_modal: 有効にすると、ブーストによって、まず、ブーストの公開範囲を設定できる確認ダイアログが表示されます。
+        setting_default_quote_policy_private: Mastodon で作成されたフォロワーのみの投稿は他人から引用できません。
+        setting_default_quote_policy_unlisted: 誰かがあなたを引用すると、その投稿もトレンドから非表示になります。
         setting_default_sensitive: 閲覧注意状態のメディアはデフォルトでは内容が伏せられ、クリックして初めて閲覧できるようになります
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
         setting_display_media_hide_all: メディアを常に隠す
@@ -77,6 +79,7 @@ ja:
       featured_tag:
         name: 最近使用したハッシュタグ
       filters:
+        action: 投稿がフィルタに一致したときの動作を選択します
         actions:
           blur: メディアは警告して非表示にするが、テキストは表示する
           hide: フィルタに一致した投稿を完全に非表示にします
@@ -210,6 +213,7 @@ ja:
         email: メールアドレス
         expires_in: 有効期限
         fields: プロフィール補足情報
+        filter_action: フィルターの動作
         header: ヘッダー
         honeypot: "%{label} (入力しない)"
         inbox_url: リレーサーバーの inbox URL
@@ -355,7 +359,9 @@ ja:
         jurisdiction: 裁判管轄
         min_age: 登録可能な最低年齢
       user:
+        date_of_birth_1i: 年
         date_of_birth_2i: 月
+        date_of_birth_3i: 日
         role: ロール
         time_zone: タイムゾーン
       user_role:
