@@ -36,11 +36,9 @@ class Collection < ApplicationRecord
   validates :name, length: { maximum: 40 }, if: :local?
   validates :name, length: { maximum: NAME_LENGTH_HARD_LIMIT }, if: :remote?
   validates :description,
-            presence: true,
             length: { maximum: 100 },
             if: :local?
   validates :description_html,
-            presence: true,
             length: { maximum: DESCRIPTION_LENGTH_HARD_LIMIT },
             if: :remote?
   validates :local, inclusion: [true, false]
