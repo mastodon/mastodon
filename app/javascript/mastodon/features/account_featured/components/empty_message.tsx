@@ -27,9 +27,9 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
 }) => {
   const { acct } = useParams<{ acct?: string }>();
   const me = useCurrentAccountId();
-  const darkMode = useTheme();
+  const theme = useTheme();
   const ElephantImage =
-    darkMode === 'dark' ? ElephantDarkImage : ElephantLightImage;
+    theme === 'dark' ? ElephantDarkImage : ElephantLightImage;
 
   if (!accountId) {
     return null;
