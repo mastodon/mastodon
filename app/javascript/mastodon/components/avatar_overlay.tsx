@@ -49,7 +49,7 @@ export const AvatarOverlay: React.FC<Props> = ({
           {accountSrc && (
             <img
               src={accountSrc}
-              alt={account?.avatar_description}
+              alt={account?.get('acct')}
               onError={handleImgLoadError}
             />
           )}
@@ -63,7 +63,7 @@ export const AvatarOverlay: React.FC<Props> = ({
           {friendSrc && (
             <img
               src={friendSrc}
-              alt={friend?.avatar_description}
+              alt={friend?.get('acct')}
               onError={handleImgLoadError}
             />
           )}

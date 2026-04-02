@@ -11,10 +11,7 @@ import { useAccount } from '../hooks/useAccount';
 
 interface Props {
   account:
-    | Pick<
-        Account,
-        'id' | 'acct' | 'avatar' | 'avatar_static' | 'avatar_description'
-      >
+    | Pick<Account, 'id' | 'acct' | 'avatar' | 'avatar_static'>
     | undefined; // FIXME: remove `undefined` once we know for sure its always there
   size?: number;
   style?: React.CSSProperties;
@@ -68,12 +65,7 @@ export const Avatar: React.FC<Props> = ({
       style={style}
     >
       {src && !error && (
-        <img
-          src={src}
-          alt={account?.avatar_description}
-          onLoad={handleLoad}
-          onError={handleError}
-        />
+        <img src={src} alt='' onLoad={handleLoad} onError={handleError} />
       )}
 
       {counter && (
