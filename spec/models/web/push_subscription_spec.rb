@@ -93,4 +93,8 @@ RSpec.describe Web::PushSubscription do
       end
     end
   end
+
+  describe 'Delegations' do
+    it { is_expected.to delegate_method(:token).to(:access_token).with_prefix(:associated_access) }
+  end
 end

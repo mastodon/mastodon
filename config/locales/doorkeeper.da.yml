@@ -83,7 +83,10 @@ da:
         access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
         credential_flow_not_configured: Ressourceejeradgangskodeakkreditiver-flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Klientgodkendelse mislykkedes grundet en ukendt klient, ingen inkluderet klientgodkendelse eller uunderstøttet godkendelsesmetode.
-        invalid_code_challenge_method: Kodeudfordringsmetoden skal være S256, simpel (plain) er uunderstøttet.
+        invalid_code_challenge_method:
+          one: code_challenge_method skal være %{challenge_methods}.
+          other: code_challenge_method skal være en af %{challenge_methods}.
+          zero: Autorisationsserveren understøtter ikke PKCE, da der ikke er nogen accepterede code_challenge_method-værdier.
         invalid_grant: Den leverede godkendelse er ugyldig, udløbet, ophævet, matcher ikke omdirigerings-URI'en brugt i godkendelsesanmodningen eller er udstedt til en anden klient.
         invalid_redirect_uri: Inkluderede ormdirigerings-URI er ugyldig.
         invalid_request:

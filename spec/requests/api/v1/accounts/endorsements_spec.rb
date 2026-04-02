@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Accounts Pins API' do
-  let(:user)     { Fabricate(:user) }
-  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)   { 'write:accounts' }
-  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'write:accounts'
+
   let(:kevin) { Fabricate(:user) }
 
   before do

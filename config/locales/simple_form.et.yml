@@ -51,7 +51,7 @@ et:
         inbox_url: Kopeeri soovitud sõnumivahendusserveri avalehe võrguaadress
         irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
         locale: Kasutajaliidese, e-kirjade ja tõuketeadete keel
-        password: Vajalik on vähemalt 8 märki
+        password: Vajalik on vähemalt 8 tähemärki
         phrase: Kattub olenemata postituse teksti suurtähtedest või sisuhoiatusest
         scopes: Milliseid API-sid see rakendus tohib kasutada. Kui valid kõrgeima taseme, ei pea üksikuid eraldi valima.
         setting_advanced_layout: Näita Mastodoni mitme veeruga paigutuses, mispuhul näed korraga nii ajajoont, teavitusi, kui sinu valitud kolmandat veergu. Ei sobi kasutamiseks väikeste ekraanide puhul.
@@ -111,8 +111,9 @@ et:
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
         trends: Trendid näitavad, millised postitused, teemaviited ja uudislood koguvad sinu serveris tähelepanu.
+        wrapstodon: Paku kohalikele kasutajatele luua nende Mastodoni kasutamise aastast mänguline kokkuvõte. See võimalus on saadaval igal aastal 10. ja 31. detsembri vahel ja seda pakutakse kasutajatele, kes tegid vähemalt ühe avaliku või vaikse avaliku postituse ja kes kasutas aasta jooksul vähemalt ühte silti.
       form_challenge:
-        current_password: Turvalisse alasse sisenemine
+        current_password: Sisened turvalisse alasse
       imports:
         data: CSV fail eksporditi teisest Mastodoni serverist
       invite_request:
@@ -163,6 +164,7 @@ et:
         name: Rolli avalik nimi, kui roll on märgitud avalikuks kuvamiseks märgina
         permissions_as_keys: Selle rolliga kasutajatel on ligipääs...
         position: Kõrgem roll otsustab teatud olukordades konfliktide lahendamise. Teatud toiminguid saab teha ainult madalama prioriteediga rollidega
+        require_2fa: Selle rolliga kasutajad peavad sisse lülitama kaheastmelise autentimise
       username_block:
         allow_with_approval: Kohese liitumise asemel peavad vastavusekohased liitumised saama eeleeva heakskiidu
         comparison: Kui lubad blokeerimise osalise vastavuse alusel, siis palun arvesta Scunthorpe'i probleemi tekkimise võimalusega
@@ -213,8 +215,8 @@ et:
         avatar: Profiilipilt
         bot: See konto on robot
         chosen_languages: Keelte filtreerimine
-        confirm_new_password: Uue salasõna kinnitamine
-        confirm_password: Salasõna kinnitamine
+        confirm_new_password: Korda uut salasõna
+        confirm_password: Korda salasõna
         context: Filtreeri kontekste
         current_password: Kehtiv salasõna
         data: Andmed
@@ -238,6 +240,8 @@ et:
         setting_always_send_emails: Edasta kõik teavitused meilile
         setting_auto_play_gif: Esita GIF-e automaatselt
         setting_boost_modal: Kontrolli hooandmise nähtavust
+        setting_color_scheme: Värvilahendus
+        setting_contrast: Kontrast
         setting_default_language: Postituse keel
         setting_default_privacy: Postituse nähtavus
         setting_default_quote_policy: Kes võivad tsiteerida
@@ -312,6 +316,7 @@ et:
         thumbnail: Serveri pisipilt
         trendable_by_default: Luba trendid eelneva ülevaatuseta
         trends: Luba trendid
+        wrapstodon: Luba Wrapstodon
       interactions:
         must_be_follower: Keela teavitused mittejälgijatelt
         must_be_following: Keela teavitused kasutajatelt, keda sa ei jälgi
@@ -383,6 +388,7 @@ et:
         name: Nimi
         permissions_as_keys: Load
         position: Positsioon
+        require_2fa: Eelda kaheastmelise autentimise kasutamist
       username_block:
         allow_with_approval: Luba kinnitamisega registreerimine
         comparison: Võrdlemise meetod

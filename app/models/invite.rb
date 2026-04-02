@@ -5,15 +5,15 @@
 # Table name: invites
 #
 #  id         :bigint(8)        not null, primary key
-#  user_id    :bigint(8)        not null
+#  autofollow :boolean          default(FALSE), not null
 #  code       :string           default(""), not null
+#  comment    :text
 #  expires_at :datetime
 #  max_uses   :integer
 #  uses       :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  autofollow :boolean          default(FALSE), not null
-#  comment    :text
+#  user_id    :bigint(8)        not null
 #
 
 class Invite < ApplicationRecord
@@ -22,7 +22,7 @@ class Invite < ApplicationRecord
   COMMENT_SIZE_LIMIT = 420
   ELIGIBLE_CODE_CHARACTERS = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].freeze
   HOMOGLYPHS = %w(0 1 I l O).freeze
-  VALID_CODE_CHARACTERS = ELIGIBLE_CODE_CHARACTERS - HOMOGLYPHS
+  VALID_CODE_CHARACTERS = (ELIGIBLE_CODE_CHARACTERS - HOMOGLYPHS).freeze
 
   belongs_to :user, inverse_of: :invites
   has_many :users, inverse_of: :invite, dependent: nil
@@ -35,6 +35,10 @@ class Invite < ApplicationRecord
 
   def valid_for_use?
     (max_uses.nil? || uses < max_uses) && !expired? && user&.functional?
+  end
+
+  def bypass_approval?
+    user&.role&.can?(:invite_bypass_approval)
   end
 
   private

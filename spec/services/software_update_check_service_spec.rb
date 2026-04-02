@@ -55,6 +55,16 @@ RSpec.describe SoftwareUpdateCheckService do
       end
     end
 
+    context 'when the update server returns invalid response body' do
+      before do
+        stub_request(:get, full_update_check_url).to_return(status: 200, body: 'XXX')
+      end
+
+      it 'handles the error and returns' do
+        expect(subject.call).to be_nil
+      end
+    end
+
     context 'when the server returns new versions' do
       let(:server_json) do
         {
@@ -82,7 +92,7 @@ RSpec.describe SoftwareUpdateCheckService do
       end
 
       before do
-        stub_request(:get, full_update_check_url).to_return(body: Oj.dump(server_json))
+        stub_request(:get, full_update_check_url).to_return(body: server_json.to_json)
       end
 
       it 'updates the list of known updates' do

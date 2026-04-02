@@ -108,6 +108,24 @@ RSpec.describe TermsOfService do
     end
   end
 
+  describe '#usable_effective_date' do
+    subject { terms_of_service.usable_effective_date }
+
+    let(:terms_of_service) { Fabricate.build(:terms_of_service, effective_date:) }
+
+    context 'when effective_date value is set' do
+      let(:effective_date) { 5.days.ago }
+
+      it { is_expected.to eq(effective_date.to_date) }
+    end
+
+    context 'when effective_date value is not set' do
+      let(:effective_date) { nil }
+
+      it { is_expected.to eq(Time.zone.today) }
+    end
+  end
+
   describe '::current' do
     context 'when no terms exist' do
       it 'returns nil' do

@@ -53,4 +53,8 @@ RSpec.describe Form::AdminSettings do
       end
     end
   end
+
+  describe '#persisted?' do
+    it { is_expected.to be_persisted }
+  end
 end

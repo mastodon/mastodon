@@ -211,11 +211,6 @@ az:
       otp: iki faktorlu kimlik doğrulama tətbiqi
       password: parol
     description_html: Əgər tanımadığınız bir fəaliyyəti görsəniz, parolunuzu dəyişdirməyi və iki faktorlu kimlik doğrulamanı fəallaşdırmağı düşünə bilərsiniz
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          reblog: təkrar paylaşma bildirişi e-poçtları
   migrations:
     incoming_migrations: Fərqli bir hesabdan daşı
     incoming_migrations_html: Başqa bir hesabdan bu hesaba daşımaq üçün əvvəlcə <a href="%{path}">bir hesab alias-ı yaratmalısınız</a>.
@@ -284,10 +279,8 @@ az:
     enabled: Köhnə göndərişləri avtomatik sil
     enabled_hint: Aşağıdakı istisnalardan heç birinə uyuşmadığı müddətcə, göndərişləriniz qeyd edilmiş yaş həddinə çatdıqda avtomatik silinir
     exceptions: İstisnalar
-    explanation: Göndərişlərin silinməsi bahalı əməliyyat olduğu üçün, server çox məşğul olmadığı zaman bu proses yavaş-yavaş icra edilir. Bu səbəbdən, bəzi göndərişləriniz yaş həddinə çatdıqdan bir müddət sonra silinə bilər.
     ignore_reblogs: Təkrar paylaşımları yox say
     interaction_exceptions: Qarşılıqlı əlaqələrə əsaslanan istisnalar
-    interaction_exceptions_explanation: Nəzərə alın ki, bir göndəriş sevimlilərə əlavə edilmə və ya təkrar paylaşma həddini keçdikdən sonra həmin həddin altına düşsə belə, onun silinəcəyinə zəmanət verilmir.
     keep_direct: Birbaşa mesajları saxla
     keep_direct_hint: Birbaşa yazdığınız mesajların heç biri silinməyəcək
     keep_media: Media qoşmaları olan göndərişləri saxla

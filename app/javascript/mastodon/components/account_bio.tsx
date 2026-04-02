@@ -6,7 +6,7 @@ import { EmojiHTML } from './emoji/html';
 import { useElementHandledLink } from './status/handled_link';
 
 interface AccountBioProps {
-  className: string;
+  className?: string;
   accountId: string;
   showDropdown?: boolean;
 }

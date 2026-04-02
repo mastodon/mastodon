@@ -111,6 +111,7 @@ tr:
         thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
         trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
         trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
+        wrapstodon: Yerel kullanıcılara, yıl boyunca Mastodon kullanımlarının eğlenceli bir özetini oluşturma imkanı sunun. Bu özellik, her yıl 10 Aralık ile 31 Aralık tarihleri arasında kullanılabilir ve yıl içinde en az bir adet Halka Açık veya Sessiz Halka Açık gönderi paylaşan ve en az bir hashtag kullanan kullanıcılara sunulur.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -133,6 +134,7 @@ tr:
         otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz:'
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
       settings:
+        email_subscriptions: Devre dışı bırakma işlemi mevcut aboneleri korur ancak e-posta gönderimini durdurur.
         indexable: Profil sayfanız Google, Bing ve diğerlerindeki arama sonuçlarında görüntülenebilir.
         show_application: Ne olursa olsun gönderinizi yayınlayan uygulamayı her zaman görebileceksiniz.
       tag:
@@ -163,6 +165,7 @@ tr:
         name: Rolün, eğer rozet olarak görüntülenmesi ayarlandıysa kullanılacak herkese açık ismi
         permissions_as_keys: Bu role sahip kullanıcıların şunlara erişimi var...
         position: Belirli durumlarda çatışmayı çözmek için daha yüksek rol belirleyicidir. Bazı eylemler ancak daha düşük öncelikteki rollere uygulanabilir
+        require_2fa: Bu role sahip kullanıcıların Mastodon'u kullanmak için iki aşamalı kimlik doğrulama ayarlamaları gerekecektir
       username_block:
         allow_with_approval: Kayıt işlemini tamamen engellemek yerine, eşleşen kayıtlar onayınızı gerektirecektir
         comparison: Kısmi eşleşmeleri engellerken lütfen Scunthorpe Problemini aklınızda bulundurun
@@ -222,6 +225,7 @@ tr:
         email: E-posta adresi
         expires_in: Bitiş tarihi
         fields: Profil meta verisi
+        filter_action: Eylemi filtrele
         header: Kapak resmi
         honeypot: "%{label} (doldurmayın)"
         inbox_url: Aktarıcı gelen kutusunun URL'si
@@ -238,6 +242,8 @@ tr:
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
         setting_boost_modal: Öne çıkarma görünürlüğünü denetleyin
+        setting_color_scheme: Renk düzeni
+        setting_contrast: Kontrast
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi görünürlüğü
         setting_default_quote_policy: Kimler alıntılayabilir
@@ -312,10 +318,11 @@ tr:
         thumbnail: Sunucu küçük resmi
         trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
         trends: Öne çıkanları etkinleştir
+        wrapstodon: Wrapstodonu Etkinleştir
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
-        must_be_following_dm: Takip etmediğiniz kişilerden gelen doğrudan iletileri engelle
+        must_be_following_dm: Takip etmediğiniz kişilerden gelen direkt mesajları engelle
       invite:
         comment: Yorum
       invite_request:
@@ -350,6 +357,7 @@ tr:
         hint: Ek bilgi
         text: Kural
       settings:
+        email_subscriptions: E-posta aboneliklerini etkinleştir
         indexable: Arama motorları profil sayfasını içersin
         show_application: Gönderiyi hangi uygulamadan gönderdiğiniz görüntülensin
       tag:
@@ -383,6 +391,7 @@ tr:
         name: Ad
         permissions_as_keys: İzinler
         position: Öncelik
+        require_2fa: İki aşamalı kimlik doğrulama gerektir
       username_block:
         allow_with_approval: Onay ile kayıtlara izin ver
         comparison: Karşılaştırma yöntemi

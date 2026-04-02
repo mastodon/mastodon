@@ -65,5 +65,9 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
     );
   }
 
-  return <div className='empty-column-indicator'>{message}</div>;
+  return (
+    <div className='empty-column-indicator'>
+      <span>{message}</span>
+    </div>
+  );
 };

@@ -6,7 +6,7 @@ lt:
         expires_at: Galutinė data
         options: Pasirinkimai
       user:
-        agreement: Paslaugos sutartis
+        agreement: Paslaugų sąlygos
         email: El. laiško adresas
         locale: Lokali
         password: Slaptažodis
@@ -32,6 +32,12 @@ lt:
           attributes:
             url:
               invalid: nėra tinkamas URL adresas.
+        collection:
+          attributes:
+            collection_items:
+              too_many: yra per daug, leidžiama ne daugiau kaip %{count}
+            tag:
+              unusable: negali būti panaudota
         doorkeeper/application:
           attributes:
             website:

@@ -6,8 +6,9 @@ RSpec.describe CustomFilter do
   it_behaves_like 'Expireable'
 
   describe 'Validations' do
-    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_length_of(:title).is_at_most(described_class::TITLE_LENGTH_LIMIT) }
     it { is_expected.to validate_presence_of(:context) }
+    it { is_expected.to validate_presence_of(:title) }
 
     it { is_expected.to_not allow_values([], %w(invalid)).for(:context) }
     it { is_expected.to allow_values(%w(home)).for(:context) }

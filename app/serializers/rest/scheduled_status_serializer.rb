@@ -12,7 +12,7 @@ class REST::ScheduledStatusSerializer < ActiveModel::Serializer
   def params
     object.params.merge(
       quoted_status_id: object.params['quoted_status_id']&.to_s,
-      quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS.keys.find { |key| object.params['quote_approval_policy']&.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[key] << 16) }&.to_s || 'nobody'
+      quote_approval_policy: InteractionPolicy::POLICY_FLAGS.keys.find { |key| object.params['quote_approval_policy']&.anybits?(InteractionPolicy::POLICY_FLAGS[key] << 16) }&.to_s || 'nobody'
     )
   end
 end

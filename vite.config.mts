@@ -1,7 +1,9 @@
-import path from 'node:path';
 import { readdir } from 'node:fs/promises';
+import path from 'node:path';
 
+import formatjs from '@formatjs/unplugin/vite';
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
+import babel from '@rolldown/plugin-babel';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import postcssPresetEnv from 'postcss-preset-env';
@@ -16,13 +18,12 @@ import {
 import manifestSRI from 'vite-plugin-manifest-sri';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
-import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
+import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
 import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
-import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
+import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 
@@ -44,6 +45,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     base: `/${outDirName}/`,
     envDir: __dirname,
     resolve: {
+      tsconfigPaths: true,
       alias: {
         '~/': `${jsRoot}/`,
         '@/': `${jsRoot}/`,
@@ -120,7 +122,9 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       manifest: true,
       outDir,
       assetsDir: 'assets',
-      rollupOptions: {
+      assetsInlineLimit: (filePath, _) =>
+        /\.woff2?$/.exec(filePath) ? false : undefined,
+      rolldownOptions: {
         input: await findEntrypoints(),
         output: {
           chunkFileNames({ facadeModuleId, name }) {
@@ -154,16 +158,23 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         },
       },
     },
+    experimental: {
+      /**
+       * Setting this causes Vite to not rely on the base config for import URLs,
+       * and instead uses import.meta.url, which is what we want for proper CDN support.
+       * @see https://github.com/mastodon/mastodon/pull/37310
+       */
+      renderBuiltUrl: () => undefined,
+    },
     worker: {
       format: 'es',
     },
     plugins: [
-      tsconfigPaths({ projects: [path.resolve(__dirname, 'tsconfig.json')] }),
-      react({
-        babel: {
-          plugins: ['formatjs', 'transform-react-remove-prop-types'],
-        },
+      react(),
+      babel({
+        plugins: ['transform-react-remove-prop-types'],
       }),
+      formatjs(),
       MastodonThemes(),
       MastodonAssetsManifest(),
       MastodonServiceWorkerLocales(),
@@ -204,7 +215,10 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       svgr(),
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
-      !!process.env.ANALYZE_BUNDLE_SIZE && (visualizer() as PluginOption),
+      !!process.env.ANALYZE_BUNDLE_SIZE &&
+        (visualizer({
+          template: process.env.CI ? 'raw-data' : 'treemap',
+        }) as PluginOption),
       MastodonNameLookup(),
     ],
   } satisfies UserConfig;

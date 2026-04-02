@@ -6,10 +6,10 @@ module ThreadingHelpers
   def multi_threaded_execution(thread_count)
     barrier = Concurrent::CyclicBarrier.new(thread_count)
 
-    threads = Array.new(thread_count) do
+    threads = Array.new(thread_count) do |index|
       Thread.new do
         barrier.wait
-        yield
+        yield(index)
       end
     end
 

@@ -1,0 +1,21 @@
+- content_for :page_title do
+  = t('admin.collections.collection_title', name: @account.pretty_acct)
+
+- content_for :heading_actions do
+  = link_to t('admin.collections.open'), account_collection_path(@account, @collection), class: 'button', target: '_blank', rel: 'noopener'
+
+%h3= t('admin.collections.contents')
+
+= render 'admin/shared/collection', collection: @collection
+
+%hr.spacer/
+
+%h3= t('admin.collections.accounts')
+
+.batch-table
+  .batch-table__toolbar
+  .batch-table__body
+    - if @collection.accepted_collection_items.none?
+      = nothing_here 'nothing-here--under-tabs'
+    - else
+      = render partial: 'admin/accounts/account', collection: @collection.accepted_collection_items.map(&:account)

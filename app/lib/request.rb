@@ -208,7 +208,7 @@ class Request
       return
     end
 
-    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding'), @verb, Addressable::URI.parse(request.uri))
+    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding', 'Accept'), @verb, Addressable::URI.parse(request.uri))
     request.headers['Signature'] = signature_value
   end
 
@@ -275,7 +275,7 @@ class Request
   end
 
   if ::HTTP::Response.methods.include?(:body_with_limit) && !Rails.env.production?
-    abort 'HTTP::Response#body_with_limit is already defined, the monkey patch will not be applied'
+    raise 'HTTP::Response#body_with_limit is already defined, the monkey patch will not be applied'
   else
     class ::HTTP::Response
       include Request::ClientLimit
@@ -295,7 +295,7 @@ class Request
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
             addresses = dns.getaddresses(host)
-            addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
+            addresses = addresses.grep(Resolv::IPv6).take(2) + addresses.grep_v(Resolv::IPv6).take(2)
           end
         end
 
@@ -378,5 +378,5 @@ class Request
     end
   end
 
-  private_constant :ClientLimit, :Socket, :ProxySocket
+  private_constant :ClientLimit
 end

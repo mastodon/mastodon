@@ -166,6 +166,38 @@ on('change', '#domain_block_severity', ({ target }) => {
   if (target instanceof HTMLSelectElement) onDomainBlockSeverityChange(target);
 });
 
+const onChangeInviteUsersPermission = (target: HTMLInputElement) => {
+  const inviteBypassApprovalCheckbox = document.querySelector<HTMLInputElement>(
+    'input#user_role_permissions_as_keys_invite_bypass_approval',
+  );
+
+  if (inviteBypassApprovalCheckbox) {
+    inviteBypassApprovalCheckbox.disabled = !target.checked;
+
+    if (target.checked) {
+      inviteBypassApprovalCheckbox.parentElement?.classList.remove('disabled');
+      inviteBypassApprovalCheckbox.parentElement?.parentElement?.classList.remove(
+        'disabled',
+      );
+    } else {
+      inviteBypassApprovalCheckbox.parentElement?.classList.add('disabled');
+      inviteBypassApprovalCheckbox.parentElement?.parentElement?.classList.add(
+        'disabled',
+      );
+    }
+  }
+};
+
+on(
+  'change',
+  'input#user_role_permissions_as_keys_invite_users',
+  ({ target }) => {
+    if (target instanceof HTMLInputElement) {
+      onChangeInviteUsersPermission(target);
+    }
+  },
+);
+
 function onEnableBootstrapTimelineAccountsChange(target: HTMLInputElement) {
   const bootstrapTimelineAccountsField =
     document.querySelector<HTMLInputElement>(
@@ -256,9 +288,8 @@ async function mountReactComponent(element: Element) {
 
   const componentProps = JSON.parse(stringProps) as object;
 
-  const { default: AdminComponent } = await import(
-    '@/mastodon/containers/admin_component'
-  );
+  const { default: AdminComponent } =
+    await import('@/mastodon/containers/admin_component');
 
   const { default: Component } = (await import(
     `@/mastodon/components/admin/${componentName}.jsx`
@@ -291,6 +322,13 @@ ready(() => {
     'select#form_admin_settings_registrations_mode',
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
+
+  const inviteUsersPermissionChecbkox =
+    document.querySelector<HTMLInputElement>(
+      'input#user_role_permissions_as_keys_invite_users',
+    );
+  if (inviteUsersPermissionChecbkox)
+    onChangeInviteUsersPermission(inviteUsersPermissionChecbkox);
 
   const checkAllElement = document.querySelector<HTMLInputElement>(
     '#batch_checkbox_all',

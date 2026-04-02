@@ -5,41 +5,42 @@
 # Table name: preview_cards
 #
 #  id                           :bigint(8)        not null, primary key
-#  url                          :string           default(""), not null
-#  title                        :string           default(""), not null
-#  description                  :string           default(""), not null
-#  image_file_name              :string
-#  image_content_type           :string
-#  image_file_size              :integer
-#  image_updated_at             :datetime
-#  type                         :integer          default("link"), not null
-#  html                         :text             default(""), not null
 #  author_name                  :string           default(""), not null
 #  author_url                   :string           default(""), not null
-#  provider_name                :string           default(""), not null
-#  provider_url                 :string           default(""), not null
-#  width                        :integer          default(0), not null
-#  height                       :integer          default(0), not null
-#  created_at                   :datetime         not null
-#  updated_at                   :datetime         not null
-#  embed_url                    :string           default(""), not null
-#  image_storage_schema_version :integer
 #  blurhash                     :string
+#  description                  :string           default(""), not null
+#  embed_url                    :string           default(""), not null
+#  height                       :integer          default(0), not null
+#  html                         :text             default(""), not null
+#  image_content_type           :string
+#  image_description            :string           default(""), not null
+#  image_file_name              :string
+#  image_file_size              :integer
+#  image_storage_schema_version :integer
+#  image_updated_at             :datetime
 #  language                     :string
+#  link_type                    :integer
 #  max_score                    :float
 #  max_score_at                 :datetime
-#  trendable                    :boolean
-#  link_type                    :integer
+#  provider_name                :string           default(""), not null
+#  provider_url                 :string           default(""), not null
 #  published_at                 :datetime
-#  image_description            :string           default(""), not null
+#  title                        :string           default(""), not null
+#  trendable                    :boolean
+#  type                         :integer          default("link"), not null
+#  url                          :string           default(""), not null
+#  width                        :integer          default(0), not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
 #  author_account_id            :bigint(8)
+#  unverified_author_account_id :bigint(8)
 #
 
 class PreviewCard < ApplicationRecord
   include Attachmentable
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  LIMIT = Rails.configuration.x.use_vips ? 8.megabytes : 2.megabytes
+  LIMIT = 8.megabytes
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -61,9 +62,10 @@ class PreviewCard < ApplicationRecord
 
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
   belongs_to :author_account, class_name: 'Account', optional: true
+  belongs_to :unverified_author_account, class_name: 'Account', optional: true
 
   has_attached_file :image,
-                    processors: [Rails.configuration.x.use_vips ? :lazy_thumbnail : :thumbnail, :blurhash_transcoder],
+                    processors: [:lazy_thumbnail, :blurhash_transcoder],
                     styles: ->(f) { image_styles(f) },
                     convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' },
                     validate_media_type: false

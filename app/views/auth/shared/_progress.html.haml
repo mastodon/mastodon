@@ -1,26 +1,35 @@
 - progress_index = { rules: 0, details: 1, confirm: 2, confirmed: 3, completed: 4 }[stage.to_sym]
 
-%ol.progress-tracker
-  %li{ class: progress_index.positive? ? 'completed' : 'active' }
+%ol.progress-tracker{ role: 'list', 'aria-label': t('auth.progress.list') }
+  %li{
+    class: progress_index.positive? ? 'completed' : nil,
+    'aria-current': progress_index.zero? ? 'step' : nil
+  }
     .circle
       - if progress_index.positive?
         = check_icon
     .label= t('auth.progress.rules')
-  %li.separator{ class: progress_index.positive? ? 'completed' : nil }
-  %li{ class: [progress_index > 1 && 'completed', progress_index == 1 && 'active'] }
+  %li{
+    class: progress_index > 1 && 'completed',
+    'aria-current': progress_index == 1 ? 'step' : nil
+  }
     .circle
       - if progress_index > 1
         = check_icon
     .label= t('auth.progress.details')
-  %li.separator{ class: progress_index > 1 ? 'completed' : nil }
-  %li{ class: [progress_index > 2 && 'completed', progress_index == 2 && 'active'] }
+  %li{
+    class: progress_index > 2 && 'completed',
+    'aria-current': progress_index == 2 ? 'step' : nil
+  }
     .circle
       - if progress_index > 2
         = check_icon
     .label= t('auth.progress.confirm')
   - if approved_registrations?
-    %li.separator{ class: progress_index > 2 ? 'completed' : nil }
-    %li{ class: [progress_index > 3 && 'completed', progress_index == 3 && 'active'] }
+    %li{
+      class: progress_index > 3 && 'completed',
+      'aria-current': progress_index == 3 ? 'step' : nil
+    }
       .circle
         - if progress_index > 3
           = check_icon

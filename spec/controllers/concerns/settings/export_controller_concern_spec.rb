@@ -23,7 +23,8 @@ RSpec.describe Settings::ExportControllerConcern do
 
       expect(response).to have_http_status(200)
       expect(response.media_type).to eq 'text/csv'
-      expect(response.headers['Content-Disposition']).to start_with 'attachment; filename="anonymous.csv"'
+      expect(response)
+        .to have_attachment('anonymous.csv')
       expect(response.body).to eq 'body data value'
     end
 

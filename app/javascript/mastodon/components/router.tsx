@@ -17,11 +17,16 @@ import { isDevelopment } from 'mastodon/utils/environment';
 interface MastodonLocationState {
   fromMastodon?: boolean;
   mastodonModalKey?: string;
+  // Prevent the rightmost column in advanced UI from scrolling
+  // into view on location changes
+  preventMultiColumnAutoScroll?: string;
 }
 
 export type LocationState = MastodonLocationState | null | undefined;
 
 export type MastodonLocation = ReturnType<typeof useLocation<LocationState>>;
+
+export type MastodonLocationDescriptor = LocationDescriptor<LocationState>;
 
 type HistoryPath = Path | LocationDescriptor<LocationState>;
 

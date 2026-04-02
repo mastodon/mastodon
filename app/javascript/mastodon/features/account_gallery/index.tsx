@@ -2,9 +2,7 @@ import { useEffect, useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { createSelector } from '@reduxjs/toolkit';
-import type { Map as ImmutableMap } from 'immutable';
-import { List as ImmutableList } from 'immutable';
+import { List as ImmutableList, isList } from 'immutable';
 
 import { openModal } from 'mastodon/actions/modal';
 import { expandAccountMediaTimeline } from 'mastodon/actions/timelines';
@@ -18,38 +16,77 @@ import Column from 'mastodon/features/ui/components/column';
 import { useAccountId } from 'mastodon/hooks/useAccountId';
 import { useAccountVisibility } from 'mastodon/hooks/useAccountVisibility';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
-import type { RootState } from 'mastodon/store';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import {
+  useAppSelector,
+  useAppDispatch,
+  createAppSelector,
+} from 'mastodon/store';
 
 import { MediaItem } from './components/media_item';
 
-const getAccountGallery = createSelector(
+const emptyList = ImmutableList<MediaAttachment>();
+
+const selectGalleryTimeline = createAppSelector(
   [
-    (state: RootState, accountId: string) =>
-      (state.timelines as ImmutableMap<string, unknown>).getIn(
-        [`account:${accountId}:media`, 'items'],
-        ImmutableList(),
-      ) as ImmutableList<string>,
-    (state: RootState) => state.statuses,
+    (_state, accountId?: string | null) => accountId,
+    (state) => state.timelines,
+    (state) => state.accounts,
+    (state) => state.statuses,
   ],
-  (statusIds, statuses) => {
-    let items = ImmutableList<MediaAttachment>();
+  (accountId, timelines, accounts, statuses) => {
+    let items = emptyList;
+    if (!accountId) {
+      return {
+        items,
+        hasMore: false,
+        isLoading: false,
+        withReplies: false,
+      };
+    }
+    const account = accounts.get(accountId);
+    if (!account) {
+      return {
+        items,
+        hasMore: false,
+        isLoading: false,
+        withReplies: false,
+      };
+    }
 
-    statusIds.forEach((statusId) => {
-      const status = statuses.get(statusId) as
-        | ImmutableMap<string, unknown>
-        | undefined;
+    const { show_media, show_media_replies } = account;
+    // If the account disabled showing media, don't display anything.
+    if (!show_media) {
+      return {
+        items,
+        hasMore: false,
+        isLoading: false,
+        withReplies: false,
+      };
+    }
 
-      if (status) {
+    const withReplies = show_media_replies;
+    const timeline = timelines.get(
+      `account:${accountId}:media${withReplies ? ':with_replies' : ''}`,
+    );
+    const statusIds = timeline?.get('items');
+
+    if (isList(statusIds)) {
+      for (const statusId of statusIds) {
+        const status = statuses.get(statusId);
         items = items.concat(
           (
-            status.get('media_attachments') as ImmutableList<MediaAttachment>
+            status?.get('media_attachments') as ImmutableList<MediaAttachment>
           ).map((media) => media.set('status', status)),
         );
       }
-    });
+    }
 
-    return items;
+    return {
+      items,
+      hasMore: !!timeline?.get('hasMore'),
+      isLoading: timeline?.get('isLoading') ? true : false,
+      withReplies,
+    };
   },
 );
 
@@ -58,27 +95,12 @@ export const AccountGallery: React.FC<{
 }> = ({ multiColumn }) => {
   const dispatch = useAppDispatch();
   const accountId = useAccountId();
-  const attachments = useAppSelector((state) =>
-    accountId
-      ? getAccountGallery(state, accountId)
-      : ImmutableList<MediaAttachment>(),
-  );
-  const isLoading = useAppSelector((state) =>
-    (state.timelines as ImmutableMap<string, unknown>).getIn([
-      `account:${accountId}:media`,
-      'isLoading',
-    ]),
-  );
-  const hasMore = useAppSelector((state) =>
-    (state.timelines as ImmutableMap<string, unknown>).getIn([
-      `account:${accountId}:media`,
-      'hasMore',
-    ]),
-  );
-  const account = useAppSelector((state) =>
-    accountId ? state.accounts.get(accountId) : undefined,
-  );
-  const isAccount = !!account;
+  const {
+    isLoading,
+    items: attachments,
+    hasMore,
+    withReplies,
+  } = useAppSelector((state) => selectGalleryTimeline(state, accountId));
 
   const { suspended, blockedBy, hidden } = useAccountVisibility(accountId);
 
@@ -87,16 +109,18 @@ export const AccountGallery: React.FC<{
     | undefined;
 
   useEffect(() => {
-    if (accountId && isAccount) {
-      void dispatch(expandAccountMediaTimeline(accountId));
+    if (accountId) {
+      void dispatch(expandAccountMediaTimeline(accountId, { withReplies }));
     }
-  }, [dispatch, accountId, isAccount]);
+  }, [dispatch, accountId, withReplies]);
 
   const handleLoadMore = useCallback(() => {
     if (maxId) {
-      void dispatch(expandAccountMediaTimeline(accountId, { maxId }));
+      void dispatch(
+        expandAccountMediaTimeline(accountId, { maxId, withReplies }),
+      );
     }
-  }, [dispatch, accountId, maxId]);
+  }, [maxId, dispatch, accountId, withReplies]);
 
   const handleOpenMedia = useCallback(
     (attachment: MediaAttachment) => {

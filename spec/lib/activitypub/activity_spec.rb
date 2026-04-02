@@ -89,7 +89,7 @@ RSpec.describe ActivityPub::Activity do
     before do
       sender.update(uri: ActivityPub::TagManager.instance.uri_for(sender))
 
-      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump(approval_payload))
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: approval_payload.to_json)
     end
 
     context 'when getting them in order' do

@@ -33,10 +33,10 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     parent_id = Status.where(uri: @status_uri).pick(:id)
     unless parent_id.nil?
       unsubscribed_replies = Status
-                             .where.not(uri: uris)
-                             .where(in_reply_to_id: parent_id)
-                             .unsubscribed
-                             .pluck(:uri)
+        .where.not(uri: uris)
+        .where(in_reply_to_id: parent_id)
+        .unsubscribed
+        .pluck(:uri)
       uris.concat(unsubscribed_replies)
     end
 

@@ -57,11 +57,15 @@ fr:
         setting_advanced_layout: Afficher Mastodon avec une mise en page multicolonnes, vous permettant de visualiser le flux, les notifications et une troisième colonne de votre choix. Non recommandé pour les écrans plus petits.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
         setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
+        setting_boost_modal: Lorsque cette option est activée, avant de partager un message un écran de confirmation vous permettra de changer la visibilité du partage.
+        setting_default_quote_policy_private: Les messages limités aux personnes qui vous suivent publiés depuis Mastodon ne peuvent pas être cités.
         setting_default_quote_policy_unlisted: Lorsque des personnes vous citent, leur message sera également masqué des fils des tendances.
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
         setting_display_media_show_all: Toujours afficher les médias
+        setting_emoji_style: Manière d'afficher les émojis. Utiliser « Auto » pour essayer d'utiliser les émojis natifs, mais Twemoji sera utilisé pour les anciens navigateurs.
+        setting_quick_boosting_html: Lorsque cette option est activée, cliquer sur l'icône de partage %{boost_icon} va immédiatement partager le message au lieu d'ouvrir le menu déroulant Partage/Citation. L'action de citation est déplacée dans le menu %{options_icon} (options).
         setting_system_scrollbars_ui: S'applique uniquement aux navigateurs basés sur Safari et Chrome
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
@@ -71,10 +75,11 @@ fr:
         domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
       email_domain_block:
         domain: Cela peut être le nom de domaine qui apparaît dans l'adresse courriel ou l'enregistrement MX qu'il utilise. Une vérification sera faite à l'inscription.
-        with_dns_records: Une tentative de résolution des enregistrements DNS du domaine donné sera effectuée et les résultats seront également mis sur liste noire
+        with_dns_records: Une tentative de résolution DNS du domaine donné sera faite et les résultats seront également bloqués
       featured_tag:
         name: 'Voici quelques hashtags que vous avez utilisés récemment :'
       filters:
+        action: Choisir l'action à effectuer quand un message correspond au filtre
         actions:
           blur: Cacher les médias derrière un avertissement, sans cacher le texte
           hide: Cacher complètement le contenu filtré, faire comme s'il n'existait pas
@@ -83,15 +88,17 @@ fr:
         activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
         app_icon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
         backups_retention_period: Les utilisateur·rice·s ont la possibilité de générer des archives de leurs messages pour les télécharger plus tard. Lorsqu'elles sont définies à une valeur positive, ces archives seront automatiquement supprimées de votre stockage après le nombre de jours spécifié.
+        bootstrap_timeline_accounts: Ces comptes seront épinglés en haut des recommandations pour les nouveaux utilisateurs. Accepte une liste de comptes séparés par des virgules.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
         content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte de l'interaction de l'utilisateur·rice local·e avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou comme favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateurs lorsqu'elle est appliquée à des fins d'utilisation ordinaires.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
+        landing_page: Sélectionner la page à afficher aux nouveaux visiteur·euse·s quand ils arrivent sur votre serveur. Pour utiliser « Tendances » les tendances doivent être activées dans les paramètres de découverte. Pour utiliser « Fil local » le paramètre « Accès au flux en direct de ce serveur » doit être défini sur « Tout le monde » dans les paramètres de découverte.
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateurs distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
         min_age: Les utilisateurs seront invités à confirmer leur date de naissance lors de l'inscription
         peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
-        profile_directory: L'annuaire des profils répertorie tous les comptes qui choisi d'être découvrables.
+        profile_directory: L'annuaire des profils répertorie tous les comptes qui ont permis d'être découverts.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
         site_contact_email: Comment l'on peut vous joindre pour des requêtes d'assistance ou d'ordre juridique.
         site_contact_username: Comment les gens peuvent vous contacter sur Mastodon.
@@ -104,6 +111,7 @@ fr:
         thumbnail: Une image d'environ 2:1 affichée à côté des informations de votre serveur.
         trendable_by_default: Ignorer l'examen manuel du contenu tendance. Des éléments individuels peuvent toujours être supprimés des tendances après coup.
         trends: Les tendances montrent quels messages, hashtags et actualités gagnent en popularité sur votre serveur.
+        wrapstodon: Offrez aux comptes locaux de générer un récapitulatif annuel de leur utilisation de Mastodon. Cette fonctionnalité est disponible chaque année du 10 au 31 décembre, et est accessible pour les comptes ayant publié au moins un message Public ou Public discret et utilisé au moins un hashtag dans l'année.
       form_challenge:
         current_password: Vous entrez une zone sécurisée
       imports:
@@ -126,35 +134,42 @@ fr:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
         webauthn: Si c'est une clé USB, assurez-vous de l'insérer et, si nécessaire, de la tapoter.
       settings:
+        email_subscriptions: La désactivation conserve les abonné·e·s mais arrête l'envoie de courriels.
         indexable: Votre page de profil peut apparaître dans les résultats de recherche sur Google, Bing et autres.
         show_application: Vous pourrez toujours voir quelle application vous avez utilisé pour publier un message dans tous les cas.
       tag:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       terms_of_service:
         changelog: Peut être structuré avec la syntaxe Markdown.
-        effective_date: Un délai raisonnable peut varier entre 10 et 30 jours à compter de la date à laquelle vous informez vos utilisateurs.
+        effective_date: Un délai raisonnable peut varier entre 10 et 30 jours à compter de la date à laquelle vous informez vos utilisateur·rice·s.
         text: Peut être structuré avec la syntaxe Markdown.
       terms_of_service_generator:
         admin_email: Les avis juridiques comprennent les contre-avis, les ordonnances judiciaires, les demandes de retrait et les demandes des forces de l'ordre.
-        arbitration_address: Il peut s'agir de la même que l'adresse physique ci-dessus, ou « N/A » si vous utilisez une adresse e-mail.
-        arbitration_website: Il peut s'agir d'un formulaire web ou de « N/A » s'il s'agit d'un courrier électronique.
+        arbitration_address: Il peut s'agir de la même que l'adresse physique ci-dessus, ou « N/A » si vous utilisez une adresse de courriel.
+        arbitration_website: Il peut s'agir d'un formulaire web ou de « N/A » s'il s'agit d'une adresse de courriel.
         choice_of_law: Ville, région, territoire ou État dont le droit matériel interne régit toute réclamation.
-        dmca_address: Pour les opérateurs américains, utilisez l'adresse enregistrée dans le répertoire des agents désignés du DMCA Designated Agent Directory. Une boîte postale est disponible sur demande directe. Utilisez le formulaire de demande de dérogation pour l'utilisation d'une boîte postale par un agent désigné du Designated Agent Post Office Box Waiver Request pour envoyer un e-mail au Bureau du droit d'auteur (Copyright Office) et expliquer que vous êtes un modérateur de contenu à domicile qui craint des représailles ou une vengeance pour ses actions et que vous avez besoin d'utiliser une boîte postale afin de masquer votre adresse personnelle au public.
-        dmca_email: Il peut s'agir du même courriel que celui utilisé pour l'« Adresse électronique pour les avis juridiques » ci-dessus.
+        dmca_address: Pour les opérateurs états-uniens, utiliser l'adresse enregistrée dans le répertoire des agents désignés du DMCA (DMCA Designated Agent Directory). Une boîte postale est disponible sur demande directe, utiliser le formulaire de demande de dérogation pour l'utilisation d'une boîte postale par un agent désigné du DMCA (Designated Agent Post Office Box Waiver Request) pour envoyer un courriel au bureau du droit d'auteur (Copyright Office) et expliquer que vous êtes un modérateur de contenu à domicile qui craint des représailles ou une vengeance pour ses actions et que vous avez besoin d'utiliser une boîte postale afin de masquer votre adresse personnelle au public.
+        dmca_email: Il peut s'agir de la même adresse que celle utilisée pour l'« Adresse de courriel pour les avis juridiques » ci-dessus.
         domain: Identification unique du service en ligne que vous offrez.
-        jurisdiction: Indiquez le pays dans lequel réside la personne qui paie les factures. S'il s'agit d'une entreprise ou d'une autre entité, indiquez le pays dans lequel elle est enregistrée, ainsi que la ville, la région, le territoire ou l'État, le cas échéant.
+        jurisdiction: Indique le pays dans lequel réside la personne qui paie les factures. S'il s'agit d'une entreprise ou d'une autre entité, indiquez le pays dans lequel elle est enregistrée, ainsi que la ville, la région, le territoire ou l'État, le cas échéant.
         min_age: Ne doit pas être en dessous de l’âge minimum requis par les lois de votre juridiction.
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
+        date_of_birth:
+          one: Nous devons vérifier que vous avez au moins %{count} an pour utiliser %{domain}. Cette information ne sera pas conservée.
+          other: Nous devons vérifier que vous avez au moins %{count} ans pour utiliser %{domain}. Cette information ne sera pas conservée.
         role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
       user_role:
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
         highlighted: Cela rend le rôle visible publiquement
         name: Nom public du rôle, si le rôle est configuré pour être affiché avec un badge
         permissions_as_keys: Les utilisateur·rice·s ayant ce rôle auront accès à …
-        position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
+        position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
+        require_2fa: Les utilisateur·ice·s ayant ce rôle devront configurer l'authentification à deux facteurs pour utiliser Mastodon
       username_block:
+        allow_with_approval: Au lieu de bloquer l'inscription, les inscriptions correspondantes nécessiteront votre approbation
         comparison: Veuillez garder à l'esprit le problème de Scunthorpe lors du blocage des correspondances partielles
+        username: Correspondra peu importe la casse utilisée et pour les homoglyphes courants – par exemple « 4 » pour « a » ou « 3 » pour « e »
       webhook:
         events: Sélectionnez les événements à envoyer
         template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vider pour utiliser le bloc JSON par défaut.
@@ -210,7 +225,8 @@ fr:
         email: Adresse de courriel
         expires_in: Expire après
         fields: Métadonnées du profil
-        header: Image d’en-tête
+        filter_action: Action du filtre
+        header: Photo de couverture
         honeypot: "%{label} (ne pas remplir)"
         inbox_url: URL de la boîte de relais
         irreversible: Supprimer plutôt que masquer
@@ -226,6 +242,8 @@ fr:
         setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Configurer la visibilité du partage
+        setting_color_scheme: Jeu de couleurs
+        setting_contrast: Contraste
         setting_default_language: Langue de publication
         setting_default_privacy: Visibilité de la publication
         setting_default_quote_policy: Autoriser les citations pour
@@ -276,12 +294,16 @@ fr:
         custom_css: CSS personnalisé
         favicon: Favicon
         landing_page: Page d'accueil pour les nouveaux visiteurs
+        local_live_feed_access: Accès au flux en direct de ce serveur
+        local_topic_feed_access: Accès aux flux hashtag et lien de ce serveur
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
         min_age: Âge minimum requis
-        peers_api_enabled: Publie la liste des serveurs découverts dans l'API
+        peers_api_enabled: Publier la liste des serveurs découverts dans l’API
         profile_directory: Activer l’annuaire des profils
         registrations_mode: Qui peut s’inscrire
+        remote_live_feed_access: Accès au flux en direct des autres serveurs
+        remote_topic_feed_access: Accès aux flux hashtag et lien des autres serveurs
         require_invite_text: Exiger une raison pour s’inscrire
         show_domain_blocks: Afficher les blocages de domaines
         show_domain_blocks_rationale: Montrer pourquoi les domaines ont été bloqués
@@ -296,6 +318,7 @@ fr:
         thumbnail: Miniature du serveur
         trendable_by_default: Autoriser les tendances sans révision préalable
         trends: Activer les tendances
+        wrapstodon: Activer Wrapstodon
       interactions:
         must_be_follower: Bloquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Bloquer les notifications des personnes que vous ne suivez pas
@@ -334,6 +357,7 @@ fr:
         hint: Information supplémentaire
         text: Règle
       settings:
+        email_subscriptions: Activer les abonnements par courriel
         indexable: Inclure la page de profil dans les moteurs de recherches
         show_application: Afficher quelle application a été utilisée pour envoyer un message
       tag:
@@ -346,16 +370,17 @@ fr:
         effective_date: Date effective
         text: Conditions d'utilisation
       terms_of_service_generator:
-        admin_email: Adresse électronique pour les notifications légales
+        admin_email: Adresse de courriel pour les notifications légales
         arbitration_address: Adresse physique pour les notifications d'arbitrage
         arbitration_website: Site Web pour soumettre les notifications d'arbitrage
         choice_of_law: Choix de la loi
         dmca_address: Adresse physique pour les avis DMCA/copyright
-        dmca_email: Adresse e-mail pour les avis DMCA/copyright
+        dmca_email: Adresse de courriel pour les avis DMCA/copyright
         domain: Domaine
         jurisdiction: Juridiction
         min_age: Âge minimum
       user:
+        date_of_birth_1i: Année
         date_of_birth_2i: Mois
         date_of_birth_3i: Jour
         role: Rôle
@@ -366,6 +391,7 @@ fr:
         name: Nom
         permissions_as_keys: Autorisations
         position: Priorité
+        require_2fa: Exiger une authentification à deux facteurs
       username_block:
         allow_with_approval: Autoriser les inscriptions avec approbation
         comparison: Méthode de comparaison

@@ -19,7 +19,7 @@ module Admin::ActionLogsHelper
       link_to "##{log.human_identifier.presence || log.target_id}", admin_report_path(log.target_id)
     when 'Instance', 'DomainBlock', 'DomainAllow', 'UnavailableDomain'
       log.human_identifier.present? ? link_to(log.human_identifier, admin_instance_path(log.human_identifier)) : I18n.t('admin.action_logs.unavailable_instance')
-    when 'Status'
+    when 'Status', 'Collection'
       link_to log.human_identifier, log.permalink
     when 'AccountWarning'
       link_to log.human_identifier, disputes_strike_path(log.target_id)

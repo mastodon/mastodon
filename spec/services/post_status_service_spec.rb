@@ -161,9 +161,9 @@ RSpec.describe PostStatusService do
   end
 
   it 'creates a status with the quote approval policy set' do
-    status = create_status_with_options(quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+    status = create_status_with_options(quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:followers] << 16)
 
-    expect(status.quote_approval_policy).to eq(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+    expect(status.quote_approval_policy).to eq(InteractionPolicy::POLICY_FLAGS[:followers] << 16)
   end
 
   it 'processes mentions' do
@@ -175,7 +175,7 @@ RSpec.describe PostStatusService do
     status = subject.call(account, text: 'test status update')
 
     expect(ProcessMentionsService).to have_received(:new)
-    expect(mention_service).to have_received(:call).with(status, save_records: false)
+    expect(mention_service).to have_received(:call).with(status)
   end
 
   it 'safeguards mentions' do
@@ -207,6 +207,16 @@ RSpec.describe PostStatusService do
 
     expect(ProcessHashtagsService).to have_received(:new)
     expect(hashtags_service).to have_received(:call).with(status)
+  end
+
+  it 'processes tagged objects' do
+    account = Fabricate(:account)
+    collection = Fabricate(:collection)
+
+    status = subject.call(account, text: "test #{ActivityPub::TagManager.instance.uri_for(collection)} #{ActivityPub::TagManager.instance.uri_for(collection)}")
+
+    expect(status.tagged_objects.map(&:object))
+      .to contain_exactly(collection)
   end
 
   it 'gets distributed' do

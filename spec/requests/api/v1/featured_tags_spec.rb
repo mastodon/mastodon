@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'FeaturedTags' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read:accounts write:accounts' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:accounts write:accounts'
 
   describe 'GET /api/v1/featured_tags' do
     context 'with wrong scope' do

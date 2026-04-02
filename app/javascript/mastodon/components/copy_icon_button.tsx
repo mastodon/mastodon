@@ -19,8 +19,9 @@ const messages = defineMessages({
 export const CopyIconButton: React.FC<{
   title: string;
   value: string;
-  className: string;
-}> = ({ title, value, className }) => {
+  className?: string;
+  'aria-describedby'?: string;
+}> = ({ title, value, className, 'aria-describedby': ariaDescribedBy }) => {
   const [copied, setCopied] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -38,8 +39,9 @@ export const CopyIconButton: React.FC<{
       className={classNames(className, copied ? 'copied' : 'copyable')}
       title={title}
       onClick={handleClick}
-      icon=''
+      icon='copy-icon'
       iconComponent={ContentCopyIcon}
+      aria-describedby={ariaDescribedBy}
     />
   );
 };

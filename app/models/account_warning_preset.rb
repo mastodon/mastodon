@@ -6,9 +6,9 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  text       :text             default(""), not null
+#  title      :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  title      :string           default(""), not null
 #
 
 class AccountWarningPreset < ApplicationRecord

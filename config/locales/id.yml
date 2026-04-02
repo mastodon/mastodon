@@ -9,7 +9,6 @@ id:
   accounts:
     followers:
       other: Pengikut
-    following: Mengikuti
     instance_actor_flash: Akun ini adalah aktor virtual yang merepresentasikan server itu sendiri dan bukan pengguna individu. Ini dipakai untuk tujuan gabungan dan seharusnya tidak ditangguhkan.
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
@@ -578,7 +577,6 @@ id:
       resolved_msg: Laporan berhasil diselesaikan!
       skip_to_actions: Langsung ke tindakan
       status: Status
-      statuses: Konten yang dilaporkan
       statuses_description_html: Konten menyinggung akan disampaikan saat komunikasi dengan akun yang dilaporkan
       target_origin: Akun asal yang dilaporkan
       title: Laporan
@@ -1379,11 +1377,9 @@ id:
     enabled: Otomatis hapus kiriman lama
     enabled_hint: "Otomatis menghapus kiriman Anda saat sudah mencapai batasan usia, kecuali yang cocok \nsesuai di bawah ini"
     exceptions: Pengecualian
-    explanation: Karena menghapus kiriman adalah operasi dengan sumber daya besar, ini akan dilakukan perlahan ketika server tidak sedang sibuk. Karena alasan ini, kiriman akan dihapus setelah mencapai batas waktu.
     ignore_favs: Abaikan favorit
     ignore_reblogs: Abaikan boost
     interaction_exceptions: Pengecualian berdasar interaksi
-    interaction_exceptions_explanation: Perlu diingat tidak ada jaminan kiriman akan dihapus jika ia di bawah batas favorit atau boost setelah sebelumnya berhasil melewatinya.
     keep_direct: Simpan pesan langsung
     keep_direct_hint: Tidak mengapus pesan langsung Anda
     keep_media: Simpan kiriman dengan lampiran media
@@ -1416,10 +1412,6 @@ id:
       too_late: Terlambat untuk mengajukan banding hukuman ini
   tags:
     does_not_match_previous_name: tidak cocok dengan nama sebelumnya
-  themes:
-    contrast: Mastodon (Kontras tinggi)
-    default: Mastodon (Gelap)
-    mastodon-light: Mastodon (Terang)
   time:
     formats:
       default: "%d %b %Y, %H:%M"

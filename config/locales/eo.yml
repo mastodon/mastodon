@@ -10,7 +10,6 @@ eo:
     followers:
       one: Sekvanto
       other: Sekvantoj
-    following: Sekvatoj
     instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniun individuan uzanton. Ĝi estas uzata por federaciaj celoj kaj ĝi devas ne esti suspendita.
     last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
@@ -705,7 +704,6 @@ eo:
       resolved_msg: Signalo sukcese solvita!
       skip_to_actions: Salti al agoj
       status: Afiŝo
-      statuses: Raportita enhavo
       statuses_description_html: Sentema enhavo referencitas kun la raportita konto
       summary:
         action_preambles:
@@ -1184,7 +1182,6 @@ eo:
   application_mailer:
     notification_preferences: Ŝanĝi retpoŝtajn preferojn
     salutation: "%{name},"
-    settings: 'Ŝanĝi retpoŝtajn preferojn: %{link}'
     unsubscribe: Malabonu
     view: 'Vidi:'
     view_profile: Vidi profilon
@@ -1321,7 +1318,7 @@ eo:
     warning:
       before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
       caches: Enhavo kiu kaŝmemorigitas de aliaj serviloj eble restas
-      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por eterne
+      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por ĉiam
       email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
       email_contact_html: Se ĝi ankoraŭ ne alvenas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por helpo
       email_reconfirmation_html: Se vi ne ricevas la konfirmretpoŝton, vi povas <a href="%{path}">denove peti</a>
@@ -1406,7 +1403,7 @@ eo:
     add_new: Aldoni novan
     errors:
       limit: Vi jam elstarigis la maksimuman kvanton da kradvortoj
-    hint_html: "<strong>Kio estas la trajtaj kradvortoj?</strong> Ili bone videblas en via publika profilo kaj permesas al homoj trarigardi viajn publikajn mesaĝojn specife laŭ tiuj kradvortoj. Ili estas bonaj iloj por sekvi la evoluon de kreadaj laboroj aŭ longdaŭraj projektoj."
+    hint_html: "<strong>Elstarigu viajn plej gravajn kradvortojn en via profilo.</strong> Bona ilo por sekvi viaj kreaĵoj aŭ longdaŭraj projektoj, elstarigitaj kradvortoj bone videblas en via publika profilo kaj ebligas rapidan aliron al viaj propraj afiŝoj."
   filters:
     contexts:
       account: Profiloj
@@ -1592,21 +1589,6 @@ eo:
     failed_sign_in_html: Malsukcese ensalutprovo per %{method} de %{ip} (%{browser})
     successful_sign_in_html: Sukcese ensaluto per %{method} de %{ip} (%{browser})
     title: Aŭtentiga historio
-  mail_subscriptions:
-    unsubscribe:
-      action: Jes, malabonu
-      complete: Malabonita
-      confirmation_html: Ĉu vi certas, ke vi volas malaboni je ricevi %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}? Vi ĉiam povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
-      emails:
-        notification_emails:
-          favourite: sciigoj retpoŝtaj de ŝatataj
-          follow: sciigoj retpoŝtaj de sekvoj
-          follow_request: retpoŝtajn petoj de sekvado
-          mention: sciigoj retpoŝtaj de mencioj
-          reblog: sciigoj retpoŝtaj de diskonigoj
-      resubscribe_html: Se vi malabonis erare, vi povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
-      success_html: Vi ne plu ricevos %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}.
-      title: Malaboni
   media_attachments:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
@@ -1917,11 +1899,9 @@ eo:
     enabled: Aŭtomate forigi malnovajn postojn
     enabled_hint: Automate forigi viajn mesaĝojn kiam ili atingas la aĝlimon kaj havas escepton
     exceptions: Esceptoj
-    explanation: Forigi mesaĝojn estas rimeda ago, do ĉi tio malrapide sekve faratas kiam la servilo ne estas okupita.
     ignore_favs: Ignori stelumojn
     ignore_reblogs: Ignori diskonigojn
     interaction_exceptions: Esceptoj lau interagoj
-    interaction_exceptions_explanation: Sciu ke estas neniu garantio ke mesaĝo estos forigita se ĝi iras sub la limo de diskonigoj aŭ stelumoj post atingi ĝin.
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
     keep_media: Konservi afiŝojn kun aŭdovidaj aldonaĵoj
@@ -1960,11 +1940,6 @@ eo:
   terms_of_service_interstitial:
     past_preamble_html: Ni ŝanĝis niajn servkondiĉojn ekde via lasta vizito. Ni instigas vin revizii la ĝisdatigitajn kondiĉojn.
     title: La servkondiĉoj de %{domain} ŝanĝiĝas
-  themes:
-    contrast: Mastodon (Forta kontrasto)
-    default: Mastodon (Malhela)
-    mastodon-light: Mastodon (Hela)
-    system: Aŭtomata (uzu sisteman temon)
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"

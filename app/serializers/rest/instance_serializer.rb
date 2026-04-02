@@ -12,7 +12,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   attributes :domain, :title, :version, :source_url, :description,
              :usage, :thumbnail, :icon, :languages, :configuration,
-             :registrations, :api_versions
+             :registrations, :api_versions, :wrapstodon
 
   has_one :contact, serializer: ContactSerializer
   has_many :rules, serializer: REST::RuleSerializer
@@ -69,8 +69,15 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       accounts: {
+        max_display_name_length: Account::DISPLAY_NAME_LENGTH_LIMIT,
+        max_note_length: Account::NOTE_LENGTH_LIMIT,
+        max_avatar_description_length: Account::Avatar::MAX_DESCRIPTION_LENGTH,
+        max_header_description_length: Account::Header::MAX_DESCRIPTION_LENGTH,
         max_featured_tags: FeaturedTag::LIMIT,
         max_pinned_statuses: StatusPinValidator::PIN_LIMIT,
+        max_profile_fields: Account::DEFAULT_FIELDS_SIZE,
+        profile_field_name_limit: Account::Field::MAX_CHARACTERS_LOCAL,
+        profile_field_value_limit: Account::Field::MAX_CHARACTERS_LOCAL,
       },
 
       statuses: {
@@ -132,6 +139,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def api_versions
     Mastodon::Version.api_versions
+  end
+
+  def wrapstodon
+    AnnualReport.current_campaign
   end
 
   private

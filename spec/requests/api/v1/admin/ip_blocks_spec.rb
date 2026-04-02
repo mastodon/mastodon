@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'IP Blocks' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'admin:read:ip_blocks admin:write:ip_blocks' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read:ip_blocks admin:write:ip_blocks'
 
   describe 'GET /api/v1/admin/ip_blocks' do
     subject do

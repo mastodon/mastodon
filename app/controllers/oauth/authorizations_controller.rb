@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
-  skip_before_action :authenticate_resource_owner!
-
-  before_action :store_current_location
-  before_action :authenticate_resource_owner!
+  prepend_before_action :store_current_location
 
   layout 'modal'
 
@@ -20,17 +17,15 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
     store_location_for(:user, request.url)
   end
 
-  def render_success
-    if skip_authorization? || (matching_token? && !truthy_param?('force_login'))
-      redirect_or_render authorize_response
-    elsif Doorkeeper.configuration.api_only
-      render json: pre_auth
-    else
-      render :new
-    end
+  def can_authorize_response?
+    !truthy_param?('force_login') && super
   end
 
   def truthy_param?(key)
     ActiveModel::Type::Boolean.new.cast(params[key])
+  end
+
+  def mfa_setup_path
+    super({ oauth: true })
   end
 end

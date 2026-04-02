@@ -13,6 +13,7 @@ interface Props extends React.SVGProps<SVGSVGElement> {
   children?: never;
   id: string;
   icon: IconProp;
+  noFill?: boolean;
 }
 
 export const Icon: React.FC<Props> = ({
@@ -20,6 +21,7 @@ export const Icon: React.FC<Props> = ({
   icon: IconComponent,
   className,
   'aria-label': ariaLabel,
+  noFill = false,
   ...other
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -42,7 +44,12 @@ export const Icon: React.FC<Props> = ({
 
   return (
     <IconComponent
-      className={classNames('icon', `icon-${id}`, className)}
+      className={classNames(
+        'icon',
+        `icon-${id}`,
+        noFill && 'icon--no-fill',
+        className,
+      )}
       title={title}
       aria-hidden={ariaHidden}
       aria-label={ariaLabel}

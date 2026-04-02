@@ -15,6 +15,10 @@ module User::HasSettings
     settings['noindex']
   end
 
+  def email_subscriptions_enabled?
+    settings['email_subscriptions']
+  end
+
   def preferred_posting_language
     valid_locale_cascade(settings['default_language'], locale, I18n.locale)
   end
@@ -57,6 +61,14 @@ module User::HasSettings
 
   def setting_theme
     settings['theme']
+  end
+
+  def setting_color_scheme
+    settings['web.color_scheme']
+  end
+
+  def setting_contrast
+    settings['web.contrast']
   end
 
   def setting_display_media

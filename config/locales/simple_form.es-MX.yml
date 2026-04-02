@@ -37,11 +37,11 @@ es-MX:
         starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
         text: Puedes usar la sintaxis de publicaciones. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       appeal:
-        text: Sólo puede apelar una amonestación a la vez
+        text: Solo se puede apelar una amonestación una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
-        bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
+        bot: Indica a los demás que la cuenta realiza principalmente acciones automatizadas y que es posible que no esté supervisada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
@@ -53,11 +53,11 @@ es-MX:
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
         password: Usa al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
-        scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
-        setting_advanced_layout: Mostrar Mastodon con vista de varias columnas, permitiéndote ver tu cronología, notificaciones y una tercera columna que tú elijas. No recomendado para pantallas pequeñas.
-        setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a las publicaciones recibidas recientemente)
+        scopes: A qué API tendrá acceso la aplicación. Si seleccionas un ámbito de nivel superior, no es necesario que selecciones ámbitos individuales.
+        setting_advanced_layout: Mostrar Mastodon en un diseño de varias columnas, lo que te permite ver la cronología, las notificaciones y una tercera columna de tu elección. No se recomienda para pantallas pequeñas.
+        setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que se hayan impulsado recientemente (solo afecta a los impulsos recibidos recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
-        setting_boost_modal: Si está activado, impulsar una publicación abrirá una ventana donde podrás cambiar la visibilidad de tu impulso.
+        setting_boost_modal: Cuando está habilitado, impulsar abrirá primero un cuadro de confirmación en el que podrás cambiar la visibilidad de tu impulso.
         setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
         setting_default_quote_policy_unlisted: Cuando las personas te citen, su publicación también se ocultará en las cronologías públicas.
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un clic
@@ -77,7 +77,7 @@ es-MX:
         domain: Este puede ser el nombre de dominio que se muestra en la dirección de correo o el registro MX que utiliza. Se comprobarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
-        name: 'Aquí están algunas de las etiquetas que más has usado recientemente:'
+        name: 'Estas son algunas de las etiquetas que más has utilizado recientemente:'
       filters:
         action: Elige qué acción realizar cuando una publicación coincida con el filtro
         actions:
@@ -111,6 +111,7 @@ es-MX:
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         trendable_by_default: Omitir la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
+        wrapstodon: Ofrece a los usuarios locales la posibilidad de generar un resumen divertido de su uso de Mastodon durante el año. Esta función está disponible entre el 10 y el 31 de diciembre de cada año, y se ofrece a los usuarios que hayan publicado al menos una publicación pública o pública silenciosa y hayan utilizado al menos una etiqueta durante el año.
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -133,6 +134,7 @@ es-MX:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
         webauthn: Si es una tecla USB, asegúrese de insertarla y, si es necesario, púlsela.
       settings:
+        email_subscriptions: Al desactivar la función, se conservan los suscriptores actuales, pero se deja de enviar correos electrónicos.
         indexable: Tu página de perfil puede aparecer en los resultados de búsqueda en Google, Bing, entre otros.
         show_application: Siempre podrás ver desde cuál aplicación realizaste una publicación.
       tag:
@@ -163,6 +165,7 @@ es-MX:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a...
         position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
+        require_2fa: Los usuarios con esta función deberán configurar la autenticación de dos pasos para utilizar Mastodon
       username_block:
         allow_with_approval: En lugar de impedir directamente el registro, los registros coincidentes requerirán tu aprobación
         comparison: Por favor ten en cuenta el problema de Scunthorpe al bloquear coincidencias parciales
@@ -222,6 +225,7 @@ es-MX:
         email: Dirección de correo electrónico
         expires_in: Expirar tras
         fields: Metadatos de perfil
+        filter_action: Filtrar acción
         header: Imagen de encabezado
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
@@ -238,6 +242,8 @@ es-MX:
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Control de visibilidad de impulsos
+        setting_color_scheme: Esquema de colores
+        setting_contrast: Contraste
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidad de publicación
         setting_default_quote_policy: Quién puede citar
@@ -312,6 +318,7 @@ es-MX:
         thumbnail: Miniatura del servidor
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
+        wrapstodon: Habilitar Wrapstodon
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
@@ -350,6 +357,7 @@ es-MX:
         hint: Información adicional
         text: Norma
       settings:
+        email_subscriptions: Habilitar suscripciones por correo electrónico
         indexable: Incluir la página de perfil en los motores de búsqueda
         show_application: Mostrar desde cuál aplicación enviaste una publicación
       tag:
@@ -383,6 +391,7 @@ es-MX:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+        require_2fa: Requiere autenticación de dos pasos
       username_block:
         allow_with_approval: Permitir registros con aprobación previa
         comparison: Método de comparación

@@ -1,0 +1,15 @@
+@function css-alpha($base-color, $amount) {
+  @return #{rgb(from $base-color r g b / $amount)};
+}
+
+@mixin invert-on-light {
+  .invert-on-light {
+    filter: invert(1);
+  }
+}
+
+@mixin invert-on-dark {
+  .invert-on-dark {
+    filter: invert(1);
+  }
+}

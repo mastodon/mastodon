@@ -6,14 +6,14 @@
 #
 #  id              :bigint(8)        not null, primary key
 #  domain          :string           default(""), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  severity        :integer          default("silence")
-#  reject_media    :boolean          default(FALSE), not null
-#  reject_reports  :boolean          default(FALSE), not null
+#  obfuscate       :boolean          default(FALSE), not null
 #  private_comment :text
 #  public_comment  :text
-#  obfuscate       :boolean          default(FALSE), not null
+#  reject_media    :boolean          default(FALSE), not null
+#  reject_reports  :boolean          default(FALSE), not null
+#  severity        :integer          default("silence")
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 class DomainBlock < ApplicationRecord

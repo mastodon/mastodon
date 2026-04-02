@@ -27,7 +27,15 @@ export const fetchServer = () => (dispatch, getState) => {
 
   api()
     .get('/api/v2/instance').then(({ data }) => {
-      if (data.contact.account) dispatch(importFetchedAccount(data.contact.account));
+      // Only import the account if it doesn't already exist,
+      // because the API is cached even for logged in users.
+      const account = data.contact.account;
+      if (account) {
+        const existingAccount = getState().getIn(['accounts', account.id]);
+        if (!existingAccount) {
+          dispatch(importFetchedAccount(account));
+        }
+      }
       dispatch(fetchServerSuccess(data));
     }).catch(err => dispatch(fetchServerFail(err)));
 };

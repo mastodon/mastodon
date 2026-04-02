@@ -171,5 +171,71 @@ RSpec.describe ActivityPub::Activity::Accept do
         end
       end
     end
+
+    context 'with a FeatureRequest', feature: :collections do
+      let(:collection) { Fabricate(:collection, account: recipient) }
+      let(:collection_item) { Fabricate(:collection_item, collection:, account: sender, state: :pending) }
+      let(:object) { collection_item.activity_uri }
+      let(:approval_uri) { 'https://example.com/stamps/1' }
+      let(:json) do
+        {
+          'id' => 'https://example.com/accepts/1',
+          'type' => 'Accept',
+          'actor' => sender.uri,
+          'to' => ActivityPub::TagManager.instance.uri_for(recipient),
+          'object' => object,
+          'result' => approval_uri,
+        }
+      end
+
+      context 'when activity is valid' do
+        it 'accepts the collection item, stores the authorization uri and federates an `Add` activity' do
+          subject.perform
+
+          expect(collection_item.reload).to be_accepted
+          expect(collection_item.approval_uri).to eq 'https://example.com/stamps/1'
+          expect(ActivityPub::AccountRawDistributionWorker)
+            .to have_enqueued_sidekiq_job
+        end
+      end
+
+      context 'when activity is invalid' do
+        shared_examples 'ignoring activity' do
+          it 'does not accept the item and does not send out an activity' do
+            subject.perform
+
+            expect(collection_item.reload).to_not be_accepted
+            expect(collection_item.approval_uri).to be_nil
+            expect(ActivityPub::AccountRawDistributionWorker)
+              .to_not have_enqueued_sidekiq_job
+          end
+        end
+
+        context 'when matching collection item cannot be found' do
+          let(:object) { 'https://localhost/feature_requests/1' }
+
+          it_behaves_like 'ignoring activity'
+        end
+
+        context 'when the sender is not the featured account' do
+          let(:other_account) { Fabricate(:remote_account) }
+          let(:collection_item) { Fabricate(:collection_item, collection:, account: other_account, state: :pending) }
+
+          it_behaves_like 'ignoring activity'
+        end
+
+        context "when approval_uri does not match the sender's uri" do
+          let(:approval_uri) { 'https://other.localhost/authorizations/1' }
+
+          it_behaves_like 'ignoring activity'
+        end
+
+        context 'when approval_uri is missing' do
+          let(:approval_uri) { nil }
+
+          it_behaves_like 'ignoring activity'
+        end
+      end
+    end
   end
 end

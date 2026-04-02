@@ -7,8 +7,8 @@ RSpec.describe Fasp::BackfillWorker do
 
   subject { described_class.new.perform(backfill_request.id) }
 
-  let(:backfill_request) { Fabricate(:fasp_backfill_request) }
-  let(:provider) { backfill_request.fasp_provider }
+  let(:provider) { Fabricate(:confirmed_fasp) }
+  let(:backfill_request) { Fabricate(:fasp_backfill_request, fasp_provider: provider) }
   let(:status) { Fabricate(:status) }
   let(:path) { '/data_sharing/v0/announcements' }
 

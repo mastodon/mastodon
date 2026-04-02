@@ -17,7 +17,7 @@ module Settings
       def create
         session[:new_otp_secret] = User.generate_otp_secret
 
-        redirect_to new_settings_two_factor_authentication_confirmation_path
+        redirect_to new_settings_two_factor_authentication_confirmation_path(params.permit(:oauth))
       end
 
       private

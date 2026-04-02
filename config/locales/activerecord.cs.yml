@@ -32,6 +32,12 @@ cs:
           attributes:
             url:
               invalid: není platná URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: je příliš mnoho, ne více než %{count} je povoleno
+            tag:
+              unusable: nesmí být použito
         doorkeeper/application:
           attributes:
             website:

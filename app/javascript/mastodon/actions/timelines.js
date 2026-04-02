@@ -6,7 +6,7 @@ import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
-import {timelineDelete} from './timelines_typed';
+import { timelineDelete } from './timelines_typed';
 
 export { disconnectTimeline } from './timelines_typed';
 
@@ -24,8 +24,16 @@ export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
 export const TIMELINE_INSERT          = 'TIMELINE_INSERT';
 
+// When adding new special markers here, make sure to update TIMELINE_NON_STATUS_MARKERS in actions/timelines_typed.js
 export const TIMELINE_SUGGESTIONS = 'inline-follow-suggestions';
 export const TIMELINE_GAP = null;
+export const TIMELINE_PINNED_VIEW_ALL = 'pinned-view-all';
+
+export const TIMELINE_NON_STATUS_MARKERS = [
+  TIMELINE_GAP,
+  TIMELINE_SUGGESTIONS,
+  TIMELINE_PINNED_VIEW_ALL,
+];
 
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
@@ -150,7 +158,7 @@ export const expandPublicTimeline          = ({ maxId, onlyMedia, onlyRemote } =
 export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}) => expandTimeline(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, max_id: maxId, only_media: !!onlyMedia });
 export const expandAccountTimeline         = (accountId, { maxId, withReplies, tagged } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}${tagged ? `:${tagged}` : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, exclude_reblogs: withReplies, tagged, max_id: maxId });
 export const expandAccountFeaturedTimeline = (accountId, { tagged } = {}) => expandTimeline(`account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true, tagged });
-export const expandAccountMediaTimeline    = (accountId, { maxId } = {}) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true, limit: 40 });
+export const expandAccountMediaTimeline    = (accountId, { maxId, withReplies } = {}) => expandTimeline(`account:${accountId}:media${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true, limit: 40, exclude_replies: !withReplies });
 export const expandListTimeline            = (id, { maxId } = {}) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId });
 export const expandLinkTimeline            = (url, { maxId } = {}) => expandTimeline(`link:${url}`, `/api/v1/timelines/link`, { url, max_id: maxId });
 export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = {}) => {

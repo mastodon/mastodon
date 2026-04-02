@@ -7,10 +7,14 @@ es:
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
+    errors:
+      cannot_be_added_to_collections: Esta cuenta no se puede añadir a las colecciones.
     followers:
       one: Seguidor
       other: Seguidores
-    following: Siguiendo
+    following:
+      one: Siguiendo
+      other: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al propio servidor y no a ningún usuario individual. Se utiliza con fines de federación y no debe suspenderse.
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
@@ -52,6 +56,7 @@ es:
         label: Cambiar rol
         no_role: Sin rol
         title: Cambiar rol para %{username}
+      collections: Colecciones
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -262,6 +267,7 @@ es:
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
+        destroy_collection_html: "%{name} eliminó la colección de %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
@@ -301,6 +307,7 @@ es:
         unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
         unsuspend_account_html: "%{name} reactivó la cuenta de %{target}"
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
+        update_collection_html: "%{name} actualizó la colección de %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
@@ -336,6 +343,15 @@ es:
       unpublish: Retirar publicación
       unpublished_msg: "¡Anuncio despublicado con éxito!"
       updated_msg: "¡Anuncio actualizado con éxito!"
+    collections:
+      accounts: Cuentas
+      collection_title: Colección de %{name}
+      contents: Contenidos
+      number_of_accounts:
+        one: 1 cuenta
+        other: "%{count} cuentas"
+      open: Abrir
+      view_publicly: Ver públicamente
     critical_update_pending: Actualización crítica pendiente
     custom_emojis:
       assign_category: Asignar categoría
@@ -675,6 +691,7 @@ es:
       cancel: Cancelar
       category: Categoría
       category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
+      collections: Colecciones (%{count})
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
@@ -704,12 +721,13 @@ es:
       report: 'Reportar #%{id}'
       reported_account: Cuenta reportada
       reported_by: Reportado por
+      reported_content: Contenido reportado
       reported_with_application: Informado a través de la aplicación
       resolved: Resuelto
       resolved_msg: "¡La denuncia se ha resuelto correctamente!"
       skip_to_actions: Ir directamente a las acciones
       status: Estado
-      statuses: Contenido reportado
+      statuses: Publicaciones (%{count})
       statuses_description_html: El contenido ofensivo se citará en la comunicación con la cuenta reportada
       summary:
         action_preambles:
@@ -744,6 +762,7 @@ es:
       categories:
         administration: Administración
         devops: DevOps
+        email: Correo electrónico
         invites: Invitaciones
         moderation: Moderación
         special: Especial
@@ -760,6 +779,8 @@ es:
         administrator_description: Los usuarios con este permiso saltarán todos los permisos
         delete_user_data: Borrar Datos de Usuario
         delete_user_data_description: Permite a los usuarios eliminar los datos de otros usuarios sin demora
+        invite_bypass_approval: Invitar usuarios sin revisión
+        invite_bypass_approval_description: Permite registrarse a las personas invitadas al servidor por estos usuarios sin la aprobación de la moderación
         invite_users: Invitar usuarios
         invite_users_description: Permite a los usuarios invitar a nuevas personas al servidor
         manage_announcements: Administrar Anuncios
@@ -770,6 +791,8 @@ es:
         manage_blocks_description: Permite a los usuarios bloquear proveedores de correo electrónico y direcciones IP
         manage_custom_emojis: Administrar Emojis Personalizados
         manage_custom_emojis_description: Permite a los usuarios gestionar emojis personalizados en el servidor
+        manage_email_subscriptions: Administrar suscripciones de correo electrónico
+        manage_email_subscriptions_description: Permitir a los usuarios suscribirse a usuarios con este permiso por correo electrónico
         manage_federation: Administrar Federación
         manage_federation_description: Permite a los usuarios bloquear o permitir la federación con otros dominios, y controlar la entregabilidad
         manage_invites: Administrar Invitaciones
@@ -798,6 +821,7 @@ es:
         view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
         view_feeds: Visualización de cronologías y tendencias
         view_feeds_description: Permitir a los usuarios acceder a las cronologías públicas y tendencias sin importar la configuración del servidor
+      requires_2fa: Requiere autenticación en dos pasos
       title: Roles
     rules:
       add_new: Añadir norma
@@ -846,6 +870,7 @@ es:
         publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: A todos
         disabled: A nadie
@@ -1209,7 +1234,6 @@ es:
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name}:"
-    settings: 'Cambiar preferencias de correo: %{link}'
     unsubscribe: Cancelar suscripción
     view: 'Vista:'
     view_profile: Ver perfil
@@ -1259,6 +1283,7 @@ es:
     progress:
       confirm: Confirmar dirección de correo
       details: Tus detalles
+      list: Progreso de registro
       review: Nuestra revisión
       rules: Aceptar reglas
     providers:
@@ -1274,6 +1299,7 @@ es:
       invited_by: 'Puedes unirte a %{domain} gracias a la invitación que has recibido de:'
       preamble: Estas son establecidas y aplicadas por los moderadores de %{domain}.
       preamble_invited: Antes de continuar, por favor, revisa las reglas básicas establecidas por los moderadores de %{domain}.
+      read_more: Leer más
       title: Algunas reglas básicas.
       title_invited: Has sido invitado.
     security: Cambiar contraseña
@@ -1316,6 +1342,13 @@ es:
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña incorrecta
     prompt: Confirmar contraseña para seguir
+  color_scheme:
+    auto: Automático
+    dark: Oscuro
+    light: Claro
+  contrast:
+    auto: Automático
+    high: Alto
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
@@ -1388,6 +1421,41 @@ es:
     basic_information: Información básica
     hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completas tu perfil y foto."
     other: Otros
+    redesign_body: Ahora puedes acceder a la edición del perfil desde la propia página de perfil.
+    redesign_button: Llévame allí
+    redesign_title: Hay una nueva experiencia de edición de perfil
+  email_subscription_mailer:
+    confirmation:
+      action: Confirmar dirección de correo electrónico
+      instructions_to_confirm: Confirma que quieres recibir correos electrónicos de %{name} (@%{acct}) cuando publique algo nuevo.
+      instructions_to_ignore: Si no estás seguro de por qué recibiste este correo electrónico, puedes eliminarlo. No te suscribirás si no haces clic en el enlace de arriba.
+      subject: Confirma tu dirección de correo electrónico
+      title: "¿Obtener actualizaciones por correo electrónico de %{name}?"
+    notification:
+      create_account: Crear una cuenta de Mastodon
+      footer:
+        privacy_html: Los correos electrónicos son enviados desde %{domain}, un servidor de Mastodon. Para conocer cómo este servidor procesa tus datos personales, consulta la <a href="%{privacy_policy_path}">Política de Privacidad</a>.
+        reason_for_email_html: Estás recibiendo este correo porque has optado por recibir actualizaciones por correo electrónico de %{name}. ¿No quieres recibir estos correos? <a href="%{unsubscribe_path}">Cancela la suscripción</a>
+      interact_with_this_post:
+        one: Interactúa con esta publicación y descubre otras similares.
+        other: Interactúa con estas publicaciones y descubre otras similares.
+      subject:
+        one: 'Nueva publicación: "%{excerpt}"'
+        other: Nuevas publicaciones de %{name}
+      title:
+        one: 'Nueva publicación: "%{excerpt}"'
+        other: Nuevas publicaciones de %{name}
+  email_subscriptions:
+    active: Activa
+    confirmations:
+      show:
+        changed_your_mind: "¿Cambiaste de opinión?"
+        success_html: Ahora empezarás a recibir correos electrónicos cuando %{name} publique algo nuevo. Añade %{sender} a tus contactos para que estas publicaciones no terminen en tu carpeta de Spam.
+        title: Estás suscrito
+        unsubscribe: Cancelar suscripición
+    inactive: Inactiva
+    status: Estado
+    subscribers: Suscriptores
   emoji_styles:
     auto: Automático
     native: Nativo
@@ -1622,21 +1690,6 @@ es:
     failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
     successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
-  mail_subscriptions:
-    unsubscribe:
-      action: Sí, cancelar suscripción
-      complete: Has cancelado tu suscripción
-      confirmation_html: ¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu correo %{email}? Siempre podrás volver a suscribirte de nuevo desde los <a href="%{settings_path}">ajustes de notificación por correo</a>.
-      emails:
-        notification_emails:
-          favourite: correos de notificación de favoritos
-          follow: correos de notificación de nuevos seguidores
-          follow_request: correos de notificación de solicitud de seguidor
-          mention: correos de notificación de menciones
-          reblog: correos de notificación de impulsos
-      resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
-      success_html: Ya no recibirás %{type} de Mastodon en %{domain} a tu correo %{email}.
-      title: Cancelar suscripición
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a una publicación que ya contenga imágenes
@@ -1706,16 +1759,22 @@ es:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
+    moderation_warning:
+      subject: Has recibido una advertencia de moderación
     poll:
       subject: Una encuesta de %{name} ha terminado
     quote:
       body: 'Tu publicación ha sido citada por %{name}:'
       subject: "%{name} citó tu publicación"
       title: Nueva cita
+    quoted_update:
+      subject: "%{name} editó una publicación que has citado"
     reblog:
       body: 'Tu publicación fue impulsada por %{name}:'
       subject: "%{name} impulsó tu publicación"
       title: Nueva difusión
+    severed_relationships:
+      subject: Has perdido conexiones debido a una decisión de moderación
     status:
       subject: "%{name} acaba de publicar"
     update:
@@ -1768,6 +1827,8 @@ es:
     posting_defaults: Configuración por defecto de publicaciones
     public_timelines: Líneas de tiempo públicas
   privacy:
+    email_subscriptions: Enviar mensajes por correo electrónico
+    email_subscriptions_hint_html: Añade un formulario de registro por correo electrónico a tu perfil, que aparece para los usuarios que no han iniciado sesión. Cuando los visitantes ingresen su dirección de correo electrónico y opten por ello, Mastodon enviará actualizaciones por correo electrónico para tus publicaciones públicas.
     hint_html: "<strong>Personaliza el descubrimiento de tu perfil y tus publicaciones.</strong> En Mastodon tienes distintas características que te ayudarán a alcanzar una mayor audiencia si las activas. Tómate un momento para revisar estas configuraciones y asegurarte de que cumplen tus necesidades."
     privacy: Privacidad
     privacy_hint_html: Controla cuánto deseas revelar a los demás. Las personas descubren perfiles y aplicaciones interesantes navegando por los seguidores de otras personas y viendo desde qué aplicaciones publican, pero puede que prefieras mantenerlo oculto.
@@ -1957,11 +2018,11 @@ es:
     enabled: Borrar automáticamente publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
     exceptions: Excepciones
-    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
+    explanation: La eliminación automática se realiza con baja prioridad. Puede pasar tiempo desde que las publicaciones alcanzan el límite de edad hasta que se eliminan.
     ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de impulsos si los han superado en algún momento.
+    interaction_exceptions_explanation: Las publicaciones que excedan temporalmente el umbral de favoritos o de impulsos podrían mantenerse incluso si más tarde quedan por debajo.
     keep_direct: Mantener mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Mantener publicaciones con multimedia adjunto
@@ -1984,9 +2045,9 @@ es:
       '63113904': 2 años
       '7889238': 3 meses
     min_age_label: Umbral de tiempo
-    min_favs: Mantener mensajes con un número de favoritos mayor que
+    min_favs: Mantener publicaciones con un número de favoritos de al menos
     min_favs_hint: No borra ninguna de las publicaciones que hayan recibido al menos esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
-    min_reblogs: Mantener publicaciones reblogueadas más de
+    min_reblogs: Mantener publicaciones impulsadas al menos
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido impulsadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de impulsos
   stream_entries:
     sensitive_content: Contenido sensible
@@ -2003,10 +2064,7 @@ es:
     review_link: Revisar los términos de servicio
     title: Los términos de servicio de %{domain} van a cambiar
   themes:
-    contrast: Mastodon (alto contraste)
-    default: Mastodon (oscuro)
-    mastodon-light: Mastodon (claro)
-    system: Automático (usar tema del sistema)
+    default: Mastodon
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
@@ -2031,7 +2089,31 @@ es:
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
     recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
+    resume_app_authorization: Reanudar autorización de aplicación
+    role_requirement: "%{domain} requiere que establezcas la autenticación en dos pasos para poder usar Mastodon."
     webauthn: Claves de seguridad
+  unsubscriptions:
+    create:
+      action: Ir a la página de inicio del servidor
+      email_subscription:
+        confirmation_html: Ya no recibirás correos electrónicos de %{name}.
+      title: Ya no estás suscrito
+      user:
+        confirmation_html: Ya no recibirás %{type} de Mastodon en %{domain}.
+    notification_emails:
+      favourite: correos de notificación de favoritos
+      follow: correos de notificación de nuevos seguidores
+      follow_request: correos de notificación de solicitudes de seguimiento
+      mention: correos de notificación de menciones
+      reblog: correos de notificación de impulsos
+    show:
+      action: Cancelar suscripción
+      email_subscription:
+        confirmation_html: Dejarás de recibir correos cuando esta cuenta publique algo nuevo.
+        title: "¿Darse de baja de %{name}?"
+      user:
+        confirmation_html: Dejarás de recibir %{type} de Mastodon en %{domain}.
+        title: "¿Darse de baja de %{type}?"
   user_mailer:
     announcement_published:
       description: 'Los administradores de %{domain} están haciendo un anuncio:'
@@ -2174,8 +2256,12 @@ es:
       error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
       success: Su clave de seguridad se ha eliminado correctamente.
     invalid_credential: Clave de seguridad no válida
+    nickname: Apodo
     nickname_hint: Introduzca el apodo de su nueva clave de seguridad
     not_enabled: Aún no has activado WebAuthn
     not_supported: Este navegador no soporta claves de seguridad
     otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de doble factor.
     registered_on: Registrado el %{date}
+  wrapstodon:
+    description: "¡Mira cómo %{name} ha usado Mastodon este año!"
+    title: Wrapstodon %{year} para %{name}

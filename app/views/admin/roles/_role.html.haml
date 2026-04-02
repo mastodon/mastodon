@@ -21,9 +21,13 @@
     .announcements-list__item__meta
       - if role.everyone?
         = t('admin.roles.everyone_full_description_html')
+        = t('admin.roles.requires_2fa') if role.require_2fa?
       - else
         = link_to t('admin.roles.assigned_users', count: role.users.count), admin_accounts_path(role_ids: role.id)
         ·
         %abbr{ title: role.permissions_as_keys.map { |privilege| I18n.t("admin.roles.privileges.#{privilege}") }.join(', ') }= t('admin.roles.permissions_count', count: role.permissions_as_keys.size)
+        - if role.require_2fa?
+          ·
+          = t('admin.roles.requires_2fa')
     .announcements-list__item__actions
       = table_link_to 'edit', t('admin.accounts.edit'), edit_admin_role_path(role) if can?(:update, role)

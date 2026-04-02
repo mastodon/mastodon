@@ -8,14 +8,15 @@ RSpec.describe Fasp::AnnounceTrendWorker do
   subject { described_class.new.perform(status.id, 'favourite') }
 
   let(:status) { Fabricate(:status) }
+  let(:provider) { Fabricate(:confirmed_fasp) }
   let(:subscription) do
     Fabricate(:fasp_subscription,
+              fasp_provider: provider,
               category: 'content',
               subscription_type: 'trends',
               threshold_timeframe: 15,
               threshold_likes: 2)
   end
-  let(:provider) { subscription.fasp_provider }
   let(:path) { '/data_sharing/v0/announcements' }
 
   let!(:stubbed_request) do

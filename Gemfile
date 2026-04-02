@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 3.2.0', '< 3.5.0'
+ruby '>= 3.3.0', '< 4.1.0'
 
 gem 'propshaft'
 gem 'puma', '~> 7.0'
-gem 'rails', '~> 8.0'
+gem 'rails', '~> 8.1.0'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
@@ -24,11 +24,11 @@ gem 'ruby-vips', '~> 2.2', require: false
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.19.0', require: false
+gem 'bootsnap', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
-gem 'chewy', '~> 7.3'
-gem 'devise', '~> 4.9'
+gem 'chewy'
+gem 'devise'
 gem 'devise-two-factor'
 
 group :pam_authentication, optional: true do
@@ -40,7 +40,7 @@ gem 'net-ldap', '~> 0.18'
 gem 'omniauth', '~> 2.0'
 gem 'omniauth-cas', '~> 3.0.0.beta.1'
 gem 'omniauth_openid_connect', '~> 0.8.0'
-gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'omniauth-rails_csrf_protection', '~> 2.0'
 gem 'omniauth-saml', '~> 2.0'
 
 gem 'color_diff', '~> 0.1'
@@ -55,7 +55,7 @@ gem 'hiredis-client'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.3.0'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.7.0', require: false
+gem 'httplog', '~> 1.8.0', require: false
 gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'
@@ -67,11 +67,10 @@ gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.7.0', require: 'mime/types/columnar'
 gem 'mutex_m'
 gem 'nokogiri', '~> 1.15'
-gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'premailer-rails'
-gem 'public_suffix', '~> 6.0'
+gem 'public_suffix', '~> 7.0'
 gem 'pundit', '~> 2.3'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', require: 'rack/cors'
@@ -96,27 +95,28 @@ gem 'tzinfo-data', '~> 1.2023'
 gem 'webauthn', '~> 3.0'
 gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
+gem 'json'
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.7.0'
+gem 'opentelemetry-api', '~> 1.8.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.31.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.32.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.10.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.24.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.24.0', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.30.0', require: false
-  gem 'opentelemetry-instrumentation-http', '~> 0.27.0', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.33.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.39.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.32.0', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.35.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.30.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.40.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.28.0', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.28.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
@@ -129,16 +129,13 @@ group :test do
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 3.0', require: false
 
-  # RSpec helpers for email specs
-  gem 'email_spec'
-
   # Extra RSpec extension methods and helpers for sidekiq
   gem 'rspec-sidekiq', '~> 5.0'
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
   gem 'capybara-playwright-driver'
-  gem 'playwright-ruby-client', '1.56.0', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
+  gem 'playwright-ruby-client', '1.57.1', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
 
   # Used to reset the database between system tests
   gem 'database_cleaner-active_record'
@@ -180,14 +177,14 @@ group :development do
 
   # Enhanced error message pages for development
   gem 'better_errors', '~> 2.9'
-  gem 'binding_of_caller', '~> 1.0'
+  gem 'binding_of_caller'
 
   # Preview mail in the browser
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 3.0'
 
   # Security analysis CLI tools
-  gem 'brakeman', '~> 7.0', require: false
+  gem 'brakeman', '~> 8.0', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   # Linter CLI for HAML files

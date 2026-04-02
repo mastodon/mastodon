@@ -24,6 +24,11 @@ RSpec.describe 'ActivityPub Contexts' do
       expect(response.parsed_body[:type])
         .to eq 'Collection'
 
+      expect(response.parsed_body[:first])
+        .to include(
+          type: 'CollectionPage',
+          partOf: context_url(conversation)
+        )
       expect(response.parsed_body[:first][:items])
         .to be_an(Array)
         .and have_attributes(size: 2)

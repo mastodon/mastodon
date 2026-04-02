@@ -10,7 +10,7 @@ RSpec.describe REST::ScheduledStatusSerializer do
     )
   end
 
-  let(:scheduled_status) { Fabricate.build(:scheduled_status, scheduled_at: 4.minutes.from_now, params: { application_id: 123, quoted_status_id: 456, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16 }) }
+  let(:scheduled_status) { Fabricate.build(:scheduled_status, scheduled_at: 4.minutes.from_now, params: { application_id: 123, quoted_status_id: 456, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16 }) }
 
   describe 'serialization' do
     it 'returns expected values and removes application_id from params' do

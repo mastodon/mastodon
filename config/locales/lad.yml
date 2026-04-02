@@ -10,7 +10,6 @@ lad:
     followers:
       one: Suivante
       other: Suivantes
-    following: Sigiendo
     instance_actor_flash: Este kuento es un aktor virtual utilizado para reprezentar al sirvidor en si mezmo i no a dingun utilizador individual. Se utiliza para butos de la federasyon i no se deve suspender.
     last_active: ultima koneksyon
     link_verified_on: La propiedad de este atadijo fue verifikada el %{date}
@@ -477,6 +476,7 @@ lad:
           created_at: Kriyado en
           delete: Efasa
           ip: Adreso IP
+          request_body: Kuerpo de la solisitud
       providers:
         active: Aktivo
         base_url: URL baza
@@ -681,7 +681,6 @@ lad:
       resolved_msg: Tienes rezolvido la denunsia djustamente!
       skip_to_actions: Va direktamente a las aksyones
       status: Estado
-      statuses: Kontenido raportado
       statuses_description_html: El kontenido ofensivo se sitara en la komunikasyon kon el kuento raportado
       summary:
         action_preambles:
@@ -1136,7 +1135,6 @@ lad:
   application_mailer:
     notification_preferences: Troka preferensyas de posta
     salutation: "%{name},"
-    settings: 'Troka preferensyas de posta: %{link}'
     unsubscribe: Dezabona
     view: 'Mira:'
     view_profile: Ve profil
@@ -1504,21 +1502,6 @@ lad:
     failed_sign_in_html: Prova de inisiasyon de sesion no reushida kon %{method} de %{ip} (%{browser})
     successful_sign_in_html: Prova de sesion reushida kon %{method} dizde %{ip} (%{browser})
     title: Estoria de autentifikasyon
-  mail_subscriptions:
-    unsubscribe:
-      action: Si, dezabona
-      complete: Dezabonado
-      confirmation_html: Estas siguro de ke ya no keres risivir %{type} de Mastodon en %{domain} a tu posta elektronika %{email}? Syempre podras reabonarte dizde las <a href="%{settings_path}"> opsyones de avizos por posta.</a>.
-      emails:
-        notification_emails:
-          favourite: avizos de favoritos por posta
-          follow: avizos de segidores por posta
-          follow_request: avizos de solisitasyones de segimyento por posta
-          mention: avizos de enmentaduras por posta
-          reblog: avizos de repartajasyones por posta
-      resubscribe_html: Si tyenes deabonado por yerro, puedes reabonar en tus <a href="%{settings_path}">opsyones de avizos por posta elektronika</a>.
-      success_html: Ya no risiviras %{type} de Mastodon en %{domain} a tu posta en %{email}.
-      title: Dezabona
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado ke ya kontenga imajes
@@ -1831,11 +1814,9 @@ lad:
     enabled: Otomatikamente efasa publikasyones viejas
     enabled_hint: Supreme otomatikamente tus publikasyones kuando alkansen un limito de tiempo espesifikado, a manko ke koensiden kon alguna de las eksepsiones detalyadas debasho
     exceptions: Eksepsiones
-    explanation: Porke la efasasion de mesajes es una operasyon kostoza, esto se faze avagar, a lo longo de un tiempo, kuando el sirvidor no esta okupado. Por esta razon, puede ser ke tus publikasyones sean efasadas un tiempo dempues de ke alkansen el limito de tiempo espesifikado.
     ignore_favs: Ignora favoritos
     ignore_reblogs: Ignora repartajasyones
     interaction_exceptions: Eksepsiones bazadas en enteraksyones
-    interaction_exceptions_explanation: Akodrate ke no ay garantiya de ke se supremen las publikasyones ke estan por debasho de los limitos de favoritos o de repartajasiones si los tienen superado en algun momento.
     keep_direct: Manten enmentaduras privadas
     keep_direct_hint: No efasa dingunos mesajes privados
     keep_media: Manten publikasyones kon atamientos
@@ -1871,10 +1852,6 @@ lad:
     does_not_match_previous_name: no koensida kon el nombre anterior
   terms_of_service:
     title: Terminos de servisyo
-  themes:
-    contrast: Mastodon (alto kontraste)
-    default: Mastodon (eskuro)
-    mastodon-light: Mastodon (klaro)
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"

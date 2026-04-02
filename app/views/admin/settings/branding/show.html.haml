@@ -2,10 +2,10 @@
   = t('admin.settings.branding.title')
 
 - content_for :heading do
-  %h2= t('admin.settings.title')
+  %h1= t('admin.settings.title')
   = render partial: 'admin/settings/shared/links'
 
-= simple_form_for @admin_settings, url: admin_settings_branding_path, html: { method: :patch } do |f|
+= simple_form_for @admin_settings, url: admin_settings_branding_path do |f|
   = render 'shared/error_messages', object: @admin_settings
 
   %p.lead= t('admin.settings.branding.preamble')
@@ -44,7 +44,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :favicon,
                 as: :file,
-                input_html: { accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].join(',') },
+                input_html: { accept: f.object.class::UPLOAD_MIME_TYPES },
                 wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6.fields-group
@@ -58,7 +58,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :app_icon,
                 as: :file,
-                input_html: { accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].join(',') },
+                input_html: { accept: f.object.class::UPLOAD_MIME_TYPES },
                 wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6.fields-group

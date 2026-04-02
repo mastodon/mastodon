@@ -152,19 +152,19 @@ RSpec.describe StatusPolicy, type: :model do
       end
 
       it 'grants access when public and policy allows everyone' do
-        status.quote_approval_policy = Status::QUOTE_APPROVAL_POLICY_FLAGS[:public]
+        status.quote_approval_policy = InteractionPolicy::POLICY_FLAGS[:public]
         viewer = Fabricate(:account)
         expect(subject).to permit(viewer, status)
       end
 
       it 'denies access when public and policy allows followers but viewer is not one' do
-        status.quote_approval_policy = Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers]
+        status.quote_approval_policy = InteractionPolicy::POLICY_FLAGS[:followers]
         viewer = Fabricate(:account)
         expect(subject).to_not permit(viewer, status)
       end
 
       it 'grants access when public and policy allows followers and viewer is one' do
-        status.quote_approval_policy = Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers]
+        status.quote_approval_policy = InteractionPolicy::POLICY_FLAGS[:followers]
         viewer = Fabricate(:account)
         viewer.follow!(status.account)
         expect(subject).to permit(viewer, status)

@@ -44,6 +44,7 @@ class Form::AdminSettings
     local_topic_feed_access
     remote_topic_feed_access
     landing_page
+    wrapstodon
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -66,6 +67,7 @@ class Form::AdminSettings
     require_invite_text
     captcha_enabled
     authorized_fetch
+    wrapstodon
   ).freeze
 
   UPLOAD_KEYS = %i(
@@ -82,6 +84,8 @@ class Form::AdminSettings
   OVERRIDEN_SETTINGS = {
     authorized_fetch: :authorized_fetch_mode?,
   }.freeze
+
+  UPLOAD_MIME_TYPES = %w(image/jpeg image/png image/gif image/webp).freeze
 
   DESCRIPTION_LIMIT = 200
   DOMAIN_BLOCK_AUDIENCES = %w(disabled users all).freeze
@@ -152,6 +156,10 @@ class Form::AdminSettings
         setting.update(value: typecast_value(key, instance_variable_get(:"@#{key}")))
       end
     end
+  end
+
+  def persisted?
+    true
   end
 
   private

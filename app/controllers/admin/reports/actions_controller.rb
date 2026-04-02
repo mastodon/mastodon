@@ -13,7 +13,7 @@ class Admin::Reports::ActionsController < Admin::BaseController
 
     case action_from_button
     when 'delete', 'mark_as_sensitive'
-      Admin::StatusBatchAction.new(status_batch_action_params).save!
+      Admin::ModerationAction.new(moderation_action_params).save!
     when 'silence', 'suspend'
       Admin::AccountAction.new(account_action_params).save!
     else
@@ -25,9 +25,8 @@ class Admin::Reports::ActionsController < Admin::BaseController
 
   private
 
-  def status_batch_action_params
+  def moderation_action_params
     shared_params
-      .merge(status_ids: @report.status_ids)
   end
 
   def account_action_params

@@ -1,0 +1,33 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8px 0;
+  padding: 0;
+  gap: 4px 20px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.item {
+  @container (width < 420px) {
+    flex: 1 1 0px;
+  }
+
+  a,
+  strong {
+    display: block;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 15px;
+  }
+
+  a {
+    padding: 0;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}

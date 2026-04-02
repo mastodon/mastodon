@@ -1,0 +1,278 @@
+// Profile Edit Page
+
+.profileImage {
+  height: 120px;
+  background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-primary);
+  overflow: hidden;
+  position: relative;
+
+  @container (width >= 500px) {
+    height: 160px;
+  }
+
+  > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .imageButton {
+    top: 16px;
+    right: 24px;
+  }
+}
+
+.avatar {
+  margin-top: -64px;
+  margin-left: 22px;
+  position: relative;
+  width: 82px;
+
+  > :global(.account__avatar) {
+    border: 1px solid var(--color-border-primary);
+  }
+
+  .imageButton {
+    bottom: -8px;
+    right: -8px;
+  }
+}
+
+.bio {
+  unicode-bidi: plaintext;
+
+  p:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.fieldButtons {
+  display: flex;
+  gap: 8px;
+  align-items: end;
+
+  @container (width < 500px) {
+    flex-direction: column;
+  }
+}
+
+.field {
+  padding: 12px 0;
+  display: flex;
+  gap: 4px;
+  align-items: start;
+
+  > div {
+    flex-grow: 1;
+  }
+}
+
+.verifiedLinkHelpButton {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+
+  &:global(.button) {
+    color: var(--color-text-primary);
+
+    &:active,
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Featured Tags Page
+
+.wrapper {
+  padding: 24px;
+}
+
+.autoComplete,
+.tagSuggestions,
+.maxTagsWarning {
+  margin: 12px 0;
+}
+
+.tagSuggestions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  // Add more padding to the suggestions label
+  > span {
+    margin-right: 4px;
+  }
+}
+
+.tagItem {
+  > h4 {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  > p {
+    color: var(--color-text-secondary);
+  }
+}
+
+// Column component
+
+.column {
+  border: 1px solid var(--color-border-primary);
+  border-top-width: 0;
+}
+
+.columnHeader {
+  :global(.column-header__buttons) {
+    align-items: center;
+    padding-inline-end: 16px;
+    height: auto;
+  }
+}
+
+// Edit button component
+
+.editButton {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+
+  &:global(.button) {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-size: 13px;
+    padding: 4px 8px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: var(--color-bg-brand-softest);
+    }
+
+    &:disabled {
+      background-color: var(--color-bg-primary);
+      opacity: 0.5;
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.deleteButton {
+  --default-icon-color: var(--color-text-error);
+  --hover-bg-color: var(--color-bg-error-base);
+  --hover-icon-color: var(--color-text-on-error-base);
+}
+
+// Field component
+
+.fieldName,
+.fieldValue {
+  word-break: break-all;
+}
+
+.fieldName {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.fieldValue {
+  color: var(--color-text-primary);
+  font-size: 15px;
+}
+
+// Image edit component
+
+.imageButton {
+  --default-bg-color: var(--color-bg-primary);
+
+  &,
+  &:global(.active) {
+    // Overrides the transparent background added by default with .active
+    --hover-bg-color: var(--color-bg-brand-softest);
+  }
+
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 9999px;
+  box-sizing: border-box;
+  padding: 4px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.imageMenu {
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Item list component
+
+.itemList {
+  > li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+
+    > :first-child {
+      flex-grow: 1;
+    }
+  }
+}
+
+.itemListButtons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+// Section component
+
+.section {
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border-primary);
+  font-size: 15px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  flex-grow: 1;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.sectionSubtitle {
+  color: var(--color-text-secondary);
+}

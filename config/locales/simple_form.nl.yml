@@ -54,7 +54,7 @@ nl:
         password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
-        setting_advanced_layout: Geef Mastodon in meerdere kolommen weer, waarmee je jouw tijdlijn, meldingen en een derde kolom naar keuze in een opslag kunt bekijken. Niet aanbevolen voor kleinere schermen.
+        setting_advanced_layout: Geef Mastodon in meerdere kolommen weer, waarmee je jouw tijdlijn, meldingen en een derde kolom naar keuze in één opslag kunt bekijken. Niet aanbevolen voor kleinere schermen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
         setting_boost_modal: Wanneer dit is ingeschakeld, krijg je eerst een bevestigingsvenster te zien waarmee je de zichtbaarheid van je boost kunt wijzigen.
@@ -93,7 +93,7 @@ nl:
         content_cache_retention_period: Alle berichten van andere servers (inclusief boosts en reacties) worden verwijderd na het opgegeven aantal dagen, ongeacht enige lokale gebruikersinteractie met die berichten. Dit betreft ook berichten die een lokale gebruiker aan diens bladwijzers heeft toegevoegd of als favoriet heeft gemarkeerd. Privéberichten tussen gebruikers van verschillende servers gaan ook verloren en zijn onmogelijk te herstellen. Het gebruik van deze instelling is bedoeld voor servers die een speciaal doel dienen en overtreedt veel gebruikersverwachtingen wanneer deze voor algemeen gebruik wordt geïmplementeerd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
         favicon: WEBP, PNG, GIF of JPG. Vervangt de standaard Mastodon favicon met een aangepast pictogram.
-        landing_page: Selecteert welke pagina nieuwe bezoekers te zien krijgen wanneer ze voor het eerst op jouw server terechtkomen. Wanneer je ‘Trends’ selecteert, moeten trends ingeschakeld zijn onder 'Serverinstellingen > Ontdekken'. Als je ‘Lokale tijdlijn’ selecteert, moet ‘Toegang tot openbare lokale berichten’ worden ingesteld op ‘Iedereen’ onder 'Serverinstellingen > Ontdekken'.
+        landing_page: Selecteert welke pagina nieuwe bezoekers te zien krijgen wanneer ze voor het eerst op jouw server terechtkomen. Wanneer je ‘Trends’ selecteert, moeten trends ingeschakeld zijn onder 'Serverinstellingen > Ontdekken'. Wanneer je ‘Lokale tijdlijn’ selecteert, moet ‘Toegang tot openbare lokale berichten’ worden ingesteld op ‘Iedereen’ onder 'Serverinstellingen > Ontdekken'.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden van berichten van externe gebruikers worden op jouw server in de cache opgeslagen. Indien ingesteld op een positieve waarde, worden media verwijderd na het opgegeven aantal dagen. Als de mediagegevens worden opgevraagd nadat ze zijn verwijderd, worden ze opnieuw gedownload wanneer de originele inhoud nog steeds beschikbaar is. Vanwege beperkingen op hoe vaak linkvoorbeelden sites van derden raadplegen, wordt aanbevolen om deze waarde in te stellen op ten minste 14 dagen. Anders worden linkvoorbeelden niet op aanvraag bijgewerkt.
         min_age: Gebruikers krijgen tijdens hun inschrijving de vraag om hun geboortedatum te bevestigen
@@ -111,6 +111,7 @@ nl:
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
+        wrapstodon: Lokale gebruikers de mogelijkheid geven om een speelse samenvatting van hun Mastodon-gebruik over het afgelopen jaar aan te maken. Deze functie is elk jaar beschikbaar tussen 10 en 31 december, en wordt aangeboden aan gebruikers die tijdens het afgelopen jaar ten minste één openbaar of minder openbaar bericht hebben geplaatst en ten minste één hashtag hebben gebruikt.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -133,6 +134,7 @@ nl:
         otp: 'Voer de tweestaps-toegangscode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
         webauthn: Wanneer het een USB-sleutel is, zorg er dan voor dat je deze in de computer steekt en, wanneer nodig, activeert.
       settings:
+        email_subscriptions: Het uitschakelen behoudt bestaande abonnees, maar stopt met het verzenden van e-mails.
         indexable: Jouw profielpagina kan in de zoekresultaten van Google, Bing, DuckDuckGo en andere zoekmachines verschijnen.
         show_application: Je kunt zelf altijd zien met welke app je een bericht hebt geplaatst.
       tag:
@@ -163,6 +165,7 @@ nl:
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
         position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
+        require_2fa: Gebruikers met deze rol zijn verplicht om tweestapsverificatie in te stellen om Mastodon te gebruiken
       username_block:
         allow_with_approval: In plaats van dat het registreren helemaal wordt voorkomen, zullen overeenkomstige registraties jouw goedkeuring vereisen
         comparison: Houd rekening met het Scunthorpe-probleem wanneer je gedeeltelijke overeenkomsten blokkeert
@@ -222,6 +225,7 @@ nl:
         email: E-mailadres
         expires_in: Vervalt na
         fields: Extra velden
+        filter_action: Filteractie
         header: Omslagfoto
         honeypot: "%{label} (niet invullen)"
         inbox_url: Inbox-URL van de relayserver
@@ -234,10 +238,12 @@ nl:
         password: Wachtwoord
         phrase: Trefwoord of zinsdeel
         setting_advanced_layout: Geavanceerde webomgeving inschakelen
-        setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
+        setting_aggregate_reblogs: Boosts op tijdlijnen groeperen
         setting_always_send_emails: Altijd e-mailmeldingen verzenden
         setting_auto_play_gif: Geanimeerde GIF's automatisch afspelen
         setting_boost_modal: Zichtbaarheid van boosts
+        setting_color_scheme: Kleurenschema
+        setting_contrast: Contrast
         setting_default_language: Taal van berichten
         setting_default_privacy: Zichtbaarheid van nieuwe berichten
         setting_default_quote_policy: Wie mag jou citeren
@@ -312,6 +318,7 @@ nl:
         thumbnail: Server-miniatuur
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
+        wrapstodon: Wrapstodon inschakelen
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -350,6 +357,7 @@ nl:
         hint: Aanvullende informatie
         text: Regel
       settings:
+        email_subscriptions: Berichten per e-mail inschakelen
         indexable: Zoekmachines jouw profielpagina laten vinden
         show_application: App tonen die je voor het plaatsen van berichten gebruikt
       tag:
@@ -372,7 +380,9 @@ nl:
         jurisdiction: Jurisdictie
         min_age: Minimumleeftijd
       user:
+        date_of_birth_1i: Jaar
         date_of_birth_2i: Maand
+        date_of_birth_3i: Dag
         role: Rol
         time_zone: Tijdzone
       user_role:
@@ -381,6 +391,7 @@ nl:
         name: Naam
         permissions_as_keys: Rechten
         position: Prioriteit
+        require_2fa: Vereist tweestapsverificatie
       username_block:
         allow_with_approval: Registraties met goedkeuring toestaan
         comparison: Methode van vergelijking

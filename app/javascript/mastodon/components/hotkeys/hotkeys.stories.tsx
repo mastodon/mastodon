@@ -50,6 +50,9 @@ const hotkeyTest: Story['play'] = async ({ canvas, userEvent }) => {
   await userEvent.keyboard('gh');
   await confirmHotkey('goToHome');
 
+  await userEvent.keyboard('ge');
+  await confirmHotkey('goToExplore');
+
   await userEvent.keyboard('gn');
   await confirmHotkey('goToNotifications');
 
@@ -105,6 +108,9 @@ export const Default = {
       },
       goToHome: () => {
         setMatchedHotkey('goToHome');
+      },
+      goToExplore: () => {
+        setMatchedHotkey('goToExplore');
       },
       goToNotifications: () => {
         setMatchedHotkey('goToNotifications');

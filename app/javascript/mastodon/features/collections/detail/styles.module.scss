@@ -1,0 +1,118 @@
+.header {
+  padding: 24px;
+}
+
+.titleWithMenu {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+}
+
+.titleWrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-secondary);
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.authorNote {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+
+  a {
+    color: inherit;
+    text-decoration-color: rgb(from var(--color-text-secondary) r g b / 50%);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.description {
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+.headerButtonWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.iconButton {
+  box-sizing: content-box;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.itemList {
+  padding-inline: 24px;
+}
+
+.columnSubheading {
+  padding-bottom: 12px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.accountItemWrapper {
+  display: flex;
+  align-items: start;
+  padding-block: 16px;
+
+  &[data-with-border='true'] {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+}
+
+.accountItem {
+  --account-name-size: 15px;
+  --account-handle-color: var(--color-text-secondary);
+  --account-handle-size: 13px;
+  --account-bio-color: var(--color-text-primary);
+  --account-bio-size: 13px;
+  --account-outer-spacing: 0;
+
+  flex-grow: 1;
+}
+
+.youWereAddedWrapper {
+  padding-bottom: 16px;
+}
+
+.revokeControlWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+
+  :global(.button) {
+    min-width: 30%;
+    white-space: normal;
+  }
+
+  --avatar-width: 46px;
+
+  @container (width < 360px) {
+    --avatar-width: 35px;
+  }
+}

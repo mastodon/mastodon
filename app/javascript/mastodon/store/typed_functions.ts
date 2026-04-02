@@ -205,7 +205,7 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   thunkOptions?: AppThunkOptions<Args>,
 ): ReturnType<typeof createAsyncThunk<Args, void>>;
 
-// Overload when the `onData` method returns nothing, then the mayload is the `onData` result
+// Overload when the `onData` method returns nothing, then the payload is the `onData` result
 export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: LoadData<Args, LoadDataResult>,

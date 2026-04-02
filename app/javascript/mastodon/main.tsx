@@ -30,7 +30,7 @@ function main() {
     }
 
     const { initializeEmoji } = await import('./features/emoji/index');
-    initializeEmoji();
+    await initializeEmoji();
 
     const root = createRoot(mountNode);
     root.render(<Mastodon {...props} />);
@@ -55,9 +55,8 @@ function main() {
         'Notification' in window &&
         Notification.permission === 'granted'
       ) {
-        const registerPushNotifications = await import(
-          'mastodon/actions/push_notifications'
-        );
+        const registerPushNotifications =
+          await import('mastodon/actions/push_notifications');
 
         store.dispatch(registerPushNotifications.register());
       }

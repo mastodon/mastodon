@@ -14,13 +14,9 @@ RSpec.describe 'Admin TermsOfService Distributions' do
       expect(page)
         .to have_title(I18n.t('admin.terms_of_service.preview.title'))
 
-      emails = capture_emails do
-        expect { click_on I18n.t('admin.terms_of_service.preview.send_to_all', count: 1, display_count: 1) }
-          .to(change { terms_of_service.reload.notification_sent_at })
-      end
-      expect(emails.first)
-        .to be_present
-        .and(deliver_to(user.email))
+      expect { click_on I18n.t('admin.terms_of_service.preview.send_to_all', count: 1, display_count: 1) }
+        .to change { terms_of_service.reload.notification_sent_at }
+        .and send_email(to: user.email)
       expect(page)
         .to have_title(I18n.t('admin.terms_of_service.title'))
     end

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -12,6 +12,7 @@ import Overlay from 'react-overlays/Overlay';
 
 import MoodIcon from '@/material-icons/400-20px/mood.svg?react';
 import { IconButton } from 'mastodon/components/icon_button';
+import { injectIntl } from '@/mastodon/components/intl';
 
 import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
@@ -61,8 +62,14 @@ class ModifierPickerMenu extends PureComponent {
     this.props.onSelect(e.currentTarget.getAttribute('data-index') * 1);
   };
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.active) {
+  componentDidMount() {
+    if (this.props.active) {
+      this.attachListeners();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.active) {
       this.attachListeners();
     } else {
       this.removeListeners();
@@ -316,6 +323,7 @@ class EmojiPickerDropdown extends PureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     onSkinTone: PropTypes.func.isRequired,
     skinTone: PropTypes.number.isRequired,
+    disabled: PropTypes.bool,
   };
 
   state = {
@@ -378,7 +386,7 @@ class EmojiPickerDropdown extends PureComponent {
   };
 
   render() {
-    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis } = this.props;
+    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, disabled } = this.props;
     const title = intl.formatMessage(messages.emoji);
     const { active, loading, placement } = this.state;
 
@@ -390,6 +398,8 @@ class EmojiPickerDropdown extends PureComponent {
           active={active}
           iconComponent={MoodIcon}
           onClick={this.onToggle}
+          disabled={disabled}
+          id="emoji"
           inverted
         />
 

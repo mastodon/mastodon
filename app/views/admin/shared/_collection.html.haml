@@ -1,0 +1,22 @@
+.status__card
+  - if collection.tag.present?
+    .status__prepend
+      = link_to collection.tag.formatted_name, admin_tag_path(collection.tag_id)
+
+  .status__content
+    %h6= collection.name
+
+    %p= collection.description
+
+  .detailed-status__meta
+    = conditional_link_to can?(:show, collection), admin_account_collection_path(collection.account.id, collection), class: 'detailed-status__datetime' do
+      %time.formatted{ datetime: collection.created_at.iso8601, title: l(collection.created_at) }><= l(collection.created_at)
+    - if collection.sensitive?
+      &nbsp;·
+      = material_symbol('visibility_off')
+      = t('stream_entries.sensitive_content')
+    &nbsp;·
+    = t('admin.collections.number_of_accounts', count: collection.accepted_collection_items.size)
+    &nbsp;·
+    = link_to account_collection_path(collection.account, collection), class: 'detailed-status__link', target: 'blank', rel: 'noopener' do
+      = t('admin.collections.view_publicly')

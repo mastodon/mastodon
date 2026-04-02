@@ -20,7 +20,7 @@ RSpec.describe ActivityPub::QuoteRefreshWorker do
         expect { worker.perform(quote.id) }
           .to(change { quote.reload.updated_at })
 
-        expect(service).to have_received(:call).with(quote)
+        expect(service).to have_received(:call).with(quote, quote.approval_uri)
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe ActivityPub::QuoteRefreshWorker do
         expect { worker.perform(quote.id) }
           .to_not(change { quote.reload.updated_at })
 
-        expect(service).to_not have_received(:call).with(quote)
+        expect(service).to_not have_received(:call).with(quote, quote.approval_uri)
       end
     end
   end

@@ -13,15 +13,13 @@ RSpec.describe 'Settings preferences appearance page' do
     expect(page)
       .to have_private_cache_control
 
-    select 'contrast', from: theme_selection_field
     check confirm_reblog_field
     uncheck confirm_delete_field
 
     check advanced_layout_field
 
     expect { save_changes }
-      .to change { user.reload.settings.theme }.to('contrast')
-      .and change { user.reload.settings['web.reblog_modal'] }.to(true)
+      .to change { user.reload.settings['web.reblog_modal'] }.to(true)
       .and change { user.reload.settings['web.delete_modal'] }.to(false)
       .and(change { user.reload.settings['web.advanced_layout'] }.to(true))
     expect(page)

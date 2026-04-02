@@ -49,8 +49,4 @@ class ReblogService < BaseService
   def increment_statistics
     ActivityTracker.increment('activity:interactions')
   end
-
-  def build_json(reblog)
-    Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(reblog), ActivityPub::ActivitySerializer, signer: reblog.account))
-  end
 end

@@ -5,15 +5,15 @@
 # Table name: account_warnings
 #
 #  id                :bigint(8)        not null, primary key
-#  account_id        :bigint(8)
-#  target_account_id :bigint(8)
 #  action            :integer          default("none"), not null
+#  overruled_at      :datetime
+#  status_ids        :string           is an Array
 #  text              :text             default(""), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  account_id        :bigint(8)
 #  report_id         :bigint(8)
-#  status_ids        :string           is an Array
-#  overruled_at      :datetime
+#  target_account_id :bigint(8)
 #
 
 class AccountWarning < ApplicationRecord

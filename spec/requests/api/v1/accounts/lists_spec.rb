@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Accounts Lists API' do
-  let(:user)     { Fabricate(:user) }
-  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)   { 'read:lists' }
-  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:lists'
+
   let(:account) { Fabricate(:account) }
   let(:list)    { Fabricate(:list, account: user.account) }
 

@@ -1,0 +1,20 @@
+= content_for :heading do
+  = render 'application/mailer/heading',
+           image_url: full_asset_url(@subscription.account.avatar.url),
+           title: t('.title', name: display_name(@subscription.account))
+
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            %p= t '.instructions_to_confirm', name: display_name(@subscription.account), acct: "#{@subscription.account.username}@#{@instance}"
+
+            = render 'application/mailer/button', text: t('.action'), url: email_subscriptions_confirmation_url(confirmation_token: @subscription.confirmation_token)
+
+            %p= t '.instructions_to_ignore'
+
+- content_for :footer do
+  %p.email-footer-p= t('email_subscription_mailer.notification.footer.reason_for_email_html', name: display_name(@subscription.account), unsubscribe_path: @unsubscribe_url)
+  %p.email-footer-p= t('email_subscription_mailer.notification.footer.privacy_html', domain: @instance, privacy_policy_path: privacy_policy_path)
