@@ -16,7 +16,7 @@ export interface ApiCollectionJSON {
   item_count: number;
 
   name: string;
-  description: string;
+  description: string | null;
   tag: ApiTagJSON | null;
   language: string | null;
   sensitive: boolean;
