@@ -8,7 +8,13 @@ const meta = {
   component: badges.Badge,
   title: 'Components/Badge',
   args: {
+    domain: '',
     label: undefined,
+  },
+  argTypes: {
+    domain: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof badges.Badge>;
 
