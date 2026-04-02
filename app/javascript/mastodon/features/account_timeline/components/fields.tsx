@@ -235,6 +235,7 @@ function useColumnWrap() {
     const columnCount = parseInt(styles.getPropertyValue('--cols')) || 2;
     const listWidth = listEle.offsetWidth;
     const colWidth = (listWidth - gap * (columnCount - 1)) / columnCount;
+    const halfColSpan = columnCount / 2;
 
     // Matrix to hold the grid layout.
     const itemGrid: { ele: HTMLElement; span: number }[][] = [];
@@ -288,6 +289,16 @@ function useColumnWrap() {
         if (i < row.length - 1) {
           ele.dataset.cols = span.toString();
           remainingRowSpan -= span;
+        } else if (
+          row.length === halfColSpan &&
+          span === 1 &&
+          remainingRowSpan > 1
+        ) {
+          // Special case for 2 items in a row where both items only need 1 column.
+          ele.dataset.cols = halfColSpan.toString();
+          if (row[0]) {
+            row[0].ele.dataset.cols = halfColSpan.toString();
+          }
         } else {
           // Last item in the row takes up remaining space to fill the row.
           ele.dataset.cols = remainingRowSpan.toString();
