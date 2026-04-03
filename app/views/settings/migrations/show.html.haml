@@ -24,7 +24,7 @@
 = simple_form_for @migration, url: settings_migration_path do |f|
   - if on_cooldown?
     %p.hint
-      %span.warning-hint= t('migrations.on_cooldown', count: ((@cooldown.cooldown_at - Time.now.utc) / 1.day.seconds).ceil)
+      %span.warning-hint= t('migrations.on_cooldown', count: @cooldown.remaining_cooldown_days)
   - else
     %p.hint= t('migrations.warning.before')
 
