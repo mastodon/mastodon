@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
   helper_method :use_seamless_external_login?
   helper_method :sso_account_settings
   helper_method :limited_federation_mode?
-  helper_method :skip_csrf_meta_tags?
 
   before_action :check_self_destruct!
 
@@ -84,10 +83,6 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-  end
-
-  def skip_csrf_meta_tags?
-    false
   end
 
   def after_sign_out_path_for(_resource_or_scope)

@@ -19,6 +19,11 @@ module WebAppControllerConcern
         p.form_action :none
       end
     end
+
+    with_options if: :skip_csrf_meta_tags? do
+      skip_forgery_protection
+      after_action { request.session_options[:skip] = true }
+    end
   end
 
   def skip_csrf_meta_tags?
