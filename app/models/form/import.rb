@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 # A non-ActiveRecord helper class for CSV uploads.
 # Handles saving contents to database.
 class Form::Import
