@@ -1,0 +1,9 @@
+%tr{ id: dom_id(migration) }
+  %td
+    - if migration.target_account.present?
+      = compact_account_link_to migration.target_account
+    - else
+      = migration.acct
+  %td= number_with_delimiter migration.followers_count
+  %td
+    %time.time-ago{ datetime: migration.created_at.iso8601, title: l(migration.created_at) }= l(migration.created_at)
