@@ -27,7 +27,4 @@
         %tr
           %td.muted-hint{ colspan: 2 }= t('aliases.empty')
       - else
-        - @aliases.each do |account_alias|
-          %tr
-            %td= account_alias.pretty_acct
-            %td= table_link_to 'delete', t('aliases.remove'), settings_alias_path(account_alias), data: { method: :delete }
+        = render partial: 'account_alias', collection: @aliases
