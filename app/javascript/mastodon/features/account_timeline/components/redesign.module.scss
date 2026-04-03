@@ -17,20 +17,30 @@
   padding-top: 0;
 }
 
-.nameWrapper {
+.displayNameWrapper {
   display: flex;
   align-items: start;
   gap: 16px;
 }
 
-.name {
+.nameWrapper {
   flex-grow: 1;
+}
+
+.name {
+  display: flex;
+  gap: 2px;
+  align-items: baseline;
 
   > h1 {
     font-size: 22px;
     line-height: normal;
     white-space: initial;
   }
+}
+
+.followerBadgeIcon {
+  color: var(--color-text-secondary);
 }
 
 .username {
@@ -163,38 +173,6 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .bio {
   font-size: 15px;
-}
-
-.badge {
-  background-color: var(--color-bg-secondary);
-  border: none;
-  color: var(--color-text-secondary);
-  font-weight: 500;
-  padding: 4px;
-  font-size: 13px;
-
-  :global(.account__header__badges) > & {
-    line-height: 1;
-  }
-
-  > span {
-    font-weight: unset;
-    opacity: 1;
-  }
-}
-
-.badgeMuted {
-  background-color: var(--color-bg-inverted);
-  color: var(--color-text-inverted);
-}
-
-.badgeBlocked {
-  background-color: var(--color-bg-error-base);
-  color: var(--color-text-on-error-base);
-}
-
-svg.badgeIcon {
-  opacity: 1;
 }
 
 .note {

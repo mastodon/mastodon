@@ -2,13 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import CelebrationIcon from '@/material-icons/400-24px/celebration-fill.svg?react';
 
-import * as badges from './badge';
+import * as badges from '.';
 
 const meta = {
   component: badges.Badge,
   title: 'Components/Badge',
   args: {
+    domain: '',
     label: undefined,
+  },
+  argTypes: {
+    domain: {
+      control: 'text',
+    },
   },
 } satisfies Meta<typeof badges.Badge>;
 

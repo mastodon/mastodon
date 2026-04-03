@@ -7,9 +7,12 @@ import classNames from 'classnames';
 
 import Overlay from 'react-overlays/esm/Overlay';
 
+import FollowerIcon from '@/images/icons/icon_follower.svg?react';
+import { Badge } from '@/mastodon/components/badge';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { Icon } from '@/mastodon/components/icon';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useAppSelector } from '@/mastodon/store';
 import AtIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import HelpIcon from '@/material-icons/400-24px/help.svg?react';
@@ -35,6 +38,7 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   const localDomain = useAppSelector(
     (state) => state.meta.get('domain') as string,
   );
+  const relationship = useRelationship(accountId);
 
   if (!account) {
     return null;
@@ -43,10 +47,23 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   const [username = '', domain = localDomain] = account.acct.split('@');
 
   return (
-    <div className={classes.name}>
-      <h1>
-        <DisplayName account={account} variant='simple' />
-      </h1>
+    <div className={classes.nameWrapper}>
+      <div className={classes.name}>
+        <h1>
+          <DisplayName account={account} variant='simple' />
+        </h1>
+        {relationship?.followed_by && (
+          <Badge
+            icon={<FollowerIcon className={classes.followerBadgeIcon} />}
+            label={
+              <FormattedMessage
+                id='account.follows_you'
+                defaultMessage='Follows you'
+              />
+            }
+          />
+        )}
+      </div>
       <p className={classes.username}>
         @{username}@{domain}
         <AccountNameHelp

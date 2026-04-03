@@ -11,14 +11,13 @@ import {
   expandTimelineByKey,
   timelineKey,
 } from '@/mastodon/actions/timelines_typed';
+import { Badge } from '@/mastodon/components/badge';
 import { Button } from '@/mastodon/components/button';
 import { Icon } from '@/mastodon/components/icon';
 import { StatusHeader } from '@/mastodon/components/status/header';
 import type { StatusHeaderRenderFn } from '@/mastodon/components/status/header';
 import { selectTimelineByKey } from '@/mastodon/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-
-import { PinnedBadge } from '../components/badges';
 
 import { useAccountContext } from './context';
 import classes from './styles.module.scss';
@@ -79,7 +78,16 @@ export const renderPinnedStatusHeader: StatusHeaderRenderFn = ({
   }
   return (
     <StatusHeader {...args} className={classes.pinnedStatusHeader}>
-      <PinnedBadge />
+      <Badge
+        className={classes.pinnedBadge}
+        icon={<Icon id='pinned' icon={IconPinned} />}
+        label={
+          <FormattedMessage
+            id='account.timeline.pinned'
+            defaultMessage='Pinned'
+          />
+        }
+      />
     </StatusHeader>
   );
 };

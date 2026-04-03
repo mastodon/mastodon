@@ -1,0 +1,55 @@
+.badge {
+  color: var(--color-text-primary);
+  font-size: 13px;
+  display: inline-flex;
+  padding: 4px;
+  padding-inline-end: 8px;
+  gap: 4px;
+  border-radius: 6px;
+  align-items: center;
+
+  > svg {
+    width: auto;
+    height: 15px;
+    fill: currentColor;
+    opacity: 0.85;
+  }
+}
+
+.domain {
+  opacity: 0.75;
+  letter-spacing: 0;
+}
+
+.default {
+  background-color: var(--color-bg-secondary);
+}
+
+.subtle {
+  background-color: var(--color-bg-brand-softest);
+}
+
+.feature {
+  background-color: var(--color-bg-brand-base);
+  color: var(--color-text-on-brand-base);
+}
+
+.inverted {
+  background-color: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+}
+
+.success {
+  background-color: var(--color-bg-success-softest);
+  color: var(--color-text-success);
+}
+
+.warning {
+  background-color: var(--color-bg-warning-softest);
+  color: var(--color-text-warning);
+}
+
+.danger {
+  background-color: var(--color-bg-error-base);
+  color: var(--color-text-on-error-base);
+}
