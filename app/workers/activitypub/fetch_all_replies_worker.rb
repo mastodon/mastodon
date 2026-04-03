@@ -49,7 +49,7 @@ class ActivityPub::FetchAllRepliesWorker
     # Workers shouldn't be returning anything, but this is used in tests
     fetched_uris
   ensure
-    @batch.remove_job(jid)
+    @batch.remove_job(jid) if jid
   end
 
   private
