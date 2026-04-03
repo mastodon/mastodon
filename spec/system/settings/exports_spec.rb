@@ -27,6 +27,7 @@ RSpec.describe 'Export page' do
         .to change(BackupWorker.jobs, :size).by(1)
       expect(page)
         .to have_content(takeout_summary)
+        .and have_content(I18n.t('exports.archive_takeout.in_progress'))
     end
 
     def request_archive

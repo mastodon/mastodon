@@ -1,0 +1,8 @@
+%tr{ id: dom_id(account_alias) }
+  %td
+    = account_alias.pretty_acct
+  %td
+    = table_link_to 'delete',
+                    t('aliases.remove'),
+                    settings_alias_path(account_alias),
+                    data: { method: :delete }
