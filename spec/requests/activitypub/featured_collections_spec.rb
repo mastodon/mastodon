@@ -106,7 +106,7 @@ RSpec.describe 'Collections' do
             sign_with: remote_account
       end
 
-      let(:remote_account) { Fabricate(:account, domain: 'host.example') }
+      let(:remote_account) { Fabricate(:account_with_private_key, domain: 'host.example') }
 
       context 'when account blocks the remote account' do
         before { account.block!(remote_account) }
