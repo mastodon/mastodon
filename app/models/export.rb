@@ -55,6 +55,14 @@ class Export
     end
   end
 
+  def to_filters_csv
+    CSV.generate(headers: ['Title', 'Context', 'Keywords', 'Whole Word', 'Action', 'Expire after'], write_headers: true) do |csv|
+      account.custom_filters.reorder(:title).each do |filter|
+        csv << [filter.title, filter.context, filter.keywords.map(&:keyword), filter.keywords.map(&:whole_word), filter.action, filter.expires_at]
+      end
+    end
+  end
+
   private
 
   def to_csv(accounts)
