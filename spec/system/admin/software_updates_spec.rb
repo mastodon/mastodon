@@ -23,7 +23,9 @@ RSpec.describe 'finding software updates through the admin interface' do
       expect(find('.release-notes').value).to be_nil
     end
 
-    click_on I18n.t('admin.software_updates.release_notes')
+    within("#software_update_#{latest_release.id}") do
+      click_on I18n.t('admin.software_updates.release_notes')
+    end
     expect(page)
       .to have_current_path('https://github.com/mastodon/mastodon/releases/v99', url: true)
   end
