@@ -148,10 +148,6 @@ class User < ApplicationRecord
     end
   end
 
-  def self.skip_mx_check?
-    Rails.env.local?
-  end
-
   def role
     if role_id.nil?
       UserRole.everyone
@@ -473,7 +469,7 @@ class User < ApplicationRecord
 
     # Doing this conditionally is not very satisfying, but this is consistent
     # with the MX records validations we do and keeps the specs tractable.
-    records = DomainResource.new(email_domain).mx unless self.class.skip_mx_check?
+    records = DomainResource.new(email_domain).mx if Rails.configuration.x.email.perform_mx_checks
 
     EmailDomainBlock.requires_approval?(records + [email_domain], attempt_ip: sign_up_ip)
   end
@@ -522,7 +518,7 @@ class User < ApplicationRecord
   end
 
   def validate_email_dns?
-    email_changed? && !external? && !self.class.skip_mx_check?
+    email_changed? && !external? && Rails.configuration.x.email.perform_mx_checks
   end
 
   def validate_role_elevation
