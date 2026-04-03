@@ -12,6 +12,8 @@ gem 'dotenv'
 gem 'haml-rails', '~>3.0'
 gem 'pg', '~> 1.5'
 gem 'pghero'
+gem "sinatra", require: false
+gem "sinatra-contrib", require: false
 
 gem 'aws-sdk-core', require: false
 gem 'aws-sdk-s3', '~> 1.123', require: false
