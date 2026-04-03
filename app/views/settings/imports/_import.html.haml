@@ -1,0 +1,16 @@
+%tr{ id: dom_id(import) }
+  %td= t("imports.types.#{import.type}")
+  %td
+    - if import.state_unconfirmed?
+      = link_to t("imports.states.#{import.state}"), settings_import_path(import)
+    - else
+      = t("imports.states.#{import.state}")
+  %td
+    #{import.imported_items} / #{import.total_items}
+  %td
+    %time.formatted{ datetime: import.created_at.iso8601, title: l(import.created_at) }
+      = l(import.created_at)
+  %td
+    - if import.failure_count.positive?
+      = link_to_if import.state_finished?, import.failure_count, failures_settings_import_path(import, format: :csv) do
+        = import.failure_count
