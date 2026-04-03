@@ -25,8 +25,8 @@ FROM ${BASE_REGISTRY}/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS node
 FROM ${BASE_REGISTRY}/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
-# Example: v4.3.0-nightly.2023.11.09+pr-123456
-# Overwrite existence of 'alpha.X' in version.rb [--build-arg MASTODON_VERSION_PRERELEASE="nightly.2023.11.09"]
+# Example: v4.3.0-nightly.2023-11-09+pr-123456
+# Overwrite existence of 'alpha.X' in version.rb [--build-arg MASTODON_VERSION_PRERELEASE="nightly.2023-11-09"]
 ARG MASTODON_VERSION_PRERELEASE=""
 # Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="pr-123456"]
 ARG MASTODON_VERSION_METADATA=""
@@ -48,29 +48,27 @@ ARG GID="991"
 
 # Apply Mastodon build options based on options above
 ENV \
-  # Apply Mastodon version information
   MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
   MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}" \
   SOURCE_COMMIT="${SOURCE_COMMIT}" \
-  # Apply Mastodon static files and YJIT options
-  RAILS_SERVE_STATIC_FILES=${RAILS_SERVE_STATIC_FILES} \
-  RUBY_YJIT_ENABLE=${RUBY_YJIT_ENABLE} \
-  # Apply timezone
-  TZ=${TZ}
+  RAILS_SERVE_STATIC_FILES="${RAILS_SERVE_STATIC_FILES}" \
+  RUBY_YJIT_ENABLE="${RUBY_YJIT_ENABLE}" \
+  TZ="${TZ}"
 
+# Configure runtime environment
+# BIND: IP to bind Mastodon to when serving traffic
+# NODE_ENV/RAILS_ENV: production settings for Node.js and Ruby on Rails
+# DEBIAN_FRONTEND: suppress interactive prompts
+# PATH: add Ruby and Mastodon installation directories
+# MALLOC_CONF: optimize jemalloc 5.x performance
+# MASTODON_SIDEKIQ_READY_FILENAME: Sidekiq readiness check filename for Kubernetes
 ENV \
-  # Configure the IP to bind Mastodon to when serving traffic
   BIND="0.0.0.0" \
-  # Use production settings for Yarn, Node.js and related tools
   NODE_ENV="production" \
-  # Use production settings for Ruby on Rails
   RAILS_ENV="production" \
-  # Add Ruby and Mastodon installation to the PATH
   DEBIAN_FRONTEND="noninteractive" \
   PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin" \
-  # Optimize jemalloc 5.x performance
   MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0" \
-  # Sidekiq will touch tmp/sidekiq_process_has_started_and_will_begin_processing_jobs to indicate it is ready. This can be used for a readiness check in Kubernetes
   MASTODON_SIDEKIQ_READY_FILENAME=sidekiq_process_has_started_and_will_begin_processing_jobs
 
 # Set default shell used for running commands
@@ -99,10 +97,10 @@ RUN \
   # Mount Apt cache and lib directories from Docker buildx caches
   --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
   --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
-  # Apt update & upgrade to check for security updates to Debian image
+  # Update package list and upgrade system packages
   apt-get update; \
   apt-get dist-upgrade -yq; \
-  # Install jemalloc, curl and other necessary components
+  # Install jemalloc and other necessary components
   apt-get install -y --no-install-recommends \
   curl \
   file \
@@ -112,6 +110,42 @@ RUN \
   tini \
   tzdata \
   wget \
+  # Mastodon components
+  libexpat1 \
+  libglib2.0-0t64 \
+  libicu76 \
+  libidn12 \
+  libpq5 \
+  libreadline8t64 \
+  libssl3t64 \
+  libyaml-0-2 \
+  # libvips components
+  libcgif0 \
+  libexif12 \
+  libheif1 \
+  libhwy1t64 \
+  libimagequant0 \
+  libjpeg62-turbo \
+  liblcms2-2 \
+  libspng0 \
+  libtiff6 \
+  libwebp7 \
+  libwebpdemux2 \
+  libwebpmux3 \
+  # ffmpeg components
+  libdav1d7 \
+  libmp3lame0 \
+  libopencore-amrnb0 \
+  libopencore-amrwb0 \
+  libopus0 \
+  libsnappy1v5 \
+  libtheora0 \
+  libvorbis0a \
+  libvorbisenc2 \
+  libvorbisfile3 \
+  libvpx9 \
+  libx264-164 \
+  libx265-215 \
   ; \
   # Patch Ruby to use jemalloc
   patchelf --add-needed libjemalloc.so.2 /usr/local/bin/ruby; \
@@ -120,42 +154,37 @@ RUN \
   patchelf \
   ;
 
-# Create temporary build layer from base image
-FROM ruby AS build
+# Build stage for media libraries (libvips, ffmpeg)
+FROM ${BASE_REGISTRY}/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS media-build
 
 ARG TARGETPLATFORM
 
+# Set default shell used for running commands
+SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
+
 # hadolint ignore=DL3008
 RUN \
-  # Mount Apt cache and lib directories from Docker buildx caches
-  --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
-  # Install build tools and bundler dependencies from APT
+  --mount=type=cache,id=apt-native-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,id=apt-native-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+  # Remove automatic apt cache Docker cleanup scripts
+  rm -f /etc/apt/apt.conf.d/docker-clean; \
+  # Install build tools for native libraries
+  apt-get update; \
   apt-get install -y --no-install-recommends \
   autoconf \
   automake \
   build-essential \
-  cmake \
-  git \
-  libgdbm-dev \
-  libglib2.0-dev \
-  libgmp-dev \
-  libicu-dev \
-  libidn-dev \
-  libpq-dev \
-  libssl-dev \
   libtool \
-  libyaml-dev \
   meson \
   nasm \
   pkg-config \
-  shared-mime-info \
   xz-utils \
   # libvips components
   libcgif-dev \
   libexif-dev \
   libexpat1-dev \
   libgirepository1.0-dev \
+  libglib2.0-dev \
   libheif-dev \
   libhwy-dev \
   libimagequant-dev \
@@ -176,8 +205,8 @@ RUN \
   libx265-dev \
   ;
 
-# Create temporary libvips specific build layer from build layer
-FROM build AS libvips
+# Create temporary libvips specific build layer
+FROM media-build AS libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
@@ -192,15 +221,16 @@ RUN tar xf vips-${VIPS_VERSION}.tar.xz;
 
 WORKDIR /usr/local/libvips/src/vips-${VIPS_VERSION}
 
-# Configure and compile libvips
-RUN \
-  meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
-  cd build; \
-  ninja; \
-  ninja install;
+# Configure libvips
+RUN meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false
 
-# Create temporary ffmpeg specific build layer from build layer
-FROM build AS ffmpeg
+WORKDIR /usr/local/libvips/src/vips-${VIPS_VERSION}/build
+
+# Compile and install libvips
+RUN ninja && ninja install
+
+# Create temporary ffmpeg specific build layer
+FROM media-build AS ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
@@ -241,16 +271,47 @@ RUN \
   --enable-shared \
   --enable-version3 \
   ; \
-  make -j$(nproc); \
+  make -j"$(nproc)"; \
   make install;
 
+# Create temporary build layer from base image for Ruby dependencies
+FROM ruby AS ruby-build
+
+ARG TARGETPLATFORM
+
+# hadolint ignore=DL3008
+RUN \
+  # Mount Apt cache and lib directories from Docker buildx caches
+  --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+  # Install build tools and bundler dependencies from APT
+  apt-get install -y --no-install-recommends \
+  build-essential \
+  git \
+  libgdbm-dev \
+  libgmp-dev \
+  libicu-dev \
+  libidn-dev \
+  libpq-dev \
+  libssl-dev \
+  libyaml-dev \
+  shared-mime-info \
+  zlib1g-dev \
+  ;
+
 # Create temporary bundler specific build layer from build layer
-FROM build AS bundler
+FROM ruby-build AS bundler
 
 ARG TARGETPLATFORM
 
 # Copy Gemfile config into working directory
 COPY Gemfile* /opt/mastodon/
+
+# Copy libvips for gems that need it during install
+COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
+COPY --from=libvips /usr/local/libvips/include /usr/local/include
+
+RUN ldconfig
 
 RUN \
   # Mount Ruby Gem caches
@@ -267,7 +328,7 @@ RUN \
   bundle install -j"$(nproc)";
 
 # Create temporary assets build layer from build layer
-FROM build AS precompiler
+FROM ruby-build AS precompiler
 
 ARG TARGETPLATFORM
 
@@ -310,53 +371,6 @@ RUN \
 FROM ruby AS mastodon
 
 ARG TARGETPLATFORM
-
-# hadolint ignore=DL3008
-RUN \
-  # Mount Apt cache and lib directories from Docker buildx caches
-  --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
-  # Mount Corepack and Yarn caches from Docker buildx caches
-  --mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
-  --mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
-  # Apt update install non-dev versions of necessary components
-  apt-get install -y --no-install-recommends \
-  libexpat1 \
-  libglib2.0-0t64 \
-  libicu76 \
-  libidn12 \
-  libpq5 \
-  libreadline8t64 \
-  libssl3t64 \
-  libyaml-0-2 \
-  # libvips components
-  libcgif0 \
-  libexif12 \
-  libheif1 \
-  libhwy1t64 \
-  libimagequant0 \
-  libjpeg62-turbo \
-  liblcms2-2 \
-  libspng0 \
-  libtiff6 \
-  libwebp7 \
-  libwebpdemux2 \
-  libwebpmux3 \
-  # ffmpeg components
-  libdav1d7 \
-  libmp3lame0 \
-  libopencore-amrnb0 \
-  libopencore-amrwb0 \
-  libopus0 \
-  libsnappy1v5 \
-  libtheora0 \
-  libvorbis0a \
-  libvorbisenc2 \
-  libvorbisfile3 \
-  libvpx9 \
-  libx264-164 \
-  libx265-215 \
-  ;
 
 # Copy Mastodon sources into final layer
 COPY . /opt/mastodon/
