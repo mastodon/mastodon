@@ -7,6 +7,8 @@ class Admin::TagFilter
     order
   ).freeze
 
+  IGNORED_PARAMS = %w(page).freeze
+
   attr_reader :params
 
   def initialize(params)
@@ -17,7 +19,7 @@ class Admin::TagFilter
     scope = Tag.all
 
     params.each do |key, value|
-      next if key == :page
+      next if IGNORED_PARAMS.include?(key.to_s)
 
       scope.merge!(scope_for(key, value)) if value.present?
     end
