@@ -27,6 +27,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:reduce_motion]     = object_account_user.setting_reduce_motion
       store[:disable_swiping]   = object_account_user.setting_disable_swiping
       store[:disable_hover_cards] = object_account_user.setting_disable_hover_cards
+      store[:disable_infinite_scroll] = object_account_user.setting_disable_infinite_scroll
       store[:advanced_layout]   = object_account_user.setting_advanced_layout
       store[:use_blurhash]      = object_account_user.setting_use_blurhash
       store[:use_pending_items] = object_account_user.setting_use_pending_items

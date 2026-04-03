@@ -15,6 +15,7 @@ interface InitialStateMeta {
   missing_alt_text_modal?: boolean;
   disable_swiping?: boolean;
   disable_hover_cards?: boolean;
+  disable_infinite_scroll?: boolean;
   disabled_account_id?: string;
   display_media: string;
   domain: string;
@@ -103,6 +104,7 @@ export const missingAltTextModal = getMeta('missing_alt_text_modal');
 export const disableSwiping = getMeta('disable_swiping');
 export const disableHoverCards = getMeta('disable_hover_cards');
 export const disabledAccountId = getMeta('disabled_account_id');
+export const disableInfiniteScroll = getMeta('disable_infinite_scroll');
 export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
 export const emojiStyle = getMeta('emoji_style') ?? 'auto';
