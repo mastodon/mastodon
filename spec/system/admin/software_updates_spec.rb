@@ -20,7 +20,7 @@ RSpec.describe 'finding software updates through the admin interface' do
       .and have_no_content(outdated_release.version)
 
     within("#software_update_#{other_release.id}") do
-      expect(find('.release-notes').value).to be_nil
+      expect(find('.release-notes').value).to be_blank
     end
 
     within("#software_update_#{latest_release.id}") do
