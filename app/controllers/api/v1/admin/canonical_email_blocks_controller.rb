@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
-  include Authorization
-  include AccountableConcern
-
+class Api::V1::Admin::CanonicalEmailBlocksController < Api::V1::Admin::BaseController
   LIMIT = 100
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:canonical_email_blocks' }, only: [:index, :show, :test]
@@ -13,7 +10,6 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
   before_action :set_canonical_email_blocks_from_test, only: [:test]
   before_action :set_canonical_email_block, only: [:show, :destroy]
 
-  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   def index
