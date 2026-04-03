@@ -4,12 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Anonymous visits' do
   around do |example|
-    old = ActionController::Base.allow_forgery_protection
-    ActionController::Base.allow_forgery_protection = true
-
-    example.run
-
-    ActionController::Base.allow_forgery_protection = old
+    with_forgery_protection { example.run }
   end
 
   describe 'account pages' do
