@@ -7,7 +7,7 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
 
   attributes :id, :type, :url, :preview_url,
              :remote_url, :preview_remote_url, :text_url, :meta,
-             :description, :blurhash
+             :description, :blurhash, :status_id
 
   def id
     object.id.to_s
@@ -47,5 +47,9 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
 
   def meta
     object.file.meta
+  end
+
+  def status_id
+    object.status_id&.to_s
   end
 end

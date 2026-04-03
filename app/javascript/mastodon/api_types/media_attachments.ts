@@ -19,4 +19,5 @@ export interface ApiMediaAttachmentJSON {
   meta: unknown;
   description?: string;
   blurhash: string;
+  status_id?: string | null;
 }
