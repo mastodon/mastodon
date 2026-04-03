@@ -127,14 +127,17 @@ namespace :admin do
   resources :report_notes, only: [:create, :destroy]
 
   resources :accounts, only: [:index, :show, :destroy], concerns: :batch do
+    scope module: :accounts do
+      resource :header, only: :destroy
+      resource :avatar, only: :destroy
+    end
+
     member do
       post :enable
       post :unsensitive
       post :unsilence
       post :unsuspend
       post :redownload
-      post :remove_avatar
-      post :remove_header
       post :memorialize
       post :approve
       post :reject
