@@ -17,8 +17,22 @@ class ActivityPub::Activity::Add < ActivityPub::Activity
 
       add_collection
     else
+      return unless Mastodon::Feature.collections_enabled?
+
       @collection = @account.collections.find_by(uri: value_or_id(@json['target']))
-      add_collection_item if @collection && Mastodon::Feature.collections_enabled?
+      if @collection.present?
+        add_collection_item
+      else
+        # At this point we do not know and cannot handle the target.
+        # This can have any number of reasons but for a while after
+        # FeaturedCollections are introduced it might be because the
+        # account data is stale. Instead of updating the account, which
+        # is very expensive, we attempt to only detect if this is the case
+        # with the least amount of effort possible.
+        # Can be removed once Mastodon 4.6 or later has been deployed on
+        # a sufficiently large number of servers.
+        attempt_bootstrapping_collections
+      end
     end
   end
 
@@ -44,5 +58,15 @@ class ActivityPub::Activity::Add < ActivityPub::Activity
 
   def add_collection_item
     ActivityPub::ProcessFeaturedItemService.new.call(@collection, @object)
+  end
+
+  def attempt_bootstrapping_collections
+    return if @account.collections_url.present?
+
+    actor_json = fetch_resource(@account.uri, true)
+    if actor_json && actor_json['featuredCollections'].present?
+      @account.update!(collections_url: actor_json['featuredCollections'])
+      ActivityPub::SynchronizeFeaturedCollectionsCollectionWorker.perform_async(@account.id)
+    end
   end
 end
