@@ -73,7 +73,7 @@ class DomainBlock < ApplicationRecord
       variants = segments.map.with_index { |_, i| segments[i..].join('.') }
 
       where(domain: variants).by_domain_length.first
-    rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+    rescue *Mastodon::URI_PARSE_ERRORS
       nil
     end
   end

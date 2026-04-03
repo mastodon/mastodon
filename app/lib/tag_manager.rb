@@ -29,7 +29,7 @@ class TagManager
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')
 
     TagManager.instance.web_domain?(domain)
-  rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+  rescue *Mastodon::URI_PARSE_ERRORS
     false
   end
 end

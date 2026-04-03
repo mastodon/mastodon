@@ -82,7 +82,7 @@ class EmailDomainBlock < ApplicationRecord
                  end
 
         Addressable::URI.new.tap { |u| u.host = domain.strip } if domain.present?
-      rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+      rescue *Mastodon::URI_PARSE_ERRORS
         nil
       end
     end
