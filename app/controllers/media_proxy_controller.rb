@@ -10,18 +10,12 @@ class MediaProxyController < ApplicationController
 
   before_action :authenticate_user!, if: :limited_federation_mode?
   before_action :set_media_attachment
+  before_action :redownload_media, if: :redownload_required?
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::NotPermittedError, Mastodon::UnexpectedResponseError, with: :not_found
   rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
 
   def show
-    if @media_attachment.needs_redownload? && !reject_media?
-      with_redis_lock("media_download:#{params[:id]}") do
-        @media_attachment.reload # Reload once we have acquired a lock, in case the file was downloaded in the meantime
-        redownload! if @media_attachment.needs_redownload?
-      end
-    end
-
     if requires_file_streaming?
       send_file(media_attachment_file.path, type: media_attachment_file.instance_read(:content_type), disposition: 'inline')
     else
@@ -30,6 +24,18 @@ class MediaProxyController < ApplicationController
   end
 
   private
+
+  def redownload_required?
+    @media_attachment.needs_redownload? && !reject_media?
+  end
+
+  def redownload_media
+    with_redis_lock("media_download:#{params[:id]}") do
+      # Reload within lock in case the file was downloaded in the meantime
+      @media_attachment.reload
+      redownload! if @media_attachment.needs_redownload?
+    end
+  end
 
   def set_media_attachment
     @media_attachment = MediaAttachment.attached.find(params[:id])
