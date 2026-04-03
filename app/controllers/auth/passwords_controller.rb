@@ -9,9 +9,8 @@ class Auth::PasswordsController < Devise::PasswordsController
   def update
     super do |resource|
       if resource.errors.empty?
-        resource.session_activations.destroy_all
-
         resource.revoke_access!
+        resource.session_activations.destroy_all
       end
     end
   end
