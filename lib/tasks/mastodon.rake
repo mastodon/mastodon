@@ -438,7 +438,7 @@ namespace :mastodon do
 
           mail = ActionMailer::Base.new.mail(
             to: send_to,
-            subject: 'Test', # rubocop:disable Rails/I18nLocaleTexts
+            subject: 'Test',
             body: 'Mastodon SMTP configuration works!'
           )
           mail.deliver

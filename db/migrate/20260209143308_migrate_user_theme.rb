@@ -28,4 +28,8 @@ class MigrateUserTheme < ActiveRecord::Migration[8.0]
       user.update_column('settings', JSON.generate(settings))
     end
   end
+
+  def down
+    raise ActiveRecord::IrreversibleMigration
+  end
 end

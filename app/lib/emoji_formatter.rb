@@ -65,7 +65,7 @@ class EmojiFormatter
       node.replace(result)
     end
 
-    tree.to_html.html_safe # rubocop:disable Rails/OutputSafety
+    tree.to_html.html_safe
   end
 
   private
