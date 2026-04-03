@@ -7,7 +7,7 @@
 
   %td
     .name-tag
-      = image_tag invite.user.account.avatar.url(:original), alt: '', width: 16, height: 16, class: 'avatar'
+      = image_tag invite.user.account.avatar.url(:original), alt: '', size: 16, class: 'avatar'
       %span.username= invite.user.account.username
 
   - if invite.valid_for_use?
