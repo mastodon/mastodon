@@ -15,7 +15,7 @@ RSpec.describe 'Media' do
         let(:media) { Fabricate :media_attachment, type: :video }
 
         it 'visits the player page and renders media' do
-          visit medium_player_path(media)
+          visit player_medium_path(media)
 
           expect(page)
             .to have_css('body', class: 'player')
@@ -27,7 +27,7 @@ RSpec.describe 'Media' do
         let(:media) { Fabricate :media_attachment, type: :gifv }
 
         it 'visits the player page and renders media' do
-          visit medium_player_path(media)
+          visit player_medium_path(media)
 
           expect(page)
             .to have_css('body', class: 'player')
@@ -39,7 +39,7 @@ RSpec.describe 'Media' do
         let(:media) { Fabricate :media_attachment, type: :audio }
 
         it 'visits the player page and renders media' do
-          visit medium_player_path(media)
+          visit player_medium_path(media)
 
           expect(page)
             .to have_css('body', class: 'player')
