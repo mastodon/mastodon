@@ -24,11 +24,7 @@ class MediaController < ApplicationController
   private
 
   def set_media_attachment
-    @media_attachment = MediaAttachment.local.attached.identified(relevant_identifier)
-  end
-
-  def relevant_identifier
-    params[:id] || params[:medium_id]
+    @media_attachment = MediaAttachment.local.attached.identified(params[:id])
   end
 
   def verify_permitted_status!
