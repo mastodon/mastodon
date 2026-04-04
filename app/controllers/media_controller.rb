@@ -25,7 +25,6 @@ class MediaController < ApplicationController
 
   def set_media_attachment
     id = params[:id] || params[:medium_id]
-    return if id.nil?
 
     scope = MediaAttachment.local.attached
     # If id is 19 characters long, it's a shortcode, otherwise it's an identifier
