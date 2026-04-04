@@ -24,7 +24,7 @@ class MediaController < ApplicationController
   private
 
   def set_media_attachment
-    @media_attachment = MediaAttachment.identified(relevant_identifier)
+    @media_attachment = MediaAttachment.local.attached.identified(relevant_identifier)
   end
 
   def relevant_identifier

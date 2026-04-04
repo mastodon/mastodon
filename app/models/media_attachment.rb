@@ -300,10 +300,8 @@ class MediaAttachment < ApplicationRecord
   after_post_process :set_meta
 
   class << self
-    def identified(id)
-      MediaAttachment.local.attached.then do |scope|
-        id.size == 19 ? scope.find_by!(shortcode: id) : scope.find(id)
-      end
+    def identified(identifier)
+      identifier.size == 19 ? find_by!(shortcode: identifier) : find(identifier)
     end
 
     def supported_mime_types
