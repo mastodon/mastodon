@@ -38,6 +38,8 @@ class MediaAttachment < ApplicationRecord
   enum :type, { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
   enum :processing, { queued: 0, in_progress: 1, complete: 2, failed: 3 }, prefix: true
 
+  SHORTCODE_LENGTH = 19
+
   MAX_DESCRIPTION_LENGTH = 1_500
   MAX_DESCRIPTION_HARD_LENGTH_LIMIT = 10_000
 
@@ -301,7 +303,7 @@ class MediaAttachment < ApplicationRecord
 
   class << self
     def identified(identifier)
-      identifier.size == 19 ? find_by!(shortcode: identifier) : find(identifier)
+      identifier.size == SHORTCODE_LENGTH ? find_by!(shortcode: identifier) : find(identifier)
     end
 
     def supported_mime_types
