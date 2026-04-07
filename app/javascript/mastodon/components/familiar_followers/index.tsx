@@ -68,9 +68,9 @@ export const FamiliarFollowers: React.FC<{
 
   return (
     <div className={classNames(classes.wrapper, className)}>
-      <AvatarGroup compact>
+      <AvatarGroup compact avatarHeight={24}>
         {familiarFollowers.slice(0, 3).map((account) => (
-          <Avatar withLink key={account.id} account={account} size={28} />
+          <Avatar withLink key={account.id} account={account} size={24} />
         ))}
       </AvatarGroup>
       <span>
