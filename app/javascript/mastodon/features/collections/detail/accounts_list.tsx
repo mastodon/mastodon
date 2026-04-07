@@ -3,17 +3,17 @@ import { useCallback, useRef, useState } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { Account } from 'mastodon/components/account';
+import type { RenderButtonOptions } from 'mastodon/components/account_list_item';
+import {
+  AccountListItem,
+  AccountListItemFollowButton,
+} from 'mastodon/components/account_list_item';
 import { Button } from 'mastodon/components/button';
 import { Callout } from 'mastodon/components/callout';
-import { FamiliarFollowers } from 'mastodon/components/familiar_followers';
-import { FollowButton } from 'mastodon/components/follow_button';
 import {
   Article,
   ItemList,
 } from 'mastodon/components/scrollable_list/components';
-import { useAccount } from 'mastodon/hooks/useAccount';
-import { useRelationship } from 'mastodon/hooks/useRelationship';
 import { me } from 'mastodon/initial_state';
 
 import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
@@ -25,66 +25,6 @@ const messages = defineMessages({
     defaultMessage: 'This collection is empty',
   },
 });
-
-const AccountItem: React.FC<{
-  accountId: string | undefined;
-  collectionOwnerId: string;
-  onRevoke: () => void;
-  withBio?: boolean;
-  withBorder?: boolean;
-}> = ({
-  accountId,
-  collectionOwnerId,
-  onRevoke,
-  withBio = true,
-  withBorder = true,
-}) => {
-  const account = useAccount(accountId);
-  const relationship = useRelationship(accountId);
-
-  if (!accountId || !account) {
-    return null;
-  }
-
-  // When viewing your own collection, only show the Follow button
-  // for accounts you're not following (anymore).
-  // Otherwise, always show the follow button in its various states.
-  const isOwnAccount = accountId === me;
-  const withoutButton =
-    isOwnAccount ||
-    !relationship ||
-    (collectionOwnerId === me &&
-      (relationship.following || relationship.requested));
-
-  return (
-    <div className={classes.accountItemWrapper} data-with-border={withBorder}>
-      <Account
-        minimal
-        id={accountId}
-        withBio={withBio}
-        withBorder={false}
-        withMenu={false}
-        className={classes.accountItem}
-        extraAccountInfo={
-          <div className={classes.accountItemExtraInfo}>
-            <FamiliarFollowers accountId={accountId} />
-          </div>
-        }
-      />
-      {!withoutButton && (
-        <FollowButton compact labelLength='short' accountId={accountId} />
-      )}
-      {isOwnAccount && (
-        <Button secondary compact onClick={onRevoke}>
-          <FormattedMessage
-            id='collections.detail.revoke_inclusion'
-            defaultMessage='Remove me'
-          />
-        </Button>
-      )}
-    </div>
-  );
-};
 
 const SensitiveScreen: React.FC<{
   sensitive: boolean | undefined;
@@ -138,7 +78,37 @@ export const CollectionAccountsList: React.FC<{
   const listHeadingRef = useRef<HTMLHeadingElement>(null);
 
   const isOwnCollection = collection?.account_id === me;
-  const { items = [] } = collection ?? {};
+  const { items = [], account_id: collectionOwnerId } = collection ?? {};
+
+  const renderAccountItemButton = useCallback(
+    ({ relationship, accountId }: RenderButtonOptions) => {
+      // When viewing your own collection, only show the Follow button
+      // for accounts you're not following anymore.
+      // Otherwise, show the default follow button, or "Remove me" for
+      // yourself.
+      const isOwnAccount = accountId === me;
+      const withoutButton =
+        !relationship ||
+        (collectionOwnerId === me &&
+          (relationship.following || relationship.requested));
+
+      if (withoutButton) return null;
+
+      if (isOwnAccount) {
+        return (
+          <Button secondary compact onClick={confirmRevoke}>
+            <FormattedMessage
+              id='collections.detail.revoke_inclusion'
+              defaultMessage='Remove me'
+            />
+          </Button>
+        );
+      }
+
+      return <AccountListItemFollowButton accountId={accountId} />;
+    },
+    [collectionOwnerId, confirmRevoke],
+  );
 
   return (
     <ItemList
@@ -175,11 +145,10 @@ export const CollectionAccountsList: React.FC<{
               aria-posinset={index + 1}
               aria-setsize={items.length}
             >
-              <AccountItem
-                withBorder={index !== items.length - 1}
+              <AccountListItem
                 accountId={account_id}
-                collectionOwnerId={collection.account_id}
-                onRevoke={confirmRevoke}
+                withBorder={index !== items.length - 1}
+                renderButton={renderAccountItemButton}
               />
             </Article>
           ))}
