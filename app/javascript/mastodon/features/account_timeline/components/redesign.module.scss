@@ -76,6 +76,10 @@
   max-width: 400px;
   box-sizing: border-box;
 
+  [data-color-scheme='dark'] & {
+    border: 1px solid var(--color-border-primary);
+  }
+
   > h3 {
     font-size: 17px;
     font-weight: 600;
