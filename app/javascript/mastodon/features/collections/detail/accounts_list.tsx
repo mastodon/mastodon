@@ -84,9 +84,6 @@ export const CollectionAccountsList: React.FC<{
     ({ relationship, accountId }: RenderButtonOptions) => {
       // When viewing your own collection, only show the Follow button
       // for accounts you're not following anymore.
-      // Otherwise, show the default follow button, or "Remove me" for
-      // yourself.
-      const isOwnAccount = accountId === me;
       const withoutButton =
         !relationship ||
         (collectionOwnerId === me &&
@@ -94,7 +91,7 @@ export const CollectionAccountsList: React.FC<{
 
       if (withoutButton) return null;
 
-      if (isOwnAccount) {
+      if (accountId === me) {
         return (
           <Button secondary compact onClick={confirmRevoke}>
             <FormattedMessage

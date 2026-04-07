@@ -19,6 +19,12 @@ interface Props {
   withBorder?: boolean;
 }
 
+/**
+ * Extended account list item with bio, verified link badges,
+ * and familiar follower widget.
+ *
+ * The button rendering can be customised via the `renderButton` prop.
+ */
 export const AccountListItem: React.FC<Props> = ({
   accountId,
   withBorder = true,
