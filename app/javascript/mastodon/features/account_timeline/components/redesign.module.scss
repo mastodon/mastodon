@@ -267,6 +267,10 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 .fieldVerified {
   background-color: var(--color-bg-success-softest);
 
+  &.fieldItem {
+    border-color: var(--color-border-success-soft);
+  }
+
   dt {
     padding-right: 24px;
   }
