@@ -1,4 +1,5 @@
 import { Account } from 'mastodon/components/account';
+import { VerifiedBadge } from 'mastodon/components/badge';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useRelationship } from 'mastodon/hooks/useRelationship';
 import type { Relationship } from 'mastodon/models/relationship';
@@ -37,6 +38,8 @@ export const AccountListItem: React.FC<Props> = ({
     return null;
   }
 
+  const firstVerifiedField = account.fields.find((item) => !!item.verified_at);
+
   return (
     <div className={classes.wrapper} data-with-border={withBorder}>
       <Account
@@ -48,6 +51,9 @@ export const AccountListItem: React.FC<Props> = ({
         className={classes.account}
         extraAccountInfo={
           <div className={classes.extraInfo}>
+            {firstVerifiedField && (
+              <VerifiedBadge link={firstVerifiedField.value} />
+            )}
             <FamiliarFollowers accountId={accountId} />
           </div>
         }

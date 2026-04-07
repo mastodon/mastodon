@@ -16,12 +16,12 @@ import {
 } from 'mastodon/actions/suggestions';
 import type { ApiSuggestionSourceJSON } from 'mastodon/api_types/suggestions';
 import { Avatar } from 'mastodon/components/avatar';
+import { VerifiedBadge } from 'mastodon/components/badge';
 import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import { VerifiedBadge } from 'mastodon/components/verified_badge';
 import { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 

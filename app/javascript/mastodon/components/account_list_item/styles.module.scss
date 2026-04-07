@@ -32,6 +32,10 @@
 }
 
 .extraInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
   margin-top: 8px;
 
   &:empty {
