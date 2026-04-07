@@ -336,7 +336,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .tabs {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   padding: 0 16px;
 
   @container (width < 500px) {
@@ -350,7 +350,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
     display: block;
     font-size: 15px;
     font-weight: 500;
-    padding: 18px 4px;
+    padding: 18px 0;
     text-decoration: none;
     color: var(--color-text-primary);
     border-radius: 0;
