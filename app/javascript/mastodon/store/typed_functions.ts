@@ -230,7 +230,7 @@ export function createDataLoadingThunk<
 ): ReturnType<typeof createAsyncThunk<Args, Returned>>;
 
 /**
- * This function creates a Redux Thunk that handles loading data asynchronously (usually from the API), dispatching `pending`, `fullfilled` and `rejected` actions.
+ * This function creates a Redux Thunk that handles loading data asynchronously (usually from the API), dispatching `pending`, `fulfilled` and `rejected` actions.
  *
  * You can run a callback on the `onData` results to either dispatch side effects or modify the payload.
  *
