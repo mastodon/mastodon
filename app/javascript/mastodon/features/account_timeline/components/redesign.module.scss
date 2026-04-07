@@ -43,30 +43,22 @@
   color: var(--color-text-secondary);
 }
 
-.username {
-  display: flex;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  align-items: center;
-  user-select: all;
-  margin-top: 4px;
-}
-
 .handleHelpButton {
-  appearance: none;
-  border: none;
-  background: none;
+  display: flex;
+  gap: 2px;
   padding: 0;
-  color: inherit;
-  font-size: 1em;
-  margin-left: 2px;
-  width: 16px;
-  height: 16px;
+  margin-top: 4px;
+  align-items: center;
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 13px;
   transition: color 0.2s ease-in-out;
 
   > svg {
-    width: 100%;
-    height: 100%;
+    width: 16px;
+    height: 16px;
   }
 
   &:hover,

@@ -64,14 +64,12 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
           />
         )}
       </div>
-      <p className={classes.username}>
-        @{username}@{domain}
-        <AccountNameHelp
-          username={username}
-          domain={domain}
-          isSelf={account.id === me}
-        />
-      </p>
+
+      <AccountNameHelp
+        username={username}
+        domain={domain}
+        isSelf={account.id === me}
+      />
     </div>
   );
 };
@@ -100,6 +98,7 @@ const AccountNameHelp: FC<{
         aria-expanded={open}
         aria-controls={accessibilityId}
       >
+        @{username}@{domain}
         <Icon
           id='help'
           icon={HelpIcon}
