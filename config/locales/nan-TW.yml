@@ -1263,7 +1263,7 @@ nan-TW:
       confirm: 確認電子phue
       details: Lí ê詳細
       list: 註冊流程
-      review: Lán ê審查
+      review: Gún ê審查
       rules: 接受規則
     providers:
       cas: CAS
@@ -1300,7 +1300,7 @@ nan-TW:
       account_status: 口座ê狀態
       confirming: Teh等電子phue確認完成。
       functional: Lí ê口座完全ē當用。
-      pending: Lán ê人員teh處理lí ê申請。Tse可能愛一段時間。若是申請允准，lí ē收著e-mail。
+      pending: Gún ê人員teh處理lí ê申請。Tse可能愛一段時間。若是申請允准，lí ē收著e-mail。
       redirecting_to: Lí ê口座無活動，因為tann轉kàu %{acct}。
       self_destruct: 因為 %{domain} teh-beh關掉，lí kan-ta ē當有限接近使用lí ê口座。
       view_strikes: 看早前tuì lí ê口座ê警告
@@ -1417,6 +1417,12 @@ nan-TW:
         reason_for_email_html: 因為lí選擇收著對 %{name} 來ê電子phue更新，所以lí teh收著tsit張電子批。Kám無beh收著tsiah ê電子phue？<a href="%{unsubscribe_path}">取消訂</a>
       interact_with_this_post:
         other: Kap tsit（tsiah）ê PO文互動，發現其他相siâng ê PO文。
+      subject:
+        plural: 對 %{name} 來ê新ê PO文
+        singular: 新ê PO文：「%{excerpt}」
+      title:
+        plural: 對 %{name} 來ê新ê PO文
+        singular: 新ê PO文：「%{excerpt}」
   email_subscriptions:
     active: 有效ê
     confirmations:
@@ -1424,6 +1430,10 @@ nan-TW:
         changed_your_mind: Kám beh改變心意？
         success_html: Lí對tsit-má開始，佇 %{name} 刊出新ê PO文ê時陣，ē收著電子批。加添 %{sender} kàu lí ê聯絡人，避免tsiah ê PO文hőng tàn kàu pùn-sò phue ê資料giap-á。
         title: Lí有註冊ah
+        unsubscribe: 取消訂
+    inactive: 停止使用ah
+    status: 狀態
+    subscribers: 訂ê lâng
   emoji_styles:
     auto: 自動
     native: 原底ê
@@ -1775,6 +1785,8 @@ nan-TW:
     posting_defaults: PO文預設值
     public_timelines: 公共ê時間線
   privacy:
+    email_subscriptions: 用電子phue寄PO文
+    email_subscriptions_hint_html: 佇lí ê個人資料內底加訂電子批ê表，予無登入ê用者看。訪客若輸入in ê電子phue地址，揀beh來訂，Mastodon會用電子批送予伊lí ê公開PO文ê更新。
     hint_html: "<strong>自訂lí beh án-nuá hōo lí ê個人資料kap PO文受lâng發現。</strong>Mastodon ê tsē-tsē功能nā是拍開，通幫tsān lí接觸kàu較闊ê觀眾。請開一寡時間重看tsiah ê設定，確認in合lí ê使用例。"
     privacy: 隱私權
     privacy_hint_html: 控制lí想欲為別lâng ê利益，公開guā tsē內容。Lâng用瀏覽別lâng ê跟tuè koh看in用啥物應用程式PO文，來發現心適ê個人資料kap時行ê應用程式，但是lí凡勢beh保持khàm起來。
@@ -2000,11 +2012,46 @@ nan-TW:
     does_not_match_previous_name: kap進前ê名無kâng
   terms_of_service:
     title: 服務規定
+  terms_of_service_interstitial:
+    future_preamble_html: Gún有更新一kuá服務規定，伊會佇<strong>%{date}</strong>施行。Gún鼓勵lí讀更新ê規定。
+    past_preamble_html: 對lí頂改訪問以後，lán有更新服務規定。Gún鼓勵lí讀更新ê規定。
+    review_link: 讀更新ê規定
+    title: "%{domain} ê服務規定teh改變"
   themes:
     default: Mastodon
+  time:
+    formats:
+      default: "%Y 年 %b 月 %d 日 %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: 服侍器ê翻譯服務使用ê khòo-tah 超過ah。
+      too_many_requests: Tsit tsām-á翻譯服務ê請求傷tsē。
   two_factor_authentication:
+    add: 加
     disable: 停止用雙因素認證
+    disabled_success: 雙因素驗證取消使用成功
+    edit: 編輯
+    enabled: 雙因素驗證啟用ah
+    enabled_success: 雙因素驗證啟用成功
+    generate_recovery_codes: 生成恢復碼
+    lost_recovery_codes: 恢復碼予lí會當佇拍毋見手機á ê時陣，koh通接近使用lí ê口座。若是lí有失去lí ê恢復碼，lí佇tsia會當koh產出，毋koh舊ê恢復碼會變無效。
+    methods: 雙因素驗證
   user_mailer:
+    terms_of_service_changed:
+      description: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 %{date} 施行。Gún鼓勵lí佇tsia讀kui篇更新ê規定：
+      description_html: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 <strong>%{date}</strong> 施行。Gún鼓勵lí<a href="%{path}" target="_blank">佇tsia讀kui篇更新ê規定</a>：
+      sign_off: "%{domain} 小組"
+      subject: Gún ê服務規定ê更新
+      subtitle: "%{domain} ê服務規定teh改變"
+      title: 重要ê更新
+    warning:
+      appeal: 送投訴
+      appeal_description: Lí若相信tse是出tshê，lí會當kā %{instance} ê人員投。
+      categories:
+        spam: Pùn-sò訊息
     welcome:
       feature_creativity: Mastodon支持聲音、影kap圖片êPO文、容易使用性ê描述、投票、內容ê警告、動畫ê標頭、自訂ê繪文字kap裁縮小圖ê控制等等，幫tsān lí展現家己。無論beh發表藝術作品、音樂，á是podcast，Mastodon佇tsia為lí服務。
       sign_in_action: 登入

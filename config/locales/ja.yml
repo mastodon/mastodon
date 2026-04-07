@@ -816,6 +816,7 @@ ja:
         title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
+        preamble: 必ずしも知っている人がMastodonに居ない新規ユーザーに定着してもらうには、興味深いコンテンツを表示することが役に立ちます。あなたのサーバーの種々のディスカバリー機能の動作を設定してください。
         privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
@@ -826,6 +827,11 @@ ja:
         all: 誰にでも許可
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
+      feed_access:
+        modes:
+          authenticated: ログイン済みユーザーのみ
+          disabled: 特定ロールのユーザーのみ
+          public: 制限なし
       landing_page:
         values:
           trends: トレンド
