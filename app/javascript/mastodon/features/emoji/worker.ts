@@ -1,4 +1,9 @@
 import { EMOJI_DB_NAME_SHORTCODES, EMOJI_TYPE_CUSTOM } from './constants';
+import {
+  importCustomEmojiData,
+  importEmojiData,
+  importLegacyShortcodes,
+} from './loader';
 
 addEventListener('message', handleMessage);
 self.postMessage('ready'); // After the worker is ready, notify the main thread
@@ -11,8 +16,6 @@ function handleMessage(event: MessageEvent<{ locale: string }>) {
 }
 
 async function loadData(locale: string) {
-  const { importCustomEmojiData, importEmojiData, importLegacyShortcodes } =
-    await import('./loader');
   let importCount: number | undefined;
   if (locale === EMOJI_TYPE_CUSTOM) {
     importCount = (await importCustomEmojiData())?.length;
