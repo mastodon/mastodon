@@ -65,7 +65,7 @@ export const AccountEditTagSearch: FC = () => {
         value={query}
         onChange={handleSearchChange}
         placeholder={inputLabel}
-        items={suggestedTags as TagSearchResult[]}
+        items={suggestedTags}
         isLoading={isLoading}
         renderItem={renderItem}
         onSelectItem={handleSelect}

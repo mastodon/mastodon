@@ -91,8 +91,8 @@ export function useSearchTags({
   // Add dedicated item for adding the current query
   const tags = useMemo(() => {
     const trimmedQuery = query ? trimHashFromStart(query.trim()) : '';
-    if (!trimmedQuery || !fetchedTags.length) {
-      return fetchedTags;
+    if (!trimmedQuery) {
+      return fetchedTags as TagSearchResult[];
     }
 
     const results: TagSearchResult[] = [...fetchedTags]; // Make array mutable
