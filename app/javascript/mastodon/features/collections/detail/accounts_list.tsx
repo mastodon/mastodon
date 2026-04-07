@@ -6,17 +6,12 @@ import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Account } from 'mastodon/components/account';
 import { Button } from 'mastodon/components/button';
 import { Callout } from 'mastodon/components/callout';
+import { FamiliarFollowers } from 'mastodon/components/familiar_followers';
 import { FollowButton } from 'mastodon/components/follow_button';
-import {
-  NumberFields,
-  NumberFieldsItem,
-} from 'mastodon/components/number_fields';
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import {
   Article,
   ItemList,
 } from 'mastodon/components/scrollable_list/components';
-import { ShortNumber } from 'mastodon/components/short_number';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useRelationship } from 'mastodon/hooks/useRelationship';
 import { me } from 'mastodon/initial_state';
@@ -44,7 +39,6 @@ const AccountItem: React.FC<{
   withBio = true,
   withBorder = true,
 }) => {
-  const intl = useIntl();
   const account = useAccount(accountId);
   const relationship = useRelationship(accountId);
 
@@ -72,46 +66,14 @@ const AccountItem: React.FC<{
         withMenu={false}
         className={classes.accountItem}
         extraAccountInfo={
-          <NumberFields>
-            <NumberFieldsItem
-              label={
-                <FormattedMessage
-                  id='account.followers'
-                  defaultMessage='Followers'
-                />
-              }
-              hint={intl.formatNumber(account.followers_count)}
-            >
-              <ShortNumber value={account.followers_count} />
-            </NumberFieldsItem>
-
-            <NumberFieldsItem
-              label={
-                <FormattedMessage id='account.posts' defaultMessage='Posts' />
-              }
-              hint={intl.formatNumber(account.statuses_count)}
-            >
-              <ShortNumber value={account.statuses_count} />
-            </NumberFieldsItem>
-
-            <NumberFieldsItem
-              label={
-                <FormattedMessage
-                  id='account.last_active'
-                  defaultMessage='Last active'
-                />
-              }
-            >
-              <RelativeTimestamp
-                long
-                timestamp={account.last_status_at}
-                noFuture
-              />
-            </NumberFieldsItem>
-          </NumberFields>
+          <div className={classes.accountItemExtraInfo}>
+            <FamiliarFollowers accountId={accountId} />
+          </div>
         }
       />
-      {!withoutButton && <FollowButton compact accountId={accountId} />}
+      {!withoutButton && (
+        <FollowButton compact labelLength='short' accountId={accountId} />
+      )}
       {isOwnAccount && (
         <Button secondary compact onClick={onRevoke}>
           <FormattedMessage

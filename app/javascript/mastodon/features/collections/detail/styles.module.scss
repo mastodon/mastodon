@@ -113,3 +113,11 @@
 
   flex-grow: 1;
 }
+
+.accountItemExtraInfo {
+  margin-top: 8px;
+
+  &:empty {
+    display: none;
+  }
+}
