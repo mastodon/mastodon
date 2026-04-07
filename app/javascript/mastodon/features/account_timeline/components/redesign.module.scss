@@ -97,15 +97,15 @@
     &:first-child {
       margin-bottom: 12px;
     }
-  }
 
-  svg {
-    background: var(--color-bg-brand-softest);
-    width: 28px;
-    height: 28px;
-    padding: 5px;
-    border-radius: 9999px;
-    box-sizing: border-box;
+    > svg {
+      background: var(--color-bg-brand-softest);
+      width: 28px;
+      height: 28px;
+      padding: 5px;
+      border-radius: 9999px;
+      box-sizing: border-box;
+    }
   }
 
   strong {
@@ -125,6 +125,26 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
     @media (max-width: #{$button-fallback-breakpoint}) {
       display: none;
     }
+  }
+}
+
+.handleCopy {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+  margin-top: 12px;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: var(--color-bg-brand-softest);
   }
 }
 
