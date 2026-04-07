@@ -417,9 +417,6 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 }
 
 .bannerDisclaimer {
-  color: var(--color-text-secondary);
-  font-size: 11px;
-
   a {
     color: inherit;
   }
@@ -443,6 +440,14 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
   & > div {
     flex-grow: 1;
+  }
+
+  label {
+    font-weight: 400;
+  }
+
+  :global(.button) {
+    margin-top: 24px; // To align with input under label
   }
 
   input[type='email'] {
