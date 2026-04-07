@@ -119,7 +119,7 @@ fr:
         other: Ce compte a reçu <strong>%{count}</strong> sanctions.
       promote: Promouvoir
       protocol: Protocole
-      public: Publique
+      public: Public
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir le profil
       redownloaded_msg: Le profil de %{username} a été actualisé avec succès depuis l’origine
@@ -843,7 +843,7 @@ fr:
         rules_hint: Il y a un espace dédié pour les règles auxquelles vos utilisateurs sont invités à adhérer.
         title: À propos
       allow_referrer_origin:
-        desc: Quand les utilisateurs cliquent sur un lien externe, leur navigateur peut envoyer l'adresse du serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateurs, par exemple s'il s'agit d'un serveur Mastodon personnel.
+        desc: Quand vos utilisateur·rice·s cliquent sur un lien externe, leur navigateur peut envoyer l'adresse de votre serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateur·rice·s, par exemple s'il s'agit d'un serveur Mastodon personnel.
         title: Autoriser les sites externes à voir votre serveur Mastodon comme une source de trafic
       appearance:
         preamble: Personnaliser l'interface web de Mastodon.
@@ -906,7 +906,7 @@ fr:
       destroyed_msg: Téléversement sur le site supprimé avec succès !
     software_updates:
       critical_update: Critique — veuillez mettre à jour au plus vite
-      description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et fonctionnalités. Par ailleurs, il est parfois critique de mettre à jour Mastodon en temps voulu de manière à éviter les incidents relatifs à la sécurité. Pour ces raisons, Mastodon examine la disponibilté des mises à jour toutes les 30 minutes, et vous en avisera en fonction de vos préférences de notification par messagerie électronique.
+      description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et fonctionnalités. Par ailleurs, il est parfois critique de mettre à jour Mastodon rapidement de manière à éviter les incidents relatifs à la sécurité. Pour ces raisons, Mastodon examine la disponibilté des mises à jour toutes les 30 minutes, et vous en avisera en fonction de vos préférences de notification par courriel.
       documentation_link: En savoir plus
       release_notes: Notes de mises à jour
       title: Mises à jour disponibles
@@ -1333,7 +1333,7 @@ fr:
     example_title: Exemple de texte
     hint_html: Vous écrivez des nouvelles ou des articles de blog en dehors de Mastodon ? Contrôlez la façon dont vous êtes crédité lorsqu'ils sont partagés sur Mastodon.
     instructions: 'Assurez-vous que ce code se trouve dans le code HTML de votre article :'
-    more_from_html: Plus via %{name}
+    more_from_html: Voir plus de %{name}
     s_blog: Blog de %{name}
     then_instructions: Ensuite, ajoutez le nom de domaine de la publication dans le champ ci-dessous.
     title: Attribution de l'auteur·e
@@ -1441,10 +1441,10 @@ fr:
         other: Interagissez avec ces messages pour en découvrir plus.
       subject:
         plural: Nouveaux messages de %{name}
-        singular: 'Nouveau message : "%{excerpt}"'
+        singular: 'Nouveau message : « %{excerpt} »'
       title:
         plural: Nouveaux messages de %{name}
-        singular: 'Nouveau message : "%{excerpt}"'
+        singular: 'Nouveau message : « %{excerpt} »'
   email_subscriptions:
     active: Actif
     confirmations:
@@ -2239,11 +2239,11 @@ fr:
   verification:
     extra_instructions_html: <strong>Astuce :</strong> Le lien sur votre site Web peut être invisible. La partie importante est <code>rel="me"</code> qui évite que soient pris en compte d’autres liens provenant de contenu générés par des utilisateurs tiers. Vous pouvez même utiliser une balise <code>link</code> dans l’en-tête de la page au lieu de <code>a</code>, mais le HTML doit être accessible sans avoir besoin d’exécuter du JavaScript.
     here_is_how: Comment faire ?
-    hint_html: "<strong>La vérification de son profil sur Mastodon est accessible à tous.</strong> Elle s’appuie sur des standards ouverts du web, gratuits aujourd’hui et pour toujours. Tout ce dont vous avez besoin, c’est d’un site web personnel qui vous est associé dans l’esprit des gens. Lorsque vous ajoutez un lien depuis votre profil, nous vérifierons que le site web renvoie à son tour à votre profil Mastodon et montrerons un indicateur visuel à côté du lien si c’est le cas."
-    instructions_html: Copiez et collez le code ci-dessous dans le code HTML de votre site web. Ajoutez ensuite l’adresse de votre site dans l’un des champs supplémentaires de votre profil à partir de l‘onglet « Modifier le profil » et enregistrez les modifications.
+    hint_html: "<strong>La vérification de son profil sur Mastodon est accessible à tous.</strong> Elle s’appuie sur des standards ouverts du Web, gratuits aujourd’hui et pour toujours. Tout ce dont vous avez besoin, c’est d’un site Web personnel qui vous est associé. Lorsque vous ajoutez un lien depuis votre profil, nous vérifierons que le site Web renvoie à son tour à votre profil Mastodon et montrerons un indicateur visuel à côté du lien si c’est le cas."
+    instructions_html: Copiez et collez le code ci-dessous dans le code HTML de votre site Web. Ajoutez ensuite l’adresse de votre site dans l’un des champs supplémentaires de votre profil à partir de l‘onglet « Modifier le profil » et enregistrez les modifications.
     verification: Vérification
     verified_links: Vos liens vérifiés
-    website_verification: Vérification du site web
+    website_verification: Vérification du site Web
   webauthn_credentials:
     add: Ajouter une nouvelle clé de sécurité
     create:
