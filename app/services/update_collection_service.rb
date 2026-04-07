@@ -7,7 +7,7 @@ class UpdateCollectionService
     @collection = collection
     @collection.update!(params)
 
-    notify_about_update if %i(description name).any? { |attr| @collection.attribute_previously_changed?(attr) }
+    notify_about_update
     distribute_update_activity
   end
 
@@ -20,9 +20,7 @@ class UpdateCollectionService
   end
 
   def notify_about_update
-    @collection.collection_items.includes(:account).references(:account).merge(Account.local).accepted.find_each do |collection_item|
-      LocalNotificationWorker.perform_async(collection_item.account_id, @collection.id, @collection.class.name, 'collection_update')
-    end
+    NotifyOfCollectionUpdateService.new.call(@collection)
   end
 
   def activity_json

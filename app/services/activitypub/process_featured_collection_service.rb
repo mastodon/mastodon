@@ -25,7 +25,7 @@ class ActivityPub::ProcessFeaturedCollectionService
       end
 
       process_items!
-      notify_about_update! if !@collection.previously_new_record? && %i(description_html name).any? { |attr| @collection.attribute_previously_changed?(attr) }
+      notify_about_update!
 
       @collection
     end
@@ -34,9 +34,7 @@ class ActivityPub::ProcessFeaturedCollectionService
   private
 
   def notify_about_update!
-    @collection.collection_items.includes(:account).references(:account).merge(Account.local).accepted.find_each do |collection_item|
-      LocalNotificationWorker.perform_async(collection_item.account_id, @collection.id, @collection.class.name, 'collection_update')
-    end
+    NotifyOfCollectionUpdateService.new.call(@collection)
   end
 
   def truncated_summary
