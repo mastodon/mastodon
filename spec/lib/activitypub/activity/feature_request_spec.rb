@@ -26,9 +26,10 @@ RSpec.describe ActivityPub::Activity::FeatureRequest do
     context 'when recipient is discoverable' do
       let(:discoverable) { true }
 
-      it 'schedules a job to send an `Accept` activity' do
+      it 'schedules a job to send an `Accept` activity as well as a notification worker' do
         expect { subject.perform }
-          .to enqueue_sidekiq_job(ActivityPub::DeliveryWorker)
+          .to enqueue_sidekiq_job(LocalNotificationWorker).with(recipient.id, anything, 'CollectionItem', 'added_to_collection')
+          .and enqueue_sidekiq_job(ActivityPub::DeliveryWorker)
           .with(satisfying do |body|
             response_json = JSON.parse(body)
             response_json['type'] == 'Accept' &&

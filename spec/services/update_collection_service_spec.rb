@@ -6,21 +6,15 @@ RSpec.describe UpdateCollectionService do
   subject { described_class.new }
 
   let(:collection) { Fabricate(:collection) }
+  let!(:collection_item) { Fabricate(:collection_item, collection:) }
 
   describe '#call' do
     context 'when given valid parameters' do
-      it 'updates the collection' do
-        subject.call(collection, { name: 'Newly updated name' })
-
-        expect(collection.name).to eq 'Newly updated name'
-      end
-
-      context 'when something actually changed' do
-        it 'federates an `Update` activity' do
-          subject.call(collection, { name: 'updated' })
-
-          expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
-        end
+      it 'updates the collection, sends a notification and federates an `Update` activity' do
+        expect { subject.call(collection, { name: 'Newly updated name' }) }
+          .to change(collection, :name).to('Newly updated name')
+          .and enqueue_sidekiq_job(LocalNotificationWorker).with(collection_item.account_id, collection.id, collection.class.name, 'collection_update')
+          .and enqueue_sidekiq_job(ActivityPub::AccountRawDistributionWorker)
       end
 
       context 'when nothing changed' do
@@ -28,6 +22,7 @@ RSpec.describe UpdateCollectionService do
           subject.call(collection, { name: collection.name })
 
           expect(ActivityPub::AccountRawDistributionWorker).to_not have_enqueued_sidekiq_job
+          expect(LocalNotificationWorker).to_not have_enqueued_sidekiq_job
         end
       end
     end

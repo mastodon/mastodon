@@ -7,6 +7,7 @@ class UpdateCollectionService
     @collection = collection
     @collection.update!(params)
 
+    notify_about_update if %i(description name).any? { |attr| @collection.attribute_previously_changed?(attr) }
     distribute_update_activity
   end
 
@@ -16,6 +17,12 @@ class UpdateCollectionService
     return unless relevant_attributes_changed?
 
     ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, @collection.account.id)
+  end
+
+  def notify_about_update
+    @collection.collection_items.includes(:account).references(:account).merge(Account.local).accepted.find_each do |collection_item|
+      LocalNotificationWorker.perform_async(collection_item.account_id, @collection.id, @collection.class.name, 'collection_update')
+    end
   end
 
   def activity_json
