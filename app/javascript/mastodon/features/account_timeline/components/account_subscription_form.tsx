@@ -164,7 +164,6 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
           type='email'
           value={email}
           onChange={handleChange}
-          placeholder='name@email.com'
           label={intl.formatMessage(messages.email)}
           status={
             errors.email ? fieldStatusFromErrors(intl, errors.email) : undefined
