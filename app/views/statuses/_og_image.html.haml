@@ -19,7 +19,7 @@
       = opengraph 'og:video', full_asset_url(media.file.url(:original))
       = opengraph 'og:video:secure_url', full_asset_url(media.file.url(:original))
       = opengraph 'og:video:type', media.file_content_type
-      = opengraph 'twitter:player', medium_player_url(media)
+      = opengraph 'twitter:player', player_medium_url(media)
       = opengraph 'twitter:player:stream', full_asset_url(media.file.url(:original))
       = opengraph 'twitter:player:stream:content_type', media.file_content_type
       - unless media.file.meta.nil?
@@ -35,7 +35,7 @@
       = opengraph 'og:audio', full_asset_url(media.file.url(:original))
       = opengraph 'og:audio:secure_url', full_asset_url(media.file.url(:original))
       = opengraph 'og:audio:type', media.file_content_type
-      = opengraph 'twitter:player', medium_player_url(media)
+      = opengraph 'twitter:player', player_medium_url(media)
       = opengraph 'twitter:player:stream', full_asset_url(media.file.url(:original))
       = opengraph 'twitter:player:stream:content_type', media.file_content_type
       = opengraph 'twitter:player:width', '670'

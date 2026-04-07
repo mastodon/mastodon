@@ -90,16 +90,16 @@ fr:
         backups_retention_period: Les utilisateur·rice·s ont la possibilité de générer des archives de leurs messages pour les télécharger plus tard. Lorsqu'elles sont définies à une valeur positive, ces archives seront automatiquement supprimées de votre stockage après le nombre de jours spécifié.
         bootstrap_timeline_accounts: Ces comptes seront épinglés en haut des recommandations pour les nouveaux utilisateurs. Accepte une liste de comptes séparés par des virgules.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
-        content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte de l'interaction de l'utilisateur·rice local·e avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou comme favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateurs lorsqu'elle est appliquée à des fins d'utilisation ordinaires.
+        content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte des interactions locales avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateur·rice·s lorsqu'il est appliquée à une instance généraliste.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
-        favicon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
-        landing_page: Sélectionner la page à afficher aux nouveaux visiteur·euse·s quand ils arrivent sur votre serveur. Pour utiliser « Tendances » les tendances doivent être activées dans les paramètres de découverte. Pour utiliser « Fil local » le paramètre « Accès au flux en direct de ce serveur » doit être défini sur « Tout le monde » dans les paramètres de découverte.
+        favicon: WebP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
+        landing_page: Sélectionne la page à afficher aux nouveaux visiteur·euse·s quand ils arrivent sur votre serveur. Pour utiliser « Tendances » les tendances doivent être activées dans les paramètres de découverte. Pour utiliser « Fil local » le paramètre « Accès au flux en direct de ce serveur » doit être défini sur « Tout le monde » dans les paramètres de découverte.
         mascot: Remplace l'illustration dans l'interface Web avancée.
-        media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateurs distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
-        min_age: Les utilisateurs seront invités à confirmer leur date de naissance lors de l'inscription
+        media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateur·rice·s distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
+        min_age: Les utilisateur·rice·s seront invité·e·s à confirmer leur date de naissance lors de l'inscription
         peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
         profile_directory: L'annuaire des profils répertorie tous les comptes qui ont permis d'être découverts.
-        require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
+        require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rend le texte de l’invitation « Pourquoi voulez-vous vous inscrire ? » obligatoire plutôt que facultatif
         site_contact_email: Comment l'on peut vous joindre pour des requêtes d'assistance ou d'ordre juridique.
         site_contact_username: Comment les gens peuvent vous contacter sur Mastodon.
         site_extended_description: Toute information supplémentaire qui peut être utile aux non-inscrit⋅e⋅s et à vos utilisateur⋅rice⋅s. Peut être structurée avec la syntaxe Markdown.
@@ -154,15 +154,15 @@ fr:
         jurisdiction: Indique le pays dans lequel réside la personne qui paie les factures. S'il s'agit d'une entreprise ou d'une autre entité, indiquez le pays dans lequel elle est enregistrée, ainsi que la ville, la région, le territoire ou l'État, le cas échéant.
         min_age: Ne doit pas être en dessous de l’âge minimum requis par les lois de votre juridiction.
       user:
-        chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
+        chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés dans les fils publics. Ce paramètre n'affecte pas votre fil d'actualité, ni vos listes.
         date_of_birth:
           one: Nous devons vérifier que vous avez au moins %{count} an pour utiliser %{domain}. Cette information ne sera pas conservée.
           other: Nous devons vérifier que vous avez au moins %{count} ans pour utiliser %{domain}. Cette information ne sera pas conservée.
-        role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
+        role: Le rôle définit les autorisations de l'utilisateur⋅rice.
       user_role:
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
         highlighted: Cela rend le rôle visible publiquement
-        name: Nom public du rôle, si le rôle est configuré pour être affiché avec un badge
+        name: Nom public du rôle, si le rôle est configuré pour être affiché en tant que badge
         permissions_as_keys: Les utilisateur·rice·s ayant ce rôle auront accès à …
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
         require_2fa: Les utilisateur·ice·s ayant ce rôle devront configurer l'authentification à deux facteurs pour utiliser Mastodon
@@ -387,7 +387,7 @@ fr:
         time_zone: Fuseau horaire
       user_role:
         color: Couleur du badge
-        highlighted: Afficher le rôle avec un badge sur les profils des utilisateur·rice·s
+        highlighted: Afficher le rôle en tant que badge sur les profils des utilisateur·rice·s
         name: Nom
         permissions_as_keys: Autorisations
         position: Priorité

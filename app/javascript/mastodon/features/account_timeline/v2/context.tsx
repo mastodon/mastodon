@@ -27,8 +27,8 @@ export const AccountTimelineProvider: FC<{
   children: ReactNode;
 }> = ({ accountId, children }) => {
   const storageOptions = {
-    type: 'session',
-    prefix: `filters-${accountId}:`,
+    type: 'local',
+    prefix: 'account-filters',
   } as const;
 
   const [boosts, setBoosts] = useStorageState<boolean>(

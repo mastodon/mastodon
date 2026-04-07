@@ -843,7 +843,7 @@ fr-CA:
         rules_hint: Il y a un espace dédié pour les règles auxquelles vos utilisateurs sont invités à adhérer.
         title: À propos
       allow_referrer_origin:
-        desc: Quand les utilisateurs cliquent sur un lien externe, leur navigateur peut envoyer l'adresse du serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateurs, par exemple s'il s'agit d'un serveur Mastodon personnel.
+        desc: Quand vos utilisateur·rice·s cliquent sur un lien externe, leur navigateur peut envoyer l'adresse de votre serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateur·rice·s, par exemple s'il s'agit d'un serveur Mastodon personnel.
         title: Autoriser les sites externes à voir votre serveur Mastodon comme une source de trafic
       appearance:
         preamble: Personnaliser l'interface web de Mastodon.
@@ -906,7 +906,7 @@ fr-CA:
       destroyed_msg: Téléversement sur le site supprimé avec succès !
     software_updates:
       critical_update: Critique — veuillez mettre à jour au plus vite
-      description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et fonctionnalités. Par ailleurs, il est parfois critique de mettre à jour Mastodon en temps voulu de manière à éviter les incidents relatifs à la sécurité. Pour ces raisons, Mastodon examine la disponibilté des mises à jour toutes les 30 minutes, et vous en avisera en fonction de vos préférences de notification par messagerie électronique.
+      description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et fonctionnalités. Par ailleurs, il est parfois critique de mettre à jour Mastodon rapidement de manière à éviter les incidents relatifs à la sécurité. Pour ces raisons, Mastodon examine la disponibilté des mises à jour toutes les 30 minutes, et vous en avisera en fonction de vos préférences de notification par courriel.
       documentation_link: En savoir plus
       release_notes: Notes de mises à jour
       title: Mises à jour disponibles
@@ -1333,7 +1333,7 @@ fr-CA:
     example_title: Exemple de texte
     hint_html: Vous écrivez des nouvelles ou des articles de blog en dehors de Mastodon ? Contrôlez la façon dont vous êtes crédité lorsqu'ils sont partagés sur Mastodon.
     instructions: 'Assurez-vous que ce code se trouve dans le code HTML de votre article :'
-    more_from_html: Plus via %{name}
+    more_from_html: Voir plus de %{name}
     s_blog: Blog de %{name}
     then_instructions: Ensuite, ajoutez le nom de domaine de la publication dans le champ ci-dessous.
     title: Attribution de l'auteur·e
@@ -1441,10 +1441,10 @@ fr-CA:
         other: Interagissez avec ces messages pour en découvrir plus.
       subject:
         plural: Nouveaux messages de %{name}
-        singular: 'Nouveau message : "%{excerpt}"'
+        singular: 'Nouveau message : « %{excerpt} »'
       title:
         plural: Nouveaux messages de %{name}
-        singular: 'Nouveau message : "%{excerpt}"'
+        singular: 'Nouveau message : « %{excerpt} »'
   email_subscriptions:
     active: Actif
     confirmations:
@@ -2243,7 +2243,7 @@ fr-CA:
     instructions_html: Copiez et collez le code ci-dessous dans le code HTML de votre site web. Ajoutez ensuite l’adresse de votre site dans l’un des champs supplémentaires de votre profil à partir de l‘onglet "Modifier le profil" et enregistrez les modifications.
     verification: Vérification
     verified_links: Vos liens vérifiés
-    website_verification: Vérification du site web
+    website_verification: Vérification du site Web
   webauthn_credentials:
     add: Ajouter une nouvelle clé de sécurité
     create:

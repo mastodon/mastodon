@@ -43,30 +43,22 @@
   color: var(--color-text-secondary);
 }
 
-.username {
-  display: flex;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  align-items: center;
-  user-select: all;
-  margin-top: 4px;
-}
-
 .handleHelpButton {
-  appearance: none;
-  border: none;
-  background: none;
+  display: flex;
+  gap: 2px;
   padding: 0;
-  color: inherit;
-  font-size: 1em;
-  margin-left: 2px;
-  width: 16px;
-  height: 16px;
+  margin-top: 4px;
+  align-items: center;
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 13px;
   transition: color 0.2s ease-in-out;
 
   > svg {
-    width: 100%;
-    height: 100%;
+    width: 16px;
+    height: 16px;
   }
 
   &:hover,
@@ -83,6 +75,10 @@
   box-shadow: var(--dropdown-shadow);
   max-width: 400px;
   box-sizing: border-box;
+
+  [data-color-scheme='dark'] & {
+    border: 1px solid var(--color-border-primary);
+  }
 
   > h3 {
     font-size: 17px;
@@ -101,15 +97,15 @@
     &:first-child {
       margin-bottom: 12px;
     }
-  }
 
-  svg {
-    background: var(--color-bg-brand-softest);
-    width: 28px;
-    height: 28px;
-    padding: 5px;
-    border-radius: 9999px;
-    box-sizing: border-box;
+    > svg {
+      background: var(--color-bg-brand-softest);
+      width: 28px;
+      height: 28px;
+      padding: 5px;
+      border-radius: 9999px;
+      box-sizing: border-box;
+    }
   }
 
   strong {
@@ -129,6 +125,26 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
     @media (max-width: #{$button-fallback-breakpoint}) {
       display: none;
     }
+  }
+}
+
+.handleCopy {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+  margin-top: 12px;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: var(--color-bg-brand-softest);
   }
 }
 
@@ -336,7 +352,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .tabs {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   padding: 0 16px;
 
   @container (width < 500px) {
@@ -350,7 +366,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
     display: block;
     font-size: 15px;
     font-weight: 500;
-    padding: 18px 4px;
+    padding: 18px 0;
     text-decoration: none;
     color: var(--color-text-primary);
     border-radius: 0;
