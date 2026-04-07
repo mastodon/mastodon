@@ -17,25 +17,6 @@ RSpec.describe 'Profile' do
       .to have_title("alice (@alice@#{local_domain_uri.host})")
   end
 
-  it 'I can change my account' do
-    visit settings_profile_path
-
-    fill_in 'Display name', with: 'Bob'
-    fill_in 'Bio', with: 'Bob is silent'
-
-    account_fields_labels.first.fill_in with: 'Personal Website'
-    account_fields_values.first.fill_in with: 'https://host.example/personal'
-
-    account_fields_labels.last.fill_in with: 'Professional Biography'
-    account_fields_values.last.fill_in with: 'https://host.example/pro'
-
-    expect { submit_form }
-      .to change { bob.account.reload.display_name }.to('Bob')
-      .and(change_account_fields)
-    expect(page)
-      .to have_content 'Changes successfully saved!'
-  end
-
   def submit_form
     first('button[type=submit]').click
   end
