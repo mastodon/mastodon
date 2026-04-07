@@ -8697,6 +8697,7 @@ noscript {
 .account__details {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   column-gap: 1em;
 }
 
@@ -10706,11 +10707,6 @@ noscript {
             font-size: 14px;
             color: var(--color-text-secondary);
           }
-        }
-
-        .verified-badge {
-          font-size: 14px;
-          max-width: 100%;
         }
 
         .button {
