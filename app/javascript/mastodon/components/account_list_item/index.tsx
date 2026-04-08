@@ -153,9 +153,10 @@ export const AccountListItem: React.FC<Props> = ({
           </NumberFieldsItem>
         )}
         {firstVerifiedField && (
-          <li className={classes.verifiedBadge}>
-            <VerifiedBadge link={firstVerifiedField.value} />
-          </li>
+          <VerifiedBadge
+            link={firstVerifiedField.value}
+            className={classes.verifiedBadge}
+          />
         )}
       </NumberFields>
       <FamiliarFollowers accountId={accountId} />
