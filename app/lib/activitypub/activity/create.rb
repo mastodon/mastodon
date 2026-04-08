@@ -3,7 +3,7 @@
 class ActivityPub::Activity::Create < ActivityPub::Activity
   DISTRIBUTE_DELAY = 1.minute
   PROCESSING_DELAY = (30.seconds)..(10.minutes)
-  PROCESSING_DELAY_QUOTE = (10.seconds)..(1.minute)
+  PROCESSING_DELAY_QUOTE = (10.seconds)
 
   def perform
     @account.schedule_refresh_if_stale!
