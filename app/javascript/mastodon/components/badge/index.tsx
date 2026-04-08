@@ -42,7 +42,12 @@ export const Badge: FC<BadgeProps> = ({
   roleId,
 }) => (
   <div
-    className={classNames(classes.badge, classes[variant], className)}
+    className={classNames(
+      classes.badge,
+      !icon && classes.badgeWithoutIcon,
+      classes[variant],
+      className,
+    )}
     data-account-role-id={roleId}
   >
     {icon}

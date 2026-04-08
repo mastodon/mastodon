@@ -4,9 +4,8 @@
   display: inline-flex;
   max-width: 100%;
   padding: 4px;
-  padding-inline-end: 8px;
   gap: 4px;
-  border-radius: 6px;
+  border-radius: 8px;
   align-items: center;
   overflow-wrap: anywhere;
 
@@ -20,6 +19,10 @@
   a {
     color: inherit;
     text-decoration: none;
+  }
+
+  &:not(.badgeWithoutIcon) {
+    padding-inline-end: 8px;
   }
 }
 
