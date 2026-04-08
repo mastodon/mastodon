@@ -166,7 +166,7 @@ export const AccountHeader: React.FC<{
           {!isMe && !suspendedOrHidden && (
             <FamiliarFollowers
               accountId={accountId}
-              className={redesignClasses.familiarFollowers}
+              className={classes.familiarFollowers}
             />
           )}
 
