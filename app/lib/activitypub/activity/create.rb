@@ -3,6 +3,7 @@
 class ActivityPub::Activity::Create < ActivityPub::Activity
   DISTRIBUTE_DELAY = 1.minute
   PROCESSING_DELAY = (30.seconds)..(10.minutes)
+  PROCESSING_DELAY_QUOTE = (5.seconds)..(2.seconds)
 
   def perform
     @account.schedule_refresh_if_stale!
@@ -396,8 +397,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @json['context'])
     ActivityPub::VerifyQuoteService.new.call(@quote, @quote_approval_uri, fetchable_quoted_uri: @quote_uri, prefetched_quoted_object: embedded_quote, request_id: @options[:request_id], depth: @options[:depth])
-  rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(PROCESSING_DELAY), @quote.id, @quote_uri, { 'request_id' => @options[:request_id], 'approval_uri' => @quote_approval_uri })
+  rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS => e
+    Rails.logger.warn "Quote verification failed for quote #{@quote.id} (status #{@quote.status_id}, uri #{@quote_uri}): #{e.class} - #{e.message}. Scheduling retry."
+    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(PROCESSING_DELAY_QUOTE), @quote.id, @quote_uri, { 'request_id' => @options[:request_id], 'approval_uri' => @quote_approval_uri })
   end
 
   def conversation_from_uri(uri)
