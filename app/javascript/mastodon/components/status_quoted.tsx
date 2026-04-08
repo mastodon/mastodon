@@ -269,27 +269,6 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         </LearnMoreLink>
       </>
     );
-  } else if (quoteState === 'revoked') {
-    quoteError = (
-      <FormattedMessage
-        id='status.quote_error.revoked'
-        defaultMessage='Post removed by author'
-      />
-    );
-  } else if (
-    (quoteState === 'blocked_account' ||
-      quoteState === 'blocked_domain' ||
-      quoteState === 'muted_account') &&
-    !revealed &&
-    accountId
-  ) {
-    quoteError = (
-      <FilteredQuote
-        quoteState={quoteState}
-        reveal={reveal}
-        quotedAccountId={accountId}
-      />
-    );
   } else if (quoteState === 'pending_delayed') {
     quoteError = (
       <>
@@ -323,6 +302,28 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
           </p>
         </LearnMoreLink>
       </>
+    );
+
+  } else if (quoteState === 'revoked') {
+    quoteError = (
+      <FormattedMessage
+        id='status.quote_error.revoked'
+        defaultMessage='Post removed by author'
+      />
+    );
+  } else if (
+    (quoteState === 'blocked_account' ||
+      quoteState === 'blocked_domain' ||
+      quoteState === 'muted_account') &&
+    !revealed &&
+    accountId
+  ) {
+    quoteError = (
+      <FilteredQuote
+        quoteState={quoteState}
+        reveal={reveal}
+        quotedAccountId={accountId}
+      />
     );
   } else if (
     !status ||
