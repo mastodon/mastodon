@@ -3,6 +3,7 @@ import { useState, useCallback, useId } from 'react';
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 import type { IntlShape } from 'react-intl';
 
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { AxiosError } from 'axios';
@@ -127,7 +128,9 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
 
   if (submitted) {
     return (
-      <div className={classes.bannerBaseCentered}>
+      <div
+        className={classNames(classes.bannerBase, classes.bannerBaseCentered)}
+      >
         <div className={classes.bannerTextAndActions}>
           <h2>
             <FormattedMessage

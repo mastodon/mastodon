@@ -406,6 +406,15 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   margin: 16px 0;
 }
 
+.bannerBaseCentered {
+  min-height: 146px;
+  align-items: center;
+
+  .bannerTextAndActions {
+    text-align: center;
+  }
+}
+
 .bannerTextAndActions {
   display: flex;
   flex-direction: column;
@@ -423,16 +432,6 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 .bannerDisclaimer {
   a {
     color: inherit;
-  }
-}
-
-.bannerBaseCentered {
-  composes: bannerBase;
-  min-height: 146px;
-  align-items: center;
-
-  .bannerTextAndActions {
-    text-align: center;
   }
 }
 
