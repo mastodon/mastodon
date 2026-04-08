@@ -27,7 +27,7 @@ import { FamiliarFollowers } from './familiar_followers';
 import { AccountHeaderFields } from './fields';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
-import { AccountNote as AccountNoteRedesign } from './note';
+import { AccountNote } from './note';
 import { AccountNumberFields } from './number_fields';
 import classes from './styles.module.scss';
 import { AccountTabs } from './tabs';
@@ -170,7 +170,7 @@ export const AccountHeader: React.FC<{
             <div className='account__header__extra'>
               <div className='account__header__bio'>
                 {me && account.id !== me && (
-                  <AccountNoteRedesign accountId={accountId} />
+                  <AccountNote accountId={accountId} />
                 )}
 
                 <AccountBio

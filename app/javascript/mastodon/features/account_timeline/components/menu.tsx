@@ -61,7 +61,7 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
       return [];
     }
 
-    return redesignMenuItems({
+    return getMenuItems({
       account,
       signedIn: !isMe && signedIn,
       permissions,
@@ -223,7 +223,7 @@ const redesignMessages = defineMessages({
   },
 });
 
-function redesignMenuItems({
+function getMenuItems({
   account,
   signedIn,
   permissions,
