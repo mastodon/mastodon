@@ -5,7 +5,7 @@ class ActivityPub::RefetchAndVerifyQuoteWorker
   include ExponentialBackoff
   include JsonLdHelper
 
-  sidekiq_options queue: 'ingress', retry: 5
+  sidekiq_options queue: 'pull', retry: 5
 
   sidekiq_retries_exhausted do |msg|
     quote_id = msg['args'].first
