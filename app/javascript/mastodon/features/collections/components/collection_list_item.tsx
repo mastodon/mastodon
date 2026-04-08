@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { CollectionMenu } from '@/mastodon/features/collections/components/collection_menu';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AvatarById } from 'mastodon/components/avatar';
@@ -15,7 +16,6 @@ import { useAccount } from 'mastodon/hooks/useAccount';
 import { domain } from 'mastodon/initial_state';
 
 import classes from './collection_list_item.module.scss';
-import { CollectionMenu } from './collection_menu';
 
 export const AvatarGrid: React.FC<{
   accountIds: (string | undefined)[];
