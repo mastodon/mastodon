@@ -26,6 +26,7 @@ class ActivityPub::Activity::FeatureRequest < ActivityPub::Activity
       collection_item_attributes(:accepted)
     )
 
+    notify_local_user!(collection_item)
     queue_delivery!(collection_item, ActivityPub::AcceptFeatureRequestSerializer)
   end
 
@@ -50,6 +51,10 @@ class ActivityPub::Activity::FeatureRequest < ActivityPub::Activity
 
   def collection_item_attributes(state = :accepted)
     { account: @featured_account, activity_uri: @json['id'], state: }
+  end
+
+  def notify_local_user!(collection_item)
+    LocalNotificationWorker.perform_async(collection_item.account_id, collection_item.id, collection_item.class.name, 'added_to_collection')
   end
 
   def queue_delivery!(collection_item, serializer)

@@ -259,6 +259,9 @@ RSpec.describe ActivityPub::Activity::Update do
 
     context 'with a `FeaturedCollection` object', feature: :collections do
       let(:collection) { Fabricate(:remote_collection, account: sender, name: 'old name', discoverable: false) }
+      let(:account) { Fabricate(:account) }
+      let!(:collection_item) { Fabricate(:collection_item, account:, collection:, uri: 'https://example.com/featured_stamps/1') }
+
       let(:featured_collection_json) do
         {
           '@context' => 'https://www.w3.org/ns/activitystreams',
@@ -267,13 +270,21 @@ RSpec.describe ActivityPub::Activity::Update do
           'attributedTo' => sender.uri,
           'name' => 'Cool people',
           'summary' => 'People you should follow.',
-          'totalItems' => 0,
+          'totalItems' => 1,
           'sensitive' => false,
           'discoverable' => true,
           'published' => '2026-03-09T15:19:25Z',
           'updated' => Time.zone.now.iso8601,
+          'orderedItems' => [
+            {
+              'type' => 'FeaturedItem',
+              'id' => ActivityPub::TagManager.instance.uri_for(collection_item),
+              'object' => ActivityPub::TagManager.instance.uri_for(account),
+            },
+          ],
         }
       end
+
       let(:json) do
         {
           '@context' => 'https://www.w3.org/ns/activitystreams',
@@ -282,18 +293,41 @@ RSpec.describe ActivityPub::Activity::Update do
           'object' => featured_collection_json,
         }
       end
-      let(:stubbed_service) do
-        instance_double(ActivityPub::ProcessFeaturedCollectionService, call: true)
+
+      it 'updates the collection and notifies local user' do
+        expect { subject.perform }
+          .to change { collection.reload.name }.to(featured_collection_json['name'])
+          .and enqueue_sidekiq_job(LocalNotificationWorker).with(account.id, collection.id, 'Collection', 'collection_update')
       end
 
-      before do
-        allow(ActivityPub::ProcessFeaturedCollectionService).to receive(:new).and_return(stubbed_service)
-      end
+      context 'when the metadata does not actually change' do
+        let(:featured_collection_json) do
+          {
+            '@context' => 'https://www.w3.org/ns/activitystreams',
+            'id' => collection.uri,
+            'type' => 'FeaturedCollection',
+            'attributedTo' => sender.uri,
+            'name' => collection.name,
+            'summary' => collection.description_html,
+            'totalItems' => 1,
+            'sensitive' => false,
+            'discoverable' => true,
+            'published' => '2026-03-09T15:19:25Z',
+            'updated' => Time.zone.now.iso8601,
+            'orderedItems' => [
+              {
+                'type' => 'FeaturedItem',
+                'id' => ActivityPub::TagManager.instance.uri_for(collection_item),
+                'object' => ActivityPub::TagManager.instance.uri_for(account),
+              },
+            ],
+          }
+        end
 
-      it 'updates the collection' do
-        subject.perform
-
-        expect(stubbed_service).to have_received(:call).with(sender, featured_collection_json)
+        it 'does not notify the local user' do
+          expect { subject.perform }
+            .to_not enqueue_sidekiq_job(LocalNotificationWorker)
+        end
       end
     end
   end

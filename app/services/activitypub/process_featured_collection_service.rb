@@ -25,12 +25,17 @@ class ActivityPub::ProcessFeaturedCollectionService
       end
 
       process_items!
+      notify_about_update!
 
       @collection
     end
   end
 
   private
+
+  def notify_about_update!
+    NotifyOfCollectionUpdateService.new.call(@collection)
+  end
 
   def truncated_summary
     text = @json['summaryMap']&.values&.first || @json['summary'] || ''
