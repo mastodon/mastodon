@@ -11,7 +11,7 @@ class REST::NotificationSerializer < ActiveModel::Serializer
   belongs_to :report, if: :report_type?, serializer: REST::ReportSerializer
   belongs_to :account_relationship_severance_event, key: :event, if: :relationship_severance_event?, serializer: REST::AccountRelationshipSeveranceEventSerializer
   belongs_to :account_warning, key: :moderation_warning, if: :moderation_warning_event?, serializer: REST::AccountWarningSerializer
-  belongs_to :collection, if: :collection_type?, serializer: REST::CollectionSerializer
+  belongs_to :target_collection, key: :collection, if: :collection_type?, serializer: REST::CollectionSerializer
 
   def id
     object.id.to_s
