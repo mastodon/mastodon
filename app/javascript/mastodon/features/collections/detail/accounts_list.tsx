@@ -111,7 +111,6 @@ export const CollectionAccountsList: React.FC<{
     <ItemList
       isLoading={isLoading}
       emptyMessage={intl.formatMessage(messages.empty)}
-      className={classes.itemList}
     >
       <h3
         className={classes.columnSubheading}
