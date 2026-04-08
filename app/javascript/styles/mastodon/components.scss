@@ -8688,20 +8688,6 @@ noscript {
       }
     }
   }
-
-  &__familiar-followers {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-block: 16px;
-    color: var(--color-text-secondary);
-
-    a:any-link {
-      font-weight: 500;
-      text-decoration: none;
-      color: var(--color-text-primary);
-    }
-  }
 }
 
 .account__contents {
@@ -8711,6 +8697,7 @@ noscript {
 .account__details {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   column-gap: 1em;
 }
 
@@ -10679,11 +10666,6 @@ noscript {
           }
 
           &__source {
-            display: inline-flex;
-            align-items: center;
-            max-width: 100%;
-            color: var(--color-text-tertiary);
-            gap: 4px;
             overflow: hidden;
             white-space: nowrap;
             cursor: help;
@@ -10691,11 +10673,6 @@ noscript {
             > span {
               overflow: hidden;
               text-overflow: ellipsis;
-            }
-
-            .icon {
-              width: 16px;
-              height: 16px;
             }
           }
         }
@@ -10720,11 +10697,6 @@ noscript {
             font-size: 14px;
             color: var(--color-text-secondary);
           }
-        }
-
-        .verified-badge {
-          font-size: 14px;
-          max-width: 100%;
         }
 
         .button {

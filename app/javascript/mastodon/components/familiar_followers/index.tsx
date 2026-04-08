@@ -1,11 +1,14 @@
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { Avatar } from '@/mastodon/components/avatar';
 import { AvatarGroup } from '@/mastodon/components/avatar_group';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import type { Account } from '@/mastodon/models/account';
 
-import { useFetchFamiliarFollowers } from '../hooks/familiar_followers';
+import classes from './styles.module.scss';
+import { useFetchFamiliarFollowers } from './use_fetch_familiar_followers';
 
 const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
   familiarFollowers,
@@ -51,9 +54,10 @@ const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
   }
 };
 
-export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
-  accountId,
-}) => {
+export const FamiliarFollowers: React.FC<{
+  accountId: string;
+  className?: string;
+}> = ({ accountId, className }) => {
   const { familiarFollowers, isLoading } = useFetchFamiliarFollowers({
     accountId,
   });
@@ -63,10 +67,10 @@ export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
   }
 
   return (
-    <div className='account__header__familiar-followers'>
-      <AvatarGroup compact>
+    <div className={classNames(classes.wrapper, className)}>
+      <AvatarGroup compact avatarHeight={24}>
         {familiarFollowers.slice(0, 3).map((account) => (
-          <Avatar withLink key={account.id} account={account} size={28} />
+          <Avatar withLink key={account.id} account={account} size={24} />
         ))}
       </AvatarGroup>
       <span>

@@ -35,6 +35,12 @@ export const Domain: Story = {
   },
 };
 
+export const Verified: Story = {
+  render() {
+    return <badges.VerifiedBadge link='example.com' />;
+  },
+};
+
 export const CustomIcon: Story = {
   args: {
     ...Default.args,

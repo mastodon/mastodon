@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+  padding: 16px;
+
+  &[data-with-border='true'] {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+
+  :global(.account__note) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: start;
+  width: 100%;
+}
+
+.account {
+  --account-name-size: 15px;
+  --account-handle-color: var(--color-text-secondary);
+  --account-handle-size: 13px;
+  --account-bio-color: var(--color-text-primary);
+  --account-bio-size: 13px;
+  --account-outer-spacing: 0;
+
+  flex-grow: 1;
+  margin-inline-end: 16px;
+}
+
+.verifiedBadge {
+  align-self: end;
+}
+
+.bio {
+  :any-link {
+    color: var(--color-text-status-links);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

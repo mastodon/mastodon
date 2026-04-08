@@ -2,17 +2,27 @@
   color: var(--color-text-primary);
   font-size: 13px;
   display: inline-flex;
+  max-width: 100%;
   padding: 4px;
-  padding-inline-end: 8px;
   gap: 4px;
-  border-radius: 6px;
+  border-radius: 8px;
   align-items: center;
+  overflow-wrap: anywhere;
 
   > svg {
     width: auto;
-    height: 15px;
+    height: 17px;
     fill: currentColor;
     opacity: 0.85;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:not(.badgeWithoutIcon) {
+    padding-inline-end: 8px;
   }
 }
 
@@ -41,7 +51,6 @@
 
 .success {
   background-color: var(--color-bg-success-softest);
-  color: var(--color-text-success);
 }
 
 .warning {
