@@ -1,9 +1,9 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  margin: 8px 0;
+  margin: 0;
   padding: 0;
-  gap: 4px 20px;
+  gap: 4px 24px;
   font-size: 13px;
   color: var(--color-text-secondary);
 }
@@ -19,6 +19,7 @@
     font-weight: 600;
     color: var(--color-text-primary);
     font-size: 15px;
+    white-space: nowrap;
   }
 
   a {
