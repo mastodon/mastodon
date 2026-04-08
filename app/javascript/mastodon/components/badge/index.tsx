@@ -156,10 +156,14 @@ const onAttribute: OnAttributeHandler = (name, value, tagName) => {
   return undefined;
 };
 
-export const VerifiedBadge: React.FC<{ link: string }> = ({ link }) => (
+export const VerifiedBadge: React.FC<{ link: string; className?: string }> = ({
+  link,
+  className,
+}) => (
   <Badge
     variant='success'
     icon={<Icon id='verified' icon={IconVerified} noFill />}
     label={<EmojiHTML as='span' htmlString={link} onAttribute={onAttribute} />}
+    className={className}
   />
 );
