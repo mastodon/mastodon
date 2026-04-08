@@ -300,7 +300,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         <LearnMoreLink>
           <p>
             <FormattedMessage
-              id='status.quote_error.pending_delayed_popout'
+              id='status.quote_error.pending_delayed_popout.body'
               defaultMessage="We're retrying verification of this quote in the background. This usually resolves on its own."
             />
           </p>
@@ -317,7 +317,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         <LearnMoreLink>
           <p>
             <FormattedMessage
-              id='status.quote_error.verification_failed_popout'
+              id='status.quote_error.verification_failed_popout.body'
               defaultMessage="We're failed to verify this quote. This quote will never be shown due to this failure."
             />
           </p>
