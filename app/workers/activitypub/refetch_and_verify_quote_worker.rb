@@ -11,8 +11,7 @@ class ActivityPub::RefetchAndVerifyQuoteWorker
     quote_id = msg['args'].first
 
     ActiveRecord::Base.connection_pool.with_connection do
-      quote = Quote.find(quote_id)
-      quote.update!(state: :verification_failed)
+      Quote.find(quote_id).update!(state: :verification_failed)
     rescue ActiveRecord::RecordNotFound
       true
     end
