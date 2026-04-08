@@ -6,9 +6,9 @@ import { useHistory } from 'react-router';
 
 import { List as ImmutableList } from 'immutable';
 
+import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { fetchEndorsedAccounts } from 'mastodon/actions/accounts';
-import { Account } from 'mastodon/components/account';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RemoteHint } from 'mastodon/components/remote_hint';
@@ -114,6 +114,28 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         {accountId && (
           <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
         )}
+        {!featuredAccountIds.isEmpty() && (
+          <>
+            <h4 className='column-subheading'>
+              <FormattedMessage
+                id='account.featured.accounts'
+                defaultMessage='Profiles'
+              />
+            </h4>
+            <ItemList>
+              {featuredAccountIds.map((featuredAccountId, index) => (
+                <Article
+                  focusable
+                  key={featuredAccountId}
+                  aria-posinset={index + 1}
+                  aria-setsize={featuredAccountIds.size}
+                >
+                  <AccountListItem accountId={featuredAccountId} />
+                </Article>
+              ))}
+            </ItemList>
+          </>
+        )}
         {listedCollections.length > 0 && status === 'idle' && (
           <>
             <h4 className='column-subheading'>
@@ -132,28 +154,6 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                   positionInList={index + 1}
                   listSize={listedCollections.length}
                 />
-              ))}
-            </ItemList>
-          </>
-        )}
-        {!featuredAccountIds.isEmpty() && (
-          <>
-            <h4 className='column-subheading'>
-              <FormattedMessage
-                id='account.featured.accounts'
-                defaultMessage='Profiles'
-              />
-            </h4>
-            <ItemList>
-              {featuredAccountIds.map((featuredAccountId, index) => (
-                <Article
-                  focusable
-                  key={featuredAccountId}
-                  aria-posinset={index + 1}
-                  aria-setsize={featuredAccountIds.size}
-                >
-                  <Account id={featuredAccountId} />
-                </Article>
               ))}
             </ItemList>
           </>
