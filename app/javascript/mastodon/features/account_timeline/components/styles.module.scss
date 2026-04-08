@@ -28,19 +28,21 @@
 }
 
 .name {
-  display: flex;
-  gap: 2px;
-  align-items: baseline;
-
   > h1 {
+    display: inline;
     font-size: 22px;
     line-height: normal;
     white-space: initial;
+    margin-inline-end: 4px;
   }
 }
 
 .followerBadgeIcon {
   color: var(--color-text-secondary);
+}
+
+.badges {
+  margin-top: 8px;
 }
 
 .handleHelpButton {
@@ -189,6 +191,10 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .bio {
   font-size: 15px;
+}
+
+.familiarFollowers {
+  margin-top: 16px;
 }
 
 .note {
@@ -406,6 +412,15 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   margin: 16px 0;
 }
 
+.bannerBaseCentered {
+  min-height: 146px;
+  align-items: center;
+
+  .bannerTextAndActions {
+    text-align: center;
+  }
+}
+
 .bannerTextAndActions {
   display: flex;
   flex-direction: column;
@@ -423,16 +438,6 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 .bannerDisclaimer {
   a {
     color: inherit;
-  }
-}
-
-.bannerBaseCentered {
-  composes: bannerBase;
-  min-height: 146px;
-  align-items: center;
-
-  .bannerTextAndActions {
-    text-align: center;
   }
 }
 
