@@ -3,16 +3,20 @@
   flex-direction: column;
   align-items: center;
   max-width: 600px;
-  padding: 20px;
+  padding: 24px;
   gap: 16px;
   text-align: center;
   color: var(--color-text-primary);
 }
 
 .content {
+  max-width: 300px;
+
   svg,
   img {
-    width: 240px;
+    width: 200px;
+    aspect-ratio: 1;
+    object-fit: contain;
     max-width: 100%;
     margin-bottom: 16px;
   }
