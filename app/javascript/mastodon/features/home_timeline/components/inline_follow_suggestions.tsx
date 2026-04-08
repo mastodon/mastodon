@@ -16,7 +16,7 @@ import {
 } from 'mastodon/actions/suggestions';
 import type { ApiSuggestionSourceJSON } from 'mastodon/api_types/suggestions';
 import { Avatar } from 'mastodon/components/avatar';
-import { VerifiedBadge } from 'mastodon/components/badge';
+import { Badge, VerifiedBadge } from 'mastodon/components/badge';
 import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
 import { Icon } from 'mastodon/components/icon';
@@ -110,13 +110,12 @@ const Source: React.FC<{ id: ApiSuggestionSourceJSON }> = ({ id }) => {
   }
 
   return (
-    <div
+    <Badge
       className='inline-follow-suggestions__body__scrollable__card__text-stack__source'
       title={hint}
-    >
-      <Icon id='' icon={InfoIcon} />
-      <span>{label}</span>
-    </div>
+      label={label}
+      icon={<InfoIcon />}
+    />
   );
 };
 

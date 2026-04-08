@@ -10666,11 +10666,6 @@ noscript {
           }
 
           &__source {
-            display: inline-flex;
-            align-items: center;
-            max-width: 100%;
-            color: var(--color-text-tertiary);
-            gap: 4px;
             overflow: hidden;
             white-space: nowrap;
             cursor: help;
@@ -10678,11 +10673,6 @@ noscript {
             > span {
               overflow: hidden;
               text-overflow: ellipsis;
-            }
-
-            .icon {
-              width: 16px;
-              height: 16px;
             }
           }
         }

@@ -18,10 +18,9 @@ import { Icon } from '../icon';
 
 import classes from './styles.module.scss';
 
-interface BadgeProps {
+interface BadgeProps extends React.ComponentPropsWithoutRef<'div'> {
   label: ReactNode;
   icon?: ReactNode;
-  className?: string;
   domain?: ReactNode;
   roleId?: string;
   variant?:
@@ -40,8 +39,10 @@ export const Badge: FC<BadgeProps> = ({
   className,
   domain,
   roleId,
+  ...otherProps
 }) => (
   <div
+    {...otherProps}
     className={classNames(
       classes.badge,
       !icon && classes.badgeWithoutIcon,
