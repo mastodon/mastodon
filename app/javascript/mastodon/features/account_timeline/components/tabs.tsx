@@ -10,7 +10,7 @@ import { useAccountId } from '@/mastodon/hooks/useAccountId';
 
 import { areCollectionsEnabled } from '../../collections/utils';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 const isActive: Required<NavLinkProps>['isActive'] = (match, location) =>
   match?.url === location.pathname ||
