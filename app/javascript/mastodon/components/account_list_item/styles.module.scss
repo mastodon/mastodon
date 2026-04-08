@@ -38,3 +38,13 @@
 .verifiedBadge {
   align-self: end;
 }
+
+.bio {
+  :any-link {
+    color: var(--color-text-status-links);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

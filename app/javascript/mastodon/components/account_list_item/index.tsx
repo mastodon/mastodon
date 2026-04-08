@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { Account } from 'mastodon/components/account';
 import { VerifiedBadge } from 'mastodon/components/badge';
 import { useAccount } from 'mastodon/hooks/useAccount';
@@ -162,7 +164,7 @@ export const AccountListItem: React.FC<Props> = ({
       <FamiliarFollowers accountId={accountId} />
       {account.note.length > 0 && (
         <EmojiHTML
-          className='translate'
+          className={classNames(classes.bio, 'translate')}
           htmlString={account.note_emojified}
           extraEmojis={account.emojis}
         />
