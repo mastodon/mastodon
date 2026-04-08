@@ -5,7 +5,18 @@ class ActivityPub::RefetchAndVerifyQuoteWorker
   include ExponentialBackoff
   include JsonLdHelper
 
-  sidekiq_options queue: 'pull', retry: 5
+  sidekiq_options queue: 'ingress', retry: 5
+
+  sidekiq_retries_exhausted do |msg|
+    quote_id = msg['args'].first
+
+    ActiveRecord::Base.connection_pool.with_connection do
+      quote = Quote.find(quote_id)
+      quote.update!(state: :verification_failed)
+    rescue ActiveRecord::RecordNotFound
+      true
+    end
+  end
 
   def perform(quote_id, quoted_uri, options = {})
     quote = Quote.find(quote_id)
