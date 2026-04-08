@@ -16,8 +16,6 @@ import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { AccountRole } from '@/mastodon/models/account';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import classes from './styles.module.scss';
-
 export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   const account = useAccount(accountId);
   const localDomain = useAppSelector(
@@ -103,7 +101,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     return null;
   }
 
-  return <div className={classes.badges}>{badges}</div>;
+  return <div className={'account__header__badges'}>{badges}</div>;
 };
 
 function isAdminBadge(role: AccountRole) {
