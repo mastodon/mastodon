@@ -3,8 +3,12 @@
 class ActivityPub::FetchRemoteFeaturedCollectionService < BaseService
   include JsonLdHelper
 
-  def call(uri, request_id: nil, on_behalf_of: nil)
-    json = fetch_resource(uri, true, on_behalf_of)
+  def call(uri, request_id: nil, prefetched_body: nil, on_behalf_of: nil)
+    json = if prefetched_body.nil?
+             fetch_resource(uri, true, on_behalf_of)
+           else
+             body_to_json(prefetched_body, compare_id: uri)
+           end
 
     return unless supported_context?(json)
     return unless json['type'] == 'FeaturedCollection'

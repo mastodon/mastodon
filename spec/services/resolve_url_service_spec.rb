@@ -30,6 +30,49 @@ RSpec.describe ResolveURLService do
       expect(subject.call(url)).to eq known_account
     end
 
+    context 'when searching for a remote collection', feature: :collections do
+      let(:account) { Fabricate(:account) }
+      let(:collection_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub) }
+
+      let(:uri) { 'https://example.com/featured_collections/1' }
+
+      let(:payload) do
+        {
+          '@context' => 'https://www.w3.org/ns/activitystreams',
+          'id' => uri,
+          'type' => 'FeaturedCollection',
+          'name' => 'Incredible people',
+          'summary' => 'These are really amazing',
+          'attributedTo' => collection_account.uri,
+          'sensitive' => false,
+          'discoverable' => true,
+          'totalItems' => 0,
+        }
+      end
+
+      before do
+        stub_request(:get, uri).to_return(status: 200, body: payload.to_json, headers: { 'Content-Type': 'application/activity+json' })
+      end
+
+      it 'returns the collection' do
+        expect(subject.call(uri, on_behalf_of: account))
+          .to be_a(Collection)
+          .and have_attributes(
+            uri: uri
+          )
+      end
+    end
+
+    context 'when searching for a local collection', feature: :collections do
+      let(:account) { Fabricate(:account) }
+      let(:collection) { Fabricate(:collection) }
+
+      it 'returns the collection' do
+        expect(subject.call(ActivityPub::TagManager.instance.uri_for(collection), on_behalf_of: account))
+          .to eq(collection)
+      end
+    end
+
     context 'when searching for a remote private status' do
       let(:account)  { Fabricate(:account) }
       let(:poster)   { Fabricate(:account, domain: 'example.com') }
