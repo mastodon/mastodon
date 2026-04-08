@@ -25,3 +25,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const WithCustomStats: Story = {
+  args: {
+    stats: ['posts', 'last-active'],
+  },
+};
+
+export const WithBorder: Story = {
+  args: {
+    withBorder: true,
+  },
+};
+
+export const WithoutButton: Story = {
+  args: {
+    renderButton: () => null,
+  },
+};
