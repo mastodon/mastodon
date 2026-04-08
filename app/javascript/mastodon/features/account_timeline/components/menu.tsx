@@ -4,7 +4,6 @@ import type { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import {
-  blockAccount,
   followAccount,
   pinAccount,
   unblockAccount,
@@ -13,6 +12,7 @@ import {
 } from '@/mastodon/actions/accounts';
 import { removeAccountFromFollowers } from '@/mastodon/actions/accounts_typed';
 import { showAlert } from '@/mastodon/actions/alerts';
+import { initBlockModal } from '@/mastodon/actions/blocks';
 import { directCompose, mentionCompose } from '@/mastodon/actions/compose';
 import {
   initDomainBlockModal,
@@ -435,7 +435,7 @@ function redesignMenuItems({
       if (relationship?.blocking) {
         dispatch(unblockAccount(account.id));
       } else {
-        dispatch(blockAccount(account.id));
+        dispatch(initBlockModal(account));
       }
     },
     dangerous: true,
