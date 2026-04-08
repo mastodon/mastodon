@@ -60,6 +60,7 @@ const SensitiveScreen: React.FC<{
         />
       }
       onPrimary={showAnyway}
+      className={classes.sensitiveScreen}
     >
       <FormattedMessage
         id='collections.detail.sensitive_note'
@@ -108,10 +109,7 @@ export const CollectionAccountsList: React.FC<{
   );
 
   return (
-    <ItemList
-      isLoading={isLoading}
-      emptyMessage={intl.formatMessage(messages.empty)}
-    >
+    <>
       <h3
         className={classes.columnSubheading}
         tabIndex={-1}
@@ -135,22 +133,27 @@ export const CollectionAccountsList: React.FC<{
           sensitive={!isOwnCollection && collection.sensitive}
           focusTargetRef={listHeadingRef}
         >
-          {items.map(({ account_id }, index) => (
-            <Article
-              key={account_id}
-              aria-posinset={index + 1}
-              aria-setsize={items.length}
-            >
-              <AccountListItem
-                accountId={account_id}
-                withBorder={index !== items.length - 1}
-                stats={['followers', 'last-active']}
-                renderButton={renderAccountItemButton}
-              />
-            </Article>
-          ))}
+          <ItemList
+            isLoading={isLoading}
+            emptyMessage={intl.formatMessage(messages.empty)}
+          >
+            {items.map(({ account_id }, index) => (
+              <Article
+                key={account_id}
+                aria-posinset={index + 1}
+                aria-setsize={items.length}
+              >
+                <AccountListItem
+                  accountId={account_id}
+                  withBorder={index !== items.length - 1}
+                  stats={['followers', 'last-active']}
+                  renderButton={renderAccountItemButton}
+                />
+              </Article>
+            ))}
+          </ItemList>
         </SensitiveScreen>
       )}
-    </ItemList>
+    </>
   );
 };
