@@ -147,6 +147,15 @@ class Notification < ApplicationRecord
     end
   end
 
+  def target_collection
+    case type
+    when :added_to_collection
+      collection_item&.collection
+    when :collection_update
+      collection
+    end
+  end
+
   class << self
     def browserable(types: [], exclude_types: [], from_account_id: nil, include_filtered: false)
       requested_types = if types.empty?
