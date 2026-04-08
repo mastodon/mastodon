@@ -33,7 +33,7 @@ class Notification < ApplicationRecord
     'Quote' => :quote,
   }.freeze
 
-  # Please update app/javascript/api_types/notification.ts if you change this
+  # Please update app/javascript/mastodon/api_types/notifications.ts if you change this
   PROPERTIES = {
     mention: {
       filterable: true,
