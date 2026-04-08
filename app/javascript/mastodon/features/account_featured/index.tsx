@@ -141,12 +141,12 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         {listedCollections.length > 0 && status === 'idle' && (
           <>
             <Subheading as='header'>
-              <h4>
+              <h2>
                 <FormattedMessage
                   id='account.featured.collections'
                   defaultMessage='Collections'
                 />
-              </h4>
+              </h2>
               <SubheadingLink to='/collections/new' icon={AddIcon}>
                 <FormattedMessage
                   id='account.featured.new_collection'
