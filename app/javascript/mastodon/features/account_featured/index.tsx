@@ -8,6 +8,7 @@ import { List as ImmutableList } from 'immutable';
 
 import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import { fetchEndorsedAccounts } from 'mastodon/actions/accounts';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
@@ -32,6 +33,7 @@ import { CollectionListItem } from '../collections/detail/collection_list_item';
 import { areCollectionsEnabled } from '../collections/utils';
 
 import { EmptyMessage } from './components/empty_message';
+import { Subheading, SubheadingLink } from './components/subheading';
 
 const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   multiColumn,
@@ -116,12 +118,12 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         )}
         {!featuredAccountIds.isEmpty() && (
           <>
-            <h4 className='column-subheading'>
+            <Subheading as='h2'>
               <FormattedMessage
                 id='account.featured.accounts'
                 defaultMessage='Profiles'
               />
-            </h4>
+            </Subheading>
             <ItemList>
               {featuredAccountIds.map((featuredAccountId, index) => (
                 <Article
@@ -138,12 +140,20 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         )}
         {listedCollections.length > 0 && status === 'idle' && (
           <>
-            <h4 className='column-subheading'>
-              <FormattedMessage
-                id='account.featured.collections'
-                defaultMessage='Collections'
-              />
-            </h4>
+            <Subheading as='header'>
+              <h4>
+                <FormattedMessage
+                  id='account.featured.collections'
+                  defaultMessage='Collections'
+                />
+              </h4>
+              <SubheadingLink to='/collections/new' icon={AddIcon}>
+                <FormattedMessage
+                  id='account.featured.new_collection'
+                  defaultMessage='New collection'
+                />
+              </SubheadingLink>
+            </Subheading>
             <ItemList>
               {listedCollections.map((item, index) => (
                 <CollectionListItem
