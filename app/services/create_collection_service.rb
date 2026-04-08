@@ -9,6 +9,7 @@ class CreateCollectionService
 
     @collection.save!
 
+    notify_local_users
     distribute_add_activity
     distribute_feature_request_activities
 
@@ -36,6 +37,12 @@ class CreateCollectionService
 
       state = account_to_add.local? ? :accepted : :pending
       @collection.collection_items.build(account: account_to_add, state:)
+    end
+  end
+
+  def notify_local_users
+    @collection.collection_items.select(&:with_local_account?).each do |collection_item|
+      LocalNotificationWorker.perform_async(@account.id, collection_item.id, collection_item.class.name, 'added_to_collection')
     end
   end
 
