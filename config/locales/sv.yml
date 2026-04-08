@@ -12,6 +12,9 @@ sv:
     followers:
       one: Följare
       other: Följare
+    following:
+      one: Följer
+      other: Följer
     instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern i sig och inte någon enskild användare. Den används för federeringsändamål och bör inte stängas av.
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
@@ -759,6 +762,7 @@ sv:
       categories:
         administration: Administration
         devops: DevOps
+        email: E-post
         invites: Inbjudningar
         moderation: Moderering
         special: Särskild
@@ -787,6 +791,8 @@ sv:
         manage_blocks_description: Tillåter användare att blockera e-postleverantörer och IP-adresser
         manage_custom_emojis: Hantera egna emojier
         manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
+        manage_email_subscriptions: Hantera e-postprenumerationer
+        manage_email_subscriptions_description: Tillåt användare att prenumerera på användare med denna behörighet via e-post
         manage_federation: Hantera federering
         manage_federation_description: Tillåter användare att blockera eller tillåta federering med andra domäner, samt kontrollera levererbarhet
         manage_invites: Hantera inbjudningar
@@ -1413,8 +1419,18 @@ sv:
       your_appeal_rejected: Din överklagan har avvisats
   edit_profile:
     other: Övrigt
+    redesign_body: Profilredigering kan nu nås direkt från profilsidan.
+    redesign_button: Gå dit
+    redesign_title: Det finns en ny profilredigeringsupplevelse
   email_subscription_mailer:
+    confirmation:
+      action: Bekräfta e-postadress
+      instructions_to_confirm: Bekräfta att du vill ta emot e-post från %{name} (@%{acct}) när de publicerar nya inlägg.
+      instructions_to_ignore: Om du inte är säker på varför du fick detta e-postmeddelande kan du radera det. Du kommer inte att prenumerera om du inte klickar på länken ovan.
+      subject: Bekräfta din e-postadress
+      title: Få e-postuppdateringar från %{name}?
     notification:
+      create_account: Skapa ett Mastodon-konto
       subject:
         plural: Nya inlägg från %{name}
         singular: 'Nytt inlägg: "%{excerpt}"'
