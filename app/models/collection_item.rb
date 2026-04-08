@@ -47,6 +47,10 @@ class CollectionItem < ApplicationRecord
     update!(state: :revoked)
   end
 
+  def with_local_account?
+    account&.local?
+  end
+
   def local_item_with_remote_account?
     local? && account&.remote?
   end
