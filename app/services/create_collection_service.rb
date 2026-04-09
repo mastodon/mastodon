@@ -42,7 +42,7 @@ class CreateCollectionService
 
   def notify_local_users
     @collection.collection_items.select(&:with_local_account?).each do |collection_item|
-      LocalNotificationWorker.perform_async(@account.id, collection_item.id, collection_item.class.name, 'added_to_collection')
+      LocalNotificationWorker.perform_async(collection_item.account_id, collection_item.id, collection_item.class.name, 'added_to_collection')
     end
   end
 
