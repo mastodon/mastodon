@@ -21,6 +21,7 @@ interface EmptyMessageProps {
   hidden: boolean;
   blockedBy: boolean;
   accountId?: string;
+  withImage?: boolean;
 }
 
 export const EmptyMessage: React.FC<EmptyMessageProps> = ({
@@ -28,6 +29,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
   suspended,
   hidden,
   blockedBy,
+  withImage = true,
 }) => {
   const { acct } = useParams<{ acct?: string }>();
   const me = useCurrentAccountId();
@@ -55,7 +57,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
 
   const hasCollections = areCollectionsEnabled();
 
-  const image = <ElephantImage />;
+  const image = withImage && <ElephantImage />;
 
   if (me === accountId) {
     if (hasCollections) {

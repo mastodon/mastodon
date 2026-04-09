@@ -86,6 +86,8 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     collectionsLoadStatus === 'idle' &&
     listedCollections.length > 0;
 
+  const hasFeaturedAccounts = !featuredAccountIds.isEmpty();
+
   const isLoading = !accountId || collectionsLoadStatus !== 'idle';
 
   if (accountId === null) {
@@ -102,7 +104,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     );
   }
 
-  if (featuredAccountIds.isEmpty() && !hasCollections) {
+  if (!hasFeaturedAccounts && !hasCollections) {
     return (
       <AccountFeaturedWrapper accountId={accountId}>
         <EmptyMessage
@@ -177,6 +179,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
               </ItemList>
             ) : (
               <EmptyMessage
+                withImage={false}
                 blockedBy={blockedBy}
                 hidden={hidden}
                 suspended={suspended}
