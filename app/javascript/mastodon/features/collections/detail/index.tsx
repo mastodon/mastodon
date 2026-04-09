@@ -23,8 +23,9 @@ import { domain, me } from 'mastodon/initial_state';
 import { fetchCollection } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { CollectionMenu } from '../components/collection_menu';
+
 import { CollectionAccountsList } from './accounts_list';
-import { CollectionMenu } from './collection_menu';
 import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
 import classes from './styles.module.scss';
 
@@ -66,7 +67,7 @@ export const AuthorNote: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
-export const RevokeControls: React.FC<{
+const RevokeControls: React.FC<{
   collection: ApiCollectionJSON;
 }> = ({ collection }) => {
   const authorAccount = useAccount(collection.account_id);

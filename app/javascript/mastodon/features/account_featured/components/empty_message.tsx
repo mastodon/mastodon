@@ -49,8 +49,14 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
           image={image}
           title={
             <FormattedMessage
-              id='empty_column.account_featured_self.no_collections'
-              defaultMessage='No collections yet'
+              id='empty_column.account_featured_self.showcase_accounts'
+              defaultMessage='Showcase your favorite accounts'
+            />
+          }
+          message={
+            <FormattedMessage
+              id='empty_column.account_featured_self.showcase_accounts_desc'
+              defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
             />
           }
         >
@@ -72,7 +78,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
       message = (
         <FormattedMessage
           id='empty_column.account_featured_self.pre_collections_desc'
-          defaultMessage='Collections (coming in Mastodon 4.6) allows you to create your own curated lists of accounts to recommend to others.'
+          defaultMessage='Collections (coming in Mastodon 4.6) allow you to create your own curated lists of accounts to recommend to others.'
         />
       );
     }
@@ -93,47 +99,21 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
       />
     );
   } else {
-    // Standard other account empty state.
-    title = (
-      <FormattedMessage
-        id='empty_column.account_featured_other.title'
-        defaultMessage='Nothing to see here'
-      />
-    );
-    if (hasCollections) {
-      if (acct) {
-        message = (
-          <FormattedMessage
-            id='empty_column.account_featured_other.no_collections_desc'
-            defaultMessage='{acct} hasn’t created any collections yet.'
-            values={{ acct }}
-          />
-        );
-      } else {
-        message = (
-          <FormattedMessage
-            id='empty_column.account_featured_unknown.no_collections_desc'
-            defaultMessage='This account hasn’t created any collections yet.'
-          />
-        );
-      }
+    if (acct) {
+      title = (
+        <FormattedMessage
+          id='empty_column.account_featured.other'
+          defaultMessage='{acct} has not featured anything yet.'
+          values={{ acct }}
+        />
+      );
     } else {
-      if (acct) {
-        message = (
-          <FormattedMessage
-            id='empty_column.account_featured.other'
-            defaultMessage='{acct} hasn’t featured anything yet.'
-            values={{ acct }}
-          />
-        );
-      } else {
-        message = (
-          <FormattedMessage
-            id='empty_column.account_featured_unknown.other'
-            defaultMessage='This account hasn’t featured anything yet.'
-          />
-        );
-      }
+      title = (
+        <FormattedMessage
+          id='empty_column.account_featured_unknown.other'
+          defaultMessage='This account has not featured anything yet.'
+        />
+      );
     }
   }
 

@@ -6,9 +6,10 @@ import { useHistory } from 'react-router';
 
 import { List as ImmutableList } from 'immutable';
 
+import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import { fetchEndorsedAccounts } from 'mastodon/actions/accounts';
-import { Account } from 'mastodon/components/account';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RemoteHint } from 'mastodon/components/remote_hint';
@@ -28,10 +29,11 @@ import {
 } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { CollectionListItem } from '../collections/detail/collection_list_item';
+import { CollectionListItem } from '../collections/components/collection_list_item';
 import { areCollectionsEnabled } from '../collections/utils';
 
 import { EmptyMessage } from './components/empty_message';
+import { Subheading, SubheadingLink } from './components/subheading';
 
 const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   multiColumn,
@@ -114,14 +116,44 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         {accountId && (
           <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
         )}
+        {!featuredAccountIds.isEmpty() && (
+          <>
+            <Subheading as='h2'>
+              <FormattedMessage
+                id='account.featured.accounts'
+                defaultMessage='Profiles'
+              />
+            </Subheading>
+            <ItemList>
+              {featuredAccountIds.map((featuredAccountId, index) => (
+                <Article
+                  focusable
+                  key={featuredAccountId}
+                  aria-posinset={index + 1}
+                  aria-setsize={featuredAccountIds.size}
+                >
+                  <AccountListItem accountId={featuredAccountId} />
+                </Article>
+              ))}
+            </ItemList>
+          </>
+        )}
         {listedCollections.length > 0 && status === 'idle' && (
           <>
-            <h4 className='column-subheading'>
-              <FormattedMessage
-                id='account.featured.collections'
-                defaultMessage='Collections'
-              />
-            </h4>
+            <Subheading as='header'>
+              <h2>
+                <FormattedMessage
+                  id='account.featured.collections'
+                  defaultMessage='Collections'
+                />
+              </h2>
+              <SubheadingLink to='/collections/new' icon={AddIcon}>
+                <FormattedMessage
+                  id='account.featured.new_collection'
+                  defaultMessage='New collection'
+                />
+              </SubheadingLink>
+            </Subheading>
             <ItemList>
               {listedCollections.map((item, index) => (
                 <CollectionListItem
@@ -132,28 +164,6 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                   positionInList={index + 1}
                   listSize={listedCollections.length}
                 />
-              ))}
-            </ItemList>
-          </>
-        )}
-        {!featuredAccountIds.isEmpty() && (
-          <>
-            <h4 className='column-subheading'>
-              <FormattedMessage
-                id='account.featured.accounts'
-                defaultMessage='Profiles'
-              />
-            </h4>
-            <ItemList>
-              {featuredAccountIds.map((featuredAccountId, index) => (
-                <Article
-                  focusable
-                  key={featuredAccountId}
-                  aria-posinset={index + 1}
-                  aria-setsize={featuredAccountIds.size}
-                >
-                  <Account id={featuredAccountId} />
-                </Article>
               ))}
             </ItemList>
           </>
