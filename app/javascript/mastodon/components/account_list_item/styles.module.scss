@@ -8,13 +8,6 @@
   &[data-with-border='true'] {
     border-bottom: 1px solid var(--color-border-primary);
   }
-
-  :global(.account__note) {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-  }
 }
 
 .header {
@@ -40,6 +33,12 @@
 }
 
 .bio {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+
   :any-link {
     color: var(--color-text-status-links);
 
