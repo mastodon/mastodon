@@ -73,7 +73,7 @@ const BackButton: React.FC<{
 };
 
 export interface Props {
-  title?: string;
+  title?: React.ReactNode;
   icon?: string;
   iconComponent?: IconProp;
   active?: boolean;
