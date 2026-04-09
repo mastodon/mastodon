@@ -311,7 +311,7 @@ interface AccountCollectionQuery {
 
 export const selectAccountCollections = createAppSelector(
   [
-    (_, accountId: string | null) => accountId,
+    (_, accountId?: string | null) => accountId,
     (state) => state.collections.accountCollections,
     (state) => state.collections.collections,
   ],
