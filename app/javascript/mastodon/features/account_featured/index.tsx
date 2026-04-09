@@ -35,6 +35,8 @@ import { areCollectionsEnabled } from '../collections/utils';
 import { EmptyMessage } from './components/empty_message';
 import { Subheading, SubheadingLink } from './components/subheading';
 
+const collectionsEnabled = areCollectionsEnabled();
+
 const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   multiColumn,
 }) => {
@@ -56,13 +58,12 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     if (accountId) {
       void dispatch(fetchEndorsedAccounts({ accountId }));
 
-      if (areCollectionsEnabled()) {
+      if (collectionsEnabled) {
         void dispatch(fetchAccountCollections({ accountId }));
       }
     }
   }, [accountId, dispatch]);
 
-  const isLoading = !accountId;
   const featuredAccountIds = useAppSelector(
     (state) =>
       state.user_lists.getIn(
@@ -70,8 +71,8 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         ImmutableList(),
       ) as ImmutableList<string>,
   );
-  const { collections, status } = useAppSelector((state) =>
-    selectAccountCollections(state, accountId ?? null),
+  const { collections, status: collectionsLoadStatus } = useAppSelector(
+    (state) => selectAccountCollections(state, accountId ?? null),
   );
   const listedCollections = collections.filter(
     // Hide unlisted and empty collections to avoid confusion
@@ -79,6 +80,15 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     // when viewing your own profile.)
     (item) => item.discoverable && !!item.item_count,
   );
+
+  const hasCollections =
+    collectionsEnabled &&
+    collectionsLoadStatus === 'idle' &&
+    listedCollections.length > 0;
+
+  const hasFeaturedAccounts = !featuredAccountIds.isEmpty();
+
+  const isLoading = !accountId || collectionsLoadStatus !== 'idle';
 
   if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
@@ -94,7 +104,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     );
   }
 
-  if (featuredAccountIds.isEmpty() && listedCollections.length === 0) {
+  if (!hasFeaturedAccounts && !hasCollections) {
     return (
       <AccountFeaturedWrapper accountId={accountId}>
         <EmptyMessage
@@ -138,7 +148,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
             </ItemList>
           </>
         )}
-        {listedCollections.length > 0 && status === 'idle' && (
+        {collectionsEnabled && (
           <>
             <Subheading as='header'>
               <h2>
@@ -154,18 +164,28 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                 />
               </SubheadingLink>
             </Subheading>
-            <ItemList>
-              {listedCollections.map((item, index) => (
-                <CollectionListItem
-                  key={item.id}
-                  collection={item}
-                  withoutBorder={index === listedCollections.length - 1}
-                  withAuthorHandle={false}
-                  positionInList={index + 1}
-                  listSize={listedCollections.length}
-                />
-              ))}
-            </ItemList>
+            {hasCollections ? (
+              <ItemList>
+                {listedCollections.map((item, index) => (
+                  <CollectionListItem
+                    key={item.id}
+                    collection={item}
+                    withoutBorder={index === listedCollections.length - 1}
+                    withAuthorHandle={false}
+                    positionInList={index + 1}
+                    listSize={listedCollections.length}
+                  />
+                ))}
+              </ItemList>
+            ) : (
+              <EmptyMessage
+                withImage={false}
+                blockedBy={blockedBy}
+                hidden={hidden}
+                suspended={suspended}
+                accountId={accountId}
+              />
+            )}
           </>
         )}
         <RemoteHint accountId={accountId} />

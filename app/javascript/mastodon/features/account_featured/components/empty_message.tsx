@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import { useParams } from 'react-router';
@@ -5,17 +7,21 @@ import { Link } from 'react-router-dom';
 
 import ElephantDarkImage from '@/images/elephant_ui_dark.svg?react';
 import ElephantLightImage from '@/images/elephant_ui_light.svg?react';
+import { openModal } from '@/mastodon/actions/modal';
+import { Button } from '@/mastodon/components/button';
 import { EmptyState } from '@/mastodon/components/empty_state';
 import { LimitedAccountHint } from '@/mastodon/features/account_timeline/components/limited_account_hint';
 import { areCollectionsEnabled } from '@/mastodon/features/collections/utils';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useTheme } from '@/mastodon/hooks/useTheme';
+import { useAppDispatch } from '@/mastodon/store';
 
 interface EmptyMessageProps {
   suspended: boolean;
   hidden: boolean;
   blockedBy: boolean;
   accountId?: string;
+  withImage?: boolean;
 }
 
 export const EmptyMessage: React.FC<EmptyMessageProps> = ({
@@ -23,12 +29,24 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
   suspended,
   hidden,
   blockedBy,
+  withImage = true,
 }) => {
   const { acct } = useParams<{ acct?: string }>();
   const me = useCurrentAccountId();
   const theme = useTheme();
   const ElephantImage =
     theme === 'dark' ? ElephantDarkImage : ElephantLightImage;
+
+  const dispatch = useAppDispatch();
+
+  const confirmHideFeaturedTab = useCallback(() => {
+    void dispatch(
+      openModal({
+        modalType: 'ACCOUNT_HIDE_FEATURED_TAB',
+        modalProps: {},
+      }),
+    );
+  }, [dispatch]);
 
   if (!accountId) {
     return null;
@@ -39,7 +57,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
 
   const hasCollections = areCollectionsEnabled();
 
-  const image = <ElephantImage />;
+  const image = withImage && <ElephantImage />;
 
   if (me === accountId) {
     if (hasCollections) {
@@ -66,6 +84,12 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
               defaultMessage='Create a collection'
             />
           </Link>
+          <Button secondary onClick={confirmHideFeaturedTab}>
+            <FormattedMessage
+              id='empty_column.account_featured_self.no_collections_hide_tab'
+              defaultMessage='Hide this tab instead'
+            />
+          </Button>
         </EmptyState>
       );
     } else {
