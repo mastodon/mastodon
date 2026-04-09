@@ -11,7 +11,6 @@ import { useRelationship } from 'mastodon/hooks/useRelationship';
 import type { Relationship } from 'mastodon/models/relationship';
 
 import { EmojiHTML } from '../emoji/html';
-import { FamiliarFollowers } from '../familiar_followers';
 import { FollowButton } from '../follow_button';
 import { FormattedDateWrapper } from '../formatted_date';
 import { NumberFields, NumberFieldsItem } from '../number_fields';
@@ -31,6 +30,7 @@ interface Props {
   accountId: string | undefined;
   stats?: Stat[];
   renderButton?: (options: RenderButtonOptions) => React.ReactNode;
+  withBio?: boolean;
   withBorder?: boolean;
 }
 
@@ -46,6 +46,7 @@ const DEFAULT_STATS: Stat[] = ['followers', 'following', 'joined'];
 export const AccountListItem: React.FC<Props> = ({
   accountId,
   stats = DEFAULT_STATS,
+  withBio = true,
   withBorder = true,
   renderButton = defaultRenderButton,
 }) => {
@@ -161,8 +162,7 @@ export const AccountListItem: React.FC<Props> = ({
           />
         )}
       </NumberFields>
-      <FamiliarFollowers accountId={accountId} />
-      {account.note.length > 0 && (
+      {withBio && account.note.length > 0 && (
         <EmojiHTML
           className={classNames(classes.bio, 'translate')}
           htmlString={account.note_emojified}
