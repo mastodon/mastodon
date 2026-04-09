@@ -34,7 +34,7 @@ interface Props {
   withBorder?: boolean;
 }
 
-const DEFAULT_STATS: Stat[] = ['followers', 'following', 'joined'];
+const DEFAULT_STATS: Stat[] = ['followers', 'posts', 'last-active'];
 
 /**
  * Extended account list item with bio, verified link badge,
