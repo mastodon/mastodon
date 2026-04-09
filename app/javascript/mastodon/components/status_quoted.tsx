@@ -297,7 +297,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
           <p>
             <FormattedMessage
               id='status.quote_error.verification_failed_popout.body'
-              defaultMessage="We're failed to verify this quote. This quote will never be shown due to this failure."
+              defaultMessage="We're failed to verify this quote. This quote is unlikely to be shown due to this failure."
             />
           </p>
         </LearnMoreLink>
