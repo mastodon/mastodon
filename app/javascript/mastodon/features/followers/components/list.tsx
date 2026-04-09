@@ -53,12 +53,20 @@ export const AccountList: FC<AccountListProps> = ({
     }
     const children =
       list?.items.map((followerId) => (
-        <AccountListItem key={followerId} accountId={followerId} />
+        <AccountListItem
+          key={followerId}
+          accountId={followerId}
+          withBio={false}
+        />
       )) ?? [];
 
     if (prependAccountId) {
       children.unshift(
-        <AccountListItem key={prependAccountId} accountId={prependAccountId} />,
+        <AccountListItem
+          key={prependAccountId}
+          accountId={prependAccountId}
+          withBio={false}
+        />,
       );
     }
     return children;

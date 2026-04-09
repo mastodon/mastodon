@@ -146,7 +146,6 @@ export const CollectionAccountsList: React.FC<{
                 <AccountListItem
                   accountId={account_id}
                   withBorder={index !== items.length - 1}
-                  stats={['followers', 'last-active']}
                   renderButton={renderAccountItemButton}
                 />
               </Article>
