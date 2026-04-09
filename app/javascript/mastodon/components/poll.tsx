@@ -45,7 +45,7 @@ interface PollProps {
   disabled?: boolean;
 }
 
-export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
+export const Poll: React.FC<PollProps> = ({ pollId, disabled, status, lang }) => {
   // Third party hooks
   const poll = useAppSelector((state) => state.polls[pollId]);
   const identity = useIdentity();
@@ -153,7 +153,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
   const showResults = poll.voted || revealed || expired;
 
   return (
-    <div className='poll'>
+    <div className='poll' lang={lang}>
       <ul>
         {poll.options.map((option, i) => (
           <PollOption
