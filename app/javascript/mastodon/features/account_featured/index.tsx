@@ -179,7 +179,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
               </ItemList>
             ) : (
               <EmptyMessage
-                withImage={false}
+                withoutAddCollectionButton
                 blockedBy={blockedBy}
                 hidden={hidden}
                 suspended={suspended}
