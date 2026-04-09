@@ -1281,6 +1281,13 @@ ja:
     hint_html: 以後1時間はパスワードの再入力を求めません
     invalid_password: パスワードが間違っています
     prompt: 続行するにはパスワードを入力してください
+  color_scheme:
+    auto: 自動
+    dark: ダーク
+    light: ライト
+  contrast:
+    auto: 自動
+    high: 高
   crypto:
     errors:
       invalid_key: 有効なEd25519またはCurve25519キーではありません
@@ -1352,7 +1359,7 @@ ja:
   edit_profile:
     other: その他
   emoji_styles:
-    auto: オート
+    auto: 自動
     native: ネイティブ
     twemoji: Twemoji
   errors:
@@ -1853,13 +1860,18 @@ ja:
       direct: 非公開の返信
       private: フォロワーのみ
       public: 公開
+      public_long: すべての人 (Mastodon以外も含む)
+      unlisted: 非表示
+      unlisted_long: Mastodonの検索結果、トレンド、公開タイムラインに表示しない
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する
     enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
     exceptions: 例外
+    explanation: 自動削除は低い優先度で行われます。保持する期間を越えてから実際に削除されるまで遅延があるかもしれません。
     ignore_favs: 設定しない
     ignore_reblogs: 設定しない
     interaction_exceptions: インタラクションに基づく例外
+    interaction_exceptions_explanation: お気に入りやブーストの数が一度でも基準値に逹っした投稿は、その後数が減っても削除されません。
     keep_direct: ダイレクトメッセージを保持
     keep_direct_hint: ダイレクトメッセージを削除せずに残します
     keep_media: メディア付きの投稿を保持

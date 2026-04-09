@@ -134,6 +134,7 @@ sv:
         otp: 'Ange tvåfaktorskoden som genererades av din telefonapp, eller använd någon av dina återställningskoder:'
         webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, tryck på den.
       settings:
+        email_subscriptions: Om detta inaktiveras behålls befintliga prenumeranter men slutar skicka e-post.
         indexable: Din profilsida kan visas i sökresultat på Google, Bing och andra sökmotorer.
         show_application: Du kommer alltid att kunna se vilken app som publicerat ditt inlägg oavsett.
       tag:
@@ -153,6 +154,7 @@ sv:
         jurisdiction: Lista det land där vem som än betalar räkningarna bor. Om det är ett företag eller annan enhet, lista landet där det är inkorporerat, och staden, regionen, territoriet eller staten på lämpligt sätt.
         min_age: Bör inte vara lägre än den minimiålder som krävs enligt lagarna i din jurisdiktion.
       user:
+        chosen_languages: När detta markeras kommer endast inlägg på valda språk att visas i offentliga tidslinjer. Den här inställningen påverkar inte din hemtidslinje och dina listor.
         date_of_birth:
           one: Vi måste se till att du är minst %{count} för att använda %{domain}. Vi sparar inte denna information.
           other: Vi måste se till att du är minst %{count} för att använda %{domain}. Vi lagrar inte denna information.
@@ -355,6 +357,7 @@ sv:
         hint: Ytterligare information
         text: Regel
       settings:
+        email_subscriptions: Aktivera e-postregistreringar
         indexable: Inkludera profilsidan i sökmotorer
         show_application: Visa från vilket program du skickade ett inlägg
       tag:
