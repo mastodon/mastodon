@@ -105,6 +105,7 @@ export const MODAL_COMPONENTS = {
   'ACCOUNT_EDIT_IMAGE_ALT': accountEditModal('ImageAltModal'),
   'ACCOUNT_EDIT_IMAGE_DELETE': accountEditModal('ImageDeleteModal'),
   'ACCOUNT_EDIT_IMAGE_UPLOAD': accountEditModal('ImageUploadModal'),
+  'ACCOUNT_HIDE_FEATURED_TAB': () => import('@/mastodon/features/ui/components/confirmation_modals/hide_featured_tab').then(module => ({ default: module.ConfirmHideFeaturedTabModal })),
 };
 
 /** @arg {keyof import('@/mastodon/features/account_edit/modals')} type */
