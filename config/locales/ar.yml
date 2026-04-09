@@ -343,6 +343,10 @@ ar:
       unpublish: إلغاء النشر
       unpublished_msg: تم إلغاء نشر الإعلان بنجاح!
       updated_msg: تم تحديث الإعلان بنجاح!
+    collections:
+      accounts: الحسابات
+      contents: المحتوى
+      open: فتح
     critical_update_pending: تحديث حَرِج قيد الانتظار
     custom_emojis:
       assign_category: اسند فئة
@@ -790,6 +794,7 @@ ar:
       categories:
         administration: الإدارة
         devops: DevOps
+        email: البريد الإلكتروني
         invites: الدعوات
         moderation: الإشراف
         special: مميز
@@ -1331,6 +1336,7 @@ ar:
       invited_by: 'يمكنك الانضمام إلى %{domain} بفضل الدعوة التي تلقيتها من:'
       preamble: يتم تعيين هذه القوانين وفرضها من قبل مشرفي %{domain}.
       preamble_invited: قبل المتابعة، يرجى قراءة القواعد الأساسية التي وضعها مشرفو %{domain}.
+      read_more: اقرأ المزيد
       title: بعض القواعد الأساسية.
       title_invited: لقد تمت دعوتك.
     security: الأمان
@@ -1449,6 +1455,11 @@ ar:
       your_appeal_rejected: تم رفض طعنك
   edit_profile:
     other: أخرى
+  email_subscription_mailer:
+    confirmation:
+      subject: تأكيد عنوان بريدك الإلكتروني
+    notification:
+      create_account: إنشاء حساب ماستدون
   emoji_styles:
     auto: تلقائي
     native: محلي
@@ -1741,6 +1752,7 @@ ar:
       uses: عدد الاستخدامات
     title: دعوة أشخاص
   link_preview:
+    author_html: مِن %{name}
     potentially_sensitive_content:
       hide_button: إخفاء
   lists:
@@ -2126,6 +2138,8 @@ ar:
     past_preamble_html: لقد غيرنا شروط خدمتنا منذ زيارتكم الأخيرة. نشجعكم على مراجعة الشروط المحدثة.
     review_link: مراجعة شروط الخدمة
     title: شروط خدمة النطاق %{domain} ستتغير
+  themes:
+    default: ماستدون
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

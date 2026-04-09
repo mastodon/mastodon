@@ -1431,12 +1431,29 @@ sv:
       title: Få e-postuppdateringar från %{name}?
     notification:
       create_account: Skapa ett Mastodon-konto
+      footer:
+        privacy_html: E-postmeddelanden skickas från %{domain}, en server som drivs av Mastodon. För att förstå hur denna server behandlar dina personuppgifter, se <a href="%{privacy_policy_path}">sekretesspolicy:n</a>.
+        reason_for_email_html: Du får detta e-postmeddelande eftersom du valt att ta emot e-postuppdateringar från %{name}. Vill du inte ta emot dessa e-postmeddelanden? <a href="%{unsubscribe_path}">Avprenumerera</a>
+      interact_with_this_post:
+        one: Interagera med detta inlägg och upptäck mer som det.
+        other: Interagera med dessa inlägg och upptäck mer.
       subject:
         plural: Nya inlägg från %{name}
         singular: 'Nytt inlägg: "%{excerpt}"'
       title:
         plural: Nya inlägg från %{name}
         singular: 'Nytt inlägg: "%{excerpt}"'
+  email_subscriptions:
+    active: Aktiv
+    confirmations:
+      show:
+        changed_your_mind: Ändrade du dig?
+        success_html: Du kommer nu att börja få e-postmeddelanden när %{name} publicerar nya inlägg. Lägg till %{sender} till dina kontakter så att dessa inlägg inte hamnar i din skräppostmapp.
+        title: Du är registrerad
+        unsubscribe: Avprenumerera
+    inactive: Inaktiv
+    status: Status
+    subscribers: Prenumeranter
   emoji_styles:
     auto: Automatiskt
     native: Ursprunglig
@@ -1806,6 +1823,8 @@ sv:
     posting_defaults: Standardinställningar för inlägg
     public_timelines: Publika tidslinjer
   privacy:
+    email_subscriptions: Skicka inlägg via e-post
+    email_subscriptions_hint_html: Lägg till ett e-postregistreringsformulär till din profil som visas för utloggade användare. När en besökare anger sin e-postadress och väljer det kommer Mastodon att skicka e-postuppdateringar för dina offentliga inlägg.
     hint_html: "<strong>Anpassa hur du vill att din profil och dina inlägg ska hittas.</strong> En mängd funktioner i Mastodon kan hjälpa dig att nå en bredare publik när den är aktiverad. Ta en stund att granska dessa inställningar för att se att de passar ditt användningsfall."
     privacy: Integritet
     privacy_hint_html: Kontrollera hur mycket du vill avslöja till förmån för andra. Andra upptäcker intressanta profiler och coola appar genom att bläddra bland vad andra följer och se vilka appar de lägger upp från, men du kanske föredrar att hålla det dolt.
@@ -2069,6 +2088,28 @@ sv:
     resume_app_authorization: Fortsätt app-autentisering
     role_requirement: "%{domain} kräver att du ställer in tvåfaktorsautentisering innan du kan använda Mastodon."
     webauthn: Säkerhetsnycklar
+  unsubscriptions:
+    create:
+      action: Gå till serverns hemsida
+      email_subscription:
+        confirmation_html: Du kommer inte längre att få e-post från %{name}.
+      title: Du har avprenumererat
+      user:
+        confirmation_html: Du får inte längre %{type} från Mastodon på %{domain}.
+    notification_emails:
+      favourite: aviseringsmejl för favoriserade inlägg
+      follow: aviseringsmejl för följda inlägg
+      follow_request: aviseringsmejl för följdförfrågningar
+      mention: aviseringsmejl för inlägg där du nämns
+      reblog: aviseringsmejl för förhöjda inlägg
+    show:
+      action: Avprenumerera
+      email_subscription:
+        confirmation_html: Du kommer att sluta ta emot e-post när detta konto publicerar nya inlägg.
+        title: Avprenumerera från %{name}?
+      user:
+        confirmation_html: Du kommer sluta ta emot %{type} från Mastodon på %{domain}.
+        title: Avprenumerera från %{type}?
   user_mailer:
     announcement_published:
       description: 'Administratörerna på %{domain} gör ett tillkännagivande:'

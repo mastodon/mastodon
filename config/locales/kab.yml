@@ -38,6 +38,7 @@ kab:
         label: Snifel tamlilt
         no_role: War tamlilt
         title: Snifel tamlilt n %{username}
+      collections: Tilkensa
       confirm: Sentem
       confirmed: Yettwasentem
       confirming: Asentem
@@ -209,6 +210,10 @@ kab:
       scheduled_for: Yettusɣiwsen i %{time}
       scheduled_msg: Tamselɣut tettusɣiwes i usufeɣ!
       title: Ilɣa
+    collections:
+      accounts: Imiḍanen
+      contents: Agbur
+      open: Ldi
     custom_emojis:
       assign_category: Efk taggayt
       by_domain: Taɣult
@@ -297,6 +302,7 @@ kab:
           confirm: Sentem
         save: Sekles
         sign_in: Qqen
+        status: Addad
       title: FASP
     follow_recommendations:
       language: I tutlayt
@@ -377,6 +383,7 @@ kab:
       are_you_sure: Tetḥaq-eḍ?
       cancel: Sefsex
       category: Taggayt
+      collections: Tilkensa (%{count})
       comment:
         none: Ula yiwen
       confirm: Sentem
@@ -407,8 +414,10 @@ kab:
         other: "%{count} n iseqdacen"
       categories:
         administration: Tadbelt
+        email: Imayl
         invites: Iɛeṛṛuḍen
         moderation: Aseɣyed
+        special: Imeẓli
       delete: Kkes
       everyone: Tisirag timezwura
       privileges:
@@ -425,6 +434,8 @@ kab:
       delete: Kkes
       edit: Ẓreg alugen
       empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
+      move_down: Sekḥer d akessar
+      move_up: Sekḥer d asawen
       title: Ilugan n uqeddac
       translation: Tasuqilt
       translations: Tisuqilin
@@ -442,6 +453,9 @@ kab:
         all: I medden akk
         disabled: Ɣef ula yiwen
         users: Ɣef yimseqdacen idiganen i yeqqnen
+      feed_access:
+        modes:
+          public: Yal yiwen
       landing_page:
         values:
           about: Ɣef
@@ -474,6 +488,7 @@ kab:
       metadata: Iɣefisefka
       open: Ldi tasuffeɣt
       quotes: Tinebdurin
+      reblogs: Izuzar
       status_title: Tasuffeɣt sɣur @%{name}
       title: Tisuffaɣ n umiḍan - @%{name}
       trending: Inezzaɣ
@@ -493,6 +508,8 @@ kab:
       software_version_patch_check:
         action: Wali ileqqman yellan
     tags:
+      moderation:
+        title: Addad
       name: Isem
       newest: Amaynut
       oldest: Aqbur
@@ -616,6 +633,7 @@ kab:
       invited_by: 'Tzemreḍ ad tkecmeḍ ɣer %{domain} s tanemmirt i tinnubga i d-teṭṭfeḍ sɣur :'
       preamble: Tiyi ttwasemmant-d yerna ttwaḍemnent sɣur imḍebbren n %{domain}.
       preamble_invited: Uqbel ad tkemmleḍ, ttxil-k·m ẓer ilugan i d-sbedden yimkariyen n %{domain}.
+      read_more: Ɣeṛ ugar
       title: Kra n yilugan igejdanen.
       title_invited: Tettwaɛerḍeḍ.
     security: Taɣellist
@@ -642,6 +660,10 @@ kab:
     confirm: Kemmel
     invalid_password: Yir awal uffir
     prompt: Sentem awal uffir send ad tkemleḍ
+  color_scheme:
+    auto: Awurman
+  contrast:
+    auto: Awurman
   crypto:
     errors:
       invalid_key: maci d tasarut tameɣtut n Ed25519 neɣ Curve25519
@@ -678,11 +700,26 @@ kab:
         none: Ɣur-wat
   edit_profile:
     other: Ayen nniḍen
+  email_subscription_mailer:
+    confirmation:
+      action: Sentem tansa imayl
+      subject: Sentem tansa-k·m imayl
+    notification:
+      create_account: Snulfu-d amiḍan Mastodon
+      subject:
+        plural: Tisuffaɣ timaynutin sɣur %{name}
+      title:
+        plural: Tisuffaɣ timaynutin sɣur %{name}
+  email_subscriptions:
+    inactive: D arurmid
+    status: Addad
   emoji_styles:
     auto: Awurman
+    native: Amlal
     twemoji: Twemoji
   errors:
     '404': Asebter i tettnadiḍ ulac-it da.
+    '429': Aṭas n tuttriwin
     '500':
       title: Asebter-ayi d arameɣtu
   existing_username_validator:
@@ -802,6 +839,7 @@ kab:
       action: Err
       body: 'Yuder-ik·ikem-id %{name} deg:'
       subject: Yuder-ik·ikem-id %{name}
+      title: Abadar amaynut
     quote:
       title: Tabdert tamaynut
     reblog:
@@ -816,6 +854,7 @@ kab:
         units:
           billion: AṬ
           million: A
+          quadrillion: K
           thousand: GM
           trillion: Am
   otp_authentication:
@@ -826,6 +865,9 @@ kab:
     next: Ɣer zdat
     older: Aqbuṛ
     prev: Win iɛeddan
+    truncate: "&hellip;"
+  polls:
+    vote: Dɣer
   preferences:
     other: Wiyaḍ
     posting_defaults: Iɣewwaṛen n usuffeɣ imezwura
@@ -1030,3 +1072,4 @@ kab:
     create:
       success: Tasarut-ik·im n tɣellist tettwarna akken iwata.
     delete: Kkes
+    nickname: Meffer isem
