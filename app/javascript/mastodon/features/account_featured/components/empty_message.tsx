@@ -21,7 +21,7 @@ interface EmptyMessageProps {
   hidden: boolean;
   blockedBy: boolean;
   accountId?: string;
-  withImage?: boolean;
+  withoutAddCollectionButton?: boolean;
 }
 
 export const EmptyMessage: React.FC<EmptyMessageProps> = ({
@@ -29,7 +29,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
   suspended,
   hidden,
   blockedBy,
-  withImage = true,
+  withoutAddCollectionButton,
 }) => {
   const { acct } = useParams<{ acct?: string }>();
   const me = useCurrentAccountId();
@@ -57,7 +57,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
 
   const hasCollections = areCollectionsEnabled();
 
-  const image = withImage && <ElephantImage />;
+  const image = <ElephantImage />;
 
   if (me === accountId) {
     if (hasCollections) {
@@ -78,12 +78,14 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
             />
           }
         >
-          <Link to='/collections/new' className='button'>
-            <FormattedMessage
-              id='empty_column.account_featured_self.no_collections_button'
-              defaultMessage='Create a collection'
-            />
-          </Link>
+          {!withoutAddCollectionButton && (
+            <Link to='/collections/new' className='button'>
+              <FormattedMessage
+                id='empty_column.account_featured_self.no_collections_button'
+                defaultMessage='Create a collection'
+              />
+            </Link>
+          )}
           <Button secondary onClick={confirmHideFeaturedTab}>
             <FormattedMessage
               id='empty_column.account_featured_self.no_collections_hide_tab'
