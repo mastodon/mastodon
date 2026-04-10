@@ -166,7 +166,13 @@ class StatusContent extends PureComponent {
 
   handleElement = (element, { key, ...props }, children) => {
     if (element instanceof HTMLAnchorElement) {
-      const mention = this.props.status.get('mentions').find(item => compareUrls(element.href, item.get('url')));
+      const mention = this.props.status.get('mentions').find(
+        item => compareUrls(element.href, item.get('url'))
+      );
+      const taggedCollection = this.props.status.get('tagged_collections').find(
+        item => element.href.includes(item.get('id'))
+      )
+
       return (
         <HandledLink
           {...props}
@@ -174,6 +180,7 @@ class StatusContent extends PureComponent {
           text={element.innerText}
           hashtagAccountId={this.props.status.getIn(['account', 'id'])}
           mention={mention?.toJSON()}
+          collection={taggedCollection?.toJSON()}
           key={key}
         >
           {children}
