@@ -16,6 +16,6 @@ class NotifyOfCollectionUpdateService
     return false if collection.previously_new_record?
 
     # Only notify of change to description or name
-    %i(description description_html name).any? { |attr| collection.attribute_previously_changed?(attr) }
+    %i(description description_html name sensitive tag_id).any? { |attr| collection.attribute_previously_changed?(attr) }
   end
 end
