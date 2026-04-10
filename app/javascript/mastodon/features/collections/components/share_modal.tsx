@@ -8,8 +8,6 @@ import { me } from '@/mastodon/initial_state';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { changeCompose, focusCompose } from 'mastodon/actions/compose';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { AvatarById } from 'mastodon/components/avatar';
-import { AvatarGroup } from 'mastodon/components/avatar_group';
 import { Button } from 'mastodon/components/button';
 import { CopyLinkField } from 'mastodon/components/form_fields';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -20,8 +18,7 @@ import {
 } from 'mastodon/components/modal_shell';
 import { useAppDispatch } from 'mastodon/store';
 
-import { AuthorNote } from '../detail';
-
+import { CollectionPreviewCard } from './collection_preview_card';
 import classes from './share_modal.module.scss';
 
 const messages = defineMessages({
@@ -96,24 +93,13 @@ export const CollectionShareModal: React.FC<{
         />
 
         <div className={classes.preview}>
-          <div>
-            <h2 className={classes.previewHeading}>{collection.name}</h2>
-            <AuthorNote id={collection.account_id} />
-          </div>
-          <AvatarGroup>
-            {collection.items.slice(0, 5).map(({ account_id }) => {
-              if (!account_id) return;
-              return (
-                <AvatarById key={account_id} accountId={account_id} size={28} />
-              );
-            })}
-          </AvatarGroup>
+          <CollectionPreviewCard collection={collection} />
         </div>
 
         <CopyLinkField
           label={intl.formatMessage({
             id: 'collection.share_modal.share_link_label',
-            defaultMessage: 'Invite share link',
+            defaultMessage: 'Share link',
           })}
           value={collectionLink}
         />
