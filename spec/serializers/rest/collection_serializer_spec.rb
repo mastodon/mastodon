@@ -29,6 +29,7 @@ RSpec.describe REST::CollectionSerializer do
     expect(subject)
       .to include(
         'account_id' => collection.account_id.to_s,
+        'uri' => include('2342'),
         'id' => '2342',
         'name' => 'Exquisite follows',
         'description' => 'Always worth a follow',
