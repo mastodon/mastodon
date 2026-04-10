@@ -68,7 +68,7 @@ RSpec.describe CreateCollectionService do
 
             expect(LocalNotificationWorker)
               .to have_enqueued_sidekiq_job
-              .with(account_ids.last, anything, 'CollectionItem', 'added_to_collection')
+              .with(account_ids.last.id, anything, 'CollectionItem', 'added_to_collection')
           end
         end
 
