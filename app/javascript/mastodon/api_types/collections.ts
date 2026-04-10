@@ -11,7 +11,7 @@ export interface ApiCollectionJSON {
   account_id: string;
 
   id: string;
-  uri: string | null;
+  uri: string;
   local: boolean;
   item_count: number;
 
