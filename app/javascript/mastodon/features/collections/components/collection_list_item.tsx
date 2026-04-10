@@ -1,69 +1,30 @@
 import { useId } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
-import { CollectionMenu } from '@/mastodon/features/collections/components/collection_menu';
-import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
-import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { AvatarById } from 'mastodon/components/avatar';
-import { useAccountHandle } from 'mastodon/components/display_name/default';
-import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { Article } from 'mastodon/components/scrollable_list/components';
-import { useAccount } from 'mastodon/hooks/useAccount';
-import { domain } from 'mastodon/initial_state';
+import type { CollectionLockupProps } from 'mastodon/features/collections/components/collection_lockup';
+import { CollectionLockup } from 'mastodon/features/collections/components/collection_lockup';
+import { CollectionMenu } from 'mastodon/features/collections/components/collection_menu';
 
 import classes from './collection_list_item.module.scss';
 
-export const AvatarGrid: React.FC<{
-  accountIds: (string | undefined)[];
-  sensitive?: boolean;
-}> = ({ accountIds: ids, sensitive }) => {
-  const avatarIds = [ids[0], ids[1], ids[2], ids[3]];
-  return (
-    <div
-      className={classNames(
-        classes.avatarGrid,
-        sensitive ? classes.avatarGridSensitive : null,
-      )}
-    >
-      {avatarIds.map((id) => (
-        <AvatarById
-          animate={false}
-          key={id}
-          accountId={id}
-          className={classes.avatar}
-          size={25}
-        />
-      ))}
-      {sensitive && <WarningIcon className={classes.avatarSensitiveBadge} />}
-    </div>
-  );
-};
-
-export const CollectionListItem: React.FC<{
-  collection: ApiCollectionJSON;
+interface CollectionListItemProps extends CollectionLockupProps {
   withoutBorder?: boolean;
-  withAuthorHandle?: boolean;
-  withTimestamp?: boolean;
   positionInList: number;
   listSize: number;
-}> = ({
+}
+
+export const CollectionListItem: React.FC<CollectionListItemProps> = ({
   collection,
   withoutBorder,
-  withAuthorHandle = true,
-  withTimestamp,
   positionInList,
   listSize,
+  ...otherProps
 }) => {
-  const { id, name } = collection;
   const uniqueId = useId();
   const linkId = `${uniqueId}-link`;
   const infoId = `${uniqueId}-info`;
-  const authorAccount = useAccount(collection.account_id);
-  const authorHandle = useAccountHandle(authorAccount, domain);
 
   return (
     <Article
@@ -77,57 +38,7 @@ export const CollectionListItem: React.FC<{
       aria-posinset={positionInList}
       aria-setsize={listSize}
     >
-      <div className={classes.content}>
-        <AvatarGrid
-          accountIds={collection.items.map((item) => item.account_id)}
-          sensitive={collection.sensitive}
-        />
-        <div>
-          <h2 id={linkId}>
-            <Link to={`/collections/${id}`} className={classes.link}>
-              {name}
-            </Link>
-          </h2>
-          <ul className={classes.info} id={infoId}>
-            {collection.sensitive && (
-              <li className='sr-only'>
-                <FormattedMessage
-                  id='collections.sensitive'
-                  defaultMessage='Sensitive'
-                />
-              </li>
-            )}
-            {withAuthorHandle && authorAccount && (
-              <FormattedMessage
-                id='collections.by_account'
-                defaultMessage='by {account_handle}'
-                values={{
-                  account_handle: authorHandle,
-                }}
-                tagName='li'
-              />
-            )}
-            <FormattedMessage
-              id='collections.account_count'
-              defaultMessage='{count, plural, one {# account} other {# accounts}}'
-              values={{ count: collection.item_count }}
-              tagName='li'
-            />
-            {withTimestamp && (
-              <FormattedMessage
-                id='collections.last_updated_at'
-                defaultMessage='Last updated: {date}'
-                values={{
-                  date: (
-                    <RelativeTimestamp timestamp={collection.updated_at} long />
-                  ),
-                }}
-                tagName='li'
-              />
-            )}
-          </ul>
-        </div>
-      </div>
+      <CollectionLockup collection={collection} {...otherProps} />
 
       <CollectionMenu
         context='list'
