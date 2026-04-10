@@ -148,11 +148,15 @@ export const AccountListItem: React.FC<Props> = ({
               />
             }
           >
-            <RelativeTimestamp
-              long
-              timestamp={account.last_status_at}
-              noFuture
-            />
+            {account.last_status_at ? (
+              <RelativeTimestamp
+                long
+                timestamp={account.last_status_at}
+                noFuture
+              />
+            ) : (
+              '-'
+            )}
           </NumberFieldsItem>
         )}
         {firstVerifiedField && (

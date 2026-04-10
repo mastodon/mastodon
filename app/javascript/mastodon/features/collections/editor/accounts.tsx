@@ -61,9 +61,11 @@ const AddedAccountItem: React.FC<{
     onRemove(accountId);
   }, [accountId, onRemove]);
 
+  const lastStatusAt = account?.last_status_at;
+
   const lastPostHint = useMemo(
     () =>
-      isOlderThanAWeek(account?.last_status_at) && (
+      (!lastStatusAt || isOlderThanAWeek(lastStatusAt)) && (
         <Badge
           label={
             <FormattedMessage
@@ -75,7 +77,7 @@ const AddedAccountItem: React.FC<{
           className={classes.accountBadge}
         />
       ),
-    [account?.last_status_at],
+    [lastStatusAt],
   );
 
   return (
