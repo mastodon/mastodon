@@ -208,7 +208,7 @@ class Request
       return
     end
 
-    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding'), @verb, Addressable::URI.parse(request.uri))
+    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding', 'Accept'), @verb, Addressable::URI.parse(request.uri))
     request.headers['Signature'] = signature_value
   end
 
@@ -295,7 +295,7 @@ class Request
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
             addresses = dns.getaddresses(host)
-            addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
+            addresses = addresses.grep(Resolv::IPv6).take(2) + addresses.grep_v(Resolv::IPv6).take(2)
           end
         end
 

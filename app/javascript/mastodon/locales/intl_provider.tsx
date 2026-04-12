@@ -50,7 +50,6 @@ export const IntlProvider: React.FC<
       locale={locale}
       messages={messages}
       onError={onProviderError}
-      textComponent='span'
       {...props}
     >
       {children}

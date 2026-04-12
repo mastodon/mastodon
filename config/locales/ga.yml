@@ -807,6 +807,7 @@ ga:
       categories:
         administration: Riar
         devops: DevOps
+        email: Ríomhphost
         invites: Cuirí
         moderation: Measarthacht
         special: Speisialta
@@ -826,6 +827,8 @@ ga:
         administrator_description: Seachnóidh úsáideoirí a bhfuil an cead seo acu gach cead
         delete_user_data: Scrios Sonraí Úsáideora
         delete_user_data_description: Ligeann sé d'úsáideoirí sonraí úsáideoirí eile a scriosadh gan mhoill
+        invite_bypass_approval: Tabhair cuireadh d'úsáideoirí gan athbhreithniú
+        invite_bypass_approval_description: Ceadaíonn sé do dhaoine a bhfuil cuireadh tugtha dóibh chuig an bhfreastalaí ag na húsáideoirí seo ceadú modhnóireachta a sheachaint
         invite_users: Tabhair cuireadh d'Úsáideoirí
         invite_users_description: Ligeann sé d'úsáideoirí cuireadh a thabhairt do dhaoine nua chuig an bhfreastalaí
         manage_announcements: Bainistigh Fógraí
@@ -836,6 +839,8 @@ ga:
         manage_blocks_description: Ligeann sé d'úsáideoirí bac a chur ar sholáthraithe ríomhphoist agus seoltaí IP
         manage_custom_emojis: Bainistigh Emojis Saincheaptha
         manage_custom_emojis_description: Ligeann sé d'úsáideoirí emojis saincheaptha a bhainistiú ar an bhfreastalaí
+        manage_email_subscriptions: Bainistigh Síntiúis Ríomhphoist
+        manage_email_subscriptions_description: Ceadaigh d’úsáideoirí liostáil le húsáideoirí leis an gcead seo trí ríomhphost
         manage_federation: Cónaidhm a bhainistiú
         manage_federation_description: Ligeann sé d’úsáideoirí cónaidhm a bhlocáil nó a cheadú le fearainn eile, agus inseachadacht a rialú
         manage_invites: Bainistigh Cuirí
@@ -1294,7 +1299,6 @@ ga:
   application_mailer:
     notification_preferences: Athraigh roghanna ríomhphoist
     salutation: "%{name},"
-    settings: 'Athraigh sainroghanna ríomhphoist: %{link}'
     unsubscribe: Díliostáil
     view: 'Amharc:'
     view_profile: Féach ar phróifíl
@@ -1344,6 +1348,7 @@ ga:
     progress:
       confirm: Deimhnigh ríomhphost
       details: Do chuid sonraí
+      list: Dul chun cinn clárúcháin
       review: Ár léirmheas
       rules: Glac le rialacha
     providers:
@@ -1359,6 +1364,7 @@ ga:
       invited_by: 'Is féidir leat páirt a ghlacadh i %{domain} a bhuíochas leis an gcuireadh a fuair tú ó:'
       preamble: Socraíonn agus cuireann na modhnóirí %{domain} iad seo i bhfeidhm.
       preamble_invited: Sula dtéann tú ar aghaidh, smaoinigh le do thoil ar na bunrialacha atá socraithe ag modhnóirí %{domain}.
+      read_more: Léigh tuilleadh
       title: Roinnt bunrialacha.
       title_invited: Tá cuireadh faighte agat.
     security: Slándáil
@@ -1477,9 +1483,45 @@ ga:
       your_appeal_pending: Chuir tú achomharc isteach
       your_appeal_rejected: Diúltaíodh do d'achomharc
   edit_profile:
-    basic_information: Eolas bunúsach
-    hint_html: "<strong>Saincheap a bhfeiceann daoine ar do phróifíl phoiblí agus in aice le do phostálacha.</strong> Is dóichí go leanfaidh daoine eile ar ais tú agus go n-idirghníomhóidh siad leat nuair a bhíonn próifíl líonta agus pictiúr próifíle agat."
     other: Eile
+    redesign_body: Is féidir rochtain a fháil ar eagarthóireacht próifíle go díreach ón leathanach próifíle anois.
+    redesign_button: Téigh ann
+    redesign_title: Tá taithí nua eagarthóireachta próifíle ann
+  email_subscription_mailer:
+    confirmation:
+      action: Deimhnigh an seoladh ríomhphoist
+      instructions_to_confirm: Deimhnigh gur mhaith leat ríomhphoist a fháil ó %{name} (@%{acct}) nuair a fhoilsíonn siad poist nua.
+      instructions_to_ignore: Mura bhfuil tú cinnte cén fáth ar fuair tú an ríomhphost seo, is féidir leat é a scriosadh. Ní bheidh tú síntiúsáilte mura gcliceálann tú ar an nasc thuas.
+      subject: Deimhnigh do sheoladh ríomhphoist
+      title: Nuashonruithe ríomhphoist a fháil ó %{name}?
+    notification:
+      create_account: Cruthaigh cuntas Mastodon
+      footer:
+        privacy_html: Seoltar ríomhphoist ó %{domain}, freastalaí atá faoi thiomáint ag Mastodon. Chun tuiscint a fháil ar an gcaoi a bpróiseálann an freastalaí seo do shonraí pearsanta, féach ar an <a href="%{privacy_policy_path}">Polasaí Príobháideachais</a>.
+        reason_for_email_html: Tá an ríomhphost seo á fháil agat mar gur roghnaigh tú nuashonruithe ríomhphoist a fháil ó %{name}. Nach mian leat na ríomhphoist seo a fháil? <a href="%{unsubscribe_path}">Díliostáil</a>
+      interact_with_this_post:
+        few: Idirghníomhaigh leis na poist seo agus faigh amach tuilleadh.
+        many: Idirghníomhaigh leis na poist seo agus faigh amach tuilleadh.
+        one: Idirghníomhaigh leis an bpost seo agus faigh amach níos mó cosúil leis.
+        other: Idirghníomhaigh leis na poist seo agus faigh amach tuilleadh.
+        two: Idirghníomhaigh leis na poist seo agus faigh amach tuilleadh.
+      subject:
+        plural: Poist nua ó %{name}
+        singular: 'Post nua: "%{excerpt}"'
+      title:
+        plural: Poist nua ó %{name}
+        singular: 'Post nua: "%{excerpt}"'
+  email_subscriptions:
+    active: Gníomhach
+    confirmations:
+      show:
+        changed_your_mind: Ar athraigh tú d’intinn?
+        success_html: Tosóidh tú ag fáil ríomhphoist anois nuair a fhoilseoidh %{name} poist nua. Cuir %{sender} le do theagmhálaithe ionas nach gcríochnóidh na poist seo i do fhillteán Turscair.
+        title: Tá tú cláraithe
+        unsubscribe: Díliostáil
+    inactive: Neamhghníomhach
+    status: Stádas
+    subscribers: Síntiúsóirí
   emoji_styles:
     auto: Uath
     native: Dúchasach
@@ -1518,10 +1560,8 @@ ga:
     mutes: Balbhaíonn tú
     storage: Stóráil meáin
   featured_tags:
-    add_new: Cuir nua leis
     errors:
       limit: Tá uaslíon na hashtags le feiceáil agat cheana féin
-    hint_html: "<strong>Áirigh na haischlibeanna is tábhachtaí ar do phróifíl.</strong> Uirlis iontach chun súil a choinneáil ar do shaothair chruthaitheacha agus do thionscadail fhadtéarmacha, taispeántar haischlibeanna faoi thrácht in áit fheiceálach ar do phróifíl agus ceadaíonn siad rochtain thapa ar do phostálacha féin."
   filters:
     contexts:
       account: Próifílí
@@ -1774,21 +1814,6 @@ ga:
     failed_sign_in_html: Theip ar iarracht síniú isteach le %{method} ó %{ip} (%{browser})
     successful_sign_in_html: D'éirigh le síniú isteach le %{method} ó %{ip} (%{browser})
     title: Stair fíordheimhnithe
-  mail_subscriptions:
-    unsubscribe:
-      action: Sea, díliostáil
-      complete: Gan liostáil
-      confirmation_html: An bhfuil tú cinnte gur mhaith leat díliostáil ó %{type} a fháil do Mastodon ar %{domain} chuig do ríomhphost ag %{email}? Is féidir leat liostáil arís i gcónaí ó do <a href="%{settings_path}">socruithe fógra ríomhphoist</a>.
-      emails:
-        notification_emails:
-          favourite: ríomhphoist fógra is fearr leat
-          follow: leanúint ríomhphoist fógra
-          follow_request: lean ríomhphoist iarratais
-          mention: trácht ar ríomhphoist fógra
-          reblog: ríomhphoist fógraí a threisiú
-      resubscribe_html: Má dhíliostáil tú de dhearmad, is féidir leat liostáil arís ó do <a href="%{settings_path}">socruithe fógra ríomhphoist</a>.
-      success_html: Ní bhfaighidh tú %{type} le haghaidh Mastodon ar %{domain} chuig do ríomhphost ag %{email} a thuilleadh.
-      title: Díliostáil
   media_attachments:
     validations:
       images_and_video: Ní féidir físeán a cheangal le postáil a bhfuil íomhánna ann cheana féin
@@ -1926,6 +1951,8 @@ ga:
     posting_defaults: Réamhshocruithe á bpostáil
     public_timelines: Amlínte poiblí
   privacy:
+    email_subscriptions: Seol poist trí ríomhphost
+    email_subscriptions_hint_html: Cuir foirm chlárúcháin ríomhphoist le do phróifíl a thaispeánfar d’úsáideoirí atá logáilte amach. Nuair a chuireann cuairteoirí a seoladh ríomhphoist isteach agus a roghnaíonn siad isteach, seolfaidh Mastodon nuashonruithe ríomhphoist chugat le haghaidh do phoist phoiblí.
     hint_html: "<strong>Saincheap conas is mian leat do phróifíl agus do phostálacha a fháil.</strong> Is féidir le gnéithe éagsúla i Mastodon cabhrú leat teacht ar lucht féachana níos leithne nuair atá tú cumasaithe. Tóg nóiméad chun athbhreithniú a dhéanamh ar na socruithe seo chun a chinntiú go n-oireann siad do do chás úsáide."
     privacy: Príobháideacht
     privacy_hint_html: Rialú ar an méid is mian leat a nochtadh ar mhaithe le daoine eile. Aimsíonn daoine próifílí suimiúla agus aipeanna fionnuara trí na haipeanna seo a leanas a bhrabhsáil agus a fheiceáil cé na haipeanna a bpostálann siad, ach b’fhéidir gurbh fhearr leat é a choinneáil faoi cheilt.
@@ -2201,6 +2228,28 @@ ga:
     resume_app_authorization: Údarú iarratais atosú
     role_requirement: Éilíonn %{domain} ort Fíordheimhniú Dhá Fhachtóir a shocrú sula bhféadfaidh tú Mastodon a úsáid.
     webauthn: Eochracha slándála
+  unsubscriptions:
+    create:
+      action: Téigh go dtí leathanach baile an fhreastalaí
+      email_subscription:
+        confirmation_html: Ní bhfaighidh tú ríomhphoist ó %{name} a thuilleadh.
+      title: Tá tú díliostáilte
+      user:
+        confirmation_html: Ní bhfaighidh tú %{type} ó Mastodon ar %{domain} a thuilleadh.
+    notification_emails:
+      favourite: ríomhphoist fógra is fearr leat
+      follow: lean ríomhphoist fógra
+      follow_request: ríomhphoist iarratais leantach
+      mention: ríomhphoist fógraí tráchta
+      reblog: ríomhphoist fógraí a threisiú
+    show:
+      action: Díliostáil
+      email_subscription:
+        confirmation_html: Ní bheidh ríomhphoist á bhfáil agat a thuilleadh nuair a fhoilseoidh an cuntas seo poist nua.
+        title: Díliostáil ó %{name}?
+      user:
+        confirmation_html: Scoirfidh tú de %{type} a fháil ó Mastodon ar %{domain}.
+        title: Díliostáil ó %{type}?
   user_mailer:
     announcement_published:
       description: 'Tá riarthóirí %{domain} ag déanamh fógra:'

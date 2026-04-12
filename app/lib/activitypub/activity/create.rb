@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
+  DISTRIBUTE_DELAY = 1.minute
+  PROCESSING_DELAY = (30.seconds)..(10.minutes)
+
   def perform
     @account.schedule_refresh_if_stale!
 
@@ -42,11 +45,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status
     @tags                 = []
     @mentions             = []
+    @tagged_objects       = []
     @unresolved_mentions  = []
     @silenced_account_ids = []
     @params               = {}
     @quote                = nil
     @quote_uri            = nil
+    @quote_approval_uri   = nil
 
     process_status_params
     process_tags
@@ -56,6 +61,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ApplicationRecord.transaction do
       @status = Status.create!(@params.merge(quote: @quote))
       attach_tags(@status)
+      attach_tagged_objects(@status)
       attach_mentions(@status)
       attach_counts(@status)
     end
@@ -70,7 +76,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def distribute
     # Spread out crawling randomly to avoid DDoSing the link
-    LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
+    LinkCrawlWorker.perform_in(rand(DISTRIBUTE_DELAY), @status.id)
 
     # Distribute into home and list feeds and notify mentioned accounts
     ::DistributionWorker.perform_async(@status.id, { 'silenced_account_ids' => @silenced_account_ids }) if @options[:override_timestamps] || @status.within_realtime_window?
@@ -181,6 +187,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
+  def attach_tagged_objects(status)
+    @tagged_objects.each do |tagged_object|
+      tagged_object.status = status
+      tagged_object.save
+    end
+  end
+
   def attach_mentions(status)
     @mentions.each do |mention|
       mention.status = status
@@ -210,6 +223,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_mention tag
       elsif equals_or_includes?(tag['type'], 'Emoji')
         process_emoji tag
+      elsif equals_or_includes?(tag['type'], 'FeaturedCollection')
+        process_tagged_collection tag
       end
     end
   end
@@ -218,9 +233,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @quote_uri = @status_parser.quote_uri
     return unless @status_parser.quote?
 
-    approval_uri = @status_parser.quote_approval_uri
-    approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
-    @quote = Quote.new(account: @account, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?, state: @status_parser.deleted_quote? ? :deleted : :pending)
+    @quote_approval_uri = @status_parser.quote_approval_uri
+    @quote_approval_uri = nil if unsupported_uri_scheme?(@quote_approval_uri) || TagManager.instance.local_url?(@quote_approval_uri)
+    @quote = Quote.new(account: @account, approval_uri: nil, legacy: @status_parser.legacy_quote?, state: @status_parser.deleted_quote? ? :deleted : :pending)
   end
 
   def process_hashtag(tag)
@@ -266,6 +281,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
+  def process_tagged_collection(tag)
+    return if tag['id'].blank?
+
+    # TODO: We probably want to resolve unknown objects and push them to an `@unresolved_tagged_objects` on failure
+    collection = ActivityPub::TagManager.instance.uri_to_resource(tag['id'], Collection)
+
+    @tagged_objects << TaggedObject.new(uri: ActivityPub::TagManager.instance.uri_for(collection), object: collection, ap_type: 'FeaturedCollection') if collection.present?
+  end
+
   def process_attachments
     return [] if @object['attachment'].nil?
 
@@ -294,7 +318,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         media_attachment.download_thumbnail!
         media_attachment.save
       rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-        RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+        RedownloadMediaWorker.perform_in(rand(PROCESSING_DELAY), media_attachment.id)
       rescue Seahorse::Client::NetworkingError => e
         Rails.logger.warn "Error storing media attachment: #{e}"
         RedownloadMediaWorker.perform_async(media_attachment.id)
@@ -350,7 +374,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def resolve_unresolved_mentions(status)
     @unresolved_mentions.uniq.each do |uri|
-      MentionResolveWorker.perform_in(rand(30...600).seconds, status.id, uri, { 'request_id' => @options[:request_id] })
+      MentionResolveWorker.perform_in(rand(PROCESSING_DELAY), status.id, uri, { 'request_id' => @options[:request_id] })
     end
   end
 
@@ -371,9 +395,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if @quote.nil?
 
     embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @json['context'])
-    ActivityPub::VerifyQuoteService.new.call(@quote, fetchable_quoted_uri: @quote_uri, prefetched_quoted_object: embedded_quote, request_id: @options[:request_id], depth: @options[:depth])
+    ActivityPub::VerifyQuoteService.new.call(@quote, @quote_approval_uri, fetchable_quoted_uri: @quote_uri, prefetched_quoted_object: embedded_quote, request_id: @options[:request_id], depth: @options[:depth])
   rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, @quote.id, @quote_uri, { 'request_id' => @options[:request_id] })
+    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(PROCESSING_DELAY), @quote.id, @quote_uri, { 'request_id' => @options[:request_id], 'approval_uri' => @quote_approval_uri })
   end
 
   def conversation_from_uri(uri)
@@ -440,7 +464,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def forward_for_reply
     return unless @status.distributable? && @json['signature'].present? && reply_to_local?
 
-    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
+    ActivityPub::RawDistributionWorker.perform_async(JSON.generate(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
   end
 
   def increment_voters_count!

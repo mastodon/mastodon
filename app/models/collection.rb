@@ -5,7 +5,8 @@
 # Table name: collections
 #
 #  id                       :bigint(8)        not null, primary key
-#  description              :text             not null
+#  description              :text
+#  description_html         :text
 #  discoverable             :boolean          not null
 #  item_count               :integer          default(0), not null
 #  language                 :string
@@ -21,6 +22,8 @@
 #
 class Collection < ApplicationRecord
   MAX_ITEMS = 25
+  NAME_LENGTH_HARD_LIMIT = 256
+  DESCRIPTION_LENGTH_HARD_LIMIT = 2048
 
   belongs_to :account
   belongs_to :tag, optional: true
@@ -30,7 +33,14 @@ class Collection < ApplicationRecord
   has_many :collection_reports, dependent: :delete_all
 
   validates :name, presence: true
-  validates :description, presence: true
+  validates :name, length: { maximum: 40 }, if: :local?
+  validates :name, length: { maximum: NAME_LENGTH_HARD_LIMIT }, if: :remote?
+  validates :description,
+            length: { maximum: 100 },
+            if: :local?
+  validates :description_html,
+            length: { maximum: DESCRIPTION_LENGTH_HARD_LIMIT },
+            if: :remote?
   validates :local, inclusion: [true, false]
   validates :sensitive, inclusion: [true, false]
   validates :discoverable, inclusion: [true, false]

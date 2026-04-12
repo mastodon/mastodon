@@ -29,6 +29,7 @@ RSpec.describe REST::CollectionSerializer do
     expect(subject)
       .to include(
         'account_id' => collection.account_id.to_s,
+        'uri' => include('2342'),
         'id' => '2342',
         'name' => 'Exquisite follows',
         'description' => 'Always worth a follow',
@@ -42,5 +43,23 @@ RSpec.describe REST::CollectionSerializer do
         'item_count' => 0,
         'items' => []
       )
+  end
+
+  context 'when the collection is remote' do
+    let(:collection) { Fabricate(:remote_collection, description_html: '<p>remote</p>') }
+
+    it 'includes the html description' do
+      expect(subject)
+        .to include('description' => '<p>remote</p>')
+    end
+
+    context 'when the description contains unwanted HTML' do
+      let(:description_html) { '<script>alert("hi!");</script><p>Nice people</p>' }
+      let(:collection) { Fabricate(:remote_collection, description_html:) }
+
+      it 'scrubs the HTML' do
+        expect(subject).to include('description' => '<p>Nice people</p>')
+      end
+    end
   end
 end

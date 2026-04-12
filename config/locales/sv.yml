@@ -12,6 +12,9 @@ sv:
     followers:
       one: Följare
       other: Följare
+    following:
+      one: Följer
+      other: Följer
     instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern i sig och inte någon enskild användare. Den används för federeringsändamål och bör inte stängas av.
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
@@ -759,6 +762,7 @@ sv:
       categories:
         administration: Administration
         devops: DevOps
+        email: E-post
         invites: Inbjudningar
         moderation: Moderering
         special: Särskild
@@ -775,6 +779,8 @@ sv:
         administrator_description: Användare med denna behörighet kommer att kringgå alla behörigheter
         delete_user_data: Ta bort användardata
         delete_user_data_description: Tillåter användare att omedelbart radera andra användares data
+        invite_bypass_approval: Bjud in användare utan granskning
+        invite_bypass_approval_description: Tillåter personer som är inbjudna till servern av dessa användare att kringgå moderationsgodkännande
         invite_users: Bjud in användare
         invite_users_description: Tillåter användare att bjuda in nya personer till servern
         manage_announcements: Hantera kungörelser
@@ -785,6 +791,8 @@ sv:
         manage_blocks_description: Tillåter användare att blockera e-postleverantörer och IP-adresser
         manage_custom_emojis: Hantera egna emojier
         manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
+        manage_email_subscriptions: Hantera e-postprenumerationer
+        manage_email_subscriptions_description: Tillåt användare att prenumerera på användare med denna behörighet via e-post
         manage_federation: Hantera federering
         manage_federation_description: Tillåter användare att blockera eller tillåta federering med andra domäner, samt kontrollera levererbarhet
         manage_invites: Hantera inbjudningar
@@ -1226,7 +1234,6 @@ sv:
   application_mailer:
     notification_preferences: Ändra e-postpreferenser
     salutation: "%{name},"
-    settings: 'Ändra e-postinställningar: %{link}'
     unsubscribe: Avprenumerera
     view: 'Granska:'
     view_profile: Visa profil
@@ -1276,6 +1283,7 @@ sv:
     progress:
       confirm: Bekräfta e-postadress
       details: Dina uppgifter
+      list: Registreringsframsteg
       review: Vår recension
       rules: Acceptera regler
     providers:
@@ -1291,6 +1299,7 @@ sv:
       invited_by: 'Du kan gå med i %{domain} tack vare den inbjudan du har fått från:'
       preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
       preamble_invited: Innan du fortsätter bör du överväga grundreglerna som fastställts av moderatorerna för %{domain}.
+      read_more: Läs mer
       title: Några grundregler.
       title_invited: Du har blivit inbjuden.
     security: Säkerhet
@@ -1409,9 +1418,42 @@ sv:
       your_appeal_pending: Du har lämnat in en överklagan
       your_appeal_rejected: Din överklagan har avvisats
   edit_profile:
-    basic_information: Allmän information
-    hint_html: "<strong>Anpassa vad folk ser på din offentliga profil och bredvid dina inlägg.</strong> Andra personer är mer benägna att följa dig och interagera med dig när du har en ifylld profil och en profilbild."
     other: Övrigt
+    redesign_body: Profilredigering kan nu nås direkt från profilsidan.
+    redesign_button: Gå dit
+    redesign_title: Det finns en ny profilredigeringsupplevelse
+  email_subscription_mailer:
+    confirmation:
+      action: Bekräfta e-postadress
+      instructions_to_confirm: Bekräfta att du vill ta emot e-post från %{name} (@%{acct}) när de publicerar nya inlägg.
+      instructions_to_ignore: Om du inte är säker på varför du fick detta e-postmeddelande kan du radera det. Du kommer inte att prenumerera om du inte klickar på länken ovan.
+      subject: Bekräfta din e-postadress
+      title: Få e-postuppdateringar från %{name}?
+    notification:
+      create_account: Skapa ett Mastodon-konto
+      footer:
+        privacy_html: E-postmeddelanden skickas från %{domain}, en server som drivs av Mastodon. För att förstå hur denna server behandlar dina personuppgifter, se <a href="%{privacy_policy_path}">sekretesspolicy:n</a>.
+        reason_for_email_html: Du får detta e-postmeddelande eftersom du valt att ta emot e-postuppdateringar från %{name}. Vill du inte ta emot dessa e-postmeddelanden? <a href="%{unsubscribe_path}">Avprenumerera</a>
+      interact_with_this_post:
+        one: Interagera med detta inlägg och upptäck mer som det.
+        other: Interagera med dessa inlägg och upptäck mer.
+      subject:
+        plural: Nya inlägg från %{name}
+        singular: 'Nytt inlägg: "%{excerpt}"'
+      title:
+        plural: Nya inlägg från %{name}
+        singular: 'Nytt inlägg: "%{excerpt}"'
+  email_subscriptions:
+    active: Aktiv
+    confirmations:
+      show:
+        changed_your_mind: Ändrade du dig?
+        success_html: Du kommer nu att börja få e-postmeddelanden när %{name} publicerar nya inlägg. Lägg till %{sender} till dina kontakter så att dessa inlägg inte hamnar i din skräppostmapp.
+        title: Du är registrerad
+        unsubscribe: Avprenumerera
+    inactive: Inaktiv
+    status: Status
+    subscribers: Prenumeranter
   emoji_styles:
     auto: Automatiskt
     native: Ursprunglig
@@ -1450,10 +1492,8 @@ sv:
     mutes: Du tystar
     storage: Medialagring
   featured_tags:
-    add_new: Lägg till ny
     errors:
       limit: Du har redan fäst det maximala antalet hashtags
-    hint_html: "<strong>Vad är utvalda hashtaggar?</strong> De visas tydligt på din offentliga profil och låter andra bläddra bland dina offentliga inlägg specifikt under dessa hashtaggar. De är ett bra verktyg för att hålla reda på kreativa arbeten eller långsiktiga projekt."
   filters:
     contexts:
       account: Profiler
@@ -1646,21 +1686,6 @@ sv:
     failed_sign_in_html: Misslyckat inloggningsförsök med %{method} från %{ip} (%{browser})
     successful_sign_in_html: Lyckad inloggning med %{method} från %{ip} (%{browser})
     title: Autentiseringshistorik
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, avsluta prenumerationen
-      complete: Prenumeration avslutad
-      confirmation_html: Är du säker på att du vill avregistrera dig från att ta emot %{type} för Mastodon på %{domain} med din e-post på %{email}? Du kan alltid återprenumerera bland dina <a href="%{settings_path}">e-postmeddelandeinställningar</a>.
-      emails:
-        notification_emails:
-          favourite: aviseringsmejl för favoriserade inlägg
-          follow: aviseringsmejl för följda inlägg
-          follow_request: aviseringsmejl för följdförfrågningar
-          mention: aviseringsmejl för inlägg där du nämns
-          reblog: aviseringsmejl för förhöjda inlägg
-      resubscribe_html: Om du slutat prenumerera av misstag kan du återprenumerera i dina <a href="%{settings_path}">e-postaviseringsinställningar</a>.
-      success_html: Du får inte längre %{type} för Mastodon på %{domain} till din e-post på %{email}.
-      title: Avsluta prenumeration
   media_attachments:
     validations:
       images_and_video: Det går inte att bifoga en video till ett inlägg som redan innehåller bilder
@@ -1798,6 +1823,8 @@ sv:
     posting_defaults: Standardinställningar för inlägg
     public_timelines: Publika tidslinjer
   privacy:
+    email_subscriptions: Skicka inlägg via e-post
+    email_subscriptions_hint_html: Lägg till ett e-postregistreringsformulär till din profil som visas för utloggade användare. När en besökare anger sin e-postadress och väljer det kommer Mastodon att skicka e-postuppdateringar för dina offentliga inlägg.
     hint_html: "<strong>Anpassa hur du vill att din profil och dina inlägg ska hittas.</strong> En mängd funktioner i Mastodon kan hjälpa dig att nå en bredare publik när den är aktiverad. Ta en stund att granska dessa inställningar för att se att de passar ditt användningsfall."
     privacy: Integritet
     privacy_hint_html: Kontrollera hur mycket du vill avslöja till förmån för andra. Andra upptäcker intressanta profiler och coola appar genom att bläddra bland vad andra följer och se vilka appar de lägger upp från, men du kanske föredrar att hålla det dolt.
@@ -2061,6 +2088,28 @@ sv:
     resume_app_authorization: Fortsätt app-autentisering
     role_requirement: "%{domain} kräver att du ställer in tvåfaktorsautentisering innan du kan använda Mastodon."
     webauthn: Säkerhetsnycklar
+  unsubscriptions:
+    create:
+      action: Gå till serverns hemsida
+      email_subscription:
+        confirmation_html: Du kommer inte längre att få e-post från %{name}.
+      title: Du har avprenumererat
+      user:
+        confirmation_html: Du får inte längre %{type} från Mastodon på %{domain}.
+    notification_emails:
+      favourite: aviseringsmejl för favoriserade inlägg
+      follow: aviseringsmejl för följda inlägg
+      follow_request: aviseringsmejl för följdförfrågningar
+      mention: aviseringsmejl för inlägg där du nämns
+      reblog: aviseringsmejl för förhöjda inlägg
+    show:
+      action: Avprenumerera
+      email_subscription:
+        confirmation_html: Du kommer att sluta ta emot e-post när detta konto publicerar nya inlägg.
+        title: Avprenumerera från %{name}?
+      user:
+        confirmation_html: Du kommer sluta ta emot %{type} från Mastodon på %{domain}.
+        title: Avprenumerera från %{type}?
   user_mailer:
     announcement_published:
       description: 'Administratörerna på %{domain} gör ett tillkännagivande:'

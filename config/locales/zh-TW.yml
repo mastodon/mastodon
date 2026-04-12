@@ -747,6 +747,7 @@ zh-TW:
       categories:
         administration: 管理員
         devops: DevOps
+        email: 電子郵件
         invites: 邀請
         moderation: 站務
         special: 特殊
@@ -762,6 +763,8 @@ zh-TW:
         administrator_description: 擁有此權限的使用者將會略過所有權限
         delete_user_data: 刪除使用者資料
         delete_user_data_description: 允許使用者立刻刪除其他使用者的資料
+        invite_bypass_approval: 邀請未經審核的使用者
+        invite_bypass_approval_description: 允許被這些使用者邀請至此伺服器的人們跳過管理審核許可
         invite_users: 邀請使用者
         invite_users_description: 允許使用者邀請新人加入伺服器
         manage_announcements: 管理公告
@@ -772,6 +775,8 @@ zh-TW:
         manage_blocks_description: 允許使用者封鎖電子郵件提供商與 IP 位址
         manage_custom_emojis: 管理自訂 emoji 表情符號
         manage_custom_emojis_description: 允許使用者管理伺服器上之自訂 emoji 表情符號
+        manage_email_subscriptions: 管理電子郵件訂閱
+        manage_email_subscriptions_description: 此權限允許使用者透過電子郵件訂閱其他使用者動態
         manage_federation: 管理聯邦宇宙
         manage_federation_description: 允許使用者封鎖或允許與其他網域的聯邦宇宙，並控制傳遞能力
         manage_invites: 管理邀請
@@ -1200,7 +1205,7 @@ zh-TW:
     advanced_settings: 進階設定
     animations_and_accessibility: 動畫與無障礙設定
     boosting_preferences: 轉嘟偏好設定
-    boosting_preferences_info_html: "<strong>小技巧：</strong> 無論設定為何， <kbd>Shift</kbd> + <kbd>Click</kbd> 於 %{icon} 轉嘟圖示將會立即轉嘟。"
+    boosting_preferences_info_html: "<strong>小撇步：</strong> 無論設定為何， <kbd>Shift</kbd> + <kbd>Click</kbd> 於 %{icon} 轉嘟圖示將會立即轉嘟。"
     discovery: 探索
     localization:
       body: Mastodon 是由志願者所翻譯。
@@ -1210,7 +1215,6 @@ zh-TW:
   application_mailer:
     notification_preferences: 變更電子郵件設定
     salutation: "%{name}、"
-    settings: 變更電子郵件設定︰%{link}
     unsubscribe: 取消訂閱
     view: 進入瀏覽：
     view_profile: 檢視個人檔案
@@ -1260,6 +1264,7 @@ zh-TW:
     progress:
       confirm: 驗證電子郵件地址
       details: 您的個人資料
+      list: 註冊流程
       review: 我們的審核
       rules: 接受規則
     providers:
@@ -1275,6 +1280,7 @@ zh-TW:
       invited_by: 您可以藉由來自此處之邀請而加入 %{domain}
       preamble: 這些被 %{domain} 的管管們制定以及實施。
       preamble_invited: 在您繼續之前，請考慮由 %{domain} 管理員設立的伺服器規則。
+      read_more: 閱讀更多
       title: 一些基本守則。
       title_invited: 我們誠摯地邀請您。
     security: 登入資訊
@@ -1393,9 +1399,41 @@ zh-TW:
       your_appeal_pending: 您已遞交申訴
       your_appeal_rejected: 您的申訴已被駁回
   edit_profile:
-    basic_information: 基本資訊
-    hint_html: "<strong>自訂人們能於您個人檔案及嘟文旁所見之內容。</strong>當您完成填寫個人檔案及設定大頭貼後，其他人們比較願意跟隨您並與您互動。"
     other: 其他
+    redesign_body: 個人檔案編輯功能現在能自個人檔案頁面直接存取。
+    redesign_button: 前往
+    redesign_title: 全新個人檔案編輯體驗
+  email_subscription_mailer:
+    confirmation:
+      action: 確認電子郵件地址
+      instructions_to_confirm: 確認您想要收到來自 %{name} (@%{acct}) 發表新嘟文時的電子郵件。
+      instructions_to_ignore: 您若不確定為何您收到此電子郵件，您可以刪除它。您若不點擊上方連結，將不會訂閱。
+      subject: 確認您的電子郵件地址
+      title: 是否想要收到來自 %{name} 之電子郵件通訊？
+    notification:
+      create_account: 建立 Mastodon 帳號
+      footer:
+        privacy_html: 這些電子郵件由 Mastodon 伺服器 %{domain} 寄出。欲了解這台伺服器如何處理您的個人資料，請參考 <a href="%{privacy_policy_path}">隱私權政策</a>。
+        reason_for_email_html: 您正收到這封電子郵件，因為您選擇收到來自 %{name} 之電子郵件通訊。不想再收到這些電子郵件？<a href="%{unsubscribe_path}">取消訂閱</a>
+      interact_with_this_post:
+        other: 與此嘟文互動並且發現更多類似嘟文。
+      subject:
+        plural: 來自 %{name} 之新嘟文
+        singular: 新嘟文：「%{excerpt}」
+      title:
+        plural: 來自 %{name} 之新嘟文
+        singular: 新嘟文：「%{excerpt}」
+  email_subscriptions:
+    active: 生效中
+    confirmations:
+      show:
+        changed_your_mind: 改變主意了嗎？
+        success_html: 您將開始收到當 %{name} 發表新嘟文之電子郵件。請新增 %{sender} 至您的通訊錄使這些嘟文不被分類至垃圾信件夾。
+        title: 已完成註冊
+        unsubscribe: 取消訂閱
+    inactive: 已停用
+    status: 狀態
+    subscribers: 訂閱者
   emoji_styles:
     auto: 自動
     native: 原生風格
@@ -1434,10 +1472,8 @@ zh-TW:
     mutes: 您靜音的使用者
     storage: 匯出檔案大小
   featured_tags:
-    add_new: 新增
     errors:
       limit: 您所推薦之主題標籤數量已達上限
-    hint_html: "<strong>於個人檔案上展示您的推薦主題標籤</strong> 展示創意作品或者長期更新的專案的絕佳工具，推薦主題標籤於您個人資料頁面顯眼地展示，並且能快速存取您自己的嘟文。"
   filters:
     contexts:
       account: 個人檔案
@@ -1610,21 +1646,6 @@ zh-TW:
     failed_sign_in_html: 使用來自 %{ip} (%{browser}) 的 %{method} 登入嘗試失敗
     successful_sign_in_html: 使用來自 %{ip} (%{browser}) 的 %{method} 登入成功
     title: 認證歷史紀錄
-  mail_subscriptions:
-    unsubscribe:
-      action: 是的，取消訂閱
-      complete: 取消訂閱
-      confirmation_html: 您確定要取要取消訂閱自 Mastodon 上 %{domain} 之 %{type} 至您電子郵件 %{email} 嗎？您隨時可以自<a href="%{settings_path}">電子郵件通知設定</a>重新訂閱。
-      emails:
-        notification_emails:
-          favourite: 最愛通知電子郵件
-          follow: 跟隨通知電子郵件
-          follow_request: 跟隨請求通知電子郵件
-          mention: 提及通知電子郵件
-          reblog: 轉嘟通知電子郵件
-      resubscribe_html: 若您不慎錯誤地取消訂閱，您可以自<a href="%{settings_path}">電子郵件通知設定</a>重新訂閱。
-      success_html: 您將不再收到來自 Mastodon 上 %{domain} 之 %{type} 至您電子郵件 %{email}。
-      title: 取消訂閱
   media_attachments:
     validations:
       images_and_video: 無法於已有圖片之嘟文中加入影片
@@ -1762,6 +1783,8 @@ zh-TW:
     posting_defaults: 嘟文預設值
     public_timelines: 公開時間軸
   privacy:
+    email_subscriptions: 以電子郵件寄送嘟文
+    email_subscriptions_hint_html: 於您的個人檔案中新增電子郵件訂閱表單，該表單將對未登入使用者顯示。當訪客輸入他們的電子郵件地址並選擇訂閱時，Mastodon 將會寄送您公開嘟文之電子郵件通訊。
     hint_html: "<strong>自訂您希望如何使您的個人檔案及嘟文被發現。</strong>藉由啟用一系列 Mastodon 功能以幫助您觸及更廣的受眾。煩請花些時間確認您是否欲啟用這些設定。"
     privacy: 隱私權
     privacy_hint_html: 控制您希望向其他人揭露之內容。人們透過瀏覽其他人的跟隨者與其發嘟之應用程式發現有趣的個人檔案與酷炫的 Mastodon 應用程式，但您能選擇將其隱藏。
@@ -2007,7 +2030,7 @@ zh-TW:
   two_factor_authentication:
     add: 新增
     disable: 停用兩階段驗證
-    disabled_success: 已成功啟用兩階段驗證
+    disabled_success: 已成功停用兩階段驗證
     edit: 編輯
     enabled: 兩階段驗證已啟用
     enabled_success: 兩階段驗證已成功啟用
@@ -2021,6 +2044,28 @@ zh-TW:
     resume_app_authorization: 恢復應用程式授權
     role_requirement: "%{domain} 要求您設定兩階段驗證以使用 Mastodon。"
     webauthn: 安全金鑰
+  unsubscriptions:
+    create:
+      action: 前往伺服器首頁
+      email_subscription:
+        confirmation_html: 您將不再收到來自 %{name} 之電子郵件。
+      title: 您已成功取消訂閱
+      user:
+        confirmation_html: 您將不再收到來自 %{domain} Mastodon 之 %{type}。
+    notification_emails:
+      favourite: 最愛通知電子郵件
+      follow: 跟隨通知電子郵件
+      follow_request: 跟隨請求通知電子郵件
+      mention: 提及通知電子郵件
+      reblog: 轉嘟通知電子郵件
+    show:
+      action: 取消訂閱
+      email_subscription:
+        confirmation_html: 您將不再收到來自此帳號新嘟文之電子郵件。
+        title: 取消訂閱 %{name}？
+      user:
+        confirmation_html: 您將不再收到來自 %{domain} Mastodon 之 %{type}。
+        title: 取消訂閱 %{type}？
   user_mailer:
     announcement_published:
       description: "%{domain} 之管理員正在進行公告："

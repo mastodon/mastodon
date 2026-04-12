@@ -4,7 +4,7 @@ gl:
     hints:
       account:
         attribution_domains: Un por liña. Como protección para falsas atribucións.
-        discoverable: As túas publicacións públicas e perfil poden mostrarse ou recomendarse en varias zonas de Mastodon e o teu perfil ser suxerido a outras usuarias.
+        discoverable: Outras usuarias pódente engadir ás súas coleccións. Ti e as túas publicacións públicas tamén poden suxerirse a outras usuarias nas seccións de suxestións de Mastodon.
         display_name: O teu nome completo ou un nome divertido.
         fields: Páxina web, pronome, idade, o que ti queiras.
         indexable: As túas publicacións públicas poderían aparecer nos resultados das buscas en Mastodon. En calquera caso, as persoas que interactúen coas túas publicacións poderán buscalas igualmente.
@@ -134,6 +134,7 @@ gl:
         otp: 'Escribe o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
         webauthn: Se é unha chave USB asegúrate de que está conectada e preme o botón.
       settings:
+        email_subscriptions: A desactivación mantén as subscricións actuais pero deixa de enviar correos.
         indexable: A túa páxina de perfil podería aparecer nos resultados de busca de Google, Bing e outros.
         show_application: Independentemente, ti sempre poderás ver a app coa que publicaches a túa publicación.
       tag:
@@ -153,7 +154,7 @@ gl:
         jurisdiction: Informa sobre o país onde vive quen paga as facturas. Se é unha empresa ou outra entidade, indica o país onde está establecida e é axeitado escribir a cidade, rexión, territorio ou estado.
         min_age: Non debería ser inferior á idade mínima requerida polas leis da túa xurisdición.
       user:
-        chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
+        chosen_languages: Se está seleccionada, esta opción fai que só se mostren nas cronoloxías públicas as publicacións dos idiomas seleccionados. Esta opción non afecta á túa cronoloxía de inicio e listas.
         date_of_birth:
           one: Temos que confirmar que tes %{count} anos polo menos para usar %{domain}. Non gardamos este dato.
           other: Temos que confirmar que tes %{count} anos polo menos para usar %{domain}. Non gardamos este dato.
@@ -176,7 +177,7 @@ gl:
     labels:
       account:
         attribution_domains: Sitios web que dan fe sobre ti
-        discoverable: Perfil destacado e publicacións nos algoritmos de descubrimento
+        discoverable: Incluírme nas seccións de descubrimento
         fields:
           name: Etiqueta
           value: Contido
@@ -356,6 +357,7 @@ gl:
         hint: Información adicional
         text: Regra
       settings:
+        email_subscriptions: Activar crear contas por correo
         indexable: Incluír páxina de perfil nos motores de busca
         show_application: Mostrar a app coa que enviaches unha publicación
       tag:

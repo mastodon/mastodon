@@ -762,6 +762,7 @@ gl:
       categories:
         administration: Administración
         devops: DevOps
+        email: Correo electrónico
         invites: Convites
         moderation: Moderación
         special: Especial
@@ -778,6 +779,8 @@ gl:
         administrator_description: As usuarias con este permiso poderán superar calquera restrición
         delete_user_data: Eliminar datos de usuarias
         delete_user_data_description: Permite eliminar datos doutras usuarias sen demoras
+        invite_bypass_approval: Invitar sen precisar revisión
+        invite_bypass_approval_description: Permitir que as persoas invitadas ao servidor por estas usuarias non precisen aprobación
         invite_users: Convidar usuarias
         invite_users_description: Permite que outras usuarias conviden a xente ao servidor
         manage_announcements: Xestionar anuncios
@@ -788,6 +791,8 @@ gl:
         manage_blocks_description: Permite que as usuarias bloqueen provedoras de correo e enderezos IP
         manage_custom_emojis: Xestionar Emojis personalizados
         manage_custom_emojis_description: Permite xestionar os emojis personalizados do servidor
+        manage_email_subscriptions: Xestionar subscripcións por correo
+        manage_email_subscriptions_description: Permitir que as usuarias se subscriban por correo a outras usuarias con este permiso
         manage_federation: Xestionar a federación
         manage_federation_description: Permite bloquear ou permitir a federación con outros dominios, e controlar as entregas
         manage_invites: Xestionar Convites
@@ -1229,7 +1234,6 @@ gl:
   application_mailer:
     notification_preferences: Cambiar preferencias de correo
     salutation: "%{name},"
-    settings: 'Cambiar preferencias de correo: %{link}'
     unsubscribe: Anular subscrición
     view: 'Vista:'
     view_profile: Ver perfil
@@ -1279,6 +1283,7 @@ gl:
     progress:
       confirm: Confirmar correo
       details: Detalles
+      list: Progreso da creación da conta
       review: A nosa revisión
       rules: Aceptar regras
     providers:
@@ -1294,6 +1299,7 @@ gl:
       invited_by: 'Podes unirte a %{domain} grazas ao convite que recibiches de parte de:'
       preamble: Son establecidas e aplicadas pola moderación de %{domain}.
       preamble_invited: Antes de continuar adica un minuto a ler as regras básicas establecidas para %{domain}.
+      read_more: Ler máis
       title: Algunhas regras básicas.
       title_invited: Convidáronte.
     security: Seguranza
@@ -1412,9 +1418,42 @@ gl:
       your_appeal_pending: Enviaches unha apelación
       your_appeal_rejected: A apelación foi rexeitada
   edit_profile:
-    basic_information: Información básica
-    hint_html: "<strong>Personaliza o que van ver no teu perfil público e ao lado das túas publicacións.</strong> As outras persoas estarán máis animadas a seguirte e interactuar contigo se engades algún dato sobre ti así como unha imaxe de perfil."
     other: Outros
+    redesign_body: Agora podes acceder á edición do perfil directamente desde a páxina do perfil.
+    redesign_button: Ir á edición
+    redesign_title: Hai novidades no xeito en que podes editar o perfil
+  email_subscription_mailer:
+    confirmation:
+      action: Confirmar enderezo de correo
+      instructions_to_confirm: Confirma que queres recibir correos de %{name} (@%{acct}) cando publique novas publicacións.
+      instructions_to_ignore: Se non sabes por que recibiches este correo, podes eliminalo. Non te vas subscribir se non premes na ligazón de arriba.
+      subject: Confirma o teu enderezo de correo
+      title: Queres obter actualizacións de %{name} por correo?
+    notification:
+      create_account: Crear unha conta Mastodon
+      footer:
+        privacy_html: Os correos envíanse desde %{domain}, un servidor de Mastodon. Para comprender como este servidor procesa os teus datos persoais le a <a href="%{privacy_policy_path}">Directiva de Privacidade</a>.
+        reason_for_email_html: Recibes este correo porque te subscribiches para recibir actualizacións por correo de %{name}. Non queres recibir estes correos? <a href="%{unsubscribe_path}">Retira a subscrición</a>
+      interact_with_this_post:
+        one: Interactúa con esta publicación e descubre máis coma ela.
+        other: Interactúa con estas publicacións e descubre máis coma elas.
+      subject:
+        plural: Novas publicacións de %{name}
+        singular: 'Nova publicación: "%{excerpt}"'
+      title:
+        plural: Novas publicacións de %{name}
+        singular: 'Nova publicación: "%{excerpt}"'
+  email_subscriptions:
+    active: Activa
+    confirmations:
+      show:
+        changed_your_mind: Cambiaches de idea?
+        success_html: Vas comezar a recibir correos cando %{name} publique novas publicacións. Engade %{sender} á túa libreta de enderezos para que os correos non vaian directamente ao cartafol de Spam.
+        title: Subscribícheste
+        unsubscribe: Anular subscrición
+    inactive: Inactiva
+    status: Estado
+    subscribers: Subscritoras
   emoji_styles:
     auto: Auto
     native: Nativo
@@ -1453,10 +1492,8 @@ gl:
     mutes: Silenciadas
     storage: Almacenamento de multimedia
   featured_tags:
-    add_new: Engadir novo
     errors:
       limit: Xa sinalaches o número máximo de cancelos permitido
-    hint_html: "<strong>¿Qué son os cancelos destacados?</strong> Móstranse destacados no teu perfil público e permítenlle a outras persoas ver os teus toots públicos nos que os utilizaches. Son unha ferramenta moi útil para facer seguimento de traballos creativos e proxectos a longo prazo."
   filters:
     contexts:
       account: Perfís
@@ -1649,21 +1686,6 @@ gl:
     failed_sign_in_html: Intento de acceso errado con %{method} desde %{ip} (%{browser})
     successful_sign_in_html: Acceso correcto con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
-  mail_subscriptions:
-    unsubscribe:
-      action: Si, retirar subscrición
-      complete: Subscrición anulada
-      confirmation_html: Tes a certeza de querer retirar a subscrición a Mastodon en %{domain} para recibir %{type} no teu correo electrónico en %{email}? Poderás volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo</a>.
-      emails:
-        notification_emails:
-          favourite: notificacións de favorecidas
-          follow: notificacións de seguimentos
-          follow_request: notificacións de solicitudes de seguimento
-          mention: notificacións de mencións
-          reblog: notificacións de promocións
-      resubscribe_html: Se por un erro eliminaches a subscrición, podes volver a subscribirte desde os <a href="%{settings_path}">axustes de notificacións por correo electrónico</a>.
-      success_html: Non vas recibir %{type} de Mastodon en %{domain} no enderezo %{email}.
-      title: Anular subscrición
   media_attachments:
     validations:
       images_and_video: Non podes anexar un vídeo a unha publicación que xa contén imaxes
@@ -1801,6 +1823,8 @@ gl:
     posting_defaults: Valores por defecto
     public_timelines: Cronoloxías públicas
   privacy:
+    email_subscriptions: Enviar publicacións por coreo
+    email_subscriptions_hint_html: Engade un formulario de subscrición por correo para mostrar ás usuarias sen sesión iniciada. Ao escribir o seu enderezo de correo e así indicalo, Mastodon vaille enviar actualizacións por correo das túas publicacións públicas.
     hint_html: "<strong>Personaliza o xeito no que queres que se atope o teu perfil e publicacións.</strong> Mastodon ten variedade de ferramentas para axudarche a acadar unha audiencia maior. Dedica un minuto a revisalas e confirma que se axustan ao teu caso persoal."
     privacy: Privacidade
     privacy_hint_html: Controla canto queres mostrar ás demais persoas. As usuarias descubren perfís interesantes e apps estupendas mirando a quen seguen outras persoas e vendo as apps desde as que publican, pero ti poderías querer non mostralas.
@@ -2064,6 +2088,28 @@ gl:
     resume_app_authorization: Retomar autorización da aplicación
     role_requirement: "%{domain} require que configures un Segundo Factor de Autenticación para poder usar Mastodon"
     webauthn: Chaves de seguridade
+  unsubscriptions:
+    create:
+      action: Ir á páxina de inicio do servidor
+      email_subscription:
+        confirmation_html: Xa non vas seguir recibindo correos desde %{name}.
+      title: Retiraches a subscrición
+      user:
+        confirmation_html: Non vas recibir %{type} de Mastodon en %{domain}.
+    notification_emails:
+      favourite: correos de notificación de favorecementos
+      follow: correos de notificación de seguimentos
+      follow_request: correos de solicitudes de seguimento
+      mention: correos de notificación de mencións
+      reblog: correos de notificación de promocións
+    show:
+      action: Anular subscrición
+      email_subscription:
+        confirmation_html: Vas deixar de recibir correos cando esta conta publique novas publicacións.
+        title: Dar de baixa a subscrición a %{name}?
+      user:
+        confirmation_html: Vas deixar de recibir %{type} de Mastodon en %{domain}.
+        title: Dar de baixa a subscrición a %{type}?
   user_mailer:
     announcement_published:
       description: A administración de %{domain} publicou un anuncio

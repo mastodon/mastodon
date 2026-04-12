@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class DeleteCollectionItemService
-  def call(collection_item)
+  def call(collection_item, revoke: false)
     @collection_item = collection_item
     @collection = collection_item.collection
-    @collection_item.destroy!
 
-    distribute_remove_activity if Mastodon::Feature.collections_federation_enabled?
+    if collection_item.local?
+      revoke ? @collection_item.revoke! : @collection_item.destroy!
+      distribute_remove_activity
+    else
+      collection_item.destroy!
+    end
   end
 
   private

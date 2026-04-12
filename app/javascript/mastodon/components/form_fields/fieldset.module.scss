@@ -1,7 +1,9 @@
 .fieldset {
+  --container-gap: 12px;
+
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--container-gap);
   color: var(--color-text-primary);
   font-size: 15px;
 }
@@ -15,5 +17,13 @@
     flex-direction: row;
     flex-wrap: wrap;
     column-gap: 24px;
+  }
+}
+
+.status {
+  // If there's no content, we need to compensate for the parent's
+  // flex gap to avoid extra spacing below the field.
+  &:empty {
+    margin-top: calc(-1 * var(--container-gap));
   }
 }

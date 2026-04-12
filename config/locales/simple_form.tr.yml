@@ -4,7 +4,6 @@ tr:
     hints:
       account:
         attribution_domains: Her satırda bir tane. Sahte atıflardan korur.
-        discoverable: Herkese açık gönderileriniz ve profiliniz Mastodon'un çeşitli kısımlarında öne çıkarılabilir veya önerilebilir ve profiliniz başka kullanıcılara önerilebilir.
         display_name: Tam adınız veya kullanıcı adınız.
         fields: Ana sayfanız, zamirleriniz, yaşınız, istediğiniz herhangi bir şey.
         indexable: Herkese açık gönderileriniz Mastodon arama sonuçlarında görünebilir. Gönderilerinizle etkileşen kullanıcılar her halükarda onları arayabilirler.
@@ -134,6 +133,7 @@ tr:
         otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz:'
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
       settings:
+        email_subscriptions: Devre dışı bırakma işlemi mevcut aboneleri korur ancak e-posta gönderimini durdurur.
         indexable: Profil sayfanız Google, Bing ve diğerlerindeki arama sonuçlarında görüntülenebilir.
         show_application: Ne olursa olsun gönderinizi yayınlayan uygulamayı her zaman görebileceksiniz.
       tag:
@@ -153,7 +153,7 @@ tr:
         jurisdiction: Faturaları ödeyen kişinin yaşadığı ülkeyi listeleyin. Bir şirket veya başka bir kuruluş ise, kurulduğu ülkeyi ve uygun şekilde şehri, bölgeyi, yöreyi veya eyaleti listeleyin.
         min_age: Tabi olduğunuz yasaların gerektirdiği yaştan düşük olmamalıdır.
       user:
-        chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki gönderiler genel zaman çizelgelerinde görüntülenir
+        chosen_languages: Bu seçenek seçilirse genel zaman akışlarında yalnızca seçilen dillerdeki gönderiler gösterilir. Bu ayar, Ana Sayfa zaman akışınızı ve listelerinizi etkilemez.
         date_of_birth:
           one: "%{domain} kullanmak için en az %{count} yaşında olduğunuzdan emin olmalıyız. Bu bilgiyi saklamıyoruz."
           other: "%{domain} kullanmak için en az %{count} yaşında olduğunuzdan emin olmalıyız. Bu bilgiyi saklamıyoruz."
@@ -176,7 +176,6 @@ tr:
     labels:
       account:
         attribution_domains: Size atıf verebilecek websiteleri
-        discoverable: Profil ve gönderileri keşif algoritmalarında kullan
         fields:
           name: Etiket
           value: İçerik
@@ -356,6 +355,7 @@ tr:
         hint: Ek bilgi
         text: Kural
       settings:
+        email_subscriptions: E-posta aboneliklerini etkinleştir
         indexable: Arama motorları profil sayfasını içersin
         show_application: Gönderiyi hangi uygulamadan gönderdiğiniz görüntülensin
       tag:

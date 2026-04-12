@@ -131,17 +131,11 @@ RSpec.configure do |config|
 
   config.around do |example|
     if example.metadata[:inline_jobs] == true
-      Sidekiq::Testing.inline!
+      Sidekiq.testing!(:inline)
     else
-      Sidekiq::Testing.fake!
+      Sidekiq.testing!(:fake)
     end
     example.run
-  end
-
-  config.around(:each, type: :search) do |example|
-    Chewy.settings[:enabled] = true
-    example.run
-    Chewy.settings[:enabled] = false
   end
 
   config.before :each, type: :cli do

@@ -4,7 +4,7 @@ fi:
     hints:
       account:
         attribution_domains: Yksi riviä kohti. Suojaa vääriltä tekijän nimeämisiltä.
-        discoverable: Julkisia julkaisujasi ja profiiliasi voidaan esitellä tai suositella Mastodonin eri alueilla, ja profiiliasi voidaan ehdottaa toisille käyttäjille.
+        discoverable: Sinua voidaan esitellä muiden käyttäjien luomissa kokoelmissa. Sinua ja julkisia julkaisujasi voidaan ehdottaa käyttäjille muissa Mastodonin löydettävyyskokemuksissa.
         display_name: Koko nimesi tai lempinimesi.
         fields: Verkkosivustosi, pronominisi, ikäsi ja mitä ikinä haluatkaan ilmoittaa.
         indexable: Julkiset julkaisusi voivat näkyä Mastodonin hakutuloksissa. Käyttäjät, jotka ovat olleet vuorovaikutuksessa julkaisujesi kanssa, voivat etsiä niitä asetuksesta riippumatta.
@@ -134,6 +134,7 @@ fi:
         otp: 'Näppäile mobiilisovelluksessa näkyvä kaksivaiheisen todennuksen tunnusluku tai käytä tarvittaessa palautuskoodia:'
         webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
       settings:
+        email_subscriptions: Käytöstäpoisto säilyttää olemassa olevat tilaajat mutta lopettaa sähköpostin lähettämisen.
         indexable: Profiilisi voi näkyä Googlen, Bingin ja muiden hakukoneiden hakutuloksissa.
         show_application: Voit silti aina nähdä, mistä sovelluksesta julkaisusi lähetettiin.
       tag:
@@ -153,7 +154,7 @@ fi:
         jurisdiction: Mainitse valtio, jossa laskujen maksaja asuu. Jos kyseessä on yritys tai muu yhteisö, mainitse valtio, johon se on rekisteröity, ja tarvittaessa kaupunki, alue, territorio tai osavaltio.
         min_age: Ei pidä alittaa lainkäyttöalueesi lakien vaatimaa vähimmäisikää.
       user:
-        chosen_languages: Jos valitset kieliä oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät sinulle julkisilla aikajanoilla
+        chosen_languages: Kun kieliä on valittuna oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät julkisilla aikajanoilla. Tämä asetus ei vaikuta kotiaikajanaasi eikä listoihisi.
         date_of_birth:
           one: Meidän tulee varmistaa, että olet vähintään %{count}, jotta voit käyttää %{domain}. Emme tallenna tätä.
           other: Meidän tulee varmistaa, että olet vähintään %{count}, jotta voit käyttää %{domain}. Emme tallenna tätä.
@@ -176,7 +177,7 @@ fi:
     labels:
       account:
         attribution_domains: Verkkosivustot, jotka voivat antaa sinulle tunnustusta
-        discoverable: Esittele profiilia ja julkaisuja löydettävyysalgoritmeissa
+        discoverable: Esittele minua löydettävyyskokemuksissa
         fields:
           name: Nimike
           value: Sisältö
@@ -257,7 +258,7 @@ fi:
         setting_emoji_style: Emojityyli
         setting_expand_spoilers: Laajenna aina sisältövaroituksilla merkityt julkaisut
         setting_hide_network: Piilota verkostotietosi
-        setting_missing_alt_text_modal: Varoita ennen kuin julkaisen mediaa ilman vaihtoehtoista tekstiä
+        setting_missing_alt_text_modal: Varoita ennen kuin julkaisen mediaa ilman tekstivastinetta
         setting_quick_boosting: Ota nopea tehostus käyttöön
         setting_reduce_motion: Vähennä animaatioiden liikettä
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
@@ -356,6 +357,7 @@ fi:
         hint: Lisätietoja
         text: Sääntö
       settings:
+        email_subscriptions: Ota sähköpostitilaukset käyttöön
         indexable: Sisällytä profiilisivu hakukoneisiin
         show_application: Näytä, mistä sovelluksesta lähetit julkaisun
       tag:

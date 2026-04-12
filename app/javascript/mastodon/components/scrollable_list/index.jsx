@@ -385,7 +385,7 @@ class ScrollableList extends PureComponent {
           {alwaysPrepend && prepend}
 
           <div className='empty-column-indicator'>
-            {emptyMessage}
+            <span>{emptyMessage}</span>
           </div>
 
           {footer}

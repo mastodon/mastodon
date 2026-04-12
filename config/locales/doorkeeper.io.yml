@@ -83,6 +83,10 @@ io:
         access_denied: Moyenproprietanto o yurizservilo refuzis la demando.
         credential_flow_not_configured: Moyenproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
         invalid_client: Klientpermiso falias pro nesavita kliento, neinkluzita klientpermiso o nesuportita permismetodo.
+        invalid_code_challenge_method:
+          one: La code_challenge_method mustas esar %{challenge_methods}.
+          other: La code_challenge_method mustas esar un de %{challenge_methods}.
+          zero: La yurizservilo ne subtenas PKCE pro ke ne havas aceptita valori di code_challenge_method.
         invalid_grant: Provizita yurizo esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum yurizdemando o facesis a altra kliento.
         invalid_redirect_uri: La inkluzita ridirektoligilo esas nevalida.
         invalid_request:

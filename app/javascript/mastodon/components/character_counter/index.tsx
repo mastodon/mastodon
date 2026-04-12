@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+
+import { length } from 'stringz';
 
 import { polymorphicForwardRef } from '@/types/polymorphic';
 
@@ -14,8 +14,6 @@ interface CharacterCounterProps {
   recommended?: boolean;
 }
 
-const segmenter = new Intl.Segmenter();
-
 export const CharacterCounter = polymorphicForwardRef<
   'span',
   CharacterCounterProps
@@ -26,19 +24,18 @@ export const CharacterCounter = polymorphicForwardRef<
       maxLength,
       as: Component = 'span',
       recommended = false,
+      className,
       ...props
     },
     ref,
   ) => {
-    const currentLength = useMemo(
-      () => [...segmenter.segment(currentString)].length,
-      [currentString],
-    );
+    const currentLength = length(currentString);
     return (
       <Component
         {...props}
         ref={ref}
         className={classNames(
+          className,
           classes.counter,
           currentLength > maxLength && !recommended && classes.counterError,
         )}

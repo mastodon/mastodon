@@ -10,7 +10,7 @@
     = t('auth.status.redirecting_to', acct: user.account.moved_to_account.pretty_acct)
     = link_to t('migrations.cancel'), settings_migration_path
 
-%h3= t('auth.status.account_status')
+%h2.heading-medium= t('auth.status.account_status')
 
 %p.hint
   - if user.account.suspended?

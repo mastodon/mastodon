@@ -4,7 +4,7 @@ es:
     hints:
       account:
         attribution_domains: Una por línea. Protege de falsas atribuciones.
-        discoverable: Tu perfil y publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
+        discoverable: Puede que aparezcas en colecciones creadas por otros usuarios. También pueden sugerirse tu perfil y publicaciones públicas a otros usuarios en otras funciones de descubrimiento de Mastodon.
         display_name: Tu nombre completo o tu apodo.
         fields: Tu carta de presentación, pronombres, edad, lo que quieras.
         indexable: Tus publicaciones públicas pueden aparecer en los resultados de búsqueda en Mastodon. Las personas que han interactuado con tus publicaciones pueden ser capaces de buscarlas sin importar su visibilidad.
@@ -134,6 +134,7 @@ es:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
         webauthn: Si es una tecla USB, asegúrese de insertarla y, si es necesario, púlsela.
       settings:
+        email_subscriptions: Deshabilitar retiene a los suscriptores existentes pero detiene el envío de correos electrónicos.
         indexable: Puede que tu página de perfil aparezca en los resultados de búsqueda en Google, Bing y otros.
         show_application: Tú siempre podrás ver desde qué aplicación se ha publicado tu publicación.
       tag:
@@ -153,7 +154,7 @@ es:
         jurisdiction: Lista el país donde vive quien paga las facturas. Si es una empresa u otra entidad, enumere el país donde está basada y la ciudad, región, territorio o estado según corresponda.
         min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
-        chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
+        chosen_languages: Cuando está activada, solo las publicaciones en los idiomas seleccionados se mostrarán en las cronologías públicas. Esta configuración no afecta a tu cronología principal ni a tus listas.
         date_of_birth:
           one: Tenemos que asegurarnos de que tienes al menos %{count} para usar %{domain}. No guardaremos esta información.
           other: Tenemos que asegurarnos de que tienes al menos %{count} para usar %{domain}. No guardaremos esta información.
@@ -176,7 +177,7 @@ es:
     labels:
       account:
         attribution_domains: Sitios web autorizados a acreditarte
-        discoverable: Destacar perfil y publicaciones en algoritmos de descubrimiento
+        discoverable: Mostrarme en funciones de descubrimiento
         fields:
           name: Etiqueta
           value: Contenido
@@ -356,6 +357,7 @@ es:
         hint: Información adicional
         text: Norma
       settings:
+        email_subscriptions: Habilitar suscripciones por correo electrónico
         indexable: Incluye la página de perfil en los buscadores
         show_application: Mostrar desde qué aplicación enviaste una publicación
       tag:

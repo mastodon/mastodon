@@ -40,7 +40,7 @@
       %span.hint= t('simple_form.hints.user_role.permissions_as_keys')
 
     - (form.object.everyone? ? UserRole::Flags::CATEGORIES.slice(:invites) : UserRole::Flags::CATEGORIES).each do |category, permissions|
-      %h4= t(category, scope: 'admin.roles.categories')
+      %h2= t(category, scope: 'admin.roles.categories')
 
       = form.input :permissions_as_keys,
                    as: :check_boxes,

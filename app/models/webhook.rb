@@ -5,13 +5,13 @@
 # Table name: webhooks
 #
 #  id         :bigint(8)        not null, primary key
-#  url        :string           not null
+#  enabled    :boolean          default(TRUE), not null
 #  events     :string           default([]), not null, is an Array
 #  secret     :string           default(""), not null
-#  enabled    :boolean          default(TRUE), not null
+#  template   :text
+#  url        :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  template   :text
 #
 
 class Webhook < ApplicationRecord

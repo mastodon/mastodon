@@ -17,13 +17,24 @@ RSpec.describe CollectionItem do
     end
 
     context 'when item is not local' do
-      subject { Fabricate.build(:collection_item, collection: remote_collection) }
+      subject { Fabricate.build(:collection_item, collection: remote_collection, account:) }
 
+      let(:account) { Fabricate.build(:remote_account) }
       let(:remote_collection) { Fabricate.build(:collection, local: false) }
 
-      it { is_expected.to validate_absence_of(:approval_uri) }
-
       it { is_expected.to validate_presence_of(:uri) }
+
+      context 'when account is not present' do
+        subject { Fabricate.build(:collection_item, collection: remote_collection, account: nil) }
+
+        it { is_expected.to validate_presence_of(:approval_uri) }
+      end
+
+      context 'when account is local' do
+        let(:account) { Fabricate.build(:account) }
+
+        it { is_expected.to_not validate_presence_of(:uri) }
+      end
     end
 
     context 'when account is not present' do
@@ -49,6 +60,12 @@ RSpec.describe CollectionItem do
       expect(second_item.position).to eq 2
       expect(unrelated_item.position).to eq 1
       expect(custom_item.position).to eq 7
+    end
+
+    it 'automatically sets the position if excplicitly set to `nil`' do
+      item = collection.collection_items.create!(account:, position: nil)
+
+      expect(item.position).to eq 1
     end
 
     it 'automatically sets `activity_uri` when account is remote' do

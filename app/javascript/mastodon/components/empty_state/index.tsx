@@ -9,10 +9,12 @@ import classes from './empty_state.module.scss';
  */
 
 export const EmptyState: React.FC<{
-  title?: string | React.ReactElement;
-  message?: string | React.ReactElement;
+  image?: React.ReactNode;
+  title?: React.ReactNode;
+  message?: React.ReactNode;
   children?: React.ReactNode;
 }> = ({
+  image,
   title = (
     <FormattedMessage id='empty_state.no_results' defaultMessage='No results' />
   ),
@@ -21,10 +23,13 @@ export const EmptyState: React.FC<{
 }) => {
   return (
     <div className={classes.wrapper}>
-      <div className={classes.content}>
-        <h3>{title}</h3>
-        {!!message && <p>{message}</p>}
-      </div>
+      {(title || message || image) && (
+        <div className={classes.content}>
+          {image}
+          {!!title && <h3>{title}</h3>}
+          {!!message && <p>{message}</p>}
+        </div>
+      )}
 
       {children}
     </div>

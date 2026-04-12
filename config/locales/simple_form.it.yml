@@ -4,7 +4,7 @@ it:
     hints:
       account:
         attribution_domains: Uno per riga. Protegge da false attribuzioni.
-        discoverable: I tuoi post pubblici e il tuo profilo potrebbero essere presenti o consigliati in varie aree di Mastodon e il tuo profilo potrebbe essere suggerito ad altri utenti.
+        discoverable: Potresti essere incluso/a nelle collezioni create da altri utenti. Tu e i tuoi post pubblici potreste anche essere suggeriti ad altri utenti in altre esperienze di scoperta all'interno di Mastodon.
         display_name: Il tuo nome completo o il tuo soprannome.
         fields: La tua homepage, i pronomi, l'età, tutto quello che vuoi.
         indexable: I tuoi post pubblici potrebbero apparire nei risultati di ricerca su Mastodon. Le persone che hanno interagito con i tuoi post potrebbero essere in grado di cercarli anche se non hai attivato questa impostazione.
@@ -134,6 +134,7 @@ it:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
         webauthn: Se si tratta di una chiavetta USB assicurati di inserirla e, se necessario, toccarla.
       settings:
+        email_subscriptions: Disabilitando questa opzione, si mantengono gli iscritti esistenti ma si interrompe l'invio delle email.
         indexable: La pagina del tuo profilo potrebbe apparire nei risultati di ricerca su Google, Bing e altri.
         show_application: Tu sarai sempre in grado di vedere quale app ha pubblicato il tuo post anche se hai attivato questa impostazione.
       tag:
@@ -153,7 +154,7 @@ it:
         jurisdiction: Indica il Paese in cui risiede il soggetto che paga le fatture. Se si tratta di un'azienda o di un altro ente, indicare il Paese in cui è costituito, nonché la città, la regione, il territorio o lo Stato, a seconda dei casi.
         min_age: Non si dovrebbe avere un'età inferiore a quella minima richiesta, dalle leggi della tua giurisdizione.
       user:
-        chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
+        chosen_languages: Quando selezionato, solo i post nelle lingue selezionate verranno visualizzati nelle timeline pubbliche. Questa impostazione non influisce sulla tua timeline della Home e sulle liste.
         date_of_birth:
           one: Dobbiamo assicurarci che tu abbia almeno %{count} anni per utilizzare %{domain}. Non memorizzeremo questo dato.
           other: Dobbiamo assicurarci che tu abbia almeno %{count} anni per utilizzare %{domain}. Non memorizzeremo questo dato.
@@ -176,7 +177,7 @@ it:
     labels:
       account:
         attribution_domains: Siti web autorizzati ad accreditarti
-        discoverable: Include il profilo e i post negli algoritmi di scoperta
+        discoverable: Includimi nelle esperienze di scoperta
         fields:
           name: Etichetta
           value: Contenuto
@@ -356,6 +357,7 @@ it:
         hint: Informazioni aggiuntive
         text: Regola
       settings:
+        email_subscriptions: Abilita le iscrizioni via email
         indexable: Includi la pagina del profilo nei motori di ricerca
         show_application: Mostra da quale app hai inviato un post
       tag:

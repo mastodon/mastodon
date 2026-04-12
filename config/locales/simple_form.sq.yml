@@ -4,7 +4,7 @@ sq:
     hints:
       account:
         attribution_domains: Një për rresht. Kjo mbron nga atribuime të rreme.
-        discoverable: Postimet dhe profili juaj publik mund të shfaqen, ose rekomandohen në zona të ndryshme të Mastodon-it dhe profili juaj mund të sugjerohet përdoruesve të tjerë.
+        discoverable: Mund të shfaqeni në koleksione të krijuar nga përdorues të tjerë. Ju dhe postimet tuaja publike mund të sugjerohen gjithashtu nga përdorues në mënyra të tjera zbulimi nëpër Mastodon.
         display_name: Emri juaj i plotë, ose emri juaj lojcak.
         fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
         indexable: Postimet tuaja publike mund të shfaqen në përfundime kërkimesh në Mastodon. Pavarësisht nga kjo, personat që kanë ndërvepruar me postimet tuaja, mund të jenë në gjendje të kërkojnë për to.
@@ -133,6 +133,7 @@ sq:
         otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimeve:'
         webauthn: Nëse është një diskth USB, sigurohuni se e keni futur dhe, në qoftë e nevojshme, prekeni.
       settings:
+        email_subscriptions: Çaktivzimi i mban pajtimtarët ekzistues, por resht dërgim email-esh.
         indexable: Faqja e profilit tuaj mund të shfaqet në përfundime kërkimi në Google, Bing dhe të tjerë.
         show_application: Pavarësisht nga kjo, do të jeni përherë në gjendje të shihni cili aplikacion botoi postimin tuaj.
       tag:
@@ -152,7 +153,7 @@ sq:
         jurisdiction: Vendosni vendin ku jeton cilido që paguan faturat. Nëse është një shoqëri apo tjetër njësi, vendosni vendin ku është regjistruar, si dhe qytetin, rajonin, territorin apo shtetin përkatës.
         min_age: S’duhet të jetë nën moshën minimum të domosdoshme nga ligjet në juridiksionin tuaj.
       user:
-        chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
+        chosen_languages: Kur i vihet shenjë, në rrjedha kohore publike do të shfaqen vetëm postime në gjuhët e përzgjedhura. Ky rregullim s’prek rrjedhën tuaj kohore Kreu dhe lista në të.
         date_of_birth:
           one: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
           other: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
@@ -175,7 +176,7 @@ sq:
     labels:
       account:
         attribution_domains: Sajte të lejuar t’ju japin hakë
-        discoverable: Profilin dhe postimet bëji objekt të algoritmeve të zbulimit
+        discoverable: Shfaqmëni në mënyra zbulimi
         fields:
           name: Etiketë
           value: Lëndë
@@ -355,6 +356,7 @@ sq:
         hint: Informacion shtesë
         text: Rregull
       settings:
+        email_subscriptions: Aktivizo regjistrime me email
         indexable: Përfshi faqe profili në motorë kërkimesh
         show_application: Shfaq prej cilit aplikacion dërguat një postim
       tag:

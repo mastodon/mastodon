@@ -5,145 +5,89 @@
 
   --color-text-primary: var(--color-grey-100);
   --color-text-secondary: var(--color-grey-300);
-  --color-text-tertiary: var(--color-grey-400);
-  --color-text-on-inverted: var(--color-grey-950);
+  --color-text-tertiary: var(--color-grey-400); // legacy
+  --color-text-inverted: var(--color-grey-950);
   --color-text-brand: var(--color-indigo-300);
   --color-text-brand-soft: color-mix(
     in oklab,
     var(--color-text-primary),
     var(--color-text-brand)
-  );
+  ); // legacy
+
   --color-text-on-brand-base: var(--color-white);
-  --color-text-brand-on-inverted: var(--color-indigo-600);
+  --color-text-brand-on-inverted: var(--color-indigo-600); // legacy
   --color-text-error: var(--color-red-300);
   --color-text-on-error-base: var(--color-white);
   --color-text-warning: var(--color-yellow-400);
   --color-text-on-warning-base: var(--color-white);
   --color-text-success: var(--color-green-400);
   --color-text-on-success-base: var(--color-white);
-  --color-text-disabled: var(--color-grey-600);
-  --color-text-on-disabled: var(--color-grey-400);
-  --color-text-bookmark-highlight: var(--color-text-error);
-  --color-text-favourite-highlight: var(--color-text-warning);
-  --color-text-on-media: var(--color-white);
+  --color-text-disabled: var(--color-grey-600); // legacy
+  --color-text-on-disabled: var(--color-grey-400); // legacy
+  --color-text-bookmark-highlight: var(--color-text-error); // legacy
+  --color-text-favourite-highlight: var(--color-text-warning); // legacy
+  --color-text-on-media: var(--color-white); // legacy
   --color-text-status-links: color-mix(
     in oklab,
     var(--color-text-primary),
     var(--color-text-secondary)
-  );
+  ); // legacy
 
   /* BACKGROUND TOKENS */
 
   // Neutrals
   --color-bg-primary: var(--color-grey-950);
   --overlay-strength-secondary: 4%;
-  --color-bg-secondary-base: var(--color-white);
-  --color-bg-secondary: #{utils.css-alpha(
-      var(--color-bg-secondary-base),
-      var(--overlay-strength-secondary)
-    )};
-  --color-bg-secondary-solid: color-mix(
-    in srgb,
-    var(--color-bg-primary),
-    var(--color-bg-secondary-base) var(--overlay-strength-secondary)
-  );
-  --color-bg-tertiary: color-mix(
-    in oklab,
-    var(--color-bg-primary),
-    var(--color-bg-secondary-base) calc(2 * var(--overlay-strength-secondary))
-  );
+  --color-bg-secondary: var(--color-grey-900);
+  --color-bg-tertiary: var(--color-grey-800); // legacy
 
   // Utility
-  --color-bg-ambient: var(--color-bg-primary);
   --color-bg-inverted: var(--color-grey-50);
-  --color-bg-media-base: var(--color-black);
-  --color-bg-media-strength: 65%;
-  --color-bg-media: #{utils.css-alpha(
-      var(--color-bg-media-base),
-      var(--color-bg-media-strength)
-    )};
-  --color-bg-overlay: var(--color-black);
-  --color-bg-disabled: var(--color-grey-700);
+  --color-bg-overlay-base: #{utils.css-alpha(var(--color-grey-950), 60%)};
+  --color-bg-overlay-highlight: #{utils.css-alpha(var(--color-white), 5%)};
+  --color-bg-overlay: var(--color-black); // legacy
+  --color-bg-media-base: var(--color-black); // legacy
+  --color-bg-media: #{utils.css-alpha(var(--color-bg-media-base), 65%)}; // legacy
+  --color-bg-disabled: var(--color-grey-700); // legacy
 
   // Brand
-  --overlay-strength-brand: 22%;
   --color-bg-brand-base: var(--color-indigo-700);
-  --color-bg-brand-base-hover: color-mix(
-    in oklab,
-    var(--color-bg-brand-base),
-    var(--color-bg-primary) var(--overlay-strength-brand)
-  );
-  --color-bg-brand-soft: #{utils.css-alpha(
-      #6f4df5,
-      calc(var(--overlay-strength-brand) * 2)
-    )};
-  --color-bg-brand-softer: #{utils.css-alpha(
-      var(--color-bg-brand-base),
-      var(--overlay-strength-brand)
-    )};
+  --color-bg-brand-base-hover: var(--color-indigo-800); // legacy
+  --color-bg-brand-soft: var(--color-indigo-900);
+  --color-bg-brand-softest: var(--color-indigo-950);
 
   // Error
-  --overlay-strength-error: 10%;
-  --color-bg-error-base: var(--color-red-800);
-  --color-bg-error-base-hover: color-mix(
-    in oklab,
-    var(--color-bg-error-base),
-    var(--color-bg-primary) var(--overlay-strength-error)
-  );
+  --color-bg-error-base: var(--color-red-700);
+  --color-bg-error-base-hover: var(--color-red-800); // legacy
   --color-bg-error-soft: var(--color-red-900);
-  --color-bg-error-softer: var(--color-red-950);
+  --color-bg-error-softest: var(--color-red-950);
 
   // Warning
-  --overlay-strength-warning: 10%;
-  --color-bg-warning-base: var(--color-yellow-700);
-  --color-bg-warning-base-hover: color-mix(
-    in oklab,
-    var(--color-bg-warning-base),
-    var(--color-bg-primary) var(--overlay-strength-warning)
-  );
+  --color-bg-warning-base: var(--color-yellow-700); // legacy
   --color-bg-warning-soft: var(--color-yellow-900);
-  --color-bg-warning-softer: var(--color-yellow-950);
+  --color-bg-warning-softest: var(--color-yellow-950);
 
   // Success
-  --overlay-strength-success: 15%;
-  --color-bg-success-base: var(--color-green-600);
-  --color-bg-success-base-hover: color-mix(
-    in oklab,
-    var(--color-bg-success-base),
-    var(--color-bg-primary) var(--overlay-strength-success)
-  );
+  --color-bg-success-base: var(--color-green-600); // legacy
   --color-bg-success-soft: var(--color-green-900);
-  --color-bg-success-softer: var(--color-green-950);
+  --color-bg-success-softest: var(--color-green-950);
 
   /* BORDER TOKENS */
 
-  --border-strength-primary: 18%;
-  --color-border-primary: #{utils.css-alpha(
-      var(--color-indigo-200),
-      var(--border-strength-primary)
-    )};
-  --color-border-media: rgb(252 248 255 / 15%);
-  --color-border-verified: rgb(220, 3, 240);
-  --color-border-on-bg-secondary: #{utils.css-alpha(
-      var(--color-indigo-200),
-      calc(var(--border-strength-primary) / 1.5)
-    )};
-  --color-border-on-bg-brand-softer: var(--color-border-primary);
-  --color-border-on-bg-error-softer: #{utils.css-alpha(
-      var(--color-text-error),
-      50%
-    )};
-  --color-border-on-bg-warning-softer: #{utils.css-alpha(
+  --color-border-primary: var(--color-grey-800);
+  --color-border-brand: var(--color-text-brand);
+  --color-border-brand-soft: var(--color-indigo-800);
+  --color-border-error: var(--color-red-300);
+  --color-border-media: rgb(252 248 255 / 15%); // legacy
+  --color-border-error-soft: #{utils.css-alpha(var(--color-border-error), 50%)}; // legacy
+  --color-border-warning-soft: #{utils.css-alpha(
       var(--color-text-warning),
       50%
-    )};
-  --color-border-on-bg-success-softer: #{utils.css-alpha(
-      var(--color-text-success),
-      50%
-    )};
-  --color-border-on-bg-inverted: var(--color-border-primary);
+    )}; // legacy
 
-  /* SHADOW TOKENS */
+  --color-border-success-soft: var(--color-green-800);
+
+  /* SHADOW TOKENS (LEGACY) */
 
   --shadow-strength-primary: 80%;
   --color-shadow-primary: #{utils.css-alpha(
@@ -155,16 +99,16 @@
     0 8px 10px -6px var(--color-shadow-primary);
   --overlay-icon-shadow: drop-shadow(0 0 8px var(--color-shadow-primary));
 
-  /* GRAPHS/CHARTS TOKENS */
+  /* GRAPHS/CHARTS TOKENS (LEGACY) */
 
   --color-graph-primary-stroke: var(--color-text-brand);
-  --color-graph-primary-fill: var(--color-bg-brand-softer);
+  --color-graph-primary-fill: var(--color-bg-brand-softest);
   --color-graph-warning-stroke: var(--color-text-warning);
-  --color-graph-warning-fill: var(--color-bg-warning-softer);
+  --color-graph-warning-fill: var(--color-bg-warning-softest);
   --color-graph-disabled-stroke: var(--color-text-disabled);
   --color-graph-disabled-fill: var(--color-bg-disabled);
 
-  /* LEGACY TOKENS */
+  /* RICH TEXT TOKENS (LEGACY) */
 
   --rich-text-container-color: rgb(87 24 60 / 100%);
   --rich-text-text-color: rgb(255 175 212 / 100%);
@@ -177,7 +121,9 @@
   --color-text-primary: var(--color-grey-50);
   --color-text-status-links: var(--color-text-brand);
 
-  /* BORDER TOKENS */
+  /* BACKGROUND TOKENS */
+  --color-bg-error-base: var(--color-red-800);
 
-  --border-strength-primary: 30%;
+  /* BORDER TOKENS */
+  --color-border-primary: var(--color-grey-600);
 }

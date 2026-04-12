@@ -1,8 +1,8 @@
 ---
 es-MX:
   about:
-    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
-    contact_missing: No especificado
+    about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, con un diseño ético y descentralizada! ¡Sé dueño de tus datos con Mastodon!'
+    contact_missing: No establecido
     contact_unavailable: No disponible
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
@@ -16,8 +16,8 @@ es-MX:
       one: Siguiendo
       other: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al servidor en sí mismo y no a ningún usuario individual. Se utiliza para propósitos de la federación y no se debe suspender.
-    last_active: última conexión
-    link_verified_on: La propiedad de este vínculo fue verificada el %{date}
+    last_active: última actividad
+    link_verified_on: Se ha comprobado la propiedad de este enlace el %{date}
     nothing_here: "¡No hay nada aquí!"
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
@@ -361,7 +361,7 @@ es-MX:
       copy_failed_msg: No se pudo realizar una copia local de ese emoji
       create_new_category: Crear una nueva categoría
       created_msg: "¡Emoji creado con éxito!"
-      delete: Borrar
+      delete: Eliminar
       destroyed_msg: "¡Emojo destruido con éxito!"
       disable: Deshabilitar
       disabled: Desactivado
@@ -473,7 +473,7 @@ es-MX:
         one: "%{count} intentos durante la última semana"
         other: "%{count} intentos de registro en la última semana"
       created_msg: Dominio de correo bloqueado con éxito
-      delete: Borrar
+      delete: Eliminar
       dns:
         types:
           mx: Registro MX
@@ -610,7 +610,7 @@ es-MX:
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
-      purge_description_html: Si crees que este dominio está desconectado, puedes borrar todos los registros de cuentas y los datos asociados de este dominio de tu almacenamiento. Esto puede llevar un tiempo.
+      purge_description_html: Si crees que este dominio ya no está activo, puedes eliminar de tu almacenamiento todos los registros de la cuenta y los datos asociados a este dominio. Esto puede tardar un rato.
       title: Instancias conocidas
       total_blocked_by_us: Bloqueado por nosotros
       total_followed_by_them: Seguidos por ellos
@@ -646,7 +646,7 @@ es-MX:
       title: Relaciones de %{acct}
     relays:
       add_new: Añadir nuevo relé
-      delete: Borrar
+      delete: Eliminar
       description_html: Un <strong>relés de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de publicaciones públicas entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
       disable: Deshabilitar
       disabled: Deshabilitado
@@ -762,6 +762,7 @@ es-MX:
       categories:
         administration: Administración
         devops: DevOps
+        email: Correo electrónico
         invites: Invitaciones
         moderation: Moderación
         special: Especial
@@ -776,8 +777,10 @@ es-MX:
       privileges:
         administrator: Administrador
         administrator_description: Los usuarios con este permiso saltarán todos los permisos
-        delete_user_data: Borrar Datos de Usuario
+        delete_user_data: Eliminar datos de usuario
         delete_user_data_description: Permite a los usuarios eliminar los datos de otros usuarios sin demora
+        invite_bypass_approval: Invitar a usuarios sin revisión
+        invite_bypass_approval_description: Permite que las personas invitadas al servidor por estos usuarios no tengan que pasar por el proceso de aprobación de la moderación
         invite_users: Invitar usuarios
         invite_users_description: Permite a los usuarios invitar a nuevas personas al servidor
         manage_announcements: Administrar Anuncios
@@ -788,6 +791,8 @@ es-MX:
         manage_blocks_description: Permite a los usuarios bloquear proveedores de correo electrónico y direcciones IP
         manage_custom_emojis: Administrar Emojis Personalizados
         manage_custom_emojis_description: Permite a los usuarios gestionar emojis personalizados en el servidor
+        manage_email_subscriptions: Gestionar suscripciones por correo electrónico
+        manage_email_subscriptions_description: Permitir a los usuarios suscribirse a otros usuarios con este permiso por correo electrónico
         manage_federation: Administrar Federación
         manage_federation_description: Permite a los usuarios bloquear o permitir la federación con otros dominios, y controlar la entregabilidad
         manage_invites: Administrar Invitaciones
@@ -1146,7 +1151,7 @@ es-MX:
       updated_msg: Regla de nombre de usuario actualizada correctamente
     warning_presets:
       add_new: Añadir nuevo
-      delete: Borrar
+      delete: Eliminar
       edit_preset: Editar aviso predeterminado
       empty: Aún no has definido ningún preajuste de advertencia.
       title: Preajustes de advertencia
@@ -1229,7 +1234,6 @@ es-MX:
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
     salutation: "%{name}:"
-    settings: 'Cambiar preferencias de correo: %{link}'
     unsubscribe: Cancelar suscripción
     view: 'Vista:'
     view_profile: Ver perfil
@@ -1258,7 +1262,7 @@ es-MX:
       registration_complete: "¡Tu registro en %{domain} ha sido completado!"
       welcome_title: "¡Bienvenido, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
-    delete_account: Borrar cuenta
+    delete_account: Eliminar cuenta
     delete_account_html: Si deseas eliminar tu cuenta, puedes <a href="%{path}">proceder aquí</a>. Se te pedirá una confirmación.
     description:
       prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
@@ -1279,6 +1283,7 @@ es-MX:
     progress:
       confirm: Confirmar dirección de correo
       details: Tus detalles
+      list: Registrar el progreso
       review: Nuestra revisión
       rules: Aceptar reglas
     providers:
@@ -1294,6 +1299,7 @@ es-MX:
       invited_by: 'Puedes unirte a %{domain} gracias a la invitación que has recibido de:'
       preamble: Estas son establecidas y aplicadas por los moderadores de %{domain}.
       preamble_invited: Antes de continuar, por favor, revisa las reglas básicas establecidas por los moderadores de %{domain}.
+      read_more: Leer más
       title: Algunas reglas básicas.
       title_invited: Has sido invitado.
     security: Cambiar contraseña
@@ -1412,9 +1418,42 @@ es-MX:
       your_appeal_pending: Has enviado una apelación
       your_appeal_rejected: Tu apelación ha sido rechazada
   edit_profile:
-    basic_information: Información básica
-    hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completes tu perfil y agregues una foto."
     other: Otro
+    redesign_body: Ahora puede acceder a la edición del perfil desde la propia página del perfil.
+    redesign_button: Llévame allí
+    redesign_title: Hay una nueva experiencia de edición de perfil
+  email_subscription_mailer:
+    confirmation:
+      action: Confirmar dirección de correo electrónico
+      instructions_to_confirm: Confirma que deseas recibir correos electrónicos de %{name} (@%{acct}) cuando haga una nueva publicación.
+      instructions_to_ignore: Si no estás seguro de por qué has recibido este correo electrónico, puedes borrarlo. No te suscribirás si no haces clic en el enlace de arriba.
+      subject: Confirma tu dirección de correo electrónico
+      title: "¿Deseas recibir actualizaciones por correo electrónico de %{name}?"
+    notification:
+      create_account: Crear una cuenta de Mastodon
+      footer:
+        privacy_html: Los correos electrónicos se envían desde %{domain} un servidor que utiliza Mastodon. Para saber cómo este servidor procesa tus datos personales, consulta la <a href="%{privacy_policy_path}">Política de privacidad</a>.
+        reason_for_email_html: Recibes este correo electrónico porque te has suscrito a las actualizaciones por correo electrónico de %{name}. ¿No quieres recibir estos correos electrónicos? <a href="%{unsubscribe_path}">Cancelar suscripción</a>
+      interact_with_this_post:
+        one: Interactúa con esta publicación y descubre otras similares.
+        other: Interactúa con estas publicaciones y descubre más.
+      subject:
+        plural: Nuevas publicaciones de %{name}
+        singular: 'Nueva publicación: "%{excerpt}"'
+      title:
+        plural: Nuevas publicaciones de %{name}
+        singular: 'Nueva publicación: "%{excerpt}"'
+  email_subscriptions:
+    active: Activa
+    confirmations:
+      show:
+        changed_your_mind: "¿Has cambiado de opinión?"
+        success_html: A partir de ahora, recibirás correos electrónicos cada vez que %{name} haga nuevas publicaciones. Añade a %{sender} a tus contactos para que estas publicaciones no terminen en tu carpeta de spam.
+        title: Ya estás registrado
+        unsubscribe: Cancelar suscripción
+    inactive: Inactiva
+    status: Estado
+    subscribers: Suscriptores
   emoji_styles:
     auto: Automático
     native: Nativo
@@ -1453,10 +1492,8 @@ es-MX:
     mutes: Tienes en silencio
     storage: Almacenamiento
   featured_tags:
-    add_new: Añadir nuevo
     errors:
       limit: Ya has alcanzado la cantidad máxima de etiquetas
-    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
       account: Perfiles
@@ -1475,7 +1512,7 @@ es-MX:
       invalid_context: Se suminstró un contexto inválido o vacío
     index:
       contexts: Filtros en %{contexts}
-      delete: Borrar
+      delete: Eliminar
       empty: No tienes filtros.
       expires_in: Caduca en %{distance}
       expires_on: Expira el %{date}
@@ -1649,21 +1686,6 @@ es-MX:
     failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
     successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
-  mail_subscriptions:
-    unsubscribe:
-      action: Sí, darse de baja
-      complete: Has cancelado tu suscripción
-      confirmation_html: ¿Estás seguro de que quieres dejar de recibir %{type} de Mastodon en %{domain} a tu correo %{email}? Siempre podrás volver a suscribirte de nuevo desde los <a href="%{settings_path}">ajustes de notificación por correo</a>.
-      emails:
-        notification_emails:
-          favourite: correos de notificación de favoritos
-          follow: correos electrónicos de notificación de seguimiento
-          follow_request: correos electrónicos de solicitud de seguimiento
-          mention: correos de notificación de menciones
-          reblog: correos de notificación de impulsos
-      resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
-      success_html: Ya no recibirás %{type} de Mastodon en %{domain} a tu correo %{email}.
-      title: Cancelar suscripción
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a una publicación que ya contenga imágenes
@@ -1801,6 +1823,8 @@ es-MX:
     posting_defaults: Configuración por defecto de publicaciones
     public_timelines: Líneas de tiempo públicas
   privacy:
+    email_subscriptions: Enviar publicaciones por correo electrónico
+    email_subscriptions_hint_html: Añade un formulario de suscripción por correo electrónico a tu perfil que se muestre a los usuarios que no hayan iniciado sesión. Cuando los visitantes introduzcan su dirección de correo electrónico y se suscriban, Mastodon les enviará actualizaciones por correo electrónico de tus publicaciones públicas.
     hint_html: "<strong>Personaliza cómo te gustaría que tu perfil y tus publicaciones sean encontradas.</strong> En Mastodon tienes a tu disposición distintas características que pueden ayudarte a llegar a una audiencia más amplia cuando se encuentran activadas. Toma un momento para revisar estos ajustes para asegurarte si cumplen tus necesidades."
     privacy: Privacidad
     privacy_hint_html: Controla cuánto quieres compartir para el beneficio de otros. Las personas descubren perfiles interesantes y aplicaciones geniales al navegar por los seguidores de otras personas y viendo desde cuáles aplicaciones publican, pero también puedes preferir mantenerlo oculto.
@@ -1909,7 +1933,7 @@ es-MX:
     appearance: Apariencia
     authorized_apps: Aplicaciones autorizadas
     back: Volver al inicio
-    delete: Borrar cuenta
+    delete: Eliminar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar
@@ -1987,7 +2011,7 @@ es-MX:
       unlisted: Pública, pero silenciosa
       unlisted_long: Ocultado de los resultados de búsqueda, tendencias y cronologías públicas de Mastodon
   statuses_cleanup:
-    enabled: Borrar automáticamente publicaciones antiguas
+    enabled: Eliminar automáticamente las publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
     exceptions: Excepciones
     explanation: La eliminación automática se realiza con baja prioridad. Puede haber un retraso entre el momento en que se alcanza el límite de antigüedad y el momento en que se elimina.
@@ -2064,6 +2088,28 @@ es-MX:
     resume_app_authorization: Reanudar autorización de aplicación
     role_requirement: "%{domain} requiere que configures la autenticación de dos pasos antes de poder utilizar Mastodon."
     webauthn: Claves de seguridad
+  unsubscriptions:
+    create:
+      action: Ir a la página de inicio del servidor
+      email_subscription:
+        confirmation_html: Ya no recibirás correos electrónicos de %{name}.
+      title: Ya no estás suscrito
+      user:
+        confirmation_html: Ya no recibirás %{type} de Mastodon en %{domain}.
+    notification_emails:
+      favourite: correos electrónicos de notificación de favoritos
+      follow: correos electrónicos de notificación de seguimiento
+      follow_request: correos electrónicos de solicitud de seguimiento
+      mention: correos de notificación de menciones
+      reblog: correos de notificación de impulsos
+    show:
+      action: Cancelar suscripción
+      email_subscription:
+        confirmation_html: Dejarás de recibir correos electrónicos cuando esta cuenta haga nuevas publicaciones.
+        title: "¿Deseas cancelar suscripción a %{name}?"
+      user:
+        confirmation_html: Dejarás de recibir %{type} de Mastodon en %{domain}.
+        title: "¿Deseas cancelar suscripción a %{type}?"
   user_mailer:
     announcement_published:
       description: 'Los administradores de %{domain} están haciendo un anuncio:'

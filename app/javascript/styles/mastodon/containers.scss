@@ -13,28 +13,28 @@
 .logo-container {
   margin: 50px auto;
 
-  h1 {
+  a {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: min-content;
+    margin: 0 auto;
+    padding: 12px 16px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    outline: 0;
+    line-height: 32px;
+    font-weight: 500;
+    font-size: 14px;
 
-    .logo {
-      height: 42px;
-      margin-inline-end: 10px;
+    &:focus-visible {
+      outline: var(--outline-focus-default);
     }
+  }
 
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: var(--color-text-primary);
-      text-decoration: none;
-      outline: 0;
-      padding: 12px 16px;
-      line-height: 32px;
-      font-weight: 500;
-      font-size: 14px;
-    }
+  .logo {
+    height: 42px;
+    margin-inline-end: 10px;
   }
 }
 

@@ -1313,7 +1313,6 @@ cy:
   application_mailer:
     notification_preferences: Newid dewisiadau e-bost
     salutation: "%{name},"
-    settings: 'Newid dewisiadau e-bost: %{link}'
     unsubscribe: Dad-danysgrifio
     view: 'Gweld:'
     view_profile: Gweld proffil
@@ -1363,6 +1362,7 @@ cy:
     progress:
       confirm: Cadarnhau'r e-bost
       details: Eich manylion
+      list: Y drefn cofrestru
       review: Ein hadolygiad
       rules: Derbyn rheolau
     providers:
@@ -1378,6 +1378,7 @@ cy:
       invited_by: 'Gallwch ymuno â %{domain} diolch i''r gwahoddiad a gawsoch gan:'
       preamble: Mae'r rhain yn cael eu gosod a'u gorfodi gan y %{domain} cymedrolwyr.
       preamble_invited: Cyn i chi barhau, ystyriwch y rheolau sylfaenol a osodwyd gan gymedrolwyr %{domain}.
+      read_more: Darllen rhagor
       title: Rhai rheolau sylfaenol.
       title_invited: Rydych wedi derbyn gwahoddiad.
     security: Diogelwch
@@ -1496,8 +1497,6 @@ cy:
       your_appeal_pending: Rydych wedi cyflwyno apêl
       your_appeal_rejected: Mae eich apêl wedi'i gwrthod
   edit_profile:
-    basic_information: Gwybodaeth Sylfaenol
-    hint_html: "<strong>Addaswch yr hyn y mae pobl yn ei weld ar eich proffil cyhoeddus ac wrth ymyl eich postiadau.</strong> Mae pobl eraill yn fwy tebygol o'ch dilyn yn ôl a rhyngweithio â chi pan fydd gennych broffil wedi'i lenwi a llun proffil."
     other: Arall
   emoji_styles:
     auto: Awto
@@ -1537,10 +1536,8 @@ cy:
     mutes: Rydych chi'n anwybyddu
     storage: Storfa cyfryngau
   featured_tags:
-    add_new: Ychwanegu
     errors:
       limit: Rydych chi eisoes wedi cynnwys y nifer mwyaf o hashnodau
-    hint_html: "<strong>Beth yw hashnodau dan sylw?</strong> Maen nhw'n cael eu dangos yn amlwg ar eich proffil cyhoeddus ac yn caniatáu i bobl bori'ch postiadau cyhoeddus yn benodol o dan yr hashnodau hynny. Maen nhw'n arf gwych ar gyfer cadw golwg ar weithiau creadigol neu brojectau tymor hir."
   filters:
     contexts:
       account: Proffilau
@@ -1813,21 +1810,6 @@ cy:
     failed_sign_in_html: Ymgais mewngofnodi wedi methu gyda %{method} gan %{ip} (%{browser})
     successful_sign_in_html: Mewngofnodi llwyddiannus gyda %{method} o %{ip} (%{browser})
     title: Hanes dilysu
-  mail_subscriptions:
-    unsubscribe:
-      action: Iawn, dad-danysgrifio
-      complete: Dad-danysgrifiwyd
-      confirmation_html: Ydych chi'n siŵr eich bod am ddad-danysgrifio rhag derbyn %{type} Mastodon ar %{domain} i'ch e-bost yn %{email}? Gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a> rhywbryd eto.
-      emails:
-        notification_emails:
-          favourite: e-bost hysbysu hoffi
-          follow: e-byst hysbysu dilyn
-          follow_request: e-byst ceisiadau dilyn
-          mention: e-byst hysbysu crybwylliadau
-          reblog: e-byst hysbysiadau hybu
-      resubscribe_html: Os ydych wedi dad-danysgrifio trwy gamgymeriad, gallwch ail-danysgrifio drwy'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a>.
-      success_html: Ni fyddwch bellach yn derbyn %{type} ar gyfer Mastodon ar %{domain} i'ch e-bost am %{email}.
-      title: Dad-danysgrifio
   media_attachments:
     validations:
       images_and_video: Methu atodi fideo i bostiad sydd eisoes yn cynnwys delweddau

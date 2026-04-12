@@ -1,4 +1,9 @@
 %li
-  %button{ type: 'button', aria: { expanded: 'false' } }
-    .rules-list__text= rule_translation.text
-    .rules-list__hint= rule_translation.hint
+  .rules-list__text= rule_translation.text
+  - if rule_translation.hint?
+    .rules-list__hint{ tabIndex: -1 }
+      %span.rules-list__hint-text= rule_translation.hint
+      %button.rules-list__toggle-button{ type: 'button', hidden: true, 'aria-expanded': 'false' }
+        = material_symbol('keyboard_arrow_up', { class: 'icon-collapse' })
+        = material_symbol('more_horiz', { class: 'icon-expand' })
+        %span.sr-only= t('auth.rules.read_more')

@@ -169,7 +169,7 @@ nl:
       undo_silenced: Niet langer beperken
       undo_suspension: Niet langer opschorten
       unsilenced_msg: Het opheffen van de beperkingen van %{username} zijn geslaagd
-      unsubscribe: Opzeggen
+      unsubscribe: Afmelden
       unsuspended_msg: Het niet langer opschorten van %{username} is geslaagd
       username: Gebruikersnaam
       view_domain: Samenvatting voor domein bekijken
@@ -762,6 +762,7 @@ nl:
       categories:
         administration: Beheer
         devops: DevOps
+        email: E-mail
         invites: Uitnodigingen
         moderation: Moderatie
         special: Speciaal
@@ -778,6 +779,8 @@ nl:
         administrator_description: Deze gebruikers hebben volledige rechten en kun dus overal bij
         delete_user_data: Gebruikersgegevens verwijderen
         delete_user_data_description: Staat gebruikers toe om de gegevens van andere gebruikers zonder vertraging te verwijderen
+        invite_bypass_approval: Gebruikers uitnodigen zonder beoordeling
+        invite_bypass_approval_description: Staat het toe dat mensen die door deze gebruikers voor deze server zijn uitgenodigd, niet door moderatoren beoordeeld hoeven te worden
         invite_users: Gebruikers uitnodigen
         invite_users_description: Staat gebruikers toe om nieuwe mensen voor de server uit te nodigen
         manage_announcements: Aankondigingen beheren
@@ -788,6 +791,8 @@ nl:
         manage_blocks_description: Staat gebruikers toe om e-mailproviders en IP-adressen te blokkeren
         manage_custom_emojis: Lokale emoji's beheren
         manage_custom_emojis_description: Staat gebruikers toe om lokale emoji's op de server te beheren
+        manage_email_subscriptions: E-mailabonnementen beheren
+        manage_email_subscriptions_description: Sta gebruikers toe om zich per e-mail te abonneren op gebruikers met deze rechten
         manage_federation: Federatie beheren
         manage_federation_description: Staat gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en om de bezorging te bepalen
         manage_invites: Uitnodigingen beheren
@@ -1229,7 +1234,6 @@ nl:
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
-    settings: 'E-mailvoorkeuren wijzigen: %{link}'
     unsubscribe: Afmelden
     view: 'Bekijk:'
     view_profile: Profiel bekijken
@@ -1279,6 +1283,7 @@ nl:
     progress:
       confirm: E-mailadres bevestigen
       details: Jouw gegevens
+      list: Voortgang registratie
       review: Onze beoordeling
       rules: Regels accepteren
     providers:
@@ -1294,6 +1299,7 @@ nl:
       invited_by: 'Je kunt je registreren op %{domain} dankzij de uitnodiging die je hebt ontvangen van:'
       preamble: Deze zijn vastgesteld en worden gehandhaafd door de moderatoren van %{domain}.
       preamble_invited: Voordat je verder gaat, moet je eerst kennisnemen van de basisregels die door de moderatoren van %{domain} zijn vastgesteld.
+      read_more: Meer lezen
       title: Enkele basisregels.
       title_invited: Je bent uitgenodigd.
     security: Beveiliging
@@ -1303,7 +1309,7 @@ nl:
       email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten wel even.
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
-      title: Kijk in je mailbox
+      title: Kijk in je e-mail
     sign_in:
       preamble_html: Log in met de inloggegevens van <strong>%{domain}</strong>. Als jouw account zich op een andere server bevindt, kun je hier niet inloggen.
       title: Inloggen op %{domain}
@@ -1412,9 +1418,42 @@ nl:
       your_appeal_pending: Je hebt een bezwaar ingediend
       your_appeal_rejected: Jouw bezwaar is afgewezen
   edit_profile:
-    basic_information: Algemene informatie
-    hint_html: "<strong>Wat mensen op jouw openbare profiel en naast je berichten zien aanpassen.</strong> Andere mensen gaan je waarschijnlijk eerder volgen en hebben vaker interactie met je, wanneer je profiel is ingevuld en je een profielfoto hebt."
     other: Overige
+    redesign_body: Het bewerken van je profiel is nu toegankelijk vanaf de profielpagina.
+    redesign_button: Ga erheen
+    redesign_title: Er is een nieuwe profielbewerkingservaring
+  email_subscription_mailer:
+    confirmation:
+      action: E-mailadres bevestigen
+      instructions_to_confirm: Bevestig dat je e-mails van %{name} (@%{acct}) wilt ontvangen wanneer deze gebruiker nieuwe berichten publiceert.
+      instructions_to_ignore: Wanneer je niet zeker weet waarom je deze e-mail hebt ontvangen, kun je deze verwijderen. Je bent niet geabonneerd wanneer je niet op de bovenstaande link klikt.
+      subject: Je e-mailadres bevestigen
+      title: E-mailupdates van %{name} ontvangen?
+    notification:
+      create_account: Een Mastodon-account registreren
+      footer:
+        privacy_html: E-mails worden verzonden van %{domain}, een door Mastodon mogelijk gemaakte server. Raadpleeg het <a href="%{privacy_policy_path}">Privacybeleid</a> om te begrijpen hoe deze server jouw persoonsgegevens verwerkt.
+        reason_for_email_html: Je ontvangt deze e-mail omdat je hebt gekozen voor e-mailupdates van %{name}. Wil je deze e-mails niet ontvangen? <a href="%{unsubscribe_path}">Afmelden</a>
+      interact_with_this_post:
+        one: Reageer op dit bericht en ontdek vergelijkbare inhoud.
+        other: Reageer op deze berichten en ontdek vergelijkbare inhoud.
+      subject:
+        plural: Nieuwe berichten van %{name}
+        singular: 'Nieuw bericht: "%{excerpt}"'
+      title:
+        plural: Nieuwe berichten van %{name}
+        singular: 'Nieuw bericht: "%{excerpt}"'
+  email_subscriptions:
+    active: Actief
+    confirmations:
+      show:
+        changed_your_mind: Van mening veranderd?
+        success_html: Je ontvangt nu e-mails wanneer %{name} nieuwe berichten publiceert. Voeg %{sender} toe aan je contactpersonen, zodat deze berichten niet in je spam terechtkomen.
+        title: Je bent ingeschreven
+        unsubscribe: Afmelden
+    inactive: Inactief
+    status: Status
+    subscribers: Abonnees
   emoji_styles:
     auto: Auto
     native: Systeemeigen
@@ -1453,10 +1492,8 @@ nl:
     mutes: Genegeerde accounts
     storage: Mediabestanden
   featured_tags:
-    add_new: Nieuwe toevoegen
     errors:
       limit: Je hebt al het maximale aantal hashtags uitgelicht
-    hint_html: "<strong>Toon je belangrijkste hashtags op je profiel</strong> Deze worden prominent op je openbare profiel getoond en stelt mensen in staat om je openbare berichten per hashtag te bekijken. Het is een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
       account: Profielen
@@ -1649,21 +1686,6 @@ nl:
     failed_sign_in_html: Mislukte inlogpoging met %{method} van %{ip} (%{browser})
     successful_sign_in_html: Succesvol ingelogd met %{method} van %{ip} (%{browser})
     title: Inloggeschiedenis
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, afmelden
-      complete: Afgemeld
-      confirmation_html: Weet je zeker dat je je wilt afmelden voor het ontvangen van %{type} van Mastodon op %{domain} op je e-mailadres %{email}? Je kunt je altijd opnieuw abonneren in jouw <a href="%{settings_path}">instellingen voor e-mailmeldingen</a>.
-      emails:
-        notification_emails:
-          favourite: e-mailmeldingen voor favorieten
-          follow: e-mailmeldingen voor nieuwe volgers
-          follow_request: e-mailmeldingen voor volgverzoeken
-          mention: e-mailmeldingen voor vermeldingen
-          reblog: e-mailmeldingen voor boosts
-      resubscribe_html: Als je je per ongeluk hebt afgemeld, kun je je opnieuw abonneren in jouw <a href="%{settings_path}">instellingen voor e-mailmeldingen</a>.
-      success_html: Je ontvangt niet langer %{type} van Mastodon op %{domain} op je e-mailadres %{email}.
-      title: Afmelden
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een bericht met afbeeldingen worden gekoppeld
@@ -1801,6 +1823,8 @@ nl:
     posting_defaults: Jouw nieuwe berichten
     public_timelines: Openbare tijdlijnen
   privacy:
+    email_subscriptions: Berichten per e-mail verzenden
+    email_subscriptions_hint_html: Voeg een e-mailaanmeldformulier toe aan je profiel dat verschijnt voor uitgelogde gebruikers. Wanneer bezoekers hun e-mailadres opgeven en zich abonneren, zal Mastodon e-mailupdates voor jouw openbare berichten verzenden.
     hint_html: "<strong>Hoe wil je dat jouw profiel en berichten kunnen worden gevonden?</strong> Een verscheidenheid aan functies in Mastodon kunnen je helpen om een groter publiek te bereiken als ze zijn ingeschakeld. Neem rustig de tijd om deze instellingen te bekijken, om er zo zeker van te zijn dat ze aan jouw wensen voldoen."
     privacy: Privacy
     privacy_hint_html: Hoeveel informatie wil je aan andere gebruikers kwijt? Mensen ontdekken interessante accounts en coole apps door te bekijken welke accounts jij volgt en door te bekijken welke app jij gebruikt voor het plaatsen van berichten. Het kan achter zo zijn dat je dit liever verborgen houdt.
@@ -2064,6 +2088,28 @@ nl:
     resume_app_authorization: Applicatie-machtiging hervatten
     role_requirement: "%{domain} vereist dat je Tweestapsverificatie instelt voordat je Mastodon kunt gebruiken."
     webauthn: Beveiligingssleutels
+  unsubscriptions:
+    create:
+      action: Ga naar de startpagina van de server
+      email_subscription:
+        confirmation_html: Je zult geen e-mails meer van %{name} ontvangen.
+      title: Je bent afgemeld
+      user:
+        confirmation_html: Je zult geen %{type} meer van Mastodon op %{domain} ontvangen.
+    notification_emails:
+      favourite: e-mailmeldingen favorieten
+      follow: e-mailmeldingen volgers
+      follow_request: e-mailmeldingen volgverzoeken
+      mention: e-mailmeldingen vermeldingen
+      reblog: e-mailmeldingen boosts
+    show:
+      action: Afmelden
+      email_subscription:
+        confirmation_html: Je zult geen e-mails meer ontvangen wanneer dit account nieuwe berichten publiceert.
+        title: Van %{name} afmelden?
+      user:
+        confirmation_html: Je zult geen %{type} meer van Mastodon op %{domain} ontvangen.
+        title: Van %{type} afmelden?
   user_mailer:
     announcement_published:
       description: 'De beheerders van %{domain} doen een mededeling:'

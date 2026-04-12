@@ -153,7 +153,7 @@ export const languages = initialState?.languages.map((lang) => {
     lang[0],
     displayNames?.of(lang[0].replace('zh-YUE', 'yue')) ?? lang[1],
     lang[2],
-  ];
+  ] as InitialStateLanguage;
 });
 
 export function getAccessToken(): string | undefined {

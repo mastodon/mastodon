@@ -1207,7 +1207,6 @@ ia:
   application_mailer:
     notification_preferences: Cambiar preferentias de e-mail
     salutation: "%{name},"
-    settings: 'Cambiar preferentias de e-mail: %{link}'
     unsubscribe: Cancellar subscription
     view: 'Visita:'
     view_profile: Vider profilo
@@ -1383,8 +1382,6 @@ ia:
       your_appeal_pending: Tu ha submittite un appello
       your_appeal_rejected: Tu appello ha essite rejectate
   edit_profile:
-    basic_information: Information basic
-    hint_html: "<strong>Personalisa lo que le personas vide sur tu profilo public e presso tu messages.</strong> Il es plus probabile que altere personas te seque e interage con te quando tu ha un profilo complete e un photo."
     other: Alteres
   emoji_styles:
     auto: Automatic
@@ -1424,10 +1421,8 @@ ia:
     mutes: Tu ha silentiate
     storage: Immagazinage multimedial
   featured_tags:
-    add_new: Adder nove
     errors:
       limit: Tu ha jam mittite in evidentia le maxime numero de hashtags
-    hint_html: "<strong>Monstra tu plus importante hashtags sur tu profilo.</strong> Un excellente instrumento pro tener tracia de tu labores creative e projectos de longe termino, le hashtags que tu mitte in evidentia appare prominentemente sur tu profilo e permitte le accesso rapide a tu proprie messages."
   filters:
     contexts:
       account: Profilos
@@ -1620,21 +1615,6 @@ ia:
     failed_sign_in_html: Tentativa de authentication fallite con %{method} ab %{ip} (%{browser})
     successful_sign_in_html: Apertura de session succedite con %{method} desde %{ip} (%{browser})
     title: Historia de authentication
-  mail_subscriptions:
-    unsubscribe:
-      action: Si, cancellar subscription
-      complete: Desubscribite
-      confirmation_html: Es tu secur de voler cancellar le subscription al %{type} de Mastodon sur %{domain} pro tu adresse de e-mail %{email}? Tu pote sempre resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
-      emails:
-        notification_emails:
-          favourite: notificationes de favorites in e-mail
-          follow: notificationes de sequimento in e-mail
-          follow_request: requestas de sequimento in e-mail
-          mention: notificationes de mentiones in e-mail
-          reblog: notificationes de impulsos in e-mail
-      resubscribe_html: Si tu ha cancellate le subscription in error, tu pote resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
-      success_html: Tu non recipera plus %{type} pro Mastodon sur %{domain} a tu adresse de e-mail %{email}.
-      title: Desubcriber
   media_attachments:
     validations:
       images_and_video: Impossibile annexar un video a un message que jam contine imagines

@@ -22,8 +22,8 @@ RSpec.describe Settings::ImportsController do
     it 'assigns the expected imports', :aggregate_failures do
       expect(response).to have_http_status(200)
       expect(response.headers['Cache-Control']).to include('private, no-store')
-      expect(response.body)
-        .to include("bulk_import_#{import.id}")
+      expect(response.parsed_body)
+        .to have_css("#bulk_import_#{import.id}")
         .and not_include("bulk_import_#{other_import.id}")
     end
   end
@@ -136,7 +136,7 @@ RSpec.describe Settings::ImportsController do
   describe 'GET #failures' do
     subject { get :failures, params: { id: bulk_import.id }, format: :csv }
 
-    shared_examples 'export failed rows' do |expected_contents|
+    shared_examples 'export failed rows' do |filename, expected_contents|
       let(:bulk_import) { Fabricate(:bulk_import, account: user.account, type: import_type, state: :finished) }
 
       before do
@@ -147,8 +147,12 @@ RSpec.describe Settings::ImportsController do
       it 'returns expected contents', :aggregate_failures do
         subject
 
-        expect(response).to have_http_status(200)
-        expect(response.body).to eq expected_contents
+        expect(response)
+          .to have_http_status(200)
+        expect(response)
+          .to have_attachment(filename)
+        expect(response.body)
+          .to eq expected_contents
       end
     end
 
@@ -162,7 +166,7 @@ RSpec.describe Settings::ImportsController do
         ]
       end
 
-      it_behaves_like 'export failed rows', "Account address,Show boosts,Notify on new posts,Languages\nfoo@bar,true,false,\nuser@bar,false,true,\"fr, de\"\n"
+      it_behaves_like 'export failed rows', 'following_accounts_failures.csv', "Account address,Show boosts,Notify on new posts,Languages\nfoo@bar,true,false,\nuser@bar,false,true,\"fr, de\"\n"
     end
 
     context 'with blocks' do
@@ -175,7 +179,7 @@ RSpec.describe Settings::ImportsController do
         ]
       end
 
-      it_behaves_like 'export failed rows', "foo@bar\nuser@bar\n"
+      it_behaves_like 'export failed rows', 'blocked_accounts_failures.csv', "foo@bar\nuser@bar\n"
     end
 
     context 'with mutes' do
@@ -188,7 +192,7 @@ RSpec.describe Settings::ImportsController do
         ]
       end
 
-      it_behaves_like 'export failed rows', "Account address,Hide notifications\nfoo@bar,true\nuser@bar,false\n"
+      it_behaves_like 'export failed rows', 'muted_accounts_failures.csv', "Account address,Hide notifications\nfoo@bar,true\nuser@bar,false\n"
     end
 
     context 'with domain blocks' do
@@ -201,7 +205,7 @@ RSpec.describe Settings::ImportsController do
         ]
       end
 
-      it_behaves_like 'export failed rows', "bad.domain\nevil.domain\n"
+      it_behaves_like 'export failed rows', 'blocked_domains_failures.csv', "bad.domain\nevil.domain\n"
     end
 
     context 'with bookmarks' do
@@ -214,7 +218,7 @@ RSpec.describe Settings::ImportsController do
         ]
       end
 
-      it_behaves_like 'export failed rows', "https://foo.com/1\nhttps://foo.com/2\n"
+      it_behaves_like 'export failed rows', 'bookmarks_failures.csv', "https://foo.com/1\nhttps://foo.com/2\n"
     end
 
     context 'with lists' do
@@ -227,7 +231,7 @@ RSpec.describe Settings::ImportsController do
         ]
       end
 
-      it_behaves_like 'export failed rows', "Amigos,user@example.com\nFrenemies,user@org.org\n"
+      it_behaves_like 'export failed rows', 'lists_failures.csv', "Amigos,user@example.com\nFrenemies,user@org.org\n"
     end
   end
 

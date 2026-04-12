@@ -29,14 +29,14 @@
     color: var(--color-text-secondary);
   }
 
-  &:focus {
-    outline-color: var(--color-text-brand);
-  }
-
   &:focus:user-invalid,
   &:required:user-invalid,
   [data-has-error='true'] & {
-    outline-color: var(--color-text-error);
+    outline-color: var(--color-border-error);
+  }
+
+  &:focus {
+    outline-color: var(--color-border-brand);
   }
 
   &:required:user-valid {

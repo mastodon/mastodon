@@ -6,15 +6,19 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   class Error < StandardError; end
 
   # Returns actor that owns the key
+  # This is to be used when we know a key URI but don't know the associated account URI,
+  # otherwise use `ActivityPub::FetchRemoteActorService`.
   def call(uri, suppress_errors: true)
     raise Error, 'No key URI given' if uri.blank?
 
+    @suppress_errors = suppress_errors
+    @uri = uri
     @json = fetch_resource(uri, false)
 
     raise Error, "Unable to fetch key JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?(@json) || (supported_security_context?(@json) && @json['owner'].present? && !actor_type?)
     raise Error, "Unexpected object type for key #{uri}" unless expected_type?
-    return find_actor(@json['id'], @json, suppress_errors) if actor_type?
+    return keypair_from_actor_json(@json['id'], @json) if actor_type?
 
     @owner = fetch_resource(owner_uri, true)
 
@@ -23,7 +27,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
     raise Error, "Unexpected object type for actor #{owner_uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_owner_type?
     raise Error, "publicKey id for #{owner_uri} does not correspond to #{@json['id']}" unless confirmed_owner?
 
-    find_actor(owner_uri, @owner, suppress_errors)
+    keypair_from_actor_json(owner_uri, @owner)
   rescue Error => e
     Rails.logger.debug { "Fetching key #{uri} failed: #{e.message}" }
     raise unless suppress_errors
@@ -31,10 +35,25 @@ class ActivityPub::FetchRemoteKeyService < BaseService
 
   private
 
-  def find_actor(uri, prefetched_body, suppress_errors)
-    actor   = ActivityPub::TagManager.instance.uri_to_actor(uri)
-    actor ||= ActivityPub::FetchRemoteActorService.new.call(uri, prefetched_body: prefetched_body, suppress_errors: suppress_errors)
-    actor
+  def keypair_from_actor_json(actor_uri, actor_json)
+    actor = find_actor(actor_uri, actor_json)
+    return if actor.nil?
+
+    keypair = actor.keypairs.find_by(uri: @uri)
+    return keypair if keypair.present?
+
+    Keypair.from_legacy_account(actor, uri: @uri) if actor.public_key.present?
+  end
+
+  def find_actor(uri, prefetched_body)
+    # `FetchRemoteKeyService` is called when we don't know of a key.
+    # This is most likely because we don't know of an account yet, but it could also be because we have stale data.
+    # Return the actor if it is known and has been updated recently, otherwise, process it in full.
+
+    actor = ActivityPub::TagManager.instance.uri_to_actor(uri)
+    return actor if actor.present? && !actor.possibly_stale?
+
+    ActivityPub::FetchRemoteActorService.new.call(uri, prefetched_body: prefetched_body, suppress_errors: @suppress_errors)
   end
 
   def expected_type?

@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include UserTrackingConcern
   include SessionTrackingConcern
   include CacheConcern
+  include ErrorResponses
   include PreloadingConcern
   include DomainControlHelper
   include DatabaseHelper
@@ -22,21 +23,6 @@ class ApplicationController < ActionController::Base
   helper_method :sso_account_settings
   helper_method :limited_federation_mode?
   helper_method :skip_csrf_meta_tags?
-
-  rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
-  rescue_from Mastodon::NotPermittedError, with: :forbidden
-  rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from ActionController::UnknownFormat, with: :not_acceptable
-  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_content
-  rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
-
-  rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
-  rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight, ActiveRecord::SerializationFailure, with: :service_unavailable
-
-  rescue_from Seahorse::Client::NetworkingError do |e|
-    Rails.logger.warn "Storage server error: #{e}"
-    service_unavailable
-  end
 
   before_action :check_self_destruct!
 
@@ -118,42 +104,6 @@ class ApplicationController < ActionController::Base
     ActiveModel::Type::Boolean.new.cast(params[key])
   end
 
-  def forbidden
-    respond_with_error(403)
-  end
-
-  def not_found
-    respond_with_error(404)
-  end
-
-  def gone
-    respond_with_error(410)
-  end
-
-  def unprocessable_content
-    respond_with_error(422)
-  end
-
-  def not_acceptable
-    respond_with_error(406)
-  end
-
-  def bad_request
-    respond_with_error(400)
-  end
-
-  def internal_server_error
-    respond_with_error(500)
-  end
-
-  def service_unavailable
-    respond_with_error(503)
-  end
-
-  def too_many_requests
-    respond_with_error(429)
-  end
-
   def single_user_mode?
     @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.without_internal.exists?
   end
@@ -176,13 +126,6 @@ class ApplicationController < ActionController::Base
     return @current_session if defined?(@current_session)
 
     @current_session = SessionActivation.find_by(session_id: cookies.signed['_session_id']) if cookies.signed['_session_id'].present?
-  end
-
-  def respond_with_error(code)
-    respond_to do |format|
-      format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
-      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
-    end
   end
 
   def check_self_destruct!

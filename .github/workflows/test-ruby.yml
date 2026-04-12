@@ -124,8 +124,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.2'
           - '3.3'
+          - '3.4'
           - '.ruby-version'
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -217,8 +217,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.2'
           - '3.3'
+          - '3.4'
           - '.ruby-version'
 
     steps:
@@ -348,8 +348,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.2'
           - '3.3'
+          - '3.4'
           - '.ruby-version'
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.29
@@ -387,10 +387,3 @@ jobs:
         with:
           name: test-search-logs-${{ matrix.ruby-version }}
           path: log/
-
-      - name: Archive test screenshots
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
-        if: failure()
-        with:
-          name: test-search-screenshots
-          path: tmp/capybara/

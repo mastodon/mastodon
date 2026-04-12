@@ -4,7 +4,6 @@ ga:
     hints:
       account:
         attribution_domains: Ceann in aghaidh an líne. Cosnaíonn sé ó sannadh bréagach.
-        discoverable: Seans go mbeidh do phostálacha poiblí agus do phróifíl le feiceáil nó molta i réimsí éagsúla de Mastodon agus is féidir do phróifíl a mholadh d’úsáideoirí eile.
         display_name: D'ainm iomlán nó d'ainm spraoi.
         fields: Do leathanach baile, forainmneacha, aois, rud ar bith is mian leat.
         indexable: Seans go mbeidh do phostálacha poiblí le feiceáil sna torthaí cuardaigh ar Mastodon. Seans go mbeidh daoine a d’idirghníomhaigh le do phostálacha in ann iad a chuardach beag beann ar.
@@ -134,6 +133,7 @@ ga:
         otp: 'Cuir isteach an cód dhá fhachtóir ginte ag d''aip ghutháin nó úsáid ceann de do chóid athshlánaithe:'
         webauthn: Más eochair USB atá ann déan cinnte é a chur isteach agus, más gá, tapáil í.
       settings:
+        email_subscriptions: Coinnítear síntiúsóirí reatha ach cuirtear stop le ríomhphoist a sheoladh má dhíchumasaítear iad.
         indexable: Seans go mbeidh do leathanach próifíle le feiceáil i dtorthaí cuardaigh ar Google, Bing agus eile.
         show_application: Beidh tú in ann a fheiceáil i gcónaí cén aip a d’fhoilsigh do phostáil beag beann ar.
       tag:
@@ -153,7 +153,7 @@ ga:
         jurisdiction: Liostaigh an tír ina bhfuil cónaí ar an té a íocann na billí. Más cuideachta nó aonán eile é, liostaigh an tír ina bhfuil sé corpraithe, agus an chathair, an réigiún, an chríoch nó an stát mar is cuí.
         min_age: Níor chóir go mbeidís faoi bhun na haoise íosta a éilíonn dlíthe do dhlínse.
       user:
-        chosen_languages: Nuair a dhéantar iad a sheiceáil, ní thaispeánfar ach postálacha i dteangacha roghnaithe in amlínte poiblí
+        chosen_languages: Nuair a bheidh sé seo seiceáilte, ní thaispeánfar ach poist i dteangacha roghnaithe in amlínte poiblí. Ní dhéanann an socrú seo difear d’amlíne Baile agus do liostaí.
         date_of_birth:
           few: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun %{domain} a úsáid. Ní stórálfaimid é seo.
           many: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun %{domain} a úsáid. Ní stórálfaimid é seo.
@@ -179,7 +179,6 @@ ga:
     labels:
       account:
         attribution_domains: Tá cead ag suíomhanna Gréasáin creidmheas a thabhairt duit
-        discoverable: Próifíl gné agus postálacha in halgartaim fionnachtana
         fields:
           name: Lipéad
           value: Ábhar
@@ -359,6 +358,7 @@ ga:
         hint: Eolas breise
         text: Riail
       settings:
+        email_subscriptions: Cumasaigh clárúcháin ríomhphoist
         indexable: Cuir leathanach próifíle san innill chuardaigh
         show_application: Taispeáin cén aip ónar sheol tú postáil
       tag:

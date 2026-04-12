@@ -6,6 +6,7 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     return follow_request_from_object.reject! unless follow_request_from_object.nil?
     return UnfollowService.new.call(follow_from_object.account, @account) unless follow_from_object.nil?
     return reject_quote!(quote_request_from_object) unless quote_request_from_object.nil?
+    return reject_feature_request! unless feature_request_from_object.nil?
 
     case @object['type']
     when 'Follow'
@@ -44,6 +45,13 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
 
     # TODO: broadcast an update?
     quote.reject!
+  end
+
+  def reject_feature_request!
+    collection_item = feature_request_from_object
+    return unless collection_item.account == @account && collection_item.local?
+
+    collection_item.destroy!
   end
 
   def relay

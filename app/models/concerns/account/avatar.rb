@@ -3,6 +3,7 @@
 module Account::Avatar
   extend ActiveSupport::Concern
 
+  MAX_DESCRIPTION_LENGTH = 150
   AVATAR_IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
   AVATAR_LIMIT = 8.megabytes
   AVATAR_DIMENSIONS = [400, 400].freeze
@@ -25,7 +26,7 @@ module Account::Avatar
     validates_attachment_size :avatar, less_than: AVATAR_LIMIT
     remotable_attachment :avatar, AVATAR_LIMIT, suppress_errors: false
 
-    validates :avatar_description, length: { maximum: MediaAttachment::MAX_DESCRIPTION_LENGTH }
+    validates :avatar_description, length: { maximum: MAX_DESCRIPTION_LENGTH }, if: -> { local? && will_save_change_to_avatar_description? }
   end
 
   def avatar_original_url

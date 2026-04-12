@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
@@ -9,6 +9,7 @@ import fuzzysort from 'fuzzysort';
 
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import { Icon }  from 'mastodon/components/icon';
+import { injectIntl } from '@/mastodon/components/intl';
 import { toServerSideType } from 'mastodon/utils/filters';
 import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';
 

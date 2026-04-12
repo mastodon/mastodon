@@ -22,7 +22,7 @@ interface CopyLinkFieldProps extends CommonFieldWrapperProps, TextInputProps {
 
 export const CopyLinkField = forwardRef<HTMLInputElement, CopyLinkFieldProps>(
   (
-    { id, label, hint, hasError, value, required, className, ...otherProps },
+    { id, label, hint, status, value, required, className, ...otherProps },
     ref,
   ) => {
     const intl = useIntl();
@@ -48,7 +48,7 @@ export const CopyLinkField = forwardRef<HTMLInputElement, CopyLinkFieldProps>(
         label={label}
         hint={hint}
         required={required}
-        hasError={hasError}
+        status={status}
         inputId={id}
       >
         {(inputProps) => (

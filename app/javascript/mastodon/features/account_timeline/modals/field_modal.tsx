@@ -28,6 +28,7 @@ export const AccountFieldModal: FC<{
           as='h2'
           htmlString={field.name_emojified}
           onElement={handleLabelElement}
+          className={classes.fieldName}
         />
         <EmojiHTML
           as='p'

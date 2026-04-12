@@ -1267,7 +1267,6 @@ cs:
   application_mailer:
     notification_preferences: Změnit předvolby e-mailu
     salutation: "%{name},"
-    settings: 'Změnit předvolby e-mailu: %{link}'
     unsubscribe: Přestat odebírat
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
@@ -1450,8 +1449,6 @@ cs:
       your_appeal_pending: Podali jste odvolání
       your_appeal_rejected: Vaše odvolání bylo zamítnuto
   edit_profile:
-    basic_information: Základní informace
-    hint_html: "<strong>Nastavte si, co lidé uvidí na vašem veřejném profilu a vedle vašich příspěvků.</strong> Ostatní lidé vás budou spíše sledovat a komunikovat s vámi, když budete mít vyplněný profil a profilový obrázek."
     other: Další
   emoji_styles:
     auto: Auto
@@ -1491,10 +1488,8 @@ cs:
     mutes: Skrýváte
     storage: Úložiště médií
   featured_tags:
-    add_new: Přidat nový
     errors:
       limit: Již jste zvýraznili maximální počet hashtagů
-    hint_html: "<strong>Co jsou zvýrazněné hashtagy?</strong> Zobrazují se prominentně na vašem veřejném profilu a dovolují lidem prohlížet si vaše veřejné příspěvky konkrétně pod těmi hashtagy. Je to skvělý nástroj pro sledování kreativních děl nebo dlouhodobých projektů."
   filters:
     contexts:
       account: Profily
@@ -1727,21 +1722,6 @@ cs:
     failed_sign_in_html: Neúspěšný pokus o přihlášení %{method} z %{ip} (%{browser})
     successful_sign_in_html: Úspěšné přihlášení %{method} z %{ip} (%{browser})
     title: Historie přihlášení
-  mail_subscriptions:
-    unsubscribe:
-      action: Ano, odeberte odběr
-      complete: Odběr byl odhlášen
-      confirmation_html: Jste si jisti, že chcete odhlásit odběr %{type} pro Mastodon na %{domain} na váš e-mail %{email}? Vždy se můžete znovu přihlásit ve svém nastavení <a href="%{settings_path}">e-mailových oznámení</a>.
-      emails:
-        notification_emails:
-          favourite: e-mailové oznámení při oblíbení
-          follow: e-mailové oznámení při sledování
-          follow_request: e-mail při žádost o sledování
-          mention: e-mailové oznámení při zmínění
-          reblog: e-mailové oznámení při boostu
-      resubscribe_html: Pokud jste se odhlásili omylem, můžete se znovu přihlásit ve svých nastavení <a href="%{settings_path}">e-mailových oznámení</a>.
-      success_html: Již nebudete dostávat %{type} pro Mastodon na %{domain} na vaši e-mailovou adresu %{email}.
-      title: Odhlásit odběr
   media_attachments:
     validations:
       images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video

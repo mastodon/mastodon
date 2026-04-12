@@ -26,13 +26,13 @@ export const Simple: Story = {};
 
 export const WithMaxLength: Story = {
   args: {
-    maxLength: 20,
+    counterMax: 20,
   },
 };
 
 export const WithRecommended: Story = {
   args: {
-    maxLength: 20,
+    counterMax: 20,
     recommended: true,
   },
 };
@@ -52,7 +52,7 @@ export const TextArea: Story = {
         value={value}
         onChange={setValue}
         label='Label'
-        maxLength={100}
+        counterMax={100}
       />
     );
   },

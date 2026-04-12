@@ -7,6 +7,8 @@ ja:
     hosted_on: Mastodon hosted on %{domain}
     title: このサーバーについて
   accounts:
+    errors:
+      cannot_be_added_to_collections: このアカウントはコレクションに追加できません。
     followers:
       other: フォロワー
     instance_actor_flash: このアカウントは、個々のユーザーではなく、サーバー自体を表すために使用される仮想のユーザーです。 連合のために使用されるため、停止しないで下さい。
@@ -49,6 +51,7 @@ ja:
         label: ロールを変更
         no_role: ロールがありません
         title: "%{username}さんのロールを変更"
+      collections: コレクション
       confirm: 確認
       confirmed: 確認済み
       confirming: 確認中
@@ -257,6 +260,7 @@ ja:
         demote_user_html: "%{name}さんが%{target}さんを降格しました"
         destroy_announcement_html: "%{name}さんがお知らせ %{target}を削除しました"
         destroy_canonical_email_block_html: "%{name} さんがメールアドレスのハッシュ値 %{target} のブロックを外しました"
+        destroy_collection_html: "%{name} さんが %{target} によるコレクションを削除しました"
         destroy_custom_emoji_html: "%{name}さんがカスタム絵文字『%{target}』を削除しました"
         destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
         destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
@@ -295,6 +299,7 @@ ja:
         unsilence_account_html: "%{name}さんが%{target}さんのサイレンスを解除しました"
         unsuspend_account_html: "%{name}さんが%{target}さんの停止を解除しました"
         update_announcement_html: "%{name}さんがお知らせ %{target}を更新しました"
+        update_collection_html: "%{name} さんが %{target} によるコレクションを更新しました"
         update_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を更新しました"
         update_domain_block_html: "%{name}さんが%{target}のドメインブロックを更新しました"
         update_ip_block_html: "%{name} さんがIP %{target} のルールを更新しました"
@@ -329,6 +334,9 @@ ja:
       unpublish: 非公開にする
       unpublished_msg: お知らせを非掲載にしました
       updated_msg: お知らせを更新しました
+    collections:
+      accounts: アカウント
+      collection_title: "%{name} によるコレクション"
     critical_update_pending: 重要な更新が保留中です
     custom_emojis:
       assign_category: カテゴリーを割り当て
@@ -657,6 +665,7 @@ ja:
       cancel: キャンセル
       category: カテゴリー
       category_description_html: 選択した理由は通報されたアカウントへの連絡時に引用されます
+      collections: コレクション (%{count})
       comment:
         none: なし
       comment_description_html: "%{name}からの詳細情報:"
@@ -816,6 +825,7 @@ ja:
         title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
+        preamble: 必ずしも知っている人がMastodonに居ない新規ユーザーに定着してもらうには、興味深いコンテンツを表示することが役に立ちます。あなたのサーバーの種々のディスカバリー機能の動作を設定してください。
         privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
@@ -826,6 +836,11 @@ ja:
         all: 誰にでも許可
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
+      feed_access:
+        modes:
+          authenticated: ログイン済みユーザーのみ
+          disabled: 特定ロールのユーザーのみ
+          public: 制限なし
       landing_page:
         values:
           trends: トレンド
@@ -1169,7 +1184,6 @@ ja:
   application_mailer:
     notification_preferences: メール設定の変更
     salutation: "%{name}さん"
-    settings: 'メール設定の変更: %{link}'
     unsubscribe: 購読解除
     view: 'リンク:'
     view_profile: プロフィールを表示
@@ -1276,6 +1290,13 @@ ja:
     hint_html: 以後1時間はパスワードの再入力を求めません
     invalid_password: パスワードが間違っています
     prompt: 続行するにはパスワードを入力してください
+  color_scheme:
+    auto: 自動
+    dark: ダーク
+    light: ライト
+  contrast:
+    auto: 自動
+    high: 高
   crypto:
     errors:
       invalid_key: 有効なEd25519またはCurve25519キーではありません
@@ -1345,11 +1366,9 @@ ja:
       your_appeal_pending: 申し立てを送信しました
       your_appeal_rejected: 申し立ては拒否されました
   edit_profile:
-    basic_information: 基本情報
-    hint_html: "<strong>アカウントのトップページや投稿の隣に表示される公開情報です。</strong>プロフィールとアイコンを設定することで、ほかのユーザーは親しみやすく、またフォローしやすくなります。"
     other: その他
   emoji_styles:
-    auto: オート
+    auto: 自動
     native: ネイティブ
     twemoji: Twemoji
   errors:
@@ -1386,10 +1405,8 @@ ja:
     mutes: ミュート
     storage: メディア
   featured_tags:
-    add_new: 追加
     errors:
       limit: すでに注目のハッシュタグの上限数に達しています
-    hint_html: "<strong>注目のハッシュタグとは？</strong>　プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
       account: プロフィール
@@ -1558,21 +1575,6 @@ ja:
     failed_sign_in_html: "%{ip} (%{browser}) から%{method}を利用したサインインに失敗しました。"
     successful_sign_in_html: "%{ip} (%{browser}) から%{method}を利用したサインインに成功しました"
     title: 認証履歴
-  mail_subscriptions:
-    unsubscribe:
-      action: 購読を解除する
-      complete: 購読を解除しました
-      confirmation_html: Mastodon (%{domain}) による %{email} 宛の「%{type}」の配信を停止します。再度必要になった場合は<a href="%{settings_path}">メール通知の設定</a>からいつでも再開できます。
-      emails:
-        notification_emails:
-          favourite: お気に入りの通知メール
-          follow: フォローの通知メール
-          follow_request: フォローリクエストの通知メール
-          mention: 返信の通知メール
-          reblog: ブーストの通知メール
-      resubscribe_html: 誤って解除した場合は<a href="%{settings_path}">メール通知の設定</a>から再購読できます。
-      success_html: Mastodon (%{domain}) から %{email} への「%{type}」の配信が停止されました。
-      title: 購読の解除
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
@@ -1867,13 +1869,18 @@ ja:
       direct: 非公開の返信
       private: フォロワーのみ
       public: 公開
+      public_long: すべての人 (Mastodon以外も含む)
+      unlisted: 非表示
+      unlisted_long: Mastodonの検索結果、トレンド、公開タイムラインに表示しない
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する
     enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
     exceptions: 例外
+    explanation: 自動削除は低い優先度で行われます。保持する期間を越えてから実際に削除されるまで遅延があるかもしれません。
     ignore_favs: 設定しない
     ignore_reblogs: 設定しない
     interaction_exceptions: インタラクションに基づく例外
+    interaction_exceptions_explanation: お気に入りやブーストの数が一度でも基準値に逹っした投稿は、その後数が減っても削除されません。
     keep_direct: ダイレクトメッセージを保持
     keep_direct_hint: ダイレクトメッセージを削除せずに残します
     keep_media: メディア付きの投稿を保持

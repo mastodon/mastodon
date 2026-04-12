@@ -3,9 +3,6 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-
-import IconPinned from '@/images/icons/icon_pinned.svg?react';
 import { fetchRelationships } from '@/mastodon/actions/accounts';
 import {
   AdminBadge,
@@ -15,14 +12,11 @@ import {
   GroupBadge,
   MutedBadge,
 } from '@/mastodon/components/badge';
-import { Icon } from '@/mastodon/components/icon';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { AccountRole } from '@/mastodon/models/account';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { isRedesignEnabled } from '../common';
-
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   const account = useAccount(accountId);
@@ -46,9 +40,6 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     return null;
   }
 
-  const isRedesign = isRedesignEnabled();
-  const className = isRedesign ? classes.badge : '';
-
   const domain = account.acct.includes('@')
     ? account.acct.split('@')[1]
     : localDomain;
@@ -58,7 +49,6 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
         <AdminBadge
           key={role.id}
           label={role.name}
-          className={className}
           domain={`(${domain})`}
           roleId={role.id}
         />,
@@ -68,8 +58,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
         <Badge
           key={role.id}
           label={role.name}
-          className={className}
-          domain={isRedesign ? `(${domain})` : domain}
+          domain={`(${domain})`}
           roleId={role.id}
         />,
       );
@@ -77,25 +66,19 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   });
 
   if (account.bot) {
-    badges.push(<AutomatedBadge key='bot-badge' className={className} />);
+    badges.push(<AutomatedBadge key='bot-badge' />);
   }
   if (account.group) {
-    badges.push(<GroupBadge key='group-badge' className={className} />);
+    badges.push(<GroupBadge key='group-badge' />);
   }
-  if (isRedesign && relationship) {
+  if (relationship) {
     if (relationship.blocking) {
-      badges.push(
-        <BlockedBadge
-          key='blocking'
-          className={classNames(className, classes.badgeBlocked)}
-        />,
-      );
+      badges.push(<BlockedBadge key='blocking' />);
     }
     if (relationship.domain_blocking) {
       badges.push(
         <BlockedBadge
           key='domain-blocking'
-          className={classNames(className, classes.badgeBlocked)}
           domain={domain}
           label={
             <FormattedMessage
@@ -110,7 +93,6 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
       badges.push(
         <MutedBadge
           key='muted-badge'
-          className={classNames(className, classes.badgeMuted)}
           expiresAt={relationship.muting_expires_at}
         />,
       );
@@ -121,20 +103,10 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     return null;
   }
 
-  return <div className={'account__header__badges'}>{badges}</div>;
+  return <div className={classes.badges}>{badges}</div>;
 };
-
-export const PinnedBadge: FC = () => (
-  <Badge
-    className={classes.badge}
-    icon={<Icon id='pinned' icon={IconPinned} />}
-    label={
-      <FormattedMessage id='account.timeline.pinned' defaultMessage='Pinned' />
-    }
-  />
-);
 
 function isAdminBadge(role: AccountRole) {
   const name = role.name.toLowerCase();
-  return isRedesignEnabled() && (name === 'admin' || name === 'owner');
+  return name === 'admin' || name === 'owner';
 }

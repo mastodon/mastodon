@@ -46,6 +46,7 @@ class Admin::AccountAction < Admin::BaseAction
     ApplicationRecord.transaction do
       handle_type!
       process_strike!
+      create_log!
       process_reports!
     end
 
@@ -103,6 +104,12 @@ class Admin::AccountAction < Admin::BaseAction
     authorize(target_account, :suspend?)
     log_action(:suspend, target_account)
     target_account.suspend!(origin: :local)
+  end
+
+  def create_log!
+    # A log entry is only interesting if the warning contains
+    # custom text from someone. Otherwise it's just noise.
+    log_action(:create, @warning) if @warning&.text.present? && type == 'none'
   end
 
   def text_for_warning

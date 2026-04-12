@@ -47,11 +47,11 @@ RSpec.describe Admin::InstancesController do
     it 'shows an instance page' do
       get :show, params: { id: account_popular_main.domain }
 
-      expect(response).to have_http_status(200)
-
-      expect(response.body)
-        .to include(I18n.t('admin.instances.totals_time_period_hint_html'))
-        .and include(I18n.t('accounts.nothing_here'))
+      expect(response)
+        .to have_http_status(200)
+      expect(response.parsed_body)
+        .to have_css('p', text: I18n.t('admin.instances.totals_time_period_hint_html'))
+        .and have_css('p', text: I18n.t('accounts.nothing_here'))
 
       expect(Admin::ActionLogFilter).to have_received(:new).with(target_domain: account_popular_main.domain)
     end

@@ -762,6 +762,7 @@ tr:
       categories:
         administration: Yönetim
         devops: DevOps
+        email: E-posta
         invites: Davetler
         moderation: Denetim
         special: Özel
@@ -778,6 +779,8 @@ tr:
         administrator_description: Bu izne sahip kullanıcılar tüm diğer izinleri atlıyorlar
         delete_user_data: Kullanıcı Verilerini Silme
         delete_user_data_description: Kullanıcıların, diğer kullanıcıların verisini gecikme olmaksızın silmesine izin verir
+        invite_bypass_approval: Kullanıcıları incelemeden davet et
+        invite_bypass_approval_description: Bu kullanıcılar tarafından sunucuya davet edilen kişilerin moderasyon onayını atlamasına izin verir
         invite_users: Kullanıcıları Davet Etme
         invite_users_description: Kullanıcıların yeni kişileri sunucuya davet etmesine izin verir
         manage_announcements: Duyuruları Yönetme
@@ -788,6 +791,8 @@ tr:
         manage_blocks_description: Kullanıcıların e-posta sağlayıcıları ve IP adreslerini engellemesine izin verir
         manage_custom_emojis: Özel İfadeleri Yönetme
         manage_custom_emojis_description: Kullanıcıların sunucudaki özel ifadeleri yönetmesine izin verir
+        manage_email_subscriptions: E-posta Aboneliklerini Yönet
+        manage_email_subscriptions_description: Kullanıcılara bu izne sahip diğer kullanıcıları e-posta yoluyla takip etme olanağı verin
         manage_federation: Birleştirme Yönetme
         manage_federation_description: Kullanıcıların diğer alan adlarıyla birleştirmeye izin vermesi veya engellemesine ve teslim edilebilirliği denetlemesine izin verir
         manage_invites: Davetleri Yönetme
@@ -1229,7 +1234,6 @@ tr:
   application_mailer:
     notification_preferences: E-posta tercihlerini değiştir
     salutation: "%{name},"
-    settings: 'E-posta tercihlerini değiştir: %{link}'
     unsubscribe: Abonelikten çık
     view: 'Görüntüle:'
     view_profile: Profili görüntüle
@@ -1279,6 +1283,7 @@ tr:
     progress:
       confirm: E-postanızı onaylayın
       details: Ayrıntılarınız
+      list: Kayıt ilerlemesi
       review: İncelememiz
       rules: Kabul kuralları
     providers:
@@ -1294,6 +1299,7 @@ tr:
       invited_by: 'Aşağıdakinden aldığınız davet sayesinde %{domain} sunucusuna katılabilirsiniz:'
       preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
       preamble_invited: Devam etmeden önce, %{domain} moderatörleri tarafından belirlenmiş temel kuralları gözden geçirin.
+      read_more: Devamını okuyun
       title: Bazı temel kurallar.
       title_invited: Davet edildiniz.
     security: Güvenlik
@@ -1412,9 +1418,42 @@ tr:
       your_appeal_pending: Bir itiraz gönderdiniz
       your_appeal_rejected: İtirazınız reddedildi
   edit_profile:
-    basic_information: Temel bilgiler
-    hint_html: "<strong>İnsanlara herkese açık profilinizde ve gönderilerinizin yanında ne göstermek istediğinizi düzenleyin.</strong> Dolu bir profile ve bir profil resmine sahip olduğunuzda diğer insanlar daha yüksek ihtimalle sizi takip etmek ve sizinle etkileşime geçmek isteyeceklerdir."
     other: Diğer
+    redesign_body: Profil düzenlemeye şimdi doğrudan profil sayfasından da erişilebilir.
+    redesign_button: Git
+    redesign_title: Yeni bir profile düzenleme deneyimi var
+  email_subscription_mailer:
+    confirmation:
+      action: E-posta adresini onayla
+      instructions_to_confirm: "%{name} (@%{acct}) yeni bir gönderi yayınladığında e-posta almak istediğinizi onaylayın."
+      instructions_to_ignore: Bu e-postayı neden aldığınızdan emin değilseniz silebilirsiniz. Yukarıdaki bağlantıya tıklamazsanız aboneliğiniz başlamayacaktır.
+      subject: E-posta adresinizi onaylayın
+      title: "%{name} kişisinden e-posta güncellemeleri alınsın mı?"
+    notification:
+      create_account: Bir Mastodon hesabı oluşturun
+      footer:
+        privacy_html: E-postalar Mastodon destekli %{domain} sunucusundan gönderilmektedir. Bu sunucunun kişisel verilerinizi nasıl işlediğini öğrenmek için <a href="%{privacy_policy_path}">Gizlilik Politikası</a> sayfasına bakabilirsiniz.
+        reason_for_email_html: Bu e-postayı, %{name}'den e-posta güncellemelerini almayı seçtiğiniz için alıyorsunuz. Bu e-postaları almak istemiyor musunuz? <a href="%{unsubscribe_path}">Aboneliği iptal edebilirsiniz</a>
+      interact_with_this_post:
+        one: Bu gönderiyle etkileşim kurun ve benzer içerikleri keşfedin.
+        other: Bu gönderilerle etkileşim kurun ve benzer içerikleri keşfedin.
+      subject:
+        plural: "%{name} kişisinden yeni gönderiler"
+        singular: 'Yeni gönderi: "%{excerpt}"'
+      title:
+        plural: "%{name} kişisinden yeni gönderiler"
+        singular: 'Yeni gönderi: "%{excerpt}"'
+  email_subscriptions:
+    active: Etkin
+    confirmations:
+      show:
+        changed_your_mind: Fikrinizi mi değiştirdiniz?
+        success_html: "%{name} yeni bir yazı yayınladığında artık e-posta almaya başlayacaksınız. Bu yazılar spam klasörüne düşmesin diye %{sender}'ı kişi listenize ekleyin."
+        title: Abone oldunuz
+        unsubscribe: Abonelikten çık
+    inactive: Etkin değil
+    status: Durum
+    subscribers: Aboneler
   emoji_styles:
     auto: Otomatik
     native: Yerel
@@ -1453,10 +1492,8 @@ tr:
     mutes: Sessize aldıkların
     storage: Medya depolaması
   featured_tags:
-    add_new: Yeni ekle
     errors:
       limit: Zaten azami etiket sayısını öne çıkardınız
-    hint_html: "<strong>Öne çıkan etiketler nelerdir?</strong> Genel profilinizde belirgin bir şekilde görüntülenirler ve kişilerin genel yayınlarınıza özellikle bu etiketler altında göz atmalarına izin verir. Yaratıcı çalışmaları veya uzun vadeli projeleri takip etmek için harika bir araçtır."
   filters:
     contexts:
       account: Profiller
@@ -1649,21 +1686,6 @@ tr:
     failed_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi"
     successful_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma"
     title: Kimlik doğrulama geçmişi
-  mail_subscriptions:
-    unsubscribe:
-      action: Evet, abonelikten çık
-      complete: Abonelikten çık
-      confirmation_html: '%{domain} üzerindeki Mastodon için %{type} almayı durdurarak %{email} adresinize aboneliğinizi iptal etmek istediğinizden emin misiniz? <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> her zaman yeniden abone olabilirsiniz.'
-      emails:
-        notification_emails:
-          favourite: favori bildirim e-postaları
-          follow: takip bildirim e-postaları
-          follow_request: takip isteği bildirim e-postaları
-          mention: bahsetme bildirim e-postaları
-          reblog: öne çıkanlar bildirim e-postaları
-      resubscribe_html: Abonelikten yanlışlıkla çıktıysanız, <a href="%{settings_path}">e-posta bildirim ayarlarınızdan</a> yeniden abone olabilirsiniz.
-      success_html: Artık %{email} adresindeki e-postanıza %{domain} üzerindeki Mastodon için %{type} almayacaksınız.
-      title: Abonelikten çık
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
@@ -1801,6 +1823,8 @@ tr:
     posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
   privacy:
+    email_subscriptions: Gönderileri e-posta ile gönder
+    email_subscriptions_hint_html: Profilinize oturumu kapatmış kullanıcılara gösterilecek bir e-posta kayıt formu ekleyin. Ziyaretçiler e-posta adreslerini girip abonelik isteğinde bulunduklarında, Mastodon kamuya açık gönderilerinizle ilgili güncellemeleri e-posta yoluyla gönderecektir.
     hint_html: "<strong>Profilinizin ve gönderilerinizin nasıl bulunmasını istediğinizi yapılandırın.</strong> Mastodon'daki çeşitli özellik etkinleştirildiklerinde çok daha geniş bir izleyici kitlesine ulaşmanıza yardımcı olabilir. Durumunuza uyup uymadığını anlamak için bu ayarlara bir göz atın."
     privacy: Gizlilik
     privacy_hint_html: Başkalarına ne kadar bilgi göstermek istediğinizi denetleyin. İnsanlar ilginç profilleri ve havalı uygulamaları diğer kişilerin takiplerine ve gönderileri paylaştıkları uygulamalara bakarak keşfederler, ama belki de gizli tutmak isteyebilirsiniz.
@@ -2064,6 +2088,28 @@ tr:
     resume_app_authorization: Uygulama yetkilendirmeyi sürdür
     role_requirement: "%{domain} Mastodon'u kullanabilmeniz için İki Aşamalı Kimlik Doğrulama'yı ayarlamanızı gerektirir."
     webauthn: Güvenlik anahtarları
+  unsubscriptions:
+    create:
+      action: Sunucu anasayfasına git
+      email_subscription:
+        confirmation_html: "%{name} kişisinden artık e-posta almayacaksınız."
+      title: Abonelikten ayrıldınız
+      user:
+        confirmation_html: Artık %{domain} adresindeki Mastodon'dan %{type} almayacaksınız.
+    notification_emails:
+      favourite: öne çıkanlar bildirim e-postaları
+      follow: takip bildirim e-postaları
+      follow_request: takip isteği bildirim e-postaları
+      mention: bahsetme bildirim e-postaları
+      reblog: öne çıkanlar bildirim e-postaları
+    show:
+      action: Abonelikten çık
+      email_subscription:
+        confirmation_html: Bu hesap yeni gönderiler yayınladığında e-posta almayacaksınız.
+        title: "%{name} kişisinin aboneliğinden ayrıl?"
+      user:
+        confirmation_html: "%{domain} adresindeki Mastodon'dan artık %{type} almayacaksınız."
+        title: "%{type} aboneliğinden çıkılsın mı?"
   user_mailer:
     announcement_published:
       description: "%{domain} yöneticileri bir duyuru yapıyorlar:"

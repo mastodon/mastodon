@@ -496,7 +496,7 @@ zh-CN:
       debug:
         callbacks:
           created_at: 创建于
-          delete: 刪除
+          delete: 删除
           ip: IP 地址
           request_body: 请求正文
           title: 调试回调
@@ -504,7 +504,7 @@ zh-CN:
         active: 有效
         base_url: 基础 URL
         callback: 回调
-        delete: 刪除
+        delete: 删除
         edit: 编辑提供商
         finish_registration: 完成注册
         name: 名称
@@ -747,6 +747,7 @@ zh-CN:
       categories:
         administration: 管理
         devops: 开发运维
+        email: 电子邮件
         invites: 邀请
         moderation: 审核
         special: 特殊
@@ -762,6 +763,8 @@ zh-CN:
         administrator_description: 拥有此权限的用户将绕过所有权限限制。
         delete_user_data: 删除用户数据
         delete_user_data_description: 允许用户立即删除其他用户的数据
+        invite_bypass_approval: 邀请未经审核的用户
+        invite_bypass_approval_description: 允许被这些用户邀请到此服务器的人们绕过管理审核批准
         invite_users: 邀请用户
         invite_users_description: 允许用户邀请新人加入站点
         manage_announcements: 管理公告
@@ -772,6 +775,8 @@ zh-CN:
         manage_blocks_description: 允许用户屏蔽邮箱域名与IP地址
         manage_custom_emojis: 管理自定义表情
         manage_custom_emojis_description: 允许用户管理站点上的自定义表情
+        manage_email_subscriptions: 管理邮件订阅
+        manage_email_subscriptions_description: 允许其他用户通过电子邮件订阅具备此权限的用户
         manage_federation: 管理联合
         manage_federation_description: 允许用户禁止或允许本站同其他站点的联合，并控制消息投递能力
         manage_invites: 管理邀请
@@ -930,7 +935,7 @@ zh-CN:
       with_media: 含有媒体文件
     strikes:
       actions:
-        delete_statuses: "%{name} 刪除了 %{target} 的嘟文"
+        delete_statuses: "%{name} 删除了 %{target} 的嘟文"
         disable: "%{name} 冻结了用户 %{target}"
         mark_statuses_as_sensitive: "%{name} 已将 %{target} 的嘟文标记为敏感内容"
         none: "%{name} 向 %{target} 发送了警告"
@@ -1208,7 +1213,6 @@ zh-CN:
   application_mailer:
     notification_preferences: 更改邮件偏好
     salutation: "%{name}："
-    settings: 更改邮件偏好： %{link}
     unsubscribe: 取消订阅
     view: 点此链接查看详情：
     view_profile: 查看个人资料
@@ -1258,6 +1262,7 @@ zh-CN:
     progress:
       confirm: 确认邮箱
       details: 你的详细信息
+      list: 注册流程
       review: 我们的审核
       rules: 接受规则
     providers:
@@ -1273,6 +1278,7 @@ zh-CN:
       invited_by: 欢迎加入%{domain}，你是通过以下用户的邀请加入的：
       preamble: 以下规则由 %{domain} 的管理员设定并执行。
       preamble_invited: 在继续操作前，请先阅读并同意 %{domain} 管理员设置的基本规则。
+      read_more: 查看更多
       title: 一些基本规则。
       title_invited: 通过邀请加入
     security: 账号安全
@@ -1391,9 +1397,41 @@ zh-CN:
       your_appeal_pending: 你已经提交了一次申诉
       your_appeal_rejected: 你的申诉已被驳回
   edit_profile:
-    basic_information: 基本信息
-    hint_html: "<strong>自定义公开资料和嘟文旁边显示的内容。</strong>当你填写完整的个人资料并设置了头像时，其他人更有可能关注你并与你互动。"
     other: 其他
+    redesign_body: 个人资料编辑功能现在可以直接在个人资料页面访问。
+    redesign_button: 前往
+    redesign_title: 全新个人资料编辑体验现已到来
+  email_subscription_mailer:
+    confirmation:
+      action: 确认电子邮件地址
+      instructions_to_confirm: 确认你确实想要在 %{name}（@%{acct}）发布新嘟文时收到电子邮件通知。
+      instructions_to_ignore: 如果你不知道为什么收到这封电子邮件，可以直接删除。如果你不点击上方链接，则不会为你订阅。
+      subject: 确认你的电子邮件地址
+      title: 要接收来自 %{name} 的电子邮件推送吗？
+    notification:
+      create_account: 创建 Mastodon 账号
+      footer:
+        privacy_html: 电子邮件发送自 %{domain}，由 Mastodon 驱动的社区实例。要了解本站如何处理你的个人信息，请参见<a href="%{privacy_policy_path}">隐私政策</a>。
+        reason_for_email_html: 你收到此邮件是因为你先前订阅了来自 %{name} 的嘟文邮件通知。不想再收到这些电子邮件？可以<a href="%{unsubscribe_path}">取消订阅</a>
+      interact_with_this_post:
+        other: 和嘟文互动，发现更多类似嘟文。
+      subject:
+        plural: 来自 %{name} 的新嘟文
+        singular: 新嘟文：“%{excerpt}”
+      title:
+        plural: 来自 %{name} 的新嘟文
+        singular: 新嘟文：“%{excerpt}”
+  email_subscriptions:
+    active: 已生效
+    confirmations:
+      show:
+        changed_your_mind: 改变主意了吗？
+        success_html: 现在开始当 %{name} 发布新嘟文时你会收到邮件提醒。记得将 %{sender} 添加到邮箱联系人中，以免嘟文推送被丢入垃圾邮件文件夹。
+        title: 你已成功订阅
+        unsubscribe: 取消订阅
+    inactive: 未生效
+    status: 状态
+    subscribers: 订阅者
   emoji_styles:
     auto: 自动
     native: 原生
@@ -1432,10 +1470,8 @@ zh-CN:
     mutes: 已被你隐藏的
     storage: 媒体文件存储
   featured_tags:
-    add_new: 添加新条目
     errors:
       limit: 你所推荐的话题数已达上限
-    hint_html: "<strong>什么是精选话题？</strong> 它们被显示在你的公开个人资料中的突出位置，人们可以在这些标签下浏览你的公共嘟文。 它们是跟踪创作或长期项目的进度的重要工具。"
   filters:
     contexts:
       account: 个人资料
@@ -1608,21 +1644,6 @@ zh-CN:
     failed_sign_in_html: 失败的 %{method} 登录尝试，来自 %{ip} (%{browser})
     successful_sign_in_html: 通过 %{method} 成功登录，来自 %{ip} (%{browser})
     title: 认证历史
-  mail_subscriptions:
-    unsubscribe:
-      action: 是，取消订阅
-      complete: 已取消订阅
-      confirmation_html: 你确定要退订来自 %{domain} 上的 Mastodon 的 %{type} 到你的邮箱 %{email} 吗？你可以随时在<a href="%{settings_path}">邮件通知设置</a>中重新订阅。
-      emails:
-        notification_emails:
-          favourite: 嘟文被喜欢邮件通知
-          follow: 账号被关注邮件通知
-          follow_request: 关注请求邮件通知
-          mention: 账号被提及邮件通知
-          reblog: 嘟文被转嘟邮件通知
-      resubscribe_html: 如果你不小心取消了订阅，可以在你的<a href="%{settings_path}">邮件通知设置</a>中重新订阅。
-      success_html: 你将不会在你的邮箱 %{email} 中收到 %{domain} 上的 Mastodon的 %{type}
-      title: 取消订阅
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
@@ -1760,6 +1781,8 @@ zh-CN:
     posting_defaults: 发布默认值
     public_timelines: 公共时间线
   privacy:
+    email_subscriptions: 通过电子邮件发送嘟文
+    email_subscriptions_hint_html: 在你的个人资料中添加电子邮件订阅表单，此表单会显示给未登录的用户。当访客输入电子邮件地址并选择订阅时，Mastodon 将在你更新公开嘟文时为这些访客发送电子邮件通知。
     hint_html: "<strong>自定义你希望如何找到你的个人资料和嘟文。</strong>启用Mastodon中的各种功能可以帮助你扩大受众范围。请花点时间查看这些设置，确保它们适合你的使用情况。"
     privacy: 隐私
     privacy_hint_html: 控制你愿意向他人透露多少信息。通过浏览他人的关注列表和查看他们发嘟所用的应用，人们可以发现有趣的用户和酷炫的应用，但你可能更喜欢将其隐藏起来。
@@ -2019,6 +2042,28 @@ zh-CN:
     resume_app_authorization: 恢复应用程序授权
     role_requirement: "%{domain} 要求你设置双因素认证以使用 Mastodon。"
     webauthn: 安全密钥
+  unsubscriptions:
+    create:
+      action: 转到服务器主页
+      email_subscription:
+        confirmation_html: 你将不会再收到来自 %{name} 的电子邮件。
+      title: 你已取消订阅
+      user:
+        confirmation_html: 你将不会再收到 %{domain} 上的 Mastodon 的%{type}。
+    notification_emails:
+      favourite: 嘟文被喜欢邮件通知
+      follow: 账号被关注邮件通知
+      follow_request: 关注请求邮件通知
+      mention: 账号被提及邮件通知
+      reblog: 嘟文被转嘟邮件通知
+    show:
+      action: 取消订阅
+      email_subscription:
+        confirmation_html: 你将不再收到此账号发布新嘟文时的通知邮件。
+        title: 取消订阅%{name}？
+      user:
+        confirmation_html: 你将停止接收 %{domain} 上的 Mastodon 的%{type}。
+        title: 取消订阅%{type}？
   user_mailer:
     announcement_published:
       description: "%{domain}管理员发布了一则公告："

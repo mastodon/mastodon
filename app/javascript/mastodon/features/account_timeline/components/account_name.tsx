@@ -7,19 +7,22 @@ import classNames from 'classnames';
 
 import Overlay from 'react-overlays/esm/Overlay';
 
+import FollowerIcon from '@/images/icons/icon_follower.svg?react';
+import { showAlert } from '@/mastodon/actions/alerts';
+import { Badge } from '@/mastodon/components/badge';
+import { Button } from '@/mastodon/components/button';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { Icon } from '@/mastodon/components/icon';
 import { useAccount } from '@/mastodon/hooks/useAccount';
-import { useAppSelector } from '@/mastodon/store';
+import { useRelationship } from '@/mastodon/hooks/useRelationship';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import AtIcon from '@/material-icons/400-24px/alternate_email.svg?react';
+import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
 import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import DomainIcon from '@/material-icons/400-24px/language.svg?react';
-import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 
-import { DomainPill } from '../../account/components/domain_pill';
-import { isRedesignEnabled } from '../common';
-
-import classes from './redesign.module.scss';
+import { AccountBadges } from './badges';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   lockedInfo: {
@@ -31,15 +34,19 @@ const messages = defineMessages({
     id: 'account.name_info',
     defaultMessage: 'What does this mean?',
   },
+  copied: {
+    id: 'copy_icon_button.copied',
+    defaultMessage: 'Copied to clipboard',
+  },
 });
 
 export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
-  const intl = useIntl();
   const account = useAccount(accountId);
   const me = useAppSelector((state) => state.meta.get('me') as string);
   const localDomain = useAppSelector(
     (state) => state.meta.get('domain') as string,
   );
+  const relationship = useRelationship(accountId);
 
   if (!account) {
     return null;
@@ -47,45 +54,32 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
 
   const [username = '', domain = localDomain] = account.acct.split('@');
 
-  if (!isRedesignEnabled()) {
-    return (
-      <h1>
-        <DisplayName account={account} variant='simple' />
-        <small>
-          <span>
-            @{username}
-            <span className='invisible'>@{domain}</span>
-          </span>
-          <DomainPill
-            username={username}
-            domain={domain}
-            isSelf={me === account.id}
-          />
-          {account.locked && (
-            <Icon
-              id='lock'
-              icon={LockIcon}
-              aria-label={intl.formatMessage(messages.lockedInfo)}
-            />
-          )}
-        </small>
-      </h1>
-    );
-  }
-
   return (
-    <div className={classes.name}>
-      <h1>
-        <DisplayName account={account} variant='simple' />
-      </h1>
-      <p className={classes.username}>
-        @{username}@{domain}
-        <AccountNameHelp
-          username={username}
-          domain={domain}
-          isSelf={account.id === me}
-        />
-      </p>
+    <div className={classes.nameWrapper}>
+      <div className={classes.name}>
+        <h1>
+          <DisplayName account={account} variant='simple' />
+        </h1>
+        {relationship?.followed_by && (
+          <Badge
+            icon={<FollowerIcon className={classes.followerBadgeIcon} />}
+            label={
+              <FormattedMessage
+                id='account.follows_you'
+                defaultMessage='Follows you'
+              />
+            }
+          />
+        )}
+      </div>
+
+      <AccountNameHelp
+        username={username}
+        domain={domain}
+        isSelf={account.id === me}
+      />
+
+      <AccountBadges accountId={accountId} />
     </div>
   );
 };
@@ -104,6 +98,19 @@ const AccountNameHelp: FC<{
     setOpen((prev) => !prev);
   }, []);
 
+  const handle = `@${username}@${domain}`;
+
+  const dispatch = useAppDispatch();
+  const [copied, setCopied] = useState(false);
+  const handleCopy = useCallback(() => {
+    void navigator.clipboard.writeText(handle);
+    setCopied(true);
+    dispatch(showAlert({ message: messages.copied }));
+    setTimeout(() => {
+      setCopied(false);
+    }, 700);
+  }, [handle, dispatch]);
+
   return (
     <>
       <button
@@ -114,6 +121,8 @@ const AccountNameHelp: FC<{
         aria-expanded={open}
         aria-controls={accessibilityId}
       >
+        {handle}
+
         <Icon
           id='help'
           icon={HelpIcon}
@@ -183,6 +192,22 @@ const AccountNameHelp: FC<{
               defaultMessage='Just like you can send emails to people using different email clients, you can interact with people on other Mastodon servers – and with anyone on other social apps powered by the same set of rules as Mastodon uses (the ActivityPub protocol).'
               tagName='p'
             />
+
+            <Button onClick={handleCopy} className={classes.handleCopy}>
+              <Icon id='copy' icon={ContentCopyIcon} />
+              {!copied && (
+                <FormattedMessage
+                  id='account.name.copy'
+                  defaultMessage='Copy handle'
+                />
+              )}
+              {copied && (
+                <FormattedMessage
+                  id='copypaste.copied'
+                  defaultMessage='Copied'
+                />
+              )}
+            </Button>
           </div>
         )}
       </Overlay>

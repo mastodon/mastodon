@@ -1189,7 +1189,6 @@ fy:
   application_mailer:
     notification_preferences: E-mailynstellingen wizigje
     salutation: "%{name},"
-    settings: 'E-mailfoarkarren wizigje: %{link}'
     unsubscribe: Ofmelde
     view: 'Besjoch:'
     view_profile: Profyl besjen
@@ -1365,8 +1364,6 @@ fy:
       your_appeal_pending: Jo hawwe in beswier yntsjinne
       your_appeal_rejected: Jo beswier is ôfwêzen
   edit_profile:
-    basic_information: Algemiene ynformaasje
-    hint_html: "<strong>Pas oan wat minsken op jo iepenbiere profyl en njonken jo berjochten sjogge.</strong> Oare minsken sille jo earder folgje en mei jo kommunisearje wannear’t jo profyl ynfolle is en jo in profylfoto hawwe."
     other: Oars
   emoji_styles:
     auto: Automatysk
@@ -1406,10 +1403,8 @@ fy:
     mutes: Jo negearje
     storage: Mediaûnthâld
   featured_tags:
-    add_new: Nije tafoegje
     errors:
       limit: Jo hawwe al it maksimaal tal hashtags útljochte
-    hint_html: "<strong>Wat binne útljochte hashtags?</strong> Dizze wurde prominint op jo iepenbiere profyl toand en stelt minsken yn steat om jo iepenbiere berjochten per hashtag te besjen. It is in goed helpmiddel om kreative wurksumheden of langetermynprojekten by te hâlden."
   filters:
     contexts:
       account: Profilen
@@ -1595,21 +1590,6 @@ fy:
     failed_sign_in_html: Mislearre oanmeldbesykjen mei %{method} fan %{ip} (%{browser})
     successful_sign_in_html: Mei sukses oanmeld mei %{method} fan %{ip} (%{browser})
     title: Oanmeldskiednis
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, ôfmelde
-      complete: Ofmelden
-      confirmation_html: Binne jo wis dat jo jo ôfmelde wolle foar it ûntfangen fan %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}? Jo kinne jo altyd opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      emails:
-        notification_emails:
-          favourite: e-mailmeldingen foar favoriten
-          follow: e-mailmeldingen foar nije folgers
-          follow_request: e-mailmeldingen foar folchfersiken
-          mention: e-mailmeldingen foar fermeldingen
-          reblog: e-mailmeldingen foar boosts
-      resubscribe_html: As jo jo mei fersin ôfmeld hawwe, kinne jo jo opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      success_html: Jo ûntfange net langer %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}.
-      title: Ofmelde
   media_attachments:
     validations:
       images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde

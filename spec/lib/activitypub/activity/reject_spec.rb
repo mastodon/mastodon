@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Reject do
-  let(:sender)    { Fabricate(:account) }
+  let(:sender)    { Fabricate(:remote_account) }
   let(:recipient) { Fabricate(:account) }
 
   let(:json) do
@@ -129,12 +129,12 @@ RSpec.describe ActivityPub::Activity::Reject do
     context 'with a QuoteRequest' do
       let(:status) { Fabricate(:status, account: recipient) }
       let(:quoted_status) { Fabricate(:status, account: sender) }
-      let(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, activity_uri: 'https://abc-123/456') }
+      let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status) }
       let(:approval_uri) { "https://#{sender.domain}/approvals/1" }
 
       let(:object_json) do
         {
-          id: 'https://abc-123/456',
+          id: quote.activity_uri,
           type: 'QuoteRequest',
           actor: ActivityPub::TagManager.instance.uri_for(recipient),
           object: ActivityPub::TagManager.instance.uri_for(quoted_status),
@@ -145,6 +145,24 @@ RSpec.describe ActivityPub::Activity::Reject do
       it 'marks the quote as rejected' do
         expect { subject.perform }
           .to change { quote.reload.rejected? }.from(false).to(true)
+      end
+    end
+
+    context 'with a FeatureRequest' do
+      let(:collection) { Fabricate(:collection, account: recipient) }
+      let!(:collection_item) { Fabricate(:collection_item, collection:, account: sender, state: :pending) }
+      let(:json) do
+        {
+          'id' => 'https://example.com/accepts/1',
+          'type' => 'Accept',
+          'actor' => sender.uri,
+          'to' => ActivityPub::TagManager.instance.uri_for(recipient),
+          'object' => collection_item.activity_uri,
+        }
+      end
+
+      it 'deletes the collection item' do
+        expect { subject.perform }.to change(collection.collection_items, :count).by(-1)
       end
     end
   end

@@ -67,4 +67,18 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
       expect(subject).to_not have_key('summary')
     end
   end
+
+  context 'when not all items are accepted' do
+    before do
+      collection_items.first.update!(state: :pending)
+    end
+
+    it 'only includes accepted items' do
+      items = subject['orderedItems']
+
+      expect(subject['totalItems']).to eq 1
+      expect(items.size).to eq 1
+      expect(items.first['id']).to eq ActivityPub::TagManager.instance.uri_for(collection_items.last)
+    end
+  end
 end

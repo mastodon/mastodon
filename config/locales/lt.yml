@@ -587,6 +587,7 @@ lt:
         manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti grotažymių nustatymus
     settings:
       branding:
+        preamble: Jūsų serverio pavadinimas išskiria jį iš kitų tinklo serverių. Ši informacija gali būti rodoma įvairiose aplinkose, pavyzdžiui, „Mastodon“ žiniatinklio sąsajoje, programėlėse, nuorodų peržiūrose kitose svetainėse, žinučių programėlėse ir pan. Dėl to geriausia, kad ši informacija būtų aiški, trumpa ir glausta.
         title: Firminio ženklo kūrimas
       captcha_enabled:
         desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
@@ -959,8 +960,6 @@ lt:
       your_appeal_pending: Pateikei apeliaciją
       your_appeal_rejected: Tavo apeliacija buvo atmesta
   edit_profile:
-    basic_information: Pagrindinė informacija
-    hint_html: "<strong>Tinkink tai, ką žmonės mato tavo viešame profilyje ir šalia įrašų.</strong> Kiti žmonės labiau linkę sekti atgal ir bendrauti su tavimi, jei tavo profilis yra užpildytas ir turi profilio nuotrauką."
     other: Kita
   emoji_styles:
     auto: Automatinis
@@ -993,9 +992,6 @@ lt:
     lists: Sąrašai
     mutes: Nutildei
     storage: Medijos saugykla
-  featured_tags:
-    add_new: Pridėti naują
-    hint_html: "<strong>Savo profilyje parodyk svarbiausias grotažymes.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios grotažymės rodomos matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
   filters:
     contexts:
       account: Profiliai
@@ -1072,12 +1068,6 @@ lt:
     description_html: Jei pastebėjei neatpažįstamą veiklą, apsvarstyk galimybę pakeisti slaptažodį ir įjungti dvigubą tapatybės nustatymą.
     empty: Tapatybės nustatymas istorijos nėra
     title: Tapatybės nustatymo istorija
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          reblog: dalintis pranešimų el. pašto laiškais
-      success_html: Daugiau negausi %{type} „Mastodon“ domene %{domain} į savo el. paštą %{email}.
   media_attachments:
     validations:
       images_and_video: Negalima pridėti video prie statuso, kuris jau turi nuotrauką

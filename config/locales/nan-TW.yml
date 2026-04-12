@@ -747,6 +747,7 @@ nan-TW:
       categories:
         administration: 管理員
         devops: DevOps
+        email: 電子phue箱
         invites: 邀請
         moderation: 管理
         special: 特別
@@ -762,6 +763,8 @@ nan-TW:
         administrator_description: 有tsit ê權限ê用者ē忽略所有ê權限。
         delete_user_data: Thâi掉用者ê資料
         delete_user_data_description: 允准用者liâm-mi thâi掉其他用者ê資料
+        invite_bypass_approval: 邀請iáu bē審查ê用者
+        invite_bypass_approval_description: 允准予tsiah ê用者邀請kàu tsit臺服侍器ê lâng làng過管理審查許可
         invite_users: 邀請用者
         invite_users_description: 允准用者邀請新lâng來tsit ê服侍器
         manage_announcements: 管理公告
@@ -772,6 +775,8 @@ nan-TW:
         manage_blocks_description: 允准用者封鎖電子phue ê 提供者kap IP地址
         manage_custom_emojis: 管理自訂ê Emoji
         manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
+        manage_email_subscriptions: 管理訂電子phue
+        manage_email_subscriptions_description: 允准用者用電子phue訂有chit ê權限ê用者
         manage_federation: 管理聯邦
         manage_federation_description: 允准用者封鎖á是允准kap其他域名相連，mā控制寄送ê能力
         manage_invites: 管理邀請
@@ -1208,7 +1213,6 @@ nan-TW:
   application_mailer:
     notification_preferences: 改電子phue ê偏好
     salutation: "%{name}、"
-    settings: 改電子phue ê偏好：%{link}
     unsubscribe: 取消訂
     view: 檢視：
     view_profile: 看個人資料
@@ -1238,7 +1242,7 @@ nan-TW:
       welcome_title: 歡迎 %{name}！
       wrong_email_hint: Nā是電子phue ê地址無正確，lí ē當tī口座設定kā改。
     delete_account: Thâi掉口座
-    delete_account_html: Nā lí behthâi掉lí ê口座，lí ē當<a href="%{path}">ji̍h tsia繼續</a>。Lí著確認動作。
+    delete_account_html: Nā lí beh thâi掉lí ê口座，lí ē當<a href="%{path}">ji̍h tsia繼續</a>。Lí著確認動作。
     description:
       prefix_invited_by_user: "@%{name} 邀請lí加入tsit ê Mastodon 服侍器！"
       prefix_sign_up: Tsit-má註冊Mastodon ê口座！
@@ -1258,7 +1262,8 @@ nan-TW:
     progress:
       confirm: 確認電子phue
       details: Lí ê詳細
-      review: Lán ê審查
+      list: 註冊流程
+      review: Gún ê審查
       rules: 接受規則
     providers:
       cas: CAS
@@ -1273,6 +1278,7 @@ nan-TW:
       invited_by: Lí通用有tuì hia收著ê邀請加入 %{domain}：
       preamble: Tsiah-ê hōo %{domain} ê管理員設定kap實施。
       preamble_invited: 佇lí繼續進前，請思考 %{domain} ê管理員設立ê基本規則。
+      read_more: 讀詳細
       title: Tsi̍t-kuá基本規定。
       title_invited: Lí受邀請ah。
     security: 安全
@@ -1294,7 +1300,7 @@ nan-TW:
       account_status: 口座ê狀態
       confirming: Teh等電子phue確認完成。
       functional: Lí ê口座完全ē當用。
-      pending: Lán ê人員teh處理lí ê申請。Tse可能愛一段時間。若是申請允准，lí ē收著e-mail。
+      pending: Gún ê人員teh處理lí ê申請。Tse可能愛一段時間。若是申請允准，lí ē收著e-mail。
       redirecting_to: Lí ê口座無活動，因為tann轉kàu %{acct}。
       self_destruct: 因為 %{domain} teh-beh關掉，lí kan-ta ē當有限接近使用lí ê口座。
       view_strikes: 看早前tuì lí ê口座ê警告
@@ -1391,9 +1397,41 @@ nan-TW:
       your_appeal_pending: Lí有送投訴
       your_appeal_rejected: Lí ê投訴已經受拒絕
   edit_profile:
-    basic_information: 基本ê資訊
-    hint_html: "<strong>自訂lâng佇lí ê個人資料kap lí ê Po文邊仔所通看ê。</strong>Nā是lí有添好個人資料kap標á，別lâng較有可能kā lí跟tuè轉去，kap lí互動。"
     other: 其他
+    redesign_body: 編輯個人檔案tsit-má ē當直接對個人資料頁接近使用。
+    redesign_button: Kàu hia
+    redesign_title: 有新ê個人資料編輯ê體驗
+  email_subscription_mailer:
+    confirmation:
+      action: 確認電子phue地址
+      instructions_to_confirm: 請確認當 %{name}(@%{acct})發送新ê PO文ê時陣，lí想欲收in ê電子批。
+      instructions_to_ignore: Lí若無確定是án-tsuánn lí收著tsit張phue，lí ē當kā thâi，Lí若無tshi̍h頂懸ê連結，就buē kā lí訂。
+      subject: 確認lí ê電子phue地址
+      title: Kám beh對 %{name}收著電子批ê更新？
+    notification:
+      create_account: 建立Mastodon ê口座
+      footer:
+        privacy_html: 電子批是由Mastodon ê服侍器 %{domain} 送出。Beh了解tsit台服侍器án-tsuánn處理lí ê個人資料，請參考<a href="%{privacy_policy_path}">隱私權政策</a>。
+        reason_for_email_html: 因為lí選擇收著對 %{name} 來ê電子phue更新，所以lí teh收著tsit張電子批。Kám無beh收著tsiah ê電子phue？<a href="%{unsubscribe_path}">取消訂</a>
+      interact_with_this_post:
+        other: Kap tsit（tsiah）ê PO文互動，發現其他相siâng ê PO文。
+      subject:
+        plural: 對 %{name} 來ê新ê PO文
+        singular: 新ê PO文：「%{excerpt}」
+      title:
+        plural: 對 %{name} 來ê新ê PO文
+        singular: 新ê PO文：「%{excerpt}」
+  email_subscriptions:
+    active: 有效ê
+    confirmations:
+      show:
+        changed_your_mind: Kám beh改變心意？
+        success_html: Lí對tsit-má開始，佇 %{name} 刊出新ê PO文ê時陣，ē收著電子批。加添 %{sender} kàu lí ê聯絡人，避免tsiah ê PO文hőng tàn kàu pùn-sò phue ê資料giap-á。
+        title: Lí有註冊ah
+        unsubscribe: 取消訂
+    inactive: 停止使用ah
+    status: 狀態
+    subscribers: 訂ê lâng
   emoji_styles:
     auto: 自動
     native: 原底ê
@@ -1432,10 +1470,8 @@ nan-TW:
     mutes: Lí消音ê
     storage: 媒體儲存
   featured_tags:
-    add_new: 加新ê
     errors:
       limit: Lí已經kā hashtag推薦kàu盡磅ah。
-    hint_html: "<strong>佇個人資料推薦lí上重要ê hashtag。</strong>Tse是誠好ê家私，通the̍h來追蹤lí ê創意作品kap長期計畫。推薦ê hashtag ē佇lí ê個人資料顯目展示，koh允准緊緊接近使用lí家tī ê PO文。"
   filters:
     contexts:
       account: 個人資料
@@ -1608,21 +1644,6 @@ nan-TW:
     failed_sign_in_html: Uì %{ip} (%{browser}) 用 %{method} 試登入失敗
     successful_sign_in_html: Uì %{ip} (%{browser}) 用 %{method} 登入成功
     title: 認證歷史
-  mail_subscriptions:
-    unsubscribe:
-      action: Hennh，mài訂
-      complete: 無訂ah
-      confirmation_html: Lí kám確定beh取消訂 %{domain} ê Mastodon 內底 ê %{type} kàu lí ê電子批 %{email}？Lí ē當隨時對lí ê<a href="%{settings_path}">電子批通知設定</a>重訂。
-      emails:
-        notification_emails:
-          favourite: 收藏通知電子批
-          follow: 跟tuè通知電子批
-          follow_request: 跟tuè請求電子批
-          mention: 提起通知電子批
-          reblog: 轉送通知電子批
-      resubscribe_html: Nā出tshê取消訂，lí通重訂tuì lí ê<a href="%{settings_path}">電子批通知設定</a>。
-      success_html: Lí bē koh收著佇 %{domain} ê Mastodon內底ê %{type} kàu lí ê電子批 %{email}。
-      title: 取消訂
   media_attachments:
     validations:
       images_and_video: Bē當佇有影像ê PO文內底加影片
@@ -1760,6 +1781,8 @@ nan-TW:
     posting_defaults: PO文預設值
     public_timelines: 公共ê時間線
   privacy:
+    email_subscriptions: 用電子phue寄PO文
+    email_subscriptions_hint_html: 佇lí ê個人資料內底加訂電子批ê表，予無登入ê用者看。訪客若輸入in ê電子phue地址，揀beh來訂，Mastodon會用電子批送予伊lí ê公開PO文ê更新。
     hint_html: "<strong>自訂lí beh án-nuá hōo lí ê個人資料kap PO文受lâng發現。</strong>Mastodon ê tsē-tsē功能nā是拍開，通幫tsān lí接觸kàu較闊ê觀眾。請開一寡時間重看tsiah ê設定，確認in合lí ê使用例。"
     privacy: 隱私權
     privacy_hint_html: 控制lí想欲為別lâng ê利益，公開guā tsē內容。Lâng用瀏覽別lâng ê跟tuè koh看in用啥物應用程式PO文，來發現心適ê個人資料kap時行ê應用程式，但是lí凡勢beh保持khàm起來。
@@ -1832,6 +1855,7 @@ nan-TW:
       nokia: Nokia S40 Ovi 瀏覽器
       opera: Opera
       otter: Otter
+      phantom_js: PhantomJS
       qq: QQ 瀏覽器
       safari: Safari
       uc_browser: UC 瀏覽器
@@ -1884,9 +1908,57 @@ nan-TW:
     strikes: 管理ê警告
     two_factor_authentication: 雙因素驗證
     webauthn_authentication: 安全鎖匙
+  severed_relationships:
+    download: 載落去（%{count} 份）
+    event_type:
+      account_suspension: 中止權限ê口座（%{target_name}）
+      domain_block: 中止權限ê服侍器（%{target_name}）
+      user_domain_block: Lí kā %{target_name} 封鎖ah
+    lost_followers: 失去ê 跟tuè lí ê
+    lost_follows: 失去ê lí 跟tuè ê
+    preamble: Lí封鎖域名，á是lí ê管理員決定beh kā別ê服侍器停止權限ê時，Lí可能會失去跟tuè lí ê，á是lí跟tuè ê。若發生，lí會當kā中止聯絡ê ê列單載落去，來檢視或者有可能佇別站kā輸入。
+    purged: 關係tsit台服侍器有予lí ê服侍器管理員清掉ê資訊。
+    type: 事件
   statuses:
+    attached:
+      audio:
+        other: "%{count} 段聲音"
+      description: 附件： %{attached}
+      image:
+        other: "%{count} 幅圖"
+      video:
+        other: "%{count} 段影片"
+    boosted_from_html: 對 %{acct_link} 轉送
+    content_warning: 內容警告： %{warning}
+    content_warnings:
+      hide: Am-khàm PO文
+      show: 顯示其他ê內容
     default_language: Kap界面ê語言sio kâng
+    disallowed_hashtags:
+      other: 包含bē用得ê標籤： %{tags}
+    edited_at_html: 佇 %{date} 編輯
+    errors:
+      in_reply_not_found: Lí試應ê PO文假若無佇leh。
+      quoted_status_not_found: Lí試引用ê PO文假若無佇leh。
+      quoted_user_not_mentioned: Bē當佇私人ê提起引用無提起ê用者。
+    over_character_limit: 超過 %{max} 字ê限制ah
+    pin_errors:
+      direct: Kan-ta受提起ê用者tsiah通看ê PO文bē當釘
+      limit: Lí已經kā PO文釘kàu盡磅ah。
+      ownership: Bē當釘別lâng êPO文
+      reblog: 轉送ê PO文 bē當釘
+    quote_error:
+      not_available: PO文bē當看
+      pending_approval: PO文當leh等審查
+      revoked: PO文已經hōo作者thâi掉
+    quote_policies:
+      followers: Kan-ta hōo跟tuè ê lâng
+      nobody: Kan-ta我
+      public: Ta̍k ê lâng
+    quote_post_author: 引用 %{acct} ê PO文ah
+    title: "%{name}：「%{quote}」"
     visibilities:
+      direct: 私人ê提起
       private: Kan-ta hōo跟tuè ê lâng
       public: 公開ê
       public_long: 逐ê lâng（無論佇Mastodon以內á是以外）
@@ -1902,13 +1974,80 @@ nan-TW:
     interaction_exceptions: Tshāi佇互動ê特例
     interaction_exceptions_explanation: 超過收藏kap轉送ê底限ê PO文可能會受保留，就算in後來降落。
     keep_direct: 保留私人ê短phue
+    keep_direct_hint: Bē thâi掉任何lí ê私人ê提起
+    keep_media: 保留有媒體附件ê PO文
+    keep_media_hint: Bē thâi掉lí ê任何有媒體附件ê PO文
+    keep_pinned: 保留所釘ê PO文
+    keep_pinned_hint: Bē thâi掉任何lí所釘ê PO文
+    keep_polls: 保留投票
+    keep_polls_hint: Bē thâi掉任何lí ê投票
+    keep_self_bookmark: 保留lí加冊籤ê PO文
+    keep_self_bookmark_hint: Bē thâi掉lí家kī有加冊籤ê PO文
+    keep_self_fav: 保留lí收藏ê PO文
+    keep_self_fav_hint: Bē thâi掉lí家kī有收藏ê PO文
+    min_age:
+      '1209600': 2 禮拜
+      '15778476': 6 個月
+      '2629746': 1 個月
+      '31556952': 1 年
+      '5259492': 2 個月
+      '604800': 1 禮拜
+      '63113904': 2 年
+      '7889238': 3 個月
+    min_age_label: 保持PO文ê期間
+    min_favs: 保留超過下kha ê收藏數ê PO文
+    min_favs_hint: 若是lí ê PO文有kàu tsit ê收藏數，就bē受thâi掉。留空白表示毋管收藏數，PO文lóng thâi掉
+    min_reblogs: 保留超過下kha ê轉送數ê PO文
+    min_reblogs_hint: 若是lí ê PO文有kàu tsit ê轉送數，就bē受thâi掉。留空白表示毋管轉送數，PO文lóng thâi掉
+  stream_entries:
+    sensitive_content: 敏感ê內容
+  strikes:
+    errors:
+      too_late: Lí bē赴申訴tsit ê處份ah
+  tags:
+    does_not_match_previous_name: kap進前ê名無kâng
   terms_of_service:
     title: 服務規定
+  terms_of_service_interstitial:
+    future_preamble_html: Gún有更新一kuá服務規定，伊會佇<strong>%{date}</strong>施行。Gún鼓勵lí讀更新ê規定。
+    past_preamble_html: 對lí頂改訪問以後，lán有更新服務規定。Gún鼓勵lí讀更新ê規定。
+    review_link: 讀更新ê規定
+    title: "%{domain} ê服務規定teh改變"
   themes:
     default: Mastodon
+  time:
+    formats:
+      default: "%Y 年 %b 月 %d 日 %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: 服侍器ê翻譯服務使用ê khòo-tah 超過ah。
+      too_many_requests: Tsit tsām-á翻譯服務ê請求傷tsē。
   two_factor_authentication:
+    add: 加
     disable: 停止用雙因素認證
+    disabled_success: 雙因素驗證取消使用成功
+    edit: 編輯
+    enabled: 雙因素驗證啟用ah
+    enabled_success: 雙因素驗證啟用成功
+    generate_recovery_codes: 生成恢復碼
+    lost_recovery_codes: 恢復碼予lí會當佇拍毋見手機á ê時陣，koh通接近使用lí ê口座。若是lí有失去lí ê恢復碼，lí佇tsia會當koh產出，毋koh舊ê恢復碼會變無效。
+    methods: 雙因素驗證
   user_mailer:
+    terms_of_service_changed:
+      description: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 %{date} 施行。Gún鼓勵lí佇tsia讀kui篇更新ê規定：
+      description_html: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 <strong>%{date}</strong> 施行。Gún鼓勵lí<a href="%{path}" target="_blank">佇tsia讀kui篇更新ê規定</a>：
+      sign_off: "%{domain} 小組"
+      subject: Gún ê服務規定ê更新
+      subtitle: "%{domain} ê服務規定teh改變"
+      title: 重要ê更新
+    warning:
+      appeal: 送投訴
+      appeal_description: Lí若相信tse是出tshê，lí會當kā %{instance} ê人員投。
+      categories:
+        spam: Pùn-sò訊息
     welcome:
       feature_creativity: Mastodon支持聲音、影kap圖片êPO文、容易使用性ê描述、投票、內容ê警告、動畫ê標頭、自訂ê繪文字kap裁縮小圖ê控制等等，幫tsān lí展現家己。無論beh發表藝術作品、音樂，á是podcast，Mastodon佇tsia為lí服務。
       sign_in_action: 登入

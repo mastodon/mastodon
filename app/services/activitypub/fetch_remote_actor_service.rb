@@ -19,7 +19,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
       else
         body_to_json(prefetched_body, compare_id: uri)
       end
-    rescue Oj::ParseError
+    rescue JSON::ParserError
       raise Error, "Error parsing JSON-LD document #{uri}"
     end
 
@@ -27,11 +27,21 @@ class ActivityPub::FetchRemoteActorService < BaseService
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?
     raise Error, "Unexpected object type for actor #{uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_type?
     raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if break_on_redirect && @json['movedTo'].present?
-    raise Error, "Actor #{uri} has no 'preferredUsername', which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank?
+    raise Error, "Actor #{uri} has neither 'preferredUsername' nor `webfinger`, which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank? && @json['webfinger'].blank?
 
-    @uri      = @json['id']
-    @username = @json['preferredUsername']
-    @domain   = Addressable::URI.parse(@uri).normalized_host
+    @uri = @json['id']
+
+    # FEP-2c59 defines a `webfinger` attribute that makes things more explicit and spares an extra request in some cases.
+    # It supersedes `preferredUsername`.
+    @username, @domain = split_acct(@json['webfinger']) if @json['webfinger'].present? && @json['webfinger'].is_a?(String)
+
+    if @username.blank? || @domain.blank?
+      raise "Actor #{uri} has no `preferredUsername`, and either a bogus or missing `webfinger`, which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank?
+
+      Rails.logger.debug { "Actor #{uri} has an invalid `webfinger` value, falling back to `preferredUsername`" } if @json['webfinger'].present?
+      @username = @json['preferredUsername']
+      @domain   = Addressable::URI.parse(@uri).normalized_host
+    end
 
     check_webfinger! unless only_key
 

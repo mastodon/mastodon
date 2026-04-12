@@ -2,14 +2,19 @@
 
 class Form::Redirect
   include ActiveModel::Model
+  include ActiveModel::Attributes
+  include ActiveModel::Attributes::Normalization
 
-  attr_accessor :account, :target_account, :current_password,
-                :current_username
+  attr_accessor :account, :target_account, :current_password
 
-  attr_reader :acct
+  attribute :acct, :string
+  attribute :current_username, :string
 
   validates :acct, presence: true, domain: { acct: true }
   validate :validate_target_account
+
+  normalizes :acct, with: ->(value) { value.to_s.strip.gsub(/\A@/, '') }, apply_to_nil: true
+  normalizes :current_username, with: ->(value) { value.strip.delete_prefix('@') }
 
   def valid_with_challenge?(current_user)
     if current_user.encrypted_password.present?
@@ -22,10 +27,6 @@ class Form::Redirect
 
     set_target_account
     valid?
-  end
-
-  def acct=(val)
-    @acct = val.to_s.strip.gsub(/\A@/, '')
   end
 
   private

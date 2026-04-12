@@ -14,6 +14,11 @@ gd:
       one: Neach-leantainn
       other: Luchd-leantainn
       two: Luchd-leantainn
+    following:
+      few: "’Gan leantainn"
+      one: "’Ga leantainn"
+      other: "’Gan leantainn"
+      two: "’Gan leantainn"
     instance_actor_flash: "’S e actar biortail a tha sa chunntas seo a riochdaicheas am frithealaiche fhèin seach cleachdaiche sònraichte. Tha e ’ga chleachdadh a chùm co-nasgaidh agus cha bu chòir dhut a chur à rèim."
     last_active: an gnìomh mu dheireadh
     link_verified_on: Chaidh dearbhadh cò leis a tha an ceangal seo %{date}
@@ -57,6 +62,7 @@ gd:
         label: Atharraich an dreuchd
         no_role: Gun dreuchd
         title: Atharraich an dreuchd aig %{username}
+      collections: Cruinneachaidhean
       confirm: Dearbh
       confirmed: Chaidh a dhearbhachadh
       confirming: "’Ga dhearbhadh"
@@ -269,6 +275,7 @@ gd:
         demote_user_html: Dh’ìslich %{name} an cleachdaiche %{target}
         destroy_announcement_html: Sguab %{name} às am brath-fios %{target}
         destroy_canonical_email_block_html: Dhì-bhac %{name} am post-d air a bheil an hais %{target}
+        destroy_collection_html: Thug %{name} cruinneachadh aig %{target} air falbh
         destroy_custom_emoji_html: Sguab %{name} às an Emoji %{target}
         destroy_domain_allow_html: Dì-cheadaich %{name} co-nasgadh leis an àrainn %{target}
         destroy_domain_block_html: Dì-bhac %{name} an àrainn %{target}
@@ -308,6 +315,7 @@ gd:
         unsilence_account_html: Dì-chuingich %{name} an cunntas aig %{target}
         unsuspend_account_html: Chuir %{name} an cunntas aig %{target} ann an rèim a-rithist
         update_announcement_html: Dh’ùraich %{name} am brath-fios %{target}
+        update_collection_html: Dh’ùraich %{name} cruinneachadh  le %{target}
         update_custom_emoji_html: Dh’ùraich %{name} an Emoji %{target}
         update_domain_block_html: Dh’ùraich %{name} bacadh na h-àrainne %{target}
         update_ip_block_html: Sguab %{name} às riaghailt dhan IP %{target}
@@ -343,6 +351,17 @@ gd:
       unpublish: Neo-fhoillsich
       unpublished_msg: Chaidh am brath-fios a dhì-fhoillseachadh!
       updated_msg: Chaidh am brath-fios ùrachadh!
+    collections:
+      accounts: Cunntasan
+      collection_title: Cruinneachadh le %{name}
+      contents: Susbaint
+      number_of_accounts:
+        few: "%{count} cunntasan"
+        one: "%{count} chunntas"
+        other: "%{count} cunntas"
+        two: "%{count} chunntas"
+      open: Fosgail
+      view_publicly: Seall gu poblach
     critical_update_pending: Ùrachadh èiginneach ri dhèiligeadh
     custom_emojis:
       assign_category: Iomruin roinn-seòrsa dha
@@ -700,6 +719,7 @@ gd:
       cancel: Sguir dheth
       category: Roinn-seòrsa
       category_description_html: Thèid iomradh a thoirt air adhbhar a’ ghearain mun chunntas/susbaint seo sa chonaltradh leis a’ chunntas mun a chaidh an gearan a thogail
+      collections: Cruinneachaidhean (%{count})
       comment:
         none: Chan eil gin
       comment_description_html: 'Airson barrachd fiosrachaidh a sholar, sgrìobh %{name}:'
@@ -729,11 +749,13 @@ gd:
       report: 'Gearan air #%{id}'
       reported_account: Cunntas mun a chaidh a ghearan
       reported_by: Chaidh gearan a dhèanamh le
+      reported_content: Susbaint a’ ghearain
       reported_with_application: Chaidh an gearan a dhèanamh le aplacaid
       resolved: Air fhuasgladh
       resolved_msg: Chaidh an gearan fhuasgladh!
       skip_to_actions: Geàrr leum dha na gnìomhan
       status: Staid
+      statuses: Postaichean (%{count})
       statuses_description_html: Thèid iomradh a thoirt air an t-susbaint oilbheumach sa chonaltradh leis a’ chunntas mun a chaidh an gearan a thogail
       summary:
         action_preambles:
@@ -770,12 +792,13 @@ gd:
       categories:
         administration: Rianachd
         devops: DevOps
+        email: Post-d
         invites: Cuiridhean
         moderation: Maorsainneachd
         special: Sònraichte
       delete: Sguab às
       description_html: Le <strong>dreuchdan chleachdaichean</strong>, ’s urrainn dhut gnàthachadh dè na gleusan is raointean de Mhastodon as urrainn dha na cleachdaichean agad inntrigeadh.
-      edit: Deasaich an dreuchd aig “%{name}“
+      edit: Deasaich an dreuchd “%{name}“
       everyone: Na ceadan bunaiteach
       everyone_full_description_html: Seo an <strong>dreuchd bhunaiteach</strong> a bheir buaidh air <strong>gach cleachdaiche</strong>, fiù an fheadhainn nach deach dreuchd iomruineadh dhaibh. Gheibh a h-uile dreuch ceadan uaipe mar dhìleab.
       permissions_count:
@@ -788,6 +811,8 @@ gd:
         administrator_description: Chan eil cuingeachadh sam bith air na cleachdaichean aig bheil an cead seo
         delete_user_data: Sguabadh às dàta cleachdaiche
         delete_user_data_description: Leigidh seo le cleachdaichean dàta chleachdaichean eile a sguabadh às gun dàil
+        invite_bypass_approval: Thoir cuireadh do chleachdaichean gun lèirmheas
+        invite_bypass_approval_description: Leigidh seo leis an fheadhainn a fhuair cuireadh dhan fhrithealaiche leis na cleachdaichean seo dearbhadh na maorsainneachd a leigeil seachad
         invite_users: Thoir cuireadh do chleachdaichean
         invite_users_description: Leigidh seo le cleachdaichean cuireadh dhan fhrithealaiche a chur gu daoine eile
         manage_announcements: Stiùireadh nam brathan-fios
@@ -798,6 +823,8 @@ gd:
         manage_blocks_description: Leigidh seo le cleachdaichean solaraichean puist-d is seòlaidhean IP a bhacadh
         manage_custom_emojis: Stiùireadh nan Emojis gnàthaichte
         manage_custom_emojis_description: Leigidh seo le cleachdaichean Emojis gnàthaichte a stiùireadh air an fhrithealaiche
+        manage_email_subscriptions: Stiùireadh fo-sgrìobhaidhean puist-d
+        manage_email_subscriptions_description: Leigidh seo le cleachdaichean fo-sgrìobhadh air a’ phost-d a dhèanamh air na cleachdaichean aig a bheil an cead seo
         manage_federation: Stiùireadh a’ cho-nasgaidh
         manage_federation_description: Leigidh seo le cleachdaichean an co-nasgadh le àrainnean eile a bhacadh no a cheadachadh agus stiùireadh dè ghabhas lìbhrigeadh
         manage_invites: Stiùireadh nan cuiridhean
@@ -826,6 +853,7 @@ gd:
         view_devops_description: Leigidh seo le cleachdaichean na deas-bhùird aig Sidekiq is pgHero inntrigeadh
         view_feeds: Seall loidhnichean-ama beòtha ’s nan cuspairean
         view_feeds_description: Leigidh seo le cleachdaichean loidhnichean-ama beòtha ’s nan cuspairean inntrigeadh ge b’ e dè roghainnean an fhrithealaiche
+      requires_2fa: Feumaidh seo dearbhadh dà-cheumnach
       title: Dreuchdan
     rules:
       add_new: Cuir riaghailt ris
@@ -1248,7 +1276,6 @@ gd:
   application_mailer:
     notification_preferences: Atharraich roghainnean a’ phuist-d
     salutation: "%{name},"
-    settings: 'Atharraich roghainnean a’ phuist-d: %{link}'
     unsubscribe: Cuir crìoch air an fho-sgrìobhadh
     view: 'Faic:'
     view_profile: Seall a’ phròifil
@@ -1298,6 +1325,7 @@ gd:
     progress:
       confirm: Dearbh am post-d
       details: Am fiosrachadh agad
+      list: Adhartas a’ chlàraidh
       review: An lèirmheas againn
       rules: Gabh ris na riaghailtean
     providers:
@@ -1313,6 +1341,7 @@ gd:
       invited_by: "’S urrainn dhut ballrachd fhaighinn air %{domain} leis a’ chuireadh a fhuair thu o:"
       preamble: Tha iad ’gan stèidheachadh is a chur an gnìomh leis na maoir aig %{domain}.
       preamble_invited: Mus lean thu air adhart, thoir an aire air na riaghailtean a shuidhich na maoir aig %{domain}.
+      read_more: Leugh an còrr
       title: Riaghailtean bunasach.
       title_invited: Fhuair thu cuireadh.
     security: Tèarainteachd
@@ -1431,9 +1460,44 @@ gd:
       your_appeal_pending: Chuir thu ath-thagradh a-null
       your_appeal_rejected: Chaidh an t-ath-thagradh agad a dhiùltadh
   edit_profile:
-    basic_information: Fiosrachadh bunasach
-    hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
     other: Eile
+    redesign_body: "’S urrainn dhut a’ phròifil agad a dheasachadh air duilleag na pròifile fhèin."
+    redesign_button: Tadhail air
+    redesign_title: Tha dòigh ùr air deasachadh na pròifil againn
+  email_subscription_mailer:
+    confirmation:
+      action: Dearbh an seòladh puist-d
+      instructions_to_confirm: Dearbh gum bu mhiann leat puist-d fhaighinn o %{name} (@%{acct}) nuair a dh’fhoillsicheas iad postaichean ùra.
+      instructions_to_ignore: Mur eil thu cinnteach carson a fhuair thu am post-d seo, ’s urrainn dhut a sguabadh às. Cha dèid d’ fho-sgrìobhadh mura bhriog thu air a’ cheangal gu h-àrd.
+      subject: Dearbh an seòladh puist-d agad
+      title: A bheil thu airson naidheachdan %{name} fhaighinn air a’ phost-d?
+    notification:
+      create_account: Cruthaich cunntas Mastodon
+      footer:
+        privacy_html: Thèid puist-d a chur o %{domain}, seo frithealaiche le cumhachd Mhastodon. Airson tuigsinn mar a nì am frithealaiche seo pròiseasadh air an dàta phearsanta agad, faic am <a href="%{privacy_policy_path}">poileasaidh prìobhaideachd</a>.
+        reason_for_email_html: Fhuair thu am post-d seo on a chuir thu romhad naidheachdan %{name} fhaighinn air a’ phost-d. Nach eil thu airson na puist-d seo fhaighinn? <a href="%{unsubscribe_path}">Cuir crìoch air an fho-sgrìobhadh</a>
+      interact_with_this_post:
+        few: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
+        one: Dèan conaltradh leis a’ phost seo is lorg barrachd coltach ris.
+        other: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
+        two: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
+      subject:
+        plural: Postaichean ùra o %{name}
+        singular: 'Post ùr: “%{excerpt}”'
+      title:
+        plural: Postaichean ùra o %{name}
+        singular: 'Post ùr: “%{excerpt}”'
+  email_subscriptions:
+    active: Gnìomhach
+    confirmations:
+      show:
+        changed_your_mind: Na chuir thu romhad a chaochladh?
+        success_html: Gheibh thu puist-d a-nis nuair a dh’fhoillsicheas %{name} postaichean ùra. Cuir %{sender} ris an luchd-aithne agad ach nach dèid na postaichean seo a chur do phasgan an spama agad.
+        title: Tha thu air clàradh
+        unsubscribe: Cuir crìoch air an fho-sgrìobhadh
+    inactive: Neo-ghnìomhach
+    status: Staid
+    subscribers: Fo-sgrìobhaichean
   emoji_styles:
     auto: Fèin-obrachail
     native: Tùsail
@@ -1472,10 +1536,8 @@ gd:
     mutes: Tha thu a’ mùchadh
     storage: Stòras mheadhanan
   featured_tags:
-    add_new: Cuir fear ùr ris
     errors:
       limit: Bhrosnaich thu an uiread as motha de thagaichean hais mu thràth
-    hint_html: "<strong>Brosnaich na tagaichean hais as cudromaiche agad air a’ phròifil agad.</strong> ’S e deagh-acainn a th’ annta airson sùil a chumail air an obair chruthachail no na pròiseactan fada agad on a thèid na tagaichean hais brosnaichte a shealltainn gu follaiseach air a’ phròifil agad agus ’s urrainnear na postaichean agad inntrigeadh gu luath leotha."
   filters:
     contexts:
       account: Pròifilean
@@ -1708,21 +1770,6 @@ gd:
     failed_sign_in_html: Oidhirp clàraidh a-steach nach deach leis le %{method} o %{ip} (%{browser})
     successful_sign_in_html: Oidhirp clàraidh a-steach a shoirbhich leis le %{method} o %{ip} (%{browser})
     title: Eachdraidh an dearbhaidh
-  mail_subscriptions:
-    unsubscribe:
-      action: Tha, cuir crìoch air an fho-sgrìobhadh
-      complete: Chaidh crìoch a chur air an fho-sgrìobhadh
-      confirmation_html: A bheil thu cinnteach nach eil thu airson %{type} fhaighinn tuilleadh o Mhastodon air %{domain} dhan post-d agad aig %{email}? ’S urrainn dhut fo-sgrìobhadh a-rithist uair sam bith o <a href="%{settings_path}">roghainnean a’ puist-d agad</a>.
-      emails:
-        notification_emails:
-          favourite: puist-d le brathan mu annsachdan
-          follow: puist-d le brathan mu leantainn
-          follow_request: puist-d le brathan mu iarrtasan leantainn
-          mention: puist-d le brathan mu iomraidhean
-          reblog: puist-d le brathan mu bhrosnachaidhean
-      resubscribe_html: Ma chuir thu crìoch air an fho-sgrìobhadh le mearachd, ’s urrainn dhut fo-sgrìobhadh a-rithist o <a href="%{settings_path}">roghainnean a’ puist-d agad</a>.
-      success_html: Chan fhaigh thu %{type} o Mhastodon air %{domain} dhan phost-d agad aig %{email} tuilleadh.
-      title: Cuir crìoch air an fho-sgrìobhadh
   media_attachments:
     validations:
       images_and_video: Chan urrainn dhut video a cheangal ri post sa bheil dealbh mu thràth
@@ -1860,6 +1907,8 @@ gd:
     posting_defaults: Bun-roghainnean a’ phostaidh
     public_timelines: Loidhnichean-ama poblach
   privacy:
+    email_subscriptions: Cuir postaichean air a’ phost-d
+    email_subscriptions_hint_html: Cuir foirm clàradh puist-d ris a’ phròifil agad a nochdas do chleachdaichean nach do rinn clàradh a-steach. Nuair a chuireas aoighean an seòladh puist-d aca a-steach is ma ghabhas iad ris, cuiridh Mastodon naidheachdan mu na postaichean poblach agad thuca air a’ phost-d.
     hint_html: "<strong>Gnàthaich an dòigh air an dèid a’ phròifil ’s na postaichean agad a lorg.</strong> Tha grunn ghleusan aig Mastodon a chuidicheas ach an ruig thu èisteachd nas fharsainge nuair a bhios iad an comas. Thoir sùil air na roghainnean seo a dhèanamh cinnteach gum freagair iad ri d’ fheumalachdan."
     privacy: Prìobhaideachd
     privacy_hint_html: Stiùirich na tha thu airson foillseachadh do chàch. Gheibh daoine lorg air pròifilean inntinneach is deagh aplacaidean a’ brabhsadh cò tha daoine eile a’ leantainn ’s a’ faicinn nan aplacaidean a chleachdas iad airson postadh ach dh’fhaoidte gum b’ fheàrr leat seo a chumail falaichte.
@@ -2102,6 +2151,8 @@ gd:
     past_preamble_html: Dh’atharraich sinn teirmichean na seirbheise againn on turas mu dheireadh a thadhail thu oirnn. Mholamaid gun dèan thu lèirmheas air na teirmichean ùra.
     review_link: Dèan lèirmheas air teirmichean na seirbheise
     title: Tha teirmichean na seirbheise aig %{domain} gu bhith atharrachadh
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2126,7 +2177,31 @@ gd:
     recovery_codes: Còdan aiseig ’nan lethbhreac-glèidhidh
     recovery_codes_regenerated: Chaidh na còdan aiseig ath-ghintinn
     recovery_instructions_html: Ma chailleas tu an t-inntrigeadh dhan fhòn agad, ’s urrainn dhut fear dhe na còdan aisig gu h-ìosal a chleachdadh airson faighinn a-steach dhan chunntas agad a-rithist. <strong>Cùm na còdan aisig sàbhailte</strong>. Mar eisimpleir, ’s urrainn dhut an clò-bhualadh ’s a chumail far a bheil thu a’ cumail na sgrìobhainnean cudromach eile agad.
+    resume_app_authorization: Lean air ùghdarrachadh na h-aplacaid
+    role_requirement: Tha %{domain} ag iarraidh gun suidhich thu dearbhadh dà-cheumnach mus cleachd thu Mastodon.
     webauthn: Iuchraichean tèarainteachd
+  unsubscriptions:
+    create:
+      action: Tadhail air duilleag-dhachaigh an fhrithealaiche
+      email_subscription:
+        confirmation_html: Chan fhaigh thu post-d o %{name} tuilleadh.
+      title: Chaidh crìoch a chur air an fho-sgrìobhadh agad
+      user:
+        confirmation_html: Chan fhaigh thu %{type} o Mhastodon air %{domain} tuilleadh.
+    notification_emails:
+      favourite: puist-d le brathan mu annsachdan
+      follow: puist-d le brathan mu leantainn
+      follow_request: puist-d le brathan mu iarrtasan leantainn
+      mention: puist-d le brathan mu iomraidhean
+      reblog: puist-d le brathan mu bhrosnachaidhean
+    show:
+      action: Cuir crìoch air an fho-sgrìobhadh
+      email_subscription:
+        confirmation_html: Chan fhaigh thu post-d tuilleadh nuair a dh’fhoillsicheas an cunntas seo postaichean ùra.
+        title: A bheil thu airson crìoch a chur air an fho-sgrìobhadh agad air %{name}?
+      user:
+        confirmation_html: Chan fhaigh thu %{type} o Mhastodon air %{domain} tuilleadh.
+        title: A bheil thu airson crìoch a chur air an fho-sgrìobhadh agad air %{type}?
   user_mailer:
     announcement_published:
       description: 'Tha na rianairean aig %{domain} a’ dèanamh brath-fios:'

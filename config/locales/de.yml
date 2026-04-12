@@ -17,7 +17,7 @@ de:
       other: Folge ich
     instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert, und kein persönliches Profil. Es wird für Föderationszwecke verwendet und sollte daher nicht gesperrt werden.
     last_active: zuletzt aktiv
-    link_verified_on: Das Profil mit dieser E-Mail-Adresse wurde bereits am %{date} bestätigt
+    link_verified_on: Dieser Link wurde am %{date} Uhr verifiziert
     nothing_here: Keine Treffer mit dieser Auswahl
     pin_errors:
       following: Du musst dieser Person folgen, um sie empfehlen zu können
@@ -762,6 +762,7 @@ de:
       categories:
         administration: Administration
         devops: DevOps
+        email: E-Mail
         invites: Einladungen
         moderation: Moderation
         special: Besonderheit
@@ -778,8 +779,10 @@ de:
         administrator_description: Beschränkung aller Berechtigungen umgehen
         delete_user_data: Kontodaten löschen
         delete_user_data_description: Daten anderer Profile ohne Verzögerung löschen
+        invite_bypass_approval: Einladungen ohne Überprüfungen
+        invite_bypass_approval_description: Neue Benutzer*innen zur Registrierung auf diesem Server einladen, ohne manuell genehmigt werden zu müssen
         invite_users: Einladungen
-        invite_users_description: Erlaubt bereits registrierten Benutzer*innen, neue Leute zum Server einzuladen
+        invite_users_description: Neue Benutzer*innen zur Registrierung auf diesem Server einladen
         manage_announcements: Ankündigungen
         manage_announcements_description: Ankündigungen dieses Servers verwalten
         manage_appeals: Einsprüche
@@ -788,6 +791,7 @@ de:
         manage_blocks_description: E-Mail-Provider und IP-Adressen sperren
         manage_custom_emojis: Emojis
         manage_custom_emojis_description: Spezielle Emojis dieses Servers verwalten
+        manage_email_subscriptions: E-Mail-Benachrichtigungen verwalten
         manage_federation: Föderation
         manage_federation_description: Domains anderer Mastodon-Server sperren/zulassen – und Zustellbarkeit kontrollieren
         manage_invites: Einladungen
@@ -805,7 +809,7 @@ de:
         manage_user_access: Kontozugriff
         manage_user_access_description: Zwei-Faktor-Authentisierungen anderer können deaktiviert, E-Mail-Adressen geändert und Passwörter zurückgesetzt werden
         manage_users: Konten
-        manage_users_description: Erlaubt es Benutzer*innen, die Details anderer Profile einzusehen und diese Accounts zu moderieren
+        manage_users_description: Details anderer Profile einsehen und Moderation von Konten
         manage_webhooks: Webhooks
         manage_webhooks_description: Webhooks für administrative Vorgänge einrichten
         view_audit_log: Protokoll anzeigen
@@ -814,7 +818,7 @@ de:
         view_dashboard_description: Dashboard und verschiedene Metriken
         view_devops: DevOps
         view_devops_description: Auf Sidekiq- und pgHero-Dashboards zugreifen
-        view_feeds: Live-Feeds und Hashtags anzeigen
+        view_feeds: Live-Feeds und Hashtags
         view_feeds_description: Zugriff auf Live-Feeds und Hashtags – unabhängig der Servereinstellungen
       requires_2fa: Zwei-Faktor-Authentisierung erforderlich
       title: Rollen
@@ -1229,7 +1233,6 @@ de:
   application_mailer:
     notification_preferences: E-Mail-Einstellungen ändern
     salutation: "%{name},"
-    settings: 'E-Mail-Einstellungen ändern: %{link}'
     unsubscribe: Abbestellen
     view: 'Siehe:'
     view_profile: Profil anzeigen
@@ -1279,6 +1282,7 @@ de:
     progress:
       confirm: E-Mail bestätigen
       details: Deine Daten
+      list: Registrierungsfortschritt
       review: Unsere Überprüfung
       rules: Serverregeln akzeptieren
     providers:
@@ -1294,6 +1298,7 @@ de:
       invited_by: 'Du kannst %{domain} beitreten – dank der Einladung von:'
       preamble: Diese werden von den Moderator*innen von %{domain} festgelegt und durchgesetzt.
       preamble_invited: Bevor du fortfährst, beachte bitte die Grundregeln der Moderator*innen von %{domain}.
+      read_more: Weiterlesen
       title: Einige Grundregeln.
       title_invited: Du wurdest eingeladen.
     security: Sicherheit
@@ -1412,9 +1417,33 @@ de:
       your_appeal_pending: Du hast Einspruch erhoben
       your_appeal_rejected: Dein Einspruch wurde abgelehnt
   edit_profile:
-    basic_information: Allgemeine Informationen
-    hint_html: "<strong>Bestimme, was andere auf deinem öffentlichen Profil und neben deinen Beiträgen sehen können.</strong> Wenn du ein Profilbild festlegst und dein Profil vervollständigst, werden andere eher mit dir interagieren und dir folgen."
     other: Andere
+    redesign_body: Dein Profil kannst du jetzt direkt auf deiner Profilseite bearbeiten.
+    redesign_button: Loslegen
+    redesign_title: Es gibt eine brandneue Möglichkeit, das Profil zu bearbeiten
+  email_subscription_mailer:
+    confirmation:
+      action: E-Mail-Adresse bestätigen
+      subject: Bestätige deine E-Mail-Adresse
+      title: E-Mail-Benachrichtigungen von %{name} erhalten?
+    notification:
+      create_account: Mastodon-Konto erstellen
+      subject:
+        plural: Neue Beiträge von %{name}
+        singular: 'Neuer Beitrag: „%{excerpt}“'
+      title:
+        plural: Neue Beiträge von %{name}
+        singular: 'Neuer Beitrag: „%{excerpt}“'
+  email_subscriptions:
+    active: Aktiviert
+    confirmations:
+      show:
+        changed_your_mind: Meinung geändert?
+        title: Du hast dich angemeldet
+        unsubscribe: Abbestellen
+    inactive: Deaktiviert
+    status: Status
+    subscribers: Abonnent*innen
   emoji_styles:
     auto: Automatisch
     native: Nativ
@@ -1453,10 +1482,8 @@ de:
     mutes: Stummgeschaltete Profile
     storage: Medienspeicher
   featured_tags:
-    add_new: Neuen hinzufügen
     errors:
       limit: Du hast bereits die maximale Anzahl an Hashtags erreicht
-    hint_html: "<strong>Präsentiere deine wichtigsten Hashtags auf deinem Profil.</strong> Vorgestellte Hashtags verschaffen einen Überblick über deine kreativen Werke und langfristigen Projekte. Sie werden gut sichtbar auf deinem Profil angezeigt und ermöglichen einen schnellen Zugriff auf deine eigenen Beiträge."
   filters:
     contexts:
       account: Profile
@@ -1649,26 +1676,11 @@ de:
     failed_sign_in_html: Fehlgeschlagener Anmeldeversuch mit %{method} von %{ip} (%{browser})
     successful_sign_in_html: Erfolgreiches Anmelden mit %{method} von %{ip} (%{browser})
     title: Anmeldeverlauf
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, abbestellen
-      complete: Abbestellt
-      confirmation_html: Möchtest du %{type} für Mastodon auf %{domain} an deine E-Mail-Adresse %{email} wirklich abbestellen? Du kannst dies später in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
-      emails:
-        notification_emails:
-          favourite: E-Mail-Benachrichtigungen bei Favoriten
-          follow: E-Mail-Benachrichtigungen bei Followern
-          follow_request: E-Mail-Benachrichtigungen bei Follower-Anfragen
-          mention: E-Mail-Benachrichtigungen bei Erwähnungen
-          reblog: E-Mail-Benachrichtigungen bei geteilten Beiträgen
-      resubscribe_html: Falls du etwas irrtümlich abbestellt hast, kannst du das in den Einstellungen <a href="%{settings_path}">Benachrichtigungen per E-Mail</a> rückgängig machen.
-      success_html: Du wirst nicht länger %{type} für Mastodon auf %{domain} an deine E-Mail-Adresse %{email} erhalten.
-      title: Abbestellen
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag angehängt werden, der bereits Bilder enthält
       not_found: Medieninhalt(e) %{ids} nicht gefunden oder bereits an einen anderen Beitrag angehängt
-      not_ready: Dateien, die noch nicht verarbeitet wurden, können nicht angehängt werden. Versuche es gleich noch einmal!
+      not_ready: Dateien, die noch nicht verarbeitet wurden, können nicht angehängt werden. Warte einen Moment!
       too_many: Mehr als vier Dateien können nicht angehängt werden
   migrations:
     acct: umgezogen nach
@@ -1801,6 +1813,7 @@ de:
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Timelines
   privacy:
+    email_subscriptions: Sende Beiträge per E-Mail
     hint_html: "<strong>Bestimme selbst, wie dein Profil und deine Beiträge gefunden werden sollen.</strong> Zahlreiche Mastodon-Funktionen können dir für eine größere Reichweite behilflich sein. Nimm dir einen Moment Zeit, um diese Einstellungen zu überprüfen."
     privacy: Datenschutz
     privacy_hint_html: Bestimme, wie viele Informationen du für andere preisgeben möchtest. Viele Menschen entdecken interessante Profile und coole Apps, indem sie die Follower anderer Profile durchstöbern und die Apps sehen, über die Beiträge veröffentlicht wurden – möglicherweise möchtest du diese Informationen ausblenden.
@@ -2064,6 +2077,13 @@ de:
     resume_app_authorization: Autorisierung der App fortsetzen
     role_requirement: "%{domain} verlangt das Einrichten einer Zwei-Faktor-Authentisierung, bevor du Mastodon verwenden kannst."
     webauthn: Sicherheitsschlüssel
+  unsubscriptions:
+    create:
+      action: Zur Homepage des Servers gehen
+      email_subscription:
+        confirmation_html: Du erhältst keine E-Mails mehr von %{name}.
+    show:
+      action: Abbestellen
   user_mailer:
     announcement_published:
       description: 'Ankündigung der Administrator*innen von %{domain}:'
@@ -2190,7 +2210,7 @@ de:
     extra_instructions_html: <strong>Hinweis:</strong> Der Link auf deiner Website kann unsichtbar sein. Der wichtige Teil ist <code>rel="me"</code>. Du kannst auch den Tag <code>link</code> im <code>head</code> (statt <code>a</code> im <code>body</code>) verwenden, jedoch muss die Internetseite ohne JavaScript abrufbar sein.
     here_is_how: So funktioniert’s
     hint_html: "<strong>Alle können ihre Identität auf Mastodon verifizieren.</strong> Basierend auf offenen Standards – jetzt und für immer kostenlos. Alles, was du brauchst, ist eine eigene Website. Wenn du von deinem Profil auf diese Website verlinkst, überprüfen wir, ob die Website zu deinem Profil zurückverlinkt, und zeigen einen visuellen Hinweis an."
-    instructions_html: Kopiere den unten stehenden Code und füge ihn in den HTML-Code deiner Website ein. Trage anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil ein und speichere die Änderungen. Die Zusatzfelder befinden sich im Reiter „Profil bearbeiten“.
+    instructions_html: Kopiere den unten stehenden Code und füge ihn in den HTML-Code deiner Website ein. Trage anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil ein und speichere die Änderungen. Die Zusatzfelder können „Profil bearbeiten“ verwaltet werden.
     verification: Verifizierung
     verified_links: Deine verifizierten Links
     website_verification: Verifizierung einer Website

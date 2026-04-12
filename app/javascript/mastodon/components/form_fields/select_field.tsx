@@ -19,12 +19,12 @@ interface Props
  */
 
 export const SelectField = forwardRef<HTMLSelectElement, Props>(
-  ({ id, label, hint, required, hasError, children, ...otherProps }, ref) => (
+  ({ id, label, hint, required, status, children, ...otherProps }, ref) => (
     <FormFieldWrapper
       label={label}
       hint={hint}
       required={required}
-      hasError={hasError}
+      status={status}
       inputId={id}
     >
       {(inputProps) => (

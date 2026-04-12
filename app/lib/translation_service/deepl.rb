@@ -31,7 +31,7 @@ class TranslationService::DeepL < TranslationService
 
   def fetch_languages(type)
     request(:get, "/v2/languages?type=#{type}") do |res|
-      Oj.load(res.body_with_limit).map { |language| normalize_language(language['language']) }
+      JSON.parse(res.body_with_limit).map { |language| normalize_language(language['language']) }
     end
   end
 
@@ -68,7 +68,7 @@ class TranslationService::DeepL < TranslationService
   end
 
   def transform_response(json)
-    data = Oj.load(json, mode: :strict)
+    data = JSON.parse(json)
     raise UnexpectedResponseError unless data.is_a?(Hash)
 
     data['translations'].map do |translation|
@@ -78,7 +78,7 @@ class TranslationService::DeepL < TranslationService
         provider: 'DeepL.com'
       )
     end
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     raise UnexpectedResponseError
   end
 end

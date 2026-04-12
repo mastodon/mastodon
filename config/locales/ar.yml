@@ -343,6 +343,10 @@ ar:
       unpublish: إلغاء النشر
       unpublished_msg: تم إلغاء نشر الإعلان بنجاح!
       updated_msg: تم تحديث الإعلان بنجاح!
+    collections:
+      accounts: الحسابات
+      contents: المحتوى
+      open: فتح
     critical_update_pending: تحديث حَرِج قيد الانتظار
     custom_emojis:
       assign_category: اسند فئة
@@ -790,6 +794,7 @@ ar:
       categories:
         administration: الإدارة
         devops: DevOps
+        email: البريد الإلكتروني
         invites: الدعوات
         moderation: الإشراف
         special: مميز
@@ -1267,7 +1272,6 @@ ar:
   application_mailer:
     notification_preferences: تغيير تفضيلات البريد الإلكتروني
     salutation: "%{name}،"
-    settings: 'تغيير تفضيلات البريد الإلكتروني: %{link}'
     unsubscribe: إلغاء الاشتراك
     view: 'اعرض:'
     view_profile: اعرض الصفحة التعريفية
@@ -1332,6 +1336,7 @@ ar:
       invited_by: 'يمكنك الانضمام إلى %{domain} بفضل الدعوة التي تلقيتها من:'
       preamble: يتم تعيين هذه القوانين وفرضها من قبل مشرفي %{domain}.
       preamble_invited: قبل المتابعة، يرجى قراءة القواعد الأساسية التي وضعها مشرفو %{domain}.
+      read_more: اقرأ المزيد
       title: بعض القواعد الأساسية.
       title_invited: لقد تمت دعوتك.
     security: الأمان
@@ -1449,9 +1454,12 @@ ar:
       your_appeal_pending: لقد قمت بتقديم طعن
       your_appeal_rejected: تم رفض طعنك
   edit_profile:
-    basic_information: معلومات أساسية
-    hint_html: "<strong>قم بتخصيص ما سيراه الناس في ملفك الشخصي العام وبجوار منشوراتك.</strong> من المرجح أن يتابعك أشخاص آخرون ويتفاعلون معك إن كان لديك صفحة شخصية مملوء وصورة."
     other: أخرى
+  email_subscription_mailer:
+    confirmation:
+      subject: تأكيد عنوان بريدك الإلكتروني
+    notification:
+      create_account: إنشاء حساب ماستدون
   emoji_styles:
     auto: تلقائي
     native: محلي
@@ -1490,10 +1498,8 @@ ar:
     mutes: قُمتَ بكتم
     storage: ذاكرة التخزين
   featured_tags:
-    add_new: أضف واحدًا جديدا
     errors:
       limit: لقد قمت بالفعل بعرض الحد الأقصى من عدد الوسوم
-    hint_html: "<strong>ما هي الوسوم الرائجة؟</strong> يتم عرضها بشكل بارز على ملفك الشخصي العام وتسمح للناس بتصفح منشوراتك العامة على وجه التحديد تحت تلك الوسوم. وهي أداة رائعة لتتبع الأعمال الإبداعية أو المشاريع الطويلة الأجل."
   filters:
     contexts:
       account: الملفات التعريفية
@@ -1746,6 +1752,7 @@ ar:
       uses: عدد الاستخدامات
     title: دعوة أشخاص
   link_preview:
+    author_html: مِن %{name}
     potentially_sensitive_content:
       hide_button: إخفاء
   lists:
@@ -1762,21 +1769,6 @@ ar:
     failed_sign_in_html: فشل محاولة تسجيل الدخول مع %{method} من %{ip} (%{browser})
     successful_sign_in_html: تم تسجيل الدخول بنجاح مع %{method} من %{ip} (%{browser})
     title: تاريخ المصادقة
-  mail_subscriptions:
-    unsubscribe:
-      action: نعم، ألغِ الاشتراك
-      complete: غير مشترك
-      confirmation_html: هل أنت متأكد أنك تريد إلغاء الاشتراك عن تلقي %{type} لماستدون على %{domain} إلى بريدك الإلكتروني %{email}؟ يمكنك دائمًا إعادة الاشتراك من <a href="%{settings_path}">إعدادات إشعارات البريد الإلكتروني</a>.
-      emails:
-        notification_emails:
-          favourite: إرسال إشعارات التفضيلات بالبريد الإلكتروني
-          follow: إرسال إشعارات المتابعة بالبريد الإلكتروني
-          follow_request: إرسال إشعارات الطلبات بالبريد الإلكتروني
-          mention: إشعارات رسائل البريد عندما يَذكُرك أحدهم
-          reblog: رسائل البريد الخاصة بالمنشورات المعاد نشرها
-      resubscribe_html: إذا قمت بإلغاء الاشتراك عن طريق الخطأ، يمكنك إعادة الاشتراك من <a href="%{settings_path}">إعدادات إشعارات البريد الإلكتروني</a>.
-      success_html: لن تتلقّ بعد الآن %{type} لماستدون مِن %{domain} على بريدك الإلكتروني %{email}.
-      title: إلغاء الاشتراك
   media_attachments:
     validations:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
@@ -2146,6 +2138,8 @@ ar:
     past_preamble_html: لقد غيرنا شروط خدمتنا منذ زيارتكم الأخيرة. نشجعكم على مراجعة الشروط المحدثة.
     review_link: مراجعة شروط الخدمة
     title: شروط خدمة النطاق %{domain} ستتغير
+  themes:
+    default: ماستدون
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

@@ -69,6 +69,7 @@ class Bundle extends PureComponent {
         this.setState({ mod: mod.default });
       })
       .catch((error) => {
+        console.error('Bundle fetching error:', error);
         this.setState({ mod: null });
       });
   };

@@ -5,15 +5,15 @@
 # Table name: appeals
 #
 #  id                     :bigint(8)        not null, primary key
-#  account_id             :bigint(8)        not null
-#  account_warning_id     :bigint(8)        not null
-#  text                   :text             default(""), not null
 #  approved_at            :datetime
-#  approved_by_account_id :bigint(8)
 #  rejected_at            :datetime
-#  rejected_by_account_id :bigint(8)
+#  text                   :text             default(""), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  account_id             :bigint(8)        not null
+#  account_warning_id     :bigint(8)        not null
+#  approved_by_account_id :bigint(8)
+#  rejected_by_account_id :bigint(8)
 #
 class Appeal < ApplicationRecord
   TEXT_LENGTH_LIMIT = 2_000

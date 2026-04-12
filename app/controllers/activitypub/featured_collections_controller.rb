@@ -33,7 +33,9 @@ class ActivityPub::FeaturedCollectionsController < ApplicationController
 
   def set_collections
     authorize @account, :index_collections?
-    @collections = @account.collections.page(params[:page]).per(PER_PAGE)
+    @collections = @account.collections
+      .includes(:accepted_collection_items)
+      .page(params[:page]).per(PER_PAGE)
   rescue Mastodon::NotPermittedError
     not_found
   end

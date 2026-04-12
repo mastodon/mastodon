@@ -4,7 +4,7 @@ zh-CN:
     hints:
       account:
         attribution_domains: 每行一个域名。这样就可以保护作品免受虚假署名。
-        discoverable: 你的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，你的个人资料可能会被推荐给其他用户。
+        discoverable: 你可以出现在其他用户创建的收藏列表中。你和你的公开嘟文也可能会通过发现功能推荐给 Mastodon 上的其他用户。
         display_name: 你的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
         indexable: 你的公开嘟文会出现在 Mastodon 的搜索结果中。无论是否勾选，与你的嘟文有过交互的人都可能通过搜索找到它们。
@@ -123,7 +123,7 @@ zh-CN:
         expires_in: IP 地址是一种有限的资源，它们有时是共享的，并且常常变化。因此，不推荐无限期的 IP 封禁。
         ip: 输入 IPv4 或 IPv6 地址。你可以使用 CIDR 语法屏蔽 IP 段。小心不要屏蔽自己！
         severities:
-          no_access: 阻止访问所有资源
+          no_access: 阻止访问全部资源
           sign_up_block: 无法进行新的账号注册
           sign_up_requires_approval: 新注册需要你的批准
         severity: 选择如何处理来自此 IP 的请求。
@@ -134,6 +134,7 @@ zh-CN:
         otp: 输入你手机应用上生成的双因素认证代码，或者任意一个恢复代码：
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       settings:
+        email_subscriptions: 禁用会保留现有的订阅者，而停止发送电子邮件。
         indexable: 你的个人资料可能会出现在Google、Bing等的搜索结果中。
         show_application: 无论如何，你始终可以看到是哪个应用发布了你的嘟文。
       tag:
@@ -153,7 +154,7 @@ zh-CN:
         jurisdiction: 请列出支付运营费用者所在的国家/地区。如果为公司或其他实体，请列出其注册的国家/地区以及相应的城市、地区、领地或州。
         min_age: 不应低于你所在地法律管辖权要求的最低年龄。
       user:
-        chosen_languages: 仅选中语言的嘟文会出现在公共时间线上（全不选则显示所有语言的嘟文）
+        chosen_languages: 仅选中语言的嘟文会出现在公共时间线上。此设置不影响主页时间轴及列表。
         date_of_birth:
           other: 我们必须确保你至少年满 %{count} 岁才能使用 %{domain}。我们不会存储此信息。
         role: 角色用于控制用户拥有的权限。
@@ -175,7 +176,7 @@ zh-CN:
     labels:
       account:
         attribution_domains: 授权展示你的署名的网站
-        discoverable: 在发现算法中展示你的账号与嘟文
+        discoverable: 允许在发现功能中将自己加入展示
         fields:
           name: 标签
           value: 内容
@@ -355,6 +356,7 @@ zh-CN:
         hint: 补充信息
         text: 规则
       settings:
+        email_subscriptions: 启用邮件订阅注册
         indexable: 允许搜索引擎索引个人资料
         show_application: 显示你发嘟使用的应用
       tag:

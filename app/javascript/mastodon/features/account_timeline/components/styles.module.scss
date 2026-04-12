@@ -1,0 +1,466 @@
+.header {
+  height: 120px;
+  background: var(--color-bg-secondary);
+
+  @container (width >= 500px) {
+    height: 160px;
+  }
+}
+
+.barWrapper {
+  border-bottom: none;
+  padding-inline: 16px;
+}
+
+.avatarWrapper {
+  margin-top: -64px;
+  padding-top: 0;
+}
+
+.displayNameWrapper {
+  display: flex;
+  align-items: start;
+  gap: 16px;
+}
+
+.nameWrapper {
+  flex-grow: 1;
+}
+
+.name {
+  > h1 {
+    display: inline;
+    font-size: 22px;
+    line-height: normal;
+    white-space: initial;
+    margin-inline-end: 4px;
+  }
+}
+
+.followerBadgeIcon {
+  color: var(--color-text-secondary);
+}
+
+.badges {
+  margin-top: 8px;
+}
+
+.handleHelpButton {
+  display: flex;
+  gap: 2px;
+  padding: 0;
+  margin-top: 4px;
+  align-items: center;
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  transition: color 0.2s ease-in-out;
+
+  > svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--color-text-brand-soft);
+  }
+}
+
+.handleHelp {
+  padding: 16px;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border-radius: 12px;
+  box-shadow: var(--dropdown-shadow);
+  max-width: 400px;
+  box-sizing: border-box;
+
+  [data-color-scheme='dark'] & {
+    border: 1px solid var(--color-border-primary);
+  }
+
+  > h3 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  > ol {
+    margin: 12px 0;
+  }
+
+  li {
+    display: flex;
+    gap: 8px;
+    align-items: start;
+
+    &:first-child {
+      margin-bottom: 12px;
+    }
+
+    > svg {
+      background: var(--color-bg-brand-softest);
+      width: 28px;
+      height: 28px;
+      padding: 5px;
+      border-radius: 9999px;
+      box-sizing: border-box;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+$button-breakpoint: 420px;
+$button-fallback-breakpoint: $button-breakpoint + 55px;
+
+.buttonsDesktop {
+  @container (width < #{$button-breakpoint}) {
+    display: none;
+  }
+
+  @supports (not (container-type: inline-size)) {
+    @media (max-width: #{$button-fallback-breakpoint}) {
+      display: none;
+    }
+  }
+}
+
+.handleCopy {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+  margin-top: 12px;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: var(--color-bg-brand-softest);
+  }
+}
+
+.buttonsMobile {
+  position: sticky;
+  bottom: var(--mobile-bottom-nav-height);
+  padding: 12px 16px;
+  margin: 0 -16px;
+
+  @container (width >= #{$button-breakpoint}) {
+    display: none;
+  }
+
+  @supports (not (container-type: inline-size)) {
+    @media (min-width: ($button-fallback-breakpoint + 1px)) {
+      display: none;
+    }
+  }
+
+  // Multi-column layout
+  @media (width >= #{$button-breakpoint}) {
+    bottom: 0;
+  }
+}
+
+.buttonsMobileIsStuck {
+  background-color: var(--color-bg-primary);
+  border-top: 1px solid var(--color-border-primary);
+}
+
+.buttonMenu {
+  // Override the modal for mobile.
+  &:global(.actions-modal) {
+    max-height: none;
+  }
+
+  li :global(.icon) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.bio {
+  font-size: 15px;
+}
+
+.familiarFollowers {
+  margin-top: 16px;
+}
+
+.note {
+  margin-bottom: 16px;
+}
+
+.noteContent {
+  white-space-collapse: preserve-breaks;
+}
+
+.noteEditButton {
+  color: inherit;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.fieldList {
+  --cols: 4;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 4px;
+  margin: 16px 0;
+
+  @container (width < 420px) {
+    --cols: 2;
+  }
+}
+
+.fieldItem {
+  --col-span: 1;
+
+  grid-column: span var(--col-span);
+  position: relative;
+
+  @for $col from 2 through 4 {
+    &[data-cols='#{$col}'] {
+      --col-span: #{$col};
+    }
+  }
+
+  dt {
+    font-weight: normal;
+  }
+
+  dd {
+    font-weight: 500;
+  }
+
+  :is(dt, dd) {
+    text-overflow: initial;
+
+    // Override the MiniCard link styles
+    a {
+      color: inherit;
+      font-weight: inherit;
+
+      &:hover,
+      &:focus {
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // See: https://stackoverflow.com/questions/13226296/is-scrollwidth-property-of-a-span-not-working-on-chrome
+  [data-contents] {
+    display: inline-block;
+  }
+}
+
+.fieldVerified {
+  background-color: var(--color-bg-success-softest);
+
+  &.fieldItem {
+    border-color: var(--color-border-success-soft);
+  }
+
+  dt {
+    padding-right: 24px;
+  }
+}
+
+.fieldVerifiedIcon {
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 8px;
+  right: 8px;
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.fieldOverflowButton {
+  --default-bg-color: var(--color-bg-secondary);
+  --hover-bg-color: var(--color-bg-brand-softest);
+
+  position: absolute;
+  right: 8px;
+  padding: 0 2px;
+  transition: background-color 0.2s ease-in-out;
+  border: 2px solid var(--color-bg-primary);
+
+  > svg {
+    width: 16px;
+    height: 12px;
+  }
+}
+
+.modalCloseButton {
+  padding: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-primary);
+}
+
+.modalTitle {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.modalFieldsList {
+  padding: 16px;
+}
+
+.modalFieldItem {
+  &:not(:first-child) {
+    padding-top: 12px;
+  }
+
+  &:not(:last-child)::after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid var(--color-border-primary);
+    margin-top: 12px;
+  }
+
+  dt {
+    color: var(--color-text-secondary);
+    font-size: 13px;
+  }
+
+  dd {
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .fieldIconVerified {
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+}
+
+.tabs,
+.noTabs {
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.tabs {
+  display: flex;
+  gap: 16px;
+  padding: 0 16px;
+
+  @container (width < 500px) {
+    a {
+      flex: 1 1 0px;
+      text-align: center;
+    }
+  }
+
+  a {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 18px 0;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    border-radius: 0;
+    transition: color 0.2s ease-in-out;
+
+    &:not([aria-current='page']):is(:hover, :focus) {
+      color: var(--color-text-brand-soft);
+    }
+  }
+
+  :global(.active) {
+    color: var(--color-text-brand);
+    border-bottom: 4px solid var(--color-border-brand);
+    padding-bottom: 14px;
+  }
+}
+
+.noTabs {
+  width: 100%;
+  border-width: 0 0 1px;
+}
+
+.bannerBase {
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--color-bg-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 16px 0;
+}
+
+.bannerBaseCentered {
+  min-height: 146px;
+  align-items: center;
+
+  .bannerTextAndActions {
+    text-align: center;
+  }
+}
+
+.bannerTextAndActions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+
+  h2 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+}
+
+.bannerDisclaimer {
+  a {
+    color: inherit;
+  }
+}
+
+.bannerInputButton {
+  display: flex;
+  gap: 8px;
+  align-self: stretch;
+  align-items: flex-start;
+
+  & > div {
+    flex-grow: 1;
+  }
+
+  label {
+    font-weight: 400;
+  }
+
+  :global(.button) {
+    margin-top: 24px; // To align with input under label
+  }
+
+  input[type='email'] {
+    padding: 7px 8px; // To align size with button
+    background: var(--color-bg-primary);
+  }
+}

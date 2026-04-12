@@ -5,6 +5,12 @@ class PostStatusService < BaseService
   include Lockable
   include LanguagesHelper
 
+  # How much to delay sending an e-mail about a new post, to allow grouping multiple posts
+  EMAIL_DISTRIBUTION_DELAY = 5.minutes.freeze
+
+  # If the job is not executed within this timeframe, it will lose its arguments
+  EMAIL_DISTRIBUTION_TTL = 1.hour.to_i
+
   class UnexpectedMentionsError < StandardError
     attr_reader :accounts
 
@@ -77,9 +83,10 @@ class PostStatusService < BaseService
 
   def process_status!
     @status = @account.statuses.new(status_attributes)
-    process_mentions_service.call(@status, save_records: false)
+    process_mentions_service.call(@status)
     safeguard_mentions!(@status)
     safeguard_private_mention_quote!(@status)
+    attach_tagged_objects!(@status)
     attach_quote!(@status)
 
     antispam = Antispam.new(@status)
@@ -109,6 +116,10 @@ class PostStatusService < BaseService
     status.quote.ensure_quoted_access
 
     status.quote.accept! if @quoted_status.local? && StatusPolicy.new(@status.account, @quoted_status).quote?
+  end
+
+  def attach_tagged_objects!(status)
+    ProcessLinksService.new.call(status)
   end
 
   def safeguard_mentions!(status)
@@ -153,9 +164,24 @@ class PostStatusService < BaseService
     Trends.tags.register(@status)
     LinkCrawlWorker.perform_async(@status.id)
     DistributionWorker.perform_async(@status.id)
+    process_email_subscriptions!
     ActivityPub::DistributionWorker.perform_async(@status.id)
     PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
     ActivityPub::QuoteRequestWorker.perform_async(@status.quote.id) if @status.quote&.quoted_status.present? && !@status.quote&.quoted_status&.local?
+  end
+
+  def process_email_subscriptions!
+    return unless Mastodon::Feature.email_subscriptions_enabled? &&
+                  @status.public_visibility? && (!@status.reply? || @status.in_reply_to_account_id == @status.account_id) &&
+                  @status.account.user_can?(:manage_email_subscriptions) &&
+                  @status.account.user_email_subscriptions_enabled?
+
+    # To allow e-mail grouping, pass the arguments via a redis set and schedule
+    # a unique worker a few minutes in the future, in case the user makes subsequent
+    # posts within that time window
+    redis.sadd("email_subscriptions:#{@status.account_id}:next_batch", @status.id)
+    redis.expire("email_subscriptions:#{@status.account_id}:next_batch", EMAIL_DISTRIBUTION_TTL)
+    EmailDistributionWorker.perform_in(EMAIL_DISTRIBUTION_DELAY, @status.account_id)
   end
 
   def validate_media!

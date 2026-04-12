@@ -65,22 +65,22 @@ fr:
       deleted: Supprimé
       demote: Rétrograder
       destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
-      disable: Geler
-      disable_sign_in_token_auth: Désactiver le jeton d'authentification par e-mail
+      disable: Désactiver
+      disable_sign_in_token_auth: Désactiver le jeton d'authentification par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
-      disabled: Gelé
-      display_name: Nom affiché
+      disabled: Désactivé
+      display_name: Nom public
       domain: Domaine
       edit: Modifier
       email: Adresse de courriel
-      email_status: État du courriel
-      enable: Dégeler
-      enable_sign_in_token_auth: Activer le jeton d'authentification par e-mail
+      email_status: État de l'adresse de courriel
+      enable: Activer
+      enable_sign_in_token_auth: Activer le jeton d'authentification par courriel
       enabled: Activé
-      enabled_msg: Le compte de %{username} a été dégelé avec succès
+      enabled_msg: Le compte de %{username} a été activé avec succès
       followers: Abonné·e·s
       follows: Abonnements
-      header: Entête
+      header: Image de couverture
       inbox_url: URL d’entrée
       invite_request_text: Raisons de l’adhésion
       invited_by: Invité par
@@ -119,7 +119,7 @@ fr:
         other: Ce compte a reçu <strong>%{count}</strong> sanctions.
       promote: Promouvoir
       protocol: Protocole
-      public: Publique
+      public: Public
       push_subscription_expires: Expiration de l’abonnement PuSH
       redownload: Rafraîchir le profil
       redownloaded_msg: Le profil de %{username} a été actualisé avec succès depuis l’origine
@@ -128,7 +128,7 @@ fr:
       remote_suspension_irreversible: Les données de ce compte ont été supprimées définitivement.
       remote_suspension_reversible_hint_html: Ce compte a été suspendu par son serveur d'accueil, et les données rattachées seront supprimées le %{date}. Jusqu'à cette date, il peut être restauré sans aucune perte par le serveur distant. Si vous souhaitez supprimer immédiatement toutes les données de ce compte, vous pouvez le faire ci-dessous.
       remove_avatar: Supprimer l’avatar
-      remove_header: Supprimer l’entête
+      remove_header: Supprimer l'image de couverture
       removed_avatar_msg: L’avatar de %{username} a été supprimé avec succès
       removed_header_msg: L’image d’en-tête de %{username} a été supprimée avec succès
       resend_confirmation:
@@ -171,7 +171,7 @@ fr:
       unsilenced_msg: La limitation du compte de %{username} a été annulée avec succès
       unsubscribe: Se désabonner
       unsuspended_msg: Le compte de %{username} a été réactivé avec succès
-      username: Nom d’utilisateur·ice
+      username: Nom d’utilisateur·rice
       view_domain: Voir le résumé du domaine
       warn: Avertissement
       web: Web
@@ -194,30 +194,30 @@ fr:
         create_ip_block: Créer une règle IP
         create_relay: Créer un relais
         create_unavailable_domain: Créer un domaine indisponible
-        create_user_role: Créer le rôle
-        create_username_block: Créer une règle de nom d'utilisateur
-        demote_user: Rétrograder l’utilisateur·ice
-        destroy_announcement: Supprimer l’annonce
-        destroy_canonical_email_block: Supprimer le blocage de courriel
-        destroy_custom_emoji: Supprimer des émojis personnalisés
-        destroy_domain_allow: Supprimer le domaine autorisé
-        destroy_domain_block: Supprimer le blocage de domaine
-        destroy_email_domain_block: Supprimer le blocage de domaine de courriel
-        destroy_instance: Purge du domaine
-        destroy_ip_block: Supprimer la règle IP
-        destroy_relay: Supprimer le relais
-        destroy_status: Supprimer le message
-        destroy_unavailable_domain: Supprimer le domaine indisponible
-        destroy_user_role: Détruire le rôle
-        destroy_username_block: Supprimer la règle de nom d'utilisateur
-        disable_2fa_user: Désactiver l’A2F
+        create_user_role: Créer un rôle
+        create_username_block: Créer une règle de nom d'utilisateur·rice
+        demote_user: Rétrograder un·e utilisateur·ice
+        destroy_announcement: Supprimer une annonce
+        destroy_canonical_email_block: Supprimer un blocage de courriel
+        destroy_custom_emoji: Supprimer un émoji personnalisé
+        destroy_domain_allow: Supprimer un domaine autorisé
+        destroy_domain_block: Supprimer un blocage de domaine
+        destroy_email_domain_block: Supprimer un blocage de domaine de courriel
+        destroy_instance: Purger un domaine
+        destroy_ip_block: Supprimer une règle IP
+        destroy_relay: Supprimer un relais
+        destroy_status: Supprimer un message
+        destroy_unavailable_domain: Supprimer un domaine indisponible
+        destroy_user_role: Supprimer le rôle
+        destroy_username_block: Supprimer la règle de nom d'utilisateur·rice
+        disable_2fa_user: Désactiver l’authentification à deux facteurs
         disable_custom_emoji: Désactiver les émojis personnalisés
         disable_relay: Désactiver le relais
-        disable_sign_in_token_auth_user: Désactiver le jeton d'authentification par e-mail pour l'utilisateur
+        disable_sign_in_token_auth_user: Désactiver le jeton d'authentification par courriel pour l'utilisateur·rice
         disable_user: Désactiver le compte
         enable_custom_emoji: Activer les émojis personnalisées
         enable_relay: Activer le relais
-        enable_sign_in_token_auth_user: Activer le jeton d'authentification par e-mail pour l'utilisateur
+        enable_sign_in_token_auth_user: Activer le jeton d'authentification par courriel pour l'utilisateur·rice
         enable_user: Activer le compte
         memorialize_account: Ériger en mémorial
         promote_user: Promouvoir le compte
@@ -226,11 +226,11 @@ fr:
         reject_user: Rejeter le compte
         remove_avatar_user: Supprimer l’avatar
         reopen_report: Rouvrir le signalement
-        resend_user: Renvoyer l'e-mail de confirmation
+        resend_user: Renvoyer le courriel de confirmation
         reset_password_user: Réinitialiser le mot de passe
-        resolve_report: Résoudre le signalement
-        sensitive_account: Marquer les médias de votre compte comme sensibles
-        silence_account: Limiter le compte
+        resolve_report: Traiter le signalement
+        sensitive_account: Marquer le compte comme sensible
+        silence_account: Masquer le compte
         suspend_account: Suspendre le compte
         unassigned_report: Ne plus assigner le signalement
         unblock_email_account: Débloquer l’adresse de courriel
@@ -244,36 +244,36 @@ fr:
         update_report: Mettre à jour le rapport
         update_status: Mettre à jour le message
         update_user_role: Mettre à jour le rôle
-        update_username_block: Mettre à jour la règle de nom d'utilisateur
+        update_username_block: Mettre à jour la règle de nom d'utilisateur·rice
       actions:
         approve_appeal_html: "%{name} a approuvé l'appel de la décision de modération émis par %{target}"
         approve_user_html: "%{name} a approuvé l’inscription de %{target}"
         assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
-        change_email_user_html: "%{name} a changé l'adresse e-mail de l'utilisateur \n%{target}"
+        change_email_user_html: "%{name} a changé l'adresse de courriel de l'utilisateur·rice %{target}"
         change_role_user_html: "%{name} a changé le rôle de %{target}"
-        confirm_user_html: "%{name} a confirmé l'adresse e-mail de l'utilisateur %{target}"
+        confirm_user_html: "%{name} a confirmé l'adresse de courriel de l'utilisateur·rice %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
-        create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
-        create_canonical_email_block_html: "%{name} a bloqué l'adresse email avec le hachage %{target}"
-        create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
+        create_announcement_html: "%{name} a créé la nouvelle annonce %{target}"
+        create_canonical_email_block_html: "%{name} a bloqué l'adresse de courriel ayant l'empreinte %{target}"
+        create_custom_emoji_html: "%{name} a téléversé le nouvel émoji %{target}"
         create_domain_allow_html: "%{name} a autorisé la fédération avec le domaine %{target}"
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
-        create_email_domain_block_html: "%{name} a bloqué le domaine d'e-mail %{target}"
-        create_ip_block_html: "%{name} a créé une règle pour l'IP %{target}"
+        create_email_domain_block_html: "%{name} a bloqué le domaine de courriel %{target}"
+        create_ip_block_html: "%{name} a créé la règle pour IP %{target}"
         create_relay_html: "%{name} a créé un relais %{target}"
         create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
         create_user_role_html: "%{name} a créé le rôle %{target}"
-        create_username_block_html: "%{name} a ajouté une règle pour les noms d'utilisateur contenant %{target}"
+        create_username_block_html: "%{name} a ajouté une règle pour les noms d'utilisateur·rice contenant %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
-        destroy_canonical_email_block_html: "%{name} a débloqué l'adresse email avec le hachage %{target}"
+        destroy_canonical_email_block_html: "%{name} a débloqué l'adresse courriel ayant l'empreinte %{target}"
         destroy_collection_html: "%{name} a supprimé la collection de %{target}"
         destroy_custom_emoji_html: "%{name} a supprimé l'émoji %{target}"
-        destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
+        destroy_domain_allow_html: "%{name} a supprimé la fédération avec le domaine %{target}"
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"
-        destroy_email_domain_block_html: "%{name} a débloqué le domaine d'e-mail %{target}"
+        destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
         destroy_instance_html: "%{name} a purgé le domaine %{target}"
-        destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
+        destroy_ip_block_html: "%{name} a supprimé la règle pour IP %{target}"
         destroy_relay_html: "%{name} a supprimé le relais %{target}"
         destroy_status_html: "%{name} a supprimé le message de %{target}"
         destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
@@ -295,11 +295,11 @@ fr:
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
-        resend_user_html: "%{name} a renvoyé l'e-mail de confirmation pour %{target}"
+        resend_user_html: "%{name} a renvoyé le courriel de confirmation pour %{target}"
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
-        resolve_report_html: "%{name} a résolu le signalement %{target}"
+        resolve_report_html: "%{name} a traité le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
-        silence_account_html: "%{name} a limité le compte de %{target}"
+        silence_account_html: "%{name} a masqué le compte de %{target}"
         suspend_account_html: "%{name} a suspendu le compte de %{target}"
         unassigned_report_html: "%{name} a désassigné le signalement %{target}"
         unblock_email_account_html: "%{name} a débloqué l’adresse de courriel de %{target}"
@@ -332,8 +332,8 @@ fr:
         create: Créer une annonce
         title: Nouvelle annonce
       preview:
-        disclaimer: Étant donné que les utilisateurs ne peuvent pas s'en retirer, les notifications par courriel devraient être limitées à des annonces importantes telles que des violations de données personnelles ou des notifications de fermeture de serveur.
-        explanation_html: 'L''e-mail sera envoyé à <strong>%{display_count} utilisateurs</strong>. Le texte suivant sera inclus :'
+        disclaimer: Étant donné que les utilisateur·rice·s ne peuvent pas les désactiver, les notifications par courriel devraient être limitées à des annonces importantes telles que des violations de données personnelles ou des notifications de fermeture de serveur.
+        explanation_html: 'Le courriel sera envoyé à <strong>%{display_count} utilisateurs</strong>. Le texte suivant sera inclus :'
         title: Aperçu de la notification d'annonce
       publish: Publier
       published_msg: Annonce publiée avec succès !
@@ -405,7 +405,7 @@ fr:
       pending_users_html:
         one: "<strong>%{count}</strong> utilisateur·rice en attente"
         other: "<strong>%{count}</strong> utilisateur·rice·s en attente"
-      resolved_reports: rapports résolus
+      resolved_reports: rapports traités
       software: Logiciel
       sources: Sources d'inscription
       space: Espace utilisé
@@ -467,27 +467,24 @@ fr:
       undo: Annuler le blocage de domaine
       view: Afficher les blocages de domaines
     email_domain_blocks:
-      add_new: Ajouter un nouveau
+      add_new: Ajouter
       allow_registrations_with_approval: Autoriser les inscriptions avec approbation
       attempts_over_week:
-        one: "%{count} tentative au cours de la dernière semaine"
-        other: "%{count} tentatives au cours de la dernière semaine"
-      created_msg: Domaine d'e-mail bloqué avec succès
+        one: "%{count} tentative d'inscription au cours de la dernière semaine"
+        other: "%{count} tentatives d'inscription au cours de la dernière semaine"
+      created_msg: Domaine de courriel bloqué avec succès
       delete: Supprimer
       dns:
         types:
           mx: Enregistrement MX
       domain: Domaine
       new:
-        create: Créer le blocage
+        create: Ajouter un domaine
         resolve: Résoudre le domaine
         title: Blocage d'un nouveau domaine de messagerie électronique
       no_email_domain_block_selected: Aucun blocage de domaine de messagerie n'a été modifié comme aucun n'a été sélectionné
       not_permitted: Non autorisé
-      resolved_dns_records_hint_html: |-
-        Le nom de domaine se réfère aux domaines MX suivants, qui sont à leur tour responsables de la réception des courriels.
-
-        Le blocage d'un domaine MX empêchera l'inscription depuis toute adresse électronique ayant recours au même domaine MX, et ce même si le nom de domaine visible est différent. <strong>Veillez à ne pas bloquer les principaux fournisseurs de services de messagerie.</strong>
+      resolved_dns_records_hint_html: Le nom de domaine est lié aux domaines MX suivants, qui sont responsables de la réception des courriels. Le blocage d'un domaine MX empêchera l'inscription de toute adresse de courriel utilisant le même domaine MX, et ce même si le nom de domaine visible est différent. <strong>Veillez à ne pas bloquer les principaux fournisseurs de services de messagerie.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Domaines de messagerie électronique bloqués
     export_domain_allows:
@@ -680,8 +677,8 @@ fr:
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
         silence_description_html: Le compte ne sera visible que par ceux qui le suivent déjà ou qui le recherchent manuellement, ce qui limite fortement sa portée. Cette action peut toujours être annulée. Cloture tous les signalements concernant ce compte.
         suspend_description_html: Le compte et tous ses contenus seront inaccessibles et finalement supprimés, et il sera impossible d'interagir avec lui. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
-      actions_description_html: Décidez de l'action à entreprendre pour résoudre ce signalement. Si vous prenez une mesure punitive à l'encontre du compte signalé, une notification par courrier électronique lui sera envoyée, excepté lorsque la catégorie <strong>Spam</strong> est sélectionnée.
-      actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
+      actions_description_html: Décider de l'action à entreprendre pour traiter ce signalement. Si vous prenez une mesure punitive à l'encontre du compte signalé, une notification sera envoyée par courriel, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
+      actions_description_remote_html: Décider des mesures à prendre pour traiter ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
       actions_no_posts: Ce signalement n'a pas de messages qui lui sont associés et qui devraient être supprimés
       add_to_report: Ajouter davantage au rapport
       already_suspended_badges:
@@ -705,13 +702,13 @@ fr:
       forwarded: Transféré
       forwarded_replies_explanation: Ce rapport provient d'un utilisateur sur une autre instance et concerne du contenu non-local. Il vous a été transmis car le contenu signalé est en réponse à l'un de vos utilisateurs.
       forwarded_to: Transféré à %{domain}
-      mark_as_resolved: Marquer comme résolu
+      mark_as_resolved: Marquer comme traité
       mark_as_sensitive: Marquer comme sensible
-      mark_as_unresolved: Marquer comme non-résolu
+      mark_as_unresolved: Marquer comme non-traité
       no_one_assigned: Personne
       notes:
         create: Ajouter une note
-        create_and_resolve: Résoudre avec une note
+        create_and_resolve: Traiter avec une note
         create_and_unresolve: Ré-ouvrir avec une note
         delete: Supprimer
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
@@ -726,8 +723,8 @@ fr:
       reported_by: Signalé par
       reported_content: Contenu signalé
       reported_with_application: Signalé avec l'application
-      resolved: Résolus
-      resolved_msg: Signalement résolu avec succès !
+      resolved: Traité
+      resolved_msg: Signalement traité avec succès !
       skip_to_actions: Passer aux actions
       status: Statut
       statuses: Messages (%{count})
@@ -743,8 +740,8 @@ fr:
           mark_as_sensitive_html: marquer le média des messages incriminés comme sensible
           silence_html: limiter drastiquement la portée du compte de <strong>@%{acct}</strong> en rendant son profil, ainsi que ses contenus, visibles uniquement des personnes déjà abonnées ou qui le recherchent manuellement
           suspend_html: suspendre le compte de <strong>@%{acct}</strong>, ce qui empêche toute interaction avec son profil et tout accès à ses contenus
-        close_report: 'marquer le signalement #%{id} comme résolu'
-        close_reports_html: marquer <strong>tous</strong> les signalements de <strong>@%{acct}</strong> comme résolus
+        close_report: Marquer le signalement n°%{id} comme traité
+        close_reports_html: Marquer <strong>tous</strong> les signalements de <strong>@%{acct}</strong> comme traités
         delete_data_html: effacer le profil de <strong>@%{acct}</strong> et ses contenus dans 30 jours, à moins que la suspension du compte ne soit annulée entre temps
         preview_preamble_html: "<strong>@%{acct}</strong> recevra un avertissement contenant les éléments suivants :"
         record_strike_html: enregistrer une sanction contre <strong>@%{acct}</strong> pour vous aider à prendre des mesures supplémentaires en cas d'infractions futures de ce compte
@@ -754,7 +751,7 @@ fr:
       title: Signalements
       unassign: Dés-assigner
       unknown_action_msg: 'Action inconnue : %{action}'
-      unresolved: Non résolus
+      unresolved: Non traité
       updated_at: Mis à jour
       view_profile: Voir le profil
     roles:
@@ -765,6 +762,7 @@ fr:
       categories:
         administration: Administration
         devops: DevOps
+        email: Courriel
         invites: Invitations
         moderation: Modération
         special: Spécial
@@ -781,6 +779,8 @@ fr:
         administrator_description: Les utilisateur⋅rice⋅s ayant cette autorisation pourront contourner toutes les autorisations
         delete_user_data: Supprimer les données de l'utilisateur⋅rice
         delete_user_data_description: Permet aux utilisateur⋅rice⋅s de supprimer sans délai les données des autres utilisateur⋅rice⋅s
+        invite_bypass_approval: Inviter des utilisateurs sans vérifications
+        invite_bypass_approval_description: Permet aux personnes invitées sur le serveur par ces utilisateur·rice·s de s'inscrire sans être soumises à l'approbation de la modération
         invite_users: Inviter des utilisateur⋅rice⋅s
         invite_users_description: Permet aux utilisateur⋅rice⋅s d'inviter de nouvelles personnes sur le serveur
         manage_announcements: Gérer les annonces
@@ -791,6 +791,8 @@ fr:
         manage_blocks_description: Permet aux utilisateur⋅rice⋅s de bloquer des fournisseurs de courriel et des adresses IP
         manage_custom_emojis: Gérer les émojis personnalisés
         manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
+        manage_email_subscriptions: Gérer les abonnements par courriel
+        manage_email_subscriptions_description: Autoriser l'abonnement par courriel aux comptes ayant cette permission
         manage_federation: Gérer de la féderation
         manage_federation_description: Permet aux utilisateur⋅rice⋅s de bloquer ou d'autoriser la fédération avec d'autres domaines, et de contrôler la capacité de livraison
         manage_invites: Gérer les invitations
@@ -841,7 +843,7 @@ fr:
         rules_hint: Il y a un espace dédié pour les règles auxquelles vos utilisateurs sont invités à adhérer.
         title: À propos
       allow_referrer_origin:
-        desc: Quand les utilisateurs cliquent sur un lien externe, leur navigateur peut envoyer l'adresse du serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateurs, par exemple s'il s'agit d'un serveur Mastodon personnel.
+        desc: Quand vos utilisateur·rice·s cliquent sur un lien externe, leur navigateur peut envoyer l'adresse de votre serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateur·rice·s, par exemple s'il s'agit d'un serveur Mastodon personnel.
         title: Autoriser les sites externes à voir votre serveur Mastodon comme une source de trafic
       appearance:
         preamble: Personnaliser l'interface web de Mastodon.
@@ -904,7 +906,7 @@ fr:
       destroyed_msg: Téléversement sur le site supprimé avec succès !
     software_updates:
       critical_update: Critique — veuillez mettre à jour au plus vite
-      description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et fonctionnalités. Par ailleurs, il est parfois critique de mettre à jour Mastodon en temps voulu de manière à éviter les incidents relatifs à la sécurité. Pour ces raisons, Mastodon examine la disponibilté des mises à jour toutes les 30 minutes, et vous en avisera en fonction de vos préférences de notification par messagerie électronique.
+      description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et fonctionnalités. Par ailleurs, il est parfois critique de mettre à jour Mastodon rapidement de manière à éviter les incidents relatifs à la sécurité. Pour ces raisons, Mastodon examine la disponibilté des mises à jour toutes les 30 minutes, et vous en avisera en fonction de vos préférences de notification par courriel.
       documentation_link: En savoir plus
       release_notes: Notes de mises à jour
       title: Mises à jour disponibles
@@ -1039,18 +1041,18 @@ fr:
       history: Historique
       live: En cours d'utilisation
       no_history: Il n'y a pas encore de modifications enregistrées des conditions d'utilisation.
-      no_terms_of_service_html: Vous n'avez actuellement aucune condition d'utilisation configurée. Les conditions d'utilisation ont pour but de clarifier les droits et obligations de chacun lors de l'utilisation du service et de vous protéger contre d'éventuelles responsabilités en cas de litige avec vos utilisateurs.
-      notified_on_html: Utilisateurs notifiés le `%{date}`
-      notify_users: Notifier les utilisateurs
+      no_terms_of_service_html: Vous n'avez actuellement aucune condition d'utilisation configurée. Les conditions d'utilisation ont pour but de clarifier les droits et obligations de chacun lors de l'utilisation du service et de vous protéger contre d'éventuelles responsabilités en cas de litige avec vos utilisateur·rice·s.
+      notified_on_html: Utilisateur·rice·s notifié·e·s le %{date}
+      notify_users: Notifier les utilisateur·rice·s
       preview:
-        explanation_html: 'L''e-mail sera envoyé aux utilisateurs <strong>%{display_count}</strong> qui se sont inscrits avant %{date}. Le texte suivant sera inclus dans l''e-mail :'
+        explanation_html: 'Le courriel sera envoyé aux <strong>%{display_count}</strong> utilisateur·rice·s qui se sont inscrits avant le %{date}. Le texte suivant sera inclus dans le message :'
         send_preview: Envoyer un aperçu à %{email}
         send_to_all:
-          one: Envoyer %{display_count} email
-          other: Envoyer %{display_count} emails
-        title: Notification concernant l'aperçu des conditions d'utilisation
+          one: Envoyer %{display_count} courriel
+          other: Envoyer %{display_count} courriels
+        title: Aperçu de la notification des conditions d'utilisation
       publish: Publier
-      published_on_html: Publié le %{date}
+      published_on_html: Publiés le %{date}
       save_draft: Enregistrer le brouillon
       title: Conditions d'utilisation
     title: Administration
@@ -1180,11 +1182,11 @@ fr:
     new_appeal:
       actions:
         delete_statuses: effacer les messages
-        disable: geler le compte
+        disable: désactiver le compte
         mark_statuses_as_sensitive: marquer les messages comme sensibles
         none: un avertissement
         sensitive: marquer le compte comme sensible
-        silence: limiter le compte
+        silence: masquer le compte
         suspend: suspendre le compte
       body: "%{target} fait appel de la décision de modération émise par %{action_taken_by} le %{date} et qui était : %{type}. Cette personne a écrit :"
       next_steps: Vous pouvez approuver l'appel pour annuler la décision de modération, ou l'ignorer.
@@ -1232,7 +1234,6 @@ fr:
   application_mailer:
     notification_preferences: Modification des préférences de la messagerie
     salutation: "%{name},"
-    settings: 'Modifier les préférences de la messagerie : %{link}'
     unsubscribe: Se désabonner
     view: 'Voir :'
     view_profile: Voir le profil
@@ -1249,10 +1250,10 @@ fr:
     apply_for_account: Demander un compte
     captcha_confirmation:
       help_html: Si vous avez des problèmes pour résoudre le CAPTCHA, vous pouvez nous contacter via %{email} et nous pourrons vous aider.
-      hint_html: Encore une chose ! Nous avons besoin de confirmer que vous êtes un humain (c'est pour que nous puissions empêcher les spams !). Résolvez le CAPTCHA ci-dessous et cliquez sur "Continuer".
+      hint_html: Encore une chose ! Nous avons besoin de confirmer que vous êtes un être humain (c'est pour que nous puissions empêcher les messages indésirables !). Résolvez le CAPTCHA ci-dessous et cliquez sur « Continuer ».
       title: Vérification de sécurité
     confirmations:
-      awaiting_review: Votre adresse de messagerie est confirmée ! L'équipe de %{domain} est en train d'examiner votre inscription. Vous recevrez un e-mail si votre compte est approuvé !
+      awaiting_review: Votre adresse de courriel est confirmée ! L'équipe de %{domain} est en train d'examiner votre inscription. Vous recevrez un courriel si votre compte est approuvé !
       awaiting_review_title: Votre inscription est en cours de validation
       clicking_this_link: cliquer sur ce lien
       login_link: vous connecter
@@ -1260,7 +1261,7 @@ fr:
       redirect_to_app_html: Vous auriez dû être redirigé vers l’application <strong>%{app_name}</strong>. Si cela ne s’est pas produit, essayez de %{clicking_this_link} ou de revenir manuellement à l’application.
       registration_complete: Votre inscription sur %{domain} est désormais terminée !
       welcome_title: Bienvenue, %{name} !
-      wrong_email_hint: Si cette adresse de messagerie est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
+      wrong_email_hint: Si cette adresse de courriel est incorrecte, vous pouvez la modifier dans vos paramètres de compte.
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
     description:
@@ -1276,13 +1277,14 @@ fr:
     log_in_with: Se connecter via
     login: Se connecter
     logout: Se déconnecter
-    migrate_account: Déménager vers un compte différent
+    migrate_account: Déménager vers un autre compte
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
-    or_log_in_with: Ou authentifiez-vous avec
+    or_log_in_with: Ou connectez-vous avec
     progress:
-      confirm: Confirmation de l'adresse mail
+      confirm: Confirmer l'adresse de courriel
       details: Vos infos
-      review: Notre avis
+      list: Progression de l'inscription
+      review: Vérification
       rules: Accepter les règles
     providers:
       cas: CAS
@@ -1297,15 +1299,16 @@ fr:
       invited_by: 'Vous pouvez rejoindre %{domain} grâce à l''invitation de :'
       preamble: Celles-ci sont définies et appliqués par les modérateurs de %{domain}.
       preamble_invited: Avant de continuer, veuillez lire les règles de base définies par les modérateurs de %{domain}.
+      read_more: Lire plus
       title: Quelques règles de base.
       title_invited: Vous avez été invité·e.
     security: Sécurité
     set_new_password: Définir le nouveau mot de passe
     setup:
-      email_below_hint_html: Consultez votre dossier de courrier indésirable ou demandez-en un autre. Vous pouvez corriger votre adresse e-mail si elle est incorrecte.
-      email_settings_hint_html: Cliquez sur le lien que nous avons envoyé à %{email} pour commencer à utiliser Mastodon. Nous vous attendrons ici.
+      email_below_hint_html: Consultez votre dossier de courriels indésirables ou demandez-en un autre. Vous pouvez corriger votre adresse de courriel si elle est incorrecte.
+      email_settings_hint_html: Cliquer sur le lien envoyé à %{email} pour commencer à utiliser Mastodon. Nous vous attendons ici.
       link_not_received: Vous n'avez pas reçu de lien ?
-      new_confirmation_instructions_sent: Vous allez recevoir un nouvel e-mail avec le lien de confirmation dans quelques minutes !
+      new_confirmation_instructions_sent: Vous allez recevoir un nouveau courriel avec le lien de confirmation dans quelques minutes !
       title: Vérifiez votre boîte de réception
     sign_in:
       preamble_html: Connectez-vous avec vos identifiants sur <strong>%{domain}</strong>. Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
@@ -1318,7 +1321,7 @@ fr:
       account_status: État du compte
       confirming: En attente de la confirmation par courrier électronique.
       functional: Votre compte est entièrement opérationnel.
-      pending: Votre demande est en attente d’examen par notre équipe. Cela peut prendre un certain temps. Vous recevrez un e-mail si votre demande est approuvée.
+      pending: Votre demande est en attente d’examen par notre équipe. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
       self_destruct: Comme %{domain} est en train de fermer, vous n’aurez qu’un accès limité à votre compte.
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
@@ -1330,7 +1333,7 @@ fr:
     example_title: Exemple de texte
     hint_html: Vous écrivez des nouvelles ou des articles de blog en dehors de Mastodon ? Contrôlez la façon dont vous êtes crédité lorsqu'ils sont partagés sur Mastodon.
     instructions: 'Assurez-vous que ce code se trouve dans le code HTML de votre article :'
-    more_from_html: Plus via %{name}
+    more_from_html: Voir plus de %{name}
     s_blog: Blog de %{name}
     then_instructions: Ensuite, ajoutez le nom de domaine de la publication dans le champ ci-dessous.
     title: Attribution de l'auteur·e
@@ -1377,9 +1380,9 @@ fr:
       before: 'Veuillez lire attentivement ces notes avant de continuer :'
       caches: Le contenu mis en cache par d'autres serveurs peut persister
       data_removal: Vos messages et autres données seront définitivement supprimés
-      email_change_html: Vous pouvez <a href="%{path}">modifier votre adresse e-mail</a> sans supprimer votre compte
-      email_contact_html: S'il ne vous est toujours pas parvenu, vous pouvez envoyer un message à <a href="mailto:%{email}">%{email}</a> pour obtenir de l'aide
-      email_reconfirmation_html: Dans le cas où vous n'auriez pas reçu l'email de confirmation, vous pouvez <a href="%{path}">en réclamer un nouveau</a>
+      email_change_html: Vous pouvez <a href="%{path}">modifier votre adresse de courriel</a> sans supprimer votre compte
+      email_contact_html: S'il ne vous est toujours pas parvenu, vous pouvez envoyer un courriel à <a href="mailto:%{email}">%{email}</a> pour obtenir de l'aide
+      email_reconfirmation_html: Si vous ne recevez pas le courriel de confirmation, vous pouvez <a href="%{path}">en réclamer un nouveau</a>
       irreversible: Vous ne pourrez pas restaurer ou réactiver votre compte
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
@@ -1415,9 +1418,42 @@ fr:
       your_appeal_pending: Vous avez soumis un appel
       your_appeal_rejected: Votre appel a été rejeté
   edit_profile:
-    basic_information: Informations de base
-    hint_html: "<strong>Personnalisez ce que les gens voient sur votre profil public et à côté de vos messages.</strong> Les autres personnes seront plus susceptibles de vous suivre et d’interagir avec vous lorsque vous avez un profil complet et une photo."
     other: Autre
+    redesign_body: La modification du profil est maintenant accessible directement depuis la page de profil.
+    redesign_button: Accéder
+    redesign_title: Nouvelle expérience de modification du profil
+  email_subscription_mailer:
+    confirmation:
+      action: Confirmer l'adresse de courriel
+      instructions_to_confirm: Veuillez confirmer que vous souhaitez recevoir des courriels de %{name} (@%{acct}) lors de la publication de nouveaux messages.
+      instructions_to_ignore: Si vous ne savez pas pourquoi vous recevez ce courriel, vous pouvez le supprimer. Vous ne serez pas abonné·e si vous ne cliquez pas sur le lien ci-dessus.
+      subject: Confirmer votre adresse de courriel
+      title: Recevoir les notifications par courriel de %{name} ?
+    notification:
+      create_account: Créer un compte Mastodon
+      footer:
+        privacy_html: Les courriels sont envoyés par %{domain}, un serveur propulsé par Mastodon. Pour comprendre comment ce serveur utilise vos données personnelles, se référer à la <a href="%{privacy_policy_path}">politique de confidentialité</a>.
+        reason_for_email_html: Vous recevez ce courriel car vous avez choisi de recevoir les notifications de %{name}. Vous ne souhaitez pas recevoir ces courriels ? <a href="%{unsubscribe_path}">Désabonnez-vous</a>
+      interact_with_this_post:
+        one: Interagissez avec ce message pour en découvrir d'autres.
+        other: Interagissez avec ces messages pour en découvrir plus.
+      subject:
+        plural: Nouveaux messages de %{name}
+        singular: 'Nouveau message : « %{excerpt} »'
+      title:
+        plural: Nouveaux messages de %{name}
+        singular: 'Nouveau message : « %{excerpt} »'
+  email_subscriptions:
+    active: Actif
+    confirmations:
+      show:
+        changed_your_mind: Vous avez changé d'avis ?
+        success_html: Vous allez maintenant commencer à recevoir des courriels quand %{name} publie de nouveaux messages. Ajoutez %{sender} à vos contacts pour que ces messages ne soient pas considérés comme des courriels indésirables.
+        title: Vous êtes abonné·e
+        unsubscribe: Se désabonner
+    inactive: Inactif
+    status: État
+    subscribers: Abonné·e·s
   emoji_styles:
     auto: Auto
     native: Natif
@@ -1438,7 +1474,7 @@ fr:
     '503': La page n'a pas pu être servie en raison d'une défaillance temporaire du serveur.
     noscript_html: Pour utiliser Mastodon, veuillez activer JavaScript. Sinon, essayez l’une des <a href="%{apps_path}">applications natives</a> pour Mastodon pour votre plate-forme.
   existing_username_validator:
-    not_found: impossible de trouver un·e utilisateur·ice local·e de ce nom
+    not_found: impossible de trouver un·e utilisateur·rice local·e de ce nom
     not_found_multiple: n’a pas trouvé %{usernames}
   exports:
     archive_takeout:
@@ -1456,10 +1492,8 @@ fr:
     mutes: Vous masquez
     storage: Médias stockés
   featured_tags:
-    add_new: Ajouter un nouveau hashtag
     errors:
       limit: Vous avez déjà mis en avant le nombre maximum de hashtags
-    hint_html: "<strong>Mettez en évidence vos hashtags les plus importants sur votre profil.</strong> Un outil idéal pour suivre vos travaux créatifs et vos projets à long terme, les hashtags mis en avant sont affichés bien en évidence sur votre profil et permettent un accès rapide à vos propres messages."
   filters:
     contexts:
       account: Profils
@@ -1652,21 +1686,6 @@ fr:
     failed_sign_in_html: Tentative de connexion échouée avec %{method} de %{ip} (%{browser})
     successful_sign_in_html: Connexion réussie avec %{method} de %{ip} (%{browser})
     title: Historique d'authentification
-  mail_subscriptions:
-    unsubscribe:
-      action: Oui, se désinscrire
-      complete: Désinscrit
-      confirmation_html: Êtes-vous sûr de vouloir vous désabonner de la réception de %{type} pour Mastodon sur %{domain} à votre adresse e-mail %{email} ? Vous pouvez toujours vous réabonner à partir de vos paramètres de <a href="%{settings_path}">notification par messagerie</a>.
-      emails:
-        notification_emails:
-          favourite: e-mails de notifications de favoris
-          follow: e-mails de notifications d’abonnements
-          follow_request: e-mails de demandes d’abonnements
-          mention: e-mails de notifications de mentions
-          reblog: e-mails de notifications de partages
-      resubscribe_html: Si vous vous êtes désinscrit par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
-      success_html: Vous ne recevrez plus de %{type} pour Mastodon sur %{domain} à votre adresse e-mail à %{email}.
-      title: Se désinscrire
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images
@@ -1758,7 +1777,7 @@ fr:
       subject: "%{name} a modifié un message"
   notifications:
     administration_emails: Notifications d'administration par courriel
-    email_events: Événements pour les notifications par e-mail
+    email_events: Événements pour les notifications par courriel
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
   number:
     human:
@@ -1804,6 +1823,8 @@ fr:
     posting_defaults: Paramètres de publication par défaut
     public_timelines: Fils publics
   privacy:
+    email_subscriptions: Envoyer des messages par courriel
+    email_subscriptions_hint_html: Ajoute un formulaire d'abonnement par courriel à votre profil pour les personnes non connectées. Après avoir validé leur adresse courriel, Mastodon leur enverra des notifications pour vos messages publics.
     hint_html: "<strong>Personnalisez la façon dont votre profil et vos messages peuvent être découverts.</strong> Mastodon peut vous aider à atteindre un public plus large lorsque certains paramètres sont activés. Prenez le temps de les examiner pour vous assurer qu’ils sont configurés comme vous le souhaitez."
     privacy: Confidentialité
     privacy_hint_html: Contrôler ce que vous souhaitez divulguer. Les utilisateur·rice·s découvrent des profils intéressants en parcourant ceux suivis par d’autres personnes et des applications sympas en voyant celles utilisées pour publier des messages, mais vous préférez peut-être ne pas dévoiler ces informations.
@@ -2067,6 +2088,28 @@ fr:
     resume_app_authorization: Reprendre l'autorisation de l'application
     role_requirement: "%{domain} nécessite de configurer une authentification à deux facteurs avant de pouvoir utiliser Mastodon."
     webauthn: Clés de sécurité
+  unsubscriptions:
+    create:
+      action: Aller à la page d'accueil du serveur
+      email_subscription:
+        confirmation_html: Vous ne recevrez plus de courriels de %{name}.
+      title: Vous êtes désabonné·e
+      user:
+        confirmation_html: Vous ne recevrez plus de %{type} de Mastodon depuis %{domain}.
+    notification_emails:
+      favourite: courriels de notification de mise en favori
+      follow: courriels de notification d'abonnement
+      follow_request: courriels de demande d'abonnement
+      mention: courriels de notification de mention
+      reblog: courriels de notification de partage
+    show:
+      action: Se désabonner
+      email_subscription:
+        confirmation_html: Vous ne recevrez plus de courriels quand ce compte publiera de nouveaux messages.
+        title: Se désabonner de %{name} ?
+      user:
+        confirmation_html: Vous ne recevrez plus de %{type} de Mastodon depuis %{domain}.
+        title: Se désabonner des %{type} ?
   user_mailer:
     announcement_published:
       description: 'Les administrateurs de %{domain} font une annonce :'
@@ -2104,8 +2147,8 @@ fr:
     terms_of_service_changed:
       agreement: En continuant d'utiliser %{domain}, vous acceptez ces conditions. Si vous n'êtes pas d'accord avec les conditions mises à jour, vous pouvez résilier votre accord avec %{domain} à tout moment en supprimant votre compte.
       changelog: 'En un coup d''œil, voici ce que cette mise à jour signifie pour vous :'
-      description: 'Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces modifications entreront en vigueur le %{date}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
-      description_html: Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces mises à jour entreront en vigueur le <strong>%{date}</strong>. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
+      description: 'Vous recevez ce courriel parce que nous apportons des modifications à nos conditions de service de %{domain}. Ces modifications entreront en vigueur le %{date}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
+      description_html: Vous recevez ce courriel parce que nous apportons des modifications à nos conditions de service de %{domain}. Ces mises à jour entreront en vigueur le <strong>%{date}</strong>. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
       sign_off: L'équipe %{domain}
       subject: Mises à jour de nos conditions d'utilisation
       subtitle: Les conditions d'utilisation de `%{domain}` changent
@@ -2187,16 +2230,16 @@ fr:
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     rate_limited: Trop de tentatives d'authentification, réessayez plus tard.
-    seamless_external_login: Vous êtes connectés sur un service externe, de fait les paramètres de mot de passe et d'e-mail ne sont pas disponibles.
+    seamless_external_login: Vous êtes connectés via un service externe, donc les paramètres de mot de passe et de courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
   verification:
     extra_instructions_html: <strong>Astuce :</strong> Le lien sur votre site Web peut être invisible. La partie importante est <code>rel="me"</code> qui évite que soient pris en compte d’autres liens provenant de contenu générés par des utilisateurs tiers. Vous pouvez même utiliser une balise <code>link</code> dans l’en-tête de la page au lieu de <code>a</code>, mais le HTML doit être accessible sans avoir besoin d’exécuter du JavaScript.
-    here_is_how: Voici comment
-    hint_html: "<strong>La vérification de son profil sur Mastodon est accessible à tous.</strong> Elle s’appuie sur des standards ouverts du web, gratuits aujourd’hui et pour toujours. Tout ce dont vous avez besoin, c’est d’un site web personnel qui vous est associé dans l’esprit des gens. Lorsque vous ajoutez un lien depuis votre profil, nous vérifierons que le site web renvoie à son tour à votre profil Mastodon et montrerons un indicateur visuel à côté du lien si c’est le cas."
-    instructions_html: Copiez et collez le code ci-dessous dans le code HTML de votre site web. Ajoutez ensuite l’adresse de votre site dans l’un des champs supplémentaires de votre profil à partir de l‘onglet « Modifier le profil » et enregistrez les modifications.
+    here_is_how: Comment faire ?
+    hint_html: "<strong>La vérification de son profil sur Mastodon est accessible à tous.</strong> Elle s’appuie sur des standards ouverts du Web, gratuits aujourd’hui et pour toujours. Tout ce dont vous avez besoin, c’est d’un site Web personnel qui vous est associé. Lorsque vous ajoutez un lien depuis votre profil, nous vérifierons que le site Web renvoie à son tour à votre profil Mastodon et montrerons un indicateur visuel à côté du lien si c’est le cas."
+    instructions_html: Copiez et collez le code ci-dessous dans le code HTML de votre site Web. Ajoutez ensuite l’adresse de votre site dans l’un des champs supplémentaires de votre profil à partir de l‘onglet « Modifier le profil » et enregistrez les modifications.
     verification: Vérification
     verified_links: Vos liens vérifiés
-    website_verification: Vérification du site web
+    website_verification: Vérification du site Web
   webauthn_credentials:
     add: Ajouter une nouvelle clé de sécurité
     create:

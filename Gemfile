@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 3.2.0', '< 3.5.0'
+ruby '>= 3.3.0', '< 4.1.0'
 
 gem 'propshaft'
 gem 'puma', '~> 7.0'
@@ -27,7 +27,7 @@ gem 'addressable', '~> 2.8'
 gem 'bootsnap', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
-gem 'chewy', '~> 7.3'
+gem 'chewy'
 gem 'devise'
 gem 'devise-two-factor'
 
@@ -67,7 +67,6 @@ gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.7.0', require: 'mime/types/columnar'
 gem 'mutex_m'
 gem 'nokogiri', '~> 1.15'
-gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'premailer-rails'
@@ -96,27 +95,28 @@ gem 'tzinfo-data', '~> 1.2023'
 gem 'webauthn', '~> 3.0'
 gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
+gem 'json'
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.7.0'
+gem 'opentelemetry-api', '~> 1.9.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.31.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.33.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.10.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.24.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.24.0', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.27.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.31.0', require: false
-  gem 'opentelemetry-instrumentation-http', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.27.0', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.27.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.32.0', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.28.0', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.35.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.39.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.30.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.40.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.28.0', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.28.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false

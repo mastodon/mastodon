@@ -32,7 +32,6 @@ async function loadEmojiPolyfills() {
 // Loads Vite's module preload polyfill for older browsers, but not in a Worker context.
 function loadVitePreloadPolyfill() {
   if (typeof document === 'undefined') return;
-  // @ts-expect-error -- This is a virtual module provided by Vite.
   // eslint-disable-next-line import/extensions
   return import('vite/modulepreload-polyfill');
 }

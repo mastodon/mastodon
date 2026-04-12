@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { FC, ReactNode } from 'react';
 
-import { Account } from '@/mastodon/components/account';
+import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
@@ -10,8 +10,6 @@ import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_e
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import { useLayout } from '@/mastodon/hooks/useLayout';
-
-import { AccountHeader } from '../../account_timeline/components/account_header';
 
 import { RemoteHint } from './remote';
 
@@ -25,6 +23,7 @@ interface AccountListProps {
   accountId?: string | null;
   append?: ReactNode;
   emptyMessage: ReactNode;
+  header?: ReactNode;
   footer?: ReactNode;
   list?: AccountList | null;
   loadMore: () => void;
@@ -36,6 +35,7 @@ export const AccountList: FC<AccountListProps> = ({
   accountId,
   append,
   emptyMessage,
+  header,
   footer,
   list,
   loadMore,
@@ -53,12 +53,20 @@ export const AccountList: FC<AccountListProps> = ({
     }
     const children =
       list?.items.map((followerId) => (
-        <Account key={followerId} id={followerId} />
+        <AccountListItem
+          key={followerId}
+          accountId={followerId}
+          withBio={false}
+        />
       )) ?? [];
 
     if (prependAccountId) {
       children.unshift(
-        <Account key={prependAccountId} id={prependAccountId} minimal />,
+        <AccountListItem
+          key={prependAccountId}
+          accountId={prependAccountId}
+          withBio={false}
+        />,
       );
     }
     return children;
@@ -90,7 +98,7 @@ export const AccountList: FC<AccountListProps> = ({
         hasMore={!forceEmptyState && list?.hasMore}
         isLoading={list?.isLoading ?? true}
         onLoadMore={loadMore}
-        prepend={<AccountHeader accountId={accountId} hideTabs />}
+        prepend={header}
         alwaysPrepend
         append={append ?? <RemoteHint domain={domain} url={account.url} />}
         emptyMessage={emptyMessage}

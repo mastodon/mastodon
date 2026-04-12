@@ -721,6 +721,52 @@ table + p {
   line-height: 24px;
 }
 
+// Banner item
+.email-banner-table {
+  border-radius: 12px;
+  background-color: #1b001f;
+  background-image: url('../../images/mailer-new/common/header-bg-start.png');
+  background-position: left top;
+  background-repeat: repeat;
+}
+
+.email-banner-td {
+  padding: 24px 24px 14px;
+}
+
+.email-banner-text-td {
+  p {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16.8px;
+  }
+
+  .email-desktop-flex {
+    align-items: center;
+  }
+
+  .email-btn-table {
+    background-color: #fff;
+  }
+
+  .email-btn-td {
+    mso-padding-alt: 10px;
+  }
+
+  .email-btn-a {
+    color: #181820;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  div + div {
+    margin-inline-start: auto;
+    margin-bottom: 12px;
+  }
+}
+
 // Checklist item
 .email-checklist-wrapper-td {
   padding: 4px 0;

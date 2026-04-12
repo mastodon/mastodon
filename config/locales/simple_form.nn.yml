@@ -4,7 +4,6 @@ nn:
     hints:
       account:
         attribution_domains: Ein per line. Vernar mot falske krediteringar.
-        discoverable: Dei offentlege innlegga dine og profilen din kan dukka opp i tilrådingar på ulike stader på Mastodon, og profilen din kan bli føreslegen for andre folk.
         display_name: Ditt fulle namn eller ditt tøysenamn.
         fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
         indexable: Dei offentlege innlegga dine kan dukka opp i søkjeresultat på Mastodon. Folk som har reagert på oinnlegga dine kan uansett søkja gjennom dei.
@@ -134,6 +133,7 @@ nn:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
         webauthn: Om det er ein USB-nøkkel må du setja han inn og om nødvendig trykkja på han.
       settings:
+        email_subscriptions: Viss du skrir av, vil du ha abonnentane du har no, men dei får ikkje fleire epostar.
         indexable: Profilsida di kan dukka opp søkjeresultat frå Google, Bing, Duckduckgo og andre.
         show_application: Du vil uansett alltid kunna sjå kva app som la ut innlegga dine.
       tag:
@@ -153,7 +153,7 @@ nn:
         jurisdiction: Skriv kva land den som betaler rekningane bur i. Viss det er eit firma eller ein annan organisasjon, skriv du landet der organisasjonen held til, samt adressa som trengst.
         min_age: Skal ikkje vere under minstealder som krevst av lover i jurisdiksjonen din.
       user:
-        chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
+        chosen_languages: Viss du vel dette, vil du berre sjå innlegg på dei valde språka på offentlege tidsliner. Denne innstillinga påverkar ikkje heimetidslina eller listene dine.
         date_of_birth:
           one: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
           other: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
@@ -176,7 +176,6 @@ nn:
     labels:
       account:
         attribution_domains: Nettstader som har lov å kreditera deg
-        discoverable: Ta med profilen og innlegga i oppdagingsalgoritmar
         fields:
           name: Merkelapp
           value: Innhald
@@ -356,6 +355,7 @@ nn:
         hint: Meir informasjon
         text: Regel
       settings:
+        email_subscriptions: Skru på epostregistrering
         indexable: Ta med profilsida i søkjemotorar
         show_application: Vis kva app du brukte når du skreiv innlegg
       tag:

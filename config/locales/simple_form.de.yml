@@ -4,7 +4,7 @@ de:
     hints:
       account:
         attribution_domains: Eine Domain pro Zeile. Dadurch können falsche Zuschreibungen unterbunden werden.
-        discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon vorgestellt oder empfohlen werden, ebenso kann dein Profil anderen vorgeschlagen werden.
+        discoverable: Dadurch kann dein Profil in Sammlungen präsentiert werden. Ebenfalls können deine öffentlichen Beiträge in verschiedenen Bereichen auf Mastodon vorgestellt oder empfohlen werden.
         display_name: Dein richtiger Name oder dein Fantasiename.
         fields: Deine Website, Pronomen, dein Alter – alles, was du möchtest.
         indexable: Deine öffentlichen Beiträge können in den Suchergebnissen auf Mastodon erscheinen. Profile, die bereits mit deinen Beiträgen interagiert haben, können deine Beiträge immer auffinden.
@@ -90,7 +90,7 @@ de:
         backups_retention_period: Nutzer*innen haben die Möglichkeit, Archive ihrer Beiträge zu erstellen, die sie später herunterladen können. Wenn ein positiver Wert gesetzt ist, werden diese Archive nach der festgelegten Anzahl von Tagen automatisch aus deinem Speicher gelöscht.
         bootstrap_timeline_accounts: Diese Konten werden neu registrierten Profilen empfohlen und in der Empfehlungsliste oben angeheftet. Gib eine durch Kommata getrennte Liste von Konten an.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
-        content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Das betrifft auch Beiträge, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Diese Option richtet sich ausschließlich an Server mit speziellen Zwecken und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
+        content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Davon sind auch Beiträge betroffen, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Diese Option richtet sich ausschließlich an Server mit speziellen Zwecken und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
         custom_css: Du kannst eigene Stylesheets für das Webinterface von Mastodon verwenden.
         favicon: WebP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Favicon.
         landing_page: Legt fest, welchen Bereich (nicht angemeldete) Besucher*innen sehen, wenn sie deinen Server besuchen. Für „Trends“ müssen die Trends in den Entdecken-Einstellungen aktiviert sein. Für „Lokaler Feed“ muss „Zugriff auf Live-Feeds, die lokale Beiträge beinhalten“ in den Entdecken-Einstellungen auf „Alle“ gesetzt werden.
@@ -137,7 +137,7 @@ de:
         indexable: Deine Profilseite kann in Suchergebnissen auf Google, Bing und anderen erscheinen.
         show_application: Du wirst immer sehen können, über welche App dein Beitrag veröffentlicht wurde.
       tag:
-        name: Du kannst nur die Groß- und Kleinschreibung der Buchstaben ändern, um es z. B. lesbarer zu machen
+        name: Du kannst nur die Groß- und Kleinschreibung der Buchstaben ändern, um z. B. die Lesbarkeit zu verbessern
       terms_of_service:
         changelog: Kann mit der Markdown-Syntax formatiert werden.
         effective_date: Ein angemessener Zeitraum liegt zwischen 10 und 30 Tagen, nachdem deine Nutzer*innen benachrichtigt wurden.
@@ -153,7 +153,7 @@ de:
         jurisdiction: Gib das Land an, in dem die Person lebt, die alle Rechnungen bezahlt. Falls es sich dabei um ein Unternehmen oder eine andere Einrichtung handelt, gib das Land mit dem Sitz an, sowie die Stadt oder Region.
         min_age: Sollte nicht unter dem gesetzlich vorgeschriebenen Mindestalter liegen.
       user:
-        chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
+        chosen_languages: Falls aktiviert, werden in öffentlichen Timelines nur Beiträge in den ausgewählten Sprachen angezeigt. Deine Startseite sowie Listen sind hiervon nicht betroffen.
         date_of_birth:
           one: Wir müssen sicherstellen, dass du mindestens %{count} Jahr alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
           other: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
@@ -176,7 +176,7 @@ de:
     labels:
       account:
         attribution_domains: Websites, die auf dich verweisen dürfen
-        discoverable: Profil und Beiträge in Empfehlungsalgorithmen berücksichtigen
+        discoverable: Mich beim Entdecken berücksichtigen
         fields:
           name: Beschriftung
           value: Inhalt

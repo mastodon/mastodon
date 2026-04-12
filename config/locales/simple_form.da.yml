@@ -4,7 +4,7 @@ da:
     hints:
       account:
         attribution_domains: Ét pr. linje. Beskytter mod falske tilskrivninger.
-        discoverable: Dine offentlige indlæg og profil kan blive fremhævet eller anbefalet i forskellige områder af Mastodon, og profilen kan blive foreslået til andre brugere.
+        discoverable: Du kan blive vist i samlinger, som andre brugere har oprettet. Du og dine offentlige indlæg kan også blive foreslået til brugere i andre opdagelsesfunktioner på Mastodon.
         display_name: Dit fulde navn eller et kaldenavn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
         indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
@@ -104,7 +104,7 @@ da:
         site_contact_username: Hvordan folk kan kontakte dig på Mastodon.
         site_extended_description: Evt. yderligere oplysninger, som kan være nyttige for både besøgende og brugere. Kan struktureres vha. Markdown-syntaks.
         site_short_description: En kort beskrivelse mhp. entydigt at kunne identificere denne server. Hvem kører den, hvem er den for?
-        site_terms: Brug egen fortrolighedspolitik eller lad stå tomt for standardpolitikken. Kan struktureres med Markdown-syntaks.
+        site_terms: Brug din egen privatlivspolitik, eller lad feltet være tomt for at bruge standardversionen. Teksten kan formateres med Markdown-syntaks.
         site_title: Hvordan folk kan henvise til serveren udover domænenavnet.
         status_page_url: URL'en til en side, hvor status for denne server kan ses under en afbrydelse
         theme: Tema, som udloggede besøgende og nye brugere ser.
@@ -134,6 +134,7 @@ da:
         otp: 'Angiv tofaktorkoden generet af din mobil-app eller brug en af dine gendannelseskoder:'
         webauthn: Er det en USB-nøgle, så sørg for at isætte den og, om nødvendigt, åbne den manuelt.
       settings:
+        email_subscriptions: Deaktivering bevarer eksisterende abonnenter, men stopper udsendelsen af e-mails.
         indexable: Din profilside kan fremgå i søgeresultater på Google, Bing mv.
         show_application: Du vil dog altid kunne se, hvilken app, der offentliggjorde dit indlæg.
       tag:
@@ -153,7 +154,7 @@ da:
         jurisdiction: Angiv landet, hvor betaleren af regningerne er bosiddende. Er det en virksomhed eller en anden entitet, angiv det land, hvor det er stiftet, og byen, regionen, området eller staten efter behov.
         min_age: Bør ikke være under den iht. lovgivningen i det aktuelle retsområde krævede minimumsalder.
       user:
-        chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
+        chosen_languages: Når denne indstilling er markeret, vises kun opslag på de valgte sprog i offentlige tidslinjer. Denne indstilling har ingen indflydelse på din Hjem-tidslinje og dine lister.
         date_of_birth:
           one: Vi skal sikre os, at du er mindst %{count} for at kunne bruge %{domain}. Informationen gemmes ikke.
           other: Vi skal sikre os, at du er mindst %{count} for at kunne bruge %{domain}. Informationen gemmes ikke.
@@ -176,7 +177,7 @@ da:
     labels:
       account:
         attribution_domains: Websteder, man må krediteres af
-        discoverable: Fremhæv profil og indlæg i opdagelsesalgoritmer
+        discoverable: Vis mig i opdagelsesfunktioner
         fields:
           name: Etiket
           value: Indhold
@@ -310,7 +311,7 @@ da:
         site_contact_username: Kontakt brugernavn
         site_extended_description: Udvidet beskrivelse
         site_short_description: Serverbeskrivelse
-        site_terms: Fortrolighedspolitik
+        site_terms: Privatlivspolitik
         site_title: Servernavn
         status_page_url: Statusside-URL
         theme: Standardtema
@@ -356,6 +357,7 @@ da:
         hint: Yderligere oplysninger
         text: Regel
       settings:
+        email_subscriptions: Aktivér e-mail-tilmeldinger
         indexable: Inkludér profilside i søgemaskiner
         show_application: Vis, fra hvilken app et indlæg er sendt
       tag:

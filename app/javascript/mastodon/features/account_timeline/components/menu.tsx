@@ -4,7 +4,6 @@ import type { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import {
-  blockAccount,
   followAccount,
   pinAccount,
   unblockAccount,
@@ -13,6 +12,7 @@ import {
 } from '@/mastodon/actions/accounts';
 import { removeAccountFromFollowers } from '@/mastodon/actions/accounts_typed';
 import { showAlert } from '@/mastodon/actions/alerts';
+import { initBlockModal } from '@/mastodon/actions/blocks';
 import { directCompose, mentionCompose } from '@/mastodon/actions/compose';
 import {
   initDomainBlockModal,
@@ -40,9 +40,7 @@ import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react'
 import ReportIcon from '@/material-icons/400-24px/report.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
-import { isRedesignEnabled } from '../common';
-
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();
@@ -63,19 +61,9 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
       return [];
     }
 
-    if (isRedesignEnabled()) {
-      return redesignMenuItems({
-        account,
-        signedIn: !isMe && signedIn,
-        permissions,
-        intl,
-        relationship,
-        dispatch,
-      });
-    }
-    return currentMenuItems({
+    return getMenuItems({
       account,
-      signedIn,
+      signedIn: !isMe && signedIn,
       permissions,
       intl,
       relationship,
@@ -178,269 +166,6 @@ const messages = defineMessages({
   },
 });
 
-function currentMenuItems({
-  account,
-  signedIn,
-  permissions,
-  intl,
-  relationship,
-  dispatch,
-}: MenuItemsParams): MenuItem[] {
-  const items: MenuItem[] = [];
-  const isRemote = account.acct !== account.username;
-
-  if (signedIn && !account.suspended) {
-    items.push(
-      {
-        text: intl.formatMessage(messages.mention, {
-          name: account.username,
-        }),
-        action: () => {
-          dispatch(mentionCompose(account));
-        },
-      },
-      {
-        text: intl.formatMessage(messages.direct, {
-          name: account.username,
-        }),
-        action: () => {
-          dispatch(directCompose(account));
-        },
-      },
-      null,
-    );
-  }
-
-  if (isRemote) {
-    items.push(
-      {
-        text: intl.formatMessage(messages.openOriginalPage),
-        href: account.url,
-      },
-      null,
-    );
-  }
-
-  if (!signedIn) {
-    return items;
-  }
-
-  if (relationship?.following) {
-    // Timeline options
-    if (!relationship.muting) {
-      if (relationship.showing_reblogs) {
-        items.push({
-          text: intl.formatMessage(messages.hideReblogs, {
-            name: account.username,
-          }),
-          action: () => {
-            dispatch(followAccount(account.id, { reblogs: false }));
-          },
-        });
-      } else {
-        items.push({
-          text: intl.formatMessage(messages.showReblogs, {
-            name: account.username,
-          }),
-          action: () => {
-            dispatch(followAccount(account.id, { reblogs: true }));
-          },
-        });
-      }
-
-      items.push(
-        {
-          text: intl.formatMessage(messages.languages),
-          action: () => {
-            dispatch(
-              openModal({
-                modalType: 'SUBSCRIBED_LANGUAGES',
-                modalProps: {
-                  accountId: account.id,
-                },
-              }),
-            );
-          },
-        },
-        null,
-      );
-    }
-
-    items.push(
-      {
-        text: intl.formatMessage(
-          relationship.endorsed ? messages.unendorse : messages.endorse,
-        ),
-        action: () => {
-          if (relationship.endorsed) {
-            dispatch(unpinAccount(account.id));
-          } else {
-            dispatch(pinAccount(account.id));
-          }
-        },
-      },
-      {
-        text: intl.formatMessage(messages.add_or_remove_from_list),
-        action: () => {
-          dispatch(
-            openModal({
-              modalType: 'LIST_ADDER',
-              modalProps: {
-                accountId: account.id,
-              },
-            }),
-          );
-        },
-      },
-      null,
-    );
-  }
-
-  if (relationship?.followed_by) {
-    const handleRemoveFromFollowers = () => {
-      dispatch(
-        openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            title: intl.formatMessage(messages.confirmRemoveFromFollowersTitle),
-            message: intl.formatMessage(
-              messages.confirmRemoveFromFollowersMessage,
-              { name: <strong>{account.acct}</strong> },
-            ),
-            confirm: intl.formatMessage(
-              messages.confirmRemoveFromFollowersButton,
-            ),
-            onConfirm: () => {
-              void dispatch(
-                removeAccountFromFollowers({ accountId: account.id }),
-              );
-            },
-          },
-        }),
-      );
-    };
-
-    items.push({
-      text: intl.formatMessage(messages.removeFromFollowers, {
-        name: account.username,
-      }),
-      action: handleRemoveFromFollowers,
-      dangerous: true,
-    });
-  }
-
-  if (relationship?.muting) {
-    items.push({
-      text: intl.formatMessage(messages.unmute, {
-        name: account.username,
-      }),
-      action: () => {
-        dispatch(unmuteAccount(account.id));
-      },
-    });
-  } else {
-    items.push({
-      text: intl.formatMessage(messages.mute, {
-        name: account.username,
-      }),
-      action: () => {
-        dispatch(initMuteModal(account));
-      },
-      dangerous: true,
-    });
-  }
-
-  if (relationship?.blocking) {
-    items.push({
-      text: intl.formatMessage(messages.unblock, {
-        name: account.username,
-      }),
-      action: () => {
-        dispatch(unblockAccount(account.id));
-      },
-    });
-  } else {
-    items.push({
-      text: intl.formatMessage(messages.block, {
-        name: account.username,
-      }),
-      action: () => {
-        dispatch(blockAccount(account.id));
-      },
-      dangerous: true,
-    });
-  }
-
-  if (!account.suspended) {
-    items.push({
-      text: intl.formatMessage(messages.report, {
-        name: account.username,
-      }),
-      action: () => {
-        dispatch(initReport(account));
-      },
-      dangerous: true,
-    });
-  }
-
-  const remoteDomain = isRemote ? account.acct.split('@')[1] : null;
-  if (remoteDomain) {
-    items.push(null);
-
-    if (relationship?.domain_blocking) {
-      items.push({
-        text: intl.formatMessage(messages.unblockDomain, {
-          domain: remoteDomain,
-        }),
-        action: () => {
-          dispatch(unblockDomain(remoteDomain));
-        },
-      });
-    } else {
-      items.push({
-        text: intl.formatMessage(messages.blockDomain, {
-          domain: remoteDomain,
-        }),
-        action: () => {
-          dispatch(initDomainBlockModal(account));
-        },
-        dangerous: true,
-      });
-    }
-  }
-
-  if (
-    (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
-    (isRemote &&
-      (permissions & PERMISSION_MANAGE_FEDERATION) ===
-        PERMISSION_MANAGE_FEDERATION)
-  ) {
-    items.push(null);
-    if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
-      items.push({
-        text: intl.formatMessage(messages.admin_account, {
-          name: account.username,
-        }),
-        href: `/admin/accounts/${account.id}`,
-      });
-    }
-    if (
-      isRemote &&
-      (permissions & PERMISSION_MANAGE_FEDERATION) ===
-        PERMISSION_MANAGE_FEDERATION
-    ) {
-      items.push({
-        text: intl.formatMessage(messages.admin_domain, {
-          domain: remoteDomain,
-        }),
-        href: `/admin/instances/${remoteDomain}`,
-      });
-    }
-  }
-
-  return items;
-}
-
 const redesignMessages = defineMessages({
   share: { id: 'account.menu.share', defaultMessage: 'Share…' },
   copy: { id: 'account.menu.copy', defaultMessage: 'Copy link' },
@@ -498,7 +223,7 @@ const redesignMessages = defineMessages({
   },
 });
 
-function redesignMenuItems({
+function getMenuItems({
   account,
   signedIn,
   permissions,
@@ -620,7 +345,7 @@ function redesignMenuItems({
   );
 
   // Timeline options
-  if (relationship && !relationship.muting) {
+  if (relationship?.following && !relationship.muting) {
     items.push(
       {
         text: intl.formatMessage(
@@ -710,7 +435,7 @@ function redesignMenuItems({
       if (relationship?.blocking) {
         dispatch(unblockAccount(account.id));
       } else {
-        dispatch(blockAccount(account.id));
+        dispatch(initBlockModal(account));
       }
     },
     dangerous: true,

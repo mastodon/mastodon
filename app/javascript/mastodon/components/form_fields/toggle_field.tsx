@@ -14,12 +14,12 @@ type Props = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
 export const ToggleField = forwardRef<
   HTMLInputElement,
   Props & CommonFieldWrapperProps
->(({ id, label, hint, hasError, required, ...otherProps }, ref) => (
+>(({ id, label, hint, status, required, ...otherProps }, ref) => (
   <FormFieldWrapper
     label={label}
     hint={hint}
     required={required}
-    hasError={hasError}
+    status={status}
     inputId={id}
     inputPlacement='inline-end'
   >

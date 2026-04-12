@@ -28,7 +28,10 @@ export interface ComboboxItemState {
   isDisabled: boolean;
 }
 
-interface ComboboxProps<T extends ComboboxItem> extends TextInputProps {
+interface ComboboxProps<T extends ComboboxItem> extends Omit<
+  TextInputProps,
+  'icon'
+> {
   /**
    * The value of the combobox's text input
    */
@@ -71,6 +74,18 @@ interface ComboboxProps<T extends ComboboxItem> extends TextInputProps {
    * The main selection handler, called when an option is selected or deselected.
    */
   onSelectItem: (item: T) => void;
+  /**
+   * Icon to be displayed in the text input
+   */
+  icon?: TextInputProps['icon'] | null;
+  /**
+   * Set to false to keep the menu open when an item is selected
+   */
+  closeOnSelect?: boolean;
+  /**
+   * Prevent the menu from opening, e.g. to prevent the empty state from showing
+   */
+  suppressMenu?: boolean;
 }
 
 interface Props<T extends ComboboxItem>
@@ -86,14 +101,14 @@ interface Props<T extends ComboboxItem>
  */
 
 export const ComboboxFieldWithRef = <T extends ComboboxItem>(
-  { id, label, hint, hasError, required, ...otherProps }: Props<T>,
+  { id, label, hint, status, required, ...otherProps }: Props<T>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) => (
   <FormFieldWrapper
     label={label}
     hint={hint}
     required={required}
-    hasError={hasError}
+    status={status}
     inputId={id}
   >
     {(inputProps) => <Combobox {...otherProps} {...inputProps} ref={ref} />}
@@ -124,6 +139,8 @@ const ComboboxWithRef = <T extends ComboboxItem>(
     onSelectItem,
     onChange,
     onKeyDown,
+    closeOnSelect = true,
+    suppressMenu = false,
     icon = SearchIcon,
     className,
     ...otherProps
@@ -148,7 +165,7 @@ const ComboboxWithRef = <T extends ComboboxItem>(
   const showStatusMessageInMenu =
     !!statusMessage && value.length > 0 && items.length === 0;
   const hasMenuContent =
-    !disabled && (items.length > 0 || showStatusMessageInMenu);
+    !disabled && !suppressMenu && (items.length > 0 || showStatusMessageInMenu);
   const isMenuOpen = shouldMenuOpen && hasMenuContent;
 
   const openMenu = useCallback(() => {
@@ -204,11 +221,15 @@ const ComboboxWithRef = <T extends ComboboxItem>(
         const isDisabled = getIsItemDisabled?.(item) ?? false;
         if (!isDisabled) {
           onSelectItem(item);
+
+          if (closeOnSelect) {
+            closeMenu();
+          }
         }
       }
       inputRef.current?.focus();
     },
-    [getIsItemDisabled, items, onSelectItem],
+    [closeMenu, closeOnSelect, getIsItemDisabled, items, onSelectItem],
   );
 
   const handleSelectItem = useCallback(
@@ -343,7 +364,7 @@ const ComboboxWithRef = <T extends ComboboxItem>(
         value={value}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
-        icon={icon}
+        icon={icon ?? undefined}
         className={classNames(classes.input, className)}
         ref={mergeRefs}
       />

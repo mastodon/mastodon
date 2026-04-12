@@ -59,6 +59,8 @@ class ActivityPub::Activity
         ActivityPub::Activity::Move
       when 'QuoteRequest'
         ActivityPub::Activity::QuoteRequest
+      when 'FeatureRequest'
+        ActivityPub::Activity::FeatureRequest
       end
     end
   end
@@ -163,6 +165,12 @@ class ActivityPub::Activity
 
   def follow_from_object
     @follow_from_object ||= ::Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+  end
+
+  def feature_request_from_object
+    return @collection_item if instance_variable_defined?(:@collection_item)
+
+    @collection_item = CollectionItem.local.find_by(activity_uri: value_or_id(@object), account_id: @account.id)
   end
 
   def fetch_remote_original_status

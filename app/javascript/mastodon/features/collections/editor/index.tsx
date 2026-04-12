@@ -16,7 +16,10 @@ import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import { fetchCollection } from 'mastodon/reducers/slices/collections';
+import {
+  collectionEditorActions,
+  fetchCollection,
+} from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollectionAccounts } from './accounts';
@@ -68,6 +71,7 @@ export const CollectionEditorPage: React.FC<{
   const collection = useAppSelector((state) =>
     id ? state.collections.collections[id] : undefined,
   );
+  const editorStateId = useAppSelector((state) => state.collections.editor.id);
   const isEditMode = !!id;
   const isLoading = isEditMode && !collection;
 
@@ -76,6 +80,18 @@ export const CollectionEditorPage: React.FC<{
       void dispatch(fetchCollection({ collectionId: id }));
     }
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if (id !== editorStateId) {
+      void dispatch(collectionEditorActions.reset());
+    }
+  }, [dispatch, editorStateId, id]);
+
+  useEffect(() => {
+    if (collection) {
+      void dispatch(collectionEditorActions.init(collection));
+    }
+  }, [dispatch, collection]);
 
   const pageTitle = intl.formatMessage(usePageTitle(id));
 
@@ -104,7 +120,7 @@ export const CollectionEditorPage: React.FC<{
               exact
               path={`${path}/details`}
               // eslint-disable-next-line react/jsx-no-bind
-              render={() => <CollectionDetails collection={collection} />}
+              render={() => <CollectionDetails />}
             />
           </Switch>
         )}

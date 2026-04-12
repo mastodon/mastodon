@@ -762,6 +762,7 @@ it:
       categories:
         administration: Amministrazione
         devops: DevOps
+        email: Email
         invites: Inviti
         moderation: Moderazione
         special: Speciale
@@ -778,6 +779,8 @@ it:
         administrator_description: Gli utenti con questo permesso saranno esentati da ogni permesso
         delete_user_data: Cancella dati utente
         delete_user_data_description: Consente agli utenti di eliminare subito i dati degli altri utenti
+        invite_bypass_approval: Invita utenti senza revisione
+        invite_bypass_approval_description: Permette alle persone invitate al server da questi utenti, di aggirare l'approvazione della moderazione
         invite_users: Invita Utenti
         invite_users_description: Consente agli utenti di invitare nuove persone su questo server
         manage_announcements: Gestisci Annunci
@@ -788,6 +791,8 @@ it:
         manage_blocks_description: Consente agli utenti di bloccare i provider di posta elettronica e gli indirizzi IP
         manage_custom_emojis: Gestisci emoji personalizzate
         manage_custom_emojis_description: Consente agli utenti di gestire emoji personalizzate sul server
+        manage_email_subscriptions: Gestisci le iscrizioni via email
+        manage_email_subscriptions_description: Consenti agli utenti di iscriversi tramite email agli utenti, con questa autorizzazione
         manage_federation: Gestisci Federazione
         manage_federation_description: Consente agli utenti di bloccare o consentire la federazione con altri domini e controllare la consegnabilità
         manage_invites: Gestisci Inviti
@@ -838,7 +843,7 @@ it:
         rules_hint: C'è un'area dedicata per le regole che i tuoi utenti dovrebbero rispettare.
         title: Info
       allow_referrer_origin:
-        desc: Quando i tuoi utenti cliccano su link a siti esterni, il loro browser potrebbe inviare l'indirizzo del tuo server Mastodon come referente. Disattiva questa opzione se ciò identificherebbe in modo univoco i tuoi utenti, ad esempio se si tratta di un server Mastodon personale.
+        desc: Quando i tuoi utenti cliccano su link a siti esterni, il loro browser potrebbe inviare l'indirizzo del tuo server Mastodon come referente. Disattiva questa opzione se ciò identificherebbe in modo univoco i tuoi utenti, per esempio, se si tratta di un server Mastodon personale.
         title: Consenti ai siti esterni di vedere il tuo server Mastodon come fonte di traffico
       appearance:
         preamble: Personalizza l'interfaccia web di Mastodon.
@@ -1229,7 +1234,6 @@ it:
   application_mailer:
     notification_preferences: Modifica le preferenze e-mail
     salutation: "%{name},"
-    settings: 'Modifica le preferenze e-mail: %{link}'
     unsubscribe: Disiscriviti
     view: 'Guarda:'
     view_profile: Mostra profilo
@@ -1279,6 +1283,7 @@ it:
     progress:
       confirm: Conferma l'e-mail
       details: I tuoi dettagli
+      list: Stato della registrazione
       review: La nostra revisione
       rules: Accetta le regole
     providers:
@@ -1294,6 +1299,7 @@ it:
       invited_by: 'Puoi unirti a %{domain} grazie all''invito che hai ricevuto da:'
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
       preamble_invited: Prima di procedere, si prega di considerare le regole di base stabilite dai moderatori di %{domain}.
+      read_more: Scopri di più
       title: Alcune regole di base.
       title_invited: Sei stato/a invitato/a.
     security: Credenziali
@@ -1412,9 +1418,42 @@ it:
       your_appeal_pending: Hai presentato un appello
       your_appeal_rejected: Il tuo appello è stato respinto
   edit_profile:
-    basic_information: Informazioni di base
-    hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
     other: Altro
+    redesign_body: Ora è possibile modificare il profilo direttamente dalla pagina del profilo stesso.
+    redesign_button: Vai lì
+    redesign_title: È disponibile una nuova esperienza di modifica del profilo
+  email_subscription_mailer:
+    confirmation:
+      action: Conferma l'indirizzo email
+      instructions_to_confirm: Conferma di voler ricevere email da %{name} (@%{acct}) quando pubblicano nuovi post.
+      instructions_to_ignore: Se non sai perché hai ricevuto questa email, puoi cancellarla. L'iscrizione non sarà confermata se non clicchi sul link qui sopra.
+      subject: Conferma il tuo indirizzo email
+      title: Ricevere aggiornamenti via email da %{name}?
+    notification:
+      create_account: Crea un account Mastodon
+      footer:
+        privacy_html: Le email vengono inviate da %{domain}, un server gestito da Mastodon. Per comprendere come questo server elabora i tuoi dati personali, consulta l'<a href="%{privacy_policy_path}">Informativa sulla privacy</a>.
+        reason_for_email_html: Ricevi questa email perché hai scelto di ottenere aggiornamenti via email da %{name}. Non vuoi più ricevere queste email? <a href="%{unsubscribe_path}">Disiscriviti</a>
+      interact_with_this_post:
+        one: Interagisci con questo post e scopri altri contenuti simili.
+        other: Interagisci con questi post e scopri di più.
+      subject:
+        plural: Nuovi post da %{name}
+        singular: 'Un nuovo post: "%{excerpt}"'
+      title:
+        plural: Nuovi post da %{name}
+        singular: 'Un nuovo post: "%{excerpt}"'
+  email_subscriptions:
+    active: Attiva
+    confirmations:
+      show:
+        changed_your_mind: Hai cambiato idea?
+        success_html: Ora inizierai a ricevere email quando %{name} pubblicherà nuovi post. Aggiungi %{sender} ai tuoi contatti in modo che questi post non finiscano nella cartella Spam.
+        title: Ti sei registrato/a
+        unsubscribe: Disiscriviti
+    inactive: Inattiva
+    status: Stato
+    subscribers: Iscritti
   emoji_styles:
     auto: Automatico
     native: Nativo
@@ -1453,10 +1492,8 @@ it:
     mutes: Stai silenziando
     storage: Archiviazione media
   featured_tags:
-    add_new: Aggiungi nuovo
     errors:
       limit: Hai già messo in evidenza il numero massimo di hashtag
-    hint_html: "<strong>Cosa sono gli hashtag in evidenza?</strong> Sono visualizzati in evidenza sul tuo profilo pubblico e permettono alle persone di visualizzare i tuoi post pubblici marcati con questi hashtag. Sono un grande strumento per tenere traccia di opere creative o progetti a lungo termine."
   filters:
     contexts:
       account: Profili
@@ -1649,21 +1686,6 @@ it:
     failed_sign_in_html: Tentativo di accesso fallito con %{method} da %{ip} (%{browser})
     successful_sign_in_html: Accesso riuscito con %{method} da %{ip} (%{browser})
     title: Cronologia delle autenticazioni
-  mail_subscriptions:
-    unsubscribe:
-      action: Sì, annulla l'iscrizione
-      complete: Iscrizione annullata
-      confirmation_html: Si è sicuri di voler annullare l'iscrizione per non ricevere %{type} per Mastodon su %{domain} sulla tua e-mail %{email}? Puoi sempre reiscriverti dalle tue <a href="%{settings_path}">impostazioni di notifica e-mail</a>.
-      emails:
-        notification_emails:
-          favourite: e-mail di notifica preferite
-          follow: segui le e-mail di notifica
-          follow_request: segui le e-mail di richiesta
-          mention: menziona le e-mail di notifica
-          reblog: e-mail di notifica per le condivisioni
-      resubscribe_html: Se hai annullato l'iscrizione per errore, puoi reiscriverti tramite le <a href="%{settings_path}">impostazioni di notifica e-mail</a>.
-      success_html: Non riceverai più %{type} per Mastodon su %{domain} al tuo indirizzo e-mail %{email}.
-      title: Disiscriviti
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
@@ -1801,6 +1823,8 @@ it:
     posting_defaults: Predefinite di pubblicazione
     public_timelines: Timeline pubbliche
   privacy:
+    email_subscriptions: Invia i post via email
+    email_subscriptions_hint_html: Aggiungi al tuo profilo un modulo di iscrizione via email visibile agli utenti non autenticati. Quando i visitatori inseriscono il loro indirizzo email e acconsentono all'iscrizione, Mastodon invierà loro aggiornamenti via email relativi ai tuoi post pubblici.
     hint_html: "<strong>Personalizza il modo in cui vuoi che il tuo profilo e i tuoi post vengano trovati.</strong> Una varietà di funzionalità in Mastodon possono aiutarti a raggiungere un pubblico più ampio se abilitato. Prenditi un momento per rivedere queste impostazioni per assicurarti che si adattino al tuo caso d'uso."
     privacy: Privacy
     privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
@@ -2064,6 +2088,28 @@ it:
     resume_app_authorization: Riprendere l'autorizzazione dell'applicazione
     role_requirement: "%{domain} ti richiede di impostare l'autenticazione a due fattori prima di poter usare Mastodon."
     webauthn: Chiavi di sicurezza
+  unsubscriptions:
+    create:
+      action: Vai alla homepage del server
+      email_subscription:
+        confirmation_html: Non riceverai più email da %{name}.
+      title: Hai annullato l'iscrizione
+      user:
+        confirmation_html: Non riceverai più %{type} da Mastodon su %{domain}.
+    notification_emails:
+      favourite: email di notifica per i post apprezzati
+      follow: email di notifica per i nuovi follower
+      follow_request: email di notifica per le richieste di seguirti
+      mention: email di notifica per le menzioni
+      reblog: email di notifica per le condivisioni
+    show:
+      action: Disiscriviti
+      email_subscription:
+        confirmation_html: Smetterai di ricevere email quando questo account pubblicherà nuovi post.
+        title: Disiscriverti da %{name}?
+      user:
+        confirmation_html: Non riceverai più %{type} da Mastodon su %{domain}.
+        title: Disiscriverti da %{type}?
   user_mailer:
     announcement_published:
       description: 'Gli amministratori di %{domain} stanno facendo un annuncio:'

@@ -68,10 +68,10 @@ class UnfollowService < BaseService
   end
 
   def build_json(follow)
-    Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer))
+    serialize_payload(follow, ActivityPub::UndoFollowSerializer).to_json
   end
 
   def build_reject_json(follow)
-    Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer))
+    serialize_payload(follow, ActivityPub::RejectFollowSerializer).to_json
   end
 end

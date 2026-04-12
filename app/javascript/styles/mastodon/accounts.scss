@@ -13,7 +13,7 @@
     &:active,
     &:focus {
       .card__bar {
-        background: var(--color-bg-brand-softer);
+        background: var(--color-bg-brand-softest);
       }
     }
   }
@@ -220,43 +220,15 @@
 .information-badge {
   &.superapp {
     color: var(--color-text-success);
-    background-color: var(--color-bg-success-softer);
-    border-color: var(--color-border-on-bg-success-softer);
-  }
-}
-
-.account-role {
-  display: inline-flex;
-  padding: 4px;
-  padding-inline-end: 8px;
-  border: 1px solid var(--color-text-brand);
-  color: var(--color-text-brand);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  line-height: 16px;
-  gap: 4px;
-  border-radius: 6px;
-  align-items: center;
-
-  svg {
-    width: auto;
-    height: 15px;
-    opacity: 0.85;
-    fill: currentColor;
-  }
-
-  &__domain {
-    font-weight: 400;
-    opacity: 0.75;
-    letter-spacing: 0;
+    background-color: var(--color-bg-success-softest);
+    border-color: var(--color-border-success-soft);
   }
 }
 
 .simple_form .not_recommended {
   color: var(--color-text-error);
-  background-color: var(--color-bg-error-softer);
-  border-color: var(--color-border-on-bg-error-softer);
+  background-color: var(--color-bg-error-softest);
+  border-color: var(--color-border-error-soft);
 }
 
 .account__header__fields {
@@ -310,8 +282,8 @@
   }
 
   .verified {
-    border: 1px solid var(--color-border-on-bg-success-softer);
-    background: var(--color-bg-success-softer);
+    border: 1px solid var(--color-border-success-soft);
+    background: var(--color-bg-success-softest);
 
     a {
       color: var(--color-text-success);

@@ -9,6 +9,8 @@ th:
   accounts:
     followers:
       other: ผู้ติดตาม
+    following:
+      other: กำลังติดตาม
     instance_actor_flash: บัญชีนี้เป็นตัวดำเนินการเสมือนที่ใช้เพื่อเป็นตัวแทนของเซิร์ฟเวอร์เองและไม่ใช่ผู้ใช้รายบุคคลใด ๆ มีการใช้บัญชีสำหรับวัตถุประสงค์ในการติดต่อกับภายนอกและไม่ควรได้รับการระงับ
     last_active: ใช้งานล่าสุด
     link_verified_on: ตรวจสอบความเป็นเจ้าของของลิงก์นี้เมื่อ %{date}
@@ -315,6 +317,8 @@ th:
       new:
         create: สร้างประกาศ
         title: ประกาศใหม่
+      preview:
+        explanation_html: 'อีเมลจะถูกส่งไปยังผู้ใช้ <strong>%{display_count} คน</strong>. โดยจะมีข้อความต่อไปนี้อยู่ในอีเมล:'
       publish: เผยแพร่
       published_msg: เผยแพร่ประกาศสำเร็จ!
       scheduled_for: จัดกำหนดการไว้สำหรับ %{time}
@@ -950,6 +954,7 @@ th:
       live: สด
       notify_users: แจ้งเตือนผู้ใช้
       preview:
+        explanation_html: 'อีเมลจะถูกส่งไปยังผู้ใช้ <strong>%{display_count} คน</strong>. ที่ลงทะเบียนก่อนวันที่ %{date} โดยจะมีข้อความต่อไปนี้อยู่ในอีเมล:'
         send_preview: ส่งตัวอย่างไปยัง %{email}
         send_to_all:
           other: ส่ง %{display_count} อีเมล
@@ -1119,7 +1124,6 @@ th:
   application_mailer:
     notification_preferences: เปลี่ยนการกำหนดลักษณะอีเมล
     salutation: "%{name},"
-    settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     unsubscribe: เลิกบอกรับ
     view: 'ดู:'
     view_profile: ดูโปรไฟล์
@@ -1292,8 +1296,6 @@ th:
       your_appeal_pending: คุณได้ส่งการอุทธรณ์
       your_appeal_rejected: ปฏิเสธการอุทธรณ์ของคุณแล้ว
   edit_profile:
-    basic_information: ข้อมูลพื้นฐาน
-    hint_html: "<strong>ปรับแต่งสิ่งที่ผู้คนเห็นในโปรไฟล์สาธารณะของคุณและถัดจากโพสต์ของคุณ</strong> ผู้คนอื่น ๆ มีแนวโน้มที่จะติดตามคุณกลับและโต้ตอบกับคุณมากขึ้นเมื่อคุณมีโปรไฟล์ที่กรอกแล้วและรูปภาพโปรไฟล์"
     other: อื่น ๆ
   errors:
     '400': คำขอที่คุณได้ส่งไม่ถูกต้องหรือผิดรูปแบบ
@@ -1329,10 +1331,8 @@ th:
     mutes: คุณซ่อน
     storage: ที่เก็บข้อมูลสื่อ
   featured_tags:
-    add_new: เพิ่มใหม่
     errors:
       limit: คุณได้แสดงแฮชแท็กถึงจำนวนสูงสุดไปแล้ว
-    hint_html: "<strong>แสดงแฮชแท็กที่สำคัญที่สุดของคุณในโปรไฟล์ของคุณ</strong> เครื่องมือที่ยอดเยี่ยมสำหรับการติดตามงานสร้างสรรค์และโครงการระยะยาวของคุณ จะแสดงแฮชแท็กที่น่าสนใจอย่างเด่นชัดในโปรไฟล์ของคุณและอนุญาตให้เข้าถึงโพสต์ของคุณเองได้อย่างรวดเร็ว"
   filters:
     contexts:
       account: โปรไฟล์
@@ -1503,21 +1503,6 @@ th:
     failed_sign_in_html: ความพยายามในการลงชื่อเข้าด้วย %{method} จาก %{ip} (%{browser}) ล้มเหลว
     successful_sign_in_html: ลงชื่อเข้าด้วย %{method} จาก %{ip} (%{browser}) สำเร็จ
     title: ประวัติการรับรองความถูกต้อง
-  mail_subscriptions:
-    unsubscribe:
-      action: ใช่ เลิกบอกรับ
-      complete: เลิกบอกรับแล้ว
-      confirmation_html: คุณแน่ใจหรือไม่ว่าต้องการเลิกบอกรับจากการรับ %{type} สำหรับ Mastodon ใน %{domain} ไปยังอีเมลของคุณที่ %{email}? คุณสามารถบอกรับใหม่ได้เสมอจาก <a href="%{settings_path}">การตั้งค่าการแจ้งเตือนอีเมล</a> ของคุณ
-      emails:
-        notification_emails:
-          favourite: อีเมลการแจ้งเตือนการชื่นชอบ
-          follow: อีเมลการแจ้งเตือนการติดตาม
-          follow_request: อีเมลคำขอติดตาม
-          mention: อีเมลการแจ้งเตือนการกล่าวถึง
-          reblog: อีเมลการแจ้งเตือนการดัน
-      resubscribe_html: หากคุณได้เลิกบอกรับโดยไม่ได้ตั้งใจ คุณสามารถบอกรับใหม่ได้จาก <a href="%{settings_path}">การตั้งค่าการแจ้งเตือนอีเมล</a> ของคุณ
-      success_html: คุณจะไม่ได้รับ %{type} สำหรับ Mastodon ใน %{domain} ไปยังอีเมลของคุณที่ %{email} อีกต่อไป
-      title: เลิกบอกรับ
   media_attachments:
     validations:
       images_and_video: ไม่สามารถแนบวิดีโอกับโพสต์ที่มีภาพอยู่แล้ว

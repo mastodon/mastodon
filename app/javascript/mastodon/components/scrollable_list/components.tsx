@@ -37,7 +37,11 @@ export const ItemList = forwardRef<
   }
 >(({ isLoading, emptyMessage, className, children, ...otherProps }, ref) => {
   if (!isLoading && Children.count(children) === 0 && emptyMessage) {
-    return <div className='empty-column-indicator'>{emptyMessage}</div>;
+    return (
+      <div className='empty-column-indicator'>
+        <span>{emptyMessage}</span>
+      </div>
+    );
   }
 
   return (

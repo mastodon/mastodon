@@ -4,7 +4,6 @@ is:
     hints:
       account:
         attribution_domains: Eitt á hverja línu. Ver fyrir röngum tilvísunum.
-        discoverable: Opinberar færslur og notandasnið þitt geta birst eða verið mælt með á hinum ýmsu svæðum í Mastodon auk þess sem hægt er að mæla með þér við aðra notendur.
         display_name: Fullt nafn þitt eða eitthvað til gamans.
         fields: Heimasíðan þín, fornöfn, aldur eða eitthvað sem þú vilt koma á framfæri.
         indexable: Opinberar færslur þínar gætu birst í leitarniðurstöðum á Mastodon. Fólk sem hefur haft afskipti af færslunum mun eftir sem áður geta leitað í þeim.
@@ -134,6 +133,7 @@ is:
         otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
         webauthn: Ef þetta er USB-lykill, gakktu úr skugga um að honum sé stungið í samband og ef þörf þykir að ýta á hann.
       settings:
+        email_subscriptions: Sé þetta gert óvirkt haldast fyrirliggjandi áskrifendur en sending tölvupósta stöðvast.
         indexable: Síðan með notandasniðinu þínu gæti birst í leitarniðurstöðum Google, Bing og fleiri.
         show_application: Þú munt alltaf geta séð hvaða forrit birti færsluna þína.
       tag:
@@ -153,7 +153,7 @@ is:
         jurisdiction: Settu inn landið þar sem sá býr sem borgar reikningana. Ef það er fyrirtæki eða samtök, skaltu hafa það landið þar sem lögheimili þess er, auk borgar, héraðs, svæðis eða fylkis eins og við á.
         min_age: Ætti ekki að vera lægri en sá lágmarksaldur sek kveðið er á um í lögum þíns lögsagnarumdæmis.
       user:
-        chosen_languages: Þegar merkt er við þetta, birtast einungis færslur á völdum tungumálum á opinberum tímalínum
+        chosen_languages: Þegar merkt er við þetta verða einungis færslur á völdum tungumálum birtar í opinberum tímalínum. Þessi stilling hefur ekki áhrif á heimalínuna þína og lista.
         date_of_birth:
           one: Við verðum að ganga úr skugga um að þú hafir náð %{count} aldri til að nota %{domain}. Við munum ekki geyma þessar upplýsingar.
           other: Við verðum að ganga úr skugga um að þú hafir náð %{count} aldri til að nota %{domain}. Við munum ekki geyma þessar upplýsingar.
@@ -176,7 +176,6 @@ is:
     labels:
       account:
         attribution_domains: Vefsvæði sem mega vitna í þig
-        discoverable: Hafa notandasnið og færslur með í reikniritum leitar
         fields:
           name: Skýring
           value: Efni
@@ -184,9 +183,9 @@ is:
         show_collections: Birta fylgjendur og þá sem fylgst er með í notandasniði
         unlocked: Samþykkja nýja fylgjendur sjálfkrafa
       account_alias:
-        acct: Auðkenni gamla aðgangsins
+        acct: Kennislóð gamla aðgangsins
       account_migration:
-        acct: Auðkenni nýja aðgangsins
+        acct: Kennislóð nýja aðgangsins
       account_warning_preset:
         text: Forstilltur texti
         title: Titill
@@ -356,6 +355,7 @@ is:
         hint: Viðbótarupplýsingar
         text: Regla
       settings:
+        email_subscriptions: Virkja áskriftir í tölvupósti
         indexable: Hafa notandasnið með í leitarvélum
         show_application: Birta úr hvaða forriti þú sendir færslu
       tag:

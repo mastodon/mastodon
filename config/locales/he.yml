@@ -792,6 +792,7 @@ he:
       categories:
         administration: ניהול מערכת
         devops: DevOps
+        email: דוא״ל
         invites: הזמנות
         moderation: ניהול דיון
         special: מיוחדים
@@ -810,6 +811,8 @@ he:
         administrator_description: משתמשים עם הרשאה זו יוכלו לעקוף כל הרשאה
         delete_user_data: מחיקת כל נתוני המשתמש
         delete_user_data_description: מאפשר למשתמשים למחוק נתוני משתמשים אחרים ללא דיחוי
+        invite_bypass_approval: הזמנה להרשם ללא הליך בדיקה
+        invite_bypass_approval_description: להרשות למשתמשים אלו להזמין א.נשים להרשם לשרת תוך עקיפת מנגנון הפיקוח על ההרשמה
         invite_users: הזמנת משתמשים
         invite_users_description: מאפשר למשתמשים להזמין אנשים חדשים לשרת
         manage_announcements: ניהול הכרזות
@@ -820,6 +823,8 @@ he:
         manage_blocks_description: מאפשר למשתמשים לחסום ספקי דוא"ל וכתובות IP
         manage_custom_emojis: ניהול סמלונים בהתאמה אישית
         manage_custom_emojis_description: מאפשר למשתמשים לנהל סמלונים בהתאמה אישית של השרת
+        manage_email_subscriptions: ניהול הרשמות דוא"ל
+        manage_email_subscriptions_description: לאפשר למשתמשיםות להרשים למשתמשיםות ע"י הרשאה בדוא"ל
         manage_federation: ניהול פדרציה
         manage_federation_description: מאפשר למשתמשים לחסום או לאפשר התממשקות עם שמות מתחם אחרים
         manage_invites: ניהול הזמנות
@@ -1271,7 +1276,6 @@ he:
   application_mailer:
     notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
-    settings: 'שינוי הגדרות דוא"ל: %{link}'
     unsubscribe: בטל מנוי
     view: 'תצוגה:'
     view_profile: צפיה בפרופיל
@@ -1321,6 +1325,7 @@ he:
     progress:
       confirm: אימות כתובת הדואל
       details: הפרטים שלך
+      list: התקדמות תהליך ההרשמה
       review: הבדיקה שלנו
       rules: הסכמה לתקנות
     providers:
@@ -1336,6 +1341,7 @@ he:
       invited_by: 'ניתן להצטרף אל %{domain} הודות להזמנה מאת:'
       preamble: אלו נקבעים ונאכפים ע"י המנחים של %{domain}.
       preamble_invited: לפני ההמשך יש להתחשב בחוקי המקום כפי שקבעו מנהלי הדיון על %{domain}.
+      read_more: לקריאה נוספת
       title: כמה חוקים בסיסיים.
       title_invited: קיבלת הזמנה.
     security: אבטחה
@@ -1454,9 +1460,44 @@ he:
       your_appeal_pending: הגשת ערעור
       your_appeal_rejected: ערעורך נדחה
   edit_profile:
-    basic_information: מידע בסיסי
-    hint_html: "<strong>התאמה אישית של מה שיראו אחרים בפרופיל הציבורי שלך וליד הודעותיך.</strong> אחרים עשויים יותר להחזיר עוקב וליצור אתך שיחה אם הפרופיל והתמונה יהיו מלאים."
     other: אחר
+    redesign_body: ניתן להגיע לעריכת הפרופיל ישירות מעמוד הפרופיל.
+    redesign_button: לך לשם
+    redesign_title: מעתה מוצעת חוויית עריכת פרופיל חדשה
+  email_subscription_mailer:
+    confirmation:
+      action: אישור כתובת דוא"ל
+      instructions_to_confirm: נא אשרו שתרצו לקבל דוא"ל מ%{name} (@%{acct}) כאשר הם מפרסמים הודעות חדשות.
+      instructions_to_ignore: אם אינך בטוח.ה מדוע קיבלת את הודעת הדוא"ל הזו, היו חופשיים למוחקה. לא תרשמו אם לא תלחצו על הקישור לעיל.
+      subject: אמתו את כתובת האימייל שלכם
+      title: לקבל הודעות דוא"ל מ%{name}?
+    notification:
+      create_account: יצירת חשבון מסטודון
+      footer:
+        privacy_html: דוא"ל ישלח מ- %{domain}, שרת הפועל על מסטודון. כדי להבין כיצד שרת זה מנהל את המידע האישי שלך, יש לפנות של <a href="%{privacy_policy_path}">מדיניות הפרטיוות</a>.
+        reason_for_email_html: קיבלתם הודעת דוא"ל זו כי ביקשתם לקבל עידכונים מאת %{name}. אין ברצונכן לקבל הודעות אלו? <a href="%{unsubscribe_path}">ביטול הרשמה</a>
+      interact_with_this_post:
+        many: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+        one: תקשרו עם ההודעה הזו כדי לגלות עוד כמוה.
+        other: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+        two: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
+      subject:
+        plural: הודעות חדשות מאת %{name}
+        singular: 'הודעה חדשה: "%{excerpt}"'
+      title:
+        plural: הודעות חדשות מאת %{name}
+        singular: 'הודעה חדשה: "%{excerpt}"'
+  email_subscriptions:
+    active: פעילים
+    confirmations:
+      show:
+        changed_your_mind: שיניתם את דעתכם?
+        success_html: מעתה תקבלנה דוא"ל כאשר %{name} יפרסמו הודעות חדשות. הוספנה את %{sender} לאנשי הקשר כדי שההודעות האלו לא יגיעו אל פח הספאם שלכן.
+        title: נרשמת
+        unsubscribe: ביטול ההרשמה
+    inactive: לא פעילים
+    status: מצב
+    subscribers: מנויים
   emoji_styles:
     auto: אוטומטי
     native: מקומי
@@ -1495,10 +1536,8 @@ he:
     mutes: רשימת השתקות
     storage: אחסון מדיה
   featured_tags:
-    add_new: הוספת חדש
     errors:
       limit: הצגת כבר את המספר המירבי של תגיות נבחרות
-    hint_html: "<strong>מהן תגיות נבחרות?</strong> הן מוצגות במובלט בפרופיל הפומבי שלך ומאפשר לאנשים לעיין בהודעות הפומביות שלך המסומנות בתגיות אלה. הן כלי אדיר למעקב אחר עבודות יצירה ופרוייקטים לטווח ארוך."
   filters:
     contexts:
       account: פרופילים
@@ -1731,21 +1770,6 @@ he:
     failed_sign_in_html: נסיון כניסה כושל בשיטת %{method} מכתובת %{ip} (%{browser})
     successful_sign_in_html: נסיון כניסה מוצלח בשיטה %{method} מכתובת %{ip} (%{browser})
     title: הסטוריית אימותים
-  mail_subscriptions:
-    unsubscribe:
-      action: כן, לבטל הרשמה
-      complete: הפסקת הרשמה
-      confirmation_html: יש לאשר את ביטול ההרשמה להודעות %{type} ממסטודון בשרת %{domain} לכתובת הדואל %{email}. תמיד אפשר להרשם מחדש ב<a href="%{settings_path}">כיוונוני הודעות דואל</a>.
-      emails:
-        notification_emails:
-          favourite: הודעות דואל לגבי חיבובים
-          follow: הודעות דואל לגבי עוקבים חדשים
-          follow_request: הודעות דואל לגבי בקשות מעקב
-          mention: הודעות דואל לגבי איזכורים
-          reblog: הודעות דואל לגבי הידהודים
-      resubscribe_html: אם ביטול ההרשמה היה בטעות, ניתן להרשם מחדש מתוך <a href="%{settings_path}">מסך הגדרות ההרשמה</a> שלך.
-      success_html: לא יגיעו אליך יותר הודעות %{type} משרת מסטודון %{domain} לכתובת הדואל %{email}.
-      title: הפסקת הרשמה
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו להודעה שכבר מכילה תמונות
@@ -1883,6 +1907,8 @@ he:
     posting_defaults: ברירות מחדל בפרסום
     public_timelines: פידים פומביים
   privacy:
+    email_subscriptions: שליחת הודעות בדוא"ל
+    email_subscriptions_hint_html: הוסיפו רישום בדוא"ל לפרופיל שלכן שיופיע גם למשתמשים שאינם מחוברים. כאשר מבקרים יכניסו את כתובת הדוא"ל ויאשרו, מסטודון ישלח להם עדכוני דוא"ל על ההודעות הציבוריות שלכן.
     hint_html: "<strong>ניתן להתאים את הצורה שבה תירצו שיראו את פרופיל המשתמש וההודעות שלכם.</strong> מגוון אפשרויות במסטודון יכולות לעזור לכם להיחשף לקהל רחב יותר כאשר תפעילו אותן. הקדישו רגע לבדוק את ההגדרות הללו כדי לוודא שהן מתאימות לכם."
     privacy: פרטיות
     privacy_hint_html: הגדירו כמה תרצו לחשוף עצמכם לאחרים. משתמשים מגלים משתמשים מעניינים ואפליקציות מגניבות על ידי דפדוף ב-"מעקבים" של משתמשים אחרים ורואים מאילו אפליקציות הם מפרסמים, אבל אולי תעדיפו להסתיר את המידע הזה מפני אחרים.
@@ -2154,6 +2180,28 @@ he:
     resume_app_authorization: חזרה לאישור יישומון
     role_requirement: "%{domain} דורש ממך להקים הזדהות בשני גורמים לפני שתוכלו להשתמש במסטודון."
     webauthn: מפתחות אבטחה
+  unsubscriptions:
+    create:
+      action: מעבר לעמוד הבית של השרת
+      email_subscription:
+        confirmation_html: לא תקבלו יותר הודעות דןא"ל מאת %{name}.
+      title: ביטלת את ההרשמה
+      user:
+        confirmation_html: לא תקבלו יותר %{type} ממסטודון על %{domain}.
+    notification_emails:
+      favourite: הודעות דואל לגבי חיבובים
+      follow: הודעות דואל לגבי עוקבים חדשים
+      follow_request: הודעות דואל לגבי בקשות מעקב
+      mention: הודעות דואל לגבי איזכורים
+      reblog: הודעות דואל לגבי הידהודים
+    show:
+      action: ביטול ההרשמה
+      email_subscription:
+        confirmation_html: לא תקבלו יותר דואל כשחשבון זה יפרסם הודעות חדשות.
+        title: לבטל הרשמה אל %{name}?
+      user:
+        confirmation_html: לא תקבלו יותר %{type} ממסטודון על %{domain}.
+        title: לבטל הרשמה אל %{type}?
   user_mailer:
     announcement_published:
       description: 'צוות ההנהלה של %{domain} מפרסם הודעה:'
@@ -2282,7 +2330,7 @@ he:
     extra_instructions_html: <strong>טיפ:</strong> הלינק באתר שלך יכול להיות מוסתר. החלק החשוב הוא <code>rel="me"</code> שמונע התחזות על אתרים עם תוכן משתמשים. ניתן גם ליצור תגית <code>link</code> בכותרת העמוד במקום קישור <code>a</code> אבל קוד ה־HTML חייב להופיע שם ללא הרצה של ג'אווהסקריפט.
     here_is_how: זה נעשה כך
     hint_html: "<strong>אשרור זהותך במסטודון הוא לטובת כולם.</strong> על בסיס תקני ווב פתוחים, חינם מעתה ולעד. כל שדרוש הוא אתר אישי שבו אנשים מזהים אותך דרכו. כשתקשרו מהאתר הזה לפרופיל שלך פה, אנו נבדוק באתר קישורים לפרופיל ונציין זאת בסימן בולט כזהות בדוקה."
-    instructions_html: יש להדביק את הקוד שלמטה אל האתר שלך. ואז להוסיף את כתובת האתר לאחד השדות הנוספים בפרופיל מתוך טאב "עריכת פרופיל" ולשמור את השינויים.
+    instructions_html: יש להדביק את הקוד שלמטה אל האתר שלך. ואז להוסיף את כתובת האתר לאחד השדות הנוספים בפרופיל מתוך כרטיסיית "עריכת פרופיל" ולשמור את השינויים.
     verification: אימות
     verified_links: קישוריך המאומתים
     website_verification: אימות אתר רשת

@@ -24,7 +24,7 @@ class ActivityPub::DistributionWorker < ActivityPub::RawDistributionWorker
   end
 
   def payload
-    @payload ||= Oj.dump(serialize_payload(@status, activity_serializer, serializer_options.merge(signer: @account)))
+    @payload ||= serialize_payload(@status, activity_serializer, serializer_options.merge(signer: @account)).to_json
   end
 
   def activity_serializer

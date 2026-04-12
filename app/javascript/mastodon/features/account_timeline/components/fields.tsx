@@ -1,67 +1,29 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import type { FC } from 'react';
 
-import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 import { openModal } from '@/mastodon/actions/modal';
-import { AccountFields } from '@/mastodon/components/account_fields';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import type { EmojiHTMLProps } from '@/mastodon/components/emoji/html';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
-import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
 import { Icon } from '@/mastodon/components/icon';
 import { IconButton } from '@/mastodon/components/icon_button';
 import { MiniCard } from '@/mastodon/components/mini_card';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useResizeObserver } from '@/mastodon/hooks/useObserver';
-import type { Account } from '@/mastodon/models/account';
 import { useAppDispatch } from '@/mastodon/store';
 import MoreIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 
 import { cleanExtraEmojis } from '../../emoji/normalize';
 import type { AccountField } from '../common';
-import { isRedesignEnabled } from '../common';
 import { useFieldHtml } from '../hooks/useFieldHtml';
 
-import classes from './redesign.module.scss';
-
-export const AccountHeaderFields: FC<{ accountId: string }> = ({
-  accountId,
-}) => {
-  const account = useAccount(accountId);
-
-  if (!account) {
-    return null;
-  }
-
-  if (isRedesignEnabled()) {
-    return <RedesignAccountHeaderFields account={account} />;
-  }
-
-  return (
-    <div className='account__header__fields'>
-      <dl>
-        <dt>
-          <FormattedMessage id='account.joined_short' defaultMessage='Joined' />
-        </dt>
-        <dd>
-          <FormattedDateWrapper
-            value={account.created_at}
-            year='numeric'
-            month='short'
-            day='2-digit'
-          />
-        </dd>
-      </dl>
-
-      <AccountFields fields={account.fields} emojis={account.emojis} />
-    </div>
-  );
-};
+import classes from './styles.module.scss';
 
 const verifyMessage = defineMessage({
   id: 'account.link_verified_on',
@@ -75,13 +37,22 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   minute: '2-digit',
 };
 
-const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
+export const AccountHeaderFields: FC<{ accountId: string }> = ({
+  accountId,
+}) => {
+  const account = useAccount(accountId);
+
   const emojis = useMemo(
-    () => cleanExtraEmojis(account.emojis),
-    [account.emojis],
+    () => cleanExtraEmojis(account?.emojis),
+    [account?.emojis],
   );
+  const accountFields = account?.fields;
   const fields: AccountField[] = useMemo(() => {
-    const fields = account.fields.toJS();
+    const fields = accountFields?.toJS();
+    if (!fields) {
+      return [];
+    }
+
     if (!emojis) {
       return fields.map((field) => ({
         ...field,
@@ -102,10 +73,10 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
         field.value_plain?.includes(`:${code}:`),
       ),
     }));
-  }, [account.fields, emojis]);
+  }, [accountFields, emojis]);
 
   const htmlHandlers = useElementHandledLink({
-    hashtagAccountId: account.id,
+    hashtagAccountId: account?.id,
   });
 
   const { wrapperRef } = useColumnWrap();
@@ -264,6 +235,7 @@ function useColumnWrap() {
     const columnCount = parseInt(styles.getPropertyValue('--cols')) || 2;
     const listWidth = listEle.offsetWidth;
     const colWidth = (listWidth - gap * (columnCount - 1)) / columnCount;
+    const halfColSpan = columnCount / 2;
 
     // Matrix to hold the grid layout.
     const itemGrid: { ele: HTMLElement; span: number }[][] = [];
@@ -313,10 +285,23 @@ function useColumnWrap() {
         if (!item) {
           break;
         }
+
         const { ele, span } = item;
+
         if (i < row.length - 1) {
           ele.dataset.cols = span.toString();
           remainingRowSpan -= span;
+        } else if (
+          row.length > 1 &&
+          row.length === halfColSpan &&
+          span === 1 &&
+          remainingRowSpan > 1
+        ) {
+          // Special case for 2 items in a row where both items only need 1 column.
+          ele.dataset.cols = halfColSpan.toString();
+          if (row[0]) {
+            row[0].ele.dataset.cols = halfColSpan.toString();
+          }
         } else {
           // Last item in the row takes up remaining space to fill the row.
           ele.dataset.cols = remainingRowSpan.toString();

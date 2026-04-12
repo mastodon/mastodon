@@ -4,7 +4,6 @@ hu:
     hints:
       account:
         attribution_domains: Soronként egy. Megvéd a hamis forrásmegjelölésektől.
-        discoverable: A nyilvános bejegyzéseid és a profilod kiemelhető vagy ajánlható a Mastodon különböző területein, a profilod más felhasználóknak is javasolható.
         display_name: Teljes neved vagy vicces neved.
         fields: Weboldalad, megszólításaid, korod, bármi, amit szeretnél.
         indexable: A nyilvános bejegyzéseid megjelenhetnek a Mastodon keresési eredményei között. Azok, akik kapcsolatba léptek a bejegyzéseiddel, ettől függetlenül kereshetik azokat.
@@ -134,6 +133,7 @@ hu:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
         webauthn: Ha ez egy USB kulcs, ellenőrizd, hogy csatlakoztattad és ha szükséges, aktiváltad is.
       settings:
+        email_subscriptions: A kikapcsolás megtartja az eddigi feliratkozókat, de leállítja a levelek küldését.
         indexable: A profiloldalad megjelenhet a Google, a Bing és más keresőmotorok keresési eredményei között.
         show_application: Ettől függetlenül mindig láthatod, melyik alkalmazás tette közzé a bejegyzésedet.
       tag:
@@ -153,7 +153,7 @@ hu:
         jurisdiction: Adja meg az országot, ahol a számlafizető él. Ha ez egy vállalat vagy más szervezet, adja meg az országot, ahol bejegyezték, valamint adott esetben a várost, régiót, területet vagy államot.
         min_age: Nem lehet a joghatóság által meghatározott minimális kor alatt.
       user:
-        chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
+        chosen_languages: Ha be van kapcsolva, akkor csak a kiválasztott nyelvű bejegyzések jelennek meg a nyilvános idővonalakon. A beállítás nem befolyásolja a saját idővonaladat és a listáidat.
         date_of_birth:
           one: Ahhoz, hogy a(z) %{domain} weboldalt használd, meg kell győződnünk arról, hogy legalább %{count} éves vagy. Ezt nem tároljuk.
           other: Ahhoz, hogy a(z) %{domain} weboldalt használd, meg kell győződnünk arról, hogy legalább %{count} éves vagy. Ezt nem tároljuk.
@@ -176,7 +176,6 @@ hu:
     labels:
       account:
         attribution_domains: Weboldalak, melyek szerzőként tüntethetnek fel
-        discoverable: Profil és bejegyzések szerepeltetése a felfedezési algoritmusokban
         fields:
           name: Címke
           value: Tartalom
@@ -356,6 +355,7 @@ hu:
         hint: További információk
         text: Szabály
       settings:
+        email_subscriptions: E-mailes regisztráció bekapcsolása
         indexable: A profiloldal szerepeltetése a keresőmotorokban
         show_application: A bejegyzést küldő alkalmazás megjelenítése
       tag:

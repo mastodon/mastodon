@@ -7,6 +7,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
   subject { described_class.new(json) }
 
+  let(:keyid) { 'http://example.com/alice#rsa-key' }
   let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice', domain: 'example.com') }
 
   let(:raw_json) do
@@ -25,7 +26,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     context 'when signature matches' do
       let(:raw_signature) do
         {
-          'creator' => 'http://example.com/alice',
+          'creator' => keyid,
           'created' => '2017-09-23T20:21:34Z',
         }
       end
@@ -40,7 +41,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     context 'when local account record is missing a public key' do
       let(:raw_signature) do
         {
-          'creator' => 'http://example.com/alice',
+          'creator' => keyid,
           'created' => '2017-09-23T20:21:34Z',
         }
       end
@@ -59,15 +60,14 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
         allow(ActivityPub::FetchRemoteKeyService).to receive(:new).and_return(service_stub)
 
-        allow(service_stub).to receive(:call).with('http://example.com/alice') do
-          sender.update!(public_key: old_key)
-          sender
+        allow(service_stub).to receive(:call).with(keyid) do
+          Keypair.new(account: sender, type: :rsa, public_key: old_key, uri: keyid)
         end
       end
 
       it 'fetches key and returns creator' do
         expect(subject.verify_actor!).to eq sender
-        expect(service_stub).to have_received(:call).with('http://example.com/alice').once
+        expect(service_stub).to have_received(:call).with(keyid).once
       end
     end
 
@@ -82,7 +82,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     context 'when signature is tampered' do
       let(:raw_signature) do
         {
-          'creator' => 'http://example.com/alice',
+          'creator' => keyid,
           'created' => '2017-09-23T20:21:34Z',
         }
       end
@@ -100,7 +100,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
       let(:raw_signature) do
         {
-          'creator' => 'http://example.com/alice',
+          'creator' => keyid,
           'created' => '2017-09-23T20:21:34Z',
         }
       end
@@ -116,7 +116,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
       let(:raw_signature) do
         {
-          'creator' => 'http://example.com/alice',
+          'creator' => keyid,
           'created' => '2017-09-23T20:21:34Z',
         }
       end
@@ -132,7 +132,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
       let(:raw_signature) do
         {
-          'creator' => 'http://example.com/alice',
+          'creator' => keyid,
           'created' => '2017-09-23T20:21:34Z',
         }
       end

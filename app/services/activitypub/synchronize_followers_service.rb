@@ -62,7 +62,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
   end
 
   def build_undo_follow_json(follow)
-    Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer))
+    serialize_payload(follow, ActivityPub::UndoFollowSerializer).to_json
   end
 
   # Only returns true if the whole collection has been processed

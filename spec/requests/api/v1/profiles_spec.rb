@@ -44,8 +44,10 @@ RSpec.describe 'Profile API' do
           'indexable' => account.indexable,
           'display_name' => account.display_name,
           'fields' => [],
+          'formatted_fields' => [],
           'attribution_domains' => [],
           'note' => account.note,
+          'formatted_note' => account.note,
           'show_featured' => account.show_featured,
           'show_media' => account.show_media,
           'show_media_replies' => account.show_media_replies,
@@ -62,6 +64,7 @@ RSpec.describe 'Profile API' do
     let(:params) do
       {
         avatar: fixture_file_upload('avatar.gif', 'image/gif'),
+        avatar_description: 'animated walking round cat',
         discoverable: true,
         display_name: "Alice Isn't Dead",
         header: fixture_file_upload('attachment.jpg', 'image/jpeg'),
@@ -110,6 +113,7 @@ RSpec.describe 'Profile API' do
           display_name: eq("Alice Isn't Dead"),
           note: 'Hello!',
           avatar: exist,
+          avatar_description: 'animated walking round cat',
           header: exist,
           attribution_domains: ['example.com'],
           fields: contain_exactly(

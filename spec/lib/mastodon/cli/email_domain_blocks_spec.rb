@@ -101,7 +101,6 @@ RSpec.describe Mastodon::CLI::EmailDomainBlocks do
     context 'when no blocks exist' do
       let(:domain) { 'host.example' }
       let(:arguments) { [domain] }
-      let(:options) { { allow_with_approval: false } }
 
       it 'adds a new block' do
         expect { subject }
@@ -113,7 +112,7 @@ RSpec.describe Mastodon::CLI::EmailDomainBlocks do
     context 'with --with-dns-records true' do
       let(:domain) { 'host.example' }
       let(:arguments) { [domain] }
-      let(:options) { { allow_with_approval: false, with_dns_records: true } }
+      let(:options) { { with_dns_records: true } }
 
       before do
         configure_mx(domain: domain, exchange: 'other.host')

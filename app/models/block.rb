@@ -5,11 +5,11 @@
 # Table name: blocks
 #
 #  id                :bigint(8)        not null, primary key
+#  uri               :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  account_id        :bigint(8)        not null
 #  target_account_id :bigint(8)        not null
-#  uri               :string
 #
 
 class Block < ApplicationRecord

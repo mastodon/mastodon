@@ -32,7 +32,7 @@ code {
     display: block;
     background: linear-gradient(
       to bottom,
-      var(--color-bg-secondary-solid),
+      var(--color-bg-secondary),
       transparent
     );
     position: absolute;
@@ -77,7 +77,6 @@ code {
 
   .input {
     margin-bottom: 16px;
-    overflow: hidden;
 
     &:last-child {
       margin-bottom: 0;
@@ -471,13 +470,19 @@ code {
     }
   }
 
-  .input.radio_buttons .radio label {
-    margin-bottom: 5px;
-    font-family: inherit;
-    font-size: 14px;
-    color: var(--color-text-primary);
-    display: block;
-    width: auto;
+  .input.radio_buttons .radio {
+    label {
+      margin-bottom: 5px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--color-text-primary);
+      display: block;
+      width: auto;
+    }
+
+    input[type='radio'] {
+      accent-color: var(--color-text-brand);
+    }
   }
 
   .check_boxes {
@@ -501,6 +506,16 @@ code {
         margin: 0;
       }
     }
+
+    .checkbox.disabled {
+      opacity: 0.5;
+    }
+  }
+
+  label.checkbox {
+    input[type='checkbox'] {
+      accent-color: var(--color-text-brand);
+    }
   }
 
   .input.static .label_input__wrapper {
@@ -523,13 +538,20 @@ code {
     color: var(--color-text-primary);
     display: block;
     width: 100%;
-    outline: 0;
     font-family: inherit;
     resize: vertical;
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     padding: 10px 16px;
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+    outline-color: transparent;
+    transition: outline-color 0.15s ease-out;
+
+    &:focus {
+      outline: var(--outline-focus-default);
+    }
 
     &:invalid {
       box-shadow: none;
@@ -551,7 +573,7 @@ code {
   input[type='datetime-local'] {
     &:focus:user-invalid:not(:placeholder-shown),
     &:required:user-invalid:not(:placeholder-shown) {
-      border-color: var(--color-text-error);
+      border-color: var(--color-border-error);
     }
   }
 
@@ -613,6 +635,11 @@ code {
       margin-inline-end: 0;
     }
 
+    &:focus-visible {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
+
     &:active,
     &:focus,
     &:hover {
@@ -652,6 +679,11 @@ code {
     padding-inline-start: 10px;
     padding-inline-end: 30px;
     height: 41px;
+
+    &:focus-visible {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
 
     @media screen and (width <= 600px) {
       font-size: 16px;
@@ -731,7 +763,7 @@ code {
   input[type='datetime-local'],
   textarea,
   select {
-    border-color: var(--color-text-error);
+    border-color: var(--color-border-error);
   }
 }
 
@@ -769,27 +801,27 @@ code {
 .flash-message {
   color: var(--color-text-brand);
   background: transparent;
-  border: 1px solid var(--color-text-brand);
+  border: 1px solid var(--color-border-brand);
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
   text-align: center;
 
   &.notice {
-    border: 1px solid var(--color-border-on-bg-success-softer);
-    background: var(--color-bg-success-softer);
+    border: 1px solid var(--color-border-success-soft);
+    background: var(--color-bg-success-softest);
     color: var(--color-text-success);
   }
 
   &.warning {
-    border: 1px solid var(--color-border-on-bg-warning-softer);
-    background: var(--color-bg-warning-softer);
+    border: 1px solid var(--color-border-warning-soft);
+    background: var(--color-bg-warning-softest);
     color: var(--color-text-warning);
   }
 
   &.alert {
-    border: 1px solid var(--color-border-on-bg-error-softer);
-    background: var(--color-bg-error-softer);
+    border: 1px solid var(--color-border-error-soft);
+    background: var(--color-bg-error-softest);
     color: var(--color-text-error);
   }
 
@@ -855,7 +887,7 @@ code {
     }
 
     &:focus {
-      background: var(--color-bg-brand-softer);
+      background: var(--color-bg-brand-softest);
     }
   }
 
@@ -1229,31 +1261,44 @@ code {
 }
 
 .progress-tracker {
+  --circle-size: 30px;
+
   display: flex;
   align-items: center;
   padding-bottom: 30px;
   margin-bottom: 30px;
 
   li {
-    flex: 0 0 auto;
     position: relative;
-  }
 
-  .separator {
-    height: 2px;
-    background: var(--color-border-primary);
-    flex: 1 1 auto;
+    --connector-color: var(--color-border-primary);
+    --connector-thickness: 2px;
 
     &.completed {
-      background: var(--color-text-brand);
+      --connector-color: var(--color-bg-brand-base);
+    }
+
+    &:not(:last-child) {
+      flex-grow: 1;
+
+      // Connector line between circles
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        inset-inline: var(--circle-size) 0;
+        background-color: var(--connector-color);
+        height: 2px;
+        top: calc((var(--circle-size) - var(--connector-thickness)) / 2);
+      }
     }
   }
 
   .circle {
     box-sizing: border-box;
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: var(--circle-size);
+    height: var(--circle-size);
     border-radius: 50%;
     border: 2px solid var(--color-border-primary);
     flex: 0 0 auto;
@@ -1274,8 +1319,9 @@ code {
     padding-top: 10px;
     text-align: center;
     width: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+
+    // Center-align the label with the circle
+    transform: translateX(-33.3333%);
   }
 
   li:first-child .label {
@@ -1292,15 +1338,15 @@ code {
     transform: none;
   }
 
-  .active .circle {
-    border-color: var(--color-text-brand);
+  [aria-current='step'] .circle {
+    border-color: var(--color-bg-brand-base);
 
     &::before {
       content: '';
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--color-text-brand);
+      background: var(--color-bg-brand-base);
       position: absolute;
       left: 50%;
       top: 50%;
@@ -1309,8 +1355,9 @@ code {
   }
 
   .completed .circle {
-    border-color: var(--color-text-brand);
-    background: var(--color-text-brand);
+    color: var(--color-text-on-brand-base);
+    background: var(--color-bg-brand-base);
+    border-color: var(--color-bg-brand-base);
   }
 }
 
@@ -1326,7 +1373,7 @@ code {
     cursor: pointer;
 
     &:hover {
-      background-color: var(--color-bg-brand-softer);
+      background-color: var(--color-bg-brand-softest);
     }
 
     img {
@@ -1357,7 +1404,7 @@ code {
     }
 
     &.invalid img {
-      outline: 1px solid var(--color-text-error);
+      outline: 1px solid var(--color-border-error);
       outline-offset: -1px;
     }
 
@@ -1367,7 +1414,7 @@ code {
       width: 100%;
       height: 100%;
       position: absolute;
-      background: var(--color-bg-error-softer);
+      background: var(--color-bg-error-softest);
       z-index: 2;
       border-radius: 8px;
     }

@@ -45,7 +45,7 @@ export const Optional: Story = {
 export const WithError: Story = {
   args: {
     required: false,
-    hasError: true,
+    status: 'error',
   },
 };
 

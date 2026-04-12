@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  align-items: start;
+  padding: 12px 16px;
+  gap: 16px;
+
+  &:not(.wrapperWithoutBorder) {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+}
+
+.menuButton {
+  padding: 4px;
+  margin-top: -2px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

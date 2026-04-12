@@ -762,6 +762,7 @@ is:
       categories:
         administration: Stjórnun
         devops: DevOps
+        email: Tölvupóstur
         invites: Boðsgestir
         moderation: Umsjón
         special: Sérstakt
@@ -778,6 +779,8 @@ is:
         administrator_description: Notendur með þessa heimild fara framhjá öllum öðrum heimildum
         delete_user_data: Eyða gögnum notanda
         delete_user_data_description: Leyfir notendum að eyða gögnum annarra notenda án tafar
+        invite_bypass_approval: Bjóða notendum án samþykktar
+        invite_bypass_approval_description: Leyfir fólki sem boðið er á netþjóninn af þessum notendum að sleppa við samþykki umsjónaraðila
         invite_users: Bjóða notendum
         invite_users_description: Leyfir notendum að bjóða nýju fólki inn á netþjóninn
         manage_announcements: Sýsla með tilkynningar
@@ -788,6 +791,8 @@ is:
         manage_blocks_description: Leyfir notendum að loka á tölvupóstþjónustur og IP-vistföng
         manage_custom_emojis: Sýsla með sérsniðin lyndistákn
         manage_custom_emojis_description: Leyfir notendum að sýsla með sérsniðin lyndistákn á netþjóninum
+        manage_email_subscriptions: Sýsla með tölvupóstáskriftir
+        manage_email_subscriptions_description: Leyfa notendum að gerast áskrifendur að tölvupósti frá notendum með þessa heimild
         manage_federation: Sýsla með netþjónasambönd
         manage_federation_description: Leyfir notendum að loka á eða leyfa samþættingu við önnur lén (federation) og stýra afhendingu skilaboða
         manage_invites: Sýsla með boðsgesti
@@ -1231,7 +1236,6 @@ is:
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
-    settings: 'Breyta kjörstillingum tölvupósts: %{link}'
     unsubscribe: Taka úr áskrift
     view: 'Skoða:'
     view_profile: Skoða notandasnið
@@ -1283,6 +1287,7 @@ is:
     progress:
       confirm: Staðfesta tölvupóstfang
       details: Nánari upplýsingar þínar
+      list: Nýskráningarferli
       review: Yfirferð okkar
       rules: Samþykkja reglur
     providers:
@@ -1298,6 +1303,7 @@ is:
       invited_by: 'Þú getur tekið þátt í %{domain} þökk sé boði sem þú fékkst frá:'
       preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
       preamble_invited: Áður en haldið er lengra, vinsamlegast kynntu þér reglurnar sem stjórnendur %{domain} hafa sett.
+      read_more: Lesa meira
       title: Nokkrar grunnreglur.
       title_invited: Þér hefur verið boðið.
     security: Öryggi
@@ -1416,9 +1422,42 @@ is:
       your_appeal_pending: Þú hefur sent inn áfrýjun
       your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
   edit_profile:
-    basic_information: Grunnupplýsingar
-    hint_html: "<strong>Sérsníddu hvað fólk sér á opinbera notandasniðinu þínu og næst færslunum þínum.</strong> Annað fólk er líklegra til að fylgjast með þér og eiga í samskiptum við þig ef þú fyllir út notandasniðið og setur auðkennismynd."
     other: Annað
+    redesign_body: Núna er hægt að breyta notandasíðunni sinni beint á þeirri síðu.
+    redesign_button: Fara þangað
+    redesign_title: Núna er ný aðferð við að breyta notandasíðunni sinni
+  email_subscription_mailer:
+    confirmation:
+      action: Staðfestu tölvupóstfangið
+      instructions_to_confirm: Staðfestu að þú viljir fá tölvupósta frá %{name} (@%{acct}) þegar viðkomandi birtir nýjar færslur.
+      instructions_to_ignore: Ef þú ert ekki viss af hverju þú fékkst þennan tölvupóst, þá geturðu eytt honum. Þú verður ekki áskrifandi nema ef þú smellir á tengilinn hér fyrir ofan.
+      subject: Staðfestu tölvupóstfangið þitt
+      title: Fá tilkynningar í tölvupósti frá %{name}?
+    notification:
+      create_account: Búa til nýjan Mastodon-aðgang
+      footer:
+        privacy_html: Tölvupóstar eru sendir frá %{domain}, netþjóni sem keyrir Mastodon. Til að sjá hvernig þessi netþjónn vinnur með persónuleg gögn þín, Þá ættirðu að skoða <a href="%{privacy_policy_path}">Meðferð persónuupplýsinga</a>.
+        reason_for_email_html: Þú færð þennan tölvupóst vegna þess að þú skráðir þig til að fá pósta með færslum frá %{name}. Viltu ekki fá þessar póstsendingar? <a href="%{unsubscribe_path}">Hættu í áskrift</a>
+      interact_with_this_post:
+        one: Eigðu í samskiptum við þessa færslu og finndu fleiri í sama dúr.
+        other: Eigðu í samskiptum við þessar færslur og finndu fleiri í sama dúr.
+      subject:
+        plural: Nýjar færslur frá %{name}
+        singular: 'Ný færsla: "%{excerpt}"'
+      title:
+        plural: Nýjar færslur frá %{name}
+        singular: 'Ný færsla: "%{excerpt}"'
+  email_subscriptions:
+    active: Virkur
+    confirmations:
+      show:
+        changed_your_mind: Skiptirðu um skoðun?
+        success_html: Þú munt núna fara að fá tölvupósta þegar %{name} birtir nýjar færslur. Bættu %{sender} í tengiliðina þína svo þessir póstar lendi ekki í ruslpóstmöppunni þinni.
+        title: Þú hefur skráð þig
+        unsubscribe: Hætta í áskrift
+    inactive: Óvirkur
+    status: Staða
+    subscribers: Áskrifendur
   emoji_styles:
     auto: Sjálfvirkt
     native: Innbyggt
@@ -1432,7 +1471,7 @@ is:
     '422':
       content: Öryggisprófun mistókst. Ertu að loka á vefkökur/fótspor?
       title: Öryggisprófun mistókst
-    '429': Í hægagangi
+    '429': Of margar beiðnir
     '500':
       content: Því miður, en eitthvað fór úrskeiðis á okkar enda.
       title: Þessi síða er ekki rétt
@@ -1457,10 +1496,8 @@ is:
     mutes: Þú þaggar
     storage: Geymsla myndefnis
   featured_tags:
-    add_new: Bæta við nýju
     errors:
       limit: Þú hefur þegar gefið hámarksfjölda myllumerkja aukið vægi
-    hint_html: "<strong>Hvað eru myllumerki með aukið vægi?</strong> Þau eru birt áberandi á opinbera notandasniðinu þínu og gera fólki kleift að fletta í gegnum opinberu færslurnar þínar sérstaklega undir þessum myllumerkjum. Þau eru frábær aðferð við að halda utan um skapandi vinnu eða langtíma verkefni."
   filters:
     contexts:
       account: Notandasnið
@@ -1653,21 +1690,6 @@ is:
     failed_sign_in_html: Misheppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
     successful_sign_in_html: Vel heppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
     title: Auðkenningarferill
-  mail_subscriptions:
-    unsubscribe:
-      action: Já, hætta í áskrift
-      complete: Hætta í áskrift
-      confirmation_html: Ertu viss um að þú viljir hætta áskrift sendinga á %{type} fyrir Mastodon á %{domain} til póstfangsins þíns %{email}? Þú getur alltaf aftur gerst áskrifandi í <a href="%{settings_path}">stillingunum fyrir tilkynningar í tölvupósti</a>.
-      emails:
-        notification_emails:
-          favourite: tilkynningum í tölvupósti um eftirlæti
-          follow: tilkynningum í tölvupósti um fylgjendur
-          follow_request: tilkynningum í tölvupósti um beiðnir um að fylgjast með
-          mention: tilkynningum í tölvupósti um tilvísanir
-          reblog: tilkynningum í tölvupósti um endurbirtingar
-      resubscribe_html: Ef þú hættir áskrift fyrir mistök, geturðu alltaf aftur gerst áskrifandi í <a href="%{settings_path}">stillingunum fyrir tilkynningar í tölvupósti</a>.
-      success_html: Þú munt ekki lengur fá sendingar með %{type} fyrir Mastodon á %{domain} á póstfangið þitt %{email}.
-      title: Taka úr áskrift
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir
@@ -1805,6 +1827,8 @@ is:
     posting_defaults: Sjálfgefin gildi við gerð færslna
     public_timelines: Opinberar tímalínur
   privacy:
+    email_subscriptions: Senda færslur með tölvupósti
+    email_subscriptions_hint_html: Bættu áskriftarformi fyrir tölvupóst á notandasíðuna þína sem birtist fyrir notendur sem ekki eru skráðir inn. Þegar gestir setja inn tölvupóstfangið sitt og skrá sig í áskrift, mun Mastodon senda út tilkynningar um opinberar færslur þínar.
     hint_html: "<strong>Sérsníddu hvernig þú vilt að finna megi notandasnið þitt og færslur.</strong> Ýmsir eiginleikar í Mastodon geta hjálpað þér að ná til breiðari áheyrendahóps, séu þeir virkjaðir. Taktu þér tíma til að yfirfara þessar stillingar svo að þær henti þér."
     privacy: Gagnaleynd
     privacy_hint_html: Stýrðu því hve miklar upplýsingar þú birtir sem gætu gagnast öðrum. Fólk uppgötvar áhugaverða notendur og sniðug forrit með því að skoða hvað annað fólk fylgist með og hvaða forrit það notar til að birta færslur, en hinsvegar er þér frjálst að halda þessu leyndu.
@@ -2068,6 +2092,28 @@ is:
     resume_app_authorization: Halda áfram með auðkenningu forrits
     role_requirement: "%{domain} krefst þess að þú setjir upp tveggja-þátta auðkenningu áður en þú getur notað Mastodon."
     webauthn: Öryggislyklar
+  unsubscriptions:
+    create:
+      action: Fara á heimasíðu netþjónsins
+      email_subscription:
+        confirmation_html: Þú munt ekki lengur fá tölvupósta frá %{name}.
+      title: Þú hefur sagt upp áskrift
+      user:
+        confirmation_html: Þú munt ekki lengur fá %{type} frá Mastodon á %{domain}.
+    notification_emails:
+      favourite: tölvupóst um eftirlæti
+      follow: tölvupóst um fylgjendur
+      follow_request: tölvupóst um fylgjendabeiðnir
+      mention: tölvupóst um tilvísanir í þig
+      reblog: tölvupóst um endurbirtingar
+    show:
+      action: Hætta í áskrift
+      email_subscription:
+        confirmation_html: Þú munt ekki lengur fá tölvupóst þegar þessi aðili birtir nýjar færslur.
+        title: Afpanta áskrift að %{name}?
+      user:
+        confirmation_html: Þú munt ekki lengur fá %{type} frá Mastodon á %{domain}.
+        title: Afpanta áskrift að %{type}?
   user_mailer:
     announcement_published:
       description: 'Stjórnendur %{domain} eru að senda frá sér yfirlýsingu:'

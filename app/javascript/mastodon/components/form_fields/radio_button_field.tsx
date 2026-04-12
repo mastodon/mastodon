@@ -15,7 +15,7 @@ type Props = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
 export const RadioButtonField = forwardRef<
   HTMLInputElement,
   Props & CommonFieldWrapperProps
->(({ id, label, hint, hasError, required, ...otherProps }, ref) => {
+>(({ id, label, hint, status, required, ...otherProps }, ref) => {
   const fieldsetName = useContext(FieldsetNameContext);
 
   return (
@@ -23,7 +23,7 @@ export const RadioButtonField = forwardRef<
       label={label}
       hint={hint}
       required={required}
-      hasError={hasError}
+      status={status}
       inputId={id}
       inputPlacement='inline-start'
     >

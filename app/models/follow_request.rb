@@ -5,14 +5,14 @@
 # Table name: follow_requests
 #
 #  id                :bigint(8)        not null, primary key
+#  languages         :string           is an Array
+#  notify            :boolean          default(FALSE), not null
+#  show_reblogs      :boolean          default(TRUE), not null
+#  uri               :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  account_id        :bigint(8)        not null
 #  target_account_id :bigint(8)        not null
-#  show_reblogs      :boolean          default(TRUE), not null
-#  uri               :string
-#  notify            :boolean          default(FALSE), not null
-#  languages         :string           is an Array
 #
 
 class FollowRequest < ApplicationRecord

@@ -2,15 +2,17 @@
   = t('verification.verification')
 
 - content_for :heading do
-  %h2= t('settings.profile')
+  %h1= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
+= render partial: 'settings/shared/profile_new_notice'
+
 .simple_form.form-section
-  %h3= t('verification.website_verification')
+  %h2.heading-medium= t('verification.website_verification')
 
   %p.lead= t('verification.hint_html')
 
-  %h4= t('verification.here_is_how')
+  %h3.heading-small= t('verification.here_is_how')
 
   %p.lead= t('verification.instructions_html')
 
@@ -22,7 +24,7 @@
   %p.lead= t('verification.extra_instructions_html')
 
   - if @verified_links.any?
-    %h4= t('verification.verified_links')
+    %h3.heading-small= t('verification.verified_links')
 
     %ul.lead
       - @verified_links.each do |field|
@@ -34,7 +36,7 @@
 = simple_form_for @account, url: settings_verification_path, html: { class: 'form-section' } do |f|
   = render 'shared/error_messages', object: @account
 
-  %h3= t('author_attribution.title')
+  %h2.heading-medium= t('author_attribution.title')
 
   %p.lead= t('author_attribution.hint_html')
 
@@ -53,7 +55,7 @@
         = logo_as_symbol(:icon)
         = t('author_attribution.more_from_html', name: author_attribution_name(@account))
 
-  %h4= t('verification.here_is_how')
+  %h3.heading-small= t('verification.here_is_how')
 
   %p.lead= t('author_attribution.instructions')
 

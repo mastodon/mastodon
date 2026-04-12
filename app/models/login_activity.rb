@@ -5,14 +5,14 @@
 # Table name: login_activities
 #
 #  id                    :bigint(8)        not null, primary key
-#  user_id               :bigint(8)        not null
 #  authentication_method :string
-#  provider              :string
-#  success               :boolean
 #  failure_reason        :string
 #  ip                    :inet
+#  provider              :string
+#  success               :boolean
 #  user_agent            :string
 #  created_at            :datetime
+#  user_id               :bigint(8)        not null
 #
 
 class LoginActivity < ApplicationRecord

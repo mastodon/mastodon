@@ -2,13 +2,13 @@
 
 html {
   color: var(--color-text-primary);
-  background: var(--color-bg-ambient);
+  background: var(--color-bg-primary);
 
   &.custom-scrollbars {
     scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
   }
 
-  --outline-focus-default: 2px solid var(--color-text-brand);
+  --outline-focus-default: 2px solid var(--color-border-brand);
   --avatar-border-radius: 8px;
   --max-media-height-small: 460px;
   --max-media-height-large: 566px;
@@ -46,7 +46,7 @@ html.has-modal {
 
 body {
   font-family: $font-sans-serif, sans-serif;
-  background: var(--color-bg-ambient);
+  background: var(--color-bg-primary);
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;

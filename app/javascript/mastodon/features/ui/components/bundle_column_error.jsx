@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 import { Button } from 'mastodon/components/button';
 import Column from 'mastodon/components/column';
+import { injectIntl } from '@/mastodon/components/intl';
 import { GIF } from 'mastodon/components/gif';
 
 class CopyButton extends PureComponent {

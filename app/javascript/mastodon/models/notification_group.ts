@@ -10,6 +10,8 @@ import type {
 } from 'mastodon/api_types/notifications';
 import type { ApiReportJSON } from 'mastodon/api_types/reports';
 
+import type { ApiCollectionJSON } from '../api_types/collections';
+
 // Maximum number of avatars displayed in a notification group
 // This corresponds to the max length of `group.sampleAccountIds`
 export const NOTIFICATIONS_GROUP_MAX_AVATARS = 8;
@@ -87,6 +89,15 @@ export interface NotificationGroupAdminReport extends BaseNotification<'admin.re
   report: Report;
 }
 
+type Collection = ApiCollectionJSON;
+export interface NotificationGroupAddedToCollection extends BaseNotification<'added_to_collection'> {
+  collection: Collection;
+}
+
+export interface NotificationGroupCollectionUpdate extends BaseNotification<'collection_update'> {
+  collection: Collection;
+}
+
 export type NotificationGroup =
   | NotificationGroupFavourite
   | NotificationGroupReblog
@@ -102,7 +113,9 @@ export type NotificationGroup =
   | NotificationGroupSeveredRelationships
   | NotificationGroupAdminSignUp
   | NotificationGroupAdminReport
-  | NotificationGroupAnnualReport;
+  | NotificationGroupAnnualReport
+  | NotificationGroupAddedToCollection
+  | NotificationGroupCollectionUpdate;
 
 function createReportFromJSON(reportJSON: ApiReportJSON): Report {
   const { target_account, ...report } = reportJSON;
@@ -248,6 +261,13 @@ export function createNotificationGroupFromNotificationJSON(
         moderationWarning: createAccountWarningFromJSON(
           notification.moderation_warning,
         ),
+      };
+    case 'added_to_collection':
+    case 'collection_update':
+      return {
+        ...group,
+        type: notification.type,
+        collection: notification.collection,
       };
     default:
       return {

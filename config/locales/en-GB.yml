@@ -762,6 +762,7 @@ en-GB:
       categories:
         administration: Administration
         devops: DevOps
+        email: Email
         invites: Invites
         moderation: Moderation
         special: Special
@@ -778,6 +779,8 @@ en-GB:
         administrator_description: Users with this permission will bypass every permission
         delete_user_data: Delete User Data
         delete_user_data_description: Allows users to delete other users' data without delay
+        invite_bypass_approval: Invite Users without review
+        invite_bypass_approval_description: Allows people invited to the server by these users to bypass moderation approval
         invite_users: Invite Users
         invite_users_description: Allows users to invite new people to the server
         manage_announcements: Manage Announcements
@@ -788,6 +791,8 @@ en-GB:
         manage_blocks_description: Allows users to block email providers and IP addresses
         manage_custom_emojis: Manage Custom Emojis
         manage_custom_emojis_description: Allows users to manage custom emojis on the server
+        manage_email_subscriptions: Manage Email Subscriptions
+        manage_email_subscriptions_description: Allow users to subscribe to users with this permission by email
         manage_federation: Manage Federation
         manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
         manage_invites: Manage Invites
@@ -1229,7 +1234,6 @@ en-GB:
   application_mailer:
     notification_preferences: Change email preferences
     salutation: "%{name},"
-    settings: 'Change email preferences: %{link}'
     unsubscribe: Unsubscribe
     view: 'View:'
     view_profile: View profile
@@ -1279,6 +1283,7 @@ en-GB:
     progress:
       confirm: Confirm email
       details: Your details
+      list: Sign up progress
       review: Our review
       rules: Accept rules
     providers:
@@ -1294,6 +1299,7 @@ en-GB:
       invited_by: 'You can join %{domain} thanks to the invitation you have received from:'
       preamble: These are set and enforced by the %{domain} moderators.
       preamble_invited: Before you proceed, please consider the ground rules set by the moderators of %{domain}.
+      read_more: Read more
       title: Some ground rules.
       title_invited: You've been invited.
     security: Security
@@ -1412,9 +1418,42 @@ en-GB:
       your_appeal_pending: You have submitted an appeal
       your_appeal_rejected: Your appeal has been rejected
   edit_profile:
-    basic_information: Basic information
-    hint_html: "<strong>Customise what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
     other: Other
+    redesign_body: Profile editing can now be accessed directly from the profile page.
+    redesign_button: Go there
+    redesign_title: There’s a new profile editing experience
+  email_subscription_mailer:
+    confirmation:
+      action: Confirm email address
+      instructions_to_confirm: Confirm you'd like to receive emails from %{name} (@%{acct}) when they publish new posts.
+      instructions_to_ignore: If you're not sure why you received this email, you can delete it. You will not be subscribed if you don't click on the link above.
+      subject: Confirm your email address
+      title: Get email updates from %{name}?
+    notification:
+      create_account: Create a Mastodon account
+      footer:
+        privacy_html: Emails are sent from %{domain}, a server powered by Mastodon. To understand how this server processes your personal data, refer to the <a href="%{privacy_policy_path}">Privacy Policy</a>.
+        reason_for_email_html: You're receiving this email because you opted into email updates from %{name}. Don't want to receive these emails? <a href="%{unsubscribe_path}">Unsubscribe</a>
+      interact_with_this_post:
+        one: Interact with this post and discover more like it.
+        other: Interact with these posts and discover more.
+      subject:
+        plural: New posts from %{name}
+        singular: 'New post: "%{excerpt}"'
+      title:
+        plural: New posts from %{name}
+        singular: 'New post: "%{excerpt}"'
+  email_subscriptions:
+    active: Active
+    confirmations:
+      show:
+        changed_your_mind: Changed your mind?
+        success_html: You'll now start receiving emails when %{name} publishes new posts. Add %{sender} to your contacts so these posts don't end up in your Spam folder.
+        title: You're signed up
+        unsubscribe: Unsubscribe
+    inactive: Inactive
+    status: Status
+    subscribers: Subscribers
   emoji_styles:
     auto: Auto
     native: Native
@@ -1453,10 +1492,8 @@ en-GB:
     mutes: You mute
     storage: Media storage
   featured_tags:
-    add_new: Add new
     errors:
       limit: You have already featured the maximum number of hashtags
-    hint_html: "<strong>Feature your most important hashtags on your profile.</strong> A great tool for keeping track of your creative works and long-term projects, featured hashtags are displayed prominently on your profile and allow quick access to your own posts."
   filters:
     contexts:
       account: Profiles
@@ -1649,21 +1686,6 @@ en-GB:
     failed_sign_in_html: Failed login attempt with %{method} from %{ip} (%{browser})
     successful_sign_in_html: Successful login with %{method} from %{ip} (%{browser})
     title: Authentication history
-  mail_subscriptions:
-    unsubscribe:
-      action: Yes, unsubscribe
-      complete: Unsubscribed
-      confirmation_html: Are you sure you want to unsubscribe from receiving %{type} for Mastodon on %{domain} to your email at %{email}? You can always re-subscribe from your <a href="%{settings_path}">email notification settings</a>.
-      emails:
-        notification_emails:
-          favourite: favourite notification emails
-          follow: follow notification emails
-          follow_request: follow request emails
-          mention: mention notification emails
-          reblog: boost notification emails
-      resubscribe_html: If you've unsubscribed by mistake, you can re-subscribe from your <a href="%{settings_path}">email notification settings</a>.
-      success_html: You'll no longer receive %{type} for Mastodon on %{domain} to your email at %{email}.
-      title: Unsubscribe
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images
@@ -1801,6 +1823,8 @@ en-GB:
     posting_defaults: Posting defaults
     public_timelines: Public timelines
   privacy:
+    email_subscriptions: Send posts via email
+    email_subscriptions_hint_html: Add an email sign-up form to your profile that appears for logged-out users. When visitors enter their email address and opt in, Mastodon will send email updates for your public posts.
     hint_html: "<strong>Customise how you want your profile and your posts to be found.</strong> A variety of features in Mastodon can help you reach a wider audience when enabled. Take a moment to review these settings to make sure they fit your use case."
     privacy: Privacy
     privacy_hint_html: Control how much you want to disclose for the benefit of others. People discover interesting profiles and cool apps by browsing other people's follows and seeing from which apps they post, but you may prefer to keep it hidden.
@@ -2064,6 +2088,28 @@ en-GB:
     resume_app_authorization: Resume application authorisation
     role_requirement: "%{domain} requires you to set up Two-Factor Authentication before you can use Mastodon."
     webauthn: Security keys
+  unsubscriptions:
+    create:
+      action: Go to server homepage
+      email_subscription:
+        confirmation_html: You'll no longer receive emails from %{name}.
+      title: You are unsubscribed
+      user:
+        confirmation_html: You'll no longer receive %{type} from Mastodon on %{domain}.
+    notification_emails:
+      favourite: favourite notification emails
+      follow: follow notification emails
+      follow_request: follow request emails
+      mention: mention notification emails
+      reblog: boost notification emails
+    show:
+      action: Unsubscribe
+      email_subscription:
+        confirmation_html: You'll stop receiving emails when this account publishes new posts.
+        title: Unsubscribe from %{name}?
+      user:
+        confirmation_html: You'll stop receiving %{type} from Mastodon on %{domain}.
+        title: Unsubscribe from %{type}?
   user_mailer:
     announcement_published:
       description: 'The administrators of %{domain} are making an announcement:'

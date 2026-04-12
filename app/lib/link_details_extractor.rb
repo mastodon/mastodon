@@ -101,7 +101,7 @@ class LinkDetailsExtractor
     end
 
     def json
-      @json ||= root_array(Oj.load(@data)).compact.find { |obj| SUPPORTED_TYPES.include?(obj['@type']) } || {}
+      @json ||= root_array(JSON.parse(@data)).compact.find { |obj| SUPPORTED_TYPES.include?(obj['@type']) } || {}
     end
   end
 
@@ -265,7 +265,7 @@ class LinkDetailsExtractor
       next unless structured_data.valid?
 
       structured_data
-    rescue Oj::ParseError, EncodingError
+    rescue JSON::ParserError, EncodingError
       Rails.logger.debug { "Invalid JSON-LD in #{@original_url}" }
       next
     end.first

@@ -3,7 +3,6 @@
   simple_form:
     hints:
       account:
-        discoverable: Dine offentlige innlegg og profil kan bli omtalt eller anbefalt i ulike deler av Mastodon, og profilen din kan foreslås til andre brukere.
         display_name: Ditt fulle navn eller ditt morsomme navn.
         fields: Din hjemmeside, uttalelse, alder, eller alt annet du vil.
         indexable: Dine offentlige innlegg kan vises i søkeresultat på Mastodon. Personer som har samhandlet med innleggene dine kan finne de uansett.
@@ -117,8 +116,6 @@
         show_application: Du vil uansett kunne se hvilken app publiserte ditt innlegg.
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
-      user:
-        chosen_languages: Hvis noen av dem er valgt, vil kun innlegg i de valgte språkene bli vist i de offentlige tidslinjene
       user_role:
         color: Farge som skal brukes for rollen gjennom hele UI, som RGB i hex-format
         highlighted: Dette gjør rollen offentlig synlig
@@ -131,7 +128,6 @@
         url: Hvor hendelser vil bli sendt til
     labels:
       account:
-        discoverable: Anbefal profil og innlegg i Mastodons algoritmer
         fields:
           name: Etikett
           value: Innhold

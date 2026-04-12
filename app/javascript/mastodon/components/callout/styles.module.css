@@ -3,9 +3,10 @@
   align-items: start;
   padding: 12px;
   gap: 8px;
-  background-color: var(--color-bg-brand-softer);
+  background-color: var(--color-bg-brand-softest);
   color: var(--color-text-primary);
   border-radius: 12px;
+  font-size: 15px;
 }
 
 .icon {
@@ -32,6 +33,10 @@
 .body {
   flex-grow: 1;
 
+  a {
+    color: inherit;
+  }
+
   h3 {
     font-weight: 500;
     margin-bottom: 5px;
@@ -51,6 +56,7 @@
   color: inherit;
   font-weight: 500;
   padding: 0;
+  text-wrap: nowrap;
   text-decoration: underline;
   transition: color 0.1s ease-in-out;
 
@@ -80,14 +86,14 @@
   }
 }
 
-/* .variantSubtle {
-  border: 1px solid var(--color-bg-brand-softer);
+.variantSubtle {
+  border: 1px solid var(--color-bg-brand-softest);
   background-color: var(--color-bg-primary);
 
   .icon {
-    background-color: var(--color-bg-brand-softer);
+    background-color: var(--color-bg-brand-softest);
   }
-} */
+}
 
 .variantFeature {
   background-color: var(--color-bg-brand-base);
@@ -100,11 +106,11 @@
 
 .variantInverted {
   background-color: var(--color-bg-inverted);
-  color: var(--color-text-on-inverted);
+  color: var(--color-text-inverted);
 }
 
 .variantSuccess {
-  background-color: var(--color-bg-success-softer);
+  background-color: var(--color-bg-success-softest);
 
   .icon {
     background-color: var(--color-bg-success-soft);
@@ -112,7 +118,7 @@
 }
 
 .variantWarning {
-  background-color: var(--color-bg-warning-softer);
+  background-color: var(--color-bg-warning-softest);
 
   .icon {
     background-color: var(--color-bg-warning-soft);
@@ -120,7 +126,7 @@
 }
 
 .variantError {
-  background-color: var(--color-bg-error-softer);
+  background-color: var(--color-bg-error-softest);
 
   .icon {
     background-color: var(--color-bg-error-soft);

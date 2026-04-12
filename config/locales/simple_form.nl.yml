@@ -4,7 +4,7 @@ nl:
     hints:
       account:
         attribution_domains: Eén per regel. Beschermt tegen ongeldige attributies.
-        discoverable: Jouw openbare berichten kunnen worden uitgelicht op verschillende plekken binnen Mastodon en jouw account kan worden aanbevolen aan andere gebruikers.
+        discoverable: Je kunt worden uitgelicht in verzamelingen die zijn aangemaakt door andere gebruikers. Jij en jouw openbare berichten kunnen ook worden aanbevolen aan gebruikers op verschillende plekken binnen Mastodon.
         display_name: Jouw volledige naam of een leuke bijnaam.
         fields: Jouw website, persoonlijke voornaamwoorden, leeftijd, alles wat je maar kwijt wilt.
         indexable: Jouw openbare berichten kunnen in de zoekresultaten op Mastodon verschijnen. Mensen die op jouw berichten hebben gereageerd kunnen ze sowieso doorzoeken.
@@ -134,6 +134,7 @@ nl:
         otp: 'Voer de tweestaps-toegangscode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
         webauthn: Wanneer het een USB-sleutel is, zorg er dan voor dat je deze in de computer steekt en, wanneer nodig, activeert.
       settings:
+        email_subscriptions: Het uitschakelen behoudt bestaande abonnees, maar stopt met het verzenden van e-mails.
         indexable: Jouw profielpagina kan in de zoekresultaten van Google, Bing, DuckDuckGo en andere zoekmachines verschijnen.
         show_application: Je kunt zelf altijd zien met welke app je een bericht hebt geplaatst.
       tag:
@@ -153,7 +154,7 @@ nl:
         jurisdiction: Vermeld het land waar de persoon woont die de rekeningen betaalt. Is het een bedrijf of iets dergelijks, vermeld dan het land waar het ingeschreven staat en de stad, de regio, het grondgebied of de staat, voor zover van toepassing.
         min_age: Mag niet lager zijn dan de minimale vereiste leeftijd volgens de wetten van jouw jurisdictie.
       user:
-        chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
+        chosen_languages: Indien aangevinkt, worden alleen berichten in geselecteerde talen weergegeven in openbare tijdlijnen. Deze instelling heeft geen invloed op je starttijdlijn en lijsten.
         date_of_birth:
           one: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
           other: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
@@ -176,7 +177,7 @@ nl:
     labels:
       account:
         attribution_domains: Websites die jou credit mogen geven
-        discoverable: Jouw account en berichten laten uitlichten door Mastodon
+        discoverable: Mij door Mastodon laten uitlichten
         fields:
           name: Label
           value: Inhoud
@@ -356,6 +357,7 @@ nl:
         hint: Aanvullende informatie
         text: Regel
       settings:
+        email_subscriptions: Berichten per e-mail inschakelen
         indexable: Zoekmachines jouw profielpagina laten vinden
         show_application: App tonen die je voor het plaatsen van berichten gebruikt
       tag:

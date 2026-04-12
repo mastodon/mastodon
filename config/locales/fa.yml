@@ -1210,7 +1210,6 @@ fa:
   application_mailer:
     notification_preferences: تغییر ترجیحات رایانامه
     salutation: "%{name}،"
-    settings: 'تغییر ترجیحات رایانامه: %{link}'
     unsubscribe: لغو اشتراک
     view: 'نمایش:'
     view_profile: دیدن نمایه
@@ -1393,8 +1392,6 @@ fa:
       your_appeal_pending: شما یک درخواست تجدیدنظر فرستادید
       your_appeal_rejected: درخواست تجدیدنظرتان رد شد
   edit_profile:
-    basic_information: اطلاعات پایه
-    hint_html: "<strong>شخصی‌سازی آن چه مردم روی نمایهٔ عمومیتان و کنار فرسته‌هایتان می‌بینند.</strong> هنگامی که نمایه‌ای کامل و یک تصویر نمایه داشته باشید،‌ احتمال پی‌گیری متقابل و تعامل با شما بیش‌تر است."
     other: سایر
   emoji_styles:
     auto: خودکار
@@ -1434,10 +1431,8 @@ fa:
     mutes: حساب‌های بی‌صداشده
     storage: تصویرهای ذخیره‌شده
   featured_tags:
-    add_new: افزودن تازه
     errors:
       limit: شما بیشترین تعداد مجاز برچسب‌ها را دارید
-    hint_html: "<strong>برچسب‌های برگزیده چیستند؟</strong> این برچسب‌ها به طور واضحی روی نمایهٔ عمومیتان نمایش یافته می‌گذارد افراد فرسته‌های عمومیتان زیرشان را مرور کنند. ابزاری عالی برای دنبال کردن آثار خلاقانه یا پروژه‌های بلندمدت است."
   filters:
     contexts:
       account: نمایه‌ها
@@ -1630,21 +1625,6 @@ fa:
     failed_sign_in_html: تلاش‌های شکست‌خوردهٔ ورود با %{method} از %{ip} (%{browser})
     successful_sign_in_html: ورودهای موفق با %{method} از %{ip} (%{browser})
     title: تاریخچهٔ تأیید هویت
-  mail_subscriptions:
-    unsubscribe:
-      action: بله. لغو اشتراک
-      complete: لغو اشتراک شد
-      confirmation_html: مطمئنید که می‌خواهید اشتراک %{type} را از ماستودون روی %{domain} برای رایانامهٔ %{email} لغو کنید؟ همواره می‌توانید از <a href="%{settings_path}">تنظیمات آگاهی رایانامه‌ای</a> دوباره مشترک شوید.
-      emails:
-        notification_emails:
-          favourite: رایانامه‌های آگاهی برگزیدن
-          follow: رایانامه‌های آگاهی پی‌گیری
-          follow_request: رایانامه‌های درخواست پی‌گیری
-          mention: رایانامه‌های آگاهی اشاره
-          reblog: رایانامه‌های آگاهی تقویت
-      resubscribe_html: اگر اشتراک را اشتباهی لغو کردید می‌توانید از <a href="%{settings_path}">تنظیمات آگاهی رایانامه‌ای</a> دوباره مشترک شوید.
-      success_html: دیگر %{type} را از ماستودون روی %{domain} برای رایانامهٔ %{email} نخواهید گرفت.
-      title: لغو اشتراک
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد

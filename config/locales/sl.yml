@@ -1227,7 +1227,6 @@ sl:
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
     salutation: "%{name},"
-    settings: 'Spremenite e-poštne nastavitve: %{link}'
     unsubscribe: Odjavi od naročnine
     view: 'Pogled:'
     view_profile: Ogled profila
@@ -1410,8 +1409,6 @@ sl:
       your_appeal_pending: Oddali ste pritožbo
       your_appeal_rejected: Vaša pritožba je bila zavržena
   edit_profile:
-    basic_information: Osnovni podatki
-    hint_html: "<strong>Prilagodite, kaj ljudje vidijo na vašem javnem profilu in poleg vaših objav.</strong> Drugi vam bodo raje sledili nazaj in z vami klepetali, če boste imeli izpolnjen profil in nastavljeno profilno sliko."
     other: Drugo
   emoji_styles:
     auto: Samodejno
@@ -1450,10 +1447,8 @@ sl:
     mutes: Utišani
     storage: Shranjeni mediji
   featured_tags:
-    add_new: Dodaj novo
     errors:
       limit: Ste že dodali največje število ključnikov
-    hint_html: "<strong>Kaj so izpostavljeni ključniki?</strong> Prikazani so vidno na vašem javnem profilu in ljudem omogočajo brskanje po vaših javnih objavah posebej pod temi ključniki. So odlično orodje za spremljanje ustvarjalnih del ali dolgoročnih projektov."
   filters:
     contexts:
       account: Profili
@@ -1685,21 +1680,6 @@ sl:
     failed_sign_in_html: Spodletela prijava z metodo %{method} iz %{ip} (%{browser})
     successful_sign_in_html: Uspešna prijava z metodo %{method} iz %{ip} (%{browser})
     title: Zgodovina overjanja
-  mail_subscriptions:
-    unsubscribe:
-      action: Da, odjavi me
-      complete: Odjavljeni
-      confirmation_html: Ali se res želite odjaviti od prejemanja %{type} za Mastodon na %{domain} na svojo e-pošto %{email}? Kadarkoli se lahko znova prijavite iz svojih <a href="%{settings_path}">nastavitev e-poštnih obvestil</a>.
-      emails:
-        notification_emails:
-          favourite: e-sporočil z obvestili o priljubljenosti
-          follow: e-sporočil z obvestili o sledenju
-          follow_request: e-sporočil o zahtevah za sledenje
-          mention: e-sporočil z obvestili o omembah
-          reblog: e-sporočil z obvestili o izpostavljanju
-      resubscribe_html: Če ste se odjavili po pomoti, se lahko znova prijavite iz svojih <a href="%{settings_path}">nastavitev e-poštnih obvestil</a>.
-      success_html: Nič več ne boste prejemali %{type} za Mastodon na %{domain} na svoj e-naslov %{email}.
-      title: Odjavi od naročnine
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti objavi, ki že vsebuje slike

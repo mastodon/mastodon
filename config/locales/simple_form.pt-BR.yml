@@ -4,7 +4,6 @@ pt-BR:
     hints:
       account:
         attribution_domains: Um por linha. Protege contra atribuições falsas.
-        discoverable: Suas publicações e perfil públicos podem ser destaques ou recomendados em várias áreas de Mastodon, e seu perfil pode ser sugerido a outros usuários.
         display_name: Seu nome completo ou apelido.
         fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
         indexable: Suas publicações abertas podem aparecer nos resultados da busca em Mastodon. As pessoas que interagiram com suas publicações podem conseguir pesquisá-las independentemente disso.
@@ -134,6 +133,7 @@ pt-BR:
         otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
         webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, tocar nela.
       settings:
+        email_subscriptions: A desativação mantém assinantes existentes, mas para de enviar e-mails.
         indexable: Sua página de perfil pode aparecer nos resultados de busca no Google, Bing e outros.
         show_application: Você sempre conseguirá ver qual aplicativo realizou sua publicação independentemente disso.
       tag:
@@ -153,7 +153,6 @@ pt-BR:
         jurisdiction: Liste o país onde quem paga as contas reside. Se for uma empresa ou outra entidade, liste o país onde ela está incorporada, e a cidade, região, território ou estado, conforme apropriado.
         min_age: Não deve ter menos que a idade mínima exigida pelas suas leis locais.
       user:
-        chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
         date_of_birth:
           one: Precisamos ter certeza de que você tem, no mínimo, %{count} anos para usar o %{domain} Não armazenaremos essa informação.
           other: Temos que ter certeza de que você é pelo menos %{count} para usar o %{domain} Não vamos armazenar isso.
@@ -176,7 +175,6 @@ pt-BR:
     labels:
       account:
         attribution_domains: Sites autorizados a creditar você.
-        discoverable: Destacar perfil e publicações nos algoritmos de descoberta
         fields:
           name: Rótulo
           value: Conteúdo
@@ -356,6 +354,7 @@ pt-BR:
         hint: Informações adicionais
         text: Regra
       settings:
+        email_subscriptions: Habilitar cadastro por e-mails
         indexable: Incluir página de perfil nos motores de busca
         show_application: Exibir a partir de qual aplicativo você publicou
       tag:

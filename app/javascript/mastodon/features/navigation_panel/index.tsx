@@ -10,6 +10,7 @@ import type { Map as ImmutableMap } from 'immutable';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
+import { useAccount } from '@/mastodon/hooks/useAccount';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
@@ -212,6 +213,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
   const { signedIn, permissions, disabledAccountId } = useIdentity();
   const location = useLocation();
   const showSearch = useBreakpoint('full') && !multiColumn;
+  const account = useAccount(me);
 
   let banner: React.ReactNode;
 
@@ -335,7 +337,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             {areCollectionsEnabled() && (
               <ColumnLink
                 transparent
-                to='/collections'
+                to={`/@${account?.acct}/collections`}
                 icon='collections'
                 iconComponent={CollectionsIcon}
                 activeIconComponent={CollectionsActiveIcon}

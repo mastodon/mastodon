@@ -49,3 +49,9 @@ export const apiRemoveCollectionItem = (collectionId: string, itemId: string) =>
   apiRequestDelete<WrappedCollectionAccountItem>(
     `v1_alpha/collections/${collectionId}/items/${itemId}`,
   );
+
+export const apiRevokeCollectionInclusion = (
+  collectionId: string,
+  itemId: string,
+) =>
+  apiRequestPost(`v1_alpha/collections/${collectionId}/items/${itemId}/revoke`);

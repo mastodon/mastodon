@@ -1,95 +1,80 @@
 import type { ChangeEventHandler, FC } from 'react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useId, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import type { ApiHashtagJSON } from '@/mastodon/api_types/tags';
 import { Combobox } from '@/mastodon/components/form_fields';
-import {
-  addFeaturedTag,
-  clearSearch,
-  updateSearchQuery,
-} from '@/mastodon/reducers/slices/profile_edit';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { useSearchTags } from '@/mastodon/hooks/useSearchTags';
+import type { TagSearchResult } from '@/mastodon/hooks/useSearchTags';
+import { addFeaturedTags } from '@/mastodon/reducers/slices/profile_edit';
+import { useAppDispatch } from '@/mastodon/store';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 
 import classes from '../styles.module.scss';
-
-type SearchResult = Omit<ApiHashtagJSON, 'url' | 'history'> & {
-  label?: string;
-};
 
 const messages = defineMessages({
   placeholder: {
     id: 'account_edit_tags.search_placeholder',
     defaultMessage: 'Enter a hashtag…',
   },
-  addTag: {
-    id: 'account_edit_tags.add_tag',
-    defaultMessage: 'Add #{tagName}',
-  },
 });
 
 export const AccountEditTagSearch: FC = () => {
   const intl = useIntl();
 
+  const [query, setQuery] = useState('');
   const {
-    query,
+    tags: suggestedTags,
+    searchTags,
+    resetSearch,
     isLoading,
-    results: rawResults,
-  } = useAppSelector((state) => state.profileEdit.search);
-  const results = useMemo(() => {
-    if (!rawResults) {
-      return [];
-    }
+  } = useSearchTags({
+    query,
+    // Remove existing featured tags from suggestions
+    filterResults: (tag) => !tag.featuring,
+  });
 
-    const results: SearchResult[] = [...rawResults]; // Make array mutable
-    const trimmedQuery = query.trim();
-    if (
-      trimmedQuery.length > 0 &&
-      results.every(
-        (result) => result.name.toLowerCase() !== trimmedQuery.toLowerCase(),
-      )
-    ) {
-      results.push({
-        id: 'new',
-        name: trimmedQuery,
-        label: intl.formatMessage(messages.addTag, { tagName: trimmedQuery }),
-      });
-    }
-    return results;
-  }, [intl, query, rawResults]);
-
-  const dispatch = useAppDispatch();
   const handleSearchChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => {
-      void dispatch(updateSearchQuery(e.target.value));
+      setQuery(e.target.value);
+      searchTags(e.target.value);
     },
-    [dispatch],
+    [searchTags],
   );
 
+  const dispatch = useAppDispatch();
   const handleSelect = useCallback(
-    (item: SearchResult) => {
-      void dispatch(clearSearch());
-      void dispatch(addFeaturedTag({ name: item.name }));
+    (item: TagSearchResult) => {
+      resetSearch();
+      setQuery('');
+      void dispatch(addFeaturedTags({ names: [item.name] }));
     },
-    [dispatch],
+    [dispatch, resetSearch],
   );
+
+  const inputId = useId();
+  const inputLabel = intl.formatMessage(messages.placeholder);
 
   return (
-    <Combobox
-      value={query}
-      onChange={handleSearchChange}
-      placeholder={intl.formatMessage(messages.placeholder)}
-      items={results}
-      isLoading={isLoading}
-      renderItem={renderItem}
-      onSelectItem={handleSelect}
-      className={classes.autoComplete}
-      icon={SearchIcon}
-      type='search'
-    />
+    <>
+      <label htmlFor={inputId} className='sr-only'>
+        {inputLabel}
+      </label>
+      <Combobox
+        id={inputId}
+        value={query}
+        onChange={handleSearchChange}
+        placeholder={inputLabel}
+        items={suggestedTags}
+        isLoading={isLoading}
+        renderItem={renderItem}
+        onSelectItem={handleSelect}
+        className={classes.autoComplete}
+        icon={SearchIcon}
+        type='search'
+      />
+    </>
   );
 };
 
-const renderItem = (item: SearchResult) => item.label ?? `#${item.name}`;
+const renderItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;

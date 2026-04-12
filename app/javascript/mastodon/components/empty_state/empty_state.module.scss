@@ -3,21 +3,35 @@
   flex-direction: column;
   align-items: center;
   max-width: 600px;
-  padding: 20px;
+  padding: 24px;
   gap: 16px;
   text-align: center;
   color: var(--color-text-primary);
 }
 
 .content {
+  max-width: 370px;
+
+  svg,
+  img {
+    width: 200px;
+    aspect-ratio: 1;
+    object-fit: contain;
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+
   h3 {
     font-size: 17px;
     font-weight: 500;
+    text-wrap: balance;
+    line-height: 1.2;
   }
 
   p {
-    font-size: 15px;
     margin-top: 8px;
+    font-size: 15px;
     color: var(--color-text-secondary);
+    text-wrap: pretty;
   }
 }

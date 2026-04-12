@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t('.title')
+
+.simple_form
+  %h1.title
+    = t('.title')
+  %p.lead
+    = t('.success_html', name: content_tag(:strong, display_name(@email_subscription.account)), sender: content_tag(:strong, EmailSubscriptionMailer.default[:from]))
+  %p.lead
+    = t('.changed_your_mind')
+    = link_to t('.unsubscribe'), unsubscribe_url(token: @email_subscription.to_sgid(for: 'unsubscribe'))

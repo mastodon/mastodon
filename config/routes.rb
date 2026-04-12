@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq_unique_jobs/web' if ENV['ENABLE_SIDEKIQ_UNIQUE_JOBS_UI'] == true
 require 'sidekiq-scheduler/web'
 
 class RedirectWithVary < ActionDispatch::Routing::PathRedirect
@@ -72,13 +71,15 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
 
-    resource :unsubscribe, only: [:show, :create], controller: :mail_subscriptions
+    resource :unsubscribe, only: [:show, :create], controller: :unsubscriptions
 
     namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create]
-      get 'sessions/security_key_options', to: 'sessions#webauthn_options'
       post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
+      namespace :sessions do
+        resource :security_key_options, only: :show
+      end
     end
   end
 
@@ -157,6 +158,7 @@ Rails.application.routes.draw do
     with_options to: 'accounts#show' do
       get '/@:username', as: :short_account
       get '/@:username/featured'
+      get '/@:username/collections'
       get '/@:username/with_replies', as: :short_account_with_replies
       get '/@:username/media', as: :short_account_media
       get '/@:username/tagged/:tag', as: :short_account_tag
@@ -187,15 +189,19 @@ Rails.application.routes.draw do
     resources :statuses, only: :show
   end
 
+  namespace :email_subscriptions do
+    resource :confirmation, only: :show
+  end
+
   resources :media, only: [:show] do
-    get :player
+    member { get :player }
   end
 
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show] do
-    resources :statuses, only: [:index], controller: 'filters/statuses' do
+    resources :statuses, only: [:index], module: :filters do
       collection do
         post :batch
       end
@@ -214,7 +220,9 @@ Rails.application.routes.draw do
   resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy, format: false
-  get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
+  resources :backups, only: [] do
+    member { get :download, format: false }
+  end
 
   resource :authorize_interaction, only: [:show]
   resource :share, only: [:show]
@@ -229,7 +237,7 @@ Rails.application.routes.draw do
 
   draw(:web_app)
 
-  get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
+  get '/web/(*any)', to: redirect(path: '/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
   get '/about',      to: 'about#show'
   get '/about/more', to: redirect('/about')
 

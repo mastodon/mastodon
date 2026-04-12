@@ -5,30 +5,30 @@
 # Table name: statuses
 #
 #  id                           :bigint(8)        not null, primary key
-#  uri                          :string
-#  text                         :text             default(""), not null
-#  created_at                   :datetime         not null
-#  updated_at                   :datetime         not null
-#  in_reply_to_id               :bigint(8)
-#  reblog_of_id                 :bigint(8)
-#  url                          :string
-#  sensitive                    :boolean          default(FALSE), not null
-#  visibility                   :integer          default("public"), not null
-#  spoiler_text                 :text             default(""), not null
-#  reply                        :boolean          default(FALSE), not null
-#  language                     :string
-#  conversation_id              :bigint(8)
-#  local                        :boolean
-#  account_id                   :bigint(8)        not null
-#  application_id               :bigint(8)
-#  in_reply_to_account_id       :bigint(8)
-#  poll_id                      :bigint(8)
 #  deleted_at                   :datetime
 #  edited_at                    :datetime
-#  trendable                    :boolean
-#  ordered_media_attachment_ids :bigint(8)        is an Array
 #  fetched_replies_at           :datetime
+#  language                     :string
+#  local                        :boolean
+#  ordered_media_attachment_ids :bigint(8)        is an Array
 #  quote_approval_policy        :integer          default(0), not null
+#  reply                        :boolean          default(FALSE), not null
+#  sensitive                    :boolean          default(FALSE), not null
+#  spoiler_text                 :text             default(""), not null
+#  text                         :text             default(""), not null
+#  trendable                    :boolean
+#  uri                          :string
+#  url                          :string
+#  visibility                   :integer          default("public"), not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  account_id                   :bigint(8)        not null
+#  application_id               :bigint(8)
+#  conversation_id              :bigint(8)
+#  in_reply_to_account_id       :bigint(8)
+#  in_reply_to_id               :bigint(8)
+#  poll_id                      :bigint(8)
+#  reblog_of_id                 :bigint(8)
 #
 
 class Status < ApplicationRecord
@@ -44,6 +44,20 @@ class Status < ApplicationRecord
   include Status::ThreadingConcern
   include Status::Visibility
   include Status::InteractionPolicyConcern
+
+  CACHEABLE_ASSOCIATIONS = [
+    :application,
+    :conversation,
+    :media_attachments,
+    :preloadable_poll,
+    :status_stat,
+    :tags,
+    account: [:account_stat, user: :role],
+    active_mentions: :account,
+    tagged_objects: :object,
+    preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
+    quote: { status: { account: [:account_stat, user: :role] } },
+  ].freeze
 
   MEDIA_ATTACHMENTS_LIMIT = 4
 
@@ -80,6 +94,7 @@ class Status < ApplicationRecord
   has_many :mentions, dependent: :destroy, inverse_of: :status
   has_many :mentioned_accounts, through: :mentions, source: :account, class_name: 'Account'
   has_many :media_attachments, dependent: :nullify
+  has_many :tagged_objects, dependent: :destroy
   has_many :quotes, foreign_key: 'quoted_status_id', inverse_of: :quoted_status, dependent: :nullify
 
   # The `dependent` option is enabled by the initial `mentions` association declaration
@@ -162,29 +177,11 @@ class Status < ApplicationRecord
   # the `dependent: destroy` callbacks remove relevant records
   before_destroy :unlink_from_conversations!, prepend: true
 
-  cache_associated :application,
-                   :media_attachments,
-                   :conversation,
-                   :status_stat,
-                   :tags,
-                   :preloadable_poll,
-                   quote: { status: { account: [:account_stat, user: :role] } },
-                   preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
-                   account: [:account_stat, user: :role],
-                   active_mentions: :account,
-                   reblog: [
-                     :application,
-                     :media_attachments,
-                     :conversation,
-                     :status_stat,
-                     :tags,
-                     :preloadable_poll,
-                     quote: { status: { account: [:account_stat, user: :role] } },
-                     preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
-                     account: [:account_stat, user: :role],
-                     active_mentions: :account,
-                   ],
-                   thread: :account
+  cache_associated(
+    *CACHEABLE_ASSOCIATIONS,
+    reblog: [*CACHEABLE_ASSOCIATIONS],
+    thread: :account
+  )
 
   delegate :domain, :indexable?, to: :account, prefix: true
 
@@ -362,7 +359,7 @@ class Status < ApplicationRecord
 
   class << self
     def favourites_map(status_ids, account_id)
-      Favourite.select(:status_id).where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |f, h| h[f.status_id] = true }
+      Favourite.select(:status_id).where(status_id: status_ids).where(account_id: account_id).to_h { |f| [f.status_id, true] }
     end
 
     def bookmarks_map(status_ids, account_id)
@@ -370,15 +367,15 @@ class Status < ApplicationRecord
     end
 
     def reblogs_map(status_ids, account_id)
-      unscoped.select(:reblog_of_id).where(reblog_of_id: status_ids).where(account_id: account_id).each_with_object({}) { |s, h| h[s.reblog_of_id] = true }
+      unscoped.select(:reblog_of_id).where(reblog_of_id: status_ids).where(account_id: account_id).to_h { |s| [s.reblog_of_id, true] }
     end
 
     def mutes_map(conversation_ids, account_id)
-      ConversationMute.select(:conversation_id).where(conversation_id: conversation_ids).where(account_id: account_id).each_with_object({}) { |m, h| h[m.conversation_id] = true }
+      ConversationMute.select(:conversation_id).where(conversation_id: conversation_ids).where(account_id: account_id).to_h { |m| [m.conversation_id, true] }
     end
 
     def pins_map(status_ids, account_id)
-      StatusPin.select(:status_id).where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |p, h| h[p.status_id] = true }
+      StatusPin.select(:status_id).where(status_id: status_ids).where(account_id: account_id).to_h { |p| [p.status_id, true] }
     end
 
     def from_text(text)

@@ -2,7 +2,7 @@ import { useCallback, useId, useMemo, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import CancelIcon from '@/material-icons/400-24px/cancel.svg?react';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
@@ -25,17 +25,17 @@ import {
   ItemList,
   Scrollable,
 } from 'mastodon/components/scrollable_list/components';
-import { useSearchAccounts } from 'mastodon/features/lists/use_search_accounts';
 import { useAccount } from 'mastodon/hooks/useAccount';
+import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { me } from 'mastodon/initial_state';
 import {
   addCollectionItem,
+  getCollectionItemIds,
   removeCollectionItem,
+  updateCollectionEditorField,
 } from 'mastodon/reducers/slices/collections';
 import { store, useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import type { TempCollectionState } from './state';
-import { getCollectionEditorState } from './state';
 import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
@@ -52,9 +52,8 @@ function isOlderThanAWeek(date?: string): boolean {
 
 const AddedAccountItem: React.FC<{
   accountId: string;
-  isRemovable: boolean;
   onRemove: (id: string) => void;
-}> = ({ accountId, isRemovable, onRemove }) => {
+}> = ({ accountId, onRemove }) => {
   const intl = useIntl();
   const account = useAccount(accountId);
 
@@ -62,9 +61,11 @@ const AddedAccountItem: React.FC<{
     onRemove(accountId);
   }, [accountId, onRemove]);
 
+  const lastStatusAt = account?.last_status_at;
+
   const lastPostHint = useMemo(
     () =>
-      isOlderThanAWeek(account?.last_status_at) && (
+      (!lastStatusAt || isOlderThanAWeek(lastStatusAt)) && (
         <Badge
           label={
             <FormattedMessage
@@ -76,7 +77,7 @@ const AddedAccountItem: React.FC<{
           className={classes.accountBadge}
         />
       ),
-    [account?.last_status_at],
+    [lastStatusAt],
   );
 
   return (
@@ -86,17 +87,15 @@ const AddedAccountItem: React.FC<{
       id={accountId}
       extraAccountInfo={lastPostHint}
     >
-      {isRemovable && (
-        <IconButton
-          title={intl.formatMessage({
-            id: 'collections.remove_account',
-            defaultMessage: 'Remove this account',
-          })}
-          icon='remove'
-          iconComponent={CancelIcon}
-          onClick={handleRemoveAccount}
-        />
-      )}
+      <IconButton
+        title={intl.formatMessage({
+          id: 'collections.remove_account',
+          defaultMessage: 'Remove this account',
+        })}
+        icon='remove'
+        iconComponent={CancelIcon}
+        onClick={handleRemoveAccount}
+      />
     </Account>
   );
 };
@@ -139,27 +138,24 @@ export const CollectionAccounts: React.FC<{
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const location = useLocation<TempCollectionState>();
-  const { id, initialItemIds } = getCollectionEditorState(
-    collection,
-    location.state,
-  );
-  const isEditMode = !!id;
-  const collectionItems = collection?.items;
 
-  const [searchValue, setSearchValue] = useState('');
-  // This state is only used when creating a new collection.
-  // In edit mode, the collection will be updated instantly
-  const [addedAccountIds, setAccountIds] = useState(initialItemIds);
+  const { id, items } = collection ?? {};
+  const isEditMode = !!id;
+  const collectionItems = items;
+
+  const addedAccountIds = useAppSelector(
+    (state) => state.collections.editor.accountIds,
+  );
+
+  // In edit mode, we're bypassing state and just return collection items directly,
+  // since they're edited "live", saving after each addition/deletion
   const accountIds = useMemo(
     () =>
-      isEditMode
-        ? (collectionItems
-            ?.map((item) => item.account_id)
-            .filter((id): id is string => !!id) ?? [])
-        : addedAccountIds,
+      isEditMode ? getCollectionItemIds(collectionItems) : addedAccountIds,
     [isEditMode, collectionItems, addedAccountIds],
   );
+
+  const [searchValue, setSearchValue] = useState('');
 
   const hasMaxAccounts = accountIds.length === MAX_ACCOUNT_COUNT;
 
@@ -233,28 +229,41 @@ export const CollectionAccounts: React.FC<{
     [dispatch, relationships],
   );
 
-  const removeAccountItem = useCallback((accountId: string) => {
-    setAccountIds((ids) => ids.filter((id) => id !== accountId));
-  }, []);
+  const removeAccountItem = useCallback(
+    (accountId: string) => {
+      dispatch(
+        updateCollectionEditorField({
+          field: 'accountIds',
+          value: accountIds.filter((id) => id !== accountId),
+        }),
+      );
+    },
+    [accountIds, dispatch],
+  );
 
   const addAccountItem = useCallback(
     (accountId: string) => {
       confirmFollowStatus(accountId, () => {
-        setAccountIds((ids) => [...ids, accountId]);
+        dispatch(
+          updateCollectionEditorField({
+            field: 'accountIds',
+            value: [...accountIds, accountId],
+          }),
+        );
       });
     },
-    [confirmFollowStatus],
+    [accountIds, confirmFollowStatus, dispatch],
   );
 
   const toggleAccountItem = useCallback(
     (item: SuggestionItem) => {
-      if (addedAccountIds.includes(item.id)) {
+      if (accountIds.includes(item.id)) {
         removeAccountItem(item.id);
       } else {
         addAccountItem(item.id);
       }
     },
-    [addAccountItem, addedAccountIds, removeAccountItem],
+    [accountIds, addAccountItem, removeAccountItem],
   );
 
   const instantRemoveAccountItem = useCallback(
@@ -367,6 +376,7 @@ export const CollectionAccounts: React.FC<{
           onSelectItem={
             isEditMode ? instantToggleAccountItem : toggleAccountItem
           }
+          closeOnSelect={false}
         />
         {hasMaxAccounts && (
           <FormattedMessage
@@ -406,7 +416,6 @@ export const CollectionAccounts: React.FC<{
               >
                 <AddedAccountItem
                   accountId={accountId}
-                  isRemovable={!isEditMode}
                   onRemove={handleRemoveAccountItem}
                 />
               </Article>

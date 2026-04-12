@@ -1,4 +1,4 @@
-name: 'Setup RUby'
+name: 'Setup Ruby'
 description: 'Setup a Ruby environment ready to run the Mastodon code'
 inputs:
   ruby-version:
@@ -14,10 +14,10 @@ runs:
       shell: bash
       run: |
         sudo apt-get update
-        sudo apt-get install -y libicu-dev libidn11-dev libvips42 ${{ inputs.additional-system-dependencies }}
+        sudo apt-get install --no-install-recommends -y libicu-dev libidn11-dev libvips42 ${{ inputs.additional-system-dependencies }}
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1
+      uses: ruby/setup-ruby@c984c1a20bb35a1cbda04477c816cea024418be9 # v1
       with:
         ruby-version: ${{ inputs.ruby-version }}
         bundler-cache: true

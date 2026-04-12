@@ -145,14 +145,13 @@ namespace :api, format: false do
         resources :peers, only: [:index]
         resources :rules, only: [:index]
         resources :domain_blocks, only: [:index]
+        resources :terms_of_service, only: [:index, :show], param: :date
+
         resource :privacy_policy, only: [:show]
-        resource :terms_of_service, only: [:show]
         resource :extended_description, only: [:show]
         resource :translation_languages, only: [:show]
         resource :languages, only: [:show]
         resource :activity, only: [:show], controller: :activity
-
-        get '/terms_of_service/:date', to: 'terms_of_services#show'
       end
     end
 
@@ -221,6 +220,7 @@ namespace :api, format: false do
         resources :identity_proofs, only: :index
         resources :featured_tags, only: :index
         resources :endorsements, only: :index
+        resources :email_subscriptions, only: :create
       end
 
       member do
@@ -258,7 +258,7 @@ namespace :api, format: false do
     end
 
     namespace :featured_tags do
-      get :suggestions, to: 'suggestions#index'
+      resources :suggestions, only: :index
     end
 
     resources :featured_tags, only: [:index, :create, :destroy]
@@ -300,32 +300,20 @@ namespace :api, format: false do
       resources :ip_blocks, only: [:index, :show, :update, :create, :destroy]
 
       namespace :trends do
-        resources :tags, only: [:index] do
+        concern :approvable do
           member do
             post :approve
             post :reject
           end
         end
-        resources :links, only: [:index] do
-          member do
-            post :approve
-            post :reject
-          end
-        end
-        resources :statuses, only: [:index] do
-          member do
-            post :approve
-            post :reject
-          end
+        with_options only: [:index], concerns: :approvable do
+          resources :tags
+          resources :links
+          resources :statuses
         end
 
         namespace :links do
-          resources :preview_card_providers, only: [:index], path: :publishers do
-            member do
-              post :approve
-              post :reject
-            end
-          end
+          resources :preview_card_providers, only: [:index], path: :publishers, concerns: :approvable
         end
       end
 
