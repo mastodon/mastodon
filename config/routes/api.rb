@@ -8,6 +8,7 @@ namespace :api, format: false do
   namespace :v1_alpha do
     resources :accounts, only: [] do
       resources :collections, only: [:index]
+      resources :in_collections, only: [:index]
     end
 
     resources :async_refreshes, only: :show
