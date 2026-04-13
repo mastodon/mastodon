@@ -7,12 +7,13 @@ RSpec.describe 'Api::V1Alpha::InCollections', feature: :collections do
 
   describe 'GET /api/v1_alpha/in_collections' do
     subject do
-      get '/api/v1_alpha/in_collections', headers: headers, params: params
+      get "/api/v1_alpha/accounts/#{account.id}/in_collections", headers: headers, params: params
     end
 
     let(:params) { {} }
+    let(:account) { user.account }
 
-    before { Fabricate.times(3, :collection_item, account: user.account) }
+    before { Fabricate.times(3, :collection_item, account: account) }
 
     it 'returns all collections for the given account and http success' do
       subject
@@ -32,7 +33,7 @@ RSpec.describe 'Api::V1Alpha::InCollections', feature: :collections do
 
         expect(response)
           .to include_pagination_headers(
-            next: api_v1_alpha_in_collections_url(limit: 1, offset: 1)
+            next: api_v1_alpha_account_in_collections_url(account, limit: 1, offset: 1)
           )
       end
     end
@@ -48,9 +49,20 @@ RSpec.describe 'Api::V1Alpha::InCollections', feature: :collections do
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v1_alpha_in_collections_url(limit: 1, offset: 0),
-            next: api_v1_alpha_in_collections_url(limit: 1, offset: 2)
+            prev: api_v1_alpha_account_in_collections_url(account, limit: 1, offset: 0),
+            next: api_v1_alpha_account_in_collections_url(account, limit: 1, offset: 2)
           )
+      end
+    end
+
+    context 'when requested account is different from current account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns http forbidden' do
+        subject
+
+        expect(response)
+          .to have_http_status(403)
       end
     end
   end

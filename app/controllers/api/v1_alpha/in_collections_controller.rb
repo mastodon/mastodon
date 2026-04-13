@@ -10,6 +10,7 @@ class Api::V1Alpha::InCollectionsController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:collections' }, only: [:index]
 
   before_action :require_user!
+  before_action :set_account, only: [:index]
   before_action :set_collections, only: [:index]
 
   after_action :insert_pagination_headers, only: [:index]
@@ -18,17 +19,19 @@ class Api::V1Alpha::InCollectionsController < Api::BaseController
 
   def index
     cache_if_unauthenticated!
-    authorize current_account, :index_collections?
+    authorize @account, :index_featured_in_collections?
 
     render json: @collections, each_serializer: REST::CollectionSerializer, adapter: :json
-  rescue Mastodon::NotPermittedError
-    render json: { collections: [] }
   end
 
   private
 
+  def set_account
+    @account = Account.find(params[:account_id])
+  end
+
   def set_collections
-    @collections = current_account.featured_in_collections
+    @collections = @account.featured_in_collections
       .with_tag
       .offset(offset_param)
       .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
@@ -41,17 +44,17 @@ class Api::V1Alpha::InCollectionsController < Api::BaseController
   def next_path
     return unless records_continue?
 
-    api_v1_alpha_in_collections_url(pagination_params(offset: offset_param + limit_param(DEFAULT_COLLECTIONS_LIMIT)))
+    api_v1_alpha_account_in_collections_url(@account, pagination_params(offset: offset_param + limit_param(DEFAULT_COLLECTIONS_LIMIT)))
   end
 
   def prev_path
     return if offset_param.zero?
 
-    api_v1_alpha_in_collections_url(pagination_params(offset: offset_param - limit_param(DEFAULT_COLLECTIONS_LIMIT)))
+    api_v1_alpha_account_in_collections_url(@account, pagination_params(offset: offset_param - limit_param(DEFAULT_COLLECTIONS_LIMIT)))
   end
 
   def records_continue?
-    ((offset_param * limit_param(DEFAULT_COLLECTIONS_LIMIT)) + @collections.size) < current_account.featured_in_collections.size
+    ((offset_param * limit_param(DEFAULT_COLLECTIONS_LIMIT)) + @collections.size) < @account.featured_in_collections.size
   end
 
   def offset_param
