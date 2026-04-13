@@ -1,0 +1,44 @@
+.wrapper {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  padding: 16px;
+  font-size: 15px;
+  color: var(--color-text-primary);
+}
+
+.title {
+  font-weight: 500;
+
+  :any-link,
+  button {
+    padding: 0;
+    border: none;
+    color: inherit;
+    background: none;
+    font: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.iconEnd {
+  margin-inline-start: auto;
+}
