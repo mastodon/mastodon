@@ -4,6 +4,7 @@ pt-PT:
     hints:
       account:
         attribution_domains: Um por linha. Protege contra falsas atribuições.
+        discoverable: Poderá aparecer em coleções criadas por outros utilizadores. Você e as suas publicações públicas também poderão ser sugeridos a utilizadores noutras funcionalidades de descoberta disponíveis no Mastodon.
         display_name: O seu nome completo ou o seu nome divertido.
         fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
         indexable: As suas mensagens públicas podem aparecer nos resultados da pesquisa no Mastodon. Independentemente disso, as pessoas que interagiram com as suas publicações podem ser capazes de as pesquisar.
@@ -25,7 +26,7 @@ pt-PT:
         types:
           disable: Impede o utilizador de usar a sua conta, mas não elimina ou oculta o seu conteúdo.
           none: Use isto para enviar um aviso ao utilizador, sem espoletar nenhuma outra ação.
-          sensitive: Forçar todos os anexos multimédia deste utilizador a serem assinalados como sensíveis.
+          sensitive: Força todos os anexos de media deste utilizador a serem sinalizados como sensíveis.
           silence: Impede que o utilizador possa publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem. Encerra todas as denúncias contra esta conta.
           suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias. Encerra todas as denúncias contra esta conta.
         warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
@@ -59,10 +60,10 @@ pt-PT:
         setting_boost_modal: Quando ativado, ao partilhar abrirá primeiro uma caixa de diálogo de confirmação onde poderá alterar a visibilidade da sua partilha.
         setting_default_quote_policy_private: As publicações exclusivas para seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
         setting_default_quote_policy_unlisted: Quando as pessoas o citarem, as respetivas publicações também serão ocultadas dos destaques.
-        setting_default_sensitive: Os multimédia sensíveis são ocultados por predefinição e podem ser revelados com um clique/toque
-        setting_display_media_default: Esconder multimédia marcada como sensível
-        setting_display_media_hide_all: Esconder sempre toda a multimédia
-        setting_display_media_show_all: Mostrar sempre a multimédia
+        setting_default_sensitive: Os media sensíveis são ocultados por predefinição e podem ser revelados com um clique
+        setting_display_media_default: Ocultar media marcada como sensível
+        setting_display_media_hide_all: Ocultar sempre toda a media
+        setting_display_media_show_all: Mostrar sempre a media
         setting_emoji_style: Como apresentar emojis. "Auto" tenta usar emojis nativos, mas reverte para Twemoji em navegadores mais antigos.
         setting_quick_boosting_html: Quando ativado, clicar no ícone %{boost_icon} Partilhar irá de imediato partilhar ao invés de abrir o menu de Partilhar/Citar. Relocaliza a ação Citar para o menu %{options_icon} (Opções).
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
@@ -80,7 +81,7 @@ pt-PT:
       filters:
         action: Escolha que ação executar quando uma publicação corresponder ao filtro
         actions:
-          blur: Esconder multimédia com um aviso à frente, sem esconder o texto
+          blur: Ocultar o conteúdo media por trás de um aviso, sem ocultar o próprio texto
           hide: Ocultar completamente o conteúdo filtrado, comportando-se como se não existisse
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
@@ -133,6 +134,7 @@ pt-PT:
         otp: 'Insira o código de autenticação de dois fatores gerado pelo seu telemóvel ou use um dos seus códigos de recuperação:'
         webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, toque nela.
       settings:
+        email_subscriptions: A desativação mantém os subscritores existentes, mas interrompe o envio de e-mails.
         indexable: A sua página de perfil pode aparecer nos resultados de pesquisa no Google, Bing e outros.
         show_application: Independentemente disso será sempre capaz de ver em que aplicação publicou a sua mensagem.
       tag:
@@ -152,6 +154,7 @@ pt-PT:
         jurisdiction: Indique o país de residência de quem paga as contas. Se se tratar de uma empresa ou outra entidade, indique o país onde está constituída, bem como a cidade, região, território ou estado, consoante o caso.
         min_age: Não deve ter menos do que a idade mínima exigida pela legislação da sua jurisdição.
       user:
+        chosen_languages: Quando esta opção estiver marcada, apenas as publicações nos idiomas selecionados serão exibidas nas cronologias públicas. Esta configuração não afeta a sua cronologia inicial nem as suas listas.
         date_of_birth:
           one: Temos de nos certificar que tem pelo menos %{count} para utilizar %{domain}. Não vamos guardar esta informação.
           other: Temos de nos certificar que tem pelo menos %{count} para utilizar %{domain}. Não vamos guardar esta informação.
@@ -174,6 +177,7 @@ pt-PT:
     labels:
       account:
         attribution_domains: Websites autorizados a atribuir-lhe crédito
+        discoverable: Destaque-me nas funcionalidades de descoberta
         fields:
           name: Rótulo
           value: Conteúdo
@@ -243,13 +247,13 @@ pt-PT:
         setting_default_language: Idioma de publicação
         setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
-        setting_default_sensitive: Marcar sempre os multimédia como sensíveis
+        setting_default_sensitive: Marcar sempre os media como sensíveis
         setting_delete_modal: Avisar-me antes de eliminar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o cursor
         setting_disable_swiping: Desativar os movimentos de deslize
-        setting_display_media: Visualização de multimédia
+        setting_display_media: Visualização de media
         setting_display_media_default: Pré-definição
-        setting_display_media_hide_all: Esconder todos
+        setting_display_media_hide_all: Ocultar todos
         setting_display_media_show_all: Mostrar todos
         setting_emoji_style: Estilo de emojis
         setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
@@ -262,7 +266,7 @@ pt-PT:
         setting_theme: Tema do sítio
         setting_trends: Mostrar as tendências de hoje
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
-        setting_use_blurhash: Mostrar gradientes coloridos para multimédias ocultas
+        setting_use_blurhash: Mostrar gradientes coloridos para medias ocultas
         setting_use_pending_items: Modo lento
         severity: Gravidade
         sign_in_token_attempt: Código de segurança
@@ -277,7 +281,7 @@ pt-PT:
         name: Etiqueta
       filters:
         actions:
-          blur: Esconder multimédia com um aviso
+          blur: Ocultar media com um aviso
           hide: Ocultar por completo
           warn: Ocultar com um aviso
       form_admin_settings:
@@ -353,6 +357,7 @@ pt-PT:
         hint: Informação Adicional
         text: Regra
       settings:
+        email_subscriptions: Ativar subscrições por e-mail
         indexable: Incluir página de perfil nos motores de busca
         show_application: Mostrar de que aplicação criou uma publicação
       tag:
