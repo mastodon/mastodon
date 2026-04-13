@@ -791,7 +791,8 @@ de:
         manage_blocks_description: E-Mail-Provider und IP-Adressen sperren
         manage_custom_emojis: Emojis
         manage_custom_emojis_description: Spezielle Emojis dieses Servers verwalten
-        manage_email_subscriptions: E-Mail-Benachrichtigungen verwalten
+        manage_email_subscriptions: E-Mail-Abonnements
+        manage_email_subscriptions_description: Profile können per E-Mail-Benachrichtigung abonniert werden
         manage_federation: Föderation
         manage_federation_description: Domains anderer Mastodon-Server sperren/zulassen – und Zustellbarkeit kontrollieren
         manage_invites: Einladungen
@@ -1424,10 +1425,18 @@ de:
   email_subscription_mailer:
     confirmation:
       action: E-Mail-Adresse bestätigen
+      instructions_to_confirm: Bitte bestätige, dass du per E-Mail benachrichtigt werden möchtest, sobald %{name} @(%{acct}) einen neuen Beitrag veröffentlicht.
+      instructions_to_ignore: Wenn du nicht weißt oder du dir nicht sicher bist, weshalb du diese E-Mail erhalten hast, kannst du sie einfach löschen. Du wird für das Abo nicht angemeldet, wenn du nicht auf den obigen Link klickst.
       subject: Bestätige deine E-Mail-Adresse
       title: E-Mail-Benachrichtigungen von %{name} erhalten?
     notification:
       create_account: Mastodon-Konto erstellen
+      footer:
+        privacy_html: E-Mails werden über %{domain}, einem Mastodon-Server, verschickt. Wie dieser Server deine personenbezogenen Daten verarbeitet, steht in der <a href="%{privacy_policy_path}">Datenschutzerklärung </a>.
+        reason_for_email_html: Du hast diese E-Mail erhalten, weil du dich für Neuigkeiten von %{name} angemeldet hast. Kein Interesse mehr? <a href="%{unsubscribe_path}">Abmelden</a>
+      interact_with_this_post:
+        one: Reagiere jetzt auf diesen Beitrag – und entdecke weitere Beiträge wie diesen.
+        other: Reagiere jetzt auf diese Beiträge – und entdecke weitere.
       subject:
         plural: Neue Beiträge von %{name}
         singular: 'Neuer Beitrag: „%{excerpt}“'
@@ -1439,6 +1448,7 @@ de:
     confirmations:
       show:
         changed_your_mind: Meinung geändert?
+        success_html: Du wirst nun per E-Mail benachrichtigt, sobald %{name} einen neuen Beitrag veröffentlichen wird. Füge sicherheitshalber noch %{sender} deinem Adressbuch hinzu, damit diese E-Mails nicht fälschlich im Spam-Ordner deines E-Mail-Postfachs landen.
         title: Du hast dich angemeldet
         unsubscribe: Abbestellen
     inactive: Deaktiviert
@@ -1779,6 +1789,7 @@ de:
           quadrillion: Brd.
           thousand: Tsd.
           trillion: Bio.
+          unit: ''
   otp_authentication:
     code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
@@ -2082,8 +2093,13 @@ de:
       action: Zur Homepage des Servers gehen
       email_subscription:
         confirmation_html: Du erhältst keine E-Mails mehr von %{name}.
+      title: Du wurdest abgemeldet
     show:
       action: Abbestellen
+      email_subscription:
+        title: "%{name} abbestellen?"
+      user:
+        title: "%{type} abbestellen?"
   user_mailer:
     announcement_published:
       description: 'Ankündigung der Administrator*innen von %{domain}:'
