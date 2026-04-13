@@ -176,7 +176,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def interaction_policy
-    uri = object.discoverable? ? ActivityPub::TagManager::COLLECTIONS[:public] : ActivityPub::TagManager.instance.uri_for(object)
+    uri = object.discoverable? && !object.locked? ? ActivityPub::TagManager::COLLECTIONS[:public] : ActivityPub::TagManager.instance.uri_for(object)
 
     {
       canFeature: {
