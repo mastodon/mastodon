@@ -429,7 +429,7 @@ async function calculateCroppedImage(
 
   return canvas.convertToBlob({
     quality: 0.7,
-    type: 'image/jpeg',
+    type: 'image/png',
   });
 }
 
