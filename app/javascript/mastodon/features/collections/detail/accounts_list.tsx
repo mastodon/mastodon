@@ -125,11 +125,11 @@ export const CollectionAccountsList: React.FC<{
       }
 
       const relationship = relationships.get(item.id);
-      if (!relationship || relationship.blocking || relationship.muting) {
+      if (relationship?.blocking || relationship?.muting) {
         hiddenAccounts.push(item);
+      } else {
+        visibleAccounts.push(item);
       }
-
-      visibleAccounts.push(item);
     });
 
     return { visibleAccounts, hiddenAccounts };
