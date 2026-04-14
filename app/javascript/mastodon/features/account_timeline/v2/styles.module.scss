@@ -67,6 +67,10 @@
   flex-wrap: nowrap;
   overflow: hidden;
   position: relative;
+
+  > button {
+    flex-shrink: 0;
+  }
 }
 
 .tagsListShowAll {
