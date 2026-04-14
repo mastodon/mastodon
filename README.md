@@ -4,7 +4,7 @@
 
 <p align="center">
   <a style="text-decoration:none" href="https://www.youtube.com/watch?v=IPSbNdBmWKE">
-    <img alt="Mastodon hero image" src="https://github.com/user-attachments/assets/7f171473-dc7a-4610-8489-d4abc42dad9d" />
+    <img alt="Mastodon hero image" src="./docs/hero-nodes.gif" />
   </a>
 </p>
 
