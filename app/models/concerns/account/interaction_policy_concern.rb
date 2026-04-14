@@ -64,6 +64,6 @@ module Account::InteractionPolicyConcern
   def local_feature_policy(kind)
     return [] if kind == :manual || !discoverable?
 
-    [:public]
+    [locked? ? :followers : :public]
   end
 end

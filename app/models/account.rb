@@ -473,7 +473,7 @@ class Account < ApplicationRecord
   end
 
   def featureable_by?(other_account)
-    return discoverable? if local?
+    return discoverable? && (!locked? || followed_by?(other_account)) if local?
 
     feature_policy_for_account(other_account).in?(%i(automatic manual))
   end
