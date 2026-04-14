@@ -45,6 +45,7 @@ class Form::AdminSettings
     remote_topic_feed_access
     landing_page
     wrapstodon
+    email_footer_text
   ).freeze
 
   INTEGER_KEYS = %i(

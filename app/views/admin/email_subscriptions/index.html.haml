@@ -1,0 +1,28 @@
+- content_for :page_title do
+  = t('.title')
+
+- content_for :heading do
+  .heading-with-lead
+    %h1= t('.title')
+    %p.lead= t('.lead')
+
+%hr.spacer/
+
+- if @enabled
+  = render 'roles', roles: @roles
+  %hr.spacer/
+  = render 'accounts', accounts: @accounts
+  %hr.spacer/
+  = render 'compliance_settings'
+  %hr.spacer/
+  = render 'danger_zone', accounts: @accounts
+- else
+  .simple_form
+    %p.lead= t('.disabled.description')
+
+    - if Rails.application.config.x.email_subscriptions
+      = link_to t('.disabled.get_started'), admin_email_subscriptions_setup_path, class: 'button'
+    - else
+      %aside.callout
+        .content
+          .body= t('.disabled.cannot_be_enabled')
