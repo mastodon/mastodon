@@ -2411,6 +2411,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/bigdecimal@npm:0.2.1":
+  version: 0.2.1
+  resolution: "@formatjs/bigdecimal@npm:0.2.1"
+  checksum: 10c0/04b72caf1608afe59f20313b73b80dba474b65485076c0f9a72b8145fcb0e04580a7a0592c2f88f739f4997b51326e2b9d6142e6c5b04c0c941d0294e2aa2f20
+  languageName: node
+  linkType: hard
+
 "@formatjs/cli@npm:^6.1.1":
   version: 6.7.4
   resolution: "@formatjs/cli@npm:6.7.4"
@@ -2461,6 +2468,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/fast-memoize@npm:3.1.2":
+  version: 3.1.2
+  resolution: "@formatjs/fast-memoize@npm:3.1.2"
+  checksum: 10c0/25af387ebb53146c8c09af34cda4ce82768f0855227ec854fb315d6dc2e7859e16724860fdea7991b3c7c5741154e3fcdd5169ef7a11ba1afb3ffd860613931c
+  languageName: node
+  linkType: hard
+
 "@formatjs/icu-messageformat-parser@npm:3.5.3":
   version: 3.5.3
   resolution: "@formatjs/icu-messageformat-parser@npm:3.5.3"
@@ -2468,6 +2482,15 @@ __metadata:
     "@formatjs/ecma402-abstract": "npm:3.2.0"
     "@formatjs/icu-skeleton-parser": "npm:2.1.3"
   checksum: 10c0/9a9632348df058e0da339234381b11f71b5ace1c93eaf1950b3eb45f4e146a73f8923af82818543e90c1135523b254d2c04fb47cab3624eb1f601d2a4edd35c6
+  languageName: node
+  linkType: hard
+
+"@formatjs/icu-messageformat-parser@npm:3.5.4":
+  version: 3.5.4
+  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.4"
+  dependencies:
+    "@formatjs/icu-skeleton-parser": "npm:2.1.4"
+  checksum: 10c0/3ff5ab209b63113d6b1779a4e8de6ee2cf941f3ad3f3ede2c8e425953a25456b6a1d880d734845244615dc9887fad10b62e75dee38858c731e45812402110efb
   languageName: node
   linkType: hard
 
@@ -2480,6 +2503,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/icu-skeleton-parser@npm:2.1.4":
+  version: 2.1.4
+  resolution: "@formatjs/icu-skeleton-parser@npm:2.1.4"
+  checksum: 10c0/9d6292443e4079c5718c50e32041a3bd192047449d181ae87e8cb6ef78c90f156f8b2d454008c9d0c2920c215daee5250c0eb214d13a105522a631f269e71b3c
+  languageName: node
+  linkType: hard
+
 "@formatjs/intl-localematcher@npm:0.8.2":
   version: 0.8.2
   resolution: "@formatjs/intl-localematcher@npm:0.8.2"
@@ -2489,26 +2519,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-pluralrules@npm:^6.0.0":
-  version: 6.3.1
-  resolution: "@formatjs/intl-pluralrules@npm:6.3.1"
+"@formatjs/intl-localematcher@npm:0.8.3":
+  version: 0.8.3
+  resolution: "@formatjs/intl-localematcher@npm:0.8.3"
   dependencies:
-    "@formatjs/bigdecimal": "npm:0.2.0"
-    "@formatjs/ecma402-abstract": "npm:3.2.0"
-    "@formatjs/intl-localematcher": "npm:0.8.2"
-  checksum: 10c0/8c0847d21d06276557316a01998528b79310b1c5411b0932b51dc88640a8ed6181c2221694d1d206a217f5a2be29227edfa52d1eca0873bc7c8c04b9a7dc2cc7
+    "@formatjs/fast-memoize": "npm:3.1.2"
+  checksum: 10c0/4693548ee9df74deb5f548635242ede0254507a531e04bb52d0983a653e7103bd4bfa1024e0b5b784fce1dadab57a31062bd7412b142f954c6614a7c9ee4cae7
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:4.1.5":
-  version: 4.1.5
-  resolution: "@formatjs/intl@npm:4.1.5"
+"@formatjs/intl-pluralrules@npm:^6.0.0":
+  version: 6.3.2
+  resolution: "@formatjs/intl-pluralrules@npm:6.3.2"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:3.2.0"
-    "@formatjs/fast-memoize": "npm:3.1.1"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.3"
-    intl-messageformat: "npm:11.2.0"
-  checksum: 10c0/2fd7c6211b38fd6178093e7358f015dc461bc80d428372064a0c144b1a32fce4050c34fa58b77af715b8dbf77909d408b59c7e714b0c612d1b573defe70828b2
+    "@formatjs/bigdecimal": "npm:0.2.1"
+    "@formatjs/intl-localematcher": "npm:0.8.3"
+  checksum: 10c0/7ff9a9a48efc970d6ebcb0902dc28fcf6577fd53f07c2b775ac918858a08d934317c654f6e481a978eeea2146a0e84ab7604f991d8bbdb147b42a004f582bec8
+  languageName: node
+  linkType: hard
+
+"@formatjs/intl@npm:4.1.6":
+  version: 4.1.6
+  resolution: "@formatjs/intl@npm:4.1.6"
+  dependencies:
+    "@formatjs/fast-memoize": "npm:3.1.2"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.4"
+    intl-messageformat: "npm:11.2.1"
+  checksum: 10c0/d1bdd4ba373efc249090970c54bb7b5373f88d4294b9e6c889f91c8214b047715578b4fde4c917f809fddd0d52d3ec360ddc9a96def9e7c237c4024161ca29a0
   languageName: node
   linkType: hard
 
@@ -2529,11 +2566,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ts-transformer@npm:4.4.3":
-  version: 4.4.3
-  resolution: "@formatjs/ts-transformer@npm:4.4.3"
+"@formatjs/ts-transformer@npm:4.4.4":
+  version: 4.4.4
+  resolution: "@formatjs/ts-transformer@npm:4.4.4"
   dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:3.5.3"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.4"
     "@types/node": "npm:22 || 24"
     json-stable-stringify: "npm:^1.3.0"
     typescript: "npm:^5.6 || 6"
@@ -2542,18 +2579,18 @@ __metadata:
   peerDependenciesMeta:
     ts-jest:
       optional: true
-  checksum: 10c0/f5a4b32098e2c37c7ab7b40a798b6fa8e24e23516384579a698175ab214e2052e45256cc39880891de8db583c326a2e9f8581e1d4f7a0dc5d4aaa2291dec058d
+  checksum: 10c0/88aecd69792c34d3dbe3da3866422c3c6668102d316dd0bad848ec56ac1cd11d011e4b9253b72e0241e934a68d6b0144dda85ab0e200019c572edab4b257d93b
   languageName: node
   linkType: hard
 
 "@formatjs/unplugin@npm:^1.1.5":
-  version: 1.1.6
-  resolution: "@formatjs/unplugin@npm:1.1.6"
+  version: 1.1.7
+  resolution: "@formatjs/unplugin@npm:1.1.7"
   dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:3.5.3"
-    "@formatjs/ts-transformer": "npm:4.4.3"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.4"
+    "@formatjs/ts-transformer": "npm:4.4.4"
     magic-string: "npm:^0.30.0"
-    oxc-parser: "npm:^0.120.0"
+    oxc-parser: "npm:^0.124.0"
     unplugin: "npm:^3.0.0"
   peerDependencies:
     "@rspack/core": ">=1"
@@ -2572,7 +2609,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10c0/9371206edfb7d0197a04fc64b6095eea759b04a135fc766a9fe49b9252a65c7fae1c487f40952e3ae6e82ca77ee0aae456c46e42ecc7753f1990bc95e673f064
+  checksum: 10c0/4578e27f0063095ac11dc717c42a483bd5e29e8eeba5ddafe95238f7c124a1c3f86edf933591f7efa3af950e5031bda77dd639fc10a11e11aae88ccdee61a0d2
   languageName: node
   linkType: hard
 
@@ -3040,7 +3077,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@napi-rs/wasm-runtime@npm:^1.1.1, @napi-rs/wasm-runtime@npm:^1.1.3":
+"@napi-rs/wasm-runtime@npm:^1.1.2, @napi-rs/wasm-runtime@npm:^1.1.3":
   version: 1.1.3
   resolution: "@napi-rs/wasm-runtime@npm:1.1.3"
   dependencies:
@@ -3154,159 +3191,152 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-android-arm-eabi@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-android-arm-eabi@npm:0.120.0"
+"@oxc-parser/binding-android-arm-eabi@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-android-arm-eabi@npm:0.124.0"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-android-arm64@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-android-arm64@npm:0.120.0"
+"@oxc-parser/binding-android-arm64@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-android-arm64@npm:0.124.0"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-darwin-arm64@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-darwin-arm64@npm:0.120.0"
+"@oxc-parser/binding-darwin-arm64@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-darwin-arm64@npm:0.124.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-darwin-x64@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-darwin-x64@npm:0.120.0"
+"@oxc-parser/binding-darwin-x64@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-darwin-x64@npm:0.124.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-freebsd-x64@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-freebsd-x64@npm:0.120.0"
+"@oxc-parser/binding-freebsd-x64@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-freebsd-x64@npm:0.124.0"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-arm-gnueabihf@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-arm-gnueabihf@npm:0.120.0"
+"@oxc-parser/binding-linux-arm-gnueabihf@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-arm-gnueabihf@npm:0.124.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-arm-musleabihf@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-arm-musleabihf@npm:0.120.0"
+"@oxc-parser/binding-linux-arm-musleabihf@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-arm-musleabihf@npm:0.124.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-arm64-gnu@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-arm64-gnu@npm:0.120.0"
+"@oxc-parser/binding-linux-arm64-gnu@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-arm64-gnu@npm:0.124.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-arm64-musl@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-arm64-musl@npm:0.120.0"
+"@oxc-parser/binding-linux-arm64-musl@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-arm64-musl@npm:0.124.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-ppc64-gnu@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-ppc64-gnu@npm:0.120.0"
+"@oxc-parser/binding-linux-ppc64-gnu@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-ppc64-gnu@npm:0.124.0"
   conditions: os=linux & cpu=ppc64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-riscv64-gnu@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-riscv64-gnu@npm:0.120.0"
+"@oxc-parser/binding-linux-riscv64-gnu@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-riscv64-gnu@npm:0.124.0"
   conditions: os=linux & cpu=riscv64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-riscv64-musl@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-riscv64-musl@npm:0.120.0"
+"@oxc-parser/binding-linux-riscv64-musl@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-riscv64-musl@npm:0.124.0"
   conditions: os=linux & cpu=riscv64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-s390x-gnu@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-s390x-gnu@npm:0.120.0"
+"@oxc-parser/binding-linux-s390x-gnu@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-s390x-gnu@npm:0.124.0"
   conditions: os=linux & cpu=s390x & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-x64-gnu@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-x64-gnu@npm:0.120.0"
+"@oxc-parser/binding-linux-x64-gnu@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-x64-gnu@npm:0.124.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-linux-x64-musl@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-linux-x64-musl@npm:0.120.0"
+"@oxc-parser/binding-linux-x64-musl@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-linux-x64-musl@npm:0.124.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-openharmony-arm64@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-openharmony-arm64@npm:0.120.0"
+"@oxc-parser/binding-openharmony-arm64@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-openharmony-arm64@npm:0.124.0"
   conditions: os=openharmony & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-wasm32-wasi@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-wasm32-wasi@npm:0.120.0"
+"@oxc-parser/binding-wasm32-wasi@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-wasm32-wasi@npm:0.124.0"
   dependencies:
-    "@napi-rs/wasm-runtime": "npm:^1.1.1"
+    "@napi-rs/wasm-runtime": "npm:^1.1.2"
   conditions: cpu=wasm32
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-win32-arm64-msvc@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-win32-arm64-msvc@npm:0.120.0"
+"@oxc-parser/binding-win32-arm64-msvc@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-win32-arm64-msvc@npm:0.124.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-win32-ia32-msvc@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-win32-ia32-msvc@npm:0.120.0"
+"@oxc-parser/binding-win32-ia32-msvc@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-win32-ia32-msvc@npm:0.124.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@oxc-parser/binding-win32-x64-msvc@npm:0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-parser/binding-win32-x64-msvc@npm:0.120.0"
+"@oxc-parser/binding-win32-x64-msvc@npm:0.124.0":
+  version: 0.124.0
+  resolution: "@oxc-parser/binding-win32-x64-msvc@npm:0.124.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-project/types@npm:=0.124.0":
+"@oxc-project/types@npm:=0.124.0, @oxc-project/types@npm:^0.124.0":
   version: 0.124.0
   resolution: "@oxc-project/types@npm:0.124.0"
   checksum: 10c0/9564ee3ce41f4b87802ffd0d62a7602d27f4503fbd39c1bedab98d54fde06e2ac254a8f85d8f679af1281a26e8fc7aa053fadbb3e09e786b38178eb38a8e2fb3
-  languageName: node
-  linkType: hard
-
-"@oxc-project/types@npm:^0.120.0":
-  version: 0.120.0
-  resolution: "@oxc-project/types@npm:0.120.0"
-  checksum: 10c0/3090ca95ed1467ae790a79cf7aa49d1ea4ac390dbfccb7afb914c138034d01e72115e2e137a3cc76f409ba424e4d2b160a599fe137c88033ad68ba2df1e40b29
   languageName: node
   linkType: hard
 
@@ -8785,14 +8815,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:11.2.0, intl-messageformat@npm:^11.0.0":
-  version: 11.2.0
-  resolution: "intl-messageformat@npm:11.2.0"
+"intl-messageformat@npm:11.2.1, intl-messageformat@npm:^11.0.0":
+  version: 11.2.1
+  resolution: "intl-messageformat@npm:11.2.1"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:3.2.0"
-    "@formatjs/fast-memoize": "npm:3.1.1"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.3"
-  checksum: 10c0/0f0a92324ef61c885902ff41c99754a65f0cc5cbe25d690c1771605117df4f97a786bb06dec50f12a7047e4cb2fab1f2516002df32e93be6ac02e1967e928e44
+    "@formatjs/fast-memoize": "npm:3.1.2"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.4"
+  checksum: 10c0/c4d2e43c2e7940a8dbd75d7a3b77d722c7ac8802707f7410067097e3a923243343bd36367edb4e922b13d1a10425a2f52c544c65c9368841d481816ed04c6c2b
   languageName: node
   linkType: hard
 
@@ -10658,31 +10687,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxc-parser@npm:^0.120.0":
-  version: 0.120.0
-  resolution: "oxc-parser@npm:0.120.0"
+"oxc-parser@npm:^0.124.0":
+  version: 0.124.0
+  resolution: "oxc-parser@npm:0.124.0"
   dependencies:
-    "@oxc-parser/binding-android-arm-eabi": "npm:0.120.0"
-    "@oxc-parser/binding-android-arm64": "npm:0.120.0"
-    "@oxc-parser/binding-darwin-arm64": "npm:0.120.0"
-    "@oxc-parser/binding-darwin-x64": "npm:0.120.0"
-    "@oxc-parser/binding-freebsd-x64": "npm:0.120.0"
-    "@oxc-parser/binding-linux-arm-gnueabihf": "npm:0.120.0"
-    "@oxc-parser/binding-linux-arm-musleabihf": "npm:0.120.0"
-    "@oxc-parser/binding-linux-arm64-gnu": "npm:0.120.0"
-    "@oxc-parser/binding-linux-arm64-musl": "npm:0.120.0"
-    "@oxc-parser/binding-linux-ppc64-gnu": "npm:0.120.0"
-    "@oxc-parser/binding-linux-riscv64-gnu": "npm:0.120.0"
-    "@oxc-parser/binding-linux-riscv64-musl": "npm:0.120.0"
-    "@oxc-parser/binding-linux-s390x-gnu": "npm:0.120.0"
-    "@oxc-parser/binding-linux-x64-gnu": "npm:0.120.0"
-    "@oxc-parser/binding-linux-x64-musl": "npm:0.120.0"
-    "@oxc-parser/binding-openharmony-arm64": "npm:0.120.0"
-    "@oxc-parser/binding-wasm32-wasi": "npm:0.120.0"
-    "@oxc-parser/binding-win32-arm64-msvc": "npm:0.120.0"
-    "@oxc-parser/binding-win32-ia32-msvc": "npm:0.120.0"
-    "@oxc-parser/binding-win32-x64-msvc": "npm:0.120.0"
-    "@oxc-project/types": "npm:^0.120.0"
+    "@oxc-parser/binding-android-arm-eabi": "npm:0.124.0"
+    "@oxc-parser/binding-android-arm64": "npm:0.124.0"
+    "@oxc-parser/binding-darwin-arm64": "npm:0.124.0"
+    "@oxc-parser/binding-darwin-x64": "npm:0.124.0"
+    "@oxc-parser/binding-freebsd-x64": "npm:0.124.0"
+    "@oxc-parser/binding-linux-arm-gnueabihf": "npm:0.124.0"
+    "@oxc-parser/binding-linux-arm-musleabihf": "npm:0.124.0"
+    "@oxc-parser/binding-linux-arm64-gnu": "npm:0.124.0"
+    "@oxc-parser/binding-linux-arm64-musl": "npm:0.124.0"
+    "@oxc-parser/binding-linux-ppc64-gnu": "npm:0.124.0"
+    "@oxc-parser/binding-linux-riscv64-gnu": "npm:0.124.0"
+    "@oxc-parser/binding-linux-riscv64-musl": "npm:0.124.0"
+    "@oxc-parser/binding-linux-s390x-gnu": "npm:0.124.0"
+    "@oxc-parser/binding-linux-x64-gnu": "npm:0.124.0"
+    "@oxc-parser/binding-linux-x64-musl": "npm:0.124.0"
+    "@oxc-parser/binding-openharmony-arm64": "npm:0.124.0"
+    "@oxc-parser/binding-wasm32-wasi": "npm:0.124.0"
+    "@oxc-parser/binding-win32-arm64-msvc": "npm:0.124.0"
+    "@oxc-parser/binding-win32-ia32-msvc": "npm:0.124.0"
+    "@oxc-parser/binding-win32-x64-msvc": "npm:0.124.0"
+    "@oxc-project/types": "npm:^0.124.0"
   dependenciesMeta:
     "@oxc-parser/binding-android-arm-eabi":
       optional: true
@@ -10724,7 +10753,7 @@ __metadata:
       optional: true
     "@oxc-parser/binding-win32-x64-msvc":
       optional: true
-  checksum: 10c0/12b717560645480f12954b2eaaabcf8043dfc7a8bc0105627ff11d7958d52a90eaf9f5cfb6af82f148d5e69ef7c57ac5a84f8834fc1edda695b2b09d6bb4e73d
+  checksum: 10c0/06bd6b937f0574f49b74112cf2af3fb9990e7445d40126fca2c6ceb950c7ba5e10fbb223d941341c8207376620f6ee37466779a4fbff78ed7a67e15df3459d9c
   languageName: node
   linkType: hard
 
@@ -12036,17 +12065,16 @@ __metadata:
   linkType: hard
 
 "react-intl@npm:^10.0.0":
-  version: 10.1.1
-  resolution: "react-intl@npm:10.1.1"
+  version: 10.1.2
+  resolution: "react-intl@npm:10.1.2"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:3.2.0"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.3"
-    "@formatjs/intl": "npm:4.1.5"
-    intl-messageformat: "npm:11.2.0"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.4"
+    "@formatjs/intl": "npm:4.1.6"
+    intl-messageformat: "npm:11.2.1"
   peerDependencies:
     "@types/react": 19
     react: 19
-  checksum: 10c0/97ac04e5813d22bb0f7cbc7332c41a683b61deddd9f1e2720c72536bc74abb23713b02602bf69c1fbd99ab1d087ff1b334a1ef89b2332c867b9030187d128dd9
+  checksum: 10c0/785a4c0d16a5cb64888b23f6f2d8a87296bde05f1f834c34c5f7f6a73dcab6115afbbb0d4e71471fb287a9c919f32b54ed4b6284e60d21368dec1244eaf3e736
   languageName: node
   linkType: hard
 
