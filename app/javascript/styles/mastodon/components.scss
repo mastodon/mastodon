@@ -6367,8 +6367,13 @@ a.status-card {
 
   &__top {
     border-radius: 16px 16px 0 0;
-    border-bottom: 0;
+    border-bottom-width: 0;
     gap: 16px;
+  }
+
+  &__top:not(:has(+ .safety-action-modal__bottom)) {
+    border-radius: 16px;
+    border-bottom-width: 1px;
   }
 
   &__bottom {
