@@ -66,15 +66,15 @@ RSpec.describe Request do
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
-      it 'executes a HTTP request when the first address is private' do
-        resolver = instance_double(Resolv::DNS)
+      context 'when first address is private' do
+        before { allow(Resolv).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:4860:4860::8844)) }
 
-        allow(resolver).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:4860:4860::8844))
-        allow(resolver).to receive(:timeouts=).and_return(nil)
-        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
-
-        expect { |block| subject.perform(&block) }.to yield_control
-        expect(a_request(:get, 'http://example.com')).to have_been_made.once
+        it 'executes a HTTP request' do
+          expect { |block| subject.perform(&block) }
+            .to yield_control
+          expect(a_request(:get, 'http://example.com'))
+            .to have_been_made.once
+        end
       end
 
       it 'makes a request with expected headers, yields, and closes the underlying connection' do
@@ -123,14 +123,11 @@ RSpec.describe Request do
         WebMock.enable!
       end
 
+      before { allow(Resolv).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:db8::face)) }
+
       it 'raises Mastodon::ValidationError' do
-        resolver = instance_double(Resolv::DNS)
-
-        allow(resolver).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:db8::face))
-        allow(resolver).to receive(:timeouts=).and_return(nil)
-        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
-
-        expect { subject.perform }.to raise_error Mastodon::ValidationError
+        expect { subject.perform }
+          .to raise_error Mastodon::ValidationError
       end
     end
 

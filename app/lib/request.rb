@@ -292,11 +292,8 @@ class Request
         begin
           addresses = [IPAddr.new(host)]
         rescue IPAddr::InvalidAddressError
-          Resolv::DNS.open do |dns|
-            dns.timeouts = 5
-            addresses = dns.getaddresses(host)
-            addresses = addresses.grep(Resolv::IPv6).take(2) + addresses.grep_v(Resolv::IPv6).take(2)
-          end
+          addresses = Resolv.getaddresses(host)
+          addresses = addresses.grep(Resolv::IPv6::Regex).take(2) + addresses.grep_v(Resolv::IPv6::Regex).take(2)
         end
 
         socks = []
