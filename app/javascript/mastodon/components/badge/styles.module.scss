@@ -7,9 +7,9 @@
   gap: 4px;
   border-radius: 8px;
   align-items: center;
-  overflow-wrap: anywhere;
 
   > svg {
+    flex-shrink: 0;
     width: auto;
     height: 17px;
     fill: currentColor;
@@ -24,6 +24,12 @@
   &:not(.badgeWithoutIcon) {
     padding-inline-end: 8px;
   }
+}
+
+.content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .domain {
