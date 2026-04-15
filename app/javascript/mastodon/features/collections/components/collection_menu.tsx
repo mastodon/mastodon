@@ -4,6 +4,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { matchPath } from 'react-router';
 
+import { initBlockModal } from '@/mastodon/actions/blocks';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import MoreVertIcon from '@/material-icons/400-24px/more_vert.svg?react';
 import { openModal } from 'mastodon/actions/modal';
@@ -33,6 +34,10 @@ const messages = defineMessages({
     id: 'collections.report_collection',
     defaultMessage: 'Report this collection',
   },
+  blockOwner: {
+    id: 'collections.block_collection_owner',
+    defaultMessage: 'Block account',
+  },
   revoke: {
     id: 'collections.revoke_collection_inclusion',
     defaultMessage: 'Remove myself from this collection',
@@ -42,15 +47,18 @@ const messages = defineMessages({
 
 export const CollectionMenu: React.FC<{
   collection: ApiCollectionJSON;
-  context: 'list' | 'collection';
+  context: 'list' | 'notifications' | 'collection';
   className?: string;
 }> = ({ collection, context, className }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
 
-  const { id, name, account_id } = collection;
-  const isOwnCollection = account_id === me;
+  const { id, name, account_id, items } = collection;
   const ownerAccount = useAccount(account_id);
+  const isOwnCollection = account_id === me;
+  const currentAccountInCollection = items.find(
+    (item) => item.account_id === me,
+  );
 
   const openDeleteConfirmation = useCallback(() => {
     dispatch(
@@ -75,9 +83,9 @@ export const CollectionMenu: React.FC<{
     );
   }, [collection, dispatch]);
 
-  const currentAccountInCollection = collection.items.find(
-    (item) => item.account_id === me,
-  );
+  const openBlockModal = useCallback(() => {
+    dispatch(initBlockModal(ownerAccount));
+  }, [ownerAccount, dispatch]);
 
   const openRevokeConfirmation = useCallback(() => {
     void dispatch(
@@ -92,8 +100,12 @@ export const CollectionMenu: React.FC<{
   }, [collection.id, currentAccountInCollection?.id, dispatch]);
 
   const menu = useMemo(() => {
+    const viewCollectionItem: MenuItem = {
+      text: intl.formatMessage(messages.view),
+      to: `/collections/${id}`,
+    };
     if (isOwnCollection) {
-      const commonItems: MenuItem[] = [
+      const ownerItems: MenuItem[] = [
         {
           text: intl.formatMessage(editorMessages.manageAccounts),
           to: `/collections/${id}/edit`,
@@ -111,18 +123,14 @@ export const CollectionMenu: React.FC<{
       ];
 
       if (context === 'list') {
-        return [
-          { text: intl.formatMessage(messages.view), to: `/collections/${id}` },
-          null,
-          ...commonItems,
-        ];
+        return [viewCollectionItem, null, ...ownerItems];
       } else {
-        return commonItems;
+        return ownerItems;
       }
     } else {
-      const items: MenuItem[] = [];
+      const items: MenuItem[] = [viewCollectionItem];
 
-      if (ownerAccount) {
+      if (ownerAccount && context !== 'notifications') {
         const featuredCollectionsPath = `/@${ownerAccount.acct}/featured`;
         // Don't show menu link to featured collections while on that very page
         if (
@@ -131,29 +139,35 @@ export const CollectionMenu: React.FC<{
             exact: true,
           })
         ) {
-          items.push(
-            ...[
-              {
-                text: intl.formatMessage(messages.viewOtherCollections),
-                to: featuredCollectionsPath,
-              },
-              null,
-            ],
-          );
+          items.push({
+            text: intl.formatMessage(messages.viewOtherCollections),
+            to: featuredCollectionsPath,
+          });
         }
       }
 
       if (currentAccountInCollection) {
-        items.push({
-          text: intl.formatMessage(messages.revoke),
-          action: openRevokeConfirmation,
-        });
-      }
+        items.push(null);
 
-      items.push({
-        text: intl.formatMessage(messages.report),
-        action: openReportModal,
-      });
+        // Collection notifications already have a prominent 'Remove me' button
+        if (context !== 'notifications') {
+          items.push({
+            text: intl.formatMessage(messages.revoke),
+            action: openRevokeConfirmation,
+          });
+        }
+
+        items.push(
+          {
+            text: intl.formatMessage(messages.report),
+            action: openReportModal,
+          },
+          {
+            text: intl.formatMessage(messages.blockOwner),
+            action: openBlockModal,
+          },
+        );
+      }
 
       return items;
     }
@@ -163,10 +177,11 @@ export const CollectionMenu: React.FC<{
     id,
     openDeleteConfirmation,
     context,
-    currentAccountInCollection,
-    openRevokeConfirmation,
     ownerAccount,
+    currentAccountInCollection,
     openReportModal,
+    openBlockModal,
+    openRevokeConfirmation,
   ]);
 
   return (

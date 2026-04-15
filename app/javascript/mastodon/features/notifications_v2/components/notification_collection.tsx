@@ -74,7 +74,7 @@ export const NotificationCollection: React.FC<{
           <Button
             compact
             secondary
-            className='destructive'
+            className='button--destructive'
             onClick={confirmRevoke}
           >
             <FormattedMessage
@@ -84,7 +84,7 @@ export const NotificationCollection: React.FC<{
           </Button>
 
           <CollectionMenu
-            context='list'
+            context='notifications'
             collection={collection}
             className={classes.menuButton}
           />
