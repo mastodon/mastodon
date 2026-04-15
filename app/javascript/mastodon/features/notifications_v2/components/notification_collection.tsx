@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import { Button } from '@/mastodon/components/button';
-import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { Icon } from '@/mastodon/components/icon';
 import { CollectionMenu } from '@/mastodon/features/collections/components/collection_menu';
 import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
@@ -48,7 +48,12 @@ export const NotificationCollection: React.FC<{
                 defaultMessage='{name} added you to a collection'
                 values={{
                   name: (
-                    <DisplayNameSimple account={collectionCreatorAccount} />
+                    <LinkedDisplayName
+                      displayProps={{
+                        variant: 'simple',
+                        account: collectionCreatorAccount,
+                      }}
+                    />
                   ),
                 }}
               />
@@ -59,7 +64,12 @@ export const NotificationCollection: React.FC<{
                 defaultMessage='{name} edited a collection you’re in'
                 values={{
                   name: (
-                    <DisplayNameSimple account={collectionCreatorAccount} />
+                    <LinkedDisplayName
+                      displayProps={{
+                        variant: 'simple',
+                        account: collectionCreatorAccount,
+                      }}
+                    />
                   ),
                 }}
               />
