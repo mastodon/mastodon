@@ -97,7 +97,7 @@ export const TruncatedListItems = <TListItem,>({
         truncatedItems.map((item, index) => {
           return renderListItem({
             item,
-            index: index + initialListSize,
+            index: initialListSize + index + 1,
             totalListLength,
             isLastElement: index === truncatedItems.length - 1,
           });
