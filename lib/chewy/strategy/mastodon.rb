@@ -17,6 +17,9 @@ module Chewy
         RedisConnection.with do |redis|
           redis.pipelined do |pipeline|
             @stash.each do |type, ids|
+              ids = ids&.compact
+              next if ids.blank?
+
               pipeline.sadd("chewy:queue:#{type.name}", ids)
             end
           end
