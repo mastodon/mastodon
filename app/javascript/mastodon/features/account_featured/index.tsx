@@ -88,7 +88,8 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
 
   const hasFeaturedAccounts = !featuredAccountIds.isEmpty();
 
-  const isLoading = !accountId || collectionsLoadStatus !== 'idle';
+  const isLoading =
+    !accountId || (collectionsEnabled && collectionsLoadStatus !== 'idle');
 
   if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
