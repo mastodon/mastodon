@@ -93,6 +93,18 @@ RSpec.describe REST::AccountSerializer do
               'current_user' => 'automatic',
             })
           end
+
+          context 'when account is locked' do
+            let(:account) { Fabricate(:account, locked: true) }
+
+            it 'includes a policy that allows featuring for followers' do
+              expect(subject['feature_approval']).to include({
+                'automatic' => ['followers'],
+                'manual' => [],
+                'current_user' => 'automatic',
+              })
+            end
+          end
         end
 
         context 'when account is not discoverable' do
