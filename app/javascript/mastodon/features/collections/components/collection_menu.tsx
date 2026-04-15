@@ -4,6 +4,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { matchPath } from 'react-router';
 
+import { showAlert } from '@/mastodon/actions/alerts';
 import { initBlockModal } from '@/mastodon/actions/blocks';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import MoreVertIcon from '@/material-icons/400-24px/more_vert.svg?react';
@@ -21,6 +22,18 @@ const messages = defineMessages({
   view: {
     id: 'collections.view_collection',
     defaultMessage: 'View collection',
+  },
+  share: {
+    id: 'collections.share_short',
+    defaultMessage: 'Share',
+  },
+  copyLink: {
+    id: 'collections.copy_link',
+    defaultMessage: 'Copy link',
+  },
+  copyLinkConfirmation: {
+    id: 'collections.copy_link_confirmation',
+    defaultMessage: 'Copied collection link to clipboard',
   },
   viewOtherCollections: {
     id: 'collections.view_other_collections_by_user',
@@ -59,6 +72,17 @@ export const CollectionMenu: React.FC<{
   const currentAccountInCollection = items.find(
     (item) => item.account_id === me,
   );
+
+  const openShareModal = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'SHARE_COLLECTION',
+        modalProps: {
+          collection,
+        },
+      }),
+    );
+  }, [collection, dispatch]);
 
   const openDeleteConfirmation = useCallback(() => {
     dispatch(
@@ -104,8 +128,24 @@ export const CollectionMenu: React.FC<{
       text: intl.formatMessage(messages.view),
       to: `/collections/${id}`,
     };
+    const shareItems: MenuItem[] = [
+      {
+        text: intl.formatMessage(messages.share),
+        action: openShareModal,
+      },
+      {
+        text: intl.formatMessage(messages.copyLink),
+        action: () => {
+          void navigator.clipboard.writeText(`/collections/${id}`);
+          dispatch(showAlert({ message: messages.copyLinkConfirmation }));
+        },
+      },
+    ];
+
     if (isOwnCollection) {
       const ownerItems: MenuItem[] = [
+        ...shareItems,
+        null,
         {
           text: intl.formatMessage(editorMessages.manageAccounts),
           to: `/collections/${id}/edit`,
@@ -123,14 +163,14 @@ export const CollectionMenu: React.FC<{
       ];
 
       if (context === 'list') {
-        return [viewCollectionItem, null, ...ownerItems];
+        return [viewCollectionItem, ...ownerItems];
       } else {
         return ownerItems;
       }
     } else {
-      const items: MenuItem[] = [viewCollectionItem];
+      const nonOwnerItems: MenuItem[] = [viewCollectionItem, ...shareItems];
 
-      if (ownerAccount && context !== 'notifications') {
+      if (context !== 'notifications' && ownerAccount) {
         const featuredCollectionsPath = `/@${ownerAccount.acct}/featured`;
         // Don't show menu link to featured collections while on that very page
         if (
@@ -139,7 +179,7 @@ export const CollectionMenu: React.FC<{
             exact: true,
           })
         ) {
-          items.push({
+          nonOwnerItems.push({
             text: intl.formatMessage(messages.viewOtherCollections),
             to: featuredCollectionsPath,
           });
@@ -147,17 +187,17 @@ export const CollectionMenu: React.FC<{
       }
 
       if (currentAccountInCollection) {
-        items.push(null);
+        nonOwnerItems.push(null);
 
         // Collection notifications already have a prominent 'Remove me' button
         if (context !== 'notifications') {
-          items.push({
+          nonOwnerItems.push({
             text: intl.formatMessage(messages.revoke),
             action: openRevokeConfirmation,
           });
         }
 
-        items.push(
+        nonOwnerItems.push(
           {
             text: intl.formatMessage(messages.report),
             action: openReportModal,
@@ -169,12 +209,14 @@ export const CollectionMenu: React.FC<{
         );
       }
 
-      return items;
+      return nonOwnerItems;
     }
   }, [
-    isOwnCollection,
     intl,
     id,
+    openShareModal,
+    isOwnCollection,
+    dispatch,
     openDeleteConfirmation,
     context,
     ownerAccount,
