@@ -5,16 +5,16 @@ import { FormattedMessage } from 'react-intl';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import ElephantDarkImage from '@/images/elephant_ui_dark.svg?react';
-import ElephantLightImage from '@/images/elephant_ui_light.svg?react';
+import ElephantImage from '@/images/elephant_ui.svg?react';
 import { openModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import { EmptyState } from '@/mastodon/components/empty_state';
 import { LimitedAccountHint } from '@/mastodon/features/account_timeline/components/limited_account_hint';
 import { areCollectionsEnabled } from '@/mastodon/features/collections/utils';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
-import { useTheme } from '@/mastodon/hooks/useTheme';
 import { useAppDispatch } from '@/mastodon/store';
+
+import classes from './empty_message.module.scss';
 
 interface EmptyMessageProps {
   suspended: boolean;
@@ -33,9 +33,6 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
 }) => {
   const { acct } = useParams<{ acct?: string }>();
   const me = useCurrentAccountId();
-  const theme = useTheme();
-  const ElephantImage =
-    theme === 'dark' ? ElephantDarkImage : ElephantLightImage;
 
   const dispatch = useAppDispatch();
 
@@ -57,7 +54,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
 
   const hasCollections = areCollectionsEnabled();
 
-  const image = <ElephantImage />;
+  const image = <ElephantImage className={classes.image} />;
 
   if (me === accountId) {
     if (hasCollections) {
