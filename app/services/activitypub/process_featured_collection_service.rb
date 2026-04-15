@@ -46,6 +46,13 @@ class ActivityPub::ProcessFeaturedCollectionService
     @json['summaryMap']&.keys&.first
   end
 
+  def url
+    url = url_to_href(@json['url'], 'text/html')
+    return @json['id'] if url.blank? || unsupported_uri_scheme?(url)
+
+    url
+  end
+
   def collection_attributes
     {
       local: false,
@@ -56,6 +63,7 @@ class ActivityPub::ProcessFeaturedCollectionService
       discoverable: @json['discoverable'],
       original_number_of_items: @json['totalItems'] || 0,
       tag_name: @json.dig('topic', 'name'),
+      url:,
     }
   end
 

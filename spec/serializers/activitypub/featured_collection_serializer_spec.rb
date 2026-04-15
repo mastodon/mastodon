@@ -25,6 +25,7 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
       'attributedTo' => ActivityPub::TagManager.instance.uri_for(collection.account),
       'sensitive' => false,
       'discoverable' => false,
+      'url' => account_collection_url(collection.account, collection),
       'topic' => {
         'href' => match(%r{/tags/people$}),
         'type' => 'Hashtag',
