@@ -65,7 +65,7 @@ export const TruncatedListItems = <TListItem,>({
         });
       })}
       {hasHiddenAccounts && (
-        <Article aria-posinset={initialListSize} aria-setsize={initialListSize}>
+        <Article aria-posinset={initialListSize} aria-setsize={totalListLength}>
           <ListItemWrapper
             icon={
               toggleButton.icon && (
