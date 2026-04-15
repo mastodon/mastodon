@@ -186,27 +186,26 @@ export const CollectionMenu: React.FC<{
         }
       }
 
+      nonOwnerItems.push(null);
+
+      // Collection notifications already have a prominent 'Remove me' button
+      if (currentAccountInCollection && context !== 'notifications') {
+        nonOwnerItems.push({
+          text: intl.formatMessage(messages.revoke),
+          action: openRevokeConfirmation,
+        });
+      }
+
+      nonOwnerItems.push({
+        text: intl.formatMessage(messages.report),
+        action: openReportModal,
+      });
+
       if (currentAccountInCollection) {
-        nonOwnerItems.push(null);
-
-        // Collection notifications already have a prominent 'Remove me' button
-        if (context !== 'notifications') {
-          nonOwnerItems.push({
-            text: intl.formatMessage(messages.revoke),
-            action: openRevokeConfirmation,
-          });
-        }
-
-        nonOwnerItems.push(
-          {
-            text: intl.formatMessage(messages.report),
-            action: openReportModal,
-          },
-          {
-            text: intl.formatMessage(messages.blockOwner),
-            action: openBlockModal,
-          },
-        );
+        nonOwnerItems.push({
+          text: intl.formatMessage(messages.blockOwner),
+          action: openBlockModal,
+        });
       }
 
       return nonOwnerItems;
