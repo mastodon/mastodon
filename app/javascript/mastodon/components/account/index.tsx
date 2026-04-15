@@ -277,7 +277,7 @@ export const Account: React.FC<AccountProps> = ({
   if (account?.mute_expires_at) {
     muteTimeRemaining = (
       <>
-        · <RelativeTimestamp timestamp={account.mute_expires_at} />
+        · <RelativeTimestamp hasFuture timestamp={account.mute_expires_at} />
       </>
     );
   }

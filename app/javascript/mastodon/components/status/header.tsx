@@ -56,10 +56,7 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
         className='status__relative-time'
       >
         <StatusVisibility visibility={status.get('visibility')} />
-        <RelativeTimestamp
-          timestamp={status.get('created_at') as string}
-          noFuture
-        />
+        <RelativeTimestamp timestamp={status.get('created_at') as string} />
         {editedAt && <StatusEditedAt editedAt={editedAt} />}
       </Link>
 
