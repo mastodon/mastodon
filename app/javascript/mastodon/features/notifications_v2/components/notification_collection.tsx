@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Button } from '@/mastodon/components/button';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { Icon } from '@/mastodon/components/icon';
+import { CollectionMenu } from '@/mastodon/features/collections/components/collection_menu';
 import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
 import { useConfirmRevoke } from '@/mastodon/features/collections/detail/revoke_collection_inclusion_modal';
 import { useAccount } from '@/mastodon/hooks/useAccount';
@@ -13,8 +14,6 @@ import type {
   NotificationGroupAddedToCollection,
   NotificationGroupCollectionUpdate,
 } from 'mastodon/models/notification_group';
-
-import { CollectionMenu } from '../../collections/components/collection_menu';
 
 import classes from './notification_collection.module.scss';
 
