@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.9] - 2026-04-15
+
+### Security
+
+- Insufficient verification of email addresses ([GHSA-5r37-qpwq-2jhh](https://github.com/mastodon/mastodon/security/advisories/GHSA-5r37-qpwq-2jhh))
+- Updated dependencies
+
+### Added
+
+- Add trademark warning to `mastodon:setup` task (#38548 by @ClearlyClaire)
+
+### Fixed
+
+- Fix definition for `quote` in JSON-LD context (#38686 by @ClearlyClaire)
+- Fix being unable to disable sound for quote update notification (#38537 by @ClearlyClaire)
+- Fix being able to quote someone you blocked (#38608 by @ClearlyClaire)
+
 ## [4.5.8] - 2026-03-24
 
 ### Security
