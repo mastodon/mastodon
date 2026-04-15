@@ -149,11 +149,7 @@ export const AccountListItem: React.FC<Props> = ({
             }
           >
             {account.last_status_at ? (
-              <RelativeTimestamp
-                long
-                timestamp={account.last_status_at}
-                noFuture
-              />
+              <RelativeTimestamp long timestamp={account.last_status_at} />
             ) : (
               '-'
             )}

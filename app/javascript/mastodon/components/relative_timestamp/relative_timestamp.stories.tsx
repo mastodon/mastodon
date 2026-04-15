@@ -11,7 +11,7 @@ const meta = {
     timestamp: new Date(Date.now() - DAY * 3).toISOString(),
     long: false,
     noTime: false,
-    noFuture: false,
+    hasFuture: false,
   },
   argTypes: {
     timestamp: {
@@ -44,10 +44,10 @@ export const DateOnly: Story = {
   },
 };
 
-export const NoFuture: Story = {
+export const HasFuture: Story = {
   args: {
     timestamp: new Date(Date.now() + DAY * 3).toISOString(),
-    noFuture: true,
+    hasFuture: true,
   },
 };
 
