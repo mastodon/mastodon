@@ -2,8 +2,12 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
+import { Button } from '@/mastodon/components/button';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { Icon } from '@/mastodon/components/icon';
+import { CollectionMenu } from '@/mastodon/features/collections/components/collection_menu';
+import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
+import { useConfirmRevoke } from '@/mastodon/features/collections/detail/revoke_collection_inclusion_modal';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import CollectionsFilledIcon from '@/material-icons/400-24px/category-fill.svg?react';
 import type {
@@ -11,7 +15,7 @@ import type {
   NotificationGroupCollectionUpdate,
 } from 'mastodon/models/notification_group';
 
-import { CollectionPreviewCard } from '../../collections/components/collection_preview_card';
+import classes from './notification_collection.module.scss';
 
 export const NotificationCollection: React.FC<{
   notification:
@@ -21,6 +25,7 @@ export const NotificationCollection: React.FC<{
 }> = ({ notification, unread }) => {
   const { collection, type } = notification;
   const collectionCreatorAccount = useAccount(collection.account_id);
+  const confirmRevoke = useConfirmRevoke(collection);
 
   return (
     <div
@@ -43,7 +48,12 @@ export const NotificationCollection: React.FC<{
                 defaultMessage='{name} added you to a collection'
                 values={{
                   name: (
-                    <DisplayNameSimple account={collectionCreatorAccount} />
+                    <LinkedDisplayName
+                      displayProps={{
+                        variant: 'simple',
+                        account: collectionCreatorAccount,
+                      }}
+                    />
                   ),
                 }}
               />
@@ -54,7 +64,12 @@ export const NotificationCollection: React.FC<{
                 defaultMessage='{name} edited a collection you’re in'
                 values={{
                   name: (
-                    <DisplayNameSimple account={collectionCreatorAccount} />
+                    <LinkedDisplayName
+                      displayProps={{
+                        variant: 'simple',
+                        account: collectionCreatorAccount,
+                      }}
+                    />
                   ),
                 }}
               />
@@ -63,6 +78,26 @@ export const NotificationCollection: React.FC<{
         </div>
 
         <CollectionPreviewCard collection={collection} />
+
+        <div className={classes.actions}>
+          <Button
+            compact
+            secondary
+            className='button--destructive'
+            onClick={confirmRevoke}
+          >
+            <FormattedMessage
+              id='collections.detail.revoke_inclusion'
+              defaultMessage='Remove me'
+            />
+          </Button>
+
+          <CollectionMenu
+            context='notifications'
+            collection={collection}
+            className={classes.menuButton}
+          />
+        </div>
       </div>
     </div>
   );

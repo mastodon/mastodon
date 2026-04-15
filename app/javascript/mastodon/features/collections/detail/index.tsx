@@ -115,7 +115,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   );
   const isCurrentUserInCollection = !isOwnCollection && currentUserIndex > -1;
 
-  const handleShare = useCallback(() => {
+  const openShareModal = useCallback(() => {
     dispatch(
       openModal({
         modalType: 'SHARE_COLLECTION',
@@ -132,9 +132,9 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
     if (isNewCollection) {
       // Replace with current pathname to clear `newCollection` state
       history.replace(location.pathname);
-      handleShare();
+      openShareModal();
     }
-  }, [history, handleShare, isNewCollection, location.pathname]);
+  }, [history, openShareModal, isNewCollection, location.pathname]);
 
   return (
     <header className={classes.header}>
@@ -150,7 +150,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
             icon='share-icon'
             title={intl.formatMessage(messages.share)}
             className={classes.iconButton}
-            onClick={handleShare}
+            onClick={openShareModal}
           />
           <CollectionMenu
             context='collection'
