@@ -19,6 +19,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
       'featuredObject' => featured_object_uri,
       'featuredObjectType' => 'Person',
       'featureAuthorization' => feature_authorization_uri,
+      'published' => '2026-04-16T01:00:00Z',
     }
   end
   let(:stubbed_service) do
@@ -56,6 +57,7 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
           new_item = collection.collection_items.last
           expect(new_item.object_uri).to eq 'https://example.com/actor/1'
           expect(new_item.approval_uri).to be_nil
+          expect(new_item.created_at).to eq Time.utc(2026, 4, 16, 1)
           expect(new_item.position).to eq 3
         end
       end

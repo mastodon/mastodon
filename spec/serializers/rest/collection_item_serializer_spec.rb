@@ -19,7 +19,8 @@ RSpec.describe REST::CollectionItemSerializer do
         .to include(
           'id' => '2342',
           'account_id' => collection_item.account_id.to_s,
-          'state' => 'accepted'
+          'state' => 'accepted',
+          'created_at' => match_api_datetime_format
         )
     end
   end

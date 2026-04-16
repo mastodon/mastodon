@@ -39,6 +39,7 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
           'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_items.first.account),
           'featuredObjectType' => 'Person',
           'featureAuthorization' => ap_account_feature_authorization_url(collection_items.first.account_id, collection_items.first),
+          'published' => match_api_datetime_format,
         },
         {
           'id' => ActivityPub::TagManager.instance.uri_for(collection_items.last),
@@ -46,6 +47,7 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
           'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_items.last.account),
           'featuredObjectType' => 'Person',
           'featureAuthorization' => ap_account_feature_authorization_url(collection_items.last.account_id, collection_items.last),
+          'published' => match_api_datetime_format,
         },
       ],
       'published' => match_api_datetime_format,

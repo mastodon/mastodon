@@ -43,7 +43,9 @@ class ActivityPub::ProcessFeaturedItemService
   end
 
   def new_item
-    @collection.collection_items.new
+    @collection.collection_items.new(
+      created_at: @item_json['published']
+    )
   end
 
   def verify_authorization!
