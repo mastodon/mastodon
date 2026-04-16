@@ -4,7 +4,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
-import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { openModal } from 'mastodon/actions/modal';
 import { apiFollowAccount } from 'mastodon/api/accounts';
@@ -15,7 +14,6 @@ import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
 import { EmptyState } from 'mastodon/components/empty_state';
 import { FormStack, ComboboxField } from 'mastodon/components/form_fields';
-import { Icon } from 'mastodon/components/icon';
 import {
   Article,
   ItemList,
@@ -59,10 +57,9 @@ const AddedAccountItem: React.FC<{
 
 interface SuggestionItem {
   id: string;
-  isSelected: boolean;
 }
 
-const SuggestedAccountItem: React.FC<SuggestionItem> = ({ id, isSelected }) => {
+const SuggestedAccountItem: React.FC<SuggestionItem> = ({ id }) => {
   const account = useAccount(id);
 
   if (!account) return null;
@@ -71,23 +68,15 @@ const SuggestedAccountItem: React.FC<SuggestionItem> = ({ id, isSelected }) => {
     <>
       <Avatar account={account} />
       <DisplayName account={account} />
-      {isSelected && (
-        <Icon
-          id='checked'
-          icon={CheckIcon}
-          className={classes.selectedSuggestionIcon}
-        />
-      )}
     </>
   );
 };
 
 const renderAccountItem = (item: SuggestionItem) => (
-  <SuggestedAccountItem id={item.id} isSelected={item.isSelected} />
+  <SuggestedAccountItem id={item.id} />
 );
 
 const getItemId = (item: SuggestionItem) => item.id;
-const getIsItemSelected = (item: SuggestionItem) => item.isSelected;
 
 export const CollectionAccounts: React.FC<{
   collection?: ApiCollectionJSON | null;
@@ -96,9 +85,8 @@ export const CollectionAccounts: React.FC<{
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const { id, items } = collection ?? {};
+  const { id, items: collectionItems } = collection ?? {};
   const isEditMode = !!id;
-  const collectionItems = items;
 
   const addedAccountIds = useAppSelector(
     (state) => state.collections.editor.accountIds,
@@ -121,16 +109,18 @@ export const CollectionAccounts: React.FC<{
     accountIds: suggestedAccountIds,
     isLoading: isLoadingSuggestions,
     searchAccounts,
+    resetAccounts,
   } = useSearchAccounts({
     withRelationships: true,
     filterResults: (account) =>
+      !accountIds.includes(account.id) &&
       // Only suggest accounts who allow being featured/recommended
       account.feature_approval.current_user === 'automatic',
   });
 
   const suggestedItems = suggestedAccountIds.map((id) => ({
     id,
-    isSelected: accountIds.includes(id),
+    isDisabled: accountIds.includes(id),
   }));
 
   const handleSearchValueChange = useCallback(
@@ -200,28 +190,17 @@ export const CollectionAccounts: React.FC<{
   );
 
   const addAccountItem = useCallback(
-    (accountId: string) => {
-      confirmFollowStatus(accountId, () => {
+    (item: SuggestionItem) => {
+      confirmFollowStatus(item.id, () => {
         dispatch(
           updateCollectionEditorField({
             field: 'accountIds',
-            value: [...accountIds, accountId],
+            value: [...accountIds, item.id],
           }),
         );
       });
     },
     [accountIds, confirmFollowStatus, dispatch],
-  );
-
-  const toggleAccountItem = useCallback(
-    (item: SuggestionItem) => {
-      if (accountIds.includes(item.id)) {
-        removeAccountItem(item.id);
-      } else {
-        addAccountItem(item.id);
-      }
-    },
-    [accountIds, addAccountItem, removeAccountItem],
   );
 
   const instantRemoveAccountItem = useCallback(
@@ -247,23 +226,16 @@ export const CollectionAccounts: React.FC<{
   );
 
   const instantAddAccountItem = useCallback(
-    (collectionId: string, accountId: string) => {
-      confirmFollowStatus(accountId, () => {
-        void dispatch(addCollectionItem({ collectionId, accountId }));
+    (item: SuggestionItem) => {
+      confirmFollowStatus(item.id, () => {
+        if (id) {
+          void dispatch(
+            addCollectionItem({ collectionId: id, accountId: item.id }),
+          );
+        }
       });
     },
-    [confirmFollowStatus, dispatch],
-  );
-
-  const instantToggleAccountItem = useCallback(
-    (item: SuggestionItem) => {
-      if (accountIds.includes(item.id)) {
-        instantRemoveAccountItem(item.id);
-      } else if (id) {
-        instantAddAccountItem(id, item.id);
-      }
-    },
-    [accountIds, id, instantAddAccountItem, instantRemoveAccountItem],
+    [confirmFollowStatus, dispatch, id],
   );
 
   const handleRemoveAccountItem = useCallback(
@@ -275,6 +247,20 @@ export const CollectionAccounts: React.FC<{
       }
     },
     [isEditMode, instantRemoveAccountItem, removeAccountItem],
+  );
+
+  const handleSelectItem = useCallback(
+    (item: SuggestionItem) => {
+      if (isEditMode) {
+        instantAddAccountItem(item);
+      } else {
+        addAccountItem(item);
+      }
+
+      setSearchValue('');
+      resetAccounts();
+    },
+    [addAccountItem, instantAddAccountItem, isEditMode, resetAccounts],
   );
 
   const handleSubmit = useCallback(
@@ -321,12 +307,8 @@ export const CollectionAccounts: React.FC<{
             isLoading={isLoadingSuggestions}
             items={suggestedItems}
             getItemId={getItemId}
-            getIsItemSelected={getIsItemSelected}
             renderItem={renderAccountItem}
-            onSelectItem={
-              isEditMode ? instantToggleAccountItem : toggleAccountItem
-            }
-            closeOnSelect={false}
+            onSelectItem={handleSelectItem}
           />
         </header>
 

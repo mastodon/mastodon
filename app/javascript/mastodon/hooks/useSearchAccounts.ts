@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -73,8 +73,13 @@ export function useSearchAccounts({
     { leading: true, trailing: true },
   );
 
+  const resetAccounts = useCallback(() => {
+    setAccountIds([]);
+  }, []);
+
   return {
     searchAccounts,
+    resetAccounts,
     accountIds,
     isLoading: loadingState === 'loading',
     isError: loadingState === 'error',
