@@ -36,7 +36,7 @@ class CollectionItem < ApplicationRecord
   validates :uri, presence: true, if: :remote_item_with_remote_account?
 
   before_validation :set_position, on: :create
-  before_validation :set_activity_uri, only: :create, if: :local_item_with_remote_account?
+  before_validation :set_activity_uri, on: :create, if: :local_item_with_remote_account?
 
   scope :ordered, -> { order(position: :asc) }
   scope :with_accounts, -> { includes(account: [:account_stat, :user]) }
