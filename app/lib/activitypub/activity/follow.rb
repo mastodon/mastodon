@@ -11,7 +11,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
     # Update id of already-existing follow requests
     existing_follow_request = ::FollowRequest.find_by(account: @account, target_account: target_account)
     unless existing_follow_request.nil?
-      existing_follow_request.update!(uri: @json['id'])
+      existing_follow_request.update!(uri: @json['id']) if @json['id'].present?
       return
     end
 
@@ -23,7 +23,7 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
     # Fast-forward repeat follow requests
     existing_follow = ::Follow.find_by(account: @account, target_account: target_account)
     unless existing_follow.nil?
-      existing_follow.update!(uri: @json['id'])
+      existing_follow.update!(uri: @json['id']) if @json['id'].present?
       AuthorizeFollowService.new.call(@account, target_account, skip_follow_request: true, follow_request_uri: @json['id'])
       return
     end
