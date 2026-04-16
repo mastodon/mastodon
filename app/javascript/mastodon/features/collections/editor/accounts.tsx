@@ -354,7 +354,7 @@ export const CollectionAccounts: React.FC<{
                 <EmptyState
                   title={
                     <FormattedMessage
-                      id='collections.accounts.empty_title'
+                      id='collections.accounts.empty_editor_title'
                       defaultMessage='No one is in this collection yet'
                     />
                   }
