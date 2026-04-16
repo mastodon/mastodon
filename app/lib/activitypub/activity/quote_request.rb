@@ -28,7 +28,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     return unless status.quote.quoted_status == quoted_status && status.account == @account
 
     status.quote.ensure_quoted_access
-    status.quote.update!(activity_uri: @json['id']) if @json['id'].present?
+    status.quote.update!(activity_uri: @json['id'])
     status.quote.accept!
 
     json = serialize_payload(status.quote, ActivityPub::AcceptQuoteRequestSerializer).to_json
