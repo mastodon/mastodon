@@ -4,22 +4,18 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
-import CancelIcon from '@/material-icons/400-24px/cancel.svg?react';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
-import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { openModal } from 'mastodon/actions/modal';
 import { apiFollowAccount } from 'mastodon/api/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Account } from 'mastodon/components/account';
 import { Avatar } from 'mastodon/components/avatar';
-import { Badge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
 import { EmptyState } from 'mastodon/components/empty_state';
-import { FormStack, Combobox } from 'mastodon/components/form_fields';
+import { FormStack, ComboboxField } from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
-import { IconButton } from 'mastodon/components/icon_button';
 import {
   Article,
   ItemList,
@@ -37,65 +33,26 @@ import {
 import { store, useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import classes from './styles.module.scss';
-import { WizardStepHeader } from './wizard_step_header';
+import { WizardStepTitle } from './wizard_step_title';
 
 const MAX_ACCOUNT_COUNT = 25;
-
-function isOlderThanAWeek(date?: string): boolean {
-  if (!date) return false;
-
-  const targetDate = new Date(date);
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-  return targetDate < sevenDaysAgo;
-}
 
 const AddedAccountItem: React.FC<{
   accountId: string;
   onRemove: (id: string) => void;
 }> = ({ accountId, onRemove }) => {
-  const intl = useIntl();
-  const account = useAccount(accountId);
-
   const handleRemoveAccount = useCallback(() => {
     onRemove(accountId);
   }, [accountId, onRemove]);
 
-  const lastStatusAt = account?.last_status_at;
-
-  const lastPostHint = useMemo(
-    () =>
-      (!lastStatusAt || isOlderThanAWeek(lastStatusAt)) && (
-        <Badge
-          label={
-            <FormattedMessage
-              id='collections.old_last_post_note'
-              defaultMessage='Last posted over a week ago'
-            />
-          }
-          icon={<WarningIcon />}
-          className={classes.accountBadge}
-        />
-      ),
-    [lastStatusAt],
-  );
-
   return (
-    <Account
-      minimal
-      key={accountId}
-      id={accountId}
-      extraAccountInfo={lastPostHint}
-    >
-      <IconButton
-        title={intl.formatMessage({
-          id: 'collections.remove_account',
-          defaultMessage: 'Remove this account',
-        })}
-        icon='remove'
-        iconComponent={CancelIcon}
-        onClick={handleRemoveAccount}
-      />
+    <Account minimal key={accountId} id={accountId}>
+      <Button compact secondary onClick={handleRemoveAccount}>
+        <FormattedMessage
+          id='collections.remove_account'
+          defaultMessage='Remove'
+        />
+      </Button>
     </Account>
   );
 };
@@ -157,6 +114,7 @@ export const CollectionAccounts: React.FC<{
 
   const [searchValue, setSearchValue] = useState('');
 
+  const hasAccounts = accountIds.length > 0;
   const hasMaxAccounts = accountIds.length === MAX_ACCOUNT_COUNT;
 
   const {
@@ -333,117 +291,113 @@ export const CollectionAccounts: React.FC<{
   );
 
   const inputId = useId();
-  const inputLabel = intl.formatMessage({
-    id: 'collections.search_accounts_label',
-    defaultMessage: 'Search for accounts to add…',
-  });
+  const AccountsHeadingElement = id ? 'h2' : 'h3';
 
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
       <FormStack className={classes.formFieldStack}>
-        {!id && (
-          <WizardStepHeader
-            step={1}
-            title={
-              <FormattedMessage
-                id='collections.create.accounts_title'
-                defaultMessage='Who will you feature in this collection?'
-              />
-            }
-            description={
-              <FormattedMessage
-                id='collections.create.accounts_subtitle'
-                defaultMessage='Only accounts you follow who have opted into discovery can be added.'
-              />
-            }
-          />
-        )}
-        <label htmlFor={inputId} className='sr-only'>
-          {inputLabel}
-        </label>
-        <Combobox
-          id={inputId}
-          placeholder={inputLabel}
-          value={hasMaxAccounts ? '' : searchValue}
-          onChange={handleSearchValueChange}
-          onKeyDown={handleSearchKeyDown}
-          disabled={hasMaxAccounts}
-          isLoading={isLoadingSuggestions}
-          items={suggestedItems}
-          getItemId={getItemId}
-          getIsItemSelected={getIsItemSelected}
-          renderItem={renderAccountItem}
-          onSelectItem={
-            isEditMode ? instantToggleAccountItem : toggleAccountItem
-          }
-          closeOnSelect={false}
-        />
-        {hasMaxAccounts && (
-          <FormattedMessage
-            id='collections.search_accounts_max_reached'
-            defaultMessage='You have added the maximum number of accounts'
-          />
-        )}
-
-        <Scrollable className={classes.scrollableWrapper}>
-          <ItemList
-            className={classes.scrollableInner}
-            emptyMessage={
-              <EmptyState
-                title={
-                  <FormattedMessage
-                    id='collections.accounts.empty_title'
-                    defaultMessage='This collection is empty'
-                  />
-                }
-                message={
-                  <FormattedMessage
-                    id='collections.accounts.empty_description'
-                    defaultMessage='Add up to {count} accounts you follow'
-                    values={{
-                      count: MAX_ACCOUNT_COUNT,
-                    }}
-                  />
-                }
-              />
-            }
-          >
-            {accountIds.map((accountId, index) => (
-              <Article
-                key={accountId}
-                aria-posinset={index}
-                aria-setsize={accountIds.length}
-              >
-                <AddedAccountItem
-                  accountId={accountId}
-                  onRemove={handleRemoveAccountItem}
-                />
-              </Article>
-            ))}
-          </ItemList>
-        </Scrollable>
-      </FormStack>
-      {!isEditMode && (
-        <div className={classes.stickyFooter}>
-          <div className={classes.actionWrapper}>
-            <FormattedMessage
-              id='collections.hints.accounts_counter'
-              defaultMessage='{count} / {max} accounts'
-              values={{ count: accountIds.length, max: MAX_ACCOUNT_COUNT }}
-            >
-              {(text) => <div className={classes.itemCountReadout}>{text}</div>}
-            </FormattedMessage>
-            <Button type='submit'>
-              {id ? (
-                <FormattedMessage id='lists.save' defaultMessage='Save' />
-              ) : (
+        <header className={classes.header}>
+          {!id && (
+            <WizardStepTitle
+              step={1}
+              title={
                 <FormattedMessage
-                  id='collections.continue'
-                  defaultMessage='Continue'
+                  id='collections.create.accounts_title'
+                  defaultMessage='Who will you feature in this collection?'
                 />
-              )}
-            </Button>
-          </div>
+              }
+            />
+          )}
+          <ComboboxField
+            id={inputId}
+            label={intl.formatMessage({
+              id: 'collections.search_accounts_label',
+              defaultMessage: 'Search for an account to add',
+            })}
+            value={hasMaxAccounts ? '' : searchValue}
+            onChange={handleSearchValueChange}
+            onKeyDown={handleSearchKeyDown}
+            disabled={hasMaxAccounts}
+            isLoading={isLoadingSuggestions}
+            items={suggestedItems}
+            getItemId={getItemId}
+            getIsItemSelected={getIsItemSelected}
+            renderItem={renderAccountItem}
+            onSelectItem={
+              isEditMode ? instantToggleAccountItem : toggleAccountItem
+            }
+            closeOnSelect={false}
+          />
+        </header>
+
+        <div>
+          {hasAccounts && (
+            <AccountsHeadingElement className={classes.listHeading}>
+              <FormattedMessage
+                id='collections.hints.accounts_counter'
+                defaultMessage='{count}/{max} accounts'
+                values={{ count: accountIds.length, max: MAX_ACCOUNT_COUNT }}
+              />
+            </AccountsHeadingElement>
+          )}
+
+          {hasMaxAccounts && (
+            <FormattedMessage
+              id='collections.search_accounts_max_reached'
+              defaultMessage='You have added the maximum number of accounts'
+            />
+          )}
+
+          <Scrollable className={classes.scrollableWrapper}>
+            <ItemList
+              emptyMessage={
+                <EmptyState
+                  title={
+                    <FormattedMessage
+                      id='collections.accounts.empty_title'
+                      defaultMessage='No one is in this collection yet'
+                    />
+                  }
+                  message={
+                    <FormattedMessage
+                      id='collections.accounts.empty_description'
+                      defaultMessage='Add up to {count} accounts'
+                      values={{
+                        count: MAX_ACCOUNT_COUNT,
+                      }}
+                    />
+                  }
+                />
+              }
+            >
+              {accountIds.map((accountId, index) => (
+                <Article
+                  key={accountId}
+                  aria-posinset={index}
+                  aria-setsize={accountIds.length}
+                >
+                  <AddedAccountItem
+                    accountId={accountId}
+                    onRemove={handleRemoveAccountItem}
+                  />
+                </Article>
+              ))}
+            </ItemList>
+          </Scrollable>
+        </div>
+      </FormStack>
+      {!isEditMode && hasAccounts && (
+        <div className={classes.stickyFooter}>
+          <Button type='submit'>
+            {id ? (
+              <FormattedMessage id='lists.save' defaultMessage='Save' />
+            ) : (
+              <FormattedMessage
+                id='collections.continue'
+                defaultMessage='Continue'
+              />
+            )}
+          </Button>
         </div>
       )}
     </form>

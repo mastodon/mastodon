@@ -1,10 +1,17 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .step {
   font-size: 13px;
   color: var(--color-text-secondary);
 }
 
 .title {
-  font-size: 22px;
+  font-size: 17px;
+  font-weight: 500;
   line-height: 1.2;
   margin-top: 4px;
 }
@@ -12,6 +19,13 @@
 .description {
   font-size: 15px;
   margin-top: 8px;
+}
+
+.listHeading {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 /* Make form stretch full height of the column */
@@ -46,12 +60,11 @@
 }
 
 .formFieldStack {
-  flex-grow: 1;
+  gap: 16px;
 }
 
-.scrollableWrapper,
-.scrollableInner {
-  margin-inline: -8px;
+.scrollableWrapper {
+  margin-inline: -16px;
 }
 
 .submitDisabledCallout {
@@ -61,32 +74,10 @@
 .stickyFooter {
   position: sticky;
   bottom: var(--bottom-spacing);
-  padding: 16px;
+  padding-inline: 16px;
   background-image: linear-gradient(
     to bottom,
     transparent,
     var(--color-bg-primary) 32px
   );
-}
-
-.itemCountReadout {
-  text-align: center;
-}
-
-.actionWrapper {
-  display: flex;
-  flex-direction: column;
-  width: min-content;
-  min-width: 240px;
-  margin-inline: auto;
-  gap: 8px;
-}
-
-.accountBadge {
-  margin-inline-start: 56px;
-
-  @container (width < 360px) {
-    margin-top: 4px;
-    margin-inline-start: 46px;
-  }
 }
