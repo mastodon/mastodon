@@ -8,7 +8,7 @@ import { showAlertForError } from 'mastodon/actions/alerts';
 import { openModal } from 'mastodon/actions/modal';
 import { apiFollowAccount } from 'mastodon/api/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
-import { Account } from 'mastodon/components/account';
+import { AccountListItem } from 'mastodon/components/account_list_item';
 import { Avatar } from 'mastodon/components/avatar';
 import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
@@ -43,16 +43,19 @@ const AddedAccountItem: React.FC<{
     onRemove(accountId);
   }, [accountId, onRemove]);
 
-  return (
-    <Account minimal key={accountId} id={accountId}>
+  const renderButton = useCallback(
+    () => (
       <Button compact secondary onClick={handleRemoveAccount}>
         <FormattedMessage
           id='collections.remove_account'
           defaultMessage='Remove'
         />
       </Button>
-    </Account>
+    ),
+    [handleRemoveAccount],
   );
+
+  return <AccountListItem accountId={accountId} renderButton={renderButton} />;
 };
 
 interface SuggestionItem {
