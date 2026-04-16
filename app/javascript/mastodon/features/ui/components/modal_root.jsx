@@ -39,7 +39,6 @@ import {
   ConfirmClearNotificationsModal,
   ConfirmLogOutModal,
   ConfirmFollowToListModal,
-  ConfirmFollowToCollectionModal,
   ConfirmMissingAltTextModal,
   ConfirmRevokeQuoteModal,
   QuietPostQuoteInfoModal,
