@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe REST::CollectionSerializer do
+  include RoutingHelper
+
   subject do
     serialized_record_json(collection, described_class, options: {
       scope: current_user,
@@ -37,6 +39,7 @@ RSpec.describe REST::CollectionSerializer do
         'local' => true,
         'sensitive' => true,
         'discoverable' => false,
+        'url' => account_collection_url(collection.account, collection),
         'tag' => a_hash_including('name' => 'discovery'),
         'created_at' => match_api_datetime_format,
         'updated_at' => match_api_datetime_format,
@@ -46,7 +49,11 @@ RSpec.describe REST::CollectionSerializer do
   end
 
   context 'when the collection is remote' do
-    let(:collection) { Fabricate(:remote_collection, description_html: '<p>remote</p>') }
+    let(:collection) { Fabricate(:remote_collection, description_html: '<p>remote</p>', url: 'https://example.com/c/1') }
+
+    it 'includes the uri' do
+      expect(subject).to include('url' => 'https://example.com/c/1')
+    end
 
     it 'includes the html description' do
       expect(subject)
