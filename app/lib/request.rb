@@ -292,7 +292,8 @@ class Request
         begin
           addresses = [IPAddr.new(host)]
         rescue IPAddr::InvalidAddressError
-          addresses = Resolv.getaddresses(host)
+          resolvers = [Resolv::Hosts.new, Resolv::DNS.new.tap { |dns| dns.timeouts = 5 }]
+          addresses = Resolv.new(resolvers).getaddresses(host)
           addresses = addresses.grep(Resolv::IPv6::Regex).take(2) + addresses.grep_v(Resolv::IPv6::Regex).take(2)
         end
 

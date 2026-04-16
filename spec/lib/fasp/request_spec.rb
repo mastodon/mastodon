@@ -86,7 +86,12 @@ RSpec.describe Fasp::Request do
         WebMock.enable!
       end
 
-      before { allow(Resolv).to receive(:getaddresses).with('reqprov.example.com').and_return(%w(0.0.0.0 2001:db8::face)) }
+      let(:resolv_service) { instance_double(Resolv) }
+
+      before do
+        allow(Resolv).to receive(:new).and_return(resolv_service)
+        allow(resolv_service).to receive(:getaddresses).with('reqprov.example.com').and_return(%w(0.0.0.0 2001:db8::face))
+      end
 
       it 'raises Mastodon::ValidationError' do
         expect { subject.send(method, '/test_path') }

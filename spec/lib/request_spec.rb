@@ -67,7 +67,12 @@ RSpec.describe Request do
       end
 
       context 'when first address is private' do
-        before { allow(Resolv).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:4860:4860::8844)) }
+        let(:resolv_service) { instance_double(Resolv) }
+
+        before do
+          allow(Resolv).to receive(:new).and_return(resolv_service)
+          allow(resolv_service).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:4860:4860::8844))
+        end
 
         it 'executes a HTTP request' do
           expect { |block| subject.perform(&block) }
@@ -123,7 +128,12 @@ RSpec.describe Request do
         WebMock.enable!
       end
 
-      before { allow(Resolv).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:db8::face)) }
+      let(:resolv_service) { instance_double(Resolv) }
+
+      before do
+        allow(Resolv).to receive(:new).with([be_a(Resolv::Hosts), be_a(Resolv::DNS)]).and_return(resolv_service)
+        allow(resolv_service).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:db8::face))
+      end
 
       it 'raises Mastodon::ValidationError' do
         expect { subject.perform }
