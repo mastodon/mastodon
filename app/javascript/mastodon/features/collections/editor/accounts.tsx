@@ -33,7 +33,7 @@ import { store, useAppDispatch, useAppSelector } from 'mastodon/store';
 import classes from './styles.module.scss';
 import { WizardStepTitle } from './wizard_step_title';
 
-const MAX_ACCOUNT_COUNT = 25;
+const MAX_ACCOUNT_COUNT = 3;
 
 const AddedAccountItem: React.FC<{
   accountId: string;
@@ -309,6 +309,18 @@ export const CollectionAccounts: React.FC<{
             getItemId={getItemId}
             renderItem={renderAccountItem}
             onSelectItem={handleSelectItem}
+            status={
+              hasMaxAccounts
+                ? {
+                    variant: 'warning',
+                    message: intl.formatMessage({
+                      id: 'collections.search_accounts_max_reached',
+                      defaultMessage:
+                        'You have added the maximum number of accounts',
+                    }),
+                  }
+                : null
+            }
           />
         </header>
 
@@ -321,13 +333,6 @@ export const CollectionAccounts: React.FC<{
                 values={{ count: accountIds.length, max: MAX_ACCOUNT_COUNT }}
               />
             </AccountsHeadingElement>
-          )}
-
-          {hasMaxAccounts && (
-            <FormattedMessage
-              id='collections.search_accounts_max_reached'
-              defaultMessage='You have added the maximum number of accounts'
-            />
           )}
 
           <Scrollable className={classes.scrollableWrapper}>
