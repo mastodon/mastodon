@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
-  # include Rails.application.routes.url_helpers
-  include RoutingHelper
-
   attributes :id, :type, :total_items, :name, :attributed_to, :url,
              :sensitive, :discoverable, :published, :updated
 
@@ -35,7 +32,7 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
   end
 
   def url
-    account_collection_url(object.account, object)
+    ActivityPub::TagManager.instance.url_for(object)
   end
 
   def total_items

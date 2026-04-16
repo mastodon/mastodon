@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class REST::CollectionSerializer < ActiveModel::Serializer
-  include RoutingHelper
-
   attributes :id, :uri, :name, :description, :language, :account_id,
              :local, :sensitive, :discoverable, :url, :item_count,
              :created_at, :updated_at
@@ -20,7 +18,7 @@ class REST::CollectionSerializer < ActiveModel::Serializer
   end
 
   def url
-    object.local? ? account_collection_url(object.account, object) : object.url
+    ActivityPub::TagManager.instance.url_for(object)
   end
 
   def description
@@ -36,9 +34,5 @@ class REST::CollectionSerializer < ActiveModel::Serializer
 
   def account_id
     object.account_id.to_s
-  end
-
-  def tag
-    object.tag
   end
 end
