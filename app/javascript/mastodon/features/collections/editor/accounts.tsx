@@ -4,9 +4,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
-import { showAlertForError } from 'mastodon/actions/alerts';
-import { openModal } from 'mastodon/actions/modal';
-import { apiFollowAccount } from 'mastodon/api/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AccountListItem } from 'mastodon/components/account_list_item';
 import { Avatar } from 'mastodon/components/avatar';
@@ -21,14 +18,13 @@ import {
 } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
-import { me } from 'mastodon/initial_state';
 import {
   addCollectionItem,
   getCollectionItemIds,
   removeCollectionItem,
   updateCollectionEditorField,
 } from 'mastodon/reducers/slices/collections';
-import { store, useAppDispatch, useAppSelector } from 'mastodon/store';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import classes from './styles.module.scss';
 import { WizardStepTitle } from './wizard_step_title';
@@ -60,6 +56,7 @@ const AddedAccountItem: React.FC<{
 
 interface SuggestionItem {
   id: string;
+  isDisabled?: boolean;
 }
 
 const SuggestedAccountItem: React.FC<SuggestionItem> = ({ id }) => {
@@ -80,6 +77,7 @@ const renderAccountItem = (item: SuggestionItem) => (
 );
 
 const getItemId = (item: SuggestionItem) => item.id;
+const getIsItemDisabled = (item: SuggestionItem) => item.isDisabled ?? false;
 
 export const CollectionAccounts: React.FC<{
   collection?: ApiCollectionJSON | null;
@@ -115,16 +113,17 @@ export const CollectionAccounts: React.FC<{
     resetAccounts,
   } = useSearchAccounts({
     withRelationships: true,
-    filterResults: (account) =>
-      !accountIds.includes(account.id) &&
-      // Only suggest accounts who allow being featured/recommended
-      account.feature_approval.current_user === 'automatic',
+    // Don't suggest accounts that were already added
+    filterResults: (account) => !accountIds.includes(account.id),
   });
 
-  const suggestedItems = suggestedAccounts.map(({ id }) => ({
-    id,
-    isDisabled: accountIds.includes(id),
-  }));
+  const suggestedItems = suggestedAccounts.map(
+    ({ id, feature_approval, locked }) => ({
+      id,
+      // Disable accounts who require follow requests or don't allow being featured/recommended
+      isDisabled: locked || feature_approval.current_user !== 'automatic',
+    }),
+  );
 
   const handleSearchValueChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -143,43 +142,6 @@ export const CollectionAccounts: React.FC<{
     [],
   );
 
-  const relationships = useAppSelector((state) => state.relationships);
-
-  const confirmFollowStatus = useCallback(
-    (accountId: string, onFollowing: () => void) => {
-      const relationship = relationships.get(accountId);
-
-      if (!relationship) {
-        return;
-      }
-
-      if (
-        accountId === me ||
-        relationship.following ||
-        relationship.requested
-      ) {
-        onFollowing();
-      } else {
-        dispatch(
-          openModal({
-            modalType: 'CONFIRM_FOLLOW_TO_COLLECTION',
-            modalProps: {
-              accountId,
-              onConfirm: () => {
-                apiFollowAccount(accountId)
-                  .then(onFollowing)
-                  .catch((err: unknown) => {
-                    store.dispatch(showAlertForError(err));
-                  });
-              },
-            },
-          }),
-        );
-      }
-    },
-    [dispatch, relationships],
-  );
-
   const removeAccountItem = useCallback(
     (accountId: string) => {
       dispatch(
@@ -194,16 +156,14 @@ export const CollectionAccounts: React.FC<{
 
   const addAccountItem = useCallback(
     (item: SuggestionItem) => {
-      confirmFollowStatus(item.id, () => {
-        dispatch(
-          updateCollectionEditorField({
-            field: 'accountIds',
-            value: [...accountIds, item.id],
-          }),
-        );
-      });
+      dispatch(
+        updateCollectionEditorField({
+          field: 'accountIds',
+          value: [...accountIds, item.id],
+        }),
+      );
     },
-    [accountIds, confirmFollowStatus, dispatch],
+    [accountIds, dispatch],
   );
 
   const instantRemoveAccountItem = useCallback(
@@ -230,15 +190,13 @@ export const CollectionAccounts: React.FC<{
 
   const instantAddAccountItem = useCallback(
     (item: SuggestionItem) => {
-      confirmFollowStatus(item.id, () => {
-        if (id) {
-          void dispatch(
-            addCollectionItem({ collectionId: id, accountId: item.id }),
-          );
-        }
-      });
+      if (id) {
+        void dispatch(
+          addCollectionItem({ collectionId: id, accountId: item.id }),
+        );
+      }
     },
-    [confirmFollowStatus, dispatch, id],
+    [dispatch, id],
   );
 
   const handleRemoveAccountItem = useCallback(
@@ -310,6 +268,7 @@ export const CollectionAccounts: React.FC<{
             isLoading={isLoadingSuggestions}
             items={suggestedItems}
             getItemId={getItemId}
+            getIsItemDisabled={getIsItemDisabled}
             renderItem={renderAccountItem}
             onSelectItem={handleSelectItem}
             status={
