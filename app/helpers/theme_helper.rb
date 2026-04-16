@@ -55,7 +55,7 @@ module ThemeHelper
     site_theme = Setting.theme
     return site_theme if available_themes.include?(site_theme)
 
-    'default'  # Fallback
+    'default' # Fallback
   end
 
   def color_scheme
