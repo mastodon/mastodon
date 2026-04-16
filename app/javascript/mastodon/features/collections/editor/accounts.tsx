@@ -33,7 +33,7 @@ import { store, useAppDispatch, useAppSelector } from 'mastodon/store';
 import classes from './styles.module.scss';
 import { WizardStepTitle } from './wizard_step_title';
 
-const MAX_ACCOUNT_COUNT = 3;
+const MAX_ACCOUNT_COUNT = 25;
 
 const AddedAccountItem: React.FC<{
   accountId: string;
