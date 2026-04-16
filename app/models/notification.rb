@@ -100,6 +100,8 @@ class Notification < ApplicationRecord
     update: :status,
     quoted_update: :status,
     'admin.report': [report: :target_account],
+    added_to_collection: [collection_item: :collection],
+    collection_update: :collection,
   }.freeze
 
   belongs_to :account, optional: true
