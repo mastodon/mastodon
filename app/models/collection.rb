@@ -15,6 +15,7 @@
 #  original_number_of_items :integer
 #  sensitive                :boolean          not null
 #  uri                      :string
+#  url                      :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  account_id               :bigint(8)        not null
