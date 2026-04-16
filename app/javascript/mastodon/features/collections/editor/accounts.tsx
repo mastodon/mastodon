@@ -117,13 +117,13 @@ export const CollectionAccounts: React.FC<{
     filterResults: (account) => !accountIds.includes(account.id),
   });
 
-  const suggestedItems = suggestedAccounts.map(
-    ({ id, feature_approval, locked }) => ({
-      id,
-      // Disable accounts who require follow requests or don't allow being featured/recommended
-      isDisabled: locked || feature_approval.current_user !== 'automatic',
-    }),
-  );
+  const suggestedItems = suggestedAccounts.map(({ id, feature_approval }) => ({
+    id,
+    // Disable accounts who can't be added to a collection
+    isDisabled: !['automatic', 'manual'].includes(
+      feature_approval.current_user,
+    ),
+  }));
 
   const handleSearchValueChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
