@@ -109,7 +109,7 @@ export const CollectionAccounts: React.FC<{
   const hasMaxAccounts = accountIds.length === MAX_ACCOUNT_COUNT;
 
   const {
-    accountIds: suggestedAccountIds,
+    accounts: suggestedAccounts,
     isLoading: isLoadingSuggestions,
     searchAccounts,
     resetAccounts,
@@ -121,7 +121,7 @@ export const CollectionAccounts: React.FC<{
       account.feature_approval.current_user === 'automatic',
   });
 
-  const suggestedItems = suggestedAccountIds.map((id) => ({
+  const suggestedItems = suggestedAccounts.map(({ id }) => ({
     id,
     isDisabled: accountIds.includes(id),
   }));
