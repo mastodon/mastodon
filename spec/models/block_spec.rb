@@ -24,7 +24,7 @@ RSpec.describe Block do
       end
 
       context 'when URI is blank' do
-        subject { Fabricate.build :block, uri: nil }
+        subject { Fabricate.build :follow, uri: nil }
 
         it 'populates the value' do
           expect { subject.save }
