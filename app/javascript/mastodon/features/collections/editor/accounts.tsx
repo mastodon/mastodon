@@ -86,21 +86,18 @@ const renderAccountItem = (account: ApiMutedAccountJSON) => (
 type GroupKey = 'available' | 'mustFollow' | 'disabled';
 
 function groupSuggestions(accounts: ApiMutedAccountJSON[]) {
-  const { available, mustFollow, disabled } = Object.groupBy(
-    accounts,
-    (account) => {
-      if (getIsItemDisabled(account)) {
-        return 'disabled';
-      }
-      if (account.locked) {
-        return 'mustFollow';
-      }
-      return 'available';
-    },
-  );
+  const { available, disabled } = Object.groupBy(accounts, (account) => {
+    if (getIsItemDisabled(account)) {
+      return 'disabled';
+    }
+    // if (account.locked && !relationship?.following) {
+    //   return 'mustFollow';
+    // }
+    return 'available';
+  });
 
   // Returning a new object ensures a fixed property order
-  return { available, mustFollow, disabled };
+  return { available, disabled };
 }
 
 const renderGroupTitle = (groupKey: GroupKey, titleId: string) => {
