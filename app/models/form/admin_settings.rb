@@ -112,7 +112,6 @@ class Form::AdminSettings
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
   validates :landing_page, inclusion: { in: LANDING_PAGE }, if: -> { defined?(@landing_page) }
-  validates :theme, inclusion: { in: Themes.instance.names }, if: -> { defined?(@theme) }
 
   KEYS.each do |key|
     define_method(key) do
