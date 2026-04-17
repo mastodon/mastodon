@@ -38,6 +38,18 @@
   overscroll-behavior-y: contain;
 }
 
+.groupLabel {
+  padding-block: 12px 4px;
+  padding-inline: 12px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  ul:first-child > & {
+    padding-top: 4px;
+  }
+}
+
 .menuItem {
   display: flex;
   align-items: center;
