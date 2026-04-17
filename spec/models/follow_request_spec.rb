@@ -8,6 +8,8 @@ RSpec.describe FollowRequest do
     let(:account)         { Fabricate(:account) }
     let(:target_account)  { Fabricate(:account) }
 
+    before { stub_const('ActivityPub::AccountBackfillService::ENABLED', true) }
+
     context 'when the to-be-followed person has been added to a list' do
       let!(:list) { Fabricate(:list, account: account) }
 
@@ -20,17 +22,19 @@ RSpec.describe FollowRequest do
       end
     end
 
-    it 'calls Account#follow!, MergeWorker.perform_async, and #destroy!' do
+    it 'calls Account#follow!, MergeWorker.perform_async, ActivityPub::AccountBackfillWorker, and #destroy!' do
       allow(account).to receive(:follow!) do
         account.active_relationships.create!(target_account: target_account)
       end
       allow(MergeWorker).to receive(:perform_async)
+      allow(ActivityPub::AccountBackfillWorker).to receive(:perform_async)
       allow(follow_request).to receive(:destroy!)
 
       follow_request.authorize!
 
       expect(account).to have_received(:follow!).with(target_account, reblogs: true, notify: false, uri: follow_request.uri, languages: nil, bypass_limit: true)
       expect(MergeWorker).to have_received(:perform_async).with(target_account.id, account.id, 'home')
+      expect(ActivityPub::AccountBackfillWorker).to have_received(:perform_async).with(target_account.id)
       expect(follow_request).to have_received(:destroy!)
     end
 
@@ -46,6 +50,21 @@ RSpec.describe FollowRequest do
       follow_request.authorize!
       target = follow_request.target_account
       expect(follow_request.account.muting_reblogs?(target)).to be true
+    end
+
+    context 'when subsequent follow requests are made' do
+      before do
+        second_account = Fabricate(:account)
+        second_account.follow!(target_account)
+      end
+
+      it 'doesnt call ActivityPub::AccountBackfillWorker' do
+        allow(ActivityPub::AccountBackfillWorker).to receive(:perform_async)
+
+        follow_request.authorize!
+
+        expect(ActivityPub::AccountBackfillWorker).to_not have_received(:perform_async)
+      end
     end
   end
 
