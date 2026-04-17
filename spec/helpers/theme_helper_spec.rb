@@ -107,6 +107,12 @@ RSpec.describe ThemeHelper do
       context 'when theme was not changed in settings' do
         it { is_expected.to eq('default') }
       end
+
+      context 'when theme is changed in settings' do
+        before { Setting.theme = 'contrast' }
+
+        it { is_expected.to eq('contrast') }
+      end
     end
 
     context 'when user is signed in' do
