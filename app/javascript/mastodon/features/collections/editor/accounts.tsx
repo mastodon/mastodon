@@ -90,11 +90,10 @@ function groupSuggestions(accounts: ApiMutedAccountJSON[]) {
     accounts,
     (account) => {
       if (getIsItemDisabled(account)) {
-        if (account.locked) {
-          return 'mustFollow';
-        } else {
-          return 'disabled';
-        }
+        return 'disabled';
+      }
+      if (account.locked) {
+        return 'mustFollow';
       }
       return 'available';
     },
