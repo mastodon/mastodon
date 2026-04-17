@@ -23,6 +23,10 @@ module SettingsHelper
       )
   end
 
+  def user_settings_collection(value)
+    UserSettings.definition_for(value)&.in || []
+  end
+
   def author_attribution_name(account)
     return if account.nil?
 
