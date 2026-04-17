@@ -80,8 +80,13 @@ interface ComboboxProps<
   ) => React.ReactElement | string;
   /**
    * Customise the rendering of group titles.
+   * The `titleId` must be attached to the element that provides the
+   * accessible name for the group.
    */
-  renderGroupTitle?: (groupKey: GroupKey) => React.ReactElement | string;
+  renderGroupTitle?: (
+    groupKey: GroupKey,
+    titleId: string,
+  ) => React.ReactElement | string;
   /**
    * The main selection handler, called when an option is selected or deselected.
    */
@@ -472,8 +477,11 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                 <div role='listbox' id={listId} tabIndex={-1}>
                   {(Object.keys(items) as GroupKey[]).map((groupKey) => {
                     const groupItems = items[groupKey];
-                    const groupTitle = renderGroupTitle?.(groupKey) ?? groupKey;
                     const groupTitleId = `${listId}-group-${groupKey}`;
+                    const groupTitle = renderGroupTitle?.(
+                      groupKey,
+                      groupTitleId,
+                    ) ?? <span id={groupTitleId}>{groupKey}</span>;
 
                     if (!groupItems?.length) return null;
 
@@ -483,11 +491,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                         role='group'
                         aria-labelledby={groupTitleId}
                       >
-                        <li
-                          role='presentation'
-                          id={groupTitleId}
-                          className={classes.groupLabel}
-                        >
+                        <li role='presentation' className={classes.groupLabel}>
                           {groupTitle}
                         </li>
                         {renderItems(groupItems)}
