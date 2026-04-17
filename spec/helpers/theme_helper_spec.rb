@@ -109,9 +109,18 @@ RSpec.describe ThemeHelper do
       end
 
       context 'when theme is changed in settings' do
-        before { allow(Setting.theme).to receive(:names).and_return(%w(default contrast)) }
+        before do
+          allow(Themes.instance).to receive(:names).and_return(%w(default contrast))
+          Setting.theme = 'contrast'
+        end
 
         it { is_expected.to eq('contrast') }
+      end
+
+      context 'when theme is changed to invalid value' do
+        before { Setting.theme = 'fakethemename' }
+
+        it { is_expected.to eq('default') }
       end
     end
 
