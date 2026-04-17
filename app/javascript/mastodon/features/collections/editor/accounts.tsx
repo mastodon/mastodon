@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
+import type { ApiMutedAccountJSON } from 'mastodon/api_types/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AccountListItem } from 'mastodon/components/account_list_item';
 import { Avatar } from 'mastodon/components/avatar';
@@ -54,13 +55,10 @@ const AddedAccountItem: React.FC<{
   return <AccountListItem accountId={accountId} renderButton={renderButton} />;
 };
 
-interface SuggestionItem {
-  id: string;
-  isDisabled?: boolean;
-}
-
-const SuggestedAccountItem: React.FC<SuggestionItem> = ({ id }) => {
-  const account = useAccount(id);
+const SuggestedAccountItem: React.FC<{ account: ApiMutedAccountJSON }> = (
+  props,
+) => {
+  const account = useAccount(props.account.id);
 
   if (!account) return null;
 
@@ -72,12 +70,15 @@ const SuggestedAccountItem: React.FC<SuggestionItem> = ({ id }) => {
   );
 };
 
-const renderAccountItem = (item: SuggestionItem) => (
-  <SuggestedAccountItem id={item.id} />
+const renderAccountItem = (account: ApiMutedAccountJSON) => (
+  <SuggestedAccountItem account={account} />
 );
 
-const getItemId = (item: SuggestionItem) => item.id;
-const getIsItemDisabled = (item: SuggestionItem) => item.isDisabled ?? false;
+const getItemId = (account: ApiMutedAccountJSON) => account.id;
+
+// Disable accounts who can't be added to a collection
+const getIsItemDisabled = (account: ApiMutedAccountJSON) =>
+  !['automatic', 'manual'].includes(account.feature_approval.current_user);
 
 export const CollectionAccounts: React.FC<{
   collection?: ApiCollectionJSON | null;
@@ -117,14 +118,6 @@ export const CollectionAccounts: React.FC<{
     filterResults: (account) => !accountIds.includes(account.id),
   });
 
-  const suggestedItems = suggestedAccounts.map(({ id, feature_approval }) => ({
-    id,
-    // Disable accounts who can't be added to a collection
-    isDisabled: !['automatic', 'manual'].includes(
-      feature_approval.current_user,
-    ),
-  }));
-
   const handleSearchValueChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchValue(e.target.value);
@@ -155,7 +148,7 @@ export const CollectionAccounts: React.FC<{
   );
 
   const addAccountItem = useCallback(
-    (item: SuggestionItem) => {
+    (item: ApiMutedAccountJSON) => {
       dispatch(
         updateCollectionEditorField({
           field: 'accountIds',
@@ -189,7 +182,7 @@ export const CollectionAccounts: React.FC<{
   );
 
   const instantAddAccountItem = useCallback(
-    (item: SuggestionItem) => {
+    (item: ApiMutedAccountJSON) => {
       if (id) {
         void dispatch(
           addCollectionItem({ collectionId: id, accountId: item.id }),
@@ -211,7 +204,7 @@ export const CollectionAccounts: React.FC<{
   );
 
   const handleSelectItem = useCallback(
-    (item: SuggestionItem) => {
+    (item: ApiMutedAccountJSON) => {
       if (isEditMode) {
         instantAddAccountItem(item);
       } else {
@@ -266,7 +259,7 @@ export const CollectionAccounts: React.FC<{
             onKeyDown={handleSearchKeyDown}
             disabled={hasMaxAccounts}
             isLoading={isLoadingSuggestions}
-            items={suggestedItems}
+            items={suggestedAccounts}
             getItemId={getItemId}
             getIsItemDisabled={getIsItemDisabled}
             renderItem={renderAccountItem}
