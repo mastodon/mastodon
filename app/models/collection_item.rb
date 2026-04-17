@@ -43,6 +43,7 @@ class CollectionItem < ApplicationRecord
   scope :not_blocked_by, ->(account) { where.not(accounts: { id: account.blocking }) }
   scope :local, -> { joins(:collection).merge(Collection.local) }
   scope :accepted_partial, ->(account) { joins(:account).merge(Account.local).accepted.where(uri: nil, account_id: account.id) }
+  scope :pending_or_accepted, -> { where(state: [:pending, :accepted]) }
 
   def revoke!
     update!(state: :revoked)

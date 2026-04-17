@@ -67,4 +67,30 @@ RSpec.describe REST::CollectionSerializer do
       end
     end
   end
+
+  context 'when the collection has items in different states' do
+    before do
+      %i(accepted pending rejected revoked).each do |state|
+        Fabricate(:collection_item, collection:, state:)
+      end
+    end
+
+    context 'when `current_user` is the owner of the collection' do
+      let(:current_user) { collection.account.user }
+
+      it 'includes accepted and pending items' do
+        expect(subject['item_count']).to eq 2
+        expect(subject['items'].size).to eq 2
+        expect(subject['items'].pluck('state')).to contain_exactly('accepted', 'pending')
+      end
+    end
+
+    context 'when `current_user` is not the owner of the collection' do
+      it 'only includes the accepted item' do
+        expect(subject['item_count']).to eq 1
+        expect(subject['items'].size).to eq 1
+        expect(subject['items'].first['state']).to eq 'accepted'
+      end
+    end
+  end
 end
