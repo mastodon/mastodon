@@ -58,3 +58,19 @@
 .scrollableWrapper {
   margin-inline: -16px;
 }
+
+.suggestion {
+  padding: 4px 0;
+
+  [aria-disabled='true'] & {
+    opacity: 0.6;
+  }
+}
+
+.suggestionGroup {
+  padding: 4px 0;
+
+  // Undo default group styles:
+  font-weight: 400;
+  text-transform: none;
+}
