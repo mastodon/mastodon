@@ -14,8 +14,9 @@ interface WrapperProps extends Omit<
 /**
  * A basic list item component that can be used as a base for more bespoke list items.
  *
- * Depending on functionality, use `ListItemButton` or `ListItemLink` as a child of the
- * wrapper component.
+ * Choose the child of the wrapper component based on needed interactivity:
+ * `ListItemContent` for a non-interactive item, `ListItemButton` or `ListItemLink`
+ * for interactive items.
  */
 export const ListItemWrapper: React.FC<WrapperProps> = ({
   icon,
@@ -33,9 +34,30 @@ export const ListItemWrapper: React.FC<WrapperProps> = ({
   );
 };
 
-interface LinkProps extends React.ComponentPropsWithoutRef<typeof Link> {
+interface WithSubtitle {
   subtitle?: React.ReactNode;
 }
+
+interface ContentProps
+  extends React.ComponentPropsWithoutRef<'h3'>, WithSubtitle {}
+
+export const ListItemContent: React.FC<ContentProps> = ({
+  subtitle,
+  children,
+  ...otherProps
+}) => {
+  return (
+    <>
+      <h3 className={classes.title} {...otherProps}>
+        {children}
+      </h3>
+      {subtitle && <div className={classes.subtitle}>{subtitle}</div>}
+    </>
+  );
+};
+
+interface LinkProps
+  extends React.ComponentPropsWithoutRef<typeof Link>, WithSubtitle {}
 
 export const ListItemLink: React.FC<LinkProps> = ({
   subtitle,
@@ -44,20 +66,16 @@ export const ListItemLink: React.FC<LinkProps> = ({
   ...otherProps
 }) => {
   return (
-    <>
-      <h3 className={classes.title}>
-        <Link className={classNames(className, 'focusable')} {...otherProps}>
-          {children}
-        </Link>
-      </h3>
-      {subtitle && <div className={classes.subtitle}>{subtitle}</div>}
-    </>
+    <ListItemContent subtitle={subtitle}>
+      <Link className={classNames(className, 'focusable')} {...otherProps}>
+        {children}
+      </Link>
+    </ListItemContent>
   );
 };
 
-interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
-  subtitle?: React.ReactNode;
-}
+interface ButtonProps
+  extends React.ComponentPropsWithoutRef<'button'>, WithSubtitle {}
 
 export const ListItemButton: React.FC<ButtonProps> = ({
   subtitle,
@@ -66,17 +84,14 @@ export const ListItemButton: React.FC<ButtonProps> = ({
   ...otherProps
 }) => {
   return (
-    <>
-      <h3 className={classes.title}>
-        <button
-          type='button'
-          className={classNames(className, 'focusable')}
-          {...otherProps}
-        >
-          {children}
-        </button>
-      </h3>
-      {subtitle && <div className={classes.subtitle}>{subtitle}</div>}
-    </>
+    <ListItemContent subtitle={subtitle}>
+      <button
+        type='button'
+        className={classNames(className, 'focusable')}
+        {...otherProps}
+      >
+        {children}
+      </button>
+    </ListItemContent>
   );
 };

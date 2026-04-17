@@ -276,18 +276,16 @@ export const CollectionDetails: React.FC = () => {
       </FormStack>
 
       <div className={classes.stickyFooter}>
-        <div className={classes.actionWrapper}>
-          <Button type='submit'>
-            {id ? (
-              <FormattedMessage id='lists.save' defaultMessage='Save' />
-            ) : (
-              <FormattedMessage
-                id='collections.create_collection'
-                defaultMessage='Create collection'
-              />
-            )}
-          </Button>
-        </div>
+        <Button type='submit'>
+          {id ? (
+            <FormattedMessage id='lists.save' defaultMessage='Save' />
+          ) : (
+            <FormattedMessage
+              id='collections.create_collection'
+              defaultMessage='Create collection'
+            />
+          )}
+        </Button>
       </div>
     </form>
   );

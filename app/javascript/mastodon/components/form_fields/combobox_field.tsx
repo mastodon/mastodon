@@ -82,11 +82,12 @@ interface ComboboxProps<
    * Customise the rendering of group titles.
    * The `titleId` must be attached to the element that provides the
    * accessible name for the group.
+   * Return `null` to omit rendering the group title.
    */
   renderGroupTitle?: (
     groupKey: GroupKey,
     titleId: string,
-  ) => React.ReactElement | string;
+  ) => React.ReactElement | null;
   /**
    * The main selection handler, called when an option is selected or deselected.
    */
@@ -182,7 +183,12 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 
   const hasGroups = !Array.isArray(items);
   const flatItems = useMemo(
-    () => (hasGroups ? (Object.values(items).flat() as Item[]) : items),
+    () =>
+      hasGroups
+        ? (Object.values(items)
+            .flat()
+            .filter((i) => !!i) as Item[])
+        : items,
     [hasGroups, items],
   );
 
@@ -478,10 +484,11 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                   {(Object.keys(items) as GroupKey[]).map((groupKey) => {
                     const groupItems = items[groupKey];
                     const groupTitleId = `${listId}-group-${groupKey}`;
-                    const groupTitle = renderGroupTitle?.(
+                    const customGroupTitle = renderGroupTitle?.(
                       groupKey,
                       groupTitleId,
-                    ) ?? <span id={groupTitleId}>{groupKey}</span>;
+                    );
+                    const hasTitle = customGroupTitle !== null;
 
                     if (!groupItems?.length) return null;
 
@@ -489,11 +496,18 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                       <ul
                         key={groupKey}
                         role='group'
-                        aria-labelledby={groupTitleId}
+                        aria-labelledby={hasTitle ? groupTitleId : undefined}
                       >
-                        <li role='presentation' className={classes.groupLabel}>
-                          {groupTitle}
-                        </li>
+                        {hasTitle && (
+                          <li
+                            role='presentation'
+                            className={classes.groupLabel}
+                          >
+                            {customGroupTitle ?? (
+                              <span id={groupTitleId}>{groupKey}</span>
+                            )}
+                          </li>
+                        )}
                         {renderItems(groupItems)}
                       </ul>
                     );
