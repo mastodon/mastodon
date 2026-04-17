@@ -109,7 +109,7 @@ RSpec.describe ThemeHelper do
       end
 
       context 'when theme is changed in settings' do
-        before { Setting.theme = 'contrast' }
+        before { allow(Themes.instance).to receive(:names).and_return(%w(default contrast)) }
 
         it { is_expected.to eq('contrast') }
       end
