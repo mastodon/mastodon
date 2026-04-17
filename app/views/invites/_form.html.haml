@@ -3,13 +3,13 @@
 .fields-row
   .fields-row__column.fields-row__column-6.fields-group
     = form.input :max_uses,
-                 collection: form.object.class::MAX_USES_COUNTS,
+                 collection: Invite::MAX_USES_COUNTS,
                  label_method: ->(count) { I18n.t('invites.max_uses', count:) },
                  prompt: I18n.t('invites.max_uses_prompt'),
                  wrapper: :with_label
   .fields-row__column.fields-row__column-6.fields-group
     = form.input :expires_in,
-                 collection: form.object.class::EXPIRATION_DURATIONS.map(&:to_i),
+                 collection: Invite::EXPIRATION_DURATIONS.map(&:to_i),
                  label_method: ->(duration) { I18n.t("invites.expires_in.#{duration}") },
                  prompt: I18n.t('invites.expires_in_prompt'),
                  wrapper: :with_label
