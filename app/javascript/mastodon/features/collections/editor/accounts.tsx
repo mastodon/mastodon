@@ -88,30 +88,33 @@ const renderAccountItem = (account: ApiMutedAccountJSON) => (
 
 type GroupKey = 'available' | 'mustFollow' | 'disabled';
 
+const canAccountBeAdded = (account: ApiMutedAccountJSON) =>
+  ['automatic', 'manual'].includes(account.feature_approval.current_user);
+
 function groupSuggestions(
   accounts: ApiMutedAccountJSON[],
   relationships: ImmutableMap<string, Relationship>,
 ) {
   const { available, mustFollow, disabled } = Object.groupBy(
     accounts,
-    (account) => {
-      const relationship = relationships.get(account.id);
-
-      if (getIsItemDisabled(account)) {
-        const canAccountBeAddedByFollowers =
-          account.feature_approval.automatic.includes('followers') ||
-          account.feature_approval.manual.includes('followers');
-
-        if (
-          account.locked &&
-          canAccountBeAddedByFollowers &&
-          !relationship?.following
-        ) {
-          return 'mustFollow';
-        }
-        return 'disabled';
+    (account): GroupKey => {
+      if (canAccountBeAdded(account)) {
+        return 'available';
       }
-      return 'available';
+
+      const canAccountBeAddedByFollowers =
+        account.locked &&
+        (account.feature_approval.automatic.includes('followers') ||
+          account.feature_approval.manual.includes('followers'));
+
+      if (
+        canAccountBeAddedByFollowers &&
+        !relationships.get(account.id)?.following
+      ) {
+        return 'mustFollow';
+      }
+
+      return 'disabled';
     },
   );
 
@@ -165,10 +168,8 @@ const renderGroupTitle = (groupKey: GroupKey, titleId: string) => {
 };
 
 const getItemId = (account: ApiMutedAccountJSON) => account.id;
-
-// Disable accounts who can't be added to a collection
 const getIsItemDisabled = (account: ApiMutedAccountJSON) =>
-  !['automatic', 'manual'].includes(account.feature_approval.current_user);
+  !canAccountBeAdded(account);
 
 export const CollectionAccounts: React.FC<{
   collection?: ApiCollectionJSON | null;
