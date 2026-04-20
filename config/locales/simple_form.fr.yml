@@ -9,8 +9,8 @@ fr:
         fields: Votre page personnelle, vos pronoms, votre âge, ce que vous voulez.
         indexable: Vos messages publics peuvent apparaître dans les résultats de recherche sur Mastodon. Les personnes qui ont interagi avec vos messages peuvent les trouver dans une recherche quoi qu’il arrive.
         note: 'Vous pouvez @mentionner d’autres personnes ou des #hashtags.'
-        show_collections: Les gens pourront voir les personnes que vous suivez ou qui vous suivent. Ceux que vous suivez verront que vous les suivez dans tous les cas.
-        unlocked: Les personnes pourront vous suivre sans en demander la permission. Décochez cette case si vous souhaitez examiner les demandes de suivi et choisir d'accepter ou de rejeter les nouveaux followers.
+        show_collections: Les gens pourront voir les personnes que vous suivez et qui vous suivent. Ceux que vous suivez verront que vous les suivez dans tous les cas.
+        unlocked: Les personnes pourront vous suivre sans en demander d'approbation. Décochez cette case si vous souhaitez examiner les demandes d'abonnement et choisir de les accepter ou de les rejeter.
       account_alias:
         acct: Spécifiez l’identifiant@domaine du compte à partir duquel vous souhaitez migrer
       account_migration:
@@ -40,15 +40,15 @@ fr:
         text: Vous ne pouvez faire appel d'une sanction qu'une seule fois
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
-        avatar: WEBP, PNG, GIF ou JPG. Au plus %{size}. Sera réduit à %{dimensions}px
+        avatar: WebP, PNG, GIF ou JPG. Au plus %{size}. Sera réduit à %{dimensions} px
         bot: Signale aux autres que ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
-        context: Un ou plusieurs contextes où le filtre devrait s’appliquer
+        context: Un ou plusieurs contextes où le filtre doit s’appliquer
         current_password: Par mesure de sécurité, veuillez saisir le mot de passe de ce compte
         current_username: Pour confirmer, veuillez saisir l’identifiant de ce compte
         digest: Uniquement envoyé après une longue période d’inactivité en cas de messages personnels reçus pendant votre absence
         email: Vous recevrez un courriel de confirmation
-        header: WEBP, PNG, GIF ou JPG. Au plus %{size}. Sera réduit à %{dimensions}px
-        inbox_url: Copiez l’URL depuis la page d’accueil du relais que vous souhaitez utiliser
+        header: WebP, PNG, GIF ou JPG. Au plus %{size}. Sera réduit à %{dimensions} px
+        inbox_url: Copiez l’URL depuis la page d’accueil du relai que vous souhaitez utiliser
         irreversible: Les messages filtrés disparaîtront irrévocablement, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
         password: Utilisez au moins 8 caractères
@@ -61,9 +61,9 @@ fr:
         setting_default_quote_policy_private: Les messages limités aux personnes qui vous suivent publiés depuis Mastodon ne peuvent pas être cités.
         setting_default_quote_policy_unlisted: Lorsque des personnes vous citent, leur message sera également masqué des fils des tendances.
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
-        setting_display_media_default: Masquer les médias marqués comme sensibles
-        setting_display_media_hide_all: Toujours masquer les médias
-        setting_display_media_show_all: Toujours afficher les médias
+        setting_display_media_default: Avertir avant d'afficher les médias marqués comme sensibles
+        setting_display_media_hide_all: Avertir avant d'afficher tous les médias
+        setting_display_media_show_all: Afficher tous les médias sans avertissement, y compris ceux marqués comme sensibles
         setting_emoji_style: Manière d'afficher les émojis. Utiliser « Auto » pour essayer d'utiliser les émojis natifs, mais Twemoji sera utilisé pour les anciens navigateurs.
         setting_quick_boosting_html: Lorsque cette option est activée, cliquer sur l'icône de partage %{boost_icon} va immédiatement partager le message au lieu d'ouvrir le menu déroulant Partage/Citation. L'action de citation est déplacée dans le menu %{options_icon} (options).
         setting_system_scrollbars_ui: S'applique uniquement aux navigateurs basés sur Safari et Chrome
@@ -82,13 +82,13 @@ fr:
         action: Choisir l'action à effectuer quand un message correspond au filtre
         actions:
           blur: Cacher les médias derrière un avertissement, sans cacher le texte
-          hide: Cacher complètement le contenu filtré, faire comme s'il n'existait pas
+          hide: Cacher complètement le contenu filtré, comme s'il n'existait pas
           warn: Cacher le contenu filtré derrière un avertissement mentionnant le nom du filtre
       form_admin_settings:
         activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
-        app_icon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
+        app_icon: WebP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
         backups_retention_period: Les utilisateur·rice·s ont la possibilité de générer des archives de leurs messages pour les télécharger plus tard. Lorsqu'elles sont définies à une valeur positive, ces archives seront automatiquement supprimées de votre stockage après le nombre de jours spécifié.
-        bootstrap_timeline_accounts: Ces comptes seront épinglés en haut des recommandations pour les nouveaux utilisateurs. Accepte une liste de comptes séparés par des virgules.
+        bootstrap_timeline_accounts: Ces comptes seront épinglés en haut des recommandations pour les nouveaux utilisateur·rice·s. Accepte une liste de comptes séparés par des virgules.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
         content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte des interactions locales avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateur·rice·s lorsqu'il est appliquée à une instance généraliste.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
