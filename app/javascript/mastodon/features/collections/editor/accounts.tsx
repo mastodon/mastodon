@@ -103,9 +103,8 @@ function groupSuggestions(
       }
 
       const canAccountBeAddedByFollowers =
-        account.locked &&
-        (account.feature_approval.automatic.includes('followers') ||
-          account.feature_approval.manual.includes('followers'));
+        account.feature_approval.automatic.includes('followers') ||
+        account.feature_approval.manual.includes('followers');
 
       if (
         canAccountBeAddedByFollowers &&
