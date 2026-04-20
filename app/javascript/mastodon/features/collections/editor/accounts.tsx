@@ -25,6 +25,7 @@ import {
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { domain } from 'mastodon/initial_state';
+import type { Relationship } from 'mastodon/models/relationship';
 import {
   addCollectionItem,
   getCollectionItemIds,
@@ -85,19 +86,35 @@ const renderAccountItem = (account: ApiMutedAccountJSON) => (
 
 type GroupKey = 'available' | 'mustFollow' | 'disabled';
 
-function groupSuggestions(accounts: ApiMutedAccountJSON[]) {
-  const { available, disabled } = Object.groupBy(accounts, (account) => {
-    if (getIsItemDisabled(account)) {
-      return 'disabled';
-    }
-    // if (account.locked && !relationship?.following) {
-    //   return 'mustFollow';
-    // }
-    return 'available';
-  });
+function groupSuggestions(
+  accounts: ApiMutedAccountJSON[],
+  relationships: Immutable.Map<string, Relationship>,
+) {
+  const { available, mustFollow, disabled } = Object.groupBy(
+    accounts,
+    (account) => {
+      const relationship = relationships.get(account.id);
+
+      if (getIsItemDisabled(account)) {
+        const canAccountBeAddedByFollowers =
+          account.feature_approval.automatic.includes('followers') ||
+          account.feature_approval.manual.includes('followers');
+
+        if (
+          account.locked &&
+          canAccountBeAddedByFollowers &&
+          !relationship?.following
+        ) {
+          return 'mustFollow';
+        }
+        return 'disabled';
+      }
+      return 'available';
+    },
+  );
 
   // Returning a new object ensures a fixed property order
-  return { available, disabled };
+  return { available, mustFollow, disabled };
 }
 
 const renderGroupTitle = (groupKey: GroupKey, titleId: string) => {
@@ -188,6 +205,9 @@ export const CollectionAccounts: React.FC<{
     // Don't suggest accounts that were already added
     filterResults: (account) => !accountIds.includes(account.id),
   });
+
+  const relationships = useAppSelector((state) => state.relationships);
+  const groupedItems = groupSuggestions(suggestedAccounts, relationships);
 
   const handleSearchValueChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -330,7 +350,7 @@ export const CollectionAccounts: React.FC<{
             onKeyDown={handleSearchKeyDown}
             disabled={hasMaxAccounts}
             isLoading={isLoadingSuggestions}
-            items={groupSuggestions(suggestedAccounts)}
+            items={groupedItems}
             getItemId={getItemId}
             getIsItemDisabled={getIsItemDisabled}
             renderItem={renderAccountItem}
