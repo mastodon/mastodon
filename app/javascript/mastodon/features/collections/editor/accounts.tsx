@@ -4,6 +4,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
+import type { Map as ImmutableMap } from 'immutable';
+
 import type { ApiMutedAccountJSON } from 'mastodon/api_types/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AccountListItem } from 'mastodon/components/account_list_item';
@@ -88,7 +90,7 @@ type GroupKey = 'available' | 'mustFollow' | 'disabled';
 
 function groupSuggestions(
   accounts: ApiMutedAccountJSON[],
-  relationships: Immutable.Map<string, Relationship>,
+  relationships: ImmutableMap<string, Relationship>,
 ) {
   const { available, mustFollow, disabled } = Object.groupBy(
     accounts,
@@ -207,6 +209,7 @@ export const CollectionAccounts: React.FC<{
   });
 
   const relationships = useAppSelector((state) => state.relationships);
+
   const groupedItems = groupSuggestions(suggestedAccounts, relationships);
 
   const handleSearchValueChange = useCallback(
