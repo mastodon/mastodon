@@ -8,7 +8,7 @@ et:
     title: Veebirakenduse teave
   accounts:
     errors:
-      cannot_be_added_to_collections: Seda kontot ei saa kogusse lisada.
+      cannot_be_added_to_collections: Seda kontot ei saa kogumikku lisada.
     followers:
       one: Jälgija
       other: Jälgijaid
@@ -56,6 +56,7 @@ et:
         label: Muuda rolli
         no_role: Roll puudub
         title: "%{username} rolli muutmine"
+      collections: Kogumikud
       confirm: Kinnita
       confirmed: Kinnitatud
       confirming: Kinnitamisel
@@ -266,6 +267,7 @@ et:
         demote_user_html: "%{name} alandas kasutajat %{target}"
         destroy_announcement_html: "%{name} kustutas teadaande %{target}"
         destroy_canonical_email_block_html: "%{name} eemaldas blokeeringu e-postilt räsiga %{target}"
+        destroy_collection_html: "%{name} eemaldas kasutaja %{target} kogumiku"
         destroy_custom_emoji_html: "%{name} kustutas emotikoni %{target}"
         destroy_domain_allow_html: "%{name} keelas föderatsiooni domeeniga %{target}"
         destroy_domain_block_html: "%{name} lubas domeeni %{target}"
@@ -305,6 +307,7 @@ et:
         unsilence_account_html: "%{name} eemaldas %{target} konto piirangu"
         unsuspend_account_html: "%{name} taastas %{target} konto"
         update_announcement_html: "%{name} uuendas teadaannet %{target}"
+        update_collection_html: "%{name} uuendas %{target} kogumikku"
         update_custom_emoji_html: "%{name} uuendas emotikoni %{target}"
         update_domain_block_html: "%{name} uuendas domeeni %{target} keeldu"
         update_ip_block_html: "%{name} muutis IP-aadressi %{target} reeglit"
@@ -340,6 +343,15 @@ et:
       unpublish: Tühista avaldamine
       unpublished_msg: Teadaande eemaldamine avalikkusest õnnestus!
       updated_msg: Teadaande uuendamine õnnestus!
+    collections:
+      accounts: Kontod
+      collection_title: Kasutaja %{name} kogumikud
+      contents: Sisu
+      number_of_accounts:
+        one: 1 konto
+        other: "%{count} kontot"
+      open: Ava
+      view_publicly: Nähtav avalikult
     critical_update_pending: Kriitiline turvauuendus ootel
     custom_emojis:
       assign_category: Määra kategooria
@@ -679,6 +691,7 @@ et:
       cancel: Tühista
       category: Kategooria
       category_description_html: Põhjus, miks sellest kontost ja/või sisust teatati, kaasatakse raporteeritud kontoga suhtlemisel
+      collections: Kogumikud (%{count})
       comment:
         none: Pole
       comment_description_html: 'Täiendava infona kirjutas %{name}:'
@@ -708,11 +721,13 @@ et:
       report: 'Teavitus #%{id}'
       reported_account: Teavitatud kontost
       reported_by: Teavitaja
+      reported_content: Raporteeritud sisu
       reported_with_application: Raporteeritud rakendusega
       resolved: Lahendatud
       resolved_msg: Teavituse lahendamine õnnestus!
       skip_to_actions: Otsuste juurde
       status: Olek
+      statuses: Postitused (%{count})
       statuses_description_html: Sobimatu sisu kaasatakse suhtlusse raporteeritud kontoga
       summary:
         action_preambles:
@@ -747,6 +762,7 @@ et:
       categories:
         administration: Haldamine
         devops: DevOps
+        email: E-post
         invites: Kutsed
         moderation: Modereerimine
         special: Eriline
@@ -763,6 +779,8 @@ et:
         administrator_description: Selle loaga kasutajad võivad mööda pääseda kõigist lubadest
         delete_user_data: Kustuta kasutaja andmed
         delete_user_data_description: Lubab kasutajatel kustutada teiste kasutajate andmeid viiteta
+        invite_bypass_approval: Kutsu kasutajaid taotlusi läbi vaatamata
+        invite_bypass_approval_description: Võimaldab nende kasutajate poolt serverisse kutsutud inimestel moderaatori heakskiidust mööda minna
         invite_users: Kutsu kasutajaid
         invite_users_description: Lubab kasutajatel serverisse uusi inimesi kutsuda
         manage_announcements: Halda teadaandeid
@@ -773,6 +791,8 @@ et:
         manage_blocks_description: Lubab kasutajatel blokeerida e-posti teenusepakkujaid ja IP-aadresse
         manage_custom_emojis: Halda isetehtud emotikone
         manage_custom_emojis_description: Lubab kasutajatel hallata serveris isetehtud emotikone
+        manage_email_subscriptions: Halda e-posti tellimusi
+        manage_email_subscriptions_description: Luba selle õigusega kasutajatel tellida kasutajaid e-posti teel
         manage_federation: Halda födereerumist
         manage_federation_description: Lubab kasutajail keelata või lubada föderatsioone teiste domeenidega ja hallata ühenduvust
         manage_invites: Halda kutseid
@@ -1263,6 +1283,7 @@ et:
     progress:
       confirm: E-posti kinnitamine
       details: Sinu üksikasjad
+      list: Tellimise edenemine
       review: Meie ülevaatamine
       rules: Nõustu reeglitega
     providers:
@@ -1278,6 +1299,7 @@ et:
       invited_by: 'Saad ühineda paigaga %{domain} tänu saadud kutsele, mille said kohast:'
       preamble: Neist kinnipidamist jälgivad %{domain} moderaatorid.
       preamble_invited: Enne jätkamist kaalu põhireegleid, mille on kehtestanud %{domain} moderaatorid.
+      read_more: Loe lisaks
       title: Mõned põhireeglid.
       title_invited: Oled kutsutud.
     security: Turvalisus
@@ -1397,10 +1419,41 @@ et:
       your_appeal_rejected: Vaidlustus on tagasi lükatud
   edit_profile:
     other: Muu
+    redesign_body: Profiili muutmisele pääseb nüüd ligi otse profiili lehelt.
+    redesign_button: Mine sinna
+    redesign_title: Profiili muutmine on nüüd teistmoodi
   email_subscription_mailer:
+    confirmation:
+      action: Kinnita e-postiaadress
+      instructions_to_confirm: Kinnita, et soovid saada %{name} (@%{acct}) e-kirju, kui ta avaldab uusi postitusi.
+      instructions_to_ignore: Kui sa ei tea, miks sa selle kirja said, võid selle kustutada. Kui sa eespool olevale lingile ei klõpsa, ei telli sa teavitusi.
+      subject: Kinnita oma e-postiaadress
+      title: Kas soovid saada %{name} ilt e-kirjaga uuendusi?
     notification:
+      create_account: Loo Mastodoni konto
+      footer:
+        privacy_html: E-kirjad saadetakse aadressilt %{domain}, mis on Mastodoni poolt hallatav server. Et saada teada, kuidas see server isikuandmeid töötleb, loe <a href="%{privacy_policy_path}">privaatsuspoliitikat</a>.
+        reason_for_email_html: Saad neid kirju, kuna oled registreerunud %{name} e-kirja teel uuendusi saama. Kas soovid nende kirjade saamise lõpetada? <a href="%{unsubscribe_path}">Tühista tellimus</a>
+      interact_with_this_post:
+        one: Tegutse selle postitusega ja avasta sarnaseid postitusi.
+        other: Tegutse selliste postitustega ja avasta sarnaseid postitusi.
       subject:
         plural: Uus postitus kasutajalt %{name}
+        singular: 'Uus postitus: "%{excerpt}"'
+      title:
+        plural: Uus postitus kasutajalt %{name}
+        singular: 'Uus postitus: "%{excerpt}"'
+  email_subscriptions:
+    active: Aktiivne
+    confirmations:
+      show:
+        changed_your_mind: Kas muutsid meelt?
+        success_html: Nüüdsest hakkad saama e-kirju, kui %{name} avaldab uusi postitusi. Lisa %{sender} oma kontaktide hulka, et need postitused ei satuks rämpsposti kausta.
+        title: Oled registreeritud
+        unsubscribe: Lõpeta tellimus
+    inactive: Mitteaktiivne
+    status: Olek
+    subscribers: Tellijad
   emoji_styles:
     auto: Automaatne
     native: Rakenduseomane
@@ -1770,6 +1823,8 @@ et:
     posting_defaults: Postitamise vaikesätted
     public_timelines: Avalikud ajajooned
   privacy:
+    email_subscriptions: Saada postitused e-postiga
+    email_subscriptions_hint_html: Lisa oma profiili e-posti registreerimisvorm, mida kuvatakse sisselogimata kasutajatele. Kui külastajad sisestavad oma e-posti aadressi ja annavad nõusoleku, saadab Mastodon neile sinu avalike postitustega e-kirju.
     hint_html: "<strong>Kohanda, kuidas peaks su postitused ja profiil leitav olema.</strong> Mastodonis olevad paljud oskused võimaldavad jõuda sul rohkemate inimesteni, kui need lubada. Võta üks hetk, et vaadata need üle, et veenduda, kas sinu puhul need sobivad."
     privacy: Privaatsus
     privacy_hint_html: Määra, kui palju soovid teiste heaks infot avaldada. Inimesed leiavad huvitavaid profiile ning lahedaid äppe sirvides teiste inimeste jälgimisi ja vaadates, milliste äppidega nad postitavad, kuid sa võid soovida hoida seda varjatuna.
@@ -2035,6 +2090,28 @@ et:
     resume_app_authorization: Jätka rakenduse autentimist
     role_requirement: "%{domain} teenus eeldab, et Mastodoni kasutamiseks lülitad sisse kaheastmelise autentimise."
     webauthn: Turvavõtmed
+  unsubscriptions:
+    create:
+      action: Mine serveri kodulehele
+      email_subscription:
+        confirmation_html: Sa ei saa enam kasutajalt %{name} e-kirju.
+      title: Su tellimus on lõpetatud
+      user:
+        confirmation_html: 'Sa ei saa enam %{type}-teateid Mastodonilt aadress: %{domain}.'
+    notification_emails:
+      favourite: lemmikuks märkimise teavituse e-kirja
+      follow: jälgimise teavituse e-kirja
+      follow_request: jälgimise taotluse e-kirja
+      mention: mainimisest teavituse e-kirja
+      reblog: jagamiste teavituskirja
+    show:
+      action: Lõpeta tellimus
+      email_subscription:
+        confirmation_html: Sa ei saa enam e-kirju, kui sellelt kontolt avaldatakse uusi postitusi.
+        title: Kas lõpetada %{name} tellimine?
+      user:
+        confirmation_html: Sa ei saa enam %{type} laadi teateid Mastodonilt aadressil %{domain}.
+        title: Kas lõpetada %{type} tellimine?
   user_mailer:
     announcement_published:
       description: "%{domain} saidi peakasutajate teadaanne:"

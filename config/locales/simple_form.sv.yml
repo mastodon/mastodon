@@ -4,6 +4,7 @@ sv:
     hints:
       account:
         attribution_domains: En per rad. Skyddar mot falska attributioner.
+        discoverable: Du kan finnas med i samlingar som skapats av andra användare. Du och dina offentliga inlägg kan också föreslås för användare i andra upptäcktsupplevelser inom Mastodon.
         display_name: Ditt fullständiga namn eller ditt roliga namn.
         fields: Din hemsida, ditt pronomen, din ålder, vadhelst du vill.
         indexable: Dina offentliga inlägg kan visas i sökresultat på Mastodon. Personer som har interagerat med dina inlägg kan söka dem oavsett.
@@ -60,9 +61,6 @@ sv:
         setting_default_quote_policy_private: Inlägg som endast är för följare och som författats på Mastodon kan inte citeras av andra.
         setting_default_quote_policy_unlisted: När folk citerar dig, kommer deras inlägg också att döljas från trendande tidslinjer.
         setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
-        setting_display_media_default: Dölj media markerad som känslig
-        setting_display_media_hide_all: Dölj alltid all media
-        setting_display_media_show_all: Visa alltid media markerad som känslig
         setting_emoji_style: Hur emojier visas. "Automatiskt" kommer att försöka använda webbläsarens emojier, men faller tillbaka till Twemoji för äldre webbläsare.
         setting_quick_boosting_html: När aktiverad, klicka på %{boost_icon} Boost-ikonen för att omedelbart boosta istället för att öppna boost/citera-rullgardinsmenyn. Flyttar citering till %{options_icon} (Alternativ)-menyn.
         setting_system_scrollbars_ui: Gäller endast för webbläsare som är baserade på Safari och Chrome
@@ -176,6 +174,7 @@ sv:
     labels:
       account:
         attribution_domains: Webbplatser som är tillåtna att kreditera dig
+        discoverable: Visa mig i upptäcktsupplevelser
         fields:
           name: Etikett
           value: Innehåll
