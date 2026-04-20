@@ -98,7 +98,11 @@ class Collection < ApplicationRecord
     errors.add(:tag_name, :unusable) unless tag.usable?
   end
 
+  def pending_or_accepted_items
+    collection_items.select { |i| i.accepted? || i.pending? }
+  end
+
   def items_do_not_exceed_limit
-    errors.add(:collection_items, :too_many, count: MAX_ITEMS) if collection_items.size > MAX_ITEMS
+    errors.add(:collection_items, :too_many, count: MAX_ITEMS) if pending_or_accepted_items.size > MAX_ITEMS
   end
 end

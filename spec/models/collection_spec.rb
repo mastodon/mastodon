@@ -58,6 +58,18 @@ RSpec.describe Collection do
       let(:collection_items) { Fabricate.build_times(described_class::MAX_ITEMS + 1, :collection_item, collection: nil) }
 
       it { is_expected.to_not be_valid }
+
+      context 'when the limit is only exceeded due to `rejected` and `revoked` items' do
+        let(:collection_items) do
+          items = Fabricate.build_times(described_class::MAX_ITEMS - 2, :collection_item, collection: nil, state: :accepted)
+          items << Fabricate.build(:collection_item, collection: nil, state: :pending)
+          items << Fabricate.build(:collection_item, collection: nil, state: :rejected)
+          items << Fabricate.build(:collection_item, collection: nil, state: :revoked)
+          items
+        end
+
+        it { is_expected.to be_valid }
+      end
     end
   end
 
