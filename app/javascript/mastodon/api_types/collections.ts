@@ -12,6 +12,7 @@ export interface ApiCollectionJSON {
 
   id: string;
   uri: string;
+  url: string;
   local: boolean;
   item_count: number;
 
@@ -56,7 +57,7 @@ export interface CollectionAccountItem {
   id: string;
   account_id?: string; // Only present when state is 'accepted' (or the collection is your own)
   state: 'pending' | 'accepted' | 'rejected' | 'revoked';
-  position: number;
+  created_at: string;
 }
 
 export interface WrappedCollectionAccountItem {
