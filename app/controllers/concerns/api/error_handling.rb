@@ -58,5 +58,10 @@ module Api::ErrorHandling
     rescue_from ActionController::ParameterMissing, Mastodon::InvalidParameterError do |e|
       render json: { error: e.to_s }, status: 400
     end
+
+    rescue_from StandardError do |e|
+      Rails.logger.warn "API unexpected error: #{e.class}"
+      render json: { error: 'Invalid request' }, status: 422
+    end
   end
 end

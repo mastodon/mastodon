@@ -533,6 +533,61 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'error handling and safety' do
+        let!(:media_attachment) { Fabricate(:media_attachment, account: user.account) }
+        let(:params) { { status: 'Hello world with media', media_ids: [media_attachment.id] } }
+
+        def assert_safe_response
+          expect(response).not_to have_http_status(500)
+          expect(response.content_type).to start_with('application/json')
+          response_body = response.body
+          expect(response_body).not_to include('backtrace')
+          expect(response_body).not_to match(%r{/app/|/Users/|/home/|/system/})
+        end
+
+        context 'with invalid media metadata types' do
+          before do
+            media_attachment.file.instance_write(:meta, 'invalid string with /app/ path')
+            media_attachment.save!(validate: false)
+          end
+
+          it 'returns 200 with safe response, no 500 or internal paths', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(200)
+            assert_safe_response
+          end
+        end
+
+        context 'with StandardError fallback' do
+          before do
+            allow(PostStatusService).to receive(:new).and_raise(StandardError.new('test error with /app/path'))
+          end
+
+          it 'returns 422, not 500, with safe response', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            assert_safe_response
+            expect(response.parsed_body).to include(error: 'Invalid request')
+          end
+        end
+
+        context 'with JSON::GeneratorError fallback' do
+          before do
+            allow(REST::StatusSerializer).to receive(:new).and_raise(JSON::GeneratorError.new('test error with /app/path'))
+          end
+
+          it 'returns 422, not 500, with safe response', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            assert_safe_response
+            expect(response.parsed_body).to include(error: 'Invalid data format')
+          end
+        end
+      end
+
       context 'with missing thread' do
         let(:params) { { status: 'Hello world', in_reply_to_id: 0 } }
 
