@@ -33,8 +33,18 @@ module Api::ErrorHandling
     end
 
     rescue_from Seahorse::Client::NetworkingError do |e|
-      Rails.logger.warn "Storage server error: #{e}"
+      Rails.logger.warn "Storage server error: #{e.class}"
       render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
+    end
+
+    rescue_from JSON::GeneratorError do |e|
+      Rails.logger.warn "API serialization error: #{e.class}"
+      render json: { error: 'Invalid data format' }, status: 422
+    end
+
+    rescue_from ArgumentError, TypeError do |e|
+      Rails.logger.warn "API parameter error: #{e.class}"
+      render json: { error: 'Invalid parameter' }, status: 422
     end
 
     rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight do

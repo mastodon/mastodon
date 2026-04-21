@@ -459,6 +459,80 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'with media attachments' do
+        let!(:media_attachment) { Fabricate(:media_attachment, account: user.account) }
+        let(:params) { { status: 'Hello world with media', media_ids: [media_attachment.id] } }
+
+        it 'creates a status with media attachment', :aggregate_failures do
+          expect { subject }.to change(user.account.statuses, :count).by(1)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:media_attachments].size).to eq 1
+          expect(response.parsed_body[:media_attachments].first[:id]).to eq media_attachment.id.to_s
+        end
+
+        it 'serializes media metadata safely', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          media = response.parsed_body[:media_attachments].first
+          expect(media).to include(:meta)
+          expect(media[:meta]).to be_a(Hash)
+        end
+
+        context 'with media containing invalid metadata' do
+          before do
+            media_attachment.file.instance_write(:meta, 'invalid string metadata')
+            media_attachment.save!(validate: false)
+          end
+
+          it 'handles invalid metadata gracefully without 500', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(200)
+            media = response.parsed_body[:media_attachments].first
+            expect(media[:meta]).to eq({})
+          end
+        end
+
+        context 'with media containing nil metadata' do
+          before do
+            media_attachment.file.instance_write(:meta, nil)
+            media_attachment.save!(validate: false)
+          end
+
+          it 'handles nil metadata gracefully', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(200)
+            media = response.parsed_body[:media_attachments].first
+            expect(media[:meta]).to eq({})
+          end
+        end
+
+        context 'with media containing extra keys in metadata' do
+          before do
+            media_attachment.file.instance_write(:meta, {
+              original: { width: 600, height: 400 },
+              extra_key: 'should be filtered',
+              sensitive_data: { internal_path: '/secret/path' }
+            })
+            media_attachment.save!(validate: false)
+          end
+
+          it 'filters out non-allowed keys from metadata', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(200)
+            media = response.parsed_body[:media_attachments].first
+            expect(media[:meta]).to include('original' => include('width' => 600, 'height' => 400))
+            expect(media[:meta]).not_to include('extra_key', 'sensitive_data')
+          end
+        end
+      end
+
       context 'with missing thread' do
         let(:params) { { status: 'Hello world', in_reply_to_id: 0 } }
 
