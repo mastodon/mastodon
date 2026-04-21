@@ -26,7 +26,7 @@
   z-index: 9999;
   box-sizing: border-box;
   max-height: min(320px, 50dvh);
-  padding: 4px;
+  padding-block: 4px;
   border-radius: 4px;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
@@ -38,9 +38,9 @@
   overscroll-behavior-y: contain;
 }
 
-.groupLabel {
+.groupTitle {
   padding-block: 12px 4px;
-  padding-inline: 12px;
+  padding-inline: 16px;
   font-size: 13px;
   font-weight: bold;
   text-transform: uppercase;
@@ -54,6 +54,7 @@
   display: flex;
   align-items: center;
   padding: 8px 12px;
+  margin-inline: 4px;
   gap: 12px;
   font-size: 14px;
   line-height: 20px;

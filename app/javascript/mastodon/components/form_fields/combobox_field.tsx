@@ -1,6 +1,8 @@
 import {
+  createContext,
   forwardRef,
   useCallback,
+  useContext,
   useId,
   useMemo,
   useRef,
@@ -108,6 +110,58 @@ interface ComboboxProps<
 
 interface Props<Item extends ComboboxItem, GroupKey extends string>
   extends ComboboxProps<Item, GroupKey>, CommonFieldWrapperProps {}
+
+interface ComboboxItemPropsContext {
+  role: 'option';
+  'data-highlighted': boolean;
+  'aria-selected': boolean;
+  'aria-disabled': boolean;
+  'data-item-id': string;
+  onMouseEnter: React.MouseEventHandler<HTMLLIElement>;
+  onClick: React.MouseEventHandler<HTMLLIElement>;
+}
+
+const ComboboxItemPropsContext = createContext<ComboboxItemPropsContext | null>(
+  null,
+);
+
+export function useComboboxItemProps() {
+  const context = useContext(ComboboxItemPropsContext);
+
+  if (context === null) {
+    throw new Error(
+      'useComboboxItemProps must be used within a Combobox component',
+    );
+  }
+
+  return context;
+}
+
+export const ComboboxMenuItem: React.FC<{
+  className?: string;
+  children: React.ReactNode;
+}> = ({ className, children }) => {
+  const props = useComboboxItemProps();
+  return (
+    <li className={classNames(className, classes.menuItem)} {...props}>
+      {children}
+    </li>
+  );
+};
+
+export const ComboboxMenuGroupTitle: React.FC<
+  React.ComponentPropsWithoutRef<'li'>
+> = ({ className, children, ...otherProps }) => {
+  return (
+    <li
+      {...otherProps}
+      role='presentation'
+      className={classNames(className, classes.groupTitle)}
+    >
+      {children}
+    </li>
+  );
+};
 
 /**
  * The combobox field allows users to select one or more items
@@ -371,7 +425,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   const renderItems = (items: Item[]) =>
     items.map((item) => {
       const id = getItemId(item);
-      const isDisabled = getIsItemDisabled?.(item);
+      const isDisabled = getIsItemDisabled?.(item) ?? false;
       const isHighlighted = id === highlightedItemId;
       // If `getIsItemSelected` is defined, we assume 'multi-select'
       // behaviour and don't set `aria-selected` based on highlight,
@@ -380,23 +434,23 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         ? getIsItemSelected(item)
         : isHighlighted;
       return (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <li
+        <ComboboxItemPropsContext.Provider
           key={id}
-          role='option'
-          className={classes.menuItem}
-          data-highlighted={isHighlighted}
-          aria-selected={isSelected}
-          aria-disabled={isDisabled}
-          data-item-id={id}
-          onMouseEnter={handleItemMouseEnter}
-          onClick={handleSelectItem}
+          value={{
+            role: 'option',
+            'data-highlighted': isHighlighted,
+            'aria-selected': isSelected,
+            'aria-disabled': isDisabled,
+            'data-item-id': id,
+            onMouseEnter: handleItemMouseEnter,
+            onClick: handleSelectItem,
+          }}
         >
           {renderItem(item, {
             isSelected,
-            isDisabled: isDisabled ?? false,
+            isDisabled,
           })}
-        </li>
+        </ComboboxItemPropsContext.Provider>
       );
     });
 
@@ -498,16 +552,12 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
                         role='group'
                         aria-labelledby={hasTitle ? groupTitleId : undefined}
                       >
-                        {hasTitle && (
-                          <li
-                            role='presentation'
-                            className={classes.groupLabel}
-                          >
-                            {customGroupTitle ?? (
-                              <span id={groupTitleId}>{groupKey}</span>
-                            )}
-                          </li>
-                        )}
+                        {hasTitle &&
+                          (customGroupTitle ?? (
+                            <ComboboxMenuGroupTitle id={groupTitleId}>
+                              {groupKey}
+                            </ComboboxMenuGroupTitle>
+                          ))}
                         {renderItems(groupItems)}
                       </ul>
                     );

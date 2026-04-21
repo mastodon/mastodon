@@ -6,6 +6,10 @@ import { useHistory } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import {
+  ComboboxMenuGroupTitle,
+  ComboboxMenuItem,
+} from '@/mastodon/components/form_fields/combobox_field';
 import type { ApiMutedAccountJSON } from 'mastodon/api_types/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AccountListItem } from 'mastodon/components/account_list_item';
@@ -83,7 +87,9 @@ const SuggestedAccountItem: React.FC<{ id: string }> = ({ id }) => {
 };
 
 const renderAccountItem = (account: ApiMutedAccountJSON) => (
-  <SuggestedAccountItem id={account.id} />
+  <ComboboxMenuItem>
+    <SuggestedAccountItem id={account.id} />
+  </ComboboxMenuItem>
 );
 
 type GroupKey = 'available' | 'mustFollow' | 'disabled';
@@ -158,11 +164,13 @@ const renderGroupTitle = (groupKey: GroupKey, titleId: string) => {
   }
 
   return (
-    <ListItemWrapper className={classes.suggestionGroup}>
-      <ListItemContent id={titleId} subtitle={description}>
-        {title}
-      </ListItemContent>
-    </ListItemWrapper>
+    <ComboboxMenuGroupTitle>
+      <ListItemWrapper className={classes.suggestionGroup}>
+        <ListItemContent id={titleId} subtitle={description}>
+          {title}
+        </ListItemContent>
+      </ListItemWrapper>
+    </ComboboxMenuGroupTitle>
   );
 };
 
