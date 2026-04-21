@@ -114,7 +114,7 @@ class User < ApplicationRecord
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
   scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
-  scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
+  scope :matches_email, ->(value) { where(arel_table[:email].matches("%#{value}%")) }
   scope :matches_ip, ->(value) { left_joins(:ips).merge(IpBlock.contained_by(value)).group(users: [:id]) }
 
   before_validation :sanitize_role

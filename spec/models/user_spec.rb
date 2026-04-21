@@ -88,11 +88,18 @@ RSpec.describe User do
     end
 
     describe 'matches_email' do
-      it 'returns a relation of users whose email starts with the given string' do
-        specified = Fabricate(:user, email: 'specified@spec')
-        Fabricate(:user, email: 'unspecified@spec')
+      it 'returns users whose email includes the given string' do
+        specified = Fabricate(:user, email: 'user@host.example')
+        Fabricate(:user, email: 'user@other.example')
 
-        expect(described_class.matches_email('specified')).to contain_exactly(specified)
+        expect(described_class.matches_email('host')).to contain_exactly(specified)
+      end
+
+      it 'respects the presence of at sign for domain limit' do
+        specified = Fabricate(:user, email: 'user@host.example')
+        Fabricate(:user, email: 'host.example@other.domain')
+
+        expect(described_class.matches_email('@host.example')).to contain_exactly(specified)
       end
     end
 
