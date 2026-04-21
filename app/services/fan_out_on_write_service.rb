@@ -27,14 +27,7 @@ class FanOutOnWriteService < BaseService
   private
 
   def check_race_condition!
-    # I don't know why but at some point we had an issue where
-    # this service was being executed with status objects
-    # that had a null visibility - which should not be possible
-    # since the column in the database is not nullable.
-    #
-    # This check re-queues the service to be run at a later time
-    # with the full object, if something like it occurs
-
+    # Handle invalid data by re-queueing for later run
     raise Mastodon::RaceConditionError if @status.visibility.nil?
   end
 
