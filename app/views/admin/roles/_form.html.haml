@@ -32,6 +32,14 @@
 
   %hr.spacer/
 
+- if Mastodon::Feature.collections_enabled?
+
+  .fields-group
+    = form.input :collection_limit,
+                 wrapper: :with_label
+
+  %hr.spacer/
+
 - unless current_user.role == form.object
 
   .field-group
