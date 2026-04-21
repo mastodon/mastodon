@@ -96,7 +96,7 @@ class ReportService < BaseService
   def domain_mentions(domain)
     Mention
       .joins(:account)
-      .where(Account.arel_table[:domain].lower.eq domain)
+      .merge(Account.with_domain(domain))
       .select(1).arel.exists
   end
 
