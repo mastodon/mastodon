@@ -18,6 +18,7 @@ import { languages as preloadedLanguages } from 'mastodon/initial_state';
 import { EmojiHTML } from './emoji/html';
 import { injectIntl } from './intl';
 import { HandledLink } from './status/handled_link';
+import { compareUrls } from '../utils/compare_urls';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -70,17 +71,6 @@ class TranslateButton extends PureComponent {
 const mapStateToProps = state => ({
   languages: state.getIn(['server', 'translationLanguages', 'items']),
 });
-
-const compareUrls = (href1, href2) => {
-  try {
-    const url1 = new URL(href1);
-    const url2 = new URL(href2);
-
-    return url1.origin === url2.origin && url1.pathname === url2.pathname && url1.search === url2.search;
-  } catch {
-    return false;
-  }
-};
 
 class StatusContent extends PureComponent {
   static propTypes = {
