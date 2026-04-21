@@ -105,19 +105,19 @@ gem 'opentelemetry-api', '~> 1.9.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.33.0', require: false
-  gem 'opentelemetry-instrumentation-active_job', '~> 0.10.0', require: false
-  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.24.0', require: false
-  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.24.0', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.32.0', require: false
-  gem 'opentelemetry-instrumentation-http', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.35.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.30.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.40.0', require: false
-  gem 'opentelemetry-instrumentation-redis', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.28.0', require: false
+  gem 'opentelemetry-instrumentation-active_job', '~> 0.11.0', require: false
+  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.25.0', require: false
+  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.25.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.33.0', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.30.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.36.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.31.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.41.0', require: false
+  gem 'opentelemetry-instrumentation-redis', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.29.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
 end
 
