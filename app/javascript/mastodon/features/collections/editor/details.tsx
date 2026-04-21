@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
 import { languages } from '@/mastodon/initial_state';
 import {
   hasSpecialCharacters,
@@ -373,7 +374,9 @@ const TopicField: React.FC = () => {
   );
 };
 
-const renderTagItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;
+const renderTagItem = (item: TagSearchResult) => (
+  <ComboboxMenuItem>{item.label ?? `#${item.name}`}</ComboboxMenuItem>
+);
 
 const LanguageField: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -60,17 +60,20 @@
 }
 
 .suggestion {
-  padding: 4px 0;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--color-border-primary);
 
-  [aria-disabled='true'] & {
+  &[data-highlighted='true'] {
+    background: var(--color-bg-overlay-highlight);
+  }
+
+  &[aria-disabled='true'] {
     opacity: 0.6;
+    cursor: not-allowed;
   }
 }
 
 .suggestionGroup {
-  padding: 4px 0;
-
-  // Undo default group styles:
-  font-weight: 400;
-  text-transform: none;
+  padding-bottom: 4px;
 }

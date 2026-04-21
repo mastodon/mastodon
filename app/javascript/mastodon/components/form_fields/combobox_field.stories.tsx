@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ComboboxField } from './combobox_field';
+import { ComboboxField, ComboboxMenuItem } from './combobox_field';
 
 interface Fruit {
   id: string;
@@ -60,7 +60,7 @@ const ComboboxDemo: React.FC<{ withGroups?: boolean }> = ({ withGroups }) => {
   }, []);
 
   const renderItem = useCallback(
-    (fruit: Fruit) => <span>{fruit.name}</span>,
+    (fruit: Fruit) => <ComboboxMenuItem>{fruit.name}</ComboboxMenuItem>,
     [],
   );
 
@@ -93,6 +93,7 @@ const ComboboxDemo: React.FC<{ withGroups?: boolean }> = ({ withGroups }) => {
 const meta = {
   title: 'Components/Form Fields/ComboboxField',
   component: ComboboxField,
+  subcomponents: { ComboboxMenuItem },
   render: () => <ComboboxDemo />,
 } satisfies Meta<typeof ComboboxField>;
 

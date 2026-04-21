@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { useComboboxItemProps } from '@/mastodon/components/form_fields/combobox_field';
 import type { ApiMutedAccountJSON } from 'mastodon/api_types/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AccountListItem } from 'mastodon/components/account_list_item';
@@ -67,18 +68,18 @@ const AddedAccountItem: React.FC<{
 const SuggestedAccountItem: React.FC<{ id: string }> = ({ id }) => {
   const account = useAccount(id);
   const handle = useAccountHandle(account, domain);
+  const comboboxItemProps = useComboboxItemProps();
 
   if (!account) return null;
 
   return (
-    <ListItemWrapper
-      className={classes.suggestion}
-      icon={<Avatar account={account} size={40} />}
-    >
-      <ListItemContent subtitle={handle}>
-        <DisplayName account={account} variant='simple' />
-      </ListItemContent>
-    </ListItemWrapper>
+    <li {...comboboxItemProps} className={classes.suggestion}>
+      <ListItemWrapper icon={<Avatar account={account} size={40} />}>
+        <ListItemContent subtitle={handle}>
+          <DisplayName account={account} variant='simple' />
+        </ListItemContent>
+      </ListItemWrapper>
+    </li>
   );
 };
 
@@ -158,11 +159,13 @@ const renderGroupTitle = (groupKey: GroupKey, titleId: string) => {
   }
 
   return (
-    <ListItemWrapper className={classes.suggestionGroup}>
-      <ListItemContent id={titleId} subtitle={description}>
-        {title}
-      </ListItemContent>
-    </ListItemWrapper>
+    <li role='presentation'>
+      <ListItemWrapper className={classes.suggestionGroup}>
+        <ListItemContent id={titleId} subtitle={description}>
+          {title}
+        </ListItemContent>
+      </ListItemWrapper>
+    </li>
   );
 };
 

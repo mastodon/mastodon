@@ -26,7 +26,6 @@
   z-index: 9999;
   box-sizing: border-box;
   max-height: min(320px, 50dvh);
-  padding: 4px;
   border-radius: 4px;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
@@ -38,22 +37,18 @@
   overscroll-behavior-y: contain;
 }
 
-.groupLabel {
-  padding-block: 12px 4px;
-  padding-inline: 12px;
+.groupTitle {
+  padding: 8px 16px 4px;
   font-size: 13px;
   font-weight: bold;
   text-transform: uppercase;
-
-  ul:first-child > & {
-    padding-top: 4px;
-  }
 }
 
 .menuItem {
   display: flex;
   align-items: center;
   padding: 8px 12px;
+  margin-inline: 4px;
   gap: 12px;
   font-size: 14px;
   line-height: 20px;
@@ -61,6 +56,14 @@
   color: var(--color-text-primary);
   cursor: pointer;
   user-select: none;
+
+  &:first-child {
+    margin-top: 4px;
+  }
+
+  &:last-child {
+    margin-bottom: 4px;
+  }
 
   &[data-highlighted='true'] {
     background: var(--color-bg-overlay-highlight);
