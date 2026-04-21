@@ -170,7 +170,7 @@ class StatusContent extends PureComponent {
         item => compareUrls(element.href, item.get('url'))
       );
       const taggedCollection = this.props.status.get('tagged_collections').find(
-        item => element.href.includes(item.get('id'))
+        item => compareUrls(element.href, item.get('url'))
       )
 
       return (
