@@ -6,6 +6,7 @@ import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import babel from '@rolldown/plugin-babel';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
+import browserslist from 'browserslist';
 import postcssPresetEnv from 'postcss-preset-env';
 import Compress from 'rollup-plugin-gzip';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -182,6 +183,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       legacy({
         renderLegacyChunks: false,
         modernPolyfills: true,
+        modernTargets: browserslist.loadConfig({ path: process.cwd() }),
       }),
       isProdBuild && (Compress() as PluginOption),
       command === 'build' &&
