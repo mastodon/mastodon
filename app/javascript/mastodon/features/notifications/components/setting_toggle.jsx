@@ -27,7 +27,7 @@ export default class SettingToggle extends PureComponent {
 
     return (
       <div className='setting-toggle'>
-        <Toggle disabled={disabled} id={id} checked={settings.getIn(settingPath, defaultValue)} onChange={this.onChange} onKeyDown={this.onKeyDown} />
+        <Toggle disabled={disabled} id={id} checked={settings.getIn(settingPath, defaultValue)} onChange={this.onChange} onKeyDown={this.onKeyDown} size={16} style={{display: 'block'}} />
         <label htmlFor={id} className='setting-toggle__label'>{label}</label>
       </div>
     );
