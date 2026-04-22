@@ -13,7 +13,11 @@ import { IconButton } from '@/mastodon/components/icon_button';
 import { ModalShell, ModalShellBody } from '@/mastodon/components/modal_shell';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import classes from './styles.module.css';
@@ -22,6 +26,27 @@ const closeMessage = defineMessage({
   id: 'lightbox.close',
   defaultMessage: 'Close',
 });
+
+const selectServerName = createAppSelector(
+  [
+    (state) => state.accounts,
+    (_, accountId: string) => accountId,
+    (state) => state.server.getIn(['server', 'domain']) as string | undefined,
+  ],
+  (accounts, accountId, serverDomain) => {
+    const acct = accounts.getIn([accountId, 'acct']) as string | undefined;
+    if (!acct) {
+      return undefined;
+    }
+
+    const domain = acct.split('@').at(1);
+    if (domain) {
+      return domain;
+    }
+
+    return serverDomain;
+  },
+);
 
 export const AccountJoinModal: FC<{
   accountId: string;
@@ -47,6 +72,8 @@ export const AccountJoinModal: FC<{
     }
     return null;
   }, [createdAtStr]);
+
+  const domain = useAppSelector((state) => selectServerName(state, accountId));
 
   const dispatch = useAppDispatch();
   const handle = account?.acct;
@@ -76,6 +103,7 @@ export const AccountJoinModal: FC<{
           <AccountJoinMessage
             name={<DisplayNameSimple account={account} />}
             isMe={isMe}
+            serverName={domain}
             anniversary={anniversary}
           />
           <h1>
@@ -109,12 +137,9 @@ export const AccountJoinModal: FC<{
 const AccountJoinMessage: FC<{
   name: React.JSX.Element;
   isMe: boolean;
+  serverName?: string;
   anniversary: number | null;
-}> = ({ name, isMe, anniversary }) => {
-  const serverName = useAppSelector(
-    (state) => state.server.getIn(['server', 'title']) as string | undefined,
-  );
-
+}> = ({ name, isMe, serverName, anniversary }) => {
   if (anniversary === 0) {
     if (isMe) {
       return (
@@ -131,7 +156,7 @@ const AccountJoinMessage: FC<{
     return (
       <FormattedMessage
         id='account.join_modal.other_today'
-        defaultMessage='It’s {name} first day on {server}!'
+        defaultMessage='It’s {name}’s first day on {server}!'
         tagName='p'
         values={{
           name,
@@ -142,6 +167,18 @@ const AccountJoinMessage: FC<{
   }
 
   if (isMe) {
+    if (anniversary !== null && anniversary > 0) {
+      return (
+        <FormattedMessage
+          id='account.join_modal.me_anniversary'
+          defaultMessage='Happy Fediversary! You joined {server} on'
+          tagName='p'
+          values={{
+            server: serverName,
+          }}
+        />
+      );
+    }
     return (
       <FormattedMessage
         id='account.join_modal.me'
