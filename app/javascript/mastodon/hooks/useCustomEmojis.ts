@@ -1,13 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { ExtraCustomEmojiMap } from '../features/emoji/types';
 
 let emojis: ExtraCustomEmojiMap | null = null;
 
 export function useCustomEmojis() {
+  const [, setLoaded] = useState(emojis !== null);
   useEffect(() => {
     if (!emojis) {
-      void loadEmojisIntoCache();
+      void loadEmojisIntoCache().then(() => {
+        setLoaded(true);
+      });
     }
   }, []);
 
