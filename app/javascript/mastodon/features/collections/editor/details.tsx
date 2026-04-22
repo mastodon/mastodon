@@ -331,6 +331,10 @@ const TopicField: React.FC = () => {
     [topic],
   );
 
+  const isCurrentTopicOnlySuggestion =
+    tags.length === 1 && tags[0]?.id === 'new';
+  const hideTagSuggestions = !tags.length || isCurrentTopicOnlySuggestion;
+
   return (
     <ComboboxField
       required={false}
@@ -369,7 +373,7 @@ const TopicField: React.FC = () => {
             }
           : undefined
       }
-      suppressMenu={!tags.length}
+      suppressMenu={hideTagSuggestions}
     />
   );
 };

@@ -76,6 +76,26 @@
 }
 
 .emptyMessage {
-  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 16px;
   font-size: 13px;
+}
+
+.loadingIndicator {
+  --spinner-size: 20px;
+
+  position: relative;
+  display: block;
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  overflow: hidden;
+
+  & :global(.circular-progress) {
+    width: var(--spinner-size);
+    height: var(--spinner-size);
+  }
 }
