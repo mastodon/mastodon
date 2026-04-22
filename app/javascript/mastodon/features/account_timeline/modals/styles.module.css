@@ -39,16 +39,55 @@
   justify-content: center;
   position: relative;
   min-height: 120px;
+  gap: 16px;
 
-  > p {
+  p,
+  h1 {
+    text-align: center;
+  }
+
+  p {
     font-size: 13px;
   }
 
-  > h1 {
+  h1 {
     margin-top: 8px;
     margin-bottom: 0;
     font-size: 17px;
     font-weight: 600;
+  }
+}
+
+.joinBanner {
+  order: -1;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 40px;
+    margin-top: 8px;
+  }
+
+  h3 {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
   }
 }
 
