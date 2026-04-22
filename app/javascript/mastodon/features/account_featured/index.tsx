@@ -25,12 +25,9 @@ import Column from 'mastodon/features/ui/components/column';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAccountId } from 'mastodon/hooks/useAccountId';
 import { useAccountVisibility } from 'mastodon/hooks/useAccountVisibility';
-import {
-  fetchAccountCollections,
-  selectAccountCollections,
-} from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { useAccountCollections } from '../collections';
 import { CollectionListItem } from '../collections/components/collection_list_item';
 import { areCollectionsEnabled } from '../collections/utils';
 
@@ -59,10 +56,6 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   useEffect(() => {
     if (accountId) {
       void dispatch(fetchEndorsedAccounts({ accountId }));
-
-      if (collectionsEnabled) {
-        void dispatch(fetchAccountCollections({ accountId }));
-      }
     }
   }, [accountId, dispatch]);
 
@@ -73,9 +66,8 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         ImmutableList(),
       ) as ImmutableList<string>,
   );
-  const { collections, status: collectionsLoadStatus } = useAppSelector(
-    (state) => selectAccountCollections(state, accountId ?? null),
-  );
+  const { collections, status: collectionsLoadStatus } =
+    useAccountCollections(accountId);
 
   const { listedCollections = [], unlistedCollections = [] } = Object.groupBy(
     collections,
