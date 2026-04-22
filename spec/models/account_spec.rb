@@ -772,19 +772,42 @@ RSpec.describe Account do
   end
 
   describe '#featureable_by?' do
-    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:, feature_approval_policy:) }
+    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:, locked:, feature_approval_policy:) }
 
+    let(:locked) { false }
     let(:local_account) { Fabricate(:account) }
 
     context 'when account is local' do
       let(:local) { true }
-      let(:feature_approval_policy) { nil }
+      let(:feature_approval_policy) { 0 }
 
       context 'when account is discoverable' do
         let(:discoverable) { true }
 
-        it 'returns `true`' do
-          expect(subject.featureable_by?(local_account)).to be true
+        context 'when the account is not locked' do
+          let(:locked) { false }
+
+          it 'returns `true`' do
+            expect(subject.featureable_by?(local_account)).to be true
+          end
+        end
+
+        context 'when the account is locked' do
+          let(:locked) { true }
+
+          it 'returns `false`' do
+            expect(subject.featureable_by?(local_account)).to be false
+          end
+
+          context 'when the other account is a follower' do
+            before do
+              local_account.follow!(subject)
+            end
+
+            it 'returns `true`' do
+              expect(subject.featureable_by?(local_account)).to be true
+            end
+          end
         end
       end
 

@@ -31,6 +31,8 @@ class ActivityPub::TagManager
       short_account_status_url(target.account, target)
     when :flag
       target.uri
+    when :featured_collection
+      account_collection_url(target.account, target)
     end
   end
 

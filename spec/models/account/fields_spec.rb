@@ -13,7 +13,7 @@ RSpec.describe Account, '#fields' do
       it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
 
       def fields_empty_name_value
-        Array.new(4) { { 'name' => '', 'value' => '' } }
+        Array.new(described_class::DEFAULT_FIELDS_SIZE) { %w(name value).index_with('') }
       end
 
       def fields_over_limit
@@ -150,6 +150,8 @@ RSpec.describe Account, '#fields' do
 
   describe '#build_fields' do
     let(:account) { Fabricate.build :account }
+
+    before { stub_const('Account::DEFAULT_FIELDS_SIZE', 4) }
 
     context 'when fields already full' do
       before { account.fields = Array.new(Account::DEFAULT_FIELDS_SIZE) { |i| { name: "Name#{i}", value: 'Test' } } }

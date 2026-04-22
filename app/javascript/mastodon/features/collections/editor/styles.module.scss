@@ -1,10 +1,17 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .step {
   font-size: 13px;
   color: var(--color-text-secondary);
 }
 
 .title {
-  font-size: 22px;
+  font-size: 17px;
+  font-weight: 500;
   line-height: 1.2;
   margin-top: 4px;
 }
@@ -14,79 +21,59 @@
   margin-top: 8px;
 }
 
-/* Make form stretch full height of the column */
+.listHeading {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Ensure sticky footer isn't covered by mobile bottom nav */
 .form {
   --bottom-spacing: 0;
 
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  padding-bottom: var(--bottom-spacing);
+  padding-bottom: 0;
 
   @media (width < 760px) {
     --bottom-spacing: var(--mobile-bottom-nav-height);
   }
 }
 
-.selectedSuggestionIcon {
-  box-sizing: border-box;
-  width: 18px;
-  height: 18px;
-  margin-left: auto;
-  padding: 2px;
-  border-radius: 100%;
-  color: var(--color-text-on-brand-base);
-  background: var(--color-bg-brand-base);
-
-  [data-highlighted='true'] & {
-    color: var(--color-bg-brand-base);
-    background: var(--color-text-on-brand-base);
-  }
-}
-
-.formFieldStack {
-  flex-grow: 1;
-}
-
-.scrollableWrapper,
-.scrollableInner {
-  margin-inline: -8px;
-}
-
-.submitDisabledCallout {
-  align-self: center;
-}
-
 .stickyFooter {
   position: sticky;
   bottom: var(--bottom-spacing);
+  margin-top: -16px;
   padding: 16px;
   background-image: linear-gradient(
     to bottom,
     transparent,
-    var(--color-bg-primary) 32px
+    var(--color-bg-primary) 24px
   );
 }
 
-.itemCountReadout {
-  text-align: center;
+.formFieldStack {
+  gap: 16px;
 }
 
-.actionWrapper {
-  display: flex;
-  flex-direction: column;
-  width: min-content;
-  min-width: 240px;
-  margin-inline: auto;
-  gap: 8px;
+.scrollableWrapper {
+  margin-inline: -16px;
 }
 
-.accountBadge {
-  margin-inline-start: 56px;
+.suggestion {
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--color-border-primary);
 
-  @container (width < 360px) {
-    margin-top: 4px;
-    margin-inline-start: 46px;
+  &[data-highlighted='true'] {
+    background: var(--color-bg-overlay-highlight);
   }
+
+  &[aria-disabled='true'] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.suggestionGroup {
+  padding-bottom: 4px;
 }

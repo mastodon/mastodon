@@ -4,6 +4,7 @@ et:
     hints:
       account:
         attribution_domains: Üks rea kohta. See kaitseb pahatahtlike viidete eest.
+        discoverable: Sind võidakse esile tõsta teiste kasutajate loodud kogumikes. Sind ja su avalikke postitusi võidakse soovitada ka teistele kasutajatele Mastodoni erinevate avastamiskeskkondade kaudu.
         display_name: Su täisnimi või naljanimi.
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
         indexable: Sinu avalikud postitused võivad ilmuda Mastodoni otsingutulemustes. Inimesed, kes on sinu postitustele reageerinud, saavad neid otsida nii või naa.
@@ -60,9 +61,9 @@ et:
         setting_default_quote_policy_private: Ainult jälgijatele mõeldud Mastodoni postitusi ei saa teiste poolt tsiteerida.
         setting_default_quote_policy_unlisted: Kui teised kasutajad sind tsiteerivad, siis nende postitused peidetakse ajajoonelt, mis näitavad populaarsust koguvaid postitusi.
         setting_default_sensitive: Tundlik meedia on vaikimisi peidetud ning seda saab avada sellele klikkides
-        setting_display_media_default: Peida tundlikuks märgitud meedia
-        setting_display_media_hide_all: Alati peida kõik meedia
-        setting_display_media_show_all: Alati näita tundlikuks märgistatud meedia
+        setting_display_media_default: Hoiatus enne kui näidata tundlikuks märgitud meediat
+        setting_display_media_hide_all: Hoiatus enne mistahes meedia näitamist
+        setting_display_media_show_all: Näita alati meediat ilma hoiatuseta, ka tundlikuks märgitud meediat
         setting_emoji_style: See määrab emojide kuvamise viisi. Automaatse valiku puhul üritatakse kasutada platvormi või klientrakenduse oma emojisid, kuid varuvariandina jääb toimima Twemoji (näiteks vanade veebibrauserite puhul).
         setting_quick_boosting_html: Selle eelistuse kasutamisel, Hooandmise ikooni %{boost_icon} teeb toimingu kohe ilma avamata Hooandmise/Tsiteerimise menüüvalikut. Sel puhul tsiteerimise link leidub %{options_icon} (Valikud) menüüs.
         setting_system_scrollbars_ui: Kehtib vaid Safaril ja Chrome'il põhinevatel tavaarvuti veebibrauserite puhul
@@ -133,6 +134,7 @@ et:
         otp: 'Kaheastmelise autentimise kood telefonirakendusest või mõni taastekood:'
         webauthn: Kui see on USB-võti, sisesta see ning vajadusel aktiveeri.
       settings:
+        email_subscriptions: Funktsionaalsuse keelamine säilitab olemasolevad tellijad, kuid peatab e-kirjade saatmise.
         indexable: Su profiilileht võib ilmuda Google, Bingi ja teiste otsimootorite tulemustes.
         show_application: Sa saad sõltumata sellest vaadata, milline äpp su postituse postitas.
       tag:
@@ -152,6 +154,7 @@ et:
         jurisdiction: Nimeta riik, kus elab see, kes arveid maksab. Kui tegemist on äriühingu või muu üksusega, märgi riik, kus see on asutatud, ning vajaduse korral linn, piirkond, territoorium või osariik.
         min_age: Vanus ei tohiks olla väiksem, kui sinu õigusruumis nõutav alampiir.
       user:
+        chosen_languages: Kui see valik on märgitud, kuvatakse avalikul ajajoonel ainult valitud keeltes postitusi. See seadistus ei mõjuta sinu avalehe ajajoont ega loendeid.
         date_of_birth:
           one: "%{domain} saidi teenuste kasutamiseks pead olema vähemalt %{count} aastat vana. Me ei salvesta neid andmeid."
           other: "%{domain} saidi teenuste kasutamiseks pead olema vähemalt %{count} aastat vana. Me ei salvesta neid andmeid."
@@ -174,6 +177,7 @@ et:
     labels:
       account:
         attribution_domains: Veebisaidid, mis võivad sind algallikana mainida
+        discoverable: Võimalda mind teistel avatada
         fields:
           name: Nimetus
           value: Sisu
@@ -221,6 +225,7 @@ et:
         email: E-posti aadress
         expires_in: Aegu pärast
         fields: Veebiviited
+        filter_action: Filtritoimingud
         header: Päis
         honeypot: "%{label} (ära sisesta)"
         inbox_url: Sõnumivahendusserveri sisendkausta võrguaadress
@@ -352,6 +357,7 @@ et:
         hint: Lisainfo
         text: Reegel
       settings:
+        email_subscriptions: Luba e-posti aadressiga liitumised
         indexable: Kaasa profiilileht otsimootoritesse
         show_application: Näita, millisest äpist postituse saatsid
       tag:

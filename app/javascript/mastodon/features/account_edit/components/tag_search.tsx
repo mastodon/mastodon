@@ -4,6 +4,7 @@ import { useCallback, useId, useState } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { Combobox } from '@/mastodon/components/form_fields';
+import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
 import { useSearchTags } from '@/mastodon/hooks/useSearchTags';
 import type { TagSearchResult } from '@/mastodon/hooks/useSearchTags';
 import { addFeaturedTags } from '@/mastodon/reducers/slices/profile_edit';
@@ -77,4 +78,6 @@ export const AccountEditTagSearch: FC = () => {
   );
 };
 
-const renderItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;
+const renderItem = (item: TagSearchResult) => (
+  <ComboboxMenuItem>{item.label ?? `#${item.name}`}</ComboboxMenuItem>
+);

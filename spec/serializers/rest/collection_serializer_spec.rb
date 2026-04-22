@@ -37,6 +37,7 @@ RSpec.describe REST::CollectionSerializer do
         'local' => true,
         'sensitive' => true,
         'discoverable' => false,
+        'url' => ActivityPub::TagManager.instance.url_for(collection),
         'tag' => a_hash_including('name' => 'discovery'),
         'created_at' => match_api_datetime_format,
         'updated_at' => match_api_datetime_format,
@@ -46,7 +47,11 @@ RSpec.describe REST::CollectionSerializer do
   end
 
   context 'when the collection is remote' do
-    let(:collection) { Fabricate(:remote_collection, description_html: '<p>remote</p>') }
+    let(:collection) { Fabricate(:remote_collection, description_html: '<p>remote</p>', url: 'https://example.com/c/1') }
+
+    it 'includes the uri' do
+      expect(subject).to include('url' => 'https://example.com/c/1')
+    end
 
     it 'includes the html description' do
       expect(subject)
@@ -59,6 +64,32 @@ RSpec.describe REST::CollectionSerializer do
 
       it 'scrubs the HTML' do
         expect(subject).to include('description' => '<p>Nice people</p>')
+      end
+    end
+  end
+
+  context 'when the collection has items in different states' do
+    before do
+      %i(accepted pending rejected revoked).each do |state|
+        Fabricate(:collection_item, collection:, state:)
+      end
+    end
+
+    context 'when `current_user` is the owner of the collection' do
+      let(:current_user) { collection.account.user }
+
+      it 'includes accepted and pending items' do
+        expect(subject['item_count']).to eq 2
+        expect(subject['items'].size).to eq 2
+        expect(subject['items'].pluck('state')).to contain_exactly('accepted', 'pending')
+      end
+    end
+
+    context 'when `current_user` is not the owner of the collection' do
+      it 'only includes the accepted item' do
+        expect(subject['item_count']).to eq 1
+        expect(subject['items'].size).to eq 1
+        expect(subject['items'].first['state']).to eq 'accepted'
       end
     end
   end

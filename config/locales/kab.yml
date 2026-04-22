@@ -142,6 +142,7 @@ kab:
         destroy_domain_allow: Kkes taɣult yettusirgen
         destroy_domain_block: Kkes asewḥel n taɣult
         destroy_ip_block: Kkes alugen n IP
+        destroy_relay: Kkes amedwel
         destroy_status: Kkes tasufeɣt
         destroy_unavailable_domain: Kkes taɣult ur nelli ara
         destroy_user_role: Senger tamlilt
@@ -149,6 +150,7 @@ kab:
         disable_custom_emoji: Sens imujit udmawan
         disable_user: Sens aseqdac
         enable_custom_emoji: Rmed imujit udmawan
+        enable_relay: Rmed amedwel
         enable_user: Rmed aseqdac
         promote_user: Aseqdac anmeggag
         remove_avatar_user: Kkes avaṭar
@@ -212,6 +214,7 @@ kab:
       title: Ilɣa
     collections:
       accounts: Imiḍanen
+      collection_title: Talkensit sɣur %{name}
       contents: Agbur
       open: Ldi
     custom_emojis:
@@ -267,6 +270,7 @@ kab:
         create: Rnu-d iḥder
         severity:
           noop: Ula yiwen
+          silence: Talast
           suspend: Ḥbes di leεḍil
         title: Iḥder amaynut n taɣult
       private_comment: Awennit uslig
@@ -314,6 +318,8 @@ kab:
       back_to_warning: Ɣur-wat
       by_domain: Taɣult
       content_policies:
+        policies:
+          silence: Talast
         policy: Tasertit
       dashboard:
         instance_languages_dimension: Tutlayin ifazen
@@ -332,6 +338,7 @@ kab:
         title: Aseɣyed
       private_comment: Awennit uslig
       public_comment: Awennit azayez
+      purge: Sfeḍ
       title: Tamatut
       total_blocked_by_us: Ttwasḥebsen sɣur-neɣ
       total_followed_by_them: Ṭtafaṛen-t
@@ -402,6 +409,7 @@ kab:
       reported_account: Amiḍan yettumlen
       resolved: Fran
       status: Addad
+      statuses: Iznan (%{count})
       title: Ineqqisen
       unknown_action_msg: 'Tigawt tarussint: %{action}'
       unresolved: Ur yefra ara
@@ -422,12 +430,15 @@ kab:
       everyone: Tisirag timezwura
       privileges:
         administrator: Anedbal
+        delete_user_data: Kkes isefka n useqddac
         manage_federation: Sefrek Tafidiralit
+        manage_invites: Sefrek ineɛruḍen
         manage_roles: Sefrek ilugan
         manage_rules: Sefrek ilugan
         manage_settings: Asefrek n iɣewwaṛen
         manage_users: Sefrek iqeddacen
         view_dashboard: Timẓriwt n tfelwit
+      title: Timlilin
     rules:
       add_new: Rnu alugen
       add_translation: Ad yernu tasuqilt
@@ -443,12 +454,14 @@ kab:
       about:
         title: Ɣef
       appearance:
+        preamble: Sagen agrudem web n Mastodon.
         title: Udem
       discovery:
         privacy: Tabaḍnit
         profile_directory: Akaram n imaɣnuten
         title: Asnirem
         trends: Ayen mucaɛen
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: I medden akk
         disabled: Ɣef ula yiwen
@@ -513,6 +526,7 @@ kab:
       name: Isem
       newest: Amaynut
       oldest: Aqbur
+      reset: Wennez
       search: Anadi
       title: Ihacṭagen
     terms_of_service:
@@ -520,6 +534,7 @@ kab:
       create: Sqedcet ayla-nwen
       current: Amiran
       draft: Arewway
+      generate: Seqdec tamudemt
       generates:
         action: Sirew
         title: Tawila n tewtilin n useqdec
@@ -542,6 +557,8 @@ kab:
       tags:
         dashboard:
           tag_languages_dimension: Tutlayin ifazen
+        listable: Yezmer ad yettwasumer
+        not_listable: Ur-d yettwasumer ara
         title: Ihacṭagen inezzaɣ
         trending_rank: 'Anezzuɣ #%{rank}'
       trending: Inezzaɣ
@@ -610,6 +627,7 @@ kab:
     didnt_get_confirmation: Ur d-teṭṭifeḍ ara aseɣwen n usentem ?
     dont_have_your_security_key: Ulac ɣur-k·m tasarut-ik·im n tɣellist?
     forgot_password: Tettud awal-ik uffir?
+    link_to_webauth: Seqdec ibenk-ik·im n tsarut taɣellsant
     log_in_with: Qqen s
     login: Qqen
     logout: Ffeɣ
@@ -662,6 +680,8 @@ kab:
     prompt: Sentem awal uffir send ad tkemleḍ
   color_scheme:
     auto: Awurman
+    dark: Ubrik
+    light: Aceɛlal
   contrast:
     auto: Awurman
   crypto:
@@ -708,9 +728,15 @@ kab:
       create_account: Snulfu-d amiḍan Mastodon
       subject:
         plural: Tisuffaɣ timaynutin sɣur %{name}
+        singular: 'Izen amaynut: "%{excerpt}"'
       title:
         plural: Tisuffaɣ timaynutin sɣur %{name}
+        singular: 'Izen amaynut: "%{excerpt}"'
   email_subscriptions:
+    active: D urmid
+    confirmations:
+      show:
+        changed_your_mind: Tbeddleḍ ṛṛay-ik·im?
     inactive: D arurmid
     status: Addad
   emoji_styles:
@@ -1073,3 +1099,5 @@ kab:
       success: Tasarut-ik·im n tɣellist tettwarna akken iwata.
     delete: Kkes
     nickname: Meffer isem
+  wrapstodon:
+    title: Wrapstodon %{year} i %{name}

@@ -58,17 +58,36 @@ RSpec.describe Collection do
       let(:collection_items) { Fabricate.build_times(described_class::MAX_ITEMS + 1, :collection_item, collection: nil) }
 
       it { is_expected.to_not be_valid }
+
+      context 'when the limit is only exceeded due to `rejected` and `revoked` items' do
+        let(:collection_items) do
+          items = Fabricate.build_times(described_class::MAX_ITEMS - 2, :collection_item, collection: nil, state: :accepted)
+          items << Fabricate.build(:collection_item, collection: nil, state: :pending)
+          items << Fabricate.build(:collection_item, collection: nil, state: :rejected)
+          items << Fabricate.build(:collection_item, collection: nil, state: :revoked)
+          items
+        end
+
+        it { is_expected.to be_valid }
+      end
     end
   end
 
   describe '#item_for' do
     subject { Fabricate(:collection) }
 
-    let!(:items) { Fabricate.times(2, :collection_item, collection: subject) }
+    let!(:accepted_items) { Fabricate.times(2, :collection_item, collection: subject, state: :accepted) }
+    let!(:pending_item) { Fabricate(:collection_item, collection: subject, state: :pending) }
+
+    before do
+      %i(rejected revoked).each do |state|
+        Fabricate(:collection_item, collection: subject, state:)
+      end
+    end
 
     context 'when given no account' do
-      it 'returns all items' do
-        expect(subject.items_for).to match_array(items)
+      it 'returns all accepted items' do
+        expect(subject.items_for).to match_array(accepted_items)
       end
     end
 
@@ -76,11 +95,19 @@ RSpec.describe Collection do
       let(:account) { Fabricate(:account) }
 
       before do
-        account.block!(items.first.account)
+        account.block!(accepted_items.first.account)
       end
 
       it 'does not return items blocked by this account' do
-        expect(subject.items_for(account)).to contain_exactly(items.last)
+        expect(subject.items_for(account)).to contain_exactly(accepted_items.last)
+      end
+    end
+
+    context 'when given the owner of the collection' do
+      let(:account) { subject.account }
+
+      it 'returns accepted and pending items' do
+        expect(subject.items_for(account)).to match_array(accepted_items + [pending_item])
       end
     end
   end

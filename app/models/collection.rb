@@ -15,6 +15,7 @@
 #  original_number_of_items :integer
 #  sensitive                :boolean          not null
 #  uri                      :string
+#  url                      :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  account_id               :bigint(8)        not null
@@ -64,6 +65,7 @@ class Collection < ApplicationRecord
 
   def items_for(account = nil)
     result = collection_items.with_accounts
+    result = account == self.account ? result.pending_or_accepted : result.accepted
     result = result.not_blocked_by(account) unless account.nil?
     result
   end
@@ -96,7 +98,11 @@ class Collection < ApplicationRecord
     errors.add(:tag_name, :unusable) unless tag.usable?
   end
 
+  def pending_or_accepted_items
+    collection_items.select { |i| i.accepted? || i.pending? }
+  end
+
   def items_do_not_exceed_limit
-    errors.add(:collection_items, :too_many, count: MAX_ITEMS) if collection_items.size > MAX_ITEMS
+    errors.add(:collection_items, :too_many, count: MAX_ITEMS) if pending_or_accepted_items.size > MAX_ITEMS
   end
 end

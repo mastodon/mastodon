@@ -20,6 +20,8 @@ class IpBlock < ApplicationRecord
   include InetContainer
   include Paginable
 
+  EXPIRATION_DURATIONS = [1.day, 2.weeks, 1.month, 6.months, 1.year, 3.years].freeze
+
   enum :severity, {
     sign_up_requires_approval: 5000,
     sign_up_block: 5500,

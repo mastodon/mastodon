@@ -25,8 +25,7 @@
 .popover {
   z-index: 9999;
   box-sizing: border-box;
-  max-height: max(200px, 30dvh);
-  padding: 4px;
+  max-height: min(320px, 50dvh);
   border-radius: 4px;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
@@ -38,10 +37,18 @@
   overscroll-behavior-y: contain;
 }
 
+.groupTitle {
+  padding: 8px 16px 4px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .menuItem {
   display: flex;
   align-items: center;
   padding: 8px 12px;
+  margin-inline: 4px;
   gap: 12px;
   font-size: 14px;
   line-height: 20px;
@@ -50,14 +57,16 @@
   cursor: pointer;
   user-select: none;
 
-  &[data-highlighted='true'] {
-    color: var(--color-text-on-brand-base);
-    background: var(--color-bg-brand-base);
+  &:first-child {
+    margin-top: 4px;
+  }
 
-    &[aria-disabled='true'] {
-      color: var(--color-text-on-disabled);
-      background: var(--color-bg-disabled);
-    }
+  &:last-child {
+    margin-bottom: 4px;
+  }
+
+  &[data-highlighted='true'] {
+    background: var(--color-bg-overlay-highlight);
   }
 
   &[aria-disabled='true'] {

@@ -7,7 +7,7 @@ RSpec.describe ActivityPub::FeaturedItemSerializer do
 
   subject { serialized_record_json(collection_item, described_class, adapter: ActivityPub::Adapter) }
 
-  let(:collection_item) { Fabricate(:collection_item) }
+  let(:collection_item) { Fabricate(:collection_item, created_at: Time.utc(2026, 4, 16, 1)) }
 
   context 'when a local account is featured' do
     it 'serializes to the expected structure' do
@@ -17,6 +17,7 @@ RSpec.describe ActivityPub::FeaturedItemSerializer do
         'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_item.account),
         'featuredObjectType' => 'Person',
         'featureAuthorization' => ap_account_feature_authorization_url(collection_item.account_id, collection_item),
+        'published' => '2026-04-16T01:00:00Z',
       })
     end
   end

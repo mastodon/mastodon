@@ -2,7 +2,7 @@
 
 class REST::CollectionSerializer < ActiveModel::Serializer
   attributes :id, :uri, :name, :description, :language, :account_id,
-             :local, :sensitive, :discoverable, :item_count,
+             :local, :sensitive, :discoverable, :url, :item_count,
              :created_at, :updated_at
 
   belongs_to :tag, serializer: REST::ShallowTagSerializer
@@ -17,6 +17,10 @@ class REST::CollectionSerializer < ActiveModel::Serializer
     ActivityPub::TagManager.instance.uri_for(object)
   end
 
+  def url
+    ActivityPub::TagManager.instance.url_for(object)
+  end
+
   def description
     return object.description if object.local?
     return if object.description_html.nil?
@@ -25,7 +29,11 @@ class REST::CollectionSerializer < ActiveModel::Serializer
   end
 
   def items
-    object.items_for(current_user&.account)
+    @items ||= object.items_for(current_user&.account)
+  end
+
+  def item_count
+    items.size
   end
 
   def account_id

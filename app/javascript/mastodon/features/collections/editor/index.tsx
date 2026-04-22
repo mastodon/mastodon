@@ -44,7 +44,7 @@ export const messages = defineMessages({
   },
 });
 
-function usePageTitle(id: string | undefined) {
+function usePageTitle(id: string | null) {
   const { path } = useRouteMatch();
   const location = useLocation();
 
@@ -66,7 +66,7 @@ export const CollectionEditorPage: React.FC<{
 }> = ({ multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const { id } = useParams<{ id?: string }>();
+  const { id = null } = useParams<{ id?: string }>();
   const { path } = useRouteMatch();
   const collection = useAppSelector((state) =>
     id ? state.collections.collections[id] : undefined,

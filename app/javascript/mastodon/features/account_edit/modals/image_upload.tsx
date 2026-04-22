@@ -64,15 +64,28 @@ export const ImageUploadModal: FC<
   const [imageBlob, setImageBlob] = useState<Blob | null>(null);
 
   const handleFile = useCallback((file: File) => {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      const result = reader.result;
-      if (typeof result === 'string' && result.length > 0) {
-        setImageSrc(result);
-        setStep('crop');
+    try {
+      // If the image is animated, skip cropping and go straight to alt text.
+      if (file.type === 'image/gif') {
+        setImageBlob(file);
+        setStep('alt');
+        return;
       }
-    });
-    reader.readAsDataURL(file);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUri = reader.result;
+        if (typeof dataUri !== 'string') {
+          throw new Error('Expected a string');
+        }
+        setImageSrc(dataUri);
+        setStep('crop');
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.warn('Error with image parsing:', error);
+      setStep('select');
+    }
   }, []);
 
   const handleCrop = useCallback(
@@ -104,19 +117,20 @@ export const ImageUploadModal: FC<
   );
 
   const handleCancel = useCallback(() => {
-    switch (step) {
-      case 'crop':
-        setImageSrc(null);
-        setStep('select');
-        break;
-      case 'alt':
-        setImageBlob(null);
+    if (step === 'crop') {
+      setImageSrc(null);
+      setStep('select');
+    } else if (step === 'alt') {
+      setImageBlob(null);
+      if (imageSrc) {
         setStep('crop');
-        break;
-      default:
-        onClose();
+      } else {
+        setStep('select');
+      }
+    } else {
+      onClose();
     }
-  }, [onClose, step]);
+  }, [imageSrc, onClose, step]);
 
   return (
     <DialogModal
@@ -427,10 +441,7 @@ async function calculateCroppedImage(
     crop.height,
   );
 
-  return canvas.convertToBlob({
-    quality: 0.7,
-    type: 'image/jpeg',
-  });
+  return canvas.convertToBlob();
 }
 
 function dataUriToImage(dataUri: string) {

@@ -70,7 +70,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
     if (expired) {
       return intl.formatMessage(messages.closed);
     }
-    return <RelativeTimestamp timestamp={poll.expires_at} />;
+    return <RelativeTimestamp hasFuture timestamp={poll.expires_at} />;
   }, [expired, intl, poll]);
   const votesCount = useMemo(() => {
     if (!poll) {

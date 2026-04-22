@@ -2,8 +2,8 @@ import { useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { matchPath } from 'react-router';
-
+import { showAlert } from '@/mastodon/actions/alerts';
+import { initBlockModal } from '@/mastodon/actions/blocks';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import MoreVertIcon from '@/material-icons/400-24px/more_vert.svg?react';
 import { openModal } from 'mastodon/actions/modal';
@@ -21,9 +21,17 @@ const messages = defineMessages({
     id: 'collections.view_collection',
     defaultMessage: 'View collection',
   },
-  viewOtherCollections: {
-    id: 'collections.view_other_collections_by_user',
-    defaultMessage: 'View other collections by this user',
+  share: {
+    id: 'collections.share_short',
+    defaultMessage: 'Share',
+  },
+  copyLink: {
+    id: 'collections.copy_link',
+    defaultMessage: 'Copy link',
+  },
+  copyLinkConfirmation: {
+    id: 'collections.copy_link_confirmation',
+    defaultMessage: 'Copied collection link to clipboard',
   },
   delete: {
     id: 'collections.delete_collection',
@@ -32,6 +40,10 @@ const messages = defineMessages({
   report: {
     id: 'collections.report_collection',
     defaultMessage: 'Report this collection',
+  },
+  blockOwner: {
+    id: 'collections.block_collection_owner',
+    defaultMessage: 'Block account',
   },
   revoke: {
     id: 'collections.revoke_collection_inclusion',
@@ -42,15 +54,29 @@ const messages = defineMessages({
 
 export const CollectionMenu: React.FC<{
   collection: ApiCollectionJSON;
-  context: 'list' | 'collection';
+  context: 'list' | 'notifications' | 'collection';
   className?: string;
 }> = ({ collection, context, className }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
 
-  const { id, name, account_id } = collection;
-  const isOwnCollection = account_id === me;
+  const { id, name, account_id, items } = collection;
   const ownerAccount = useAccount(account_id);
+  const isOwnCollection = account_id === me;
+  const currentAccountInCollection = items.find(
+    (item) => item.account_id === me,
+  );
+
+  const openShareModal = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'SHARE_COLLECTION',
+        modalProps: {
+          collection,
+        },
+      }),
+    );
+  }, [collection, dispatch]);
 
   const openDeleteConfirmation = useCallback(() => {
     dispatch(
@@ -75,9 +101,9 @@ export const CollectionMenu: React.FC<{
     );
   }, [collection, dispatch]);
 
-  const currentAccountInCollection = collection.items.find(
-    (item) => item.account_id === me,
-  );
+  const openBlockModal = useCallback(() => {
+    dispatch(initBlockModal(ownerAccount));
+  }, [ownerAccount, dispatch]);
 
   const openRevokeConfirmation = useCallback(() => {
     void dispatch(
@@ -92,8 +118,28 @@ export const CollectionMenu: React.FC<{
   }, [collection.id, currentAccountInCollection?.id, dispatch]);
 
   const menu = useMemo(() => {
+    const viewCollectionItem: MenuItem = {
+      text: intl.formatMessage(messages.view),
+      to: `/collections/${id}`,
+    };
+    const shareItems: MenuItem[] = [
+      {
+        text: intl.formatMessage(messages.share),
+        action: openShareModal,
+      },
+      {
+        text: intl.formatMessage(messages.copyLink),
+        action: () => {
+          void navigator.clipboard.writeText(`/collections/${id}`);
+          dispatch(showAlert({ message: messages.copyLinkConfirmation }));
+        },
+      },
+    ];
+
     if (isOwnCollection) {
-      const commonItems: MenuItem[] = [
+      const ownerItems: MenuItem[] = [
+        ...shareItems,
+        null,
         {
           text: intl.formatMessage(editorMessages.manageAccounts),
           to: `/collections/${id}/edit`,
@@ -111,62 +157,51 @@ export const CollectionMenu: React.FC<{
       ];
 
       if (context === 'list') {
-        return [
-          { text: intl.formatMessage(messages.view), to: `/collections/${id}` },
-          null,
-          ...commonItems,
-        ];
+        return [viewCollectionItem, ...ownerItems];
       } else {
-        return commonItems;
+        return ownerItems;
       }
     } else {
-      const items: MenuItem[] = [];
+      const nonOwnerItems: MenuItem[] = [
+        viewCollectionItem,
+        ...shareItems,
+        null,
+      ];
 
-      if (ownerAccount) {
-        const featuredCollectionsPath = `/@${ownerAccount.acct}/featured`;
-        // Don't show menu link to featured collections while on that very page
-        if (
-          !matchPath(location.pathname, {
-            path: featuredCollectionsPath,
-            exact: true,
-          })
-        ) {
-          items.push(
-            ...[
-              {
-                text: intl.formatMessage(messages.viewOtherCollections),
-                to: featuredCollectionsPath,
-              },
-              null,
-            ],
-          );
-        }
-      }
-
-      if (currentAccountInCollection) {
-        items.push({
+      // Collection notifications already have a prominent 'Remove me' button
+      if (currentAccountInCollection && context !== 'notifications') {
+        nonOwnerItems.push({
           text: intl.formatMessage(messages.revoke),
           action: openRevokeConfirmation,
         });
       }
 
-      items.push({
+      nonOwnerItems.push({
         text: intl.formatMessage(messages.report),
         action: openReportModal,
       });
 
-      return items;
+      if (currentAccountInCollection) {
+        nonOwnerItems.push({
+          text: intl.formatMessage(messages.blockOwner),
+          action: openBlockModal,
+        });
+      }
+
+      return nonOwnerItems;
     }
   }, [
-    isOwnCollection,
     intl,
     id,
+    openShareModal,
+    isOwnCollection,
+    dispatch,
     openDeleteConfirmation,
     context,
     currentAccountInCollection,
-    openRevokeConfirmation,
-    ownerAccount,
     openReportModal,
+    openBlockModal,
+    openRevokeConfirmation,
   ]);
 
   return (
