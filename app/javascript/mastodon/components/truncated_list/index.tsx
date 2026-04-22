@@ -72,7 +72,7 @@ export const TruncatedListItems = <TListItem,>({
                 <Icon id='toggle-icon' icon={toggleButton.icon} />
               )
             }
-            iconEnd={
+            sideContent={
               <Icon
                 id='open-status'
                 icon={

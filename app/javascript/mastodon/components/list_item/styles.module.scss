@@ -1,11 +1,14 @@
 .wrapper {
+  --item-list-padding: 16px;
+  --item-list-gap: 12px;
+
   box-sizing: border-box;
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  gap: 12px;
-  padding: 16px;
+  gap: var(--item-list-gap);
+  padding: var(--item-list-padding);
   font-size: 15px;
   color: var(--color-text-primary);
 }
@@ -29,7 +32,7 @@
     &::before {
       content: '';
       position: absolute;
-      inset: 0;
+      inset: var(--clickable-area-spread, 0);
     }
   }
 }
@@ -39,6 +42,29 @@
   color: var(--color-text-secondary);
 }
 
-.iconEnd {
+.sideContent {
   margin-inline-start: auto;
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+
+  &:has(button, a) {
+    // If the sideContent has interactive children, move it
+    // above the clickable area of the .title content
+    position: relative;
+    z-index: 1;
+
+    // Cover up the .title content's clickable area in the
+    // padding box around the sideContent
+    &::before {
+      content: '';
+      position: absolute;
+      inset: calc(-1 * var(--item-list-padding));
+    }
+  }
+
+  // Improve vertical alignment of slotted icons
+  & > .icon {
+    vertical-align: middle;
+  }
 }
