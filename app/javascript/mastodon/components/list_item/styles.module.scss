@@ -43,10 +43,11 @@
 }
 
 .sideContent {
-  margin-inline-start: auto;
   display: flex;
+  gap: var(--item-list-gap);
   align-self: stretch;
   align-items: center;
+  margin-inline-start: auto;
 
   &:has(button, a) {
     // If the sideContent has interactive children, move it
