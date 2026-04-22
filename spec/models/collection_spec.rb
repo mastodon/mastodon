@@ -71,6 +71,20 @@ RSpec.describe Collection do
         it { is_expected.to be_valid }
       end
     end
+
+    context 'when the user is already at the per-user limit of collections' do
+      subject { Fabricate.build(:collection, account:) }
+
+      let(:role) { Fabricate(:user_role, collection_limit: 2) }
+      let(:user) { Fabricate(:user, role:) }
+      let(:account) { user.account }
+
+      before do
+        Fabricate.times(2, :collection, account:)
+      end
+
+      it { is_expected.to_not be_valid }
+    end
   end
 
   describe '#item_for' do

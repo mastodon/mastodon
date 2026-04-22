@@ -160,6 +160,7 @@ en:
           other: We have to make sure you're at least %{count} to use %{domain}. We won't store this.
         role: The role controls which permissions the user has.
       user_role:
+        collection_limit: Limits the number of Collections that a single user with this role can create. Please note that when you decrease this number, users who are already at this limit will not lose any Collections. But they will not be able to create additional ones.
         color: Color to be used for the role throughout the UI, as RGB in hex format
         highlighted: This makes the role publicly visible
         name: Public name of the role, if role is set to be displayed as a badge
@@ -386,6 +387,7 @@ en:
         role: Role
         time_zone: Time zone
       user_role:
+        collection_limit: Maximum number of Collections per user
         color: Badge color
         highlighted: Display role as badge on user profiles
         name: Name
