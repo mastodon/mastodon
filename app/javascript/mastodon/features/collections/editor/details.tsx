@@ -7,6 +7,8 @@ import { useHistory } from 'react-router-dom';
 import { isFulfilled } from '@reduxjs/toolkit';
 
 import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
+import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { languages } from '@/mastodon/initial_state';
 import {
   hasSpecialCharacters,
@@ -93,6 +95,9 @@ export const CollectionDetails: React.FC = () => {
     [dispatch],
   );
 
+  const accountId = useCurrentAccountId();
+  const { acct: currentUserName } = useAccount(accountId) ?? {};
+
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
@@ -128,7 +133,7 @@ export const CollectionDetails: React.FC = () => {
           }),
         ).then((result) => {
           if (isFulfilled(result)) {
-            history.replace(`/collections`);
+            history.replace(`/@${currentUserName}/collections`);
             history.push(`/collections/${result.payload.collection.id}`, {
               newCollection: true,
             });
@@ -146,6 +151,7 @@ export const CollectionDetails: React.FC = () => {
       dispatch,
       history,
       accountIds,
+      currentUserName,
     ],
   );
 
