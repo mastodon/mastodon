@@ -1,14 +1,15 @@
 .wrapper {
-  --item-list-padding: 16px;
-  --item-list-gap: 12px;
+  --list-item-padding: 16px;
+  --list-item-padding-block: var(--list-item-padding);
+  --list-item-gap: 12px;
 
   box-sizing: border-box;
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  gap: var(--item-list-gap);
-  padding: var(--item-list-padding);
+  gap: var(--list-item-gap);
+  padding: var(--list-item-padding-block) var(--list-item-padding);
   font-size: 15px;
   color: var(--color-text-primary);
 }
@@ -44,7 +45,7 @@
 
 .sideContent {
   display: flex;
-  gap: var(--item-list-gap);
+  gap: var(--list-item-gap);
   align-self: stretch;
   align-items: center;
   margin-inline-start: auto;
@@ -60,7 +61,9 @@
     &::before {
       content: '';
       position: absolute;
-      inset: calc(-1 * var(--item-list-padding));
+      inset-block: calc(-1 * var(--list-item-padding-block));
+      inset-inline: calc(-1 * var(--list-item-padding));
+      z-index: -1;
     }
   }
 
