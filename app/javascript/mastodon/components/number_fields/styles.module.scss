@@ -14,6 +14,7 @@
   }
 
   a,
+  button,
   strong {
     display: block;
     font-weight: 600;
@@ -25,10 +26,21 @@
   a {
     padding: 0;
     text-decoration: none;
+  }
 
+  a,
+  button {
     &:hover,
     &:focus {
       text-decoration: underline;
     }
+  }
+
+  button {
+    appearance: none;
+    background: none;
+    border: none;
+    display: block;
+    padding: 0;
   }
 }
