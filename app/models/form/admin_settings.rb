@@ -22,6 +22,7 @@ class Form::AdminSettings
     custom_css
     profile_directory
     thumbnail
+    thumbnail_description
     mascot
     trends
     trendable_by_default
@@ -109,6 +110,7 @@ class Form::AdminSettings
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
   validates :min_age, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@min_age) }
   validates :site_short_description, length: { maximum: DESCRIPTION_LIMIT }, if: -> { defined?(@site_short_description) }
+  validates :thumbnail_description, length: { maximum: DESCRIPTION_LIMIT }, if: -> { defined?(@thumbnail_description) }
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
   validates :landing_page, inclusion: { in: LANDING_PAGE }, if: -> { defined?(@landing_page) }
