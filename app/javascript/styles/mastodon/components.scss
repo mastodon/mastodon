@@ -1371,6 +1371,17 @@ body > [data-popper-placement] {
     scrollbar-color: unset;
   }
 
+  // Alt text editor
+  .dialog-modal__content__form
+    > .input
+    > .label_input
+    > textarea#description:lang(#{$lang}) {
+    writing-mode: vertical-lr;
+    min-height: 150px; // writable
+    max-height: 150px; // suppress autosizing by react-textarea-autosize
+    overflow-x: auto;
+  }
+
   .detailed-status > .status__content > .status__content__text:lang(#{$lang}) {
     writing-mode: vertical-lr;
     width: 100%; // detecting overflow
