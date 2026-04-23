@@ -87,8 +87,7 @@ export const Collections: React.FC<{
       </>
     );
 
-  const canCreateMoreCollections =
-    status === 'idle' && collections.length < userCollectionLimit;
+  const canCreateMoreCollections = collections.length < userCollectionLimit;
   const isOwnCollection = accountId === me;
   const titleMessage = isOwnCollection
     ? messages.headingMe
@@ -110,6 +109,7 @@ export const Collections: React.FC<{
         multiColumn={multiColumn}
         extraButton={
           isOwnCollection &&
+          status === 'idle' &&
           canCreateMoreCollections && (
             <Link
               to='/collections/new'
@@ -124,7 +124,9 @@ export const Collections: React.FC<{
       />
 
       <Scrollable>
-        {!canCreateMoreCollections && <MaxCollectionsCallout />}
+        {status === 'idle' && !canCreateMoreCollections && (
+          <MaxCollectionsCallout />
+        )}
         <ItemList emptyMessage={emptyMessage} isLoading={status === 'loading'}>
           {collections.map((item, index) => (
             <CollectionListItem
