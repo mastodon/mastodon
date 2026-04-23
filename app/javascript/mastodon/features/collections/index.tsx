@@ -25,7 +25,11 @@ import {
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { CollectionListItem } from './components/collection_list_item';
-import { messages as editorMessages } from './editor';
+import {
+  messages as editorMessages,
+  MaxCollectionsCallout,
+  userCollectionLimit,
+} from './editor';
 import { areCollectionsEnabled } from './utils';
 
 const messages = defineMessages({
@@ -83,6 +87,8 @@ export const Collections: React.FC<{
       </>
     );
 
+  const canCreateMoreCollections =
+    status === 'idle' && collections.length < userCollectionLimit;
   const isOwnCollection = accountId === me;
   const titleMessage = isOwnCollection
     ? messages.headingMe
@@ -103,7 +109,8 @@ export const Collections: React.FC<{
         iconComponent={CollectionsFilledIcon}
         multiColumn={multiColumn}
         extraButton={
-          isOwnCollection && (
+          isOwnCollection &&
+          canCreateMoreCollections && (
             <Link
               to='/collections/new'
               className='column-header__button'
@@ -117,6 +124,7 @@ export const Collections: React.FC<{
       />
 
       <Scrollable>
+        {!canCreateMoreCollections && <MaxCollectionsCallout />}
         <ItemList emptyMessage={emptyMessage} isLoading={status === 'loading'}>
           {collections.map((item, index) => (
             <CollectionListItem

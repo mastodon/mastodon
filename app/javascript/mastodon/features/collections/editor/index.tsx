@@ -67,7 +67,7 @@ function usePageTitle(id: string | null) {
   }
 }
 
-const userCollectionLimit = initialState?.role?.collection_limit ?? 0;
+export const userCollectionLimit = initialState?.role?.collection_limit ?? 0;
 
 export const CollectionEditorPage: React.FC<{
   multiColumn?: boolean;
@@ -144,21 +144,7 @@ export const CollectionEditorPage: React.FC<{
             />
           </Switch>
         ) : (
-          <Callout
-            className={classes.maxCollectionsError}
-            title={
-              <FormattedMessage
-                id='collections.maximum_collection_count_reached'
-                defaultMessage='You have created the maximum number of collections'
-              />
-            }
-          >
-            <FormattedMessage
-              id='collections.maximum_collection_count_description'
-              defaultMessage='Your server allows creation of up to {count} collections.'
-              values={{ count: userCollectionLimit }}
-            />
-          </Callout>
+          <MaxCollectionsCallout />
         )}
       </div>
 
@@ -169,3 +155,21 @@ export const CollectionEditorPage: React.FC<{
     </Column>
   );
 };
+
+export const MaxCollectionsCallout: React.FC = () => (
+  <Callout
+    className={classes.maxCollectionsError}
+    title={
+      <FormattedMessage
+        id='collections.maximum_collection_count_reached'
+        defaultMessage='You have created the maximum number of collections'
+      />
+    }
+  >
+    <FormattedMessage
+      id='collections.maximum_collection_count_description'
+      defaultMessage='Your server allows creation of up to {count} collections.'
+      values={{ count: userCollectionLimit }}
+    />
+  </Callout>
+);
