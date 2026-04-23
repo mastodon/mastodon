@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
-import anniversaryImage from '@/images/anniversary.png';
+import AnniversaryImage from '@/images/anniversary.svg?react';
 import { focusCompose, resetCompose } from '@/mastodon/actions/compose';
 import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
@@ -216,7 +216,7 @@ const AccountAnniversary: FC<{
   return (
     <>
       <div className={classes.joinBanner}>
-        <img src={anniversaryImage} alt='' role='presentation' />
+        <AnniversaryImage role='presentation' />
         <h2>{anniversary || 1}</h2>
         {anniversary === 0 && (
           <FormattedMessage

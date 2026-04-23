@@ -61,20 +61,18 @@
 .joinBanner {
   order: -1;
   width: 120px;
-  height: 120px;
+  height: 110px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  img {
+  svg {
     width: 100%;
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
   }
 
   h2 {
