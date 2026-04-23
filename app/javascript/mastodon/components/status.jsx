@@ -547,13 +547,23 @@ class Status extends ImmutablePureComponent {
         );
       }
     } else if (status.get('card') && !status.get('quote')) {
-      media = (
-        <Card
-          key={`${status.get('id')}-${status.get('edited_at')}`}
-          card={status.get('card')}
-          sensitive={status.get('sensitive')}
-        />
-      );
+      const cardUrl = status.getIn(['card', 'url']);
+
+      const taggedCollection = (
+        status.get('tagged_collections')
+      ).find((item) => compareUrls(item.get('url'), cardUrl));
+  
+      if (taggedCollection) {
+        media = <CollectionPreviewCard collection={taggedCollection} />;
+      } else {
+        media = (
+          <Card
+            key={`${status.get('id')}-${status.get('edited_at')}`}
+            card={status.get('card')}
+            sensitive={status.get('sensitive')}
+          />
+        );
+      }
     }
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
