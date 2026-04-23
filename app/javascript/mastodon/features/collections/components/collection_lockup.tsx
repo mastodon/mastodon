@@ -27,10 +27,10 @@ export const AvatarGrid: React.FC<{
         sensitive ? classes.avatarGridSensitive : null,
       )}
     >
-      {avatarIds.map((id) => (
+      {avatarIds.map((id, index) => (
         <AvatarById
           animate={false}
-          key={id}
+          key={index}
           accountId={id}
           className={classes.avatar}
           size={25}
