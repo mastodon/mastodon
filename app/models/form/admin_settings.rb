@@ -22,6 +22,7 @@ class Form::AdminSettings
     custom_css
     profile_directory
     thumbnail
+    thumbnail_description
     mascot
     trends
     trendable_by_default
