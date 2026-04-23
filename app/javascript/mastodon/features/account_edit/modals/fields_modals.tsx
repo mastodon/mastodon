@@ -1,4 +1,10 @@
-import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import type { FC, FocusEventHandler } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -9,6 +15,7 @@ import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import type { FieldStatus } from '@/mastodon/components/form_fields';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
+import { useCustomEmojis } from '@/mastodon/hooks/useCustomEmojis';
 import {
   removeField,
   selectFieldById,
@@ -104,11 +111,6 @@ const selectFieldLimits = createAppSelector(
 
 const RECOMMENDED_LIMIT = 40;
 
-const selectEmojiCodes = createAppSelector(
-  [(state) => state.custom_emojis],
-  (emojis) => emojis.map((emoji) => emoji.get('shortcode')).toArray(),
-);
-
 interface ConfirmationMessage {
   message: string;
   confirm: string;
@@ -143,7 +145,11 @@ export const EditFieldModal = forwardRef<
     value?: FieldStatus;
   }>({});
 
-  const customEmojiCodes = useAppSelector(selectEmojiCodes);
+  const customEmojis = useCustomEmojis();
+  const customEmojiCodes = useMemo(
+    () => Object.keys(customEmojis ?? {}),
+    [customEmojis],
+  );
   const checkField = useCallback(
     (value: string): FieldStatus | null => {
       if (!value.trim()) {
