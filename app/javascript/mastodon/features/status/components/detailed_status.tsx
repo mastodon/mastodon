@@ -282,6 +282,13 @@ export const DetailedStatus: React.FC<{
         />
       );
     }
+  } else if (status.get('tagged_collections').size) {
+    const firstLinkedCollection = status.get('tagged_collections').first();
+    if (firstLinkedCollection) {
+      media = (
+        <CollectionPreviewCard collection={firstLinkedCollection.toJS()} />
+      );
+    }
   }
 
   if (status.get('application')) {
