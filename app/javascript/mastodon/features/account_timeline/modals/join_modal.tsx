@@ -99,11 +99,7 @@ export const AccountJoinModal: FC<{
   return (
     <ModalShell className={classes.joinShell}>
       <ModalShellBody className={classes.joinWrapper}>
-        <AccountAnniversary
-          anniversary={anniversary}
-          onShare={handleShare}
-          isMe={isMe}
-        />
+        <AccountAnniversaryImage anniversary={anniversary} />
 
         <div>
           <AccountJoinMessage
@@ -121,6 +117,12 @@ export const AccountJoinModal: FC<{
             />
           </h1>
         </div>
+
+        <AccountAnniversaryShare
+          anniversary={anniversary}
+          onShare={handleShare}
+          isMe={isMe}
+        />
 
         <IconButton
           iconComponent={CloseIcon}
@@ -204,7 +206,37 @@ const AccountJoinMessage: FC<{
   );
 };
 
-const AccountAnniversary: FC<{
+const AccountAnniversaryImage: FC<{ anniversary: number | null }> = ({
+  anniversary,
+}) => {
+  if (anniversary === null) {
+    return null;
+  }
+
+  return (
+    <div className={classes.joinBanner}>
+      <AnniversaryImage role='presentation' />
+      <h2>{anniversary || 1}</h2>
+      {anniversary === 0 && (
+        <FormattedMessage
+          id='account.join_modal.day'
+          defaultMessage='Day'
+          tagName='h3'
+        />
+      )}
+      {anniversary > 0 && (
+        <FormattedMessage
+          id='account.join_modal.years'
+          defaultMessage='{number, plural, one {year} other {years}}'
+          values={{ number: anniversary }}
+          tagName='h3'
+        />
+      )}
+    </div>
+  );
+};
+
+const AccountAnniversaryShare: FC<{
   anniversary: number | null;
   onShare: () => void;
   isMe: boolean;
@@ -214,46 +246,25 @@ const AccountAnniversary: FC<{
   }
 
   return (
-    <>
-      <div className={classes.joinBanner}>
-        <AnniversaryImage role='presentation' />
-        <h2>{anniversary || 1}</h2>
-        {anniversary === 0 && (
-          <FormattedMessage
-            id='account.join_modal.day'
-            defaultMessage='Day'
-            tagName='h3'
-          />
-        )}
-        {anniversary > 0 && (
-          <FormattedMessage
-            id='account.join_modal.years'
-            defaultMessage='{number, plural, one {year} other {years}}'
-            values={{ number: anniversary }}
-            tagName='h3'
-          />
-        )}
-      </div>
-      <Button onClick={onShare}>
-        {anniversary === 0 && isMe && (
-          <FormattedMessage
-            id='account.join_modal.share.intro'
-            defaultMessage='Share an intro post'
-          />
-        )}
-        {anniversary === 0 && !isMe && (
-          <FormattedMessage
-            id='account.join_modal.share.welcome'
-            defaultMessage='Share a welcome post'
-          />
-        )}
-        {anniversary > 0 && (
-          <FormattedMessage
-            id='account.join_modal.share.celebrate'
-            defaultMessage='Share a celebratory post'
-          />
-        )}
-      </Button>
-    </>
+    <Button onClick={onShare}>
+      {anniversary === 0 && isMe && (
+        <FormattedMessage
+          id='account.join_modal.share.intro'
+          defaultMessage='Share an intro post'
+        />
+      )}
+      {anniversary === 0 && !isMe && (
+        <FormattedMessage
+          id='account.join_modal.share.welcome'
+          defaultMessage='Share a welcome post'
+        />
+      )}
+      {anniversary > 0 && (
+        <FormattedMessage
+          id='account.join_modal.share.celebrate'
+          defaultMessage='Share a celebratory post'
+        />
+      )}
+    </Button>
   );
 };
