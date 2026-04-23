@@ -20,7 +20,7 @@ import {
 } from '@/mastodon/store';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
-import classes from './styles.module.css';
+import classes from './styles.module.scss';
 
 const closeMessage = defineMessage({
   id: 'lightbox.close',
@@ -97,8 +97,14 @@ export const AccountJoinModal: FC<{
   }, [anniversary, handle, dispatch, isMe]);
 
   return (
-    <ModalShell>
+    <ModalShell className={classes.joinShell}>
       <ModalShellBody className={classes.joinWrapper}>
+        <AccountAnniversary
+          anniversary={anniversary}
+          onShare={handleShare}
+          isMe={isMe}
+        />
+
         <div>
           <AccountJoinMessage
             name={<DisplayNameSimple account={account} />}
@@ -115,12 +121,6 @@ export const AccountJoinModal: FC<{
             />
           </h1>
         </div>
-
-        <AccountAnniversary
-          anniversary={anniversary}
-          onShare={handleShare}
-          isMe={isMe}
-        />
 
         <IconButton
           iconComponent={CloseIcon}

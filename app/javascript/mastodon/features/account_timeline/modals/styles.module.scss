@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/variables' as *;
+
 .noteCallout {
   margin-bottom: 16px;
 }
@@ -31,6 +33,16 @@
   margin-top: 4px;
 }
 
+@media screen and (min-width: ($mobile-breakpoint + 1)) {
+  .joinShell {
+    > :global(.safety-action-modal__top) {
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      border-bottom-width: 1px;
+    }
+  }
+}
+
 .joinWrapper {
   display: flex;
   flex-direction: column;
@@ -59,7 +71,6 @@
 }
 
 .joinBanner {
-  order: -1;
   width: 120px;
   height: 110px;
   position: relative;
