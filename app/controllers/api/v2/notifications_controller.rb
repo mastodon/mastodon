@@ -33,7 +33,7 @@ class Api::V2::NotificationsController < Api::BaseController
         'app.notification_grouping.expand_accounts_param' => expand_accounts_param
       )
 
-      render json: @presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, expand_accounts: expand_accounts_param
+      render json: @presenter, serializer: REST::DedupNotificationGroupSerializer, relationships: @relationships, expand_accounts: expand_accounts_param, supported_notification_types: params[:supported_types]
     end
   end
 
@@ -48,7 +48,7 @@ class Api::V2::NotificationsController < Api::BaseController
   def show
     @notification = current_account.notifications.without_suspended.by_group_key(params[:group_key]).take!
     presenter = GroupedNotificationsPresenter.new(NotificationGroup.from_notifications([@notification]))
-    render json: presenter, serializer: REST::DedupNotificationGroupSerializer
+    render json: presenter, serializer: REST::DedupNotificationGroupSerializer, supported_notification_types: params[:supported_types]
   end
 
   def clear
