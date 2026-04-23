@@ -160,6 +160,7 @@ es-MX:
           other: Tenemos que asegurarnos de que tienes al menos %{count} para usar %{domain}. No almacenaremos esta información.
         role: El rol controla qué permisos tiene el usuario.
       user_role:
+        collection_limit: Limita el número de colecciones que puede crear un solo usuario con este rol. Ten en cuenta que, si reduces este número, los usuarios que ya hayan alcanzado este límite no perderán ninguna de sus colecciones, pero no podrán crear otras nuevas.
         color: Color que se usará para el rol en toda la interfaz de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
@@ -386,6 +387,7 @@ es-MX:
         role: Rol
         time_zone: Zona horaria
       user_role:
+        collection_limit: Número máximo de colecciones por usuario
         color: Color de insignia
         highlighted: Mostrar rol como insignia en perfiles de usuario
         name: Nombre

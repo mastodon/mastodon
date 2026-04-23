@@ -160,6 +160,7 @@ fi:
           other: Meidän tulee varmistaa, että olet vähintään %{count}, jotta voit käyttää %{domain}. Emme tallenna tätä.
         role: Rooli määrää, millaiset käyttöoikeudet käyttäjällä on.
       user_role:
+        collection_limit: Rajoittaa kokoelmien määrää, jonka yksittäinen käyttäjä, jolla on tämä rooli, voi luoda. Huomaa, että kun pienennät tätä lukua, käyttäjät, jotka ovat jo tällä rajalla, eivät menetä yhtäkään kokoelmaa. He eivät kuitenkaan voi luoda uusia rooleja.
         color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
         highlighted: Tämä tekee roolista julkisesti näkyvän
         name: Roolin julkinen nimi, jos rooli on asetettu näytettäväksi merkkinä
@@ -386,6 +387,7 @@ fi:
         role: Rooli
         time_zone: Aikavyöhyke
       user_role:
+        collection_limit: Kokoelmien käyttäjäkohtainen enimmäismäärä
         color: Merkin väri
         highlighted: Näytä rooli merkkinä käyttäjäprofiileissa
         name: Nimi
