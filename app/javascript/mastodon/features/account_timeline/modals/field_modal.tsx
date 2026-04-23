@@ -13,7 +13,7 @@ import {
 import type { AccountField } from '../common';
 import { useFieldHtml } from '../hooks/useFieldHtml';
 
-import classes from './styles.module.css';
+import classes from './styles.module.scss';
 
 export const AccountFieldModal: FC<{
   onClose: () => void;
