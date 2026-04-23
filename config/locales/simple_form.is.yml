@@ -160,6 +160,7 @@ is:
           other: Við verðum að ganga úr skugga um að þú hafir náð %{count} aldri til að nota %{domain}. Við munum ekki geyma þessar upplýsingar.
         role: Hlutverk stýrir hvaða heimildir notandinn hefur.
       user_role:
+        collection_limit: Takmarkar fjöldi safna sem hver notandi með þetta hlutverk getur útbúið. Athugaðu að með því að minnka þennan fjölda, þá munu notendur sem þegar eru við þessi mörk ekki missa nein söfn. En þeir munu ekki geta útbúið nein í viðbót.
         color: Litur sem notaður er fyrir hlutverkið allsstaðar í viðmótinu, sem RGB-gildi á hex-sniði
         highlighted: Þetta gerir hlutverk sýnilegt opinberlega
         name: Opinbert heiti hlutverks, ef birta á hlutverk sem merki
@@ -386,6 +387,7 @@ is:
         role: Hlutverk
         time_zone: Tímabelti
       user_role:
+        collection_limit: Hámarksfjöldi safna á hvern notanda
         color: Litur merkis
         highlighted: Birta hlutverk sem merki á notandaauðkenni
         name: Nafn

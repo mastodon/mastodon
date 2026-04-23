@@ -159,6 +159,7 @@ zh-CN:
           other: 我们必须确保你至少年满 %{count} 岁才能使用 %{domain}。我们不会存储此信息。
         role: 角色用于控制用户拥有的权限。
       user_role:
+        collection_limit: 限制具备此角色的单个用户可创建的收藏列表数量。请注意，当你减少这个数字的时候，已经达到该限制的用户并不会因此失去任何收藏列表，只是会不能再创建新的收藏列表。
         color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
         highlighted: 使角色公开可见
         name: 角色的公开名称，将在外显为徽章时使用
@@ -385,6 +386,7 @@ zh-CN:
         role: 角色
         time_zone: 时区
       user_role:
+        collection_limit: 每个用户收藏列表的最大数量
         color: 徽章颜色
         highlighted: 在用户资料中显示角色徽章
         name: 名称

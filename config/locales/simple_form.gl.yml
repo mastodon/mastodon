@@ -61,6 +61,9 @@ gl:
         setting_default_quote_policy_private: As publicacións só para seguidoras creadas con Mastodon non poden ser citadas.
         setting_default_quote_policy_unlisted: Cando alguén te cite, a súa publicación non aparecerá nas cronoloxías de popularidade.
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
+        setting_display_media_default: Aviso antes de mostrar multimedia marcado como sensible
+        setting_display_media_hide_all: Aviso antes de mostrar calquera multimedia
+        setting_display_media_show_all: Mostrar todo o multimedia sen avisar, incluíndo o multimedia marcado como sensible
         setting_emoji_style: Forma de mostrar emojis. «Auto» intentará usar os emojis nativos, e se falla recurrirase a Twemoji en navegadores antigos.
         setting_quick_boosting_html: Se está activo, ao premer na icona %{boost_icon} Promover farase automáticamente a promoción no lugar de abrir  o menú despregable promover/citar. Sitúa a acción de citar no menú %{options_icon} (Opcións).
         setting_system_scrollbars_ui: Aplícase só en navegadores de escritorio baseados en Safari e Chrome
@@ -157,6 +160,7 @@ gl:
           other: Temos que confirmar que tes %{count} anos polo menos para usar %{domain}. Non gardamos este dato.
         role: Os roles establecen os permisos que ten a usuaria.
       user_role:
+        collection_limit: Limita o número de coleccións que unha única usuaria con este rol pode crear. Ten en conta que cando diminúes este número as usuarias que xa acadasen o límite non perderán ningunha colección, mais non poderán crear ningunha nova.
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
         highlighted: Isto fai o rol publicamente visible
         name: Nome público do rol, se o rol se mostra como unha insignia
@@ -383,6 +387,7 @@ gl:
         role: Rol
         time_zone: Fuso horario
       user_role:
+        collection_limit: Número máximo de coleccións por usuaria
         color: Cor da insignia
         highlighted: Mostrar rol como insignia en perfís de usuarias
         name: Nome

@@ -156,6 +156,7 @@ de:
           other: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
         role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
+        collection_limit: Begrenzt die Anzahl an Sammlungen, die Profile mit dieser Rolle erstellen können. Solltest du die Anzahl verringern, verlieren Konten, die die maximal Anzahl bereits erreicht haben, zwar keine Sammlungen – aber sie können keine weiteren erstellen.
         color: Farbe, die für diese Rolle im Webinterface verwendet wird, als RGB im Hexadezimalsystem
         highlighted: Moderative/administrative Rolle im öffentlichen Profil anzeigen
         name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
@@ -382,6 +383,7 @@ de:
         role: Rolle
         time_zone: Zeitzone
       user_role:
+        collection_limit: Höchstzahl an Sammlungen pro Profil
         color: Badge-Farbe
         highlighted: Badge im Profil
         name: Name

@@ -160,6 +160,7 @@ et:
           other: "%{domain} saidi teenuste kasutamiseks pead olema vähemalt %{count} aastat vana. Me ei salvesta neid andmeid."
         role: Rollid määravad, millised õigused kasutajal on.
       user_role:
+        collection_limit: Piirab sellise rolliga kasutaja poolt loodavate kogumike arvu. Pane tähele, et kui vähendad seda arvu, ei kaota kasutajad, kes on juba piirmäära saavutanud, ühtegi kogumikku, aga nad ei saa luua uusi kogumikke.
         color: Rolli tähistamise värvus üle kasutajaliidese, RGB 16nd-formaadis
         highlighted: Teeb rolli avalikult nähtavaks
         name: Rolli avalik nimi, kui roll on märgitud avalikuks kuvamiseks märgina
@@ -386,6 +387,7 @@ et:
         role: Roll
         time_zone: Ajavöönd
       user_role:
+        collection_limit: Kogumike maksimumarv kasutaja kohta
         color: Märgi värv
         highlighted: Kuva roll kasutajaprofiilidel märgina
         name: Nimi

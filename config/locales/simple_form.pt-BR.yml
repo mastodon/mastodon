@@ -160,6 +160,7 @@ pt-BR:
           other: Temos que ter certeza de que você é pelo menos %{count} para usar o %{domain} Não vamos armazenar isso.
         role: A função controla quais permissões o usuário tem.
       user_role:
+        collection_limit: Limita o número de Coleções que um único usuário com este cargo pode criar. Note que caso reduza o número, usuários que já estavam no limite permitido não perderão nenhuma de suas Coleções. Mas não conseguirão criar Coleções adicionais.
         color: Cor a ser usada para o cargo em toda a interface do usuário, como RGB no formato hexadecimal
         highlighted: Isso torna o cargo publicamente visível
         name: Nome público do cargo, se ele for definido para ser exibido como um distintivo
@@ -386,6 +387,7 @@ pt-BR:
         role: Cargo
         time_zone: Fuso horário
       user_role:
+        collection_limit: Número máximo de Coleções por usuário
         color: Cor do emblema
         highlighted: Exibir cargo como distintivo nos perfis de usuários
         name: Nome

@@ -160,6 +160,7 @@ da:
           other: Vi skal sikre os, at du er mindst %{count} for at kunne bruge %{domain}. Informationen gemmes ikke.
         role: Rollen styrer, hvilke tilladelser brugeren er tildelt.
       user_role:
+        collection_limit: Begrænser antallet af samlinger, som en enkelt bruger med denne rolle kan oprette. Bemærk, at hvis du reducerer dette antal, vil brugere, der allerede har nået denne grænse, ikke miste nogen samlinger. De vil dog ikke kunne oprette flere.
         color: Farven, i RGB hex-format, der skal bruges til rollen i hele UI'en
         highlighted: Dette gør rollen offentligt synlig
         name: Offentligt rollennavn, hvis rollen er opsat til fremstå som et badge
@@ -386,6 +387,7 @@ da:
         role: Rolle
         time_zone: Tidszone
       user_role:
+        collection_limit: Maksimalt antal samlinger pr. bruger
         color: Badge-farve
         highlighted: Vis rolle som badge på brugerprofiler
         name: Navn
