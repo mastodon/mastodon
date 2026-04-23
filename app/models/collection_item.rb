@@ -49,6 +49,10 @@ class CollectionItem < ApplicationRecord
     update!(state: :revoked)
   end
 
+  def reject!
+    update!(state: :rejected)
+  end
+
   def with_local_account?
     account&.local?
   end

@@ -72,3 +72,7 @@
       interval: 1 day
       class: Scheduler::Fasp::FollowRecommendationCleanupScheduler
       queue: scheduler
+    collection_item_cleanup_scheduler:
+      interval: 1 hour
+      class: Scheduler::CollectionItemCleanupScheduler
+      queue: scheduler
