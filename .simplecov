@@ -14,6 +14,8 @@ SimpleCov.configure do
 
   enable_coverage :branch
 
+  enable_coverage_for_eval
+
   add_filter 'lib/linter'
 
   add_group 'Libraries', 'lib'
