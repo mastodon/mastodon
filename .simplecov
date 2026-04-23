@@ -25,4 +25,5 @@ SimpleCov.configure do
   add_group 'Serializers', 'app/serializers'
   add_group 'Services', 'app/services'
   add_group 'Validators', 'app/validators'
+  add_group 'Views', 'app/views'
 end
