@@ -23,7 +23,7 @@ export const AccountEditEmptyColumn: FC<{
   }
 
   return (
-    <Column bindToDocument={!multiColumn} className={classes.column}>
+    <Column bindToDocument={!multiColumn}>
       <LoadingIndicator />
     </Column>
   );
@@ -38,7 +38,7 @@ export const AccountEditColumn: FC<{
 
   return (
     <>
-      <Column bindToDocument={!multiColumn} className={classes.column}>
+      <Column bindToDocument={!multiColumn}>
         <ColumnHeader
           title={title}
           className={classes.columnHeader}
@@ -53,7 +53,7 @@ export const AccountEditColumn: FC<{
           }
         />
 
-        {children}
+        <div className='scrollable'>{children}</div>
       </Column>
       <Helmet>
         <title>{title}</title>
