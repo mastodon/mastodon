@@ -83,6 +83,7 @@ class About extends PureComponent {
         <div className='scrollable about'>
           <div className='about__header'>
             <ServerHeroImage
+              withAltBadge
               alt={server.getIn(['thumbnail', 'description']) ?? ''}
               blurhash={server.getIn(['thumbnail', 'blurhash'])}
               src={server.getIn(['thumbnail', 'url'])}
