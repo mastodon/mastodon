@@ -160,6 +160,7 @@ tr:
           other: "%{domain} kullanmak için en az %{count} yaşında olduğunuzdan emin olmalıyız. Bu bilgiyi saklamıyoruz."
         role: Rol, kullanıcıların sahip olduğu izinleri denetler.
       user_role:
+        collection_limit: Bu role sahip tek bir kullanıcının oluşturabileceği Koleksiyon sayısını sınırlar. Bu sayıyı azalttığınızda, halihazırda bu sınıra ulaşmış olan kullanıcıların mevcut Koleksiyonlarını kaybetmeyeceklerini lütfen unutmayın. Ancak bu kullanıcılar yeni Koleksiyonlar oluşturamayacaklardır.
         color: Arayüz boyunca rol için kullanılacak olan renk, hex biçiminde RGB
         highlighted: Bu rolü herkese açık hale getirir
         name: Rolün, eğer rozet olarak görüntülenmesi ayarlandıysa kullanılacak herkese açık ismi
@@ -386,6 +387,7 @@ tr:
         role: Rol
         time_zone: Zaman dilimi
       user_role:
+        collection_limit: Bir kullanıcının sahip olabileceği maksimum Koleksiyon sayısı
         color: Rozet rengi
         highlighted: Rolü kullanıcıların profilinde rozet olarak görüntüle
         name: Ad

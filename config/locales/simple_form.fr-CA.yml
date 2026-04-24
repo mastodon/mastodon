@@ -160,6 +160,7 @@ fr-CA:
           other: Nous devons vérifier que vous avez au moins %{count} ans pour utiliser %{domain}. Cette information ne sera pas conservée.
         role: Le rôle définit les autorisations de l'utilisateur⋅rice.
       user_role:
+        collection_limit: Limite le nombre de collections qu'un compte avec ce rôle peut créer. Veuillez noter que si vous diminuez cette limite, les comptes qui la dépassent ne perdront pas de collections. Mais ile ne pourront pas en créer de nouvelles.
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
         highlighted: Cela rend le rôle visible publiquement
         name: Nom public du rôle, si le rôle est configuré pour être affiché avec un badge
@@ -386,6 +387,7 @@ fr-CA:
         role: Rôle
         time_zone: Fuseau horaire
       user_role:
+        collection_limit: Nombre maximum de collections par compte
         color: Couleur du badge
         highlighted: Afficher le rôle avec un badge sur les profils des utilisateur·rice·s
         name: Nom
