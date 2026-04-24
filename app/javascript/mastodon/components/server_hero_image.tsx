@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Blurhash } from './blurhash';
 
 interface Props {
+  alt: string;
   src: string;
   srcSet?: string;
   blurhash?: string;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const ServerHeroImage: React.FC<Props> = ({
+  alt,
   src,
   srcSet,
   blurhash,
@@ -24,12 +26,9 @@ export const ServerHeroImage: React.FC<Props> = ({
   }, [setLoaded]);
 
   return (
-    <div
-      className={classNames('image', { loaded }, className)}
-      role='presentation'
-    >
+    <div className={classNames('image', { loaded }, className)}>
       {blurhash && <Blurhash hash={blurhash} className='image__preview' />}
-      <img src={src} srcSet={srcSet} alt='' onLoad={handleLoad} />
+      <img src={src} srcSet={srcSet} alt={alt} onLoad={handleLoad} />
     </div>
   );
 };
