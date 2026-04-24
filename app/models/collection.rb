@@ -5,6 +5,7 @@
 # Table name: collections
 #
 #  id                       :bigint(8)        not null, primary key
+#  deleted_at               :datetime
 #  description              :text
 #  description_html         :text
 #  discoverable             :boolean          not null
@@ -22,9 +23,13 @@
 #  tag_id                   :bigint(8)
 #
 class Collection < ApplicationRecord
+  include Discard::Model
+
   MAX_ITEMS = 25
   NAME_LENGTH_HARD_LIMIT = 256
   DESCRIPTION_LENGTH_HARD_LIMIT = 2048
+
+  self.discard_column = :deleted_at
 
   belongs_to :account
   belongs_to :tag, optional: true

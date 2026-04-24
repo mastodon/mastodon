@@ -13,6 +13,16 @@ RSpec.describe 'Collections' do
 
       expect(response).to have_http_status(200)
     end
+
+    context 'when the collection is discarded' do
+      let(:collection) { Fabricate(:collection, deleted_at: 1.hour.ago) }
+
+      it 'returns not found' do
+        subject
+
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 
   describe 'GET /ap/:account_id/collections/:id', feature: :collections do
@@ -144,6 +154,16 @@ RSpec.describe 'Collections' do
               'name' => collection.name,
             })
         end
+      end
+    end
+
+    context 'when the collection is discarded' do
+      let(:collection) { Fabricate(:collection, deleted_at: 1.hour.ago) }
+
+      it 'returns not found' do
+        subject
+
+        expect(response).to have_http_status(404)
       end
     end
   end

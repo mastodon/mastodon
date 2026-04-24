@@ -14,9 +14,12 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
 
     let(:account) { Fabricate(:account) }
 
-    before { Fabricate.times(3, :collection, account:) }
+    before do
+      Fabricate.times(3, :collection, account:)
+      Fabricate(:collection, account:, deleted_at: 1.hour.ago)
+    end
 
-    it 'returns all collections for the given account and http success' do
+    it 'returns all collections for the given account that are not discarded and http success' do
       subject
 
       expect(response).to have_http_status(200)
@@ -136,6 +139,17 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
           expect(response.parsed_body[:collection][:items].size).to eq 1
           expect(response.parsed_body[:collection][:items][0]['id']).to eq items.last.id.to_s
         end
+      end
+    end
+
+    context 'when the collection is discarded' do
+      let(:collection) { Fabricate(:collection, deleted_at: 1.hour.ago) }
+      let(:headers) { {} }
+
+      it 'returns not found' do
+        subject
+
+        expect(response).to have_http_status(404)
       end
     end
   end

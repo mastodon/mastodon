@@ -32,6 +32,7 @@ class Api::V1Alpha::InCollectionsController < Api::BaseController
 
   def set_collections
     @collections = @account.featured_in_collections
+      .kept
       .with_tag
       .offset(offset_param)
       .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))

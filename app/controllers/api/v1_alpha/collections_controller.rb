@@ -72,15 +72,16 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
   def set_collections
     @collections = @account.collections
+      .kept
       .with_tag
-      .order(created_at: :desc)
+      .order(id: :desc)
       .offset(offset_param)
       .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
     @collections = @collections.discoverable unless @account == current_account
   end
 
   def set_collection
-    @collection = Collection.find(params[:id])
+    @collection = Collection.kept.find(params[:id])
   end
 
   def collection_creation_params

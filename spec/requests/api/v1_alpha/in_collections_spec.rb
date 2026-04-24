@@ -12,10 +12,14 @@ RSpec.describe 'Api::V1Alpha::InCollections', feature: :collections do
 
     let(:params) { {} }
     let(:account) { user.account }
+    let(:discarded_collection) { Fabricate(:collection, deleted_at: 1.hour.ago) }
 
-    before { Fabricate.times(3, :collection_item, account: account) }
+    before do
+      Fabricate.times(3, :collection_item, account:)
+      Fabricate(:collection_item, collection: discarded_collection, account:)
+    end
 
-    it 'returns all collections for the given account and http success' do
+    it 'returns all collections for the given account that are not discarded and http success' do
       subject
 
       expect(response).to have_http_status(200)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_20_124030) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_23_094907) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -388,6 +388,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_20_124030) do
   create_table "collections", id: :bigint, default: -> { "timestamp_id('collections'::text)" }, force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
     t.text "description"
     t.text "description_html"
     t.boolean "discoverable", null: false
@@ -402,6 +403,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_20_124030) do
     t.string "uri"
     t.string "url"
     t.index ["account_id"], name: "index_collections_on_account_id"
+    t.index ["deleted_at"], name: "index_collections_on_deleted_at"
     t.index ["tag_id"], name: "index_collections_on_tag_id"
     t.index ["uri"], name: "index_collections_on_uri", unique: true, where: "(uri IS NOT NULL)"
   end

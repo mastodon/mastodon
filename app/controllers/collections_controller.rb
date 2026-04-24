@@ -35,13 +35,13 @@ class CollectionsController < ApplicationController
     if account_id_param.present?
       @account = Account.local.find(account_id_param)
     else
-      @collection = Collection.find(params[:id])
+      @collection = Collection.kept.find(params[:id])
       @account = @collection.account
     end
   end
 
   def set_collection
-    @collection ||= @account.collections.find(params[:id])
+    @collection ||= @account.collections.kept.find(params[:id])
     authorize @collection, :show?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found

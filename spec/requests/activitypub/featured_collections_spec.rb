@@ -36,7 +36,9 @@ RSpec.describe 'Collections' do
       end
 
       context 'when account is accessible' do
-        it 'renders ActivityPub Collection successfully', :aggregate_failures do
+        it 'renders ActivityPub Collection successfully and does not include discarded collections', :aggregate_failures do
+          Fabricate(:collection, account:, deleted_at: 1.hour.ago)
+
           subject
 
           expect(response)
