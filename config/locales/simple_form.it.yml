@@ -109,6 +109,7 @@ it:
         status_page_url: URL di una pagina in cui le persone possono visualizzare lo stato di questo server durante un disservizio
         theme: Tema visualizzato dai visitatori e dai nuovi utenti disconnessi.
         thumbnail: Un'immagine approssimativamente 2:1 visualizzata insieme alle informazioni del tuo server.
+        thumbnail_description: Una descrizione dell'immagine per aiutare le persone con disabilità visive a comprenderne il contenuto.
         trendable_by_default: Salta la revisione manuale dei contenuti di tendenza. I singoli elementi possono ancora essere rimossi dalle tendenze dopo il fatto.
         trends: Le tendenze mostrano quali post, hashtag e notizie stanno guadagnando popolarità sul tuo server.
         wrapstodon: Offri agli utenti locali la possibilità di generare un riassunto giocoso del loro utilizzo di Mastodon durante l’anno. Questa funzione è disponibile dal 10 al 31 dicembre di ogni anno ed è offerta agli utenti che hanno pubblicato almeno un post pubblico o pubblico silenzioso e utilizzato almeno un hashtag nell’arco dell’anno.
@@ -160,6 +161,7 @@ it:
           other: Dobbiamo assicurarci che tu abbia almeno %{count} anni per utilizzare %{domain}. Non memorizzeremo questo dato.
         role: Il ruolo controlla quali permessi ha l'utente.
       user_role:
+        collection_limit: Limita il numero di collezioni che un singolo utente con questo ruolo può creare. Si prega di tenere presente che, quando diminuisci questo numero, gli utenti che hanno già raggiunto questo limite, non perderanno alcuna collezione. Ma non potranno crearne di nuove.
         color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
         highlighted: Rende il ruolo visibile
         name: Nome pubblico del ruolo, se il ruolo è impostato per essere visualizzato come distintivo
@@ -316,6 +318,7 @@ it:
         status_page_url: URL della pagina di stato
         theme: Tema predefinito
         thumbnail: Miniatura del server
+        thumbnail_description: Testo alternativo dell'immagine in miniatura
         trendable_by_default: Consenti le tendenze senza revisione preventiva
         trends: Abilita le tendenze
         wrapstodon: Abilita Wrapstodon
@@ -386,6 +389,7 @@ it:
         role: Ruolo
         time_zone: Fuso orario
       user_role:
+        collection_limit: Numero massimo di collezioni per utente
         color: Colore distintivo
         highlighted: Mostra il ruolo come distintivo sui profili utente
         name: Nome
