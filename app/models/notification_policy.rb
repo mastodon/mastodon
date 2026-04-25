@@ -5,6 +5,7 @@
 # Table name: notification_policies
 #
 #  id                   :bigint(8)        not null, primary key
+#  for_bots             :integer          default("accept"), not null
 #  for_limited_accounts :integer          default("filter"), not null
 #  for_new_accounts     :integer          default("accept"), not null
 #  for_not_followers    :integer          default("accept"), not null
@@ -36,6 +37,7 @@ class NotificationPolicy < ApplicationRecord
   enum :for_new_accounts, { accept: 0, filter: 1, drop: 2 }, suffix: :new_accounts
   enum :for_private_mentions, { accept: 0, filter: 1, drop: 2 }, suffix: :private_mentions
   enum :for_limited_accounts, { accept: 0, filter: 1, drop: 2 }, suffix: :limited_accounts
+  enum :for_bots, { accept: 0, filter: 1, drop: 2 }, suffix: :bots
 
   def summarize!
     @pending_requests_count = pending_notification_requests.first

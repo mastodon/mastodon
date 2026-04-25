@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_23_141611) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_25_144553) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -819,6 +819,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_23_141611) do
   create_table "notification_policies", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
+    t.integer "for_bots", default: 0, null: false
     t.integer "for_limited_accounts", default: 1, null: false
     t.integer "for_new_accounts", default: 0, null: false
     t.integer "for_not_followers", default: 0, null: false
