@@ -28,4 +28,32 @@ RSpec.describe NotificationPolicy do
       )
     end
   end
+  describe 'for_bots attribute' do
+    subject { Fabricate(:notification_policy) }
+
+    it 'defaults to accept' do
+      expect(subject.for_bots).to eq 'accept'
+    end
+
+    it 'can be set to filter' do
+      subject.update!(for_bots: 'filter')
+      expect(subject.reload.for_bots).to eq 'filter'
+    end
+
+    it 'can be set to drop' do
+      subject.update!(for_bots: 'drop')
+      expect(subject.reload.for_bots).to eq 'drop'
+    end
+
+    it 'can be set to accept' do
+      subject.update!(for_bots: 'accept')
+      expect(subject.reload.for_bots).to eq 'accept'
+    end
+
+    it 'validates input' do
+      expect {
+        subject.update!(for_bots: 'block')
+      }.to raise_error(ArgumentError, "'block' is not a valid for_bots")
+    end
+  end
 end
