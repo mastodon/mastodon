@@ -61,6 +61,10 @@ class NotificationPolicy < ApplicationRecord
     self.for_private_mentions = value ? :filter : :accept
   end
 
+  def filter_bots=(value)
+    self.for_bots = value ? :filter : :accept
+  end
+
   private
 
   def pending_notification_requests
