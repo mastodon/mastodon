@@ -5,6 +5,7 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
+import { TabLink, TabList } from '@/mastodon/components/tab_list';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { Column } from 'mastodon/components/column';
@@ -33,10 +34,25 @@ import classes from './styles.module.scss';
 import { areCollectionsEnabled } from './utils';
 
 const messages = defineMessages({
-  headingMe: { id: 'column.my_collections', defaultMessage: 'My collections' },
+  headingMe: {
+    id: 'column.your_collections',
+    defaultMessage: 'Your Collections',
+  },
   headingOther: {
     id: 'column.other_collections',
-    defaultMessage: 'Collections by {name}',
+    defaultMessage: "{name}'s Collections",
+  },
+  createdByYou: {
+    id: 'collections.list.created_by_you',
+    defaultMessage: 'Created by you',
+  },
+  createdByAuthor: {
+    id: 'collections.list.created_by_author',
+    defaultMessage: 'Created by {name}',
+  },
+  featuringYou: {
+    id: 'collections.list.featuring_you',
+    defaultMessage: 'Featuring you',
   },
 });
 
@@ -89,6 +105,9 @@ export const Collections: React.FC<{
 
   const canCreateMoreCollections = collections.length < userCollectionLimit;
   const isOwnCollection = accountId === me;
+  const showCreateButton =
+    isOwnCollection && status === 'idle' && canCreateMoreCollections;
+
   const titleMessage = isOwnCollection
     ? messages.headingMe
     : messages.headingOther;
@@ -100,35 +119,48 @@ export const Collections: React.FC<{
     name: <DisplayNameSimple account={account} />,
   });
 
+  const tabMessage = isOwnCollection
+    ? messages.createdByYou
+    : messages.createdByAuthor;
+
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>
-      <ColumnHeader
-        showBackButton
-        multiColumn={multiColumn}
-        extraButton={
-          isOwnCollection &&
-          status === 'idle' &&
-          canCreateMoreCollections && (
-            <Link
-              to='/collections/new'
-              className='column-header__button'
-              title={intl.formatMessage(editorMessages.create)}
-              aria-label={intl.formatMessage(editorMessages.create)}
-            >
-              <Icon id='plus' icon={AddIcon} />
-            </Link>
-          )
-        }
-      />
+      <ColumnHeader showBackButton multiColumn={multiColumn} />
 
       <Scrollable>
         <header className={classes.header}>
           <h1 className={classes.heading}>{pageTitleHtml}</h1>
+          <TabList plain>
+            <TabLink exact to={`/@${account?.acct}/collections`}>
+              {intl.formatMessage(tabMessage, {
+                name: <DisplayNameSimple account={account} />,
+              })}
+            </TabLink>
+          </TabList>
         </header>
-        {status === 'idle' && !canCreateMoreCollections && (
-          <MaxCollectionsCallout />
+        {status === 'idle' && (
+          <div className={classes.listHeader}>
+            <h2 className={classes.subHeading}>
+              <FormattedMessage
+                id='collections.list.collections_with_count'
+                defaultMessage='{count, plural, one {# Collection} other {# Collections}}'
+                values={{
+                  count: collections.length,
+                }}
+              />
+            </h2>
+            {showCreateButton && (
+              <Link to='/collections/new' className='button button--compact'>
+                <Icon id='plus' icon={AddIcon} />
+                <FormattedMessage {...editorMessages.newCollection} />
+              </Link>
+            )}
+          </div>
         )}
         <ItemList emptyMessage={emptyMessage} isLoading={status === 'loading'}>
+          {!canCreateMoreCollections && (
+            <MaxCollectionsCallout className={classes.maxCollectionsError} />
+          )}
           {collections.map((item, index) => (
             <CollectionListItem
               withTimestamp

@@ -144,7 +144,7 @@ export const CollectionEditorPage: React.FC<{
             />
           </Switch>
         ) : (
-          <MaxCollectionsCallout />
+          <MaxCollectionsCallout className={classes.maxCollectionsError} />
         )}
       </div>
 
@@ -156,9 +156,11 @@ export const CollectionEditorPage: React.FC<{
   );
 };
 
-export const MaxCollectionsCallout: React.FC = () => (
+export const MaxCollectionsCallout: React.FC<{ className?: string }> = ({
+  className,
+}) => (
   <Callout
-    className={classes.maxCollectionsError}
+    className={className}
     title={
       <FormattedMessage
         id='collections.maximum_collection_count_reached'
