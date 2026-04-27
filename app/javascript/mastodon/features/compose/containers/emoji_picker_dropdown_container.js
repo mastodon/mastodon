@@ -48,7 +48,7 @@ const getFrequentlyUsedEmojis = createSelector([
 });
 
 const getCustomEmojis = createSelector([
-  state => state.get('custom_emojis'),
+  state => [],
 ], emojis => emojis.filter(e => e.get('visible_in_picker')).sort((a, b) => {
   const aShort = a.get('shortcode').toLowerCase();
   const bShort = b.get('shortcode').toLowerCase();
