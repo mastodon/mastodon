@@ -6,7 +6,6 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
-import CollectionsFilledIcon from '@/material-icons/400-24px/category-fill.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
@@ -30,6 +29,7 @@ import {
   MaxCollectionsCallout,
   userCollectionLimit,
 } from './editor';
+import classes from './styles.module.scss';
 import { areCollectionsEnabled } from './utils';
 
 const messages = defineMessages({
@@ -103,9 +103,7 @@ export const Collections: React.FC<{
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>
       <ColumnHeader
-        title={pageTitleHtml}
-        icon='collections'
-        iconComponent={CollectionsFilledIcon}
+        showBackButton
         multiColumn={multiColumn}
         extraButton={
           isOwnCollection &&
@@ -124,6 +122,9 @@ export const Collections: React.FC<{
       />
 
       <Scrollable>
+        <header className={classes.header}>
+          <h1 className={classes.heading}>{pageTitleHtml}</h1>
+        </header>
         {status === 'idle' && !canCreateMoreCollections && (
           <MaxCollectionsCallout />
         )}
