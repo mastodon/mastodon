@@ -1825,6 +1825,7 @@ de:
     public_timelines: Öffentliche Timelines
   privacy:
     email_subscriptions: Sende Beiträge per E-Mail
+    email_subscriptions_hint_html: Füge deinem Profil ein E-Mail-Formular für nicht angemeldete Personen hinzu. Dadurch können sie von Mastodon E-Mails über deine neuen öffentlichen Beiträge erhalten.
     hint_html: "<strong>Bestimme selbst, wie dein Profil und deine Beiträge gefunden werden sollen.</strong> Zahlreiche Mastodon-Funktionen können dir für eine größere Reichweite behilflich sein. Nimm dir einen Moment Zeit, um diese Einstellungen zu überprüfen."
     privacy: Datenschutz
     privacy_hint_html: Bestimme, wie viele Informationen du für andere preisgeben möchtest. Viele Menschen entdecken interessante Profile und coole Apps, indem sie die Follower anderer Profile durchstöbern und die Apps sehen, über die Beiträge veröffentlicht wurden – möglicherweise möchtest du diese Informationen ausblenden.
@@ -2094,11 +2095,21 @@ de:
       email_subscription:
         confirmation_html: Du erhältst keine E-Mails mehr von %{name}.
       title: Du wurdest abgemeldet
+      user:
+        confirmation_html: Du erhältst von Mastodon zukünftig keine %{type} auf %{domain}.
+    notification_emails:
+      favourite: E-Mail-Benachrichtigungen über neue Favoriten
+      follow: E-Mail-Benachrichtigungen über neue Follower
+      follow_request: E-Mail-Benachrichtigungen über neue Follower-Anfragen
+      mention: E-Mail-Benachrichtigungen über neue Erwähnungen
+      reblog: E-Mail-Benachrichtigungen über geteilte Beiträge
     show:
       action: Abbestellen
       email_subscription:
+        confirmation_html: Du wirst bei neuen Beiträgen keine E-Mails mehr erhalten.
         title: "%{name} abbestellen?"
       user:
+        confirmation_html: Du wirst von Mastodon zukünftig keine %{type} auf %{domain} erhalten.
         title: "%{type} abbestellen?"
   user_mailer:
     announcement_published:
