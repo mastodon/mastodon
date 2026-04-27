@@ -3,8 +3,8 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { NavLinkProps } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
+import { TabLink, TabList } from '@/mastodon/components/tab_list';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 
@@ -28,20 +28,20 @@ export const AccountTabs: FC = () => {
   }
 
   return (
-    <div className={classes.tabs}>
-      <NavLink isActive={isActive} to={`/@${acct}`}>
+    <TabList>
+      <TabLink isActive={isActive} to={`/@${acct}`}>
         <FormattedMessage id='account.activity' defaultMessage='Activity' />
-      </NavLink>
+      </TabLink>
       {show_media && (
-        <NavLink exact to={`/@${acct}/media`}>
+        <TabLink exact to={`/@${acct}/media`}>
           <FormattedMessage id='account.media' defaultMessage='Media' />
-        </NavLink>
+        </TabLink>
       )}
       {show_featured && (
-        <NavLink exact to={`/@${acct}/featured`}>
+        <TabLink exact to={`/@${acct}/featured`}>
           <FormattedMessage id='account.featured' defaultMessage='Featured' />
-        </NavLink>
+        </TabLink>
       )}
-    </div>
+    </TabList>
   );
 };

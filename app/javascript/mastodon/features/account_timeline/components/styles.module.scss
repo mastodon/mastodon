@@ -355,48 +355,10 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   }
 }
 
-.tabs,
-.noTabs {
-  border-bottom: 1px solid var(--color-border-primary);
-}
-
-.tabs {
-  display: flex;
-  gap: 16px;
-  padding: 0 16px;
-
-  @container (width < 500px) {
-    a {
-      flex: 1 1 0px;
-      text-align: center;
-    }
-  }
-
-  a {
-    display: block;
-    font-size: 15px;
-    font-weight: 500;
-    padding: 18px 0;
-    text-decoration: none;
-    color: var(--color-text-primary);
-    border-radius: 0;
-    transition: color 0.2s ease-in-out;
-
-    &:not([aria-current='page']):is(:hover, :focus) {
-      color: var(--color-text-brand-soft);
-    }
-  }
-
-  :global(.active) {
-    color: var(--color-text-brand);
-    border-bottom: 4px solid var(--color-border-brand);
-    padding-bottom: 14px;
-  }
-}
-
 .noTabs {
   width: 100%;
   border-width: 0 0 1px;
+  border-bottom: 1px solid var(--color-border-primary);
 }
 
 .bannerBase {
