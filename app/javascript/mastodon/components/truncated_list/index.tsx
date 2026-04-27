@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useId, useState } from 'react';
 
 import { Article } from '@/mastodon/components/scrollable_list/components';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
@@ -42,6 +42,8 @@ export const TruncatedListItems = <TListItem,>({
   toggleButton,
   renderListItem,
 }: TruncatedListProps<TListItem>) => {
+  const toggleButtonId = useId();
+  const toggleButtonDescId = `${toggleButtonId}-desc`;
   const [showTruncatedItems, setShowTruncatedItems] = useState(false);
   const toggleTruncatedItems = useCallback(() => {
     setShowTruncatedItems((prev) => !prev);
@@ -65,14 +67,19 @@ export const TruncatedListItems = <TListItem,>({
         });
       })}
       {hasHiddenAccounts && (
-        <Article aria-posinset={initialListSize} aria-setsize={totalListLength}>
+        <Article
+          aria-posinset={initialListSize}
+          aria-setsize={totalListLength}
+          aria-labelledby={toggleButtonId}
+          aria-describedby={toggleButtonDescId}
+        >
           <ListItemWrapper
             icon={
               toggleButton.icon && (
                 <Icon id='toggle-icon' icon={toggleButton.icon} />
               )
             }
-            iconEnd={
+            sideContent={
               <Icon
                 id='open-status'
                 icon={
@@ -84,6 +91,8 @@ export const TruncatedListItems = <TListItem,>({
             }
           >
             <ListItemButton
+              id={toggleButtonId}
+              subtitleId={toggleButtonDescId}
               aria-expanded={showTruncatedItems}
               onClick={toggleTruncatedItems}
               subtitle={toggleButton.subtitle}

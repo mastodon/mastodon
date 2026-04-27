@@ -5,6 +5,8 @@ import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down
 import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 
+import { AvatarById } from '../avatar';
+import { Button } from '../button';
 import { Icon } from '../icon';
 
 import {
@@ -36,7 +38,7 @@ export const WithButton: Story = {
   render: () => (
     <ListItemWrapper
       icon={<Icon icon={VisibilityOffIcon} id='visibility' />}
-      iconEnd={<Icon icon={KeyboardArrowDownIcon} id='down' />}
+      sideContent={<Icon icon={KeyboardArrowDownIcon} id='down' />}
     >
       <ListItemButton subtitle='You’ve blocked or muted these users'>
         3 hidden accounts
@@ -49,9 +51,22 @@ export const WithLink: Story = {
   render: () => (
     <ListItemWrapper
       icon={<Icon icon={VisibilityIcon} id='visibility' />}
-      iconEnd={<Icon icon={ChevronRightIcon} id='right' />}
+      sideContent={<Icon icon={ChevronRightIcon} id='right' />}
     >
       <ListItemLink to='/'>View more</ListItemLink>
+    </ListItemWrapper>
+  ),
+};
+
+export const WithInteractiveSideContent: Story = {
+  render: () => (
+    <ListItemWrapper
+      icon={<AvatarById accountId='1' size={40} />}
+      sideContent={<Button compact>Follow</Button>}
+    >
+      <ListItemLink to='/' subtitle='@test@example.com'>
+        Test account
+      </ListItemLink>
     </ListItemWrapper>
   ),
 };
