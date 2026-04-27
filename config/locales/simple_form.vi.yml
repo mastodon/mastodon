@@ -109,6 +109,7 @@ vi:
         status_page_url: URL của trang nơi mọi người có thể xem trạng thái của máy chủ này khi ngừng hoạt động
         theme: Chủ đề mà khách truy cập đăng xuất và người mới nhìn thấy.
         thumbnail: 'Một hình ảnh tỉ lệ 2: 1 được hiển thị cùng với thông tin máy chủ của bạn.'
+        thumbnail_description: Mô tả hình ảnh để giúp người khiếm thị hiểu nội dung của hình ảnh.
         trendable_by_default: Bỏ qua việc duyệt thủ công nội dung xu hướng. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
         trends: Hiển thị những tút, hashtag và tin tức đang được thảo luận nhiều trên máy chủ của bạn.
         wrapstodon: Cho phép người dùng máy chủ tạo bản tóm tắt vui nhộn về việc sử dụng Mastodon của họ trong năm. Tính năng này có sẵn từ ngày 10 đến ngày 31 tháng 12 hàng năm, và được cung cấp cho người dùng đã đăng ít nhất một tút Công khai hoặc Riêng tư và sử dụng ít nhất một hashtag trong năm.
@@ -159,6 +160,7 @@ vi:
           other: Chúng tôi phải đảm bảo rằng bạn ít nhất %{count} tuổi để tham gia %{domain}. Thông tin này không lưu trữ sau khi đăng ký.
         role: Vai trò kiểm soát những quyền mà người dùng có.
       user_role:
+        collection_limit: Giới hạn số lượng Gói khởi đầu mà một tài khoản có vai trò này có thể tạo. Xin lưu ý rằng khi bạn giảm số lượng này, những người dùng đã đạt đến giới hạn này sẽ không bị mất bất kỳ Gói khởi đầu nào. Nhưng họ sẽ không thể tạo thêm nữa.
         color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
         highlighted: Vai trò sẽ hiển thị công khai
         name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
@@ -315,6 +317,7 @@ vi:
         status_page_url: URL trang trạng thái
         theme: Chủ đề mặc định
         thumbnail: Hình thu nhỏ của máy chủ
+        thumbnail_description: Văn bản thay thế cho hình thu nhỏ
         trendable_by_default: Cho phép lên xu hướng mà không cần duyệt trước
         trends: Bật xu hướng
         wrapstodon: Bật Wrapstodon
@@ -385,6 +388,7 @@ vi:
         role: Vai trò
         time_zone: Múi giờ
       user_role:
+        collection_limit: Số lượng Gói khởi đầu tối đa cho mỗi tài khoản
         color: Màu huy hiệu
         highlighted: Hiển thị huy hiệu vai trò trên hồ sơ người dùng
         name: Tên

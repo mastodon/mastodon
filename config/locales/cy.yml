@@ -822,6 +822,7 @@ cy:
       categories:
         administration: Gweinyddiaeth
         devops: DevOps
+        email: E-bost
         invites: Gwahoddiadau
         moderation: Cymedroli
         special: Arbennig
@@ -842,6 +843,8 @@ cy:
         administrator_description: Bydd defnyddwyr sydd â'r caniatâd hwn yn osgoi pob caniatâd
         delete_user_data: Dileu Data Defnyddiwr
         delete_user_data_description: Yn caniatáu i ddefnyddwyr ddileu data defnyddwyr eraill yn ddi-oed
+        invite_bypass_approval: Gwahodd Defnyddwyr heb adolygiad
+        invite_bypass_approval_description: Yn caniatáu i bob sydd wedi'u gwahodd i'r gweinydd gan y defnyddwyr hyn i hepgor cymeradwyaeth cymedroli
         invite_users: Gwahodd Defnyddwyr
         invite_users_description: Yn caniatáu i ddefnyddwyr wahodd pobl newydd i'r gweinydd
         manage_announcements: Rheoli Cyhoeddiadau
@@ -852,6 +855,8 @@ cy:
         manage_blocks_description: Yn caniatáu i ddefnyddwyr rwystro darparwyr e-bost a chyfeiriadau IP
         manage_custom_emojis: Rheoli Emojis Cyfaddas
         manage_custom_emojis_description: Yn caniatáu i ddefnyddwyr reoli emojis cyfaddas ar y gweinydd
+        manage_email_subscriptions: Rheoli Tanysgrifiadau E-bost
+        manage_email_subscriptions_description: Caniatáu i ddefnyddwyr danysgrifio i ddefnyddwyr sydd â'r caniatâd hwn drwy e-bost
         manage_federation: Rheoli Ffederasiwn
         manage_federation_description: Yn caniatáu i ddefnyddwyr rwystro neu ganiatáu ffedereiddio â pharthau eraill, a rheoli'r gallu i gyflawni
         manage_invites: Rheoli Gwahoddiadau
@@ -1498,6 +1503,45 @@ cy:
       your_appeal_rejected: Mae eich apêl wedi'i gwrthod
   edit_profile:
     other: Arall
+    redesign_body: Mae modd golygu proffiliau’n uniongyrchol o’r dudalen proffil nawr.
+    redesign_button: Ewch yno
+    redesign_title: Mae profiad golygu proffil newydd
+  email_subscription_mailer:
+    confirmation:
+      action: Cadarnhau cyfeiriad e-bost
+      instructions_to_confirm: Cadarnhewch eich bod am dderbyn e-byst gan %{name} (@%{acct}) pan fyddan nhw'n cyhoeddi postiadau newydd.
+      instructions_to_ignore: Os nad ydych chi'n siŵr pam y gwnaethoch chi dderbyn yr e-bost hwn, gallwch ei ddileu. Fyddwch chi heb danysgrifio os nad ydych wedi clicio ar y ddolen uchod.
+      subject: Cadarnhewch eich cyfeiriad e-bost
+      title: Derbyn diweddariadau e-bost gan %{name}?
+    notification:
+      create_account: Creu cyfrif Mastodon
+      footer:
+        privacy_html: Mae negeseuon e-bost yn cael eu hanfon o %{domain}, gweinydd sy'n cael ei bweru gan Mastodon. I ddeall sut mae'r gweinydd hwn yn prosesu eich data personol, cyfeiriwch at y <a href="%{privacy_policy_path}">Polisi Preifatrwydd</a> .
+        reason_for_email_html: Rydych chi'n derbyn yr e-bost hwn oherwydd eich bod wedi dewis derbyn diweddariadau e-bost gan %{name}. Ddim eisiau derbyn yr e-byst hyn? <a href="%{unsubscribe_path}">Dad-danysgrifiwch</a>
+      interact_with_this_post:
+        few: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+        many: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+        one: Rhyngweithio â'r postiad hwn a darganfod fwy yn debyg iddo.
+        other: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+        two: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+        zero: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+      subject:
+        plural: Postiadau newydd gan %{name}
+        singular: 'Postiad newydd: "%{excerpt}"'
+      title:
+        plural: Postiadau newydd gan %{name}
+        singular: 'Postiad newydd: "%{excerpt}"'
+  email_subscriptions:
+    active: Gweithredol
+    confirmations:
+      show:
+        changed_your_mind: Wedi newid eich meddwl?
+        success_html: Byddwch nawr yn dechrau derbyn negeseuon e-bost pan fydd %{name} yn cyhoeddi postiadau newydd. Ychwanegwch %{sender} at eich cysylltiadau fel nad yw'r postiadau hyn yn mynd i'ch ffolder Sbam.
+        title: Rydych chi wedi cofrestru
+        unsubscribe: Dad-danysgrifio
+    inactive: Anweithredol
+    status: Statws
+    subscribers: Tanysgrifwyr
   emoji_styles:
     auto: Awto
     native: Cynhenid
@@ -1947,6 +1991,8 @@ cy:
     posting_defaults: Rhagosodiadau postio
     public_timelines: Ffrydiau cyhoeddus
   privacy:
+    email_subscriptions: Anfon postiadau drwy e-bost
+    email_subscriptions_hint_html: Ychwanegwch ffurflen gofrestru e-bost at eich proffil sy'n ymddangos i ddefnyddwyr sydd wedi allgofnodi. Pan fydd ymwelwyr yn nodi eu cyfeiriad e-bost ac yn cofrestru, bydd Mastodon yn anfon diweddariadau e-bost ar gyfer eich postiadau cyhoeddus.
     hint_html: "<strong>Cyfaddaswch sut rydych chi am i'ch proffil a'ch postiadau gael eu canfod.</strong> Gall amrywiaeth o nodweddion yn Mastodon eich helpu i gyrraedd cynulleidfa ehangach pan fyddwch wedi'ch eu galluogi. Cymerwch eiliad i adolygu'r gosodiadau hyn i sicrhau eu bod yn cyd-fynd â'ch pwrpas defnydd."
     privacy: Preifatrwydd
     privacy_hint_html: Rheolwch faint rydych chi am ei ddatgelu er budd eraill. Mae pobl yn darganfod proffiliau diddorol ac apiau difyr trwy bori trwy ddilynwyr pobl eraill a gweld o ba apiau maen nhw'n postio, ond efallai y byddai'n well gennych ei gadw'n gudd.
@@ -2014,7 +2060,7 @@ cy:
       firefox: Firefox
       generic: Porwr anhysbys
       huawei_browser: Porwr Huawei
-      ie: Nid yw'r rhaglen hon yn gydnaws ag Internet Explorer
+      ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
       opera: Opera
@@ -2226,6 +2272,28 @@ cy:
     resume_app_authorization: Ailddechrau awdurdodi rhaglen
     role_requirement: Mae %{domain} yn gofyn i chi osod Dilysu Dau Ffactor cyn y gallwch ddefnyddio Mastodon.
     webauthn: Allweddi diogelwch
+  unsubscriptions:
+    create:
+      action: Ewch i gartref y gweinydd
+      email_subscription:
+        confirmation_html: Fyddwch chi ddim yn derbyn negeseuon e-bost gan %{name} bellach.
+      title: Rydych chi wedi dad-danysgrifio
+      user:
+        confirmation_html: Fyddwch chi ddim yn derbyn %{type} gan Mastodon ar %{domain} bellach.
+    notification_emails:
+      favourite: e-bost hysbysu hoffi
+      follow: e-byst hysbysu dilyn
+      follow_request: e-byst ceisiadau dilyn
+      mention: e-byst hysbysu crybwyll
+      reblog: e-byst hysbysiadau hybu
+    show:
+      action: Dad-danysgrifio
+      email_subscription:
+        confirmation_html: Byddwch chi ddim yn derbyn e-byst pan fydd y cyfrif hwn yn cyhoeddi postiadau newydd.
+        title: Dad-danysgrifio o %{name}?
+      user:
+        confirmation_html: Byddwch chi ddim yn derbyn %{type} gan Mastodon ar %{domain}.
+        title: Dad-danysgrifio o %{type}?
   user_mailer:
     announcement_published:
       description: 'Mae gweinyddwyr %{domain} yn gwneud cyhoeddiad:'
