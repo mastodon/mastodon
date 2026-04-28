@@ -142,6 +142,7 @@ module SignatureVerification
               # Only refreshing keys, skipping potentially more expensive requests
               ActivityPub::FetchRemoteActorService.new.call(keypair.actor.uri, only_key: true, suppress_errors: false)
             end
+    return if actor.nil?
 
     keypair_uri = keypair.uri
 

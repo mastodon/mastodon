@@ -4,7 +4,7 @@ zh-CN:
     hints:
       account:
         attribution_domains: 每行一个域名。这样就可以保护作品免受虚假署名。
-        discoverable: 你的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，你的个人资料可能会被推荐给其他用户。
+        discoverable: 你可能会被收录到其他用户创建的收藏列表中。你和你的公开嘟文也可能会通过 Mastodon 上的其他发现功能推荐给其他用户。
         display_name: 你的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
         indexable: 你的公开嘟文会出现在 Mastodon 的搜索结果中。无论是否勾选，与你的嘟文有过交互的人都可能通过搜索找到它们。
@@ -61,9 +61,9 @@ zh-CN:
         setting_default_quote_policy_private: Mastodon上发布的仅限关注者可见的嘟文无法被他人引用。
         setting_default_quote_policy_unlisted: 当其他人引用你时，他们的嘟文也会从热门时间线上隐藏。
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
-        setting_display_media_default: 隐藏被标记为敏感内容的媒体
-        setting_display_media_hide_all: 始终隐藏媒体
-        setting_display_media_show_all: 始终显示媒体
+        setting_display_media_default: 显示被标记为敏感内容的媒体前显示警告
+        setting_display_media_hide_all: 显示所有媒体前都显示警告
+        setting_display_media_show_all: 显示所有媒体而不显示警告，包括被标记为敏感内容的媒体
         setting_emoji_style: 如何显示Emoji表情符号。选择“自动”将尝试使用原生Emoji，但在旧浏览器中会备选使用Twemoji。
         setting_quick_boosting_html: 如果启用，点击 %{boost_icon} 转嘟图标将立即转嘟，而非开启“转嘟/引用”的下拉式菜单。这会使引用嘟文操作的按钮移动到 %{options_icon} （选项）菜单中。
         setting_system_scrollbars_ui: 仅对基于 Safari 或 Chromium 内核的桌面端浏览器有效
@@ -109,6 +109,7 @@ zh-CN:
         status_page_url: 配置一个网址，当服务中断时，人们可以通过该网址查看服务器的状态。
         theme: 给未登录访客和新用户使用的主题。
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
+        thumbnail_description: 一段图像描述，可以帮助视力障碍人士理解其内容。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
         trends: 热门页中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
         wrapstodon: 为本站用户提供生成他们过去一年使用 Mastodon 情况的趣味总结的功能。此功能在每年12月10日至12月31日提供给这一年发布过至少1条公开嘟文（无论是否设置为在时间线上显示）及至少使用过1个话题标签的用户。
@@ -154,11 +155,12 @@ zh-CN:
         jurisdiction: 请列出支付运营费用者所在的国家/地区。如果为公司或其他实体，请列出其注册的国家/地区以及相应的城市、地区、领地或州。
         min_age: 不应低于你所在地法律管辖权要求的最低年龄。
       user:
-        chosen_languages: 仅选中语言的嘟文会出现在公共时间线上（全不选则显示所有语言的嘟文）
+        chosen_languages: 仅选中语言的嘟文会出现在公共时间线上。此设置不影响主页时间轴及列表。
         date_of_birth:
           other: 我们必须确保你至少年满 %{count} 岁才能使用 %{domain}。我们不会存储此信息。
         role: 角色用于控制用户拥有的权限。
       user_role:
+        collection_limit: 限制具备此角色的单个用户可创建的收藏列表数量。请注意，当你减少这个数字的时候，已经达到该限制的用户并不会因此失去任何收藏列表，只是会不能再创建新的收藏列表。
         color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
         highlighted: 使角色公开可见
         name: 角色的公开名称，将在外显为徽章时使用
@@ -176,7 +178,7 @@ zh-CN:
     labels:
       account:
         attribution_domains: 授权展示你的署名的网站
-        discoverable: 在发现算法中展示你的账号与嘟文
+        discoverable: 将我纳入发现功能
         fields:
           name: 标签
           value: 内容
@@ -315,6 +317,7 @@ zh-CN:
         status_page_url: 状态页网址
         theme: 默认主题
         thumbnail: 本站缩略图
+        thumbnail_description: 缩略图替代文本
         trendable_by_default: 允许在未审核的情况下将话题置为热门
         trends: 启用热门
         wrapstodon: 启用 Wrapstodon 年度回顾
@@ -385,6 +388,7 @@ zh-CN:
         role: 角色
         time_zone: 时区
       user_role:
+        collection_limit: 每个用户收藏列表的最大数量
         color: 徽章颜色
         highlighted: 在用户资料中显示角色徽章
         name: 名称

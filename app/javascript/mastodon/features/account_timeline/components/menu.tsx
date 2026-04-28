@@ -4,7 +4,6 @@ import type { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import {
-  blockAccount,
   followAccount,
   pinAccount,
   unblockAccount,
@@ -13,6 +12,7 @@ import {
 } from '@/mastodon/actions/accounts';
 import { removeAccountFromFollowers } from '@/mastodon/actions/accounts_typed';
 import { showAlert } from '@/mastodon/actions/alerts';
+import { initBlockModal } from '@/mastodon/actions/blocks';
 import { directCompose, mentionCompose } from '@/mastodon/actions/compose';
 import {
   initDomainBlockModal,
@@ -40,7 +40,7 @@ import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react'
 import ReportIcon from '@/material-icons/400-24px/report.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();
@@ -61,7 +61,7 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
       return [];
     }
 
-    return redesignMenuItems({
+    return getMenuItems({
       account,
       signedIn: !isMe && signedIn,
       permissions,
@@ -223,7 +223,7 @@ const redesignMessages = defineMessages({
   },
 });
 
-function redesignMenuItems({
+function getMenuItems({
   account,
   signedIn,
   permissions,
@@ -435,7 +435,7 @@ function redesignMenuItems({
       if (relationship?.blocking) {
         dispatch(unblockAccount(account.id));
       } else {
-        dispatch(blockAccount(account.id));
+        dispatch(initBlockModal(account));
       }
     },
     dangerous: true,

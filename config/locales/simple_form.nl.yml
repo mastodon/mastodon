@@ -4,7 +4,7 @@ nl:
     hints:
       account:
         attribution_domains: Eén per regel. Beschermt tegen ongeldige attributies.
-        discoverable: Jouw openbare berichten kunnen worden uitgelicht op verschillende plekken binnen Mastodon en jouw account kan worden aanbevolen aan andere gebruikers.
+        discoverable: Je kunt worden uitgelicht in verzamelingen die zijn aangemaakt door andere gebruikers. Jij en jouw openbare berichten kunnen ook worden aanbevolen aan gebruikers op verschillende plekken binnen Mastodon.
         display_name: Jouw volledige naam of een leuke bijnaam.
         fields: Jouw website, persoonlijke voornaamwoorden, leeftijd, alles wat je maar kwijt wilt.
         indexable: Jouw openbare berichten kunnen in de zoekresultaten op Mastodon verschijnen. Mensen die op jouw berichten hebben gereageerd kunnen ze sowieso doorzoeken.
@@ -61,9 +61,9 @@ nl:
         setting_default_quote_policy_private: Berichten aan alleen volgers afkomstig van Mastodon kunnen niet door anderen worden geciteerd.
         setting_default_quote_policy_unlisted: Wanneer mensen jou citeren, verschijnt hun bericht ook niet onder trends.
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
-        setting_display_media_default: Als gevoelig gemarkeerde media verbergen
-        setting_display_media_hide_all: Media altijd verbergen
-        setting_display_media_show_all: Media altijd tonen
+        setting_display_media_default: Geef een waarschuwing bij het tonen van als gevoelig gemarkeerde media
+        setting_display_media_hide_all: Geef een waarschuwing bij het tonen van alle media
+        setting_display_media_show_all: Geef geen waarschuwing bij het tonen van alle media, inclusief als gevoelig gemarkeerde media
         setting_emoji_style: Waarmee moeten emojis worden weergegeven. ‘Auto’ probeert de systeemeigen emojis te gebruiken, maar valt terug op Twemoji voor oudere webbrowsers.
         setting_quick_boosting_html: Wanneer dit is ingeschakeld, boost je in één keer wanneer je op het %{boost_icon} boostpictogram klikt en verplaatst de citeeroptie zich naar het %{options_icon} optiemenu. Wanneer dit is uitgeschakeld krijg je gelijk de mogelijkheid om te boosten of te citeren.
         setting_system_scrollbars_ui: Alleen van toepassing op desktopbrowsers gebaseerd op Safari en Chrome
@@ -109,6 +109,7 @@ nl:
         status_page_url: URL van een pagina waar mensen de status van deze server kunnen zien tijdens een storing
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
+        thumbnail_description: Een omschrijving van de afbeelding om mensen met een visuele beperking te helpen de inhoud ervan te begrijpen.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
         wrapstodon: Lokale gebruikers de mogelijkheid geven om een speelse samenvatting van hun Mastodon-gebruik over het afgelopen jaar aan te maken. Deze functie is elk jaar beschikbaar tussen 10 en 31 december, en wordt aangeboden aan gebruikers die tijdens het afgelopen jaar ten minste één openbaar of minder openbaar bericht hebben geplaatst en ten minste één hashtag hebben gebruikt.
@@ -154,12 +155,13 @@ nl:
         jurisdiction: Vermeld het land waar de persoon woont die de rekeningen betaalt. Is het een bedrijf of iets dergelijks, vermeld dan het land waar het ingeschreven staat en de stad, de regio, het grondgebied of de staat, voor zover van toepassing.
         min_age: Mag niet lager zijn dan de minimale vereiste leeftijd volgens de wetten van jouw jurisdictie.
       user:
-        chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
+        chosen_languages: Indien aangevinkt, worden alleen berichten in geselecteerde talen weergegeven in openbare tijdlijnen. Deze instelling heeft geen invloed op je starttijdlijn en lijsten.
         date_of_birth:
           one: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
           other: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
         role: De rol bepaalt welke rechten de gebruiker heeft.
       user_role:
+        collection_limit: Beperkt het aantal verzamelingen dat een gebruiker met deze rol kan aanmaken. Houd er rekening mee dat wanneer je dit aantal verlaagt, gebruikers die al over deze limiet zijn geen Verzamelingen zullen verliezen. Zij zullen echter niet in staat zijn om er nog meer aan te maken.
         color: Kleur die gebruikt wordt voor de rol in de UI, als RGB in hexadecimale formaat
         highlighted: Dit maakt de rol openbaar zichtbaar
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
@@ -177,7 +179,7 @@ nl:
     labels:
       account:
         attribution_domains: Websites die jou credit mogen geven
-        discoverable: Jouw account en berichten laten uitlichten door Mastodon
+        discoverable: Mij door Mastodon laten uitlichten
         fields:
           name: Label
           value: Inhoud
@@ -316,6 +318,7 @@ nl:
         status_page_url: URL van statuspagina
         theme: Standaardthema
         thumbnail: Server-miniatuur
+        thumbnail_description: Alt-tekst thumbnail
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
         wrapstodon: Wrapstodon inschakelen
@@ -386,6 +389,7 @@ nl:
         role: Rol
         time_zone: Tijdzone
       user_role:
+        collection_limit: Maximum aantal verzamelingen per gebruiker
         color: Kleur van badge
         highlighted: Rol als badge op profielpagina's tonen
         name: Naam

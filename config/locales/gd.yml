@@ -1460,8 +1460,6 @@ gd:
       your_appeal_pending: Chuir thu ath-thagradh a-null
       your_appeal_rejected: Chaidh an t-ath-thagradh agad a dhiùltadh
   edit_profile:
-    basic_information: Fiosrachadh bunasach
-    hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
     other: Eile
     redesign_body: "’S urrainn dhut a’ phròifil agad a dheasachadh air duilleag na pròifile fhèin."
     redesign_button: Tadhail air
@@ -1483,6 +1481,12 @@ gd:
         one: Dèan conaltradh leis a’ phost seo is lorg barrachd coltach ris.
         other: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
         two: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
+      subject:
+        plural: Postaichean ùra o %{name}
+        singular: 'Post ùr: “%{excerpt}”'
+      title:
+        plural: Postaichean ùra o %{name}
+        singular: 'Post ùr: “%{excerpt}”'
   email_subscriptions:
     active: Gnìomhach
     confirmations:
@@ -1532,10 +1536,8 @@ gd:
     mutes: Tha thu a’ mùchadh
     storage: Stòras mheadhanan
   featured_tags:
-    add_new: Cuir fear ùr ris
     errors:
       limit: Bhrosnaich thu an uiread as motha de thagaichean hais mu thràth
-    hint_html: "<strong>Brosnaich na tagaichean hais as cudromaiche agad air a’ phròifil agad.</strong> ’S e deagh-acainn a th’ annta airson sùil a chumail air an obair chruthachail no na pròiseactan fada agad on a thèid na tagaichean hais brosnaichte a shealltainn gu follaiseach air a’ phròifil agad agus ’s urrainnear na postaichean agad inntrigeadh gu luath leotha."
   filters:
     contexts:
       account: Pròifilean

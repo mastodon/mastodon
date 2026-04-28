@@ -4,7 +4,7 @@ ga:
     hints:
       account:
         attribution_domains: Ceann in aghaidh an líne. Cosnaíonn sé ó sannadh bréagach.
-        discoverable: Seans go mbeidh do phostálacha poiblí agus do phróifíl le feiceáil nó molta i réimsí éagsúla de Mastodon agus is féidir do phróifíl a mholadh d’úsáideoirí eile.
+        discoverable: D’fhéadfá a bheith le feiceáil i mbailiúcháin arna gcruthú ag úsáideoirí eile. D’fhéadfaí tú féin agus do phoist phoiblí a mholadh d’úsáideoirí in eispéiris fionnachtana eile ar fud Mastodon freisin.
         display_name: D'ainm iomlán nó d'ainm spraoi.
         fields: Do leathanach baile, forainmneacha, aois, rud ar bith is mian leat.
         indexable: Seans go mbeidh do phostálacha poiblí le feiceáil sna torthaí cuardaigh ar Mastodon. Seans go mbeidh daoine a d’idirghníomhaigh le do phostálacha in ann iad a chuardach beag beann ar.
@@ -61,9 +61,9 @@ ga:
         setting_default_quote_policy_private: Ní féidir le daoine eile poist atá scríofa ar Mastodon agus atá dírithe ar leanúna amháin a lua.
         setting_default_quote_policy_unlisted: Nuair a luann daoine thú, beidh a bpost i bhfolach ó amlínte treochta freisin.
         setting_default_sensitive: Tá meáin íogair i bhfolach de réir réamhshocraithe agus is féidir iad a nochtadh le cliceáil
-        setting_display_media_default: Folaigh meáin atá marcáilte mar íogair
-        setting_display_media_hide_all: Folaigh meáin i gcónaí
-        setting_display_media_show_all: Taispeáin meáin i gcónaí
+        setting_display_media_default: Tabhair rabhadh sula dtaispeántar meáin atá marcáilte mar íogair
+        setting_display_media_hide_all: Rabhadh sula dtaispeántar na meáin go léir
+        setting_display_media_show_all: Taispeáin na meáin go léir gan rabhadh, lena n-áirítear meáin atá marcáilte mar íogair
         setting_emoji_style: Conas emojis a thaispeáint. Déanfaidh "Auto" iarracht emoji dúchasacha a úsáid, ach titeann sé ar ais go Twemoji le haghaidh seanbhrabhsálaithe.
         setting_quick_boosting_html: Nuair a bhíonn sé cumasaithe, má chliceálann tú ar an deilbhín Treisithe %{boost_icon}, treiseofar láithreach é in ionad an roghchlár anuas treisithe/lua a oscailt. Bogann sé seo an gníomh lua go dtí an roghchlár %{options_icon} (Roghanna).
         setting_system_scrollbars_ui: Ní bhaineann sé ach le brabhsálaithe deisce bunaithe ar Safari agus Chrome
@@ -109,6 +109,7 @@ ga:
         status_page_url: URL leathanach inar féidir le daoine stádas an fhreastalaí seo a fheiceáil le linn briseadh amach
         theme: Téama a fheiceann cuairteoirí logáilte amach agus úsáideoirí nua.
         thumbnail: Íomhá thart ar 2:1 ar taispeáint taobh le faisnéis do fhreastalaí.
+        thumbnail_description: Cur síos ar an íomhá chun cabhrú le daoine le lagú radhairc a hábhar a thuiscint.
         trendable_by_default: Léim ar athbhreithniú láimhe ar ábhar treochta. Is féidir míreanna aonair a bhaint as treochtaí fós tar éis an fhíric.
         trends: Léiríonn treochtaí cé na postálacha, hashtags agus scéalta nuachta atá ag tarraingt ar do fhreastalaí.
         wrapstodon: Iarr ar úsáideoirí áitiúla achoimre spraíúil a ghiniúint ar a n-úsáid Mastodon i rith na bliana. Bíonn an ghné seo ar fáil idir an 10ú agus an 31ú Nollaig gach bliain, agus tairgtear é d’úsáideoirí a rinne post Poiblí nó Ciúin Poiblí amháin ar a laghad agus a d’úsáid hais clib amháin ar a laghad laistigh den bhliain.
@@ -154,7 +155,7 @@ ga:
         jurisdiction: Liostaigh an tír ina bhfuil cónaí ar an té a íocann na billí. Más cuideachta nó aonán eile é, liostaigh an tír ina bhfuil sé corpraithe, agus an chathair, an réigiún, an chríoch nó an stát mar is cuí.
         min_age: Níor chóir go mbeidís faoi bhun na haoise íosta a éilíonn dlíthe do dhlínse.
       user:
-        chosen_languages: Nuair a dhéantar iad a sheiceáil, ní thaispeánfar ach postálacha i dteangacha roghnaithe in amlínte poiblí
+        chosen_languages: Nuair a bheidh sé seo seiceáilte, ní thaispeánfar ach poist i dteangacha roghnaithe in amlínte poiblí. Ní dhéanann an socrú seo difear d’amlíne Baile agus do liostaí.
         date_of_birth:
           few: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun %{domain} a úsáid. Ní stórálfaimid é seo.
           many: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun %{domain} a úsáid. Ní stórálfaimid é seo.
@@ -163,6 +164,7 @@ ga:
           two: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun %{domain} a úsáid. Ní stórálfaimid é seo.
         role: Rialaíonn an ról na ceadanna atá ag an úsáideoir.
       user_role:
+        collection_limit: Cuireann sé teorainn le líon na mbailiúchán is féidir le húsáideoir aonair leis an ról seo a chruthú. Tabhair faoi deara, le do thoil, nuair a laghdaíonn tú an líon seo, nach gcaillfidh úsáideoirí atá ag an teorainn seo cheana féin aon bhailiúcháin. Ach ní bheidh siad in ann cinn bhreise a chruthú.
         color: Dath le húsáid don ról ar fud an Chomhéadain, mar RGB i bhformáid heicsidheachúlach
         highlighted: Déanann sé seo an ról le feiceáil go poiblí
         name: Ainm poiblí an róil, má tá an ról socraithe le taispeáint mar shuaitheantas
@@ -180,7 +182,7 @@ ga:
     labels:
       account:
         attribution_domains: Tá cead ag suíomhanna Gréasáin creidmheas a thabhairt duit
-        discoverable: Próifíl gné agus postálacha in halgartaim fionnachtana
+        discoverable: Cuir mé i láthair i dtaithí fionnachtana
         fields:
           name: Lipéad
           value: Ábhar
@@ -319,6 +321,7 @@ ga:
         status_page_url: URL an leathanaigh stádais
         theme: Téama réamhshocraithe
         thumbnail: Mionsamhail freastalaí
+        thumbnail_description: Téacs malartach mionsamhail
         trendable_by_default: Ceadaigh treochtaí gan athbhreithniú roimh ré
         trends: Cumasaigh treochtaí
         wrapstodon: Cumasaigh Wrapstodon
@@ -389,6 +392,7 @@ ga:
         role: Ról
         time_zone: Crios ama
       user_role:
+        collection_limit: Uasmhéid na mBailiúchán in aghaidh an úsáideora
         color: Dath suaitheantas
         highlighted: Taispeáin ról mar shuaitheantas ar phróifílí úsáideora
         name: Ainm

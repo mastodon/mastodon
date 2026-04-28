@@ -67,6 +67,10 @@
   flex-wrap: nowrap;
   overflow: hidden;
   position: relative;
+
+  > button {
+    flex-shrink: 0;
+  }
 }
 
 .tagsListShowAll {
@@ -118,8 +122,8 @@
   > :global(.status__display-name) {
     grid-row: span 2;
   }
+}
 
-  > :global(.account-role) {
-    justify-self: end;
-  }
+.pinnedBadge {
+  justify-self: end;
 }

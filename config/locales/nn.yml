@@ -762,6 +762,7 @@ nn:
       categories:
         administration: Administrasjon
         devops: DevOps
+        email: Epost
         invites: Innbydingar
         moderation: Moderering
         special: Særskild
@@ -778,6 +779,8 @@ nn:
         administrator_description: Brukere med denne tillatelsen omgår enhver tillatelse
         delete_user_data: Slett brukerdata
         delete_user_data_description: Lar brukere slette andre brukeres data uten forsinkelse
+        invite_bypass_approval: Inviter brukarar utan sjekk
+        invite_bypass_approval_description: Gjev folk som blir inviterte til tenaren av desse brukarane høve til å hoppa over godkjenninga
         invite_users: Innby brukarar
         invite_users_description: Tillet at brukarar innbyr nye folk til tenaren
         manage_announcements: Handtera Kunngjeringar
@@ -788,6 +791,8 @@ nn:
         manage_blocks_description: Let brukarar blokkere e-postleverandørar og IP-adresser
         manage_custom_emojis: Handtere tilpassa emojiar
         manage_custom_emojis_description: Let brukarar handtere tilpassa emojiar på tenaren
+        manage_email_subscriptions: Handter epostabonnement
+        manage_email_subscriptions_description: Folk kan abonnera på brukarar med dette løyvet via epost
         manage_federation: Handtere føderasjon
         manage_federation_description: Let brukarar blokkera eller tillata føderasjon med andre domener, samt styra kva som skal leverast
         manage_invites: Handsam innbydingar
@@ -1413,9 +1418,42 @@ nn:
       your_appeal_pending: Du har levert en klage
       your_appeal_rejected: Din klage har blitt avvist
   edit_profile:
-    basic_information: Grunnleggande informasjon
-    hint_html: "<strong>Tilpass kva folk ser på den offentlege profilen din og ved sida av innlegga dine.</strong> Andre vil i større grad fylgja og samhandla med deg når du har eit profilbilete og har fyllt ut profilen din."
     other: Anna
+    redesign_body: No kan du gå til profilredigeringssida din direkte frå profilsida.
+    redesign_button: Gå dit
+    redesign_title: Ny profilredigering
+  email_subscription_mailer:
+    confirmation:
+      action: Stadfest epostadressa
+      instructions_to_confirm: Stadfest at du vil ha epostar frå %{name} (@%{acct}) når dei legg ut nye innlegg.
+      instructions_to_ignore: Viss du ikkje veit kvifor du fekk denne eposten, kan du sletta han. Du kjem ikkje til å abonnera på noko med mindre du klikkar på lenka over.
+      subject: Stadfest epostadressa di
+      title: Vil du ha epostoppdateringar frå %{name}?
+    notification:
+      create_account: Lag ein Mastodon-konto
+      footer:
+        privacy_html: Epostane kjem frå %{domain}, som er ein tenar driven av Mastodon. Les <a href="%{privacy_policy_path}">personvernsida</a> for å sjå korleis tenaren bruker personopplysingane dine.
+        reason_for_email_html: Du får denne eposten fordi du ville ha epostoppdateringar frå %{name}. Vil du ikkje ha fleire slike? <a href="%{unsubscribe_path}">Stopp abonnementet</a>
+      interact_with_this_post:
+        one: Gjer noko med dette innlegget og oppdag fleire som det.
+        other: Gjer noko med desse innlegga og oppdag fleire som dei.
+      subject:
+        plural: Nye innlegg frå %{name}
+        singular: 'Nytt innlegg: "%{excerpt}"'
+      title:
+        plural: Nye innlegg frå %{name}
+        singular: 'Nytt innlegg: "%{excerpt}"'
+  email_subscriptions:
+    active: Aktiv
+    confirmations:
+      show:
+        changed_your_mind: Ombestemt deg?
+        success_html: Frå no vil du få epostar når %{name} legg ut nye innlegg. Legg til %{sender} til kontaktane dine så desse epostane ikkje hamnar i søppelposten din.
+        title: Du er påmeld
+        unsubscribe: Stopp abonnementet
+    inactive: Ikkje aktiv
+    status: Status
+    subscribers: Abonnentar
   emoji_styles:
     auto: Auto
     native: Innebygd
@@ -1454,10 +1492,8 @@ nn:
     mutes: Du dempar
     storage: Medielagring
   featured_tags:
-    add_new: Legg til ny
     errors:
       limit: Du har allereie valt ut så mange emneknaggar som det går an å gjera
-    hint_html: "<strong>Vel ut dei viktigaste emneknaggane på profilen din.</strong> Utvalde emneknaggar er eit flott verkty for å halda oversikt over kreativt arbeid og langtidsprosjekt. Dei er lette å sjå på profilen din, og gjev deg rask tilgang til dine eigne innlegg."
   filters:
     contexts:
       account: Profiler
@@ -1787,6 +1823,8 @@ nn:
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlege tidsliner
   privacy:
+    email_subscriptions: Send innlegg via e-post
+    email_subscriptions_hint_html: Lag eit skjema for epost-påmelding til profilen din for utlogga brukarar. Når folk skriv inn epostadressa og melder seg på, vil Mastodon senda epostoppdateringar for dei offentlege innlegga dine.
     hint_html: "<strong>Tilpass korleis du vil at andre skal finna profilen og innlegga dine.</strong> Mastodon har fleire funksjonar du kan ta i bruk for å få kontakt med eit større publikum. Sjå gjerne gjennom innstillingane slik at du er sikker på at dei passar til deg og din bruk."
     privacy: Personvern
     privacy_hint_html: Kontroller kor mykje du vil dela. Folk finn interessante profilar og fine appar ved å sjå gjennom kva andre fylgjer og kva appar dei legg ut innlegg med, men det kan henda du vil gøyma desse opplysingane.
@@ -2050,6 +2088,28 @@ nn:
     resume_app_authorization: Hald fram å godkjenna applikasojnen
     role_requirement: "%{domain} krev at du set opp tofaktorinnlogging før du kan bruka Mastodon."
     webauthn: Sikkerhetsnøkler
+  unsubscriptions:
+    create:
+      action: Gå til heimesida til tenaren
+      email_subscription:
+        confirmation_html: Du får ikkje fleire epostar frå %{name}.
+      title: Du har meldt deg av
+      user:
+        confirmation_html: Du får ikkje lenger %{type} frå Mastodon på %{domain}.
+    notification_emails:
+      favourite: epostar om favorittmarkeringar
+      follow: epostar om nye fylgjarar
+      follow_request: epostar om fylgjeførespurnader
+      mention: epostar om omtaler
+      reblog: epostar om framhevingar
+    show:
+      action: Stopp abonnementet
+      email_subscription:
+        confirmation_html: Du får ikkje fleire epostar om når denne brukarkontoen legg ut nye innlegg.
+        title: Stopp å abonnera på %{name}?
+      user:
+        confirmation_html: Du sluttar å få %{type} frå Mastodon på %{domain}.
+        title: Stopp å abonnera på %{type}?
   user_mailer:
     announcement_published:
       description: 'Styrarane på %{domain} har ei kunngjering:'

@@ -4,7 +4,7 @@ zh-TW:
     hints:
       account:
         attribution_domains: 每行一個。以保護偽造署名。
-        discoverable: 公開嘟文及個人檔案可能於各 Mastodon 功能中被推薦，並且您的個人檔案可能被推薦至其他使用者。
+        discoverable: 您可能會被收錄於其他使用者建立之收藏名單中。您與您的公開貼文也可能於 Mastodon 平台上的其他探索功能中，被推薦至其他使用者。
         display_name: 完整名稱或暱稱。
         fields: 烘培雞、自我認同代稱、年齡，及任何您想分享的。
         indexable: 您的公開嘟文可能會顯示於 Mastodon 之搜尋結果中。曾與您嘟文互動過的人可能無論如何都能搜尋它們。
@@ -61,9 +61,9 @@ zh-TW:
         setting_default_quote_policy_private: Mastodon 上發佈之僅限跟隨者嘟文無法被其他使用者引用。
         setting_default_quote_policy_unlisted: 當其他人引用您時，他們的嘟文也會自熱門時間軸隱藏。
         setting_default_sensitive: 敏感內容媒體為預設隱藏，且按一下即可重新顯示
-        setting_display_media_default: 隱藏標為敏感內容的媒體
-        setting_display_media_hide_all: 總是隱藏所有媒體
-        setting_display_media_show_all: 總是顯示標為敏感內容的媒體
+        setting_display_media_default: 將標記為敏感內容之多媒體隱藏於警告之後
+        setting_display_media_hide_all: 將所有多媒體內容隱藏於警告之後
+        setting_display_media_show_all: 不警告並顯示所有多媒體內容，包括標記為敏感內容者
         setting_emoji_style: 如何顯示 emoji 表情符號。「自動」將嘗試使用原生 emoji ，但於老式瀏覽器使用 Twemoji。
         setting_quick_boosting_html: 當啟用時，點擊 %{boost_icon} 轉嘟圖示將立即轉嘟而非開啟轉嘟/引用之下拉選單。將引用嘟文操作移至 %{options_icon} （選項）選單中。
         setting_system_scrollbars_ui: 僅套用至基於 Safari 或 Chrome 之桌面瀏覽器
@@ -95,7 +95,7 @@ zh-TW:
         favicon: WEBP、PNG、GIF、或 JPG。使用自訂圖示替代預設 Mastodon favicon 圖示。
         landing_page: 選擇當新訪客第一次造訪您伺服器時所見之頁面。若您選擇「熱門趨勢」，則該功能必須於探索設定中啟用。若您選擇「本站時間軸」，則探索設定中「允許瀏覽本站嘟文之即時內容」功能必須設定為「任何人」。
         mascot: 覆寫進階網頁介面中的圖例。
-        media_cache_retention_period: 來自遠端伺服器嘟文中之多媒體內容將快取於您的伺服器。當設定為正值時，這些多媒體內容將於指定之天數後自您的儲存空間中自動刪除。若多媒體資料於刪除後被請求，且原始內容仍可存取，它們將被重新下載。由於連結預覽中第三方網站查詢頻率限制，建議將其設定為至少 14 日，否則於此之前連結預覽將不被即時更新。
+        media_cache_retention_period: 來自遠端伺服器嘟文中之多媒體附加檔案將快取於您的伺服器。當設定為正值時，這些多媒體內容將於指定之天數後自您的儲存空間中自動刪除。若多媒體資料於刪除後被請求，且原始內容仍可存取，它們將被重新下載。由於連結預覽中第三方網站查詢頻率限制，建議將其設定為至少 14 日，否則於此之前連結預覽將不被即時更新。
         min_age: 使用者將於註冊時被要求確認他們的生日
         peers_api_enabled: 浩瀚聯邦宇宙中與此伺服器曾經擦肩而過的網域列表。不包含關於您是否與此伺服器是否有與之串連，僅僅表示您的伺服器已知此網域。這是供收集聯邦宇宙中一般性統計資料服務使用。
         profile_directory: 個人檔案目錄將會列出那些有選擇被發現的使用者。
@@ -109,6 +109,7 @@ zh-TW:
         status_page_url: 當服務中斷時，可以提供使用者了解伺服器資訊頁面之 URL
         theme: 未登入之訪客或新使用者所見之佈景主題。
         thumbnail: 大約 2:1 圖片會顯示於您伺服器資訊之旁。
+        thumbnail_description: 用以幫助視覺障礙者理解圖片內容之描述。
         trendable_by_default: 跳過手動審核熱門內容。您仍能於登上熱門趨勢後移除個別內容。
         trends: 熱門趨勢將顯示於您伺服器上正在吸引大量注意力之嘟文、主題標籤、或新聞。
         wrapstodon: 提供替本站使用者產生他們過去一年使用 Mastodon 的趣味總結。此功能於每年十二月十號至三十一號提供至於年中發過至少一則公開嘟文（無論顯示於時間軸與否）及至少使用一則主題標籤之使用者。
@@ -154,11 +155,12 @@ zh-TW:
         jurisdiction: 列出帳單支付人之居住國家。若為公司或其他實體，請列出其註冊地所在的國家，及城市、地區、領土、或州別等。
         min_age: 不應低於您所屬法律管轄區要求之最低年齡。
       user:
-        chosen_languages: 當選取時，只有選取語言之嘟文會於公開時間軸中顯示
+        chosen_languages: 當勾選時，公開時間軸將僅顯示所選擇語言之嘟文。此設定不會影響您首頁時間軸與列表。
         date_of_birth:
           other: 我們必須確認您至少年滿 %{count} 以使用 %{domain}。我們不會儲存此資料。
         role: 角色控制使用者有哪些權限。
       user_role:
+        collection_limit: 限制此角色單一使用者能建立收藏名單之數量。請注意，當您降低此數值時，已超過此限制之使用者將不會失去任何收藏名單，但將無法新增更多。
         color: 於整個使用者介面中用於角色的顏色，十六進位格式的 RGB
         highlighted: 這將使角色公開可見
         name: 角色的公開名稱，如果角色設定為顯示為徽章
@@ -176,7 +178,7 @@ zh-TW:
     labels:
       account:
         attribution_domains: 允許對您予與信譽之網站
-        discoverable: 於探索演算法中推薦個人檔案及嘟文
+        discoverable: 將我納入至探索體驗
         fields:
           name: 標籤
           value: 內容
@@ -315,6 +317,7 @@ zh-TW:
         status_page_url: 狀態頁面 URL
         theme: 預設佈景主題
         thumbnail: 伺服器縮圖
+        thumbnail_description: 圖片預覽 ALT 說明文字
         trendable_by_default: 允許熱門趨勢直接顯示，不需經過審核
         trends: 啟用熱門趨勢
         wrapstodon: 啟用 Mastodon 年度回顧
@@ -385,6 +388,7 @@ zh-TW:
         role: 角色
         time_zone: 時區
       user_role:
+        collection_limit: 每位使用者收藏名單數量上限
         color: 識別顏色
         highlighted: 於使用者個人檔案中顯示角色徽章
         name: 名稱

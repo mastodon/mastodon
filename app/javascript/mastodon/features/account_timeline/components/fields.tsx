@@ -23,7 +23,7 @@ import { cleanExtraEmojis } from '../../emoji/normalize';
 import type { AccountField } from '../common';
 import { useFieldHtml } from '../hooks/useFieldHtml';
 
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 const verifyMessage = defineMessage({
   id: 'account.link_verified_on',
@@ -285,11 +285,14 @@ function useColumnWrap() {
         if (!item) {
           break;
         }
+
         const { ele, span } = item;
+
         if (i < row.length - 1) {
           ele.dataset.cols = span.toString();
           remainingRowSpan -= span;
         } else if (
+          row.length > 1 &&
           row.length === halfColSpan &&
           span === 1 &&
           remainingRowSpan > 1

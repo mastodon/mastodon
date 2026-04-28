@@ -232,6 +232,13 @@ class SwitchingColumnsArea extends PureComponent {
 
             <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
+            {areCollectionsEnabled() &&
+              [
+                <WrappedRoute path={['/@:acct/collections']} component={Collections} content={children} key='collections-list' />,
+                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} key='collections-editor' />,
+                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} key='collections-detail' />,
+              ]
+            }
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
             <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
@@ -255,13 +262,6 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
-            {areCollectionsEnabled() &&
-              [
-                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} key='collections-editor' />,
-                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} key='collections-detail' />,
-                <WrappedRoute path='/collections' component={Collections} content={children} key='collections-list' />
-              ]
-            }
             <Route component={BundleColumnError} />
           </WrappedSwitch>
         </ColumnsArea>

@@ -4,7 +4,7 @@ gl:
     hints:
       account:
         attribution_domains: Un por liña. Como protección para falsas atribucións.
-        discoverable: As túas publicacións públicas e perfil poden mostrarse ou recomendarse en varias zonas de Mastodon e o teu perfil ser suxerido a outras usuarias.
+        discoverable: Outras usuarias pódente engadir ás súas coleccións. Ti e as túas publicacións públicas tamén poden suxerirse a outras usuarias nas seccións de suxestións de Mastodon.
         display_name: O teu nome completo ou un nome divertido.
         fields: Páxina web, pronome, idade, o que ti queiras.
         indexable: As túas publicacións públicas poderían aparecer nos resultados das buscas en Mastodon. En calquera caso, as persoas que interactúen coas túas publicacións poderán buscalas igualmente.
@@ -61,9 +61,9 @@ gl:
         setting_default_quote_policy_private: As publicacións só para seguidoras creadas con Mastodon non poden ser citadas.
         setting_default_quote_policy_unlisted: Cando alguén te cite, a súa publicación non aparecerá nas cronoloxías de popularidade.
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
-        setting_display_media_default: Ocultar medios marcados como sensibles
-        setting_display_media_hide_all: Ocultar sempre os medios
-        setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
+        setting_display_media_default: Aviso antes de mostrar multimedia marcado como sensible
+        setting_display_media_hide_all: Aviso antes de mostrar calquera multimedia
+        setting_display_media_show_all: Mostrar todo o multimedia sen avisar, incluíndo o multimedia marcado como sensible
         setting_emoji_style: Forma de mostrar emojis. «Auto» intentará usar os emojis nativos, e se falla recurrirase a Twemoji en navegadores antigos.
         setting_quick_boosting_html: Se está activo, ao premer na icona %{boost_icon} Promover farase automáticamente a promoción no lugar de abrir  o menú despregable promover/citar. Sitúa a acción de citar no menú %{options_icon} (Opcións).
         setting_system_scrollbars_ui: Aplícase só en navegadores de escritorio baseados en Safari e Chrome
@@ -109,6 +109,7 @@ gl:
         status_page_url: URL dunha páxina onde se pode ver o estado deste servidor cando non está a funcionar
         theme: Decorado que verán visitantes e novas usuarias.
         thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
+        thumbnail_description: A descrición da imaxe axuda ás persoas con problemas de visión a comprender o seu contido.
         trendable_by_default: Omitir a revisión manual dos contidos populares. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
         trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
         wrapstodon: Ofrecerlle ás usuarias locais crear un divertido resumo do seu uso de Mastodon durante o ano. Esta ferramenta está dispoñible entre o 10 e o 31 de Decembro de cada ano, e ofréceselle ás usuarias que publicaron polo menos unha mensaxe Pública ou Pública Limitada e utilizaron polo menos un cancelo durante o ano.
@@ -154,12 +155,13 @@ gl:
         jurisdiction: Informa sobre o país onde vive quen paga as facturas. Se é unha empresa ou outra entidade, indica o país onde está establecida e é axeitado escribir a cidade, rexión, territorio ou estado.
         min_age: Non debería ser inferior á idade mínima requerida polas leis da túa xurisdición.
       user:
-        chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
+        chosen_languages: Se está seleccionada, esta opción fai que só se mostren nas cronoloxías públicas as publicacións dos idiomas seleccionados. Esta opción non afecta á túa cronoloxía de inicio e listas.
         date_of_birth:
           one: Temos que confirmar que tes %{count} anos polo menos para usar %{domain}. Non gardamos este dato.
           other: Temos que confirmar que tes %{count} anos polo menos para usar %{domain}. Non gardamos este dato.
         role: Os roles establecen os permisos que ten a usuaria.
       user_role:
+        collection_limit: Limita o número de coleccións que unha única usuaria con este rol pode crear. Ten en conta que cando diminúes este número as usuarias que xa acadasen o límite non perderán ningunha colección, mais non poderán crear ningunha nova.
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
         highlighted: Isto fai o rol publicamente visible
         name: Nome público do rol, se o rol se mostra como unha insignia
@@ -177,7 +179,7 @@ gl:
     labels:
       account:
         attribution_domains: Sitios web que dan fe sobre ti
-        discoverable: Perfil destacado e publicacións nos algoritmos de descubrimento
+        discoverable: Incluírme nas seccións de descubrimento
         fields:
           name: Etiqueta
           value: Contido
@@ -233,7 +235,7 @@ gl:
         locale: Idioma da interface
         max_uses: Número máximo de usos
         new_password: Novo contrasinal
-        note: Acerca de ti
+        note: Sobre ti
         otp_attempt: Código do Segundo Factor
         password: Contrasinal
         phrase: Palabra chave ou frase
@@ -316,6 +318,7 @@ gl:
         status_page_url: URL da páxina do estado
         theme: Decorado predeterminado
         thumbnail: Icona do servidor
+        thumbnail_description: Texto alternativo da miniatura
         trendable_by_default: Permitir tendencias sen aprobación previa
         trends: Activar tendencias
         wrapstodon: Activar Wrapstodon
@@ -386,6 +389,7 @@ gl:
         role: Rol
         time_zone: Fuso horario
       user_role:
+        collection_limit: Número máximo de coleccións por usuaria
         color: Cor da insignia
         highlighted: Mostrar rol como insignia en perfís de usuarias
         name: Nome

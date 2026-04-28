@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+  padding: 16px;
+
+  &[data-with-border='true'] {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+}
+
+.main {
+  --list-item-padding: 0;
+}
+
+.displayName {
+  // Spacing for badge
+  margin-inline-end: 6px;
+}
+
+.badge {
+  // Sort out vertical alignment next to name
+  vertical-align: -4px;
+}
+
+.button {
+  align-self: start;
+}
+
+.verifiedBadge {
+  align-self: end;
+}
+
+.bio {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+
+  :any-link {
+    color: var(--color-text-status-links);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

@@ -10,10 +10,8 @@ class LocalNotificationWorker
     # For most notification types, only one notification should exist, and the older one is
     # preferred. For updates, such as when a status is edited, the new notification
     # should replace the previous ones.
-    if type == 'update'
-      Notification.where(account: receiver, activity: activity, type: 'update').in_batches.delete_all
-    elsif type == 'quoted_update'
-      Notification.where(account: receiver, activity: activity, type: 'quoted_update').in_batches.delete_all
+    if %w(update quoted_update collection_update).include?(type)
+      Notification.where(account: receiver, activity: activity, type: type).in_batches.delete_all
     elsif Notification.where(account: receiver, activity: activity, type: type).any?
       return
     end

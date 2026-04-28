@@ -4,7 +4,6 @@ ko:
     hints:
       account:
         attribution_domains: 한 줄에 하나씩. 가짜 기여로부터 보호합니다.
-        discoverable: 내 공개 게시물과 프로필이 마스토돈의 다양한 추천 기능에 나타날 수 있고 프로필이 다른 사용자에게 제안될 수 있습니다
         display_name: 진짜 이름 또는 재미난 이름.
         fields: 홈페이지, 호칭, 나이, 뭐든지 적고 싶은 것들.
         indexable: 내 공개 게시물이 마스토돈의 검색 결과에 나타날 수 있습니다. 내 게시물과 상호작용했던 사람들은 이 설정과 관계 없이 그 게시물을 검색할 수 있습니다.
@@ -61,9 +60,6 @@ ko:
         setting_default_quote_policy_private: 마스토돈에서 작성된 팔로워 전용 게시물은 다른 사용자가 인용할 수 없습니다.
         setting_default_quote_policy_unlisted: 사람들에게 인용된 경우, 인용한 게시물도 유행 타임라인에서 감추게 됩니다.
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
-        setting_display_media_default: 민감함으로 표시된 미디어 가리기
-        setting_display_media_hide_all: 모든 미디어를 가리기
-        setting_display_media_show_all: 모든 미디어를 보이기
         setting_emoji_style: 에모지 표현 방식. "자동"은 시스템 기본 에모지를 적용하고 그렇지 못하는 오래된 브라우저의 경우 트웨모지를 사용합니다.
         setting_quick_boosting_html: 활성화하면 %{boost_icon}부스트 아이콘을 클릭했을 때 부스트/인용 드롭다운 메뉴가 뜨지 않고 바로 부스트하게 됩니다. 인용은 %{options_icon} (옵션) 메뉴 안으로 이동합니다.
         setting_system_scrollbars_ui: 사파리와 크롬 기반의 데스크탑 브라우저만 적용됩니다
@@ -150,7 +146,6 @@ ko:
         jurisdiction: 요금을 지불하는 사람이 거주하는 국가를 기재하세요. 회사나 기타 법인인 경우 해당 법인이 설립된 국가와 도시, 지역, 영토 또는 주를 적절히 기재하세요.
         min_age: 관할지역의 법률에서 요구하는 최저 연령보다 작으면 안 됩니다.
       user:
-        chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
         date_of_birth:
           other: "%{domain}을 이용하려면 %{count}세 이상임을 확인해야 합니다. 이 정보는 저장되지 않습니다."
         role: 역할은 사용자가 어떤 권한을 가지게 될 지 결정합니다.
@@ -170,7 +165,6 @@ ko:
     labels:
       account:
         attribution_domains: 나를 기여자로 올릴 수 있도록 허용된 웹사이트들
-        discoverable: 발견하기 알고리즘에 프로필과 게시물을 추천하기
         fields:
           name: 라벨
           value: 내용

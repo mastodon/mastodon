@@ -4,7 +4,7 @@ hu:
     hints:
       account:
         attribution_domains: Soronként egy. Megvéd a hamis forrásmegjelölésektől.
-        discoverable: A nyilvános bejegyzéseid és a profilod kiemelhető vagy ajánlható a Mastodon különböző területein, a profilod más felhasználóknak is javasolható.
+        discoverable: Szerepelhetsz mások által létrehozott gyűjteményekben. Te és a nyilvános bejegyzéseidet pedig javasolva lehetnek más felhasználóknak a Mastodonban található más felfedezési élményekben.
         display_name: Teljes neved vagy vicces neved.
         fields: Weboldalad, megszólításaid, korod, bármi, amit szeretnél.
         indexable: A nyilvános bejegyzéseid megjelenhetnek a Mastodon keresési eredményei között. Azok, akik kapcsolatba léptek a bejegyzéseiddel, ettől függetlenül kereshetik azokat.
@@ -61,9 +61,9 @@ hu:
         setting_default_quote_policy_private: A Mastodonon írt, csak követőknek szóló bejegyzéseket mások nem idézhetik.
         setting_default_quote_policy_unlisted: Amikor idéznek tőled, a bejegyzésük rejtve lesz a felkapott bejegyzések hírfolyamain is.
         setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
-        setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
-        setting_display_media_hide_all: Média elrejtése mindig
-        setting_display_media_show_all: Média megjelenítése mindig
+        setting_display_media_default: Figyelmeztetés megjelenítése a kényesnek jelölt média megjelenítése előtt
+        setting_display_media_hide_all: Figyelmeztetés az összes média megjelenítése előtt
+        setting_display_media_show_all: Figyelmeztetés minden média megjelenítése esetén, köztük a kényesnek jelöltek esetén is
         setting_emoji_style: Az emodzsik megjelenítési módja. Az „Automatikus” megpróbálja a natív emodzsikat használni, de az örökölt böngészők esetén a Twemojira vált vissza.
         setting_quick_boosting_html: Ha engedélyezve van, akkor a %{boost_icon} Megtolás azonnal megtörténik, ahelyett hogy megnyitná a megtolás/idézés legördülő menüje. Az idézési műveletet áthelyezi a %{options_icon} (Beállítások) menübe.
         setting_system_scrollbars_ui: Csak Chrome és Safari alapú asztali böngészőkre vonatkozik
@@ -154,7 +154,7 @@ hu:
         jurisdiction: Adja meg az országot, ahol a számlafizető él. Ha ez egy vállalat vagy más szervezet, adja meg az országot, ahol bejegyezték, valamint adott esetben a várost, régiót, területet vagy államot.
         min_age: Nem lehet a joghatóság által meghatározott minimális kor alatt.
       user:
-        chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
+        chosen_languages: Ha be van kapcsolva, akkor csak a kiválasztott nyelvű bejegyzések jelennek meg a nyilvános idővonalakon. A beállítás nem befolyásolja a saját idővonaladat és a listáidat.
         date_of_birth:
           one: Ahhoz, hogy a(z) %{domain} weboldalt használd, meg kell győződnünk arról, hogy legalább %{count} éves vagy. Ezt nem tároljuk.
           other: Ahhoz, hogy a(z) %{domain} weboldalt használd, meg kell győződnünk arról, hogy legalább %{count} éves vagy. Ezt nem tároljuk.
@@ -177,7 +177,7 @@ hu:
     labels:
       account:
         attribution_domains: Weboldalak, melyek szerzőként tüntethetnek fel
-        discoverable: Profil és bejegyzések szerepeltetése a felfedezési algoritmusokban
+        discoverable: Szerepelhetek a felfedezési élményekben
         fields:
           name: Címke
           value: Tartalom

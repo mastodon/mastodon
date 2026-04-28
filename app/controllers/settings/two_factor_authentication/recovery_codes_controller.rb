@@ -7,7 +7,7 @@ module Settings
 
       skip_before_action :require_functional!
 
-      before_action :require_challenge!, on: :create
+      before_action :require_challenge!
 
       def create
         @recovery_codes = current_user.generate_otp_backup_codes!

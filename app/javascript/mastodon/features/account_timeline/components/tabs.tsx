@@ -3,14 +3,12 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import type { NavLinkProps } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
+import { TabLink, TabList } from '@/mastodon/components/tab_list';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 
-import { areCollectionsEnabled } from '../../collections/utils';
-
-import classes from './redesign.module.scss';
+import classes from './styles.module.scss';
 
 const isActive: Required<NavLinkProps>['isActive'] = (match, location) =>
   match?.url === location.pathname ||
@@ -30,27 +28,20 @@ export const AccountTabs: FC = () => {
   }
 
   return (
-    <div className={classes.tabs}>
-      <NavLink isActive={isActive} to={`/@${acct}`}>
+    <TabList>
+      <TabLink isActive={isActive} to={`/@${acct}`}>
         <FormattedMessage id='account.activity' defaultMessage='Activity' />
-      </NavLink>
+      </TabLink>
       {show_media && (
-        <NavLink exact to={`/@${acct}/media`}>
+        <TabLink exact to={`/@${acct}/media`}>
           <FormattedMessage id='account.media' defaultMessage='Media' />
-        </NavLink>
+        </TabLink>
       )}
       {show_featured && (
-        <NavLink exact to={`/@${acct}/featured`}>
-          {areCollectionsEnabled() ? (
-            <FormattedMessage
-              id='account.featured.collections'
-              defaultMessage='Collections'
-            />
-          ) : (
-            <FormattedMessage id='account.featured' defaultMessage='Featured' />
-          )}
-        </NavLink>
+        <TabLink exact to={`/@${acct}/featured`}>
+          <FormattedMessage id='account.featured' defaultMessage='Featured' />
+        </TabLink>
       )}
-    </div>
+    </TabList>
   );
 };

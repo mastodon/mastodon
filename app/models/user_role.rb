@@ -4,15 +4,16 @@
 #
 # Table name: user_roles
 #
-#  id          :bigint(8)        not null, primary key
-#  color       :string           default(""), not null
-#  highlighted :boolean          default(FALSE), not null
-#  name        :string           default(""), not null
-#  permissions :bigint(8)        default(0), not null
-#  position    :integer          default(0), not null
-#  require_2fa :boolean          default(FALSE), not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id               :bigint(8)        not null, primary key
+#  collection_limit :integer          default(10), not null
+#  color            :string           default(""), not null
+#  highlighted      :boolean          default(FALSE), not null
+#  name             :string           default(""), not null
+#  permissions      :bigint(8)        default(0), not null
+#  position         :integer          default(0), not null
+#  require_2fa      :boolean          default(FALSE), not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class UserRole < ApplicationRecord
@@ -104,6 +105,7 @@ class UserRole < ApplicationRecord
   validates :name, presence: true, unless: :everyone?
   validates :color, format: { with: CSS_COLORS }, if: :color?
   validates :position, numericality: { in: (-POSITION_LIMIT..POSITION_LIMIT) }
+  validates :collection_limit, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validate :validate_permissions_elevation
   validate :validate_position_elevation

@@ -62,6 +62,16 @@ RSpec.describe CreateCollectionService do
           end
         end
 
+        context 'when some accounts are local' do
+          it 'schedules notifications' do
+            subject.call(params, author)
+
+            expect(LocalNotificationWorker)
+              .to have_enqueued_sidekiq_job
+              .with(accounts.last.id, anything, 'CollectionItem', 'added_to_collection')
+          end
+        end
+
         context 'when some accounts are remote' do
           let(:accounts) { Fabricate.times(2, :remote_account, feature_approval_policy: (0b10 << 16)) }
 

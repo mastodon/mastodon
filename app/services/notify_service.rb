@@ -14,21 +14,14 @@ class NotifyService < BaseService
     moderation_warning
     severed_relationships
     annual_report
+    added_to_collection
+    collection_update
   ).freeze
 
   class BaseCondition
     NEW_ACCOUNT_THRESHOLD = 30.days.freeze
 
     NEW_FOLLOWER_THRESHOLD = 3.days.freeze
-
-    NON_FILTERABLE_TYPES = %i(
-      admin.sign_up
-      admin.report
-      poll
-      update
-      account_warning
-      annual_report
-    ).freeze
 
     def initialize(notification, **options)
       @recipient = notification.account

@@ -1,0 +1,20 @@
+.wrapper {
+  --list-item-padding: 16px;
+  --list-item-gap: 16px;
+
+  &:not(.wrapperWithoutBorder) {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+}
+
+.menuButton {
+  align-self: start;
+  padding: 4px;
+  margin-top: -4px;
+  margin-inline-end: -4px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -4,7 +4,7 @@ es-AR:
     hints:
       account:
         attribution_domains: Uno por línea. Protege de falsas atribuciones.
-        discoverable: Tu perfil y publicaciones pueden ser destacadas o recomendadas en varias áreas de Mastodon, y tu perfil puede ser sugerido a otros usuarios.
+        discoverable: Puede que aparezcas en colecciones creadas por otros usuarios. También pueden sugerirse tu perfil y publicaciones a otros usuarios en otras funciones de descubrimiento de Mastodon.
         display_name: Tu nombre completo o tu pseudónimo.
         fields: Tu sitio web, pronombres, edad, o lo que quieras.
         indexable: Tus mensajes públicos pueden aparecer en los resultados de la búsqueda en Mastodon. La gente que interactuó con tus mensajes puede ser capaz de buscarlos sin importar el momento.
@@ -61,9 +61,9 @@ es-AR:
         setting_default_quote_policy_private: Los mensajes solo para seguidores redactados en Mastodon no pueden ser citados por otras cuentas.
         setting_default_quote_policy_unlisted: Cuando otras cuentas te citen, sus publicaciones también se ocultarán de las líneas temporales de tendencias.
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
-        setting_display_media_default: Ocultar medios marcados como sensibles
-        setting_display_media_hide_all: Siempre ocultar todos los medios
-        setting_display_media_show_all: Siempre mostrar todos los medios
+        setting_display_media_default: Advertir antes de mostrar medios marcados como sensibles
+        setting_display_media_hide_all: Advertir antes de mostrar todos los medios
+        setting_display_media_show_all: Mostrar todos los medios sin advertir, incluyendo los medios marcados como sensibles
         setting_emoji_style: Cómo se mostrarán los emojis. "Automático" intentará usar emojis nativos, cambiando a Twemoji en navegadores antiguos.
         setting_quick_boosting_html: Al estar habilitado, haciendo clic en el ícono de adhesión %{boost_icon} vas a adherir al mensaje inmediatamente, en lugar de abrir el menú desplegable de adhesión/citas. Esto cambia la acción de citas al menú de opciones %{options_icon}.
         setting_system_scrollbars_ui: Solo aplica para navegadores web de escritorio basados en Safari y Chrome
@@ -109,6 +109,7 @@ es-AR:
         status_page_url: Dirección web de una página donde la gente puede ver el estado de este servidor durante un apagón
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
+        thumbnail_description: Una descripción de la imagen para ayudar a personas con discapacidades visuales a entender su contenido.
         trendable_by_default: Omití la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
         wrapstodon: Ofrecer a los usuarios locales un resumen lúdico de su uso en Mastodon durante el año. Esta función está disponible entre los días 10 y 31 de diciembre de cada año, y se ofrece a los usuarios que enviaron a Mastodon, al menos, un mensaje público o un mensaje público pero silencioso, y que utilizaron, al menos, una etiqueta durante el año.
@@ -154,12 +155,13 @@ es-AR:
         jurisdiction: Listá el país donde vive quien paga las facturas. Si es una empresa u otra entidad, enumerá el país donde está basada y la ciudad, región, territorio o provincia/estado, según corresponda.
         min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
-        chosen_languages: Cuando estén marcados, solo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
+        chosen_languages: Cuando está marcado, solo los mensajes en los idiomas seleccionados se mostrarán en las líneas temporales públicas. Esta configuración no afecta a tu línea temporal principal ni a tus listas.
         date_of_birth:
           one: Tenemos que asegurarnos de que al menos tenés %{count} años de edad para usar %{domain}. No almacenaremos esta información.
           other: Tenemos que asegurarnos de que al menos tenés %{count} años de edad para usar %{domain}. No almacenaremos esta información.
         role: El rol controla qué permisos tiene el usuario.
       user_role:
+        collection_limit: Limita el número de colecciones que un solo usuario con este rol puede crear. Por favor, tené en cuenta que cuando disminuya este número, los usuarios que ya están en este límite no perderán ninguna colección. Pero no podrán crear otras más.
         color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
@@ -177,7 +179,7 @@ es-AR:
     labels:
       account:
         attribution_domains: Sitios web autorizados a acreditarte
-        discoverable: Destacar perfil y mensajes en algoritmos de descubrimiento
+        discoverable: Mostrarme en funciones de descubrimiento
         fields:
           name: Nombre de campo
           value: Valor de campo
@@ -316,6 +318,7 @@ es-AR:
         status_page_url: Dirección web de la página de estado
         theme: Tema predeterminado
         thumbnail: Miniatura del servidor
+        thumbnail_description: Texto alternativo de miniatura
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
         wrapstodon: Habilitar MastodonAnual
@@ -386,6 +389,7 @@ es-AR:
         role: Rol
         time_zone: Zona horaria
       user_role:
+        collection_limit: Número máximo de colecciones por usuario
         color: Color de Insignia
         highlighted: Mostrar rol como insignia en perfiles de usuario
         name: Nombre

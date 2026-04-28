@@ -75,6 +75,10 @@ class ActivityPub::Activity
     ActivityPub::TagManager.instance.uri_to_resource(uri, Account)
   end
 
+  def collection_from_uri(uri)
+    ActivityPub::TagManager.instance.uri_to_resource(uri, Collection)
+  end
+
   def object_uri
     @object_uri ||= uri_from_bearcap(value_or_id(@object))
   end

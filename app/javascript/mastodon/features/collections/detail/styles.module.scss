@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 24px;
+  padding: 16px;
+  padding-bottom: 24px;
 }
 
 .titleWithMenu {
@@ -18,15 +19,6 @@
   align-items: start;
   gap: 4px;
   min-width: 0;
-}
-
-.tag {
-  display: inline-block;
-  padding: 4px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  background: var(--color-bg-secondary);
 }
 
 .name {
@@ -71,45 +63,12 @@
   }
 }
 
-.itemList {
-  padding-inline: 24px;
+.sensitiveScreen {
+  margin: 16px;
 }
 
 .columnSubheading {
-  padding-bottom: 12px;
+  padding-inline: 16px;
   font-size: 15px;
   font-weight: 500;
-}
-
-.accountItemWrapper {
-  display: flex;
-  align-items: start;
-  padding-block: 16px;
-
-  &[data-with-border='true'] {
-    border-bottom: 1px solid var(--color-border-primary);
-  }
-
-  :global(.account__note) {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-  }
-
-  // Hide 'No description provided' message added by `Account` component
-  :global(.account__note--missing) {
-    display: none;
-  }
-}
-
-.accountItem {
-  --account-name-size: 15px;
-  --account-handle-color: var(--color-text-secondary);
-  --account-handle-size: 13px;
-  --account-bio-color: var(--color-text-primary);
-  --account-bio-size: 13px;
-  --account-outer-spacing: 0;
-
-  flex-grow: 1;
 }

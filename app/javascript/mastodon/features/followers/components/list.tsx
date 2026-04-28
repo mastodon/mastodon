@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { FC, ReactNode } from 'react';
 
-import { Account } from '@/mastodon/components/account';
+import { AccountListItem } from '@/mastodon/components/account_list_item';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
@@ -53,12 +53,20 @@ export const AccountList: FC<AccountListProps> = ({
     }
     const children =
       list?.items.map((followerId) => (
-        <Account key={followerId} id={followerId} />
+        <AccountListItem
+          key={followerId}
+          accountId={followerId}
+          withBio={false}
+        />
       )) ?? [];
 
     if (prependAccountId) {
       children.unshift(
-        <Account key={prependAccountId} id={prependAccountId} minimal />,
+        <AccountListItem
+          key={prependAccountId}
+          accountId={prependAccountId}
+          withBio={false}
+        />,
       );
     }
     return children;

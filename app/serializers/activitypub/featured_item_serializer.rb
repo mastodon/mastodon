@@ -4,7 +4,7 @@ class ActivityPub::FeaturedItemSerializer < ActivityPub::Serializer
   include RoutingHelper
 
   attributes :id, :type, :featured_object, :featured_object_type,
-             :feature_authorization
+             :feature_authorization, :published
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -28,5 +28,9 @@ class ActivityPub::FeaturedItemSerializer < ActivityPub::Serializer
     else
       object.approval_uri
     end
+  end
+
+  def published
+    object.created_at.iso8601
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::NotificationSerializer < ActiveModel::Serializer
-  # Please update app/javascript/api_types/notification.ts when making changes to the attributes
+  # Please update app/javascript/mastodon/api_types/notifications.ts when making changes to the attributes
   attributes :id, :type, :created_at, :group_key
 
   attribute :filtered, if: :filtered?
@@ -11,6 +11,7 @@ class REST::NotificationSerializer < ActiveModel::Serializer
   belongs_to :report, if: :report_type?, serializer: REST::ReportSerializer
   belongs_to :account_relationship_severance_event, key: :event, if: :relationship_severance_event?, serializer: REST::AccountRelationshipSeveranceEventSerializer
   belongs_to :account_warning, key: :moderation_warning, if: :moderation_warning_event?, serializer: REST::AccountWarningSerializer
+  belongs_to :target_collection, key: :collection, if: :collection_type?, serializer: REST::CollectionSerializer
 
   def id
     object.id.to_s
@@ -22,6 +23,10 @@ class REST::NotificationSerializer < ActiveModel::Serializer
 
   def status_type?
     [:favourite, :reblog, :status, :mention, :poll, :update, :quoted_update, :quote].include?(object.type)
+  end
+
+  def collection_type?
+    [:added_to_collection, :collection_update].include?(object.type)
   end
 
   def report_type?

@@ -4,12 +4,12 @@ et:
     hints:
       account:
         attribution_domains: Üks rea kohta. See kaitseb pahatahtlike viidete eest.
-        discoverable: Su profiili ja avalikke postitusi võidakse Mastodoni erinevates piirkondades esile tõsta või soovitada ning su profiili soovitada teistele kasutajatele.
+        discoverable: Sind võidakse esile tõsta teiste kasutajate loodud kogumikes. Sind ja su avalikke postitusi võidakse soovitada ka teistele kasutajatele Mastodoni erinevate avastamiskeskkondade kaudu.
         display_name: Su täisnimi või naljanimi.
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
         indexable: Sinu avalikud postitused võivad ilmuda Mastodoni otsingutulemustes. Inimesed, kes on sinu postitustele reageerinud, saavad neid otsida nii või naa.
         note: 'Saad @mainida teisi inimesi või #teemaviiteid.'
-        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata häälestuse valikust.
+        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata seadistusest.
         unlocked: Teised kasutajad saavad sind jälgima hakata nõusolekut küsimata. Eemalda märge, kui soovid jälgimistaotlusi üle vaadata ja valida, kas nõustuda või keelduda uute jälgijatega.
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
@@ -61,9 +61,9 @@ et:
         setting_default_quote_policy_private: Ainult jälgijatele mõeldud Mastodoni postitusi ei saa teiste poolt tsiteerida.
         setting_default_quote_policy_unlisted: Kui teised kasutajad sind tsiteerivad, siis nende postitused peidetakse ajajoonelt, mis näitavad populaarsust koguvaid postitusi.
         setting_default_sensitive: Tundlik meedia on vaikimisi peidetud ning seda saab avada sellele klikkides
-        setting_display_media_default: Peida tundlikuks märgitud meedia
-        setting_display_media_hide_all: Alati peida kõik meedia
-        setting_display_media_show_all: Alati näita tundlikuks märgistatud meedia
+        setting_display_media_default: Hoiatus enne kui näidata tundlikuks märgitud meediat
+        setting_display_media_hide_all: Hoiatus enne mistahes meedia näitamist
+        setting_display_media_show_all: Näita alati meediat ilma hoiatuseta, ka tundlikuks märgitud meediat
         setting_emoji_style: See määrab emojide kuvamise viisi. Automaatse valiku puhul üritatakse kasutada platvormi või klientrakenduse oma emojisid, kuid varuvariandina jääb toimima Twemoji (näiteks vanade veebibrauserite puhul).
         setting_quick_boosting_html: Selle eelistuse kasutamisel, Hooandmise ikooni %{boost_icon} teeb toimingu kohe ilma avamata Hooandmise/Tsiteerimise menüüvalikut. Sel puhul tsiteerimise link leidub %{options_icon} (Valikud) menüüs.
         setting_system_scrollbars_ui: Kehtib vaid Safaril ja Chrome'il põhinevatel tavaarvuti veebibrauserite puhul
@@ -77,7 +77,7 @@ et:
         domain: See võib olla e-postiaadressis näha olev domeen või MX-kirje, mida aadress kasutab. Kontroll toimub liitumise käigus.
         with_dns_records: Püütakse lahendada selle domeeni DNS-kirjed ja ühtlasi blokeerida ka selle tulemused
       featured_tag:
-        name: 'Siin on mõned nendest teemaviiteid, mida oled viimati kasutanud:'
+        name: 'Siin on mõned neist teemaviidetest, mida oled viimati kasutanud:'
       filters:
         action: Vali tegevus, kui postitus vastab filtrile
         actions:
@@ -109,9 +109,10 @@ et:
         status_page_url: Lehe URL, kus saab serveri maas oleku ajal näha serveri olekut
         theme: Teema, mida näevad sisenemata ning uued kasutajad.
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
+        thumbnail_description: Pildi selgitus, mis aitab nägemispuudega inimestel aru saada pildi sisust.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
         trends: Trendid näitavad, millised postitused, teemaviited ja uudislood koguvad sinu serveris tähelepanu.
-        wrapstodon: Paku kohalikele kasutajatele luua nende Mastodoni kasutamise aastast mänguline kokkuvõte. See võimalus on saadaval igal aastal 10. ja 31. detsembri vahel ja seda pakutakse kasutajatele, kes tegid vähemalt ühe avaliku või vaikse avaliku postituse ja kes kasutas aasta jooksul vähemalt ühte silti.
+        wrapstodon: Paku kohalikele kasutajatele luua nende Mastodoni kasutamise aastast mänguline kokkuvõte. See võimalus on saadaval igal aastal 10. ja 31. detsembri vahel ja seda pakutakse kasutajatele, kes tegid vähemalt ühe avaliku või vaikse avaliku postituse ja kes kasutas aasta jooksul vähemalt ühte teemaviidet.
       form_challenge:
         current_password: Sisened turvalisse alasse
       imports:
@@ -134,6 +135,7 @@ et:
         otp: 'Kaheastmelise autentimise kood telefonirakendusest või mõni taastekood:'
         webauthn: Kui see on USB-võti, sisesta see ning vajadusel aktiveeri.
       settings:
+        email_subscriptions: Funktsionaalsuse keelamine säilitab olemasolevad tellijad, kuid peatab e-kirjade saatmise.
         indexable: Su profiilileht võib ilmuda Google, Bingi ja teiste otsimootorite tulemustes.
         show_application: Sa saad sõltumata sellest vaadata, milline äpp su postituse postitas.
       tag:
@@ -153,12 +155,13 @@ et:
         jurisdiction: Nimeta riik, kus elab see, kes arveid maksab. Kui tegemist on äriühingu või muu üksusega, märgi riik, kus see on asutatud, ning vajaduse korral linn, piirkond, territoorium või osariik.
         min_age: Vanus ei tohiks olla väiksem, kui sinu õigusruumis nõutav alampiir.
       user:
-        chosen_languages: Keelte valimisel näidatakse avalikel ajajoontel ainult neis keeltes postitusi
+        chosen_languages: Kui see valik on märgitud, kuvatakse avalikul ajajoonel ainult valitud keeltes postitusi. See seadistus ei mõjuta sinu avalehe ajajoont ega loendeid.
         date_of_birth:
           one: "%{domain} saidi teenuste kasutamiseks pead olema vähemalt %{count} aastat vana. Me ei salvesta neid andmeid."
           other: "%{domain} saidi teenuste kasutamiseks pead olema vähemalt %{count} aastat vana. Me ei salvesta neid andmeid."
         role: Rollid määravad, millised õigused kasutajal on.
       user_role:
+        collection_limit: Piirab sellise rolliga kasutaja poolt loodavate kogumike arvu. Pane tähele, et kui vähendad seda arvu, ei kaota kasutajad, kes on juba piirmäära saavutanud, ühtegi kogumikku, aga nad ei saa luua uusi kogumikke.
         color: Rolli tähistamise värvus üle kasutajaliidese, RGB 16nd-formaadis
         highlighted: Teeb rolli avalikult nähtavaks
         name: Rolli avalik nimi, kui roll on märgitud avalikuks kuvamiseks märgina
@@ -176,7 +179,7 @@ et:
     labels:
       account:
         attribution_domains: Veebisaidid, mis võivad sind algallikana mainida
-        discoverable: Tõsta postitused ja profiil avastamise algoritmides esile
+        discoverable: Võimalda mind teistel avatada
         fields:
           name: Nimetus
           value: Sisu
@@ -224,6 +227,7 @@ et:
         email: E-posti aadress
         expires_in: Aegu pärast
         fields: Veebiviited
+        filter_action: Filtritoimingud
         header: Päis
         honeypot: "%{label} (ära sisesta)"
         inbox_url: Sõnumivahendusserveri sisendkausta võrguaadress
@@ -314,6 +318,7 @@ et:
         status_page_url: Oleku lehe URL
         theme: Vaikmisi teema
         thumbnail: Serveri pisipilt
+        thumbnail_description: Pisipildi selgitustekst
         trendable_by_default: Luba trendid eelneva ülevaatuseta
         trends: Luba trendid
         wrapstodon: Luba Wrapstodon
@@ -355,6 +360,7 @@ et:
         hint: Lisainfo
         text: Reegel
       settings:
+        email_subscriptions: Luba e-posti aadressiga liitumised
         indexable: Kaasa profiilileht otsimootoritesse
         show_application: Näita, millisest äpist postituse saatsid
       tag:
@@ -383,6 +389,7 @@ et:
         role: Roll
         time_zone: Ajavöönd
       user_role:
+        collection_limit: Kogumike maksimumarv kasutaja kohta
         color: Märgi värv
         highlighted: Kuva roll kasutajaprofiilidel märgina
         name: Nimi

@@ -1106,25 +1106,13 @@ a.name-tag,
       text-decoration: none;
       margin-bottom: 10px;
 
-      &:hover {
+      &:where(a):where(:hover, :focus, :active) {
         color: var(--color-text-brand);
-      }
-
-      .account-role {
-        vertical-align: middle;
       }
     }
 
     .icon {
       vertical-align: middle;
-    }
-
-    a.announcements-list__item__title {
-      &:hover,
-      &:focus,
-      &:active {
-        color: var(--color-text-primary);
-      }
     }
 
     &__action-bar {

@@ -4,7 +4,7 @@ de:
     hints:
       account:
         attribution_domains: Eine Domain pro Zeile. Dadurch können falsche Zuschreibungen unterbunden werden.
-        discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon vorgestellt oder empfohlen werden, ebenso kann dein Profil anderen vorgeschlagen werden.
+        discoverable: Dadurch kann dein Profil in Sammlungen von anderen Profilen vorgestellt werden. Ebenfalls können deine öffentlichen Beiträge in verschiedenen Bereichen auf Mastodon vorgestellt oder empfohlen werden.
         display_name: Dein richtiger Name oder dein Fantasiename.
         fields: Deine Website, Pronomen, dein Alter – alles, was du möchtest.
         indexable: Deine öffentlichen Beiträge können in den Suchergebnissen auf Mastodon erscheinen. Profile, die bereits mit deinen Beiträgen interagiert haben, können deine Beiträge immer auffinden.
@@ -61,9 +61,9 @@ de:
         setting_default_quote_policy_private: Beiträge, die nur für deine Follower bestimmt sind und auf Mastodon verfasst wurden, können nicht von anderen zitiert werden.
         setting_default_quote_policy_unlisted: Sollten dich andere zitieren, werden ihre zitierten Beiträge ebenfalls nicht in den Trends und öffentlichen Timelines angezeigt.
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
-        setting_display_media_default: Medien mit Inhaltswarnung ausblenden
-        setting_display_media_hide_all: Alle Medien grundsätzlich ausblenden
-        setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
+        setting_display_media_default: Vor der Anzeige von Medien, die eine Inhaltswarnung enthalten, hinweisen
+        setting_display_media_hide_all: Bei der Anzeige von allen Medien warnen
+        setting_display_media_show_all: Alle Medien anzeigen – auch Medien, die eine Inhaltswarnung enthalten
         setting_emoji_style: 'Wie Emojis dargestellt werden: „Automatisch“ verwendet native Emojis, für veraltete Browser wird jedoch Twemoji verwendet.'
         setting_quick_boosting_html: Dadurch wird der Beitrag beim Anklicken des %{boost_icon} Teilen-Symbols sofort geteilt, anstatt das Drop-down-Menü zu öffnen. Die Möglichkeit zum Zitieren wird dabei in %{options_icon} Mehr verschoben.
         setting_system_scrollbars_ui: Betrifft nur Desktop-Browser, die auf Chrome oder Safari basieren
@@ -109,6 +109,7 @@ de:
         status_page_url: Link zu einer Internetseite, auf der der Serverstatus während eines Ausfalls angezeigt wird
         theme: Das Design, das nicht angemeldete Personen sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
+        thumbnail_description: Eine Beschreibung des Bildes, damit Menschen, die blind oder sehbehindert sind, den Inhalt besser verstehen und einordnen können.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
         wrapstodon: Ermöglicht Nutzer*innen dieses Servers einen spielerischen Jahresrückblick ihrer Mastodon-Aktivität zu erstellen. Diese Funktion ist jedes Jahr zwischen dem 10. und 31. Dezember verfügbar und wird Nutzer*innen angeboten, die innerhalb des Jahres mindestens einen öffentlichen oder stillen Beitrag verfasst und mindestens einen Hashtag verwendet haben.
@@ -134,6 +135,7 @@ de:
         otp: 'Gib den Zwei-Faktor-Code von deinem Smartphone ein oder verwende einen deiner Wiederherstellungscodes:'
         webauthn: Wenn es sich um einen USB-Schlüssel handelt, vergewissere dich, dass du ihn einsteckst und – falls erforderlich – antippst.
       settings:
+        email_subscriptions: Wenn deaktiviert, werden zukünftig keine E-Mails mehr versendet. Bestehende Abonnements bleiben jedoch erhalten.
         indexable: Deine Profilseite kann in Suchergebnissen auf Google, Bing und anderen erscheinen.
         show_application: Du wirst immer sehen können, über welche App dein Beitrag veröffentlicht wurde.
       tag:
@@ -153,12 +155,13 @@ de:
         jurisdiction: Gib das Land an, in dem die Person lebt, die alle Rechnungen bezahlt. Falls es sich dabei um ein Unternehmen oder eine andere Einrichtung handelt, gib das Land mit dem Sitz an, sowie die Stadt oder Region.
         min_age: Sollte nicht unter dem gesetzlich vorgeschriebenen Mindestalter liegen.
       user:
-        chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
+        chosen_languages: Falls aktiviert, werden in öffentlichen Timelines nur Beiträge in den ausgewählten Sprachen angezeigt. Deine Startseite sowie Listen sind hiervon nicht betroffen.
         date_of_birth:
           one: Wir müssen sicherstellen, dass du mindestens %{count} Jahr alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
           other: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
         role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
+        collection_limit: Begrenzt die Anzahl an Sammlungen, die Profile mit dieser Rolle erstellen können. Solltest du die Anzahl verringern, verlieren Konten, die die maximal Anzahl bereits erreicht haben, zwar keine Sammlungen – aber sie können keine weiteren erstellen.
         color: Farbe, die für diese Rolle im Webinterface verwendet wird, als RGB im Hexadezimalsystem
         highlighted: Moderative/administrative Rolle im öffentlichen Profil anzeigen
         name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
@@ -176,7 +179,7 @@ de:
     labels:
       account:
         attribution_domains: Websites, die auf dich verweisen dürfen
-        discoverable: Profil und Beiträge in Empfehlungsalgorithmen berücksichtigen
+        discoverable: Mich beim Entdecken berücksichtigen
         fields:
           name: Beschriftung
           value: Inhalt
@@ -315,6 +318,7 @@ de:
         status_page_url: Statusseite (URL)
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
+        thumbnail_description: Bildbeschreibung des Vorschaubilds
         trendable_by_default: Trends ohne vorherige Überprüfung erlauben
         trends: Trends aktivieren
         wrapstodon: Wrapstodon aktivieren
@@ -337,13 +341,13 @@ de:
       notification_emails:
         appeal: Jemand hat Einspruch gegen eine Maßnahme erhoben
         digest: Zusammenfassung senden
-        favourite: wenn jemand meinen Beitrag favorisiert
+        favourite: Jemand favorisierte meinen Beitrag
         follow: Ein neues Profil folgt mir
-        follow_request: Ein Profil fragt an, mir zu folgen
-        mention: Ich wurde erwähnt
+        follow_request: Jemand möchte mir folgen
+        mention: Jemand erwähnte mich
         pending_account: Ein neues Konto muss überprüft werden
         quote: Jemand zitierte meinen Beitrag
-        reblog: wenn jemand meinen Beitrag teilt
+        reblog: Jemand teilte meinen Beitrag
         report: Eine neue Meldung wurde eingereicht
         software_updates:
           all: Über alle Updates informieren
@@ -356,6 +360,7 @@ de:
         hint: Zusätzliche Informationen
         text: Regel
       settings:
+        email_subscriptions: E-Mail-Abonnement aktivieren
         indexable: Profilseite in Suchmaschinen einbeziehen
         show_application: App anzeigen, über die ich einen Beitrag veröffentlicht habe
       tag:
@@ -384,6 +389,7 @@ de:
         role: Rolle
         time_zone: Zeitzone
       user_role:
+        collection_limit: Höchstzahl an Sammlungen pro Profil
         color: Badge-Farbe
         highlighted: Badge im Profil
         name: Name

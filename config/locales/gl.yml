@@ -562,7 +562,7 @@ gl:
       confirm_purge: Tes a certeza de querer eliminar permanentemente os datos deste dominio?
       content_policies:
         comment: Nota interna
-        description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
+        description_html: Podes definir políticas sobre o contido que serán aplicadas a todas as contas de este dominio e todos os seus subdominios.
         limited_federation_mode_description_html: Podes escoller se permites ou non a federación con este dominio.
         policies:
           reject_media: Rexeitar multimedia
@@ -1418,8 +1418,6 @@ gl:
       your_appeal_pending: Enviaches unha apelación
       your_appeal_rejected: A apelación foi rexeitada
   edit_profile:
-    basic_information: Información básica
-    hint_html: "<strong>Personaliza o que van ver no teu perfil público e ao lado das túas publicacións.</strong> As outras persoas estarán máis animadas a seguirte e interactuar contigo se engades algún dato sobre ti así como unha imaxe de perfil."
     other: Outros
     redesign_body: Agora podes acceder á edición do perfil directamente desde a páxina do perfil.
     redesign_button: Ir á edición
@@ -1439,6 +1437,12 @@ gl:
       interact_with_this_post:
         one: Interactúa con esta publicación e descubre máis coma ela.
         other: Interactúa con estas publicacións e descubre máis coma elas.
+      subject:
+        plural: Novas publicacións de %{name}
+        singular: 'Nova publicación: "%{excerpt}"'
+      title:
+        plural: Novas publicacións de %{name}
+        singular: 'Nova publicación: "%{excerpt}"'
   email_subscriptions:
     active: Activa
     confirmations:
@@ -1488,10 +1492,8 @@ gl:
     mutes: Silenciadas
     storage: Almacenamento de multimedia
   featured_tags:
-    add_new: Engadir novo
     errors:
       limit: Xa sinalaches o número máximo de cancelos permitido
-    hint_html: "<strong>¿Qué son os cancelos destacados?</strong> Móstranse destacados no teu perfil público e permítenlle a outras persoas ver os teus toots públicos nos que os utilizaches. Son unha ferramenta moi útil para facer seguimento de traballos creativos e proxectos a longo prazo."
   filters:
     contexts:
       account: Perfís

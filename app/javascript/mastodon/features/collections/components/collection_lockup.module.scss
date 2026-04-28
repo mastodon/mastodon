@@ -1,0 +1,32 @@
+.wrapper {
+  --list-item-padding: 0px;
+}
+
+.avatarGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  gap: 2px;
+
+  &.avatarGridSensitive {
+    .avatar {
+      filter: blur(4px);
+    }
+  }
+}
+
+.avatar {
+  background: var(--color-bg-brand-softest);
+}
+
+.avatarSensitiveBadge {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  padding: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 8px;
+  fill: var(--color-text-primary);
+  background: var(--color-bg-warning-softest);
+}

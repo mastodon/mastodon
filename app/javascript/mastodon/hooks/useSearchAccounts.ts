@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -21,7 +21,7 @@ export function useSearchAccounts({
 } = {}) {
   const dispatch = useAppDispatch();
 
-  const [accountIds, setAccountIds] = useState<string[]>([]);
+  const [accounts, setAccounts] = useState<ApiAccountJSON[]>([]);
   const [loadingState, setLoadingState] = useState<
     'idle' | 'loading' | 'error'
   >('idle');
@@ -37,7 +37,7 @@ export function useSearchAccounts({
       if (value.trim().length === 0) {
         onSettled?.('');
         if (resetOnInputClear) {
-          setAccountIds([]);
+          setAccounts([]);
         }
         return;
       }
@@ -60,7 +60,7 @@ export function useSearchAccounts({
           if (withRelationships) {
             dispatch(fetchRelationships(accountIds));
           }
-          setAccountIds(accountIds);
+          setAccounts(accounts);
           setLoadingState('idle');
           onSettled?.(value);
         })
@@ -73,9 +73,14 @@ export function useSearchAccounts({
     { leading: true, trailing: true },
   );
 
+  const resetAccounts = useCallback(() => {
+    setAccounts([]);
+  }, []);
+
   return {
     searchAccounts,
-    accountIds,
+    resetAccounts,
+    accounts,
     isLoading: loadingState === 'loading',
     isError: loadingState === 'error',
   };

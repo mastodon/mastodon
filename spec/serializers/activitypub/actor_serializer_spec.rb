@@ -56,6 +56,18 @@ RSpec.describe ActivityPub::ActorSerializer do
             },
           })
         end
+
+        context 'when actor is locked' do
+          let(:record) { Fabricate(:account, locked: true) }
+
+          it 'includes an automatic policy allowing followers' do
+            expect(subject).to include('interactionPolicy' => {
+              'canFeature' => {
+                'automaticApproval' => [ActivityPub::TagManager.instance.followers_uri_for(record)],
+              },
+            })
+          end
+        end
       end
 
       context 'when actor is not discoverable' do

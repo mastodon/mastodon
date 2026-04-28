@@ -25,8 +25,12 @@ class CollectionItem < ApplicationRecord
        { pending: 0, accepted: 1, rejected: 2, revoked: 3 },
        validate: true
 
+  alias reject! rejected!
+  alias revoke! revoked!
+
   delegate :local?, :remote?, to: :collection
 
+  validates :account_id, uniqueness: { scope: :collection_id }
   validates :position, numericality: { only_integer: true, greater_than: 0 }
   validates :activity_uri, presence: true, if: :local_item_with_remote_account?
   validates :approval_uri, presence: true, unless: -> { local? || account&.local? || !accepted? }
@@ -35,16 +39,17 @@ class CollectionItem < ApplicationRecord
   validates :uri, presence: true, if: :remote_item_with_remote_account?
 
   before_validation :set_position, on: :create
-  before_validation :set_activity_uri, only: :create, if: :local_item_with_remote_account?
+  before_validation :set_activity_uri, on: :create, if: :local_item_with_remote_account?
 
   scope :ordered, -> { order(position: :asc) }
   scope :with_accounts, -> { includes(account: [:account_stat, :user]) }
   scope :not_blocked_by, ->(account) { where.not(accounts: { id: account.blocking }) }
   scope :local, -> { joins(:collection).merge(Collection.local) }
   scope :accepted_partial, ->(account) { joins(:account).merge(Account.local).accepted.where(uri: nil, account_id: account.id) }
+  scope :pending_or_accepted, -> { where(state: [:pending, :accepted]) }
 
-  def revoke!
-    update!(state: :revoked)
+  def with_local_account?
+    account&.local?
   end
 
   def local_item_with_remote_account?

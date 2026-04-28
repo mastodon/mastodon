@@ -3,7 +3,6 @@ zh-HK:
   simple_form:
     hints:
       account:
-        discoverable: 你的公開帖文和個人檔案可能會在 Mastodon 的各處被推薦或設為精選，並且可能把你的檔案推薦給其他使用者。
         display_name: 你的全名或暱稱。
         fields: 你的主頁、代名詞、年齡，任何你想顯示的資訊。
         indexable: 你的公開帖文可能會出現在 Mastodon 的搜尋結果中。無論如何，與你帖文互動過的人都能搜尋到它。
@@ -55,9 +54,6 @@ zh-HK:
         setting_aggregate_reblogs: 請勿顯示新近被轉推的文章（只影響最新被推的文章）
         setting_always_send_emails: 通常當你積極使用 Mastodon 時，我們不會發送電郵通知給你
         setting_default_sensitive: 敏感媒體預設隱藏，且按一下即可重新顯示
-        setting_display_media_default: 隱藏標為敏感的媒體
-        setting_display_media_hide_all: 總是隱藏所有媒體
-        setting_display_media_show_all: 總是顯示標為敏感的媒體
         setting_use_blurhash: 漸變圖樣會基於隱藏媒體內容產生，但所有細節會變得模糊
         setting_use_pending_items: 關閉自動滾動更新，時間軸會在點擊後更新
         username: 你可以使用字母、數字及底線
@@ -121,8 +117,6 @@ zh-HK:
         show_application: 你總能看到哪個應用程式發佈你的帖文。
       tag:
         name: 你只能變更大小寫（以使其更易讀）。
-      user:
-        chosen_languages: 只有被選擇的語言會在公開時間軸內顯示
       user_role:
         color: 介面各處用於角色的顏色，是以十六進制 RGB 格式表示
         highlighted: 這使該角色公開可見
@@ -135,7 +129,6 @@ zh-HK:
         url: 事件將被傳送至何處
     labels:
       account:
-        discoverable: 探索演算法推薦的個人檔案和帖文
         fields:
           name: 標籤
           value: 內容

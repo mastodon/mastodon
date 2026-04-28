@@ -51,7 +51,7 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     collection_item = feature_request_from_object
     return unless collection_item.account == @account && collection_item.local?
 
-    collection_item.destroy!
+    collection_item.reject!
   end
 
   def relay

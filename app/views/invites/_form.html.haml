@@ -2,12 +2,21 @@
 
 .fields-row
   .fields-row__column.fields-row__column-6.fields-group
-    = form.input :max_uses, wrapper: :with_label, collection: invites_max_uses_options, label_method: ->(num) { I18n.t('invites.max_uses', count: num) }, prompt: I18n.t('invites.max_uses_prompt')
+    = form.input :max_uses,
+                 collection: Invite::MAX_USES_COUNTS,
+                 label_method: ->(count) { I18n.t('invites.max_uses', count:) },
+                 prompt: I18n.t('invites.max_uses_prompt'),
+                 wrapper: :with_label
   .fields-row__column.fields-row__column-6.fields-group
-    = form.input :expires_in, wrapper: :with_label, collection: invites_expires_options.map(&:to_i), label_method: ->(i) { I18n.t("invites.expires_in.#{i}") }, prompt: I18n.t('invites.expires_in_prompt')
+    = form.input :expires_in,
+                 collection: Invite::EXPIRATION_DURATIONS.map(&:to_i),
+                 label_method: ->(duration) { I18n.t("invites.expires_in.#{duration}") },
+                 prompt: I18n.t('invites.expires_in_prompt'),
+                 wrapper: :with_label
 
 .fields-group
-  = form.input :autofollow, wrapper: :with_label
+  = form.input :autofollow,
+               wrapper: :with_label
 
 .actions
   = form.button :button, t('invites.generate'), type: :submit

@@ -27,7 +27,7 @@ const messages = defineMessages({
   },
 });
 
-export function useConfirmRevoke(collection?: ApiCollectionJSON) {
+export function useConfirmRevoke(collection?: ApiCollectionJSON | null) {
   const dispatch = useAppDispatch();
   const { id, items = [] } = collection ?? {};
   const ownCollectionItemId = items.find((item) => item.account_id === me)?.id;

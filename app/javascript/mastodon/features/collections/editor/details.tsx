@@ -6,6 +6,9 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
+import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { languages } from '@/mastodon/initial_state';
 import {
   hasSpecialCharacters,
@@ -35,8 +38,10 @@ import {
 } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { getCollectionPath } from '../utils';
+
 import classes from './styles.module.scss';
-import { WizardStepHeader } from './wizard_step_header';
+import { WizardStepTitle } from './wizard_step_title';
 
 export const CollectionDetails: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -92,6 +97,9 @@ export const CollectionDetails: React.FC = () => {
     [dispatch],
   );
 
+  const accountId = useCurrentAccountId();
+  const { acct: currentUserName } = useAccount(accountId) ?? {};
+
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
@@ -127,8 +135,8 @@ export const CollectionDetails: React.FC = () => {
           }),
         ).then((result) => {
           if (isFulfilled(result)) {
-            history.replace(`/collections`);
-            history.push(`/collections/${result.payload.collection.id}`, {
+            history.replace(`/@${currentUserName}/collections`);
+            history.push(getCollectionPath(result.payload.collection.id), {
               newCollection: true,
             });
           }
@@ -145,6 +153,7 @@ export const CollectionDetails: React.FC = () => {
       dispatch,
       history,
       accountIds,
+      currentUserName,
     ],
   );
 
@@ -152,7 +161,7 @@ export const CollectionDetails: React.FC = () => {
     <form onSubmit={handleSubmit} className={classes.form}>
       <FormStack className={classes.formFieldStack}>
         {!id && (
-          <WizardStepHeader
+          <WizardStepTitle
             step={2}
             title={
               <FormattedMessage
@@ -276,18 +285,16 @@ export const CollectionDetails: React.FC = () => {
       </FormStack>
 
       <div className={classes.stickyFooter}>
-        <div className={classes.actionWrapper}>
-          <Button type='submit'>
-            {id ? (
-              <FormattedMessage id='lists.save' defaultMessage='Save' />
-            ) : (
-              <FormattedMessage
-                id='collections.create_collection'
-                defaultMessage='Create collection'
-              />
-            )}
-          </Button>
-        </div>
+        <Button type='submit'>
+          {id ? (
+            <FormattedMessage id='lists.save' defaultMessage='Save' />
+          ) : (
+            <FormattedMessage
+              id='collections.create_collection'
+              defaultMessage='Create collection'
+            />
+          )}
+        </Button>
       </div>
     </form>
   );
@@ -332,6 +339,10 @@ const TopicField: React.FC = () => {
     [topic],
   );
 
+  const isCurrentTopicOnlySuggestion =
+    tags.length === 1 && tags[0]?.id === 'new';
+  const hideTagSuggestions = !tags.length || isCurrentTopicOnlySuggestion;
+
   return (
     <ComboboxField
       required={false}
@@ -370,12 +381,14 @@ const TopicField: React.FC = () => {
             }
           : undefined
       }
-      suppressMenu={!tags.length}
+      suppressMenu={hideTagSuggestions}
     />
   );
 };
 
-const renderTagItem = (item: TagSearchResult) => item.label ?? `#${item.name}`;
+const renderTagItem = (item: TagSearchResult) => (
+  <ComboboxMenuItem>{item.label ?? `#${item.name}`}</ComboboxMenuItem>
+);
 
 const LanguageField: React.FC = () => {
   const dispatch = useAppDispatch();

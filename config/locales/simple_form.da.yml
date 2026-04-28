@@ -4,7 +4,7 @@ da:
     hints:
       account:
         attribution_domains: Ét pr. linje. Beskytter mod falske tilskrivninger.
-        discoverable: Dine offentlige indlæg og profil kan blive fremhævet eller anbefalet i forskellige områder af Mastodon, og profilen kan blive foreslået til andre brugere.
+        discoverable: Du kan blive vist i samlinger, som andre brugere har oprettet. Du og dine offentlige indlæg kan også blive foreslået til brugere i andre opdagelsesfunktioner på Mastodon.
         display_name: Dit fulde navn eller et kaldenavn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
         indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
@@ -61,9 +61,9 @@ da:
         setting_default_quote_policy_private: Kun-følgere indlæg forfattet på Mastodon kan ikke citeres af andre.
         setting_default_quote_policy_unlisted: Når folk citerer dig, vil deres indlæg også blive skjult fra trendtidslinjer.
         setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
-        setting_display_media_default: Skjul medier med sensitiv-markering
-        setting_display_media_hide_all: Skjul altid medier
-        setting_display_media_show_all: Vis altid medier
+        setting_display_media_default: Advar før visning af medie markeret som følsomt
+        setting_display_media_hide_all: Advar før visning af alle medier
+        setting_display_media_show_all: Vis alle medier uden advarsel, inklusive medier markeret som følsomme
         setting_emoji_style: Hvordan emojis skal vises. "Auto" vil forsøge at bruge indbyggede emojis, men skifter tilbage til Twemoji i ældre webbrowsere.
         setting_quick_boosting_html: Når aktiveret, vil klik på %{boost_icon} fremhæv-ikonet straks fremhæve i stedet for at åbne fremhæv/citér-foldudmenuen. Flytter citeringshandlingen til %{options_icon} menuen (Indstillinger).
         setting_system_scrollbars_ui: Gælder kun for desktop-browsere baseret på Safari og Chrome
@@ -109,6 +109,7 @@ da:
         status_page_url: URL'en til en side, hvor status for denne server kan ses under en afbrydelse
         theme: Tema, som udloggede besøgende og nye brugere ser.
         thumbnail: Et ca. 2:1 billede vist sammen med dine serveroplysninger.
+        thumbnail_description: En beskrivelse af billedet, der hjælper personer med synshandicap med at forstå dets indhold.
         trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
         trends: Trends viser, hvilke indlæg, hashtags og nyhedshistorier der opnår momentum på din server.
         wrapstodon: Tilbyd lokale brugere at generere en sjov oversigt over deres brug af Mastodon i løbet af året. Denne funktion er tilgængelig mellem den 10. og 31. december hvert år og tilbydes til brugere, der har lavet mindst ét offentligt eller stille offentligt indlæg og brugt mindst ét hashtag i løbet af året.
@@ -154,12 +155,13 @@ da:
         jurisdiction: Angiv landet, hvor betaleren af regningerne er bosiddende. Er det en virksomhed eller en anden entitet, angiv det land, hvor det er stiftet, og byen, regionen, området eller staten efter behov.
         min_age: Bør ikke være under den iht. lovgivningen i det aktuelle retsområde krævede minimumsalder.
       user:
-        chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
+        chosen_languages: Når denne indstilling er markeret, vises kun opslag på de valgte sprog i offentlige tidslinjer. Denne indstilling har ingen indflydelse på din Hjem-tidslinje og dine lister.
         date_of_birth:
           one: Vi skal sikre os, at du er mindst %{count} for at kunne bruge %{domain}. Informationen gemmes ikke.
           other: Vi skal sikre os, at du er mindst %{count} for at kunne bruge %{domain}. Informationen gemmes ikke.
         role: Rollen styrer, hvilke tilladelser brugeren er tildelt.
       user_role:
+        collection_limit: Begrænser antallet af samlinger, som en enkelt bruger med denne rolle kan oprette. Bemærk, at hvis du reducerer dette antal, vil brugere, der allerede har nået denne grænse, ikke miste nogen samlinger. De vil dog ikke kunne oprette flere.
         color: Farven, i RGB hex-format, der skal bruges til rollen i hele UI'en
         highlighted: Dette gør rollen offentligt synlig
         name: Offentligt rollennavn, hvis rollen er opsat til fremstå som et badge
@@ -177,7 +179,7 @@ da:
     labels:
       account:
         attribution_domains: Websteder, man må krediteres af
-        discoverable: Fremhæv profil og indlæg i opdagelsesalgoritmer
+        discoverable: Vis mig i opdagelsesfunktioner
         fields:
           name: Etiket
           value: Indhold
@@ -316,6 +318,7 @@ da:
         status_page_url: Statusside-URL
         theme: Standardtema
         thumbnail: Serverminiaturebillede
+        thumbnail_description: Alt-tekst til miniaturebillede
         trendable_by_default: Tillad ikke-reviderede trends
         trends: Aktivér trends
         wrapstodon: Aktivér Wrapstodon
@@ -386,6 +389,7 @@ da:
         role: Rolle
         time_zone: Tidszone
       user_role:
+        collection_limit: Maksimalt antal samlinger pr. bruger
         color: Badge-farve
         highlighted: Vis rolle som badge på brugerprofiler
         name: Navn

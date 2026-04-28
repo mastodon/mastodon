@@ -4,7 +4,7 @@ vi:
     hints:
       account:
         attribution_domains: Bảo vệ khỏi những sự gán ghép sai.
-        discoverable: Mọi người có thể được đề xuất hồ sơ và tút công khai của bạn.
+        discoverable: Bạn có thể được nêu bật trong một gói khởi đầu của người khác. Bạn và tút công khai của bạn sẽ được đề xuất trên Mastodon.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
         fields: Blog của bạn, nghề nghiệp, tuổi hoặc bất kỳ.
         indexable: Mọi người có thể tìm kiếm và tương tác với những tút công khai của bạn trên Mastodon.
@@ -61,9 +61,9 @@ vi:
         setting_default_quote_policy_private: Không thể trích dẫn tút chỉ dành cho người theo dõi trên Mastodon.
         setting_default_quote_policy_unlisted: Khi ai đó trích dẫn bạn, tút của họ cũng sẽ bị ẩn khỏi bảng tin công khai.
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
-        setting_display_media_default: Click để xem
-        setting_display_media_hide_all: Luôn ẩn
-        setting_display_media_show_all: Luôn hiện
+        setting_display_media_default: Cảnh báo trước khi hiện phương tiện nhạy cảm
+        setting_display_media_hide_all: Cảnh báo trước khi hiện tất cả phương tiện
+        setting_display_media_show_all: Hiện tất cả phương tiện mà không cảnh báo, kể cả phương tiện đánh dấu nhạy cảm
         setting_emoji_style: '"Tự động" sẽ dùng biểu tượng cảm xúc nguyên bản, nhưng đối với các trình duyệt cũ sẽ chuyển thành Twemoji.'
         setting_quick_boosting_html: Nếu bật, nhấn biểu tượng %{boost_icon} Đăng lại sẽ đăng lại lập tức, thay vì mở menu xổ xuống đăng lại/trích dẫn. Chuyển vị trí hành động trích dẫn sang menu %{options_icon} (Tùy chọn).
         setting_system_scrollbars_ui: Chỉ áp dụng trình duyệt Chrome và Safari bản desktop
@@ -109,6 +109,7 @@ vi:
         status_page_url: URL của trang nơi mọi người có thể xem trạng thái của máy chủ này khi ngừng hoạt động
         theme: Chủ đề mà khách truy cập đăng xuất và người mới nhìn thấy.
         thumbnail: 'Một hình ảnh tỉ lệ 2: 1 được hiển thị cùng với thông tin máy chủ của bạn.'
+        thumbnail_description: Mô tả hình ảnh để giúp người khiếm thị hiểu nội dung của hình ảnh.
         trendable_by_default: Bỏ qua việc duyệt thủ công nội dung xu hướng. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
         trends: Hiển thị những tút, hashtag và tin tức đang được thảo luận nhiều trên máy chủ của bạn.
         wrapstodon: Cho phép người dùng máy chủ tạo bản tóm tắt vui nhộn về việc sử dụng Mastodon của họ trong năm. Tính năng này có sẵn từ ngày 10 đến ngày 31 tháng 12 hàng năm, và được cung cấp cho người dùng đã đăng ít nhất một tút Công khai hoặc Riêng tư và sử dụng ít nhất một hashtag trong năm.
@@ -154,11 +155,12 @@ vi:
         jurisdiction: Liệt kê quốc gia nơi người trả hóa đơn sinh sống. Nếu đó là công ty hoặc tổ chức khác, hãy liệt kê quốc gia nơi công ty được thành lập và thành phố, khu vực, lãnh thổ hoặc tiểu bang nếu phù hợp.
         min_age: Không được dưới độ tuổi tối thiểu theo quy định của luật pháp tại khu vực của bạn.
       user:
-        chosen_languages: Chỉ hiển thị những ngôn ngữ tút sau
+        chosen_languages: Khi được chọn, chỉ những tút bằng các ngôn ngữ đã chọn mới được hiển thị trên dòng thời gian công khai. Cài đặt này không ảnh hưởng đến Bảng tin và danh sách của bạn.
         date_of_birth:
           other: Chúng tôi phải đảm bảo rằng bạn ít nhất %{count} tuổi để tham gia %{domain}. Thông tin này không lưu trữ sau khi đăng ký.
         role: Vai trò kiểm soát những quyền mà người dùng có.
       user_role:
+        collection_limit: Giới hạn số lượng Gói khởi đầu mà một tài khoản có vai trò này có thể tạo. Xin lưu ý rằng khi bạn giảm số lượng này, những người dùng đã đạt đến giới hạn này sẽ không bị mất bất kỳ Gói khởi đầu nào. Nhưng họ sẽ không thể tạo thêm nữa.
         color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
         highlighted: Vai trò sẽ hiển thị công khai
         name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
@@ -176,7 +178,7 @@ vi:
     labels:
       account:
         attribution_domains: Các trang web được phép ghi nhận bạn
-        discoverable: Đề xuất hồ sơ và tút
+        discoverable: Cho phép hiển thị tôi trong trải nghiệm khám phá
         fields:
           name: Nhãn
           value: Nội dung
@@ -315,6 +317,7 @@ vi:
         status_page_url: URL trang trạng thái
         theme: Chủ đề mặc định
         thumbnail: Hình thu nhỏ của máy chủ
+        thumbnail_description: Văn bản thay thế cho hình thu nhỏ
         trendable_by_default: Cho phép lên xu hướng mà không cần duyệt trước
         trends: Bật xu hướng
         wrapstodon: Bật Wrapstodon
@@ -385,6 +388,7 @@ vi:
         role: Vai trò
         time_zone: Múi giờ
       user_role:
+        collection_limit: Số lượng Gói khởi đầu tối đa cho mỗi tài khoản
         color: Màu huy hiệu
         highlighted: Hiển thị huy hiệu vai trò trên hồ sơ người dùng
         name: Tên

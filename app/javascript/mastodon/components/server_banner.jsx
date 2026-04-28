@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage, defineMessages } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -18,6 +18,7 @@ import { injectIntl } from './intl';
 
 const messages = defineMessages({
   aboutActiveUsers: { id: 'server_banner.about_active_users', defaultMessage: 'People using this server during the last 30 days (Monthly Active Users)' },
+  aboutThisServer: { id: 'server_banner.more_about_this_server', defaultMessage: 'More about this server'},
 });
 
 const mapStateToProps = state => ({
@@ -47,9 +48,14 @@ class ServerBanner extends PureComponent {
           <FormattedMessage id='server_banner.is_one_of_many' defaultMessage='{domain} is one of the many independent Mastodon servers you can use to participate in the fediverse.' values={{ domain: <strong>{domain}</strong>, mastodon: <a href='https://joinmastodon.org' target='_blank' rel='noopener'>Mastodon</a> }} />
         </div>
 
-        <Link to='/about'>
-          <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} className='server-banner__hero' />
-        </Link>
+        <NavLink to='/about'>
+          <ServerHeroImage
+            blurhash={server.getIn(['thumbnail', 'blurhash'])}
+            src={server.getIn(['thumbnail', 'url'])}
+            alt={intl.formatMessage(messages.aboutThisServer)}
+            className='server-banner__hero'
+          />
+        </NavLink>
 
         <div className='server-banner__description'>
           {isLoading ? (

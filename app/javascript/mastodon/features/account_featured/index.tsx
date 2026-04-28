@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -6,9 +6,9 @@ import { useHistory } from 'react-router';
 
 import { List as ImmutableList } from 'immutable';
 
-import { useAccount } from '@/mastodon/hooks/useAccount';
+import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import { fetchEndorsedAccounts } from 'mastodon/actions/accounts';
-import { Account } from 'mastodon/components/account';
+import { AccountListItem } from 'mastodon/components/account_list_item';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RemoteHint } from 'mastodon/components/remote_hint';
@@ -17,21 +17,24 @@ import {
   ItemList,
   Scrollable,
 } from 'mastodon/components/scrollable_list/components';
+import type { TruncatedListItemInfo } from 'mastodon/components/truncated_list';
+import { TruncatedListItems } from 'mastodon/components/truncated_list';
 import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import Column from 'mastodon/features/ui/components/column';
+import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAccountId } from 'mastodon/hooks/useAccountId';
 import { useAccountVisibility } from 'mastodon/hooks/useAccountVisibility';
-import {
-  fetchAccountCollections,
-  selectAccountCollections,
-} from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { CollectionListItem } from '../collections/detail/collection_list_item';
+import { useAccountCollections } from '../collections';
+import { CollectionListItem } from '../collections/components/collection_list_item';
 import { areCollectionsEnabled } from '../collections/utils';
 
 import { EmptyMessage } from './components/empty_message';
+import { Subheading, SubheadingLink } from './components/subheading';
+
+const collectionsEnabled = areCollectionsEnabled();
 
 const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   multiColumn,
@@ -53,14 +56,9 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   useEffect(() => {
     if (accountId) {
       void dispatch(fetchEndorsedAccounts({ accountId }));
-
-      if (areCollectionsEnabled()) {
-        void dispatch(fetchAccountCollections({ accountId }));
-      }
     }
   }, [accountId, dispatch]);
 
-  const isLoading = !accountId;
   const featuredAccountIds = useAppSelector(
     (state) =>
       state.user_lists.getIn(
@@ -68,15 +66,45 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         ImmutableList(),
       ) as ImmutableList<string>,
   );
-  const { collections, status } = useAppSelector((state) =>
-    selectAccountCollections(state, accountId ?? null),
+  const { collections, status: collectionsLoadStatus } =
+    useAccountCollections(accountId);
+
+  const { listedCollections = [], unlistedCollections = [] } = Object.groupBy(
+    collections,
+    (item) =>
+      item.discoverable && !!item.item_count
+        ? 'listedCollections'
+        : 'unlistedCollections',
   );
-  const listedCollections = collections.filter(
-    // Hide unlisted and empty collections to avoid confusion
-    // (Unlisted collections will only be part of the payload
-    // when viewing your own profile.)
-    (item) => item.discoverable && !!item.item_count,
+
+  const renderListItem = useCallback(
+    ({
+      item,
+      index,
+      totalListLength,
+      isLastElement,
+    }: TruncatedListItemInfo<(typeof listedCollections)[number]>) => (
+      <CollectionListItem
+        key={item.id}
+        collection={item}
+        withoutBorder={isLastElement}
+        withAuthorHandle={false}
+        positionInList={index}
+        listSize={totalListLength}
+      />
+    ),
+    [],
   );
+
+  const hasCollections =
+    collectionsEnabled &&
+    collectionsLoadStatus === 'idle' &&
+    listedCollections.length > 0;
+
+  const hasFeaturedAccounts = !featuredAccountIds.isEmpty();
+
+  const isLoading =
+    !accountId || (collectionsEnabled && collectionsLoadStatus !== 'idle');
 
   if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
@@ -92,7 +120,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     );
   }
 
-  if (featuredAccountIds.isEmpty() && listedCollections.length === 0) {
+  if (!hasFeaturedAccounts && !hasCollections) {
     return (
       <AccountFeaturedWrapper accountId={accountId}>
         <EmptyMessage
@@ -114,36 +142,14 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         {accountId && (
           <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
         )}
-        {listedCollections.length > 0 && status === 'idle' && (
-          <>
-            <h4 className='column-subheading'>
-              <FormattedMessage
-                id='account.featured.collections'
-                defaultMessage='Collections'
-              />
-            </h4>
-            <ItemList>
-              {listedCollections.map((item, index) => (
-                <CollectionListItem
-                  key={item.id}
-                  collection={item}
-                  withoutBorder={index === listedCollections.length - 1}
-                  withAuthorHandle={false}
-                  positionInList={index + 1}
-                  listSize={listedCollections.length}
-                />
-              ))}
-            </ItemList>
-          </>
-        )}
         {!featuredAccountIds.isEmpty() && (
           <>
-            <h4 className='column-subheading'>
+            <Subheading as='h2'>
               <FormattedMessage
                 id='account.featured.accounts'
                 defaultMessage='Profiles'
               />
-            </h4>
+            </Subheading>
             <ItemList>
               {featuredAccountIds.map((featuredAccountId, index) => (
                 <Article
@@ -152,10 +158,60 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                   aria-posinset={index + 1}
                   aria-setsize={featuredAccountIds.size}
                 >
-                  <Account id={featuredAccountId} />
+                  <AccountListItem accountId={featuredAccountId} />
                 </Article>
               ))}
             </ItemList>
+          </>
+        )}
+        {collectionsEnabled && (
+          <>
+            <Subheading as='header'>
+              <h2>
+                <FormattedMessage
+                  id='account.featured.collections'
+                  defaultMessage='Collections'
+                />
+              </h2>
+              <SubheadingLink to='/collections/new' icon={AddIcon}>
+                <FormattedMessage
+                  id='account.featured.new_collection'
+                  defaultMessage='New collection'
+                />
+              </SubheadingLink>
+            </Subheading>
+            {hasCollections ? (
+              <ItemList>
+                <TruncatedListItems
+                  visibleItems={listedCollections}
+                  truncatedItems={unlistedCollections}
+                  toggleButton={{
+                    title: (
+                      <FormattedMessage
+                        id='collections.unlisted_collections_with_count'
+                        defaultMessage='Unlisted collections ({count})'
+                        values={{ count: unlistedCollections.length }}
+                      />
+                    ),
+                    subtitle: (
+                      <FormattedMessage
+                        id='collections.unlisted_collections_description'
+                        defaultMessage='These don’t appear on your profile to others. Anyone with the link can discover them.'
+                      />
+                    ),
+                  }}
+                  renderListItem={renderListItem}
+                />
+              </ItemList>
+            ) : (
+              <EmptyMessage
+                withoutAddCollectionButton
+                blockedBy={blockedBy}
+                hidden={hidden}
+                suspended={suspended}
+                accountId={accountId}
+              />
+            )}
           </>
         )}
         <RemoteHint accountId={accountId} />

@@ -52,7 +52,6 @@ gem 'doorkeeper', '~> 5.6'
 gem 'faraday-httpclient'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
-gem 'hiredis', '~> 0.6'
 gem 'hiredis-client'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.3.0'
@@ -78,7 +77,7 @@ gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rails-i18n', '~> 8.0'
 gem 'redcarpet', '~> 3.6'
-gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', '~> 5'
 gem 'rqrcode', '~> 3.0'
 gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 7.0'
@@ -104,23 +103,23 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.8.0'
+gem 'opentelemetry-api', '~> 1.9.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.32.0', require: false
-  gem 'opentelemetry-instrumentation-active_job', '~> 0.10.0', require: false
-  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.24.0', require: false
-  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.24.0', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.32.0', require: false
-  gem 'opentelemetry-instrumentation-http', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.35.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.30.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.40.0', require: false
-  gem 'opentelemetry-instrumentation-redis', '~> 0.28.0', require: false
-  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.28.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.33.0', require: false
+  gem 'opentelemetry-instrumentation-active_job', '~> 0.11.0', require: false
+  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.25.0', require: false
+  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.25.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.33.0', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.30.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.36.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.31.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.41.0', require: false
+  gem 'opentelemetry-instrumentation-redis', '~> 0.29.0', require: false
+  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.29.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
 end
 
@@ -137,7 +136,7 @@ group :test do
   # Browser integration testing
   gem 'capybara', '~> 3.39'
   gem 'capybara-playwright-driver'
-  gem 'playwright-ruby-client', '1.57.1', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
+  gem 'playwright-ruby-client', '1.59.0', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
 
   # Used to reset the database between system tests
   gem 'database_cleaner-active_record'

@@ -33,6 +33,11 @@
       = f.input :thumbnail,
                 as: :file,
                 wrapper: :with_block_label
+      - if @admin_settings.thumbnail.persisted?
+        = f.input :thumbnail_description,
+                  as: :text,
+                  input_html: { rows: 2, maxlength: Form::AdminSettings::DESCRIPTION_LIMIT },
+                  wrapper: :with_block_label
     .fields-row__column.fields-row__column-6.fields-group
       - if @admin_settings.thumbnail.persisted?
         = image_tag @admin_settings.thumbnail.file.url(:'@1x'), class: 'fields-group__thumbnail'

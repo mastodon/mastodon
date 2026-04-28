@@ -85,10 +85,7 @@
       50%
     )}; // legacy
 
-  --color-border-success-soft: #{utils.css-alpha(
-      var(--color-text-success),
-      50%
-    )}; // legacy
+  --color-border-success-soft: var(--color-green-800);
 
   /* SHADOW TOKENS (LEGACY) */
 

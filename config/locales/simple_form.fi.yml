@@ -4,7 +4,7 @@ fi:
     hints:
       account:
         attribution_domains: Yksi riviä kohti. Suojaa vääriltä tekijän nimeämisiltä.
-        discoverable: Julkisia julkaisujasi ja profiiliasi voidaan esitellä tai suositella Mastodonin eri alueilla, ja profiiliasi voidaan ehdottaa toisille käyttäjille.
+        discoverable: Sinua voidaan esitellä muiden käyttäjien luomissa kokoelmissa. Sinua ja julkisia julkaisujasi voidaan ehdottaa käyttäjille muissa Mastodonin löydettävyyskokemuksissa.
         display_name: Koko nimesi tai lempinimesi.
         fields: Verkkosivustosi, pronominisi, ikäsi ja mitä ikinä haluatkaan ilmoittaa.
         indexable: Julkiset julkaisusi voivat näkyä Mastodonin hakutuloksissa. Käyttäjät, jotka ovat olleet vuorovaikutuksessa julkaisujesi kanssa, voivat etsiä niitä asetuksesta riippumatta.
@@ -61,9 +61,9 @@ fi:
         setting_default_quote_policy_private: Muut eivät voi lainata vain seuraajille tarkoitettuja, Mastodonissa kirjoitettuja julkaisuja.
         setting_default_quote_policy_unlisted: Kun ihmiset lainaavat sinua, heidän julkaisunsa piilotetaan suosittujen julkaisujen aikajanoilta.
         setting_default_sensitive: Arkaluonteinen media piilotetaan oletusarvoisesti, ja se voidaan näyttää yhdellä napsautuksella
-        setting_display_media_default: Piilota arkaluonteiseksi merkitty mediasisältö
-        setting_display_media_hide_all: Piilota mediasisältö aina
-        setting_display_media_show_all: Näytä mediasisältö aina
+        setting_display_media_default: Varoita ennen arkaluonteisen mediasisällön näyttämistä
+        setting_display_media_hide_all: Varoita ennen kaiken mediasisällön näyttämistä
+        setting_display_media_show_all: Näytä kaikki mediasisältö varoittamatta, mukaan lukien arkaluonteiseksi merkitty sisältö
         setting_emoji_style: Miten emojit näkyvät. ”Automaattinen” pyrkii käyttämään natiiveja emojeita, mutta Twemoji-emojeita käytetään varavaihtoehtoina vanhoissa selaimissa.
         setting_quick_boosting_html: Kun käytössä, %{boost_icon} Tehosta-kuvakkeen painaminen tehostaa välittömästi sen sijaan, että Tehosta/Lainaa-pudotusvalikko avautuisi. Siirtää lainaustoiminnon %{options_icon} (Valinnat) -⁠valikkoon.
         setting_system_scrollbars_ui: Koskee vain Safari- ja Chrome-pohjaisia työpöytäselaimia
@@ -109,6 +109,7 @@ fi:
         status_page_url: URL-osoite sivulle, josta tämän palvelimen tilan voi ongelmatilanteissa tarkistaa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
         thumbnail: Noin 2:1 kuva näkyy palvelimen tietojen ohessa.
+        thumbnail_description: Kuvan kuvaus, joka auttaa näkövammallisia ymmärtämään kuvan sisällön.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkastus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
         trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset keräävät huomiota palvelimellasi.
         wrapstodon: Tarjoa paikallisille käyttäjille mahdollisuus luoda leikkisä koonti heidän Mastodonin käytöstään vuoden aikana. Tämä ominaisuus on saatavilla vuosittain 10.–⁠31. joulukuuta, ja sitä tarjotaan käyttäjille, jotka ovat laatineet ainakin yhden julkisen tai vaihvihkaa julkisen julkaisun ja käyttäneet ainakin yhtä aihetunnistetta vuoden aikana.
@@ -154,12 +155,13 @@ fi:
         jurisdiction: Mainitse valtio, jossa laskujen maksaja asuu. Jos kyseessä on yritys tai muu yhteisö, mainitse valtio, johon se on rekisteröity, ja tarvittaessa kaupunki, alue, territorio tai osavaltio.
         min_age: Ei pidä alittaa lainkäyttöalueesi lakien vaatimaa vähimmäisikää.
       user:
-        chosen_languages: Jos valitset kieliä oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät sinulle julkisilla aikajanoilla
+        chosen_languages: Kun kieliä on valittuna oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät julkisilla aikajanoilla. Tämä asetus ei vaikuta kotiaikajanaasi eikä listoihisi.
         date_of_birth:
           one: Meidän tulee varmistaa, että olet vähintään %{count}, jotta voit käyttää %{domain}. Emme tallenna tätä.
           other: Meidän tulee varmistaa, että olet vähintään %{count}, jotta voit käyttää %{domain}. Emme tallenna tätä.
         role: Rooli määrää, millaiset käyttöoikeudet käyttäjällä on.
       user_role:
+        collection_limit: Rajoittaa kokoelmien määrää, jonka yksittäinen käyttäjä, jolla on tämä rooli, voi luoda. Huomaa, että kun pienennät tätä lukua, käyttäjät, jotka ovat jo tällä rajalla, eivät menetä yhtäkään kokoelmaa. He eivät kuitenkaan voi luoda uusia rooleja.
         color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
         highlighted: Tämä tekee roolista julkisesti näkyvän
         name: Roolin julkinen nimi, jos rooli on asetettu näytettäväksi merkkinä
@@ -177,7 +179,7 @@ fi:
     labels:
       account:
         attribution_domains: Verkkosivustot, jotka voivat antaa sinulle tunnustusta
-        discoverable: Esittele profiilia ja julkaisuja löydettävyysalgoritmeissa
+        discoverable: Esittele minua löydettävyyskokemuksissa
         fields:
           name: Nimike
           value: Sisältö
@@ -315,7 +317,8 @@ fi:
         site_title: Palvelimen nimi
         status_page_url: Tilasivun URL-osoite
         theme: Oletusteema
-        thumbnail: Palvelimen pienoiskuva
+        thumbnail: Palvelimen pikkukuva
+        thumbnail_description: Pikkukuvan tekstivastine
         trendable_by_default: Salli trendit ilman ennakkotarkastusta
         trends: Ota trendit käyttöön
         wrapstodon: Ota Wrapstodon käyttöön
@@ -386,6 +389,7 @@ fi:
         role: Rooli
         time_zone: Aikavyöhyke
       user_role:
+        collection_limit: Kokoelmien käyttäjäkohtainen enimmäismäärä
         color: Merkin väri
         highlighted: Näytä rooli merkkinä käyttäjäprofiileissa
         name: Nimi

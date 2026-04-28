@@ -2,7 +2,7 @@
   = t('admin.collections.collection_title', name: @account.pretty_acct)
 
 - content_for :heading_actions do
-  = link_to t('admin.collections.open'), account_collection_path(@account, @collection), class: 'button', target: '_blank', rel: 'noopener'
+  = link_to t('admin.collections.open'), collection_path(@collection), class: 'button', target: '_blank', rel: 'noopener'
 
 %h3= t('admin.collections.contents')
 

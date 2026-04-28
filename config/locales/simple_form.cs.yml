@@ -4,7 +4,6 @@ cs:
     hints:
       account:
         attribution_domains: Jeden na řádek. Chrání před falešným připisováním autorství.
-        discoverable: Vaše veřejné příspěvky a profil mohou být zobrazeny nebo doporučeny v různých oblastech Mastodonu a váš profil může být navrhován ostatním uživatelům.
         display_name: Vaše celé jméno nebo přezdívka.
         fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
         indexable: Vaše veřejné příspěvky se mohou objevit ve výsledcích vyhledávání na Mastodonu. Lidé, kteří s vašimi příspěvky interagovaly, je mohou stále vyhledávat.
@@ -61,9 +60,6 @@ cs:
         setting_default_quote_policy_private: Příspěvky pouze pro sledující, které jsou vytvořeny na Mastodonu, nemohou být citovány ostatními.
         setting_default_quote_policy_unlisted: Když vás lidé citují, jejich příspěvek bude v časové ose populárních příspěvků také skryt.
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
-        setting_display_media_default: Skrývat média označená jako citlivá
-        setting_display_media_hide_all: Vždy skrývat média
-        setting_display_media_show_all: Vždy zobrazovat média
         setting_emoji_style: Jak se budou zobrazovat emoji. "Auto" zkusí použít výchozí emoji, ale pro starší prohlížeče použije Twemoji.
         setting_quick_boosting_html: Pokud je povoleno, kliknutím na %{boost_icon} Boost ikonu okamžitě boostnete místo otevření rozbalovací nabídky boost/citace. Přemístí citaci do nabídky %{options_icon} (Možnosti).
         setting_system_scrollbars_ui: Platí pouze pro desktopové prohlížeče založené na Safari nebo Chrome
@@ -153,7 +149,6 @@ cs:
         jurisdiction: Uveďte zemi, kde žije ten, kdo platí účty. Pokud je to společnost nebo jiný subjekt, uveďte zemi, v níž je zapsán do obchodního rejstříku, a město, region, území, případně stát, pokud je to povinné.
         min_age: Neměla by být pod minimálním věkem požadovaným zákony vaší jurisdikce.
       user:
-        chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
         date_of_birth:
           few: Musíme se ujistit, že je Vám alespoň %{count}, abyste mohli používat %{domain}. Nebudeme to ukládat.
           many: Musíme se ujistit, že je Vám alespoň %{count} let, abyste mohli používat %{domain}. Nebudeme to ukládat.
@@ -178,7 +173,6 @@ cs:
     labels:
       account:
         attribution_domains: Webové stránky s povolením Vám připsat autorství
-        discoverable: Zobrazovat profil a příspěvky ve vyhledávacích algoritmech
         fields:
           name: Označení
           value: Obsah

@@ -29,9 +29,12 @@ import StatusContent from 'mastodon/components/status_content';
 import { QuotedStatus } from 'mastodon/components/status_quoted';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Audio } from 'mastodon/features/audio';
+import { CollectionPreviewCard } from 'mastodon/features/collections/components/collection_preview_card';
 import scheduleIdleTask from 'mastodon/features/ui/util/schedule_idle_task';
 import { Video } from 'mastodon/features/video';
 import { useIdentity } from 'mastodon/identity_context';
+import type { CollectionAttachment } from 'mastodon/models/status';
+import { compareUrls } from 'mastodon/utils/compare_urls';
 
 import Card from './card';
 
@@ -260,13 +263,32 @@ export const DetailedStatus: React.FC<{
       );
     }
   } else if (status.get('card') && !status.get('quote')) {
-    media = (
-      <Card
-        key={`${status.get('id')}-${status.get('edited_at')}`}
-        sensitive={status.get('sensitive')}
-        card={status.get('card')}
-      />
-    );
+    const cardUrl: string = status.getIn(['card', 'url']);
+
+    const taggedCollection = status
+      .get('tagged_collections')
+      .find((item: CollectionAttachment) =>
+        compareUrls(item.get('url'), cardUrl),
+      );
+
+    if (taggedCollection) {
+      media = <CollectionPreviewCard collection={taggedCollection} />;
+    } else {
+      media = (
+        <Card
+          key={`${status.get('id')}-${status.get('edited_at')}`}
+          sensitive={status.get('sensitive')}
+          card={status.get('card')}
+        />
+      );
+    }
+  } else if (status.get('tagged_collections').size) {
+    const firstLinkedCollection = status.get('tagged_collections').first();
+    if (firstLinkedCollection) {
+      media = (
+        <CollectionPreviewCard collection={firstLinkedCollection.toJS()} />
+      );
+    }
   }
 
   if (status.get('application')) {
