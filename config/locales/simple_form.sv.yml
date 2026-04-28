@@ -109,6 +109,7 @@ sv:
         status_page_url: URL till en sida där personer kan se serverns status under ett driftavbrott
         theme: Tema som utloggade besökare och nya användare ser.
         thumbnail: En bild i cirka 2:1-proportioner som visas tillsammans med din serverinformation.
+        thumbnail_description: En beskrivning av bilden för att hjälpa personer med synnedsättning förstå dess innehåll.
         trendable_by_default: Hoppa över manuell granskning av trendande innehåll. Enskilda objekt kan ändå raderas från trender retroaktivt.
         trends: Trender visar vilka inlägg, hashtaggar och nyheter det pratas om på din server.
         wrapstodon: Erbjud lokala användare att generera en lekfull sammanfattning av deras Mastodon-användning under året. Denna funktion är tillgänglig mellan den 10 och 31 december varje år, och erbjuds till användare som gjort minst ett Offentligt eller Tyst Offentligt inlägg och använt minst en hashtag under året.
@@ -160,6 +161,7 @@ sv:
           other: Vi måste se till att du är minst %{count} för att använda %{domain}. Vi lagrar inte denna information.
         role: Rollen styr vilka behörigheter användaren har.
       user_role:
+        collection_limit: Begränsar antalet samlingar som en enda användare med denna roll kan skapa. Observera att när du minskar detta antal kommer användare som redan är på denna gräns inte att förlora några samlingar. Men de kommer inte att kunna skapa ytterligare sådana.
         color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
         highlighted: Detta gör rollen synlig offentligt
         name: Offentligt namn på rollen, om rollen är inställd på att visas som ett emblem
@@ -316,6 +318,7 @@ sv:
         status_page_url: URL för statussida
         theme: Standardtema
         thumbnail: Serverns tumnagelbild
+        thumbnail_description: Miniatyrbilders alternativa text
         trendable_by_default: Tillåt trender utan föregående granskning
         trends: Aktivera trender
         wrapstodon: Aktivera Wrapstodon
@@ -386,6 +389,7 @@ sv:
         role: Roll
         time_zone: Tidszon
       user_role:
+        collection_limit: Maximalt antal samlingar per användare
         color: Emblemsfärg
         highlighted: Visa roll som emblem på användarprofiler
         name: Namn
