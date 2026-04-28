@@ -7,9 +7,8 @@ import classNames from 'classnames';
 
 import Overlay from 'react-overlays/esm/Overlay';
 
-import FollowerIcon from '@/images/icons/icon_follower.svg?react';
 import { showAlert } from '@/mastodon/actions/alerts';
-import { Badge } from '@/mastodon/components/badge';
+import { FollowsYouBadge } from '@/mastodon/components/badge';
 import { Button } from '@/mastodon/components/button';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { Icon } from '@/mastodon/components/icon';
@@ -60,17 +59,7 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
         <h1>
           <DisplayName account={account} variant='simple' />
         </h1>
-        {relationship?.followed_by && (
-          <Badge
-            icon={<FollowerIcon className={classes.followerBadgeIcon} />}
-            label={
-              <FormattedMessage
-                id='account.follows_you'
-                defaultMessage='Follows you'
-              />
-            }
-          />
-        )}
+        {relationship?.followed_by && <FollowsYouBadge />}
       </div>
 
       <AccountNameHelp

@@ -1,18 +1,23 @@
+import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { Account } from 'mastodon/components/account';
-import { VerifiedBadge } from 'mastodon/components/badge';
+import { FollowsYouBadge, VerifiedBadge } from 'mastodon/components/badge';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useRelationship } from 'mastodon/hooks/useRelationship';
+import { domain } from 'mastodon/initial_state';
 import type { Relationship } from 'mastodon/models/relationship';
 
+import { Avatar } from '../avatar';
+import { useAccountHandle } from '../display_name/default';
+import { DisplayNameSimple } from '../display_name/simple';
 import { EmojiHTML } from '../emoji/html';
 import { FollowButton } from '../follow_button';
 import { FormattedDateWrapper } from '../formatted_date';
+import { ListItemLink, ListItemWrapper } from '../list_item';
 import { NumberFields, NumberFieldsItem } from '../number_fields';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { ShortNumber } from '../short_number';
@@ -29,9 +34,10 @@ type Stat = 'followers' | 'following' | 'posts' | 'joined' | 'last-active';
 interface Props {
   accountId: string | undefined;
   stats?: Stat[];
-  renderButton?: (options: RenderButtonOptions) => React.ReactNode;
   withBio?: boolean;
   withBorder?: boolean;
+  badge?: ReactNode;
+  renderButton?: (options: RenderButtonOptions) => React.ReactNode;
 }
 
 const DEFAULT_STATS: Stat[] = ['followers', 'posts', 'last-active'];
@@ -48,10 +54,12 @@ export const AccountListItem: React.FC<Props> = ({
   stats = DEFAULT_STATS,
   withBio = true,
   withBorder = true,
+  badge: badgeProp,
   renderButton = defaultRenderButton,
 }) => {
   const intl = useIntl();
   const account = useAccount(accountId);
+  const handle = useAccountHandle(account, domain);
   const relationship = useRelationship(accountId);
 
   const createdThisYear = useMemo(
@@ -63,22 +71,34 @@ export const AccountListItem: React.FC<Props> = ({
     return null;
   }
 
+  const badge =
+    badgeProp ?? (relationship?.followed_by ? <FollowsYouBadge /> : null);
+
   const firstVerifiedField = account.fields.find((item) => !!item.verified_at);
 
   return (
     <div className={classes.wrapper} data-with-border={withBorder}>
-      <div className={classes.header}>
-        <Account
-          id={accountId}
-          minimal
-          size={40}
-          withMenu={false}
-          withBorder={false}
-          className={classes.account}
-        />
-
-        {renderButton({ accountId, relationship })}
-      </div>
+      <ListItemWrapper
+        className={classes.main}
+        icon={<Avatar account={account} size={40} />}
+        sideContent={
+          <span className={classes.button}>
+            {renderButton({ accountId, relationship })}
+          </span>
+        }
+      >
+        <ListItemLink
+          to={`/@${account.acct}`}
+          data-hover-card-account={accountId}
+          subtitle={handle}
+        >
+          <DisplayNameSimple
+            account={account}
+            className={classes.displayName}
+          />
+          {badge && <span className={classes.badge}>{badge}</span>}
+        </ListItemLink>
+      </ListItemWrapper>
 
       <NumberFields>
         {stats.includes('followers') && (
