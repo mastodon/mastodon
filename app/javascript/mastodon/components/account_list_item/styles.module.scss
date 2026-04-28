@@ -10,22 +10,22 @@
   }
 }
 
-.header {
-  display: flex;
-  align-items: start;
-  width: 100%;
+.main {
+  --list-item-padding: 0;
 }
 
-.account {
-  --account-name-size: 15px;
-  --account-handle-color: var(--color-text-secondary);
-  --account-handle-size: 13px;
-  --account-bio-color: var(--color-text-primary);
-  --account-bio-size: 13px;
-  --account-outer-spacing: 0;
+.displayName {
+  // Spacing for badge
+  margin-inline-end: 6px;
+}
 
-  flex-grow: 1;
-  margin-inline-end: 16px;
+.badge {
+  // Sort out vertical alignment next to name
+  vertical-align: -4px;
+}
+
+.button {
+  align-self: start;
 }
 
 .verifiedBadge {
