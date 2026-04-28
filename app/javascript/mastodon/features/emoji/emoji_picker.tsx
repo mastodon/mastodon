@@ -67,14 +67,14 @@ export const Picker: FC<PickerProps> = ({
       sheetSize={sheetSize}
       sheetColumns={sheetColumns}
       sheetRows={sheetRows}
-      backgroundImageFn={backgroundImageFn}
       native={mode === EMOJI_MODE_NATIVE}
+      backgroundImageFn={backgroundImageFn}
       {...props}
     />
   );
 };
 
-async function loadCustomEmojiData() {
+export async function loadCustomEmojiData() {
   const { loadAllCustomEmoji } = await import('./database');
   const emojisRaw = await loadAllCustomEmoji();
   if (emojisRaw.length === 0) {
@@ -130,8 +130,8 @@ export const Emoji: FC<EmojiProps> = ({
       sheetSize={sheetSize}
       sheetColumns={sheetColumns}
       sheetRows={sheetRows}
-      native={mode === EMOJI_MODE_NATIVE}
       backgroundImageFn={backgroundImageFn}
+      native={mode === EMOJI_MODE_NATIVE}
       {...props}
     />
   );

@@ -324,7 +324,9 @@ class EmojiPickerDropdown extends PureComponent {
         EmojiPicker = EmojiMart.Picker;
         Emoji = EmojiMart.Emoji;
 
-        this.setState({ loading: false });
+        void EmojiMart.loadCustomEmojiData().then(() => {
+          this.setState({ loading: false });
+        });
       }).catch(() => {
         this.setState({ loading: false, active: false });
       });
