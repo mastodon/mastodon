@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 import { openModal } from '@/mastodon/actions/modal';
 import { useAccountHandle } from '@/mastodon/components/display_name/default';
+import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
@@ -101,6 +102,26 @@ const RevokeControls: React.FC<{
   );
 };
 
+const PendingNote: React.FC = () => {
+  return (
+    <Callout
+      variant='subtle'
+      icon={HelpIcon}
+      title={
+        <FormattedMessage
+          id='collections.pending_accounts.title'
+          defaultMessage='Why am I seeing pending accounts?'
+        />
+      }
+    >
+      <FormattedMessage
+        id='collections.pending_accounts.message'
+        defaultMessage='Accounts may appear as pending when we’re awaiting a response from the user or their server. Only you can see pending accounts.'
+      />
+    </Callout>
+  );
+};
+
 const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   collection,
 }) => {
@@ -136,6 +157,8 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
     }
   }, [history, openShareModal, isNewCollection, location.pathname]);
 
+  const hasPendingAccounts = items.some((item) => item.state === 'pending');
+
   return (
     <header className={classes.header}>
       <div className={classes.titleWithMenu}>
@@ -160,6 +183,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         </div>
       </div>
       {description && <p className={classes.description}>{description}</p>}
+      {hasPendingAccounts && <PendingNote />}
       {isCurrentUserInCollection && <RevokeControls collection={collection} />}
     </header>
   );
