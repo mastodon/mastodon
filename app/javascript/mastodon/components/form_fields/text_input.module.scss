@@ -1,7 +1,6 @@
 .input {
   box-sizing: border-box;
   display: block;
-  resize: vertical;
   width: 100%;
   padding: 10px 16px;
   font-family: inherit;
@@ -48,6 +47,10 @@
     border-color: transparent;
     cursor: not-allowed;
   }
+}
+
+textarea.input {
+  resize: vertical;
 }
 
 .iconWrapper {
