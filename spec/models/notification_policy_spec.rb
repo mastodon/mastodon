@@ -28,6 +28,7 @@ RSpec.describe NotificationPolicy do
       )
     end
   end
+
   describe 'for_bots attribute' do
     subject { Fabricate(:notification_policy) }
 
@@ -51,9 +52,9 @@ RSpec.describe NotificationPolicy do
     end
 
     it 'validates input' do
-      expect {
+      expect do
         subject.update!(for_bots: 'block')
-      }.to raise_error(ArgumentError, "'block' is not a valid for_bots")
+      end.to raise_error(ArgumentError, "'block' is not a valid for_bots")
     end
   end
 end

@@ -274,7 +274,6 @@ RSpec.describe NotifyService do
       end
 
       context 'with bot policies' do
-
         let(:bot_sender) { Fabricate(:account, bot: true) }
         let(:human_sender) { Fabricate(:account, bot: false) }
         let(:original_status) { Fabricate(:status) }
@@ -576,7 +575,6 @@ RSpec.describe NotifyService do
       end
 
       context 'with bot policies' do
-
         let(:bot_sender) { Fabricate(:account, bot: true) }
         let(:human_sender) { Fabricate(:account, bot: false) }
         let(:original_status) { Fabricate(:status) }
