@@ -25,6 +25,9 @@ class CollectionItem < ApplicationRecord
        { pending: 0, accepted: 1, rejected: 2, revoked: 3 },
        validate: true
 
+  alias reject! rejected!
+  alias revoke! revoked!
+
   delegate :local?, :remote?, to: :collection
 
   validates :account_id, uniqueness: { scope: :collection_id }
@@ -44,10 +47,6 @@ class CollectionItem < ApplicationRecord
   scope :local, -> { joins(:collection).merge(Collection.local) }
   scope :accepted_partial, ->(account) { joins(:account).merge(Account.local).accepted.where(uri: nil, account_id: account.id) }
   scope :pending_or_accepted, -> { where(state: [:pending, :accepted]) }
-
-  def revoke!
-    update!(state: :revoked)
-  end
 
   def with_local_account?
     account&.local?
