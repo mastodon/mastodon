@@ -325,6 +325,7 @@ RUN \
   # Configure bundle to not warn about root user
   bundle config set silence_root_warning "true"; \
   # Download and install required Gems
+  bundle lock --normalize-platforms; \
   bundle install -j"$(nproc)";
 
 # Create temporary assets build layer from build layer
