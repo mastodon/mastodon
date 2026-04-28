@@ -65,7 +65,7 @@ export const ConfirmationModal: React.FC<
   }, [onClose, onSecondary]);
 
   return (
-    <ModalShell>
+    <ModalShell onSubmit={handleClick}>
       <ModalShellBody className={className}>
         <h1 id={titleId}>{title}</h1>
         {message && <p>{message}</p>}
@@ -99,6 +99,7 @@ export const ConfirmationModal: React.FC<
 
         {/* eslint-disable jsx-a11y/no-autofocus -- we are in a modal and thus autofocusing is justified */}
         <Button
+          type='submit'
           onClick={handleClick}
           loading={updating}
           disabled={disabled}
