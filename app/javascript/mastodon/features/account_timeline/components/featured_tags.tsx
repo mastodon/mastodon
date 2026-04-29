@@ -13,8 +13,8 @@ import { useOverflowButton } from '@/mastodon/hooks/useOverflow';
 import { selectAccountFeaturedTags } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { useAccountContext } from './context';
-import classes from './styles.module.scss';
+import { useAccountContext } from '../hooks/useAccountContext';
+import classes from '../styles.module.scss';
 
 export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
   // Fetch tags.

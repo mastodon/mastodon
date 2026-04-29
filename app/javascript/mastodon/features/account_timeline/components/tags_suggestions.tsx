@@ -20,7 +20,7 @@ import {
   createAppSelector,
 } from '@/mastodon/store';
 
-import classes from './styles.module.scss';
+import classes from '../styles.module.scss';
 
 const MAX_SUGGESTED_TAGS = 3;
 

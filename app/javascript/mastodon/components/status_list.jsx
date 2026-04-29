@@ -8,7 +8,7 @@ import { debounce } from 'lodash';
 import { TIMELINE_GAP, TIMELINE_PINNED_VIEW_ALL, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
 import { RegenerationIndicator } from 'mastodon/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
-import { PinnedShowAllButton } from '@/mastodon/features/account_timeline/v2/pinned_statuses';
+import { PinnedShowAllButton } from '@/mastodon/features/account_timeline/components/pinned_statuses';
 
 import { StatusQuoteManager } from '../components/status_quoted';
 
