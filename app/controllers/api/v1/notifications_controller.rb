@@ -89,6 +89,8 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.slice(:limit, :account_id, :types, :exclude_types, :include_filtered).permit(:limit, :account_id, :include_filtered, types: [], exclude_types: []).merge(core_params)
+    params.slice(:limit, :account_id, :types, :exclude_types, :include_filtered, :supported_types)
+      .permit(:limit, :account_id, :include_filtered, types: [], exclude_types: [], supported_types: [])
+      .merge(core_params)
   end
 end

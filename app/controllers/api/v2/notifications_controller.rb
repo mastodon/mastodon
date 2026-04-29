@@ -138,7 +138,9 @@ class Api::V2::NotificationsController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.slice(:limit, :include_filtered, :types, :exclude_types, :grouped_types).permit(:limit, :include_filtered, types: [], exclude_types: [], grouped_types: []).merge(core_params)
+    params.slice(:limit, :include_filtered, :types, :exclude_types, :grouped_types, :supported_types)
+      .permit(:limit, :include_filtered, types: [], exclude_types: [], grouped_types: [], supported_types: [])
+      .merge(core_params)
   end
 
   def expand_accounts_param
