@@ -1,0 +1,85 @@
+import { useEffect, useState } from 'react';
+
+import type { CategoryName, CustomEmoji } from 'emoji-mart';
+
+import { autoPlayGif } from '@/mastodon/initial_state';
+
+import { emojiLogger } from './utils';
+
+const log = emojiLogger('picker');
+
+let customEmojis: CustomEmoji[] | null = null;
+let customCategories = [
+  'recent',
+  'people',
+  'nature',
+  'foods',
+  'activity',
+  'places',
+  'objects',
+  'symbols',
+  'flags',
+] as CategoryName[];
+
+export async function fetchCustomEmojiData() {
+  if (customEmojis !== null) {
+    return customEmojis;
+  }
+
+  const { loadAllCustomEmoji } = await import('./database');
+  const emojisRaw = await loadAllCustomEmoji();
+  if (emojisRaw.length === 0) {
+    return [];
+  }
+
+  const categories = new Set(['custom']);
+  const emojis = [];
+  for (const emoji of emojisRaw) {
+    const name = emoji.shortcode.replaceAll(':', '');
+    emojis.push({
+      name,
+      id: name,
+      custom: true,
+      short_names: [name],
+      imageUrl: autoPlayGif ? emoji.url : emoji.static_url,
+      customCategory: emoji.category,
+    });
+
+    if (emoji.category) {
+      categories.add(`custom-${emoji.category}`);
+    }
+  }
+
+  customEmojis = emojis.toSorted((a, b) => {
+    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+  });
+  customCategories = customCategories.toSpliced(
+    1,
+    0,
+    ...(Array.from(categories).toSorted() as CategoryName[]),
+  );
+  log(
+    'loaded %d custom emojis in %d categories',
+    customEmojis.length,
+    categories.size,
+  );
+
+  return customEmojis;
+}
+
+export function usePickerEmojis() {
+  const [, setLoaded] = useState(customEmojis !== null);
+
+  useEffect(() => {
+    if (customEmojis === null) {
+      void fetchCustomEmojiData().then(() => {
+        setLoaded(true);
+      });
+    }
+  }, []);
+
+  return {
+    customEmojis,
+    customCategories,
+  };
+}
