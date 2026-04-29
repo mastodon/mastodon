@@ -111,7 +111,7 @@ export const AccountHeader: React.FC<{
           <FollowRequestNoteContainer account={account} />
         )}
 
-        <div className={classNames('account__header__image', classes.header)}>
+        <div className={classes.header}>
           {!suspendedOrHidden && (
             <img
               src={autoPlayGif ? account.header : account.header_static}
@@ -121,21 +121,16 @@ export const AccountHeader: React.FC<{
           )}
         </div>
 
-        <div className={classNames('account__header__bar', classes.barWrapper)}>
-          <div
-            className={classNames(
-              'account__header__tabs',
-              classes.avatarWrapper,
-            )}
-          >
+        <div className={classes.barWrapper}>
+          <div className={classes.avatarWrapper}>
             <a
-              className='avatar'
               href={account.avatar}
               rel='noopener'
               target='_blank'
               onClick={handleOpenAvatar}
             >
               <Avatar
+                className={classes.avatar}
                 account={suspendedOrHidden ? undefined : account}
                 alt={account.avatar_description}
                 size={80}

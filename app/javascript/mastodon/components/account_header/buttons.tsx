@@ -3,8 +3,6 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import classNames from 'classnames';
-
 import { followAccount } from '@/mastodon/actions/accounts';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
@@ -49,7 +47,7 @@ export const AccountButtons: FC<AccountButtonsProps> = ({
   const me = useAppSelector((state) => state.meta.get('me') as string);
 
   return (
-    <div className={classNames('account__header__buttons', className)}>
+    <div className={className}>
       {!hidden && (
         <AccountButtonsOther accountId={accountId} noShare={noShare} />
       )}
