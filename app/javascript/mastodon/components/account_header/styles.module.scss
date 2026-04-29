@@ -1,26 +1,68 @@
 .header {
   height: 120px;
-  background: var(--color-bg-secondary);
+  overflow: hidden;
+  background: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--color-border-primary);
+
+  img {
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 
   @container (width >= 500px) {
     height: 160px;
   }
+
+  :global(.inactive) & {
+    filter: grayscale(100%);
+  }
 }
 
 .barWrapper {
-  border-bottom: none;
   padding-inline: 16px;
 }
 
 .avatarWrapper {
   margin-top: -64px;
   padding-top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  overflow: hidden;
+  margin-inline-start: -2px; // aligns the pfp with content below
+}
+
+.avatar {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--avatar-border-radius);
 }
 
 .displayNameWrapper {
   display: flex;
   align-items: start;
   gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  h1 {
+    font-size: 17px;
+    line-height: 22px;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  :global(.emojione) {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .nameWrapper {
@@ -111,21 +153,6 @@
   }
 }
 
-$button-breakpoint: 420px;
-$button-fallback-breakpoint: $button-breakpoint + 55px;
-
-.buttonsDesktop {
-  @container (width < #{$button-breakpoint}) {
-    display: none;
-  }
-
-  @supports (not (container-type: inline-size)) {
-    @media (max-width: #{$button-fallback-breakpoint}) {
-      display: none;
-    }
-  }
-}
-
 .handleCopy {
   border: 1px solid var(--color-border-primary);
   border-radius: 8px;
@@ -143,6 +170,45 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   &:focus,
   &:hover {
     background-color: var(--color-bg-brand-softest);
+  }
+}
+
+$button-breakpoint: 420px;
+$button-fallback-breakpoint: $button-breakpoint + 55px;
+
+.buttonsDesktop,
+.buttonsMobile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  :global(.button) {
+    flex-shrink: 1;
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  :global(.icon-button) {
+    border: 1px solid var(--color-border-primary);
+    border-radius: 4px;
+    box-sizing: content-box;
+    padding: 5px;
+
+    &:global(.copied) {
+      border-color: var(--color-text-success);
+    }
+  }
+}
+
+.buttonsDesktop {
+  @container (width < #{$button-breakpoint}) {
+    display: none;
+  }
+
+  @supports (not (container-type: inline-size)) {
+    @media (max-width: #{$button-fallback-breakpoint}) {
+      display: none;
+    }
   }
 }
 

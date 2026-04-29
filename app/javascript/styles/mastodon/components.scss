@@ -8351,7 +8351,6 @@ noscript {
   &.inactive {
     opacity: 0.5;
 
-    .account__header__image,
     .account__avatar {
       filter: grayscale(100%);
     }
@@ -8366,106 +8365,11 @@ noscript {
     gap: 2px;
   }
 
-  &__image {
-    overflow: hidden;
-    height: 145px;
-    position: relative;
-    background: var(--color-bg-tertiary);
-    border-bottom: 1px solid var(--color-border-primary);
-
-    img {
-      object-fit: cover;
-      display: block;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-    }
-  }
-
-  &__bar {
-    position: relative;
-    padding: 0 20px;
-    border-bottom: 1px solid var(--color-border-primary);
-
-    .avatar {
-      display: block;
-      flex: 0 0 auto;
-
-      .account__avatar {
-        background: var(--color-bg-primary);
-        border: 1px solid var(--color-border-primary);
-        border-radius: var(--avatar-border-radius);
-      }
-    }
-  }
-
-  &__tabs {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: -55px;
-    padding-top: 10px;
-    gap: 8px;
-    overflow: hidden;
-    margin-inline-start: -2px; // aligns the pfp with content below
-
-    &__name {
-      margin-top: 16px;
-      margin-bottom: 16px;
-
-      .emojione {
-        width: 22px;
-        height: 22px;
-      }
-
-      h1 {
-        font-size: 17px;
-        line-height: 22px;
-        color: var(--color-text-primary);
-        font-weight: 600;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-
-        small {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 14px;
-          line-height: 20px;
-          color: var(--color-text-secondary);
-          font-weight: 400;
-          overflow: hidden;
-          text-overflow: ellipsis;
-
-          span {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            user-select: all;
-          }
-
-          .icon-lock {
-            height: 18px;
-            width: 18px;
-          }
-        }
-      }
-    }
-
-    .spacer {
-      flex: 1 1 auto;
-    }
-  }
-
   &__follow-button {
     flex-grow: 1;
   }
 
   &__buttons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
     $button-breakpoint: 420px;
     $button-fallback-breakpoint: $button-breakpoint + 55px;
 
@@ -8494,28 +8398,6 @@ noscript {
         @media (min-width: ($button-fallback-breakpoint + 1px)) {
           display: none;
         }
-      }
-    }
-
-    .button {
-      flex-shrink: 1;
-      white-space: nowrap;
-      min-width: 80px;
-    }
-
-    .icon-button {
-      border: 1px solid var(--color-border-primary);
-      border-radius: 4px;
-      box-sizing: content-box;
-      padding: 5px;
-
-      .icon {
-        width: 24px;
-        height: 24px;
-      }
-
-      &.copied {
-        border-color: var(--color-text-success);
       }
     }
   }
