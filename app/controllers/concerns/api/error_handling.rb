@@ -43,7 +43,7 @@ module Api::ErrorHandling
     end
 
     rescue_from Seahorse::Client::NetworkingError do |e|
-      Rails.logger.warn "Storage server error: #{e}"
+      log_sanitized_error(e, level: :warn)
       render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
     end
 
@@ -59,59 +59,37 @@ module Api::ErrorHandling
       render json: { error: e.to_s }, status: 400
     end
 
-    rescue_from StandardError do |e|
-      handle_api_error(e)
+    rescue_from JSON::ParserError, Psych::SyntaxError do |e|
+      log_sanitized_error(e)
+      render json: { error: 'Invalid JSON data' }, status: 422
+    end
+
+    rescue_from Encoding::UndefinedConversionError, Encoding::InvalidByteSequenceError do |e|
+      log_sanitized_error(e)
+      render json: { error: 'Invalid character encoding' }, status: 422
+    end
+
+    rescue_from RangeError do |e|
+      log_sanitized_error(e)
+      render json: { error: 'Value out of range' }, status: 422
     end
   end
 
   private
 
-  def handle_api_error(exception)
+  def log_sanitized_error(exception, level: :error)
     error_id = request_id || SecureRandom.uuid
+    sanitized_class = exception.class.to_s
     sanitized_message = sanitize_error_message(exception.message)
-    sanitized_backtrace = sanitize_backtrace(exception.backtrace)
 
-    Rails.logger.error do
-      "[#{error_id}] API Error: #{exception.class}: #{sanitized_message}"
+    Rails.logger.send(level) do
+      "[#{error_id}] #{sanitized_class}: #{sanitized_message}"
     end
 
     Rails.logger.debug do
-      "[#{error_id}] Backtrace: #{sanitized_backtrace.join("\n")}" if sanitized_backtrace.present?
+      sanitized_backtrace = sanitize_backtrace(exception.backtrace)
+      "[#{error_id}] Backtrace: #{sanitized_backtrace.first(10).join("\n")}" if sanitized_backtrace.present?
     end
-
-    if respond_to?(:doorkeeper_token, true) && doorkeeper_token
-      Rails.logger.debug do
-        "[#{error_id}] Token: #{doorkeeper_token.id}, Application: #{doorkeeper_token.application_id}"
-      end
-    end
-
-    if respond_to?(:current_user, true) && current_user
-      Rails.logger.debug do
-        "[#{error_id}] User: #{current_user.id}, Account: #{current_user.account_id}"
-      end
-    end
-
-    error_message = case exception
-                    when JSON::ParserError, Psych::SyntaxError
-                      'Invalid JSON data'
-                    when Encoding::UndefinedConversionError, Encoding::InvalidByteSequenceError
-                      'Invalid character encoding'
-                    when ArgumentError
-                      if exception.message.include?('invalid byte sequence') || exception.message.include?('invalid UTF-8')
-                        'Invalid character encoding'
-                      else
-                        'Invalid parameter'
-                      end
-                    when RangeError
-                      'Value out of range'
-                    when NoMethodError, NameError
-                      Rails.logger.error "[#{error_id}] Unhandled code error: #{exception.class}: #{sanitized_message}"
-                      'An unexpected error occurred'
-                    else
-                      'An unexpected error occurred'
-                    end
-
-    render json: { error: error_message }, status: 422
   end
 
   def sanitize_error_message(message)

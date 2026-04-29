@@ -471,51 +471,102 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
-      context 'when media metadata raises an error during serialization' do
+      context 'with media attachments' do
         let!(:media_attachment) { Fabricate(:media_attachment, account: user.account, status: nil) }
         let(:params) { { status: 'Hello world', media_ids: [media_attachment.id] } }
 
-        context 'with a StandardError that includes sensitive paths' do
-          before do
-            allow_any_instance_of(REST::MediaAttachmentSerializer).to receive(:meta).and_raise(StandardError, 'Error occurred at /Users/john/documents/file.txt')
+        it 'successfully creates a status with media', :aggregate_failures do
+          expect { subject }.to change(user.account.statuses, :count).by(1)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type).to start_with('application/json')
+          expect(response.parsed_body[:media_attachments]).to be_present
+          expect(response.parsed_body[:media_attachments].first[:id]).to eq media_attachment.id.to_s
+        end
+
+        context 'when media meta has extra keys' do
+          let(:meta_with_extra) do
+            {
+              'original' => { 'width' => 600, 'height' => 400 },
+              'small' => { 'width' => 588, 'height' => 392 },
+              'extra_key' => 'should be filtered',
+            }
           end
 
-          it 'returns 422 with a friendly error message, not 500', :aggregate_failures do
+          before do
+            allow_any_instance_of(MediaAttachment).to receive_message_chain(:file, :meta).and_return(meta_with_extra)
+          end
+
+          it 'filters out extra keys from meta', :aggregate_failures do
             subject
 
-            expect(response).to have_http_status(422)
+            expect(response).to have_http_status(200)
+            meta = response.parsed_body[:media_attachments].first[:meta]
+            expect(meta.keys).to match_array(%w[original small])
+            expect(meta).not_to include('extra_key')
+          end
+        end
+
+        context 'when media meta is invalid (not a Hash)' do
+          before do
+            allow_any_instance_of(MediaAttachment).to receive_message_chain(:file, :meta).and_return('invalid string')
+          end
+
+          it 'successfully creates status with nil meta', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body[:media_attachments].first[:meta]).to be_nil
+          end
+        end
+
+        context 'when media meta raises an exception' do
+          before do
+            allow_any_instance_of(MediaAttachment).to receive_message_chain(:file, :meta).and_raise(StandardError, 'Error at /Users/secret/path')
+          end
+
+          it 'successfully creates status with nil meta (does not raise 500)', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body[:media_attachments].first[:meta]).to be_nil
+          end
+        end
+      end
+
+      context 'normal post creation regression tests' do
+        context 'with a basic text status' do
+          let(:params) { { status: 'Hello world' } }
+
+          it 'successfully creates a status', :aggregate_failures do
+            expect { subject }.to change(user.account.statuses, :count).by(1)
+
+            expect(response).to have_http_status(200)
             expect(response.content_type).to start_with('application/json')
-            expect(response.parsed_body[:error]).to eq 'An unexpected error occurred'
-            expect(response.parsed_body[:error]).not_to include('/Users/')
-            expect(response.parsed_body[:error]).not_to include('/home/')
+            expect(response.parsed_body[:content]).to include('Hello world')
           end
         end
 
-        context 'with JSON::ParserError' do
-          before do
-            allow_any_instance_of(REST::MediaAttachmentSerializer).to receive(:meta).and_raise(JSON::ParserError, 'Invalid JSON in /Users/test/data')
-          end
+        context 'with a sensitive status' do
+          let(:params) { { status: 'Sensitive content', sensitive: true, spoiler_text: 'CW' } }
 
-          it 'returns 422 with appropriate error message', :aggregate_failures do
+          it 'successfully creates a sensitive status', :aggregate_failures do
             subject
 
-            expect(response).to have_http_status(422)
-            expect(response.parsed_body[:error]).to eq 'Invalid JSON data'
-            expect(response.parsed_body[:error]).not_to include('/Users/')
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body[:sensitive]).to be true
+            expect(response.parsed_body[:spoiler_text]).to eq 'CW'
           end
         end
 
-        context 'with Encoding error' do
-          before do
-            allow_any_instance_of(REST::MediaAttachmentSerializer).to receive(:meta).and_raise(Encoding::UndefinedConversionError, 'invalid byte sequence in /home/user/file')
-          end
+        context 'with unlisted visibility' do
+          let(:params) { { status: 'Unlisted post', visibility: 'unlisted' } }
 
-          it 'returns 422 with appropriate error message', :aggregate_failures do
+          it 'successfully creates an unlisted status', :aggregate_failures do
             subject
 
-            expect(response).to have_http_status(422)
-            expect(response.parsed_body[:error]).to eq 'Invalid character encoding'
-            expect(response.parsed_body[:error]).not_to include('/home/')
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body[:visibility]).to eq 'unlisted'
           end
         end
       end

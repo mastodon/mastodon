@@ -46,6 +46,13 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   end
 
   def meta
-    object.file.meta
+    meta = object.file.meta
+
+    return nil if meta.blank?
+    return nil unless meta.is_a?(Hash)
+
+    meta.with_indifferent_access.slice(*MediaAttachment::META_KEYS).presence
+  rescue StandardError
+    nil
   end
 end
