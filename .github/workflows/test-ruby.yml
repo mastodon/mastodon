@@ -1,5 +1,33 @@
 name: Ruby Testing
 
+# ==============================================================================
+# CI 路径过滤策略说明
+# ==============================================================================
+#
+# 本 workflow 只在后端/配置变更时运行，纯前端改动会跳过。
+#
+# 触发条件：
+# - merge_group: 始终运行（合并队列全量测试）
+# - push: 始终运行（main/stable-* 分支全量测试）
+# - pull_request: 仅当变更不匹配 paths-ignore 时运行
+#
+# paths-ignore 规则（纯前端改动跳过）：
+# - app/javascript/**/*  - 前端代码目录
+# - **/*.{js,jsx,ts,tsx} - JavaScript/TypeScript 文件
+# - **/*.{css,scss,sass} - 样式文件
+# - **/*.snap            - Jest 快照文件
+# - 前端配置文件          - package.json, yarn.lock, .nvmrc, tsconfig.json 等
+# - 文档文件              - *.md, docs/**/*
+#
+# 注意：以下变更始终触发全量测试（不会被跳过）：
+# - 任何 Ruby 文件变更（**/*.rb, **/*.rake）
+# - 任何视图模板变更（**/*.erb, **/*.haml, **/*.slim）
+# - 配置文件变更（config/**/*, db/**/*, lib/**/*）
+# - 后端代码变更（app/controllers, app/models, app/lib 等）
+# - 本 workflow 文件自身变更
+# - 同时包含前后端变更的 PR
+# ==============================================================================
+
 on:
   merge_group:
   push:
@@ -7,6 +35,63 @@ on:
       - 'main'
       - 'stable-*'
   pull_request:
+    # --------------------------------------------------------------------------
+    # pull_request 事件的 paths-ignore 配置
+    # 仅当所有变更文件都匹配以下模式时，跳过此 workflow
+    # --------------------------------------------------------------------------
+    paths-ignore:
+      # 前端代码目录
+      - 'app/javascript/**/*'
+
+      # JavaScript/TypeScript 文件
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+
+      # 样式文件
+      - '**/*.css'
+      - '**/*.scss'
+      - '**/*.sass'
+
+      # Jest 快照文件
+      - '**/*.snap'
+
+      # 前端配置文件
+      - 'package.json'
+      - 'yarn.lock'
+      - '.nvmrc'
+      - 'tsconfig.json'
+      - 'eslint.config.mjs'
+      - 'vite.config.ts'
+      - 'jsconfig.json'
+      - '.browserslistrc'
+
+      # Storybook 配置
+      - '.storybook/**/*'
+
+      # 文档文件（不影响代码逻辑）
+      - '*.md'
+      - 'docs/**/*'
+      - 'AUTHORS'
+      - 'CHANGELOG.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'LICENSE'
+      - 'README.md'
+      - 'SECURITY.md'
+
+    # --------------------------------------------------------------------------
+    # 注意：不要使用 paths 配置
+    # 使用 paths-ignore 的优势：
+    # 1. 新添加的文件类型默认会触发测试（不会被意外跳过）
+    # 2. 只有明确被归类为"纯前端"的文件才会被跳过
+    # 3. 任何不在 ignore 列表中的变更都会触发全量测试
+    #
+    # 这是"误跳过"的关键防护：
+    # - 如果新增了某种后端文件类型，它不会被 paths-ignore 匹配
+    # - 因此会触发全量测试，不会被意外跳过
+    # --------------------------------------------------------------------------
 
 env:
   BUNDLE_CLEAN: true
@@ -15,6 +100,18 @@ env:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+
+# ==============================================================================
+# Job 说明
+# ==============================================================================
+#
+# build:           编译 assets（production 和 test 两种模式）
+# test:            Rails 单元测试（多 Ruby 版本矩阵）
+# test-e2e:        端到端测试（Playwright）
+# test-search:     Elasticsearch/OpenSearch 集成测试
+#
+# 注意：如果 workflow 被 paths-ignore 跳过，所有 jobs 都不会运行
+# ==============================================================================
 
 jobs:
   build:
@@ -366,6 +463,10 @@ jobs:
         with:
           path: './'
           name: ${{ github.sha }}
+
+      - name: Expand archived asset artifacts
+        run: |
+          tar xvzf artifacts.tar.gz
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
