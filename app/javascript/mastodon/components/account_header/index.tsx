@@ -96,7 +96,7 @@ export const AccountHeader: React.FC<{
   const isMe = me && account.id === me;
 
   return (
-    <div className='account-timeline__header'>
+    <div>
       {!hidden && account.memorial && <MemorialNote />}
       {!hidden && account.moved && (
         <MovedNote accountId={account.id} targetAccountId={account.moved} />
