@@ -102,7 +102,7 @@ const RevokeControls: React.FC<{
   );
 };
 
-const PendingNote: React.FC = () => {
+export const PendingNote: React.FC = () => {
   return (
     <Callout
       variant='subtle'
