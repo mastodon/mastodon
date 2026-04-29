@@ -8,16 +8,17 @@ import { Link } from 'react-router-dom';
 
 import { AxiosError } from 'axios';
 
-import { apiSubscribeByEmail } from 'mastodon/api/accounts';
+import { apiSubscribeByEmail } from '@/mastodon/api/accounts';
 import type {
   ValidationErrorResponse,
   ValidationError,
-} from 'mastodon/api_types/errors';
-import { Button } from 'mastodon/components/button';
-import { DisplayName } from 'mastodon/components/display_name';
-import type { FieldStatus } from 'mastodon/components/form_fields';
-import { TextInputField } from 'mastodon/components/form_fields/text_input_field';
-import { useAppSelector } from 'mastodon/store';
+} from '@/mastodon/api_types/errors';
+import { useAppSelector } from '@/mastodon/store';
+
+import { Button } from '../button';
+import { DisplayName } from '../display_name';
+import type { FieldStatus } from '../form_fields';
+import { TextInputField } from '../form_fields/text_input_field';
 
 import classes from './styles.module.scss';
 

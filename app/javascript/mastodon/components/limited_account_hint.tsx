@@ -2,10 +2,11 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { revealAccount } from 'mastodon/actions/accounts_typed';
-import { Button } from 'mastodon/components/button';
-import { domain } from 'mastodon/initial_state';
-import { useAppDispatch } from 'mastodon/store';
+import { revealAccount } from '@/mastodon/actions/accounts_typed';
+import { domain } from '@/mastodon/initial_state';
+import { useAppDispatch } from '@/mastodon/store';
+
+import { Button } from './button';
 
 export const LimitedAccountHint: React.FC<{ accountId: string }> = ({
   accountId,

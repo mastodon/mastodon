@@ -4,6 +4,10 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { fetchRelationships } from '@/mastodon/actions/accounts';
+import { useAccount } from '@/mastodon/hooks/useAccount';
+import type { AccountRole } from '@/mastodon/models/account';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+
 import {
   AdminBadge,
   AutomatedBadge,
@@ -11,10 +15,7 @@ import {
   BlockedBadge,
   GroupBadge,
   MutedBadge,
-} from '@/mastodon/components/badge';
-import { useAccount } from '@/mastodon/hooks/useAccount';
-import type { AccountRole } from '@/mastodon/models/account';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+} from '../badge';
 
 import classes from './styles.module.scss';
 
