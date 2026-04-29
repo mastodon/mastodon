@@ -36,10 +36,6 @@ let customCategories = [
 const log = emojiLogger('picker');
 
 export const Picker: FC<PickerProps> = ({
-  set = 'twitter',
-  sheetSize = 32,
-  sheetColumns = 62,
-  sheetRows = 62,
   backgroundImageFn = backgroundImageFnDefault,
   ...props
 }) => {
@@ -60,13 +56,13 @@ export const Picker: FC<PickerProps> = ({
 
   return (
     <PickerRaw
+      set='twitter'
+      sheetSize={32}
+      sheetRows={62}
+      sheetColumns={62}
       data={EmojiData}
       custom={customEmojis ?? []}
       include={customCategories}
-      set={set}
-      sheetSize={sheetSize}
-      sheetColumns={sheetColumns}
-      sheetRows={sheetRows}
       native={mode === EMOJI_MODE_NATIVE}
       backgroundImageFn={backgroundImageFn}
       {...props}
@@ -115,21 +111,17 @@ export async function loadCustomEmojiData() {
 }
 
 export const Emoji: FC<EmojiProps> = ({
-  set = 'twitter',
-  sheetSize = 32,
-  sheetColumns = 62,
-  sheetRows = 62,
   backgroundImageFn = backgroundImageFnDefault,
   ...props
 }) => {
   const { mode } = useEmojiAppState();
   return (
     <EmojiRaw
+      set='twitter'
+      sheetSize={32}
+      sheetRows={62}
+      sheetColumns={62}
       data={EmojiData}
-      set={set}
-      sheetSize={sheetSize}
-      sheetColumns={sheetColumns}
-      sheetRows={sheetRows}
       backgroundImageFn={backgroundImageFn}
       native={mode === EMOJI_MODE_NATIVE}
       {...props}
