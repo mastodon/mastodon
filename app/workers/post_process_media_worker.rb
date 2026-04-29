@@ -209,61 +209,53 @@ class PostProcessMediaWorker
 
       return true if media_attachment.processing_complete?
 
-      # 处理中状态检查
+      # 【重要】不再检查 processing_in_progress?
       #
-      # 【设计考虑】
-      # - 如果状态是 in_progress 且未超时，说明其他线程正在处理
-      # - 如果状态是 in_progress 但已超时，视为"卡住"，可以重新处理
+      # 【为什么移除这个检查？】
       #
-      # 【场景分析】
+      # 原问题场景：
+      # 1. 线程 A：获取锁 → 标记 in_progress → reprocess! 抛错 → 锁释放
+      # 2. 线程 B（Sidekiq 重试）：获取锁成功 → reload → in_progress? → true → 跳过！
       #
-      # 场景 1：正常并发
-      # 线程 A：获取锁 → 标记 in_progress → 开始处理
-      # 线程 B：获取锁失败 → 跳过
-      # 结果：正确，只有 A 处理
+      # 结果：任务卡在 in_progress 状态 15 分钟，无法立即重试
       #
-      # 场景 2：处理中崩溃（未超时）
-      # 线程 A：获取锁 → 标记 in_progress → 崩溃（锁未释放）
-      # 线程 B：获取锁失败 → 跳过（因为 raise_on_failure: false）
-      # 结果：15 分钟内无法重试，需要等待锁过期
+      # 【为什么可以安全移除？】
       #
-      # 场景 3：处理中崩溃（已超时，锁已过期）
-      # 线程 A：获取锁 → 标记 in_progress → 崩溃 → 15 分钟后锁过期
-      # 线程 B：检查 complete? → false
-      # 线程 B：获取锁 → 成功（锁已过期）
-      # 线程 B：reload → 检查 in_progress? → true
-      # 线程 B：检查 stuck? → true（超过 15 分钟）
-      # 线程 B：重新标记 in_progress → 处理 → complete
-      # 结果：正确，可以重新处理
+      # 1. 分布式锁已经提供了并发保护：
+      #    - 如果其他线程真的在处理，那个线程持有锁
+      #    - 获取锁失败的线程会因为 raise_on_failure: false 而直接跳过
       #
-      # 场景 4：处理中崩溃（锁释放了，但状态还是 in_progress）
-      # 线程 A：获取锁 → 标记 in_progress → 崩溃 → 锁自动释放
-      # 线程 B：检查 complete? → false
-      # 线程 B：获取锁 → 成功
-      # 线程 B：reload → 检查 in_progress? → true
-      # 线程 B：检查 stuck? → false（未超过 15 分钟）
-      # 线程 B：跳过！
-      # 结果：问题！15 分钟内无法重试
+      # 2. processing_complete? 检查提供了幂等保护：
+      #    - 如果处理完成，状态是 complete
+      #    - 任何后续调用都会被跳过
       #
-      # 【场景 4 的问题】
-      # 这是当前实现的一个边界情况：
-      # - 锁释放了（崩溃或正常结束）
-      # - 但状态仍然是 in_progress（没有更新到 complete 或 failed）
-      # - 其他线程在 15 分钟内无法重试
+      # 【边界情况：锁超时后的重复处理】
+      #
+      # 极端场景：
+      # 1. 线程 A：获取锁 → 标记 in_progress → reprocess! 开始处理
+      # 2. 15 分钟后锁超时（但 reprocess! 还在运行）
+      # 3. 线程 B：获取锁成功 → 检查 complete? → false → 开始处理
+      # 4. 线程 A：reprocess! 完成 → 标记 complete
+      # 5. 线程 B：reprocess! 完成 → 标记 complete
+      #
+      # 结果：reprocess! 被调用两次，但状态都是 complete
       #
       # 【为什么这是可接受的？】
-      # 1. 这是边界情况，不是常态
-      # 2. 15 分钟后仍然可以重试（stuck? 检测）
-      # 3. 与 Sidekiq 的重试策略一致（retry: 1）
-      # 4. 可以通过手动触发重试来解决
+      # 1. 15 分钟对于大多数视频处理已经足够
+      # 2. 这是极端边界情况，不是常态
+      # 3. reprocess! 是幂等的（重复执行结果相同）
+      # 4. processing_complete? 检查确保后续调用会被跳过
       #
-      # 【如果需要更激进的恢复策略】
-      # 可以考虑：
-      # 1. 缩短 MAX_PROCESSING_TIME（但可能影响正常处理）
-      # 2. 添加"手动重试"机制（如 API 端点）
-      # 3. 在崩溃时确保更新状态为 failed（但崩溃可能是不可恢复的）
+      # 【与原设计的对比】
       #
-      return true if media_attachment.processing_in_progress? && !processing_stuck?(media_attachment)
+      # | 场景 | 原设计（有 in_progress? 检查） | 新设计（无 in_progress? 检查） |
+      # |------|------------------------------|------------------------------|
+      # | 正常并发 | 正确（锁保护） | 正确（锁保护） |
+      # | 失败后立即重试 | ❌ 跳过（卡在 in_progress） | ✅ 继续处理 |
+      # | 锁超时后 | ✅ stuck? 检测后重试 | ⚠️ 可能重复处理（但幂等） |
+      # | 15 分钟后 | ✅ 可以重试 | ✅ 可以重试 |
+      #
+      # 结论：新设计更符合"失败后立即重试"的需求，边界情况可接受
 
       # 标记为处理中
       #

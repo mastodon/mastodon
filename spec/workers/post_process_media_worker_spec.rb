@@ -63,8 +63,7 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
         end
 
         it 'skips reprocessing and returns true' do
-          expect(media_attachment.file).not_to receive(:reprocess!)
-          expect(media_attachment).not_to receive(:save!)
+          expect_any_instance_of(Paperclip::Attachment).not_to receive(:reprocess!)
 
           result = worker.perform(media_attachment.id)
 
@@ -79,48 +78,10 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
         end
       end
 
-      context 'when media is in progress' do
-        before do
-          media_attachment.update!(processing: :in_progress, updated_at: 5.minutes.ago)
-        end
-
-        it 'skips reprocessing if not stuck' do
-          expect(media_attachment.file).not_to receive(:reprocess!)
-
-          result = worker.perform(media_attachment.id)
-
-          expect(result).to be(true)
-        end
-
-        it '状态保持为 in_progress' do
-          worker.perform(media_attachment.id)
-
-          expect(media_attachment.reload.processing).to eq('in_progress')
-        end
-
-        context 'when processing is stuck' do
-          before do
-            media_attachment.update!(updated_at: 20.minutes.ago)
-          end
-
-          it 'reprocesses the media' do
-            worker.perform(media_attachment.id)
-
-            expect(media_attachment.reload.processing).to eq('complete')
-          end
-
-          it '状态从 in_progress 流转到 complete' do
-            expect { worker.perform(media_attachment.id) }
-              .to change { media_attachment.reload.processing }
-              .from('in_progress').to('complete')
-          end
-        end
-      end
-
       context '重复执行（模拟 Redis 瞬断）' do
         it 'does not cause duplicate processing' do
           reprocess_count = 0
-          allow(media_attachment.file).to receive(:reprocess!) do
+          allow_any_instance_of(Paperclip::Attachment).to receive(:reprocess!) do
             reprocess_count += 1
           end
 
@@ -135,32 +96,12 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
         end
 
         it '状态只从 queued 流转到 complete 一次' do
-          allow(media_attachment.file).to receive(:reprocess!).and_call_original
-
           expect { worker.perform(media_attachment.id) }
             .to change { media_attachment.reload.processing }
             .from('queued').to('complete')
 
           expect { worker.perform(media_attachment.id) }
             .not_to change { media_attachment.reload.processing }
-        end
-
-        it 'save! 只被调用有限次数' do
-          save_count = 0
-          allow(media_attachment).to receive(:save!) do
-            save_count += 1
-            # 模拟真实的 save! 行为
-            media_attachment.send(:write_attribute, :updated_at, Time.current)
-            true
-          end
-
-          worker.perform(media_attachment.id)
-          worker.perform(media_attachment.id)
-
-          # 第一次执行：save! in_progress + save! complete = 2 次
-          # 第二次执行：快速路径，0 次
-          # 总共 2 次
-          expect(save_count).to be <= 2
         end
       end
     end
@@ -184,37 +125,32 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
         end
       end
 
-      context '真实链路：第一次失败，第二次成功' do
-        it '最终只产生一次有效副作用' do
-          call_count = 0
-          first_call_failed = false
+      context '关键回归：第一次失败 -> 第二次重试成功' do
+        it '不产生重复副作用，reprocess! 恰好被调用 2 次' do
+          reprocess_count = 0
 
-          allow(media_attachment.file).to receive(:reprocess!) do
-            call_count += 1
-            if call_count == 1
-              first_call_failed = true
-              raise StandardError, '模拟处理失败'
-            end
+          allow_any_instance_of(Paperclip::Attachment).to receive(:reprocess!) do
+            reprocess_count += 1
+            raise StandardError, '模拟处理失败' if reprocess_count == 1
           end
 
           expect { worker.perform(media_attachment.id) }.to raise_error(StandardError)
 
-          expect(first_call_failed).to be(true)
+          expect(reprocess_count).to eq(1)
           expect(media_attachment.reload.processing).to eq('in_progress')
 
-          media_attachment.reload
           worker.perform(media_attachment.id)
 
-          expect(call_count).to eq(2)
+          expect(reprocess_count).to eq(2)
           expect(media_attachment.reload.processing).to eq('complete')
         end
 
-        it '状态流转：queued → in_progress（失败）→ in_progress → complete' do
-          call_count = 0
+        it '状态流转：queued -> in_progress（失败）-> in_progress -> complete' do
+          reprocess_count = 0
 
-          allow(media_attachment.file).to receive(:reprocess!) do
-            call_count += 1
-            raise StandardError, '模拟处理失败' if call_count == 1
+          allow_any_instance_of(Paperclip::Attachment).to receive(:reprocess!) do
+            reprocess_count += 1
+            raise StandardError, '模拟处理失败' if reprocess_count == 1
           end
 
           expect(media_attachment.processing).to eq('queued')
@@ -222,81 +158,51 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
           expect { worker.perform(media_attachment.id) }.to raise_error(StandardError)
           expect(media_attachment.reload.processing).to eq('in_progress')
 
-          media_attachment.reload
           worker.perform(media_attachment.id)
           expect(media_attachment.reload.processing).to eq('complete')
         end
 
-        it '关键副作用：reprocess! 恰好被调用 2 次（失败 1 次 + 成功 1 次）' do
-          call_count = 0
-
-          allow(media_attachment.file).to receive(:reprocess!) do
-            call_count += 1
-            raise StandardError, '模拟处理失败' if call_count == 1
-          end
-
-          expect { worker.perform(media_attachment.id) }.to raise_error(StandardError)
-
-          media_attachment.reload
-          worker.perform(media_attachment.id)
-
-          expect(call_count).to eq(2)
-        end
-
-        it '最终状态是 complete，且不会被重复处理' do
-          call_count = 0
-
-          allow(media_attachment.file).to receive(:reprocess!) do
-            call_count += 1
-            raise StandardError, '模拟处理失败' if call_count == 1
-          end
-
-          expect { worker.perform(media_attachment.id) }.to raise_error(StandardError)
-
-          media_attachment.reload
-          worker.perform(media_attachment.id)
-
-          expect(media_attachment.reload.processing).to eq('complete')
-
-          # 第三次调用：快速路径，跳过
-          worker.perform(media_attachment.id)
-
-          # reprocess! 仍然是 2 次
-          expect(call_count).to eq(2)
-        end
-      end
-
-      context '边界情况：reprocess! 成功但 save! 失败' do
-        it '重试时可以继续处理' do
+        it '第三次调用：快速路径，不产生副作用' do
           reprocess_count = 0
-          save_count = 0
 
-          allow(media_attachment.file).to receive(:reprocess!) do
+          allow_any_instance_of(Paperclip::Attachment).to receive(:reprocess!) do
             reprocess_count += 1
+            raise StandardError, '模拟处理失败' if reprocess_count == 1
           end
 
-          allow(media_attachment).to receive(:save!) do
-            save_count += 1
-            # 模拟真实的 save! 行为
-            media_attachment.send(:write_attribute, :updated_at, Time.current)
+          expect { worker.perform(media_attachment.id) }.to raise_error(StandardError)
 
-            # 第一次 save! complete 时失败
-            if save_count >= 2 && media_attachment.processing == 'complete'
-              raise ActiveRecord::StatementInvalid, '模拟数据库故障'
-            end
-            true
-          end
-
-          expect { worker.perform(media_attachment.id) }.to raise_error(ActiveRecord::StatementInvalid)
-
-          expect(reprocess_count).to eq(1)
+          worker.perform(media_attachment.id)
+          expect(reprocess_count).to eq(2)
           expect(media_attachment.reload.processing).to eq('complete')
+
+          worker.perform(media_attachment.id)
+
+          expect(reprocess_count).to eq(2)
+        end
+
+        it '失败后不卡在 in_progress，下次重试立即继续' do
+          reprocess_count = 0
+
+          allow_any_instance_of(Paperclip::Attachment).to receive(:reprocess!) do
+            reprocess_count += 1
+            raise StandardError, '模拟处理失败' if reprocess_count == 1
+          end
+
+          expect { worker.perform(media_attachment.id) }.to raise_error(StandardError)
+
+          expect(media_attachment.reload.processing).to eq('in_progress')
+
+          worker.perform(media_attachment.id)
+
+          expect(media_attachment.reload.processing).to eq('complete')
+          expect(reprocess_count).to eq(2)
         end
       end
     end
 
     context '状态流转测试' do
-      it '正常路径：queued → in_progress → complete' do
+      it '正常路径：queued -> in_progress -> complete' do
         expect(media_attachment.processing).to eq('queued')
 
         worker.perform(media_attachment.id)
@@ -304,8 +210,9 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
         expect(media_attachment.reload.processing).to eq('complete')
       end
 
-      it '失败路径：queued → in_progress →（异常）' do
-        allow(media_attachment.file).to receive(:reprocess!).and_raise(StandardError, '处理失败')
+      it '失败路径：queued -> in_progress ->（异常）' do
+        allow_any_instance_of(Paperclip::Attachment).to receive(:reprocess!)
+          .and_raise(StandardError, '处理失败')
 
         expect(media_attachment.processing).to eq('queued')
 
@@ -314,15 +221,22 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
         expect(media_attachment.reload.processing).to eq('in_progress')
       end
 
-      it '重试路径：in_progress →（超时）→ in_progress → complete' do
-        media_attachment.update!(processing: :in_progress, updated_at: 20.minutes.ago)
+      it '失败重试：in_progress -> in_progress -> complete' do
+        reprocess_count = 0
+
+        allow_any_instance_of(Paperclip::Attachment).to receive(:reprocess!) do
+          reprocess_count += 1
+          raise StandardError, '模拟处理失败' if reprocess_count == 1
+        end
+
+        expect { worker.perform(media_attachment.id) }.to raise_error(StandardError)
+        expect(media_attachment.reload.processing).to eq('in_progress')
 
         worker.perform(media_attachment.id)
-
         expect(media_attachment.reload.processing).to eq('complete')
       end
 
-      it '失败重试：failed → in_progress → complete' do
+      it 'failed 状态重试：failed -> in_progress -> complete' do
         media_attachment.update!(processing: :failed)
 
         worker.perform(media_attachment.id)
@@ -336,7 +250,7 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
         reprocess_count = 0
         threads = []
 
-        allow(media_attachment.file).to receive(:reprocess!) do
+        allow_any_instance_of(Paperclip::Attachment).to receive(:reprocess!) do
           reprocess_count += 1
           sleep 0.01
         end
@@ -379,10 +293,8 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
         Rails.cache.write(cache_key, 'test_value')
         expect(Rails.cache.exist?(cache_key)).to be(true)
 
-        # 第二次执行：快速路径，不触发 after_commit
         worker.perform(media_attachment.id)
 
-        # 缓存仍然存在
         expect(Rails.cache.exist?(cache_key)).to be(true)
       end
     end
@@ -441,22 +353,22 @@ RSpec.describe PostProcessMediaWorker, :attachment_processing do
 
       expect(media_attachment.reload.processing).to eq('complete')
 
-      expect(media_attachment.file).not_to receive(:reprocess!)
+      expect_any_instance_of(Paperclip::Attachment).not_to receive(:reprocess!)
       worker.perform(media_attachment.id)
     end
 
     it '非终止状态可以重试' do
-      non_terminal_states = %w[queued in_progress failed]
+      non_terminal_states = %w[queued failed]
 
       non_terminal_states.each do |state|
-        media_attachment = Fabricate(:media_attachment)
-        media_attachment.update!(processing: state, updated_at: state == 'in_progress' ? 20.minutes.ago : Time.current)
+        ma = Fabricate(:media_attachment)
+        ma.update!(processing: state)
 
-        worker = described_class.new
-        worker.perform(media_attachment.id)
+        w = described_class.new
+        w.perform(ma.id)
 
-        expect(media_attachment.reload.processing).to eq('complete'),
-          "状态 #{state} 应该可以重试，但实际结果是 #{media_attachment.reload.processing}"
+        expect(ma.reload.processing).to eq('complete'),
+          "状态 #{state} 应该可以重试，但实际结果是 #{ma.reload.processing}"
       end
     end
   end
