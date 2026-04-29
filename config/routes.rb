@@ -141,7 +141,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :collections, only: [:show]
+  resources :collections, only: [:show], constraints: { id: /\d+/ }
 
   resource :inbox, only: [:create], module: :activitypub
   resources :contexts, only: [:show], module: :activitypub, constraints: { id: /[0-9]+-[0-9]+/ } do
