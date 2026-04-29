@@ -27,7 +27,8 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
   const handleToggleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       const { name, checked } = event.target;
-      void dispatch(patchProfile({ [name]: checked }));
+      const targetChecked = name === 'hide_collections' ? !checked : checked;
+      void dispatch(patchProfile({ [name]: targetChecked }));
     },
     [dispatch],
   );
@@ -103,20 +104,20 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
         />
 
         <ToggleField
-          checked={profile.hideCollections}
+          checked={!profile.hideCollections}
           onChange={handleToggleChange}
           disabled={isPending}
           name='hide_collections'
           label={
             <FormattedMessage
-              id='account_edit.profile_tab.show_followers.title'
-              defaultMessage='Hide ‘Followers’ and ‘Following’'
+              id='account_edit.profile_tab.show_relations.title'
+              defaultMessage='Show ‘Followers’ and ‘Following’'
             />
           }
           hint={
             <FormattedMessage
-              id='account_edit.profile_tab.show_followers.description'
-              defaultMessage='Controls whether the ‘Followers’ and ‘Following’ lists are visible to other users. People will still be able to see if you are following them.'
+              id='account_edit.profile_tab.show_relations.description'
+              defaultMessage='Shows accounts you follow and follows you to other users in your profile. People will still be able to see if you are following them.'
             />
           }
         />
