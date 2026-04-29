@@ -109,6 +109,7 @@ hu:
         status_page_url: Annak az oldalnak az URL-je, melyen ennek a kiszolgálónak az állapotát látják az emberek egy leállás során
         theme: A téma, melyet a kijelentkezett látogatók és az új felhasználók látnak.
         thumbnail: Egy durván 2:1 arányú kép, amely a kiszolgálóinformációk mellett jelenik meg.
+        thumbnail_description: A kép leírása a látássérültek számára, hogy jobban megértsék a tartalmát.
         trendable_by_default: Kézi felülvizsgálat kihagyása a felkapott tartalmaknál. Az egyes elemek utólag távolíthatók el a trendek közül.
         trends: A trendek azt mondják meg, hogy mely bejegyzések, hashtagek és hírbejegyzések felkapottak a kiszolgálódon.
         wrapstodon: Kínáld fel a lehetőséget a helyi felhasználóknak, hogy egy vidám összefoglalóban összesíthessék a Mastodon használatukat az év folyamán. Ez a lehetőség minden évben december 10. és 31. között érhető el, azoknak, aki létrehoztak legalább egy nyilvános vagy csendes nyilvános bejegyzést és használtak legalább egy hashtaget az év folyamán.
@@ -160,6 +161,7 @@ hu:
           other: Ahhoz, hogy a(z) %{domain} weboldalt használd, meg kell győződnünk arról, hogy legalább %{count} éves vagy. Ezt nem tároljuk.
         role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik.
       user_role:
+        collection_limit: Korlátozza az ilyen szerepkörű felhasználók által létrehozható gyűjtemények számát. Vedd figyelembe, hogy a szám csökkentésével a korlát feletti felhasználók nem vesztik el a gyűjteményeiket. De továbbiakat már nem fognak tudni létrehozni.
         color: A szerephez használandó szín mindenhol a felhasználói felületen, hexa RGB formátumban
         highlighted: Ez nyilvánosan láthatóvá teszi a szerepet
         name: A szerep nyilvános neve, ha a szerepet úgy állították be, hogy jelvényként látható legyen
@@ -316,6 +318,7 @@ hu:
         status_page_url: Állapotoldal URL-je
         theme: Alapértelmezett téma
         thumbnail: Kiszolgáló bélyegképe
+        thumbnail_description: Bélyegkép helyettesítő szövege
         trendable_by_default: Trendek engedélyezése előzetes ellenőrzés nélkül
         trends: Trendek engedélyezése
         wrapstodon: Wrapstodon engedélyezése
@@ -386,6 +389,7 @@ hu:
         role: Szerep
         time_zone: Időzóna
       user_role:
+        collection_limit: Gyűjtemények legnagyobb száma felhasználónként
         color: Jelvény színe
         highlighted: Szerep megjelenítése jelvényként a felhasználói profilokon
         name: Név
