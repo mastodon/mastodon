@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import { EmptyState } from '@/mastodon/components/empty_state';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { TabLink, TabList } from '@/mastodon/components/tab_list';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import { Column } from 'mastodon/components/column';
@@ -128,9 +129,10 @@ export const Collections: React.FC<{
             </TabLink>
           </TabList>
         </header>
-        {collections.length > 0 ? (
-          <>
-            {status === 'idle' && (
+        {status === 'loading' && <LoadingIndicator />}
+        {status === 'idle' &&
+          (collections.length > 0 ? (
+            <>
               <div className={classes.listHeader}>
                 <h2 className={classes.subHeading}>
                   <FormattedMessage
@@ -143,46 +145,42 @@ export const Collections: React.FC<{
                 </h2>
                 {showCreateButton && <CreateButton />}
               </div>
-            )}
-            <ItemList
-              emptyMessage={errorMessage}
-              isLoading={status === 'loading'}
+              <ItemList emptyMessage={errorMessage}>
+                {!canCreateMoreCollections && (
+                  <MaxCollectionsCallout
+                    className={classes.maxCollectionsError}
+                  />
+                )}
+                {collections.map((item, index) => (
+                  <CollectionListItem
+                    withTimestamp
+                    withAuthorHandle={false}
+                    key={item.id}
+                    collection={item}
+                    positionInList={index + 1}
+                    listSize={collections.length}
+                  />
+                ))}
+              </ItemList>
+            </>
+          ) : (
+            <EmptyState
+              title={
+                <FormattedMessage
+                  id='empty_column.account_featured_self.showcase_accounts'
+                  defaultMessage='Showcase your favorite accounts'
+                />
+              }
+              message={
+                <FormattedMessage
+                  id='empty_column.account_featured_self.showcase_accounts_desc'
+                  defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
+                />
+              }
             >
-              {!canCreateMoreCollections && (
-                <MaxCollectionsCallout
-                  className={classes.maxCollectionsError}
-                />
-              )}
-              {collections.map((item, index) => (
-                <CollectionListItem
-                  withTimestamp
-                  withAuthorHandle={false}
-                  key={item.id}
-                  collection={item}
-                  positionInList={index + 1}
-                  listSize={collections.length}
-                />
-              ))}
-            </ItemList>
-          </>
-        ) : (
-          <EmptyState
-            title={
-              <FormattedMessage
-                id='empty_column.account_featured_self.showcase_accounts'
-                defaultMessage='Showcase your favorite accounts'
-              />
-            }
-            message={
-              <FormattedMessage
-                id='empty_column.account_featured_self.showcase_accounts_desc'
-                defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
-              />
-            }
-          >
-            <CreateButton />
-          </EmptyState>
-        )}
+              <CreateButton />
+            </EmptyState>
+          ))}
       </Scrollable>
 
       <Helmet>
