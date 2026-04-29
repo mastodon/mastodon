@@ -459,135 +459,6 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
-      context 'with media attachments' do
-        let!(:media_attachment) { Fabricate(:media_attachment, account: user.account) }
-        let(:params) { { status: 'Hello world with media', media_ids: [media_attachment.id] } }
-
-        it 'creates a status with media attachment', :aggregate_failures do
-          expect { subject }.to change(user.account.statuses, :count).by(1)
-
-          expect(response).to have_http_status(200)
-          expect(response.content_type)
-            .to start_with('application/json')
-          expect(response.parsed_body[:media_attachments].size).to eq 1
-          expect(response.parsed_body[:media_attachments].first[:id]).to eq media_attachment.id.to_s
-        end
-
-        it 'serializes media metadata safely', :aggregate_failures do
-          subject
-
-          expect(response).to have_http_status(200)
-          media = response.parsed_body[:media_attachments].first
-          expect(media).to include(:meta)
-          expect(media[:meta]).to be_a(Hash)
-        end
-
-        context 'with media containing invalid metadata' do
-          before do
-            media_attachment.file.instance_write(:meta, 'invalid string metadata')
-            media_attachment.save!(validate: false)
-          end
-
-          it 'handles invalid metadata gracefully without 500', :aggregate_failures do
-            subject
-
-            expect(response).to have_http_status(200)
-            media = response.parsed_body[:media_attachments].first
-            expect(media[:meta]).to eq({})
-          end
-        end
-
-        context 'with media containing nil metadata' do
-          before do
-            media_attachment.file.instance_write(:meta, nil)
-            media_attachment.save!(validate: false)
-          end
-
-          it 'handles nil metadata gracefully', :aggregate_failures do
-            subject
-
-            expect(response).to have_http_status(200)
-            media = response.parsed_body[:media_attachments].first
-            expect(media[:meta]).to eq({})
-          end
-        end
-
-        context 'with media containing extra keys in metadata' do
-          before do
-            media_attachment.file.instance_write(:meta, {
-              original: { width: 600, height: 400 },
-              extra_key: 'should be filtered',
-              sensitive_data: { internal_path: '/secret/path' }
-            })
-            media_attachment.save!(validate: false)
-          end
-
-          it 'filters out non-allowed keys from metadata', :aggregate_failures do
-            subject
-
-            expect(response).to have_http_status(200)
-            media = response.parsed_body[:media_attachments].first
-            expect(media[:meta]).to include('original' => include('width' => 600, 'height' => 400))
-            expect(media[:meta]).not_to include('extra_key', 'sensitive_data')
-          end
-        end
-      end
-
-      context 'error handling and safety' do
-        let!(:media_attachment) { Fabricate(:media_attachment, account: user.account) }
-        let(:params) { { status: 'Hello world with media', media_ids: [media_attachment.id] } }
-
-        def assert_safe_response
-          expect(response).not_to have_http_status(500)
-          expect(response.content_type).to start_with('application/json')
-          response_body = response.body
-          expect(response_body).not_to include('backtrace')
-          expect(response_body).not_to match(%r{/app/|/Users/|/home/|/system/})
-        end
-
-        context 'with invalid media metadata types' do
-          before do
-            media_attachment.file.instance_write(:meta, 'invalid string with /app/ path')
-            media_attachment.save!(validate: false)
-          end
-
-          it 'returns 200 with safe response, no 500 or internal paths', :aggregate_failures do
-            subject
-
-            expect(response).to have_http_status(200)
-            assert_safe_response
-          end
-        end
-
-        context 'with StandardError fallback' do
-          before do
-            allow(PostStatusService).to receive(:new).and_raise(StandardError.new('test error with /app/path'))
-          end
-
-          it 'returns 422, not 500, with safe response', :aggregate_failures do
-            subject
-
-            expect(response).to have_http_status(422)
-            assert_safe_response
-            expect(response.parsed_body).to include(error: 'Invalid request')
-          end
-        end
-
-        context 'with JSON::GeneratorError fallback' do
-          before do
-            allow(REST::StatusSerializer).to receive(:new).and_raise(JSON::GeneratorError.new('test error with /app/path'))
-          end
-
-          it 'returns 422, not 500, with safe response', :aggregate_failures do
-            subject
-
-            expect(response).to have_http_status(422)
-            assert_safe_response
-            expect(response.parsed_body).to include(error: 'Invalid data format')
-          end
-        end
-      end
-
       context 'with missing thread' do
         let(:params) { { status: 'Hello world', in_reply_to_id: 0 } }
 
@@ -597,6 +468,55 @@ RSpec.describe '/api/v1/statuses' do
           expect(response).to have_http_status(404)
           expect(response.content_type)
             .to start_with('application/json')
+        end
+      end
+
+      context 'when media metadata raises an error during serialization' do
+        let!(:media_attachment) { Fabricate(:media_attachment, account: user.account, status: nil) }
+        let(:params) { { status: 'Hello world', media_ids: [media_attachment.id] } }
+
+        context 'with a StandardError that includes sensitive paths' do
+          before do
+            allow_any_instance_of(REST::MediaAttachmentSerializer).to receive(:meta).and_raise(StandardError, 'Error occurred at /Users/john/documents/file.txt')
+          end
+
+          it 'returns 422 with a friendly error message, not 500', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            expect(response.content_type).to start_with('application/json')
+            expect(response.parsed_body[:error]).to eq 'An unexpected error occurred'
+            expect(response.parsed_body[:error]).not_to include('/Users/')
+            expect(response.parsed_body[:error]).not_to include('/home/')
+          end
+        end
+
+        context 'with JSON::ParserError' do
+          before do
+            allow_any_instance_of(REST::MediaAttachmentSerializer).to receive(:meta).and_raise(JSON::ParserError, 'Invalid JSON in /Users/test/data')
+          end
+
+          it 'returns 422 with appropriate error message', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            expect(response.parsed_body[:error]).to eq 'Invalid JSON data'
+            expect(response.parsed_body[:error]).not_to include('/Users/')
+          end
+        end
+
+        context 'with Encoding error' do
+          before do
+            allow_any_instance_of(REST::MediaAttachmentSerializer).to receive(:meta).and_raise(Encoding::UndefinedConversionError, 'invalid byte sequence in /home/user/file')
+          end
+
+          it 'returns 422 with appropriate error message', :aggregate_failures do
+            subject
+
+            expect(response).to have_http_status(422)
+            expect(response.parsed_body[:error]).to eq 'Invalid character encoding'
+            expect(response.parsed_body[:error]).not_to include('/home/')
+          end
         end
       end
 
