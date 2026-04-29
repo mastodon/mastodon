@@ -10,6 +10,7 @@ RSpec.describe REST::NotificationSerializer do
       options: {
         scope: current_user,
         scope_name: :current_user,
+        supported_notification_types: [],
       }
     )
   end

@@ -12,7 +12,8 @@ module NotificationFallbackConcern
   end
 
   def needs_fallback?
-    return false if Notification::PROPERTIES.dig(object.type, :baseline) || instance_options[:supported_notification_types]&.include?(object.type)
+    return false if instance_options[:supported_notification_types].nil?
+    return false if Notification::PROPERTIES.dig(object.type, :baseline) || instance_options[:supported_notification_types].include?(object.type)
 
     # In rare cases, a notification might be missing its activity, in which case we can't do much
     case object.type
