@@ -8,10 +8,6 @@ import classNames from 'classnames';
 import Overlay from 'react-overlays/esm/Overlay';
 
 import { showAlert } from '@/mastodon/actions/alerts';
-import { FollowsYouBadge } from '@/mastodon/components/badge';
-import { Button } from '@/mastodon/components/button';
-import { DisplayName } from '@/mastodon/components/display_name';
-import { Icon } from '@/mastodon/components/icon';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -19,6 +15,11 @@ import AtIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
 import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import DomainIcon from '@/material-icons/400-24px/language.svg?react';
+
+import { FollowsYouBadge } from '../badge';
+import { Button } from '../button';
+import { DisplayName } from '../display_name';
+import { Icon } from '../icon';
 
 import { AccountBadges } from './badges';
 import classes from './styles.module.scss';

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { openModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import { EmptyState } from '@/mastodon/components/empty_state';
-import { LimitedAccountHint } from '@/mastodon/features/account_timeline/components/limited_account_hint';
+import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { areCollectionsEnabled } from '@/mastodon/features/collections/utils';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAppDispatch } from '@/mastodon/store';

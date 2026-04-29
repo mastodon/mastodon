@@ -7,11 +7,10 @@ import { useParams } from 'react-router';
 
 import Overlay from 'react-overlays/esm/Overlay';
 
+import { AccountTabs } from '@/mastodon/components/account_header/tabs';
 import { Toggle } from '@/mastodon/components/form_fields';
 import { Icon } from '@/mastodon/components/icon';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
-
-import { AccountTabs } from '../components/tabs';
 
 import { useAccountContext } from './context';
 import classes from './styles.module.scss';

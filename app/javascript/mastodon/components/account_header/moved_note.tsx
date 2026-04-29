@@ -2,9 +2,10 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import { DisplayName } from '@/mastodon/components/display_name';
-import { AvatarOverlay } from 'mastodon/components/avatar_overlay';
-import { useAppSelector } from 'mastodon/store';
+import { useAppSelector } from '@/mastodon/store';
+
+import { AvatarOverlay } from '../avatar_overlay';
+import { DisplayName } from '../display_name';
 
 export const MovedNote: React.FC<{
   accountId: string;
