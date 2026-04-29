@@ -8,8 +8,8 @@ RSpec.describe NotifyService do
   let(:user) { Fabricate(:user) }
   let(:recipient) { user.account }
   let(:sender) { Fabricate(:account, domain: 'example.com') }
-  let(:activity) { Fabricate(:follow, account: sender, target_account: recipient) }
-  let(:type) { :follow }
+  let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender)) }
+  let(:type) { :mention }
 
   it { expect { subject }.to change(Notification, :count).by(1) }
 
@@ -98,7 +98,7 @@ RSpec.describe NotifyService do
 
   describe 'email' do
     before do
-      user.settings.update('notification_emails.follow': enabled)
+      user.settings.update('notification_emails.mention': enabled)
       user.save
     end
 
@@ -113,7 +113,7 @@ RSpec.describe NotifyService do
         expect(emails.first)
           .to have_attributes(
             to: contain_exactly(user.email),
-            subject: eq(I18n.t('notification_mailer.follow.subject', name: sender.acct))
+            subject: eq(I18n.t('notification_mailer.mention.subject', name: sender.acct))
           )
       end
     end
