@@ -38,8 +38,8 @@ export const ConfirmDeleteCollectionModal: React.FC<
   const history = useHistory();
   const { acct: currentUserName } = useAccount(me) ?? {};
 
-  const onConfirm = useCallback(() => {
-    void dispatch(deleteCollection({ collectionId: id }));
+  const onConfirm = useCallback(async () => {
+    await dispatch(deleteCollection({ collectionId: id }));
     history.push(`/@${currentUserName}/collections`);
   }, [dispatch, history, id, currentUserName]);
 
