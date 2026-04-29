@@ -101,6 +101,25 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
             />
           }
         />
+
+        <ToggleField
+          checked={profile.hideCollections}
+          onChange={handleToggleChange}
+          disabled={isPending}
+          name='hide_collections'
+          label={
+            <FormattedMessage
+              id='account_edit.profile_tab.show_followers.title'
+              defaultMessage='Hide ‘Followers’ and ‘Following’'
+            />
+          }
+          hint={
+            <FormattedMessage
+              id='account_edit.profile_tab.show_followers.description'
+              defaultMessage='Controls whether the ‘Followers’ and ‘Following’ lists are visible to other users. People will still be able to see if you are following them.'
+            />
+          }
+        />
       </div>
 
       <Callout
