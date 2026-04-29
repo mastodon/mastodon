@@ -16,6 +16,7 @@ import type {
   ApiCollectionJSON,
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
+  CollectionAccountItem,
 } from '@/mastodon/api_types/collections';
 import { me } from '@/mastodon/initial_state';
 import {
@@ -41,6 +42,16 @@ interface CollectionState {
   editor: EditorState;
 }
 
+/**
+ * This is a subset of the `CollectionAccountItem` type
+ * for use in the editor. Here, `account_id` is always defined
+ * and `state` is more limited.
+ */
+export interface EditorCollectionItem {
+  account_id: string;
+  state: 'pending' | 'accepted';
+}
+
 interface EditorState {
   id: string | null;
   name: string;
@@ -49,7 +60,7 @@ interface EditorState {
   language: string | null;
   discoverable: boolean;
   sensitive: boolean;
-  accountIds: string[];
+  items: EditorCollectionItem[];
 }
 
 interface UpdateEditorFieldPayload<K extends keyof EditorState> {
@@ -68,7 +79,7 @@ const initialState: CollectionState = {
     language: null,
     discoverable: true,
     sensitive: false,
-    accountIds: [],
+    items: [],
   },
 };
 
@@ -87,7 +98,7 @@ const collectionSlice = createSlice({
         language: collection?.language ?? '',
         discoverable: collection?.discoverable ?? true,
         sensitive: collection?.sensitive ?? false,
-        accountIds: getCollectionItemIds(collection?.items ?? []),
+        items: getEditorCollectionItems(collection?.items ?? []),
       };
     },
     reset(state) {
@@ -338,7 +349,12 @@ export const selectAccountCollections = createAppSelector(
   },
 );
 
-const onlyExistingIds = (id?: string): id is string => !!id;
+const isEditorItem = (
+  item: Partial<CollectionAccountItem>,
+): item is EditorCollectionItem =>
+  !!item.account_id && (item.state === 'accepted' || item.state === 'pending');
 
-export const getCollectionItemIds = (items?: ApiCollectionJSON['items']) =>
-  items?.map((item) => item.account_id).filter(onlyExistingIds) ?? [];
+export const getEditorCollectionItems = (items?: CollectionAccountItem[]) =>
+  items
+    ?.map(({ account_id, state }) => ({ account_id, state }))
+    .filter(isEditorItem) ?? [];
