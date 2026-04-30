@@ -67,8 +67,8 @@ ignore_unused:
   - 'user_mailer.*.subject'
   - 'email_subscription_mailer.*'
   - 'notification_mailer.*'
-  - 'imports.overwrite_preambles.{following,blocking,muting,domain_blocking,bookmarks,lists}_html.*'
-  - 'imports.preambles.{following,blocking,muting,domain_blocking,bookmarks,lists}_html.*'
+  - 'imports.overwrite_preambles.{following,blocking,muting,domain_blocking,bookmarks,lists,filters}_html.*'
+  - 'imports.preambles.{following,blocking,muting,domain_blocking,bookmarks,lists,filters}_html.*'
   - 'mail_subscriptions.unsubscribe.emails.*'
   - 'preferences.other' # some locales are missing other keys, therefore leading i18n-tasks to detect `preferences` as plural and not finding use
   - 'edit_profile.other' # some locales are missing other keys, therefore leading i18n-tasks to detect `preferences` as plural and not finding use
