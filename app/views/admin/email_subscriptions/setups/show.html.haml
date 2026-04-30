@@ -11,7 +11,11 @@
 
   %h3= t('.important_information')
 
-  %ol.numbered-list= t('.list_html')
+  %ol.numbered-list
+    %li= t('.list.1_permission_explanation')
+    %li= t('.list.2_feature_explanation')
+    %li= t('.list.3_privacy_policy_warning')
+    %li= t('.list.4_cost_warning')
 
   .fields-group
     = f.input :agreement_email_volume, as: :boolean, wrapper: :with_label
