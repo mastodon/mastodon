@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Admin::DomainBlocksController < Api::BaseController
-  include Authorization
-  include AccountableConcern
-
+class Api::V1::Admin::DomainBlocksController < Api::V1::Admin::BaseController
   LIMIT = 100
   MAX_LIMIT = 500
 
@@ -12,7 +9,6 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   before_action :set_domain_blocks, only: :index
   before_action :set_domain_block, only: [:show, :update, :destroy]
 
-  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   def index

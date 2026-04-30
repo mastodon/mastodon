@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Admin::AccountsController < Api::BaseController
-  include Authorization
-  include AccountableConcern
-
+class Api::V1::Admin::AccountsController < Api::V1::Admin::BaseController
   LIMIT = 100
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:accounts' }, only: [:index, :show]
@@ -12,7 +9,6 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   before_action :set_account, except: :index
   before_action :require_local_account!, only: [:enable, :approve, :reject]
 
-  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   FILTER_PARAMS = %i(

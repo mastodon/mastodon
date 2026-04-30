@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
-  include Authorization
-  include AccountableConcern
-
+class Api::V1::Admin::EmailDomainBlocksController < Api::V1::Admin::BaseController
   LIMIT = 100
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:email_domain_blocks' }, only: [:index, :show]
@@ -11,7 +8,6 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
   before_action :set_email_domain_blocks, only: :index
   before_action :set_email_domain_block, only: [:show, :destroy]
 
-  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   def index
