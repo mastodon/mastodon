@@ -1731,6 +1731,24 @@ fi:
     copy_account_note_text: 'Tämä käyttäjä siirtyi tililtä %{acct}. Nämä olivat muistiinpanosi hänestä:'
   navigation:
     toggle_menu: Avaa/sulje valikko
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} lisäsi sinut kokoelmaan"
+    admin_report:
+      title_html: "%{name} raportoi käyttäjän %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} ja 1 muu rekisteröityivät"
+        other: "%{name} ja %{count} muuta rekisteröityivät"
+      title_html: "%{name} rekisteröityi"
+    collection_update:
+      title_html: "%{name} päivitti kokoelman, jossa olet"
+    generic:
+      sign_in: Rekisteröidy Mastodonin selainsovelluksessa
+      summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %link täyden toiminnallisuuden mahdollistamiseksi.
+    moderation_warning:
+      summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %link
+      title: Olet saanut moderointivaroituksen.
   notification_mailer:
     admin:
       report:

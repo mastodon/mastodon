@@ -1731,6 +1731,27 @@ es-AR:
     copy_account_note_text: 'Este usuario se mudó desde %{acct}, acá están tus notas previas sobre él/ella:'
   navigation:
     toggle_menu: Cambiar menú
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} te agregó a una colección"
+    admin_report:
+      title_html: "%{name} denunció a %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} y alguien más se registraron"
+        other: "%{name} y otras %{count} cuentas más se registraron"
+      title_html: Se registró %{name}
+    collection_update:
+      title_html: "%{name} editó una colección en la que estás"
+    generic:
+      sign_in: Iniciar sesión en la aplicación web de Mastodon
+      summary_html: Estás en una aplicación que no soporta la versión más reciente de Mastodon. %link para una funcionalidad completa.
+    moderation_warning:
+      summary_html: Estás en una aplicación que no soporta la versión más reciente de Mastodon. %link
+      title: Recibiste una advertencia de moderación.
+    severed_relationships:
+      summary_html: Un administrador de %{from} suspendió %{target}, lo que significa que ya no podés recibir actualizaciones de ellos o interactuar con ellos. %{link} para recuperar una lista de las relaciones perdidas.
+      title: Conexiones perdidas con %{name}
   notification_mailer:
     admin:
       report:

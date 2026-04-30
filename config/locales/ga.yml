@@ -1859,6 +1859,30 @@ ga:
     copy_account_note_text: 'Bhog an úsáideoir seo ó %{acct}, seo do nótaí roimhe seo fúthu:'
   navigation:
     toggle_menu: Scoránaigh roghchlár
+  notification_fallbacks:
+    added_to_collection:
+      title_html: Chuir %{name} le bailiúchán thú
+    admin_report:
+      title_html: Thuairiscigh %{name} %{target}
+    admin_sign_up:
+      title_and_others_html:
+        few: Chláraigh %{name} agus %{count} eile
+        many: Chláraigh %{name} agus %{count} eile
+        one: Chláraigh %{name} agus duine amháin eile
+        other: Chláraigh %{name} agus %{count} eile
+        two: Chláraigh %{name} agus %{count} eile
+      title_html: Chláraigh %{name}
+    collection_update:
+      title_html: Nuashonraigh %{name} bailiúchán ina bhfuil tú
+    generic:
+      sign_in: Sínigh isteach ar an app gréasáin Mastodon
+      summary_html: Tá tú ar aip nach dtacaíonn leis an leagan is déanaí de Mastodon. %link le haghaidh feidhmiúlacht iomlán.
+    moderation_warning:
+      summary_html: Tá tú ar aip nach dtacaíonn leis an leagan is déanaí de Mastodon. %link
+      title: Tá rabhadh modhnóireachta faighte agat.
+    severed_relationships:
+      summary_html: Chuir riarthóir ó %{from} %{target} ar fionraí, rud a chiallaíonn nach féidir leat nuashonruithe a fháil uathu nó idirghníomhú leo a thuilleadh. %{link} chun liosta de na gaolta caillte a fháil.
+      title: Caillte ceangail le %{name}
   notification_mailer:
     admin:
       report:

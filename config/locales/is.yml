@@ -1735,6 +1735,27 @@ is:
     copy_account_note_text: 'Þessi notandi fluttist frá %{acct}, hér eru fyrri minnispunktar þínir um hann:'
   navigation:
     toggle_menu: Víxla valmynd af/á
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} bætti þér í safn"
+    admin_report:
+      title_html: "%{name} kærði %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} og einn í viðbót skráðu sig"
+        other: "%{name} og %{count} í viðbót skráðu sig"
+      title_html: "%{name} nýskráði sig"
+    collection_update:
+      title_html: "%{name} uppfærði safn sem þú ert í"
+    generic:
+      sign_in: Skráðu þig inn á Mastodon-vefforritið
+      summary_html: Þú ert að nota forrit sem styður ekki nýjustu útgáfuna af Mastodon. %link til að fá alla eiginleikana.
+    moderation_warning:
+      summary_html: Þú ert að nota forrit sem styður ekki nýjustu útgáfuna af Mastodon. %link
+      title: Þú hefur fengið aðvörun frá umsjónarmanni.
+    severed_relationships:
+      summary_html: Stjórnandi á %{from} hefur sett %{target} í frysti, sem þýðir að þú getur ekki lengur fengið upplýsingar frá eða átt í samskiptum við viðkomandi. %{link} til að ná í lista yfir þau tengsl sem hafa rofnað.
+      title: Missti tengingar við %{name}
   notification_mailer:
     admin:
       report:

@@ -1731,6 +1731,27 @@ nl:
     copy_account_note_text: 'Deze gebruiker is verhuisd vanaf %{acct}. Je hebt de volgende opmerkingen over dat account gemaakt:'
   navigation:
     toggle_menu: Menu tonen/verbergen
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} heeft jou aan een verzameling toegevoegd"
+    admin_report:
+      title_html: "%{name} rapporteerde %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} en één ander hebben zich geregistreerd"
+        other: "%{name} en %{count} anderen hebben zich geregistreerd"
+      title_html: "%{name} heeft zich geregistreerd"
+    collection_update:
+      title_html: "%{name} werkte een verzameling bij waar jij in zit"
+    generic:
+      sign_in: In de Mastodon web-app inloggen
+      summary_html: Je gebruikt een app die de meest recente versie van Mastodon niet ondersteunt. Ga naar %link voor de volledige functionaliteit.
+    moderation_warning:
+      summary_html: Je gebruikt een app die de meest recente versie van Mastodon niet ondersteunt. %link
+      title: Je hebt een moderatie-waarschuwing ontvangen.
+    severed_relationships:
+      summary_html: Een beheerder van %{from} heeft %{target} geschorst, wat betekent dat je geen updates meer van deze gebruiker kunt ontvangen of met deze gebruiker kunt communiceren. Ga naar %{link} voor een overzicht van verloren verbindingen.
+      title: Verloren verbindingen met %{name}
   notification_mailer:
     admin:
       report:
