@@ -9,6 +9,19 @@ RSpec.describe 'Admin::Accounts' do
     sign_in current_user
   end
 
+  describe 'Searching for account with email' do
+    let(:user) { Fabricate :user, email: 'user@host.example' }
+
+    it 'finds the account from the user email address' do
+      visit admin_accounts_path
+
+      fill_in 'Email', with: user.email
+      click_on I18n.t('admin.accounts.search')
+      expect(page)
+        .to have_content(user.account.username)
+    end
+  end
+
   describe 'Performing batch updates' do
     let(:unapproved_user_account) { Fabricate(:account) }
     let(:approved_user_account) { Fabricate(:account) }
