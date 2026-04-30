@@ -1,0 +1,63 @@
+name: Check config schema
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'stable-*'
+    paths:
+      - 'lib/mastodon/configuration/schema.rb'
+      - 'lib/mastodon/configuration/env_scanner.rb'
+      - 'lib/tasks/config.rake'
+      - 'mastodon-config.schema.json'
+      - 'config/**/*.rb'
+      - 'config/**/*.yml'
+      - 'lib/mastodon/**/*.rb'
+      - '.github/workflows/check-config-schema.yml'
+  pull_request:
+    paths:
+      - 'lib/mastodon/configuration/schema.rb'
+      - 'lib/mastodon/configuration/env_scanner.rb'
+      - 'lib/tasks/config.rake'
+      - 'mastodon-config.schema.json'
+      - 'config/**/*.rb'
+      - 'config/**/*.yml'
+      - 'lib/mastodon/**/*.rb'
+      - '.github/workflows/check-config-schema.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check-config-schema:
+    runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_ONLY: development
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@4eb9f110bac952a8b68ecf92e3b5c7a987594ba6 # v1
+        with:
+          bundler-cache: true
+
+      - name: Check all ENV vars are documented
+        run: bundle exec rails mastodon:config:lint
+
+      - name: Regenerate config schema
+        run: bundle exec rails mastodon:config:schema > mastodon-config.schema.json
+
+      - name: Check schema is up to date
+        run: |
+          if ! git diff --exit-code mastodon-config.schema.json; then
+            echo ""
+            echo "mastodon-config.schema.json is out of date."
+            echo "Run the following command and commit the result:"
+            echo ""
+            echo "  bundle exec rails mastodon:config:schema > mastodon-config.schema.json"
+            echo ""
+            exit 1
+          fi
