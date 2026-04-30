@@ -10,21 +10,23 @@
       = image_tag invite.user.account.avatar.url(:original), alt: '', width: 16, height: 16, class: 'avatar'
       %span.username= invite.user.account.username
 
+  %td
+    = material_symbol 'person'
+    = invite.uses
+    = " / #{invite.max_uses}" unless invite.max_uses.nil?
+
   - if invite.valid_for_use?
-    %td
-      = material_symbol 'person'
-      = invite.uses
-      = " / #{invite.max_uses}" unless invite.max_uses.nil?
     %td
       - if invite.expires_at.nil?
         ∞
       - else
         %time.formatted{ datetime: invite.expires_at.iso8601, title: l(invite.expires_at) }
           = l invite.expires_at
-  - else
+    %td
+      = table_link_to 'close', t('invites.delete'), admin_invite_path(invite), method: :delete if policy(invite).destroy?
+  - elsif invite.expired?
     %td{ colspan: 2 }
       = t('invites.expired')
-
-  %td
-    - if invite.valid_for_use? && policy(invite).destroy?
-      = table_link_to 'close', t('invites.delete'), admin_invite_path(invite), method: :delete
+  - else
+    %td{ colspan: 2 }
+      = t('invites.invalid')
