@@ -1,0 +1,12 @@
+%p
+  %strong #{t('sessions.ip')}:
+  = session_detail.remote_ip
+  %br/
+  %strong #{t('sessions.browser')}:
+  %span{ title: session_detail.user_agent }
+    = t 'sessions.description',
+        browser: session_detail.browser,
+        platform: session_detail.platform
+  %br/
+  %strong #{t('sessions.date')}:
+  = l(session_detail.access_time, format: :with_time_zone)
