@@ -377,11 +377,23 @@ export const LanguageDropdown: React.FC = () => {
   );
 
   useEffect(() => {
+    let canceled = false;
+
     if (isTextLongEnoughForGuess(text)) {
-      debouncedGuess(text, setGuess);
-    } else {
-      debouncedGuess.cancel();
+      debouncedGuess(text)
+        .then((guess) => {
+          if (!canceled) {
+            setGuess(guess ?? '');
+          }
+        })
+        .catch(() => {
+          // Do nothing
+        });
     }
+
+    return () => {
+      canceled = true;
+    };
   }, [text, setGuess]);
 
   // Keeping track of the previous render's text length here
