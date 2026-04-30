@@ -20,4 +20,15 @@ class Marker < ApplicationRecord
 
   validates :timeline, :last_read_id, presence: true
   validates :timeline, inclusion: { in: TIMELINES }
+
+  def self.record(user, pairs)
+    {}.tap do |markers|
+      transaction do
+        pairs.each_pair do |timeline, params|
+          markers[timeline] = user.markers.find_or_create_by(timeline:)
+          markers[timeline].update!(params)
+        end
+      end
+    end
+  end
 end
