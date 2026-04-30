@@ -44,8 +44,8 @@ RSpec.describe 'IP Blocks' do
             ip: ip_block.ip,
             severity: ip_block.severity.to_s,
             comment: ip_block.comment,
-            created_at: ip_block.created_at.strftime('%Y-%m-%dT%H:%M:%S.%LZ'),
-            expires_at: ip_block.expires_at&.strftime('%Y-%m-%dT%H:%M:%S.%LZ'),
+            created_at: ip_block.created_at.iso8601(3),
+            expires_at: ip_block.expires_at&.iso8601(3),
           }
         end
       end
