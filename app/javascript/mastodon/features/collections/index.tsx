@@ -47,9 +47,9 @@ export const Collections: React.FC<{
   const account = useAccount(accountId);
   const { path } = useRouteMatch();
 
-  const isOwnCollection = accountId === me;
+  const isOwnCollectionsPage = accountId === me;
 
-  const titleMessage = isOwnCollection
+  const titleMessage = isOwnCollectionsPage
     ? messages.headingMe
     : messages.headingOther;
 
@@ -60,7 +60,7 @@ export const Collections: React.FC<{
     name: <DisplayNameSimple account={account} />,
   });
 
-  const createdByTabMessage = isOwnCollection
+  const createdByTabMessage = isOwnCollectionsPage
     ? messages.createdByYou
     : messages.createdByAuthor;
 
@@ -77,9 +77,14 @@ export const Collections: React.FC<{
                 name: <DisplayNameSimple account={account} />,
               })}
             </TabLink>
-            <TabLink exact to={`/@${account?.acct}/collections/featuring-you`}>
-              {intl.formatMessage(messages.featuringYou)}
-            </TabLink>
+            {isOwnCollectionsPage && (
+              <TabLink
+                exact
+                to={`/@${account?.acct}/collections/featuring-you`}
+              >
+                {intl.formatMessage(messages.featuringYou)}
+              </TabLink>
+            )}
           </TabList>
         </header>
         <Switch>
