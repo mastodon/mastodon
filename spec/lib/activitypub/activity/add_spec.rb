@@ -120,6 +120,30 @@ RSpec.describe ActivityPub::Activity::Add do
 
       expect(stubbed_service).to have_received(:call).with(account, featured_collection_json)
     end
+
+    context 'when account has no collections URI' do
+      let(:account) { Fabricate(:remote_account) }
+      let(:account_json) do
+        {
+          'id' => account.uri,
+          'type' => 'Person',
+          'inbox' => 'http://example.com/actor/1/inbox',
+          'featuredCollections' => 'https://example.com/actor/1/featured_collections',
+        }
+      end
+
+      before do
+        stub_request(:get, account.uri)
+          .to_return_json(body: account_json, headers: { 'Content-Type': 'application/activity+json' })
+      end
+
+      it 're-fetches the account and triggers collection fetching' do
+        subject.perform
+
+        expect(stubbed_service).to_not have_received(:call)
+        expect(ActivityPub::SynchronizeFeaturedCollectionsCollectionWorker).to have_enqueued_sidekiq_job
+      end
+    end
   end
 
   context 'when the target is a collection', feature: :collections do
