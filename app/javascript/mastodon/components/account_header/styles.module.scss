@@ -46,13 +46,14 @@
   gap: 2px;
   padding: 0;
   margin-top: 4px;
-  align-items: center;
   appearance: none;
   background: none;
   border: none;
   color: var(--color-text-secondary);
   font-size: 13px;
   transition: color 0.2s ease-in-out;
+  word-break: break-all;
+  text-align: left;
 
   > svg {
     width: 16px;
