@@ -12,6 +12,7 @@ import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAccountId, useCurrentAccountId } from 'mastodon/hooks/useAccountId';
 
 import { CollectionsCreatedByYou } from './overview/created_by_you';
+import { CollectionsFeaturingYou } from './overview/featuring_you';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -76,19 +77,18 @@ export const Collections: React.FC<{
                 name: <DisplayNameSimple account={account} />,
               })}
             </TabLink>
-            {/* <TabLink exact to={`/@${account?.acct}/collections/featuring-you`}>
+            <TabLink exact to={`/@${account?.acct}/collections/featuring-you`}>
               {intl.formatMessage(messages.featuringYou)}
-            </TabLink> */}
+            </TabLink>
           </TabList>
         </header>
         <Switch>
           <Route exact path={path} component={CollectionsCreatedByYou} />
-          {/* <Route
+          <Route
             exact
             path={`${path}/featuring-you`}
-            // eslint-disable-next-line react/jsx-no-bind
-            render={() => <CollectionDetails />}
-          /> */}
+            component={CollectionsFeaturingYou}
+          />
         </Switch>
       </Scrollable>
 

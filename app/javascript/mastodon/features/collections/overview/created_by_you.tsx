@@ -32,6 +32,19 @@ const CreateButton: React.FC = () => (
   </Link>
 );
 
+export const CollectionListError: React.FC = () => (
+  <EmptyState
+    image={null}
+    className={classes.error}
+    message={
+      <FormattedMessage
+        id='collections.error_loading_collections'
+        defaultMessage='There was an error when trying to load these collections.'
+      />
+    }
+  />
+);
+
 export function useCollectionsCreatedBy(accountId: string | null | undefined) {
   const dispatch = useAppDispatch();
 
@@ -53,23 +66,12 @@ export const CollectionsCreatedByYou: React.FC = () => {
   const { collections, status } = useCollectionsCreatedBy(accountId);
 
   const canCreateMoreCollections = collections.length < userCollectionLimit;
-  const isOwnCollection = accountId === me;
+  const isOwnCollectionPage = accountId === me;
   const showCreateButton =
-    isOwnCollection && status === 'idle' && canCreateMoreCollections;
+    isOwnCollectionPage && status === 'idle' && canCreateMoreCollections;
 
   if (status === 'error' || !accountId) {
-    return (
-      <EmptyState
-        image={null}
-        className={classes.error}
-        message={
-          <FormattedMessage
-            id='collections.error_loading_collections'
-            defaultMessage='There was an error when trying to load your collections.'
-          />
-        }
-      />
-    );
+    return <CollectionListError />;
   }
 
   if (status === 'loading') {
