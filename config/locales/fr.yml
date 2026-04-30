@@ -1731,6 +1731,25 @@ fr:
     copy_account_note_text: 'Cet·te utilisateur·rice est parti·e de %{acct}, voici vos notes précédentes à son sujet :'
   navigation:
     toggle_menu: Basculer l'affichage du menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} vous a ajouté·e à une collection"
+    admin_report:
+      title_html: "%{name} a signalé %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} et un·e autre se sont inscrit·e·s"
+        other: "%{name} et %{count} autres se sont inscrit·e·s"
+      title_html: "%{name} s'est inscrit·e"
+    collection_update:
+      title_html: "%{name} a mis à jour une collection dans laquelle vous figurez"
+    generic:
+      sign_in: Connectez-vous à l'application Web Mastodon
+    moderation_warning:
+      title: Vous avez reçu un avertissement de la modération.
+    severed_relationships:
+      summary_html: L'équipe d'administration de %{from} a suspendu %{target}, ce qui signifie que vous ne pouvez plus recevoir de notifications de leur part ou interagir avec. %{link} pour récupérer la liste des relations perdues.
+      title: Connexions perdues avec %{name}
   notification_mailer:
     admin:
       report:

@@ -1731,6 +1731,18 @@ gl:
     copy_account_note_text: 'Esta usuaria chegou desde %{acct}, aquí están as túas notas previas acerca dela:'
   navigation:
     toggle_menu: Activa o menú
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} engadíute a unha colección"
+    admin_report:
+      title_html: "%{name} denunciou a %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} e outra persoa crearon a conta"
+        other: "%{name} e outras %{count} persoas crearon a conta"
+      title_html: "%{name} creou a conta"
+    collection_update:
+      title_html: "%{name} actualizou unha colección da que es parte"
   notification_mailer:
     admin:
       report:

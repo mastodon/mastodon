@@ -1815,6 +1815,27 @@ he:
     copy_account_note_text: 'חשבון זה הועבר מ-%{acct}, הנה הערותיך הקודמות לגביהם:'
   navigation:
     toggle_menu: הצגת\הסתרת תפריט
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} הוסיפו אותך לאוסף"
+    admin_report:
+      title_html: "%{name} דיווח.ה על %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        many: "%{name} ועוד %{count} נרשמו"
+        one: "%{name} ועוד אחד נרשמו"
+        other: "%{name} ועוד %{count} נרשמו"
+        two: "%{name} ועוד שניים נרשמו"
+      title_html: "%{name} נרשמו"
+    collection_update:
+      title_html: "%{name} עדכנו אוסף הכולל אותך"
+    generic:
+      sign_in: התחברו ליישומון הווב של מסטודון
+    moderation_warning:
+      title: קיבלת אזהרת מנהל.
+    severed_relationships:
+      summary_html: מנהל מאתר %{from} הקפיא את %{target}, כלומר לא תוכלו לקבל יותר עדכונים מהם או להתכתב איתם. %{link} כדי לקבל רשימת מערכות יחסים שאבדו.
+      title: הקשר אבד עם %{name}
   notification_mailer:
     admin:
       report:

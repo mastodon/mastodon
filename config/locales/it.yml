@@ -1745,11 +1745,12 @@ it:
       title_html: "%{name} ha aggiornato una collezione in cui sei presente"
     generic:
       sign_in: Accedi alla web app Mastodon
-      summary_html: Stai utilizzando un'app che non supporta la versione più recente di Mastodon. %link per la piena funzionalità.
+      summary_html: Stai utilizzando un'app che non supporta la versione più recente di Mastodon. %{link} per la piena funzionalità.
     moderation_warning:
-      summary_html: Stai utilizzando un'app che non supporta la versione più recente di Mastodon. %link
+      summary_html: Stai utilizzando un'app che non supporta la versione più recente di Mastodon. %{link}.
       title: Hai ricevuto un avviso di moderazione.
     severed_relationships:
+      summary_html: Un amministratore/trice da %{from} ha sospeso %{target}, il che significa che non puoi più ricevere aggiornamenti o interagire con esso. Fai clic su %{link} per recuperare un elenco delle relazioni perse.
       title: Connessioni perse con %{name}
   notification_mailer:
     admin:

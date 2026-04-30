@@ -1689,6 +1689,26 @@ zh-CN:
     copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   navigation:
     toggle_menu: 隐藏/显示菜单
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} 将你添加到了收藏列表"
+    admin_report:
+      title_html: "%{name} 举报了 %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        other: "%{name} 及另外 %{count} 个人注册了"
+      title_html: "%{name} 注册了"
+    collection_update:
+      title_html: "%{name} 更新了你所在的收藏列表"
+    generic:
+      sign_in: 登录到 Mastodon 网页应用
+      summary_html: 你使用的应用程序不支持最新版本的 Mastodon。要使用完整功能，%{link}。
+    moderation_warning:
+      summary_html: 你使用的应用程序不支持最新版本的 Mastodon。%{link}。
+      title: 你收到了一条管理警告。
+    severed_relationships:
+      summary_html: "%{from} 的管理员封禁了 %{target}，这意味着你将无法再收到对方的更新或与其互动。要获取失去的关系列表，%{link}。"
+      title: 与 %{name} 的联系已断开
   notification_mailer:
     admin:
       report:
