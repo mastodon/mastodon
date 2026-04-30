@@ -5,7 +5,7 @@ class Admin::EmailSubscriptionsController < Admin::BaseController
     authorize :email_subscription, :index?
 
     @enabled = Setting.email_subscriptions
-    @roles = UserRole.where('permissions & ? = ?', UserRole::FLAGS[:manage_email_subscriptions], UserRole::FLAGS[:manage_email_subscriptions])
+    @roles = UserRole.where('permissions & ? != 0', UserRole::FLAGS[:manage_email_subscriptions] | UserRole::FLAGS[:administrator])
     @accounts = Account.local.joins(:email_subscriptions).where.associated(:email_subscriptions).includes(:user)
   end
 
