@@ -63,4 +63,20 @@ RSpec.describe BulkImport do
       it { is_expected.to_not be_processing_complete }
     end
   end
+
+  describe 'Callbacks' do
+    describe 'Finalizing an import' do
+      let(:bulk_import) { Fabricate :bulk_import, state: :scheduled }
+
+      it 'updates timestamp when record moves to finished state' do
+        expect { bulk_import.update(state: :finished) }
+          .to change(bulk_import, :finished_at).from(be_nil).to(be_present)
+      end
+
+      it 'does not update timestamp when record moves to other state' do
+        expect { bulk_import.update(state: :in_progress) }
+          .to not_change(bulk_import, :finished_at).from(be_nil)
+      end
+    end
+  end
 end
