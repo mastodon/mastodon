@@ -1689,6 +1689,26 @@ vi:
     copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là lịch sử kiểm duyệt của họ:'
   navigation:
     toggle_menu: Bật/tắt menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} đã thêm bạn vào một gói khởi đầu"
+    admin_report:
+      title_html: "%{name} báo cáo %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        other: "%{name} và %{count} người khác đã đăng ký"
+      title_html: "%{name} đã đăng ký"
+    collection_update:
+      title_html: "%{name} đã cập nhật gói khởi đầu có bạn"
+    generic:
+      sign_in: Đăng nhập Mastodon bản web
+      summary_html: Bạn đang sử dụng một ứng dụng không hỗ trợ phiên bản Mastodon mới nhất. %{link} để có đầy đủ tính năng.
+    moderation_warning:
+      summary_html: Bạn đang sử dụng một ứng dụng không hỗ trợ phiên bản Mastodon mới nhất. %{link}.
+      title: Bạn vừa nhận một cảnh cáo kiểm duyệt.
+    severed_relationships:
+      summary_html: Quản trị viên %{from} vừa vô hiệu hóa %{target}, điều này nghĩa là bạn không thể nhận được thông báo cập nhật từ họ hoặc tương tác với họ nữa. %{link} để khôi phục danh sách các mối quan hệ đã mất.
+      title: Mất kết nối với %{name}
   notification_mailer:
     admin:
       report:
