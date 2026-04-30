@@ -30,7 +30,7 @@ class AnnualReport
 
   def eligible?
     with_read_replica do
-      SOURCES.all? { |klass| klass.new(@account, @year).eligible? }
+      sufficient_post_retention? && SOURCES.all? { |klass| klass.new(@account, @year).eligible? }
     end
   end
 
@@ -66,6 +66,10 @@ class AnnualReport
   end
 
   private
+
+  def sufficient_post_retention?
+    @account.statuses_cleanup_policy.nil? || @account.statuses_cleanup_policy.min_status_age > 6.months.seconds
+  end
 
   def data
     with_read_replica do
