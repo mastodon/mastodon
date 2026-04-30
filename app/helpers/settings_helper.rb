@@ -5,6 +5,10 @@ module SettingsHelper
     LanguagesHelper.sorted_locale_keys(LanguagesHelper::SUPPORTED_LOCALES.keys)
   end
 
+  def application_scope_groups
+    Doorkeeper.configuration.scopes.group_by { |value| value.split(':').first }.values
+  end
+
   def ui_languages
     LanguagesHelper.sorted_locale_keys(I18n.available_locales)
   end
