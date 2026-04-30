@@ -15,7 +15,7 @@ RSpec.describe 'Filters' do
       visit filters_path
 
       expect(page)
-        .to have_content('Photography')
+        .to have_text('Photography')
         .and have_private_cache_control
     end
   end
@@ -26,7 +26,7 @@ RSpec.describe 'Filters' do
 
       click_on I18n.t('filters.new.title')
       fill_in_filter_form
-      expect(page).to have_content(filter_title)
+      expect(page).to have_text(filter_title)
     end
 
     it 'Does not save with invalid values' do
@@ -36,7 +36,7 @@ RSpec.describe 'Filters' do
       expect { click_on I18n.t('filters.new.save') }
         .to_not change(CustomFilter, :count)
       expect(page)
-        .to have_content("can't be blank")
+        .to have_text("can't be blank")
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe 'Filters' do
         .to change { keyword_one.reload.keyword }.to(/New value/)
         .and(change { keyword_two.reload.keyword }.to(/Wilderness/))
 
-      expect(page).to have_content(new_title)
+      expect(page).to have_text(new_title)
     end
 
     it 'Does not save with invalid values' do
@@ -72,7 +72,7 @@ RSpec.describe 'Filters' do
       expect { click_on submit_button }
         .to_not(change { custom_filter.reload.updated_at })
       expect(page)
-        .to have_content("can't be blank")
+        .to have_text("can't be blank")
     end
   end
 
@@ -82,12 +82,12 @@ RSpec.describe 'Filters' do
     it 'Deletes the filter' do
       navigate_to_filters
 
-      expect(page).to have_content filter_title
+      expect(page).to have_text filter_title
       expect do
         click_on I18n.t('filters.index.delete')
       end.to change(CustomFilter, :count).by(-1)
 
-      expect(page).to have_no_content(filter_title)
+      expect(page).to have_no_text(filter_title)
     end
   end
 
@@ -95,7 +95,7 @@ RSpec.describe 'Filters' do
     visit settings_path
 
     click_on I18n.t('filters.index.title')
-    expect(page).to have_content I18n.t('filters.index.title')
+    expect(page).to have_text I18n.t('filters.index.title')
   end
 
   def fill_in_filter_form

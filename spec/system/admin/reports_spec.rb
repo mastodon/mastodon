@@ -16,19 +16,19 @@ RSpec.describe 'Admin Reports' do
       visit admin_reports_path
 
       expect(page)
-        .to have_content(unresolved_report.comment)
-        .and have_no_content(resolved_report.comment)
+        .to have_text(unresolved_report.comment)
+        .and have_no_text(resolved_report.comment)
 
       click_on I18n.t('admin.reports.resolved')
       expect(page)
-        .to have_content(resolved_report.comment)
-        .and have_no_content(unresolved_report.comment)
+        .to have_text(resolved_report.comment)
+        .and have_no_text(unresolved_report.comment)
 
       click_on resolved_report.comment
       expect(page)
         .to have_title(I18n.t('admin.reports.report', id: resolved_report.id))
-        .and have_content(resolved_report.comment)
-        .and have_content(report_note.content)
+        .and have_text(resolved_report.comment)
+        .and have_text(report_note.content)
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe 'Admin Reports' do
 
       expect(page)
         .to have_title(I18n.t('admin.reports.title'))
-        .and have_content(I18n.t('admin.reports.resolved_msg'))
+        .and have_text(I18n.t('admin.reports.resolved_msg'))
 
       report.reload
       expect(report.action_taken_by_account)

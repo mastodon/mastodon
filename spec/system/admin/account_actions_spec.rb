@@ -19,7 +19,7 @@ RSpec.describe 'Admin Account Actions' do
       expect { submit_form }
         .to_not(change { account.strikes.count })
       expect(page)
-        .to have_content(/can't be blank/)
+        .to have_text(/can't be blank/)
 
       # Valid submission
       choose(option: 'silence')

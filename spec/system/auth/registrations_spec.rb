@@ -10,7 +10,7 @@ RSpec.describe 'Auth Registration' do
       visit new_user_registration_path
       expect(page)
         .to have_title(I18n.t('auth.register'))
-        .and have_content(rule.text)
+        .and have_text(rule.text)
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe 'Auth Registration' do
         expect { fill_in_and_submit_form }
           .to not_change(User, :count)
         expect(page)
-          .to have_content(/error below/)
+          .to have_text(/error below/)
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe 'Auth Registration' do
         expect(User.last)
           .to have_attributes(email: 'test@example.com', age_verified_at: be_present)
         expect(page)
-          .to have_content(I18n.t('auth.setup.title'))
+          .to have_text(I18n.t('auth.setup.title'))
       end
     end
 

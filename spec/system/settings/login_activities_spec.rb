@@ -16,9 +16,9 @@ RSpec.describe 'Login activities page' do
         click_on I18n.t('sessions.view_authentication_history')
 
         expect(page)
-          .to have_content(browser_description)
-          .and have_content(login_activity.authentication_method)
-          .and have_content(login_activity.ip)
+          .to have_text(browser_description)
+          .and have_text(login_activity.authentication_method)
+          .and have_text(login_activity.ip)
           .and have_private_cache_control
       end
 

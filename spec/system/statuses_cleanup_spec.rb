@@ -23,7 +23,7 @@ RSpec.describe 'Automated post deletion settings' do
       expect { submit_form }
         .to change { account.reload.statuses_cleanup_policy.keep_pinned? }.to(false)
       expect(page)
-        .to have_content(I18n.t('settings.statuses_cleanup'))
+        .to have_text(I18n.t('settings.statuses_cleanup'))
     end
 
     def submit_form

@@ -17,7 +17,7 @@ RSpec.describe 'Disputes Strikes' do
       find('.strike-entry').click
       expect(page)
         .to have_title(strike_page_title)
-        .and have_content(strike.text)
+        .and have_text(strike.text)
     end
 
     def strike_page_title

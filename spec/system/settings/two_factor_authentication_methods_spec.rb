@@ -14,7 +14,7 @@ RSpec.describe 'Settings TwoFactorAuthenticationMethods' do
       it 'disables 2FA with challenge confirmation', :inline_jobs do
         visit settings_two_factor_authentication_methods_path
         expect(page)
-          .to have_content(I18n.t('settings.two_factor_authentication'))
+          .to have_text(I18n.t('settings.two_factor_authentication'))
           .and have_private_cache_control
 
         # Attempt to disable
@@ -29,7 +29,7 @@ RSpec.describe 'Settings TwoFactorAuthenticationMethods' do
           .and send_email(to: user.email, subject: I18n.t('devise.mailer.two_factor_disabled.subject'))
 
         expect(page)
-          .to have_content(I18n.t('two_factor_authentication.disabled_success'))
+          .to have_text(I18n.t('two_factor_authentication.disabled_success'))
       end
     end
   end

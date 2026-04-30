@@ -12,7 +12,7 @@ RSpec.describe 'Auth Setup' do
       visit auth_setup_path
 
       expect(page)
-        .to have_content(I18n.t('auth.setup.title'))
+        .to have_text(I18n.t('auth.setup.title'))
 
       find('summary.lead').click
       fill_in 'user_email', with: 'new-email@example.host'
@@ -20,7 +20,7 @@ RSpec.describe 'Auth Setup' do
       expect { submit_form }
         .to(change { user.reload.unconfirmed_email })
       expect(page)
-        .to have_content(I18n.t('auth.setup.new_confirmation_instructions_sent'))
+        .to have_text(I18n.t('auth.setup.new_confirmation_instructions_sent'))
     end
 
     def submit_form
