@@ -1744,11 +1744,14 @@ de:
     collection_update:
       title_html: "%{name} aktualisierte eine Sammlung, in der du vorgestellt wirst"
     generic:
-      sign_in: In der Mastodon-Web-App anmelden
-      summary_html: Du verwendest eine App, die noch nicht die aktuellste Version von Mastodon unterstützt. %link für vollständige Funktionalität.
+      sign_in: Auf der Mastodon-Website anmelden
+      summary_html: Deine App unterstützt nicht die neueste Mastodon-Version. Rufe %{link} auf, um alle Funktionen nutzen zu können.
     moderation_warning:
-      summary_html: Du verwendest eine App, die noch nicht die aktuellste Version von Mastodon unterstützt. %link
+      summary_html: Deine App unterstützt nicht die neueste Mastodon-Version. %{link}.
       title: Die Moderator*innen haben dich verwarnt.
+    severed_relationships:
+      summary_html: Administrator*innen von %{from} haben den Zugriff auf den externen Server %{target} gesperrt. Das bedeutet, dass du keine Inhalte mehr von dort erhältst. Du kannst auch nicht mehr mit den Profilen dieses Servers interagieren. Rufe %{link} auf, um alle Profile, denen du folgtest und die dir folgten, einzusehen.
+      title: Verbindung zu %{name} verloren
   notification_mailer:
     admin:
       report:
@@ -1964,7 +1967,7 @@ de:
     preferences: Einstellungen
     profile: Öffentliches Profil
     relationships: Follower und Folge ich
-    severed_relationships: Getrennte Beziehungen
+    severed_relationships: Getrennte Verbindungen
     statuses_cleanup: Automatisiertes Löschen
     strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung
@@ -1977,7 +1980,7 @@ de:
       user_domain_block: Du hast %{target_name} blockiert
     lost_followers: Verlorene Follower
     lost_follows: Konten entfolgt
-    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Beziehungen herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
+    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Verbindungen einsehen und herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
     purged: Informationen über diesen Server wurden von deinen Server-Administrator*innen entfernt.
     type: Ereignis
   statuses:
