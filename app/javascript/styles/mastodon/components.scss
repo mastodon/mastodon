@@ -1349,6 +1349,7 @@ body > [data-popper-placement] {
   // this element inherits a text direction that is opposite to its own,
   // the start of this element's text is cut off.
 
+  // Posts on the timeline
   .status:not(.status--is-quote)
     > .status__content
     > .status__content__text:lang(#{$lang}),
@@ -1363,6 +1364,7 @@ body > [data-popper-placement] {
     overflow-x: hidden; // read more
   }
 
+  // Post editor
   .autosuggest-textarea > .autosuggest-textarea__textarea:lang(#{$lang}) {
     writing-mode: vertical-lr;
     min-height: 209px; // writable
@@ -1371,6 +1373,18 @@ body > [data-popper-placement] {
     scrollbar-color: unset;
   }
 
+  // Alt text editor
+  .dialog-modal__content__form
+    > .input
+    > .label_input
+    > textarea#description:lang(#{$lang}) {
+    writing-mode: vertical-lr;
+    min-height: 150px; // writable
+    max-height: 150px; // suppress autosizing by react-textarea-autosize
+    overflow-x: auto;
+  }
+
+  // Detailed posts
   .detailed-status > .status__content > .status__content__text:lang(#{$lang}) {
     writing-mode: vertical-lr;
     width: 100%; // detecting overflow
