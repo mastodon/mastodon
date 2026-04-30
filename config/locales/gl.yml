@@ -1743,6 +1743,15 @@ gl:
       title_html: "%{name} creou a conta"
     collection_update:
       title_html: "%{name} actualizou unha colección da que es parte"
+    generic:
+      sign_in: Accede na aplicación web de Mastodon
+      summary_html: Estás a usar unha app que non é compatible coa versión máis recente de Mastodon %{link} para obter todas as funcións.
+    moderation_warning:
+      summary_html: Estás a usar unha app que non é compatible coa versión máis recente de Mastodon. %{link}.
+      title: Recibiches unha advertencia da moderación.
+    severed_relationships:
+      summary_html: A administración de %{from} suspendeu a %{target}, o que significa que non vas recibir actualizacións dese servidor nin poder interactuar coas súas usuarias. %{link} para obter unha lista das relacións perdidas.
+      title: Relacións perdidas con %{name}
   notification_mailer:
     admin:
       report:

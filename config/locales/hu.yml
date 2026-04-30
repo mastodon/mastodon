@@ -1731,6 +1731,27 @@ hu:
     copy_account_note_text: 'Ez a fiók elköltözött innen: %{acct}, itt vannak az előző megjegyzéseid róla:'
   navigation:
     toggle_menu: Menü be/ki
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} hozzáadott egy gyűjteményhez"
+    admin_report:
+      title_html: "%{name} jelentette: %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} és még egy felhasználó feliratkozott"
+        other: "%{name} és még %{count} felhasználó feliratkozott"
+      title_html: "%{name} feliratkozott"
+    collection_update:
+      title_html: "%{name} frissített egy gyűjteményt, amelyben szerepelsz"
+    generic:
+      sign_in: Jelentkezz be a Mastodon webalkalmazásba
+      summary_html: Olyan alkalmazást használsz, amely nem támogatja a Mastodon legfrissebb verzióját. %{link} a teljes funkcionalitáshoz.
+    moderation_warning:
+      summary_html: Olyan alkalmazást használsz, amely nem támogatja a Mastodon legfrissebb verzióját. %{link}.
+      title: Moderációs figyelmeztetést kaptál.
+    severed_relationships:
+      summary_html: 'A(z) %{from} egy rendszergazdája felfüggesztette ezt: %{target}, ez azt jelenti, hogy többé nem kapsz értesítést onnan, és nem tudsz interakcióba lépni velük. %{link} az elveszett kapcsolatok felsorolásáért.'
+      title: 'Elvesztek a kapcsolatok vele: %{name}'
   notification_mailer:
     admin:
       report:
