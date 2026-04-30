@@ -18,7 +18,7 @@
       = link_to admin_account_path(status.account.id), class: 'status__display-name' do
         .status__avatar
           .account__avatar
-            = image_tag status.account.avatar.url(:original), alt: '', width: 46, height: 46, class: 'avatar'
+            = image_tag status.account.avatar.url(:original), alt: '', size: 46, class: 'avatar'
         .display-name
           %bdi
             %strong.display-name__html.emojify.p-name= display_name(status.account, custom_emojify: true)
