@@ -57,20 +57,23 @@ export const CollectionsCreatedByYou: React.FC = () => {
   const showCreateButton =
     isOwnCollection && status === 'idle' && canCreateMoreCollections;
 
-  const errorMessage = (status === 'error' || !accountId) && (
-    <FormattedMessage
-      id='collections.error_loading_collections'
-      defaultMessage='There was an error when trying to load your collections.'
-      tagName='span'
-    />
-  );
+  if (status === 'error' || !accountId) {
+    return (
+      <EmptyState
+        image={null}
+        className={classes.error}
+        message={
+          <FormattedMessage
+            id='collections.error_loading_collections'
+            defaultMessage='There was an error when trying to load your collections.'
+          />
+        }
+      />
+    );
+  }
 
   if (status === 'loading') {
     return <LoadingIndicator />;
-  }
-
-  if (status === 'error') {
-    return null;
   }
 
   if (collections.length === 0) {
@@ -108,7 +111,7 @@ export const CollectionsCreatedByYou: React.FC = () => {
         </h2>
         {showCreateButton && <CreateButton />}
       </div>
-      <ItemList emptyMessage={errorMessage}>
+      <ItemList>
         {!canCreateMoreCollections && (
           <MaxCollectionsCallout className={classes.maxCollectionsError} />
         )}
