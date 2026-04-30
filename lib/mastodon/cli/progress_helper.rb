@@ -51,8 +51,13 @@ module Mastodon::CLI
               result = ActiveRecord::Base.connection_pool.with_connection do
                 yield(item)
               ensure
-                RedisConnection.pool.checkin if Thread.current[:redis]
-                Thread.current[:redis] = nil
+                begin
+                  RedisConnection.pool.checkin if Thread.current[:redis]
+                rescue ConnectionPool::Error
+                  nil
+                ensure
+                  Thread.current[:redis] = nil
+                end
               end
 
               aggregate.increment(result) if result.is_a?(Integer)
