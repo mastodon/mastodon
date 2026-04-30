@@ -46,13 +46,14 @@
   gap: 2px;
   padding: 0;
   margin-top: 4px;
-  align-items: center;
   appearance: none;
   background: none;
   border: none;
   color: var(--color-text-secondary);
   font-size: 13px;
   transition: color 0.2s ease-in-out;
+  word-break: break-all;
+  text-align: left;
 
   > svg {
     width: 16px;
@@ -199,6 +200,9 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
 .noteContent {
   white-space-collapse: preserve-breaks;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  hyphens: auto;
 }
 
 .noteEditButton {
@@ -271,10 +275,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
   &.fieldItem {
     border-color: var(--color-border-success-soft);
-  }
-
-  dt {
-    padding-right: 24px;
+    padding-right: 32px; // 8px padding + 16px for the icon + 8px gap
   }
 }
 

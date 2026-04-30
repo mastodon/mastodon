@@ -112,7 +112,6 @@ const AccountNameHelp: FC<{
         aria-controls={accessibilityId}
       >
         {handle}
-
         <Icon
           id='help'
           icon={HelpIcon}
