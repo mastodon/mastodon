@@ -56,7 +56,7 @@ services:
       - internal_network
 
   es:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.29
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.13
     restart: unless-stopped
     environment:
       ES_JAVA_OPTS: -Xms512m -Xmx512m
