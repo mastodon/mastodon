@@ -172,7 +172,7 @@ RSpec.describe 'Accounts show response' do
         end
 
         context 'with signature' do
-          let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+          let(:remote_account) { Fabricate(:account_with_private_key, domain: 'example.com') }
 
           before do
             get short_account_path(username: account.username), headers: headers, sign_with: remote_account

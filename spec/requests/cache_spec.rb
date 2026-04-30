@@ -388,7 +388,7 @@ RSpec.describe 'Caching behavior' do
   end
 
   context 'with a Signature header' do
-    let(:remote_actor)    { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
+    let(:remote_actor)    { Fabricate(:account_with_private_key, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
     let(:dummy_signature) { 'dummy-signature' }
 
     before do
@@ -442,7 +442,7 @@ RSpec.describe 'Caching behavior' do
     end
 
     context 'when providing a Signature' do
-      let(:remote_actor)    { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
+      let(:remote_actor)    { Fabricate(:account_with_private_key, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
       let(:dummy_signature) { 'dummy-signature' }
 
       before do
@@ -502,7 +502,7 @@ RSpec.describe 'Caching behavior' do
     end
 
     context 'when providing a Signature from an allowed domain' do
-      let(:remote_actor)    { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
+      let(:remote_actor)    { Fabricate(:account_with_private_key, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
       let(:dummy_signature) { 'dummy-signature' }
 
       before do
@@ -530,7 +530,7 @@ RSpec.describe 'Caching behavior' do
     end
 
     context 'when providing a Signature from a non-allowed domain' do
-      let(:remote_actor)    { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
+      let(:remote_actor)    { Fabricate(:account_with_private_key, domain: 'example.org', uri: 'https://example.org/remote', protocol: :activitypub) }
       let(:dummy_signature) { 'dummy-signature' }
 
       describe '/actor' do
