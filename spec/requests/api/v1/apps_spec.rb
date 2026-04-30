@@ -73,25 +73,54 @@ RSpec.describe 'Apps' do
       end
     end
 
-    # FIXME: This is a bug: https://github.com/mastodon/mastodon/issues/30152
-    context 'with scopes as an array' do
-      let(:scopes) { %w(read write follow) }
+    context 'with scopes as a string' do
+      let(:scopes) { 'read write follow' }
 
-      it 'creates an OAuth App with the default scope' do
-        subject
+      it 'creates an OAuth App with the supplied scopes' do
+        expect { subject }
+          .to change(Doorkeeper::Application, :count).by(1)
 
-        expect(response).to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('application/json')
+        expect(response)
+          .to have_http_status(200)
+        expect(response.media_type)
+          .to eq('application/json')
 
         app = Doorkeeper::Application.find_by(name: client_name)
 
-        expect(app).to be_present
-        expect(app.scopes.to_s).to eq 'read'
+        expect(app)
+          .to be_present
+        expect(app.scopes.to_s)
+          .to eq('read write follow')
 
         expect(response.parsed_body)
           .to include(
-            scopes: %w(read)
+            scopes: eq(%w(read write follow))
+          )
+      end
+    end
+
+    context 'with scopes as an array' do
+      let(:scopes) { %w(read write follow) }
+
+      it 'creates an OAuth App with the supplied scopes' do
+        expect { subject }
+          .to change(Doorkeeper::Application, :count).by(1)
+
+        expect(response)
+          .to have_http_status(200)
+        expect(response.media_type)
+          .to eq('application/json')
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app)
+          .to be_present
+        expect(app.scopes.to_s)
+          .to eq('read write follow')
+
+        expect(response.parsed_body)
+          .to include(
+            scopes: eq(%w(read write follow))
           )
       end
     end
