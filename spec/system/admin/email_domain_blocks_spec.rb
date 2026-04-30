@@ -15,24 +15,24 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
     it 'views and creates new blocks' do
       visit admin_email_domain_blocks_path
       expect(page)
-        .to have_content(I18n.t('admin.email_domain_blocks.title'))
-        .and have_content(email_domain_block.domain)
+        .to have_text(I18n.t('admin.email_domain_blocks.title'))
+        .and have_text(email_domain_block.domain)
 
       click_on I18n.t('admin.email_domain_blocks.add_new')
       expect(page)
-        .to have_content(I18n.t('admin.email_domain_blocks.new.title'))
+        .to have_text(I18n.t('admin.email_domain_blocks.new.title'))
 
       fill_in I18n.t('admin.email_domain_blocks.domain'), with: 'example.com'
       expect { submit_resolve }
         .to_not change(EmailDomainBlock, :count)
       expect(page)
-        .to have_content(I18n.t('admin.email_domain_blocks.new.title'))
+        .to have_text(I18n.t('admin.email_domain_blocks.new.title'))
 
       expect { submit_create }
         .to change(EmailDomainBlock.where(domain: 'example.com'), :count).by(1)
       expect(page)
-        .to have_content(I18n.t('admin.email_domain_blocks.title'))
-        .and have_content(I18n.t('admin.email_domain_blocks.created_msg'))
+        .to have_text(I18n.t('admin.email_domain_blocks.title'))
+        .and have_text(I18n.t('admin.email_domain_blocks.created_msg'))
     end
 
     def submit_resolve
@@ -53,7 +53,7 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
       it 'displays a notice about selection' do
         click_on button_for_delete
 
-        expect(page).to have_content(selection_error_text)
+        expect(page).to have_text(selection_error_text)
       end
     end
 

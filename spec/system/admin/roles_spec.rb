@@ -43,7 +43,7 @@ RSpec.describe 'Admin::Roles' do
       expect { click_on I18n.t('admin.roles.add_new') }
         .to_not change(UserRole, :count)
       expect(page)
-        .to have_content(I18n.t('activerecord.errors.models.user_role.attributes.position.elevated'))
+        .to have_text(I18n.t('activerecord.errors.models.user_role.attributes.position.elevated'))
 
       # Valid submission
       fill_in 'user_role_name', with: 'Baz'

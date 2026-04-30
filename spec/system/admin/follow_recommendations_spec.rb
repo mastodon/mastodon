@@ -12,7 +12,7 @@ RSpec.describe 'Admin Follow Recommendations' do
       visit admin_follow_recommendations_path
 
       expect(page)
-        .to have_content(I18n.t('admin.follow_recommendations.title'))
+        .to have_text(I18n.t('admin.follow_recommendations.title'))
     end
   end
 end

@@ -15,7 +15,7 @@ RSpec.describe 'Settings Migrations' do
         visit settings_migration_path
 
         expect(page)
-          .to have_content(I18n.t('settings.migrate'))
+          .to have_text(I18n.t('settings.migrate'))
       end
     end
 
@@ -26,8 +26,8 @@ RSpec.describe 'Settings Migrations' do
         visit settings_migration_path
 
         expect(page)
-          .to have_content(I18n.t('settings.migrate'))
-          .and have_content(moved_to_account.pretty_acct)
+          .to have_text(I18n.t('settings.migrate'))
+          .and have_text(moved_to_account.pretty_acct)
       end
     end
   end
@@ -48,7 +48,7 @@ RSpec.describe 'Settings Migrations' do
           expect { fill_in_and_submit }
             .to(change { user.account.reload.moved_to_account_id }.to(acct.id))
           expect(page)
-            .to have_content(I18n.t('settings.migrate'))
+            .to have_text(I18n.t('settings.migrate'))
         end
       end
 
@@ -61,7 +61,7 @@ RSpec.describe 'Settings Migrations' do
           expect { fill_in_and_submit_via_username("@#{user.account.username}") }
             .to(change { user.account.reload.moved_to_account_id }.to(acct.id))
           expect(page)
-            .to have_content(I18n.t('settings.migrate'))
+            .to have_text(I18n.t('settings.migrate'))
         end
       end
     end
@@ -75,7 +75,7 @@ RSpec.describe 'Settings Migrations' do
         expect { fill_in_and_submit }
           .to_not(change { user.account.reload.moved_to_account_id }.from(nil))
         expect(page)
-          .to have_content(I18n.t('settings.migrate'))
+          .to have_text(I18n.t('settings.migrate'))
       end
     end
 
@@ -88,7 +88,7 @@ RSpec.describe 'Settings Migrations' do
         expect { fill_in_and_submit }
           .to_not(change { user.account.reload.moved_to_account_id }.from(nil))
         expect(page)
-          .to have_content(I18n.t('settings.migrate'))
+          .to have_text(I18n.t('settings.migrate'))
       end
     end
 

@@ -13,12 +13,12 @@ RSpec.describe 'Admin Rules' do
         visit admin_rules_path
 
         expect(page)
-          .to have_content(I18n.t('admin.rules.title'))
-          .and have_content(rule.text)
+          .to have_text(I18n.t('admin.rules.title'))
+          .and have_text(rule.text)
 
         click_on(rule.text)
         expect(page)
-          .to have_content(I18n.t('admin.rules.title'))
+          .to have_text(I18n.t('admin.rules.title'))
       end
     end
 
@@ -33,14 +33,14 @@ RSpec.describe 'Admin Rules' do
         expect { submit_form }
           .to_not change(Rule, :count)
         expect(page)
-          .to have_content(/error below/)
+          .to have_text(/error below/)
 
         # Valid submission
         fill_in 'rule_text', with: 'No yelling on the bus!'
         expect { submit_form }
           .to change(Rule, :count).by(1)
         expect(page)
-          .to have_content(I18n.t('admin.rules.title'))
+          .to have_text(I18n.t('admin.rules.title'))
       end
 
       def submit_form
@@ -56,16 +56,16 @@ RSpec.describe 'Admin Rules' do
         visit admin_rules_path
 
         expect(page)
-          .to have_content(I18n.t('admin.rules.title'))
+          .to have_text(I18n.t('admin.rules.title'))
 
         expect(Rule.ordered.pluck(:text)).to eq ['This is another rule', 'This is a rule']
 
         click_on(I18n.t('admin.rules.move_down'))
 
         expect(page)
-          .to have_content(I18n.t('admin.rules.title'))
-          .and have_content(first_rule.text)
-          .and have_content(second_rule.text)
+          .to have_text(I18n.t('admin.rules.title'))
+          .and have_text(first_rule.text)
+          .and have_text(second_rule.text)
 
         expect(Rule.ordered.pluck(:text)).to eq ['This is a rule', 'This is another rule']
       end

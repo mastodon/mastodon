@@ -23,7 +23,7 @@ RSpec.describe 'Dispute Appeals' do
       expect(emails)
         .to be_empty
       expect(page)
-        .to have_content(/can't be blank/)
+        .to have_text(/can't be blank/)
 
       # Valid with text
       fill_in 'appeal_text', with: 'It wasnt me this time!'
@@ -31,7 +31,7 @@ RSpec.describe 'Dispute Appeals' do
         .to change(Appeal, :count).by(1)
         .and send_email(to: admin.email, subject: new_appeal_subject)
       expect(page)
-        .to have_content(I18n.t('disputes.strikes.appealed_msg'))
+        .to have_text(I18n.t('disputes.strikes.appealed_msg'))
     end
 
     def new_appeal_subject
