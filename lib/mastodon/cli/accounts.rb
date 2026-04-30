@@ -497,6 +497,7 @@ module Mastodon::CLI
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :dry_run, type: :boolean
+    option :limit, type: :numeric, aliases: [:l]
     desc 'prune', 'Prune remote accounts that never interacted with local users'
     long_desc <<-LONG_DESC
       Prune remote account that
@@ -508,7 +509,7 @@ module Mastodon::CLI
       - not muted/blocked by us
     LONG_DESC
     def prune
-      _, deleted = parallelize_with_progress(prunable_accounts) do |account|
+      _, deleted = parallelize_with_progress(prunable_accounts(options[:limit])) do |account|
         next if account.bot? || account.group?
         next if account.suspended?
         next if account.silenced?
@@ -573,7 +574,7 @@ module Mastodon::CLI
 
     private
 
-    def prunable_accounts
+    def prunable_accounts(limit = nil)
       Account
         .remote
         .non_automated
@@ -588,6 +589,7 @@ module Mastodon::CLI
         .where.not(referencing_account(Report, :target_account_id))
         .where.not(referencing_account(FollowRequest, :account_id))
         .where.not(referencing_account(FollowRequest, :target_account_id))
+        .limit(limit)
     end
 
     def referencing_account(model, attribute)
