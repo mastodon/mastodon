@@ -299,6 +299,7 @@ namespace :api, format: false do
       resources :domain_blocks, only: [:index, :show, :update, :create, :destroy]
       resources :email_domain_blocks, only: [:index, :show, :create, :destroy]
       resources :ip_blocks, only: [:index, :show, :update, :create, :destroy]
+      resources :warning_presets, only: [:index, :show]
 
       namespace :trends do
         concern :approvable do
