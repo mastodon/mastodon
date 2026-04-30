@@ -18,7 +18,7 @@ class UserMailer < Devise::Mailer
 
   default to: -> { @resource.email }
 
-  def confirmation_instructions(user, token, *, **)
+  def confirmation_instructions(user, token, **)
     @resource = user
     @token    = token
 
@@ -31,7 +31,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def reset_password_instructions(user, token, *, **)
+  def reset_password_instructions(user, token, **)
     @resource = user
     @token    = token
 
@@ -42,7 +42,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def password_change(user, *, **)
+  def password_change(user, **)
     @resource = user
 
     return unless @resource.active_for_authentication?
@@ -52,7 +52,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def email_changed(user, *, **)
+  def email_changed(user, **)
     @resource = user
 
     return unless @resource.active_for_authentication?
@@ -62,7 +62,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def two_factor_enabled(user, *, **)
+  def two_factor_enabled(user)
     @resource = user
 
     return unless @resource.active_for_authentication?
@@ -72,7 +72,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def two_factor_disabled(user, *, **)
+  def two_factor_disabled(user)
     @resource = user
 
     return unless @resource.active_for_authentication?
@@ -82,7 +82,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def two_factor_recovery_codes_changed(user, *, **)
+  def two_factor_recovery_codes_changed(user)
     @resource = user
 
     return unless @resource.active_for_authentication?
@@ -92,7 +92,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def webauthn_enabled(user, *, **)
+  def webauthn_enabled(user)
     @resource = user
 
     return unless @resource.active_for_authentication?
@@ -102,7 +102,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def webauthn_disabled(user, *, **)
+  def webauthn_disabled(user)
     @resource = user
 
     return unless @resource.active_for_authentication?
