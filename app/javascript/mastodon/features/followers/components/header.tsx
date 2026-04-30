@@ -40,9 +40,27 @@ export const AccountListHeader: FC<{
         <Callout className={classes.callout}>
           <FormattedMessage
             id='account_list.hidden_notice'
-            defaultMessage='This is only visible to you. To show this list to others, go to <link>Edit Profile > Profile tab settings > Show ‘Followers’ and ‘Following’</link>.'
+            defaultMessage='This is only visible to you. To show this list to others, go to <link>{page} > {modal} > {field}</link>.'
             values={{
               link: (chunks) => <Link to='/profile/edit'>{chunks}</Link>,
+              page: (
+                <FormattedMessage
+                  id='account.edit_profile'
+                  defaultMessage='Edit profile'
+                />
+              ),
+              modal: (
+                <FormattedMessage
+                  id='account_edit.profile_tab.title'
+                  defaultMessage='Profile display settings'
+                />
+              ),
+              field: (
+                <FormattedMessage
+                  id='account_edit.profile_tab.show_relations.title'
+                  defaultMessage='Show ‘Followers’ and ‘Following’'
+                />
+              ),
             }}
           />
         </Callout>

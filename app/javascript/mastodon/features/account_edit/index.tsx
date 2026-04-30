@@ -107,11 +107,11 @@ export const messages = defineMessages({
   },
   profileTabTitle: {
     id: 'account_edit.profile_tab.title',
-    defaultMessage: 'Profile tab settings',
+    defaultMessage: 'Profile display settings',
   },
   profileTabSubtitle: {
     id: 'account_edit.profile_tab.subtitle',
-    defaultMessage: 'Customize the tabs on your profile and what they display.',
+    defaultMessage: 'Customize how your profile is displayed.',
   },
   advancedSettingsTitle: {
     id: 'account_edit.advanced_settings.title',
