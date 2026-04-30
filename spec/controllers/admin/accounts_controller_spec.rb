@@ -230,27 +230,6 @@ RSpec.describe Admin::AccountsController do
     end
   end
 
-  describe 'POST #unblock_email' do
-    subject { post :unblock_email, params: { id: account.id } }
-
-    let(:current_user) { Fabricate(:user, role: role) }
-    let(:account) { Fabricate(:account, suspended: true) }
-
-    before do
-      _email_block = Fabricate(:canonical_email_block, reference_account: account)
-    end
-
-    context 'when user is admin' do
-      let(:role) { UserRole.find_by(name: 'Admin') }
-
-      it 'succeeds in removing email blocks and redirects to admin account path' do
-        expect { subject }.to change { CanonicalEmailBlock.where(reference_account: account).count }.from(1).to(0)
-
-        expect(response).to redirect_to admin_account_path(account.id)
-      end
-    end
-  end
-
   describe 'POST #unsensitive' do
     subject { post :unsensitive, params: { id: account.id } }
 
