@@ -269,6 +269,41 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         </LearnMoreLink>
       </>
     );
+  } else if (quoteState === 'pending_delayed') {
+    quoteError = (
+      <>
+        <FormattedMessage
+          id='status.quote_error.pending_delayed'
+          defaultMessage='Post pending - Delayed'
+        />
+        <LearnMoreLink>
+          <p>
+            <FormattedMessage
+              id='status.quote_error.pending_delayed_popout.body'
+              defaultMessage="We're retrying verification of this quote in the background. This usually resolves on its own."
+            />
+          </p>
+        </LearnMoreLink>
+      </>
+    );
+  } else if (quoteState === 'verification_failed') {
+    quoteError = (
+      <>
+        <FormattedMessage
+          id='status.quote_error.verification_failed'
+          defaultMessage='Quote verification failed'
+        />
+        <LearnMoreLink>
+          <p>
+            <FormattedMessage
+              id='status.quote_error.verification_failed_popout.body'
+              defaultMessage="We're failed to verify this quote. This quote is unlikely to be shown due to this failure."
+            />
+          </p>
+        </LearnMoreLink>
+      </>
+    );
+
   } else if (quoteState === 'revoked') {
     quoteError = (
       <FormattedMessage
