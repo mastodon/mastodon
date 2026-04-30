@@ -25,7 +25,7 @@ class Admin::EmailSubscriptions::SetupsController < Admin::BaseController
   private
 
   def require_enabled!
-    raise ActionController::RoutingError unless Rails.application.config.x.email_subscriptions
+    raise ActionController::RoutingError, 'Feature disabled' unless Rails.application.config.x.email_subscriptions
   end
 
   def resource_params
