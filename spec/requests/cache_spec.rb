@@ -159,12 +159,7 @@ RSpec.describe 'Caching behavior' do
   # Enable CSRF protection like it is in production, as it can cause cookies
   # to be set and thus mess with cache.
   around do |example|
-    old = ActionController::Base.allow_forgery_protection
-    ActionController::Base.allow_forgery_protection = true
-
-    example.run
-
-    ActionController::Base.allow_forgery_protection = old
+    with_forgery_protection { example.run }
   end
 
   let(:alice) { Account.find_by(username: 'alice') }
