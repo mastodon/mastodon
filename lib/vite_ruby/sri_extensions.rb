@@ -71,13 +71,13 @@ ViteRuby::Manifest.prepend ViteRuby::ManifestIntegrityExtension
 
 module ViteRails::TagHelpers::IntegrityExtension
   def vite_javascript_tag(*names,
-                          type: 'module',
-                          asset_type: :javascript,
-                          skip_preload_tags: false,
-                          skip_style_tags: false,
-                          crossorigin: 'anonymous',
-                          media: 'screen',
-                          **options)
+    type: 'module',
+    asset_type: :javascript,
+    skip_preload_tags: false,
+    skip_style_tags: false,
+    crossorigin: 'anonymous',
+    media: 'screen',
+    **options)
     entries = vite_manifest.resolve_entries_with_integrity(*names, type: asset_type)
 
     ''.html_safe.tap do |tags|
@@ -128,8 +128,8 @@ module ViteRails::TagHelpers::IntegrityExtension
   end
 
   def vite_preload_file_tag(name,
-                            asset_type: :javascript,
-                            crossorigin: 'anonymous', **options)
+    asset_type: :javascript,
+    crossorigin: 'anonymous', **options)
     ''.html_safe.tap do |tags|
       entries = vite_manifest.resolve_entries_with_integrity(name, type: asset_type)
 

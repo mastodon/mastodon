@@ -1,12 +1,9 @@
 ---
-Style/ArrayIntersect:
-  Enabled: false
+Style/Alias:
+  EnforcedStyle: prefer_alias
 
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
+Style/EmptyMethod:
+  EnforcedStyle: compact
 
 Style/FormatStringToken:
   AllowedMethods:
@@ -15,23 +12,9 @@ Style/FormatStringToken:
     merge:
       - AllowedMethods
 
-Style/HashAsLastArrayItem:
-  Enabled: false
-
-Style/HashSyntax:
-  EnforcedShorthandSyntax: either
-  EnforcedStyle: ruby19_no_mixed_keys
-
 Style/IfUnlessModifier:
   Exclude:
     - '**/*.haml'
-
-Style/KeywordArgumentsMerging:
-  Enabled: false
-
-Style/NumericLiterals:
-  AllowedPatterns:
-    - \d{4}_\d{2}_\d{2}_\d{6}
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
@@ -41,17 +24,17 @@ Style/PercentLiteralDelimiters:
 Style/RedundantBegin:
   Enabled: false
 
-Style/RedundantFetchBlock:
-  Enabled: false
+Style/SingleLineMethods:
+  AllowIfMethodIsEmpty: true
 
-Style/RescueStandardError:
-  EnforcedStyle: implicit
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
 
-Style/SafeNavigationChainLength:
-  Enabled: false
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: single_quotes
 
-Style/SymbolArray:
-  Enabled: false
+Style/TernaryParentheses:
+  EnforcedStyle: require_no_parentheses
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
@@ -59,5 +42,5 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 
-Style/WordArray:
-  MinSize: 3 # Override default of 2
+Style/UnlessLogicalOperators:
+  Enabled: false

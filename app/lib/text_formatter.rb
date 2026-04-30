@@ -46,7 +46,7 @@ class TextFormatter
     html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
     html = add_quote_fallback(html) if options[:quoted_status].present?
 
-    html.html_safe # rubocop:disable Rails/OutputSafety
+    html.html_safe
   end
 
   class << self
