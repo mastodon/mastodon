@@ -111,7 +111,7 @@ export const CollectionLockup: React.FC<CollectionLockupProps> = ({
       sideContent={sideContent}
     >
       <ListItemLink
-        as='h2'
+        as='h3'
         to={getCollectionPath(id)}
         subtitle={collectionInfo}
       >
