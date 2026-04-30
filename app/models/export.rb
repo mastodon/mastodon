@@ -55,6 +55,14 @@ class Export
     end
   end
 
+  def to_account_notes_csv
+    CSV.generate(headers: ['Account address', 'Account note'], write_headers: true, encoding: Encoding::UTF_8) do |csv|
+      account.account_notes.includes(:target_account).reorder(id: :desc).each do |account_note|
+        csv << [acct(account_note.target_account), account_note.comment]
+      end
+    end
+  end
+
   private
 
   def to_csv(accounts)
