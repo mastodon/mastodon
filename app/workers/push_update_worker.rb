@@ -23,10 +23,10 @@ class PushUpdateWorker
   end
 
   def message
-    JSON.generate({
+    {
       event: update? ? :'status.update' : :update,
       payload: @payload,
-    }.as_json)
+    }.to_json
   end
 
   def publish!
