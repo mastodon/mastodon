@@ -59,12 +59,4 @@
           %th= t('exports.archive_takeout.size')
           %th
       %tbody
-        - @backups.each do |backup|
-          %tr
-            %td
-              %time.formatted{ datetime: backup.created_at.iso8601, title: l(backup.created_at) }= l backup.created_at
-            - if backup.processed?
-              %td= number_to_human_size backup.dump_file_size
-              %td= table_link_to 'download', t('exports.archive_takeout.download'), download_backup_url(backup)
-            - else
-              %td{ colspan: 2 }= t('exports.archive_takeout.in_progress')
+        = render partial: 'backup', collection: @backups
