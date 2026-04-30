@@ -178,7 +178,7 @@ const AccountNameHelp: FC<{
             </ol>
             <FormattedMessage
               id='account.name.help.footer'
-              defaultMessage='Just like you can send emails to people using different email providers, you can interact with people on other Mastodon servers, and with anyone on other Mastodon-compatible social apps.'
+              defaultMessage='Just like you can send emails to people using different email providers, you can interact with people on other Mastodon servers, and with anyone on other Fediverse apps.'
               tagName='p'
             />
 
