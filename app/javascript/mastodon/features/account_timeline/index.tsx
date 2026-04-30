@@ -12,8 +12,10 @@ import {
   expandTimelineByKey,
   timelineKey,
 } from '@/mastodon/actions/timelines_typed';
+import { AccountHeader } from '@/mastodon/components/account_header';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
+import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import StatusList from '@/mastodon/components/status_list';
@@ -26,23 +28,23 @@ import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import { selectTimelineByKey } from '@/mastodon/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { AccountHeader } from '../components/account_header';
-import { LimitedAccountHint } from '../components/limited_account_hint';
-
-import { AccountTimelineProvider, useAccountContext } from './context';
-import { FeaturedTags } from './featured_tags';
-import { AccountFilters } from './filters';
+import { FeaturedTags } from './components/featured_tags';
+import { AccountFilters } from './components/filters';
+import { renderPinnedStatusHeader } from './components/pinned_statuses';
+import { TagSuggestions } from './components/tags_suggestions';
 import {
-  renderPinnedStatusHeader,
-  usePinnedStatusIds,
-} from './pinned_statuses';
+  AccountTimelineContext,
+  useAccountContext,
+  useAccountContextValue,
+} from './hooks/useAccountContext';
+import { usePinnedStatusIds } from './hooks/usePinned';
 import classes from './styles.module.scss';
-import { TagSuggestions } from './tags_suggestions';
 
 const emptyList = ImmutableList<string>();
 
-const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
+const AccountTimeline: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
+  const accountContext = useAccountContextValue(accountId);
 
   // Null means accountId does not exist (e.g. invalid acct). Undefined means loading.
   if (accountId === null) {
@@ -59,13 +61,13 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
   // Add this key to remount the timeline when accountId changes.
   return (
-    <AccountTimelineProvider accountId={accountId}>
+    <AccountTimelineContext.Provider value={accountContext}>
       <InnerTimeline
         accountId={accountId}
         key={accountId}
         multiColumn={multiColumn}
       />
-    </AccountTimelineProvider>
+    </AccountTimelineContext.Provider>
   );
 };
 
@@ -183,4 +185,4 @@ const EmptyMessage: FC<{ accountId: string }> = ({ accountId }) => {
 };
 
 // eslint-disable-next-line import/no-default-export
-export default AccountTimelineV2;
+export default AccountTimeline;

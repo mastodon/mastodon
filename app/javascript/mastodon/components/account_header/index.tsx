@@ -4,9 +4,6 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
 import { openModal } from '@/mastodon/actions/modal';
-import { AccountBio } from '@/mastodon/components/account_bio';
-import { Avatar } from '@/mastodon/components/avatar';
-import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import FollowRequestNoteContainer from '@/mastodon/features/account/containers/follow_request_note_container';
 import { useLayout } from '@/mastodon/hooks/useLayout';
 import { useVisibility } from '@/mastodon/hooks/useVisibility';
@@ -19,17 +16,20 @@ import type { Account } from '@/mastodon/models/account';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 
-import { FamiliarFollowers } from '../../../components/familiar_followers';
+import { AccountBio } from '../account_bio';
+import { Avatar } from '../avatar';
+import { AnimateEmojiProvider } from '../emoji/context';
+import { FamiliarFollowers } from '../familiar_followers';
 
-import { AccountName } from './account_name';
-import { AccountSubscriptionForm } from './account_subscription_form';
 import { AccountButtons } from './buttons';
 import { AccountHeaderFields } from './fields';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
+import { AccountName } from './name';
 import { AccountNote } from './note';
 import { AccountNumberFields } from './number_fields';
 import classes from './styles.module.scss';
+import { AccountSubscriptionForm } from './subscription_form';
 import { AccountTabs } from './tabs';
 
 const titleFromAccount = (account: Account) => {

@@ -4,9 +4,10 @@ import { FormattedMessage } from 'react-intl';
 
 import type { NavLinkProps } from 'react-router-dom';
 
-import { TabLink, TabList } from '@/mastodon/components/tab_list';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
+
+import { TabLink, TabList } from '../tab_list';
 
 import classes from './styles.module.scss';
 

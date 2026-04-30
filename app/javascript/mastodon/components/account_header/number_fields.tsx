@@ -4,14 +4,12 @@ import type { FC } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { openModal } from '@/mastodon/actions/modal';
-import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
-import {
-  NumberFields,
-  NumberFieldsItem,
-} from '@/mastodon/components/number_fields';
-import { ShortNumber } from '@/mastodon/components/short_number';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAppDispatch } from '@/mastodon/store';
+
+import { FormattedDateWrapper } from '../formatted_date';
+import { NumberFields, NumberFieldsItem } from '../number_fields';
+import { ShortNumber } from '../short_number';
 
 export const AccountNumberFields: FC<{ accountId: string }> = ({
   accountId,

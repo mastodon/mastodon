@@ -5,10 +5,11 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import { fetchRelationships } from '@/mastodon/actions/accounts';
 import { openModal } from '@/mastodon/actions/modal';
-import { Callout } from '@/mastodon/components/callout';
-import { IconButton } from '@/mastodon/components/icon_button';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
+
+import { Callout } from '../callout';
+import { IconButton } from '../icon_button';
 
 import classes from './styles.module.scss';
 

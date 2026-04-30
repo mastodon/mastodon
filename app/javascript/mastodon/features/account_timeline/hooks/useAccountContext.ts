@@ -1,4 +1,3 @@
-import type { FC, ReactNode } from 'react';
 import {
   createContext,
   useCallback,
@@ -10,7 +9,7 @@ import {
 import { useStorageState } from '@/mastodon/hooks/useStorage';
 
 interface AccountTimelineContextValue {
-  accountId: string;
+  accountId: string | null;
   boosts: boolean;
   replies: boolean;
   showAllPinned: boolean;
@@ -19,13 +18,20 @@ interface AccountTimelineContextValue {
   onShowAllPinned: () => void;
 }
 
-const AccountTimelineContext =
+export const AccountTimelineContext =
   createContext<AccountTimelineContextValue | null>(null);
 
-export const AccountTimelineProvider: FC<{
-  accountId: string;
-  children: ReactNode;
-}> = ({ accountId, children }) => {
+export function useAccountContext() {
+  const values = useContext(AccountTimelineContext);
+  if (!values) {
+    throw new Error(
+      'useAccountFilters must be used within an AccountTimelineProvider',
+    );
+  }
+  return values;
+}
+
+export const useAccountContextValue = (accountId?: string | null) => {
   const storageOptions = {
     type: 'local',
     prefix: 'account-filters',
@@ -62,9 +68,9 @@ export const AccountTimelineProvider: FC<{
   }, []);
 
   // Memoize the context value to avoid unnecessary re-renders.
-  const value = useMemo(
+  return useMemo(
     () => ({
-      accountId,
+      accountId: accountId ?? null,
       boosts,
       replies,
       showAllPinned,
@@ -82,20 +88,4 @@ export const AccountTimelineProvider: FC<{
       showAllPinned,
     ],
   );
-
-  return (
-    <AccountTimelineContext.Provider value={value}>
-      {children}
-    </AccountTimelineContext.Provider>
-  );
 };
-
-export function useAccountContext() {
-  const values = useContext(AccountTimelineContext);
-  if (!values) {
-    throw new Error(
-      'useAccountFilters must be used within an AccountTimelineProvider',
-    );
-  }
-  return values;
-}

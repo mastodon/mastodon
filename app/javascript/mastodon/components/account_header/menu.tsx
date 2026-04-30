@@ -21,7 +21,6 @@ import {
 import { openModal } from '@/mastodon/actions/modal';
 import { initMuteModal } from '@/mastodon/actions/mutes';
 import { initReport } from '@/mastodon/actions/reports';
-import { Dropdown } from '@/mastodon/components/dropdown_menu';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
 import type { Account } from '@/mastodon/models/account';
@@ -39,6 +38,8 @@ import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react';
 import ReportIcon from '@/material-icons/400-24px/report.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
+
+import { Dropdown } from '../dropdown_menu';
 
 import classes from './styles.module.scss';
 

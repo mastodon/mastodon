@@ -6,15 +6,16 @@ import { defineMessages, useIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import { followAccount } from '@/mastodon/actions/accounts';
-import { CopyIconButton } from '@/mastodon/components/copy_icon_button';
-import { FollowButton } from '@/mastodon/components/follow_button';
-import { IconButton } from '@/mastodon/components/icon_button';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
+
+import { CopyIconButton } from '../copy_icon_button';
+import { FollowButton } from '../follow_button';
+import { IconButton } from '../icon_button';
 
 import { AccountMenu } from './menu';
 
