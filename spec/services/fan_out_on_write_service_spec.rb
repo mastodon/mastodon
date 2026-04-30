@@ -41,6 +41,16 @@ RSpec.describe FanOutOnWriteService do
     end
   end
 
+  context 'when status visibility is nil' do
+    let(:status) { Fabricate.build :status }
+
+    before { status.visibility = nil }
+
+    it 'handles edge case by raising for future re-queue run' do
+      expect { subject.call(status) }.to raise_error(Mastodon::RaceConditionError)
+    end
+  end
+
   context 'when status is public' do
     let(:visibility) { 'public' }
 
