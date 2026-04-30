@@ -171,7 +171,7 @@ class PostStatusService < BaseService
   end
 
   def process_email_subscriptions!
-    return unless Mastodon::Feature.email_subscriptions_enabled? &&
+    return unless Rails.application.config.x.email_subscriptions && Setting.email_subscriptions &&
                   @status.public_visibility? && (!@status.reply? || @status.in_reply_to_account_id == @status.account_id) &&
                   @status.account.user_can?(:manage_email_subscriptions) &&
                   @status.account.user_email_subscriptions_enabled?

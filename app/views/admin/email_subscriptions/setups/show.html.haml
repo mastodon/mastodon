@@ -1,0 +1,25 @@
+- content_for :page_title do
+  = t('admin.email_subscriptions.index.title')
+
+- content_for :heading do
+  .heading-with-lead
+    %h1= t('admin.email_subscriptions.index.title')
+    %p.lead= t('admin.email_subscriptions.index.lead')
+
+= simple_form_for @form, url: admin_email_subscriptions_setup_path, method: :post do |f|
+  = render 'shared/error_messages', object: @form
+
+  %h3= t('.important_information')
+
+  %ol.numbered-list
+    %li= t('.list.1_permission_explanation')
+    %li= t('.list.2_feature_explanation')
+    %li= t('.list.3_privacy_policy_warning')
+    %li= t('.list.4_cost_warning')
+
+  .fields-group
+    = f.input :agreement_email_volume, as: :boolean, wrapper: :with_label
+    = f.input :agreement_privacy_and_terms, as: :boolean, wrapper: :with_label
+
+  .actions
+    = f.button :button, t('.enable_feature'), type: :submit

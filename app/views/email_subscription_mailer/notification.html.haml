@@ -34,3 +34,5 @@
 - content_for :footer do
   %p.email-footer-p= t('.footer.reason_for_email_html', name: display_name(@subscription.account), unsubscribe_path: @unsubscribe_url)
   %p.email-footer-p= t('.footer.privacy_html', domain: @instance, privacy_policy_path: privacy_policy_path)
+  - if Setting.email_footer_text.present?
+    %p.email-footer-p= Setting.email_footer_text

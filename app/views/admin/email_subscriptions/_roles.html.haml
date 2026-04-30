@@ -1,0 +1,36 @@
+.subheading-with-action
+  .subheading-with-action__subheading
+    %h3= t('.title')
+    %p= t('.lead')
+  - unless roles.empty?
+    .subheading-with-action__action
+      = link_to t('.manage_roles'), admin_roles_path, class: 'button button-secondary'
+
+.table-wrapper
+  - if roles.empty?
+    .empty-state
+      = emptyphaunt
+
+      .empty-state__title-and-description
+        .empty-state__title-and-description__title
+          = t('.empty.no_roles_added')
+        .empty-state__title-and-description__description
+          = t('.empty.hint')
+      .empty-state__action
+        = link_to t('.manage_roles'), admin_roles_path, class: 'button'
+  - else
+    %table.table
+      %thead
+        %tr
+          %th= t('.role_name')
+          %th= t('.accounts')
+          %th
+      %tbody
+        - roles.each do |role|
+          %tr
+            %td
+              = role.name
+            %td
+              = role.users.count
+            %td.align-end
+              = link_to material_symbol('edit'), edit_admin_role_path(role), title: t('.edit_role'), class: 'table-icon-link' if can?(:update, role)

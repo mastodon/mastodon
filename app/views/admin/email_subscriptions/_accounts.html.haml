@@ -1,0 +1,44 @@
+.subheading-with-action
+  .subheading-with-action__subheading
+    %h3= t('.title')
+    %p= t('.lead')
+
+.table-wrapper
+  - if accounts.empty?
+    .empty-state
+      = emptyphaunt
+
+      .empty-state__title-and-description
+        .empty-state__title-and-description__title
+          = t('.empty.no_lists_yet')
+        .empty-state__title-and-description__description
+          = t('.empty.hint')
+  - else
+    %table.table
+      %thead
+        %tr
+          %th.avatar-column
+          %th= t('.account')
+          %th= t('.status')
+          %th= t('.subscribers')
+          %th= t('.last_email')
+          %th
+      %tbody
+        - accounts.each do |account|
+          %tr
+            %td.valign-middle.avatar-column
+              = image_tag(full_asset_url(account.avatar_original_url), width: 24, height: 24, alt: '', class: 'avatar')
+            %td.valign-middle
+              %strong
+                %bdi= display_name(account)
+            %td.valign-middle
+              - if account.user_can?(:manage_email_subscriptions) && account.user_email_subscriptions_enabled?
+                %span.status-badge.positive= t('.active')
+              - else
+                %span.status-badge.negative= t('.inactive')
+            %td.valign-middle
+              = account.email_subscriptions.count
+            %td.valign-middle
+              = l account.last_status_at
+            %td.valign-middle.align-end
+              = link_to material_symbol('chevron_right'), admin_account_path(account.id), class: 'table-icon-link'

@@ -7,7 +7,7 @@ class EmailDistributionWorker
   sidekiq_options lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform(account_id)
-    return unless Mastodon::Feature.email_subscriptions_enabled?
+    return unless Rails.application.config.x.email_subscriptions && Setting.email_subscriptions
 
     @account = Account.find(account_id)
 

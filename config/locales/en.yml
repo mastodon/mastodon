@@ -487,6 +487,71 @@ en:
       resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting email. Blocking an MX domain will block sign-ups from any email address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major email providers.</strong>
       resolved_through_html: Resolved through %{domain}
       title: Blocked email domains
+    email_subscriptions:
+      accounts:
+        account: Account
+        active: Active
+        empty:
+          hint: No accounts have subscribers yet.
+          no_lists_yet: No lists yet
+        inactive: Inactive
+        last_email: Last email
+        lead: Accounts who have enabled the feature and have subscribers will show below.
+        status: Status
+        subscribers: Subscribers
+        title: Mailing lists
+      additional_footer_texts:
+        show:
+          title: Additional footer text
+      compliance_settings:
+        additional_footer_text:
+          action: Manage
+          hint: Optional text that appears in the footer of newsletter emails only
+          title: Additional footer text
+        lead: Email newsletters may be considered marketing emails, depending on the jurisdictions where you operate.
+        privacy_policy:
+          action: Manage
+          hint: This policy is linked in the footer of every email
+          title: Privacy policy
+        title: Compliance settings
+      danger_zone:
+        disable_feature:
+          action: Disable
+          hint: Turn off feature for all accounts
+          title: Disable feature
+        erase_all_data:
+          action: Erase data
+          hint: Permanently deletes all emails in all mailing lists
+          title: Erase all data
+        title: Danger zone
+      disabled_msg: Email subscriptions have been successfully disabled.
+      index:
+        disabled:
+          cannot_be_enabled: Your technical provider has not enabled this feature for your server.
+          description: This feature allows specified accounts to add a widget to their profiles, enabling visitors without a Mastodon account to receive their posts via email.
+          get_started: Get started
+        lead: Allow visitors to receive posts via email from dedicated accounts on this server.
+        title: Email newsletters
+      purged_msg: All email subscriptions data is being erased.
+      roles:
+        accounts: Accounts
+        edit_role: Edit role
+        empty:
+          hint: No one has permission to use this feature.
+          no_roles_added: No roles added
+        lead: Accounts with the following roles can enable this feature on their profiles.
+        manage_roles: Manage roles
+        role_name: Role name
+        title: Roles
+      setups:
+        show:
+          enable_feature: Enable feature
+          important_information: Important information
+          list:
+            1_permission_explanation: When this feature is enabled, accounts with the designated permissions can add an email collection form to their profiles.
+            2_feature_explanation: When visitors sign up on an account’s profile page and confirm their subscription, they’ll begin to receive email updates when the account creates new public posts.
+            3_privacy_policy_warning: Server admins will have access to PII (email addresses) collected. As such, the privacy policy and Terms of Service for the server must be updated before using this feature.
+            4_cost_warning: Emails may incur a fee depending on hosting setup. Discuss with your hosting provider before enabling, as this feature could drastically increase the amount of emails sent from your server.
     export_domain_allows:
       new:
         title: Import domain allows
@@ -792,7 +857,7 @@ en:
         manage_custom_emojis: Manage Custom Emojis
         manage_custom_emojis_description: Allows users to manage custom emojis on the server
         manage_email_subscriptions: Manage Email Subscriptions
-        manage_email_subscriptions_description: Allow users to subscribe to users with this permission by email
+        manage_email_subscriptions_description: Allow users with this permission to enable the email newsletter feature for their account
         manage_federation: Manage Federation
         manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
         manage_invites: Manage Invites

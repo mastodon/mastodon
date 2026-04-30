@@ -38,7 +38,7 @@
     .fields-group
       = ff.input :show_application, wrapper: :with_label
 
-  - if Mastodon::Feature.email_subscriptions_enabled? && current_user.can?(:manage_email_subscriptions)
+  - if Rails.application.config.x.email_subscriptions && Setting.email_subscriptions && current_user.can?(:manage_email_subscriptions)
     %h2= t('privacy.email_subscriptions')
 
     %p.lead= t('privacy.email_subscriptions_hint_html')

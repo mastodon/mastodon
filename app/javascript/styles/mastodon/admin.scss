@@ -2223,3 +2223,117 @@ a.sparkline {
     }
   }
 }
+
+.subheading-with-action {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+
+  &__subheading {
+    flex-grow: 1;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.actions-list {
+  &__item {
+    border-bottom: 1px solid var(--color-border-primary);
+    padding: 12px 0;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    &__label {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      &__label {
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+      &__hint {
+        font-size: 13px;
+        color: var(--color-text-secondary);
+      }
+    }
+
+    &__action {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.empty-state {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 12px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  &__title-and-description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    line-height: 21px;
+    font-size: 15px;
+    text-align: center;
+
+    &__title {
+      font-weight: 600;
+    }
+  }
+
+  svg {
+    width: 200px;
+  }
+
+  // FIXME: This is duplicated with empty_message.module.scss
+  [data-color-scheme='dark'] & svg {
+    --color-skin-1: #3a3a50;
+    --color-skin-2: #67678e;
+    --color-skin-3: #44445f;
+    --color-outline: #21212c;
+    --color-shadow: #181820;
+    --color-highlight: #b2b1c8;
+  }
+}
+
+.heading-with-lead {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .lead {
+    font-size: 18px;
+    color: var(--color-text-secondary);
+  }
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: 3px 4px;
+  border-radius: 8px;
+  background: var(--color-bg-success-softest);
+  font-size: 13px;
+  font-weight: 600;
+}
