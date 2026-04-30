@@ -27,6 +27,12 @@
     text-decoration: none;
   }
 
+  &:focus {
+    // Override silly global border radius on focused links
+    border-radius: 0;
+    outline-offset: 2px;
+  }
+
   &:not(:global(.active)):is(:hover, :focus) {
     color: var(--color-text-brand-soft);
   }
