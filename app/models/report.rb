@@ -26,6 +26,7 @@ class Report < ApplicationRecord
 
   include Paginable
   include RateLimitable
+  include Report::Resolution
 
   COMMENT_SIZE_LIMIT = 1_000
 
@@ -45,8 +46,6 @@ class Report < ApplicationRecord
   has_many :notes, class_name: 'ReportNote', inverse_of: :report, dependent: :destroy
   has_many :notifications, as: :activity, dependent: :destroy
 
-  scope :unresolved, -> { where(action_taken_at: nil) }
-  scope :resolved,   -> { where.not(action_taken_at: nil) }
   scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with([:account_stat, { user: [:invite_request, :invite, :ips] }])) }
 
   # A report is considered local if the reporter is local
@@ -107,28 +106,6 @@ class Report < ApplicationRecord
 
   def unassign!
     update!(assigned_account_id: nil)
-  end
-
-  def resolve!(acting_account)
-    update!(action_taken_at: Time.now.utc, action_taken_by_account_id: acting_account.id)
-  end
-
-  def unresolve!
-    update!(action_taken_at: nil, action_taken_by_account_id: nil)
-  end
-
-  def action_taken?
-    action_taken_at.present?
-  end
-
-  alias action_taken action_taken?
-
-  def unresolved?
-    !action_taken?
-  end
-
-  def unresolved_siblings?
-    Report.where.not(id: id).where(target_account_id: target_account_id).unresolved.exists?
   end
 
   def to_log_human_identifier

@@ -54,54 +54,6 @@ RSpec.describe Report do
     end
   end
 
-  describe 'resolve!' do
-    subject(:report) { Fabricate(:report, action_taken_at: nil, action_taken_by_account_id: nil) }
-
-    let(:acting_account) { Fabricate(:account) }
-
-    before do
-      report.resolve!(acting_account)
-    end
-
-    it 'records action taken' do
-      expect(report.action_taken?).to be true
-      expect(report.action_taken_by_account_id).to eq acting_account.id
-    end
-  end
-
-  describe 'unresolve!' do
-    subject(:report) { Fabricate(:report, action_taken_at: Time.now.utc, action_taken_by_account_id: acting_account.id) }
-
-    let(:acting_account) { Fabricate(:account) }
-
-    before do
-      report.unresolve!
-    end
-
-    it 'unresolves' do
-      expect(report.action_taken?).to be false
-      expect(report.action_taken_by_account_id).to be_nil
-    end
-  end
-
-  describe 'unresolved?' do
-    subject { report.unresolved? }
-
-    let(:report) { Fabricate(:report, action_taken_at: action_taken) }
-
-    context 'when action is taken' do
-      let(:action_taken) { Time.now.utc }
-
-      it { is_expected.to be false }
-    end
-
-    context 'when action not is taken' do
-      let(:action_taken) { nil }
-
-      it { is_expected.to be true }
-    end
-  end
-
   describe 'history' do
     subject(:action_logs) { report.history }
 
@@ -131,28 +83,6 @@ RSpec.describe Report do
         .and not_include(unmatched_type_account)
         .and not_include(unmatched_type_report)
         .and not_include(unmatched_type_status)
-    end
-  end
-
-  describe '#unresolved_siblings?' do
-    subject { Fabricate :report }
-
-    context 'when the target account has other unresolved reports' do
-      before { Fabricate :report, action_taken_at: nil, target_account: subject.target_account }
-
-      it { is_expected.to be_unresolved_siblings }
-    end
-
-    context 'when the target account has a resolved report' do
-      before { Fabricate :report, action_taken_at: 3.days.ago, target_account: subject.target_account }
-
-      it { is_expected.to_not be_unresolved_siblings }
-    end
-
-    context 'when the target account has no other reports' do
-      before { described_class.where(target_account: subject.target_account).destroy_all }
-
-      it { is_expected.to_not be_unresolved_siblings }
     end
   end
 
