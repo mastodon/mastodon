@@ -1731,6 +1731,27 @@ el:
     copy_account_note_text: 'Ο χρήστης μετακόμισε από τον %{acct}, ορίστε οι προηγούμενες σημειώσεις σου για εκείνον:'
   navigation:
     toggle_menu: Εμφάνιση/Απόκρυψη μενού
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} σας πρόσθεσε σε μια συλλογή"
+    admin_report:
+      title_html: Ο/Η %{name} ανέφερε τον/την %{target}
+    admin_sign_up:
+      title_and_others_html:
+        one: Ο/Η %{name} και ένας ακόμα έχουν εγγραφεί
+        other: Ο/Η %{name} και %{count} ακόμα έχουν εγγραφεί
+      title_html: Ο/Η %{name} έχει εγγραφεί
+    collection_update:
+      title_html: "%{name} ενημέρωσε μια συλλογή στην οποία περιλαμβάνεσαι"
+    generic:
+      sign_in: Συνδεθείτε στην εφαρμογή ιστού Mastodon
+      summary_html: Είστε σε μια εφαρμογή που δεν υποστηρίζει την πιο πρόσφατη έκδοση του Mastodon. %link για πλήρη λειτουργικότητα.
+    moderation_warning:
+      summary_html: Είστε σε μια εφαρμογή που δεν υποστηρίζει την πιο πρόσφατη έκδοση του Mastodon. %link
+      title: Έχετε λάβει μία προειδοποίηση συντονισμού.
+    severed_relationships:
+      summary_html: Ένας διαχειριστής από το %{from} έχει αναστείλει το %{target}, το οποίο σημαίνει ότι δεν μπορείς πλέον να λαμβάνεις ενημερώσεις από αυτούς ή να αλληλεπιδράς μαζί τους. %{link} για να λάβετε μια λίστα με τις χαμένες σχέσεις.
+      title: Χαμένες συνδέσεις με το %{name}
   notification_mailer:
     admin:
       report:
@@ -1764,7 +1785,7 @@ el:
       subject: Ο/Η %{name} έκανε παράθεση της ανάρτησής σου
       title: Νέα παράθεση
     quoted_update:
-      subject: Ο/Η %{name} επεξεργάστηκε μία ανάρτηση που παρέθεσες
+      subject: "%{name} επεξεργάστηκε μία ανάρτηση που παρέθεσες"
     reblog:
       body: 'Η ανάρτησή σου ενισχύθηκε από %{name}:'
       subject: Ο/Η %{name} ενίσχυσε την ανάρτηση σου
@@ -1955,7 +1976,7 @@ el:
     event_type:
       account_suspension: Αναστολή λογαριασμού (%{target_name})
       domain_block: Αναστολή διακομιστή (%{target_name})
-      user_domain_block: Απέκλεισες τον χρήστη %{target_name}
+      user_domain_block: Απέκλεισες το %{target_name}
     lost_followers: Χαμένοι ακόλουθοι
     lost_follows: Χαμένες ακολουθήσεις
     preamble: Μπορεί να χάσεις ακολουθήσεις και ακόλουθους όταν αποκλείεις έναν τομέα ή όταν οι συντονιστές σου αποφασίζουν να αναστείλουν έναν απομακρυσμένο διακομιστή. Όταν συμβεί αυτό, θα είσαι σε θέση να κατεβάσεις λίστες των αποκομμένων σχέσεων, για να επιθεωρηθούν και ενδεχομένως να εισαχθούν σε άλλον διακομιστή.

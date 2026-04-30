@@ -1731,6 +1731,27 @@ da:
     copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, hvor dine tidligere noter om dem var:'
   navigation:
     toggle_menu: Åbn/luk menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} tilføjede dig til en samling"
+    admin_report:
+      title_html: "%{name} anmeldte %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} og en anden tilmeldte sig"
+        other: "%{name} og %{count} andre tilmeldte sig"
+      title_html: "%{name} tilmeldte sig"
+    collection_update:
+      title_html: "%{name} opdaterede en samling, du er med i"
+    generic:
+      sign_in: Log ind på Mastodon web-appen
+      summary_html: Du er på en app, der ikke understøtter den seneste version af Mastodon. %link for fuld funktionalitet.
+    moderation_warning:
+      summary_html: Du er på en app, der ikke understøtter den seneste version af Mastodon. %link
+      title: Du har modtaget en moderationsadvarsel.
+    severed_relationships:
+      summary_html: En administrator fra %{from} har suspenderet %{target}, hvilket betyder, at du ikke længere kan modtage opdateringer fra dem eller interagere med dem. %{link} for at hente en liste over de tabte forhold.
+      title: Mistede forbindelser med %{name}
   notification_mailer:
     admin:
       report:

@@ -1731,6 +1731,24 @@ de:
     copy_account_note_text: 'Dieses Konto ist von %{acct} umgezogen. Hier deine damals verfassten Notizen zum Profil:'
   navigation:
     toggle_menu: Menü ein-/ausblenden
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} fügte dich zu einer Sammlung hinzu"
+    admin_report:
+      title_html: "%{name} meldete %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} und noch jemand anderes registrierten sich"
+        other: "%{name} und %{count} weitere registrierten sich"
+      title_html: "%{name} registrierte sich"
+    collection_update:
+      title_html: "%{name} aktualisierte eine Sammlung, in der du vorgestellt wirst"
+    generic:
+      sign_in: In der Mastodon-Web-App anmelden
+      summary_html: Du verwendest eine App, die noch nicht die aktuellste Version von Mastodon unterstützt. %link für vollständige Funktionalität.
+    moderation_warning:
+      summary_html: Du verwendest eine App, die noch nicht die aktuellste Version von Mastodon unterstützt. %link
+      title: Die Moderator*innen haben dich verwarnt.
   notification_mailer:
     admin:
       report:

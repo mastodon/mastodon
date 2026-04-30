@@ -1716,6 +1716,27 @@ sq:
     copy_account_note_text: 'Ky përdorues ka ikur prej %{acct}, ja ku janë shënimet tuaja të mëparshme mbi të:'
   navigation:
     toggle_menu: Shfaq/Fshih menunë
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} ju shtoi te një koleksion"
+    admin_report:
+      title_html: "%{name} raportoi %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: U regjistrua %{name} dhe një tjetër
+        other: U regjistruan %{name} dhe %{count} të tjerë
+      title_html: U regjistrua %{name}
+    collection_update:
+      title_html: "%{name} përditësoi një koleksion në të cilin gjendeni"
+    generic:
+      sign_in: Bëni hyrjen te aplikacioni web Mastodon
+      summary_html: Gjendeni në një aplikacion i cili s’mbulon versionin më të ri të Mastodon-it. %link për funksionim të plotë.
+    moderation_warning:
+      summary_html: Gjendeni në një aplikacion i cili s’mbulon versionin më të ri të Mastodon-it. %link
+      title: Keni marrë një sinjalizim moderimi.
+    severed_relationships:
+      summary_html: Një përgjegjës prej %{from} ka pezulluar %{target}, që do të thotë se s’mund të merrni më përditësime prej tij, apo të ndërveproni me të. %{link} që të merrni një listë të marrëdhënieve të humbura.
+      title: U humbën lidhje me %{name}
   notification_mailer:
     admin:
       report:

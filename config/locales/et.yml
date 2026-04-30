@@ -1731,6 +1731,18 @@ et:
     copy_account_note_text: 'Kasutaja kolis kontolt %{acct}, kus olid eelnevad märkmed tema kohta:'
   navigation:
     toggle_menu: Menüü lülimine
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} lisas sind kogumikku"
+    admin_report:
+      title_html: "%{name} rapor %{target} kohta"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} ja veel üks registreerus"
+        other: "%{name} ja veel %{count} registreerus"
+      title_html: "%{name} registreerus"
+    collection_update:
+      title_html: "%{name} uuendas kogumikku, kuhu kuulud"
   notification_mailer:
     admin:
       report:
