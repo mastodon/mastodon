@@ -3,11 +3,33 @@
 require 'rails_helper'
 
 RSpec.describe AccountConversation do
-  let!(:alice) { Fabricate(:account, username: 'alice') }
-  let!(:bob)   { Fabricate(:account, username: 'bob') }
-  let!(:mark)  { Fabricate(:account, username: 'mark') }
+  describe 'Normalizations' do
+    it { is_expected.to normalize(:participant_account_ids).from([3, 2, 1]).to([1, 2, 3]) }
+  end
+
+  describe '#participant_accounts' do
+    subject { account_conversation.participant_accounts }
+
+    let(:account_conversation) { Fabricate.build :account_conversation, account: }
+    let(:accounts) { Fabricate.times 2, :account }
+    let(:account) { Fabricate :account }
+
+    context 'with IDs present' do
+      before { account_conversation.participant_account_ids = accounts.map(&:id) }
+
+      it { is_expected.to match_array(accounts) }
+    end
+
+    context 'without any IDs present' do
+      it { is_expected.to contain_exactly(account) }
+    end
+  end
 
   describe '.add_status' do
+    let!(:alice) { Fabricate(:account, username: 'alice') }
+    let!(:bob)   { Fabricate(:account, username: 'bob') }
+    let!(:mark)  { Fabricate(:account, username: 'mark') }
+
     it 'creates new record when no others exist' do
       status = Fabricate(:status, account: alice, visibility: :direct)
       status.mentions.create(account: bob)
@@ -52,6 +74,9 @@ RSpec.describe AccountConversation do
   end
 
   describe '.remove_status' do
+    let!(:alice) { Fabricate(:account, username: 'alice') }
+    let!(:bob)   { Fabricate(:account, username: 'bob') }
+
     it 'updates last status to a previous value' do
       last_status  = Fabricate(:status, account: alice, visibility: :direct)
       status       = Fabricate(:status, account: alice, visibility: :direct)
