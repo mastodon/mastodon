@@ -1,17 +1,11 @@
 # frozen_string_literal: true
 
-class InstanceFilter
+class InstanceFilter < BaseFilter
   KEYS = %i(
     limited
     by_domain
     availability
   ).freeze
-
-  attr_reader :params
-
-  def initialize(params)
-    @params = params
-  end
 
   def results
     scope = Instance.includes(:domain_block, :domain_allow, :unavailable_domain).order(accounts_count: :desc)
