@@ -34,9 +34,14 @@ export const apiGetCollection = (collectionId: string) =>
     `v1_alpha/collections/${collectionId}`,
   );
 
-export const apiGetAccountCollections = (accountId: string) =>
+export const apiGetCollectionsCreatedByAccount = (accountId: string) =>
   apiRequestGet<ApiCollectionsJSON>(
     `v1_alpha/accounts/${accountId}/collections`,
+  );
+
+export const apiGetCollectionsFeaturingAccount = (accountId: string) =>
+  apiRequestGet<ApiCollectionsJSON>(
+    `v1_alpha/accounts/${accountId}/in_collections`,
   );
 
 export const apiAddCollectionItem = (collectionId: string, accountId: string) =>

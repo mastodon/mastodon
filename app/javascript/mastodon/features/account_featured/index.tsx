@@ -27,8 +27,8 @@ import { useAccountId } from 'mastodon/hooks/useAccountId';
 import { useAccountVisibility } from 'mastodon/hooks/useAccountVisibility';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { useAccountCollections } from '../collections';
 import { CollectionListItem } from '../collections/components/collection_list_item';
+import { useCollectionsCreatedBy } from '../collections/overview/created_by_you';
 import { areCollectionsEnabled } from '../collections/utils';
 
 import { EmptyMessage } from './components/empty_message';
@@ -67,7 +67,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
       ) as ImmutableList<string>,
   );
   const { collections, status: collectionsLoadStatus } =
-    useAccountCollections(accountId);
+    useCollectionsCreatedBy(accountId);
 
   const { listedCollections = [], unlistedCollections = [] } = Object.groupBy(
     collections,
