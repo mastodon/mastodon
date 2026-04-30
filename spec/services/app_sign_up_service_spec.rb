@@ -48,11 +48,10 @@ RSpec.describe AppSignUpService do
       end
     end
 
-    context 'when the email address requires approval through MX records' do
+    context 'when the email address requires approval through MX records', :enable_mx_checks do
       before do
         Setting.registrations_mode = 'open'
         Fabricate(:email_domain_block, allow_with_approval: true, domain: 'smtp.email.com')
-        allow(User).to receive(:skip_mx_check?).and_return(false)
         configure_mx(domain: 'email.com', exchange: 'smtp.email.com')
       end
 

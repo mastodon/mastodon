@@ -15,6 +15,8 @@ RSpec.describe UserMailer do
   end
 
   shared_examples 'optional bulk mailer settings' do
+    before { Rails.configuration.x.email = Rails.application.config_for(:email) }
+
     context 'when no optional bulk mailer settings are present' do
       it 'does not include delivery method options' do
         expect(mail.message.delivery_method.settings).to be_empty
@@ -22,6 +24,10 @@ RSpec.describe UserMailer do
     end
 
     context 'when optional bulk mailer settings are present' do
+      before do
+        Rails.configuration.x.email.update({ bulk_mail: { smtp_settings: } })
+      end
+
       let(:smtp_settings) do
         {
           address: 'localhost',
@@ -29,15 +35,6 @@ RSpec.describe UserMailer do
           authentication: 'none',
           enable_starttls_auto: true,
         }
-      end
-
-      before do
-        Rails.configuration.x.email ||= ActiveSupport::OrderedOptions.new
-        Rails.configuration.x.email.update({ bulk_mail: { smtp_settings: } })
-      end
-
-      after do
-        Rails.configuration.x.email = nil
       end
 
       it 'uses the bulk mailer settings' do

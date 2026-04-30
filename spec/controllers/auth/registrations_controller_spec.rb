@@ -228,7 +228,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    context 'when user has an email address requiring approval through a MX record' do
+    context 'when user has an email address requiring approval through a MX record', :enable_mx_checks do
       subject do
         request.headers['Accept-Language'] = accept_language
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' } }
@@ -237,7 +237,6 @@ RSpec.describe Auth::RegistrationsController do
       before do
         Setting.registrations_mode = 'open'
         Fabricate(:email_domain_block, allow_with_approval: true, domain: 'mail.example.com')
-        allow(User).to receive(:skip_mx_check?).and_return(false)
         configure_mx(domain: 'example.com', exchange: 'mail.example.com')
       end
 
