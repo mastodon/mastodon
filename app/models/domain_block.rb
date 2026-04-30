@@ -71,7 +71,7 @@ class DomainBlock < ApplicationRecord
       uri      = Addressable::URI.new.tap { |u| u.host = domain.strip.delete('/') }
       variants = domain_variants(uri.normalized_host)
       where(domain: variants).by_domain_length.first
-    rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+    rescue *Mastodon::URI_PARSE_ERRORS
       nil
     end
   end

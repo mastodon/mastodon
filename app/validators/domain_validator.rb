@@ -27,7 +27,7 @@ class DomainValidator < ActiveModel::EachValidator
     uri = Addressable::URI.new
     uri.host = value
     uri.normalized_host.size < MAX_DOMAIN_LENGTH && uri.normalized_host.split('.').all? { |label| label.size.between?(MIN_LABEL_LENGTH, MAX_LABEL_LENGTH) && label =~ ALLOWED_CHARACTERS_RE }
-  rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+  rescue *Mastodon::URI_PARSE_ERRORS
     false
   end
 end
