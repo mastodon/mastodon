@@ -1,4 +1,5 @@
-import { useState, useCallback, useId } from 'react';
+import { Children, useState, useCallback, useId } from 'react';
+import type { ReactNode } from 'react';
 
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg?react';
@@ -8,8 +9,9 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
 
 export const CollapsiblePanel: React.FC<{
-  children: React.ReactNode[];
+  children: ReactNode;
   to: string;
+  activePath?: string | string[];
   title: string;
   collapseTitle: string;
   expandTitle: string;
@@ -20,6 +22,7 @@ export const CollapsiblePanel: React.FC<{
 }> = ({
   children,
   to,
+  activePath,
   icon,
   iconComponent,
   activeIconComponent,
@@ -30,6 +33,7 @@ export const CollapsiblePanel: React.FC<{
 }) => {
   const [expanded, setExpanded] = useState(false);
   const accessibilityId = useId();
+  const childCount = Children.toArray(children).length;
 
   const handleClick = useCallback(() => {
     setExpanded((value) => !value);
@@ -41,6 +45,7 @@ export const CollapsiblePanel: React.FC<{
         <ColumnLink
           transparent
           to={to}
+          activePath={activePath}
           icon={icon}
           iconComponent={iconComponent}
           activeIconComponent={activeIconComponent}
@@ -48,7 +53,7 @@ export const CollapsiblePanel: React.FC<{
           id={`${accessibilityId}-title`}
         />
 
-        {(loading || children.length > 0) && (
+        {(loading || childCount > 0) && (
           <>
             <div className='navigation-panel__list-panel__header__sep' />
 
@@ -70,7 +75,7 @@ export const CollapsiblePanel: React.FC<{
         )}
       </div>
 
-      {children.length > 0 && expanded && (
+      {childCount > 0 && expanded && (
         <div
           className='navigation-panel__list-panel__items'
           role='region'

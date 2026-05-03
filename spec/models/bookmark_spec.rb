@@ -6,6 +6,7 @@ RSpec.describe Bookmark do
   describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
     it { is_expected.to belong_to(:status).required }
+    it { is_expected.to belong_to(:bookmark_folder).with_foreign_key(:folder_id).optional.inverse_of(:bookmarks) }
   end
 
   describe 'Validations' do

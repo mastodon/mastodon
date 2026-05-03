@@ -1,4 +1,4 @@
-import type { OrderedSet as ImmutableOrderedSet } from 'immutable';
+import { OrderedSet as ImmutableOrderedSet } from 'immutable';
 
 import { createAppSelector } from 'mastodon/store';
 
@@ -20,4 +20,16 @@ export const selectPlainStatus = createAppSelector(
     }
     return status.toJS() as unknown as StatusShape;
   },
+);
+
+// Per-folder bookmark list selector
+export const getBookmarkFolderStatusList = createAppSelector(
+  [
+    (state, folderId: string) =>
+      state.status_lists.getIn(
+        ['bookmark_folders', folderId, 'items'],
+        ImmutableOrderedSet<string>(),
+      ) as ImmutableOrderedSet<string>,
+  ],
+  (items) => items.toList(),
 );

@@ -134,6 +134,14 @@ export function BookmarkedStatuses () {
   return import('../../bookmarked_statuses');
 }
 
+export function BookmarkFolders () {
+  return import('../../bookmark_folders');
+}
+
+export function BookmarkFolderEdit () {
+  return import('../../bookmark_folders/new');
+}
+
 export function Blocks () {
   return import('../../blocks');
 }
@@ -185,6 +193,10 @@ export function EmbedModal () {
 
 export function ListAdder () {
   return import('../../list_adder');
+}
+
+export function BookmarkFolderAdder () {
+  return import('../../bookmark_folder_adder');
 }
 
 export function Tesseract () {
