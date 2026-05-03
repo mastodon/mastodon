@@ -242,6 +242,13 @@ class Status extends ImmutablePureComponent {
     }
   };
 
+  handleBookmarkFolderClick = (status) => {
+    this.props.dispatch(openModal({
+      modalType: 'BOOKMARK_FOLDER_ADDER',
+      modalProps: { status },
+    }));
+  };
+
   handleDeleteClick = (status, withRedraft = false) => {
     const { dispatch, history } = this.props;
 
@@ -608,6 +615,7 @@ class Status extends ImmutablePureComponent {
                   onFavourite={this.handleFavouriteClick}
                   onReblog={this.handleReblogClick}
                   onBookmark={this.handleBookmarkClick}
+                  onBookmarkFolder={this.handleBookmarkFolderClick}
                   onDelete={this.handleDeleteClick}
                   onRevokeQuote={this.handleRevokeQuoteClick}
                   onQuotePolicyChange={this.handleQuotePolicyChange}

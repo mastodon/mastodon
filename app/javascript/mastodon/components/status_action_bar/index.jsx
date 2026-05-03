@@ -45,6 +45,7 @@ const messages = defineMessages({
   removeFavourite: { id: 'status.remove_favourite', defaultMessage: 'Remove from favorites' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
   removeBookmark: { id: 'status.remove_bookmark', defaultMessage: 'Remove bookmark' },
+  addToBookmarkFolder: { id: 'status.add_to_bookmark_folder', defaultMessage: 'Add to bookmark folder' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
@@ -101,6 +102,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
     onBookmark: PropTypes.func,
+    onBookmarkFolder: PropTypes.func,
     onFilter: PropTypes.func,
     onAddFilter: PropTypes.func,
     onInteractionModal: PropTypes.func,
@@ -154,6 +156,10 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleBookmarkClick = () => {
     this.props.onBookmark(this.props.status);
+  };
+
+  handleBookmarkFolderClick = () => {
+    this.props.onBookmarkFolder?.(this.props.status);
   };
 
   handleDeleteClick = () => {
@@ -293,6 +299,9 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     if (signedIn) {
+      menu.push(null);
+
+      menu.push({ text: intl.formatMessage(messages.addToBookmarkFolder), action: this.handleBookmarkFolderClick });
       menu.push(null);
 
       if (writtenByMe && pinnableStatus) {

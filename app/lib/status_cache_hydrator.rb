@@ -34,9 +34,10 @@ class StatusCacheHydrator
 
   def hydrate_reblog_payload(empty_payload, account, nested: false)
     empty_payload.tap do |payload|
-      payload[:muted]      = false
-      payload[:bookmarked] = false
-      payload[:pinned]     = false if @status.account_id == account.id
+      payload[:muted]              = false
+      payload[:bookmarked]         = false
+      payload[:bookmark_folder_id] = nil
+      payload[:pinned]             = false if @status.account_id == account.id
 
       # If the reblogged status is being delivered to the author who disabled the display of the application
       # used to create the status, we need to hydrate it here too
@@ -53,12 +54,13 @@ class StatusCacheHydrator
   end
 
   def fill_status_payload(payload, status, account, nested: false, fresh: true)
-    payload[:favourited] = Favourite.exists?(account_id: account.id, status_id: status.id)
-    payload[:reblogged]  = Status.exists?(account_id: account.id, reblog_of_id: status.id)
-    payload[:muted]      = ConversationMute.exists?(account_id: account.id, conversation_id: status.conversation_id)
-    payload[:bookmarked] = Bookmark.exists?(account_id: account.id, status_id: status.id)
-    payload[:pinned]     = StatusPin.exists?(account_id: account.id, status_id: status.id) if status.account_id == account.id
-    payload[:filtered]   = mapped_applied_custom_filter(account, status)
+    payload[:favourited]          = Favourite.exists?(account_id: account.id, status_id: status.id)
+    payload[:reblogged]           = Status.exists?(account_id: account.id, reblog_of_id: status.id)
+    payload[:muted]               = ConversationMute.exists?(account_id: account.id, conversation_id: status.conversation_id)
+    payload[:bookmarked]          = Bookmark.exists?(account_id: account.id, status_id: status.id)
+    payload[:bookmark_folder_id]  = payload[:bookmarked] ? Bookmark.where(account_id: account.id, status_id: status.id).pick(:folder_id)&.to_s : nil
+    payload[:pinned]              = StatusPin.exists?(account_id: account.id, status_id: status.id) if status.account_id == account.id
+    payload[:filtered]            = mapped_applied_custom_filter(account, status)
     payload[:quote_approval][:current_user] = status.quote_policy_for_account(account) if payload[:quote_approval]
     payload[:quote] = hydrate_quote_payload(payload[:quote], status.quote, account, nested:) if payload[:quote]
 

@@ -59,6 +59,8 @@ import {
   FollowRequests,
   FavouritedStatuses,
   BookmarkedStatuses,
+  BookmarkFolders,
+  BookmarkFolderEdit,
   FollowedTags,
   LinkTimeline,
   ListTimeline,
@@ -219,7 +221,11 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/notifications/requests/:id' component={NotificationRequest} content={children} exact />
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
-            <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
+            <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} exact />
+            <WrappedRoute path='/bookmarks/folders/new' component={BookmarkFolderEdit} content={children} />
+            <WrappedRoute path='/bookmarks/folders/:id/edit' component={BookmarkFolderEdit} content={children} />
+            <WrappedRoute path='/bookmarks/folders' component={BookmarkFolders} content={children} exact />
+            <WrappedRoute path='/bookmarks/folders/:folderId' component={BookmarkedStatuses} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
             <WrappedRoute path='/start/profile' exact component={OnboardingProfile} content={children} />

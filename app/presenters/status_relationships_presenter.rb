@@ -4,7 +4,8 @@ class StatusRelationshipsPresenter
   PINNABLE_VISIBILITIES = %w(public unlisted private).freeze
 
   attr_reader :reblogs_map, :favourites_map, :mutes_map, :pins_map,
-              :bookmarks_map, :filters_map, :attributes_map
+              :bookmark_folders_map, :bookmarks_map, :filters_map,
+              :attributes_map
 
   def initialize(statuses, current_account_id = nil, **options)
     @current_account_id = current_account_id
@@ -15,13 +16,14 @@ class StatusRelationshipsPresenter
 
     if current_account_id.nil?
       @preloaded_account_relations = {}
-      @filters_map     = {}
-      @reblogs_map     = {}
-      @favourites_map  = {}
-      @bookmarks_map   = {}
-      @mutes_map       = {}
-      @pins_map        = {}
-      @attributes_map  = {}
+      @filters_map          = {}
+      @reblogs_map          = {}
+      @favourites_map       = {}
+      @bookmarks_map        = {}
+      @bookmark_folders_map = {}
+      @mutes_map            = {}
+      @pins_map             = {}
+      @attributes_map       = {}
     else
       @preloaded_account_relations = nil
 
@@ -33,7 +35,10 @@ class StatusRelationshipsPresenter
       @filters_map     = build_filters_map(statuses.flat_map { |s| [s, s.proper.quote&.quoted_status] }.compact.uniq, current_account_id).merge(options[:filters_map] || {})
       @reblogs_map     = Status.reblogs_map(status_ids, current_account_id).merge(options[:reblogs_map] || {})
       @favourites_map  = Status.favourites_map(status_ids, current_account_id).merge(options[:favourites_map] || {})
-      @bookmarks_map   = Status.bookmarks_map(status_ids, current_account_id).merge(options[:bookmarks_map] || {})
+
+      @bookmarks_map        = Status.bookmarks_map(status_ids, current_account_id).merge(options[:bookmarks_map] || {})
+      @bookmark_folders_map = Bookmark.where(account_id: current_account_id, status_id: status_ids).pluck(:status_id, :folder_id).to_h { |id, folder_id| [id, folder_id] }.merge(options[:bookmark_folders_map] || {})
+
       @mutes_map       = Status.mutes_map(conversation_ids, current_account_id).merge(options[:mutes_map] || {})
       @pins_map        = Status.pins_map(pinnable_status_ids, current_account_id).merge(options[:pins_map] || {})
       @attributes_map  = options[:attributes_map] || {}

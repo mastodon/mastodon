@@ -129,11 +129,14 @@ export function unfavouriteFail(status, error) {
   };
 }
 
-export function bookmark(status) {
+export function bookmark(status, folderId) {
   return function (dispatch) {
     dispatch(bookmarkRequest(status));
 
-    api().post(`/api/v1/statuses/${status.get('id')}/bookmark`).then(function (response) {
+    // undefined omits body; null explicitly clears the folder
+    const data = typeof folderId === 'undefined' ? undefined : { folder_id: folderId };
+
+    api().post(`/api/v1/statuses/${status.get('id')}/bookmark`, data).then(function (response) {
       dispatch(importFetchedStatus(response.data));
       dispatch(bookmarkSuccess(status, response.data));
     }).catch(function (error) {

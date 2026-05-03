@@ -8,6 +8,7 @@ import { accountsFamiliarFollowersReducer } from './accounts_familiar_followers'
 import { accountsMapReducer } from './accounts_map';
 import { alertsReducer } from './alerts';
 import announcements from './announcements';
+import { bookmarkFoldersReducer } from './bookmark_folders';
 import { composeReducer } from './compose';
 import { contextsReducer } from './contexts';
 import conversations from './conversations';
@@ -51,6 +52,7 @@ const reducers = {
   modal: modalReducer,
   user_lists,
   status_lists,
+  bookmark_folders: bookmarkFoldersReducer,
   accounts: accountsReducer,
   accounts_map: accountsMapReducer,
   accounts_familiar_followers: accountsFamiliarFollowersReducer,
