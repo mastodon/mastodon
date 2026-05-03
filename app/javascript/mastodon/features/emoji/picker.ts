@@ -29,7 +29,8 @@ export async function fetchCustomEmojiData() {
   const { loadAllCustomEmoji } = await import('./database');
   const emojisRaw = await loadAllCustomEmoji();
   if (emojisRaw.length === 0) {
-    return [];
+    customEmojis = [];
+    return customEmojis;
   }
 
   const categories = new Set(['custom']);
