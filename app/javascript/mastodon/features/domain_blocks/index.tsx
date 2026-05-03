@@ -62,6 +62,10 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     columnRef.current?.scrollTop();
   }, []);
 
+  const handleUnblock = useCallback((domain: string) => {
+    setDomains((prev) => prev.filter((d) => d !== domain));
+  }, []);
+
   const emptyMessage = (
     <FormattedMessage
       id='empty_column.domain_blocks'
@@ -95,7 +99,7 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         bindToDocument={!multiColumn}
       >
         {domains.map((domain) => (
-          <Domain key={domain} domain={domain} />
+          <Domain key={domain} domain={domain} onUnblock={handleUnblock} />
         ))}
       </ScrollableList>
 
