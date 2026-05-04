@@ -1743,6 +1743,15 @@ et:
       title_html: "%{name} registreerus"
     collection_update:
       title_html: "%{name} uuendas kogumikku, kuhu kuulud"
+    generic:
+      sign_in: Logi sisse Mastodoni veebirakendusse
+      summary_html: Kasutad rakendust, mis ei toeta Mastodoni uusimat versiooni. Kogu funktsionaalsuse kasutamiseks vajuta %{link}.
+    moderation_warning:
+      summary_html: Kasutad rakendust, mis ei toeta Mastodoni uusimat versiooni. %{link}.
+      title: Oled saanud modereerimishoiatuse.
+    severed_relationships:
+      summary_html: "%{from} administraator on blokeerinud %{target}, mis tähendab, et sa ei saa enam temalt teateid ega temaga suhelda. %{link}, et hankida kaotatud suhete loetelu."
+      title: Kaotatud ühendus kasutajaga %{name}
   notification_mailer:
     admin:
       report:

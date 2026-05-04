@@ -1696,6 +1696,21 @@ zh-TW:
       title_html: "%{name} 將您加入至收藏名單"
     admin_report:
       title_html: "%{name} 已檢舉 %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        other: "%{name} 與 %{count} 個其他使用者已進行註冊"
+      title_html: "%{name} 已進行註冊"
+    collection_update:
+      title_html: "%{name} 已更新您所在之收藏名單"
+    generic:
+      sign_in: 登入至 Mastodon 網頁應用程式
+      summary_html: 您正在使用不支援 Mastodon 最新版本之應用程式。%{link} 如欲使用完整功能。
+    moderation_warning:
+      summary_html: 您正在使用不支援 Mastodon 最新版本之應用程式。%{link}。
+      title: 您已收到管理員警告。
+    severed_relationships:
+      summary_html: "%{from} 之管理員已將 %{target} 停權，意味著您將不再收到來自他們的更新或與之互動。%{link} 以檢視失去關係之列表。"
+      title: 與 %{name} 失去連結
   notification_mailer:
     admin:
       report:
