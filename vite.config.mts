@@ -131,7 +131,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
             if (!facadeModuleId) {
               return '[name]-[hash].js';
             }
-            if (/mastodon\/locales\/[a-zA-Z\-]+\.json/.exec(facadeModuleId)) {
+            if (/mastodon\/locales\/[a-zA-Z-]+\.json/.exec(facadeModuleId)) {
               // put all locale files in `intl/`
               return 'intl/[name]-[hash].js';
             } else if (/node_modules\/@formatjs\//.exec(facadeModuleId)) {

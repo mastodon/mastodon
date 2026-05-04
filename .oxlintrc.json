@@ -8,10 +8,14 @@
     "jsdoc",
     "promise",
     "react",
-    "jsx-a11y"
+    "jsx-a11y",
+    "import"
   ],
   "categories": {
     "correctness": "off"
+  },
+  "options": {
+    "typeAware": true
   },
   "env": {
     "builtin": true,
@@ -242,7 +246,8 @@
     "vendor/**/*",
     "streaming/**/*",
     ".bundle/**/*",
-    "storybook-static/**/*"
+    "storybook-static/**/*",
+    ".storybook/static/mockServiceWorker.js"
   ],
   "jsPlugins": ["eslint-plugin-formatjs"],
   "overrides": [
@@ -263,14 +268,16 @@
         "storybook/prefer-pascal-case": "warn",
         "storybook/story-exports": "error",
         "storybook/use-storybook-expect": "error",
-        "storybook/use-storybook-testing-library": "error"
+        "storybook/use-storybook-testing-library": "error",
+        "import/no-default-export": "off"
       },
       "jsPlugins": ["eslint-plugin-storybook"]
     },
     {
-      "files": [".storybook/main.@(js|cjs|mjs|ts)"],
+      "files": [".storybook/*"],
       "rules": {
-        "storybook/no-uninstalled-addons": "error"
+        "storybook/no-uninstalled-addons": "error",
+        "import/no-default-export": "off"
       },
       "jsPlugins": ["eslint-plugin-storybook"]
     },
@@ -284,7 +291,8 @@
         "**/*.config.js",
         "**/.*rc.js",
         "**/ide-helper.js",
-        "config/formatjs-formatter.js"
+        "config/formatjs-formatter.js",
+        "vite.config.mts"
       ],
       "rules": {
         "import/no-commonjs": "off"
@@ -449,14 +457,7 @@
         "jsx-a11y/label-has-associated-control": "error",
         "jsx-a11y/media-has-caption": "error",
         "jsx-a11y/no-autofocus": "error",
-        "jsx-a11y/no-noninteractive-tabindex": [
-          "error",
-          {
-            "tags": [],
-            "roles": ["tabpanel"],
-            "allowExpressionValues": true
-          }
-        ],
+        "jsx-a11y/no-noninteractive-tabindex": "error",
         "jsx-a11y/no-static-element-interactions": [
           "error",
           {
@@ -500,35 +501,13 @@
       }
     },
     {
-      "files": ["**/*.ts", "**/*.tsx"],
-      "plugins": ["typescript"]
-    },
-    {
-      "files": ["**/__tests__/*.js", "**/__tests__/*.jsx"],
+      "files": ["**/*.test.*", "**/__tests__/*.js", "**/__tests__/*.jsx"],
+      "rules": {
+        "no-global-assign": "off"
+      },
       "env": {
         "vitest": true
       }
-    },
-    {
-      "files": ["**/*.test.*"],
-      "rules": {
-        "no-global-assign": "off"
-      }
-    },
-    {
-      "files": ["**/*.stories.ts", "**/*.stories.tsx", ".storybook/*"],
-      "rules": {
-        "import/no-default-export": "off"
-      }
-    },
-    {
-      "files": ["vitest.shims.d.ts"],
-      "rules": {
-        "@typescript-eslint/no-unnecessary-boolean-literal-compare": "off",
-        "@typescript-eslint/no-unnecessary-condition": "off",
-        "@typescript-eslint/prefer-nullish-coalescing": "off"
-      },
-      "plugins": ["typescript"]
     }
   ]
 }
