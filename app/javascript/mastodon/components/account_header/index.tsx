@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import { openModal } from '@/mastodon/actions/modal';
 import FollowRequestNoteContainer from '@/mastodon/features/account/containers/follow_request_note_container';

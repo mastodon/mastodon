@@ -3,8 +3,9 @@ import { useState, useMemo, useCallback, createRef } from 'react';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
 import { useHistory } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 import { withRouter } from 'react-router-dom';
 import { difference } from 'lodash';
 

@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import {
   Switch,
   Route,
@@ -11,6 +10,8 @@ import {
   matchPath,
   useLocation,
 } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import { Callout } from '@/mastodon/components/callout';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';

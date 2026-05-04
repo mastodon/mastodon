@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import FindInPageIcon from '@/material-icons/400-24px/find_in_page.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';

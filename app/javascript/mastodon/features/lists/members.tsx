@@ -2,8 +2,9 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';

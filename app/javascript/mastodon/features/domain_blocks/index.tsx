@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback, useState } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
 import { apiGetDomainBlocks } from 'mastodon/api/domain_blocks';
