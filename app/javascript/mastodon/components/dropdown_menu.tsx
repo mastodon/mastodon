@@ -90,7 +90,7 @@ export const DropdownMenuItemContent: React.FC<{ item: MenuItem }> = ({
   );
 };
 
-export const DropdownMenu = <Item = MenuItem>({
+export const DropdownMenu = <Item = MenuItem,>({
   items,
   loading,
   scrollable,
