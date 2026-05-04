@@ -28,6 +28,13 @@ export async function fetchCustomEmojiData() {
 
   const { loadAllCustomEmoji } = await import('./database');
   const emojisRaw = await loadAllCustomEmoji();
+
+  // If it returns null then custom emojis aren't even loaded yet.
+  if (emojisRaw === null) {
+    return [];
+  }
+
+  // If it's empty, then they are loaded but there aren't any.
   if (emojisRaw.length === 0) {
     customEmojis = [];
     return customEmojis;
