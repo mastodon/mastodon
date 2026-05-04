@@ -17,6 +17,11 @@
   margin-top: -2px;
 }
 
+.content,
+.body {
+  min-width: 0;
+}
+
 .content {
   display: flex;
   gap: 8px;
@@ -32,6 +37,8 @@
 
 .body {
   flex-grow: 1;
+  overflow-wrap: break-word;
+  hyphens: auto;
 
   a {
     color: inherit;
