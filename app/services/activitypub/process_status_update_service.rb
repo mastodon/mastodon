@@ -237,11 +237,22 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_tagged_objects!
+    unresolved_tagged_objects = []
+
     current_tagged_objects = @raw_tagged_objects.filter_map do |tagged_object|
       url = tagged_object['id']
 
       # TODO: We probably want to resolve unknown objects at authoring time
-      ActivityPub::TagManager.instance.uri_to_resource(url, Collection)
+      collection = ActivityPub::TagManager.instance.uri_to_resource(url, Collection)
+      collection ||= ActivityPub::FetchRemoteFeaturedCollectionService.new.call(url, request_id: @request_id)
+
+      collection
+    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+      # Since previous tagged objects are about already-known collections,
+      # they don't try to resolve again and won't fall into this case.
+      # In other words, this failure case is only for new collections and can safely be retried later
+      unresolved_tagged_objects << url
+      nil
     end
 
     # Any previously-unresolved URI would be resolved here
@@ -252,6 +263,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     # Remove unused links
     @status.tagged_objects.where.not(uri: current_tagged_objects.map { |object| ActivityPub::TagManager.instance.uri_for(object) }).delete_all
+
+    # Queue unresolved collections for later
+    unresolved_tagged_objects.uniq.each do |uri|
+      TaggedCollectionResolveWorker.perform_in(rand(PROCESSING_DELAY), @status.id, uri, { 'request_id' => @request_id })
+    end
   end
 
   def update_mentions!
