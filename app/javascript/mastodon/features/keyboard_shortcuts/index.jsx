@@ -99,10 +99,12 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><kbd>0</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.top' defaultMessage='Move to top of list' /></td>
               </tr>
-              <tr>
-                <td><kbd>1</kbd>-<kbd>9</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.column' defaultMessage='Focus column' /></td>
-              </tr>
+              {multiColumn && (
+                <tr>
+                  <td><kbd>1</kbd>-<kbd>9</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.column' defaultMessage='Focus column' /></td>
+                </tr>
+              )}
               <tr>
                 <td><kbd>l</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.load_more' defaultMessage='Focus "Load more" button' /></td>
@@ -141,7 +143,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>n</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.notifications' defaultMessage='Open notifications column' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.notifications' defaultMessage='Open notifications list' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>l</kbd></td>
@@ -153,12 +155,14 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>d</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.direct' defaultMessage='Open private messages column' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.direct' defaultMessage='Open private messages list' /></td>
               </tr>
-              <tr>
-                <td><kbd>g</kbd>+<kbd>s</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.start' defaultMessage='Open "get started" column' /></td>
-              </tr>
+              {multiColumn && (
+                <tr>
+                  <td><kbd>g</kbd>+<kbd>s</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.start' defaultMessage='Open "get started" column' /></td>
+                </tr>
+              )}
               <tr>
                 <td><kbd>g</kbd>+<kbd>f</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.favourites' defaultMessage='Open favorites list' /></td>
