@@ -16,8 +16,6 @@ class TaggedCollectionResolveWorker
     return if collection.nil?
 
     status.tagged_objects.upsert({ ap_type: 'FeaturedCollection', object_id: collection.id, object_type: 'Collection' }, unique_by: %w(status_id object_type object_id))
-  rescue ActiveRecord::RecordNotFound
-    # Do nothing
   rescue Mastodon::UnexpectedResponseError => e
     response = e.response
 
