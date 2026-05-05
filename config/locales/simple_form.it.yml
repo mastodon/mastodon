@@ -92,6 +92,7 @@ it:
         closed_registrations_message: Visualizzato alla chiusura delle iscrizioni
         content_cache_retention_period: Tutti i post da altri server (inclusi booster e risposte) verranno eliminati dopo il numero specificato di giorni, senza tener conto di eventuali interazioni con gli utenti locali con tali post. Questo include i post in cui un utente locale ha contrassegnato come segnalibri o preferiti. Anche le menzioni private tra utenti di diverse istanze andranno perse e impossibile da ripristinare. L'uso di questa impostazione è inteso per casi di scopo speciale e rompe molte aspettative dell'utente quando implementato per uso generale.
         custom_css: È possibile applicare stili personalizzati sulla versione web di Mastodon.
+        email_footer_text: Testo opzionale che compare solo nel piè di pagina delle email della newsletter.
         favicon: WEBP, PNG, GIF o JPG. Sostituisce la favicon predefinita di Mastodon con un'icona personalizzata.
         landing_page: Seleziona quale pagina vedono i nuovi visitatori al loro primo arrivo sul tuo server. Se selezioni "Tendenze", è necessario abilitare le tendenze nelle Impostazioni di scoperta. Se selezioni "Feed locale", allora è necessario impostare "Accesso ai feed in diretta con post locali" su "Tutti" nelle Impostazioni di scoperta.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
@@ -294,6 +295,7 @@ it:
         closed_registrations_message: Messaggio personalizzato quando le iscrizioni non sono disponibili
         content_cache_retention_period: Periodo di ritenzione del contenuto remoto
         custom_css: Personalizza CSS
+        email_footer_text: Testo aggiuntivo a piè di pagina
         favicon: Favicon
         landing_page: Pagina di destinazione per i nuovi visitatori
         local_live_feed_access: Accesso ai feed dal vivo con post locali
@@ -322,6 +324,9 @@ it:
         trendable_by_default: Consenti le tendenze senza revisione preventiva
         trends: Abilita le tendenze
         wrapstodon: Abilita Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Comprendo che l'attivazione di questa funzione potrebbe aumentare significativamente il volume di email inviate dal server e che sono l'unico/a responsabile di eventuali costi sostenuti.
+        agreement_privacy_and_terms: Ho aggiornato l'Informativa sulla privacy e i Termini di servizio.
       interactions:
         must_be_follower: Blocca notifiche da chi non ti segue
         must_be_following: Blocca notifiche dalle persone che non segui

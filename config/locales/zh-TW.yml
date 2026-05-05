@@ -49,7 +49,7 @@ zh-TW:
         title: 為 %{username} 變更電子郵件地址
       change_role:
         changed_msg: 成功修改角色！
-        edit_roles: 管理使用者權限
+        edit_roles: 管理使用者角色權限
         label: 變更角色
         no_role: 沒有角色
         title: 為 %{username} 變更角色
@@ -477,6 +477,71 @@ zh-TW:
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
       title: 已封鎖電子郵件網域
+    email_subscriptions:
+      accounts:
+        account: 帳號
+        active: 生效中
+        empty:
+          hint: 尚無任何擁有訂閱者之帳號。
+          no_lists_yet: 尚無列表
+        inactive: 已停用
+        last_email: 最新電子郵件地址
+        lead: 已啟用此功能並擁有訂閱者之帳號將於下方顯示。
+        status: 狀態
+        subscribers: 訂閱者
+        title: 電子郵件列表
+      additional_footer_texts:
+        show:
+          title: 其他備註文字
+      compliance_settings:
+        additional_footer_text:
+          action: 管理
+          hint: 僅顯示於電子報郵件中之可選填備註文字
+          title: 其他備註文字
+        lead: 電子報可能被視為數位行銷電子郵件，取決於您所運行伺服器之司法管轄區。
+        privacy_policy:
+          action: 管理
+          hint: 此政策將連結於每封電子郵件之信尾
+          title: 隱私權政策
+        title: 法律遵循設定
+      danger_zone:
+        disable_feature:
+          action: 停用
+          hint: 替所有帳號關閉此功能
+          title: 停用功能
+        erase_all_data:
+          action: 清除資料
+          hint: 於所有電子郵件列表永久刪除所有電子郵件地址
+          title: 清除所有資料
+        title: 危險區域！
+      disabled_msg: 已成功停用電子郵件訂閱。
+      index:
+        disabled:
+          cannot_be_enabled: 您的技術提供商未替您伺服器啟用此功能。
+          description: 此功能允許指定帳號於他們的個人檔案中新增小工具，使沒有 Mastodon 帳號之訪客也能透過電子郵件接收他們的嘟文。
+          get_started: 開始使用
+        lead: 允許訪客透過電子郵件接收此伺服器上指定帳號內容。
+        title: 電子報
+      purged_msg: 已清除所有電子郵件訂閱資料。
+      roles:
+        accounts: 帳號
+        edit_role: 編輯角色
+        empty:
+          hint: 無人有權使用此功能。
+          no_roles_added: 尚未加入角色
+        lead: 擁有以下角色之帳號能於他們的個人檔案中啟用此功能。
+        manage_roles: 管理角色
+        role_name: 角色名稱
+        title: 角色
+      setups:
+        show:
+          enable_feature: 啟用功能
+          important_information: 重要資訊
+          list:
+            1_permission_explanation: 當啟用此功能時，具有指定權限之帳號能於其個人檔案中新增電子郵件清單。
+            2_feature_explanation: 訪客於帳號個人檔案頁面註冊並確認訂閱後，該帳號發表公開嘟文時，他們將會收到電子郵件通訊。
+            3_privacy_policy_warning: 伺服器管理員將能存取收集到的 PII （電子郵件地址）。有鑑於此，啟用此功能前務必更新此伺服器之隱私權政策與服務條款。
+            4_cost_warning: 依據伺服器託管方式，電子郵件可能產生額外費用。由於此功能可能大幅增加您的伺服器寄送電子郵件數量，請於啟用前聯繫您的服務提供商。
     export_domain_allows:
       new:
         title: 匯入網域白名單
@@ -776,7 +841,7 @@ zh-TW:
         manage_custom_emojis: 管理自訂 emoji 表情符號
         manage_custom_emojis_description: 允許使用者管理伺服器上之自訂 emoji 表情符號
         manage_email_subscriptions: 管理電子郵件訂閱
-        manage_email_subscriptions_description: 此權限允許使用者透過電子郵件訂閱其他使用者動態
+        manage_email_subscriptions_description: 允許擁有此權限之使用者替他們帳號啟用電子報功能
         manage_federation: 管理聯邦宇宙
         manage_federation_description: 允許使用者封鎖或允許與其他網域的聯邦宇宙，並控制傳遞能力
         manage_invites: 管理邀請

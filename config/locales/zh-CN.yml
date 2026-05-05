@@ -477,6 +477,71 @@ zh-CN:
       resolved_dns_records_hint_html: 该域名解析的 MX 记录所指向的域名如下，这些域名被用于接收电子邮件。 即使电子邮件地址域名与 MX 域名不同，屏蔽一个 MX 域名意味着阻止任何使用相同 MX 域名的邮箱地址注册本站账号。 <strong>请谨慎操作，不要误屏蔽主要的邮箱提供商。</strong>
       resolved_through_html: 通过 %{domain} 解析
       title: 被封禁的邮箱域名
+    email_subscriptions:
+      accounts:
+        account: 账号
+        active: 已生效
+        empty:
+          hint: 目前还没有账号拥有订阅者。
+          no_lists_yet: 尚无列表
+        inactive: 未生效
+        last_email: 最新电子邮件
+        lead: 已启用此功能并拥有订阅者的账号会在下方显示。
+        status: 状态
+        subscribers: 订阅者
+        title: 邮件列表
+      additional_footer_texts:
+        show:
+          title: 附加页脚文本
+      compliance_settings:
+        additional_footer_text:
+          action: 管理
+          hint: 仅在电子报邮件页脚中显示的可选文本
+          title: 附加页脚文本
+        lead: 取决于你服务器运行所在的司法管辖区，邮件电子报可能被视作营销邮件。
+        privacy_policy:
+          action: 管理
+          hint: 每封邮件的页脚都会包含指向此政策的链接
+          title: 隐私政策
+        title: 合规设置
+      danger_zone:
+        disable_feature:
+          action: 禁用
+          hint: 为所有账号关闭此功能
+          title: 禁用功能
+        erase_all_data:
+          action: 清除数据
+          hint: 永久删除所有邮件列表中的所有电子邮件地址
+          title: 清除所有数据
+        title: 危险操作区
+      disabled_msg: 已成功禁用电子邮件订阅。
+      index:
+        disabled:
+          cannot_be_enabled: 你的技术提供商尚未为你的服务器启用此功能。
+          description: 此功能允许指定账号在个人资料页添加微件小工具，使没有 Mastodon 账号的访客也能通过电子邮件接受此账号的嘟文。
+          get_started: 开始使用
+        lead: 允许访客通过电子邮件接收此服务器上指定账号的内容。
+        title: 邮件电子报
+      purged_msg: 正在清除所有电子邮件订阅数据。
+      roles:
+        accounts: 账号
+        edit_role: 编辑角色
+        empty:
+          hint: 没有人具备使用此功能的权限。
+          no_roles_added: 没有添加角色
+        lead: 具有下列角色的账号可以在其个人资料中启用此功能。
+        manage_roles: 管理角色
+        role_name: 角色名称
+        title: 角色
+      setups:
+        show:
+          enable_feature: 启用功能
+          important_information: 重要信息
+          list:
+            1_permission_explanation: 此功能启用时，具有指定权限的账号可以在个人资料页面添加电子邮件收集表单。
+            2_feature_explanation: 访客在账号的个人资料页面注册并确认订阅后，将于所订阅账号发表新的公开嘟文时收到电子邮件推送。
+            3_privacy_policy_warning: 服务器管理员将可以访问收集到的个人信息（此处为电子邮件地址）。因此，使用此功能前必须更新服务器的隐私政策及服务条款。
+            4_cost_warning: 取决于托管设置，发送电子邮件时可能产生额外费用。由于此功能可能会大幅增加你服务器发送电子邮件的数量，请在启用前和你的托管服务提供商进行联系。
     export_domain_allows:
       new:
         title: 导入域名允许列表
@@ -776,7 +841,7 @@ zh-CN:
         manage_custom_emojis: 管理自定义表情
         manage_custom_emojis_description: 允许用户管理站点上的自定义表情
         manage_email_subscriptions: 管理邮件订阅
-        manage_email_subscriptions_description: 允许其他用户通过电子邮件订阅具备此权限的用户
+        manage_email_subscriptions_description: 允许拥有此权限的用户为其账号启用邮件电子报功能
         manage_federation: 管理联合
         manage_federation_description: 允许用户禁止或允许本站同其他站点的联合，并控制消息投递能力
         manage_invites: 管理邀请

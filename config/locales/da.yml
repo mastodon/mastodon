@@ -487,6 +487,71 @@ da:
       resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke at blokere større e-mailudbydere.</strong>
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
+    email_subscriptions:
+      accounts:
+        account: Konto
+        active: Aktive
+        empty:
+          hint: Ingen konti har abonnenter endnu.
+          no_lists_yet: Ingen lister endnu
+        inactive: Inaktive
+        last_email: Seneste e-mail
+        lead: Nedenfor vises de konti, der har aktiveret funktionen og har abonnenter.
+        status: Status
+        subscribers: Abonnenter
+        title: Mailinglister
+      additional_footer_texts:
+        show:
+          title: Yderligere tekst til sidefod
+      compliance_settings:
+        additional_footer_text:
+          action: Administrér
+          hint: Valgfri tekst, der kun vises i sidefoden på e-mail-nyhedsbreve
+          title: Yderligere tekst til sidefod
+        lead: E-mail-nyhedsbreve kan blive betragtet som markedsføringsmails afhængigt af de jurisdiktioner, hvor du opererer.
+        privacy_policy:
+          action: Administrér
+          hint: Denne politik er linket til i bunden af hver e-mail
+          title: Privatlivspolitik
+        title: Compliance-indstillinger
+      danger_zone:
+        disable_feature:
+          action: Deaktivér
+          hint: Slå funktionen fra for alle konti
+          title: Deaktivér funktion
+        erase_all_data:
+          action: Slet data
+          hint: Sletter alle e-mails i alle mailinglister permanent
+          title: Slet alle data
+        title: Farezone
+      disabled_msg: E-mail-abonnementer er blevet deaktiveret.
+      index:
+        disabled:
+          cannot_be_enabled: Din tekniske udbyder har ikke aktiveret denne funktion på din server.
+          description: Denne funktion giver angivne konti mulighed for at tilføje en widget til deres profiler, så besøgende uden en Mastodon-konto kan modtage deres indlæg via e-mail.
+          get_started: Kom i gang
+        lead: Tillad besøgende at modtage indlæg via e-mail fra dedikerede konti på denne server.
+        title: Nyhedsbreve via e-mail
+      purged_msg: Alle data vedrørende e-mail-abonnementer slettes.
+      roles:
+        accounts: Konti
+        edit_role: Rediger rolle
+        empty:
+          hint: Ingen har tilladelse til at bruge denne funktion.
+          no_roles_added: Ingen roller tilføjet
+        lead: Brugere med følgende roller kan aktivere denne funktion på deres profiler.
+        manage_roles: Administrer roller
+        role_name: Rollenavn
+        title: Roller
+      setups:
+        show:
+          enable_feature: Aktivér funktion
+          important_information: Vigtig information
+          list:
+            1_permission_explanation: Når denne funktion er aktiveret, kan brugere med de angivne rettigheder tilføje en formular til indsamling af e-mailadresser til deres profiler.
+            2_feature_explanation: Når besøgende tilmelder sig på en kontos profilside og bekræfter deres abonnement, vil de begynde at modtage e-mail-opdateringer, når kontoen opretter nye offentlige indlæg.
+            3_privacy_policy_warning: Serveradministratorer vil have adgang til de indsamlede personoplysninger (e-mailadresser). Derfor skal serverens privatlivspolitik og servicevilkår opdateres, inden denne funktion tages i brug.
+            4_cost_warning: Der kan påløbe et gebyr for e-mails afhængigt af hostingopsætningen. Tal med din hostingudbyder, inden du aktiverer funktionen, da den kan medføre en markant stigning i antallet af e-mails, der sendes fra din server.
     export_domain_allows:
       new:
         title: Importeret domæne tillader
@@ -792,7 +857,7 @@ da:
         manage_custom_emojis: Administrere tilpassede emojier
         manage_custom_emojis_description: Tillader brugere at administrere tilpassede emojier på serveren
         manage_email_subscriptions: Administrer e-mail-abonnementer
-        manage_email_subscriptions_description: Giv brugere mulighed for at abonnere på andre brugere med denne tilladelse via e-mail
+        manage_email_subscriptions_description: Giv brugere med denne tilladelse mulighed for at aktivere funktionen til e-mail-nyhedsbreve på deres konto
         manage_federation: Administrere federation
         manage_federation_description: Tillader brugere at blokere eller tillade federation med andre domæner og styre leverbarhed
         manage_invites: Administrere invitationer

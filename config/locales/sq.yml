@@ -487,6 +487,49 @@ sq:
       resolved_dns_records_hint_html: Emri i përkatësisë u përket përkatësive vijuese MX, që janë përgjegjëset përfundimtare për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Hapni sytë të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
       title: Përkatësi email të bllokuara
+    email_subscriptions:
+      accounts:
+        account: Llogari
+        active: Aktive
+        empty:
+          hint: Ende s’ka llogari me pajtimtarë.
+          no_lists_yet: Ende pa lista
+        inactive: Joaktive
+        last_email: Email-i i fundit
+        lead: Llogaritë që kanë aktivizuar veçorinë dhe kanë pajtimtarë do të shfaqen më poshtë.
+        status: Gjendje
+        subscribers: Pajtimtarë
+        title: Lista postimesh
+      additional_footer_texts:
+        show:
+          title: Tekst fundfaqeje shtesë
+      compliance_settings:
+        additional_footer_text:
+          action: Administrojini
+          hint: Tekst opsional që shfaqet vetëm te fundfaqja e email-eve të buletinit
+          title: Tekst fundfaqeje shtesë
+        privacy_policy:
+          action: Administrojini
+          title: Rregulla privatësie
+        title: Rregullime përputhjeje me rregullore dhe ligje
+      danger_zone:
+        disable_feature:
+          action: Çaktivizoje
+          title: Çaktivizoje veçorinë
+        erase_all_data:
+          action: Fshiji të dhënat
+          title: Fshiji krejt të dhënat
+        title: Zonë rreziku
+      index:
+        title: Dërgoni buletine me email
+      roles:
+        manage_roles: Administroni role
+        role_name: Emër roli
+        title: Role
+      setups:
+        show:
+          enable_feature: Aktivizoje veçorinë
+          important_information: Informacion i rëndësishëm
     export_domain_allows:
       new:
         title: Importoni lejime përkatësish
@@ -787,7 +830,6 @@ sq:
         manage_custom_emojis: Të Administrojë Emoxhi Vetjake
         manage_custom_emojis_description: U lejon përdoruesve të administrojnë te shërbyesi emoxhi vetjake
         manage_email_subscriptions: Administroni Pajtime Me Email
-        manage_email_subscriptions_description: Lejojini përdoruesit të pajtohen me email te përdorues me këtë leje
         manage_federation: Të Administrojë Federim
         manage_federation_description: U lejon përdoruesve të bllokojnë ose lejojnë federim me përkatësi të tjera dhe të kontrollojnë shpërndarjen
         manage_invites: Të Administrojë Ftesa

@@ -92,6 +92,7 @@ zh-TW:
         closed_registrations_message: 於註冊關閉時顯示
         content_cache_retention_period: 所有來自其他伺服器之嘟文（包括轉嘟與回嘟）將於指定之天數後自動刪除，不論這些嘟文與本地使用者間的任何互動。這將包含本地使用者已標記為書籤或最愛之嘟文。不同站點使用者間之私訊亦將遺失且不可回復。此設定應適用於特殊情況，若常規使用將超乎多數使用者預期。
         custom_css: 您於 Mastodon 網頁版本中能套用客製化風格。
+        email_footer_text: 僅顯示於電子報郵件中之可選填備註文字。
         favicon: WEBP、PNG、GIF、或 JPG。使用自訂圖示替代預設 Mastodon favicon 圖示。
         landing_page: 選擇當新訪客第一次造訪您伺服器時所見之頁面。若您選擇「熱門趨勢」，則該功能必須於探索設定中啟用。若您選擇「本站時間軸」，則探索設定中「允許瀏覽本站嘟文之即時內容」功能必須設定為「任何人」。
         mascot: 覆寫進階網頁介面中的圖例。
@@ -153,7 +154,7 @@ zh-TW:
         dmca_email: 能使用上述用於「法律通知用途電子郵件」之相同電子郵件。
         domain: 您所提供線上服務之唯一識別。
         jurisdiction: 列出帳單支付人之居住國家。若為公司或其他實體，請列出其註冊地所在的國家，及城市、地區、領土、或州別等。
-        min_age: 不應低於您所屬法律管轄區要求之最低年齡。
+        min_age: 不應低於您所屬司法管轄區要求之最低年齡。
       user:
         chosen_languages: 當勾選時，公開時間軸將僅顯示所選擇語言之嘟文。此設定不會影響您首頁時間軸與列表。
         date_of_birth:
@@ -293,6 +294,7 @@ zh-TW:
         closed_registrations_message: 當註冊關閉時的客製化訊息
         content_cache_retention_period: 遠端內容保留期限
         custom_css: 自訂 CSS
+        email_footer_text: 其他備註文字
         favicon: 網站圖示 (Favicon)
         landing_page: 新訪客之登陸頁面
         local_live_feed_access: 允許瀏覽本站嘟文之即時內容
@@ -321,6 +323,9 @@ zh-TW:
         trendable_by_default: 允許熱門趨勢直接顯示，不需經過審核
         trends: 啟用熱門趨勢
         wrapstodon: 啟用 Mastodon 年度回顧
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: 我已充分理解啟用此功能可能顯著增加此伺服器寄送之電子郵件數量，並對所有產生之任何費用全權負責。
+        agreement_privacy_and_terms: 我已更新隱私權政策與服務條款。
       interactions:
         must_be_follower: 封鎖非跟隨者的通知
         must_be_following: 封鎖您未跟隨之使用者的通知

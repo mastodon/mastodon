@@ -487,6 +487,58 @@ et:
       resolved_dns_records_hint_html: Domeeninimi lahendatakse järgmistele MX-domeenidele, mis on lõppkokkuvõttes vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib registreerimise mis tahes e-posti aadressilt, mis kasutab sama MX-domeeni, isegi kui nähtav domeeninimi on erinev. <strong>Ole ettevaatlik, et mitte blokeerida peamisi e-posti teenusepakkujaid.</strong>
       resolved_through_html: Lahendatud %{domain} kaudu
       title: Blokeeritud e-posti domeenid
+    email_subscriptions:
+      accounts:
+        account: Konto
+        active: Aktiivne
+        empty:
+          hint: Ühelgi kontol pole veel tellijaid.
+          no_lists_yet: Veel pole loetelusid
+        inactive: Mitteaktiivne
+        last_email: Viimane e-post
+        lead: Allpool kuvatakse kontod, kus see funktsioon on aktiveeritud ja millel on tellijaid.
+        status: Olek
+        subscribers: Tellijad
+        title: Meililistid
+      additional_footer_texts:
+        show:
+          title: Täiendav jaluse tekst
+      compliance_settings:
+        additional_footer_text:
+          action: Halda
+          hint: Valikuline tekst, mida kuvatakse ainult uudis-e-kirjade jaluses
+          title: Täiendav jaluse tekst
+        lead: E-posti uudiskirju võidakse käsitleda turundusmeilidena, sõltuvalt sellest, millises jurisdiktsioonis tegutsetakse.
+        privacy_policy:
+          action: Haldamine
+          hint: Need reeglid lingitakse iga e-kirja jalusesse
+          title: Privaatsusreeglid
+        title: Vastavuse seaded
+      danger_zone:
+        disable_feature:
+          action: Keela
+          hint: Lülita funktsioon kõikidel kontodel välja
+          title: Keela funktsioon
+        erase_all_data:
+          action: Kustuta andmed
+          hint: Kustutab kõigist meililistidest kõik e-kirjad lõplikult
+          title: Kustuta kõik andmed
+        title: Ohtlik ala
+      disabled_msg: E-kirja teavituste tellimine on edukalt keelatud.
+      index:
+        disabled:
+          cannot_be_enabled: Tehniline teenusepakkuja ei ole seda funktsiooni sinu serveris aktiveerinud.
+          description: See funktsioon võimaldab määratud kontodel lisada oma profiilile vidina, mis võimaldab külastajatel, kellel pole Mastodoni kontot, saada kontode postitusi e-posti teel.
+          get_started: Alustamine
+        lead: Võimalda külastajatel saada selle serveri määratud kontodelt postitusi e-posti teel.
+        title: E-posti uudiskirjad
+      purged_msg: Kõik e-posti tellimuste andmed kustutatakse.
+      roles:
+        accounts: Kontod
+        edit_role: Muuda rolli
+        empty:
+          hint: Kellelgi pole õigust seda oskust kasutada.
+          no_roles_added: Rolle pole lisatud
     export_domain_allows:
       new:
         title: Lubatud domeenide import
@@ -792,7 +844,6 @@ et:
         manage_custom_emojis: Halda isetehtud emotikone
         manage_custom_emojis_description: Lubab kasutajatel hallata serveris isetehtud emotikone
         manage_email_subscriptions: Halda e-posti tellimusi
-        manage_email_subscriptions_description: Luba selle õigusega kasutajatel tellida kasutajaid e-posti teel
         manage_federation: Halda födereerumist
         manage_federation_description: Lubab kasutajail keelata või lubada föderatsioone teiste domeenidega ja hallata ühenduvust
         manage_invites: Halda kutseid

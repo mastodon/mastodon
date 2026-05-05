@@ -487,6 +487,45 @@ de:
       resolved_dns_records_hint_html: Die Domain wird zu den folgenden MX-Domains aufgelöst, die für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, keine großen E-Mail-Anbieter versehentlich zu sperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
       title: Gesperrte E-Mail-Domains
+    email_subscriptions:
+      accounts:
+        account: Konto
+        active: Aktiviert
+        empty:
+          hint: Bisher wurden keine Konten abonniert.
+          no_lists_yet: Noch keine Listen vorhanden
+        inactive: Deaktiviert
+        lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
+        status: Status
+        subscribers: Abonnent*innen
+        title: Mailingliste
+      compliance_settings:
+        additional_footer_text:
+          action: Verwalten
+        privacy_policy:
+          action: Verwalten
+          title: Datenschutzerklärung
+      danger_zone:
+        disable_feature:
+          action: Deaktivieren
+          title: Funktion deaktivieren
+        erase_all_data:
+          action: Daten löschen
+          title: Alle Daten löschen
+        title: Gefahrenzone
+      index:
+        disabled:
+          get_started: Loslegen
+      roles:
+        accounts: Konten
+        edit_role: Rolle bearbeiten
+        manage_roles: Rollen verwalten
+        role_name: Name der Rolle
+        title: Rollen
+      setups:
+        show:
+          enable_feature: Funktionen aktivieren
+          important_information: Wichtige Informationen
     export_domain_allows:
       new:
         title: Erlaubte Domains importieren
@@ -792,7 +831,6 @@ de:
         manage_custom_emojis: Emojis
         manage_custom_emojis_description: Spezielle Emojis dieses Servers verwalten
         manage_email_subscriptions: E-Mail-Abonnements
-        manage_email_subscriptions_description: Profile können per E-Mail-Benachrichtigung abonniert werden
         manage_federation: Föderation
         manage_federation_description: Domains anderer Mastodon-Server sperren/zulassen – und Zustellbarkeit kontrollieren
         manage_invites: Einladungen
