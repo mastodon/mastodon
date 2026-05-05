@@ -39,6 +39,7 @@
             %td.valign-middle
               = account.email_subscriptions.count
             %td.valign-middle
-              = l account.last_status_at
+              - if account.last_status_at.present?
+                = l account.last_status_at
             %td.valign-middle.align-end
               = link_to material_symbol('chevron_right'), admin_account_path(account.id), class: 'table-icon-link'
