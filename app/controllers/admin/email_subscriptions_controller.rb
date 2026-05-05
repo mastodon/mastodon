@@ -6,7 +6,7 @@ class Admin::EmailSubscriptionsController < Admin::BaseController
 
     @enabled = Setting.email_subscriptions
     @roles = UserRole.where('permissions & ? != 0', UserRole::FLAGS[:manage_email_subscriptions] | UserRole::FLAGS[:administrator])
-    @accounts = Account.local.joins(:email_subscriptions).where.associated(:email_subscriptions).includes(:user)
+    @accounts = Account.local.where.associated(:email_subscriptions).includes(:user)
   end
 
   def disable
