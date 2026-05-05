@@ -1035,35 +1035,121 @@ a.name-tag,
     max-width: 100%;
   }
 
-  .account__header__fields,
-  .account__header__content {
+  &__fields,
+  &__content {
     background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     height: 100%;
   }
 
-  .account__header__fields {
-    margin: 0;
+  &__fields {
     border: 1px solid var(--color-border-primary);
+    font-size: 14px;
+    line-height: 20px;
+    display: grid;
+    grid-template-columns: 120px auto;
+    grid-auto-flow: row;
+
+    dl {
+      display: flex;
+    }
+
+    dt,
+    dd {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--color-border-primary);
+
+      &:last-of-type:not(.verified) {
+        border-bottom: none;
+      }
+    }
+
+    dt {
+      font-weight: 500;
+      width: 120px;
+      flex: 0 0 auto;
+      color: var(--color-text-primary);
+      background: var(--color-bg-secondary);
+    }
+
+    dd {
+      flex: 1 1 auto;
+      color: var(--color-text-secondary);
+
+      &:first-of-type.verified {
+        border-top-right-radius: 4px;
+      }
+
+      &:last-of-type.verified {
+        border-bottom-right-radius: 4px;
+      }
+    }
 
     a {
       color: var(--color-text-brand);
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: underline;
+      }
     }
 
-    dl:first-child .verified {
-      border-radius: 0 4px 0 0;
-    }
+    .verified {
+      border: 1px solid var(--color-border-success-soft);
+      background: var(--color-bg-success-softest);
 
-    .verified a {
-      color: var(--color-text-success);
+      a {
+        color: var(--color-text-success);
+        font-weight: 500;
+      }
+
+      &__mark {
+        color: var(--color-text-success);
+
+        > svg {
+          vertical-align: middle;
+        }
+      }
     }
   }
 
-  .account__header__content {
+  &__content {
     box-sizing: border-box;
     padding: 20px;
     color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    word-break: normal;
+    overflow-wrap: break-word;
+
+    p {
+      margin-bottom: 20px;
+      unicode-bidi: plaintext;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: var(--color-text-brand);
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
