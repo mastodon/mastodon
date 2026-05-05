@@ -107,15 +107,8 @@ const FieldCard: FC<{
   field: AccountField;
 }> = ({ htmlHandlers, field }) => {
   const intl = useIntl();
-  const {
-    name,
-    name_emojified,
-    nameHasEmojis,
-    value_emojified,
-    value_plain,
-    valueHasEmojis,
-    verified_at,
-  } = field;
+  const { name, nameHasEmojis, value_plain, valueHasEmojis, verified_at } =
+    field;
 
   const { wrapperRef, isLabelOverflowing, isValueOverflowing } =
     useFieldOverflow();
@@ -139,7 +132,6 @@ const FieldCard: FC<{
       label={
         <FieldHTML
           text={name}
-          textEmojified={name_emojified}
           textHasCustomEmoji={nameHasEmojis}
           className='translate'
           isOverflowing={isLabelOverflowing}
@@ -150,7 +142,6 @@ const FieldCard: FC<{
       value={
         <FieldHTML
           text={value_plain}
-          textEmojified={value_emojified}
           textHasCustomEmoji={valueHasEmojis}
           isOverflowing={isValueOverflowing}
           onOverflowClick={handleOverflowClick}
@@ -175,7 +166,6 @@ const FieldCard: FC<{
 
 type FieldHTMLProps = {
   text: string;
-  textEmojified: string;
   textHasCustomEmoji: boolean;
   isOverflowing?: boolean;
   onOverflowClick?: () => void;
@@ -183,9 +173,7 @@ type FieldHTMLProps = {
 
 const FieldHTML: FC<FieldHTMLProps> = ({
   className,
-  extraEmojis,
   text,
-  textEmojified,
   textHasCustomEmoji,
   isOverflowing,
   onOverflowClick,
@@ -198,7 +186,7 @@ const FieldHTML: FC<FieldHTMLProps> = ({
   const html = (
     <EmojiHTML
       as='span'
-      htmlString={textEmojified}
+      htmlString={text}
       className={className}
       onElement={handleElement}
       data-contents
