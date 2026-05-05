@@ -103,9 +103,7 @@ export const AccountHeader: React.FC<{
       )}
 
       <AnimateEmojiProvider
-        className={classNames('account__header', {
-          inactive: !!account.moved,
-        })}
+        className={classNames(!!account.moved && classes.moved)}
       >
         {!suspendedOrHidden && !account.moved && relationship?.requested_by && (
           <FollowRequestNoteContainer account={account} />
@@ -138,12 +136,7 @@ export const AccountHeader: React.FC<{
             </a>
           </div>
 
-          <div
-            className={classNames(
-              'account__header__tabs__name',
-              classes.displayNameWrapper,
-            )}
-          >
+          <div className={classes.displayNameWrapper}>
             <AccountName accountId={accountId} />
             <AccountButtons
               accountId={accountId}
@@ -163,23 +156,16 @@ export const AccountHeader: React.FC<{
           )}
 
           {!suspendedOrHidden && (
-            <div className='account__header__extra'>
-              <div className='account__header__bio'>
-                {me && account.id !== me && (
-                  <AccountNote accountId={accountId} />
-                )}
+            <div className={classes.bioButtonsWrapper}>
+              {me && account.id !== me && <AccountNote accountId={accountId} />}
 
-                <AccountBio
-                  showDropdown
-                  accountId={accountId}
-                  className={classNames(
-                    'account__header__content',
-                    classes.bio,
-                  )}
-                />
+              <AccountBio
+                showDropdown
+                accountId={accountId}
+                className={classes.bio}
+              />
 
-                <AccountHeaderFields accountId={accountId} />
-              </div>
+              <AccountHeaderFields accountId={accountId} />
 
               {!me && account.email_subscriptions && (
                 <AccountSubscriptionForm accountId={accountId} />
