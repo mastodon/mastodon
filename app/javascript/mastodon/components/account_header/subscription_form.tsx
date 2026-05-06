@@ -104,8 +104,6 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
         .then(() => {
           setSubmitting(false);
           setSubmitted(true);
-
-          return '';
         })
         .catch((err: unknown) => {
           setSubmitting(false);
@@ -133,12 +131,11 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
         className={classNames(classes.bannerBase, classes.bannerBaseCentered)}
       >
         <div className={classes.bannerTextAndActions}>
-          <h2>
-            <FormattedMessage
-              id='email_subscriptions.submitted.title'
-              defaultMessage='One more step'
-            />
-          </h2>
+          <FormattedMessage
+            id='email_subscriptions.submitted.title'
+            defaultMessage='One more step'
+            tagName='h2'
+          />
           <FormattedMessage
             id='email_subscriptions.submitted.lead'
             defaultMessage='Check your inbox for an email to finish signing up for email updates.'
@@ -151,15 +148,14 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
   return (
     <form onSubmit={handleSubmit} className={classes.bannerBase} noValidate>
       <div className={classes.bannerTextAndActions}>
-        <h2>
-          <FormattedMessage
-            id='email_subscriptions.form.title'
-            defaultMessage='Sign up for email updates from {name}'
-            values={{
-              name: <DisplayName account={account} variant='simple' />,
-            }}
-          />
-        </h2>
+        <FormattedMessage
+          id='email_subscriptions.form.title'
+          defaultMessage='Sign up for email updates from {name}'
+          tagName='h2'
+          values={{
+            name: <DisplayName account={account} variant='simple' />,
+          }}
+        />
       </div>
 
       <div className={classes.bannerInputButton}>

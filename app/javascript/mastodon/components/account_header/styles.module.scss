@@ -449,13 +449,24 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   border-bottom: 1px solid var(--color-border-primary);
 }
 
+// Banners
+
+.bannerWrapper,
 .bannerBase {
   box-sizing: border-box;
-  padding: 16px;
-  border-radius: 12px;
-  background: var(--color-bg-secondary);
   display: flex;
   flex-direction: column;
+}
+
+.bannerWrapper {
+  background: var(--color-bg-tertiary);
+  padding: 16px;
+  align-items: center;
+}
+
+.bannerBase {
+  border-radius: 12px;
+  background: var(--color-bg-secondary);
   gap: 12px;
   justify-content: center;
   align-items: flex-start;
@@ -471,6 +482,13 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   }
 }
 
+.bannerText {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
 .bannerTextAndActions {
   display: flex;
   flex-direction: column;
@@ -482,6 +500,19 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   h2 {
     font-size: 17px;
     font-weight: 600;
+  }
+}
+
+.bannerActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: 16px;
+
+  button {
+    width: 100%;
   }
 }
 

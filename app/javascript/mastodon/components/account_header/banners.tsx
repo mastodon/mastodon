@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -21,6 +21,12 @@ import { Button } from '../button';
 import { DisplayName } from '../display_name';
 import { Icon } from '../icon';
 
+import classes from './styles.module.scss';
+
+const renderText = (nodes: ReactNode[]) => (
+  <div className={classes.bannerText}>{nodes}</div>
+);
+
 export const AccountBanners: FC<{ account: Account }> = ({ account }) => {
   const { suspended, hidden } = useAccountVisibility(account.id);
   const relationship = useRelationship(account.id);
@@ -29,28 +35,29 @@ export const AccountBanners: FC<{ account: Account }> = ({ account }) => {
     return null;
   }
 
+  let banner: ReactNode = null;
+
   if (account.memorial) {
-    return (
-      <div className='account-memorial-banner'>
-        <div className='account-memorial-banner__message'>
-          <FormattedMessage
-            id='account.in_memoriam'
-            defaultMessage='In Memoriam.'
-          />
-        </div>
-      </div>
+    banner = (
+      <FormattedMessage id='account.in_memoriam' defaultMessage='In Memoriam.'>
+        {renderText}
+      </FormattedMessage>
     );
   }
 
   if (account.moved) {
-    return <MovedNote account={account} targetAccountId={account.moved} />;
+    banner = <MovedNote account={account} targetAccountId={account.moved} />;
   }
 
   if (!suspended && relationship?.requested_by) {
-    return <FollowRequestNote account={account} />;
+    banner = <FollowRequestNote account={account} />;
   }
 
-  return null;
+  if (!banner) {
+    return null;
+  }
+
+  return <div className={classes.bannerWrapper}>{banner}</div>;
 };
 
 const FollowRequestNote: FC<{ account: Account }> = ({ account }) => {
@@ -64,16 +71,16 @@ const FollowRequestNote: FC<{ account: Account }> = ({ account }) => {
   }, [accountId, dispatch]);
 
   return (
-    <div className='follow-request-banner'>
-      <div className='follow-request-banner__message'>
-        <FormattedMessage
-          id='account.requested_follow'
-          defaultMessage='{name} has requested to follow you'
-          values={{ name: <DisplayName account={account} variant='simple' /> }}
-        />
-      </div>
+    <>
+      <FormattedMessage
+        id='account.requested_follow'
+        defaultMessage='{name} has requested to follow you'
+        values={{ name: <DisplayName account={account} variant='simple' /> }}
+      >
+        {renderText}
+      </FormattedMessage>
 
-      <div className='follow-request-banner__action'>
+      <div className={classes.bannerActions}>
         <Button secondary onClick={handleAuthorize}>
           <Icon id='check' icon={CheckIcon} />
           <FormattedMessage
@@ -90,7 +97,7 @@ const FollowRequestNote: FC<{ account: Account }> = ({ account }) => {
           />
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -101,18 +108,18 @@ const MovedNote: React.FC<{
   const to = useAppSelector((state) => state.accounts.get(targetAccountId));
 
   return (
-    <div className='moved-account-banner'>
-      <div className='moved-account-banner__message'>
-        <FormattedMessage
-          id='account.moved_to'
-          defaultMessage='{name} has indicated that their new account is now:'
-          values={{
-            name: <DisplayName account={from} variant='simple' />,
-          }}
-        />
-      </div>
+    <>
+      <FormattedMessage
+        id='account.moved_to'
+        defaultMessage='{name} has indicated that their new account is now:'
+        values={{
+          name: <DisplayName account={from} variant='simple' />,
+        }}
+      >
+        {renderText}
+      </FormattedMessage>
 
-      <div className='moved-account-banner__action'>
+      <div className={classes.bannerActions}>
         <Link to={`/@${to?.acct}`} className='detailed-status__display-name'>
           <div className='detailed-status__display-avatar'>
             <AvatarOverlay account={to} friend={from} />
@@ -127,6 +134,6 @@ const MovedNote: React.FC<{
           />
         </Link>
       </div>
-    </div>
+    </>
   );
 };
