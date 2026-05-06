@@ -32,6 +32,7 @@ class Collection < ApplicationRecord
 
   has_many :collection_items, dependent: :delete_all
   has_many :accepted_collection_items, -> { accepted }, class_name: 'CollectionItem', inverse_of: :collection # rubocop:disable Rails/HasManyOrHasOneDependent
+  has_many :top_items, -> { top_items }, class_name: 'CollectionItem', inverse_of: :collection # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :collection_reports, dependent: :delete_all
 
   validates :name, presence: true
@@ -60,6 +61,13 @@ class Collection < ApplicationRecord
   scope :with_tag, -> { includes(:tag) }
   scope :discoverable, -> { where(discoverable: true) }
   scope :local, -> { where(local: true) }
+
+  def self.top_accounts_for(collection_ids)
+    CollectionItem.preload(:account)
+      .top_in_collections(collection_ids)
+      .group_by(&:collection_id)
+      .transform_values { |items| items.map(&:account) }
+  end
 
   def remote?
     !local?

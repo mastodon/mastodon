@@ -47,6 +47,15 @@ class CollectionItem < ApplicationRecord
   scope :local, -> { joins(:collection).merge(Collection.local) }
   scope :accepted_partial, ->(account) { joins(:account).merge(Account.local).accepted.where(uri: nil, account_id: account.id) }
   scope :pending_or_accepted, -> { where(state: [:pending, :accepted]) }
+  scope :top_items, lambda { |limit = 4|
+    subquery = where('collection_items.collection_id = collections.id')
+      .accepted.ordered.limit(limit)
+      .arel.lateral('top_items')
+    collection_query = Collection
+      .select('top_items.*')
+      .from([Collection.arel_table, subquery])
+    from(collection_query, 'collection_items')
+  }
 
   def with_local_account?
     account&.local?
