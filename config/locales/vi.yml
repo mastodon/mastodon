@@ -477,6 +477,71 @@ vi:
       resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
       resolved_through_html: Đã xử lý thông qua %{domain}
       title: Tên miền email đã chặn
+    email_subscriptions:
+      accounts:
+        account: Tài khoản
+        active: Hoạt động
+        empty:
+          hint: Hiện chưa có tài khoản nào có người đăng ký đọc.
+          no_lists_yet: Chưa có danh sách nào
+        inactive: Không hoạt động
+        last_email: Email gần nhất
+        lead: Các tài khoản đã kích hoạt tính năng này và có người đăng ký sẽ hiển thị bên dưới.
+        status: Trạng thái
+        subscribers: Người đăng ký đọc
+        title: Danh sách gửi thư
+      additional_footer_texts:
+        show:
+          title: Văn bản chân trang bổ sung
+      compliance_settings:
+        additional_footer_text:
+          action: Quản lý
+          hint: Văn bản tùy chọn chỉ xuất hiện ở phần chân trang của bản tin email
+          title: Văn bản chân trang bổ sung
+        lead: Tùy thuộc vào khu vực pháp lý nơi bạn hoạt động, bản tin email có thể được coi là email tiếp thị.
+        privacy_policy:
+          action: Quản lý
+          hint: Chính sách này được liên kết ở phần chân trang của mỗi email
+          title: Chính sách bảo mật
+        title: Cài đặt tuân thủ
+      danger_zone:
+        disable_feature:
+          action: Tắt
+          hint: Tắt tính năng này cho tất cả tài khoản
+          title: Tắt tính năng
+        erase_all_data:
+          action: Xóa dữ liệu
+          hint: Xóa vĩnh viễn tất cả email trong tất cả danh sách gửi thư
+          title: Xóa tất cả dữ liệu
+        title: Khu vực nguy hiểm
+      disabled_msg: Việc đăng ký nhận email đã được vô hiệu hóa thành công.
+      index:
+        disabled:
+          cannot_be_enabled: Nhà cung cấp kỹ thuật của bạn chưa kích hoạt tính năng này cho máy chủ của bạn.
+          description: Tính năng này cho phép các tài khoản được chỉ định thêm tiện ích vào hồ sơ của họ, giúp khách truy cập không có tài khoản Mastodon vẫn có thể nhận bài đăng qua email.
+          get_started: Bắt đầu
+        lead: Cho phép khách truy cập nhận tút qua email từ các tài khoản đặc biệt trên máy chủ này.
+        title: Bản tin email
+      purged_msg: Tất cả dữ liệu đăng ký nhận email đang được xóa.
+      roles:
+        accounts: Tài khoản
+        edit_role: Chỉnh sửa vai trò
+        empty:
+          hint: Không ai có quyền dùng tính năng này.
+          no_roles_added: Chưa có vai trò nào được thêm
+        lead: Các tài khoản có vai trò sau đây có thể kích hoạt tính năng này trên hồ sơ của họ.
+        manage_roles: Quản lý vai trò
+        role_name: Tên vai trò
+        title: Vai trò
+      setups:
+        show:
+          enable_feature: Bật tính năng
+          important_information: Thông tin quan trọng
+          list:
+            1_permission_explanation: Khi tính năng này được kích hoạt, các tài khoản có quyền được chỉ định có thể thêm biểu mẫu thu thập email vào hồ sơ của họ.
+            2_feature_explanation: Khi khách truy cập đăng ký trên trang hồ sơ tài khoản và xác nhận đăng ký của họ, họ sẽ bắt đầu nhận được thông báo qua email mỗi khi tài khoản đó đăng tút công khai mới.
+            3_privacy_policy_warning: Quản trị viên máy chủ sẽ có quyền truy cập vào thông tin nhận dạng cá nhân (địa chỉ email) đã thu thập được. Do đó, chính sách bảo mật và Điều khoản dịch vụ của máy chủ phải được cập nhật trước khi sử dụng tính năng này.
+            4_cost_warning: Việc gửi email có thể phát sinh phí tùy thuộc vào cấu hình máy chủ. Hãy thảo luận với nhà cung cấp dịch vụ lưu trữ của bạn trước khi kích hoạt tính năng này, vì nó có thể làm tăng đáng kể số lượng email được gửi từ máy chủ của bạn.
     export_domain_allows:
       new:
         title: Nhập tên miền cho phép
@@ -776,6 +841,7 @@ vi:
         manage_custom_emojis: Quản lý emoji
         manage_custom_emojis_description: Cho phép quản lý các emoji tùy chỉnh trên máy chủ
         manage_email_subscriptions: Quản lý đăng ký đọc qua email
+        manage_email_subscriptions_description: Cho phép người dùng có quyền này kích hoạt tính năng nhận bản tin email cho tài khoản của họ
         manage_federation: Quản lý liên hợp
         manage_federation_description: Cho phép chặn hoặc liên hợp với các máy chủ khác và kiểm soát khả năng phân phối
         manage_invites: Quản lý lời mời

@@ -92,6 +92,7 @@ vi:
         closed_registrations_message: Được hiển thị khi đóng đăng ký
         content_cache_retention_period: Tất cả tút từ các máy chủ khác (bao gồm cả đăng lại và trả lời) sẽ bị xóa sau số ngày được chỉ định mà không tính đến bất kỳ tương tác nào của người dùng cục bộ với các tút đó. Điều này bao gồm các tút mà người dùng cục bộ đã đánh dấu nó là dấu trang hoặc mục yêu thích. Những lượt nhắc riêng tư giữa những người dùng từ các máy chủ khác nhau cũng sẽ bị mất và không thể khôi phục. Việc sử dụng cài đặt này dành cho các trường hợp có mục đích đặc biệt và phá vỡ nhiều kỳ vọng của người dùng khi được triển khai cho mục đích sử dụng chung.
         custom_css: Bạn có thể tùy chỉnh phong cách trên bản web của Mastodon.
+        email_footer_text: Văn bản tùy chọn chỉ xuất hiện ở phần chân trang của bản tin email.
         favicon: WEBP, PNG, GIF hoặc JPG. Dùng favicon Maston tùy chỉnh.
         landing_page: Chọn trang mà khách truy cập mới sẽ thấy khi họ lần đầu truy cập máy chủ của bạn. Nếu bạn chọn "Xu hướng", thì cần bật xu hướng trong Cài đặt Khám phá. Nếu bạn chọn "Bảng tin máy chủ", thì cần đặt "Truy cập vào nguồn cấp dữ liệu trực tiếp có bài đăng cục bộ" thành "Mọi người" trong Cài đặt Khám phá.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
@@ -293,6 +294,7 @@ vi:
         closed_registrations_message: Thông báo tùy chỉnh khi tắt đăng ký
         content_cache_retention_period: Khoảng thời gian lưu giữ nội dung máy chủ khác
         custom_css: Tùy chỉnh CSS
+        email_footer_text: Văn bản chân trang bổ sung
         favicon: Favicon
         landing_page: Trang mở đầu dành cho khách ghé thăm
         local_live_feed_access: Truy cập bảng tin gồm những tút của máy chủ
@@ -321,6 +323,9 @@ vi:
         trendable_by_default: Cho phép lên xu hướng mà không cần duyệt trước
         trends: Bật xu hướng
         wrapstodon: Bật Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Tôi hiểu rằng việc kích hoạt tính năng này có thể làm tăng đáng kể số lượng email được gửi từ máy chủ và tôi hoàn toàn chịu trách nhiệm về mọi chi phí phát sinh.
+        agreement_privacy_and_terms: Tôi đã cập nhật Chính sách Bảo mật và Điều khoản Dịch vụ.
       interactions:
         must_be_follower: Những người không theo dõi bạn
         must_be_following: Những người bạn không theo dõi

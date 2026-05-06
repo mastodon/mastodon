@@ -92,6 +92,7 @@ hu:
         closed_registrations_message: Akkor jelenik meg, amikor a regisztráció le van zárva
         content_cache_retention_period: Minden más kiszolgálóról származó bejegyzés (megtolásokkal és válaszokkal együtt) törölve lesz a megadott számú nap elteltével, függetlenül a helyi felhasználók ezekkel a bejegyzésekkel történő interakcióitól. Ebben azok a bejegyzések is benne vannak, melyeket a helyi felhasználó könyvjelzőzött vagy kedvencnek jelölt. A különböző kiszolgálók felhasználói közötti privát üzenetek is el fognak veszni visszaállíthatatlanul. Ennek a beállításnak a használata különleges felhasználási esetekre javasolt, mert számos felhasználói elvárás fog eltörni, ha általános céllal használják.
         custom_css: A Mastodon webes verziójában használhatsz egyéni stílusokat.
+        email_footer_text: Nem kötelező szöveg, amely csak a hírlevelek láblécében jelenik meg.
         favicon: WEBP, PNG, GIF vagy JPG. Az alapértelmezett Mastodon favicont felülírja egy egyéni ikonnal.
         landing_page: Kiválasztja, hogy a webhely új látogatói mit látnak, amikor először érkeznek a kiszolgálóra. Ha a „Trendek” lehetőséget választod, akkor engedélyezni kell a trendeket a Felfedezési beállításokban. Ha a „Helyi hírfolyamot” választod, akkor a „Helyi bejegyzéseket tartalmazó helyi élő idővonalak elérése” lehetőséget „Mindenki” értékre kell állítani a Felfedezési beállításokban.
         mascot: Felülbírálja a speciális webes felületen található illusztrációt.
@@ -294,6 +295,7 @@ hu:
         closed_registrations_message: A feliratkozáskor megjelenő egyéni üzenet nem érhető el
         content_cache_retention_period: Távoli tartalmak megtartási időszaka
         custom_css: Egyéni CSS
+        email_footer_text: További láblécszöveg
         favicon: Könyvjelzőikon
         landing_page: Kezdőoldal az új látogatóknak
         local_live_feed_access: Helyi bejegyzéseket bemutató élő hírfolyamok elérése
@@ -322,6 +324,8 @@ hu:
         trendable_by_default: Trendek engedélyezése előzetes ellenőrzés nélkül
         trends: Trendek engedélyezése
         wrapstodon: Wrapstodon engedélyezése
+      form_email_subscriptions_confirmation:
+        agreement_privacy_and_terms: Frissítettem az Adatvédelmi szabályzatot és a Felhasználási feltételeket.
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása

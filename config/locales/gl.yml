@@ -487,6 +487,70 @@ gl:
       resolved_dns_records_hint_html: O nome de dominio corresponde cos seguintes dominios MX, que son os responsables últimos de aceptar o correo. Ao bloquear un dominio MX bloquerás a creación de contas para todo enderezo de correo que use o mesmo dominio MX, incluso se o nome de dominio visible é diferente. <strong>Ten coidado xa que podes bloquear os principais provedores de correo.</strong>
       resolved_through_html: Resolto a través de %{domain}
       title: Dominios de correo bloqueados
+    email_subscriptions:
+      accounts:
+        account: Conta
+        active: Activa
+        empty:
+          hint: Aínda non hai contas con subscritoras.
+          no_lists_yet: Aínda non hai listas
+        inactive: Inactiva
+        last_email: Último correo
+        lead: Aquí móstranse as contas que activaron esta ferramenta e teñen subscritoras.
+        status: Estado
+        subscribers: Subscritoras
+        title: Listas de correo
+      additional_footer_texts:
+        show:
+          title: Texto adicional no rodapé
+      compliance_settings:
+        additional_footer_text:
+          action: Xestionar
+          hint: Texto optativo que só aparece no rodapé dos correos do boletín
+          title: Texto adiciona no rodapé
+        lead: Os boletíns por correo poden considerarse correos de propaganda, dependendo da xurisdición onde opere o servidor.
+        privacy_policy:
+          action: Xestionar
+          hint: Esta directiva está indicada no rodapé de cada correo
+          title: Directiva de privacidade
+        title: Axustes de cumprimento
+      danger_zone:
+        disable_feature:
+          action: Desactivar
+          hint: Desconectar a ferramenta para todas as contas
+          title: Desactivar a ferramenta
+        erase_all_data:
+          action: Eliminar datos
+          hint: Elimina de xeito permanente todos os correos de todas as litas de correo
+          title: Eliminar todos os datos
+        title: Zona perigosa
+      disabled_msg: Desactiváronse correctamente todas as subscripcións por correo.
+      index:
+        disabled:
+          cannot_be_enabled: O teu provedor técnico non activou esta ferramenta para o teu servidor.
+          description: Esta característica permite que as contas indicadas engadan un widget ao seu perfil, para que así as persoas que visitan súa conta Mastodon poidan recibir as súas publicacións por correo electrónico.
+          get_started: Comezar
+        lead: Permitir que as visitas reciban as publicacións de certas contas deste servidor por correo electrónico.
+        title: Boletíns por correo electrónico
+      purged_msg: Vaise eliminar todos os datos de subscricións por correo.
+      roles:
+        accounts: Contas
+        edit_role: Editar rol
+        empty:
+          hint: Ninguén ten permiso para usar esta ferramenta.
+          no_roles_added: Sen roles engadidos
+        lead: As contas cos seguintes roles poden activar esta ferramenta no seu perfil.
+        manage_roles: Xestionar roles
+        role_name: Nome do rol
+        title: Roles
+      setups:
+        show:
+          enable_feature: Activar ferramenta
+          important_information: Información importante
+          list:
+            1_permission_explanation: Cando se activa esta ferramenta as contas cos permisos concedidos poden engadir un formulario no seu perfil para recoller correos.
+            2_feature_explanation: Cando unha persoa visita se apunta na páxina do perfil e confirma a súa subscrición, comezará a recibir actualizacións por correo cando a conta publique novas publicacións públicas.
+            3_privacy_policy_warning: A administración do servidor vai ter acceso aos PII (enderezos de correo) recollidos. Así, a directiva de privacidade e os termos do servizo do servidor deben actualizarse antes de activar esta ferramenta.
     export_domain_allows:
       new:
         title: Importar dominios permitidos

@@ -487,6 +487,71 @@ fr-CA:
       resolved_dns_records_hint_html: Le nom de domaine est lié aux domaines MX suivants, qui sont responsables de la réception des courriels. Le blocage d'un domaine MX empêchera l'inscription de toute adresse de courriel utilisant le même domaine MX, et ce même si le nom de domaine visible est différent. <strong>Veillez à ne pas bloquer les principaux fournisseurs de services de messagerie.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Domaines de messagerie électronique bloqués
+    email_subscriptions:
+      accounts:
+        account: Compte
+        active: Actif
+        empty:
+          hint: Aucun compte n'a d'abonné·e·s pour l'instant.
+          no_lists_yet: Aucune liste pour l'instant
+        inactive: Inactif
+        last_email: Dernier courriel
+        lead: Les comptes ayant activé la fonctionnalité et qui ont des abonné·e·s apparaîtront ci-dessous.
+        status: État
+        subscribers: Abonné·e·s
+        title: Listes de diffusion
+      additional_footer_texts:
+        show:
+          title: Texte de pied de page supplémentaire
+      compliance_settings:
+        additional_footer_text:
+          action: Gérer
+          hint: Texte facultatif qui apparaît uniquement dans le pied de page des lettres d'information par courriel
+          title: Texte de pied de page supplémentaire
+        lead: Les lettres d'information peuvent être considérées comme des courriels de marketing, selon les juridictions où vous opérez.
+        privacy_policy:
+          action: Gérer
+          hint: Cette politique est liée dans le pied de page de chaque courriel
+          title: Politique de confidentialité
+        title: Paramètres de conformité
+      danger_zone:
+        disable_feature:
+          action: Désactiver
+          hint: Désactiver la fonctionnalité pour tous les comptes
+          title: Désactiver la fonctionnalité
+        erase_all_data:
+          action: Effacer les données
+          hint: Supprime définitivement toutes les adresses de courriel de toutes les listes de diffusion
+          title: Effacer toutes les données
+        title: Zone de danger
+      disabled_msg: Les abonnements par courriel ont été désactivés avec succès.
+      index:
+        disabled:
+          cannot_be_enabled: Votre fournisseur technique n'a pas activé cette fonctionnalité pour votre serveur.
+          description: Cette fonctionnalité permet aux comptes spécifiés d'ajouter un composant à leurs profils, permettant aux visiteur·euse·s sans compte Mastodon de recevoir leurs messages par courriel.
+          get_started: Premiers pas
+        lead: Permettre aux visiteur·euse·s de recevoir des messages par courriel à partir de comptes dédiés sur ce serveur.
+        title: Lettres d'information par courriel
+      purged_msg: Toutes les données d'abonnement par courriel sont en cours de suppression.
+      roles:
+        accounts: Comptes
+        edit_role: Modifier le rôle
+        empty:
+          hint: Personne n'a l'autorisation d'utiliser cette fonctionnalité.
+          no_roles_added: Aucun rôle ajouté
+        lead: Les comptes avec les rôles suivants peuvent activer cette fonctionnalité sur leurs profils.
+        manage_roles: Gérer les rôles
+        role_name: Nom du rôle
+        title: Rôles
+      setups:
+        show:
+          enable_feature: Activer la fonctionnalité
+          important_information: Information importante
+          list:
+            1_permission_explanation: Lorsque cette fonctionnalité est activée, les comptes avec les autorisations désignées peuvent ajouter un formulaire de collecte d'adresses de courriel à leur profil.
+            2_feature_explanation: Lorsque des visiteur·euse·s s'inscrivent sur la page de profil d'un compte et confirment leur abonnement, des notifications par courriel seront envoyées lorsque le compte publie de nouveaux messages publics.
+            3_privacy_policy_warning: L'équipe d'administration du serveur aura accès aux informations personnelles (adresses de courriel) collectées. Pour cette raison, la politique de confidentialité et les conditions d'utilisation du serveur doivent être mises à jour avant d'utiliser cette fonctionnalité.
+            4_cost_warning: Les courriels peuvent entraîner des frais en fonction de la configuration de l'hébergement. Discutez avec votre hébergeur avant de l'activer, car cette fonctionnalité pourrait considérablement augmenter le nombre de courriels envoyés par votre serveur.
     export_domain_allows:
       new:
         title: Importer les autorisations de domaine
@@ -792,6 +857,7 @@ fr-CA:
         manage_custom_emojis: Gérer les émojis personnalisés
         manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
         manage_email_subscriptions: Gérer les abonnements par courriel
+        manage_email_subscriptions_description: Permettre aux comptes ayant cette autorisation d'activer la fonctionnalité de lettre d'information par courriel
         manage_federation: Gérer de la féderation
         manage_federation_description: Permet aux utilisateur⋅rice⋅s de bloquer ou d'autoriser la fédération avec d'autres domaines, et de contrôler la capacité de livraison
         manage_invites: Gérer les invitations

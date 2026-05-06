@@ -487,6 +487,71 @@ is:
       resolved_dns_records_hint_html: Heiti lénsins vísar til eftirfarandi MX-léna, sem bera endanlega ábyrgð á að tölvupóstur skili sér. Útilokun á MX-léni mun koma í veg fyrir nýskráningar með hverju því tölvupóstfangi sem notar sama MX-lén, jafnvel þótt sýnilega lénsheitið sé frábrugðið. <strong>Farðu varlega svo þú útilokir ekki algengar tölvupóstþjónustur.</strong>
       resolved_through_html: Leyst í gegnum %{domain}
       title: Útilokuð tölvupóstlén
+    email_subscriptions:
+      accounts:
+        account: Aðgangur
+        active: Virkur
+        empty:
+          hint: Engir aðgangar eru ennþá með neina áskrifendur.
+          no_lists_yet: Ennþá engir listar
+        inactive: Óvirkur
+        last_email: Síðasti tölvupóstur
+        lead: Aðgangar sem hafa virkjað eiginleikann og eru með áskrifendur munu birtast hér fyrir neðan.
+        status: Staða
+        subscribers: Áskrifendur
+        title: Póstlistar
+      additional_footer_texts:
+        show:
+          title: Viðbótartexti neðst í skilaboðum
+      compliance_settings:
+        additional_footer_text:
+          action: Stýra
+          hint: Valkvæður texti sem birtist neðst í tölvupóstum fréttabréfs
+          title: Viðbótartexti neðst í skilaboðum
+        lead: Fréttabréf í tölvupósti eru í sumum lögsagnarumdæmum skilgreind sem markaðsefni.
+        privacy_policy:
+          action: Stýra
+          hint: Tengill sem vísar á þessa stefnu kemur fram neðst í hverjum tölvupósti
+          title: Meðferð persónuupplýsinga
+        title: Stillingar á samhæfni við reglur
+      danger_zone:
+        disable_feature:
+          action: Gera óvirkt
+          hint: Slökkva á eiginleika fyrir alla aðganga
+          title: Gera eiginleika óvirkan
+        erase_all_data:
+          action: Eyða gögnum
+          hint: Eyða endanlega öllum tölvupóstum í öllum póstlistum
+          title: Eyða öllum gögnum
+        title: Hættusvæði
+      disabled_msg: Tölvupóstáskriftir hafa verið gerðar óvirkar.
+      index:
+        disabled:
+          cannot_be_enabled: Tæknilega þjónustan hefur ekki virkjað þennan eiginleika á netþjóninum þínum.
+          description: Þessi eiginleiki gerir tilteknum notendum kleift að bæta við viðmótshluta á notendasniðin sín, sem gerir gestum án Mastodon-aðgangs kleift að fá færslurnar þeirra í tölvupósti.
+          get_started: Byrjum á þessu
+        lead: Leyfa gestum að sjá færslur frá útvöldum notendum á þessum netþjóni.
+        title: Fréttabréf í tölvupósti
+      purged_msg: Verið er að eyða öllum gögnum varðandi tölvupóstáskriftir.
+      roles:
+        accounts: Aðgangar
+        edit_role: Breyta hlutverki
+        empty:
+          hint: Enginn hefur heimild til að nota þennan eiginleika.
+          no_roles_added: Engum hlutverkum bætt við
+        lead: Aðgangar með eftirfarandi hlutverk geta virkjað þennan eiginleika á notandasniðinu sínu.
+        manage_roles: Sýsla með hlutverk
+        role_name: Heiti hlutverks
+        title: Hlutverk
+      setups:
+        show:
+          enable_feature: Virkja eiginleika
+          important_information: Mikilvægar upplýsingar
+          list:
+            1_permission_explanation: Þegar þessi eiginleiki er virkur, munu aðgangar með tilteknar heimildir geta bætt söfnunarformi fyrir tölvupóst á notendasniðin sín.
+            2_feature_explanation: Þegar gestir skrá sig á notendasniðssíðu aðgangs og staðfesta skráninguna, þá munu þeir fara að fá fréttir í tölvupósti þegar sá aðgangur útbýr nýjar opinberar færslur.
+            3_privacy_policy_warning: Stjórnendur netþjóna munu hafa aðgang að þeim PII (tölvupóstföngum) sem safnað er. Þar með þarf að uppfæra stefnur varðandi meðferð persónuupplýsinga og þjónustuskilmála fyrir netþjóninn áður en þessi eiginleiki er notaður.
+            4_cost_warning: Tölvupóstar geta haft kostað í för með sér, sé uppsetning hýsingar á tilteknu formi. Hafðu samband við hýsingarþjónustuna þína áður en þú virkjar þetta, þar sem þessi eiginleiki gæti valdið mikilli aukningu á þeim fjölda tölvupóstskilaboða sem send verða frá netþjóninum þínum.
     export_domain_allows:
       new:
         title: Flytja inn leyfileg lén
@@ -792,6 +857,7 @@ is:
         manage_custom_emojis: Sýsla með sérsniðin lyndistákn
         manage_custom_emojis_description: Leyfir notendum að sýsla með sérsniðin lyndistákn á netþjóninum
         manage_email_subscriptions: Sýsla með tölvupóstáskriftir
+        manage_email_subscriptions_description: Leyfa notendum með þessa heimild að virkja áskrift að færslum í tölvupósti fyrir aðganginn þeirra
         manage_federation: Sýsla með netþjónasambönd
         manage_federation_description: Leyfir notendum að loka á eða leyfa samþættingu við önnur lén (federation) og stýra afhendingu skilaboða
         manage_invites: Sýsla með boðsgesti

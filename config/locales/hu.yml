@@ -487,6 +487,65 @@ hu:
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
       title: Tiltott e-mail-domainek
+    email_subscriptions:
+      accounts:
+        account: Fiók
+        active: Aktív
+        empty:
+          hint: Egyik fióknak sincs feliratkozója.
+          no_lists_yet: Még nincsenek listák
+        inactive: Inaktív
+        last_email: Legutóbbi e-mail
+        status: Állapot
+        subscribers: Feliratkozók
+        title: Levelezőlisták
+      additional_footer_texts:
+        show:
+          title: További láblécszöveg
+      compliance_settings:
+        additional_footer_text:
+          action: Kezelés
+          hint: Nem kötelező szöveg, amely csak a hírlevelek láblécében jelenik meg
+          title: További láblécszöveg
+        lead: Az e-mailes hírlevelek marketinglevélnek számíthatnak a joghatóságodtól függően.
+        privacy_policy:
+          action: Kezelés
+          hint: Ez a nyilatkozat minden egyes levél láblécében be lesz hivatkozva
+          title: Adatvédelmi szabályzat
+        title: Megfelelőségi beállítások
+      danger_zone:
+        disable_feature:
+          action: Kikapcsolás
+          hint: Funkció kikapcsolása az összes fióknál
+          title: Funkció kikapcsolása
+        erase_all_data:
+          action: Adatok törlése
+          hint: Véglegesen törli az összes e-mailt az összes levelezőlistában
+          title: Összes adat törlése
+        title: Veszélyzóna
+      disabled_msg: Az e-mail-feliratkozások sikeresen ki lettek kapcsolva.
+      index:
+        disabled:
+          cannot_be_enabled: A műszaki szolgáltató nem kapcsolta be ezt a funkciót a kiszolgálód számára.
+          get_started: Első lépések
+        title: E-mailes hírlevelek
+      purged_msg: Az összes e-mail-feliratkozási adat törlése folyamatban van.
+      roles:
+        accounts: Fiókok
+        edit_role: Szerep szerkesztése
+        empty:
+          hint: Senkinek sincs engedélye a funkció használatához.
+          no_roles_added: Nincsenek szerepek hozzáadva
+        lead: A következő szereppel rendelkező fiókok kapcsolhatják be ezt a funkciót a profiljukban.
+        manage_roles: Szerepek kezelése
+        role_name: Szerep neve
+        title: Szerepek
+      setups:
+        show:
+          enable_feature: Funkció bekapcsolása
+          important_information: Fontos információk
+          list:
+            3_privacy_policy_warning: A kiszolgálóadminok hozzá fognak férni a gyűjtött személyazonosításra alkalmas információkhoz (e-mail-címek). Ezért a funkció használata előtt frissíteni kell a kiszolgáló Adatvédelmi szabályzatát és a Felhasználási feltételeket.
     export_domain_allows:
       new:
         title: Domain engedélyezések importálása

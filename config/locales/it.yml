@@ -490,6 +490,67 @@ it:
     email_subscriptions:
       accounts:
         account: Account
+        active: Attivo
+        empty:
+          hint: Non ci sono ancora account con iscritti.
+          no_lists_yet: Non ci sono ancora liste
+        inactive: Inattivo
+        last_email: Ultima email
+        lead: Di seguito verranno visualizzati gli account che hanno attivato la funzionalità e che hanno degli iscritti.
+        status: Stato
+        subscribers: Iscritti
+        title: Mailing list
+      additional_footer_texts:
+        show:
+          title: Testo aggiuntivo a piè di pagina
+      compliance_settings:
+        additional_footer_text:
+          action: Gestisci
+          hint: Testo opzionale che compare solo nel piè di pagina delle email della newsletter
+          title: Testo aggiuntivo a piè di pagina
+        lead: Le newsletter via email possono essere considerate email di marketing, a seconda delle giurisdizioni in cui operi.
+        privacy_policy:
+          action: Gestisci
+          hint: Questa informativa è collegata nel piè di pagina di ogni email
+          title: Informativa sulla privacy
+        title: Impostazioni di conformità
+      danger_zone:
+        disable_feature:
+          action: Disabilita
+          hint: Disattiva la funzione per tutti gli account
+          title: Disabilita la funzionalità
+        erase_all_data:
+          action: Cancella i dati
+          title: Cancella tutti i dati
+        title: Zona pericolosa
+      disabled_msg: Le iscrizioni via email sono state disabilitate con successo.
+      index:
+        disabled:
+          cannot_be_enabled: Il tuo provider tecnico non ha abilitato questa funzione per il tuo server.
+          description: Questa funzione consente ad account specifici di aggiungere un widget ai propri profili, permettendo così ai visitatori sprovvisti di un account Mastodon di ricevere i loro post via email.
+          get_started: Inizia
+        lead: Consenti ai visitatori di ricevere post via email da account dedicati su questo server.
+        title: Newsletter via email
+      purged_msg: Tutti i dati relativi alle iscrizioni via email verranno cancellati.
+      roles:
+        accounts: Account
+        edit_role: Modifica il ruolo
+        empty:
+          hint: Nessuno ha il permesso di usare questa funzione.
+          no_roles_added: Nessun ruolo aggiunto
+        lead: Gli account con i seguenti ruoli possono abilitare questa funzione sui loro profili.
+        manage_roles: Gestisci i ruoli
+        role_name: Nome del ruolo
+        title: Ruoli
+      setups:
+        show:
+          enable_feature: Abilita la funzione
+          important_information: Informazioni importanti
+          list:
+            1_permission_explanation: Quando questa funzione è abilitata, gli account con i permessi designati possono aggiungere un modulo di raccolta indirizzi email ai loro profili.
+            2_feature_explanation: Quando i visitatori si registrano sulla pagina del profilo di un account e confermano l'iscrizione, inizieranno a ricevere aggiornamenti via email quando l'account crea nuovi post pubblici.
+            3_privacy_policy_warning: Gli amministratori del server avranno accesso alle informazioni di identificazione personale (indirizzi email) raccolte. Pertanto, l'informativa sulla privacy e i termini di servizio per il server devono essere aggiornati prima di utilizzare questa funzione.
+            4_cost_warning: L'invio di email potrebbe comportare dei costi a seconda della configurazione del servizio di hosting. Prima di abilitare questa funzione, è consigliabile parlarne con il proprio provider di hosting, poiché potrebbe aumentare notevolmente il numero di email inviate dal server.
     export_domain_allows:
       new:
         title: Importare i permessi di dominio
@@ -795,6 +856,7 @@ it:
         manage_custom_emojis: Gestisci emoji personalizzate
         manage_custom_emojis_description: Consente agli utenti di gestire emoji personalizzate sul server
         manage_email_subscriptions: Gestisci le iscrizioni via email
+        manage_email_subscriptions_description: Consenti agli utenti con questa autorizzazione di abilitare la funzione di newsletter via email per il loro account
         manage_federation: Gestisci Federazione
         manage_federation_description: Consente agli utenti di bloccare o consentire la federazione con altri domini e controllare la consegnabilità
         manage_invites: Gestisci Inviti
