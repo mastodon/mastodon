@@ -58,6 +58,7 @@ gem 'httplog', '~> 1.8.0', require: false
 gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'
+gem 'ipaddr', '~> 1.2'
 gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
