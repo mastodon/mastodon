@@ -62,13 +62,6 @@ class Collection < ApplicationRecord
   scope :discoverable, -> { where(discoverable: true) }
   scope :local, -> { where(local: true) }
 
-  def self.top_accounts_for(collection_ids)
-    CollectionItem.preload(:account)
-      .top_in_collections(collection_ids)
-      .group_by(&:collection_id)
-      .transform_values { |items| items.map(&:account) }
-  end
-
   def remote?
     !local?
   end
