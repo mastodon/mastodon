@@ -10,12 +10,6 @@ RSpec.describe RemoteAccountRefreshWorker do
 
     let(:account) { Fabricate(:account, domain: 'host.example') }
 
-    def stub_service
-      allow(ActivityPub::FetchRemoteAccountService)
-        .to receive(:new)
-        .and_return(service)
-    end
-
     context 'with a working service' do
       let(:service) { instance_double(ActivityPub::FetchRemoteAccountService, call: true) }
 
@@ -48,6 +42,12 @@ RSpec.describe RemoteAccountRefreshWorker do
         expect { worker.perform(account.id) }
           .to raise_error(Mastodon::UnexpectedResponseError)
       end
+    end
+
+    def stub_service
+      allow(ActivityPub::FetchRemoteAccountService)
+        .to receive(:new)
+        .and_return(service)
     end
   end
 end
