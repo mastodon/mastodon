@@ -7,10 +7,14 @@ fo:
     hosted_on: Mastodon hýst á %{domain}
     title: Um
   accounts:
+    errors:
+      cannot_be_added_to_collections: Hendan kontan kann ikki leggjast afturat søvnum.
     followers:
       one: Fylgjari
       other: Fylgjarar
-    following: Fylgir
+    following:
+      one: Fylgi
+      other: Fylgi
     instance_actor_flash: Hendan kontan er ein tykisligur aktørur, sum verður brúktur til at umboða ambætaran sjálvan og ikki nakran ávísan brúkara. Hon verður brúkt til sameind endamál og eigur ikki at vera tikin úr gildi.
     last_active: virkin seinast
     link_verified_on: Eigaraskapur av hesum leinki var eftirkannaður tann %{date}
@@ -52,6 +56,7 @@ fo:
         label: Broyt leiklut
         no_role: Eingin leiklutur
         title: Broyt leiklut hjá %{username}
+      collections: Søvn
       confirm: Vátta
       confirmed: Váttað
       confirming: Váttar
@@ -262,6 +267,7 @@ fo:
         demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
         destroy_announcement_html: "%{name} strikaðar fráboðanir %{target}"
         destroy_canonical_email_block_html: "%{name} strikaði blokeringina av teldupostin við hashkodu %{target}"
+        destroy_collection_html: "%{name} slettaði savnið hjá %{target}"
         destroy_custom_emoji_html: "%{name} strikaði kensluteknið %{target}"
         destroy_domain_allow_html: "%{name} havnaði sameining við navnaøkið %{target}"
         destroy_domain_block_html: "%{name} strikaði blokering av navnaøkinum %{target}"
@@ -301,6 +307,7 @@ fo:
         unsilence_account_html: "%{name} strikaði avmarkingina av kontuni hjá %{target}"
         unsuspend_account_html: "%{name} setti kontuna hjá %{target} í gildi aftur"
         update_announcement_html: "%{name} dagførdi kunngerðina %{target}"
+        update_collection_html: "%{name} dagførdi savnið hjá %{target}"
         update_custom_emoji_html: "%{name} dagførdi kensluteknið %{target}"
         update_domain_block_html: "%{name} dagførdi navnaøkisblokeringina hjá %{target}"
         update_ip_block_html: "%{name} broytti IP-reglurnar %{target}"
@@ -336,6 +343,15 @@ fo:
       unpublish: Tak útgávu aftur
       unpublished_msg: Kunngerð tikin aftur!
       updated_msg: Kunngerð dagførd!
+    collections:
+      accounts: Kontur
+      collection_title: Savn hjá %{name}
+      contents: Innihald
+      number_of_accounts:
+        one: 1 konta
+        other: "%{count} kontur"
+      open: Opin
+      view_publicly: Vís fyri øllum
     critical_update_pending: Kritisk dagføring bíðar
     custom_emojis:
       assign_category: Tilluta bólk
@@ -675,6 +691,7 @@ fo:
       cancel: Angra
       category: Bólkur
       category_description_html: Orsøkin, at hendan kontan og/ella tilfarið var melda verður fráboðað í samskifti við meldaðu kontuni
+      collections: Søvn (%{count})
       comment:
         none: Eingin
       comment_description_html: 'Fyri at veita fleiri upplýsingar skrivaði %{name}:'
@@ -704,12 +721,13 @@ fo:
       report: 'Melding #%{id}'
       reported_account: Meldað konta
       reported_by: Meldað av
+      reported_content: Meldað innihald
       reported_with_application: Fráboðað við umsókn
       resolved: Loyst
       resolved_msg: Melding avgreidd!
       skip_to_actions: Leyp til atgerðir
       status: Støða
-      statuses: Meldað innihald
+      statuses: Postar (%{count})
       statuses_description_html: Tilfarið, sum brotið viðvíkur, fer at vera siterað í samskifti við meldaðu kontuni
       summary:
         action_preambles:
@@ -796,6 +814,9 @@ fo:
         view_dashboard_description: Gevur brúkarum atgongd til kunningarbrettið og ymisk mát
         view_devops: DevOps
         view_devops_description: Gevur brúkarum atgongd til Sidekiq- og pgHero-kunningarbretti
+        view_feeds: Vís beinleiðis rásir og evnisrásir
+        view_feeds_description: Loyvir brúkarum atgongd til beinleiðis rásir og evnisrásir, óansæð ambætisstillingar
+      requires_2fa: Krevur váttan í tveimum stigum
       title: Leiklutir
     rules:
       add_new: Ger nýggja reglu
@@ -844,10 +865,21 @@ fo:
         publish_statistics: Legg hagtøl út
         title: Uppdaging
         trends: Rák
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Til øll
         disabled: Til ongan
         users: Fyri lokalum brúkarum, sum eru ritaðir inn
+      feed_access:
+        modes:
+          authenticated: Einans váttaðir brúkarar
+          disabled: Krev serstakan brúkaraleiklut
+          public: Øll
+      landing_page:
+        values:
+          about: Um
+          local_feed: Lokal rás
+          trends: Rák
       registrations:
         moderation_recommandation: Vinarliga tryggja tær, at tú hevur eitt nøktandi og klárt umsjónartoymi, áðreen tú letur upp fyri skrásetingum frá øllum!
         preamble: Stýr, hvør kann stovna eina kontu á tínum ambætara.
@@ -901,6 +933,7 @@ fo:
       no_status_selected: Eingir postar vóru broyttir, tí eingir vóru valdir
       open: Lat post upp
       original_status: Upprunapostur
+      quotes: Sitatir
       reblogs: Endurbloggar
       replied_to_html: Svaraði %{acct_link}
       status_changed: Postur broyttur
@@ -908,6 +941,7 @@ fo:
       title: Kontupostar - @%{name}
       trending: Vælumtókt
       view_publicly: Vís fyri øllum
+      view_quoted_post: Vís siteraðan post
       visibility: Sýni
       with_media: Við miðli
     strikes:
@@ -1182,10 +1216,10 @@ fo:
     hint_html: Ynskir tú at flyta frá eini aðrari kontu til hesa, so kanst tú stovna eitt tøkuheiti her. Tað er kravt, áðrenn tú kanst fara í gongd við at flyta fylgjarar frá gomlu kontuni til hesa. Hendan atgerðin er í sær sjálvum <strong>meinaleys og kann angrast</strong>. <strong>Flytingin av kontuni verður sett í gongd frá gomlu kontuni</strong>.
     remove: Strika tilknýti til tøkuheiti
   appearance:
-    advanced_web_interface: Framkomið vevmarkamót
-    advanced_web_interface_hint: 'Ynskir tú at brúka alla skermbreiddina, so loyvir framkomna vevmarkamóti tær at uppseta fleiri ymiskar teigar, soleiðis at tú kanst síggja so nógvar upplýsingar, sum tú ynskir, samstundis: Heima, fráboðanir, sameind tíðarlinja og óavmarkað tal av listum og frámerkjum.'
+    advanced_settings: Framkomnar stillingar
     animations_and_accessibility: Teknimyndagerð og atkomuligheit
-    confirmation_dialogs: Váttanarskermmyndir
+    boosting_preferences: Stimbranarynski
+    boosting_preferences_info_html: "<strong>Góð ráð:</strong> Óansæð stillingar, so verður beinan vegin stimbrað, um trýst verður á <kbd>Shift</kbd> + <kbd>klikk</kbd> á %{icon} stimbranar-ímyndina."
     discovery: Uppdaging
     localization:
       body: Mastodon er umsett av sjálvbodnum.
@@ -1195,7 +1229,6 @@ fo:
   application_mailer:
     notification_preferences: Broyt teldupostastillingar
     salutation: "%{name}"
-    settings: 'Broyt teldupostastillingar: %{link}'
     unsubscribe: Strika hald
     view: 'Vís:'
     view_profile: Vís vanga
@@ -1302,6 +1335,13 @@ fo:
     hint_html: "<strong>Góð ráð:</strong> vit spyrja teg ikki aftur um loyniorðið næsta tíman."
     invalid_password: Skeivt loyniorð
     prompt: Vátta loyniorð fyri at halda fram
+  color_scheme:
+    auto: Sjálvvirkandi
+    dark: Myrkt
+    light: Ljóst
+  contrast:
+    auto: Sjálvvirkandi
+    high: Høgt
   crypto:
     errors:
       invalid_key: er ikki ein gildur Ed25519 ella Curve25519 lykil
@@ -1371,8 +1411,6 @@ fo:
       your_appeal_pending: Tú hevur kært
       your_appeal_rejected: Kæra tín er vrakað
   edit_profile:
-    basic_information: Grundleggjandi upplýsingar
-    hint_html: "<strong>Tillaga tað, sum fólk síggja á tínum almenna vanga og við síðna av tínum postum.</strong> Sannlíkindini fyri, at onnur fylgja tær og virka saman við tær eru størri, tá tú hevur fylt út vangan og eina vangamynd."
     other: Onnur
   emoji_styles:
     auto: Sjálvvirkandi
@@ -1412,10 +1450,8 @@ fo:
     mutes: Tú doyvir
     storage: Miðlagoymsla
   featured_tags:
-    add_new: Legg afturat
     errors:
       limit: Tú hevur longu varpað loyvda talið av frámerkjum
-    hint_html: "<strong>Hvat eru varpaði frámerki?</strong> Tey verða víst sjónliga á almenna vanga tínum og loyva fólki at kaga gjøgnum tínar almennu postar, sum hava tey frámerkini. Tey eru serliga vælegnaði at fylgja við skapandi arbeiði ella langtíðarverkætlanum."
   filters:
     contexts:
       account: Vangar
@@ -1587,6 +1623,13 @@ fo:
       expires_at: Rennir út
       uses: Brúk
     title: Bjóða fólki
+  link_preview:
+    author_html: Av %{name}
+    potentially_sensitive_content:
+      action: Klikka fyri at vísa
+      confirm_visit: Er tú vís/ur í, at tú vil lata hetta leinkið upp?
+      hide_button: Fjal
+      label: Tilfar, sum møguliga er viðkvæmt
   lists:
     errors:
       limit: Tú hevur rokkið mesta talið av listum
@@ -1601,21 +1644,6 @@ fo:
     failed_sign_in_html: Miseydnað innritanarroynd við %{method} frá %{ip} (%{browser})
     successful_sign_in_html: Eydnað innritan við %{method} frá %{ip} (%{browser})
     title: Samgildissøga
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, strika hald
-      complete: Hald strikað
-      confirmation_html: Ert tú vís/ur í, at tú vil gevast at móttaka %{type} fyri Mastodon á %{domain} til tína teldupostadressu á %{email}? Tú kanst altíð gera haldið virkið aftur frá tínum <a href="%{settings_path}">teldupostfráboðanarstillingum</a>.
-      emails:
-        notification_emails:
-          favourite: yndisfráboðanarteldupostar
-          follow: fylg fráboðanarteldupostar
-          follow_request: fylg umbønir um teldupost
-          mention: nevn fráboðanarteldupostar
-          reblog: framhevja fráboðanarpostar
-      resubscribe_html: Um tú hevur strikað haldið av misgávum, so kanst tú tekna haldið av nýggjum í tínum <a href="%{settings_path}">teldupostfráboðarstillingum</a>.
-      success_html: Tú fer ikki longur at móttaka %{type} fyri Mastodon á %{domain} til tín teldupost á %{email}.
-      title: Strika hald
   media_attachments:
     validations:
       images_and_video: Kann ikki viðfesta sjónfílu til ein post, sum longu inniheldur myndir
@@ -1651,7 +1679,7 @@ fo:
       disabled_account: Tín verandi konta verður ikki fult nýtilig aftaná. Tó so, tú hevur atgongd til at útlesa dátur og tú kanst gera kontuna virkna aftur.
       followers: Hetta fer at flyta alla fylgjarar frá verandi kontuni til ta nýggju
       only_redirect_html: Ein annar møguleiki er, at tú <a href="%{path}">setir eina víðaribeining upp á vanga tínum</a>.
-      other_data: Ongar aðrar dátur verða fluttar sjálvvirkandi
+      other_data: Ongar aðrar dátur verða fluttar sjálvvirkandi (íroknað postarnir hjá tær og listin av kontum, sum tú fylgir)
       redirect: Vangin á tíni núverandi kontu verður dagførd við eini viðmerking um víðaribeining og tú verður ikki at finna í leitingum
   moderation:
     title: Umsjón
@@ -1685,16 +1713,22 @@ fo:
       body: 'Tú var umrødd/ur av %{name} í:'
       subject: Tú var umrødd/ur av %{name}
       title: Nýggj umrøða
+    moderation_warning:
+      subject: Tú hevur móttikið eina umsjónarávaring
     poll:
       subject: Ein spurnarkanning hjá %{name} er endað
     quote:
       body: 'Postur tín var siteraður av %{name}:'
       subject: "%{name} siteraði postin hjá tær"
       title: Nýggj sitering
+    quoted_update:
+      subject: "%{name} rættaði ein post, sum tú hevur siterað"
     reblog:
       body: 'Postur tín var stimbraður av %{name}:'
       subject: "%{name} stimbraði tín post"
       title: Nýggj stimbran
+    severed_relationships:
+      subject: Tú hevur mist sambond vegna eina umsjónaravgerð
     status:
       subject: "%{name} hevur júst postað"
     update:
@@ -1739,6 +1773,9 @@ fo:
       self_vote: Tú kanst ikki atkvøða í tínum egnum atkvøðugreiðslum
       too_few_options: má hava meiri enn ein valmøguleika
       too_many_options: kann ikki innihalda fleiri enn %{max} valmøguleikar
+    vote: Atkvøð
+  posting_defaults:
+    explanation: Hesar stillingar verða brúktar sum sjálvval tá stovnar nýggjar postar, men tú kanst rætta tær fyri hvønn post í rættiøkinum.
   preferences:
     other: Annað
     posting_defaults: Postingarstillingar
@@ -1894,6 +1931,9 @@ fo:
         other: "%{count} sjónfílur"
     boosted_from_html: Stimbrað frá %{acct_link}
     content_warning: 'Innihaldsávaring: %{warning}'
+    content_warnings:
+      hide: Fjal post
+      show: Vís meiri
     default_language: Sama sum markamótsmál
     disallowed_hashtags:
       one: 'innihelt eitt vrakað frámerki: %{tags}'
@@ -1902,34 +1942,39 @@ fo:
     errors:
       in_reply_not_found: Posturin, sum tú roynir at svara, sýnist ikki at finnast.
       quoted_status_not_found: Posturin, sum tú roynir at sitera, sýnist ikki at finnast.
+      quoted_user_not_mentioned: Kann ikki sitera ein brúkara, sum ikki er nevndur, í einum posti, sum er ein privat umrøða.
     over_character_limit: mesta tal av teknum, %{max}, rokkið
     pin_errors:
       direct: Postar, sum einans eru sjónligir hjá nevndum brúkarum, kunnu ikki festast
       limit: Tú hevur longu fest loyvda talið av postum
       ownership: Postar hjá øðrum kunnu ikki festast
       reblog: Ein stimbran kann ikki festast
+    quote_error:
+      not_available: Postur ikki tøkur
+      pending_approval: Postur bíðar
+      revoked: Posturin burturbeindur av høvundinum
     quote_policies:
-      followers: Einans tey, ið fylgja tær
-      nobody: Eingin
-      public: Øll
+      followers: Einans fylgjarar
+      nobody: Bara eg
+      public: Ein og hvør
+    quote_post_author: Siteraði ein post hjá %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Beinleiðis
+      direct: Privat umrøða
       private: Einans fylgjarar
-      private_long: Vís einans fyri fylgjarum
       public: Alment
-      public_long: Øll kunnu síggja
-      unlisted: Ólistað
-      unlisted_long: Øll kunnu síggja, men ikki listað á almennum tíðarlinjum
+      public_long: Øll í og uttanfyri Mastodon
+      unlisted: Stillur almenningur
+      unlisted_long: Fjalt frá leitiúrslitum, rákum og almennum tíðarlinjum í Mastodon
   statuses_cleanup:
     enabled: Strika gamlar postar sjálvvirkandi
     enabled_hint: Strikar postar tínar sjálvvirkandi, tá teir verða eldri enn eitt vist, uttan so at teir samsvara við eitt av undantøkunum niðanfyri
     exceptions: Undantøk
-    explanation: Av tí at striking av postum er dýrt virksemi, so verður tað gjørt spakuliga yvir tíð, tá ambætarin annars ikki er upptikin. Tí kunnu postarnir hjá tær verða strikaðir eina løtu aftaná, at tíðarfreistin er rokkin.
+    explanation: Sjálvvirkandi striking verður gjørd við lágari raðfesting. Ein seinking kann vera millum evstamarkið og sjálva strikingina.
     ignore_favs: Sí burtur frá yndispostum
     ignore_reblogs: Sí burtur frá stimbranum
     interaction_exceptions: Undantøk grundað á samvirkni
-    interaction_exceptions_explanation: Legg til merkis, at eingin trygd er fyri at postar verða strikaðir, um teir fara undir mørkini fyri yndispostar ella stimbranir eftir at teir einaferð eru farnir uppum.
+    interaction_exceptions_explanation: Postar sum fyribils koma uppum mørkini fyri yndispostar ella strimbraðar postar kunnu vera varðveittir sjálvt um teir seinni minkast.
     keep_direct: Varðveit beinleiðis boð
     keep_direct_hint: Strikar ikki beinleiðis boð hjá tær
     keep_media: Varðveit postar, sum hava viðheftar miðlafílur
@@ -1965,11 +2010,13 @@ fo:
     does_not_match_previous_name: samsvarar ikki við undanfarna navnið
   terms_of_service:
     title: Tænastutreytir
+  terms_of_service_interstitial:
+    future_preamble_html: Vit gera broytingar í tænastutreytunum, sum fáa virknað frá <strong>%{date}</strong>. Vit eggja tær til at eftirkanna dagførdu treytirnar.
+    past_preamble_html: Vit hava broytt tænastutreytirnar síðani tú seinast vitjaði. Vit eggja tær til at eftirkanna dagførdu treytirnar.
+    review_link: Eftirkanna tænastutreytir
+    title: Tænastutreytirnar á %{domain} verða broyttar
   themes:
-    contrast: Mastodon (høgur kontrastur)
-    default: Mastodon (myrkt)
-    mastodon-light: Mastodon (ljóst)
-    system: Sjálvvirkandi (brúka vanligt uppsetingareyðkenni)
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1994,6 +2041,8 @@ fo:
     recovery_codes: Tak trygdaravrit av kodum til endurgerð
     recovery_codes_regenerated: Kodur til endurgerð gjørdar av nýggjum
     recovery_instructions_html: Missir tú atgongd til telefonina, so kanst tú brúka eina av kodunum til endurgerð niðanfyri at fáa atgongd aftur til kontu tína. <strong>Goym kodurnar til endurgerð trygt</strong>. Til dømis kanst tú prenta tær og goyma tær saman við øðrum týdningarmiklum skjølum.
+    resume_app_authorization: Tak góðkenning av applikatión uppaftur
+    role_requirement: "%{domain} krevur, at tú setur upp váttan í tveimum stigum áðrenn tú kann brúka Mastodon."
     webauthn: Trygdarlyklar
   user_mailer:
     announcement_published:
@@ -2137,8 +2186,12 @@ fo:
       error: Ein trupulleiki var við at strika trygdarlykilin hjá tær. Vinarliga royn aftur.
       success: Trygdarlykilin hjá tær varð strikaður.
     invalid_credential: Ógyldugur trygdarlykil
+    nickname: Kallinavn
     nickname_hint: Skriva eyknevni á tínum nýggja trygdarlykli
     not_enabled: Tú hevur ikki gjørt WebAuthn virkið enn
     not_supported: Hesin kagin stuðlar ikki uppundir trygdarlyklar
     otp_required: Fyri at brúka trygdarlyklar er neyðugt at gera váttan í tveimum stigum virkna fyrst.
     registered_on: Skrásett %{date}
+  wrapstodon:
+    description: Sí hvussu %{name} brúkti Mastodon í ár!
+    title: Wrapstodon %{year} fyri %{name}

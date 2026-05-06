@@ -7,11 +7,7 @@ import { normalizeKey, isKeyboardEvent } from './utils';
  * the hotkey with a higher priority is selected. All others
  * are ignored.
  */
-const hotkeyPriority = {
-  singleKey: 0,
-  combo: 1,
-  sequence: 2,
-} as const;
+const hotkeyPriority = { singleKey: 0, combo: 1, sequence: 2 } as const;
 
 /**
  * This type of function receives a keyboard event and an array of
@@ -105,20 +101,24 @@ const hotkeyMatcherMap = {
   new: just('n'),
   forceNew: optionPlus('n'),
   focusColumn: any('1', '2', '3', '4', '5', '6', '7', '8', '9'),
+  focusLoadMore: just('l'),
   reply: just('r'),
   favourite: just('f'),
   boost: just('b'),
+  quote: just('q'),
   mention: just('m'),
   open: any('enter', 'o'),
   openProfile: just('p'),
-  moveDown: any('down', 'j'),
-  moveUp: any('up', 'k'),
+  moveDown: just('j'),
+  moveUp: just('k'),
+  moveToTop: just('0'),
   toggleHidden: just('x'),
   toggleSensitive: just('h'),
   toggleComposeSpoilers: optionPlus('x'),
   openMedia: just('e'),
   onTranslate: just('t'),
   goToHome: sequence('g', 'h'),
+  goToExplore: sequence('g', 'e'),
   goToNotifications: sequence('g', 'n'),
   goToLocal: sequence('g', 'l'),
   goToFederated: sequence('g', 't'),
@@ -182,25 +182,24 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
 
       if (shouldHandleEvent) {
         const matchCandidates: {
-          handler: (event: KeyboardEvent) => void;
+          // A candidate will be have an undefined handler if it's matched,
+          // but handled in a parent component rather than this one.
+          handler: ((event: KeyboardEvent) => void) | undefined;
           priority: number;
         }[] = [];
 
         (Object.keys(hotkeyMatcherMap) as HotkeyName[]).forEach(
           (handlerName) => {
             const handler = handlersRef.current[handlerName];
+            const hotkeyMatcher = hotkeyMatcherMap[handlerName];
 
-            if (handler) {
-              const hotkeyMatcher = hotkeyMatcherMap[handlerName];
+            const { isMatch, priority } = hotkeyMatcher(
+              event,
+              bufferedKeys.current,
+            );
 
-              const { isMatch, priority } = hotkeyMatcher(
-                event,
-                bufferedKeys.current,
-              );
-
-              if (isMatch) {
-                matchCandidates.push({ handler, priority });
-              }
+            if (isMatch) {
+              matchCandidates.push({ handler, priority });
             }
           },
         );

@@ -4,7 +4,6 @@ io:
     hints:
       account:
         attribution_domains: Un en singla lineo.
-        discoverable: Vua publika posti e profilo povas remarkesar o rekomendesar en diferanta parti di Mastodon e vua profilo povas sugestesar ad altra uzanti.
         display_name: Vua tota nomo o vua gaya nomo.
         fields: Vua retsituo, pronomi, evo, irgo quan vu volas.
         indexable: Vua posta publika povos aparar en rezultaji di serchi che Mastodon. Personi qui interagis kun vua posti povos serchar oli irgakaze.
@@ -57,9 +56,6 @@ io:
         setting_aggregate_reblogs: Ne montrez nova repeti di posti qui ja repetesis recente (nur efektigas repeti recevata nove)
         setting_always_send_emails: Normale retpostoavizi ne sendesas kande vu aktiva uzas Mastodon
         setting_default_sensitive: Trublema audvidaji originala celesas e povas descelesar per kliko
-        setting_display_media_default: Celez audvidaji qua markesis quale trublema
-        setting_display_media_hide_all: Omnatempe celas audvidaji
-        setting_display_media_show_all: Omnatempe montras audvidaji
         setting_system_scrollbars_ui: Nur ye tablokomputilretumili qua bazita ye Safario e Kromeo
         setting_use_blurhash: Inklini esas segun kolori di celesis vidaji ma kovras irga detali
         setting_use_pending_items: Celez tempolinetildatigo dop kliko vice automatike ruligar la fluo
@@ -73,7 +69,6 @@ io:
       featured_tag:
         name: 'Yen kelka hashtagi quin vu uzis maxim recente:'
       filters:
-        action: Selektez ago kande posto parigas filtrilo
         actions:
           hide: Komplete celez filtrita kontenajo quale ol ne existas
           warn: Celez filtrita kontenajo dop avert quo montras titulo di filtrilo
@@ -81,7 +76,6 @@ io:
         activity_api_enabled: Quanto de lokale publikigita posti, aktiva uzanti e nova registri, donita semanope
         app_icon: WEBP, PNG, GIF o JPG. Ol remplas la originala imajeto di softwaro sur poshaparati kun personaligita imajeto.
         backups_retention_period: Uzanto povas igar arkivi di sua afishi por deskargar pose.
-        bootstrap_timeline_accounts: Ca konti adpinglesos ad super sequorekomendi di nova uzanti.
         closed_registrations_message: Montresas kande registradi klozesas
         content_cache_retention_period: Omna posti de altra servili efacesos (anke repeti e respondi) pos decidita quanto di dii, sen ye irga lokala uzantointerago kun ti posti. Privata mencioni inter uzanto de dessanta servili anke desganos e neposible riganesos.
         custom_css: Vu povas pozar kustumizita staili en retverso di Mastodon.
@@ -100,10 +94,8 @@ io:
         status_page_url: URL di pagino ube personi povas vidar la stando di ca servilo kande la servilo ne funcionas
         theme: Temo quo videsas da ekirita vizitanti e nova uzanti.
         thumbnail: Cirkum 2:1 imajo montresar kun informo di ca servilo.
-        timeline_preview: Ekirita vizitanti videsos maxim recenta publika posti quo esas displonebla en la servilo.
         trendable_by_default: Ignorez manuala kontrolar di populara enhavajo.
         trends: Populari montras quala afishi, gretvorti e novaji populareskas en vua servilo.
-        trends_as_landing_page: Montrez populara posti a uzanti neeniriti e vizitanti vice deskriptajo pri ca servilo. Bezonas ke populari es aktivita.
       form_challenge:
         current_password: Vu eniras sekura areo
       imports:
@@ -140,7 +132,6 @@ io:
         domain: Unika identifikeso di enreta servo qua vu provizas.
         jurisdiction: Listigez lando di paganto di fakturi.
       user:
-        chosen_languages: Kande marketigesis, nur posti en selektesis lingui montresos en publika tempolinei
         role: La rolo donas certena permisi a la uzanto.
       user_role:
         color: Koloro quo uzesas por rolo en tota UI, quale RGB kun hexformato
@@ -155,7 +146,6 @@ io:
     labels:
       account:
         attribution_domains: Reteyi kua permisesis agnoskar vu
-        discoverable: Inkluzar profilo e posti en trovado-algoritmi
         fields:
           name: Etiketo
           value: Kontenajo
@@ -218,11 +208,8 @@ io:
         setting_aggregate_reblogs: Grupigar repeti en tempolinei
         setting_always_send_emails: Sempre sendez retpostoavizi
         setting_auto_play_gif: Autoplear anima GIFi
-        setting_boost_modal: Montrez konfirmdialogo ante repetar
         setting_default_language: Postolinguo
-        setting_default_privacy: Videbleso di la mesaji
         setting_default_sensitive: Omnatempe markas audvidaji quale trublema
-        setting_delete_modal: Montrez konfirmdialogo ante efacar posto
         setting_disable_hover_cards: Desebligar profilprevido dum paso
         setting_disable_swiping: Desebligar fingromovi
         setting_display_media: Audvidajmontrajo
@@ -231,7 +218,6 @@ io:
         setting_display_media_show_all: Montrez omno
         setting_expand_spoilers: Sempre expansigez posti quo markizesis kun kontenajaverti
         setting_hide_network: Celez vua sociala grafiko
-        setting_missing_alt_text_modal: Montrar konfirmdialogo ante afishar audvidaji sen alternative texto
         setting_reduce_motion: Despluigar movo di animi
         setting_system_font_ui: Uzez originala literfonto di sistemo
         setting_system_scrollbars_ui: Uzar originala rullangeto di sistemo
@@ -281,10 +267,8 @@ io:
         status_page_url: URL dil stando-pagino
         theme: Originala temo
         thumbnail: Servilimajeto
-        timeline_preview: Permisez neyurizita aceso a publika tempolineo
         trendable_by_default: Permisez populari sen kontrolo
         trends: Ebligar populari
-        trends_as_landing_page: Uzar populari quale la iniciala pagino
       interactions:
         must_be_follower: Celar la savigi da homi, qui ne sequas tu
         must_be_following: Celar la savigi da homi, quin tu ne sequas

@@ -48,6 +48,7 @@ def get_image(row, emoji_base, fallback, compressed)
   if path.exist?
     Vips::Image.new_from_file(path.to_s, dpi: 64)
   else
+    puts "Missing emoji: #{row['b'] || row['unified']}"
     fallback
   end
 end
@@ -59,7 +60,7 @@ end
 namespace :emojis do
   desc 'Generate a unicode to filename mapping'
   task :generate do
-    source = 'http://www.unicode.org/Public/emoji/15.1/emoji-test.txt'
+    source = 'https://www.unicode.org/Public/emoji/16.0/emoji-test.txt'
     codes  = []
     dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
 
@@ -98,7 +99,7 @@ namespace :emojis do
 
     map = map.sort { |a, b| a[0].size <=> b[0].size }.to_h
 
-    File.write(dest, Oj.dump(map))
+    File.write(dest, JSON.dump(map))
     puts "Wrote emojo to destination! (#{dest})"
   end
 
@@ -108,7 +109,7 @@ namespace :emojis do
     emojis_light = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️🪽🪿'
     emojis_dark = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴🐞🕺📱📲🚲🪮🐦‍⬛'
 
-    map = Oj.load(File.read(src))
+    map = JSON.parse(File.read(src))
 
     emojis_light.each_grapheme_cluster do |emoji|
       gen_border map[emoji], 'black'
@@ -120,7 +121,7 @@ namespace :emojis do
 
   desc 'Generate the JSON emoji data'
   task :generate_json do
-    data_source = 'https://raw.githubusercontent.com/iamcal/emoji-data/refs/tags/v15.1.2/emoji.json'
+    data_source = 'https://raw.githubusercontent.com/iamcal/emoji-data/refs/tags/v16.0.0/emoji.json'
     keyword_source = 'https://raw.githubusercontent.com/muan/emojilib/refs/tags/v3.0.12/dist/emoji-en-US.json'
     data_dest = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_data.json')
 
@@ -192,7 +193,7 @@ namespace :emojis do
     require 'vips'
 
     src = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_data.json')
-    sheet = Oj.load(File.read(src))
+    sheet = JSON.load_file(src)
 
     max = 0
     sheet['emojis'].each_value do |row|
@@ -224,6 +225,6 @@ namespace :emojis do
     end
 
     joined = Vips::Image.arrayjoin(comp.flatten, across: size, hspacing: 34, halign: :centre, vspacing: 34, valign: :centre)
-    joined.write_to_file(emoji_base.join('sheet_15_1.png').to_s, palette: true, dither: 0, Q: 100)
+    joined.write_to_file(emoji_base.join('sheet_16_0.png').to_s, palette: true, dither: 0, Q: 100)
   end
 end

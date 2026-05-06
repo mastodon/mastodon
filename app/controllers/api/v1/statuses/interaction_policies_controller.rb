@@ -4,7 +4,6 @@ class Api::V1::Statuses::InteractionPoliciesController < Api::V1::Statuses::Base
   include Api::InteractionPoliciesConcern
 
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }
-  before_action -> { check_feature_enabled }
 
   def update
     authorize @status, :update?
@@ -22,12 +21,8 @@ class Api::V1::Statuses::InteractionPoliciesController < Api::V1::Statuses::Base
     params.permit(:quote_approval_policy)
   end
 
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.outgoing_quotes_enabled?
-  end
-
   def broadcast_updates!
-    DistributionWorker.perform_async(@status.id, { 'update' => true })
+    DistributionWorker.perform_async(@status.id, { 'update' => true, 'skip_notifications' => true })
     ActivityPub::StatusUpdateDistributionWorker.perform_async(@status.id, { 'updated_at' => Time.now.utc.iso8601 })
   end
 end

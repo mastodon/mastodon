@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -9,6 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
+import { injectIntl } from '@/mastodon/components/intl';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
@@ -63,6 +64,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.boost' defaultMessage='to boost' /></td>
               </tr>
               <tr>
+                <td><kbd>q</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.quote' defaultMessage='Quote post' /></td>
+              </tr>
+              <tr>
                 <td><kbd>enter</kbd>, <kbd>o</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
               </tr>
@@ -83,16 +88,24 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_sensitivity' defaultMessage='to show/hide media' /></td>
               </tr>
               <tr>
-                <td><kbd>up</kbd>, <kbd>k</kbd></td>
+                <td><kbd>k</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
               </tr>
               <tr>
-                <td><kbd>down</kbd>, <kbd>j</kbd></td>
+                <td><kbd>j</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.down' defaultMessage='to move down in the list' /></td>
+              </tr>
+              <tr>
+                <td><kbd>0</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.top' defaultMessage='Move to top of list' /></td>
               </tr>
               <tr>
                 <td><kbd>1</kbd>-<kbd>9</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.column' defaultMessage='to focus a status in one of the columns' /></td>
+              </tr>
+              <tr>
+                <td><kbd>l</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.load_more' defaultMessage='Focus "Load more" button' /></td>
               </tr>
               <tr>
                 <td><kbd>n</kbd></td>
@@ -121,6 +134,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               <tr>
                 <td><kbd>g</kbd>+<kbd>h</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.home' defaultMessage='to open home timeline' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>e</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.explore' defaultMessage='to open trending timeline' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>n</kbd></td>

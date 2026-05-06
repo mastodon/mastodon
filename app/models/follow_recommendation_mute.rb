@@ -5,10 +5,10 @@
 # Table name: follow_recommendation_mutes
 #
 #  id                :bigint(8)        not null, primary key
-#  account_id        :bigint(8)        not null
-#  target_account_id :bigint(8)        not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  account_id        :bigint(8)        not null
+#  target_account_id :bigint(8)        not null
 #
 class FollowRecommendationMute < ApplicationRecord
   belongs_to :account

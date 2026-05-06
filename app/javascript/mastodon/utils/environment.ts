@@ -1,4 +1,4 @@
-import initialState from '../initial_state';
+import { initialState } from '../initial_state';
 
 export function isDevelopment() {
   if (typeof process !== 'undefined')
@@ -12,23 +12,21 @@ export function isProduction() {
   else return import.meta.env.PROD;
 }
 
-export type Features =
-  | 'modern_emojis'
-  | 'outgoing_quotes'
-  | 'fasp'
-  | 'http_message_signatures';
+export type ServerFeatures = 'fasp' | 'collections';
 
-export function isFeatureEnabled(feature: Features) {
+export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
 }
 
-export function isModernEmojiEnabled() {
+type ClientFeatures = never;
+
+export function isClientFeatureEnabled(feature: ClientFeatures) {
   try {
-    return (
-      isFeatureEnabled('modern_emojis') &&
-      localStorage.getItem('experiments')?.split(',').includes('modern_emojis')
-    );
-  } catch {
+    const features =
+      window.localStorage.getItem('experiments')?.split(',') ?? [];
+    return features.includes(feature);
+  } catch (err) {
+    console.warn('Could not access localStorage to get client features', err);
     return false;
   }
 }

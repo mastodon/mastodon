@@ -143,16 +143,14 @@ export const SelectWithLabel: React.FC<PropsWithChildren<Props>> = ({
       </div>
 
       <div className='app-form__toggle__toggle'>
-        <div>
-          <Dropdown
-            value={value}
-            onChange={onChange}
-            disabled={disabled}
-            aria-labelledby={labelId}
-            aria-describedby={descId}
-            options={options}
-          />
-        </div>
+        <Dropdown
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          aria-labelledby={labelId}
+          aria-describedby={descId}
+          options={options}
+        />
       </div>
     </label>
   );

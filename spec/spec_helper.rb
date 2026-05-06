@@ -44,12 +44,3 @@ def serialized_record_json(record, serializer, adapter: nil, options: {})
     ).to_json
   )
 end
-
-def expect_push_bulk_to_match(klass, matcher)
-  allow(Sidekiq::Client).to receive(:push_bulk)
-  yield
-  expect(Sidekiq::Client).to have_received(:push_bulk).with(hash_including({
-    'class' => klass,
-    'args' => matcher,
-  }))
-end

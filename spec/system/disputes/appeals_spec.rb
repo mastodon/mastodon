@@ -23,23 +23,15 @@ RSpec.describe 'Dispute Appeals' do
       expect(emails)
         .to be_empty
       expect(page)
-        .to have_content(/can't be blank/)
+        .to have_text(/can't be blank/)
 
       # Valid with text
       fill_in 'appeal_text', with: 'It wasnt me this time!'
-      emails = capture_emails do
-        expect { submit_form }
-          .to change(Appeal, :count).by(1)
-      end
-      expect(emails)
-        .to contain_exactly(
-          have_attributes(
-            to: contain_exactly(admin.email),
-            subject: eq(new_appeal_subject)
-          )
-        )
+      expect { submit_form }
+        .to change(Appeal, :count).by(1)
+        .and send_email(to: admin.email, subject: new_appeal_subject)
       expect(page)
-        .to have_content(I18n.t('disputes.strikes.appealed_msg'))
+        .to have_text(I18n.t('disputes.strikes.appealed_msg'))
     end
 
     def new_appeal_subject

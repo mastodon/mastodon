@@ -2,6 +2,7 @@
 
 class Settings::PrivacyController < Settings::BaseController
   before_action :set_account
+  before_action :set_email_subscriptions_count
 
   def show; end
 
@@ -23,5 +24,9 @@ class Settings::PrivacyController < Settings::BaseController
 
   def set_account
     @account = current_account
+  end
+
+  def set_email_subscriptions_count
+    @email_subscriptions_count = with_read_replica { @account.email_subscriptions.confirmed.count }
   end
 end

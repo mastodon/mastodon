@@ -1,6 +1,8 @@
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 import type { Ref } from 'react';
 
+import classNames from 'classnames';
+
 import { scrollTop } from 'mastodon/scroll';
 
 export interface ColumnRef {
@@ -12,10 +14,11 @@ interface ColumnProps {
   children?: React.ReactNode;
   label?: string;
   bindToDocument?: boolean;
+  className?: string;
 }
 
 export const Column = forwardRef<ColumnRef, ColumnProps>(
-  ({ children, label, bindToDocument }, ref: Ref<ColumnRef>) => {
+  ({ children, label, bindToDocument, className }, ref: Ref<ColumnRef>) => {
     const nodeRef = useRef<HTMLDivElement>(null);
 
     useImperativeHandle(ref, () => ({
@@ -39,7 +42,12 @@ export const Column = forwardRef<ColumnRef, ColumnProps>(
     }));
 
     return (
-      <div role='region' aria-label={label} className='column' ref={nodeRef}>
+      <div
+        role='region'
+        aria-label={label}
+        className={classNames('column', className)}
+        ref={nodeRef}
+      >
         {children}
       </div>
     );

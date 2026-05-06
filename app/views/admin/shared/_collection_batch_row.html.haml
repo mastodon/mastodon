@@ -1,0 +1,5 @@
+.batch-table__row
+  %label.batch-table__row__select.batch-checkbox
+    -# = f.check_box :collection_ids, { multiple: true, include_hidden: false }, collection.id
+  .batch-table__row__content
+    = render partial: 'admin/shared/collection', object: collection

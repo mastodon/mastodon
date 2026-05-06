@@ -161,9 +161,9 @@ RSpec.describe PostStatusService do
   end
 
   it 'creates a status with the quote approval policy set' do
-    status = create_status_with_options(quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+    status = create_status_with_options(quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:followers] << 16)
 
-    expect(status.quote_approval_policy).to eq(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+    expect(status.quote_approval_policy).to eq(InteractionPolicy::POLICY_FLAGS[:followers] << 16)
   end
 
   it 'processes mentions' do
@@ -175,7 +175,7 @@ RSpec.describe PostStatusService do
     status = subject.call(account, text: 'test status update')
 
     expect(ProcessMentionsService).to have_received(:new)
-    expect(mention_service).to have_received(:call).with(status, save_records: false)
+    expect(mention_service).to have_received(:call).with(status)
   end
 
   it 'safeguards mentions' do
@@ -207,6 +207,16 @@ RSpec.describe PostStatusService do
 
     expect(ProcessHashtagsService).to have_received(:new)
     expect(hashtags_service).to have_received(:call).with(status)
+  end
+
+  it 'processes tagged objects' do
+    account = Fabricate(:account)
+    collection = Fabricate(:collection)
+
+    status = subject.call(account, text: "test #{ActivityPub::TagManager.instance.uri_for(collection)} #{ActivityPub::TagManager.instance.uri_for(collection)}")
+
+    expect(status.tagged_objects.map(&:object))
+      .to contain_exactly(collection)
   end
 
   it 'gets distributed' do
@@ -303,6 +313,30 @@ RSpec.describe PostStatusService do
 
     expect { subject.call(account, text: 'test', quoted_status: quoted_status) }
       .to enqueue_sidekiq_job(ActivityPub::QuoteRequestWorker)
+  end
+
+  it 'allows quotes with spoilers and no text' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: Fabricate(:account, domain: 'example.com'))
+
+    expect { subject.call(account, spoiler_text: 'test', quoted_status: quoted_status) }
+      .to enqueue_sidekiq_job(ActivityPub::QuoteRequestWorker)
+  end
+
+  it 'correctly downgrades visibility for private self-quotes' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: account, visibility: :private)
+
+    status = subject.call(account, text: 'test', quoted_status: quoted_status)
+    expect(status).to be_private_visibility
+  end
+
+  it 'correctly preserves visibility for private mentions self-quoting private posts' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: account, visibility: :private)
+
+    status = subject.call(account, text: 'test', quoted_status: quoted_status, visibility: 'direct')
+    expect(status).to be_direct_visibility
   end
 
   it 'returns existing status when used twice with idempotency key' do

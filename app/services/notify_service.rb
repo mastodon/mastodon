@@ -8,11 +8,14 @@ class NotifyService < BaseService
     admin.report
     admin.sign_up
     update
+    quoted_update
     poll
     status
     moderation_warning
     severed_relationships
     annual_report
+    added_to_collection
+    collection_update
   ).freeze
 
   class BaseCondition
@@ -20,21 +23,13 @@ class NotifyService < BaseService
 
     NEW_FOLLOWER_THRESHOLD = 3.days.freeze
 
-    NON_FILTERABLE_TYPES = %i(
-      admin.sign_up
-      admin.report
-      poll
-      update
-      account_warning
-      annual_report
-    ).freeze
-
-    def initialize(notification)
+    def initialize(notification, **options)
       @recipient = notification.account
       @sender = notification.from_account
       @notification = notification
       @policy = NotificationPolicy.find_or_initialize_by(account: @recipient)
       @from_staff = @sender.local? && @sender.user.present? && @sender.user_role&.bypass_block?(@recipient.user_role)
+      @options = options
     end
 
     private
@@ -60,10 +55,6 @@ class NotifyService < BaseService
       NotificationPermission.exists?(account: @recipient, from_account: @sender)
     end
 
-    def from_limited?
-      @sender.silenced? && not_following?
-    end
-
     def message?
       @notification.type == :mention
     end
@@ -86,7 +77,7 @@ class NotifyService < BaseService
       # This queries private mentions from the recipient to the sender up in the thread.
       # This allows up to 100 messages that do not match in the thread, allowing conversations
       # involving multiple people.
-      Status.count_by_sql([<<-SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @sender.id, depth_limit: 100])
+      Status.count_by_sql([<<~SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @sender.id, depth_limit: 100])
         WITH RECURSIVE ancestors(id, in_reply_to_id, mention_id, path, depth) AS (
             SELECT s.id, s.in_reply_to_id, m.id, ARRAY[s.id], 0
             FROM statuses s
@@ -167,7 +158,7 @@ class NotifyService < BaseService
     end
 
     def blocked_by_limited_accounts_policy?
-      @policy.drop_limited_accounts? && @sender.silenced? && not_following?
+      @policy.drop_limited_accounts? && (@options[:silenced] || @sender.silenced?) && not_following?
     end
   end
 
@@ -203,13 +194,14 @@ class NotifyService < BaseService
     end
 
     def filtered_by_limited_accounts_policy?
-      @policy.filter_limited_accounts? && @sender.silenced? && not_following?
+      @policy.filter_limited_accounts? && (@options[:silenced] || @sender.silenced?) && not_following?
     end
   end
 
-  def call(recipient, type, activity)
+  def call(recipient, type, activity, **options)
     return if recipient.user.nil?
 
+    @options      = options
     @recipient    = recipient
     @activity     = activity
     @notification = Notification.new(account: @recipient, type: type, activity: @activity)
@@ -239,11 +231,11 @@ class NotifyService < BaseService
   private
 
   def drop?
-    DropCondition.new(@notification).drop?
+    DropCondition.new(@notification, silenced: @options[:silenced]).drop?
   end
 
   def filter?
-    FilterCondition.new(@notification).filter?
+    FilterCondition.new(@notification, silenced: @options[:silenced]).filter?
   end
 
   def update_notification_request!
@@ -260,7 +252,7 @@ class NotifyService < BaseService
   end
 
   def push_to_streaming_api!
-    redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    redis.publish("timeline:#{@recipient.id}:notifications", { event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification) }.to_json)
   end
 
   def subscribed_to_streaming_api?

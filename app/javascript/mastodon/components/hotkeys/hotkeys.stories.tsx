@@ -50,6 +50,9 @@ const hotkeyTest: Story['play'] = async ({ canvas, userEvent }) => {
   await userEvent.keyboard('gh');
   await confirmHotkey('goToHome');
 
+  await userEvent.keyboard('ge');
+  await confirmHotkey('goToExplore');
+
   await userEvent.keyboard('gn');
   await confirmHotkey('goToNotifications');
 
@@ -106,6 +109,9 @@ export const Default = {
       goToHome: () => {
         setMatchedHotkey('goToHome');
       },
+      goToExplore: () => {
+        setMatchedHotkey('goToExplore');
+      },
       goToNotifications: () => {
         setMatchedHotkey('goToNotifications');
       },
@@ -139,24 +145,24 @@ export const Default = {
             Last pressed hotkey: <output>{matchedHotkey ?? 'None'}</output>
           </p>
           <p>
-            Click within the dashed border and press the &quot;<kbd>n</kbd>
-            &quot; or &quot;<kbd>/</kbd>&quot; key. Press &quot;
-            <kbd>Backspace</kbd>&quot; to clear the displayed hotkey.
+            Click within the dashed border and press the <kbd>n</kbd>
+            or <kbd>/</kbd> key. Press
+            <kbd>Backspace</kbd> to clear the displayed hotkey.
           </p>
           <p>
-            Try typing a sequence, like &quot;<kbd>g</kbd>&quot; shortly
-            followed by &quot;<kbd>h</kbd>&quot;, &quot;<kbd>n</kbd>&quot;, or
-            &quot;<kbd>f</kbd>&quot;
+            Try typing a sequence, like <kbd>g</kbd> shortly followed by{' '}
+            <kbd>h</kbd>, <kbd>n</kbd>, or
+            <kbd>f</kbd>
           </p>
           <p>
             Note that this playground doesn&apos;t support all hotkeys we use in
             the app.
           </p>
           <p>
-            When a <button>Button</button> is focused, &quot;
+            When a <button type='button'>Button</button> is focused,
             <kbd>Enter</kbd>
-            &quot; should not trigger &quot;open&quot;, but &quot;<kbd>o</kbd>
-            &quot; should.
+            should not trigger open, but <kbd>o</kbd>
+            should.
           </p>
           <p>
             When an input element is focused, hotkeys should not interfere with

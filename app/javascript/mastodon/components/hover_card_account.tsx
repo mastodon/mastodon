@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { useFetchFamiliarFollowers } from '@/mastodon/components/familiar_followers/use_fetch_familiar_followers';
 import { fetchAccount } from 'mastodon/actions/accounts';
 import { AccountBio } from 'mastodon/components/account_bio';
 import { AccountFields } from 'mastodon/components/account_fields';
@@ -18,7 +19,6 @@ import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
-import { useFetchFamiliarFollowers } from 'mastodon/features/account_timeline/hooks/familiar_followers';
 import { domain } from 'mastodon/initial_state';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
@@ -105,7 +105,14 @@ export const HoverCardAccount = forwardRef<
                   accountId={account.id}
                   className='hover-card__bio'
                 />
-                <AccountFields fields={account.fields} limit={2} />
+
+                <div className='account-fields'>
+                  <AccountFields
+                    fields={account.fields.take(2)}
+                    emojis={account.emojis}
+                  />
+                </div>
+
                 {note && note.length > 0 && (
                   <dl className='hover-card__note'>
                     <dt className='hover-card__note-label'>

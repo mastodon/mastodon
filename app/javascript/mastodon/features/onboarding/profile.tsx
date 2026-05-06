@@ -6,8 +6,6 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { useHistory } from 'react-router-dom';
 
-import Toggle from 'react-toggle';
-
 import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person.svg?react';
@@ -16,6 +14,11 @@ import { closeOnboarding } from 'mastodon/actions/onboarding';
 import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
+import {
+  TextAreaField,
+  TextInputField,
+  Toggle,
+} from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { me } from 'mastodon/initial_state';
@@ -54,9 +57,7 @@ export const Profile: React.FC<{
     me ? state.accounts.get(me) : undefined,
   );
   const [displayName, setDisplayName] = useState(account?.display_name ?? '');
-  const [note, setNote] = useState(
-    account ? (unescapeHTML(account.note) ?? '') : '',
-  );
+  const [note, setNote] = useState(account ? unescapeHTML(account.note) : '');
   const [avatar, setAvatar] = useState<File>();
   const [header, setHeader] = useState<File>();
   const [discoverable, setDiscoverable] = useState(
@@ -134,7 +135,7 @@ export const Profile: React.FC<{
       }),
     )
       .then(() => {
-        history.push('/start/follows');
+        history.push('/home');
         dispatch(closeOnboarding());
         return '';
       })
@@ -161,6 +162,7 @@ export const Profile: React.FC<{
         icon='person'
         iconComponent={PersonIcon}
         multiColumn={multiColumn}
+        showBackButton
       />
 
       <div className='scrollable scrollable--flex'>
@@ -214,62 +216,47 @@ export const Profile: React.FC<{
           </div>
 
           <div className='fields-group'>
-            <div
-              className={classNames('input with_block_label', {
-                field_with_errors: !!errors?.display_name,
-              })}
-            >
-              <label htmlFor='display_name'>
+            <TextInputField
+              maxLength={30}
+              label={
                 <FormattedMessage
                   id='onboarding.profile.display_name'
                   defaultMessage='Display name'
                 />
-              </label>
-              <span className='hint'>
+              }
+              hint={
                 <FormattedMessage
                   id='onboarding.profile.display_name_hint'
                   defaultMessage='Your full name or your fun name…'
                 />
-              </span>
-              <div className='label_input'>
-                <input
-                  id='display_name'
-                  type='text'
-                  value={displayName}
-                  onChange={handleDisplayNameChange}
-                  maxLength={30}
-                />
-              </div>
-            </div>
+              }
+              value={displayName}
+              onChange={handleDisplayNameChange}
+              status={errors?.display_name ? 'error' : undefined}
+              id='display_name'
+            />
           </div>
 
           <div className='fields-group'>
-            <div
-              className={classNames('input with_block_label', {
-                field_with_errors: !!errors?.note,
-              })}
-            >
-              <label htmlFor='note'>
+            <TextAreaField
+              maxLength={500}
+              label={
                 <FormattedMessage
                   id='onboarding.profile.note'
                   defaultMessage='Bio'
                 />
-              </label>
-              <span className='hint'>
+              }
+              hint={
                 <FormattedMessage
                   id='onboarding.profile.note_hint'
                   defaultMessage='You can @mention other people or #hashtags…'
                 />
-              </span>
-              <div className='label_input'>
-                <textarea
-                  id='note'
-                  value={note}
-                  onChange={handleNoteChange}
-                  maxLength={500}
-                />
-              </div>
-            </div>
+              }
+              value={note}
+              onChange={handleNoteChange}
+              status={errors?.note ? 'error' : undefined}
+              id='note'
+            />
           </div>
 
           <label className='app-form__toggle'>
@@ -313,8 +300,8 @@ export const Profile: React.FC<{
               <LoadingIndicator />
             ) : (
               <FormattedMessage
-                id='onboarding.profile.save_and_continue'
-                defaultMessage='Save and continue'
+                id='onboarding.profile.finish'
+                defaultMessage='Finish'
               />
             )}
           </Button>

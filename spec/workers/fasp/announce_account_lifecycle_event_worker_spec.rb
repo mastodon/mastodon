@@ -8,10 +8,10 @@ RSpec.describe Fasp::AnnounceAccountLifecycleEventWorker do
   subject { described_class.new.perform(account_uri, 'new') }
 
   let(:account_uri) { 'https://masto.example.com/accounts/1' }
+  let(:provider) { Fabricate(:confirmed_fasp) }
   let(:subscription) do
-    Fabricate(:fasp_subscription, category: 'account')
+    Fabricate(:fasp_subscription, fasp_provider: provider, category: 'account')
   end
-  let(:provider) { subscription.fasp_provider }
   let(:path) { '/data_sharing/v0/announcements' }
 
   let!(:stubbed_request) do

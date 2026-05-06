@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Bookmarks' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read:bookmarks' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:bookmarks'
 
   describe 'GET /api/v1/bookmarks' do
     subject do

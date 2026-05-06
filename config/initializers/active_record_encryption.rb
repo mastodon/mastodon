@@ -13,7 +13,7 @@
   value = ENV.fetch(key, '')
 
   if value.blank?
-    abort <<~MESSAGE
+    abort <<~MESSAGE # rubocop:disable Rails/Exit
 
       Mastodon now requires that these variables are set:
 
@@ -28,7 +28,7 @@
 
   next unless Rails.env.production? && value.end_with?('DO_NOT_USE_IN_PRODUCTION')
 
-  abort <<~MESSAGE
+  abort <<~MESSAGE # rubocop:disable Rails/Exit
 
     It looks like you are trying to run Mastodon in production with a #{key} value from the test environment.
 

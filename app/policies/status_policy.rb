@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 class StatusPolicy < ApplicationPolicy
-  def initialize(current_account, record, preloaded_relations = {})
-    super(current_account, record)
-
-    @preloaded_relations = preloaded_relations
-  end
-
   def show?
     return false if author.unavailable?
 
@@ -19,9 +13,8 @@ class StatusPolicy < ApplicationPolicy
     end
   end
 
-  # This is about requesting a quote post, not validating it
   def quote?
-    show? && record.quote_policy_for_account(current_account, preloaded_relations: @preloaded_relations) != :denied
+    show? && !blocking_author? && record.quote_policy_for_account(current_account) != :denied
   end
 
   def reblog?
@@ -33,10 +26,6 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def destroy?
-    owned?
-  end
-
-  def list_quotes?
     owned?
   end
 
@@ -79,19 +68,19 @@ class StatusPolicy < ApplicationPolicy
   def blocking_author?
     return false if current_account.nil?
 
-    @preloaded_relations[:blocking] ? @preloaded_relations[:blocking][author.id] : current_account.blocking?(author)
+    current_account.blocking?(author)
   end
 
   def author_blocking?
     return false if current_account.nil?
 
-    @preloaded_relations[:blocked_by] ? @preloaded_relations[:blocked_by][author.id] : author.blocking?(current_account)
+    current_account.blocked_by?(author)
   end
 
   def following_author?
     return false if current_account.nil?
 
-    @preloaded_relations[:following] ? @preloaded_relations[:following][author.id] : current_account.following?(author)
+    current_account.following?(author)
   end
 
   def author

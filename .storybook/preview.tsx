@@ -11,18 +11,25 @@ import type { Preview } from '@storybook/react-vite';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { action } from 'storybook/actions';
 
+import {
+  importCustomEmojiData,
+  importLegacyShortcodes,
+  importEmojiData,
+} from '@/mastodon/features/emoji/loader';
 import type { LocaleData } from '@/mastodon/locales';
-import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
+import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
 import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 
-// If you want to run the dark theme during development,
-// you can change the below to `/application.scss`
-import '../app/javascript/styles/mastodon-light.scss';
+import { modes } from './modes';
 
-const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
-  query: { as: 'json' },
-});
+import '../app/javascript/styles/application.scss';
+import './styles.css';
+
+// Disabling locales in Storybook as it's breaking with Vite 8.
+// const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
+//   query: { as: 'json' },
+// });
 
 // Initialize MSW
 initialize({
@@ -33,28 +40,68 @@ const preview: Preview = {
   // Auto-generate docs: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   globalTypes: {
-    locale: {
-      description: 'Locale for the story',
+    // locale: {
+    //   description: 'Locale for the story',
+    //   toolbar: {
+    //     title: 'Locale',
+    //     icon: 'globe',
+    //     items: Object.keys(localeFiles).map((path) =>
+    //       path.replace('/mastodon/locales/', '').replace('.json', ''),
+    //     ),
+    //     dynamicTitle: true,
+    //   },
+    // },
+    theme: {
+      description: 'Theme for the story',
       toolbar: {
-        title: 'Locale',
-        icon: 'globe',
-        items: Object.keys(localeFiles).map((path) =>
-          path.replace('/mastodon/locales/', '').replace('.json', ''),
-        ),
+        title: 'Theme',
+        icon: 'circlehollow',
+        items: [{ value: 'light' }, { value: 'dark' }],
         dynamicTitle: true,
       },
     },
   },
   initialGlobals: {
     locale: 'en',
+    theme: 'light',
   },
   decorators: [
-    (Story, { parameters }) => {
+    (Story, { parameters, globals, args, argTypes }) => {
+      // Get the locale from the global toolbar
+      // and merge it with any parameters or args state.
+      const { locale } = globals as { locale: string };
       const { state = {} } = parameters;
-      let reducer = rootReducer;
-      if (typeof state === 'object' && state) {
-        reducer = reducerWithInitialState(state as Record<string, unknown>);
+
+      const argsState: Record<string, unknown> = {};
+      for (const [key, value] of Object.entries(args)) {
+        const argType = argTypes[key];
+        if (argType?.reduxPath) {
+          const reduxPath = Array.isArray(argType.reduxPath)
+            ? argType.reduxPath.map((p) => p.toString())
+            : argType.reduxPath.split('.');
+
+          reduxPath.reduce((acc, key, i) => {
+            if (acc[key] === undefined) {
+              acc[key] = {};
+            }
+            if (i === reduxPath.length - 1) {
+              acc[key] = value;
+            }
+            return acc[key] as Record<string, unknown>;
+          }, argsState);
+        }
       }
+
+      const reducer = reducerWithInitialState(
+        {
+          meta: {
+            locale,
+          },
+        },
+        state as Record<string, unknown>,
+        argsState,
+      );
+
       const store = configureStore({
         reducer,
         middleware(getDefaultMiddleware) {
@@ -90,14 +137,17 @@ const preview: Preview = {
       }, [currentLocale, currentLocaleData]);
 
       return (
-        <IntlProvider
-          locale={currentLocale}
-          messages={currentLocaleData}
-          textComponent='span'
-        >
+        <IntlProvider locale={currentLocale} messages={currentLocaleData}>
           <Story />
         </IntlProvider>
       );
+    },
+    (Story, { globals }) => {
+      const theme = (globals.theme as string) || 'light';
+      useEffect(() => {
+        document.body.setAttribute('data-color-scheme', theme);
+      }, [theme]);
+      return <Story />;
     },
     (Story) => (
       <MemoryRouter>
@@ -115,7 +165,12 @@ const preview: Preview = {
       </MemoryRouter>
     ),
   ],
-  loaders: [mswLoader],
+  loaders: [
+    mswLoader,
+    importCustomEmojiData,
+    importLegacyShortcodes,
+    ({ globals: { locale } }) => importEmojiData(locale as string),
+  ],
   parameters: {
     layout: 'centered',
 
@@ -139,6 +194,13 @@ const preview: Preview = {
 
     msw: {
       handlers: mockHandlers,
+    },
+
+    chromatic: {
+      modes: {
+        dark: modes.darkTheme,
+        light: modes.lightTheme,
+      },
     },
   },
 };

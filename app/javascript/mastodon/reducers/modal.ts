@@ -41,7 +41,7 @@ const popModal = (
     modalType === state.get('stack').get(0)?.get('modalType')
   ) {
     return state
-      .set('ignoreFocus', !!ignoreFocus)
+      .set('ignoreFocus', ignoreFocus)
       .update('stack', (stack) => stack.shift());
   } else {
     return state;

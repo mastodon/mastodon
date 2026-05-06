@@ -24,10 +24,10 @@ RSpec.describe 'Settings TwoFactorAuthentication RecoveryCodes' do
         .to(change { user.reload.otp_backup_codes })
 
       expect(page)
-        .to have_content(I18n.t('two_factor_authentication.recovery_codes_regenerated'))
+        .to have_text(I18n.t('two_factor_authentication.recovery_codes_regenerated'))
         .and have_title(I18n.t('settings.two_factor_authentication'))
         .and have_css('ol.recovery-codes')
-        .and have_content(backup_code)
+        .and have_text(backup_code)
     end
 
     def stub_code_generator

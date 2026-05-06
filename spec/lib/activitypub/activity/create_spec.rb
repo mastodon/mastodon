@@ -88,10 +88,16 @@ RSpec.describe ActivityPub::Activity::Create do
         content: '@bob lorem ipsum',
         published: 1.hour.ago.utc.iso8601,
         updated: 1.hour.ago.utc.iso8601,
-        tag: {
-          type: 'Mention',
-          href: 'http://notexisting.dontexistingtld/actor',
-        },
+        tag: [
+          {
+            type: 'Mention',
+            href: 'http://notexisting.dontexistingtld/actor',
+          },
+          {
+            type: 'FeaturedCollection',
+            id: 'http://notexisting.notexistingtld/collection',
+          },
+        ],
       }
     end
 
@@ -150,8 +156,10 @@ RSpec.describe ActivityPub::Activity::Create do
       expect(Notification.count).to eq 2
     end
 
-    it 'ignores unprocessable mention', :aggregate_failures do
-      stub_request(:get, invalid_mention_json[:tag][:href]).to_raise(HTTP::ConnectionError)
+    it 'ignores unprocessable mentions and tagged collections', :aggregate_failures do
+      stub_request(:get, invalid_mention_json[:tag][0][:href]).to_raise(HTTP::ConnectionError)
+      stub_request(:get, invalid_mention_json[:tag][1][:id]).to_raise(HTTP::ConnectionError)
+
       # When receiving the post that contains an invalid mention…
       described_class.new(activity_for_object(invalid_mention_json), sender, delivery: true).perform
 
@@ -166,7 +174,10 @@ RSpec.describe ActivityPub::Activity::Create do
       expect(status.nil?).to be false
 
       # It has queued a mention resolve job
-      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][:href], anything)
+      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][0][:href], anything)
+
+      # It has queued a collection resolve job
+      expect(TaggedCollectionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][1][:id], anything)
     end
   end
 
@@ -471,12 +482,36 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'with a reply' do
+      context 'with a reply without explicitly setting a conversation' do
         let(:original_status) { Fabricate(:status) }
 
         let(:object_json) do
           build_object(
             inReplyTo: ActivityPub::TagManager.instance.uri_for(original_status)
+          )
+        end
+
+        it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.thread).to eq original_status
+          expect(status.reply?).to be true
+          expect(status.in_reply_to_account).to eq original_status.account
+          expect(status.conversation).to eq original_status.conversation
+        end
+      end
+
+      context 'with a reply explicitly setting a conversation' do
+        let(:original_status) { Fabricate(:status) }
+
+        let(:object_json) do
+          build_object(
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(original_status),
+            conversation: ActivityPub::TagManager.instance.uri_for(original_status.conversation),
+            context: ActivityPub::TagManager.instance.uri_for(original_status.conversation)
           )
         end
 
@@ -654,6 +689,30 @@ RSpec.describe ActivityPub::Activity::Create do
 
           status = sender.statuses.first
           expect(status).to_not be_nil
+        end
+      end
+
+      context 'with tagged Featured Collections' do
+        let(:featured_collection) { Fabricate(:collection) }
+
+        let(:object_json) do
+          build_object(
+            tag: [
+              {
+                type: 'FeaturedCollection',
+                id: ActivityPub::TagManager.instance.uri_for(featured_collection),
+              },
+            ]
+          )
+        end
+
+        it 'creates the status with appropriate tagged objects' do
+          expect { subject.perform }
+            .to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+
+          expect(status.tagged_objects.map(&:object)).to contain_exactly(featured_collection)
         end
       end
 
@@ -887,6 +946,33 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with an unverifiable quote of a known post, with summary (CW) but no text' do
+        let(:quoted_status) { Fabricate(:status, account: Fabricate(:account, domain: 'example.com')) }
+
+        let(:object_json) do
+          build_object(
+            type: 'Note',
+            summary: 'beware of what she said',
+            content: nil,
+            quote: ActivityPub::TagManager.instance.uri_for(quoted_status)
+          )
+        end
+
+        it 'creates a status with an unverified quote' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.spoiler_text).to eq 'beware of what she said'
+          expect(status.content).to eq ''
+          expect(status.quote).to_not be_nil
+          expect(status.quote).to have_attributes(
+            state: 'pending',
+            approval_uri: nil
+          )
+        end
+      end
+
       context 'with an unverifiable quote of a known post' do
         let(:quoted_status) { Fabricate(:status, account: Fabricate(:account, domain: 'example.com')) }
 
@@ -906,6 +992,30 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(status.quote).to_not be_nil
           expect(status.quote).to have_attributes(
             state: 'pending',
+            approval_uri: nil
+          )
+        end
+      end
+
+      context 'with an unverifiable quote of a dead post' do
+        let(:quoted_status) { Fabricate(:status) }
+
+        let(:object_json) do
+          build_object(
+            type: 'Note',
+            content: 'woah what she said is amazing',
+            quote: { type: 'Tombstone' }
+          )
+        end
+
+        it 'creates a status with an unverified quote' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.quote).to_not be_nil
+          expect(status.quote).to have_attributes(
+            state: 'deleted',
             approval_uri: nil
           )
         end
@@ -953,8 +1063,8 @@ RSpec.describe ActivityPub::Activity::Create do
           )
         end
 
-        before do
-          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+        let(:quote_authorization_json) do
+          {
             '@context': [
               'https://www.w3.org/ns/activitystreams',
               {
@@ -979,7 +1089,11 @@ RSpec.describe ActivityPub::Activity::Create do
             attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
             interactingObject: object_json[:id],
             interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
-          }))
+          }
+        end
+
+        before do
+          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
         end
 
         it 'creates a status with a verified quote' do
@@ -992,6 +1106,64 @@ RSpec.describe ActivityPub::Activity::Create do
             state: 'accepted',
             approval_uri: approval_uri
           )
+        end
+      end
+
+      context 'with a quote of a known reblog that is otherwise valid' do
+        let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+        let(:quoted_status) { Fabricate(:status, account: quoted_account, reblog: Fabricate(:status)) }
+        let(:approval_uri) { 'https://quoted.example.com/quote-approval' }
+
+        let(:object_json) do
+          build_object(
+            type: 'Note',
+            content: 'woah what she said is amazing',
+            quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+            quoteAuthorization: approval_uri
+          )
+        end
+
+        let(:quote_authorization_json) do
+          {
+            '@context': [
+              'https://www.w3.org/ns/activitystreams',
+              {
+                QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+                gts: 'https://gotosocial.org/ns#',
+                interactionPolicy: {
+                  '@id': 'gts:interactionPolicy',
+                  '@type': '@id',
+                },
+                interactingObject: {
+                  '@id': 'gts:interactingObject',
+                  '@type': '@id',
+                },
+                interactionTarget: {
+                  '@id': 'gts:interactionTarget',
+                  '@type': '@id',
+                },
+              },
+            ],
+            type: 'QuoteAuthorization',
+            id: approval_uri,
+            attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+            interactingObject: object_json[:id],
+            interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+          }
+        end
+
+        before do
+          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
+        end
+
+        it 'creates a status without the verified quote' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.quote).to_not be_nil
+          expect(status.quote.state).to_not eq 'accepted'
+          expect(status.quote.quoted_status).to be_nil
         end
       end
 
@@ -1088,7 +1260,7 @@ RSpec.describe ActivityPub::Activity::Create do
       before do
         stub_request(:get, object_json[:id])
           .with(headers: { Authorization: "Bearer #{token}" })
-          .to_return(body: Oj.dump(object_json), headers: { 'Content-Type': 'application/activity+json' })
+          .to_return(body: object_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
 
         subject.perform
       end

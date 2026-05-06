@@ -4,7 +4,7 @@ es:
     hints:
       account:
         attribution_domains: Una por línea. Protege de falsas atribuciones.
-        discoverable: Tu perfil y publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
+        discoverable: Puede que aparezcas en colecciones creadas por otros usuarios. También pueden sugerirse tu perfil y publicaciones públicas a otros usuarios en otras funciones de descubrimiento de Mastodon.
         display_name: Tu nombre completo o tu apodo.
         fields: Tu carta de presentación, pronombres, edad, lo que quieras.
         indexable: Tus publicaciones públicas pueden aparecer en los resultados de búsqueda en Mastodon. Las personas que han interactuado con tus publicaciones pueden ser capaces de buscarlas sin importar su visibilidad.
@@ -54,14 +54,18 @@ es:
         password: Utiliza al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
+        setting_advanced_layout: Mostrar Mastodon con vista de varias columnas, permitiéndote ver tu cronología, notificaciones y una tercera columna que tú elijas. No recomendado para pantallas pequeñas.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a los impulsos recibidos recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
-        setting_default_quote_policy: Este ajuste solo tendrá efecto en publicaciones creadas con la próxima versión de Mastodon, pero puedes configurarlo previamente.
+        setting_boost_modal: Si está activado, impulsar una publicación abrirá una ventana donde podrás cambiar la visibilidad de tu impulso.
+        setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
+        setting_default_quote_policy_unlisted: Cuando las personas te citen, su publicación también se ocultará en las cronologías públicas.
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un click
-        setting_display_media_default: Ocultar contenido multimedia marcado como sensible
-        setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
-        setting_display_media_show_all: Mostrar siempre contenido multimedia marcado como sensible
+        setting_display_media_default: Avisar antes de mostrar multimedia marcada como sensible
+        setting_display_media_hide_all: Avisar antes de mostrar cualquier multimedia
+        setting_display_media_show_all: Mostrar toda la multimedia sin avisos, incluyendo la marcada como sensible
         setting_emoji_style: Cómo se mostrarán los emojis. "Auto" intentará usar emojis nativos, cambiando a Twemoji en navegadores antiguos.
+        setting_quick_boosting_html: Cuando está activado, pulsar en el icono %{boost_icon} Impulsar impulsará inmediatamente en lugar de abrir el menú desplegable Impulsar/Citas. Mueve la acción de citar al menú %{options_icon} (Opciones).
         setting_system_scrollbars_ui: Solo aplica para navegadores de escritorio basados en Safari y Chrome
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar nuevas publicaciones detrás de un clic en lugar de desplazar automáticamente el feed
@@ -75,7 +79,7 @@ es:
       featured_tag:
         name: 'Aquí están algunas de las etiquetas que más has utilizado recientemente:'
       filters:
-        action: Elegir qué acción realizar cuando una publicación coincide con el filtro
+        action: Elige qué acción realizar cuando una publicación coincide con el filtro
         actions:
           blur: Ocultar contenido multimedia detrás de una advertencia, sin ocultar el texto en sí
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
@@ -84,11 +88,13 @@ es:
         activity_api_enabled: Conteo de publicaciones publicadas localmente, usuarios activos y registros nuevos cada semana
         app_icon: WEBP, PNG, GIF o JPG. Reemplaza el icono de aplicación predeterminado en dispositivos móviles con un icono personalizado.
         backups_retention_period: Los usuarios tienen la capacidad de generar archivos de sus mensajes para descargar más adelante. Cuando se establece un valor positivo, estos archivos se eliminarán automáticamente del almacenamiento después del número de días especificado.
-        bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de los nuevos usuarios.
+        bootstrap_timeline_accounts: Estas cuentas se colocarán en la parte superior de las recomendaciones de cuentas a las que seguir para los nuevos usuarios. Proporciona una lista de cuentas separadas por comas.
         closed_registrations_message: Mostrado cuando los registros están cerrados
         content_cache_retention_period: Todas las publicaciones de otros servidores (incluso impulsos y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes donde un usuario local los ha marcado como marcadores o favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán sin posibilidad de recuperación. El uso de esta configuración está destinado a instancias de propósito especial, y rompe muchas expectativas de los usuarios cuando se implementa para un uso de propósito general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
+        email_footer_text: Texto opcional que aparece únicamente en el pie de los correos electrónicos del boletín de correo electrónico.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicon predeterminado de Mastodon con un icono personalizado.
+        landing_page: Selecciona qué página ven los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionas "Tendencias", entonces las tendencias deben estar habilitadas en la Configuración de Descubrimiento. Si selecciona "Cronología local", entonces "Acceso a las cronologías que destacan publicaciones locales" debe configurarse a "Todos" en la Configuración de Descubrimiento.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia de las publicaciones creadas por usuarios remotos se almacenan en caché en tu servidor. Cuando se establece un valor positivo, estos archivos se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlaces realizan peticiones a sitios de terceros, se recomienda establecer este valor a al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese momento.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
@@ -104,10 +110,10 @@ es:
         status_page_url: URL de una página donde se pueda ver el estado de este servidor durante una incidencia
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
-        timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
+        thumbnail_description: Una descripción de la imagen para ayudar a las personas con discapacidades visuales a entender su contenido.
         trendable_by_default: Omitir la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué publicaciones, etiquetas y noticias están ganando tracción en tu servidor.
-        trends_as_landing_page: Mostrar contenido en tendencia para usuarios y visitantes en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
+        wrapstodon: Ofrecer a los usuarios locales un resumen lúdico de su uso en Mastodon durante el año. Esta característica está disponible entre los días 10 y 31 de diciembre de cada año, y se ofrece a los usuarios que hicieron al menos una publicación Pública o Pública Silenciosa y utilizaron al menos una etiqueta durante el año.
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -130,6 +136,7 @@ es:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
         webauthn: Si es una tecla USB, asegúrese de insertarla y, si es necesario, púlsela.
       settings:
+        email_subscriptions: Deshabilitar retiene a los suscriptores existentes pero detiene el envío de correos electrónicos.
         indexable: Puede que tu página de perfil aparezca en los resultados de búsqueda en Google, Bing y otros.
         show_application: Tú siempre podrás ver desde qué aplicación se ha publicado tu publicación.
       tag:
@@ -149,17 +156,19 @@ es:
         jurisdiction: Lista el país donde vive quien paga las facturas. Si es una empresa u otra entidad, enumere el país donde está basada y la ciudad, región, territorio o estado según corresponda.
         min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
-        chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
+        chosen_languages: Cuando está activada, solo las publicaciones en los idiomas seleccionados se mostrarán en las cronologías públicas. Esta configuración no afecta a tu cronología principal ni a tus listas.
         date_of_birth:
           one: Tenemos que asegurarnos de que tienes al menos %{count} para usar %{domain}. No guardaremos esta información.
           other: Tenemos que asegurarnos de que tienes al menos %{count} para usar %{domain}. No guardaremos esta información.
         role: El rol controla qué permisos tiene el usuario.
       user_role:
+        collection_limit: Limita el número de Colecciones que un usuario con este rol puede crear. Ten en cuenta que, al reducir este número, los usuarios que superen este límite no perderán ninguna Colección, pero tampoco podrán crear más.
         color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a...
         position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
+        require_2fa: Los usuarios con este rol deberán activar la autenticación en dos pasos para usar Mastodon
       username_block:
         allow_with_approval: En lugar de impedir directamente el registro, los registros coincidentes requerirán tu aprobación
         comparison: Por favor, ten en cuenta el problema de Scunthorpe al bloquear coincidencias parciales
@@ -171,7 +180,7 @@ es:
     labels:
       account:
         attribution_domains: Sitios web autorizados a acreditarte
-        discoverable: Destacar perfil y publicaciones en algoritmos de descubrimiento
+        discoverable: Mostrarme en funciones de descubrimiento
         fields:
           name: Etiqueta
           value: Contenido
@@ -219,6 +228,7 @@ es:
         email: Dirección de correo electrónico
         expires_in: Expirar tras
         fields: Metadatos de perfil
+        filter_action: Acción de filtro
         header: Imagen de encabezado
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
@@ -234,12 +244,14 @@ es:
         setting_aggregate_reblogs: Agrupar impulsos en las líneas de tiempo
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar diálogo de confirmación antes de impulsar una publicación
+        setting_boost_modal: Control de visibilidad de impulsos
+        setting_color_scheme: Esquema de colores
+        setting_contrast: Contraste
         setting_default_language: Idioma de publicación
-        setting_default_privacy: Privacidad de publicaciones
+        setting_default_privacy: Visibilidad de publicación
         setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Marcar siempre imágenes como sensibles
-        setting_delete_modal: Mostrar diálogo de confirmación antes de borrar una publicación
+        setting_delete_modal: Avisarme antes de borrar una publicación
         setting_disable_hover_cards: Desactivar vista previa del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización multimedia
@@ -249,7 +261,8 @@ es:
         setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
-        setting_missing_alt_text_modal: Mostrar diálogo de confirmación antes de publicar medios sin texto alternativo
+        setting_missing_alt_text_modal: Avisarme antes de publicar multimedia sin descripción de texto
+        setting_quick_boosting: Habilitar impulso rápido
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía por defecto del sistema
         setting_system_scrollbars_ui: Utilizar barra de desplazamiento predeterminada del sistema
@@ -282,13 +295,19 @@ es:
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
+        email_footer_text: Texto de pie de página adicional
         favicon: Favicon
+        landing_page: Página de inicio para nuevos visitantes
+        local_live_feed_access: Acceso a las cronologías que destacan publicaciones locales
+        local_topic_feed_access: Acceso a las etiquetas y enlaces en tendencia que destacan publicaciones locales
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia
         min_age: Edad mínima requerida
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
+        remote_live_feed_access: Acceso a las cronologías que destacan publicaciones remotas
+        remote_topic_feed_access: Acceso a las etiquetas y enlaces en tendencia que destacan publicaciones remotas
         require_invite_text: Requerir una razón para unirse
         show_domain_blocks: Mostrar dominios bloqueados
         show_domain_blocks_rationale: Mostrar por qué se bloquearon los dominios
@@ -301,10 +320,13 @@ es:
         status_page_url: URL de página de estado
         theme: Tema por defecto
         thumbnail: Miniatura del servidor
-        timeline_preview: Permitir el acceso no autenticado a las líneas de tiempo públicas
+        thumbnail_description: Texto alternativo de miniatura
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
-        trends_as_landing_page: Usar tendencias como la página de inicio
+        wrapstodon: Habilitar Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Entiendo que activar esta característica puede aumentar significativamente el volumen de correos electrónicos enviados desde el servidor, y que soy el único responsable de cualquier coste incurrido.
+        agreement_privacy_and_terms: He actualizado la Política de Privacidad y los Términos del Servicio.
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
@@ -343,6 +365,7 @@ es:
         hint: Información adicional
         text: Norma
       settings:
+        email_subscriptions: Habilitar suscripciones por correo electrónico
         indexable: Incluye la página de perfil en los buscadores
         show_application: Mostrar desde qué aplicación enviaste una publicación
       tag:
@@ -365,17 +388,19 @@ es:
         jurisdiction: Jurisdicción legal
         min_age: Edad mínima
       user:
-        date_of_birth_1i: Día
+        date_of_birth_1i: Año
         date_of_birth_2i: Mes
-        date_of_birth_3i: Año
+        date_of_birth_3i: Día
         role: Rol
         time_zone: Zona horaria
       user_role:
+        collection_limit: Número máximo de Colecciones por usuario
         color: Color de insignia
         highlighted: Mostrar rol como insignia en perfiles de usuario
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+        require_2fa: Requerir autenticación en dos pasos
       username_block:
         allow_with_approval: Permitir registros con aprobación
         comparison: Método de comparación

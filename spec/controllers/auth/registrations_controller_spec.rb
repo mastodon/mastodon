@@ -12,11 +12,11 @@ RSpec.describe Auth::RegistrationsController do
         allow(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
       end
 
-      it 'redirects to root' do
+      it 'redirects to sign-in' do
         Fabricate(:account)
         get path
 
-        expect(response).to redirect_to '/'
+        expect(response).to redirect_to '/auth/sign_in'
         expect(Rails.configuration.x).to have_received(:single_user_mode)
       end
     end
@@ -27,10 +27,10 @@ RSpec.describe Auth::RegistrationsController do
         allow(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
       end
 
-      it 'redirects to root' do
+      it 'redirects to sign-in' do
         get path
 
-        expect(response).to redirect_to '/'
+        expect(response).to redirect_to '/auth/sign_in'
         expect(Rails.configuration.x).to have_received(:single_user_mode)
       end
     end
@@ -298,7 +298,6 @@ RSpec.describe Auth::RegistrationsController do
 
     context 'with Approval-based registrations with valid invite and required invite text' do
       subject do
-        inviter = Fabricate(:user, confirmed_at: 2.days.ago)
         Setting.registrations_mode = 'approved'
         Setting.require_invite_text = true
         request.headers['Accept-Language'] = accept_language
@@ -306,7 +305,9 @@ RSpec.describe Auth::RegistrationsController do
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', invite_code: invite.code, agreement: 'true' } }
       end
 
-      it 'redirects to setup and creates user' do
+      let!(:inviter) { Fabricate(:user, confirmed_at: 2.days.ago) }
+
+      it 'redirects to setup and creates user in a non-approved state' do
         subject
 
         expect(response).to redirect_to auth_setup_path
@@ -315,8 +316,27 @@ RSpec.describe Auth::RegistrationsController do
           .to be_present
           .and have_attributes(
             locale: eq(accept_language),
-            approved: be(true)
+            approved: be(false)
           )
+      end
+
+      context 'when the inviting user has the permission to bypass approval' do
+        before do
+          inviter.role.update!(permissions: inviter.role.permissions | UserRole::FLAGS[:invite_bypass_approval])
+        end
+
+        it 'redirects to setup and creates user in an approved state' do
+          subject
+
+          expect(response).to redirect_to auth_setup_path
+
+          expect(User.find_by(email: 'test@example.com'))
+            .to be_present
+            .and have_attributes(
+              locale: eq(accept_language),
+              approved: be(true)
+            )
+        end
       end
     end
 
@@ -339,42 +359,6 @@ RSpec.describe Auth::RegistrationsController do
 
       def username_error_text
         response.parsed_body.css('.user_account_username .error').text
-      end
-    end
-
-    context 'when age verification is enabled' do
-      subject { post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' }.merge(date_of_birth) } }
-
-      before do
-        Setting.min_age = 16
-      end
-
-      let(:date_of_birth) { {} }
-
-      context 'when date of birth is below age limit' do
-        let(:date_of_birth) { 13.years.ago.then { |date| { 'date_of_birth(1i)': date.day.to_s, 'date_of_birth(2i)': date.month.to_s, 'date_of_birth(3i)': date.year.to_s } } }
-
-        it 'does not create user' do
-          subject
-          user = User.find_by(email: 'test@example.com')
-          expect(user).to be_nil
-        end
-      end
-
-      context 'when date of birth is above age limit' do
-        let(:date_of_birth) { 17.years.ago.then { |date| { 'date_of_birth(1i)': date.day.to_s, 'date_of_birth(2i)': date.month.to_s, 'date_of_birth(3i)': date.year.to_s } } }
-
-        it 'redirects to setup and creates user' do
-          subject
-
-          expect(response).to redirect_to auth_setup_path
-
-          expect(User.find_by(email: 'test@example.com'))
-            .to be_present
-            .and have_attributes(
-              age_verified_at: not_eq(nil)
-            )
-        end
       end
     end
 

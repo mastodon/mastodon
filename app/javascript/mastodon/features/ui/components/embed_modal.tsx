@@ -36,6 +36,7 @@ const EmbedModal: React.FC<{
         }
 
         iframeDocument.open();
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         iframeDocument.write(data.html);
         iframeDocument.close();
 

@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 
 import type { List as ImmutableList, RecordOf } from 'immutable';
 
+import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
+import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import BarChart4BarsIcon from '@/material-icons/400-24px/bar_chart_4_bars.svg?react';
 import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react';
 import { toggleStatusSpoilers } from 'mastodon/actions/statuses';
@@ -17,7 +19,7 @@ import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
 
-export type Mention = RecordOf<{ url: string; acct: string }>;
+export type Mention = RecordOf<ApiMentionJSON>;
 
 export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
@@ -76,32 +78,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
     [clickCoordinatesRef, statusId, account, history],
   );
 
-  const handleMouseEnter = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ currentTarget }) => {
-      const emojis =
-        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
-
-      for (const emoji of emojis) {
-        const newSrc = emoji.getAttribute('data-original');
-        if (newSrc) emoji.src = newSrc;
-      }
-    },
-    [],
-  );
-
-  const handleMouseLeave = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ currentTarget }) => {
-      const emojis =
-        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
-
-      for (const emoji of emojis) {
-        const newSrc = emoji.getAttribute('data-static');
-        if (newSrc) emoji.src = newSrc;
-      }
-    },
-    [],
-  );
-
   const handleContentWarningClick = useCallback(() => {
     dispatch(toggleStatusSpoilers(statusId));
   }, [dispatch, statusId]);
@@ -111,45 +87,36 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   }
 
   // Assign status attributes to variables with a forced type, as status is not yet properly typed
-  const contentHtml = status.get('contentHtml') as string;
-  const contentWarning = status.get('spoilerHtml') as string;
+  const hasContentWarning = !!status.get('spoiler_text');
   const poll = status.get('poll');
-  const language = status.get('language') as string;
-  const mentions = status.get('mentions') as ImmutableList<Mention>;
-  const expanded = !status.get('hidden') || !contentWarning;
+  const expanded = !status.get('hidden') || !hasContentWarning;
   const mediaAttachmentsSize = (
     status.get('media_attachments') as ImmutableList<unknown>
   ).size;
 
   return (
-    <div
+    <AnimateEmojiProvider
       className='notification-group__embedded-status'
       role='button'
       tabIndex={-1}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <div className='notification-group__embedded-status__account'>
         <Avatar account={account} size={16} />
         <DisplayName account={account} />
       </div>
 
-      {contentWarning && (
-        <ContentWarning
-          text={contentWarning}
-          onClick={handleContentWarningClick}
-          expanded={expanded}
-        />
-      )}
+      <ContentWarning
+        status={status}
+        onClick={handleContentWarningClick}
+        expanded={expanded}
+      />
 
-      {(!contentWarning || expanded) && (
+      {(!hasContentWarning || expanded) && (
         <EmbeddedStatusContent
           className='notification-group__embedded-status__content reply-indicator__content translate'
-          content={contentHtml}
-          language={language}
-          mentions={mentions}
+          status={status}
         />
       )}
 
@@ -176,6 +143,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
           )}
         </div>
       )}
-    </div>
+    </AnimateEmojiProvider>
   );
 };

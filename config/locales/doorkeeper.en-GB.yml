@@ -83,7 +83,10 @@ en-GB:
         access_denied: The resource owner or authorisation server denied the request.
         credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
         invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
-        invalid_code_challenge_method: The code challenge method must be S256, plain is unsupported.
+        invalid_code_challenge_method:
+          one: The code_challenge_method must be %{challenge_methods}.
+          other: The code_challenge_method must be one of %{challenge_methods}.
+          zero: The authorisation server does not support PKCE as there are no accepted code_challenge_method values.
         invalid_grant: The provided authorisation grant is invalid, expired, revoked, does not match the redirection URI used in the authorisation request, or was issued to another client.
         invalid_redirect_uri: The redirect URI included is not valid.
         invalid_request:
@@ -96,7 +99,7 @@ en-GB:
           expired: The access token expired
           revoked: The access token was revoked
           unknown: The access token is invalid
-        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfigured.
         server_error: The authorisation server encountered an unexpected condition which prevented it from fulfilling the request.
         temporarily_unavailable: The authorisation server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
         unauthorized_client: The client is not authorised to perform this request using this method.
@@ -130,7 +133,7 @@ en-GB:
         crypto: End-to-end encryption
         favourites: Favourites
         filters: Filters
-        follow: Follows, Mutes and Blocks
+        follow: Follows, Mutes, and Blocks
         follows: Follows
         lists: Lists
         media: Media attachments

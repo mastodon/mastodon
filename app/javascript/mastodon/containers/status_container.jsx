@@ -1,5 +1,3 @@
-import { injectIntl } from 'react-intl';
-
 import { connect } from 'react-redux';
 
 import {
@@ -12,6 +10,7 @@ import {
   mentionCompose,
   directCompose,
 } from '../actions/compose';
+import { quoteComposeById } from '../actions/compose_typed';
 import {
   initDomainBlockModal,
   unblockDomain,
@@ -42,6 +41,7 @@ import {
   undoStatusTranslation,
 } from '../actions/statuses';
 import { setStatusQuotePolicy } from '../actions/statuses_typed';
+import { injectIntl } from '../components/intl';
 import Status from '../components/status';
 import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
@@ -77,6 +77,10 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     dispatch(toggleReblog(status.get('id'), e.shiftKey));
   },
 
+  onQuote (status) {
+    dispatch(quoteComposeById(status.get('id')));
+  },
+
   onFavourite (status) {
     dispatch(toggleFavourite(status.get('id')));
   },
@@ -108,7 +112,13 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
+      dispatch(openModal({
+        modalType: 'CONFIRM_DELETE_STATUS',
+        modalProps: {
+          statusId: status.get('id'),
+          withRedraft
+        }
+      }));
     }
   },
 
@@ -220,11 +230,11 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
   },
 
-  onInteractionModal (type, status) {
+  onInteractionModal (status, intent) {
     dispatch(openModal({
       modalType: 'INTERACTION',
       modalProps: {
-        type,
+        intent,
         accountId: status.getIn(['account', 'id']),
         url: status.get('uri'),
       },

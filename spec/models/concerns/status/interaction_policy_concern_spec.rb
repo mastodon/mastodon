@@ -7,13 +7,29 @@ RSpec.describe Status::InteractionPolicyConcern do
 
   describe '#quote_policy_as_keys' do
     it 'returns the expected values' do
-      expect(status.quote_policy_as_keys(:automatic)).to eq ['unknown', 'followers']
+      expect(status.quote_policy_as_keys(:automatic)).to eq ['unsupported_policy', 'followers']
       expect(status.quote_policy_as_keys(:manual)).to eq ['public']
     end
   end
 
   describe '#quote_policy_for_account' do
     let(:account) { Fabricate(:account) }
+
+    context 'when the account is the author' do
+      let(:status) { Fabricate(:status, account: account, quote_approval_policy: 0) }
+
+      it 'returns :automatic' do
+        expect(status.quote_policy_for_account(account)).to eq :automatic
+      end
+
+      context 'when it is a reblog' do
+        let(:status) { Fabricate(:status, account: account, quote_approval_policy: 0, reblog: Fabricate(:status)) }
+
+        it 'returns :automatic' do
+          expect(status.quote_policy_for_account(account)).to eq :denied
+        end
+      end
+    end
 
     context 'when the account is not following the user' do
       it 'returns :manual because of the public entry in the manual policy' do

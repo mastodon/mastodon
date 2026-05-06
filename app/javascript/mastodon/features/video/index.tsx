@@ -139,8 +139,8 @@ const persistVolume = (volume: number, muted: boolean) => {
 };
 
 const restoreVolume = (video: HTMLVideoElement) => {
-  const volume = (playerSettings.get('volume') as number | undefined) ?? 0.5;
-  const muted = (playerSettings.get('muted') as boolean | undefined) ?? false;
+  const volume = playerSettings.get('volume') ?? 0.5;
+  const muted = playerSettings.get('muted') ?? false;
 
   video.volume = volume;
   video.muted = muted;
@@ -875,6 +875,7 @@ export const Video: React.FC<{
               <button
                 className='media-gallery__actions__pill'
                 onClick={toggleReveal}
+                type='button'
               >
                 <FormattedMessage
                   id='media_gallery.hide'

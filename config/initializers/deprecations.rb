@@ -14,13 +14,7 @@ if ENV['REDIS_NAMESPACE']
     In addition, as REDIS_NAMESPACE is being used as a prefix for Elasticsearch, please do not forget to set ES_PREFIX to "#{ENV.fetch('REDIS_NAMESPACE')}".
   MESSAGE
 
-  abort message
-end
-
-if ENV['MASTODON_USE_LIBVIPS'] == 'false'
-  warn <<~MESSAGE
-    WARNING: Mastodon support for ImageMagick is deprecated and will be removed in future versions. Please consider using libvips instead.
-  MESSAGE
+  abort message # rubocop:disable Rails/Exit
 end
 
 if ENV.key?('WHITELIST_MODE')

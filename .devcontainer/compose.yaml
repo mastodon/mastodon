@@ -56,7 +56,7 @@ services:
       - internal_network
 
   es:
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.29
     restart: unless-stopped
     environment:
       ES_JAVA_OPTS: -Xms512m -Xmx512m
@@ -73,7 +73,7 @@ services:
         hard: -1
 
   libretranslate:
-    image: libretranslate/libretranslate:v1.6.2
+    image: libretranslate/libretranslate:v1.7.3
     restart: unless-stopped
     volumes:
       - lt-data:/home/libretranslate/.local

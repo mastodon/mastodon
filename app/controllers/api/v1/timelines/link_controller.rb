@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Timelines::LinkController < Api::V1::Timelines::BaseController
+class Api::V1::Timelines::LinkController < Api::V1::Timelines::TopicController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_preview_card
   before_action :set_statuses

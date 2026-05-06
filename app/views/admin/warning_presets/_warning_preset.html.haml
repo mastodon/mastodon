@@ -6,5 +6,5 @@
     .announcements-list__item__meta
       = truncate(warning_preset.text)
 
-    %div
+    .announcements-list__item__actions
       = table_link_to 'delete', t('admin.warning_presets.delete'), admin_warning_preset_path(warning_preset), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, warning_preset)

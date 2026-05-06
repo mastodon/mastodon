@@ -7,6 +7,7 @@
 %w(
   /blocks
   /bookmarks
+  /collections/(*any)
   /conversations
   /deck/(*any)
   /directory
@@ -24,6 +25,7 @@
   /notifications_v2/(*any)
   /notifications/(*any)
   /pinned
+  /profile/(*any)
   /public
   /public/local
   /public/remote

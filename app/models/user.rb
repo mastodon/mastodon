@@ -92,10 +92,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
   validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
-  validates :email, presence: true, email_address: true
+  validates :email, presence: true, email_address: true, length: { maximum: 320 }
+  validates :email, email_mx: { attempt_ip: :sign_up_ip }, if: :validate_email_dns?
 
   validates_with UserEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
-  validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
   # Honeypot/anti-spam fields
@@ -131,11 +131,12 @@ class User < ApplicationRecord
 
   delegate :can?, to: :role
 
-  attr_reader :invite_code, :date_of_birth
+  attr_reader :invite_code
   attr_writer :current_account
 
   attribute :external, :boolean, default: false
   attribute :bypass_registration_checks, :boolean, default: false
+  attribute :date_of_birth, :date
 
   def self.those_who_can(*any_of_privileges)
     matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
@@ -149,17 +150,6 @@ class User < ApplicationRecord
 
   def self.skip_mx_check?
     Rails.env.local?
-  end
-
-  def date_of_birth=(hash_or_string)
-    @date_of_birth = begin
-      if hash_or_string.is_a?(Hash)
-        day, month, year = hash_or_string.values_at(1, 2, 3)
-        "#{day}.#{month}.#{year}"
-      else
-        hash_or_string
-      end
-    end
   end
 
   def role
@@ -178,8 +168,16 @@ class User < ApplicationRecord
     invite_id.present? && invite.valid_for_use?
   end
 
+  def valid_bypassing_invitation?
+    valid_invitation? && invite.bypass_approval?
+  end
+
   def disable!
     update!(disabled: true)
+
+    # This terminates all connections for the given account with the streaming
+    # server:
+    redis.publish("timeline:system:#{account.id}", { event: :kill }.to_json)
   end
 
   def enable!
@@ -215,8 +213,10 @@ class User < ApplicationRecord
 
     increment(:sign_in_count) if new_sign_in
 
-    save(validate: false) unless new_record?
-    prepare_returning_user!
+    unless new_record?
+      save(validate: false)
+      prepare_returning_user!
+    end
   end
 
   def pending?
@@ -232,7 +232,11 @@ class User < ApplicationRecord
   end
 
   def functional_or_moved?
-    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial?
+    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial? && !missing_2fa?
+  end
+
+  def missing_2fa?
+    !two_factor_enabled? && role.require_2fa?
   end
 
   def unconfirmed_or_pending?
@@ -347,7 +351,7 @@ class User < ApplicationRecord
       # Revoke each access token for the Streaming API, since `update_all``
       # doesn't trigger ActiveRecord Callbacks:
       # TODO: #28793 Combine into a single topic
-      payload = Oj.dump(event: :kill)
+      payload = { event: :kill }.to_json
       redis.pipelined do |pipeline|
         batch.ids.each do |id|
           pipeline.publish("timeline:access_token:#{id}", payload)
@@ -357,17 +361,22 @@ class User < ApplicationRecord
   end
 
   def reset_password!
+    # First, change password to something random, this revokes sessions and on-going access:
+    change_password!(SecureRandom.hex)
+
+    # Finally, send a reset password prompt to the user
+    send_reset_password_instructions
+  end
+
+  def change_password!(new_password)
     # First, change password to something random and deactivate all sessions
     transaction do
-      update(password: SecureRandom.hex)
+      update(password: new_password)
       session_activations.destroy_all
     end
 
     # Then, remove all authorized applications and connected push subscriptions
     revoke_access!
-
-    # Finally, send a reset password prompt to the user
-    send_reset_password_instructions
   end
 
   protected
@@ -415,7 +424,7 @@ class User < ApplicationRecord
       if requires_approval?
         false
       else
-        open_registrations? || valid_invitation? || external?
+        open_registrations? || valid_bypassing_invitation? || external?
       end
     end
   end
@@ -458,18 +467,15 @@ class User < ApplicationRecord
   end
 
   def sign_up_email_requires_approval?
-    return false if email.blank?
-
-    _, domain = email.split('@', 2)
-    return false if domain.blank?
+    return false if email_domain.blank?
 
     records = []
 
     # Doing this conditionally is not very satisfying, but this is consistent
     # with the MX records validations we do and keeps the specs tractable.
-    records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
+    records = DomainResource.new(email_domain).mx unless self.class.skip_mx_check?
 
-    EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
+    EmailDomainBlock.requires_approval?(records + [email_domain], attempt_ip: sign_up_ip)
   end
 
   def sign_up_username_requires_approval?

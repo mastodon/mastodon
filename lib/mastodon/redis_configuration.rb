@@ -17,15 +17,15 @@ class Mastodon::RedisConfiguration
 
   def cache
     @cache ||= setup_config(prefix: 'CACHE_')
-               .merge({
-                 namespace: 'cache',
-                 expires_in: 10.minutes,
-                 connect_timeout: 5,
-                 pool: {
-                   size: Sidekiq.server? ? Sidekiq.default_configuration[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
-                   timeout: 5,
-                 },
-               })
+      .merge({
+        namespace: 'cache',
+        expires_in: 10.minutes,
+        connect_timeout: 5,
+        pool: {
+          size: Sidekiq.server? ? Sidekiq.default_configuration[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
+          timeout: 5,
+        },
+      })
   end
 
   private

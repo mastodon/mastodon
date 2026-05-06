@@ -8,7 +8,7 @@ class ActivityPub::QuoteAuthorizationSerializer < ActivityPub::Serializer
   attributes :id, :type, :attributed_to, :interacting_object, :interaction_target
 
   def id
-    ActivityPub::TagManager.instance.approval_uri_for(object)
+    ActivityPub::TagManager.instance.approval_uri_for(object, check_approval: !instance_options[:force_approval_id])
   end
 
   def type

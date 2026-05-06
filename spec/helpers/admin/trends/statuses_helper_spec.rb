@@ -54,7 +54,7 @@ RSpec.describe Admin::Trends::StatusesHelper do
     context 'with a status that has emoji' do
       before { Fabricate(:custom_emoji, shortcode: 'florpy') }
 
-      let(:status) { Fabricate(:status, text: 'hello there :florpy:') }
+      let(:status) { Fabricate.build(:status, text: 'hello there :florpy:') }
 
       it 'renders a correct preview text' do
         result = helper.one_line_preview(status)

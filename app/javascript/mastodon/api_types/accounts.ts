@@ -12,26 +12,52 @@ export interface ApiAccountRoleJSON {
   name: string;
 }
 
+type ApiFeaturePolicy =
+  | 'public'
+  | 'followers'
+  | 'following'
+  | 'disabled'
+  | 'unsupported_policy';
+
+type ApiUserFeaturePolicy =
+  | 'automatic'
+  | 'manual'
+  | 'denied'
+  | 'missing'
+  | 'unknown';
+
+interface ApiFeaturePolicyJSON {
+  automatic: ApiFeaturePolicy[];
+  manual: ApiFeaturePolicy[];
+  current_user: ApiUserFeaturePolicy;
+}
+
 // See app/serializers/rest/account_serializer.rb
 export interface BaseApiAccountJSON {
   acct: string;
   avatar: string;
   avatar_static: string;
+  avatar_description: string;
   bot: boolean;
   created_at: string;
   discoverable?: boolean;
   indexable: boolean;
   display_name: string;
   emojis: ApiCustomEmojiJSON[];
+  feature_approval: ApiFeaturePolicyJSON;
   fields: ApiAccountFieldJSON[];
   followers_count: number;
   following_count: number;
   group: boolean;
   header: string;
   header_static: string;
+  header_description: string;
   id: string;
-  last_status_at: string;
+  last_status_at: string | null;
   locked: boolean;
+  show_media: boolean;
+  show_media_replies: boolean;
+  show_featured: boolean;
   noindex?: boolean;
   note: string;
   roles?: ApiAccountJSON[];
@@ -44,6 +70,7 @@ export interface BaseApiAccountJSON {
   limited?: boolean;
   memorial?: boolean;
   hide_collections: boolean;
+  email_subscriptions?: boolean;
 }
 
 // See app/serializers/rest/muted_account_serializer.rb

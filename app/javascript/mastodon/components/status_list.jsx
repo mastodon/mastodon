@@ -5,14 +5,16 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { debounce } from 'lodash';
 
-import { TIMELINE_GAP, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
+import { TIMELINE_GAP, TIMELINE_PINNED_VIEW_ALL, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
 import { RegenerationIndicator } from 'mastodon/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
+import { PinnedShowAllButton } from '@/mastodon/features/account_timeline/components/pinned_statuses';
 
 import { StatusQuoteManager } from '../components/status_quoted';
 
 import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';
+
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -34,89 +36,12 @@ export default class StatusList extends ImmutablePureComponent {
     timelineId: PropTypes.string,
     lastId: PropTypes.string,
     bindToDocument: PropTypes.bool,
+    statusProps: PropTypes.object,
   };
 
   static defaultProps = {
     trackScroll: true,
   };
-
-  componentDidMount() {
-    this.columnHeaderHeight = this.node?.node
-      ? parseFloat(
-          getComputedStyle(this.node.node).getPropertyValue('--column-header-height')
-        ) || 0
-      : 0;
-  }
-
-  getFeaturedStatusCount = () => {
-    return this.props.featuredStatusIds ? this.props.featuredStatusIds.size : 0;
-  };
-
-  getCurrentStatusIndex = (id, featured) => {
-    if (featured) {
-      return this.props.featuredStatusIds.indexOf(id);
-    } else {
-      return this.props.statusIds.indexOf(id) + this.getFeaturedStatusCount();
-    }
-  };
-
-  handleMoveUp = (id, featured) => {
-    const index = this.getCurrentStatusIndex(id, featured);
-    this._selectChild(id, index, -1);
-  };
-  
-  handleMoveDown = (id, featured) => {
-    const index = this.getCurrentStatusIndex(id, featured);
-    this._selectChild(id, index, 1);
-  };
-
-  _selectChild = (id, index, direction) => {
-    const listContainer = this.node?.node;
-    let listItem = listContainer?.querySelector(
-      // :nth-child uses 1-based indexing
-      `.item-list > :nth-child(${index + 1 + direction})`
-    );
-    
-    if (!listItem) {
-      return;
-    }
-
-    // If selected container element is empty, we skip it
-    if (listItem.matches(':empty')) {
-      this._selectChild(id, index + direction, direction);
-      return;
-    }
-
-    // Check if the list item is a post
-    let targetElement = listItem.querySelector('.focusable');
-
-    // Otherwise, check if the item contains follow suggestions or
-    // is a 'load more' button.
-    if (
-      !targetElement && (
-        listItem.querySelector('.inline-follow-suggestions') ||
-        listItem.matches('.load-more')
-      )
-    ) {
-      targetElement = listItem;
-    }
-
-    if (targetElement) {
-      const elementRect = targetElement.getBoundingClientRect();
-
-      const isFullyVisible =
-        elementRect.top >= this.columnHeaderHeight &&
-        elementRect.bottom <= window.innerHeight;
-
-      if (!isFullyVisible) {
-        targetElement.scrollIntoView({
-          block: direction === 1 ? 'start' : 'center',
-        });
-      }
-
-      targetElement.focus();
-    }
-  }
 
   handleLoadOlder = debounce(() => {
     const { statusIds, lastId, onLoadMore } = this.props;
@@ -128,7 +53,7 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   render () {
-    const { statusIds, featuredStatusIds, onLoadMore, timelineId, ...other }  = this.props;
+    const { statusIds, featuredStatusIds, onLoadMore, timelineId, statusProps, ...other }  = this.props;
     const { isLoading, isPartial } = other;
 
     if (isPartial) {
@@ -140,9 +65,7 @@ export default class StatusList extends ImmutablePureComponent {
         switch(statusId) {
         case TIMELINE_SUGGESTIONS:
           return (
-            <InlineFollowSuggestions
-              key='inline-follow-suggestions'
-            />
+            <InlineFollowSuggestions key={TIMELINE_SUGGESTIONS} />
           );
         case TIMELINE_GAP:
           return (
@@ -158,12 +81,11 @@ export default class StatusList extends ImmutablePureComponent {
             <StatusQuoteManager
               key={statusId}
               id={statusId}
-              onMoveUp={this.handleMoveUp}
-              onMoveDown={this.handleMoveDown}
               contextType={timelineId}
               scrollKey={this.props.scrollKey}
               showThread
               withCounters={this.props.withCounters}
+              {...statusProps}
             />
           );
         }
@@ -171,18 +93,21 @@ export default class StatusList extends ImmutablePureComponent {
     ) : null;
 
     if (scrollableContent && featuredStatusIds) {
-      scrollableContent = featuredStatusIds.map(statusId => (
-        <StatusQuoteManager
-          key={`f-${statusId}`}
-          id={statusId}
-          featured
-          onMoveUp={this.handleMoveUp}
-          onMoveDown={this.handleMoveDown}
-          contextType={timelineId}
-          showThread
-          withCounters={this.props.withCounters}
-        />
-      )).concat(scrollableContent);
+      scrollableContent = featuredStatusIds.map(statusId => {
+        if (statusId === TIMELINE_PINNED_VIEW_ALL) {
+          return <PinnedShowAllButton key={TIMELINE_PINNED_VIEW_ALL} />
+        }
+        return (
+          <StatusQuoteManager
+            key={`f-${statusId}`}
+            id={statusId}
+            featured
+            contextType={timelineId}
+            showThread
+            withCounters={this.props.withCounters}
+            {...statusProps} />
+        );
+      }).concat(scrollableContent);
     }
 
     return (
@@ -191,5 +116,4 @@ export default class StatusList extends ImmutablePureComponent {
       </ScrollableList>
     );
   }
-
 }

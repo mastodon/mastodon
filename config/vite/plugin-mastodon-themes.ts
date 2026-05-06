@@ -24,7 +24,7 @@ export function MastodonThemes(): Plugin {
 
       let entrypoints: Record<string, string> = {};
 
-      const existingInputs = userConfig.build?.rollupOptions?.input;
+      const existingInputs = userConfig.build?.rolldownOptions?.input;
 
       if (typeof existingInputs === 'string') {
         entrypoints[path.basename(existingInputs)] = existingInputs;
@@ -40,14 +40,13 @@ export function MastodonThemes(): Plugin {
 
       // Get all files mentioned in the themes.yml file.
       const themes = await loadThemesFromConfig(projectRoot);
-
       for (const [themeName, themePath] of Object.entries(themes)) {
         entrypoints[`themes/${themeName}`] = path.resolve(jsRoot, themePath);
       }
 
       return {
         build: {
-          rollupOptions: {
+          rolldownOptions: {
             input: entrypoints,
           },
         },

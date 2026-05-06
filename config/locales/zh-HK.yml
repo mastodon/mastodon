@@ -9,7 +9,6 @@ zh-HK:
   accounts:
     followers:
       other: 關注者
-    following: 正在關注
     instance_actor_flash: 這個帳戶是結盟用的本伺服器的虛擬象徵，並不代表任何個別用戶。請不要把帳號停權。
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
@@ -618,7 +617,6 @@ zh-HK:
       resolved_msg: 舉報個案已被處理！
       skip_to_actions: 跳到行動
       status: 狀態
-      statuses: 被檢舉的內容
       statuses_description_html: 違規內容將被引用在被檢舉帳號的通訊中
       summary:
         action_preambles:
@@ -736,7 +734,6 @@ zh-HK:
         title: 預設用戶不在搜尋引擎索引之內
       discovery:
         follow_recommendations: 追蹤建議
-        preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
         privacy: 私隱
         profile_directory: 個人檔案目錄
         public_timelines: 公共時間軸
@@ -1001,10 +998,7 @@ zh-HK:
     hint_html: 如果你想由另一個帳戶轉移到此帳號，你可以在此處創建別名 (alias)，然後系統容許你將關注者由舊帳戶轉移到此帳號。此操作是<strong>無害且可以還原的</strong>。 <strong>帳號遷移程序，需要在舊帳號啟動</strong>。
     remove: 取消連結別名 (Alias)
   appearance:
-    advanced_web_interface: 進階網頁介面
-    advanced_web_interface_hint: 如果你想善用整個螢幕闊度，你可以啟用「進階網頁介面」，在畫面上配置多個不同的欄目，讓你能根據需要，同時查看盡可能多的信息，支援的欄位包括：主頁、通知、其他站點和任何的列表和標籤。
     animations_and_accessibility: 動畫和輔助功能
-    confirmation_dialogs: 確認對話框
     discovery: 探索
     localization:
       body: Mastodon 是由志願者翻譯的。
@@ -1168,8 +1162,6 @@ zh-HK:
       your_appeal_pending: 你已提交申訴
       your_appeal_rejected: 你的申訴已被駁回
   edit_profile:
-    basic_information: 基本資料
-    hint_html: "<strong>自訂你的公開個人檔案和帖文內容。</strong>當你有完整的個人檔案和頭像時，其他人更願意追蹤你和與你互動。"
     other: 其他
   errors:
     '400': 你的請求無效或格式不正確。
@@ -1205,10 +1197,8 @@ zh-HK:
     mutes: 你所靜音的用戶
     storage: 媒體容量大小
   featured_tags:
-    add_new: 新增
     errors:
       limit: 你推薦的標籤數量已達上限
-    hint_html: "<strong>甚麼是推薦主題標籤？</strong> 它們會被顯示在你的個人資料頁面，讓其他人可以根據標籤瀏覽你的公開文章，令人們更易找到你創作或者長期作品！"
   filters:
     contexts:
       account: 個人資料
@@ -1347,11 +1337,6 @@ zh-HK:
     failed_sign_in_html: 以 %{method} 從 %{ip} (%{browser}) 登入失敗
     successful_sign_in_html: 以 %{method} 從 %{ip} (%{browser}) 成功登入
     title: 驗證操作歷史
-  mail_subscriptions:
-    unsubscribe:
-      action: 沒錯，取消訂閱
-      complete: 已取消訂閱
-      title: 取消訂閱
   media_attachments:
     validations:
       images_and_video: 不能在已有圖片的文章上加入影片
@@ -1386,7 +1371,6 @@ zh-HK:
       disabled_account: 你的當前帳號將不能完整地運作。但你將會有權力匯出你的數據和重新啟用你的帳號。
       followers: 此操作將會由當前帳號轉移所有追隨者至新帳號
       only_redirect_html: 另外，你亦可<a href="%{path}">只在你的個人資料頁面放上重新定向標記</a>.
-      other_data: 並不會自動轉移其他數據
       redirect: 你的當前帳號的個人資料頁面將會加上一個重新定向公告，並會在搜尋結果中被剔除。
   moderation:
     title: 營運
@@ -1633,22 +1617,15 @@ zh-HK:
       reblog: 不能置頂轉推
     title: "%{name}：「%{quote}」"
     visibilities:
-      direct: 私人訊息
-      private: 關注者觀看
-      private_long: 只有關注你的人能看到
+      direct: 私訊
       public: 公開
-      public_long: 所有人都能看到
-      unlisted: 公開，但不在公共時間軸顯示
-      unlisted_long: 所有人都能看到，但不在公共時間軸（本站時間軸、跨站時間軸）顯示
   statuses_cleanup:
     enabled: 自動刪除舊嘟文
     enabled_hint: 當您的嘟文達到指定的時間門檻後，自動刪除嘟文，除非他們符合其中以下例外條件之一
     exceptions: 例外
-    explanation: 由於刪除嘟文對伺服器而言是相當耗費資源的操作，將僅於伺服器不繁忙時慢慢執行。由此緣故，您的嘟文將可能超過設定之時間門檻一會兒後才被刪除。
     ignore_favs: 忽略最愛
     ignore_reblogs: 忽略轉嘟
     interaction_exceptions: 根據互動的例外
-    interaction_exceptions_explanation: 請注意嘟文是無法保證被刪除的，如果在一次處理過後嘟文低於最愛或轉嘟的門檻。
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含媒體內容的嘟文
@@ -1682,11 +1659,6 @@ zh-HK:
       too_late: 對此次警告提出申訴已經太遲
   tags:
     does_not_match_previous_name: 和舊有名稱並不符合
-  themes:
-    contrast: 高對比
-    default: 萬象
-    mastodon-light: 萬象（亮色主題）
-    system: 自動（使用系統主題）
   time:
     formats:
       default: "%Y年%b月%d日 %H:%M"

@@ -18,6 +18,7 @@
       %p.lead= t('auth.confirmations.awaiting_review', domain: site_hostname)
 - else
   = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    %h1.title= t('auth.resend_confirmation', domain: site_hostname)
     = render 'shared/error_messages', object: resource
 
     .fields-group

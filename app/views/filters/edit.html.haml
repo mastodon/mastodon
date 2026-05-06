@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('filters.edit.title')
 
-= simple_form_for @filter, url: filter_path(@filter), method: :put do |f|
+= simple_form_for @filter, url: filter_path(@filter) do |f|
   = render 'filter_fields', f: f
 
   .actions

@@ -18,8 +18,8 @@ class Vacuum::StatusesVacuum
       # Side-effects not covered by foreign keys, such
       # as the search index, must be handled first.
       statuses.direct_visibility
-              .includes(mentions: :account)
-              .find_each(&:unlink_from_conversations!)
+        .includes(mentions: :account)
+        .find_each(&:unlink_from_conversations!)
       if Chewy.enabled?
         remove_from_index(statuses.ids, 'chewy:queue:StatusesIndex')
         remove_from_index(statuses.ids, 'chewy:queue:PublicStatusesIndex')
@@ -33,8 +33,8 @@ class Vacuum::StatusesVacuum
 
   def statuses_scope
     Status.unscoped.kept
-          .joins(:account).merge(Account.remote)
-          .where(statuses: { id: ...retention_period_as_id })
+      .joins(:account).merge(Account.remote)
+      .where(statuses: { id: ...retention_period_as_id })
   end
 
   def retention_period_as_id

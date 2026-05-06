@@ -48,6 +48,7 @@ class NotificationGroup < ActiveModelSerializers::Model
 
   delegate :type,
            :target_status,
+           :target_collection,
            :report,
            :account_relationship_severance_event,
            :account_warning,

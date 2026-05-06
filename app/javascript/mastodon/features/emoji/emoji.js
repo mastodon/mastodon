@@ -1,5 +1,6 @@
 import Trie from 'substring-trie';
 
+import { getIsSystemTheme, isDarkMode } from '@/mastodon/utils/theme';
 import { assetHost } from 'mastodon/utils/config';
 
 import { autoPlayGif } from '../../initial_state';
@@ -97,9 +98,9 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      const isSystemTheme = !!document.body?.classList.contains('theme-system');
+      const isSystemTheme = getIsSystemTheme();
 
-      const theme = (isSystemTheme || document.body?.classList.contains('theme-mastodon-light')) ? 'light' : 'dark';
+      const theme = (isSystemTheme || !isDarkMode()) ? 'light' : 'dark';
 
       const imageFilename = emojiFilename(filename, theme);
 
@@ -148,6 +149,12 @@ const emojifyNode = (node, customEmojis) => {
   }
 };
 
+/**
+ * Legacy emoji processing function.
+ * @param {string} str
+ * @param {object} customEmojis
+ * @returns {string}
+ */
 const emojify = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
@@ -161,29 +168,3 @@ const emojify = (str, customEmojis = {}) => {
 };
 
 export default emojify;
-
-export const buildCustomEmojis = (customEmojis) => {
-  const emojis = [];
-
-  customEmojis.forEach(emoji => {
-    const shortcode = emoji.get('shortcode');
-    const url       = autoPlayGif ? emoji.get('url') : emoji.get('static_url');
-    const name      = shortcode.replace(':', '');
-
-    emojis.push({
-      id: name,
-      name,
-      short_names: [name],
-      text: '',
-      emoticons: [],
-      keywords: [name],
-      imageUrl: url,
-      custom: true,
-      customCategory: emoji.get('category'),
-    });
-  });
-
-  return emojis;
-};
-
-export const categoriesFromEmojis = customEmojis => customEmojis.reduce((set, emoji) => set.add(emoji.get('category') ? `custom-${emoji.get('category')}` : 'custom'), new Set(['custom']));

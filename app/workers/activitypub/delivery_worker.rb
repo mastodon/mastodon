@@ -38,7 +38,7 @@ class ActivityPub::DeliveryWorker
     if @inbox_url.present?
       if @performed
         failure_tracker.track_success!
-      else
+      elsif !@unsalvageable
         failure_tracker.track_failure!
       end
     end
@@ -55,16 +55,20 @@ class ActivityPub::DeliveryWorker
   end
 
   def synchronization_header
-    "collectionId=\"#{account_followers_url(@source_account)}\", digest=\"#{@source_account.remote_followers_hash(@inbox_url)}\", url=\"#{account_followers_synchronization_url(@source_account)}\""
+    "collectionId=\"#{ActivityPub::TagManager.instance.followers_uri_for(@source_account)}\", digest=\"#{@source_account.remote_followers_hash(@inbox_url)}\", url=\"#{account_followers_synchronization_url(@source_account)}\""
   end
 
   def perform_request
     stoplight_wrapper.run do
       request_pool.with(@host) do |http_client|
         build_request(http_client).perform do |response|
-          raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || unsalvageable_authorization_failure?(response)
-
-          @performed = true
+          if response_successful?(response)
+            @performed = true
+          elsif response_error_unsalvageable?(response) || unsalvageable_authorization_failure?(response)
+            @unsalvageable = true
+          else
+            raise Mastodon::UnexpectedResponseError, response
+          end
         end
       end
     end

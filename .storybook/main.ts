@@ -27,11 +27,12 @@ const config: StorybookConfig = {
       'oops.gif',
       'oops.png',
     ].map((path) => ({ from: `../public/${path}`, to: `/${path}` })),
+    { from: '../app/javascript/images/logo.svg', to: '/custom-emoji/logo.svg' },
   ],
   viteFinal(config) {
     // For an unknown reason, Storybook does not use the root
     // from the Vite config so we need to set it manually.
-    config.root = resolve(__dirname, '../app/javascript');
+    config.root = resolve(import.meta.dirname, '../app/javascript');
     return config;
   },
 };

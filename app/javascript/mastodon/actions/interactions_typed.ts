@@ -2,11 +2,12 @@ import {
   apiReblog,
   apiUnreblog,
   apiRevokeQuote,
+  apiGetQuotes,
 } from 'mastodon/api/interactions';
 import type { StatusVisibility } from 'mastodon/models/status';
 import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
 
-import { importFetchedStatus } from './importer';
+import { importFetchedStatus, importFetchedStatuses } from './importer';
 
 export const reblog = createDataLoadingThunk(
   'status/reblog',
@@ -51,5 +52,21 @@ export const revokeQuote = createDataLoadingThunk(
     dispatch(importFetchedStatus(data));
 
     return discardLoadData;
+  },
+);
+
+export const fetchQuotes = createDataLoadingThunk(
+  'status/fetch_quotes',
+  async ({ statusId, next }: { statusId: string; next?: string }) => {
+    const { links, statuses } = await apiGetQuotes(statusId, next);
+
+    return {
+      links,
+      statuses,
+      replace: !next,
+    };
+  },
+  (payload, { dispatch }) => {
+    dispatch(importFetchedStatuses(payload.statuses));
   },
 );

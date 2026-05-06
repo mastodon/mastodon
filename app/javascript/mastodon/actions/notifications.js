@@ -26,12 +26,14 @@ defineMessages({
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
-    const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
-    const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
+    const filterType = notification.type === 'quoted_update' ? 'update' : notification.type;
+
+    const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', filterType], true);
+    const playSound    = getState().getIn(['settings', 'notifications', 'sounds', filterType], true);
 
     let filtered = false;
 
-    if (['mention', 'status', 'quote'].includes(notification.type) && notification.status.filtered) {
+    if (['mention', 'quote', 'status'].includes(notification.type) && notification.status.filtered) {
       const filters = notification.status.filtered.filter(result => result.filter.context.includes('notifications'));
 
       if (filters.some(result => result.filter.filter_action === 'hide')) {

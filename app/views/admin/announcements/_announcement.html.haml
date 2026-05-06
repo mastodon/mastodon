@@ -9,7 +9,7 @@
       - else
         = l(announcement.created_at)
 
-    %div
+    .announcements-list__item__actions
       - if can?(:distribute, announcement)
         = table_link_to 'mail', t('admin.terms_of_service.notify_users'), admin_announcement_preview_path(announcement)
       - if can?(:update, announcement)

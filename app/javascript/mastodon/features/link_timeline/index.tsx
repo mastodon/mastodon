@@ -21,8 +21,7 @@ export const LinkTimeline: React.FC<{
   const columnRef = useRef<ColumnRef>(null);
   const firstStatusId = useAppSelector((state) =>
     decodedUrl
-      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-        (state.timelines.getIn([`link:${decodedUrl}`, 'items', 0]) as string)
+      ? (state.timelines.getIn([`link:${decodedUrl}`, 'items', 0]) as string)
       : undefined,
   );
   const story = useAppSelector((state) =>

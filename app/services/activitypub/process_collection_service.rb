@@ -6,7 +6,7 @@ class ActivityPub::ProcessCollectionService < BaseService
 
   def call(body, actor, **options)
     @account = actor
-    @json    = original_json = Oj.load(body, mode: :strict)
+    @json    = original_json = JSON.parse(body)
     @options = options
 
     return unless @json.is_a?(Hash)
@@ -38,7 +38,7 @@ class ActivityPub::ProcessCollectionService < BaseService
     else
       process_items [@json]
     end
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     nil
   end
 

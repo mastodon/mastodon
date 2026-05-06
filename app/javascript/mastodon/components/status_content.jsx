@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
@@ -13,9 +13,12 @@ import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react'
 import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
-import { EmojiHTML } from '../features/emoji/emoji_html';
-import { isModernEmojiEnabled } from '../utils/environment';
+import { languages as preloadedLanguages } from 'mastodon/initial_state';
+
+import { EmojiHTML } from './emoji/html';
+import { injectIntl } from './intl';
+import { HandledLink } from './status/handled_link';
+import { compareUrls } from '../utils/compare_urls';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -25,9 +28,6 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
  * @returns {string}
  */
 export function getStatusContent(status) {
-  if (isModernEmojiEnabled()) {
-    return status.getIn(['translation', 'content']) || status.get('content');
-  }
   return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
 }
 
@@ -97,84 +97,19 @@ class StatusContent extends PureComponent {
     }
 
     const { status, onCollapsedToggle } = this.props;
-    const links = node.querySelectorAll('a');
-
-    let link, mention;
-
-    for (var i = 0; i < links.length; ++i) {
-      link = links[i];
-
-      if (link.classList.contains('status-link')) {
-        continue;
-      }
-
-      link.classList.add('status-link');
-
-      mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
-
-      if (mention) {
-        link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
-        link.setAttribute('title', `@${mention.get('acct')}`);
-        link.setAttribute('href', `/@${mention.get('acct')}`);
-        link.setAttribute('data-hover-card-account', mention.get('id'));
-      } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
-        link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
-        link.setAttribute('href', `/tags/${link.text.replace(/^#/, '')}`);
-        link.setAttribute('data-menu-hashtag', this.props.status.getIn(['account', 'id']));
-      } else {
-        link.setAttribute('title', link.href);
-        link.classList.add('unhandled-link');
-      }
-    }
-
     if (status.get('collapsed', null) === null && onCollapsedToggle) {
       const { collapsible, onClick } = this.props;
+      const text = node.querySelector(':scope > .status__content__text');
 
       const collapsed =
           collapsible
           && onClick
-          && node.clientHeight > MAX_HEIGHT
+          && (node.clientHeight > MAX_HEIGHT || (text !== null && text.scrollWidth > text.clientWidth))
           && status.get('spoiler_text').length === 0;
 
       onCollapsedToggle(collapsed);
     }
-
-    // Remove quote fallback link from the DOM so it doesn't
-    // mess with paragraph margins
-    if (!!status.get('quote')) {
-      const inlineQuote = node.querySelector('.quote-inline');
-
-      if (inlineQuote) {
-        inlineQuote.remove();
-      }
-    }
   }
-
-  handleMouseEnter = ({ currentTarget }) => {
-    if (autoPlayGif) {
-      return;
-    }
-
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
-
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-original');
-    }
-  };
-
-  handleMouseLeave = ({ currentTarget }) => {
-    if (autoPlayGif) {
-      return;
-    }
-
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
-
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-static');
-    }
-  };
 
   componentDidMount () {
     this._updateStatusLinks();
@@ -183,22 +118,6 @@ class StatusContent extends PureComponent {
   componentDidUpdate () {
     this._updateStatusLinks();
   }
-
-  onMentionClick = (mention, e) => {
-    if (this.props.history && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      this.props.history.push(`/@${mention.get('acct')}`);
-    }
-  };
-
-  onHashtagClick = (hashtag, e) => {
-    hashtag = hashtag.replace(/^#/, '');
-
-    if (this.props.history && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      this.props.history.push(`/tags/${hashtag}`);
-    }
-  };
 
   handleMouseDown = (e) => {
     this.startXY = [e.clientX, e.clientY];
@@ -235,6 +154,34 @@ class StatusContent extends PureComponent {
     this.node = c;
   };
 
+  handleElement = (element, { key, ...props }, children) => {
+    if (element instanceof HTMLAnchorElement) {
+      const mention = this.props.status.get('mentions').find(
+        item => compareUrls(element.href, item.get('url'))
+      );
+      const taggedCollection = this.props.status.get('tagged_collections').find(
+        item => compareUrls(element.href, item.get('url'))
+      )
+
+      return (
+        <HandledLink
+          {...props}
+          href={element.href}
+          text={element.innerText}
+          hashtagAccountId={this.props.status.getIn(['account', 'id'])}
+          mention={mention?.toJSON()}
+          collection={taggedCollection?.toJSON()}
+          key={key}
+        >
+          {children}
+        </HandledLink>
+      );
+    } else if (element.classList.contains('quote-inline') && this.props.status.get('quote')) {
+      return null;
+    }
+    return undefined;
+  }
+
   render () {
     const { status, intl, statusContent } = this.props;
 
@@ -267,12 +214,19 @@ class StatusContent extends PureComponent {
     if (this.props.onClick) {
       return (
         <>
-          <div className={classNames} ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          <div
+            className={classNames}
+            ref={this.setRef}
+            onMouseDown={this.handleMouseDown}
+            onMouseUp={this.handleMouseUp}
+            key='status-content'
+          >
             <EmojiHTML
               className='status__content__text status__content__text--visible translate'
               lang={language}
               htmlString={content}
               extraEmojis={status.get('emojis')}
+              onElement={this.handleElement}
             />
 
             {poll}
@@ -284,12 +238,13 @@ class StatusContent extends PureComponent {
       );
     } else {
       return (
-        <div className={classNames} ref={this.setRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+        <div className={classNames} ref={this.setRef}>
           <EmojiHTML
             className='status__content__text status__content__text--visible translate'
             lang={language}
             htmlString={content}
             extraEmojis={status.get('emojis')}
+            onElement={this.handleElement}
           />
 
           {poll}

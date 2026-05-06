@@ -52,4 +52,22 @@ RSpec.describe RuleTranslation do
       end
     end
   end
+
+  describe '.languages' do
+    let(:discarded_rule) { Fabricate :rule, deleted_at: 5.days.ago }
+    let(:kept_rule) { Fabricate :rule }
+
+    before do
+      Fabricate :rule_translation, rule: discarded_rule, language: 'en'
+      Fabricate :rule_translation, rule: kept_rule, language: 'es'
+      Fabricate :rule_translation, language: 'fr'
+      Fabricate :rule_translation, language: 'es'
+    end
+
+    it 'returns ordered distinct languages connected to non-discarded rules' do
+      expect(described_class.languages)
+        .to be_an(Array)
+        .and eq(%w(es fr))
+    end
+  end
 end

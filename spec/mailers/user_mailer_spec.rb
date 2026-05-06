@@ -8,8 +8,8 @@ RSpec.describe UserMailer do
       before { receiver.account.update(memorial: true) }
 
       it 'does not deliver mail' do
-        emails = capture_emails { mail.deliver_now }
-        expect(emails).to be_empty
+        expect { mail.deliver_now }
+          .to_not send_email
       end
     end
   end
@@ -27,6 +27,7 @@ RSpec.describe UserMailer do
           address: 'localhost',
           port: 25,
           authentication: 'none',
+          enable_starttls_auto: true,
         }
       end
 
@@ -44,8 +45,7 @@ RSpec.describe UserMailer do
           address: 'localhost',
           port: 25,
           authentication: nil,
-          enable_starttls: nil,
-          enable_starttls_auto: true,
+          enable_starttls: :auto,
         })
       end
     end
@@ -59,11 +59,10 @@ RSpec.describe UserMailer do
     it 'renders confirmation instructions' do
       receiver.update!(locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('devise.mailer.confirmation_instructions.title')))
-        .and(have_body_text('spec'))
-        .and(have_body_text(Rails.configuration.x.local_domain))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.confirmation_instructions.title'))
+        .and match('spec')
+        .and match(Rails.configuration.x.local_domain)
     end
 
     it_behaves_like 'localized subject',
@@ -78,11 +77,10 @@ RSpec.describe UserMailer do
     it 'renders reconfirmation instructions' do
       receiver.update!(email: 'new-email@example.com', locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('devise.mailer.reconfirmation_instructions.title')))
-        .and(have_body_text('spec'))
-        .and(have_body_text(Rails.configuration.x.local_domain))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.reconfirmation_instructions.title'))
+        .and match('spec')
+        .and match(Rails.configuration.x.local_domain)
     end
 
     it_behaves_like 'localized subject',
@@ -97,10 +95,9 @@ RSpec.describe UserMailer do
     it 'renders reset password instructions' do
       receiver.update!(locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('devise.mailer.reset_password_instructions.title')))
-        .and(have_body_text('spec'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.reset_password_instructions.title'))
+        .and match('spec')
     end
 
     it_behaves_like 'localized subject',
@@ -114,9 +111,8 @@ RSpec.describe UserMailer do
     it 'renders password change notification' do
       receiver.update!(locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('devise.mailer.password_change.title')))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.password_change.title'))
     end
 
     it_behaves_like 'localized subject',
@@ -130,9 +126,8 @@ RSpec.describe UserMailer do
     it 'renders email change notification' do
       receiver.update!(locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('devise.mailer.email_changed.title')))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.email_changed.title'))
     end
 
     it_behaves_like 'localized subject',
@@ -141,16 +136,17 @@ RSpec.describe UserMailer do
   end
 
   describe '#warning' do
-    let(:strike) { Fabricate(:account_warning, target_account: receiver.account, text: 'dont worry its just the testsuite', action: 'suspend') }
+    let(:status) { Fabricate(:status, account: receiver.account) }
+    let(:quote) { Fabricate(:quote, state: :accepted, status: status) }
+    let(:strike) { Fabricate(:account_warning, target_account: receiver.account, text: 'dont worry its just the testsuite', action: 'suspend', status_ids: [quote.status_id]) }
     let(:mail)   { described_class.warning(receiver, strike) }
 
     it 'renders warning notification' do
       receiver.update!(locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('user_mailer.warning.title.suspend', acct: receiver.account.acct)))
-        .and(have_body_text(strike.text))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.warning.title.suspend', acct: receiver.account.acct))
+        .and match(strike.text)
     end
   end
 
@@ -161,9 +157,8 @@ RSpec.describe UserMailer do
     it 'renders webauthn credential deleted notification' do
       receiver.update!(locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('devise.mailer.webauthn_credential.deleted.title')))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.webauthn_credential.deleted.title'))
     end
 
     it_behaves_like 'localized subject',
@@ -180,9 +175,8 @@ RSpec.describe UserMailer do
     it 'renders suspicious sign in notification' do
       receiver.update!(locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('user_mailer.suspicious_sign_in.explanation')))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.suspicious_sign_in.explanation'))
     end
 
     it_behaves_like 'localized subject',
@@ -198,9 +192,8 @@ RSpec.describe UserMailer do
     it 'renders failed 2FA notification' do
       receiver.update!(locale: nil)
 
-      expect(mail)
-        .to be_present
-        .and(have_body_text(I18n.t('user_mailer.failed_2fa.explanation')))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.failed_2fa.explanation'))
     end
 
     it_behaves_like 'localized subject',
@@ -212,10 +205,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.appeal_approved(receiver, appeal) }
 
     it 'renders appeal_approved notification' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('user_mailer.appeal_approved.subject', date: I18n.l(appeal.created_at))))
-        .and(have_body_text(I18n.t('user_mailer.appeal_approved.title')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('user_mailer.appeal_approved.subject', date: I18n.l(appeal.created_at)))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.appeal_approved.title'))
     end
   end
 
@@ -224,10 +217,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.appeal_rejected(receiver, appeal) }
 
     it 'renders appeal_rejected notification' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at))))
-        .and(have_body_text(I18n.t('user_mailer.appeal_rejected.title')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at)))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.appeal_rejected.title'))
     end
   end
 
@@ -235,10 +228,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.two_factor_enabled(receiver) }
 
     it 'renders two_factor_enabled mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('devise.mailer.two_factor_enabled.subject')))
-        .and(have_body_text(I18n.t('devise.mailer.two_factor_enabled.explanation')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('devise.mailer.two_factor_enabled.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.two_factor_enabled.explanation'))
     end
 
     it_behaves_like 'delivery to memorialized user'
@@ -248,10 +241,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.two_factor_disabled(receiver) }
 
     it 'renders two_factor_disabled mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('devise.mailer.two_factor_disabled.subject')))
-        .and(have_body_text(I18n.t('devise.mailer.two_factor_disabled.explanation')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('devise.mailer.two_factor_disabled.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.two_factor_disabled.explanation'))
     end
 
     it_behaves_like 'delivery to memorialized user'
@@ -261,10 +254,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.webauthn_enabled(receiver) }
 
     it 'renders webauthn_enabled mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('devise.mailer.webauthn_enabled.subject')))
-        .and(have_body_text(I18n.t('devise.mailer.webauthn_enabled.explanation')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('devise.mailer.webauthn_enabled.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.webauthn_enabled.explanation'))
     end
 
     it_behaves_like 'delivery to memorialized user'
@@ -274,10 +267,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.webauthn_disabled(receiver) }
 
     it 'renders webauthn_disabled mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('devise.mailer.webauthn_disabled.subject')))
-        .and(have_body_text(I18n.t('devise.mailer.webauthn_disabled.explanation')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('devise.mailer.webauthn_disabled.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.webauthn_disabled.explanation'))
     end
 
     it_behaves_like 'delivery to memorialized user'
@@ -287,10 +280,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.two_factor_recovery_codes_changed(receiver) }
 
     it 'renders two_factor_recovery_codes_changed mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject')))
-        .and(have_body_text(I18n.t('devise.mailer.two_factor_recovery_codes_changed.explanation')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.two_factor_recovery_codes_changed.explanation'))
     end
 
     it_behaves_like 'delivery to memorialized user'
@@ -301,10 +294,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.webauthn_credential_added(receiver, credential) }
 
     it 'renders webauthn_credential_added mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('devise.mailer.webauthn_credential.added.subject')))
-        .and(have_body_text(I18n.t('devise.mailer.webauthn_credential.added.explanation')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('devise.mailer.webauthn_credential.added.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('devise.mailer.webauthn_credential.added.explanation'))
     end
 
     it_behaves_like 'delivery to memorialized user'
@@ -320,10 +313,10 @@ RSpec.describe UserMailer do
     end
 
     it 'renders welcome mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('user_mailer.welcome.subject')))
-        .and(have_body_text(I18n.t('user_mailer.welcome.explanation')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('user_mailer.welcome.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.welcome.explanation'))
     end
 
     it_behaves_like 'delivery to memorialized user'
@@ -334,10 +327,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.backup_ready(receiver, backup) }
 
     it 'renders backup_ready mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('user_mailer.backup_ready.subject')))
-        .and(have_body_text(I18n.t('user_mailer.backup_ready.explanation')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('user_mailer.backup_ready.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.backup_ready.explanation'))
     end
 
     it_behaves_like 'delivery to memorialized user'
@@ -348,10 +341,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.terms_of_service_changed(receiver, terms) }
 
     it 'renders terms_of_service_changed mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('user_mailer.terms_of_service_changed.subject')))
-        .and(have_body_text(I18n.t('user_mailer.terms_of_service_changed.changelog')))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('user_mailer.terms_of_service_changed.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.terms_of_service_changed.changelog'))
     end
 
     it_behaves_like 'optional bulk mailer settings'
@@ -362,10 +355,10 @@ RSpec.describe UserMailer do
     let(:mail) { described_class.announcement_published(receiver, announcement) }
 
     it 'renders announcement_published mail' do
-      expect(mail)
-        .to be_present
-        .and(have_subject(I18n.t('user_mailer.announcement_published.subject')))
-        .and(have_body_text(I18n.t('user_mailer.announcement_published.description', domain: local_domain_uri.host)))
+      expect { mail.deliver }
+        .to send_email(subject: I18n.t('user_mailer.announcement_published.subject'))
+      expect(mail.text_part.body)
+        .to match(I18n.t('user_mailer.announcement_published.description', domain: local_domain_uri.host))
     end
 
     it_behaves_like 'optional bulk mailer settings'

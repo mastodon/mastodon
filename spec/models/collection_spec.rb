@@ -1,0 +1,214 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe Collection do
+  describe 'Validations' do
+    subject { Fabricate.build :collection }
+
+    it { is_expected.to validate_presence_of(:name) }
+
+    it { is_expected.to validate_length_of(:name).is_at_most(40) }
+
+    it { is_expected.to validate_length_of(:description).is_at_most(100) }
+
+    it { is_expected.to_not allow_value(nil).for(:local) }
+
+    it { is_expected.to_not allow_value(nil).for(:sensitive) }
+
+    it { is_expected.to_not allow_value(nil).for(:discoverable) }
+
+    it { is_expected.to allow_value('en').for(:language) }
+
+    it { is_expected.to_not allow_value('randomstuff').for(:language) }
+
+    context 'when collection is remote' do
+      subject { Fabricate.build :collection, local: false }
+
+      it { is_expected.to validate_length_of(:name).is_at_most(Collection::NAME_LENGTH_HARD_LIMIT) }
+
+      it { is_expected.to validate_length_of(:description_html).is_at_most(Collection::DESCRIPTION_LENGTH_HARD_LIMIT) }
+
+      it { is_expected.to validate_presence_of(:uri) }
+
+      it { is_expected.to validate_presence_of(:original_number_of_items) }
+
+      it { is_expected.to allow_value('randomstuff').for(:language) }
+    end
+
+    context 'when using a hashtag as category' do
+      subject { Fabricate.build(:collection, tag:) }
+
+      context 'when hashtag is usable' do
+        let(:tag) { Fabricate.build(:tag) }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'when hashtag is not usable' do
+        let(:tag) { Fabricate.build(:tag, usable: false) }
+
+        it { is_expected.to_not be_valid }
+      end
+    end
+
+    context 'when there are more items than allowed' do
+      subject { Fabricate.build(:collection, collection_items:) }
+
+      let(:collection_items) { Fabricate.build_times(described_class::MAX_ITEMS + 1, :collection_item, collection: nil) }
+
+      it { is_expected.to_not be_valid }
+
+      context 'when the limit is only exceeded due to `rejected` and `revoked` items' do
+        let(:collection_items) do
+          items = Fabricate.build_times(described_class::MAX_ITEMS - 2, :collection_item, collection: nil, state: :accepted)
+          items << Fabricate.build(:collection_item, collection: nil, state: :pending)
+          items << Fabricate.build(:collection_item, collection: nil, state: :rejected)
+          items << Fabricate.build(:collection_item, collection: nil, state: :revoked)
+          items
+        end
+
+        it { is_expected.to be_valid }
+      end
+    end
+
+    context 'when the user is already at the per-user limit of collections' do
+      subject { Fabricate.build(:collection, account:) }
+
+      let(:role) { Fabricate(:user_role, collection_limit: 2) }
+      let(:user) { Fabricate(:user, role:) }
+      let(:account) { user.account }
+
+      before do
+        Fabricate.times(2, :collection, account:)
+      end
+
+      it { is_expected.to_not be_valid }
+    end
+  end
+
+  describe '#item_for' do
+    subject { Fabricate(:collection) }
+
+    let!(:accepted_items) { Fabricate.times(2, :collection_item, collection: subject, state: :accepted) }
+    let!(:pending_item) { Fabricate(:collection_item, collection: subject, state: :pending) }
+
+    before do
+      %i(rejected revoked).each do |state|
+        Fabricate(:collection_item, collection: subject, state:)
+      end
+    end
+
+    context 'when given no account' do
+      it 'returns all accepted items' do
+        expect(subject.items_for).to match_array(accepted_items)
+      end
+    end
+
+    context 'when given an account' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        account.block!(accepted_items.first.account)
+      end
+
+      it 'does not return items blocked by this account' do
+        expect(subject.items_for(account)).to contain_exactly(accepted_items.last)
+      end
+    end
+
+    context 'when given the owner of the collection' do
+      let(:account) { subject.account }
+
+      it 'returns accepted and pending items' do
+        expect(subject.items_for(account)).to match_array(accepted_items + [pending_item])
+      end
+    end
+  end
+
+  describe '#tag_name=' do
+    context 'when the collection is new and has no tag' do
+      subject { Fabricate.build(:collection) }
+
+      context 'when the tag exists' do
+        let!(:tag) { Fabricate.create(:tag, name: 'people') }
+
+        it 'correctly assigns the existing tag' do
+          subject.tag_name = '#people'
+
+          expect(subject.tag).to eq tag
+        end
+      end
+
+      context 'when the tag does not exist' do
+        it 'creates and assigns a new tag' do
+          expect do
+            subject.tag_name = '#people'
+          end.to change(Tag, :count).by(1)
+
+          expect(subject.tag).to be_present
+          expect(subject.tag.name).to eq 'people'
+        end
+      end
+    end
+
+    context 'when the collection is persisted and has a tag' do
+      subject { Fabricate(:collection, tag:) }
+
+      let!(:tag) { Fabricate(:tag, name: 'people') }
+
+      context 'when the new tag is the same' do
+        it 'does not change the object' do
+          subject.tag_name = '#People'
+
+          expect(subject.tag).to eq tag
+          expect(subject).to_not be_changed
+        end
+      end
+
+      context 'when the new tag is different' do
+        it 'creates and assigns a new tag' do
+          expect do
+            subject.tag_name = '#bots'
+          end.to change(Tag, :count).by(1)
+
+          expect(subject.tag).to be_present
+          expect(subject.tag.name).to eq 'bots'
+          expect(subject).to be_changed
+        end
+      end
+    end
+  end
+
+  describe '#object_type' do
+    it 'returns `:featured_collection`' do
+      expect(subject.object_type).to eq :featured_collection
+    end
+  end
+
+  describe '#to_log_human_identifier' do
+    subject { Fabricate(:collection) }
+
+    it 'returns the account name' do
+      expect(subject.to_log_human_identifier).to eq subject.account.acct
+    end
+  end
+
+  describe '#to_log_permalink' do
+    it 'includes the URI of the collection' do
+      expect(subject.to_log_permalink).to eq ActivityPub::TagManager.instance.uri_for(subject)
+    end
+  end
+
+  describe '#top_items' do
+    let(:collection) { Fabricate(:collection) }
+
+    before do
+      5.times { |i| Fabricate(:collection_item, collection:, position: i + 1) }
+    end
+
+    it 'returns the topmost four items' do
+      expect(collection.top_items.map(&:position)).to contain_exactly(1, 2, 3, 4)
+    end
+  end
+end

@@ -1,7 +1,10 @@
+import type { CompactEmoji } from 'emojibase';
 import { http, HttpResponse } from 'msw';
 import { action } from 'storybook/actions';
 
-import { relationshipsFactory } from './factories';
+import { toSupportedLocale } from '@/mastodon/features/emoji/locale';
+
+import { customEmojiFactory, relationshipsFactory } from './factories';
 
 export const mockHandlers = {
   mute: http.post<{ id: string }>('/api/v1/accounts/:id/mute', ({ params }) => {
@@ -38,6 +41,29 @@ export const mockHandlers = {
           blocking: false,
         }),
       );
+    },
+  ),
+  emojiCustomData: http.get('/api/v1/custom_emojis', () => {
+    action('fetching custom emoji data')();
+    return HttpResponse.json([customEmojiFactory()]);
+  }),
+  emojiData: http.get<{ locale: string }>(
+    '/packs-dev/emoji/:locale.json',
+    async ({ params }) => {
+      const locale = toSupportedLocale(params.locale);
+      const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
+      const emojiModules = import.meta.glob<CompactEmoji[]>(
+        '../../../../../node_modules/emojibase-data/**/compact.json',
+        { import: 'default' },
+      );
+      const path = emojiModules[key];
+      if (!path) {
+        throw new Error(`Unsupported locale: ${locale}`);
+      }
+      action('fetching emoji data')(locale);
+      const data = await path();
+
+      return HttpResponse.json([data]);
     },
   ),
 };

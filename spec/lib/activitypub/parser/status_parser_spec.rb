@@ -148,7 +148,7 @@ RSpec.describe ActivityPub::Parser::StatusParser do
       end
 
       it 'returns a policy not allowing anyone to quote' do
-        expect(subject).to eq(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16)
+        expect(subject).to eq(InteractionPolicy::POLICY_FLAGS[:public] << 16)
       end
     end
 
@@ -174,7 +174,7 @@ RSpec.describe ActivityPub::Parser::StatusParser do
       end
 
       it 'returns a policy allowing everyone including followers' do
-        expect(subject).to eq Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] | (Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+        expect(subject).to eq InteractionPolicy::POLICY_FLAGS[:public] | (InteractionPolicy::POLICY_FLAGS[:followers] << 16)
       end
     end
   end

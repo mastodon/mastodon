@@ -5,12 +5,12 @@
 # Table name: ip_blocks
 #
 #  id         :bigint(8)        not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  comment    :text             default(""), not null
 #  expires_at :datetime
 #  ip         :inet             default(#<IPAddr: IPv4:0.0.0.0/255.255.255.255>), not null
 #  severity   :integer          default(NULL), not null
-#  comment    :text             default(""), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class IpBlock < ApplicationRecord
@@ -19,6 +19,8 @@ class IpBlock < ApplicationRecord
   include Expireable
   include InetContainer
   include Paginable
+
+  EXPIRATION_DURATIONS = [1.day, 2.weeks, 1.month, 6.months, 1.year, 3.years].freeze
 
   enum :severity, {
     sign_up_requires_approval: 5000,
@@ -31,9 +33,10 @@ class IpBlock < ApplicationRecord
 
   after_commit :reset_cache
 
-  def to_log_human_identifier
+  def to_cidr
     "#{ip}/#{ip.prefix}"
   end
+  alias to_log_human_identifier to_cidr
 
   class << self
     def blocked?(remote_ip)

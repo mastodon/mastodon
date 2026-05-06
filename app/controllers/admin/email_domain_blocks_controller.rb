@@ -5,7 +5,7 @@ module Admin
     def index
       authorize :email_domain_block, :index?
 
-      @email_domain_blocks = EmailDomainBlock.parents.includes(:children).order(id: :desc).page(params[:page])
+      @email_domain_blocks = filter_by_domain.page(params[:page])
       @form                = Form::EmailDomainBlockBatch.new
     end
 
@@ -56,6 +56,12 @@ module Admin
     end
 
     private
+
+    def filter_by_domain
+      scope = EmailDomainBlock.parents.includes(:children).order(id: :desc)
+      scope.merge!(EmailDomainBlock.matches_domain(params[:domain])) if params[:domain].present?
+      scope
+    end
 
     def set_resolved_records
       @resolved_records = DomainResource.new(@email_domain_block.domain).mx

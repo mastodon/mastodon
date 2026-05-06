@@ -40,6 +40,23 @@ RSpec.describe Request do
     end
   end
 
+  describe '#initialize' do
+    subject { described_class.new(:get, url) }
+
+    context 'when URL has new lines' do
+      let(:url) { "https://host.example/image\nhttps://badhost.example/page.jpg" }
+
+      it 'encodes new lines in url value after normalization' do
+        expect(initialized_url_value)
+          .to eq('https://host.example/image%0Ahttps://badhost.example/page.jpg')
+      end
+    end
+
+    def initialized_url_value
+      subject.instance_variable_get(:@url).to_s
+    end
+  end
+
   describe '#perform' do
     context 'with valid host and non-persistent connection' do
       before { stub_request(:get, 'http://example.com').to_return(body: 'lorem ipsum') }
@@ -49,15 +66,20 @@ RSpec.describe Request do
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
-      it 'executes a HTTP request when the first address is private' do
-        resolver = instance_double(Resolv::DNS)
+      context 'when first address is private' do
+        let(:resolv_service) { instance_double(Resolv) }
 
-        allow(resolver).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:4860:4860::8844))
-        allow(resolver).to receive(:timeouts=).and_return(nil)
-        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+        before do
+          allow(Resolv).to receive(:new).and_return(resolv_service)
+          allow(resolv_service).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:4860:4860::8844))
+        end
 
-        expect { |block| subject.perform(&block) }.to yield_control
-        expect(a_request(:get, 'http://example.com')).to have_been_made.once
+        it 'executes a HTTP request' do
+          expect { |block| subject.perform(&block) }
+            .to yield_control
+          expect(a_request(:get, 'http://example.com'))
+            .to have_been_made.once
+        end
       end
 
       it 'makes a request with expected headers, yields, and closes the underlying connection' do
@@ -106,14 +128,16 @@ RSpec.describe Request do
         WebMock.enable!
       end
 
+      let(:resolv_service) { instance_double(Resolv) }
+
+      before do
+        allow(Resolv).to receive(:new).with([be_a(Resolv::Hosts), be_a(Resolv::DNS)]).and_return(resolv_service)
+        allow(resolv_service).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:db8::face))
+      end
+
       it 'raises Mastodon::ValidationError' do
-        resolver = instance_double(Resolv::DNS)
-
-        allow(resolver).to receive(:getaddresses).with('example.com').and_return(%w(0.0.0.0 2001:db8::face))
-        allow(resolver).to receive(:timeouts=).and_return(nil)
-        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
-
-        expect { subject.perform }.to raise_error Mastodon::ValidationError
+        expect { subject.perform }
+          .to raise_error Mastodon::ValidationError
       end
     end
 

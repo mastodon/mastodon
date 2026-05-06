@@ -7,9 +7,9 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
 
     quoted_status = status_from_uri(object_uri)
-    return if quoted_status.nil? || !quoted_status.account.local? || !quoted_status.distributable?
+    return if quoted_status.nil? || !quoted_status.account.local? || !quoted_status.distributable? || quoted_status.reblog?
 
-    if Mastodon::Feature.outgoing_quotes_enabled? && StatusPolicy.new(@account, quoted_status).quote?
+    if StatusPolicy.new(@account, quoted_status).quote?
       accept_quote_request!(quoted_status)
     else
       reject_quote_request!(quoted_status)
@@ -31,8 +31,14 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     status.quote.update!(activity_uri: @json['id'])
     status.quote.accept!
 
-    json = Oj.dump(serialize_payload(status.quote, ActivityPub::AcceptQuoteRequestSerializer))
+    json = serialize_payload(status.quote, ActivityPub::AcceptQuoteRequestSerializer).to_json
     ActivityPub::DeliveryWorker.perform_async(json, quoted_status.account_id, @account.inbox_url)
+
+    # Ensure the user is notified
+    LocalNotificationWorker.perform_async(quoted_status.account_id, status.quote.id, 'Quote', 'quote')
+
+    # Ensure local followers get to see the post updated with approval
+    DistributionWorker.perform_async(status.id, { 'update' => true, 'skip_notifications' => true })
   end
 
   def import_instrument(quoted_status)
@@ -41,7 +47,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     # NOTE: Replacing the object's context by that of the parent activity is
     # not sound, but it's consistent with the rest of the codebase
     instrument = @json['instrument'].merge({ '@context' => @json['@context'] })
-    return if non_matching_uri_hosts?(instrument['id'], @account.uri)
+    return if non_matching_uri_hosts?(@account.uri, instrument['id'])
 
     ActivityPub::FetchRemoteStatusService.new.call(instrument['id'], prefetched_body: instrument, on_behalf_of: quoted_status.account, request_id: @options[:request_id])
   end
@@ -54,7 +60,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
       account: @account,
       activity_uri: @json['id']
     )
-    json = Oj.dump(serialize_payload(quote, ActivityPub::RejectQuoteRequestSerializer))
+    json = serialize_payload(quote, ActivityPub::RejectQuoteRequestSerializer).to_json
     ActivityPub::DeliveryWorker.perform_async(json, quoted_status.account_id, @account.inbox_url)
   end
 

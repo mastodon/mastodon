@@ -58,9 +58,9 @@ RSpec.describe AccountControllerConcern do
       expect(response)
         .to have_http_status(200)
         .and have_http_link_header(webfinger_url(resource: account.to_webfinger_s)).for(rel: 'lrdd', type: 'application/jrd+json')
-        .and have_http_link_header(account_url(account, protocol: :https)).for(rel: 'alternate', type: 'application/activity+json')
-      expect(response.body)
-        .to include(account.username)
+        .and have_http_link_header(ActivityPub::TagManager.instance.uri_for(account)).for(rel: 'alternate', type: 'application/activity+json')
+      expect(response.parsed_body)
+        .to eq(account.username)
     end
   end
 end

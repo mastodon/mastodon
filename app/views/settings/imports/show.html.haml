@@ -11,5 +11,5 @@
 
 .simple_form
   .actions
-    = link_to t('generic.cancel'), settings_import_path(@bulk_import), method: :delete, class: 'button button-tertiary'
+    = link_to t('generic.cancel'), settings_import_path(@bulk_import), method: :delete, class: 'button button-secondary'
     = link_to t('generic.confirm'), confirm_settings_import_path(@bulk_import), method: :post, class: 'button'

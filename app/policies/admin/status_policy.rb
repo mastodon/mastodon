@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 class Admin::StatusPolicy < ApplicationPolicy
-  def initialize(current_account, record, preloaded_relations = {})
-    super(current_account, record)
-
-    @preloaded_relations = preloaded_relations
-  end
-
   def index?
     role.can?(:manage_reports, :manage_users)
   end
@@ -34,6 +28,6 @@ class Admin::StatusPolicy < ApplicationPolicy
   end
 
   def viewable_through_normal_policy?
-    StatusPolicy.new(current_account, record, @preloaded_relations).show?
+    StatusPolicy.new(current_account, record).show?
   end
 end

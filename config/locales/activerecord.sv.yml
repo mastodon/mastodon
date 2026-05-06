@@ -32,6 +32,12 @@ sv:
           attributes:
             url:
               invalid: är inte en giltig URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: är för många, fler än %{count} är inte tillåtet
+            tag:
+              unusable: får inte användas
         doorkeeper/application:
           attributes:
             website:

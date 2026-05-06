@@ -2,23 +2,18 @@
   = t('admin.settings.discovery.title')
 
 - content_for :heading do
-  %h2= t('admin.settings.title')
+  %h1= t('admin.settings.title')
   = render partial: 'admin/settings/shared/links'
 
-= simple_form_for @admin_settings, url: admin_settings_discovery_path, html: { method: :patch } do |f|
+= simple_form_for @admin_settings, url: admin_settings_discovery_path do |f|
   = render 'shared/error_messages', object: @admin_settings
 
   %p.lead= t('admin.settings.discovery.preamble')
 
-  %h4= t('admin.settings.discovery.trends')
+  %h2= t('admin.settings.discovery.trends')
 
   .fields-group
     = f.input :trends,
-              as: :boolean,
-              wrapper: :with_label
-
-  .fields-group
-    = f.input :trends_as_landing_page,
               as: :boolean,
               wrapper: :with_label
 
@@ -28,14 +23,39 @@
               wrapper: :with_label,
               recommended: :not_recommended
 
-  %h4= t('admin.settings.discovery.public_timelines')
+  %h2= t('admin.settings.discovery.public_timelines')
 
-  .fields-group
-    = f.input :timeline_preview,
-              as: :boolean,
-              wrapper: :with_label
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :local_live_feed_access,
+                collection: f.object.class::FEED_ACCESS_MODES,
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
+                wrapper: :with_label
 
-  %h4= t('admin.settings.discovery.privacy')
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :remote_live_feed_access,
+                collection: f.object.class::FEED_ACCESS_MODES,
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
+                wrapper: :with_label
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :local_topic_feed_access,
+                collection: f.object.class::ALTERNATE_FEED_ACCESS_MODES,
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
+                wrapper: :with_label
+
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :remote_topic_feed_access,
+                collection: f.object.class::FEED_ACCESS_MODES,
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
+                wrapper: :with_label
+
+  %h2= t('admin.settings.discovery.privacy')
 
   .fields-group
     = f.input :noindex,
@@ -51,7 +71,7 @@
               label: t('admin.settings.allow_referrer_origin.title'),
               wrapper: :with_label
 
-  %h4= t('admin.settings.discovery.publish_statistics')
+  %h2= t('admin.settings.discovery.publish_statistics')
 
   .fields-group
     = f.input :activity_api_enabled,
@@ -65,7 +85,7 @@
               wrapper: :with_label,
               recommended: :recommended
 
-  %h4= t('admin.settings.security.federation_authentication')
+  %h2= t('admin.settings.security.federation_authentication')
 
   .fields-group
     = f.input :authorized_fetch,
@@ -77,16 +97,23 @@
               warning_hint: discovery_warning_hint_text,
               wrapper: :with_label
 
-  %h4= t('admin.settings.discovery.follow_recommendations')
+  %h2= t('admin.settings.discovery.follow_recommendations')
 
   .fields-group
     = f.input :bootstrap_timeline_accounts,
               wrapper: :with_block_label
 
-  %h4= t('admin.settings.discovery.profile_directory')
+  %h2= t('admin.settings.discovery.profile_directory')
 
   .fields-group
     = f.input :profile_directory,
+              as: :boolean,
+              wrapper: :with_label
+
+  %h2= t('admin.settings.discovery.wrapstodon')
+
+  .fields-group
+    = f.input :wrapstodon,
               as: :boolean,
               wrapper: :with_label
 

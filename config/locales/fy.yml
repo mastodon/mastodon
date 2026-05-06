@@ -10,7 +10,6 @@ fy:
     followers:
       one: Folger
       other: Folgers
-    following: Folgjend
     instance_actor_flash: Dizze account is in ‘virtual actor’ wêrmei’t de server himsels fertsjinwurdiget en is dus gjin yndividuele brûker. It wurdt foar federaasjedoeleinen brûkt en moat net útsteld wurde.
     last_active: lêst warber
     link_verified_on: Eigendom fan dizze keppeling is kontrolearre op %{date}
@@ -709,7 +708,6 @@ fy:
       resolved_msg: Rapportaazje oplosse slagge!
       skip_to_actions: Gean daliks nei de maatregels
       status: Steat
-      statuses: Rapportearre ynhâld
       statuses_description_html: De problematyske ynhâld wurdt oan it rapportearre account meidield
       summary:
         action_preambles:
@@ -837,7 +835,6 @@ fy:
         title: Brûkers standert net troch sykmasinen yndeksearje litte
       discovery:
         follow_recommendations: Oanrekommandearre accounts
-        preamble: It toanen fan ynteressante ynhâld is fan essinsjeel belang foar it oan board heljen fan nije brûkers dy’t mooglik net ien fan Mastodon kinne. Bepaal hoe’t ferskate funksjes foar it ûntdekken fan ynhâld en brûkers op jo server wurkje.
         privacy: Privacy
         profile_directory: Profylmap
         public_timelines: Iepenbiere tiidlinen
@@ -1182,10 +1179,7 @@ fy:
     hint_html: Wannear’t jo fan in oare account ôf nei dizze account ferhúzje wolle, kinne jo hjir in alias oanmeitsje. Dit is nedich eardat jo troch gean kinne mei it ferhúzjen fan folgers fan de âlde nei dizze nije account. Dizze aksje is op eins <strong>net gefaarlik en omkearber</strong>. <strong>De accountmigraasje wurdt start fan de âlde account ôf</strong>.
     remove: Alias ûntkeppelje
   appearance:
-    advanced_web_interface: Avansearre webomjouwing
-    advanced_web_interface_hint: 'Wannear’t jo fan de hiele skermbreedte gebrûk meitsje wolle, stelt de avansearre webomjouwing jo yn steat om meardere ferskate kolommen te konfigurearjen. Hjirmei kinne jo safolle mooglik ynformaasje op itselde momint besjen, lykas: Start, meldingen, de globale tiidline, meardere listen en hashtags.'
     animations_and_accessibility: Animaasjes en tagonklikheid
-    confirmation_dialogs: Befêstigingen
     discovery: Untdekke
     localization:
       body: Mastodon wurdt troch frijwilligers oerset.
@@ -1195,7 +1189,6 @@ fy:
   application_mailer:
     notification_preferences: E-mailynstellingen wizigje
     salutation: "%{name},"
-    settings: 'E-mailfoarkarren wizigje: %{link}'
     unsubscribe: Ofmelde
     view: 'Besjoch:'
     view_profile: Profyl besjen
@@ -1371,8 +1364,6 @@ fy:
       your_appeal_pending: Jo hawwe in beswier yntsjinne
       your_appeal_rejected: Jo beswier is ôfwêzen
   edit_profile:
-    basic_information: Algemiene ynformaasje
-    hint_html: "<strong>Pas oan wat minsken op jo iepenbiere profyl en njonken jo berjochten sjogge.</strong> Oare minsken sille jo earder folgje en mei jo kommunisearje wannear’t jo profyl ynfolle is en jo in profylfoto hawwe."
     other: Oars
   emoji_styles:
     auto: Automatysk
@@ -1412,10 +1403,8 @@ fy:
     mutes: Jo negearje
     storage: Mediaûnthâld
   featured_tags:
-    add_new: Nije tafoegje
     errors:
       limit: Jo hawwe al it maksimaal tal hashtags útljochte
-    hint_html: "<strong>Wat binne útljochte hashtags?</strong> Dizze wurde prominint op jo iepenbiere profyl toand en stelt minsken yn steat om jo iepenbiere berjochten per hashtag te besjen. It is in goed helpmiddel om kreative wurksumheden of langetermynprojekten by te hâlden."
   filters:
     contexts:
       account: Profilen
@@ -1601,21 +1590,6 @@ fy:
     failed_sign_in_html: Mislearre oanmeldbesykjen mei %{method} fan %{ip} (%{browser})
     successful_sign_in_html: Mei sukses oanmeld mei %{method} fan %{ip} (%{browser})
     title: Oanmeldskiednis
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, ôfmelde
-      complete: Ofmelden
-      confirmation_html: Binne jo wis dat jo jo ôfmelde wolle foar it ûntfangen fan %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}? Jo kinne jo altyd opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      emails:
-        notification_emails:
-          favourite: e-mailmeldingen foar favoriten
-          follow: e-mailmeldingen foar nije folgers
-          follow_request: e-mailmeldingen foar folchfersiken
-          mention: e-mailmeldingen foar fermeldingen
-          reblog: e-mailmeldingen foar boosts
-      resubscribe_html: As jo jo mei fersin ôfmeld hawwe, kinne jo jo opnij abonnearje yn jo <a href="%{settings_path}">ynstellingen foar e-mailmeldingen</a>.
-      success_html: Jo ûntfange net langer %{type} fan Mastodon op %{domain} op jo e-mailadres %{email}.
-      title: Ofmelde
   media_attachments:
     validations:
       images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde
@@ -1651,7 +1625,6 @@ fy:
       disabled_account: Jo aktuele account is hjirnei net mear folslein brûkber. Jo hawwe echter wol tagong ta it eksportearjen fan jo gegevens en ta it opnij aktivearjen fan jo account.
       followers: Dizze aksje ferhuzet alle folgers fan de aktuele account ôf nei de nije account
       only_redirect_html: Jo kinne as alternatyf ek <a href="%{path}">allinnich de trochferwizing op jo profyl sette</a>.
-      other_data: Oare gegevens wurde net automatysk ferhuze
       redirect: Jo aktuele accountprofyl wurdt bywurke mei in trochferwizingsmelding en wurdt útsluten fan sykresultaten
   moderation:
     title: Moderaasje
@@ -1904,26 +1877,16 @@ fy:
       limit: Jo hawwe it maksimaal tal berjochten al fêstmakke
       ownership: In berjocht fan in oar kin net fêstmakke wurde
       reblog: In boost kin net fêstset wurde
-    quote_policies:
-      public: Elkenien
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direkt
-      private: Allinnich folgers
-      private_long: Allinnich oan jo folgers toane
       public: Iepenbier
-      public_long: Elkenien kin it sjen
-      unlisted: Minder iepenbier
-      unlisted_long: Elkenien kin it sjen, mar net op iepenbiere tiidlinen
   statuses_cleanup:
     enabled: Automatysk âlde berjochten fuortsmite
     enabled_hint: Smyt jo berjochten automatysk fuort sa gau as se in bepaalde leeftiidsgrins berikke, útsein se oerienkomme mei ien fan de ûndersteande útsûnderingen
     exceptions: Utsûnderingen
-    explanation: Trochdat it fuortsmiten fan berjochten de server swier belêst, bart dit stadich op mominten dat de server net dwaande is. Om dizze reden kinne jo berjochten in amerijke neidat se de leeftiidsgrins berikt hawwe fuortsmiten wurde.
     ignore_favs: Favoriten negearje
     ignore_reblogs: Boosts negearje
     interaction_exceptions: Utsûnderingen op basis fan ynteraksjes
-    interaction_exceptions_explanation: Merk op dat der gjin garânsje is dat berjochten fuortsmiten wurde, wannear’t ien kear it tal favoriten of boosts boppe de ynstelde grinswearde west binne.
     keep_direct: Direkte berjochten behâlde
     keep_direct_hint: Smyt gjin inkeld direkt berjocht fan jo fuort
     keep_media: Berjochten mei mediabylagen behâlde
@@ -1964,11 +1927,6 @@ fy:
     past_preamble_html: Wy hawwe ús gebrûksbetingsten wizige sûnt jo lêste besite. Wy rekommandearje jo oan om de bywurke betingsten troch te nimmen.
     review_link: Gebrûksbetingsten besjen
     title: De gebrûksbetingsten fan %{domain} wizigje
-  themes:
-    contrast: Mastodon (heech kontrast)
-    default: Mastodon (donker)
-    mastodon-light: Mastodon (ljocht)
-    system: Automatysk (systeemtema brûke)
   time:
     formats:
       default: "%d %B %Y om %H:%M"

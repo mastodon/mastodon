@@ -104,7 +104,7 @@ const LoginOrSignUp: React.FC = () => {
         <a
           href={sso_redirect}
           data-method='post'
-          className='button button--block button-tertiary'
+          className='button button--block button-secondary'
         >
           <FormattedMessage
             id='sign_in_banner.sso_redirect'
@@ -127,7 +127,11 @@ const LoginOrSignUp: React.FC = () => {
       );
     } else {
       signupButton = (
-        <button className='button' onClick={openClosedRegistrationsModal}>
+        <button
+          className='button'
+          onClick={openClosedRegistrationsModal}
+          type='button'
+        >
           <FormattedMessage
             id='sign_in_banner.create_account'
             defaultMessage='Create account'
@@ -139,7 +143,7 @@ const LoginOrSignUp: React.FC = () => {
     return (
       <div className='ui__navigation-bar__sign-up'>
         {signupButton}
-        <a href='/auth/sign_in' className='button button-tertiary'>
+        <a href='/auth/sign_in' className='button button-secondary'>
           <FormattedMessage
             id='sign_in_banner.sign_in'
             defaultMessage='Login'
@@ -195,6 +199,7 @@ export const NavigationBar: React.FC = () => {
           className={classNames('ui__navigation-bar__item', { active: open })}
           onClick={handleClick}
           aria-label={intl.formatMessage(messages.menu)}
+          type='button'
         >
           <Icon id='' icon={MenuIcon} />
         </button>

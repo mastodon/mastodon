@@ -3,15 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe 'API Markers' do
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { 'read:statuses write:statuses' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:statuses write:statuses'
 
   describe 'GET /api/v1/markers' do
     before do
-      Fabricate(:marker, timeline: 'home', last_read_id: 123, user: user)
-      Fabricate(:marker, timeline: 'notifications', last_read_id: 456, user: user)
+      travel_to DateTime.parse('2026-03-15T12:34:56.789Z'), with_usec: true do
+        Fabricate(:marker, timeline: 'home', last_read_id: 123, user: user)
+        Fabricate(:marker, timeline: 'notifications', last_read_id: 456, user: user)
+      end
 
       get '/api/v1/markers', headers: headers, params: { timeline: %w(home notifications) }
     end
@@ -25,6 +24,11 @@ RSpec.describe 'API Markers' do
           home: include(last_read_id: '123'),
           notifications: include(last_read_id: '456')
         )
+    end
+
+    it 'uses a specific style of IS08601 timestamps' do
+      expect(response.parsed_body)
+        .to include(home: include(updated_at: eq('2026-03-15T12:34:56.789Z')))
     end
   end
 

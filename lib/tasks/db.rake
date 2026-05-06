@@ -63,7 +63,7 @@ namespace :db do
 
   task pre_migration_check: :environment do
     pg_version = ActiveRecord::Base.connection.database_version
-    abort 'This version of Mastodon requires PostgreSQL 13.0 or newer. Please update PostgreSQL before updating Mastodon.' if pg_version < 130_000
+    abort 'This version of Mastodon requires PostgreSQL 14.0 or newer. Please update PostgreSQL before updating Mastodon.' if pg_version < 140_000
 
     schema_version = ActiveRecord::Migrator.current_version
     abort <<~MESSAGE if ENV['SKIP_POST_DEPLOYMENT_MIGRATIONS'] && schema_version < 2023_09_07_150100

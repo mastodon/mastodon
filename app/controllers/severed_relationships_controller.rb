@@ -13,20 +13,20 @@ class SeveredRelationshipsController < ApplicationController
 
   def following
     respond_to do |format|
-      format.csv { send_data following_data, filename: "following-#{@event.target_name}-#{@event.created_at.to_date.iso8601}.csv" }
+      format.csv { send_data following_data, filename: }
     end
   end
 
   def followers
     respond_to do |format|
-      format.csv { send_data followers_data, filename: "followers-#{@event.target_name}-#{@event.created_at.to_date.iso8601}.csv" }
+      format.csv { send_data followers_data, filename: }
     end
   end
 
   private
 
   def set_event
-    @event = AccountRelationshipSeveranceEvent.find(params[:id])
+    @event = AccountRelationshipSeveranceEvent.where(account: current_account).find(params[:id])
   end
 
   def following_data
@@ -47,5 +47,9 @@ class SeveredRelationshipsController < ApplicationController
 
   def acct(account)
     account.local? ? account.local_username_and_domain : account.acct
+  end
+
+  def filename
+    "#{action_name}-#{@event.identifier}.csv"
   end
 end

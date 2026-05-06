@@ -32,6 +32,12 @@ ru:
           attributes:
             url:
               invalid: не является действительным URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: слишком много, не разрешено более чем %{count}
+            tag:
+              unusable: может не быть использованным
         doorkeeper/application:
           attributes:
             website:

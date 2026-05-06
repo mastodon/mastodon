@@ -4,10 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Search API' do
   context 'with token' do
-    let(:user)    { Fabricate(:user) }
-    let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-    let(:scopes)  { 'read:search' }
-    let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+    include_context 'with API authentication', oauth_scopes: 'read:search'
 
     describe 'GET /api/v2/search' do
       let!(:bob)   { Fabricate(:account, username: 'bob_test') }

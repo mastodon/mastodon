@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq_unique_jobs/web' if ENV['ENABLE_SIDEKIQ_UNIQUE_JOBS_UI'] == true
 require 'sidekiq-scheduler/web'
 
 class RedirectWithVary < ActionDispatch::Routing::PathRedirect
@@ -12,7 +11,7 @@ class RedirectWithVary < ActionDispatch::Routing::PathRedirect
 end
 
 def redirect_with_vary(path)
-  RedirectWithVary.new(301, path)
+  RedirectWithVary.new(301, path, caller(1..1).first)
 end
 
 Rails.application.routes.draw do
@@ -72,13 +71,15 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
 
-    resource :unsubscribe, only: [:show, :create], controller: :mail_subscriptions
+    resource :unsubscribe, only: [:show, :create], controller: :unsubscriptions
 
     namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create]
-      get 'sessions/security_key_options', to: 'sessions#webauthn_options'
       post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
+      namespace :sessions do
+        resource :security_key_options, only: :show
+      end
     end
   end
 
@@ -95,7 +96,20 @@ Rails.application.routes.draw do
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
-  resources :accounts, path: 'users', only: [:show], param: :username do
+  concern :account_resources do
+    resources :followers, only: [:index], controller: :follower_accounts
+    resources :following, only: [:index], controller: :following_accounts
+
+    scope module: :activitypub do
+      resource :outbox, only: [:show]
+      resource :inbox, only: [:create]
+      resources :collections, only: [:show], as: :actor_collections, constraints: { id: Regexp.union(ActivityPub::CollectionsController::SUPPORTED_COLLECTIONS) }
+      resource :followers_synchronization, only: [:show]
+      resources :quote_authorizations, only: [:show]
+    end
+  end
+
+  resources :accounts, path: 'users', only: [:show], param: :username, concerns: :account_resources do
     resources :statuses, only: [:show] do
       member do
         get :activity
@@ -106,20 +120,35 @@ Rails.application.routes.draw do
       resources :likes, only: [:index], module: :activitypub
       resources :shares, only: [:index], module: :activitypub
     end
+  end
 
-    resources :followers, only: [:index], controller: :follower_accounts
-    resources :following, only: [:index], controller: :following_accounts
+  scope path: 'ap', as: 'ap' do
+    resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
+      resources :collections, only: [:show], constraints: { id: /\d+/ }
+      resources :collection_items, only: [:show]
+      resources :feature_authorizations, only: [:show], module: :activitypub
+      resources :featured_collections, only: [:index], module: :activitypub
 
-    scope module: :activitypub do
-      resource :outbox, only: [:show]
-      resource :inbox, only: [:create]
-      resources :collections, only: [:show]
-      resource :followers_synchronization, only: [:show]
-      resources :quote_authorizations, only: [:show]
+      resources :statuses, only: [:show] do
+        member do
+          get :activity
+        end
+
+        resources :replies, only: [:index], module: :activitypub
+        resources :likes, only: [:index], module: :activitypub
+        resources :shares, only: [:index], module: :activitypub
+      end
     end
   end
 
+  resources :collections, only: [:show], constraints: { id: /\d+/ }
+
   resource :inbox, only: [:create], module: :activitypub
+  resources :contexts, only: [:show], module: :activitypub, constraints: { id: /[0-9]+-[0-9]+/ } do
+    member do
+      get :items
+    end
+  end
 
   constraints(encoded_path: /%40.*/) do
     get '/:encoded_path', to: redirect { |params|
@@ -131,6 +160,7 @@ Rails.application.routes.draw do
     with_options to: 'accounts#show' do
       get '/@:username', as: :short_account
       get '/@:username/featured'
+      get '/@:username/collections'
       get '/@:username/with_replies', as: :short_account_with_replies
       get '/@:username/media', as: :short_account_media
       get '/@:username/tagged/:tag', as: :short_account_tag
@@ -142,6 +172,7 @@ Rails.application.routes.draw do
     get '/@:account_username/followers', to: 'follower_accounts#index'
     get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
     get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+    get '/@:account_username/wrapstodon/:year/:share_key', to: 'wrapstodon#show', as: :public_wrapstodon
   end
 
   get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: %r{([^/])+?} }, as: :account_with_domain, format: false
@@ -160,15 +191,19 @@ Rails.application.routes.draw do
     resources :statuses, only: :show
   end
 
+  namespace :email_subscriptions do
+    resource :confirmation, only: :show
+  end
+
   resources :media, only: [:show] do
-    get :player
+    member { get :player }
   end
 
   resources :tags,   only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show] do
-    resources :statuses, only: [:index], controller: 'filters/statuses' do
+    resources :statuses, only: [:index], module: :filters do
       collection do
         post :batch
       end
@@ -187,7 +222,9 @@ Rails.application.routes.draw do
   resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy, format: false
-  get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
+  resources :backups, only: [] do
+    member { get :download, format: false }
+  end
 
   resource :authorize_interaction, only: [:show]
   resource :share, only: [:show]
@@ -202,7 +239,7 @@ Rails.application.routes.draw do
 
   draw(:web_app)
 
-  get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
+  get '/web/(*any)', to: redirect(path: '/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
   get '/about',      to: 'about#show'
   get '/about/more', to: redirect('/about')
 

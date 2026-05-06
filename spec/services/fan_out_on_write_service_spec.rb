@@ -23,28 +23,57 @@ RSpec.describe FanOutOnWriteService do
     Fabricate(:media_attachment, status: status, account: alice)
 
     allow(redis).to receive(:publish)
-
-    subject.call(status)
   end
 
   def home_feed_of(account)
     HomeFeed.new(account).get(10).map(&:id)
   end
 
+  context 'when status account is suspended' do
+    let(:visibility) { 'public' }
+
+    before { alice.suspend! }
+
+    it 'does not execute or broadcast' do
+      expect(subject.call(status))
+        .to be_nil
+      expect_no_broadcasting
+    end
+  end
+
   context 'when status is public' do
     let(:visibility) { 'public' }
 
     it 'adds status to home feed of author and followers and broadcasts', :inline_jobs do
+      expect { subject.call(status) }
+        .to change(bob.notifications, :count).by(1)
+        .and change(eve.notifications, :count).by(1)
+
       expect(status.id)
         .to be_in(home_feed_of(alice))
         .and be_in(home_feed_of(bob))
         .and be_in(home_feed_of(tom))
 
-      expect(redis).to have_received(:publish).with('timeline:hashtag:hoge', anything)
-      expect(redis).to have_received(:publish).with('timeline:hashtag:hoge:local', anything)
-      expect(redis).to have_received(:publish).with('timeline:public', anything)
-      expect(redis).to have_received(:publish).with('timeline:public:local', anything)
-      expect(redis).to have_received(:publish).with('timeline:public:media', anything)
+      expected_payload = { event: 'update', payload: include(id: status.id.to_s, created_at: status.created_at.iso8601(3), content: /<p>Hello/) }
+
+      expect(redis)
+        .to have_received(:publish).with('timeline:hashtag:hoge', match_json_values(expected_payload))
+      expect(redis)
+        .to have_received(:publish).with('timeline:hashtag:hoge:local', match_json_values(expected_payload))
+      expect(redis)
+        .to have_received(:publish).with('timeline:public', match_json_values(expected_payload))
+      expect(redis)
+        .to have_received(:publish).with('timeline:public:local', match_json_values(expected_payload))
+      expect(redis)
+        .to have_received(:publish).with('timeline:public:media', match_json_values(expected_payload))
+    end
+
+    context 'with silenced_account_ids' do
+      it 'calls LocalNotificationWorker with the expected arguments' do
+        expect { subject.call(status, silenced_account_ids: [eve.id]) }
+          .to enqueue_sidekiq_job(LocalNotificationWorker).with(bob.id, anything, 'Mention', 'mention')
+          .and enqueue_sidekiq_job(LocalNotificationWorker).with(eve.id, anything, 'Mention', 'mention', { 'silenced' => true })
+      end
     end
   end
 
@@ -52,6 +81,8 @@ RSpec.describe FanOutOnWriteService do
     let(:visibility) { 'limited' }
 
     it 'adds status to home feed of author and mentioned followers and does not broadcast', :inline_jobs do
+      subject.call(status)
+
       expect(status.id)
         .to be_in(home_feed_of(alice))
         .and be_in(home_feed_of(bob))
@@ -66,6 +97,8 @@ RSpec.describe FanOutOnWriteService do
     let(:visibility) { 'private' }
 
     it 'adds status to home feed of author and followers and does not broadcast', :inline_jobs do
+      subject.call(status)
+
       expect(status.id)
         .to be_in(home_feed_of(alice))
         .and be_in(home_feed_of(bob))
@@ -79,6 +112,8 @@ RSpec.describe FanOutOnWriteService do
     let(:visibility) { 'direct' }
 
     it 'is added to the home feed of its author and mentioned followers and does not broadcast', :inline_jobs do
+      subject.call(status)
+
       expect(status.id)
         .to be_in(home_feed_of(alice))
         .and be_in(home_feed_of(bob))

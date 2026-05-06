@@ -84,6 +84,23 @@ RSpec.describe ActivityPub::Activity::Follow do
       end
     end
 
+    context 'when recipient blocks sender' do
+      before { Fabricate :block, account: recipient, target_account: sender }
+
+      it 'sends a reject and does not follow' do
+        subject.perform
+
+        expect(sender.requested?(recipient))
+          .to be false
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(
+            match_json_values(type: 'Reject', object: include(type: 'Follow')),
+            recipient.id,
+            anything
+          )
+      end
+    end
+
     context 'when a follow relationship already exists' do
       before do
         sender.active_relationships.create!(target_account: recipient, uri: 'bar')

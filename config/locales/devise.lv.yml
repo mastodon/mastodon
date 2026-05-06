@@ -9,8 +9,8 @@ lv:
       already_authenticated: Tu jau pieteicies.
       inactive: Tavs konts vēl nav aktivizēts.
       invalid: Nederīga %{authentication_keys} vai parole.
-      last_attempt: Tev ir vēl viens mēģinājums, pirms tavs konts tiks bloķēts.
-      locked: Tavs konts ir bloķēts.
+      last_attempt: Tev ir vēl viens mēģinājums, pirms Tavs konts tiks slēgts.
+      locked: Tavs konts ir slēgts.
       not_found_in_database: Nederīga %{authentication_keys} vai parole.
       omniauth_user_creation_failure: Kļūda šīs identitātes konta izveidošanā.
       pending: Tavs konts joprojām tiek pārskatīts.
@@ -63,7 +63,7 @@ lv:
         subtitle: Iepriekšējie atkopes kodi tika padarīti par nederīgiem, un tika izveidoti jauni.
         title: 2FA atkopes kodi nomainīti
       unlock_instructions:
-        subject: 'Mastodon: Norādījumi atbloķēšanai'
+        subject: 'Mastodon: atslēgšanas norādes'
       webauthn_credential:
         added:
           explanation: Tavam kontam ir pievienota šāda drošības atslēga
@@ -110,7 +110,7 @@ lv:
       confirmation_period_expired: jāapstiprina %{period} laikā, lūdzu, pieprasi jaunu
       expired: ir beidzies derīguma termiņš, lūdzu, pieprasi jaunu
       not_found: nav atrasts
-      not_locked: nebija bloķēts
+      not_locked: nebija slēgts
       not_saved:
         one: '1 kļūda liedza saglabāt šo %{resource}:'
         other: "%{count} kļūdas liedza saglabāt šo %{resource}:"

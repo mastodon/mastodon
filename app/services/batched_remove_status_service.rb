@@ -31,7 +31,7 @@ class BatchedRemoveStatusService < BaseService
     # transaction lock the database, but we use the delete method instead
     # of destroy to avoid all callbacks. We rely on foreign keys to
     # cascade the delete faster without loading the associations.
-    statuses_and_reblogs.each_slice(50) { |slice| Status.where(id: slice.map(&:id)).delete_all }
+    statuses_and_reblogs.each_slice(50) { |slice| Status.unscoped.where(id: slice.pluck(:id)).delete_all }
 
     # Since we skipped all callbacks, we also need to manually
     # deindex the statuses
@@ -82,7 +82,7 @@ class BatchedRemoveStatusService < BaseService
   def unpush_from_public_timelines(status, pipeline)
     return unless status.public_visibility? && status.id > @status_id_cutoff
 
-    payload = Oj.dump(event: :delete, payload: status.id.to_s)
+    payload = { event: :delete, payload: status.id.to_s }.to_json
 
     pipeline.publish('timeline:public', payload)
     pipeline.publish(status.local? ? 'timeline:public:local' : 'timeline:public:remote', payload)

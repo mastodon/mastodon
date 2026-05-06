@@ -7,7 +7,7 @@
 - else
   = render partial: 'status', locals: { user: @user, strikes: @strikes }
 
-%h3= t('auth.security')
+%h2.heading-medium= t('auth.security')
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'auth_edit', novalidate: false }) do |f|
   = render 'shared/error_messages', object: resource
@@ -57,15 +57,15 @@
 - unless current_account.suspended? || self_destruct?
   %hr.spacer/
 
-  %h3= t('auth.migrate_account')
+  %h2.heading-medium= t('auth.migrate_account')
   %p.muted-hint= t('auth.migrate_account_html', path: settings_migration_path)
 
   %hr.spacer/
 
-  %h3= t('migrations.incoming_migrations')
+  %h2.heading-medium= t('migrations.incoming_migrations')
   %p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)
 
   %hr.spacer/
 
-  %h3= t('auth.delete_account')
+  %h2.heading-medium= t('auth.delete_account')
   %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)
