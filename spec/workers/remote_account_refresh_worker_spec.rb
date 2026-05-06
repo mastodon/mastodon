@@ -25,7 +25,7 @@ RSpec.describe RemoteAccountRefreshWorker do
 
     it 'returns nil for a local record' do
       account = Fabricate :account, domain: nil
-      result = worker.perform(account)
+      result = worker.perform(account.id)
       expect(result).to be_nil
     end
 
