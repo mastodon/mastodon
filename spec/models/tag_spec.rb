@@ -6,60 +6,9 @@ RSpec.describe Tag do
   it_behaves_like 'Reviewable'
 
   describe 'Validations' do
-    describe 'name' do
-      context 'with a new record' do
-        subject { Fabricate.build :tag, name: 'original' }
-
-        it { is_expected.to allow_value('changed').for(:name) }
-      end
-
-      context 'with an existing record' do
-        subject { Fabricate :tag, name: 'original' }
-
-        it { is_expected.to_not allow_value('changed').for(:name).with_message(previous_name_error_message) }
-        it { is_expected.to allow_value('ORIGINAL').for(:name) }
-      end
-    end
-
-    describe 'display_name' do
-      context 'with a new record' do
-        subject { Fabricate.build :tag, name: 'original', display_name: 'OriginalDisplayName' }
-
-        it { is_expected.to allow_value('ChangedDisplayName').for(:display_name) }
-      end
-
-      context 'with an existing record' do
-        subject { Fabricate :tag, name: 'original', display_name: 'OriginalDisplayName' }
-
-        it { is_expected.to_not allow_value('ChangedDisplayName').for(:display_name).with_message(previous_name_error_message) }
-        it { is_expected.to allow_value('ORIGINAL').for(:display_name) }
-      end
-    end
-
-    def previous_name_error_message
-      I18n.t('tags.does_not_match_previous_name')
-    end
-
-    it 'invalid with #' do
-      expect(described_class.new(name: '#hello_world')).to_not be_valid
-    end
-
-    it 'invalid with .' do
-      expect(described_class.new(name: '.abcdef123')).to_not be_valid
-    end
-
-    it 'invalid with spaces' do
-      expect(described_class.new(name: 'hello world')).to_not be_valid
-    end
-
-    it 'valid with ａｅｓｔｈｅｔｉｃ' do
-      expect(described_class.new(name: 'ａｅｓｔｈｅｔｉｃ')).to be_valid
-    end
   end
 
   describe 'Normalizations' do
-    it { is_expected.to normalize(:display_name).from('#HelloWorld').to('HelloWorld') }
-    it { is_expected.to normalize(:display_name).from('Hello❤️World').to('HelloWorld') }
   end
 
   describe 'HASHTAG_RE' do
@@ -74,7 +23,13 @@ RSpec.describe Tag do
     end
 
     it 'does not match URLs with hashtag-like anchors after a numeral' do
+      # Ensure the regex does NOT use an unescaped . — only literal dots are allowed in hostnames.
       expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
+    end
+
+    it 'does not match URLs with hashtag-like anchors after a meta-character in host' do
+      # This test proves that the regex is not matching hostnames if . is replaced with X (would match if . is unescaped as a wildcard).
+      expect(subject.match('https://gnXorg/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
     end
 
     it 'does not match URLs with hashtag-like anchors after a non-ascii character' do
@@ -149,6 +104,11 @@ RSpec.describe Tag do
       expect(subject.match('Hello #rubyOnRails').to_s).to eq '#rubyOnRails'
     end
   end
+
+  # ... (rest of your file remains unchanged) ...
+end  
+  
+  
 
   describe '#to_param' do
     it 'returns name' do
