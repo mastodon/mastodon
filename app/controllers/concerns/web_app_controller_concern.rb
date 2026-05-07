@@ -40,12 +40,10 @@ module WebAppControllerConcern
 
       format.json do
         # Validate the redirect URI before allowing an external redirect.
-        # Only allow same-host redirects or hosts explicitly whitelisted via
-        # ENV['ALLOWED_REDIRECT_HOSTS'] (comma-separated). Any invalid or
-        # non-whitelisted redirect will fall back to the internal confirmation path.
-        safe_uri = validated_redirect_uri(permalink_redirector.redirect_uri)
+        safe_uri, is_trusted = safe_redirect_uri_and_trust_status(permalink_redirector.redirect_uri)
         if safe_uri.present?
-          redirect_to(safe_uri, allow_other_host: true)
+          # Only use allow_other_host: true for trusted, explicitly whitelisted hosts.
+          redirect_to(safe_uri, allow_other_host: is_trusted)
         else
           redirect_to(permalink_redirector.redirect_confirmation_path, allow_other_host: false)
         end
@@ -75,43 +73,38 @@ module WebAppControllerConcern
 
   private
 
-  # Validate a redirect URI string and return it if it's allowed, otherwise nil.
-  # Allowed if:
-  # - it's a valid http/https URI
-  # - host matches request.host, or
-  # - host is present in ENV['ALLOWED_REDIRECT_HOSTS'] (comma-separated)
-  #
-  # If you need to allow additional hosts, set ENV['ALLOWED_REDIRECT_HOSTS']="example.com,another.example"
-  def validated_redirect_uri(uri_str)
-    return nil if uri_str.blank?
+  # Validate a redirect URI string and return [uri_str, trusted?] only if it's allowed, otherwise [nil, false].
+  # Trusted means whitelisted in config ENV or matching our own host exactly.
+  def safe_redirect_uri_and_trust_status(uri_str)
+    return [nil, false] if uri_str.blank?
 
     begin
       uri = URI.parse(uri_str)
     rescue URI::InvalidURIError
-      return nil
+      return [nil, false]
     end
 
-    # Allow only http and https schemes
-    return nil unless uri.scheme&.downcase.in?(%w[http https])
-    return nil if uri.host.blank?
+    return [nil, false] unless uri.scheme&.downcase.in?(%w[http https])
+    return [nil, false] if uri.host.blank?
 
-    # Normalize and compare host
     host = uri.host.downcase
     current_host = request.host.downcase
 
-    # Allow exact same host
-    return uri_str if host == current_host
-
     # Build whitelist from ENV, exact host match only
     allowed = ENV.fetch('ALLOWED_REDIRECT_HOSTS', '')
-                  .split(',')
-                  .map(&:strip)
-                  .reject(&:empty?)
-                  .map(&:downcase)
+                .split(',')
+                .map(&:strip)
+                .reject(&:empty?)
+                .map(&:downcase)
     allowed << current_host unless allowed.include?(current_host)
 
-    return uri_str if allowed.include?(host)
-
-    nil
+    if allowed.include?(host)
+      # Trusted host (either self or in explicit whitelist)
+      [uri_str, host != current_host] # `allow_other_host: true` only when host is not ours but whitelisted
+    elsif host == current_host
+      [uri_str, false] # always safe, don't allow_other_host for own host
+    else
+      [nil, false]
+    end
   end
 end
