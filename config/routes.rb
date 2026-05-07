@@ -5,21 +5,18 @@ require 'sidekiq-scheduler/web'
 
 class RedirectWithVary < ActionDispatch::Routing::PathRedirect
   def build_response(req)
-    super.tap do |response|
-      response.headers['Vary'] = 'Origin, Accept'
-    end
+    super.tap { |response| response.headers['Vary'] = 'Origin, Accept' }
   end
 end
 
-def redirect_with_vary(path)
-  RedirectWithVary.new(301, path)
+def redirect_with_vary(path, options = {})
+  RedirectWithVary.new(301, path, options)
 end
 
 Rails.application.routes.draw do
   root 'home#index'
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
-
   get 'health', to: 'health#show'
 
   authenticate :user, ->(user) { user.role&.can?(:view_devops) } do
@@ -34,9 +31,6 @@ Rails.application.routes.draw do
   end
 
   namespace :oauth do
-    # As this is borrowed from OpenID, the specification says we must also support
-    # POST for the userinfo endpoint:
-    # https://openid.net/specs/openid-connect-core-1_0.html#UserInfo
     match 'userinfo', via: [:get, :post], to: 'userinfo#show', defaults: { format: 'json' }
   end
 
@@ -52,12 +46,10 @@ Rails.application.routes.draw do
   end
 
   get '/nodeinfo/2.0', to: 'well_known/node_info#show', as: :nodeinfo_schema
-
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show'
   resources :custom_css, only: :show, path: :css
-
   get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
 
   resource :instance_actor, path: 'actor', only: [:show] do
@@ -86,11 +78,16 @@ Rails.application.routes.draw do
     devise_for :users, path: 'auth', format: false
   end
 
+  # Refactored: Map repetitive user redirects and apply redirect_with_vary
   with_options constraints: ->(req) { req.format.nil? || req.format.html? } do
-    get '/users/:username', to: redirect_with_vary('/@%{username}')
-    get '/users/:username/following', to: redirect_with_vary('/@%{username}/following')
-    get '/users/:username/followers', to: redirect_with_vary('/@%{username}/followers')
-    get '/users/:username/statuses/:id', to: redirect_with_vary('/@%{username}/%{id}')
+    {
+      '/users/:username'                 => '/@%{username}',
+      '/users/:username/following'       => '/@%{username}/following',
+      '/users/:username/followers'       => '/@%{username}/followers',
+      '/users/:username/statuses/:id'    => '/@%{username}/%{id}'
+    }.each do |route_from, route_to|
+      get route_from, to: redirect_with_vary(route_to)
+    end
   end
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
@@ -99,7 +96,6 @@ Rails.application.routes.draw do
     resources :collections, only: [:show], constraints: { id: /\d+/ }
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
-
     scope module: :activitypub do
       resource :outbox, only: [:show]
       resource :inbox, only: [:create]
@@ -115,7 +111,6 @@ Rails.application.routes.draw do
         get :activity
         get :embed
       end
-
       resources :replies, only: [:index], module: :activitypub
       resources :likes, only: [:index], module: :activitypub
       resources :shares, only: [:index], module: :activitypub
@@ -128,7 +123,6 @@ Rails.application.routes.draw do
         member do
           get :activity
         end
-
         resources :replies, only: [:index], module: :activitypub
         resources :likes, only: [:index], module: :activitypub
         resources :shares, only: [:index], module: :activitypub
@@ -144,9 +138,7 @@ Rails.application.routes.draw do
   end
 
   constraints(encoded_path: /%40.*/) do
-    get '/:encoded_path', to: redirect { |params|
-      "/#{params[:encoded_path].gsub('%40', '@')}"
-    }
+    get '/:encoded_path', to: redirect { |params| "/#{params[:encoded_path].gsub('%40', '@')}" }
   end
 
   constraints(username: %r{[^@/.]+}) do
@@ -187,7 +179,7 @@ Rails.application.routes.draw do
     get :player
   end
 
-  resources :tags,   only: [:show]
+  resources :tags, only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show] do
@@ -207,29 +199,23 @@ Rails.application.routes.draw do
       end
     end
   end
-  resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
+  resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy, format: false
   get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
-
   resource :authorize_interaction, only: [:show]
   resource :share, only: [:show]
 
   draw(:admin)
-
   get '/admin', to: redirect('/admin/dashboard', status: 302)
-
   draw(:api)
-
   draw(:fasp)
-
   draw(:web_app)
-
   get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
+
   get '/about',      to: 'about#show'
   get '/about/more', to: redirect('/about')
-
-  get '/privacy-policy',   to: 'privacy#show', as: :privacy_policy
+  get '/privacy-policy', to: 'privacy#show', as: :privacy_policy
   get '/terms-of-service', to: 'terms_of_service#show', as: :terms_of_service
   get '/terms-of-service/:date', to: 'terms_of_service#show', as: :terms_of_service_version
   get '/terms', to: redirect('/terms-of-service')
