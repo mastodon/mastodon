@@ -21,6 +21,22 @@ const announcementSelector = createAppSelector(
       .toReversed(),
 );
 
+// --- IMAGE SRC VALIDATION ---
+// Only allow http(s) or data URLs as a defense-in-depth
+function isSafeImageSrc(url: string | undefined | null): boolean {
+  if (!url) return false;
+  try {
+    const parsed = new URL(url, window.location.origin);
+    return (
+      parsed.protocol === 'http:' ||
+      parsed.protocol === 'https:' ||
+      parsed.protocol === 'data:'
+    );
+  } catch {
+    return false;
+  }
+}
+
 export const Announcements: FC = () => {
   const announcements = useAppSelector(announcementSelector);
   const emojis = useAppSelector((state) => state.custom_emojis);
@@ -49,7 +65,8 @@ export const Announcements: FC = () => {
         className='announcements__mastodon'
         alt=''
         draggable='false'
-        src={mascot ?? elephantUIPlane}
+        // Only use mascot if it's a safe http(s) or data URL, else fallback to static
+        src={isSafeImageSrc(mascot) ? mascot! : elephantUIPlane}
       />
 
       <CustomEmojiProvider emojis={emojis}>
