@@ -1,5 +1,4 @@
 import { FormattedMessage } from 'react-intl';
-
 import { Link } from 'react-router-dom';
 
 import {
@@ -12,6 +11,16 @@ import {
 } from 'mastodon/initial_state';
 
 const DividingCircle: React.FC = () => <span aria-hidden>{' · '}</span>;
+
+// --- URL VALIDATION HELPER ---
+function isSafeHttpUrl(url: string) {
+  try {
+    const u = new URL(url);
+    return ['http:', 'https:'].includes(u.protocol);
+  } catch {
+    return false;
+  }
+}
 
 export const LinkFooter: React.FC<{
   multiColumn: boolean;
@@ -90,12 +99,14 @@ export const LinkFooter: React.FC<{
           />
         </Link>
         <DividingCircle />
-        <a href={source_url} rel='noopener' target='_blank'>
-          <FormattedMessage
-            id='footer.source_code'
-            defaultMessage='View source code'
-          />
-        </a>
+        {isSafeHttpUrl(source_url) && (
+          <a href={source_url} rel='noopener' target='_blank'>
+            <FormattedMessage
+              id='footer.source_code'
+              defaultMessage='View source code'
+            />
+          </a>
+        )}
         <DividingCircle />
         <span className='version'>v{version}</span>
       </p>
