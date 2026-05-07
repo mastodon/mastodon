@@ -18,6 +18,9 @@ class Api::BaseController < ApplicationController
 
   vary_by 'Authorization'
 
+  # CSRF protection is disabled for API endpoints because authentication is done
+  # through OAuth/Bearer tokens, not browser cookies or Rails sessions.
+  # This is safe and the correct pattern for stateless REST APIs.
   protect_from_forgery with: :null_session
 
   def doorkeeper_unauthorized_render_options(error: nil)
