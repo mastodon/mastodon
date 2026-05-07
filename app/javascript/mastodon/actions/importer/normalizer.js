@@ -1,28 +1,17 @@
 import escapeTextContentForBrowser from 'escape-html';
+import sanitizeHtml from 'sanitize-html';
 
 import { expandSpoilers } from '../../initial_state';
 import { importCustomEmoji } from './emoji';
 
-// Stronger, dependency-free HTML-to-text sanitization
+/**
+ * Use sanitize-html to return only the visible, safe text from any HTML.
+ */
 function htmlToSearchText(html = '') {
-  let text = String(html)
-    .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<\/p>\s*<p>/gi, '\n\n')
-    .replace(/<script[\s\S]*?<\/script>/gi, '')  // Remove script blocks entirely
-    .replace(/<style[\s\S]*?<\/style>/gi, '')    // Remove style blocks entirely
-    .replace(/<[^>]*>/g, '');                    // Remove all other tags
-
-  // Remove any remaining suspicious sequences like leftover tag boundaries
-  text = text.replace(/</g, '');
-  text = text.replace(/>/g, '');
-  // Remove isolated 'script' or 'style' keyword remnants for defense-in-depth
-  text = text.replace(/script/gi, '');
-  text = text.replace(/style/gi, '');
-
-  // Remove non-printable control characters (except whitespace)
-  text = text.replace(/[\x00-\x09\x0B-\x1F\x7F]+/g, '');
-
-  return text;
+  return sanitizeHtml(String(html), {
+    allowedTags: [],
+    allowedAttributes: {}
+  });
 }
 
 export function searchTextFromRawStatus(status) {
