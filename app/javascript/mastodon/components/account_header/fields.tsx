@@ -107,8 +107,13 @@ const FieldCard: FC<{
   field: AccountField;
 }> = ({ htmlHandlers, field }) => {
   const intl = useIntl();
-  const { name, nameHasEmojis, value_plain, valueHasEmojis, verified_at } =
-    field;
+  const {
+    name_emojified,
+    nameHasEmojis,
+    value_emojified,
+    valueHasEmojis,
+    verified_at,
+  } = field;
 
   const { wrapperRef, isLabelOverflowing, isValueOverflowing } =
     useFieldOverflow();
@@ -131,7 +136,7 @@ const FieldCard: FC<{
       )}
       label={
         <FieldHTML
-          text={name}
+          text={name_emojified}
           textHasCustomEmoji={nameHasEmojis}
           className='translate'
           isOverflowing={isLabelOverflowing}
@@ -141,7 +146,7 @@ const FieldCard: FC<{
       }
       value={
         <FieldHTML
-          text={value_plain}
+          text={value_emojified}
           textHasCustomEmoji={valueHasEmojis}
           isOverflowing={isValueOverflowing}
           onOverflowClick={handleOverflowClick}
