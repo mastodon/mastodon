@@ -6,6 +6,9 @@ if ENV.fetch('COVERAGE', false)
   require 'simplecov'
 
   SimpleCov.start 'rails' do
+    # During parallel runs, ensure unique names for post-run merge
+    command_name "job-#{ENV['TEST_ENV_NUMBER']}" if ENV['TEST_ENV_NUMBER']
+
     if ENV['CI']
       require 'simplecov-lcov'
       formatter SimpleCov::Formatter::LcovFormatter
@@ -25,6 +28,12 @@ if ENV.fetch('COVERAGE', false)
     add_group 'Serializers', 'app/serializers'
     add_group 'Services', 'app/services'
     add_group 'Validators', 'app/validators'
+  end
+
+  if defined?(Flatware)
+    Flatware.configure do |config|
+      config.after_fork { |test| SimpleCov.at_fork.call(test) } # Combines parallel coverage results
+    end
   end
 end
 
