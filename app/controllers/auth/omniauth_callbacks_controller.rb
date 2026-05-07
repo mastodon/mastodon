@@ -2,7 +2,9 @@
 
 class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :check_self_destruct!
-  skip_before_action :verify_authenticity_token
+  # CSRF protection is now enabled by default.
+  # If a specific provider requires skipping (e.g., :github), add:
+  # skip_before_action :verify_authenticity_token, only: [:github]
 
   def self.provides_callback_for(provider)
     define_method provider do
