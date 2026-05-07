@@ -152,11 +152,11 @@ const CODES_WITH_LIGHT_BORDER = EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
 
 export function unicodeHexToUrl({
   unicodeHex,
-  darkTheme,
+  darkTheme = true,
   assetHost,
 }: {
   unicodeHex: string;
-  darkTheme: boolean;
+  darkTheme?: boolean;
   assetHost: string;
 }): string {
   const normalizedHex = unicodeToTwemojiHex(unicodeHex);

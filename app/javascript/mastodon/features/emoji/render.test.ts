@@ -137,6 +137,18 @@ describe('loadEmojiDataToState', () => {
     });
   });
 
+  test('converts unicode emoji code to hexcode when loading data', async () => {
+    const dbCall = vi
+      .spyOn(db, 'loadEmojiByHexcode')
+      .mockResolvedValue(unicodeEmojiFactory());
+    const unicodeState = {
+      type: 'unicode',
+      code: '😊',
+    } as const satisfies EmojiStateUnicode;
+    await loadEmojiDataToState(unicodeState, 'en');
+    expect(dbCall).toHaveBeenCalledWith('1F60A', 'en');
+  });
+
   test('returns null for custom emoji without data', async () => {
     const customState = {
       type: 'custom',
