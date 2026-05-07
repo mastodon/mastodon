@@ -2,15 +2,27 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
-
 import { Helmet } from 'react-helmet';
-
 import StackTrace from 'stacktrace-js';
 
 import { version, source_url } from 'mastodon/initial_state';
 
-export default class ErrorBoundary extends PureComponent {
+// --- URL validation and (optional) escaping ---
+function isSafeHttpUrl(url) {
+  try {
+    const u = new URL(url, window.location.origin);
+    return u.protocol === 'http:' || u.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+function escapeHtmlUrl(url) {
+  return typeof url === 'string'
+    ? url.replace(/["'><]/g, encodeURIComponent)
+    : '';
+}
 
+export default class ErrorBoundary extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
   };
@@ -23,7 +35,7 @@ export default class ErrorBoundary extends PureComponent {
     componentStack: undefined,
   };
 
-  componentDidCatch (error, info) {
+  componentDidCatch(error, info) {
     this.setState({
       hasError: true,
       errorMessage: error.toString(),
@@ -98,7 +110,18 @@ export default class ErrorBoundary extends PureComponent {
             )}
           </p>
 
-          <p className='error-boundary__footer'>Mastodon v{version} · <a href={source_url} rel='noopener' target='_blank'><FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' /></a> · <button onClick={this.handleCopyStackTrace} className={copied ? 'copied' : ''}><FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' /></button></p>
+          <p className='error-boundary__footer'>
+            Mastodon v{version} ·{' '}
+            {isSafeHttpUrl(source_url) && (
+              <a href={escapeHtmlUrl(source_url)} rel='noopener' target='_blank'>
+                <FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' />
+              </a>
+            )}
+            {' '}·{' '}
+            <button onClick={this.handleCopyStackTrace} className={copied ? 'copied' : ''}>
+              <FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' />
+            </button>
+          </p>
         </div>
 
         <Helmet>
@@ -107,5 +130,4 @@ export default class ErrorBoundary extends PureComponent {
       </div>
     );
   }
-
 }
