@@ -340,10 +340,12 @@ COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib /usr/local/lib
 
 RUN \
-  # Configure Corepack
-  rm /usr/local/bin/yarn*; \
-  npm i -g corepack; \
-  corepack prepare --activate;
+  # Cleanup Yarn install on Node.js <26
+  if [ "${NODE_MAJOR_VERSION}" -lt 26 ]; then \
+    rm /usr/local/bin/yarn*; \
+  fi; \
+  # Install Corepack
+  npm i -g corepack;
 
 # hadolint ignore=DL3008
 RUN \
