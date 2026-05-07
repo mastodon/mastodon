@@ -4,7 +4,7 @@ import htmlConfig from '../../config/html-tags.json';
 
 // NB: This function can still return unsafe HTML
 export const unescapeHTML = (html: string) => {
-  const wrapper = document.createElement('div');
+  const decoder = document.createElement('textarea');
   let text = html
     .replace(/<br\s*\/?>/g, '\n')
     .replace(/<\/p><p>/g, '\n\n');
@@ -12,8 +12,8 @@ export const unescapeHTML = (html: string) => {
   while (/<[^>]*>/g.test(text)) {
     text = text.replace(/<[^>]*>/g, '');
   }
-  wrapper.innerHTML = text;
-  return wrapper.textContent;
+  decoder.textContent = text;
+  return decoder.value;
 };
 
 interface AllowedTag {
