@@ -8,7 +8,9 @@ class Api::Fasp::BaseController < ApplicationController
 
   attr_reader :current_provider
 
-  skip_forgery_protection
+  # Only skip CSRF checks for JSON requests, ensuring API tokens/signatures are always required.
+  protect_from_forgery with: :exception
+  skip_forgery_protection if: -> { request.format.json? }
 
   before_action :check_fasp_enabled
   before_action :require_authentication
