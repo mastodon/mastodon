@@ -91,21 +91,24 @@ module WebAppControllerConcern
       return nil
     end
 
-    # Only allow http and https schemes
-    return nil unless uri.scheme.in?(%w[http https])
+    # Allow only http and https schemes
+    return nil unless uri.scheme&.downcase.in?(%w[http https])
     return nil if uri.host.blank?
 
-    # Normalize host (strip possible surrounding brackets for IPv6 etc.)
+    # Normalize and compare host
     host = uri.host.downcase
+    current_host = request.host.downcase
 
-    # Allow same-host redirects
-    return uri_str if host == request.host.downcase
+    # Allow exact same host
+    return uri_str if host == current_host
 
-    # Load whitelist from ENV; fallback to empty array if not provided
-    allowed = ENV.fetch('ALLOWED_REDIRECT_HOSTS', '').split(',').map(&:strip).reject(&:empty?).map(&:downcase)
-
-    # Ensure request.host is always considered allowed (defense in depth)
-    allowed << request.host.downcase unless allowed.include?(request.host.downcase)
+    # Build whitelist from ENV, exact host match only
+    allowed = ENV.fetch('ALLOWED_REDIRECT_HOSTS', '')
+                  .split(',')
+                  .map(&:strip)
+                  .reject(&:empty?)
+                  .map(&:downcase)
+    allowed << current_host unless allowed.include?(current_host)
 
     return uri_str if allowed.include?(host)
 
