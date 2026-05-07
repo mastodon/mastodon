@@ -4,6 +4,7 @@ gd:
     hints:
       account:
         attribution_domains: Loidhne fa leth do gach fear. Dìonaidh seo o iomraidhean meallta.
+        discoverable: Dh’fhaoidte gun dèid do bhrosnachadh ann an cruinneachaidhean a chruthaich càch. Dh’fhaoidte gun dèid thu fhèin ’s na postaichean poblach agad a mholadh do dhaoine ann an àrainneachdan rùrachaidh eile air feadh Mastodon.
         display_name: D’ ainm slàn no spòrsail.
         fields: An duilleag-dhachaigh agad, roimhearan, aois, rud sam bith a thogras tu.
         indexable: Faodaidh na postaichean poblach agad a nochdadh am measg toraidhean luirg air Mastodon. ’S urrainn dhan fheadhainn a rinn eadar-ghabhail leis na postaichean agad lorg annta air a h-uile dòigh.
@@ -60,6 +61,9 @@ gd:
         setting_default_quote_policy_private: Chan urrainn do chàch postaichean dhan luchd-leantainn a-mhàin a chaidh a sgrìobhadh le Mastodon a luaidh.
         setting_default_quote_policy_unlisted: Nuair a luaidheas daoine thu, thèid am post aca-san fhalach o loidhnichean-ama nan treandaichean.
         setting_default_sensitive: Thèid meadhanan frionasach fhalach a ghnàth is gabhaidh an nochdadh le briogadh orra
+        setting_display_media_default: Thoir rabhadh mus dèid meadhanan ris a bheil comharra gu bheil iad frionasach a shealltainn
+        setting_display_media_hide_all: Thoir rabhadh mus dèid meadhan sam bith a shealltainn
+        setting_display_media_show_all: Seall meadhan sam bith gun rabhadh, a’ gabhail a-staigh nam meadhanan ris a bheil comharra gu bheil iad frionasach
         setting_emoji_style: An dòigh air an dèid emojis a shealltainn. Feuchaidh “Fèin-obrachail” ris na h-emojis tùsail a chleachdadh ach thèid Twemoji a chleachdadh ’nan àite air seann-bhrabhsairean.
         setting_quick_boosting_html: Ma tha seo an comas, ma nì thu briogadh air ìomhaigheag %{boost_icon} a’ bhrosnachaidh, thèid a bhrosnachadh sa bhad seach a bhith a’ fosgladh clàr-taice teàrnach a’ bhrosnachaidh/luaidh. Thèid gnìomh an luaidh a ghluasad gu clàr-taice %{options_icon} nan roghainnean.
         setting_system_scrollbars_ui: Chan obraich seo ach air brabhsairean desktop stèidhichte air Safari ’s Chrome
@@ -105,6 +109,7 @@ gd:
         status_page_url: URL duilleige far am faicear staid an fhrithealaiche seo nuair a bhios e sìos
         theme: An t-ùrlar a chì na h-aoighean gun chlàradh a-staigh agus an luchd-cleachdaidh ùr.
         thumbnail: Dealbh mu 2:1 a thèid a shealltainn ri taobh fiosrachadh an fhrithealaiche agad.
+        thumbnail_description: Tuairisgeul an deilbh a chuidicheas an fheadhainn air a bheil cion-lèirsinne le tuigsinn a shusbaint.
         trendable_by_default: Geàrr leum thar lèirmheas a làimh na susbainte a’ treandadh. Gabhaidh nithean fa leth a thoirt far nan treandaichean fhathast an uairsin.
         trends: Seallaidh na treandaichean na postaichean, tagaichean hais is naidheachdan a tha fèill mhòr orra air an fhrithealaiche agad.
         wrapstodon: Tairg gintinn geàrr-chunntais àbhaich air mar a chleachd iad Mastodon rè a’ bhliadhna dhan luchd-cleachdaidh ionadail. Bidh an gleus seo ri fhaighinn eadar an 10mh is 31mh dhen Dùbhlachd gach bliadhna ’s thèid a thairgsinn dhan luchd-cleachdaidh a rinn co-dhiù aon post poblach no sàmhach ’s a chleachd co-dhiù aon taga hais rè a’ bhliadhna.
@@ -158,6 +163,7 @@ gd:
           two: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bhliadhna a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
         role: Stiùiridh an dreuchd dè na ceadan a bhios aig cleachdaiche.
       user_role:
+        collection_limit: Cuingichidh seo co mheud cruinneachadh a dh’fhaodas cleachdaiche aig a bheil an dreuchd seo a chruthachadh. Thoir an aire nuair a lùghdaicheas tu an àireamh seo, cha chaill an luchd-cleachdaidh aig a bheil cruinneachaidhean cheana gin dhiubh ma bhios cus aca. Gidheadh, chan urrainn dhaibh an còrr a chruthachadh an uair sin.
         color: An datha a bhios air an dreuchd air feadh na h-eadar-aghaidh, ’na RGB san fhòrmat sia-dheicheach
         highlighted: Le seo, chithear an dreuchd gu poblach
         name: Ainm poblach na dreuchd ma chaidh a suidheachadh gun nochd i na baidse
@@ -175,6 +181,7 @@ gd:
     labels:
       account:
         attribution_domains: Na làraichean-lìn a dh’fhaodas iomradh a thoirt ort
+        discoverable: Brosnaich mi ann an àrainneachdan rùrachaidh
         fields:
           name: Leubail
           value: Susbaint
@@ -313,6 +320,7 @@ gd:
         status_page_url: URL duilleag na staide
         theme: An t-ùrlar bunaiteach
         thumbnail: Dealbhag an fhrithealaiche
+        thumbnail_description: Roghainn teacsa na dealbhaige
         trendable_by_default: Ceadaich treandaichean gun lèirmheas ro làimh
         trends: Cuir na treandaichean an comas
         wrapstodon: Cuir Wrapstodon an comas
@@ -383,6 +391,7 @@ gd:
         role: Dreuchd
         time_zone: Roinn-tìde
       user_role:
+        collection_limit: An àireamh as motha de chruinneachaidhean aig gach cleachdaiche
         color: Dathan na baidse
         highlighted: Seall an dreuchd ’na baidse air pròifilean nan cleachdaichean
         name: Ainm

@@ -71,6 +71,24 @@ code {
 }
 
 .simple_form {
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .numbered-list {
+    list-style: decimal;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 16px;
+    margin-inline-start: 28px;
+
+    li {
+      margin-bottom: 4px;
+    }
+  }
+
   &.hidden {
     display: none;
   }

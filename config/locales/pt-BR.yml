@@ -792,7 +792,6 @@ pt-BR:
         manage_custom_emojis: Gerenciar Emojis Personalizados
         manage_custom_emojis_description: Permite aos usuários gerenciar emojis personalizados no servidor
         manage_email_subscriptions: Gerenciar assinaturas do e-mail
-        manage_email_subscriptions_description: Permitir que usuários se inscrevam com essa permissão por e-mail
         manage_federation: Gerenciar Federação
         manage_federation_description: Permite aos usuários bloquear ou permitir federação com outros domínios e controlar a entregabilidade
         manage_invites: Gerenciar convites
@@ -1731,6 +1730,27 @@ pt-BR:
     copy_account_note_text: 'Este usuário saiu de %{acct}, aqui estão suas notas anteriores sobre ele:'
   navigation:
     toggle_menu: Alternar menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} te adicionou à uma coleção"
+    admin_report:
+      title_html: "%{name} denunciou %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} e outros inscreveram-se"
+        other: "%{name} e %{count} outros inscreveram-se"
+      title_html: "%{name} inscreveu-se"
+    collection_update:
+      title_html: "%{name} atualizou uma coleção em que você está"
+    generic:
+      sign_in: Inscreva-se ao app web do Mastodon.
+      summary_html: Você está em um app que não suporta a versão mais recente do Mastodon. %{link} para funcionalidade total.
+    moderation_warning:
+      summary_html: Você está em um app que não suporta a versão mais recente do Mastodon. %{link}.
+      title: Você recebeu um aviso da moderação.
+    severed_relationships:
+      summary_html: Um administrador de %{from} suspendeu %{target}, o que significa que você não poderá mais receber atualizações deles ou interagir com eles. %{link} para recuperar uma lista das relações perdidas.
+      title: Conexões perdidas com %{name}
   notification_mailer:
     admin:
       report:

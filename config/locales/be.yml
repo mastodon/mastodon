@@ -824,7 +824,6 @@ be:
         manage_custom_emojis: Кіраванне адвольнымі эмодзі
         manage_custom_emojis_description: Дазваляе кіраваць адвольнымі эмодзі на серверы
         manage_email_subscriptions: Наладзіць падпіскі па электроннай пошце
-        manage_email_subscriptions_description: Дазвольце карыстальнікам падпісвацца на карыстальнікаў з гэтым дазволам праз электронную пошту
         manage_federation: Кіраваць федэрацыяй
         manage_federation_description: Дазваляе карыстальнікам блакіраваць або дазваляць аб'яднанне з іншымі даменамі і кантраляваць магчымасць дастаўкі
         manage_invites: Кіраванне запрашэннямі
@@ -1815,6 +1814,29 @@ be:
     copy_account_note_text: 'Гэты карыстальнік «перанесены» з %{acct}, вось вашы папярэднія заўвагі пра яго:'
   navigation:
     toggle_menu: Уключыць меню
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} дадаў(-ла) Вас у калекцыю"
+    admin_report:
+      title_html: "%{name} паскардзіўся(-лась) на %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        few: "%{name} і %{count} іншых зарэгістраваліся"
+        many: "%{name} і %{count} іншых зарэгістраваліся"
+        one: "%{name} і 1 іншы(-ая) зарэгістраваліся"
+        other: "%{name} і %{count} іншыя зарэгістраваліся"
+      title_html: "%{name} зарэгістраваўся(-лась)"
+    collection_update:
+      title_html: "%{name} абнавіў(-ла) калекцыю, у якой ёсць Вы"
+    generic:
+      sign_in: Увайсці ў вэб-праграму Mastodon
+      summary_html: Вы знаходзіцеся ў праграме, якая не падтрымлівае апошнія версіі Mastodon. %{link}, каб атрымаць поўную функцыянальнасць.
+    moderation_warning:
+      summary_html: Вы знаходзіцеся ў праграме, якая не падтрымлівае апошнія версіі Mastodon. %{link}.
+      title: Вы атрымалі папярэджанне ад мадэратараў.
+    severed_relationships:
+      summary_html: Адміністратар %{from} заблакіраваў %{target}, і гэта азначае, што Вы больш не зможаце атрымліваць ад гэтага карыстальніка абнаўленні або ўзаемадзейнічаць з ім. %{link}, каб атрымаць спіс страчаных адносін.
+      title: Страчаная сувязь з %{name}
   notification_mailer:
     admin:
       report:

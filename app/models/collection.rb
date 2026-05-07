@@ -5,6 +5,7 @@
 # Table name: collections
 #
 #  id                       :bigint(8)        not null, primary key
+#  deleted_at               :datetime
 #  description              :text
 #  description_html         :text
 #  discoverable             :boolean          not null
@@ -31,6 +32,7 @@ class Collection < ApplicationRecord
 
   has_many :collection_items, dependent: :delete_all
   has_many :accepted_collection_items, -> { accepted }, class_name: 'CollectionItem', inverse_of: :collection # rubocop:disable Rails/HasManyOrHasOneDependent
+  has_many :top_items, -> { top_items }, class_name: 'CollectionItem', inverse_of: :collection # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :collection_reports, dependent: :delete_all
 
   validates :name, presence: true

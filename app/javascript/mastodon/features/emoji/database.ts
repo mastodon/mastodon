@@ -269,6 +269,10 @@ export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
 
 export async function loadAllCustomEmoji() {
   const db = await loadDB();
+  const cacheValue = await db.get('etags', 'custom');
+  if (!cacheValue) {
+    return null;
+  }
   return db.getAll('custom');
 }
 

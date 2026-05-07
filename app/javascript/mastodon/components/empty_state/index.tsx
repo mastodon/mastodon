@@ -1,5 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import ElephantImage from '@/images/elephant_ui.svg?react';
 
 import classes from './empty_state.module.scss';
@@ -19,6 +21,7 @@ export const EmptyState: React.FC<{
   title?: React.ReactNode;
   message?: React.ReactNode;
   children?: React.ReactNode;
+  className?: string;
 }> = ({
   image = 'default',
   title = (
@@ -26,11 +29,12 @@ export const EmptyState: React.FC<{
   ),
   message,
   children,
+  className,
 }) => {
   const imageToRender = typeof image === 'string' ? images[image] : image;
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classNames(classes.wrapper, className)}>
       {(title || message || imageToRender) && (
         <div className={classes.content}>
           {imageToRender}

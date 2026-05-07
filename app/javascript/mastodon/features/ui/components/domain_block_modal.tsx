@@ -83,15 +83,15 @@ export const DomainBlockModal: React.FC<{
                 defaultMessage='Block domain?'
               />
             </h1>
-            <div>{domain}</div>
+            <p>{domain}</p>
           </div>
         </div>
 
-        <div className='safety-action-modal__bullet-points'>
+        <ul className='safety-action-modal__bullet-points'>
           {preview &&
             preview !== 'error' &&
             preview.followers_count + preview.following_count > 0 && (
-              <div>
+              <li>
                 <div className='safety-action-modal__bullet-points__icon'>
                   <Icon id='' icon={PersonRemoveIcon} />
                 </div>
@@ -113,11 +113,11 @@ export const DomainBlockModal: React.FC<{
                     />
                   </strong>
                 </div>
-              </div>
+              </li>
             )}
 
           {preview === 'error' && (
-            <div>
+            <li>
               <div className='safety-action-modal__bullet-points__icon'>
                 <Icon id='' icon={PersonRemoveIcon} />
               </div>
@@ -129,10 +129,10 @@ export const DomainBlockModal: React.FC<{
                   />
                 </strong>
               </div>
-            </div>
+            </li>
           )}
 
-          <div className='safety-action-modal__bullet-points--deemphasized'>
+          <li className='safety-action-modal__bullet-points--deemphasized'>
             <div className='safety-action-modal__bullet-points__icon'>
               <Icon id='' icon={CampaignIcon} />
             </div>
@@ -142,9 +142,9 @@ export const DomainBlockModal: React.FC<{
                 defaultMessage="They won't know they've been blocked."
               />
             </div>
-          </div>
+          </li>
 
-          <div className='safety-action-modal__bullet-points--deemphasized'>
+          <li className='safety-action-modal__bullet-points--deemphasized'>
             <div className='safety-action-modal__bullet-points__icon'>
               <Icon id='' icon={VisibilityOffIcon} />
             </div>
@@ -154,9 +154,9 @@ export const DomainBlockModal: React.FC<{
                 defaultMessage="You won't see posts or notifications from users on this server."
               />
             </div>
-          </div>
+          </li>
 
-          <div className='safety-action-modal__bullet-points--deemphasized'>
+          <li className='safety-action-modal__bullet-points--deemphasized'>
             <div className='safety-action-modal__bullet-points__icon'>
               <Icon id='' icon={ReplyIcon} />
             </div>
@@ -166,9 +166,9 @@ export const DomainBlockModal: React.FC<{
                 defaultMessage='Nobody from this server can follow you.'
               />
             </div>
-          </div>
+          </li>
 
-          <div className='safety-action-modal__bullet-points--deemphasized'>
+          <li className='safety-action-modal__bullet-points--deemphasized'>
             <div className='safety-action-modal__bullet-points__icon'>
               <Icon id='' icon={HistoryIcon} />
             </div>
@@ -178,8 +178,8 @@ export const DomainBlockModal: React.FC<{
                 defaultMessage='People from this server can interact with your old posts.'
               />
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
 
       <div className='safety-action-modal__bottom'>

@@ -527,6 +527,71 @@ cy:
       resolved_dns_records_hint_html: Mae'r enw parth yn cyd-fynd â'r parthau MX canlynol, sy'n gyfrifol yn y pen draw am dderbyn e-bost. Bydd rhwystro parth MX yn rhwystro cofrestriadau o unrhyw gyfeiriad e-bost sy'n defnyddio'r un parth MX, hyd yn oed os yw'r enw parth gweladwy yn wahanol. <strong>Byddwch yn ofalus i beidio â rhwystro'r prif ddarparwyr e-bost.</strong>
       resolved_through_html: Wedi'i ddatrys trwy %{domain}
       title: Parthau e-bost wedi'u rhwystro
+    email_subscriptions:
+      accounts:
+        account: Cyfrif
+        active: Gweithredol
+        empty:
+          hint: Does gan unrhyw gyfrifon ddim tanysgrifwyr eto.
+          no_lists_yet: Dim rhestrau eto
+        inactive: Anweithredol
+        last_email: E-bost diwethaf
+        lead: Bydd cyfrifon sydd wedi galluogi'r nodwedd ac sydd â thanysgrifwyr yn ymddangos isod.
+        status: Statws
+        subscribers: Tanysgrifwyr
+        title: Rhestrau postio
+      additional_footer_texts:
+        show:
+          title: Testun troedyn ychwanegol
+      compliance_settings:
+        additional_footer_text:
+          action: Rheoli
+          hint: Testun dewisol sy'n ymddangos yn nhroedyn e-byst cylchlythyr yn unig
+          title: Testun troedyn ychwanegol
+        lead: Mae modd ystyried cylchlythyrau e-bost yn negeseuon e-bost marchnata, yn dibynnu ar yr awdurdodaethau lle rydych chi'n gweithredu.
+        privacy_policy:
+          action: Rheoli
+          hint: Mae dolen i'r polisi hwn yn nhroedyn pob e-bost
+          title: Polisi preifatrwydd
+        title: Gosodiadau cydymffurfio
+      danger_zone:
+        disable_feature:
+          action: Analluogi
+          hint: Diffoddwch y nodwedd ar gyfer pob cyfrif
+          title: Analluogi nodwedd
+        erase_all_data:
+          action: Dileu data
+          hint: Yn dileu pob e-bost ym mhob rhestr bostio yn barhaol
+          title: Dileu'r holl ddata
+        title: Parth perygl
+      disabled_msg: Mae tanysgrifiadau e-bost wedi cael eu hanalluogi'n llwyddiannus.
+      index:
+        disabled:
+          cannot_be_enabled: Dyw eich darparwr technegol ddim wedi galluogi'r nodwedd hon ar gyfer eich gweinydd.
+          description: Mae'r nodwedd hon yn caniatáu i gyfrifon penodol ychwanegu teclyn at eu proffiliau, gan alluogi ymwelwyr heb gyfrif Mastodon i dderbyn eu postiadau drwy e-bost.
+          get_started: Cychwyn arni
+        lead: Caniatáu i ymwelwyr dderbyn postiadau drwy e-bost o gyfrifon pwrpasol ar y gweinydd hwn.
+        title: Cylchlythyrau e-bost
+      purged_msg: Mae holl ddata tanysgrifiadau e-bost yn cael ei ddileu.
+      roles:
+        accounts: Cyfrifon
+        edit_role: Golygu rôl
+        empty:
+          hint: Does gan neb ganiatâd i ddefnyddio'r nodwedd hon.
+          no_roles_added: Dim rolau wedi'u hychwanegu
+        lead: Gall cyfrifon gyda'r rolau canlynol alluogi'r nodwedd hon ar eu proffiliau.
+        manage_roles: Rheoli rolau
+        role_name: Enw'r rôl
+        title: Rolau
+      setups:
+        show:
+          enable_feature: Galluogi nodwedd
+          important_information: Gwybodaeth bwysig
+          list:
+            1_permission_explanation: Pan fydd y nodwedd hon wedi'i galluogi, gall cyfrifon sydd â'r caniatâd dynodedig ychwanegu ffurflen casglu e-byst at eu proffiliau.
+            2_feature_explanation: Pan fydd ymwelwyr yn cofrestru ar dudalen proffil cyfrif ac yn cadarnhau eu tanysgrifiad, byddan yn dechrau derbyn diweddariadau e-bost pan fydd y cyfrif yn creu postiadau cyhoeddus newydd.
+            3_privacy_policy_warning: Bydd gan weinyddwyr gweinydd fynediad at y cyfeiriadau e-bost (PII) sy'n cael eu casglu. O'r herwydd, rhaid diweddaru'r polisi preifatrwydd a'r Telerau Gwasanaeth ar gyfer y gweinydd cyn defnyddio'r nodwedd hon.
+            4_cost_warning: Gall e-byst olygu ffi yn dibynnu ar y drefn cynnal. Trafodwch â'ch darparwr cynnal cyn ei alluogi, gan y gallai'r nodwedd hon gynyddu nifer yr e-byst a anfonir o'ch gweinydd yn sylweddol.
     export_domain_allows:
       new:
         title: Mewnforio parth yn caniatáu
@@ -856,7 +921,7 @@ cy:
         manage_custom_emojis: Rheoli Emojis Cyfaddas
         manage_custom_emojis_description: Yn caniatáu i ddefnyddwyr reoli emojis cyfaddas ar y gweinydd
         manage_email_subscriptions: Rheoli Tanysgrifiadau E-bost
-        manage_email_subscriptions_description: Caniatáu i ddefnyddwyr danysgrifio i ddefnyddwyr sydd â'r caniatâd hwn drwy e-bost
+        manage_email_subscriptions_description: Caniatáu i ddefnyddwyr sydd â'r caniatâd hwn alluogi'r nodwedd cylchlythyr e-bost ar gyfer eu cyfrif
         manage_federation: Rheoli Ffederasiwn
         manage_federation_description: Yn caniatáu i ddefnyddwyr rwystro neu ganiatáu ffedereiddio â pharthau eraill, a rheoli'r gallu i gyflawni
         manage_invites: Rheoli Gwahoddiadau
@@ -1899,6 +1964,31 @@ cy:
     copy_account_note_text: 'Symudodd y defnyddiwr hwn o %{acct}, dyma oedd eich nodiadau blaenorol amdanynt:'
   navigation:
     toggle_menu: Toglo'r ddewislen
+  notification_fallbacks:
+    added_to_collection:
+      title_html: Ychwanegodd %{name} chi at gasgliad
+    admin_report:
+      title_html: Mae %{name} wedi adrodd ar %{target}
+    admin_sign_up:
+      title_and_others_html:
+        few: Mae %{name} a %{count} eraill wedi cofrestru
+        many: Mae %{name} a %{count} eraill wedi cofrestru
+        one: Mae %{name} ac un arall wedi cofrestru
+        other: Mae %{name} a %{count} eraill wedi cofrestru
+        two: Mae %{name} a %{count} eraill wedi cofrestru
+        zero: Mae %{name} a %{count} eraill wedi cofrestru
+      title_html: Mae %{name} wedi cofrestru
+    collection_update:
+      title_html: Mae %{name} wedi diweddaru casgliad rydych chi ynddo
+    generic:
+      sign_in: Mewngofnodwch i ap gwe Mastodon
+      summary_html: Rydych chi ar ap nad yw'n cefnogi'r fersiwn ddiweddaraf o Mastodon. %{link} am ymarferoldeb llawn.
+    moderation_warning:
+      summary_html: Rydych chi ar ap nad yw'n cefnogi'r fersiwn ddiweddaraf o Mastodon. %{link}.
+      title: Rydych chi wedi derbyn rhybudd cymedroli.
+    severed_relationships:
+      summary_html: Mae gweinyddwr o %{from} wedi atal %{target}, sy'n golygu nad ydych yn gallu derbyn diweddariadau ganddyn nhw na rhyngweithio â nhw bellach. Ewch i %{link} i adfer rhestr o'r perthnasoedd coll.
+      title: Colli cysylltiadau gyda %{name}
   notification_mailer:
     admin:
       report:

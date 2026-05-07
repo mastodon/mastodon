@@ -6,17 +6,24 @@ import { Helmet } from 'react-helmet';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { openModal } from '@/mastodon/actions/modal';
-import { useAccountHandle } from '@/mastodon/components/display_name/default';
+import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
-import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
+import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import { openModal } from 'mastodon/actions/modal';
+import type {
+  ApiCollectionJSON,
+  CollectionAccountItem,
+} from 'mastodon/api_types/collections';
 import { Badge } from 'mastodon/components/badge';
 import { Callout } from 'mastodon/components/callout';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { DisplayName } from 'mastodon/components/display_name';
+import { useAccountHandle } from 'mastodon/components/display_name/default';
+import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { IconButton } from 'mastodon/components/icon_button';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { Scrollable } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { domain, me } from 'mastodon/initial_state';
@@ -68,13 +75,15 @@ export const AuthorNote: React.FC<{ id: string }> = ({ id }) => {
 };
 
 const RevokeControls: React.FC<{
+  currentUserCollectionItem: CollectionAccountItem;
   collection: ApiCollectionJSON;
-}> = ({ collection }) => {
+}> = ({ currentUserCollectionItem, collection }) => {
   const authorAccount = useAccount(collection.account_id);
   const confirmRevoke = useConfirmRevoke(collection);
 
   return (
     <Callout
+      icon={StarIcon}
       title={
         <FormattedMessage
           id='collections.detail.you_are_in_this_collection'
@@ -94,8 +103,35 @@ const RevokeControls: React.FC<{
         defaultMessage='{author} added you on {date}'
         values={{
           author: <DisplayName account={authorAccount} variant='simple' />,
-          date: '{date}', // TODO: Data not yet provided by API
+          date: (
+            <FormattedDateWrapper
+              value={currentUserCollectionItem.created_at}
+              day='2-digit'
+              month='short'
+              year='numeric'
+            />
+          ),
         }}
+      />
+    </Callout>
+  );
+};
+
+export const PendingNote: React.FC = () => {
+  return (
+    <Callout
+      variant='subtle'
+      icon={HelpIcon}
+      title={
+        <FormattedMessage
+          id='collections.pending_accounts.title'
+          defaultMessage='Why am I seeing pending accounts?'
+        />
+      }
+    >
+      <FormattedMessage
+        id='collections.pending_accounts.message'
+        defaultMessage='Accounts may appear as pending when we’re awaiting a response from the user or their server. Only you can see pending accounts.'
       />
     </Callout>
   );
@@ -110,10 +146,11 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   const history = useHistory();
 
   const isOwnCollection = account_id === me;
-  const currentUserIndex = items.findIndex(
+  const currentUserCollectionItem = items.find(
     (account) => account.account_id === me,
   );
-  const isCurrentUserInCollection = !isOwnCollection && currentUserIndex > -1;
+  const isCurrentUserInCollection =
+    !isOwnCollection && !!currentUserCollectionItem;
 
   const openShareModal = useCallback(() => {
     dispatch(
@@ -135,6 +172,8 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
       openShareModal();
     }
   }, [history, openShareModal, isNewCollection, location.pathname]);
+
+  const hasPendingAccounts = items.some((item) => item.state === 'pending');
 
   return (
     <header className={classes.header}>
@@ -160,7 +199,13 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
         </div>
       </div>
       {description && <p className={classes.description}>{description}</p>}
-      {isCurrentUserInCollection && <RevokeControls collection={collection} />}
+      {hasPendingAccounts && <PendingNote />}
+      {isCurrentUserInCollection && (
+        <RevokeControls
+          currentUserCollectionItem={currentUserCollectionItem}
+          collection={collection}
+        />
+      )}
     </header>
   );
 };
@@ -174,7 +219,6 @@ export const CollectionDetailPage: React.FC<{
   const collection = useAppSelector((state) =>
     id ? state.collections.collections[id] : undefined,
   );
-  const isLoading = !!id && !collection;
 
   useEffect(() => {
     if (id) {
@@ -195,8 +239,14 @@ export const CollectionDetailPage: React.FC<{
       />
 
       <Scrollable>
-        {collection && <CollectionHeader collection={collection} />}
-        <CollectionAccountsList collection={collection} isLoading={isLoading} />
+        {collection ? (
+          <>
+            <CollectionHeader collection={collection} />
+            <CollectionAccountsList collection={collection} />
+          </>
+        ) : (
+          <LoadingIndicator />
+        )}
       </Scrollable>
 
       <Helmet>

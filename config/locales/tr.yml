@@ -487,6 +487,71 @@ tr:
       resolved_dns_records_hint_html: Alan adı aşağıdaki MX alan adlarına çözümleniyor, ancak hiç biri nihayetinde e-posta kabulünden sorum değil. Bir MX alan adını engellemek, görünen alan adı farklı osa bile aynı MX alan adını kullanan e-posta adreslerinden gelen kayıtları engelleyecektir. <strong>Başlıca e-posta sağlayıcıları engellememek için dikkatli olun.</strong>
       resolved_through_html: "%{domain} aracılığıyla çözümlendi"
       title: Engelli e-posta alan adları
+    email_subscriptions:
+      accounts:
+        account: Hesap
+        active: Etkin
+        empty:
+          hint: Henüz hiçbir hesabın abonesi yok.
+          no_lists_yet: Henüz liste yok
+        inactive: Etkin değil
+        last_email: Son e-posta
+        lead: Bu özelliği etkinleştirmiş ve abonesi olan hesaplar aşağıda gösterilecektir.
+        status: Durum
+        subscribers: Aboneler
+        title: E-posta listeleri
+      additional_footer_texts:
+        show:
+          title: Ek altbilgi metni
+      compliance_settings:
+        additional_footer_text:
+          action: Yönet
+          hint: Yalnızca haber bülteni e-postalarının altbilgisinde görünen isteğe bağlı metin
+          title: Ek altbilgi metni
+        lead: Faaliyet gösterdiğiniz yargı bölgelerine bağlı olarak, e-posta bültenleri pazarlama amaçlı e-postalar olarak değerlendirilebilir.
+        privacy_policy:
+          action: Yönet
+          hint: Bu politika her e-postanın alt bilgisinde yer alır
+          title: Gizlilik politikası
+        title: Uyumluluk ayarları
+      danger_zone:
+        disable_feature:
+          action: Devre dışı bırak
+          hint: Özelliği tüm hesaplar için kapat
+          title: Özelliği devre dışı bırak
+        erase_all_data:
+          action: Verileri sil
+          hint: Tüm posta listelerindeki tüm e-postaları kalıcı olarak siler
+          title: Tüm verileri sil
+        title: Tehlikeli bölge
+      disabled_msg: E-posta abonelikleri başarıyla devre dışı bırakıldı.
+      index:
+        disabled:
+          cannot_be_enabled: Teknik hizmet sağlayıcınız sunucunuz için bu özelliği etkinleştirmedi.
+          description: Bu özellik, belirlenen hesapların profillerine bir widget eklemesine olanak tanıyarak, Mastodon hesabı olmayan ziyaretçilerin bu hesapların gönderilerini e-posta yoluyla alabilmesini sağlar.
+          get_started: Başlayın
+        lead: Ziyaretçilerin bu sunucudaki özel hesaplardan e-posta yoluyla gönderileri almasına izin verin.
+        title: E-posta bültenleri
+      purged_msg: Tüm e-posta abonelik verileri siliniyor.
+      roles:
+        accounts: Hesaplar
+        edit_role: Rolü düzenle
+        empty:
+          hint: Hiç kimsenin bu özelliği kullanma izni yok.
+          no_roles_added: Hiçbir rol eklenmedi
+        lead: Aşağıdaki rollere sahip hesaplar, profillerinde bu özelliği etkinleştirebilir.
+        manage_roles: Rolleri yönet
+        role_name: Rol adı
+        title: Roller
+      setups:
+        show:
+          enable_feature: Özelliği etkinleştir
+          important_information: Önemli bilgi
+          list:
+            1_permission_explanation: Bu özellik etkinleştirildiğinde, belirlenen izinlere sahip hesaplar profillerine bir e-posta toplama formu ekleyebilir.
+            2_feature_explanation: Ziyaretçiler bir hesabın profil sayfasında kaydolup aboneliklerini onayladıklarında, o hesap yeni herkese açık gönderiler paylaştığında e-posta yoluyla güncellemeler almaya başlayacaklar.
+            3_privacy_policy_warning: Sunucu yöneticileri, toplanan kişisel bilgilere (e-posta adresleri) erişebileceklerdir. Bu nedenle, bu özelliği kullanmadan önce sunucunun gizlilik politikası ve Hizmet Şartları güncellenmelidir.
+            4_cost_warning: Barındırma yapılandırmasına bağlı olarak e-postalar için ücret tahsil edilebilir. Bu özellik, sunucunuzdan gönderilen e-posta sayısını önemli ölçüde artırabileceğinden, etkinleştirmeden önce barındırma sağlayıcınızla görüşün.
     export_domain_allows:
       new:
         title: Alan adı engellerini içe aktar
@@ -792,7 +857,7 @@ tr:
         manage_custom_emojis: Özel İfadeleri Yönetme
         manage_custom_emojis_description: Kullanıcıların sunucudaki özel ifadeleri yönetmesine izin verir
         manage_email_subscriptions: E-posta Aboneliklerini Yönet
-        manage_email_subscriptions_description: Kullanıcılara bu izne sahip diğer kullanıcıları e-posta yoluyla takip etme olanağı verin
+        manage_email_subscriptions_description: Bu izne sahip kullanıcıların, hesapları için e-posta bültenini etkinleştirmelerine izin ver
         manage_federation: Birleştirme Yönetme
         manage_federation_description: Kullanıcıların diğer alan adlarıyla birleştirmeye izin vermesi veya engellemesine ve teslim edilebilirliği denetlemesine izin verir
         manage_invites: Davetleri Yönetme
@@ -1731,6 +1796,27 @@ tr:
     copy_account_note_text: 'Bu kullanıcı %{acct} adresinden taşındı, işte onlarla ilgili önceki notlarınız:'
   navigation:
     toggle_menu: Menüyü aç/kapa
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} sizi bir koleksiyona ekledi"
+    admin_report:
+      title_html: "%{name}, %{target} kişisini bildirdi"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} ve bir kişi kaydoldu"
+        other: "%{name} ve %{count} kişi kaydoldu"
+      title_html: "%{name} kayıt oldu"
+    collection_update:
+      title_html: "%{name} olduğunuz bir koleksiyonu güncelledi"
+    generic:
+      sign_in: Mastodon web uygulamasını kullanmak için oturum açın
+      summary_html: Şu anda Mastodon'un en son sürümünü desteklemeyen bir uygulamayı kullanıyorsunuz. Tüm özelliklerden yararlanmak için %{link} adresini ziyaret edin.
+    moderation_warning:
+      summary_html: Şu anda Mastodon'un en son sürümünü desteklemeyen bir uygulamayı kullanıyorsunuz. %{link}.
+      title: Hesabınız bir denetim uyarısı aldı.
+    severed_relationships:
+      summary_html: "%{from} adresinden bir yönetici, %{target} hesabını askıya aldı; bu nedenle artık bu hesaptan güncellemeler alamayacak ve bu hesapla etkileşimde bulunamayacaksınız. Kaybedilen ilişkilerin listesini görmek için %{link} adresine tıklayın."
+      title: "%{name} ile bağlantılar koptu"
   notification_mailer:
     admin:
       report:

@@ -46,7 +46,7 @@ import { WizardStepTitle } from './wizard_step_title';
 export const CollectionDetails: React.FC = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const { id, name, description, topic, discoverable, sensitive, accountIds } =
+  const { id, name, description, topic, discoverable, sensitive, items } =
     useAppSelector((state) => state.collections.editor);
 
   const handleNameChange = useCallback(
@@ -123,7 +123,7 @@ export const CollectionDetails: React.FC = () => {
           description,
           discoverable,
           sensitive,
-          account_ids: accountIds,
+          account_ids: items.map((item) => item.account_id),
         };
         if (topic) {
           payload.tag_name = topic;
@@ -152,7 +152,7 @@ export const CollectionDetails: React.FC = () => {
       sensitive,
       dispatch,
       history,
-      accountIds,
+      items,
       currentUserName,
     ],
   );

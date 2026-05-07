@@ -199,4 +199,16 @@ RSpec.describe Collection do
       expect(subject.to_log_permalink).to eq ActivityPub::TagManager.instance.uri_for(subject)
     end
   end
+
+  describe '#top_items' do
+    let(:collection) { Fabricate(:collection) }
+
+    before do
+      5.times { |i| Fabricate(:collection_item, collection:, position: i + 1) }
+    end
+
+    it 'returns the topmost four items' do
+      expect(collection.top_items.map(&:position)).to contain_exactly(1, 2, 3, 4)
+    end
+  end
 end

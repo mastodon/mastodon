@@ -92,6 +92,7 @@ da:
         closed_registrations_message: Vises, når tilmeldinger er lukket
         content_cache_retention_period: Alle indlæg fra andre servere (herunder fremhævelser og besvarelser) slettes efter det angivne antal dage uden hensyn til lokal brugerinteraktion med disse indlæg. Dette omfatter indlæg, hvor en lokal bruger har markeret dem som bogmærker eller favoritter. Private omtaler mellem brugere fra forskellige instanser vil også være tabt og umulige at gendanne. Brugen af denne indstilling er beregnet til særlige formål instanser og bryder mange brugerforventninger ved implementering til almindelig brug.
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
+        email_footer_text: Valgfri tekst, der vises i sidefoden på e-mail-nyhedsbreve.
         favicon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard Mastodon favikonet på mobilenheder med et tilpasset ikon.
         landing_page: Vælger, hvilken side nye besøgende ser, når de først ankommer til din server. Hvis du vælger "Trender", skal trends være aktiveret i Opdagelse-indstillingerne. Hvis du vælger "Lokalt feed", skal "Adgang til live feeds med lokale indlæg" være indstillet til "Alle" i Opdagelse-indstillingerne.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
@@ -294,6 +295,7 @@ da:
         closed_registrations_message: Tilpasset besked, når tilmelding er utilgængelig
         content_cache_retention_period: Opbevaringsperiode for eksternt indhold
         custom_css: Tilpasset CSS
+        email_footer_text: Yderligere tekst til sidefod
         favicon: Favikon
         landing_page: Landingside for nye besøgende
         local_live_feed_access: Adgang til live feeds med lokale indlæg
@@ -322,6 +324,9 @@ da:
         trendable_by_default: Tillad ikke-reviderede trends
         trends: Aktivér trends
         wrapstodon: Aktivér Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Jeg er indforstået med, at aktivering af denne funktion kan medføre en betydelig stigning i antallet af e-mails, der sendes fra serveren, og at jeg alene er ansvarlig for eventuelle omkostninger i den forbindelse.
+        agreement_privacy_and_terms: Jeg har opdateret privatlivspolitikken og servicevilkårene.
       interactions:
         must_be_follower: Blokér notifikationer fra bruger, der ikke følger dig
         must_be_following: Blokér notifikationer fra brugere, du ikke følger

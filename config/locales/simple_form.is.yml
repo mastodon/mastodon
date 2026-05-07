@@ -92,6 +92,7 @@ is:
         closed_registrations_message: Birtist þegar lokað er á nýskráningar
         content_cache_retention_period: Öllum færslum af öðrum netþjónum (þar með taldar endurbirtingar og svör) verður eytt eftir uppgefinn fjölda daga, án tillits til gagnvirkni staðværra notenda við þessar færslur. Þetta á einnig við um færslur sem notandinn hefur merkt sem bókamerki eða eftirlæti. Beinar tilvísanir (einkaspjall) milli notenda af mismunandi netþjónum munu einnig tapast og er engin leið til að endurheimta þær. Notkun á þessari stillingu er einungis ætluð sérstilltum netþjónum og mun skemma fyrir notendum ef þetta er sett upp fyrir almenna notkun.
         custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
+        email_footer_text: Valkvæður texti sem birtist neðst í tölvupóstum fréttabréfs.
         favicon: WEBP, PNG, GIF eða JPG. Tekur yfir sjálfgefna Mastodon favicon-táknmynd með sérsniðinni táknmynd.
         landing_page: Þetta ákvarðar hvaða síðu nýir gestir sjá þegar þeir koma fyrst á netþjóninn þinn. Ef þú velur "Vinsælt" þá þurfa vinsælar færslur að vera virkjaðar í stillingum fyrir Uppgötvun. Ef þú velur "Staðbundið streymi" þá þarf "Aðgangur að beinum streymum, þar með töldum staðværum færslum" að vera stillt á "Allir" í stillingum fyrir Uppgötvun.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
@@ -294,6 +295,7 @@ is:
         closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
         content_cache_retention_period: Tímabil sem á að geyma fjartengt efni
         custom_css: Sérsniðið CSS
+        email_footer_text: Viðbótartexti neðst í skilaboðum
         favicon: Auðkennismynd
         landing_page: Kynningarsíða fyrir nýja gesti
         local_live_feed_access: Aðgangur að beinum streymum, þar með töldum staðværum færslum
@@ -322,6 +324,9 @@ is:
         trendable_by_default: Leyfa vinsælt efni án undanfarandi yfirferðar
         trends: Virkja vinsælt
         wrapstodon: Virkja Ársuppgjörið
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Ég skil að þessi eiginleiki gæti valdið mikilli aukningu á þeim fjölda tölvupóstskilaboða sem send verða frá netþjóninum og að ég beri alfarið ábyrgð á þeim aukna kostnaði sem af þessu gæti hlotist.
+        agreement_privacy_and_terms: Ég hef uppfært stefnur varðandi meðferð persónuupplýsinga og þjónustuskilmála.
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með

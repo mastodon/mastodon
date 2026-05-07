@@ -487,6 +487,56 @@ nl:
       resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
       resolved_through_html: Geblokkeerd via %{domain}
       title: Geblokkeerde e-maildomeinen
+    email_subscriptions:
+      accounts:
+        account: Account
+        active: Actief
+        empty:
+          hint: Geen enkel account heeft nog abonnees.
+          no_lists_yet: Nog geen lijsten
+        inactive: Inactief
+        last_email: Meest recente e-mail
+        status: Status
+        subscribers: Abonnees
+        title: Mailinglijsten
+      additional_footer_texts:
+        show:
+          title: Aanvullende voettekst
+      compliance_settings:
+        additional_footer_text:
+          action: Beheren
+          hint: Optionele tekst dat alleen onderin de e-mailnieuwsbrief verschijnt
+          title: Aanvullende voettekst
+        privacy_policy:
+          action: Beheren
+          title: Privacybeleid
+        title: Compliance-instellingen
+      danger_zone:
+        disable_feature:
+          action: Uitschakelen
+          hint: Functionaliteit voor alle accounts uitschakelen
+          title: Functionaliteit uitschakelen
+        erase_all_data:
+          action: Gegevens verwijderen
+          title: Alle gegevens verwijderen
+        title: Gevarenzone
+      index:
+        disabled:
+          get_started: Aan de slag
+        title: E-mailnieuwsbrieven
+      roles:
+        accounts: Accounts
+        edit_role: Rol bewerken
+        empty:
+          hint: Niemand heeft het recht om deze functionaliteit te gebruiken.
+          no_roles_added: Geen rollen toegevoegd
+        manage_roles: Rollen beheren
+        role_name: Naam rol
+        title: Rollen
+      setups:
+        show:
+          enable_feature: Functionaliteit inschakelen
+          important_information: Belangrijke informatie
     export_domain_allows:
       new:
         title: Toegestane domeinen importeren
@@ -792,7 +842,6 @@ nl:
         manage_custom_emojis: Lokale emoji's beheren
         manage_custom_emojis_description: Staat gebruikers toe om lokale emoji's op de server te beheren
         manage_email_subscriptions: E-mailabonnementen beheren
-        manage_email_subscriptions_description: Sta gebruikers toe om zich per e-mail te abonneren op gebruikers met deze rechten
         manage_federation: Federatie beheren
         manage_federation_description: Staat gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en om de bezorging te bepalen
         manage_invites: Uitnodigingen beheren
@@ -1731,6 +1780,27 @@ nl:
     copy_account_note_text: 'Deze gebruiker is verhuisd vanaf %{acct}. Je hebt de volgende opmerkingen over dat account gemaakt:'
   navigation:
     toggle_menu: Menu tonen/verbergen
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} heeft jou aan een verzameling toegevoegd"
+    admin_report:
+      title_html: "%{name} rapporteerde %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} en één ander hebben zich geregistreerd"
+        other: "%{name} en %{count} anderen hebben zich geregistreerd"
+      title_html: "%{name} heeft zich geregistreerd"
+    collection_update:
+      title_html: "%{name} werkte een verzameling bij waar jij in zit"
+    generic:
+      sign_in: In de Mastodon web-app inloggen
+      summary_html: Je gebruikt een app die de meest recente versie van Mastodon niet ondersteunt. Ga naar %{link} voor de volledige functionaliteit.
+    moderation_warning:
+      summary_html: Je gebruikt een app die de meest recente versie van Mastodon niet ondersteunt. %{link}.
+      title: Je hebt een moderatie-waarschuwing ontvangen.
+    severed_relationships:
+      summary_html: Een beheerder van %{from} heeft %{target} geschorst, wat betekent dat je geen updates meer van deze gebruiker kunt ontvangen of met deze gebruiker kunt communiceren. Ga naar %{link} voor een overzicht van verloren verbindingen.
+      title: Verloren verbindingen met %{name}
   notification_mailer:
     admin:
       report:

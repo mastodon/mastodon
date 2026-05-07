@@ -22,7 +22,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :memorial, if: :memorial?
 
   attribute :feature_approval, if: -> { Mastodon::Feature.collections_enabled? }
-  attribute :email_subscriptions, if: -> { Mastodon::Feature.email_subscriptions_enabled? }
+  attribute :email_subscriptions, if: -> { Rails.application.config.x.email_subscriptions && Setting.email_subscriptions }
 
   class AccountDecorator < SimpleDelegator
     def self.model_name

@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '>= 3.3.0', '< 4.1.0'
 
 gem 'propshaft'
-gem 'puma', '~> 7.0'
+gem 'puma'
 gem 'rails', '~> 8.1.0'
 gem 'thor', '~> 1.2'
 
@@ -107,7 +107,7 @@ gem 'opentelemetry-api', '~> 1.9.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.33.0', require: false
-  gem 'opentelemetry-instrumentation-active_job', '~> 0.11.0', require: false
+  gem 'opentelemetry-instrumentation-active_job', '~> 0.12.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.25.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.25.0', require: false
   gem 'opentelemetry-instrumentation-excon', '~> 0.29.0', require: false
@@ -117,7 +117,7 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-net_http', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.36.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.31.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.41.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.42.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.29.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
@@ -136,7 +136,7 @@ group :test do
   # Browser integration testing
   gem 'capybara', '~> 3.39'
   gem 'capybara-playwright-driver'
-  gem 'playwright-ruby-client', '1.59.0', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
+  gem 'playwright-ruby-client', '1.59.1', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
 
   # Used to reset the database between system tests
   gem 'database_cleaner-active_record'

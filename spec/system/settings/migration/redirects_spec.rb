@@ -29,7 +29,7 @@ RSpec.describe 'Settings Migration Redirects' do
       expect { click_on I18n.t('migrations.cancel') }
         .to(change { user.reload.account.moved_to_account_id }.to(nil))
       expect(page)
-        .to have_content(I18n.t('migrations.cancelled_msg'))
+        .to have_text(I18n.t('migrations.cancelled_msg'))
     end
 
     context 'when user has blank encrypted password' do

@@ -487,6 +487,52 @@ de:
       resolved_dns_records_hint_html: Die Domain wird zu den folgenden MX-Domains aufgelöst, die für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, keine großen E-Mail-Anbieter versehentlich zu sperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
       title: Gesperrte E-Mail-Domains
+    email_subscriptions:
+      accounts:
+        account: Konto
+        active: Aktiviert
+        empty:
+          hint: Bisher wurden keine Konten abonniert.
+          no_lists_yet: Noch keine Listen vorhanden
+        inactive: Deaktiviert
+        lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
+        status: Status
+        subscribers: Abonnent*innen
+        title: Mailingliste
+      compliance_settings:
+        additional_footer_text:
+          action: Verwalten
+        privacy_policy:
+          action: Verwalten
+          title: Datenschutzerklärung
+      danger_zone:
+        disable_feature:
+          action: Deaktivieren
+          title: Funktion deaktivieren
+        erase_all_data:
+          action: Daten löschen
+          title: Alle Daten löschen
+        title: Gefahrenzone
+      index:
+        disabled:
+          get_started: Loslegen
+        lead: Ermögliche Gästen, Beiträge von ausgewählten Konten dieses Servers per E-Mail zu abonnieren.
+        title: E-Mail-Newsletter
+      purged_msg: Alle Daten zu E-Mail-Abonnements werden gelöscht.
+      roles:
+        accounts: Konten
+        edit_role: Rolle bearbeiten
+        empty:
+          hint: Niemand hat die Berechtigung, diese Funktion zu verwenden.
+          no_roles_added: Keine Rollen hinzugefügt
+        lead: Die folgenden Rollen berechtigen zur Aktivierung der Funktion.
+        manage_roles: Rollen verwalten
+        role_name: Name der Rolle
+        title: Rollen
+      setups:
+        show:
+          enable_feature: Funktionen aktivieren
+          important_information: Wichtige Informationen
     export_domain_allows:
       new:
         title: Erlaubte Domains importieren
@@ -792,7 +838,6 @@ de:
         manage_custom_emojis: Emojis
         manage_custom_emojis_description: Spezielle Emojis dieses Servers verwalten
         manage_email_subscriptions: E-Mail-Abonnements
-        manage_email_subscriptions_description: Profile können per E-Mail-Benachrichtigung abonniert werden
         manage_federation: Föderation
         manage_federation_description: Domains anderer Mastodon-Server sperren/zulassen – und Zustellbarkeit kontrollieren
         manage_invites: Einladungen
@@ -1731,6 +1776,27 @@ de:
     copy_account_note_text: 'Dieses Konto ist von %{acct} umgezogen. Hier deine damals verfassten Notizen zum Profil:'
   navigation:
     toggle_menu: Menü ein-/ausblenden
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} fügte dich zu einer Sammlung hinzu"
+    admin_report:
+      title_html: "%{name} meldete %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} und noch jemand anderes registrierten sich"
+        other: "%{name} und %{count} weitere registrierten sich"
+      title_html: "%{name} registrierte sich"
+    collection_update:
+      title_html: "%{name} aktualisierte eine Sammlung, in der du vorgestellt wirst"
+    generic:
+      sign_in: Auf der Mastodon-Website anmelden
+      summary_html: Deine App unterstützt nicht die neueste Mastodon-Version. Rufe %{link} auf, um alle Funktionen nutzen zu können.
+    moderation_warning:
+      summary_html: Deine App unterstützt nicht die neueste Mastodon-Version. %{link}.
+      title: Die Moderator*innen haben dich verwarnt.
+    severed_relationships:
+      summary_html: Administrator*innen von %{from} haben den Zugriff auf den externen Server %{target} gesperrt. Das bedeutet, dass du keine Inhalte mehr von dort erhältst. Du kannst auch nicht mehr mit den Profilen dieses Servers interagieren. Rufe %{link} auf, um alle Profile, denen du folgtest und die dir folgten, einzusehen.
+      title: Verbindung zu %{name} verloren
   notification_mailer:
     admin:
       report:
@@ -1821,7 +1887,7 @@ de:
     explanation: Diese Einstellungen werden standardmäßig für neue Beiträge verwendet, aber du kannst sie für jeden Beitrag individuell anpassen.
   preferences:
     other: Erweitert
-    posting_defaults: Standardeinstellungen für Beiträge
+    posting_defaults: Beiträge
     public_timelines: Öffentliche Timelines
   privacy:
     email_subscriptions: Sende Beiträge per E-Mail
@@ -1946,7 +2012,7 @@ de:
     preferences: Einstellungen
     profile: Öffentliches Profil
     relationships: Follower und Folge ich
-    severed_relationships: Getrennte Beziehungen
+    severed_relationships: Getrennte Verbindungen
     statuses_cleanup: Automatisiertes Löschen
     strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung
@@ -1959,7 +2025,7 @@ de:
       user_domain_block: Du hast %{target_name} blockiert
     lost_followers: Verlorene Follower
     lost_follows: Konten entfolgt
-    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Beziehungen herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
+    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Verbindungen einsehen und herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
     purged: Informationen über diesen Server wurden von deinen Server-Administrator*innen entfernt.
     type: Ereignis
   statuses:

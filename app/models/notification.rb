@@ -37,54 +37,71 @@ class Notification < ApplicationRecord
   PROPERTIES = {
     mention: {
       filterable: true,
+      baseline: true,
     }.freeze,
     status: {
       filterable: false,
+      baseline: true,
     }.freeze,
     reblog: {
       filterable: true,
+      baseline: true,
     }.freeze,
     follow: {
       filterable: true,
+      baseline: true,
     }.freeze,
     follow_request: {
       filterable: true,
+      baseline: true,
     }.freeze,
     favourite: {
       filterable: true,
+      baseline: true,
     }.freeze,
     poll: {
       filterable: false,
+      baseline: true,
     }.freeze,
     update: {
       filterable: false,
+      baseline: true,
     }.freeze,
     severed_relationships: {
       filterable: false,
+      baseline: false,
     }.freeze,
     moderation_warning: {
       filterable: false,
+      baseline: false,
     }.freeze,
     annual_report: {
       filterable: false,
+      baseline: true,
     }.freeze,
     'admin.sign_up': {
       filterable: false,
+      baseline: false,
     }.freeze,
     'admin.report': {
       filterable: false,
+      baseline: false,
     }.freeze,
     quote: {
       filterable: true,
+      baseline: true,
     }.freeze,
     quoted_update: {
       filterable: false,
+      baseline: true,
     }.freeze,
     added_to_collection: {
       filterable: true,
+      baseline: false,
     }.freeze,
     collection_update: {
       filterable: false,
+      baseline: false,
     }.freeze,
   }.freeze
 

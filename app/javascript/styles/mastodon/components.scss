@@ -6489,14 +6489,16 @@ a.status-card {
   &__bullet-points {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     font-size: 16px;
     line-height: 24px;
 
+    & > li,
     & > div {
       display: flex;
       gap: 16px;
-      align-items: center;
+      align-items: start;
+      text-wrap: pretty;
 
       strong {
         font-weight: 700;
@@ -6509,7 +6511,7 @@ a.status-card {
 
     &__icon {
       width: 40px;
-      height: 40px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;

@@ -92,6 +92,7 @@ es-MX:
         closed_registrations_message: Mostrado cuando los registros están cerrados
         content_cache_retention_period: Todas las publicaciones de otros servidores (incluyendo impuestos y respuestas) serán borrados después del número de días especificado, sin tener en cuenta cualquier interacción del usuario local con esas publicaciones. Esto incluye los mensajes que un usuario local haya marcado como favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán y será imposible restaurarlas. El uso de esta configuración está pensado para instancias de propósito especial y rompe muchas expectativas de los usuarios cuando se implementa para uso general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
+        email_footer_text: Texto opcional que aparece únicamente en el pie de los correos electrónicos del boletín de correo electrónico.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el icono predeterminado de Mastodon con un icono personalizado.
         landing_page: Selecciona qué página ven los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionas "Tendencias", entonces las tendencias deben estar habilitadas en la Configuración de Descubrimiento. Si selecciona "Cronología local", entonces "Acceso a las cronologías que destacan publicaciones locales" debe configurarse a "Todos" en la Configuración de Descubrimiento.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
@@ -294,6 +295,7 @@ es-MX:
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
         content_cache_retention_period: Periodo de conservación de contenidos remotos
         custom_css: CSS personalizado
+        email_footer_text: Texto de pie de página adicional
         favicon: Favicon
         landing_page: Página de inicio para nuevos visitantes
         local_live_feed_access: Acceso a las cronologías que destacan publicaciones locales
@@ -322,6 +324,9 @@ es-MX:
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
         wrapstodon: Habilitar Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Entiendo que activar esta característica puede aumentar significativamente el volumen de correos electrónicos enviados desde el servidor, y que soy el único responsable de cualquier coste incurrido.
+        agreement_privacy_and_terms: He actualizado la Política de Privacidad y los Términos del Servicio.
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues

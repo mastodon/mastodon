@@ -824,7 +824,6 @@ he:
         manage_custom_emojis: ניהול סמלונים בהתאמה אישית
         manage_custom_emojis_description: מאפשר למשתמשים לנהל סמלונים בהתאמה אישית של השרת
         manage_email_subscriptions: ניהול הרשמות דוא"ל
-        manage_email_subscriptions_description: לאפשר למשתמשיםות להרשים למשתמשיםות ע"י הרשאה בדוא"ל
         manage_federation: ניהול פדרציה
         manage_federation_description: מאפשר למשתמשים לחסום או לאפשר התממשקות עם שמות מתחם אחרים
         manage_invites: ניהול הזמנות
@@ -1815,6 +1814,29 @@ he:
     copy_account_note_text: 'חשבון זה הועבר מ-%{acct}, הנה הערותיך הקודמות לגביהם:'
   navigation:
     toggle_menu: הצגת\הסתרת תפריט
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} הוסיפו אותך לאוסף"
+    admin_report:
+      title_html: "%{name} דיווח.ה על %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        many: "%{name} ועוד %{count} נרשמו"
+        one: "%{name} ועוד אחד נרשמו"
+        other: "%{name} ועוד %{count} נרשמו"
+        two: "%{name} ועוד שניים נרשמו"
+      title_html: "%{name} נרשמו"
+    collection_update:
+      title_html: "%{name} עדכנו אוסף הכולל אותך"
+    generic:
+      sign_in: התחברו ליישומון הווב של מסטודון
+      summary_html: אתם משתמשים ביישומון שאינו תומך בגרסא העדכנית של מסטודון. %{link} כדי לקבל את מלוא השמישות.
+    moderation_warning:
+      summary_html: אתם משתמשים ביישומון שאינו תומך בגרסא העדכנית של מסטודון. %{link}.
+      title: קיבלת אזהרת מנהל.
+    severed_relationships:
+      summary_html: מנהל מאתר %{from} הקפיא את %{target}, כלומר לא תוכלו לקבל יותר עדכונים מהם או להתכתב איתם. %{link} כדי לקבל רשימת מערכות יחסים שאבדו.
+      title: הקשר אבד עם %{name}
   notification_mailer:
     admin:
       report:

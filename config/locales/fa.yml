@@ -337,6 +337,14 @@ fa:
       unpublish: عدم انتشار
       unpublished_msg: انتشار اعلامیه با موفقیت لغو شد!
       updated_msg: اعلامیه با موفقیت به‌روز شد!
+    collections:
+      collection_title: محموعه به دست %{name}
+      contents: محتوا
+      number_of_accounts:
+        one: ۱ حساب
+        other: "%{count} حساب"
+      open: گشودن
+      view_publicly: دیدن عمومی
     critical_update_pending: به‌روز رسانی‌های بحرانی منتظرند
     custom_emojis:
       assign_category: تعیین دسته
@@ -676,6 +684,7 @@ fa:
       cancel: لغو
       category: دسته
       category_description_html: دلیل گزارش این حساب و/یا محتوا در ارتباط با حساب گزارش شده ذکر خواهد شد
+      collections: مجموعه‌ها (%{count})
       comment:
         none: هیچ
       comment_description_html: 'برای ارائه اطلاعات بیشتر، %{name} نوشت:'
@@ -705,11 +714,13 @@ fa:
       report: 'گزارش #%{id}'
       reported_account: حساب گزارش‌شده
       reported_by: گزارش از طرف
+      reported_content: محتوای گزارش شده
       reported_with_application: گزارش شده با برنامه
       resolved: حل‌شده
       resolved_msg: گزارش با موفقیت حل شد!
       skip_to_actions: پرش به کنش‌ها
       status: نوشته
+      statuses: فرسته‌ها (%{count})
       statuses_description_html: محتوای توهین آمیز در ارتباط با حساب گزارش شده ذکر می شود
       summary:
         action_preambles:
@@ -744,6 +755,7 @@ fa:
       categories:
         administration: مدیریت
         devops: DevOps
+        email: رایانامه
         invites: دعوت‌ها
         moderation: نظارت
         special: ویژه
@@ -1393,6 +1405,14 @@ fa:
       your_appeal_rejected: درخواست تجدیدنظرتان رد شد
   edit_profile:
     other: سایر
+  email_subscription_mailer:
+    notification:
+      create_account: ایجاد حساب ماستودون
+      subject:
+        plural: فرستهٔ جدید از %{name}
+        singular: 'فرستهٔ جدید: «%{excerpt}»'
+      title:
+        plural: فرسته‌های جدید از %{name}
   emoji_styles:
     auto: خودکار
     native: بومی
@@ -1853,7 +1873,7 @@ fa:
       firefox_os: سیستم‌عامل فایرفاکس
       ios: آی‌اواس
       kai_os: سیستم‌عامل کای
-      linux: لینوکس
+      linux: گنو/لینوکس
       mac: مک
       unknown_platform: بن‌سازهٔ ناشناخته
       windows: ویندوز

@@ -824,7 +824,6 @@ gd:
         manage_custom_emojis: Stiùireadh nan Emojis gnàthaichte
         manage_custom_emojis_description: Leigidh seo le cleachdaichean Emojis gnàthaichte a stiùireadh air an fhrithealaiche
         manage_email_subscriptions: Stiùireadh fo-sgrìobhaidhean puist-d
-        manage_email_subscriptions_description: Leigidh seo le cleachdaichean fo-sgrìobhadh air a’ phost-d a dhèanamh air na cleachdaichean aig a bheil an cead seo
         manage_federation: Stiùireadh a’ cho-nasgaidh
         manage_federation_description: Leigidh seo le cleachdaichean an co-nasgadh le àrainnean eile a bhacadh no a cheadachadh agus stiùireadh dè ghabhas lìbhrigeadh
         manage_invites: Stiùireadh nan cuiridhean
@@ -1815,6 +1814,29 @@ gd:
     copy_account_note_text: 'Da cleachdaiche air gluasad o %{acct}, seo na nòtaichean a bh’ agad mu dhèidhinn roimhe:'
   navigation:
     toggle_menu: Toglaich an clàr-taice
+  notification_fallbacks:
+    added_to_collection:
+      title_html: Chuir %{name} ri cruinneachadh thu
+    admin_report:
+      title_html: Rinn %{name} gearan mu %{target}
+    admin_sign_up:
+      title_and_others_html:
+        few: Chlàraich %{name} ’s %{count} eile
+        one: Chlàraich %{name} ’s %{count} eile
+        other: Chlàraich %{name} ’s %{count} eile
+        two: Chlàraich %{name} ’s %{count} eile
+      title_html: Chlàraich %{name}
+    collection_update:
+      title_html: Dh’ùraich %{name} cruinneachadh sa bheil thu
+    generic:
+      sign_in: Clàraich a-steach air aplacaid-lìn Mhastodon
+      summary_html: Cha thu a’ cleachdadh aplacaid nach cuir taic ris an tionndadh as ùire de Mhastodon. %{link} airson na gleusan uile fhaighinn.
+    moderation_warning:
+      summary_html: Cha thu a’ cleachdadh aplacaid nach cuir taic ris an tionndadh as ùire de Mhastodon. %{link}.
+      title: Fhuair thu rabhadh on mhaorsainneachd.
+    severed_relationships:
+      summary_html: Chuir rianaire aig %{from} %{target} à rèim agus is ciall dha sin nach fhaigh thu naidheachdan uapa ’s nach urrainn dhut conaltradh leotha. %{link} a dh’fhaighinn liosta de na dàimhean air chall.
+      title: Chaill thu dàimhean le %{name}
   notification_mailer:
     admin:
       report:
