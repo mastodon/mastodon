@@ -6,13 +6,13 @@ on:
   pull_request:
     branches: [ main, master ]
   schedule:
-    - cron: '0 2 * * *'       # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'      # Run daily at 2 AM UTC
   workflow_dispatch:
 
 jobs:
   snyk-scan:
     runs-on: ubuntu-latest
-    environment: snyk 
+    environment: snyk
 
     permissions:
       contents: read
@@ -23,19 +23,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js (LTS)
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'    # Node.js 20 is deprecated; using Active LTS 22
 
       - name: Set up Ruby  # Required for Mastodon
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2    # Set your project's required Ruby version
+          ruby-version: 3.2
 
       - name: Install Node and Ruby dependencies
         run: |
-          if [ -f "package.json" ]; then
+          set -e
+          if [ -f "package-lock.json" ]; then
+            npm ci
+          elif [ -f "package.json" ]; then
             npm install
           fi
           if [ -f "Gemfile" ]; then
@@ -58,7 +61,13 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --all-projects --severity-threshold=medium
+          args: --all-projects --severity-threshold=medium --sarif-file-output=snyk.sarif
+
+      - name: Upload Snyk scan results to GitHub Security tab
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: snyk.sarif
 
       - name: Snyk monitor (track all projects)
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
@@ -68,3 +77,10 @@ jobs:
         with:
           command: monitor
           args: --all-projects
+
+      - name: Summarize Snyk results
+        if: always()
+        run: |
+          if [ -f snyk.sarif ]; then
+            echo "### Snyk scan completed. [View results in Security tab](../../security/code-scanning)" >> $GITHUB_STEP_SUMMARY
+          fi
