@@ -131,7 +131,7 @@ export const CollectionMenu: React.FC<{
       {
         text: intl.formatMessage(messages.copyLink),
         action: () => {
-          void navigator.clipboard.writeText(getCollectionPath(id));
+          void navigator.clipboard.writeText(collection.url);
           dispatch(showAlert({ message: messages.copyLinkConfirmation }));
         },
       },
@@ -196,13 +196,14 @@ export const CollectionMenu: React.FC<{
     id,
     openShareModal,
     isOwnCollection,
+    collection.url,
     dispatch,
     openDeleteConfirmation,
     context,
     currentAccountInCollection,
     openReportModal,
-    openBlockModal,
     openRevokeConfirmation,
+    openBlockModal,
   ]);
 
   return (
