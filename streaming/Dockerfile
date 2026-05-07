@@ -88,10 +88,8 @@ COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
 COPY ./streaming /opt/mastodon/streaming
 
 RUN \
-  # Cleanup Yarn install on Node.js <26
-  if [ "${NODE_MAJOR_VERSION}" -lt 26 ]; then \
-    rm /usr/local/bin/yarn*; \
-  fi; \
+  # Remove pre-installed Yarn binaries (only present on Node <26)
+  rm -f /usr/local/bin/yarn*; \
   # Install Corepack
   npm i -g corepack;
 
