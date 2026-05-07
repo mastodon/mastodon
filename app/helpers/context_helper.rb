@@ -41,9 +41,9 @@ module ContextHelper
     },
     quote_authorizations: {
       'gts' => 'https://gotosocial.org/ns#',
-      'quoteAuthorization' => { '@id' => 'https://w3id.org/fep/044f#quoteAuthorization', '@type' => '@id' },
-      'interactingObject' => { '@id' => 'gts:interactingObject' },
-      'interactionTarget' => { '@id' => 'gts:interactionTarget' },
+      'QuoteAuthorization' => 'https://w3id.org/fep/044f#QuoteAuthorization',
+      'interactingObject' => { '@id' => 'gts:interactingObject', '@type' => '@id' },
+      'interactionTarget' => { '@id' => 'gts:interactionTarget', '@type' => '@id' },
     },
   }.freeze
 
