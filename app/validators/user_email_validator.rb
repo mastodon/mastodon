@@ -23,19 +23,21 @@ class UserEmailValidator < ActiveModel::Validator
   end
 
   def not_allowed_through_configuration?(email)
-    return false if Rails.configuration.x.email_domains_allowlist.blank?
+    allowlist = Rails.configuration.x.email_domains_allowlist
+    return false if allowlist.blank?
 
-    domains = Rails.configuration.x.email_domains_allowlist.gsub('.', '\.')
-    regexp  = Regexp.new("@(.+\\.)?(#{domains})$", true)
+    domains = allowlist.split(',').map { |d| Regexp.escape(d.strip) }.join('|')
+    regexp  = Regexp.new("@(?:.+\\.)?(#{domains})$", true)
 
     email !~ regexp
   end
 
   def disallowed_through_configuration?(email)
-    return false if Rails.configuration.x.email_domains_denylist.blank?
+    denylist = Rails.configuration.x.email_domains_denylist
+    return false if denylist.blank?
 
-    domains = Rails.configuration.x.email_domains_denylist.gsub('.', '\.')
-    regexp  = Regexp.new("@(.+\\.)?(#{domains})", true)
+    domains = denylist.split(',').map { |d| Regexp.escape(d.strip) }.join('|')
+    regexp  = Regexp.new("@(?:.+\\.)?(#{domains})", true)
 
     regexp.match?(email)
   end
