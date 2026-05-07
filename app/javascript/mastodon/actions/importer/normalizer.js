@@ -4,12 +4,17 @@ import { expandSpoilers } from '../../initial_state';
 
 import { importCustomEmoji } from './emoji';
 
-const domParser = new DOMParser();
+function htmlToSearchText(html = '') {
+	  return String(html)
+	    .replace(/<br\s*\/?>/gi, '\n')
+	    .replace(/<\/p>\s*<p>/gi, '\n\n')
+	    .replace(/<[^>]*>/g, '');
+	}
 
 export function searchTextFromRawStatus (status) {
   const spoilerText   = status.spoiler_text || '';
   const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-  return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+  return htmlToSearchText(searchContent);
 }
 
 export function normalizeFilterResult(result) {
@@ -91,7 +96,9 @@ export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = fa
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
 
-    normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+    normalStatus.search_index = htmlToSearchText(searchContent);
+
+    
     normalStatus.contentHtml  = normalStatus.content;
     normalStatus.spoilerHtml  = escapeTextContentForBrowser(spoilerText);
     normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
