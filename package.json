@@ -3,7 +3,7 @@
   "license": "AGPL-3.0-or-later",
   "packageManager": "yarn@4.12.0",
   "engines": {
-    "node": ">=22"
+    "node": ">=18 <21"
   },
   "workspaces": [
     ".",
@@ -51,8 +51,8 @@
     "@react-spring/web": "^9.7.5",
     "@reduxjs/toolkit": "^2.0.1",
     "@use-gesture/react": "^10.3.1",
-    "@vitejs/plugin-legacy": "^7.2.1",
-    "@vitejs/plugin-react": "^5.0.0",
+    "@vitejs/plugin-legacy": "^5.2.4",
+    "@vitejs/plugin-react": "^4.2.0",
     "arrow-key-navigation": "^1.2.0",
     "async-mutex": "^0.5.0",
     "axios": "^1.16.0",
@@ -78,7 +78,7 @@
     "hoist-non-react-statics": "^3.3.2",
     "http-link-header": "^1.1.1",
     "idb": "^8.0.3",
-    "immutable": "^5.1.5",
+    "immutable": "^4.0.0-rc.14",
     "intl-messageformat": "^10.7.16",
     "js-yaml": "^4.1.0",
     "lande": "^1.0.10",
@@ -118,7 +118,7 @@
     "tiny-queue": "^0.2.1",
     "twitter-text": "3.1.0",
     "use-debounce": "^10.0.0",
-    "vite": "^8.0.11",
+    "vite": "^5.2.10",
     "vite-plugin-manifest-sri": "^0.2.0",
     "vite-plugin-pwa": "^1.0.2",
     "vite-plugin-svgr": "^4.3.0",
@@ -197,7 +197,9 @@
   "resolutions": {
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
-    "kind-of": "^6.0.3"
+    "kind-of": "^6.0.3",
+    "jsdom": "^21.1.0",
+    "html-encoding-sniffer": "^3.0.0"
   },
   "peerDependenciesMeta": {
     "react": {
