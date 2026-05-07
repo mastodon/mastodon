@@ -517,6 +517,71 @@ ga:
       resolved_dns_records_hint_html: Réitíonn an t-ainm fearainn chuig na fearainn MX seo a leanas, atá freagrach sa deireadh as glacadh le ríomhphost. Má dhéantar fearann ​​MX a bhlocáil, cuirfear bac ar chlárúcháin ó aon seoladh ríomhphoist a úsáideann an fearann ​​MX céanna, fiú má tá an t-ainm fearainn infheicthe difriúil. <strong>Bí cúramach gan bac a chur ar phríomhsholáthraithe ríomhphoist.</strong>
       resolved_through_html: Réitithe trí %{domain}
       title: Fearainn ríomhphoist bactha
+    email_subscriptions:
+      accounts:
+        account: Cuntas
+        active: Gníomhach
+        empty:
+          hint: Níl aon síntiúsóirí ag aon chuntas go fóill.
+          no_lists_yet: Gan aon liostaí fós
+        inactive: Neamhghníomhach
+        last_email: Ríomhphost deireanach
+        lead: Taispeánfar thíos cuntais a bhfuil an ghné cumasaithe acu agus a bhfuil síntiúsóirí acu.
+        status: Stádas
+        subscribers: Síntiúsóirí
+        title: Liostaí poist
+      additional_footer_texts:
+        show:
+          title: Téacs breise sa bhuntásc
+      compliance_settings:
+        additional_footer_text:
+          action: Bainistigh
+          hint: Téacs roghnach a thaispeántar i mbunús ríomhphoist nuachtlitir amháin
+          title: Téacs breise sa bhuntásc
+        lead: Féadfar nuachtlitreacha ríomhphoist a mheas mar ríomhphoist mhargaíochta, ag brath ar na dlínsí ina bhfeidhmíonn tú.
+        privacy_policy:
+          action: Bainistigh
+          hint: Tá nasc chuig an mbeartas seo i mbun gach ríomhphoist
+          title: Polasaí príobháideachta
+        title: Socruithe comhlíontachta
+      danger_zone:
+        disable_feature:
+          action: Díchumasaigh
+          hint: Múch an ghné do gach cuntas
+          title: Díchumasaigh gné
+        erase_all_data:
+          action: Scrios sonraí
+          hint: Scriosann sé gach ríomhphost i ngach liosta seoltaí go buan
+          title: Scrios na sonraí go léir
+        title: Crios contúirte
+      disabled_msg: Tá síntiúis ríomhphoist díchumasaithe go rathúil.
+      index:
+        disabled:
+          cannot_be_enabled: Níl an ghné seo cumasaithe ag do sholáthraí teicniúil do do fhreastalaí.
+          description: Leis an ngné seo, is féidir le cuntais shonraithe giuirléid a chur lena bpróifílí, rud a chuireann ar chumas cuairteoirí gan cuntas Mastodon a gcuid post a fháil trí ríomhphost.
+          get_started: Tosaigh
+        lead: Lig do chuairteoirí poist a fháil trí ríomhphost ó chuntais tiomnaithe ar an bhfreastalaí seo.
+        title: Nuachtlitreacha ríomhphoist
+      purged_msg: Tá gach sonraí síntiúis ríomhphoist á scriosadh.
+      roles:
+        accounts: Cuntais
+        edit_role: Cuir ról in eagar
+        empty:
+          hint: Níl cead ag aon duine an ghné seo a úsáid.
+          no_roles_added: Níor cuireadh aon róil leis
+        lead: Is féidir le cuntais leis na róil seo a leanas an ghné seo a chumasú ar a bpróifílí.
+        manage_roles: Bainistigh róil
+        role_name: Ainm an róil
+        title: Róil
+      setups:
+        show:
+          enable_feature: Cumasaigh gné
+          important_information: Faisnéis thábhachtach
+          list:
+            1_permission_explanation: Nuair a bhíonn an ghné seo cumasaithe, is féidir le cuntais a bhfuil na ceadanna ainmnithe acu foirm bhailiúcháin ríomhphoist a chur lena bpróifílí.
+            2_feature_explanation: Nuair a chláraíonn cuairteoirí ar leathanach próifíle cuntais agus a dheimhníonn siad a síntiús, tosóidh siad ag fáil nuashonruithe ríomhphoist nuair a chruthaíonn an cuntas poist phoiblí nua.
+            3_privacy_policy_warning: Beidh rochtain ag riarthóirí freastalaí ar PII (seoltaí ríomhphoist) a bhailítear. Dá bhrí sin, ní mór an polasaí príobháideachta agus na Téarmaí Seirbhíse don fhreastalaí a nuashonrú sula n-úsáidtear an ghné seo.
+            4_cost_warning: D’fhéadfadh táille a bheith i gceist le ríomhphoist ag brath ar shocrú an óstála. Pléigh le do sholáthraí óstála sula gcumasaíonn tú é, mar d’fhéadfadh an ghné seo líon na ríomhphoist a sheoltar ó do fhreastalaí a mhéadú go mór.
     export_domain_allows:
       new:
         title: Ceadaíonn fearann ​​​​iomportála
@@ -840,6 +905,7 @@ ga:
         manage_custom_emojis: Bainistigh Emojis Saincheaptha
         manage_custom_emojis_description: Ligeann sé d'úsáideoirí emojis saincheaptha a bhainistiú ar an bhfreastalaí
         manage_email_subscriptions: Bainistigh Síntiúis Ríomhphoist
+        manage_email_subscriptions_description: Lig d’úsáideoirí a bhfuil an cead seo acu gné an nuachtlitir ríomhphoist a chumasú dá gcuntas
         manage_federation: Cónaidhm a bhainistiú
         manage_federation_description: Ligeann sé d’úsáideoirí cónaidhm a bhlocáil nó a cheadú le fearainn eile, agus inseachadacht a rialú
         manage_invites: Bainistigh Cuirí

@@ -484,8 +484,10 @@ sq:
         title: Blloko përkatësi të re email
       no_email_domain_block_selected: S’u ndryshuan bllokime përkatësish email, ngaqë s’qe përzgjedhur ndonjë
       not_permitted: Jo i lejuar
+      reset: Riktheje te parazgjedhjet
       resolved_dns_records_hint_html: Emri i përkatësisë u përket përkatësive vijuese MX, që janë përgjegjëset përfundimtare për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Hapni sytë të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
+      search: Kërko
       title: Përkatësi email të bllokuara
     email_subscriptions:
       accounts:
@@ -508,21 +510,38 @@ sq:
           action: Administrojini
           hint: Tekst opsional që shfaqet vetëm te fundfaqja e email-eve të buletinit
           title: Tekst fundfaqeje shtesë
+        lead: Në varësi të juridiksionit në të cilin veproni, buletinet me email mund të konsiderohen email-e marketingu.
         privacy_policy:
           action: Administrojini
+          hint: Për këto rregulla ka një lidhje te fundfaqja e çdo email-i
           title: Rregulla privatësie
         title: Rregullime përputhjeje me rregullore dhe ligje
       danger_zone:
         disable_feature:
           action: Çaktivizoje
+          hint: Çaktivizoje këtë veçori për krejt llogaritë
           title: Çaktivizoje veçorinë
         erase_all_data:
           action: Fshiji të dhënat
+          hint: Fshin në mënyrë të pakthyeshme krejt email-et në krejt listat e postimeve
           title: Fshiji krejt të dhënat
         title: Zonë rreziku
+      disabled_msg: Pajtimet email janë çaktivizuar me sukses.
       index:
+        disabled:
+          cannot_be_enabled: Shërbimi juaj teknik s’e ka aktivizuar këtë veçori për shërbyesin tuaj.
+          description: Kjo veçori lejon llogari të caktuara të shtojnë një “widget” te profilet e tyre, duke u bërë të mundur vizitorëve pa një llogari Mastodon të marrin postimet përmes email-i.
+          get_started: Fillojani
+        lead: Lejojuni vizitorëve të marrin postime përmes email-i, që nga llogari enkas për këtë në këtë shërbyes.
         title: Dërgoni buletine me email
+      purged_msg: Po fshihen krejt të dhënat e lidhura me pajtime me email.
       roles:
+        accounts: Llogari
+        edit_role: Përpunoni rolin
+        empty:
+          hint: Askush s’ka leje të përdorë këtë veçori.
+          no_roles_added: S’u shtuan role
+        lead: Llogaritë me rolet vijuese mund ta aktivizojnë këtë veçori në profilet e tyre.
         manage_roles: Administroni role
         role_name: Emër roli
         title: Role
@@ -530,6 +549,8 @@ sq:
         show:
           enable_feature: Aktivizoje veçorinë
           important_information: Informacion i rëndësishëm
+          list:
+            1_permission_explanation: Kur aktivizohet kjo veçroi, llogaritë me lejet e caktuara mund të shtojnë te profilet e tyre një formular koleksionesh email.
     export_domain_allows:
       new:
         title: Importoni lejime përkatësish
@@ -830,6 +851,7 @@ sq:
         manage_custom_emojis: Të Administrojë Emoxhi Vetjake
         manage_custom_emojis_description: U lejon përdoruesve të administrojnë te shërbyesi emoxhi vetjake
         manage_email_subscriptions: Administroni Pajtime Me Email
+        manage_email_subscriptions_description: Lejoji përdoruesit me këtë leje të aktivizojnë veçorinë për buletine me email për llogaritë e tyre
         manage_federation: Të Administrojë Federim
         manage_federation_description: U lejon përdoruesve të bllokojnë ose lejojnë federim me përkatësi të tjera dhe të kontrollojnë shpërndarjen
         manage_invites: Të Administrojë Ftesa

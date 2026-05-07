@@ -484,8 +484,10 @@ es-MX:
         title: Bloquear nuevo dominio de correo
       no_email_domain_block_selected: No se han cambiado bloqueos de dominio de correo, ya que ninguno ha sido seleccionado
       not_permitted: No permitido
+      reset: Restablecer
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Ten cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
+      search: Buscar
       title: Dominios de correo bloqueados
     email_subscriptions:
       accounts:
@@ -496,7 +498,7 @@ es-MX:
           no_lists_yet: No hay listas todavía
         inactive: Inactiva
         last_email: Último correo electrónico
-        lead: Las cuentas que han habilitado la función y tienen suscriptores se mostrarán a continuación.
+        lead: A continuación se mostrarán las cuentas que hayan activado la función y tengan suscriptores.
         status: Estado
         subscribers: Suscriptores
         title: Listas de correo
@@ -506,33 +508,33 @@ es-MX:
       compliance_settings:
         additional_footer_text:
           action: Administrar
-          hint: Texto opcional que aparece únicamente en el pie de los correos electrónicos del boletín de noticias
+          hint: Texto opcional que aparece únicamente en el pie de página de los correos electrónicos del boletín informativo
           title: Texto de pie de página adicional
-        lead: Los boletines de correo electrónico pueden considerarse correos electrónicos de marketing, dependiendo de las jurisdicciones en las que operas.
+        lead: Los boletines informativos por correo electrónico pueden considerarse correos electrónicos de marketing, dependiendo de las jurisdicciones en las que operes.
         privacy_policy:
           action: Administrar
-          hint: Esta política está enlazada en el pie de cada correo electrónico
+          hint: Esta política aparece en el pie de página de cada correo electrónico
           title: Política de privacidad
         title: Ajustes de cumplimiento normativo
       danger_zone:
         disable_feature:
           action: Desactivar
-          hint: Desactivar función para todas las cuentas
+          hint: Desactivar la función para todas las cuentas
           title: Desactivar función
         erase_all_data:
-          action: Borrar datos
-          hint: Borra permanentemente todos los correos electrónicos de todas las listas de correo
-          title: Borrar todos los datos
+          action: Eliminar datos
+          hint: Elimina de forma permanente todos los correos electrónicos de todas las listas de correo
+          title: Eliminar todos los datos
         title: Zona peligrosa
-      disabled_msg: Las suscripciones de correo electrónico se han desactivado correctamente.
+      disabled_msg: Las suscripciones por correo electrónico se han desactivado correctamente.
       index:
         disabled:
           cannot_be_enabled: Tu proveedor técnico no ha habilitado esta función para tu servidor.
-          description: Esta función permite a las cuentas especificadas añadir un widget a sus perfiles, permitiendo a los visitantes sin una cuenta de Mastodon recibir sus publicaciones por correo electrónico.
+          description: Esta función permite a las cuentas especificadas añadir un widget a sus perfiles, lo que permite a los visitantes que no tienen una cuenta de Mastodon recibir sus publicaciones por correo electrónico.
           get_started: Primeros pasos
-        lead: Permitir a los visitantes recibir publicaciones por correo electrónico de cuentas dedicadas en este servidor.
-        title: Boletines de correo electrónico
-      purged_msg: Todos los datos de las suscripciones de correo electrónico están siendo borrados.
+        lead: Permitir que los visitantes reciban publicaciones por correo electrónico desde cuentas específicas de este servidor.
+        title: Boletines informativos por correo electrónico
+      purged_msg: Se están borrando todos los datos de las suscripciones por correo electrónico.
       roles:
         accounts: Cuentas
         edit_role: Editar rol
@@ -545,13 +547,13 @@ es-MX:
         title: Roles
       setups:
         show:
-          enable_feature: Activar función
+          enable_feature: Habilitar función
           important_information: Información importante
           list:
-            1_permission_explanation: Cuando esta función está activada, las cuentas con los permisos designados pueden añadir un formulario de recopilación de correo electrónico a sus perfiles.
-            2_feature_explanation: Cuando los visitantes se registran en la página de perfil de una cuenta y confirman su suscripción, comenzarán a recibir actualizaciones por correo electrónico cuando la cuenta cree nuevas publicaciones públicas.
-            3_privacy_policy_warning: Los administradores del servidor tendrán acceso a información de identificación personal (direcciones de correo electrónico). Por lo tanto, la política de privacidad y los Términos del Servicio del servidor deben actualizarse antes de usar esta función.
-            4_cost_warning: Los correos electrónicos pueden incurrir en un cargo dependiendo de la configuración del alojamiento. Habla con tu proveedor de alojamiento antes de activarlo, ya que esta característica podría aumentar drásticamente la cantidad de correos electrónicos enviados desde tu servidor.
+            1_permission_explanation: Cuando esta función está habilitada, las cuentas con los permisos correspondientes pueden añadir un formulario de recopilación de correos electrónicos a sus perfiles.
+            2_feature_explanation: Cuando los visitantes se suscriban en la página de perfil de una cuenta y confirmen su suscripción, empezarán a recibir notificaciones por correo electrónico cada vez que la cuenta publique nuevas entradas públicas.
+            3_privacy_policy_warning: Los administradores del servidor tendrán acceso a la información de identificación personal (direcciones de correo electrónico) recopilada. Por lo tanto, es necesario actualizar la política de privacidad y los Términos de servicio del servidor antes de utilizar esta función.
+            4_cost_warning: El envío de correos electrónicos puede conllevar un cargo adicional dependiendo de la configuración del alojamiento web. Consúltalo con tu proveedor de alojamiento antes de habilitar esta función, ya que podría aumentar considerablemente el volumen de correos electrónicos enviados desde tu servidor.
     export_domain_allows:
       new:
         title: Importar dominios permitidos
@@ -857,7 +859,7 @@ es-MX:
         manage_custom_emojis: Administrar Emojis Personalizados
         manage_custom_emojis_description: Permite a los usuarios gestionar emojis personalizados en el servidor
         manage_email_subscriptions: Gestionar suscripciones por correo electrónico
-        manage_email_subscriptions_description: Permite a los usuarios con este permiso habilitar la función del boletín de noticias por correo electrónico para su cuenta
+        manage_email_subscriptions_description: Permitir a los usuarios con este permiso activar la función de boletín informativo por correo electrónico en su cuenta
         manage_federation: Administrar Federación
         manage_federation_description: Permite a los usuarios bloquear o permitir la federación con otros dominios, y controlar la entregabilidad
         manage_invites: Administrar Invitaciones

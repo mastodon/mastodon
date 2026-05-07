@@ -484,8 +484,10 @@ de:
         title: Neue E-Mail-Domain sperren
       no_email_domain_block_selected: Es wurden keine E-Mail-Domain-Sperren geändert, da keine ausgewählt wurden
       not_permitted: Nicht erlaubt
+      reset: Zurücksetzen
       resolved_dns_records_hint_html: Die Domain wird zu den folgenden MX-Domains aufgelöst, die für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, keine großen E-Mail-Anbieter versehentlich zu sperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
+      search: Suchen
       title: Gesperrte E-Mail-Domains
     email_subscriptions:
       accounts:
@@ -495,26 +497,39 @@ de:
           hint: Bisher wurden keine Konten abonniert.
           no_lists_yet: Noch keine Listen vorhanden
         inactive: Deaktiviert
+        last_email: Letzte E-Mail
         lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
         status: Status
         subscribers: Abonnent*innen
         title: Mailingliste
+      additional_footer_texts:
+        show:
+          title: Fußzeile
       compliance_settings:
         additional_footer_text:
           action: Verwalten
+          hint: Der Text erscheint ausschließlich in der Fußzeile von E-Mails
+          title: Fußzeile
+        lead: E-Mail-Newsletter können abhängig vom geltenden Recht als Marketing-E-Mails betrachtet werden.
         privacy_policy:
           action: Verwalten
+          hint: Die Datenschutzerklärung wird in der Fußzeile jeder E-Mail beigefügt
           title: Datenschutzerklärung
+        title: Einstellungen zur Einhaltung von Vorschriften
       danger_zone:
         disable_feature:
           action: Deaktivieren
+          hint: Funktion für alle Konten deaktivieren
           title: Funktion deaktivieren
         erase_all_data:
           action: Daten löschen
+          hint: Löscht dauerhaft alle E-Mails aus allen Mailinglisten
           title: Alle Daten löschen
         title: Gefahrenzone
+      disabled_msg: E-Mail-Abonnements wurden erfolgreich deaktiviert.
       index:
         disabled:
+          description: Diese Funktion ermöglicht bestimmten Konten, ein Widget zu ihrem Profil hinzuzufügen, damit Gäste ohne Mastodon-Konto deren Beiträge per E-Mail erhalten können.
           get_started: Loslegen
         lead: Ermögliche Gästen, Beiträge von ausgewählten Konten dieses Servers per E-Mail zu abonnieren.
         title: E-Mail-Newsletter
@@ -533,6 +548,11 @@ de:
         show:
           enable_feature: Funktionen aktivieren
           important_information: Wichtige Informationen
+          list:
+            1_permission_explanation: Wenn die Funktion aktiviert ist, können alle berechtigten Konten ein E-Mail-Formular zu ihrem Profil hinzufügen.
+            2_feature_explanation: Sobald Gäste ein Profil abonnieren und das Abonnement bestätigen, werden sie E-Mails über neue öffentliche Beiträge des betreffenden Profils erhalten.
+            3_privacy_policy_warning: Server-Admins werden Zugriff auf persönlich identifizierbare Informationen (E-Mail-Adressen) haben. Daher müssen die Datenschutzerklärung und Nutzungsbedingungen im Vorfeld aktualisiert werden, bevor diese Funktion verwendet werden kann.
+            4_cost_warning: Abhängig vom Hosting-Provider können Gebühren für den E-Mail-Versand anfallen. Kläre für deinen Server vorher alle Details, da diese Funktion die Anzahl versendeter E-Mails drastisch erhöhen kann.
     export_domain_allows:
       new:
         title: Erlaubte Domains importieren
@@ -838,6 +858,7 @@ de:
         manage_custom_emojis: Emojis
         manage_custom_emojis_description: Spezielle Emojis dieses Servers verwalten
         manage_email_subscriptions: E-Mail-Abonnements
+        manage_email_subscriptions_description: Konten mit dieser Berechtigung dürfen die Funktion für E-Mail-Newsletter verwenden
         manage_federation: Föderation
         manage_federation_description: Domains anderer Mastodon-Server sperren/zulassen – und Zustellbarkeit kontrollieren
         manage_invites: Einladungen

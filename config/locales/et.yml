@@ -539,6 +539,19 @@ et:
         empty:
           hint: Kellelgi pole õigust seda oskust kasutada.
           no_roles_added: Rolle pole lisatud
+        lead: Järgmiste rollidega kontod saavad selle oskuse oma profiilis sisse lülitada.
+        manage_roles: Halda rolle
+        role_name: Rolli nimi
+        title: Rollid
+      setups:
+        show:
+          enable_feature: Luba oskus
+          important_information: Oluline info
+          list:
+            1_permission_explanation: Kui see funktsioon on sisse lülitatud, saavad vastavate õigustega kontod lisada oma profiilidesse e-posti kogumise vormi.
+            2_feature_explanation: Kui külastajad registreeruvad konto profiililehel ja kinnitavad tellimuse, hakkavad nad saama e-kirju, kui konto avaldab uusi avalikke postitusi.
+            3_privacy_policy_warning: Serveri administraatoritel on juurdepääs kogutud isikuandmetele (e-posti aadressidele). Seetõttu tuleb enne selle funktsiooni kasutamist ajakohastada serveri privaatsuspoliitika ja kasutustingimused.
+            4_cost_warning: Sõltuvalt veebimajutuse seadistustest võib e-kirjade saatmine kaasa tuua lisatasu. Enne selle funktsiooni aktiveerimist konsulteeri oma veebimajutuse pakkujaga, kuna sinu serverist saadetavate e-kirjade arv võib oluliselt suureneda.
     export_domain_allows:
       new:
         title: Lubatud domeenide import
@@ -844,6 +857,7 @@ et:
         manage_custom_emojis: Halda isetehtud emotikone
         manage_custom_emojis_description: Lubab kasutajatel hallata serveris isetehtud emotikone
         manage_email_subscriptions: Halda e-posti tellimusi
+        manage_email_subscriptions_description: Luba selle õigusega kasutajatel oma kontol e-posti uudiskirja funktsioon sisse lülitada
         manage_federation: Halda födereerumist
         manage_federation_description: Lubab kasutajail keelata või lubada föderatsioone teiste domeenidega ja hallata ühenduvust
         manage_invites: Halda kutseid
