@@ -22,6 +22,18 @@ import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+// --- URL VALIDATION HELPER ---
+// Only allow http(s) URLs for external navigation for XSS prevention
+function isSafeHttpUrl(url: string | undefined | null): boolean {
+  if (!url) return false;
+  try {
+    const parsed = new URL(url, window.location.origin);
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 export const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   search: { id: 'tabs_bar.search', defaultMessage: 'Search' },
@@ -98,11 +110,11 @@ const LoginOrSignUp: React.FC = () => {
     dispatch(fetchServer());
   }, [dispatch]);
 
-  if (sso_redirect) {
+  if (isSafeHttpUrl(sso_redirect)) {
     return (
       <div className='ui__navigation-bar__sign-up'>
         <a
-          href={sso_redirect}
+          href={sso_redirect!}
           data-method='post'
           className='button button--block button-secondary'
         >
