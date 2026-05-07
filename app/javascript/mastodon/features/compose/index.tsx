@@ -45,6 +45,22 @@ const messages = defineMessages({
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
 });
 
+// --- IMAGE SRC VALIDATION ---
+// Only allow http(s) or data URLs for defense-in-depth
+function isSafeImageSrc(url: string | undefined | null): boolean {
+  if (!url) return false;
+  try {
+    const parsed = new URL(url, window.location.origin);
+    return (
+      parsed.protocol === 'http:' ||
+      parsed.protocol === 'https:' ||
+      parsed.protocol === 'data:'
+    );
+  } catch {
+    return false;
+  }
+}
+
 type ColumnMap = ImmutableMap<'id' | 'uuid' | 'params', string>;
 
 const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
@@ -167,7 +183,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
             <ComposeFormContainer />
 
             <div className='drawer__inner__mastodon with-zig-zag-decoration'>
-              <img alt='' draggable='false' src={mascot ?? elephantUIPlane} />
+              <img alt='' draggable='false' src={isSafeImageSrc(mascot) ? mascot! : elephantUIPlane} />
             </div>
           </div>
         </div>
