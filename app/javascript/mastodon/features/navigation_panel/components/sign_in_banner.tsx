@@ -1,10 +1,20 @@
 import { useCallback } from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
 import { openModal } from 'mastodon/actions/modal';
 import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
+
+// --- URL VALIDATION HELPER ---
+function isSafeHttpUrl(url: string | undefined | null): boolean {
+  if (!url) return false;
+  try {
+    const parsed = new URL(url, window.location.origin);
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
 
 export const SignInBanner: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +36,7 @@ export const SignInBanner: React.FC = () => {
         | null) ?? '/auth/sign_up',
   );
 
-  if (sso_redirect) {
+  if (isSafeHttpUrl(sso_redirect)) {
     return (
       <div className='sign-in-banner'>
         <p>
@@ -44,7 +54,7 @@ export const SignInBanner: React.FC = () => {
           />
         </p>
         <a
-          href={sso_redirect}
+          href={sso_redirect!}
           data-method='post'
           className='button button--block button-secondary'
         >
