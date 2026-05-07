@@ -226,6 +226,7 @@ module JsonLdHelper
     end
   end
 
+  # --- FIXED METHOD: now strictly validates the profile URI ---
   def valid_activitypub_content_type?(response)
     return true if response.mime_type == 'application/activity+json'
 
@@ -234,9 +235,22 @@ module JsonLdHelper
     return false unless response.mime_type == 'application/ld+json'
 
     response.headers[HTTP::Headers::CONTENT_TYPE]&.split(';')&.map(&:strip)&.any? do |str|
-      str.start_with?('profile="') && str[9...-1].split.include?('https://www.w3.org/ns/activitystreams')
+      next false unless str.start_with?('profile="')
+
+      profiles = str[9...-1].split
+      profiles.any? do |profile_url|
+        begin
+          uri = Addressable::URI.parse(profile_url)
+          uri.scheme == 'https' &&
+            uri.host == 'www.w3.org' &&
+            uri.path == '/ns/activitystreams'
+        rescue Addressable::URI::InvalidURIError
+          false
+        end
+      end
     end
   end
+  # --- END FIXED METHOD ---
 
   def body_to_json(body, compare_id: nil)
     json = body.is_a?(String) ? Oj.load(body, mode: :strict) : body
