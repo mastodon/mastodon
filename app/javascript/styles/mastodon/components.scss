@@ -8377,9 +8377,10 @@ noscript {
     display: flex;
     align-items: center;
     gap: 8px;
-
+    
     $button-breakpoint: 420px;
-    $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+    $button-fallback-breakpoint: $button-breakpoint + 55px;
+  
 
     &--desktop {
       margin-top: 55px;
@@ -8403,10 +8404,10 @@ noscript {
       }
 
       @supports (not (container-type: inline-size)) {
-        @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
-          display: none;
-        }
-      }
+  @media (min-width: #{($button-fallback-breakpoint + 1px)}) {
+    display: none;
+  }
+  }
     }
 
     .button {
