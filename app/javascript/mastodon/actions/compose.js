@@ -6,7 +6,6 @@ import { throttle } from 'lodash';
 import api from 'mastodon/api';
 import { browserHistory } from 'mastodon/components/router';
 import { countableText } from 'mastodon/features/compose/util/counter';
-import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
 import { tagHistory } from 'mastodon/settings';
 import { fetchCustomEmojiData } from '@/mastodon/features/emoji/picker';
 
@@ -593,6 +592,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, token) => {
 
 const fetchComposeSuggestionsEmojis = async (dispatch, token) => {
   const custom = await fetchCustomEmojiData();
+  const { emojiSearch } = await import('@/mastodon/features/emoji/emoji_mart_search_light');
   const results = emojiSearch(token.replace(':', ''), { maxResults: 5, custom });
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
