@@ -1,0 +1,100 @@
+name: Mastodon Autobuild and (Optional) GitHub Pages Deploy
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: mastodon_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:6
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_NAME: mastodon_test
+      DB_PASS: postgres
+      REDIS_URL: redis://localhost:6379/1
+      NODE_OPTIONS: --max_old_space_size=4096
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2   # Or whatever is in your .ruby-version file
+          bundler-cache: true
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libpq-dev libxml2-dev libxslt1-dev file imagemagick libvips libprotobuf-dev protobuf-compiler pkg-config
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Set up Yarn
+        run: |
+          npm install -g yarn@4
+          yarn --version
+
+      - name: Install JS dependencies
+        run: yarn install --immutable
+
+      - name: Install Ruby dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Prepare database
+        run: |
+          cp .env.production.sample .env.test
+          export RAILS_ENV=test
+          bundle exec rails db:setup
+
+      - name: Build Mastodon assets
+        run: |
+          bundle exec rails assets:precompile
+
+      - name: Run Mastodon test suite (optional, remove if not needed)
+        run: |
+          bundle exec rails test
+
+      # Uncomment this section if you want to deploy docs/static to GitHub Pages
+      # - name: Deploy to GitHub Pages
+      #   # replace 'docs' with your built static directory, if any
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./docs
