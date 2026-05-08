@@ -30,7 +30,7 @@ export const ListItemWrapper: React.FC<WrapperProps> = ({
   return (
     <div {...otherProps} className={classNames(classes.wrapper, className)}>
       {icon}
-      <div>{children}</div>
+      <div className={classes.main}>{children}</div>
       {sideContent && (
         <span className={classes.sideContent}>{sideContent}</span>
       )}
