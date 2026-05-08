@@ -264,8 +264,8 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 }
 
 .numberFields {
-  @container (width > #{$button-breakpoint}) {
-    column-gap: 40px;
+  @container (width >= #{$button-breakpoint}) {
+    --number-fields-gap: 40px;
   }
 }
 
