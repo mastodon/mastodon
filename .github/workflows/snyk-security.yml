@@ -6,46 +6,29 @@ on:
   pull_request:
     branches: [ main, master ]
   schedule:
-    - cron: '0 2 * * *'    # Run daily at 2 AM UTC
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
   snyk-scan:
     runs-on: ubuntu-latest
-    environment: snyk
-
+    environment: snyk  
+    
     permissions:
       contents: read
       security-events: write
       actions: read
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up Node.js (LTS)
+      
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'   # Active LTS
-
-      - name: Set up Ruby (for Mastodon)
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2
-
-      - name: Install Node and Ruby dependencies
-        run: |
-          set -e
-          if [ -f "package-lock.json" ]; then
-            npm ci
-          elif [ -f "package.json" ]; then
-            npm install
-          fi
-          if [ -f "Gemfile" ]; then
-            gem install bundler
-            bundle install --jobs 4 --retry 3
-          fi
-
+          node-version: '22'
+      
       - name: Verify Snyk token exists
         run: |
           if [ -z "${{ secrets.SNYK_TOKEN }}" ]; then
@@ -54,33 +37,24 @@ jobs:
           else
             echo "✅ SNYK_TOKEN secret is configured"
           fi
-
-      - name: Snyk scan (all supported project types)
-        uses: snyk/actions/node@v3
+      
+      - name: Install dependencies
+        if: hashFiles('package.json') != ''
+        run: yarn install
+      
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --all-projects --severity-threshold=medium --sarif-file-output=snyk.sarif
-
-      - name: Upload Snyk scan results to GitHub Security tab
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: snyk.sarif
-
-      - name: Snyk monitor (track all projects)
+          args: --all-projects --severity-threshold=medium
+      
+      - name: Run Snyk Monitor (track project)
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-        uses: snyk/actions/node@v3
+        uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
           args: --all-projects
-
-      - name: Summarize Snyk results
-        if: always()
-        run: |
-          if [ -f snyk.sarif ]; then
-            echo "### Snyk scan completed. [View results in Security tab](../../security/code-scanning)" >> $GITHUB_STEP_SUMMARY
-          fi
