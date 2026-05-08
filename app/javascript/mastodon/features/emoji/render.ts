@@ -97,6 +97,9 @@ export function stringToEmojiState(
   return null;
 }
 
+/**
+ * Takes an element and emojifies all native emoji.
+ */
 export async function updateHtmlWithEmoji({
   assetHost,
   darkTheme,
