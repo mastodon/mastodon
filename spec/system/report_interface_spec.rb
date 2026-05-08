@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'report interface', :attachment_processing, :js, :streaming do
+RSpec.describe 'report interface', :attachment_processing do
   include ProfileStories
 
   let(:email)               { 'admin@example.com' }
@@ -20,7 +20,27 @@ RSpec.describe 'report interface', :attachment_processing, :js, :streaming do
     visit admin_report_path(report)
   end
 
-  it 'displays the report interface, including the javascript bits' do
+  context 'with collection reports', feature: :collections do
+    let(:collection) { Fabricate(:collection, account: reported_account) }
+    let(:collection2) { Fabricate(:collection, account: reported_account) }
+    let(:collection_report) { Fabricate(:collection_report, collection: collection, report: report) }
+    let(:collection_report2) { Fabricate(:collection_report, collection: collection, report: report) }
+
+    before do
+      collection_report
+      collection_report_2
+    end
+
+    it 'displays the report interface with collection reports' do
+      visit admin_report_path(report)
+
+      expect(page).to have_text('Collections (2)')
+      expect(page).to have_text('Add more to report').twice
+      expect(page).to have_link(I18n.t('admin.reports.add_to_report'))
+    end
+  end
+
+  it 'displays the report interface, including the javascript bits', :js do
     # The report category selector React component is properly rendered
     expect(page).to have_css('.report-reason-selector')
 
