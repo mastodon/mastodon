@@ -11,6 +11,8 @@ import { FormattedDateWrapper } from '../formatted_date';
 import { NumberFields, NumberFieldsItem } from '../number_fields';
 import { ShortNumber } from '../short_number';
 
+import classes from './styles.module.scss';
+
 export const AccountNumberFields: FC<{ accountId: string }> = ({
   accountId,
 }) => {
@@ -33,7 +35,7 @@ export const AccountNumberFields: FC<{ accountId: string }> = ({
   }
 
   return (
-    <NumberFields>
+    <NumberFields className={classes.numberFields}>
       <NumberFieldsItem
         label={
           <FormattedMessage id='account.followers' defaultMessage='Followers' />

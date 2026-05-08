@@ -263,6 +263,18 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   }
 }
 
+.numberFields {
+  @container (width > #{$button-breakpoint}) {
+    column-gap: 40px;
+  }
+
+  & > li {
+    @container (width < #{$button-breakpoint}) {
+      flex: 1 1 0px;
+    }
+  }
+}
+
 .bio {
   font-size: 15px;
   color: var(--color-text-primary);
