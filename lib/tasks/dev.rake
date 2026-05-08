@@ -437,12 +437,55 @@ namespace :dev do
         state: :accepted
       ).find_or_create_by!(id: 10_000_013)
 
-      Status.create_with(
-        text: 'This post has a manual quote policy',
-        account: remote_account,
-        visibility: :public,
-        quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public]
-      ).find_or_create_by!(id: 10_000_030)
+      # Status.create_with(
+      #   text: 'This post has a manual quote policy',
+      #   account: remote_account,
+      #   visibility: :public,
+      #   quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public]
+      # ).find_or_create_by!(id: 10_000_030)
+
+      Collection.create_with(
+        account: showcase_account,
+        name: 'Showcase Collection',
+        description: 'super cool description',
+        local: true,
+        sensitive: false,
+        discoverable: true
+      ).find_or_create_by!(id: 10_000_031)
+
+      Collection.create_with(
+        account: showcase_account,
+        name: 'Another Collection',
+        description: 'super cool description',
+        local: true,
+        sensitive: false,
+        discoverable: true
+      ).find_or_create_by!(id: 10_000_032)
+
+      Report.create_with(
+        account: showcase_sidekick_account,
+        target_account: showcase_account,
+        comment: 'not very nice',
+        action_taken_at: nil
+      ).find_or_create_by!(id: 10_000_033)
+
+      CollectionReport.create_with(
+        report: Report.find(10_000_033),
+        collection: Collection.find(10_000_031)
+      ).find_or_create_by!(id: 10_000_036)
+
+      CollectionReport.create_with(
+        report: Report.find(10_000_033),
+        collection: Collection.find(10_000_032)
+      ).find_or_create_by!(id: 10_000_037)
+
+      Report.create_with(
+        account: showcase_sidekick_account,
+        target_account: showcase_account,
+        status_ids: [10_000_028, 10_000_027],
+        comment: 'not very nice',
+        action_taken_at: nil
+      ).find_or_create_by!(id: 10_000_038)
     end
   end
 end
