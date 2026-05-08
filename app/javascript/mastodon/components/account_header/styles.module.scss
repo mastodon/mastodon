@@ -267,12 +267,6 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   @container (width > #{$button-breakpoint}) {
     column-gap: 40px;
   }
-
-  & > li {
-    @container (width < #{$button-breakpoint}) {
-      flex: 1 1 0px;
-    }
-  }
 }
 
 .bio {
