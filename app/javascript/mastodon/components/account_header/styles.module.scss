@@ -266,6 +266,14 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 .bio {
   font-size: 15px;
   color: var(--color-text-primary);
+
+  :any-link {
+    color: var(--color-text-status-links);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .familiarFollowers {
