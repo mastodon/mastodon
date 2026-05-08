@@ -46,8 +46,16 @@ import { WizardStepTitle } from './wizard_step_title';
 export const CollectionDetails: React.FC = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const { id, name, description, topic, discoverable, sensitive, items } =
-    useAppSelector((state) => state.collections.editor);
+  const {
+    id,
+    name,
+    description,
+    topic,
+    language,
+    discoverable,
+    sensitive,
+    items,
+  } = useAppSelector((state) => state.collections.editor);
 
   const handleNameChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,6 +118,7 @@ export const CollectionDetails: React.FC = () => {
           name,
           description,
           tag_name: topic || null,
+          language,
           discoverable,
           sensitive,
         };
@@ -121,6 +130,7 @@ export const CollectionDetails: React.FC = () => {
         const payload: ApiCreateCollectionPayload = {
           name,
           description,
+          language,
           discoverable,
           sensitive,
           account_ids: items.map((item) => item.account_id),
@@ -149,6 +159,7 @@ export const CollectionDetails: React.FC = () => {
       description,
       topic,
       discoverable,
+      language,
       sensitive,
       dispatch,
       history,
