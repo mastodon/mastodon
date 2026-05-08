@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment only from main branch
+
+permissions:
+  contents: read      # to checkout code
+  pages: write        # to deploy to Pages
+  id-token: write     # for GitHub Pages OIDC authentication
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # If you need to build docs in this workflow, uncomment and adapt these steps:
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '18'
+      #
+      # - name: Install dependencies
+      #   run: yarn install
+      #
+      # - name: Build Docs
+      #   run: yarn docs:build  # Or appropriate docs build command
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload built docs for GitHub Pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./docs    # Set to your static output directory
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
