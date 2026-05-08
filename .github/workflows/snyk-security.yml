@@ -28,7 +28,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      
+
+      - name: Enable Corepack and set correct Yarn version (for Yarn 4)
+        run: |
+          corepack enable
+          corepack prepare yarn@4.12.0 --activate
+          yarn --version
+
       - name: Verify Snyk token exists
         run: |
           if [ -z "${{ secrets.SNYK_TOKEN }}" ]; then
@@ -41,18 +47,18 @@ jobs:
       - name: Install dependencies
         if: hashFiles('package.json') != ''
         run: yarn install
-      
+
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+        uses: snyk/actions/node@v3
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --all-projects --severity-threshold=medium
-      
+
       - name: Run Snyk Monitor (track project)
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-        uses: snyk/actions/node@master
+        uses: snyk/actions/node@v3
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
