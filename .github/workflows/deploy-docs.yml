@@ -27,17 +27,25 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      # No build needed if /docs is already Markdown/HTML
-      # If adding a generator (e.g., Docusaurus), uncomment Node, install, build steps
+      - name: Ensure /docs exists and create .nojekyll
+        run: |
+          if [ ! -d "./docs" ]; then
+            echo "❌ ERROR: ./docs directory does not exist. Aborting deploy."
+            exit 1
+          fi
+          touch ./docs/.nojekyll
+          echo ".nojekyll file created in ./docs"
+
+      # If you need to build docs (e.g., from Markdown to HTML), insert steps here
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Upload docs directory as artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./docs    # /docs includes ENVIRONMENT.md and DEVELOPMENT.md
+          path: ./docs
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
