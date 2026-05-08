@@ -24,6 +24,7 @@ module.exports = {
     'selector-id-pattern': null,
     'value-keyword-case': null,
     'value-no-vendor-prefix': null,
+    'custom-property-pattern': '^_?[a-z]([a-z0-9])*(-[a-z0-9]+)*$',
 
     'scss/dollar-variable-empty-line-before': null,
     'scss/no-global-function-names': null,
