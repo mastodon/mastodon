@@ -20,7 +20,7 @@ import { loadLocale, getLocale } from '@/mastodon/locales';
 import { loadPolyfills } from '@/mastodon/polyfills';
 import ready from '@/mastodon/ready';
 import { assetHost } from '@/mastodon/utils/config';
-import { isRecord } from '@/mastodon/utils/objects';
+import { getNestedProperty } from '@/mastodon/utils/objects';
 import { isDarkMode } from '@/mastodon/utils/theme';
 import { formatTime } from '@/mastodon/utils/time';
 
@@ -82,15 +82,13 @@ async function loaded() {
   const initialStateText =
     document.getElementById('initial-state')?.textContent;
   if (initialStateText) {
-    const state = JSON.parse(initialStateText) as unknown;
-    if (
-      isRecord(state) &&
-      'meta' in state &&
-      isRecord(state.meta) &&
-      'emoji_style' in state.meta &&
-      typeof state.meta.emoji_style === 'string'
-    ) {
-      emojiStyle = state.meta.emoji_style;
+    const stateEmojiStyle = getNestedProperty(
+      JSON.parse(initialStateText) as unknown,
+      'meta',
+      'emoji_style',
+    );
+    if (typeof stateEmojiStyle === 'string') {
+      emojiStyle = stateEmojiStyle;
     }
   }
   const emojiMode = determineEmojiMode(emojiStyle);
