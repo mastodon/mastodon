@@ -16,10 +16,10 @@ class ActivityPub::ProcessFeaturedItemService
     with_redis_lock("collection_item:#{@item_json['id']}") do
       @collection_item = existing_item || pre_approved_item || new_item
 
+      @collection_item.position = position unless position.nil?
       @collection_item.update!(
         uri: @item_json['id'],
-        object_uri: value_or_id(@item_json['featuredObject']),
-        position:
+        object_uri: value_or_id(@item_json['featuredObject'])
       )
 
       @approval_uri = @item_json['featureAuthorization']
