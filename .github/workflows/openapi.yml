@@ -1,0 +1,45 @@
+name: OpenAPI
+on:
+  merge_group:
+  push:
+    branches:
+      - 'main'
+      - 'stable-*'
+    paths:
+      - 'openapi/**'
+      - 'redocly.yaml'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.nvmrc'
+      - '.github/workflows/openapi.yml'
+
+  pull_request:
+    paths:
+      - 'openapi/**'
+      - 'redocly.yaml'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.nvmrc'
+      - '.github/workflows/openapi.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
+
+      - name: Lint OpenAPI specification
+        run: yarn openapi:lint
+
+      - name: Verify bundled OpenAPI artifact is up to date
+        run: |
+          yarn openapi:bundle
+          if ! git diff --exit-code openapi/openapi.json; then
+            echo "::error::openapi/openapi.json is out of date. Run 'yarn openapi:bundle' and commit the result." >&2
+            exit 1
+          fi
