@@ -21,6 +21,8 @@ RSpec.describe 'Instances' do
           .and include(title: 'Mastodon')
           .and include_api_versions
           .and include_configuration_limits
+
+        assert_schema_conform(200)
       end
     end
 
@@ -39,6 +41,8 @@ RSpec.describe 'Instances' do
           .and include(title: 'Mastodon')
           .and include_api_versions
           .and include_configuration_limits
+
+        assert_schema_conform(200)
       end
     end
 
@@ -59,6 +63,8 @@ RSpec.describe 'Instances' do
         expect(response.parsed_body)
           .to be_present
           .and include(wrapstodon: 2025)
+
+        assert_schema_conform(200)
       end
     end
 
