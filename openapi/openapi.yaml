@@ -1,0 +1,18 @@
+openapi: 3.0.3
+info:
+  title: Mastodon API
+  version: 4.6.0-alpha
+  description: |
+    Machine-readable specification of the Mastodon REST API.
+
+    This document is a work in progress and currently covers a small subset
+    of endpoints. Coverage will expand incrementally.
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.html
+servers:
+  - url: https://mastodon.example
+    description: A Mastodon server
+paths: {}
+components:
+  schemas: {}
