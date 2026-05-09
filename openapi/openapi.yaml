@@ -13,6 +13,10 @@ info:
 servers:
   - url: https://mastodon.example
     description: A Mastodon server
-paths: {}
+paths:
+  /api/v2/instance:
+    $ref: 'paths/api/v2/instance.yaml'
 components:
-  schemas: {}
+  schemas:
+    V2Instance:
+      $ref: 'components/schemas/V2Instance.yaml'
