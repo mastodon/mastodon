@@ -40,9 +40,12 @@ import { followedTagsReducer } from './tags';
 import timelines from './timelines';
 import trends from './trends';
 import user_lists from './user_lists';
+import scheduled_statuses from './scheduled_statuses';
 
 const reducers = {
   announcements,
+  scheduled_statuses,
+
   dropdownMenu: dropdownMenuReducer,
   timelines,
   meta,

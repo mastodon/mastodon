@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { defineMessages } from 'react-intl';
-
 import classNames from 'classnames';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
@@ -84,6 +83,7 @@ import {
   AccountEdit,
   AccountEditFeaturedTags,
   Quotes,
+  ScheduledStatuses
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
 import { focusColumn, getFocusedItemIndex, focusItemSibling, focusFirstItem } from './util/focusUtils';
@@ -218,6 +218,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
+            <WrappedRoute path='/scheduled_statuses' component={ScheduledStatuses} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
             <WrappedRoute path='/start/profile' exact component={OnboardingProfile} content={children} />

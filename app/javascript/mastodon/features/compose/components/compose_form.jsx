@@ -36,6 +36,7 @@ import { VisibilityButton } from './visibility_button';
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
 const messages = defineMessages({
+  schedulePost: { id: 'compose_form.schedule', defaultMessage: 'Schedule post' },
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning (optional)' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
@@ -328,6 +329,17 @@ class ComposeForm extends ImmutablePureComponent {
               </div>
 
               <div className='compose-form__submit'>
+                <div className='compose-form__schedule'>
+  {!this.props.isEditing && (
+    <input
+      type='datetime-local'
+      min={new Date(Date.now() + 300000).toISOString().slice(0,16)}
+      value={this.props.scheduledAt || ''}
+      onChange={e => this.props.onChangeScheduledAt(e.target.value || null)}
+      title={intl.formatMessage(messages.schedulePost)}
+    />
+  )}
+</div>
                 <Button
                   type='submit'
                   compact

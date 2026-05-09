@@ -47,7 +47,12 @@ export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
 export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
 export const COMPOSE_SUGGESTION_IGNORE = 'COMPOSE_SUGGESTION_IGNORE';
 export const COMPOSE_SUGGESTION_TAGS_UPDATE = 'COMPOSE_SUGGESTION_TAGS_UPDATE';
+export const COMPOSE_CHANGE_SCHEDULED_AT = 'COMPOSE_CHANGE_SCHEDULED_AT';
 
+export const changeComposeScheduledAt = (scheduledAt) => ({
+  type: COMPOSE_CHANGE_SCHEDULED_AT,
+  scheduledAt,
+});
 export const COMPOSE_TAG_HISTORY_UPDATE = 'COMPOSE_TAG_HISTORY_UPDATE';
 
 export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
@@ -248,6 +253,7 @@ export function submitCompose(successCallback) {
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
         quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
+        scheduled_at: getState().getIn(['compose', 'scheduled_at']),
         quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
       },
       headers: {

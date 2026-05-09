@@ -15,6 +15,7 @@ import { timelineDelete } from 'mastodon/actions/timelines_typed';
 import {
   COMPOSE_MOUNT,
   COMPOSE_UNMOUNT,
+  COMPOSE_CHANGE_SCHEDULED_AT,
   COMPOSE_CHANGE,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
@@ -61,6 +62,8 @@ import { unescapeHTML } from '../utils/html';
 import { uuid } from '../uuid';
 
 const initialState = ImmutableMap({
+  scheduled_at: null,
+
   mounted: 0,
   sensitive: false,
   spoiler: false,
@@ -118,6 +121,8 @@ function statusToTextMentions(state, status) {
 
 function clearAll(state) {
   return state.withMutations(map => {
+    map.set('scheduled_at', null);
+
     map.set('id', null);
     map.set('text', '');
     map.set('spoiler', false);
@@ -395,6 +400,8 @@ export const composeReducer = (state = initialState, action) => {
 
       map.set('idempotencyKey', uuid());
     });
+    case COMPOSE_CHANGE_SCHEDULED_AT:
+  return state.set('scheduled_at', action.scheduledAt);
   case COMPOSE_SPOILERNESS_CHANGE:
     return state.withMutations(map => {
       map.set('spoiler', !state.get('spoiler'));

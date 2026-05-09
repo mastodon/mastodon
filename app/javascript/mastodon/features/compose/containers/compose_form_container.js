@@ -8,6 +8,7 @@ import {
   selectComposeSuggestion,
   changeComposeSpoilerText,
   insertEmojiCompose,
+  changeComposeScheduledAt,
   uploadCompose,
 } from 'mastodon/actions/compose';
 import { pasteLinkCompose } from 'mastodon/actions/compose_typed';
@@ -38,6 +39,7 @@ const processPasteOrDrop = (transfer, e, dispatch) => {
 
 const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
+  scheduledAt: state.getIn(['compose', 'scheduled_at']),
   suggestions: state.getIn(['compose', 'suggestions']),
   spoiler: state.getIn(['compose', 'spoiler']),
   spoilerText: state.getIn(['compose', 'spoiler_text']),
@@ -62,7 +64,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
-
+onChangeScheduledAt (value) {
+  dispatch(changeComposeScheduledAt(value));
+},
   onChange (text) {
     dispatch(changeCompose(text));
   },

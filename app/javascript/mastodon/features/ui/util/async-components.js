@@ -2,6 +2,10 @@ export function EmojiPicker () {
   return import('../../emoji/emoji_picker');
 }
 
+export function ScheduledStatuses () {
+  return import('../../scheduled_statuses');
+}
+
 export function Compose () {
   return import('../../compose');
 }
