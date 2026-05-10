@@ -100,4 +100,24 @@ RSpec.describe StatusPin do
       end
     end
   end
+
+  describe 'Private methods' do
+    describe '#account_matches_status_account?' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns false when the status belongs to a different account' do
+        other_status = Fabricate(:status, account: Fabricate(:account))
+
+        status_pin = described_class.new(account: account, status: other_status)
+
+        expect(status_pin.send(:account_matches_status_account?)).to be false
+      end
+
+      it 'returns false when status is nil' do
+        status_pin = described_class.new(account: account, status: nil)
+
+        expect(status_pin.send(:account_matches_status_account?)).to be false
+      end
+    end
+  end
 end
