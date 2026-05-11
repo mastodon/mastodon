@@ -444,7 +444,7 @@ namespace :dev do
         quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public]
       ).find_or_create_by!(id: 10_000_030)
 
-      Collection.create_with(
+      showcase_collection = Collection.create_with(
         account: showcase_account,
         name: 'Showcase Collection',
         description: 'super cool description',
@@ -453,7 +453,7 @@ namespace :dev do
         discoverable: true
       ).find_or_create_by!(id: 10_000_031)
 
-      Collection.create_with(
+      another_collection = Collection.create_with(
         account: showcase_account,
         name: 'Another Collection',
         description: 'super cool description',
@@ -462,22 +462,22 @@ namespace :dev do
         discoverable: true
       ).find_or_create_by!(id: 10_000_032)
 
-      Report.create_with(
+      report = Report.create_with(
         account: showcase_sidekick_account,
         target_account: showcase_account,
         comment: 'not very nice',
         action_taken_at: nil
-      ).find_or_create_by!(id: 10_000_033)
+      ).find_or_create_by!(account: showcase_sidekick_account, target_account: showcase_account)
 
       CollectionReport.create_with(
-        report: Report.find(10_000_033),
-        collection: Collection.find(10_000_031)
-      ).find_or_create_by!(id: 10_000_036)
+        report: report,
+        collection: showcase_collection
+      ).find_or_create_by!(collection: showcase_collection, report: report)
 
       CollectionReport.create_with(
-        report: Report.find(10_000_033),
-        collection: Collection.find(10_000_032)
-      ).find_or_create_by!(id: 10_000_037)
+        report: report,
+        collection: another_collection
+      ).find_or_create_by!(collection: another_collection, report: report)
 
       Report.create_with(
         account: showcase_sidekick_account,
@@ -485,7 +485,7 @@ namespace :dev do
         status_ids: [10_000_028, 10_000_027],
         comment: 'not very nice',
         action_taken_at: nil
-      ).find_or_create_by!(id: 10_000_038)
+      ).find_or_create_by!(account: showcase_sidekick_account, target_account: showcase_account)
     end
   end
 end
