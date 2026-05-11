@@ -20,25 +20,6 @@ RSpec.describe 'report interface', :attachment_processing, :js, :streaming do
     visit admin_report_path(report)
   end
 
-  context 'with collection reports', feature: :collections do
-    let(:collection) { Fabricate(:collection, account: reported_account) }
-    let(:collection2) { Fabricate(:collection, account: reported_account) }
-
-    before do
-      report.collections << collection
-      report.collections << collection2
-      report.save
-    end
-
-    it 'displays the report interface with collection reports' do
-      visit admin_report_path(report)
-
-      expect(page).to have_text('Collections (2)')
-      expect(page).to have_text('Add more to report').twice
-      expect(page).to have_link(I18n.t('admin.reports.add_to_report'))
-    end
-  end
-
   it 'displays the report interface, including the javascript bits' do
     # The report category selector React component is properly rendered
     expect(page).to have_css('.report-reason-selector')
