@@ -21,7 +21,7 @@
   .fields-group
     = f.input :default_color_scheme,
               as: :radio_buttons,
-              collection: %w(auto light dark),
+              collection: UserSettings.definition_for('color_scheme')&.in,
               include_blank: false,
               label_method: ->(color_scheme) { I18n.t("color_scheme.#{color_scheme}", default: color_scheme) },
               wrapper: :with_label
@@ -29,7 +29,7 @@
   .fields-group
     = f.input :default_contrast,
               as: :radio_buttons,
-              collection: %w(auto high),
+              collection: UserSettings.definition_for('contrast')&.in,
               include_blank: false,
               label_method: ->(contrast) { I18n.t("contrast.#{contrast}", default: contrast) },
               wrapper: :with_label
