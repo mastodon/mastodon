@@ -11,6 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 
 import { missingAltTextModal } from 'mastodon/initial_state';
+import { dateTimeLocalToISOString, isoStringToDateTimeLocal, minScheduledDateTimeLocal } from 'mastodon/utils/scheduled_statuses';
 
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import AutosuggestTextarea from 'mastodon/components/autosuggest_textarea';
@@ -38,6 +39,7 @@ const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u20
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning (optional)' },
+  schedule: { id: 'compose_form.schedule', defaultMessage: 'Schedule' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
   reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
@@ -47,6 +49,7 @@ class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired,
+    scheduledAt: PropTypes.string,
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
     privacy: PropTypes.string,
@@ -59,6 +62,7 @@ class ComposeForm extends ImmutablePureComponent {
     isEditing: PropTypes.bool,
     isUploading: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
+    onChangeScheduledAt: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onClearSuggestions: PropTypes.func.isRequired,
     onFetchSuggestions: PropTypes.func.isRequired,
@@ -93,6 +97,10 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleChange = (e) => {
     this.props.onChange(e.target.value);
+  };
+
+  handleScheduleChange = (e) => {
+    this.props.onChangeScheduledAt(dateTimeLocalToISOString(e.target.value));
   };
 
   blurOnEscape = (e) => {
@@ -328,6 +336,20 @@ class ComposeForm extends ImmutablePureComponent {
               </div>
 
               <div className='compose-form__submit'>
+                {!this.props.isEditing && (
+                  <label className='compose-form__schedule'>
+                    <span className='compose-form__schedule__label'>
+                      {intl.formatMessage(messages.schedule)}
+                    </span>
+                    <input
+                      type='datetime-local'
+                      min={minScheduledDateTimeLocal()}
+                      value={isoStringToDateTimeLocal(this.props.scheduledAt)}
+                      onChange={this.handleScheduleChange}
+                      disabled={isSubmitting}
+                    />
+                  </label>
+                )}
                 <Button
                   type='submit'
                   compact

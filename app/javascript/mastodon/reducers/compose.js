@@ -16,6 +16,7 @@ import {
   COMPOSE_MOUNT,
   COMPOSE_UNMOUNT,
   COMPOSE_CHANGE,
+  COMPOSE_CHANGE_SCHEDULED_AT,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
   COMPOSE_DIRECT,
@@ -62,6 +63,7 @@ import { uuid } from '../uuid';
 
 const initialState = ImmutableMap({
   mounted: 0,
+  scheduled_at: null,
   sensitive: false,
   spoiler: false,
   spoiler_text: '',
@@ -118,6 +120,7 @@ function statusToTextMentions(state, status) {
 
 function clearAll(state) {
   return state.withMutations(map => {
+    map.set('scheduled_at', null);
     map.set('id', null);
     map.set('text', '');
     map.set('spoiler', false);
@@ -412,6 +415,10 @@ export const composeReducer = (state = initialState, action) => {
   case COMPOSE_CHANGE:
     return state
       .set('text', action.text)
+      .set('idempotencyKey', uuid());
+  case COMPOSE_CHANGE_SCHEDULED_AT:
+    return state
+      .set('scheduled_at', action.scheduledAt)
       .set('idempotencyKey', uuid());
   case COMPOSE_COMPOSING_CHANGE:
     return state.set('is_composing', action.value);

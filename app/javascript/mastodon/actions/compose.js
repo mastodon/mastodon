@@ -13,6 +13,7 @@ import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
 import { openModal } from './modal';
+import { createScheduledStatusSuccess } from './scheduled_statuses';
 import { updateTimeline } from './timelines';
 
 /** @type {AbortController | undefined} */
@@ -21,6 +22,7 @@ let fetchComposeSuggestionsAccountsController;
 let fetchComposeSuggestionsTagsController;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
+export const COMPOSE_CHANGE_SCHEDULED_AT = 'COMPOSE_CHANGE_SCHEDULED_AT';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
 export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
 export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
@@ -87,6 +89,7 @@ const messages = defineMessages({
   uploadQuote: { id: 'upload_error.quote', defaultMessage: 'File upload not allowed with quotes.' },
   open: { id: 'compose.published.open', defaultMessage: 'Open' },
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
+  scheduled: { id: 'compose.scheduled.body', defaultMessage: 'Post scheduled.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
   blankPostError: { id: 'compose.error.blank_post', defaultMessage: 'Post can\'t be blank.' },
 });
@@ -115,6 +118,13 @@ export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
     text: text,
+  };
+}
+
+export function changeComposeScheduledAt(scheduledAt) {
+  return {
+    type: COMPOSE_CHANGE_SCHEDULED_AT,
+    scheduledAt,
   };
 }
 
@@ -247,6 +257,7 @@ export function submitCompose(successCallback) {
         visibility: visibility,
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        scheduled_at: getState().getIn(['compose', 'scheduled_at']),
         quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
         quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
       },
@@ -258,9 +269,16 @@ export function submitCompose(successCallback) {
         browserHistory.goBack();
       }
 
-      dispatch(insertIntoTagHistory(response.data.tags, status));
+      const scheduled = response.data.scheduled_at !== undefined;
+
+      if (scheduled) {
+        dispatch(createScheduledStatusSuccess({ ...response.data }));
+      } else {
+        dispatch(insertIntoTagHistory(response.data.tags, status));
+      }
+
       dispatch(submitComposeSuccess({ ...response.data }));
-      if (typeof successCallback === 'function') {
+      if (!scheduled && typeof successCallback === 'function') {
         successCallback(response.data);
       }
 
@@ -274,26 +292,33 @@ export function submitCompose(successCallback) {
         }
       };
 
-      if (statusId) {
+      if (!scheduled && statusId) {
         dispatch(importFetchedStatus({ ...response.data }));
       }
 
-      if (statusId === null && response.data.visibility !== 'direct') {
+      if (!scheduled && statusId === null && response.data.visibility !== 'direct') {
         insertIfOnline('home');
       }
 
-      if (statusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+      if (!scheduled && statusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         insertIfOnline('public');
         insertIfOnline(`account:${response.data.account.id}`);
       }
 
-      dispatch(showAlert({
-        message: statusId === null ? messages.published : messages.saved,
-        action: messages.open,
-        dismissAfter: 10000,
-        onClick: () => browserHistory.push(`/@${response.data.account.username}/${response.data.id}`),
-      }));
+      if (scheduled) {
+        dispatch(showAlert({
+          message: messages.scheduled,
+          dismissAfter: 10000,
+        }));
+      } else {
+        dispatch(showAlert({
+          message: statusId === null ? messages.published : messages.saved,
+          action: messages.open,
+          dismissAfter: 10000,
+          onClick: () => browserHistory.push(`/@${response.data.account.username}/${response.data.id}`),
+        }));
+      }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
