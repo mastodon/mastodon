@@ -463,27 +463,15 @@ namespace :dev do
       ).find_or_create_by!(id: 10_000_032)
 
       report = Report.create_with(
-        account: showcase_sidekick_account,
-        target_account: showcase_account,
-        comment: 'not very nice',
         action_taken_at: nil
       ).find_or_create_by!(account: showcase_sidekick_account, target_account: showcase_account, comment: 'not very nice')
 
-      CollectionReport.create_with(
-        report: report,
-        collection: showcase_collection
-      ).find_or_create_by!(collection: showcase_collection, report: report)
+      CollectionReport.find_or_create_by!(collection: showcase_collection, report: report)
 
-      CollectionReport.create_with(
-        report: report,
-        collection: another_collection
-      ).find_or_create_by!(collection: another_collection, report: report)
+      CollectionReport.find_or_create_by!(collection: another_collection, report: report)
 
       Report.create_with(
-        account: showcase_sidekick_account,
-        target_account: showcase_account,
         status_ids: [10_000_028, 10_000_027],
-        comment: 'very unique comment',
         action_taken_at: nil
       ).find_or_create_by!(account: showcase_sidekick_account, target_account: showcase_account, comment: 'very unique comment')
     end
