@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'report interface', :attachment_processing do
+RSpec.describe 'report interface', :attachment_processing, :js, :streaming do
   include ProfileStories
 
   let(:email)               { 'admin@example.com' }
@@ -39,7 +39,7 @@ RSpec.describe 'report interface', :attachment_processing do
     end
   end
 
-  it 'displays the report interface, including the javascript bits', :js do
+  it 'displays the report interface, including the javascript bits' do
     # The report category selector React component is properly rendered
     expect(page).to have_css('.report-reason-selector')
 
