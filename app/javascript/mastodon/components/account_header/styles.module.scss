@@ -274,6 +274,10 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 .bio {
   font-size: 15px;
   color: var(--color-text-primary);
+  unicode-bidi: plaintext;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   :any-link {
     color: var(--color-text-status-links);
