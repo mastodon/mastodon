@@ -10,7 +10,7 @@ module Admin
 
     def index
       authorize [:admin, :collection], :index?
-      @collections
+      @collection_batch_action = Admin::CollectionBatchAction.new
     end
 
     def show
