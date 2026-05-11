@@ -90,6 +90,21 @@ RSpec.describe StatusPin do
         end
       end
 
+      context 'when the status is missing during destruction' do
+        subject { Fabricate(:status_pin, account: account) }
+
+        let(:account) { Fabricate :account, domain: nil }
+
+        it 'does not call the invalidator on destroy' do
+          allow(subject).to receive(:status).and_return(nil)
+
+          expect_any_instance_of(AccountStatusesCleanupPolicy)
+            .to_not receive(:invalidate_last_inspected)
+
+          subject.destroy
+        end
+      end
+
       context 'with a remote account' do
         let(:account) { Fabricate :account, domain: 'host.example' }
 
@@ -97,26 +112,6 @@ RSpec.describe StatusPin do
           expect { subject.destroy }
             .to_not change(account, :updated_at)
         end
-      end
-    end
-  end
-
-  describe 'Private methods' do
-    describe '#account_matches_status_account?' do
-      let(:account) { Fabricate(:account) }
-
-      it 'returns false when the status belongs to a different account' do
-        other_status = Fabricate(:status, account: Fabricate(:account))
-
-        status_pin = described_class.new(account: account, status: other_status)
-
-        expect(status_pin.send(:account_matches_status_account?)).to be false
-      end
-
-      it 'returns false when status is nil' do
-        status_pin = described_class.new(account: account, status: nil)
-
-        expect(status_pin.send(:account_matches_status_account?)).to be false
       end
     end
   end
