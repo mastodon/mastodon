@@ -12,7 +12,6 @@ RSpec.describe Admin::CollectionsController do
   let(:second_collection) { Fabricate(:collection, account: account) }
   let(:unreported_collection) { Fabricate(:collection, account: account) }
   let(:report) { Fabricate(:report, account: other_account, target_account: account) }
-  let(:collection_report) { Fabricate(:collection_report, report: report, collection: collection) }
 
   before do
     sign_in user, scope: :user
@@ -43,16 +42,29 @@ RSpec.describe Admin::CollectionsController do
   end
 
   describe 'POST #batch' do
-    subject { post :batch, params: { account_id: account.id, report_id: report.id, admin_collection_batch_action: { collection_ids: [collection.id, second_collection.id] } } }
+    subject { post :batch, params: { account_id: account.id, report_id: report_id, admin_collection_batch_action: { collection_ids: [collection.id, second_collection.id] } } }
 
-    before do
-      report.collections << collection
-      report.save
+    context 'with a valid report' do
+      let(:report_id) { report.id }
+
+      before do
+        report.collections << collection
+        report.save
+      end
+
+      it 'redirects to the report page' do
+        subject
+        expect(response).to redirect_to(admin_report_path(Report.last.id))
+      end
     end
 
-    it 'redirects to the report page' do
-      subject
-      expect(response).to redirect_to(admin_report_path(Report.last.id))
+    context 'with an invalid report' do
+      let(:report_id) { nil }
+
+      it 'redirects to the report page' do
+        subject
+        expect(response).to redirect_to(admin_account_collections_path(account.id))
+      end
     end
   end
 end
