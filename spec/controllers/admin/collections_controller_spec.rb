@@ -61,7 +61,7 @@ RSpec.describe Admin::CollectionsController do
     context 'with an invalid report' do
       let(:report_id) { nil }
 
-      it 'redirects to the report page' do
+      it 'redirects to the account collections page' do
         subject
         expect(response).to redirect_to(admin_account_collections_path(account.id))
       end

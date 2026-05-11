@@ -37,7 +37,7 @@ RSpec.describe Admin::CollectionBatchAction do
     context 'when with_report? is false' do
       let(:report_id) { nil }
 
-      it 'creates no report' do
+      it 'creates a new report' do
         expect { subject.save! }.to change(Report, :count).by(1)
       end
     end
