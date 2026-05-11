@@ -13,7 +13,7 @@
     - else
       = link_to admin_account_path(@account.id) do
         = material_symbol 'chevron_left'
-        = t('admin.statuses.back_to_account')
+        = t('admin.collections.back_to_account')
 
 %hr.spacer/
 
@@ -35,7 +35,7 @@
                        name: :report,
                        type: :submit
           - else
-            = f.button safe_join([material_symbol('flag'), t('admin.statuses.batch.report')]),
+            = f.button safe_join([material_symbol('flag'), t('admin.collections.batch.report')]),
                        class: 'table-action-link',
                        data: { confirm: t('admin.reports.are_you_sure') },
                        name: :report,
