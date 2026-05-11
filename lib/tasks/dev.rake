@@ -467,7 +467,7 @@ namespace :dev do
         target_account: showcase_account,
         comment: 'not very nice',
         action_taken_at: nil
-      ).find_or_create_by!(account: showcase_sidekick_account, target_account: showcase_account)
+      ).find_or_create_by!(account: showcase_sidekick_account, target_account: showcase_account, comment: 'not very nice')
 
       CollectionReport.create_with(
         report: report,
@@ -483,9 +483,9 @@ namespace :dev do
         account: showcase_sidekick_account,
         target_account: showcase_account,
         status_ids: [10_000_028, 10_000_027],
-        comment: 'not very nice',
+        comment: 'very unique comment',
         action_taken_at: nil
-      ).find_or_create_by!(account: showcase_sidekick_account, target_account: showcase_account)
+      ).find_or_create_by!(account: showcase_sidekick_account, target_account: showcase_account, comment: 'very unique comment')
     end
   end
 end
