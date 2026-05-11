@@ -16,7 +16,6 @@ RSpec.describe Admin::CollectionsController do
 
   before do
     sign_in user, scope: :user
-    collection_report
     second_collection
     unreported_collection
   end
@@ -45,6 +44,11 @@ RSpec.describe Admin::CollectionsController do
 
   describe 'POST #batch' do
     subject { post :batch, params: { account_id: account.id, report_id: report.id, admin_collection_batch_action: { collection_ids: [collection.id, second_collection.id] } } }
+
+    before do
+      report.collections << collection
+      report.save
+    end
 
     it 'redirects to the report page' do
       subject

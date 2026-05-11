@@ -23,12 +23,11 @@ RSpec.describe 'report interface', :attachment_processing do
   context 'with collection reports', feature: :collections do
     let(:collection) { Fabricate(:collection, account: reported_account) }
     let(:collection2) { Fabricate(:collection, account: reported_account) }
-    let(:collection_report) { Fabricate(:collection_report, collection: collection, report: report) }
-    let(:collection_report2) { Fabricate(:collection_report, collection: collection, report: report) }
 
     before do
-      collection_report
-      collection_report2
+      report.collections << collection
+      report.collections << collection2
+      report.save
     end
 
     it 'displays the report interface with collection reports' do
