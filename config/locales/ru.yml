@@ -352,6 +352,7 @@ ru:
       updated_msg: Объявление отредактировано
     collections:
       accounts: Учётные записи
+      contents: Контент
       open: Открыть
       view_publicly: Посмотреть публично
     critical_update_pending: Доступно критическое обновление
@@ -496,9 +497,29 @@ ru:
         title: Заблокировать домен электронной почты
       no_email_domain_block_selected: Ничего не изменилось, так как ни один почтовый домен не был выделен
       not_permitted: Недостаточно прав
+      reset: Перезагрузить
       resolved_dns_records_hint_html: Доменное имя указывает на следующие MX-домены, которые в конечном итоге отвечают за приём электронной почты. Блокировка MX-домена приведёт к блокировке регистраций со всех адресов электронной почты, которые используют тот же MX-домен, даже если видимое доменное имя отличается от него. <strong>Будьте осторожны, чтобы не заблокировать основных провайдеров электронной почты</strong>
       resolved_through_html: Из DNS-записей домена %{domain}
+      search: Искать
       title: Блокировки по домену эл. почты
+    email_subscriptions:
+      accounts:
+        account: Аккаунт
+        active: Актив
+        status: Статус
+        subscribers: Подписчики
+      danger_zone:
+        disable_feature:
+          action: Выключить
+        title: Опасная зона
+      roles:
+        accounts: Аккаунты
+        edit_role: Изменить роль
+        role_name: Ролевое имя
+        title: Роли
+      setups:
+        show:
+          important_information: Важная информация
     export_domain_allows:
       new:
         title: Импорт белого списка доменов
@@ -703,6 +724,7 @@ ru:
       cancel: Отменить
       category: Категория
       category_description_html: Причина, по которой были доложены этот пользователь или содержимое, будет указана при коммуникации с фигурирующим в жалобе пользователем
+      collections: Коллекции (%{count})
       comment:
         none: Нет
       comment_description_html: 'В дополнение, %{name} добавил(а) следующий комментарий:'
@@ -732,11 +754,13 @@ ru:
       report: Жалоба №%{id}
       reported_account: Учётная запись нарушителя
       reported_by: Отправитель жалобы
+      reported_content: Жалоба на контент
       reported_with_application: Использованное для отправки жалобы приложение
       resolved: Решённые
       resolved_msg: Жалоба обработана, спасибо!
       skip_to_actions: Перейти к действиям
       status: Статус
+      statuses: Посты (%{count})
       statuses_description_html: Нарушающее правила содержимое будет процитировано при коммуникации с фигурирующим в жалобе аккаунтом
       summary:
         action_preambles:
@@ -773,6 +797,7 @@ ru:
       categories:
         administration: Администрирование
         devops: DevOps
+        email: Email
         invites: Приглашения
         moderation: Модерирование
         special: Особые разрешения
@@ -1352,8 +1377,12 @@ ru:
     invalid_password: Неверный пароль
     prompt: Введите пароль, чтобы продолжить
   color_scheme:
+    auto: Авто
     dark: Тёмный
     light: Светлый
+  contrast:
+    auto: Авто
+    high: Высоко
   crypto:
     errors:
       invalid_key: должен быть действительным Ed25519- или Curve25519-ключом
@@ -1787,6 +1816,7 @@ ru:
     update:
       subject: "%{name} отредактировал(а) пост"
   notifications:
+    administration_emails: Email уведомления админа
     email_events: События для уведомлений по электронной почте
     email_events_hint: 'Выберите события, для которых вы хотели бы получать уведомления:'
   number:
@@ -1988,6 +2018,9 @@ ru:
         other: "%{count} видео"
     boosted_from_html: Продвижение польз. %{acct_link}
     content_warning: 'Предупреждение о содержании: %{warning}'
+    content_warnings:
+      hide: Скрыть пост
+      show: Показать больше
     default_language: Тот же, что язык интерфейса
     disallowed_hashtags:
       few: 'содержались запрещённые хэштеги: %{tags}'
@@ -2004,6 +2037,9 @@ ru:
       limit: Вы достигли максимального количества постов, которые можно закрепить в профиле
       ownership: Нельзя закрепить чужой пост
       reblog: Нельзя закрепить продвижение
+    quote_error:
+      not_available: Пост недоступен
+      revoked: Пост удален автором
     quote_policies:
       followers: Только подписчики
       nobody: Только я
@@ -2091,6 +2127,7 @@ ru:
     webauthn: Электронные ключи
   unsubscriptions:
     create:
+      action: Перейти на главную страницу сервера
       title: Вы отписались
     show:
       action: Отписаться

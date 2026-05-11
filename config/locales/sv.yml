@@ -489,6 +489,71 @@ sv:
       resolved_through_html: Uppslagen genom %{domain}
       search: Sök
       title: Blockerade e-postdomäner
+    email_subscriptions:
+      accounts:
+        account: Konto
+        active: Aktiv
+        empty:
+          hint: Inga konton har prenumeranter ännu.
+          no_lists_yet: Inga listor ännu
+        inactive: Inaktiv
+        last_email: Senaste e-post
+        lead: Konton som har aktiverat funktionen och har prenumeranter kommer att visas nedan.
+        status: Status
+        subscribers: Prenumeranter
+        title: E-postlistor
+      additional_footer_texts:
+        show:
+          title: Ytterligare sidfotstext
+      compliance_settings:
+        additional_footer_text:
+          action: Hantera
+          hint: Valfri text som endast visas i sidfoten av e-post om nyhetsbrev
+          title: Ytterligare sidfotstext
+        lead: E-postnyhetsbrev kan anses vara e-post om marknadsföring, beroende på lagarna där du befinner dig.
+        privacy_policy:
+          action: Hantera
+          hint: Denna policy är länkad i sidfoten av varje e-post
+          title: Integritetspolicy
+        title: Inställningar för efterlevnad
+      danger_zone:
+        disable_feature:
+          action: Inaktivera
+          hint: Stäng av funktionen för alla konton
+          title: Inaktivera funktion
+        erase_all_data:
+          action: Radera data
+          hint: Raderar permanent alla e-postmeddelanden i alla e-postlistor
+          title: Radera all data
+        title: Farozon
+      disabled_msg: E-postprenumerationer har inaktiverats.
+      index:
+        disabled:
+          cannot_be_enabled: Din tekniska leverantör har inte aktiverat denna funktion för din server.
+          description: Denna funktion tillåter specificerade konton att lägga till en widget i sina profiler, vilket gör att besökare utan ett Mastodon-konto kan ta emot sina inlägg via e-post.
+          get_started: Kom igång
+        lead: Tillåt besökare att ta emot inlägg via e-post från dedikerade konton på denna server.
+        title: Nyhetsbrev via e-post
+      purged_msg: All data från e-postprenumerationer tas bort.
+      roles:
+        accounts: Konton
+        edit_role: Redigera roll
+        empty:
+          hint: Ingen har behörighet att använda den här funktionen.
+          no_roles_added: Inga roller tillagda
+        lead: Konton med följande roller kan aktivera denna funktion på sina profiler.
+        manage_roles: Hantera roller
+        role_name: Rollnamn
+        title: Roller
+      setups:
+        show:
+          enable_feature: Aktivera funktion
+          important_information: Viktig information
+          list:
+            1_permission_explanation: När denna funktion är aktiverad kan konton med de angivna behörigheterna lägga till ett insamlingsformulär för e-post till sina profiler.
+            2_feature_explanation: När besökare registrerar sig på ett kontos profilsida och bekräftar sin prenumeration, kommer de att börja ta emot e-postuppdateringar när kontot skapar nya offentliga inlägg.
+            3_privacy_policy_warning: Serveradministratörer kommer att ha tillgång till PII (e-postadresser) samlade. Därmed måste sekretesspolicyn och användarvillkoren för servern uppdateras innan den här funktionen används.
+            4_cost_warning: E-postmeddelanden kan medföra en avgift beroende på hosting-setup. Diskutera med ditt webbhotells leverantör innan aktivering, eftersom denna funktion drastiskt kan öka mängden e-post som skickas från din server.
     export_domain_allows:
       new:
         title: Importera domäntillåtelser
@@ -794,6 +859,7 @@ sv:
         manage_custom_emojis: Hantera egna emojier
         manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
         manage_email_subscriptions: Hantera e-postprenumerationer
+        manage_email_subscriptions_description: Tillåt användare med denna behörighet att aktivera funktionen för e-postnyhetsbrev för deras konto
         manage_federation: Hantera federering
         manage_federation_description: Tillåter användare att blockera eller tillåta federering med andra domäner, samt kontrollera levererbarhet
         manage_invites: Hantera inbjudningar
@@ -1732,6 +1798,27 @@ sv:
     copy_account_note_text: 'Den här användaren flyttade från %{acct}, här var dina föregående anteckningar om dem:'
   navigation:
     toggle_menu: Växla meny
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} lade till dig i en samling"
+    admin_report:
+      title_html: "%{name} rapporterade %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} och en annan anmälde sig"
+        other: "%{name} och %{count} andra anmälde sig"
+      title_html: "%{name} registrerade sig"
+    collection_update:
+      title_html: "%{name} uppdaterade en samling du är med i"
+    generic:
+      sign_in: Logga in på Mastodons webbapp
+      summary_html: Du är på en app som inte stöder den senaste versionen av Mastodon. %{link} för full funktionalitet.
+    moderation_warning:
+      summary_html: Du är på en app som inte stöder den senaste versionen av Mastodon. %{link}.
+      title: Du har fått en moderationsvarning.
+    severed_relationships:
+      summary_html: En administratör från %{from} har stängt av %{target}, vilket innebär att du inte längre kan ta emot uppdateringar från dem eller interagera med dem. %{link} för att hämta en lista över förlorade relationer.
+      title: Förlorade kontakter med %{name}
   notification_mailer:
     admin:
       report:
