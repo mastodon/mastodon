@@ -92,6 +92,7 @@ de:
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
         content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Davon sind auch Beiträge betroffen, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Diese Option richtet sich ausschließlich an Server mit speziellen Zwecken und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
         custom_css: Du kannst eigene Stylesheets für das Webinterface von Mastodon verwenden.
+        email_footer_text: Der Text erscheint ausschließlich in der Fußzeile von E-Mails.
         favicon: WebP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Favicon.
         landing_page: Legt fest, welchen Bereich (nicht angemeldete) Besucher*innen sehen, wenn sie deinen Server besuchen. Für „Trends“ müssen die Trends in den Entdecken-Einstellungen aktiviert sein. Für „Lokaler Feed“ muss „Zugriff auf Live-Feeds, die lokale Beiträge beinhalten“ in den Entdecken-Einstellungen auf „Alle“ gesetzt werden.
         mascot: Überschreibt die Abbildung im erweiterten Webinterface.
@@ -294,6 +295,7 @@ de:
         closed_registrations_message: Nachricht, falls Registrierungen deaktiviert sind
         content_cache_retention_period: Aufbewahrungsfrist für externe Inhalte
         custom_css: Eigenes CSS
+        email_footer_text: Fußzeile
         favicon: Favicon
         landing_page: Landingpage für Gäste
         local_live_feed_access: Zugriff auf Live-Feeds, die lokale Beiträge beinhalten
@@ -322,6 +324,9 @@ de:
         trendable_by_default: Trends ohne vorherige Überprüfung erlauben
         trends: Trends aktivieren
         wrapstodon: Wrapstodon aktivieren
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Ich verstehe, dass das Aktivieren dieser Funktion die Anzahl versendeter E-Mails drastisch erhöhen kann. Ich übernehme die Verantwortung für mögliche Zusatzkosten.
+        agreement_privacy_and_terms: Datenschutzerklärung und Nutzungsbedingungen wurden im Vorfeld aktualisiert.
       interactions:
         must_be_follower: Benachrichtigungen von Profilen, die mir nicht folgen, ausblenden
         must_be_following: Benachrichtigungen von Profilen, denen ich nicht folge, ausblenden

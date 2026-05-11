@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';

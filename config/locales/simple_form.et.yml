@@ -92,6 +92,7 @@ et:
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
         content_cache_retention_period: Kõik teiste serverite postitused (sealhulgas jagamised ja vastused) kustutatakse pärast määratud arvu päevade möödumist, sõltumata, kuidas kohalik kasutaja on nende postitustega interakteerunud. Hõlmatud on ka postitused, mille kohalik kasutaja on märkinud järjehoidjaks või lemmikuks. Ka eri instantside kasutajate vahelised privaatsed mainimised kaovad ja neid on võimatu taastada. See seadistus on mõeldud eriotstarbeliste instantside jaoks ja rikub paljude kasutajate ootusi, kui seda rakendatakse üldotstarbelise kasutuse puhul.
         custom_css: Mastodoni veebiliideses on võimalik kasutada kohandatud stiile.
+        email_footer_text: Valikuline tekst, mida kuvatakse ainult uudis-e-kirjade jaluses.
         favicon: WEBP, PNG, GIF või JPG. Asendab Mastodoni vaike- favicon ikooni kohandatud ikooniga.
         landing_page: Sellega valid lehe, mida uued külastajad sinu serverisse tulles näevad. Kui sa valid „Trendid“, siis peavad nad olema lubatud. Kui sa valid „Kohalike postituste voog“, siis seadistuse „Ligipääs kohalike postituste voole“ väärtus peab olema „Kõik“.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
@@ -294,6 +295,7 @@ et:
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         content_cache_retention_period: Kaugsisu säilitamise aeg
         custom_css: Kohandatud CSS
+        email_footer_text: Täiendav jaluse tekst
         favicon: Favicon
         landing_page: Avaleht uute külastajate jaoks
         local_live_feed_access: Ligipääs kohalike postituste voole
@@ -322,6 +324,9 @@ et:
         trendable_by_default: Luba trendid eelneva ülevaatuseta
         trends: Luba trendid
         wrapstodon: Luba Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Ma mõistan, et selle funktsiooni aktiveerimine võib märkimisväärselt suurendada serverist saadetavate e-kirjade mahtu ning et vastutan tekkivate kulude eest täielikult ise.
+        agreement_privacy_and_terms: Olen uuendanud privaatsuspoliitikat ja kasutustingimusi.
       interactions:
         must_be_follower: Keela teavitused mittejälgijatelt
         must_be_following: Keela teavitused kasutajatelt, keda sa ei jälgi

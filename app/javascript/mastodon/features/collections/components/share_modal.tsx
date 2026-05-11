@@ -42,7 +42,7 @@ export const CollectionShareModal: React.FC<{
   const isNew = !!location.state?.newCollection;
   const isOwnCollection = collection.account_id === me;
 
-  const collectionLink = `${window.location.origin}/collections/${collection.id}`;
+  const collectionLink = collection.url;
 
   const handleShareOnDevice = useCallback(() => {
     void navigator.share({

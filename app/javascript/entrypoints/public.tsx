@@ -13,13 +13,16 @@ import axios from 'axios';
 import { on } from 'delegated-events';
 import { throttle } from 'lodash';
 
+import { determineEmojiMode } from '@/mastodon/features/emoji/mode';
+import { updateHtmlWithEmoji } from '@/mastodon/features/emoji/render';
+import loadKeyboardExtensions from '@/mastodon/load_keyboard_extensions';
+import { loadLocale, getLocale } from '@/mastodon/locales';
+import { loadPolyfills } from '@/mastodon/polyfills';
+import ready from '@/mastodon/ready';
+import { assetHost } from '@/mastodon/utils/config';
+import { getNestedProperty } from '@/mastodon/utils/objects';
+import { isDarkMode } from '@/mastodon/utils/theme';
 import { formatTime } from '@/mastodon/utils/time';
-
-import emojify from '../mastodon/features/emoji/emoji';
-import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
-import { loadLocale, getLocale } from '../mastodon/locales';
-import { loadPolyfills } from '../mastodon/polyfills';
-import ready from '../mastodon/ready';
 
 import 'cocoon-js-vanilla';
 
@@ -38,7 +41,7 @@ const messages = defineMessages({
   },
 });
 
-function loaded() {
+async function loaded() {
   const { messages: localeData } = getLocale();
 
   const locale = document.documentElement.lang;
@@ -75,9 +78,30 @@ function loaded() {
     return messageFormat.format(values) as string;
   };
 
-  document.querySelectorAll('.emojify').forEach((content) => {
-    content.innerHTML = emojify(content.innerHTML);
-  });
+  let emojiStyle = 'auto';
+  const initialStateText =
+    document.getElementById('initial-state')?.textContent;
+  if (initialStateText) {
+    const stateEmojiStyle = getNestedProperty(
+      JSON.parse(initialStateText) as unknown,
+      'meta',
+      'emoji_style',
+    );
+    if (typeof stateEmojiStyle === 'string') {
+      emojiStyle = stateEmojiStyle;
+    }
+  }
+  const emojiMode = determineEmojiMode(emojiStyle);
+  const darkTheme = isDarkMode();
+  for (const element of document.querySelectorAll('.emojify')) {
+    await updateHtmlWithEmoji({
+      assetHost,
+      element,
+      locale,
+      mode: emojiMode,
+      darkTheme,
+    });
+  }
 
   document
     .querySelectorAll<HTMLTimeElement>('time.formatted')

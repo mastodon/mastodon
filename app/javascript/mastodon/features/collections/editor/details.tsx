@@ -46,8 +46,16 @@ import { WizardStepTitle } from './wizard_step_title';
 export const CollectionDetails: React.FC = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const { id, name, description, topic, discoverable, sensitive, items } =
-    useAppSelector((state) => state.collections.editor);
+  const {
+    id,
+    name,
+    description,
+    topic,
+    language,
+    discoverable,
+    sensitive,
+    items,
+  } = useAppSelector((state) => state.collections.editor);
 
   const handleNameChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,6 +118,7 @@ export const CollectionDetails: React.FC = () => {
           name,
           description,
           tag_name: topic || null,
+          language: language || null,
           discoverable,
           sensitive,
         };
@@ -125,6 +134,9 @@ export const CollectionDetails: React.FC = () => {
           sensitive,
           account_ids: items.map((item) => item.account_id),
         };
+        if (language) {
+          payload.language = language;
+        }
         if (topic) {
           payload.tag_name = topic;
         }
@@ -149,6 +161,7 @@ export const CollectionDetails: React.FC = () => {
       description,
       topic,
       discoverable,
+      language,
       sensitive,
       dispatch,
       history,
@@ -392,12 +405,7 @@ const renderTagItem = (item: TagSearchResult) => (
 
 const LanguageField: React.FC = () => {
   const dispatch = useAppDispatch();
-  const initialLanguage = useAppSelector(
-    (state) => state.compose.get('default_language') as string,
-  );
   const { language } = useAppSelector((state) => state.collections.editor);
-
-  const selectedLanguage = language ?? initialLanguage;
 
   const handleLanguageChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -419,7 +427,7 @@ const LanguageField: React.FC = () => {
           defaultMessage='Language'
         />
       }
-      value={selectedLanguage}
+      value={language}
       onChange={handleLanguageChange}
     >
       <option value=''>

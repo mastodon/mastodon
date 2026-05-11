@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 

@@ -92,6 +92,7 @@ sv:
         closed_registrations_message: Visas när nyregistreringar är avstängda
         content_cache_retention_period: Alla inlägg från andra servrar (inklusive booster och svar) kommer att raderas efter det angivna antalet dagar, utan hänsyn till någon lokal användarinteraktion med dessa inlägg. Detta inkluderar inlägg där en lokal användare har markerat det som bokmärke eller favoriter. Privata omnämnanden mellan användare från olika instanser kommer också att gå förlorade och blir omöjliga att återställa. Användningen av denna inställning är avsedd för specialfall och bryter många användarförväntningar när de implementeras för allmänt bruk.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
+        email_footer_text: Valfri text som endast visas i sidfoten av e-post om nyhetsbrev.
         favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
         landing_page: Väljer vilken sida nya besökare ser när de först anländer till din server. Om du väljer "Trender" måste trenderna aktiveras i Upptäckningsinställningarna. Om du väljer "Lokalt flöde" måste "Åtkomst till live-flöden med lokala inlägg" sättas till "Alla" i Upptäckningsinställningarna.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
@@ -294,6 +295,7 @@ sv:
         closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
         content_cache_retention_period: Förvaringsperiod för fjärrinnehåll
         custom_css: Anpassad CSS
+        email_footer_text: Ytterligare sidfotstext
         favicon: Favicon
         landing_page: Startsida för nya besökare
         local_live_feed_access: Åtkomst till live-flöden med lokala inlägg
@@ -322,6 +324,9 @@ sv:
         trendable_by_default: Tillåt trender utan föregående granskning
         trends: Aktivera trender
         wrapstodon: Aktivera Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Jag förstår att om denna funktion aktiveras kan volymen av e-post som skickas från servern öka avsevärt och att jag är ensam ansvarig för eventuella kostnader.
+        agreement_privacy_and_terms: Jag har uppdaterat integritetspolicyn och användarvillkoren.
       interactions:
         must_be_follower: Blockera notiser från icke-följare
         must_be_following: Blockera notiser från personer du inte följer

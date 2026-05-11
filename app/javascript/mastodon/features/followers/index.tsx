@@ -9,6 +9,7 @@ import { expandFollowers, fetchFollowers } from '@/mastodon/actions/accounts';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
+import { me } from '@/mastodon/initial_state';
 import { selectUserListWithoutMe } from '@/mastodon/selectors/user_lists';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
@@ -85,6 +86,7 @@ const Followers: FC = () => {
       list={followerList}
       loadMore={loadMore}
       prependAccountId={followerId}
+      withoutFollowsYouBadge={accountId === me}
       scrollKey='followers'
     />
   );

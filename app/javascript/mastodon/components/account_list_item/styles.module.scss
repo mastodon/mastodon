@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  align-items: start;
   gap: 12px;
   padding: 16px;
 
@@ -22,6 +21,13 @@
 .badge {
   // Sort out vertical alignment next to name
   vertical-align: -4px;
+}
+
+.handle {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .button {

@@ -19,7 +19,7 @@ import type {
   ApiUpdateCollectionPayload,
   CollectionAccountItem,
 } from '@/mastodon/api_types/collections';
-import { me } from '@/mastodon/initial_state';
+import { initialState, me } from '@/mastodon/initial_state';
 import {
   createAppAsyncThunk,
   createAppSelector,
@@ -63,7 +63,7 @@ interface EditorState {
   name: string;
   description: string;
   topic: string;
-  language: string | null;
+  language: string;
   discoverable: boolean;
   sensitive: boolean;
   items: EditorCollectionItem[];
@@ -74,7 +74,7 @@ interface UpdateEditorFieldPayload<K extends keyof EditorState> {
   value: EditorState[K];
 }
 
-const initialState: CollectionState = {
+const initialCollectionState: CollectionState = {
   collections: {},
   createdBy: {},
   featuring: {},
@@ -83,7 +83,7 @@ const initialState: CollectionState = {
     name: '',
     description: '',
     topic: '',
-    language: null,
+    language: initialState?.compose.default_language ?? 'en',
     discoverable: true,
     sensitive: false,
     items: [],
@@ -92,24 +92,24 @@ const initialState: CollectionState = {
 
 const collectionSlice = createSlice({
   name: 'collections',
-  initialState,
+  initialState: initialCollectionState,
   reducers: {
-    init(state, action: PayloadAction<ApiCollectionJSON | null>) {
+    init(state, action: PayloadAction<ApiCollectionJSON>) {
       const collection = action.payload;
 
       state.editor = {
-        id: collection?.id ?? null,
-        name: collection?.name ?? '',
-        description: collection?.description ?? '',
-        topic: inputToHashtag(collection?.tag?.name ?? ''),
-        language: collection?.language ?? '',
-        discoverable: collection?.discoverable ?? true,
-        sensitive: collection?.sensitive ?? false,
-        items: getEditorCollectionItems(collection?.items ?? []),
+        id: collection.id,
+        name: collection.name,
+        description: collection.description ?? '',
+        topic: inputToHashtag(collection.tag?.name ?? ''),
+        language: collection.language ?? '',
+        discoverable: collection.discoverable,
+        sensitive: collection.sensitive,
+        items: getEditorCollectionItems(collection.items),
       };
     },
     reset(state) {
-      state.editor = initialState.editor;
+      state.editor = initialCollectionState.editor;
     },
     updateEditorField<K extends keyof EditorState>(
       state: CollectionState,
@@ -233,7 +233,7 @@ const collectionSlice = createSlice({
     builder.addCase(updateCollection.fulfilled, (state, action) => {
       const { collection } = action.payload;
       state.collections[collection.id] = collection;
-      state.editor = initialState.editor;
+      state.editor = initialCollectionState.editor;
     });
 
     /**
@@ -262,7 +262,7 @@ const collectionSlice = createSlice({
       const { collection } = actions.payload;
 
       state.collections[collection.id] = collection;
-      state.editor = initialState.editor;
+      state.editor = initialCollectionState.editor;
 
       if (state.createdBy[collection.account_id]) {
         state.createdBy[collection.account_id]?.collectionIds.unshift(

@@ -3,8 +3,6 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import classNames from 'classnames';
-
 import { followAccount } from '@/mastodon/actions/accounts';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
@@ -18,6 +16,7 @@ import { FollowButton } from '../follow_button';
 import { IconButton } from '../icon_button';
 
 import { AccountMenu } from './menu';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   enableNotifications: {
@@ -49,7 +48,7 @@ export const AccountButtons: FC<AccountButtonsProps> = ({
   const me = useAppSelector((state) => state.meta.get('me') as string);
 
   return (
-    <div className={classNames('account__header__buttons', className)}>
+    <div className={className}>
       {!hidden && (
         <AccountButtonsOther accountId={accountId} noShare={noShare} />
       )}
@@ -94,7 +93,7 @@ const AccountButtonsOther: FC<
       {!isMovedAndUnfollowedAccount && (
         <FollowButton
           accountId={accountId}
-          className='account__header__follow-button'
+          className={classes.followButton}
           labelLength='long'
         />
       )}

@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 import { Link } from 'react-router-dom';
 
 import { Button } from 'mastodon/components/button';

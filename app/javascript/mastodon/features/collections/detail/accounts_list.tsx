@@ -138,12 +138,16 @@ export const CollectionAccountsList: React.FC<{
 
   const renderAccountItemButton = useCallback(
     ({ relationship, accountId }: RenderButtonOptions) => {
+      if (!me || !relationship) {
+        // Show follow button when logged out (it will trigger the remote interaction modal)
+        return <AccountListItemFollowButton accountId={accountId} />;
+      }
+
       // When viewing your own collection, only show the Follow button
       // for accounts you're not following anymore.
       const withoutButton =
-        !relationship ||
-        (collectionOwnerId === me &&
-          (relationship.following || relationship.requested));
+        collectionOwnerId === me &&
+        (relationship.following || relationship.requested);
 
       if (withoutButton) return null;
 

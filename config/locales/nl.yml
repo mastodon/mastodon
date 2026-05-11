@@ -484,8 +484,10 @@ nl:
         title: Nieuw e-maildomein blokkeren
       no_email_domain_block_selected: Er werden geen e-maildomeinblokkades gewijzigd, omdat er geen enkele werd geselecteerd
       not_permitted: Niet toegestaan
+      reset: Opnieuw
       resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
       resolved_through_html: Geblokkeerd via %{domain}
+      search: Zoeken
       title: Geblokkeerde e-maildomeinen
     email_subscriptions:
       accounts:
@@ -496,6 +498,7 @@ nl:
           no_lists_yet: Nog geen lijsten
         inactive: Inactief
         last_email: Meest recente e-mail
+        lead: Accounts die deze functionaliteit hebben ingeschakeld en abonnees hebben, worden hieronder getoond.
         status: Status
         subscribers: Abonnees
         title: Mailinglijsten
@@ -507,8 +510,10 @@ nl:
           action: Beheren
           hint: Optionele tekst dat alleen onderin de e-mailnieuwsbrief verschijnt
           title: Aanvullende voettekst
+        lead: E-mailnieuwsbrieven kunnen, afhankelijk van jouw jurisdictie, als marketingmails worden gezien.
         privacy_policy:
           action: Beheren
+          hint: Dit beleid wordt onderaan elke e-mail gelinkt
           title: Privacybeleid
         title: Compliance-instellingen
       danger_zone:
@@ -518,12 +523,18 @@ nl:
           title: Functionaliteit uitschakelen
         erase_all_data:
           action: Gegevens verwijderen
+          hint: Verwijderd permanent alle e-mails in alle mailinglijsten
           title: Alle gegevens verwijderen
         title: Gevarenzone
+      disabled_msg: Het uitschakelen van e-mailabonnementen is geslaagd.
       index:
         disabled:
+          cannot_be_enabled: Jouw serverbeheerder heeft deze functionaliteit op deze server niet ingeschakeld.
+          description: Deze functionaliteit staat bepaalde accounts toe om een widget op hun profiel te plaatsen, waardoor bezoekers zonder Mastodon-account hun berichten via e-mail kunnen ontvangen.
           get_started: Aan de slag
+        lead: Sta bezoekers toe om berichten van bepaalde accounts op deze server via e-mail te ontvangen.
         title: E-mailnieuwsbrieven
+      purged_msg: Alle gegevens van e-mailabonnementen worden verwijderd.
       roles:
         accounts: Accounts
         edit_role: Rol bewerken

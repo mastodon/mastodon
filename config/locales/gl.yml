@@ -484,8 +484,10 @@ gl:
         title: Bloquear novo dominio de correo
       no_email_domain_block_selected: Non se cambiou ningún bloqueo de dominio porque non había ningún seleccionado
       not_permitted: Non permitido
+      reset: Restabelecer
       resolved_dns_records_hint_html: O nome de dominio corresponde cos seguintes dominios MX, que son os responsables últimos de aceptar o correo. Ao bloquear un dominio MX bloquerás a creación de contas para todo enderezo de correo que use o mesmo dominio MX, incluso se o nome de dominio visible é diferente. <strong>Ten coidado xa que podes bloquear os principais provedores de correo.</strong>
       resolved_through_html: Resolto a través de %{domain}
+      search: Buscar
       title: Dominios de correo bloqueados
     email_subscriptions:
       accounts:
@@ -551,6 +553,7 @@ gl:
             1_permission_explanation: Cando se activa esta ferramenta as contas cos permisos concedidos poden engadir un formulario no seu perfil para recoller correos.
             2_feature_explanation: Cando unha persoa visita se apunta na páxina do perfil e confirma a súa subscrición, comezará a recibir actualizacións por correo cando a conta publique novas publicacións públicas.
             3_privacy_policy_warning: A administración do servidor vai ter acceso aos PII (enderezos de correo) recollidos. Así, a directiva de privacidade e os termos do servizo do servidor deben actualizarse antes de activar esta ferramenta.
+            4_cost_warning: Os correos poderían supoñer costes adicionais do servidor. Consulta co teu provedor de hospedaxe antes de activalos, xa que esta ferramenta podería facer aumentar drásticamente o número de correos que envía o teu servidor.
     export_domain_allows:
       new:
         title: Importar dominios permitidos
@@ -856,6 +859,7 @@ gl:
         manage_custom_emojis: Xestionar Emojis personalizados
         manage_custom_emojis_description: Permite xestionar os emojis personalizados do servidor
         manage_email_subscriptions: Xestionar subscripcións por correo
+        manage_email_subscriptions_description: Permitir ás usuarias con este permiso activar para a súa conta a ferramenta do boletín por correo
         manage_federation: Xestionar a federación
         manage_federation_description: Permite bloquear ou permitir a federación con outros dominios, e controlar as entregas
         manage_invites: Xestionar Convites
