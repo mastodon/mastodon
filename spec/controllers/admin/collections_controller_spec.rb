@@ -10,6 +10,7 @@ RSpec.describe Admin::CollectionsController do
   let(:other_account) { Fabricate(:account) }
   let(:collection) { Fabricate(:collection, account: account) }
   let(:second_collection) { Fabricate(:collection, account: account) }
+  let(:unreported_collection) { Fabricate(:collection, account: account) }
   let(:report) { Fabricate(:report, account: other_account, target_account: account) }
   let(:collection_report) { Fabricate(:collection_report, report: report, collection: collection) }
 
@@ -17,6 +18,7 @@ RSpec.describe Admin::CollectionsController do
     sign_in user, scope: :user
     collection_report
     second_collection
+    unreported_collection
   end
 
   describe 'GET #index' do
@@ -38,6 +40,15 @@ RSpec.describe Admin::CollectionsController do
 
     it 'returns http success' do
       expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'POST #batch' do
+    subject { post :batch, params: { account_id: account.id, report_id: report.id, admin_collection_batch_action: { collection_ids: [collection.id, second_collection.id] } } }
+
+    it 'redirects to the report page' do
+      subject
+      expect(response).to redirect_to(admin_report_path(Report.last.id))
     end
   end
 end

@@ -28,7 +28,7 @@ RSpec.describe 'report interface', :attachment_processing do
 
     before do
       collection_report
-      collection_report_2
+      collection_report2
     end
 
     it 'displays the report interface with collection reports' do
