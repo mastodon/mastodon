@@ -437,6 +437,13 @@ namespace :dev do
         state: :accepted
       ).find_or_create_by!(id: 10_000_013)
 
+      Status.create_with(
+        text: 'This post has a manual quote policy',
+        account: remote_account,
+        visibility: :public,
+        quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public]
+      ).find_or_create_by!(id: 10_000_030)
+
       Collection.create_with(
         account: showcase_account,
         name: 'Showcase Collection',
