@@ -41,7 +41,6 @@ RSpec.describe Web::PushSubscription do
       let(:policy) { 'all' }
 
       it 'returns true' do
-        # Predicate matcher syntax automatically delegates to `pushable?`
         expect(subject).to be_pushable(notification)
       end
     end
@@ -50,7 +49,6 @@ RSpec.describe Web::PushSubscription do
       let(:policy) { 'none' }
 
       it 'returns false' do
-        # Predicate matcher syntax automatically delegates to `pushable?`
         expect(subject).to_not be_pushable(notification)
       end
     end
@@ -129,7 +127,6 @@ RSpec.describe Web::PushSubscription do
       let(:policy) { 'unknown' }
 
       it 'returns a falsey value' do
-        # Predicate matcher syntax automatically delegates to `pushable?`
         expect(subject).to_not be_pushable(notification)
       end
     end
@@ -142,7 +139,7 @@ RSpec.describe Web::PushSubscription do
   describe '.unsubscribe_for' do
     let(:application) { Fabricate(:application) }
     let(:user) { Fabricate(:user, account: account) }
-    let(:subscription) do
+    let!(:subscription) do
       Fabricate(
         :web_push_subscription,
         user: user,
@@ -158,14 +155,11 @@ RSpec.describe Web::PushSubscription do
       )
     end
 
-    before do
-      subscription
-    end
-
     it 'removes subscriptions for matching application and resource owner' do
       expect do
         described_class.unsubscribe_for(application.id, user)
       end.to change(described_class, :count).by(-1)
+      expect { subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
