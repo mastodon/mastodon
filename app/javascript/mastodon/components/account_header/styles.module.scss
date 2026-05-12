@@ -546,6 +546,32 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   }
 }
 
+.bannerActionsDisplayName {
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  overflow: hidden;
+  text-decoration: none;
+
+  &:hover strong {
+    text-decoration: underline;
+  }
+
+  strong,
+  span {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  strong {
+    color: var(--color-text-primary);
+  }
+}
+
 // Buttons
 
 .followButton {

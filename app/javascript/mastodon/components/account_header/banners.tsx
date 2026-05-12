@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import type { FC, ReactNode } from 'react';
+import type { FC, ReactElement, ReactNode } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -23,10 +23,6 @@ import { Icon } from '../icon';
 
 import classes from './styles.module.scss';
 
-const renderText = (nodes: ReactNode[]) => (
-  <div className={classes.bannerText}>{nodes}</div>
-);
-
 export const AccountBanners: FC<{ account: Account }> = ({ account }) => {
   const { suspended, hidden } = useAccountVisibility(account.id);
   const relationship = useRelationship(account.id);
@@ -39,9 +35,12 @@ export const AccountBanners: FC<{ account: Account }> = ({ account }) => {
 
   if (account.memorial) {
     banner = (
-      <FormattedMessage id='account.in_memoriam' defaultMessage='In Memoriam.'>
-        {renderText}
-      </FormattedMessage>
+      <MessageText>
+        <FormattedMessage
+          id='account.in_memoriam'
+          defaultMessage='In Memoriam.'
+        />
+      </MessageText>
     );
   }
 
@@ -72,13 +71,13 @@ const FollowRequestNote: FC<{ account: Account }> = ({ account }) => {
 
   return (
     <>
-      <FormattedMessage
-        id='account.requested_follow'
-        defaultMessage='{name} has requested to follow you'
-        values={{ name: <DisplayName account={account} variant='simple' /> }}
-      >
-        {renderText}
-      </FormattedMessage>
+      <MessageText>
+        <FormattedMessage
+          id='account.requested_follow'
+          defaultMessage='{name} has requested to follow you'
+          values={{ name: <DisplayName account={account} variant='simple' /> }}
+        />
+      </MessageText>
 
       <div className={classes.bannerActions}>
         <Button secondary onClick={handleAuthorize}>
@@ -109,21 +108,19 @@ const MovedNote: React.FC<{
 
   return (
     <>
-      <FormattedMessage
-        id='account.moved_to'
-        defaultMessage='{name} has indicated that their new account is now:'
-        values={{
-          name: <DisplayName account={from} variant='simple' />,
-        }}
-      >
-        {renderText}
-      </FormattedMessage>
+      <MessageText>
+        <FormattedMessage
+          id='account.moved_to'
+          defaultMessage='{name} has indicated that their new account is now:'
+          values={{
+            name: <DisplayName account={from} variant='simple' />,
+          }}
+        />
+      </MessageText>
 
       <div className={classes.bannerActions}>
-        <Link to={`/@${to?.acct}`} className='detailed-status__display-name'>
-          <div className='detailed-status__display-avatar'>
-            <AvatarOverlay account={to} friend={from} />
-          </div>
+        <Link to={`/@${to?.acct}`} className={classes.bannerActionsDisplayName}>
+          <AvatarOverlay account={to} friend={from} />
           <DisplayName account={to} />
         </Link>
 
@@ -137,3 +134,7 @@ const MovedNote: React.FC<{
     </>
   );
 };
+
+const MessageText: React.FC<{ children: ReactElement }> = ({ children }) => (
+  <div className={classes.bannerText}>{children}</div>
+);
