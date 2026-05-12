@@ -63,26 +63,26 @@
           = render partial: 'admin/shared/status_batch_row', collection: @statuses, as: :status, locals: { f: f }
 
 - if Mastodon::Feature.collections_enabled?
-  %details{ open: @report.collections.any? }
+  %details{ open: @collections.any? }
     %summary
-      = t 'admin.reports.collections', count: @report.collections.size
+      = t 'admin.reports.collections', count: @collections.size
 
-    = form_with model: @form, url: batch_admin_account_collections_path(@report.target_account_id, report_id: @report.id) do |f|
-      .batch-table
-        .batch-table__toolbar
-          %label.batch-table__toolbar__select.batch-checkbox-all
-            = check_box_tag :batch_checkbox_all, nil, false
-          .batch-table__toolbar__actions
-            = link_to safe_join([material_symbol('add'), t('admin.reports.add_to_report')]),
-                      admin_account_collections_path(@report.target_account_id, report_id: @report.id),
-                      class: 'table-action-link'
-            - if !@report.collections.empty? && @report.unresolved?
-              = f.button safe_join([material_symbol('close'), t('admin.collections.batch.remove_from_report')]), name: :remove_from_report, class: 'table-action-link', type: :submit
-        .batch-table__body
-          - if @report.collections.empty?
-            = nothing_here 'nothing-here--under-tabs'
-          - else
-            = render partial: 'admin/shared/collection_batch_row', collection: @report.collections, as: :collection, locals: { f: f }
+  = form_with model: @collection_form, url: batch_admin_account_collections_path(@report.target_account_id, report_id: @report.id) do |f|
+    .batch-table
+      .batch-table__toolbar
+        %label.batch-table__toolbar__select.batch-checkbox-all
+          = check_box_tag :batch_checkbox_all, nil, false
+        .batch-table__toolbar__actions
+          = link_to safe_join([material_symbol('add'), t('admin.reports.add_to_report')]),
+                    admin_account_collections_path(@report.target_account_id, report_id: @report.id),
+                    class: 'table-action-link'
+          - if !@collections.empty? && @report.unresolved?
+            = f.button safe_join([material_symbol('close'), t('admin.collections.batch.remove_from_report')]), name: :remove_from_report, class: 'table-action-link', type: :submit
+      .batch-table__body
+        - if @collections.empty?
+          = nothing_here 'nothing-here--under-tabs'
+        - else
+          = render partial: 'admin/shared/collection_batch_row', collection: @collections, as: :collection, locals: { f: f }
 
 - if @report.unresolved?
   %hr.spacer/
