@@ -1,0 +1,49 @@
+- content_for :page_title do
+  = t('admin.collections.title', name: @account.pretty_acct)
+
+.filters
+  .filter-subset
+    %ul
+      %li= filter_link_to t('generic.all'), id: nil
+  .back-link
+    - if params[:report_id]
+      = link_to admin_report_path(params[:report_id].to_i) do
+        = material_symbol 'chevron_left'
+        = t('admin.collections.back_to_report')
+    - else
+      = link_to admin_account_path(@account.id) do
+        = material_symbol 'chevron_left'
+        = t('admin.collections.back_to_account')
+
+%hr.spacer/
+
+
+= form_with model: @collection_batch_action, url: batch_admin_account_collections_path(@account.id) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+  = hidden_field_tag :report_id, params[:report_id]
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        - unless @collections.empty?
+          - if params[:report_id]
+            = f.button safe_join([material_symbol('add'), t('admin.collections.batch.add_to_report', id: params[:report_id])]),
+                       class: 'table-action-link',
+                       data: { confirm: t('admin.reports.are_you_sure') },
+                       name: :report,
+                       type: :submit
+          - else
+            = f.button safe_join([material_symbol('flag'), t('admin.collections.batch.report')]),
+                       class: 'table-action-link',
+                       data: { confirm: t('admin.reports.are_you_sure') },
+                       name: :report,
+                       type: :submit
+  .batch-table__body
+    - if @collections.empty?
+      = nothing_here 'nothing-here--under-tabs'
+    - else
+      = render partial: 'admin/shared/collection_batch_row', collection: @collections, as: :collection, locals: { f: f }
+
+= paginate @collections
