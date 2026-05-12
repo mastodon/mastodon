@@ -42,11 +42,4 @@ class Admin::CollectionBatchAction < Admin::BaseAction
   def target_account
     @target_account ||= collection.first.account
   end
-  # remove from report
-  # def handle_remove_from_report!
-  #   return unless with_report?
-
-  #   report.collection.ids -= collection_ids.map(&:to_i)
-  #   report.save!
-  # end
 end
