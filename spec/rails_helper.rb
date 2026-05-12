@@ -29,12 +29,6 @@ if ENV.fetch('COVERAGE', false)
     add_group 'Services', 'app/services'
     add_group 'Validators', 'app/validators'
   end
-
-  if defined?(Flatware)
-    Flatware.configure do |config|
-      config.after_fork { |test| SimpleCov.at_fork.call(test) } # Combines parallel coverage results
-    end
-  end
 end
 
 # This needs to be defined before Rails is initialized
