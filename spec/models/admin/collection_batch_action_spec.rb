@@ -46,5 +46,15 @@ RSpec.describe Admin::CollectionBatchAction do
         expect(Report.last.collections).to include(collection)
       end
     end
+
+    context 'when type is remove_from_report' do
+      let(:report_id) { report.id }
+      let(:type) { 'remove_from_report' }
+
+      it 'does not remove report but removes collection' do
+        expect { subject.save! }.to_not change(Report, :count)
+        expect(report.collections).to eq([])
+      end
+    end
   end
 end
