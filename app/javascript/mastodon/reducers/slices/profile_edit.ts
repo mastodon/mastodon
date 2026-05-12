@@ -282,12 +282,8 @@ export const updateField = createAppAsyncThunk(
       throw new Error('Profile fields not found');
     }
 
-    const maxFields = getState().server.getIn([
-      'server',
-      'configuration',
-      'accounts',
-      'max_fields',
-    ]) as number | undefined;
+    const maxFields =
+      getState().server.server.item?.configuration.accounts.max_profile_fields;
     if (maxFields && fields.length >= maxFields && !arg.id) {
       throw new Error('Maximum number of profile fields reached');
     }

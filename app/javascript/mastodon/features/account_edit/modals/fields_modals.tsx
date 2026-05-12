@@ -9,8 +9,6 @@ import type { FC, FocusEventHandler } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import type { Map as ImmutableMap } from 'immutable';
-
 import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import type { FieldStatus } from '@/mastodon/components/form_fields';
@@ -97,15 +95,10 @@ const messages = defineMessages({
 // We have two different values- the hard limit set by the server,
 // and the soft limit for mobile display.
 const selectFieldLimits = createAppSelector(
-  [
-    (state) =>
-      state.server.getIn(['server', 'configuration', 'accounts']) as
-        | ImmutableMap<string, number>
-        | undefined,
-  ],
+  [(state) => state.server.server.item?.configuration.accounts],
   (accounts) => ({
-    nameLimit: accounts?.get('profile_field_name_limit'),
-    valueLimit: accounts?.get('profile_field_value_limit'),
+    nameLimit: accounts?.profile_field_name_limit,
+    valueLimit: accounts?.profile_field_value_limit,
   }),
 );
 

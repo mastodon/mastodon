@@ -100,7 +100,7 @@ export const ensureComposeIsVisible = (getState) => {
 
 export function setComposeToStatus(status, text, spoiler_text) {
   return (dispatch, getState) => {
-    const maxOptions = getState().server.getIn(['server', 'configuration', 'polls', 'max_options']);
+    const maxOptions = getState().server.server.item?.configuration.polls.max_options;
 
     dispatch({
       type: COMPOSE_SET_STATUS,

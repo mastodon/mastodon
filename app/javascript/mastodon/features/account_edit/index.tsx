@@ -133,12 +133,7 @@ export const AccountEdit: FC = () => {
 
   const maxFieldCount = useAppSelector(
     (state) =>
-      (state.server.getIn([
-        'server',
-        'configuration',
-        'accounts',
-        'max_profile_fields',
-      ]) as number | undefined) ?? 4,
+      state.server.server.item?.configuration.accounts.max_profile_fields ?? 4,
   );
 
   const handleOpenModal = useCallback(

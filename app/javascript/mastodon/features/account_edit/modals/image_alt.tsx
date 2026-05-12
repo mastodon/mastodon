@@ -84,15 +84,8 @@ export const ImageAltTextField: FC<{
 }> = ({ imageSrc, altText, onChange, hideTip }) => {
   const altLimit = useAppSelector(
     (state) =>
-      state.server.getIn(
-        [
-          'server',
-          'configuration',
-          'accounts',
-          'max_header_description_length',
-        ],
-        150,
-      ) as number,
+      state.server.server.item?.configuration.accounts
+        .max_header_description_length ?? 0,
   );
 
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(

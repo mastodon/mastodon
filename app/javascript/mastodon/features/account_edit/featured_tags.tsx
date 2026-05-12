@@ -37,10 +37,7 @@ const selectTags = createAppSelector(
   [
     (state) => state.profileEdit,
     (state) =>
-      state.server.getIn(
-        ['server', 'accounts', 'max_featured_tags'],
-        10,
-      ) as number,
+      state.server.server.item?.configuration.accounts.max_featured_tags ?? 0,
   ],
   (profileEdit, maxTags) => ({
     tags: profileEdit.profile?.featuredTags ?? [],
