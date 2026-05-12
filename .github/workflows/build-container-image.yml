@@ -87,8 +87,8 @@ jobs:
           platforms: ${{ matrix.platform }}
           provenance: false
           push: ${{ inputs.push_to_images != '' }}
-          cache-from: ${{ inputs.cache && 'type=gha' || '' }}
-          cache-to: ${{ inputs.cache && 'type=gha,mode=max' || '' }}
+          cache-from: ${{ inputs.cache && format('type=gha,scope=build-{0}-{1}', hashFiles(inputs.file_to_build), env.PLATFORM_PAIR) || '' }}
+          cache-to: ${{ inputs.cache && format('type=gha,mode=max,scope=build-{0}-{1}', hashFiles(inputs.file_to_build), env.PLATFORM_PAIR) || '' }}
           outputs: type=image,"name=${{ env.IMAGE_NAMES }}",push-by-digest=true,name-canonical=true,push=${{ inputs.push_to_images != '' }}
 
       - name: Export digest
