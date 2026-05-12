@@ -17,10 +17,13 @@ class Admin::CollectionBatchAction < Admin::BaseAction
   end
 
   def add_to_report!
-    @report = Report.new(report_params) unless with_report?
+    set_report unless with_report?
     @report.collections = (@report.collections + selected_collections).uniq
     @report.save!
+  end
 
+  def set_report
+    @report = Report.new(report_params)
     @report_id = @report.id
   end
 

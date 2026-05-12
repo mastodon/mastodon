@@ -41,25 +41,21 @@ module Admin
       end
     end
 
-    def report_id
-      @collections_batch_action&.report_id || params[:report_id]
-    end
-
     def admin_collection_batch_action_params
       params
         .expect(admin_collection_batch_action: [collection_ids: []])
     end
 
     def set_account
-      @set_account ||= Account.find(params[:account_id])
+      @account = Account.find(params[:account_id])
     end
 
     def set_collection
-      @collection = @set_account.collections.includes(accepted_collection_items: :account).find(params[:id])
+      @collection = @account.collections.includes(accepted_collection_items: :account).find(params[:id])
     end
 
     def set_collections
-      @collections = @set_account.collections.includes(accepted_collection_items: :account).page(params[:page]).per(PER_PAGE)
+      @collections = @account.collections.includes(accepted_collection_items: :account).page(params[:page]).per(PER_PAGE)
     end
   end
 end
