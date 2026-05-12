@@ -505,6 +505,22 @@ cs:
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které mají nakonec na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která používá stejnou MX doménu, i když je viditelné doménové jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       resolved_through_html: Přeložena přes %{domain}
       title: Blokované e-mailové domény
+    email_subscriptions:
+      accounts:
+        account: Účet
+        inactive: Neaktivní
+        last_email: Poslední e-mail
+        status: Status
+      compliance_settings:
+        additional_footer_text:
+          action: Spravovat
+        privacy_policy:
+          action: Spravovat
+      roles:
+        edit_role: Upravit roli
+        manage_roles: Spravovat role
+        role_name: Název role
+        title: Role
     export_domain_allows:
       new:
         title: Importovat povolené domény
@@ -717,6 +733,7 @@ cs:
       cancel: Zrušit
       category: Kategorie
       category_description_html: Důvod nahlášení tohoto účtu a/nebo obsahu bude uveden v komunikaci s nahlášeným účtem
+      collections: Sbírky (%{count})
       comment:
         none: Žádné
       comment_description_html: 'Pro upřesnění uživatel %{name} napsal:'
@@ -788,6 +805,7 @@ cs:
       categories:
         administration: Administrace
         devops: DevOps
+        email: E-mail
         invites: Pozvánky
         moderation: Moderování
         special: Speciální
