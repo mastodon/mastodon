@@ -60,4 +60,48 @@ RSpec.describe UsernameBlock do
       end
     end
   end
+
+  describe 'instance methods' do
+    subject(:username_block) { described_class.new }
+
+    describe '#comparison' do
+      subject(:username_block) { described_class.new(exact: exact) }
+
+      context 'when exact is true' do
+        let(:exact) { true }
+
+        it 'returns equals' do
+          expect(username_block.comparison).to eq('equals')
+        end
+      end
+
+      context 'when exact is false' do
+        let(:exact) { false }
+
+        it 'returns contains' do
+          expect(username_block.comparison).to eq('contains')
+        end
+      end
+    end
+
+    describe '#comparison=' do
+      it 'sets exact to true when equals is passed' do
+        username_block.comparison = 'equals'
+        expect(username_block.exact).to be(true)
+      end
+
+      it 'sets exact to false when contains is passed' do
+        username_block.comparison = 'contains'
+        expect(username_block.exact).to be(false)
+      end
+    end
+
+    describe '#to_log_human_identifier' do
+      it 'returns the username' do
+        username_block.username = 'harry'
+
+        expect(username_block.to_log_human_identifier).to eq('harry')
+      end
+    end
+  end
 end
