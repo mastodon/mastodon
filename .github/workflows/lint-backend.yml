@@ -22,17 +22,38 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
+      - uses: dorny/paths-filter@v4
+        id: filter
+        with:
+          filters: |
+            shared: &shared
+              - '.github/workflows/lint-backend.yml'
+              - '.rubocop*.yml'
+              - '.rubocop/*.yml'
+              - '.ruby-version'
+              - 'Gemfile*'
+            views:
+              - *shared
+              - '.haml-lint*.yml'
+              - '**/*.haml'
+              - 'bin/haml-lint'
+            ruby:
+              - *shared
+              - '**/*.rake'
+              - '**/*.rb'
+              - 'bin/rubocop'
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1
         with:
           bundler-cache: true
 
       - name: Lint haml views
-        if: always()
+        if: steps.filter.outputs.views == 'true'
         run: bin/haml-lint --reporter github
 
       - name: Lint ruby code
-        if: always()
+        if: steps.filter.outputs.ruby == 'true'
         run: bin/rubocop --format github
 
       - name: Run security audit with brakeman

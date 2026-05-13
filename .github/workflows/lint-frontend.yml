@@ -19,17 +19,46 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
+      - uses: dorny/paths-filter@v4
+        id: filter
+        with:
+          filters: |
+            shared: &shared
+              - '.github/workflows/lint-frontend.yml'
+              - '.nvmrc'
+              - 'package.json'
+              - 'yarn.lock'
+            styles:
+              - *shared
+              - '**/*.css'
+              - '**/*.scss'
+              - 'stylelint.config.js'
+            javascript:
+              - *shared
+              - '**/*.js'
+              - '**/*.jsx'
+              - 'eslint.config.mjs'
+            typescript:
+              - *shared
+              - '**/*.ts'
+              - '**/*.tsx'
+              - 'tsconfig.json'
+
       - name: Set up JavaScript environment
         uses: ./.github/actions/setup-javascript
 
       - name: Lint styles
+        if: steps.filter.outputs.styles == 'true'
         run: yarn lint:css --custom-formatter @csstools/stylelint-formatter-github
 
       - name: Lint JS
+        if: steps.filter.outputs.javascript == 'true'
         run: yarn workspaces foreach --all --parallel run lint:js --max-warnings 0
 
       - name: Lint TS
+        if: steps.filter.outputs.typescript == 'true'
         run: yarn typecheck
 
-      - name: Lint formatting
+      - name: Run format check
+        if: always()
         run: yarn format:check
