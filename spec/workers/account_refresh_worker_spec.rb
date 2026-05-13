@@ -19,7 +19,7 @@ RSpec.describe AccountRefreshWorker do
 
     context 'when account exists' do
       context 'when account does not need refreshing' do
-        let(:account) { Fabricate(:account, last_webfingered_at: recent_webfinger_at) }
+        let(:account) { Fabricate(:remote_account, last_webfingered_at: recent_webfinger_at) }
 
         it 'returns immediately without processing' do
           worker.perform(account.id)
@@ -29,9 +29,9 @@ RSpec.describe AccountRefreshWorker do
       end
 
       context 'when account needs refreshing' do
-        let(:account) { Fabricate(:account, last_webfingered_at: outdated_webfinger_at) }
+        let(:account) { Fabricate(:remote_account, last_webfingered_at: outdated_webfinger_at) }
 
-        it 'schedules an account update' do
+        it 'performs an account update' do
           worker.perform(account.id)
 
           expect(service).to have_received(:call)

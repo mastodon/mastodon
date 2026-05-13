@@ -840,4 +840,36 @@ RSpec.describe Account do
       end
     end
   end
+
+  describe '#needs_background_refresh?' do
+    subject { account.needs_background_refresh? }
+
+    context 'when account is local' do
+      let(:account) { Fabricate(:account) }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when account is remote' do
+      let(:account) { Fabricate(:remote_account, last_webfingered_at:) }
+
+      context 'when account has never been updated or last update is unknown' do
+        let(:last_webfingered_at) { nil }
+
+        it { is_expected.to be true }
+      end
+
+      context 'when account has not been updated for over a week' do
+        let(:last_webfingered_at) { 8.days.ago }
+
+        it { is_expected.to be true }
+      end
+
+      context 'when account has been updated in the last week' do
+        let(:last_webfingered_at) { 4.days.ago }
+
+        it { is_expected.to be false }
+      end
+    end
+  end
 end

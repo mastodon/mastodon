@@ -265,8 +265,14 @@ class Account < ApplicationRecord
     last_webfingered_at.nil? || last_webfingered_at <= STALE_THRESHOLD.ago
   end
 
+  def needs_background_refresh?
+    return false if local?
+
+    last_webfingered_at.blank? || last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+  end
+
   def schedule_refresh_if_stale!
-    return unless last_webfingered_at.present? && last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+    return unless needs_background_refresh?
 
     AccountRefreshWorker.perform_in(rand(REFRESH_DEADLINE), id)
   end
