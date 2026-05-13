@@ -10,6 +10,18 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Change APT cache ownership
+      shell: bash
+      run: sudo chown -R $USER /var/cache/apt
+
+    - name: Cache APT Packages
+      uses: actions/cache@v5
+      with:
+        path: /var/cache/apt/archives
+        key: ${{ runner.os }}-apt-
+        restore-keys: |
+          ${{ runner.os }}-apt-
+
     - name: Install system dependencies
       shell: bash
       run: |
