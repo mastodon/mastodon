@@ -28,11 +28,15 @@ runs:
         restore-keys: |
           ${{ runner.os }}-apt-${{ steps.date.outputs.date }}
 
-    - name: Install system dependencies
+    - name: Update system dependencies
       if: steps.cache-apt-packages.outputs.cache-hit != 'true'
       shell: bash
       run: |
         sudo apt-get update
+
+    - name: Install system dependencies
+      shell: bash
+      run: |
         sudo apt-get install --no-install-recommends -y \
           libicu-dev \
           libidn11-dev \
