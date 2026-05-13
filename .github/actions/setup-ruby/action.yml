@@ -15,7 +15,7 @@ runs:
       run: sudo chown -R $USER /var/cache/apt
 
     - name: Cache APT Packages
-      uses: actions/cache@v5
+      uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
       with:
         path: /var/cache/apt/archives
         key: ${{ runner.os }}-apt-
