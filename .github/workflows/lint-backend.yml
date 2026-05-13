@@ -1,26 +1,11 @@
-name: Haml Linting
+name: Backend Linting
 on:
   merge_group:
   push:
     branches:
       - 'main'
       - 'stable-*'
-    paths:
-      - '.github/workflows/lint-haml.yml'
-      - '.haml-lint*.yml'
-      - '.rubocop*.yml'
-      - '.ruby-version'
-      - '**/*.haml'
-      - 'Gemfile*'
-
   pull_request:
-    paths:
-      - '.github/workflows/lint-haml.yml'
-      - '.haml-lint*.yml'
-      - '.rubocop*.yml'
-      - '.ruby-version'
-      - '**/*.haml'
-      - 'Gemfile*'
 
 jobs:
   lint:
@@ -38,6 +23,14 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Run haml-lint
-        run: |
-          bin/haml-lint --reporter github
+      - name: Lint haml views
+        if: always()
+        run: bin/haml-lint --reporter github
+
+      - name: Lint ruby code
+        if: always()
+        run: bin/rubocop --format github
+
+      - name: Run security audit with brakeman
+        if: always()
+        run: bin/brakeman --no-pager -q
