@@ -143,7 +143,6 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
         run: |
@@ -237,7 +236,6 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
@@ -371,7 +369,6 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
