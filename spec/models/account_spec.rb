@@ -868,7 +868,17 @@ RSpec.describe Account do
       context 'when account has been updated in the last week' do
         let(:last_webfingered_at) { 4.days.ago }
 
-        it { is_expected.to be false }
+        context 'when there is no other account from the same domain with an feature approval policy' do
+          it { is_expected.to be false }
+        end
+
+        context 'when there is another account from the same domain with a feature approval policy' do
+          before do
+            Fabricate(:remote_account, domain: account.domain, feature_approval_policy: 1)
+          end
+
+          it { is_expected.to be true }
+        end
       end
     end
   end
