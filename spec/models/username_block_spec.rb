@@ -61,47 +61,50 @@ RSpec.describe UsernameBlock do
     end
   end
 
-  describe 'instance methods' do
-    subject(:username_block) { described_class.new }
+  describe '#comparison' do
+    subject { username_block.comparison }
 
-    describe '#comparison' do
-      subject(:username_block) { described_class.new(exact: exact) }
+    let(:username_block) { Fabricate.build(:username_block, exact: exact) }
 
-      context 'when exact is true' do
-        let(:exact) { true }
+    context 'when exact is true' do
+      let(:exact) { true }
 
-        it 'returns equals' do
-          expect(username_block.comparison).to eq('equals')
-        end
-      end
-
-      context 'when exact is false' do
-        let(:exact) { false }
-
-        it 'returns contains' do
-          expect(username_block.comparison).to eq('contains')
-        end
-      end
+      it { is_expected.to eq('equals') }
     end
 
-    describe '#comparison=' do
-      it 'sets exact to true when equals is passed' do
-        username_block.comparison = 'equals'
-        expect(username_block.exact).to be(true)
-      end
+    context 'when exact is false' do
+      let(:exact) { false }
 
-      it 'sets exact to false when contains is passed' do
-        username_block.comparison = 'contains'
-        expect(username_block.exact).to be(false)
-      end
+      it { is_expected.to eq('contains') }
+    end
+  end
+
+  describe '#comparison=' do
+    subject do
+      username_block.comparison = comparison
+      username_block.exact
     end
 
-    describe '#to_log_human_identifier' do
-      it 'returns the username' do
-        username_block.username = 'harry'
+    let(:username_block) { Fabricate.build(:username_block) }
 
-        expect(username_block.to_log_human_identifier).to eq('harry')
-      end
+    context 'when comparison is equals' do
+      let(:comparison) { 'equals' }
+
+      it { is_expected.to be(true) }
     end
+
+    context 'when comparison is contains' do
+      let(:comparison) { 'contains' }
+
+      it { is_expected.to be(false) }
+    end
+  end
+
+  describe '#to_log_human_identifier' do
+    subject { username_block.to_log_human_identifier }
+
+    let(:username_block) { Fabricate.build(:username_block, username: 'harry') }
+
+    it { is_expected.to eq('harry') }
   end
 end
