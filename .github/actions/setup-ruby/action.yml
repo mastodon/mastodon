@@ -10,19 +10,26 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Change APT cache ownership
+    - name: Get current date
+      id: date
+      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       shell: bash
+
+    - name: Change APT cache ownership
       run: sudo chown -R $USER /var/cache/apt
+      shell: bash
 
     - name: Cache APT Packages
+      id: cache-apt-packages
       uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
       with:
         path: /var/cache/apt/archives
-        key: ${{ runner.os }}-apt-
+        key: ${{ runner.os }}-apt-${{ steps.date.outputs.date }}
         restore-keys: |
-          ${{ runner.os }}-apt-
+          ${{ runner.os }}-apt-${{ steps.date.outputs.date }}
 
     - name: Install system dependencies
+      if: steps.cache-apt-packages.outputs.cache-hit != 'true'
       shell: bash
       run: |
         sudo apt-get update
