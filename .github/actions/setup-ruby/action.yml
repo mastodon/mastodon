@@ -15,7 +15,7 @@ runs:
       run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       shell: bash
 
-    - name: Change APT cache ownership
+    - name: Change APT cache ownership before apt-get
       run: sudo chown -R $USER /var/cache/apt
       shell: bash
 
@@ -40,6 +40,10 @@ runs:
           libheif-plugin-aomdec \
           libheif-plugin-libde265 \
           ${{ inputs.additional-system-dependencies }}
+
+    - name: Change APT cache ownership after apt-get
+      run: sudo chown -R $USER /var/cache/apt
+      shell: bash
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@6aaa311d81eba98ae12eaffbcb63296ace0efcde # v1
