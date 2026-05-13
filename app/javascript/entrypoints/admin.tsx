@@ -69,8 +69,9 @@ on('change', '#batch_checkbox_all', ({ target }) => {
     '.batch-table__select-all',
   );
 
-  document
-    .querySelectorAll<HTMLInputElement>(batchCheckboxClassName)
+  target
+    .closest('.batch-table')
+    ?.querySelectorAll<HTMLInputElement>(batchCheckboxClassName)
     .forEach((content) => {
       content.checked = target.checked;
     });
