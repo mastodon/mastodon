@@ -42,6 +42,7 @@ import {
   ConfirmMissingAltTextModal,
   ConfirmRevokeQuoteModal,
   QuietPostQuoteInfoModal,
+  ConfirmScheduledStatusModal,
 } from './confirmation_modals';
 import { ImageModal } from './image_modal';
 import { MediaModal } from './media_modal';
@@ -72,6 +73,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM_PRIVATE_QUOTE_NOTIFY': () => Promise.resolve({ default: PrivateQuoteNotify }),
   'CONFIRM_REVOKE_QUOTE': () => Promise.resolve({ default: ConfirmRevokeQuoteModal }),
   'CONFIRM_QUIET_QUOTE': () => Promise.resolve({ default: QuietPostQuoteInfoModal }),
+  'CONFIRM_SCHEDULED_STATUS': () => Promise.resolve({ default: ConfirmScheduledStatusModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
   'DOMAIN_BLOCK': DomainBlockModal,

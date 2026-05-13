@@ -2,14 +2,21 @@ import { connect } from 'react-redux';
 
 import {
   changeCompose,
+  changeComposeSchedule,
   submitCompose,
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSpoilerText,
+  initComposeSchedule,
   insertEmojiCompose,
   uploadCompose,
 } from 'mastodon/actions/compose';
+import { browserHistory } from 'mastodon/components/router';
+import {
+  getMinimumScheduledAt,
+  isScheduledAtValid,
+} from 'mastodon/features/scheduled_statuses/utils';
 import { pasteLinkCompose } from 'mastodon/actions/compose_typed';
 import { openModal } from 'mastodon/actions/modal';
 import { PRIVATE_QUOTE_MODAL_ID } from 'mastodon/features/ui/components/confirmation_modals/private_quote_notify';
@@ -59,6 +66,9 @@ const mapStateToProps = state => ({
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
   maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
+  scheduledAt: state.getIn(['compose', 'scheduled_at']),
+  isScheduledAtValid: !state.getIn(['compose', 'scheduled_at']) || isScheduledAtValid(state.getIn(['compose', 'scheduled_at'])),
+  scheduledAtMin: getMinimumScheduledAt(),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -81,10 +91,26 @@ const mapDispatchToProps = (dispatch, props) => ({
     } else {
       dispatch(submitCompose((status) => {
         if (props.redirectOnSuccess) {
-          window.location.assign(status.url);
+          if (status.url) {
+            window.location.assign(status.url);
+          } else {
+            browserHistory.push('/scheduled');
+          }
         }
       }));
     }
+  },
+
+  onAddSchedule () {
+    dispatch(initComposeSchedule());
+  },
+
+  onChangeSchedule (scheduledAt) {
+    dispatch(changeComposeSchedule(scheduledAt));
+  },
+
+  onRemoveSchedule () {
+    dispatch(changeComposeSchedule(null));
   },
 
   onClearSuggestions () {

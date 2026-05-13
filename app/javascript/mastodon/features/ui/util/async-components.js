@@ -134,6 +134,10 @@ export function BookmarkedStatuses () {
   return import('../../bookmarked_statuses');
 }
 
+export function ScheduledStatuses () {
+  return import('../../scheduled_statuses');
+}
+
 export function Blocks () {
   return import('../../blocks');
 }

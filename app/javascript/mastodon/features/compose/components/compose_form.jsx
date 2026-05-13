@@ -41,6 +41,13 @@ const messages = defineMessages({
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
   reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
+  schedule: { id: 'compose_form.schedule', defaultMessage: 'Schedule' },
+  publishOn: { id: 'compose_form.publish_on', defaultMessage: 'Publish on' },
+  removeSchedule: { id: 'compose_form.remove_schedule', defaultMessage: 'Remove' },
+  scheduleHint: {
+    id: 'compose_form.schedule_hint',
+    defaultMessage: 'Pick a time at least 5 minutes ahead.',
+  },
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -76,6 +83,12 @@ class ComposeForm extends ImmutablePureComponent {
     lang: PropTypes.string,
     maxChars: PropTypes.number,
     redirectOnSuccess: PropTypes.bool,
+    scheduledAt: PropTypes.string,
+    isScheduledAtValid: PropTypes.bool,
+    scheduledAtMin: PropTypes.string,
+    onAddSchedule: PropTypes.func.isRequired,
+    onChangeSchedule: PropTypes.func.isRequired,
+    onRemoveSchedule: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -132,6 +145,10 @@ class ComposeForm extends ImmutablePureComponent {
     return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars);
   };
 
+  canSchedule = () => {
+    return !this.props.scheduledAt || this.props.isScheduledAtValid;
+  };
+
   handleSubmit = (e) => {
     if (this.props.text !== this.textareaRef.current.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
@@ -139,7 +156,7 @@ class ComposeForm extends ImmutablePureComponent {
       this.props.onChange(this.textareaRef.current.value);
     }
 
-    if (!this.canSubmit()) {
+    if (!(this.canSubmit() && this.canSchedule())) {
       return;
     }
 
@@ -171,6 +188,18 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleChangeSpoilerText = (e) => {
     this.props.onChangeSpoilerText(e.target.value);
+  };
+
+  handleAddSchedule = () => {
+    this.props.onAddSchedule();
+  };
+
+  handleChangeSchedule = (e) => {
+    this.props.onChangeSchedule(e.target.value);
+  };
+
+  handleRemoveSchedule = () => {
+    this.props.onRemoveSchedule();
   };
 
   handleFocus = () => {
@@ -251,7 +280,18 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, onPaste, onDrop, autoFocus, withoutNavigation, maxChars, isSubmitting } = this.props;
+    const {
+      intl,
+      onPaste,
+      onDrop,
+      autoFocus,
+      withoutNavigation,
+      maxChars,
+      isSubmitting,
+      scheduledAt,
+      isScheduledAtValid,
+      scheduledAtMin,
+    } = this.props;
     const { highlighted } = this.state;
 
     return (
@@ -318,6 +358,57 @@ class ComposeForm extends ImmutablePureComponent {
           <ComposeQuotedStatus />
 
           <div className='compose-form__footer'>
+            {!this.props.isEditing && (
+              <div className='compose-form__schedule'>
+                {scheduledAt ? (
+                  <>
+                    <label
+                      className='compose-form__schedule__label'
+                      htmlFor='compose-form-schedule'
+                    >
+                      {intl.formatMessage(messages.publishOn)}
+                    </label>
+
+                    <input
+                      id='compose-form-schedule'
+                      className='compose-form__schedule__input'
+                      type='datetime-local'
+                      value={scheduledAt}
+                      min={scheduledAtMin}
+                      onChange={this.handleChangeSchedule}
+                      disabled={isSubmitting}
+                    />
+
+                    <Button
+                      type='button'
+                      compact
+                      plain
+                      onClick={this.handleRemoveSchedule}
+                      disabled={isSubmitting}
+                    >
+                      {intl.formatMessage(messages.removeSchedule)}
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    type='button'
+                    compact
+                    secondary
+                    onClick={this.handleAddSchedule}
+                    disabled={isSubmitting}
+                  >
+                    {intl.formatMessage(messages.schedule)}
+                  </Button>
+                )}
+              </div>
+            )}
+
+            {!this.props.isEditing && scheduledAt && !isScheduledAtValid && (
+              <div className='compose-form__schedule__hint'>
+                {intl.formatMessage(messages.scheduleHint)}
+              </div>
+            )}
+
             <div className='compose-form__actions'>
               <div className='compose-form__buttons'>
                 <UploadButtonContainer />
@@ -331,13 +422,15 @@ class ComposeForm extends ImmutablePureComponent {
                 <Button
                   type='submit'
                   compact
-                  disabled={!this.canSubmit()}
+                  disabled={!this.canSubmit() || !this.canSchedule()}
                   loading={isSubmitting}
                 >
                   {intl.formatMessage(
-                    this.props.isEditing ?
+                    scheduledAt && !this.props.isEditing ?
+                      messages.schedule :
+                      (this.props.isEditing ?
                       messages.saveChanges :
-                      (this.props.isInReply ? messages.reply : messages.publish)
+                      (this.props.isInReply ? messages.reply : messages.publish))
                   )}
                 </Button>
               </div>

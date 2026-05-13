@@ -29,6 +29,7 @@ import { pictureInPictureReducer } from './picture_in_picture';
 import { pollsReducer } from './polls';
 import push_notifications from './push_notifications';
 import { relationshipsReducer } from './relationships';
+import scheduled_statuses from './scheduled_statuses';
 import { searchReducer } from './search';
 import server from './server';
 import settings from './settings';
@@ -55,6 +56,7 @@ const reducers = {
   accounts_map: accountsMapReducer,
   accounts_familiar_followers: accountsFamiliarFollowersReducer,
   statuses,
+  scheduled_statuses,
   relationships: relationshipsReducer,
   settings,
   push_notifications,

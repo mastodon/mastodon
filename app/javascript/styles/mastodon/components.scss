@@ -763,6 +763,29 @@ body > [data-popper-placement] {
     padding: 12px;
   }
 
+  &__schedule {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    &__label,
+    &__hint {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    &__input {
+      width: min(100%, 280px);
+      padding: 8px 10px;
+      border: 1px solid var(--color-border-primary);
+      border-radius: 4px;
+      color: var(--color-text-primary);
+      background: var(--color-bg-secondary);
+      font: inherit;
+    }
+  }
+
   &__submit {
     display: flex;
     align-items: center;

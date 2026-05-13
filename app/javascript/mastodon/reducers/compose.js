@@ -43,6 +43,7 @@ import {
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
+  COMPOSE_SCHEDULE_CHANGE,
   COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
   COMPOSE_RESET,
@@ -53,12 +54,14 @@ import {
   COMPOSE_CHANGE_MEDIA_ORDER,
   COMPOSE_SET_STATUS,
   COMPOSE_FOCUS,
+  COMPOSE_REDRAFT_SCHEDULED_STATUS,
 } from '../actions/compose';
 import { REDRAFT } from '../actions/statuses';
 import { STORE_HYDRATE } from '../actions/store';
 import { me } from '../initial_state';
 import { unescapeHTML } from '../utils/html';
 import { uuid } from '../uuid';
+import { isoToDatetimeLocal } from '../features/scheduled_statuses/utils';
 
 const initialState = ImmutableMap({
   mounted: 0,
@@ -92,6 +95,7 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
+  scheduled_at: null,
 
   // Quotes
   quoted_status_id: null,
@@ -135,6 +139,7 @@ function clearAll(state) {
     map.set('quoted_status_id', null);
     map.set('quote_policy', state.get('default_quote_policy'));
     map.set('isDragDisabled', false);
+    map.set('scheduled_at', null);
   });
 }
 
@@ -415,6 +420,8 @@ export const composeReducer = (state = initialState, action) => {
       .set('idempotencyKey', uuid());
   case COMPOSE_COMPOSING_CHANGE:
     return state.set('is_composing', action.value);
+  case COMPOSE_SCHEDULE_CHANGE:
+    return state.set('scheduled_at', action.scheduledAt).set('idempotencyKey', uuid());
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('id', null);
@@ -426,6 +433,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
       map.set('quoted_status_id', null);
+      map.set('scheduled_at', null);
 
       map.update('media_attachments', list => list.filter(media => media.get('unattached')));
 
@@ -537,6 +545,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
       map.set('id', null);
+      map.set('scheduled_at', null);
       map.set('quoted_status_id', action.quoted_status_id);
       // Mastodon-authored posts can be expected to have at most one automatic approval policy
       map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
@@ -562,6 +571,49 @@ export const composeReducer = (state = initialState, action) => {
         }));
       }
     });
+  case COMPOSE_REDRAFT_SCHEDULED_STATUS:
+    return state.withMutations(map => {
+      const scheduledStatus = fromJS(action.scheduledStatus);
+      const params = scheduledStatus.get('params') || ImmutableMap();
+      const poll = params.get('poll');
+
+      map.set('text', params.get('text', ''));
+      map.set('in_reply_to', params.get('in_reply_to_id', null));
+      map.set('privacy', params.get('visibility', state.get('default_privacy')));
+      map.set('media_attachments', (scheduledStatus.get('media_attachments') || ImmutableList()).map(media => media.set('unattached', true)));
+      map.set('focusDate', new Date());
+      map.set('caretPosition', null);
+      map.set('idempotencyKey', uuid());
+      map.set('sensitive', !!params.get('sensitive'));
+      map.set('language', params.get('language', state.get('default_language')));
+      map.set('id', null);
+      map.set('scheduled_at', isoToDatetimeLocal(scheduledStatus.get('scheduled_at')));
+      map.set('quoted_status_id', params.get('quoted_status_id', null));
+      map.set('quote_policy', params.get('quote_approval_policy', 'nobody'));
+
+      if ((params.get('spoiler_text') || '').length > 0) {
+        map.set('spoiler', true);
+        map.set('spoiler_text', params.get('spoiler_text'));
+      } else {
+        map.set('spoiler', false);
+        map.set('spoiler_text', '');
+      }
+
+      if (poll) {
+        let options = ImmutableList(poll.get('options', ImmutableList()));
+        if (options.size < action.maxOptions) {
+          options = options.push('');
+        }
+
+        map.set('poll', ImmutableMap({
+          options,
+          multiple: !!poll.get('multiple'),
+          expires_in: poll.get('expires_in', 24 * 3600),
+        }));
+      } else {
+        map.set('poll', null);
+      }
+    });
   case COMPOSE_SET_STATUS:
     return state.withMutations(map => {
       map.set('id', action.status.get('id'));
@@ -574,6 +626,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('idempotencyKey', uuid());
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
+      map.set('scheduled_at', null);
       map.set('quoted_status_id', action.status.getIn(['quote', 'quoted_status'], null));
       // Mastodon-authored posts can be expected to have at most one automatic approval policy
       map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
