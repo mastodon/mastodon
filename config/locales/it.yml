@@ -85,7 +85,7 @@ it:
       invite_request_text: Motivi d'iscrizione
       invited_by: Invitato da
       ip: IP
-      joined: Iscritto il
+      joined: Account iscritto il
       location:
         all: Tutto
         local: Locale
@@ -345,12 +345,19 @@ it:
       updated_msg: Annuncio aggiornato!
     collections:
       accounts: Account
+      back_to_account: Torna alla pagina dell'account
+      back_to_report: Torna alla pagina di segnalazione
+      batch:
+        add_to_report: 'Aggiungi alla segnalazione #%{id}'
+        report: Segnala
       collection_title: Collezione di %{name}
       contents: Contenuti
+      no_collection_selected: Nessuna collezione è stata cambiata in quanto nessuna è stata selezionata
       number_of_accounts:
         one: 1 account
         other: "%{count} account"
       open: Apri
+      title: Collezioni dell'account - @%{name}
       view_publicly: Visualizza pubblicamente
     critical_update_pending: Aggiornamento critico in sospeso
     custom_emojis:
@@ -747,7 +754,7 @@ it:
       actions_description_html: Decidi quale azione intraprendere per risolvere questa segnalazione. Se intraprendi un'azione punitiva nei confronti dell'account segnalato, gli verrà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
       actions_no_posts: Questa segnalazione non ha alcun post associato da eliminare
-      add_to_report: Aggiungi altro al report
+      add_to_report: Aggiungi altro alla segnalazione
       already_suspended_badges:
         local: Già sospeso su questo server
         remote: Già sospeso sul loro server
@@ -987,7 +994,7 @@ it:
       account: Autore
       application: Applicazione
       back_to_account: Torna alla pagina dell'account
-      back_to_report: Torna alla pagina del report
+      back_to_report: Torna alla pagina di segnalazione
       batch:
         add_to_report: 'Aggiungi alla segnalazione #%{id}'
         remove_from_report: Rimuovi dal report

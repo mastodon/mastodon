@@ -60,6 +60,7 @@ fa:
         setting_default_quote_policy_private: فرسته‌های فقط پی‌گیران روی ماستودون نمی‌توانند به دست دیگران نقل شوند.
         setting_default_quote_policy_unlisted: هنگامی که کسی نقلتان می‌کند هم فرسته‌اش از خط زمانی‌های داغ پنهان خواهد بود.
         setting_default_sensitive: تصاویر حساس به طور پیش‌فرض پنهان هستند و می‌توانند با یک کلیک آشکار شوند
+        setting_display_media_hide_all: هشدار پیش از نمایش همهٔ رسانه‌ها
         setting_emoji_style: چگونگی نمایش شکلک‌ها. «خودکار» تلاش خواهد کرد از شکلک‌های بومی استفاده کند؛ ولی برای مرورگرهای قدیمی به توییموجی برخواهد گشت.
         setting_quick_boosting_html: هنگام به کار افتادن، زدن روی %{boost_icon} نقشک تقویت به جای گشودنِ فهرست پایین افتادنی تقویت و نقل، بلافاصله تقویت خواهد کرد. کنشِ نقل قول را به فهرست %{options_icon} (گزینه‌ها) منتقل می‌کند.
         setting_system_scrollbars_ui: فقط برای مرورگرهای دسکتاپ مبتنی بر سافاری و کروم اعمال می شود
@@ -217,6 +218,7 @@ fa:
         email: نشانی رایانامه
         expires_in: تاریخ انقضا
         fields: اطلاعات تکمیلی نمایه
+        filter_action: کنش پالایه
         header: تصویر زمینه
         honeypot: "%{label} (پر نکنید)"
         inbox_url: نشانی صندوق ورودی رله
@@ -283,6 +285,7 @@ fa:
         closed_registrations_message: پیام سفارشی هنگام در دسترس نبودن ثبت‌نام‌ها
         content_cache_retention_period: دوره نگهداری محتوا از راه دور
         custom_css: سبک CSS سفارشی
+        email_footer_text: متن پانویس اضافی
         favicon: نمادک
         landing_page: صفحهٔ فرود برای بینندگان جدید
         local_live_feed_access: دسترسی به خوراک‌های زندهٔ نمایانگر فرسته‌های محلی
@@ -307,6 +310,7 @@ fa:
         status_page_url: نشانی صفحهٔ وضعیت
         theme: زمینهٔ پیش‌گزیده
         thumbnail: بندانگشتی کارساز
+        thumbnail_description: متن جایگزین بندانگشتی
         trendable_by_default: اجازهٔ پرطرفدار شدن بدون بازبینی پیشین
         trends: به کار انداختن پرطرفدارها
         wrapstodon: به کار انداختن خلاصهٔ ماستودون
@@ -348,6 +352,7 @@ fa:
         hint: اطّلاعات اضافی
         text: قانون
       settings:
+        email_subscriptions: به کار انداختن نام‌نویسی‌های رایانامه‌ای
         indexable: بودن صفحهٔ نمایه در نتیجه‌های جست‌وجو
         show_application: نمایش این که فرسته را از کدام کاره فرستاده‌اید
       tag:
@@ -376,11 +381,13 @@ fa:
         role: نقش
         time_zone: منطقهٔ زمانی
       user_role:
+        collection_limit: بیشینهٔ تعداد مجموعهٔ هر کاربر
         color: رنگ نشان
         highlighted: نمایش نقش به شکل نشان روی نمایهً کاربری
         name: نام
         permissions_as_keys: اجازه‌ها
         position: اولویت
+        require_2fa: نیازمند هویت‌سنجی دو مرحله‌ای
       username_block:
         allow_with_approval: اجازهٔ ثبت‌نام با تأیید
         comparison: روش مقایسه

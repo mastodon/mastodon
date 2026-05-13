@@ -12,6 +12,9 @@ fa:
     followers:
       one: پی‌گیرنده
       other: پی‌گیرنده
+    following:
+      one: پی‌گرفته
+      other: پی‌گرفته
     instance_actor_flash: این حساب عاملی مجازیست که به نمایندگی از خود کارساز استفاده می‌شود و نه کاربری جداگانه. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
     last_active: آخرین فعّالیت
     link_verified_on: مالکیت این پیوند در %{date} بررسی شد
@@ -53,6 +56,7 @@ fa:
         label: تغییر نقش
         no_role: بدون نقش
         title: تغییر نقش برای %{username}
+      collections: مجموعه‌ها
       confirm: تأیید
       confirmed: تأیید شد
       confirming: تأیید
@@ -263,6 +267,7 @@ fa:
         demote_user_html: "%{name} کاربر %{target} را تنزل داد"
         destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
         destroy_canonical_email_block_html: "%{name} رایانامه با درهم‌ریزی %{target} را نامسدود کرد"
+        destroy_collection_html: "%{name} مجموعهٔ %{target} را برداشت"
         destroy_custom_emoji_html: "%{name} شکلک %{target} را حذف کرد"
         destroy_domain_allow_html: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
         destroy_domain_block_html: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
@@ -302,6 +307,7 @@ fa:
         unsilence_account_html: "%{name} محدودیت حساب %{target} را برداشت"
         unsuspend_account_html: "%{name} حساب %{target} را از تعلیق خارج کرد"
         update_announcement_html: "%{name} اعلامیهٔ %{target} را به‌روز کرد"
+        update_collection_html: "%{name} مجموعهٔ %{target} را به‌روز کرد"
         update_custom_emoji_html: "%{name} شکلک %{target} را به‌روز کرد"
         update_domain_block_html: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
         update_ip_block_html: "%{name} قانون آی‌پی %{target} را تغییر داد"
@@ -338,6 +344,7 @@ fa:
       unpublished_msg: انتشار اعلامیه با موفقیت لغو شد!
       updated_msg: اعلامیه با موفقیت به‌روز شد!
     collections:
+      accounts: حساب‌ها
       collection_title: محموعه به دست %{name}
       contents: محتوا
       number_of_accounts:
@@ -477,9 +484,53 @@ fa:
         title: مسدودسازی دامنهٔ رایانامهٔ جدید
       no_email_domain_block_selected: هیچ انسداد دامنهٔ رایانامه‌ای تغییر نکرد زیرا هیچ‌کدامشان انتخاب نشده بودند
       not_permitted: مجاز نیست
+      reset: بازنشانی
       resolved_dns_records_hint_html: نام دامنه به دامنه‌های MX زیر منتقل می شود که در نهایت مسئولیت پذیرش رایانامه را بر عهده دارند. انسداد دامنهٔ MX، ثبت‌نام از هر نشانی رایانامه‌ای را که از همان دامنهٔ MX استفاده می‌کند را مسدود می‌کند؛ حتا اگر نام دامنهٔ نمایان متفاوت باشد. <strong>مراقب باشید ارائه‌دهندگان رایانامهٔ بزرگ را مسدود نکنید.</strong>
       resolved_through_html: از طریق %{domain} حل شد
+      search: جست‌وجو
       title: دامنه‌های رایانامهٔ مسدود شده
+    email_subscriptions:
+      accounts:
+        account: حساب
+        active: فعّال
+        inactive: غیرفعّال
+        status: وضعیت
+        subscribers: مشترکان
+        title: سیاهه‌های پستی
+      additional_footer_texts:
+        show:
+          title: متن پانویس اضافی
+      compliance_settings:
+        additional_footer_text:
+          action: مدیریت
+          title: متن پانویس اضافی
+        privacy_policy:
+          action: مدیریت
+          title: سیاست محرمانگی
+      danger_zone:
+        disable_feature:
+          action: از کار انداختن
+          title: از کار انداختن ویژگی
+        erase_all_data:
+          action: پاک کردن داده‌ها
+          title: پاک کردن تمام داده‌ها
+        title: منطقهٔ خطر
+      index:
+        disabled:
+          get_started: آغاز به کار
+      roles:
+        accounts: حساب ها
+        edit_role: ویرایش نقش
+        empty:
+          hint: هیچ‌کس اجازهٔ استفاده از این ویژگی را ندارد.
+          no_roles_added: هیچ نقشی اضافه نشد
+        manage_roles: مدیریت نقش‌ها
+        role_name: نام نقش
+        title: نقش‌ها
+      setups:
+        show:
+          enable_feature: به کار انداختن ویژگی
+          important_information: اطّلاعات مهم
     export_domain_allows:
       new:
         title: درون‌ریزی اجازه‌های دامنه
@@ -772,6 +823,7 @@ fa:
         administrator_description: کاربرانی که این مجوز را دارند از هر مجوزی عبور می کنند
         delete_user_data: حذف داده‌های کاربر
         delete_user_data_description: به کاربران این امکان را می دهد که بدون تاخیر داده های سایر کاربران را حذف کنند
+        invite_bypass_approval: دعوت کاربر بدون بازبینی
         invite_users: دعوت کاربران
         invite_users_description: به کاربران اجازه می دهد افراد جدیدی را به سرور دعوت کنند
         manage_announcements: مدیریت اعلامیه‌ها
@@ -782,6 +834,7 @@ fa:
         manage_blocks_description: می‌گذارد کاربران فراهم‌کنندگان رایانامه و نشانی‌های آی‌پی را مسدود کنند
         manage_custom_emojis: مدیریت ایموجی‌های سفارشی
         manage_custom_emojis_description: به کاربران اجازه می دهد تا ایموجی های سفارشی را روی سرور مدیریت کنند
+        manage_email_subscriptions: مدیریت اشتراک‌های رایانامه‌ای
         manage_federation: مدیریت خودگردانی
         manage_federation_description: به کاربران اجازه می‌دهد تا اتحاد با دامنه‌های دیگر را مسدود یا اجازه دهند و تحویل‌پذیری را کنترل کنند
         manage_invites: مدیریت دعوت‌ها
@@ -810,6 +863,7 @@ fa:
         view_devops_description: به کاربران امکان دسترسی به داشبورد Sidekiq و pgHero را می دهد
         view_feeds: دیدن خوراک‌های موضوع و زنده
         view_feeds_description: می‌گذارد کاربران فارغ از تنظیمات کارساز به خوراک‌های موضوع و زنده دسترسی داشته باشند
+      requires_2fa: نیازمند هویت‌سنجی دو مرحله‌ای
       title: نقش‌ها
     rules:
       add_new: افزودن قانون
@@ -1271,6 +1325,7 @@ fa:
     progress:
       confirm: تأیید رایانامه
       details: جزئیات شما
+      list: فرایند نام‌نویسی
       review: بررسی ما
       rules: پذیرش قوانین
     providers:
@@ -1286,6 +1341,7 @@ fa:
       invited_by: 'با سپاس از دعوتی از این فرد دریافت کرده‌اید می‌توانید به %{domain} بپیوندید:'
       preamble: اینها توسط گردانندگان %{domain} تنظیم و اجرا می شوند.
       preamble_invited: قبل از ادامه، لطفاً قوانین اساسی تنظیم شده توسط مدیران %{domain} را در نظر بگیرید.
+      read_more: خواندن بیش‌تر
       title: برخی از قوانین اساسی.
       title_invited: شما دعوت شده اید.
     security: امنیت
@@ -1405,7 +1461,12 @@ fa:
       your_appeal_rejected: درخواست تجدیدنظرتان رد شد
   edit_profile:
     other: سایر
+    redesign_button: آزمودن
+    redesign_title: تجربهٔ نماگر جدیدی آمده است
   email_subscription_mailer:
+    confirmation:
+      action: تأیید نشانی رایانامه
+      subject: تأیید نشانی رایانامه‌تان
     notification:
       create_account: ایجاد حساب ماستودون
       subject:
@@ -1413,6 +1474,17 @@ fa:
         singular: 'فرستهٔ جدید: «%{excerpt}»'
       title:
         plural: فرسته‌های جدید از %{name}
+        singular: 'فرستهٔ جدید: «%{excerpt}»'
+  email_subscriptions:
+    active: فعّال
+    confirmations:
+      show:
+        changed_your_mind: نظرتان عوض شد؟
+        title: نام نوشتید
+        unsubscribe: لغو اشتراک
+    inactive: غیرفعّال
+    status: وضعیت
+    subscribers: مشترکان
   emoji_styles:
     auto: خودکار
     native: بومی
@@ -1690,6 +1762,19 @@ fa:
     copy_account_note_text: 'این کاربر از %{acct} جابه‌جا شده است. یادداشت‌های پیشینتان درباره‌اش این‌هاست:'
   navigation:
     toggle_menu: تغییر وضعیت فهرست
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "‫%{name} به مجموعه‌ای افزودتان"
+    admin_report:
+      title_html: "%{name}، %{target} را گزارش داد"
+    admin_sign_up:
+      title_html: "%{name} نام نوشت"
+    collection_update:
+      title_html: "‫%{name} مجموعه‌ای که در آن هستید را به‌روز کرد"
+    generic:
+      sign_in: ورورد به کارهٔ وب ماستودون
+    severed_relationships:
+      title: قطع ارتباط با %{name}
   notification_mailer:
     admin:
       report:
@@ -1782,6 +1867,7 @@ fa:
     posting_defaults: تنظیمات پیش‌فرض انتشار
     public_timelines: خط زمانی‌های عمومی
   privacy:
+    email_subscriptions: ارسال فرسته‌ها با رایانامه
     hint_html: "<strong>شخصی‌سازی چگونگی پیدا شدن فرسته‌ها و نمایه‌تان.</strong> ویژگی‌های متعدّدی در ماستودون می‌توانند هنگام به کار افتادن در رسیدن به مخاطبینی گسترده‌تر یاریتان کنند. کمی وقت برای بازبینی این تنظیمات گذاشته تا مطمئن شوید برایتان مناسبند."
     privacy: محرمانگی
     privacy_hint_html: واپایش میزان باز شدن به نفع دیگران. افراد نمایه‌های جالب و کاره‌های باحال را با مرور پی‌گرفتگان دیگران و دیدن کاره‌هایی که از آن‌ها می‌فرستند پیدا می‌کنند. با این حال شاید بخواهید پنهان نگهشان دارید.
@@ -2015,6 +2101,8 @@ fa:
     past_preamble_html: شرایط خدماتمان را تغییر داده‌ایم. تشویقتان می‌کنیم که شرایط به‌روز شده را بازبینی کنید.
     review_link: بازبینی شرایط استفاده
     title: شرایط خدمات %{domain} در حال تغییر است
+  themes:
+    default: ماستودون
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2039,7 +2127,26 @@ fa:
     recovery_codes: پشتیبان‌گیری از کدهای بازیابی
     recovery_codes_regenerated: کدهای بازیابی با موفقیت ساخته شدند
     recovery_instructions_html: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای بازیابی زیر کنترل حساب خود را به دست بگیرید. <strong>این کدها را در جای امنی نگه دارید.</strong> مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید.
+    resume_app_authorization: از سر گیری تأیید درخواست
     webauthn: کلیدهای امنیتی
+  unsubscriptions:
+    create:
+      action: رفتن به صفحهٔ خانگی کارساز
+      email_subscription:
+        confirmation_html: دیگر از %{name} رایانامه نخواهید گرفت.
+      title: اشتراکتان لغو شد
+    notification_emails:
+      favourite: رایانامه‌های آگاهی برگزیدن
+      follow: رایانامه‌های آگاهی پی‌گیری
+      follow_request: رایانامه‌های درخواست پی‌گیری
+      mention: رایانامه‌های آگاهی اشاره
+      reblog: رایانامه‌های آگاهی تقویت
+    show:
+      action: لغو اشتراک
+      email_subscription:
+        title: لغو اشتراک %{name}؟
+      user:
+        title: لغو اشتراک %{type}؟
   user_mailer:
     announcement_published:
       description: 'مدیران %{domain} اعلامیه‌ای داده‌اند:'
@@ -2182,6 +2289,7 @@ fa:
       error: حذف کلید امنیتیتان با مشکل مواجه شد. لطفاً دوباره تلاش کنید.
       success: کلید امنیتیتان با موفّقیت حذف شد.
     invalid_credential: کلید امنیتی نامعتبر
+    nickname: نام مستعار
     nickname_hint: نام مستعار کلید امنیتی جدیدتان را وارد کنید
     not_enabled: شما هنوز WebAuthn را فعال نکرده‌اید
     not_supported: این مرورگر از کلیدهای امنیتی پشتیبانی نمی‌کند

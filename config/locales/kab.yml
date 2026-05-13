@@ -135,6 +135,7 @@ kab:
         create_domain_allow: Rnu-d taɣult yettusirgen
         create_domain_block: Rnu-d asewḥel n taɣult
         create_ip_block: Rnu alugen n IP
+        create_relay: Snulfu-d amedwel
         create_unavailable_domain: Rnu-d taɣult ur nelli ara
         create_user_role: Snulfu-d tamlilt
         destroy_announcement: Kkes ulɣu
@@ -285,6 +286,7 @@ kab:
       domain: Taɣult
       new:
         create: Rnu taɣult
+      search: Nadi
     email_subscriptions:
       accounts:
         account: Amiḍan
@@ -293,13 +295,17 @@ kab:
         last_email: Imayl aneggaru
         status: Addad
       compliance_settings:
+        additional_footer_text:
+          action: Sefrek
         privacy_policy:
+          action: Sefrek
           title: Tasertit n tbaḍnit
       danger_zone:
         disable_feature:
           action: Kkes armad
         erase_all_data:
           action: Kkes isefka
+          title: Kkes akk isefka
       index:
         disabled:
           get_started: Aha bdu tura
