@@ -58,6 +58,7 @@ export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE    = 'COMPOSE_COMPOSING_CHANGE';
 export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
+export const COMPOSE_SCHEDULED_AT_CHANGE = 'COMPOSE_SCHEDULED_AT_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
@@ -87,6 +88,7 @@ const messages = defineMessages({
   uploadQuote: { id: 'upload_error.quote', defaultMessage: 'File upload not allowed with quotes.' },
   open: { id: 'compose.published.open', defaultMessage: 'Open' },
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
+  scheduled: { id: 'compose.scheduled.body', defaultMessage: 'Post scheduled.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
   blankPostError: { id: 'compose.error.blank_post', defaultMessage: 'Post can\'t be blank.' },
 });
@@ -198,6 +200,7 @@ export function submitCompose(successCallback) {
     const statusId = getState().getIn(['compose', 'id'], null);
     const hasQuote = !!getState().getIn(['compose', 'quoted_status_id']);
     const spoiler_text = getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '';
+    const scheduledAt = statusId === null ? getState().getIn(['compose', 'scheduled_at'], null) : null;
 
     const fulltext = `${spoiler_text ?? ''}${countableText(status ?? '')}`;
     const hasText = fulltext.trim().length > 0;
@@ -247,6 +250,7 @@ export function submitCompose(successCallback) {
         visibility: visibility,
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        scheduled_at: scheduledAt ? new Date(scheduledAt).toISOString() : null,
         quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
         quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
       },
@@ -258,11 +262,23 @@ export function submitCompose(successCallback) {
         browserHistory.goBack();
       }
 
-      dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
       if (typeof successCallback === 'function') {
         successCallback(response.data);
       }
+
+      if (response.data.scheduled_at) {
+        dispatch(showAlert({
+          message: messages.scheduled,
+          action: messages.open,
+          dismissAfter: 10000,
+          onClick: () => browserHistory.push('/scheduled_statuses'),
+        }));
+
+        return;
+      }
+
+      dispatch(insertIntoTagHistory(response.data.tags, status));
 
       // To make the app more responsive, immediately push the status
       // into the columns
@@ -790,6 +806,11 @@ export function changeComposeSensitivity() {
 export const changeComposeLanguage = language => ({
   type: COMPOSE_LANGUAGE_CHANGE,
   language,
+});
+
+export const changeComposeScheduledAt = scheduledAt => ({
+  type: COMPOSE_SCHEDULED_AT_CHANGE,
+  scheduledAt,
 });
 
 export function changeComposeSpoilerness() {

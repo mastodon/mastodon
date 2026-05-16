@@ -38,10 +38,22 @@ const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u20
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning (optional)' },
+  schedule: { id: 'compose_form.schedule', defaultMessage: 'Schedule' },
+  scheduledAt: { id: 'compose_form.scheduled_at', defaultMessage: 'Scheduled time' },
+  clearSchedule: { id: 'compose_form.clear_schedule', defaultMessage: 'Clear scheduled time' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
   reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
 });
+
+const formatDatetimeLocal = date => {
+  const offset = date.getTimezoneOffset();
+  const local = new Date(date.getTime() - offset * 60000);
+
+  return local.toISOString().slice(0, 16);
+};
+
+const minScheduledAt = () => formatDatetimeLocal(new Date(Date.now() + 6 * 60 * 1000));
 
 class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
@@ -51,6 +63,7 @@ class ComposeForm extends ImmutablePureComponent {
     spoiler: PropTypes.bool,
     privacy: PropTypes.string,
     spoilerText: PropTypes.string,
+    scheduledAt: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
     caretPosition: PropTypes.number,
     preselectDate: PropTypes.instanceOf(Date),
@@ -64,6 +77,7 @@ class ComposeForm extends ImmutablePureComponent {
     onFetchSuggestions: PropTypes.func.isRequired,
     onSuggestionSelected: PropTypes.func.isRequired,
     onChangeSpoilerText: PropTypes.func.isRequired,
+    onChangeScheduledAt: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
     onDrop: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
@@ -171,6 +185,14 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleChangeSpoilerText = (e) => {
     this.props.onChangeSpoilerText(e.target.value);
+  };
+
+  handleChangeScheduledAt = (e) => {
+    this.props.onChangeScheduledAt(e.target.value);
+  };
+
+  handleClearScheduledAt = () => {
+    this.props.onChangeScheduledAt(null);
   };
 
   handleFocus = () => {
@@ -316,6 +338,36 @@ class ComposeForm extends ImmutablePureComponent {
           <UploadForm />
           <PollForm />
           <ComposeQuotedStatus />
+
+          {!this.props.isEditing && (
+            <div className='compose-form__schedule'>
+              <label className='compose-form__schedule__label' htmlFor='compose-scheduled-at'>
+                {intl.formatMessage(messages.schedule)}
+              </label>
+
+              <input
+                id='compose-scheduled-at'
+                className='compose-form__schedule__input'
+                type='datetime-local'
+                value={this.props.scheduledAt || ''}
+                min={minScheduledAt()}
+                disabled={isSubmitting}
+                aria-label={intl.formatMessage(messages.scheduledAt)}
+                onChange={this.handleChangeScheduledAt}
+              />
+
+              {this.props.scheduledAt && (
+                <button
+                  type='button'
+                  className='link-button compose-form__schedule__clear'
+                  disabled={isSubmitting}
+                  onClick={this.handleClearScheduledAt}
+                >
+                  {intl.formatMessage(messages.clearSchedule)}
+                </button>
+              )}
+            </div>
+          )}
 
           <div className='compose-form__footer'>
             <div className='compose-form__actions'>

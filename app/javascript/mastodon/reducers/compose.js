@@ -43,6 +43,7 @@ import {
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
+  COMPOSE_SCHEDULED_AT_CHANGE,
   COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
   COMPOSE_RESET,
@@ -89,6 +90,7 @@ const initialState = ImmutableMap({
   default_privacy: 'public',
   default_sensitive: false,
   default_language: 'en',
+  scheduled_at: null,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
@@ -128,6 +130,7 @@ function clearAll(state) {
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', state.get('default_sensitive'));
     map.set('language', state.get('default_language'));
+    map.set('scheduled_at', null);
     map.update('media_attachments', list => list.clear());
     map.set('progress', 0);
     map.set('poll', null);
@@ -609,6 +612,10 @@ export const composeReducer = (state = initialState, action) => {
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
   case COMPOSE_LANGUAGE_CHANGE:
     return state.set('language', action.language);
+  case COMPOSE_SCHEDULED_AT_CHANGE:
+    return state
+      .set('scheduled_at', action.scheduledAt || null)
+      .set('idempotencyKey', uuid());
   case COMPOSE_FOCUS:
     return state
       .set('focusDate', new Date())

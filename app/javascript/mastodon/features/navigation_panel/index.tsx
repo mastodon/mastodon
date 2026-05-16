@@ -25,6 +25,7 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react
 import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
@@ -75,6 +76,10 @@ const messages = defineMessages({
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  scheduledStatuses: {
+    id: 'navigation_bar.scheduled_statuses',
+    defaultMessage: 'Scheduled posts',
+  },
   collections: {
     id: 'navigation_bar.collections',
     defaultMessage: 'Collections',
@@ -333,6 +338,13 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
               iconComponent={BookmarksIcon}
               activeIconComponent={BookmarksActiveIcon}
               text={intl.formatMessage(messages.bookmarks)}
+            />
+            <ColumnLink
+              transparent
+              to='/scheduled_statuses'
+              icon='clock'
+              iconComponent={QuietTimeIcon}
+              text={intl.formatMessage(messages.scheduledStatuses)}
             />
             {areCollectionsEnabled() && (
               <ColumnLink

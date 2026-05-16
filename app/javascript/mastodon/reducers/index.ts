@@ -30,6 +30,7 @@ import { pollsReducer } from './polls';
 import push_notifications from './push_notifications';
 import { relationshipsReducer } from './relationships';
 import { searchReducer } from './search';
+import scheduled_statuses from './scheduled_statuses';
 import server from './server';
 import settings from './settings';
 import { sliceReducers } from './slices';
@@ -62,6 +63,7 @@ const reducers = {
   contexts: contextsReducer,
   compose: composeReducer,
   search: searchReducer,
+  scheduled_statuses,
   media_attachments,
   notifications,
   notificationGroups: notificationGroupsReducer,

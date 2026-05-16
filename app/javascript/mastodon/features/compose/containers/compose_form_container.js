@@ -7,6 +7,7 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSpoilerText,
+  changeComposeScheduledAt,
   insertEmojiCompose,
   uploadCompose,
 } from 'mastodon/actions/compose';
@@ -58,6 +59,7 @@ const mapStateToProps = state => ({
     && !state.getIn(['settings', 'dismissed_banners', PRIVATE_QUOTE_MODAL_ID]),
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
+  scheduledAt: state.getIn(['compose', 'scheduled_at']),
   maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
 });
 
@@ -80,7 +82,7 @@ const mapDispatchToProps = (dispatch, props) => ({
       }));
     } else {
       dispatch(submitCompose((status) => {
-        if (props.redirectOnSuccess) {
+        if (props.redirectOnSuccess && status.url) {
           window.location.assign(status.url);
         }
       }));
@@ -101,6 +103,10 @@ const mapDispatchToProps = (dispatch, props) => ({
 
   onChangeSpoilerText (checked) {
     dispatch(changeComposeSpoilerText(checked));
+  },
+
+  onChangeScheduledAt (scheduledAt) {
+    dispatch(changeComposeScheduledAt(scheduledAt));
   },
 
   onPaste (e) {
