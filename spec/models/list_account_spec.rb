@@ -43,4 +43,70 @@ RSpec.describe ListAccount do
       end
     end
   end
+
+  describe 'validations' do
+    before do
+      allow(list_account).to receive(:set_follow)
+    end
+
+    context 'when account is not followed' do
+      subject(:list_account) do
+        Fabricate.build(
+          :list_account,
+          list: Fabricate(:list),
+          account: Fabricate(:account)
+        )
+      end
+
+      it { is_expected.to_not be_valid }
+
+      it 'adds must_be_following error' do
+        list_account.valid?
+
+        expect(list_account.errors[:account_id]).to be_present
+      end
+    end
+
+    context 'when follow target account does not match account' do
+      subject(:list_account) do
+        Fabricate.build(
+          :list_account,
+          list: Fabricate(:list, account: follow.account),
+          account: Fabricate(:account),
+          follow: follow
+        )
+      end
+
+      let(:follow) { Fabricate(:follow) }
+
+      it { is_expected.to_not be_valid }
+
+      it 'adds invalid follow error' do
+        list_account.valid?
+
+        expect(list_account.errors[:follow]).to be_present
+      end
+    end
+
+    context 'when follow request target account does not match account' do
+      subject(:list_account) do
+        Fabricate.build(
+          :list_account,
+          list: Fabricate(:list, account: follow_request.account),
+          account: Fabricate(:account),
+          follow_request: follow_request
+        )
+      end
+
+      let(:follow_request) { Fabricate(:follow_request) }
+
+      it { is_expected.to_not be_valid }
+
+      it 'adds invalid follow request error' do
+        list_account.valid?
+
+        expect(list_account.errors[:follow_request]).to be_present
+      end
+    end
+  end
 end
