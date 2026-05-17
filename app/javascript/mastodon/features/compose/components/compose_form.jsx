@@ -15,7 +15,9 @@ import { missingAltTextModal } from 'mastodon/initial_state';
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import AutosuggestTextarea from 'mastodon/components/autosuggest_textarea';
 import { Button } from 'mastodon/components/button';
+import { IconButton } from 'mastodon/components/icon_button';
 import { injectIntl } from '@/mastodon/components/intl';
+import HourglassIcon from '@/material-icons/400-24px/hourglass.svg?react';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
@@ -39,9 +41,19 @@ const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Content warning (optional)' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
+  schedule: { id: 'compose_form.schedule', defaultMessage: 'Schedule' },
+  scheduleFor: { id: 'compose_form.schedule_for', defaultMessage: 'Schedule for' },
+  schedulePost: { id: 'compose_form.schedule_post', defaultMessage: 'Schedule post' },
+  removeSchedule: { id: 'compose_form.remove_schedule', defaultMessage: 'Remove scheduled time' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
   reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
 });
+
+const toDatetimeLocalValue = date => {
+  const offsetDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+
+  return offsetDate.toISOString().slice(0, 16);
+};
 
 class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
@@ -51,6 +63,7 @@ class ComposeForm extends ImmutablePureComponent {
     spoiler: PropTypes.bool,
     privacy: PropTypes.string,
     spoilerText: PropTypes.string,
+    scheduledAt: PropTypes.string,
     focusDate: PropTypes.instanceOf(Date),
     caretPosition: PropTypes.number,
     preselectDate: PropTypes.instanceOf(Date),
@@ -64,6 +77,7 @@ class ComposeForm extends ImmutablePureComponent {
     onFetchSuggestions: PropTypes.func.isRequired,
     onSuggestionSelected: PropTypes.func.isRequired,
     onChangeSpoilerText: PropTypes.func.isRequired,
+    onChangeScheduledAt: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
     onDrop: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
@@ -84,6 +98,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   state = {
     highlighted: false,
+    showScheduler: false,
   };
 
   constructor(props) {
@@ -173,6 +188,19 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onChangeSpoilerText(e.target.value);
   };
 
+  handleChangeScheduledAt = (e) => {
+    this.props.onChangeScheduledAt(e.target.value);
+  };
+
+  handleScheduleClick = () => {
+    if (this.props.scheduledAt) {
+      this.props.onChangeScheduledAt('');
+      this.setState({ showScheduler: false });
+    } else {
+      this.setState(({ showScheduler }) => ({ showScheduler: !showScheduler }));
+    }
+  };
+
   handleFocus = () => {
     if (this.composeForm && !this.props.singleColumn) {
       const { left, right } = this.composeForm.getBoundingClientRect();
@@ -252,7 +280,8 @@ class ComposeForm extends ImmutablePureComponent {
 
   render () {
     const { intl, onPaste, onDrop, autoFocus, withoutNavigation, maxChars, isSubmitting } = this.props;
-    const { highlighted } = this.state;
+    const { highlighted, showScheduler } = this.state;
+    const showScheduleInput = !this.props.isEditing && (showScheduler || this.props.scheduledAt);
 
     return (
       <form className='compose-form' onSubmit={this.handleSubmit}>
@@ -318,12 +347,34 @@ class ComposeForm extends ImmutablePureComponent {
           <ComposeQuotedStatus />
 
           <div className='compose-form__footer'>
+            {showScheduleInput && (
+              <label className='compose-form__schedule'>
+                <span>{intl.formatMessage(messages.scheduleFor)}</span>
+
+                <input
+                  type='datetime-local'
+                  value={this.props.scheduledAt}
+                  min={toDatetimeLocalValue(new Date(Date.now() + 5 * 60 * 1000))}
+                  disabled={isSubmitting}
+                  onChange={this.handleChangeScheduledAt}
+                />
+              </label>
+            )}
+
             <div className='compose-form__actions'>
               <div className='compose-form__buttons'>
                 <UploadButtonContainer />
                 <PollButtonContainer />
                 <SpoilerButtonContainer />
                 <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
+                <IconButton
+                  title={intl.formatMessage(this.props.scheduledAt ? messages.removeSchedule : messages.schedulePost)}
+                  icon='hourglass'
+                  iconComponent={HourglassIcon}
+                  onClick={this.handleScheduleClick}
+                  active={Boolean(this.props.scheduledAt)}
+                  disabled={this.props.isEditing}
+                />
                 <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
               </div>
 
@@ -337,7 +388,7 @@ class ComposeForm extends ImmutablePureComponent {
                   {intl.formatMessage(
                     this.props.isEditing ?
                       messages.saveChanges :
-                      (this.props.isInReply ? messages.reply : messages.publish)
+                      (this.props.scheduledAt ? messages.schedule : (this.props.isInReply ? messages.reply : messages.publish))
                   )}
                 </Button>
               </div>

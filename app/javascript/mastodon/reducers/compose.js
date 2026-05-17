@@ -43,6 +43,7 @@ import {
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
+  COMPOSE_SCHEDULE_CHANGE,
   COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
   COMPOSE_RESET,
@@ -68,6 +69,7 @@ const initialState = ImmutableMap({
   privacy: null,
   id: null,
   text: '',
+  scheduled_at: '',
   focusDate: null,
   caretPosition: null,
   preselectDate: null,
@@ -120,6 +122,7 @@ function clearAll(state) {
   return state.withMutations(map => {
     map.set('id', null);
     map.set('text', '');
+    map.set('scheduled_at', '');
     map.set('spoiler', false);
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
@@ -412,6 +415,10 @@ export const composeReducer = (state = initialState, action) => {
   case COMPOSE_CHANGE:
     return state
       .set('text', action.text)
+      .set('idempotencyKey', uuid());
+  case COMPOSE_SCHEDULE_CHANGE:
+    return state
+      .set('scheduled_at', action.scheduledAt)
       .set('idempotencyKey', uuid());
   case COMPOSE_COMPOSING_CHANGE:
     return state.set('is_composing', action.value);

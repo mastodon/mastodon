@@ -763,6 +763,28 @@ body > [data-popper-placement] {
     padding: 12px;
   }
 
+  &__schedule {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    line-height: 20px;
+
+    input[type='datetime-local'] {
+      box-sizing: border-box;
+      min-width: 0;
+      flex: 1 1 190px;
+      color: var(--color-text-primary);
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-primary);
+      border-radius: 4px;
+      padding: 6px 8px;
+      font: inherit;
+    }
+  }
+
   &__submit {
     display: flex;
     align-items: center;

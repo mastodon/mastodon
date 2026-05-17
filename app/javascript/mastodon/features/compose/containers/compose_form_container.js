@@ -7,6 +7,7 @@ import {
   fetchComposeSuggestions,
   selectComposeSuggestion,
   changeComposeSpoilerText,
+  changeComposeScheduledAt,
   insertEmojiCompose,
   uploadCompose,
 } from 'mastodon/actions/compose';
@@ -41,6 +42,7 @@ const mapStateToProps = state => ({
   suggestions: state.getIn(['compose', 'suggestions']),
   spoiler: state.getIn(['compose', 'spoiler']),
   spoilerText: state.getIn(['compose', 'spoiler_text']),
+  scheduledAt: state.getIn(['compose', 'scheduled_at']),
   privacy: state.getIn(['compose', 'privacy']),
   focusDate: state.getIn(['compose', 'focusDate']),
   caretPosition: state.getIn(['compose', 'caretPosition']),
@@ -101,6 +103,10 @@ const mapDispatchToProps = (dispatch, props) => ({
 
   onChangeSpoilerText (checked) {
     dispatch(changeComposeSpoilerText(checked));
+  },
+
+  onChangeScheduledAt (scheduledAt) {
+    dispatch(changeComposeScheduledAt(scheduledAt));
   },
 
   onPaste (e) {

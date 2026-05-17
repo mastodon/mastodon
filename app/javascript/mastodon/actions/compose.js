@@ -6,6 +6,7 @@ import { throttle } from 'lodash';
 import api from 'mastodon/api';
 import { browserHistory } from 'mastodon/components/router';
 import { countableText } from 'mastodon/features/compose/util/counter';
+import { buildComposeSubmitData, isScheduledStatusResponse } from 'mastodon/features/compose/util/submit_payload';
 import { tagHistory } from 'mastodon/settings';
 import { fetchCustomEmojiData } from '@/mastodon/features/emoji/picker';
 
@@ -58,6 +59,7 @@ export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE    = 'COMPOSE_COMPOSING_CHANGE';
 export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
+export const COMPOSE_SCHEDULE_CHANGE     = 'COMPOSE_SCHEDULE_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
@@ -87,6 +89,7 @@ const messages = defineMessages({
   uploadQuote: { id: 'upload_error.quote', defaultMessage: 'File upload not allowed with quotes.' },
   open: { id: 'compose.published.open', defaultMessage: 'Open' },
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
+  scheduled: { id: 'compose.scheduled.body', defaultMessage: 'Post scheduled.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
   blankPostError: { id: 'compose.error.blank_post', defaultMessage: 'Post can\'t be blank.' },
 });
@@ -115,6 +118,13 @@ export function changeCompose(text) {
   return {
     type: COMPOSE_CHANGE,
     text: text,
+  };
+}
+
+export function changeComposeScheduledAt(scheduledAt) {
+  return {
+    type: COMPOSE_SCHEDULE_CHANGE,
+    scheduledAt,
   };
 }
 
@@ -193,11 +203,12 @@ export function directCompose(account) {
 
 export function submitCompose(successCallback) {
   return function (dispatch, getState) {
-    const status   = getState().getIn(['compose', 'text'], '');
-    const media    = getState().getIn(['compose', 'media_attachments']);
-    const statusId = getState().getIn(['compose', 'id'], null);
-    const hasQuote = !!getState().getIn(['compose', 'quoted_status_id']);
-    const spoiler_text = getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '';
+    const state    = getState();
+    const status   = state.getIn(['compose', 'text'], '');
+    const media    = state.getIn(['compose', 'media_attachments']);
+    const statusId = state.getIn(['compose', 'id'], null);
+    const hasQuote = !!state.getIn(['compose', 'quoted_status_id']);
+    const spoiler_text = state.getIn(['compose', 'spoiler']) ? state.getIn(['compose', 'spoiler_text'], '') : '';
 
     const fulltext = `${spoiler_text ?? ''}${countableText(status ?? '')}`;
     const hasText = fulltext.trim().length > 0;
@@ -233,35 +244,45 @@ export function submitCompose(successCallback) {
       });
     }
 
-    const visibility = getState().getIn(['compose', 'privacy']);
+    const visibility = state.getIn(['compose', 'privacy']);
     api().request({
       url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
       method: statusId === null ? 'post' : 'put',
-      data: {
+      data: buildComposeSubmitData({
+        state,
         status,
-        spoiler_text,
-        in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
-        media_ids: media.map(item => item.get('id')),
-        media_attributes,
-        sensitive: getState().getIn(['compose', 'sensitive']),
-        visibility: visibility,
-        poll: getState().getIn(['compose', 'poll'], null),
-        language: getState().getIn(['compose', 'language']),
-        quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
-        quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
-      },
+        spoilerText: spoiler_text,
+        media,
+        mediaAttributes: media_attributes,
+        statusId,
+        visibility,
+      }),
       headers: {
-        'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
+        'Idempotency-Key': state.getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      const scheduledStatus = isScheduledStatusResponse(response.data);
+
       if ((browserHistory.location.pathname === '/publish' || browserHistory.location.pathname === '/statuses/new') && window.history.state) {
         browserHistory.goBack();
       }
 
-      dispatch(insertIntoTagHistory(response.data.tags, status));
+      if (!scheduledStatus) {
+        dispatch(insertIntoTagHistory(response.data.tags, status));
+      }
+
       dispatch(submitComposeSuccess({ ...response.data }));
-      if (typeof successCallback === 'function') {
+
+      if (!scheduledStatus && typeof successCallback === 'function') {
         successCallback(response.data);
+      }
+
+      if (scheduledStatus) {
+        dispatch(showAlert({
+          message: messages.scheduled,
+        }));
+
+        return;
       }
 
       // To make the app more responsive, immediately push the status
