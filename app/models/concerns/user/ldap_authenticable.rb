@@ -6,7 +6,9 @@ module User::LdapAuthenticable
   class_methods do
     def authenticate_with_ldap(params = {})
       ldap   = Net::LDAP.new(ldap_options)
-      filter = format(Devise.ldap_search_filter, uid: Devise.ldap_uid, mail: Devise.ldap_mail, email: Net::LDAP::Filter.escape(params[:email]))
+      uid    = Devise.ldap_uid.to_s.gsub(/[^A-Za-z0-9\-]/, '')
+      mail   = Devise.ldap_mail.to_s.gsub(/[^A-Za-z0-9\-]/, '')
+      filter = format(Devise.ldap_search_filter, uid: uid, mail: mail, email: Net::LDAP::Filter.escape(params[:email]))
 
       if (user_info = ldap.bind_as(base: Devise.ldap_base, filter: filter, password: params[:password]))
         ldap_get_user(user_info.first)
@@ -58,7 +60,7 @@ module User::LdapAuthenticable
       if [:simple_tls, :start_tls].include?(Devise.ldap_method)
         opts[:encryption] = {
           method: Devise.ldap_method,
-          tls_options: OpenSSL::SSL::SSLContext::DEFAULT_PARAMS.tap { |options| options[:verify_mode] = OpenSSL::SSL::VERIFY_NONE if Devise.ldap_tls_no_verify },
+          tls_options: OpenSSL::SSL::SSLContext::DEFAULT_PARAMS,
         }
       end
 
