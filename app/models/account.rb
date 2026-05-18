@@ -268,7 +268,19 @@ class Account < ApplicationRecord
   def needs_background_refresh?
     return false if local?
 
-    last_webfingered_at.blank? || last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+    return true if last_webfingered_at.blank? || last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+
+    # TODO: Remove some time after 4.6
+    # This is temporary workaround to speed up account refreshs after
+    # collections have been enabled / deployed.
+    # Accounts will be refreshed when they lack a feature_approval_policy
+    # but we know from other account's on the same server that they should
+    # have.
+    return false unless feature_approval_policy.zero?
+
+    Rails.cache.fetch("feature_approval_policy_availability:#{domain}", expires_in: 30.minutes) do
+      Account.where(domain:).where.not(feature_approval_policy: 0).exists?
+    end
   end
 
   def schedule_refresh_if_stale!
