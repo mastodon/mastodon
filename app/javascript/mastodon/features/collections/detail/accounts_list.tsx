@@ -3,6 +3,7 @@ import { useCallback, useMemo, useRef } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { PendingBadge } from '@/mastodon/components/badge';
+import { SelectField } from '@/mastodon/components/form_fields';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import type {
   ApiCollectionJSON,
@@ -147,17 +148,56 @@ export const CollectionAccountsList: React.FC<{
 
   return (
     <>
-      <h3
-        className={classes.columnSubheading}
-        tabIndex={-1}
-        ref={listHeadingRef}
-      >
-        <FormattedMessage
-          id='collections.account_count'
-          defaultMessage='{count, plural, one {# account} other {# accounts}}'
-          values={{ count: collection.item_count }}
-        />
-      </h3>
+      <div className={classes.subheadingWithSelect}>
+        <h3
+          className={classes.columnSubheading}
+          tabIndex={-1}
+          ref={listHeadingRef}
+        >
+          <FormattedMessage
+            id='collections.account_count'
+            defaultMessage='{count, plural, one {# account} other {# accounts}}'
+            values={{ count: collection.item_count }}
+          />
+        </h3>
+        <SelectField
+          label={
+            <FormattedMessage
+              id='collections.sort_by'
+              defaultMessage='Sort by:'
+            />
+          }
+          value='date_added'
+          inputPlacement='inline-end'
+          className={classes.select}
+          wrapperClassName={classes.selectWrapper}
+        >
+          <option value='alphabetical'>
+            <FormattedMessage
+              id='collections.sort_alphabetical'
+              defaultMessage='Alphabetical'
+            />
+          </option>
+          <option value='last_active'>
+            <FormattedMessage
+              id='collections.sort_last_active'
+              defaultMessage='Last active'
+            />
+          </option>
+          <option value='most_followers'>
+            <FormattedMessage
+              id='collections.sort_most_followers'
+              defaultMessage='Most followers'
+            />
+          </option>
+          <option value='date_added'>
+            <FormattedMessage
+              id='collections.sort_date_added'
+              defaultMessage='Date added'
+            />
+          </option>
+        </SelectField>
+      </div>
       <ItemList emptyMessage={intl.formatMessage(messages.empty)}>
         <TruncatedListItems
           visibleItems={visibleAccounts}
