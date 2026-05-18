@@ -38,23 +38,6 @@ class Auth::SessionsController < Devise::SessionsController
     flash.delete(:notice)
   end
 
-  def webauthn_options
-    user = User.find_by(id: session[:attempt_user_id])
-
-    if user&.webauthn_enabled?
-      options_for_get = WebAuthn::Credential.options_for_get(
-        allow: user.webauthn_credentials.pluck(:external_id),
-        user_verification: 'discouraged'
-      )
-
-      session[:webauthn_challenge] = options_for_get.challenge
-
-      render json: options_for_get, status: 200
-    else
-      render json: { error: t('webauthn_credentials.not_enabled') }, status: 401
-    end
-  end
-
   protected
 
   def find_user

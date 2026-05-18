@@ -267,6 +267,15 @@ export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
   return results.filter((emoji) => shortcodes.includes(emoji.shortcode));
 }
 
+export async function loadAllCustomEmoji() {
+  const db = await loadDB();
+  const cacheValue = await db.get('etags', 'custom');
+  if (!cacheValue) {
+    return null;
+  }
+  return db.getAll('custom');
+}
+
 export async function loadLegacyShortcodesByShortcode(shortcode: string) {
   const db = await loadDB();
   return db.getFromIndex(
@@ -302,7 +311,8 @@ async function toLoadedLocale(localeString: string) {
   }
   if (!loadedLocales.has(locale)) {
     log('Locale %s not loaded, importing...', locale);
-    const { importEmojiData } = await import('./loader');
+    // Ignore the INEFFECTIVE_DYNAMIC_IMPORT Vite warning, since the static import location is inside an inlined web worker.
+    const { importEmojiData } = await import(/* @vite-ignore */ './loader');
     await importEmojiData(locale);
     return locale;
   }

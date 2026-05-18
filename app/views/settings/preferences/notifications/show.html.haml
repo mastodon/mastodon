@@ -35,7 +35,7 @@
       - if SoftwareUpdate.check_enabled? && current_user.can?(:view_devops)
         .fields-group
           = ff.input :'notification_emails.software_updates',
-                     collection: %w(none critical patch all),
+                     collection: user_settings_collection('notification_emails.software_updates'),
                      hint: false,
                      include_blank: false,
                      label_method: ->(setting) { I18n.t("simple_form.labels.notification_emails.software_updates.#{setting}") },

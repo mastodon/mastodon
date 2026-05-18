@@ -41,6 +41,19 @@ RSpec.describe CollectionItem do
       subject { Fabricate.build(:unverified_remote_collection_item) }
 
       it { is_expected.to validate_presence_of(:object_uri) }
+
+      context 'when another item without account exists' do
+        subject { Fabricate.build(:unverified_remote_collection_item, collection:) }
+
+        let(:collection) { Fabricate(:remote_collection) }
+
+        before do
+          Fabricate(:unverified_remote_collection_item, collection:)
+          collection.reload
+        end
+
+        it { is_expected.to be_valid }
+      end
     end
   end
 
@@ -60,6 +73,12 @@ RSpec.describe CollectionItem do
       expect(second_item.position).to eq 2
       expect(unrelated_item.position).to eq 1
       expect(custom_item.position).to eq 7
+    end
+
+    it 'automatically sets the position if excplicitly set to `nil`' do
+      item = collection.collection_items.create!(account:, position: nil)
+
+      expect(item.position).to eq 1
     end
 
     it 'automatically sets `activity_uri` when account is remote' do

@@ -35,6 +35,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import { Icon } from '@/mastodon/components/icon';
+import { useCustomEmojis } from '@/mastodon/hooks/useCustomEmojis';
 import type { FieldData } from '@/mastodon/reducers/slices/profile_edit';
 import {
   patchProfile,
@@ -217,7 +218,7 @@ export const ReorderFieldsModal: FC<DialogModalProps> = ({ onClose }) => {
     void dispatch(patchProfile({ fields_attributes: newFields })).then(onClose);
   }, [dispatch, fieldKeys, fields, onClose]);
 
-  const emojis = useAppSelector((state) => state.custom_emojis);
+  const emojis = useCustomEmojis();
 
   return (
     // Add a wrapper here in the capture phase, so that it can be intercepted before the window listener in ModalRoot.

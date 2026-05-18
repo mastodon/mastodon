@@ -7,6 +7,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
   let!(:status) { Fabricate(:status, text: 'Hello world', uri: 'https://example.com/statuses/1234', account: Fabricate(:account, domain: 'example.com')) }
   let(:bogus_mention) { 'https://example.com/users/erroringuser' }
+  let(:bogus_collection) { 'https://example.com/collections/erroringcollection' }
   let(:payload) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -20,6 +21,8 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
         { type: 'Mention', href: bogus_mention },
+        { type: 'FeaturedCollection', id: ActivityPub::TagManager.instance.uri_for(featured_collection) },
+        { type: 'FeaturedCollection', id: bogus_collection },
       ],
     }
   end
@@ -27,6 +30,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
   let(:alice) { Fabricate(:account) }
   let(:bob) { Fabricate(:account) }
+  let(:featured_collection) { Fabricate(:collection) }
 
   let(:mentions) { [] }
   let(:tags) { [] }
@@ -37,6 +41,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     tags.each { |t| status.tags << t }
     media_attachments.each { |m| status.media_attachments << m }
     stub_request(:get, bogus_mention).to_raise(HTTP::ConnectionError)
+    stub_request(:get, bogus_collection).to_raise(HTTP::ConnectionError)
   end
 
   describe '#call' do
@@ -48,6 +53,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
           spoiler_text: eq('Show more')
         )
       expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, bogus_mention, anything)
+      expect(TaggedCollectionResolveWorker).to have_enqueued_sidekiq_job(status.id, bogus_collection, anything)
     end
 
     context 'when the changes are only in sanitized-out HTML' do
@@ -273,6 +279,16 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       it 'does not create any edits or mark status edited' do
         expect(status.reload.edits).to be_empty
         expect(status).to_not be_edited
+      end
+    end
+
+    context 'when originally without tagged objects' do
+      before do
+        subject.call(status, json, json)
+      end
+
+      it 'updates tags' do
+        expect(status.tagged_objects.reload.map(&:object)).to contain_exactly(featured_collection)
       end
     end
 
@@ -928,10 +944,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: quote_authorization_json.to_json)
     end
 
-    it 'updates the approval URI but does not verify the quote' do
+    it 'does not update the approval URI and does not verify the quote' do
       expect { subject.call(status, json, json) }
         .to change(status, :quote).from(nil)
-      expect(status.quote.approval_uri).to eq approval_uri
+      expect(status.quote.approval_uri).to be_nil
       expect(status.quote.state).to_not eq 'accepted'
       expect(status.quote.quoted_status).to be_nil
     end

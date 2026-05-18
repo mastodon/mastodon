@@ -119,5 +119,28 @@ RSpec.describe ActivityPub::Activity::Delete do
           .to change { quote.reload.state }.to('revoked')
       end
     end
+
+    context 'with a FeatureAuthorization', feature: :collections do
+      let(:recipient) { Fabricate(:account) }
+      let(:approval_uri) { 'https://example.com/authorizations/1' }
+      let(:collection) { Fabricate(:collection, account: recipient) }
+      let!(:collection_item) { Fabricate(:collection_item, collection:, account: sender, state: :accepted, approval_uri:) }
+      let(:json) do
+        {
+          'id' => 'https://example.com/accepts/1',
+          'type' => 'Delete',
+          'actor' => sender.uri,
+          'to' => ActivityPub::TagManager.instance.uri_for(recipient),
+          'object' => approval_uri,
+        }
+      end
+
+      it 'revokes the collection item and federates a `Delete` activity' do
+        subject.perform
+
+        expect(collection_item.reload).to be_revoked
+        expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+      end
+    end
   end
 end

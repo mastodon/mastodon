@@ -26,6 +26,8 @@ export type LocationState = MastodonLocationState | null | undefined;
 
 export type MastodonLocation = ReturnType<typeof useLocation<LocationState>>;
 
+export type MastodonLocationDescriptor = LocationDescriptor<LocationState>;
+
 type HistoryPath = Path | LocationDescriptor<LocationState>;
 
 export const browserHistory = createBrowserHistory<LocationState>();

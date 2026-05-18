@@ -1,9 +1,12 @@
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 
+import formatjs from '@formatjs/unplugin/vite';
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
+import babel from '@rolldown/plugin-babel';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
+import browserslist from 'browserslist';
 import postcssPresetEnv from 'postcss-preset-env';
 import Compress from 'rollup-plugin-gzip';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -16,7 +19,6 @@ import {
 import manifestSRI from 'vite-plugin-manifest-sri';
 import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
@@ -44,6 +46,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     base: `/${outDirName}/`,
     envDir: __dirname,
     resolve: {
+      tsconfigPaths: true,
       alias: {
         '~/': `${jsRoot}/`,
         '@/': `${jsRoot}/`,
@@ -122,7 +125,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       assetsDir: 'assets',
       assetsInlineLimit: (filePath, _) =>
         /\.woff2?$/.exec(filePath) ? false : undefined,
-      rollupOptions: {
+      rolldownOptions: {
         input: await findEntrypoints(),
         output: {
           chunkFileNames({ facadeModuleId, name }) {
@@ -168,12 +171,11 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       format: 'es',
     },
     plugins: [
-      tsconfigPaths({ projects: [path.resolve(__dirname, 'tsconfig.json')] }),
-      react({
-        babel: {
-          plugins: ['formatjs', 'transform-react-remove-prop-types'],
-        },
+      react(),
+      babel({
+        plugins: ['transform-react-remove-prop-types'],
       }),
+      formatjs(),
       MastodonThemes(),
       MastodonAssetsManifest(),
       MastodonServiceWorkerLocales(),
@@ -181,6 +183,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       legacy({
         renderLegacyChunks: false,
         modernPolyfills: true,
+        modernTargets: browserslist.loadConfig({ path: process.cwd() }),
       }),
       isProdBuild && (Compress() as PluginOption),
       command === 'build' &&

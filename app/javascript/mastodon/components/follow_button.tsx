@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { useIdentity } from '@/mastodon/identity_context';
-import { isClientFeatureEnabled } from '@/mastodon/utils/environment';
 import {
   fetchRelationships,
   followAccount,
@@ -171,23 +170,10 @@ export const FollowButton: React.FC<{
       'button--compact': compact,
     });
 
-    if (isClientFeatureEnabled('profile_editing')) {
-      return (
-        <Link to='/profile/edit' className={buttonClasses}>
-          {label}
-        </Link>
-      );
-    }
-
     return (
-      <a
-        href='/settings/profile'
-        target='_blank'
-        rel='noopener'
-        className={buttonClasses}
-      >
+      <Link to='/profile/edit' className={buttonClasses}>
         {label}
-      </a>
+      </Link>
     );
   }
 

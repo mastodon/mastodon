@@ -15,24 +15,24 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
     it 'views and creates new blocks' do
       visit admin_email_domain_blocks_path
       expect(page)
-        .to have_content(I18n.t('admin.email_domain_blocks.title'))
-        .and have_content(email_domain_block.domain)
+        .to have_text(I18n.t('admin.email_domain_blocks.title'))
+        .and have_text(email_domain_block.domain)
 
       click_on I18n.t('admin.email_domain_blocks.add_new')
       expect(page)
-        .to have_content(I18n.t('admin.email_domain_blocks.new.title'))
+        .to have_text(I18n.t('admin.email_domain_blocks.new.title'))
 
       fill_in I18n.t('admin.email_domain_blocks.domain'), with: 'example.com'
       expect { submit_resolve }
         .to_not change(EmailDomainBlock, :count)
       expect(page)
-        .to have_content(I18n.t('admin.email_domain_blocks.new.title'))
+        .to have_text(I18n.t('admin.email_domain_blocks.new.title'))
 
       expect { submit_create }
         .to change(EmailDomainBlock.where(domain: 'example.com'), :count).by(1)
       expect(page)
-        .to have_content(I18n.t('admin.email_domain_blocks.title'))
-        .and have_content(I18n.t('admin.email_domain_blocks.created_msg'))
+        .to have_text(I18n.t('admin.email_domain_blocks.title'))
+        .and have_text(I18n.t('admin.email_domain_blocks.created_msg'))
     end
 
     def submit_resolve
@@ -53,7 +53,7 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
       it 'displays a notice about selection' do
         click_on button_for_delete
 
-        expect(page).to have_content(selection_error_text)
+        expect(page).to have_text(selection_error_text)
       end
     end
 
@@ -84,6 +84,43 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
 
     def selection_error_text
       I18n.t('admin.email_domain_blocks.no_email_domain_block_selected')
+    end
+  end
+
+  describe 'Searching for email domain blocks' do
+    let(:email_domain_block) { Fabricate :email_domain_block, domain: 'something.com' }
+    let(:email_domain_block2) { Fabricate :email_domain_block, domain: 'example.com' }
+
+    before do
+      visit admin_email_domain_blocks_path
+      email_domain_block
+      email_domain_block2
+    end
+
+    it 'filters by domain' do
+      fill_in 'domain', with: 'example.com'
+      click_on I18n.t('admin.email_domain_blocks.search')
+
+      expect(page).to have_text('example.com')
+      expect(page).to have_no_text('something.com')
+    end
+
+    it 'shows empty page when no such domains are blocked' do
+      fill_in 'domain', with: 'mydomain.com'
+      click_on I18n.t('admin.email_domain_blocks.search')
+
+      expect(page).to have_no_text('mydomain.com')
+      expect(page).to have_text('There is nothing here!')
+    end
+
+    it 'returns to the list when resetting the search' do
+      fill_in 'domain', with: 'example.com'
+      click_on I18n.t('admin.email_domain_blocks.search')
+      click_on I18n.t('admin.email_domain_blocks.reset')
+
+      expect(page).to have_text('example.com')
+      expect(page).to have_text('something.com')
+      expect(page).to have_no_text('There is nothing here!')
     end
   end
 end

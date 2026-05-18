@@ -114,7 +114,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-bg-brand-base);
+    outline: var(--outline-focus-default);
     outline-offset: 2px;
   }
 
@@ -169,12 +169,12 @@
     color: var(--color-text-brand);
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid var(--color-text-brand);
+    border: 1px solid var(--color-border-brand);
 
     &:active,
     &:focus,
     &:hover {
-      border-color: var(--color-text-brand);
+      border-color: var(--color-border-brand);
       color: var(--color-text-brand);
       background-color: transparent;
       text-decoration: none;
@@ -184,7 +184,7 @@
       &:active,
       &:focus,
       &:hover {
-        border-color: var(--color-text-error);
+        border-color: var(--color-border-error);
         color: var(--color-text-error);
       }
     }
@@ -284,8 +284,8 @@
   --default-icon-color: var(--color-text-secondary);
   --default-bg-color: transparent;
   --hover-icon-color: var(--color-text-primary);
-  --hover-bg-color: var(--color-bg-brand-softer);
-  --focus-outline-color: var(--color-text-brand);
+  --hover-bg-color: var(--color-bg-brand-softest);
+  --focus-outline-color: var(--color-border-brand);
 
   display: inline-flex;
   color: var(--default-icon-color);
@@ -364,8 +364,8 @@
   &.copied {
     color: var(--color-text-success);
     transition: none;
-    background-color: var(--color-bg-success-softer);
-    border-color: var(--color-border-on-bg-brand-softer);
+    background-color: var(--color-bg-success-softest);
+    border-color: var(--color-border-success-soft);
   }
 }
 
@@ -537,21 +537,21 @@ body > [data-popper-placement] {
     flex-direction: column;
     flex: 0 1 auto;
     border-radius: 4px;
-    border: 1px solid var(--color-border-on-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     transition: border-color 300ms linear;
     position: relative;
     background: var(--color-bg-secondary);
 
     &.active {
       transition: none;
-      border-color: var(--color-text-brand);
+      border-color: var(--color-border-brand);
     }
   }
 
   &__warning {
     color: var(--color-text-primary);
-    background: var(--color-bg-warning-softer);
-    border: 1px solid var(--color-border-on-bg-warning-softer);
+    background: var(--color-bg-warning-softest);
+    border: 1px solid var(--color-border-warning-soft);
     padding: 8px 10px;
     border-radius: 4px;
     font-size: 13px;
@@ -619,7 +619,7 @@ body > [data-popper-placement] {
 
   .spoiler-input__input {
     padding: 12px 12px - 5px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     color: var(--color-text-brand);
   }
 
@@ -885,7 +885,7 @@ body > [data-popper-placement] {
         line-height: 20px;
         letter-spacing: 0.1px;
         color: var(--color-text-brand);
-        background-color: var(--color-bg-secondary-solid);
+        background-color: var(--color-bg-secondary);
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -917,7 +917,7 @@ body > [data-popper-placement] {
   gap: 4px;
   color: var(--color-text-brand);
   background: transparent;
-  border: 1px solid var(--color-text-brand);
+  border: 1px solid var(--color-border-brand);
   border-radius: 6px;
   padding: 4px 8px;
   font-size: 13px;
@@ -1464,9 +1464,9 @@ body > [data-popper-placement] {
 
 .focusable {
   &:focus-visible {
-    outline: 2px solid var(--color-text-brand);
+    outline: 2px solid var(--color-border-brand);
     outline-offset: -2px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 }
 
@@ -1499,8 +1499,9 @@ body > [data-popper-placement] {
   .media-gallery,
   .video-player,
   .audio-player,
-  .attachment-list {
-    margin-top: 16px;
+  .attachment-list,
+  .collection-preview {
+    margin-top: 14px;
   }
 
   &--in-thread {
@@ -1517,6 +1518,7 @@ body > [data-popper-placement] {
     & > .picture-in-picture-placeholder,
     & > .more-from-author,
     & > .status-card,
+    & > .collection-preview,
     & > .hashtag-bar,
     & > .content-warning,
     & > .filter-warning,
@@ -1587,7 +1589,7 @@ body > [data-popper-placement] {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     opacity: 0;
     animation: fade 0.7s reverse both 0.3s;
     pointer-events: none;
@@ -1739,7 +1741,7 @@ body > [data-popper-placement] {
 .notification-ungrouped--direct,
 .notification-group--direct,
 .notification-group--annual-report {
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
 
   &:focus {
     background: var(--color-bg-brand-soft);
@@ -1787,7 +1789,8 @@ body > [data-popper-placement] {
 
   .media-gallery,
   .video-player,
-  .audio-player {
+  .audio-player,
+  .collection-preview {
     margin-top: 16px;
   }
 
@@ -1877,7 +1880,7 @@ body > [data-popper-placement] {
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 
   .status__prepend {
@@ -1932,7 +1935,7 @@ body > [data-popper-placement] {
   line-height: 20px;
   letter-spacing: 0.25px;
   color: var(--color-text-secondary);
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
   border-radius: 8px;
   cursor: default;
 }
@@ -2011,7 +2014,15 @@ body > [data-popper-placement] {
 }
 
 .account {
-  padding: 16px;
+  --account-outer-spacing: 16px;
+  --account-name-color: var(--color-text-primary);
+  --account-name-size: 14px;
+  --account-handle-color: var(--color-text-secondary);
+  --account-handle-size: 14px;
+  --account-bio-color: var(--color-text-secondary);
+  --account-bio-size: 14px;
+
+  padding: var(--account-outer-spacing);
 
   // Using :where keeps specificity low, allowing for existing
   // .account overrides to still apply
@@ -2024,10 +2035,10 @@ body > [data-popper-placement] {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--color-text-secondary);
+    color: var(--account-handle-color);
     overflow: hidden;
     text-decoration: none;
-    font-size: 14px;
+    font-size: var(--account-handle-size);
 
     .display-name {
       margin-bottom: 4px;
@@ -2035,7 +2046,8 @@ body > [data-popper-placement] {
 
     .display-name strong {
       display: inline;
-      color: var(--color-text-primary);
+      font-size: var(--account-name-size);
+      color: var(--account-name-color);
     }
   }
 
@@ -2060,7 +2072,7 @@ body > [data-popper-placement] {
 
   &__domain-pill {
     display: inline-flex;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     border-radius: 4px;
     border: 0;
     color: var(--color-text-brand);
@@ -2121,7 +2133,7 @@ body > [data-popper-placement] {
 
       &__handle {
         border: 2px dashed var(--color-border-on-brand-softer);
-        background: var(--color-bg-brand-softer);
+        background: var(--color-bg-brand-softest);
         padding: 12px 8px;
         color: var(--color-text-brand);
         border-radius: 4px;
@@ -2173,7 +2185,7 @@ body > [data-popper-placement] {
   }
 
   &__note {
-    font-size: 14px;
+    font-size: var(--account-bio-size);
     font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2182,7 +2194,7 @@ body > [data-popper-placement] {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-top: 10px;
-    color: var(--color-text-secondary);
+    color: var(--account-bio-color);
 
     &--missing {
       color: var(--color-text-tertiary);
@@ -2903,10 +2915,14 @@ a.account__display-name {
     &:focus,
     &:hover,
     &:active {
-      &:not(:disabled, [aria-disabled='true']) {
-        background: var(--color-bg-secondary);
+      &:where(:not(:disabled, [aria-disabled='true'])) {
+        background: var(--color-bg-brand-softest);
         outline: 0;
       }
+    }
+
+    &:focus-visible {
+      outline: var(--outline-focus-default);
     }
   }
 
@@ -3072,7 +3088,7 @@ a.account__display-name {
     }
 
     &:focus-visible {
-      border-top-color: var(--color-text-brand);
+      border-top-color: var(--color-border-brand);
       border-radius: 0;
     }
   }
@@ -3087,7 +3103,7 @@ a.account__display-name {
   border-top: 0;
 
   @media screen and (min-width: $no-gap-breakpoint) {
-    border-top: 10px solid var(--color-bg-ambient);
+    border-top: 10px solid var(--color-bg-primary);
   }
 }
 
@@ -3586,7 +3602,7 @@ a.account__display-name {
   &.focused {
     transition: none;
     outline: 0;
-    border-color: var(--color-text-brand);
+    border-color: var(--color-border-brand);
   }
 
   &.copied {
@@ -3986,24 +4002,13 @@ a.account__display-name {
   height: 20px;
   padding: 0;
   border-radius: 10px;
-  background-color: rgb(from var(--color-bg-brand-softer) r g b / 50%);
-  border: 1px solid rgb(from var(--color-text-brand) r g b / 50%);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-primary);
   box-sizing: border-box;
-
-  .react-toggle:hover:not(.react-toggle--disabled) & {
-    background-color: rgb(
-      from var(--color-bg-brand-softer) r g b /
-        calc(50% + var(--overlay-strength-brand))
-    );
-  }
 
   .react-toggle--checked & {
     background-color: var(--color-bg-brand-base);
     border-color: var(--color-bg-brand-base);
-  }
-
-  .react-toggle--checked:not(.react-toggle--disabled):hover & {
-    background-color: var(--color-bg-brand-base-hover);
   }
 }
 
@@ -4020,6 +4025,7 @@ a.account__display-name {
   height: 16px;
   border-radius: 50%;
   background-color: var(--color-text-on-brand-base);
+  box-shadow: 0 2px 4px 0 color-mix(var(--color-black), transparent 75%);
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
@@ -4081,8 +4087,8 @@ a.account__display-name {
 
   &:focus-visible {
     outline: none;
-    border-color: var(--color-text-brand);
-    background: var(--color-bg-brand-softer);
+    border-color: var(--color-border-brand);
+    background: var(--color-bg-brand-softest);
   }
 
   &--logo {
@@ -4100,16 +4106,6 @@ a.account__display-name {
   background: var(--color-bg-primary);
   padding: 4px 8px;
   margin: -6px 10px;
-}
-
-.column-subheading {
-  background: var(--color-bg-secondary);
-  color: var(--color-text-secondary);
-  padding: 8px 20px;
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  cursor: default;
 }
 
 .getting-started__wrapper {
@@ -4457,7 +4453,7 @@ a.status-card {
     }
 
     &:focus-visible {
-      outline: 2px solid var(--color-text-brand);
+      outline: var(--outline-focus-default);
       outline-offset: -2px;
     }
   }
@@ -4545,7 +4541,7 @@ a.status-card {
   z-index: 1;
 
   &.active {
-    box-shadow: 0 1px 0 var(--color-bg-brand-softer);
+    box-shadow: 0 1px 0 var(--color-bg-brand-softest);
 
     &::before {
       display: block;
@@ -4608,7 +4604,6 @@ a.status-card {
   border: 1px solid var(--color-border-primary);
   border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
-  cursor: pointer;
   position: relative;
   z-index: 2;
   outline: 0;
@@ -4656,7 +4651,7 @@ a.status-card {
   &.active {
     .column-header__icon {
       color: var(--color-text-brand);
-      text-shadow: 0 0 10px var(--color-bg-brand-softer);
+      text-shadow: 0 0 10px var(--color-bg-brand-softest);
     }
   }
 
@@ -5151,7 +5146,7 @@ a.status-card {
         &:hover,
         &:active,
         &:focus {
-          background: var(--color-bg-brand-softer);
+          background: var(--color-bg-brand-softest);
           color: color-mix(
             in oklab,
             var(--color-text-primary),
@@ -5753,7 +5748,7 @@ a.status-card {
 .visibility-modal {
   &__quote-warning {
     color: var(--color-text-primary);
-    background: var(--color-bg-warning-softer);
+    background: var(--color-bg-warning-softest);
     padding: 16px;
     border-radius: 4px;
 
@@ -5788,7 +5783,7 @@ a.status-card {
     display: flex;
     align-items: center;
     color: var(--color-text-primary);
-    background: var(--color-bg-secondary-solid);
+    background: var(--color-bg-secondary);
     border: 1px solid var(--color-border-primary);
     padding: 8px 12px;
     width: 100%;
@@ -5849,7 +5844,8 @@ a.status-card {
 
     .icon-button {
       padding: 0;
-      color: var(--color-text-secondary);
+
+      --default-icon-color: inherit;
     }
 
     .icon {
@@ -5902,7 +5898,10 @@ a.status-card {
           background: var(--color-bg-brand-base);
 
           .icon-button {
-            color: inherit;
+            --default-icon-color: inherit;
+            --default-bg-color: transparent;
+            --hover-icon-color: inherit;
+            --hover-bg-color: var(--color-bg-brand-base-hover);
           }
         }
 
@@ -6001,7 +6000,7 @@ a.status-card {
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px var(--color-text-brand);
+    box-shadow: 0 0 0 2px var(--color-border-brand);
   }
 
   &[aria-hidden='true'] {
@@ -6255,9 +6254,7 @@ a.status-card {
       --default-icon-color: var(--color-text-on-media);
       --default-bg-color: transparent;
       --hover-icon-color: var(--color-text-on-media);
-      --hover-bg-color: rgb(
-        from var(--color-text-on-media) r g b / var(--overlay-strength-brand)
-      );
+      --hover-bg-color: rgb(from var(--color-text-on-media) r g b / 10%);
 
       .icon {
         filter: var(--overlay-icon-shadow);
@@ -6273,8 +6270,7 @@ a.status-card {
         --default-icon-color: var(--color-text-favourite-highlight);
         --hover-icon-color: var(--color-text-favourite-highlight);
         --hover-bg-color: rgb(
-          from var(--color-text-favourite-highlight) r g b /
-            var(--overlay-strength-brand)
+          from var(--color-text-favourite-highlight) r g b / 10%
         );
       }
 
@@ -6374,7 +6370,7 @@ a.status-card {
 
   &__top {
     border-radius: 16px 16px 0 0;
-    border-bottom: 0;
+    border-bottom-width: 0;
     gap: 16px;
   }
 
@@ -6493,14 +6489,16 @@ a.status-card {
   &__bullet-points {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     font-size: 16px;
     line-height: 24px;
 
+    & > li,
     & > div {
       display: flex;
       gap: 16px;
-      align-items: center;
+      align-items: start;
+      text-wrap: pretty;
 
       strong {
         font-weight: 700;
@@ -6513,7 +6511,7 @@ a.status-card {
 
     &__icon {
       width: 40px;
-      height: 40px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -6919,7 +6917,7 @@ a.status-card {
   }
 
   .button.button-secondary {
-    border-color: var(--color-text-error);
+    border-color: var(--color-border-error);
     color: var(--color-text-error);
     flex: 0 0 auto;
 
@@ -6987,7 +6985,7 @@ a.status-card {
     &:hover,
     &:active,
     &:focus {
-      background: var(--color-bg-brand-softer);
+      background: var(--color-bg-brand-softest);
     }
   }
 }
@@ -7432,7 +7430,7 @@ a.status-card {
     inset: 2px;
     z-index: 1;
     border-radius: inherit;
-    border: 2px solid var(--color-text-on-inverted);
+    border: 2px solid var(--color-text-inverted);
     outline: 2px solid var(--color-bg-inverted);
     pointer-events: none;
   }
@@ -8151,7 +8149,7 @@ a.status-card {
 
     &.checked,
     &.indeterminate {
-      border-color: var(--color-text-brand);
+      border-color: var(--color-border-brand);
     }
 
     .icon {
@@ -8224,47 +8222,6 @@ noscript {
   }
 }
 
-.moved-account-banner,
-.follow-request-banner,
-.account-memorial-banner {
-  padding: 20px;
-  background: var(--color-bg-tertiary);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  &__message {
-    color: var(--color-text-secondary);
-    padding: 8px 0;
-    padding-top: 0;
-    padding-bottom: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 16px;
-  }
-
-  &__action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-  }
-
-  .detailed-status__display-name {
-    margin-bottom: 0;
-  }
-}
-
-.follow-request-banner .button {
-  width: 100%;
-}
-
-.account-memorial-banner__message {
-  margin-bottom: 0;
-}
-
 .column-inline-form {
   padding: 15px;
   display: flex;
@@ -8322,396 +8279,6 @@ noscript {
   }
 }
 
-.account__header__content {
-  color: var(--color-text-secondary);
-  font-size: 14px;
-  font-weight: 400;
-  overflow: hidden;
-  word-break: normal;
-  overflow-wrap: break-word;
-
-  p {
-    margin-bottom: 20px;
-    unicode-bidi: plaintext;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
-.account__header {
-  container: account-header / inline-size;
-
-  &.inactive {
-    opacity: 0.5;
-
-    .account__header__image,
-    .account__avatar {
-      filter: grayscale(100%);
-    }
-  }
-
-  &__info {
-    position: absolute;
-    top: 20px;
-    inset-inline-end: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
-  }
-
-  &__image {
-    overflow: hidden;
-    height: 145px;
-    position: relative;
-    background: var(--color-bg-tertiary);
-    border-bottom: 1px solid var(--color-border-primary);
-
-    img {
-      object-fit: cover;
-      display: block;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-    }
-  }
-
-  &__bar {
-    position: relative;
-    padding: 0 20px;
-    border-bottom: 1px solid var(--color-border-primary);
-
-    .avatar {
-      display: block;
-      flex: 0 0 auto;
-
-      .account__avatar {
-        background: var(--color-bg-primary);
-        border: 1px solid var(--color-border-primary);
-        border-radius: var(--avatar-border-radius);
-      }
-    }
-  }
-
-  &__badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-
-    .account-role {
-      line-height: unset;
-    }
-  }
-
-  &__tabs {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: -55px;
-    padding-top: 10px;
-    gap: 8px;
-    overflow: hidden;
-    margin-inline-start: -2px; // aligns the pfp with content below
-
-    &__name {
-      margin-top: 16px;
-      margin-bottom: 16px;
-
-      .emojione {
-        width: 22px;
-        height: 22px;
-      }
-
-      h1 {
-        font-size: 17px;
-        line-height: 22px;
-        color: var(--color-text-primary);
-        font-weight: 600;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-
-        small {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 14px;
-          line-height: 20px;
-          color: var(--color-text-secondary);
-          font-weight: 400;
-          overflow: hidden;
-          text-overflow: ellipsis;
-
-          span {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            user-select: all;
-          }
-
-          .icon-lock {
-            height: 18px;
-            width: 18px;
-          }
-        }
-      }
-    }
-
-    .spacer {
-      flex: 1 1 auto;
-    }
-  }
-
-  &__follow-button {
-    flex-grow: 1;
-  }
-
-  &__buttons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    $button-breakpoint: 420px;
-    $button-fallback-breakpoint: $button-breakpoint + 55px;
-
-    &--desktop {
-      margin-top: 55px;
-
-      @container (width < #{$button-breakpoint}) {
-        display: none;
-      }
-
-      @supports (not (container-type: inline-size)) {
-        @media (max-width: #{$button-fallback-breakpoint}) {
-          display: none;
-        }
-      }
-    }
-
-    &--mobile {
-      margin-block: 16px;
-
-      @container (width >= #{$button-breakpoint}) {
-        display: none;
-      }
-
-      @supports (not (container-type: inline-size)) {
-        @media (min-width: ($button-fallback-breakpoint + 1px)) {
-          display: none;
-        }
-      }
-    }
-
-    .button {
-      flex-shrink: 1;
-      white-space: nowrap;
-      min-width: 80px;
-    }
-
-    .icon-button {
-      border: 1px solid var(--color-border-primary);
-      border-radius: 4px;
-      box-sizing: content-box;
-      padding: 5px;
-
-      .icon {
-        width: 24px;
-        height: 24px;
-      }
-
-      &.copied {
-        border-color: var(--color-text-success);
-      }
-    }
-  }
-
-  &__bio {
-    .account__header__content {
-      color: var(--color-text-primary);
-    }
-
-    .account__header__fields {
-      margin: 0;
-      margin-top: 16px;
-      border-radius: 4px;
-      border: 1px solid var(--color-border-primary);
-
-      dl {
-        display: block;
-        padding: 11px 16px;
-        border-bottom-color: var(--color-border-primary);
-      }
-
-      dd,
-      dt {
-        font-size: 13px;
-        line-height: 18px;
-        padding: 0;
-        text-align: initial;
-      }
-
-      dt {
-        width: auto;
-        background: transparent;
-        text-transform: uppercase;
-        color: var(--color-text-tertiary);
-      }
-
-      dd {
-        color: var(--color-text-secondary);
-      }
-
-      a {
-        color: var(--color-text-brand);
-      }
-
-      .icon {
-        width: 18px;
-        height: 18px;
-      }
-
-      .verified {
-        border: 1px solid var(--color-text-success);
-        margin-top: -1px;
-        margin-inline: -1px;
-
-        &:first-child {
-          border-top-left-radius: 4px;
-          border-top-right-radius: 4px;
-        }
-
-        &:last-child {
-          border-bottom-left-radius: 4px;
-          border-bottom-right-radius: 4px;
-          margin-bottom: -1px;
-        }
-
-        dt,
-        dd {
-          color: var(--color-text-success);
-        }
-
-        dd {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-
-          span {
-            display: flex;
-          }
-        }
-
-        a {
-          color: var(--color-text-success);
-        }
-      }
-    }
-  }
-
-  &__extra {
-    margin-top: 16px;
-
-    &__links {
-      font-size: 14px;
-      color: var(--color-text-secondary);
-      margin: 0 -10px;
-      padding-top: 16px;
-      padding-bottom: 10px;
-
-      a {
-        display: inline-block;
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        padding: 5px 10px;
-        font-weight: 500;
-
-        strong {
-          font-weight: 700;
-          color: var(--color-text-primary);
-        }
-      }
-    }
-  }
-
-  &__account-note {
-    color: var(--color-text-primary);
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 10px;
-
-    &__loading-indicator-wrapper {
-      position: relative;
-      height: 37px;
-
-      .loading-indicator {
-        left: 10px;
-      }
-
-      .circular-progress {
-        width: 14px;
-        height: 14px;
-      }
-    }
-
-    label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--color-text-secondary);
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    textarea {
-      display: block;
-      box-sizing: border-box;
-      width: calc(100% + 20px);
-      color: var(--color-text-primary);
-      background: transparent;
-      padding: 10px;
-      margin: 0 -10px;
-      font-family: inherit;
-      font-size: 14px;
-      resize: none;
-      border: 0;
-      outline: 0;
-      border-radius: 4px;
-
-      &::placeholder {
-        color: var(--color-text-tertiary);
-        opacity: 1;
-      }
-
-      &:focus {
-        background: var(--color-bg-brand-softer);
-      }
-    }
-  }
-
-  &__familiar-followers {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-block: 16px;
-    color: var(--color-text-secondary);
-
-    a:any-link {
-      font-weight: 500;
-      text-decoration: none;
-      color: var(--color-text-primary);
-    }
-  }
-}
-
 .account__contents {
   overflow: hidden;
 }
@@ -8719,6 +8286,7 @@ noscript {
 .account__details {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   column-gap: 1em;
 }
 
@@ -8954,7 +8522,7 @@ noscript {
   }
 
   &__root {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     font-size: 13px;
     display: flex;
     align-items: flex-end;
@@ -9038,13 +8606,13 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     color: color-mix(
       in oklab,
       var(--color-text-primary),
       var(--color-text-secondary)
     );
-    border: 1px solid var(--color-border-on-bg-brand-softer);
+    border: 1px solid var(--color-border-brand-soft);
     border-radius: 3px;
     box-sizing: border-box;
     margin: 2px;
@@ -9093,8 +8661,8 @@ noscript {
 
     &.active {
       color: var(--color-text-brand);
-      background-color: var(--color-bg-brand-softer);
-      border-color: var(--color-text-brand);
+      background-color: var(--color-bg-brand-softest);
+      border-color: var(--color-border-brand);
       transition: all 100ms ease-in;
       transition-property: background-color, color;
     }
@@ -9157,7 +8725,7 @@ noscript {
       inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-inline-start: 4px solid var(--color-text-brand);
+      border-inline-start: 4px solid var(--color-border-brand);
       pointer-events: none;
     }
   }
@@ -9680,7 +9248,7 @@ noscript {
     }
 
     &.invalid &__input {
-      border-color: var(--color-text-error);
+      border-color: var(--color-border-error);
     }
 
     &.expanded .search__popout {
@@ -9951,8 +9519,8 @@ noscript {
   margin: 10px;
   margin-bottom: 5px;
   border-radius: 8px;
-  border: 1px solid var(--color-border-on-bg-brand-softer);
-  background: var(--color-bg-brand-softer);
+  border: 1px solid var(--color-border-brand-soft);
+  background: var(--color-bg-brand-softest);
   overflow: hidden;
   flex-shrink: 0;
 
@@ -10018,8 +9586,8 @@ noscript {
 }
 
 .warning-banner {
-  border: 1px solid var(--color-border-on-bg-error-softer);
-  background: var(--color-bg-error-softer);
+  border: 1px solid var(--color-border-error-soft);
+  background: var(--color-bg-error-softest);
 
   &__message {
     h1 {
@@ -10355,7 +9923,7 @@ noscript {
   width: auto;
   padding: 15px;
   margin: 0;
-  color: var(--color-text-on-inverted);
+  color: var(--color-text-inverted);
   background: var(--color-bg-inverted);
   backdrop-filter: blur(8px);
   border-radius: 8px;
@@ -10407,9 +9975,13 @@ noscript {
   padding: 0 4px;
 
   &:hover,
-  &:focus,
   &:active {
-    background: var(--color-bg-brand-softer);
+    background: rgb(from var(--color-text-inverted) r g b / 10%);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-text-brand-on-inverted);
+    outline-offset: 2px;
   }
 }
 
@@ -10511,13 +10083,16 @@ noscript {
     color: inherit;
     text-decoration: none;
     padding: 4px 12px;
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
     border-radius: 4px;
     font-weight: 500;
 
     &:hover,
     &:focus,
-    &:active {
+    &:active,
+    .focusable:focus-visible &,
+    .detailed-status__wrapper-direct .detailed-status &,
+    .status__wrapper-direct & {
       background: var(--color-bg-brand-soft);
     }
   }
@@ -10537,10 +10112,10 @@ noscript {
   padding: 16px 0;
   padding-bottom: 0;
   border-bottom: 1px solid var(--color-border-primary);
-  background: var(--color-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
 
   &.focusable:focus-visible {
-    background: var(--color-bg-brand-softer);
+    background: var(--color-bg-brand-softest);
   }
 
   &__header {
@@ -10680,23 +10255,7 @@ noscript {
           }
 
           &__source {
-            display: inline-flex;
-            align-items: center;
-            color: var(--color-text-tertiary);
-            gap: 4px;
-            overflow: hidden;
-            white-space: nowrap;
             cursor: help;
-
-            > span {
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-
-            .icon {
-              width: 16px;
-              height: 16px;
-            }
           }
         }
 
@@ -10720,11 +10279,6 @@ noscript {
             font-size: 14px;
             color: var(--color-text-secondary);
           }
-        }
-
-        .verified-badge {
-          font-size: 14px;
-          max-width: 100%;
         }
 
         .button {
@@ -10900,12 +10454,6 @@ noscript {
     width: 16px;
     height: 16px;
     color: var(--color-text-secondary);
-  }
-
-  & > span {
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 
   a {
@@ -11170,6 +10718,7 @@ noscript {
   .picture-in-picture-placeholder,
   .more-from-author,
   .status-card,
+  .collection-preview,
   .hashtag-bar,
   .content-warning,
   .filter-warning {
@@ -11202,7 +10751,7 @@ noscript {
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    border-inline-start: 4px solid var(--color-text-brand);
+    border-inline-start: 4px solid var(--color-border-brand);
     pointer-events: none;
   }
 }
@@ -11399,8 +10948,8 @@ noscript {
   display: block;
   box-sizing: border-box;
   color: var(--color-text-primary);
-  background: var(--color-bg-brand-softer);
-  border: 1px solid var(--color-border-on-bg-brand-softer);
+  background: var(--color-bg-brand-softest);
+  border: 1px solid var(--color-border-brand-soft);
   border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;

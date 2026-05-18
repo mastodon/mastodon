@@ -7,14 +7,10 @@ import ErrorIcon from '@/material-icons/400-24px/error.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 
+import type { FieldStatus } from '../form_fields/form_field_wrapper';
 import { Icon } from '../icon';
 
 import classes from './styles.module.css';
-
-export interface FieldStatus {
-  variant: 'error' | 'warning' | 'info' | 'success';
-  message?: string;
-}
 
 const iconMap: Record<FieldStatus['variant'], React.FunctionComponent> = {
   error: ErrorIcon,

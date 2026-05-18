@@ -2,9 +2,11 @@
 
 class REST::ProfileSerializer < ActiveModel::Serializer
   include RoutingHelper
+  include FormattingHelper
 
   # Please update app/javascript/api_types/profile.ts when making changes to the attributes
   attributes :id, :display_name, :note, :fields,
+             :formatted_note, :formatted_fields,
              :avatar, :avatar_static, :avatar_description, :header, :header_static, :header_description,
              :locked, :bot,
              :hide_collections, :discoverable, :indexable,
@@ -17,8 +19,16 @@ class REST::ProfileSerializer < ActiveModel::Serializer
     object.id.to_s
   end
 
+  def formatted_note
+    account_bio_format(object)
+  end
+
   def fields
     object.fields.map(&:to_h)
+  end
+
+  def formatted_fields
+    object.fields.map { |field| { name: field.name, value: account_field_value_format(field), verified_at: field.verified_at } }
   end
 
   def avatar

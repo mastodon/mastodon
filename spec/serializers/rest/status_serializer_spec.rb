@@ -92,5 +92,22 @@ RSpec.describe REST::StatusSerializer do
           )
       end
     end
+
+    context 'with a tagged collection' do
+      let(:collection) { Fabricate(:collection) }
+
+      before do
+        status.tagged_objects.create!(object: collection, ap_type: 'FeaturedCollection', uri: ActivityPub::TagManager.instance.uri_for(collection))
+      end
+
+      it 'contains the tagged collection' do
+        expect(subject)
+          .to include(
+            'tagged_collections' => [a_hash_including(
+              'id' => collection.id.to_s
+            )]
+          )
+      end
+    end
   end
 end

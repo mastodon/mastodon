@@ -83,6 +83,10 @@ ja:
         access_denied: リソースの所有者または認証サーバーが要求を拒否しました。
         credential_flow_not_configured: リソース所有者のパスワード Doorkeeper.configure.resource_owner_from_credentials が設定されていないためクレデンシャルフローに失敗しました。
         invalid_client: 不明なクライアントであるか、クライアント情報が含まれていない、またはサポートされていない認証方法のため、クライアントの認証に失敗しました。
+        invalid_code_challenge_method:
+          one: code_challenge_methodは %{challenge_methods} でなければなりません。
+          other: code_challenge_methodは %{challenge_methods} のいずれかでなければなりません。
+          zero: 認証サーバーが受け入れる code_challenge_method 値がないため、PKCE をサポートしません。
         invalid_grant: 指定された認証許可は無効であるか、期限切れ、取り消されている、リダイレクトURIの不一致、または別のクライアントに発行されています。
         invalid_redirect_uri: 無効なリダイレクトURIが含まれています。
         invalid_request:

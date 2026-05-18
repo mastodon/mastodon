@@ -63,6 +63,7 @@ az:
         create: Moderasiya notu əlavə et
         description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
         title: Moderasiya notları
+      totals_time_period_hint_html: Aşağıdakı cəmlərə bütün vaxtlardakı verilər daxildir.
     reports:
       actions:
         suspend_description_html: Hesab və onun bütün məzmunları əlçatmaz olacaq və nəticədə silinəcək və onunla əlaqə qurmaq mümkün olmayacaq. 30 gün ərzində geri qaytarıla bilər. Bu hesaba aid bütün hesabatları bağlayır.
@@ -128,6 +129,7 @@ az:
     destroyed: Tətbiq uğurla silindi
     regenerate_token: Erişim tokenini təkrar yarat
     token_regenerated: Erişim tokeni uğurla yaradıldı
+    warning: Bu verilərə çox diqqətlə yanaşın. Bunları heç kəslə paylaşmayın!
     your_token: Erişim tokeniniz
   auth:
     captcha_confirmation:
@@ -170,9 +172,12 @@ az:
     confirm_password: Kimliyinizi doğrulamaq üçün hazırkı parolunuzu daxil edin
     proceed: Hesabı sil
     success_msg: Hesabınız uğurla silindi
-  edit_profile:
-    basic_information: Təməl məlumatlar
-    hint_html: "<strong>İnsanların hər kəsə açıq profilinizdə və göndərişlərinizin yanında nə göstərmək istədiyinizi özəlləşdirin.</strong> Doldurulmuş bir profilə və bir profil şəklinə sahib olduğunuz zaman digər şəxslərin sizi izləmə və sizinlə əlaqə qurma ehtimalı yüksəkdir."
+    warning:
+      data_removal: Göndərişləriniz və digər veriləriniz həmişəlik silinəcək
+  email_subscription_mailer:
+    notification:
+      footer:
+        privacy_html: E-poçtlar, Mastodon tərəfindən dəstəklənən %{domain} serverindən göndərilir. Bu serverin fərdi verilərinizi necə emal etdiyini anlamaq üçün <a href="%{privacy_policy_path}">Məxfilik Siyasətinə</a> baxın.
   exports:
     archive_takeout:
       hint_html: "<strong>Göndərişlərinizin və yüklədiyiniz medianın</strong> bir arxivini tələb edə bilərsiniz. Xaricə köçürülmüş verilər, istənilən uyumlu yazılım tərəfindən oxuna bilən ActivityPub formatında olacaq. Hər 7 gündə bir dəfə arxiv tələb edə bilərsiniz."
@@ -199,6 +204,7 @@ az:
     errors:
       incompatible_type: Seçilmiş daxilə köçürmə növü ilə uyumlu deyil
     preface: Başqa serverdən xaricə köçürdüyünüz veriləri (məsələn, izlədiyiniz və ya əngəllədiyiniz insanların siyahısını) daxilə köçürə bilərsiniz.
+    success: Veriləriniz uğurla yüklənib və zamanla emal olunacaq
     type_groups:
       constructive: İzlənilənlər və Əlfəcinlər
   invites:
@@ -211,17 +217,13 @@ az:
       otp: iki faktorlu kimlik doğrulama tətbiqi
       password: parol
     description_html: Əgər tanımadığınız bir fəaliyyəti görsəniz, parolunuzu dəyişdirməyi və iki faktorlu kimlik doğrulamanı fəallaşdırmağı düşünə bilərsiniz
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          reblog: təkrar paylaşma bildirişi e-poçtları
   migrations:
     incoming_migrations: Fərqli bir hesabdan daşı
     incoming_migrations_html: Başqa bir hesabdan bu hesaba daşımaq üçün əvvəlcə <a href="%{path}">bir hesab alias-ı yaratmalısınız</a>.
     proceed_with_move: İzləyiciləri daşı
     warning:
       disabled_account: Hazırkı hesabınız daha sonra istifadəyə yararsız olacaq. Ancaq, verilərin xaricə köçürülməsinə, həmçinin təkrar aktivləşdirmə prosesinə erişə biləcəksiniz.
+      other_data: Başqa (göndərişləriniz və izlədiyiniz hesabların siyahısı daxil olmaqla) heç bir veri avtomatik olaraq danışmayacaq
   moderation:
     title: Moderasiya
   notification_mailer:
@@ -254,6 +256,8 @@ az:
     remove_selected_followers: Seçilmiş izləyiciləri çıxart
     remove_selected_follows: Seçilmiş istifadəçiləri izləmədən çıxart
     status: Hesab statusu
+  self_destruct:
+    lead_html: Təəssüf ki, <strong>%{domain}</strong> həmişəlik bağlanır. Əgər orda bir hesabınız varsa, onu istifadə etməyə davam edə bilməyəcəksiniz, ancaq hələ də verilərinizin bir nüsxəsini istəyə bilərsiniz.
   sessions:
     browsers:
       edge: Microsoft Edge

@@ -61,14 +61,11 @@
                 wrapper: :with_block_label
 
   - if approved_registrations? && @invite.blank?
-    %p.lead= t('auth.sign_up.manual_review', domain: site_hostname)
-
     .fields-group
       = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
         = invite_request_fields.input :text,
                                       as: :text,
-                                      hint: false,
-                                      label: false,
+                                      hint: t('auth.sign_up.manual_review', domain: site_hostname),
                                       input_html: { maxlength: UserInviteRequest::TEXT_SIZE_LIMIT },
                                       required: Setting.require_invite_text,
                                       wrapper: :with_block_label

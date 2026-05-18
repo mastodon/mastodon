@@ -1,3 +1,4 @@
+export type { FieldStatus } from './form_field_wrapper';
 export { FormFieldWrapper } from './form_field_wrapper';
 export { FormStack } from './form_stack';
 export { Fieldset } from './fieldset';

@@ -18,6 +18,7 @@ module Account::Associations
         has_many :collections
         has_many :collection_items
         has_many :curated_collection_items, through: :collections, class_name: 'CollectionItem', source: :collection_items
+        has_many :featured_in_collections, through: :collection_items, class_name: 'Collection', source: :collection
         has_many :conversations, class_name: 'AccountConversation'
         has_many :custom_filters
         has_many :favourites
@@ -37,6 +38,8 @@ module Account::Associations
         has_many :scheduled_statuses
         has_many :status_pins
         has_many :statuses
+        has_many :keypairs
+        has_many :email_subscriptions
 
         has_one :deletion_request, class_name: 'AccountDeletionRequest'
         has_one :follow_recommendation_suppression

@@ -68,6 +68,6 @@ The following table summarizes those limits.
 | Account `attributionDomains`                                  | 256        | List will be truncated             |
 | Account aliases (actor `alsoKnownAs`)                         | 256        | List will be truncated             |
 | Custom emoji shortcode (`Emoji` `name`)                       | 2048       | Emoji will be rejected             |
-| Media and avatar/header descriptions (`name`/`summary`)       | 1500       | Description will be truncated      |
+| Media and avatar/header descriptions (`name`/`summary`)       | 10000      | Description will be truncated      |
 | Collection name (`FeaturedCollection` `name`)                 | 256        | Name will be truncated             |
 | Collection description (`FeaturedCollection` `summary`)       | 2048       | Description will be truncated      |

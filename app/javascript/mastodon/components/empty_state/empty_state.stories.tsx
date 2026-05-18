@@ -29,16 +29,24 @@ export const Default: Story = {
   },
 };
 
-export const WithoutMessage: Story = {
-  args: {
-    message: undefined,
-  },
-};
-
 export const WithAction: Story = {
   args: {
     ...Default.args,
     // eslint-disable-next-line react/jsx-no-bind
     children: <Button onClick={() => action('Refresh')}>Refresh</Button>,
+  },
+};
+
+export const WithoutImage: Story = {
+  args: {
+    ...Default.args,
+    image: null,
+  },
+};
+
+export const WithoutMessage: Story = {
+  args: {
+    ...Default.args,
+    message: undefined,
   },
 };

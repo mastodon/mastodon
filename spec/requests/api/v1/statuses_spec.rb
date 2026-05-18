@@ -317,6 +317,56 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'with a quote in an unlisted message' do
+        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
+        let(:params) do
+          {
+            status: 'Hello, this is a quote',
+            quoted_status_id: quoted_status.id,
+            visibility: 'unlisted',
+          }
+        end
+
+        it 'returns a quote post, as well as rate limit headers', :aggregate_failures do
+          expect { subject }.to change(user.account.statuses, :count).by(1)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote]).to be_present
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+
+        context 'when the quoter is blocked by the quotee' do
+          before do
+            quoted_status.account.block!(user.account)
+          end
+
+          it 'returns an error and does not create a post', :aggregate_failures do
+            expect { subject }.to_not change(user.account.statuses, :count)
+
+            expect(response).to have_http_status(404)
+            expect(response.content_type)
+              .to start_with('application/json')
+          end
+        end
+
+        context 'when the quotee is blocked by the quoter' do
+          before do
+            user.account.block!(quoted_status.account)
+          end
+
+          it 'returns an error and does not create a post', :aggregate_failures do
+            expect { subject }.to_not change(user.account.statuses, :count)
+
+            expect(response).to have_http_status(404)
+            expect(response.content_type)
+              .to start_with('application/json')
+          end
+        end
+      end
+
       context 'with a quote of a reblog' do
         let(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
         let(:reblog) { Fabricate(:status, reblog: quoted_status) }

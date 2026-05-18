@@ -180,7 +180,6 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
           'error' => a_hash_including({
             'details' => a_hash_including({
               'name' => [{ 'error' => 'ERR_BLANK', 'description' => "can't be blank" }],
-              'description' => [{ 'error' => 'ERR_BLANK', 'description' => "can't be blank" }],
             }),
           }),
         })

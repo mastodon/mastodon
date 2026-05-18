@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import type { FC } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessage, FormattedMessage } from 'react-intl';
 
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -9,12 +9,19 @@ import { expandFollowers, fetchFollowers } from '@/mastodon/actions/accounts';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
+import { me } from '@/mastodon/initial_state';
 import { selectUserListWithoutMe } from '@/mastodon/selectors/user_lists';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import type { EmptyMessageProps } from './components/empty';
 import { BaseEmptyMessage } from './components/empty';
+import { AccountListHeader } from './components/header';
 import { AccountList } from './components/list';
+
+const titleText = defineMessage({
+  id: 'followers.title',
+  defaultMessage: 'Following {name}',
+});
 
 const Followers: FC = () => {
   const accountId = useAccountId();
@@ -57,6 +64,7 @@ const Followers: FC = () => {
       <FormattedMessage
         id='followers.hide_other_followers'
         defaultMessage='This user has chosen to not make their other followers visible'
+        tagName='span'
       />
     </div>
   );
@@ -64,11 +72,21 @@ const Followers: FC = () => {
   return (
     <AccountList
       accountId={accountId}
+      header={
+        accountId && (
+          <AccountListHeader
+            accountId={accountId}
+            titleText={titleText}
+            total={account?.followers_count}
+          />
+        )
+      }
       footer={footer}
       emptyMessage={<EmptyMessage account={account} />}
       list={followerList}
       loadMore={loadMore}
       prependAccountId={followerId}
+      withoutFollowsYouBadge={accountId === me}
       scrollKey='followers'
     />
   );

@@ -1194,7 +1194,6 @@ ko:
   application_mailer:
     notification_preferences: 이메일 설정 변경
     salutation: "%{name} 님,"
-    settings: '이메일 설정 변경: %{link}'
     unsubscribe: 구독 해제
     view: '보기:'
     view_profile: 프로필 보기
@@ -1377,8 +1376,6 @@ ko:
       your_appeal_pending: 소명을 제출했습니다
       your_appeal_rejected: 소명이 기각되었습니다
   edit_profile:
-    basic_information: 기본 정보
-    hint_html: "<strong>사람들이 공개 프로필을 보고서 게시물을 볼 때를 위한 프로필을 꾸밉니다.</strong> 프로필과 프로필 사진을 채우면 다른 사람들이 나를 팔로우하고 나와 교류할 기회가 더 많아집니다."
     other: 기타
   emoji_styles:
     auto: 자동
@@ -1418,10 +1415,8 @@ ko:
     mutes: 뮤트
     storage: 미디어
   featured_tags:
-    add_new: 추가
     errors:
       limit: 추천 해시태그 최대 개수를 초과합니다
-    hint_html: "<strong>내 가장 중요한 해시태그들을 프로필에서 추천하세요.</strong> 내 창작물이나 오래 걸리는 프로젝트를 따라가기 위한 도구이며 추천 해시태그는 내 프로필에 잘 보이게 표시되고 내 게시물에 대한 빠른 접근을 가능하게 합니다."
   filters:
     contexts:
       account: 프로필
@@ -1594,21 +1589,6 @@ ko:
     failed_sign_in_html: 실패한 로그인 시도 %{method} %{ip} (%{browser})
     successful_sign_in_html: 성공한 로그인 시도 %{method} %{ip} (%{browser})
     title: 인증 이력
-  mail_subscriptions:
-    unsubscribe:
-      action: 네, 구독 취소합니다
-      complete: 구독 취소됨
-      confirmation_html: 정말로 %{domain}에서 %{email}로 보내는 마스토돈의 %{type}에 대한 구독을 취소하시겠습니까? 언제든지 <a href="%{settings_path}">이메일 알림 설정</a>에서 다시 구독할 수 있습니다.
-      emails:
-        notification_emails:
-          favourite: 좋아요 알림 이메일
-          follow: 팔로우 알림 이메일
-          follow_request: 팔로우 요청 이메일
-          mention: 멘션 알림 이메일
-          reblog: 부스트 알림 이메일
-      resubscribe_html: 만약 실수로 구독 취소를 했다면 <a href="%{settings_path}">이메일 알림 설정</a>에서 다시 구독할 수 있습니다.
-      success_html: 이제 더이상 %{domain}의 마스토돈에서 %{email}로 %{type} 알림을 보내지 않습니다.
-      title: 구독 취소
   media_attachments:
     validations:
       images_and_video: 이미 사진이 첨부된 게시물엔 동영상을 첨부할 수 없습니다.

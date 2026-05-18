@@ -11,12 +11,12 @@
   .admin-account-bio
     - if @account.fields?
       %div
-        .account__header__fields
+        %dl.admin-account-bio__fields
           = render partial: 'field', collection: @account.fields, locals: { account: @account }
 
     - if @account.note?
       %div
-        .account__header__content.emojify
+        .admin-account-bio__content.emojify
           = prerender_custom_emojis(account_bio_format(@account), @account.emojis)
 
 = render 'admin/accounts/counters', account: @account

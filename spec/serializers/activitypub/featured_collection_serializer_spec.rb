@@ -25,6 +25,7 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
       'attributedTo' => ActivityPub::TagManager.instance.uri_for(collection.account),
       'sensitive' => false,
       'discoverable' => false,
+      'url' => collection_url(collection),
       'topic' => {
         'href' => match(%r{/tags/people$}),
         'type' => 'Hashtag',
@@ -38,6 +39,7 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
           'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_items.first.account),
           'featuredObjectType' => 'Person',
           'featureAuthorization' => ap_account_feature_authorization_url(collection_items.first.account_id, collection_items.first),
+          'published' => match_api_datetime_format,
         },
         {
           'id' => ActivityPub::TagManager.instance.uri_for(collection_items.last),
@@ -45,6 +47,7 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
           'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_items.last.account),
           'featuredObjectType' => 'Person',
           'featureAuthorization' => ap_account_feature_authorization_url(collection_items.last.account_id, collection_items.last),
+          'published' => match_api_datetime_format,
         },
       ],
       'published' => match_api_datetime_format,
@@ -65,6 +68,20 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
       })
 
       expect(subject).to_not have_key('summary')
+    end
+  end
+
+  context 'when not all items are accepted' do
+    before do
+      collection_items.first.update!(state: :pending)
+    end
+
+    it 'only includes accepted items' do
+      items = subject['orderedItems']
+
+      expect(subject['totalItems']).to eq 1
+      expect(items.size).to eq 1
+      expect(items.first['id']).to eq ActivityPub::TagManager.instance.uri_for(collection_items.last)
     end
   end
 end

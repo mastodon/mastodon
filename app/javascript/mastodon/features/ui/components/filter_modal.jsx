@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { fetchFilters, createFilter, createFilterStatus } from 'mastodon/actions/filters';
 import { fetchStatus } from 'mastodon/actions/statuses';
 import { IconButton } from 'mastodon/components/icon_button';
+import { injectIntl } from '@/mastodon/components/intl';
 import AddedToFilter from 'mastodon/features/filters/added_to_filter';
 import SelectFilter from 'mastodon/features/filters/select_filter';
 

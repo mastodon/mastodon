@@ -1,13 +1,21 @@
-import { useCallback, useMemo, useState } from 'react';
-import type { FC } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
+import type { FC, FocusEventHandler } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
-import { Callout } from '@/mastodon/components/callout';
+import type { FieldStatus } from '@/mastodon/components/form_fields';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
+import { useCustomEmojis } from '@/mastodon/hooks/useCustomEmojis';
 import {
   removeField,
   selectFieldById,
@@ -51,13 +59,38 @@ const messages = defineMessages({
     id: 'account_edit.field_edit_modal.value_hint',
     defaultMessage: 'E.g. “https://example.me”',
   },
-  limitHeader: {
-    id: 'account_edit.field_edit_modal.limit_header',
-    defaultMessage: 'Recommended character limit exceeded',
-  },
   save: {
     id: 'account_edit.save',
     defaultMessage: 'Save',
+  },
+  discardMessage: {
+    id: 'account_edit.field_edit_modal.discard_message',
+    defaultMessage:
+      'You have unsaved changes. Are you sure you want to discard them?',
+  },
+  discardConfirm: {
+    id: 'account_edit.field_edit_modal.discard_confirm',
+    defaultMessage: 'Discard',
+  },
+  errorBlank: {
+    id: 'form_error.blank',
+    defaultMessage: 'Field cannot be blank.',
+  },
+  warningLength: {
+    id: 'account_edit.field_edit_modal.length_warning',
+    defaultMessage:
+      'Recommended character limit exceeded. Mobile users might not see your field in full.',
+  },
+  warningUrlEmoji: {
+    id: 'account_edit.field_edit_modal.link_emoji_warning',
+    defaultMessage:
+      'We recommend against the use of custom emoji in combination with urls. Custom fields containing both will display as text only instead of as a link, in order to prevent user confusion.',
+  },
+  warningUrlProtocol: {
+    id: 'account_edit.field_edit_modal.url_warning',
+    defaultMessage:
+      'To add a link, please include {protocol} at the beginning.',
+    description: '{protocol} is https://',
   },
 });
 
@@ -78,55 +111,156 @@ const selectFieldLimits = createAppSelector(
 
 const RECOMMENDED_LIMIT = 40;
 
-const selectEmojiCodes = createAppSelector(
-  [(state) => state.custom_emojis],
-  (emojis) => emojis.map((emoji) => emoji.get('shortcode')).toArray(),
-);
+interface ConfirmationMessage {
+  message: string;
+  confirm: string;
+  props: { fieldKey?: string; lastLabel: string; lastValue: string };
+}
 
-export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
-  onClose,
-  fieldKey,
-}) => {
+interface ModalRef {
+  getCloseConfirmationMessage: () => null | ConfirmationMessage;
+}
+
+export const EditFieldModal = forwardRef<
+  ModalRef,
+  DialogModalProps & {
+    fieldKey?: string;
+    lastLabel?: string;
+    lastValue?: string;
+  }
+>(({ onClose, fieldKey, lastLabel, lastValue }, ref) => {
   const intl = useIntl();
   const field = useAppSelector((state) => selectFieldById(state, fieldKey));
-  const [newLabel, setNewLabel] = useState(field?.name ?? '');
-  const [newValue, setNewValue] = useState(field?.value ?? '');
+  const oldLabel = lastLabel ?? field?.name;
+  const oldValue = lastValue ?? field?.value;
+  const [newLabel, setNewLabel] = useState(oldLabel ?? '');
+  const [newValue, setNewValue] = useState(oldValue ?? '');
+  const isDirty = newLabel !== oldLabel || newValue !== oldValue;
 
   const { nameLimit, valueLimit } = useAppSelector(selectFieldLimits);
   const isPending = useAppSelector((state) => state.profileEdit.isPending);
 
-  const disabled =
-    !nameLimit ||
-    !valueLimit ||
-    newLabel.length > nameLimit ||
-    newValue.length > valueLimit;
+  const [fieldStatuses, setFieldStatuses] = useState<{
+    label?: FieldStatus;
+    value?: FieldStatus;
+  }>({});
 
-  const customEmojiCodes = useAppSelector(selectEmojiCodes);
-  const hasLinkAndEmoji = useMemo(() => {
-    const text = `${newLabel} ${newValue}`; // Combine text, as we're searching it all.
-    const hasLink = /https?:\/\//.test(text);
-    const hasEmoji = customEmojiCodes.some((code) =>
-      text.includes(`:${code}:`),
-    );
-    return hasLink && hasEmoji;
-  }, [customEmojiCodes, newLabel, newValue]);
-  const hasLinkWithoutProtocol = useMemo(
-    () => isUrlWithoutProtocol(newValue),
-    [newValue],
+  const customEmojis = useCustomEmojis();
+  const customEmojiCodes = useMemo(
+    () => Object.keys(customEmojis ?? {}),
+    [customEmojis],
+  );
+  const checkField = useCallback(
+    (value: string): FieldStatus | null => {
+      if (!value.trim()) {
+        return {
+          variant: 'error',
+          message: intl.formatMessage(messages.errorBlank),
+        };
+      }
+
+      if (value.length > RECOMMENDED_LIMIT) {
+        return {
+          variant: 'warning',
+          message: intl.formatMessage(messages.warningLength, {
+            max: RECOMMENDED_LIMIT,
+          }),
+        };
+      }
+
+      const hasLink = /https?:\/\//.test(value);
+      const hasEmoji = customEmojiCodes.some((code) =>
+        value.includes(`:${code}:`),
+      );
+      if (hasLink && hasEmoji) {
+        return {
+          variant: 'warning',
+          message: intl.formatMessage(messages.warningUrlEmoji),
+        };
+      }
+
+      if (isUrlWithoutProtocol(value)) {
+        return {
+          variant: 'warning',
+          message: intl.formatMessage(messages.warningUrlProtocol, {
+            protocol: 'https://',
+          }),
+        };
+      }
+
+      return null;
+    },
+    [customEmojiCodes, intl],
+  );
+
+  const handleBlur: FocusEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      const { name, value } = event.target;
+      const result = checkField(value);
+      if (name !== 'label' && name !== 'value') {
+        return;
+      }
+      setFieldStatuses((statuses) => ({
+        ...statuses,
+        [name]: result ?? undefined,
+      }));
+    },
+    [checkField],
   );
 
   const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
-    if (disabled || isPending) {
+    if (isPending) {
       return;
     }
+
+    const labelStatus = checkField(newLabel);
+    const valueStatus = checkField(newValue);
+    if (labelStatus?.variant === 'error' || valueStatus?.variant === 'error') {
+      setFieldStatuses({
+        label: labelStatus ?? undefined,
+        value: valueStatus ?? undefined,
+      });
+      return;
+    }
+
     void dispatch(
       updateField({ id: fieldKey, name: newLabel, value: newValue }),
-    ).then(onClose);
-  }, [disabled, dispatch, fieldKey, isPending, newLabel, newValue, onClose]);
+    ).then(() => {
+      // Close without confirmation.
+      dispatch(
+        closeModal({
+          modalType: 'ACCOUNT_EDIT_FIELD_EDIT',
+          ignoreFocus: false,
+        }),
+      );
+    });
+  }, [checkField, dispatch, fieldKey, isPending, newLabel, newValue]);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      getCloseConfirmationMessage: () => {
+        if (!newLabel || !newValue || !isDirty) {
+          return null;
+        }
+        return {
+          message: intl.formatMessage(messages.discardMessage),
+          confirm: intl.formatMessage(messages.discardConfirm),
+          props: {
+            fieldKey,
+            lastLabel: newLabel,
+            lastValue: newValue,
+          },
+        };
+      },
+    }),
+    [fieldKey, intl, isDirty, newLabel, newValue],
+  );
 
   return (
     <ConfirmationModal
+      noCloseOnConfirm
       onClose={onClose}
       title={
         field
@@ -136,66 +270,37 @@ export const EditFieldModal: FC<DialogModalProps & { fieldKey?: string }> = ({
       confirm={intl.formatMessage(messages.save)}
       onConfirm={handleSave}
       updating={isPending}
-      disabled={disabled}
       className={classes.wrapper}
     >
       <EmojiTextInputField
+        name='label'
         value={newLabel}
         onChange={setNewLabel}
+        onBlur={handleBlur}
         label={intl.formatMessage(messages.editLabelField)}
         hint={intl.formatMessage(messages.editLabelHint)}
+        status={fieldStatuses.label}
         maxLength={nameLimit}
         counterMax={RECOMMENDED_LIMIT}
         recommended
       />
 
       <EmojiTextInputField
+        name='value'
         value={newValue}
         onChange={setNewValue}
+        onBlur={handleBlur}
         label={intl.formatMessage(messages.editValueField)}
         hint={intl.formatMessage(messages.editValueHint)}
+        status={fieldStatuses.value}
         maxLength={valueLimit}
         counterMax={RECOMMENDED_LIMIT}
         recommended
       />
-
-      {hasLinkAndEmoji && (
-        <Callout variant='warning'>
-          <FormattedMessage
-            id='account_edit.field_edit_modal.link_emoji_warning'
-            defaultMessage='We recommend against the use of custom emoji in combination with urls. Custom fields containing both will display as text only instead of as a link, in order to prevent user confusion.'
-          />
-        </Callout>
-      )}
-
-      {(newLabel.length > RECOMMENDED_LIMIT ||
-        newValue.length > RECOMMENDED_LIMIT) && (
-        <Callout
-          variant='warning'
-          title={intl.formatMessage(messages.limitHeader)}
-        >
-          <FormattedMessage
-            id='account_edit.field_edit_modal.limit_message'
-            defaultMessage='Mobile users might not see your field in full.'
-          />
-        </Callout>
-      )}
-
-      {hasLinkWithoutProtocol && (
-        <Callout variant='warning'>
-          <FormattedMessage
-            id='account_edit.field_edit_modal.url_warning'
-            defaultMessage='To add a link, please include {protocol} at the beginning.'
-            description='{protocol} is https://'
-            values={{
-              protocol: <code>https://</code>,
-            }}
-          />
-        </Callout>
-      )}
     </ConfirmationModal>
   );
-};
+});
+EditFieldModal.displayName = 'EditFieldModal';
 
 export const DeleteFieldModal: FC<DialogModalProps & { fieldKey: string }> = ({
   onClose,

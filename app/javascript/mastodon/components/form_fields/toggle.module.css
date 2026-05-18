@@ -1,3 +1,13 @@
+.wrapper {
+  --diameter: 20px;
+  --padding: 2px;
+  --transition: 0.2s ease-in-out;
+
+  display: inline-block;
+  position: relative;
+  height: calc(var(--diameter) + var(--padding) * 2);
+}
+
 .input {
   position: absolute;
   opacity: 0;
@@ -9,10 +19,6 @@
 }
 
 .toggle {
-  --diameter: 20px;
-  --padding: 2px;
-  --transition: 0.2s ease-in-out;
-
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
@@ -67,9 +73,4 @@
 
 :global([dir='rtl']) .input:checked + .toggle::before {
   transform: translateX(calc(-1 * (var(--diameter) - (var(--padding) * 2))));
-}
-
-.wrapper {
-  display: inline-block;
-  position: relative;
 }

@@ -16,7 +16,7 @@
     %h1.title= t('auth.rules.title')
     %p.lead= t('auth.rules.preamble', domain: site_hostname)
 
-  %ol.rules-list
+  %ol.rules-list{ role: 'list' }
     = render collection: @rule_translations, partial: 'auth/rule_translations/rule_translation'
 
   .stacked-actions

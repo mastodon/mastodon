@@ -172,7 +172,7 @@ RSpec.describe ActivityPub::Activity::Accept do
       end
     end
 
-    context 'with a FeatureRequest', feature: :collections_federation do
+    context 'with a FeatureRequest', feature: :collections do
       let(:collection) { Fabricate(:collection, account: recipient) }
       let(:collection_item) { Fabricate(:collection_item, collection:, account: sender, state: :pending) }
       let(:object) { collection_item.activity_uri }

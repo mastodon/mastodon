@@ -2,11 +2,9 @@ import type {
   ChangeEvent,
   ChangeEventHandler,
   ComponentPropsWithoutRef,
-  Dispatch,
   FC,
   ReactNode,
   RefObject,
-  SetStateAction,
 } from 'react';
 import { useCallback, useId, useRef } from 'react';
 
@@ -25,7 +23,7 @@ import { TextInput } from './text_input_field';
 
 export type EmojiInputProps = {
   value?: string;
-  onChange?: Dispatch<SetStateAction<string>>;
+  onChange?: (newValue: string) => void;
   counterMax?: number;
   recommended?: boolean;
 } & Omit<CommonFieldWrapperProps, 'wrapperClassName'>;
@@ -138,12 +136,15 @@ const EmojiFieldWrapper: FC<
 
   const handlePickEmoji = useCallback(
     (emoji: string) => {
-      onChange?.((prev) => {
-        const position = inputRef.current?.selectionStart ?? prev.length;
-        return insertEmojiAtPosition(prev, emoji, position);
-      });
+      if (!value) {
+        onChange?.('');
+        return;
+      }
+      const position = inputRef.current?.selectionStart ?? value.length;
+      const newValue = insertEmojiAtPosition(value, emoji, position);
+      onChange?.(newValue);
     },
-    [onChange, inputRef],
+    [inputRef, value, onChange],
   );
 
   const handleChange = useCallback(

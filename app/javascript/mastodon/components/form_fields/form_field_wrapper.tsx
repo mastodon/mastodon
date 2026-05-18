@@ -8,7 +8,6 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import { A11yLiveRegion } from 'mastodon/components/a11y_live_region';
-import type { FieldStatus } from 'mastodon/components/callout_inline';
 import { CalloutInline } from 'mastodon/components/callout_inline';
 
 import { FieldsetNameContext } from './fieldset';
@@ -20,11 +19,16 @@ export interface InputProps {
   'aria-describedby'?: string;
 }
 
+export interface FieldStatus {
+  variant: 'error' | 'warning' | 'info' | 'success';
+  message?: string;
+}
+
 interface FieldWrapperProps {
   label: ReactNode;
   hint?: ReactNode;
   required?: boolean;
-  status?: FieldStatus['variant'] | FieldStatus;
+  status?: FieldStatus['variant'] | FieldStatus | null;
   inputId?: string;
   describedById?: string;
   inputPlacement?: 'inline-start' | 'inline-end';

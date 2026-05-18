@@ -29,6 +29,7 @@ class EmailDomainBlock < ApplicationRecord
   validates :domain, presence: true, uniqueness: true, domain: true
 
   scope :parents, -> { where(parent_id: nil) }
+  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
   # Used for adding multiple blocks at once
   attr_accessor :other_domains
@@ -67,9 +68,7 @@ class EmailDomainBlock < ApplicationRecord
       @uris.flat_map do |uri|
         next if uri.nil?
 
-        segments = uri.normalized_host.split('.')
-
-        segments.map.with_index { |_, i| segments[i..].join('.') }
+        self.class.module_parent.domain_variants(uri.normalized_host)
       end.uniq
     end
 

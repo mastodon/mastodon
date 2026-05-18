@@ -14,7 +14,7 @@ RSpec.describe ActivityPub::VerifyFeaturedItemWorker do
     it 'sends the status to the service' do
       worker.perform(collection_item.id, 'https://example.com/authorizations/1')
 
-      expect(service).to have_received(:call).with(collection_item, 'https://example.com/authorizations/1')
+      expect(service).to have_received(:call).with(collection_item, 'https://example.com/authorizations/1', request_id: nil)
     end
 
     it 'returns nil for non-existent record' do

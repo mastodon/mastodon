@@ -85,31 +85,31 @@ export const MuteModal = ({ accountId, acct }) => {
 
           <div>
             <h1><FormattedMessage id='mute_modal.title' defaultMessage='Mute user?' /></h1>
-            <div>@{acct}</div>
+            <p>@{acct}</p>
           </div>
         </div>
 
-        <div className='safety-action-modal__bullet-points'>
-          <div>
+        <ul className='safety-action-modal__bullet-points'>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={CampaignIcon} /></div>
             <div><FormattedMessage id='mute_modal.they_wont_know' defaultMessage="They won't know they've been muted." /></div>
-          </div>
+          </li>
 
-          <div>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={VisibilityOffIcon} /></div>
             <div><FormattedMessage id='mute_modal.you_wont_see_posts' defaultMessage="They can still see your posts, but you won't see theirs." /></div>
-          </div>
+          </li>
 
-          <div>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={AlternateEmailIcon} /></div>
             <div><FormattedMessage id='mute_modal.you_wont_see_mentions' defaultMessage="You won't see posts that mention them." /></div>
-          </div>
+          </li>
 
-          <div>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={ReplyIcon} /></div>
             <div><FormattedMessage id='mute_modal.they_can_mention_and_follow' defaultMessage="They can mention and follow you, but you won't see them." /></div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
 
       <div className={classNames('safety-action-modal__bottom', { active: expanded })}>

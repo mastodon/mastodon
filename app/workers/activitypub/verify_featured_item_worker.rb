@@ -7,10 +7,10 @@ class ActivityPub::VerifyFeaturedItemWorker
 
   sidekiq_options queue: 'pull', retry: 5
 
-  def perform(collection_item_id, approval_uri)
+  def perform(collection_item_id, approval_uri, request_id = nil)
     collection_item = CollectionItem.find(collection_item_id)
 
-    ActivityPub::VerifyFeaturedItemService.new.call(collection_item, approval_uri)
+    ActivityPub::VerifyFeaturedItemService.new.call(collection_item, approval_uri, request_id:)
   rescue ActiveRecord::RecordNotFound
     # Do nothing
     nil

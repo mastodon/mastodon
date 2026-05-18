@@ -27,7 +27,8 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
   const handleToggleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       const { name, checked } = event.target;
-      void dispatch(patchProfile({ [name]: checked }));
+      const targetChecked = name === 'hide_collections' ? !checked : checked;
+      void dispatch(patchProfile({ [name]: targetChecked }));
     },
     [dispatch],
   );
@@ -62,24 +63,26 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
           }
         />
 
-        <ToggleField
-          checked={profile.showMediaReplies}
-          onChange={handleToggleChange}
-          disabled={!profile.showMedia || isPending}
-          name='show_media_replies'
-          label={
-            <FormattedMessage
-              id='account_edit.profile_tab.show_media_replies.title'
-              defaultMessage='Include replies on ‘Media’ tab'
-            />
-          }
-          hint={
-            <FormattedMessage
-              id='account_edit.profile_tab.show_media_replies.description'
-              defaultMessage='When enabled, Media tab shows both your posts and replies to other people’s posts.'
-            />
-          }
-        />
+        {profile.showMedia && (
+          <ToggleField
+            checked={profile.showMediaReplies}
+            onChange={handleToggleChange}
+            disabled={isPending}
+            name='show_media_replies'
+            label={
+              <FormattedMessage
+                id='account_edit.profile_tab.show_media_replies.title'
+                defaultMessage='Include replies on ‘Media’ tab'
+              />
+            }
+            hint={
+              <FormattedMessage
+                id='account_edit.profile_tab.show_media_replies.description'
+                defaultMessage='When enabled, Media tab shows both your posts and replies to other people’s posts.'
+              />
+            }
+          />
+        )}
 
         <ToggleField
           checked={profile.showFeatured}
@@ -96,6 +99,25 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
             <FormattedMessage
               id='account_edit.profile_tab.show_featured.description'
               defaultMessage='‘Featured’ is an optional tab where you can showcase other accounts.'
+            />
+          }
+        />
+
+        <ToggleField
+          checked={!profile.hideCollections}
+          onChange={handleToggleChange}
+          disabled={isPending}
+          name='hide_collections'
+          label={
+            <FormattedMessage
+              id='account_edit.profile_tab.show_relations.title'
+              defaultMessage='Show ‘Followers’ and ‘Following’'
+            />
+          }
+          hint={
+            <FormattedMessage
+              id='account_edit.profile_tab.show_relations.description'
+              defaultMessage='Shows accounts you follow and follows you to other users in your profile. People will still be able to see if you are following them.'
             />
           }
         />

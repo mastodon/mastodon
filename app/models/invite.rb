@@ -21,8 +21,10 @@ class Invite < ApplicationRecord
 
   COMMENT_SIZE_LIMIT = 420
   ELIGIBLE_CODE_CHARACTERS = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].freeze
+  EXPIRATION_DURATIONS = [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].freeze
   HOMOGLYPHS = %w(0 1 I l O).freeze
-  VALID_CODE_CHARACTERS = ELIGIBLE_CODE_CHARACTERS - HOMOGLYPHS
+  MAX_USES_COUNTS = [1, 5, 10, 25, 50, 100].freeze
+  VALID_CODE_CHARACTERS = (ELIGIBLE_CODE_CHARACTERS - HOMOGLYPHS).freeze
 
   belongs_to :user, inverse_of: :invites
   has_many :users, inverse_of: :invite, dependent: nil
@@ -35,6 +37,10 @@ class Invite < ApplicationRecord
 
   def valid_for_use?
     (max_uses.nil? || uses < max_uses) && !expired? && user&.functional?
+  end
+
+  def bypass_approval?
+    user&.role&.can?(:invite_bypass_approval)
   end
 
   private

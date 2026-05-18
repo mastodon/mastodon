@@ -46,7 +46,7 @@ class Tags extends PureComponent {
       return (
         <div className='explore__links scrollable scrollable--flex'>
           <div className='empty-column-indicator'>
-            <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />
+            <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' tagName='span' />
           </div>
         </div>
       );

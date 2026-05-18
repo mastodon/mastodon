@@ -1,5 +1,3 @@
-import { injectIntl } from 'react-intl';
-
 import { connect } from 'react-redux';
 
 import {
@@ -43,6 +41,7 @@ import {
   undoStatusTranslation,
 } from '../actions/statuses';
 import { setStatusQuotePolicy } from '../actions/statuses_typed';
+import { injectIntl } from '../components/intl';
 import Status from '../components/status';
 import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';

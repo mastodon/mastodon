@@ -60,6 +60,10 @@ class AccountMigration < ApplicationRecord
     created_at + COOLDOWN_PERIOD
   end
 
+  def remaining_cooldown_days
+    ((cooldown_at - Time.current) / 1.day).ceil
+  end
+
   private
 
   def set_target_account

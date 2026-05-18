@@ -345,12 +345,19 @@ pt-BR:
       updated_msg: Anúncio atualizado!
     collections:
       accounts: Contas
+      back_to_account: Voltar à página da conta
+      back_to_report: Voltar à página de denúncia
+      batch:
+        add_to_report: 'Adicionar à denúncia #%{id}'
+        report: Denunciar
       collection_title: Coleção de %{name}
       contents: Conteúdo
+      no_collection_selected: Nenhuma coleção foi modificada pois nenhuma estava selecionada
       number_of_accounts:
         one: 1 conta
         other: "%{count} contas"
       open: Abrir
+      title: Coleções da conta — @%{name}
       view_publicly: Ver publicamente
     critical_update_pending: Atualização crítica pendente
     custom_emojis:
@@ -484,9 +491,63 @@ pt-BR:
         title: Bloquear novo domínio de e-mail
       no_email_domain_block_selected: Nenhum bloco de domínio de email foi alterado, pois, nenhum foi selecionado
       not_permitted: Não permitido
+      reset: Reiniciar
       resolved_dns_records_hint_html: O nome de domínio é associado aos seguintes domínios MX, que são responsáveis por aceitar e-mails. Ao bloquear um domínio MX, você bloqueará as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Tenha cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
+      search: Buscar
       title: Domínios de e-mail bloqueados
+    email_subscriptions:
+      accounts:
+        account: Conta
+        active: Ativas
+        empty:
+          hint: Não há contas com inscritos ainda.
+          no_lists_yet: Não há listas ainda
+        inactive: Inativas
+        last_email: Último email
+        lead: Contas que ativaram o recurso e têm inscritos aparecerão abaixo.
+        status: Estado
+        subscribers: Inscritos
+        title: Listas de envio
+      additional_footer_texts:
+        show:
+          title: Texto adicional no rodapé
+      compliance_settings:
+        additional_footer_text:
+          action: Gerenciar
+          hint: Texto opcional que aparece no rodapé somente dos boletins via email
+          title: Texto adicional no rodapé
+        lead: Boletins via email podem ser consideradas email de marketing, dependendo das juridições em que você opera.
+        privacy_policy:
+          action: Gerenciar
+          hint: Esta política está linkada no rodapé de todos os emails
+          title: Política de privacidade
+        title: Configuraçõe de compliance
+      danger_zone:
+        disable_feature:
+          action: Desativar
+          hint: Desativar recurso para todas as contas
+          title: Desativar recurso
+        erase_all_data:
+          action: Excluir dados
+          hint: Exclui permanentemente todos os emails em todas as listas de envio
+          title: Excluir todos os dados
+        title: Zona de perigo
+      disabled_msg: Assinaturas de email foram desativadas com sucesso.
+      index:
+        disabled:
+          cannot_be_enabled: Seu provedor técnico não ativou este recurso para seu servidor.
+          description: Este recurso permite que contas específicas adicionem um widget a seus perfis, permitindo que visitantes sem conta no Mastodon possam receber suas publicações por email.
+          get_started: Iniciar
+        lead: Permitir que vistantes recebam publicações via email de contas dedicadas neste servidor.
+        title: Boletins via email
+      purged_msg: Todos os dados de inscrições via email estão sendo apagados.
+      roles:
+        accounts: Contas
+        edit_role: Editar função
+        empty:
+          hint: Ninguém ter permissão para usar este recurso.
+          no_roles_added: Nenhuma função adicionada
     export_domain_allows:
       new:
         title: Importar domínios permitidos
@@ -762,6 +823,7 @@ pt-BR:
       categories:
         administration: Administração
         devops: DevOps
+        email: E-mail
         invites: Convites
         moderation: Moderação
         special: Especial
@@ -778,6 +840,8 @@ pt-BR:
         administrator_description: Usuários com essa permissão irão ignorar todas as permissões
         delete_user_data: Apagar Dados de Usuário
         delete_user_data_description: Permitir aos usuários apagar os dados de outros usuários instantaneamente
+        invite_bypass_approval: Convidar usuário sem revisão
+        invite_bypass_approval_description: Permitir pessoas convidadas para esse servidor por esses usuários para dispensar aprovação por moderação
         invite_users: Convidar Usuários
         invite_users_description: Permite que os usuários convidem novas pessoas para o servidor
         manage_announcements: Gerenciar Avisos
@@ -788,6 +852,7 @@ pt-BR:
         manage_blocks_description: Permite aos usuários bloquear provedores de e-mail e endereços IP
         manage_custom_emojis: Gerenciar Emojis Personalizados
         manage_custom_emojis_description: Permite aos usuários gerenciar emojis personalizados no servidor
+        manage_email_subscriptions: Gerenciar assinaturas do e-mail
         manage_federation: Gerenciar Federação
         manage_federation_description: Permite aos usuários bloquear ou permitir federação com outros domínios e controlar a entregabilidade
         manage_invites: Gerenciar convites
@@ -1229,7 +1294,6 @@ pt-BR:
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
-    settings: 'Alterar preferências de e-mail: %{link}'
     unsubscribe: Desinscrever
     view: 'Ver:'
     view_profile: Ver perfil
@@ -1279,6 +1343,7 @@ pt-BR:
     progress:
       confirm: Confirmar e-mail
       details: Suas informações
+      list: Progresso do cadastro
       review: Nossa avaliação
       rules: Aceitar regras
     providers:
@@ -1294,6 +1359,7 @@ pt-BR:
       invited_by: 'Você pode juntar-se a %{domain} graças ao convite que recebeu de:'
       preamble: Estes são definidos e aplicados pelos moderadores de %{domain}.
       preamble_invited: Antes de prosseguir, considere as regras de base definidas pelos moderadores de %{domain}.
+      read_more: Ler mais
       title: Algumas regras básicas.
       title_invited: Você recebeu convite.
     security: Segurança
@@ -1412,9 +1478,42 @@ pt-BR:
       your_appeal_pending: Você enviou uma revisão
       your_appeal_rejected: Sua revisão foi rejeitada
   edit_profile:
-    basic_information: Informações básicas
-    hint_html: "<strong>Personalize o que as pessoas veem no seu perfil público e ao lado de suas publicações.</strong> É mais provável que outras pessoas o sigam de volta e interajam com você quando você tiver um perfil preenchido e uma foto de perfil."
     other: Outro
+    redesign_body: A edição de perfil pode ser acessada diretamente a partir da página de perfil.
+    redesign_button: Ir para lá
+    redesign_title: Há uma nova experiência de edição de perfil
+  email_subscription_mailer:
+    confirmation:
+      action: Confirmar endereço de e-mail
+      instructions_to_confirm: Confirme que você gostaria de receber e-mails do %{name} (@%{acct}) quando postarem novas publicações.
+      instructions_to_ignore: Se você não tem certeza por que recebeu esse e-mail, você pode excluir. Você não será inscrito se não clicar no link acima.
+      subject: Confirme seu endereço de e-mail
+      title: Obter atualizações de e-mail do %{name}?
+    notification:
+      create_account: Criar uma conta Mastodon
+      footer:
+        privacy_html: E-mails são enviados do %{domain}, Um servidor alimentado pelo Mastodon. Para entender como esse servidor processa seus dados pessoais, consulte a <a href="%{privacy_policy_path}">Política de privacidade</a>.
+        reason_for_email_html: Você está recebendo esse e-mail porque você optou por receber atualizações do %{name}. Não quer receber esses e-mails? <a href="%{unsubscribe_path}">Cancelar</a>
+      interact_with_this_post:
+        one: Interaja com essa publicação e descubra mais como essa.
+        other: Interaja com essas publicações e descubra mais.
+      subject:
+        plural: Novas publicações de %{name}
+        singular: 'Nova publicação: "%{excerpt}"'
+      title:
+        plural: Novas publicações de %{name}
+        singular: 'Nova publicação: "%{excerpt}"'
+  email_subscriptions:
+    active: Ativo
+    confirmations:
+      show:
+        changed_your_mind: Mudou de ideia?
+        success_html: Agora você começará a receber e-mails quando %{name} publicar novas postagens. Adicione %{sender} para seus contatos para que essas publicações não apareçam em sua caixa de Spam.
+        title: Você está registrado
+        unsubscribe: Cancelar inscrição
+    inactive: Inativo
+    status: Situação
+    subscribers: Inscritos
   emoji_styles:
     auto: Automático
     native: Nativo
@@ -1453,10 +1552,8 @@ pt-BR:
     mutes: Você silenciou
     storage: Armazenamento de mídia
   featured_tags:
-    add_new: Adicionar hashtag
     errors:
       limit: Você já destacou o número máximo de hashtags
-    hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são exibidas no seu perfil público e permitem que as pessoas acessem suas publicações públicos que contenham especificamente essas hashtags. São uma excelente ferramenta para acompanhar os trabalhos criativos ou os projetos de longo prazo."
   filters:
     contexts:
       account: Perfis
@@ -1649,21 +1746,6 @@ pt-BR:
     failed_sign_in_html: Falha na tentativa de login com %{method} de %{ip} (%{browser})
     successful_sign_in_html: Login bem-sucedido com %{method} de %{ip} (%{browser})
     title: Histórico de autenticação
-  mail_subscriptions:
-    unsubscribe:
-      action: Sim, cancelar subscrição
-      complete: Desinscrito
-      confirmation_html: Tem certeza que deseja cancelar a assinatura de %{type} para Mastodon no %{domain} para o seu endereço de e-mail %{email}? Você sempre pode se inscrever novamente nas <a href="%{settings_path}">configurações de notificação de email</a>.
-      emails:
-        notification_emails:
-          favourite: emails de notificação favoritos
-          follow: seguir emails de notificação
-          follow_request: emails de seguidores pendentes
-          mention: emails de notificação de menções
-          reblog: emails de notificação de impulsos
-      resubscribe_html: Se você cancelou sua inscrição por engano, você pode se inscrever novamente em suas <a href="%{settings_path}"> configurações de notificações por e-mail</a>.
-      success_html: Você não mais receberá %{type} no Mastodon em %{domain} ao seu endereço de e-mail %{email}.
-      title: Cancelar inscrição
   media_attachments:
     validations:
       images_and_video: Não foi possível anexar um vídeo a uma publicação que já contém imagens
@@ -1709,6 +1791,27 @@ pt-BR:
     copy_account_note_text: 'Este usuário saiu de %{acct}, aqui estão suas notas anteriores sobre ele:'
   navigation:
     toggle_menu: Alternar menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} te adicionou à uma coleção"
+    admin_report:
+      title_html: "%{name} denunciou %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} e outros inscreveram-se"
+        other: "%{name} e %{count} outros inscreveram-se"
+      title_html: "%{name} inscreveu-se"
+    collection_update:
+      title_html: "%{name} atualizou uma coleção em que você está"
+    generic:
+      sign_in: Inscreva-se ao app web do Mastodon.
+      summary_html: Você está em um app que não suporta a versão mais recente do Mastodon. %{link} para funcionalidade total.
+    moderation_warning:
+      summary_html: Você está em um app que não suporta a versão mais recente do Mastodon. %{link}.
+      title: Você recebeu um aviso da moderação.
+    severed_relationships:
+      summary_html: Um administrador de %{from} suspendeu %{target}, o que significa que você não poderá mais receber atualizações deles ou interagir com eles. %{link} para recuperar uma lista das relações perdidas.
+      title: Conexões perdidas com %{name}
   notification_mailer:
     admin:
       report:
@@ -1802,6 +1905,8 @@ pt-BR:
     posting_defaults: Padrões de publicação
     public_timelines: Linhas públicas
   privacy:
+    email_subscriptions: Enviar publicações por e-mail
+    email_subscriptions_hint_html: Adicione um formulário de inscrição por e-mail ao seu perfil, que será exibido para usuários que não estiverem conectados. Quando os visitantes inserirem seu endereço de e-mail e se inscreverem, o Mastodon enviará atualizações por e-mail sobre suas publicações públicas.
     hint_html: "<strong>Personalize como você quer que seu perfil e suas publicações sejam encontrados.</strong> Uma variedade de funcionalidades no Mastodon pode ajudar a alcançar um público mais amplo quando habilitado. Reserve um momento para revisar estas configurações para garantir que atendem ao seu caso de uso."
     privacy: Privacidade
     privacy_hint_html: Controle o quanto você deseja revelar para o benefício de outros. As pessoas descobrem perfis interessantes e aplicativos legais navegando pelos seguidores de outras pessoas e vendo de quais aplicativos eles publicam, mas você pode preferir manter isso oculto.
@@ -2065,6 +2170,28 @@ pt-BR:
     resume_app_authorization: Retomar autorização de aplicativo
     role_requirement: "%{domain} exige que você configure a autenticação de dois fatores antes de poder utilizar o Mastodon."
     webauthn: Chaves de segurança
+  unsubscriptions:
+    create:
+      action: Acesse a página inicial do servidor
+      email_subscription:
+        confirmation_html: Você não receberá mais e-mails do %{name}.
+      title: Você não está registrado
+      user:
+        confirmation_html: Você não receberá mais %{type} do Mastodon no %{domain}.
+    notification_emails:
+      favourite: e-mails de notificações de favoritos
+      follow: receber e-mails de notificação
+      follow_request: seguir e-mails solicitados
+      mention: e-mails de notificação
+      reblog: otimizar e-mails de notificação
+    show:
+      action: Cancelar inscrição
+      email_subscription:
+        confirmation_html: Você deixará de receber e-mails quando esta conta publicar novas postagens.
+        title: Cancelar inscrição de %{name}?
+      user:
+        confirmation_html: Você deixará de receber %{type} do Mastodon no %{domain}.
+        title: Cancelar inscrição de %{type}?
   user_mailer:
     announcement_published:
       description: 'Os administradores do %{domain} estão fazendo um anúncio:'

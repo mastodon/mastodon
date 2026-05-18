@@ -193,8 +193,10 @@ class Account < ApplicationRecord
            :role,
            :locale,
            :shows_application?,
+           :email_subscriptions_enabled?,
            :prefers_noindex?,
            :time_zone,
+           :can?,
            to: :user,
            prefix: true,
            allow_nil: true
@@ -263,8 +265,14 @@ class Account < ApplicationRecord
     last_webfingered_at.nil? || last_webfingered_at <= STALE_THRESHOLD.ago
   end
 
+  def needs_background_refresh?
+    return false if local?
+
+    last_webfingered_at.blank? || last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+  end
+
   def schedule_refresh_if_stale!
-    return unless last_webfingered_at.present? && last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+    return unless needs_background_refresh?
 
     AccountRefreshWorker.perform_in(rand(REFRESH_DEADLINE), id)
   end
@@ -471,8 +479,7 @@ class Account < ApplicationRecord
   end
 
   def featureable_by?(other_account)
-    return discoverable? if local?
-    return false unless Mastodon::Feature.collections_federation_enabled?
+    return discoverable? && (!locked? || followed_by?(other_account) || other_account.id == id) if local?
 
     feature_policy_for_account(other_account).in?(%i(automatic manual))
   end

@@ -1,25 +1,31 @@
-import { Fragment, useCallback, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { openModal } from 'mastodon/actions/modal';
+import { PendingBadge } from '@/mastodon/components/badge';
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import type {
   ApiCollectionJSON,
   CollectionAccountItem,
 } from 'mastodon/api_types/collections';
-import { Account } from 'mastodon/components/account';
+import type { RenderButtonOptions } from 'mastodon/components/account_list_item';
+import {
+  AccountListItem,
+  AccountListItemFollowButton,
+} from 'mastodon/components/account_list_item';
 import { Button } from 'mastodon/components/button';
-import { DisplayName } from 'mastodon/components/display_name';
+import { Callout } from 'mastodon/components/callout';
 import {
   Article,
   ItemList,
 } from 'mastodon/components/scrollable_list/components';
-import { useAccount } from 'mastodon/hooks/useAccount';
-import { useDismissible } from 'mastodon/hooks/useDismissible';
-import { useRelationship } from 'mastodon/hooks/useRelationship';
+import type { TruncatedListItemInfo } from 'mastodon/components/truncated_list';
+import { TruncatedListItems } from 'mastodon/components/truncated_list';
 import { me } from 'mastodon/initial_state';
-import { useAppDispatch } from 'mastodon/store';
+import type { Account } from 'mastodon/models/account';
+import { createAppSelector, useAppSelector } from 'mastodon/store';
 
+import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -27,92 +33,7 @@ const messages = defineMessages({
     id: 'collections.accounts.empty_title',
     defaultMessage: 'This collection is empty',
   },
-  accounts: {
-    id: 'collections.detail.accounts_heading',
-    defaultMessage: 'Accounts',
-  },
 });
-
-const SimpleAuthorName: React.FC<{ id: string }> = ({ id }) => {
-  const account = useAccount(id);
-  return <DisplayName account={account} variant='simple' />;
-};
-
-const AccountItem: React.FC<{
-  accountId: string | undefined;
-  collectionOwnerId: string;
-  withBorder?: boolean;
-}> = ({ accountId, withBorder = true, collectionOwnerId }) => {
-  const relationship = useRelationship(accountId);
-
-  if (!accountId) {
-    return null;
-  }
-
-  // When viewing your own collection, only show the Follow button
-  // for accounts you're not following (anymore).
-  // Otherwise, always show the follow button in its various states.
-  const withoutButton =
-    accountId === me ||
-    !relationship ||
-    (collectionOwnerId === me &&
-      (relationship.following || relationship.requested));
-
-  return (
-    <Account
-      minimal={withoutButton}
-      withMenu={false}
-      withBorder={withBorder}
-      id={accountId}
-    />
-  );
-};
-
-const RevokeControls: React.FC<{
-  collectionId: string;
-  collectionItem: CollectionAccountItem;
-}> = ({ collectionId, collectionItem }) => {
-  const dispatch = useAppDispatch();
-
-  const confirmRevoke = useCallback(() => {
-    void dispatch(
-      openModal({
-        modalType: 'REVOKE_COLLECTION_INCLUSION',
-        modalProps: {
-          collectionId,
-          collectionItemId: collectionItem.id,
-        },
-      }),
-    );
-  }, [collectionId, collectionItem.id, dispatch]);
-
-  const { wasDismissed, dismiss } = useDismissible(
-    `collection-revoke-hint-${collectionItem.id}`,
-  );
-
-  if (wasDismissed) {
-    return null;
-  }
-
-  return (
-    <div className={classes.revokeControlWrapper}>
-      <Button secondary onClick={dismiss}>
-        <FormattedMessage
-          id='collections.detail.accept_inclusion'
-          defaultMessage='Okay'
-          tagName={Fragment}
-        />
-      </Button>
-      <Button secondary onClick={confirmRevoke}>
-        <FormattedMessage
-          id='collections.detail.revoke_inclusion'
-          defaultMessage='Remove me'
-          tagName={Fragment}
-        />
-      </Button>
-    </div>
-  );
-};
 
 const SensitiveScreen: React.FC<{
   sensitive: boolean | undefined;
@@ -133,136 +54,184 @@ const SensitiveScreen: React.FC<{
   }
 
   return (
-    <div className={classes.sensitiveWarning}>
+    <Callout
+      variant='warning'
+      title={
+        <FormattedMessage
+          id='collections.detail.sensitive_content'
+          defaultMessage='Sensitive content'
+        />
+      }
+      primaryLabel={
+        <FormattedMessage
+          id='content_warning.show_short'
+          defaultMessage='Show'
+        />
+      }
+      onPrimary={showAnyway}
+      className={classes.sensitiveScreen}
+    >
       <FormattedMessage
         id='collections.detail.sensitive_note'
-        defaultMessage='This collection contains accounts and content that may be sensitive to some users.'
-        tagName='p'
+        defaultMessage='The description and accounts may not be suitable for all viewers.'
       />
-      <Button onClick={showAnyway}>
-        <FormattedMessage
-          id='content_warning.show'
-          defaultMessage='Show anyway'
-          tagName={Fragment}
-        />
-      </Button>
-    </div>
+    </Callout>
   );
 };
 
-/**
- * Returns the collection's account items. If the current user's account
- * is part of the collection, it will be returned separately.
- */
-function getCollectionItems(collection: ApiCollectionJSON | undefined) {
-  if (!collection)
-    return {
-      currentUserInCollection: null,
-      items: [],
-    };
+type CollectionItemWithAccount = CollectionAccountItem & {
+  account?: Account | null;
+};
 
-  const { account_id, items } = collection;
-
-  const isOwnCollection = account_id === me;
-  const currentUserIndex = items.findIndex(
-    (account) => account.account_id === me,
-  );
-
-  if (isOwnCollection || currentUserIndex === -1) {
-    return {
-      currentUserInCollection: null,
-      items,
-    };
-  } else {
-    return {
-      currentUserInCollection: items.at(currentUserIndex) ?? null,
-      items: items.toSpliced(currentUserIndex, 1),
-    };
-  }
-}
+const getCollectionItems = createAppSelector(
+  [
+    (state) => state.accounts,
+    (state, collectionId?: string) =>
+      state.collections.collections[collectionId ?? '']?.items,
+  ],
+  (accounts, collectionAccountItems) =>
+    (collectionAccountItems ?? []).map(
+      (item): CollectionItemWithAccount => ({
+        ...item,
+        account: item.account_id ? accounts.get(item.account_id) : null,
+      }),
+    ),
+);
 
 export const CollectionAccountsList: React.FC<{
-  collection?: ApiCollectionJSON;
-  isLoading: boolean;
-}> = ({ collection, isLoading }) => {
+  collection: ApiCollectionJSON;
+}> = ({ collection }) => {
   const intl = useIntl();
+  const confirmRevoke = useConfirmRevoke(collection);
   const listHeadingRef = useRef<HTMLHeadingElement>(null);
 
-  const isOwnCollection = collection?.account_id === me;
-  const { items, currentUserInCollection } = getCollectionItems(collection);
+  const isOwnCollection = collection.account_id === me;
+  const { account_id: collectionOwnerId, id } = collection;
+
+  const relationships = useAppSelector((state) => state.relationships);
+  const collectionAccounts = useAppSelector((state) =>
+    getCollectionItems(state, id),
+  );
+
+  const { visibleAccounts, hiddenAccounts } = useMemo(() => {
+    const visibleAccounts: CollectionItemWithAccount[] = [];
+    const hiddenAccounts: CollectionItemWithAccount[] = [];
+
+    collectionAccounts.forEach((item) => {
+      const { account, account_id } = item;
+
+      if (!isOwnCollection && !account) {
+        // Hide unavailable accounts unless you own this collection
+        return;
+      }
+
+      const relationship = account_id ? relationships.get(account_id) : null;
+      if (relationship?.blocking || relationship?.muting) {
+        hiddenAccounts.push(item);
+      } else {
+        visibleAccounts.push(item);
+      }
+    });
+
+    return { visibleAccounts, hiddenAccounts };
+  }, [collectionAccounts, isOwnCollection, relationships]);
+
+  const renderAccountItemButton = useCallback(
+    ({ relationship, accountId }: RenderButtonOptions) => {
+      if (!me || !relationship) {
+        // Show follow button when logged out (it will trigger the remote interaction modal)
+        return <AccountListItemFollowButton accountId={accountId} />;
+      }
+
+      // When viewing your own collection, only show the Follow button
+      // for accounts you're not following anymore.
+      const withoutButton =
+        collectionOwnerId === me &&
+        (relationship.following || relationship.requested);
+
+      if (withoutButton) return null;
+
+      if (accountId === me) {
+        return (
+          <Button secondary compact onClick={confirmRevoke}>
+            <FormattedMessage
+              id='collections.detail.revoke_inclusion'
+              defaultMessage='Remove me'
+            />
+          </Button>
+        );
+      }
+
+      return <AccountListItemFollowButton accountId={accountId} />;
+    },
+    [collectionOwnerId, confirmRevoke],
+  );
+
+  const renderListItem = useCallback(
+    ({
+      item,
+      index,
+      totalListLength,
+      isLastElement,
+    }: TruncatedListItemInfo<CollectionItemWithAccount>) => (
+      <Article
+        key={item.id}
+        aria-posinset={index + 1}
+        aria-setsize={totalListLength}
+      >
+        <AccountListItem
+          accountId={item.account_id}
+          withBorder={!isLastElement}
+          badge={item.state === 'pending' ? <PendingBadge /> : null}
+          renderButton={renderAccountItemButton}
+        />
+      </Article>
+    ),
+    [renderAccountItemButton],
+  );
 
   return (
-    <ItemList
-      isLoading={isLoading}
-      emptyMessage={intl.formatMessage(messages.empty)}
-    >
-      {collection && currentUserInCollection ? (
-        <>
-          <h3 className={classes.columnSubheading}>
-            <FormattedMessage
-              id='collections.detail.author_added_you'
-              defaultMessage='{author} added you to this collection'
-              values={{
-                author: <SimpleAuthorName id={collection.account_id} />,
-              }}
-              tagName={Fragment}
-            />
-          </h3>
-          <Article
-            key={currentUserInCollection.account_id}
-            aria-posinset={1}
-            aria-setsize={items.length}
-          >
-            <AccountItem
-              withBorder={false}
-              accountId={currentUserInCollection.account_id}
-              collectionOwnerId={collection.account_id}
-            />
-            <RevokeControls
-              collectionId={collection.id}
-              collectionItem={currentUserInCollection}
-            />
-          </Article>
-          <h3
-            className={classes.columnSubheading}
-            tabIndex={-1}
-            ref={listHeadingRef}
-          >
-            <FormattedMessage
-              id='collections.detail.other_accounts_in_collection'
-              defaultMessage='Others in this collection:'
-              tagName={Fragment}
-            />
-          </h3>
-        </>
-      ) : (
-        <h3
-          className='column-subheading sr-only'
-          tabIndex={-1}
-          ref={listHeadingRef}
-        >
-          {intl.formatMessage(messages.accounts)}
-        </h3>
-      )}
-      {collection && (
-        <SensitiveScreen
-          sensitive={!isOwnCollection && collection.sensitive}
-          focusTargetRef={listHeadingRef}
-        >
-          {items.map(({ account_id }, index, items) => (
-            <Article
-              key={account_id}
-              aria-posinset={index + (currentUserInCollection ? 2 : 1)}
-              aria-setsize={items.length}
-            >
-              <AccountItem
-                accountId={account_id}
-                collectionOwnerId={collection.account_id}
-              />
-            </Article>
-          ))}
-        </SensitiveScreen>
-      )}
-    </ItemList>
+    <>
+      <h3
+        className={classes.columnSubheading}
+        tabIndex={-1}
+        ref={listHeadingRef}
+      >
+        <FormattedMessage
+          id='collections.account_count'
+          defaultMessage='{count, plural, one {# account} other {# accounts}}'
+          values={{ count: collection.item_count }}
+        />
+      </h3>
+      <SensitiveScreen
+        sensitive={!isOwnCollection && collection.sensitive}
+        focusTargetRef={listHeadingRef}
+      >
+        <ItemList emptyMessage={intl.formatMessage(messages.empty)}>
+          <TruncatedListItems
+            visibleItems={visibleAccounts}
+            truncatedItems={hiddenAccounts}
+            toggleButton={{
+              icon: VisibilityOffIcon,
+              title: (
+                <FormattedMessage
+                  id='collections.hidden_accounts_link'
+                  defaultMessage='{count, plural, one {# hidden account} other {# hidden accounts}}'
+                  values={{ count: hiddenAccounts.length }}
+                />
+              ),
+              subtitle: (
+                <FormattedMessage
+                  id='collections.hidden_accounts_description'
+                  defaultMessage='You’ve blocked or muted {count, plural, one {this user} other {these users}}'
+                  values={{ count: hiddenAccounts.length }}
+                />
+              ),
+            }}
+            renderListItem={renderListItem}
+          />
+        </ItemList>
+      </SensitiveScreen>
+    </>
   );
 };

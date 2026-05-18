@@ -18,5 +18,5 @@
     &nbsp;·
     = t('admin.collections.number_of_accounts', count: collection.accepted_collection_items.size)
     &nbsp;·
-    = link_to account_collection_path(collection.account, collection), class: 'detailed-status__link', target: 'blank', rel: 'noopener' do
+    = link_to collection_path(collection), class: 'detailed-status__link', target: 'blank', rel: 'noopener' do
       = t('admin.collections.view_publicly')

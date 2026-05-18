@@ -1,7 +1,9 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import { Children, forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 import classNames from 'classnames';
+
+import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 
 import { LoadingIndicator } from '../loading_indicator';
 
@@ -36,8 +38,12 @@ export const ItemList = forwardRef<
     emptyMessage?: React.ReactNode;
   }
 >(({ isLoading, emptyMessage, className, children, ...otherProps }, ref) => {
-  if (!isLoading && Children.count(children) === 0 && emptyMessage) {
-    return <div className='empty-column-indicator'>{emptyMessage}</div>;
+  if (!isLoading && !hasReactChildren(children) && emptyMessage) {
+    return (
+      <div className='empty-column-indicator'>
+        <span>{emptyMessage}</span>
+      </div>
+    );
   }
 
   return (
