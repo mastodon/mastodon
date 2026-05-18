@@ -4,6 +4,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { PendingBadge } from '@/mastodon/components/badge';
 import { SelectField } from '@/mastodon/components/form_fields';
+import { useSearchParam } from '@/mastodon/hooks/useSearchParam';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import type {
   ApiCollectionJSON,
@@ -67,6 +68,13 @@ export const CollectionAccountsList: React.FC<{
   const relationships = useAppSelector((state) => state.relationships);
   const collectionAccounts = useAppSelector((state) =>
     getCollectionItems(state, id),
+  );
+  const [sortBy, setSortBy] = useSearchParam('sort', 'date_added');
+  const changeSortBy = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setSortBy(event.target.value);
+    },
+    [setSortBy],
   );
 
   const { visibleAccounts, hiddenAccounts } = useMemo(() => {
@@ -167,7 +175,8 @@ export const CollectionAccountsList: React.FC<{
               defaultMessage='Sort by:'
             />
           }
-          value='date_added'
+          value={sortBy}
+          onChange={changeSortBy}
           inputPlacement='inline-end'
           className={classes.select}
           wrapperClassName={classes.selectWrapper}
