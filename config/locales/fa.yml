@@ -345,12 +345,19 @@ fa:
       updated_msg: اعلامیه با موفقیت به‌روز شد!
     collections:
       accounts: حساب‌ها
+      back_to_account: بازگشت به صفحهٔ حساب
+      back_to_report: بازگشت به صفحهٔ گزارش
+      batch:
+        add_to_report: 'افزودن به گزارش #%{id}'
+        report: گزارش
       collection_title: محموعه به دست %{name}
       contents: محتوا
+      no_collection_selected: هیچ مجموعه‌ای تغییر نکرد چرا که مجموعه‌ای گزیده نشده بود
       number_of_accounts:
         one: ۱ حساب
         other: "%{count} حساب"
       open: گشودن
+      title: مجموعه‌ّای حساب - @%{name}
       view_publicly: دیدن عمومی
     critical_update_pending: به‌روز رسانی‌های بحرانی منتظرند
     custom_emojis:
@@ -493,7 +500,11 @@ fa:
       accounts:
         account: حساب
         active: فعّال
+        empty:
+          hint: هنوز هیچ حسابی مشترک نشده.
+          no_lists_yet: هنوز سیاهه‌ای وجود ندارد
         inactive: غیرفعّال
+        last_email: آخرین رایانامه
         status: وضعیت
         subscribers: مشترکان
         title: سیاهه‌های پستی
@@ -510,6 +521,7 @@ fa:
       danger_zone:
         disable_feature:
           action: از کار انداختن
+          hint: خاموش کردن ویژگی برای همه
           title: از کار انداختن ویژگی
         erase_all_data:
           action: پاک کردن داده‌ها
@@ -518,6 +530,7 @@ fa:
       index:
         disabled:
           get_started: آغاز به کار
+        title: خبرنامه‌های رایانامه‌ای
       roles:
         accounts: حساب ها
         edit_role: ویرایش نقش
@@ -1467,6 +1480,7 @@ fa:
     confirmation:
       action: تأیید نشانی رایانامه
       subject: تأیید نشانی رایانامه‌تان
+      title: گرفتن به‌روز رسانی‌های رایانامه‌ای از %{name}؟
     notification:
       create_account: ایجاد حساب ماستودون
       subject:

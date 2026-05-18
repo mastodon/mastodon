@@ -556,6 +556,11 @@ nl:
         show:
           enable_feature: Functionaliteit inschakelen
           important_information: Belangrijke informatie
+          list:
+            1_permission_explanation: Wanneer deze functie is ingeschakeld, kunnen klanten met de bijbehorende machtigingen een e-mailverzamelformulier toevoegen aan hun profielen.
+            2_feature_explanation: Wanneer bezoekers zich aanmelden op een accountprofielpagina en hun abonnement bevestigen, zullen zij e-mail updates ontvangen wanneer het account nieuwe openbare berichten aanmaakt.
+            3_privacy_policy_warning: Serverbeheerders hebben toegang tot verzamelde PII (e-mailadressen). Daarom moeten het privacybeleid en de Servicevoorwaarden voor de server worden bijgewerkt voordat deze functie wordt gebruikt.
+            4_cost_warning: E-mails kunnen kosten in rekening brengen, afhankelijk van de hosting-installatie. Overleg met uw hostingprovider voordat u deze optie inschakelt, omdat deze het aantal e-mails van uw server drastisch kan verhogen.
     export_domain_allows:
       new:
         title: Toegestane domeinen importeren
@@ -861,6 +866,7 @@ nl:
         manage_custom_emojis: Lokale emoji's beheren
         manage_custom_emojis_description: Staat gebruikers toe om lokale emoji's op de server te beheren
         manage_email_subscriptions: E-mailabonnementen beheren
+        manage_email_subscriptions_description: Gebruikers met deze machtiging toestaan om de nieuwsbrieffunctie per e-mail voor hun account in te schakelen
         manage_federation: Federatie beheren
         manage_federation_description: Staat gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en om de bezorging te bepalen
         manage_invites: Uitnodigingen beheren
