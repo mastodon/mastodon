@@ -212,7 +212,7 @@ const CollectionHeader: React.FC<{
       <div className={classes.titleWithMenu}>
         <div className={classes.titleWrapper}>
           {tag && <Badge label={`#${tag.name}`} icon={null} />}
-          <h2 className={classes.name} ref={headingRef}>
+          <h2 className={classes.name} ref={headingRef} tabIndex={-1}>
             {name}
           </h2>
           <AuthorNote id={account_id} />
@@ -233,9 +233,7 @@ const CollectionHeader: React.FC<{
         </div>
       </div>
       {withDescription && description && (
-        <p className={classes.description} ref={headingRef}>
-          {description}
-        </p>
+        <p className={classes.description}>{description}</p>
       )}
       {hasPendingAccounts && <PendingNote />}
       {isCurrentUserInCollection && (
@@ -259,6 +257,7 @@ function useRevealSensitiveContent({
   const revealContent = useCallback(() => {
     setIsContentVisible(true);
     setTimeout(() => {
+      console.log('Focusing!', postRevealFocusTargetRef.current);
       postRevealFocusTargetRef.current?.focus();
     }, 0);
   }, [postRevealFocusTargetRef]);
