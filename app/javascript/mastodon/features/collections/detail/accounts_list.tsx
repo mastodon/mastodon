@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -14,7 +14,6 @@ import {
   AccountListItemFollowButton,
 } from 'mastodon/components/account_list_item';
 import { Button } from 'mastodon/components/button';
-import { Callout } from 'mastodon/components/callout';
 import {
   Article,
   ItemList,
@@ -34,50 +33,6 @@ const messages = defineMessages({
     defaultMessage: 'This collection is empty',
   },
 });
-
-const SensitiveScreen: React.FC<{
-  sensitive: boolean | undefined;
-  focusTargetRef: React.RefObject<HTMLHeadingElement>;
-  children: React.ReactNode;
-}> = ({ sensitive, focusTargetRef, children }) => {
-  const [isVisible, setIsVisible] = useState(!sensitive);
-
-  const showAnyway = useCallback(() => {
-    setIsVisible(true);
-    setTimeout(() => {
-      focusTargetRef.current?.focus();
-    }, 0);
-  }, [focusTargetRef]);
-
-  if (isVisible) {
-    return children;
-  }
-
-  return (
-    <Callout
-      variant='warning'
-      title={
-        <FormattedMessage
-          id='collections.detail.sensitive_content'
-          defaultMessage='Sensitive content'
-        />
-      }
-      primaryLabel={
-        <FormattedMessage
-          id='content_warning.show_short'
-          defaultMessage='Show'
-        />
-      }
-      onPrimary={showAnyway}
-      className={classes.sensitiveScreen}
-    >
-      <FormattedMessage
-        id='collections.detail.sensitive_note'
-        defaultMessage='The description and accounts may not be suitable for all viewers.'
-      />
-    </Callout>
-  );
-};
 
 type CollectionItemWithAccount = CollectionAccountItem & {
   account?: Account | null;
@@ -203,35 +158,30 @@ export const CollectionAccountsList: React.FC<{
           values={{ count: collection.item_count }}
         />
       </h3>
-      <SensitiveScreen
-        sensitive={!isOwnCollection && collection.sensitive}
-        focusTargetRef={listHeadingRef}
-      >
-        <ItemList emptyMessage={intl.formatMessage(messages.empty)}>
-          <TruncatedListItems
-            visibleItems={visibleAccounts}
-            truncatedItems={hiddenAccounts}
-            toggleButton={{
-              icon: VisibilityOffIcon,
-              title: (
-                <FormattedMessage
-                  id='collections.hidden_accounts_link'
-                  defaultMessage='{count, plural, one {# hidden account} other {# hidden accounts}}'
-                  values={{ count: hiddenAccounts.length }}
-                />
-              ),
-              subtitle: (
-                <FormattedMessage
-                  id='collections.hidden_accounts_description'
-                  defaultMessage='You’ve blocked or muted {count, plural, one {this user} other {these users}}'
-                  values={{ count: hiddenAccounts.length }}
-                />
-              ),
-            }}
-            renderListItem={renderListItem}
-          />
-        </ItemList>
-      </SensitiveScreen>
+      <ItemList emptyMessage={intl.formatMessage(messages.empty)}>
+        <TruncatedListItems
+          visibleItems={visibleAccounts}
+          truncatedItems={hiddenAccounts}
+          toggleButton={{
+            icon: VisibilityOffIcon,
+            title: (
+              <FormattedMessage
+                id='collections.hidden_accounts_link'
+                defaultMessage='{count, plural, one {# hidden account} other {# hidden accounts}}'
+                values={{ count: hiddenAccounts.length }}
+              />
+            ),
+            subtitle: (
+              <FormattedMessage
+                id='collections.hidden_accounts_description'
+                defaultMessage='You’ve blocked or muted {count, plural, one {this user} other {these users}}'
+                values={{ count: hiddenAccounts.length }}
+              />
+            ),
+          }}
+          renderListItem={renderListItem}
+        />
+      </ItemList>
     </>
   );
 };
