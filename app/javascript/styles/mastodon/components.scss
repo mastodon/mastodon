@@ -84,7 +84,7 @@
 
 .button {
   background-color: var(--color-bg-brand-base);
-  border: 10px none;
+  border: 1px solid transparent;
   border-radius: 4px;
   box-sizing: border-box;
   color: var(--color-text-on-brand-base);
@@ -99,7 +99,7 @@
   letter-spacing: 0;
   line-height: 22px;
   overflow: hidden;
-  padding: 7px 18px;
+  padding: 6px 17px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -168,8 +168,7 @@
   &.button-secondary {
     color: var(--color-text-brand);
     background: transparent;
-    padding: 6px 17px;
-    border: 1px solid var(--color-border-brand);
+    border-color: var(--color-border-brand);
 
     &:active,
     &:focus,
@@ -212,7 +211,11 @@
     // visually align its label with its surroundings while maintaining
     // a generous click target
     margin-inline: -6px;
-    border: 1px solid transparent;
+
+    &.button--compact {
+      padding: 5px;
+      margin-inline: -5px;
+    }
 
     &:active,
     &:focus,
