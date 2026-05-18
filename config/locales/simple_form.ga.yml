@@ -92,6 +92,7 @@ ga:
         closed_registrations_message: Ar taispeáint nuair a dhúntar clárúcháin
         content_cache_retention_period: Scriosfar gach postáil ó fhreastalaithe eile (lena n-áirítear treisithe agus freagraí) tar éis an líon sonraithe laethanta, gan aird ar aon idirghníomhaíocht úsáideora áitiúil leis na postálacha sin. Áirítear leis seo postálacha ina bhfuil úsáideoir áitiúil tar éis é a mharcáil mar leabharmharcanna nó mar cheanáin. Caillfear tagairtí príobháideacha idir úsáideoirí ó chásanna éagsúla freisin agus ní féidir iad a athchóiriú. Tá úsáid an tsocraithe seo beartaithe le haghaidh cásanna sainchuspóra agus sáraítear go leor ionchais úsáideoirí nuair a chuirtear i bhfeidhm é le haghaidh úsáid ghinearálta.
         custom_css: Is féidir leat stíleanna saincheaptha a chur i bhfeidhm ar an leagan gréasáin de Mastodon.
+        email_footer_text: Téacs roghnach a thaispeántar i mbunús ríomhphoist nuachtlitir amháin.
         favicon: WEBP, PNG, GIF nó JPG. Sáraíonn sé an favicon Mastodon réamhshocraithe le deilbhín saincheaptha.
         landing_page: Roghnaíonn sé seo an leathanach a fheiceann cuairteoirí nua nuair a shroicheann siad do fhreastalaí den chéad uair. Má roghnaíonn tú "Treochtaí", ní mór treochtaí a chumasú sna Socruithe Fionnachtana. Má roghnaíonn tú "Fotha Áitiúil", ní mór "Rochtain ar fhothaí beo ina bhfuil poist áitiúla" a shocrú go "Gach Duine" sna Socruithe Fionnachtana.
         mascot: Sáraíonn sé an léaráid san ardchomhéadan gréasáin.
@@ -109,6 +110,7 @@ ga:
         status_page_url: URL leathanach inar féidir le daoine stádas an fhreastalaí seo a fheiceáil le linn briseadh amach
         theme: Téama a fheiceann cuairteoirí logáilte amach agus úsáideoirí nua.
         thumbnail: Íomhá thart ar 2:1 ar taispeáint taobh le faisnéis do fhreastalaí.
+        thumbnail_description: Cur síos ar an íomhá chun cabhrú le daoine le lagú radhairc a hábhar a thuiscint.
         trendable_by_default: Léim ar athbhreithniú láimhe ar ábhar treochta. Is féidir míreanna aonair a bhaint as treochtaí fós tar éis an fhíric.
         trends: Léiríonn treochtaí cé na postálacha, hashtags agus scéalta nuachta atá ag tarraingt ar do fhreastalaí.
         wrapstodon: Iarr ar úsáideoirí áitiúla achoimre spraíúil a ghiniúint ar a n-úsáid Mastodon i rith na bliana. Bíonn an ghné seo ar fáil idir an 10ú agus an 31ú Nollaig gach bliain, agus tairgtear é d’úsáideoirí a rinne post Poiblí nó Ciúin Poiblí amháin ar a laghad agus a d’úsáid hais clib amháin ar a laghad laistigh den bhliain.
@@ -163,6 +165,7 @@ ga:
           two: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun %{domain} a úsáid. Ní stórálfaimid é seo.
         role: Rialaíonn an ról na ceadanna atá ag an úsáideoir.
       user_role:
+        collection_limit: Cuireann sé teorainn le líon na mbailiúchán is féidir le húsáideoir aonair leis an ról seo a chruthú. Tabhair faoi deara, le do thoil, nuair a laghdaíonn tú an líon seo, nach gcaillfidh úsáideoirí atá ag an teorainn seo cheana féin aon bhailiúcháin. Ach ní bheidh siad in ann cinn bhreise a chruthú.
         color: Dath le húsáid don ról ar fud an Chomhéadain, mar RGB i bhformáid heicsidheachúlach
         highlighted: Déanann sé seo an ról le feiceáil go poiblí
         name: Ainm poiblí an róil, má tá an ról socraithe le taispeáint mar shuaitheantas
@@ -295,6 +298,7 @@ ga:
         closed_registrations_message: Teachtaireacht saincheaptha nuair nach bhfuil sínithe suas ar fáil
         content_cache_retention_period: Tréimhse choinneála inneachair cianda
         custom_css: CSS saincheaptha
+        email_footer_text: Téacs breise sa bhuntásc
         favicon: Favicon
         landing_page: Leathanach tuirlingthe do chuairteoirí nua
         local_live_feed_access: Rochtain ar bheatha bheo ina bhfuil poist áitiúla
@@ -319,9 +323,13 @@ ga:
         status_page_url: URL an leathanaigh stádais
         theme: Téama réamhshocraithe
         thumbnail: Mionsamhail freastalaí
+        thumbnail_description: Téacs malartach mionsamhail
         trendable_by_default: Ceadaigh treochtaí gan athbhreithniú roimh ré
         trends: Cumasaigh treochtaí
         wrapstodon: Cumasaigh Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Tuigim go bhféadfadh an ghné seo a chumasú líon na ríomhphoist a sheoltar ón bhfreastalaí a mhéadú go suntasach agus gurb mise amháin atá freagrach as aon chostais a thabhaítear.
+        agreement_privacy_and_terms: Tá an Polasaí Príobháideachais agus na Téarmaí Seirbhíse nuashonraithe agam.
       interactions:
         must_be_follower: Cuir bac ar fhógraí ó dhaoine nach leantóirí iad
         must_be_following: Cuir bac ar fhógraí ó dhaoine nach leanann tú
@@ -389,6 +397,7 @@ ga:
         role: Ról
         time_zone: Crios ama
       user_role:
+        collection_limit: Uasmhéid na mBailiúchán in aghaidh an úsáideora
         color: Dath suaitheantas
         highlighted: Taispeáin ról mar shuaitheantas ar phróifílí úsáideora
         name: Ainm

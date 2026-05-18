@@ -69,7 +69,7 @@
 
               - if Mastodon::Feature.collections_enabled?
                 %span.report-card__summary__item__content__icon{ title: t('admin.accounts.collections') }
-                  = material_symbol('groups-fill')
+                  = material_symbol('category')
                   = report.collections.size
 
               - if report.forwarded?

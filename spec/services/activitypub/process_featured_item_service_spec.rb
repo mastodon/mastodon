@@ -72,15 +72,25 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
       end
     end
 
-    context 'when item exists at a different position' do
+    context 'when item exists' do
       let!(:collection_item) do
         Fabricate(:collection_item, collection:, uri: featured_item_json['id'], position: 2)
       end
 
-      it 'updates the position' do
-        expect { subject.call(collection, object, position:) }.to_not change(collection.collection_items, :count)
+      context 'when no position is given' do
+        it 'does not change the position' do
+          expect { subject.call(collection, object) }.to_not change(collection.collection_items, :count)
 
-        expect(collection_item.reload.position).to eq 3
+          expect(collection_item.reload.position).to eq 2
+        end
+      end
+
+      context 'when a different position is given' do
+        it 'updates the position' do
+          expect { subject.call(collection, object, position:) }.to_not change(collection.collection_items, :count)
+
+          expect(collection_item.reload.position).to eq 3
+        end
       end
     end
 

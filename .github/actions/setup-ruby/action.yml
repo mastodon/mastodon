@@ -14,10 +14,16 @@ runs:
       shell: bash
       run: |
         sudo apt-get update
-        sudo apt-get install --no-install-recommends -y libicu-dev libidn11-dev libvips42 ${{ inputs.additional-system-dependencies }}
+        sudo apt-get install --no-install-recommends -y \
+          libicu-dev \
+          libidn11-dev \
+          libvips42 \
+          libheif-plugin-aomdec \
+          libheif-plugin-libde265 \
+          ${{ inputs.additional-system-dependencies }}
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@c984c1a20bb35a1cbda04477c816cea024418be9 # v1
+      uses: ruby/setup-ruby@6aaa311d81eba98ae12eaffbcb63296ace0efcde # v1
       with:
         ruby-version: ${{ inputs.ruby-version }}
         bundler-cache: true

@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 class REST::NotificationSerializer < ActiveModel::Serializer
+  include RoutingHelper
+  include ActionView::Helpers::UrlHelper
+  include NotificationFallbackConcern
+
   # Please update app/javascript/mastodon/api_types/notifications.ts when making changes to the attributes
   attributes :id, :type, :created_at, :group_key
 
   attribute :filtered, if: :filtered?
+
+  attribute :fallback, if: :needs_fallback?
 
   belongs_to :from_account, key: :account, serializer: REST::AccountSerializer
   belongs_to :target_status, key: :status, if: :status_type?, serializer: REST::StatusSerializer

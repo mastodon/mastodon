@@ -4,7 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { importFetchedAccounts } from '@/mastodon/actions/importer';
 import {
   apiCreateCollection,
-  apiGetAccountCollections,
+  apiGetCollectionsCreatedByAccount,
+  apiGetCollectionsFeaturingAccount,
   apiUpdateCollection,
   apiGetCollection,
   apiDeleteCollection,
@@ -16,8 +17,9 @@ import type {
   ApiCollectionJSON,
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
+  CollectionAccountItem,
 } from '@/mastodon/api_types/collections';
-import { me } from '@/mastodon/initial_state';
+import { initialState, me } from '@/mastodon/initial_state';
 import {
   createAppAsyncThunk,
   createAppSelector,
@@ -27,18 +29,33 @@ import { inputToHashtag } from '@/mastodon/utils/hashtags';
 
 type QueryStatus = 'idle' | 'loading' | 'error';
 
+// Lists of collection ids and their loading status mapped by account id
+type CollectionsByAccountId = Record<
+  string,
+  {
+    collectionIds: string[];
+    status: QueryStatus;
+  }
+>;
+
 interface CollectionState {
-  // Collections mapped by collection id
+  // Full collections mapped by collection id
   collections: Record<string, ApiCollectionJSON>;
-  // Lists of collection ids mapped by account id
-  accountCollections: Record<
-    string,
-    {
-      collectionIds: string[];
-      status: QueryStatus;
-    }
-  >;
+  // Collections created by an account, mapped by account id
+  createdBy: CollectionsByAccountId;
+  // Collections that feature an account, mapped by account id
+  featuring: CollectionsByAccountId;
   editor: EditorState;
+}
+
+/**
+ * This is a subset of the `CollectionAccountItem` type
+ * for use in the editor. Here, `account_id` is always defined
+ * and `state` is more limited.
+ */
+export interface EditorCollectionItem {
+  account_id: string;
+  state: 'pending' | 'accepted';
 }
 
 interface EditorState {
@@ -46,10 +63,10 @@ interface EditorState {
   name: string;
   description: string;
   topic: string;
-  language: string | null;
+  language: string;
   discoverable: boolean;
   sensitive: boolean;
-  accountIds: string[];
+  items: EditorCollectionItem[];
 }
 
 interface UpdateEditorFieldPayload<K extends keyof EditorState> {
@@ -57,41 +74,42 @@ interface UpdateEditorFieldPayload<K extends keyof EditorState> {
   value: EditorState[K];
 }
 
-const initialState: CollectionState = {
+const initialCollectionState: CollectionState = {
   collections: {},
-  accountCollections: {},
+  createdBy: {},
+  featuring: {},
   editor: {
     id: null,
     name: '',
     description: '',
     topic: '',
-    language: null,
+    language: initialState?.compose.default_language ?? 'en',
     discoverable: true,
     sensitive: false,
-    accountIds: [],
+    items: [],
   },
 };
 
 const collectionSlice = createSlice({
   name: 'collections',
-  initialState,
+  initialState: initialCollectionState,
   reducers: {
-    init(state, action: PayloadAction<ApiCollectionJSON | null>) {
+    init(state, action: PayloadAction<ApiCollectionJSON>) {
       const collection = action.payload;
 
       state.editor = {
-        id: collection?.id ?? null,
-        name: collection?.name ?? '',
-        description: collection?.description ?? '',
-        topic: inputToHashtag(collection?.tag?.name ?? ''),
-        language: collection?.language ?? '',
-        discoverable: collection?.discoverable ?? true,
-        sensitive: collection?.sensitive ?? false,
-        accountIds: getCollectionItemIds(collection?.items ?? []),
+        id: collection.id,
+        name: collection.name,
+        description: collection.description ?? '',
+        topic: inputToHashtag(collection.tag?.name ?? ''),
+        language: collection.language ?? '',
+        discoverable: collection.discoverable,
+        sensitive: collection.sensitive,
+        items: getEditorCollectionItems(collection.items),
       };
     },
     reset(state) {
-      state.editor = initialState.editor;
+      state.editor = initialCollectionState.editor;
     },
     updateEditorField<K extends keyof EditorState>(
       state: CollectionState,
@@ -103,44 +121,101 @@ const collectionSlice = createSlice({
   },
   extraReducers(builder) {
     /**
-     * Fetching account collections
+     * Fetching collections created by account
      */
-    builder.addCase(fetchAccountCollections.pending, (state, action) => {
-      const { accountId } = action.meta.arg;
-      state.accountCollections[accountId] ??= {
-        status: 'loading',
-        collectionIds: [],
-      };
-      state.accountCollections[accountId].status = 'loading';
-    });
+    builder.addCase(
+      fetchCollectionsCreatedByAccount.pending,
+      (state, action) => {
+        const { accountId } = action.meta.arg;
+        state.createdBy[accountId] ??= {
+          status: 'loading',
+          collectionIds: [],
+        };
+        state.createdBy[accountId].status = 'loading';
+      },
+    );
 
-    builder.addCase(fetchAccountCollections.rejected, (state, action) => {
-      const { accountId } = action.meta.arg;
-      state.accountCollections[accountId] = {
-        status: 'error',
-        collectionIds: [],
-      };
-    });
+    builder.addCase(
+      fetchCollectionsCreatedByAccount.rejected,
+      (state, action) => {
+        const { accountId } = action.meta.arg;
+        state.createdBy[accountId] = {
+          status: 'error',
+          collectionIds: [],
+        };
+      },
+    );
 
-    builder.addCase(fetchAccountCollections.fulfilled, (state, action) => {
-      const { collections } = action.payload;
+    builder.addCase(
+      fetchCollectionsCreatedByAccount.fulfilled,
+      (state, action) => {
+        const { collections } = action.payload;
 
-      const collectionsMap: Record<string, ApiCollectionJSON> =
-        state.collections;
-      const collectionIds: string[] = [];
+        const collectionsMap: Record<string, ApiCollectionJSON> =
+          state.collections;
+        const collectionIds: string[] = [];
 
-      collections.forEach((collection) => {
-        const { id } = collection;
-        collectionsMap[id] = collection;
-        collectionIds.push(id);
-      });
+        collections.forEach((collection) => {
+          const { id } = collection;
+          collectionsMap[id] = collection;
+          collectionIds.push(id);
+        });
 
-      state.collections = collectionsMap;
-      state.accountCollections[action.meta.arg.accountId] = {
-        collectionIds,
-        status: 'idle',
-      };
-    });
+        state.collections = collectionsMap;
+        state.createdBy[action.meta.arg.accountId] = {
+          collectionIds,
+          status: 'idle',
+        };
+      },
+    );
+    /**
+     * Fetching collections featuring an account
+     */
+    builder.addCase(
+      fetchCollectionsFeaturingAccount.pending,
+      (state, action) => {
+        const { accountId } = action.meta.arg;
+        state.featuring[accountId] ??= {
+          status: 'loading',
+          collectionIds: [],
+        };
+        state.featuring[accountId].status = 'loading';
+      },
+    );
+
+    builder.addCase(
+      fetchCollectionsFeaturingAccount.rejected,
+      (state, action) => {
+        const { accountId } = action.meta.arg;
+        state.featuring[accountId] = {
+          status: 'error',
+          collectionIds: [],
+        };
+      },
+    );
+
+    builder.addCase(
+      fetchCollectionsFeaturingAccount.fulfilled,
+      (state, action) => {
+        const { collections } = action.payload;
+
+        const collectionsMap: Record<string, ApiCollectionJSON> =
+          state.collections;
+        const collectionIds: string[] = [];
+
+        collections.forEach((collection) => {
+          const { id } = collection;
+          collectionsMap[id] = collection;
+          collectionIds.push(id);
+        });
+
+        state.collections = collectionsMap;
+        state.featuring[action.meta.arg.accountId] = {
+          collectionIds,
+          status: 'idle',
+        };
+      },
+    );
 
     /**
      * Fetching a single collection
@@ -158,7 +233,7 @@ const collectionSlice = createSlice({
     builder.addCase(updateCollection.fulfilled, (state, action) => {
       const { collection } = action.payload;
       state.collections[collection.id] = collection;
-      state.editor = initialState.editor;
+      state.editor = initialCollectionState.editor;
     });
 
     /**
@@ -170,7 +245,7 @@ const collectionSlice = createSlice({
       // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete state.collections[collectionId];
       if (me) {
-        let accountCollectionIds = state.accountCollections[me]?.collectionIds;
+        let accountCollectionIds = state.createdBy[me]?.collectionIds;
         if (accountCollectionIds) {
           accountCollectionIds = accountCollectionIds.filter(
             (id) => id !== collectionId,
@@ -187,14 +262,14 @@ const collectionSlice = createSlice({
       const { collection } = actions.payload;
 
       state.collections[collection.id] = collection;
-      state.editor = initialState.editor;
+      state.editor = initialCollectionState.editor;
 
-      if (state.accountCollections[collection.account_id]) {
-        state.accountCollections[collection.account_id]?.collectionIds.unshift(
+      if (state.createdBy[collection.account_id]) {
+        state.createdBy[collection.account_id]?.collectionIds.unshift(
           collection.id,
         );
       } else {
-        state.accountCollections[collection.account_id] = {
+        state.createdBy[collection.account_id] = {
           collectionIds: [collection.id],
           status: 'idle',
         };
@@ -242,9 +317,16 @@ const collectionSlice = createSlice({
   },
 });
 
-export const fetchAccountCollections = createDataLoadingThunk(
-  `${collectionSlice.name}/fetchAccountCollections`,
-  ({ accountId }: { accountId: string }) => apiGetAccountCollections(accountId),
+export const fetchCollectionsCreatedByAccount = createDataLoadingThunk(
+  `${collectionSlice.name}/fetchCollectionsCreatedByAccount`,
+  ({ accountId }: { accountId: string }) =>
+    apiGetCollectionsCreatedByAccount(accountId),
+);
+
+export const fetchCollectionsFeaturingAccount = createDataLoadingThunk(
+  `${collectionSlice.name}/fetchCollectionsFeaturingAccount`,
+  ({ accountId }: { accountId: string }) =>
+    apiGetCollectionsFeaturingAccount(accountId),
 );
 
 export const fetchCollection = createDataLoadingThunk(
@@ -312,7 +394,7 @@ interface AccountCollectionQuery {
 export const selectAccountCollections = createAppSelector(
   [
     (_, accountId?: string | null) => accountId,
-    (state) => state.collections.accountCollections,
+    (state, _, query: 'createdBy' | 'featuring') => state.collections[query],
     (state) => state.collections.collections,
   ],
   (accountId, collectionsByAccountId, collectionsMap) => {
@@ -338,7 +420,12 @@ export const selectAccountCollections = createAppSelector(
   },
 );
 
-const onlyExistingIds = (id?: string): id is string => !!id;
+const isEditorItem = (
+  item: Partial<CollectionAccountItem>,
+): item is EditorCollectionItem =>
+  !!item.account_id && (item.state === 'accepted' || item.state === 'pending');
 
-export const getCollectionItemIds = (items?: ApiCollectionJSON['items']) =>
-  items?.map((item) => item.account_id).filter(onlyExistingIds) ?? [];
+export const getEditorCollectionItems = (items?: CollectionAccountItem[]) =>
+  items
+    ?.map(({ account_id, state }) => ({ account_id, state }))
+    .filter(isEditorItem) ?? [];

@@ -92,6 +92,7 @@ nl:
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
         content_cache_retention_period: Alle berichten van andere servers (inclusief boosts en reacties) worden verwijderd na het opgegeven aantal dagen, ongeacht enige lokale gebruikersinteractie met die berichten. Dit betreft ook berichten die een lokale gebruiker aan diens bladwijzers heeft toegevoegd of als favoriet heeft gemarkeerd. Privéberichten tussen gebruikers van verschillende servers gaan ook verloren en zijn onmogelijk te herstellen. Het gebruik van deze instelling is bedoeld voor servers die een speciaal doel dienen en overtreedt veel gebruikersverwachtingen wanneer deze voor algemeen gebruik wordt geïmplementeerd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
+        email_footer_text: Optionele tekst dat alleen onderin de e-mailnieuwsbrieven verschijnt.
         favicon: WEBP, PNG, GIF of JPG. Vervangt de standaard Mastodon favicon met een aangepast pictogram.
         landing_page: Selecteert welke pagina nieuwe bezoekers te zien krijgen wanneer ze voor het eerst op jouw server terechtkomen. Wanneer je ‘Trends’ selecteert, moeten trends ingeschakeld zijn onder 'Serverinstellingen > Ontdekken'. Wanneer je ‘Lokale tijdlijn’ selecteert, moet ‘Toegang tot openbare lokale berichten’ worden ingesteld op ‘Iedereen’ onder 'Serverinstellingen > Ontdekken'.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
@@ -109,6 +110,7 @@ nl:
         status_page_url: URL van een pagina waar mensen de status van deze server kunnen zien tijdens een storing
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
+        thumbnail_description: Een omschrijving van de afbeelding om mensen met een visuele beperking te helpen de inhoud ervan te begrijpen.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
         wrapstodon: Lokale gebruikers de mogelijkheid geven om een speelse samenvatting van hun Mastodon-gebruik over het afgelopen jaar aan te maken. Deze functie is elk jaar beschikbaar tussen 10 en 31 december, en wordt aangeboden aan gebruikers die tijdens het afgelopen jaar ten minste één openbaar of minder openbaar bericht hebben geplaatst en ten minste één hashtag hebben gebruikt.
@@ -160,6 +162,7 @@ nl:
           other: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
         role: De rol bepaalt welke rechten de gebruiker heeft.
       user_role:
+        collection_limit: Beperkt het aantal verzamelingen dat een gebruiker met deze rol kan aanmaken. Houd er rekening mee dat wanneer je dit aantal verlaagt, gebruikers die al over deze limiet zijn geen Verzamelingen zullen verliezen. Zij zullen echter niet in staat zijn om er nog meer aan te maken.
         color: Kleur die gebruikt wordt voor de rol in de UI, als RGB in hexadecimale formaat
         highlighted: Dit maakt de rol openbaar zichtbaar
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
@@ -292,6 +295,7 @@ nl:
         closed_registrations_message: Aangepast bericht wanneer registratie is uitgeschakeld
         content_cache_retention_period: Bewaartermijn voor externe inhoud
         custom_css: Aangepaste CSS
+        email_footer_text: Aanvullende voettekst
         favicon: Favicon
         landing_page: Landingspagina voor nieuwe bezoekers
         local_live_feed_access: Toegang tot openbare lokale berichten
@@ -316,9 +320,13 @@ nl:
         status_page_url: URL van statuspagina
         theme: Standaardthema
         thumbnail: Server-miniatuur
+        thumbnail_description: Alt-tekst thumbnail
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
         wrapstodon: Wrapstodon inschakelen
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Ik begrijp dat het inschakelen van deze functie de hoeveelheid e-mails die van de server wordt verzonden aanzienlijk kan verhogen en dat ik alleen verantwoordelijk ben voor alle gemaakte kosten.
+        agreement_privacy_and_terms: Ik heb het Privacybeleid en de Gebruiksvoorwaarden bijgewerkt.
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -386,6 +394,7 @@ nl:
         role: Rol
         time_zone: Tijdzone
       user_role:
+        collection_limit: Maximum aantal verzamelingen per gebruiker
         color: Kleur van badge
         highlighted: Rol als badge op profielpagina's tonen
         name: Naam

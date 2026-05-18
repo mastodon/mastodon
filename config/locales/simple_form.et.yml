@@ -9,7 +9,7 @@ et:
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
         indexable: Sinu avalikud postitused võivad ilmuda Mastodoni otsingutulemustes. Inimesed, kes on sinu postitustele reageerinud, saavad neid otsida nii või naa.
         note: 'Saad @mainida teisi inimesi või #teemaviiteid.'
-        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata häälestuse valikust.
+        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata seadistusest.
         unlocked: Teised kasutajad saavad sind jälgima hakata nõusolekut küsimata. Eemalda märge, kui soovid jälgimistaotlusi üle vaadata ja valida, kas nõustuda või keelduda uute jälgijatega.
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
@@ -92,6 +92,7 @@ et:
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
         content_cache_retention_period: Kõik teiste serverite postitused (sealhulgas jagamised ja vastused) kustutatakse pärast määratud arvu päevade möödumist, sõltumata, kuidas kohalik kasutaja on nende postitustega interakteerunud. Hõlmatud on ka postitused, mille kohalik kasutaja on märkinud järjehoidjaks või lemmikuks. Ka eri instantside kasutajate vahelised privaatsed mainimised kaovad ja neid on võimatu taastada. See seadistus on mõeldud eriotstarbeliste instantside jaoks ja rikub paljude kasutajate ootusi, kui seda rakendatakse üldotstarbelise kasutuse puhul.
         custom_css: Mastodoni veebiliideses on võimalik kasutada kohandatud stiile.
+        email_footer_text: Valikuline tekst, mida kuvatakse ainult uudis-e-kirjade jaluses.
         favicon: WEBP, PNG, GIF või JPG. Asendab Mastodoni vaike- favicon ikooni kohandatud ikooniga.
         landing_page: Sellega valid lehe, mida uued külastajad sinu serverisse tulles näevad. Kui sa valid „Trendid“, siis peavad nad olema lubatud. Kui sa valid „Kohalike postituste voog“, siis seadistuse „Ligipääs kohalike postituste voole“ väärtus peab olema „Kõik“.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
@@ -109,6 +110,7 @@ et:
         status_page_url: Lehe URL, kus saab serveri maas oleku ajal näha serveri olekut
         theme: Teema, mida näevad sisenemata ning uued kasutajad.
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
+        thumbnail_description: Pildi selgitus, mis aitab nägemispuudega inimestel aru saada pildi sisust.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
         trends: Trendid näitavad, millised postitused, teemaviited ja uudislood koguvad sinu serveris tähelepanu.
         wrapstodon: Paku kohalikele kasutajatele luua nende Mastodoni kasutamise aastast mänguline kokkuvõte. See võimalus on saadaval igal aastal 10. ja 31. detsembri vahel ja seda pakutakse kasutajatele, kes tegid vähemalt ühe avaliku või vaikse avaliku postituse ja kes kasutas aasta jooksul vähemalt ühte teemaviidet.
@@ -160,6 +162,7 @@ et:
           other: "%{domain} saidi teenuste kasutamiseks pead olema vähemalt %{count} aastat vana. Me ei salvesta neid andmeid."
         role: Rollid määravad, millised õigused kasutajal on.
       user_role:
+        collection_limit: Piirab sellise rolliga kasutaja poolt loodavate kogumike arvu. Pane tähele, et kui vähendad seda arvu, ei kaota kasutajad, kes on juba piirmäära saavutanud, ühtegi kogumikku, aga nad ei saa luua uusi kogumikke.
         color: Rolli tähistamise värvus üle kasutajaliidese, RGB 16nd-formaadis
         highlighted: Teeb rolli avalikult nähtavaks
         name: Rolli avalik nimi, kui roll on märgitud avalikuks kuvamiseks märgina
@@ -292,6 +295,7 @@ et:
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         content_cache_retention_period: Kaugsisu säilitamise aeg
         custom_css: Kohandatud CSS
+        email_footer_text: Täiendav jaluse tekst
         favicon: Favicon
         landing_page: Avaleht uute külastajate jaoks
         local_live_feed_access: Ligipääs kohalike postituste voole
@@ -316,9 +320,13 @@ et:
         status_page_url: Oleku lehe URL
         theme: Vaikmisi teema
         thumbnail: Serveri pisipilt
+        thumbnail_description: Pisipildi selgitustekst
         trendable_by_default: Luba trendid eelneva ülevaatuseta
         trends: Luba trendid
         wrapstodon: Luba Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Ma mõistan, et selle funktsiooni aktiveerimine võib märkimisväärselt suurendada serverist saadetavate e-kirjade mahtu ning et vastutan tekkivate kulude eest täielikult ise.
+        agreement_privacy_and_terms: Olen uuendanud privaatsuspoliitikat ja kasutustingimusi.
       interactions:
         must_be_follower: Keela teavitused mittejälgijatelt
         must_be_following: Keela teavitused kasutajatelt, keda sa ei jälgi
@@ -386,6 +394,7 @@ et:
         role: Roll
         time_zone: Ajavöönd
       user_role:
+        collection_limit: Kogumike maksimumarv kasutaja kohta
         color: Märgi värv
         highlighted: Kuva roll kasutajaprofiilidel märgina
         name: Nimi

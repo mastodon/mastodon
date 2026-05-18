@@ -1,10 +1,8 @@
-import { useId } from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
+import { ListItemLink, ListItemWrapper } from '@/mastodon/components/list_item';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AvatarById } from 'mastodon/components/avatar';
@@ -12,6 +10,8 @@ import { useAccountHandle } from 'mastodon/components/display_name/default';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { domain } from 'mastodon/initial_state';
+
+import { getCollectionPath } from '../utils';
 
 import classes from './collection_lockup.module.scss';
 
@@ -27,10 +27,10 @@ export const AvatarGrid: React.FC<{
         sensitive ? classes.avatarGridSensitive : null,
       )}
     >
-      {avatarIds.map((id) => (
+      {avatarIds.map((id, index) => (
         <AvatarById
           animate={false}
-          key={id}
+          key={index}
           accountId={id}
           className={classes.avatar}
           size={25}
@@ -45,71 +45,78 @@ export interface CollectionLockupProps {
   collection: ApiCollectionJSON;
   withAuthorHandle?: boolean;
   withTimestamp?: boolean;
+  sideContent?: React.ReactNode;
+  className?: string;
 }
 
 export const CollectionLockup: React.FC<CollectionLockupProps> = ({
   collection,
   withAuthorHandle = true,
   withTimestamp,
+  sideContent,
+  className,
 }) => {
   const { id, name } = collection;
-  const uniqueId = useId();
-  const linkId = `${uniqueId}-link`;
-  const infoId = `${uniqueId}-info`;
   const authorAccount = useAccount(collection.account_id);
   const authorHandle = useAccountHandle(authorAccount, domain);
 
-  return (
-    <div className={classes.content}>
-      <AvatarGrid
-        accountIds={collection.items.map((item) => item.account_id)}
-        sensitive={collection.sensitive}
-      />
-      <div>
-        <h2 id={linkId}>
-          <Link to={`/collections/${id}`} className={classes.link}>
-            {name}
-          </Link>
-        </h2>
-        <ul className={classes.info} id={infoId}>
-          {collection.sensitive && (
-            <li className='sr-only'>
-              <FormattedMessage
-                id='collections.sensitive'
-                defaultMessage='Sensitive'
-              />
-            </li>
-          )}
-          {withAuthorHandle && authorAccount && (
-            <FormattedMessage
-              id='collections.by_account'
-              defaultMessage='by {account_handle}'
-              values={{
-                account_handle: authorHandle,
-              }}
-              tagName='li'
-            />
-          )}
+  const collectionInfo = (
+    <ul>
+      {collection.sensitive && (
+        <li className='sr-only'>
           <FormattedMessage
-            id='collections.account_count'
-            defaultMessage='{count, plural, one {# account} other {# accounts}}'
-            values={{ count: collection.item_count }}
-            tagName='li'
+            id='collections.sensitive'
+            defaultMessage='Sensitive'
           />
-          {withTimestamp && (
-            <FormattedMessage
-              id='collections.last_updated_at'
-              defaultMessage='Last updated: {date}'
-              values={{
-                date: (
-                  <RelativeTimestamp timestamp={collection.updated_at} long />
-                ),
-              }}
-              tagName='li'
-            />
-          )}
-        </ul>
-      </div>
-    </div>
+        </li>
+      )}
+      {withAuthorHandle && authorAccount && (
+        <FormattedMessage
+          id='collections.by_account'
+          defaultMessage='by {account_handle}'
+          values={{
+            account_handle: authorHandle,
+          }}
+          tagName='li'
+        />
+      )}
+      <FormattedMessage
+        id='collections.account_count'
+        defaultMessage='{count, plural, one {# account} other {# accounts}}'
+        values={{ count: collection.item_count }}
+        tagName='li'
+      />
+      {withTimestamp && (
+        <FormattedMessage
+          id='collections.last_updated_at'
+          defaultMessage='Last updated: {date}'
+          values={{
+            date: <RelativeTimestamp timestamp={collection.updated_at} long />,
+          }}
+          tagName='li'
+        />
+      )}
+    </ul>
+  );
+
+  return (
+    <ListItemWrapper
+      className={classNames(classes.wrapper, className)}
+      icon={
+        <AvatarGrid
+          accountIds={collection.items.map((item) => item.account_id)}
+          sensitive={collection.sensitive}
+        />
+      }
+      sideContent={sideContent}
+    >
+      <ListItemLink
+        as='h3'
+        to={getCollectionPath(id)}
+        subtitle={collectionInfo}
+      >
+        {name}
+      </ListItemLink>
+    </ListItemWrapper>
   );
 };

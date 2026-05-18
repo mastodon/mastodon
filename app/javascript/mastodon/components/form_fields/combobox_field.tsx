@@ -22,6 +22,8 @@ import { matchWidth } from 'mastodon/components/dropdown/utils';
 import { IconButton } from 'mastodon/components/icon_button';
 import { useOnClickOutside } from 'mastodon/hooks/useOnClickOutside';
 
+import { LoadingIndicator } from '../loading_indicator';
+
 import classes from './combobox.module.scss';
 import { FormFieldWrapper } from './form_field_wrapper';
 import type { CommonFieldWrapperProps } from './form_field_wrapper';
@@ -531,6 +533,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
           <div {...props} className={classNames(classes.popover, placement)}>
             <StatusMessageWrapper
               showStatus={showStatusMessageInMenu}
+              isLoading={isLoading}
               status={statusMessage}
             >
               {hasGroups ? (
@@ -592,10 +595,20 @@ Combobox.displayName = 'Combobox';
 const StatusMessageWrapper: React.FC<{
   showStatus: boolean;
   status: string;
+  isLoading: boolean;
   children: React.ReactNode;
-}> = ({ showStatus, status, children }) => {
+}> = ({ showStatus, status, isLoading, children }) => {
   if (showStatus) {
-    return <span className={classes.emptyMessage}>{status}</span>;
+    return (
+      <span className={classes.emptyMessage}>
+        {isLoading && (
+          <span className={classes.loadingIndicator}>
+            <LoadingIndicator role='none' />
+          </span>
+        )}
+        {status}
+      </span>
+    );
   }
 
   return children;

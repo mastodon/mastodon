@@ -92,6 +92,7 @@ da:
         closed_registrations_message: Vises, når tilmeldinger er lukket
         content_cache_retention_period: Alle indlæg fra andre servere (herunder fremhævelser og besvarelser) slettes efter det angivne antal dage uden hensyn til lokal brugerinteraktion med disse indlæg. Dette omfatter indlæg, hvor en lokal bruger har markeret dem som bogmærker eller favoritter. Private omtaler mellem brugere fra forskellige instanser vil også være tabt og umulige at gendanne. Brugen af denne indstilling er beregnet til særlige formål instanser og bryder mange brugerforventninger ved implementering til almindelig brug.
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
+        email_footer_text: Valgfri tekst, der vises i sidefoden på e-mail-nyhedsbreve.
         favicon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard Mastodon favikonet på mobilenheder med et tilpasset ikon.
         landing_page: Vælger, hvilken side nye besøgende ser, når de først ankommer til din server. Hvis du vælger "Trender", skal trends være aktiveret i Opdagelse-indstillingerne. Hvis du vælger "Lokalt feed", skal "Adgang til live feeds med lokale indlæg" være indstillet til "Alle" i Opdagelse-indstillingerne.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
@@ -109,6 +110,7 @@ da:
         status_page_url: URL'en til en side, hvor status for denne server kan ses under en afbrydelse
         theme: Tema, som udloggede besøgende og nye brugere ser.
         thumbnail: Et ca. 2:1 billede vist sammen med dine serveroplysninger.
+        thumbnail_description: En beskrivelse af billedet, der hjælper personer med synshandicap med at forstå dets indhold.
         trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
         trends: Trends viser, hvilke indlæg, hashtags og nyhedshistorier der opnår momentum på din server.
         wrapstodon: Tilbyd lokale brugere at generere en sjov oversigt over deres brug af Mastodon i løbet af året. Denne funktion er tilgængelig mellem den 10. og 31. december hvert år og tilbydes til brugere, der har lavet mindst ét offentligt eller stille offentligt indlæg og brugt mindst ét hashtag i løbet af året.
@@ -160,6 +162,7 @@ da:
           other: Vi skal sikre os, at du er mindst %{count} for at kunne bruge %{domain}. Informationen gemmes ikke.
         role: Rollen styrer, hvilke tilladelser brugeren er tildelt.
       user_role:
+        collection_limit: Begrænser antallet af samlinger, som en enkelt bruger med denne rolle kan oprette. Bemærk, at hvis du reducerer dette antal, vil brugere, der allerede har nået denne grænse, ikke miste nogen samlinger. De vil dog ikke kunne oprette flere.
         color: Farven, i RGB hex-format, der skal bruges til rollen i hele UI'en
         highlighted: Dette gør rollen offentligt synlig
         name: Offentligt rollennavn, hvis rollen er opsat til fremstå som et badge
@@ -292,6 +295,7 @@ da:
         closed_registrations_message: Tilpasset besked, når tilmelding er utilgængelig
         content_cache_retention_period: Opbevaringsperiode for eksternt indhold
         custom_css: Tilpasset CSS
+        email_footer_text: Yderligere tekst til sidefod
         favicon: Favikon
         landing_page: Landingside for nye besøgende
         local_live_feed_access: Adgang til live feeds med lokale indlæg
@@ -316,9 +320,13 @@ da:
         status_page_url: Statusside-URL
         theme: Standardtema
         thumbnail: Serverminiaturebillede
+        thumbnail_description: Alt-tekst til miniaturebillede
         trendable_by_default: Tillad ikke-reviderede trends
         trends: Aktivér trends
         wrapstodon: Aktivér Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Jeg er indforstået med, at aktivering af denne funktion kan medføre en betydelig stigning i antallet af e-mails, der sendes fra serveren, og at jeg alene er ansvarlig for eventuelle omkostninger i den forbindelse.
+        agreement_privacy_and_terms: Jeg har opdateret privatlivspolitikken og servicevilkårene.
       interactions:
         must_be_follower: Blokér notifikationer fra bruger, der ikke følger dig
         must_be_following: Blokér notifikationer fra brugere, du ikke følger
@@ -386,6 +394,7 @@ da:
         role: Rolle
         time_zone: Tidszone
       user_role:
+        collection_limit: Maksimalt antal samlinger pr. bruger
         color: Badge-farve
         highlighted: Vis rolle som badge på brugerprofiler
         name: Navn

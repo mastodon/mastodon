@@ -4,7 +4,9 @@ import type { ComponentProps, FC } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
 import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
+import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 export interface HandledLinkProps {
@@ -13,6 +15,7 @@ export interface HandledLinkProps {
   prevText?: string;
   hashtagAccountId?: string;
   mention?: Pick<ApiMentionJSON, 'id' | 'acct'>;
+  collection?: Pick<ApiCollectionJSON, 'id'>;
 }
 
 export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
@@ -21,6 +24,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   prevText,
   hashtagAccountId,
   mention,
+  collection,
   className,
   children,
   ...props
@@ -53,6 +57,15 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         to={`/@${mention.acct}`}
         title={`@${mention.acct}`}
         data-hover-card-account={mention.id}
+      >
+        {children}
+      </Link>
+    );
+  } else if (collection) {
+    return (
+      <Link
+        className={classNames(className)}
+        to={getCollectionPath(collection.id)}
       >
         {children}
       </Link>

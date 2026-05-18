@@ -22,4 +22,34 @@ RSpec.describe ActivityPub::FlagSerializer do
     expect(subject).to_not have_key('cc')
     expect(subject).to_not have_key('target')
   end
+
+  context 'with status' do
+    let(:target_account) { Fabricate(:account) }
+    let(:status) { Fabricate(:status, account: target_account) }
+    let(:report) { Fabricate(:report, target_account:, status_ids: [status.id]) }
+
+    it 'includes the status URI in `object`' do
+      expect(subject).to include({
+        'object' => [
+          tag_manager.uri_for(target_account),
+          tag_manager.uri_for(status),
+        ],
+      })
+    end
+  end
+
+  context 'with collection', feature: :collections do
+    let(:target_account) { Fabricate(:account) }
+    let(:collection) { Fabricate(:collection, account: target_account) }
+    let(:report) { Fabricate(:report, target_account:, collections: [collection]) }
+
+    it 'includes the collection URI in `object`' do
+      expect(subject).to include({
+        'object' => [
+          tag_manager.uri_for(target_account),
+          tag_manager.uri_for(collection),
+        ],
+      })
+    end
+  end
 end

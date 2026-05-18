@@ -99,8 +99,8 @@ GEM
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1238.0)
-    aws-sdk-core (3.244.0)
+    aws-partitions (1.1249.0)
+    aws-sdk-core (3.247.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -108,11 +108,11 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.123.0)
-      aws-sdk-core (~> 3, >= 3.244.0)
+    aws-sdk-kms (1.125.0)
+      aws-sdk-core (~> 3, >= 3.247.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.219.0)
-      aws-sdk-core (~> 3, >= 3.244.0)
+    aws-sdk-s3 (1.222.0)
+      aws-sdk-core (~> 3, >= 3.247.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
@@ -132,7 +132,7 @@ GEM
     binding_of_caller (2.0.0)
       debug_inspector (>= 1.2.0)
     blurhash (0.1.8)
-    bootsnap (1.23.0)
+    bootsnap (1.24.4)
       msgpack (~> 1.2)
     brakeman (8.0.4)
       racc
@@ -178,7 +178,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    css_parser (2.0.0)
+    css_parser (2.1.0)
       addressable
     csv (3.3.5)
     database_cleaner-active_record (2.2.2)
@@ -190,7 +190,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
-    devise (5.0.3)
+    devise (5.0.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 7.0)
@@ -226,7 +226,7 @@ GEM
     elasticsearch-dsl (0.1.10)
     email_validator (2.2.4)
       activemodel
-    erb (6.0.3)
+    erb (6.0.4)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
@@ -264,7 +264,7 @@ GEM
       excon (~> 1.0)
       formatador (>= 0.2, < 2.0)
       mime-types
-    fog-json (1.2.0)
+    fog-json (1.3.0)
       fog-core
       multi_json (~> 1.10)
     fog-openstack (1.1.5)
@@ -305,8 +305,8 @@ GEM
       json
     highline (3.1.2)
       reline
-    hiredis-client (0.28.0)
-      redis-client (= 0.28.0)
+    hiredis-client (0.29.0)
+      redis-client (= 0.29.0)
     hkdf (0.3.0)
     htmlentities (4.4.2)
     http (5.3.1)
@@ -314,7 +314,7 @@ GEM
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
       llhttp-ffi (~> 0.5.0)
-    http-cookie (1.1.4)
+    http-cookie (1.1.6)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     http_accept_language (2.1.1)
@@ -343,7 +343,8 @@ GEM
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
     io-console (0.8.2)
-    irb (1.17.0)
+    ipaddr (1.2.9)
+    irb (1.18.0)
       pp (>= 0.6.0)
       prism (>= 1.3.0)
       rdoc (>= 4.0.0)
@@ -353,7 +354,7 @@ GEM
       azure-blob (~> 0.5.2)
       hashie (~> 5.0)
     jmespath (1.6.2)
-    json (2.19.3)
+    json (2.19.5)
     json-canonicalization (1.0.0)
     json-jwt (1.17.0)
       activesupport (>= 4.2)
@@ -411,15 +412,13 @@ GEM
       rexml
     link_header (0.0.8)
     lint_roller (1.1.0)
-    linzer (0.7.8)
+    linzer (0.7.9)
       cgi (>= 0.4.2, < 0.6.0)
       forwardable (~> 1.3, >= 1.3.3)
       logger (~> 1.7, >= 1.7.0)
       net-http (>= 0.6, < 0.10)
-      openssl (>= 3, < 5)
       rack (>= 2.2, < 4.0)
       starry (~> 0.2)
-      stringio (~> 3.1, >= 3.1.2)
       uri (~> 1.0, >= 1.0.2)
     llhttp-ffi (0.5.1)
       ffi-compiler (~> 1.0)
@@ -450,7 +449,7 @@ GEM
     mime-types-data (3.2026.0414)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (6.0.4)
+    minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.0)
@@ -458,7 +457,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.6.0)
       uri
-    net-imap (0.6.3)
+    net-imap (0.6.4)
       date
       net-protocol
     net-ldap (0.20.0)
@@ -471,7 +470,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
-    nokogiri (1.19.2)
+    nokogiri (1.19.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     omniauth (2.1.4)
@@ -524,21 +523,21 @@ GEM
     opentelemetry-helpers-sql-processor (0.5.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-common (~> 0.21)
-    opentelemetry-instrumentation-action_mailer (0.7.0)
+    opentelemetry-instrumentation-action_mailer (0.8.0)
       opentelemetry-instrumentation-active_support (~> 0.10)
-    opentelemetry-instrumentation-action_pack (0.17.0)
+    opentelemetry-instrumentation-action_pack (0.18.0)
       opentelemetry-instrumentation-rack (~> 0.29)
-    opentelemetry-instrumentation-action_view (0.12.0)
+    opentelemetry-instrumentation-action_view (0.13.0)
       opentelemetry-instrumentation-active_support (~> 0.10)
-    opentelemetry-instrumentation-active_job (0.11.0)
+    opentelemetry-instrumentation-active_job (0.12.0)
       opentelemetry-instrumentation-base (~> 0.25)
     opentelemetry-instrumentation-active_model_serializers (0.25.0)
       opentelemetry-instrumentation-active_support (>= 0.7.0)
-    opentelemetry-instrumentation-active_record (0.12.0)
+    opentelemetry-instrumentation-active_record (0.13.0)
       opentelemetry-instrumentation-base (~> 0.25)
-    opentelemetry-instrumentation-active_storage (0.4.0)
+    opentelemetry-instrumentation-active_storage (0.5.0)
       opentelemetry-instrumentation-active_support (~> 0.10)
-    opentelemetry-instrumentation-active_support (0.11.0)
+    opentelemetry-instrumentation-active_support (0.12.0)
       opentelemetry-instrumentation-base (~> 0.25)
     opentelemetry-instrumentation-base (0.26.0)
       opentelemetry-api (~> 1.7)
@@ -546,7 +545,7 @@ GEM
       opentelemetry-registry (~> 0.1)
     opentelemetry-instrumentation-concurrent_ruby (0.25.0)
       opentelemetry-instrumentation-base (~> 0.25)
-    opentelemetry-instrumentation-excon (0.29.0)
+    opentelemetry-instrumentation-excon (0.29.1)
       opentelemetry-instrumentation-base (~> 0.25)
     opentelemetry-instrumentation-faraday (0.33.0)
       opentelemetry-instrumentation-base (~> 0.25)
@@ -562,7 +561,7 @@ GEM
       opentelemetry-instrumentation-base (~> 0.25)
     opentelemetry-instrumentation-rack (0.31.0)
       opentelemetry-instrumentation-base (~> 0.25)
-    opentelemetry-instrumentation-rails (0.41.0)
+    opentelemetry-instrumentation-rails (0.42.0)
       opentelemetry-instrumentation-action_mailer (~> 0.7)
       opentelemetry-instrumentation-action_pack (~> 0.17)
       opentelemetry-instrumentation-action_view (~> 0.12)
@@ -587,7 +586,7 @@ GEM
       opentelemetry-api (~> 1.0)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
-    ox (2.14.23)
+    ox (2.14.25)
       bigdecimal (>= 3.0)
     parallel (1.28.0)
     parser (3.3.11.1)
@@ -599,7 +598,7 @@ GEM
     pg (1.6.3)
     pghero (3.8.0)
       activerecord (>= 7.2)
-    playwright-ruby-client (1.59.0)
+    playwright-ruby-client (1.59.1)
       base64
       concurrent-ruby (>= 1.1.6)
       mime-types (>= 3.0)
@@ -625,7 +624,7 @@ GEM
       date
       stringio
     public_suffix (7.0.5)
-    puma (7.2.0)
+    puma (8.0.1)
       nio4r (~> 2.0)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
@@ -691,7 +690,7 @@ GEM
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.4.1)
+    rake (13.4.2)
     rdf (3.3.4)
       bcp47_spec (~> 0.2)
       bigdecimal (~> 3.1, >= 3.1.5)
@@ -710,7 +709,7 @@ GEM
     redcarpet (3.6.1)
     redis (5.4.1)
       redis-client (>= 0.22.0)
-    redis-client (0.28.0)
+    redis-client (0.29.0)
       connection_pool
     regexp_parser (2.12.0)
     reline (0.6.3)
@@ -770,9 +769,9 @@ GEM
     rubocop-ast (1.49.1)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
-    rubocop-capybara (2.22.1)
+    rubocop-capybara (2.23.0)
       lint_roller (~> 1.1)
-      rubocop (~> 1.72, >= 1.72.1)
+      rubocop (~> 1.81)
     rubocop-i18n (3.3.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.72.1)
@@ -803,7 +802,7 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
-    rubyzip (3.2.2)
+    rubyzip (3.3.0)
     rufus-scheduler (3.9.2)
       fugit (~> 1.1, >= 1.11.1)
     safety_net_attestation (0.5.0)
@@ -817,12 +816,12 @@ GEM
     securerandom (0.4.1)
     shoulda-matchers (7.0.1)
       activesupport (>= 7.1)
-    sidekiq (8.1.3)
+    sidekiq (8.1.5)
       connection_pool (>= 3.0.0)
       json (>= 2.16.0)
       logger (>= 1.7.0)
       rack (>= 3.2.0)
-      redis-client (>= 0.26.0)
+      redis-client (>= 0.29.0)
     sidekiq-bulk (0.2.0)
       sidekiq
     sidekiq-scheduler (6.0.2)
@@ -848,11 +847,11 @@ GEM
     stackprof (0.2.28)
     starry (0.2.0)
       base64
-    stoplight (5.8.0)
+    stoplight (5.8.2)
       concurrent-ruby
       zeitwerk
     stringio (3.2.0)
-    strong_migrations (2.6.0)
+    strong_migrations (2.8.0)
       activerecord (>= 7.2)
     swd (2.0.3)
       activesupport (>= 3)
@@ -889,7 +888,7 @@ GEM
       unf (~> 0.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2026.1)
+    tzinfo-data (1.2026.2)
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
@@ -994,6 +993,7 @@ DEPENDENCIES
   i18n-tasks (~> 1.0)
   idn-ruby
   inline_svg
+  ipaddr (~> 1.2)
   irb (~> 1.8)
   jd-paperclip-azure (~> 3.0)
   json
@@ -1022,7 +1022,7 @@ DEPENDENCIES
   omniauth_openid_connect (~> 0.8.0)
   opentelemetry-api (~> 1.9.0)
   opentelemetry-exporter-otlp (~> 0.33.0)
-  opentelemetry-instrumentation-active_job (~> 0.11.0)
+  opentelemetry-instrumentation-active_job (~> 0.12.0)
   opentelemetry-instrumentation-active_model_serializers (~> 0.25.0)
   opentelemetry-instrumentation-concurrent_ruby (~> 0.25.0)
   opentelemetry-instrumentation-excon (~> 0.29.0)
@@ -1032,7 +1032,7 @@ DEPENDENCIES
   opentelemetry-instrumentation-net_http (~> 0.29.0)
   opentelemetry-instrumentation-pg (~> 0.36.0)
   opentelemetry-instrumentation-rack (~> 0.31.0)
-  opentelemetry-instrumentation-rails (~> 0.41.0)
+  opentelemetry-instrumentation-rails (~> 0.42.0)
   opentelemetry-instrumentation-redis (~> 0.29.0)
   opentelemetry-instrumentation-sidekiq (~> 0.29.0)
   opentelemetry-sdk (~> 1.4)
@@ -1040,12 +1040,12 @@ DEPENDENCIES
   parslet
   pg (~> 1.5)
   pghero
-  playwright-ruby-client (= 1.59.0)
+  playwright-ruby-client (= 1.59.1)
   premailer-rails
   prometheus_exporter (~> 2.2)
   propshaft
   public_suffix (~> 7.0)
-  puma (~> 7.0)
+  puma
   pundit (~> 2.3)
   rack-attack (~> 6.6)
   rack-cors
@@ -1097,7 +1097,7 @@ DEPENDENCIES
   xorcist (~> 1.1)
 
 RUBY VERSION
-  ruby 4.0.2
+  ruby 4.0.4
 
 BUNDLED WITH
-  4.0.10
+  4.0.11

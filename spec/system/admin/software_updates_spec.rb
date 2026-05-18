@@ -15,9 +15,9 @@ RSpec.describe 'finding software updates through the admin interface' do
 
     expect(page)
       .to have_title(I18n.t('admin.software_updates.title'))
-      .and have_content(latest_release.version)
-      .and have_content(other_release.version)
-      .and have_no_content(outdated_release.version)
+      .and have_text(latest_release.version)
+      .and have_text(other_release.version)
+      .and have_no_text(outdated_release.version)
 
     within("#software_update_#{latest_release.id}") do
       click_on I18n.t('admin.software_updates.release_notes')

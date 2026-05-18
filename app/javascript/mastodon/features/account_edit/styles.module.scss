@@ -126,11 +126,6 @@
 
 // Column component
 
-.column {
-  border: 1px solid var(--color-border-primary);
-  border-top-width: 0;
-}
-
 .columnHeader {
   :global(.column-header__buttons) {
     align-items: center;
@@ -258,6 +253,10 @@
   padding: 24px;
   border-bottom: 1px solid var(--color-border-primary);
   font-size: 15px;
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .sectionHeader {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import Base from 'mastodon/components/modal_root';
 import { AltTextModal } from 'mastodon/features/alt_text_modal';
@@ -93,6 +93,7 @@ export const MODAL_COMPONENTS = {
   'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
   'ACCOUNT_NOTE': () => import('@/mastodon/features/account_timeline/modals/note_modal').then(module => ({ default: module.AccountNoteModal })),
   'ACCOUNT_FIELD_OVERFLOW': () => import('@/mastodon/features/account_timeline/modals/field_modal').then(module => ({ default: module.AccountFieldModal })),
+  'ACCOUNT_JOIN_DATE': () => import('@/mastodon/features/account_timeline/modals/join_modal').then(module => ({ default: module.AccountJoinModal })),
   'ACCOUNT_EDIT_NAME': accountEditModal('NameModal'),
   'ACCOUNT_EDIT_BIO': accountEditModal('BioModal'),
   'ACCOUNT_EDIT_PROFILE_DISPLAY': accountEditModal('ProfileDisplayModal'),

@@ -135,6 +135,7 @@ kab:
         create_domain_allow: Rnu-d taɣult yettusirgen
         create_domain_block: Rnu-d asewḥel n taɣult
         create_ip_block: Rnu alugen n IP
+        create_relay: Snulfu-d amedwel
         create_unavailable_domain: Rnu-d taɣult ur nelli ara
         create_user_role: Snulfu-d tamlilt
         destroy_announcement: Kkes ulɣu
@@ -285,6 +286,34 @@ kab:
       domain: Taɣult
       new:
         create: Rnu taɣult
+      search: Nadi
+    email_subscriptions:
+      accounts:
+        account: Amiḍan
+        active: D urmid
+        inactive: D arurmid
+        last_email: Imayl aneggaru
+        status: Addad
+      compliance_settings:
+        additional_footer_text:
+          action: Sefrek
+        privacy_policy:
+          action: Sefrek
+          title: Tasertit n tbaḍnit
+      danger_zone:
+        disable_feature:
+          action: Kkes armad
+        erase_all_data:
+          action: Kkes isefka
+          title: Kkes akk isefka
+      index:
+        disabled:
+          get_started: Aha bdu tura
+      roles:
+        accounts: Imiḍanen
+        manage_roles: Sefrek timlilin
+        role_name: Isem n temlilt
+        title: Timlilin
     export_domain_allows:
       no_file: Ula d yiwen ufaylu ma yettwafran
     export_domain_blocks:
@@ -577,8 +606,10 @@ kab:
     webhooks:
       delete: Kkes
       disable: Kkes armad
+      disabled: Yettwassens
       enable: Rmed
       enabled: D urmid
+      events: Ineḍruyen
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
@@ -636,6 +667,7 @@ kab:
     progress:
       confirm: Asentem n imayl
       details: Isalli-inek·inem
+      list: Tikli n ujerred
       review: Tamuɣli-nneɣ
       rules: Abal n ilugan
     providers:
@@ -658,6 +690,7 @@ kab:
     set_new_password: Egr-d awal uffir amaynut
     setup:
       link_not_received: Ur k-id-iṣaḥ ara wassaɣ ?
+      title: Sefqed Tanaka-inek⋅inem
     sign_in:
       preamble_html: Kcem ar <strong>%{domain}</strong> s inekcam-inek n tuqqna. Ma yella yezga-d umiḍan-ik deg uqeddac-nniḍen, ur tezmireḍ ara ad tkecmeḍ sya.
       title: Akeččum ɣer %{domain}
@@ -720,6 +753,7 @@ kab:
         none: Ɣur-wat
   edit_profile:
     other: Ayen nniḍen
+    redesign_button: Ddu ɣer din
   email_subscription_mailer:
     confirmation:
       action: Sentem tansa imayl
@@ -873,6 +907,8 @@ kab:
       title: Azuzer amaynut
     status:
       subject: "%{name} akken i d-y·t·essufeɣ"
+    update:
+      subject: "%{name} isenfel tira n yiwen n yizen"
   number:
     human:
       decimal_units:
@@ -975,6 +1011,7 @@ kab:
     development: Taneflit
     edit_profile: Ẓreg amaɣnu
     export: Sifeḍ
+    featured_tags: Ihacṭagen ufrinen
     import: Kter
     import_and_export: Taktert d usifeḍ
     migrate: Tunigin n umiḍan
@@ -1032,6 +1069,8 @@ kab:
     sensitive_content: Agbur amḥulfu
   terms_of_service:
     title: Tiwtilin n useqdec
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1047,6 +1086,9 @@ kab:
     enabled_success: Asesteb s snat n tarrayin yermed akken iwata
     otp: Asnas n usesteb
     webauthn: Tisura n teɣlist
+  unsubscriptions:
+    create:
+      action: Ddu ɣer usebter agejdan n uqeddac
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
@@ -1058,6 +1100,7 @@ kab:
       categories:
         spam: Aspam
       reason: 'Taɣẓint:'
+      statuses: 'Iznan d-yettwabedren:'
       title:
         disable: Amiḍan i igersen
         none: Ɣur-wat

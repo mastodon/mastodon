@@ -127,6 +127,10 @@ module ApplicationHelper
     )
   end
 
+  def emptyphaunt
+    inline_svg_tag 'elephant_ui.svg'
+  end
+
   def check_icon
     inline_svg_tag 'check.svg'
   end

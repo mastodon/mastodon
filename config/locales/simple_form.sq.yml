@@ -91,6 +91,7 @@ sq:
         closed_registrations_message: Shfaqur kur mbyllen dritare regjistrimesh
         content_cache_retention_period: Krejt postimet prej shërbyesve të tjerë (përfshi përforcime dhe përgjigje) do të fshihen pas numrit të caktuar të ditëve, pa marrë parasysh çfarëdo ndërveprimi përdoruesi me këto postime. Kjo përfshin postime kur një përdorues vendor u ka vënë shenjë si faqerojtës, ose të parapëlqyer. Do të humbin gjithashtu dhe përmendje private mes përdoruesish nga instanca të ndryshme dhe s’do të jetë e mundshme të rikthehen. Përdorimi i këtij rregullimi është menduar për instanca me qëllim të caktuar dhe ndërhyn në çka presin mjaft përdorues, kur sendërtohet për përdorim të përgjithshëm.
         custom_css: Stile vetjakë mund të aplikoni në versionin web të Mastodon-it.
+        email_footer_text: Tekst opsional që shfaqet vetëm te fundfaqja e email-eve të buletinit.
         favicon: WEBP, PNG, GIF, ose JPG. Anashkalon favikonën parazgjedhje Mastodon me një ikonë vetjake.
         landing_page: Përzgjedh cilën faqe shohin vizitorët e rinj, kur vijnë për herë të parë në shërbyesin tuaj. Nëse përzgjidhni “Në modë”, atëherë “në modë” duhet aktivizuar te Rregullime për Zbulime. Nëse përzgjidhni “Prurje vendore”, atëherë “Hyrje te prurje vendore që përmbajnë postime vendore” duhet vënë si “Gjithkush”, te Rregullime për Zbulime.
         mascot: Anashkalon ilustrimin te ndërfaqja web e thelluar.
@@ -108,6 +109,7 @@ sq:
         status_page_url: URL e faqe ku njerëzit mund të shohin gjendjen e këtij shërbyesi, gjatë një ndërprerje të funksionimit
         theme: Temë që shohin vizitorët që kanë bërë daljen dhe përdorues të rinj.
         thumbnail: Një figurë afërsisht 2:1 e shfaqur tok me hollësi mbi shërbyesin tuaj.
+        thumbnail_description: Një përshkrim i figurës, për të ndihmuar persona me probleme të pari të kuptojnë ç’përmban.
         trendable_by_default: Anashkalo shqyrtim dorazi lënde në modë. Gjëra individuale prapë mund të hiqen nga lëndë në modë pas publikimi.
         trends: Gjërat në modë shfaqin cilat postime, hashtagë dhe histori të reja po tërheqin vëmendjen në shërbyesin tuaj.
         wrapstodon: Jepuni përdoruesve vendorë mundësinë të prodhojnë një përmbledhje lojcake të përdorimit të Mastodon-it prej tyre përgjatë vitit. Kjo veçori është e përdorshme mes 10 dhe 31 dhjetorit të çdo viti dhe u ofrohet përdoruesve që kanë për të paktën një postim Publik, ose Publik të Heshtur dhe që kanë përdorur të paktën një hashtag brenda vitit.
@@ -159,6 +161,7 @@ sq:
           other: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
         role: Roli kontrollon cilat leje ka përdoruesi.
       user_role:
+        collection_limit: Kufizon numrin e Koleksioneve që mund të krijojë një përdorues me këtë rol. Ju lutemi, kini parasysh se kur zvogëloni këtë numër, përdoruesit që janë tashmë në këtë kufi, s’do të humbin ndonjë Koleksion. Por s’do të jenë në gjendje të krijojnë të rinj të tjerë.
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
         highlighted: Kjo e bën rolin të dukshëm publikisht
         name: Emër publik për rolin, nëse roli është ujdisur të shfaqet si një stemë
@@ -291,6 +294,7 @@ sq:
         closed_registrations_message: Mesazh vetjak për pamundësi regjistrimesh të reja
         content_cache_retention_period: Periudhë mbajtjeje lënde të largët
         custom_css: CSS Vetjake
+        email_footer_text: Tekst fundfaqeje shtesë
         favicon: Favikonë
         landing_page: Faqe mbërritje për vizitorë të rinj
         local_live_feed_access: Hyrje te prurje të atypëratyshme që përmbajnë postime vendore
@@ -315,9 +319,13 @@ sq:
         status_page_url: URL faqeje gjendjesh
         theme: Temë parazgjedhje
         thumbnail: Miniaturë shërbyesi
+        thumbnail_description: Tekst alternativ miniature
         trendable_by_default: Lejoni gjëra në modë pa shqyrtim paraprak
         trends: Aktivizo gjëra në modë
         wrapstodon: Aktivizo Përmbledhjedon-in
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: E kuptoj se aktivizimi i kësaj veçorie mund të rrisë në mënyrë domethënëse vëllimin e email-eve nga shërbyesi dhe se jam i vetmi që mban përgjegjësi për çfarëdo kostos që rrjedhin prej kësaj.
+        agreement_privacy_and_terms: Kam përditësuar Rregulla Privatësie dhe Kushte Shërbimi.
       interactions:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që s’i ndiqni
@@ -385,6 +393,7 @@ sq:
         role: Rol
         time_zone: Zonë kohore
       user_role:
+        collection_limit: Numër maksimum Koleksionesh për përdorues
         color: Ngjyrë steme
         highlighted: Shfaqe rolin si një stemë në profile përdoruesish
         name: Emër

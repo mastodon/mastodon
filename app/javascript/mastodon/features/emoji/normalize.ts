@@ -152,11 +152,11 @@ const CODES_WITH_LIGHT_BORDER = EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
 
 export function unicodeHexToUrl({
   unicodeHex,
-  darkTheme,
+  darkTheme = true,
   assetHost,
 }: {
   unicodeHex: string;
-  darkTheme: boolean;
+  darkTheme?: boolean;
   assetHost: string;
 }): string {
   const normalizedHex = unicodeToTwemojiHex(unicodeHex);
@@ -185,21 +185,16 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg | null) {
   if (!extraEmojis) {
     return null;
   }
-  if (Array.isArray(extraEmojis)) {
-    return extraEmojis.reduce<ExtraCustomEmojiMap>(
-      (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-      {},
-    );
+  if (!Array.isArray(extraEmojis) && !isList(extraEmojis)) {
+    return extraEmojis;
   }
-  if (isList(extraEmojis)) {
-    return extraEmojis
-      .toJS()
-      .reduce<ExtraCustomEmojiMap>(
-        (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-        {},
-      );
+  const emojis: ExtraCustomEmojiMap = {};
+  const emojiArray = isList(extraEmojis) ? extraEmojis.toJS() : extraEmojis;
+  for (const emoji of emojiArray) {
+    emojis[emoji.shortcode] = emoji;
   }
-  return extraEmojis;
+
+  return emojis;
 }
 
 /**

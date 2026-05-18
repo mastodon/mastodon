@@ -76,7 +76,7 @@ jobs:
 
       - name: Build and push by digest
         id: build
-        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
           context: .
           file: ${{ inputs.file_to_build }}
@@ -87,8 +87,8 @@ jobs:
           platforms: ${{ matrix.platform }}
           provenance: false
           push: ${{ inputs.push_to_images != '' }}
-          cache-from: ${{ inputs.cache && 'type=gha' || '' }}
-          cache-to: ${{ inputs.cache && 'type=gha,mode=max' || '' }}
+          cache-from: ${{ inputs.cache && format('type=gha,scope=build-{0}-{1}', hashFiles(inputs.file_to_build), env.PLATFORM_PAIR) || '' }}
+          cache-to: ${{ inputs.cache && format('type=gha,mode=max,scope=build-{0}-{1}', hashFiles(inputs.file_to_build), env.PLATFORM_PAIR) || '' }}
           outputs: type=image,"name=${{ env.IMAGE_NAMES }}",push-by-digest=true,name-canonical=true,push=${{ inputs.push_to_images != '' }}
 
       - name: Export digest

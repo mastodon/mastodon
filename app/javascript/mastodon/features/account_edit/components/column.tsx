@@ -2,8 +2,9 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
@@ -23,7 +24,7 @@ export const AccountEditEmptyColumn: FC<{
   }
 
   return (
-    <Column bindToDocument={!multiColumn} className={classes.column}>
+    <Column bindToDocument={!multiColumn}>
       <LoadingIndicator />
     </Column>
   );
@@ -38,7 +39,7 @@ export const AccountEditColumn: FC<{
 
   return (
     <>
-      <Column bindToDocument={!multiColumn} className={classes.column}>
+      <Column bindToDocument={!multiColumn}>
         <ColumnHeader
           title={title}
           className={classes.columnHeader}
@@ -53,7 +54,7 @@ export const AccountEditColumn: FC<{
           }
         />
 
-        {children}
+        <div className='scrollable'>{children}</div>
       </Column>
       <Helmet>
         <title>{title}</title>

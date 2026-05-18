@@ -19,6 +19,7 @@ import {
   stringToEmojiState,
   tokenizeText,
 } from '@/mastodon/features/emoji/render';
+import type { ExtraCustomEmojiMap } from '@/mastodon/features/emoji/types';
 
 import { AnimateEmojiContext, CustomEmojiContext } from './context';
 
@@ -26,14 +27,19 @@ interface EmojiProps {
   code: string;
   showFallback?: boolean;
   showLoading?: boolean;
+  customEmoji?: ExtraCustomEmojiMap | null;
 }
 
 export const Emoji: FC<EmojiProps> = ({
   code,
   showFallback = true,
   showLoading = true,
+  customEmoji: customEmojiOverride,
 }) => {
-  const customEmoji = useContext(CustomEmojiContext);
+  let customEmoji = useContext(CustomEmojiContext);
+  if (customEmojiOverride) {
+    customEmoji = customEmojiOverride;
+  }
 
   // First, set the emoji state based on the input code.
   const [state, setState] = useState(() =>

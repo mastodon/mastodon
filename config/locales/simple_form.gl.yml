@@ -61,6 +61,9 @@ gl:
         setting_default_quote_policy_private: As publicacións só para seguidoras creadas con Mastodon non poden ser citadas.
         setting_default_quote_policy_unlisted: Cando alguén te cite, a súa publicación non aparecerá nas cronoloxías de popularidade.
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
+        setting_display_media_default: Aviso antes de mostrar multimedia marcado como sensible
+        setting_display_media_hide_all: Aviso antes de mostrar calquera multimedia
+        setting_display_media_show_all: Mostrar todo o multimedia sen avisar, incluíndo o multimedia marcado como sensible
         setting_emoji_style: Forma de mostrar emojis. «Auto» intentará usar os emojis nativos, e se falla recurrirase a Twemoji en navegadores antigos.
         setting_quick_boosting_html: Se está activo, ao premer na icona %{boost_icon} Promover farase automáticamente a promoción no lugar de abrir  o menú despregable promover/citar. Sitúa a acción de citar no menú %{options_icon} (Opcións).
         setting_system_scrollbars_ui: Aplícase só en navegadores de escritorio baseados en Safari e Chrome
@@ -89,6 +92,7 @@ gl:
         closed_registrations_message: Móstrase cando non se admiten novas usuarias
         content_cache_retention_period: Todas as publicacións procedentes de outros servidores (incluído promocións e respostas) van ser eliminadas despois do número de días indicado, sen importar as interaccións das usuarias locais con esas publicacións. Esto inclúe publicacións que a usuaria local marcou como favoritas ou incluíu nos marcadores. As mencións privadas entre usuarias de diferentes instancias tamén se eliminarán e non se poderán restablecer. O uso desta ferramenta esta orientado a situacións especiais e estraga moitas das expectativas das usuarias ao implementala cun propósito de uso xeral.
         custom_css: Podes aplicar deseños personalizados na versión web de Mastodon.
+        email_footer_text: Texto optativo que só aparece no rodapé dos correos co boletín.
         favicon: WEBP, PNG, GIF ou JPG. Sobrescribe a icona de favoritos de Mastodon por defecto cunha icona personalizada.
         landing_page: Elixe a páxina que verán as persoas que se acheguen por primeira vez ao teu servidor. Se elixes «Tendencias» entón debes activar as tendencias nos Axustes de Descubrimento. Se elixes «Cronoloxía local», hai que configurar nos Axustes de Descubrimento a opción «Acceso das cronoloxías en directo ás publicacións locais» como «Calquera».
         mascot: Sobrescribe a ilustración na interface web avanzada.
@@ -106,6 +110,7 @@ gl:
         status_page_url: URL dunha páxina onde se pode ver o estado deste servidor cando non está a funcionar
         theme: Decorado que verán visitantes e novas usuarias.
         thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
+        thumbnail_description: A descrición da imaxe axuda ás persoas con problemas de visión a comprender o seu contido.
         trendable_by_default: Omitir a revisión manual dos contidos populares. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
         trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
         wrapstodon: Ofrecerlle ás usuarias locais crear un divertido resumo do seu uso de Mastodon durante o ano. Esta ferramenta está dispoñible entre o 10 e o 31 de Decembro de cada ano, e ofréceselle ás usuarias que publicaron polo menos unha mensaxe Pública ou Pública Limitada e utilizaron polo menos un cancelo durante o ano.
@@ -157,6 +162,7 @@ gl:
           other: Temos que confirmar que tes %{count} anos polo menos para usar %{domain}. Non gardamos este dato.
         role: Os roles establecen os permisos que ten a usuaria.
       user_role:
+        collection_limit: Limita o número de coleccións que unha única usuaria con este rol pode crear. Ten en conta que cando diminúes este número as usuarias que xa acadasen o límite non perderán ningunha colección, mais non poderán crear ningunha nova.
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
         highlighted: Isto fai o rol publicamente visible
         name: Nome público do rol, se o rol se mostra como unha insignia
@@ -289,6 +295,7 @@ gl:
         closed_registrations_message: Mensaxe personalizada para cando o rexistro está pechado
         content_cache_retention_period: Período de retención de contido remoto
         custom_css: CSS personalizado
+        email_footer_text: Texto adicional no rodapé
         favicon: Favicon
         landing_page: Páxina que se mostra ás visitas
         local_live_feed_access: Acceso a cronoloxías ao vivo que mostran publicacións locais
@@ -313,9 +320,13 @@ gl:
         status_page_url: URL da páxina do estado
         theme: Decorado predeterminado
         thumbnail: Icona do servidor
+        thumbnail_description: Texto alternativo da miniatura
         trendable_by_default: Permitir tendencias sen aprobación previa
         trends: Activar tendencias
         wrapstodon: Activar Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Comprendo que activar esta ferramenta pode aumentar de xeito significativo o volume de correos electrónicos que envía o servidor e que é responsabilidade miña calquera custo que xenere.
+        agreement_privacy_and_terms: Actualicei a Directiva de Privacidade e os Termos do Servizo.
       interactions:
         must_be_follower: Bloquea as notificacións de persoas que non te seguen
         must_be_following: Bloquea as notificacións de persoas que non segues
@@ -383,6 +394,7 @@ gl:
         role: Rol
         time_zone: Fuso horario
       user_role:
+        collection_limit: Número máximo de coleccións por usuaria
         color: Cor da insignia
         highlighted: Mostrar rol como insignia en perfís de usuarias
         name: Nome

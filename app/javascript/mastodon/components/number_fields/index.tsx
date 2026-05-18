@@ -24,9 +24,14 @@ export const NumberFieldsItem: React.FC<ItemProps> = ({
   link,
   children,
   className,
+  ...restProps
 }) => {
   return (
-    <li className={classNames(classes.item, className)} title={hint}>
+    <li
+      {...restProps}
+      className={classNames(classes.item, className)}
+      title={hint}
+    >
       {label}
       {link ? (
         <NavLink exact to={link}>

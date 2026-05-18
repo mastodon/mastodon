@@ -345,12 +345,19 @@ fi:
       updated_msg: Tiedotteen päivitys onnistui!
     collections:
       accounts: Tilit
+      back_to_account: Takaisin tilisivulle
+      back_to_report: Takaisin raporttisivulle
+      batch:
+        add_to_report: Lisää raporttiin nro %{id}
+        report: Raportoi
       collection_title: Kokoelma, koonnut %{name}
       contents: Sisältö
+      no_collection_selected: Kokoelmia ei muutettu, koska yhtään ei ollut valittuna
       number_of_accounts:
         one: 1 tili
         other: "%{count} tiliä"
       open: Avaa
+      title: Tilin kokoelmat – @%{name}
       view_publicly: Näytä julkisesti
     critical_update_pending: Kriittinen päivitys odottaa
     custom_emojis:
@@ -484,9 +491,49 @@ fi:
         title: Estä uusi sähköpostiverkkotunnus
       no_email_domain_block_selected: Sähköpostiverkkotunnusten estoja ei muutettu, koska yhtäkään ei ollut valittuna
       not_permitted: Ei sallittu
+      reset: Palauta
       resolved_dns_records_hint_html: Verkkotunnusnimi kytkeytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää rekisteröitymisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostipalvelujen tarjoajia.</strong>
       resolved_through_html: Ratkaistu verkkotunnuksen %{domain} kautta
+      search: Hae
       title: Estetyt sähköpostiverkkotunnukset
+    email_subscriptions:
+      accounts:
+        account: Tili
+        empty:
+          hint: Millään tilillä ei ole vielä tilaajia.
+          no_lists_yet: Ei vielä listoja
+        lead: Alla näkyvät tilit, jotka ovat ottaneet ominaisuuden käyttöön ja joilla on tilaajia.
+        status: Tila
+        subscribers: Tilaajia
+        title: Postituslistat
+      additional_footer_texts:
+        show:
+          title: Alatunnisteen lisäteksti
+      compliance_settings:
+        additional_footer_text:
+          action: Hallitse
+          title: Alatunnisteen lisäteksti
+        privacy_policy:
+          action: Hallitse
+          title: Tietosuojakäytäntö
+      danger_zone:
+        disable_feature:
+          action: Poista käytöstä
+          hint: Poista ominaisuus käytöstä kaikilta tileiltä
+          title: Poista ominaisuus käytöstä
+        title: Vaaravyöhyke
+      index:
+        disabled:
+          get_started: Aloita
+      roles:
+        edit_role: Muokkaa roolia
+        manage_roles: Hallitse rooleja
+        role_name: Roolin nimi
+        title: Roolit
+      setups:
+        show:
+          enable_feature: Ota ominaisuus käyttöön
+          important_information: Tärkeää tietoa
     export_domain_allows:
       new:
         title: Tuo sallittuja verkkotunnuksia
@@ -792,7 +839,6 @@ fi:
         manage_custom_emojis: Hallita mukautettuja emojeita
         manage_custom_emojis_description: Sallii käyttäjien hallita palvelimen mukautettuja emojeita
         manage_email_subscriptions: Hallita sähköpostitilauksia
-        manage_email_subscriptions_description: Sallii käyttäjien tilata sähköpostitse käyttäjiä, joilla on tämä käyttöoikeus
         manage_federation: Hallita federointia
         manage_federation_description: Sallii käyttäjien estää tai sallia federointi muiden verkkotunnusten kanssa ja hallita toimitusta
         manage_invites: Hallita kutsuja
@@ -1731,6 +1777,24 @@ fi:
     copy_account_note_text: 'Tämä käyttäjä siirtyi tililtä %{acct}. Nämä olivat muistiinpanosi hänestä:'
   navigation:
     toggle_menu: Avaa/sulje valikko
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} lisäsi sinut kokoelmaan"
+    admin_report:
+      title_html: "%{name} raportoi käyttäjän %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} ja 1 muu rekisteröityivät"
+        other: "%{name} ja %{count} muuta rekisteröityivät"
+      title_html: "%{name} rekisteröityi"
+    collection_update:
+      title_html: "%{name} päivitti kokoelman, jossa olet"
+    generic:
+      sign_in: Rekisteröidy Mastodonin selainsovelluksessa
+      summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %{link} täyden toiminnallisuuden mahdollistamiseksi.
+    moderation_warning:
+      summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %{link}.
+      title: Olet saanut moderointivaroituksen.
   notification_mailer:
     admin:
       report:
@@ -2200,7 +2264,7 @@ fi:
       feature_audience_title: Rakenna yleisöäsi luottavaisin mielin
       feature_control: Tiedät itse parhaiten, mitä haluat nähdä kotisyötteessäsi. Ei algoritmeja eikä mainoksia tuhlaamassa aikaasi. Seuraa yhdellä tilillä ketä tahansa, miltä tahansa Mastodon-palvelimelta, vastaanota heidän julkaisunsa aikajärjestyksessä ja tee omasta internetin nurkastasi hieman enemmän omanlaisesi.
       feature_control_title: Pidä aikajanasi hallussasi
-      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pienoiskuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
+      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pikkukuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
       feature_creativity_title: Luovuutta vertaansa vailla
       feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
       feature_moderation_title: Moderointi juuri kuten sen pitäisi olla

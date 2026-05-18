@@ -17,6 +17,11 @@
   margin-top: -2px;
 }
 
+.content,
+.body {
+  min-width: 0;
+}
+
 .content {
   display: flex;
   gap: 8px;
@@ -32,6 +37,8 @@
 
 .body {
   flex-grow: 1;
+  overflow-wrap: break-word;
+  hyphens: auto;
 
   a {
     color: inherit;
@@ -87,7 +94,7 @@
 }
 
 .variantSubtle {
-  border: 1px solid var(--color-bg-brand-softest);
+  border: 1px solid var(--color-border-brand-soft);
   background-color: var(--color-bg-primary);
 
   .icon {

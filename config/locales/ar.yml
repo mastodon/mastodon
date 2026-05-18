@@ -201,6 +201,7 @@ ar:
         create_relay: إنشاء خادم ترحيل
         create_unavailable_domain: إنشاء نطاق غير متوفر
         create_user_role: انشاء دور
+        create_username_block: إنشاء قاعدة اسم المستخدم
         demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
         destroy_canonical_email_block: إلغاء حظر لبريد إلكتروني
@@ -756,6 +757,7 @@ ar:
       resolved_msg: تمت معالجة الشكوى بنجاح!
       skip_to_actions: تخطي إلى الإجراءات
       status: الحالة
+      statuses: المنشورات (%{count})
       statuses_description_html: سيشار إلى المحتوى المخالف في الاتصال بالحساب المبلغ عنه
       summary:
         action_preambles:
@@ -825,6 +827,7 @@ ar:
         manage_blocks_description: السماح للمستخدمين بحظر مقدمي خدمات البريد الإلكتروني وعناوين IP
         manage_custom_emojis: إدارة الرموز التعبيريّة المخصصة
         manage_custom_emojis_description: السماح للمستخدمين بإدارة الرموز التعبيريّة المخصصة على الخادم
+        manage_email_subscriptions: إدارة اشتراكات البريد الإلكتروني
         manage_federation: إدارة الفديرالية
         manage_federation_description: يسمح للمستخدمين بحظر أو السماح للاتحاد مع النطاقات الأخرى، والتحكم في إمكانية التسليم
         manage_invites: إدارة الدعوات
@@ -902,9 +905,13 @@ ar:
         all: للجميع
         disabled: لا أحد
         users: للمستخدمين المتصلين محليا
+      feed_access:
+        modes:
+          public: الجميع
       landing_page:
         values:
           about: عن
+          local_feed: الخيط المحلي
           trends: المتداوَلة
       registrations:
         moderation_recommandation: الرجاء التأكد من أن لديك فريق إشراف كافي وفعال قبل فتح التسجيلات للجميع!
@@ -1321,6 +1328,7 @@ ar:
     progress:
       confirm: تأكيد عنوان البريد الإلكتروني
       details: تفاصيلك
+      list: تقدم التسجيل
       review: رأيُنا
       rules: قبول القواعد
     providers:
@@ -1385,6 +1393,7 @@ ar:
     light: فاتح
   contrast:
     auto: تلقائي
+    high: عالٍ
   crypto:
     errors:
       invalid_key: ليس بمفتاح Ed25519 أو Curve25519 صالح
@@ -1457,9 +1466,22 @@ ar:
     other: أخرى
   email_subscription_mailer:
     confirmation:
+      action: تأكيد عنوان البريد الإلكتروني
       subject: تأكيد عنوان بريدك الإلكتروني
     notification:
       create_account: إنشاء حساب ماستدون
+      subject:
+        plural: منشورات جديدة من %{name}
+        singular: 'منشور جديد: "%{excerpt}"'
+  email_subscriptions:
+    active: نشط
+    confirmations:
+      show:
+        changed_your_mind: هل غيرت رأيك؟
+        unsubscribe: إلغاء الاشتراك
+    inactive: غير نشط
+    status: الحالة
+    subscribers: المشتركون
   emoji_styles:
     auto: تلقائي
     native: محلي
@@ -1754,6 +1776,7 @@ ar:
   link_preview:
     author_html: مِن %{name}
     potentially_sensitive_content:
+      action: اضغط للعرض
       hide_button: إخفاء
   lists:
     errors:
@@ -1897,6 +1920,7 @@ ar:
     posting_defaults: التفضيلات الافتراضية للنشر
     public_timelines: الخيوط الزمنية العامة
   privacy:
+    email_subscriptions: إرسال المنشورات عبر البريد الإلكتروني
     hint_html: "<strong>قم بتخصيص الطريقة التي تريد بها أن يُكتَشَف ملفك الشخصي ومنشوراتك.</strong> يمكن لمجموعة متنوعة من الميزات في Mastodon أن تساعدك في الوصول إلى جمهور أوسع عند تفعيلها. خذ بعض الوقت لمراجعة هذه الإعدادات للتأكد من أنها تناسب حالة الاستخدام الخاصة بك."
     privacy: الخصوصية
     privacy_hint_html: تحكم في مقدار ما ترغب في الكشف عنه لصالح الآخرين. يكتشف الأشخاص الملفات الشخصية المثيرة والتطبيقات الرائعة من خلال تصفح متابعات الأشخاص الآخرين ورؤية التطبيقات التي ينشرونها، ولكن قد تفضل الاحتفاظ بها مخفية.
@@ -2080,10 +2104,14 @@ ar:
       limit: لقد بلغت الحد الأقصى للمنشورات المثبتة
       ownership: لا يمكن تثبيت منشور نشره شخص آخر
       reblog: لا يمكن تثبيت إعادة نشر
+    quote_error:
+      not_available: المنشور غير متوفر
+      revoked: تمت إزالة المنشور من قبل صاحبه
     quote_policies:
       followers: للمتابِعين فقط
       nobody: لي فقط
       public: أيا كان
+    quote_post_author: اقتبس منشور من قبل %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: إشارة خاصة
@@ -2165,6 +2193,9 @@ ar:
     recovery_codes_regenerated: تم إعادة توليد رموز الاسترجاع الاحتياطية بنجاح
     recovery_instructions_html: إن فقدت الوصول إلى هاتفك، يمكنك استخدام أحد رموز الاسترداد أدناه لاستعادة الوصول إلى حسابك. <strong>حافظ على رموز الاسترداد بأمان</strong>. يمكنك ، على سبيل المثال ، طباعتها وتخزينها مع مستندات أخرى هامة.
     webauthn: مفاتيح الأمان
+  unsubscriptions:
+    create:
+      action: الذهاب إلى الصفحة الرئيسية للخادم
   user_mailer:
     announcement_published:
       description: 'يقوم مديرو %{domain} بإصدار إعلان:'

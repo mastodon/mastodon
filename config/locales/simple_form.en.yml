@@ -92,6 +92,7 @@ en:
         closed_registrations_message: Displayed when sign-ups are closed
         content_cache_retention_period: All posts from other servers (including boosts and replies) will be deleted after the specified number of days, without regard to any local user interaction with those posts. This includes posts where a local user has marked it as bookmarks or favorites. Private mentions between users from different instances will also be lost and impossible to restore. Use of this setting is intended for special purpose instances and breaks many user expectations when implemented for general purpose use.
         custom_css: You can apply custom styles on the web version of Mastodon.
+        email_footer_text: Optional text that appears in the footer of newsletter emails only.
         favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
         landing_page: Selects what page new visitors see when they first arrive on your server. If you select "Trends", then trends needs to be enabled in the Discovery Settings. If you select "Local feed", then "Access to live feeds featuring local posts" needs to be set to "Everyone" in the Discovery Settings.
         mascot: Overrides the illustration in the advanced web interface.
@@ -109,6 +110,7 @@ en:
         status_page_url: URL of a page where people can see the status of this server during an outage
         theme: Theme that logged out visitors and new users see.
         thumbnail: A roughly 2:1 image displayed alongside your server information.
+        thumbnail_description: A description of the image to help people with visual impairments understand its content.
         trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
         trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
         wrapstodon: Offer local users to generate a playful summary of their Mastodon use during the year. This feature is available between the 10th and 31st of December of each year, and is offered to users who made at least one Public or Quiet Public post and used at least one hashtag within the year.
@@ -160,6 +162,7 @@ en:
           other: We have to make sure you're at least %{count} to use %{domain}. We won't store this.
         role: The role controls which permissions the user has.
       user_role:
+        collection_limit: Limits the number of Collections that a single user with this role can create. Please note that when you decrease this number, users who are already at this limit will not lose any Collections. But they will not be able to create additional ones.
         color: Color to be used for the role throughout the UI, as RGB in hex format
         highlighted: This makes the role publicly visible
         name: Public name of the role, if role is set to be displayed as a badge
@@ -292,6 +295,7 @@ en:
         closed_registrations_message: Custom message when sign-ups are not available
         content_cache_retention_period: Remote content retention period
         custom_css: Custom CSS
+        email_footer_text: Additional footer text
         favicon: Favicon
         landing_page: Landing page for new visitors
         local_live_feed_access: Access to live feeds featuring local posts
@@ -316,9 +320,13 @@ en:
         status_page_url: Status page URL
         theme: Default theme
         thumbnail: Server thumbnail
+        thumbnail_description: Thumbnail alt text
         trendable_by_default: Allow trends without prior review
         trends: Enable trends
         wrapstodon: Enable Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: I understand that enabling this feature may significantly increase the volume of emails sent from the server and that I am solely responsible for any costs incurred.
+        agreement_privacy_and_terms: I have updated the Privacy Policy and Terms of Service.
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow
@@ -386,6 +394,7 @@ en:
         role: Role
         time_zone: Time zone
       user_role:
+        collection_limit: Maximum number of Collections per user
         color: Badge color
         highlighted: Display role as badge on user profiles
         name: Name

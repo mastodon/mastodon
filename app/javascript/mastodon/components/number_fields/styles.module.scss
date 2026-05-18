@@ -1,9 +1,11 @@
 .list {
+  --_item-gap: var(--number-fields-gap, 24px);
+
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
-  gap: 4px 24px;
+  gap: 4px var(--_item-gap);
   font-size: 13px;
   color: var(--color-text-secondary);
 }
@@ -14,6 +16,7 @@
   }
 
   a,
+  button,
   strong {
     display: block;
     font-weight: 600;
@@ -25,10 +28,21 @@
   a {
     padding: 0;
     text-decoration: none;
+  }
 
+  a,
+  button {
     &:hover,
     &:focus {
       text-decoration: underline;
     }
+  }
+
+  button {
+    appearance: none;
+    background: none;
+    border: none;
+    display: block;
+    padding: 0;
   }
 }

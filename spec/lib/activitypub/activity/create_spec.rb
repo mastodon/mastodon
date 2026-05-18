@@ -88,10 +88,16 @@ RSpec.describe ActivityPub::Activity::Create do
         content: '@bob lorem ipsum',
         published: 1.hour.ago.utc.iso8601,
         updated: 1.hour.ago.utc.iso8601,
-        tag: {
-          type: 'Mention',
-          href: 'http://notexisting.dontexistingtld/actor',
-        },
+        tag: [
+          {
+            type: 'Mention',
+            href: 'http://notexisting.dontexistingtld/actor',
+          },
+          {
+            type: 'FeaturedCollection',
+            id: 'http://notexisting.notexistingtld/collection',
+          },
+        ],
       }
     end
 
@@ -150,8 +156,10 @@ RSpec.describe ActivityPub::Activity::Create do
       expect(Notification.count).to eq 2
     end
 
-    it 'ignores unprocessable mention', :aggregate_failures do
-      stub_request(:get, invalid_mention_json[:tag][:href]).to_raise(HTTP::ConnectionError)
+    it 'ignores unprocessable mentions and tagged collections', :aggregate_failures do
+      stub_request(:get, invalid_mention_json[:tag][0][:href]).to_raise(HTTP::ConnectionError)
+      stub_request(:get, invalid_mention_json[:tag][1][:id]).to_raise(HTTP::ConnectionError)
+
       # When receiving the post that contains an invalid mention…
       described_class.new(activity_for_object(invalid_mention_json), sender, delivery: true).perform
 
@@ -166,7 +174,10 @@ RSpec.describe ActivityPub::Activity::Create do
       expect(status.nil?).to be false
 
       # It has queued a mention resolve job
-      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][:href], anything)
+      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][0][:href], anything)
+
+      # It has queued a collection resolve job
+      expect(TaggedCollectionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][1][:id], anything)
     end
   end
 

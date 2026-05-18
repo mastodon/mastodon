@@ -345,12 +345,19 @@ is:
       updated_msg: Það tókst að uppfæra auglýsinguna!
     collections:
       accounts: Notandaaðgangar
+      back_to_account: Fara aftur á síðu notandaaðgangsins
+      back_to_report: Til baka á kærusíðu
+      batch:
+        add_to_report: 'Bæta við skýrslu #%{id}'
+        report: Kæra
       collection_title: Safn frá %{name}
       contents: Efni
+      no_collection_selected: Engum söfnum var breytt því engin voru valin
       number_of_accounts:
         one: 1 aðgangur
         other: "%{count} aðgangar"
       open: Opið
+      title: Söfn notandaaðgangs - @%{name}
       view_publicly: Skoða opinberlega
     critical_update_pending: Áríðandi uppfærsla í bið
     custom_emojis:
@@ -484,9 +491,76 @@ is:
         title: Útiloka nýtt tölvupóstlén
       no_email_domain_block_selected: Engum útilokunum tölvupóstléna var breytt þar sem ekkert var valið
       not_permitted: Ekki leyft
+      reset: Endurstilla
       resolved_dns_records_hint_html: Heiti lénsins vísar til eftirfarandi MX-léna, sem bera endanlega ábyrgð á að tölvupóstur skili sér. Útilokun á MX-léni mun koma í veg fyrir nýskráningar með hverju því tölvupóstfangi sem notar sama MX-lén, jafnvel þótt sýnilega lénsheitið sé frábrugðið. <strong>Farðu varlega svo þú útilokir ekki algengar tölvupóstþjónustur.</strong>
       resolved_through_html: Leyst í gegnum %{domain}
+      search: Leita
       title: Útilokuð tölvupóstlén
+    email_subscriptions:
+      accounts:
+        account: Aðgangur
+        active: Virkur
+        empty:
+          hint: Engir aðgangar eru ennþá með neina áskrifendur.
+          no_lists_yet: Ennþá engir listar
+        inactive: Óvirkur
+        last_email: Síðasti tölvupóstur
+        lead: Aðgangar sem hafa virkjað eiginleikann og eru með áskrifendur munu birtast hér fyrir neðan.
+        status: Staða
+        subscribers: Áskrifendur
+        title: Póstlistar
+      additional_footer_texts:
+        show:
+          title: Viðbótartexti neðst í skilaboðum
+      compliance_settings:
+        additional_footer_text:
+          action: Stýra
+          hint: Valkvæður texti sem birtist neðst í tölvupóstum fréttabréfs
+          title: Viðbótartexti neðst í skilaboðum
+        lead: Fréttabréf í tölvupósti eru í sumum lögsagnarumdæmum skilgreind sem markaðsefni.
+        privacy_policy:
+          action: Stýra
+          hint: Tengill sem vísar á þessa stefnu kemur fram neðst í hverjum tölvupósti
+          title: Meðferð persónuupplýsinga
+        title: Stillingar á samhæfni við reglur
+      danger_zone:
+        disable_feature:
+          action: Gera óvirkt
+          hint: Slökkva á eiginleika fyrir alla aðganga
+          title: Gera eiginleika óvirkan
+        erase_all_data:
+          action: Eyða gögnum
+          hint: Eyða endanlega öllum tölvupóstum í öllum póstlistum
+          title: Eyða öllum gögnum
+        title: Hættusvæði
+      disabled_msg: Tölvupóstáskriftir hafa verið gerðar óvirkar.
+      index:
+        disabled:
+          cannot_be_enabled: Tæknilega þjónustan hefur ekki virkjað þennan eiginleika á netþjóninum þínum.
+          description: Þessi eiginleiki gerir tilteknum notendum kleift að bæta við viðmótshluta á notendasniðin sín, sem gerir gestum án Mastodon-aðgangs kleift að fá færslurnar þeirra í tölvupósti.
+          get_started: Byrjum á þessu
+        lead: Leyfa gestum að sjá færslur frá útvöldum notendum á þessum netþjóni.
+        title: Fréttabréf í tölvupósti
+      purged_msg: Verið er að eyða öllum gögnum varðandi tölvupóstáskriftir.
+      roles:
+        accounts: Aðgangar
+        edit_role: Breyta hlutverki
+        empty:
+          hint: Enginn hefur heimild til að nota þennan eiginleika.
+          no_roles_added: Engum hlutverkum bætt við
+        lead: Aðgangar með eftirfarandi hlutverk geta virkjað þennan eiginleika á notandasniðinu sínu.
+        manage_roles: Sýsla með hlutverk
+        role_name: Heiti hlutverks
+        title: Hlutverk
+      setups:
+        show:
+          enable_feature: Virkja eiginleika
+          important_information: Mikilvægar upplýsingar
+          list:
+            1_permission_explanation: Þegar þessi eiginleiki er virkur, munu aðgangar með tilteknar heimildir geta bætt söfnunarformi fyrir tölvupóst á notendasniðin sín.
+            2_feature_explanation: Þegar gestir skrá sig á notendasniðssíðu aðgangs og staðfesta skráninguna, þá munu þeir fara að fá fréttir í tölvupósti þegar sá aðgangur útbýr nýjar opinberar færslur.
+            3_privacy_policy_warning: Stjórnendur netþjóna munu hafa aðgang að þeim PII (tölvupóstföngum) sem safnað er. Þar með þarf að uppfæra stefnur varðandi meðferð persónuupplýsinga og þjónustuskilmála fyrir netþjóninn áður en þessi eiginleiki er notaður.
+            4_cost_warning: Tölvupóstar geta haft kostað í för með sér, sé uppsetning hýsingar á tilteknu formi. Hafðu samband við hýsingarþjónustuna þína áður en þú virkjar þetta, þar sem þessi eiginleiki gæti valdið mikilli aukningu á þeim fjölda tölvupóstskilaboða sem send verða frá netþjóninum þínum.
     export_domain_allows:
       new:
         title: Flytja inn leyfileg lén
@@ -679,7 +753,7 @@ is:
         suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út og samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
       actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       actions_description_remote_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Þetta mun aðeins hafa áhrif á hvernig <strong>netþjónninn þinn</strong> meðhöndlar þennan fjartengda aðgang og efnið á honum.
-      actions_no_posts: Þessi kæra er ekki með neinar tengdar færslur til að eyða
+      actions_no_posts: Þessi tilkynning er ekki með neinar tengdar færslur til að eyða
       add_to_report: Bæta fleiru í kæru
       already_suspended_badges:
         local: Þegar frystur á þessum netþjóni
@@ -792,7 +866,7 @@ is:
         manage_custom_emojis: Sýsla með sérsniðin lyndistákn
         manage_custom_emojis_description: Leyfir notendum að sýsla með sérsniðin lyndistákn á netþjóninum
         manage_email_subscriptions: Sýsla með tölvupóstáskriftir
-        manage_email_subscriptions_description: Leyfa notendum að gerast áskrifendur að tölvupósti frá notendum með þessa heimild
+        manage_email_subscriptions_description: Leyfa notendum með þessa heimild að virkja áskrift að færslum í tölvupósti fyrir aðganginn þeirra
         manage_federation: Sýsla með netþjónasambönd
         manage_federation_description: Leyfir notendum að loka á eða leyfa samþættingu við önnur lén (federation) og stýra afhendingu skilaboða
         manage_invites: Sýsla með boðsgesti
@@ -884,7 +958,7 @@ is:
           public: Allir
       landing_page:
         values:
-          about: Um hugbúnaðinn
+          about: Um
           local_feed: Staðbundið streymi
           trends: Vinsælt
       registrations:
@@ -1735,6 +1809,27 @@ is:
     copy_account_note_text: 'Þessi notandi fluttist frá %{acct}, hér eru fyrri minnispunktar þínir um hann:'
   navigation:
     toggle_menu: Víxla valmynd af/á
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} bætti þér í safn"
+    admin_report:
+      title_html: "%{name} kærði %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} og einn í viðbót skráðu sig"
+        other: "%{name} og %{count} í viðbót skráðu sig"
+      title_html: "%{name} nýskráði sig"
+    collection_update:
+      title_html: "%{name} uppfærði safn sem þú ert í"
+    generic:
+      sign_in: Skráðu þig inn á Mastodon-vefforritið
+      summary_html: Þú ert að nota forrit sem styður ekki nýjustu útgáfuna af Mastodon. %{link} til að fá alla eiginleikana.
+    moderation_warning:
+      summary_html: Þú ert að nota forrit sem styður ekki nýjustu útgáfuna af Mastodon. %{link}.
+      title: Þú hefur fengið aðvörun frá umsjónarmanni.
+    severed_relationships:
+      summary_html: Stjórnandi á %{from} hefur sett %{target} í frysti, sem þýðir að þú getur ekki lengur fengið upplýsingar frá eða átt í samskiptum við viðkomandi. %{link} til að ná í lista yfir þau tengsl sem hafa rofnað.
+      title: Missti tengingar við %{name}
   notification_mailer:
     admin:
       report:

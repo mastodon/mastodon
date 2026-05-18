@@ -12,7 +12,7 @@ RSpec.describe 'Settings verification page' do
       visit settings_verification_path
 
       expect(page)
-        .to have_content(verification_summary)
+        .to have_text(verification_summary)
         .and have_private_cache_control
 
       fill_in attribution_field, with: " example.com\n\n  https://example.net"
@@ -20,9 +20,9 @@ RSpec.describe 'Settings verification page' do
       expect { click_on submit_button }
         .to(change { user.account.reload.attribution_domains }.to(['example.com', 'example.net']))
       expect(page)
-        .to have_content(success_message)
+        .to have_text(success_message)
       expect(find_field(attribution_field).value)
-        .to have_content("example.com\nexample.net")
+        .to have_text("example.com\nexample.net")
     end
 
     it 'rejects invalid attribution domains' do
@@ -33,9 +33,9 @@ RSpec.describe 'Settings verification page' do
       expect { click_on submit_button }
         .to_not(change { user.account.reload.attribution_domains })
       expect(page)
-        .to have_content(I18n.t('activerecord.errors.messages.invalid_domain_on_line', value: 'invalid_com'))
+        .to have_text(I18n.t('activerecord.errors.messages.invalid_domain_on_line', value: 'invalid_com'))
       expect(find_field(attribution_field).value)
-        .to have_content("example.com\ninvalid_com")
+        .to have_text("example.com\ninvalid_com")
     end
   end
 

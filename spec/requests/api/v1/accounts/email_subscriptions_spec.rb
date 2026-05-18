@@ -2,8 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Accounts Email Subscriptions API', feature: :email_subscriptions do
+RSpec.describe 'Accounts Email Subscriptions API' do
   let(:account) { Fabricate(:user).account }
+
+  before do
+    Setting.email_subscriptions = true
+  end
 
   describe 'POST /api/v1/accounts/:id/email_subscriptions' do
     context 'when the account has the permission' do

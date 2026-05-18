@@ -83,6 +83,10 @@ fa:
         access_denied: صاحب منبع یا کارساز تأیید هویت، درخواست را رد کردند.
         credential_flow_not_configured: جریان اعتبارنامهٔ گذرواژهٔ مالک منبع به دلیل پیکربندی نشده بودن Doorkeeper.configure.resource_owner_from_credentials شکست خورد.
         invalid_client: تأیید هویت کارخواه به دلیل کارخواه ناشناخته، عدم وجود تأیید هویت کاره یا روش تأیید هویت پشتیبانی‌نشده شکست خورد.
+        invalid_code_challenge_method:
+          one: مقدار code_challenge_method باید %{challenge_methods} باشد.
+          other: مقدار code_challenge_method باید یکی از %{challenge_methods} باشد.
+          zero: کارساز تأیید از PKCE پشتیبانی نمی‌کند و مقدار code_challenge_method پذیرفته‌ای وجود ندارد.
         invalid_grant: اعطای دسترسی فراهم ‌شده نامعتبر، منقضی یا نامطابق با نشانی بازگشت استفاده‌شده در درخواست تأیید هویت بوده و یا برای کارخواهی دیگر صادر شده است.
         invalid_redirect_uri: نشانی بازگشت موجود، معتبر نیست.
         invalid_request:

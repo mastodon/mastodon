@@ -71,6 +71,20 @@ RSpec.describe Collection do
         it { is_expected.to be_valid }
       end
     end
+
+    context 'when the user is already at the per-user limit of collections' do
+      subject { Fabricate.build(:collection, account:) }
+
+      let(:role) { Fabricate(:user_role, collection_limit: 2) }
+      let(:user) { Fabricate(:user, role:) }
+      let(:account) { user.account }
+
+      before do
+        Fabricate.times(2, :collection, account:)
+      end
+
+      it { is_expected.to_not be_valid }
+    end
   end
 
   describe '#item_for' do
@@ -183,6 +197,18 @@ RSpec.describe Collection do
   describe '#to_log_permalink' do
     it 'includes the URI of the collection' do
       expect(subject.to_log_permalink).to eq ActivityPub::TagManager.instance.uri_for(subject)
+    end
+  end
+
+  describe '#top_items' do
+    let(:collection) { Fabricate(:collection) }
+
+    before do
+      5.times { |i| Fabricate(:collection_item, collection:, position: i + 1) }
+    end
+
+    it 'returns the topmost four items' do
+      expect(collection.top_items.map(&:position)).to contain_exactly(1, 2, 3, 4)
     end
   end
 end

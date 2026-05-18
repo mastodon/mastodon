@@ -3,8 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe 'Collections' do
-  describe 'GET /@:account_username/collections/:id', feature: :collections do
-    subject { get account_collection_path(account, collection, format: :json) }
+  describe 'GET /collections/:id', feature: :collections do
+    subject { get collection_path(collection) }
+
+    let(:collection) { Fabricate(:collection) }
+
+    it 'returns success' do
+      subject
+
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'GET /ap/:account_id/collections/:id', feature: :collections do
+    subject { get ap_account_collection_path(account.id, collection, format: :json) }
 
     let(:collection) { Fabricate(:collection) }
     let(:account) { collection.account }
@@ -80,7 +92,7 @@ RSpec.describe 'Collections' do
 
     context 'with "HTTP Signature" access signed by a remote account' do
       subject do
-        get account_collection_path(account, collection, format: :json),
+        get ap_account_collection_path(account.id, collection, format: :json),
             headers: nil,
             sign_with: remote_account
       end

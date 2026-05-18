@@ -483,11 +483,19 @@ const InteractionModal: React.FC<{
           />
         </h3>
         <p>
-          <FormattedMessage
-            id='interaction_modal.action'
-            defaultMessage="To interact with {name}'s post, you need to sign into your account on whatever Mastodon server you use."
-            values={{ name }}
-          />
+          {intent === 'follow' ? (
+            <FormattedMessage
+              id='interaction_modal.action_follow'
+              defaultMessage='To follow {name}, you need to sign into your account on whatever Mastodon server you use.'
+              values={{ name }}
+            />
+          ) : (
+            <FormattedMessage
+              id='interaction_modal.action'
+              defaultMessage="To interact with {name}'s post, you need to sign into your account on whatever Mastodon server you use."
+              values={{ name }}
+            />
+          )}
         </p>
       </div>
 

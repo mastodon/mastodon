@@ -32,7 +32,7 @@ class ActivityPub::TagManager
     when :flag
       target.uri
     when :featured_collection
-      account_collection_url(target.account, target)
+      collection_url(target)
     end
   end
 

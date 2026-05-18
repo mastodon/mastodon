@@ -345,12 +345,19 @@ et:
       updated_msg: Teadaande uuendamine õnnestus!
     collections:
       accounts: Kontod
+      back_to_account: Tagasi konto lehele
+      back_to_report: Tagasi raporti lehele
+      batch:
+        add_to_report: 'Lisa raportile #%{id}'
+        report: Raport
       collection_title: Kasutaja %{name} kogumikud
       contents: Sisu
+      no_collection_selected: Ühtegi kogumikku ei muudetud, sest ühtegi polnud valitud
       number_of_accounts:
         one: 1 konto
         other: "%{count} kontot"
       open: Ava
+      title: Konto kogumikud - @%{name}
       view_publicly: Nähtav avalikult
     critical_update_pending: Kriitiline turvauuendus ootel
     custom_emojis:
@@ -484,9 +491,76 @@ et:
         title: Blokeeri uus e-posti domeen
       no_email_domain_block_selected: Ühtegi e-posti domeeni blokeeringut ei muudetud, kuna ühtegi ei valitud
       not_permitted: Ei ole lubatud
+      reset: Lähtesta
       resolved_dns_records_hint_html: Domeeninimi lahendatakse järgmistele MX-domeenidele, mis on lõppkokkuvõttes vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib registreerimise mis tahes e-posti aadressilt, mis kasutab sama MX-domeeni, isegi kui nähtav domeeninimi on erinev. <strong>Ole ettevaatlik, et mitte blokeerida peamisi e-posti teenusepakkujaid.</strong>
       resolved_through_html: Lahendatud %{domain} kaudu
+      search: Otsi
       title: Blokeeritud e-posti domeenid
+    email_subscriptions:
+      accounts:
+        account: Konto
+        active: Aktiivne
+        empty:
+          hint: Ühelgi kontol pole veel tellijaid.
+          no_lists_yet: Veel pole loetelusid
+        inactive: Mitteaktiivne
+        last_email: Viimane e-post
+        lead: Allpool kuvatakse kontod, kus see funktsioon on aktiveeritud ja millel on tellijaid.
+        status: Olek
+        subscribers: Tellijad
+        title: Meililistid
+      additional_footer_texts:
+        show:
+          title: Täiendav jaluse tekst
+      compliance_settings:
+        additional_footer_text:
+          action: Halda
+          hint: Valikuline tekst, mida kuvatakse ainult uudis-e-kirjade jaluses
+          title: Täiendav jaluse tekst
+        lead: E-posti uudiskirju võidakse käsitleda turundusmeilidena, sõltuvalt sellest, millises jurisdiktsioonis tegutsetakse.
+        privacy_policy:
+          action: Haldamine
+          hint: Need reeglid lingitakse iga e-kirja jalusesse
+          title: Privaatsusreeglid
+        title: Vastavuse seaded
+      danger_zone:
+        disable_feature:
+          action: Keela
+          hint: Lülita funktsioon kõikidel kontodel välja
+          title: Keela funktsioon
+        erase_all_data:
+          action: Kustuta andmed
+          hint: Kustutab kõigist meililistidest kõik e-kirjad lõplikult
+          title: Kustuta kõik andmed
+        title: Ohtlik ala
+      disabled_msg: E-kirja teavituste tellimine on edukalt keelatud.
+      index:
+        disabled:
+          cannot_be_enabled: Tehniline teenusepakkuja ei ole seda funktsiooni sinu serveris aktiveerinud.
+          description: See funktsioon võimaldab määratud kontodel lisada oma profiilile vidina, mis võimaldab külastajatel, kellel pole Mastodoni kontot, saada kontode postitusi e-posti teel.
+          get_started: Alustamine
+        lead: Võimalda külastajatel saada selle serveri määratud kontodelt postitusi e-posti teel.
+        title: E-posti uudiskirjad
+      purged_msg: Kõik e-posti tellimuste andmed kustutatakse.
+      roles:
+        accounts: Kontod
+        edit_role: Muuda rolli
+        empty:
+          hint: Kellelgi pole õigust seda oskust kasutada.
+          no_roles_added: Rolle pole lisatud
+        lead: Järgmiste rollidega kontod saavad selle oskuse oma profiilis sisse lülitada.
+        manage_roles: Halda rolle
+        role_name: Rolli nimi
+        title: Rollid
+      setups:
+        show:
+          enable_feature: Luba oskus
+          important_information: Oluline info
+          list:
+            1_permission_explanation: Kui see funktsioon on sisse lülitatud, saavad vastavate õigustega kontod lisada oma profiilidesse e-posti kogumise vormi.
+            2_feature_explanation: Kui külastajad registreeruvad konto profiililehel ja kinnitavad tellimuse, hakkavad nad saama e-kirju, kui konto avaldab uusi avalikke postitusi.
+            3_privacy_policy_warning: Serveri administraatoritel on juurdepääs kogutud isikuandmetele (e-posti aadressidele). Seetõttu tuleb enne selle funktsiooni kasutamist ajakohastada serveri privaatsuspoliitika ja kasutustingimused.
+            4_cost_warning: Sõltuvalt veebimajutuse seadistustest võib e-kirjade saatmine kaasa tuua lisatasu. Enne selle funktsiooni aktiveerimist konsulteeri oma veebimajutuse pakkujaga, kuna sinu serverist saadetavate e-kirjade arv võib oluliselt suureneda.
     export_domain_allows:
       new:
         title: Lubatud domeenide import
@@ -792,7 +866,7 @@ et:
         manage_custom_emojis: Halda isetehtud emotikone
         manage_custom_emojis_description: Lubab kasutajatel hallata serveris isetehtud emotikone
         manage_email_subscriptions: Halda e-posti tellimusi
-        manage_email_subscriptions_description: Luba selle õigusega kasutajatel tellida kasutajaid e-posti teel
+        manage_email_subscriptions_description: Luba selle õigusega kasutajatel oma kontol e-posti uudiskirja funktsioon sisse lülitada
         manage_federation: Halda födereerumist
         manage_federation_description: Lubab kasutajail keelata või lubada föderatsioone teiste domeenidega ja hallata ühenduvust
         manage_invites: Halda kutseid
@@ -1731,6 +1805,27 @@ et:
     copy_account_note_text: 'Kasutaja kolis kontolt %{acct}, kus olid eelnevad märkmed tema kohta:'
   navigation:
     toggle_menu: Menüü lülimine
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} lisas sind kogumikku"
+    admin_report:
+      title_html: "%{name} rapor %{target} kohta"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} ja veel üks registreerus"
+        other: "%{name} ja veel %{count} registreerus"
+      title_html: "%{name} registreerus"
+    collection_update:
+      title_html: "%{name} uuendas kogumikku, kuhu kuulud"
+    generic:
+      sign_in: Logi sisse Mastodoni veebirakendusse
+      summary_html: Kasutad rakendust, mis ei toeta Mastodoni uusimat versiooni. Kogu funktsionaalsuse kasutamiseks vajuta %{link}.
+    moderation_warning:
+      summary_html: Kasutad rakendust, mis ei toeta Mastodoni uusimat versiooni. %{link}.
+      title: Oled saanud modereerimishoiatuse.
+    severed_relationships:
+      summary_html: "%{from} administraator on blokeerinud %{target}, mis tähendab, et sa ei saa enam temalt teateid ega temaga suhelda. %{link}, et hankida kaotatud suhete loetelu."
+      title: Kaotatud ühendus kasutajaga %{name}
   notification_mailer:
     admin:
       report:

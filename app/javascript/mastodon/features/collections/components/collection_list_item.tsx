@@ -9,7 +9,10 @@ import { CollectionMenu } from 'mastodon/features/collections/components/collect
 
 import classes from './collection_list_item.module.scss';
 
-interface CollectionListItemProps extends CollectionLockupProps {
+interface CollectionListItemProps extends Omit<
+  CollectionLockupProps,
+  'sideContent'
+> {
   withoutBorder?: boolean;
   positionInList: number;
   listSize: number;
@@ -20,6 +23,7 @@ export const CollectionListItem: React.FC<CollectionListItemProps> = ({
   withoutBorder,
   positionInList,
   listSize,
+  className,
   ...otherProps
 }) => {
   const uniqueId = useId();
@@ -29,21 +33,26 @@ export const CollectionListItem: React.FC<CollectionListItemProps> = ({
   return (
     <Article
       focusable
-      className={classNames(
-        classes.wrapper,
-        withoutBorder && classes.wrapperWithoutBorder,
-      )}
       aria-labelledby={linkId}
       aria-describedby={infoId}
       aria-posinset={positionInList}
       aria-setsize={listSize}
     >
-      <CollectionLockup collection={collection} {...otherProps} />
-
-      <CollectionMenu
-        context='list'
+      <CollectionLockup
         collection={collection}
-        className={classes.menuButton}
+        className={classNames(
+          classes.wrapper,
+          withoutBorder && classes.wrapperWithoutBorder,
+          className,
+        )}
+        sideContent={
+          <CollectionMenu
+            context='list'
+            collection={collection}
+            className={classes.menuButton}
+          />
+        }
+        {...otherProps}
       />
     </Article>
   );

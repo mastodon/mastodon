@@ -24,8 +24,13 @@ export const NotificationCollection: React.FC<{
   unread: boolean;
 }> = ({ notification, unread }) => {
   const { collection, type } = notification;
-  const collectionCreatorAccount = useAccount(collection.account_id);
+
+  const collectionCreatorAccount = useAccount(collection?.account_id);
   const confirmRevoke = useConfirmRevoke(collection);
+
+  if (!collection) {
+    return null;
+  }
 
   return (
     <div
