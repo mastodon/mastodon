@@ -257,7 +257,6 @@ function useRevealSensitiveContent({
   const revealContent = useCallback(() => {
     setIsContentVisible(true);
     setTimeout(() => {
-      console.log('Focusing!', postRevealFocusTargetRef.current);
       postRevealFocusTargetRef.current?.focus();
     }, 0);
   }, [postRevealFocusTargetRef]);
