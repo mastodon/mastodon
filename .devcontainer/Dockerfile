@@ -1,5 +1,5 @@
 # For details, see https://github.com/rails/devcontainer/tree/main/images/ruby/.devcontainer
-FROM ghcr.io/rails/devcontainer/images/ruby:2.2.2-3.4.8
+FROM ghcr.io/rails/devcontainer/images/ruby:2.3.2-4.0.4
 
 # Install additional OS packages
 RUN sudo apt-get update && \
