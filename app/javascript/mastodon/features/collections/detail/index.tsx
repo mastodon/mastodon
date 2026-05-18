@@ -272,7 +272,9 @@ const ColumnContent: React.FC<{
   collection: ApiCollectionJSON;
 }> = ({ collection }) => {
   const { isContentVisible, revealContent, postRevealFocusTargetRef } =
-    useRevealSensitiveContent({ sensitive: collection.sensitive });
+    useRevealSensitiveContent({
+      sensitive: collection.sensitive && collection.account_id !== me,
+    });
 
   return (
     <>
