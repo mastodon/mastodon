@@ -113,17 +113,20 @@ on('click', '.batch-table__select-all button', () => {
   }
 });
 
-on('change', batchCheckboxClassName, () => {
-  const checkAllElement = document.querySelector<HTMLInputElement>(
+on('change', batchCheckboxClassName, (event) => {
+  const targetTable = (event.target as HTMLElement).closest('.batch-table');
+  if (!targetTable) return;
+
+  const checkAllElement = targetTable.querySelector<HTMLInputElement>(
     'input#batch_checkbox_all',
   );
-  const selectAllMatchingElement = document.querySelector(
+  const selectAllMatchingElement = targetTable.querySelector(
     '.batch-table__select-all',
   );
 
   if (checkAllElement) {
     const allCheckboxes = Array.from(
-      document.querySelectorAll<HTMLInputElement>(batchCheckboxClassName),
+      targetTable.querySelectorAll<HTMLInputElement>(batchCheckboxClassName),
     );
     checkAllElement.checked = allCheckboxes.every((content) => content.checked);
     checkAllElement.indeterminate =
