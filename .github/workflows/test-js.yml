@@ -30,6 +30,7 @@ on:
 
 jobs:
   test:
+    if: github.repository == 'mastodon/mastodon'
     runs-on: ubuntu-latest
 
     steps:

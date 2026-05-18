@@ -28,6 +28,7 @@ jobs:
       short_sha: ${{ steps.version_vars.outputs.mastodon_short_sha }}
 
   build-image:
+    if: github.repository == 'mastodon/mastodon'
     needs: compute-suffix
     uses: ./.github/workflows/build-container-image.yml
     with:
@@ -43,6 +44,7 @@ jobs:
     secrets: inherit
 
   build-image-streaming:
+    if: github.repository == 'mastodon/mastodon'
     needs: compute-suffix
     uses: ./.github/workflows/build-container-image.yml
     with:

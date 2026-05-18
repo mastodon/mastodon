@@ -18,6 +18,7 @@ permissions:
 
 jobs:
   check-i18n:
+    if: github.repository == 'mastodon/mastodon'
     runs-on: ubuntu-latest
 
     steps:

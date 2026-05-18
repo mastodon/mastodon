@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   check-latest-stable:
+    if: github.repository == 'mastodon/mastodon'
     runs-on: ubuntu-latest
     outputs:
       latest: ${{ steps.check.outputs.is_latest_stable }}
@@ -46,6 +47,7 @@ jobs:
           fi
 
   build-image:
+    if: github.repository == 'mastodon/mastodon'
     needs: check-latest-stable
     uses: ./.github/workflows/build-container-image.yml
     with:
@@ -65,6 +67,7 @@ jobs:
     secrets: inherit
 
   build-image-streaming:
+    if: github.repository == 'mastodon/mastodon'
     needs: check-latest-stable
     uses: ./.github/workflows/build-container-image.yml
     with:

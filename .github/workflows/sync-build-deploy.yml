@@ -1,0 +1,199 @@
+name: Sync, Build & Deploy Custom Mastodon
+
+on:
+  schedule:
+    - cron: '0 2 * * 1' # Every Monday 2AM UTC
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Upstream tag to build (e.g. v4.5.8). Empty = auto-detect latest stable.'
+        required: false
+        type: string
+      force:
+        description: 'Force rebuild even if version is unchanged'
+        required: false
+        type: boolean
+        default: false
+      skip_deploy:
+        description: 'Build images only, skip server deployment'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  DOCKERHUB_WEB: bailongctui/mastodon
+  DOCKERHUB_STREAMING: bailongctui/mastodon-streaming
+
+jobs:
+  # ─── Step 1: Detect latest upstream stable version ──────────────────
+  detect-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.detect.outputs.version }}
+      version_clean: ${{ steps.detect.outputs.version_clean }}
+      should_build: ${{ steps.detect.outputs.should_build }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect latest upstream stable version
+        id: detect
+        run: |
+          git remote add upstream https://github.com/mastodon/mastodon.git 2>/dev/null || true
+          git fetch upstream --tags --quiet
+
+          if [ -n "${{ inputs.version }}" ]; then
+            TAG="${{ inputs.version }}"
+          else
+            # Latest stable tag: vX.Y.Z (no -rc, -beta suffixes)
+            TAG=$(git tag -l 'v*' --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
+          fi
+
+          CLEAN="${TAG#v}"
+          CURRENT=$(cat .current-version 2>/dev/null || echo "none")
+
+          echo "version=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version_clean=$CLEAN" >> "$GITHUB_OUTPUT"
+          echo "::notice::Upstream latest: $TAG | Currently built: $CURRENT"
+
+          if [ "$TAG" != "$CURRENT" ] || [ "${{ inputs.force }}" = "true" ]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Already up to date. Use force=true to rebuild."
+          fi
+
+  # ─── Step 2: Build Docker images ───────────────────────────────────
+  build:
+    needs: detect-version
+    if: needs.detect-version.outputs.should_build == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - component: web
+            image_var: DOCKERHUB_WEB
+            dockerfile: Dockerfile
+          - component: streaming
+            image_var: DOCKERHUB_STREAMING
+            dockerfile: streaming/Dockerfile
+    steps:
+      - name: Checkout fork (patches & workflow)
+        uses: actions/checkout@v4
+        with:
+          path: fork
+
+      - name: Checkout upstream source at ${{ needs.detect-version.outputs.version }}
+        uses: actions/checkout@v4
+        with:
+          repository: mastodon/mastodon
+          ref: ${{ needs.detect-version.outputs.version }}
+          path: source
+
+      - name: Apply custom patches
+        run: |
+          chmod +x fork/.custom/apply.sh
+          bash fork/.custom/apply.sh "$(pwd)/fork/.custom" "$(pwd)/source"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push ${{ matrix.component }}
+        uses: docker/build-push-action@v6
+        env:
+          IMAGE: ${{ env[matrix.image_var] }}
+          VERSION: ${{ needs.detect-version.outputs.version_clean }}
+        with:
+          context: ./source
+          file: ./source/${{ matrix.dockerfile }}
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ env.VERSION }}
+            ${{ env.IMAGE }}:${{ env.VERSION }}-custom
+            ${{ env.IMAGE }}:latest
+          cache-from: type=gha,scope=${{ matrix.component }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.component }}
+
+  # ─── Step 3: Deploy to server ──────────────────────────────────────
+  deploy:
+    needs: [detect-version, build]
+    if: inputs.skip_deploy != true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script_stop: true
+          script: |
+            cd /opt/mastodon
+
+            echo "==> Pulling new images..."
+            docker compose pull
+
+            echo "==> Pre-deploying database migrations..."
+            docker compose run --rm web bin/rails db:migrate
+
+            echo "==> Restarting services..."
+            docker compose up -d
+
+            echo "==> Cleaning up old images..."
+            docker image prune -f
+
+            echo "==> Deployment complete! Version: ${{ needs.detect-version.outputs.version }}"
+
+  # ─── Step 4: Record version & notify ───────────────────────────────
+  post-build:
+    needs: [detect-version, build, deploy]
+    if: always() && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update version tracker
+        run: |
+          echo "${{ needs.detect-version.outputs.version }}" > .current-version
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .current-version
+          git diff --cached --quiet || git commit -m "chore: built ${{ needs.detect-version.outputs.version }}"
+          git push
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${{ needs.detect-version.outputs.version }}"
+          DEPLOY_STATUS=${{ needs.deploy.result }}
+
+          BODY="## Custom Mastodon ${VERSION}
+
+          **Docker Images:**
+          - \`${{ env.DOCKERHUB_WEB }}:${VERSION#v}\`
+          - \`${{ env.DOCKERHUB_STREAMING }}:${VERSION#v}\`
+
+          **Customizations:**
+          - Post character limit: 5000 (upstream: 500)
+          - Tangerine UI themes (Cherry, Lagoon, Purple)
+
+          **Deploy status:** ${DEPLOY_STATUS}
+          **Based on:** [mastodon/mastodon@${VERSION}](https://github.com/mastodon/mastodon/releases/tag/${VERSION})"
+
+          gh release create "custom-${VERSION}" \
+            --title "Custom Mastodon ${VERSION}" \
+            --notes "$BODY" \
+            --latest \
+            || echo "Release already exists, skipping."

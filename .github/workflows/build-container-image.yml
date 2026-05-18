@@ -26,6 +26,7 @@ on:
 jobs:
   # Build each (amd64 and arm64) image separately
   build-image:
+    if: github.repository == 'mastodon/mastodon'
     runs-on: ${{ startsWith(matrix.platform, 'linux/arm') && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
     strategy:
       fail-fast: false

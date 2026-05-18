@@ -10,6 +10,7 @@ on:
 
 jobs:
   pathcheck:
+    if: github.repository == 'mastodon/mastodon'
     name: Check for relevant changes
     runs-on: ubuntu-latest
     outputs:

@@ -21,6 +21,7 @@ on:
 
 jobs:
   security:
+    if: github.repository == 'mastodon/mastodon'
     runs-on: ubuntu-latest
 
     env:

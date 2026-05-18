@@ -32,6 +32,7 @@ on:
 
 jobs:
   lint:
+    if: github.repository == 'mastodon/mastodon'
     runs-on: ubuntu-latest
 
     steps:

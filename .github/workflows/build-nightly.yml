@@ -22,6 +22,7 @@ jobs:
       prerelease: ${{ steps.version_vars.outputs.mastodon_version_prerelease }}
 
   build-image:
+    if: github.repository == 'mastodon/mastodon'
     needs: compute-suffix
     uses: ./.github/workflows/build-container-image.yml
     with:
@@ -42,6 +43,7 @@ jobs:
     secrets: inherit
 
   build-image-streaming:
+    if: github.repository == 'mastodon/mastodon'
     needs: compute-suffix
     uses: ./.github/workflows/build-container-image.yml
     with:

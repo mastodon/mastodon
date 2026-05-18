@@ -18,6 +18,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.repository == 'mastodon/mastodon'
     runs-on: ubuntu-latest
 
     strategy:
@@ -74,6 +75,7 @@ jobs:
           retention-days: 0
 
   test:
+    if: github.repository == 'mastodon/mastodon'
     runs-on: ubuntu-latest
 
     needs:
@@ -174,6 +176,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test-e2e:
+    if: github.repository == 'mastodon/mastodon'
     name: End to End testing
     runs-on: ubuntu-latest
 
@@ -277,6 +280,7 @@ jobs:
           path: tmp/capybara/
 
   test-search:
+    if: github.repository == 'mastodon/mastodon'
     name: Elastic Search integration testing
     runs-on: ubuntu-latest
 
