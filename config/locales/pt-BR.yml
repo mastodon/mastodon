@@ -345,12 +345,19 @@ pt-BR:
       updated_msg: Anúncio atualizado!
     collections:
       accounts: Contas
+      back_to_account: Voltar à página da conta
+      back_to_report: Voltar à página de denúncia
+      batch:
+        add_to_report: 'Adicionar à denúncia #%{id}'
+        report: Denunciar
       collection_title: Coleção de %{name}
       contents: Conteúdo
+      no_collection_selected: Nenhuma coleção foi modificada pois nenhuma estava selecionada
       number_of_accounts:
         one: 1 conta
         other: "%{count} contas"
       open: Abrir
+      title: Coleções da conta — @%{name}
       view_publicly: Ver publicamente
     critical_update_pending: Atualização crítica pendente
     custom_emojis:
@@ -484,9 +491,63 @@ pt-BR:
         title: Bloquear novo domínio de e-mail
       no_email_domain_block_selected: Nenhum bloco de domínio de email foi alterado, pois, nenhum foi selecionado
       not_permitted: Não permitido
+      reset: Reiniciar
       resolved_dns_records_hint_html: O nome de domínio é associado aos seguintes domínios MX, que são responsáveis por aceitar e-mails. Ao bloquear um domínio MX, você bloqueará as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Tenha cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
+      search: Buscar
       title: Domínios de e-mail bloqueados
+    email_subscriptions:
+      accounts:
+        account: Conta
+        active: Ativas
+        empty:
+          hint: Não há contas com inscritos ainda.
+          no_lists_yet: Não há listas ainda
+        inactive: Inativas
+        last_email: Último email
+        lead: Contas que ativaram o recurso e têm inscritos aparecerão abaixo.
+        status: Estado
+        subscribers: Inscritos
+        title: Listas de envio
+      additional_footer_texts:
+        show:
+          title: Texto adicional no rodapé
+      compliance_settings:
+        additional_footer_text:
+          action: Gerenciar
+          hint: Texto opcional que aparece no rodapé somente dos boletins via email
+          title: Texto adicional no rodapé
+        lead: Boletins via email podem ser consideradas email de marketing, dependendo das juridições em que você opera.
+        privacy_policy:
+          action: Gerenciar
+          hint: Esta política está linkada no rodapé de todos os emails
+          title: Política de privacidade
+        title: Configuraçõe de compliance
+      danger_zone:
+        disable_feature:
+          action: Desativar
+          hint: Desativar recurso para todas as contas
+          title: Desativar recurso
+        erase_all_data:
+          action: Excluir dados
+          hint: Exclui permanentemente todos os emails em todas as listas de envio
+          title: Excluir todos os dados
+        title: Zona de perigo
+      disabled_msg: Assinaturas de email foram desativadas com sucesso.
+      index:
+        disabled:
+          cannot_be_enabled: Seu provedor técnico não ativou este recurso para seu servidor.
+          description: Este recurso permite que contas específicas adicionem um widget a seus perfis, permitindo que visitantes sem conta no Mastodon possam receber suas publicações por email.
+          get_started: Iniciar
+        lead: Permitir que vistantes recebam publicações via email de contas dedicadas neste servidor.
+        title: Boletins via email
+      purged_msg: Todos os dados de inscrições via email estão sendo apagados.
+      roles:
+        accounts: Contas
+        edit_role: Editar função
+        empty:
+          hint: Ninguém ter permissão para usar este recurso.
+          no_roles_added: Nenhuma função adicionada
     export_domain_allows:
       new:
         title: Importar domínios permitidos

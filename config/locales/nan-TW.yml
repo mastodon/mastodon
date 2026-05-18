@@ -341,11 +341,18 @@ nan-TW:
       updated_msg: 公告成功更新ah！
     collections:
       accounts: 口座
+      back_to_account: Tńg去口座ê頁
+      back_to_report: Tńg去檢舉ê頁
+      batch:
+        add_to_report: '加kàu檢舉 #%{id}'
+        report: 檢舉
       collection_title: "%{name} ê收藏"
       contents: 內容
+      no_collection_selected: 因為無揀任何收藏，所以lóng無改變
       number_of_accounts:
         other: "%{count} ê口座"
       open: 開
+      title: Tsit ê口座ê 收藏 - @%{name}
       view_publicly: 公開看
     critical_update_pending: 愛處理ê重大更新
     custom_emojis:
@@ -474,9 +481,30 @@ nan-TW:
         title: 封鎖新ê電子phue ê域名
       no_email_domain_block_selected: 因為無揀任何電子phue域名封鎖，所以lóng無改變
       not_permitted: 無允准
+      reset: 重頭設
       resolved_dns_records_hint_html: 域名解析做下kha ê MX域名，tsiah ê域名上後負責收電子phue。封鎖MX域名ē封任何有siâng款MX域名ê電子郵件ê註冊，就算通看見ê域名無kâng，mā án-ne。<strong>Tio̍h細膩，m̄通封鎖主要ê電子phue提供者。</strong>
       resolved_through_html: 通過 %{domain} 解析
+      search: Tshiau-tshuē
       title: 封鎖ê電子phue域名
+    email_subscriptions:
+      accounts:
+        account: 口座
+        active: 有效ê
+        empty:
+          hint: Iáu無半ê口座有訂ê lâng。
+          no_lists_yet: Iáu無列單
+        inactive: 停止使用ah
+        last_email: 上新ê電子phue箱
+        lead: 有啟用tsit ê功能koh有訂ê lâng ê口座ē展示佇下kha。
+        status: 狀態
+        subscribers: 訂ê lâng
+        title: 電子phue列單
+      additional_footer_texts:
+        show:
+          title: 其他註kha ê文字
+      compliance_settings:
+        additional_footer_text:
+          action: 管理
     export_domain_allows:
       new:
         title: 輸入允准ê域名
