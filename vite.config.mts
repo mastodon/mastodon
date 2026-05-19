@@ -21,7 +21,6 @@ import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
 
 import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
-import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
 import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
@@ -179,7 +178,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       MastodonThemes(),
       MastodonAssetsManifest(),
       MastodonServiceWorkerLocales(),
-      MastodonEmojiCompressed(),
       legacy({
         renderLegacyChunks: false,
         modernPolyfills: true,
@@ -203,7 +201,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
             vite: [
               // Provide a virtual import with only the locales used in the ServiceWorker
               MastodonServiceWorkerLocales(),
-              MastodonEmojiCompressed(),
             ],
           },
         },
