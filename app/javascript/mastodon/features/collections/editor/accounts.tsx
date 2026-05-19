@@ -44,7 +44,7 @@ import { canAccountBeAdded, canAccountBeAddedByFollowers } from '../utils';
 import classes from './styles.module.scss';
 import { WizardStepTitle } from './wizard_step_title';
 
-const MAX_ACCOUNT_COUNT = 25;
+export const MAX_COLLECTION_ACCOUNT_COUNT = 25;
 
 const AddedAccountItem: React.FC<{
   accountId: string;
@@ -206,7 +206,7 @@ export const CollectionAccounts: React.FC<{
   const [searchValue, setSearchValue] = useState('');
 
   const hasItems = editorItems.length > 0;
-  const hasMaxItems = editorItems.length === MAX_ACCOUNT_COUNT;
+  const hasMaxItems = editorItems.length === MAX_COLLECTION_ACCOUNT_COUNT;
 
   const {
     accounts: suggestedAccounts,
@@ -400,7 +400,10 @@ export const CollectionAccounts: React.FC<{
               <FormattedMessage
                 id='collections.hints.accounts_counter'
                 defaultMessage='{count}/{max} accounts'
-                values={{ count: editorItems.length, max: MAX_ACCOUNT_COUNT }}
+                values={{
+                  count: editorItems.length,
+                  max: MAX_COLLECTION_ACCOUNT_COUNT,
+                }}
               />
             </AccountsHeadingElement>
           )}
@@ -420,7 +423,7 @@ export const CollectionAccounts: React.FC<{
                       id='collections.accounts.empty_description'
                       defaultMessage='Add up to {count} accounts'
                       values={{
-                        count: MAX_ACCOUNT_COUNT,
+                        count: MAX_COLLECTION_ACCOUNT_COUNT,
                       }}
                     />
                   }
