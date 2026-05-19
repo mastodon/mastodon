@@ -38,8 +38,8 @@ class UserSettings
     setting :display_media, default: 'default', in: %w(hide_all default show_all)
     setting :auto_play, default: false
     setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
-    setting :color_scheme, default: 'auto', in: %w(auto light dark)
-    setting :contrast, default: 'auto', in: %w(auto high)
+    setting :color_scheme, default: -> { ::Setting.default_color_scheme }, in: %w(auto light dark)
+    setting :contrast, default: -> { ::Setting.default_contrast }, in: %w(auto high)
   end
 
   namespace :notification_emails do

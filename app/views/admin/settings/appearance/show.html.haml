@@ -10,11 +10,28 @@
 
   %p.lead= t('admin.settings.appearance.preamble')
 
+  - if Themes.instance.names.size > 1
+    .fields-group
+      = f.input :theme,
+                collection: Themes.instance.names,
+                include_blank: false,
+                label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) },
+                wrapper: :with_label
+
   .fields-group
-    = f.input :theme,
-              collection: Themes.instance.names,
+    = f.input :default_color_scheme,
+              as: :radio_buttons,
+              collection: UserSettings.definition_for('color_scheme')&.in,
               include_blank: false,
-              label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) },
+              label_method: ->(color_scheme) { I18n.t("color_scheme.#{color_scheme}", default: color_scheme) },
+              wrapper: :with_label
+
+  .fields-group
+    = f.input :default_contrast,
+              as: :radio_buttons,
+              collection: UserSettings.definition_for('contrast')&.in,
+              include_blank: false,
+              label_method: ->(contrast) { I18n.t("contrast.#{contrast}", default: contrast) },
               wrapper: :with_label
 
   .fields-group

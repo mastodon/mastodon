@@ -16,6 +16,8 @@ class Form::AdminSettings
     closed_registrations_message
     bootstrap_timeline_accounts
     theme
+    default_color_scheme
+    default_contrast
     activity_api_enabled
     peers_api_enabled
     preview_sensitive_media
