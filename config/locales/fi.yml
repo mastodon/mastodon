@@ -349,6 +349,7 @@ fi:
       back_to_report: Takaisin raporttisivulle
       batch:
         add_to_report: Lisää raporttiin nro %{id}
+        remove_from_report: Poista raportista
         report: Raportoi
       collection_title: Kokoelma, koonnut %{name}
       contents: Sisältö
@@ -499,9 +500,12 @@ fi:
     email_subscriptions:
       accounts:
         account: Tili
+        active: Käytössä
         empty:
           hint: Millään tilillä ei ole vielä tilaajia.
           no_lists_yet: Ei vielä listoja
+        inactive: Poissa käytöstä
+        last_email: Viimeisin sähköpostiviesti
         lead: Alla näkyvät tilit, jotka ovat ottaneet ominaisuuden käyttöön ja joilla on tilaajia.
         status: Tila
         subscribers: Tilaajia
@@ -512,21 +516,35 @@ fi:
       compliance_settings:
         additional_footer_text:
           action: Hallitse
+          hint: Valinnainen teksti, joka näkyy vain uutiskirjeiden alatunnisteessa
           title: Alatunnisteen lisäteksti
+        lead: Sähköpostiuutiskirjeitä voidaan pitää markkinointiviesteinä riippuen lainkäyttöalueesta, jossa toimit.
         privacy_policy:
           action: Hallitse
+          hint: Jokaisen sähköpostiviestin alatunnisteessa on linkki tähän käytäntöön
           title: Tietosuojakäytäntö
       danger_zone:
         disable_feature:
           action: Poista käytöstä
           hint: Poista ominaisuus käytöstä kaikilta tileiltä
           title: Poista ominaisuus käytöstä
+        erase_all_data:
+          action: Hävitä tiedot
+          hint: Poistaa kaikki sähköpostiosoitteet pysyvästi kaikilta postituslistoilta
+          title: Hävitä kaikki tiedot
         title: Vaaravyöhyke
+      disabled_msg: Sähköpostitilaukset on poistettu käytöstä onnistuneesti.
       index:
         disabled:
+          cannot_be_enabled: Tekninen palveluntarjoajasi ei ole ottanut tätä omainaisuutta käyttöön palvelimellasi.
           get_started: Aloita
+        title: Sähköpostiuutiskirjeet
+      purged_msg: Kaikki sähköpostitilausten tiedot hävitetään.
       roles:
+        accounts: Tilejä
         edit_role: Muokkaa roolia
+        empty:
+          hint: Kenelläkään ei ole oikeutta käyttää tätä ominaisuutta.
         manage_roles: Hallitse rooleja
         role_name: Roolin nimi
         title: Roolit
@@ -534,6 +552,8 @@ fi:
         show:
           enable_feature: Ota ominaisuus käyttöön
           important_information: Tärkeää tietoa
+          list:
+            3_privacy_policy_warning: Palvelimen ylläpito saa pääsyn kerättyihin henkilötietoihin (sähköpostiosoitteisiin). Siksi palvelimen tietosuojakäytäntö ja käyttöehdot on päivitettävä ennen tämän ominaisuuden käyttöä.
     export_domain_allows:
       new:
         title: Tuo sallittuja verkkotunnuksia
@@ -839,6 +859,7 @@ fi:
         manage_custom_emojis: Hallita mukautettuja emojeita
         manage_custom_emojis_description: Sallii käyttäjien hallita palvelimen mukautettuja emojeita
         manage_email_subscriptions: Hallita sähköpostitilauksia
+        manage_email_subscriptions_description: Salli käyttäjien, jolla on tämä käyttöoikeus, ottaa sähköpostiuutiskirjeominaisuus käyttöön tilillään
         manage_federation: Hallita federointia
         manage_federation_description: Sallii käyttäjien estää tai sallia federointi muiden verkkotunnusten kanssa ja hallita toimitusta
         manage_invites: Hallita kutsuja
@@ -1795,6 +1816,8 @@ fi:
     moderation_warning:
       summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %{link}.
       title: Olet saanut moderointivaroituksen.
+    severed_relationships:
+      title: Menetetty yhteydet palvelimeen %{name}
   notification_mailer:
     admin:
       report:
