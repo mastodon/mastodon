@@ -52,10 +52,6 @@ class ReportFilter
     case key.to_sym
     when :by_target_domain
       Report.where(target_account: Account.where(domain: value))
-    when :resolved
-      Report.resolved
-    when :unresolved
-      Report.unresolved
     when :account_id
       Report.where(account_id: value)
     when :target_account_id
