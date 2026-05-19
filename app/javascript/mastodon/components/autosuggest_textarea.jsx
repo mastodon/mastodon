@@ -10,7 +10,7 @@ import Textarea from 'react-textarea-autosize';
 
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 
-import { AutosuggestEmoji } from './autosuggest_emoji';
+import { AutosuggestEmoji, AutosuggestEmojiContext } from './autosuggest_emoji';
 import { AutosuggestHashtag } from './autosuggest_hashtag';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
@@ -218,15 +218,17 @@ const AutosuggestTextarea = forwardRef(({
         lang={lang}
       />
 
-      <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={textareaRef} popperConfig={{ strategy: 'fixed' }}>
-        {({ props }) => (
-          <div {...props}>
-            <div className='autosuggest-textarea__suggestions' style={{ width: textareaRef.current?.clientWidth }}>
-              {suggestions.map(renderSuggestion)}
+      <AutosuggestEmojiContext>
+        <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={textareaRef} popperConfig={{ strategy: 'fixed' }}>
+          {({ props }) => (
+            <div {...props}>
+              <div className='autosuggest-textarea__suggestions' style={{ width: textareaRef.current?.clientWidth }}>
+                {suggestions.map(renderSuggestion)}
+              </div>
             </div>
-          </div>
-        )}
-      </Overlay>
+          )}
+        </Overlay>
+      </AutosuggestEmojiContext>
     </div>
   );
 });

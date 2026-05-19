@@ -9,7 +9,7 @@ import Overlay from 'react-overlays/Overlay';
 
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 
-import { AutosuggestEmoji } from './autosuggest_emoji';
+import { AutosuggestEmoji, AutosuggestEmojiContext } from './autosuggest_emoji';
 import { AutosuggestHashtag } from './autosuggest_hashtag';
 
 const textAtCursorMatchesToken = (str, caretPosition, searchTokens) => {
@@ -219,15 +219,17 @@ export default class AutosuggestInput extends ImmutablePureComponent {
           spellCheck={spellCheck}
         />
 
-        <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={this.input} popperConfig={{ strategy: 'fixed' }}>
-          {({ props }) => (
-            <div {...props}>
-              <div className='autosuggest-textarea__suggestions' style={{ width: this.input?.clientWidth }}>
-                {suggestions.map(this.renderSuggestion)}
+        <AutosuggestEmojiContext>
+          <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={this.input} popperConfig={{ strategy: 'fixed' }}>
+            {({ props }) => (
+              <div {...props}>
+                <div className='autosuggest-textarea__suggestions' style={{ width: this.input?.clientWidth }}>
+                  {suggestions.map(this.renderSuggestion)}
+                </div>
               </div>
-            </div>
-          )}
-        </Overlay>
+            )}
+          </Overlay>
+        </AutosuggestEmojiContext>
       </div>
     );
   }
