@@ -10,8 +10,9 @@ import Textarea from 'react-textarea-autosize';
 
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 
-import { AutosuggestEmoji, AutosuggestEmojiContext } from './autosuggest_emoji';
+import { AutosuggestEmoji } from './autosuggest_emoji';
 import { AutosuggestHashtag } from './autosuggest_hashtag';
+import { LocalCustomEmojiProvider } from './emoji/context';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -218,7 +219,7 @@ const AutosuggestTextarea = forwardRef(({
         lang={lang}
       />
 
-      <AutosuggestEmojiContext>
+      <LocalCustomEmojiProvider>
         <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={textareaRef} popperConfig={{ strategy: 'fixed' }}>
           {({ props }) => (
             <div {...props}>
@@ -228,7 +229,7 @@ const AutosuggestTextarea = forwardRef(({
             </div>
           )}
         </Overlay>
-      </AutosuggestEmojiContext>
+      </LocalCustomEmojiProvider>
     </div>
   );
 });
