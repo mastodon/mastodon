@@ -317,9 +317,10 @@ function useColumnWrap() {
       if (element) {
         listRef.current = element;
         observer.observe(element);
+        handleRecalculate();
       }
     },
-    [observer],
+    [handleRecalculate, observer],
   );
 
   return { wrapperRef: wrapperRefCallback };
