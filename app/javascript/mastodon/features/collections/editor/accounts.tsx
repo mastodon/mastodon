@@ -39,6 +39,7 @@ import {
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { PendingNote } from '../detail';
+import { canAccountBeAdded, canAccountBeAddedByFollowers } from '../utils';
 
 import classes from './styles.module.scss';
 import { WizardStepTitle } from './wizard_step_title';
@@ -99,9 +100,6 @@ const renderAccountItem = (account: ApiMutedAccountJSON) => (
 
 type GroupKey = 'available' | 'mustFollow' | 'disabled';
 
-const canAccountBeAdded = (account: ApiMutedAccountJSON) =>
-  ['automatic', 'manual'].includes(account.feature_approval.current_user);
-
 function groupSuggestions(
   accounts: ApiMutedAccountJSON[],
   relationships: ImmutableMap<string, Relationship>,
@@ -113,12 +111,8 @@ function groupSuggestions(
         return 'available';
       }
 
-      const canAccountBeAddedByFollowers =
-        account.feature_approval.automatic.includes('followers') ||
-        account.feature_approval.manual.includes('followers');
-
       if (
-        canAccountBeAddedByFollowers &&
+        canAccountBeAddedByFollowers(account) &&
         !relationships.get(account.id)?.following
       ) {
         return 'mustFollow';
