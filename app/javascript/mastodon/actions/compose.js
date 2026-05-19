@@ -591,6 +591,8 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, token) => {
 }, 200, { leading: true, trailing: true });
 
 const fetchComposeSuggestionsEmojis = async (dispatch, token) => {
+  // Right now we are hard-coding the locale to English since the picker search only supports English.
+  // Once we replace the legacy picker we can remove this and use the actual locale of the user.
   const results = await emojiMartSearch(token, 'en', 5);
   dispatch(readyComposeSuggestionsEmojis(token, results));
 };
