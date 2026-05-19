@@ -16,8 +16,7 @@ RSpec.describe Settings::ExportControllerConcern do
   end
 
   def sign_in_user
-    user = Fabricate(:user)
-    sign_in user
+    sign_in Fabricate(:user)
   end
 
   describe 'GET #index' do
