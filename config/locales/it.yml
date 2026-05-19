@@ -349,6 +349,7 @@ it:
       back_to_report: Torna alla pagina di segnalazione
       batch:
         add_to_report: 'Aggiungi alla segnalazione #%{id}'
+        remove_from_report: Rimuovi dalla segnalazione
         report: Segnala
       collection_title: Collezione di %{name}
       contents: Contenuti
@@ -749,7 +750,7 @@ it:
         mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
-        silence_description_html: L'account sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato. Chiude tutte le segnalazioni contro questo account.
+        silence_description_html: L'account sarà visibile solo a coloro che già lo seguono o lo cercano manualmente, limitandone fortemente la sua visibilità. Può sempre essere annullato. Chiude tutte le segnalazioni contro questo account.
         suspend_description_html: L'account e tutti i suoi contenuti saranno inaccessibili ed eventualmente cancellati, e interagire con esso sarà impossibile. Reversibile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
       actions_description_html: Decidi quale azione intraprendere per risolvere questa segnalazione. Se intraprendi un'azione punitiva nei confronti dell'account segnalato, gli verrà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
@@ -812,7 +813,7 @@ it:
         actions:
           delete_html: Rimuovi i post offensivi
           mark_as_sensitive_html: Contrassegna i file multimediali dei post offensivi come sensibili
-          silence_html: Limita severamente la portata di <strong>@%{acct}</strong> rendendo il suo profilo e il suo contenuto visibili solo a persone che già li seguono o che lo guardano manualmente
+          silence_html: Limita fortemente la visibilità di <strong>@%{acct}</strong> rendendo il suo profilo e i suoi contenuti visibili solo alle persone che già lo seguono o che cercano manualmente il suo profilo
           suspend_html: Sospendere <strong>@%{acct}</strong>, rendendo il suo profilo e i suoi contenuti inaccessibili e impossibilitandone l'interazione
         close_report: 'Contrassegna la segnalazione #%{id} come risolta'
         close_reports_html: Contrassegna <strong>tutte</strong> le segnalazioni contro <strong>@%{acct}</strong> come risolte
@@ -971,7 +972,7 @@ it:
         warning_hint: Ti consigliamo di utilizzare “Approvazione richiesta per la registrazione” a meno che tu non sia sicuro che il tuo team di moderazione possa gestire lo spam e le registrazioni dannose in modo tempestivo.
       security:
         authorized_fetch: Richiede l'autenticazione dai server federati
-        authorized_fetch_hint: La richiesta di autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello di utente che a livello di server. Tuttavia, ciò comporta una riduzione delle prestazioni, riduce la portata delle tue risposte e potrebbe introdurre problemi di compatibilità con alcuni servizi federati. Inoltre, ciò non impedirà agli attori dedicati di recuperare i tuoi post pubblici e account.
+        authorized_fetch_hint: Richiedere l'autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello utente che a livello server. Tuttavia, ciò comporta un calo delle prestazioni, riduce la visibilità delle tue risposte e potrebbe causare problemi di compatibilità con alcuni servizi federati. Inoltre, questo non impedirà ad attori dedicati di accedere ai tuoi post e account pubblici.
         authorized_fetch_overridden_hint: Al momento non puoi modificare questa impostazione perché è sostituita da una variabile di ambiente.
         federation_authentication: Applicazione dell'autenticazione della federazione
       title: Impostazioni del server
@@ -1923,11 +1924,11 @@ it:
     hint_html: "<strong>Personalizza il modo in cui vuoi che il tuo profilo e i tuoi post vengano trovati.</strong> Una varietà di funzionalità in Mastodon possono aiutarti a raggiungere un pubblico più ampio se abilitato. Prenditi un momento per rivedere queste impostazioni per assicurarti che si adattino al tuo caso d'uso."
     privacy: Privacy
     privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
-    reach: Copertura
+    reach: Visibilità
     reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi follower o avere un controllo granulare su ciascuno di essi?
     search: Cerca
     search_hint_html: Controlla come vuoi essere trovato. Vuoi che le persone ti trovino in base a ciò che hai postato pubblicamente? Vuoi che le persone al di fuori di Mastodon trovino il tuo profilo durante la ricerca sul web? Si prega di notare che l'esclusione totale da tutti i motori di ricerca non può essere garantita per le informazioni pubbliche.
-    title: Privacy e copertura
+    title: Privacy e visibilità
   privacy_policy:
     title: Informativa sulla privacy
   reactions:
@@ -2107,7 +2108,7 @@ it:
       unlisted_long: Nascosto dai risultati di ricerca di Mastodon, dalle tendenze e dalle timeline pubbliche
   statuses_cleanup:
     enabled: Cancella automaticamente i vecchi post
-    enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
+    enabled_hint: Cancella automaticamente i tuoi post una volta raggiunta una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
     exceptions: Eccezioni
     explanation: L'eliminazione automatica viene eseguita con bassa priorità. Potrebbe verificarsi un ritardo tra il raggiungimento della soglia di età e la rimozione.
     ignore_favs: Ignora preferiti

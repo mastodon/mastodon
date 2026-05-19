@@ -349,6 +349,7 @@ pt-BR:
       back_to_report: Voltar à página de denúncia
       batch:
         add_to_report: 'Adicionar à denúncia #%{id}'
+        remove_from_report: Remover da denúncia
         report: Denunciar
       collection_title: Coleção de %{name}
       contents: Conteúdo
@@ -548,6 +549,19 @@ pt-BR:
         empty:
           hint: Ninguém ter permissão para usar este recurso.
           no_roles_added: Nenhuma função adicionada
+        lead: As contas com os seguintes cargos podem ativar este recurso em seus perfis.
+        manage_roles: Gerenciar cargos
+        role_name: Nome do cargo
+        title: Cargos
+      setups:
+        show:
+          enable_feature: Ativar recurso
+          important_information: Informações importantes
+          list:
+            1_permission_explanation: Assim que este recurso for ativado, as contas com as permissões designadas podem adicionar um formulário de coleção de e-mails em seus perfis.
+            2_feature_explanation: Quando os visitantes registrarem no perfil da conta e confirmarem a assinatura, eles receberam atualizações por e-mail caso a conta publique.
+            3_privacy_policy_warning: Admins do servidor terão acesso aos PII (e-mails) coletados. Como tal, a política de privacidade e termos de serviço do servidor deve ser atualizada antes de usar este recurso.
+            4_cost_warning: Os e-mails talvez sofram uma taxa dependendo da hospedagem. Entre em contato com o hóspede antes de ativá-lo, já que este recurso talvez aumente drasticamente a quantidade de e-mails enviados ao servidor.
     export_domain_allows:
       new:
         title: Importar domínios permitidos
@@ -853,6 +867,7 @@ pt-BR:
         manage_custom_emojis: Gerenciar Emojis Personalizados
         manage_custom_emojis_description: Permite aos usuários gerenciar emojis personalizados no servidor
         manage_email_subscriptions: Gerenciar assinaturas do e-mail
+        manage_email_subscriptions_description: Permitir usuários com esta permissão de ativar o recurso de e-mails de novidades na conta deles
         manage_federation: Gerenciar Federação
         manage_federation_description: Permite aos usuários bloquear ou permitir federação com outros domínios e controlar a entregabilidade
         manage_invites: Gerenciar convites
