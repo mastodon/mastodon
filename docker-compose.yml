@@ -77,6 +77,7 @@ services:
       # - es
     volumes:
       - ./public/system:/mastodon/public/system
+      - ./public/cache:/opt/mastodon/public/system/cache
 
   streaming:
     # You can uncomment the following lines if you want to not use the prebuilt image, for example if you have local code changes
@@ -114,6 +115,7 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+      - ./public/cache:/opt/mastodon/public/system/cache
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 8' || false"]
 
