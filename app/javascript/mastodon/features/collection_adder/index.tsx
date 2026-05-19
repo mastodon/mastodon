@@ -70,14 +70,22 @@ const ListItem: React.FC<{
     [addOrRemove],
   );
 
+  const hasMaxItemCount =
+    !isAccountInCollection &&
+    collection.item_count >= MAX_COLLECTION_ACCOUNT_COUNT;
+
   return (
     <CollectionToggle
       key={collection.id}
       collection={collection}
-      disabled={
-        isUpdating ||
-        (!isAccountInCollection &&
-          collection.item_count >= MAX_COLLECTION_ACCOUNT_COUNT)
+      disabled={isUpdating || hasMaxItemCount}
+      subtitle={
+        hasMaxItemCount ? (
+          <FormattedMessage
+            id='collections.search_accounts_max_reached'
+            defaultMessage='You have added the maximum number of accounts'
+          />
+        ) : null
       }
       checked={isAccountInCollection}
       onChange={handleChange}

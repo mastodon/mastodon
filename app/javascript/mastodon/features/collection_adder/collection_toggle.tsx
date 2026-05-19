@@ -18,6 +18,7 @@ export interface CollectionToggleProps {
   checked: boolean;
   disabled?: boolean;
   loading?: boolean;
+  subtitle?: React.ReactNode;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -25,6 +26,7 @@ export const CollectionToggle: React.FC<CollectionToggleProps> = ({
   collection,
   checked,
   disabled,
+  subtitle,
   onChange,
 }) => {
   const uniqueId = useId();
@@ -54,11 +56,13 @@ export const CollectionToggle: React.FC<CollectionToggleProps> = ({
         as='label'
         htmlFor={toggleId}
         subtitle={
-          <CollectionInfo
-            collection={collection}
-            withTimestamp={false}
-            withAuthorHandle={false}
-          />
+          subtitle ?? (
+            <CollectionInfo
+              collection={collection}
+              withTimestamp={false}
+              withAuthorHandle={false}
+            />
+          )
         }
       >
         {collection.name}
