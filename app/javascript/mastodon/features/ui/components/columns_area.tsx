@@ -12,6 +12,8 @@ import classNames from 'classnames';
 import type { List, Record } from 'immutable';
 
 import { useAppSelector } from '@/mastodon/store';
+import { Footer } from 'mastodon/features/custom_homepage/components/footer';
+import { Header } from 'mastodon/features/custom_homepage/components/header';
 import { CollapsibleNavigationPanel } from 'mastodon/features/navigation_panel';
 
 import { useBreakpoint } from '../hooks/useBreakpoint';
@@ -85,9 +87,10 @@ export const ColumnsArea = forwardRef<
   HTMLDivElement,
   {
     singleColumn?: boolean;
+    minimalShell?: boolean;
     children: React.ReactElement | React.ReactElement[];
   }
->(({ children, singleColumn }, ref) => {
+>(({ children, minimalShell, singleColumn }, ref) => {
   const renderComposePanel = !useBreakpoint('full');
   const columns = useAppSelector((state) =>
     (state.settings as Record<{ columns: List<Record<Column>> }>).get(
@@ -97,6 +100,24 @@ export const ColumnsArea = forwardRef<
   const isModalOpen = useAppSelector(
     (state) => !state.modal.get('stack').isEmpty(),
   );
+
+  if (minimalShell) {
+    return (
+      <div className='columns-area__panels'>
+        <div className='columns-area__panels__main'>
+          <Header />
+
+          <div className='tabs-bar__wrapper'>
+            <TabsBarPortal />
+          </div>
+
+          <div className='columns-area columns-area--mobile'>{children}</div>
+
+          <Footer />
+        </div>
+      </div>
+    );
+  }
 
   if (singleColumn) {
     return (
@@ -112,6 +133,7 @@ export const ColumnsArea = forwardRef<
           <div className='tabs-bar__wrapper'>
             <TabsBarPortal />
           </div>
+
           <div className='columns-area columns-area--mobile'>{children}</div>
         </div>
 
