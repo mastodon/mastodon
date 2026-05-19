@@ -566,7 +566,7 @@ class Status extends ImmutablePureComponent {
           />
         );
       }
-    } else if (status.get('tagged_collections').size) {
+    } else if (status.get('tagged_collections').size && !status.get('quote')) {
       const firstLinkedCollection = status.get('tagged_collections').first();
       if (firstLinkedCollection) {
         media = (
