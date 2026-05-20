@@ -597,8 +597,15 @@ body > [data-popper-placement] {
 
     .autosuggest-input {
       flex: 1 1 auto;
-      border: 1px solid var(--color-border-primary);
-      border-width: 1px 0;
+      border-block: 1px solid var(--color-border-primary);
+      padding-block: 1px;
+      transition: border-color 0.15s ease-out;
+
+      &:focus-within {
+        padding-block: 0;
+        border-color: var(--color-border-brand);
+        border-block-width: 2px;
+      }
     }
   }
 
@@ -623,7 +630,7 @@ body > [data-popper-placement] {
   }
 
   .spoiler-input__input {
-    padding: 12px 12px - 5px;
+    padding: 11px 7px;
     background: var(--color-bg-brand-softest);
     color: var(--color-text-brand);
   }
