@@ -34,9 +34,9 @@ class AdminMailer < ApplicationMailer
   end
 
   def new_trends(links, tags, statuses)
-    @links                  = links
-    @tags                   = tags
-    @statuses               = statuses
+    @links = PreviewCard.where.associated(:trend).includes(:trend).where(id: links)
+    @statuses = Status.where.associated(:trend).includes(:account, :trend).where(id: statuses)
+    @tags = Tag.where.associated(:trend).includes(:trend).where(id: tags)
 
     mail subject: default_i18n_subject(instance: @instance)
   end

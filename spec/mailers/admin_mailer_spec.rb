@@ -71,10 +71,13 @@ RSpec.describe AdminMailer do
 
   describe '.new_trends' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
+    let(:link_extra) { Fabricate(:preview_card, trendable: true, language: 'en') }
     let(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
+    let(:status_extra) { Fabricate(:status) }
     let(:status) { Fabricate(:status) }
+    let(:tag_extra) { Fabricate(:tag) }
     let(:tag) { Fabricate(:tag) }
-    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]) }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link, link_extra], [tag, tag_extra], [status, status_extra]) }
 
     before do
       PreviewCardTrend.create!(preview_card: link)
