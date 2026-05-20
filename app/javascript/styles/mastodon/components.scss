@@ -9211,6 +9211,10 @@ noscript {
       display: flex;
       align-items: center;
 
+      &:has(input:focus) {
+        outline-color: var(--color-border-brand);
+      }
+
       input {
         background: transparent;
         color: inherit;
