@@ -3658,12 +3658,11 @@ a.account__display-name {
 
 .compose-panel {
   width: 285px;
-  margin-top: 10px;
+  margin-top: 8px;
 
-  // Padding prevents composer focus outline
-  // from being cut off on the sides
+  // Padding prevents focus outlines from being cut off
   margin-inline-start: -2px;
-  padding: 0 2px;
+  padding: 2px;
   display: flex;
   flex-direction: column;
   height: calc(100% - 10px);
@@ -5835,7 +5834,7 @@ a.status-card {
     display: none;
     position: absolute;
     inset-inline-start: 0;
-    margin-top: -2px;
+    margin-top: 1px;
     width: 100%;
     background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
@@ -5930,14 +5929,8 @@ a.status-card {
     }
   }
 
-  &.active {
-    .search__input {
-      border-radius: 4px 4px 0 0;
-    }
-
-    .search__popout {
-      display: block;
-    }
+  &.active .search__popout {
+    display: block;
   }
 }
 
@@ -5949,14 +5942,8 @@ a.status-card {
   padding-inline-start: 16px + 15px + 8px;
   line-height: normal;
 
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
+  &:focus {
+    outline-color: var(--color-border-brand);
   }
 }
 

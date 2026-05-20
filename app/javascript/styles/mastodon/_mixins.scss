@@ -1,5 +1,4 @@
 @mixin search-input {
-  outline: 0;
   box-sizing: border-box;
   width: 100%;
   box-shadow: none;
@@ -11,6 +10,10 @@
   font-size: 17px;
   line-height: normal;
   margin: 0;
+  outline: var(--outline-focus-default);
+  outline-color: transparent;
+  outline-offset: -1px;
+  transition: outline-color 0.15s ease-out;
 }
 
 @mixin search-popout {
