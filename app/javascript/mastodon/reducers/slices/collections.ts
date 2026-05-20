@@ -283,8 +283,12 @@ const collectionSlice = createSlice({
     builder.addCase(addCollectionItem.fulfilled, (state, action) => {
       const { collection_item } = action.payload;
       const { collectionId } = action.meta.arg;
+      const collection = state.collections[collectionId];
 
-      state.collections[collectionId]?.items.push(collection_item);
+      if (collection) {
+        collection.items.push(collection_item);
+        collection.item_count++;
+      }
     });
 
     /**
@@ -302,6 +306,7 @@ const collectionSlice = createSlice({
         collection.items = collection.items.filter(
           (item) => item.id !== itemId,
         );
+        collection.item_count--;
       }
     };
 
