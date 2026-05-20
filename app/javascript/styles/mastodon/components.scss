@@ -541,13 +541,15 @@ body > [data-popper-placement] {
     flex: 0 1 auto;
     border-radius: 4px;
     border: 1px solid var(--color-border-primary);
-    transition: border-color 300ms linear;
     position: relative;
     background: var(--color-bg-secondary);
+    outline: var(--outline-focus-default);
+    outline-color: transparent;
+    outline-offset: -1px;
+    transition: outline-color 0.15s ease-out;
 
-    &.active {
-      transition: none;
-      border-color: var(--color-border-brand);
+    &:has(textarea:focus) {
+      outline-color: var(--color-border-brand);
     }
   }
 
@@ -2741,6 +2743,7 @@ a.account__display-name {
       font-size: 14px;
       line-height: 20px;
       font-weight: 500;
+      outline-offset: 0;
 
       .display-name__account {
         font-size: 14px;
@@ -3656,6 +3659,11 @@ a.account__display-name {
 .compose-panel {
   width: 285px;
   margin-top: 10px;
+
+  // Padding prevents composer focus outline
+  // from being cut off on the sides
+  margin-inline-start: -2px;
+  padding: 0 2px;
   display: flex;
   flex-direction: column;
   height: calc(100% - 10px);
