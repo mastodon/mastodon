@@ -10,6 +10,7 @@ RSpec.describe 'Settings / Exports / CustomFilters' do
       let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
       let(:filter_keyword) { Fabricate(:custom_filter_keyword, keyword: 'something', custom_filter: filter, whole_word: false) }
       let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
+      let(:create_custom_filters) { [keyword, filter_keyword, status_filter] }
       let(:expected_response_body) do
         [{
           'title' => 'foo',
@@ -29,13 +30,10 @@ RSpec.describe 'Settings / Exports / CustomFilters' do
 
       before do
         sign_in user
-        filter
-        keyword
-        filter_keyword
-        status_filter
       end
 
       it 'returns a JSON with the custom filters' do
+        create_custom_filters
         get '/settings/exports/custom_filters.json'
 
         expect(response).to have_http_status(200)

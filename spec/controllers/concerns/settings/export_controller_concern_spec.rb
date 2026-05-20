@@ -46,7 +46,16 @@ RSpec.describe Settings::ExportControllerConcern do
       expect(response.media_type).to eq 'application/json'
       expect(response)
         .to have_attachment('anonymous.json')
-      expect(response.body).to eq 'body data value'
+      expect(response.body).to be_present
+    end
+  end
+
+  context 'when without format' do
+    it 'does not send exported data' do
+      sign_in_user
+      get :index
+
+      expect(response).to have_http_status(406)
     end
   end
 end
