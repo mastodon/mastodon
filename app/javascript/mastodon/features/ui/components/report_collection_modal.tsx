@@ -52,7 +52,7 @@ export const ReportCollectionModal: React.FC<{
   const account = useAccount(account_id);
 
   useEffect(() => {
-    dispatch(fetchServer());
+    void dispatch(fetchServer());
   }, [dispatch]);
 
   const [submitState, setSubmitState] = useState<

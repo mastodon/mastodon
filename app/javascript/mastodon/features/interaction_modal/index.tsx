@@ -419,9 +419,7 @@ const InteractionModal: React.FC<{
 }> = ({ accountId, url, intent }) => {
   const dispatch = useAppDispatch();
   const signupUrl = useAppSelector(
-    (state) =>
-      (state.server.getIn(['server', 'registrations', 'url'], null) ||
-        '/auth/sign_up') as string,
+    (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',
   );
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const name = <DisplayName account={account} variant='simple' />;

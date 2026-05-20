@@ -69,7 +69,7 @@ class TranslateButton extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  languages: state.getIn(['server', 'translationLanguages', 'items']),
+  languages: state.server.translationLanguages.items,
 });
 
 class StatusContent extends PureComponent {
