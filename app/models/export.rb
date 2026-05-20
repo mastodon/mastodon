@@ -55,6 +55,27 @@ class Export
     end
   end
 
+  def to_custom_filters_json
+    data_collection = []
+    account.custom_filters.includes(:keywords, :statuses).order(:phrase).each do |filter|
+      keywords_attributes = []
+
+      filter.keywords.map do |k|
+        keywords_attributes << { keyword: k.keyword, whole_word: k.whole_word }
+      end
+
+      data_collection << {
+        title: filter.title,
+        expire_at: filter.expires_at,
+        context: filter.context,
+        action: filter.action,
+        keywords_attributes: keywords_attributes,
+        statuses: filter.statuses.map { |s| s.status&.text },
+      }
+    end
+    JSON.generate(data_collection)
+  end
+
   private
 
   def to_csv(accounts)
