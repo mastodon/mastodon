@@ -671,7 +671,7 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
     let completion, startPosition;
 
     if (suggestion.type === 'emoji') {
-      completion    = suggestion.native || suggestion.colons;
+      completion    = suggestion.native || `:${suggestion.id}:`;
       startPosition = position - 1;
 
       dispatch(useEmoji(suggestion));
