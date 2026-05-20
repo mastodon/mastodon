@@ -98,6 +98,31 @@ RSpec.describe AdminMailer do
     end
   end
 
+  describe '.new_trends when no trend is associated with tag or status' do
+    let(:recipient) { Fabricate(:account, username: 'Snurf') }
+    let(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
+    let(:status) { Fabricate(:status) }
+    let(:tag) { Fabricate(:tag) }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]) }
+
+    it 'renders the email without the respective tag or status or link' do
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)
+        )
+      expect(mail.body)
+        .to match('The following items need a review before they can be displayed publicly')
+      expect(mail.body)
+        .to_not match(ActivityPub::TagManager.instance.url_for(status))
+      expect(mail.body)
+        .to_not match(link.title)
+      expect(mail.body)
+        .to_not match(tag.display_name)
+    end
+  end
+
   describe '.new_software_updates' do
     let(:recipient) { Fabricate(:account, username: 'Bob') }
     let(:mail) { described_class.with(recipient: recipient).new_software_updates }
