@@ -12,8 +12,11 @@ class ActivityPub::VerifyFeaturedItemService
       return
     end
 
-    return if non_matching_uri_hosts?(approval_uri, @authorization['interactionTarget'])
-    return unless matching_type? && matching_collection_uri?
+    @collection_uri = value_or_id(@authorization['interactingObject'])
+    @actor_uri = value_or_id(@authorization['interactionTarget'])
+
+    return if non_matching_uri_hosts?(approval_uri, @actor_uri)
+    return unless matching_type? && matching_collection_uri? && matching_actors?
 
     account = Account.where(uri: @collection_item.object_uri).first
     account ||= ActivityPub::FetchRemoteAccountService.new.call(@collection_item.object_uri, request_id:)
@@ -29,6 +32,10 @@ class ActivityPub::VerifyFeaturedItemService
   end
 
   def matching_collection_uri?
-    @collection_item.collection.uri == @authorization['interactingObject']
+    @collection_item.collection.uri == @collection_uri
+  end
+
+  def matching_actors?
+    @collection_item.object_uri == @actor_uri
   end
 end
