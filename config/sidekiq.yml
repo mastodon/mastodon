@@ -17,7 +17,7 @@
       class: Scheduler::ScheduledStatusesScheduler
       queue: scheduler
     trends_refresh_scheduler_1:
-      cron: '10-55/5 0,6,12,18 * * *'
+      cron: '10-55/5 */6 * * *'
       class: Scheduler::Trends::RefreshScheduler
       queue: scheduler
     trends_refresh_scheduler_2:
