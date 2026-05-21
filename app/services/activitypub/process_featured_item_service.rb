@@ -11,7 +11,10 @@ class ActivityPub::ProcessFeaturedItemService
     @collection = collection
     @request_id = request_id
     @item_json = uri_or_object.is_a?(String) ? fetch_resource(uri_or_object, true) : uri_or_object
+    @actor_uri = value_or_id(@item_json['featuredObject'])
+    @approval_uri = value_or_id(@item_json['featureAuthorization'])
     return if non_matching_uri_hosts?(@collection.uri, @item_json['id'])
+    return if non_matching_actor_and_approval_uris?
 
     with_redis_lock("collection_item:#{@item_json['id']}") do
       @collection_item = existing_item || pre_approved_item || new_item
@@ -21,8 +24,6 @@ class ActivityPub::ProcessFeaturedItemService
         uri: @item_json['id'],
         object_uri: value_or_id(@item_json['featuredObject'])
       )
-
-      @approval_uri = @item_json['featureAuthorization']
 
       verify_authorization! unless @collection_item&.account&.local?
 
@@ -46,6 +47,12 @@ class ActivityPub::ProcessFeaturedItemService
     @collection.collection_items.new(
       created_at: @item_json['published']
     )
+  end
+
+  def non_matching_actor_and_approval_uris?
+    return false if ActivityPub::TagManager.instance.local_uri?(@actor_uri)
+
+    non_matching_uri_hosts?(@actor_uri, @approval_uri)
   end
 
   def verify_authorization!

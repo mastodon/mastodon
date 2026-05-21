@@ -361,8 +361,15 @@ cy:
       updated_msg: Cyhoeddiad wedi'i ddiweddaru'n llwyddiannus!
     collections:
       accounts: Cyfrifon
+      back_to_account: Nôl i dudalen y cyfrif
+      back_to_report: Nôl i dudalen yr adroddiad
+      batch:
+        add_to_report: 'Ychwanegu at adroddiad #%{id}'
+        remove_from_report: Dileu o'r adroddiad
+        report: Adroddiadau
       collection_title: Casgliad gan %{name}
       contents: Cynnwys
+      no_collection_selected: Heb newid unrhyw gasgliad am nad oedd un wedi'i ddewis
       number_of_accounts:
         few: "%{count} cyfrif"
         many: "%{count} cyfrif"
@@ -371,6 +378,7 @@ cy:
         two: "%{count} cyfrif"
         zero: "%{count} cyfrif"
       open: Agor
+      title: Casgliadau cyfrifon - @%{name}
       view_publicly: Gweld yn gyhoeddus
     critical_update_pending: Diweddariad hanfodol ar ei ffordd
     custom_emojis:

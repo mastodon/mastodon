@@ -114,10 +114,9 @@
       border: 0;
     }
 
-    &:active,
     &:focus {
-      outline: none !important;
-      border-width: 1px !important;
+      outline: var(--outline-focus-default);
+      outline-offset: -1px;
     }
 
     &::-webkit-search-cancel-button {
@@ -141,10 +140,12 @@
   &:disabled {
     cursor: default;
     pointer-events: none;
+    color: var(--color-text-secondary);
   }
 
   svg {
     fill: currentColor;
+    opacity: 1 !important;
   }
 }
 

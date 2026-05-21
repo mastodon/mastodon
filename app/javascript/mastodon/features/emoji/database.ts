@@ -46,6 +46,8 @@ const loadDB = (() => {
   return loadPromise;
 })();
 
+type ScoreMap = Map<string, AnyEmojiData & { score: number }>;
+
 export async function search({
   query,
   locale: localeString,
@@ -75,7 +77,7 @@ export async function search({
 
   // Create an array of emoji results
   const db = await loadDB();
-  const resultArrays: Map<string, AnyEmojiData>[] = [];
+  const resultArrays: ScoreMap[] = [];
   for (let i = 0; i < queryTokens.length; i++) {
     const token = queryTokens[i];
     if (!token) continue;
@@ -90,14 +92,21 @@ export async function search({
       db.getAllFromIndex(locale, 'tokens', range),
       db.getAllFromIndex('custom', 'tokens', range),
     ]);
-    const resultMap = new Map<string, AnyEmojiData>([
-      ...unicodeResults.map(
-        (emoji) => [emoji.hexcode, emoji] as [string, AnyEmojiData],
-      ),
-      ...customResults.map(
-        (emoji) => [emoji.shortcode, emoji] as [string, AnyEmojiData],
-      ),
-    ]);
+    const resultMap: ScoreMap = new Map();
+    for (const emoji of unicodeResults) {
+      const score = getScoreForEmoji(emoji, token);
+      if (score === null) {
+        continue;
+      }
+      resultMap.set(emoji.hexcode, { ...emoji, score });
+    }
+    for (const emoji of customResults) {
+      const score = getScoreForEmoji(emoji, token);
+      if (score === null) {
+        continue;
+      }
+      resultMap.set(emoji.shortcode, { ...emoji, score });
+    }
     log('found %d results for token "%s"', resultMap.size, token);
     resultArrays.push(resultMap);
   }
@@ -106,7 +115,7 @@ export async function search({
   const results = Array.from(
     resultArrays
       .reduce((prev, curr) => {
-        const intersection = new Map<string, AnyEmojiData>();
+        const intersection: ScoreMap = new Map();
         for (const [code, emoji] of prev) {
           if (curr.has(code)) {
             intersection.set(code, emoji);
@@ -115,33 +124,7 @@ export async function search({
         return intersection;
       })
       .values(),
-  );
-
-  results.sort((a, b) => {
-    // Checks if a or b has the last token exactly, or only a prefix.
-    const aHasToken = a.tokens.includes(lastToken);
-    const bHasToken = b.tokens.includes(lastToken);
-    if (aHasToken && !bHasToken) {
-      return -1;
-    } else if (!aHasToken && bHasToken) {
-      return 1;
-    }
-
-    // If one is a custom emoji, prioritize it over Unicode emojis.
-    if ('category' in a) {
-      return -1;
-    } else if ('category' in b) {
-      return 1;
-    }
-
-    // If both are Unicode emojis, prioritize by order.
-    if ('order' in a && 'order' in b) {
-      return (a.order ?? 0) - (b.order ?? 0); // If these are both Unicode emojis, sort by order.
-    }
-
-    // ¯\_(ツ)_/¯
-    return 0;
-  });
+  ).toSorted((a, b) => a.score - b.score);
 
   const time = performance.measure('emoji-search-end', 'emoji-search-start');
   log(
@@ -155,6 +138,24 @@ export async function search({
     return results.slice(0, limit);
   }
   return results;
+}
+
+function getScoreForEmoji(emoji: AnyEmojiData, query: string) {
+  const id = 'shortcode' in emoji ? emoji.shortcode : emoji.label;
+  if (id === query) {
+    return 0;
+  }
+
+  let index = 1;
+  for (const token of [id, emoji.tokens]) {
+    const tokenIndex = token.indexOf(query);
+    if (tokenIndex !== -1) {
+      return index + tokenIndex / token.length;
+    }
+    index++;
+  }
+
+  return null;
 }
 
 export async function putEmojiData(emojis: CompactEmoji[], locale: Locale) {
@@ -252,6 +253,12 @@ export async function loadEmojiByHexcode(
   return skinHexcodeToEmoji(hexcode, skinResult);
 }
 
+export async function loadAllUnicodeEmojis(localeString: string) {
+  const locale = await toLoadedLocale(localeString);
+  const db = await loadDB();
+  return db.getAll(locale);
+}
+
 export async function loadCustomEmojiByShortcode(shortcode: string) {
   const db = await loadDB();
   return db.get('custom', shortcode);
@@ -283,6 +290,11 @@ export async function loadLegacyShortcodesByShortcode(shortcode: string) {
     'shortcodes',
     IDBKeyRange.only(shortcode),
   );
+}
+
+export async function loadAllShortcodes() {
+  const db = await loadDB();
+  return db.getAll('shortcodes');
 }
 
 // Private functions

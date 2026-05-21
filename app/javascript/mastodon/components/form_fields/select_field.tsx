@@ -4,11 +4,17 @@ import { forwardRef } from 'react';
 import classNames from 'classnames';
 
 import { FormFieldWrapper } from './form_field_wrapper';
-import type { CommonFieldWrapperProps } from './form_field_wrapper';
+import type {
+  CommonFieldWrapperProps,
+  FieldWrapperProps,
+} from './form_field_wrapper';
 import classes from './select.module.scss';
 
 interface Props
-  extends ComponentPropsWithoutRef<'select'>, CommonFieldWrapperProps {}
+  extends
+    ComponentPropsWithoutRef<'select'>,
+    CommonFieldWrapperProps,
+    Pick<FieldWrapperProps, 'inputPlacement'> {}
 
 /**
  * A simple form field for single-item selections.
@@ -19,13 +25,28 @@ interface Props
  */
 
 export const SelectField = forwardRef<HTMLSelectElement, Props>(
-  ({ id, label, hint, required, status, children, ...otherProps }, ref) => (
+  (
+    {
+      id,
+      label,
+      hint,
+      required,
+      status,
+      inputPlacement,
+      children,
+      wrapperClassName,
+      ...otherProps
+    },
+    ref,
+  ) => (
     <FormFieldWrapper
       label={label}
       hint={hint}
       required={required}
       status={status}
       inputId={id}
+      inputPlacement={inputPlacement}
+      className={wrapperClassName}
     >
       {(inputProps) => (
         <Select {...otherProps} {...inputProps} ref={ref}>

@@ -40,6 +40,17 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
         end.to_not change(CollectionItem, :count)
       end
     end
+
+    context 'when the actor URI does not match the approval URI' do
+      let(:featured_object_uri) { 'https://example.com/actor/1' }
+      let(:feature_authorization_uri) { 'https://other.example.com/auth/1' }
+
+      it 'does not create a collection item and returns `nil`' do
+        expect do
+          expect(subject.call(collection, object, position:)).to be_nil
+        end.to_not change(CollectionItem, :count)
+      end
+    end
   end
 
   context 'when the collection item is inlined' do

@@ -12,6 +12,7 @@ import AutosuggestAccountContainer from '../features/compose/containers/autosugg
 
 import { AutosuggestEmoji } from './autosuggest_emoji';
 import { AutosuggestHashtag } from './autosuggest_hashtag';
+import { LocalCustomEmojiProvider } from './emoji/context';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -218,15 +219,17 @@ const AutosuggestTextarea = forwardRef(({
         lang={lang}
       />
 
-      <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={textareaRef} popperConfig={{ strategy: 'fixed' }}>
-        {({ props }) => (
-          <div {...props}>
-            <div className='autosuggest-textarea__suggestions' style={{ width: textareaRef.current?.clientWidth }}>
-              {suggestions.map(renderSuggestion)}
+      <LocalCustomEmojiProvider>
+        <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={textareaRef} popperConfig={{ strategy: 'fixed' }}>
+          {({ props }) => (
+            <div {...props}>
+              <div className='autosuggest-textarea__suggestions' style={{ width: textareaRef.current?.clientWidth }}>
+                {suggestions.map(renderSuggestion)}
+              </div>
             </div>
-          </div>
-        )}
-      </Overlay>
+          )}
+        </Overlay>
+      </LocalCustomEmojiProvider>
     </div>
   );
 });

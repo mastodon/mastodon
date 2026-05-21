@@ -24,7 +24,7 @@ export interface FieldStatus {
   message?: string;
 }
 
-interface FieldWrapperProps {
+export interface FieldWrapperProps {
   label: ReactNode;
   hint?: ReactNode;
   required?: boolean;
