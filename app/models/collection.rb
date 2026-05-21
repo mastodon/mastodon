@@ -5,7 +5,6 @@
 # Table name: collections
 #
 #  id                       :bigint(8)        not null, primary key
-#  deleted_at               :datetime
 #  description              :text
 #  description_html         :text
 #  discoverable             :boolean          not null
