@@ -541,13 +541,15 @@ body > [data-popper-placement] {
     flex: 0 1 auto;
     border-radius: 4px;
     border: 1px solid var(--color-border-primary);
-    transition: border-color 300ms linear;
     position: relative;
     background: var(--color-bg-secondary);
+    outline: var(--outline-focus-default);
+    outline-color: transparent;
+    outline-offset: -1px;
+    transition: outline-color 0.15s ease-out;
 
-    &.active {
-      transition: none;
-      border-color: var(--color-border-brand);
+    &:has(textarea:focus) {
+      outline-color: var(--color-border-brand);
     }
   }
 
@@ -595,8 +597,15 @@ body > [data-popper-placement] {
 
     .autosuggest-input {
       flex: 1 1 auto;
-      border: 1px solid var(--color-border-primary);
-      border-width: 1px 0;
+      border-block: 1px solid var(--color-border-primary);
+      padding-block: 1px;
+      transition: border-color 0.15s ease-out;
+
+      &:focus-within {
+        padding-block: 0;
+        border-color: var(--color-border-brand);
+        border-block-width: 2px;
+      }
     }
   }
 
@@ -621,7 +630,7 @@ body > [data-popper-placement] {
   }
 
   .spoiler-input__input {
-    padding: 12px 12px - 5px;
+    padding: 11px 7px;
     background: var(--color-bg-brand-softest);
     color: var(--color-text-brand);
   }
@@ -2741,6 +2750,7 @@ a.account__display-name {
       font-size: 14px;
       line-height: 20px;
       font-weight: 500;
+      outline-offset: 0;
 
       .display-name__account {
         font-size: 14px;
@@ -3655,7 +3665,11 @@ a.account__display-name {
 
 .compose-panel {
   width: 285px;
-  margin-top: 10px;
+  margin-top: 8px;
+
+  // Padding prevents focus outlines from being cut off
+  margin-inline-start: -2px;
+  padding: 2px;
   display: flex;
   flex-direction: column;
   height: calc(100% - 10px);
@@ -5827,7 +5841,7 @@ a.status-card {
     display: none;
     position: absolute;
     inset-inline-start: 0;
-    margin-top: -2px;
+    margin-top: 1px;
     width: 100%;
     background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
@@ -5922,14 +5936,8 @@ a.status-card {
     }
   }
 
-  &.active {
-    .search__input {
-      border-radius: 4px 4px 0 0;
-    }
-
-    .search__popout {
-      display: block;
-    }
+  &.active .search__popout {
+    display: block;
   }
 }
 
@@ -5941,14 +5949,8 @@ a.status-card {
   padding-inline-start: 16px + 15px + 8px;
   line-height: normal;
 
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus,
-  &:active {
-    outline: 0 !important;
+  &:focus {
+    outline-color: var(--color-border-brand);
   }
 }
 
@@ -9216,6 +9218,10 @@ noscript {
       display: flex;
       align-items: center;
 
+      &:has(input:focus) {
+        outline-color: var(--color-border-brand);
+      }
+
       input {
         background: transparent;
         color: inherit;
@@ -9244,7 +9250,7 @@ noscript {
     }
 
     .search__popout {
-      margin-top: -1px;
+      margin-top: 1px;
       padding-top: 5px;
       padding-bottom: 5px;
       border: 1px solid var(--color-border-primary);
@@ -9256,10 +9262,6 @@ noscript {
 
     &.expanded .search__popout {
       display: block;
-    }
-
-    &.expanded &__input {
-      border-radius: 4px 4px 0 0;
     }
   }
 
