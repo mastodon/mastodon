@@ -136,6 +136,11 @@ $content-width: 840px;
           transition: all 100ms linear;
           transition-property: color, background-color;
         }
+
+        &:focus-visible {
+          outline: var(--outline-focus-default);
+          outline-offset: -2px;
+        }
       }
 
       ul {
@@ -1884,6 +1889,28 @@ a.sparkline {
         padding-bottom: 15px;
       }
     }
+  }
+}
+
+.navigation-skip-link {
+  position: fixed;
+  z-index: 100;
+  margin: 10px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  box-shadow: var(--dropdown-shadow);
+
+  /* Hide visually when not focused */
+  &:not(:focus-within) {
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    clip-path: inset(50%);
+    overflow: hidden;
   }
 }
 
