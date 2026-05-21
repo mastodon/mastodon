@@ -43,7 +43,7 @@ class CollectionItem < ApplicationRecord
 
   scope :ordered, -> { order(position: :asc) }
   scope :with_accounts, -> { includes(account: [:account_stat, :user]) }
-  scope :not_blocked_by, ->(account) { where.not(accounts: { id: account.blocking }) }
+  scope :not_blocked_by, ->(account) { joins(:account).where.not(accounts: { id: account.blocking }) }
   scope :local, -> { joins(:collection).merge(Collection.local) }
   scope :accepted_partial, ->(account) { joins(:account).merge(Account.local).accepted.where(uri: nil, account_id: account.id) }
   scope :pending_or_accepted, -> { where(state: [:pending, :accepted]) }

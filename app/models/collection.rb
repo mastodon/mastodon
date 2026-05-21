@@ -65,8 +65,9 @@ class Collection < ApplicationRecord
     !local?
   end
 
-  def items_for(account = nil)
-    result = collection_items.with_accounts
+  def items_for(account = nil, include_accounts: false)
+    result = collection_items
+    result = result.with_accounts if include_accounts
     result = account == self.account ? result.pending_or_accepted : result.accepted
     result = result.not_blocked_by(account) unless account.nil?
     result

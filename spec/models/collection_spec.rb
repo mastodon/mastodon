@@ -124,6 +124,14 @@ RSpec.describe Collection do
         expect(subject.items_for(account)).to match_array(accepted_items + [pending_item])
       end
     end
+
+    context 'when `include_accounts` is set to `true`' do
+      it 'preloads accounts' do
+        items = subject.items_for(include_accounts: true).to_a
+
+        expect { items.first.account }.to_not execute_queries
+      end
+    end
   end
 
   describe '#tag_name=' do
