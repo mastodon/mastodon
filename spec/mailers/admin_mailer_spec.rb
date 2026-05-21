@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe AdminMailer do
-  include ActiveJob::TestHelper
-
   describe '.new_report' do
     let(:sender)    { Fabricate(:account, username: 'John') }
     let(:recipient) { Fabricate(:account, username: 'Mike') }
@@ -121,7 +119,7 @@ RSpec.describe AdminMailer do
       expect(mail.successfully_enqueued?).to be(true)
 
       delete_trends
-      expect { perform_enqueued_jobs }
+      expect { mail.perform_now }
         .to send_email(
           to: recipient.user_email,
           from: 'notifications@localhost',

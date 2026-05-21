@@ -34,7 +34,6 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
-  config.active_job.queue_adapter = :test
   config.action_mailer.default_options = { from: 'notifications@localhost' }
 
   # Tell Action Mailer not to deliver emails to the real world.
