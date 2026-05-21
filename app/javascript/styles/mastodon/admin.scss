@@ -136,6 +136,11 @@ $content-width: 840px;
           transition: all 100ms linear;
           transition-property: color, background-color;
         }
+
+        &:focus-visible {
+          outline: var(--outline-focus-default);
+          outline-offset: -2px;
+        }
       }
 
       ul {
