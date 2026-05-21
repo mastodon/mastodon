@@ -2,14 +2,15 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { openModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
+import { DisplayName } from '@/mastodon/components/display_name';
 import { EmptyState } from '@/mastodon/components/empty_state';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { areCollectionsEnabled } from '@/mastodon/features/collections/utils';
+import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAppDispatch } from '@/mastodon/store';
 
@@ -28,8 +29,8 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
   blockedBy,
   withoutAddCollectionButton,
 }) => {
-  const { acct } = useParams<{ acct?: string }>();
   const me = useCurrentAccountId();
+  const account = useAccount(accountId);
 
   const dispatch = useAppDispatch();
 
@@ -116,12 +117,12 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
       />
     );
   } else {
-    if (acct) {
+    if (account) {
       title = (
         <FormattedMessage
           id='empty_column.account_featured.other'
           defaultMessage='{acct} has not featured anything yet.'
-          values={{ acct }}
+          values={{ acct: <DisplayName variant='simple' account={account} /> }}
         />
       );
     } else {
