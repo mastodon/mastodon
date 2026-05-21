@@ -608,19 +608,19 @@ RSpec.describe ActivityPub::Activity::Create do
                 type: 'Document',
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
-                name: '*' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
+                name: '*' * (MediaAttachment::MAX_DESCRIPTION_HARD_LENGTH_LIMIT + 5),
               },
             ]
           )
         end
 
-        it 'creates status' do
+        it 'creates status with truncated description' do
           expect { subject.perform }.to change(sender.statuses, :count).by(1)
 
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:description)).to include('*' * MediaAttachment::MAX_DESCRIPTION_LENGTH)
+          expect(status.media_attachments.map(&:description)).to include('*' * MediaAttachment::MAX_DESCRIPTION_HARD_LENGTH_LIMIT)
         end
       end
 
@@ -632,19 +632,19 @@ RSpec.describe ActivityPub::Activity::Create do
                 type: 'Document',
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
-                summary: '*' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
+                summary: '*' * (MediaAttachment::MAX_DESCRIPTION_HARD_LENGTH_LIMIT + 5),
               },
             ]
           )
         end
 
-        it 'creates status' do
+        it 'creates status with truncated description' do
           expect { subject.perform }.to change(sender.statuses, :count).by(1)
 
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:description)).to include('*' * MediaAttachment::MAX_DESCRIPTION_LENGTH)
+          expect(status.media_attachments.map(&:description)).to include('*' * MediaAttachment::MAX_DESCRIPTION_HARD_LENGTH_LIMIT)
         end
       end
 
