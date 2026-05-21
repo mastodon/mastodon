@@ -7,7 +7,7 @@
 
 - content_for :content do
   .admin-wrapper
-    .sidebar-wrapper
+    %nav.sidebar-wrapper
       .sidebar-wrapper__inner
         .sidebar
           = link_to root_path do
@@ -24,7 +24,7 @@
 
           = render_navigation
 
-    .content-wrapper
+    %main.content-wrapper
       .content
         .content__heading
           - if content_for?(:heading)
