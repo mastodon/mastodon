@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe AdminMailer do
+  include ActiveJob::TestHelper
+
   describe '.new_report' do
     let(:sender)    { Fabricate(:account, username: 'John') }
     let(:recipient) { Fabricate(:account, username: 'Mike') }
@@ -98,28 +100,39 @@ RSpec.describe AdminMailer do
     end
   end
 
-  describe '.new_trends when no trend is associated with tag or status' do
+  describe '.new_trends when between queueing and sending a trend gets deleted' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
     let(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
     let(:status) { Fabricate(:status) }
     let(:tag) { Fabricate(:tag) }
-    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]) }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]).deliver_later! }
+    let(:status_trend) { Fabricate(:status_trend, status: status, account: Fabricate(:account)) }
+    let(:tag_trend) { Fabricate(:tag_trend, tag: tag) }
+    let(:delete_trends) { [TagTrend.delete(tag_trend.id), StatusTrend.delete(status_trend.id)] }
+    let(:create_trends) { [tag_trend, status_trend] }
 
-    it 'renders the email without the respective tag or status or link' do
-      expect { mail.deliver }
+    before do
+      PreviewCardTrend.create!(preview_card: link)
+      recipient.user.update(locale: :en)
+    end
+
+    it 'sends the email without the respective tag or status or link' do
+      create_trends
+      expect(mail.successfully_enqueued?).to be(true)
+
+      delete_trends
+      expect { perform_enqueued_jobs }
         .to send_email(
           to: recipient.user_email,
           from: 'notifications@localhost',
           subject: I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)
         )
-      expect(mail.body)
-        .to match('The following items need a review before they can be displayed publicly')
-      expect(mail.body)
-        .to_not match(ActivityPub::TagManager.instance.url_for(status))
-      expect(mail.body)
-        .to_not match(link.title)
-      expect(mail.body)
-        .to_not match(tag.display_name)
+      assert_dom_email do |email|
+        expect(email).to have_body_text(/The following items need a review before they can be displayed publicly/)
+        expect(email).to_not match(ActivityPub::TagManager.instance.url_for(status))
+        expect(email).to_not match(link.title)
+        expect(email).to_not match(tag.display_name)
+      end
     end
   end
 
