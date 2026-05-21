@@ -16,8 +16,12 @@
       every: '5m'
       class: Scheduler::ScheduledStatusesScheduler
       queue: scheduler
-    trends_refresh_scheduler:
-      every: '5m'
+    trends_refresh_scheduler_1:
+      cron: '10-55/5 0,6,12,18 * * *'
+      class: Scheduler::Trends::RefreshScheduler
+      queue: scheduler
+    trends_refresh_scheduler_2:
+      cron: '*/5 1,2,3,4,5,7,8,9,10,11,13,14,15,16,17,19,20,21,22,23 * * *'
       class: Scheduler::Trends::RefreshScheduler
       queue: scheduler
     trends_review_notifications_scheduler:
