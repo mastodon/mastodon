@@ -1,7 +1,7 @@
 <%= raw t('admin_mailer.new_trends.new_trending_tags.title') %>
 
 <% new_trending_tags.each do |tag| %>
-  <%= next unless tag.trend.any? %>
+  <%= next unless tag.trend.present? %>
 - #<%= tag.display_name %>
   <%= raw t('admin.trends.tags.usage_comparison', today: tag.history.get(Time.now.utc).accounts, yesterday: tag.history.get(Time.now.utc - 1.day).accounts) %> · <%= t('admin.trends.tags.current_score', score: tag.trend.score.round(2)) %>
 <% end %>
