@@ -547,11 +547,15 @@ export const Search: React.FC<{
   const searchOptionsHeading = useId();
 
   return (
-    <form ref={formRef} className={classNames('search', { active: expanded })}>
+    <form
+      role='search'
+      ref={formRef}
+      className={classNames('search', { active: expanded })}
+    >
       <input
         ref={searchInputRef}
         className='search__input'
-        type='text'
+        type='search'
         placeholder={intl.formatMessage(
           signedIn ? messages.placeholderSignedIn : messages.placeholder,
         )}

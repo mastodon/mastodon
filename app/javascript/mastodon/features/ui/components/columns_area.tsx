@@ -108,12 +108,12 @@ export const ColumnsArea = forwardRef<
           </div>
         </div>
 
-        <div className='columns-area__panels__main'>
+        <main className='columns-area__panels__main'>
           <div className='tabs-bar__wrapper'>
             <TabsBarPortal />
           </div>
           <div className='columns-area columns-area--mobile'>{children}</div>
-        </div>
+        </main>
 
         <CollapsibleNavigationPanel />
       </div>
@@ -121,7 +121,7 @@ export const ColumnsArea = forwardRef<
   }
 
   return (
-    <div
+    <main
       className={classNames('columns-area', { unscrollable: isModalOpen })}
       ref={ref}
       tabIndex={isModalOpen ? undefined : 0}
@@ -160,7 +160,7 @@ export const ColumnsArea = forwardRef<
           cloneElement(child, { multiColumn: true }),
         )}
       </ColumnIndexContext.Provider>
-    </div>
+    </main>
   );
 });
 
