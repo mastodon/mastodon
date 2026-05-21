@@ -119,18 +119,13 @@ RSpec.describe AdminMailer do
       expect(mail.successfully_enqueued?).to be(true)
 
       delete_trends
-      expect { mail.perform_now }
-        .to send_email(
-          to: recipient.user_email,
-          from: 'notifications@localhost',
-          subject: I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)
-        )
-      assert_dom_email do |email|
-        expect(email).to have_body_text(/The following items need a review before they can be displayed publicly/)
-        expect(email).to_not match(ActivityPub::TagManager.instance.url_for(status))
-        expect(email).to_not match(link.title)
-        expect(email).to_not match(tag.display_name)
-      end
+      expect(mail.perform_now.to).to eq([recipient.user_email])
+      expect(mail.perform_now.subject).to eq(I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain))
+      expect(mail.perform_now.from).to eq(['notifications@localhost'])
+      expect(mail.perform_now.body).to have_text(/The following items need a review before they can be displayed publicly/)
+      expect(mail.perform_now.body).to match(link.title)
+      expect(mail.perform_now.body).to_not match(ActivityPub::TagManager.instance.url_for(status))
+      expect(mail.perform_now.body).to_not match(tag.display_name)
     end
   end
 
