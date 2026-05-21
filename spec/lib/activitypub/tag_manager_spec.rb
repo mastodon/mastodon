@@ -671,5 +671,15 @@ RSpec.describe ActivityPub::TagManager do
       status = Fabricate(:status, uri: 'https://example.com/123')
       expect(subject.uri_to_resource('https://example.com/123#456', Status)).to eq status
     end
+
+    it 'returns the local featured collection' do
+      collection = Fabricate(:collection)
+      expect(subject.uri_to_resource(subject.uri_for(collection), Collection)).to eq collection
+    end
+
+    it 'returns the remote featured collection' do
+      collection = Fabricate(:remote_collection)
+      expect(subject.uri_to_resource(subject.uri_for(collection), Collection)).to eq collection
+    end
   end
 end

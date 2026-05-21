@@ -12,13 +12,14 @@ export interface ApiCollectionJSON {
 
   id: string;
   uri: string;
+  url: string;
   local: boolean;
   item_count: number;
 
   name: string;
-  description: string;
-  tag?: ApiTagJSON;
-  language: string;
+  description: string | null;
+  tag: ApiTagJSON | null;
+  language: string | null;
   sensitive: boolean;
   discoverable: boolean;
 
@@ -52,10 +53,11 @@ export interface ApiCollectionWithAccountsJSON extends ApiWrappedCollectionJSON 
 /**
  * Nested account item
  */
-interface CollectionAccountItem {
+export interface CollectionAccountItem {
+  id: string;
   account_id?: string; // Only present when state is 'accepted' (or the collection is your own)
   state: 'pending' | 'accepted' | 'rejected' | 'revoked';
-  position: number;
+  created_at: string;
 }
 
 export interface WrappedCollectionAccountItem {
@@ -70,10 +72,11 @@ type CommonPayloadFields = Pick<
   ApiCollectionJSON,
   'name' | 'description' | 'sensitive' | 'discoverable'
 > & {
-  tag?: string;
+  tag_name?: string | null;
+  language?: ApiCollectionJSON['language'];
 };
 
-export interface ApiPatchCollectionPayload extends Partial<CommonPayloadFields> {
+export interface ApiUpdateCollectionPayload extends Partial<CommonPayloadFields> {
   id: string;
 }
 

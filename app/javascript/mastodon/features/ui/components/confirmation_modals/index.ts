@@ -1,6 +1,8 @@
+export type { BaseConfirmationModalProps } from './confirmation_modal';
 export { ConfirmationModal } from './confirmation_modal';
 export { ConfirmDeleteStatusModal } from './delete_status';
 export { ConfirmDeleteListModal } from './delete_list';
+export { ConfirmDeleteCollectionModal } from './delete_collection';
 export {
   ConfirmReplyModal,
   ConfirmEditStatusModal,

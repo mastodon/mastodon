@@ -14,7 +14,7 @@ import { CustomEmojiFactory } from './custom_emoji';
 import type { CustomEmoji } from './custom_emoji';
 
 // AccountField
-interface AccountFieldShape extends Required<ApiAccountFieldJSON> {
+export interface AccountFieldShape extends Required<ApiAccountFieldJSON> {
   name_emojified: string;
   value_emojified: string;
   value_plain: string | null;
@@ -62,6 +62,7 @@ export const accountDefaultValues: AccountShape = {
   acct: '',
   avatar: '',
   avatar_static: '',
+  avatar_description: '',
   bot: false,
   created_at: '',
   discoverable: false,
@@ -69,14 +70,23 @@ export const accountDefaultValues: AccountShape = {
   display_name: '',
   display_name_html: '',
   emojis: ImmutableList<CustomEmoji>(),
+  feature_approval: {
+    automatic: [],
+    manual: [],
+    current_user: 'missing',
+  },
   fields: ImmutableList<AccountField>(),
   group: false,
   header: '',
   header_static: '',
+  header_description: '',
   id: '',
   last_status_at: '',
   locked: false,
   noindex: false,
+  show_featured: true,
+  show_media: true,
+  show_media_replies: true,
   note: '',
   note_emojified: '',
   note_plain: 'string',
@@ -93,6 +103,7 @@ export const accountDefaultValues: AccountShape = {
   limited: false,
   moved: null,
   hide_collections: false,
+  email_subscriptions: false,
   // This comes from `ApiMutedAccountJSON`, but we should eventually
   // store that in a different object.
   mute_expires_at: null,

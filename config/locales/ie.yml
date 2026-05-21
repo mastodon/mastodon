@@ -10,7 +10,6 @@ ie:
     followers:
       one: Sequitor
       other: Sequitores
-    following: Sequent
     instance_actor_flash: Ti-ci conto es un virtual actor usat por representer li servitor self e null individual usator. It es usat por federational rasones e deve ne esser suspendet.
     last_active: ultim activitá
     link_verified_on: Proprietá de ti-ci ligament esset verificat ye %{date}
@@ -613,7 +612,6 @@ ie:
       resolved_msg: Raporte successosimen soluet!
       skip_to_actions: Ear rect al actiones
       status: Statu
-      statuses: Contenete raportat
       statuses_description_html: Ofensiv contenete va esser citat in comunication con li raportat conto
       summary:
         action_preambles:
@@ -1143,8 +1141,6 @@ ie:
       your_appeal_pending: Tu ha fat un apelle
       your_appeal_rejected: Tui apelle ha esset rejectet
   edit_profile:
-    basic_information: Basic information
-    hint_html: "<strong>Customisa ti quel gente vide sur tui public profil e apu tui postas.</strong> Altri persones es plu probabil sequer te e interacter con te si tu have un detalliat profil e un profil-image."
     other: Altri
   errors:
     '400': Li demande quel tu inviat esset ínvalid o misformat.
@@ -1180,10 +1176,8 @@ ie:
     mutes: Tu silentia
     storage: Inmagasination de medie
   featured_tags:
-    add_new: Adjunter un nov
     errors:
       limit: Tu ja ha pinglat li maxim númere de hashtags
-    hint_html: "<strong>Pinglar tui max important hashtags sur tui profil.</strong> Un bonissim maniere de mantener un registre de tui ovres e projectes, pinglat hashtags es monstrat prominentmen sur tui profil e permisse rapid accesse a tui propri postas."
   filters:
     contexts:
       account: Profiles
@@ -1330,11 +1324,6 @@ ie:
     failed_sign_in_html: Fallit prova de apertion de session per %{method} de %{ip} (%{browser})
     successful_sign_in_html: Successosi apertion de session per %{method} de %{ip} (%{browser})
     title: Historie de autentication
-  mail_subscriptions:
-    unsubscribe:
-      action: Yes, desabonnar
-      complete: Desabonnat
-      title: Desabonnar
   media_attachments:
     validations:
       images_and_video: On ne posse atachar un video a un posta quel ja contene images
@@ -1658,11 +1647,6 @@ ie:
       too_late: It es tro tard por apellar ti admoniment
   tags:
     does_not_match_previous_name: ne concorda li anteyan nómine
-  themes:
-    contrast: Mastodon (Alt contraste)
-    default: Mastodon (Obscur)
-    mastodon-light: Mastodon (Luminosi)
-    system: Automatic (usar tema del sistema)
   time:
     formats:
       default: "%d.%m.%Y ye %H:%M"

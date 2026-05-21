@@ -343,10 +343,10 @@ RSpec.describe BulkImportService do
         .and_return(resolve_account_service_double)
       allow(resolve_account_service_double)
         .to receive(:call)
-        .with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
+          .with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
       allow(resolve_account_service_double)
         .to receive(:call)
-        .with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
+          .with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
 
       Import::RowWorker.drain
     end

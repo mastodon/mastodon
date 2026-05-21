@@ -4,11 +4,11 @@ import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 import {
   putEmojiData,
   putCustomEmojiData,
-  loadLatestEtag,
-  putLatestEtag,
+  putCacheValue,
   putLegacyShortcodes,
+  loadCacheValue,
 } from './database';
-import { toSupportedLocale, toValidEtagName } from './locale';
+import { toSupportedLocale, toValidCacheKey } from './locale';
 import type { CustomEmojiData } from './types';
 import { emojiLogger } from './utils';
 
@@ -23,8 +23,8 @@ export async function importEmojiData(localeString: string, shortcodes = true) {
     shortcodes ? ' and shortcodes' : '',
   );
 
-  let emojis = await fetchAndCheckEtag<CompactEmoji[]>({
-    etagString: locale,
+  let emojis = await fetchIfNotLoaded<CompactEmoji[]>({
+    key: locale,
     path: localeToEmojiPath(locale),
   });
   if (!emojis) {
@@ -33,8 +33,8 @@ export async function importEmojiData(localeString: string, shortcodes = true) {
 
   const shortcodesData: ShortcodesDataset[] = [];
   if (shortcodes) {
-    const shortcodesResponse = await fetchAndCheckEtag<ShortcodesDataset>({
-      etagString: `${locale}-shortcodes`,
+    const shortcodesResponse = await fetchIfNotLoaded<ShortcodesDataset>({
+      key: `${locale}-shortcodes`,
       path: localeToShortcodesPath(locale),
     });
     if (shortcodesResponse) {
@@ -51,13 +51,24 @@ export async function importEmojiData(localeString: string, shortcodes = true) {
 }
 
 export async function importCustomEmojiData() {
-  const emojis = await fetchAndCheckEtag<CustomEmojiData[]>({
-    etagString: 'custom',
+  const response = await fetchAndCheckEtag({
+    oldEtag: await loadCacheValue('custom'),
     path: '/api/v1/custom_emojis',
   });
-  if (!emojis) {
+
+  if (!response) {
     return;
   }
+
+  const etag = response.headers.get('ETag');
+  if (etag) {
+    log('Custom emoji data fetched successfully, storing etag %s', etag);
+    await putCacheValue('custom', etag);
+  } else {
+    log('No etag found in response for custom emoji data');
+  }
+
+  const emojis = (await response.json()) as CustomEmojiData[];
   await putCustomEmojiData({ emojis, clear: true });
   return emojis;
 }
@@ -72,9 +83,8 @@ export async function importLegacyShortcodes() {
   if (!path) {
     throw new Error('IAMCAL shortcodes path not found');
   }
-  const shortcodesData = await fetchAndCheckEtag<ShortcodesDataset>({
-    checkEtag: true,
-    etagString: 'shortcodes',
+  const shortcodesData = await fetchIfNotLoaded<ShortcodesDataset>({
+    key: 'shortcodes',
     path,
   });
   if (!shortcodesData) {
@@ -118,48 +128,64 @@ function localeToShortcodesPath(locale: Locale) {
   return path;
 }
 
-async function fetchAndCheckEtag<ResultType extends object[] | object>({
-  etagString,
+async function fetchIfNotLoaded<ResultType extends object[] | object>({
+  key: rawKey,
   path,
-  checkEtag = false,
 }: {
-  etagString: string;
+  key: string;
   path: string;
-  checkEtag?: boolean;
 }): Promise<ResultType | null> {
-  const etagName = toValidEtagName(etagString);
-  const oldEtag = checkEtag ? await loadLatestEtag(etagName) : null;
+  const key = toValidCacheKey(rawKey);
+
+  const value = await loadCacheValue(key);
+
+  if (value === path) {
+    log('data for %s already loaded, skipping fetch', key);
+    return null;
+  }
+
+  const response = await fetchAndCheckEtag({ path });
+  if (!response) {
+    return null;
+  }
+
+  log('data for %s fetched successfully, storing etag', key);
+  await putCacheValue(key, path);
+
+  return (await response.json()) as ResultType;
+}
+
+async function fetchAndCheckEtag({
+  oldEtag,
+  path,
+}: {
+  oldEtag?: string;
+  path: string;
+}) {
+  const headers = new Headers({
+    'Content-Type': 'application/json',
+  });
+  if (oldEtag) {
+    headers.set('If-None-Match', oldEtag);
+  }
 
   // Use location.origin as this script may be loaded from a CDN domain.
   const url = new URL(path, location.origin);
-
   const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      'If-None-Match': oldEtag ?? '', // Send the old ETag to check for modifications
-    },
+    headers,
   });
+
   // If not modified, return null
   if (response.status === 304) {
-    log('etag not modified for %s', etagName);
+    log('etag not modified for %s', path);
     return null;
   }
+
   if (!response.ok) {
     throw new Error(
-      `Failed to fetch emoji data for ${etagName}: ${response.statusText}`,
+      `Failed to fetch emoji data for ${path}: ${response.statusText}`,
     );
   }
 
-  const data = (await response.json()) as ResultType;
-
-  // Store the ETag for future requests
-  const etag = response.headers.get('ETag');
-  if (etag && checkEtag) {
-    log(`storing new etag for ${etagName}: ${etag}`);
-    await putLatestEtag(etag, etagName);
-  } else if (!etag) {
-    log(`no etag found in response for ${etagName}`);
-  }
-
-  return data;
+  return response;
 }

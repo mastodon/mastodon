@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { injectIntl } from '@/mastodon/components/intl';
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
 import { Account } from 'mastodon/components/account';
 

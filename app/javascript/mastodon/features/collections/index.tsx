@@ -1,177 +1,105 @@
-import { useEffect, useMemo, useCallback } from 'react';
+import { defineMessages, useIntl } from 'react-intl';
 
-import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Helmet } from '@unhead/react/helmet';
 
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
-import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
-import { openModal } from 'mastodon/actions/modal';
+import { TabLink, TabList } from '@/mastodon/components/tab_list';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
-import { Dropdown } from 'mastodon/components/dropdown_menu';
-import { Icon } from 'mastodon/components/icon';
-import ScrollableList from 'mastodon/components/scrollable_list';
-import {
-  createCollection,
-  fetchAccountCollections,
-  selectMyCollections,
-} from 'mastodon/reducers/slices/collections';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import { DisplayNameSimple } from 'mastodon/components/display_name/simple';
+import { Scrollable } from 'mastodon/components/scrollable_list/components';
+import { useAccount } from 'mastodon/hooks/useAccount';
+import { useAccountId, useCurrentAccountId } from 'mastodon/hooks/useAccountId';
+
+import { CollectionsCreatedByYou } from './overview/created_by_you';
+import { CollectionsFeaturingYou } from './overview/featuring_you';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
-  heading: { id: 'column.collections', defaultMessage: 'My collections' },
-  create: {
-    id: 'collections.create_collection',
-    defaultMessage: 'Create collection',
+  headingMe: {
+    id: 'column.your_collections',
+    defaultMessage: 'Your Collections',
   },
-  view: {
-    id: 'collections.view_collection',
-    defaultMessage: 'View collection',
+  headingOther: {
+    id: 'column.other_collections',
+    defaultMessage: "{name}'s Collections",
   },
-  delete: {
-    id: 'collections.delete_collection',
-    defaultMessage: 'Delete collection',
+  createdByYou: {
+    id: 'collections.list.created_by_you',
+    defaultMessage: 'Created by you',
   },
-  more: { id: 'status.more', defaultMessage: 'More' },
+  createdByAuthor: {
+    id: 'collections.list.created_by_author',
+    defaultMessage: 'Created by {name}',
+  },
+  featuringYou: {
+    id: 'collections.list.featuring_you',
+    defaultMessage: 'Featuring you',
+  },
 });
-
-const ListItem: React.FC<{
-  id: string;
-  name: string;
-}> = ({ id, name }) => {
-  const dispatch = useAppDispatch();
-  const intl = useIntl();
-
-  const handleDeleteClick = useCallback(() => {
-    dispatch(
-      openModal({
-        modalType: 'CONFIRM_DELETE_LIST',
-        modalProps: {
-          listId: id,
-        },
-      }),
-    );
-  }, [dispatch, id]);
-
-  const menu = useMemo(
-    () => [
-      { text: intl.formatMessage(messages.view), to: `/collections/${id}` },
-      { text: intl.formatMessage(messages.delete), action: handleDeleteClick },
-    ],
-    [intl, id, handleDeleteClick],
-  );
-
-  return (
-    <div className='lists__item'>
-      <Link to={`/collections/${id}`} className='lists__item__title'>
-        <span>{name}</span>
-      </Link>
-
-      <Dropdown
-        scrollKey='collections'
-        items={menu}
-        icon='ellipsis-h'
-        iconComponent={MoreHorizIcon}
-        title={intl.formatMessage(messages.more)}
-      />
-    </div>
-  );
-};
 
 export const Collections: React.FC<{
   multiColumn?: boolean;
 }> = ({ multiColumn }) => {
-  const dispatch = useAppDispatch();
   const intl = useIntl();
-  const me = useAppSelector((state) => state.meta.get('me') as string);
-  const { collections, status } = useAppSelector(selectMyCollections);
+  const me = useCurrentAccountId();
+  const accountId = useAccountId();
+  const account = useAccount(accountId);
+  const { path } = useRouteMatch();
 
-  useEffect(() => {
-    void dispatch(fetchAccountCollections({ accountId: me }));
-  }, [dispatch, me]);
+  const isOwnCollectionsPage = accountId === me;
 
-  const addDummyCollection = useCallback(
-    (event: React.MouseEvent) => {
-      event.preventDefault();
+  const titleMessage = isOwnCollectionsPage
+    ? messages.headingMe
+    : messages.headingOther;
 
-      void dispatch(
-        createCollection({
-          payload: {
-            name: 'Test Collection',
-            description: 'A useful test collection',
-            discoverable: true,
-            sensitive: false,
-          },
-        }),
-      );
-    },
-    [dispatch],
-  );
+  const pageTitle = intl.formatMessage(titleMessage, {
+    name: account?.get('display_name'),
+  });
+  const pageTitleHtml = intl.formatMessage(titleMessage, {
+    name: <DisplayNameSimple account={account} />,
+  });
 
-  const emptyMessage =
-    status === 'error' ? (
-      <FormattedMessage
-        id='collections.error_loading_collections'
-        defaultMessage='There was an error when trying to load your collections.'
-      />
-    ) : (
-      <>
-        <span>
-          <FormattedMessage
-            id='collections.no_collections_yet'
-            defaultMessage='No collections yet.'
-          />
-          <br />
-          <FormattedMessage
-            id='collections.create_a_collection_hint'
-            defaultMessage='Create a collection to recommend or share your favourite accounts with others.'
-          />
-        </span>
-
-        <SquigglyArrow className='empty-column-indicator__arrow' />
-      </>
-    );
+  const createdByTabMessage = isOwnCollectionsPage
+    ? messages.createdByYou
+    : messages.createdByAuthor;
 
   return (
-    <Column
-      bindToDocument={!multiColumn}
-      label={intl.formatMessage(messages.heading)}
-    >
-      <ColumnHeader
-        title={intl.formatMessage(messages.heading)}
-        icon='list-ul'
-        iconComponent={ListAltIcon}
-        multiColumn={multiColumn}
-        extraButton={
-          <Link
-            to='/collections/new'
-            className='column-header__button'
-            title={intl.formatMessage(messages.create)}
-            aria-label={intl.formatMessage(messages.create)}
-            onClick={addDummyCollection}
-          >
-            <Icon id='plus' icon={AddIcon} />
-          </Link>
-        }
-      />
+    <Column bindToDocument={!multiColumn} label={pageTitle}>
+      <ColumnHeader showBackButton multiColumn={multiColumn} />
 
-      <ScrollableList
-        scrollKey='collections'
-        emptyMessage={emptyMessage}
-        isLoading={status === 'loading'}
-        bindToDocument={!multiColumn}
-      >
-        {collections.map((item) => (
-          <ListItem key={item.id} id={item.id} name={item.name} />
-        ))}
-      </ScrollableList>
+      <Scrollable>
+        <header className={classes.header}>
+          <h1 className={classes.heading}>{pageTitleHtml}</h1>
+          <TabList plain>
+            <TabLink exact to={`/@${account?.acct}/collections`}>
+              {intl.formatMessage(createdByTabMessage, {
+                name: <DisplayNameSimple account={account} />,
+              })}
+            </TabLink>
+            {isOwnCollectionsPage && (
+              <TabLink
+                exact
+                to={`/@${account?.acct}/collections/featuring-you`}
+              >
+                {intl.formatMessage(messages.featuringYou)}
+              </TabLink>
+            )}
+          </TabList>
+        </header>
+        <Switch>
+          <Route exact path={path} component={CollectionsCreatedByYou} />
+          <Route
+            exact
+            path={`${path}/featuring-you`}
+            component={CollectionsFeaturingYou}
+          />
+        </Switch>
+      </Scrollable>
 
       <Helmet>
-        <title>{intl.formatMessage(messages.heading)}</title>
+        <title>{pageTitle}</title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>

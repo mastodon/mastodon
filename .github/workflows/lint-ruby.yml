@@ -10,7 +10,6 @@ on:
       - '.rubocop*.yml'
       - '.ruby-version'
       - 'bin/rubocop'
-      - 'config/brakeman.ignore'
       - '**/*.rb'
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
@@ -21,7 +20,6 @@ on:
       - '.rubocop*.yml'
       - '.ruby-version'
       - 'bin/rubocop'
-      - 'config/brakeman.ignore'
       - '**/*.rb'
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
@@ -35,18 +33,15 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1
         with:
           bundler-cache: true
 
-      - name: Set-up RuboCop Problem Matcher
-        uses: r7kamura/rubocop-problem-matchers-action@v1
-
       - name: Run rubocop
-        run: bin/rubocop
+        run: bin/rubocop --format github
 
       - name: Run brakeman
         if: always() # Run both checks, even if the first failed

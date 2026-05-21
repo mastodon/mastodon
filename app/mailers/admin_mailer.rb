@@ -11,30 +11,26 @@ class AdminMailer < ApplicationMailer
 
   after_action :set_important_headers!, only: :new_critical_software_updates
 
+  around_action :set_locale
+
   default to: -> { @me.user_email }
 
   def new_report(report)
     @report = report
 
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(instance: @instance, id: @report.id)
-    end
+    mail subject: default_i18n_subject(instance: @instance, id: @report.id)
   end
 
   def new_appeal(appeal)
     @appeal = appeal
 
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(instance: @instance, username: @appeal.account.username)
-    end
+    mail subject: default_i18n_subject(instance: @instance, username: @appeal.account.username)
   end
 
   def new_pending_account(user)
     @account = user.account
 
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(instance: @instance, username: @account.username)
-    end
+    mail subject: default_i18n_subject(instance: @instance, username: @account.username)
   end
 
   def new_trends(links, tags, statuses)
@@ -42,31 +38,23 @@ class AdminMailer < ApplicationMailer
     @tags                   = tags
     @statuses               = statuses
 
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(instance: @instance)
-    end
+    mail subject: default_i18n_subject(instance: @instance)
   end
 
   def new_software_updates
     @software_updates = SoftwareUpdate.by_version
 
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(instance: @instance)
-    end
+    mail subject: default_i18n_subject(instance: @instance)
   end
 
   def new_critical_software_updates
     @software_updates = SoftwareUpdate.urgent.by_version
 
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(instance: @instance)
-    end
+    mail subject: default_i18n_subject(instance: @instance)
   end
 
   def auto_close_registrations
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(instance: @instance)
-    end
+    mail subject: default_i18n_subject(instance: @instance)
   end
 
   private
@@ -77,6 +65,10 @@ class AdminMailer < ApplicationMailer
 
   def set_instance
     @instance = Rails.configuration.x.local_domain
+  end
+
+  def set_locale(&block)
+    locale_for_account(@me, &block)
   end
 
   def set_important_headers!

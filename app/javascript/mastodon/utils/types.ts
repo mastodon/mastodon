@@ -22,3 +22,10 @@ export type OmitValueType<T, V> = {
 };
 
 export type AnyFunction = (...args: never) => unknown;
+
+export type OmitUnion<TUnion, TBase> = TBase & Omit<TUnion, keyof TBase>;
+
+export type SnakeToCamelCase<S extends string> =
+  S extends `${infer T}_${infer U}`
+    ? `${T}${Capitalize<SnakeToCamelCase<U>>}`
+    : S;

@@ -10,7 +10,6 @@ io:
     followers:
       one: Sequanto
       other: Sequanti
-    following: Sequati
     instance_actor_flash: Ca konto esas virtuala aganto quo uzesas por reprezentar la servilo e ne irga individuala uzanto. Ol uzesas por federskopo e ne debas restriktesar.
     last_active: lasta aktiva tempo
     link_verified_on: Proprieteso di ca ligilo kontrolesis ye %{date}
@@ -661,7 +660,6 @@ io:
       resolved_msg: Raporto sucesoze rezolvesis!
       skip_to_actions: Saltez a agi
       status: Stando
-      statuses: Raportizita kontenajo
       statuses_description_html: Ofensanta kontenajo citesos en komuniko kun raportizita konto
       summary:
         action_preambles:
@@ -1106,7 +1104,6 @@ io:
   application_mailer:
     notification_preferences: Chanjar retpostopreferaji
     salutation: "%{name},"
-    settings: 'Chanjar retpostopreferaji: %{link}'
     unsubscribe: Desabonez
     view: 'Vidar:'
     view_profile: Videz profilo
@@ -1278,8 +1275,6 @@ io:
       your_appeal_pending: Vu sendis apelo
       your_appeal_rejected: Vua apelo refuzesis
   edit_profile:
-    basic_information: Fundamentala informo
-    hint_html: "<strong>Personesigez quon personi vidas sur vua publika profilo e apud vua afishi.</strong>."
     other: Altra
   errors:
     '400': Demando quon vu sendis esas nevalida o malstrukturala.
@@ -1314,10 +1309,8 @@ io:
     mutes: Vu silencigesas
     storage: Audvidajkonservo
   featured_tags:
-    add_new: Adjuntar novo
     errors:
       limit: Vu ja pinglizis la maxima nombro de hastagi
-    hint_html: "<strong>Quo esas estelita hashtagi?</strong> Ol montresas eminente che vua publika profilo e povigas personi vidar vua publika posti partikulare kun ta hashtagi. Oli esas bona utensilo por jeretar kreiva agaji e longa projetaji."
   filters:
     contexts:
       account: Profili
@@ -1463,11 +1456,6 @@ io:
     failed_sign_in_html: Falita enirprob per %{method} de %{ip} (%{browser})
     successful_sign_in_html: Sucesoza eniro per %{method} de %{ip} (%{browser})
     title: Yurizeshistorio
-  mail_subscriptions:
-    unsubscribe:
-      action: Yes, desabonez
-      complete: Desabonita
-      title: Desabonez
   media_attachments:
     validations:
       images_and_video: Ne povas addonar video ad afisho qua ja enhavas imaji
@@ -1779,10 +1767,6 @@ io:
       too_late: Ol esas tro tarda ye apelar ca strekizo
   tags:
     does_not_match_previous_name: ne parigesas a antea nomo
-  themes:
-    contrast: Mastodon (Alta kontrasteso)
-    default: Mastodon (Obskura)
-    mastodon-light: Mastodon (Brila)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"

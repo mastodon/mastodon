@@ -10,9 +10,11 @@ it:
     errors:
       cannot_be_added_to_collections: Questo account non può essere aggiunto alle collezioni.
     followers:
-      one: Seguace
-      other: Seguaci
-    following: Seguiti
+      one: Follower
+      other: Follower
+    following:
+      one: Stai seguendo
+      other: Stai seguendo
     instance_actor_flash: Questo profilo è un attore virtuale, utilizzato per rappresentare il server stesso e non un singolo utente. È utilizzato per scopi federativi e non dovrebbe esser sospeso.
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
@@ -54,6 +56,7 @@ it:
         label: Cambia il ruolo
         no_role: Nessun ruolo
         title: Cambia il ruolo per %{username}
+      collections: Collezioni
       confirm: Conferma
       confirmed: Confermato
       confirming: Confermando
@@ -75,14 +78,14 @@ it:
       enable_sign_in_token_auth: Abilitare l'autenticazione del token e-mail
       enabled: Abilitato
       enabled_msg: Il profilo di %{username} è stato scongelato correttamente
-      followers: Seguaci
+      followers: Follower
       follows: Seguiti
       header: Intestazione
       inbox_url: URL casella
       invite_request_text: Motivi d'iscrizione
       invited_by: Invitato da
       ip: IP
-      joined: Iscritto il
+      joined: Account iscritto il
       location:
         all: Tutto
         local: Locale
@@ -264,6 +267,7 @@ it:
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'e-mail con l'hash %{target}"
+        destroy_collection_html: "%{name} ha rimosso la collezione di %{target}"
         destroy_custom_emoji_html: "%{name} ha eliminato l'emoji %{target}"
         destroy_domain_allow_html: "%{name} non ha consentito la federazione con il dominio %{target}"
         destroy_domain_block_html: "%{name} ha sbloccato il dominio %{target}"
@@ -303,6 +307,7 @@ it:
         unsilence_account_html: "%{name} ha riattivato l'account di %{target}"
         unsuspend_account_html: "%{name} ha annullato la sospensione dell'account di %{target}"
         update_announcement_html: "%{name} ha aggiornato l'annuncio %{target}"
+        update_collection_html: "%{name} ha aggiornato la collezione di %{target}"
         update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
         update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
         update_ip_block_html: "%{name} ha cambiato la regola per l'IP %{target}"
@@ -338,6 +343,23 @@ it:
       unpublish: Annulla la pubblicazione
       unpublished_msg: Annuncio ritirato!
       updated_msg: Annuncio aggiornato!
+    collections:
+      accounts: Account
+      back_to_account: Torna alla pagina dell'account
+      back_to_report: Torna alla pagina di segnalazione
+      batch:
+        add_to_report: 'Aggiungi alla segnalazione #%{id}'
+        remove_from_report: Rimuovi dalla segnalazione
+        report: Segnala
+      collection_title: Collezione di %{name}
+      contents: Contenuti
+      no_collection_selected: Nessuna collezione è stata cambiata in quanto nessuna è stata selezionata
+      number_of_accounts:
+        one: 1 account
+        other: "%{count} account"
+      open: Apri
+      title: Collezioni dell'account - @%{name}
+      view_publicly: Visualizza pubblicamente
     critical_update_pending: Aggiornamento critico in sospeso
     custom_emojis:
       assign_category: Assegna categoria
@@ -470,9 +492,76 @@ it:
         title: Blocca nuovo dominio e-mail
       no_email_domain_block_selected: Nessun blocco di dominio e-mail è stato modificato poiché nessuno è stato selezionato
       not_permitted: Non consentito
+      reset: Reset
       resolved_dns_records_hint_html: Il nome di dominio si risolve nei seguenti domini MX, che sono in ultima analisi responsabili dell'accettazione delle e-mail. Il blocco di un dominio MX bloccherà le registrazioni da qualsiasi indirizzo e-mail che utilizzi lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
+      search: Cerca
       title: Domini e-mail bloccati
+    email_subscriptions:
+      accounts:
+        account: Account
+        active: Attivo
+        empty:
+          hint: Non ci sono ancora account con iscritti.
+          no_lists_yet: Non ci sono ancora liste
+        inactive: Inattivo
+        last_email: Ultima email
+        lead: Di seguito verranno visualizzati gli account che hanno attivato la funzionalità e che hanno degli iscritti.
+        status: Stato
+        subscribers: Iscritti
+        title: Mailing list
+      additional_footer_texts:
+        show:
+          title: Testo aggiuntivo a piè di pagina
+      compliance_settings:
+        additional_footer_text:
+          action: Gestisci
+          hint: Testo opzionale che compare solo nel piè di pagina delle email della newsletter
+          title: Testo aggiuntivo a piè di pagina
+        lead: Le newsletter via email possono essere considerate email di marketing, a seconda delle giurisdizioni in cui operi.
+        privacy_policy:
+          action: Gestisci
+          hint: Questa informativa è collegata nel piè di pagina di ogni email
+          title: Informativa sulla privacy
+        title: Impostazioni di conformità
+      danger_zone:
+        disable_feature:
+          action: Disabilita
+          hint: Disattiva la funzione per tutti gli account
+          title: Disabilita la funzionalità
+        erase_all_data:
+          action: Cancella i dati
+          hint: Elimina in modo permanente tutti gli indirizzi email in tutte le mailing list
+          title: Cancella tutti i dati
+        title: Zona pericolosa
+      disabled_msg: Le iscrizioni via email sono state disabilitate con successo.
+      index:
+        disabled:
+          cannot_be_enabled: Il tuo provider tecnico non ha abilitato questa funzione per il tuo server.
+          description: Questa funzione consente ad account specifici di aggiungere un widget ai propri profili, permettendo così ai visitatori sprovvisti di un account Mastodon di ricevere i loro post via email.
+          get_started: Inizia
+        lead: Consenti ai visitatori di ricevere post via email da account dedicati su questo server.
+        title: Newsletter via email
+      purged_msg: Tutti i dati relativi alle iscrizioni via email verranno cancellati.
+      roles:
+        accounts: Account
+        edit_role: Modifica il ruolo
+        empty:
+          hint: Nessuno ha il permesso di usare questa funzione.
+          no_roles_added: Nessun ruolo aggiunto
+        lead: Gli account con i seguenti ruoli possono abilitare questa funzione sui loro profili.
+        manage_roles: Gestisci i ruoli
+        role_name: Nome del ruolo
+        title: Ruoli
+      setups:
+        show:
+          enable_feature: Abilita la funzione
+          important_information: Informazioni importanti
+          list:
+            1_permission_explanation: Quando questa funzione è abilitata, gli account con i permessi designati possono aggiungere un modulo di raccolta indirizzi email ai loro profili.
+            2_feature_explanation: Quando i visitatori si registrano sulla pagina del profilo di un account e confermano l'iscrizione, inizieranno a ricevere aggiornamenti via email quando l'account crea nuovi post pubblici.
+            3_privacy_policy_warning: Gli amministratori del server avranno accesso alle informazioni di identificazione personale (indirizzi email) raccolte. Pertanto, l'informativa sulla privacy e i termini di servizio per il server devono essere aggiornati prima di utilizzare questa funzione.
+            4_cost_warning: L'invio di email potrebbe comportare dei costi a seconda della configurazione del servizio di hosting. Prima di abilitare questa funzione, è consigliabile parlarne con il proprio provider di hosting, poiché potrebbe aumentare notevolmente il numero di email inviate dal server.
     export_domain_allows:
       new:
         title: Importare i permessi di dominio
@@ -519,7 +608,7 @@ it:
         title: Fornitori di Servizi Ausiliari per il Fediverso
       title: FASP
     follow_recommendations:
-      description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
+      description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di follower locali per una data lingua."
       language: Per lingua
       status: Stato
       suppress: Nascondi consigli su chi seguire
@@ -561,8 +650,8 @@ it:
       dashboard:
         instance_accounts_dimension: Profili più seguiti
         instance_accounts_measure: profili memorizzati
-        instance_followers_measure: i nostri seguaci lì
-        instance_follows_measure: i loro seguaci qui
+        instance_followers_measure: i nostri follower lì
+        instance_follows_measure: i loro follower qui
         instance_languages_dimension: Lingue preferite
         instance_media_attachments_measure: allegati multimediali memorizzati
         instance_reports_measure: segnalazioni su di loro
@@ -661,12 +750,12 @@ it:
         mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
-        silence_description_html: L'account sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato. Chiude tutte le segnalazioni contro questo account.
+        silence_description_html: L'account sarà visibile solo a coloro che già lo seguono o lo cercano manualmente, limitandone fortemente la sua visibilità. Può sempre essere annullato. Chiude tutte le segnalazioni contro questo account.
         suspend_description_html: L'account e tutti i suoi contenuti saranno inaccessibili ed eventualmente cancellati, e interagire con esso sarà impossibile. Reversibile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
       actions_description_html: Decidi quale azione intraprendere per risolvere questa segnalazione. Se intraprendi un'azione punitiva nei confronti dell'account segnalato, gli verrà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
       actions_no_posts: Questa segnalazione non ha alcun post associato da eliminare
-      add_to_report: Aggiungi altro al report
+      add_to_report: Aggiungi altro alla segnalazione
       already_suspended_badges:
         local: Già sospeso su questo server
         remote: Già sospeso sul loro server
@@ -677,6 +766,7 @@ it:
       cancel: Annulla
       category: Categoria
       category_description_html: Il motivo per cui questo account e/o contenuto è stato segnalato sarà citato nella comunicazione con l'account segnalato
+      collections: Collezioni (%{count})
       comment:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
@@ -706,12 +796,13 @@ it:
       report: 'Rapporto #%{id}'
       reported_account: Account segnalato
       reported_by: Inviato da
+      reported_content: Contenuto segnalato
       reported_with_application: Segnalato con applicazione
       resolved: Risolto
       resolved_msg: Rapporto risolto!
       skip_to_actions: Passa alle azioni
       status: Stato
-      statuses: Contenuto segnalato
+      statuses: Post (%{count})
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
       summary:
         action_preambles:
@@ -722,7 +813,7 @@ it:
         actions:
           delete_html: Rimuovi i post offensivi
           mark_as_sensitive_html: Contrassegna i file multimediali dei post offensivi come sensibili
-          silence_html: Limita severamente la portata di <strong>@%{acct}</strong> rendendo il suo profilo e il suo contenuto visibili solo a persone che già li seguono o che lo guardano manualmente
+          silence_html: Limita fortemente la visibilità di <strong>@%{acct}</strong> rendendo il suo profilo e i suoi contenuti visibili solo alle persone che già lo seguono o che cercano manualmente il suo profilo
           suspend_html: Sospendere <strong>@%{acct}</strong>, rendendo il suo profilo e i suoi contenuti inaccessibili e impossibilitandone l'interazione
         close_report: 'Contrassegna la segnalazione #%{id} come risolta'
         close_reports_html: Contrassegna <strong>tutte</strong> le segnalazioni contro <strong>@%{acct}</strong> come risolte
@@ -746,6 +837,7 @@ it:
       categories:
         administration: Amministrazione
         devops: DevOps
+        email: Email
         invites: Inviti
         moderation: Moderazione
         special: Speciale
@@ -762,6 +854,8 @@ it:
         administrator_description: Gli utenti con questo permesso saranno esentati da ogni permesso
         delete_user_data: Cancella dati utente
         delete_user_data_description: Consente agli utenti di eliminare subito i dati degli altri utenti
+        invite_bypass_approval: Invita utenti senza revisione
+        invite_bypass_approval_description: Permette alle persone invitate al server da questi utenti, di aggirare l'approvazione della moderazione
         invite_users: Invita Utenti
         invite_users_description: Consente agli utenti di invitare nuove persone su questo server
         manage_announcements: Gestisci Annunci
@@ -772,6 +866,8 @@ it:
         manage_blocks_description: Consente agli utenti di bloccare i provider di posta elettronica e gli indirizzi IP
         manage_custom_emojis: Gestisci emoji personalizzate
         manage_custom_emojis_description: Consente agli utenti di gestire emoji personalizzate sul server
+        manage_email_subscriptions: Gestisci le iscrizioni via email
+        manage_email_subscriptions_description: Consenti agli utenti con questa autorizzazione di abilitare la funzione di newsletter via email per il loro account
         manage_federation: Gestisci Federazione
         manage_federation_description: Consente agli utenti di bloccare o consentire la federazione con altri domini e controllare la consegnabilità
         manage_invites: Gestisci Inviti
@@ -800,6 +896,7 @@ it:
         view_devops_description: Consente agli utenti di accedere alle dashboard Sidekiq e pgHero
         view_feeds: Visualizza feed in diretta e feed di argomenti
         view_feeds_description: Consente agli utenti di accedere ai feed in diretta e ai feed di argomenti indipendentemente dalle impostazioni del server
+      requires_2fa: Richiede l'autenticazione a due fattori
       title: Ruoli
     rules:
       add_new: Aggiungi regola
@@ -821,7 +918,7 @@ it:
         rules_hint: C'è un'area dedicata per le regole che i tuoi utenti dovrebbero rispettare.
         title: Info
       allow_referrer_origin:
-        desc: Quando i tuoi utenti cliccano su link a siti esterni, il loro browser potrebbe inviare l'indirizzo del tuo server Mastodon come referente. Disattiva questa opzione se ciò identificherebbe in modo univoco i tuoi utenti, ad esempio se si tratta di un server Mastodon personale.
+        desc: Quando i tuoi utenti cliccano su link a siti esterni, il loro browser potrebbe inviare l'indirizzo del tuo server Mastodon come referente. Disattiva questa opzione se ciò identificherebbe in modo univoco i tuoi utenti, per esempio, se si tratta di un server Mastodon personale.
         title: Consenti ai siti esterni di vedere il tuo server Mastodon come fonte di traffico
       appearance:
         preamble: Personalizza l'interfaccia web di Mastodon.
@@ -875,7 +972,7 @@ it:
         warning_hint: Ti consigliamo di utilizzare “Approvazione richiesta per la registrazione” a meno che tu non sia sicuro che il tuo team di moderazione possa gestire lo spam e le registrazioni dannose in modo tempestivo.
       security:
         authorized_fetch: Richiede l'autenticazione dai server federati
-        authorized_fetch_hint: La richiesta di autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello di utente che a livello di server. Tuttavia, ciò comporta una riduzione delle prestazioni, riduce la portata delle tue risposte e potrebbe introdurre problemi di compatibilità con alcuni servizi federati. Inoltre, ciò non impedirà agli attori dedicati di recuperare i tuoi post pubblici e account.
+        authorized_fetch_hint: Richiedere l'autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello utente che a livello server. Tuttavia, ciò comporta un calo delle prestazioni, riduce la visibilità delle tue risposte e potrebbe causare problemi di compatibilità con alcuni servizi federati. Inoltre, questo non impedirà ad attori dedicati di accedere ai tuoi post e account pubblici.
         authorized_fetch_overridden_hint: Al momento non puoi modificare questa impostazione perché è sostituita da una variabile di ambiente.
         federation_authentication: Applicazione dell'autenticazione della federazione
       title: Impostazioni del server
@@ -898,7 +995,7 @@ it:
       account: Autore
       application: Applicazione
       back_to_account: Torna alla pagina dell'account
-      back_to_report: Torna alla pagina del report
+      back_to_report: Torna alla pagina di segnalazione
       batch:
         add_to_report: 'Aggiungi alla segnalazione #%{id}'
         remove_from_report: Rimuovi dal report
@@ -1196,12 +1293,12 @@ it:
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
     deleted_msg: L'alias è stato eliminato. Lo spostamento da quell'account a questo non sarà più possibile.
     empty: Non hai alias.
-    hint_html: Se vuoi trasferirti da un altro account a questo, qui puoi creare un alias, che è necessario prima di poter spostare i seguaci dal vecchio account a questo. Questa azione è <strong>innocua e reversibile</strong>. <strong>La migrazione dell'account è avviata dal vecchio account</strong>.
+    hint_html: Se vuoi trasferirti da un altro account a questo, qui puoi creare un alias, che è necessario prima di poter spostare i follower dal vecchio account a questo. Questa azione è <strong>innocua e reversibile</strong>. <strong>La migrazione dell'account è avviata dal vecchio account</strong>.
     remove: Scollega alias
   appearance:
     advanced_settings: Impostazioni avanzate
     animations_and_accessibility: Animazioni e accessibilità
-    boosting_preferences: Preferenze di potenziamento
+    boosting_preferences: Preferenze di condivisione
     boosting_preferences_info_html: "<strong>Suggerimento:</strong> Indipendentemente dalle impostazioni, <kbd>Maiusc</kbd> + <kbd>Fare clic su</kbd> sull'icona Boost %{icon} aumenterà immediatamente."
     discovery: Scoperta
     localization:
@@ -1212,7 +1309,6 @@ it:
   application_mailer:
     notification_preferences: Modifica le preferenze e-mail
     salutation: "%{name},"
-    settings: 'Modifica le preferenze e-mail: %{link}'
     unsubscribe: Disiscriviti
     view: 'Guarda:'
     view_profile: Mostra profilo
@@ -1262,6 +1358,7 @@ it:
     progress:
       confirm: Conferma l'e-mail
       details: I tuoi dettagli
+      list: Stato della registrazione
       review: La nostra revisione
       rules: Accetta le regole
     providers:
@@ -1277,6 +1374,7 @@ it:
       invited_by: 'Puoi unirti a %{domain} grazie all''invito che hai ricevuto da:'
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
       preamble_invited: Prima di procedere, si prega di considerare le regole di base stabilite dai moderatori di %{domain}.
+      read_more: Scopri di più
       title: Alcune regole di base.
       title_invited: Sei stato/a invitato/a.
     security: Credenziali
@@ -1361,7 +1459,7 @@ it:
       email_contact_html: Se ancora non arriva, puoi inviare un'e-mail a <a href="mailto:%{email}">%{email}</a> per assistenza
       email_reconfirmation_html: Se non ricevi l'e-mail di conferma, puoi <a href="%{path}">richiederla nuovamente</a>
       irreversible: Non potrai ripristinare o riattivare il tuo account
-      more_details_html: Per maggiori dettagli, vedi la <a href="%{terms_path}">politica di privacy</a>.
+      more_details_html: Per maggiori dettagli, vedi l'<a href="%{terms_path}">informativa sulla privacy</a>.
       username_available: Il tuo nome utente sarà nuovamente disponibile
       username_unavailable: Il tuo nome utente rimarrà non disponibile
   disputes:
@@ -1395,9 +1493,42 @@ it:
       your_appeal_pending: Hai presentato un appello
       your_appeal_rejected: Il tuo appello è stato respinto
   edit_profile:
-    basic_information: Informazioni di base
-    hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
     other: Altro
+    redesign_body: Ora è possibile modificare il profilo direttamente dalla pagina del profilo stesso.
+    redesign_button: Vai lì
+    redesign_title: È disponibile una nuova esperienza di modifica del profilo
+  email_subscription_mailer:
+    confirmation:
+      action: Conferma l'indirizzo email
+      instructions_to_confirm: Conferma di voler ricevere email da %{name} (@%{acct}) quando pubblicano nuovi post.
+      instructions_to_ignore: Se non sai perché hai ricevuto questa email, puoi cancellarla. L'iscrizione non sarà confermata se non clicchi sul link qui sopra.
+      subject: Conferma il tuo indirizzo email
+      title: Ricevere aggiornamenti via email da %{name}?
+    notification:
+      create_account: Crea un account Mastodon
+      footer:
+        privacy_html: Le email vengono inviate da %{domain}, un server gestito da Mastodon. Per comprendere come questo server elabora i tuoi dati personali, consulta l'<a href="%{privacy_policy_path}">Informativa sulla privacy</a>.
+        reason_for_email_html: Ricevi questa email perché hai scelto di ottenere aggiornamenti via email da %{name}. Non vuoi più ricevere queste email? <a href="%{unsubscribe_path}">Disiscriviti</a>
+      interact_with_this_post:
+        one: Interagisci con questo post e scopri altri contenuti simili.
+        other: Interagisci con questi post e scopri di più.
+      subject:
+        plural: Nuovi post da %{name}
+        singular: 'Un nuovo post: "%{excerpt}"'
+      title:
+        plural: Nuovi post da %{name}
+        singular: 'Un nuovo post: "%{excerpt}"'
+  email_subscriptions:
+    active: Attiva
+    confirmations:
+      show:
+        changed_your_mind: Hai cambiato idea?
+        success_html: Ora inizierai a ricevere email quando %{name} pubblicherà nuovi post. Aggiungi %{sender} ai tuoi contatti in modo che questi post non finiscano nella cartella Spam.
+        title: Ti sei registrato/a
+        unsubscribe: Disiscriviti
+    inactive: Inattiva
+    status: Stato
+    subscribers: Iscritti
   emoji_styles:
     auto: Automatico
     native: Nativo
@@ -1436,10 +1567,8 @@ it:
     mutes: Stai silenziando
     storage: Archiviazione media
   featured_tags:
-    add_new: Aggiungi nuovo
     errors:
       limit: Hai già messo in evidenza il numero massimo di hashtag
-    hint_html: "<strong>Cosa sono gli hashtag in evidenza?</strong> Sono visualizzati in evidenza sul tuo profilo pubblico e permettono alle persone di visualizzare i tuoi post pubblici marcati con questi hashtag. Sono un grande strumento per tenere traccia di opere creative o progetti a lungo termine."
   filters:
     contexts:
       account: Profili
@@ -1632,21 +1761,6 @@ it:
     failed_sign_in_html: Tentativo di accesso fallito con %{method} da %{ip} (%{browser})
     successful_sign_in_html: Accesso riuscito con %{method} da %{ip} (%{browser})
     title: Cronologia delle autenticazioni
-  mail_subscriptions:
-    unsubscribe:
-      action: Sì, annulla l'iscrizione
-      complete: Iscrizione annullata
-      confirmation_html: Si è sicuri di voler annullare l'iscrizione per non ricevere %{type} per Mastodon su %{domain} sulla tua e-mail %{email}? Puoi sempre reiscriverti dalle tue <a href="%{settings_path}">impostazioni di notifica e-mail</a>.
-      emails:
-        notification_emails:
-          favourite: e-mail di notifica preferite
-          follow: segui le e-mail di notifica
-          follow_request: segui le e-mail di richiesta
-          mention: menziona le e-mail di notifica
-          reblog: e-mail di notifica per le condivisioni
-      resubscribe_html: Se hai annullato l'iscrizione per errore, puoi reiscriverti tramite le <a href="%{settings_path}">impostazioni di notifica e-mail</a>.
-      success_html: Non riceverai più %{type} per Mastodon su %{domain} al tuo indirizzo e-mail %{email}.
-      title: Disiscriviti
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
@@ -1656,7 +1770,7 @@ it:
   migrations:
     acct: utente@dominio del nuovo account
     cancel: Annulla ridirezione
-    cancel_explanation: Se annulli il reindirizzamento sarà riattivato il tuo account attuale, ma i seguaci che sono stati spostati all'altro account non saranno riportati indietro.
+    cancel_explanation: Se annulli il reindirizzamento sarà riattivato il tuo account attuale, ma i follower che sono stati spostati all'altro account non saranno riportati indietro.
     cancelled_msg: Reindirizzamento annullato.
     errors:
       already_moved: è lo stesso account su cui ti sei già trasferito
@@ -1664,14 +1778,14 @@ it:
       move_to_self: non può essere l'account attuale
       not_found: non trovato
       on_cooldown: Ti trovi nel periodo di pausa tra un trasferimento e l'altro
-    followers_count: Seguaci al momento dello spostamento
+    followers_count: Follower al momento dello spostamento
     incoming_migrations: In arrivo da un altro account
     incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
     moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
     not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
     on_cooldown: Hai recentemente trasferito il tuo account. Questa funzione sarà nuovamente disponibile tra %{count} giorni.
     past_migrations: Trasferimenti passati
-    proceed_with_move: Sposta seguaci
+    proceed_with_move: Sposta i follower
     redirected_msg: Il tuo account sta reindirizzando a %{acct}.
     redirecting_to: Il tuo account sta reindirizzando a %{acct}.
     set_redirect: Imposta reindirizzamento
@@ -1692,6 +1806,27 @@ it:
     copy_account_note_text: 'Questo utente si è spostato da %{acct}, ecco le tue note precedenti su di loro:'
   navigation:
     toggle_menu: Cambia menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} ti ha aggiunto/a a una collezione"
+    admin_report:
+      title_html: "%{name} ha segnalato %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} e un altro si sono iscritti"
+        other: "%{name} e altri %{count} si sono iscritti"
+      title_html: "%{name} si è iscritto/a"
+    collection_update:
+      title_html: "%{name} ha aggiornato una collezione in cui sei presente"
+    generic:
+      sign_in: Accedi alla web app Mastodon
+      summary_html: Stai utilizzando un'app che non supporta la versione più recente di Mastodon. %{link} per la piena funzionalità.
+    moderation_warning:
+      summary_html: Stai utilizzando un'app che non supporta la versione più recente di Mastodon. %{link}.
+      title: Hai ricevuto un avviso di moderazione.
+    severed_relationships:
+      summary_html: Un amministratore/trice da %{from} ha sospeso %{target}, il che significa che non puoi più ricevere aggiornamenti o interagire con esso. Fai clic su %{link} per recuperare un elenco delle relazioni perse.
+      title: Connessioni perse con %{name}
   notification_mailer:
     admin:
       report:
@@ -1705,11 +1840,11 @@ it:
     follow:
       body: "%{name} ti sta seguendo!"
       subject: "%{name} ti sta seguendo"
-      title: Nuovo seguace
+      title: Nuovo follower
     follow_request:
       action: Gestisci richieste di essere seguito
       body: "%{name} ha chiesto di seguirti"
-      subject: 'Seguace in attesa: %{name}'
+      subject: 'Follower in attesa: %{name}'
       title: Nuova richiesta di essere seguito
     mention:
       action: Rispondi
@@ -1727,7 +1862,7 @@ it:
     quoted_update:
       subject: "%{name} ha modificato un post che hai citato"
     reblog:
-      body: 'Il tuo status è stato condiviso da %{name}:'
+      body: 'Il tuo post è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
     severed_relationships:
@@ -1784,16 +1919,18 @@ it:
     posting_defaults: Predefinite di pubblicazione
     public_timelines: Timeline pubbliche
   privacy:
+    email_subscriptions: Invia i post via email
+    email_subscriptions_hint_html: Aggiungi al tuo profilo un modulo di iscrizione via email visibile agli utenti non autenticati. Quando i visitatori inseriscono il loro indirizzo email e acconsentono all'iscrizione, Mastodon invierà loro aggiornamenti via email relativi ai tuoi post pubblici.
     hint_html: "<strong>Personalizza il modo in cui vuoi che il tuo profilo e i tuoi post vengano trovati.</strong> Una varietà di funzionalità in Mastodon possono aiutarti a raggiungere un pubblico più ampio se abilitato. Prenditi un momento per rivedere queste impostazioni per assicurarti che si adattino al tuo caso d'uso."
     privacy: Privacy
     privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
-    reach: Copertura
-    reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi seguaci o avere un controllo granulare su ciascuno di essi?
+    reach: Visibilità
+    reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi follower o avere un controllo granulare su ciascuno di essi?
     search: Cerca
     search_hint_html: Controlla come vuoi essere trovato. Vuoi che le persone ti trovino in base a ciò che hai postato pubblicamente? Vuoi che le persone al di fuori di Mastodon trovino il tuo profilo durante la ricerca sul web? Si prega di notare che l'esclusione totale da tutti i motori di ricerca non può essere garantita per le informazioni pubbliche.
-    title: Privacy e copertura
+    title: Privacy e visibilità
   privacy_policy:
-    title: Politica sulla privacy
+    title: Informativa sulla privacy
   reactions:
     errors:
       limit_reached: Raggiunto il limite di reazioni diverse
@@ -1808,8 +1945,8 @@ it:
     confirm_remove_selected_follows: Sei sicuro di voler rimuovere i follow selezionati?
     dormant: Dormiente
     follow_failure: Impossibile seguire alcuni degli account selezionati.
-    follow_selected_followers: Segui i seguaci selezionati
-    followers: Seguaci
+    follow_selected_followers: Segui i follower selezionati
+    followers: Follower
     following: Seguiti
     invited: Invitato
     last_active: Ultima volta attivo
@@ -1818,8 +1955,8 @@ it:
     mutual: Reciproco
     primary: Principale
     relationship: Relazione
-    remove_selected_domains: Rimuovi tutti i seguaci dai domini selezionati
-    remove_selected_followers: Rimuovi i seguaci selezionati
+    remove_selected_domains: Rimuovi tutti i follower dai domini selezionati
+    remove_selected_followers: Rimuovi i follower selezionati
     remove_selected_follows: Smetti di seguire gli utenti selezionati
     status: Stato dell'account
   remote_follow:
@@ -1903,7 +2040,7 @@ it:
     notifications: Notifiche e-mail
     preferences: Preferenze
     profile: Profilo
-    relationships: Follows e followers
+    relationships: Seguiti e follower
     severed_relationships: Relazioni interrotte
     statuses_cleanup: Cancellazione automatica dei post
     strikes: Sanzioni di moderazione
@@ -1915,9 +2052,9 @@ it:
       account_suspension: Sospensione dell'account (%{target_name})
       domain_block: Sospensione del server (%{target_name})
       user_domain_block: Hai bloccato %{target_name}
-    lost_followers: Seguaci persi
+    lost_followers: Follower persi
     lost_follows: Account seguiti persi
-    preamble: Potresti perdere account seguiti e seguaci quando blocchi un dominio o quando i tuoi moderatori decidono di sospendere un server remoto. Quando ciò accadrà, potrai scaricare liste di relazioni interrotte, da consultare ed eventualmente importare su un altro server.
+    preamble: Potresti perdere account seguiti e follower quando blocchi un dominio o quando i tuoi moderatori decidono di sospendere un server remoto. Quando ciò accadrà, potrai scaricare liste di relazioni interrotte, da consultare ed eventualmente importare su un altro server.
     purged: Le informazioni su questo server sono state eliminate dagli amministratori del tuo server.
     type: Evento
   statuses:
@@ -1957,25 +2094,25 @@ it:
       pending_approval: Post in attesa
       revoked: Post rimosso dall'autore
     quote_policies:
-      followers: Solo i seguaci
+      followers: Solo i follower
       nobody: Solo io
       public: Chiunque
     quote_post_author: Citato un post di %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menzione privata
-      private: Solo i seguaci
+      private: Solo i follower
       public: Pubblico
       public_long: Chiunque dentro e fuori Mastodon
       unlisted: Pubblico silenzioso
       unlisted_long: Nascosto dai risultati di ricerca di Mastodon, dalle tendenze e dalle timeline pubbliche
   statuses_cleanup:
     enabled: Cancella automaticamente i vecchi post
-    enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
+    enabled_hint: Cancella automaticamente i tuoi post una volta raggiunta una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
     exceptions: Eccezioni
     explanation: L'eliminazione automatica viene eseguita con bassa priorità. Potrebbe verificarsi un ritardo tra il raggiungimento della soglia di età e la rimozione.
     ignore_favs: Ignora preferiti
-    ignore_reblogs: Ignora condivisioni
+    ignore_reblogs: Ignora le condivisioni
     interaction_exceptions: Eccezioni basate sulle interazioni
     interaction_exceptions_explanation: I post che superano temporaneamente la soglia dei preferiti o delle condivisioni potrebbero essere conservati anche se in seguito vengono diminuiti.
     keep_direct: Conserva messaggi diretti
@@ -2002,7 +2139,7 @@ it:
     min_age_label: Soglia di età
     min_favs: Conserva i post preferiti più di
     min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
-    min_reblogs: Conserva i post condivisi più di
+    min_reblogs: Mantieni i post condivisi almeno
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
     sensitive_content: Materiale sensibile
@@ -2019,10 +2156,7 @@ it:
     review_link: Rivedi i termini di servizio
     title: I termini di servizio di %{domain} stanno cambiando
   themes:
-    contrast: Mastodon (contrasto elevato)
-    default: Mastodon (scuro)
-    mastodon-light: Mastodon (chiaro)
-    system: Automatico (usa il tema di sistema)
+    default: Mastodon
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -2047,7 +2181,31 @@ it:
     recovery_codes: Codici di recupero del backup
     recovery_codes_regenerated: I codici di recupero sono stati rigenerati
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
+    resume_app_authorization: Riprendere l'autorizzazione dell'applicazione
+    role_requirement: "%{domain} ti richiede di impostare l'autenticazione a due fattori prima di poter usare Mastodon."
     webauthn: Chiavi di sicurezza
+  unsubscriptions:
+    create:
+      action: Vai alla homepage del server
+      email_subscription:
+        confirmation_html: Non riceverai più email da %{name}.
+      title: Hai annullato l'iscrizione
+      user:
+        confirmation_html: Non riceverai più %{type} da Mastodon su %{domain}.
+    notification_emails:
+      favourite: email di notifica per i post apprezzati
+      follow: email di notifica per i nuovi follower
+      follow_request: email di notifica per le richieste di seguirti
+      mention: email di notifica per le menzioni
+      reblog: email di notifica per le condivisioni
+    show:
+      action: Disiscriviti
+      email_subscription:
+        confirmation_html: Smetterai di ricevere email quando questo account pubblicherà nuovi post.
+        title: Disiscriverti da %{name}?
+      user:
+        confirmation_html: Non riceverai più %{type} da Mastodon su %{domain}.
+        title: Disiscriverti da %{type}?
   user_mailer:
     announcement_published:
       description: 'Gli amministratori di %{domain} stanno facendo un annuncio:'

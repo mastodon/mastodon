@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
@@ -18,7 +18,9 @@ import { identityContextPropShape, withIdentity } from 'mastodon/identity_contex
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 
 import { EmojiHTML } from './emoji/html';
+import { injectIntl } from './intl';
 import { HandledLink } from './status/handled_link';
+import { compareUrls } from '../utils/compare_urls';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -71,19 +73,8 @@ class TranslateButton extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  languages: supportsTranslator ? new Map() : state.getIn(['server', 'translationLanguages', 'items']),
+  languages: supportsTranslator ? new Map() : state.server.translationLanguages.items,
 });
-
-const compareUrls = (href1, href2) => {
-  try {
-    const url1 = new URL(href1);
-    const url2 = new URL(href2);
-
-    return url1.origin === url2.origin && url1.pathname === url2.pathname && url1.search === url2.search;
-  } catch {
-    return false;
-  }
-};
 
 class StatusContent extends PureComponent {
   constructor(props) {
@@ -120,11 +111,12 @@ class StatusContent extends PureComponent {
     const { status, onCollapsedToggle } = this.props;
     if (status.get('collapsed', null) === null && onCollapsedToggle) {
       const { collapsible, onClick } = this.props;
+      const text = node.querySelector(':scope > .status__content__text');
 
       const collapsed =
           collapsible
           && onClick
-          && node.clientHeight > MAX_HEIGHT
+          && (node.clientHeight > MAX_HEIGHT || (text !== null && text.scrollWidth > text.clientWidth))
           && status.get('spoiler_text').length === 0;
 
       onCollapsedToggle(collapsed);
@@ -233,7 +225,13 @@ class StatusContent extends PureComponent {
 
   handleElement = (element, { key, ...props }, children) => {
     if (element instanceof HTMLAnchorElement) {
-      const mention = this.props.status.get('mentions').find(item => compareUrls(element.href, item.get('url')));
+      const mention = this.props.status.get('mentions').find(
+        item => compareUrls(element.href, item.get('url'))
+      );
+      const taggedCollection = this.props.status.get('tagged_collections').find(
+        item => compareUrls(element.href, item.get('url'))
+      )
+
       return (
         <HandledLink
           {...props}
@@ -241,6 +239,7 @@ class StatusContent extends PureComponent {
           text={element.innerText}
           hashtagAccountId={this.props.status.getIn(['account', 'id'])}
           mention={mention?.toJSON()}
+          collectionId={taggedCollection?.get('id')}
           key={key}
         >
           {children}

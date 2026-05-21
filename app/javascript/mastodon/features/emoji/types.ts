@@ -22,7 +22,7 @@ export type EmojiMode =
 
 export type LocaleOrCustom = Locale | typeof EMOJI_TYPE_CUSTOM;
 export type LocaleWithShortcodes = `${Locale}-shortcodes`;
-export type EtagTypes =
+export type CacheKey =
   | LocaleOrCustom
   | typeof EMOJI_DB_NAME_SHORTCODES
   | LocaleWithShortcodes;

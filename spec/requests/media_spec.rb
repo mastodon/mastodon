@@ -93,7 +93,7 @@ RSpec.describe 'Media' do
       let(:media) { Fabricate :media_attachment }
 
       it 'responds with not found' do
-        get medium_player_path(media)
+        get player_medium_path(media)
 
         expect(response)
           .to have_http_status(404)

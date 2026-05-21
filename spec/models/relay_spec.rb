@@ -78,7 +78,7 @@ RSpec.describe Relay do
         .to change { relay.reload.state }.to('idle')
         .and change { relay.reload.follow_activity_id }.to(be_nil)
       expect(ActivityPub::DeliveryWorker)
-        .to have_received(:perform_async).with(match('Undo'), Account.representative.id, relay.inbox_url)
+        .to have_received(:perform_async).with(match_json_values(type: 'Undo'), Account.representative.id, relay.inbox_url)
       expect(DeliveryFailureTracker)
         .to have_received(:reset!).with(relay.inbox_url)
     end
@@ -94,7 +94,7 @@ RSpec.describe Relay do
         .to change { relay.reload.state }.to('pending')
         .and change { relay.reload.follow_activity_id }.to(be_present)
       expect(ActivityPub::DeliveryWorker)
-        .to have_received(:perform_async).with(match('Follow'), Account.representative.id, relay.inbox_url)
+        .to have_received(:perform_async).with(match_json_values(type: 'Follow'), Account.representative.id, relay.inbox_url)
       expect(DeliveryFailureTracker)
         .to have_received(:reset!).with(relay.inbox_url)
     end

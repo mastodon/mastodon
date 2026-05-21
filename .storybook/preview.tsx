@@ -21,15 +21,15 @@ import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
 import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 
-// If you want to run the dark theme during development,
-// you can change the below to `/application.scss`
-import '../app/javascript/styles/mastodon-light.scss';
-import './styles.css';
 import { modes } from './modes';
 
-const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
-  query: { as: 'json' },
-});
+import '../app/javascript/styles/application.scss';
+import './styles.css';
+
+// Disabling locales in Storybook as it's breaking with Vite 8.
+// const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
+//   query: { as: 'json' },
+// });
 
 // Initialize MSW
 initialize({
@@ -40,17 +40,17 @@ const preview: Preview = {
   // Auto-generate docs: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   globalTypes: {
-    locale: {
-      description: 'Locale for the story',
-      toolbar: {
-        title: 'Locale',
-        icon: 'globe',
-        items: Object.keys(localeFiles).map((path) =>
-          path.replace('/mastodon/locales/', '').replace('.json', ''),
-        ),
-        dynamicTitle: true,
-      },
-    },
+    // locale: {
+    //   description: 'Locale for the story',
+    //   toolbar: {
+    //     title: 'Locale',
+    //     icon: 'globe',
+    //     items: Object.keys(localeFiles).map((path) =>
+    //       path.replace('/mastodon/locales/', '').replace('.json', ''),
+    //     ),
+    //     dynamicTitle: true,
+    //   },
+    // },
     theme: {
       description: 'Theme for the story',
       toolbar: {
@@ -137,11 +137,7 @@ const preview: Preview = {
       }, [currentLocale, currentLocaleData]);
 
       return (
-        <IntlProvider
-          locale={currentLocale}
-          messages={currentLocaleData}
-          textComponent='span'
-        >
+        <IntlProvider locale={currentLocale} messages={currentLocaleData}>
           <Story />
         </IntlProvider>
       );

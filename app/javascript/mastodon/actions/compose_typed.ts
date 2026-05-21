@@ -273,3 +273,7 @@ export const quoteComposeCancel = createAction('compose/quoteComposeCancel');
 export const setComposeQuotePolicy = createAction<ApiQuotePolicy>(
   'compose/setQuotePolicy',
 );
+
+export const setDragUploadEnabled = createAction<boolean>(
+  'compose/setDragUploadEnabled',
+);

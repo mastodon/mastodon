@@ -1,9 +1,10 @@
-import { useEffect, useCallback, useRef, useState, useId } from 'react';
+import { useEffect, useCallback, useId } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { useOverflowScroll } from '@/mastodon/hooks/useOverflow';
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
@@ -15,12 +16,12 @@ import {
 } from 'mastodon/actions/suggestions';
 import type { ApiSuggestionSourceJSON } from 'mastodon/api_types/suggestions';
 import { Avatar } from 'mastodon/components/avatar';
+import { Badge, VerifiedBadge } from 'mastodon/components/badge';
 import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import { VerifiedBadge } from 'mastodon/components/verified_badge';
 import { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -109,13 +110,12 @@ const Source: React.FC<{ id: ApiSuggestionSourceJSON }> = ({ id }) => {
   }
 
   return (
-    <div
+    <Badge
       className='inline-follow-suggestions__body__scrollable__card__text-stack__source'
       title={hint}
-    >
-      <Icon id='' icon={InfoIcon} />
-      {label}
-    </div>
+      label={label}
+      icon={<InfoIcon />}
+    />
   );
 };
 
@@ -178,73 +178,23 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
       state.settings.getIn(['dismissed_banners', DISMISSIBLE_ID]) as boolean,
   );
-  const bodyRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
 
   useEffect(() => {
     void dispatch(fetchSuggestions());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (!bodyRef.current) {
-      return;
-    }
-
-    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
-      setCanScrollLeft(
-        bodyRef.current.clientWidth - bodyRef.current.scrollLeft <
-          bodyRef.current.scrollWidth,
-      );
-      setCanScrollRight(bodyRef.current.scrollLeft < 0);
-    } else {
-      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
-      setCanScrollRight(
-        bodyRef.current.scrollLeft + bodyRef.current.clientWidth <
-          bodyRef.current.scrollWidth,
-      );
-    }
-  }, [setCanScrollRight, setCanScrollLeft, suggestions]);
-
-  const handleLeftNav = useCallback(() => {
-    if (!bodyRef.current) {
-      return;
-    }
-
-    bodyRef.current.scrollLeft -= 200;
-  }, []);
-
-  const handleRightNav = useCallback(() => {
-    if (!bodyRef.current) {
-      return;
-    }
-
-    bodyRef.current.scrollLeft += 200;
-  }, []);
-
-  const handleScroll = useCallback(() => {
-    if (!bodyRef.current) {
-      return;
-    }
-
-    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
-      setCanScrollLeft(
-        bodyRef.current.clientWidth - bodyRef.current.scrollLeft <
-          bodyRef.current.scrollWidth,
-      );
-      setCanScrollRight(bodyRef.current.scrollLeft < 0);
-    } else {
-      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
-      setCanScrollRight(
-        bodyRef.current.scrollLeft + bodyRef.current.clientWidth <
-          bodyRef.current.scrollWidth,
-      );
-    }
-  }, [setCanScrollRight, setCanScrollLeft]);
-
   const handleDismiss = useCallback(() => {
     dispatch(changeSetting(['dismissed_banners', DISMISSIBLE_ID], true));
   }, [dispatch]);
+
+  const {
+    bodyRef,
+    handleScroll,
+    canScrollLeft,
+    canScrollRight,
+    handleLeftNav,
+    handleRightNav,
+  } = useOverflowScroll({ absoluteDistance: true });
 
   if (dismissed || (!isLoading && suggestions.length === 0)) {
     return null;

@@ -9,7 +9,6 @@ id:
   accounts:
     followers:
       other: Pengikut
-    following: Mengikuti
     instance_actor_flash: Akun ini adalah aktor virtual yang merepresentasikan server itu sendiri dan bukan pengguna individu. Ini dipakai untuk tujuan gabungan dan seharusnya tidak ditangguhkan.
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
@@ -578,7 +577,6 @@ id:
       resolved_msg: Laporan berhasil diselesaikan!
       skip_to_actions: Langsung ke tindakan
       status: Status
-      statuses: Konten yang dilaporkan
       statuses_description_html: Konten menyinggung akan disampaikan saat komunikasi dengan akun yang dilaporkan
       target_origin: Akun asal yang dilaporkan
       title: Laporan
@@ -1024,9 +1022,6 @@ id:
     lists: Daftar
     mutes: Anda bisukan
     storage: Penyimpanan media
-  featured_tags:
-    add_new: Tambah baru
-    hint_html: "<strong>Apa itu tagar yang diunggulkan?</strong> Mereka ditampilkan secara mencolok di profil publik Anda dan mengizinkan orang-orang untuk menjelajahi kiriman publik khususnya yang ada di bawah tagar tersebut. Mereka adalah alat yang bagus untuk melacak pekerjaan kreatif atau proyek jangka panjang."
   filters:
     contexts:
       account: Profil
@@ -1220,7 +1215,7 @@ id:
           billion: M
           million: Jt
           quadrillion: Kdt
-          thousand: Rb
+          thousand: rb
           trillion: T
   otp_authentication:
     code_hint: Masukkan kode yang dibuat oleh aplikasi autentikator sebagai konfirmasi
@@ -1414,10 +1409,6 @@ id:
       too_late: Terlambat untuk mengajukan banding hukuman ini
   tags:
     does_not_match_previous_name: tidak cocok dengan nama sebelumnya
-  themes:
-    contrast: Mastodon (Kontras tinggi)
-    default: Mastodon (Gelap)
-    mastodon-light: Mastodon (Terang)
   time:
     formats:
       default: "%d %b %Y, %H:%M"

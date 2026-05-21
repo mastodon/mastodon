@@ -18,7 +18,8 @@ module Account::InteractionPolicyConcern
   # Returns `:automatic`, `:manual`, `:unknown`, ':missing` or `:denied`
   def feature_policy_for_account(other_account)
     return :denied if other_account.nil? || (local? && !discoverable?)
-    return :automatic if local?
+    return locked? && !followed_by?(other_account) && self != other_account ? :denied : :automatic if local?
+
     # Post author is always allowed to feature themselves
     return :automatic if self == other_account
     return :missing if feature_approval_policy.zero?
@@ -64,6 +65,6 @@ module Account::InteractionPolicyConcern
   def local_feature_policy(kind)
     return [] if kind == :manual || !discoverable?
 
-    [:public]
+    [locked? ? :followers : :public]
   end
 end

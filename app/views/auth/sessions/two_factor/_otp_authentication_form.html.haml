@@ -1,7 +1,7 @@
 = simple_form_for(resource,
                   as: resource_name,
                   url: session_path(resource_name),
-                  html: { method: :post, id: 'otp-authentication-form' }.merge(hidden ? { class: 'hidden' } : {})) do |f|
+                  html: { method: :post, id: 'otp-authentication-form', class: [hidden:] }) do |f|
   %p.hint.authentication-hint= t('simple_form.hints.sessions.otp')
 
   .fields-group

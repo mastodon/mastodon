@@ -4,7 +4,7 @@ class ResolveURLService < BaseService
   include JsonLdHelper
   include Authorization
 
-  USERNAME_STATUS_RE = %r{/@(?<username>#{Account::USERNAME_RE})/(?<status_id>[0-9]+)\Z}
+  USERNAME_STATUS_RE = %r{/@(?<username>#{Account::USERNAME_RE})/(statuses/)?(?<status_id>[0-9a-zA-Z]+)\Z}
 
   def call(url, on_behalf_of: nil)
     @url          = url
@@ -28,6 +28,10 @@ class ResolveURLService < BaseService
       status = FetchRemoteStatusService.new.call(resource_url, prefetched_body: body)
       authorize_with @on_behalf_of, status, :show? unless status.nil?
       status
+    elsif type == 'FeaturedCollection' && Mastodon::Feature.collections_enabled?
+      collection = ActivityPub::FetchRemoteFeaturedCollectionService.new.call(resource_url, prefetched_body: body)
+      authorize_with @on_behalf_of, collection, :show? unless collection.nil?
+      collection
     end
   end
 
@@ -111,7 +115,19 @@ class ResolveURLService < BaseService
 
         Account.find_remote(username, domain)
       end
+    when 'collections'
+      return unless recognized_params[:action] == 'show'
+
+      check_collection(Collection.find_by(id: recognized_params[:id]))
     end
+  end
+
+  def check_collection(collection)
+    return if collection.nil?
+
+    authorize_with @on_behalf_of, collection, :show?
+  rescue Mastodon::NotPermittedError
+    nil
   end
 
   def check_local_status(status)

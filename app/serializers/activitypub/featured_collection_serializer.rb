@@ -1,31 +1,15 @@
 # frozen_string_literal: true
 
 class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
-  class FeaturedItemSerializer < ActivityPub::Serializer
-    attributes :type, :featured_object, :featured_object_type
-
-    def type
-      'FeaturedItem'
-    end
-
-    def featured_object
-      ActivityPub::TagManager.instance.uri_for(object.account)
-    end
-
-    def featured_object_type
-      object.account.actor_type || 'Person'
-    end
-  end
-
-  attributes :id, :type, :total_items, :name, :attributed_to,
+  attributes :id, :type, :total_items, :name, :attributed_to, :url,
              :sensitive, :discoverable, :published, :updated
 
   attribute :summary, unless: :language_present?
   attribute :summary_map, if: :language_present?
 
-  has_one :tag, key: :topic, serializer: ActivityPub::NoteSerializer::TagSerializer
+  has_one :topic, serializer: ActivityPub::NoteSerializer::TagSerializer
 
-  has_many :collection_items, key: :ordered_items, serializer: FeaturedItemSerializer
+  has_many :collection_items, key: :ordered_items, serializer: ActivityPub::FeaturedItemSerializer
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -47,8 +31,12 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
     ActivityPub::TagManager.instance.uri_for(object.account)
   end
 
+  def url
+    ActivityPub::TagManager.instance.url_for(object)
+  end
+
   def total_items
-    object.collection_items.size
+    object.accepted_collection_items.size
   end
 
   def published
@@ -61,5 +49,13 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
 
   def language_present?
     object.language.present?
+  end
+
+  def collection_items
+    object.accepted_collection_items
+  end
+
+  def topic
+    object.tag
   end
 end

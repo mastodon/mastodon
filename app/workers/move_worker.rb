@@ -53,7 +53,7 @@ class MoveWorker
         rescue ActiveRecord::RecordInvalid
           nil
         end
-    end
+      end
 
     # Finally, handle the common case of accounts not following the new account
     source_local_followers
@@ -62,7 +62,17 @@ class MoveWorker
       .in_batches do |follows|
         ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
         num_moved += follows.update_all(target_account_id: @target_account.id)
-    end
+
+        # Clear any relationship cache, since callbacks are not called
+        Rails.cache.delete_multi(follows.flat_map do |follow|
+          [
+            ['relationships', follow.account_id, follow.target_account_id],
+            ['relationships', follow.target_account_id, follow.account_id],
+            ['relationships', follow.account_id, @target_account.id],
+            ['relationships', @target_account.id, follow.account_id],
+          ]
+        end)
+      end
 
     num_moved
   end

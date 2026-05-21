@@ -2,9 +2,9 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
+import { Helmet } from '@unhead/react/helmet';
 import { useDebouncedCallback } from 'use-debounce';
 
 import PersonIcon from '@/material-icons/400-24px/person.svg?react';
@@ -121,7 +121,6 @@ export const Follows: React.FC<{
         icon='person'
         iconComponent={PersonIcon}
         multiColumn={multiColumn}
-        showBackButton
       />
 
       <ColumnSearchHeader
@@ -146,10 +145,10 @@ export const Follows: React.FC<{
             {displayedAccountIds.length > 0 && <div className='spacer' />}
 
             <div className='column-footer'>
-              <Link className='button button--block' to='/home'>
+              <Link className='button button--block' to='/start/profile'>
                 <FormattedMessage
-                  id='onboarding.follows.done'
-                  defaultMessage='Done'
+                  id='onboarding.follows.next'
+                  defaultMessage='Next: Setup your profile'
                 />
               </Link>
             </div>

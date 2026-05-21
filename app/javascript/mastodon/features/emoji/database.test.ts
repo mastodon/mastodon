@@ -3,7 +3,6 @@ import { IDBFactory } from 'fake-indexeddb';
 
 import { customEmojiFactory, unicodeEmojiFactory } from '@/testing/factories';
 
-import { EMOJI_DB_SHORTCODE_TEST } from './constants';
 import {
   putEmojiData,
   loadEmojiByHexcode,
@@ -12,8 +11,6 @@ import {
   putCustomEmojiData,
   putLegacyShortcodes,
   loadLegacyShortcodesByShortcode,
-  loadLatestEtag,
-  putLatestEtag,
 } from './database';
 
 function rawEmojiFactory(data: Partial<CompactEmoji> = {}): CompactEmoji {
@@ -118,38 +115,6 @@ describe('emoji database', () => {
       await expect(
         loadLegacyShortcodesByShortcode('shortcode2'),
       ).resolves.toEqual(data);
-    });
-  });
-
-  describe('loadLatestEtag', () => {
-    beforeEach(async () => {
-      await putLatestEtag('etag', 'en');
-      await putEmojiData([unicodeEmojiFactory()], 'en');
-      await putLatestEtag('fr-etag', 'fr');
-    });
-
-    test('retrieves the etag for loaded locale', async () => {
-      await putEmojiData(
-        [unicodeEmojiFactory({ hexcode: EMOJI_DB_SHORTCODE_TEST })],
-        'en',
-      );
-      const etag = await loadLatestEtag('en');
-      expect(etag).toBe('etag');
-    });
-
-    test('returns null if locale has no shortcodes', async () => {
-      const etag = await loadLatestEtag('en');
-      expect(etag).toBeNull();
-    });
-
-    test('returns null if locale not loaded', async () => {
-      const etag = await loadLatestEtag('de');
-      expect(etag).toBeNull();
-    });
-
-    test('returns null if locale has no data', async () => {
-      const etag = await loadLatestEtag('fr');
-      expect(etag).toBeNull();
     });
   });
 });

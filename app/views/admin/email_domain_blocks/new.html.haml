@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('.title')
 
-= simple_form_for @email_domain_block, url: admin_email_domain_blocks_path do |f|
+= simple_form_for [:admin, @email_domain_block] do |f|
   = render 'shared/error_messages', object: @email_domain_block
 
   .fields-group

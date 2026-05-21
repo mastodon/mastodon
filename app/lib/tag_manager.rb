@@ -17,9 +17,9 @@ class TagManager
   def normalize_domain(domain)
     return if domain.nil?
 
-    uri = Addressable::URI.new
-    uri.host = domain.strip.delete_suffix('/')
-    uri.normalized_host
+    Addressable::URI.new.tap do |uri|
+      uri.host = domain.strip.delete_suffix('/')
+    end.normalized_host
   end
 
   def local_url?(url)

@@ -12,7 +12,6 @@ pl:
       many: śledzących
       one: śledzący
       other: obserwujących
-    following: Obserwowanych
     instance_actor_flash: To konto jest wirtualnym profilem używanym do reprezentowania samego serwera, a nie żadnego indywidualnego użytkownika. Jest ono stosowane do celów federacji i nie powinien być zawieszany.
     last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
@@ -729,7 +728,6 @@ pl:
       resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       skip_to_actions: Przejdź do akcji
       status: Stan
-      statuses: Zgłoszona treść
       statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
       summary:
         action_preambles:
@@ -1232,7 +1230,6 @@ pl:
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
-    settings: 'Zmień ustawienia e-maili: %{link}'
     unsubscribe: Anuluj subskrypcję
     view: 'Zobacz:'
     view_profile: Wyświetl profil
@@ -1415,8 +1412,6 @@ pl:
       your_appeal_pending: Zgłosiłeś odwołanie
       your_appeal_rejected: Twoje odwołanie zostało odrzucone
   edit_profile:
-    basic_information: Podstawowe informacje
-    hint_html: "<strong>Dostosuj to, co ludzie widzą na Twoim profilu publicznym i obok Twoich wpisów.</strong> Inne osoby są bardziej skłonne obserwować Cię i wchodzić z Tobą w interakcje, gdy masz wypełniony profil i zdjęcie profilowe."
     other: Inne
   emoji_styles:
     auto: Automatycznie
@@ -1456,10 +1451,8 @@ pl:
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
   featured_tags:
-    add_new: Dodaj nowy
     errors:
       limit: Przekroczono maksymalną liczbę hasztagów
-    hint_html: "<strong>Czym są wyróżnione hashtagi?</strong> Są one na stałe wyświetlane na Twoim profilu i pozwalają innym na przeglądanie Twoich wpisów używających tych hashtagów. Są doskonałym narzędziem do śledzenia kreatywnej twórczości czy długoterminowych projektów."
   filters:
     contexts:
       account: Profile
@@ -1689,21 +1682,6 @@ pl:
     failed_sign_in_html: Próba logowania zakończona niepowodzeniem przy pomocy %{method} z %{ip} (%{browser})
     successful_sign_in_html: Pomyślne logowanie przy pomocy %{method} z %{ip} (%{browser})
     title: Historia uwierzytelniania
-  mail_subscriptions:
-    unsubscribe:
-      action: Tak, wypisuję się
-      complete: Anulowano subskrypcję
-      confirmation_html: Czy na pewno chcesz wypisać się z otrzymywania %{type} z Mastodona na %{domain} na adres %{email}? Zawsze możesz zapisać się ponownie ze strony <a href="%{settings_path}">ustawień powiadomień mejlowych</a>.
-      emails:
-        notification_emails:
-          favourite: powiadomień mejlowych o polubieniach
-          follow: powiadomień mejlowych o obserwujących
-          follow_request: mejli o prośbach o możliwość obserwowania
-          mention: powiadomień mejlowych o wspomnieniach
-          reblog: powiadomień mejlowych o podbiciach
-      resubscribe_html: W przypadku przypadkowego wypisania możesz zapisać się ponownie z <a href="%{settings_path}">ustawień powiadomień mejlowych</a>.
-      success_html: Już nie będziesz otrzymywać %{type} z Mastodona na %{domain} na adres %{email}.
-      title: Anuluj subskrypcję
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
@@ -2059,11 +2037,6 @@ pl:
     past_preamble_html: Od czasu twojej ostatniej wizyty zmieniliśmy warunki korzystania z usługi. Zachęcamy do zapoznania się z aktualnymi warunkami.
     review_link: Przeglądnij Warunki Korzystania
     title: Warunki korzystania z %{domain} zmieniają się
-  themes:
-    contrast: Mastodon (Wysoki kontrast)
-    default: Mastodon (Ciemny)
-    mastodon-light: Mastodon (Jasny)
-    system: Automatyczny (odpowiadający motywowi systemu)
   time:
     formats:
       default: "%d. %b %Y, %H:%M"

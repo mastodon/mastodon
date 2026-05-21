@@ -27,28 +27,28 @@ RSpec.describe 'Admin::DomainAllows' do
       visit new_admin_domain_allow_path
       click_on I18n.t('admin.domain_allows.add_new')
       expect(page)
-        .to have_content(I18n.t('admin.domain_allows.add_new'))
+        .to have_text(I18n.t('admin.domain_allows.add_new'))
 
       # Submit invalid with missing domain
       fill_in 'domain_allow_domain', with: ''
       expect { submit_form }
         .to not_change(DomainAllow, :count)
       expect(page)
-        .to have_content(/error below/)
+        .to have_text(/error below/)
 
       # Submit valid with domain present
       fill_in 'domain_allow_domain', with: domain
       expect { submit_form }
         .to change(DomainAllow, :count).by(1)
       expect(page)
-        .to have_content(I18n.t('admin.domain_allows.created_msg'))
+        .to have_text(I18n.t('admin.domain_allows.created_msg'))
 
       # Visit instance page and delete the domain allow
       visit admin_instance_path(domain)
       expect { delete_domain_allow }
         .to change(DomainAllow, :count).by(-1)
       expect(page)
-        .to have_content(I18n.t('admin.domain_allows.destroyed_msg'))
+        .to have_text(I18n.t('admin.domain_allows.destroyed_msg'))
     end
 
     def submit_form

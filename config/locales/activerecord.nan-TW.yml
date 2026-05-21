@@ -1,0 +1,22 @@
+---
+nan-TW:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: 期限
+        options: 選項
+      user:
+        agreement: 服務協議
+        email: 電子phue地址
+        locale: 在地化
+        password: 密碼
+      user/account:
+        username: 用者ê名
+      user/invite_request:
+        text: 原因
+    errors:
+      models:
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: 傷緊ah，著khah uànn佇 %{date}

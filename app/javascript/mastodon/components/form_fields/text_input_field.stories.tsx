@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { TextInputField } from './text_input_field';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
+
+import { TextInputField, TextInput } from './text_input_field';
 
 const meta = {
   title: 'Components/Form Fields/TextInputField',
@@ -9,14 +11,6 @@ const meta = {
     label: 'Label',
     hint: 'This is a description of this form field',
   },
-  render(args) {
-    // Component styles require a wrapper class at the moment
-    return (
-      <div className='simple_form'>
-        <TextInputField {...args} />
-      </div>
-    );
-  },
 } satisfies Meta<typeof TextInputField>;
 
 export default meta;
@@ -24,6 +18,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Simple: Story = {};
+
+export const WithoutHint: Story = {
+  args: {
+    hint: undefined,
+  },
+};
 
 export const Required: Story = {
   args: {
@@ -40,6 +40,38 @@ export const Optional: Story = {
 export const WithError: Story = {
   args: {
     required: false,
-    hasError: true,
+    status: 'error',
+  },
+};
+
+export const WithWarning: Story = {
+  args: {
+    required: false,
+    status: {
+      variant: 'warning',
+      message: 'Special characters are not allowed',
+    },
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    label: 'Search',
+    hint: undefined,
+    icon: SearchIcon,
+  },
+};
+
+export const Plain: Story = {
+  render(args) {
+    return <TextInput {...args} />;
+  },
+};
+
+export const Disabled: Story = {
+  ...Plain,
+  args: {
+    disabled: true,
+    defaultValue: "This value can't be changed",
   },
 };

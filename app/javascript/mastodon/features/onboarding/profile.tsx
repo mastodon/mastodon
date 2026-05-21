@@ -3,10 +3,9 @@ import { useState, useMemo, useCallback, createRef } from 'react';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
 import { useHistory } from 'react-router-dom';
 
-import Toggle from 'react-toggle';
+import { Helmet } from '@unhead/react/helmet';
 
 import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
@@ -16,7 +15,11 @@ import { closeOnboarding } from 'mastodon/actions/onboarding';
 import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
-import { TextAreaField, TextInputField } from 'mastodon/components/form_fields';
+import {
+  TextAreaField,
+  TextInputField,
+  Toggle,
+} from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { me } from 'mastodon/initial_state';
@@ -133,7 +136,7 @@ export const Profile: React.FC<{
       }),
     )
       .then(() => {
-        history.push('/start/follows');
+        history.push('/home');
         dispatch(closeOnboarding());
         return '';
       })
@@ -160,6 +163,7 @@ export const Profile: React.FC<{
         icon='person'
         iconComponent={PersonIcon}
         multiColumn={multiColumn}
+        showBackButton
       />
 
       <div className='scrollable scrollable--flex'>
@@ -229,7 +233,7 @@ export const Profile: React.FC<{
               }
               value={displayName}
               onChange={handleDisplayNameChange}
-              hasError={!!errors?.display_name}
+              status={errors?.display_name ? 'error' : undefined}
               id='display_name'
             />
           </div>
@@ -251,7 +255,7 @@ export const Profile: React.FC<{
               }
               value={note}
               onChange={handleNoteChange}
-              hasError={!!errors?.note}
+              status={errors?.note ? 'error' : undefined}
               id='note'
             />
           </div>
@@ -297,8 +301,8 @@ export const Profile: React.FC<{
               <LoadingIndicator />
             ) : (
               <FormattedMessage
-                id='onboarding.profile.save_and_continue'
-                defaultMessage='Save and continue'
+                id='onboarding.profile.finish'
+                defaultMessage='Finish'
               />
             )}
           </Button>

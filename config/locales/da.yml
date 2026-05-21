@@ -12,7 +12,9 @@ da:
     followers:
       one: Følger
       other: Følgere
-    following: Følger
+    following:
+      one: Fulgt
+      other: Fulgte
     instance_actor_flash: Denne konto er en virtuel aktør repræsenterende selve serveren og ikke en individuel bruger. Den anvendes til fællesformål og bør ikke suspenderes.
     last_active: senest aktiv
     link_verified_on: Ejerskab af dette link blev tjekket %{date}
@@ -54,6 +56,7 @@ da:
         label: Ændr rolle
         no_role: Ingen rolle
         title: Ændr rolle for %{username}
+      collections: Samlinger
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
@@ -264,6 +267,7 @@ da:
         demote_user_html: "%{name} degraderede brugeren %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
         destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
+        destroy_collection_html: "%{name} fjernede samling af %{target}"
         destroy_custom_emoji_html: "%{name} slettede emojien %{target}"
         destroy_domain_allow_html: "%{name} fjernede federeringstilladelsen med domænet %{target}"
         destroy_domain_block_html: "%{name} afblokerede domænet %{target}"
@@ -303,6 +307,7 @@ da:
         unsilence_account_html: "%{name} fjernede begrænsningen af %{target}s konto"
         unsuspend_account_html: "%{name} fjernede suspenderingen af %{target}s konto"
         update_announcement_html: "%{name} opdaterede bekendtgørelsen %{target}"
+        update_collection_html: "%{name} opdaterede samling af %{target}"
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
         update_ip_block_html: "%{name} ændrede reglen for IP'en %{target}"
@@ -338,6 +343,23 @@ da:
       unpublish: Afpublicér
       unpublished_msg: Bekendtgørelsen er afpubliceret!
       updated_msg: Bekendtgørelsen er opdateret!
+    collections:
+      accounts: Konti
+      back_to_account: Tilbage til kontoside
+      back_to_report: Tilbage til anmeldelsesside
+      batch:
+        add_to_report: 'Føj til anmeldelse #%{id}'
+        remove_from_report: Fjern fra anmeldelse
+        report: Anmeldelse
+      collection_title: Indsamling af %{name}
+      contents: Indhold
+      no_collection_selected: Der blev ikke ændret nogen samlinger, da ingen var valgt
+      number_of_accounts:
+        one: 1 konto
+        other: "%{count} konti"
+      open: Åben
+      title: Kontosamlinger - @%{name}
+      view_publicly: Vis offentligt
     critical_update_pending: Kritisk opdatering afventer
     custom_emojis:
       assign_category: Tildel kategori
@@ -470,9 +492,76 @@ da:
         title: Blokér nyt e-maildomæne
       no_email_domain_block_selected: Ingen e-maildomæneblokeringer ændret (ingen var valgt)
       not_permitted: Ikke tilladt
+      reset: Nulstil
       resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke at blokere større e-mailudbydere.</strong>
       resolved_through_html: Opløst via %{domain}
+      search: Søg
       title: Blokerede e-maildomæner
+    email_subscriptions:
+      accounts:
+        account: Konto
+        active: Aktive
+        empty:
+          hint: Ingen konti har abonnenter endnu.
+          no_lists_yet: Ingen lister endnu
+        inactive: Inaktive
+        last_email: Seneste e-mail
+        lead: Nedenfor vises de konti, der har aktiveret funktionen og har abonnenter.
+        status: Status
+        subscribers: Abonnenter
+        title: Mailinglister
+      additional_footer_texts:
+        show:
+          title: Yderligere tekst til sidefod
+      compliance_settings:
+        additional_footer_text:
+          action: Administrér
+          hint: Valgfri tekst, der kun vises i sidefoden på e-mail-nyhedsbreve
+          title: Yderligere tekst til sidefod
+        lead: E-mail-nyhedsbreve kan blive betragtet som markedsføringsmails afhængigt af de jurisdiktioner, hvor du opererer.
+        privacy_policy:
+          action: Administrér
+          hint: Denne politik er linket til i bunden af hver e-mail
+          title: Privatlivspolitik
+        title: Compliance-indstillinger
+      danger_zone:
+        disable_feature:
+          action: Deaktivér
+          hint: Slå funktionen fra for alle konti
+          title: Deaktivér funktion
+        erase_all_data:
+          action: Slet data
+          hint: Sletter alle e-mails i alle mailinglister permanent
+          title: Slet alle data
+        title: Farezone
+      disabled_msg: E-mail-abonnementer er blevet deaktiveret.
+      index:
+        disabled:
+          cannot_be_enabled: Din tekniske udbyder har ikke aktiveret denne funktion på din server.
+          description: Denne funktion giver angivne konti mulighed for at tilføje en widget til deres profiler, så besøgende uden en Mastodon-konto kan modtage deres indlæg via e-mail.
+          get_started: Kom i gang
+        lead: Tillad besøgende at modtage indlæg via e-mail fra dedikerede konti på denne server.
+        title: Nyhedsbreve via e-mail
+      purged_msg: Alle data vedrørende e-mail-abonnementer slettes.
+      roles:
+        accounts: Konti
+        edit_role: Rediger rolle
+        empty:
+          hint: Ingen har tilladelse til at bruge denne funktion.
+          no_roles_added: Ingen roller tilføjet
+        lead: Brugere med følgende roller kan aktivere denne funktion på deres profiler.
+        manage_roles: Administrer roller
+        role_name: Rollenavn
+        title: Roller
+      setups:
+        show:
+          enable_feature: Aktivér funktion
+          important_information: Vigtig information
+          list:
+            1_permission_explanation: Når denne funktion er aktiveret, kan brugere med de angivne rettigheder tilføje en formular til indsamling af e-mailadresser til deres profiler.
+            2_feature_explanation: Når besøgende tilmelder sig på en kontos profilside og bekræfter deres abonnement, vil de begynde at modtage e-mail-opdateringer, når kontoen opretter nye offentlige indlæg.
+            3_privacy_policy_warning: Serveradministratorer vil have adgang til de indsamlede personoplysninger (e-mailadresser). Derfor skal serverens privatlivspolitik og servicevilkår opdateres, inden denne funktion tages i brug.
+            4_cost_warning: Der kan påløbe et gebyr for e-mails afhængigt af hostingopsætningen. Tal med din hostingudbyder, inden du aktiverer funktionen, da den kan medføre en markant stigning i antallet af e-mails, der sendes fra din server.
     export_domain_allows:
       new:
         title: Importeret domæne tillader
@@ -677,6 +766,7 @@ da:
       cancel: Afbryd
       category: Kategori
       category_description_html: Årsagen til anmeldelsen af denne konto og/eller indhold refereres i kommunikationen med den anmeldte konto
+      collections: Samlinger (%{count})
       comment:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
@@ -706,12 +796,13 @@ da:
       report: 'Anmeldelse #%{id}'
       reported_account: Anmeldt konto
       reported_by: Anmeldt af
+      reported_content: Anmeldt indhold
       reported_with_application: Rapporteret via applikation
       resolved: Løst
       resolved_msg: Anmeldelse løst!
       skip_to_actions: Overspring til foranstaltninger
       status: Status
-      statuses: Anmeld indhold
+      statuses: Indlæg (%{count})
       statuses_description_html: Krænkende indhold citeres i kommunikationen med den anmeldte konto
       summary:
         action_preambles:
@@ -746,6 +837,7 @@ da:
       categories:
         administration: Administration
         devops: DevOps
+        email: E-mail
         invites: Invitationer
         moderation: Moderering
         special: Speciel
@@ -762,6 +854,8 @@ da:
         administrator_description: Brugere med denne rolle kan omgå alle tilladelser
         delete_user_data: Slet brugerdata
         delete_user_data_description: Tillader brugere at slette andre brugeres data straks
+        invite_bypass_approval: Invitere brugere uden gennemgang
+        invite_bypass_approval_description: Gør det muligt for personer, der er inviteret til serveren af disse brugere, at undgå moderatorgodkendelse
         invite_users: Invitér brugere
         invite_users_description: Tillader brugere at invitere nye personer til serveren
         manage_announcements: Administrer annonceringer
@@ -772,6 +866,8 @@ da:
         manage_blocks_description: Tillader brugere at blokere e-mailudbydere og IP-adresser
         manage_custom_emojis: Administrere tilpassede emojier
         manage_custom_emojis_description: Tillader brugere at administrere tilpassede emojier på serveren
+        manage_email_subscriptions: Administrer e-mail-abonnementer
+        manage_email_subscriptions_description: Giv brugere med denne tilladelse mulighed for at aktivere funktionen til e-mail-nyhedsbreve på deres konto
         manage_federation: Administrere federation
         manage_federation_description: Tillader brugere at blokere eller tillade federation med andre domæner og styre leverbarhed
         manage_invites: Administrere invitationer
@@ -800,6 +896,7 @@ da:
         view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
         view_feeds: Se live- og emne-feeds
         view_feeds_description: Giver brugerne adgang til live- og emne-feeds uanset serverindstillinger
+      requires_2fa: Kræver tofaktorgodkendelse
       title: Roller
     rules:
       add_new: Tilføj regel
@@ -1212,7 +1309,6 @@ da:
   application_mailer:
     notification_preferences: Skift e-mailpræferencer
     salutation: "%{name}"
-    settings: 'Skift e-mailpræferencer: %{link}'
     unsubscribe: Afmeld notifikationer
     view: 'Vis:'
     view_profile: Vis profil
@@ -1262,6 +1358,7 @@ da:
     progress:
       confirm: Bekræft e-mail
       details: Dine detaljer
+      list: Status for tilmelding
       review: Vores gennemgang
       rules: Acceptér regler
     providers:
@@ -1277,6 +1374,7 @@ da:
       invited_by: 'Du kan tilmelde dig %{domain} takket være den invitation, du har modtaget fra:'
       preamble: Disse er opsat og håndhæves af %{domain}-moderatorerne.
       preamble_invited: Før du fortsætter, bedes du overveje de grundregler, der er fastsat af moderatorerne af %{domain}.
+      read_more: Læs mere
       title: Nogle grundregler.
       title_invited: Du er blevet inviteret.
     security: Sikkerhed
@@ -1304,7 +1402,7 @@ da:
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
-    user_agreement_html: Jeg accepterer <a href="%{terms_of_service_path}" target="_blank">Tjenestevilkår</a> og <a href="%{privacy_policy_path}" target="_blank">Fortrolighedspolitik</a>
+    user_agreement_html: Jeg accepterer <a href="%{terms_of_service_path}" target="_blank">Tjenestevilkår</a> og <a href="%{privacy_policy_path}" target="_blank">Privatlivspolitik</a>
     user_privacy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">fortrolighedspolitikken</a>
   author_attribution:
     example_title: Eksempeltekst
@@ -1361,7 +1459,7 @@ da:
       email_contact_html: Hvis den stadig ikke modtages, send en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
       email_reconfirmation_html: Modtages bekræftelsesmailen ikke, kan man <a href="%{path}">anmode om en ny</a>
       irreversible: Du vil ikke kunne gendanne eller genaktivere din konto
-      more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">privatlivspolitikken</a>.
+      more_details_html: For yderligere oplysninger, tjek <a href="%{terms_path}">privatlivspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
       username_unavailable: Dit brugernavn vil forblive utilgængeligt
   disputes:
@@ -1395,9 +1493,42 @@ da:
       your_appeal_pending: Du har indgivet en appel
       your_appeal_rejected: Din appel er afvist
   edit_profile:
-    basic_information: Oplysninger
-    hint_html: "<strong>Tilpas, hvad folk ser på din offentlige profil og ved siden af dine indlæg.</strong> Andre personer er mere tilbøjelige til at følge dig tilbage og interagere med dig, når du har en udfyldt profil og et profilbillede."
     other: Andre
+    redesign_body: Profilredigering kan nu tilgås direkte fra profilsiden.
+    redesign_button: Gå dertil
+    redesign_title: Der er en ny måde at redigere sin profil på
+  email_subscription_mailer:
+    confirmation:
+      action: Bekræft e-mailadresse
+      instructions_to_confirm: Bekræft, at du gerne vil modtage e-mails fra %{name} (@%{acct}), når vedkommende offentliggør nye indlæg.
+      instructions_to_ignore: Hvis du ikke ved, hvorfor du har modtaget denne e-mail, kan du slette den. Du bliver ikke tilmeldt, hvis du ikke klikker på linket ovenfor.
+      subject: Bekræft din e-mailadresse
+      title: Modtag e-mail opdateringer fra %{name}?
+    notification:
+      create_account: Opret en Mastodon-konto
+      footer:
+        privacy_html: E-mails sendes fra %{domain}, en server drevet af Mastodon. For at få mere at vide om, hvordan denne server behandler dine personoplysninger, kan du læse <a href="%{privacy_policy_path}">privatlivspolitikken</a>.
+        reason_for_email_html: Du modtager denne e-mail, fordi du har valgt at modtage e-mailopdateringer fra %{name}. Ønsker du ikke at modtage disse e-mails? <a href="%{unsubscribe_path}">Afmeld</a>
+      interact_with_this_post:
+        one: Interagér med dette indlæg, og find flere lignende indlæg.
+        other: Interagér med disse indlæg, og find flere.
+      subject:
+        plural: Nye indlæg fra %{name}
+        singular: 'Nyt indlæg: "%{excerpt}"'
+      title:
+        plural: Nye indlæg fra %{name}
+        singular: 'Nyt indlæg: "%{excerpt}"'
+  email_subscriptions:
+    active: Aktive
+    confirmations:
+      show:
+        changed_your_mind: Har du skiftet mening?
+        success_html: Du vil nu begynde at modtage e-mails, når %{name} offentliggør nye indlæg. Tilføj %{sender} til dine kontakter, så disse indlæg ikke ender i din spam-mappe.
+        title: Du er tilmeldt
+        unsubscribe: Afmeld
+    inactive: Inaktive
+    status: Status
+    subscribers: Abonnenter
   emoji_styles:
     auto: Auto
     native: Indbygget
@@ -1436,10 +1567,8 @@ da:
     mutes: Du skjuler
     storage: Medielagerplads
   featured_tags:
-    add_new: Tilføj nyt
     errors:
       limit: Det maksimale antal hashtags er allerede fremhævet
-    hint_html: "<strong>Hvad er fremhævede hashtags?</strong> De vises i en fremtrædende position på din offentlige profil og giver folk mulighed for at gennemse dine offentlige indlæg specifikt under disse hashtags. De er et fantastisk værktøj til at holde styr på kreative værker eller langsigtede projekter."
   filters:
     contexts:
       account: Profiler
@@ -1496,7 +1625,7 @@ da:
     copy: Kopier
     delete: Slet
     deselect: Afmarkér alle
-    none: Intet
+    none: Ingen
     order_by: Sortér efter
     save_changes: Gem ændringer
     select_all_matching_items:
@@ -1632,21 +1761,6 @@ da:
     failed_sign_in_html: Mislykket indlogning med %{method} fra %{ip} (%{browser})
     successful_sign_in_html: Gennemført indlogning med %{method} fra %{ip} (%{browser})
     title: Godkendelseshistorik
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, afmeld
-      complete: Afmeldt
-      confirmation_html: Er du sikker på, at du vil afmelde modtagelse af %{type} for Mastodon på %{domain} til din e-mail på %{email}? Du kan altid tilmelde dig igen fra dine <a href="%{settings_path}">indstillinger for e-mail-notifikationer</a>.
-      emails:
-        notification_emails:
-          favourite: e-mailnotifikationer om favoritmarkeringer
-          follow: e-mailnotifikationer om nye følgere
-          follow_request: e-mailnotifikationer om følgeanmodninger
-          mention: e-mailnotifikationer om omtaler
-          reblog: e-mailnotifikationer om fremhævelser
-      resubscribe_html: Har du afmeldt dig ved en fejl, kan du gentilmelde dig via <a href="%{settings_path}">indstillingerne for e-mail-notifikationer</a>.
-      success_html: Du vil ikke længere modtage %{type} for Mastodon på %{domain} til din e-mail %{email}.
-      title: Opsig abonnement
   media_attachments:
     validations:
       images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
@@ -1692,6 +1806,27 @@ da:
     copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, hvor dine tidligere noter om dem var:'
   navigation:
     toggle_menu: Åbn/luk menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} tilføjede dig til en samling"
+    admin_report:
+      title_html: "%{name} anmeldte %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} og en anden tilmeldte sig"
+        other: "%{name} og %{count} andre tilmeldte sig"
+      title_html: "%{name} tilmeldte sig"
+    collection_update:
+      title_html: "%{name} opdaterede en samling, du er med i"
+    generic:
+      sign_in: Log ind på Mastodon web-appen
+      summary_html: Du bruger på en app, der ikke understøtter den seneste version af Mastodon. %{link} for fuld funktionalitet.
+    moderation_warning:
+      summary_html: Du bruger en app, der ikke understøtter den seneste version af Mastodon. %{link}.
+      title: Du har modtaget en moderationsadvarsel.
+    severed_relationships:
+      summary_html: En administrator fra %{from} har suspenderet %{target}, hvilket betyder, at du ikke længere kan modtage opdateringer fra dem eller interagere med dem. %{link} for at hente en liste over de tabte forhold.
+      title: Mistede forbindelser med %{name}
   notification_mailer:
     admin:
       report:
@@ -1784,6 +1919,8 @@ da:
     posting_defaults: Standarder for indlæg
     public_timelines: Offentlige tidslinjer
   privacy:
+    email_subscriptions: Send indlæg via e-mail
+    email_subscriptions_hint_html: Tilføj en tilmeldingsformular til din profil, som vises for brugere, der ikke er logget ind. Når besøgende indtaster deres e-mailadresse og tilmelder sig, sender Mastodon e-mailopdateringer om dine offentlige indlæg.
     hint_html: "<strong>Tilpas hvordan din profil og dine indlæg kan findes.</strong> En række funktioner i Mastodon kan hjælpe dig med at nå ud til et bredere publikum, hvis du aktiverer dem. Tjek indstillingerne herunder for at sikre, at de passer til dit brugsscenarie."
     privacy: Privatliv
     privacy_hint_html: Styr, hvor meget du vil afsløre til gavn for andre. Folk opdager interessante profiler og apps ved at gennemse andres følgere og se, hvilke apps de sender fra, men du foretrækker måske at holde det skjult.
@@ -1915,8 +2052,8 @@ da:
       account_suspension: Kontosuspendering (%{target_name})
       domain_block: Serversuspendering (%{target_name})
       user_domain_block: "%{target_name} blev blokeret"
-    lost_followers: Tabte følgere
-    lost_follows: Mistet følger
+    lost_followers: Mistet følgere
+    lost_follows: Mistet fulgte
     preamble: Du kan miste fulgte og følgere, når du blokerer et domæne, eller når dine moderatorer beslutter at suspendere en fjernserver. Når det sker, kan du downloade lister over afbrudte forhold til inspektion og eventuelt import til en anden server.
     purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
     type: Begivenhed
@@ -1937,7 +2074,7 @@ da:
     content_warnings:
       hide: Skjul indlæg
       show: Vis mere
-    default_language: Samme som UI-sproget
+    default_language: Samme som grænsefladesproget
     disallowed_hashtags:
       one: 'indeholdte et ikke tilladt hashtag: %{tags}'
       other: 'indeholdte de ikke tilladte etiketter: %{tags}'
@@ -2019,10 +2156,7 @@ da:
     review_link: Gennemgå Tjenestevilkår
     title: Tjenestevilkårene for %{domain} ændres
   themes:
-    contrast: Mastodon (høj kontrast)
-    default: Mastodon (mørkt)
-    mastodon-light: Mastodon (lyst)
-    system: Automatisk (benyt systemtema)
+    default: Mastodon
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -2047,7 +2181,31 @@ da:
     recovery_codes: Reserve-gendannelseskoder
     recovery_codes_regenerated: Gendannelseskoder er regenereret
     recovery_instructions_html: Mister du nogensinde adgang til din mobil, kan en af gendannelseskoderne nedenfor bruges til at opnå adgang til din konto. <strong>Opbevar disse et sikkert sted</strong>. De kan f.eks. udskrives og gemmes sammen med andre vigtige dokumenter.
+    resume_app_authorization: Genoptag godkendelse af applikation
+    role_requirement: "%{domain} kræver, at du konfigurerer tofaktorgodkendelse, før du kan bruge Mastodon."
     webauthn: Sikkerhedsnøgler
+  unsubscriptions:
+    create:
+      action: Gå til serverens hjemmeside
+      email_subscription:
+        confirmation_html: Du vil ikke længere modtage e-mails fra %{name}.
+      title: Du er afmeldt
+      user:
+        confirmation_html: Du vil ikke længere modtage %{type} fra Mastodon på %{domain}.
+    notification_emails:
+      favourite: e-mail-notifikationer om favoritmarkeringer
+      follow: e-mail-notifikationer om nye følgere
+      follow_request: e-mail-notifikationer om følgeanmodninger
+      mention: e-mail-notifikationer om omtaler
+      reblog: e-mail-notifikationer om fremhævelser
+    show:
+      action: Afmeld
+      email_subscription:
+        confirmation_html: Du vil ikke længere modtage e-mails, når denne konto offentliggør nye indlæg.
+        title: Afmeld fra %{name}?
+      user:
+        confirmation_html: Du vil ikke længere modtage %{type} fra Mastodon på %{domain}.
+        title: Afmeld fra %{type}?
   user_mailer:
     announcement_published:
       description: 'Administratorerne på %{domain} udsender en annoncering:'

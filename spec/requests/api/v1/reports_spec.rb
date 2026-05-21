@@ -11,20 +11,22 @@ RSpec.describe 'Reports' do
     end
 
     let!(:admin)         { Fabricate(:admin_user) }
-    let(:status)         { Fabricate(:status) }
-    let(:target_account) { status.account }
+    let(:target_account) { Fabricate(:account) }
     let(:category)       { 'other' }
     let(:forward)        { nil }
     let(:rule_ids)       { nil }
+    let(:status_ids)     { nil }
+    let(:collection_ids) { nil }
 
     let(:params) do
       {
-        status_ids: [status.id],
+        status_ids:,
+        collection_ids:,
         account_id: target_account.id,
         comment: 'reasons',
-        category: category,
-        rule_ids: rule_ids,
-        forward: forward,
+        category:,
+        rule_ids:,
+        forward:,
       }
     end
 
@@ -38,7 +40,6 @@ RSpec.describe 'Reports' do
         .to start_with('application/json')
       expect(response.parsed_body).to match(
         a_hash_including(
-          status_ids: [status.id.to_s],
           category: category,
           comment: 'reasons'
         )
@@ -55,18 +56,6 @@ RSpec.describe 'Reports' do
           to: contain_exactly(admin.email),
           subject: eq(I18n.t('admin_mailer.new_report.subject', instance: Rails.configuration.x.local_domain, id: target_account.targeted_reports.first.id))
         )
-    end
-
-    context 'when a status does not belong to the reported account' do
-      let(:target_account) { Fabricate(:account) }
-
-      it 'returns http not found' do
-        subject
-
-        expect(response).to have_http_status(404)
-        expect(response.content_type)
-          .to start_with('application/json')
-      end
     end
 
     context 'when a category is chosen' do
@@ -89,6 +78,70 @@ RSpec.describe 'Reports' do
 
         expect(target_account.targeted_reports.first.violation?).to be true
         expect(target_account.targeted_reports.first.rule_ids).to contain_exactly(rule.id)
+      end
+    end
+
+    context 'with attached status' do
+      let(:status) { Fabricate(:status, account: target_account) }
+      let(:status_ids) { [status.id] }
+
+      it 'creates a report including the status ids', :aggregate_failures, :inline_jobs do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body).to match(
+          a_hash_including(
+            status_ids: [status.id.to_s],
+            category: category,
+            comment: 'reasons'
+          )
+        )
+      end
+
+      context 'when a status does not belong to the reported account' do
+        let(:status) { Fabricate(:status) }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+    end
+
+    context 'with attached collection', feature: :collections do
+      let(:collection) { Fabricate(:collection, account: target_account) }
+      let(:collection_ids) { [collection.id] }
+
+      it 'creates a report including the collection ids', :aggregate_failures, :inline_jobs do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body).to match(
+          a_hash_including(
+            collection_ids: [collection.id.to_s],
+            category: category,
+            comment: 'reasons'
+          )
+        )
+      end
+
+      context 'when a collection does not belong to the reported account' do
+        let(:collection) { Fabricate(:collection) }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
       end
     end
   end

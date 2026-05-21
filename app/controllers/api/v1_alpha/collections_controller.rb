@@ -51,7 +51,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   def update
     authorize @collection, :update?
 
-    @collection.update!(collection_update_params) # TODO: Create a service for this to federate changes
+    UpdateCollectionService.new.call(@collection, collection_update_params)
 
     render json: @collection, serializer: REST::CollectionSerializer, adapter: :json
   end
@@ -59,7 +59,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   def destroy
     authorize @collection, :destroy?
 
-    @collection.destroy
+    DeleteCollectionService.new.call(@collection)
 
     head 200
   end
@@ -72,10 +72,10 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
   def set_collections
     @collections = @account.collections
-                           .with_tag
-                           .order(created_at: :desc)
-                           .offset(offset_param)
-                           .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
+      .with_tag
+      .order(created_at: :desc)
+      .offset(offset_param)
+      .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
     @collections = @collections.discoverable unless @account == current_account
   end
 

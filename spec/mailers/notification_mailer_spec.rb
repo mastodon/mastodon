@@ -38,12 +38,15 @@ RSpec.describe NotificationMailer do
     it_behaves_like 'localized subject', 'notification_mailer.mention.subject', name: 'bob'
 
     it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          subject: 'You were mentioned by bob'
+        )
+      expect(mail.text_part.body)
+        .to match('You were mentioned by bob')
+        .and match('The body of the foreign status')
       expect(mail)
-        .to be_present
-        .and(have_subject('You were mentioned by bob'))
-        .and(have_body_text('You were mentioned by bob'))
-        .and(have_body_text('The body of the foreign status'))
-        .and have_thread_headers
+        .to have_thread_headers
         .and have_standard_headers('mention').for(receiver)
     end
 
@@ -59,12 +62,15 @@ RSpec.describe NotificationMailer do
     it_behaves_like 'localized subject', 'notification_mailer.quote.subject', name: 'bob'
 
     it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          subject: 'bob quoted your post'
+        )
+      expect(mail.text_part.body)
+        .to match('Your post was quoted by bob')
+        .and match('The body of the foreign status')
       expect(mail)
-        .to be_present
-        .and(have_subject('bob quoted your post'))
-        .and(have_body_text('Your post was quoted by bob'))
-        .and(have_body_text('The body of the foreign status'))
-        .and have_thread_headers
+        .to have_thread_headers
         .and have_standard_headers('quote').for(receiver)
     end
 
@@ -80,11 +86,14 @@ RSpec.describe NotificationMailer do
     it_behaves_like 'localized subject', 'notification_mailer.follow.subject', name: 'bob'
 
     it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          subject: 'bob is now following you'
+        )
+      expect(mail.text_part.body)
+        .to match('bob is now following you')
       expect(mail)
-        .to be_present
-        .and(have_subject('bob is now following you'))
-        .and(have_body_text('bob is now following you'))
-        .and have_standard_headers('follow').for(receiver)
+        .to have_standard_headers('follow').for(receiver)
     end
 
     it_behaves_like 'delivery to non functional user'
@@ -98,12 +107,15 @@ RSpec.describe NotificationMailer do
     it_behaves_like 'localized subject', 'notification_mailer.favourite.subject', name: 'bob'
 
     it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          subject: 'bob favorited your post'
+        )
+      expect(mail.text_part.body)
+        .to match('Your post was favorited by bob')
+        .and match('The body of the own status')
       expect(mail)
-        .to be_present
-        .and(have_subject('bob favorited your post'))
-        .and(have_body_text('Your post was favorited by bob'))
-        .and(have_body_text('The body of the own status'))
-        .and have_thread_headers
+        .to have_thread_headers
         .and have_standard_headers('favourite').for(receiver)
     end
 
@@ -119,12 +131,15 @@ RSpec.describe NotificationMailer do
     it_behaves_like 'localized subject', 'notification_mailer.reblog.subject', name: 'bob'
 
     it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          subject: 'bob boosted your post'
+        )
+      expect(mail.text_part.body)
+        .to match('Your post was boosted by bob')
+        .and match('The body of the own status')
       expect(mail)
-        .to be_present
-        .and(have_subject('bob boosted your post'))
-        .and(have_body_text('Your post was boosted by bob'))
-        .and(have_body_text('The body of the own status'))
-        .and have_thread_headers
+        .to have_thread_headers
         .and have_standard_headers('reblog').for(receiver)
     end
 
@@ -140,11 +155,14 @@ RSpec.describe NotificationMailer do
     it_behaves_like 'localized subject', 'notification_mailer.follow_request.subject', name: 'bob'
 
     it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          subject: 'Pending follower: bob'
+        )
+      expect(mail.text_part.body)
+        .to match('bob has requested to follow you')
       expect(mail)
-        .to be_present
-        .and(have_subject('Pending follower: bob'))
-        .and(have_body_text('bob has requested to follow you'))
-        .and have_standard_headers('follow_request').for(receiver)
+        .to have_standard_headers('follow_request').for(receiver)
     end
 
     it_behaves_like 'delivery to non functional user'

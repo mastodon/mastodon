@@ -17,7 +17,10 @@ class CollectionsController < ApplicationController
 
   def show
     respond_to do |format|
-      # TODO: format.html
+      format.html do
+        expires_in expiration_duration, public: true unless user_signed_in?
+        render template: 'home/index'
+      end
 
       format.json do
         expires_in expiration_duration, public: true if public_fetch_mode?
@@ -28,8 +31,17 @@ class CollectionsController < ApplicationController
 
   private
 
+  def set_account
+    if account_id_param.present?
+      @account = Account.local.find(account_id_param)
+    else
+      @collection = Collection.find(params[:id])
+      @account = @collection.account
+    end
+  end
+
   def set_collection
-    @collection = @account.collections.find(params[:id])
+    @collection ||= @account.collections.find(params[:id])
     authorize @collection, :show?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
