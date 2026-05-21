@@ -88,4 +88,108 @@ RSpec.describe Extractor do
       expect(extracted).to eq []
     end
   end
+
+  describe 'extract_xmpp_uris_with_indices' do
+    it 'returns an empty array when the text contains no xmpp: scheme' do
+      expect(described_class.extract_xmpp_uris_with_indices('no xmpp here')).to eq []
+    end
+
+    it 'extracts a stand-alone user@host URI' do
+      expect(described_class.extract_xmpp_uris_with_indices('xmpp:user@example.com')).to eq [
+        { url: 'xmpp:user@example.com', indices: [0, 21] },
+      ]
+    end
+
+    it 'extracts a URI with a resource path' do
+      text = 'reach me at xmpp:arnt@example.com/desktop today'
+      expect(described_class.extract_xmpp_uris_with_indices(text)).to eq [
+        { url: 'xmpp:arnt@example.com/desktop', indices: [12, 41] },
+      ]
+    end
+
+    it 'extracts a URI with Unicode in localpart, host, and resource' do
+      text = 'xmpp:grå@grå.org/grønn/blå'
+      expect(described_class.extract_xmpp_uris_with_indices(text)).to eq [
+        { url: 'xmpp:grå@grå.org/grønn/blå', indices: [0, 26] },
+      ]
+    end
+
+    it 'extracts a URI with a query string' do
+      expect(described_class.extract_xmpp_uris_with_indices('please join xmpp:muc@example.com?join right now')).to eq [
+        { url: 'xmpp:muc@example.com?join', indices: [12, 37] },
+      ]
+    end
+
+    it 'trims a trailing period' do
+      expect(described_class.extract_xmpp_uris_with_indices('see xmpp:user@example.com.')).to eq [
+        { url: 'xmpp:user@example.com', indices: [4, 25] },
+      ]
+    end
+
+    it 'trims trailing comma, semicolon and bracket' do
+      expect(described_class.extract_xmpp_uris_with_indices('(xmpp:user@example.com),')).to eq [
+        { url: 'xmpp:user@example.com', indices: [1, 22] },
+      ]
+    end
+
+    it 'requires either an @ or a . after the scheme' do
+      expect(described_class.extract_xmpp_uris_with_indices('xmpp:foo bar')).to eq []
+    end
+
+    it 'rejects a bare scheme with nothing following' do
+      expect(described_class.extract_xmpp_uris_with_indices('plain xmpp: nothing here')).to eq []
+    end
+
+    it 'does not match xmpp: in the middle of a word' do
+      expect(described_class.extract_xmpp_uris_with_indices('fooxmpp:user@example.com')).to eq []
+    end
+
+    it 'returns an empty array for nil input' do
+      expect(described_class.extract_xmpp_uris_with_indices(nil)).to eq []
+    end
+  end
+
+  describe 'extract_magnet_uris_with_indices' do
+    it 'returns an empty array when the text contains no magnet:? scheme' do
+      expect(described_class.extract_magnet_uris_with_indices('no magnet here')).to eq []
+    end
+
+    it 'extracts a minimal magnet URI with just xt' do
+      expect(described_class.extract_magnet_uris_with_indices('magnet:?xt=urn:btih:abc')).to eq [
+        { url: 'magnet:?xt=urn:btih:abc', indices: [0, 23] },
+      ]
+    end
+
+    it 'extracts a fully populated magnet URI (xt, dn, xl, tr, as)' do
+      url  = 'magnet:?xt=urn:btih:c12fe1c06bba254a9dc9f519b335aa7c1367a88a' \
+             '&dn=Big+Buck+Bunny&xl=12345&tr=udp%3A%2F%2Ftracker.example.com%3A80' \
+             '&as=http%3A%2F%2Fexample.com%2Ffile'
+      text = "see #{url} here"
+      expect(described_class.extract_magnet_uris_with_indices(text)).to eq [
+        { url: url, indices: [4, 4 + url.length] },
+      ]
+    end
+
+    it 'rejects a magnet URI that does not contain xt=' do
+      expect(described_class.extract_magnet_uris_with_indices('magnet:?as=http%3A%2F%2Fexample.com%2Ffile')).to eq []
+    end
+
+    it 'rejects a bare magnet: with no query' do
+      expect(described_class.extract_magnet_uris_with_indices('plain magnet: nothing here')).to eq []
+    end
+
+    it 'trims a trailing period' do
+      expect(described_class.extract_magnet_uris_with_indices('see magnet:?xt=urn:btih:abc.')).to eq [
+        { url: 'magnet:?xt=urn:btih:abc', indices: [4, 27] },
+      ]
+    end
+
+    it 'does not match magnet: in the middle of a word' do
+      expect(described_class.extract_magnet_uris_with_indices('foomagnet:?xt=urn:btih:abc')).to eq []
+    end
+
+    it 'returns an empty array for nil input' do
+      expect(described_class.extract_magnet_uris_with_indices(nil)).to eq []
+    end
+  end
 end
