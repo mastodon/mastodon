@@ -1862,7 +1862,7 @@ it:
     quoted_update:
       subject: "%{name} ha modificato un post che hai citato"
     reblog:
-      body: 'Il tuo status è stato condiviso da %{name}:'
+      body: 'Il tuo post è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
     severed_relationships:
@@ -2112,7 +2112,7 @@ it:
     exceptions: Eccezioni
     explanation: L'eliminazione automatica viene eseguita con bassa priorità. Potrebbe verificarsi un ritardo tra il raggiungimento della soglia di età e la rimozione.
     ignore_favs: Ignora preferiti
-    ignore_reblogs: Ignora condivisioni
+    ignore_reblogs: Ignora le condivisioni
     interaction_exceptions: Eccezioni basate sulle interazioni
     interaction_exceptions_explanation: I post che superano temporaneamente la soglia dei preferiti o delle condivisioni potrebbero essere conservati anche se in seguito vengono diminuiti.
     keep_direct: Conserva messaggi diretti
@@ -2139,7 +2139,7 @@ it:
     min_age_label: Soglia di età
     min_favs: Conserva i post preferiti più di
     min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
-    min_reblogs: Conserva i post condivisi più di
+    min_reblogs: Mantieni i post condivisi almeno
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
     sensitive_content: Materiale sensibile

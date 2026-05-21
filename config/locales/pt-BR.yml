@@ -15,7 +15,7 @@ pt-BR:
     following:
       one: Seguindo
       other: Seguindo
-    instance_actor_flash: Esta conta é um ator virtual usado para representar o próprio servidor e não um usuário individual. É utilizada para fins de federação e não deve ser suspensa.
+    instance_actor_flash: Esta conta é um agente virtual usado para representar o próprio servidor e não um usuário individual. É utilizada para fins de federação e não deve ser suspensa.
     last_active: última atividade
     link_verified_on: A propriedade do link foi verificada em %{date}
     nothing_here: Nada aqui!
@@ -51,11 +51,11 @@ pt-BR:
         submit: Alterar e-mail
         title: Alterar e-mail para %{username}
       change_role:
-        changed_msg: Função alterada com sucesso!
-        edit_roles: Gerenciar funções do usuário
+        changed_msg: Cargo alterado com sucesso!
+        edit_roles: Gerenciar cargos do usuário
         label: Alterar função
-        no_role: Nenhuma função
-        title: Alterar função para %{username}
+        no_role: Nenhum cargo
+        title: Alterar cargo de %{username}
       collections: Coleções
       confirm: Confirmar
       confirmed: Confirmado
@@ -92,17 +92,17 @@ pt-BR:
         remote: Remoto
         title: Localização
       login_status: Situação da conta
-      media_attachments: Mídias anexadas
+      media_attachments: Anexos de mídia
       memorialize: Converter em memorial
       memorialized: Convertidas em memorial
       memorialized_msg: A conta de %{username} foi transformada em uma conta memorial
       moderation:
-        active: Ativo
-        all: Todos
+        active: Ativa
+        all: Todas
         disabled: Desativado
         pending: Pendente
         silenced: Limitado
-        suspended: Suspendido
+        suspended: Suspenso
         title: Moderação
       moderation_notes: Notas de moderação
       most_recent_activity: Atividade mais recente
@@ -111,12 +111,12 @@ pt-BR:
       no_limits_imposed: Sem limite imposto
       no_role_assigned: Sem cargo
       not_subscribed: Não inscrito
-      pending: Revisão pendente
+      pending: Pendente de revisão
       perform_full_suspension: Suspender
       previous_strikes: Avisos anteriores
       previous_strikes_description_html:
         one: Esta conta tem <strong>um</strong> aviso.
-        other: Esta conta tem <strong>%{count}</strong> ataques.
+        other: Esta conta tem <strong>%{count}</strong> avisos.
       promote: Promover
       protocol: Protocolo
       public: Público
@@ -158,8 +158,8 @@ pt-BR:
       strikes: Avisos anteriores
       subscribe: Inscrever-se
       suspend: Suspender
-      suspended: Suspendido
-      suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não recuperará nenhum dado que ela possuía anteriormente.
+      suspended: Suspenso
+      suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas isto não recuperará nenhum dado que ela possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       title: Contas
       unblock_email: Desbloquear endereço de e-mail
@@ -167,7 +167,7 @@ pt-BR:
       unconfirmed_email: E-mail não confirmado
       undo_sensitized: Desfazer sensível
       undo_silenced: Desfazer silêncio
-      undo_suspension: Desbanir
+      undo_suspension: Desfazer suspensão
       unsilenced_msg: As limitações da conta de %{username} foram removidas
       unsubscribe: Cancelar inscrição
       unsuspended_msg: A suspensão da conta de %{username} foi removida
@@ -175,7 +175,7 @@ pt-BR:
       view_domain: Ver resumo para o domínio
       warn: Notificar
       web: Web
-      whitelisted: Permitido
+      whitelisted: Permitido para federação
     action_logs:
       action_types:
         approve_appeal: Aprovar revisão
@@ -194,7 +194,7 @@ pt-BR:
         create_ip_block: Criar regra de IP
         create_relay: Criar Retransmissão
         create_unavailable_domain: Criar domínio indisponível
-        create_user_role: Criar cargo
+        create_user_role: Criar função
         create_username_block: Criar regra de usuário
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
@@ -208,7 +208,7 @@ pt-BR:
         destroy_relay: Excluir Retransmissão
         destroy_status: Excluir publicação
         destroy_unavailable_domain: Excluir domínio indisponível
-        destroy_user_role: Destruir cargo
+        destroy_user_role: Destruir função
         destroy_username_block: Excluir regra de usuário
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar emoji personalizado
@@ -327,7 +327,7 @@ pt-BR:
       edit:
         title: Editar anúncio
       empty: Sem anúncios.
-      live: Ao vivo
+      live: No ar
       new:
         create: Criar anúncio
         title: Novo anúncio
@@ -341,7 +341,7 @@ pt-BR:
       scheduled_msg: Anúncio agendado para publicação!
       title: Anúncios
       unpublish: Cancelar publicação
-      unpublished_msg: Anúncio desfeito!
+      unpublished_msg: Anúncio retirado do ar!
       updated_msg: Anúncio atualizado!
     collections:
       accounts: Contas
@@ -545,10 +545,10 @@ pt-BR:
       purged_msg: Todos os dados de inscrições via email estão sendo apagados.
       roles:
         accounts: Contas
-        edit_role: Editar função
+        edit_role: Editar cargo
         empty:
-          hint: Ninguém ter permissão para usar este recurso.
-          no_roles_added: Nenhuma função adicionada
+          hint: Ninguém tem permissão para usar este recurso.
+          no_roles_added: Nenhum cargo adicionado
         lead: As contas com os seguintes cargos podem ativar este recurso em seus perfis.
         manage_roles: Gerenciar cargos
         role_name: Nome do cargo
@@ -842,7 +842,7 @@ pt-BR:
         moderation: Moderação
         special: Especial
       delete: Excluir
-      description_html: Com as <strong>funções de usuário</strong>, você pode personalizar quais funções e áreas do Mastodon seus usuários podem acessar.
+      description_html: Com os <strong>cargos de usuário</strong>, você pode personalizar quais funções e áreas do Mastodon seus usuários podem acessar.
       edit: Editar cargo '%{name}'
       everyone: Permissões padrão
       everyone_full_description_html: Este é o <strong>cargo base</strong> que afeta <strong>todos os usuários</strong>, mesmo aqueles sem um cargo atribuído. Todos os outros cargos herdam as permissões dele.
@@ -851,14 +851,14 @@ pt-BR:
         other: "%{count} permissões"
       privileges:
         administrator: Administrador
-        administrator_description: Usuários com essa permissão irão ignorar todas as permissões
+        administrator_description: Usuários com essa permissão irão contornar todas as permissões
         delete_user_data: Apagar Dados de Usuário
         delete_user_data_description: Permitir aos usuários apagar os dados de outros usuários instantaneamente
         invite_bypass_approval: Convidar usuário sem revisão
-        invite_bypass_approval_description: Permitir pessoas convidadas para esse servidor por esses usuários para dispensar aprovação por moderação
+        invite_bypass_approval_description: Permitir que pessoas convidadas para esse servidor por esses usuários não precisem de aprovação da moderação
         invite_users: Convidar Usuários
         invite_users_description: Permite que os usuários convidem novas pessoas para o servidor
-        manage_announcements: Gerenciar Avisos
+        manage_announcements: Gerenciar anúncios
         manage_announcements_description: Permite aos usuários gerenciar anúncios no servidor
         manage_appeals: Gerenciar revisões
         manage_appeals_description: Permite aos usuários visualizar as revisões das decisões da moderação
