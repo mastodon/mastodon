@@ -28,10 +28,9 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
     cache_if_unauthenticated!
     authorize @account, :index_collections?
 
-    presenter = CollectionsPresenter.new(collections: @collections)
-    render json: presenter, serializer: REST::CollectionsWithAccountPreviewsSerializer
+    render json: @collections, each_serializer: REST::CollectionSerializer, adapter: :json
   rescue Mastodon::NotPermittedError
-    render json: { collections: [], partial_accounts: [] }
+    render json: { collections: [] }
   end
 
   def show
@@ -74,7 +73,6 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   def set_collections
     @collections = @account.collections
       .with_tag
-      .preload(top_items: :account)
       .order(created_at: :desc)
       .offset(offset_param)
       .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
