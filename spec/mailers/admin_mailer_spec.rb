@@ -101,16 +101,18 @@ RSpec.describe AdminMailer do
   describe '.new_trends when between queueing and sending a trend gets deleted' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
     let(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
-    let(:status) { Fabricate(:status) }
-    let(:tag) { Fabricate(:tag) }
-    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]).deliver_later! }
+    let(:status) { Fabricate(:status, language: 'en') }
+    let(:tag) { Fabricate(:tag, display_name: 'Test Tag') }
+    let(:other_tag) { Fabricate(:tag, display_name: 'Test Tag') }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag, other_tag], [status]).deliver_later! }
     let(:status_trend) { Fabricate(:status_trend, status: status, account: Fabricate(:account)) }
     let(:tag_trend) { Fabricate(:tag_trend, tag: tag) }
-    let(:delete_trends) { [TagTrend.delete(tag_trend.id), StatusTrend.delete(status_trend.id)] }
-    let(:create_trends) { [tag_trend, status_trend] }
+    let(:other_tag_trend) { Fabricate(:tag_trend, tag: other_tag) }
+    let(:preview_card_trend) { Fabricate(:preview_card_trend, preview_card: link) }
+    let(:delete_trends) { [TagTrend.delete_all, StatusTrend.delete_all] }
+    let(:create_trends) { [tag_trend, status_trend, preview_card_trend] }
 
     before do
-      PreviewCardTrend.create!(preview_card: link)
       recipient.user.update(locale: :en)
     end
 
@@ -126,6 +128,16 @@ RSpec.describe AdminMailer do
       expect(mail.perform_now.body).to match(link.title)
       expect(mail.perform_now.body).to_not match(ActivityPub::TagManager.instance.url_for(status))
       expect(mail.perform_now.body).to_not match(tag.display_name)
+    end
+
+    it 'aborts when no trends are present' do
+      create_trends
+      expect(mail.successfully_enqueued?).to be(true)
+
+      delete_trends
+      PreviewCardTrend.delete_all
+
+      expect(mail.perform_now).to be(false)
     end
   end
 

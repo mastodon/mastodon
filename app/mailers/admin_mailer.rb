@@ -10,6 +10,7 @@ class AdminMailer < ApplicationMailer
   before_action :set_instance
 
   after_action :set_important_headers!, only: :new_critical_software_updates
+  before_deliver :validate_trends_present, only: :new_trends
 
   around_action :set_locale
 
@@ -58,6 +59,10 @@ class AdminMailer < ApplicationMailer
   end
 
   private
+
+  def validate_trends_present
+    throw(:abort) unless mail.body.include?('score' || 'today' || 'yesterday')
+  end
 
   def process_params
     @me = params[:recipient]
