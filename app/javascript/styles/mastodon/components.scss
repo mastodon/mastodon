@@ -3801,7 +3801,8 @@ a.account__display-name {
 
 .navigation-panel,
 .compose-panel {
-  hr {
+  hr,
+  li[role='separator'] {
     flex: 0 0 auto;
     border: 0;
     background: transparent;
