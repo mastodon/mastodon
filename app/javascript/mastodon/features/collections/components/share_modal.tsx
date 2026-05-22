@@ -92,7 +92,7 @@ export const CollectionShareModal: React.FC<{
         />
 
         <div className={classes.preview}>
-          <CollectionPreviewCard collection={collection} />
+          <CollectionPreviewCard collection={collection} headingLevel='h2' />
         </div>
 
         <CopyLinkField
