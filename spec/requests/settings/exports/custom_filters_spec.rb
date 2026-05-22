@@ -24,7 +24,7 @@ RSpec.describe 'Settings / Exports / CustomFilters' do
             'keyword' => 'something',
             'whole_word' => false,
           }],
-          'statuses' => ['Lorem ipsum dolor sit amet'],
+          'statuses' => ['https://cb6e6126.ngrok.io/ap/users/116617508906718943/statuses/116617508906704615'],
         }]
       end
 
