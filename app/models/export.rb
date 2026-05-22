@@ -66,7 +66,7 @@ class Export
         context: filter.context,
         action: filter.action,
         keywords_attributes: keywords_attributes,
-        statuses: filter.statuses.map { |s| s.status&.text },
+        statuses: filter.statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s.status) },
       }
     end
     JSON.generate(data_collection)
