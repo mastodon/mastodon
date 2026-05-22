@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1Alpha::CollectionItemsController < Api::BaseController
+class Api::V1::CollectionItemsController < Api::BaseController
   include Authorization
 
   before_action :check_feature_enabled
