@@ -10,7 +10,6 @@ class AdminMailer < ApplicationMailer
   before_action :set_instance
 
   after_action :set_important_headers!, only: :new_critical_software_updates
-  before_deliver :validate_trends_present
 
   around_action :set_locale
 
@@ -39,6 +38,8 @@ class AdminMailer < ApplicationMailer
     @tags                   = tags.filter { |tag| tag.trend.present? }
     @statuses               = statuses.filter { |status| status.trend.present? }
 
+    return unless @links.any? || @tags.any? || @statuses.any?
+
     mail subject: default_i18n_subject(instance: @instance)
   end
 
@@ -59,12 +60,6 @@ class AdminMailer < ApplicationMailer
   end
 
   private
-
-  def validate_trends_present
-    return unless action_name == 'new_trends'
-
-    throw(:abort) unless @links.any? || @tags.any? || @statuses.any?
-  end
 
   def process_params
     @me = params[:recipient]
