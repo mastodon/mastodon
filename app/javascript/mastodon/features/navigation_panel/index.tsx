@@ -249,124 +249,150 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
       {banner && <div className='navigation-panel__banner'>{banner}</div>}
 
-      <div className='navigation-panel__menu'>
+      <ul className='navigation-panel__menu'>
         {signedIn && (
           <>
             {!multiColumn && (
-              <ColumnLink
-                to='/publish'
-                icon='plus'
-                iconComponent={AddIcon}
-                activeIconComponent={AddIcon}
-                text={intl.formatMessage(messages.compose)}
-                className='button navigation-panel__compose-button'
-              />
+              <li>
+                <ColumnLink
+                  to='/publish'
+                  icon='plus'
+                  iconComponent={AddIcon}
+                  activeIconComponent={AddIcon}
+                  text={intl.formatMessage(messages.compose)}
+                  className='button navigation-panel__compose-button'
+                />
+              </li>
             )}
-            <ColumnLink
-              transparent
-              to='/home'
-              icon='home'
-              iconComponent={HomeIcon}
-              activeIconComponent={HomeActiveIcon}
-              text={intl.formatMessage(messages.home)}
-            />
+            <li>
+              <ColumnLink
+                transparent
+                to='/home'
+                icon='home'
+                iconComponent={HomeIcon}
+                activeIconComponent={HomeActiveIcon}
+                text={intl.formatMessage(messages.home)}
+              />
+            </li>
           </>
         )}
 
         {trendsEnabled && (
-          <ColumnLink
-            transparent
-            to='/explore'
-            icon='explore'
-            iconComponent={TrendingUpIcon}
-            text={intl.formatMessage(messages.explore)}
-          />
+          <li>
+            <ColumnLink
+              transparent
+              to='/explore'
+              icon='explore'
+              iconComponent={TrendingUpIcon}
+              text={intl.formatMessage(messages.explore)}
+            />
+          </li>
         )}
 
         {(canViewFeed(signedIn, permissions, localLiveFeedAccess) ||
           canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
-          <ColumnLink
-            transparent
-            to={
-              canViewFeed(signedIn, permissions, localLiveFeedAccess)
-                ? '/public/local'
-                : '/public/remote'
-            }
-            icon='globe'
-            iconComponent={PublicIcon}
-            isActive={isFirehoseActive}
-            text={intl.formatMessage(
-              canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
-                canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
-                ? messages.firehose
-                : messages.firehose_singular,
-            )}
-          />
+          <li>
+            <ColumnLink
+              transparent
+              to={
+                canViewFeed(signedIn, permissions, localLiveFeedAccess)
+                  ? '/public/local'
+                  : '/public/remote'
+              }
+              icon='globe'
+              iconComponent={PublicIcon}
+              isActive={isFirehoseActive}
+              text={intl.formatMessage(
+                canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
+                  canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
+                  ? messages.firehose
+                  : messages.firehose_singular,
+              )}
+            />
+          </li>
         )}
 
         {signedIn && (
           <>
-            <NotificationsLink />
+            <li>
+              <NotificationsLink />
+            </li>
 
-            <FollowRequestsLink />
+            <li>
+              <FollowRequestsLink />
+            </li>
 
-            <AnnualReportNavItem />
+            <li>
+              <AnnualReportNavItem />
+            </li>
 
-            <hr />
+            <li role='separator' />
 
             <ListPanel />
 
             <FollowedTagsPanel />
 
-            <ColumnLink
-              transparent
-              to='/favourites'
-              icon='star'
-              iconComponent={StarIcon}
-              activeIconComponent={StarActiveIcon}
-              text={intl.formatMessage(messages.favourites)}
-            />
-            <ColumnLink
-              transparent
-              to='/bookmarks'
-              icon='bookmarks'
-              iconComponent={BookmarksIcon}
-              activeIconComponent={BookmarksActiveIcon}
-              text={intl.formatMessage(messages.bookmarks)}
-            />
-            {areCollectionsEnabled() && (
+            <li>
               <ColumnLink
                 transparent
-                to={`/@${account?.acct}/collections`}
-                icon='collections'
-                iconComponent={CollectionsIcon}
-                activeIconComponent={CollectionsActiveIcon}
-                text={intl.formatMessage(messages.collections)}
+                to='/favourites'
+                icon='star'
+                iconComponent={StarIcon}
+                activeIconComponent={StarActiveIcon}
+                text={intl.formatMessage(messages.favourites)}
               />
+            </li>
+            <li>
+              <ColumnLink
+                transparent
+                to='/bookmarks'
+                icon='bookmarks'
+                iconComponent={BookmarksIcon}
+                activeIconComponent={BookmarksActiveIcon}
+                text={intl.formatMessage(messages.bookmarks)}
+              />
+            </li>
+            {areCollectionsEnabled() && (
+              <li>
+                <ColumnLink
+                  transparent
+                  to={`/@${account?.acct}/collections`}
+                  icon='collections'
+                  iconComponent={CollectionsIcon}
+                  activeIconComponent={CollectionsActiveIcon}
+                  text={intl.formatMessage(messages.collections)}
+                />
+              </li>
             )}
-            <ColumnLink
-              transparent
-              to='/conversations'
-              icon='at'
-              iconComponent={AlternateEmailIcon}
-              text={intl.formatMessage(messages.direct)}
-            />
+            <li>
+              <ColumnLink
+                transparent
+                to='/conversations'
+                icon='at'
+                iconComponent={AlternateEmailIcon}
+                text={intl.formatMessage(messages.direct)}
+              />
+            </li>
 
-            <hr />
+            <li role='separator' />
 
-            <ColumnLink
-              transparent
-              href='/settings/preferences'
-              icon='cog'
-              iconComponent={SettingsIcon}
-              text={intl.formatMessage(messages.preferences)}
-            />
+            <li>
+              <ColumnLink
+                transparent
+                href='/settings/preferences'
+                icon='cog'
+                iconComponent={SettingsIcon}
+                text={intl.formatMessage(messages.preferences)}
+              />
+            </li>
 
-            <MoreLink />
+            <li>
+              <MoreLink />
+            </li>
           </>
         )}
 
-        <div className='navigation-panel__legal'>
+        <li className='navigation-panel__legal'>
           <ColumnLink
             transparent
             to='/about'
@@ -374,16 +400,16 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             iconComponent={InfoIcon}
             text={intl.formatMessage(messages.about)}
           />
-        </div>
+        </li>
 
         {!signedIn && (
-          <div className='navigation-panel__sign-in-banner'>
+          <li className='navigation-panel__sign-in-banner'>
             <hr />
 
             {disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner />}
-          </div>
+          </li>
         )}
-      </div>
+      </ul>
 
       <div className='flex-spacer' />
 
