@@ -64,7 +64,7 @@ export const CollapsiblePanel: React.FC<{
               }
               title={expanded ? collapseTitle : expandTitle}
               onClick={handleClick}
-              aria-controls={`${accessibilityId}-content`}
+              ariaControls={`${accessibilityId}-content`}
             />
           </>
         )}
