@@ -132,6 +132,20 @@ RSpec.describe Collection do
         expect { items.first.account }.to_not execute_queries
       end
     end
+
+    context 'when called multiple times' do
+      let(:account) { subject.account }
+
+      it 'memoizes results' do
+        subject.items_for.to_a
+
+        expect { subject.items_for.to_a }.to_not execute_queries
+
+        expect { subject.items_for(account).to_a }.to execute_queries
+
+        expect { subject.items_for(account).to_a }.to_not execute_queries
+      end
+    end
   end
 
   describe '#tag_name=' do
