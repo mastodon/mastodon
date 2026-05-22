@@ -3764,16 +3764,6 @@ a.account__display-name {
     margin-bottom: 12px;
   }
 
-  .getting-started__trends h4 {
-    padding: 10px 12px;
-    padding-inline-start: 16px;
-  }
-
-  .getting-started__trends .trends__item {
-    padding: 10px 12px;
-    padding-inline-start: 16px;
-  }
-
   @media screen and (height <= 930px) {
     &__portal .trends__item:nth-child(n + 5) {
       display: none;
@@ -4139,24 +4129,29 @@ a.account__display-name {
   border: 1px solid var(--color-border-primary);
   border-top: 0;
 
+  &__trends-heading {
+    border-bottom: 1px solid var(--color-border-primary);
+    padding: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+    .navigation-panel & {
+      padding: 10px 12px;
+      padding-inline-start: 16px;
+    }
+
+    a {
+      color: var(--color-text-secondary);
+      text-decoration: none;
+    }
+  }
+
   &__trends {
     flex: 0 1 auto;
     opacity: 1;
     animation: fade 150ms linear;
     margin-top: 10px;
-
-    h4 {
-      border-bottom: 1px solid var(--color-border-primary);
-      padding: 10px;
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: 500;
-
-      a {
-        color: var(--color-text-secondary);
-        text-decoration: none;
-      }
-    }
 
     .trends__item {
       border-bottom: 0;
@@ -4164,6 +4159,11 @@ a.account__display-name {
 
       &__current {
         color: var(--color-text-secondary);
+      }
+
+      .navigation-panel & {
+        padding: 10px 12px;
+        padding-inline-start: 16px;
       }
     }
   }

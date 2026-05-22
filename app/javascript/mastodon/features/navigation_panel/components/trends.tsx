@@ -39,7 +39,7 @@ export const Trends: React.FC = () => {
   return (
     <aside className='navigation-panel__portal'>
       <div className='getting-started__trends'>
-        <h2>
+        <h2 className='getting-started__trends-heading'>
           <Link to={'/explore/tags'}>
             <FormattedMessage
               id='trends.trending_now'
