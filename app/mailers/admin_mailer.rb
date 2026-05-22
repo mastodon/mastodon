@@ -34,6 +34,8 @@ class AdminMailer < ApplicationMailer
   end
 
   def new_trends(links, tags, statuses)
+    ActiveRecord::Associations::Preloader.new(records: [*links, *tags, *statuses], associations: [:trend]).call
+
     @links                  = links.filter { |link| link.trend.present? }
     @tags                   = tags.filter { |tag| tag.trend.present? }
     @statuses               = statuses.filter { |status| status.trend.present? }

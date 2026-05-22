@@ -71,11 +71,12 @@ RSpec.describe AdminMailer do
 
   describe '.new_trends' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
-    let(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
-    let(:status) { Fabricate(:status) }
-    let(:tag) { Fabricate(:tag, display_name: 'Test Tag') }
-    let(:other_tag) { Fabricate(:tag, display_name: 'Test Tag') }
-    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]) }
+    let!(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
+    let!(:status) { Fabricate(:status) }
+    let!(:tag) { Fabricate(:tag, display_name: 'Test Tag') }
+    let!(:other_tag) { Fabricate(:tag, display_name: 'Test Tag') }
+    let!(:another_tag) { Fabricate(:tag, display_name: 'Test Tag') }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag, other_tag, another_tag], [status]) }
     let(:status_trend) { Fabricate(:status_trend, status: status, account: Fabricate(:account)) }
     let(:tag_trend) { Fabricate(:tag_trend, tag: tag) }
     let(:other_tag_trend) { Fabricate(:tag_trend, tag: other_tag) }
