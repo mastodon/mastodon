@@ -35,9 +35,9 @@ class AdminMailer < ApplicationMailer
   end
 
   def new_trends(links, tags, statuses)
-    @links                  = links
-    @tags                   = tags
-    @statuses               = statuses
+    @links                  = links.filter { |link| link.trend.present? }
+    @tags                   = tags.filter { |tag| tag.trend.present? }
+    @statuses               = statuses.filter { |status| status.trend.present? }
 
     mail subject: default_i18n_subject(instance: @instance)
   end
@@ -63,7 +63,7 @@ class AdminMailer < ApplicationMailer
   def validate_trends_present
     return unless action_name == 'new_trends'
 
-    throw(:abort) unless mail.body.include?('score' || 'today' || 'yesterday')
+    throw(:abort) unless @links.any? || @tags.any? || @statuses.any?
   end
 
   def process_params
