@@ -132,7 +132,7 @@ RSpec.describe AdminMailer do
         StatusTrend.delete_all
         PreviewCardTrend.delete_all
 
-        expect(queue_mail.perform_now).to be_nil
+        expect { queue_mail.perform_now }.to_not send_email
       end
     end
   end
