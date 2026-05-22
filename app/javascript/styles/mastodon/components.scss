@@ -9637,41 +9637,6 @@ noscript {
   }
 }
 
-.link-footer {
-  flex: 0 0 auto;
-  padding-top: 20px;
-  z-index: 1;
-  font-size: 13px;
-
-  .column & {
-    padding: 15px;
-  }
-
-  p {
-    color: var(--color-text-secondary);
-    margin-bottom: 20px;
-
-    .version {
-      white-space: nowrap;
-    }
-
-    strong {
-      font-weight: 500;
-    }
-
-    a {
-      color: var(--color-text-secondary);
-      text-decoration: underline;
-
-      &:hover,
-      &:focus,
-      &:active {
-        text-decoration: none;
-      }
-    }
-  }
-}
-
 .about {
   padding: 20px;
   border-top: 1px solid var(--color-border-primary);
@@ -9805,18 +9770,6 @@ noscript {
     &:focus,
     &:active {
       text-decoration: underline;
-    }
-  }
-
-  .link-footer {
-    padding: 0;
-    margin-top: 60px;
-    text-align: center;
-    font-size: 15px;
-    line-height: 22px;
-
-    @media screen and (min-width: $no-gap-breakpoint) {
-      display: none;
     }
   }
 

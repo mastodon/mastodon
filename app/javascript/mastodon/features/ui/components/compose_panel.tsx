@@ -51,7 +51,7 @@ export const ComposePanel: React.FC = () => {
       {signedIn && !hideComposer && <ComposeFormContainer singleColumn />}
       {signedIn && hideComposer && <div className='compose-form' />}
 
-      <LinkFooter multiColumn={!singleColumn} />
+      <LinkFooter context={singleColumn ? 'default' : 'multi-column'} />
     </div>
   );
 };
