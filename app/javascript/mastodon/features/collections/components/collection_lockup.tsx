@@ -47,6 +47,7 @@ export interface CollectionLockupProps {
   withTimestamp?: boolean;
   sideContent?: React.ReactNode;
   className?: string;
+  headingLevel?: 'h2' | 'h3' | 'h4';
 }
 
 export const CollectionLockup: React.FC<CollectionLockupProps> = ({
@@ -54,6 +55,7 @@ export const CollectionLockup: React.FC<CollectionLockupProps> = ({
   withAuthorHandle = true,
   withTimestamp,
   sideContent,
+  headingLevel = 'h3',
   className,
 }) => {
   const { id, name } = collection;
@@ -70,7 +72,7 @@ export const CollectionLockup: React.FC<CollectionLockupProps> = ({
       sideContent={sideContent}
     >
       <ListItemLink
-        as='h3'
+        as={headingLevel}
         to={getCollectionPath(id)}
         subtitle={
           <CollectionInfo
