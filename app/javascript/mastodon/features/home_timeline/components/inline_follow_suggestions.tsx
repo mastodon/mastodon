@@ -212,7 +212,7 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
       tabIndex={-1}
     >
       <div className='inline-follow-suggestions__header'>
-        <h2 id={uniqueId}>
+        <h2 id={uniqueId} className='inline-follow-suggestions__title'>
           <FormattedMessage
             id='follow_suggestions.who_to_follow'
             defaultMessage='Who to follow'
