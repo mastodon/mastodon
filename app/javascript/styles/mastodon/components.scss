@@ -8887,6 +8887,7 @@ noscript {
 
   .search__input {
     padding-block: 12px;
+    padding-inline-start: 46px;
     padding-inline-end: 30px;
   }
 
@@ -8894,9 +8895,12 @@ noscript {
     border: 1px solid var(--color-border-primary);
   }
 
-  .search__icon {
+  .search__icon-wrapper {
     top: 12px;
-    inset-inline-end: 12px;
+    margin-inline-start: 12px;
+  }
+
+  .search__icon {
     color: var(--color-text-tertiary);
   }
 }
