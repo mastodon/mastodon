@@ -85,13 +85,16 @@ export async function search({
     // Only query the range for the last token to allow partial matches.
     const range =
       i === queryTokens.length - 1
-        ? IDBKeyRange.bound(token, token + '\uffff')
+        ? IDBKeyRange.lowerBound(token)
         : IDBKeyRange.only(token);
 
-    const [unicodeResults, customResults] = await Promise.all([
-      db.getAllFromIndex(locale, 'tokens', range),
-      db.getAllFromIndex('custom', 'tokens', range),
-    ]);
+    const [unicodeResults, customResults, shortcodeResults] = await Promise.all(
+      [
+        db.getAllFromIndex(locale, 'tokens', range),
+        db.getAllFromIndex('custom', 'tokens', range),
+        db.getAllFromIndex('shortcodes', 'shortcodes', range),
+      ],
+    );
     const resultMap: ScoreMap = new Map();
     for (const emoji of unicodeResults) {
       const score = getScoreForEmoji(emoji, token);
@@ -107,6 +110,22 @@ export async function search({
       }
       resultMap.set(emoji.shortcode, { ...emoji, score });
     }
+
+    for (const shortcodeResult of shortcodeResults) {
+      if (resultMap.has(shortcodeResult.hexcode)) {
+        continue;
+      }
+      const emoji = await db.get(locale, shortcodeResult.hexcode);
+      if (!emoji) {
+        continue;
+      }
+      const score = getScoreForEmoji(emoji, token);
+      if (score === null) {
+        continue;
+      }
+      resultMap.set(emoji.hexcode, { ...emoji, score });
+    }
+
     log('found %d results for token "%s"', resultMap.size, token);
     resultArrays.push(resultMap);
   }
@@ -147,7 +166,7 @@ function getScoreForEmoji(emoji: AnyEmojiData, query: string) {
   }
 
   let index = 1;
-  for (const token of [id, emoji.tokens]) {
+  for (const token of [id, ...emoji.tokens]) {
     const tokenIndex = token.indexOf(query);
     if (tokenIndex !== -1) {
       return index + tokenIndex / token.length;
