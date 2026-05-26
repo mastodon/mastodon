@@ -11,7 +11,15 @@ import { me } from '@/mastodon/initial_state';
 
 const makeGetStatusIds = (pending = false) => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
-  (state, { type }) => state.getIn(['timelines', type, pending ? 'pendingItems' : 'items'], ImmutableList()),
+  (state, { type, maxItems }) => {
+    const items = state.getIn(['timelines', type, pending ? 'pendingItems' : 'items'], ImmutableList());
+
+    if (maxItems) {
+      return items.take(maxItems);
+    }
+
+    return items;
+  },
   (state)           => state.get('statuses'),
 ], (columnSettings, statusIds, statuses) => {
   return statusIds.filter(id => {
@@ -41,8 +49,15 @@ const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
   const getPendingStatusIds = makeGetStatusIds(true);
 
-  const mapStateToProps = (state, { timelineId, initialLoadingState = true }) => ({
-    statusIds: getStatusIds(state, { type: timelineId }),
+  /**
+   * @param {import('mastodon/store').RootState} state
+   * @param {Object} props
+   * @param {string} props.timelineId
+   * @param {boolean} [props.initialLoadingState]
+   * @param {number} [props.maxItems]
+   */
+  const mapStateToProps = (state, { timelineId, initialLoadingState = true, maxItems }) => ({
+    statusIds: getStatusIds(state, { type: timelineId, maxItems }),
     lastId:    state.getIn(['timelines', timelineId, 'items'])?.last(),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], initialLoadingState),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),

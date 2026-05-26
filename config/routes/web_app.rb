@@ -33,4 +33,6 @@
   /search
   /start/(*any)
   /statuses/(*any)
+  /overview
+  /overview/about
 ).each { |path| get path, to: 'home#index' }
