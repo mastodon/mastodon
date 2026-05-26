@@ -116,11 +116,13 @@ RSpec.describe AdminMailer do
 
         TagTrend.delete_all
         StatusTrend.delete_all
-        expect(mail.to).to eq([recipient.user_email])
+        expect { queue_mail.perform_now }.to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)
+        )
         expect(mail.body).to have_text(/The following items need a review before they can be displayed publicly/)
-        expect(mail.body).to match(link.title)
-        expect(mail.from).to eq(['notifications@localhost'])
-        expect(mail.subject).to eq(I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain))
+          .and match(link.title)
         expect(mail.body).to_not match(ActivityPub::TagManager.instance.url_for(status))
         expect(mail.body).to_not match(tag.display_name)
       end
