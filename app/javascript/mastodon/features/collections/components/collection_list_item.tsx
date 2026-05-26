@@ -27,14 +27,14 @@ export const CollectionListItem: React.FC<CollectionListItemProps> = ({
   ...otherProps
 }) => {
   const uniqueId = useId();
-  const linkId = `${uniqueId}-link`;
-  const infoId = `${uniqueId}-info`;
+  const titleId = `${uniqueId}-title`;
+  const subtitleId = `${uniqueId}-info`;
 
   return (
     <Article
       focusable
-      aria-labelledby={linkId}
-      aria-describedby={infoId}
+      aria-labelledby={titleId}
+      aria-describedby={subtitleId}
       aria-posinset={positionInList}
       aria-setsize={listSize}
     >
@@ -52,6 +52,8 @@ export const CollectionListItem: React.FC<CollectionListItemProps> = ({
             className={classes.menuButton}
           />
         }
+        titleId={titleId}
+        subtitleId={subtitleId}
         {...otherProps}
       />
     </Article>
