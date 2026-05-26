@@ -55,6 +55,8 @@ class Form::Import
       :bookmarks
     elsif file_name_matches?('lists')
       :lists
+    elsif file_name_matches?('custom_filters')
+      :custom_filters
     end
   end
 
@@ -150,9 +152,34 @@ class Form::Import
     end
   end
 
+  def file_type_is_json?
+    data.content_type == 'application/json'
+  end
+
+  def data_from_json
+    @data_from_json ||= JSON.parse(data.read)['custom_filters'].map(&:deep_symbolize_keys)
+  end
+
+  def allowed_json_key?
+    type.to_sym.in?(%i(custom_filters))
+  end
+
   def validate_data
     return if data.nil?
     return errors.add(:data, I18n.t('imports.errors.too_large')) if data.size > FILE_SIZE_LIMIT
+
+    if file_type_is_json?
+      validate_json_data
+    else
+      validate_csv_data
+    end
+  rescue CSV::MalformedCSVError => e
+    errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))
+  rescue EmptyFileError
+    errors.add(:data, I18n.t('imports.errors.empty'))
+  end
+
+  def validate_csv_data
     return errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless default_csv_headers.all? { |header| csv_data.headers.include?(header) }
 
     errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if csv_row_count > ROWS_PROCESSING_LIMIT
@@ -163,9 +190,12 @@ class Form::Import
       limit -= current_account.following_count unless overwrite
       errors.add(:data, I18n.t('users.follow_limit_reached', limit: base_limit)) if csv_row_count > limit
     end
-  rescue CSV::MalformedCSVError => e
-    errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))
-  rescue EmptyFileError
-    errors.add(:data, I18n.t('imports.errors.empty'))
+  end
+
+  def validate_json_data
+    return unless allowed_json_key?
+
+    errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if data_from_json.count > ROWS_PROCESSING_LIMIT
+    errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless allowed_json_key?
   end
 end
