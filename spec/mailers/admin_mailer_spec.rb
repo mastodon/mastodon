@@ -116,13 +116,13 @@ RSpec.describe AdminMailer do
 
         TagTrend.delete_all
         StatusTrend.delete_all
-        expect(queue_mail.perform_now.to).to eq([recipient.user_email])
-        expect(queue_mail.perform_now.subject).to eq(I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain))
-        expect(queue_mail.perform_now.from).to eq(['notifications@localhost'])
-        expect(queue_mail.perform_now.body).to have_text(/The following items need a review before they can be displayed publicly/)
-        expect(queue_mail.perform_now.body).to match(link.title)
-        expect(queue_mail.perform_now.body).to_not match(ActivityPub::TagManager.instance.url_for(status))
-        expect(queue_mail.perform_now.body).to_not match(tag.display_name)
+        expect(mail.to).to eq([recipient.user_email])
+        expect(mail.body).to have_text(/The following items need a review before they can be displayed publicly/)
+        expect(mail.body).to match(link.title)
+        expect(mail.from).to eq(['notifications@localhost'])
+        expect(mail.subject).to eq(I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain))
+        expect(mail.body).to_not match(ActivityPub::TagManager.instance.url_for(status))
+        expect(mail.body).to_not match(tag.display_name)
       end
 
       it 'returns nil when no trends are present' do
