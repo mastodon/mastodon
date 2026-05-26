@@ -18,6 +18,7 @@ import { LinkFooter} from 'mastodon/features/ui/components/link_footer';
 
 import { Section } from './components/section';
 import { RulesSection } from './components/rules';
+import { getColumnSkipLinkId } from '../ui/components/skip_links';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
@@ -80,7 +81,7 @@ class About extends PureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
-        <div className='scrollable about'>
+        <div className='scrollable about' id={getColumnSkipLinkId(1)}>
           <div className='about__header'>
             <ServerHeroImage
               withAltBadge
@@ -164,7 +165,7 @@ class About extends PureComponent {
             ))}
           </Section>
 
-          <LinkFooter />
+          <LinkFooter context='about' />
 
           <div className='about__footer'>
             <p><FormattedMessage id='about.disclaimer' defaultMessage='Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.' /></p>

@@ -73,7 +73,7 @@ class TranslateButton extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  languages: supportsTranslator ? new Map() : state.server.translationLanguages.items,
+  languages: supportsTranslator ? new Map() : state.server.translationLanguages.item,
 });
 
 class StatusContent extends PureComponent {
@@ -255,6 +255,9 @@ class StatusContent extends PureComponent {
     const { status, statusContent } = this.props;
 
     const renderReadMore = this.props.onClick && status.get('collapsed');
+    const contentLocale = intl.locale.replace(/[_-].*/, '');
+    const targetLanguages = this.props.languages?.[status.get('language') || 'und'];
+    const renderTranslate = this.props.onTranslate && this.props.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
 
     const content = statusContent ?? getStatusContent(status);
     const language = status.getIn(['translation', 'language']) || status.get('language');

@@ -20,7 +20,7 @@ export function useCustomEmojis() {
   return emojis;
 }
 
-async function loadEmojisIntoCache() {
+export async function loadEmojisIntoCache() {
   const { loadAllCustomEmoji } = await import('../features/emoji/database');
   const emojisRaw = await loadAllCustomEmoji();
   if (emojisRaw === null) {
