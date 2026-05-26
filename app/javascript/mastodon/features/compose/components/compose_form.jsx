@@ -248,7 +248,15 @@ class ComposeForm extends ImmutablePureComponent {
     const { intl, onPaste, onDrop, autoFocus, withoutNavigation, maxChars, isSubmitting } = this.props;
 
     return (
-      <form className='compose-form' onSubmit={this.handleSubmit}>
+      <form
+        className='compose-form'
+        role='region'
+        aria-label={intl.formatMessage({
+          id: 'tabs_bar.publish',
+          defaultMessage: 'New Post'
+        })}
+        onSubmit={this.handleSubmit}
+      >
         <ReplyIndicator />
         {!withoutNavigation && <NavigationBar />}
         <Warning />

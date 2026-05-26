@@ -31,6 +31,10 @@ export const messages = defineMessages({
     defaultMessage: 'Notifications',
   },
   menu: { id: 'tabs_bar.menu', defaultMessage: 'Menu' },
+  advancedUiQuickLinks: {
+    id: 'tabs_bar.quick_links',
+    defaultMessage: 'Quick links',
+  },
 });
 
 const IconLabelButton: React.FC<{

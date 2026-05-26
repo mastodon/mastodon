@@ -60,7 +60,7 @@ import { MoreLink } from './components/more_link';
 import { SignInBanner } from './components/sign_in_banner';
 import { Trends } from './components/trends';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: {
     id: 'tabs_bar.notifications',
@@ -71,6 +71,12 @@ const messages = defineMessages({
   firehose_singular: {
     id: 'column.firehose_singular',
     defaultMessage: 'Live feed',
+  },
+  main: {
+    id: 'navigation_bar.main',
+    defaultMessage: 'Main',
+    description:
+      'Label for the main navigation; should not contain the word "navigation".',
   },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
@@ -419,6 +425,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 };
 
 export const CollapsibleNavigationPanel: React.FC = () => {
+  const intl = useIntl();
   const open = useAppSelector((state) => state.navigation.open);
   const dispatch = useAppDispatch();
   const openable = useBreakpoint('openable');
@@ -527,7 +534,8 @@ export const CollapsibleNavigationPanel: React.FC = () => {
   const showOverlay = openable && open;
 
   return (
-    <div
+    <nav
+      aria-label={intl.formatMessage(messages.main)}
       className={classNames(
         'columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational',
         { 'columns-area__panels__pane--overlay': showOverlay },
@@ -541,6 +549,6 @@ export const CollapsibleNavigationPanel: React.FC = () => {
       >
         <NavigationPanel />
       </animated.div>
-    </div>
+    </nav>
   );
 };
