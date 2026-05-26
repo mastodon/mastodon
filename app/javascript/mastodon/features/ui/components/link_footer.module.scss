@@ -41,6 +41,10 @@
 
     &:not(:last-child)::after {
       content: ' · ';
+
+      @supports (content: 'x' / 'y') {
+        content: ' · ' / '';
+      }
     }
   }
 
