@@ -144,9 +144,14 @@ export const HoverCardController: React.FC = () => {
       setScrollTimeout(handleScrollEnd, 100);
     };
 
-    const handleMouseMove = () => {
+    const handleMouseMove = (e: MouseEvent) => {
       if (isUsingTouch) {
         isUsingTouch = false;
+      }
+
+      const hasMoved = Math.max(e.movementX, e.movementY) > 0;
+      if (!hasMoved) {
+        return;
       }
 
       delayEnterTimeout(enterDelay);
