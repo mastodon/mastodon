@@ -22,18 +22,22 @@ export const renderPinnedStatusHeader: StatusHeaderRenderFn = ({
     return <StatusHeader {...args} />;
   }
   return (
-    <StatusHeader {...args} className={classes.pinnedStatusHeader}>
-      <Badge
-        className={classes.pinnedBadge}
-        icon={<Icon id='pinned' icon={IconPinned} />}
-        label={
-          <FormattedMessage
-            id='account.timeline.pinned'
-            defaultMessage='Pinned'
-          />
-        }
-      />
-    </StatusHeader>
+    <StatusHeader
+      {...args}
+      className={classes.pinnedStatusHeader}
+      contentBeforeDate={
+        <Badge
+          className={classes.pinnedBadge}
+          icon={<Icon id='pinned' icon={IconPinned} />}
+          label={
+            <FormattedMessage
+              id='account.timeline.pinned'
+              defaultMessage='Pinned'
+            />
+          }
+        />
+      }
+    />
   );
 };
 
