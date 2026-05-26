@@ -285,7 +285,7 @@ class ScrollableList extends PureComponent {
     if (this.props.bindToDocument) {
       document.removeEventListener('scroll', this.handleScroll);
       document.removeEventListener('wheel', this.handleWheel, listenerOptions);
-    } else {
+    } else if (this.node) {
       this.node.removeEventListener('scroll', this.handleScroll);
       this.node.removeEventListener('wheel', this.handleWheel, listenerOptions);
     }
