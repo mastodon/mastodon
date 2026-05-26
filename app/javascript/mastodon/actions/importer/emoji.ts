@@ -1,5 +1,8 @@
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import { loadCustomEmoji } from '@/mastodon/features/emoji';
+import { emojiLogger } from '@/mastodon/features/emoji/utils';
+
+const log = emojiLogger('actions');
 
 export async function importCustomEmoji(emojis: ApiCustomEmojiJSON[]) {
   if (emojis.length === 0) {
@@ -18,5 +21,11 @@ export async function importCustomEmoji(emojis: ApiCustomEmojiJSON[]) {
   if (existingEmojis.length < emojis.length) {
     await clearCache('custom');
     await loadCustomEmoji();
+
+    const { reloadCustomEmojis } =
+      await import('@/mastodon/features/emoji/picker');
+    await reloadCustomEmojis();
+
+    log('Custom emojis updated, reloaded cache and picker data.');
   }
 }
