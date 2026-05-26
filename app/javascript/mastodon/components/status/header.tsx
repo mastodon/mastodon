@@ -51,6 +51,12 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
       className={classNames('status__info', className)}
       /* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
     >
+      <StatusDisplayName
+        statusAccount={statusAccount}
+        friendAccount={account}
+        avatarSize={avatarSize}
+      />
+
       <Link
         to={`/@${statusAccount?.acct}/${status.get('id') as string}`}
         className='status__relative-time'
@@ -59,12 +65,6 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
         <RelativeTimestamp timestamp={status.get('created_at') as string} />
         {editedAt && <StatusEditedAt editedAt={editedAt} />}
       </Link>
-
-      <StatusDisplayName
-        statusAccount={statusAccount}
-        friendAccount={account}
-        avatarSize={avatarSize}
-      />
 
       {children}
     </div>
