@@ -7,25 +7,43 @@ RSpec.describe 'Settings / Exports / CustomFilters' do
     context 'with a signed in user who has custom_filters' do
       let(:user) { Fabricate(:user) }
       let(:filter) { Fabricate(:custom_filter, account: user.account, phrase: 'foo') }
-      let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
-      let(:filter_keyword) { Fabricate(:custom_filter_keyword, keyword: 'something', custom_filter: filter, whole_word: false) }
-      let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
-      let(:create_custom_filters) { [keyword, filter_keyword, status_filter] }
+      let(:other_filter) { Fabricate(:custom_filter, account: user.account, phrase: 'bar') }
+      let!(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
+      let!(:filter_keyword) { Fabricate(:custom_filter_keyword, keyword: 'something', custom_filter: filter, whole_word: false) }
+      let!(:other_keyword) { Fabricate(:custom_filter_keyword, custom_filter: other_filter) }
+      let!(:other_filter_keyword) { Fabricate(:custom_filter_keyword, keyword: 'something', custom_filter: other_filter, whole_word: false) }
+      let!(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
       let(:expected_response_body) do
-        [{
-          'title' => 'foo',
-          'expire_at' => nil,
-          'context' => ['home', 'notifications'],
-          'action' => 'warn',
-          'keywords_attributes' => [{
-            'keyword' => 'discourse',
-            'whole_word' => true,
-          }, {
-            'keyword' => 'something',
-            'whole_word' => false,
-          }],
-          'statuses' => [ActivityPub::TagManager.instance.uri_for(status_filter.status)],
-        }]
+        { 'custom_filters' => [
+          {
+            'title' => other_filter.phrase,
+            'expire_at' => nil,
+            'context' => other_filter.context,
+            'action' => other_filter.action,
+            'keywords_attributes' => [{
+              'keyword' => other_keyword.keyword,
+              'whole_word' => other_keyword.whole_word,
+            }, {
+              'keyword' => other_filter_keyword.keyword,
+              'whole_word' => other_filter_keyword.whole_word,
+            }],
+            'statuses' => [],
+          },
+          {
+            'title' => filter.phrase,
+            'expire_at' => nil,
+            'context' => filter.context,
+            'action' => filter.action,
+            'keywords_attributes' => [{
+              'keyword' => keyword.keyword,
+              'whole_word' => keyword.whole_word,
+            }, {
+              'keyword' => filter_keyword.keyword,
+              'whole_word' => filter_keyword.whole_word,
+            }],
+            'statuses' => [ActivityPub::TagManager.instance.uri_for(status_filter.status)],
+          },
+        ] }
       end
 
       before do
@@ -33,7 +51,6 @@ RSpec.describe 'Settings / Exports / CustomFilters' do
       end
 
       it 'returns a JSON with the custom filters' do
-        create_custom_filters
         get '/settings/exports/custom_filters.json'
 
         expect(response).to have_http_status(200)

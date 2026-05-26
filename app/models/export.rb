@@ -56,11 +56,11 @@ class Export
   end
 
   def to_custom_filters_json
-    data_collection = []
+    data_collection = { custom_filters: [] }
     account.custom_filters.includes(:keywords, :statuses).order(:phrase).each do |filter|
       keywords_attributes = filter.keywords.map { |k| { keyword: k.keyword, whole_word: k.whole_word } }
 
-      data_collection << {
+      data_collection[:custom_filters] << {
         title: filter.title,
         expire_at: filter.expires_at,
         context: filter.context,
