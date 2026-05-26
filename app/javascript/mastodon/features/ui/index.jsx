@@ -105,7 +105,7 @@ const mapStateToProps = state => ({
   hasComposingContents: state.getIn(['compose', 'text']).trim().length !== 0 || state.getIn(['compose', 'media_attachments']).size > 0 || state.getIn(['compose', 'poll']) !== null || state.getIn(['compose', 'quoted_status_id']) !== null,
   canUploadMore:
     !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type')))
-    && state.getIn(['compose', 'media_attachments']).size < state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']),
+    && state.getIn(['compose', 'media_attachments']).size < state.getIn(['server', 'server', 'item', 'configuration', 'statuses', 'max_media_attachments']),
   isUploadEnabled:
     state.getIn(['compose', 'isDragDisabled']) !== true,
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,

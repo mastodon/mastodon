@@ -327,7 +327,7 @@ export function uploadCompose(files) {
       dispatch(showAlert({ message: messages.uploadQuote }));
       return;
     }
-    const uploadLimit = getState().getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']);
+    const uploadLimit = getState().getIn(['server', 'server', 'item', 'configuration', 'statuses', 'max_media_attachments']);
     const media = getState().getIn(['compose', 'media_attachments']);
     const pending = getState().getIn(['compose', 'pending_media_attachments']);
     const progress = new Array(files.length).fill(0);
