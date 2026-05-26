@@ -43,6 +43,17 @@ RSpec.describe Form::Import do
       end
     end
 
+    context 'when the import type is custom_filters' do
+      let(:data)        { fixture_file_upload(import_file, content_type) }
+      let(:import_file) { File.open('spec/fixtures/files/custom_filters.json') }
+      let(:import_type) { 'custom_filters' }
+      let(:content_type) { 'application/json' }
+
+      it 'passes validation' do
+        expect(subject).to be_valid
+      end
+    end
+
     context 'when the file too large' do
       let(:import_type) { 'following' }
       let(:import_file) { 'imports.txt' }
