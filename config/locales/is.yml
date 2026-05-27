@@ -349,6 +349,7 @@ is:
       back_to_report: Til baka á kærusíðu
       batch:
         add_to_report: 'Bæta við skýrslu #%{id}'
+        remove_from_report: Fjarlægja úr kæru
         report: Kæra
       collection_title: Safn frá %{name}
       contents: Efni
@@ -957,9 +958,15 @@ is:
           disabled: Krefjast sérstaks hlutverks notanda
           public: Allir
       landing_page:
+        hints:
+          about_html: Síða með lýsingu, upplýsingum um tengiliði, reglur og annað varðandi þennan netþjón.
+          local_feed_html: Streymi í beinni með nýjustu færslunum frá notendum á þessum netþjóni.
+          overview_html: Síða með lýsingu á netþjóninum ásamt nýjustu staðbundnu færslunum frá notendum á þessum netþjóni.
+          trends_html: Síða með því sem núna er vinsælast á þessum netþjóni.
         values:
-          about: Um
-          local_feed: Staðbundið streymi
+          about: Upplýsingasíða
+          local_feed: Staðvært beint streymi
+          overview: Yfirlit
           trends: Vinsælt
       registrations:
         moderation_recommandation: Tryggðu að þú hafir hæft og aðgengilegt umsjónarteymi til taks áður en þú opnar á skráningar fyrir alla!
@@ -980,6 +987,7 @@ is:
     site_uploads:
       delete: Eyða innsendri skrá
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
+    skip_to_content: Fara beint í efni
     software_updates:
       critical_update: Áríðandi - uppfærðu eins fljótt og auðið er
       description: Mælt er með því að þú haldir Mastodon-uppsetningunni þinni uppfærðri til að vera með nýjustu lagfæringar og eiginleika. Aukinheldur er mikilvægt að halda Mastodon uppfærðu til að komast hjá öryggisveilum. Af þessum ástæðum athugar Mastodon með uppfærslur á 30 mínútna fresti og mun gera þér viðvart í samræmi við stillingar þínar á tilkynningum í tölvupósti.
