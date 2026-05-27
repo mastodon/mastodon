@@ -24,6 +24,7 @@ export const EmptyState: React.FC<{
   title?: React.ReactNode;
   message?: React.ReactNode;
   children?: React.ReactNode;
+  headingLevel?: 'h2' | 'h3' | 'h4';
   className?: string;
 }> = ({
   image = 'default',
@@ -32,6 +33,7 @@ export const EmptyState: React.FC<{
   ),
   message,
   children,
+  headingLevel: Heading = 'h2',
   className,
 }) => {
   const imageToRender = typeof image === 'string' ? images[image] : image;
@@ -41,7 +43,7 @@ export const EmptyState: React.FC<{
       {(title || message || imageToRender) && (
         <div className={classes.content}>
           {imageToRender}
-          {!!title && <h3>{title}</h3>}
+          {!!title && <Heading className={classes.heading}>{title}</Heading>}
           {!!message && <p>{message}</p>}
         </div>
       )}

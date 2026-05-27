@@ -22,16 +22,10 @@
     margin-bottom: 16px;
   }
 
-  h3 {
-    font-size: 17px;
-    font-weight: 500;
-    text-wrap: balance;
-    line-height: 1.2;
-  }
-
   p {
     margin-top: 8px;
     font-size: 15px;
+    line-height: 1.4;
     color: var(--color-text-secondary);
     text-wrap: pretty;
   }
@@ -39,6 +33,13 @@
   a {
     color: var(--color-text-status-links);
   }
+}
+
+.heading {
+  font-size: 17px;
+  font-weight: 500;
+  text-wrap: balance;
+  line-height: 1.2;
 }
 
 [data-color-scheme='dark'] .defaultImage {
