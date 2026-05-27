@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'mastodon/components/button';
 import Column from 'mastodon/components/column';
 import { injectIntl } from '@/mastodon/components/intl';
-import { GIF } from 'mastodon/components/gif';
+import { EmptyState } from '@/mastodon/components/empty_state';
 
 class CopyButton extends PureComponent {
 
@@ -89,20 +89,15 @@ class BundleColumnError extends PureComponent {
 
     return (
       <Column bindToDocument={!multiColumn}>
-        <div className='error-column'>
-          <GIF src='/oops.gif' staticSrc='/oops.png' className='error-column__image' />
-
-          <div className='error-column__message'>
-            <h1>{title}</h1>
-            <p>{body}</p>
-
-            <div className='error-column__message__actions'>
-              {errorType === 'network' && <Button onClick={this.handleRetry}><FormattedMessage id='bundle_column_error.retry' defaultMessage='Try again' /></Button>}
-              {errorType === 'error' && <CopyButton value={stacktrace}><FormattedMessage id='bundle_column_error.copy_stacktrace' defaultMessage='Copy error report' /></CopyButton>}
-              <Link to='/' className={classNames('button', { 'button-secondary': errorType !== 'routing' })}><FormattedMessage id='bundle_column_error.return' defaultMessage='Go back home' /></Link>
-            </div>
-          </div>
-        </div>
+        <EmptyState
+          image='error'
+          title={title}
+          message={body}
+        >
+          {errorType === 'network' && <Button onClick={this.handleRetry}><FormattedMessage id='bundle_column_error.retry' defaultMessage='Try again' /></Button>}
+          {errorType === 'error' && <CopyButton value={stacktrace}><FormattedMessage id='bundle_column_error.copy_stacktrace' defaultMessage='Copy error report' /></CopyButton>}
+          <Link to='/' className={classNames('button', { 'button-secondary': errorType !== 'routing' })}><FormattedMessage id='bundle_column_error.return' defaultMessage='Go back home' /></Link>
+        </EmptyState>
 
         <Helmet>
           <meta name='robots' content='noindex' />
