@@ -19,6 +19,7 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -339,7 +340,7 @@ export const Search: React.FC<{
                   );
                 } else if (result.payload.collections[0]) {
                   history.push(
-                    `/collections/${result.payload.collections[0].id}`,
+                    getCollectionPath(result.payload.collections[0].id),
                   );
                 }
               }
