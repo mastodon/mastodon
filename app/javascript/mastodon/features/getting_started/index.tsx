@@ -4,16 +4,14 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from 'mastodon/components/column';
 
-import { NavigationPanel, messages } from '../navigation_panel';
+import { NavigationPanel } from '../navigation_panel';
 import { LinkFooter } from '../ui/components/link_footer';
 
 const GettingStarted: React.FC = () => {
   const intl = useIntl();
   return (
     <Column>
-      <nav aria-label={intl.formatMessage(messages.main)}>
-        <NavigationPanel multiColumn />
-      </nav>
+      <NavigationPanel multiColumn />
 
       <LinkFooter context='multi-column' />
 
