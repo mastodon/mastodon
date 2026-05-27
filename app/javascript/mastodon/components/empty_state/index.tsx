@@ -10,7 +10,9 @@ import classes from './empty_state.module.scss';
 
 const images = {
   default: <ElephantImage className={classes.defaultImage} />,
-  error: <GIF src='/oops.gif' staticSrc='/oops.png' />,
+  error: (
+    <GIF src='/oops.gif' staticSrc='/oops.png' className={classes.errorImage} />
+  ),
 };
 
 /**
