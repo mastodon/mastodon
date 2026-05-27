@@ -29,6 +29,7 @@ export const LinkFooter: React.FC<{
                 id='footer.about_this_server'
                 defaultMessage='About'
               />
+              <span className='sr-only'> {domain}</span>
             </Link>
           </li>
           {statusPageUrl && (
@@ -82,6 +83,7 @@ export const LinkFooter: React.FC<{
           <li>
             <a href='https://joinmastodon.org' target='_blank' rel='noopener'>
               <FormattedMessage id='footer.about' defaultMessage='About' />
+              <span className='sr-only'> Mastodon</span>
             </a>
           </li>
           <li>
