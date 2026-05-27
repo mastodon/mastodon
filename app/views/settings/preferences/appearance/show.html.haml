@@ -15,11 +15,19 @@
                 selected: I18n.locale,
                 wrapper: :with_label
     .fields-group.fields-row__column.fields-row__column-6
-      = f.input :time_zone,
-                collection: ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.formatted_offset}) #{tz.name}", tz.tzinfo.name] },
-                hint: false,
-                selected: current_user.time_zone || Time.zone.tzinfo.name,
-                wrapper: :with_label
+     = f.input :time_zone,
+          collection: ActiveSupport::TimeZone.all.map do |tz|
+            current_offset = tz.now.utc_offset
+            hours = current_offset / 3600
+            minutes = (current_offset.abs % 3600) / 60
+
+            formatted_offset = format('%+03d:%02d', hours, minutes)
+
+            ["(GMT#{formatted_offset}) #{tz.name}", tz.tzinfo.name]
+          end,
+          hint: false,
+          selected: current_user.time_zone || Time.zone.tzinfo.name,
+          wrapper: :with_label
 
   .fields-group
     = f.simple_fields_for :settings, current_user.settings do |ff|
