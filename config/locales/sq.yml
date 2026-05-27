@@ -559,6 +559,9 @@ sq:
           important_information: Informacion i rëndësishëm
           list:
             1_permission_explanation: Kur aktivizohet kjo veçroi, llogaritë me lejet e caktuara mund të shtojnë te profilet e tyre një formular koleksionesh email.
+            2_feature_explanation: Kur vizitorët regjistrohen në faqen e profilit të një llogarie dhe ripohojnë pajtimin e tyre, ata do të fillojnë të marrin përditësime me email, kur llogaria krijon postime të reja publike.
+            3_privacy_policy_warning: Përgjegjësit e shërbyesit do të mund të shohin PII (adresat email) të grumbulluara. Prej kësaj, rregullat e privatësisë dhe Kushtet e Shërbimit për shëbyesin duhen përditësuar, para përdorimit të kësaj veçorie.
+            4_cost_warning: Email-et mund të sjellin tarifë, varet nga ujdisja e strehimit. Diskutojeni me shërbimin tuaj të strehimit, para se ta aktivizoni, ngaqë kjo veçori mund të rrisë në mënyrë drastike sasinë e email-eve të dërguar nga shërbyesi juaj.
     export_domain_allows:
       new:
         title: Importoni lejime përkatësish
@@ -945,9 +948,15 @@ sq:
           disabled: Lyp doemos rol specifik përdoruesi
           public: Kushdo
       landing_page:
+        hints:
+          about_html: Një faqe me përshkrimin, hollësi kontakti, rregulla dhe tjetër informacion që lidhet me këtë shërbyes.
+          local_feed_html: Një prurje e drejtpërdrejtë që përmban postimet më të reja nga përdorues në këtë shërbyes.
+          overview_html: Një faqe që shpalos përshkrimin e shërbyesit tuaj took me postimet vendore më të freskëta nga përdorues në këtë shërbyes.
+          trends_html: Një faqe që përmban ç’është popullore në këtë shërbyes mu tani.
         values:
-          about: Mbi
-          local_feed: Prurje vendore
+          about: Faqe “Mbi”
+          local_feed: Prurje e drejtpërdrejtë vendore
+          overview: Përmbledhje
           trends: Në modë
       registrations:
         moderation_recommandation: Ju lutemi, sigurohuni si keni një ekip adekuat dhe reagues moderimi, përpara se të hapni regjistrimet për këdo!

@@ -956,10 +956,16 @@ gl:
           disabled: Requerir un rol da usuaria específico
           public: Para calquera
       landing_page:
+        hints:
+          about_html: Unha páxina coa descrición, información de contacto, regras e outra información relativa a este servidor.
+          local_feed_html: Unha cronoloxía actual que mostra as publicacións máis recentes das usuarias deste servidor.
+          overview_html: Unha páxina que mostra a descrición do teu servidor xunto ás publicacións locais máis recentes das usuarias do servidor.
+          trends_html: Unha páxina que mostra as publicacións populares no servidor neste momento.
         values:
-          about: Sobre
-          local_feed: Cronoloxía Local
-          trends: Tendencias
+          about: Páxina sobre
+          local_feed: Cronoloxía local en directo
+          overview: Visión xeral
+          trends: Popular
       registrations:
         moderation_recommandation: Por favor, pon interese en crear un equipo de moderación competente e reactivo antes de permitir que calquera poida crear unha conta!
         preamble: Xestiona quen pode crear unha conta no teu servidor.
@@ -979,6 +985,7 @@ gl:
     site_uploads:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!
+    skip_to_content: Ir ao contido
     software_updates:
       critical_update: Crítica - actualiza axiña
       description: Aconsellamos manter actualizado o teu servidor Mastodon para beneficiarte dos últimos arranxos e características. A maiores, de cando en vez hai actualizacións para evitar problemas importantes de seguridade. Debido a isto, Mastodon comproba cada 30 minutos se hai actualizacións e avisarate seguindo as túas preferencias de notificación por correo electrónico.
