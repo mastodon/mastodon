@@ -11,7 +11,7 @@ import { ColumnBackButton } from '@/mastodon/components/column_back_button';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import ScrollableList from '@/mastodon/components/scrollable_list';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 import Column from '@/mastodon/features/ui/components/column';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
