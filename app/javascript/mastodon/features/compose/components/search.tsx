@@ -337,6 +337,10 @@ export const Search: React.FC<{
                   history.push(
                     `/@${result.payload.statuses[0].account.acct}/${result.payload.statuses[0].id}`,
                   );
+                } else if (result.payload.collections[0]) {
+                  history.push(
+                    `/collections/${result.payload.collections[0].id}`,
+                  );
                 }
               }
 
