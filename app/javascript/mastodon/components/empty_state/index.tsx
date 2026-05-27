@@ -4,10 +4,13 @@ import classNames from 'classnames';
 
 import ElephantImage from '@/images/elephant_ui.svg?react';
 
+import { GIF } from '../gif';
+
 import classes from './empty_state.module.scss';
 
 const images = {
   default: <ElephantImage className={classes.defaultImage} />,
+  error: <GIF src='/oops.gif' staticSrc='/oops.png' />,
 };
 
 /**
