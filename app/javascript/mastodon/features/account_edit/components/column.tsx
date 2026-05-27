@@ -9,7 +9,7 @@ import { Helmet } from '@unhead/react/helmet';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 
 import { useColumnsContext } from '../../ui/util/columns_context';
 import classes from '../styles.module.scss';

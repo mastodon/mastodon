@@ -19,7 +19,7 @@ import {
 } from '@/mastodon/components/scrollable_list/components';
 import type { TruncatedListItemInfo } from '@/mastodon/components/truncated_list';
 import { TruncatedListItems } from '@/mastodon/components/truncated_list';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 import Column from '@/mastodon/features/ui/components/column';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';

@@ -33,7 +33,7 @@ import {
 import { useColumnsContext } from '../util/columns_context';
 
 import Bundle from './bundle';
-import BundleColumnError from './bundle_column_error';
+import { BundleColumnError } from './bundle_column_error';
 import { ColumnLoading } from './column_loading';
 import { ComposePanel, RedirectToMobileComposeIfNeeded } from './compose_panel';
 import DrawerLoading from './drawer_loading';
