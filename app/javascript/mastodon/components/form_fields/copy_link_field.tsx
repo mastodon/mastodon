@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { CopyIconButton } from 'mastodon/components/copy_icon_button';
+import { CopyIconButton } from '@/mastodon/components/copy_button';
 
 import classes from './copy_link_field.module.scss';
 import { FormFieldWrapper } from './form_field_wrapper';
