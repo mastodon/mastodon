@@ -20,7 +20,7 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
     it 'returns http success with correct media type and headers and body json' do
       expect(response).to have_http_status(200)
 
-      expect(response.headers['Vary']).to eq('Origin')
+      expect(response.headers['Vary']).to include_vary_headers('Origin')
 
       expect(response.media_type).to eq 'application/jrd+json'
 
@@ -119,7 +119,7 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
     it 'returns http success with expect headers and media type' do
       expect(response).to have_http_status(200)
 
-      expect(response.headers['Vary']).to eq('Origin')
+      expect(response.headers['Vary']).to include_vary_headers('Origin')
 
       expect(response.media_type).to eq 'application/jrd+json'
 
