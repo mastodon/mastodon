@@ -11,7 +11,7 @@ RSpec::Matchers.define :include_vary_headers do |expected|
     extra_values = actual_values - expected_values
 
     expected_values.all? { |v| actual_values.include?(v) } &&
-      extra_values.all? { |v| v == 'Accept-Encoding' }
+      extra_values.all?('Accept-Encoding')
   end
 
   failure_message do |actual|
