@@ -86,9 +86,9 @@ module Mastodon
     # We use our own middleware for this
     config.public_file_server.enabled = false
 
+    config.middleware.use Rack::Deflater # if ENV['RACK_COMPRESS'] == 'true' # add the RACK_COMPRESS once the tests complete.
     config.middleware.use Mastodon::Middleware::PublicFileServer if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
-    config.middleware.use Rack::Deflater # if ENV['RACK_COMPRESS'] == 'true' # add the RACK_COMPRESS once the tests complete.
     config.middleware.use Mastodon::Middleware::SocketCleanup
 
     config.before_configuration do
