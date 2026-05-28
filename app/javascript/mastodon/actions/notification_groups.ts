@@ -36,9 +36,18 @@ function notificationTypeForFilter(type: NotificationType) {
 }
 
 function notificationTypeForQuickFilter(type: NotificationType) {
-  if (type === 'quoted_update') return 'update';
-  else if (type === 'quote') return 'mention';
-  else return type;
+  switch (type) {
+    case 'quoted_update':
+      return 'update';
+    case 'quote':
+      return 'mention';
+    case 'collection_update':
+      return 'collection';
+    case 'added_to_collection':
+      return 'collection';
+    default:
+      return type;
+  }
 }
 
 function excludeAllTypesExcept(filter: string) {
