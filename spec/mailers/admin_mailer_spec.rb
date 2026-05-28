@@ -77,16 +77,13 @@ RSpec.describe AdminMailer do
     let!(:other_tag) { Fabricate(:tag, display_name: 'Test Tag') }
     let!(:another_tag) { Fabricate(:tag, display_name: 'Test Tag') }
     let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag, other_tag, another_tag], [status]) }
-    let(:status_trend) { Fabricate(:status_trend, status: status, account: Fabricate(:account)) }
-    let(:tag_trend) { Fabricate(:tag_trend, tag: tag) }
     let(:other_tag_trend) { Fabricate(:tag_trend, tag: other_tag) }
-    let(:preview_card_trend) { Fabricate(:preview_card_trend, preview_card: link) }
 
     before do
       recipient.user.update(locale: :en)
-      status_trend
-      tag_trend
-      preview_card_trend
+      Fabricate(:status_trend, status: status, account: Fabricate(:account))
+      Fabricate(:tag_trend, tag: tag)
+      Fabricate(:preview_card_trend, preview_card: link)
     end
 
     it 'renders the email' do
