@@ -75,8 +75,7 @@ RSpec.describe AdminMailer do
     let!(:status) { Fabricate(:status) }
     let!(:tag) { Fabricate(:tag, display_name: 'Test Tag') }
     let!(:other_tag) { Fabricate(:tag, display_name: 'Test Tag') }
-    let!(:another_tag) { Fabricate(:tag, display_name: 'Test Tag') }
-    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag, other_tag, another_tag], [status]) }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag, other_tag], [status]) }
     let(:other_tag_trend) { Fabricate(:tag_trend, tag: other_tag) }
 
     before do
