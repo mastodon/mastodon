@@ -60,7 +60,7 @@ RSpec.describe 'Statuses' do
             expect(response)
               .to have_http_status(200)
             expect(response.headers).to include(
-              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
               'Cache-Control' => include('public'),
               'Link' => include('activity+json')
             )
@@ -140,7 +140,7 @@ RSpec.describe 'Statuses' do
             expect(response)
               .to have_http_status(200)
             expect(response.headers).to include(
-              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
               'Cache-Control' => include('private'),
               'Link' => include('activity+json')
             )
@@ -158,7 +158,7 @@ RSpec.describe 'Statuses' do
             expect(response)
               .to have_http_status(200)
             expect(response.headers).to include(
-              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
               'Cache-Control' => include('private'),
               'Content-Type' => include('application/activity+json'),
               'Link' => include('activity+json')
@@ -185,7 +185,7 @@ RSpec.describe 'Statuses' do
                 .to have_http_status(200)
 
               expect(response.headers).to include(
-                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
                 'Cache-Control' => include('private'),
                 'Link' => include('activity+json')
               )
@@ -203,7 +203,7 @@ RSpec.describe 'Statuses' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
-                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
                 'Link' => include('activity+json')
@@ -241,7 +241,7 @@ RSpec.describe 'Statuses' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
-                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
                 'Cache-Control' => include('private'),
                 'Link' => include('activity+json')
               )
@@ -259,7 +259,7 @@ RSpec.describe 'Statuses' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
-                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
                 'Link' => include('activity+json')
@@ -334,7 +334,7 @@ RSpec.describe 'Statuses' do
             expect(response)
               .to have_http_status(200)
             expect(response.headers).to include(
-              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
               'Cache-Control' => include('private'),
               'Link' => include('activity+json')
             )
@@ -401,7 +401,7 @@ RSpec.describe 'Statuses' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
-                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
                 'Cache-Control' => include('private'),
                 'Link' => include('activity+json')
               )
@@ -419,7 +419,7 @@ RSpec.describe 'Statuses' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
-                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
                 'Link' => include('activity+json')
@@ -456,7 +456,7 @@ RSpec.describe 'Statuses' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
-                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
                 'Cache-Control' => include('private'),
                 'Link' => include('activity+json')
               )
@@ -474,7 +474,7 @@ RSpec.describe 'Statuses' do
               expect(response)
                 .to have_http_status(200)
               expect(response.headers).to include(
-                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
                 'Link' => include('activity+json')
