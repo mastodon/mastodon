@@ -44,7 +44,7 @@ RSpec.describe 'Status embed' do
         expect(response.parsed_body.at('#mastodon-status')['data-props'])
           .to eq({ locale: 'en', id: status.id.to_s }.to_json)
         expect(response.headers).to include(
-          'Vary' => 'Accept, Accept-Language, Cookie',
+          'Vary' => include_vary_headers('Accept, Accept-Language, Cookie'),
           'Cache-Control' => include('public'),
           'Link' => include('activity+json')
         )
