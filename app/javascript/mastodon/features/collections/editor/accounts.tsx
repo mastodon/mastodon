@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import type { ApiMutedAccountJSON } from 'mastodon/api_types/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AccountListItem } from 'mastodon/components/account_list_item';
@@ -27,7 +28,10 @@ import {
   Scrollable,
 } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
-import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
+import {
+  useFollowingAccounts,
+  useSearchAccounts,
+} from 'mastodon/hooks/useSearchAccounts';
 import { domain } from 'mastodon/initial_state';
 import type { Relationship } from 'mastodon/models/relationship';
 import {
@@ -209,7 +213,7 @@ export const CollectionAccounts: React.FC<{
   const hasMaxItems = editorItems.length === MAX_COLLECTION_ACCOUNT_COUNT;
 
   const {
-    accounts: suggestedAccounts,
+    accounts: searchedAccounts,
     isLoading: isLoadingSuggestions,
     searchAccounts,
     resetAccounts,
@@ -220,7 +224,18 @@ export const CollectionAccounts: React.FC<{
       !editorItems.find((item) => item.account_id === account.id),
   });
 
+  const currentAccountId = useCurrentAccountId();
+  const { accounts: defaultAccounts } = useFollowingAccounts({
+    accountId: currentAccountId,
+    withRelationships: true,
+    filterResults: (account) =>
+      !editorItems.find((item) => item.account_id === account.id),
+  });
+
   const relationships = useAppSelector((state) => state.relationships);
+
+  const suggestedAccounts =
+    searchedAccounts.length > 0 ? searchedAccounts : defaultAccounts;
 
   const groupedItems = groupSuggestions(suggestedAccounts, relationships);
 
@@ -363,6 +378,7 @@ export const CollectionAccounts: React.FC<{
           )}
           {hasPendingItems && <PendingNote />}
           <ComboboxField
+            openOnFocus
             id={inputId}
             label={intl.formatMessage({
               id: 'collections.search_accounts_label',
