@@ -6,7 +6,7 @@ RSpec.describe StatusCacheHydrator do
   let(:status)  { Fabricate(:status) }
   let(:account) { Fabricate(:account) }
 
-  describe '#hydrate' do
+  describe '#hydrate', feature: :collections do
     let(:compare_to_hash) { InlineRenderer.render(status, account, :status) }
 
     shared_examples 'shared behavior' do
