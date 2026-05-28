@@ -88,7 +88,7 @@ module Mastodon
 
     config.middleware.use Mastodon::Middleware::PublicFileServer if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
-    config.middleware.use Rack::Deflater
+    config.middleware.use Rack::Deflater if ENV['RACK_COMPRESS'] == 'true'
     config.middleware.use Mastodon::Middleware::SocketCleanup
 
     config.before_configuration do
