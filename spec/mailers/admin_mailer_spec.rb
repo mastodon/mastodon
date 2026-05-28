@@ -74,7 +74,7 @@ RSpec.describe AdminMailer do
     let!(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
     let!(:status) { Fabricate(:status) }
     let!(:tag) { Fabricate(:tag, display_name: 'Test Tag') }
-    let!(:other_tag) { Fabricate(:tag, display_name: 'Test Tag') }
+    let!(:other_tag) { Fabricate(:tag, display_name: 'Other Test Tag') }
     let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag, other_tag], [status]) }
     let(:other_tag_trend) { Fabricate(:tag_trend, tag: other_tag) }
 
@@ -100,37 +100,40 @@ RSpec.describe AdminMailer do
     end
 
     context 'when between queueing and sending trends gets deleted' do
-      let(:queue_mail) { described_class.with(recipient: recipient).new_trends([link], [tag, other_tag], [status]).deliver_later! }
-
       before do
         recipient.user.update(locale: :en)
       end
 
       it 'sends the email when all but one trends were deleted without the respective tag or status or link' do
         other_tag_trend
-        expect(queue_mail.successfully_enqueued?).to be(true)
+        expect(mail.deliver_later!)
+          .to be_successfully_enqueued
 
         TagTrend.delete_all
         StatusTrend.delete_all
-        expect { queue_mail.perform_now }.to send_email(
-          to: recipient.user_email,
-          from: 'notifications@localhost',
-          subject: I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)
-        )
-        expect(mail.body).to have_text(/The following items need a review before they can be displayed publicly/)
+        expect { mail.deliver }
+          .to send_email(
+            to: recipient.user_email,
+            from: 'notifications@localhost',
+            subject: I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)
+          )
+        expect(mail.body)
+          .to have_text(/The following items need a review before they can be displayed publicly/)
           .and match(link.title)
-        expect(mail.body).to_not match(ActivityPub::TagManager.instance.url_for(status))
-        expect(mail.body).to_not match(tag.display_name)
+          .and not_include(ActivityPub::TagManager.instance.url_for(status))
+          .and not_include(tag.display_name)
       end
 
       it 'returns nil when no trends are present' do
-        expect(queue_mail.successfully_enqueued?).to be(true)
+        expect(mail.deliver_later!)
+          .to be_successfully_enqueued
 
         TagTrend.delete_all
         StatusTrend.delete_all
         PreviewCardTrend.delete_all
 
-        expect { queue_mail.perform_now }.to_not send_email
+        expect { mail.deliver }
+          .to_not send_email
       end
     end
   end
