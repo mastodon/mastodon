@@ -34,9 +34,13 @@ class AdminMailer < ApplicationMailer
   end
 
   def new_trends(links, tags, statuses)
-    @links                  = links
-    @tags                   = tags
-    @statuses               = statuses
+    ActiveRecord::Associations::Preloader.new(records: [*links, *tags, *statuses], associations: [:trend]).call
+
+    @links                  = links.filter { |link| link.trend.present? }
+    @tags                   = tags.filter { |tag| tag.trend.present? }
+    @statuses               = statuses.filter { |status| status.trend.present? }
+
+    return unless @links.any? || @tags.any? || @statuses.any?
 
     mail subject: default_i18n_subject(instance: @instance)
   end
