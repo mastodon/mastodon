@@ -101,6 +101,10 @@ interface ComboboxProps<
    */
   icon?: TextInputProps['icon'] | null;
   /**
+   * Set to true to open as soon as there is focus
+   */
+  openOnFocus?: boolean;
+  /**
    * Set to false to keep the menu open when an item is selected
    */
   closeOnSelect?: boolean;
@@ -217,8 +221,10 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     renderGroupTitle,
     renderItem,
     onSelectItem,
+    onFocus,
     onChange,
     onKeyDown,
+    openOnFocus = false,
     closeOnSelect = true,
     suppressMenu = false,
     icon = SearchIcon,
@@ -287,6 +293,16 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       }
     }
   }, []);
+
+  const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
+    (e) => {
+      if (openOnFocus) {
+        setShouldMenuOpen(true);
+      }
+      onFocus?.(e);
+    },
+    [onFocus, openOnFocus],
+  );
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -487,6 +503,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         autoComplete='off'
         spellCheck='false'
         value={value}
+        onFocus={handleFocus}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
         icon={icon ?? undefined}
