@@ -27,7 +27,17 @@ RSpec::Matchers.define :have_cacheable_headers do
   end
 
   def check_vary
-    "Response `Vary` header does not contain `#{@expected_vary}`" unless @response.headers['Vary'].include?(@expected_vary)
+    actual_vary = @response.headers['Vary']&.split(',')&.map(&:strip) || []
+    expected_vary = @expected_vary.split(',').map(&:strip)
+    missing = expected_vary - actual_vary
+    extra = actual_vary - expected_vary
+    unexpected = extra.reject { |v| v == 'Accept-Encoding' }
+
+    if missing.any?
+      "Response `Vary` header does not contain `#{@expected_vary}`"
+    elsif unexpected.any?
+      "Response `Vary` header contains unexpected values: #{unexpected.inspect}"
+    end
   end
 
   def check_cookies
