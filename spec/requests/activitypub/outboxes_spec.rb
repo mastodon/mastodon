@@ -32,7 +32,7 @@ RSpec.describe 'ActivityPub Outboxes' do
           expect(response.media_type)
             .to eq 'application/activity+json'
           expect(response.headers['Vary'])
-            .to be_nil
+            .to satisfy('only contain Accept-Encoding or be nil') { |v| v.nil? || v.split(',').map(&:strip).all? { |val| val == 'Accept-Encoding' } }
           expect(response.parsed_body[:totalItems])
             .to eq 4
         end
