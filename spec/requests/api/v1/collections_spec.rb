@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Collections', feature: :collections do
+RSpec.describe 'Api::V1::Collections' do
   include_context 'with API authentication', oauth_scopes: 'read:collections write:collections'
 
   describe 'GET /api/v1/accounts/:account_id/collections' do

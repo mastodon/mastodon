@@ -38,7 +38,7 @@ RSpec.describe ActivityPub::FlagSerializer do
     end
   end
 
-  context 'with collection', feature: :collections do
+  context 'with collection' do
     let(:target_account) { Fabricate(:account) }
     let(:collection) { Fabricate(:collection, account: target_account) }
     let(:report) { Fabricate(:report, target_account:, collections: [collection]) }

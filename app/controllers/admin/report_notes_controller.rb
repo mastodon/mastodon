@@ -25,6 +25,8 @@ module Admin
         @action_logs  = @report.history.includes(:target)
         @form         = Admin::StatusBatchAction.new
         @statuses     = @report.statuses.with_includes
+        @collections  = @report.collections
+        @collection_form = Admin::CollectionBatchAction.new
 
         render 'admin/reports/show'
       end

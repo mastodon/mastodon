@@ -5,8 +5,6 @@ class Api::V1::InCollectionsController < Api::BaseController
 
   DEFAULT_COLLECTIONS_LIMIT = 40
 
-  before_action :check_feature_enabled
-
   before_action -> { authorize_if_got_token! :read, :'read:collections' }, only: [:index]
 
   before_action :require_user!
@@ -35,10 +33,6 @@ class Api::V1::InCollectionsController < Api::BaseController
       .with_tag
       .offset(offset_param)
       .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
-  end
-
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.collections_enabled?
   end
 
   def next_path

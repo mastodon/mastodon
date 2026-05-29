@@ -257,7 +257,7 @@ RSpec.describe ActivityPub::Activity::Update do
       end
     end
 
-    context 'with a `FeaturedCollection` object', feature: :collections do
+    context 'with a `FeaturedCollection` object' do
       let(:collection) { Fabricate(:remote_collection, account: sender, name: 'old name', discoverable: false) }
       let(:account) { Fabricate(:account) }
       let!(:collection_item) { Fabricate(:collection_item, account:, collection:, uri: 'https://example.com/featured_stamps/1') }
