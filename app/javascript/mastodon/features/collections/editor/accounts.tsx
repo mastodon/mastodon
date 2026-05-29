@@ -215,6 +215,7 @@ export const CollectionAccounts: React.FC<{
     resetAccounts,
   } = useSearchAccounts({
     withRelationships: true,
+    withDefaultFollows: searchValue === '',
     // Don't suggest accounts that were already added
     filterResults: (account) =>
       !editorItems.find((item) => item.account_id === account.id),
@@ -363,6 +364,7 @@ export const CollectionAccounts: React.FC<{
           )}
           {hasPendingItems && <PendingNote />}
           <ComboboxField
+            openOnFocus
             id={inputId}
             label={intl.formatMessage({
               id: 'collections.search_accounts_label',
