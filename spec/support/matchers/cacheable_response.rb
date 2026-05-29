@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+ALLOWED_EXTRA_VARY_VALUES = %w(Accept-Encoding Origin).freeze
+
 RSpec::Matchers.define :have_cacheable_headers do
   match do |response|
     @response = response
@@ -26,7 +28,6 @@ RSpec::Matchers.define :have_cacheable_headers do
     ERROR
   end
 
-  ALLOWED_EXTRA_VARY_VALUES = %w(Accept-Encoding Origin).freeze
   def check_vary
     actual_vary = @response.headers['Vary']&.split(',')&.map(&:strip) || []
     expected_vary = @expected_vary.split(',').map(&:strip)
