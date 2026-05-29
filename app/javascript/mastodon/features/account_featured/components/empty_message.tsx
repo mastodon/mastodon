@@ -9,7 +9,6 @@ import { Button } from '@/mastodon/components/button';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { EmptyState } from '@/mastodon/components/empty_state';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
-import { areCollectionsEnabled } from '@/mastodon/features/collections/utils';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAppDispatch } from '@/mastodon/store';
@@ -50,56 +49,39 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
   let title: React.ReactNode = null;
   let message: React.ReactNode = null;
 
-  const hasCollections = areCollectionsEnabled();
-
   if (me === accountId) {
-    if (hasCollections) {
-      // Return only here to insert the "Create a collection" button as the action for the empty state.
-      return (
-        <EmptyState
-          title={
+    // Return only here to insert the "Create a collection" button as the action for the empty state.
+    return (
+      <EmptyState
+        title={
+          <FormattedMessage
+            id='empty_column.account_featured_self.showcase_accounts'
+            defaultMessage='Showcase your favorite accounts'
+          />
+        }
+        message={
+          <FormattedMessage
+            id='empty_column.account_featured_self.showcase_accounts_desc'
+            defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
+          />
+        }
+      >
+        {!withoutAddCollectionButton && (
+          <Link to='/collections/new' className='button'>
             <FormattedMessage
-              id='empty_column.account_featured_self.showcase_accounts'
-              defaultMessage='Showcase your favorite accounts'
+              id='empty_column.account_featured_self.no_collections_button'
+              defaultMessage='Create a collection'
             />
-          }
-          message={
-            <FormattedMessage
-              id='empty_column.account_featured_self.showcase_accounts_desc'
-              defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
-            />
-          }
-        >
-          {!withoutAddCollectionButton && (
-            <Link to='/collections/new' className='button'>
-              <FormattedMessage
-                id='empty_column.account_featured_self.no_collections_button'
-                defaultMessage='Create a collection'
-              />
-            </Link>
-          )}
-          <Button secondary onClick={confirmHideFeaturedTab}>
-            <FormattedMessage
-              id='empty_column.account_featured_self.no_collections_hide_tab'
-              defaultMessage='Hide this tab instead'
-            />
-          </Button>
-        </EmptyState>
-      );
-    } else {
-      title = (
-        <FormattedMessage
-          id='empty_column.account_featured_self.pre_collections'
-          defaultMessage='Stay tuned for Collections'
-        />
-      );
-      message = (
-        <FormattedMessage
-          id='empty_column.account_featured_self.pre_collections_desc'
-          defaultMessage='Collections (coming in Mastodon 4.6) allow you to create your own curated lists of accounts to recommend to others.'
-        />
-      );
-    }
+          </Link>
+        )}
+        <Button secondary onClick={confirmHideFeaturedTab}>
+          <FormattedMessage
+            id='empty_column.account_featured_self.no_collections_hide_tab'
+            defaultMessage='Hide this tab instead'
+          />
+        </Button>
+      </EmptyState>
+    );
   } else if (suspended) {
     title = (
       <FormattedMessage
