@@ -27,7 +27,7 @@ RSpec::Matchers.define :have_cacheable_headers do
   end
 
   # Values that middleware/framework may add to Vary beyond what controllers set
-  ALLOWED_EXTRA_VARY_VALUES = %w[Accept-Encoding Origin].freeze
+  ALLOWED_EXTRA_VARY_VALUES = %w(Accept-Encoding Origin).freeze
 
   def check_vary
     actual_vary = @response.headers['Vary']&.split(',')&.map(&:strip) || []
