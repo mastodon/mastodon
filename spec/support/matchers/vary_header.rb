@@ -6,7 +6,7 @@
 # and only allows Accept-Encoding/Origin as additional values.
 #
 # Values that middleware/framework may add to Vary beyond what controllers set
-ALLOWED_EXTRA_VARY_VALUES = %w[Accept-Encoding Origin].freeze
+ALLOWED_EXTRA_VARY_VALUES = %w(Accept-Encoding Origin).freeze
 
 RSpec::Matchers.define :include_vary_headers do |expected|
   match do |actual|
