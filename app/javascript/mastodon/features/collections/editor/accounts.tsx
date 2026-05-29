@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
-import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import type { ApiMutedAccountJSON } from 'mastodon/api_types/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { AccountListItem } from 'mastodon/components/account_list_item';
@@ -28,10 +27,7 @@ import {
   Scrollable,
 } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
-import {
-  useFollowingAccounts,
-  useSearchAccounts,
-} from 'mastodon/hooks/useSearchAccounts';
+import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { domain } from 'mastodon/initial_state';
 import type { Relationship } from 'mastodon/models/relationship';
 import {
@@ -213,29 +209,19 @@ export const CollectionAccounts: React.FC<{
   const hasMaxItems = editorItems.length === MAX_COLLECTION_ACCOUNT_COUNT;
 
   const {
-    accounts: searchedAccounts,
+    accounts: suggestedAccounts,
     isLoading: isLoadingSuggestions,
     searchAccounts,
     resetAccounts,
   } = useSearchAccounts({
     withRelationships: true,
+    withDefaultFollows: searchValue === '',
     // Don't suggest accounts that were already added
     filterResults: (account) =>
       !editorItems.find((item) => item.account_id === account.id),
   });
 
-  const currentAccountId = useCurrentAccountId();
-  const { accounts: defaultAccounts } = useFollowingAccounts({
-    accountId: currentAccountId,
-    withRelationships: true,
-    filterResults: (account) =>
-      !editorItems.find((item) => item.account_id === account.id),
-  });
-
   const relationships = useAppSelector((state) => state.relationships);
-
-  const suggestedAccounts =
-    searchedAccounts.length > 0 ? searchedAccounts : defaultAccounts;
 
   const groupedItems = groupSuggestions(suggestedAccounts, relationships);
 

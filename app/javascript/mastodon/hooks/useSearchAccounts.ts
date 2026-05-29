@@ -8,16 +8,20 @@ import { apiRequest } from 'mastodon/api';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { useAppDispatch } from 'mastodon/store';
 
+import { useCurrentAccountId } from './useAccountId';
+
 export function useSearchAccounts({
   onSettled,
   filterResults,
   resetOnInputClear = true,
   withRelationships = false,
+  withDefaultFollows = false,
 }: {
   onSettled?: (value: string) => void;
   filterResults?: (account: ApiAccountJSON) => boolean;
   resetOnInputClear?: boolean;
   withRelationships?: boolean;
+  withDefaultFollows?: boolean;
 } = {}) {
   const dispatch = useAppDispatch();
 
@@ -87,51 +91,27 @@ export function useSearchAccounts({
     setAccounts([]);
   }, []);
 
-  return {
-    searchAccounts: startSearch,
-    resetAccounts,
-    accounts,
-    isLoading: loadingState === 'loading',
-    isError: loadingState === 'error',
-  };
-}
-
-export function useFollowingAccounts({
-  accountId,
-  filterResults,
-  withRelationships = false,
-}: {
-  accountId: string | null;
-  filterResults?: (account: ApiAccountJSON) => boolean;
-  withRelationships?: boolean;
-}) {
-  const dispatch = useAppDispatch();
-
-  const [accounts, setAccounts] = useState<ApiAccountJSON[] | null>(null);
-  const [loadingState, setLoadingState] = useState<
-    'idle' | 'loading' | 'error'
-  >('idle');
-
-  const requestRef = useRef<AbortController | null>(null);
-
+  const currentUserId = useCurrentAccountId();
+  const [defaultAccounts, setDefaultAccounts] = useState<
+    ApiAccountJSON[] | null
+  >(null);
   useEffect(() => {
     if (
-      !accountId ||
+      !currentUserId ||
       loadingState !== 'idle' ||
-      accounts !== null ||
-      requestRef.current
+      defaultAccounts !== null ||
+      !withDefaultFollows
     ) {
       return;
     }
 
     async function doRequest() {
-      requestRef.current = new AbortController();
       setLoadingState('loading');
       try {
         const data = await apiRequest<ApiAccountJSON[]>(
           'GET',
-          `v1/accounts/${accountId}/following`,
-          { params: { limit: 40 }, signal: requestRef.current.signal },
+          `v1/accounts/${currentUserId}/following`,
+          { params: { limit: 40 } },
         );
         const accounts = filterResults ? data.filter(filterResults) : data;
         const accountIds = accounts.map((a) => a.id);
@@ -139,7 +119,7 @@ export function useFollowingAccounts({
         if (withRelationships) {
           dispatch(fetchRelationships(accountIds));
         }
-        setAccounts(accounts);
+        setDefaultAccounts(accounts);
         setLoadingState('idle');
       } catch {
         setLoadingState('error');
@@ -147,16 +127,23 @@ export function useFollowingAccounts({
     }
     void doRequest();
   }, [
-    accountId,
+    currentUserId,
     accounts,
     dispatch,
     filterResults,
     loadingState,
     withRelationships,
+    defaultAccounts,
+    withDefaultFollows,
   ]);
 
   return {
-    accounts: accounts ?? [],
+    searchAccounts: startSearch,
+    resetAccounts,
+    accounts:
+      accounts.length === 0 && withDefaultFollows
+        ? (defaultAccounts ?? [])
+        : accounts,
     isLoading: loadingState === 'loading',
     isError: loadingState === 'error',
   };
