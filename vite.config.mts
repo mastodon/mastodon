@@ -154,6 +154,14 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
             }
             return '[name]-[hash].js';
           },
+          entryFileNames({ name }) {
+            // If this is the service worker, don't add the hash to the name.
+            if (name === 'sw') {
+              return '[name].js';
+            }
+            // Otherwise, use the same value as chunkFileNames.
+            return '[name]-[hash].js';
+          },
         },
       },
     },
@@ -200,7 +208,9 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
 };
 
 async function findEntrypoints() {
-  const entrypoints: Record<string, string> = {};
+  const entrypoints: Record<string, string> = {
+    sw: path.resolve(jsRoot, 'mastodon/service_worker/sw.ts'),
+  };
 
   // First, JS entrypoints
   const jsEntrypointsDir = path.resolve(jsRoot, 'entrypoints');

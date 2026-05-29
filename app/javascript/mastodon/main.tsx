@@ -41,13 +41,18 @@ function main() {
     );
     store.dispatch(setupBrowserNotifications());
 
-    if (isProduction() && me && 'serviceWorker' in navigator) {
-      // TODO: Register service worker
-      if ('Notification' in window && Notification.permission === 'granted') {
-        const registerPushNotifications =
-          await import('mastodon/actions/push_notifications');
+    if (me && 'serviceWorker' in navigator) {
+      if (isProduction()) {
+        await navigator.serviceWorker.register('/packs/sw.js');
 
-        store.dispatch(registerPushNotifications.register());
+        if ('Notification' in window && Notification.permission === 'granted') {
+          const registerPushNotifications =
+            await import('mastodon/actions/push_notifications');
+
+          store.dispatch(registerPushNotifications.register());
+        }
+      } else {
+        // TODO: Register the dev service worker.
       }
     }
 
