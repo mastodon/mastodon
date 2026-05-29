@@ -72,7 +72,7 @@ class ActivityPub::ProcessAccountService < BaseService
     unless @options[:only_key] || @account.suspended?
       check_featured_collection! if @json['featured'].present?
       check_featured_tags_collection! if @json['featuredTags'].present?
-      check_featured_collections_collection! if @json['featuredCollections'].present? && Mastodon::Feature.collections_enabled?
+      check_featured_collections_collection! if @json['featuredCollections'].present?
       check_links! if @account.fields.any?(&:requires_verification?)
     end
 
@@ -121,7 +121,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.uri                     = @uri
     @account.actor_type              = actor_type
     @account.created_at              = @json['published'] if @json['published'].present?
-    @account.feature_approval_policy = feature_approval_policy if Mastodon::Feature.collections_enabled?
+    @account.feature_approval_policy = feature_approval_policy
   end
 
   def valid_collection_uri(uri)

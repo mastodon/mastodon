@@ -9,8 +9,6 @@ class Api::V1::CollectionsController < Api::BaseController
     render json: { error: ValidationErrorFormatter.new(e).as_json }, status: 422
   end
 
-  before_action :check_feature_enabled
-
   before_action -> { authorize_if_got_token! :read, :'read:collections' }, only: [:index, :show]
   before_action -> { doorkeeper_authorize! :write, :'write:collections' }, only: [:create, :update, :destroy]
 
@@ -89,10 +87,6 @@ class Api::V1::CollectionsController < Api::BaseController
 
   def collection_update_params
     params.permit(:name, :description, :language, :sensitive, :discoverable, :tag_name)
-  end
-
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.collections_enabled?
   end
 
   def next_path

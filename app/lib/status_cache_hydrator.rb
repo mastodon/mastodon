@@ -121,7 +121,6 @@ class StatusCacheHydrator
   end
 
   def hydrate_account(payload, account)
-    return unless Mastodon::Feature.collections_enabled?
     return unless payload[:id]
 
     stale_account = Account.find_by(id: payload[:id])
