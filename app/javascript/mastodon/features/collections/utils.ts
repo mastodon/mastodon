@@ -1,10 +1,5 @@
 import type { ApiAccountJSON } from '@/mastodon/api_types/accounts';
 import type { Account } from '@/mastodon/models/account';
-import { isServerFeatureEnabled } from '@/mastodon/utils/environment';
-
-export function areCollectionsEnabled() {
-  return isServerFeatureEnabled('collections');
-}
 
 export const getCollectionPath = (id: string) => `/collections/${id}`;
 
