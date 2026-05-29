@@ -15,7 +15,7 @@ import { fetchList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
 import { apiFollowAccount } from 'mastodon/api/accounts';
 import {
-  apiGetAccounts,
+  apiGetListAccounts,
   apiAddAccountToList,
   apiRemoveAccountFromList,
 } from 'mastodon/api/lists';
@@ -184,7 +184,7 @@ const ListMembers: React.FC<{
     if (id) {
       dispatch(fetchList(id));
 
-      void apiGetAccounts(id)
+      void apiGetListAccounts(id)
         .then((data) => {
           dispatch(importFetchedAccounts(data));
           setAccountIds(data.map((a) => a.id));
