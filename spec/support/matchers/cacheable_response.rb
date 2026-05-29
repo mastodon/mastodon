@@ -26,12 +26,15 @@ RSpec::Matchers.define :have_cacheable_headers do
     ERROR
   end
 
+  # Values that middleware/framework may add to Vary beyond what controllers set
+  ALLOWED_EXTRA_VARY_VALUES = %w[Accept-Encoding Origin].freeze
+
   def check_vary
     actual_vary = @response.headers['Vary']&.split(',')&.map(&:strip) || []
     expected_vary = @expected_vary.split(',').map(&:strip)
     missing = expected_vary - actual_vary
     extra = actual_vary - expected_vary
-    unexpected = extra.reject { |v| v == 'Accept-Encoding' }
+    unexpected = extra.reject { |v| ALLOWED_EXTRA_VARY_VALUES.include?(v) }
 
     if missing.any?
       "Response `Vary` header does not contain `#{@expected_vary}`"
