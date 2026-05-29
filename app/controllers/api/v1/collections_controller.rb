@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1Alpha::CollectionsController < Api::BaseController
+class Api::V1::CollectionsController < Api::BaseController
   include Authorization
 
   DEFAULT_COLLECTIONS_LIMIT = 40
@@ -98,13 +98,13 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   def next_path
     return unless records_continue?
 
-    api_v1_alpha_account_collections_url(@account, pagination_params(offset: offset_param + limit_param(DEFAULT_COLLECTIONS_LIMIT)))
+    api_v1_account_collections_url(@account, pagination_params(offset: offset_param + limit_param(DEFAULT_COLLECTIONS_LIMIT)))
   end
 
   def prev_path
     return if offset_param.zero?
 
-    api_v1_alpha_account_collections_url(@account, pagination_params(offset: offset_param - limit_param(DEFAULT_COLLECTIONS_LIMIT)))
+    api_v1_account_collections_url(@account, pagination_params(offset: offset_param - limit_param(DEFAULT_COLLECTIONS_LIMIT)))
   end
 
   def records_continue?
