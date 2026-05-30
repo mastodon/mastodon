@@ -1,3 +1,6 @@
+## Multiple servers can be added to the reverse_proxy. 
+## Example: reverse_proxy 192.168.1.1:3000 92.168.1.2:3000  92.168.1.3:3000 {
+
 (instance1_backend) {
         reverse_proxy 192.168.x.x:3000 {
                 lb_policy least_conn
