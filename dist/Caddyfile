@@ -1,5 +1,5 @@
-(aus_social_backend) {
-        reverse_proxy 192.168.88.75:3000 192.168.88.158:3000 192.168.88.157:3000 {
+(instance1_backend) {
+        reverse_proxy 192.168.x.x:3000 {
                 lb_policy least_conn
                 fail_duration 30s
                 max_fails 3
@@ -13,6 +13,17 @@
         }
 }
 
+(instance1_backend_streaming) {
+        reverse_proxy 192.168.x.x:4000{
+                lb_policy least_conn
+                fail_duration 30s
+                max_fails 3
+                header_up Host {host}
+                header_up X-Real-IP {remote_host}
+                header_up Proxy ""
+        }
+}
+
 aus.social {
         encode {
                 zstd
@@ -23,48 +34,31 @@ aus.social {
         header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
         header ?X-Content-Type-Options nosniff
 
-        @bots {
-                header User-Agent *AhrefsBot*
-                header User-Agent *GPTBot*
-                header User-Agent *SemrushBot*
-                header User-Agent *PetalBot*
-        }
-        respond @bots 403
-
         @static_assets path /assets/* /avatars/* /emoji/* /headers/* /ocr/* /packs/* /shortcuts/* /sounds/*
-
         handle @static_assets {
-            header Cache-Control "public, max-age=2419200, must-revalidate"
-            import aus_social_backend
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import instance1_backend
         }
 
         handle /sw.js {
-            header Cache-Control "public, max-age=604800, must-revalidate"
-            import aus_social_backend
+                header Cache-Control "public, max-age=604800, must-revalidate"
+                import instance1_backend
         }
 
         handle /system/* {
                 header Cache-Control "public, max-age=2419200, immutable"
                 header Content-Security-Policy "default-src 'none'; form-action 'none'"
-                import aus_social_backend
+                import instance1_backend
         }
 
         handle /api/v1/streaming* {
-                reverse_proxy 192.168.88.75:4000 192.168.88.158:4000 192.168.88.157:4000 {
-                        lb_policy least_conn
-                        fail_duration 30s
-                        max_fails 3
-                        header_up Host {host}
-                        header_up X-Real-IP {remote_host}
-                        header_up Proxy ""
-                }
+                import instance1_backend_streaming
         }
-
         handle {
-                import aus_social_backend
+                import instance1_backend
         }
 
-        handle_errors {
+handle_errors {
                 rewrite * /500.html
                 root * /home/mastodon/live/public
                 file_server
