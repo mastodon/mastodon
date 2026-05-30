@@ -17,7 +17,7 @@
 }
 
 (instance1_backend_streaming) {
-        reverse_proxy 192.168.x.x:4000{
+        reverse_proxy 192.168.x.x:4000 {
                 lb_policy least_conn
                 fail_duration 30s
                 max_fails 3
