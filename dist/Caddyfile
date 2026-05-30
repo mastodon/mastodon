@@ -1,0 +1,89 @@
+(instance1_backend) {
+        reverse_proxy 192.168.x.x:3000{
+                lb_policy least_conn
+                fail_duration 30s
+                max_fails 3
+                header_up Host {host}
+                header_up X-Real-IP {remote_host}
+                header_up Proxy ""
+                transport http {
+                        read_timeout 3600s
+                        response_header_timeout 3600s
+                }
+        }
+}
+
+mastodon.instance {
+        encode {
+                zstd
+                gzip 6
+                minimum_length 1024
+        }
+
+        header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+        header ?X-Content-Type-Options nosniff
+
+        handle {
+                import aus_social_backend
+        }
+
+        handle /api/v1/streaming* {
+                reverse_proxy 192.168.x.x:4000{
+                        lb_policy least_conn
+                        fail_duration 30s
+                        max_fails 3
+                        header_up Host {host}
+                        header_up X-Real-IP {remote_host}
+                        header_up Proxy ""
+                }
+        }
+
+        handle /sw.js {
+                header Cache-Control "public, max-age=604800, must-revalidate"
+                import aus_social_backend
+        }
+
+        handle /assets/* {
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import aus_social_backend
+        }
+        handle /avatars/* {
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import aus_social_backend
+        }
+        handle /emoji/* {
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import aus_social_backend
+        }
+        handle /headers/* {
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import aus_social_backend
+        }
+        handle /ocr/* {
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import aus_social_backend
+        }
+        handle /packs/* {
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import aus_social_backend
+        }
+        handle /shortcuts/* {
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import aus_social_backend
+        }
+        handle /sounds/* {
+                header Cache-Control "public, max-age=2419200, must-revalidate"
+                import aus_social_backend
+        }
+        handle /system/* {
+                header Cache-Control "public, max-age=2419200, immutable"
+                header Content-Security-Policy "default-src 'none'; form-action 'none'"
+                import aus_social_backend
+        }
+
+        handle_errors {
+                rewrite * /500.html
+                root * /home/mastodon/live/public
+                file_server
+        }
+}
