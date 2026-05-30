@@ -1,5 +1,5 @@
-(instance1_backend) {
-        reverse_proxy 192.168.x.x:3000{
+(aus_social_backend) {
+        reverse_proxy 192.168.88.75:3000 192.168.88.158:3000 192.168.88.157:3000 {
                 lb_policy least_conn
                 fail_duration 30s
                 max_fails 3
@@ -13,7 +13,7 @@
         }
 }
 
-mastodon.instance {
+aus.social {
         encode {
                 zstd
                 gzip 6
@@ -23,12 +23,34 @@ mastodon.instance {
         header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
         header ?X-Content-Type-Options nosniff
 
-        handle {
+        @bots {
+                header User-Agent *AhrefsBot*
+                header User-Agent *GPTBot*
+                header User-Agent *SemrushBot*
+                header User-Agent *PetalBot*
+        }
+        respond @bots 403
+
+        @static_assets path /assets/* /avatars/* /emoji/* /headers/* /ocr/* /packs/* /shortcuts/* /sounds/*
+
+        handle @static_assets {
+            header Cache-Control "public, max-age=2419200, must-revalidate"
+            import aus_social_backend
+        }
+
+        handle /sw.js {
+            header Cache-Control "public, max-age=604800, must-revalidate"
+            import aus_social_backend
+        }
+
+        handle /system/* {
+                header Cache-Control "public, max-age=2419200, immutable"
+                header Content-Security-Policy "default-src 'none'; form-action 'none'"
                 import aus_social_backend
         }
 
         handle /api/v1/streaming* {
-                reverse_proxy 192.168.x.x:4000{
+                reverse_proxy 192.168.88.75:4000 192.168.88.158:4000 192.168.88.157:4000 {
                         lb_policy least_conn
                         fail_duration 30s
                         max_fails 3
@@ -38,46 +60,7 @@ mastodon.instance {
                 }
         }
 
-        handle /sw.js {
-                header Cache-Control "public, max-age=604800, must-revalidate"
-                import aus_social_backend
-        }
-
-        handle /assets/* {
-                header Cache-Control "public, max-age=2419200, must-revalidate"
-                import aus_social_backend
-        }
-        handle /avatars/* {
-                header Cache-Control "public, max-age=2419200, must-revalidate"
-                import aus_social_backend
-        }
-        handle /emoji/* {
-                header Cache-Control "public, max-age=2419200, must-revalidate"
-                import aus_social_backend
-        }
-        handle /headers/* {
-                header Cache-Control "public, max-age=2419200, must-revalidate"
-                import aus_social_backend
-        }
-        handle /ocr/* {
-                header Cache-Control "public, max-age=2419200, must-revalidate"
-                import aus_social_backend
-        }
-        handle /packs/* {
-                header Cache-Control "public, max-age=2419200, must-revalidate"
-                import aus_social_backend
-        }
-        handle /shortcuts/* {
-                header Cache-Control "public, max-age=2419200, must-revalidate"
-                import aus_social_backend
-        }
-        handle /sounds/* {
-                header Cache-Control "public, max-age=2419200, must-revalidate"
-                import aus_social_backend
-        }
-        handle /system/* {
-                header Cache-Control "public, max-age=2419200, immutable"
-                header Content-Security-Policy "default-src 'none'; form-action 'none'"
+        handle {
                 import aus_social_backend
         }
 
