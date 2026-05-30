@@ -58,7 +58,7 @@ aus.social {
                 import instance1_backend
         }
 
-handle_errors {
+        }handle_errors {
                 rewrite * /500.html
                 root * /home/mastodon/live/public
                 file_server
