@@ -34,7 +34,7 @@ mastodon.instance.com {
                 minimum_length 1024
         }
 
-        header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+        header ?Strict-Transport-Security "max-age=63072000; includeSubDomains;"
         header ?X-Content-Type-Options nosniff
 
         @static_assets path /assets/* /avatars/* /emoji/* /headers/* /ocr/* /packs/* /shortcuts/* /sounds/*
