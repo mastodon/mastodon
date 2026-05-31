@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-class Api::V1Alpha::InCollectionsController < Api::BaseController
+class Api::V1::InCollectionsController < Api::BaseController
   include Authorization
 
   DEFAULT_COLLECTIONS_LIMIT = 40
-
-  before_action :check_feature_enabled
 
   before_action -> { authorize_if_got_token! :read, :'read:collections' }, only: [:index]
 
@@ -37,20 +35,16 @@ class Api::V1Alpha::InCollectionsController < Api::BaseController
       .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
   end
 
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.collections_enabled?
-  end
-
   def next_path
     return unless records_continue?
 
-    api_v1_alpha_account_in_collections_url(@account, pagination_params(offset: offset_param + limit_param(DEFAULT_COLLECTIONS_LIMIT)))
+    api_v1_account_in_collections_url(@account, pagination_params(offset: offset_param + limit_param(DEFAULT_COLLECTIONS_LIMIT)))
   end
 
   def prev_path
     return if offset_param.zero?
 
-    api_v1_alpha_account_in_collections_url(@account, pagination_params(offset: offset_param - limit_param(DEFAULT_COLLECTIONS_LIMIT)))
+    api_v1_account_in_collections_url(@account, pagination_params(offset: offset_param - limit_param(DEFAULT_COLLECTIONS_LIMIT)))
   end
 
   def records_continue?

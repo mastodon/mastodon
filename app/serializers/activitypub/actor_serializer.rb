@@ -10,7 +10,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
                      :moved_to, :property_value, :discoverable, :suspended,
                      :memorial, :indexable, :attribution_domains, :profile_settings
 
-  context_extensions :interaction_policies if Mastodon::Feature.collections_enabled?
+  context_extensions :interaction_policies
 
   attributes :id, :webfinger, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
@@ -21,8 +21,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   attribute :show_media_replies, key: :show_replies_in_media
 
-  attribute :interaction_policy, if: -> { Mastodon::Feature.collections_enabled? }
-  attribute :featured_collections, if: -> { Mastodon::Feature.collections_enabled? }
+  attribute :interaction_policy
+  attribute :featured_collections
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 

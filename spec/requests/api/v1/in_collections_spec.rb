@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1Alpha::InCollections', feature: :collections do
+RSpec.describe 'Api::V1::InCollections' do
   include_context 'with API authentication', oauth_scopes: 'read:collections write:collections'
 
-  describe 'GET /api/v1_alpha/in_collections' do
+  describe 'GET /api/v1/in_collections' do
     subject do
-      get "/api/v1_alpha/accounts/#{account.id}/in_collections", headers: headers, params: params
+      get "/api/v1/accounts/#{account.id}/in_collections", headers: headers, params: params
     end
 
     let(:params) { {} }
@@ -33,7 +33,7 @@ RSpec.describe 'Api::V1Alpha::InCollections', feature: :collections do
 
         expect(response)
           .to include_pagination_headers(
-            next: api_v1_alpha_account_in_collections_url(account, limit: 1, offset: 1)
+            next: api_v1_account_in_collections_url(account, limit: 1, offset: 1)
           )
       end
     end
@@ -49,8 +49,8 @@ RSpec.describe 'Api::V1Alpha::InCollections', feature: :collections do
 
         expect(response)
           .to include_pagination_headers(
-            prev: api_v1_alpha_account_in_collections_url(account, limit: 1, offset: 0),
-            next: api_v1_alpha_account_in_collections_url(account, limit: 1, offset: 2)
+            prev: api_v1_account_in_collections_url(account, limit: 1, offset: 0),
+            next: api_v1_account_in_collections_url(account, limit: 1, offset: 2)
           )
       end
     end

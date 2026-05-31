@@ -19,6 +19,7 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -337,6 +338,10 @@ export const Search: React.FC<{
                   history.push(
                     `/@${result.payload.statuses[0].account.acct}/${result.payload.statuses[0].id}`,
                   );
+                } else if (result.payload.collections[0]) {
+                  history.push(
+                    getCollectionPath(result.payload.collections[0].id),
+                  );
                 }
               }
 
@@ -547,11 +552,15 @@ export const Search: React.FC<{
   const searchOptionsHeading = useId();
 
   return (
-    <form ref={formRef} className={classNames('search', { active: expanded })}>
+    <form
+      role='search'
+      ref={formRef}
+      className={classNames('search', { active: expanded })}
+    >
       <input
         ref={searchInputRef}
         className='search__input'
-        type='text'
+        type='search'
         placeholder={intl.formatMessage(
           signedIn ? messages.placeholderSignedIn : messages.placeholder,
         )}

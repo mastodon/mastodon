@@ -940,9 +940,15 @@ vi:
           disabled: Yêu cầu vai trò người dùng cụ thể
           public: Mọi người
       landing_page:
+        hints:
+          about_html: Trang này chứa mô tả, thông tin liên hệ, nội quy và các thông tin khác liên quan đến máy chủ này.
+          local_feed_html: Đây là bảng tin hiển thị các tút mới nhất của người dùng trên máy chủ này.
+          overview_html: Trang này hiển thị mô tả về máy chủ của bạn cùng với các tút gần đây nhất của người dùng trên máy chủ này.
+          trends_html: Trang này hiển thị những nội dung đang phổ biến trên máy chủ này hiện tại.
         values:
-          about: Giới thiệu
+          about: Trang Giới thiệu
           local_feed: Bảng tin máy chủ
+          overview: Tổng quan
           trends: Xu hướng
       registrations:
         moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
@@ -963,6 +969,7 @@ vi:
     site_uploads:
       delete: Xóa tệp đã tải lên
       destroyed_msg: Đã xóa tệp tải lên thành công!
+    skip_to_content: Đến nội dung chính
     software_updates:
       critical_update: Quan trọng — vui lòng cập nhật sớm
       description: Bạn nên cập nhật Mastodon phiên bản mới nhất để được hưởng lợi từ các bản sửa lỗi và thêm tính năng mới. Nhất là để tránh các vấn đề bảo mật. Vì những lý do này, Mastodon sẽ kiểm tra các bản cập nhật 30 phút một lần và sẽ thông báo cho bạn theo tùy chọn thông báo qua email của bạn.

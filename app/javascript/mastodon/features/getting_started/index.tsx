@@ -13,7 +13,7 @@ const GettingStarted: React.FC = () => {
     <Column>
       <NavigationPanel multiColumn />
 
-      <LinkFooter multiColumn />
+      <LinkFooter context='multi-column' />
 
       <Helmet>
         <title>

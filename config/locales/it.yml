@@ -956,10 +956,16 @@ it:
           disabled: Richiedi un ruolo utente specifico
           public: Tutti
       landing_page:
+        hints:
+          about_html: Una pagina con la descrizione, informazioni di contatto, regole e altre informazioni riguardanti questo server.
+          local_feed_html: Un feed in diretta con i post più recenti da parte degli utenti su questo server.
+          overview_html: Una pagina che mostra la descrizione del tuo server insieme ai post locali più recenti da parte degli utenti su questo server.
+          trends_html: Una pagina che mostra i contenuti popolari su questo server in questo momento.
         values:
-          about: Info
-          local_feed: Feed locale
-          trends: Tendenze
+          about: Pagina delle Info
+          local_feed: Feed locale in diretta
+          overview: Panoramica
+          trends: Di tendenza
       registrations:
         moderation_recommandation: Assicurati di avere un team di moderazione adeguato e reattivo prima di aprire le registrazioni a tutti!
         preamble: Controlla chi può creare un account sul tuo server.
@@ -979,6 +985,7 @@ it:
     site_uploads:
       delete: Cancella il file caricato
       destroyed_msg: Caricamento sito eliminato!
+    skip_to_content: Vai al contenuto
     software_updates:
       critical_update: 'Critico: ti preghiamo di aggiornare rapidamente'
       description: Si consiglia di mantenere aggiornata l'installazione di Mastodon per beneficiare delle ultime correzioni e funzionalità. Inoltre, a volte è fondamentale aggiornare Mastodon in modo tempestivo per evitare problemi di sicurezza. Per queste ragioni, Mastodon verifica la presenza di aggiornamenti ogni 30 minuti e ti avviserà in base alle tue preferenze di notifica e-mail.

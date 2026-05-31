@@ -29,7 +29,7 @@ import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../act
 import { clearHeight } from '../../actions/height_cache';
 import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
 import { expandHomeTimeline } from '../../actions/timelines';
-import { initialState, me, owner, singleUserMode, trendsEnabled, landingPage, localLiveFeedAccess, disableHoverCards } from '../../initial_state';
+import { initialState, me, owner, singleUserMode, trendsEnabled, landingPage, localLiveFeedAccess, disableHoverCards, domain } from '../../initial_state';
 
 import BundleColumnError from './components/bundle_column_error';
 import { NavigationBar } from './components/navigation_bar';
@@ -88,11 +88,11 @@ import {
 import { ColumnsContextProvider } from './util/columns_context';
 import { focusColumn, getFocusedItemIndex, focusItemSibling, focusFirstItem } from './util/focusUtils';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
+import { CustomHomepage } from 'mastodon/features/custom_homepage';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
-import { areCollectionsEnabled } from '../collections/utils';
 import { getNavigationSkipLinkId, SkipLinks } from './components/skip_links';
 
 const messages = defineMessages({
@@ -105,7 +105,7 @@ const mapStateToProps = state => ({
   hasComposingContents: state.getIn(['compose', 'text']).trim().length !== 0 || state.getIn(['compose', 'media_attachments']).size > 0 || state.getIn(['compose', 'poll']) !== null || state.getIn(['compose', 'quoted_status_id']) !== null,
   canUploadMore:
     !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type')))
-    && state.getIn(['compose', 'media_attachments']).size < state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']),
+    && state.getIn(['compose', 'media_attachments']).size < state.getIn(['server', 'server', 'item', 'configuration', 'statuses', 'max_media_attachments']),
   isUploadEnabled:
     state.getIn(['compose', 'isDragDisabled']) !== true,
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
@@ -177,13 +177,15 @@ class SwitchingColumnsArea extends PureComponent {
       rootRedirect = '/explore';
     } else if (localLiveFeedAccess === 'public' && landingPage === 'local_feed') {
       rootRedirect = '/public/local';
+    } else if (landingPage === 'overview') {
+      rootRedirect = '/overview';
     } else {
       rootRedirect = '/about';
     }
 
     return (
       <ColumnsContextProvider multiColumn={!singleColumn}>
-        <ColumnsArea ref={this.setRef} singleColumn={singleColumn}>
+        <ColumnsArea ref={this.setRef} singleColumn={singleColumn} domain={domain} minimalShell={!signedIn && landingPage === 'overview'}>
           <WrappedSwitch>
             <Redirect from='/' to={{pathname: rootRedirect, state: this.props.location.state}} exact />
 
@@ -232,13 +234,9 @@ class SwitchingColumnsArea extends PureComponent {
 
             <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
-            {areCollectionsEnabled() &&
-              [
-                <WrappedRoute path={['/@:acct/collections']} component={Collections} content={children} key='collections-list' />,
-                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} key='collections-editor' />,
-                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} key='collections-detail' />,
-              ]
-            }
+            <WrappedRoute path={['/@:acct/collections']} component={Collections} content={children} key='collections-list' />
+            <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} key='collections-editor' />
+            <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} key='collections-detail' />
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
             <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
@@ -262,6 +260,8 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
+
+            <Route path='/overview' component={CustomHomepage} />
             <Route component={BundleColumnError} />
           </WrappedSwitch>
         </ColumnsArea>
@@ -633,13 +633,18 @@ class UI extends PureComponent {
       cheat: this.handleDonate,
     };
 
+    const minimalShell = !this.props.identity.signedIn && landingPage === 'overview';
+
     return (
       <Hotkeys global handlers={handlers}>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
-          <SkipLinks
-            multiColumn={layout === 'multi-column'}
-            onFocusGettingStartedColumn={this.handleHotkeyGoToStart}
-          />
+          {!minimalShell && (
+            <SkipLinks
+              multiColumn={layout === 'multi-column'}
+              onFocusGettingStartedColumn={this.handleHotkeyGoToStart}
+            />
+          )}
+
           <SwitchingColumnsArea
             identity={this.props.identity}
             location={location}
@@ -650,7 +655,7 @@ class UI extends PureComponent {
             {children}
           </SwitchingColumnsArea>
 
-          <NavigationBar />
+          {!minimalShell && <NavigationBar />}
           {layout !== 'mobile' && <PictureInPicture />}
           <AlertsController />
           {!disableHoverCards && <HoverCardController />}

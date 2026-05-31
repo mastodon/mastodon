@@ -78,6 +78,17 @@ RSpec.describe 'Reports' do
         end
       end
 
+      context 'with both resolved and unresolved params' do
+        let(:params) { { resolved: true, unresolved: true } }
+        let(:scope)  { Report.all }
+
+        it 'returns all reports' do
+          subject
+
+          expect(response.parsed_body).to match_array(expected_response)
+        end
+      end
+
       context 'with account_id param' do
         let(:params) { { account_id: reporter.id } }
         let(:scope)  { Report.unresolved.where(account: reporter) }

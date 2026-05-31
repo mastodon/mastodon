@@ -19,7 +19,7 @@ import {
 } from '@/mastodon/components/scrollable_list/components';
 import type { TruncatedListItemInfo } from '@/mastodon/components/truncated_list';
 import { TruncatedListItems } from '@/mastodon/components/truncated_list';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 import Column from '@/mastodon/features/ui/components/column';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
@@ -30,12 +30,9 @@ import AddIcon from '@/material-icons/400-24px/add.svg?react';
 
 import { CollectionListItem } from '../collections/components/collection_list_item';
 import { useCollectionsCreatedBy } from '../collections/overview/created_by_you';
-import { areCollectionsEnabled } from '../collections/utils';
 
 import { EmptyMessage } from './components/empty_message';
 import { Subheading, SubheadingLink } from './components/subheading';
-
-const collectionsEnabled = areCollectionsEnabled();
 
 const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   multiColumn,
@@ -98,14 +95,11 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   );
 
   const hasCollections =
-    collectionsEnabled &&
-    collectionsLoadStatus === 'idle' &&
-    listedCollections.length > 0;
+    collectionsLoadStatus === 'idle' && listedCollections.length > 0;
 
   const hasFeaturedAccounts = !featuredAccountIds.isEmpty();
 
-  const isLoading =
-    !accountId || (collectionsEnabled && collectionsLoadStatus !== 'idle');
+  const isLoading = !accountId || collectionsLoadStatus !== 'idle';
 
   if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
@@ -165,57 +159,53 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
             </ItemList>
           </>
         )}
-        {collectionsEnabled && (
-          <>
-            <Subheading as='header'>
-              <h2>
-                <FormattedMessage
-                  id='account.featured.collections'
-                  defaultMessage='Collections'
-                />
-              </h2>
-              {accountId === me && (
-                <SubheadingLink to='/collections/new' icon={AddIcon}>
-                  <FormattedMessage
-                    id='account.featured.new_collection'
-                    defaultMessage='New collection'
-                  />
-                </SubheadingLink>
-              )}
-            </Subheading>
-            {hasCollections ? (
-              <ItemList>
-                <TruncatedListItems
-                  visibleItems={listedCollections}
-                  truncatedItems={unlistedCollections}
-                  toggleButton={{
-                    title: (
-                      <FormattedMessage
-                        id='collections.unlisted_collections_with_count'
-                        defaultMessage='Unlisted collections ({count})'
-                        values={{ count: unlistedCollections.length }}
-                      />
-                    ),
-                    subtitle: (
-                      <FormattedMessage
-                        id='collections.unlisted_collections_description'
-                        defaultMessage='These don’t appear on your profile to others. Anyone with the link can discover them.'
-                      />
-                    ),
-                  }}
-                  renderListItem={renderListItem}
-                />
-              </ItemList>
-            ) : (
-              <EmptyMessage
-                withoutAddCollectionButton
-                blockedBy={blockedBy}
-                hidden={hidden}
-                suspended={suspended}
-                accountId={accountId}
+        <Subheading as='header'>
+          <h2>
+            <FormattedMessage
+              id='account.featured.collections'
+              defaultMessage='Collections'
+            />
+          </h2>
+          {accountId === me && (
+            <SubheadingLink to='/collections/new' icon={AddIcon}>
+              <FormattedMessage
+                id='account.featured.new_collection'
+                defaultMessage='New collection'
               />
-            )}
-          </>
+            </SubheadingLink>
+          )}
+        </Subheading>
+        {hasCollections ? (
+          <ItemList>
+            <TruncatedListItems
+              visibleItems={listedCollections}
+              truncatedItems={unlistedCollections}
+              toggleButton={{
+                title: (
+                  <FormattedMessage
+                    id='collections.unlisted_collections_with_count'
+                    defaultMessage='Unlisted collections ({count})'
+                    values={{ count: unlistedCollections.length }}
+                  />
+                ),
+                subtitle: (
+                  <FormattedMessage
+                    id='collections.unlisted_collections_description'
+                    defaultMessage='These don’t appear on your profile to others. Anyone with the link can discover them.'
+                  />
+                ),
+              }}
+              renderListItem={renderListItem}
+            />
+          </ItemList>
+        ) : (
+          <EmptyMessage
+            withoutAddCollectionButton
+            blockedBy={blockedBy}
+            hidden={hidden}
+            suspended={suspended}
+            accountId={accountId}
+          />
         )}
         <RemoteHint accountId={accountId} />
       </Scrollable>

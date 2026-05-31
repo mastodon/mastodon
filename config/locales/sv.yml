@@ -349,6 +349,7 @@ sv:
       back_to_report: Tillbaka till rapportsidan
       batch:
         add_to_report: 'Lägg till i rapport #%{id}'
+        remove_from_report: Ta bort från rapport
         report: Rapportera
       collection_title: Samling av %{name}
       contents: Innehåll
@@ -954,11 +955,6 @@ sv:
           authenticated: Endast autentiserade användare
           disabled: Kräv specifik användarroll
           public: Alla
-      landing_page:
-        values:
-          about: Om
-          local_feed: Lokalt flöde
-          trends: Trender
       registrations:
         moderation_recommandation: Se till att du har ett tillräckligt och reaktivt modereringsteam innan du öppnar registreringar till alla!
         preamble: Kontrollera vem som kan skapa ett konto på din server.
@@ -978,6 +974,7 @@ sv:
     site_uploads:
       delete: Radera uppladdad fil
       destroyed_msg: Webbplatsuppladdningen har raderats!
+    skip_to_content: Hoppa till innehåll
     software_updates:
       critical_update: Kritiskt — vänligen uppdatera omgående
       description: Det rekommenderas att hålla din Mastodon-installation uppdaterad för att ta nytta av de senaste fixarna och funktionerna. Dessutom är det ibland viktigt att uppdatera Mastodon i tid för att undvika säkerhetsproblem. Av dessa skäl kontrollerar Mastodon efter uppdateringar var 30:e minut och meddelar dig i enlighet med dina e-postaviseringsinställningar.

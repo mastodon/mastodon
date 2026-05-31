@@ -86,6 +86,9 @@ export function setupBrowserNotifications() {
   };
 }
 
+/**
+ * @param {(NotificationPermission) => void} callback
+ */
 export function requestBrowserPermission(callback = noOp) {
   return dispatch => {
     requestNotificationPermission((permission) => {

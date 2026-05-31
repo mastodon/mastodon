@@ -956,9 +956,15 @@ tr:
           disabled: Belirli kullanıcı rolü gerekir
           public: Herkes
       landing_page:
+        hints:
+          about_html: Bu sunucuya ilişkin açıklama, iletişim bilgileri, kurallar ve diğer bilgilerin yer aldığı bir sayfa.
+          local_feed_html: Bu sunucudaki kullanıcıların en son paylaşımlarını içeren bir canlı akış.
+          overview_html: Sunucunuzun açıklamasını ve bu sunucudaki kullanıcıların en son yerel gönderilerini gösteren bir sayfa.
+          trends_html: Bu sunucuda şu anda popüler olanları gösteren bir sayfa.
         values:
-          about: Hakkında
-          local_feed: Yerel akış
+          about: Hakkında sayfası
+          local_feed: Yerel canlı akış
+          overview: Genel Bakış
           trends: Öne çıkanlar
       registrations:
         moderation_recommandation: Lütfen kayıtları herkese açmadan önce yeterli ve duyarlı bir denetleyici ekibine sahip olduğunuzdan emin olun!
@@ -979,6 +985,7 @@ tr:
     site_uploads:
       delete: Yüklenen dosyayı sil
       destroyed_msg: Site yüklemesi başarıyla silindi!
+    skip_to_content: İçeriğe atla
     software_updates:
       critical_update: Kritik — lütfen hemen güncelleyin
       description: Son düzeltme ve özelliklerden yararlanmak için Mastodon kurulumunu güncel tutmanızı öneriyoruz. Üstelik güvenlik sorunlarından kaçınmak için Mastodon'u zamanında güncellemek kritiktir. Bu nedenlerle Mastodon her 30 dakikada bir güncellemeleri denetler ve e-posta bildirim seçeneğinize göre size haber verir.

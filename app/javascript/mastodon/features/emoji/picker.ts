@@ -82,13 +82,22 @@ type LegacyEmoji =
       custom: true;
     };
 
+export async function reloadCustomEmojis() {
+  customEmojis = null;
+
+  const { loadEmojisIntoCache } =
+    await import('@/mastodon/hooks/useCustomEmojis');
+
+  await Promise.all([fetchCustomEmojiData(), loadEmojisIntoCache()]);
+}
+
 // Replicates the old legacy search function.
 export async function emojiMartSearch(
   token: string,
   locale: string,
   limit = 5,
 ): Promise<LegacyEmoji[]> {
-  const query = token.replace(':', '').toLowerCase().trim();
+  const query = token.replace(':', '').trim();
   if (!query.length) {
     return [];
   }

@@ -8,7 +8,6 @@ class CollectionsController < ApplicationController
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
-  before_action :check_feature_enabled
   before_action :require_account_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_collection
 
@@ -50,9 +49,5 @@ class CollectionsController < ApplicationController
   def expiration_duration
     recently_updated = @collection.updated_at > 15.minutes.ago
     recently_updated ? 30.seconds : 5.minutes
-  end
-
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.collections_enabled?
   end
 end

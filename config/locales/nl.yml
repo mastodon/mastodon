@@ -800,7 +800,7 @@ nl:
       reported_with_application: Gerapporteerd met applicatie
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
-      skip_to_actions: Ga direct naar de maatregelen
+      skip_to_actions: Ga naar de acties
       status: Rapportages
       statuses: Berichten (%{count})
       statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
@@ -956,9 +956,15 @@ nl:
           disabled: Specifieke gebruikersrol vereisen
           public: Iedereen
       landing_page:
+        hints:
+          about_html: Een pagina met de beschrijving, contactgegevens, regels en andere informatie over deze server.
+          local_feed_html: Een openbaar toegankelijke tijdlijn met de meest recente berichten van gebruikers op deze server.
+          overview_html: Een pagina die de beschrijving van je server laat zien, naast de meest recente lokale berichten van gebruikers op deze server.
+          trends_html: Een pagina met wat momenteel populair op deze server is.
         values:
-          about: Over
-          local_feed: Lokale tijdlijn
+          about: Pagina over ons
+          local_feed: Openbare lokale tijdlijn
+          overview: Overzicht
           trends: Trends
       registrations:
         moderation_recommandation: Zorg ervoor dat je een adequaat en responsief moderatieteam hebt voordat je registraties voor iedereen openstelt!
@@ -979,6 +985,7 @@ nl:
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
+    skip_to_content: Ga naar de inhoud
     software_updates:
       critical_update: Kritiek — update snel
       description: Het wordt aanbevolen om je Mastodon-installatie up-to-date te houden om gebruik te kunnen maken van de nieuwste oplossingen en functies. Bovendien is het soms cruciaal om Mastodon tijdig bij te werken om veiligheidsproblemen te voorkomen. Om deze redenen controleert Mastodon elke 30 minuten updates en brengt je hiervan op de hoogte volgens jouw voorkeuren voor e-mailmeldingen.

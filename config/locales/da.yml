@@ -956,10 +956,16 @@ da:
           disabled: Kræv specifik brugerrolle
           public: Alle
       landing_page:
+        hints:
+          about_html: En side med beskrivelsen, kontaktoplysninger, regler og andre oplysninger vedrørende denne server.
+          local_feed_html: Et live feed med de seneste indlæg fra brugere på denne server.
+          overview_html: En side, der viser beskrivelsen af din server sammen med de seneste lokale indlæg af brugere på denne server.
+          trends_html: En side, der viser, hvad der er populært på denne server lige nu.
         values:
-          about: Om
-          local_feed: Lokalt feed
-          trends: Trends
+          about: Om-side
+          local_feed: Lokalt live-feed
+          overview: Oversigt
+          trends: Trender
       registrations:
         moderation_recommandation: Sørg for, at der er et tilstrækkeligt og reaktivt moderationsteam, før registrering åbnes for alle!
         preamble: Styr, hvem der kan oprette en konto på din server.
@@ -979,6 +985,7 @@ da:
     site_uploads:
       delete: Slet uploadet fil
       destroyed_msg: Websteds-upload blev slettet!
+    skip_to_content: Gå til indhold
     software_updates:
       critical_update: Kritisk – opdatér hurtigst muligt
       description: Det anbefales at holde din Mastodon-installation opdateret for at drage fordel af de nyeste fejlrettelser og funktioner. Desuden er det nogle gange afgørende at opdatere Mastodon rettidigt for at undgå sikkerhedsproblemer. Af disse grunde tjekker Mastodon for opdateringer hvert 30. minut og giver dig besked i henhold til dine præferencer for e-mail-notifikationer.

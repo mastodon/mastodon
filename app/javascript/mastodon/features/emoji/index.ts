@@ -2,6 +2,7 @@ import { initialState } from '@/mastodon/initial_state';
 
 import type { EMOJI_DB_NAME_SHORTCODES } from './constants';
 import { toSupportedLocale } from './locale';
+import { reloadCustomEmojis } from './picker';
 import type { LocaleOrCustom } from './types';
 import { emojiLogger } from './utils';
 
@@ -90,6 +91,7 @@ export async function loadCustomEmoji() {
     const emojis = await importCustomEmojiData();
     if (emojis && emojis.length > 0) {
       log('loaded %d custom emojis', emojis.length);
+      await reloadCustomEmojis();
     }
   }
 }

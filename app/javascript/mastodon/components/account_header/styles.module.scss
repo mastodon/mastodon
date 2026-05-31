@@ -110,6 +110,9 @@
   word-break: break-all;
   text-align: left;
 
+  /* Allow the handle text to be selected */
+  user-select: text;
+
   > svg {
     width: 16px;
     height: 16px;
@@ -480,6 +483,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
   justify-content: center;
   align-items: flex-start;
   margin: 16px 0;
+  padding: 16px;
 }
 
 .bannerBaseCentered {

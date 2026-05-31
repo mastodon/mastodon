@@ -17,7 +17,6 @@ import { blockAccount } from 'mastodon/actions/accounts';
 import { closeModal } from 'mastodon/actions/modal';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
-import { areCollectionsEnabled } from '../../collections/utils';
 
 export const BlockModal = ({ accountId, acct }) => {
   const dispatch = useDispatch();
@@ -73,12 +72,10 @@ export const BlockModal = ({ accountId, acct }) => {
             <div><FormattedMessage id='block_modal.they_cant_mention' defaultMessage="You can't mention, follow, or quote each other." /></div>
           </li>
 
-          {areCollectionsEnabled() && 
-            <li>
-              <div className='safety-action-modal__bullet-points__icon'><Icon icon={CollectionsIcon} /></div>
-              <div><FormattedMessage id='block_modal.no_collections' defaultMessage="Neither of you can add each other to collections. You'll be automatically removed from each others' existing collections, if applicable." /></div>
-            </li>
-          }
+          <li>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={CollectionsIcon} /></div>
+            <div><FormattedMessage id='block_modal.no_collections' defaultMessage="Neither of you can add each other to collections. You'll be automatically removed from each others' existing collections, if applicable." /></div>
+          </li>
         </ul>
       </div>
 

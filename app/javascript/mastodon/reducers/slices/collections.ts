@@ -1,6 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import { fetchAccounts } from '@/mastodon/actions/accounts_typed';
 import { importFetchedAccounts } from '@/mastodon/actions/importer';
 import {
   apiCreateCollection,
@@ -20,6 +21,7 @@ import type {
   CollectionAccountItem,
 } from '@/mastodon/api_types/collections';
 import { initialState, me } from '@/mastodon/initial_state';
+import type { AppDispatch } from '@/mastodon/store';
 import {
   createAppAsyncThunk,
   createAppSelector,
@@ -322,16 +324,42 @@ const collectionSlice = createSlice({
   },
 });
 
+/**
+ * Prefetch accounts whose avatars will be displayed in the collection list
+ */
+async function importAccountsForPreviewCard(
+  collections: ApiCollectionJSON[],
+  dispatch: AppDispatch,
+) {
+  const previewAccountIds = collections
+    .flatMap((collection) =>
+      collection.items.slice(0, 3).map((item) => item.account_id),
+    )
+    .filter((id): id is string => !!id);
+
+  await dispatch(
+    fetchAccounts({
+      accountIds: previewAccountIds,
+    }),
+  );
+}
+
 export const fetchCollectionsCreatedByAccount = createDataLoadingThunk(
   `${collectionSlice.name}/fetchCollectionsCreatedByAccount`,
   ({ accountId }: { accountId: string }) =>
     apiGetCollectionsCreatedByAccount(accountId),
+  async ({ collections }, { dispatch }) => {
+    await importAccountsForPreviewCard(collections, dispatch);
+  },
 );
 
 export const fetchCollectionsFeaturingAccount = createDataLoadingThunk(
   `${collectionSlice.name}/fetchCollectionsFeaturingAccount`,
   ({ accountId }: { accountId: string }) =>
     apiGetCollectionsFeaturingAccount(accountId),
+  async ({ collections }, { dispatch }) => {
+    await importAccountsForPreviewCard(collections, dispatch);
+  },
 );
 
 export const fetchCollection = createDataLoadingThunk(

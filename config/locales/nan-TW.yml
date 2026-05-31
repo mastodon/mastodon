@@ -345,6 +345,7 @@ nan-TW:
       back_to_report: Tńg去檢舉ê頁
       batch:
         add_to_report: '加kàu檢舉 #%{id}'
+        remove_from_report: Tuì檢舉suá掉
         report: 檢舉
       collection_title: "%{name} ê收藏"
       contents: 內容
@@ -505,6 +506,28 @@ nan-TW:
       compliance_settings:
         additional_footer_text:
           action: 管理
+          hint: Kan-ta佇電子報ê phue ê註kha出現ê通選ê文字
+          title: 其他註kha ê文字
+        lead: 電子報ê phue可能hőng掠做行銷ê電子批，根據lí pháng ê服侍器ê司法管轄區決定。
+        privacy_policy:
+          action: 管理
+          hint: 逐封電子phue ê下kha lóng ē有連kàu tsit ê政策ê連結
+          title: 隱私權政策
+        title: 守法ê設定
+      danger_zone:
+        disable_feature:
+          action: 停止使用
+          hint: 替逐ê口座關tsit ê功能
+          title: Kā功能停止使用
+        erase_all_data:
+          action: 消除資料
+          hint: 佇逐ê郵件列單內底ê逐封phue lóng永永thâi掉
+          title: 消除所有資料
+        title: 危險ê所在
+      disabled_msg: 停止使用訂電子批成功ah。
+      index:
+        disabled:
+          cannot_be_enabled: Lí ê技術提供者iáu buē替lí ê服侍器啟用tsit ê功能。
     export_domain_allows:
       new:
         title: 輸入允准ê域名
@@ -891,11 +914,6 @@ nan-TW:
           authenticated: Kan-ta hōo登入ê用者
           disabled: 愛特別ê用者角色
           public: Ta̍k lâng
-      landing_page:
-        values:
-          about: 關係本站
-          local_feed: 本地ê動態
-          trends: 趨勢
       registrations:
         moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
         preamble: 控制ē當佇lí ê服侍器註冊ê人。

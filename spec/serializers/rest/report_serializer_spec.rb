@@ -6,9 +6,15 @@ RSpec.describe REST::ReportSerializer do
   subject do
     serialized_record_json(
       report,
-      described_class
+      described_class,
+      options: {
+        scope: current_user,
+        scope_name: :current_user,
+      }
     )
   end
+
+  let(:current_user) { Fabricate(:moderator_user) }
 
   context 'with timestamps' do
     let(:report) { Fabricate(:report, action_taken_at: 3.days.ago) }

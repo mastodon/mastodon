@@ -11,7 +11,7 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
-import { CopyIconButton } from '../copy_icon_button';
+import { CopyIconButton } from '../copy_button';
 import { FollowButton } from '../follow_button';
 import { IconButton } from '../icon_button';
 

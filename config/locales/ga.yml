@@ -361,6 +361,7 @@ ga:
       back_to_report: Ar ais chuig leathanach na tuarascála
       batch:
         add_to_report: 'Cuir le tuarascáil #%{id}'
+        remove_from_report: Bain den tuarascáil
         report: Tuairisc
       collection_title: Bailiúchán le %{name}
       contents: Ábhar
@@ -1003,10 +1004,16 @@ ga:
           disabled: Éiligh ról úsáideora sonrach
           public: Gach duine
       landing_page:
+        hints:
+          about_html: Leathanach leis an gcur síos, eolas teagmhála, rialacha agus faisnéis eile maidir leis an bhfreastalaí seo.
+          local_feed_html: Fotha beo ina bhfuil na postálacha is déanaí ó úsáideoirí ar an bhfreastalaí seo.
+          overview_html: Leathanach a thaispeánann cur síos ar do fhreastalaí in éineacht leis na postálacha áitiúla is déanaí ó úsáideoirí ar an bhfreastalaí seo.
+          trends_html: Leathanach ar a bhfuil an-tóir ar an bhfreastalaí seo faoi láthair.
         values:
-          about: Maidir
-          local_feed: Fotha áitiúil
-          trends: Treochtaí
+          about: Maidir le leathanach
+          local_feed: Beatha beo áitiúil
+          overview: Forbhreathnú
+          trends: Treocht
       registrations:
         moderation_recommandation: Cinntigh le do thoil go bhfuil foireann mhodhnóireachta imoibríoch leordhóthanach agat sula n-osclaíonn tú clárúcháin do gach duine!
         preamble: Rialú cé atá in ann cuntas a chruthú ar do fhreastalaí.
@@ -1026,6 +1033,7 @@ ga:
     site_uploads:
       delete: Scrios comhad uaslódáilte
       destroyed_msg: D'éirigh le huaslódáil an tsuímh a scriosadh!
+    skip_to_content: Léim go dtí an t-ábhar
     software_updates:
       critical_update: Criticiúil - nuashonraigh go tapa le do thoil
       description: Moltar do shuiteáil Mastodon a choinneáil cothrom le dáta chun leas a bhaint as na socruithe agus na gnéithe is déanaí. Ina theannta sin, tá sé ríthábhachtach uaireanta Mastodon a nuashonrú go tráthúil chun saincheisteanna slándála a sheachaint. Ar na cúiseanna seo, seiceálann Mastodon nuashonruithe gach 30 nóiméad, agus tabharfaidh sé fógra duit de réir do shainroghanna fógra ríomhphoist.

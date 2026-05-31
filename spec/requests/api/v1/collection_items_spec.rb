@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1Alpha::CollectionItems', feature: :collections do
+RSpec.describe 'Api::V1Alpha::CollectionItems' do
   include_context 'with API authentication', oauth_scopes: 'read:collections write:collections'
 
   describe 'POST /api/v1_alpha/collections/:collection_id/items' do

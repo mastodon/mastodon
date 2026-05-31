@@ -17,7 +17,7 @@
       class: Scheduler::ScheduledStatusesScheduler
       queue: scheduler
     trends_refresh_scheduler:
-      every: '5m'
+      every: ['5m', first_in: '4m']
       class: Scheduler::Trends::RefreshScheduler
       queue: scheduler
     trends_review_notifications_scheduler:

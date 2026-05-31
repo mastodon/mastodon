@@ -135,7 +135,7 @@ group :test do
   # Browser integration testing
   gem 'capybara', '~> 3.39'
   gem 'capybara-playwright-driver'
-  gem 'playwright-ruby-client', '1.59.1', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
+  gem 'playwright-ruby-client', '1.60.0', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
 
   # Used to reset the database between system tests
   gem 'database_cleaner-active_record'
@@ -223,7 +223,7 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 
-gem 'net-http', '~> 0.6.0'
+gem 'net-http', '~> 0.9.0'
 gem 'rubyzip', '~> 3.0'
 
 gem 'hcaptcha', '~> 7.1'

@@ -40,46 +40,37 @@ RSpec.describe ActivityPub::ActorSerializer do
   describe '#interactionPolicy' do
     let(:record) { Fabricate(:account) }
 
-    # TODO: Remove when feature flag is removed
-    context 'when collections feature is disabled?' do
-      it 'is not present' do
-        expect(subject).to_not have_key('interactionPolicy')
+    context 'when actor is discoverable' do
+      it 'includes an automatic policy allowing everyone' do
+        expect(subject).to include('interactionPolicy' => {
+          'canFeature' => {
+            'automaticApproval' => ['https://www.w3.org/ns/activitystreams#Public'],
+          },
+        })
+      end
+
+      context 'when actor is locked' do
+        let(:record) { Fabricate(:account, locked: true) }
+
+        it 'includes an automatic policy allowing followers' do
+          expect(subject).to include('interactionPolicy' => {
+            'canFeature' => {
+              'automaticApproval' => [ActivityPub::TagManager.instance.followers_uri_for(record)],
+            },
+          })
+        end
       end
     end
 
-    context 'when collections feature is enabled', feature: :collections do
-      context 'when actor is discoverable' do
-        it 'includes an automatic policy allowing everyone' do
-          expect(subject).to include('interactionPolicy' => {
-            'canFeature' => {
-              'automaticApproval' => ['https://www.w3.org/ns/activitystreams#Public'],
-            },
-          })
-        end
+    context 'when actor is not discoverable' do
+      let(:record) { Fabricate(:account, discoverable: false) }
 
-        context 'when actor is locked' do
-          let(:record) { Fabricate(:account, locked: true) }
-
-          it 'includes an automatic policy allowing followers' do
-            expect(subject).to include('interactionPolicy' => {
-              'canFeature' => {
-                'automaticApproval' => [ActivityPub::TagManager.instance.followers_uri_for(record)],
-              },
-            })
-          end
-        end
-      end
-
-      context 'when actor is not discoverable' do
-        let(:record) { Fabricate(:account, discoverable: false) }
-
-        it 'includes an automatic policy limited to the actor itself' do
-          expect(subject).to include('interactionPolicy' => {
-            'canFeature' => {
-              'automaticApproval' => [ActivityPub::TagManager.instance.uri_for(record)],
-            },
-          })
-        end
+      it 'includes an automatic policy limited to the actor itself' do
+        expect(subject).to include('interactionPolicy' => {
+          'canFeature' => {
+            'automaticApproval' => [ActivityPub::TagManager.instance.uri_for(record)],
+          },
+        })
       end
     end
   end

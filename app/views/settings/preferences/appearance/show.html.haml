@@ -51,17 +51,16 @@
                    label_method: ->(contrast) { I18n.t("contrast.#{contrast}", default: contrast) },
                    wrapper: :with_label,
                    required: false
-
-  .fields-group
-    = f.simple_fields_for :settings, current_user.settings do |ff|
-      = ff.input :'web.emoji_style',
-                 collection: user_settings_collection('web.emoji_style'),
-                 include_blank: false,
-                 hint: I18n.t('simple_form.hints.defaults.setting_emoji_style'),
-                 label: I18n.t('simple_form.labels.defaults.setting_emoji_style'),
-                 label_method: ->(emoji_style) { I18n.t("emoji_styles.#{emoji_style}", default: emoji_style) },
-                 wrapper: :with_label,
-                 required: false
+      .input.horizontal-options
+        = ff.input :'web.emoji_style',
+                   as: :radio_buttons,
+                   collection: user_settings_collection('web.emoji_style'),
+                   include_blank: false,
+                   hint: I18n.t('simple_form.hints.defaults.setting_emoji_style'),
+                   label: I18n.t('simple_form.labels.defaults.setting_emoji_style'),
+                   label_method: ->(emoji_style) { I18n.t("emoji_styles.#{emoji_style}", default: emoji_style) },
+                   wrapper: :with_label,
+                   required: false
 
   - unless I18n.locale == :en
     .flash-message.translation-prompt

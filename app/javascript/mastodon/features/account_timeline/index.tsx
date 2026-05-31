@@ -19,7 +19,7 @@ import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import StatusList from '@/mastodon/components/status_list';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 import {
   useAccountId,
   useCurrentAccountId,
