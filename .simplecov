@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-SimpleCov.start 'rails' do
+SimpleCov.configure do
   # During parallel runs, ensure unique names for post-run merge
   command_name "job-#{ENV['TEST_ENV_NUMBER']}" if ENV['TEST_ENV_NUMBER']
 

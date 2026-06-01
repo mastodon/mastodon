@@ -2,8 +2,6 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'simplecov' if ENV.fetch('COVERAGE', false)
-
 # This needs to be defined before Rails is initialized
 STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
 STREAMING_HOST = ENV.fetch('TEST_STREAMING_HOST', 'localhost')
