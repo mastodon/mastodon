@@ -528,6 +528,30 @@ nan-TW:
       index:
         disabled:
           cannot_be_enabled: Lí ê技術提供者iáu buē替lí ê服侍器啟用tsit ê功能。
+          description: Tsit ê功能允准特定口座加widget kàu in ê個人檔案，予無Mastodon口座ê訪客通用電子phue收著in ê PO文。
+          get_started: 開始用
+        lead: 允准訪客用電子phue，接受tsit臺服侍器ê專用口座ê PO文。
+        title: 電子報
+      purged_msg: 逐ê訂電子報ê資料當leh hú掉。
+      roles:
+        accounts: 口座
+        edit_role: 編輯角色
+        empty:
+          hint: 無半位有權用tsit ê功能。
+          no_roles_added: Iáu buē加角色
+        lead: 有下kha ê角色ê口座，ē當佇in ê個人資料內底，啟用tsit ê功能。
+        manage_roles: 管理角色
+        role_name: 角色ê名
+        title: 角色
+      setups:
+        show:
+          enable_feature: 啟用功能
+          important_information: 重大資訊
+          list:
+            1_permission_explanation: 佇啟用tsit ê功能ê時，有指定權限ê口座，通佇伊ê個人資料加電子phue收集表。
+            2_feature_explanation: 訪客佇口座ê個人資料頁註冊，koh確認beh訂了後，佇chit ê口座貼新ê公開PO文ê時陣，in ē開始收著電子phue ê更新。
+            3_privacy_policy_warning: 服侍器ê管理員ē通接近使用收著ê通辨別ê個人資料（電子phue地址）。因此，tsit臺服侍器ê隱私權政策kap服務規定佇用tsit ê功能進前，愛更新。
+            4_cost_warning: 照服侍器設定ê方式，送電子phue可能ē加費用。請佇啟用進前，kap lí ê服務提供者討論，因為tsit ê功能可能ē予lí ê服侍器送ê電子phue數量增長siunn大。
     export_domain_allows:
       new:
         title: 輸入允准ê域名
@@ -827,6 +851,7 @@ nan-TW:
         manage_custom_emojis: 管理自訂ê Emoji
         manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
         manage_email_subscriptions: 管理訂電子phue
+        manage_email_subscriptions_description: 允准有tsit ê權限ê用者，啟用in口座ê電子報功能
         manage_federation: 管理聯邦
         manage_federation_description: 允准用者封鎖á是允准kap其他域名相連，mā控制寄送ê能力
         manage_invites: 管理邀請

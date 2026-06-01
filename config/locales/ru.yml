@@ -19,7 +19,7 @@ ru:
       many: подписок
       one: подписка
       other: подписок
-    instance_actor_flash: Эта учетная запись - виртуальный пользователь, используемый для представления самого сервера, а не отдельного пользователя. Она используется для организационных целей и не может быть заморожена.
+    instance_actor_flash: Эта учётная запись — виртуальный актор. Она представляет сам сервер, а не какого-либо пользователя на нём. Эту учётную запись не следует блокировать, так как она используется для федерации.
     last_active: последняя активность
     link_verified_on: Владение этой ссылкой было проверено %{date}
     nothing_here: Здесь ничего нет!
@@ -87,8 +87,8 @@ ru:
       followers: Подписчики
       follows: Подписки
       header: Обложка профиля
-      inbox_url: URL входящих
-      invite_request_text: Причины для присоединения
+      inbox_url: Inbox URL
+      invite_request_text: Текст заявки на регистрацию
       invited_by: Приглашение выдал(а)
       ip: IP-адрес
       joined: Дата регистрации
@@ -129,8 +129,8 @@ ru:
       protocol: Протокол
       public: Профиль
       push_subscription_expires: Подписка PuSH истекает
-      redownload: Обновить аватар
-      redownloaded_msg: Профиль %{username} успешно обновлен из оригинала
+      redownload: Синхронизировать профиль
+      redownloaded_msg: Профиль %{username} синхронизирован с оригиналом
       reject: Отклонить
       rejected_msg: Заявка на регистрацию %{username} отклонена
       remote_suspension_irreversible: Данные этого аккаунта были необратимо удалены.
@@ -140,7 +140,7 @@ ru:
       removed_avatar_msg: Фото профиля %{username} удалено
       removed_header_msg: Обложка профиля %{username} удалена
       resend_confirmation:
-        already_confirmed: Этот пользователь уже подтвержден
+        already_confirmed: Этот пользователь уже подтверждён
         send: Повторно отправить ссылку подтверждения
         success: Ссылка для подтверждения успешно отправлена!
       reset: Сбросить
@@ -156,10 +156,10 @@ ru:
         password_and_2fa: Пароль и 2FA
       sensitive: Скрыть медиа
       sensitized: отмечено как деликатный контент
-      shared_inbox_url: URL общих входящих
+      shared_inbox_url: Shared inbox URL
       show:
-        created_reports: Жалобы, отправленные с этой учётной записи
-        targeted_reports: Жалобы на эту учётную запись
+        created_reports: Жалоб на других пользователей
+        targeted_reports: Жалоб от других пользователей
       silence: Ограничить
       silenced: Ограничена
       statuses: Посты
@@ -167,12 +167,12 @@ ru:
       subscribe: Подписаться
       suspend: Заблокировать
       suspended: Заблокирована
-      suspension_irreversible: Данные этой учётной записи были необратимо удалены. Вы можете разблокировать учетную запись, чтобы сделать её доступной, но это не восстановит ранее имевшиеся в ней данные.
-      suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это ниже.
+      suspension_irreversible: Данные этой учётной записи были необратимо удалены. Вы можете разблокировать учетную запись, чтобы сделать её доступной, но утраченные данные не будут восстановлены.
+      suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это, нажав кнопку ниже.
       title: Учётные записи
       unblock_email: Разблокировать e-mail адрес
       unblocked_email_msg: E-mail адрес %{username} разблокирован
-      unconfirmed_email: Неподтверждённый e-mail
+      unconfirmed_email: Неподтверждённый адрес электронной почты
       undo_sensitized: Не скрывать медиа
       undo_silenced: Не ограничивать
       undo_suspension: Разблокировать
@@ -186,66 +186,66 @@ ru:
       whitelisted: В белом списке
     action_logs:
       action_types:
-        approve_appeal: Удовлетворение апелляции
-        approve_user: Одобрение регистрации
-        assigned_to_self_report: Присвоение жалоб
-        change_email_user: Смена адреса эл. почты пользователя
-        change_role_user: Изменение роли пользователя
-        confirm_user: Подтверждение пользователя
-        create_account_warning: Вынесение предупреждения
-        create_announcement: Создание объявления
-        create_canonical_email_block: Добавление блокировки по адресу эл. почты
+        approve_appeal: Удовлетворение апелляций
+        approve_user: Одобрение регистраций
+        assigned_to_self_report: Назначение на жалобы
+        change_email_user: Смена адреса эл. почты пользователей
+        change_role_user: Изменение роли пользователей
+        confirm_user: Подтверждение пользователей
+        create_account_warning: Вынесение предупреждений
+        create_announcement: Создание объявлений
+        create_canonical_email_block: Добавление блокировок по адресу эл. почты
         create_custom_emoji: Добавление эмодзи
-        create_domain_allow: Разрешение доменов
-        create_domain_block: Блокировка доменов
-        create_email_domain_block: Добавление блокировки по домену эл. почты
+        create_domain_allow: Внесение доменов в белый список
+        create_domain_block: Внесение доменов в чёрный список
+        create_email_domain_block: Добавление блокировок по домену эл. почты
         create_ip_block: Создание правил для IP-адресов
-        create_relay: Создание ретранслятора
-        create_unavailable_domain: Добавление домена в список недоступных
-        create_user_role: Создание роли
-        create_username_block: Создать правило имени пользователя
+        create_relay: Добавление ретрансляторов
+        create_unavailable_domain: Приостановка доставки на сервер
+        create_user_role: Создание ролей
+        create_username_block: Создание правил для имени пользователя
         demote_user: Разжалование пользователей
-        destroy_announcement: Удаление объявления
-        destroy_canonical_email_block: Удаление блокировки по адресу эл. почты
+        destroy_announcement: Удаление объявлений
+        destroy_canonical_email_block: Удаление блокировок по адресу эл. почты
         destroy_custom_emoji: Удаление эмодзи
-        destroy_domain_allow: Отзыв разрешений для доменов
-        destroy_domain_block: Разблокировка доменов
-        destroy_email_domain_block: Удаление блокировки по домену эл. почты
-        destroy_instance: Очистить домен
+        destroy_domain_allow: Исключение доменов из белого списка
+        destroy_domain_block: Исключение доменов из чёрного списка
+        destroy_email_domain_block: Удаление блокировок по домену эл. почты
+        destroy_instance: Удаление данных сервера
         destroy_ip_block: Удаление правил для IP-адресов
-        destroy_relay: Удаление ретранслятора
+        destroy_relay: Удаление ретрансляторов
         destroy_status: Удаление постов
-        destroy_unavailable_domain: Исключение доменов из списка недоступных
+        destroy_unavailable_domain: Возобновление доставки на сервер
         destroy_user_role: Удаление ролей
-        destroy_username_block: Удалить правило имени пользователя
+        destroy_username_block: Удаления правил для имени пользователя
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
-        disable_relay: Отключение ретранслятора
+        disable_relay: Отключение ретрансляторов
         disable_sign_in_token_auth_user: Отключение аутентификации с помощью одноразового пароля по эл. почте
-        disable_user: Заморозка пользователей
+        disable_user: Отключение учётных записей пользователей
         enable_custom_emoji: Включение эмодзи
-        enable_relay: Включение ретранслятора
+        enable_relay: Включение ретрансляторов
         enable_sign_in_token_auth_user: Включение аутентификации с помощью одноразового пароля по эл. почте
-        enable_user: Разморозка пользователей
-        memorialize_account: Присвоение пользователям статуса «мемориала»
+        enable_user: Включение учётных записей пользователей
+        memorialize_account: Превращение учётных записей в мемориальные
         promote_user: Повышение пользователей
-        publish_terms_of_service: Публикация пользовательского соглашения
-        reject_appeal: Отклонение обжалований
+        publish_terms_of_service: Публикация пользовательских соглашений
+        reject_appeal: Отклонение апелляций
         reject_user: Отклонение регистраций
-        remove_avatar_user: Удаление аватаров
-        reopen_report: Возобновление жалоб
+        remove_avatar_user: Удаление фото профиля
+        reopen_report: Отметка жалоб нерешёнными
         resend_user: Повторная отправка писем с подтверждением
-        reset_password_user: Сброс пароля пользователей
-        resolve_report: Отметка жалоб «решёнными»
+        reset_password_user: Сброс паролей пользователей
+        resolve_report: Отметка жалоб решёнными
         sensitive_account: Присвоение пользователям отметки «деликатного содержания»
-        silence_account: Скрытие пользователей
+        silence_account: Ограничение учётных записей пользователей
         suspend_account: Блокировка пользователей
-        unassigned_report: Снятие жалоб
+        unassigned_report: Отмена назначений на жалобы
         unblock_email_account: Разблокировка e-mail адресов
         unsensitive_account: Снятие с пользователей отметки «деликатного содержания»
-        unsilence_account: Отмена скрытия пользователей
+        unsilence_account: Отмена ограничения учётных записей пользователей
         unsuspend_account: Разблокировка пользователей
-        update_announcement: Обновление объявлений
+        update_announcement: Редактирование объявлений
         update_custom_emoji: Обновление эмодзи
         update_domain_block: Изменение блокировки домена
         update_ip_block: Обновление правил для IP-адресов
@@ -256,65 +256,65 @@ ru:
       actions:
         approve_appeal_html: "%{name} удовлетворил(а) апелляцию %{target}"
         approve_user_html: "%{name} одобрил(а) заявку на регистрацию %{target}"
-        assigned_to_self_report_html: "%{name} назначил(а) себя для решения жалобы %{target}"
+        assigned_to_self_report_html: "%{name} назначил(а) себя на жалобу %{target}"
         change_email_user_html: "%{name} cменил(а) e-mail адрес пользователя %{target}"
         change_role_user_html: "%{name} изменил(а) роль %{target}"
-        confirm_user_html: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
+        confirm_user_html: "%{name} подтвердил(а) адрес электронной почты пользователя %{target}"
         create_account_warning_html: "%{name} выдал(а) предупреждение %{target}"
         create_announcement_html: "%{name} создал(а) новое объявление %{target}"
-        create_canonical_email_block_html: "%{name} заблокировал(а) e-mail с хешем %{target}"
+        create_canonical_email_block_html: "%{name} заблокировал(а) адрес электронной почты с хешем %{target}"
         create_custom_emoji_html: "%{name} загрузил(а) новый эмодзи %{target}"
         create_domain_allow_html: "%{name} разрешил(а) федерацию с доменом %{target}"
         create_domain_block_html: "%{name} заблокировал(а) домен %{target}"
-        create_email_domain_block_html: "%{name} заблокировал(а) e-mail домен %{target}"
+        create_email_domain_block_html: "%{name} заблокировал(а) домен электронной почты %{target}"
         create_ip_block_html: "%{name} создал(а) правило для IP %{target}"
-        create_relay_html: "%{name} создал(а) ретранслятор %{target}"
-        create_unavailable_domain_html: "%{name} приостановил доставку на узел %{target}"
+        create_relay_html: "%{name} добавил(а) ретранслятор %{target}"
+        create_unavailable_domain_html: "%{name} приостановил(а) доставку на сервер %{target}"
         create_user_role_html: "%{name} создал(а) роль %{target}"
         create_username_block_html: "%{name} создал(а) правило для имён пользователей, содержащих %{target}"
         demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
         destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
-        destroy_canonical_email_block_html: "%{name} снял(а) блокировку e-mail с хэшем %{target}"
+        destroy_canonical_email_block_html: "%{name} разблокировал(а) адрес электронной почты с хешем %{target}"
         destroy_collection_html: "%{name} удалил(а) подборку пользователя %{target}"
         destroy_custom_emoji_html: "%{name} удалил(а) эмодзи %{target}"
         destroy_domain_allow_html: "%{name} запретил(а) федерацию с доменом %{target}"
-        destroy_domain_block_html: "%{name} снял(а) блокировку с домена %{target}"
-        destroy_email_domain_block_html: "%{name} снял(а) блокировку с e-mail домена %{target}"
-        destroy_instance_html: "%{name} очистил(а) данные для домена %{target}"
+        destroy_domain_block_html: "%{name} разблокировал(а) домен %{target}"
+        destroy_email_domain_block_html: "%{name} разблокировал(а) домен электронной почты %{target}"
+        destroy_instance_html: "%{name} удалил(а) данные сервера %{target}"
         destroy_ip_block_html: "%{name} удалил(а) правило для IP %{target}"
         destroy_relay_html: "%{name} удалил(а) ретранслятор %{target}"
         destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
-        destroy_unavailable_domain_html: "%{name} возобновил доставку на узел %{target}"
+        destroy_unavailable_domain_html: "%{name} возобновил(а) доставку на сервер %{target}"
         destroy_user_role_html: "%{name} удалил(а) роль %{target}"
         destroy_username_block_html: "%{name} удалил(а) правило для имён пользователей, содержащих %{target}"
-        disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
+        disable_2fa_user_html: "%{name} отключил(а) требование второго фактора аутентификации для пользователя %{target}"
         disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
         disable_relay_html: "%{name} отключил(а) ретранслятор %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию с помощью одноразового пароля по эл. почте для %{target}"
-        disable_user_html: "%{name} заморозил(а) пользователя %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию с помощью одноразового пароля по электронной почте для %{target}"
+        disable_user_html: "%{name} отключил(а) учётную запись пользователя %{target}"
         enable_custom_emoji_html: "%{name} включил(а) эмодзи %{target}"
         enable_relay_html: "%{name} включил(а) ретранслятор %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию с помощью одноразового пароля по эл. почте для %{target}"
-        enable_user_html: "%{name} разморозил(а) пользователя %{target}"
-        memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
+        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию с помощью одноразового пароля по электронной почте для %{target}"
+        enable_user_html: "%{name} включил(а) учётную запись пользователя %{target}"
+        memorialize_account_html: "%{name} превратил(а) учётную запись пользователя %{target} в мемориальную"
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
         publish_terms_of_service_html: "%{name} опубликовал(а) обновление пользовательского соглашения"
-        reject_appeal_html: "%{name} отклонил(а) обжалование действий модерации от %{target}"
-        reject_user_html: "%{name} отклонил(а) регистрацию %{target}"
-        remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
-        reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
+        reject_appeal_html: "%{name} отклонил(а) апелляцию %{target}"
+        reject_user_html: "%{name} отклонил(а) заявку на регистрацию %{target}"
+        remove_avatar_user_html: "%{name} удалил(а) фото профиля %{target}"
+        reopen_report_html: "%{name} отметил(а) жалобу %{target} как нерешённую"
         resend_user_html: "%{name} повторно отправил(а) письмо с подтверждением для %{target}"
         reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
-        resolve_report_html: "%{name} решил(а) жалобу %{target}"
+        resolve_report_html: "%{name} отметил(а) жалобу %{target} как решённую"
         sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатного характера»"
-        silence_account_html: "%{name} наложил(а) ограничения на видимость постов пользователя %{target}"
+        silence_account_html: "%{name} ограничил(а) учётную запись %{target}"
         suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
-        unassigned_report_html: "%{name} снял(а) назначение жалобы %{target}"
+        unassigned_report_html: "%{name} отменил(а) назначение на жалобу %{target}"
         unblock_email_account_html: "%{name} разблокировал(а) e-mail адрес %{target}"
         unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатного характера»"
-        unsilence_account_html: "%{name} снял(а) ограничения видимости постов пользователя %{target}"
-        unsuspend_account_html: "%{name} снял(а) блокировку с пользователя %{target}"
-        update_announcement_html: "%{name} обновил(а) объявление %{target}"
+        unsilence_account_html: "%{name} отменил(а) ограничение учётной записи %{target}"
+        unsuspend_account_html: "%{name} разблокировал(а) учётную запись %{target}"
+        update_announcement_html: "%{name} отредактировал(а) объявление %{target}"
         update_custom_emoji_html: "%{name} обновил(а) эмодзи %{target}"
         update_domain_block_html: "%{name} обновил(а) блокировку домена для %{target}"
         update_ip_block_html: "%{name} изменил(а) правило для IP %{target}"
