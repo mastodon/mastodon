@@ -26,7 +26,7 @@ on:
 jobs:
   # Build each (amd64 and arm64) image separately
   build-image:
-    runs-on: ${{ startsWith(matrix.platform, 'linux/arm') && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
+    runs-on: ${{ startsWith(matrix.platform, 'linux/arm') && 'ubuntu-26.04-arm' || 'ubuntu-26.04' }}
     strategy:
       fail-fast: false
       matrix:
@@ -111,7 +111,7 @@ jobs:
   # Then merge the docker images into a single one
   merge-images:
     if: ${{ inputs.push_to_images != '' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs:
       - build-image
 

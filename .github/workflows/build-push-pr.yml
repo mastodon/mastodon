@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   compute-suffix:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     # This is only allowed to run if:
     # - the PR branch is in the `mastodon/mastodon` repository
     # - the PR is not a draft
