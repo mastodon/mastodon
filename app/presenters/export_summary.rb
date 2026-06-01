@@ -14,6 +14,11 @@ class ExportSummary
     prefix: true
   )
 
+  delegate(
+    :account_notes,
+    to: :account
+  )
+
   def initialize(account)
     @account = account
     @counts = populate_counts
@@ -47,6 +52,10 @@ class ExportSummary
     counts[:muting].value
   end
 
+  def total_account_notes
+    counts[:account_notes].value
+  end
+
   def total_statuses
     account.statuses_count
   end
@@ -64,6 +73,7 @@ class ExportSummary
       domain_blocks: account_domain_blocks.async_count,
       owned_lists: account_owned_lists.async_count,
       muting: account_muting.async_count,
+      account_notes: account_notes.async_count,
       storage: account_media_attachments.async_sum(:file_file_size),
     }
   end
