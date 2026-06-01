@@ -47,9 +47,15 @@ module ThemeHelper
   end
 
   def current_theme
-    return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
+    available_themes = Themes.instance.names
 
-    current_user.setting_theme
+    user_theme = current_user&.setting_theme
+    return user_theme if user_theme && available_themes.include?(user_theme)
+
+    site_theme = Setting.theme
+    return site_theme if available_themes.include?(site_theme)
+
+    'default' # Fallback
   end
 
   def color_scheme

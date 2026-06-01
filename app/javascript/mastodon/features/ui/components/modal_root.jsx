@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import Base from 'mastodon/components/modal_root';
 import { AltTextModal } from 'mastodon/features/alt_text_modal';
@@ -39,7 +39,6 @@ import {
   ConfirmClearNotificationsModal,
   ConfirmLogOutModal,
   ConfirmFollowToListModal,
-  ConfirmFollowToCollectionModal,
   ConfirmMissingAltTextModal,
   ConfirmRevokeQuoteModal,
   QuietPostQuoteInfoModal,
@@ -69,7 +68,6 @@ export const MODAL_COMPONENTS = {
   'CONFIRM_CLEAR_NOTIFICATIONS': () => Promise.resolve({ default: ConfirmClearNotificationsModal }),
   'CONFIRM_LOG_OUT': () => Promise.resolve({ default: ConfirmLogOutModal }),
   'CONFIRM_FOLLOW_TO_LIST': () => Promise.resolve({ default: ConfirmFollowToListModal }),
-  'CONFIRM_FOLLOW_TO_COLLECTION': () => Promise.resolve({ default: ConfirmFollowToCollectionModal }),
   'CONFIRM_MISSING_ALT_TEXT': () => Promise.resolve({ default: ConfirmMissingAltTextModal }),
   'CONFIRM_PRIVATE_QUOTE_NOTIFY': () => Promise.resolve({ default: PrivateQuoteNotify }),
   'CONFIRM_REVOKE_QUOTE': () => Promise.resolve({ default: ConfirmRevokeQuoteModal }),
@@ -79,6 +77,9 @@ export const MODAL_COMPONENTS = {
   'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'REPORT_COLLECTION': ReportCollectionModal,
+  'COLLECTION_ADDER': () => import('@/mastodon/features/collection_adder').then(module => ({ default: module.CollectionAdder })),
+  'SHARE_COLLECTION': () => import('@/mastodon/features/collections/components/share_modal').then(module => ({ default: module.CollectionShareModal })),
+  'REVOKE_COLLECTION_INCLUSION': () => import('@/mastodon/features/collections/detail/revoke_collection_inclusion_modal').then(module => ({ default: module.RevokeCollectionInclusionModal })),
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
   'FOCAL_POINT': () => Promise.resolve({ default: AltTextModal }),
@@ -93,9 +94,24 @@ export const MODAL_COMPONENTS = {
   'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
   'ACCOUNT_NOTE': () => import('@/mastodon/features/account_timeline/modals/note_modal').then(module => ({ default: module.AccountNoteModal })),
   'ACCOUNT_FIELD_OVERFLOW': () => import('@/mastodon/features/account_timeline/modals/field_modal').then(module => ({ default: module.AccountFieldModal })),
-  'ACCOUNT_EDIT_NAME': () => import('@/mastodon/features/account_edit/components/name_modal').then(module => ({ default: module.NameModal })),
-  'ACCOUNT_EDIT_BIO': () => import('@/mastodon/features/account_edit/components/bio_modal').then(module => ({ default: module.BioModal })),
+  'ACCOUNT_JOIN_DATE': () => import('@/mastodon/features/account_timeline/modals/join_modal').then(module => ({ default: module.AccountJoinModal })),
+  'ACCOUNT_EDIT_NAME': accountEditModal('NameModal'),
+  'ACCOUNT_EDIT_BIO': accountEditModal('BioModal'),
+  'ACCOUNT_EDIT_PROFILE_DISPLAY': accountEditModal('ProfileDisplayModal'),
+  'ACCOUNT_EDIT_VERIFY_LINKS': accountEditModal('VerifiedModal'),
+  'ACCOUNT_EDIT_FIELD_EDIT': accountEditModal('EditFieldModal'),
+  'ACCOUNT_EDIT_FIELD_DELETE': accountEditModal('DeleteFieldModal'),
+  'ACCOUNT_EDIT_FIELDS_REORDER': accountEditModal('ReorderFieldsModal'),
+  'ACCOUNT_EDIT_IMAGE_ALT': accountEditModal('ImageAltModal'),
+  'ACCOUNT_EDIT_IMAGE_DELETE': accountEditModal('ImageDeleteModal'),
+  'ACCOUNT_EDIT_IMAGE_UPLOAD': accountEditModal('ImageUploadModal'),
+  'ACCOUNT_HIDE_FEATURED_TAB': () => import('@/mastodon/features/ui/components/confirmation_modals/hide_featured_tab').then(module => ({ default: module.ConfirmHideFeaturedTabModal })),
 };
+
+/** @arg {keyof import('@/mastodon/features/account_edit/modals')} type */
+function accountEditModal(type) {
+  return () => import('@/mastodon/features/account_edit/modals').then(module => ({ default: module[type] }));
+}
 
 export default class ModalRoot extends PureComponent {
 

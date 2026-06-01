@@ -2,25 +2,28 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
-import Toggle from 'react-toggle';
+import { Helmet } from '@unhead/react/helmet';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { fetchList } from 'mastodon/actions/lists';
 import { createList, updateList } from 'mastodon/actions/lists_typed';
-import { apiGetAccounts } from 'mastodon/api/lists';
+import { apiGetListAccounts } from 'mastodon/api/lists';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type { RepliesPolicyType } from 'mastodon/api_types/lists';
 import { Avatar } from 'mastodon/components/avatar';
 import { AvatarGroup } from 'mastodon/components/avatar_group';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
-import { SelectField, TextInputField } from 'mastodon/components/form_fields';
+import {
+  SelectField,
+  TextInputField,
+  Toggle,
+} from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import type { List } from 'mastodon/models/list';
@@ -41,7 +44,7 @@ const MembersLink: React.FC<{
   const [avatarAccounts, setAvatarAccounts] = useState<ApiAccountJSON[]>([]);
 
   useEffect(() => {
-    void apiGetAccounts(id)
+    void apiGetListAccounts(id)
       .then((data) => {
         setAvatarCount(data.length);
         setAvatarAccounts(data.slice(0, 3));

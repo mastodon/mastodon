@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 
+import { defineMessages, useIntl } from 'react-intl';
+
 import classes from '../styles.module.scss';
 
 import { DeleteIconButton, EditButton } from './edit_button';
@@ -50,6 +52,17 @@ type AccountEditItemButtonsProps<Item extends AnyItem = AnyItem> = Pick<
   'onEdit' | 'onDelete' | 'disabled'
 > & { item: Item };
 
+const messages = defineMessages({
+  edit: {
+    id: 'account_edit.item_list.edit',
+    defaultMessage: 'Edit {name}',
+  },
+  delete: {
+    id: 'account_edit.item_list.delete',
+    defaultMessage: 'Delete {name}',
+  },
+});
+
 const AccountEditItemButtons = <Item extends AnyItem>({
   item,
   onDelete,
@@ -63,6 +76,8 @@ const AccountEditItemButtons = <Item extends AnyItem>({
     onDelete?.(item);
   }, [item, onDelete]);
 
+  const intl = useIntl();
+
   if (!onEdit && !onDelete) {
     return null;
   }
@@ -71,15 +86,15 @@ const AccountEditItemButtons = <Item extends AnyItem>({
     <div className={classes.itemListButtons}>
       {onEdit && (
         <EditButton
-          edit
-          item={item.name}
+          icon
+          label={intl.formatMessage(messages.edit, { name: item.name })}
           disabled={disabled}
           onClick={handleEdit}
         />
       )}
       {onDelete && (
         <DeleteIconButton
-          item={item.name}
+          label={intl.formatMessage(messages.delete, { name: item.name })}
           disabled={disabled}
           onClick={handleDelete}
         />

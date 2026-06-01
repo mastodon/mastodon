@@ -29,9 +29,11 @@ export const Default: Story = {
   },
 };
 
-export const WithoutMessage: Story = {
+export const Error: Story = {
   args: {
-    message: undefined,
+    image: 'error',
+    title: 'Error',
+    message: 'Something went wrong loading the page.',
   },
 };
 
@@ -40,5 +42,19 @@ export const WithAction: Story = {
     ...Default.args,
     // eslint-disable-next-line react/jsx-no-bind
     children: <Button onClick={() => action('Refresh')}>Refresh</Button>,
+  },
+};
+
+export const WithoutImage: Story = {
+  args: {
+    ...Default.args,
+    image: null,
+  },
+};
+
+export const WithoutMessage: Story = {
+  args: {
+    ...Default.args,
+    message: undefined,
   },
 };

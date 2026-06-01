@@ -5,23 +5,35 @@ import { useContext, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
+import { A11yLiveRegion } from 'mastodon/components/a11y_live_region';
+import { CalloutInline } from 'mastodon/components/callout_inline';
+
 import { FieldsetNameContext } from './fieldset';
 import classes from './form_field_wrapper.module.scss';
 
-interface InputProps {
+export interface InputProps {
   id: string;
   required?: boolean;
   'aria-describedby'?: string;
 }
 
-interface FieldWrapperProps {
+export interface FieldStatus {
+  variant: 'error' | 'warning' | 'info' | 'success';
+  message?: string;
+}
+
+export interface FieldWrapperProps {
   label: ReactNode;
   hint?: ReactNode;
   required?: boolean;
-  hasError?: boolean;
+  status?: FieldStatus['variant'] | FieldStatus | null;
   inputId?: string;
+  describedById?: string;
   inputPlacement?: 'inline-start' | 'inline-end';
   children: (inputProps: InputProps) => ReactNode;
+  className?: string;
 }
 
 /**
@@ -29,8 +41,8 @@ interface FieldWrapperProps {
  */
 export type CommonFieldWrapperProps = Pick<
   FieldWrapperProps,
-  'label' | 'hint' | 'hasError'
->;
+  'label' | 'hint' | 'status'
+> & { wrapperClassName?: string };
 
 /**
  * A simple form field wrapper for adding a label and hint to enclosed components.
@@ -42,25 +54,33 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   inputId: inputIdProp,
   label,
   hint,
+  describedById,
   required,
-  hasError,
+  status,
   inputPlacement,
   children,
+  className,
 }) => {
   const uniqueId = useId();
   const inputId = inputIdProp || `${uniqueId}-input`;
+  const statusId = `${inputIdProp || uniqueId}-status`;
   const hintId = `${inputIdProp || uniqueId}-hint`;
   const hasHint = !!hint;
+  const fieldStatus = getFieldStatus(status);
+  const hasStatusMessage = !!fieldStatus?.message;
 
   const hasParentFieldset = !!useContext(FieldsetNameContext);
+
+  const descriptionIds =
+    [hasHint ? hintId : '', hasStatusMessage ? statusId : '', describedById]
+      .filter((id) => !!id)
+      .join(' ') || undefined;
 
   const inputProps: InputProps = {
     required,
     id: inputId,
+    'aria-describedby': descriptionIds,
   };
-  if (hasHint) {
-    inputProps['aria-describedby'] = hintId;
-  }
 
   const input = (
     <div className={classes.inputWrapper}>{children(inputProps)}</div>
@@ -68,8 +88,8 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
 
   return (
     <div
-      className={classes.wrapper}
-      data-has-error={hasError}
+      className={classNames(classes.wrapper, className)}
+      data-has-error={fieldStatus?.variant === 'error'}
       data-input-placement={inputPlacement}
     >
       {inputPlacement === 'inline-start' && input}
@@ -92,6 +112,11 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
       </div>
 
       {inputPlacement !== 'inline-start' && input}
+
+      {/* Live region must be rendered even when empty */}
+      <A11yLiveRegion className={classes.status} id={statusId}>
+        {hasStatusMessage && <CalloutInline {...fieldStatus} />}
+      </A11yLiveRegion>
     </div>
   );
 };
@@ -113,3 +138,19 @@ const RequiredMark: FC<{ required?: boolean }> = ({ required }) =>
       <FormattedMessage id='form_field.optional' defaultMessage='(optional)' />
     </>
   );
+
+export function getFieldStatus(status: FieldWrapperProps['status']) {
+  if (!status) {
+    return null;
+  }
+
+  if (typeof status === 'string') {
+    const fieldStatus: FieldStatus = {
+      variant: status,
+      message: '',
+    };
+    return fieldStatus;
+  }
+
+  return status;
+}

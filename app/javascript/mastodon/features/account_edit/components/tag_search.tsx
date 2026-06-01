@@ -1,60 +1,83 @@
 import type { ChangeEventHandler, FC } from 'react';
-import { useCallback } from 'react';
+import { useCallback, useId, useState } from 'react';
 
-import { useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
-import type { ApiFeaturedTagJSON } from '@/mastodon/api_types/tags';
 import { Combobox } from '@/mastodon/components/form_fields';
-import {
-  addFeaturedTag,
-  clearSearch,
-  updateSearchQuery,
-} from '@/mastodon/reducers/slices/profile_edit';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { ComboboxMenuItem } from '@/mastodon/components/form_fields/combobox_field';
+import { useSearchTags } from '@/mastodon/hooks/useSearchTags';
+import type { TagSearchResult } from '@/mastodon/hooks/useSearchTags';
+import { addFeaturedTags } from '@/mastodon/reducers/slices/profile_edit';
+import { useAppDispatch } from '@/mastodon/store';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 
 import classes from '../styles.module.scss';
 
+const messages = defineMessages({
+  placeholder: {
+    id: 'account_edit_tags.search_placeholder',
+    defaultMessage: 'Enter a hashtag…',
+  },
+});
+
 export const AccountEditTagSearch: FC = () => {
-  const { query, isLoading, results } = useAppSelector(
-    (state) => state.profileEdit.search,
+  const intl = useIntl();
+
+  const [query, setQuery] = useState('');
+  const {
+    tags: suggestedTags,
+    searchTags,
+    resetSearch,
+    isLoading,
+  } = useSearchTags({
+    query,
+    // Remove existing featured tags from suggestions
+    filterResults: (tag) => !tag.featuring,
+  });
+
+  const handleSearchChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (e) => {
+      setQuery(e.target.value);
+      searchTags(e.target.value);
+    },
+    [searchTags],
   );
 
   const dispatch = useAppDispatch();
-  const handleSearchChange: ChangeEventHandler<HTMLInputElement> = useCallback(
-    (e) => {
-      void dispatch(updateSearchQuery(e.target.value));
-    },
-    [dispatch],
-  );
-
-  const intl = useIntl();
-
   const handleSelect = useCallback(
-    (item: ApiFeaturedTagJSON) => {
-      void dispatch(clearSearch());
-      void dispatch(addFeaturedTag({ name: item.name }));
+    (item: TagSearchResult) => {
+      resetSearch();
+      setQuery('');
+      void dispatch(addFeaturedTags({ names: [item.name] }));
     },
-    [dispatch],
+    [dispatch, resetSearch],
   );
+
+  const inputId = useId();
+  const inputLabel = intl.formatMessage(messages.placeholder);
 
   return (
-    <Combobox
-      value={query}
-      onChange={handleSearchChange}
-      placeholder={intl.formatMessage({
-        id: 'account_edit_tags.search_placeholder',
-        defaultMessage: 'Enter a hashtag…',
-      })}
-      items={results ?? []}
-      isLoading={isLoading}
-      renderItem={renderItem}
-      onSelectItem={handleSelect}
-      className={classes.autoComplete}
-      icon={SearchIcon}
-      type='search'
-    />
+    <>
+      <label htmlFor={inputId} className='sr-only'>
+        {inputLabel}
+      </label>
+      <Combobox
+        id={inputId}
+        value={query}
+        onChange={handleSearchChange}
+        placeholder={inputLabel}
+        items={suggestedTags}
+        isLoading={isLoading}
+        renderItem={renderItem}
+        onSelectItem={handleSelect}
+        className={classes.autoComplete}
+        icon={SearchIcon}
+        type='search'
+      />
+    </>
   );
 };
 
-const renderItem = (item: ApiFeaturedTagJSON) => <p>#{item.name}</p>;
+const renderItem = (item: TagSearchResult) => (
+  <ComboboxMenuItem>{item.label ?? `#${item.name}`}</ComboboxMenuItem>
+);

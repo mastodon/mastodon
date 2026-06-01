@@ -47,7 +47,7 @@ RSpec.describe 'Admin Reports' do
       it_behaves_like 'successful return'
     end
 
-    context 'with a reported collection', feature: :collections do
+    context 'with a reported collection' do
       before do
         report.collections << Fabricate(:collection, account: report.target_account)
       end
@@ -55,7 +55,7 @@ RSpec.describe 'Admin Reports' do
       it_behaves_like 'successful return'
     end
 
-    context 'with both status and collection', feature: :collections do
+    context 'with both status and collection' do
       before do
         status = Fabricate(:status, account: report.target_account)
         report.update(status_ids: [status.id])

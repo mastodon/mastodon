@@ -70,7 +70,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
     if (expired) {
       return intl.formatMessage(messages.closed);
     }
-    return <RelativeTimestamp timestamp={poll.expires_at} futureDate />;
+    return <RelativeTimestamp hasFuture timestamp={poll.expires_at} />;
   }, [expired, intl, poll]);
   const votesCount = useMemo(() => {
     if (!poll) {
@@ -110,6 +110,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
+            intent: 'vote',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },

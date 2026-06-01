@@ -40,7 +40,17 @@ export const Optional: Story = {
 export const WithError: Story = {
   args: {
     required: false,
-    hasError: true,
+    status: 'error',
+  },
+};
+
+export const WithWarning: Story = {
+  args: {
+    required: false,
+    status: {
+      variant: 'warning',
+      message: 'Special characters are not allowed',
+    },
   },
 };
 

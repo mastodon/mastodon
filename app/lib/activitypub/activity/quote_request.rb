@@ -31,7 +31,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     status.quote.update!(activity_uri: @json['id'])
     status.quote.accept!
 
-    json = Oj.dump(serialize_payload(status.quote, ActivityPub::AcceptQuoteRequestSerializer))
+    json = serialize_payload(status.quote, ActivityPub::AcceptQuoteRequestSerializer).to_json
     ActivityPub::DeliveryWorker.perform_async(json, quoted_status.account_id, @account.inbox_url)
 
     # Ensure the user is notified
@@ -60,7 +60,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
       account: @account,
       activity_uri: @json['id']
     )
-    json = Oj.dump(serialize_payload(quote, ActivityPub::RejectQuoteRequestSerializer))
+    json = serialize_payload(quote, ActivityPub::RejectQuoteRequestSerializer).to_json
     ActivityPub::DeliveryWorker.perform_async(json, quoted_status.account_id, @account.inbox_url)
   end
 

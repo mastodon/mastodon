@@ -83,6 +83,10 @@ pt-PT:
         access_denied: O proprietário do recurso ou servidor de autorização negou o pedido.
         credential_flow_not_configured: Falha no fluxo de credenciais da palavra-passe do proprietário do recurso porque Doorkeeper.configure.resource_owner_from_credentials não está configurado.
         invalid_client: A autenticação do cliente falhou devido a cliente desconhecido, sem autenticação de cliente incluída ou método de autenticação não suportado.
+        invalid_code_challenge_method:
+          one: O code_challenge_method deve ser %{challenge_methods}.
+          other: O code_challenge_method deve ser um de %{challenge_methods}.
+          zero: O servidor de autorização não suporta PKCE pois não há valores aceites para code_challenge_method.
         invalid_grant: A concessão de autorização fornecida é inválida, expirou, foi revogada, não corresponde à URI de redirecionamento usada no pedido de autorização ou foi emitida para outro cliente.
         invalid_redirect_uri: A URI de redirecionamento incluída não é válida.
         invalid_request:
@@ -132,7 +136,7 @@ pt-PT:
         follow: A seguir, a ocultar e a bloquear
         follows: Seguidores
         lists: Listas
-        media: Anexos multimédia
+        media: Anexos de media
         mutes: Ocultados
         notifications: Notificações
         profile: O teu perfil Mastodon
@@ -190,7 +194,7 @@ pt-PT:
       write:filters: criar filtros
       write:follows: seguir pessoas
       write:lists: criar listas
-      write:media: enviar ficheiros multimédia
+      write:media: carregar ficheiros media
       write:mutes: ocultar pessoas e conversas
       write:notifications: limpar as tuas notificações
       write:reports: denunciar outras pessoas

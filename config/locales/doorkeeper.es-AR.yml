@@ -25,7 +25,7 @@ es-AR:
         edit: Editar
         submit: Enviar
       confirmations:
-        destroy: "¿Estás seguro?"
+        destroy: "¿Continuar?"
       edit:
         title: Editar aplicación
       form:
@@ -69,7 +69,7 @@ es-AR:
       buttons:
         revoke: Revocar
       confirmations:
-        revoke: "¿Estás seguro?"
+        revoke: "¿Continuar?"
       index:
         authorized_at: Autorizado el %{date}
         description_html: Estas son aplicaciones que pueden acceder a tu cuenta usando la API. Si hay aplicaciones que no reconocés acá, o que funcionan de forma sospechosa, podés revocar su acceso.
@@ -84,9 +84,9 @@ es-AR:
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso fallaron debido a que "Doorkeeper.configure.resource_owner_from_credentials" está sin configurar.
         invalid_client: La autenticación del cliente falló debido a que es un cliente desconocido, o no está incluída la autenticación del cliente, o el método de autenticación no está soportado.
         invalid_code_challenge_method:
-          one: El code_challenge_method debe ser %{challenge_methods}.
-          other: El code_challenge_method debe ser uno de %{challenge_methods}.
-          zero: El servidor de autorización no soporta PKCE, ya que no hay valores aceptados de code_challenge_method.
+          one: "«code_challenge_method» debe ser %{challenge_methods}."
+          other: "«code_challenge_method» debe ser uno de %{challenge_methods}."
+          zero: El servidor de autorización no es compatible con PKCE, ya que no hay valores aceptados de «code_challenge_method».
         invalid_grant: La concesión de autorización ofrecida no es válida, venció, se revocó, no coincide con la dirección web de redireccionamiento usada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La dirección web de redireccionamiento incluida no es válida.
         invalid_request:
@@ -118,9 +118,9 @@ es-AR:
           notice: Aplicación revocada.
     grouped_scopes:
       access:
-        read: Acceso de sólo lectura
+        read: Acceso de solo lectura
         read/write: Acceso de lectura y escritura
-        write: Acceso de sólo escritura
+        write: Acceso de solo escritura
       title:
         accounts: Cuentas
         admin/accounts: Administración de cuentas

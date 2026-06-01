@@ -132,38 +132,6 @@ RSpec.describe '/api/v1/statuses' do
       end
     end
 
-    describe 'GET /api/v1/statuses/:id/context' do
-      let(:scopes) { 'read:statuses' }
-      let(:status) { Fabricate(:status, account: user.account) }
-
-      before do
-        Fabricate(:status, account: user.account, thread: status)
-      end
-
-      it 'returns http success' do
-        get "/api/v1/statuses/#{status.id}/context", headers: headers
-
-        expect(response).to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('application/json')
-        expect(response.headers['Mastodon-Async-Refresh']).to be_nil
-      end
-
-      context 'with a remote status' do
-        let(:status) { Fabricate(:status, account: Fabricate(:account, domain: 'example.com'), created_at: 1.hour.ago, updated_at: 1.hour.ago) }
-
-        it 'returns http success and queues discovery of new posts' do
-          expect { get "/api/v1/statuses/#{status.id}/context", headers: headers }
-            .to enqueue_sidekiq_job(ActivityPub::FetchAllRepliesWorker)
-
-          expect(response).to have_http_status(200)
-          expect(response.content_type)
-            .to start_with('application/json')
-          expect(response.headers['Mastodon-Async-Refresh']).to match(/result_count=0/)
-        end
-      end
-    end
-
     describe 'POST /api/v1/statuses' do
       subject do
         post '/api/v1/statuses', headers: headers, params: params
@@ -317,6 +285,56 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'with a quote in an unlisted message' do
+        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
+        let(:params) do
+          {
+            status: 'Hello, this is a quote',
+            quoted_status_id: quoted_status.id,
+            visibility: 'unlisted',
+          }
+        end
+
+        it 'returns a quote post, as well as rate limit headers', :aggregate_failures do
+          expect { subject }.to change(user.account.statuses, :count).by(1)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote]).to be_present
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+
+        context 'when the quoter is blocked by the quotee' do
+          before do
+            quoted_status.account.block!(user.account)
+          end
+
+          it 'returns an error and does not create a post', :aggregate_failures do
+            expect { subject }.to_not change(user.account.statuses, :count)
+
+            expect(response).to have_http_status(404)
+            expect(response.content_type)
+              .to start_with('application/json')
+          end
+        end
+
+        context 'when the quotee is blocked by the quoter' do
+          before do
+            user.account.block!(quoted_status.account)
+          end
+
+          it 'returns an error and does not create a post', :aggregate_failures do
+            expect { subject }.to_not change(user.account.statuses, :count)
+
+            expect(response).to have_http_status(404)
+            expect(response.content_type)
+              .to start_with('application/json')
+          end
+        end
+      end
+
       context 'with a quote of a reblog' do
         let(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
         let(:reblog) { Fabricate(:status, reblog: quoted_status) }
@@ -459,6 +477,7 @@ RSpec.describe '/api/v1/statuses' do
 
       let(:scopes) { 'write:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
+      let!(:media) { Fabricate(:media_attachment, status: status) }
 
       it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
@@ -468,6 +487,15 @@ RSpec.describe '/api/v1/statuses' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.parsed_body).to include(
+          id: status.id.to_s,
+          media_attachments: contain_exactly(
+            a_hash_including(
+              id: media.id.to_s,
+              url: %r{/system/media_attachments/files/}
+            )
+          )
+        )
         expect(Status.find_by(id: status.id)).to be_nil
         expect(RemovalWorker).to have_enqueued_sidekiq_job(status.id, { 'redraft' => true })
       end
@@ -546,20 +574,6 @@ RSpec.describe '/api/v1/statuses' do
             .to start_with('application/json')
         end
       end
-
-      describe 'GET /api/v1/statuses/:id/context' do
-        before do
-          Fabricate(:status, thread: status)
-        end
-
-        it 'returns http unauthorized' do
-          get "/api/v1/statuses/#{status.id}/context"
-
-          expect(response).to have_http_status(404)
-          expect(response.content_type)
-            .to start_with('application/json')
-        end
-      end
     end
 
     context 'with a public status' do
@@ -568,20 +582,6 @@ RSpec.describe '/api/v1/statuses' do
       describe 'GET /api/v1/statuses/:id' do
         it 'returns http success' do
           get "/api/v1/statuses/#{status.id}"
-
-          expect(response).to have_http_status(200)
-          expect(response.content_type)
-            .to start_with('application/json')
-        end
-      end
-
-      describe 'GET /api/v1/statuses/:id/context' do
-        before do
-          Fabricate(:status, thread: status)
-        end
-
-        it 'returns http success' do
-          get "/api/v1/statuses/#{status.id}/context"
 
           expect(response).to have_http_status(200)
           expect(response.content_type)

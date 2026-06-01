@@ -98,8 +98,6 @@ Devise.setup do |config|
     manager.default_strategies(scope: :user).unshift :two_factor_ldap_authenticatable if Devise.ldap_authentication
     manager.default_strategies(scope: :user).unshift :two_factor_pam_authenticatable  if Devise.pam_authentication
     manager.default_strategies(scope: :user).unshift :session_activation_rememberable
-    manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
-    manager.default_strategies(scope: :user).unshift :two_factor_backupable
   end
 
   # The secret key used by Devise. Devise uses this key to generate

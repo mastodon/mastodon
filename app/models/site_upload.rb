@@ -5,15 +5,15 @@
 # Table name: site_uploads
 #
 #  id                :bigint(8)        not null, primary key
-#  var               :string           default(""), not null
-#  file_file_name    :string
+#  blurhash          :string
 #  file_content_type :string
+#  file_file_name    :string
 #  file_file_size    :integer
 #  file_updated_at   :datetime
 #  meta              :json
+#  var               :string           default(""), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  blurhash          :string
 #
 
 class SiteUpload < ApplicationRecord

@@ -283,6 +283,7 @@ cy:
         demote_user_html: Mae %{name} wedi israddio defnyddiwr %{target}
         destroy_announcement_html: Mae %{name} wedi dileu cyhoeddiad %{target}
         destroy_canonical_email_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
+        destroy_collection_html: Mae %{name} wedi tynnu casgliad gan %{target}
         destroy_custom_emoji_html: Mae %{name} wedi dileu emoji %{target}
         destroy_domain_allow_html: Mae %{name} wedi gwrthod ffederasiwn gyda pharth %{target}
         destroy_domain_block_html: Mae %{name} wedi dad rwystro parth %{target}
@@ -322,6 +323,7 @@ cy:
         unsilence_account_html: Mae %{name} wedi dadwneud terfyn cyfrif %{target}
         unsuspend_account_html: Mae %{name} wedi dad atal cyfrif %{target}
         update_announcement_html: Mae %{name} wedi diweddaru cyhoeddiad %{target}
+        update_collection_html: Mae casgliad %{name} wedi'i ddiweddaru gan %{target}
         update_custom_emoji_html: Mae %{name} wedi diweddaru emoji %{target}
         update_domain_block_html: Mae %{name} wedi diweddaru bloc parth %{target}
         update_ip_block_html: Mae %{name} wedi newid rheol IP %{target}
@@ -359,8 +361,15 @@ cy:
       updated_msg: Cyhoeddiad wedi'i ddiweddaru'n llwyddiannus!
     collections:
       accounts: Cyfrifon
+      back_to_account: Nôl i dudalen y cyfrif
+      back_to_report: Nôl i dudalen yr adroddiad
+      batch:
+        add_to_report: 'Ychwanegu at adroddiad #%{id}'
+        remove_from_report: Dileu o'r adroddiad
+        report: Adroddiadau
       collection_title: Casgliad gan %{name}
       contents: Cynnwys
+      no_collection_selected: Heb newid unrhyw gasgliad am nad oedd un wedi'i ddewis
       number_of_accounts:
         few: "%{count} cyfrif"
         many: "%{count} cyfrif"
@@ -369,6 +378,7 @@ cy:
         two: "%{count} cyfrif"
         zero: "%{count} cyfrif"
       open: Agor
+      title: Casgliadau cyfrifon - @%{name}
       view_publicly: Gweld yn gyhoeddus
     critical_update_pending: Diweddariad hanfodol ar ei ffordd
     custom_emojis:
@@ -522,9 +532,76 @@ cy:
         title: Rhwystro parth e-bost newydd
       no_email_domain_block_selected: Ni newidiwyd unrhyw rwystro parth e-bost gan na ddewiswyd yr un ohonyn nhw
       not_permitted: Dim caniatâd
+      reset: Ailosod
       resolved_dns_records_hint_html: Mae'r enw parth yn cyd-fynd â'r parthau MX canlynol, sy'n gyfrifol yn y pen draw am dderbyn e-bost. Bydd rhwystro parth MX yn rhwystro cofrestriadau o unrhyw gyfeiriad e-bost sy'n defnyddio'r un parth MX, hyd yn oed os yw'r enw parth gweladwy yn wahanol. <strong>Byddwch yn ofalus i beidio â rhwystro'r prif ddarparwyr e-bost.</strong>
       resolved_through_html: Wedi'i ddatrys trwy %{domain}
+      search: Chwilio
       title: Parthau e-bost wedi'u rhwystro
+    email_subscriptions:
+      accounts:
+        account: Cyfrif
+        active: Gweithredol
+        empty:
+          hint: Does gan unrhyw gyfrifon ddim tanysgrifwyr eto.
+          no_lists_yet: Dim rhestrau eto
+        inactive: Anweithredol
+        last_email: E-bost diwethaf
+        lead: Bydd cyfrifon sydd wedi galluogi'r nodwedd ac sydd â thanysgrifwyr yn ymddangos isod.
+        status: Statws
+        subscribers: Tanysgrifwyr
+        title: Rhestrau postio
+      additional_footer_texts:
+        show:
+          title: Testun troedyn ychwanegol
+      compliance_settings:
+        additional_footer_text:
+          action: Rheoli
+          hint: Testun dewisol sy'n ymddangos yn nhroedyn e-byst cylchlythyr yn unig
+          title: Testun troedyn ychwanegol
+        lead: Mae modd ystyried cylchlythyrau e-bost yn negeseuon e-bost marchnata, yn dibynnu ar yr awdurdodaethau lle rydych chi'n gweithredu.
+        privacy_policy:
+          action: Rheoli
+          hint: Mae dolen i'r polisi hwn yn nhroedyn pob e-bost
+          title: Polisi preifatrwydd
+        title: Gosodiadau cydymffurfio
+      danger_zone:
+        disable_feature:
+          action: Analluogi
+          hint: Diffoddwch y nodwedd ar gyfer pob cyfrif
+          title: Analluogi nodwedd
+        erase_all_data:
+          action: Dileu data
+          hint: Yn dileu pob e-bost ym mhob rhestr bostio yn barhaol
+          title: Dileu'r holl ddata
+        title: Parth perygl
+      disabled_msg: Mae tanysgrifiadau e-bost wedi cael eu hanalluogi'n llwyddiannus.
+      index:
+        disabled:
+          cannot_be_enabled: Dyw eich darparwr technegol ddim wedi galluogi'r nodwedd hon ar gyfer eich gweinydd.
+          description: Mae'r nodwedd hon yn caniatáu i gyfrifon penodol ychwanegu teclyn at eu proffiliau, gan alluogi ymwelwyr heb gyfrif Mastodon i dderbyn eu postiadau drwy e-bost.
+          get_started: Cychwyn arni
+        lead: Caniatáu i ymwelwyr dderbyn postiadau drwy e-bost o gyfrifon pwrpasol ar y gweinydd hwn.
+        title: Cylchlythyrau e-bost
+      purged_msg: Mae holl ddata tanysgrifiadau e-bost yn cael ei ddileu.
+      roles:
+        accounts: Cyfrifon
+        edit_role: Golygu rôl
+        empty:
+          hint: Does gan neb ganiatâd i ddefnyddio'r nodwedd hon.
+          no_roles_added: Dim rolau wedi'u hychwanegu
+        lead: Gall cyfrifon gyda'r rolau canlynol alluogi'r nodwedd hon ar eu proffiliau.
+        manage_roles: Rheoli rolau
+        role_name: Enw'r rôl
+        title: Rolau
+      setups:
+        show:
+          enable_feature: Galluogi nodwedd
+          important_information: Gwybodaeth bwysig
+          list:
+            1_permission_explanation: Pan fydd y nodwedd hon wedi'i galluogi, gall cyfrifon sydd â'r caniatâd dynodedig ychwanegu ffurflen casglu e-byst at eu proffiliau.
+            2_feature_explanation: Pan fydd ymwelwyr yn cofrestru ar dudalen proffil cyfrif ac yn cadarnhau eu tanysgrifiad, byddan yn dechrau derbyn diweddariadau e-bost pan fydd y cyfrif yn creu postiadau cyhoeddus newydd.
+            3_privacy_policy_warning: Bydd gan weinyddwyr gweinydd fynediad at y cyfeiriadau e-bost (PII) sy'n cael eu casglu. O'r herwydd, rhaid diweddaru'r polisi preifatrwydd a'r Telerau Gwasanaeth ar gyfer y gweinydd cyn defnyddio'r nodwedd hon.
+            4_cost_warning: Gall e-byst olygu ffi yn dibynnu ar y drefn cynnal. Trafodwch â'ch darparwr cynnal cyn ei alluogi, gan y gallai'r nodwedd hon gynyddu nifer yr e-byst a anfonir o'ch gweinydd yn sylweddol.
     export_domain_allows:
       new:
         title: Mewnforio parth yn caniatáu
@@ -745,6 +822,7 @@ cy:
       cancel: Canslo
       category: Categori
       category_description_html: Bydd y rheswm dros adrodd am y cyfrif a/neu’r cynnwys hwn yn cael ei ddyfynnu wrth gyfathrebu â’r cyfrif a adroddwyd
+      collections: "(%{count}) casgliad"
       comment:
         none: Dim
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
@@ -780,6 +858,7 @@ cy:
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
       skip_to_actions: Mynd i gamau gweithredu
       status: Statws
+      statuses: "(%{count}) postiad"
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
       summary:
         action_preambles:
@@ -818,6 +897,7 @@ cy:
       categories:
         administration: Gweinyddiaeth
         devops: DevOps
+        email: E-bost
         invites: Gwahoddiadau
         moderation: Cymedroli
         special: Arbennig
@@ -838,6 +918,8 @@ cy:
         administrator_description: Bydd defnyddwyr sydd â'r caniatâd hwn yn osgoi pob caniatâd
         delete_user_data: Dileu Data Defnyddiwr
         delete_user_data_description: Yn caniatáu i ddefnyddwyr ddileu data defnyddwyr eraill yn ddi-oed
+        invite_bypass_approval: Gwahodd Defnyddwyr heb adolygiad
+        invite_bypass_approval_description: Yn caniatáu i bob sydd wedi'u gwahodd i'r gweinydd gan y defnyddwyr hyn i hepgor cymeradwyaeth cymedroli
         invite_users: Gwahodd Defnyddwyr
         invite_users_description: Yn caniatáu i ddefnyddwyr wahodd pobl newydd i'r gweinydd
         manage_announcements: Rheoli Cyhoeddiadau
@@ -848,6 +930,8 @@ cy:
         manage_blocks_description: Yn caniatáu i ddefnyddwyr rwystro darparwyr e-bost a chyfeiriadau IP
         manage_custom_emojis: Rheoli Emojis Cyfaddas
         manage_custom_emojis_description: Yn caniatáu i ddefnyddwyr reoli emojis cyfaddas ar y gweinydd
+        manage_email_subscriptions: Rheoli Tanysgrifiadau E-bost
+        manage_email_subscriptions_description: Caniatáu i ddefnyddwyr sydd â'r caniatâd hwn alluogi'r nodwedd cylchlythyr e-bost ar gyfer eu cyfrif
         manage_federation: Rheoli Ffederasiwn
         manage_federation_description: Yn caniatáu i ddefnyddwyr rwystro neu ganiatáu ffedereiddio â pharthau eraill, a rheoli'r gallu i gyflawni
         manage_invites: Rheoli Gwahoddiadau
@@ -935,11 +1019,6 @@ cy:
           authenticated: Defnyddwyr dilys yn unig
           disabled: Gofyn am rôl defnyddiwr penodol
           public: Pawb
-      landing_page:
-        values:
-          about: Ynghylch
-          local_feed: Ffrwd leol
-          trends: Trendiau
       registrations:
         moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
         preamble: Rheoli pwy all greu cyfrif ar eich gweinydd.
@@ -1309,7 +1388,6 @@ cy:
   application_mailer:
     notification_preferences: Newid dewisiadau e-bost
     salutation: "%{name},"
-    settings: 'Newid dewisiadau e-bost: %{link}'
     unsubscribe: Dad-danysgrifio
     view: 'Gweld:'
     view_profile: Gweld proffil
@@ -1359,6 +1437,7 @@ cy:
     progress:
       confirm: Cadarnhau'r e-bost
       details: Eich manylion
+      list: Y drefn cofrestru
       review: Ein hadolygiad
       rules: Derbyn rheolau
     providers:
@@ -1374,6 +1453,7 @@ cy:
       invited_by: 'Gallwch ymuno â %{domain} diolch i''r gwahoddiad a gawsoch gan:'
       preamble: Mae'r rhain yn cael eu gosod a'u gorfodi gan y %{domain} cymedrolwyr.
       preamble_invited: Cyn i chi barhau, ystyriwch y rheolau sylfaenol a osodwyd gan gymedrolwyr %{domain}.
+      read_more: Darllen rhagor
       title: Rhai rheolau sylfaenol.
       title_invited: Rydych wedi derbyn gwahoddiad.
     security: Diogelwch
@@ -1492,9 +1572,46 @@ cy:
       your_appeal_pending: Rydych wedi cyflwyno apêl
       your_appeal_rejected: Mae eich apêl wedi'i gwrthod
   edit_profile:
-    basic_information: Gwybodaeth Sylfaenol
-    hint_html: "<strong>Addaswch yr hyn y mae pobl yn ei weld ar eich proffil cyhoeddus ac wrth ymyl eich postiadau.</strong> Mae pobl eraill yn fwy tebygol o'ch dilyn yn ôl a rhyngweithio â chi pan fydd gennych broffil wedi'i lenwi a llun proffil."
     other: Arall
+    redesign_body: Mae modd golygu proffiliau’n uniongyrchol o’r dudalen proffil nawr.
+    redesign_button: Ewch yno
+    redesign_title: Mae profiad golygu proffil newydd
+  email_subscription_mailer:
+    confirmation:
+      action: Cadarnhau cyfeiriad e-bost
+      instructions_to_confirm: Cadarnhewch eich bod am dderbyn e-byst gan %{name} (@%{acct}) pan fyddan nhw'n cyhoeddi postiadau newydd.
+      instructions_to_ignore: Os nad ydych chi'n siŵr pam y gwnaethoch chi dderbyn yr e-bost hwn, gallwch ei ddileu. Fyddwch chi heb danysgrifio os nad ydych wedi clicio ar y ddolen uchod.
+      subject: Cadarnhewch eich cyfeiriad e-bost
+      title: Derbyn diweddariadau e-bost gan %{name}?
+    notification:
+      create_account: Creu cyfrif Mastodon
+      footer:
+        privacy_html: Mae negeseuon e-bost yn cael eu hanfon o %{domain}, gweinydd sy'n cael ei bweru gan Mastodon. I ddeall sut mae'r gweinydd hwn yn prosesu eich data personol, cyfeiriwch at y <a href="%{privacy_policy_path}">Polisi Preifatrwydd</a> .
+        reason_for_email_html: Rydych chi'n derbyn yr e-bost hwn oherwydd eich bod wedi dewis derbyn diweddariadau e-bost gan %{name}. Ddim eisiau derbyn yr e-byst hyn? <a href="%{unsubscribe_path}">Dad-danysgrifiwch</a>
+      interact_with_this_post:
+        few: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+        many: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+        one: Rhyngweithio â'r postiad hwn a darganfod fwy yn debyg iddo.
+        other: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+        two: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+        zero: Rhyngweithio â'r postiadau hyn a darganfod rhagor.
+      subject:
+        plural: Postiadau newydd gan %{name}
+        singular: 'Postiad newydd: "%{excerpt}"'
+      title:
+        plural: Postiadau newydd gan %{name}
+        singular: 'Postiad newydd: "%{excerpt}"'
+  email_subscriptions:
+    active: Gweithredol
+    confirmations:
+      show:
+        changed_your_mind: Wedi newid eich meddwl?
+        success_html: Byddwch nawr yn dechrau derbyn negeseuon e-bost pan fydd %{name} yn cyhoeddi postiadau newydd. Ychwanegwch %{sender} at eich cysylltiadau fel nad yw'r postiadau hyn yn mynd i'ch ffolder Sbam.
+        title: Rydych chi wedi cofrestru
+        unsubscribe: Dad-danysgrifio
+    inactive: Anweithredol
+    status: Statws
+    subscribers: Tanysgrifwyr
   emoji_styles:
     auto: Awto
     native: Cynhenid
@@ -1533,10 +1650,8 @@ cy:
     mutes: Rydych chi'n anwybyddu
     storage: Storfa cyfryngau
   featured_tags:
-    add_new: Ychwanegu
     errors:
       limit: Rydych chi eisoes wedi cynnwys y nifer mwyaf o hashnodau
-    hint_html: "<strong>Beth yw hashnodau dan sylw?</strong> Maen nhw'n cael eu dangos yn amlwg ar eich proffil cyhoeddus ac yn caniatáu i bobl bori'ch postiadau cyhoeddus yn benodol o dan yr hashnodau hynny. Maen nhw'n arf gwych ar gyfer cadw golwg ar weithiau creadigol neu brojectau tymor hir."
   filters:
     contexts:
       account: Proffilau
@@ -1809,21 +1924,6 @@ cy:
     failed_sign_in_html: Ymgais mewngofnodi wedi methu gyda %{method} gan %{ip} (%{browser})
     successful_sign_in_html: Mewngofnodi llwyddiannus gyda %{method} o %{ip} (%{browser})
     title: Hanes dilysu
-  mail_subscriptions:
-    unsubscribe:
-      action: Iawn, dad-danysgrifio
-      complete: Dad-danysgrifiwyd
-      confirmation_html: Ydych chi'n siŵr eich bod am ddad-danysgrifio rhag derbyn %{type} Mastodon ar %{domain} i'ch e-bost yn %{email}? Gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a> rhywbryd eto.
-      emails:
-        notification_emails:
-          favourite: e-bost hysbysu hoffi
-          follow: e-byst hysbysu dilyn
-          follow_request: e-byst ceisiadau dilyn
-          mention: e-byst hysbysu crybwylliadau
-          reblog: e-byst hysbysiadau hybu
-      resubscribe_html: Os ydych wedi dad-danysgrifio trwy gamgymeriad, gallwch ail-danysgrifio drwy'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a>.
-      success_html: Ni fyddwch bellach yn derbyn %{type} ar gyfer Mastodon ar %{domain} i'ch e-bost am %{email}.
-      title: Dad-danysgrifio
   media_attachments:
     validations:
       images_and_video: Methu atodi fideo i bostiad sydd eisoes yn cynnwys delweddau
@@ -1869,6 +1969,31 @@ cy:
     copy_account_note_text: 'Symudodd y defnyddiwr hwn o %{acct}, dyma oedd eich nodiadau blaenorol amdanynt:'
   navigation:
     toggle_menu: Toglo'r ddewislen
+  notification_fallbacks:
+    added_to_collection:
+      title_html: Ychwanegodd %{name} chi at gasgliad
+    admin_report:
+      title_html: Mae %{name} wedi adrodd ar %{target}
+    admin_sign_up:
+      title_and_others_html:
+        few: Mae %{name} a %{count} eraill wedi cofrestru
+        many: Mae %{name} a %{count} eraill wedi cofrestru
+        one: Mae %{name} ac un arall wedi cofrestru
+        other: Mae %{name} a %{count} eraill wedi cofrestru
+        two: Mae %{name} a %{count} eraill wedi cofrestru
+        zero: Mae %{name} a %{count} eraill wedi cofrestru
+      title_html: Mae %{name} wedi cofrestru
+    collection_update:
+      title_html: Mae %{name} wedi diweddaru casgliad rydych chi ynddo
+    generic:
+      sign_in: Mewngofnodwch i ap gwe Mastodon
+      summary_html: Rydych chi ar ap nad yw'n cefnogi'r fersiwn ddiweddaraf o Mastodon. %{link} am ymarferoldeb llawn.
+    moderation_warning:
+      summary_html: Rydych chi ar ap nad yw'n cefnogi'r fersiwn ddiweddaraf o Mastodon. %{link}.
+      title: Rydych chi wedi derbyn rhybudd cymedroli.
+    severed_relationships:
+      summary_html: Mae gweinyddwr o %{from} wedi atal %{target}, sy'n golygu nad ydych yn gallu derbyn diweddariadau ganddyn nhw na rhyngweithio â nhw bellach. Ewch i %{link} i adfer rhestr o'r perthnasoedd coll.
+      title: Colli cysylltiadau gyda %{name}
   notification_mailer:
     admin:
       report:
@@ -1961,6 +2086,8 @@ cy:
     posting_defaults: Rhagosodiadau postio
     public_timelines: Ffrydiau cyhoeddus
   privacy:
+    email_subscriptions: Anfon postiadau drwy e-bost
+    email_subscriptions_hint_html: Ychwanegwch ffurflen gofrestru e-bost at eich proffil sy'n ymddangos i ddefnyddwyr sydd wedi allgofnodi. Pan fydd ymwelwyr yn nodi eu cyfeiriad e-bost ac yn cofrestru, bydd Mastodon yn anfon diweddariadau e-bost ar gyfer eich postiadau cyhoeddus.
     hint_html: "<strong>Cyfaddaswch sut rydych chi am i'ch proffil a'ch postiadau gael eu canfod.</strong> Gall amrywiaeth o nodweddion yn Mastodon eich helpu i gyrraedd cynulleidfa ehangach pan fyddwch wedi'ch eu galluogi. Cymerwch eiliad i adolygu'r gosodiadau hyn i sicrhau eu bod yn cyd-fynd â'ch pwrpas defnydd."
     privacy: Preifatrwydd
     privacy_hint_html: Rheolwch faint rydych chi am ei ddatgelu er budd eraill. Mae pobl yn darganfod proffiliau diddorol ac apiau difyr trwy bori trwy ddilynwyr pobl eraill a gweld o ba apiau maen nhw'n postio, ond efallai y byddai'n well gennych ei gadw'n gudd.
@@ -2028,7 +2155,7 @@ cy:
       firefox: Firefox
       generic: Porwr anhysbys
       huawei_browser: Porwr Huawei
-      ie: Nid yw'r rhaglen hon yn gydnaws ag Internet Explorer
+      ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
       opera: Opera
@@ -2240,6 +2367,28 @@ cy:
     resume_app_authorization: Ailddechrau awdurdodi rhaglen
     role_requirement: Mae %{domain} yn gofyn i chi osod Dilysu Dau Ffactor cyn y gallwch ddefnyddio Mastodon.
     webauthn: Allweddi diogelwch
+  unsubscriptions:
+    create:
+      action: Ewch i gartref y gweinydd
+      email_subscription:
+        confirmation_html: Fyddwch chi ddim yn derbyn negeseuon e-bost gan %{name} bellach.
+      title: Rydych chi wedi dad-danysgrifio
+      user:
+        confirmation_html: Fyddwch chi ddim yn derbyn %{type} gan Mastodon ar %{domain} bellach.
+    notification_emails:
+      favourite: e-bost hysbysu hoffi
+      follow: e-byst hysbysu dilyn
+      follow_request: e-byst ceisiadau dilyn
+      mention: e-byst hysbysu crybwyll
+      reblog: e-byst hysbysiadau hybu
+    show:
+      action: Dad-danysgrifio
+      email_subscription:
+        confirmation_html: Byddwch chi ddim yn derbyn e-byst pan fydd y cyfrif hwn yn cyhoeddi postiadau newydd.
+        title: Dad-danysgrifio o %{name}?
+      user:
+        confirmation_html: Byddwch chi ddim yn derbyn %{type} gan Mastodon ar %{domain}.
+        title: Dad-danysgrifio o %{type}?
   user_mailer:
     announcement_published:
       description: 'Mae gweinyddwyr %{domain} yn gwneud cyhoeddiad:'

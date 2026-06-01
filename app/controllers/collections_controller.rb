@@ -8,7 +8,6 @@ class CollectionsController < ApplicationController
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
-  before_action :check_feature_enabled
   before_action :require_account_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_collection
 
@@ -17,7 +16,10 @@ class CollectionsController < ApplicationController
 
   def show
     respond_to do |format|
-      # TODO: format.html
+      format.html do
+        expires_in expiration_duration, public: true unless user_signed_in?
+        render template: 'home/index'
+      end
 
       format.json do
         expires_in expiration_duration, public: true if public_fetch_mode?
@@ -28,8 +30,17 @@ class CollectionsController < ApplicationController
 
   private
 
+  def set_account
+    if account_id_param.present?
+      @account = Account.local.find(account_id_param)
+    else
+      @collection = Collection.find(params[:id])
+      @account = @collection.account
+    end
+  end
+
   def set_collection
-    @collection = @account.collections.find(params[:id])
+    @collection ||= @account.collections.find(params[:id])
     authorize @collection, :show?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
@@ -38,9 +49,5 @@ class CollectionsController < ApplicationController
   def expiration_duration
     recently_updated = @collection.updated_at > 15.minutes.ago
     recently_updated ? 30.seconds : 5.minutes
-  end
-
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.collections_enabled?
   end
 end

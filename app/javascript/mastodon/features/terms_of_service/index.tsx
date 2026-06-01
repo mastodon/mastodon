@@ -7,13 +7,14 @@ import {
   defineMessages,
 } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link, useParams } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import { apiGetTermsOfService } from 'mastodon/api/instance';
 import type { ApiTermsOfServiceJSON } from 'mastodon/api_types/instance';
 import { Column } from 'mastodon/components/column';
-import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from 'mastodon/features/ui/components/bundle_column_error';
 
 const messages = defineMessages({
   title: { id: 'terms_of_service.title', defaultMessage: 'Terms of Service' },

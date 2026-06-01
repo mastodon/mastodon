@@ -14,12 +14,16 @@ RSpec.describe AdminMailer do
     end
 
     it 'renders the email' do
-      expect(mail)
-        .to be_present
-        .and(deliver_to(recipient.user_email))
-        .and(deliver_from('notifications@localhost'))
-        .and(have_subject(I18n.t('admin_mailer.new_report.subject', instance: Rails.configuration.x.local_domain, id: report.id)))
-        .and(have_body_text("Mike,\r\n\r\nJohn has reported Mike\r\n\r\nView: #{admin_report_url(report)}\r\n"))
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_report.subject', instance: Rails.configuration.x.local_domain, id: report.id)
+        )
+      expect(mail.body)
+        .to match('Mike,')
+        .and match('John has reported Mike')
+        .and match("View: #{admin_report_url(report)}")
     end
   end
 
@@ -33,12 +37,14 @@ RSpec.describe AdminMailer do
     end
 
     it 'renders the email' do
-      expect(mail)
-        .to be_present
-        .and(deliver_to(recipient.user_email))
-        .and(deliver_from('notifications@localhost'))
-        .and(have_subject(I18n.t('admin_mailer.new_appeal.subject', instance: Rails.configuration.x.local_domain, username: appeal.account.username)))
-        .and(have_body_text("#{appeal.account.username} is appealing a moderation decision by #{appeal.strike.account.username}"))
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_appeal.subject', instance: Rails.configuration.x.local_domain, username: appeal.account.username)
+        )
+      expect(mail.body)
+        .to match("#{appeal.account.username} is appealing a moderation decision by #{appeal.strike.account.username}")
     end
   end
 
@@ -52,39 +58,83 @@ RSpec.describe AdminMailer do
     end
 
     it 'renders the email' do
-      expect(mail)
-        .to be_present
-        .and(deliver_to(recipient.user_email))
-        .and(deliver_from('notifications@localhost'))
-        .and(have_subject(I18n.t('admin_mailer.new_pending_account.subject', instance: Rails.configuration.x.local_domain, username: user.account.username)))
-        .and(have_body_text('The details of the new account are below. You can approve or reject this application.'))
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_pending_account.subject', instance: Rails.configuration.x.local_domain, username: user.account.username)
+        )
+      expect(mail.body)
+        .to match('The details of the new account are below. You can approve or reject this application.')
     end
   end
 
   describe '.new_trends' do
     let(:recipient) { Fabricate(:account, username: 'Snurf') }
-    let(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
-    let(:status) { Fabricate(:status) }
-    let(:tag) { Fabricate(:tag) }
-    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag], [status]) }
+    let!(:link) { Fabricate(:preview_card, trendable: true, language: 'en') }
+    let!(:status) { Fabricate(:status) }
+    let!(:tag) { Fabricate(:tag, display_name: 'Test Tag') }
+    let!(:other_tag) { Fabricate(:tag, display_name: 'Other Test Tag') }
+    let(:mail) { described_class.with(recipient: recipient).new_trends([link], [tag, other_tag], [status]) }
+    let(:other_tag_trend) { Fabricate(:tag_trend, tag: other_tag) }
 
     before do
-      PreviewCardTrend.create!(preview_card: link)
-      StatusTrend.create!(status: status, account: Fabricate(:account))
-      TagTrend.create!(tag: tag)
       recipient.user.update(locale: :en)
+      Fabricate(:status_trend, status: status, account: Fabricate(:account))
+      Fabricate(:tag_trend, tag: tag)
+      Fabricate(:preview_card_trend, preview_card: link)
     end
 
     it 'renders the email' do
-      expect(mail)
-        .to be_present
-        .and(deliver_to(recipient.user_email))
-        .and(deliver_from('notifications@localhost'))
-        .and(have_subject(I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)))
-        .and(have_body_text('The following items need a review before they can be displayed publicly'))
-        .and(have_body_text(ActivityPub::TagManager.instance.url_for(status)))
-        .and(have_body_text(link.title))
-        .and(have_body_text(tag.display_name))
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)
+        )
+      expect(mail.body)
+        .to match('The following items need a review before they can be displayed publicly')
+        .and match(ActivityPub::TagManager.instance.url_for(status))
+        .and match(link.title)
+        .and match(tag.display_name)
+    end
+
+    context 'when between queueing and sending trends gets deleted' do
+      before do
+        recipient.user.update(locale: :en)
+      end
+
+      it 'sends the email when all but one trends were deleted without the respective tag or status or link' do
+        other_tag_trend
+        expect(mail.deliver_later!)
+          .to be_successfully_enqueued
+
+        TagTrend.delete_all
+        StatusTrend.delete_all
+        expect { mail.deliver }
+          .to send_email(
+            to: recipient.user_email,
+            from: 'notifications@localhost',
+            subject: I18n.t('admin_mailer.new_trends.subject', instance: Rails.configuration.x.local_domain)
+          )
+        expect(mail.body)
+          .to have_text(/The following items need a review before they can be displayed publicly/)
+          .and match(link.title)
+          .and not_include(ActivityPub::TagManager.instance.url_for(status))
+          .and not_include(tag.display_name)
+      end
+
+      it 'returns nil when no trends are present' do
+        expect(mail.deliver_later!)
+          .to be_successfully_enqueued
+
+        TagTrend.delete_all
+        StatusTrend.delete_all
+        PreviewCardTrend.delete_all
+
+        expect { mail.deliver }
+          .to_not send_email
+      end
     end
   end
 
@@ -97,12 +147,14 @@ RSpec.describe AdminMailer do
     end
 
     it 'renders the email' do
-      expect(mail)
-        .to be_present
-        .and(deliver_to(recipient.user_email))
-        .and(deliver_from('notifications@localhost'))
-        .and(have_subject(I18n.t('admin_mailer.new_software_updates.subject', instance: Rails.configuration.x.local_domain)))
-        .and(have_body_text('New Mastodon versions have been released, you may want to update!'))
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_software_updates.subject', instance: Rails.configuration.x.local_domain)
+        )
+      expect(mail.body)
+        .to match('New Mastodon versions have been released, you may want to update!')
     end
   end
 
@@ -115,15 +167,18 @@ RSpec.describe AdminMailer do
     end
 
     it 'renders the email' do
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.new_critical_software_updates.subject', instance: Rails.configuration.x.local_domain)
+        )
+      expect(mail.body)
+        .to match('New critical versions of Mastodon have been released, you may want to update as soon as possible!')
       expect(mail)
-        .to be_present
-        .and(deliver_to(recipient.user_email))
-        .and(deliver_from('notifications@localhost'))
-        .and(have_subject(I18n.t('admin_mailer.new_critical_software_updates.subject', instance: Rails.configuration.x.local_domain)))
-        .and(have_body_text('New critical versions of Mastodon have been released, you may want to update as soon as possible!'))
-        .and(have_header('Importance', 'high'))
-        .and(have_header('Priority', 'urgent'))
-        .and(have_header('X-Priority', '1'))
+        .to have_header('Importance', 'high')
+        .and have_header('Priority', 'urgent')
+        .and have_header('X-Priority', '1')
     end
   end
 
@@ -136,12 +191,14 @@ RSpec.describe AdminMailer do
     end
 
     it 'renders the email' do
-      expect(mail)
-        .to be_present
-        .and(deliver_to(recipient.user_email))
-        .and(deliver_from('notifications@localhost'))
-        .and(have_subject(I18n.t('admin_mailer.auto_close_registrations.subject', instance: Rails.configuration.x.local_domain)))
-        .and(have_body_text('have been automatically switched'))
+      expect { mail.deliver }
+        .to send_email(
+          to: recipient.user_email,
+          from: 'notifications@localhost',
+          subject: I18n.t('admin_mailer.auto_close_registrations.subject', instance: Rails.configuration.x.local_domain)
+        )
+      expect(mail.body)
+        .to match('have been automatically switched')
     end
   end
 end

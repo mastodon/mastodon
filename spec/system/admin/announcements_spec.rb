@@ -13,7 +13,7 @@ RSpec.describe 'Admin::Announcements' do
 
       within css_id(announcement) do
         expect(page)
-          .to have_content(announcement.text)
+          .to have_text(announcement.text)
       end
     end
   end
@@ -29,7 +29,7 @@ RSpec.describe 'Admin::Announcements' do
       expect { submit_form }
         .to change(Announcement, :count).by(1)
       expect(page)
-        .to have_content(I18n.t('admin.announcements.published_msg'))
+        .to have_text(I18n.t('admin.announcements.published_msg'))
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe 'Admin::Announcements' do
       click_on submit_button
 
       expect(page)
-        .to have_content(I18n.t('admin.announcements.updated_msg'))
+        .to have_text(I18n.t('admin.announcements.updated_msg'))
     end
   end
 
@@ -62,7 +62,7 @@ RSpec.describe 'Admin::Announcements' do
         .to change(Announcement, :count).by(-1)
 
       expect(page)
-        .to have_content(I18n.t('admin.announcements.destroyed_msg'))
+        .to have_text(I18n.t('admin.announcements.destroyed_msg'))
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe 'Admin::Announcements' do
         .to change { announcement.reload.published? }.to(true)
 
       expect(page)
-        .to have_content(I18n.t('admin.announcements.published_msg'))
+        .to have_text(I18n.t('admin.announcements.published_msg'))
     end
 
     it 'unpublishes an existing announcement' do
@@ -88,7 +88,7 @@ RSpec.describe 'Admin::Announcements' do
         .to change { announcement.reload.published? }.to(false)
 
       expect(page)
-        .to have_content(I18n.t('admin.announcements.unpublished_msg'))
+        .to have_text(I18n.t('admin.announcements.unpublished_msg'))
     end
   end
 

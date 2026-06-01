@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import type { FC } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessage, FormattedMessage } from 'react-intl';
 
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -14,9 +14,15 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import type { EmptyMessageProps } from '../followers/components/empty';
 import { BaseEmptyMessage } from '../followers/components/empty';
+import { AccountListHeader } from '../followers/components/header';
 import { AccountList } from '../followers/components/list';
 
 import { RemoteHint } from './components/remote';
+
+const titleText = defineMessage({
+  id: 'following.title',
+  defaultMessage: 'Followed by {name}',
+});
 
 const Followers: FC = () => {
   const accountId = useAccountId();
@@ -59,6 +65,7 @@ const Followers: FC = () => {
       <FormattedMessage
         id='following.hide_other_following'
         defaultMessage='This user has chosen to not make the rest of who they follow visible'
+        tagName='span'
       />
     </div>
   );
@@ -69,6 +76,15 @@ const Followers: FC = () => {
       accountId={accountId}
       append={domain && <RemoteHint domain={domain} url={account.url} />}
       emptyMessage={<EmptyMessage account={account} />}
+      header={
+        accountId && (
+          <AccountListHeader
+            accountId={accountId}
+            titleText={titleText}
+            total={account?.following_count}
+          />
+        )
+      }
       footer={footer}
       list={followingList}
       loadMore={loadMore}

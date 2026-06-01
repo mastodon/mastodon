@@ -23,9 +23,11 @@ RSpec.describe Admin::Disputes::AppealsController do
     it 'returns a page that lists details of appeals' do
       get :index
 
-      expect(response).to have_http_status(:success)
-      expect(response.body).to include("<span class=\"username\">#{strike.account.username}</span>")
-      expect(response.body).to include("<span class=\"target\">#{appeal.account.username}</span>")
+      expect(response)
+        .to have_http_status(:success)
+      expect(response.parsed_body)
+        .to have_css('span.username', text: strike.account.username)
+        .and have_css('span.target', text: appeal.account.username)
     end
   end
 

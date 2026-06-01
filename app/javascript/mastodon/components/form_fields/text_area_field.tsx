@@ -10,7 +10,7 @@ import { FormFieldWrapper } from './form_field_wrapper';
 import type { CommonFieldWrapperProps } from './form_field_wrapper';
 import classes from './text_input.module.scss';
 
-type TextAreaProps =
+export type TextAreaProps =
   | ({ autoSize?: false } & ComponentPropsWithoutRef<'textarea'>)
   | ({ autoSize: true } & TextareaAutosizeProps);
 
@@ -24,17 +24,23 @@ type TextAreaProps =
 export const TextAreaField = forwardRef<
   HTMLTextAreaElement,
   TextAreaProps & CommonFieldWrapperProps
->(({ id, label, hint, required, hasError, ...otherProps }, ref) => (
-  <FormFieldWrapper
-    label={label}
-    hint={hint}
-    required={required}
-    hasError={hasError}
-    inputId={id}
-  >
-    {(inputProps) => <TextArea {...otherProps} {...inputProps} ref={ref} />}
-  </FormFieldWrapper>
-));
+>(
+  (
+    { id, label, hint, required, status, wrapperClassName, ...otherProps },
+    ref,
+  ) => (
+    <FormFieldWrapper
+      label={label}
+      hint={hint}
+      required={required}
+      status={status}
+      inputId={id}
+      className={wrapperClassName}
+    >
+      {(inputProps) => <TextArea {...otherProps} {...inputProps} ref={ref} />}
+    </FormFieldWrapper>
+  ),
+);
 
 TextAreaField.displayName = 'TextAreaField';
 

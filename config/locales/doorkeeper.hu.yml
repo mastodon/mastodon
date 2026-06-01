@@ -83,6 +83,10 @@ hu:
         access_denied: Az erőforrás tulajdonosa vagy az engedélyező kiszolgáló elutasította a kérést.
         credential_flow_not_configured: Az erőforrás tulajdonos jelszóadatainak átadása megszakadt, mert a Doorkeeper.configure.resource_owner_from_credentials beállítatlan.
         invalid_client: A kliens hitelesítése megszakadt, mert ismeretlen a kliens, a kliens nem küldött hitelesítést, vagy a hitelesítés módja nem támogatott.
+        invalid_code_challenge_method:
+          one: 'A code_challange_method értékének ennek kell lennie: %{challenge_methods}.'
+          other: 'A code_challange_method értékének ennek egyikének kell lennie: %{challenge_methods}.'
+          zero: A hitelesítési kiszolgáló nem támogatja a PKCE-t, mivel nincs elfogadott code_challange_method érték.
         invalid_grant: A biztosított hitelesítés érvénytelen, lejárt, visszavont, vagy nem egyezik a hitelesítési kérésben használt URI-val, vagy más kliensnek címezték.
         invalid_redirect_uri: Az átirányító URI nem valós.
         invalid_request:

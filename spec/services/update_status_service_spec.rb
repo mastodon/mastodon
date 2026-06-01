@@ -161,6 +161,19 @@ RSpec.describe UpdateStatusService do
     end
   end
 
+  context 'when tagged objects in text change' do
+    let!(:old_collection) { Fabricate(:collection) }
+    let!(:new_collection) { Fabricate(:collection) }
+
+    let!(:account) { Fabricate(:account) }
+    let!(:status) { PostStatusService.new.call(account, text: "Check out #{ActivityPub::TagManager.instance.uri_for(old_collection)}") }
+
+    it 'changes tagged objects' do
+      expect { subject.call(status, status.account_id, text: "Check out #{ActivityPub::TagManager.instance.uri_for(new_collection)} #{ActivityPub::TagManager.instance.uri_for(new_collection)}") }
+        .to change { status.reload.tagged_objects.map(&:object) }.from([old_collection]).to([new_collection])
+    end
+  end
+
   context 'when hashtags in text change' do
     let!(:account) { Fabricate(:account) }
     let!(:status) { PostStatusService.new.call(account, text: 'Hello #foo') }

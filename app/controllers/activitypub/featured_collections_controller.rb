@@ -9,7 +9,6 @@ class ActivityPub::FeaturedCollectionsController < ApplicationController
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
-  before_action :check_feature_enabled
   before_action :require_account_signature!, if: -> { authorized_fetch_mode? }
   before_action :set_collections
 
@@ -33,7 +32,9 @@ class ActivityPub::FeaturedCollectionsController < ApplicationController
 
   def set_collections
     authorize @account, :index_collections?
-    @collections = @account.collections.page(params[:page]).per(PER_PAGE)
+    @collections = @account.collections
+      .includes(:accepted_collection_items)
+      .page(params[:page]).per(PER_PAGE)
   rescue Mastodon::NotPermittedError
     not_found
   end
@@ -69,9 +70,5 @@ class ActivityPub::FeaturedCollectionsController < ApplicationController
         first: ap_account_featured_collections_url(@account, page: 1)
       )
     end
-  end
-
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.collections_enabled?
   end
 end

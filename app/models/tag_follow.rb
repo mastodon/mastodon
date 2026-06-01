@@ -5,10 +5,10 @@
 # Table name: tag_follows
 #
 #  id         :bigint(8)        not null, primary key
-#  tag_id     :bigint(8)        not null
-#  account_id :bigint(8)        not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  account_id :bigint(8)        not null
+#  tag_id     :bigint(8)        not null
 #
 
 class TagFollow < ApplicationRecord

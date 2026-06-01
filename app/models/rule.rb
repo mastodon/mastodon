@@ -5,12 +5,12 @@
 # Table name: rules
 #
 #  id         :bigint(8)        not null, primary key
-#  priority   :integer          default(0), not null
 #  deleted_at :datetime
+#  hint       :text             default(""), not null
+#  priority   :integer          default(0), not null
 #  text       :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  hint       :text             default(""), not null
 #
 class Rule < ApplicationRecord
   include Discard::Model

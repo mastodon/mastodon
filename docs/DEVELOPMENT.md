@@ -3,7 +3,7 @@
 ## Overview
 
 Before starting local development, read the [CONTRIBUTING] guide to understand
-what changes are desirable and what general processes to use.
+what changes are desirable and what general processes to use. You should also read the project's [AI Contribution Policy] to understand how we approach AI-assisted contributions.
 
 ## Environments
 
@@ -103,3 +103,4 @@ development environment configured with the software needed for this project.
 [GitHub Codespaces]: https://docs.github.com/en/codespaces
 [Homebrew]: https://brew.sh
 [Mastodon docs]: https://docs.joinmastodon.org/dev/setup/#working-with-emails-in-development
+[AI Contribution Policy]: https://github.com/mastodon/.github/blob/main/AI_POLICY.md

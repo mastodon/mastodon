@@ -1,4 +1,13 @@
-import { forwardRef, useCallback, useId, useRef, useState } from 'react';
+import {
+  createContext,
+  forwardRef,
+  useCallback,
+  useContext,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { useIntl } from 'react-intl';
 
@@ -12,6 +21,8 @@ import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import { matchWidth } from 'mastodon/components/dropdown/utils';
 import { IconButton } from 'mastodon/components/icon_button';
 import { useOnClickOutside } from 'mastodon/hooks/useOnClickOutside';
+
+import { LoadingIndicator } from '../loading_indicator';
 
 import classes from './combobox.module.scss';
 import { FormFieldWrapper } from './form_field_wrapper';
@@ -28,7 +39,10 @@ export interface ComboboxItemState {
   isDisabled: boolean;
 }
 
-interface ComboboxProps<T extends ComboboxItem> extends TextInputProps {
+interface ComboboxProps<
+  Item extends ComboboxItem,
+  GroupKey extends string,
+> extends Omit<TextInputProps, 'icon'> {
   /**
    * The value of the combobox's text input
    */
@@ -43,35 +57,117 @@ interface ComboboxProps<T extends ComboboxItem> extends TextInputProps {
    */
   isLoading?: boolean;
   /**
-   * The set of options/suggestions that should be rendered in the dropdown menu.
+   * The set of options/suggestions that should be rendered in the dropdown menu,
+   * optionally separated into groups by providing an object
    */
-  items: T[];
+  items: Item[] | Partial<Record<GroupKey, Item[]>>;
   /**
    * A function that must return a unique id for each option passed via `items`
    */
-  getItemId?: (item: T) => string;
+  getItemId?: (item: Item) => string;
   /**
    * Providing this function turns the combobox into a multi-select box that assumes
    * multiple options to be selectable. Single-selection is handled automatically.
    */
-  getIsItemSelected?: (item: T) => boolean;
+  getIsItemSelected?: (item: Item) => boolean;
   /**
    * Use this function to mark items as disabled, if needed
    */
-  getIsItemDisabled?: (item: T) => boolean;
+  getIsItemDisabled?: (item: Item) => boolean;
   /**
    * Customise the rendering of each option.
    * The rendered content must not contain other interactive content!
    */
-  renderItem: (item: T, state: ComboboxItemState) => React.ReactElement;
+  renderItem: (
+    item: Item,
+    state: ComboboxItemState,
+  ) => React.ReactElement | string;
+  /**
+   * Customise the rendering of group titles.
+   * The `titleId` must be attached to the element that provides the
+   * accessible name for the group.
+   * Return `null` to omit rendering the group title.
+   */
+  renderGroupTitle?: (
+    groupKey: GroupKey,
+    titleId: string,
+  ) => React.ReactElement | null;
   /**
    * The main selection handler, called when an option is selected or deselected.
    */
-  onSelectItem: (item: T) => void;
+  onSelectItem: (item: Item) => void;
+  /**
+   * Icon to be displayed in the text input
+   */
+  icon?: TextInputProps['icon'] | null;
+  /**
+   * Set to true to open as soon as there is focus
+   */
+  openOnFocus?: boolean;
+  /**
+   * Set to false to keep the menu open when an item is selected
+   */
+  closeOnSelect?: boolean;
+  /**
+   * Prevent the menu from opening, e.g. to prevent the empty state from showing
+   */
+  suppressMenu?: boolean;
 }
 
-interface Props<T extends ComboboxItem>
-  extends ComboboxProps<T>, CommonFieldWrapperProps {}
+interface Props<Item extends ComboboxItem, GroupKey extends string>
+  extends ComboboxProps<Item, GroupKey>, CommonFieldWrapperProps {}
+
+interface ComboboxItemPropsContext {
+  role: 'option';
+  'data-highlighted': boolean;
+  'aria-selected': boolean;
+  'aria-disabled': boolean;
+  'data-item-id': string;
+  onMouseEnter: React.MouseEventHandler<HTMLLIElement>;
+  onClick: React.MouseEventHandler<HTMLLIElement>;
+}
+
+const ComboboxItemPropsContext = createContext<ComboboxItemPropsContext | null>(
+  null,
+);
+
+export function useComboboxItemProps() {
+  const context = useContext(ComboboxItemPropsContext);
+
+  if (context === null) {
+    throw new Error(
+      'useComboboxItemProps must be used within a Combobox component',
+    );
+  }
+
+  return context;
+}
+
+export const ComboboxMenuItem: React.FC<{
+  className?: string;
+  children: React.ReactNode;
+}> = ({ className, children }) => {
+  const props = useComboboxItemProps();
+  return (
+    <li className={classNames(className, classes.menuItem)} {...props}>
+      {children}
+    </li>
+  );
+};
+
+export const ComboboxMenuGroupTitle: React.FC<
+  React.ComponentPropsWithoutRef<'li'>
+> = ({ className, children, ...otherProps }) => {
+  return (
+    <li
+      {...otherProps}
+      role='presentation'
+      className={classNames(className, classes.groupTitle)}
+    >
+      {children}
+    </li>
+  );
+};
 
 /**
  * The combobox field allows users to select one or more items
@@ -82,15 +178,18 @@ interface Props<T extends ComboboxItem>
  * [research & implementations](https://sarahmhigley.com/writing/select-your-poison/).
  */
 
-export const ComboboxFieldWithRef = <T extends ComboboxItem>(
-  { id, label, hint, hasError, required, ...otherProps }: Props<T>,
+export const ComboboxFieldWithRef = <
+  Item extends ComboboxItem,
+  GroupKey extends string,
+>(
+  { id, label, hint, status, required, ...otherProps }: Props<Item, GroupKey>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) => (
   <FormFieldWrapper
     label={label}
     hint={hint}
     required={required}
-    hasError={hasError}
+    status={status}
     inputId={id}
   >
     {(inputProps) => <Combobox {...otherProps} {...inputProps} ref={ref} />}
@@ -100,15 +199,17 @@ export const ComboboxFieldWithRef = <T extends ComboboxItem>(
 // Using a type assertion to maintain the full type signature of ComboboxWithRef
 // (including its generic type) after wrapping it with `forwardRef`.
 export const ComboboxField = forwardRef(ComboboxFieldWithRef) as {
-  <T extends ComboboxItem>(
-    props: Props<T> & { ref?: React.ForwardedRef<HTMLInputElement> },
+  <Item extends ComboboxItem, GroupKey extends string>(
+    props: Props<Item, GroupKey> & {
+      ref?: React.ForwardedRef<HTMLInputElement>;
+    },
   ): ReturnType<typeof ComboboxFieldWithRef>;
   displayName: string;
 };
 
 ComboboxField.displayName = 'ComboboxField';
 
-const ComboboxWithRef = <T extends ComboboxItem>(
+const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   {
     value,
     isLoading = false,
@@ -117,14 +218,19 @@ const ComboboxWithRef = <T extends ComboboxItem>(
     getIsItemDisabled,
     getIsItemSelected,
     disabled,
+    renderGroupTitle,
     renderItem,
     onSelectItem,
+    onFocus,
     onChange,
     onKeyDown,
+    openOnFocus = false,
+    closeOnSelect = true,
+    suppressMenu = false,
     icon = SearchIcon,
     className,
     ...otherProps
-  }: ComboboxProps<T>,
+  }: ComboboxProps<Item, GroupKey>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) => {
   const intl = useIntl();
@@ -137,15 +243,28 @@ const ComboboxWithRef = <T extends ComboboxItem>(
   );
   const [shouldMenuOpen, setShouldMenuOpen] = useState(false);
 
+  const hasGroups = !Array.isArray(items);
+  const flatItems = useMemo(
+    () =>
+      hasGroups
+        ? (Object.values(items)
+            .flat()
+            .filter((i) => !!i) as Item[])
+        : items,
+    [hasGroups, items],
+  );
+
   const statusMessage = useGetA11yStatusMessage({
     value,
     isLoading,
-    itemCount: items.length,
+    itemCount: flatItems.length,
   });
   const showStatusMessageInMenu =
-    !!statusMessage && value.length > 0 && items.length === 0;
+    !!statusMessage && value.length > 0 && flatItems.length === 0;
   const hasMenuContent =
-    !disabled && (items.length > 0 || showStatusMessageInMenu);
+    !disabled &&
+    !suppressMenu &&
+    (flatItems.length > 0 || showStatusMessageInMenu);
   const isMenuOpen = shouldMenuOpen && hasMenuContent;
 
   const openMenu = useCallback(() => {
@@ -158,10 +277,10 @@ const ComboboxWithRef = <T extends ComboboxItem>(
   }, []);
 
   const resetHighlight = useCallback(() => {
-    const firstItem = items[0];
+    const firstItem = flatItems[0];
     const firstItemId = firstItem ? getItemId(firstItem) : null;
     setHighlightedItemId(firstItemId);
-  }, [getItemId, items]);
+  }, [getItemId, flatItems]);
 
   const highlightItem = useCallback((id: string | null) => {
     setHighlightedItemId(id);
@@ -174,6 +293,16 @@ const ComboboxWithRef = <T extends ComboboxItem>(
       }
     }
   }, []);
+
+  const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
+    (e) => {
+      if (openOnFocus) {
+        setShouldMenuOpen(true);
+      }
+      onFocus?.(e);
+    },
+    [onFocus, openOnFocus],
+  );
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -196,16 +325,20 @@ const ComboboxWithRef = <T extends ComboboxItem>(
 
   const selectItem = useCallback(
     (itemId: string | null) => {
-      const item = items.find((item) => item.id === itemId);
+      const item = flatItems.find((item) => item.id === itemId);
       if (item) {
         const isDisabled = getIsItemDisabled?.(item) ?? false;
         if (!isDisabled) {
           onSelectItem(item);
+
+          if (closeOnSelect) {
+            closeMenu();
+          }
         }
       }
       inputRef.current?.focus();
     },
-    [getIsItemDisabled, items, onSelectItem],
+    [closeMenu, closeOnSelect, getIsItemDisabled, flatItems, onSelectItem],
   );
 
   const handleSelectItem = useCallback(
@@ -222,38 +355,38 @@ const ComboboxWithRef = <T extends ComboboxItem>(
 
   const moveHighlight = useCallback(
     (direction: number) => {
-      if (items.length === 0) {
+      if (flatItems.length === 0) {
         return;
       }
-      const highlightedItemIndex = items.findIndex(
+      const highlightedItemIndex = flatItems.findIndex(
         (item) => getItemId(item) === highlightedItemId,
       );
       if (highlightedItemIndex === -1) {
         // If no item is highlighted yet, highlight the first or last
         if (direction > 0) {
-          const firstItem = items.at(0);
+          const firstItem = flatItems.at(0);
           highlightItem(firstItem ? getItemId(firstItem) : null);
         } else {
-          const lastItem = items.at(-1);
+          const lastItem = flatItems.at(-1);
           highlightItem(lastItem ? getItemId(lastItem) : null);
         }
       } else {
         // If there is a highlighted item, select the next or previous item
         // and wrap around at the start or end:
         let newIndex = highlightedItemIndex + direction;
-        if (newIndex >= items.length) {
+        if (newIndex >= flatItems.length) {
           newIndex = 0;
         } else if (newIndex < 0) {
-          newIndex = items.length - 1;
+          newIndex = flatItems.length - 1;
         }
 
-        const newHighlightedItem = items[newIndex];
+        const newHighlightedItem = flatItems[newIndex];
         highlightItem(
           newHighlightedItem ? getItemId(newHighlightedItem) : null,
         );
       }
     },
-    [getItemId, highlightItem, highlightedItemId, items],
+    [getItemId, highlightItem, highlightedItemId, flatItems],
   );
 
   useOnClickOutside(wrapperRef, closeMenu);
@@ -307,6 +440,38 @@ const ComboboxWithRef = <T extends ComboboxItem>(
     ],
   );
 
+  const renderItems = (items: Item[]) =>
+    items.map((item) => {
+      const id = getItemId(item);
+      const isDisabled = getIsItemDisabled?.(item) ?? false;
+      const isHighlighted = id === highlightedItemId;
+      // If `getIsItemSelected` is defined, we assume 'multi-select'
+      // behaviour and don't set `aria-selected` based on highlight,
+      // but based on selected item state.
+      const isSelected = getIsItemSelected
+        ? getIsItemSelected(item)
+        : isHighlighted;
+      return (
+        <ComboboxItemPropsContext.Provider
+          key={id}
+          value={{
+            role: 'option',
+            'data-highlighted': isHighlighted,
+            'aria-selected': isSelected,
+            'aria-disabled': isDisabled,
+            'data-item-id': id,
+            onMouseEnter: handleItemMouseEnter,
+            onClick: handleSelectItem,
+          }}
+        >
+          {renderItem(item, {
+            isSelected,
+            isDisabled,
+          })}
+        </ComboboxItemPropsContext.Provider>
+      );
+    });
+
   const mergeRefs = useCallback(
     (element: HTMLInputElement | null) => {
       inputRef.current = element;
@@ -338,9 +503,10 @@ const ComboboxWithRef = <T extends ComboboxItem>(
         autoComplete='off'
         spellCheck='false'
         value={value}
+        onFocus={handleFocus}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
-        icon={icon}
+        icon={icon ?? undefined}
         className={classNames(classes.input, className)}
         ref={mergeRefs}
       />
@@ -382,42 +548,47 @@ const ComboboxWithRef = <T extends ComboboxItem>(
       >
         {({ props, placement }) => (
           <div {...props} className={classNames(classes.popover, placement)}>
-            {showStatusMessageInMenu ? (
-              <span className={classes.emptyMessage}>{statusMessage}</span>
-            ) : (
-              <ul role='listbox' id={listId} tabIndex={-1}>
-                {items.map((item) => {
-                  const id = getItemId(item);
-                  const isDisabled = getIsItemDisabled?.(item);
-                  const isHighlighted = id === highlightedItemId;
-                  // If `getIsItemSelected` is defined, we assume 'multi-select'
-                  // behaviour and don't set `aria-selected` based on highlight,
-                  // but based on selected item state.
-                  const isSelected = getIsItemSelected
-                    ? getIsItemSelected(item)
-                    : isHighlighted;
-                  return (
-                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-                    <li
-                      key={id}
-                      role='option'
-                      className={classes.menuItem}
-                      data-highlighted={isHighlighted}
-                      aria-selected={isSelected}
-                      aria-disabled={isDisabled}
-                      data-item-id={id}
-                      onMouseEnter={handleItemMouseEnter}
-                      onClick={handleSelectItem}
-                    >
-                      {renderItem(item, {
-                        isSelected,
-                        isDisabled: isDisabled ?? false,
-                      })}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+            <StatusMessageWrapper
+              showStatus={showStatusMessageInMenu}
+              isLoading={isLoading}
+              status={statusMessage}
+            >
+              {hasGroups ? (
+                <div role='listbox' id={listId} tabIndex={-1}>
+                  {(Object.keys(items) as GroupKey[]).map((groupKey) => {
+                    const groupItems = items[groupKey];
+                    const groupTitleId = `${listId}-group-${groupKey}`;
+                    const customGroupTitle = renderGroupTitle?.(
+                      groupKey,
+                      groupTitleId,
+                    );
+                    const hasTitle = customGroupTitle !== null;
+
+                    if (!groupItems?.length) return null;
+
+                    return (
+                      <ul
+                        key={groupKey}
+                        role='group'
+                        aria-labelledby={hasTitle ? groupTitleId : undefined}
+                      >
+                        {hasTitle &&
+                          (customGroupTitle ?? (
+                            <ComboboxMenuGroupTitle id={groupTitleId}>
+                              {groupKey}
+                            </ComboboxMenuGroupTitle>
+                          ))}
+                        {renderItems(groupItems)}
+                      </ul>
+                    );
+                  })}
+                </div>
+              ) : (
+                <ul role='listbox' id={listId} tabIndex={-1}>
+                  {renderItems(items)}
+                </ul>
+              )}
+            </StatusMessageWrapper>
           </div>
         )}
       </Overlay>
@@ -428,13 +599,37 @@ const ComboboxWithRef = <T extends ComboboxItem>(
 // Using a type assertion to maintain the full type signature of ComboboxWithRef
 // (including its generic type) after wrapping it with `forwardRef`.
 export const Combobox = forwardRef(ComboboxWithRef) as {
-  <T extends ComboboxItem>(
-    props: ComboboxProps<T> & { ref?: React.ForwardedRef<HTMLInputElement> },
+  <Item extends ComboboxItem, GroupKey extends string>(
+    props: ComboboxProps<Item, GroupKey> & {
+      ref?: React.ForwardedRef<HTMLInputElement>;
+    },
   ): ReturnType<typeof ComboboxWithRef>;
   displayName: string;
 };
 
 Combobox.displayName = 'Combobox';
+
+const StatusMessageWrapper: React.FC<{
+  showStatus: boolean;
+  status: string;
+  isLoading: boolean;
+  children: React.ReactNode;
+}> = ({ showStatus, status, isLoading, children }) => {
+  if (showStatus) {
+    return (
+      <span className={classes.emptyMessage}>
+        {isLoading && (
+          <span className={classes.loadingIndicator}>
+            <LoadingIndicator role='none' />
+          </span>
+        )}
+        {status}
+      </span>
+    );
+  }
+
+  return children;
+};
 
 function useGetA11yStatusMessage({
   itemCount,

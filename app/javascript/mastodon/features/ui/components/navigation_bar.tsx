@@ -31,6 +31,10 @@ export const messages = defineMessages({
     defaultMessage: 'Notifications',
   },
   menu: { id: 'tabs_bar.menu', defaultMessage: 'Menu' },
+  advancedUiQuickLinks: {
+    id: 'tabs_bar.quick_links',
+    defaultMessage: 'Quick links',
+  },
 });
 
 const IconLabelButton: React.FC<{
@@ -84,10 +88,7 @@ const NotificationsButton = () => {
 const LoginOrSignUp: React.FC = () => {
   const dispatch = useAppDispatch();
   const signupUrl = useAppSelector(
-    (state) =>
-      (state.server.getIn(['server', 'registrations', 'url'], null) as
-        | string
-        | null) ?? '/auth/sign_up',
+    (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',
   );
 
   const openClosedRegistrationsModal = useCallback(() => {
@@ -95,7 +96,7 @@ const LoginOrSignUp: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchServer());
+    void dispatch(fetchServer());
   }, [dispatch]);
 
   if (sso_redirect) {

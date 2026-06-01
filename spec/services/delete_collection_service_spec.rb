@@ -12,7 +12,7 @@ RSpec.describe DeleteCollectionService do
       expect { subject.call(collection) }.to change(Collection, :count).by(-1)
     end
 
-    it 'federates a `Remove` activity', feature: :collections_federation do
+    it 'federates a `Remove` activity' do
       subject.call(collection)
 
       expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job

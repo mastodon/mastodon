@@ -12,6 +12,9 @@ fo:
     followers:
       one: Fylgjari
       other: Fylgjarar
+    following:
+      one: Fylgi
+      other: Fylgi
     instance_actor_flash: Hendan kontan er ein tykisligur aktørur, sum verður brúktur til at umboða ambætaran sjálvan og ikki nakran ávísan brúkara. Hon verður brúkt til sameind endamál og eigur ikki at vera tikin úr gildi.
     last_active: virkin seinast
     link_verified_on: Eigaraskapur av hesum leinki var eftirkannaður tann %{date}
@@ -264,6 +267,7 @@ fo:
         demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
         destroy_announcement_html: "%{name} strikaðar fráboðanir %{target}"
         destroy_canonical_email_block_html: "%{name} strikaði blokeringina av teldupostin við hashkodu %{target}"
+        destroy_collection_html: "%{name} slettaði savnið hjá %{target}"
         destroy_custom_emoji_html: "%{name} strikaði kensluteknið %{target}"
         destroy_domain_allow_html: "%{name} havnaði sameining við navnaøkið %{target}"
         destroy_domain_block_html: "%{name} strikaði blokering av navnaøkinum %{target}"
@@ -303,6 +307,7 @@ fo:
         unsilence_account_html: "%{name} strikaði avmarkingina av kontuni hjá %{target}"
         unsuspend_account_html: "%{name} setti kontuna hjá %{target} í gildi aftur"
         update_announcement_html: "%{name} dagførdi kunngerðina %{target}"
+        update_collection_html: "%{name} dagførdi savnið hjá %{target}"
         update_custom_emoji_html: "%{name} dagførdi kensluteknið %{target}"
         update_domain_block_html: "%{name} dagførdi navnaøkisblokeringina hjá %{target}"
         update_ip_block_html: "%{name} broytti IP-reglurnar %{target}"
@@ -342,6 +347,9 @@ fo:
       accounts: Kontur
       collection_title: Savn hjá %{name}
       contents: Innihald
+      number_of_accounts:
+        one: 1 konta
+        other: "%{count} kontur"
       open: Opin
       view_publicly: Vís fyri øllum
     critical_update_pending: Kritisk dagføring bíðar
@@ -867,11 +875,6 @@ fo:
           authenticated: Einans váttaðir brúkarar
           disabled: Krev serstakan brúkaraleiklut
           public: Øll
-      landing_page:
-        values:
-          about: Um
-          local_feed: Lokal rás
-          trends: Rák
       registrations:
         moderation_recommandation: Vinarliga tryggja tær, at tú hevur eitt nøktandi og klárt umsjónartoymi, áðreen tú letur upp fyri skrásetingum frá øllum!
         preamble: Stýr, hvør kann stovna eina kontu á tínum ambætara.
@@ -1221,7 +1224,6 @@ fo:
   application_mailer:
     notification_preferences: Broyt teldupostastillingar
     salutation: "%{name}"
-    settings: 'Broyt teldupostastillingar: %{link}'
     unsubscribe: Strika hald
     view: 'Vís:'
     view_profile: Vís vanga
@@ -1404,8 +1406,6 @@ fo:
       your_appeal_pending: Tú hevur kært
       your_appeal_rejected: Kæra tín er vrakað
   edit_profile:
-    basic_information: Grundleggjandi upplýsingar
-    hint_html: "<strong>Tillaga tað, sum fólk síggja á tínum almenna vanga og við síðna av tínum postum.</strong> Sannlíkindini fyri, at onnur fylgja tær og virka saman við tær eru størri, tá tú hevur fylt út vangan og eina vangamynd."
     other: Onnur
   emoji_styles:
     auto: Sjálvvirkandi
@@ -1445,10 +1445,8 @@ fo:
     mutes: Tú doyvir
     storage: Miðlagoymsla
   featured_tags:
-    add_new: Legg afturat
     errors:
       limit: Tú hevur longu varpað loyvda talið av frámerkjum
-    hint_html: "<strong>Hvat eru varpaði frámerki?</strong> Tey verða víst sjónliga á almenna vanga tínum og loyva fólki at kaga gjøgnum tínar almennu postar, sum hava tey frámerkini. Tey eru serliga vælegnaði at fylgja við skapandi arbeiði ella langtíðarverkætlanum."
   filters:
     contexts:
       account: Vangar
@@ -1641,21 +1639,6 @@ fo:
     failed_sign_in_html: Miseydnað innritanarroynd við %{method} frá %{ip} (%{browser})
     successful_sign_in_html: Eydnað innritan við %{method} frá %{ip} (%{browser})
     title: Samgildissøga
-  mail_subscriptions:
-    unsubscribe:
-      action: Ja, strika hald
-      complete: Hald strikað
-      confirmation_html: Ert tú vís/ur í, at tú vil gevast at móttaka %{type} fyri Mastodon á %{domain} til tína teldupostadressu á %{email}? Tú kanst altíð gera haldið virkið aftur frá tínum <a href="%{settings_path}">teldupostfráboðanarstillingum</a>.
-      emails:
-        notification_emails:
-          favourite: yndisfráboðanarteldupostar
-          follow: fylg fráboðanarteldupostar
-          follow_request: fylg umbønir um teldupost
-          mention: nevn fráboðanarteldupostar
-          reblog: framhevja fráboðanarpostar
-      resubscribe_html: Um tú hevur strikað haldið av misgávum, so kanst tú tekna haldið av nýggjum í tínum <a href="%{settings_path}">teldupostfráboðarstillingum</a>.
-      success_html: Tú fer ikki longur at móttaka %{type} fyri Mastodon á %{domain} til tín teldupost á %{email}.
-      title: Strika hald
   media_attachments:
     validations:
       images_and_video: Kann ikki viðfesta sjónfílu til ein post, sum longu inniheldur myndir

@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { Button } from 'mastodon/components/button';
+import { injectIntl } from '@/mastodon/components/intl';
 
 import Option from './components/option';
 
@@ -27,14 +28,14 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  rules: state.getIn(['server', 'server', 'rules'], ImmutableList()),
+  rules: state.getIn(['server', 'server', 'item', 'rules'], []),
 });
 
 class Category extends PureComponent {
 
   static propTypes = {
     onNextStep: PropTypes.func.isRequired,
-    rules: ImmutablePropTypes.list,
+    rules: PropTypes.arrayOf(PropTypes.object),
     category: PropTypes.string,
     onChangeCategory: PropTypes.func.isRequired,
     startedFrom: PropTypes.oneOf(['status', 'account']),
@@ -68,7 +69,7 @@ class Category extends PureComponent {
   render () {
     const { category, startedFrom, rules, intl } = this.props;
 
-    const options = rules.size > 0 ? [
+    const options = rules.length > 0 ? [
       'dislike',
       'spam',
       'legal',

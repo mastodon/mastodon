@@ -6,13 +6,17 @@ class ActivityPub::ProcessCollectionService < BaseService
 
   def call(body, actor, **options)
     @account = actor
-    @json    = original_json = Oj.load(body, mode: :strict)
+    @json    = original_json = JSON.parse(body)
     @options = options
 
     return unless @json.is_a?(Hash)
 
     begin
       @json = compact(@json) if @json['signature'].is_a?(Hash)
+      if unsupported_jsonld_features?(@json)
+        Rails.logger.debug { "JSON-LD document for #{value_or_id(@json['actor'])} contains unsupported JSON-LD features" }
+        @json = original_json.without('signature')
+      end
     rescue JSON::LD::JsonLdError => e
       Rails.logger.debug { "Error when compacting JSON-LD document for #{value_or_id(@json['actor'])}: #{e.message}" }
       @json = original_json.without('signature')
@@ -38,7 +42,7 @@ class ActivityPub::ProcessCollectionService < BaseService
     else
       process_items [@json]
     end
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     nil
   end
 

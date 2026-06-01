@@ -5,18 +5,17 @@
 # Table name: account_stats
 #
 #  id              :bigint(8)        not null, primary key
-#  account_id      :bigint(8)        not null
-#  statuses_count  :bigint(8)        default(0), not null
-#  following_count :bigint(8)        default(0), not null
 #  followers_count :bigint(8)        default(0), not null
+#  following_count :bigint(8)        default(0), not null
+#  last_status_at  :datetime
+#  statuses_count  :bigint(8)        default(0), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  last_status_at  :datetime
+#  account_id      :bigint(8)        not null
 #
 
 class AccountStat < ApplicationRecord
   self.locking_column = nil
-  self.ignored_columns += %w(lock_version)
 
   belongs_to :account, inverse_of: :account_stat
 

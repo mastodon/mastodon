@@ -2,32 +2,6 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-if ENV.fetch('COVERAGE', false)
-  require 'simplecov'
-
-  SimpleCov.start 'rails' do
-    if ENV['CI']
-      require 'simplecov-lcov'
-      formatter SimpleCov::Formatter::LcovFormatter
-      formatter.config.report_with_single_file = true
-    else
-      formatter SimpleCov::Formatter::HTMLFormatter
-    end
-
-    enable_coverage :branch
-
-    add_filter 'lib/linter'
-
-    add_group 'Libraries', 'lib'
-    add_group 'Policies', 'app/policies'
-    add_group 'Presenters', 'app/presenters'
-    add_group 'Search', 'app/chewy'
-    add_group 'Serializers', 'app/serializers'
-    add_group 'Services', 'app/services'
-    add_group 'Validators', 'app/validators'
-  end
-end
-
 # This needs to be defined before Rails is initialized
 STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
 STREAMING_HOST = ENV.fetch('TEST_STREAMING_HOST', 'localhost')
@@ -43,7 +17,6 @@ require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
-require 'email_spec/rspec'
 require 'pundit/rspec'
 require 'test_prof/recipes/rspec/before_all'
 
@@ -57,8 +30,6 @@ WebMock.disable_net_connect!(
 Sidekiq.default_configuration.logger = nil
 
 DatabaseCleaner.strategy = [:deletion]
-
-Chewy.settings[:enabled] = false
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
@@ -134,17 +105,11 @@ RSpec.configure do |config|
 
   config.around do |example|
     if example.metadata[:inline_jobs] == true
-      Sidekiq::Testing.inline!
+      Sidekiq.testing!(:inline)
     else
-      Sidekiq::Testing.fake!
+      Sidekiq.testing!(:fake)
     end
     example.run
-  end
-
-  config.around(:each, type: :search) do |example|
-    Chewy.settings[:enabled] = true
-    example.run
-    Chewy.settings[:enabled] = false
   end
 
   config.before :each, type: :cli do

@@ -1182,7 +1182,6 @@ eo:
   application_mailer:
     notification_preferences: Ŝanĝi retpoŝtajn preferojn
     salutation: "%{name},"
-    settings: 'Ŝanĝi retpoŝtajn preferojn: %{link}'
     unsubscribe: Malabonu
     view: 'Vidi:'
     view_profile: Vidi profilon
@@ -1358,8 +1357,6 @@ eo:
       your_appeal_pending: Vi sendis apelacion
       your_appeal_rejected: Via apelacio malakceptitas
   edit_profile:
-    basic_information: Baza informo
-    hint_html: "<strong>Personigi, kion homoj vidi en via publika profilo kaj apud viaj afiŝoj. </strong> Aliaj homoj estas pli probable resekvi vin kaj interagi kun vi se vi havus finigitan profilon kaj profilan foton."
     other: Alia
   emoji_styles:
     auto: Aŭtomata
@@ -1401,10 +1398,8 @@ eo:
     mutes: Vi silentigas
     storage: Aŭdovidaĵa konservado
   featured_tags:
-    add_new: Aldoni novan
     errors:
       limit: Vi jam elstarigis la maksimuman kvanton da kradvortoj
-    hint_html: "<strong>Kio estas la trajtaj kradvortoj?</strong> Ili bone videblas en via publika profilo kaj permesas al homoj trarigardi viajn publikajn mesaĝojn specife laŭ tiuj kradvortoj. Ili estas bonaj iloj por sekvi la evoluon de kreadaj laboroj aŭ longdaŭraj projektoj."
   filters:
     contexts:
       account: Profiloj
@@ -1590,21 +1585,6 @@ eo:
     failed_sign_in_html: Malsukcese ensalutprovo per %{method} de %{ip} (%{browser})
     successful_sign_in_html: Sukcese ensaluto per %{method} de %{ip} (%{browser})
     title: Aŭtentiga historio
-  mail_subscriptions:
-    unsubscribe:
-      action: Jes, malabonu
-      complete: Malabonita
-      confirmation_html: Ĉu vi certas, ke vi volas malaboni je ricevi %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}? Vi ĉiam povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
-      emails:
-        notification_emails:
-          favourite: sciigoj retpoŝtaj de ŝatataj
-          follow: sciigoj retpoŝtaj de sekvoj
-          follow_request: retpoŝtajn petoj de sekvado
-          mention: sciigoj retpoŝtaj de mencioj
-          reblog: sciigoj retpoŝtaj de diskonigoj
-      resubscribe_html: Se vi malabonis erare, vi povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
-      success_html: Vi ne plu ricevos %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}.
-      title: Malaboni
   media_attachments:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas

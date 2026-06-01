@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
 
-import classes from './styles.module.css';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   newTitle: {
@@ -141,8 +141,11 @@ const InnerNodeModal: FC<{
             onChange={handleChange}
             label={intl.formatMessage(messages.fieldLabel)}
             className={classes.noteInput}
-            hasError={state === 'error'}
-            hint={errorText}
+            status={
+              state === 'error'
+                ? { variant: 'error', message: errorText }
+                : undefined
+            }
             // eslint-disable-next-line jsx-a11y/no-autofocus -- We want to focus here as it's a modal.
             autoFocus
           />

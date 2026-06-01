@@ -231,7 +231,7 @@ module Account::Interactions
 
     Rails.cache.fetch("followers_hash:#{id}:#{url_prefix}/") do
       digest = "\x00" * 32
-      followers.where(Account.arel_table[:uri].matches("#{Account.sanitize_sql_like(url_prefix)}/%", false, true)).or(followers.where(uri: url_prefix)).pluck_each(:uri) do |uri|
+      followers.matches_uri_prefix(url_prefix).pluck_each(:uri) do |uri|
         Xorcist.xor!(digest, Digest::SHA256.digest(uri))
       end
       digest.unpack1('H*')

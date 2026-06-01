@@ -4,7 +4,7 @@ cy:
     hints:
       account:
         attribution_domains: Un i bob llinell. Yn diogelu rhag priodoli ffug.
-        discoverable: Mae'n bosibl y bydd eich postiadau cyhoeddus a'ch proffil yn cael sylw neu'n cael eu hargymell mewn gwahanol feysydd o Mastodon ac efallai y bydd eich proffil yn cael ei awgrymu i ddefnyddwyr eraill.
+        discoverable: Efallai y byddwch chi'n cael eich cynnwys mewn casgliadau wedi'u creu gan ddefnyddwyr eraill. Efallai y byddwch chi a'ch postiadau cyhoeddus hefyd yn cael eu hawgrymu i ddefnyddwyr mewn profiadau darganfod eraill ledled Mastodon.
         display_name: Eich enw llawn neu'ch enw hwyl.
         fields: Eich tudalen cartref, rhagenwau, oed, neu unrhyw beth.
         indexable: Mae'n bosib y bydd eich postiadau cyhoeddus yn ymddangos yng nghanlyniadau chwilio ar Mastodon. Mae'n bosibl y bydd pobl sydd wedi rhyngweithio â'ch postiadau yn dal i allu eu chwilio.
@@ -61,9 +61,9 @@ cy:
         setting_default_quote_policy_private: Does dim modd dyfynnu postiadau sydd wedi'u hysgrifennu ar Mastodon ar gyfer dim ond dilynwyr.
         setting_default_quote_policy_unlisted: Pan fydd pobl yn eich dyfynnu, bydd eu postiad hefyd yn cael ei guddio rhag llinellau amser sy'n trendio.
         setting_default_sensitive: Mae cyfryngau sensitif wedi'u cuddio yn rhagosodedig a gellir eu datgelu trwy glicio
-        setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
-        setting_display_media_hide_all: Cuddio cyfryngau bob tro
-        setting_display_media_show_all: Dangos cyfryngau bob tro
+        setting_display_media_default: Rhybuddio cyn dangos cyfryngau sydd wedi'u marcio fel rhai sensitif
+        setting_display_media_hide_all: Rhybuddio cyn dangos yr holl gyfryngau
+        setting_display_media_show_all: Dangos yr holl gyfryngau heb rybudd, gan gynnwys cyfryngau sydd wedi'u marcio fel rhai sensitif
         setting_emoji_style: Sut i arddangos emojis. Bydd "Awto" yn ceisio defnyddio emoji cynhenid, ond mae'n disgyn yn ôl i Twemoji ar gyfer porwyr traddodiadol.
         setting_quick_boosting_html: Pan fydd wedi'i alluogi, bydd clicio ar yr eicon Hwb %{boost_icon} yn rhoi hwb ar unwaith yn lle agor y gwymplen hwb/dyfynnu. Mae'n symud y weithred dyfynnu i'r ddewislen %{options_icon} (Dewisiadau).
         setting_system_scrollbars_ui: Yn berthnasol i borwyr bwrdd gwaith yn seiliedig ar Safari a Chrome yn unig
@@ -109,6 +109,7 @@ cy:
         status_page_url: URL tudalen lle gall pobl weld statws y gweinydd hwn yn ystod cyfnod o doriad gwasanaeth
         theme: Thema sy'n allgofnodi ymwelwyr a defnyddwyr newydd yn gweld.
         thumbnail: Delwedd tua 2:1 yn cael ei dangos ochr yn ochr â manylion eich gweinydd.
+        thumbnail_description: Disgrifiad o'r ddelwedd i helpu pobl â nam ar eu golwg i ddeall ei chynnwys.
         trendable_by_default: Hepgor adolygiad llaw o gynnwys sy'n tueddu. Gall eitemau unigol gael eu tynnu o dueddiadau o hyd ar ôl y ffaith.
         trends: Mae pynciau llosg yn dangos y postiadau, hashnodau, a newyddion sy'n denu sylw ar eich gweinydd.
         wrapstodon: Cynigiwch i ddefnyddwyr lleol greu crynodeb chwareus o'u defnydd o Mastodon yn ystod y flwyddyn. Mae'r nodwedd hon ar gael rhwng y 10fed a'r 31ain o Ragfyr bob blwyddyn, ac mae'n cael ei gynig i ddefnyddwyr a wnaeth o leiaf un postiad Cyhoeddus neu Gyhoeddus Tawel ac sydd wedi defnyddio o leiaf un hashnod o fewn y flwyddyn.
@@ -134,6 +135,7 @@ cy:
         otp: 'Mewnbynnwch y cod dau gam a gynhyrchwyd gan eich ap ffôn neu defnyddiwch un o''ch codau adfer:'
         webauthn: Os mai allwedd USB ydyw, gwnewch yn siŵr ei fewnosod ac, os oes angen, tapiwch ef.
       settings:
+        email_subscriptions: Mae analluogi yn cadw tanysgrifwyr presennol ond yn atal anfon e-byst.
         indexable: Mae'n bosib y bydd eich tudalen broffil yn ymddangos mewn canlyniadau chwilio ar Google, Bing ac eraill.
         show_application: Byddwch bob amser yn gallu gweld pa ap a gyhoeddodd eich postiad beth bynnag.
       tag:
@@ -153,7 +155,7 @@ cy:
         jurisdiction: Rhestrwch y wlad lle mae pwy bynnag sy'n talu'r biliau yn byw. Os yw'n gwmni neu'n endid arall, rhestrwch y wlad lle mae wedi'i ymgorffori, a'r ddinas, rhanbarth, tiriogaeth neu wladwriaeth fel y bo'n briodol.
         min_age: Ni ddylai fod yn is na'r isafswm oedran sy'n ofynnol gan gyfreithiau eich awdurdodaeth.
       user:
-        chosen_languages: Wedi eu dewis, dim ond tŵtiau yn yr ieithoedd hyn bydd yn cael eu harddangos mewn ffrydiau cyhoeddus
+        chosen_languages: Pan gaiff ei dicio, dim ond postiadau mewn ieithoedd penodol fydd yn cael eu dangos mewn llinellau amser cyhoeddus. Dyw'r gosodiad hwn ddim yn effeithio ar eich llinell amser a'ch rhestrau Cartref.
         date_of_birth:
           few: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
           many: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
@@ -163,6 +165,7 @@ cy:
           zero: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
         role: Mae'r rôl yn rheoli pa ganiatâd sydd gan y defnyddiwr.
       user_role:
+        collection_limit: Yn cyfyngu ar nifer y Casgliadau y gall un defnyddiwr gyda'r rôl hon eu creu. Cofiwch, pan fyddwch chi'n lleihau'r nifer hwn, bydd y defnyddwyr sydd eisoes ar y terfyn hwn ddim yn colli unrhyw Gasgliadau. Ond fyddan nhw ddim yn gallu creu rhai ychwanegol.
         color: Lliw i'w ddefnyddio ar gyfer y rôl drwy'r UI, fel RGB mewn fformat hecs
         highlighted: Mae hyn yn gwneud y rôl yn weladwy i'r cyhoedd
         name: Enw cyhoeddus y rôl, os yw'r rôl wedi'i gosod i'w dangos fel bathodyn
@@ -180,7 +183,7 @@ cy:
     labels:
       account:
         attribution_domains: Gwefannau sy'n cael caniatâd i'ch cydnabod chi
-        discoverable: Proffil nodwedd a phostiadau mewn algorithmau darganfod
+        discoverable: Dangoswch fi mewn profiadau darganfod
         fields:
           name: Label
           value: Cynnwys
@@ -319,6 +322,7 @@ cy:
         status_page_url: URL tudalen statws
         theme: Thema ragosodedig
         thumbnail: Bawdlun y gweinydd
+        thumbnail_description: Testun amgen llun bach
         trendable_by_default: Caniatáu pynciau llosg heb adolygiad
         trends: Galluogi pynciau llosg
         wrapstodon: Galluogi Wrapstodon
@@ -360,6 +364,7 @@ cy:
         hint: Gwybodaeth ychwanegol
         text: Rheol
       settings:
+        email_subscriptions: Galluogi cofrestru e-bost
         indexable: Cynnwys tudalen proffil mewn peiriannau chwilio
         show_application: Dangoswch o ba ap yr anfonoch chi bostiad
       tag:
@@ -388,6 +393,7 @@ cy:
         role: Rôl
         time_zone: Cylchfa amser
       user_role:
+        collection_limit: Uchafswm nifer y Casgliadau fesul defnyddiwr
         color: Lliw bathodyn
         highlighted: Dangos rôl fel bathodyn ar broffiliau defnyddwyr
         name: Enw

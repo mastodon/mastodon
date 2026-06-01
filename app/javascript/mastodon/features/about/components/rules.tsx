@@ -5,7 +5,6 @@ import type { IntlShape } from 'react-intl';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { createSelector } from '@reduxjs/toolkit';
-import type { List as ImmutableList } from 'immutable';
 
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
 import { Select } from '@/mastodon/components/form_fields';
@@ -123,14 +122,13 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
 };
 
 const selectRules = (state: RootState) => {
-  const rules = state.server.getIn([
-    'server',
-    'rules',
-  ]) as ImmutableList<Rule> | null;
+  const rules = state.server.server.item?.rules;
+
   if (!rules) {
     return [];
   }
-  return rules.toJS() as Rule[];
+
+  return rules;
 };
 
 const rulesSelector = createSelector(
