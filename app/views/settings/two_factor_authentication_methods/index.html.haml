@@ -39,7 +39,7 @@
           %td
             = table_link_to 'key', t('two_factor_authentication.add'), new_settings_webauthn_credential_path, method: :get
 
-- if current_user.otp_enabled?
+- if current_user.otp_backup_codes.present?
   %hr.spacer/
 
   %h3= t('two_factor_authentication.recovery_codes')
