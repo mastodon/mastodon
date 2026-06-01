@@ -48,15 +48,25 @@ az:
       export: Xaricə köçür
     domain_blocks:
       export: Xaricə köçür
+    email_subscriptions:
+      compliance_settings:
+        title: Riayətlilik ayarları
+      danger_zone:
+        erase_all_data:
+          action: Veriləri sil
+          title: Bütün veriləri sil
+      purged_msg: Bütün e-poçt abunəlik veriləri silinir.
     export_domain_blocks:
       import:
         title: Əngəllənən domenləri daxilə köçür
       new:
         title: Əngəllənən domenləri daxilə köçür
     instances:
+      confirm_purge: Bu domendən veriləri həmişəlik silmək istədiyinizə əminsiniz?
       dashboard:
         instance_followers_measure: oradakı izləyicilərimiz
         instance_follows_measure: buradakı izləyiciləri
+      destroyed_msg: "%{domain} domenindən verilər artıq silinmək üçün növbədədir."
       moderation:
         title: Moderasiya
       moderation_notes:
@@ -119,6 +129,7 @@ az:
       next_steps: Moderasiya qərarını geri almaq üçün etirazı təsdiqləyə, ya da etirazı yox saya bilərsiniz.
       subject: "%{username}, %{instance} üzərindəki bir moderasiya qərarına etiraz edir"
   appearance:
+    advanced_settings: Qabaqcıl ayarlar
     animations_and_accessibility: Animasiyalar və erişiləbilənlik
     discovery: Kəşf et
     localization:
