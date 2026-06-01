@@ -75,7 +75,7 @@ module ViteRails::TagHelpers::IntegrityExtension
                           asset_type: :javascript,
                           skip_preload_tags: false,
                           skip_style_tags: false,
-                          crossorigin: 'anonymous',
+                          crossorigin: '',
                           media: 'screen',
                           **options)
     entries = vite_manifest.resolve_entries_with_integrity(*names, type: asset_type)
