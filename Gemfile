@@ -45,7 +45,7 @@ gem 'omniauth-saml', '~> 2.0'
 
 gem 'color_diff', '~> 0.1'
 gem 'csv', '~> 3.2'
-gem 'discard', '~> 1.2'
+gem 'discard', '~> 2.0'
 gem 'doorkeeper', '~> 5.6'
 gem 'faraday-httpclient'
 gem 'fast_blank', '~> 1.0'
