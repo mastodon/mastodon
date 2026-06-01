@@ -11,7 +11,7 @@ import { Button } from 'mastodon/components/button';
 import Option from './components/option';
 
 const mapStateToProps = state => ({
-  rules: state.getIn(['server', 'server', 'rules']),
+  rules: state.getIn(['server', 'server', 'item', 'rules']),
   locale: state.getIn(['meta', 'locale']),
 });
 
@@ -19,7 +19,7 @@ class Rules extends PureComponent {
 
   static propTypes = {
     onNextStep: PropTypes.func.isRequired,
-    rules: ImmutablePropTypes.list,
+    rules: PropTypes.arrayOf(PropTypes.object),
     locale: PropTypes.string,
     selectedRuleIds: ImmutablePropTypes.set.isRequired,
     onToggle: PropTypes.func.isRequired,
@@ -46,12 +46,12 @@ class Rules extends PureComponent {
         <div>
           {rules.map(item => (
             <Option
-              key={item.get('id')}
+              key={item.id}
               name='rule_ids'
-              value={item.get('id')}
-              checked={selectedRuleIds.includes(item.get('id'))}
+              value={item.id}
+              checked={selectedRuleIds.includes(item.id)}
               onToggle={this.handleRulesToggle}
-              label={item.getIn(['translations', locale, 'text']) || item.getIn(['translations', locale.split('-')[0], 'text']) || item.get('text')}
+              label={item.translations?.[locale]?.text || item.translations?.[locale.split('-')[0]]?.text || item.text}
               multiple
             />
           ))}
