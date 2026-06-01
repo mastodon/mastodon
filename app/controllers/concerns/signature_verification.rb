@@ -157,7 +157,7 @@ module SignatureVerification
   end
 
   def check_keypair_validity!(keypair)
-    raise Mastodon::SignatureVerification, "Key #{signature_key_id} is revoked" if keypair.revoked?
-    raise Mastodon::SignatureVerification, "Key #{signature_key_id} has expired" if keypair.expired?
+    raise Mastodon::SignatureVerificationError, "Key #{signature_key_id} is revoked" if keypair.revoked?
+    raise Mastodon::SignatureVerificationError, "Key #{signature_key_id} has expired" if keypair.expired?
   end
 end
