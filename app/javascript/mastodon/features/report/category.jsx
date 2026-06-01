@@ -28,7 +28,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  rules: state.getIn(['server', 'server', 'item', 'rules'], ImmutableList()),
+  rules: state.getIn(['server', 'server', 'item', 'rules'], []),
 });
 
 class Category extends PureComponent {
@@ -68,8 +68,6 @@ class Category extends PureComponent {
 
   render () {
     const { category, startedFrom, rules, intl } = this.props;
-
-    console.log('debug', rules);
 
     const options = rules.length > 0 ? [
       'dislike',
