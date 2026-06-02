@@ -732,7 +732,7 @@ zh-TW:
       action_log: 審計日誌
       action_taken_by: 操作執行者
       actions:
-        delete_description_html: 被檢舉的嘟文將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
+        delete_description_html: 被檢舉的嘟文及收藏名單將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
         mark_as_sensitive_description_html: 被檢舉的嘟文中的媒體將會被標記為敏感內容，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
@@ -759,7 +759,7 @@ zh-TW:
       confirm: 確認
       confirm_action: 確認對 @%{acct} 執行站務動作
       created_at: 日期
-      delete_and_resolve: 刪除嘟文
+      delete_and_resolve: 刪除內容
       forwarded: 已轉寄
       forwarded_replies_explanation: 此報告來自聯邦宇宙中非本伺服器帳號，關於非本伺服器內容。此報告轉發給您，因為報告之內容是回覆給您的伺服器上某位使用者。
       forwarded_to: 轉寄到 %{domain}
@@ -1549,7 +1549,9 @@ zh-TW:
     blocks: 您封鎖的使用者
     bookmarks: 書籤
     csv: CSV
+    custom_filters: 過濾器
     domain_blocks: 網域封鎖
+    json: JSON
     lists: 列表
     mutes: 您靜音的使用者
     storage: 匯出檔案大小

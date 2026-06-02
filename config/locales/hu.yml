@@ -746,7 +746,7 @@ hu:
       action_log: Audit napló
       action_taken_by: 'Kezelte:'
       actions:
-        delete_description_html: A bejelentett bejegyzéseket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
+        delete_description_html: A bejelentett bejegyzéseket vagy gyűjteményeket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
         resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel vétséget, és bezárjuk a bejelentést.
@@ -773,7 +773,7 @@ hu:
       confirm: Megerősítés
       confirm_action: Moderációs művelet jóváhagyása @%{acct} fiókon
       created_at: Jelentve
-      delete_and_resolve: Bejegyzések törlése
+      delete_and_resolve: Tartalom törlése
       forwarded: Továbbítva
       forwarded_replies_explanation: Ez a jelentés egy távoli flehasználótól származik, és távoli tartalomról szól. Azért lett neked továbbítva, mert a jelentett tartalom az egyik felhasználódnak küldött válasz.
       forwarded_to: 'Továbbítva ide: %{domain}'
@@ -1569,7 +1569,9 @@ hu:
     blocks: Tiltás
     bookmarks: Könyvjelző
     csv: CSV
+    custom_filters: Szűrők
     domain_blocks: Tiltott domain
+    json: JSON
     lists: Lista
     mutes: Némítás
     storage: Médiatároló
