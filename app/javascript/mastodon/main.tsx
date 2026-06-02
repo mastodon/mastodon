@@ -10,7 +10,7 @@ import { me, reduceMotion } from 'mastodon/initial_state';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
 
-import { isProduction } from './utils/environment';
+import { isDevelopment, isProduction } from './utils/environment';
 
 function main() {
   perf.start('main()');
@@ -42,7 +42,12 @@ function main() {
     store.dispatch(setupBrowserNotifications());
 
     if (me && 'serviceWorker' in navigator) {
-      const swPath = isProduction() ? '/packs/sw.js' : '/dev-sw.js';
+      let swPath = '/packs/sw.js';
+      if (isDevelopment()) {
+        const { default: swDevUrl } =
+          await import('@/mastodon/service_worker/sw?url');
+        swPath = swDevUrl;
+      }
 
       await navigator.serviceWorker.register(swPath, {
         scope: '/',
