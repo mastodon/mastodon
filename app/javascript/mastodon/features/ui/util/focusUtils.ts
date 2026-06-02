@@ -159,13 +159,13 @@ export function focusItemSibling(index: number, direction: 1 | -1) {
   );
 
   if (!siblingItem) {
-    return;
+    return false;
   }
 
   // If sibling element is empty, we skip it
   if (siblingItem.matches(':empty')) {
     focusItemSibling(index + direction, direction);
-    return;
+    return true;
   }
 
   // Check if the sibling is a post or a 'follow suggestions' widget
@@ -184,5 +184,8 @@ export function focusItemSibling(index: number, direction: 1 | -1) {
     });
 
     targetElement.focus();
+    return true;
+  } else {
+    return false;
   }
 }
