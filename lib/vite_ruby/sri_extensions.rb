@@ -47,7 +47,7 @@ module ViteRuby::ManifestIntegrityExtension
       }
     end
 
-    imports = dev_server_running? ? [] : entries.flat_map { |entry| entry['imports'] }.compact
+    imports = dev_server_running? ? [] : entries.flat_map { |entry| import_chunks_for(entry) }
 
     {
       scripts: script_paths,
