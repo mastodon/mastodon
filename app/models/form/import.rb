@@ -55,9 +55,11 @@ class Form::Import
       :bookmarks
     elsif file_name_matches?('lists')
       :lists
-    elsif file_name_matches?('custom_filters')
-      :custom_filters
     end
+  end
+
+  def guessed_type_json
+    :custom_filters if file_name_matches?('custom_filters')
   end
 
   # Whether the uploaded CSV file seems to correspond to a different import type than the one selected
@@ -65,13 +67,22 @@ class Form::Import
     guessed_type.present? && guessed_type != type.to_sym
   end
 
+  def likely_mismatched_json?
+    guessed_type_json.present? && guessed_type_json != type.to_sym
+  end
+
   def save
     return false unless valid?
 
     ApplicationRecord.transaction do
       now = Time.now.utc
-      @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched?)
-      nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
+      if content_type_is_json?
+        @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched_json?)
+        nb_items = BulkImportRow.insert_all(json_data.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
+      else
+        @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched?)
+        nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
+      end
       @bulk_import.update(total_items: nb_items)
     end
   end
@@ -152,29 +163,19 @@ class Form::Import
     end
   end
 
-  def file_type_is_json?
-    data.content_type == 'application/json'
-  end
-
-  def data_from_json
-    @data_from_json ||= JSON.parse(data.read)['custom_filters'].map(&:deep_symbolize_keys)
-  end
-
-  def allowed_json_key?
-    type.to_sym.in?(%i(custom_filters))
-  end
-
   def validate_data
     return if data.nil?
     return errors.add(:data, I18n.t('imports.errors.too_large')) if data.size > FILE_SIZE_LIMIT
 
-    if file_type_is_json?
+    if content_type_is_json?
       validate_json_data
     else
       validate_csv_data
     end
   rescue CSV::MalformedCSVError => e
     errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))
+  rescue JSON::ParserError => e
+    errors.add(:data, I18n.t('imports.errors.invalid_json_file', error: e.message))
   rescue EmptyFileError
     errors.add(:data, I18n.t('imports.errors.empty'))
   end
@@ -193,9 +194,19 @@ class Form::Import
   end
 
   def validate_json_data
-    return unless allowed_json_key?
-
-    errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if data_from_json.count > ROWS_PROCESSING_LIMIT
+    errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if json_data.count > ROWS_PROCESSING_LIMIT
     errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless allowed_json_key?
+  end
+
+  def content_type_is_json?
+    data.content_type == 'application/json'
+  end
+
+  def json_data
+    @json_data ||= JSON.parse(data.read)['custom_filters'].map(&:deep_symbolize_keys)
+  end
+
+  def allowed_json_key?
+    type.to_sym.in?(%i(custom_filters))
   end
 end
