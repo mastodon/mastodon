@@ -159,12 +159,7 @@ export function focusItemSibling(index: number, direction: 1 | -1) {
   );
 
   if (!siblingItem) {
-    return false;
-  }
-
-  // If sibling element is empty, we skip it
-  if (siblingItem.matches(':empty')) {
-    return focusItemSibling(index + direction, direction);
+    return focusListSibling(direction);
   }
 
   // Check if the sibling is a post or a 'follow suggestions' widget
@@ -175,6 +170,52 @@ export function focusItemSibling(index: number, direction: 1 | -1) {
   // Otherwise, check if the item is a 'load more' button.
   if (!targetElement && siblingItem.matches('.load-more')) {
     targetElement = siblingItem;
+  }
+
+  // If sibling element is empty, we skip it
+  if (!targetElement || siblingItem.matches(':empty')) {
+    return focusItemSibling(index + direction, direction);
+  }
+
+  targetElement.scrollIntoView({
+    block: 'start',
+  });
+
+  targetElement.focus();
+
+  return true;
+}
+
+/**
+ * Finds the next or previous .item-list on the page or in the column,
+ * and focuses its first or last item.
+ */
+function focusListSibling(direction: 1 | -1) {
+  const container = document.activeElement?.closest('.item-list');
+
+  if (!container) {
+    return false;
+  }
+
+  // Get all item lists in the current column or page
+  const currentColumn = container.closest('.column') ?? document;
+
+  const columnItemLists = Array.from(
+    currentColumn.querySelectorAll('.item-list'),
+  );
+  const currentListIndex = columnItemLists.indexOf(container);
+
+  // Find the next or previous item-list
+  const listSibling = columnItemLists[currentListIndex + direction];
+
+  // Depending on the direction, find the first or last focusable in the list
+  let targetElement: HTMLElement | null | undefined;
+  if (direction > 0) {
+    targetElement = listSibling?.querySelector<HTMLElement>('.focusable');
+  } else {
+    const allFocusables =
+      listSibling?.querySelectorAll<HTMLElement>('.focusable');
+    targetElement = allFocusables?.[allFocusables.length - 1];
   }
 
   if (targetElement) {
