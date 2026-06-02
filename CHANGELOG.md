@@ -76,10 +76,9 @@ All notable changes to this project will be documented in this file.
 - Change followers synchronization mechanism on followers-only posts to be skipped for accounts with 25k followers or more (#37302 by @ClearlyClaire)
 - Change “dark”, “light” and “high contrast” themes to be separate “Color scheme” and “Contrast” settings handled by a single theme (#37095, #37120, #37288, #37459, #37470, #37477, #37519, #37520, #37523, #37524, #37526, #37612, #37824, #37807, #37810, #37819, #37906, and #38261 by @ClearlyClaire, @diondiondion, and @mjankowski)
   - Existing settings should be migrated automatically from user settings, and using browser defaults otherwise.
-  - This also allows third-party theme authors to make use of the same browser defaults and user settings.
-  - TODO: doc
+  - This also allows third-party theme authors to make use of the same browser defaults and user settings. Learn more about this in [our new Theming docs](https://docs.joinmastodon.org/dev/frontend/theming/).
 - Change default theme to use CSS theme tokens (#36861, #36936, #37019, #37054, #37056, #37081, #37105, #37268, #37841, #37843, #38387, #38459, and #38621 by @diondiondion)
-  - TODO: documentation
+  - A [guide to using the new tokens](https://docs.joinmastodon.org/dev/frontend/design-tokens/) can be found in our docs.
 - Change location blocks in default `nginx.conf` (#19644 and #37866 by @BedrockDigger and @Izorkin)
 - Change `proxy_read_timeout` to 120 seconds in default `nginx.conf` (#30599 by @shleeable)
 - Change JSON-LD collection handling (#34595 and #37806 by @ClearlyClaire and @sneakers-the-rat)
