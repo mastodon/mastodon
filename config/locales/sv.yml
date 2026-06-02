@@ -746,7 +746,6 @@ sv:
       action_log: Granskningslogg
       action_taken_by: Åtgärder vidtagna av
       actions:
-        delete_description_html: De rapporterade inläggen kommer raderas och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         other_description_html: Se fler alternativ för att kontrollera kontots beteende och anpassa kommunikationen till det rapporterade kontot.
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
@@ -773,7 +772,6 @@ sv:
       confirm: Bekräfta
       confirm_action: Bekräfta modereringsåtgärd mot @%{acct}
       created_at: Anmäld
-      delete_and_resolve: Ta bort inlägg
       forwarded: Vidarebefordrad
       forwarded_replies_explanation: Den här rapporten är från en annans instans användare och handlar om annans instans inlägg. Det har vidarebefordrats till dig eftersom det rapporterade innehållet är som svar till en av dina användare.
       forwarded_to: Vidarebefordrad till %{domain}
@@ -1569,7 +1567,9 @@ sv:
     blocks: Du blockerar
     bookmarks: Bokmärken
     csv: CSV
+    custom_filters: Filter
     domain_blocks: Domän-blockeringar
+    json: JSON
     lists: Listor
     mutes: Du tystar
     storage: Medialagring

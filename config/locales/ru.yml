@@ -237,22 +237,22 @@ ru:
         resend_user: Повторная отправка писем с подтверждением
         reset_password_user: Сброс паролей пользователей
         resolve_report: Отметка жалоб решёнными
-        sensitive_account: Присвоение пользователям отметки «деликатного содержания»
+        sensitive_account: Включение принудительного скрытия медиа для учётной записи
         silence_account: Ограничение учётных записей пользователей
         suspend_account: Блокировка пользователей
         unassigned_report: Отмена назначений на жалобы
-        unblock_email_account: Разблокировка e-mail адресов
-        unsensitive_account: Снятие с пользователей отметки «деликатного содержания»
+        unblock_email_account: Разблокировка адресов эл. почты
+        unsensitive_account: Отключение принудительного скрытия медиа для учётной записи
         unsilence_account: Отмена ограничения учётных записей пользователей
         unsuspend_account: Разблокировка пользователей
         update_announcement: Редактирование объявлений
         update_custom_emoji: Обновление эмодзи
         update_domain_block: Изменение блокировки домена
-        update_ip_block: Обновление правил для IP-адресов
-        update_report: Изменение жалоб
-        update_status: Изменение постов
-        update_user_role: Изменение ролей
-        update_username_block: Обновить правило имени пользователя
+        update_ip_block: Редактирование правил для IP-адресов
+        update_report: Редактирование жалоб
+        update_status: Редактирование постов
+        update_user_role: Редактирование ролей
+        update_username_block: Редактирование правил для имени пользователя
       actions:
         approve_appeal_html: "%{name} удовлетворил(а) апелляцию %{target}"
         approve_user_html: "%{name} одобрил(а) заявку на регистрацию %{target}"
@@ -306,22 +306,23 @@ ru:
         resend_user_html: "%{name} повторно отправил(а) письмо с подтверждением для %{target}"
         reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
         resolve_report_html: "%{name} отметил(а) жалобу %{target} как решённую"
-        sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатного характера»"
+        sensitive_account_html: "%{name} включил(а) принудительное скрытие медиа для учётной записи %{target}"
         silence_account_html: "%{name} ограничил(а) учётную запись %{target}"
         suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
         unassigned_report_html: "%{name} отменил(а) назначение на жалобу %{target}"
-        unblock_email_account_html: "%{name} разблокировал(а) e-mail адрес %{target}"
-        unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатного характера»"
+        unblock_email_account_html: "%{name} разблокировал(а) адрес электронной почты пользователя %{target}"
+        unsensitive_account_html: "%{name} отключил(а) принудительное скрытие медиа для учётной записи %{target}"
         unsilence_account_html: "%{name} отменил(а) ограничение учётной записи %{target}"
         unsuspend_account_html: "%{name} разблокировал(а) учётную запись %{target}"
         update_announcement_html: "%{name} отредактировал(а) объявление %{target}"
+        update_collection_html: "%{name} внес(ла) изменения в подборку пользователя %{target}"
         update_custom_emoji_html: "%{name} обновил(а) эмодзи %{target}"
         update_domain_block_html: "%{name} обновил(а) блокировку домена для %{target}"
-        update_ip_block_html: "%{name} изменил(а) правило для IP %{target}"
-        update_report_html: "%{name} изменил(а) жалобу %{target}"
-        update_status_html: "%{name} изменил(а) пост пользователя %{target}"
-        update_user_role_html: "%{name} изменил(а) роль %{target}"
-        update_username_block_html: "%{name} обновил(а) правило для имён пользователей, содержащих %{target}"
+        update_ip_block_html: "%{name} внес(ла) изменения в правило для IP %{target}"
+        update_report_html: "%{name} внес(ла) изменения в жалобу %{target}"
+        update_status_html: "%{name} отредактировал(а) пост пользователя %{target}"
+        update_user_role_html: "%{name} внес(ла) изменения в роль %{target}"
+        update_username_block_html: "%{name} внес(ла) изменения в правило для имён пользователей, содержащих %{target}"
       deleted_account: удалённая учётная запись
       empty: Журнал пуст.
       filter_by_action: Фильтр по действию
@@ -344,8 +345,8 @@ ru:
         title: Предпросмотр уведомления о новом объявлении
       publish: Опубликовать
       published_msg: Объявление опубликовано
-      scheduled_for: Запланировано на %{time}
-      scheduled_msg: Объявление добавлено в очередь публикации.
+      scheduled_for: Будет опубликовано %{time}
+      scheduled_msg: Объявление с отложенной публикацией создано
       title: Объявления
       unpublish: Скрыть
       unpublished_msg: Объявление скрыто
@@ -704,7 +705,6 @@ ru:
       action_log: Журнал аудита
       action_taken_by: 'Действие предпринято:'
       actions:
-        delete_description_html: Обжалованные сообщения будут удалены, а претензия - записана, чтобы помочь вам в решении конфликтов при повторных нарушениях со стороны того же аккаунта.
         mark_as_sensitive_description_html: Весь медиаконтент в обжалованных сообщениях будет отмечен как чувствительный, а претензия - записана, чтобы помочь вам в решении конфликтов при повторных нарушениях со стороны того же аккаунта.
         other_description_html: Посмотрите больше настроек для контроля поведения учётной записи и наладьте связь с аккаунтом с жалобой.
         resolve_description_html: Никаких действий не будет выполнено относительно доложенного содержимого. Жалоба будет закрыта.
@@ -731,7 +731,6 @@ ru:
       confirm: Подтвердить
       confirm_action: Произвести модерацию учётной записи %{acct}
       created_at: Создана
-      delete_and_resolve: Удалить посты
       forwarded: Переслано
       forwarded_replies_explanation: Этот отчёт получен от удаленного пользователя и касается удаленного содержимого. Он был направлен вам, так как содержимое сообщения является ответом одному из ваших пользователей.
       forwarded_to: Переслано на %{domain}

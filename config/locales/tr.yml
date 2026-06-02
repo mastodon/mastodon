@@ -746,7 +746,7 @@ tr:
       action_log: Denetim günlüğü
       action_taken_by: tarafından gerçekleştirilen eylem
       actions:
-        delete_description_html: Bildirilen gönderiler silinecek ve aynı hesapla ileride yaşabileceğiniz etkileşimlerde çoğaltmanız için bir eylem kaydedilecek.
+        delete_description_html: Bildirilen gönderiler ve/veya koleksiyonlar silinecek ve aynı hesap tarafından gelecekte işlenecek ihlallerde durumun üst mercilere iletilmesine yardımcı olmak amacıyla bir uyarı kaydı tutulacaktır.
         mark_as_sensitive_description_html: Bildirilen gönderilerdeki medya dosyaları hassas olarak işaretlenecek ve aynı hesabın gelecekteki ihlallerinde daha yetkili makamlara bildirmenize yardımcı olmak için bir eylem kaydedilecek.
         other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
         resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
@@ -773,7 +773,7 @@ tr:
       confirm: Onayla
       confirm_action: "%{acct} üzerindeki denetleme eylemini onayla"
       created_at: Şikayet edildi
-      delete_and_resolve: Gönderileri sil
+      delete_and_resolve: İçeriği sil
       forwarded: İletildi
       forwarded_replies_explanation: Bu bildirim başka bir sunucudaki kullanıcı ve içerik ile ilgili. Bildirilen içerik kullanıcılarınızdan birine yanıt şeklinde olduğu için size yönlendirildi.
       forwarded_to: "%{domain}'e iletildi"
@@ -1569,7 +1569,9 @@ tr:
     blocks: Engellediklerin
     bookmarks: Yer imleri
     csv: CSV
+    custom_filters: Filtreler
     domain_blocks: Alan adı engelleri
+    json: JSON
     lists: Listeler
     mutes: Sessize aldıkların
     storage: Medya depolaması

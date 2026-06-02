@@ -746,7 +746,7 @@ nl:
       action_log: Auditlog
       action_taken_by: Maatregel genomen door
       actions:
-        delete_description_html: De gerapporteerde berichten worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
+        delete_description_html: De gerapporteerde berichten en/of verzamelingen worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen door hetzelfde account sneller af te kunnen handelen.
         mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
         other_description_html: Bekijk meer opties voor het controleren van het gedrag van en de communicatie met het gerapporteerde account.
         resolve_description_html: Er wordt tegen het gerapporteerde account geen maatregel genomen, geen overtreding geregistreerd en de rapportage wordt gemarkeerd als opgelost.
@@ -773,7 +773,7 @@ nl:
       confirm: Bevestigen
       confirm_action: Bevestig moderatiemaatregel tegen @%{acct}
       created_at: Gerapporteerd op
-      delete_and_resolve: Bericht verwijderen
+      delete_and_resolve: Inhoud verwijderen
       forwarded: Doorgestuurd
       forwarded_replies_explanation: Dit rapport komt van een externe gebruiker en gaat over externe inhoud. Het is naar je doorgestuurd omdat de gerapporteerde inhoud een reactie is op een van jouw gebruikers.
       forwarded_to: Doorgestuurd naar %{domain}
@@ -1569,7 +1569,9 @@ nl:
     blocks: Geblokkeerde accounts
     bookmarks: Bladwijzers
     csv: CSV
+    custom_filters: Filters
     domain_blocks: Geblokkeerde domeinen
+    json: JSON
     lists: Lijsten
     mutes: Genegeerde accounts
     storage: Mediabestanden
