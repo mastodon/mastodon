@@ -164,8 +164,7 @@ export function focusItemSibling(index: number, direction: 1 | -1) {
 
   // If sibling element is empty, we skip it
   if (siblingItem.matches(':empty')) {
-    focusItemSibling(index + direction, direction);
-    return true;
+    return focusItemSibling(index + direction, direction);
   }
 
   // Check if the sibling is a post or a 'follow suggestions' widget
