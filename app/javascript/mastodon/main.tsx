@@ -42,17 +42,20 @@ function main() {
     store.dispatch(setupBrowserNotifications());
 
     if (me && 'serviceWorker' in navigator) {
-      if (isProduction()) {
-        await navigator.serviceWorker.register('/packs/sw.js');
+      const swPath = isProduction() ? '/packs/sw.js' : '/dev-sw.js';
 
+      await navigator.serviceWorker.register(swPath, {
+        scope: '/',
+        type: 'module',
+      });
+
+      if (isProduction()) {
         if ('Notification' in window && Notification.permission === 'granted') {
           const registerPushNotifications =
             await import('mastodon/actions/push_notifications');
 
           store.dispatch(registerPushNotifications.register());
         }
-      } else {
-        // TODO: Register the dev service worker.
       }
     }
 
