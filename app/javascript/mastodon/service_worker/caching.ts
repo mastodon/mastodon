@@ -44,6 +44,7 @@ async function cacheFirst({
   const request = event.request;
   const cachedResponse = await cache.match(request);
 
+  // Start expiring cache items while the process continues.
   void expireCachedItems({ name, ttl, max });
 
   if (cachedResponse) {
@@ -77,7 +78,7 @@ async function cacheFirst({
   return networkResponse;
 }
 
-async function expireCachedItems({
+export async function expireCachedItems({
   name,
   ttl = DAY * 30,
   max = 5,
