@@ -3,6 +3,8 @@
 class ActivityPub::FeaturedItemSerializer < ActivityPub::Serializer
   include RoutingHelper
 
+  context_extensions :featured_collections
+
   attributes :id, :type, :featured_object, :feature_authorization, :published
 
   def id
