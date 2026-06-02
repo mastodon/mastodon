@@ -6,11 +6,12 @@ const now = 1_700_000_000_000;
 
 describe('expireCachedItems', () => {
   beforeEach(() => {
-    vi.restoreAllMocks();
-    vi.spyOn(Date, 'now').mockReturnValue(now);
+    vi.useFakeTimers();
+    vi.setSystemTime(now);
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     vi.unstubAllGlobals();
   });
 
@@ -18,8 +19,8 @@ describe('expireCachedItems', () => {
     const cache = new MockCache();
     const missingRequest = new Request('https://example.com/missing');
 
-    setCacheEntry(cache, '/fresh', now - DAY);
-    setCacheEntry(cache, '/expired', now - DAY * 31);
+    cache.set('/fresh', now - DAY);
+    cache.set('/expired', now - DAY * 31);
     cache.store.set(missingRequest.url, { request: missingRequest });
 
     vi.stubGlobal('caches', {
@@ -36,9 +37,9 @@ describe('expireCachedItems', () => {
   test('trims the oldest valid entries when the cache exceeds max size', async () => {
     const cache = new MockCache();
 
-    setCacheEntry(cache, '/oldest', now - DAY * 3);
-    setCacheEntry(cache, '/older', now - DAY * 2);
-    setCacheEntry(cache, '/newest', now - DAY);
+    cache.set('/oldest', now - DAY * 3);
+    cache.set('/older', now - DAY * 2);
+    cache.set('/newest', now - DAY);
 
     vi.stubGlobal('caches', {
       open: vi.fn().mockResolvedValue(cache),
@@ -60,8 +61,8 @@ describe('expireCachedItems', () => {
       request: untimestampedRequest,
       response: createResponse(),
     });
-    setCacheEntry(cache, '/older', now - DAY * 2);
-    setCacheEntry(cache, '/newer', now - DAY);
+    cache.set('/older', now - DAY * 2);
+    cache.set('/newer', now - DAY);
 
     vi.stubGlobal('caches', {
       open: vi.fn().mockResolvedValue(cache),
@@ -78,11 +79,12 @@ describe('expireCachedItems', () => {
 
 describe('handleFetch', () => {
   beforeEach(() => {
-    vi.restoreAllMocks();
-    vi.spyOn(Date, 'now').mockReturnValue(now);
+    vi.useFakeTimers();
+    vi.setSystemTime(now);
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     vi.unstubAllGlobals();
   });
 
@@ -337,6 +339,17 @@ class MockCache implements Cache {
 
     return Promise.resolve();
   }
+
+  set(pathname: string, timestamp?: number) {
+    const request = new Request(`https://example.com${pathname}`);
+
+    this.store.set(request.url, {
+      request,
+      response: createResponse(timestamp),
+    });
+
+    return request;
+  }
 }
 
 function createResponse(timestamp?: number) {
@@ -347,17 +360,6 @@ function createResponse(timestamp?: number) {
   }
 
   return new Response('body', { headers });
-}
-
-function setCacheEntry(cache: MockCache, pathname: string, timestamp?: number) {
-  const request = new Request(`https://example.com${pathname}`);
-
-  cache.store.set(request.url, {
-    request,
-    response: createResponse(timestamp),
-  });
-
-  return request;
 }
 
 function createRequest(pathname: string, destination = '') {
