@@ -62,18 +62,17 @@ export function focusColumn(index = 1) {
 
   function fallback() {
     focusColumnTitle(index + indexOffset, isMultiColumnLayout);
+    return false;
   }
 
   if (!column) {
-    fallback();
-    return;
+    return fallback();
   }
 
   const container = column.querySelector('.scrollable');
 
   if (!container) {
-    fallback();
-    return;
+    return fallback();
   }
 
   const focusableItems = Array.from(
@@ -86,8 +85,7 @@ export function focusColumn(index = 1) {
   const itemToFocus = findFirstVisibleWithRect(focusableItems);
 
   if (!itemToFocus) {
-    fallback();
-    return;
+    return fallback();
   }
 
   const viewportWidth =
@@ -110,6 +108,7 @@ export function focusColumn(index = 1) {
     itemToFocus.item.scrollIntoView(true);
   }
   itemToFocus.item.focus();
+  return true;
 }
 
 /**
@@ -124,6 +123,18 @@ export function getFocusedItemIndex() {
 
   const items = Array.from(parentElement.children);
   return items.indexOf(focusedItem);
+}
+
+/**
+ * Get the index of the column that contains the user's focus
+ */
+export function getFocusedColumnIndex() {
+  const columnWithFocus = document.activeElement?.closest('.column');
+
+  if (!columnWithFocus) return 1;
+
+  const allColumns = Array.from(document.querySelectorAll('.column'));
+  return allColumns.indexOf(columnWithFocus) + 1;
 }
 
 /**
