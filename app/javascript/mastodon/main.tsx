@@ -44,9 +44,9 @@ function main() {
     if (
       me &&
       'serviceWorker' in navigator &&
-      (isDevelopment() || isProduction())
+      (isDevelopment() || isProduction()) // Disallow testing environment
     ) {
-      let swPath = '/packs/sw.js';
+      let swPath = '/sw.js';
       if (isDevelopment()) {
         const { default: swDevUrl } =
           await import('@/mastodon/service_worker/sw?url');
