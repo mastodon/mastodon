@@ -61,7 +61,6 @@ module ContextHelper
       'FeatureAuthorization' => 'https://w3id.org/fep/7aa9#FeatureAuthorization',
       'topic' => { '@id' => 'https://w3id.org/fep/7aa9#topic', '@type' => '@id' },
       'featuredObject' => { '@id' => 'https://w3id.org/fep/7aa9#featuredObject', '@type' => '@id' },
-      'featuredObjectType' => 'https://w3id.org/fep/7aa9#featuredObjectType',
       'featureAuthorization' => { '@id' => 'https://w3id.org/fep/7aa9#featureAuthorization', '@type' => '@id' },
     },
     feature_authorizations: {
