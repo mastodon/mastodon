@@ -292,56 +292,6 @@ RSpec.describe BulkImportService do
       end
     end
 
-    context 'when importing custom_filters' do
-      let(:import_type) { 'custom_filters' }
-      let(:overwrite)   { false }
-
-      let!(:rows) do
-        [{
-          'title' => 'foo',
-          'expire_at' => nil,
-          'context' => ['home', 'notifications'],
-          'action' => 'warn',
-          'keywords_attributes' => [{
-            'keyword' => 'discourse',
-            'whole_word' => true,
-          }, {
-            'keyword' => 'something',
-            'whole_word' => false,
-          }],
-          'statuses' => ['Lorem ipsum dolor sit amet'],
-        }, {
-          'title' => 'bar',
-          'expire_at' => nil,
-          'context' => ['notifications'],
-          'action' => 'warn',
-          'keywords_attributes' => [{
-            'keyword' => 'discourse',
-            'whole_word' => true,
-          }, {
-            'keyword' => 'something',
-            'whole_word' => false,
-          }],
-          'statuses' => ['something something'],
-        }].map { |data| import.rows.create!(data: data) }
-      end
-
-      it 'enqueues workers for the expected rows and updates bookmarks after worker run' do
-        subject.call(import)
-
-        expect(row_worker_job_args)
-          .to match_array(rows.map(&:id))
-
-        stub_fetch_remote_and_drain_workers
-        expect(account.custom_filters.map(&:title))
-          .to eq(['foo', 'bar'])
-        expect(account.custom_filters.first.statuses.count)
-          .to eq(1)
-        expect(account.custom_filters.first.keywords.count)
-          .to eq(2)
-      end
-    end
-
     context 'when importing bookmarks with overwrite' do
       let(:import_type) { 'bookmarks' }
       let(:overwrite)   { true }
@@ -376,6 +326,106 @@ RSpec.describe BulkImportService do
 
         expect(account.bookmarks.map { |bookmark| bookmark.status.uri })
           .to contain_exactly(status.uri, bookmarked.uri, 'https://domain.unknown/foo')
+      end
+    end
+
+    context 'when importing custom_filters' do
+      let(:import_type) { 'custom_filters' }
+      let!(:rows) do
+        [{
+          'title' => 'baz',
+          'expires_at' => nil,
+          'context' => ['home', 'notifications'],
+          'action' => 'warn',
+          'keywords_attributes' => [{
+            'keyword' => 'discourse',
+            'whole_word' => true,
+          }, {
+            'keyword' => 'something',
+            'whole_word' => false,
+          }],
+          'statuses' => ['http://localhost:3000/ap/users/116646814515254858/statuses/116681350935935708'],
+        }, {
+          'title' => 'buzz',
+          'expires_at' => nil,
+          'context' => ['notifications'],
+          'action' => 'warn',
+          'keywords_attributes' => [{
+            'keyword' => 'discourse',
+            'whole_word' => true,
+          }, {
+            'keyword' => 'something',
+            'whole_word' => false,
+          }],
+          'statuses' => [ActivityPub::TagManager.instance.uri_for(status)],
+        }].map { |data| import.rows.create!(data: data) }
+      end
+      let(:overwrite) { false }
+      let(:status) { Fabricate(:status, account: account, text: 'something something') }
+      let(:filter) { Fabricate(:custom_filter, account: account, title: 'a mazing title') }
+      let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter, status: status) }
+
+      before do
+        status_filter
+      end
+
+      it 'enqueues workers for the expected rows and updates filters, keywords and statuses after worker run' do
+        subject.call(import)
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
+        stub_fetch_remote_and_drain_workers
+        expect(account.custom_filters.count).to eq(3)
+        expect(account.custom_filters.order(:phrase).last.statuses.count).to eq(1)
+        expect(account.custom_filters.last.keywords.count).to eq(2)
+      end
+    end
+
+    context 'when importing custom_filters with overwrite' do
+      let(:import_type) { 'custom_filters' }
+      let!(:rows) do
+        [{
+          'title' => 'baz',
+          'expires_at' => nil,
+          'context' => ['home', 'notifications'],
+          'action' => 'warn',
+          'keywords_attributes' => [{
+            'keyword' => 'discourse',
+            'whole_word' => true,
+          }, {
+            'keyword' => 'something',
+            'whole_word' => false,
+          }],
+          'statuses' => ['http://localhost:3000/ap/users/116646814515254858/statuses/116681350935935708'],
+        }, {
+          'title' => 'buzz',
+          'expires_at' => nil,
+          'context' => ['notifications'],
+          'action' => 'warn',
+          'keywords_attributes' => [{
+            'keyword' => 'discourse',
+            'whole_word' => true,
+          }, {
+            'keyword' => 'something',
+            'whole_word' => false,
+          }],
+          'statuses' => [ActivityPub::TagManager.instance.uri_for(status)],
+        }].map { |data| import.rows.create!(data: data) }
+      end
+      let(:overwrite) { true }
+      let(:status) { Fabricate(:status, text: 'something something') }
+      let(:filter) { Fabricate(:custom_filter, account: account, title: 'a mazing title') }
+      let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter, status: status) }
+
+      before do
+        status_filter
+      end
+
+      it 'enqueues workers for the expected rows and updates filters, keywords and statuses after worker run' do
+        subject.call(import)
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
+        stub_fetch_remote_and_drain_workers
+        expect(account.custom_filters.count).to eq(2)
+        expect(account.custom_filters.order(:phrase).last.statuses.count).to eq(1)
+        expect(account.custom_filters.last.keywords.count).to eq(2)
       end
     end
 
