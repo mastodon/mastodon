@@ -6,6 +6,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { createSelector } from '@reduxjs/toolkit';
 
+import type { ApiRuleJSON } from '@/mastodon/api_types/instance';
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
 import { Select } from '@/mastodon/components/form_fields';
 import type { RootState } from '@/mastodon/store';
@@ -104,13 +105,13 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
               defaultMessage='Language'
             />
           </label>
-          <Select onChange={handleLocaleChange} id='language-select'>
+          <Select
+            onChange={handleLocaleChange}
+            id='language-select'
+            value={selectedLocale}
+          >
             {localeOptions.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-                selected={option.value === selectedLocale}
-              >
+              <option key={option.value} value={option.value}>
                 {option.text}
               </option>
             ))}
@@ -121,15 +122,10 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
   );
 };
 
-const selectRules = (state: RootState) => {
-  const rules = state.server.server.item?.rules;
-
-  if (!rules) {
-    return [];
-  }
-
-  return rules;
-};
+const selectRules = createSelector(
+  [(state: RootState) => state.server.server.item],
+  (item) => item?.rules ?? [],
+);
 
 const rulesSelector = createSelector(
   [selectRules, (_state, locale: string) => locale],
@@ -142,18 +138,19 @@ const rulesSelector = createSelector(
         return rule;
       }
 
+      const translatedRule: ApiRuleJSON = { ...rule };
       const partialLocale = locale.split('-')[0];
       if (partialLocale && translations[partialLocale]) {
-        rule.text = translations[partialLocale].text;
-        rule.hint = translations[partialLocale].hint;
+        translatedRule.text = translations[partialLocale].text;
+        translatedRule.hint = translations[partialLocale].hint;
       }
 
       if (translations[locale]) {
-        rule.text = translations[locale].text;
-        rule.hint = translations[locale].hint;
+        translatedRule.text = translations[locale].text;
+        translatedRule.hint = translations[locale].hint;
       }
 
-      return rule;
+      return translatedRule;
     });
   },
 );
