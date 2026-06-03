@@ -22,7 +22,6 @@ All notable changes to this project will be documented in this file.
 - Add `exclude_direct` flag to `/api/v1/accounts/:id/statuses` to exclude direct messages (#37763 by @ClearlyClaire)
 - Add `max_note_length` and `max_display_name_length` attributes to `configuration.accounts` in `Instance` entity (#37991 by @ClearlyClaire)
 - Add `GET /api/v1/donation_campaigns` (#37880 by @ClearlyClaire)
-  - TODO: documentation
 - Add profile field limits to instance entity in REST API (#37535 by @mkljczk)
   - This adds attributes `configuration.accounts.max_profile_fields`, `configuration.accounts.profile_field_name_limit` and `configuration.accounts.profile_field_value_limit` to the [`Instance` entity](https://docs.joinmastodon.org/entities/Instance).
 - Add `unresolved` flag to `/api/v1/admin/reports` to query both resolved and unresolved reports (#38323 by @mkljczk)
@@ -51,7 +50,7 @@ All notable changes to this project will be documented in this file.
   - This finishes up work started in 2024 by completely revamping how Wrapstodon reports are generated and displayed, reducing the amount of data collected and generating reports when active users ask for them.
   - Instead of requiring manual generation from a server administrator, this is now offered between the 10th of December and the end of each year if enabled in the server settings.
   - The design of the Wrapstodon report has also been fully reworked to be more delightful and easier to share!
-  - TODO: API doc (#37055, #37096)
+  - The relevant API endpoints are documented at https://docs.joinmastodon.org/methods/annual_reports/
 - Change pending user notification email to link directly to the pending account (#39206 by @vmstan)
 - Changed emoji processing in web UI to make it less resource intensive and more robust (#39077, #39008, #39088, #38892, #38885, #38965, #38854, #38825, #38784, #38541, #37442, #37300, #37306, #37271, #37255, #37284, #37272, #37178, #37084, #37080, #37418, #39167, and #39126 by @ChaosExAnima, @ClearlyClaire, @diondiondion, and @gomasy)
 - Change composer textarea to have a limited height to prevent column scrolling (#39268 by @diondiondion)
