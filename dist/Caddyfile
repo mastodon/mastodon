@@ -21,8 +21,6 @@
                 lb_policy least_conn
                 fail_duration 30s
                 max_fails 3
-                header_up Host {host}
-                header_up X-Real-IP {remote_host}
                 header_up Proxy ""
         }
 }
@@ -37,7 +35,15 @@ mastodon.instance.com {
         header ?Strict-Transport-Security "max-age=63072000; includeSubDomains;"
         header ?X-Content-Type-Options nosniff
 
-        @static_assets path /assets/* /avatars/* /emoji/* /headers/* /ocr/* /packs/* /shortcuts/* /sounds/*
+        # Fingerprinted build output — filename changes on every rebuild, so cache forever
+        @fingerprinted path /assets/* /packs/*
+        handle @fingerprinted {
+                header Cache-Control "public, max-age=2419200, immutable"
+                import instance1_backend
+        }
+
+        # Replaceable static content — long cache but force a revalidate
+        @static_assets path /avatars/* /emoji/* /headers/* /ocr/* /shortcuts/* /sounds/*
         handle @static_assets {
                 header Cache-Control "public, max-age=2419200, must-revalidate"
                 import instance1_backend
@@ -59,11 +65,5 @@ mastodon.instance.com {
         }
         handle {
                 import instance1_backend
-        }
-
-        handle_errors {
-                rewrite * /500.html
-                root * /home/mastodon/live/public
-                file_server
         }
 }
