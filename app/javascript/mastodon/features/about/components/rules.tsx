@@ -105,13 +105,13 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
               defaultMessage='Language'
             />
           </label>
-          <Select onChange={handleLocaleChange} id='language-select'>
+          <Select
+            onChange={handleLocaleChange}
+            id='language-select'
+            value={selectedLocale}
+          >
             {localeOptions.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-                selected={option.value === selectedLocale}
-              >
+              <option key={option.value} value={option.value}>
                 {option.text}
               </option>
             ))}
