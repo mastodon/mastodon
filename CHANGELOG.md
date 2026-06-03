@@ -21,7 +21,6 @@ All notable changes to this project will be documented in this file.
   - Documentation: https://docs.joinmastodon.org/entities/PreviewCard/#missing_attribution
 - Add `exclude_direct` flag to `/api/v1/accounts/:id/statuses` to exclude direct messages (#37763 by @ClearlyClaire)
 - Add `max_note_length` and `max_display_name_length` attributes to `configuration.accounts` in `Instance` entity (#37991 by @ClearlyClaire)
-- Add `GET /api/v1/donation_campaigns` (#37880 by @ClearlyClaire)
 - Add profile field limits to instance entity in REST API (#37535 by @mkljczk)
   - This adds attributes `configuration.accounts.max_profile_fields`, `configuration.accounts.profile_field_name_limit` and `configuration.accounts.profile_field_value_limit` to the [`Instance` entity](https://docs.joinmastodon.org/entities/Instance).
 - Add `unresolved` flag to `/api/v1/admin/reports` to query both resolved and unresolved reports (#38323 by @mkljczk)
@@ -87,7 +86,6 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 
-- Remove PWA plugin (#39250 by @ChaosExAnima)
 - Remove support for EOL Node version 20 (#38926 by @mjankowski)
 - Remove support for Ruby 3.2 (#37476 by @mjankowski)
 - Remove support for `ENABLE_SIDEKIQ_UNIQUE_JOBS_UI` (#38340 by @ClearlyClaire)
