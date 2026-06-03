@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 - Add fallback attributes to notifications for new and infrequent notifications in REST API (#38832 and #38860 by @ClearlyClaire)
   - This adds a [`supported_types`](https://docs.joinmastodon.org/methods/notifications/#query-parameters-1) parameter to `GET /api/v1/notifications`, `GET /api/v1/notifications/:id`, `GET /api/v2/notifications`, and `GET /api/v2/notifications/:group_key` along with a new `fallback` attribute for notifications and notification groups.
 - Add support for posts in vertical languages in web UI (#37204, #38205, and #38797 by @shimon1024)
+- Add `PageUp` and `PageDown` hotkeys for list navigation (#39252 by @diondiondion)
 - Add `g`+`e` keyboard shortcut to access the trending page in web UI (#38014 by @antoinecellerier)
 - Add `Cmd`/`Ctrl`+`Enter` for form submissions in more text areas in web UI (#37821 by @diondiondion)
 - Add support for quoting by dragging a link into the compose form in web UI (#36859 and #36896 by @ClearlyClaire and @tribela)
@@ -93,7 +94,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Fix accessibility issues in web UI (#37250, #38006, #38033, #38188, #38230, #38252, #38257, #38285, #38293, #38362, #38387, #38459, #38796, #38801, #39098, #39111, #39120, #39129, #39133, #39134, #39144, #39145, #39149, #39164, #39165, #39169, #39181, and #39252 by @ChaosExAnima and @diondiondion)
+- Fix accessibility issues in web UI (#37250, #38006, #38033, #38188, #38230, #38252, #38257, #38285, #38293, #38362, #38387, #38459, #38796, #38801, #39098, #39111, #39120, #39129, #39133, #39134, #39144, #39145, #39149, #39164, #39165, #39169, and #39181 by @ChaosExAnima and @diondiondion)
 - Fix processing some link previews where text is language-tagged (#39190 by @zunda)
 - Fix error when “New trends” email is sent at the same time trends are recomputed (#39122 by @arte7)
 - Fix hover card opening even when not preceded by mouse movement in web UI (#39166 by @diondiondion)
