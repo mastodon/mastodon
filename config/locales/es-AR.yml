@@ -746,7 +746,7 @@ es-AR:
       action_log: Registro de auditoría
       action_taken_by: Acción tomada por
       actions:
-        delete_description_html: Los mensajes denunciados serán eliminados y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
+        delete_description_html: Los mensajes y/o las colecciones denunciadas serán eliminadas y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
         mark_as_sensitive_description_html: Los archivos de medios en los mensajes denunciados se marcarán como sensibles y se registrará un incumplimiento para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará el incumplimiento, y se cerrará la denuncia.
@@ -773,7 +773,7 @@ es-AR:
       confirm: Confirmar
       confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
-      delete_and_resolve: Eliminar mensajes
+      delete_and_resolve: Eliminar contenido
       forwarded: Reenviado
       forwarded_replies_explanation: Esta denuncia es de un usuario remoto y sobre contenido remoto. Se te reenvió porque el contenido denunciado es en respuesta a uno de tus usuarios.
       forwarded_to: Reenviado a %{domain}
@@ -1569,7 +1569,9 @@ es-AR:
     blocks: Cuentas que bloqueaste
     bookmarks: Marcadores
     csv: CSV
+    custom_filters: Filtros
     domain_blocks: Dominios bloqueados
+    json: JSON
     lists: Listas
     mutes: Cuentas que silenciaste
     storage: Almacenamiento de medios

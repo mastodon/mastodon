@@ -44,15 +44,10 @@
 class User < ApplicationRecord
   self.ignored_columns += %w(
     admin
-    current_sign_in_ip
     encrypted_otp_secret
     encrypted_otp_secret_iv
     encrypted_otp_secret_salt
-    filtered_languages
-    last_sign_in_ip
     moderator
-    remember_created_at
-    remember_token
     skip_sign_in_token
   )
 

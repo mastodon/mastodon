@@ -93,7 +93,7 @@ export const HoverCardAccount = forwardRef<
               ) : (
                 <FormattedMessage
                   id='limited_account_hint.title'
-                  defaultMessage='This profile has been hidden by the moderators of {domain}.'
+                  defaultMessage='This profile or server has been hidden by the moderators of {domain}.'
                   values={{ domain }}
                 />
               )}

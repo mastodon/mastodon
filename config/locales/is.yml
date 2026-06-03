@@ -746,7 +746,7 @@ is:
       action_log: Atvikaskrá
       action_taken_by: Aðgerð framkvæmd af
       actions:
-        delete_description_html: Kærðum færslum verður eytt og refsing skráð svo þú eigir auðveldara með að bregðast við í framtíðinni verði um fleiri brot að ræða frá sama notandaaðgangi.
+        delete_description_html: Kærðum færslum og/eða söfnum verður eytt og skráð bann til að flýta fyrir áframhaldandi brotum af hálfu sama notanda.
         mark_as_sensitive_description_html: Myndefnið í kærðu færslunum verður merkt sem viðkvæmt og refsing verður skráð til minnis fyrir viðbrögð gegn mögulegum framtíðarbrotum frá sama notandaaðgangi.
         other_description_html: Skoðaðu fleir valkosti fyrir stjórnun á hegðun notandaaðgangsins og til að stýra samskiptum við kærðan notandaaðgang.
         resolve_description_html: Til engra aðgerða verður tekið gagnvart kærðum færslum, engin refsing verður skráð og kærunni verður lokað.
@@ -773,7 +773,7 @@ is:
       confirm: Staðfesta
       confirm_action: Staðfesta umsjónaraðgerðir gagnvart @%{acct}
       created_at: Tilkynnt
-      delete_and_resolve: Eyða færslum
+      delete_and_resolve: Eyða efni
       forwarded: Áframsent
       forwarded_replies_explanation: Þessi kæra er frá fjartengdum notanda og er um fjartengt efni. Hún hefur verið framsend til þín þar sem kærða efnið er í svari til eins af notendunum þínum.
       forwarded_to: Áframsent á %{domain}
@@ -1573,7 +1573,9 @@ is:
     blocks: Þú útilokar
     bookmarks: Bókamerki
     csv: CSV
+    custom_filters: Síur
     domain_blocks: Útilokanir á lénum
+    json: JSON
     lists: Listar
     mutes: Þú þaggar
     storage: Geymsla myndefnis

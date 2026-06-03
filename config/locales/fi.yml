@@ -738,7 +738,7 @@ fi:
       action_log: Tarkastusloki
       action_taken_by: Toimen tehnyt
       actions:
-        delete_description_html: Raportoidut julkaisut poistetaan ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
+        delete_description_html: Raportoidut julkaisut ja/tai kokoelmat poistetaan ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         mark_as_sensitive_description_html: Raportoitujen julkaisujen media merkitään arkaluonteiseksi ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja raportoidulle tilille kohdistuvan viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä kohtaan ei ryhdytä toimiin, varoitusta ei kirjata ja raportti suljetaan.
@@ -765,7 +765,7 @@ fi:
       confirm: Vahvista
       confirm_action: Vahvista moderointitoimi käyttäjää @%{acct} kohtaan
       created_at: Raportoitu
-      delete_and_resolve: Poista julkaisut
+      delete_and_resolve: Poista sisältö
       forwarded: Välitetty
       forwarded_replies_explanation: Tämä raportti on etäkäyttäjältä ja koskee etäsisältöä. Se on välitetty sinulle, koska raportoitu sisältö on vastaus jollekin käyttäjällesi.
       forwarded_to: Välitetty palvelimelle %{domain}
@@ -1561,7 +1561,9 @@ fi:
     blocks: Estot
     bookmarks: Kirjanmerkit
     csv: CSV
+    custom_filters: Suodattimet
     domain_blocks: Verkkotunnusten estot
+    json: JSON
     lists: Listat
     mutes: Mykistykset
     storage: Mediatiedostot

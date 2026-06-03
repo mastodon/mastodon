@@ -746,7 +746,7 @@ fr-CA:
       action_log: Journal d’audit
       action_taken_by: Intervention de
       actions:
-        delete_description_html: Les messages signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
+        delete_description_html: Les messages ou les collections signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas de nouvelles infractions par le même compte.
         mark_as_sensitive_description_html: Les médias des messages signalés seront marqués comme sensibles et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
@@ -773,7 +773,7 @@ fr-CA:
       confirm: Confirmer
       confirm_action: Confirmer l'action de modération contre @%{acct}
       created_at: Signalé
-      delete_and_resolve: Supprimer les messages
+      delete_and_resolve: Supprimer le contenu
       forwarded: Transféré
       forwarded_replies_explanation: Ce rapport provient d'un utilisateur sur une autre instance et concerne du contenu non-local. Il vous a été transmis car le contenu signalé est en réponse à l'un de vos utilisateurs.
       forwarded_to: Transféré à %{domain}
@@ -1569,7 +1569,9 @@ fr-CA:
     blocks: Vous bloquez
     bookmarks: Marque-pages
     csv: CSV
+    custom_filters: Filtres
     domain_blocks: Blocages de domaine
+    json: JSON
     lists: Listes
     mutes: Vous masquez
     storage: Médias stockés
