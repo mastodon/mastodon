@@ -122,15 +122,10 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
   );
 };
 
-const selectRules = (state: RootState) => {
-  const rules = state.server.server.item?.rules;
-
-  if (!rules) {
-    return [];
-  }
-
-  return rules;
-};
+const selectRules = createSelector(
+  [(state: RootState) => state.server.server.item],
+  (item) => item?.rules ?? [],
+);
 
 const rulesSelector = createSelector(
   [selectRules, (_state, locale: string) => locale],
