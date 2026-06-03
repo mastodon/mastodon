@@ -2,18 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.6.0-beta1]
+## [4.6.0] - UNRELEASED
 
 ### Added
 
-- **Add collections** (#37992, #37005, #37049, #37020, #37053, #37110, #37117, #37122, #37154, #37157, #37176, #37192, #37222, #37225, #37254, #37277, #37298, #37322, #37434, #37468, #37514, #37512, #37549, #37556, #37560, #37580, #37591, #37552, #37618, #37643, #37658, #37731, #37678, #37741, #37762, #37790, #37805, #37823, #37837, #37842, #37850, #37848, #37812, #37950, #37898, #37916, #37920, #37927, #37928, #37961, #37967, #37974, #37989, #37986, #38004, #38026, #38027, #38030, #38038, #38065, #38081, #38082, #38096, #38106, #38113, #38124, #38133, #38144, #38153, #38166, #38167, #38169, #38170, #38177, #38193, #38213, #38251, #38255, #38256, #38282, #38298, #38292, #38307, #38306, #38316, #38115, #38329, #38334, #38337, #38351, #38368, #38370, #38356, #38383, #38386, #38385, #38394, #38393, #38399, #38402, #38409, #38414, #38413, #38424, #38425, #38450, #38508, #38528, #38534, #38536, #38540, #38543, #38491, #38586, #38611, #38588, #38612, #38628, #38626, #38630, #38633, #38629, #38638, #38645, #38644, #38636, #38660, #38657, #38688, #38690, #38672, #38698, #38697, #38708, #38712, #38713, #38709, #38719, #38728, #38730, #38732, #38739, #38749, #38751, #38750, #38767, #38769, #38783, #38785, #38959, #38786, #38794, #38776, #38817, #38792, #38822, #38827, #38831, #38830, #38844, #38843, #38852, #38850, #38847, #38865, #38897, #38900, #38919, #38933, #38934, #38935, #38942, #38941, #38954, #38961, #38957, #38962, #38991, #39009, #39062, #39029, #39069, #39020, #39073, #39082, #39096, #39080, #39182, #39143, #39127, #37929, #38029, #39194, #39198, #39210, #39211, #39202, #39214, #39215, #39220, and #39234 by @ChaosExAnima, @ClearlyClaire, @Gargron, @arte7, @diondiondion, @mjankowski, @oneiros, and @shleeable)
+- **Add collections** (#37992, #37005, #37049, #37020, #37053, #37110, #37117, #37122, #37154, #37157, #37176, #37192, #37222, #37225, #37254, #37277, #37298, #37322, #37434, #37468, #37514, #37512, #37549, #37556, #37560, #37580, #37591, #37552, #37618, #37643, #37658, #37731, #37678, #37741, #37762, #37790, #37805, #37823, #37837, #37842, #37850, #37848, #37812, #37950, #37898, #37916, #37920, #37927, #37928, #37961, #37967, #37974, #37989, #37986, #38004, #38026, #38027, #38030, #38038, #38065, #38081, #38082, #38096, #38106, #38113, #38124, #38133, #38144, #38153, #38166, #38167, #38169, #38170, #38177, #38193, #38213, #38251, #38255, #38256, #38282, #38298, #38292, #38307, #38306, #38316, #38115, #38329, #38334, #38337, #38351, #38368, #38370, #38356, #38383, #38386, #38385, #38394, #38393, #38399, #38402, #38409, #38414, #38413, #38424, #38425, #38450, #38508, #38528, #38534, #38536, #38540, #38543, #38491, #38586, #38611, #38588, #38612, #38628, #38626, #38630, #38633, #38629, #38638, #38645, #38644, #38636, #38660, #38657, #38688, #38690, #38672, #38698, #38697, #38708, #38712, #38713, #38709, #38719, #38728, #38730, #38732, #38739, #38749, #38751, #38750, #38767, #38769, #38783, #38785, #38959, #38786, #38794, #38776, #38817, #38792, #38822, #38827, #38831, #38830, #38844, #38843, #38852, #38850, #38847, #38865, #38897, #38900, #38919, #38933, #38934, #38935, #38942, #38941, #38954, #38961, #38957, #38962, #38991, #39009, #39062, #39029, #39069, #39020, #39073, #39082, #39096, #39080, #39182, #39143, #39127, #37929, #38029, #39194, #39198, #39210, #39211, #39202, #39214, #39215, #39220, #39234, #39260, and #39251 by @ChaosExAnima, @ClearlyClaire, @Gargron, @arte7, @diondiondion, @mjankowski, @oneiros, and @shleeable)
   - Create collections with up to 25 accounts each, then share them with others. You can read more about this feature [on our blog](https://blog.joinmastodon.org/2026/04/designing-collections/). This is based on FEP-xxx () (Featured Collections) to be interoperable with the wider Fediverse. All the new API methods [are documented here](https://docs.joinmastodon.org/methods/collections/).
 - **Add email subscriptions** (#38163, #38507, #38502, #38487, #38527, #38582, #38741, #38907, and #39162 by @ClearlyClaire and @Gargron)
   - Admins can allow specific roles to enable email subscriptions on their profile, allowing anonymous visitors to subscribe to their posts via email.
 - **Add new overview landing page setting** (#39074, #39170, #39163, and #39138 by @Gargron, @diondiondion, and @zunda)
   - Admins can choose a new frontpage for anonymous visitors, which combines the about page and most recent posts from local profiles.
 - **Add ability to require 2FA for specific roles** (including Everybody) (#37701, #37846, and #38906 by @ClearlyClaire and @mjankowski)
-- Add export for custom filters (#39085)
+- Add export for custom filters (#39085 by @arte7)
 - Add ability to search email blocks by domain in admin UI (#38923 by @arte7)
 - Add new endpoints for profile editing in REST API (#37912, #37934, #37932, #38221, and #38339 by @ClearlyClaire)
   - Add `GET /api/v1/profile` and `PATCH /api/v1/profile` to replace the existing `update_credentials` endpoint. See [the documentation](https://www.notion.so/joinmastodon/Mastodon-v4-6-0-beta1-changelog-3656208ac91b8088a745d15a9e81f727) for more information.
@@ -52,8 +52,11 @@ All notable changes to this project will be documented in this file.
   - Instead of requiring manual generation from a server administrator, this is now offered between the 10th of December and the end of each year if enabled in the server settings.
   - The design of the Wrapstodon report has also been fully reworked to be more delightful and easier to share!
   - TODO: API doc (#37055, #37096)
-- Change pending user notification email to link directly to the pending account (#39206)
+- Change pending user notification email to link directly to the pending account (#39206 by @vmstan)
 - Changed emoji processing in web UI to make it less resource intensive and more robust (#39077, #39008, #39088, #38892, #38885, #38965, #38854, #38825, #38784, #38541, #37442, #37300, #37306, #37271, #37255, #37284, #37272, #37178, #37084, #37080, #37418, #39167, and #39126 by @ChaosExAnima, @ClearlyClaire, @diondiondion, and @gomasy)
+- Change composer textarea to have a limited height to prevent column scrolling (#39268 by @diondiondion)
+- Change mentions of “Mastodon gGmbH” to “Mastodon GmbH” (#39261 by @renchap)
+- Change the limited profile message to be less misleading (#39231 by @mortie)
 - Change images/videos in posts in web UI to not have unlimited height (#36966, #37035, #37136, and #37032 by @diondiondion)
 - Change search field and tabs to stick to the top on the search results page in web UI (#38968 by @diondiondion)
 - Change “anyone can quote” label to “quotes allowed” in web UI (#37427 by @vmstan)
@@ -85,6 +88,7 @@ All notable changes to this project will be documented in this file.
 
 ### Removed
 
+- Remove PWA plugin (#39250 by @ChaosExAnima)
 - Remove support for EOL Node version 20 (#38926 by @mjankowski)
 - Remove support for Ruby 3.2 (#37476 by @mjankowski)
 - Remove support for `ENABLE_SIDEKIQ_UNIQUE_JOBS_UI` (#38340 by @ClearlyClaire)
@@ -92,9 +96,9 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Fix accessibility issues in web UI (#37250, #38006, #38033, #38188, #38230, #38252, #38257, #38285, #38293, #38362, #38387, #38459, #38796, #38801, #39098, #39111, #39120, #39129, #39133, #39134, #39144, #39145, #39149, #39164, #39165, #39169, and #39181 by @ChaosExAnima and @diondiondion)
-- Fix processing some link previews where text is language-tagged (#39190)
-- Fix error when “New trends” email is sent at the same time trends are recomputed (#39122)
+- Fix accessibility issues in web UI (#37250, #38006, #38033, #38188, #38230, #38252, #38257, #38285, #38293, #38362, #38387, #38459, #38796, #38801, #39098, #39111, #39120, #39129, #39133, #39134, #39144, #39145, #39149, #39164, #39165, #39169, #39181, and #39252 by @ChaosExAnima and @diondiondion)
+- Fix processing some link previews where text is language-tagged (#39190 by @zunda)
+- Fix error when “New trends” email is sent at the same time trends are recomputed (#39122 by @arte7)
 - Fix hover card opening even when not preceded by mouse movement in web UI (#39166 by @diondiondion)
 - Fix [ominous](https://mastodon.social/@mcc/116404362104299129) "Moments remaining" timestamp in web UI (#38488 and #38689 by @ChaosExAnima and @MitarashiDango)
 - Fix filters not being applied to search results in web UI (#36346 by @ClearlyClaire)
