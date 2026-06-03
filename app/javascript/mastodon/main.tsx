@@ -41,7 +41,11 @@ function main() {
     );
     store.dispatch(setupBrowserNotifications());
 
-    if (me && 'serviceWorker' in navigator) {
+    if (
+      me &&
+      'serviceWorker' in navigator &&
+      (isDevelopment() || isProduction())
+    ) {
       let swPath = '/packs/sw.js';
       if (isDevelopment()) {
         const { default: swDevUrl } =
