@@ -5,12 +5,14 @@ require 'rails_helper'
 RSpec.describe 'Auth Registration' do
   context 'when there are server rules' do
     let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
+    let!(:rule_translation) { Fabricate :rule_translation, rule:, hint: 'Rule translation hint', text: rule.text }
 
     it 'shows rules page before proceeding with sign up' do
       visit new_user_registration_path
       expect(page)
         .to have_title(I18n.t('auth.register'))
         .and have_text(rule.text)
+        .and have_text(rule_translation.hint)
     end
   end
 
