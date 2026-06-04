@@ -500,13 +500,26 @@ en:
     email_subscriptions:
       accounts:
         account: Account
-        active: Active
         empty:
           hint: No accounts have subscribers yet.
           no_lists_yet: No lists yet
-        inactive: Inactive
         last_email: Last email
         lead: Accounts who have enabled the feature and have subscribers will show below.
+        show:
+          confirm_disable_feature: Disable email newsletters for %{name}? Email updates will no longer be sent for this account. The user will still be able to re-enable the feature in their account settings. To permanently remove access to this feature, edit the account’s permission in Roles.
+          confirm_remove_subscriber: "%{email} will no longer receive emails from %{name}. This action cannot be undone."
+          consent: Subscribers have only consented to receiving posts via email. Do not use this list for other purposes.
+          date: Date of sign-up
+          disable_feature: Disable feature
+          disabled: The feature was disabled and emails are no longer being sent to this list.
+          email: Email address
+          empty:
+            hint: Nobody has subscribed to this account yet.
+            no_subscribers_yet: No subscribers yet
+          enable_feature: Enable feature
+          no_access_html: This account no longer has the permissions required to enable the feature. Change this in <a href="%{roles_path}">Roles</a>.
+          title: Email newsletters of %{name}
+          view_account: View account
         status: Status
         subscribers: Subscribers
         title: Mailing lists
@@ -1534,7 +1547,9 @@ en:
         success_html: You'll now start receiving emails when %{name} publishes new posts. Add %{sender} to your contacts so these posts don't end up in your Spam folder.
         title: You're signed up
         unsubscribe: Unsubscribe
+    disabled: Disabled
     inactive: Inactive
+    no_access: No access
     status: Status
     subscribers: Subscribers
   emoji_styles:
