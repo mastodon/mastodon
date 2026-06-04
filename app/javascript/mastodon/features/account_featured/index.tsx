@@ -29,7 +29,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 
 import { CollectionListItem } from '../collections/components/collection_list_item';
-import { useCollectionsCreatedBy } from '../collections/overview/created_by_you';
+import { useCollectionsCreatedBy } from '../collections/overview/created_by_account';
 
 import { EmptyMessage } from './components/empty_message';
 import { Subheading, SubheadingLink } from './components/subheading';

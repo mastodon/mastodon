@@ -4,15 +4,15 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
-import { TabLink, TabList } from '@/mastodon/components/tab_list';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { DisplayNameSimple } from 'mastodon/components/display_name/simple';
 import { Scrollable } from 'mastodon/components/scrollable_list/components';
+import { TabLink, TabList } from 'mastodon/components/tab_list';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAccountId, useCurrentAccountId } from 'mastodon/hooks/useAccountId';
 
-import { CollectionsCreatedByYou } from './overview/created_by_you';
+import { CollectionsCreatedByAccount } from './overview/created_by_account';
 import { CollectionsFeaturingYou } from './overview/featuring_you';
 import classes from './styles.module.scss';
 
@@ -89,7 +89,7 @@ export const Collections: React.FC<{
           </TabList>
         </header>
         <Switch>
-          <Route exact path={path} component={CollectionsCreatedByYou} />
+          <Route exact path={path} component={CollectionsCreatedByAccount} />
           <Route
             exact
             path={`${path}/featuring-you`}

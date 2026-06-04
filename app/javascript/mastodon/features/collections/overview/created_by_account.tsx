@@ -5,10 +5,12 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
+import { DisplayName } from 'mastodon/components/display_name';
 import { EmptyState } from 'mastodon/components/empty_state';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ItemList } from 'mastodon/components/scrollable_list/components';
+import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAccountId, useCurrentAccountId } from 'mastodon/hooks/useAccountId';
 import {
   fetchCollectionsCreatedByAccount,
@@ -58,9 +60,10 @@ export function useCollectionsCreatedBy(accountId: string | null | undefined) {
   );
 }
 
-export const CollectionsCreatedByYou: React.FC = () => {
+export const CollectionsCreatedByAccount: React.FC = () => {
   const me = useCurrentAccountId();
   const accountId = useAccountId();
+  const account = useAccount(accountId);
 
   const { collections, status } = useCollectionsCreatedBy(accountId);
 
@@ -78,24 +81,40 @@ export const CollectionsCreatedByYou: React.FC = () => {
   }
 
   if (collections.length === 0) {
-    return (
-      <EmptyState
-        title={
-          <FormattedMessage
-            id='empty_column.account_featured_self.showcase_accounts'
-            defaultMessage='Showcase your favorite accounts'
-          />
-        }
-        message={
-          <FormattedMessage
-            id='empty_column.account_featured_self.showcase_accounts_desc'
-            defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
-          />
-        }
-      >
-        <CreateButton />
-      </EmptyState>
-    );
+    if (isOwnCollectionPage) {
+      return (
+        <EmptyState
+          title={
+            <FormattedMessage
+              id='empty_column.account_featured_self.showcase_accounts'
+              defaultMessage='Showcase your favorite accounts'
+            />
+          }
+          message={
+            <FormattedMessage
+              id='empty_column.account_featured_self.showcase_accounts_desc'
+              defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
+            />
+          }
+        >
+          <CreateButton />
+        </EmptyState>
+      );
+    } else {
+      return (
+        <EmptyState
+          title={
+            <FormattedMessage
+              id='empty_column.collections'
+              defaultMessage='{acct} has not created any collections yet.'
+              values={{
+                acct: <DisplayName variant='simple' account={account} />,
+              }}
+            />
+          }
+        />
+      );
+    }
   }
 
   return (
@@ -113,7 +132,7 @@ export const CollectionsCreatedByYou: React.FC = () => {
         {showCreateButton && <CreateButton />}
       </div>
       <ItemList>
-        {!canCreateMoreCollections && (
+        {isOwnCollectionPage && !canCreateMoreCollections && (
           <MaxCollectionsCallout className={classes.maxCollectionsError} />
         )}
         {collections.map((item, index) => (
