@@ -224,8 +224,6 @@ GEM
     elasticsearch-api (8.19.3)
       multi_json
     elasticsearch-dsl (0.1.10)
-    email_validator (2.2.4)
-      activemodel
     erb (6.0.4)
     erubi (1.13.1)
     et-orbi (1.4.0)
@@ -491,10 +489,9 @@ GEM
     omniauth_openid_connect (0.8.0)
       omniauth (>= 1.9, < 3)
       openid_connect (~> 2.2)
-    openid_connect (2.3.1)
+    openid_connect (2.5.0)
       activemodel
       attr_required (>= 1.0.0)
-      email_validator
       faraday (~> 2.0)
       faraday-follow_redirects
       json-jwt (>= 1.16)
