@@ -746,6 +746,7 @@ et:
       action_log: Auditilogi
       action_taken_by: Meetmeid kasutanud
       actions:
+        delete_description_html: Teatatud postitused ja/või kogumikud kustutatakse ning registreeritakse hoiatus, mis aitab sul sama konto tulevaste rikkumiste korral asja edasi suunata.
         mark_as_sensitive_description_html: Raporteeritud meedia märgitakse kui tundlik sisu ja juhtum talletatakse hoiatusena tulevaste eksimuste ärahoidmiseks.
         other_description_html: On rohkem valikuid konto käitumise juhtimiseks ja suhtluse kohandamiseks raporteeritud kontoga.
         resolve_description_html: Raporteeritud konto suhtes ei võeta midagi ette, juhtumit ei registreerita ja raport suletakse.
@@ -772,6 +773,7 @@ et:
       confirm: Kinnita
       confirm_action: Kinnita @%{acct} modereering
       created_at: Teavitatud
+      delete_and_resolve: Kustuta sisu
       forwarded: Edastatud
       forwarded_replies_explanation: See aruanne pärineb kaugkasutajalt ja käsitleb kaugsisu. See on edastatud sulle, sest raporteeritud sisu on vastus ühele sinu kasutajale.
       forwarded_to: Edastatud %{domain} domeeni
@@ -1567,7 +1569,9 @@ et:
     blocks: Sa blokeerid
     bookmarks: Järjehoidjad
     csv: CSV
+    custom_filters: Filtrid
     domain_blocks: Domeeni blokeeringud
+    json: JSON
     lists: Loetelud
     mutes: Oled summutanud
     storage: Meedia hoidla
