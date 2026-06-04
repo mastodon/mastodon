@@ -11,6 +11,8 @@ class AuthorizeInteractionsController < ApplicationController
       redirect_to web_url("@#{@resource.pretty_acct}")
     elsif @resource.is_a?(Status)
       redirect_to web_url("@#{@resource.account.pretty_acct}/#{@resource.id}")
+    elsif @resource.is_a?(Collection)
+      redirect_to web_url("collections/#{resource.id}")
     else
       not_found
     end
