@@ -337,7 +337,7 @@ const collectionSlice = createSlice({
 /**
  * Prefetch accounts whose avatars will be displayed in the collection list
  */
-export async function importAccountsForPreviewCard(
+export async function fetchAccountsForCollectionPreview(
   collections: ApiCollectionJSON[],
   dispatch: AppDispatch,
 ) {
@@ -363,7 +363,7 @@ export const fetchCollectionsCreatedByAccount = createDataLoadingThunk(
   ({ accountId }: { accountId: string }) =>
     apiGetCollectionsCreatedByAccount(accountId),
   async ({ collections }, { dispatch }) => {
-    await importAccountsForPreviewCard(collections, dispatch);
+    await fetchAccountsForCollectionPreview(collections, dispatch);
   },
 );
 
@@ -372,7 +372,7 @@ export const fetchCollectionsFeaturingAccount = createDataLoadingThunk(
   ({ accountId }: { accountId: string }) =>
     apiGetCollectionsFeaturingAccount(accountId),
   async ({ collections }, { dispatch }) => {
-    await importAccountsForPreviewCard(collections, dispatch);
+    await fetchAccountsForCollectionPreview(collections, dispatch);
   },
 );
 

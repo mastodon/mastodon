@@ -13,7 +13,7 @@ import {
 } from 'mastodon/store/typed_functions';
 
 import {
-  importAccountsForPreviewCard,
+  fetchAccountsForCollectionPreview,
   importFetchedCollections,
 } from '../reducers/slices/collections';
 
@@ -46,7 +46,7 @@ export const submitSearch = createDataLoadingThunk(
 
     if (data.collections.length > 0) {
       dispatch(importFetchedCollections(data.collections));
-      await importAccountsForPreviewCard(data.collections, dispatch);
+      await fetchAccountsForCollectionPreview(data.collections, dispatch);
     }
 
     return data;
@@ -82,7 +82,7 @@ export const expandSearch = createDataLoadingThunk(
 
     if (data.collections.length > 0) {
       dispatch(importFetchedCollections(data.collections));
-      await importAccountsForPreviewCard(data.collections, dispatch);
+      await fetchAccountsForCollectionPreview(data.collections, dispatch);
     }
 
     return data;
