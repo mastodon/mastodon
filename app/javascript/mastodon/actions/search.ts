@@ -12,6 +12,8 @@ import {
   createAppAsyncThunk,
 } from 'mastodon/store/typed_functions';
 
+import { importFetchedCollections } from '../reducers/slices/collections';
+
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts, importFetchedStatuses } from './importer';
 
@@ -37,6 +39,10 @@ export const submitSearch = createDataLoadingThunk(
 
     if (data.statuses.length > 0) {
       dispatch(importFetchedStatuses(data.statuses));
+    }
+
+    if (data.collections.length > 0) {
+      dispatch(importFetchedCollections(data.collections));
     }
 
     return data;
@@ -68,6 +74,10 @@ export const expandSearch = createDataLoadingThunk(
 
     if (data.statuses.length > 0) {
       dispatch(importFetchedStatuses(data.statuses));
+    }
+
+    if (data.collections.length > 0) {
+      dispatch(importFetchedCollections(data.collections));
     }
 
     return data;
