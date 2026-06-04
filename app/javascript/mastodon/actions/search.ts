@@ -12,7 +12,10 @@ import {
   createAppAsyncThunk,
 } from 'mastodon/store/typed_functions';
 
-import { importFetchedCollections } from '../reducers/slices/collections';
+import {
+  importAccountsForPreviewCard,
+  importFetchedCollections,
+} from '../reducers/slices/collections';
 
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts, importFetchedStatuses } from './importer';
@@ -31,7 +34,7 @@ export const submitSearch = createDataLoadingThunk(
       limit: 11,
     });
   },
-  (data, { dispatch }) => {
+  async (data, { dispatch }) => {
     if (data.accounts.length > 0) {
       dispatch(importFetchedAccounts(data.accounts));
       dispatch(fetchRelationships(data.accounts.map((account) => account.id)));
@@ -43,6 +46,7 @@ export const submitSearch = createDataLoadingThunk(
 
     if (data.collections.length > 0) {
       dispatch(importFetchedCollections(data.collections));
+      await importAccountsForPreviewCard(data.collections, dispatch);
     }
 
     return data;
@@ -66,7 +70,7 @@ export const expandSearch = createDataLoadingThunk(
       offset,
     });
   },
-  (data, { dispatch }) => {
+  async (data, { dispatch }) => {
     if (data.accounts.length > 0) {
       dispatch(importFetchedAccounts(data.accounts));
       dispatch(fetchRelationships(data.accounts.map((account) => account.id)));
@@ -78,6 +82,7 @@ export const expandSearch = createDataLoadingThunk(
 
     if (data.collections.length > 0) {
       dispatch(importFetchedCollections(data.collections));
+      await importAccountsForPreviewCard(data.collections, dispatch);
     }
 
     return data;

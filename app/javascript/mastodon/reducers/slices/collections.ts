@@ -337,7 +337,7 @@ const collectionSlice = createSlice({
 /**
  * Prefetch accounts whose avatars will be displayed in the collection list
  */
-async function importAccountsForPreviewCard(
+export async function importAccountsForPreviewCard(
   collections: ApiCollectionJSON[],
   dispatch: AppDispatch,
 ) {
