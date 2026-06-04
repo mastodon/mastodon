@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
 - Add export for custom filters (#39085 by @arte7)
 - Add ability to search email blocks by domain in admin UI (#38923 by @arte7)
 - Add new endpoints for profile editing in REST API (#37912, #37934, #37932, #38221, and #38339 by @ClearlyClaire)
-  - Add `GET /api/v1/profile` and `PATCH /api/v1/profile` to replace the existing `update_credentials` endpoint. See [the documentation](https://www.notion.so/joinmastodon/Mastodon-v4-6-0-beta1-changelog-3656208ac91b8088a745d15a9e81f727) for more information.
+  - Add `GET /api/v1/profile` and `PATCH /api/v1/profile` to replace the existing `update_credentials` endpoint. See [the documentation](https://docs.joinmastodon.org/methods/profile/) for more information.
 - Add `missing_attribution` boolean to preview cards in REST API (#38043 by @ClearlyClaire)
   - Documentation: https://docs.joinmastodon.org/entities/PreviewCard/#missing_attribution
 - Add `exclude_direct` flag to `/api/v1/accounts/:id/statuses` to exclude direct messages (#37763 by @ClearlyClaire)
