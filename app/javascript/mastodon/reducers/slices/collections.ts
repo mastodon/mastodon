@@ -347,15 +347,17 @@ export async function fetchAccountsForCollectionPreview(
     )
     .filter((id): id is string => !!id);
 
-  // fetchAccounts can only process up to 40 item ids, so we'll
-  // batch the list of ids
-  const batchedAccountIdLists = batchArray(previewAccountIds, 40);
+  if (previewAccountIds.length > 0) {
+    // fetchAccounts can only process up to 40 item ids, so we'll
+    // batch the list of ids
+    const batchedAccountIdLists = batchArray(previewAccountIds, 40);
 
-  await Promise.allSettled(
-    batchedAccountIdLists.map((accountIds) =>
-      dispatch(fetchAccounts({ accountIds })),
-    ),
-  );
+    await Promise.allSettled(
+      batchedAccountIdLists.map((accountIds) =>
+        dispatch(fetchAccounts({ accountIds })),
+      ),
+    );
+  }
 }
 
 export const fetchCollectionsCreatedByAccount = createDataLoadingThunk(
