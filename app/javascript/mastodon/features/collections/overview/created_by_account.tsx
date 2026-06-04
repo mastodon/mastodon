@@ -113,7 +113,7 @@ export const CollectionsCreatedByAccount: React.FC = () => {
         {showCreateButton && <CreateButton />}
       </div>
       <ItemList>
-        {!canCreateMoreCollections && (
+        {isOwnCollectionPage && !canCreateMoreCollections && (
           <MaxCollectionsCallout className={classes.maxCollectionsError} />
         )}
         {collections.map((item, index) => (
