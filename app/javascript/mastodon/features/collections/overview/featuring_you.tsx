@@ -16,7 +16,7 @@ import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { CollectionListItem } from '../components/collection_list_item';
 import classes from '../styles.module.scss';
 
-import { CollectionListError } from './created_by_you';
+import { CollectionListError } from './created_by_account';
 
 function useCollectionsFeaturing(accountId: string | null | undefined) {
   const dispatch = useAppDispatch();

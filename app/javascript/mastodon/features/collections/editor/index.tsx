@@ -26,7 +26,7 @@ import {
 } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { useCollectionsCreatedBy } from '../overview/created_by_you';
+import { useCollectionsCreatedBy } from '../overview/created_by_account';
 
 import { CollectionAccounts } from './accounts';
 import { CollectionDetails } from './details';

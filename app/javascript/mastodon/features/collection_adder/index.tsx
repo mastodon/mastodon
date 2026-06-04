@@ -15,7 +15,7 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { MAX_COLLECTION_ACCOUNT_COUNT } from '../collections/editor/accounts';
-import { useCollectionsCreatedBy } from '../collections/overview/created_by_you';
+import { useCollectionsCreatedBy } from '../collections/overview/created_by_account';
 
 import { CollectionToggle } from './collection_toggle';
 

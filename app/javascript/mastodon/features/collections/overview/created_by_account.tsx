@@ -58,7 +58,7 @@ export function useCollectionsCreatedBy(accountId: string | null | undefined) {
   );
 }
 
-export const CollectionsCreatedByYou: React.FC = () => {
+export const CollectionsCreatedByAccount: React.FC = () => {
   const me = useCurrentAccountId();
   const accountId = useAccountId();
 
