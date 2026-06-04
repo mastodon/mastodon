@@ -121,6 +121,15 @@ const collectionSlice = createSlice({
       const { field, value } = action.payload;
       state.editor[field] = value;
     },
+    importFetchedCollections(
+      state,
+      action: PayloadAction<ApiCollectionJSON[]>,
+    ) {
+      const collections = action.payload;
+      collections.forEach((collection) => {
+        state.collections[collection.id] = collection;
+      });
+    },
   },
   extraReducers(builder) {
     /**
@@ -328,7 +337,7 @@ const collectionSlice = createSlice({
 /**
  * Prefetch accounts whose avatars will be displayed in the collection list
  */
-async function importAccountsForPreviewCard(
+export async function importAccountsForPreviewCard(
   collections: ApiCollectionJSON[],
   dispatch: AppDispatch,
 ) {
@@ -419,6 +428,8 @@ export const collections = collectionSlice.reducer;
 export const collectionEditorActions = collectionSlice.actions;
 export const updateCollectionEditorField =
   collectionSlice.actions.updateEditorField;
+export const importFetchedCollections =
+  collectionSlice.actions.importFetchedCollections;
 
 /**
  * Selectors
