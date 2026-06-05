@@ -181,6 +181,12 @@ async function loaded() {
 
   truncateRuleHints();
 
+  document
+    .querySelectorAll<HTMLElement>('.simple_form label.required abbr')
+    .forEach((element) => {
+      element.setAttribute('aria-hidden', 'true');
+    });
+
   const reactComponents = document.querySelectorAll('[data-component]');
 
   if (reactComponents.length > 0) {
