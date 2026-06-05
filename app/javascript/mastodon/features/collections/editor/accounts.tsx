@@ -208,6 +208,12 @@ export const CollectionAccounts: React.FC<{
   const hasItems = editorItems.length > 0;
   const hasMaxItems = editorItems.length === MAX_COLLECTION_ACCOUNT_COUNT;
 
+  const wasAccountAdded = useCallback(
+    (account: ApiMutedAccountJSON) =>
+      !!editorItems.find((item) => item.account_id === account.id),
+    [editorItems],
+  );
+
   const {
     accounts: suggestedAccounts,
     isLoading: isLoadingSuggestions,
@@ -217,8 +223,7 @@ export const CollectionAccounts: React.FC<{
     withRelationships: true,
     withDefaultFollows: searchValue === '',
     // Don't suggest accounts that were already added
-    filterResults: (account) =>
-      !editorItems.find((item) => item.account_id === account.id),
+    filterResults: (account) => !wasAccountAdded(account),
   });
 
   const relationships = useAppSelector((state) => state.relationships);
@@ -256,23 +261,25 @@ export const CollectionAccounts: React.FC<{
 
   const addAccountItem = useCallback(
     (item: ApiMutedAccountJSON) => {
-      dispatch(
-        updateCollectionEditorField({
-          field: 'items',
-          value: [
-            ...editorItems,
-            {
-              account_id: item.id,
-              state:
-                item.feature_approval.current_user === 'manual'
-                  ? 'pending'
-                  : 'accepted',
-            },
-          ],
-        }),
-      );
+      if (!wasAccountAdded(item)) {
+        dispatch(
+          updateCollectionEditorField({
+            field: 'items',
+            value: [
+              ...editorItems,
+              {
+                account_id: item.id,
+                state:
+                  item.feature_approval.current_user === 'manual'
+                    ? 'pending'
+                    : 'accepted',
+              },
+            ],
+          }),
+        );
+      }
     },
-    [editorItems, dispatch],
+    [editorItems, wasAccountAdded, dispatch],
   );
 
   const instantRemoveAccountItem = useCallback(
@@ -299,13 +306,13 @@ export const CollectionAccounts: React.FC<{
 
   const instantAddAccountItem = useCallback(
     (item: ApiMutedAccountJSON) => {
-      if (id) {
+      if (id && !wasAccountAdded(item)) {
         void dispatch(
           addCollectionItem({ collectionId: id, accountId: item.id }),
         );
       }
     },
-    [dispatch, id],
+    [dispatch, id, wasAccountAdded],
   );
 
   const handleRemoveAccountItem = useCallback(
