@@ -17,7 +17,7 @@ RSpec.describe 'Settings / Exports / CustomFilters' do
         { 'custom_filters' => [
           {
             'title' => other_filter.phrase,
-            'expire_at' => nil,
+            'expires_at' => nil,
             'context' => other_filter.context,
             'action' => other_filter.action,
             'keywords_attributes' => [{
@@ -31,7 +31,7 @@ RSpec.describe 'Settings / Exports / CustomFilters' do
           },
           {
             'title' => filter.phrase,
-            'expire_at' => nil,
+            'expires_at' => nil,
             'context' => filter.context,
             'action' => filter.action,
             'keywords_attributes' => [{

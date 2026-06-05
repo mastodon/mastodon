@@ -62,7 +62,7 @@ class Export
 
       data_collection[:custom_filters] << {
         title: filter.title,
-        expire_at: filter.expires_at,
+        expires_at: filter.expires_at,
         context: filter.context,
         action: filter.action,
         keywords_attributes: keywords_attributes,
