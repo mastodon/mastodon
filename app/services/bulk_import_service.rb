@@ -186,52 +186,13 @@ class BulkImportService < BaseService
   end
 
   def import_custom_filters!
-    rows_by_title = @import.rows.index_by { |row| row.data['title'] }.to_h
-    included_custom_filters = rows_by_title.values.pluck('data')
-    custom_filters_hash = included_custom_filters.map { |fil| fil.except('statuses', 'keywords_attributes') }
-    custom_filters_hash.map { |fil| fil['account_id'] = @account.id }
+    rows = @import.rows.to_a
+    titles = rows.map { |row| row.data['title'] }
 
-    @account.custom_filters.where.not(title: rows_by_title.keys).destroy_all if @import.overwrite?
-    CustomFilter.insert_all(custom_filters_hash)
-    import_custom_filter_keywords_and_statuses(rows_by_title)
+    @account.custom_filters.where.not(title: titles).destroy_all if @import.overwrite?
 
-    Import::RowWorker.push_bulk(rows_by_title.values) do |row|
+    Import::RowWorker.push_bulk(rows) do |row|
       [row.id]
     end
-  end
-
-  def import_custom_filter_keywords_and_statuses(rows_by_title)
-    statuses_to_insert = []
-    keywords_to_insert = []
-    @account.custom_filters.find_each do |filter|
-      row = rows_by_title[filter.title]
-      next if row.nil?
-
-      keywords = row.data['keywords_attributes']
-      statuses = row.data['statuses']
-
-      keywords.each do |keyword|
-        next if keyword.blank?
-
-        keywords_to_insert << {
-          keyword: keyword['keyword'],
-          whole_word: keyword['whole_word'],
-          custom_filter_id: filter.id,
-        }
-      end
-
-      status_ids = Status.where(uri: statuses).ids
-      next if status_ids.blank?
-
-      status_ids.each do |id|
-        statuses_to_insert << {
-          custom_filter_id: filter.id,
-          status_id: id,
-        }
-      end
-    end
-
-    CustomFilterKeyword.insert_all(keywords_to_insert) if keywords_to_insert.any?
-    CustomFilterStatus.insert_all(statuses_to_insert) if statuses_to_insert.any?
   end
 end
