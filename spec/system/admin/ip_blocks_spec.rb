@@ -26,10 +26,12 @@ RSpec.describe 'Admin::IpBlocks' do
 
       # Valid with IP
       fill_in 'ip_block_ip', with: '192.168.1.1'
+      fill_in 'ip_block_comment', with: 'Block explanation'
       expect { submit_form }
         .to change(IpBlock, :count).by(1)
       expect(page)
         .to have_text(I18n.t('admin.ip_blocks.created_msg'))
+        .and have_text('Block explanation')
     end
 
     def submit_form
