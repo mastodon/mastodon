@@ -83,8 +83,10 @@ class Sanitize
       # next, we find the plain-text description
       is_annotation_with_encoding = lambda do |encoding, node|
         return false unless node.name == 'annotation'
+
         encoding_attr = node.attributes['encoding']
         return false if encoding_attr.nil?
+
         encoding_attr.value == encoding
       end
 
