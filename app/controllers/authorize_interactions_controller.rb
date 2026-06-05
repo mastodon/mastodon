@@ -7,10 +7,13 @@ class AuthorizeInteractionsController < ApplicationController
   before_action :set_resource
 
   def show
-    if @resource.is_a?(Account)
+    case @resource
+    when Account
       redirect_to web_url("@#{@resource.pretty_acct}")
-    elsif @resource.is_a?(Status)
+    when Status
       redirect_to web_url("@#{@resource.account.pretty_acct}/#{@resource.id}")
+    when Collection
+      redirect_to web_url("collections/#{resource.id}")
     else
       not_found
     end
