@@ -88,7 +88,7 @@ function dispatchAssociatedRecords(
       fetchedStatuses.push(notification.status);
     }
 
-    if ('collection' in notification) {
+    if ('collection' in notification && notification.collection) {
       collections.push(notification.collection);
     }
   });
