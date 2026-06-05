@@ -277,7 +277,7 @@ RSpec.describe Form::Import do
         [
           {
             'title' => 'dfjswa',
-            'expire_at' => nil,
+            'expires_at' => nil,
             'context' => ['home'],
             'action' => 'warn',
             'keywords_attributes' => [{ 'keyword' => 'dvshja', 'whole_word' => true }],
@@ -285,7 +285,7 @@ RSpec.describe Form::Import do
           },
           {
             'title' => 'filter with a phrase as title',
-            'expire_at' => nil,
+            'expires_at' => nil,
             'context' => %w(home notifications public),
             'action' => 'warn',
             'keywords_attributes' => [
@@ -295,7 +295,7 @@ RSpec.describe Form::Import do
           },
           {
             'title' => 'how do I add a status to a filter?',
-            'expire_at' => nil,
+            'expires_at' => nil,
             'context' => ['public', 'account'],
             'action' => 'warn',
             'keywords_attributes' => [

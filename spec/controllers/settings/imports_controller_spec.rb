@@ -177,7 +177,7 @@ RSpec.describe Settings::ImportsController do
         [
           {
             'title' => 'random title',
-            'expire_at' => nil,
+            'expires_at' => nil,
             'context' => ['public', 'account'],
             'action' => 'warn',
             'keywords_attributes' => [{
@@ -199,7 +199,7 @@ RSpec.describe Settings::ImportsController do
       end
 
       it_behaves_like 'export failed rows', 'custom_filters_failures.json',
-                      '{"custom_filters":[{"title":"random title","action":"warn","context":["public","account"],"statuses":["status"],"expire_at":null,"keywords_attributes":[{"keyword":"all them keywords","whole_word":true},{"keyword":"more keywords even","whole_word":true}]},{"title":"random title","action":"warn","context":["public","account"],"statuses":["status"],"expire_at":null,"keywords_attributes":[{"keyword":"all them keywords","whole_word":true},{"keyword":"more keywords even","whole_word":true}]}]}' # rubocop:disable Layout/LineLength
+                      '{"custom_filters":[{"title":"random title","action":"warn","context":["public","account"],"statuses":["status"],"expires_at":null,"keywords_attributes":[{"keyword":"all them keywords","whole_word":true},{"keyword":"more keywords even","whole_word":true}]},{"title":"random title","action":"warn","context":["public","account"],"statuses":["status"],"expires_at":null,"keywords_attributes":[{"keyword":"all them keywords","whole_word":true},{"keyword":"more keywords even","whole_word":true}]}]}' # rubocop:disable Layout/LineLength
     end
 
     context 'with blocks' do

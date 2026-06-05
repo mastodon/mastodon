@@ -25,7 +25,7 @@ RSpec.describe 'Settings Imports' do
       it 'redirects to confirm_settings_import_path' do
         subject
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to(settings_import_path(id: user.account.bulk_imports.last.id))
+          .and redirect_to(settings_import_path(id: user.account.bulk_imports.last.id))
         expect(user.account.bulk_imports.last.state).to eq('unconfirmed')
         confirm
         expect(response).to have_http_status(302)
