@@ -337,7 +337,7 @@ const collectionSlice = createSlice({
 /**
  * Prefetch accounts whose avatars will be displayed in the collection list
  */
-export async function importAccountsForPreviewCard(
+export async function fetchAccountsForCollectionPreview(
   collections: ApiCollectionJSON[],
   dispatch: AppDispatch,
 ) {
@@ -347,15 +347,17 @@ export async function importAccountsForPreviewCard(
     )
     .filter((id): id is string => !!id);
 
-  // fetchAccounts can only process up to 40 item ids, so we'll
-  // batch the list of ids
-  const batchedAccountIdLists = batchArray(previewAccountIds, 40);
+  if (previewAccountIds.length > 0) {
+    // fetchAccounts can only process up to 40 item ids, so we'll
+    // batch the list of ids
+    const batchedAccountIdLists = batchArray(previewAccountIds, 40);
 
-  await Promise.allSettled(
-    batchedAccountIdLists.map((accountIds) =>
-      dispatch(fetchAccounts({ accountIds })),
-    ),
-  );
+    await Promise.allSettled(
+      batchedAccountIdLists.map((accountIds) =>
+        dispatch(fetchAccounts({ accountIds })),
+      ),
+    );
+  }
 }
 
 export const fetchCollectionsCreatedByAccount = createDataLoadingThunk(
@@ -363,7 +365,7 @@ export const fetchCollectionsCreatedByAccount = createDataLoadingThunk(
   ({ accountId }: { accountId: string }) =>
     apiGetCollectionsCreatedByAccount(accountId),
   async ({ collections }, { dispatch }) => {
-    await importAccountsForPreviewCard(collections, dispatch);
+    await fetchAccountsForCollectionPreview(collections, dispatch);
   },
 );
 
@@ -372,7 +374,7 @@ export const fetchCollectionsFeaturingAccount = createDataLoadingThunk(
   ({ accountId }: { accountId: string }) =>
     apiGetCollectionsFeaturingAccount(accountId),
   async ({ collections }, { dispatch }) => {
-    await importAccountsForPreviewCard(collections, dispatch);
+    await fetchAccountsForCollectionPreview(collections, dispatch);
   },
 );
 
