@@ -4,7 +4,7 @@
 - content_for :header_tags do
   = render partial: 'shared/og', locals: { description: description_for_sign_up(@invite) }
 
-.simple_form
+= form_with class: :simple_form, method: :get, url: new_user_registration_path do |form|
   = render 'auth/shared/progress', stage: 'rules'
 
   - if @invite.present? && @invite.autofollow?
@@ -20,6 +20,6 @@
     = render collection: @rule_translations, partial: 'auth/rule_translations/rule_translation'
 
   .stacked-actions
-    - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : new_user_registration_path(accept: @accept_token)
-    = link_to t('auth.rules.accept'), accept_path, class: 'button'
+    = form.hidden_field :invite_code, value: @invite_code if @invite_code.present?
+    = form.button t('auth.rules.accept'), name: :accept, type: :submit, class: :button, value: @accept_token
     = link_to t('auth.rules.back'), root_path, class: 'button button-secondary'
