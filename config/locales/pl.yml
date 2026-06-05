@@ -55,6 +55,7 @@ pl:
         label: Zmień rolę
         no_role: Brak roli
         title: Zmień rolę dla %{username}
+      collections: Kolekcje
       confirm: Potwierdź
       confirmed: Potwierdzono
       confirming: Potwierdzanie
@@ -838,6 +839,9 @@ pl:
         preamble: Podaj szczegółowe informacje na temat sposobu działania, moderacji i finansowania serwera.
         rules_hint: Istnieje dedykowany obszar dla reguł, których twoi użytkownicy mają przestrzegać.
         title: O...
+      allow_referrer_origin:
+        desc: Gdy użytkownicy klikają w linki do zewnętrznych stron, ich przeglądarka może wysłać adres Twojego serwera Mastodona jako stronę odsyłającą. Wyłącz tę opcję, jeśli mogłoby to jednoznacznie zidentyfikować Twoich użytkowników, np. jeśli jest to osobisty serwer Mastodona.
+        title: Zezwalaj zewnętrznym stronom na rozpoznawanie Twojego serwera Mastodona jako źródła ruchu
       appearance:
         preamble: Dostosuj interfejs www Mastodon.
         title: Wygląd
@@ -856,6 +860,7 @@ pl:
         title: Domyślnie żądaj nieindeksowania użytkowników przez wyszukiwarki
       discovery:
         follow_recommendations: Polecane konta
+        preamble: Prezentowanie ciekawych treści jest kluczowe przy wdrażaniu nowych użytkowników, którzy mogą jeszcze nikogo nie znać na Mastodonie. Tutaj kontrolujesz, jak działają różne funkcje odkrywania treści na Twoim serwerze.
         privacy: Prywatność
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
@@ -869,7 +874,7 @@ pl:
         users: Zalogowanym lokalnym użytkownikom
       feed_access:
         modes:
-          authenticated: tylko zalogowani użytkownicy
+          authenticated: Tylko zalogowani użytkownicy
           disabled: Wymagaj określonej roli użytkownika
           public: Wszyscy
       registrations:
@@ -1330,9 +1335,9 @@ pl:
     invalid_password: Nieprawidłowe hasło
     prompt: Potwierdź hasło, aby kontynuować
   color_scheme:
-    auto: Automatyczne
-    dark: Ciemny
-    light: Jasny
+    auto: Automatyczna
+    dark: Ciemna
+    light: Jasna
   contrast:
     auto: Automatyczny
     high: Wysoki
@@ -1406,6 +1411,9 @@ pl:
       your_appeal_rejected: Twoje odwołanie zostało odrzucone
   edit_profile:
     other: Inne
+    redesign_body: Profil możesz teraz edytować bezpośrednio ze swojej publicznej strony.
+    redesign_button: Przejdź do edycji
+    redesign_title: Nowy sposób edycji profilu
   emoji_styles:
     auto: Automatycznie
     native: Natywny
@@ -1980,7 +1988,9 @@ pl:
       public: Każdy
     title: '%{name}: "%{quote}"'
     visibilities:
+      private: Tylko dla obserwujących
       public: Publiczne
+      public_long: Każdy na i poza Mastodon
       unlisted: Niewidoczny
       unlisted_long: Ukryte w wynikach wyszukiwania Mastodona, trendach i publicznych osiach czasu
   statuses_cleanup:
