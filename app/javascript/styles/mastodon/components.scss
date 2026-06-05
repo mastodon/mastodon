@@ -4638,9 +4638,14 @@ a.status-card {
   z-index: 2;
   outline: 0;
 
+  &__title-wrapper {
+    flex-grow: 1;
+  }
+
   &__title {
     display: flex;
     align-items: center;
+    width: 100%;
     gap: 5px;
     margin: 0;
     border: 0;
@@ -4653,7 +4658,6 @@ a.status-card {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    flex: 1;
 
     &:focus-visible {
       outline: var(--outline-focus-default);
