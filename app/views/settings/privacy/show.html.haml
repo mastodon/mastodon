@@ -38,6 +38,14 @@
     .fields-group
       = ff.input :show_application, wrapper: :with_label
 
+  %aside.callout
+    = material_symbol 'info'
+    .content
+      .body
+        %p.title= t('edit_profile.redesign_title')
+        %p= t('edit_profile.privacy_redesign_body')
+      = link_to t('edit_profile.redesign_button'), '/profile/edit'
+
   - if Rails.application.config.x.email_subscriptions && Setting.email_subscriptions && current_user.can?(:manage_email_subscriptions)
     %h2= t('privacy.email_subscriptions')
 
