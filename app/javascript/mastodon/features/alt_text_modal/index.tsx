@@ -54,7 +54,8 @@ const messages = defineMessages({
   },
 });
 
-const MAX_LENGTH = 1500;
+// TODO: use `description_limit` from the `/api/v2/instance` response
+const MAX_LENGTH = 10000;
 
 type FocalPoint = [number, number];
 
