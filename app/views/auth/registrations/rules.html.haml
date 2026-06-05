@@ -4,7 +4,7 @@
 - content_for :header_tags do
   = render partial: 'shared/og', locals: { description: description_for_sign_up(@invite) }
 
-= form_with class: :simple_form, method: :get, url: new_user_registration_path do |form|
+= form_with class: :simple_form, url: auth_acceptance_path do |form|
   = render 'auth/shared/progress', stage: 'rules'
 
   - if @invite.present? && @invite.autofollow?
