@@ -7050,6 +7050,11 @@ a.status-card {
   display: flex;
   gap: 2px;
   z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.1s ease,
+    visibility 0.1s ease;
 
   &__pill {
     display: block;
@@ -7072,6 +7077,11 @@ a.status-card {
   }
 }
 
+.media-gallery:hover .media-gallery__actions {
+  opacity: 1;
+  visibility: visible;
+}
+
 .media-gallery__item__badges {
   position: absolute;
   bottom: 8px;
@@ -7079,6 +7089,12 @@ a.status-card {
   display: flex;
   gap: 2px;
   pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.1s ease;
+}
+
+.media-gallery__item:hover .media-gallery__item__badges {
+  opacity: 1;
 }
 
 .media-gallery__alt__label,
