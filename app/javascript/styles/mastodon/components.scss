@@ -7050,6 +7050,12 @@ a.status-card {
   display: flex;
   gap: 2px;
   z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.1s ease,
+    visibility 0.1s ease;
 
   &__pill {
     display: block;
@@ -7072,13 +7078,31 @@ a.status-card {
   }
 }
 
+.media-gallery:hover .media-gallery__actions,
+.media-gallery:focus-within .media-gallery__actions {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 .media-gallery__item__badges {
   position: absolute;
   bottom: 8px;
   inset-inline-end: 8px;
   display: flex;
   gap: 2px;
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition:
+    opacity 0.1s ease,
+    visibility 0.1s ease;
+}
+
+.media-gallery__item:hover .media-gallery__item__badges,
+.media-gallery__item:focus-within .media-gallery__item__badges {
+  opacity: 1;
+  visibility: visible;
 }
 
 .media-gallery__alt__label,
