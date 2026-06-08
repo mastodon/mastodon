@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class StatusesSearchService < BaseService
+  include SearchStoplight
+
   def call(query, account = nil, options = {})
     MastodonOTELTracer.in_span('StatusesSearchService#call') do |span|
       @query   = query&.strip
@@ -32,7 +34,7 @@ class StatusesSearchService < BaseService
 
     @account.preload_relations!(account_ids, account_domains)
 
-    results.reject { |status| StatusFilter.new(status, @account).filtered? }
+    elastic_stoplight_wrapper.run { results.reject { |status| StatusFilter.new(status, @account).filtered? } }
   rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
     []
   end

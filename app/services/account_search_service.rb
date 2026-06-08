@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AccountSearchService < BaseService
+  include SearchStoplight
+
   attr_reader :query, :limit, :offset, :options, :account
 
   MENTION_ONLY_RE = /\A#{Account::MENTION_RE}\z/i
@@ -251,7 +253,7 @@ class AccountSearchService < BaseService
       end
     end
 
-    records = query_builder.build.limit(limit_for_non_exact_results).offset(offset).objects.compact
+    records = elastic_stoplight_wrapper.run { query_builder.build.limit(limit_for_non_exact_results).offset(offset).objects.compact }
 
     ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
 
