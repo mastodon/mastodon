@@ -61,5 +61,9 @@
 
             %td
               - if import.failure_count.positive?
-                = link_to_if import.state_finished?, import.failure_count, failures_settings_import_path(import, format: :csv) do
-                  = import.failure_count
+                - if import.type == 'custom_filters'
+                  = link_to_if import.state_finished?, import.failure_count, failures_settings_import_path(import, format: :json) do
+                    = import.failure_count
+                - else
+                  = link_to_if import.state_finished?, import.failure_count, failures_settings_import_path(import, format: :csv) do
+                    = import.failure_count
