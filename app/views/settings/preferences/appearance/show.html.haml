@@ -16,7 +16,7 @@
                 wrapper: :with_label
     .fields-group.fields-row__column.fields-row__column-6
       = f.input :time_zone,
-                collection: ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.formatted_offset}) #{tz.name}", tz.tzinfo.name] },
+                collection: time_zone_options,
                 hint: false,
                 selected: current_user.time_zone || Time.zone.tzinfo.name,
                 wrapper: :with_label
