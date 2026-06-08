@@ -21,17 +21,17 @@
     = f.simple_fields_for :account do |ff|
       = ff.input :username,
                  append: "@#{site_hostname}",
-                 input_html: { autocomplete: 'off', pattern: '[a-zA-Z0-9_]+', maxlength: Account::USERNAME_LENGTH_LIMIT, placeholder: ' ' },
+                 input_html: { autocomplete: 'off', pattern: '[a-zA-Z0-9_]+', maxlength: Account::USERNAME_LENGTH_LIMIT },
                  required: true,
                  wrapper: :with_label
     = f.input :email,
               hint: false,
-              input_html: { autocomplete: 'username', placeholder: ' ' },
+              input_html: { autocomplete: 'username' },
               required: true,
               wrapper: :with_label
     = f.input :password,
               hint: false,
-              input_html: { autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last, placeholder: ' ' },
+              input_html: { autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last },
               required: true,
               wrapper: :with_label
     = f.input :password_confirmation,
