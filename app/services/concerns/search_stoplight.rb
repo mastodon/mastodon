@@ -2,7 +2,7 @@
 
 module SearchStoplight
   STOPLIGHT_COOL_OFF_TIME = 5.minutes.seconds
-  STOPLIGHT_THRESHOLD = 1
+  STOPLIGHT_THRESHOLD = 10
 
   def elastic_stoplight_wrapper
     Stoplight(
