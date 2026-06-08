@@ -709,7 +709,7 @@ lv:
         actions:
           delete_html: Noņemt aizskarošos ierakstus
           mark_as_sensitive_html: Atzīmēt aizskarošo ierakstu informācijas nesējus kā jūtīgus
-          silence_html: Ievērojami ierobežo <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai cilvēkiem, kas jau seko tam vai pašrocīgi uzmeklē profilu
+          silence_html: Ievērojami ierobežo <strong>@%{acct}</strong> sasniedzamību, padarot profilu un saturu redzamu tikai cilvēkiem, kas jau seko vai pašrocīgi uzmeklē profilu
           suspend_html: apturēs <strong>@%{acct}</strong> darbību, padarot profilu un saturu nepieejamu un neiespējamu mijiedarboties ar to;
         close_report: 'Atzīmēt ziņojumu #%{id} kā atrisinātu'
         close_reports_html: atzīmēs <strong>visus</strong> ziņojumus par <strong>@%{acct}</strong> kā atrisinātus;
@@ -1114,8 +1114,8 @@ lv:
       rotate_secret: Pagriezt noslēpumu
       secret: Paraksta noslēpums
       status: Stāvoklis
-      title: Tīmekļa āķi
-      webhook: Tīmekļa āķis
+      title: Tīmekļa aizķeres
+      webhook: Tīmekļa aizķere
   admin_mailer:
     auto_close_registrations:
       body: Nesenu satura pārraudzības darbību trūkuma dēļ reģistrācija %{instance} ir automātiski pārslēgta nepieciešamība pēc pašrocīgas izskatīšanas, lai novērstu %{instance} izmantošana kā platformu iespējami sliktiem dalībniekiem. Jebkurā brīdī var ieslēgt atpakaļ atvērtu reģistrēšanos.
@@ -2003,6 +2003,7 @@ lv:
       agreement: Ar %{domain} izmantošanas tuprināšanu tiek piekrists šiem noteikumiem. Ja ir iebildumi pret atjauninātajiem noteikumiem, savu piekrišanu var atcelt jebkurā laikā ar sava konta izdzēšanu.
       changelog: 'Šeit īsumā ir aprakstīts, ko šis atjauninājums nozīmē:'
       description: 'Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Šie atjauninājumi stāsies spēkā %{date}. Mēs aicinām pārskatīt pilnus atjauninātos noteikumus šeit:'
+      description_html: Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Šie atjauninājumi stāsies spēkā <strong>%{date}</strong>. Mēs aicinām pārskatīt <a href="%{path}" target="_blank">pilnus atjauninātos noteikumus šeit</a>.
       sign_off: "%{domain} komanda"
       subject: Mūsu pakalpojuma izmantošanas noteikumu atjauninājumi
       subtitle: Mainās %{domain} pakalpojuma izmantošanas noteikumi
