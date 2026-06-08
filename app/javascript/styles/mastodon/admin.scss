@@ -468,6 +468,22 @@ $content-width: 840px;
       background-color: var(--color-bg-brand-soft);
     }
 
+    &.variantWarning {
+      background-color: var(--color-bg-warning-softest);
+
+      .icon {
+        background-color: var(--color-bg-warning-soft);
+      }
+    }
+
+    &.variantError {
+      background-color: var(--color-bg-error-softest);
+
+      .icon {
+        background-color: var(--color-bg-error-soft);
+      }
+    }
+
     .content {
       display: flex;
       flex-direction: column;
@@ -2451,4 +2467,46 @@ a.sparkline {
   background: var(--color-bg-success-softest);
   font-size: 13px;
   font-weight: 600;
+
+  &.positive {
+    background: var(--color-bg-success-softest);
+  }
+
+  &.negative {
+    background: var(--color-bg-error-softest);
+  }
+}
+
+.metadata {
+  display: flex;
+  gap: 40px;
+  margin: 16px 0;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  dt {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  dd {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22.4px;
+
+    .status-badge {
+      box-sizing: border-box;
+      padding: 4px;
+      font-size: inherit;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
