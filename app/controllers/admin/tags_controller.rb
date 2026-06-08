@@ -17,12 +17,14 @@ module Admin
       authorize @tag, :show?
 
       @time_period = report_range
+      @action_logs = Admin::ActionLogFilter.new(action_type: :update_tag).results.limit(5)
     end
 
     def update
       authorize @tag, :update?
 
       if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
+        log_action :update, @tag
         redirect_to admin_tag_path(@tag.id), notice: I18n.t('admin.tags.updated_msg')
       else
         @time_period = report_range
