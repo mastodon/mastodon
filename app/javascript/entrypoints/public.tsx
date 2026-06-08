@@ -570,7 +570,6 @@ function applyRailsA11yPatches() {
    * Add fieldset-like group labels ("legends") to the date-of-birth selector
    * and groups of radio buttons
    */
-
   const groups = document.querySelectorAll<HTMLDivElement>(
     '.simple_form .date_of_birth, .simple_form .input.with_label.radio_buttons',
   );
@@ -594,7 +593,9 @@ function applyRailsA11yPatches() {
 
     groupWrapper.setAttribute('role', 'group');
     groupWrapper.setAttribute('aria-labelledby', labelId);
-    groupWrapper.setAttribute('aria-describedby', hintId);
+    if (groupHint) {
+      groupWrapper.setAttribute('aria-describedby', hintId);
+    }
   });
 }
 
