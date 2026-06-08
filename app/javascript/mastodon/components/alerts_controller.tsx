@@ -77,7 +77,7 @@ export const AlertsController: React.FC = () => {
   const alerts = useAppSelector((state) => state.alerts);
 
   return (
-    <A11yLiveRegion role='alert' className='notification-list'>
+    <A11yLiveRegion className='notification-list'>
       {alerts.map((alert, idx) => (
         <TimedAlert
           key={alert.key}
