@@ -28,13 +28,13 @@ class StatusesSearchService < BaseService
 
   def status_search_results
     request             = parsed_query.request
-    results             = request.collapse(field: :id).order(id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
+    results             = elastic_stoplight_wrapper.run { request.collapse(field: :id).order(id: { order: :desc }).limit(@limit).offset(@offset).objects.compact }
     account_ids         = results.map(&:account_id)
     account_domains     = results.map(&:account_domain)
 
     @account.preload_relations!(account_ids, account_domains)
 
-    elastic_stoplight_wrapper.run { results.reject { |status| StatusFilter.new(status, @account).filtered? } }
+    results.reject { |status| StatusFilter.new(status, @account).filtered? }
   rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
     []
   end
