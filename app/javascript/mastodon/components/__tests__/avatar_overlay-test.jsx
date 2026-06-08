@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import renderer from 'react-test-renderer';
+import { render } from '@/testing/rendering';
 
 import { AvatarOverlay } from '../avatar_overlay';
 
@@ -22,9 +22,8 @@ describe('<AvatarOverlay', () => {
   });
 
   it('renders a overlay avatar', () => {
-    const component = renderer.create(<AvatarOverlay account={account} friend={friend} />);
-    const tree      = component.toJSON();
+    const { container } = render(<AvatarOverlay account={account} friend={friend} />);
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
