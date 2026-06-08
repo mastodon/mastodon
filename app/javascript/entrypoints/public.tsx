@@ -181,12 +181,6 @@ async function loaded() {
 
   truncateRuleHints();
 
-  document
-    .querySelectorAll<HTMLElement>('.simple_form label.required abbr')
-    .forEach((element) => {
-      element.setAttribute('aria-hidden', 'true');
-    });
-
   applyRailsA11yPatches();
 
   const reactComponents = document.querySelectorAll('[data-component]');
@@ -535,6 +529,16 @@ function applyRailsA11yPatches() {
     '.simple-navigation-active-leaf a.selected',
   );
   activeNavLink?.setAttribute('aria-current', 'page');
+
+  /**
+   * Hides the asterisk added to labels of required form fields
+   * from assistive tech. (Those fields already have the `required` attribute)
+   */
+  document
+    .querySelectorAll<HTMLElement>('.simple_form label.required abbr')
+    .forEach((element) => {
+      element.setAttribute('aria-hidden', 'true');
+    });
 
   /**
    * Associate form field hints with their inputs via aria-describedby
