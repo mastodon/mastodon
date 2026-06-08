@@ -279,10 +279,9 @@ export const ColumnHeader: React.FC<Props> = ({
   const component = (
     <div className={wrapperClassName}>
       <div className={headingClassName}>
+        {backButton}
         {hasTitle && (
           <h1 className='column-header__title-wrapper'>
-            {backButton}
-
             {onClick ? (
               <button
                 onClick={handleTitleClick}
@@ -303,8 +302,6 @@ export const ColumnHeader: React.FC<Props> = ({
             )}
           </h1>
         )}
-
-        {!hasTitle && backButton}
 
         <div className='column-header__buttons'>
           {extraButton}
