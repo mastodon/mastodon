@@ -6,13 +6,33 @@ RSpec.describe 'Auth Registration' do
   context 'when there are server rules' do
     let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
     let!(:rule_translation) { Fabricate :rule_translation, rule:, hint: 'Rule translation hint', text: rule.text }
+    let(:invite) { Fabricate :invite, autofollow: true }
 
     it 'shows rules page before proceeding with sign up' do
-      visit new_user_registration_path
+      visit new_user_registration_path(invite_code: invite.code)
       expect(page)
         .to have_title(I18n.t('auth.register'))
         .and have_text(rule.text)
         .and have_text(rule_translation.hint)
+
+      click_on I18n.t('auth.rules.accept')
+      expect(page)
+        .to have_text(I18n.t('auth.sign_up.preamble'))
+        .and have_text(I18n.t('invites.invited_by'))
+    end
+  end
+
+  context 'when an invite code was previously followed' do
+    let(:older_invite) { Fabricate :invite, autofollow: true }
+    let(:invite) { Fabricate :invite, autofollow: true }
+
+    before { visit new_user_registration_path(invite_code: older_invite.code) }
+
+    it 'honors the newer invitation' do
+      visit new_user_registration_path(invite_code: invite.code)
+      expect(page)
+        .to have_text(I18n.t('invites.invited_by'))
+        .and have_text(invite.user.account.username)
     end
   end
 
