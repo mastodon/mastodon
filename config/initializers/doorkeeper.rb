@@ -179,9 +179,3 @@ Doorkeeper.configure do
   # WWW-Authenticate Realm (default "Doorkeeper").
   # realm "Doorkeeper"
 end
-
-Rails.application.reloader.to_prepare do
-  Doorkeeper.config.application_model.include ApplicationExtension
-  Doorkeeper.config.access_grant_model.include AccessGrantExtension
-  Doorkeeper.config.access_token_model.include AccessTokenExtension
-end
