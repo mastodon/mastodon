@@ -31,7 +31,7 @@ pt-BR:
       action: Efetuar uma ação
       already_silenced: Esta conta já foi limitada.
       already_suspended: Esta conta já foi suspensa.
-      title: Moderar %{acct}
+      title: Executar ação de moderação em %{acct}
     account_moderation_notes:
       create: Deixar nota
       created_msg: Nota de moderação criada!
@@ -53,30 +53,30 @@ pt-BR:
       change_role:
         changed_msg: Cargo alterado com sucesso!
         edit_roles: Gerenciar cargos do usuário
-        label: Alterar função
+        label: Alterar cargo
         no_role: Nenhum cargo
         title: Alterar cargo de %{username}
       collections: Coleções
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
-      custom: Personalizar
+      custom: Personalizado
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
       destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
       disable: Congelar
-      disable_sign_in_token_auth: Desativar autenticação via token por email
+      disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar autenticação de dois fatores
-      disabled: Congelada
+      disabled: Desativada
       display_name: Nome de exibição
       domain: Domínio
       edit: Editar
       email: E-mail
       email_status: Estado do e-mail
       enable: Descongelar
-      enable_sign_in_token_auth: Ativar autenticação via token por email
-      enabled: Ativada
+      enable_sign_in_token_auth: Ativar token de autenticação por e-mail
+      enabled: Ativado
       enabled_msg: A conta de %{username} foi descongelada
       followers: Seguidores
       follows: Seguindo
@@ -93,9 +93,9 @@ pt-BR:
         title: Localização
       login_status: Situação da conta
       media_attachments: Anexos de mídia
-      memorialize: Converter em memorial
-      memorialized: Convertidas em memorial
-      memorialized_msg: A conta de %{username} foi transformada em uma conta memorial
+      memorialize: Converter em memoriam
+      memorialized: Convertidas em memoriam
+      memorialized_msg: "%{username} transformada com sucesso em uma conta memorial"
       moderation:
         active: Ativa
         all: Todas
@@ -129,8 +129,8 @@ pt-BR:
       remote_suspension_reversible_hint_html: A conta foi suspensa em seu servidor, e todos os dados serão removidos em %{date}. Até lá, o servidor remoto pode restaurar essa conta sem nenhum efeito negativo. Se você quer remover todos os dados desta conta imediatamente, você pode fazer isso abaixo.
       remove_avatar: Remover imagem de perfil
       remove_header: Remover capa
-      removed_avatar_msg: A imagem de perfil de %{username} foi removida
-      removed_header_msg: A capa de %{username} foi removida
+      removed_avatar_msg: Imagem de perfil de %{username} removida com sucesso
+      removed_header_msg: Imagem de capa de %{username} removida com sucesso
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
         send: Reenviar link de confirmação
@@ -146,8 +146,8 @@ pt-BR:
       security_measures:
         only_password: Apenas senha
         password_and_2fa: Senha e autenticação de dois fatores
-      sensitive: Sensíveis
-      sensitized: Marcadas como sensíveis
+      sensitive: Marcar como sensível
+      sensitized: Marcada como sensível
       shared_inbox_url: Link da caixa de entrada compartilhada
       show:
         created_reports: Denúncias criadas
@@ -165,11 +165,11 @@ pt-BR:
       unblock_email: Desbloquear endereço de e-mail
       unblocked_email_msg: O endereço de e-mail de %{username} foi desbloqueado
       unconfirmed_email: E-mail não confirmado
-      undo_sensitized: Desfazer sensível
-      undo_silenced: Desfazer silêncio
+      undo_sensitized: Desmarcar como sensível
+      undo_silenced: Dessilenciar
       undo_suspension: Desfazer suspensão
-      unsilenced_msg: As limitações da conta de %{username} foram removidas
-      unsubscribe: Cancelar inscrição
+      unsilenced_msg: "%{username} dessilenciado com sucesso"
+      unsubscribe: Desinscrever
       unsuspended_msg: A suspensão da conta de %{username} foi removida
       username: Nome de usuário
       view_domain: Ver resumo para o domínio
@@ -186,22 +186,22 @@ pt-BR:
         confirm_user: Confirmar usuário
         create_account_warning: Criar aviso
         create_announcement: Criar anúncio
-        create_canonical_email_block: Criar bloqueio de Email
+        create_canonical_email_block: Criar bloqueio de e-mail
         create_custom_emoji: Criar emoji personalizado
-        create_domain_allow: Permitir domínio
-        create_domain_block: Bloquear domínio
-        create_email_domain_block: Criar Bloqueio de Domínio de Email
+        create_domain_allow: Criar permissão de domínio
+        create_domain_block: Criar bloqueio de domínio
+        create_email_domain_block: Criar bloqueio de domínio de e-mail
         create_ip_block: Criar regra de IP
-        create_relay: Criar Retransmissão
+        create_relay: Criar retransmissor
         create_unavailable_domain: Criar domínio indisponível
-        create_user_role: Criar função
+        create_user_role: Criar cargo
         create_username_block: Criar regra de usuário
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
-        destroy_canonical_email_block: Deletar bloqueio de Email
+        destroy_canonical_email_block: Excluir bloqueio de e-mail
         destroy_custom_emoji: Excluir emoji personalizado
-        destroy_domain_allow: Excluir domínio permitido
-        destroy_domain_block: Desbloquear domínio
+        destroy_domain_allow: Excluir permissão de domínio
+        destroy_domain_block: Excluir bloqueio de domínio
         destroy_email_domain_block: Deletar bloqueio de domínio Email
         destroy_instance: Limpar domínio
         destroy_ip_block: Excluir regra de IP
@@ -391,7 +391,7 @@ pt-BR:
       title: Emojis personalizados
       uncategorized: Não categorizado
       unlist: Não listar
-      unlisted: Não-listado
+      unlisted: Não listado
       update_failed_msg: Não foi possível atualizar esse emoji
       updated_msg: Emoji atualizado!
       upload: Enviar
@@ -1501,6 +1501,7 @@ pt-BR:
       your_appeal_rejected: Sua revisão foi rejeitada
   edit_profile:
     other: Outro
+    privacy_redesign_body: A escolha de exibir seu seguindo e seguidores agora é feita diretamente de seu perfil.
     redesign_body: A edição de perfil pode ser acessada diretamente a partir da página de perfil.
     redesign_button: Ir para lá
     redesign_title: Há uma nova experiência de edição de perfil
