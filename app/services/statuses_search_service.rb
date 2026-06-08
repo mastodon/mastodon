@@ -35,7 +35,7 @@ class StatusesSearchService < BaseService
     @account.preload_relations!(account_ids, account_domains)
 
     results.reject { |status| StatusFilter.new(status, @account).filtered? }
-  rescue Stoplight::Error::RedLight, Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
+  rescue Stoplight::Error::RedLight, Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH, OpenSSL::SSL::SSLError, Elastic::Transport::Transport::Error
     []
   end
 
