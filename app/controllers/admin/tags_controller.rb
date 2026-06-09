@@ -17,7 +17,7 @@ module Admin
       authorize @tag, :show?
 
       @time_period = report_range
-      @action_logs = Admin::ActionLogFilter.new(action_type: :update_tag).results.limit(5)
+      @action_logs = Admin::ActionLogFilter.new(target_tag: @tag.formatted_name).results.limit(5)
     end
 
     def update
