@@ -505,6 +505,21 @@ fi:
           no_lists_yet: Ei vielä listoja
         last_email: Viimeisin sähköpostiviesti
         lead: Alla näkyvät tilit, jotka ovat ottaneet ominaisuuden käyttöön ja joilla on tilaajia.
+        show:
+          confirm_disable_feature: Poistetaanko tilin %{name} sähköpostiuutiskirjeet käytöstä? Tätä tiliä koskevia sähköpostipäivityksiä ei enää lähetetä. Käyttäjä voi yhä ottaa tämän ominaisuuden uudelleen käyttöön tilinsä asetuksista. Jotta voit pysyvästi poistaa pääsyn tähän ominaisuuteen, muokkaa tilin käyttöoikeuksia kohdassa Roolit.
+          confirm_remove_subscriber: "%{email} ei vastedes vastaanota sähköpostia tililtä %{name}. Tätä toimintoa ei voi peruuttaa."
+          consent: Tilaajat ovat suostuneet vain vastaanottamaan julkaisuja sähköpostitse. Älä käytä tätä listaa muihin tarkoituksiin.
+          date: Tilauspäivä
+          disable_feature: Poista ominaisuus käytöstä
+          disabled: Tämä ominaisuus on poistettu käytöstä, eikä sähköpostia enää lähetetä tälle listalle.
+          email: Sähköpostiosoite
+          empty:
+            hint: Kukaan ei ole vielä tilannut tätä tiliä.
+            no_subscribers_yet: Ei vielä tilaajia
+          enable_feature: Ota ominaisuus käyttöön
+          no_access_html: Tällä tilillä ei ole enää ominaisuuden käyttöönottoon vaadittavia käyttöoikeuksia. Muuta tämä kohdassa <a href="%{roles_path}">Roolit</a>.
+          title: Tilin %{name} sähköpostiuutiskirjeet
+          view_account: Näytä tili
         status: Tila
         subscribers: Tilaajia
         title: Postituslistat
@@ -535,7 +550,9 @@ fi:
       index:
         disabled:
           cannot_be_enabled: Tekninen palveluntarjoajasi ei ole ottanut tätä omainaisuutta käyttöön palvelimellasi.
+          description: Tämä omainaisuus antaa määrättyjen käyttäjien lisätä profiiliinsa pienoisohjelman, jolloin vierailijat, joilla ei ole Mastodon-tiliä, voivat vastaanottaa hänen julkaisunsa sähköpostitse.
           get_started: Aloita
+        lead: Salli vierailijoiden vastaanottaa määrättyjen tämän palvelimen tilien julkaisut sähköpostitse.
         title: Sähköpostiuutiskirjeet
       purged_msg: Kaikki sähköpostitilausten tiedot hävitetään.
       roles:
@@ -1524,7 +1541,9 @@ fi:
         success_html: Alat nyt saada sähköpostia, kun %{name} julkaisee uutta. Lisää %{sender} yhteystietoihisi, jotta nämä julkaisut eivät joudu roskapostikansioon.
         title: Olet aloittanut tilauksen
         unsubscribe: Peruuta tilaus
+    disabled: Poissa käytöstä
     inactive: Poissa käytöstä
+    no_access: Ei käyttöoikeutta
     status: Tila
     subscribers: Tilaajia
   emoji_styles:

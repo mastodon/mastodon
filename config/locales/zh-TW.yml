@@ -497,6 +497,21 @@ zh-TW:
           no_lists_yet: 尚無列表
         last_email: 最新電子郵件地址
         lead: 已啟用此功能並擁有訂閱者之帳號將於下方顯示。
+        show:
+          confirm_disable_feature: 是否替 %{name} 停用電子報功能？電子報郵件將不被寄至此帳號。該使用者仍能於帳號設定中重新啟用此功能。如欲永久禁用此功能，請於角色設定中編輯該帳號之權限。
+          confirm_remove_subscriber: "%{email} 將不再收到來自 %{name} 之電子郵件。此動作無法回復。"
+          consent: 訂閱者僅同意透過電子郵件接收嘟文。請勿將此名單用於其他用途。
+          date: 註冊日期
+          disable_feature: 停用功能
+          disabled: 此功能已停用且電子郵件將不被寄至此列表。
+          email: 電子郵件地址
+          empty:
+            hint: 尚無任何人訂閱此帳號。
+            no_subscribers_yet: 尚無訂閱者
+          enable_feature: 啟用功能
+          no_access_html: 此帳號不再擁有啟用此功能所需之權限。請於 <a href="%{roles_path}">角色設定</a>中修改此設定。
+          title: "%{name} 之電子報"
+          view_account: 檢視帳號
         status: 狀態
         subscribers: 訂閱者
         title: 電子郵件列表
@@ -1514,7 +1529,9 @@ zh-TW:
         success_html: 您將開始收到當 %{name} 發表新嘟文之電子郵件。請新增 %{sender} 至您的通訊錄使這些嘟文不被分類至垃圾信件夾。
         title: 已完成註冊
         unsubscribe: 取消訂閱
+    disabled: 已停用
     inactive: 已停用
+    no_access: 無法存取
     status: 狀態
     subscribers: 訂閱者
   emoji_styles:

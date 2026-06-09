@@ -505,6 +505,21 @@ it:
           no_lists_yet: Non ci sono ancora liste
         last_email: Ultima email
         lead: Di seguito verranno visualizzati gli account che hanno attivato la funzionalità e che hanno degli iscritti.
+        show:
+          confirm_disable_feature: Disabilitare le newsletter per %{name}? Gli aggiornamenti via email non verranno più inviati per questo account. L'utente potrà comunque riattivare la funzione nelle impostazioni del proprio account. Per rimuovere definitivamente l'accesso a questa funzione, modificare le autorizzazioni dell'account in Ruoli.
+          confirm_remove_subscriber: "%{email} non riceverà più email da %{name}. Questa azione non può essere annullata."
+          consent: Gli iscritti hanno acconsentito esclusivamente a ricevere i post via email. Non utilizzare questa lista per altri scopi.
+          date: Data di iscrizione
+          disable_feature: Disabilita la funzionalità
+          disabled: La funzionalità è stata disabilitata e le email non vengono più inviate a questa lista.
+          email: Indirizzo email
+          empty:
+            hint: Nessuno si è ancora iscritto a questo account.
+            no_subscribers_yet: Ancora nessun iscritto
+          enable_feature: Abilita la funzionalità
+          no_access_html: Questo account non dispone più delle autorizzazioni necessarie per abilitare la funzionalità. Modifica questa impostazione in <a href="%{roles_path}">Ruoli</a>.
+          title: Newsletter via email da %{name}
+          view_account: Visualizza l'account
         status: Stato
         subscribers: Iscritti
         title: Mailing list
@@ -1532,7 +1547,9 @@ it:
         success_html: Ora inizierai a ricevere email quando %{name} pubblicherà nuovi post. Aggiungi %{sender} ai tuoi contatti in modo che questi post non finiscano nella cartella Spam.
         title: Ti sei registrato/a
         unsubscribe: Disiscriviti
+    disabled: Disabilitata
     inactive: Inattiva
+    no_access: Nessun accesso
     status: Stato
     subscribers: Iscritti
   emoji_styles:

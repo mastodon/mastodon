@@ -505,6 +505,21 @@ fr-CA:
           no_lists_yet: Aucune liste pour l'instant
         last_email: Dernier courriel
         lead: Les comptes ayant activé la fonctionnalité et qui ont des abonné·e·s apparaîtront ci-dessous.
+        show:
+          confirm_disable_feature: Désactiver les courriels d'information pour %{name} ? Les notifications par courriel ne seront plus envoyées pour ce compte. L'utilisateur·rice pourra toujours réactiver la fonctionnalité dans les paramètres de son compte. Pour supprimer définitivement l'accès à cette fonction, modifiez les permissions du compte dans Rôles.
+          confirm_remove_subscriber: "%{email} ne recevra plus de courriels de %{name}. Cette action ne peut pas être annulée."
+          consent: Les abonné·e·s ont uniquement consenti à recevoir des messages par courriels. N'utilisez pas cette liste à d'autres fins.
+          date: Date d'inscription
+          disable_feature: Désactiver la fonctionnalité
+          disabled: La fonctionnalité a été désactivée et les courriels ne sont plus envoyés à cette liste.
+          email: Adresse de courriel
+          empty:
+            hint: Personne ne s'est abonné à ce compte pour l'instant.
+            no_subscribers_yet: Pas d'abonné·e pour l'instant
+          enable_feature: Activer la fonctionnalité
+          no_access_html: Ce compte n'a plus l'autorisation nécessaire pour activer la fonctionnalité. Changez cela dans <a href="%{roles_path}">Rôles</a>.
+          title: Lettres d'information par courriel de %{name}
+          view_account: Afficher le compte
         status: État
         subscribers: Abonné·e·s
         title: Listes de diffusion
@@ -1532,7 +1547,9 @@ fr-CA:
         success_html: Vous allez maintenant commencer à recevoir des courriels quand %{name} publie de nouveaux messages. Ajoutez %{sender} à vos contacts pour que ces messages ne soient pas considérés comme des courriels indésirables.
         title: Vous êtes abonné·e
         unsubscribe: Se désabonner
+    disabled: Désactivé
     inactive: Inactif
+    no_access: Pas d'accès
     status: État
     subscribers: Abonné·e·s
   emoji_styles:

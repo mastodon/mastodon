@@ -505,6 +505,21 @@ tr:
           no_lists_yet: Henüz liste yok
         last_email: Son e-posta
         lead: Bu özelliği etkinleştirmiş ve abonesi olan hesaplar aşağıda gösterilecektir.
+        show:
+          confirm_disable_feature: "%{name} için e-posta bültenlerini devre dışı bırakmak ister misiniz? Bu hesap için artık e-posta güncellemeleri gönderilmeyecektir. Kullanıcı, hesap ayarlarından bu özelliği yeniden etkinleştirebilir. Bu özelliğe erişimi kalıcı olarak kaldırmak için, Roller bölümünden hesabın izinlerini düzenleyin."
+          confirm_remove_subscriber: "%{email} artık %{name}'den e-posta almayacaktır. Bu işlem geri alınamaz."
+          consent: Aboneler yalnızca e-posta yoluyla mesaj almayı kabul etmişlerdir. Bu listeyi başka amaçlarla kullanmayınız.
+          date: Kayıt tarihi
+          disable_feature: Özelliği devre dışı bırak
+          disabled: Bu özellik devre dışı bırakıldı ve artık bu listeye e-posta gönderilmiyor.
+          email: E-posta adresi
+          empty:
+            hint: Henüz kimse bu hesaba abone olmamış.
+            no_subscribers_yet: Henüz abone yok
+          enable_feature: Özelliği etkinleştir
+          no_access_html: Bu hesap, özelliği etkinleştirmek için gereken izinlere artık sahip değil. Bu ayarı <a href="%{roles_path}">Roller</a> bölümünden değiştirin.
+          title: "%{name}'in e-posta bültenleri"
+          view_account: Hesabı görüntüle
         status: Durum
         subscribers: Aboneler
         title: E-posta listeleri
@@ -1499,6 +1514,7 @@ tr:
       your_appeal_rejected: İtirazınız reddedildi
   edit_profile:
     other: Diğer
+    privacy_redesign_body: Takip ettiğiniz kişileri ve takipçilerinizi gösterme seçeneği artık doğrudan profilinizden yapılmaktadır.
     redesign_body: Profil düzenlemeye şimdi doğrudan profil sayfasından da erişilebilir.
     redesign_button: Git
     redesign_title: Yeni bir profile düzenleme deneyimi var
@@ -1531,7 +1547,9 @@ tr:
         success_html: "%{name} yeni bir yazı yayınladığında artık e-posta almaya başlayacaksınız. Bu yazılar spam klasörüne düşmesin diye %{sender}'ı kişi listenize ekleyin."
         title: Abone oldunuz
         unsubscribe: Abonelikten çık
+    disabled: Devre dışı
     inactive: Etkin değil
+    no_access: Erişim yok
     status: Durum
     subscribers: Aboneler
   emoji_styles:
