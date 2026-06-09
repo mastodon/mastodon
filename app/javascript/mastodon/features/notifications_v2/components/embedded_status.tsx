@@ -8,6 +8,7 @@ import type { List as ImmutableList, RecordOf } from 'immutable';
 
 import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
+import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import BarChart4BarsIcon from '@/material-icons/400-24px/bar_chart_4_bars.svg?react';
 import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react';
 import { toggleStatusSpoilers } from 'mastodon/actions/statuses';
@@ -67,7 +68,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         const path = `/@${account.acct}/${statusId}`;
 
         if (button === 0 && !(ctrlKey || metaKey)) {
-          history.push(path);
+          history.push(path, { focusTarget: FOCUS_TARGET.POST });
         } else if (button === 1 || (button === 0 && (ctrlKey || metaKey))) {
           window.open(path, '_blank', 'noopener');
         }
