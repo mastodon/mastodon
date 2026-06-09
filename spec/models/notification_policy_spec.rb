@@ -28,4 +28,56 @@ RSpec.describe NotificationPolicy do
       )
     end
   end
+
+  shared_examples 'a filter policy setter' do
+    let(:notification_policy) { Fabricate.build(:notification_policy) }
+
+    context 'when value is true' do
+      let(:value) { true }
+
+      it { is_expected.to eq('filter') }
+    end
+
+    context 'when value is false' do
+      let(:value) { false }
+
+      it { is_expected.to eq('accept') }
+    end
+  end
+
+  describe '#filter_not_following=' do
+    subject do
+      notification_policy.filter_not_following = value
+      notification_policy.for_not_following
+    end
+
+    it_behaves_like 'a filter policy setter'
+  end
+
+  describe '#filter_not_followers=' do
+    subject do
+      notification_policy.filter_not_followers = value
+      notification_policy.for_not_followers
+    end
+
+    it_behaves_like 'a filter policy setter'
+  end
+
+  describe '#filter_new_accounts=' do
+    subject do
+      notification_policy.filter_new_accounts = value
+      notification_policy.for_new_accounts
+    end
+
+    it_behaves_like 'a filter policy setter'
+  end
+
+  describe '#filter_private_mentions=' do
+    subject do
+      notification_policy.filter_private_mentions = value
+      notification_policy.for_private_mentions
+    end
+
+    it_behaves_like 'a filter policy setter'
+  end
 end
