@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { Button } from 'mastodon/components/button';
 import {
   ModalShell,
@@ -67,7 +68,9 @@ export const ConfirmationModal: React.FC<
   return (
     <ModalShell onSubmit={handleClick}>
       <ModalShellBody className={className}>
-        <h1 id={titleId}>{title}</h1>
+        <NavigationFocusTarget as='h1' id={titleId}>
+          {title}
+        </NavigationFocusTarget>
         {message && <p>{message}</p>}
 
         {extraContent ?? children}
