@@ -15,4 +15,17 @@ RSpec.describe 'Admin Tags' do
         .to have_http_status(400)
     end
   end
+
+  describe 'update tag' do
+    before { sign_in Fabricate(:admin_user) }
+
+    let(:tag) { Fabricate :tag, name: '#supertag' }
+
+    it 'redirects to tag page and saves log action for tag' do
+      put admin_tag_path(tag.id, params: { tag: { trendable: true } })
+
+      expect(response).to have_http_status(302)
+      expect(Admin::ActionLog.last.human_identifier).to eq(tag.formatted_name)
+    end
+  end
 end

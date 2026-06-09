@@ -111,7 +111,7 @@ class Tag < ApplicationRecord
   end
 
   def to_log_human_identifier
-    "##{display_name}"
+    formatted_name
   end
 
   class << self

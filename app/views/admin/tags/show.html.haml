@@ -95,7 +95,7 @@
   %hr.spacer/
 
   %h3= t('admin.tags.audit_log.title')
-  - if @action_logs.empty?
+  - if @action_logs.nil?
     %p= t('accounts.nothing_here')
   - else
     .report-notes
