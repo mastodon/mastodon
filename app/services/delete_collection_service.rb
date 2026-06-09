@@ -3,6 +3,7 @@
 class DeleteCollectionService
   def call(collection)
     @collection = collection
+    @account_ids = @collection.account_ids
     @collection.destroy!
 
     distribute_remove_activity
@@ -11,10 +12,13 @@ class DeleteCollectionService
   private
 
   def distribute_remove_activity
-    ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, @collection.account.id)
+    @account_ids.each do |account_id|
+      ActivityPub::DeliveryWorker.perform_async(activity_json, account_id, @collection.account.inbox_url)
+    end
+    ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, @collection.account_id)
   end
 
   def activity_json
-    ActiveModelSerializers::SerializableResource.new(@collection, serializer: ActivityPub::RemoveFeaturedCollectionSerializer, adapter: ActivityPub::Adapter).to_json
+    @activity_json ||= ActiveModelSerializers::SerializableResource.new(@collection, serializer: ActivityPub::RemoveFeaturedCollectionSerializer, adapter: ActivityPub::Adapter).to_json
   end
 end

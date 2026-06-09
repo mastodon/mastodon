@@ -139,7 +139,7 @@ RSpec.describe ActivityPub::Activity::Delete do
         subject.perform
 
         expect(collection_item.reload).to be_revoked
-        expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+        expect(ActivityPub::CollectionRawDistributionWorker).to have_enqueued_sidekiq_job
       end
     end
   end

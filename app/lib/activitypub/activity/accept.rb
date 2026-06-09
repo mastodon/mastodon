@@ -53,7 +53,7 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
     collection_item.update!(approval_uri:, state: :accepted)
 
     activity_json = ActiveModelSerializers::SerializableResource.new(collection_item, serializer: ActivityPub::AddFeaturedItemSerializer, adapter: ActivityPub::Adapter).to_json
-    ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, collection_item.collection.account_id)
+    ActivityPub::CollectionRawDistributionWorker.perform_async(activity_json, collection_item.collection_id)
   end
 
   def accept_quote!(quote)

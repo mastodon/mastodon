@@ -16,7 +16,7 @@ class UpdateCollectionService
   def distribute_update_activity
     return unless relevant_attributes_changed?
 
-    ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, @collection.account.id)
+    ActivityPub::CollectionRawDistributionWorker.perform_async(activity_json, @collection.id)
   end
 
   def notify_about_update
