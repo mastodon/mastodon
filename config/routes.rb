@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     resource :unsubscribe, only: [:show, :create], controller: :unsubscriptions
 
     namespace :auth do
+      resource :acceptance, only: [:create]
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create]
       post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
