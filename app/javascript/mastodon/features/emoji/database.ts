@@ -143,7 +143,28 @@ export async function search({
         return intersection;
       })
       .values(),
-  ).toSorted((a, b) => a.score - b.score);
+  );
+
+  // If there are no results, try a cursor-based custom emoji search instead.
+  if (results.length === 0) {
+    const trx = db.transaction('custom', 'readonly');
+    const foundEmojis = new Set<string>();
+    for await (const cursor of trx.store.index('tokens')) {
+      const emoji = cursor.value;
+      const score = getScoreForEmoji(emoji, query);
+      if (score === null || foundEmojis.has(emoji.shortcode)) {
+        continue;
+      }
+
+      results.push({ ...emoji, score });
+      foundEmojis.add(emoji.shortcode);
+    }
+    log('cursor search found %d results for "%s"', foundEmojis.size, query);
+    await trx.done;
+  }
+
+  // Sort by score, descending.
+  results.sort((a, b) => a.score - b.score);
 
   const time = performance.measure('emoji-search-end', 'emoji-search-start');
   log(
