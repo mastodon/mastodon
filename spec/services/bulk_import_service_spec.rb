@@ -425,7 +425,7 @@ RSpec.describe BulkImportService do
         stub_fetch_remote_and_drain_workers
         expect(account.custom_filters.count).to eq(2)
         expect(account.custom_filters.order(:phrase).last.statuses.count).to eq(1)
-        expect(account.custom_filters.last.keywords.count).to eq(2)
+        expect(account.custom_filters.order(:phrase).last.keywords.count).to eq(2)
       end
     end
 

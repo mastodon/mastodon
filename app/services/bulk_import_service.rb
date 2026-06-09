@@ -187,9 +187,9 @@ class BulkImportService < BaseService
 
   def import_custom_filters!
     rows = @import.rows.to_a
-    titles = rows.map { |row| row.data['title'] }
+    rows.map { |row| row.data['title'] }
 
-    @account.custom_filters.where.not(title: titles).destroy_all if @import.overwrite?
+    @account.custom_filters.destroy_all if @import.overwrite?
 
     Import::RowWorker.push_bulk(rows) do |row|
       [row.id]
