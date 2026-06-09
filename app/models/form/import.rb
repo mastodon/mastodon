@@ -59,7 +59,7 @@ class Form::Import
   end
 
   def guessed_type_json
-    :custom_filters if file_name_matches?('custom_filters')
+    :custom_filters if parse_json.keys.any?('custom_filters')
   end
 
   # Whether the uploaded CSV file seems to correspond to a different import type than the one selected
@@ -195,7 +195,7 @@ class Form::Import
 
   def validate_json_data
     errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if json_data.count > ROWS_PROCESSING_LIMIT
-    errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless allowed_json_key?
+    errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless allowed_type_for_json?
   end
 
   def content_type_is_json?
@@ -203,10 +203,14 @@ class Form::Import
   end
 
   def json_data
-    @json_data ||= JSON.parse(data.read)['custom_filters'].map(&:deep_symbolize_keys)
+    parse_json['custom_filters'].map(&:deep_symbolize_keys)
   end
 
-  def allowed_json_key?
+  def parse_json
+    @parse_json ||= JSON.parse(data.read)
+  end
+
+  def allowed_type_for_json?
     type.to_sym.in?(%i(custom_filters))
   end
 end
