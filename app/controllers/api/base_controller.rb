@@ -100,4 +100,8 @@ class Api::BaseController < ApplicationController
   def respond_with_error(code)
     render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code
   end
+
+  def alpha_path?
+    request.path.starts_with?('/api/v1_alpha')
+  end
 end
