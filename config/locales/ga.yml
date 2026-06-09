@@ -535,6 +535,21 @@ ga:
           no_lists_yet: Gan aon liostaí fós
         last_email: Ríomhphost deireanach
         lead: Taispeánfar thíos cuntais a bhfuil an ghné cumasaithe acu agus a bhfuil síntiúsóirí acu.
+        show:
+          confirm_disable_feature: An bhfuil tú ag iarraidh nuachtlitreacha ríomhphoist a dhíchumasú do %{name}? Ní sheolfar nuashonruithe ríomhphoist don chuntas seo a thuilleadh. Beidh an t-úsáideoir fós in ann an ghné a athchumasú ina socruithe cuntais. Chun rochtain ar an ngné seo a bhaint go buan, cuir cead an chuntais in eagar i Róil.
+          confirm_remove_subscriber: Ní bhfaighidh %{email} ríomhphoist ó %{name} a thuilleadh. Ní féidir an gníomh seo a chealú.
+          consent: Níor thoiligh síntiúsóirí ach le poist a fháil trí ríomhphost. Ná húsáid an liosta seo chun críocha eile.
+          date: Dáta an chláraithe
+          disable_feature: Díchumasaigh gné
+          disabled: Díchumasaíodh an ghné agus níl ríomhphoist á seoladh chuig an liosta seo a thuilleadh.
+          email: Seoladh ríomhphoist
+          empty:
+            hint: Níl aon duine cláraithe leis an gcuntas seo go fóill.
+            no_subscribers_yet: Gan aon síntiúsóirí fós
+          enable_feature: Cumasaigh gné
+          no_access_html: Níl na ceadanna riachtanacha ag an gcuntas seo a thuilleadh chun an ghné a chumasú. Athraigh seo i <a href="%{roles_path}">Róil</a>.
+          title: Nuachtlitreacha ríomhphoist ó %{name}
+          view_account: Féach ar an gcuntas
         status: Stádas
         subscribers: Síntiúsóirí
         title: Liostaí poist
@@ -1600,7 +1615,9 @@ ga:
         success_html: Tosóidh tú ag fáil ríomhphoist anois nuair a fhoilseoidh %{name} poist nua. Cuir %{sender} le do theagmhálaithe ionas nach gcríochnóidh na poist seo i do fhillteán Turscair.
         title: Tá tú cláraithe
         unsubscribe: Díliostáil
+    disabled: Míchumasaithe
     inactive: Neamhghníomhach
+    no_access: Gan rochtain
     status: Stádas
     subscribers: Síntiúsóirí
   emoji_styles:

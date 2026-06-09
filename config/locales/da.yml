@@ -505,6 +505,21 @@ da:
           no_lists_yet: Ingen lister endnu
         last_email: Seneste e-mail
         lead: Nedenfor vises de konti, der har aktiveret funktionen og har abonnenter.
+        show:
+          confirm_disable_feature: Vil du deaktivere e-mail-nyhedsbreve for %{name}? Der vil ikke længere blive sendt e-mail-opdateringer for denne konto. Brugeren kan stadig genaktivere funktionen i sine kontoindstillinger. Hvis du vil fjerne adgangen til denne funktion permanent, skal du redigere kontoens tilladelser under Roller.
+          confirm_remove_subscriber: "%{email} vil ikke længere modtage e-mails fra %{name}. Denne handling kan ikke fortrydes."
+          consent: Abonnenter har kun givet samtykke til at modtage indlæg via e-mail. Brug ikke denne liste til andre formål.
+          date: Dato for tilmelding
+          disable_feature: Deaktivér funktion
+          disabled: Funktionen blev deaktiveret og e-mails bliver ikke længere sendt til denne liste.
+          email: E-mailadresse
+          empty:
+            hint: Ingen har abonneret på denne konto endnu.
+            no_subscribers_yet: Ingen abonnenter endnu
+          enable_feature: Aktivér funktion
+          no_access_html: Denne konto har ikke længere de tilladelser, der kræves for at aktivere funktionen. Ændr dette i <a href="%{roles_path}">Roller</a>.
+          title: E-mail-nyhedsbreve for %{name}
+          view_account: Vis konto
         status: Status
         subscribers: Abonnenter
         title: Mailinglister
@@ -1532,7 +1547,9 @@ da:
         success_html: Du vil nu begynde at modtage e-mails, når %{name} offentliggør nye indlæg. Tilføj %{sender} til dine kontakter, så disse indlæg ikke ender i din spam-mappe.
         title: Du er tilmeldt
         unsubscribe: Afmeld
+    disabled: Deaktiveret
     inactive: Inaktive
+    no_access: Ingen adgang
     status: Status
     subscribers: Abonnenter
   emoji_styles:

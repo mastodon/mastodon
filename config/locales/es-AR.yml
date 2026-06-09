@@ -505,6 +505,21 @@ es-AR:
           no_lists_yet: Aún no hay listas
         last_email: Último correo electrónico
         lead: Las cuentas que habilitaron la función y tienen suscriptores se mostrarán a continuación.
+        show:
+          confirm_disable_feature: "¿Deshabilitar boletines de correo electrónico para %{name}? Las actualizaciones de correo electrónico ya no se enviarán a esta cuenta. El usuario todavía podrá volver a activar la función en la configuración de su cuenta. Para eliminar permanentemente el acceso a esta función, editá el permiso de la cuenta en Roles."
+          confirm_remove_subscriber: "%{email} ya no recibirá correos electrónicos de %{name}. Esta acción no se puede deshacer."
+          consent: Los suscriptores solo aceptaron recibir mensajes por correo electrónico. No usés esta lista para otros propósitos.
+          date: Fecha de registro
+          disable_feature: Deshabilitar función
+          disabled: La función fue deshabilitada y los correos electrónicos ya no están siendo enviados a esta lista.
+          email: Dirección de correo electrónico
+          empty:
+            hint: Todavía nadie se suscribió a esta cuenta.
+            no_subscribers_yet: Aún no hay suscriptores
+          enable_feature: Habilitar función
+          no_access_html: Esta cuenta ya no tiene los permisos requeridos para habilitar la función. Cambiá esto en <a href="%{roles_path}">Roles</a>.
+          title: Boletines de noticias de %{name}
+          view_account: Ver cuenta
         status: Estado
         subscribers: Suscriptores
         title: Listas de correo
@@ -1532,7 +1547,9 @@ es-AR:
         success_html: Ahora vas a empezar a recibir correos electrónicos cuando %{name} publique algo nuevo. Agregá a %{sender} a tus contactos para que estas publicaciones no terminen en tu carpeta de spam o correo no deseado.
         title: Te suscribiste
         unsubscribe: Desuscribirse
+    disabled: Deshabilitada
     inactive: Inactiva
+    no_access: Sin acceso
     status: Estado
     subscribers: Suscriptores
   emoji_styles:

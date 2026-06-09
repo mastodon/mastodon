@@ -505,6 +505,21 @@ hu:
           no_lists_yet: Még nincsenek listák
         last_email: Legutóbbi e-mail
         lead: A fiókok, melyek bekapcsolták a funkciót, és vannak feliratkozóik, itt fognak megjelenni alább.
+        show:
+          confirm_disable_feature: Letiltod %{name} e-mailes hírleveleit? Az e-mailek ettől kezdve nem lesznek elküldve ennek a fióknak. A felhasználó továbbra is újra be tudja kapcsolni a funkciót a fiókbeállításaiban. A funkció elérésének végleges eltávolításához szerkeszd a fiók jogosultságait a Szerepekben.
+          confirm_remove_subscriber: 'A(z) %{email} már nem fog leveleket kapni a következőtől: %{name}. Ez a művelet nem vonható vissza.'
+          consent: A feliratkozók csak abba egyeztek bele, hogy levélben megkapják a bejegyzéseket. Ezt a listát ne használd más célokra.
+          date: Regisztráció dátuma
+          disable_feature: Funkció kikapcsolása
+          disabled: A funkció ki lett kapcsolva, és az e-mailek már nem kerülnek elküldésre erre a listára.
+          email: E-mail-cím
+          empty:
+            hint: Még senki sem iratkozott fel erre a fiókra.
+            no_subscribers_yet: Még nincsenek feliratkozók
+          enable_feature: Funkció bekapcsolása
+          no_access_html: A fióknak már nincs meg a szükséges jogosultsága a funkció bekapcsolásához. Módosítsd a <a href="%{roles_path}">Szerepekben</a>.
+          title: "%{name} e-mailes hírlevelei"
+          view_account: Fiók megtekintése
         status: Állapot
         subscribers: Feliratkozók
         title: Levelezőlisták
@@ -1499,6 +1514,7 @@ hu:
       your_appeal_rejected: A fellebbezésedet visszautasították
   edit_profile:
     other: Egyéb
+    privacy_redesign_body: A döntés, hogy megjeleníted-e a követettjeidet és követőidet, most már közvetlenül a profilodon tehető meg.
     redesign_body: A profil szerkesztése most már közvetlenül elérhető a profiloldalon.
     redesign_button: Ugrás oda
     redesign_title: Az új profilszerkesztési élmény
@@ -1531,7 +1547,9 @@ hu:
         success_html: Mostantól levelet fogsz kapni, ha %{name} új bejegyzést tesz közzé. Add hozzá a feladót (%{sender}) a névjegyeidhez, hogy ne kerüljön a Levélszemét mappádba.
         title: Feliratkoztál
         unsubscribe: Leiratkozás
+    disabled: Kikapcsolva
     inactive: Inaktív
+    no_access: Nincs hozzáférés
     status: Állapot
     subscribers: Feliratkozók
   emoji_styles:

@@ -505,6 +505,21 @@ pt-BR:
           no_lists_yet: Não há listas ainda
         last_email: Último email
         lead: Contas que ativaram o recurso e têm inscritos aparecerão abaixo.
+        show:
+          confirm_disable_feature: Desativar e-mails de notícia de %{name}? Os e-mails de notícia não serão mais enviados a esta conta. O usuário poderá reativar este recurso através das opções da conta. Para remover acesso permanente a este recurso, edite as permissões da conta em Cargos.
+          confirm_remove_subscriber: "%{email} não receberá mais e-mails de %{name}. Esta ação não pode ser desfeita."
+          consent: Os inscritos só permitiram receber publicações por e-mail. Não use esta lista para outra coisa.
+          date: Data de registro
+          disable_feature: Desativar recurso
+          disabled: O recurso foi desativado e os e-mails não são mais enviados a esta lista.
+          email: Endereço de e-mail
+          empty:
+            hint: Ninguém ainda se inscreveu a esta conta.
+            no_subscribers_yet: Nenhum inscrito ainda
+          enable_feature: Ativar recurso
+          no_access_html: Esta conta não tem mais as permissões necessárias para ativar o recurso. Altere isso em <a href="%{roles_path}">Cargos</a>.
+          title: E-mails de notícia de %{name}
+          view_account: Ver conta
         status: Estado
         subscribers: Inscritos
         title: Listas de envio
@@ -1532,7 +1547,9 @@ pt-BR:
         success_html: Agora você começará a receber e-mails quando %{name} publicar novas postagens. Adicione %{sender} para seus contatos para que essas publicações não apareçam em sua caixa de Spam.
         title: Você está registrado
         unsubscribe: Cancelar inscrição
+    disabled: Desativado
     inactive: Inativo
+    no_access: Sem acesso
     status: Situação
     subscribers: Inscritos
   emoji_styles:

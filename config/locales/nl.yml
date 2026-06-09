@@ -505,6 +505,21 @@ nl:
           no_lists_yet: Nog geen lijsten
         last_email: Meest recente e-mail
         lead: Accounts die deze functionaliteit hebben ingeschakeld en abonnees hebben, worden hieronder getoond.
+        show:
+          confirm_disable_feature: E-mailnieuwsbrieven voor %{name} uitschakelen? E-mailupdates voor dit account worden niet langer verzonden. De gebruiker kan deze functionaliteit nog steeds in diens accountinstellingen inschakelen. Om de toegang tot deze functie permanent te verwijderen, wijzig dan de rechten van het account onder 'Beheer > rollen'.
+          confirm_remove_subscriber: "%{email} ontvangt niet langer e-mails van %{name}. Deze actie kan niet ongedaan worden gemaakt."
+          consent: Abonnees hebben alleen toestemming gegeven om berichten via e-mail te ontvangen. Gebruik deze lijst niet voor andere doeleinden.
+          date: Datum van abonneren
+          disable_feature: Functionaliteit uitschakelen
+          disabled: De functionaliteit is uitgeschakeld en e-mails worden niet meer naar deze lijst verzonden.
+          email: E-mailadres
+          empty:
+            hint: Niemand heeft zich nog op dit account geabonneerd.
+            no_subscribers_yet: Nog geen abonnees
+          enable_feature: Functionaliteit inschakelen
+          no_access_html: Dit account is niet langer gemachtigd om de functionaliteit in te schakelen. Wijzig dit onder 'Beheer > <a href="%{roles_path}">rollen</a>'.
+          title: E-mailnieuwsbrieven van %{name}
+          view_account: Account bekijken
         status: Status
         subscribers: Abonnees
         title: Mailinglijsten
@@ -1532,7 +1547,9 @@ nl:
         success_html: Je ontvangt nu e-mails wanneer %{name} nieuwe berichten publiceert. Voeg %{sender} toe aan je contactpersonen, zodat deze berichten niet in je spam terechtkomen.
         title: Je bent ingeschreven
         unsubscribe: Afmelden
+    disabled: Uitgeschakeld
     inactive: Inactief
+    no_access: Geen toegang
     status: Status
     subscribers: Abonnees
   emoji_styles:

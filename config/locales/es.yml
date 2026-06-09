@@ -505,6 +505,23 @@ es:
           no_lists_yet: Aún no hay listas
         last_email: Último correo electrónico
         lead: Las cuentas que han habilitado la función y tienen suscriptores se mostrarán a continuación.
+        show:
+          confirm_disable_feature: |-
+            ¿Desactivar boletines de correo electrónico de %{name}? No se enviarán actualizaciones por correo electrónico para esta cuenta. El usuario aún podrá reactivar esta función en los ajustes de su cuenta.
+            Para eliminar el acceso a esta función permanentemente, modifica los permisos de la cuenta en Roles.
+          confirm_remove_subscriber: "%{email} no recibirá más correos electrónicos de %{name}. Esta acción no se puede deshacer."
+          consent: Los subscriptores solo han autorizado recibir publicaciones por email. No utilices esta lista para otros propósitos.
+          date: Fecha de suscripción
+          disable_feature: Desactivar función
+          disabled: La función ha sido desactivada y ya no se enviarán correos electrónicos a esta lista.
+          email: Dirección de correo electrónico
+          empty:
+            hint: Nadie se ha suscrito a esta cuenta aún.
+            no_subscribers_yet: Sin suscriptores aún
+          enable_feature: Activar función
+          no_access_html: Esta cuenta ya no tiene los permisos necesarios para activar la función. Modifica esto en <a href="%{roles_path}">Roles</a>.
+          title: Boletines de correo electrónico de %{name}
+          view_account: Ver cuenta
         status: Estado
         subscribers: Suscriptores
         title: Listas de correo
@@ -1499,7 +1516,7 @@ es:
       your_appeal_rejected: Tu apelación ha sido rechazada
   edit_profile:
     other: Otros
-    privacy_redesign_body: La opción de mostrar tus perfiles seguidos y seguidores ahora se hace directamente desde tu perfil.
+    privacy_redesign_body: La opción de mostrar a quién sigues y tus seguidores ahora está directamente en tu perfil.
     redesign_body: Ahora puedes acceder a la edición del perfil desde la propia página de perfil.
     redesign_button: Llévame allí
     redesign_title: Hay una nueva experiencia de edición de perfil
@@ -1532,7 +1549,9 @@ es:
         success_html: Ahora empezarás a recibir correos electrónicos cuando %{name} publique algo nuevo. Añade %{sender} a tus contactos para que estas publicaciones no terminen en tu carpeta de Spam.
         title: Estás suscrito
         unsubscribe: Cancelar suscripición
+    disabled: Desactivado
     inactive: Inactiva
+    no_access: Sin acceso
     status: Estado
     subscribers: Suscriptores
   emoji_styles:

@@ -495,6 +495,21 @@ zh-CN:
           no_lists_yet: 尚无列表
         last_email: 最新电子邮件
         lead: 已启用此功能并拥有订阅者的账号会在下方显示。
+        show:
+          confirm_disable_feature: 禁用 %{name} 的邮件电子报吗？此后将不再执行此账号的电子邮件推送。该用户仍可以在账号设置中重新启用此功能。要永久移除此功能的访问权限，请在“角色”设置中编辑账号权限。
+          confirm_remove_subscriber: "%{email} 将不会再收到来自 %{name} 的电子邮件。此操作无法撤销。"
+          consent: 此列表中的订阅者仅同意通过电子邮件接受嘟文。请不要将此列表用作其他目的。
+          date: 订阅注册日期
+          disable_feature: 禁用功能
+          disabled: 此功能已被禁用，邮件已不再向此列表内发送。
+          email: 电子邮件地址
+          empty:
+            hint: 暂时没有人订阅这个账号。
+            no_subscribers_yet: 尚无订阅者
+          enable_feature: 启用功能
+          no_access_html: 此账号不再拥有启用该功能所需的权限。请在<a href="%{roles_path}">角色</a>设置处更改。
+          title: "%{name}的邮件电子报"
+          view_account: 查看账号
         status: 状态
         subscribers: 订阅者
         title: 邮件列表
@@ -1510,7 +1525,9 @@ zh-CN:
         success_html: 现在开始当 %{name} 发布新嘟文时你会收到邮件提醒。记得将 %{sender} 添加到邮箱联系人中，以免嘟文推送被丢入垃圾邮件文件夹。
         title: 你已成功订阅
         unsubscribe: 取消订阅
+    disabled: 已禁用
     inactive: 未生效
+    no_access: 没有权限
     status: 状态
     subscribers: 订阅者
   emoji_styles:
