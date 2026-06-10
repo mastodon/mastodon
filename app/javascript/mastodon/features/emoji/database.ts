@@ -143,7 +143,28 @@ export async function search({
         return intersection;
       })
       .values(),
-  ).toSorted((a, b) => a.score - b.score);
+  );
+
+  // If there are no results, try a cursor-based custom emoji search instead.
+  if (results.length === 0) {
+    const trx = db.transaction('custom', 'readonly');
+    const foundEmojis = new Set<string>();
+    for await (const cursor of trx.store) {
+      const emoji = cursor.value;
+      const score = getScoreForEmoji(emoji, query, false);
+      if (score === null || foundEmojis.has(emoji.shortcode)) {
+        continue;
+      }
+
+      results.push({ ...emoji, score });
+      foundEmojis.add(emoji.shortcode);
+    }
+    log('cursor search found %d results for "%s"', foundEmojis.size, query);
+    await trx.done;
+  }
+
+  // Sort by score, descending.
+  results.sort((a, b) => a.score - b.score);
 
   const time = performance.measure('emoji-search-end', 'emoji-search-start');
   log(
@@ -159,14 +180,19 @@ export async function search({
   return results;
 }
 
-function getScoreForEmoji(emoji: AnyEmojiData, query: string) {
+function getScoreForEmoji(
+  emoji: AnyEmojiData,
+  query: string,
+  checkTokens = true,
+) {
   const id = 'shortcode' in emoji ? emoji.shortcode : emoji.label;
   if (id === query) {
     return 0;
   }
 
   let index = 1;
-  for (const token of [id, ...emoji.tokens]) {
+  const searchTokens = checkTokens ? [id, ...emoji.tokens] : [id];
+  for (const token of searchTokens) {
     const tokenIndex = token.indexOf(query);
     if (tokenIndex !== -1) {
       return index + tokenIndex / token.length;
@@ -244,6 +270,13 @@ export async function clearCache(key: CacheKey) {
   const db = await loadDB();
   await db.delete('etags', key);
   log('Cleared cache for %s', key);
+}
+
+export async function resetDatabase() {
+  const db = await loadDB();
+  const storeNames = [...db.objectStoreNames];
+  await Promise.all(storeNames.map((storeName) => db.clear(storeName)));
+  log(storeNames, 'Reset emoji database stores:');
 }
 
 export async function loadEmojiByHexcode(
