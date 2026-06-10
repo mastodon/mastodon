@@ -22,6 +22,10 @@ function rawEmojiFactory(data: Partial<CompactEmoji> = {}): CompactEmoji {
 }
 
 describe('emoji database', () => {
+  beforeEach(async () => {
+    await testGet(); // Loads the database schema.
+  });
+
   afterEach(() => {
     testClear();
     indexedDB = new IDBFactory();
