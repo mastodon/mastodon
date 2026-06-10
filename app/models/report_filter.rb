@@ -39,8 +39,8 @@ class ReportFilter
   end
 
   def status_scope
-    resolved = params.key?(:resolved)
-    unresolved = params.key?(:unresolved)
+    resolved = ActiveModel::Type::Boolean.new.cast(params[:resolved])
+    unresolved = ActiveModel::Type::Boolean.new.cast(params[:unresolved])
 
     return Report.all if resolved && unresolved
     return Report.resolved if resolved
