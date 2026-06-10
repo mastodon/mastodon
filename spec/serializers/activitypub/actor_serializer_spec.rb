@@ -74,4 +74,14 @@ RSpec.describe ActivityPub::ActorSerializer do
       end
     end
   end
+
+  describe 'avatar description' do
+    let(:record) { Fabricate(:account, avatar: attachment_fixture('avatar.gif'), avatar_description: 'test') }
+
+    it 'includes an `icon` with the appropraite `summary`' do
+      expect(subject).to include('icon' => a_hash_including(
+        'summary' => 'test'
+      ))
+    end
+  end
 end
