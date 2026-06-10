@@ -4641,6 +4641,7 @@ a.status-card {
   &__title-wrapper {
     display: flex;
     flex-grow: 1;
+    min-width: 0;
   }
 
   &__title {
@@ -4656,9 +4657,7 @@ a.status-card {
     background: transparent;
     font: inherit;
     text-align: start;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    min-width: 0;
 
     &--with-back-button {
       padding-inline-start: 0;
@@ -4671,6 +4670,12 @@ a.status-card {
     .logo {
       height: 24px;
     }
+  }
+
+  &__text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .column-header__back-button {

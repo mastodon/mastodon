@@ -272,7 +272,7 @@ export const ColumnHeader: React.FC<Props> = ({
       {!backButton && hasIcon && (
         <Icon id={icon} icon={iconComponent} className='column-header__icon' />
       )}
-      {title}
+      <span className='column-header__text'>{title}</span>
     </>
   );
 
