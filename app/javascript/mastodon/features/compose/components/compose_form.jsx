@@ -224,7 +224,9 @@ class ComposeForm extends ImmutablePureComponent {
     } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
       this.textareaRef.current.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
-      if (this.props.spoiler) {
+      const mediaJustAdded = this.props.anyMedia && !prevProps.anyMedia;
+
+      if (this.props.spoiler && !mediaJustAdded) {
         this.spoilerText.input.focus();
       } else if (prevProps.spoiler) {
         this.textareaRef.current.focus();
