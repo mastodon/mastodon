@@ -6,6 +6,7 @@ class Admin::ActionLogFilter
     account_id
     target_account_id
     target_domain
+    target_tag
   ).freeze
 
   INSTANCE_TARGET_TYPES = %w(
@@ -57,9 +58,6 @@ class Admin::ActionLogFilter
     enable_relay: { target_type: 'Relay', action: 'enable' }.freeze,
     listable_tag: { target_type: 'Tag', action: 'listable' }.freeze,
     memorialize_account: { target_type: 'Account', action: 'memorialize' }.freeze,
-    not_listable_tag: { target_type: 'Tag', action: 'not_listable' }.freeze,
-    not_trendable_tag: { target_type: 'Tag', action: 'not_trendable' }.freeze,
-    not_usable_tag: { target_type: 'Tag', action: 'not_usable' }.freeze,
     promote_user: { target_type: 'User', action: 'promote' }.freeze,
     publish_terms_of_service: { target_type: 'TermsOfService', action: 'publish' }.freeze,
     remove_avatar_user: { target_type: 'User', action: 'remove_avatar' }.freeze,

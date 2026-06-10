@@ -19,12 +19,12 @@ RSpec.describe 'Admin Tags' do
   describe 'update tag' do
     let(:tag) { Fabricate :tag, name: '#supertag' }
 
-    it 'redirects to tag page and saves all log actions for tag' do
+    it 'redirects to tag page and saves update log action for tag' do
       put admin_tag_path(tag.id, params: { tag: { trendable: true, listable: false } })
 
       expect(response).to have_http_status(302)
       expect(Admin::ActionLog.last.human_identifier).to eq('#supertag')
-      expect(Admin::ActionLog.pluck(:action)).to eq(%w(not_listable trendable))
+      expect(Admin::ActionLog.pluck(:action)).to eq(%w(listable trendable))
     end
   end
 end

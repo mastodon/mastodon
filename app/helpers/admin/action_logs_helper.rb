@@ -38,7 +38,7 @@ module Admin::ActionLogsHelper
     when 'Relay'
       link_to log.human_identifier, admin_relays_path
     when 'Tag'
-      link_to log.human_identifier, admin_tags_path
+      link_to log.human_identifier, admin_tag_path(log.target_id)
     end
   end
 

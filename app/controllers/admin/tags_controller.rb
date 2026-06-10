@@ -24,7 +24,8 @@ module Admin
       authorize @tag, :update?
 
       if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
-        log_action_from_param(tag_params)
+        log_action_from_change if @tag.saved_changes?
+
         redirect_to admin_tag_path(@tag.id), notice: I18n.t('admin.tags.updated_msg')
       else
         @time_period = report_range
@@ -34,6 +35,14 @@ module Admin
     end
 
     private
+
+    def log_action_from_change
+      @tag.saved_changes.each_key do |key|
+        log_action :listable, @tag if key == 'listable'
+        log_action :trendable, @tag if key == 'trendable'
+        log_action :usable, @tag if key == 'usable'
+      end
+    end
 
     def set_tag
       @tag = Tag.find(params[:id])
@@ -54,24 +63,6 @@ module Admin
 
     def filter_params
       params.slice(:page, *TagFilter::KEYS).permit(:page, *TagFilter::KEYS)
-    end
-
-    def log_action_from_param(params)
-      if params[:listable] == 'true'
-        log_action :listable, @tag
-      elsif params[:listable] == 'false'
-        log_action :not_listable, @tag
-      end
-      if params[:trendable] == 'true'
-        log_action :trendable, @tag
-      elsif params[:trendable] == 'false'
-        log_action :not_trendable, @tag
-      end
-      if params[:usable] == 'true'
-        log_action :usable, @tag
-      elsif params[:usable] == 'false'
-        log_action :not_usable, @tag
-      end
     end
   end
 end
