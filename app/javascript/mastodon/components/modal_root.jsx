@@ -21,7 +21,10 @@ class ModalRoot extends PureComponent {
         b: PropTypes.number,
       }),
     ]),
-    ignoreFocus: PropTypes.bool,
+    ignoreFocus: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string, // 'on-open'
+    ]),
     ...WithOptionalRouterPropTypes,
   };
 
@@ -120,7 +123,7 @@ class ModalRoot extends PureComponent {
     if (!state || state.mastodonModalKey !== this._modalHistoryKey) {
       this.history.push({ pathname, search, hash }, {
         ...state,
-        focusTarget: true,
+        focusTarget: this.props.ignoreFocus !== 'on-open',
         mastodonModalKey: this._modalHistoryKey,
       });
     }

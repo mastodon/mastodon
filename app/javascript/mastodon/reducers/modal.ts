@@ -18,7 +18,7 @@ const Modal = ImmutableRecord<Modal>({
 });
 
 interface ModalState {
-  ignoreFocus: boolean;
+  ignoreFocus: boolean | 'on-open';
   stack: Stack<ImmutableRecord<Modal>>;
 }
 
@@ -53,9 +53,10 @@ const pushModal = (
   modalType: ModalType,
   modalProps: ModalProps,
   previousModalProps?: ModalProps,
+  ignoreFocusOnOpen = false,
 ): State => {
   return state.withMutations((record) => {
-    record.set('ignoreFocus', false);
+    record.set('ignoreFocus', ignoreFocusOnOpen ? 'on-open' : false);
     record.update('stack', (stack) => {
       let tmp = stack;
 
@@ -92,6 +93,7 @@ export const modalReducer: Reducer<State> = (state = initialState, action) => {
       action.payload.modalType,
       action.payload.modalProps,
       action.payload.previousModalProps,
+      action.payload.ignoreFocus,
     );
   else if (closeModal.match(action)) return popModal(state, action.payload);
   // TODO: type those actions

@@ -68,9 +68,13 @@ export const ConfirmationModal: React.FC<
   return (
     <ModalShell onSubmit={handleClick}>
       <ModalShellBody className={className}>
-        <NavigationFocusTarget as='h1' id={titleId}>
-          {title}
-        </NavigationFocusTarget>
+        {noFocusButton ? (
+          <NavigationFocusTarget as='h1' id={titleId}>
+            {title}
+          </NavigationFocusTarget>
+        ) : (
+          <h1>{title}</h1>
+        )}
         {message && <p>{message}</p>}
 
         {extraContent ?? children}

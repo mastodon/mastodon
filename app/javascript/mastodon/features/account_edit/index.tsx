@@ -137,16 +137,28 @@ export const AccountEdit: FC = () => {
   );
 
   const handleOpenModal = useCallback(
-    (type: ModalType, props?: Record<string, unknown>) => {
-      dispatch(openModal({ modalType: type, modalProps: props ?? {} }));
+    (
+      type: ModalType,
+      {
+        modalProps = {},
+        ignoreFocus = false,
+      }: { modalProps?: Record<string, unknown>; ignoreFocus?: boolean } = {},
+    ) => {
+      dispatch(
+        openModal({
+          modalType: type,
+          modalProps,
+          ignoreFocus,
+        }),
+      );
     },
     [dispatch],
   );
   const handleNameEdit = useCallback(() => {
-    handleOpenModal('ACCOUNT_EDIT_NAME');
+    handleOpenModal('ACCOUNT_EDIT_NAME', { ignoreFocus: true });
   }, [handleOpenModal]);
   const handleBioEdit = useCallback(() => {
-    handleOpenModal('ACCOUNT_EDIT_BIO');
+    handleOpenModal('ACCOUNT_EDIT_BIO', { ignoreFocus: true });
   }, [handleOpenModal]);
   const handleCustomFieldAdd = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_FIELD_EDIT');
