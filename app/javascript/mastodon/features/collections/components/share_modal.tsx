@@ -4,6 +4,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { useLocation } from 'react-router';
 
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { me } from '@/mastodon/initial_state';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { changeCompose, focusCompose } from 'mastodon/actions/compose';
@@ -66,7 +67,7 @@ export const CollectionShareModal: React.FC<{
   return (
     <ModalShell>
       <ModalShellBody>
-        <h1 className={classes.heading}>
+        <NavigationFocusTarget as='h1' className={classes.heading}>
           {isNew ? (
             <FormattedMessage
               id='collection.share_modal.title_new'
@@ -78,7 +79,7 @@ export const CollectionShareModal: React.FC<{
               defaultMessage='Share collection'
             />
           )}
-        </h1>
+        </NavigationFocusTarget>
 
         <IconButton
           title={intl.formatMessage({
