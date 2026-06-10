@@ -506,13 +506,18 @@ is:
         last_email: Síðasti tölvupóstur
         lead: Aðgangar sem hafa virkjað eiginleikann og eru með áskrifendur munu birtast hér fyrir neðan.
         show:
+          confirm_disable_feature: Á að gera óvirkar fréttir í tölvupósti frá %{name}? Færslur verða ekki lengur sendar í tölvupósti frá þessum notandaaðgangi. Notandinn mun samt geta virkjað aftur þennan eiginleika í stillingunum sínum. Til að fjarlægja endanlega aðgang að þessum eiginleika skaltu breyta heimildum aðgangsins í gegnum 'Hlutverk'.
+          confirm_remove_subscriber: "%{email} mun ekki lengur fá tölvupósta frá %{name}. Ekki er hægt að afturkalla þessa aðgerð."
+          consent: Áskrifendur hafa einungis samþykkt að fá sendar færslur í tölvupósti. Ekki nota þennan lista í neinum öðrum tilgangi.
           date: Dagsetning skráningar
           disable_feature: Gera eiginleika óvirkan
+          disabled: Eiginleikinn var gerður óvirkur og eru tölvupóstar ekki lengur sendir á þenna lista.
           email: Tölvupóstfang
           empty:
             hint: Enginn hefur enn gerst áskrifandi að þessum notandaaðgangi.
             no_subscribers_yet: Engir áskrifendur ennþá
           enable_feature: Virkja eiginleika
+          no_access_html: Þessi aðgangur hefur ekki lengur heimild til að virkja þennan eiginleika. Breyttu því í <a href="%{roles_path}">Hlutverk</a>.
           title: Tölvupóstfréttir frá %{name}
           view_account: Skoða notandaaðgang
         status: Staða

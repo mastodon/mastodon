@@ -505,6 +505,21 @@ gl:
           no_lists_yet: Aínda non hai listas
         last_email: Último correo
         lead: Aquí móstranse as contas que activaron esta ferramenta e teñen subscritoras.
+        show:
+          confirm_disable_feature: Desactivar o boletín para %{name}? Non se van enviar máis novidades desta conta por correo. A usuaria poderá reactivar esta ferramenta nos axustes da súa conta. Para quitar de xeito permanente o acceso á ferramenta, edita os permisos da conta en Roles.
+          confirm_remove_subscriber: "%{email} non vai seguir recibindo correos de %{name}. Esta acción non é reversible."
+          consent: As subscritoras consentiron exclusivamente recibir no correo as publicacións. Non uses esta lista para outros propósitos.
+          date: Data da subscrición
+          disable_feature: Desactivar a ferramenta
+          disabled: Esta ferramenta desactivouse e non se van seguir enviando correos a esta lista.
+          email: Enderezo de correo
+          empty:
+            hint: Aínda non hai subscricións a esta conta.
+            no_subscribers_yet: Sen subscricións
+          enable_feature: Activar a ferramenta
+          no_access_html: Esta conta xa non ten os permisos requeridos para activar a ferramenta. Cambiaos en <a href="%{roles_path}">Roles</a>.
+          title: Boletín por correo de %{name}
+          view_account: Ver conta
         status: Estado
         subscribers: Subscritoras
         title: Listas de correo
@@ -1532,7 +1547,9 @@ gl:
         success_html: Vas comezar a recibir correos cando %{name} publique novas publicacións. Engade %{sender} á túa libreta de enderezos para que os correos non vaian directamente ao cartafol de Spam.
         title: Subscribícheste
         unsubscribe: Anular subscrición
+    disabled: Desactivado
     inactive: Inactiva
+    no_access: Sen acceso
     status: Estado
     subscribers: Subscritoras
   emoji_styles:
