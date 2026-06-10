@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { Button } from 'mastodon/components/button';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 
 import Option from './components/option';
 
@@ -40,7 +41,9 @@ class Rules extends PureComponent {
 
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.rules.title' defaultMessage='Which rules are being violated?' /></h3>
+        <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
+          <FormattedMessage id='report.rules.title' defaultMessage='Which rules are being violated?' />
+        </NavigationFocusTarget>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.rules.subtitle' defaultMessage='Select all that apply' /></p>
 
         <div>

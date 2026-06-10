@@ -7,6 +7,7 @@ import { OrderedSet } from 'immutable';
 import { shallowEqual } from 'react-redux';
 
 import { Toggle } from '@/mastodon/components/form_fields/toggle_field';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { fetchAccount } from 'mastodon/actions/accounts';
 import { Button } from 'mastodon/components/button';
 import type { Status } from 'mastodon/models/status';
@@ -148,14 +149,18 @@ const Comment: React.FC<Props> = ({
 
   return (
     <>
-      <h3 className='report-dialog-modal__title' id={titleId}>
+      <NavigationFocusTarget
+        as='h1'
+        id={titleId}
+        className='report-dialog-modal__title'
+      >
         {modalTitle ?? (
           <FormattedMessage
             id='report.comment.title'
             defaultMessage='Is there anything else you think we should know?'
           />
         )}
-      </h3>
+      </NavigationFocusTarget>
 
       <textarea
         className='report-dialog-modal__textarea'

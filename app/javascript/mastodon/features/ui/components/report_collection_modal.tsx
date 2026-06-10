@@ -9,6 +9,7 @@ import { fetchServer } from 'mastodon/actions/server';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Button } from 'mastodon/components/button';
 import { IconButton } from 'mastodon/components/icon_button';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAppDispatch } from 'mastodon/store';
 
@@ -23,12 +24,12 @@ const CollectionThanks: React.FC<{
 }> = ({ onClose }) => {
   return (
     <>
-      <h3 className='report-dialog-modal__title'>
+      <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
         <FormattedMessage
           id='report.thanks.title_actionable'
           defaultMessage="Thanks for reporting, we'll look into this."
         />
-      </h3>
+      </NavigationFocusTarget>
 
       <div className='flex-spacer' />
 
