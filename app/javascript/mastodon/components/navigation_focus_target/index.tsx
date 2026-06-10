@@ -100,7 +100,6 @@ export const FocusTargetProvider: React.FC<{
 };
 
 export function useFocusOnNavigation(targetName?: string) {
-  // const elementToFocusRef = useRef<HTMLHeadingElement>(null);
   const focusTargetRef = useContext(FocusTargetContext);
 
   if (focusTargetRef === null) {
@@ -118,12 +117,7 @@ export function useFocusOnNavigation(targetName?: string) {
         return;
       }
 
-      if (
-        focusTarget === true ||
-        (targetName &&
-          typeof focusTarget === 'string' &&
-          focusTarget === targetName)
-      ) {
+      if (focusTarget === true || focusTarget === targetName) {
         setTimeout(() => {
           element.focus({ preventScroll: true });
         }, 0);
