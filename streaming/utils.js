@@ -38,7 +38,7 @@ const FOLDTOASCII_REGEX = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
 export function foldToASCII(str) {
   return str.replace(FOLDTOASCII_REGEX, function(match) {
     const index = NON_ASCII_CHARS.indexOf(match);
-    return EQUIVALENT_ASCII_CHARS[index] || match;
+    return EQUIVALENT_ASCII_CHARS[index];
   });
 }
 
