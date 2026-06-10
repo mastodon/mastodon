@@ -93,7 +93,7 @@ const messages = defineMessages({
 
 export const ensureComposeIsVisible = (getState) => {
   if (!getState().getIn(['compose', 'mounted'])) {
-    browserHistory.push('/publish');
+    browserHistory.push('/publish', { focusTarget: false });
   }
 };
 
