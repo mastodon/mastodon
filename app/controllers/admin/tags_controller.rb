@@ -24,7 +24,8 @@ module Admin
       authorize @tag, :update?
 
       if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
-        log_action :update, @tag
+        log_action_from_change if @tag.saved_changes?
+
         redirect_to admin_tag_path(@tag.id), notice: I18n.t('admin.tags.updated_msg')
       else
         @time_period = report_range
@@ -34,6 +35,15 @@ module Admin
     end
 
     private
+
+    def log_action_from_change
+      action_log = current_account.action_logs.new(action: 'update', target: @tag)
+
+      action_log.usable = @tag.saved_changes['usable']&.last
+      action_log.trendable = @tag.saved_changes['trendable']&.last
+      action_log.listable = @tag.saved_changes['listable']&.last
+      action_log.save
+    end
 
     def set_tag
       @tag = Tag.find(params[:id])

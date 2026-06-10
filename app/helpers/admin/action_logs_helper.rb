@@ -38,8 +38,15 @@ module Admin::ActionLogsHelper
     when 'Relay'
       link_to log.human_identifier, admin_relays_path
     when 'Tag'
-      link_to log.human_identifier, admin_tags_path
+      link_to log.human_identifier, admin_tag_path(log.target_id)
     end
+  end
+
+  def translation_key(log, key)
+    return if log.public_send(key).nil?
+
+    status = log.public_send(key) ? key : :"not_#{key}"
+    "#{t("admin.trends.tags.#{status}")};"
   end
 
   def sorted_action_log_types
