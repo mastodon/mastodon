@@ -12,6 +12,7 @@ import { closeModal } from 'mastodon/actions/modal';
 import { updateNotificationsPolicy } from 'mastodon/actions/notification_policies';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 
 export const IgnoreNotificationsModal = ({ filterType }) => {
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
     <div className='modal-root__modal safety-action-modal'>
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
-          <h1>{title}</h1>
+          <NavigationFocusTarget as='h1'>{title}</NavigationFocusTarget>
         </div>
 
         <ul className='safety-action-modal__bullet-points'>
