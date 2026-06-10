@@ -92,6 +92,7 @@ RSpec.configure do |config|
   config.include CommandLineHelpers, type: :cli
   config.include SystemHelpers, type: :system
   config.include Shoulda::Matchers::ActiveModel, type: :validator
+  config.include HtmlHeadInspection, type: :request
 
   # TODO: Remove when Devise fixes https://github.com/heartcombo/devise/issues/5705
   config.before do

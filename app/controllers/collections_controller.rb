@@ -18,7 +18,6 @@ class CollectionsController < ApplicationController
     respond_to do |format|
       format.html do
         expires_in expiration_duration, public: true unless user_signed_in?
-        render template: 'home/index'
       end
 
       format.json do
