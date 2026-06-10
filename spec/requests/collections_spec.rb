@@ -29,6 +29,14 @@ RSpec.describe 'Collections' do
     let(:collection) { Fabricate(:collection) }
     let(:account) { collection.account }
 
+    context 'when requested as HTML' do
+      it 'redirects to canonical URL' do
+        get ap_account_collection_path(account.id, collection)
+
+        expect(response).to redirect_to(collection_path(collection))
+      end
+    end
+
     context 'when signed out' do
       context 'when account is permanently suspended' do
         before do
