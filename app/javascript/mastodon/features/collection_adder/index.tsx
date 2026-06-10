@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import type { Account } from '@/mastodon/models/account';
 import {
@@ -114,13 +115,17 @@ export const CollectionAdder: React.FC<{
           onClick={onClose}
         />
 
-        <span className='dialog-modal__header__title' id={titleId}>
+        <NavigationFocusTarget
+          as='h1'
+          id={titleId}
+          className='dialog-modal__header__title'
+        >
           <FormattedMessage
             id='collections.add_to_collection'
             defaultMessage='Add {name} to collections'
             values={{ name: <strong>@{account?.acct}</strong> }}
           />
-        </span>
+        </NavigationFocusTarget>
       </div>
 
       <div className='dialog-modal__content'>

@@ -18,6 +18,7 @@ import type { ApiListJSON } from 'mastodon/api_types/lists';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { getOrderedLists } from 'mastodon/selectors/lists';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -182,13 +183,13 @@ const ListAdder: React.FC<{
           onClick={onClose}
         />
 
-        <span className='dialog-modal__header__title'>
+        <NavigationFocusTarget as='h1' className='dialog-modal__header__title'>
           <FormattedMessage
             id='lists.add_to_lists'
             defaultMessage='Add {name} to lists'
             values={{ name: <strong>@{account?.acct}</strong> }}
           />
-        </span>
+        </NavigationFocusTarget>
       </div>
 
       <div className='dialog-modal__content'>
