@@ -271,6 +271,16 @@ namespace :api, format: false do
       resources :votes, only: :create, module: :polls
     end
 
+    resources :bookmark_folders, only: [:index, :show, :create, :update, :destroy]
+
+    resources :bookmarks, only: [:index] do
+      collection do
+        scope module: :bookmark_folders, controller: :bookmarks do
+          get 'folders/:bookmark_folder_id', action: :index, as: :folder
+        end
+      end
+    end
+
     namespace :push do
       resource :subscription, only: [:create, :show, :update, :destroy]
     end

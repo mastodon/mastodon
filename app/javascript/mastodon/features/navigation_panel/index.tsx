@@ -13,8 +13,6 @@ import { useDrag } from '@use-gesture/react';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
-import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
 import CollectionsActiveIcon from '@/material-icons/400-24px/category-fill.svg?react';
 import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
@@ -52,6 +50,7 @@ import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { AnnualReportNavItem } from '../annual_report/nav_item';
 
+import { BookmarkFoldersPanel } from './components/bookmark_folders_panel';
 import { DisabledAccountBanner } from './components/disabled_account_banner';
 import { FollowedTagsPanel } from './components/followed_tags_panel';
 import { ListPanel } from './components/list_panel';
@@ -79,7 +78,6 @@ const messages = defineMessages({
   },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
-  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   collections: {
     id: 'navigation_bar.collections',
     defaultMessage: 'Collections',
@@ -202,13 +200,6 @@ const ProfileCard: React.FC = () => {
   );
 };
 
-const isFirehoseActive = (
-  match: unknown,
-  { pathname }: { pathname: string },
-) => {
-  return !!match || pathname.startsWith('/public');
-};
-
 const MENU_WIDTH = 284;
 
 export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
@@ -309,7 +300,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
               }
               icon='globe'
               iconComponent={PublicIcon}
-              isActive={isFirehoseActive}
+              activePath={['/public', '/public/local', '/public/remote']}
               text={intl.formatMessage(
                 canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
                   canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
@@ -350,16 +341,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 text={intl.formatMessage(messages.favourites)}
               />
             </li>
-            <li>
-              <ColumnLink
-                transparent
-                to='/bookmarks'
-                icon='bookmarks'
-                iconComponent={BookmarksIcon}
-                activeIconComponent={BookmarksActiveIcon}
-                text={intl.formatMessage(messages.bookmarks)}
-              />
-            </li>
+            <BookmarkFoldersPanel />
             <li>
               <ColumnLink
                 transparent

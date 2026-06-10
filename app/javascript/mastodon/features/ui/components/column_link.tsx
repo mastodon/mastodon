@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useRouteMatch, NavLink } from 'react-router-dom';
+import { matchPath, useLocation, NavLink } from 'react-router-dom';
 
 import { Icon } from 'mastodon/components/icon';
 import type { IconProp } from 'mastodon/components/icon';
@@ -9,13 +9,14 @@ export const ColumnLink: React.FC<{
   iconComponent?: IconProp;
   activeIcon?: React.ReactNode;
   activeIconComponent?: IconProp;
-  isActive?: (match: unknown, location: { pathname: string }) => boolean;
   text: string;
   to?: string;
+  activePath?: string | string[];
   href?: string;
   method?: string;
   badge?: React.ReactNode;
   transparent?: boolean;
+  exact?: boolean;
   className?: string;
   id?: string;
 }> = ({
@@ -25,15 +26,22 @@ export const ColumnLink: React.FC<{
   activeIconComponent,
   text,
   to,
+  activePath,
   href,
   method,
   badge,
   transparent,
+  exact,
   ...other
 }) => {
-  const match = useRouteMatch(to ?? '');
+  const location = useLocation();
+  const match = to
+    ? matchPath(location.pathname, { path: activePath ?? to, exact })
+    : null;
+  const active = !!match;
   const className = classNames('column-link', {
     'column-link--transparent': transparent,
+    active,
   });
   const badgeElement =
     typeof badge !== 'undefined' ? (
@@ -59,8 +67,6 @@ export const ColumnLink: React.FC<{
     ) : (
       iconElement
     ));
-  const active = !!match;
-
   if (href) {
     return (
       <a href={href} className={className} data-method={method} {...other}>
@@ -71,7 +77,7 @@ export const ColumnLink: React.FC<{
     );
   } else if (to) {
     return (
-      <NavLink to={to} className={className} {...other}>
+      <NavLink to={to} className={className} exact={exact} {...other}>
         {active ? activeIconElement : iconElement}
         <span>{text}</span>
         {badgeElement}

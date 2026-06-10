@@ -6,7 +6,7 @@
 
 %w(
   /blocks
-  /bookmarks
+  /bookmarks/(*any)
   /collections/(*any)
   /conversations
   /deck/(*any)

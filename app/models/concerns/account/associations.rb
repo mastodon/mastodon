@@ -15,6 +15,7 @@ module Account::Associations
         has_many :action_logs, class_name: 'Admin::ActionLog'
         has_many :aliases, class_name: 'AccountAlias'
         has_many :bookmarks
+        has_many :bookmark_folders
         has_many :collections
         has_many :collection_items
         has_many :curated_collection_items, through: :collections, class_name: 'CollectionItem', source: :collection_items

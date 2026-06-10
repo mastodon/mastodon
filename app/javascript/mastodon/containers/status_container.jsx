@@ -93,6 +93,13 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     }
   },
 
+  onBookmarkFolder (status) {
+    dispatch(openModal({
+      modalType: 'BOOKMARK_FOLDER_ADDER',
+      modalProps: { status },
+    }));
+  },
+
   onPin (status) {
     if (status.get('pinned')) {
       dispatch(unpin(status));
