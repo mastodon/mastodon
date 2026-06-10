@@ -149,9 +149,9 @@ export async function search({
   if (results.length === 0) {
     const trx = db.transaction('custom', 'readonly');
     const foundEmojis = new Set<string>();
-    for await (const cursor of trx.store.index('tokens')) {
+    for await (const cursor of trx.store) {
       const emoji = cursor.value;
-      const score = getScoreForEmoji(emoji, query);
+      const score = getScoreForEmoji(emoji, query, false);
       if (score === null || foundEmojis.has(emoji.shortcode)) {
         continue;
       }
@@ -180,14 +180,19 @@ export async function search({
   return results;
 }
 
-function getScoreForEmoji(emoji: AnyEmojiData, query: string) {
+function getScoreForEmoji(
+  emoji: AnyEmojiData,
+  query: string,
+  checkTokens = true,
+) {
   const id = 'shortcode' in emoji ? emoji.shortcode : emoji.label;
   if (id === query) {
     return 0;
   }
 
   let index = 1;
-  for (const token of [id, ...emoji.tokens]) {
+  const searchTokens = checkTokens ? [id, ...emoji.tokens] : [id];
+  for (const token of searchTokens) {
     const tokenIndex = token.indexOf(query);
     if (tokenIndex !== -1) {
       return index + tokenIndex / token.length;
