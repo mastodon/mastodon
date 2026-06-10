@@ -4,11 +4,14 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { apiGetPrivacyPolicy } from 'mastodon/api/instance';
 import type { ApiPrivacyPolicyJSON } from 'mastodon/api_types/instance';
 import { Column } from 'mastodon/components/column';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Skeleton } from 'mastodon/components/skeleton';
+
+import { getColumnSkipLinkId } from '../ui/components/skip_links';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
@@ -40,12 +43,12 @@ const PrivacyPolicy: React.FC<{
     >
       <div className='scrollable privacy-policy'>
         <div className='column-title'>
-          <h3>
+          <NavigationFocusTarget as='h1' id={getColumnSkipLinkId(1)}>
             <FormattedMessage
               id='privacy_policy.title'
               defaultMessage='Privacy Policy'
             />
-          </h3>
+          </NavigationFocusTarget>
           <p>
             <FormattedMessage
               id='privacy_policy.last_updated'
