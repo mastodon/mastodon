@@ -6,6 +6,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { fetchServer } from 'mastodon/actions/server';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { TabLink, TabList } from 'mastodon/components/tab_list';
@@ -40,7 +41,9 @@ export const CustomHomepage: React.FC = () => {
       />
 
       <div className={classes.topSection}>
-        <h1>{server.item?.domain}</h1>
+        <NavigationFocusTarget as='h1'>
+          {server.item?.domain}
+        </NavigationFocusTarget>
         <p>{server.item?.description}</p>
       </div>
 
