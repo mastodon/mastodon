@@ -505,6 +505,21 @@ sq:
           no_lists_yet: Ende pa lista
         last_email: Email-i i fundit
         lead: Llogaritë që kanë aktivizuar veçorinë dhe kanë pajtimtarë do të shfaqen më poshtë.
+        show:
+          confirm_disable_feature: Të çaktivizohen buletine me email për %{name}? Për këtë llogari s’do të dërgohen më përditësime me email. Përdoruesi do të jetë prapëseprapë në gjendje të riaktivizojë veçorinë që nga rregullimet e llogarisë të vet. Për të hequr përgjithnjë përdorimin e kësaj veçorie, përpunoni lejen e llogarisë te Role.
+          confirm_remove_subscriber: "%{email} s’do të marrë më email-e nga %{name}. Ky veprim s’mund të zhbëhet."
+          consent: Pajtimtarët kanë pranuar vetëm të marrin postime përmes email-i. Mos e përdorni këtë listë për qëllime të tjera.
+          date: Datë e regjistrimit
+          disable_feature: Çaktivizoje veçorinë
+          disabled: Veçoria qe çaktivizuar dhe te kjo listë s’dërgohen më email-e.
+          email: Adresë email
+          empty:
+            hint: Te kjo llogari s’është pajtuar ende dikush.
+            no_subscribers_yet: Ende pa pajtimtarë
+          enable_feature: Aktivizoje veçorinë
+          no_access_html: Kjo llogari s’ka më lejet e domosdoshme për aktivizimin e veçorisë. Ndryshojeni këtë që nga <a href="%{roles_path}">Role</a>.
+          title: Buletine me email nga %{name}
+          view_account: Shiheni llogarinë
         status: Gjendje
         subscribers: Pajtimtarë
         title: Lista postimesh
@@ -1521,7 +1536,9 @@ sq:
         success_html: Tani do të filloni të merrni email-e, kur %{name} boton postime të reja. Shtojeni %{sender} te kontaktet tuaj, që këto postime të mos përfundojnë te dosja juaj e Të padëshiruarve.
         title: U regjistruat
         unsubscribe: Shpajtohuni
+    disabled: E çaktivizuar
     inactive: Joaktiv
+    no_access: S’lejohet përdorim
     status: Gjendje
     subscribers: Pajtimtarë
   errors:

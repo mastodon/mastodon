@@ -495,6 +495,21 @@ vi:
           no_lists_yet: Chưa có danh sách nào
         last_email: Email gần nhất
         lead: Các tài khoản đã kích hoạt tính năng này và có người đăng ký sẽ hiển thị bên dưới.
+        show:
+          confirm_disable_feature: Tắt bản tin email cho %{name}? Bản tin cập nhật qua email sẽ không còn được gửi cho tài khoản này nữa. Người dùng vẫn có thể bật lại tính năng này trong cài đặt tài khoản của họ. Để xóa vĩnh viễn quyền truy cập vào tính năng này, hãy chỉnh sửa quyền của tài khoản trong mục Vai trò.
+          confirm_remove_subscriber: "%{email} sẽ không còn nhận được email từ %{name} nữa. Hành động này không thể hoàn tác."
+          consent: Người đăng ký chỉ đồng ý nhận bài viết qua email. Vui lòng không sử dụng danh sách này cho mục đích khác.
+          date: Ngày đăng ký
+          disable_feature: Tắt tính năng
+          disabled: Tính năng này đã bị vô hiệu hóa và email không còn được gửi đến danh sách này nữa.
+          email: Địa chỉ email
+          empty:
+            hint: Hiện chưa có ai đăng ký theo dõi tài khoản này.
+            no_subscribers_yet: Chưa có đăng ký theo dõi
+          enable_feature: Bật tính năng
+          no_access_html: Tài khoản này không còn quyền hạn cần thiết để kích hoạt tính năng này nữa. Thay đổi trong <a href="%{roles_path}">Vai trò</a>.
+          title: Bản tin email của %{name}
+          view_account: Xem tài khoản
         status: Trạng thái
         subscribers: Người đăng ký đọc
         title: Danh sách gửi thư
@@ -1510,7 +1525,9 @@ vi:
         success_html: Bạn sẽ bắt đầu nhận được email khi %{name} đăng tút mới. Thêm %{sender} vào danh bạ của bạn để những tút này không bị chuyển vào thư mục Spam.
         title: Bạn đã đăng ký đọc
         unsubscribe: Hủy đăng ký đọc
+    disabled: Đã tắt
     inactive: Không hoạt động
+    no_access: Không có quyền
     status: Trạng thái
     subscribers: Người đăng ký đọc
   emoji_styles:
