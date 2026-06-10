@@ -17,8 +17,10 @@ const Modal = ImmutableRecord<Modal>({
   modalProps: ImmutableRecord({})(),
 });
 
+export const IGNORE_FOCUS_ON_OPEN = 'on-open';
+
 interface ModalState {
-  ignoreFocus: boolean | 'on-open';
+  ignoreFocus: boolean | typeof IGNORE_FOCUS_ON_OPEN;
   stack: Stack<ImmutableRecord<Modal>>;
 }
 
@@ -56,7 +58,7 @@ const pushModal = (
   ignoreFocusOnOpen = false,
 ): State => {
   return state.withMutations((record) => {
-    record.set('ignoreFocus', ignoreFocusOnOpen ? 'on-open' : false);
+    record.set('ignoreFocus', ignoreFocusOnOpen ? IGNORE_FOCUS_ON_OPEN : false);
     record.update('stack', (stack) => {
       let tmp = stack;
 
