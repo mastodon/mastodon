@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import type { CategoryName, CustomEmoji } from 'emoji-mart';
 
 import { autoPlayGif } from '@/mastodon/initial_state';
+import { createLimitedCache } from '@/mastodon/utils/cache';
 
 import { emojiLogger } from './utils';
 
@@ -20,6 +21,8 @@ let customCategories = [
   'symbols',
   'flags',
 ] as CategoryName[];
+
+const searchCache = createLimitedCache<LegacyEmoji[]>({ maxSize: 10, log });
 
 export async function fetchCustomEmojiData() {
   if (customEmojis !== null) {
@@ -89,6 +92,7 @@ export async function reloadCustomEmojis() {
     await import('@/mastodon/hooks/useCustomEmojis');
 
   await Promise.all([fetchCustomEmojiData(), loadEmojisIntoCache()]);
+  searchCache.clear();
 }
 
 // Replicates the old legacy search function.
@@ -102,16 +106,25 @@ export async function emojiMartSearch(
     return [];
   }
 
+  const cacheKey = `${query}|${locale}|${limit}`;
+  const cachedResult = searchCache.get(cacheKey);
+  if (cachedResult) {
+    return cachedResult;
+  }
+
   const { search } = await import('./database');
   const results = await search({ query, locale, limit });
-  return results.map((emoji) =>
+  const legacyResults = results.map((emoji) =>
     'shortcode' in emoji
-      ? { id: emoji.shortcode, custom: true }
+      ? ({ id: emoji.shortcode, custom: true } as const)
       : {
           id: emoji.label.replaceAll(' ', '_').toLowerCase(),
           native: emoji.unicode,
         },
   );
+  searchCache.set(cacheKey, legacyResults);
+
+  return legacyResults;
 }
 
 export function usePickerEmojis() {
