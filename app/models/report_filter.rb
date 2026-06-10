@@ -44,7 +44,8 @@ class ReportFilter
 
     return Report.all if resolved && unresolved
     return Report.resolved if resolved
-    return Report.unresolved
+
+    Report.unresolved
   end
 
   def scope_for(key, value)
