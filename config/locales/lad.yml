@@ -50,6 +50,7 @@ lad:
         label: Troka rolo
         no_role: Sin rolo
         title: Troka rolo para %{username}
+      collections: Koleksyones
       confirm: Konfirma
       confirmed: Konfirmado
       confirming: Konfirmando
@@ -320,6 +321,16 @@ lad:
       unpublish: Retira publikasyon
       unpublished_msg: Pregon retirado kon sukseso!
       updated_msg: Pregon aktualizado kon sukseso!
+    collections:
+      back_to_account: Retorna a la pajina del kuento
+      back_to_report: Retorna a la pajina del raporto
+      batch:
+        add_to_report: 'Adjusta al raporto #%{id}'
+        report: Raporto
+      no_collection_selected: No se troko dinguna koleksyon porke no eskojites dinguna
+      open: Avre
+      title: Koleksyones de kuentos - @%{name}
+      view_publicly: Ve puvlikamente
     critical_update_pending: Aktualizasyon kritika esta asperando
     custom_emojis:
       assign_category: Asinya kategoria
@@ -452,9 +463,19 @@ lad:
         title: Bloka muevo domeno de posta
       no_email_domain_block_selected: No se tienen trokado blokos de domeno porke dinguno a sido eskojido
       not_permitted: Sin permiso
+      reset: Reinisya
       resolved_dns_records_hint_html: El nombre de domeno rezolve los sigientes domenos MX, los kualos son responsavles en ultima instansya de achetar la posta elektronika. Blokar un domeno MX blokara los rejistros de kualkier adreso de posta elektronika ke utilize el mezmo domeno MX, inkluzo si el nombre de domeno vizivle es desferente. <strong>Tenga kudiado de no blokar los prinsipales domenos de posta elektronika.</strong>
       resolved_through_html: Rezolvido por %{domain}
+      search: Bushka
       title: Domenos de posta blokados
+    email_subscriptions:
+      accounts:
+        account: Kuento
+      danger_zone:
+        disable_feature:
+          action: Inkapasita
+      roles:
+        title: Rolos
     export_domain_allows:
       new:
         title: Importa permisos de domeno
@@ -628,7 +649,6 @@ lad:
       action_log: Defter de revizyon
       action_taken_by: Aksyon tomada por
       actions:
-        delete_description_html: Los mesajes denunsiados seran supremidos i se enrejistrara un amonestamiento para ayudarte kon las futuras infraksyones por el mezmo kuento.
         mark_as_sensitive_description_html: Las dosyas de multimedia en los mesajes enformados se markaran komo sensivles i se aplikara un amonestamiento para ayudarte kon las futuras infraksyones del mezmo kuento.
         other_description_html: Ve mas opsiones para kontrolar el komporto del kuento i personalizar la komunikasyon del kuento raportado.
         resolve_description_html: No se tomaran aksyones kontra el kuento denunsiado, no se enrejistrara el amonestamiento, i se serrara el raporto.
@@ -653,7 +673,6 @@ lad:
       confirm: Konfirma
       confirm_action: Konfirma la aksyon de moderasyon kontra @%{acct}
       created_at: Raportado
-      delete_and_resolve: Efasa publikasyones
       forwarded: Reembiado
       forwarded_replies_explanation: Este raporto vyene de un utilizador remoto i es sovre kontenido remoto. Tiene sido reembiado a ti porke el kontenido raportado esta en una repuesta a uno de tus utilizadores.
       forwarded_to: Reembiado a %{domain}
@@ -715,6 +734,7 @@ lad:
       categories:
         administration: Administrasyon
         devops: DevOps
+        email: Posta elektronika
         invites: Envytasyones
         moderation: Moderasyon
         special: Espesial
@@ -818,10 +838,6 @@ lad:
       feed_access:
         modes:
           public: Todos
-      landing_page:
-        values:
-          about: Sovre esto
-          trends: Trendes
       registrations:
         moderation_recommandation: Por favor, asigurate ke tyenes una taifa de moderasyon adekuada i reaktiva antes de avrir los enrejistramyentos a todos!
         preamble: Kontrola ken puede kriyar un kuento en tu sirvidor.
@@ -1235,6 +1251,10 @@ lad:
     hint_html: "<strong>Konsejo:</strong> No retornaremos a demandarte por el kod durante la sigiente ora."
     invalid_password: Kod inkorekto
     prompt: Konfirma kod para segir
+  color_scheme:
+    auto: Otomatiko
+  contrast:
+    auto: Otomatiko
   crypto:
     errors:
       invalid_key: no es una yave Ed25519 o Curve25519 valida
@@ -1304,9 +1324,16 @@ lad:
       your_appeal_pending: Tienes enviado una apelasyon
       your_appeal_rejected: Tu apelasyon fue refuzada
   edit_profile:
-    basic_information: Enformasyon bazika
-    hint_html: "<strong>Personaliza lo ke la djente ve en tu profil publiko i kon tus publikasyones.</strong> Es mas probavle ke otras personas te sigan i enteraktuen kontigo kuando kompletas tu profil i foto."
     other: Otros
+  email_subscription_mailer:
+    confirmation:
+      action: Konfirma tu adreso de posta elektronika
+  email_subscriptions:
+    active: Aktivo
+    confirmations:
+      show:
+        unsubscribe: Dezabona
+    status: Estado
   emoji_styles:
     auto: Otomatiko
     native: Nativo
@@ -1345,10 +1372,8 @@ lad:
     mutes: Silensias
     storage: Magazinaje de multimedia
   featured_tags:
-    add_new: Adjusta muevo
     errors:
       limit: Tienes alkansado el karar maksimo de etiketas
-    hint_html: "<strong>Avalia tus etiketas mas importantes en tu profil.</strong> Se amostran de forma prominente en tu profil publiko i permeten a los utilizadores navigar por tus publikasyones publikas espesifikamente basho akeyas etiketas."
   filters:
     contexts:
       account: Profiles
@@ -1852,6 +1877,8 @@ lad:
     does_not_match_previous_name: no koensida kon el nombre anterior
   terms_of_service:
     title: Terminos de servisyo
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
@@ -1877,6 +1904,9 @@ lad:
     recovery_codes_regenerated: Kodiches de rekupersayon redjenerados kon sukseso
     recovery_instructions_html: Si piedres akseso a tu telefon, puedes uzar uno de los sigientes kodiches de rekuperasyon para obtener akseso a tu kuento. <strong>Mantenlos a salvo</strong>. Por enshemplo, puedes imprimirlos i guadrarlos kon otros dokumentos emportantes.
     webauthn: Yaves de sigurita
+  unsubscriptions:
+    show:
+      action: Dezabona
   user_mailer:
     announcement_published:
       subject: Pregon de servisyo

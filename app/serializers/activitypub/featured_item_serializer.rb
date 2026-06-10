@@ -3,8 +3,9 @@
 class ActivityPub::FeaturedItemSerializer < ActivityPub::Serializer
   include RoutingHelper
 
-  attributes :id, :type, :featured_object, :featured_object_type,
-             :feature_authorization
+  context_extensions :featured_collections
+
+  attributes :id, :type, :featured_object, :feature_authorization, :published
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -18,15 +19,15 @@ class ActivityPub::FeaturedItemSerializer < ActivityPub::Serializer
     ActivityPub::TagManager.instance.uri_for(object.account)
   end
 
-  def featured_object_type
-    object.account.actor_type || 'Person'
-  end
-
   def feature_authorization
     if object.account.local?
       ap_account_feature_authorization_url(object.account_id, object)
     else
       object.approval_uri
     end
+  end
+
+  def published
+    object.created_at.iso8601
   end
 end

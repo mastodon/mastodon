@@ -1,14 +1,19 @@
-import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import type { FC, FocusEventHandler } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
-
-import type { Map as ImmutableMap } from 'immutable';
 
 import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import type { FieldStatus } from '@/mastodon/components/form_fields';
 import { EmojiTextInputField } from '@/mastodon/components/form_fields';
+import { useCustomEmojis } from '@/mastodon/hooks/useCustomEmojis';
 import {
   removeField,
   selectFieldById,
@@ -90,24 +95,14 @@ const messages = defineMessages({
 // We have two different values- the hard limit set by the server,
 // and the soft limit for mobile display.
 const selectFieldLimits = createAppSelector(
-  [
-    (state) =>
-      state.server.getIn(['server', 'configuration', 'accounts']) as
-        | ImmutableMap<string, number>
-        | undefined,
-  ],
+  [(state) => state.server.server.item?.configuration.accounts],
   (accounts) => ({
-    nameLimit: accounts?.get('profile_field_name_limit'),
-    valueLimit: accounts?.get('profile_field_value_limit'),
+    nameLimit: accounts?.profile_field_name_limit,
+    valueLimit: accounts?.profile_field_value_limit,
   }),
 );
 
 const RECOMMENDED_LIMIT = 40;
-
-const selectEmojiCodes = createAppSelector(
-  [(state) => state.custom_emojis],
-  (emojis) => emojis.map((emoji) => emoji.get('shortcode')).toArray(),
-);
 
 interface ConfirmationMessage {
   message: string;
@@ -143,7 +138,11 @@ export const EditFieldModal = forwardRef<
     value?: FieldStatus;
   }>({});
 
-  const customEmojiCodes = useAppSelector(selectEmojiCodes);
+  const customEmojis = useCustomEmojis();
+  const customEmojiCodes = useMemo(
+    () => Object.keys(customEmojis ?? {}),
+    [customEmojis],
+  );
   const checkField = useCallback(
     (value: string): FieldStatus | null => {
       if (!value.trim()) {

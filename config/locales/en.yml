@@ -345,12 +345,20 @@ en:
       updated_msg: Announcement successfully updated!
     collections:
       accounts: Accounts
+      back_to_account: Back to account page
+      back_to_report: Back to report page
+      batch:
+        add_to_report: 'Add to report #%{id}'
+        remove_from_report: Remove from report
+        report: Report
       collection_title: Collection by %{name}
       contents: Contents
+      no_collection_selected: No collections were changed as none were selected
       number_of_accounts:
         one: 1 account
         other: "%{count} accounts"
       open: Open
+      title: Account collections - @%{name}
       view_publicly: View publicly
     critical_update_pending: Critical update pending
     custom_emojis:
@@ -484,9 +492,89 @@ en:
         title: Block new email domain
       no_email_domain_block_selected: No email domain blocks were changed as none were selected
       not_permitted: Not permitted
+      reset: Reset
       resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting email. Blocking an MX domain will block sign-ups from any email address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major email providers.</strong>
       resolved_through_html: Resolved through %{domain}
+      search: Search
       title: Blocked email domains
+    email_subscriptions:
+      accounts:
+        account: Account
+        empty:
+          hint: No accounts have subscribers yet.
+          no_lists_yet: No lists yet
+        last_email: Last email
+        lead: Accounts who have enabled the feature and have subscribers will show below.
+        show:
+          confirm_disable_feature: Disable email newsletters for %{name}? Email updates will no longer be sent for this account. The user will still be able to re-enable the feature in their account settings. To permanently remove access to this feature, edit the account’s permission in Roles.
+          confirm_remove_subscriber: "%{email} will no longer receive emails from %{name}. This action cannot be undone."
+          consent: Subscribers have only consented to receiving posts via email. Do not use this list for other purposes.
+          date: Date of sign-up
+          disable_feature: Disable feature
+          disabled: The feature was disabled and emails are no longer being sent to this list.
+          email: Email address
+          empty:
+            hint: Nobody has subscribed to this account yet.
+            no_subscribers_yet: No subscribers yet
+          enable_feature: Enable feature
+          no_access_html: This account no longer has the permissions required to enable the feature. Change this in <a href="%{roles_path}">Roles</a>.
+          title: Email newsletters of %{name}
+          view_account: View account
+        status: Status
+        subscribers: Subscribers
+        title: Mailing lists
+      additional_footer_texts:
+        show:
+          title: Additional footer text
+      compliance_settings:
+        additional_footer_text:
+          action: Manage
+          hint: Optional text that appears in the footer of newsletter emails only
+          title: Additional footer text
+        lead: Email newsletters may be considered marketing emails, depending on the jurisdictions where you operate.
+        privacy_policy:
+          action: Manage
+          hint: This policy is linked in the footer of every email
+          title: Privacy policy
+        title: Compliance settings
+      danger_zone:
+        disable_feature:
+          action: Disable
+          hint: Turn off feature for all accounts
+          title: Disable feature
+        erase_all_data:
+          action: Erase data
+          hint: Permanently deletes all emails in all mailing lists
+          title: Erase all data
+        title: Danger zone
+      disabled_msg: Email subscriptions have been successfully disabled.
+      index:
+        disabled:
+          cannot_be_enabled: Your technical provider has not enabled this feature for your server.
+          description: This feature allows specified accounts to add a widget to their profiles, enabling visitors without a Mastodon account to receive their posts via email.
+          get_started: Get started
+        lead: Allow visitors to receive posts via email from dedicated accounts on this server.
+        title: Email newsletters
+      purged_msg: All email subscriptions data is being erased.
+      roles:
+        accounts: Accounts
+        edit_role: Edit role
+        empty:
+          hint: No one has permission to use this feature.
+          no_roles_added: No roles added
+        lead: Accounts with the following roles can enable this feature on their profiles.
+        manage_roles: Manage roles
+        role_name: Role name
+        title: Roles
+      setups:
+        show:
+          enable_feature: Enable feature
+          important_information: Important information
+          list:
+            1_permission_explanation: When this feature is enabled, accounts with the designated permissions can add an email collection form to their profiles.
+            2_feature_explanation: When visitors sign up on an account’s profile page and confirm their subscription, they’ll begin to receive email updates when the account creates new public posts.
+            3_privacy_policy_warning: Server admins will have access to PII (email addresses) collected. As such, the privacy policy and Terms of Service for the server must be updated before using this feature.
+            4_cost_warning: Emails may incur a fee depending on hosting setup. Discuss with your hosting provider before enabling, as this feature could drastically increase the amount of emails sent from your server.
     export_domain_allows:
       new:
         title: Import domain allows
@@ -671,7 +759,7 @@ en:
       action_log: Audit log
       action_taken_by: Action taken by
       actions:
-        delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
+        delete_description_html: The reported posts and/or collections will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
         mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
         other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
@@ -698,7 +786,7 @@ en:
       confirm: Confirm
       confirm_action: Confirm moderation action against @%{acct}
       created_at: Reported
-      delete_and_resolve: Delete posts
+      delete_and_resolve: Delete content
       forwarded: Forwarded
       forwarded_replies_explanation: This report is from a remote user and about remote content. It has been forwarded to you because the reported content is in reply to one of your users.
       forwarded_to: Forwarded to %{domain}
@@ -792,7 +880,7 @@ en:
         manage_custom_emojis: Manage Custom Emojis
         manage_custom_emojis_description: Allows users to manage custom emojis on the server
         manage_email_subscriptions: Manage Email Subscriptions
-        manage_email_subscriptions_description: Allow users to subscribe to users with this permission by email
+        manage_email_subscriptions_description: Allow users with this permission to enable the email newsletter feature for their account
         manage_federation: Manage Federation
         manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
         manage_invites: Manage Invites
@@ -881,10 +969,16 @@ en:
           disabled: Require specific user role
           public: Everyone
       landing_page:
+        hints:
+          about_html: A page with the description, contact information, rules and other information regarding this server.
+          local_feed_html: A live feed featuring most recent posts by users on this server.
+          overview_html: A page showcasing the description of your server alongside the most recent local posts by users on this server.
+          trends_html: A page featuring what's popular on this server right now.
         values:
-          about: About
-          local_feed: Local feed
-          trends: Trends
+          about: About page
+          local_feed: Local live feed
+          overview: Overview
+          trends: Trending
       registrations:
         moderation_recommandation: Please make sure you have an adequate and reactive moderation team before you open registrations to everyone!
         preamble: Control who can create an account on your server.
@@ -904,6 +998,7 @@ en:
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
+    skip_to_content: Skip to content
     software_updates:
       critical_update: Critical — please update quickly
       description: It is recommended to keep your Mastodon installation up to date to benefit from the latest fixes and features. Moreover, it is sometimes critical to update Mastodon in a timely manner to avoid security issues. For these reasons, Mastodon checks for updates every 30 minutes, and will notify you according to your email notification preferences.
@@ -1418,9 +1513,8 @@ en:
       your_appeal_pending: You have submitted an appeal
       your_appeal_rejected: Your appeal has been rejected
   edit_profile:
-    basic_information: Basic information
-    hint_html: "<strong>Customize what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
     other: Other
+    privacy_redesign_body: The choice to show your follows and followers is now made directly from your profile.
     redesign_body: Profile editing can now be accessed directly from the profile page.
     redesign_button: Go there
     redesign_title: There’s a new profile editing experience
@@ -1453,7 +1547,9 @@ en:
         success_html: You'll now start receiving emails when %{name} publishes new posts. Add %{sender} to your contacts so these posts don't end up in your Spam folder.
         title: You're signed up
         unsubscribe: Unsubscribe
+    disabled: Disabled
     inactive: Inactive
+    no_access: No access
     status: Status
     subscribers: Subscribers
   emoji_styles:
@@ -1489,15 +1585,15 @@ en:
     blocks: You block
     bookmarks: Bookmarks
     csv: CSV
+    custom_filters: Filters
     domain_blocks: Domain blocks
+    json: JSON
     lists: Lists
     mutes: You mute
     storage: Media storage
   featured_tags:
-    add_new: Add new
     errors:
       limit: You have already featured the maximum number of hashtags
-    hint_html: "<strong>Feature your most important hashtags on your profile.</strong> A great tool for keeping track of your creative works and long-term projects, featured hashtags are displayed prominently on your profile and allow quick access to your own posts."
   filters:
     contexts:
       account: Profiles
@@ -1735,6 +1831,27 @@ en:
     copy_account_note_text: 'This user moved from %{acct}, here were your previous notes about them:'
   navigation:
     toggle_menu: Toggle menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} added you to a collection"
+    admin_report:
+      title_html: "%{name} reported %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} and one other signed up"
+        other: "%{name} and %{count} others signed up"
+      title_html: "%{name} signed up"
+    collection_update:
+      title_html: "%{name} updated a collection you are in"
+    generic:
+      sign_in: Sign in to the Mastodon web app
+      summary_html: You're on an app that does not support the most recent version of Mastodon. %{link} for full functionality.
+    moderation_warning:
+      summary_html: You're on an app that does not support the most recent version of Mastodon. %{link}.
+      title: You have received a moderation warning.
+    severed_relationships:
+      summary_html: An admin from %{from} has suspended %{target}, which means you can no longer receive updates from them or interact with them. %{link} to retrieve a list of the lost relationships.
+      title: Lost connections with %{name}
   notification_mailer:
     admin:
       report:

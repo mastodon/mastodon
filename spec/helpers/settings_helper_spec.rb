@@ -3,6 +3,22 @@
 require 'rails_helper'
 
 RSpec.describe SettingsHelper do
+  describe '#user_settings_collection' do
+    subject { helper.user_settings_collection(value) }
+
+    context 'with valid value' do
+      let(:value) { 'web.contrast' }
+
+      it { is_expected.to eq(%w(auto high)) }
+    end
+
+    context 'with invalid value' do
+      let(:value) { 'web.nothing_at_this_key_at_all_fake_fake_fake' }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
   describe 'session_device_icon' do
     context 'with a mobile device' do
       let(:session) { SessionActivation.new(user_agent: 'Mozilla/5.0 (iPhone)') }
@@ -32,6 +48,22 @@ RSpec.describe SettingsHelper do
 
         expect(result).to eq('desktop_mac')
       end
+    end
+  end
+
+  describe '#time_zone_options' do
+    subject { helper.time_zone_options }
+
+    context 'when summer time is in effect' do
+      before { travel_to(Date.new(2026, 6, 1)) }
+
+      it { is_expected.to include(['(GMT-08:00) Alaska', 'America/Juneau']) }
+    end
+
+    context 'when summer time is not in effect' do
+      before { travel_to(Date.new(2025, 12, 1)) }
+
+      it { is_expected.to include(['(GMT-09:00) Alaska', 'America/Juneau']) }
     end
   end
 end

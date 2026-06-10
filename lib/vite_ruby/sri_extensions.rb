@@ -47,7 +47,7 @@ module ViteRuby::ManifestIntegrityExtension
       }
     end
 
-    imports = dev_server_running? ? [] : entries.flat_map { |entry| entry['imports'] }.compact
+    imports = dev_server_running? ? [] : entries.flat_map { |entry| import_chunks_for(entry) }
 
     {
       scripts: script_paths,
@@ -75,7 +75,7 @@ module ViteRails::TagHelpers::IntegrityExtension
                           asset_type: :javascript,
                           skip_preload_tags: false,
                           skip_style_tags: false,
-                          crossorigin: 'anonymous',
+                          crossorigin: '',
                           media: 'screen',
                           **options)
     entries = vite_manifest.resolve_entries_with_integrity(*names, type: asset_type)

@@ -37,6 +37,7 @@ export interface BaseApiAccountJSON {
   acct: string;
   avatar: string;
   avatar_static: string;
+  avatar_description: string;
   bot: boolean;
   created_at: string;
   discoverable?: boolean;
@@ -50,8 +51,9 @@ export interface BaseApiAccountJSON {
   group: boolean;
   header: string;
   header_static: string;
+  header_description: string;
   id: string;
-  last_status_at: string;
+  last_status_at: string | null;
   locked: boolean;
   show_media: boolean;
   show_media_replies: boolean;

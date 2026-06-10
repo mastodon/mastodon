@@ -26,6 +26,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
           '@1x': full_asset_url(object.thumbnail.file.url(:'@1x')),
           '@2x': full_asset_url(object.thumbnail.file.url(:'@2x')),
         },
+        description: Setting.thumbnail_description,
       }
     else
       {

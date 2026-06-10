@@ -345,12 +345,20 @@ hu:
       updated_msg: A közlemény sikeresen frissítve!
     collections:
       accounts: Fiókok
+      back_to_account: Vissza a fiók oldalára
+      back_to_report: Vissza a bejelentés oldalra
+      batch:
+        add_to_report: 'Hozzáadás ehhez a jelentéshez: #%{id}'
+        remove_from_report: Eltávolítás a bejelentésből
+        report: Jelentés
       collection_title: "%{name} gyűjteménye"
       contents: Tartalom
+      no_collection_selected: Nem változott meg egy gyűjtemény sem, mert semmi sem volt kiválasztva
       number_of_accounts:
         one: 1 fiók
         other: "%{count} fiók"
       open: Megnyitás
+      title: Fiók gyűjteményei – @%{name}
       view_publicly: Megtekintés nyilvánosan
     critical_update_pending: Függőben levő kritikus frissítés
     custom_emojis:
@@ -484,9 +492,89 @@ hu:
         title: Új e-mail-domain tiltása
       no_email_domain_block_selected: Nem változott meg egy domaintiltás sem, mert semmi sem volt kiválasztva
       not_permitted: Nem engedélyezett
+      reset: Visszaállítás
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
+      search: Keresés
       title: Tiltott e-mail-domainek
+    email_subscriptions:
+      accounts:
+        account: Fiók
+        empty:
+          hint: Egyik fióknak sincs feliratkozója.
+          no_lists_yet: Még nincsenek listák
+        last_email: Legutóbbi e-mail
+        lead: A fiókok, melyek bekapcsolták a funkciót, és vannak feliratkozóik, itt fognak megjelenni alább.
+        show:
+          confirm_disable_feature: Letiltod %{name} e-mailes hírleveleit? Az e-mailek ettől kezdve nem lesznek elküldve ennek a fióknak. A felhasználó továbbra is újra be tudja kapcsolni a funkciót a fiókbeállításaiban. A funkció elérésének végleges eltávolításához szerkeszd a fiók jogosultságait a Szerepekben.
+          confirm_remove_subscriber: 'A(z) %{email} már nem fog leveleket kapni a következőtől: %{name}. Ez a művelet nem vonható vissza.'
+          consent: A feliratkozók csak abba egyeztek bele, hogy levélben megkapják a bejegyzéseket. Ezt a listát ne használd más célokra.
+          date: Regisztráció dátuma
+          disable_feature: Funkció kikapcsolása
+          disabled: A funkció ki lett kapcsolva, és az e-mailek már nem kerülnek elküldésre erre a listára.
+          email: E-mail-cím
+          empty:
+            hint: Még senki sem iratkozott fel erre a fiókra.
+            no_subscribers_yet: Még nincsenek feliratkozók
+          enable_feature: Funkció bekapcsolása
+          no_access_html: A fióknak már nincs meg a szükséges jogosultsága a funkció bekapcsolásához. Módosítsd a <a href="%{roles_path}">Szerepekben</a>.
+          title: "%{name} e-mailes hírlevelei"
+          view_account: Fiók megtekintése
+        status: Állapot
+        subscribers: Feliratkozók
+        title: Levelezőlisták
+      additional_footer_texts:
+        show:
+          title: További láblécszöveg
+      compliance_settings:
+        additional_footer_text:
+          action: Kezelés
+          hint: Nem kötelező szöveg, amely csak a hírlevelek láblécében jelenik meg
+          title: További láblécszöveg
+        lead: Az e-mailes hírlevelek marketinglevélnek számíthatnak a joghatóságodtól függően.
+        privacy_policy:
+          action: Kezelés
+          hint: Ez a nyilatkozat minden egyes levél láblécében be lesz hivatkozva
+          title: Adatvédelmi szabályzat
+        title: Megfelelőségi beállítások
+      danger_zone:
+        disable_feature:
+          action: Kikapcsolás
+          hint: Funkció kikapcsolása az összes fióknál
+          title: Funkció kikapcsolása
+        erase_all_data:
+          action: Adatok törlése
+          hint: Véglegesen törli az összes e-mailt az összes levelezőlistában
+          title: Összes adat törlése
+        title: Veszélyzóna
+      disabled_msg: Az e-mail-feliratkozások sikeresen ki lettek kapcsolva.
+      index:
+        disabled:
+          cannot_be_enabled: A műszaki szolgáltató nem kapcsolta be ezt a funkciót a kiszolgálód számára.
+          description: A funkció lehetővé teszi, hogy a megadott fiókok hozzáadjanak egy kisalkalmazást a profiljukhoz, mellyel a Mastodon-fiók nélküli látogatók e-mailben megkaphatják a bejegyzéseiket.
+          get_started: Első lépések
+        lead: Lehetővé teszi, hogy a látogatók e-mailben kapják meg a kiszolgáló dedikált fiókjainak bejegyzéseit.
+        title: E-mailes hírlevelek
+      purged_msg: Az összes e-mail-feliratkozási adat törlése folyamatban van.
+      roles:
+        accounts: Fiókok
+        edit_role: Szerep szerkesztése
+        empty:
+          hint: Senkinek sincs engedélye a funkció használatához.
+          no_roles_added: Nincsenek szerepek hozzáadva
+        lead: A következő szereppel rendelkező fiókok kapcsolhatják be ezt a funkciót a profiljukban.
+        manage_roles: Szerepek kezelése
+        role_name: Szerep neve
+        title: Szerepek
+      setups:
+        show:
+          enable_feature: Funkció bekapcsolása
+          important_information: Fontos információk
+          list:
+            1_permission_explanation: Ha ez a funkció be van kapcsolva, akkor a kijelölt engedéllyel rendelkező fiókok e-mail-gyűjtési űrlapot adhatnak hozzá a profiljukhoz.
+            2_feature_explanation: Amikor a látogatók feliratkoznak egy fiók profiloldalán, és megerősítik a feliratkozásukat, akkor e-mailben értesítést kapnak arról, ha a fiók új nyilvános bejegyzést tesz közzé.
+            3_privacy_policy_warning: A kiszolgálóadminok hozzá fognak férni a gyűjtött személyazonosításra alkalmas információkhoz (e-mail-címek). Ezért a funkció használata előtt frissíteni kell a kiszolgáló Adatvédelmi szabályzatát és a Felhasználási feltételeket.
+            4_cost_warning: A levelek költséget jelenthetnek a kiszolgálótól függően. A bekapcsolása előtt beszélj a szolgáltatóval, mert a funkció drasztikusan növelheti a kiszolgálóról küldött e-mailek számát.
     export_domain_allows:
       new:
         title: Domain engedélyezések importálása
@@ -671,7 +759,7 @@ hu:
       action_log: Audit napló
       action_taken_by: 'Kezelte:'
       actions:
-        delete_description_html: A bejelentett bejegyzéseket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
+        delete_description_html: A bejelentett bejegyzéseket vagy gyűjteményeket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
         resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel vétséget, és bezárjuk a bejelentést.
@@ -698,7 +786,7 @@ hu:
       confirm: Megerősítés
       confirm_action: Moderációs művelet jóváhagyása @%{acct} fiókon
       created_at: Jelentve
-      delete_and_resolve: Bejegyzések törlése
+      delete_and_resolve: Tartalom törlése
       forwarded: Továbbítva
       forwarded_replies_explanation: Ez a jelentés egy távoli flehasználótól származik, és távoli tartalomról szól. Azért lett neked továbbítva, mert a jelentett tartalom az egyik felhasználódnak küldött válasz.
       forwarded_to: 'Továbbítva ide: %{domain}'
@@ -792,7 +880,7 @@ hu:
         manage_custom_emojis: Egyedi emodzsik kezelése
         manage_custom_emojis_description: Lehetővé teszi a felhasználó számára, hogy a kiszolgáló egyéni emodzsiait kezelje
         manage_email_subscriptions: E-mail-feliratkozások kezelése
-        manage_email_subscriptions_description: Engedélyezés, hogy a felhasználók e-maillel feliratkozzanak az ilyen jogosultságú felhasználókra
+        manage_email_subscriptions_description: Engedélyezés, hogy az ezzel az engedéllyel rendelkező felhasználók bekapcsolhassák a hírlevél funkciót a fiókjukhoz
         manage_federation: Föderáció kezelése
         manage_federation_description: Lehetővé teszi a felhasználó számára, hogy más domainnekkel való föderációt engedélyezzen vagy letiltson, illetve szabályozza a kézbesítést
         manage_invites: Meghívások kezelése
@@ -881,10 +969,16 @@ hu:
           disabled: Konkrét felhasználói szerepkör megkövetelése
           public: Mindenki
       landing_page:
+        hints:
+          about_html: Egy oldal a leírással, névjegyinformációkkal, szabályokkal és a kiszolgálóval kapcsolatos egyéb információkkal.
+          local_feed_html: Élő hírfolyam a kiszolgálón lévő felhasználók legfrissebb bejegyzéseivel.
+          overview_html: Egy oldal, amely a kiszolgáló leírása mellett a felhasználók legfrissebb, ezen a kiszolgálón közzétett bejegyzései is megjelennek.
+          trends_html: Egy oldal, amely a kiszolgálón épp népszerű tartalmakat mutatja be.
         values:
-          about: Névjegy
-          local_feed: Helyi idővonal
-          trends: Trendek
+          about: Névjegy oldal
+          local_feed: Helyi élő hírfolyam
+          overview: Áttekintés
+          trends: Felkapott
       registrations:
         moderation_recommandation: Győződj meg arról, hogy megfelelő és gyors reagálású moderátor csapatod van, mielőtt mindenki számára megnyitod a regisztrációt!
         preamble: Szabályozd, hogy ki hozhat létre fiókot a kiszolgálón.
@@ -904,6 +998,7 @@ hu:
     site_uploads:
       delete: Feltöltött fájl törlése
       destroyed_msg: Sikeresen töröltük a site feltöltését!
+    skip_to_content: Ugrás a tartalomhoz
     software_updates:
       critical_update: Kritikus - frissíts gyorsan
       description: Javasolt, hogy a Mastodon telepítésed naprakész legyen, hogy kihasználhasd a legújabb javításokat és funkciókat. Ezenkívül néha különösen fontos a Mastodon időben történő frissítése a biztonsági problémák elkerülése érdekében. Ezen okok miatt a Mastodon 30 percenként ellenőrzi a frissítéseket és az e-mail-értesítési beállításoknak megfelelően értesítést küld.
@@ -1418,31 +1513,43 @@ hu:
       your_appeal_pending: Beküldtél egy fellebbezést
       your_appeal_rejected: A fellebbezésedet visszautasították
   edit_profile:
-    basic_information: Általános információk
-    hint_html: "<strong>Tedd egyedivé, mi látnak mások a profilodon és a bejegyzéseid mellett.</strong> Mások nagyobb eséllyel követnek vissza és lépnek veled kapcsolatba, ha van kitöltött profilod és profilképed."
     other: Egyéb
+    privacy_redesign_body: A döntés, hogy megjeleníted-e a követettjeidet és követőidet, most már közvetlenül a profilodon tehető meg.
     redesign_body: A profil szerkesztése most már közvetlenül elérhető a profiloldalon.
     redesign_button: Ugrás oda
     redesign_title: Az új profilszerkesztési élmény
   email_subscription_mailer:
     confirmation:
       action: E-mail-cím megerősítése
+      instructions_to_confirm: Erősítsd meg, hogy e-mailt szeretnél kapni %{name} (@%{acct}) új bejegyzéseiről.
+      instructions_to_ignore: Ha nem tudod, hogy miért kaptad ezt az e-mailt, akkor törölheted. Ha nem kattint a fenti hivatkozásra, akkor nem lesz automatikusan feliratkoztatva.
       subject: E-mail-cím megerősítése
+      title: Fogadod %{name} e-mailes híreit?
     notification:
+      create_account: Mastodon-fiók létrehozása
+      footer:
+        privacy_html: 'Az e-mailek innen lesznek küldve: %{domain}, egy Mastodon-kiszolgálóról. Hogy megértsd, hogy ez a kiszolgáló hogyan dolgozza fel a személyes adataidat, nézd meg az <a href="%{privacy_policy_path}">Adatvédelmi szabályzatot</a>.'
+        reason_for_email_html: Azért kapod ezt az e-mailt, mert kérted, hogy e-mailben megkapd %{name} bejegyzéseit. Nem akarod megkapni ezeket a leveleket? <a href="%{unsubscribe_path}">Leiratkozás</a>
+      interact_with_this_post:
+        one: Interakció ezzel a bejegyzéssel, és hasonlóak felfedezése.
+        other: Interakció ezekkel a bejegyzéssel, és hasonlóak felfedezése.
       subject:
-        one: 'Új bejegyzés: „%{excerpt}”'
-        other: 'Új bejegyzések tőle: %{name}'
+        plural: 'Új bejegyzések tőle: %{name}'
+        singular: 'Új bejegyzés: „%{excerpt}”'
       title:
-        one: 'Új bejegyzés: „%{excerpt}”'
-        other: 'Új bejegyzések tőle: %{name}'
+        plural: 'Új bejegyzések tőle: %{name}'
+        singular: 'Új bejegyzés: „%{excerpt}”'
   email_subscriptions:
     active: Aktív
     confirmations:
       show:
         changed_your_mind: Meggondoltad magad?
+        success_html: Mostantól levelet fogsz kapni, ha %{name} új bejegyzést tesz közzé. Add hozzá a feladót (%{sender}) a névjegyeidhez, hogy ne kerüljön a Levélszemét mappádba.
         title: Feliratkoztál
         unsubscribe: Leiratkozás
+    disabled: Kikapcsolva
     inactive: Inaktív
+    no_access: Nincs hozzáférés
     status: Állapot
     subscribers: Feliratkozók
   emoji_styles:
@@ -1478,15 +1585,15 @@ hu:
     blocks: Tiltás
     bookmarks: Könyvjelző
     csv: CSV
+    custom_filters: Szűrők
     domain_blocks: Tiltott domain
+    json: JSON
     lists: Lista
     mutes: Némítás
     storage: Médiatároló
   featured_tags:
-    add_new: Új hozzáadása
     errors:
       limit: Elérted a maximálisan kitűzhető hashtagek számát
-    hint_html: "<strong>Mik a kiemelt hashtagek?</strong> Ezek állandóan megjelennek a nyilvános profilodon és lehetővé teszik, hogy mások kifejezetten az ezekhez tartozó bejegyzéseidet böngésszék. Jó eszköz ez kreatív munkák vagy hosszútávú projektek nyomonkövetésére."
   filters:
     contexts:
       account: Profil
@@ -1724,6 +1831,27 @@ hu:
     copy_account_note_text: 'Ez a fiók elköltözött innen: %{acct}, itt vannak az előző megjegyzéseid róla:'
   navigation:
     toggle_menu: Menü be/ki
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} hozzáadott egy gyűjteményhez"
+    admin_report:
+      title_html: "%{name} jelentette: %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} és még egy felhasználó feliratkozott"
+        other: "%{name} és még %{count} felhasználó feliratkozott"
+      title_html: "%{name} feliratkozott"
+    collection_update:
+      title_html: "%{name} frissített egy gyűjteményt, amelyben szerepelsz"
+    generic:
+      sign_in: Jelentkezz be a Mastodon webalkalmazásba
+      summary_html: Olyan alkalmazást használsz, amely nem támogatja a Mastodon legfrissebb verzióját. %{link} a teljes funkcionalitáshoz.
+    moderation_warning:
+      summary_html: Olyan alkalmazást használsz, amely nem támogatja a Mastodon legfrissebb verzióját. %{link}.
+      title: Moderációs figyelmeztetést kaptál.
+    severed_relationships:
+      summary_html: 'A(z) %{from} egy rendszergazdája felfüggesztette ezt: %{target}, ez azt jelenti, hogy többé nem kapsz értesítést onnan, és nem tudsz interakcióba lépni velük. %{link} az elveszett kapcsolatok felsorolásáért.'
+      title: 'Elvesztek a kapcsolatok vele: %{name}'
   notification_mailer:
     admin:
       report:
@@ -1817,6 +1945,7 @@ hu:
     public_timelines: Nyilvános idővonalak
   privacy:
     email_subscriptions: Bejegyzések küldése e-mailben
+    email_subscriptions_hint_html: E-mailes regisztrációs űrlap hozzáadása a profilodhoz, amely a kijelentkezett felhasználóknak jelenik meg. Ha a látogátok beírják az e-mail-címüket és kérik, akkor a Mastodon e-maileket fog írni a nyilvános bejegyzéseidről.
     hint_html: "<strong>Testreszabható a profil és a bejegyzések megjelenése.</strong> A Mastodon számos funkciója segíthet szélesebb közönség elérésében, ha engedélyezve van. Szánj egy percet a beállítások áttekintésére, hogy megbizonyosodj arról, hogy ezek megfelelnek a te felhasználási esetednek."
     privacy: Adatvédelem
     privacy_hint_html: Szabályozd, hogy mások számára miket szeretnél nyilvánosságra hozni. Az emberek érdekes profilokat és nagyszerű alkalmazásokat fedezhetnek fel, amikor böngésznek mások követései között és látják, hogy mely alkalmazásokból tesznek közzé bejegyzéseket, de az is lehet, hogy inkább elrejtenéd ezeket az infókat.
@@ -2086,8 +2215,22 @@ hu:
       email_subscription:
         confirmation_html: 'Már nem fogsz leveleket kapni róla: %{name}.'
       title: Leiratkoztál
+      user:
+        confirmation_html: 'Már nem fogsz %{type}et kapni a Mastodontól innnen: %{domain}.'
+    notification_emails:
+      favourite: kedvencnek jelölésről szóló értesítő levelek
+      follow: követésről szóló értesítő levelek
+      follow_request: követési kérésekről szóló értesítő levelek
+      mention: megemlítésről szóló értesítő levelek
+      reblog: megtolásról szóló értesítő levelek
     show:
       action: Leiratkozás
+      email_subscription:
+        confirmation_html: Nem fogsz többé leveleket kapni, ha ez a fiók új bejegyzéseket tesz közzé.
+        title: 'Leiratkozol róla: %{name}?'
+      user:
+        confirmation_html: 'Már nem fogsz %{type}et kapni a Mastodontól innnen: %{domain}.'
+        title: Leiratkozol a %{type}ről?
   user_mailer:
     announcement_published:
       description: 'A(z) %{domain} adminisztrátorai a következő bejelentést teszik:'

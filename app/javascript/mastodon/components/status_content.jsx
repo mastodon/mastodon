@@ -18,6 +18,7 @@ import { languages as preloadedLanguages } from 'mastodon/initial_state';
 import { EmojiHTML } from './emoji/html';
 import { injectIntl } from './intl';
 import { HandledLink } from './status/handled_link';
+import { compareUrls } from '../utils/compare_urls';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -68,19 +69,8 @@ class TranslateButton extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  languages: state.getIn(['server', 'translationLanguages', 'items']),
+  languages: state.server.translationLanguages.item,
 });
-
-const compareUrls = (href1, href2) => {
-  try {
-    const url1 = new URL(href1);
-    const url2 = new URL(href2);
-
-    return url1.origin === url2.origin && url1.pathname === url2.pathname && url1.search === url2.search;
-  } catch {
-    return false;
-  }
-};
 
 class StatusContent extends PureComponent {
   static propTypes = {
@@ -166,7 +156,13 @@ class StatusContent extends PureComponent {
 
   handleElement = (element, { key, ...props }, children) => {
     if (element instanceof HTMLAnchorElement) {
-      const mention = this.props.status.get('mentions').find(item => compareUrls(element.href, item.get('url')));
+      const mention = this.props.status.get('mentions').find(
+        item => compareUrls(element.href, item.get('url'))
+      );
+      const taggedCollection = this.props.status.get('tagged_collections').find(
+        item => compareUrls(element.href, item.get('url'))
+      )
+
       return (
         <HandledLink
           {...props}
@@ -174,6 +170,7 @@ class StatusContent extends PureComponent {
           text={element.innerText}
           hashtagAccountId={this.props.status.getIn(['account', 'id'])}
           mention={mention?.toJSON()}
+          collectionId={taggedCollection?.get('id')}
           key={key}
         >
           {children}
@@ -190,7 +187,7 @@ class StatusContent extends PureComponent {
 
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const contentLocale = intl.locale.replace(/[_-].*/, '');
-    const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
+    const targetLanguages = this.props.languages?.[status.get('language') || 'und'];
     const renderTranslate = this.props.onTranslate && this.props.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
 
     const content = statusContent ?? getStatusContent(status);

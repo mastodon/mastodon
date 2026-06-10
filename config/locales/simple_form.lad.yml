@@ -3,7 +3,6 @@ lad:
   simple_form:
     hints:
       account:
-        discoverable: Tus publikasyones publikas i profil pueden ser avaliadas o rekomendadas en varias partes de Mastodon i tu profil puede ser sujerido a otros utilizadores.
         display_name: Tu nombre para amostrar.
         fields: Tu deskripsyon, pronombres, edad, todo lo ke keras.
         indexable: Tus publikasyones publikas pueden apareser en rezultados de bushkeda en Mastodon. Personas ke enteraktuaron kon tus publikasyones syempre pueden bushkarlas inkluzo si trokes esta preferensya.
@@ -56,9 +55,6 @@ lad:
         setting_aggregate_reblogs: No amostra muevas repartajasyones para las publikasyones ke an sido resientemente repartajadas (solo afekta a las repartajasyones risividas resientemente)
         setting_always_send_emails: Normalmente los avizos por posta elektronika no se embiaran kuando estes uzando Mastodon aktivamente
         setting_default_sensitive: Tu muevo kontenido multimedia esta eskondido i puede ser amostrado kon un klik
-        setting_display_media_default: Eskonde kontenido multimedia markado komo sensivle
-        setting_display_media_hide_all: Siempre eskonde todo el kontenido multimedia
-        setting_display_media_show_all: Amostra siempre el kontenido de multimedia
         setting_use_blurhash: Los gradientes se bazan en los kolores de las imajes eskondidas pero faziendo velados los peratim
         setting_use_pending_items: Eskonde muevas publikasyones detras de un klik en lugar de desplazar otomatikamente la linya
         username: Solo puedes uzar letras, shifras i sulinyados
@@ -120,7 +116,6 @@ lad:
       tag:
         name: Solo se puede trokar la kapitalizasyon de las letras, por enshemplo, para ke sea mas meldable
       user:
-        chosen_languages: Kuando se marka, solo se amostraran las publikasyones en las linguas eskojidas en las linyas de tiempo publikas
         role: El rolo kontrola kualos permisos tiene el utilizador.
       user_role:
         color: Color ke se utilizara para el rolo a lo largo de la enterfaz de utilizador, komo RGB en formato heksadesimal
@@ -134,7 +129,6 @@ lad:
         url: Ande los evenimientos seran embiados
     labels:
       account:
-        discoverable: Avalia profil i publikasyones en algoritmos de deskuvrimyento
         fields:
           name: Etiketa
           value: Kontenido

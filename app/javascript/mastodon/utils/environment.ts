@@ -12,13 +12,13 @@ export function isProduction() {
   else return import.meta.env.PROD;
 }
 
-export type ServerFeatures = 'fasp' | 'collections';
+export type ServerFeatures = 'fasp';
 
 export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
 }
 
-type ClientFeatures = 'collections';
+type ClientFeatures = never;
 
 export function isClientFeatureEnabled(feature: ClientFeatures) {
   try {

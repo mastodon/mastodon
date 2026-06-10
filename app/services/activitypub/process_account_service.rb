@@ -32,8 +32,15 @@ class ActivityPub::ProcessAccountService < BaseService
     @options[:request_id] ||= "#{Time.now.utc.to_i}-#{username}@#{domain}"
 
     with_redis_lock("process_account:#{@uri}") do
-      @account            = Account.remote.find_by(uri: @uri) if @options[:only_key]
-      @account          ||= Account.find_remote(@username, @domain)
+      if @options[:only_key]
+        # `only_key` is used to update an existing account known by its `uri`.
+        # Lookup by handle and new account creation do not make sense in this case.
+        @account = Account.remote.find_by(uri: @uri)
+        return if @account.nil?
+      else
+        @account = Account.find_remote(@username, @domain)
+      end
+
       @old_public_keys = @account.present? ? (@account.keypairs.pluck(:public_key) + [@account.public_key.presence].compact) : []
       @old_protocol = @account&.protocol
       @suspension_changed = false
@@ -65,7 +72,7 @@ class ActivityPub::ProcessAccountService < BaseService
     unless @options[:only_key] || @account.suspended?
       check_featured_collection! if @json['featured'].present?
       check_featured_tags_collection! if @json['featuredTags'].present?
-      check_featured_collections_collection! if @json['featuredCollections'].present? && Mastodon::Feature.collections_enabled?
+      check_featured_collections_collection! if @json['featuredCollections'].present?
       check_links! if @account.fields.any?(&:requires_verification?)
     end
 
@@ -114,7 +121,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.uri                     = @uri
     @account.actor_type              = actor_type
     @account.created_at              = @json['published'] if @json['published'].present?
-    @account.feature_approval_policy = feature_approval_policy if Mastodon::Feature.collections_enabled?
+    @account.feature_approval_policy = feature_approval_policy
   end
 
   def valid_collection_uri(uri)
@@ -143,7 +150,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.show_featured           = @json['showFeatured'] if @json.key?('showFeatured')
     @account.show_media              = @json['showMedia'] if @json.key?('showMedia')
     @account.show_media_replies      = @json['showRepliesInMedia'] if @json.key?('showRepliesInMedia')
-    @account.attribution_domains     = as_array(@json['attributionDomains'] || []).take(Account::ATTRIBUTION_DOMAINS_HARD_LIMIT).map { |item| value_or_id(item) }
+    @account.attribution_domains     = as_array(@json['attributionDomains'] || []).take(Account::ATTRIBUTION_DOMAINS_HARD_LIMIT).grep(String)
   end
 
   def set_fetchable_key!

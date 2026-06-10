@@ -32,7 +32,7 @@ RSpec.describe CreateCollectionService do
       it 'federates an `Add` activity' do
         subject.call(base_params, author)
 
-        expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+        expect(ActivityPub::CollectionRawDistributionWorker).to have_enqueued_sidekiq_job
       end
 
       context 'when given account ids' do
@@ -59,6 +59,16 @@ RSpec.describe CreateCollectionService do
             expect do
               subject.call(params, author)
             end.to raise_error(Mastodon::NotPermittedError)
+          end
+        end
+
+        context 'when some accounts are local' do
+          it 'schedules notifications' do
+            subject.call(params, author)
+
+            expect(LocalNotificationWorker)
+              .to have_enqueued_sidekiq_job
+              .with(accounts.last.id, anything, 'CollectionItem', 'added_to_collection')
           end
         end
 

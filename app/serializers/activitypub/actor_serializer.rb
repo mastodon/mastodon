@@ -10,9 +10,9 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
                      :moved_to, :property_value, :discoverable, :suspended,
                      :memorial, :indexable, :attribution_domains, :profile_settings
 
-  context_extensions :interaction_policies if Mastodon::Feature.collections_enabled?
+  context_extensions :interaction_policies
 
-  attributes :id, :type, :following, :followers,
+  attributes :id, :webfinger, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
@@ -21,8 +21,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   attribute :show_media_replies, key: :show_replies_in_media
 
-  attribute :interaction_policy, if: -> { Mastodon::Feature.collections_enabled? }
-  attribute :featured_collections, if: -> { Mastodon::Feature.collections_enabled? }
+  attribute :interaction_policy
+  attribute :featured_collections
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
@@ -41,6 +41,16 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
     def shared_inbox
       inbox_url
+    end
+  end
+
+  class ImageWithDescription < SimpleDelegator
+    attr_reader :description
+
+    def initialize(object, description)
+      super(object)
+
+      @description = description
     end
   end
 
@@ -120,11 +130,11 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def icon
-    object.avatar
+    ImageWithDescription.new(object.avatar, object.avatar_description)
   end
 
   def image
-    object.header
+    ImageWithDescription.new(object.header, object.header_description)
   end
 
   def public_key
@@ -176,7 +186,15 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def interaction_policy
-    uri = object.discoverable? ? ActivityPub::TagManager::COLLECTIONS[:public] : ActivityPub::TagManager.instance.uri_for(object)
+    uri = begin
+      if !object.discoverable?
+        ActivityPub::TagManager.instance.uri_for(object)
+      elsif object.locked?
+        ActivityPub::TagManager.instance.followers_uri_for(object)
+      else
+        ActivityPub::TagManager::COLLECTIONS[:public]
+      end
+    end
 
     {
       canFeature: {

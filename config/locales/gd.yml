@@ -699,7 +699,6 @@ gd:
       action_log: Sgrùd an loga
       action_taken_by: Chaidh an gnìomh a ghabhail le
       actions:
-        delete_description_html: Thèid na postaichean le gearan orra a sguabadh às agus rabhadh a chlàradh gus do chuideachadh ach am bi thu nas teinne le droch-ghiùlan on aon chunntas sam àm ri teachd.
         mark_as_sensitive_description_html: Thèid comharra an fhrionasachd a chur ris na meadhanan sna postaichean le gearan orra agus rabhadh a chlàradh gus do chuideachadh ach am bi thu nas teinne le droch-ghiùlan on aon chunntas sam àm ri teachd.
         other_description_html: Seall barrachd roghainnean airson giùlan a’ chunntais a stiùireadh agus an conaltradh leis a’ chunntas a chaidh gearan a dhèanamh mu dhèidhinn a ghnàthachadh.
         resolve_description_html: Cha dèid gnìomh sam bith a ghabhail an aghaidh a’ chunntais le gearan air agus thèid an gearan a dhùnadh gun rabhadh a chlàradh.
@@ -726,7 +725,6 @@ gd:
       confirm: Dearbh
       confirm_action: Dearbh gnìomh na maorsainneachd an aghaidh @%{acct}
       created_at: Chaidh an gearan a dhèanamh
-      delete_and_resolve: Sguab às na postaichean
       forwarded: Chaidh a shìneadh air adhart
       forwarded_replies_explanation: Tha an gearan seo o chleachdaiche cèin agus mu shusbaint chèin. Chaidh a shìneadh air adhart thugad on as e freagairt do neach-cleachdaidh agad-sa a tha san t-susbaint a tha na cois.
       forwarded_to: Chaidh a shìneadh air adhart gu %{domain}
@@ -798,7 +796,7 @@ gd:
         special: Sònraichte
       delete: Sguab às
       description_html: Le <strong>dreuchdan chleachdaichean</strong>, ’s urrainn dhut gnàthachadh dè na gleusan is raointean de Mhastodon as urrainn dha na cleachdaichean agad inntrigeadh.
-      edit: Deasaich an dreuchd aig “%{name}“
+      edit: Deasaich an dreuchd “%{name}“
       everyone: Na ceadan bunaiteach
       everyone_full_description_html: Seo an <strong>dreuchd bhunaiteach</strong> a bheir buaidh air <strong>gach cleachdaiche</strong>, fiù an fheadhainn nach deach dreuchd iomruineadh dhaibh. Gheibh a h-uile dreuch ceadan uaipe mar dhìleab.
       permissions_count:
@@ -824,7 +822,6 @@ gd:
         manage_custom_emojis: Stiùireadh nan Emojis gnàthaichte
         manage_custom_emojis_description: Leigidh seo le cleachdaichean Emojis gnàthaichte a stiùireadh air an fhrithealaiche
         manage_email_subscriptions: Stiùireadh fo-sgrìobhaidhean puist-d
-        manage_email_subscriptions_description: Leigidh seo le cleachdaichean fo-sgrìobhadh air a’ phost-d a dhèanamh air na cleachdaichean aig a bheil an cead seo
         manage_federation: Stiùireadh a’ cho-nasgaidh
         manage_federation_description: Leigidh seo le cleachdaichean an co-nasgadh le àrainnean eile a bhacadh no a cheadachadh agus stiùireadh dè ghabhas lìbhrigeadh
         manage_invites: Stiùireadh nan cuiridhean
@@ -912,11 +909,6 @@ gd:
           authenticated: Cleachdaichean a chlàraich a-steach a-mhàin
           disabled: Iarr dreuchd shònraichte a’ chleachdaiche
           public: A h-uile duine
-      landing_page:
-        values:
-          about: Mu dhèidhinn
-          local_feed: Loidhne-ama ionadail
-          trends: Treandaichean
       registrations:
         moderation_recommandation: Dèan cinnteach gu bheil sgioba maoir deiseil is deònach agad mus fhosgail thu an clàradh dhan a h-uile duine!
         preamble: Stiùirich cò dh’fhaodas cunntas a chruthachadh air an fhrithealaiche agad.
@@ -1460,8 +1452,6 @@ gd:
       your_appeal_pending: Chuir thu ath-thagradh a-null
       your_appeal_rejected: Chaidh an t-ath-thagradh agad a dhiùltadh
   edit_profile:
-    basic_information: Fiosrachadh bunasach
-    hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
     other: Eile
     redesign_body: "’S urrainn dhut a’ phròifil agad a dheasachadh air duilleag na pròifile fhèin."
     redesign_button: Tadhail air
@@ -1483,6 +1473,12 @@ gd:
         one: Dèan conaltradh leis a’ phost seo is lorg barrachd coltach ris.
         other: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
         two: Dèan conaltradh leis na puist seo is lorg barrachd coltach riutha.
+      subject:
+        plural: Postaichean ùra o %{name}
+        singular: 'Post ùr: “%{excerpt}”'
+      title:
+        plural: Postaichean ùra o %{name}
+        singular: 'Post ùr: “%{excerpt}”'
   email_subscriptions:
     active: Gnìomhach
     confirmations:
@@ -1532,10 +1528,8 @@ gd:
     mutes: Tha thu a’ mùchadh
     storage: Stòras mheadhanan
   featured_tags:
-    add_new: Cuir fear ùr ris
     errors:
       limit: Bhrosnaich thu an uiread as motha de thagaichean hais mu thràth
-    hint_html: "<strong>Brosnaich na tagaichean hais as cudromaiche agad air a’ phròifil agad.</strong> ’S e deagh-acainn a th’ annta airson sùil a chumail air an obair chruthachail no na pròiseactan fada agad on a thèid na tagaichean hais brosnaichte a shealltainn gu follaiseach air a’ phròifil agad agus ’s urrainnear na postaichean agad inntrigeadh gu luath leotha."
   filters:
     contexts:
       account: Pròifilean
@@ -1813,6 +1807,29 @@ gd:
     copy_account_note_text: 'Da cleachdaiche air gluasad o %{acct}, seo na nòtaichean a bh’ agad mu dhèidhinn roimhe:'
   navigation:
     toggle_menu: Toglaich an clàr-taice
+  notification_fallbacks:
+    added_to_collection:
+      title_html: Chuir %{name} ri cruinneachadh thu
+    admin_report:
+      title_html: Rinn %{name} gearan mu %{target}
+    admin_sign_up:
+      title_and_others_html:
+        few: Chlàraich %{name} ’s %{count} eile
+        one: Chlàraich %{name} ’s %{count} eile
+        other: Chlàraich %{name} ’s %{count} eile
+        two: Chlàraich %{name} ’s %{count} eile
+      title_html: Chlàraich %{name}
+    collection_update:
+      title_html: Dh’ùraich %{name} cruinneachadh sa bheil thu
+    generic:
+      sign_in: Clàraich a-steach air aplacaid-lìn Mhastodon
+      summary_html: Cha thu a’ cleachdadh aplacaid nach cuir taic ris an tionndadh as ùire de Mhastodon. %{link} airson na gleusan uile fhaighinn.
+    moderation_warning:
+      summary_html: Cha thu a’ cleachdadh aplacaid nach cuir taic ris an tionndadh as ùire de Mhastodon. %{link}.
+      title: Fhuair thu rabhadh on mhaorsainneachd.
+    severed_relationships:
+      summary_html: Chuir rianaire aig %{from} %{target} à rèim agus is ciall dha sin nach fhaigh thu naidheachdan uapa ’s nach urrainn dhut conaltradh leotha. %{link} a dh’fhaighinn liosta de na dàimhean air chall.
+      title: Chaill thu dàimhean le %{name}
   notification_mailer:
     admin:
       report:

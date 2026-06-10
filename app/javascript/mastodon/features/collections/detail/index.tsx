@@ -1,27 +1,40 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { useHistory, useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { openModal } from '@/mastodon/actions/modal';
-import { useAccountHandle } from '@/mastodon/components/display_name/default';
+import { Helmet } from '@unhead/react/helmet';
+
+import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
-import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
+import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import { openModal } from 'mastodon/actions/modal';
+import type {
+  ApiCollectionJSON,
+  CollectionAccountItem,
+} from 'mastodon/api_types/collections';
+import { Badge } from 'mastodon/components/badge';
+import { Callout } from 'mastodon/components/callout';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
+import { DisplayName } from 'mastodon/components/display_name';
+import { useAccountHandle } from 'mastodon/components/display_name/default';
+import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { IconButton } from 'mastodon/components/icon_button';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { Scrollable } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
-import { domain } from 'mastodon/initial_state';
+import { domain, me } from 'mastodon/initial_state';
 import { fetchCollection } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { CollectionMenu } from '../components/collection_menu';
+
 import { CollectionAccountsList } from './accounts_list';
-import { CollectionMenu } from './collection_menu';
+import { useConfirmRevoke } from './revoke_collection_inclusion_modal';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -62,15 +75,116 @@ export const AuthorNote: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
-const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
-  collection,
+const RevokeControls: React.FC<{
+  currentUserCollectionItem: CollectionAccountItem;
+  collection: ApiCollectionJSON;
+}> = ({ currentUserCollectionItem, collection }) => {
+  const authorAccount = useAccount(collection.account_id);
+  const confirmRevoke = useConfirmRevoke(collection);
+
+  return (
+    <Callout
+      icon={StarIcon}
+      title={
+        <FormattedMessage
+          id='collections.detail.you_are_in_this_collection'
+          defaultMessage="You're featured in this collection"
+        />
+      }
+      primaryLabel={
+        <FormattedMessage
+          id='collections.detail.revoke_inclusion'
+          defaultMessage='Remove me'
+        />
+      }
+      onPrimary={confirmRevoke}
+    >
+      <FormattedMessage
+        id='collections.detail.author_added_you_on_date'
+        defaultMessage='{author} added you on {date}'
+        values={{
+          author: <DisplayName account={authorAccount} variant='simple' />,
+          date: (
+            <FormattedDateWrapper
+              value={currentUserCollectionItem.created_at}
+              day='2-digit'
+              month='short'
+              year='numeric'
+            />
+          ),
+        }}
+      />
+    </Callout>
+  );
+};
+
+export const PendingNote: React.FC = () => {
+  return (
+    <Callout
+      variant='subtle'
+      icon={HelpIcon}
+      title={
+        <FormattedMessage
+          id='collections.pending_accounts.title'
+          defaultMessage='Why am I seeing pending accounts?'
+        />
+      }
+    >
+      <FormattedMessage
+        id='collections.pending_accounts.message'
+        defaultMessage='Accounts may appear as pending when we’re awaiting a response from the user or their server. Only you can see pending accounts.'
+      />
+    </Callout>
+  );
+};
+
+const SensitiveContentNote: React.FC<{ onReveal: () => void }> = ({
+  onReveal,
 }) => {
+  return (
+    <Callout
+      variant='warning'
+      title={
+        <FormattedMessage
+          id='collections.detail.sensitive_content'
+          defaultMessage='Sensitive content'
+        />
+      }
+      primaryLabel={
+        <FormattedMessage
+          id='content_warning.show_short'
+          defaultMessage='Show'
+        />
+      }
+      onPrimary={onReveal}
+      className={classes.sensitiveScreen}
+    >
+      <FormattedMessage
+        id='collections.detail.sensitive_note'
+        defaultMessage='The description and accounts may not be suitable for all viewers.'
+      />
+    </Callout>
+  );
+};
+
+const CollectionHeader: React.FC<{
+  collection: ApiCollectionJSON;
+  withDescription: boolean;
+  headingRef: React.RefObject<HTMLHeadingElement>;
+}> = ({ collection, withDescription, headingRef }) => {
   const intl = useIntl();
-  const { name, description, tag, account_id } = collection;
+  const { name, description, tag, account_id, items } = collection;
   const dispatch = useAppDispatch();
   const history = useHistory();
 
-  const handleShare = useCallback(() => {
+  const isOwnCollection = account_id === me;
+  const currentUserCollectionItem = items.find(
+    (account) => account.account_id === me,
+  );
+  const isCurrentUserInCollection =
+    !isOwnCollection && !!currentUserCollectionItem;
+
+  const openShareModal = useCallback(() => {
     dispatch(
       openModal({
         modalType: 'SHARE_COLLECTION',
@@ -87,16 +201,20 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
     if (isNewCollection) {
       // Replace with current pathname to clear `newCollection` state
       history.replace(location.pathname);
-      handleShare();
+      openShareModal();
     }
-  }, [history, handleShare, isNewCollection, location.pathname]);
+  }, [history, openShareModal, isNewCollection, location.pathname]);
+
+  const hasPendingAccounts = items.some((item) => item.state === 'pending');
 
   return (
     <header className={classes.header}>
       <div className={classes.titleWithMenu}>
         <div className={classes.titleWrapper}>
-          {tag && <span className={classes.tag}>#{tag.name}</span>}
-          <h2 className={classes.name}>{name}</h2>
+          {tag && <Badge label={`#${tag.name}`} icon={null} />}
+          <h2 className={classes.name} ref={headingRef} tabIndex={-1}>
+            {name}
+          </h2>
           <AuthorNote id={account_id} />
         </div>
         <div className={classes.headerButtonWrapper}>
@@ -105,7 +223,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
             icon='share-icon'
             title={intl.formatMessage(messages.share)}
             className={classes.iconButton}
-            onClick={handleShare}
+            onClick={openShareModal}
           />
           <CollectionMenu
             context='collection'
@@ -114,8 +232,63 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
           />
         </div>
       </div>
-      {description && <p className={classes.description}>{description}</p>}
+      {withDescription && description && (
+        <p className={classes.description}>{description}</p>
+      )}
+      {hasPendingAccounts && <PendingNote />}
+      {isCurrentUserInCollection && (
+        <RevokeControls
+          currentUserCollectionItem={currentUserCollectionItem}
+          collection={collection}
+        />
+      )}
     </header>
+  );
+};
+
+function useRevealSensitiveContent({
+  sensitive,
+}: {
+  sensitive: boolean | undefined;
+}) {
+  const postRevealFocusTargetRef = useRef<HTMLHeadingElement>(null);
+  const [isContentVisible, setIsContentVisible] = useState(!sensitive);
+
+  const revealContent = useCallback(() => {
+    setIsContentVisible(true);
+    setTimeout(() => {
+      postRevealFocusTargetRef.current?.focus();
+    }, 0);
+  }, [postRevealFocusTargetRef]);
+
+  return {
+    isContentVisible,
+    revealContent,
+    postRevealFocusTargetRef,
+  };
+}
+
+const ColumnContent: React.FC<{
+  collection: ApiCollectionJSON;
+}> = ({ collection }) => {
+  const { isContentVisible, revealContent, postRevealFocusTargetRef } =
+    useRevealSensitiveContent({
+      sensitive: collection.sensitive && collection.account_id !== me,
+    });
+
+  return (
+    <>
+      <CollectionHeader
+        collection={collection}
+        headingRef={postRevealFocusTargetRef}
+        withDescription={isContentVisible}
+      />
+      {isContentVisible ? (
+        <CollectionAccountsList collection={collection} />
+      ) : (
+        <SensitiveContentNote onReveal={revealContent} />
+      )}
+    </>
   );
 };
 
@@ -128,7 +301,6 @@ export const CollectionDetailPage: React.FC<{
   const collection = useAppSelector((state) =>
     id ? state.collections.collections[id] : undefined,
   );
-  const isLoading = !!id && !collection;
 
   useEffect(() => {
     if (id) {
@@ -149,8 +321,11 @@ export const CollectionDetailPage: React.FC<{
       />
 
       <Scrollable>
-        {collection && <CollectionHeader collection={collection} />}
-        <CollectionAccountsList collection={collection} isLoading={isLoading} />
+        {collection ? (
+          <ColumnContent collection={collection} />
+        ) : (
+          <LoadingIndicator />
+        )}
       </Scrollable>
 
       <Helmet>

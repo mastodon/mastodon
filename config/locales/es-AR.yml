@@ -345,12 +345,20 @@ es-AR:
       updated_msg: "¡Anuncio actualizado exitosamente!"
     collections:
       accounts: Cuentas
+      back_to_account: Volver a la página de la cuenta
+      back_to_report: Volver a la página de la denuncia
+      batch:
+        add_to_report: Agregar a la denuncia N°%{id}
+        remove_from_report: Quitar de la denuncia
+        report: Denunciar
       collection_title: Colección de %{name}
       contents: Contenidos
+      no_collection_selected: No se cambió ninguna colección, ya que ninguna fue seleccionada
       number_of_accounts:
         one: 1 cuenta
         other: "%{count} cuentas"
       open: Abrir
+      title: Colecciones de cuentas - @%{name}
       view_publicly: Ver públicamente
     critical_update_pending: Actualización crítica pendiente
     custom_emojis:
@@ -484,9 +492,89 @@ es-AR:
         title: Bloquear nuevo dominio de correo electrónico
       no_email_domain_block_selected: No se cambiaron bloqueos de dominio de correo electrónico, ya que no se seleccionó ninguno
       not_permitted: No permitidos
+      reset: Restablecer
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tené cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
+      search: Buscar
       title: Dominios bloqueados de correo electrónico
+    email_subscriptions:
+      accounts:
+        account: Cuenta
+        empty:
+          hint: Aún no hay cuentas con suscriptores.
+          no_lists_yet: Aún no hay listas
+        last_email: Último correo electrónico
+        lead: Las cuentas que habilitaron la función y tienen suscriptores se mostrarán a continuación.
+        show:
+          confirm_disable_feature: "¿Deshabilitar boletines de correo electrónico para %{name}? Las actualizaciones de correo electrónico ya no se enviarán a esta cuenta. El usuario todavía podrá volver a activar la función en la configuración de su cuenta. Para eliminar permanentemente el acceso a esta función, editá el permiso de la cuenta en Roles."
+          confirm_remove_subscriber: "%{email} ya no recibirá correos electrónicos de %{name}. Esta acción no se puede deshacer."
+          consent: Los suscriptores solo aceptaron recibir mensajes por correo electrónico. No usés esta lista para otros propósitos.
+          date: Fecha de registro
+          disable_feature: Deshabilitar función
+          disabled: La función fue deshabilitada y los correos electrónicos ya no están siendo enviados a esta lista.
+          email: Dirección de correo electrónico
+          empty:
+            hint: Todavía nadie se suscribió a esta cuenta.
+            no_subscribers_yet: Aún no hay suscriptores
+          enable_feature: Habilitar función
+          no_access_html: Esta cuenta ya no tiene los permisos requeridos para habilitar la función. Cambiá esto en <a href="%{roles_path}">Roles</a>.
+          title: Boletines de noticias de %{name}
+          view_account: Ver cuenta
+        status: Estado
+        subscribers: Suscriptores
+        title: Listas de correo
+      additional_footer_texts:
+        show:
+          title: Texto de pie de página adicional
+      compliance_settings:
+        additional_footer_text:
+          action: Administrar
+          hint: Texto opcional que aparece solo en el pie de los correos electrónicos del boletín de noticias
+          title: Texto de pie de página adicional
+        lead: Los boletines de correo electrónico pueden considerarse correos electrónicos de marketing, dependiendo de las jurisdicciones en las que operás.
+        privacy_policy:
+          action: Administrar
+          hint: Esta política está vinculada en el pie de cada correo electrónico
+          title: Política de privacidad
+        title: Configuración de cumplimiento
+      danger_zone:
+        disable_feature:
+          action: Deshabilitar
+          hint: Deshabilitar función para todas las cuentas
+          title: Deshabilitar función
+        erase_all_data:
+          action: Eliminar datos
+          hint: Eliminar permanentemente todos los correos electrónicos de todas las listas de correo
+          title: Eliminar todos los datos
+        title: Zona de peligro
+      disabled_msg: Las suscripciones de correo electrónico se deshabilitaron correctamente.
+      index:
+        disabled:
+          cannot_be_enabled: Tu proveedor técnico no habilitó esta función para tu servidor.
+          description: Esta función permite a las cuentas especificadas agregar un widget a sus perfiles, permitiendo a los visitantes sin una cuenta de Mastodon recibir sus mensajes por correo electrónico.
+          get_started: Primeros pasos
+        lead: Permitir a los visitantes recibir mensajes por correo electrónico de cuentas dedicadas en este servidor.
+        title: Boletines de noticias
+      purged_msg: Todos los datos de las suscripciones de correo electrónico están siendo eliminados.
+      roles:
+        accounts: Cuentas
+        edit_role: Editar rol
+        empty:
+          hint: Nadie tiene permiso para usar esta función.
+          no_roles_added: No hay roles agregados
+        lead: Las cuentas con los siguientes roles pueden habilitar esta función en sus perfiles.
+        manage_roles: Administrar roles
+        role_name: Nombre del rol
+        title: Roles
+      setups:
+        show:
+          enable_feature: Habilitar función
+          important_information: Información importante
+          list:
+            1_permission_explanation: Cuando esta función está habilitada, las cuentas con los permisos designados pueden agregar un formulario de recopilación de correo electrónico a sus perfiles.
+            2_feature_explanation: Cuando los visitantes se registren en la página de perfil de una cuenta y confirmen su suscripción, comenzarán a recibir actualizaciones por correo electrónico cuando la cuenta cree nuevos mensajes públicos.
+            3_privacy_policy_warning: Los administradores del servidor tendrán acceso a PII (direcciones de correo electrónico). Como tal, la política de privacidad y los términos de servicio para el servidor deben ser actualizados antes de usar esta función.
+            4_cost_warning: Los correos electrónicos pueden incurrir en un cargo dependiendo de la configuración del alojamiento. Hable con su proveedor de alojamiento antes de habilitar esta función, ya que la misma podría aumentar drásticamente la cantidad de correos electrónicos enviados desde tu servidor.
     export_domain_allows:
       new:
         title: Importar permisos de dominio
@@ -671,7 +759,7 @@ es-AR:
       action_log: Registro de auditoría
       action_taken_by: Acción tomada por
       actions:
-        delete_description_html: Los mensajes denunciados serán eliminados y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
+        delete_description_html: Los mensajes y/o las colecciones denunciadas serán eliminadas y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
         mark_as_sensitive_description_html: Los archivos de medios en los mensajes denunciados se marcarán como sensibles y se registrará un incumplimiento para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará el incumplimiento, y se cerrará la denuncia.
@@ -698,7 +786,7 @@ es-AR:
       confirm: Confirmar
       confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
-      delete_and_resolve: Eliminar mensajes
+      delete_and_resolve: Eliminar contenido
       forwarded: Reenviado
       forwarded_replies_explanation: Esta denuncia es de un usuario remoto y sobre contenido remoto. Se te reenvió porque el contenido denunciado es en respuesta a uno de tus usuarios.
       forwarded_to: Reenviado a %{domain}
@@ -792,7 +880,7 @@ es-AR:
         manage_custom_emojis: Administrar emojis personalizados
         manage_custom_emojis_description: Permite a los usuarios administrar emojis personalizados en el servidor
         manage_email_subscriptions: Administrar suscripciones de correo electrónico
-        manage_email_subscriptions_description: Permitir a los usuarios suscribirse a usuarios con este permiso por correo electrónico
+        manage_email_subscriptions_description: Permitir a los usuarios con este permiso habilitar la función del boletín de noticias por correo electrónico para sus cuentas
         manage_federation: Administrar Federación
         manage_federation_description: Permite a los usuarios bloquear o permitir la federación con otros dominios y controlar las entregas
         manage_invites: Administrar invitaciones
@@ -881,10 +969,16 @@ es-AR:
           disabled: Requerir un rol de específico de usuario
           public: Todos
       landing_page:
+        hints:
+          about_html: Una página con la descripción, información de contacto, reglas y otra información relacionada a este servidor.
+          local_feed_html: Una línea temporal en vivo con los mensajes más recientes de los usuarios en este servidor.
+          overview_html: Una página que muestra la descripción de tu servidor junto a los mensajes locales más recientes de tus usuarios.
+          trends_html: Una página con lo que es popular en este servidor ahora mismo.
         values:
-          about: Información
-          local_feed: Línea temporal local
-          trends: Tendencias
+          about: Acerca de la página
+          local_feed: Línea temporal local en vivo
+          overview: Visión general
+          trends: En tendencia
       registrations:
         moderation_recommandation: Por favor, ¡asegurate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todos!
         preamble: Controlá quién puede crear una cuenta en tu servidor.
@@ -904,6 +998,7 @@ es-AR:
     site_uploads:
       delete: Eliminar archivo subido
       destroyed_msg: "¡Subida al sitio eliminada exitosamente!"
+    skip_to_content: Saltar al contenido
     software_updates:
       critical_update: Crítica — por favor, actualizá cuanto antes
       description: Se recomienda mantener actualizada tu instalación de Mastodon para beneficiarte de las últimas correcciones y funciones. Además, a veces es crítico actualizar Mastodon inmediatamente para evitar problemas de seguridad. Por estas razones, Mastodon comprueba si hay actualizaciones cada 30 minutos, y te notificará de acuerdo a tu configuración de notificaciones por correo electrónico.
@@ -1418,9 +1513,8 @@ es-AR:
       your_appeal_pending: Enviaste una apelación
       your_appeal_rejected: Se rechazó tu apelación
   edit_profile:
-    basic_information: Información básica
-    hint_html: "<strong>Personalizá lo que la gente ve en tu perfil público y junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen con vos cuando tengas un perfil completo y una foto de perfil."
     other: Otros
+    privacy_redesign_body: La opción de mostrar tus seguidores y seguidores ahora se hace directamente a partir de tu perfil.
     redesign_body: Ahora podés acceder a la edición del perfil desde la propia página de perfil.
     redesign_button: Ir allí
     redesign_title: Hay una nueva experiencia de edición de perfil
@@ -1440,11 +1534,11 @@ es-AR:
         one: Interactuá con esta publicación y descubrí otras similares.
         other: Interactuá con estas publicaciones y descubrí otras similares.
       subject:
-        one: 'Nueva publicación: «%{excerpt}»'
-        other: Nuevos publicaciones de %{name}
+        plural: Nuevos mensajes de %{name}
+        singular: 'Nueva publicación: «%{excerpt}»'
       title:
-        one: 'Nueva publicación: «%{excerpt}»'
-        other: Nuevos mensajes de %{name}
+        plural: Nuevos mensajes de %{name}
+        singular: 'Nueva publicación: «%{excerpt}»'
   email_subscriptions:
     active: Activa
     confirmations:
@@ -1453,7 +1547,9 @@ es-AR:
         success_html: Ahora vas a empezar a recibir correos electrónicos cuando %{name} publique algo nuevo. Agregá a %{sender} a tus contactos para que estas publicaciones no terminen en tu carpeta de spam o correo no deseado.
         title: Te suscribiste
         unsubscribe: Desuscribirse
+    disabled: Deshabilitada
     inactive: Inactiva
+    no_access: Sin acceso
     status: Estado
     subscribers: Suscriptores
   emoji_styles:
@@ -1489,15 +1585,15 @@ es-AR:
     blocks: Cuentas que bloqueaste
     bookmarks: Marcadores
     csv: CSV
+    custom_filters: Filtros
     domain_blocks: Dominios bloqueados
+    json: JSON
     lists: Listas
     mutes: Cuentas que silenciaste
     storage: Almacenamiento de medios
   featured_tags:
-    add_new: Agregar nueva
     errors:
       limit: Ya estableciste el número máximo de etiquetas
-    hint_html: "<strong>Destacá tus etiquetas más importantes en tu perfil.</strong> Una gran herramienta para realizar un seguimiento de tus obras creativas y de tus proyectos a largo plazo. Las etiquetas destacadas se muestran de tal forma en tu perfil y permiten un acceso rápido a tus propios mensajes."
   filters:
     contexts:
       account: Perfiles
@@ -1735,6 +1831,27 @@ es-AR:
     copy_account_note_text: 'Este usuario se mudó desde %{acct}, acá están tus notas previas sobre él/ella:'
   navigation:
     toggle_menu: Cambiar menú
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} te agregó a una colección"
+    admin_report:
+      title_html: "%{name} denunció a %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} y alguien más se registraron"
+        other: "%{name} y otras %{count} cuentas más se registraron"
+      title_html: Se registró %{name}
+    collection_update:
+      title_html: "%{name} editó una colección en la que estás"
+    generic:
+      sign_in: Iniciar sesión en la aplicación web de Mastodon
+      summary_html: Estás en una aplicación que no soporta la versión más reciente de Mastodon. %{link} para una funcionalidad completa.
+    moderation_warning:
+      summary_html: Estás en una aplicación que no soporta la versión más reciente de Mastodon. %{link}.
+      title: Recibiste una advertencia de moderación.
+    severed_relationships:
+      summary_html: Un administrador de %{from} suspendió %{target}, lo que significa que ya no podés recibir actualizaciones de ellos o interactuar con ellos. %{link} para recuperar una lista de las relaciones perdidas.
+      title: Conexiones perdidas con %{name}
   notification_mailer:
     admin:
       report:

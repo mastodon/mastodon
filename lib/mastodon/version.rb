@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def default_prerelease
-      'alpha.6'
+      'beta.1'
     end
 
     def prerelease
@@ -45,7 +45,7 @@ module Mastodon
 
     def api_versions
       {
-        mastodon: 9,
+        mastodon: 10,
       }
     end
 

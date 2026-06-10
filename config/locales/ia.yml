@@ -654,7 +654,6 @@ ia:
       action_log: Registro de inspection
       action_taken_by: Mesura prendite per
       actions:
-        delete_description_html: Le messages reportate essera delite e un sanction essera registrate pro adjutar te a prender mesuras adequate in caso de futur infractiones committite desde le mesme conto.
         mark_as_sensitive_description_html: Le files multimedial in le messages reportate essera marcate como sensibile e un sanction essera registrate pro adjutar te a prender mesuras adequate in caso de futur infractiones committite desde le mesme conto.
         other_description_html: Vider plus optiones pro controlar le comportamento del conto e personalisar le communication al conto signalate.
         resolve_description_html: Necun mesura essera prendite contra le conto denunciate, necun sanction registrate, e le reporto essera claudite.
@@ -680,7 +679,6 @@ ia:
       confirm: Confirmar
       confirm_action: Confirmar le mesura de moderation contra %{acct}
       created_at: Reportate
-      delete_and_resolve: Deler le messages
       forwarded: Reexpedite
       forwarded_replies_explanation: Iste reporto proveni de un usator remote e concerne contento remote. Illo te ha essite reexpedite perque le contento reportate es in responsa a un usator tue.
       forwarded_to: Reexpedite a %{domain}
@@ -853,11 +851,6 @@ ia:
           authenticated: Solmente usatores authenticate
           disabled: Requirer un rolo de usator specific
           public: Omnes
-      landing_page:
-        values:
-          about: A proposito
-          local_feed: Canal local
-          trends: Tendentias
       registrations:
         moderation_recommandation: Per favor assecura te de haber un equipa de moderation adequate e reactive ante de aperir le inscription a omnes!
         preamble: Controla qui pote crear un conto sur tu servitor.
@@ -1382,8 +1375,6 @@ ia:
       your_appeal_pending: Tu ha submittite un appello
       your_appeal_rejected: Tu appello ha essite rejectate
   edit_profile:
-    basic_information: Information basic
-    hint_html: "<strong>Personalisa lo que le personas vide sur tu profilo public e presso tu messages.</strong> Il es plus probabile que altere personas te seque e interage con te quando tu ha un profilo complete e un photo."
     other: Alteres
   emoji_styles:
     auto: Automatic
@@ -1423,10 +1414,8 @@ ia:
     mutes: Tu ha silentiate
     storage: Immagazinage multimedial
   featured_tags:
-    add_new: Adder nove
     errors:
       limit: Tu ha jam mittite in evidentia le maxime numero de hashtags
-    hint_html: "<strong>Monstra tu plus importante hashtags sur tu profilo.</strong> Un excellente instrumento pro tener tracia de tu labores creative e projectos de longe termino, le hashtags que tu mitte in evidentia appare prominentemente sur tu profilo e permitte le accesso rapide a tu proprie messages."
   filters:
     contexts:
       account: Profilos

@@ -2,8 +2,9 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
@@ -14,11 +15,12 @@ import { fetchList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
 import { apiFollowAccount } from 'mastodon/api/accounts';
 import {
-  apiGetAccounts,
+  apiGetListAccounts,
   apiAddAccountToList,
   apiRemoveAccountFromList,
 } from 'mastodon/api/lists';
 import { Avatar } from 'mastodon/components/avatar';
+import { VerifiedBadge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
@@ -27,7 +29,6 @@ import { FollowersCounter } from 'mastodon/components/counters';
 import { DisplayName } from 'mastodon/components/display_name';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { ShortNumber } from 'mastodon/components/short_number';
-import { VerifiedBadge } from 'mastodon/components/verified_badge';
 import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -164,7 +165,7 @@ const ListMembers: React.FC<{
   const [mode, setMode] = useState<Mode>('remove');
 
   const {
-    accountIds: searchAccountIds,
+    accounts: accountsFromSearch,
     isLoading: loadingSearchResults,
     searchAccounts: handleSearch,
   } = useSearchAccounts({
@@ -177,12 +178,13 @@ const ListMembers: React.FC<{
       }
     },
   });
+  const accountIdsFromSearch = accountsFromSearch.map((item) => item.id);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchList(id));
 
-      void apiGetAccounts(id)
+      void apiGetListAccounts(id)
         .then((data) => {
           dispatch(importFetchedAccounts(data));
           setAccountIds(data.map((a) => a.id));
@@ -220,7 +222,7 @@ const ListMembers: React.FC<{
   let displayedAccountIds: string[];
 
   if (mode === 'add' && searching) {
-    displayedAccountIds = searchAccountIds;
+    displayedAccountIds = accountIdsFromSearch;
   } else {
     displayedAccountIds = accountIds;
   }

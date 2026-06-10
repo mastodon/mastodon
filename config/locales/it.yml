@@ -85,7 +85,7 @@ it:
       invite_request_text: Motivi d'iscrizione
       invited_by: Invitato da
       ip: IP
-      joined: Iscritto il
+      joined: Account iscritto il
       location:
         all: Tutto
         local: Locale
@@ -345,12 +345,20 @@ it:
       updated_msg: Annuncio aggiornato!
     collections:
       accounts: Account
+      back_to_account: Torna alla pagina dell'account
+      back_to_report: Torna alla pagina di segnalazione
+      batch:
+        add_to_report: 'Aggiungi alla segnalazione #%{id}'
+        remove_from_report: Rimuovi dalla segnalazione
+        report: Segnala
       collection_title: Collezione di %{name}
       contents: Contenuti
+      no_collection_selected: Nessuna collezione è stata cambiata in quanto nessuna è stata selezionata
       number_of_accounts:
         one: 1 account
         other: "%{count} account"
       open: Apri
+      title: Collezioni dell'account - @%{name}
       view_publicly: Visualizza pubblicamente
     critical_update_pending: Aggiornamento critico in sospeso
     custom_emojis:
@@ -484,9 +492,89 @@ it:
         title: Blocca nuovo dominio e-mail
       no_email_domain_block_selected: Nessun blocco di dominio e-mail è stato modificato poiché nessuno è stato selezionato
       not_permitted: Non consentito
+      reset: Reset
       resolved_dns_records_hint_html: Il nome di dominio si risolve nei seguenti domini MX, che sono in ultima analisi responsabili dell'accettazione delle e-mail. Il blocco di un dominio MX bloccherà le registrazioni da qualsiasi indirizzo e-mail che utilizzi lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
+      search: Cerca
       title: Domini e-mail bloccati
+    email_subscriptions:
+      accounts:
+        account: Account
+        empty:
+          hint: Non ci sono ancora account con iscritti.
+          no_lists_yet: Non ci sono ancora liste
+        last_email: Ultima email
+        lead: Di seguito verranno visualizzati gli account che hanno attivato la funzionalità e che hanno degli iscritti.
+        show:
+          confirm_disable_feature: Disabilitare le newsletter per %{name}? Gli aggiornamenti via email non verranno più inviati per questo account. L'utente potrà comunque riattivare la funzione nelle impostazioni del proprio account. Per rimuovere definitivamente l'accesso a questa funzione, modificare le autorizzazioni dell'account in Ruoli.
+          confirm_remove_subscriber: "%{email} non riceverà più email da %{name}. Questa azione non può essere annullata."
+          consent: Gli iscritti hanno acconsentito esclusivamente a ricevere i post via email. Non utilizzare questa lista per altri scopi.
+          date: Data di iscrizione
+          disable_feature: Disabilita la funzionalità
+          disabled: La funzionalità è stata disabilitata e le email non vengono più inviate a questa lista.
+          email: Indirizzo email
+          empty:
+            hint: Nessuno si è ancora iscritto a questo account.
+            no_subscribers_yet: Ancora nessun iscritto
+          enable_feature: Abilita la funzionalità
+          no_access_html: Questo account non dispone più delle autorizzazioni necessarie per abilitare la funzionalità. Modifica questa impostazione in <a href="%{roles_path}">Ruoli</a>.
+          title: Newsletter via email da %{name}
+          view_account: Visualizza l'account
+        status: Stato
+        subscribers: Iscritti
+        title: Mailing list
+      additional_footer_texts:
+        show:
+          title: Testo aggiuntivo a piè di pagina
+      compliance_settings:
+        additional_footer_text:
+          action: Gestisci
+          hint: Testo opzionale che compare solo nel piè di pagina delle email della newsletter
+          title: Testo aggiuntivo a piè di pagina
+        lead: Le newsletter via email possono essere considerate email di marketing, a seconda delle giurisdizioni in cui operi.
+        privacy_policy:
+          action: Gestisci
+          hint: Questa informativa è collegata nel piè di pagina di ogni email
+          title: Informativa sulla privacy
+        title: Impostazioni di conformità
+      danger_zone:
+        disable_feature:
+          action: Disabilita
+          hint: Disattiva la funzione per tutti gli account
+          title: Disabilita la funzionalità
+        erase_all_data:
+          action: Cancella i dati
+          hint: Elimina in modo permanente tutti gli indirizzi email in tutte le mailing list
+          title: Cancella tutti i dati
+        title: Zona pericolosa
+      disabled_msg: Le iscrizioni via email sono state disabilitate con successo.
+      index:
+        disabled:
+          cannot_be_enabled: Il tuo provider tecnico non ha abilitato questa funzione per il tuo server.
+          description: Questa funzione consente ad account specifici di aggiungere un widget ai propri profili, permettendo così ai visitatori sprovvisti di un account Mastodon di ricevere i loro post via email.
+          get_started: Inizia
+        lead: Consenti ai visitatori di ricevere post via email da account dedicati su questo server.
+        title: Newsletter via email
+      purged_msg: Tutti i dati relativi alle iscrizioni via email verranno cancellati.
+      roles:
+        accounts: Account
+        edit_role: Modifica il ruolo
+        empty:
+          hint: Nessuno ha il permesso di usare questa funzione.
+          no_roles_added: Nessun ruolo aggiunto
+        lead: Gli account con i seguenti ruoli possono abilitare questa funzione sui loro profili.
+        manage_roles: Gestisci i ruoli
+        role_name: Nome del ruolo
+        title: Ruoli
+      setups:
+        show:
+          enable_feature: Abilita la funzione
+          important_information: Informazioni importanti
+          list:
+            1_permission_explanation: Quando questa funzione è abilitata, gli account con i permessi designati possono aggiungere un modulo di raccolta indirizzi email ai loro profili.
+            2_feature_explanation: Quando i visitatori si registrano sulla pagina del profilo di un account e confermano l'iscrizione, inizieranno a ricevere aggiornamenti via email quando l'account crea nuovi post pubblici.
+            3_privacy_policy_warning: Gli amministratori del server avranno accesso alle informazioni di identificazione personale (indirizzi email) raccolte. Pertanto, l'informativa sulla privacy e i termini di servizio per il server devono essere aggiornati prima di utilizzare questa funzione.
+            4_cost_warning: L'invio di email potrebbe comportare dei costi a seconda della configurazione del servizio di hosting. Prima di abilitare questa funzione, è consigliabile parlarne con il proprio provider di hosting, poiché potrebbe aumentare notevolmente il numero di email inviate dal server.
     export_domain_allows:
       new:
         title: Importare i permessi di dominio
@@ -671,16 +759,16 @@ it:
       action_log: Registro di controllo
       action_taken_by: Azione intrapresa da
       actions:
-        delete_description_html: I post segnalati saranno eliminati e la sanzione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        delete_description_html: I post e/o le collezioni segnalate saranno eliminate e una sanzione verrà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni da parte dello stesso account.
         mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
-        silence_description_html: L'account sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato. Chiude tutte le segnalazioni contro questo account.
+        silence_description_html: L'account sarà visibile solo a coloro che già lo seguono o lo cercano manualmente, limitandone fortemente la sua visibilità. Può sempre essere annullato. Chiude tutte le segnalazioni contro questo account.
         suspend_description_html: L'account e tutti i suoi contenuti saranno inaccessibili ed eventualmente cancellati, e interagire con esso sarà impossibile. Reversibile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
       actions_description_html: Decidi quale azione intraprendere per risolvere questa segnalazione. Se intraprendi un'azione punitiva nei confronti dell'account segnalato, gli verrà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
       actions_no_posts: Questa segnalazione non ha alcun post associato da eliminare
-      add_to_report: Aggiungi altro al report
+      add_to_report: Aggiungi altro alla segnalazione
       already_suspended_badges:
         local: Già sospeso su questo server
         remote: Già sospeso sul loro server
@@ -698,7 +786,7 @@ it:
       confirm: Conferma
       confirm_action: Conferma l'azione di moderazione contro @%{acct}
       created_at: Segnalato
-      delete_and_resolve: Cancella post
+      delete_and_resolve: Elimina il contenuto
       forwarded: Inoltrato
       forwarded_replies_explanation: Questa segnalazione proviene da un utente remoto e tratta di contenuti remoti. È stato inoltrato a voi perché il contenuto riportato è in risposta a uno dei vostri utenti.
       forwarded_to: Inoltrato a %{domain}
@@ -738,7 +826,7 @@ it:
         actions:
           delete_html: Rimuovi i post offensivi
           mark_as_sensitive_html: Contrassegna i file multimediali dei post offensivi come sensibili
-          silence_html: Limita severamente la portata di <strong>@%{acct}</strong> rendendo il suo profilo e il suo contenuto visibili solo a persone che già li seguono o che lo guardano manualmente
+          silence_html: Limita fortemente la visibilità di <strong>@%{acct}</strong> rendendo il suo profilo e i suoi contenuti visibili solo alle persone che già lo seguono o che cercano manualmente il suo profilo
           suspend_html: Sospendere <strong>@%{acct}</strong>, rendendo il suo profilo e i suoi contenuti inaccessibili e impossibilitandone l'interazione
         close_report: 'Contrassegna la segnalazione #%{id} come risolta'
         close_reports_html: Contrassegna <strong>tutte</strong> le segnalazioni contro <strong>@%{acct}</strong> come risolte
@@ -792,7 +880,7 @@ it:
         manage_custom_emojis: Gestisci emoji personalizzate
         manage_custom_emojis_description: Consente agli utenti di gestire emoji personalizzate sul server
         manage_email_subscriptions: Gestisci le iscrizioni via email
-        manage_email_subscriptions_description: Consenti agli utenti di iscriversi tramite email agli utenti, con questa autorizzazione
+        manage_email_subscriptions_description: Consenti agli utenti con questa autorizzazione di abilitare la funzione di newsletter via email per il loro account
         manage_federation: Gestisci Federazione
         manage_federation_description: Consente agli utenti di bloccare o consentire la federazione con altri domini e controllare la consegnabilità
         manage_invites: Gestisci Inviti
@@ -881,10 +969,16 @@ it:
           disabled: Richiedi un ruolo utente specifico
           public: Tutti
       landing_page:
+        hints:
+          about_html: Una pagina con la descrizione, informazioni di contatto, regole e altre informazioni riguardanti questo server.
+          local_feed_html: Un feed in diretta con i post più recenti da parte degli utenti su questo server.
+          overview_html: Una pagina che mostra la descrizione del tuo server insieme ai post locali più recenti da parte degli utenti su questo server.
+          trends_html: Una pagina che mostra i contenuti popolari su questo server in questo momento.
         values:
-          about: Info
-          local_feed: Feed locale
-          trends: Tendenze
+          about: Pagina delle Info
+          local_feed: Feed locale in diretta
+          overview: Panoramica
+          trends: Di tendenza
       registrations:
         moderation_recommandation: Assicurati di avere un team di moderazione adeguato e reattivo prima di aprire le registrazioni a tutti!
         preamble: Controlla chi può creare un account sul tuo server.
@@ -897,13 +991,14 @@ it:
         warning_hint: Ti consigliamo di utilizzare “Approvazione richiesta per la registrazione” a meno che tu non sia sicuro che il tuo team di moderazione possa gestire lo spam e le registrazioni dannose in modo tempestivo.
       security:
         authorized_fetch: Richiede l'autenticazione dai server federati
-        authorized_fetch_hint: La richiesta di autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello di utente che a livello di server. Tuttavia, ciò comporta una riduzione delle prestazioni, riduce la portata delle tue risposte e potrebbe introdurre problemi di compatibilità con alcuni servizi federati. Inoltre, ciò non impedirà agli attori dedicati di recuperare i tuoi post pubblici e account.
+        authorized_fetch_hint: Richiedere l'autenticazione da server federati consente un'applicazione più rigorosa dei blocchi sia a livello utente che a livello server. Tuttavia, ciò comporta un calo delle prestazioni, riduce la visibilità delle tue risposte e potrebbe causare problemi di compatibilità con alcuni servizi federati. Inoltre, questo non impedirà ad attori dedicati di accedere ai tuoi post e account pubblici.
         authorized_fetch_overridden_hint: Al momento non puoi modificare questa impostazione perché è sostituita da una variabile di ambiente.
         federation_authentication: Applicazione dell'autenticazione della federazione
       title: Impostazioni del server
     site_uploads:
       delete: Cancella il file caricato
       destroyed_msg: Caricamento sito eliminato!
+    skip_to_content: Vai al contenuto
     software_updates:
       critical_update: 'Critico: ti preghiamo di aggiornare rapidamente'
       description: Si consiglia di mantenere aggiornata l'installazione di Mastodon per beneficiare delle ultime correzioni e funzionalità. Inoltre, a volte è fondamentale aggiornare Mastodon in modo tempestivo per evitare problemi di sicurezza. Per queste ragioni, Mastodon verifica la presenza di aggiornamenti ogni 30 minuti e ti avviserà in base alle tue preferenze di notifica e-mail.
@@ -920,7 +1015,7 @@ it:
       account: Autore
       application: Applicazione
       back_to_account: Torna alla pagina dell'account
-      back_to_report: Torna alla pagina del report
+      back_to_report: Torna alla pagina di segnalazione
       batch:
         add_to_report: 'Aggiungi alla segnalazione #%{id}'
         remove_from_report: Rimuovi dal report
@@ -1223,7 +1318,7 @@ it:
   appearance:
     advanced_settings: Impostazioni avanzate
     animations_and_accessibility: Animazioni e accessibilità
-    boosting_preferences: Preferenze di potenziamento
+    boosting_preferences: Preferenze di condivisione
     boosting_preferences_info_html: "<strong>Suggerimento:</strong> Indipendentemente dalle impostazioni, <kbd>Maiusc</kbd> + <kbd>Fare clic su</kbd> sull'icona Boost %{icon} aumenterà immediatamente."
     discovery: Scoperta
     localization:
@@ -1384,7 +1479,7 @@ it:
       email_contact_html: Se ancora non arriva, puoi inviare un'e-mail a <a href="mailto:%{email}">%{email}</a> per assistenza
       email_reconfirmation_html: Se non ricevi l'e-mail di conferma, puoi <a href="%{path}">richiederla nuovamente</a>
       irreversible: Non potrai ripristinare o riattivare il tuo account
-      more_details_html: Per maggiori dettagli, vedi la <a href="%{terms_path}">politica di privacy</a>.
+      more_details_html: Per maggiori dettagli, vedi l'<a href="%{terms_path}">informativa sulla privacy</a>.
       username_available: Il tuo nome utente sarà nuovamente disponibile
       username_unavailable: Il tuo nome utente rimarrà non disponibile
   disputes:
@@ -1418,9 +1513,8 @@ it:
       your_appeal_pending: Hai presentato un appello
       your_appeal_rejected: Il tuo appello è stato respinto
   edit_profile:
-    basic_information: Informazioni di base
-    hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
     other: Altro
+    privacy_redesign_body: Ora puoi scegliere se mostrare i tuoi account seguiti e i follower direttamente dal tuo profilo.
     redesign_body: Ora è possibile modificare il profilo direttamente dalla pagina del profilo stesso.
     redesign_button: Vai lì
     redesign_title: È disponibile una nuova esperienza di modifica del profilo
@@ -1440,11 +1534,11 @@ it:
         one: Interagisci con questo post e scopri altri contenuti simili.
         other: Interagisci con questi post e scopri di più.
       subject:
-        one: 'Nuovo post: "%{excerpt}"'
-        other: Nuovi post da %{name}
+        plural: Nuovi post da %{name}
+        singular: 'Un nuovo post: "%{excerpt}"'
       title:
-        one: 'Nuovo post: "%{excerpt}"'
-        other: Nuovi post da %{name}
+        plural: Nuovi post da %{name}
+        singular: 'Un nuovo post: "%{excerpt}"'
   email_subscriptions:
     active: Attiva
     confirmations:
@@ -1453,7 +1547,9 @@ it:
         success_html: Ora inizierai a ricevere email quando %{name} pubblicherà nuovi post. Aggiungi %{sender} ai tuoi contatti in modo che questi post non finiscano nella cartella Spam.
         title: Ti sei registrato/a
         unsubscribe: Disiscriviti
+    disabled: Disabilitata
     inactive: Inattiva
+    no_access: Nessun accesso
     status: Stato
     subscribers: Iscritti
   emoji_styles:
@@ -1489,15 +1585,15 @@ it:
     blocks: Stai bloccando
     bookmarks: Segnalibri
     csv: CSV
+    custom_filters: Filtri
     domain_blocks: Blocchi di dominio
+    json: JSON
     lists: Elenchi
     mutes: Stai silenziando
     storage: Archiviazione media
   featured_tags:
-    add_new: Aggiungi nuovo
     errors:
       limit: Hai già messo in evidenza il numero massimo di hashtag
-    hint_html: "<strong>Cosa sono gli hashtag in evidenza?</strong> Sono visualizzati in evidenza sul tuo profilo pubblico e permettono alle persone di visualizzare i tuoi post pubblici marcati con questi hashtag. Sono un grande strumento per tenere traccia di opere creative o progetti a lungo termine."
   filters:
     contexts:
       account: Profili
@@ -1735,6 +1831,27 @@ it:
     copy_account_note_text: 'Questo utente si è spostato da %{acct}, ecco le tue note precedenti su di loro:'
   navigation:
     toggle_menu: Cambia menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} ti ha aggiunto/a a una collezione"
+    admin_report:
+      title_html: "%{name} ha segnalato %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} e un altro si sono iscritti"
+        other: "%{name} e altri %{count} si sono iscritti"
+      title_html: "%{name} si è iscritto/a"
+    collection_update:
+      title_html: "%{name} ha aggiornato una collezione in cui sei presente"
+    generic:
+      sign_in: Accedi alla web app Mastodon
+      summary_html: Stai utilizzando un'app che non supporta la versione più recente di Mastodon. %{link} per la piena funzionalità.
+    moderation_warning:
+      summary_html: Stai utilizzando un'app che non supporta la versione più recente di Mastodon. %{link}.
+      title: Hai ricevuto un avviso di moderazione.
+    severed_relationships:
+      summary_html: Un amministratore/trice da %{from} ha sospeso %{target}, il che significa che non puoi più ricevere aggiornamenti o interagire con esso. Fai clic su %{link} per recuperare un elenco delle relazioni perse.
+      title: Connessioni perse con %{name}
   notification_mailer:
     admin:
       report:
@@ -1770,7 +1887,7 @@ it:
     quoted_update:
       subject: "%{name} ha modificato un post che hai citato"
     reblog:
-      body: 'Il tuo status è stato condiviso da %{name}:'
+      body: 'Il tuo post è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
     severed_relationships:
@@ -1832,13 +1949,13 @@ it:
     hint_html: "<strong>Personalizza il modo in cui vuoi che il tuo profilo e i tuoi post vengano trovati.</strong> Una varietà di funzionalità in Mastodon possono aiutarti a raggiungere un pubblico più ampio se abilitato. Prenditi un momento per rivedere queste impostazioni per assicurarti che si adattino al tuo caso d'uso."
     privacy: Privacy
     privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
-    reach: Copertura
+    reach: Visibilità
     reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi follower o avere un controllo granulare su ciascuno di essi?
     search: Cerca
     search_hint_html: Controlla come vuoi essere trovato. Vuoi che le persone ti trovino in base a ciò che hai postato pubblicamente? Vuoi che le persone al di fuori di Mastodon trovino il tuo profilo durante la ricerca sul web? Si prega di notare che l'esclusione totale da tutti i motori di ricerca non può essere garantita per le informazioni pubbliche.
-    title: Privacy e copertura
+    title: Privacy e visibilità
   privacy_policy:
-    title: Politica sulla privacy
+    title: Informativa sulla privacy
   reactions:
     errors:
       limit_reached: Raggiunto il limite di reazioni diverse
@@ -2016,11 +2133,11 @@ it:
       unlisted_long: Nascosto dai risultati di ricerca di Mastodon, dalle tendenze e dalle timeline pubbliche
   statuses_cleanup:
     enabled: Cancella automaticamente i vecchi post
-    enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
+    enabled_hint: Cancella automaticamente i tuoi post una volta raggiunta una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
     exceptions: Eccezioni
     explanation: L'eliminazione automatica viene eseguita con bassa priorità. Potrebbe verificarsi un ritardo tra il raggiungimento della soglia di età e la rimozione.
     ignore_favs: Ignora preferiti
-    ignore_reblogs: Ignora condivisioni
+    ignore_reblogs: Ignora le condivisioni
     interaction_exceptions: Eccezioni basate sulle interazioni
     interaction_exceptions_explanation: I post che superano temporaneamente la soglia dei preferiti o delle condivisioni potrebbero essere conservati anche se in seguito vengono diminuiti.
     keep_direct: Conserva messaggi diretti
@@ -2047,7 +2164,7 @@ it:
     min_age_label: Soglia di età
     min_favs: Conserva i post preferiti più di
     min_favs_hint: Non cancella nessuno dei tuoi post che ha ricevuto almeno questo numero di preferiti. Lascia vuoto per cancellare i post indipendentemente dal loro numero di preferiti
-    min_reblogs: Conserva i post condivisi più di
+    min_reblogs: Mantieni i post condivisi almeno
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
     sensitive_content: Materiale sensibile

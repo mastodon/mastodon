@@ -55,6 +55,23 @@ class Export
     end
   end
 
+  def to_custom_filters_json
+    data_collection = { custom_filters: [] }
+    account.custom_filters.includes(:keywords, :statuses).order(:phrase).each do |filter|
+      keywords_attributes = filter.keywords.map { |k| { keyword: k.keyword, whole_word: k.whole_word } }
+
+      data_collection[:custom_filters] << {
+        title: filter.title,
+        expires_at: filter.expires_at,
+        context: filter.context,
+        action: filter.action,
+        keywords_attributes: keywords_attributes,
+        statuses: filter.statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s.status) },
+      }
+    end
+    JSON.generate(data_collection)
+  end
+
   private
 
   def to_csv(accounts)

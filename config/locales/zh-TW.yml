@@ -1,14 +1,16 @@
 ---
 zh-TW:
   about:
-    about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，於其建立帳號，您就能與任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。
+    about_mastodon_html: |-
+      社交網路的未來：無廣告、無企業監控、道德
+      去中心化設計！加入 Mastodon，擁有您的資料！
     contact_missing: 未設定
     contact_unavailable: 未公開
     hosted_on: 於 %{domain} 託管之 Mastodon 站點
     title: 關於本站
   accounts:
     errors:
-      cannot_be_added_to_collections: 此帳號無法被加至集合中。
+      cannot_be_added_to_collections: 此帳號無法被加至收藏名單中。
     followers:
       other: 跟隨者
     following:
@@ -37,7 +39,7 @@ zh-TW:
       add_email_domain_block: 封鎖電子郵件網域
       approve: 批准
       approved_msg: 已成功審核 %{username} 的新帳號申請
-      are_you_sure: 您確定嗎？
+      are_you_sure: 您是否確定？
       avatar: 大頭貼
       by_domain: 站點
       change_email:
@@ -49,7 +51,7 @@ zh-TW:
         title: 為 %{username} 變更電子郵件地址
       change_role:
         changed_msg: 成功修改角色！
-        edit_roles: 管理使用者權限
+        edit_roles: 管理使用者角色權限
         label: 變更角色
         no_role: 沒有角色
         title: 為 %{username} 變更角色
@@ -341,11 +343,19 @@ zh-TW:
       updated_msg: 成功更新公告！
     collections:
       accounts: 帳號
+      back_to_account: 返回帳號資訊頁面
+      back_to_report: 回到檢舉報告頁面
+      batch:
+        add_to_report: '新增至報告 #%{id}'
+        remove_from_report: 自檢舉報告中移除
+        report: 檢舉
       collection_title: "%{name} 的收藏名單"
       contents: 內容
+      no_collection_selected: 因未選取任何收藏名單，所以什麼事都沒發生
       number_of_accounts:
         other: "%{count} 個帳號"
       open: 開啟
+      title: 收藏名單帳號 - @%{name}
       view_publicly: 公開檢視
     critical_update_pending: 重要更新待升級
     custom_emojis:
@@ -474,9 +484,89 @@ zh-TW:
         title: 新增電子郵件網域封鎖
       no_email_domain_block_selected: 因未選取任何電子郵件網域，所以什麼事都沒發生
       not_permitted: 無權限
+      reset: 重設
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
+      search: 搜尋
       title: 已封鎖電子郵件網域
+    email_subscriptions:
+      accounts:
+        account: 帳號
+        empty:
+          hint: 尚無任何擁有訂閱者之帳號。
+          no_lists_yet: 尚無列表
+        last_email: 最新電子郵件地址
+        lead: 已啟用此功能並擁有訂閱者之帳號將於下方顯示。
+        show:
+          confirm_disable_feature: 是否替 %{name} 停用電子報功能？電子報郵件將不被寄至此帳號。該使用者仍能於帳號設定中重新啟用此功能。如欲永久禁用此功能，請於角色設定中編輯該帳號之權限。
+          confirm_remove_subscriber: "%{email} 將不再收到來自 %{name} 之電子郵件。此動作無法回復。"
+          consent: 訂閱者僅同意透過電子郵件接收嘟文。請勿將此名單用於其他用途。
+          date: 註冊日期
+          disable_feature: 停用功能
+          disabled: 此功能已停用且電子郵件將不被寄至此列表。
+          email: 電子郵件地址
+          empty:
+            hint: 尚無任何人訂閱此帳號。
+            no_subscribers_yet: 尚無訂閱者
+          enable_feature: 啟用功能
+          no_access_html: 此帳號不再擁有啟用此功能所需之權限。請於 <a href="%{roles_path}">角色設定</a>中修改此設定。
+          title: "%{name} 之電子報"
+          view_account: 檢視帳號
+        status: 狀態
+        subscribers: 訂閱者
+        title: 電子郵件列表
+      additional_footer_texts:
+        show:
+          title: 其他備註文字
+      compliance_settings:
+        additional_footer_text:
+          action: 管理
+          hint: 僅顯示於電子報郵件中之可選填備註文字
+          title: 其他備註文字
+        lead: 電子報可能被視為數位行銷電子郵件，取決於您所運行伺服器之司法管轄區。
+        privacy_policy:
+          action: 管理
+          hint: 此政策將連結於每封電子郵件之信尾
+          title: 隱私權政策
+        title: 法律遵循設定
+      danger_zone:
+        disable_feature:
+          action: 停用
+          hint: 替所有帳號關閉此功能
+          title: 停用功能
+        erase_all_data:
+          action: 清除資料
+          hint: 於所有電子郵件列表永久刪除所有電子郵件地址
+          title: 清除所有資料
+        title: 危險區域！
+      disabled_msg: 已成功停用電子郵件訂閱。
+      index:
+        disabled:
+          cannot_be_enabled: 您的技術提供商未替您伺服器啟用此功能。
+          description: 此功能允許指定帳號於他們的個人檔案中新增小工具，使沒有 Mastodon 帳號之訪客也能透過電子郵件接收他們的嘟文。
+          get_started: 開始使用
+        lead: 允許訪客透過電子郵件接收此伺服器上指定帳號內容。
+        title: 電子報
+      purged_msg: 已清除所有電子郵件訂閱資料。
+      roles:
+        accounts: 帳號
+        edit_role: 編輯角色
+        empty:
+          hint: 無人有權使用此功能。
+          no_roles_added: 尚未加入角色
+        lead: 擁有以下角色之帳號能於他們的個人檔案中啟用此功能。
+        manage_roles: 管理角色
+        role_name: 角色名稱
+        title: 角色
+      setups:
+        show:
+          enable_feature: 啟用功能
+          important_information: 重要資訊
+          list:
+            1_permission_explanation: 當啟用此功能時，具有指定權限之帳號能於其個人檔案中新增電子郵件清單。
+            2_feature_explanation: 訪客於帳號個人檔案頁面註冊並確認訂閱後，該帳號發表公開嘟文時，他們將會收到電子郵件通訊。
+            3_privacy_policy_warning: 伺服器管理員將能存取收集到的 PII （電子郵件地址）。有鑑於此，啟用此功能前務必更新此伺服器之隱私權政策與服務條款。
+            4_cost_warning: 依據伺服器託管方式，電子郵件可能產生額外費用。由於此功能可能大幅增加您的伺服器寄送電子郵件數量，請於啟用前聯繫您的服務提供商。
     export_domain_allows:
       new:
         title: 匯入網域白名單
@@ -520,7 +610,7 @@ zh-TW:
         select_capabilities: 選擇功能
         sign_in: 登入
         status: 狀態
-        title: 聯邦宇宙輔助服務提供商 (Fediverse Auxiliary Service Providers)
+        title: 聯邦宇宙輔助服務提供商（Fediverse Auxiliary Service Providers）
       title: FASP
     follow_recommendations:
       description_html: "<strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>。當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推薦。這些帳號將基於某選定語言之高互動與高本地跟隨者數量帳號而每日重新更新。"
@@ -547,7 +637,7 @@ zh-TW:
       back_to_limited: 受限制的
       back_to_warning: 警告
       by_domain: 站台
-      confirm_purge: 您確定要永久刪除來自此網域的資料嗎？
+      confirm_purge: 您是否確定要永久刪除來自此網域的資料？
       content_policies:
         comment: 內部備註
         description_html: 您可以定義對所有此網域帳號及其子網域所實施之內容政策。
@@ -657,7 +747,7 @@ zh-TW:
       action_log: 審計日誌
       action_taken_by: 操作執行者
       actions:
-        delete_description_html: 被檢舉的嘟文將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
+        delete_description_html: 被檢舉的嘟文及收藏名單將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
         mark_as_sensitive_description_html: 被檢舉的嘟文中的媒體將會被標記為敏感內容，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
@@ -670,7 +760,7 @@ zh-TW:
       already_suspended_badges:
         local: 已自此伺服器停權
         remote: 已自該伺服器停權
-      are_you_sure: 您確定嗎？
+      are_you_sure: 您是否確定？
       assign_to_self: 指派給自己
       assigned: 指派站務
       by_target_domain: 檢舉帳號之網域
@@ -684,7 +774,7 @@ zh-TW:
       confirm: 確認
       confirm_action: 確認對 @%{acct} 執行站務動作
       created_at: 日期
-      delete_and_resolve: 刪除嘟文
+      delete_and_resolve: 刪除內容
       forwarded: 已轉寄
       forwarded_replies_explanation: 此報告來自聯邦宇宙中非本伺服器帳號，關於非本伺服器內容。此報告轉發給您，因為報告之內容是回覆給您的伺服器上某位使用者。
       forwarded_to: 轉寄到 %{domain}
@@ -701,7 +791,7 @@ zh-TW:
         title: 備註
       notes_description_html: 檢視及留下些給其他管理員與未來的自己的備註
       processed_msg: '檢舉報告 #%{id} 已被成功處理'
-      quick_actions_description_html: 採取一個快速行動，或者下捲以檢視檢舉內容：
+      quick_actions_description_html: 採取快速行動，或者下捲以檢視檢舉內容：
       remote_user_placeholder: 來自 %{instance} 之遠端使用者
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
@@ -776,7 +866,7 @@ zh-TW:
         manage_custom_emojis: 管理自訂 emoji 表情符號
         manage_custom_emojis_description: 允許使用者管理伺服器上之自訂 emoji 表情符號
         manage_email_subscriptions: 管理電子郵件訂閱
-        manage_email_subscriptions_description: 此權限允許使用者透過電子郵件訂閱其他使用者動態
+        manage_email_subscriptions_description: 允許擁有此權限之使用者替他們帳號啟用電子報功能
         manage_federation: 管理聯邦宇宙
         manage_federation_description: 允許使用者封鎖或允許與其他網域的聯邦宇宙，並控制傳遞能力
         manage_invites: 管理邀請
@@ -867,9 +957,15 @@ zh-TW:
           disabled: 需要特定使用者權限
           public: 任何人
       landing_page:
+        hints:
+          about_html: 此為關於此伺服器之描述、聯絡資訊、規則、及其他資訊之頁面。
+          local_feed_html: 此為展示此伺服器使用者最新嘟文之即時內容。
+          overview_html: 此為展示您的伺服器描述及本站使用者最新嘟文之頁面。
+          trends_html: 此為展示此伺服器現正熱門內容之頁面。
         values:
-          about: 關於
-          local_feed: 本站時間軸
+          about: 關於本站
+          local_feed: 本地即時內容
+          overview: 總覽
           trends: 熱門趨勢
       registrations:
         moderation_recommandation: 對所有人開放註冊之前，請確保您有人手充足且反應靈敏的管理員團隊！
@@ -890,6 +986,7 @@ zh-TW:
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！
+    skip_to_content: 跳轉至內容
     software_updates:
       critical_update: 重要 — 請儘速升級
       description: 建議將您的 Mastodon 伺服器升級至最新狀態，以獲得最新錯誤修正及功能更新。此外，即時更新 Mastodon 以避免偶發之安全問題非常重要。因此，Mastodon 每 30 分鐘將檢查一次更新，並依據您的電子郵件通知設定通知您。
@@ -1399,9 +1496,8 @@ zh-TW:
       your_appeal_pending: 您已遞交申訴
       your_appeal_rejected: 您的申訴已被駁回
   edit_profile:
-    basic_information: 基本資訊
-    hint_html: "<strong>自訂人們能於您個人檔案及嘟文旁所見之內容。</strong>當您完成填寫個人檔案及設定大頭貼後，其他人們比較願意跟隨您並與您互動。"
     other: 其他
+    privacy_redesign_body: 您現在能直接於個人資料檔案頁面中選擇是否顯示您的跟隨中與跟隨者。
     redesign_body: 個人檔案編輯功能現在能自個人檔案頁面直接存取。
     redesign_button: 前往
     redesign_title: 全新個人檔案編輯體驗
@@ -1420,9 +1516,11 @@ zh-TW:
       interact_with_this_post:
         other: 與此嘟文互動並且發現更多類似嘟文。
       subject:
-        other: 來自 %{name} 之新嘟文
+        plural: 來自 %{name} 之新嘟文
+        singular: 新嘟文：「%{excerpt}」
       title:
-        other: 來自 %{name} 之新嘟文
+        plural: 來自 %{name} 之新嘟文
+        singular: 新嘟文：「%{excerpt}」
   email_subscriptions:
     active: 生效中
     confirmations:
@@ -1431,7 +1529,9 @@ zh-TW:
         success_html: 您將開始收到當 %{name} 發表新嘟文之電子郵件。請新增 %{sender} 至您的通訊錄使這些嘟文不被分類至垃圾信件夾。
         title: 已完成註冊
         unsubscribe: 取消訂閱
+    disabled: 已停用
     inactive: 已停用
+    no_access: 無法存取
     status: 狀態
     subscribers: 訂閱者
   emoji_styles:
@@ -1467,15 +1567,15 @@ zh-TW:
     blocks: 您封鎖的使用者
     bookmarks: 書籤
     csv: CSV
+    custom_filters: 過濾器
     domain_blocks: 網域封鎖
+    json: JSON
     lists: 列表
     mutes: 您靜音的使用者
     storage: 匯出檔案大小
   featured_tags:
-    add_new: 新增
     errors:
       limit: 您所推薦之主題標籤數量已達上限
-    hint_html: "<strong>於個人檔案上展示您的推薦主題標籤</strong> 展示創意作品或者長期更新的專案的絕佳工具，推薦主題標籤於您個人資料頁面顯眼地展示，並且能快速存取您自己的嘟文。"
   filters:
     contexts:
       account: 個人檔案
@@ -1693,6 +1793,26 @@ zh-TW:
     copy_account_note_text: 此使用者轉移自 %{acct}，以下是您之前關於他們的備註：
   navigation:
     toggle_menu: 切換選單
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} 將您加入至收藏名單"
+    admin_report:
+      title_html: "%{name} 已檢舉 %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        other: "%{name} 與 %{count} 個其他使用者已進行註冊"
+      title_html: "%{name} 已進行註冊"
+    collection_update:
+      title_html: "%{name} 已更新您所在之收藏名單"
+    generic:
+      sign_in: 登入至 Mastodon 網頁應用程式
+      summary_html: 您正在使用不支援 Mastodon 最新版本之應用程式。%{link} 如欲使用完整功能。
+    moderation_warning:
+      summary_html: 您正在使用不支援 Mastodon 最新版本之應用程式。%{link}。
+      title: 您已收到管理員警告。
+    severed_relationships:
+      summary_html: "%{from} 之管理員已將 %{target} 停權，意味著您將不再收到來自他們的更新或與之互動。%{link} 以檢視失去關係之列表。"
+      title: 與 %{name} 失去連結
   notification_mailer:
     admin:
       report:
@@ -2032,7 +2152,7 @@ zh-TW:
   two_factor_authentication:
     add: 新增
     disable: 停用兩階段驗證
-    disabled_success: 已成功啟用兩階段驗證
+    disabled_success: 已成功停用兩階段驗證
     edit: 編輯
     enabled: 兩階段驗證已啟用
     enabled_success: 兩階段驗證已成功啟用

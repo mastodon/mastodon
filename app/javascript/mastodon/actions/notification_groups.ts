@@ -5,6 +5,7 @@ import {
   apiFetchNotificationGroups,
 } from 'mastodon/api/notifications';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import type {
   ApiNotificationGroupJSON,
   ApiNotificationJSON,
@@ -26,6 +27,8 @@ import {
   createDataLoadingThunk,
 } from 'mastodon/store/typed_functions';
 
+import { fetchAccountsForCollectionPreview } from '../reducers/slices/collections';
+
 import { importFetchedAccounts, importFetchedStatuses } from './importer';
 import { NOTIFICATIONS_FILTER_SET } from './notifications';
 import { saveSettings } from './settings';
@@ -36,9 +39,18 @@ function notificationTypeForFilter(type: NotificationType) {
 }
 
 function notificationTypeForQuickFilter(type: NotificationType) {
-  if (type === 'quoted_update') return 'update';
-  else if (type === 'quote') return 'mention';
-  else return type;
+  switch (type) {
+    case 'quoted_update':
+      return 'update';
+    case 'quote':
+      return 'mention';
+    case 'collection_update':
+      return 'collection';
+    case 'added_to_collection':
+      return 'collection';
+    default:
+      return type;
+  }
 }
 
 function excludeAllTypesExcept(filter: string) {
@@ -61,6 +73,7 @@ function dispatchAssociatedRecords(
 ) {
   const fetchedAccounts: ApiAccountJSON[] = [];
   const fetchedStatuses: ApiStatusJSON[] = [];
+  const collections: ApiCollectionJSON[] = [];
 
   notifications.forEach((notification) => {
     if (notification.type === 'admin.report') {
@@ -74,6 +87,10 @@ function dispatchAssociatedRecords(
     if ('status' in notification && notification.status) {
       fetchedStatuses.push(notification.status);
     }
+
+    if ('collection' in notification && notification.collection) {
+      collections.push(notification.collection);
+    }
   });
 
   if (fetchedAccounts.length > 0)
@@ -81,6 +98,9 @@ function dispatchAssociatedRecords(
 
   if (fetchedStatuses.length > 0)
     dispatch(importFetchedStatuses(fetchedStatuses));
+
+  if (collections.length > 0)
+    void fetchAccountsForCollectionPreview(collections, dispatch);
 }
 
 function selectNotificationGroupedTypes(state: RootState) {

@@ -357,8 +357,15 @@ ga:
       updated_msg: D'éirigh leis an bhfógra a nuashonrú!
     collections:
       accounts: Cuntais
+      back_to_account: Ar ais chuig leathanach an chuntais
+      back_to_report: Ar ais chuig leathanach na tuarascála
+      batch:
+        add_to_report: 'Cuir le tuarascáil #%{id}'
+        remove_from_report: Bain den tuarascáil
+        report: Tuairisc
       collection_title: Bailiúchán le %{name}
       contents: Ábhar
+      no_collection_selected: Níor athraíodh aon bhailiúcháin mar nár roghnaíodh aon cheann acu
       number_of_accounts:
         few: "%{count} cuntais"
         many: "%{count} cuntais"
@@ -366,6 +373,7 @@ ga:
         other: "%{count} cuntais"
         two: "%{count} cuntais"
       open: Oscail
+      title: Bailiúcháin chuntais - @%{name}
       view_publicly: Féach go poiblí
     critical_update_pending: Nuashonrú criticiúil ar feitheamh
     custom_emojis:
@@ -514,9 +522,89 @@ ga:
         title: Cuir bac ar fhearann ​​​​ríomhphoist nua
       no_email_domain_block_selected: Níor athraíodh aon bhloc fearainn ríomhphoist mar níor roghnaíodh ceann ar bith
       not_permitted: Níl sé ceadaithe
+      reset: Athshocraigh
       resolved_dns_records_hint_html: Réitíonn an t-ainm fearainn chuig na fearainn MX seo a leanas, atá freagrach sa deireadh as glacadh le ríomhphost. Má dhéantar fearann ​​MX a bhlocáil, cuirfear bac ar chlárúcháin ó aon seoladh ríomhphoist a úsáideann an fearann ​​MX céanna, fiú má tá an t-ainm fearainn infheicthe difriúil. <strong>Bí cúramach gan bac a chur ar phríomhsholáthraithe ríomhphoist.</strong>
       resolved_through_html: Réitithe trí %{domain}
+      search: Cuardaigh
       title: Fearainn ríomhphoist bactha
+    email_subscriptions:
+      accounts:
+        account: Cuntas
+        empty:
+          hint: Níl aon síntiúsóirí ag aon chuntas go fóill.
+          no_lists_yet: Gan aon liostaí fós
+        last_email: Ríomhphost deireanach
+        lead: Taispeánfar thíos cuntais a bhfuil an ghné cumasaithe acu agus a bhfuil síntiúsóirí acu.
+        show:
+          confirm_disable_feature: An bhfuil tú ag iarraidh nuachtlitreacha ríomhphoist a dhíchumasú do %{name}? Ní sheolfar nuashonruithe ríomhphoist don chuntas seo a thuilleadh. Beidh an t-úsáideoir fós in ann an ghné a athchumasú ina socruithe cuntais. Chun rochtain ar an ngné seo a bhaint go buan, cuir cead an chuntais in eagar i Róil.
+          confirm_remove_subscriber: Ní bhfaighidh %{email} ríomhphoist ó %{name} a thuilleadh. Ní féidir an gníomh seo a chealú.
+          consent: Níor thoiligh síntiúsóirí ach le poist a fháil trí ríomhphost. Ná húsáid an liosta seo chun críocha eile.
+          date: Dáta an chláraithe
+          disable_feature: Díchumasaigh gné
+          disabled: Díchumasaíodh an ghné agus níl ríomhphoist á seoladh chuig an liosta seo a thuilleadh.
+          email: Seoladh ríomhphoist
+          empty:
+            hint: Níl aon duine cláraithe leis an gcuntas seo go fóill.
+            no_subscribers_yet: Gan aon síntiúsóirí fós
+          enable_feature: Cumasaigh gné
+          no_access_html: Níl na ceadanna riachtanacha ag an gcuntas seo a thuilleadh chun an ghné a chumasú. Athraigh seo i <a href="%{roles_path}">Róil</a>.
+          title: Nuachtlitreacha ríomhphoist ó %{name}
+          view_account: Féach ar an gcuntas
+        status: Stádas
+        subscribers: Síntiúsóirí
+        title: Liostaí poist
+      additional_footer_texts:
+        show:
+          title: Téacs breise sa bhuntásc
+      compliance_settings:
+        additional_footer_text:
+          action: Bainistigh
+          hint: Téacs roghnach a thaispeántar i mbunús ríomhphoist nuachtlitir amháin
+          title: Téacs breise sa bhuntásc
+        lead: Féadfar nuachtlitreacha ríomhphoist a mheas mar ríomhphoist mhargaíochta, ag brath ar na dlínsí ina bhfeidhmíonn tú.
+        privacy_policy:
+          action: Bainistigh
+          hint: Tá nasc chuig an mbeartas seo i mbun gach ríomhphoist
+          title: Polasaí príobháideachta
+        title: Socruithe comhlíontachta
+      danger_zone:
+        disable_feature:
+          action: Díchumasaigh
+          hint: Múch an ghné do gach cuntas
+          title: Díchumasaigh gné
+        erase_all_data:
+          action: Scrios sonraí
+          hint: Scriosann sé gach ríomhphost i ngach liosta seoltaí go buan
+          title: Scrios na sonraí go léir
+        title: Crios contúirte
+      disabled_msg: Tá síntiúis ríomhphoist díchumasaithe go rathúil.
+      index:
+        disabled:
+          cannot_be_enabled: Níl an ghné seo cumasaithe ag do sholáthraí teicniúil do do fhreastalaí.
+          description: Leis an ngné seo, is féidir le cuntais shonraithe giuirléid a chur lena bpróifílí, rud a chuireann ar chumas cuairteoirí gan cuntas Mastodon a gcuid post a fháil trí ríomhphost.
+          get_started: Tosaigh
+        lead: Lig do chuairteoirí poist a fháil trí ríomhphost ó chuntais tiomnaithe ar an bhfreastalaí seo.
+        title: Nuachtlitreacha ríomhphoist
+      purged_msg: Tá gach sonraí síntiúis ríomhphoist á scriosadh.
+      roles:
+        accounts: Cuntais
+        edit_role: Cuir ról in eagar
+        empty:
+          hint: Níl cead ag aon duine an ghné seo a úsáid.
+          no_roles_added: Níor cuireadh aon róil leis
+        lead: Is féidir le cuntais leis na róil seo a leanas an ghné seo a chumasú ar a bpróifílí.
+        manage_roles: Bainistigh róil
+        role_name: Ainm an róil
+        title: Róil
+      setups:
+        show:
+          enable_feature: Cumasaigh gné
+          important_information: Faisnéis thábhachtach
+          list:
+            1_permission_explanation: Nuair a bhíonn an ghné seo cumasaithe, is féidir le cuntais a bhfuil na ceadanna ainmnithe acu foirm bhailiúcháin ríomhphoist a chur lena bpróifílí.
+            2_feature_explanation: Nuair a chláraíonn cuairteoirí ar leathanach próifíle cuntais agus a dheimhníonn siad a síntiús, tosóidh siad ag fáil nuashonruithe ríomhphoist nuair a chruthaíonn an cuntas poist phoiblí nua.
+            3_privacy_policy_warning: Beidh rochtain ag riarthóirí freastalaí ar PII (seoltaí ríomhphoist) a bhailítear. Dá bhrí sin, ní mór an polasaí príobháideachta agus na Téarmaí Seirbhíse don fhreastalaí a nuashonrú sula n-úsáidtear an ghné seo.
+            4_cost_warning: D’fhéadfadh táille a bheith i gceist le ríomhphoist ag brath ar shocrú an óstála. Pléigh le do sholáthraí óstála sula gcumasaíonn tú é, mar d’fhéadfadh an ghné seo líon na ríomhphoist a sheoltar ó do fhreastalaí a mhéadú go mór.
     export_domain_allows:
       new:
         title: Ceadaíonn fearann ​​​​iomportála
@@ -713,7 +801,7 @@ ga:
       action_log: Loga iniúchta
       action_taken_by: Gníomh arna ghlacadh ag
       actions:
-        delete_description_html: Scriosfar na postálacha tuairiscithe agus déanfar stailc a thaifeadadh chun cabhrú leat dul in airde ar sháruithe sa todhchaí tríd an gcuntas céanna.
+        delete_description_html: Scriosfar na poist agus/nó na bailiúcháin a tuairiscíodh agus taifeadfar stailc chun cabhrú leat sárú dlí amach anseo ag an gcuntas céanna a chur chun cinn.
         mark_as_sensitive_description_html: Déanfar na meáin sna poist tuairiscithe a mharcáil mar íogair agus déanfar stailc a thaifeadadh chun cabhrú leat sárú a dhéanamh ar sháruithe sa todhchaí tríd an gcuntas céanna.
         other_description_html: Féach ar a thuilleadh roghanna chun iompar an chuntais a rialú agus cumarsáid a shaincheapadh chuig an gcuntas tuairiscithe.
         resolve_description_html: Ní dhéanfar aon ghníomhaíocht i gcoinne an chuntais thuairiscithe, ní dhéanfar aon stailc a thaifeadadh, agus dúnfar an tuarascáil.
@@ -740,7 +828,7 @@ ga:
       confirm: Deimhnigh
       confirm_action: Deimhnigh gníomh modhnóireachta i gcoinne @%{acct}
       created_at: Tuairiscithe
-      delete_and_resolve: Scrios postálacha
+      delete_and_resolve: Scrios ábhar
       forwarded: Ar aghaidh
       forwarded_replies_explanation: Is ó chianúsáideoir an tuairisc seo agus faoi chianábhar. Tá sé curtha ar aghaidh chugat toisc go bhfuil an t-ábhar tuairiscithe mar fhreagra ar cheann de na húsáideoirí atá agat.
       forwarded_to: Ar aghaidh chuig %{domain}
@@ -840,7 +928,7 @@ ga:
         manage_custom_emojis: Bainistigh Emojis Saincheaptha
         manage_custom_emojis_description: Ligeann sé d'úsáideoirí emojis saincheaptha a bhainistiú ar an bhfreastalaí
         manage_email_subscriptions: Bainistigh Síntiúis Ríomhphoist
-        manage_email_subscriptions_description: Ceadaigh d’úsáideoirí liostáil le húsáideoirí leis an gcead seo trí ríomhphost
+        manage_email_subscriptions_description: Lig d’úsáideoirí a bhfuil an cead seo acu gné an nuachtlitir ríomhphoist a chumasú dá gcuntas
         manage_federation: Cónaidhm a bhainistiú
         manage_federation_description: Ligeann sé d’úsáideoirí cónaidhm a bhlocáil nó a cheadú le fearainn eile, agus inseachadacht a rialú
         manage_invites: Bainistigh Cuirí
@@ -929,10 +1017,16 @@ ga:
           disabled: Éiligh ról úsáideora sonrach
           public: Gach duine
       landing_page:
+        hints:
+          about_html: Leathanach leis an gcur síos, eolas teagmhála, rialacha agus faisnéis eile maidir leis an bhfreastalaí seo.
+          local_feed_html: Fotha beo ina bhfuil na postálacha is déanaí ó úsáideoirí ar an bhfreastalaí seo.
+          overview_html: Leathanach a thaispeánann cur síos ar do fhreastalaí in éineacht leis na postálacha áitiúla is déanaí ó úsáideoirí ar an bhfreastalaí seo.
+          trends_html: Leathanach ar a bhfuil an-tóir ar an bhfreastalaí seo faoi láthair.
         values:
-          about: Maidir
-          local_feed: Fotha áitiúil
-          trends: Treochtaí
+          about: Maidir le leathanach
+          local_feed: Beatha beo áitiúil
+          overview: Forbhreathnú
+          trends: Treocht
       registrations:
         moderation_recommandation: Cinntigh le do thoil go bhfuil foireann mhodhnóireachta imoibríoch leordhóthanach agat sula n-osclaíonn tú clárúcháin do gach duine!
         preamble: Rialú cé atá in ann cuntas a chruthú ar do fhreastalaí.
@@ -952,6 +1046,7 @@ ga:
     site_uploads:
       delete: Scrios comhad uaslódáilte
       destroyed_msg: D'éirigh le huaslódáil an tsuímh a scriosadh!
+    skip_to_content: Léim go dtí an t-ábhar
     software_updates:
       critical_update: Criticiúil - nuashonraigh go tapa le do thoil
       description: Moltar do shuiteáil Mastodon a choinneáil cothrom le dáta chun leas a bhaint as na socruithe agus na gnéithe is déanaí. Ina theannta sin, tá sé ríthábhachtach uaireanta Mastodon a nuashonrú go tráthúil chun saincheisteanna slándála a sheachaint. Ar na cúiseanna seo, seiceálann Mastodon nuashonruithe gach 30 nóiméad, agus tabharfaidh sé fógra duit de réir do shainroghanna fógra ríomhphoist.
@@ -1483,9 +1578,8 @@ ga:
       your_appeal_pending: Chuir tú achomharc isteach
       your_appeal_rejected: Diúltaíodh do d'achomharc
   edit_profile:
-    basic_information: Eolas bunúsach
-    hint_html: "<strong>Saincheap a bhfeiceann daoine ar do phróifíl phoiblí agus in aice le do phostálacha.</strong> Is dóichí go leanfaidh daoine eile ar ais tú agus go n-idirghníomhóidh siad leat nuair a bhíonn próifíl líonta agus pictiúr próifíle agat."
     other: Eile
+    privacy_redesign_body: Déantar an rogha chun do leanúna agus do leanúna a thaispeáint go díreach ó do phróifíl anois.
     redesign_body: Is féidir rochtain a fháil ar eagarthóireacht próifíle go díreach ón leathanach próifíle anois.
     redesign_button: Téigh ann
     redesign_title: Tá taithí nua eagarthóireachta próifíle ann
@@ -1508,17 +1602,11 @@ ga:
         other: Idirghníomhaigh leis na poist seo agus faigh amach tuilleadh.
         two: Idirghníomhaigh leis na poist seo agus faigh amach tuilleadh.
       subject:
-        few: Poist nua ó %{name}
-        many: Poist nua ó %{name}
-        one: 'Post nua: "%{excerpt}"'
-        other: Poist nua ó %{name}
-        two: Poist nua ó %{name}
+        plural: Poist nua ó %{name}
+        singular: 'Post nua: "%{excerpt}"'
       title:
-        few: Poist nua ó %{name}
-        many: Poist nua ó %{name}
-        one: 'Post nua: "%{excerpt}"'
-        other: Poist nua ó %{name}
-        two: Poist nua ó %{name}
+        plural: Poist nua ó %{name}
+        singular: 'Post nua: "%{excerpt}"'
   email_subscriptions:
     active: Gníomhach
     confirmations:
@@ -1527,7 +1615,9 @@ ga:
         success_html: Tosóidh tú ag fáil ríomhphoist anois nuair a fhoilseoidh %{name} poist nua. Cuir %{sender} le do theagmhálaithe ionas nach gcríochnóidh na poist seo i do fhillteán Turscair.
         title: Tá tú cláraithe
         unsubscribe: Díliostáil
+    disabled: Míchumasaithe
     inactive: Neamhghníomhach
+    no_access: Gan rochtain
     status: Stádas
     subscribers: Síntiúsóirí
   emoji_styles:
@@ -1563,15 +1653,15 @@ ga:
     blocks: Bac leat
     bookmarks: Leabharmharcanna
     csv: CSV
+    custom_filters: Scagairí
     domain_blocks: Bloic fearainn
+    json: JSON
     lists: Liostaí
     mutes: Balbhaíonn tú
     storage: Stóráil meáin
   featured_tags:
-    add_new: Cuir nua leis
     errors:
       limit: Tá uaslíon na hashtags le feiceáil agat cheana féin
-    hint_html: "<strong>Áirigh na haischlibeanna is tábhachtaí ar do phróifíl.</strong> Uirlis iontach chun súil a choinneáil ar do shaothair chruthaitheacha agus do thionscadail fhadtéarmacha, taispeántar haischlibeanna faoi thrácht in áit fheiceálach ar do phróifíl agus ceadaíonn siad rochtain thapa ar do phostálacha féin."
   filters:
     contexts:
       account: Próifílí
@@ -1869,6 +1959,30 @@ ga:
     copy_account_note_text: 'Bhog an úsáideoir seo ó %{acct}, seo do nótaí roimhe seo fúthu:'
   navigation:
     toggle_menu: Scoránaigh roghchlár
+  notification_fallbacks:
+    added_to_collection:
+      title_html: Chuir %{name} le bailiúchán thú
+    admin_report:
+      title_html: Thuairiscigh %{name} %{target}
+    admin_sign_up:
+      title_and_others_html:
+        few: Chláraigh %{name} agus %{count} eile
+        many: Chláraigh %{name} agus %{count} eile
+        one: Chláraigh %{name} agus duine amháin eile
+        other: Chláraigh %{name} agus %{count} eile
+        two: Chláraigh %{name} agus %{count} eile
+      title_html: Chláraigh %{name}
+    collection_update:
+      title_html: Nuashonraigh %{name} bailiúchán ina bhfuil tú
+    generic:
+      sign_in: Sínigh isteach ar an app gréasáin Mastodon
+      summary_html: Tá tú ar aip nach dtacaíonn leis an leagan is déanaí de Mastodon. %{link} le haghaidh feidhmiúlacht iomlán.
+    moderation_warning:
+      summary_html: Tá tú ar aip nach dtacaíonn leis an leagan is déanaí de Mastodon. %{link}.
+      title: Tá rabhadh modhnóireachta faighte agat.
+    severed_relationships:
+      summary_html: Chuir riarthóir ó %{from} %{target} ar fionraí, rud a chiallaíonn nach féidir leat nuashonruithe a fháil uathu nó idirghníomhú leo a thuilleadh. %{link} chun liosta de na gaolta caillte a fháil.
+      title: Caillte ceangail le %{name}
   notification_mailer:
     admin:
       report:

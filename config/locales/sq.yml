@@ -345,12 +345,20 @@ sq:
       updated_msg: Lajmërimi u përditësua me sukses!
     collections:
       accounts: Llogari
+      back_to_account: Mbrapsht te faqja e llogarisë
+      back_to_report: Mbrapsht te faqja e raportimit
+      batch:
+        add_to_report: 'Shtoje te raportimi #%{id}'
+        remove_from_report: Hiqe nga raportimi
+        report: Raportim
       collection_title: Koleksion nga %{name}
       contents: Lëndë
+      no_collection_selected: S’u ndryshua ndonjë koleksion, ngaqë s’u përzgjodh ndonjë
       number_of_accounts:
         one: 1 llogari
         other: "%{count} llogari"
       open: Hape
+      title: Koleksione llogarish - @%{name}
       view_publicly: Shiheni publikisht
     critical_update_pending: Përditësim kritik pezull
     custom_emojis:
@@ -484,9 +492,89 @@ sq:
         title: Blloko përkatësi të re email
       no_email_domain_block_selected: S’u ndryshuan bllokime përkatësish email, ngaqë s’qe përzgjedhur ndonjë
       not_permitted: Jo i lejuar
+      reset: Riktheje te parazgjedhjet
       resolved_dns_records_hint_html: Emri i përkatësisë u përket përkatësive vijuese MX, që janë përgjegjëset përfundimtare për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Hapni sytë të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
+      search: Kërko
       title: Përkatësi email të bllokuara
+    email_subscriptions:
+      accounts:
+        account: Llogari
+        empty:
+          hint: Ende s’ka llogari me pajtimtarë.
+          no_lists_yet: Ende pa lista
+        last_email: Email-i i fundit
+        lead: Llogaritë që kanë aktivizuar veçorinë dhe kanë pajtimtarë do të shfaqen më poshtë.
+        show:
+          confirm_disable_feature: Të çaktivizohen buletine me email për %{name}? Për këtë llogari s’do të dërgohen më përditësime me email. Përdoruesi do të jetë prapëseprapë në gjendje të riaktivizojë veçorinë që nga rregullimet e llogarisë të vet. Për të hequr përgjithnjë përdorimin e kësaj veçorie, përpunoni lejen e llogarisë te Role.
+          confirm_remove_subscriber: "%{email} s’do të marrë më email-e nga %{name}. Ky veprim s’mund të zhbëhet."
+          consent: Pajtimtarët kanë pranuar vetëm të marrin postime përmes email-i. Mos e përdorni këtë listë për qëllime të tjera.
+          date: Datë e regjistrimit
+          disable_feature: Çaktivizoje veçorinë
+          disabled: Veçoria qe çaktivizuar dhe te kjo listë s’dërgohen më email-e.
+          email: Adresë email
+          empty:
+            hint: Te kjo llogari s’është pajtuar ende dikush.
+            no_subscribers_yet: Ende pa pajtimtarë
+          enable_feature: Aktivizoje veçorinë
+          no_access_html: Kjo llogari s’ka më lejet e domosdoshme për aktivizimin e veçorisë. Ndryshojeni këtë që nga <a href="%{roles_path}">Role</a>.
+          title: Buletine me email nga %{name}
+          view_account: Shiheni llogarinë
+        status: Gjendje
+        subscribers: Pajtimtarë
+        title: Lista postimesh
+      additional_footer_texts:
+        show:
+          title: Tekst fundfaqeje shtesë
+      compliance_settings:
+        additional_footer_text:
+          action: Administrojini
+          hint: Tekst opsional që shfaqet vetëm te fundfaqja e email-eve të buletinit
+          title: Tekst fundfaqeje shtesë
+        lead: Në varësi të juridiksionit në të cilin veproni, buletinet me email mund të konsiderohen email-e marketingu.
+        privacy_policy:
+          action: Administrojini
+          hint: Për këto rregulla ka një lidhje te fundfaqja e çdo email-i
+          title: Rregulla privatësie
+        title: Rregullime përputhjeje me rregullore dhe ligje
+      danger_zone:
+        disable_feature:
+          action: Çaktivizoje
+          hint: Çaktivizoje këtë veçori për krejt llogaritë
+          title: Çaktivizoje veçorinë
+        erase_all_data:
+          action: Fshiji të dhënat
+          hint: Fshin në mënyrë të pakthyeshme krejt email-et në krejt listat e postimeve
+          title: Fshiji krejt të dhënat
+        title: Zonë rreziku
+      disabled_msg: Pajtimet email janë çaktivizuar me sukses.
+      index:
+        disabled:
+          cannot_be_enabled: Shërbimi juaj teknik s’e ka aktivizuar këtë veçori për shërbyesin tuaj.
+          description: Kjo veçori lejon llogari të caktuara të shtojnë një “widget” te profilet e tyre, duke u bërë të mundur vizitorëve pa një llogari Mastodon të marrin postimet përmes email-i.
+          get_started: Fillojani
+        lead: Lejojuni vizitorëve të marrin postime përmes email-i, që nga llogari enkas për këtë në këtë shërbyes.
+        title: Dërgoni buletine me email
+      purged_msg: Po fshihen krejt të dhënat e lidhura me pajtime me email.
+      roles:
+        accounts: Llogari
+        edit_role: Përpunoni rolin
+        empty:
+          hint: Askush s’ka leje të përdorë këtë veçori.
+          no_roles_added: S’u shtuan role
+        lead: Llogaritë me rolet vijuese mund ta aktivizojnë këtë veçori në profilet e tyre.
+        manage_roles: Administroni role
+        role_name: Emër roli
+        title: Role
+      setups:
+        show:
+          enable_feature: Aktivizoje veçorinë
+          important_information: Informacion i rëndësishëm
+          list:
+            1_permission_explanation: Kur aktivizohet kjo veçroi, llogaritë me lejet e caktuara mund të shtojnë te profilet e tyre një formular koleksionesh email.
+            2_feature_explanation: Kur vizitorët regjistrohen në faqen e profilit të një llogarie dhe ripohojnë pajtimin e tyre, ata do të fillojnë të marrin përditësime me email, kur llogaria krijon postime të reja publike.
+            3_privacy_policy_warning: Përgjegjësit e shërbyesit do të mund të shohin PII (adresat email) të grumbulluara. Prej kësaj, rregullat e privatësisë dhe Kushtet e Shërbimit për shëbyesin duhen përditësuar, para përdorimit të kësaj veçorie.
+            4_cost_warning: Email-et mund të sjellin tarifë, varet nga ujdisja e strehimit. Diskutojeni me shërbimin tuaj të strehimit, para se ta aktivizoni, ngaqë kjo veçori mund të rrisë në mënyrë drastike sasinë e email-eve të dërguar nga shërbyesi juaj.
     export_domain_allows:
       new:
         title: Importoni lejime përkatësish
@@ -667,7 +755,7 @@ sq:
       action_log: Auditim regjistri
       action_taken_by: Veprimi i ndërmarrë nga
       actions:
-        delete_description_html: Postimet e raportuara do të fshihen dhe do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni hapat në rast shkeljesh të ardhme nga e njëjta llogari.
+        delete_description_html: Postimet dhe/ose koleksionet e raportuara do të fshihen dhe do të regjistrohet një vërejtje, për t’ju ndihmuar të mund ta shpini më lart çështjen në rast shkeljesh të ardhshme nga e njëjta llogari.
         mark_as_sensitive_description_html: Medias te postimet e raportuara do t’i vihet shenjë si me spec dhe për të do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni masat tuaja mbi shkelje të ardhshme nga e njëjta llogari.
         other_description_html: Shihni më tepër mundësi për kontroll të sjelljes së një llogari dhe përshtatni komunikimin me llogarinë e raportuar.
         resolve_description_html: Ndaj llogarisë së raportuar nuk do të ndërmerret ndonjë veprim, s’do të regjistrohet ndonjë paralajmërim dhe raporti do të mbyllet.
@@ -694,7 +782,7 @@ sq:
       confirm: Ripohojeni
       confirm_action: Ripohoni veprim moderimi kundër @%{acct}
       created_at: Raportuar më
-      delete_and_resolve: Fshiji postimet
+      delete_and_resolve: Fshije lëndën
       forwarded: U përcoll
       forwarded_replies_explanation: Ky raportim është nga një përdorues i largët dhe rreth lënde të largët. Ju është përcjellë ngaqë lënda e raportuar gjendet në përgjigje ndaj njërit prej përdoruesve tuaj.
       forwarded_to: U përcoll te %{domain}
@@ -787,7 +875,7 @@ sq:
         manage_custom_emojis: Të Administrojë Emoxhi Vetjake
         manage_custom_emojis_description: U lejon përdoruesve të administrojnë te shërbyesi emoxhi vetjake
         manage_email_subscriptions: Administroni Pajtime Me Email
-        manage_email_subscriptions_description: Lejojini përdoruesit të pajtohen me email te përdorues me këtë leje
+        manage_email_subscriptions_description: Lejoji përdoruesit me këtë leje të aktivizojnë veçorinë për buletine me email për llogaritë e tyre
         manage_federation: Të Administrojë Federim
         manage_federation_description: U lejon përdoruesve të bllokojnë ose lejojnë federim me përkatësi të tjera dhe të kontrollojnë shpërndarjen
         manage_invites: Të Administrojë Ftesa
@@ -873,9 +961,15 @@ sq:
           disabled: Lyp doemos rol specifik përdoruesi
           public: Kushdo
       landing_page:
+        hints:
+          about_html: Një faqe me përshkrimin, hollësi kontakti, rregulla dhe tjetër informacion që lidhet me këtë shërbyes.
+          local_feed_html: Një prurje e drejtpërdrejtë që përmban postimet më të reja nga përdorues në këtë shërbyes.
+          overview_html: Një faqe që shpalos përshkrimin e shërbyesit tuaj took me postimet vendore më të freskëta nga përdorues në këtë shërbyes.
+          trends_html: Një faqe që përmban ç’është popullore në këtë shërbyes mu tani.
         values:
-          about: Mbi
-          local_feed: Prurje vendore
+          about: Faqe “Mbi”
+          local_feed: Prurje e drejtpërdrejtë vendore
+          overview: Përmbledhje
           trends: Në modë
       registrations:
         moderation_recommandation: Ju lutemi, sigurohuni si keni një ekip adekuat dhe reagues moderimi, përpara se të hapni regjistrimet për këdo!
@@ -896,6 +990,7 @@ sq:
     site_uploads:
       delete: Fshi kartelën e ngarkuar
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
+    skip_to_content: Hidhu te lënda
     software_updates:
       critical_update: Kritik — ju lutemi, përditësojeni pa humbur kohë
       description: Rekomandohet ta mbani të përditësuar instalimin tuaj të Mastodon-it, që të përfitoni nga ndreqjet dhe veçoritë më të reja. Për më tej, ndonjëherë është kritike të përditësohet Mastodon-i në kohën e duhur, për të shmangur probleme sigurie. Për këto arsye, Mastodon-i kontrollon për përditësime çdo 30 minuta dhe do t’ju njoftojë, sipas parapëlqimeve tuaja për njoftime me email.
@@ -1407,9 +1502,8 @@ sq:
       your_appeal_pending: Keni parashtruar një apelim
       your_appeal_rejected: Apelimi juaj është hedhur poshtë
   edit_profile:
-    basic_information: Hollësi elementare
-    hint_html: "<strong>Përshtatni ç’shohin njerëzit në profilin tuaj publik dhe në krah të postimeve tuaja.</strong> Personat e tjerë ka më shumë gjasa t’ju ndjekin dhe ndërveprojnë me ju, kur keni të plotësuar profilin dhe një foto profili."
     other: Tjetër
+    privacy_redesign_body: Zgjedhja për shfaqjen e ndjekjeve dhe ndjekësve tuaj tanimë bëhet drejt e nga profili juaj.
     redesign_body: Përpunimi i profilit tanimë mund të kryhet drejt e nga faqja e profilit.
     redesign_button: Kalo atje
     redesign_title: Ka një rrugë të re përpunimi profili
@@ -1429,11 +1523,11 @@ sq:
         one: Ndërveproni me këtë postim dhe zbuloni më tepër si ai.
         other: Ndërveproni me këto postime dhe zbuloni më tepër.
       subject:
-        one: 'Postim i ri: “%{excerpt}”'
-        other: Postime të reja nga %{name}
+        plural: Postime të reja nga %{name}
+        singular: 'Postim i ri: “%{excerpt}”'
       title:
-        one: 'Postim i ri: “%{excerpt}”'
-        other: Postime të reja nga %{name}
+        plural: Postime të reja nga %{name}
+        singular: 'Postim i ri: “%{excerpt}”'
   email_subscriptions:
     active: Aktiv
     confirmations:
@@ -1442,7 +1536,9 @@ sq:
         success_html: Tani do të filloni të merrni email-e, kur %{name} boton postime të reja. Shtojeni %{sender} te kontaktet tuaj, që këto postime të mos përfundojnë te dosja juaj e Të padëshiruarve.
         title: U regjistruat
         unsubscribe: Shpajtohuni
+    disabled: E çaktivizuar
     inactive: Joaktiv
+    no_access: S’lejohet përdorim
     status: Gjendje
     subscribers: Pajtimtarë
   errors:
@@ -1474,15 +1570,15 @@ sq:
     blocks: Bllokoni
     bookmarks: Faqerojtës
     csv: CSV
+    custom_filters: Filtra
     domain_blocks: Bllokime përkatësish
+    json: JSON
     lists: Lista
     mutes: Heshtoni
     storage: Depozitë media
   featured_tags:
-    add_new: Shtoni të re
     errors:
       limit: Keni përdorur tashmë numrin maksimum të hashtag-ëve
-    hint_html: "<strong>Çfarë janë hashtag-ët e zgjedhur?</strong> Këta shfaqen dukshëm te profili juaj publik dhe u lejojnë të tjerëve të shfletojnë postime tuajt publikë posaçërisht nën këta hashtag-ë. Janë një mjet i goditur për të ndjekur punë krijuese ose projekte afatgjata."
   filters:
     contexts:
       account: Profile
@@ -1720,6 +1816,27 @@ sq:
     copy_account_note_text: 'Ky përdorues ka ikur prej %{acct}, ja ku janë shënimet tuaja të mëparshme mbi të:'
   navigation:
     toggle_menu: Shfaq/Fshih menunë
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} ju shtoi te një koleksion"
+    admin_report:
+      title_html: "%{name} raportoi %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: U regjistrua %{name} dhe një tjetër
+        other: U regjistruan %{name} dhe %{count} të tjerë
+      title_html: U regjistrua %{name}
+    collection_update:
+      title_html: "%{name} përditësoi një koleksion në të cilin gjendeni"
+    generic:
+      sign_in: Bëni hyrjen te aplikacioni web Mastodon
+      summary_html: Gjendeni në një aplikacion që s’mbulon versionin më të ri të Mastodon-it. %{link} për funksionim të plotë.
+    moderation_warning:
+      summary_html: Gjendeni në një aplikacion që s’mbulon versionin më të ri të Mastodon-it. %{link}.
+      title: Keni marrë një sinjalizim moderimi.
+    severed_relationships:
+      summary_html: Një përgjegjës prej %{from} ka pezulluar %{target}, që do të thotë se s’mund të merrni më përditësime prej tij, apo të ndërveproni me të. %{link} që të merrni një listë të marrëdhënieve të humbura.
+      title: U humbën lidhje me %{name}
   notification_mailer:
     admin:
       report:

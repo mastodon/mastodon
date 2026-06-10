@@ -772,19 +772,42 @@ RSpec.describe Account do
   end
 
   describe '#featureable_by?' do
-    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:, feature_approval_policy:) }
+    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:, locked:, feature_approval_policy:) }
 
+    let(:locked) { false }
     let(:local_account) { Fabricate(:account) }
 
     context 'when account is local' do
       let(:local) { true }
-      let(:feature_approval_policy) { nil }
+      let(:feature_approval_policy) { 0 }
 
       context 'when account is discoverable' do
         let(:discoverable) { true }
 
-        it 'returns `true`' do
-          expect(subject.featureable_by?(local_account)).to be true
+        context 'when the account is not locked' do
+          let(:locked) { false }
+
+          it 'returns `true`' do
+            expect(subject.featureable_by?(local_account)).to be true
+          end
+        end
+
+        context 'when the account is locked' do
+          let(:locked) { true }
+
+          it 'returns `false`' do
+            expect(subject.featureable_by?(local_account)).to be false
+          end
+
+          context 'when the other account is a follower' do
+            before do
+              local_account.follow!(subject)
+            end
+
+            it 'returns `true`' do
+              expect(subject.featureable_by?(local_account)).to be true
+            end
+          end
         end
       end
 
@@ -813,6 +836,48 @@ RSpec.describe Account do
 
         it 'returns `false`' do
           expect(subject.featureable_by?(local_account)).to be false
+        end
+      end
+    end
+  end
+
+  describe '#needs_background_refresh?' do
+    subject { account.needs_background_refresh? }
+
+    context 'when account is local' do
+      let(:account) { Fabricate(:account) }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when account is remote' do
+      let(:account) { Fabricate(:remote_account, last_webfingered_at:) }
+
+      context 'when account has never been updated or last update is unknown' do
+        let(:last_webfingered_at) { nil }
+
+        it { is_expected.to be true }
+      end
+
+      context 'when account has not been updated for over a week' do
+        let(:last_webfingered_at) { 8.days.ago }
+
+        it { is_expected.to be true }
+      end
+
+      context 'when account has been updated in the last week' do
+        let(:last_webfingered_at) { 4.days.ago }
+
+        context 'when there is no other account from the same domain with an feature approval policy' do
+          it { is_expected.to be false }
+        end
+
+        context 'when there is another account from the same domain with a feature approval policy' do
+          before do
+            Fabricate(:remote_account, domain: account.domain, feature_approval_policy: 1)
+          end
+
+          it { is_expected.to be true }
         end
       end
     end

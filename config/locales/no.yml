@@ -573,7 +573,6 @@
       action_log: Revisjon logg
       action_taken_by: Handling utført av
       actions:
-        delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
         mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som følsomme, og en advarsel vil bli notert for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
         other_description_html: Se flere alternativer for å kontrollere kontoens atferd og tilpasse kommunikasjonen til den oppgitte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
@@ -594,7 +593,6 @@
       confirm: Bekreft
       confirm_action: Bekreft moderasjonshandling mot @%{acct}
       created_at: Rapportert
-      delete_and_resolve: Slettede innlegg
       forwarded: Videresendt
       forwarded_replies_explanation: Denne rapporten er fra en ekstern bruker og handler om eksternt innhold. Den er videresendt til deg fordi det rapporterte innholdet svarer til en av brukerne dine.
       forwarded_to: Videresendt til %{domain}
@@ -1165,8 +1163,6 @@
       your_appeal_pending: Du har levert en anke
       your_appeal_rejected: Anken din har blitt avvist
   edit_profile:
-    basic_information: Grunnleggende informasjon
-    hint_html: "<strong>Tilpass hva folk ser på din offentlige profil og ved siden av dine innlegg.</strong> Det er mer sannsynlig at andre mennesker følger deg tilbake og samhandler med deg når du har fylt ut en profil og et profilbilde."
     other: Annet
   errors:
     '400': Forespørselen du sendte inn var ugyldig eller feil.
@@ -1202,10 +1198,8 @@
     mutes: Du demper
     storage: Medialagring
   featured_tags:
-    add_new: Legg til ny
     errors:
       limit: Du har allerede fremhevet det maksimale antall emneknagger
-    hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
       account: Profiler

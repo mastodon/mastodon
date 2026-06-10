@@ -51,7 +51,7 @@ class FollowRequest < ApplicationRecord
     false # Force uri_for to use uri attribute
   end
 
-  before_validation :set_uri, only: :create
+  before_validation :set_uri, on: :create
   after_commit :invalidate_follow_recommendations_cache
 
   private

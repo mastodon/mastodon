@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 .modal-layout {
-  background: var(--color-bg-brand-softest);
+  background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -37,6 +37,8 @@
 }
 
 .with-zig-zag-decoration {
+  isolation: isolate;
+
   &::after {
     content: '';
     position: absolute;

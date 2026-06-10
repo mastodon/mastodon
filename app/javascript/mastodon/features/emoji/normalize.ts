@@ -14,6 +14,7 @@ import {
   EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE,
   EMOJI_MIN_TOKEN_LENGTH,
 } from './constants';
+import { localeToSegmenter } from './locale';
 import type {
   CustomEmojiData,
   CustomEmojiMapArg,
@@ -92,10 +93,11 @@ export function transformEmojiData(
 export function transformCustomEmojiData(
   emoji: ApiCustomEmojiJSON,
 ): CustomEmojiData {
-  const tokens = emoji.shortcode
-    .split('_')
-    .filter((word) => word.length >= EMOJI_MIN_TOKEN_LENGTH)
-    .map((word) => word.toLowerCase());
+  const tokens = extractTokens(emoji.shortcode, localeToSegmenter('en'));
+  if (!tokens.includes(emoji.shortcode)) {
+    tokens.unshift(emoji.shortcode);
+  }
+
   return {
     ...emoji,
     tokens,
@@ -152,11 +154,11 @@ const CODES_WITH_LIGHT_BORDER = EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
 
 export function unicodeHexToUrl({
   unicodeHex,
-  darkTheme,
+  darkTheme = true,
   assetHost,
 }: {
   unicodeHex: string;
-  darkTheme: boolean;
+  darkTheme?: boolean;
   assetHost: string;
 }): string {
   const normalizedHex = unicodeToTwemojiHex(unicodeHex);
@@ -185,21 +187,16 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg | null) {
   if (!extraEmojis) {
     return null;
   }
-  if (Array.isArray(extraEmojis)) {
-    return extraEmojis.reduce<ExtraCustomEmojiMap>(
-      (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-      {},
-    );
+  if (!Array.isArray(extraEmojis) && !isList(extraEmojis)) {
+    return extraEmojis;
   }
-  if (isList(extraEmojis)) {
-    return extraEmojis
-      .toJS()
-      .reduce<ExtraCustomEmojiMap>(
-        (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-        {},
-      );
+  const emojis: ExtraCustomEmojiMap = {};
+  const emojiArray = isList(extraEmojis) ? extraEmojis.toJS() : extraEmojis;
+  for (const emoji of emojiArray) {
+    emojis[emoji.shortcode] = emoji;
   }
-  return extraEmojis;
+
+  return emojis;
 }
 
 /**
@@ -217,10 +214,17 @@ export function extractTokens(
   }
   const tokens: string[] = [];
 
+  // Handle the edge case of thumbs up and down emoticons.
+  if (input === '+1' || input === '-1') {
+    return [input];
+  }
+
   // Prefer to use Intl.Segmenter if available for better locale support.
   if (segmenter) {
     for (const { isWordLike, segment } of segmenter.segment(
-      input.replaceAll('_', ' '), // Handle underscores from shortcodes.
+      input
+        .replaceAll(/[_-]+/g, ' ') // Handle underscores from shortcodes.
+        .replaceAll(/([a-z])([A-Z])/g, '$1 $2'), // Handle camelCase.
     )) {
       if (isWordLike && segment.length >= EMOJI_MIN_TOKEN_LENGTH) {
         tokens.push(segment.toLowerCase());

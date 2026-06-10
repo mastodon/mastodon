@@ -16,7 +16,7 @@ fi:
       one: seurattava
       other: seurattavaa
     instance_actor_flash: Tämä tili on virtuaalinen toimija, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään federointitarkoituksiin, eikä sitä tule jäädyttää.
-    last_active: viimeksi aktiivinen
+    last_active: viimeksi aktiivisena
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
     nothing_here: Täällä ei ole mitään!
     pin_errors:
@@ -169,7 +169,7 @@ fi:
       undo_silenced: Kumoa rajoitus
       undo_suspension: Kumoa jäädytys
       unsilenced_msg: Tilin %{username} rajoitus kumottiin onnistuneesti
-      unsubscribe: Lopeta tilaus
+      unsubscribe: Peruuta tilaus
       unsuspended_msg: Tilin %{username} jäädytys kumottiin onnistuneesti
       username: Käyttäjänimi
       view_domain: Näytä verkkotunnuksen yhteenveto
@@ -345,12 +345,20 @@ fi:
       updated_msg: Tiedotteen päivitys onnistui!
     collections:
       accounts: Tilit
+      back_to_account: Takaisin tilisivulle
+      back_to_report: Takaisin raporttisivulle
+      batch:
+        add_to_report: Lisää raporttiin nro %{id}
+        remove_from_report: Poista raportista
+        report: Raportoi
       collection_title: Kokoelma, koonnut %{name}
       contents: Sisältö
+      no_collection_selected: Kokoelmia ei muutettu, koska yhtään ei ollut valittuna
       number_of_accounts:
         one: 1 tili
         other: "%{count} tiliä"
       open: Avaa
+      title: Tilin kokoelmat – @%{name}
       view_publicly: Näytä julkisesti
     critical_update_pending: Kriittinen päivitys odottaa
     custom_emojis:
@@ -484,9 +492,83 @@ fi:
         title: Estä uusi sähköpostiverkkotunnus
       no_email_domain_block_selected: Sähköpostiverkkotunnusten estoja ei muutettu, koska yhtäkään ei ollut valittuna
       not_permitted: Ei sallittu
+      reset: Palauta
       resolved_dns_records_hint_html: Verkkotunnusnimi kytkeytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää rekisteröitymisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostipalvelujen tarjoajia.</strong>
       resolved_through_html: Ratkaistu verkkotunnuksen %{domain} kautta
+      search: Hae
       title: Estetyt sähköpostiverkkotunnukset
+    email_subscriptions:
+      accounts:
+        account: Tili
+        empty:
+          hint: Millään tilillä ei ole vielä tilaajia.
+          no_lists_yet: Ei vielä listoja
+        last_email: Viimeisin sähköpostiviesti
+        lead: Alla näkyvät tilit, jotka ovat ottaneet ominaisuuden käyttöön ja joilla on tilaajia.
+        show:
+          confirm_disable_feature: Poistetaanko tilin %{name} sähköpostiuutiskirjeet käytöstä? Tätä tiliä koskevia sähköpostipäivityksiä ei enää lähetetä. Käyttäjä voi yhä ottaa tämän ominaisuuden uudelleen käyttöön tilinsä asetuksista. Jotta voit pysyvästi poistaa pääsyn tähän ominaisuuteen, muokkaa tilin käyttöoikeuksia kohdassa Roolit.
+          confirm_remove_subscriber: "%{email} ei vastedes vastaanota sähköpostia tililtä %{name}. Tätä toimintoa ei voi peruuttaa."
+          consent: Tilaajat ovat suostuneet vain vastaanottamaan julkaisuja sähköpostitse. Älä käytä tätä listaa muihin tarkoituksiin.
+          date: Tilauspäivä
+          disable_feature: Poista ominaisuus käytöstä
+          disabled: Tämä ominaisuus on poistettu käytöstä, eikä sähköpostia enää lähetetä tälle listalle.
+          email: Sähköpostiosoite
+          empty:
+            hint: Kukaan ei ole vielä tilannut tätä tiliä.
+            no_subscribers_yet: Ei vielä tilaajia
+          enable_feature: Ota ominaisuus käyttöön
+          no_access_html: Tällä tilillä ei ole enää ominaisuuden käyttöönottoon vaadittavia käyttöoikeuksia. Muuta tämä kohdassa <a href="%{roles_path}">Roolit</a>.
+          title: Tilin %{name} sähköpostiuutiskirjeet
+          view_account: Näytä tili
+        status: Tila
+        subscribers: Tilaajia
+        title: Postituslistat
+      additional_footer_texts:
+        show:
+          title: Alatunnisteen lisäteksti
+      compliance_settings:
+        additional_footer_text:
+          action: Hallitse
+          hint: Valinnainen teksti, joka näkyy vain uutiskirjeiden alatunnisteessa
+          title: Alatunnisteen lisäteksti
+        lead: Sähköpostiuutiskirjeitä voidaan pitää markkinointiviesteinä riippuen lainkäyttöalueesta, jossa toimit.
+        privacy_policy:
+          action: Hallitse
+          hint: Jokaisen sähköpostiviestin alatunnisteessa on linkki tähän käytäntöön
+          title: Tietosuojakäytäntö
+      danger_zone:
+        disable_feature:
+          action: Poista käytöstä
+          hint: Poista ominaisuus käytöstä kaikilta tileiltä
+          title: Poista ominaisuus käytöstä
+        erase_all_data:
+          action: Hävitä tiedot
+          hint: Poistaa kaikki sähköpostiosoitteet pysyvästi kaikilta postituslistoilta
+          title: Hävitä kaikki tiedot
+        title: Vaaravyöhyke
+      disabled_msg: Sähköpostitilaukset on poistettu käytöstä onnistuneesti.
+      index:
+        disabled:
+          cannot_be_enabled: Tekninen palveluntarjoajasi ei ole ottanut tätä omainaisuutta käyttöön palvelimellasi.
+          description: Tämä omainaisuus antaa määrättyjen käyttäjien lisätä profiiliinsa pienoisohjelman, jolloin vierailijat, joilla ei ole Mastodon-tiliä, voivat vastaanottaa hänen julkaisunsa sähköpostitse.
+          get_started: Aloita
+        lead: Salli vierailijoiden vastaanottaa määrättyjen tämän palvelimen tilien julkaisut sähköpostitse.
+        title: Sähköpostiuutiskirjeet
+      purged_msg: Kaikki sähköpostitilausten tiedot hävitetään.
+      roles:
+        accounts: Tilejä
+        edit_role: Muokkaa roolia
+        empty:
+          hint: Kenelläkään ei ole oikeutta käyttää tätä ominaisuutta.
+        manage_roles: Hallitse rooleja
+        role_name: Roolin nimi
+        title: Roolit
+      setups:
+        show:
+          enable_feature: Ota ominaisuus käyttöön
+          important_information: Tärkeää tietoa
+          list:
+            3_privacy_policy_warning: Palvelimen ylläpito saa pääsyn kerättyihin henkilötietoihin (sähköpostiosoitteisiin). Siksi palvelimen tietosuojakäytäntö ja käyttöehdot on päivitettävä ennen tämän ominaisuuden käyttöä.
     export_domain_allows:
       new:
         title: Tuo sallittuja verkkotunnuksia
@@ -671,7 +753,7 @@ fi:
       action_log: Tarkastusloki
       action_taken_by: Toimen tehnyt
       actions:
-        delete_description_html: Raportoidut julkaisut poistetaan ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
+        delete_description_html: Raportoidut julkaisut ja/tai kokoelmat poistetaan ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         mark_as_sensitive_description_html: Raportoitujen julkaisujen media merkitään arkaluonteiseksi ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja raportoidulle tilille kohdistuvan viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä kohtaan ei ryhdytä toimiin, varoitusta ei kirjata ja raportti suljetaan.
@@ -698,7 +780,7 @@ fi:
       confirm: Vahvista
       confirm_action: Vahvista moderointitoimi käyttäjää @%{acct} kohtaan
       created_at: Raportoitu
-      delete_and_resolve: Poista julkaisut
+      delete_and_resolve: Poista sisältö
       forwarded: Välitetty
       forwarded_replies_explanation: Tämä raportti on etäkäyttäjältä ja koskee etäsisältöä. Se on välitetty sinulle, koska raportoitu sisältö on vastaus jollekin käyttäjällesi.
       forwarded_to: Välitetty palvelimelle %{domain}
@@ -792,7 +874,7 @@ fi:
         manage_custom_emojis: Hallita mukautettuja emojeita
         manage_custom_emojis_description: Sallii käyttäjien hallita palvelimen mukautettuja emojeita
         manage_email_subscriptions: Hallita sähköpostitilauksia
-        manage_email_subscriptions_description: Sallii käyttäjien tilata sähköpostitse käyttäjiä, joilla on tämä käyttöoikeus
+        manage_email_subscriptions_description: Salli käyttäjien, jolla on tämä käyttöoikeus, ottaa sähköpostiuutiskirjeominaisuus käyttöön tilillään
         manage_federation: Hallita federointia
         manage_federation_description: Sallii käyttäjien estää tai sallia federointi muiden verkkotunnusten kanssa ja hallita toimitusta
         manage_invites: Hallita kutsuja
@@ -881,10 +963,16 @@ fi:
           disabled: Vaadi tiettyä käyttäjäroolia
           public: Kaikki
       landing_page:
+        hints:
+          about_html: Sivu, jolla on kuvaus, yhteystiedot, säännöt ja muita tietoja tästä palvelimesta.
+          local_feed_html: Livesyöte, joka esittelee tämän palvelimen viimeisimpiä julkaisuja.
+          overview_html: Sivu, joka esittelee palvelimesi kuvauksen viimeisimpien tämän palvelimen käyttäjien paikallisten julkaisujen ohella.
+          trends_html: Sivu, joka esittelee, mikä on suosittua palvelimella juuri nyt.
         values:
-          about: Tietoja
-          local_feed: Paikallinen syöte
-          trends: Trendit
+          about: Tietoja-sivu
+          local_feed: Paikallinen livesyöte
+          overview: Yleiskatsaus
+          trends: Suosittua
       registrations:
         moderation_recommandation: Varmista, että sinulla on riittävä ja toimintavalmis joukko moderaattoreita, ennen kuin avaat rekisteröitymisen kaikille!
         preamble: Määritä, kuka voi luoda tilin palvelimellesi.
@@ -904,6 +992,7 @@ fi:
     site_uploads:
       delete: Poista lähetetty tiedosto
       destroyed_msg: Sivustolatauksen poisto onnistui!
+    skip_to_content: Siirry sisältöön
     software_updates:
       critical_update: Kriittinen – päivitä viivyttelemättä
       description: On suositeltavaa pitää Mastodon-asennus ajantasaisena ja siten hyödyntää uusimpia korjauksia sekä ominaisuuksia. Lisäksi joskus on ratkaisevan tärkeää päivittää Mastodon ajoissa tietoturvaongelmien välttämiseksi. Näistä syistä Mastodon tarkistaa päivitykset 30 minuutin välein, ja ilmoittaa sinulle sähköposti-ilmoitusasetustesi mukaisesti.
@@ -1234,7 +1323,7 @@ fi:
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
     salutation: "%{name}"
-    unsubscribe: Lopeta tilaus
+    unsubscribe: Peruuta tilaus
     view: 'Näytä:'
     view_profile: Näytä profiili
     view_status: Näytä julkaisu
@@ -1418,9 +1507,8 @@ fi:
       your_appeal_pending: Olet lähettänyt valituksen
       your_appeal_rejected: Valituksesi on hylätty
   edit_profile:
-    basic_information: Perustiedot
-    hint_html: "<strong>Mukauta, mitä ihmiset näkevät julkisessa profiilissasi ja julkaisujesi vieressä.</strong> Sinua seurataan takaisin ja kanssasi ollaan vuorovaikutuksessa todennäköisemmin, kun sinulla on täytetty profiili ja profiilikuva."
     other: Muut
+    privacy_redesign_body: Valinta seurattavien ja seurattujen näyttämiseksi tehdään nyt suoraan profiilista.
     redesign_body: Profiilia pääsee muokkaamaan nyt suoraan profiilisivulta.
     redesign_button: Siirry sinne
     redesign_title: Profiilin muokkauskokemus on uudistunut
@@ -1435,16 +1523,16 @@ fi:
       create_account: Luo Mastodon-tili
       footer:
         privacy_html: Sähköposti lähetetään verkkotunnuksesta %{domain}, Mastodonin tarjoamalta palvelimelta. Jos haluat ymmärtää, miten tämä palvelin käsittelee henkilötietojasi, katso <a href="%{privacy_policy_path}">tietosuojakäytäntö</a>.
-        reason_for_email_html: Saat tämän sähköpostiviestin, koska olet tilannut sähköpostipäivitykset käyttäjältä %{name}. Etkö halua näitä sähköpostiviestejä? <a href="%{unsubscribe_path}">Lopeta tilaus</a>
+        reason_for_email_html: Saat tämän sähköpostiviestin, koska olet tilannut sähköpostipäivitykset käyttäjältä %{name}. Etkö halua näitä sähköpostiviestejä? <a href="%{unsubscribe_path}">Peruuta tilaus</a>
       interact_with_this_post:
         one: Ole vuorovaikutuksessa tämän julkaisun kanssa ja löydä lisää sen kaltaista.
         other: Olet vuorovaikutuksessa näiden julkaisujen kanssa ja löydä lisää.
       subject:
-        one: 'Uusi julkaisu: ”%{excerpt}”'
-        other: Uusia julkaisuja käyttäjältä %{name}
+        plural: Uusia julkaisuja käyttäjältä %{name}
+        singular: 'Uusi julkaisu: ”%{excerpt}”'
       title:
-        one: 'Uusi julkaisu: ”%{excerpt}”'
-        other: Uusia julkaisuja käyttäjältä %{name}
+        plural: Uusia julkaisuja käyttäjältä %{name}
+        singular: 'Uusi julkaisu: ”%{excerpt}”'
   email_subscriptions:
     active: Ota käyttöön
     confirmations:
@@ -1452,8 +1540,10 @@ fi:
         changed_your_mind: Muutitko mieltäsi?
         success_html: Alat nyt saada sähköpostia, kun %{name} julkaisee uutta. Lisää %{sender} yhteystietoihisi, jotta nämä julkaisut eivät joudu roskapostikansioon.
         title: Olet aloittanut tilauksen
-        unsubscribe: Lopeta tilaus
+        unsubscribe: Peruuta tilaus
+    disabled: Poissa käytöstä
     inactive: Poissa käytöstä
+    no_access: Ei käyttöoikeutta
     status: Tila
     subscribers: Tilaajia
   emoji_styles:
@@ -1489,15 +1579,15 @@ fi:
     blocks: Estot
     bookmarks: Kirjanmerkit
     csv: CSV
+    custom_filters: Suodattimet
     domain_blocks: Verkkotunnusten estot
+    json: JSON
     lists: Listat
     mutes: Mykistykset
     storage: Mediatiedostot
   featured_tags:
-    add_new: Lisää uusi
     errors:
       limit: Esittelet jo aihetunnisteiden enimmäismäärää
-    hint_html: "<strong>Esittele tärkeimpiä aihetunnisteitasi profiilissasi.</strong> Erinomainen työkalu, jolla pidät kirjaa luovista teoksistasi ja pitkäaikaisista projekteistasi. Esittelemäsi aihetunnisteet ovat näyttävällä paikalla profiilissasi ja mahdollistavat nopean pääsyn julkaisuihisi."
   filters:
     contexts:
       account: Profiilit
@@ -1735,6 +1825,26 @@ fi:
     copy_account_note_text: 'Tämä käyttäjä siirtyi tililtä %{acct}. Nämä olivat muistiinpanosi hänestä:'
   navigation:
     toggle_menu: Avaa/sulje valikko
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} lisäsi sinut kokoelmaan"
+    admin_report:
+      title_html: "%{name} raportoi käyttäjän %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} ja 1 muu rekisteröityivät"
+        other: "%{name} ja %{count} muuta rekisteröityivät"
+      title_html: "%{name} rekisteröityi"
+    collection_update:
+      title_html: "%{name} päivitti kokoelman, jossa olet"
+    generic:
+      sign_in: Rekisteröidy Mastodonin selainsovelluksessa
+      summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %{link} täyden toiminnallisuuden mahdollistamiseksi.
+    moderation_warning:
+      summary_html: Olet sovelluksessa, joka ei tue uusinta Mastodonin versiota. %{link}.
+      title: Olet saanut moderointivaroituksen.
+    severed_relationships:
+      title: Menetetty yhteydet palvelimeen %{name}
   notification_mailer:
     admin:
       report:
@@ -1857,7 +1967,7 @@ fi:
     followers: Seuraajat
     following: Seurattavat
     invited: Kutsutut
-    last_active: Viimeksi aktiivinen
+    last_active: Viimeksi aktiivisena
     most_recent: Tuorein
     moved: Muuttaneet
     mutual: Seuraatte toisianne
@@ -2097,7 +2207,7 @@ fi:
       action: Siirry palvelimen etusivulle
       email_subscription:
         confirmation_html: Et saa enää sähköpostia käyttäjältä %{name}.
-      title: Olet lopettanut tilauksen
+      title: Olet peruuttanut tilauksen
       user:
         confirmation_html: Et saa enää %{type} Mastodon-palvelimelta %{domain}.
     notification_emails:
@@ -2107,13 +2217,13 @@ fi:
       mention: sähköposti-ilmoituksia maininnoista
       reblog: sähköposti-ilmoituksia tehostuksista
     show:
-      action: Lopeta tilaus
+      action: Peruuta tilaus
       email_subscription:
         confirmation_html: Lakkaat saamasta sähköpostia, kun tämä tili julkaisee uutta.
-        title: Lopetetaanko käyttäjän %{name} tilaus?
+        title: Peruutetaanko käyttäjän %{name} tilaus?
       user:
         confirmation_html: Lakkaat saamasta %{type} Mastodon-palvelimelta %{domain}.
-        title: Lopetetaanko tilaus aiheesta %{type}?
+        title: Peruutetaanko tilaus aiheesta %{type}?
   user_mailer:
     announcement_published:
       description: 'Palvelimen %{domain} ylläpito tiedottaa:'
@@ -2204,7 +2314,7 @@ fi:
       feature_audience_title: Rakenna yleisöäsi luottavaisin mielin
       feature_control: Tiedät itse parhaiten, mitä haluat nähdä kotisyötteessäsi. Ei algoritmeja eikä mainoksia tuhlaamassa aikaasi. Seuraa yhdellä tilillä ketä tahansa, miltä tahansa Mastodon-palvelimelta, vastaanota heidän julkaisunsa aikajärjestyksessä ja tee omasta internetin nurkastasi hieman enemmän omanlaisesi.
       feature_control_title: Pidä aikajanasi hallussasi
-      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pienoiskuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
+      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pikkukuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
       feature_creativity_title: Luovuutta vertaansa vailla
       feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
       feature_moderation_title: Moderointi juuri kuten sen pitäisi olla

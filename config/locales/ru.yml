@@ -19,7 +19,7 @@ ru:
       many: подписок
       one: подписка
       other: подписок
-    instance_actor_flash: Эта учетная запись - виртуальный пользователь, используемый для представления самого сервера, а не отдельного пользователя. Она используется для организационных целей и не может быть заморожена.
+    instance_actor_flash: Эта учётная запись — виртуальный актор. Она представляет сам сервер, а не какого-либо пользователя на нём. Эту учётную запись не следует блокировать, так как она используется для федерации.
     last_active: последняя активность
     link_verified_on: Владение этой ссылкой было проверено %{date}
     nothing_here: Здесь ничего нет!
@@ -87,8 +87,8 @@ ru:
       followers: Подписчики
       follows: Подписки
       header: Обложка профиля
-      inbox_url: URL входящих
-      invite_request_text: Причины для присоединения
+      inbox_url: Inbox URL
+      invite_request_text: Текст заявки на регистрацию
       invited_by: Приглашение выдал(а)
       ip: IP-адрес
       joined: Дата регистрации
@@ -129,8 +129,8 @@ ru:
       protocol: Протокол
       public: Профиль
       push_subscription_expires: Подписка PuSH истекает
-      redownload: Обновить аватар
-      redownloaded_msg: Профиль %{username} успешно обновлен из оригинала
+      redownload: Синхронизировать профиль
+      redownloaded_msg: Профиль %{username} синхронизирован с оригиналом
       reject: Отклонить
       rejected_msg: Заявка на регистрацию %{username} отклонена
       remote_suspension_irreversible: Данные этого аккаунта были необратимо удалены.
@@ -140,7 +140,7 @@ ru:
       removed_avatar_msg: Фото профиля %{username} удалено
       removed_header_msg: Обложка профиля %{username} удалена
       resend_confirmation:
-        already_confirmed: Этот пользователь уже подтвержден
+        already_confirmed: Этот пользователь уже подтверждён
         send: Повторно отправить ссылку подтверждения
         success: Ссылка для подтверждения успешно отправлена!
       reset: Сбросить
@@ -156,10 +156,10 @@ ru:
         password_and_2fa: Пароль и 2FA
       sensitive: Скрыть медиа
       sensitized: отмечено как деликатный контент
-      shared_inbox_url: URL общих входящих
+      shared_inbox_url: Shared inbox URL
       show:
-        created_reports: Жалобы, отправленные с этой учётной записи
-        targeted_reports: Жалобы на эту учётную запись
+        created_reports: Жалоб на других пользователей
+        targeted_reports: Жалоб от других пользователей
       silence: Ограничить
       silenced: Ограничена
       statuses: Посты
@@ -167,12 +167,12 @@ ru:
       subscribe: Подписаться
       suspend: Заблокировать
       suspended: Заблокирована
-      suspension_irreversible: Данные этой учётной записи были необратимо удалены. Вы можете разблокировать учетную запись, чтобы сделать её доступной, но это не восстановит ранее имевшиеся в ней данные.
-      suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это ниже.
+      suspension_irreversible: Данные этой учётной записи были необратимо удалены. Вы можете разблокировать учетную запись, чтобы сделать её доступной, но утраченные данные не будут восстановлены.
+      suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это, нажав кнопку ниже.
       title: Учётные записи
       unblock_email: Разблокировать e-mail адрес
       unblocked_email_msg: E-mail адрес %{username} разблокирован
-      unconfirmed_email: Неподтверждённый e-mail
+      unconfirmed_email: Неподтверждённый адрес электронной почты
       undo_sensitized: Не скрывать медиа
       undo_silenced: Не ограничивать
       undo_suspension: Разблокировать
@@ -186,142 +186,143 @@ ru:
       whitelisted: В белом списке
     action_logs:
       action_types:
-        approve_appeal: Удовлетворение апелляции
-        approve_user: Одобрение регистрации
-        assigned_to_self_report: Присвоение жалоб
-        change_email_user: Смена адреса эл. почты пользователя
-        change_role_user: Изменение роли пользователя
-        confirm_user: Подтверждение пользователя
-        create_account_warning: Вынесение предупреждения
-        create_announcement: Создание объявления
-        create_canonical_email_block: Добавление блокировки по адресу эл. почты
+        approve_appeal: Удовлетворение апелляций
+        approve_user: Одобрение регистраций
+        assigned_to_self_report: Назначение на жалобы
+        change_email_user: Смена адреса эл. почты пользователей
+        change_role_user: Изменение роли пользователей
+        confirm_user: Подтверждение пользователей
+        create_account_warning: Вынесение предупреждений
+        create_announcement: Создание объявлений
+        create_canonical_email_block: Добавление блокировок по адресу эл. почты
         create_custom_emoji: Добавление эмодзи
-        create_domain_allow: Разрешение доменов
-        create_domain_block: Блокировка доменов
-        create_email_domain_block: Добавление блокировки по домену эл. почты
+        create_domain_allow: Внесение доменов в белый список
+        create_domain_block: Внесение доменов в чёрный список
+        create_email_domain_block: Добавление блокировок по домену эл. почты
         create_ip_block: Создание правил для IP-адресов
-        create_relay: Создание ретранслятора
-        create_unavailable_domain: Добавление домена в список недоступных
-        create_user_role: Создание роли
-        create_username_block: Создать правило имени пользователя
+        create_relay: Добавление ретрансляторов
+        create_unavailable_domain: Приостановка доставки на сервер
+        create_user_role: Создание ролей
+        create_username_block: Создание правил для имени пользователя
         demote_user: Разжалование пользователей
-        destroy_announcement: Удаление объявления
-        destroy_canonical_email_block: Удаление блокировки по адресу эл. почты
+        destroy_announcement: Удаление объявлений
+        destroy_canonical_email_block: Удаление блокировок по адресу эл. почты
         destroy_custom_emoji: Удаление эмодзи
-        destroy_domain_allow: Отзыв разрешений для доменов
-        destroy_domain_block: Разблокировка доменов
-        destroy_email_domain_block: Удаление блокировки по домену эл. почты
-        destroy_instance: Очистить домен
+        destroy_domain_allow: Исключение доменов из белого списка
+        destroy_domain_block: Исключение доменов из чёрного списка
+        destroy_email_domain_block: Удаление блокировок по домену эл. почты
+        destroy_instance: Удаление данных сервера
         destroy_ip_block: Удаление правил для IP-адресов
-        destroy_relay: Удаление ретранслятора
+        destroy_relay: Удаление ретрансляторов
         destroy_status: Удаление постов
-        destroy_unavailable_domain: Исключение доменов из списка недоступных
+        destroy_unavailable_domain: Возобновление доставки на сервер
         destroy_user_role: Удаление ролей
-        destroy_username_block: Удалить правило имени пользователя
+        destroy_username_block: Удаления правил для имени пользователя
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
-        disable_relay: Отключение ретранслятора
+        disable_relay: Отключение ретрансляторов
         disable_sign_in_token_auth_user: Отключение аутентификации с помощью одноразового пароля по эл. почте
-        disable_user: Заморозка пользователей
+        disable_user: Отключение учётных записей пользователей
         enable_custom_emoji: Включение эмодзи
-        enable_relay: Включение ретранслятора
+        enable_relay: Включение ретрансляторов
         enable_sign_in_token_auth_user: Включение аутентификации с помощью одноразового пароля по эл. почте
-        enable_user: Разморозка пользователей
-        memorialize_account: Присвоение пользователям статуса «мемориала»
+        enable_user: Включение учётных записей пользователей
+        memorialize_account: Превращение учётных записей в мемориальные
         promote_user: Повышение пользователей
-        publish_terms_of_service: Публикация пользовательского соглашения
-        reject_appeal: Отклонение обжалований
+        publish_terms_of_service: Публикация пользовательских соглашений
+        reject_appeal: Отклонение апелляций
         reject_user: Отклонение регистраций
-        remove_avatar_user: Удаление аватаров
-        reopen_report: Возобновление жалоб
+        remove_avatar_user: Удаление фото профиля
+        reopen_report: Отметка жалоб нерешёнными
         resend_user: Повторная отправка писем с подтверждением
-        reset_password_user: Сброс пароля пользователей
-        resolve_report: Отметка жалоб «решёнными»
-        sensitive_account: Присвоение пользователям отметки «деликатного содержания»
-        silence_account: Скрытие пользователей
+        reset_password_user: Сброс паролей пользователей
+        resolve_report: Отметка жалоб решёнными
+        sensitive_account: Включение принудительного скрытия медиа для учётной записи
+        silence_account: Ограничение учётных записей пользователей
         suspend_account: Блокировка пользователей
-        unassigned_report: Снятие жалоб
-        unblock_email_account: Разблокировка e-mail адресов
-        unsensitive_account: Снятие с пользователей отметки «деликатного содержания»
-        unsilence_account: Отмена скрытия пользователей
+        unassigned_report: Отмена назначений на жалобы
+        unblock_email_account: Разблокировка адресов эл. почты
+        unsensitive_account: Отключение принудительного скрытия медиа для учётной записи
+        unsilence_account: Отмена ограничения учётных записей пользователей
         unsuspend_account: Разблокировка пользователей
-        update_announcement: Обновление объявлений
+        update_announcement: Редактирование объявлений
         update_custom_emoji: Обновление эмодзи
         update_domain_block: Изменение блокировки домена
-        update_ip_block: Обновление правил для IP-адресов
-        update_report: Изменение жалоб
-        update_status: Изменение постов
-        update_user_role: Изменение ролей
-        update_username_block: Обновить правило имени пользователя
+        update_ip_block: Редактирование правил для IP-адресов
+        update_report: Редактирование жалоб
+        update_status: Редактирование постов
+        update_user_role: Редактирование ролей
+        update_username_block: Редактирование правил для имени пользователя
       actions:
         approve_appeal_html: "%{name} удовлетворил(а) апелляцию %{target}"
         approve_user_html: "%{name} одобрил(а) заявку на регистрацию %{target}"
-        assigned_to_self_report_html: "%{name} назначил(а) себя для решения жалобы %{target}"
+        assigned_to_self_report_html: "%{name} назначил(а) себя на жалобу %{target}"
         change_email_user_html: "%{name} cменил(а) e-mail адрес пользователя %{target}"
         change_role_user_html: "%{name} изменил(а) роль %{target}"
-        confirm_user_html: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
+        confirm_user_html: "%{name} подтвердил(а) адрес электронной почты пользователя %{target}"
         create_account_warning_html: "%{name} выдал(а) предупреждение %{target}"
         create_announcement_html: "%{name} создал(а) новое объявление %{target}"
-        create_canonical_email_block_html: "%{name} заблокировал(а) e-mail с хешем %{target}"
+        create_canonical_email_block_html: "%{name} заблокировал(а) адрес электронной почты с хешем %{target}"
         create_custom_emoji_html: "%{name} загрузил(а) новый эмодзи %{target}"
         create_domain_allow_html: "%{name} разрешил(а) федерацию с доменом %{target}"
         create_domain_block_html: "%{name} заблокировал(а) домен %{target}"
-        create_email_domain_block_html: "%{name} заблокировал(а) e-mail домен %{target}"
+        create_email_domain_block_html: "%{name} заблокировал(а) домен электронной почты %{target}"
         create_ip_block_html: "%{name} создал(а) правило для IP %{target}"
-        create_relay_html: "%{name} создал(а) ретранслятор %{target}"
-        create_unavailable_domain_html: "%{name} приостановил доставку на узел %{target}"
+        create_relay_html: "%{name} добавил(а) ретранслятор %{target}"
+        create_unavailable_domain_html: "%{name} приостановил(а) доставку на сервер %{target}"
         create_user_role_html: "%{name} создал(а) роль %{target}"
         create_username_block_html: "%{name} создал(а) правило для имён пользователей, содержащих %{target}"
         demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
         destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
-        destroy_canonical_email_block_html: "%{name} снял(а) блокировку e-mail с хэшем %{target}"
+        destroy_canonical_email_block_html: "%{name} разблокировал(а) адрес электронной почты с хешем %{target}"
         destroy_collection_html: "%{name} удалил(а) подборку пользователя %{target}"
         destroy_custom_emoji_html: "%{name} удалил(а) эмодзи %{target}"
         destroy_domain_allow_html: "%{name} запретил(а) федерацию с доменом %{target}"
-        destroy_domain_block_html: "%{name} снял(а) блокировку с домена %{target}"
-        destroy_email_domain_block_html: "%{name} снял(а) блокировку с e-mail домена %{target}"
-        destroy_instance_html: "%{name} очистил(а) данные для домена %{target}"
+        destroy_domain_block_html: "%{name} разблокировал(а) домен %{target}"
+        destroy_email_domain_block_html: "%{name} разблокировал(а) домен электронной почты %{target}"
+        destroy_instance_html: "%{name} удалил(а) данные сервера %{target}"
         destroy_ip_block_html: "%{name} удалил(а) правило для IP %{target}"
         destroy_relay_html: "%{name} удалил(а) ретранслятор %{target}"
         destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
-        destroy_unavailable_domain_html: "%{name} возобновил доставку на узел %{target}"
+        destroy_unavailable_domain_html: "%{name} возобновил(а) доставку на сервер %{target}"
         destroy_user_role_html: "%{name} удалил(а) роль %{target}"
         destroy_username_block_html: "%{name} удалил(а) правило для имён пользователей, содержащих %{target}"
-        disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
+        disable_2fa_user_html: "%{name} отключил(а) требование второго фактора аутентификации для пользователя %{target}"
         disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
         disable_relay_html: "%{name} отключил(а) ретранслятор %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию с помощью одноразового пароля по эл. почте для %{target}"
-        disable_user_html: "%{name} заморозил(а) пользователя %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию с помощью одноразового пароля по электронной почте для %{target}"
+        disable_user_html: "%{name} отключил(а) учётную запись пользователя %{target}"
         enable_custom_emoji_html: "%{name} включил(а) эмодзи %{target}"
         enable_relay_html: "%{name} включил(а) ретранслятор %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию с помощью одноразового пароля по эл. почте для %{target}"
-        enable_user_html: "%{name} разморозил(а) пользователя %{target}"
-        memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
+        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию с помощью одноразового пароля по электронной почте для %{target}"
+        enable_user_html: "%{name} включил(а) учётную запись пользователя %{target}"
+        memorialize_account_html: "%{name} превратил(а) учётную запись пользователя %{target} в мемориальную"
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
         publish_terms_of_service_html: "%{name} опубликовал(а) обновление пользовательского соглашения"
-        reject_appeal_html: "%{name} отклонил(а) обжалование действий модерации от %{target}"
-        reject_user_html: "%{name} отклонил(а) регистрацию %{target}"
-        remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
-        reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
+        reject_appeal_html: "%{name} отклонил(а) апелляцию %{target}"
+        reject_user_html: "%{name} отклонил(а) заявку на регистрацию %{target}"
+        remove_avatar_user_html: "%{name} удалил(а) фото профиля %{target}"
+        reopen_report_html: "%{name} отметил(а) жалобу %{target} как нерешённую"
         resend_user_html: "%{name} повторно отправил(а) письмо с подтверждением для %{target}"
         reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
-        resolve_report_html: "%{name} решил(а) жалобу %{target}"
-        sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатного характера»"
-        silence_account_html: "%{name} наложил(а) ограничения на видимость постов пользователя %{target}"
+        resolve_report_html: "%{name} отметил(а) жалобу %{target} как решённую"
+        sensitive_account_html: "%{name} включил(а) принудительное скрытие медиа для учётной записи %{target}"
+        silence_account_html: "%{name} ограничил(а) учётную запись %{target}"
         suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
-        unassigned_report_html: "%{name} снял(а) назначение жалобы %{target}"
-        unblock_email_account_html: "%{name} разблокировал(а) e-mail адрес %{target}"
-        unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатного характера»"
-        unsilence_account_html: "%{name} снял(а) ограничения видимости постов пользователя %{target}"
-        unsuspend_account_html: "%{name} снял(а) блокировку с пользователя %{target}"
-        update_announcement_html: "%{name} обновил(а) объявление %{target}"
+        unassigned_report_html: "%{name} отменил(а) назначение на жалобу %{target}"
+        unblock_email_account_html: "%{name} разблокировал(а) адрес электронной почты пользователя %{target}"
+        unsensitive_account_html: "%{name} отключил(а) принудительное скрытие медиа для учётной записи %{target}"
+        unsilence_account_html: "%{name} отменил(а) ограничение учётной записи %{target}"
+        unsuspend_account_html: "%{name} разблокировал(а) учётную запись %{target}"
+        update_announcement_html: "%{name} отредактировал(а) объявление %{target}"
+        update_collection_html: "%{name} внес(ла) изменения в подборку пользователя %{target}"
         update_custom_emoji_html: "%{name} обновил(а) эмодзи %{target}"
         update_domain_block_html: "%{name} обновил(а) блокировку домена для %{target}"
-        update_ip_block_html: "%{name} изменил(а) правило для IP %{target}"
-        update_report_html: "%{name} изменил(а) жалобу %{target}"
-        update_status_html: "%{name} изменил(а) пост пользователя %{target}"
-        update_user_role_html: "%{name} изменил(а) роль %{target}"
-        update_username_block_html: "%{name} обновил(а) правило для имён пользователей, содержащих %{target}"
+        update_ip_block_html: "%{name} внес(ла) изменения в правило для IP %{target}"
+        update_report_html: "%{name} внес(ла) изменения в жалобу %{target}"
+        update_status_html: "%{name} отредактировал(а) пост пользователя %{target}"
+        update_user_role_html: "%{name} внес(ла) изменения в роль %{target}"
+        update_username_block_html: "%{name} внес(ла) изменения в правило для имён пользователей, содержащих %{target}"
       deleted_account: удалённая учётная запись
       empty: Журнал пуст.
       filter_by_action: Фильтр по действию
@@ -344,12 +345,17 @@ ru:
         title: Предпросмотр уведомления о новом объявлении
       publish: Опубликовать
       published_msg: Объявление опубликовано
-      scheduled_for: Запланировано на %{time}
-      scheduled_msg: Объявление добавлено в очередь публикации.
+      scheduled_for: Будет опубликовано %{time}
+      scheduled_msg: Объявление с отложенной публикацией создано
       title: Объявления
       unpublish: Скрыть
       unpublished_msg: Объявление скрыто
       updated_msg: Объявление отредактировано
+    collections:
+      accounts: Учётные записи
+      contents: Контент
+      open: Открыть
+      view_publicly: Посмотреть публично
     critical_update_pending: Доступно критическое обновление
     custom_emojis:
       assign_category: Задать категорию
@@ -492,9 +498,28 @@ ru:
         title: Заблокировать домен электронной почты
       no_email_domain_block_selected: Ничего не изменилось, так как ни один почтовый домен не был выделен
       not_permitted: Недостаточно прав
+      reset: Перезагрузить
       resolved_dns_records_hint_html: Доменное имя указывает на следующие MX-домены, которые в конечном итоге отвечают за приём электронной почты. Блокировка MX-домена приведёт к блокировке регистраций со всех адресов электронной почты, которые используют тот же MX-домен, даже если видимое доменное имя отличается от него. <strong>Будьте осторожны, чтобы не заблокировать основных провайдеров электронной почты</strong>
       resolved_through_html: Из DNS-записей домена %{domain}
+      search: Искать
       title: Блокировки по домену эл. почты
+    email_subscriptions:
+      accounts:
+        account: Аккаунт
+        status: Статус
+        subscribers: Подписчики
+      danger_zone:
+        disable_feature:
+          action: Выключить
+        title: Опасная зона
+      roles:
+        accounts: Аккаунты
+        edit_role: Изменить роль
+        role_name: Ролевое имя
+        title: Роли
+      setups:
+        show:
+          important_information: Важная информация
     export_domain_allows:
       new:
         title: Импорт белого списка доменов
@@ -679,7 +704,6 @@ ru:
       action_log: Журнал аудита
       action_taken_by: 'Действие предпринято:'
       actions:
-        delete_description_html: Обжалованные сообщения будут удалены, а претензия - записана, чтобы помочь вам в решении конфликтов при повторных нарушениях со стороны того же аккаунта.
         mark_as_sensitive_description_html: Весь медиаконтент в обжалованных сообщениях будет отмечен как чувствительный, а претензия - записана, чтобы помочь вам в решении конфликтов при повторных нарушениях со стороны того же аккаунта.
         other_description_html: Посмотрите больше настроек для контроля поведения учётной записи и наладьте связь с аккаунтом с жалобой.
         resolve_description_html: Никаких действий не будет выполнено относительно доложенного содержимого. Жалоба будет закрыта.
@@ -699,13 +723,13 @@ ru:
       cancel: Отменить
       category: Категория
       category_description_html: Причина, по которой были доложены этот пользователь или содержимое, будет указана при коммуникации с фигурирующим в жалобе пользователем
+      collections: Коллекции (%{count})
       comment:
         none: Нет
       comment_description_html: 'В дополнение, %{name} добавил(а) следующий комментарий:'
       confirm: Подтвердить
       confirm_action: Произвести модерацию учётной записи %{acct}
       created_at: Создана
-      delete_and_resolve: Удалить посты
       forwarded: Переслано
       forwarded_replies_explanation: Этот отчёт получен от удаленного пользователя и касается удаленного содержимого. Он был направлен вам, так как содержимое сообщения является ответом одному из ваших пользователей.
       forwarded_to: Переслано на %{domain}
@@ -728,11 +752,13 @@ ru:
       report: Жалоба №%{id}
       reported_account: Учётная запись нарушителя
       reported_by: Отправитель жалобы
+      reported_content: Жалоба на контент
       reported_with_application: Использованное для отправки жалобы приложение
       resolved: Решённые
       resolved_msg: Жалоба обработана, спасибо!
       skip_to_actions: Перейти к действиям
       status: Статус
+      statuses: Посты (%{count})
       statuses_description_html: Нарушающее правила содержимое будет процитировано при коммуникации с фигурирующим в жалобе аккаунтом
       summary:
         action_preambles:
@@ -769,6 +795,7 @@ ru:
       categories:
         administration: Администрирование
         devops: DevOps
+        email: Email
         invites: Приглашения
         moderation: Модерирование
         special: Особые разрешения
@@ -880,11 +907,6 @@ ru:
           authenticated: Только авторизованные пользователи
           disabled: Только пользователи с особой ролью
           public: Кто угодно
-      landing_page:
-        values:
-          about: О сервере
-          local_feed: Локальная лента
-          trends: Актуальное
       registrations:
         moderation_recommandation: Прежде чем открывать регистрацию для всех желающих, убедитесь, что у вас есть компетентная команда модераторов, способная на быструю реакцию!
         preamble: Контролируйте, кто может создать учётную запись на вашем сервере.
@@ -1234,7 +1256,7 @@ ru:
     discovery: Актуальное
     localization:
       body: Mastodon переводится добровольцами.
-      guide_link: https://ru.crowdin.com/project/mastodon/ru
+      guide_link: https://ru.crowdin.com/project/mastodon
       guide_link_text: Каждый может внести свой вклад.
     sensitive_content: Содержимое деликатного характера
   application_mailer:
@@ -1304,6 +1326,7 @@ ru:
       invited_by: Вы можете зарегистрироваться на сервере %{domain}, потому что вы получили приглашение от
       preamble: Модераторы сервера %{domain} установили эти правила и следят за их исполнением.
       preamble_invited: Прежде чем продолжить, ознакомьтесь с основными правилами, установленными модераторами сервера %{domain}.
+      read_more: Подробнее
       title: Несколько основных правил.
       title_invited: Вы получили приглашение.
     security: Безопасность
@@ -1346,6 +1369,13 @@ ru:
     hint_html: "<strong>Подсказка:</strong> В течение часа вам не придётся снова вводить свой пароль."
     invalid_password: Неверный пароль
     prompt: Введите пароль, чтобы продолжить
+  color_scheme:
+    auto: Авто
+    dark: Тёмный
+    light: Светлый
+  contrast:
+    auto: Авто
+    high: Высоко
   crypto:
     errors:
       invalid_key: должен быть действительным Ed25519- или Curve25519-ключом
@@ -1415,12 +1445,19 @@ ru:
       your_appeal_pending: Вы подали апелляцию
       your_appeal_rejected: Ваша апелляция отклонена
   edit_profile:
-    basic_information: Основные данные
-    hint_html: "<strong>Здесь вы можете изменить всё то, что будет отображаться в вашем публичном профиле и рядом с вашими постами.</strong> На вас будут чаще подписываться и с вами будут чаще взаимодействовать, если у вас будет заполнен профиль и добавлено фото профиля."
     other: Разное
     redesign_body: Теперь редактирование профиля доступно прямо на странице профиля.
     redesign_button: Перейти
     redesign_title: Редактируйте профиль по-новому
+  email_subscription_mailer:
+    confirmation:
+      action: Подтвердить адрес электронной почты
+  email_subscriptions:
+    confirmations:
+      show:
+        unsubscribe: Отписаться
+    status: Состояние сервера
+    subscribers: Подписчики
   emoji_styles:
     auto: Автоматически
     native: Как в системе
@@ -1459,10 +1496,8 @@ ru:
     mutes: Игнорируемые пользователи
     storage: Хранилище медиа
   featured_tags:
-    add_new: Добавить
     errors:
       limit: Вы достигли максимального количества хештегов, которые можно рекомендовать в профиле
-    hint_html: "<strong>Рекомендуйте самые важные для вас хештеги в своём профиле.</strong> Это отличный инструмент для того, чтобы держать подписчиков в курсе ваших долгосрочных проектов и творческих работ. Рекомендации хештегов заметны в вашем профиле и предоставляют быстрый доступ к вашим постам."
   filters:
     contexts:
       account: Профили
@@ -1674,6 +1709,9 @@ ru:
       expires_at: Истекает
       uses: Регистрации
     title: Приглашения
+  link_preview:
+    potentially_sensitive_content:
+      hide_button: Скрыть
   lists:
     errors:
       limit: Вы достигли максимального количества списков
@@ -1771,6 +1809,7 @@ ru:
     update:
       subject: "%{name} отредактировал(а) пост"
   notifications:
+    administration_emails: Email уведомления админа
     email_events: События для уведомлений по электронной почте
     email_events_hint: 'Выберите события, для которых вы хотели бы получать уведомления:'
   number:
@@ -1810,6 +1849,7 @@ ru:
       self_vote: Вы не можете голосовать в своих опросах
       too_few_options: должны содержать не меньше двух опций
       too_many_options: должны ограничиваться максимум %{max} опциями
+    vote: Проголосовать
   preferences:
     other: Разное
     posting_defaults: Предустановки для новых постов
@@ -1971,6 +2011,9 @@ ru:
         other: "%{count} видео"
     boosted_from_html: Продвижение польз. %{acct_link}
     content_warning: 'Предупреждение о содержании: %{warning}'
+    content_warnings:
+      hide: Скрыть пост
+      show: Показать больше
     default_language: Тот же, что язык интерфейса
     disallowed_hashtags:
       few: 'содержались запрещённые хэштеги: %{tags}'
@@ -1987,6 +2030,9 @@ ru:
       limit: Вы достигли максимального количества постов, которые можно закрепить в профиле
       ownership: Нельзя закрепить чужой пост
       reblog: Нельзя закрепить продвижение
+    quote_error:
+      not_available: Пост недоступен
+      revoked: Пост удален автором
     quote_policies:
       followers: Только подписчики
       nobody: Только я
@@ -2072,19 +2118,26 @@ ru:
     recovery_codes_regenerated: Новые резервные коды сгенерированы
     recovery_instructions_html: Если случится так, что у вас не будет доступа к смартфону, резервные коды позволят вам восстановить доступ к своей учётной записи. <strong>Храните резервные коды в надёжном месте.</strong> К примеру, вы можете распечатать их и убрать туда, где лежат другие важные документы.
     webauthn: Электронные ключи
+  unsubscriptions:
+    create:
+      action: Перейти на главную страницу сервера
+      title: Вы отписались
+    show:
+      action: Отписаться
+      email_subscription:
+        confirmation_html: Вы перестанете получать уведомления по электронной почте, когда на этой странице будут появляться новые публикации.
+        title: Отписаться от %{name}?
   user_mailer:
     announcement_published:
       description: 'Администраторы %{domain} опубликовали новое объявление:'
       subject: Сервисное объявление
       title: Сервисное объявление %{domain}
     appeal_approved:
-      action: Настройки аккаунта
-      explanation: Апелляция на разблокировку против вашей учетной записи %{strike_date}, которую вы подали на %{appeal_date}, была одобрена. Ваша учетная запись снова на хорошем счету.
+      action: Настройки учётной записи
       subject: Ваше обжалование от %{date} была одобрено
       subtitle: Ваш аккаунт снова с хорошей репутацией.
       title: Обжалование одобрено
     appeal_rejected:
-      explanation: Апелляция на разблокировку против вашей учетной записи %{strike_date}, которую вы подали на %{appeal_date}, была одобрена. Ваша учетная запись восстановлена.
       subject: Ваше обжалование от %{date} отклонено
       subtitle: Ваша апелляция отклонена.
       title: Обжалование отклонено
@@ -2131,50 +2184,63 @@ ru:
       reason: 'Причина:'
       statuses: 'Цитируемые посты:'
       subject:
-        delete_statuses: Опубликованные вами с учётной записи %{acct} посты были удалены
-        disable: Ваша учётная запись %{acct} заморожена
-        mark_statuses_as_sensitive: Ваши сообщения в %{acct} были отмечены как деликатные
+        delete_statuses: Посты в вашей учётной записи %{acct} были удалены
+        disable: Ваша учётная запись %{acct} была заморожена
+        mark_statuses_as_sensitive: Посты в вашей учётной записи %{acct} были отмечены как содержимое деликатного характера
         none: "%{acct} вынесено предупреждение"
-        sensitive: Ваши сообщения в %{acct} будут отмечены с этого момента как деликатные
-        silence: На учётную запись %{acct} наложены ограничения
+        sensitive: Ваша учётная запись %{acct} получила отметку «деликатного содержания»
+        silence: Ваша учётная запись %{acct} была ограничена
         suspend: Ваша учётная запись %{acct} была заблокирована
       title:
-        delete_statuses: Ваши посты удалены
+        delete_statuses: Посты удалены
         disable: Учётная запись заморожена
-        mark_statuses_as_sensitive: Посты, отмеченные как деликатные
+        mark_statuses_as_sensitive: Посты отмечены как содержимое деликатного характера
         none: Предупреждение
-        sensitive: Учетная запись отмечена как деликатная
-        silence: На учётную запись наложены ограничения
+        sensitive: Учётная запись получила отметку «деликатного содержания»
+        silence: Учётная запись ограничена
         suspend: Учётная запись заблокирована
     welcome:
-      apps_android_action: Скачать на Google Play
-      apps_ios_action: Скачать в App Store
-      apps_step: Загрузите наши официальные приложения.
+      apps_android_action: Установить из Google Play
+      apps_ios_action: Установить из App Store
+      apps_step: Установите наши официальные приложения.
       apps_title: Приложения Mastodon
-      checklist_subtitle: 'Давайте начнем знакомство с этим новым социальным рубежом:'
-      edit_profile_action: Персонализация
-      edit_profile_title: Персонализируйте свой профиль
+      checklist_subtitle: 'Вот несколько шагов, чтобы освоиться на новом рубеже:'
+      checklist_title: С чего начать
+      edit_profile_action: В профиль
+      edit_profile_step: С заполненным профилем вы получите больше взаимодействий.
+      edit_profile_title: Создайте профиль
       explanation: Вот несколько советов для новичков
       feature_action: Подробнее
-      feature_control: Вы сами знаете, что хотите видеть в своей ленте. Никаких алгоритмов или рекламы, чтобы тратить ваше время. Следите за любым человеком на любом сервере Mastodon с одного аккаунта и получайте его сообщения в хронологическом порядке, а также сделайте свой уголок интернета немного больше похожим на себя.
-      feature_creativity: Mastodon поддерживает аудио-, видео- и фотопосты, описания доступности, опросы, предупреждения о содержании, анимированные аватары, пользовательские emojis, управление обрезкой миниатюр и многое другое, чтобы помочь вам выразить себя в Интернете. Публикуете ли вы свои работы, музыку или подкаст, Mastodon всегда готов помочь вам.
-      feature_creativity_title: Непревзойденная креативность
-      feature_moderation: Mastodon возвращает принятие решений в ваши руки. Каждый сервер создает свои собственные правила и нормы, которые соблюдаются локально, а не сверху вниз, как в корпоративных социальных сетях, что позволяет наиболее гибко реагировать на потребности различных групп людей. Присоединяйтесь к серверу с правилами, с которыми вы согласны, или создайте свой собственный.
-      feature_moderation_title: Модерирование, каким оно должно быть
-      follow_title: Персонализируйте свою домашнюю ленту
+      feature_audience: Mastodon предоставляет уникальную возможность управлять своей аудиторией без посредников. Если вы разместите сервер Mastodon на собственной инфраструктуре, никто другой кроме вас не будет его контролировать, при этом вы сможете подписываться на пользователей с любых других серверов Mastodon, а они смогут подписаться на вас.
+      feature_audience_title: Формируйте свою аудиторию с уверенностью
+      feature_control: Вы сами лучше всех знаете, что вы хотите видеть в своей домашней ленте. Здесь нет алгоритмов и рекламы, которые бы тратили ваше время. С учётной записью на одном сервере вы можете подписываться на пользователей с любых других серверов Mastodon и получать от них новые посты в хронологическом порядке. Так вы можете немного приблизиться к тому, чтобы сделать этот уголок интернета по-настоящему своим.
+      feature_control_title: Управляйте своей лентой
+      feature_creativity: В Mastodon можно прикреплять к постам аудио, видео и фото, добавлять описания для людей с ограничениями зрения и слуха, создавать опросы, использовать предупреждения о содержании, анимированные аватары и необычные эмодзи, редактировать область предпросмотра изображения — всё это и многое другое для того, чтобы помочь вам выразить себя в интернете. Публикуете ли вы своё творчество, музыку или подкаст, Mastodon вам в этом пригодится.
+      feature_creativity_title: Несравненная креативность
+      feature_moderation: Mastodon возвращает принятие решений в ваши руки. В отличие от принадлежащих корпорациям социальных сетей, в которых правила спускаются сверху, каждый сервер Mastodon устанавливает свои локальные правила и нормы и следит за их соблюдением, что позволяет наиболее гибко реагировать на потребности различных групп людей. Присоединяйтесь к серверу с правилами, с которыми вы согласны, или создайте свой собственный.
+      feature_moderation_title: Модерация, какой она должна быть
+      follow_action: Подписаться
+      follow_step: Подписывайтесь на интересных людей — в этом суть Mastodon.
+      follow_title: Наполните свою домашнюю ленту
+      follows_subtitle: Подпишитесь на популярных пользователей
+      follows_title: На кого подписаться
+      follows_view_more: К другим рекомендуемым профилям
       hashtags_recent_count:
         few: "%{people} человека за последние 2 дня"
         many: "%{people} человек за последние 2 дня"
         one: "%{people} человек за последние 2 дня"
-        other: "%{people} человек за последние 2 дня"
-      hashtags_subtitle: Изучите, что было в тренде за последние 2 дня
-      hashtags_view_more: Посмотреть другие трендовые хэштеги
-      post_action: Составить
-      post_step: Поприветствуйте мир с помощью текста, фотографий, видео или опросов.
-      post_title: Сделайте свой первый пост
-      share_step: Пусть ваши друзья знают, как найти вас на Mastodon.
+        other: "%{people} человека за последние 2 дня"
+      hashtags_subtitle: Посмотрите, что обсуждали за последние 2 дня
+      hashtags_title: Актуальные хештеги
+      hashtags_view_more: К другим актуальным хештегам
+      post_action: Написать
+      post_step: Поздоровайтесь с миром с помощью текста, фото, видео или опросов.
+      post_title: Опубликуйте свой первый пост
+      share_step: Расскажите своим друзьям, как найти вас в Mastodon.
+      share_title: Поделитесь своим профилем Mastodon
+      sign_in_action: Войти
       subject: Добро пожаловать в Mastodon
-      title: Добро пожаловать на борт, %{name}!
+      title: Добро пожаловать на сервер, %{name}!
   users:
     follow_limit_reached: Вы можете подписаться не больше чем на %{limit} человек
     go_to_sso_account_settings: Перейти к настройкам сторонних аккаунтов учетной записи

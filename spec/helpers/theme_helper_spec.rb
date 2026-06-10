@@ -12,7 +12,7 @@ RSpec.describe ThemeHelper do
       it 'returns the default stylesheet' do
         expect(html_links.last.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/default/))
+            href: have_attributes(value: include('default'))
           )
       end
     end
@@ -109,9 +109,18 @@ RSpec.describe ThemeHelper do
       end
 
       context 'when theme is changed in settings' do
-        before { Setting.theme = 'contrast' }
+        before do
+          allow(Themes.instance).to receive(:names).and_return(%w(default contrast))
+          Setting.theme = 'contrast'
+        end
 
         it { is_expected.to eq('contrast') }
+      end
+
+      context 'when theme is changed to invalid value' do
+        before { Setting.theme = 'fakethemename' }
+
+        it { is_expected.to eq('default') }
       end
     end
 

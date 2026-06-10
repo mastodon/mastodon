@@ -33,14 +33,12 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     # FEP-2c59 defines a `webfinger` attribute that makes things more explicit and spares an extra request in some cases.
     # It supersedes `preferredUsername`.
-    if @json['webfinger'].present? && @json['webfinger'].is_a?(String)
-      @username, @domain = split_acct(@json['webfinger'])
-      Rails.logger.debug { "Actor #{uri} has an invalid `webfinger` value, falling back to `preferredUsername`" }
-    end
+    @username, @domain = split_acct(@json['webfinger']) if @json['webfinger'].present? && @json['webfinger'].is_a?(String)
 
     if @username.blank? || @domain.blank?
       raise "Actor #{uri} has no `preferredUsername`, and either a bogus or missing `webfinger`, which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank?
 
+      Rails.logger.debug { "Actor #{uri} has an invalid `webfinger` value, falling back to `preferredUsername`" } if @json['webfinger'].present?
       @username = @json['preferredUsername']
       @domain   = Addressable::URI.parse(@uri).normalized_host
     end

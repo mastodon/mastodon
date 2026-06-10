@@ -20,7 +20,8 @@ export interface StatusHeaderProps {
   status: Status;
   account?: Account;
   avatarSize?: number;
-  children?: ReactNode;
+  contentBeforeDate?: ReactNode;
+  contentAfterDate?: ReactNode;
   wrapperProps?: HTMLAttributes<HTMLDivElement>;
   displayNameProps?: DisplayNameProps;
   onHeaderClick?: MouseEventHandler<HTMLDivElement>;
@@ -33,10 +34,11 @@ export type StatusHeaderRenderFn = (args: StatusHeaderProps) => ReactNode;
 export const StatusHeader: FC<StatusHeaderProps> = ({
   status,
   account,
-  children,
   className,
   avatarSize = 48,
   wrapperProps,
+  contentBeforeDate,
+  contentAfterDate,
   onHeaderClick,
 }) => {
   const statusAccount = status.get('account') as Account | undefined;
@@ -51,25 +53,24 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
       className={classNames('status__info', className)}
       /* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
     >
-      <Link
-        to={`/@${statusAccount?.acct}/${status.get('id') as string}`}
-        className='status__relative-time'
-      >
-        <StatusVisibility visibility={status.get('visibility')} />
-        <RelativeTimestamp
-          timestamp={status.get('created_at') as string}
-          noFuture
-        />
-        {editedAt && <StatusEditedAt editedAt={editedAt} />}
-      </Link>
-
       <StatusDisplayName
         statusAccount={statusAccount}
         friendAccount={account}
         avatarSize={avatarSize}
       />
 
-      {children}
+      {contentBeforeDate}
+
+      <Link
+        to={`/@${statusAccount?.acct}/${status.get('id') as string}`}
+        className='status__relative-time'
+      >
+        <StatusVisibility visibility={status.get('visibility')} />
+        <RelativeTimestamp timestamp={status.get('created_at') as string} />
+        {editedAt && <StatusEditedAt editedAt={editedAt} />}
+      </Link>
+
+      {contentAfterDate}
     </div>
   );
 };

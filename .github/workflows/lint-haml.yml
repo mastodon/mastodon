@@ -6,7 +6,6 @@ on:
       - 'main'
       - 'stable-*'
     paths:
-      - '.github/workflows/haml-lint-problem-matcher.json'
       - '.github/workflows/lint-haml.yml'
       - '.haml-lint*.yml'
       - '.rubocop*.yml'
@@ -16,7 +15,6 @@ on:
 
   pull_request:
     paths:
-      - '.github/workflows/haml-lint-problem-matcher.json'
       - '.github/workflows/lint-haml.yml'
       - '.haml-lint*.yml'
       - '.rubocop*.yml'
@@ -27,16 +25,17 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     env:
       BUNDLE_ONLY: development
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@c984c1a20bb35a1cbda04477c816cea024418be9 # v1
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1
         with:
           bundler-cache: true
 

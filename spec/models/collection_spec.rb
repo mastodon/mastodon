@@ -10,8 +10,6 @@ RSpec.describe Collection do
 
     it { is_expected.to validate_length_of(:name).is_at_most(40) }
 
-    it { is_expected.to validate_presence_of(:description) }
-
     it { is_expected.to validate_length_of(:description).is_at_most(100) }
 
     it { is_expected.to_not allow_value(nil).for(:local) }
@@ -28,10 +26,6 @@ RSpec.describe Collection do
       subject { Fabricate.build :collection, local: false }
 
       it { is_expected.to validate_length_of(:name).is_at_most(Collection::NAME_LENGTH_HARD_LIMIT) }
-
-      it { is_expected.to_not validate_presence_of(:description) }
-
-      it { is_expected.to validate_presence_of(:description_html) }
 
       it { is_expected.to validate_length_of(:description_html).is_at_most(Collection::DESCRIPTION_LENGTH_HARD_LIMIT) }
 
@@ -64,17 +58,50 @@ RSpec.describe Collection do
       let(:collection_items) { Fabricate.build_times(described_class::MAX_ITEMS + 1, :collection_item, collection: nil) }
 
       it { is_expected.to_not be_valid }
+
+      context 'when the limit is only exceeded due to `rejected` and `revoked` items' do
+        let(:collection_items) do
+          items = Fabricate.build_times(described_class::MAX_ITEMS - 2, :collection_item, collection: nil, state: :accepted)
+          items << Fabricate.build(:collection_item, collection: nil, state: :pending)
+          items << Fabricate.build(:collection_item, collection: nil, state: :rejected)
+          items << Fabricate.build(:collection_item, collection: nil, state: :revoked)
+          items
+        end
+
+        it { is_expected.to be_valid }
+      end
+    end
+
+    context 'when the user is already at the per-user limit of collections' do
+      subject { Fabricate.build(:collection, account:) }
+
+      let(:role) { Fabricate(:user_role, collection_limit: 2) }
+      let(:user) { Fabricate(:user, role:) }
+      let(:account) { user.account }
+
+      before do
+        Fabricate.times(2, :collection, account:)
+      end
+
+      it { is_expected.to_not be_valid }
     end
   end
 
   describe '#item_for' do
     subject { Fabricate(:collection) }
 
-    let!(:items) { Fabricate.times(2, :collection_item, collection: subject) }
+    let!(:accepted_items) { Fabricate.times(2, :collection_item, collection: subject, state: :accepted) }
+    let!(:pending_item) { Fabricate(:collection_item, collection: subject, state: :pending) }
+
+    before do
+      %i(rejected revoked).each do |state|
+        Fabricate(:collection_item, collection: subject, state:)
+      end
+    end
 
     context 'when given no account' do
-      it 'returns all items' do
-        expect(subject.items_for).to match_array(items)
+      it 'returns all accepted items' do
+        expect(subject.items_for).to match_array(accepted_items)
       end
     end
 
@@ -82,11 +109,41 @@ RSpec.describe Collection do
       let(:account) { Fabricate(:account) }
 
       before do
-        account.block!(items.first.account)
+        account.block!(accepted_items.first.account)
       end
 
       it 'does not return items blocked by this account' do
-        expect(subject.items_for(account)).to contain_exactly(items.last)
+        expect(subject.items_for(account)).to contain_exactly(accepted_items.last)
+      end
+    end
+
+    context 'when given the owner of the collection' do
+      let(:account) { subject.account }
+
+      it 'returns accepted and pending items' do
+        expect(subject.items_for(account)).to match_array(accepted_items + [pending_item])
+      end
+    end
+
+    context 'when `include_accounts` is set to `true`' do
+      it 'preloads accounts' do
+        items = subject.items_for(include_accounts: true).to_a
+
+        expect { items.first.account }.to_not execute_queries
+      end
+    end
+
+    context 'when called multiple times' do
+      let(:account) { subject.account }
+
+      it 'memoizes results' do
+        subject.items_for.to_a
+
+        expect { subject.items_for.to_a }.to_not execute_queries
+
+        expect { subject.items_for(account).to_a }.to execute_queries
+
+        expect { subject.items_for(account).to_a }.to_not execute_queries
       end
     end
   end

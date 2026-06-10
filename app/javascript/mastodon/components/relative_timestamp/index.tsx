@@ -23,16 +23,16 @@ export const RelativeTimestamp: FC<{
   timestamp: string;
   long?: boolean;
   noTime?: boolean;
-  noFuture?: boolean;
-}> = ({ timestamp, long = false, noTime = false, noFuture = false }) => {
+  hasFuture?: boolean;
+}> = ({ timestamp, long = false, noTime = false, hasFuture = false }) => {
   const intl = useIntl();
 
   const [now, setNow] = useState(() => Date.now());
 
   const date = useMemo(() => {
     const date = new Date(timestamp);
-    return noFuture ? new Date(Math.min(date.getTime(), now)) : date;
-  }, [noFuture, now, timestamp]);
+    return !hasFuture ? new Date(Math.min(date.getTime(), now)) : date;
+  }, [hasFuture, now, timestamp]);
   const ts = date.getTime();
 
   useEffect(() => {

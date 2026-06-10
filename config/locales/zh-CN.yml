@@ -341,11 +341,19 @@ zh-CN:
       updated_msg: 公告已成功更新！
     collections:
       accounts: 账号
+      back_to_account: 返回账号信息页
+      back_to_report: 返回举报页
+      batch:
+        add_to_report: '添加到举报 #%{id}'
+        remove_from_report: 从举报中移除
+        report: 举报
       collection_title: "%{name} 的收藏列表"
       contents: 内容
+      no_collection_selected: 因为没有选中任何收藏列表，所以没有更改
       number_of_accounts:
         other: "%{count} 个账号"
       open: 打开
+      title: 该账号的收藏列表 - @%{name}
       view_publicly: 以公开身份查看
     critical_update_pending: 紧急更新待处理
     custom_emojis:
@@ -474,9 +482,89 @@ zh-CN:
         title: 封禁新的邮箱域名
       no_email_domain_block_selected: 没有任何项目被选中，因此未更改邮箱域名屏蔽列表
       not_permitted: 未允许
+      reset: 重置
       resolved_dns_records_hint_html: 该域名解析的 MX 记录所指向的域名如下，这些域名被用于接收电子邮件。 即使电子邮件地址域名与 MX 域名不同，屏蔽一个 MX 域名意味着阻止任何使用相同 MX 域名的邮箱地址注册本站账号。 <strong>请谨慎操作，不要误屏蔽主要的邮箱提供商。</strong>
       resolved_through_html: 通过 %{domain} 解析
+      search: 搜索
       title: 被封禁的邮箱域名
+    email_subscriptions:
+      accounts:
+        account: 账号
+        empty:
+          hint: 目前还没有账号拥有订阅者。
+          no_lists_yet: 尚无列表
+        last_email: 最新电子邮件
+        lead: 已启用此功能并拥有订阅者的账号会在下方显示。
+        show:
+          confirm_disable_feature: 禁用 %{name} 的邮件电子报吗？此后将不再执行此账号的电子邮件推送。该用户仍可以在账号设置中重新启用此功能。要永久移除此功能的访问权限，请在“角色”设置中编辑账号权限。
+          confirm_remove_subscriber: "%{email} 将不会再收到来自 %{name} 的电子邮件。此操作无法撤销。"
+          consent: 此列表中的订阅者仅同意通过电子邮件接受嘟文。请不要将此列表用作其他目的。
+          date: 订阅注册日期
+          disable_feature: 禁用功能
+          disabled: 此功能已被禁用，邮件已不再向此列表内发送。
+          email: 电子邮件地址
+          empty:
+            hint: 暂时没有人订阅这个账号。
+            no_subscribers_yet: 尚无订阅者
+          enable_feature: 启用功能
+          no_access_html: 此账号不再拥有启用该功能所需的权限。请在<a href="%{roles_path}">角色</a>设置处更改。
+          title: "%{name}的邮件电子报"
+          view_account: 查看账号
+        status: 状态
+        subscribers: 订阅者
+        title: 邮件列表
+      additional_footer_texts:
+        show:
+          title: 附加页脚文本
+      compliance_settings:
+        additional_footer_text:
+          action: 管理
+          hint: 仅在电子报邮件页脚中显示的可选文本
+          title: 附加页脚文本
+        lead: 取决于你服务器运行所在的司法管辖区，邮件电子报可能被视作营销邮件。
+        privacy_policy:
+          action: 管理
+          hint: 每封邮件的页脚都会包含指向此政策的链接
+          title: 隐私政策
+        title: 合规设置
+      danger_zone:
+        disable_feature:
+          action: 禁用
+          hint: 为所有账号关闭此功能
+          title: 禁用功能
+        erase_all_data:
+          action: 清除数据
+          hint: 永久删除所有邮件列表中的所有电子邮件地址
+          title: 清除所有数据
+        title: 危险操作区
+      disabled_msg: 已成功禁用电子邮件订阅。
+      index:
+        disabled:
+          cannot_be_enabled: 你的技术提供商尚未为你的服务器启用此功能。
+          description: 此功能允许指定账号在个人资料页添加微件小工具，使没有 Mastodon 账号的访客也能通过电子邮件接受此账号的嘟文。
+          get_started: 开始使用
+        lead: 允许访客通过电子邮件接收此服务器上指定账号的内容。
+        title: 邮件电子报
+      purged_msg: 正在清除所有电子邮件订阅数据。
+      roles:
+        accounts: 账号
+        edit_role: 编辑角色
+        empty:
+          hint: 没有人具备使用此功能的权限。
+          no_roles_added: 没有添加角色
+        lead: 具有下列角色的账号可以在其个人资料中启用此功能。
+        manage_roles: 管理角色
+        role_name: 角色名称
+        title: 角色
+      setups:
+        show:
+          enable_feature: 启用功能
+          important_information: 重要信息
+          list:
+            1_permission_explanation: 此功能启用时，具有指定权限的账号可以在个人资料页面添加电子邮件收集表单。
+            2_feature_explanation: 访客在账号的个人资料页面注册并确认订阅后，将于所订阅账号发表新的公开嘟文时收到电子邮件推送。
+            3_privacy_policy_warning: 服务器管理员将可以访问收集到的个人信息（此处为电子邮件地址）。因此，使用此功能前必须更新服务器的隐私政策及服务条款。
+            4_cost_warning: 取决于托管设置，发送电子邮件时可能产生额外费用。由于此功能可能会大幅增加你服务器发送电子邮件的数量，请在启用前和你的托管服务提供商进行联系。
     export_domain_allows:
       new:
         title: 导入域名允许列表
@@ -657,7 +745,7 @@ zh-CN:
       action_log: 审计日志
       action_taken_by: 操作执行者
       actions:
-        delete_description_html: 被举报的嘟文将被删除，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
+        delete_description_html: 被举报的嘟文和收藏列表将被删除，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
         mark_as_sensitive_description_html: 被举报的嘟文将被标记为敏感，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
         other_description_html: 查看更多控制该账号行为的选项，并自定义编写与被举报账号的通信。
         resolve_description_html: 不会对被举报账号采取任何动作，举报将被关闭，也不会留下处罚记录。
@@ -684,7 +772,7 @@ zh-CN:
       confirm: 确认
       confirm_action: 确认对 @%{acct} 的管理操作
       created_at: 举报时间
-      delete_and_resolve: 删除嘟文
+      delete_and_resolve: 删除内容
       forwarded: 已转发
       forwarded_replies_explanation: 该举报来自外站用户，涉及外站内容。之所以转发给你，是因为被举报的内容是对你站点一位用户的回复。
       forwarded_to: 转发举报到 %{domain}
@@ -751,7 +839,7 @@ zh-CN:
         invites: 邀请
         moderation: 审核
         special: 特殊
-      delete: 刪除
+      delete: 删除
       description_html: 使用 <strong>用户角色</strong>，你可以自定义你的用户可以访问的 Mastodon 功能和区域。
       edit: 编辑角色 '%{name}'
       everyone: 默认权限
@@ -776,7 +864,7 @@ zh-CN:
         manage_custom_emojis: 管理自定义表情
         manage_custom_emojis_description: 允许用户管理站点上的自定义表情
         manage_email_subscriptions: 管理邮件订阅
-        manage_email_subscriptions_description: 允许其他用户通过电子邮件订阅具备此权限的用户
+        manage_email_subscriptions_description: 允许拥有此权限的用户为其账号启用邮件电子报功能
         manage_federation: 管理联合
         manage_federation_description: 允许用户禁止或允许本站同其他站点的联合，并控制消息投递能力
         manage_invites: 管理邀请
@@ -865,10 +953,16 @@ zh-CN:
           disabled: 需要特定的用户角色
           public: 每个人
       landing_page:
+        hints:
+          about_html: 关于此服务器的描述、联系信息、规则及其他信息的页面。
+          local_feed_html: 展示此服务器用户最新嘟文的实时动态。
+          overview_html: 展示你的服务器描述及本站用户最新嘟文的页面。
+          trends_html: 展示此服务器当前热门内容的页面。
         values:
-          about: 关于
-          local_feed: 本站动态
-          trends: 热门
+          about: 关于本站
+          local_feed: 本站实时动态
+          overview: 概览
+          trends: 当前热门
       registrations:
         moderation_recommandation: 在向每个人开放注册之前，请确保你拥有一个人手足够且反应迅速的管理团队！
         preamble: 控制谁可以在你的服务器上创建账号。
@@ -888,6 +982,7 @@ zh-CN:
     site_uploads:
       delete: 删除已上传的文件
       destroyed_msg: 站点上传的文件已经成功删除！
+    skip_to_content: 跳转到内容
     software_updates:
       critical_update: 紧急 — 请尽快更新
       description: 建议你及时更新Mastodon实例，以便获得最新修复和功能。此外，为避免安全问题，有时及时更新Mastodon是至关重要的。出于这些原因，Mastodon每30分钟检查一次更新，并根据你的邮件通知偏好向你发送通知。
@@ -1025,7 +1120,7 @@ zh-CN:
       history: 历史记录
       live: 生效中
       no_history: 尚无服务条款变更记录。
-      no_terms_of_service_html: 你还没有设置任何服务条款。设置服务条款可以清晰地界定责任，并在与用户发生争议时有效保护您的权益。
+      no_terms_of_service_html: 你还没有设置任何服务条款。设置服务条款可以清晰地界定责任，并在与用户发生争议时有效保护你的权益。
       notified_on_html: 已于 %{date} 通知用户
       notify_users: 通知用户
       preview:
@@ -1246,7 +1341,7 @@ zh-CN:
     description:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
       prefix_sign_up: 现在就注册 Mastodon 吧！
-      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
+      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其他任何 Mastodon 服务器上的用户交流，而且还有其他更多功能！
     didnt_get_confirmation: 没有收到确认链接？
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
@@ -1397,9 +1492,8 @@ zh-CN:
       your_appeal_pending: 你已经提交了一次申诉
       your_appeal_rejected: 你的申诉已被驳回
   edit_profile:
-    basic_information: 基本信息
-    hint_html: "<strong>自定义公开资料和嘟文旁边显示的内容。</strong>当你填写完整的个人资料并设置了头像时，其他人更有可能关注你并与你互动。"
     other: 其他
+    privacy_redesign_body: 现在可以直接在个人资料页设置是否展示你的关注者和你关注的人。
     redesign_body: 个人资料编辑功能现在可以直接在个人资料页面访问。
     redesign_button: 前往
     redesign_title: 全新个人资料编辑体验现已到来
@@ -1418,9 +1512,11 @@ zh-CN:
       interact_with_this_post:
         other: 和嘟文互动，发现更多类似嘟文。
       subject:
-        other: 来自 %{name} 的新嘟文
+        plural: 来自 %{name} 的新嘟文
+        singular: 新嘟文：“%{excerpt}”
       title:
-        other: 来自 %{name} 的新嘟文
+        plural: 来自 %{name} 的新嘟文
+        singular: 新嘟文：“%{excerpt}”
   email_subscriptions:
     active: 已生效
     confirmations:
@@ -1429,7 +1525,9 @@ zh-CN:
         success_html: 现在开始当 %{name} 发布新嘟文时你会收到邮件提醒。记得将 %{sender} 添加到邮箱联系人中，以免嘟文推送被丢入垃圾邮件文件夹。
         title: 你已成功订阅
         unsubscribe: 取消订阅
+    disabled: 已禁用
     inactive: 未生效
+    no_access: 没有权限
     status: 状态
     subscribers: 订阅者
   emoji_styles:
@@ -1465,15 +1563,15 @@ zh-CN:
     blocks: 屏蔽的用户
     bookmarks: 书签
     csv: CSV
+    custom_filters: 过滤器
     domain_blocks: 站点屏蔽列表
+    json: JSON
     lists: 列表
     mutes: 已被你隐藏的
     storage: 媒体文件存储
   featured_tags:
-    add_new: 添加新条目
     errors:
       limit: 你所推荐的话题数已达上限
-    hint_html: "<strong>什么是精选话题？</strong> 它们被显示在你的公开个人资料中的突出位置，人们可以在这些标签下浏览你的公共嘟文。 它们是跟踪创作或长期项目的进度的重要工具。"
   filters:
     contexts:
       account: 个人资料
@@ -1511,7 +1609,7 @@ zh-CN:
       batch:
         remove: 从过滤规则中移除
       index:
-        hint: 此过滤规则适用于选中的个别嘟文，不受其它条件限制。你可以通过网页界面向此过滤规则添加更多嘟文。
+        hint: 此过滤规则适用于选中的个别嘟文，不受其他条件限制。你可以通过网页界面向此过滤规则添加更多嘟文。
         title: 过滤的嘟文
   generic:
     all: 全部
@@ -1664,7 +1762,7 @@ zh-CN:
       not_found: 找不到
       on_cooldown: 你正处于冷却状态
     followers_count: 迁移时的关注者
-    incoming_migrations: 从其它账号迁入
+    incoming_migrations: 从其他账号迁入
     incoming_migrations_html: 要把另一个账号移动到本账号，首先你需要<a href="%{path}">创建一个账号别名</a> 。
     moved_msg: 你的账号现在会跳转到 %{acct} ，同时关注者也会一并迁移 。
     not_redirecting: 你的账号当前未跳转到其它账号。
@@ -1691,6 +1789,26 @@ zh-CN:
     copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   navigation:
     toggle_menu: 隐藏/显示菜单
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} 将你添加到了收藏列表"
+    admin_report:
+      title_html: "%{name} 举报了 %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        other: "%{name} 及另外 %{count} 个人注册了"
+      title_html: "%{name} 注册了"
+    collection_update:
+      title_html: "%{name} 更新了你所在的收藏列表"
+    generic:
+      sign_in: 登录到 Mastodon 网页 App
+      summary_html: 你使用的应用程序不支持最新版本的 Mastodon。要使用完整功能，请%{link}。
+    moderation_warning:
+      summary_html: 你使用的应用程序不支持最新版本的 Mastodon。%{link}。
+      title: 你收到了一条管理警告。
+    severed_relationships:
+      summary_html: "%{from} 的管理员封禁了 %{target}，这意味着你将无法再收到对方的更新或与其互动。要获取失去的关系列表，%{link}。"
+      title: 与 %{name} 的联系已断开
   notification_mailer:
     admin:
       report:
@@ -2152,7 +2270,7 @@ zh-CN:
       edit_profile_title: 个性化你的个人资料
       explanation: 下面是几个小贴士，希望它们能帮到你
       feature_action: 详细了解
-      feature_audience: Mastodon 为你提供了无需中间商即可管理受众的独特可能。Mastodon 可被部署在你自己的基础设施上，允许你关注其它任何 Mastodon 在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
+      feature_audience: Mastodon 为你提供了无需中间商即可管理受众的独特可能。Mastodon 可被部署在你自己的基础设施上，允许你关注其他任何 Mastodon 在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
       feature_audience_title: 自由吸引你的受众
       feature_control: 你最清楚你想在你自己的主页中看到什么动态。没有算法或广告浪费你的时间。你可以用一个账号关注任何 Mastodon 服务器上的任何人，并按时间顺序获得他们发布的嘟文，让你的互联网的角落更合自己的心意。
       feature_control_title: 掌控自己的时间线

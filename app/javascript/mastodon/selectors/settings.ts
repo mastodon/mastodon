@@ -17,10 +17,19 @@ export const selectSettingsNotificationsShows = createSelector(
 
 export const selectSettingsNotificationsExcludedTypes = createSelector(
   [selectSettingsNotificationsShows],
-  (shows) =>
-    Object.entries(shows)
-      .filter(([_type, enabled]) => !enabled)
-      .map(([type, _enabled]) => type),
+  (shows) => {
+    const excludedTypes: string[] = [];
+    for (const key in shows) {
+      if (!shows[key]) {
+        if (key === 'collections') {
+          excludedTypes.push('collection_update', 'added_to_collection');
+        } else {
+          excludedTypes.push(key);
+        }
+      }
+    }
+    return excludedTypes;
+  },
 );
 
 export const selectSettingsNotificationsQuickFilterShow = (state: RootState) =>

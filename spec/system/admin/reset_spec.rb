@@ -15,7 +15,7 @@ RSpec.describe 'Admin::Reset' do
     end.to change(Admin::ActionLog.where(target: account.user), :count).by(1)
 
     expect(page)
-      .to have_content(account.username)
+      .to have_text(account.username)
   end
 
   def admin_user

@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback, useState } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
 import { apiGetDomainBlocks } from 'mastodon/api/domain_blocks';
@@ -62,6 +62,10 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     columnRef.current?.scrollTop();
   }, []);
 
+  const handleUnblock = useCallback((domain: string) => {
+    setDomains((prev) => prev.filter((d) => d !== domain));
+  }, []);
+
   const emptyMessage = (
     <FormattedMessage
       id='empty_column.domain_blocks'
@@ -95,7 +99,7 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         bindToDocument={!multiColumn}
       >
         {domains.map((domain) => (
-          <Domain key={domain} domain={domain} />
+          <Domain key={domain} domain={domain} onUnblock={handleUnblock} />
         ))}
       </ScrollableList>
 

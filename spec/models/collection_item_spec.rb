@@ -41,6 +41,19 @@ RSpec.describe CollectionItem do
       subject { Fabricate.build(:unverified_remote_collection_item) }
 
       it { is_expected.to validate_presence_of(:object_uri) }
+
+      context 'when another item without account exists' do
+        subject { Fabricate.build(:unverified_remote_collection_item, collection:) }
+
+        let(:collection) { Fabricate(:remote_collection) }
+
+        before do
+          Fabricate(:unverified_remote_collection_item, collection:)
+          collection.reload
+        end
+
+        it { is_expected.to be_valid }
+      end
     end
   end
 

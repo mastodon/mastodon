@@ -42,7 +42,7 @@ class Follow < ApplicationRecord
     destroy!
   end
 
-  before_validation :set_uri, only: :create
+  before_validation :set_uri, on: :create
   after_create :increment_cache_counters
   after_destroy :remove_endorsements
   after_destroy :decrement_cache_counters

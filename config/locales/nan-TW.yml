@@ -12,7 +12,7 @@ nan-TW:
     followers:
       other: 跟tuè ê
     following:
-      other: Leh跟tuè
+      other: 伊跟tuè ê
     instance_actor_flash: Tsit ê口座是虛ê，用來代表tsit臺服侍器，毋是個人用者ê。伊用來做聯邦ê路用，毋好kā伊ê權限停止。
     last_active: 頂kái活動ê時間
     link_verified_on: Tsit ê連結ê所有權佇 %{date} 受檢查
@@ -341,11 +341,19 @@ nan-TW:
       updated_msg: 公告成功更新ah！
     collections:
       accounts: 口座
+      back_to_account: Tńg去口座ê頁
+      back_to_report: Tńg去檢舉ê頁
+      batch:
+        add_to_report: '加kàu檢舉 #%{id}'
+        remove_from_report: Tuì檢舉suá掉
+        report: 檢舉
       collection_title: "%{name} ê收藏"
       contents: 內容
+      no_collection_selected: 因為無揀任何收藏，所以lóng無改變
       number_of_accounts:
         other: "%{count} ê口座"
       open: 開
+      title: Tsit ê口座ê 收藏 - @%{name}
       view_publicly: 公開看
     critical_update_pending: 愛處理ê重大更新
     custom_emojis:
@@ -474,9 +482,74 @@ nan-TW:
         title: 封鎖新ê電子phue ê域名
       no_email_domain_block_selected: 因為無揀任何電子phue域名封鎖，所以lóng無改變
       not_permitted: 無允准
+      reset: 重頭設
       resolved_dns_records_hint_html: 域名解析做下kha ê MX域名，tsiah ê域名上後負責收電子phue。封鎖MX域名ē封任何有siâng款MX域名ê電子郵件ê註冊，就算通看見ê域名無kâng，mā án-ne。<strong>Tio̍h細膩，m̄通封鎖主要ê電子phue提供者。</strong>
       resolved_through_html: 通過 %{domain} 解析
+      search: Tshiau-tshuē
       title: 封鎖ê電子phue域名
+    email_subscriptions:
+      accounts:
+        account: 口座
+        empty:
+          hint: Iáu無半ê口座有訂ê lâng。
+          no_lists_yet: Iáu無列單
+        last_email: 上新ê電子phue箱
+        lead: 有啟用tsit ê功能koh有訂ê lâng ê口座ē展示佇下kha。
+        status: 狀態
+        subscribers: 訂ê lâng
+        title: 電子phue列單
+      additional_footer_texts:
+        show:
+          title: 其他註kha ê文字
+      compliance_settings:
+        additional_footer_text:
+          action: 管理
+          hint: Kan-ta佇電子報ê phue ê註kha出現ê通選ê文字
+          title: 其他註kha ê文字
+        lead: 電子報ê phue可能hőng掠做行銷ê電子批，根據lí pháng ê服侍器ê司法管轄區決定。
+        privacy_policy:
+          action: 管理
+          hint: 逐封電子phue ê下kha lóng ē有連kàu tsit ê政策ê連結
+          title: 隱私權政策
+        title: 守法ê設定
+      danger_zone:
+        disable_feature:
+          action: 停止使用
+          hint: 替逐ê口座關tsit ê功能
+          title: Kā功能停止使用
+        erase_all_data:
+          action: 消除資料
+          hint: 佇逐ê郵件列單內底ê逐封phue lóng永永thâi掉
+          title: 消除所有資料
+        title: 危險ê所在
+      disabled_msg: 停止使用訂電子批成功ah。
+      index:
+        disabled:
+          cannot_be_enabled: Lí ê技術提供者iáu buē替lí ê服侍器啟用tsit ê功能。
+          description: Tsit ê功能允准特定口座加widget kàu in ê個人檔案，予無Mastodon口座ê訪客通用電子phue收著in ê PO文。
+          get_started: 開始用
+        lead: 允准訪客用電子phue，接受tsit臺服侍器ê專用口座ê PO文。
+        title: 電子報
+      purged_msg: 逐ê訂電子報ê資料當leh hú掉。
+      roles:
+        accounts: 口座
+        edit_role: 編輯角色
+        empty:
+          hint: 無半位有權用tsit ê功能。
+          no_roles_added: Iáu buē加角色
+        lead: 有下kha ê角色ê口座，ē當佇in ê個人資料內底，啟用tsit ê功能。
+        manage_roles: 管理角色
+        role_name: 角色ê名
+        title: 角色
+      setups:
+        show:
+          enable_feature: 啟用功能
+          important_information: 重大資訊
+          list:
+            1_permission_explanation: 佇啟用tsit ê功能ê時，有指定權限ê口座，通佇伊ê個人資料加電子phue收集表。
+            2_feature_explanation: 訪客佇口座ê個人資料頁註冊，koh確認beh訂了後，佇chit ê口座貼新ê公開PO文ê時陣，in ē開始收著電子phue ê更新。
+            3_privacy_policy_warning: 服侍器ê管理員ē通接近使用收著ê通辨別ê個人資料（電子phue地址）。因此，tsit臺服侍器ê隱私權政策kap服務規定佇用tsit ê功能進前，愛更新。
+            4_cost_warning: 照服侍器設定ê方式，送電子phue可能ē加費用。請佇啟用進前，kap lí ê服務提供者討論，因為tsit ê功能可能ē予lí ê服侍器送ê電子phue數量增長siunn大。
     export_domain_allows:
       new:
         title: 輸入允准ê域名
@@ -657,7 +730,7 @@ nan-TW:
       action_log: 審查日誌
       action_taken_by: 操作由
       actions:
-        delete_description_html: 受檢舉ê PO文ē thâi掉，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
+        delete_description_html: 受檢舉ê PO文（以及／á是）收藏ē thâi掉，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
         mark_as_sensitive_description_html: 受檢舉ê PO文內ê媒體ē標做敏感，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
         other_description_html: 看其他控制tsit ê口座ê所行，kap自訂聯絡受檢舉ê口座ê選項。
         resolve_description_html: Buē用行動控制受檢舉ê口座，mā無用橫tsuā記錄，而且tsit ê報告ē關掉。
@@ -684,7 +757,7 @@ nan-TW:
       confirm: 確認
       confirm_action: 確認kā %{acct} 管理ê動作
       created_at: 檢舉tī
-      delete_and_resolve: Thâi掉PO文
+      delete_and_resolve: Thâi掉內容
       forwarded: 轉送ah
       forwarded_replies_explanation: 本報告是tuì別站ê用者送ê，關係別站ê內容。本報告轉hōo lí，因為受檢舉ê內容是回應lí ê服侍器ê用者。
       forwarded_to: 有轉送kàu %{domain}
@@ -776,7 +849,7 @@ nan-TW:
         manage_custom_emojis: 管理自訂ê Emoji
         manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
         manage_email_subscriptions: 管理訂電子phue
-        manage_email_subscriptions_description: 允准用者用電子phue訂有chit ê權限ê用者
+        manage_email_subscriptions_description: 允准有tsit ê權限ê用者，啟用in口座ê電子報功能
         manage_federation: 管理聯邦
         manage_federation_description: 允准用者封鎖á是允准kap其他域名相連，mā控制寄送ê能力
         manage_invites: 管理邀請
@@ -865,10 +938,9 @@ nan-TW:
           disabled: 愛特別ê用者角色
           public: Ta̍k lâng
       landing_page:
-        values:
-          about: 關係本站
-          local_feed: 本地ê動態
-          trends: 趨勢
+        hints:
+          about_html: 關係tsit臺服侍器ê敘述、聯絡資訊、規則kap其他資訊ê頁。
+          local_feed_html: 展示tsit臺服侍器用者ê上新PO文ê即時內容。
       registrations:
         moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
         preamble: 控制ē當佇lí ê服侍器註冊ê人。
@@ -1263,7 +1335,7 @@ nan-TW:
       confirm: 確認電子phue
       details: Lí ê詳細
       list: 註冊流程
-      review: Lán ê審查
+      review: Gún ê審查
       rules: 接受規則
     providers:
       cas: CAS
@@ -1300,7 +1372,7 @@ nan-TW:
       account_status: 口座ê狀態
       confirming: Teh等電子phue確認完成。
       functional: Lí ê口座完全ē當用。
-      pending: Lán ê人員teh處理lí ê申請。Tse可能愛一段時間。若是申請允准，lí ē收著e-mail。
+      pending: Gún ê人員teh處理lí ê申請。Tse可能愛一段時間。若是申請允准，lí ē收著e-mail。
       redirecting_to: Lí ê口座無活動，因為tann轉kàu %{acct}。
       self_destruct: 因為 %{domain} teh-beh關掉，lí kan-ta ē當有限接近使用lí ê口座。
       view_strikes: 看早前tuì lí ê口座ê警告
@@ -1397,8 +1469,6 @@ nan-TW:
       your_appeal_pending: Lí有送投訴
       your_appeal_rejected: Lí ê投訴已經受拒絕
   edit_profile:
-    basic_information: 基本ê資訊
-    hint_html: "<strong>自訂lâng佇lí ê個人資料kap lí ê Po文邊仔所通看ê。</strong>Nā是lí有添好個人資料kap標á，別lâng較有可能kā lí跟tuè轉去，kap lí互動。"
     other: 其他
     redesign_body: 編輯個人檔案tsit-má ē當直接對個人資料頁接近使用。
     redesign_button: Kàu hia
@@ -1418,9 +1488,11 @@ nan-TW:
       interact_with_this_post:
         other: Kap tsit（tsiah）ê PO文互動，發現其他相siâng ê PO文。
       subject:
-        other: 對 %{name} 來ê新ê PO文
+        plural: 對 %{name} 來ê新ê PO文
+        singular: 新ê PO文：「%{excerpt}」
       title:
-        other: 對 %{name} 來ê新ê PO文
+        plural: 對 %{name} 來ê新ê PO文
+        singular: 新ê PO文：「%{excerpt}」
   email_subscriptions:
     active: 有效ê
     confirmations:
@@ -1428,6 +1500,10 @@ nan-TW:
         changed_your_mind: Kám beh改變心意？
         success_html: Lí對tsit-má開始，佇 %{name} 刊出新ê PO文ê時陣，ē收著電子批。加添 %{sender} kàu lí ê聯絡人，避免tsiah ê PO文hőng tàn kàu pùn-sò phue ê資料giap-á。
         title: Lí有註冊ah
+        unsubscribe: 取消訂
+    inactive: 停止使用ah
+    status: 狀態
+    subscribers: 訂ê lâng
   emoji_styles:
     auto: 自動
     native: 原底ê
@@ -1466,10 +1542,8 @@ nan-TW:
     mutes: Lí消音ê
     storage: 媒體儲存
   featured_tags:
-    add_new: 加新ê
     errors:
       limit: Lí已經kā hashtag推薦kàu盡磅ah。
-    hint_html: "<strong>佇個人資料推薦lí上重要ê hashtag。</strong>Tse是誠好ê家私，通the̍h來追蹤lí ê創意作品kap長期計畫。推薦ê hashtag ē佇lí ê個人資料顯目展示，koh允准緊緊接近使用lí家tī ê PO文。"
   filters:
     contexts:
       account: 個人資料
@@ -1779,6 +1853,8 @@ nan-TW:
     posting_defaults: PO文預設值
     public_timelines: 公共ê時間線
   privacy:
+    email_subscriptions: 用電子phue寄PO文
+    email_subscriptions_hint_html: 佇lí ê個人資料內底加訂電子批ê表，予無登入ê用者看。訪客若輸入in ê電子phue地址，揀beh來訂，Mastodon會用電子批送予伊lí ê公開PO文ê更新。
     hint_html: "<strong>自訂lí beh án-nuá hōo lí ê個人資料kap PO文受lâng發現。</strong>Mastodon ê tsē-tsē功能nā是拍開，通幫tsān lí接觸kàu較闊ê觀眾。請開一寡時間重看tsiah ê設定，確認in合lí ê使用例。"
     privacy: 隱私權
     privacy_hint_html: 控制lí想欲為別lâng ê利益，公開guā tsē內容。Lâng用瀏覽別lâng ê跟tuè koh看in用啥物應用程式PO文，來發現心適ê個人資料kap時行ê應用程式，但是lí凡勢beh保持khàm起來。
@@ -2004,11 +2080,46 @@ nan-TW:
     does_not_match_previous_name: kap進前ê名無kâng
   terms_of_service:
     title: 服務規定
+  terms_of_service_interstitial:
+    future_preamble_html: Gún有更新一kuá服務規定，伊會佇<strong>%{date}</strong>施行。Gún鼓勵lí讀更新ê規定。
+    past_preamble_html: 對lí頂改訪問以後，lán有更新服務規定。Gún鼓勵lí讀更新ê規定。
+    review_link: 讀更新ê規定
+    title: "%{domain} ê服務規定teh改變"
   themes:
     default: Mastodon
+  time:
+    formats:
+      default: "%Y 年 %b 月 %d 日 %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: 服侍器ê翻譯服務使用ê khòo-tah 超過ah。
+      too_many_requests: Tsit tsām-á翻譯服務ê請求傷tsē。
   two_factor_authentication:
+    add: 加
     disable: 停止用雙因素認證
+    disabled_success: 雙因素驗證取消使用成功
+    edit: 編輯
+    enabled: 雙因素驗證啟用ah
+    enabled_success: 雙因素驗證啟用成功
+    generate_recovery_codes: 生成恢復碼
+    lost_recovery_codes: 恢復碼予lí會當佇拍毋見手機á ê時陣，koh通接近使用lí ê口座。若是lí有失去lí ê恢復碼，lí佇tsia會當koh產出，毋koh舊ê恢復碼會變無效。
+    methods: 雙因素驗證
   user_mailer:
+    terms_of_service_changed:
+      description: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 %{date} 施行。Gún鼓勵lí佇tsia讀kui篇更新ê規定：
+      description_html: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 <strong>%{date}</strong> 施行。Gún鼓勵lí<a href="%{path}" target="_blank">佇tsia讀kui篇更新ê規定</a>：
+      sign_off: "%{domain} 小組"
+      subject: Gún ê服務規定ê更新
+      subtitle: "%{domain} ê服務規定teh改變"
+      title: 重要ê更新
+    warning:
+      appeal: 送投訴
+      appeal_description: Lí若相信tse是出tshê，lí會當kā %{instance} ê人員投。
+      categories:
+        spam: Pùn-sò訊息
     welcome:
       feature_creativity: Mastodon支持聲音、影kap圖片êPO文、容易使用性ê描述、投票、內容ê警告、動畫ê標頭、自訂ê繪文字kap裁縮小圖ê控制等等，幫tsān lí展現家己。無論beh發表藝術作品、音樂，á是podcast，Mastodon佇tsia為lí服務。
       sign_in_action: 登入

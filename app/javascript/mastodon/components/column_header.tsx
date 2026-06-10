@@ -73,7 +73,7 @@ const BackButton: React.FC<{
 };
 
 export interface Props {
-  title?: string;
+  title?: React.ReactNode;
   icon?: string;
   iconComponent?: IconProp;
   active?: boolean;
@@ -152,7 +152,7 @@ export const ColumnHeader: React.FC<Props> = ({
     active,
   });
 
-  const buttonClassName = classNames('column-header', {
+  const headingClassName = classNames('column-header', {
     active,
   });
 
@@ -276,42 +276,42 @@ export const ColumnHeader: React.FC<Props> = ({
     </>
   );
 
+  const titleClassNames = classNames('column-header__title', {
+    'column-header__title--with-back-button': !!backButton,
+  });
+
   const component = (
     <div className={wrapperClassName}>
-      <h1 className={buttonClassName}>
+      <div className={headingClassName}>
+        {backButton}
         {hasTitle && (
-          <>
-            {backButton}
-
-            {onClick && (
+          <h1 className='column-header__title-wrapper'>
+            {onClick ? (
               <button
                 onClick={handleTitleClick}
-                className='column-header__title'
+                className={titleClassNames}
                 type='button'
                 id={getColumnSkipLinkId(columnIndex)}
               >
                 {titleContents}
               </button>
-            )}
-            {!onClick && (
+            ) : (
               <span
-                className='column-header__title'
+                className={titleClassNames}
                 tabIndex={-1}
                 id={getColumnSkipLinkId(columnIndex)}
               >
                 {titleContents}
               </span>
             )}
-          </>
+          </h1>
         )}
-
-        {!hasTitle && backButton}
 
         <div className='column-header__buttons'>
           {extraButton}
           {collapseButton}
         </div>
-      </h1>
+      </div>
 
       <div
         className={collapsibleClassName}

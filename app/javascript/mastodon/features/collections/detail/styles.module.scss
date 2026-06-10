@@ -1,5 +1,9 @@
 .header {
-  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  padding-bottom: 24px;
 }
 
 .titleWithMenu {
@@ -15,15 +19,6 @@
   align-items: start;
   gap: 4px;
   min-width: 0;
-}
-
-.tag {
-  display: inline-block;
-  padding: 4px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  background: var(--color-bg-secondary);
 }
 
 .name {
@@ -49,7 +44,6 @@
 
 .description {
   font-size: 15px;
-  margin-top: 12px;
 }
 
 .headerButtonWrapper {
@@ -59,60 +53,41 @@
 
 .iconButton {
   box-sizing: content-box;
-  padding: 5px;
+  padding: 7px;
   border-radius: 4px;
-}
+  border: 1px solid var(--color-border-primary);
 
-.itemList {
-  padding-inline: 24px;
-}
-
-.columnSubheading {
-  padding-bottom: 12px;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.accountItemWrapper {
-  display: flex;
-  align-items: start;
-  padding-block: 16px;
-
-  &[data-with-border='true'] {
-    border-bottom: 1px solid var(--color-border-primary);
+  svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
-.accountItem {
-  --account-name-size: 15px;
-  --account-handle-color: var(--color-text-secondary);
-  --account-handle-size: 13px;
-  --account-bio-color: var(--color-text-primary);
-  --account-bio-size: 13px;
-  --account-outer-spacing: 0;
-
-  flex-grow: 1;
+.sensitiveScreen {
+  margin-inline: 16px;
 }
 
-.youWereAddedWrapper {
-  padding-bottom: 16px;
-}
-
-.revokeControlWrapper {
+.subheadingWithSelect {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 8px 16px;
+  padding-inline: 16px;
+}
 
-  :global(.button) {
-    min-width: 30%;
-    white-space: normal;
-  }
+.selectWrapper {
+  // Align to right edge even when wrapped to new line
+  margin-inline-start: auto;
+}
 
-  --avatar-width: 46px;
+.select {
+  height: 36px;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: var(--color-bg-primary);
+}
 
-  @container (width < 360px) {
-    --avatar-width: 35px;
-  }
+.columnSubheading {
+  font-size: 15px;
+  font-weight: 500;
 }

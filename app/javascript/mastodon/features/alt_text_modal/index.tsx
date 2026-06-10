@@ -54,7 +54,8 @@ const messages = defineMessages({
   },
 });
 
-const MAX_LENGTH = 1500;
+// TODO: use `description_limit` from the `/api/v2/instance` response
+const MAX_LENGTH = 10000;
 
 type FocalPoint = [number, number];
 
@@ -283,6 +284,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
     );
     const type = media?.get('type') as string;
     const valid = length(description) <= MAX_LENGTH;
+    const unattached = media?.get('unattached') as boolean | undefined;
 
     const handleDescriptionChange = useCallback(
       (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -433,7 +435,8 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
               onPositionChange={handlePositionChange}
             />
 
-            {(type === 'audio' || type === 'video') && (
+            {/* This button is hidden for attached audio/video files, as they are already posted */}
+            {(type === 'audio' || type === 'video') && unattached && (
               <UploadButton
                 onSelectFile={handleThumbnailChange}
                 mimeTypes='image/jpeg,image/png,image/gif,image/heic,image/heif,image/webp,image/avif'

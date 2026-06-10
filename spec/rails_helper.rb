@@ -2,32 +2,6 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-if ENV.fetch('COVERAGE', false)
-  require 'simplecov'
-
-  SimpleCov.start 'rails' do
-    if ENV['CI']
-      require 'simplecov-lcov'
-      formatter SimpleCov::Formatter::LcovFormatter
-      formatter.config.report_with_single_file = true
-    else
-      formatter SimpleCov::Formatter::HTMLFormatter
-    end
-
-    enable_coverage :branch
-
-    add_filter 'lib/linter'
-
-    add_group 'Libraries', 'lib'
-    add_group 'Policies', 'app/policies'
-    add_group 'Presenters', 'app/presenters'
-    add_group 'Search', 'app/chewy'
-    add_group 'Serializers', 'app/serializers'
-    add_group 'Services', 'app/services'
-    add_group 'Validators', 'app/validators'
-  end
-end
-
 # This needs to be defined before Rails is initialized
 STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
 STREAMING_HOST = ENV.fetch('TEST_STREAMING_HOST', 'localhost')
@@ -108,6 +82,7 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include ActionMailer::TestHelper
   config.include Paperclip::Shoulda::Matchers
+  config.include ActiveSupport::Testing::NotificationAssertions
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Chewy::Rspec::Helpers
   config.include Redisable
@@ -131,9 +106,9 @@ RSpec.configure do |config|
 
   config.around do |example|
     if example.metadata[:inline_jobs] == true
-      Sidekiq::Testing.inline!
+      Sidekiq.testing!(:inline)
     else
-      Sidekiq::Testing.fake!
+      Sidekiq.testing!(:fake)
     end
     example.run
   end

@@ -45,6 +45,12 @@ RSpec.describe PermalinkRedirector do
         redirector = described_class.new('@alice/123?foo=bar')
         expect(redirector.redirect_path).to eq 'https://example.com/status-123'
       end
+
+      it 'returns path for collections link' do
+        collection = Fabricate(:remote_collection, account: remote_account)
+        redirector = described_class.new("collections/#{collection.id}")
+        expect(redirector.redirect_path).to eq(ActivityPub::TagManager.instance.url_for(collection) || ActivityPub::TagManager.instance.uri_for(collection))
+      end
     end
 
     context 'when account is suspended' do
@@ -79,6 +85,12 @@ RSpec.describe PermalinkRedirector do
 
       it 'returns nil for pretty status links with a query param' do
         redirector = described_class.new('@alice/123?foo=bar')
+        expect(redirector.redirect_path).to be_nil
+      end
+
+      it 'returns nil for collections link' do
+        collection = Fabricate(:remote_collection, account: remote_account)
+        redirector = described_class.new("collections/#{collection.id}")
         expect(redirector.redirect_path).to be_nil
       end
     end

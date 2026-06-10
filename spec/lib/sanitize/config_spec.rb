@@ -38,6 +38,14 @@ RSpec.describe Sanitize::Config do
       expect(Sanitize.fragment('<a href="foo://bar">Test&lt;a href="https://example.com"&gt;test&lt;/a&gt;</a>', subject)).to eq 'Test&lt;a href="https://example.com"&gt;test&lt;/a&gt;'
     end
 
+    it 'removes math when unparsable due to missing attributes' do
+      expect(Sanitize.fragment('<math><semantics><annotation>x</annotation></semantics></math>', subject)).to eq ''
+    end
+
+    it 'removes math when unparsable due to missing encoding attribute' do
+      expect(Sanitize.fragment('<math><semantics><annotation class="foo">x</annotation></semantics></math>', subject)).to eq ''
+    end
+
     it 'keeps a with href' do
       expect(Sanitize.fragment('<a href="http://example.com">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener" target="_blank">Test</a>'
     end

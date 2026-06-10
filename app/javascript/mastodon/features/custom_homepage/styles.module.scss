@@ -1,0 +1,145 @@
+.page {
+  border-radius: 16px;
+  border: 1px solid var(--color-border-primary);
+  background: var(--color-bg-primary);
+  min-height: 100%;
+
+  :global(.item-list) article:last-child :global(.status) {
+    border-bottom: 0;
+  }
+
+  @media screen and (width <= 1175px) {
+    border-radius: 0;
+  }
+}
+
+.header {
+  aspect-ratio: 40/21;
+  border-radius: 16px 16px 0 0;
+
+  @media screen and (width <= 1175px) {
+    border-radius: 0;
+  }
+}
+
+.banner {
+  margin: 16px;
+  margin-bottom: 0;
+}
+
+.topSection {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--color-text-primary);
+
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: -0.12px;
+  }
+
+  p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 16px;
+    line-height: 24px;
+    text-overflow: ellipsis;
+  }
+}
+
+.block {
+  padding: 16px;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22.4px;
+    margin-bottom: 8px;
+  }
+
+  :global(.account) {
+    border: 1px solid var(--color-border-primary);
+    padding: 18px 16px;
+    border-radius: 12px;
+
+    --avatar-border-radius: 50%;
+  }
+}
+
+.placeholder {
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  :global(.skeleton) {
+    height: 40px;
+    border-radius: 12px;
+    background: var(--color-bg-overlay-highlight);
+  }
+}
+
+.minimalHeader {
+  padding-top: 24px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+
+  @media screen and (width <= 1175px) {
+    padding-inline-start: 12px;
+    padding-inline-end: 12px;
+  }
+}
+
+.leftSide {
+  font-size: 15px;
+  font-weight: 600;
+  max-width: 300px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.rightSide {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  flex: 1 0 0;
+}
+
+.minimalFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22.4px;
+  padding-top: 28px;
+  padding-bottom: 54px;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  @media screen and (width <= 1175px) {
+    justify-content: center;
+    padding-inline-start: 12px;
+    padding-inline-end: 12px;
+  }
+}
+
+.contact {
+  display: flex;
+  gap: 8px;
+}

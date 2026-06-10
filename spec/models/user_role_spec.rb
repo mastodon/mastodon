@@ -31,6 +31,12 @@ RSpec.describe UserRole do
       it { is_expected.to_not allow_values('x', '112233445566', '#xxyyzz').for(:color) }
     end
 
+    describe 'collection_limit' do
+      subject { Fabricate.build :user_role }
+
+      it { is_expected.to validate_numericality_of(:collection_limit).only_integer.is_greater_than_or_equal_to(0) }
+    end
+
     context 'when current_account is set' do
       subject { Fabricate :user_role }
 

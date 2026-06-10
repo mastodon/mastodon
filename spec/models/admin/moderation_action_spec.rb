@@ -33,7 +33,7 @@ RSpec.describe Admin::ModerationAction do
         expect(report.reload).to be_action_taken
       end
 
-      context 'with attached collections', feature: :collections do
+      context 'with attached collections' do
         let(:status_ids) { [] }
         let(:collections) { Fabricate.times(2, :collection, account: target_account) }
 
@@ -47,7 +47,7 @@ RSpec.describe Admin::ModerationAction do
         end
       end
 
-      context 'with a remote collection', feature: :collections do
+      context 'with a remote collection' do
         let(:status_ids) { [] }
         let(:collection) { Fabricate(:remote_collection) }
         let(:target_account) { collection.account }
@@ -83,7 +83,7 @@ RSpec.describe Admin::ModerationAction do
         expect(report.reload).to be_action_taken
       end
 
-      context 'with attached collections', feature: :collections do
+      context 'with attached collections' do
         let(:status_ids) { [] }
         let(:collections) { Fabricate.times(2, :collection, account: target_account) }
 

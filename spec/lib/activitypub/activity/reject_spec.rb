@@ -161,8 +161,11 @@ RSpec.describe ActivityPub::Activity::Reject do
         }
       end
 
-      it 'deletes the collection item' do
-        expect { subject.perform }.to change(collection.collection_items, :count).by(-1)
+      it 'sets the collection item state to `rejected`' do
+        expect do
+          subject.perform
+          collection_item.reload
+        end.to change(collection_item, :state).to('rejected')
       end
     end
   end

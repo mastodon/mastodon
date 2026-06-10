@@ -113,7 +113,7 @@ RSpec.describe 'Reports' do
       end
     end
 
-    context 'with attached collection', feature: :collections do
+    context 'with attached collection' do
       let(:collection) { Fabricate(:collection, account: target_account) }
       let(:collection_ids) { [collection.id] }
 

@@ -44,15 +44,10 @@
 class User < ApplicationRecord
   self.ignored_columns += %w(
     admin
-    current_sign_in_ip
     encrypted_otp_secret
     encrypted_otp_secret_iv
     encrypted_otp_secret_salt
-    filtered_languages
-    last_sign_in_ip
     moderator
-    remember_created_at
-    remember_token
     skip_sign_in_token
   )
 
@@ -92,7 +87,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
   validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
-  validates :email, presence: true, email_address: true
+  validates :email, presence: true, email_address: true, length: { maximum: 320 }
   validates :email, email_mx: { attempt_ip: :sign_up_ip }, if: :validate_email_dns?
 
   validates_with UserEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }

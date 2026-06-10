@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import { apiGetPrivacyPolicy } from 'mastodon/api/instance';
 import type { ApiPrivacyPolicyJSON } from 'mastodon/api_types/instance';
