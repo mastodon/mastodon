@@ -50,4 +50,20 @@ RSpec.describe SettingsHelper do
       end
     end
   end
+
+  describe '#time_zone_options' do
+    subject { helper.time_zone_options }
+
+    context 'when summer time is in effect' do
+      before { travel_to(Date.new(2026, 6, 1)) }
+
+      it { is_expected.to include(['(GMT-08:00) Alaska', 'America/Juneau']) }
+    end
+
+    context 'when summer time is not in effect' do
+      before { travel_to(Date.new(2025, 12, 1)) }
+
+      it { is_expected.to include(['(GMT-09:00) Alaska', 'America/Juneau']) }
+    end
+  end
 end

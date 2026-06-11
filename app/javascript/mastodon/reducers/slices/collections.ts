@@ -27,6 +27,7 @@ import {
   createAppSelector,
   createDataLoadingThunk,
 } from '@/mastodon/store/typed_functions';
+import { batchArray } from '@/mastodon/utils/batch_array';
 import { inputToHashtag } from '@/mastodon/utils/hashtags';
 
 type QueryStatus = 'idle' | 'loading' | 'error';
@@ -119,6 +120,15 @@ const collectionSlice = createSlice({
     ) {
       const { field, value } = action.payload;
       state.editor[field] = value;
+    },
+    importFetchedCollections(
+      state,
+      action: PayloadAction<ApiCollectionJSON[]>,
+    ) {
+      const collections = action.payload;
+      collections.forEach((collection) => {
+        state.collections[collection.id] = collection;
+      });
     },
   },
   extraReducers(builder) {
@@ -327,7 +337,7 @@ const collectionSlice = createSlice({
 /**
  * Prefetch accounts whose avatars will be displayed in the collection list
  */
-async function importAccountsForPreviewCard(
+export async function fetchAccountsForCollectionPreview(
   collections: ApiCollectionJSON[],
   dispatch: AppDispatch,
 ) {
@@ -337,11 +347,17 @@ async function importAccountsForPreviewCard(
     )
     .filter((id): id is string => !!id);
 
-  await dispatch(
-    fetchAccounts({
-      accountIds: previewAccountIds,
-    }),
-  );
+  if (previewAccountIds.length > 0) {
+    // fetchAccounts can only process up to 40 item ids, so we'll
+    // batch the list of ids
+    const batchedAccountIdLists = batchArray(previewAccountIds, 40);
+
+    await Promise.allSettled(
+      batchedAccountIdLists.map((accountIds) =>
+        dispatch(fetchAccounts({ accountIds })),
+      ),
+    );
+  }
 }
 
 export const fetchCollectionsCreatedByAccount = createDataLoadingThunk(
@@ -349,7 +365,7 @@ export const fetchCollectionsCreatedByAccount = createDataLoadingThunk(
   ({ accountId }: { accountId: string }) =>
     apiGetCollectionsCreatedByAccount(accountId),
   async ({ collections }, { dispatch }) => {
-    await importAccountsForPreviewCard(collections, dispatch);
+    await fetchAccountsForCollectionPreview(collections, dispatch);
   },
 );
 
@@ -358,7 +374,7 @@ export const fetchCollectionsFeaturingAccount = createDataLoadingThunk(
   ({ accountId }: { accountId: string }) =>
     apiGetCollectionsFeaturingAccount(accountId),
   async ({ collections }, { dispatch }) => {
-    await importAccountsForPreviewCard(collections, dispatch);
+    await fetchAccountsForCollectionPreview(collections, dispatch);
   },
 );
 
@@ -414,6 +430,8 @@ export const collections = collectionSlice.reducer;
 export const collectionEditorActions = collectionSlice.actions;
 export const updateCollectionEditorField =
   collectionSlice.actions.updateEditorField;
+export const importFetchedCollections =
+  collectionSlice.actions.importFetchedCollections;
 
 /**
  * Selectors

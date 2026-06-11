@@ -19,6 +19,7 @@ import { FollowsYouBadge } from '../badge';
 import { CopyButton } from '../copy_button';
 import { DisplayName } from '../display_name';
 import { Icon } from '../icon';
+import { NavigationFocusTarget } from '../navigation_focus_target';
 
 import { AccountBadges } from './badges';
 import classes from './styles.module.scss';
@@ -56,9 +57,9 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   return (
     <div className={classes.nameWrapper}>
       <div className={classes.name}>
-        <h1>
+        <NavigationFocusTarget as='h1'>
           <DisplayName account={account} variant='simple' />
-        </h1>
+        </NavigationFocusTarget>
         {relationship?.followed_by && <FollowsYouBadge />}
       </div>
 

@@ -500,13 +500,26 @@ it:
     email_subscriptions:
       accounts:
         account: Account
-        active: Attivo
         empty:
           hint: Non ci sono ancora account con iscritti.
           no_lists_yet: Non ci sono ancora liste
-        inactive: Inattivo
         last_email: Ultima email
         lead: Di seguito verranno visualizzati gli account che hanno attivato la funzionalità e che hanno degli iscritti.
+        show:
+          confirm_disable_feature: Disabilitare le newsletter per %{name}? Gli aggiornamenti via email non verranno più inviati per questo account. L'utente potrà comunque riattivare la funzione nelle impostazioni del proprio account. Per rimuovere definitivamente l'accesso a questa funzione, modificare le autorizzazioni dell'account in Ruoli.
+          confirm_remove_subscriber: "%{email} non riceverà più email da %{name}. Questa azione non può essere annullata."
+          consent: Gli iscritti hanno acconsentito esclusivamente a ricevere i post via email. Non utilizzare questa lista per altri scopi.
+          date: Data di iscrizione
+          disable_feature: Disabilita la funzionalità
+          disabled: La funzionalità è stata disabilitata e le email non vengono più inviate a questa lista.
+          email: Indirizzo email
+          empty:
+            hint: Nessuno si è ancora iscritto a questo account.
+            no_subscribers_yet: Ancora nessun iscritto
+          enable_feature: Abilita la funzionalità
+          no_access_html: Questo account non dispone più delle autorizzazioni necessarie per abilitare la funzionalità. Modifica questa impostazione in <a href="%{roles_path}">Ruoli</a>.
+          title: Newsletter via email da %{name}
+          view_account: Visualizza l'account
         status: Stato
         subscribers: Iscritti
         title: Mailing list
@@ -746,7 +759,7 @@ it:
       action_log: Registro di controllo
       action_taken_by: Azione intrapresa da
       actions:
-        delete_description_html: I post segnalati saranno eliminati e la sanzione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        delete_description_html: I post e/o le collezioni segnalate saranno eliminate e una sanzione verrà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni da parte dello stesso account.
         mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
@@ -773,7 +786,7 @@ it:
       confirm: Conferma
       confirm_action: Conferma l'azione di moderazione contro @%{acct}
       created_at: Segnalato
-      delete_and_resolve: Cancella post
+      delete_and_resolve: Elimina il contenuto
       forwarded: Inoltrato
       forwarded_replies_explanation: Questa segnalazione proviene da un utente remoto e tratta di contenuti remoti. È stato inoltrato a voi perché il contenuto riportato è in risposta a uno dei vostri utenti.
       forwarded_to: Inoltrato a %{domain}
@@ -1501,6 +1514,7 @@ it:
       your_appeal_rejected: Il tuo appello è stato respinto
   edit_profile:
     other: Altro
+    privacy_redesign_body: Ora puoi scegliere se mostrare i tuoi account seguiti e i follower direttamente dal tuo profilo.
     redesign_body: Ora è possibile modificare il profilo direttamente dalla pagina del profilo stesso.
     redesign_button: Vai lì
     redesign_title: È disponibile una nuova esperienza di modifica del profilo
@@ -1533,7 +1547,9 @@ it:
         success_html: Ora inizierai a ricevere email quando %{name} pubblicherà nuovi post. Aggiungi %{sender} ai tuoi contatti in modo che questi post non finiscano nella cartella Spam.
         title: Ti sei registrato/a
         unsubscribe: Disiscriviti
+    disabled: Disabilitata
     inactive: Inattiva
+    no_access: Nessun accesso
     status: Stato
     subscribers: Iscritti
   emoji_styles:
@@ -1569,7 +1585,9 @@ it:
     blocks: Stai bloccando
     bookmarks: Segnalibri
     csv: CSV
+    custom_filters: Filtri
     domain_blocks: Blocchi di dominio
+    json: JSON
     lists: Elenchi
     mutes: Stai silenziando
     storage: Archiviazione media
@@ -1956,7 +1974,7 @@ it:
     followers: Follower
     following: Seguiti
     invited: Invitato
-    last_active: Ultima volta attivo
+    last_active: Ultima attività
     most_recent: Più recente
     moved: Trasferito
     mutual: Reciproco

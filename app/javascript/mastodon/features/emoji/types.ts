@@ -80,3 +80,13 @@ export type ExtraCustomEmojiMap = Record<
   string,
   Pick<CustomEmojiData, 'shortcode' | 'static_url' | 'url'>
 >;
+
+export type EmojiWorkerMessage =
+  | {
+      type: 'load';
+      storeName: string;
+    }
+  | {
+      type: 'debug';
+      debugValue: string;
+    };

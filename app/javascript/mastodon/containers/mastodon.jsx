@@ -8,6 +8,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { hydrateStore } from 'mastodon/actions/store';
 import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
+import { FocusTargetProvider } from '@/mastodon/components/navigation_focus_target';
 import { Router } from 'mastodon/components/router';
 import UI from 'mastodon/features/ui';
 import { IdentityContext, createIdentityContext } from 'mastodon/identity_context';
@@ -49,7 +50,9 @@ export default class Mastodon extends PureComponent {
             <ErrorBoundary>
               <Router>
                 <ScrollContext>
-                  <Route path='/' component={UI} />
+                  <FocusTargetProvider>
+                    <Route path='/' component={UI} />
+                  </FocusTargetProvider>
                 </ScrollContext>
                 <BodyScrollLock />
               </Router>

@@ -6,12 +6,20 @@ RSpec.describe 'Collections' do
   describe 'GET /collections/:id' do
     subject { get collection_path(collection) }
 
-    let(:collection) { Fabricate(:collection) }
+    let(:collection) do
+      Fabricate(:collection, name: 'Frequent posters', description: 'Amazing people that can quickly fill your timeline', language: 'en')
+    end
 
-    it 'returns success' do
+    it 'returns success and includes opengraph meta tags' do
       subject
 
       expect(response).to have_http_status(200)
+
+      expect(head_meta_content('og:title')).to eq 'Frequent posters'
+      expect(head_meta_content('og:description')).to eq 'Amazing people that can quickly fill your timeline'
+      expect(head_meta_content('og:type')).to eq 'website'
+      expect(head_meta_content('og:url')).to eq collection_url(collection)
+      expect(head_meta_content('og:locale')).to eq 'en'
     end
   end
 
@@ -20,6 +28,14 @@ RSpec.describe 'Collections' do
 
     let(:collection) { Fabricate(:collection) }
     let(:account) { collection.account }
+
+    context 'when requested as HTML' do
+      it 'redirects to canonical URL' do
+        get ap_account_collection_path(account.id, collection)
+
+        expect(response).to redirect_to(collection_path(collection))
+      end
+    end
 
     context 'when signed out' do
       context 'when account is permanently suspended' do

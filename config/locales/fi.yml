@@ -500,13 +500,26 @@ fi:
     email_subscriptions:
       accounts:
         account: Tili
-        active: Käytössä
         empty:
           hint: Millään tilillä ei ole vielä tilaajia.
           no_lists_yet: Ei vielä listoja
-        inactive: Poissa käytöstä
         last_email: Viimeisin sähköpostiviesti
         lead: Alla näkyvät tilit, jotka ovat ottaneet ominaisuuden käyttöön ja joilla on tilaajia.
+        show:
+          confirm_disable_feature: Poistetaanko tilin %{name} sähköpostiuutiskirjeet käytöstä? Tätä tiliä koskevia sähköpostipäivityksiä ei enää lähetetä. Käyttäjä voi yhä ottaa tämän ominaisuuden uudelleen käyttöön tilinsä asetuksista. Jotta voit pysyvästi poistaa pääsyn tähän ominaisuuteen, muokkaa tilin käyttöoikeuksia kohdassa Roolit.
+          confirm_remove_subscriber: "%{email} ei vastedes vastaanota sähköpostia tililtä %{name}. Tätä toimintoa ei voi peruuttaa."
+          consent: Tilaajat ovat suostuneet vain vastaanottamaan julkaisuja sähköpostitse. Älä käytä tätä listaa muihin tarkoituksiin.
+          date: Tilauspäivä
+          disable_feature: Poista ominaisuus käytöstä
+          disabled: Tämä ominaisuus on poistettu käytöstä, eikä sähköpostia enää lähetetä tälle listalle.
+          email: Sähköpostiosoite
+          empty:
+            hint: Kukaan ei ole vielä tilannut tätä tiliä.
+            no_subscribers_yet: Ei vielä tilaajia
+          enable_feature: Ota ominaisuus käyttöön
+          no_access_html: Tällä tilillä ei ole enää ominaisuuden käyttöönottoon vaadittavia käyttöoikeuksia. Muuta tämä kohdassa <a href="%{roles_path}">Roolit</a>.
+          title: Tilin %{name} sähköpostiuutiskirjeet
+          view_account: Näytä tili
         status: Tila
         subscribers: Tilaajia
         title: Postituslistat
@@ -537,7 +550,9 @@ fi:
       index:
         disabled:
           cannot_be_enabled: Tekninen palveluntarjoajasi ei ole ottanut tätä omainaisuutta käyttöön palvelimellasi.
+          description: Tämä omainaisuus antaa määrättyjen käyttäjien lisätä profiiliinsa pienoisohjelman, jolloin vierailijat, joilla ei ole Mastodon-tiliä, voivat vastaanottaa hänen julkaisunsa sähköpostitse.
           get_started: Aloita
+        lead: Salli vierailijoiden vastaanottaa määrättyjen tämän palvelimen tilien julkaisut sähköpostitse.
         title: Sähköpostiuutiskirjeet
       purged_msg: Kaikki sähköpostitilausten tiedot hävitetään.
       roles:
@@ -738,7 +753,7 @@ fi:
       action_log: Tarkastusloki
       action_taken_by: Toimen tehnyt
       actions:
-        delete_description_html: Raportoidut julkaisut poistetaan ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
+        delete_description_html: Raportoidut julkaisut ja/tai kokoelmat poistetaan ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         mark_as_sensitive_description_html: Raportoitujen julkaisujen media merkitään arkaluonteiseksi ja kirjataan varoitus, joka auttaa suhtautumaan vakavammin saman tilin tuleviin rikkomuksiin.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja raportoidulle tilille kohdistuvan viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä kohtaan ei ryhdytä toimiin, varoitusta ei kirjata ja raportti suljetaan.
@@ -765,7 +780,7 @@ fi:
       confirm: Vahvista
       confirm_action: Vahvista moderointitoimi käyttäjää @%{acct} kohtaan
       created_at: Raportoitu
-      delete_and_resolve: Poista julkaisut
+      delete_and_resolve: Poista sisältö
       forwarded: Välitetty
       forwarded_replies_explanation: Tämä raportti on etäkäyttäjältä ja koskee etäsisältöä. Se on välitetty sinulle, koska raportoitu sisältö on vastaus jollekin käyttäjällesi.
       forwarded_to: Välitetty palvelimelle %{domain}
@@ -1493,6 +1508,7 @@ fi:
       your_appeal_rejected: Valituksesi on hylätty
   edit_profile:
     other: Muut
+    privacy_redesign_body: Valinta seurattavien ja seurattujen näyttämiseksi tehdään nyt suoraan profiilista.
     redesign_body: Profiilia pääsee muokkaamaan nyt suoraan profiilisivulta.
     redesign_button: Siirry sinne
     redesign_title: Profiilin muokkauskokemus on uudistunut
@@ -1525,7 +1541,9 @@ fi:
         success_html: Alat nyt saada sähköpostia, kun %{name} julkaisee uutta. Lisää %{sender} yhteystietoihisi, jotta nämä julkaisut eivät joudu roskapostikansioon.
         title: Olet aloittanut tilauksen
         unsubscribe: Peruuta tilaus
+    disabled: Poissa käytöstä
     inactive: Poissa käytöstä
+    no_access: Ei käyttöoikeutta
     status: Tila
     subscribers: Tilaajia
   emoji_styles:
@@ -1561,7 +1579,9 @@ fi:
     blocks: Estot
     bookmarks: Kirjanmerkit
     csv: CSV
+    custom_filters: Suodattimet
     domain_blocks: Verkkotunnusten estot
+    json: JSON
     lists: Listat
     mutes: Mykistykset
     storage: Mediatiedostot

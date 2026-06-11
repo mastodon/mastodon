@@ -109,8 +109,8 @@ const hotkeyMatcherMap = {
   mention: just('m'),
   open: any('enter', 'o'),
   openProfile: just('p'),
-  moveDown: just('j'),
-  moveUp: just('k'),
+  moveDown: any('j', 'pagedown'),
+  moveUp: any('k', 'pageup'),
   moveToTop: just('0'),
   toggleHidden: just('x'),
   toggleSensitive: just('h'),
@@ -147,9 +147,15 @@ const hotkeyMatcherMap = {
 
 type HotkeyName = keyof typeof hotkeyMatcherMap;
 
-export type HandlerMap = Partial<
-  Record<HotkeyName, (event: KeyboardEvent) => void>
->;
+type HandlerFunction =
+  // When a handler returns a boolean, it should indicate whether the
+  // hotkey was handled (i.e. it resulted in an action).
+  // If `false` is returned, `preventDefault` and `stopPropagation`
+  // will not be called on the keyboard event, restoring the key's
+  // native behaviour.
+  ((event: KeyboardEvent) => boolean) | ((event: KeyboardEvent) => void);
+
+export type HandlerMap = Partial<Record<HotkeyName, HandlerFunction>>;
 
 export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
   const ref = useRef<T>(null);
@@ -184,7 +190,7 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
         const matchCandidates: {
           // A candidate will be have an undefined handler if it's matched,
           // but handled in a parent component rather than this one.
-          handler: ((event: KeyboardEvent) => void) | undefined;
+          handler: HandlerFunction | undefined;
           priority: number;
         }[] = [];
 
@@ -209,9 +215,11 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
 
         const bestMatchingHandler = matchCandidates.at(0)?.handler;
         if (bestMatchingHandler) {
-          bestMatchingHandler(event);
-          event.stopPropagation();
-          event.preventDefault();
+          const wasHandled = bestMatchingHandler(event);
+          if (wasHandled !== false) {
+            event.stopPropagation();
+            event.preventDefault();
+          }
         }
 
         // Add last keypress to buffer

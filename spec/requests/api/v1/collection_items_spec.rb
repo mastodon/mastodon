@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe 'Api::V1Alpha::CollectionItems' do
   include_context 'with API authentication', oauth_scopes: 'read:collections write:collections'
 
-  describe 'POST /api/v1_alpha/collections/:collection_id/items' do
+  describe 'POST /api/v1/collections/:collection_id/items' do
     subject do
-      post "/api/v1_alpha/collections/#{collection.id}/items", headers: headers, params: params
+      post "/api/v1/collections/#{collection.id}/items", headers: headers, params: params
     end
 
     let(:collection) { Fabricate(:collection, account: user.account) }
@@ -27,6 +27,14 @@ RSpec.describe 'Api::V1Alpha::CollectionItems' do
 
           expect(response).to have_http_status(200)
           expect(response.parsed_body).to have_key('collection_item')
+        end
+
+        it 'features a deprecation header when requested via the alpha route' do
+          subject
+          expect(response.headers['Deprecation']).to be_nil
+
+          post "/api/v1_alpha/collections/#{collection.id}/items", headers: headers, params: params
+          expect(response.headers['Deprecation']).to eq '@1781049600'
         end
       end
 
@@ -54,9 +62,9 @@ RSpec.describe 'Api::V1Alpha::CollectionItems' do
     end
   end
 
-  describe 'DELETE /api/v1_alpha/collections/:collection_id/items/:id' do
+  describe 'DELETE /api/v1/collections/:collection_id/items/:id' do
     subject do
-      delete "/api/v1_alpha/collections/#{collection.id}/items/#{item.id}", headers: headers
+      delete "/api/v1/collections/#{collection.id}/items/#{item.id}", headers: headers
     end
 
     let(:collection) { Fabricate(:collection, account: user.account) }
@@ -103,9 +111,9 @@ RSpec.describe 'Api::V1Alpha::CollectionItems' do
     end
   end
 
-  describe 'POST /api/v1_alpha/collections/:collection_id/items/:id/revoke' do
+  describe 'POST /api/v1/collections/:collection_id/items/:id/revoke' do
     subject do
-      post "/api/v1_alpha/collections/#{collection.id}/items/#{item.id}/revoke", headers: headers
+      post "/api/v1/collections/#{collection.id}/items/#{item.id}/revoke", headers: headers
     end
 
     let(:collection) { Fabricate(:collection) }

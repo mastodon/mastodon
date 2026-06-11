@@ -68,7 +68,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.quote' defaultMessage='Quote post' /></td>
               </tr>
               <tr>
-                <td><kbd>enter</kbd>, <kbd>o</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.enter' defaultMessage='Enter' tagName='kbd' />, <kbd>o</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
               </tr>
               <tr>
@@ -88,11 +88,11 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_sensitivity' defaultMessage='to show/hide media' /></td>
               </tr>
               <tr>
-                <td><kbd>k</kbd></td>
+                <td><kbd>k</kbd>, <FormattedMessage id='keyboard_shortcuts.keys.page_up' defaultMessage='Page Up' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
               </tr>
               <tr>
-                <td><kbd>j</kbd></td>
+                <td><kbd>j</kbd>, <FormattedMessage id='keyboard_shortcuts.keys.page_down' defaultMessage='Page Down' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.down' defaultMessage='to move down in the list' /></td>
               </tr>
               <tr>
@@ -112,15 +112,15 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.compose' defaultMessage='to focus the compose textarea' /></td>
               </tr>
               <tr>
-                <td><kbd>alt</kbd>+<kbd>n</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.alt' defaultMessage='Alt' tagName='kbd' />+<kbd>n</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.toot' defaultMessage='to start a brand new post' /></td>
               </tr>
               <tr>
-                <td><kbd>alt</kbd>+<kbd>x</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.alt' defaultMessage='Alt' tagName='kbd' />+<kbd>x</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.spoilers' defaultMessage='to show/hide CW field' /></td>
               </tr>
               <tr>
-                <td><kbd>backspace</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.backspace' defaultMessage='Backspace' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.back' defaultMessage='to navigate back' /></td>
               </tr>
               <tr>
@@ -128,7 +128,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.search' defaultMessage='to focus search' /></td>
               </tr>
               <tr>
-                <td><kbd>esc</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.esc' defaultMessage='Esc' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.unfocus' defaultMessage='to un-focus compose textarea/search' /></td>
               </tr>
               <tr>

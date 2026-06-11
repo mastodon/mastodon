@@ -321,10 +321,10 @@ lv:
       publish: Publicēt
       published_msg: Paziņojums sekmīgi publicēts.
       scheduled_for: Plānots uz %{time}
-      scheduled_msg: Paziņojums ieplānots publicēšanai!
+      scheduled_msg: Paziņojums ierindots publicēšanai.
       title: Paziņojumi
       unpublish: Atcelt publicēšanu
-      unpublished_msg: Paziņojuma publicēšana sekmīgi atcelta!
+      unpublished_msg: Paziņojuma publicēšana sekmīgi atcelta.
       updated_msg: Paziņojums sekmīgi atjaunināts!
     critical_update_pending: Gaida kritisko atjauninājumu
     custom_emojis:
@@ -647,7 +647,6 @@ lv:
       action_log: Audita žurnāls
       action_taken_by: Veiktā darbība
       actions:
-        delete_description_html: Raksti, par kurām ziņots, tiks dzēsti, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
         mark_as_sensitive_description_html: Informācijas nesēji ierakstos, par kuriem ziņots, tiks atzīmēti kā jūtīgi, un tiks iegrāmatots brīdinājums, lai palīdzētu ziņot par turpmākiem tā paša konta pārkāpumiem.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
@@ -673,7 +672,6 @@ lv:
       confirm: Apstiprināt
       confirm_action: Apstiprināt satura pārraudzības darbību pret @%{acct}
       created_at: Ziņoti
-      delete_and_resolve: Izdzēst rakstus
       forwarded: Pārsūtīti
       forwarded_replies_explanation: Šis ziņojums ir no attāla lietotāja un par attālu saturu. Tas tika pārvirzīts šeit, jo saturs, par kuru tika ziņots, ir atbilde vienam no šī servera lietotājiem.
       forwarded_to: Pārsūtīti %{domain}
@@ -711,7 +709,7 @@ lv:
         actions:
           delete_html: Noņemt aizskarošos ierakstus
           mark_as_sensitive_html: Atzīmēt aizskarošo ierakstu informācijas nesējus kā jūtīgus
-          silence_html: Ievērojami ierobežo <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai cilvēkiem, kas jau seko tam vai pašrocīgi uzmeklē profilu
+          silence_html: Ievērojami ierobežo <strong>@%{acct}</strong> sasniedzamību, padarot profilu un saturu redzamu tikai cilvēkiem, kas jau seko vai pašrocīgi uzmeklē profilu
           suspend_html: apturēs <strong>@%{acct}</strong> darbību, padarot profilu un saturu nepieejamu un neiespējamu mijiedarboties ar to;
         close_report: 'Atzīmēt ziņojumu #%{id} kā atrisinātu'
         close_reports_html: atzīmēs <strong>visus</strong> ziņojumus par <strong>@%{acct}</strong> kā atrisinātus;
@@ -896,7 +894,7 @@ lv:
       reblogs: Reblogi
       replied_to_html: Atbildēja %{acct_link}
       status_changed: Ieraksts izmainīts
-      status_title: Publicēja @%{name}
+      status_title: Ievietoja @%{name}
       title: Konta ieraksti - @%{name}
       trending: Aktuāli
       view_publicly: Skatīt publiski
@@ -1116,8 +1114,8 @@ lv:
       rotate_secret: Pagriezt noslēpumu
       secret: Paraksta noslēpums
       status: Stāvoklis
-      title: Tīmekļa āķi
-      webhook: Tīmekļa āķis
+      title: Tīmekļa aizķeres
+      webhook: Tīmekļa aizķere
   admin_mailer:
     auto_close_registrations:
       body: Nesenu satura pārraudzības darbību trūkuma dēļ reģistrācija %{instance} ir automātiski pārslēgta nepieciešamība pēc pašrocīgas izskatīšanas, lai novērstu %{instance} izmantošana kā platformu iespējami sliktiem dalībniekiem. Jebkurā brīdī var ieslēgt atpakaļ atvērtu reģistrēšanos.
@@ -1207,7 +1205,7 @@ lv:
     description:
       prefix_invited_by_user: "@%{name} aicina tevi pievienoties šim Mastodon serverim!"
       prefix_sign_up: Reģistrējies Mastodon jau šodien!
-      suffix: Izmantojot kontu, tu varēsi sekot cilvēkiem, publicēt atjauninājumus un apmainīties ar ziņojumiem ar lietotājiem no jebkura Mastodon servera un daudz ko citu!
+      suffix: Ar kontu varēsi sekot cilvēkiem, ievietot atjauninājumus un apmainīties ar ziņojumiem ar lietotājiem no jebkura Mastodon servera un daudz ko citu.
     didnt_get_confirmation: Vai nesaņēmi apstiprinājuma saiti?
     dont_have_your_security_key: Vai tev nav drošības atslēgas?
     forgot_password: Aizmirsi paroli?
@@ -1668,7 +1666,7 @@ lv:
       subject: "%{name} izcēla tavu ziņu"
       title: Jauns izcēlums
     status:
-      subject: "%{name} tikko publicēja"
+      subject: "%{name} tikko pievienoja ierakstu"
     update:
       subject: "%{name} laboja ierakstu"
   notifications:
@@ -1713,7 +1711,7 @@ lv:
       too_many_options: nevar saturēt vairāk par %{max} vienumiem
   preferences:
     other: Citi
-    posting_defaults: Publicēšanas noklusējuma iestatījumi
+    posting_defaults: Ierakstu pievienošanas noklusējumi
     public_timelines: Publiskās ziņu lentas
   privacy:
     hint_html: "<strong>Pielāgo, kā vēlies atrast savu profilu un ziņas.</strong> Dažādas Mastodon funkcijas var palīdzēt sasniegt plašāku auditoriju, ja tās ir iespējotas. Velti laiku, lai pārskatītu šos iestatījumus, lai pārliecinātos, ka tie atbilst tavam lietošanas gadījumam."
@@ -2005,6 +2003,7 @@ lv:
       agreement: Ar %{domain} izmantošanas tuprināšanu tiek piekrists šiem noteikumiem. Ja ir iebildumi pret atjauninātajiem noteikumiem, savu piekrišanu var atcelt jebkurā laikā ar sava konta izdzēšanu.
       changelog: 'Šeit īsumā ir aprakstīts, ko šis atjauninājums nozīmē:'
       description: 'Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Šie atjauninājumi stāsies spēkā %{date}. Mēs aicinām pārskatīt pilnus atjauninātos noteikumus šeit:'
+      description_html: Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Šie atjauninājumi stāsies spēkā <strong>%{date}</strong>. Mēs aicinām pārskatīt <a href="%{path}" target="_blank">pilnus atjauninātos noteikumus šeit</a>.
       sign_off: "%{domain} komanda"
       subject: Mūsu pakalpojuma izmantošanas noteikumu atjauninājumi
       subtitle: Mainās %{domain} pakalpojuma izmantošanas noteikumi

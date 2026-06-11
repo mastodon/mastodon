@@ -17,7 +17,6 @@ import {
   UserConfig,
 } from 'vite';
 import manifestSRI from 'vite-plugin-manifest-sri';
-import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
 
 import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
@@ -155,6 +154,14 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
             }
             return '[name]-[hash].js';
           },
+          entryFileNames({ name }) {
+            // If this is the service worker, don't add the hash to the name.
+            if (name === 'sw') {
+              return '[name].js';
+            }
+            // Otherwise, use the same value as chunkFileNames.
+            return '[name]-[hash].js';
+          },
         },
       },
     },
@@ -188,29 +195,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         manifestSRI({
           manifestPaths: ['.vite/manifest.json'],
         }),
-      VitePWA({
-        srcDir: path.resolve(jsRoot, 'mastodon/service_worker'),
-        // We need to use injectManifest because we use our own service worker
-        strategies: 'injectManifest',
-        manifest: false,
-        injectRegister: false,
-        injectManifest: {
-          // Do not inject a manifest, we don't use precache
-          injectionPoint: undefined,
-          buildPlugins: {
-            vite: [
-              // Provide a virtual import with only the locales used in the ServiceWorker
-              MastodonServiceWorkerLocales(),
-            ],
-          },
-        },
-        // Force the output location, because we have a symlink in `public/sw.js`
-        outDir: path.resolve(__dirname, 'public/packs'),
-        devOptions: {
-          enabled: true,
-          type: 'module',
-        },
-      }),
       svgr(),
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
@@ -224,7 +208,9 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
 };
 
 async function findEntrypoints() {
-  const entrypoints: Record<string, string> = {};
+  const entrypoints: Record<string, string> = {
+    sw: path.resolve(jsRoot, 'mastodon/service_worker/sw.ts'),
+  };
 
   // First, JS entrypoints
   const jsEntrypointsDir = path.resolve(jsRoot, 'entrypoints');

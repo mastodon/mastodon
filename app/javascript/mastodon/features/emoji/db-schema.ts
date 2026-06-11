@@ -10,6 +10,7 @@ import type {
   StoreNames,
 } from 'idb';
 
+import { resetDatabase } from './database';
 import type { CustomEmojiData, CacheKey, UnicodeEmojiData } from './types';
 import { emojiLogger } from './utils';
 
@@ -57,7 +58,7 @@ type Transaction<Mode extends IDBTransactionMode = 'versionchange'> =
 
 export type Database = IDBPDatabase<EmojiDB>;
 
-const SCHEMA_VERSION = 3;
+const SCHEMA_VERSION = 4;
 
 export async function openEmojiDB() {
   const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
@@ -97,6 +98,8 @@ export async function openEmojiDB() {
         options: { multiEntry: true },
       });
       deleteOldIndexes(shortcodeTable, ['hexcode']);
+
+      void resetDatabase();
 
       log(
         'Upgraded emoji database from version %d to %d',

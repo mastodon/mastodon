@@ -15,6 +15,7 @@ import { apiRequest } from 'mastodon/api';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { useAppDispatch } from 'mastodon/store';
 
@@ -77,12 +78,12 @@ export const DomainBlockModal: React.FC<{
           </div>
 
           <div>
-            <h1>
+            <NavigationFocusTarget as='h1'>
               <FormattedMessage
                 id='domain_block_modal.title'
                 defaultMessage='Block domain?'
               />
-            </h1>
+            </NavigationFocusTarget>
             <p>{domain}</p>
           </div>
         </div>

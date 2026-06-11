@@ -18,6 +18,7 @@ import { closeModal } from 'mastodon/actions/modal';
 import { Button } from 'mastodon/components/button';
 import { CheckBox } from 'mastodon/components/check_box';
 import { Icon } from 'mastodon/components/icon';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { RadioButton } from 'mastodon/components/radio_button';
 
 const messages = defineMessages({
@@ -84,7 +85,9 @@ export const MuteModal = ({ accountId, acct }) => {
           </div>
 
           <div>
-            <h1><FormattedMessage id='mute_modal.title' defaultMessage='Mute user?' /></h1>
+            <NavigationFocusTarget as='h1'>
+              <FormattedMessage id='mute_modal.title' defaultMessage='Mute user?' />
+            </NavigationFocusTarget>
             <p>@{acct}</p>
           </div>
         </div>

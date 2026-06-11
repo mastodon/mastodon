@@ -169,6 +169,39 @@ RSpec.describe Settings::ImportsController do
       it_behaves_like 'export failed rows', 'following_accounts_failures.csv', "Account address,Show boosts,Notify on new posts,Languages\nfoo@bar,true,false,\nuser@bar,false,true,\"fr, de\"\n"
     end
 
+    context 'with custom filters' do
+      subject { get :failures, params: { id: bulk_import.id }, format: :json }
+
+      let(:import_type) { 'custom_filters' }
+      let(:rows) do
+        [
+          {
+            'title' => 'random title',
+            'expires_at' => nil,
+            'context' => ['public', 'account'],
+            'action' => 'warn',
+            'keywords_attributes' => [{
+              'keyword' => 'all them keywords',
+              'whole_word' => true,
+            }, {
+              'keyword' => 'more keywords even',
+              'whole_word' => true,
+            }],
+            'statuses' => ['status'],
+          },
+        ]
+      end
+      let(:bulk_import) { Fabricate(:bulk_import, account: user.account, type: import_type, state: :finished) }
+
+      before do
+        rows.each { |data| Fabricate(:bulk_import_row, bulk_import: bulk_import, data: data) }
+        bulk_import.update(total_items: bulk_import.rows.count, processed_items: bulk_import.rows.count, imported_items: 0)
+      end
+
+      it_behaves_like 'export failed rows', 'custom_filters_failures.json',
+                      '{"custom_filters":[{"title":"random title","action":"warn","context":["public","account"],"statuses":["status"],"expires_at":null,"keywords_attributes":[{"keyword":"all them keywords","whole_word":true},{"keyword":"more keywords even","whole_word":true}]},{"title":"random title","action":"warn","context":["public","account"],"statuses":["status"],"expires_at":null,"keywords_attributes":[{"keyword":"all them keywords","whole_word":true},{"keyword":"more keywords even","whole_word":true}]}]}' # rubocop:disable Layout/LineLength
+    end
+
     context 'with blocks' do
       let(:import_type) { 'blocking' }
 
@@ -291,5 +324,29 @@ RSpec.describe Settings::ImportsController do
 
     it_behaves_like 'unsuccessful import', 'following', 'empty.csv', 'merge'
     it_behaves_like 'unsuccessful import', 'following', 'empty.csv', 'overwrite'
+
+    context 'with custom filter' do
+      subject { post :create, params: { form_import: { type: 'custom_filters', mode: mode, data: data } } }
+
+      describe 'successful import' do
+        let(:data) { fixture_file_upload('custom_filters.json', 'application/json') }
+        let(:mode) { 'merge' }
+
+        it 'creates an unconfirmed bulk_import with expected type and redirects', :aggregate_failures do
+          expect { subject }.to change { user.account.bulk_imports.pluck(:state, :type) }.from([]).to([['unconfirmed', 'custom_filters']])
+          expect(response).to redirect_to(settings_import_path(user.account.bulk_imports.first))
+        end
+      end
+
+      describe 'failing import' do
+        let(:mode) { 'merge' }
+        let(:data) { fixture_file_upload('empty.json', 'application/json') }
+
+        it 'does not creates an unconfirmed bulk_import', :aggregate_failures do
+          expect { subject }.to_not(change { user.account.bulk_imports.count })
+          expect(response.body).to include('field_with_errors')
+        end
+      end
+    end
   end
 end

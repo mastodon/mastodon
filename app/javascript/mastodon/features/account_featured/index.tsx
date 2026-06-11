@@ -29,7 +29,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 
 import { CollectionListItem } from '../collections/components/collection_list_item';
-import { useCollectionsCreatedBy } from '../collections/overview/created_by_you';
+import { useCollectionsCreatedBy } from '../collections/overview/created_by_account';
 
 import { EmptyMessage } from './components/empty_message';
 import { Subheading, SubheadingLink } from './components/subheading';
@@ -41,6 +41,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
   const account = useAccount(accountId);
   const { suspended, blockedBy, hidden } = useAccountVisibility(accountId);
   const forceEmptyState = suspended || blockedBy || hidden;
+  const isOwnProfile = accountId === me;
 
   const dispatch = useAppDispatch();
 
@@ -69,10 +70,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
 
   const { listedCollections = [], unlistedCollections = [] } = Object.groupBy(
     collections,
-    (item) =>
-      item.discoverable && !!item.item_count
-        ? 'listedCollections'
-        : 'unlistedCollections',
+    (item) => (item.discoverable ? 'listedCollections' : 'unlistedCollections'),
   );
 
   const renderListItem = useCallback(
@@ -166,7 +164,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
               defaultMessage='Collections'
             />
           </h2>
-          {accountId === me && (
+          {isOwnProfile && (
             <SubheadingLink to='/collections/new' icon={AddIcon}>
               <FormattedMessage
                 id='account.featured.new_collection'
@@ -179,7 +177,7 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
           <ItemList>
             <TruncatedListItems
               visibleItems={listedCollections}
-              truncatedItems={unlistedCollections}
+              truncatedItems={isOwnProfile ? unlistedCollections : []}
               toggleButton={{
                 title: (
                   <FormattedMessage

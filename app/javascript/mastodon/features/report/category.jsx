@@ -3,11 +3,10 @@ import { PureComponent } from 'react';
 
 import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { List as ImmutableList } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { Button } from 'mastodon/components/button';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { injectIntl } from '@/mastodon/components/intl';
 
 import Option from './components/option';
@@ -84,7 +83,9 @@ class Category extends PureComponent {
 
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.category.title' defaultMessage="Tell us what's going on with this {type}" values={{ type: intl.formatMessage(messages[startedFrom]) }} /></h3>
+        <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
+          <FormattedMessage id='report.category.title' defaultMessage="Tell us what's going on with this {type}" values={{ type: intl.formatMessage(messages[startedFrom]) }} />
+        </NavigationFocusTarget>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.category.subtitle' defaultMessage='Choose the best match' /></p>
 
         <div>

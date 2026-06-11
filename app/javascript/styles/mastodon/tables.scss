@@ -129,6 +129,10 @@
       color: var(--color-text-primary);
       font-weight: 600;
     }
+
+    .status-badge {
+      padding: 0;
+    }
   }
 
   &.batch-table {
@@ -194,6 +198,12 @@ a.table-action-link {
   justify-content: center;
   padding: 4px;
   aspect-ratio: 1;
+
+  &.table-icon-link--danger {
+    border-radius: 8px;
+    border: 1px solid var(--color-border-primary);
+    color: var(--color-text-error);
+  }
 }
 
 .batch-table {

@@ -500,13 +500,26 @@ es-AR:
     email_subscriptions:
       accounts:
         account: Cuenta
-        active: Activa
         empty:
           hint: Aún no hay cuentas con suscriptores.
           no_lists_yet: Aún no hay listas
-        inactive: Inactiva
         last_email: Último correo electrónico
         lead: Las cuentas que habilitaron la función y tienen suscriptores se mostrarán a continuación.
+        show:
+          confirm_disable_feature: "¿Deshabilitar boletines de correo electrónico para %{name}? Las actualizaciones de correo electrónico ya no se enviarán a esta cuenta. El usuario todavía podrá volver a activar la función en la configuración de su cuenta. Para eliminar permanentemente el acceso a esta función, editá el permiso de la cuenta en Roles."
+          confirm_remove_subscriber: "%{email} ya no recibirá correos electrónicos de %{name}. Esta acción no se puede deshacer."
+          consent: Los suscriptores solo aceptaron recibir mensajes por correo electrónico. No usés esta lista para otros propósitos.
+          date: Fecha de registro
+          disable_feature: Deshabilitar función
+          disabled: La función fue deshabilitada y los correos electrónicos ya no están siendo enviados a esta lista.
+          email: Dirección de correo electrónico
+          empty:
+            hint: Todavía nadie se suscribió a esta cuenta.
+            no_subscribers_yet: Aún no hay suscriptores
+          enable_feature: Habilitar función
+          no_access_html: Esta cuenta ya no tiene los permisos requeridos para habilitar la función. Cambiá esto en <a href="%{roles_path}">Roles</a>.
+          title: Boletines de noticias de %{name}
+          view_account: Ver cuenta
         status: Estado
         subscribers: Suscriptores
         title: Listas de correo
@@ -746,7 +759,7 @@ es-AR:
       action_log: Registro de auditoría
       action_taken_by: Acción tomada por
       actions:
-        delete_description_html: Los mensajes denunciados serán eliminados y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
+        delete_description_html: Los mensajes y/o las colecciones denunciadas serán eliminadas y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
         mark_as_sensitive_description_html: Los archivos de medios en los mensajes denunciados se marcarán como sensibles y se registrará un incumplimiento para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará el incumplimiento, y se cerrará la denuncia.
@@ -773,7 +786,7 @@ es-AR:
       confirm: Confirmar
       confirm_action: Confirmar acción de moderación contra @%{acct}
       created_at: Denunciado
-      delete_and_resolve: Eliminar mensajes
+      delete_and_resolve: Eliminar contenido
       forwarded: Reenviado
       forwarded_replies_explanation: Esta denuncia es de un usuario remoto y sobre contenido remoto. Se te reenvió porque el contenido denunciado es en respuesta a uno de tus usuarios.
       forwarded_to: Reenviado a %{domain}
@@ -1501,6 +1514,7 @@ es-AR:
       your_appeal_rejected: Se rechazó tu apelación
   edit_profile:
     other: Otros
+    privacy_redesign_body: La opción de mostrar tus seguidores y seguidores ahora se hace directamente a partir de tu perfil.
     redesign_body: Ahora podés acceder a la edición del perfil desde la propia página de perfil.
     redesign_button: Ir allí
     redesign_title: Hay una nueva experiencia de edición de perfil
@@ -1533,7 +1547,9 @@ es-AR:
         success_html: Ahora vas a empezar a recibir correos electrónicos cuando %{name} publique algo nuevo. Agregá a %{sender} a tus contactos para que estas publicaciones no terminen en tu carpeta de spam o correo no deseado.
         title: Te suscribiste
         unsubscribe: Desuscribirse
+    disabled: Deshabilitada
     inactive: Inactiva
+    no_access: Sin acceso
     status: Estado
     subscribers: Suscriptores
   emoji_styles:
@@ -1569,7 +1585,9 @@ es-AR:
     blocks: Cuentas que bloqueaste
     bookmarks: Marcadores
     csv: CSV
+    custom_filters: Filtros
     domain_blocks: Dominios bloqueados
+    json: JSON
     lists: Listas
     mutes: Cuentas que silenciaste
     storage: Almacenamiento de medios

@@ -1,7 +1,9 @@
 ---
 zh-TW:
   about:
-    about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，於其建立帳號，您就能與任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。
+    about_mastodon_html: |-
+      社交網路的未來：無廣告、無企業監控、道德
+      去中心化設計！加入 Mastodon，擁有您的資料！
     contact_missing: 未設定
     contact_unavailable: 未公開
     hosted_on: 於 %{domain} 託管之 Mastodon 站點
@@ -490,13 +492,26 @@ zh-TW:
     email_subscriptions:
       accounts:
         account: 帳號
-        active: 生效中
         empty:
           hint: 尚無任何擁有訂閱者之帳號。
           no_lists_yet: 尚無列表
-        inactive: 已停用
         last_email: 最新電子郵件地址
         lead: 已啟用此功能並擁有訂閱者之帳號將於下方顯示。
+        show:
+          confirm_disable_feature: 是否替 %{name} 停用電子報功能？電子報郵件將不被寄至此帳號。該使用者仍能於帳號設定中重新啟用此功能。如欲永久禁用此功能，請於角色設定中編輯該帳號之權限。
+          confirm_remove_subscriber: "%{email} 將不再收到來自 %{name} 之電子郵件。此動作無法回復。"
+          consent: 訂閱者僅同意透過電子郵件接收嘟文。請勿將此名單用於其他用途。
+          date: 註冊日期
+          disable_feature: 停用功能
+          disabled: 此功能已停用且電子郵件將不被寄至此列表。
+          email: 電子郵件地址
+          empty:
+            hint: 尚無任何人訂閱此帳號。
+            no_subscribers_yet: 尚無訂閱者
+          enable_feature: 啟用功能
+          no_access_html: 此帳號不再擁有啟用此功能所需之權限。請於 <a href="%{roles_path}">角色設定</a>中修改此設定。
+          title: "%{name} 之電子報"
+          view_account: 檢視帳號
         status: 狀態
         subscribers: 訂閱者
         title: 電子郵件列表
@@ -732,7 +747,7 @@ zh-TW:
       action_log: 審計日誌
       action_taken_by: 操作執行者
       actions:
-        delete_description_html: 被檢舉的嘟文將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
+        delete_description_html: 被檢舉的嘟文及收藏名單將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
         mark_as_sensitive_description_html: 被檢舉的嘟文中的媒體將會被標記為敏感內容，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
@@ -759,7 +774,7 @@ zh-TW:
       confirm: 確認
       confirm_action: 確認對 @%{acct} 執行站務動作
       created_at: 日期
-      delete_and_resolve: 刪除嘟文
+      delete_and_resolve: 刪除內容
       forwarded: 已轉寄
       forwarded_replies_explanation: 此報告來自聯邦宇宙中非本伺服器帳號，關於非本伺服器內容。此報告轉發給您，因為報告之內容是回覆給您的伺服器上某位使用者。
       forwarded_to: 轉寄到 %{domain}
@@ -776,7 +791,7 @@ zh-TW:
         title: 備註
       notes_description_html: 檢視及留下些給其他管理員與未來的自己的備註
       processed_msg: '檢舉報告 #%{id} 已被成功處理'
-      quick_actions_description_html: 採取一個快速行動，或者下捲以檢視檢舉內容：
+      quick_actions_description_html: 採取快速行動，或者下捲以檢視檢舉內容：
       remote_user_placeholder: 來自 %{instance} 之遠端使用者
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
@@ -1482,6 +1497,7 @@ zh-TW:
       your_appeal_rejected: 您的申訴已被駁回
   edit_profile:
     other: 其他
+    privacy_redesign_body: 您現在能直接於個人資料檔案頁面中選擇是否顯示您的跟隨中與跟隨者。
     redesign_body: 個人檔案編輯功能現在能自個人檔案頁面直接存取。
     redesign_button: 前往
     redesign_title: 全新個人檔案編輯體驗
@@ -1513,7 +1529,9 @@ zh-TW:
         success_html: 您將開始收到當 %{name} 發表新嘟文之電子郵件。請新增 %{sender} 至您的通訊錄使這些嘟文不被分類至垃圾信件夾。
         title: 已完成註冊
         unsubscribe: 取消訂閱
+    disabled: 已停用
     inactive: 已停用
+    no_access: 無法存取
     status: 狀態
     subscribers: 訂閱者
   emoji_styles:
@@ -1549,7 +1567,9 @@ zh-TW:
     blocks: 您封鎖的使用者
     bookmarks: 書籤
     csv: CSV
+    custom_filters: 過濾器
     domain_blocks: 網域封鎖
+    json: JSON
     lists: 列表
     mutes: 您靜音的使用者
     storage: 匯出檔案大小

@@ -10,6 +10,7 @@ import {
   ModalShellActions,
   ModalShellBody,
 } from '@/mastodon/components/modal_shell';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 
 import { useFieldHtml } from '../hooks/useFieldHtml';
 
@@ -24,12 +25,14 @@ export const AccountFieldModal: FC<{
   return (
     <ModalShell>
       <ModalShellBody>
-        <EmojiHTML
-          as='h2'
-          htmlString={field.name_emojified}
-          onElement={handleLabelElement}
-          className={classes.fieldName}
-        />
+        <NavigationFocusTarget as='h1'>
+          <EmojiHTML
+            as='span'
+            htmlString={field.name_emojified}
+            onElement={handleLabelElement}
+            className={classes.fieldName}
+          />
+        </NavigationFocusTarget>
         <EmojiHTML
           as='p'
           htmlString={field.value_emojified}

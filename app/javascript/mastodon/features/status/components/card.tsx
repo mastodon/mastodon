@@ -13,7 +13,7 @@ import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
 import { MoreFromAuthor } from 'mastodon/components/more_from_author';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import { useBlurhash } from 'mastodon/initial_state';
+import { displayMedia, useBlurhash } from 'mastodon/initial_state';
 import type { Card as CardType } from 'mastodon/models/status';
 
 const IDNA_PREFIX = 'xn--';
@@ -63,6 +63,8 @@ const handleIframeUrl = (html: string, url: string, providerName: string) => {
   return html;
 };
 
+const hideAllMedia = displayMedia === 'hide_all';
+
 interface CardProps {
   card: CardType | null;
   sensitive?: boolean;
@@ -87,7 +89,7 @@ const CardVideo: React.FC<Pick<CardProps, 'card'>> = ({ card }) => (
 const Card: React.FC<CardProps> = ({ card, sensitive }) => {
   const [previewLoaded, setPreviewLoaded] = useState(false);
   const [embedded, setEmbedded] = useState(false);
-  const [revealed, setRevealed] = useState(!sensitive);
+  const [revealed, setRevealed] = useState(!sensitive && !hideAllMedia);
 
   const handleEmbedClick = useCallback(() => {
     setEmbedded(true);
@@ -283,6 +285,7 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
     embed = (
       <div className='status-card__image'>
         {canvas}
+        {revealed ? undefined : spoilerButton}
         {thumbnail}
       </div>
     );

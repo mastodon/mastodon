@@ -500,13 +500,26 @@ fr:
     email_subscriptions:
       accounts:
         account: Compte
-        active: Actif
         empty:
           hint: Aucun compte n'a d'abonné·e·s pour l'instant.
           no_lists_yet: Aucune liste pour l'instant
-        inactive: Inactif
         last_email: Dernier courriel
         lead: Les comptes ayant activé la fonctionnalité et qui ont des abonné·e·s apparaîtront ci-dessous.
+        show:
+          confirm_disable_feature: Désactiver les courriels d'information pour %{name} ? Les notifications par courriel ne seront plus envoyées pour ce compte. L'utilisateur·rice pourra toujours réactiver la fonctionnalité dans les paramètres de son compte. Pour supprimer définitivement l'accès à cette fonction, modifiez les permissions du compte dans Rôles.
+          confirm_remove_subscriber: "%{email} ne recevra plus de courriels de %{name}. Cette action ne peut pas être annulée."
+          consent: Les abonné·e·s ont uniquement consenti à recevoir des messages par courriels. N'utilisez pas cette liste à d'autres fins.
+          date: Date d'inscription
+          disable_feature: Désactiver la fonctionnalité
+          disabled: La fonctionnalité a été désactivée et les courriels ne sont plus envoyés à cette liste.
+          email: Adresse de courriel
+          empty:
+            hint: Personne ne s'est abonné à ce compte pour l'instant.
+            no_subscribers_yet: Pas d'abonné·e pour l'instant
+          enable_feature: Activer la fonctionnalité
+          no_access_html: Ce compte n'a plus l'autorisation nécessaire pour activer la fonctionnalité. Changez cela dans <a href="%{roles_path}">Rôles</a>.
+          title: Lettres d'information par courriel de %{name}
+          view_account: Afficher le compte
         status: État
         subscribers: Abonné·e·s
         title: Listes de diffusion
@@ -746,7 +759,7 @@ fr:
       action_log: Journal d’audit
       action_taken_by: Intervention de
       actions:
-        delete_description_html: Les messages signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
+        delete_description_html: Les messages ou les collections signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas de nouvelles infractions par le même compte.
         mark_as_sensitive_description_html: Les médias des messages signalés seront marqués comme sensibles et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
@@ -773,7 +786,7 @@ fr:
       confirm: Confirmer
       confirm_action: Confirmer l'action de modération contre @%{acct}
       created_at: Signalé
-      delete_and_resolve: Supprimer les messages
+      delete_and_resolve: Supprimer le contenu
       forwarded: Transféré
       forwarded_replies_explanation: Ce rapport provient d'un utilisateur sur une autre instance et concerne du contenu non-local. Il vous a été transmis car le contenu signalé est en réponse à l'un de vos utilisateurs.
       forwarded_to: Transféré à %{domain}
@@ -1501,6 +1514,7 @@ fr:
       your_appeal_rejected: Votre appel a été rejeté
   edit_profile:
     other: Autre
+    privacy_redesign_body: Le choix de montrer vos abonnements et vos abonné·e·s est maintenant fait directement depuis votre profil.
     redesign_body: La modification du profil est maintenant accessible directement depuis la page de profil.
     redesign_button: Accéder
     redesign_title: Nouvelle expérience de modification du profil
@@ -1533,7 +1547,9 @@ fr:
         success_html: Vous allez maintenant commencer à recevoir des courriels quand %{name} publie de nouveaux messages. Ajoutez %{sender} à vos contacts pour que ces messages ne soient pas considérés comme des courriels indésirables.
         title: Vous êtes abonné·e
         unsubscribe: Se désabonner
+    disabled: Désactivé
     inactive: Inactif
+    no_access: Pas d'accès
     status: État
     subscribers: Abonné·e·s
   emoji_styles:
@@ -1569,7 +1585,9 @@ fr:
     blocks: Vous bloquez
     bookmarks: Marque-pages
     csv: CSV
+    custom_filters: Filtres
     domain_blocks: Blocages de domaine
+    json: JSON
     lists: Listes
     mutes: Vous masquez
     storage: Médias stockés

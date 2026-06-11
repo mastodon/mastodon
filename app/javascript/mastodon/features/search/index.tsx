@@ -4,6 +4,7 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
 import FindInPageIcon from '@/material-icons/400-24px/find_in_page.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -22,6 +23,8 @@ import { Search } from 'mastodon/features/compose/components/search';
 import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
+
+import { CollectionListItem } from '../collections/components/collection_list_item';
 
 import { SearchSection } from './components/search_section';
 
@@ -131,7 +134,8 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
         filteredResults =
           results.accounts.length +
             results.hashtags.length +
-            results.statuses.length >
+            results.statuses.length +
+            results.collections.length >
           0 ? (
             <>
               {results.accounts.length > 0 && (
@@ -151,6 +155,32 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   {results.accounts.slice(0, INITIAL_DISPLAY).map((id) => (
                     <Account key={id} id={id} />
                   ))}
+                </SearchSection>
+              )}
+
+              {results.collections.length > 0 && (
+                <SearchSection
+                  key='collections'
+                  title={
+                    <>
+                      <Icon id='collections' icon={CollectionsIcon} />
+                      <FormattedMessage
+                        id='search_results.collections'
+                        defaultMessage='Collections'
+                      />
+                    </>
+                  }
+                >
+                  {results.collections
+                    .slice(0, INITIAL_DISPLAY)
+                    .map((collection, index, array) => (
+                      <CollectionListItem
+                        key={collection.id}
+                        collection={collection}
+                        listSize={array.length}
+                        positionInList={index + 1}
+                      />
+                    ))}
                 </SearchSection>
               )}
 

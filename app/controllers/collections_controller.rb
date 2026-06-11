@@ -10,6 +10,7 @@ class CollectionsController < ApplicationController
 
   before_action :require_account_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_collection
+  before_action :redirect_to_canonical_url
 
   skip_around_action :set_locale, if: -> { request.format == :json }
   skip_before_action :require_functional!, only: :show, unless: :limited_federation_mode?
@@ -18,7 +19,6 @@ class CollectionsController < ApplicationController
     respond_to do |format|
       format.html do
         expires_in expiration_duration, public: true unless user_signed_in?
-        render template: 'home/index'
       end
 
       format.json do
@@ -44,6 +44,10 @@ class CollectionsController < ApplicationController
     authorize @collection, :show?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
+  end
+
+  def redirect_to_canonical_url
+    redirect_to collection_path(@collection) if request.format.html? && request.path.starts_with?('/ap/')
   end
 
   def expiration_duration

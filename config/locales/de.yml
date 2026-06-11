@@ -500,11 +500,9 @@ de:
     email_subscriptions:
       accounts:
         account: Konto
-        active: Aktiviert
         empty:
           hint: Bisher wurden keine Konten abonniert.
           no_lists_yet: Noch keine Listen vorhanden
-        inactive: Deaktiviert
         last_email: Letzte E-Mail
         lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
         status: Status
@@ -746,7 +744,7 @@ de:
       action_log: Protokoll
       action_taken_by: Maßnahme ergriffen von
       actions:
-        delete_description_html: Der gemeldete Beitrag wird gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
+        delete_description_html: Die gemeldeten Beiträge/Sammlungen werden gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
         mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und der Vorfall wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
         other_description_html: Weitere Optionen zur Steuerung des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen und der Vorgang wird nicht aufgezeichnet – die Meldung wird hiermit geschlossen.
@@ -773,7 +771,7 @@ de:
       confirm: Bestätigen
       confirm_action: Maßnahme gegen @%{acct} bestätigen
       created_at: Gemeldet am
-      delete_and_resolve: Beiträge löschen
+      delete_and_resolve: Inhalt löschen
       forwarded: Weitergeleitet
       forwarded_replies_explanation: Diese Meldung stammt von einem externen Profil und betrifft einen externen Inhalt. Der Inhalt wurde an dich weitergeleitet, weil er eine Antwort auf ein bei dir registriertes Profil ist.
       forwarded_to: Weitergeleitet an %{domain}
@@ -1501,6 +1499,7 @@ de:
       your_appeal_rejected: Dein Einspruch wurde abgelehnt
   edit_profile:
     other: Andere
+    privacy_redesign_body: Die Option, deine Follower und „Folge ich“ allen anzuzeigen oder sie vor allen zu verbergen, findest du jetzt auch direkt in deinen Profileinstellungen.
     redesign_body: Dein Profil kannst du jetzt direkt auf deiner Profilseite bearbeiten.
     redesign_button: Loslegen
     redesign_title: Es gibt eine brandneue Möglichkeit, das Profil zu bearbeiten
@@ -1569,7 +1568,9 @@ de:
     blocks: Blockierte Profile
     bookmarks: Lesezeichen
     csv: CSV
+    custom_filters: Filter
     domain_blocks: Blockierte Domains
+    json: JSON
     lists: Listen
     mutes: Stummgeschaltete Profile
     storage: Medienspeicher

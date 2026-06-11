@@ -32,14 +32,13 @@
               %strong
                 %bdi= display_name(account)
             %td.valign-middle
-              - if account.user_can?(:manage_email_subscriptions) && account.user_email_subscriptions_enabled?
-                %span.status-badge.positive= t('.active')
-              - else
-                %span.status-badge.negative= t('.inactive')
+              = render 'status', account: account
             %td.valign-middle
               = account.email_subscriptions.count
             %td.valign-middle
               - if account.last_status_at.present?
                 = l account.last_status_at
+              - else
+                \-
             %td.valign-middle.align-end
-              = link_to material_symbol('chevron_right'), admin_account_path(account.id), class: 'table-icon-link'
+              = link_to material_symbol('chevron_right'), admin_email_subscriptions_account_path(account.id), class: 'table-icon-link'

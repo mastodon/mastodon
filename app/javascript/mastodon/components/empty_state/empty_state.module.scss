@@ -13,7 +13,7 @@
 .content {
   max-width: 370px;
 
-  :where(svg, img) {
+  > :where(svg, img) {
     width: 200px;
     aspect-ratio: 1;
     object-fit: contain;

@@ -84,7 +84,10 @@ class Sanitize
       is_annotation_with_encoding = lambda do |encoding, node|
         return false unless node.name == 'annotation'
 
-        node.attributes['encoding'].value == encoding
+        encoding_attr = node.attributes['encoding']
+        return false if encoding_attr.nil?
+
+        encoding_attr.value == encoding
       end
 
       annotation = semantics.children.find(&is_annotation_with_encoding.curry['application/x-tex'])

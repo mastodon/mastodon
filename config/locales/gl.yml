@@ -500,13 +500,26 @@ gl:
     email_subscriptions:
       accounts:
         account: Conta
-        active: Activa
         empty:
           hint: Aínda non hai contas con subscritoras.
           no_lists_yet: Aínda non hai listas
-        inactive: Inactiva
         last_email: Último correo
         lead: Aquí móstranse as contas que activaron esta ferramenta e teñen subscritoras.
+        show:
+          confirm_disable_feature: Desactivar o boletín para %{name}? Non se van enviar máis novidades desta conta por correo. A usuaria poderá reactivar esta ferramenta nos axustes da súa conta. Para quitar de xeito permanente o acceso á ferramenta, edita os permisos da conta en Roles.
+          confirm_remove_subscriber: "%{email} non vai seguir recibindo correos de %{name}. Esta acción non é reversible."
+          consent: As subscritoras consentiron exclusivamente recibir no correo as publicacións. Non uses esta lista para outros propósitos.
+          date: Data da subscrición
+          disable_feature: Desactivar a ferramenta
+          disabled: Esta ferramenta desactivouse e non se van seguir enviando correos a esta lista.
+          email: Enderezo de correo
+          empty:
+            hint: Aínda non hai subscricións a esta conta.
+            no_subscribers_yet: Sen subscricións
+          enable_feature: Activar a ferramenta
+          no_access_html: Esta conta xa non ten os permisos requeridos para activar a ferramenta. Cambiaos en <a href="%{roles_path}">Roles</a>.
+          title: Boletín por correo de %{name}
+          view_account: Ver conta
         status: Estado
         subscribers: Subscritoras
         title: Listas de correo
@@ -746,7 +759,7 @@ gl:
       action_log: Rexistro de auditoría
       action_taken_by: Acción tomada por
       actions:
-        delete_description_html: As publicacións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
+        delete_description_html: As publicacións e/ou coleccións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
         mark_as_sensitive_description_html: Os multimedia das publicacións denunciadas serán marcados como sensibles e engadirase un aviso para axudarche a xestionar futuras infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardarán avisos, e pecharase a denuncia.
@@ -773,7 +786,7 @@ gl:
       confirm: Confirmar
       confirm_action: Confirma a acción de moderación contra @%{acct}
       created_at: Denunciado
-      delete_and_resolve: Eliminar publicacións
+      delete_and_resolve: Eliminar contido
       forwarded: Reenviado
       forwarded_replies_explanation: Esta denuncia procede dunha usuaria remota e sobre contido remoto. Enviouseche unha copia porque o contido denunciado é unha resposta a unha das túas usuarias.
       forwarded_to: Reenviado a %{domain}
@@ -1501,6 +1514,7 @@ gl:
       your_appeal_rejected: A apelación foi rexeitada
   edit_profile:
     other: Outros
+    privacy_redesign_body: A opción para mostrar a quen segues e quen te segue agora está no teu perfil.
     redesign_body: Agora podes acceder á edición do perfil directamente desde a páxina do perfil.
     redesign_button: Ir á edición
     redesign_title: Hai novidades no xeito en que podes editar o perfil
@@ -1533,7 +1547,9 @@ gl:
         success_html: Vas comezar a recibir correos cando %{name} publique novas publicacións. Engade %{sender} á túa libreta de enderezos para que os correos non vaian directamente ao cartafol de Spam.
         title: Subscribícheste
         unsubscribe: Anular subscrición
+    disabled: Desactivado
     inactive: Inactiva
+    no_access: Sen acceso
     status: Estado
     subscribers: Subscritoras
   emoji_styles:
@@ -1569,7 +1585,9 @@ gl:
     blocks: Bloqueadas
     bookmarks: Marcadores
     csv: CSV
+    custom_filters: Filtros
     domain_blocks: Bloqueos de dominio
+    json: JSON
     lists: Listaxes
     mutes: Silenciadas
     storage: Almacenamento de multimedia

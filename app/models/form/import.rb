@@ -58,9 +58,17 @@ class Form::Import
     end
   end
 
+  def guessed_type_json
+    :custom_filters if parse_json.keys.any?('custom_filters')
+  end
+
   # Whether the uploaded CSV file seems to correspond to a different import type than the one selected
   def likely_mismatched?
     guessed_type.present? && guessed_type != type.to_sym
+  end
+
+  def likely_mismatched_json?
+    guessed_type_json.present? && guessed_type_json != type.to_sym
   end
 
   def save
@@ -68,8 +76,13 @@ class Form::Import
 
     ApplicationRecord.transaction do
       now = Time.now.utc
-      @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched?)
-      nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
+      if content_type_is_json?
+        @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched_json?, missing_status: missing_status?)
+        nb_items = BulkImportRow.insert_all(json_data.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
+      else
+        @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched?)
+        nb_items = BulkImportRow.insert_all(parsed_rows.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
+      end
       @bulk_import.update(total_items: nb_items)
     end
   end
@@ -80,6 +93,14 @@ class Form::Import
 
   def mode=(str)
     self.overwrite = str.to_sym == :overwrite
+  end
+
+  def missing_status?
+    return false unless content_type_is_json?
+
+    import_statuses = json_data.pluck(:statuses).flatten.uniq
+    db_statuses = Status.where(uri: import_statuses)
+    import_statuses.count != db_statuses.count
   end
 
   private
@@ -153,6 +174,21 @@ class Form::Import
   def validate_data
     return if data.nil?
     return errors.add(:data, I18n.t('imports.errors.too_large')) if data.size > FILE_SIZE_LIMIT
+
+    if content_type_is_json?
+      validate_json_data
+    else
+      validate_csv_data
+    end
+  rescue CSV::MalformedCSVError => e
+    errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))
+  rescue JSON::ParserError => e
+    errors.add(:data, I18n.t('imports.errors.invalid_json_file', error: e.message))
+  rescue EmptyFileError
+    errors.add(:data, I18n.t('imports.errors.empty'))
+  end
+
+  def validate_csv_data
     return errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless default_csv_headers.all? { |header| csv_data.headers.include?(header) }
 
     errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if csv_row_count > ROWS_PROCESSING_LIMIT
@@ -163,9 +199,26 @@ class Form::Import
       limit -= current_account.following_count unless overwrite
       errors.add(:data, I18n.t('users.follow_limit_reached', limit: base_limit)) if csv_row_count > limit
     end
-  rescue CSV::MalformedCSVError => e
-    errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))
-  rescue EmptyFileError
-    errors.add(:data, I18n.t('imports.errors.empty'))
+  end
+
+  def validate_json_data
+    errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if json_data.count > ROWS_PROCESSING_LIMIT
+    errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless allowed_type_for_json?
+  end
+
+  def content_type_is_json?
+    data.content_type == 'application/json'
+  end
+
+  def json_data
+    parse_json['custom_filters'].map(&:deep_symbolize_keys)
+  end
+
+  def parse_json
+    @parse_json ||= JSON.parse(data.read)
+  end
+
+  def allowed_type_for_json?
+    type.to_sym.in?(%i(custom_filters))
   end
 end

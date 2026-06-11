@@ -457,6 +457,7 @@ $content-width: 840px;
     color: var(--color-text-primary);
     border-radius: 12px;
     font-size: 15px;
+    line-height: 1.3333;
     margin-bottom: 30px;
 
     .icon {
@@ -464,8 +465,24 @@ $content-width: 840px;
       border-radius: 9999px;
       width: 1rem;
       height: 1rem;
-      margin-top: -2px;
+      margin-block: -2px;
       background-color: var(--color-bg-brand-soft);
+    }
+
+    &.variantWarning {
+      background-color: var(--color-bg-warning-softest);
+
+      .icon {
+        background-color: var(--color-bg-warning-soft);
+      }
+    }
+
+    &.variantError {
+      background-color: var(--color-bg-error-softest);
+
+      .icon {
+        background-color: var(--color-bg-error-soft);
+      }
     }
 
     .content {
@@ -486,7 +503,9 @@ $content-width: 840px;
 
     .title {
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      font-size: inherit;
+      line-height: inherit;
     }
 
     a {
@@ -2449,4 +2468,46 @@ a.sparkline {
   background: var(--color-bg-success-softest);
   font-size: 13px;
   font-weight: 600;
+
+  &.positive {
+    background: var(--color-bg-success-softest);
+  }
+
+  &.negative {
+    background: var(--color-bg-error-softest);
+  }
+}
+
+.metadata {
+  display: flex;
+  gap: 40px;
+  margin: 16px 0;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  dt {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  dd {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22.4px;
+
+    .status-badge {
+      box-sizing: border-box;
+      padding: 4px;
+      font-size: inherit;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
