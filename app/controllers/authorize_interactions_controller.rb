@@ -13,7 +13,7 @@ class AuthorizeInteractionsController < ApplicationController
     when Status
       redirect_to web_url("@#{@resource.account.pretty_acct}/#{@resource.id}")
     when Collection
-      redirect_to web_url("collections/#{resource.id}")
+      redirect_to web_url("collections/#{@resource.id}")
     else
       not_found
     end
