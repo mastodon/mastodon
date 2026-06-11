@@ -26,7 +26,7 @@ class ProcessLinksService < BaseService
       nil
     end
 
-    domains = urls.map(&:normalized_host).uniq.compact
+    domains = urls.map(&:normalized_host).uniq
     valid_domains = Instance.searchable.where(domain: domains).pluck(:domain)
 
     urls.each do |url|
