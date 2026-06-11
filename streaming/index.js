@@ -1446,7 +1446,7 @@ const startServer = async () => {
     setTimeout(() => {
       server.closeAllConnections();
       process.exit(0);
-    }, 5000).unref();
+    }, 10000).unref();
   };
 
   /** @param {Error} err */
