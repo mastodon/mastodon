@@ -1442,7 +1442,7 @@ const startServer = async () => {
       ws.close(1001, 'The server is shutting down');
     });
 
-    // 5 Second hard exit
+    // 10 Second hard exit
     setTimeout(() => {
       server.closeAllConnections();
       process.exit(0);
