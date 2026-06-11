@@ -1423,7 +1423,7 @@ const startServer = async () => {
   });
 
   let exiting = false;
- 
+
   const onExit = () => {
     if (exiting) {
       return;
