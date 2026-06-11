@@ -1,19 +1,23 @@
 import type { RecordOf } from 'immutable';
 
-import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
+import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
+import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
+import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
+import type {
+  ApiQuoteJSON,
+  ApiQuotePolicyJSON,
+} from '@/mastodon/api_types/quotes';
 import type {
   ApiFilterResultJSON,
   ApiMentionJSON,
   ApiPreviewCardAuthorJSON,
   ApiPreviewCardJSON,
+  ApiStatusTranslationJSON,
+  ApiTagJSON,
   StatusVisibility,
-} from 'mastodon/api_types/statuses';
+} from '@/mastodon/api_types/statuses';
 
-import type { ApiCustomEmojiJSON } from '../api_types/custom_emoji';
-import type { ApiMediaAttachmentJSON } from '../api_types/media_attachments';
-import type { ApiQuoteJSON, ApiQuotePolicyJSON } from '../api_types/quotes';
-
-export type { StatusVisibility } from 'mastodon/api_types/statuses';
+export type { StatusVisibility } from '@/mastodon/api_types/statuses';
 
 // Temporary until we type it correctly
 export type Status = Immutable.Map<string, unknown>;
@@ -22,10 +26,10 @@ export interface StatusShape {
   id: string;
   account: string;
   created_at: string;
-  edited_at: string | null;
+  edited_at?: string;
   application: {
     name: string;
-    website: string | null;
+    website?: string;
   };
   hidden: boolean;
   language: string;
@@ -35,35 +39,36 @@ export interface StatusShape {
   sensitive: boolean;
   collapsed: boolean;
   uri: string;
-  url: string;
+  url: string | null;
 
   // Content
   content: string;
   contentHtml: string;
-  in_reply_to_account_id: string | null;
-  in_reply_to_id: string | null;
-  search_index: string;
-  spoilerHtml: string;
-  spoiler_text: string;
+  in_reply_to_account_id?: string;
+  in_reply_to_id?: string;
+  search_index?: string;
+  spoilerHtml?: string;
+  spoiler_text?: string;
 
   // Embeds
-  card: CardShape | null;
+  card?: CardShape;
   emojis: Pick<ApiCustomEmojiJSON, 'shortcode' | 'static_url' | 'url'>[];
   media_attachments: MediaAttachmentShape[];
   mentions: ApiMentionJSON[];
-  poll: string | null;
-  quote:
-    | (Omit<ApiQuoteJSON, 'quoted_status'> & { quoted_status: string | null })
-    | null;
-  reblog: null;
-  tagged_collections: [];
-  tags: [];
+  poll?: string;
+  quote?: Omit<ApiQuoteJSON, 'quoted_status'> & {
+    quoted_status?: string;
+  };
+  reblog?: string;
+  tagged_collections: ApiCollectionJSON[];
+  tags: ApiTagJSON[];
+  translation?: StatusTranslation;
 
   // Interactions
   bookmarked: boolean;
   favourited: boolean;
   favourites_count: number;
-  quote_approval: ApiQuotePolicyJSON;
+  quote_approval: ApiQuotePolicyJSON | null;
   quotes_count: number;
   reblogged: boolean;
   reblogs_count: number;
@@ -94,3 +99,5 @@ export type CollectionAttachment = RecordOf<ApiCollectionJSON>;
 export type FilterResult = Omit<ApiFilterResultJSON, 'filter'> & {
   filter: string;
 };
+
+export type StatusTranslation = Omit<ApiStatusTranslationJSON, 'poll'>;
