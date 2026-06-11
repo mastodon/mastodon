@@ -77,7 +77,7 @@ class Form::Import
     ApplicationRecord.transaction do
       now = Time.now.utc
       if content_type_is_json?
-        @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched_json?)
+        @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched_json?, missing_status: missing_status?)
         nb_items = BulkImportRow.insert_all(json_data.map { |row| { bulk_import_id: bulk_import.id, data: row, created_at: now, updated_at: now } }).length
       else
         @bulk_import = current_account.bulk_imports.create(type: type, overwrite: overwrite || false, state: :unconfirmed, original_filename: data.original_filename, likely_mismatched: likely_mismatched?)
@@ -93,6 +93,14 @@ class Form::Import
 
   def mode=(str)
     self.overwrite = str.to_sym == :overwrite
+  end
+
+  def missing_status?
+    return false unless content_type_is_json?
+
+    import_statuses = json_data.pluck(:statuses).flatten.uniq
+    db_statuses = Status.where(uri: import_statuses)
+    import_statuses.count != db_statuses.count
   end
 
   private

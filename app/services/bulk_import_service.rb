@@ -187,9 +187,6 @@ class BulkImportService < BaseService
 
   def import_custom_filters!
     rows = @import.rows.to_a
-    import_statuses = rows.map { |row| row.data['statuses'] }
-    db_statuses = Status.where(uri: import_statuses.flatten)
-    Rails.logger.warn 'importet Status not found' if import_statuses.count != db_statuses.count
 
     @account.custom_filters.destroy_all if @import.overwrite?
 

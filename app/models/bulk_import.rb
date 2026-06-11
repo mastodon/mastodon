@@ -8,6 +8,7 @@
 #  finished_at       :datetime
 #  imported_items    :integer          default(0), not null
 #  likely_mismatched :boolean          default(FALSE), not null
+#  missing_status    :boolean          default(FALSE), not null
 #  original_filename :string           default(""), not null
 #  overwrite         :boolean          default(FALSE), not null
 #  processed_items   :integer          default(0), not null

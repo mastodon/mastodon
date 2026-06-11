@@ -4,7 +4,7 @@
 - if @bulk_import.likely_mismatched?
   .flash-message.warning= t('imports.mismatched_types_warning')
 
-- if Rails.logger.warn 'importet Status not found'
+- if @bulk_import&.missing_status == true
   .flash-message.warning= I18n.t('imports.errors.status_not_found_warning')
 
 - if @bulk_import.overwrite?
