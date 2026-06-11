@@ -21,7 +21,7 @@ class ProcessLinksService < BaseService
   private
 
   def scan_text!
-    urls = @status.text.scan(FetchLinkCardService::URL_PATTERN).filter_map { |array| Addressable::URI.parse(array[1]).normalize }
+    urls = @status.text.scan(FetchLinkCardService::URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
 
     domains = urls.map(&:host).uniq
     valid_domains = Instance.searchable.where(domain: domains).pluck(:domain)
