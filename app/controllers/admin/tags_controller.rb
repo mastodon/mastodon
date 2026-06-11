@@ -38,9 +38,10 @@ module Admin
 
     def log_action_from_change
       @tag.saved_changes.each_key do |key|
-        log_action :listable, @tag if key == 'listable'
-        log_action :trendable, @tag if key == 'trendable'
-        log_action :usable, @tag if key == 'usable'
+        key = key.to_sym
+        next unless key.in?(%i(listable trendable usable))
+
+        log_action key, @tag
       end
     end
 
