@@ -1434,12 +1434,12 @@ const startServer = async () => {
     logger.error(err);
 
     server.close();
-    process.exit(0);
+    // Exit with a non-zero status code (crash) to restart the service
+    process.exit(1);
   };
 
   process.on('SIGINT', onExit);
   process.on('SIGTERM', onExit);
-  process.on('exit', onExit);
   process.on('uncaughtException', onError);
 };
 
