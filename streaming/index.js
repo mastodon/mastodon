@@ -929,9 +929,8 @@ const startServer = async () => {
 
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'private, no-store');
-    res.setHeader('Transfer-Encoding', 'chunked');
 
-    res.write(':)\n');
+    res.write(':)\n\n');
 
     const heartbeat = setInterval(() => res.write(':thump\n\n'), 15000);
 
