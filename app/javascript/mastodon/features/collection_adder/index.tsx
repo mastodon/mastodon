@@ -3,6 +3,7 @@ import { useCallback, useId, useState } from 'react';
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
+import { EmptyState } from '@/mastodon/components/empty_state';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
@@ -16,7 +17,10 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { MAX_COLLECTION_ACCOUNT_COUNT } from '../collections/editor/accounts';
-import { useCollectionsCreatedBy } from '../collections/overview/created_by_account';
+import {
+  NewCollectionButton,
+  useCollectionsCreatedBy,
+} from '../collections/overview/created_by_account';
 
 import { CollectionToggle } from './collection_toggle';
 
@@ -136,6 +140,23 @@ export const CollectionAdder: React.FC<{
         >
           {status === 'loading' || !account ? (
             <LoadingIndicator />
+          ) : collections.length === 0 ? (
+            <EmptyState
+              title={
+                <FormattedMessage
+                  id='empty_column.collections_self'
+                  defaultMessage='You have not created any collections yet.'
+                />
+              }
+              message={
+                <FormattedMessage
+                  id='empty_column.account_featured_self.showcase_accounts_desc'
+                  defaultMessage='Collections are curated lists of accounts to help others discover more of the Fediverse.'
+                />
+              }
+            >
+              <NewCollectionButton onClick={onClose} />
+            </EmptyState>
           ) : (
             collections.map((item) => (
               <ListItem key={item.id} collection={item} account={account} />
