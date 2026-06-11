@@ -1422,9 +1422,31 @@ const startServer = async () => {
     logger.info(`Streaming API now listening on ${address}`);
   });
 
+  let exiting = false;
+ 
   const onExit = () => {
-    server.close();
-    process.exit(0);
+    if (exiting) {
+      return;
+    }
+    exiting = true;
+ 
+    logger.info('Shutting down streaming server');
+
+    // Don't accept any new connections, exit process once all existing connections have closed.
+    server.close(() => {
+      process.exit(0);
+    });
+ 
+    // Ask websocket clients to go away politely (1001 = Going Away)
+    wss.clients.forEach((ws) => {
+      ws.close(1001, 'The server is shutting down');
+    });
+
+    // 5 Second hard exit
+    setTimeout(() => {
+      server.closeAllConnections();
+      process.exit(0);
+    }, 5000).unref();
   };
 
   /** @param {Error} err */
