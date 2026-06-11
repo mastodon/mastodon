@@ -12,7 +12,7 @@ import {
   transformCustomEmojiData,
   transformEmojiData,
 } from './normalize';
-import type { AnyEmojiData, CacheKey } from './types';
+import type { AnyEmojiData, CacheKey, CustomEmojiData } from './types';
 import { emojiLogger } from './utils';
 
 const loadedLocales = new Set<Locale>();
@@ -78,6 +78,8 @@ export async function search({
   // Create an array of emoji results
   const db = await loadDB();
   const resultArrays: ScoreMap[] = [];
+  const existingCustomShortcodes = new Set<string>();
+
   for (let i = 0; i < queryTokens.length; i++) {
     const token = queryTokens[i];
     if (!token) continue;
@@ -96,6 +98,7 @@ export async function search({
       ],
     );
     const resultMap: ScoreMap = new Map();
+
     for (const emoji of unicodeResults) {
       const score = getScoreForEmoji(emoji, token);
       if (score === null) {
@@ -103,11 +106,13 @@ export async function search({
       }
       resultMap.set(emoji.hexcode, { ...emoji, score });
     }
+
     for (const emoji of customResults) {
       const score = getScoreForEmoji(emoji, token);
       if (score === null) {
         continue;
       }
+      existingCustomShortcodes.add(emoji.shortcode);
       resultMap.set(emoji.shortcode, { ...emoji, score });
     }
 
@@ -119,7 +124,14 @@ export async function search({
       if (!emoji) {
         continue;
       }
-      const score = getScoreForEmoji(emoji, token);
+      // Score the emoji with the legacy shortcode, even though it's not part of the emoji.
+      const score = getScoreForEmoji(
+        {
+          ...emoji,
+          shortcodes: [...shortcodeResult.shortcodes, ...emoji.shortcodes],
+        },
+        token,
+      );
       if (score === null) {
         continue;
       }
@@ -146,21 +158,19 @@ export async function search({
   );
 
   // If there are no results, try a cursor-based custom emoji search instead.
-  if (results.length === 0) {
-    const trx = db.transaction('custom', 'readonly');
-    const foundEmojis = new Set<string>();
-    for await (const cursor of trx.store) {
-      const emoji = cursor.value;
-      const score = getScoreForEmoji(emoji, query, false);
-      if (score === null || foundEmojis.has(emoji.shortcode)) {
-        continue;
-      }
-
-      results.push({ ...emoji, score });
-      foundEmojis.add(emoji.shortcode);
+  if (results.length === 0 || results.length < limit) {
+    const customEmojisFound = await fullCustomSearch(
+      query,
+      existingCustomShortcodes,
+    );
+    if (customEmojisFound.length > 0) {
+      log(
+        'cursor search found %d results for "%s"',
+        customEmojisFound.length,
+        query,
+      );
+      results.push(...customEmojisFound);
     }
-    log('cursor search found %d results for "%s"', foundEmojis.size, query);
-    await trx.done;
   }
 
   // Sort by score, descending.
@@ -191,7 +201,14 @@ function getScoreForEmoji(
   }
 
   let index = 1;
-  const searchTokens = checkTokens ? [id, ...emoji.tokens] : [id];
+  const searchTokens = [id];
+  if (checkTokens) {
+    // Check shortcodes before tokens as they are more important.
+    if ('shortcodes' in emoji) {
+      searchTokens.push(...emoji.shortcodes);
+    }
+    searchTokens.push(...emoji.tokens);
+  }
   for (const token of searchTokens) {
     const tokenIndex = token.indexOf(query);
     if (tokenIndex !== -1) {
@@ -201,6 +218,51 @@ function getScoreForEmoji(
   }
 
   return null;
+}
+
+async function fullCustomSearch(query: string, existing = new Set<string>()) {
+  const db = await loadDB();
+  const trx = db.transaction('custom', 'readonly');
+  const foundEmojis = new Set<string>();
+
+  // First iterate over chunks of 1,000 custom emoji keys and find any matches.
+  const chunkSize = 1_000;
+  let lastKey: string | null = null;
+  let keys: string[] = [];
+  do {
+    const keyRange = lastKey ? IDBKeyRange.lowerBound(lastKey, true) : null;
+    keys = await trx.store.getAllKeys(keyRange, chunkSize);
+
+    if (keys.length === 0) {
+      break;
+    }
+    log('cursor search got batch of %d emojis', keys.length);
+    lastKey = keys.at(-1) ?? null;
+
+    for (const key of keys) {
+      if (!foundEmojis.has(key) && !existing.has(key) && key.includes(query)) {
+        foundEmojis.add(key);
+      }
+    }
+  } while (keys.length === chunkSize);
+
+  // Next get the full emojis for all matches.
+  const emojis = await Promise.all(
+    foundEmojis.keys().map((key) => trx.store.get(key)),
+  );
+  const results: (CustomEmojiData & { score: number })[] = [];
+  for (const emoji of emojis) {
+    if (emoji) {
+      const score = getScoreForEmoji(emoji, query, false);
+      if (score && score > 0) {
+        results.push({
+          score,
+          ...emoji,
+        });
+      }
+    }
+  }
+  return results;
 }
 
 export async function putEmojiData(emojis: CompactEmoji[], locale: Locale) {
