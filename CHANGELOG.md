@@ -6,14 +6,14 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- **Add collections** (#37992, #37005, #37049, #37020, #37053, #37110, #37117, #37122, #37154, #37157, #37176, #37192, #37222, #37225, #37254, #37277, #37298, #37322, #37434, #37468, #37514, #37512, #37549, #37556, #37560, #37580, #37591, #37552, #37618, #37643, #37658, #37731, #37678, #37741, #37762, #37790, #37805, #37823, #37837, #37842, #37850, #37848, #37812, #37950, #37898, #37916, #37920, #37927, #37928, #37961, #37967, #37974, #37989, #37986, #38004, #38026, #38027, #38030, #38038, #38065, #38081, #38082, #38096, #38106, #38113, #38124, #38133, #38144, #38153, #38166, #38167, #38169, #38170, #38177, #38193, #38213, #38251, #38255, #38256, #38282, #38298, #38292, #38307, #38306, #38316, #38115, #38329, #38334, #38337, #38351, #38368, #38370, #38356, #38383, #38386, #38385, #38394, #38393, #38399, #38402, #38409, #38414, #38413, #38424, #38425, #38450, #38508, #38528, #38534, #38536, #38540, #38543, #38491, #38586, #38611, #38588, #38612, #38628, #38626, #38630, #38633, #38629, #38638, #38645, #38644, #38636, #38660, #38657, #38688, #38690, #38672, #38698, #38697, #38708, #38712, #38713, #38709, #38719, #38728, #38730, #38732, #38739, #38749, #38751, #38750, #38767, #38769, #38783, #38785, #38959, #38786, #38794, #38776, #38817, #38792, #38822, #38827, #38831, #38830, #38844, #38843, #38852, #38850, #38847, #38865, #38897, #38900, #38919, #38933, #38934, #38935, #38942, #38941, #38954, #38961, #38957, #38962, #38991, #39009, #39062, #39029, #39069, #39020, #39073, #39082, #39096, #39080, #39182, #39143, #39127, #37929, #38029, #39194, #39198, #39210, #39211, #39202, #39214, #39215, #39220, #39234, #39260, and #39251 by @ChaosExAnima, @ClearlyClaire, @Gargron, @arte7, @diondiondion, @mjankowski, @oneiros, and @shleeable)
+- **Add collections** (#37992, #37005, #37049, #37020, #37053, #37110, #37117, #37122, #37154, #37157, #37176, #37192, #37222, #37225, #37254, #37277, #37298, #37322, #37434, #37468, #37514, #37512, #37549, #37556, #37560, #37580, #37591, #37552, #37618, #37643, #37658, #37731, #37678, #37741, #37762, #37790, #37805, #37823, #37837, #37842, #37850, #37848, #37812, #37950, #37898, #37916, #37920, #37927, #37928, #37961, #37967, #37974, #37989, #37986, #38004, #38026, #38027, #38030, #38038, #38065, #38081, #38082, #38096, #38106, #38113, #38124, #38133, #38144, #38153, #38166, #38167, #38169, #38170, #38177, #38193, #38213, #38251, #38255, #38256, #38282, #38298, #38292, #38307, #38306, #38316, #38115, #38329, #38334, #38337, #38351, #38368, #38370, #38356, #38383, #38386, #38385, #38394, #38393, #38399, #38402, #38409, #38414, #38413, #38424, #38425, #38450, #38508, #38528, #38534, #38536, #38540, #38543, #38491, #38586, #38611, #38588, #38612, #38628, #38626, #38630, #38633, #38629, #38638, #38645, #38644, #38636, #38660, #38657, #38688, #38690, #38672, #38698, #38697, #38708, #38712, #38713, #38709, #38719, #38728, #38730, #38732, #38739, #38749, #38751, #38750, #38767, #38769, #38783, #38785, #38959, #38786, #38794, #38776, #38817, #38792, #38822, #38827, #38831, #38830, #38844, #38843, #38852, #38850, #38847, #38865, #38897, #38900, #38919, #38933, #38934, #38935, #38942, #38941, #38954, #38961, #38957, #38962, #38991, #39009, #39062, #39029, #39069, #39020, #39073, #39082, #39096, #39080, #39182, #39143, #39127, #37929, #38029, #39194, #39198, #39210, #39211, #39202, #39214, #39215, #39220, #39234, #39260, #39251, #39361, #39357, #39349, #39287, #39376, #39289, #39342, #38711, #39379, #39282, #39286, #39296, #39047, #39346, #39373, #39372 by @ChaosExAnima, @ClearlyClaire, @Gargron, @arte7, @diondiondion, @mjankowski, @oneiros, and @shleeable)
   - Create collections with up to 25 accounts each, then share them with others. You can read more about this feature [on our blog](https://blog.joinmastodon.org/2026/04/designing-collections/). This is based on FEP-7aa9 (Featured Collections) to be interoperable with the wider Fediverse. All the new API methods [are documented here](https://docs.joinmastodon.org/client/collections/).
-- **Add email subscriptions** (#38163, #38507, #38502, #38487, #38527, #38582, #38741, #38907, and #39162 by @ClearlyClaire and @Gargron)
+- **Add email subscriptions** (#38163, #38507, #38502, #38487, #38527, #38582, #38741, #38907, #39162, #39271 by @ClearlyClaire and @Gargron)
   - Admins can allow specific roles to enable email subscriptions on their profile, allowing anonymous visitors to subscribe to their posts via email.
 - **Add new overview landing page setting** (#39074, #39170, #39163, and #39138 by @Gargron, @diondiondion, and @zunda)
   - Admins can choose a new frontpage for anonymous visitors, which combines the about page and most recent posts from local profiles.
 - **Add ability to require 2FA for specific roles** (including Everybody) (#37701, #37846, and #38906 by @ClearlyClaire and @mjankowski)
-- Add export for custom filters (#39085 by @arte7)
+- Add import and export for custom filters (#39085, #39256 by @arte7)
 - Add ability to search email blocks by domain in admin UI (#38923 by @arte7)
 - Add new endpoints for profile editing in REST API (#37912, #37934, #37932, #38221, and #38339 by @ClearlyClaire)
   - Add `GET /api/v1/profile` and `PATCH /api/v1/profile` to replace the existing `update_credentials` endpoint. See [the documentation](https://docs.joinmastodon.org/methods/profile/) for more information.
@@ -32,27 +32,32 @@ All notable changes to this project will be documented in this file.
 - Add `Cmd`/`Ctrl`+`Enter` for form submissions in more text areas in web UI (#37821 by @diondiondion)
 - Add support for quoting by dragging a link into the compose form in web UI (#36859 and #36896 by @ClearlyClaire and @tribela)
 - Add `text-autospace` to posts to improve rendering of mixed script posts in web UI (#37694 by @ahxxm)
-- Add `nan-TW` to supported locales (#37650, #34923, #37822, and #37721 by @ClearlyClaire and @Yoxem)
+- Add Taiwanese (Minnan), Lazuri, Mingrelian and Ottoman Turkish to supported locales (#37650, #34923, #37822, #37721, #38648 by @ClearlyClaire and @Yoxem)
+- Add ability to filter notifications from bots (#38809 and #39377 by @evanp and @shleeable)
 - Add support for `hosts` resolver in request socket DNS lookup (#38699, #38866, and #39030 by @ClearlyClaire and @mjankowski)
 - Add support for FEP-2c59 (Webfinger Backlink) (#38239, #38538, and #38639 by @ClearlyClaire and @shleeable)
 - Add support for FEP-3b86 (Activity Intents) (#38120 and #38130 by @ClearlyClaire and @Gargron)
-- Add support for alt text for profile pictures and headers (#37634, #37641, and #38000 by @ClearlyClaire and @Doxterpepper)
+- Add support for alt text for profile pictures and headers (#37634, #37641, #38000, #39352 by @ClearlyClaire and @Doxterpepper)
 - Add support for multiple keypairs for remote accounts (#38279, #38407, #38419, #38511, #38516, #38515, #38555 and #39235 by @ClearlyClaire)
+- Add duration to ActivityPub representation of media attachments (#38061 by @ClearlyClaire)
+- Add Stoplight circuit-breaker on Elasticsearch endpoints to better handle some Elasticsearch failures (#39323 and #39375 by @ClearlyClaire and @shleeable)
 - Add support for the “require approval” feature for email domain blocks to `tootctl email_domain_blocks` (#34579 and #38107 by @ClearlyClaire and @e-nomem)
 - Add `--keep-interacted` flag to `tootctl media remove` to preserve cached media on cleanup (#36200 by @northerner)
 - Add systemd service file for prometheus exporter (#35130 by @ThisIsMissEm)
 
 ### Changed
 
-- **Change design of profiles in web UI** (#37472, #37490, #37479, #37513, #37527, #37550, #37538, #37632, #37627, #37593, #37638, #37626, #37645, #37653, #37683, #37707, #37682, #37742, #37747, #37760, #37761, #37831, #37766, #37811, #37813, #37825, #37854, #37851, #37876, #37885, #37892, #37890, #37907, #37922, #37952, #37958, #37996, #37990, #37994, #38005, #38012, #38040, #38052, #38066, #38083, #38147, #38148, #38152, #38168, #38156, #38175, #38191, #38189, #38235, #38283, #38310, #38309, #38315, #38314, #38365, #38366, #38363, #38346, #38382, #38384, #38400, #38404, #38417, #38426, #38440, #38442, #38443, #38445, #38446, #38451, #38456, #38509, #38510, #38512, #38513, #38517, #38529, #38531, #38535, #38532, #38544, #38549, #38575, #38579, #38580, #38581, #38585, #38584, #38604, #38605, #38606, #38607, #38622, #38616, #38625, #38632, #38640, #38663, #38667, #38646, #38691, #38692, #38766, #38791, #38687, #38826, #38828, #38863, #38845, #38870, #38872, #38932, #38945, #38963, #38964, #39055, #39042, #38893, #39079, #39084, #39160, #39070, and #39217 by @ChaosExAnima, @ClearlyClaire, @Coro365, @diondiondion, and @shleeable)
+- **Change design of profiles in web UI** (#37472, #37490, #37479, #37513, #37527, #37550, #37538, #37632, #37627, #37593, #37638, #37626, #37645, #37653, #37683, #37707, #37682, #37742, #37747, #37760, #37761, #37831, #37766, #37811, #37813, #37825, #37854, #37851, #37876, #37885, #37892, #37890, #37907, #37922, #37952, #37958, #37996, #37990, #37994, #38005, #38012, #38040, #38052, #38066, #38083, #38147, #38148, #38152, #38168, #38156, #38175, #38191, #38189, #38235, #38283, #38310, #38309, #38315, #38314, #38365, #38366, #38363, #38346, #38382, #38384, #38400, #38404, #38417, #38426, #38440, #38442, #38443, #38445, #38446, #38451, #38456, #38509, #38510, #38512, #38513, #38517, #38529, #38531, #38535, #38532, #38544, #38549, #38575, #38579, #38580, #38581, #38585, #38584, #38604, #38605, #38606, #38607, #38622, #38616, #38625, #38632, #38640, #38663, #38667, #38646, #38691, #38692, #38766, #38791, #38687, #38826, #38828, #38863, #38845, #38870, #38872, #38932, #38945, #38963, #38964, #39055, #39042, #38893, #39079, #39084, #39160, #39070, #39217, #39309, #39354, #39324 by @ChaosExAnima, @ClearlyClaire, @Coro365, @diondiondion, and @shleeable)
   - The profile screen has been entirely redesigned, has new features, and allows you to update your own profile directly without going into the preferences panel. You can read more about it [on our blog](https://blog.joinmastodon.org/2026/03/a-redesign-for-profiles/).
 - **Change how #Wrapstodon reports are generated and displayed** (#37033, #37045, #37093, #37055, #37096, #37047, #37103, #37104, #37106, #37109, #37121, #37138, #37134, #37177, #37182, #37169, #37186, #37187, #37188, #37189, #37190, #37193, #37198, #37201, #37203, #37205, #37206, #37207, #37209, #37202, #37216, #37219, #37224, #37226, #37229, #37249, #37251, #37256, #37261, #37269, #37270, #37273, and #37289 by @ChaosExAnima, @ClearlyClaire, @channyeintun, and @diondiondion)
   - This finishes up work started in 2024 by completely revamping how Wrapstodon reports are generated and displayed, reducing the amount of data collected and generating reports when active users ask for them.
   - Instead of requiring manual generation from a server administrator, this is now offered between the 10th of December and the end of each year if enabled in the server settings.
   - The design of the Wrapstodon report has also been fully reworked to be more delightful and easier to share!
   - The relevant API endpoints are documented at https://docs.joinmastodon.org/methods/annual_reports/
+- Change limitation to allow posts with both media and a poll to be created (#39203 and #39368 by @ClearlyClaire and @Gargron)
+- Change alt text limit for media attachments to 10,000 characters (#39306 by @ClearlyClaire)
 - Change pending user notification email to link directly to the pending account (#39206 by @vmstan)
-- Changed emoji processing in web UI to make it less resource intensive and more robust (#39077, #39008, #39088, #38892, #38885, #38965, #38854, #38825, #38784, #38541, #37442, #37300, #37306, #37271, #37255, #37284, #37272, #37178, #37084, #37080, #37418, #39167, and #39126 by @ChaosExAnima, @ClearlyClaire, @diondiondion, and @gomasy)
+- Changed emoji processing in web UI to make it less resource intensive and more robust (#39077, #39008, #39088, #38892, #38885, #38965, #38854, #38825, #38784, #38541, #37442, #37300, #37306, #37271, #37255, #37284, #37272, #37178, #37084, #37080, #37418, #39167, #39126, #39353, #39378, #39382 by @ChaosExAnima, @ClearlyClaire, @diondiondion, and @gomasy)
 - Change composer textarea to have a limited height to prevent column scrolling (#39268 by @diondiondion)
 - Change mentions of “Mastodon gGmbH” to “Mastodon GmbH” (#39261 by @renchap)
 - Change the limited profile message to be less misleading (#39231 by @mortie)
@@ -72,10 +77,12 @@ All notable changes to this project will be documented in this file.
 - Change wording and ordering of account migration warnings (#20387 by @jsoref)
 - Change wording of “Automatic post deletion” settings (#37286 by @mjankowski)
 - Change wording of language filter settings to clarify they do not impact home/lists (#38490 by @mjankowski)
+- Change wording of `tootctl preview_cards remove` command description to clearly state it only removes media (#39348 by @mjankowski)
 - Change invitations to only bypass sign-up approval setting when the issuer of the invitation has the `invite_bypass_approval` permission (#38278 by @ClearlyClaire)
   - This splits the “Invite Users” permission into a new “Invite Users without review” permission.
   - Existing roles will be updated to have the new permission if they have the old one, but default permissions will not include the new `invite_bypass_approval` permission.
 - Change followers synchronization mechanism on followers-only posts to be skipped for accounts with 25k followers or more (#37302 by @ClearlyClaire)
+- Change "Accept" link on sign-up page to a form to prevent some crawling behavior (#39283 and #39345 by @ClearlyClaire and @mjankowski)
 - Change “dark”, “light” and “high contrast” themes to be separate “Color scheme” and “Contrast” settings handled by a single theme (#37095, #37120, #37288, #37459, #37470, #37477, #37519, #37520, #37523, #37524, #37526, #37612, #37824, #37807, #37810, #37819, #37906, and #38261 by @ClearlyClaire, @diondiondion, and @mjankowski)
   - Existing settings should be migrated automatically from user settings, and using browser defaults otherwise.
   - This also allows third-party theme authors to make use of the same browser defaults and user settings. Learn more about this in [our new Theming docs](https://docs.joinmastodon.org/dev/frontend/theming/).
@@ -91,18 +98,25 @@ All notable changes to this project will be documented in this file.
 - Remove support for Ruby 3.2 (#37476 by @mjankowski)
 - Remove support for `ENABLE_SIDEKIQ_UNIQUE_JOBS_UI` (#38340 by @ClearlyClaire)
 - Remove support for ImageMagick (#37488 by @mjankowski)
+- Remove outdated hint for "Use system scrollbar" preference (#39297 by @diondiondion)
 
 ### Fixed
 
-- Fix accessibility issues in web UI (#37250, #38006, #38033, #38188, #38230, #38252, #38257, #38285, #38293, #38362, #38387, #38459, #38796, #38801, #39098, #39111, #39120, #39129, #39133, #39134, #39144, #39145, #39149, #39164, #39165, #39169, and #39181 by @ChaosExAnima and @diondiondion)
+- Fix accessibility issues in web UI (#37250, #38006, #38033, #38188, #38230, #38252, #38257, #38285, #38293, #38362, #38387, #38459, #38796, #38801, #39098, #39111, #39120, #39129, #39133, #39134, #39144, #39145, #39149, #39164, #39165, #39169, #39181, #39335, #39305, #39331, #39356, #39350, #39358, #39360, #39325, #39270 by @ChaosExAnima and @diondiondion)
+- Fix tiny checkboxes and radio buttons in Safari (#39332 by @diondiondion)
+- Fix handling of offset in timezone list in settings (#39334 by @mjankowski)
+- Fix being unable to unmark media as sensitive when "always mark media as sensitive" is enabled in web UI (#39339 by @matrix07012)
+- Fix display of sensitive media cards in web UI according to settings (#39366 by @nshki)
+- Fix some inputs incorrectly having resize handles in Firefox (#39274 by @diondiondion)
 - Fix processing some link previews where text is language-tagged (#39190 by @zunda)
 - Fix error when “New trends” email is sent at the same time trends are recomputed (#39122 by @arte7)
-- Fix hover card opening even when not preceded by mouse movement in web UI (#39166 by @diondiondion)
+- Fix hover card opening even when not preceded by mouse movement in web UI (#39166, #39381 by @diondiondion)
 - Fix [ominous](https://mastodon.social/@mcc/116404362104299129) "Moments remaining" timestamp in web UI (#38488 and #38689 by @ChaosExAnima and @MitarashiDango)
 - Fix filters not being applied to search results in web UI (#36346 by @ClearlyClaire)
 - Fix error when visiting non-public hashtag timelines (#36961 by @diondiondion)
 - Fix duplicate favourite/boost counters in some languages (#36844 by @ChaosExAnima)
 - Fix unblocking domain from blocked domains column not updating the list in web UI (#38882 by @tribela)
+- Fix "change thumbnail" button being visible when it shouldn't in web UI (#38467 by @dpbento)
 - Fix profile dropdown menu sometimes ending with a separator in web UI (#38481 by @mkljczk)
 - Fix short numbers rounding up instead of truncating in web UI (#38114 by @serranodfm)
 - Fix directory showing load more button when no more profiles exist in web UI (#37465 by @heathdutton)
@@ -115,10 +129,13 @@ All notable changes to this project will be documented in this file.
 - Fix HTML `lang` attribute being stripped out of remote posts (#39114 by @artemist)
 - Fix remote posts with large media descriptions being rejected (#39135 by @ClearlyClaire)
 - Fix some occurrence of PostgreSQL log pollution when processing new hashtags (#35792 by @oelison)
+- Fix blocked domains not being removed from the Instance search index (#39109 by @shleeable)
+- Fix Elasticsearch connections not being cleaned up properly in Sidekiq middleware (#39359 by @ClearlyClaire)
 - Fix replica database not being used when `REPLICA_DB_HOST` is used but neither `REPLICA_DB_NAME` nor `REPLICA_DATABASE_URL` (#37240 by @smiba)
 - Fix remote media attachment thumbnails not being stored in the `cache/` directory (#36911 by @shugo)
 - Fix race condition when processing posts twice with the same idempotency key (#37879 by @ClearlyClaire)
-- Fix various missing translation strings (#37671, #37838, #37078, #37371, and #37827 by @ClearlyClaire, @mjankowski, and @valtlai)
+- Fix `expire_at` instead of `expires_at` in muted words CSV exports (#39304 by @arte7)
+- Fix various missing translation strings (#37671, #37838, #37078, #37371, #37827, #39328 by @ClearlyClaire, @mjankowski, and @valtlai)
 - Fix last post time for remote accounts not being accurately tracked (#37619 by @ClearlyClaire)
 - Fix filtering of mentions from filtered-on-their-origin-server accounts (#37583 by @ClearlyClaire)
 - Fix irrelevant remote accounts being passed through to local fan-out worker (#37589 by @ClearlyClaire)
