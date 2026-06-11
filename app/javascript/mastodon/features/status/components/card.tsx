@@ -63,6 +63,8 @@ const handleIframeUrl = (html: string, url: string, providerName: string) => {
   return html;
 };
 
+const hideAllMedia = displayMedia === 'hide_all';
+
 interface CardProps {
   card: CardType | null;
   sensitive?: boolean;
@@ -87,7 +89,7 @@ const CardVideo: React.FC<Pick<CardProps, 'card'>> = ({ card }) => (
 const Card: React.FC<CardProps> = ({ card, sensitive }) => {
   const [previewLoaded, setPreviewLoaded] = useState(false);
   const [embedded, setEmbedded] = useState(false);
-  const [revealed, setRevealed] = useState(!sensitive && displayMedia !== 'hide_all');
+  const [revealed, setRevealed] = useState(!sensitive && !hideAllMedia);
 
   const handleEmbedClick = useCallback(() => {
     setEmbedded(true);
