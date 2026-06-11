@@ -22,18 +22,15 @@ class ProcessLinksService < BaseService
 
   def scan_text!
     urls = @status.text.scan(FetchLinkCardService::URL_PATTERN).filter_map { |array| Addressable::URI.parse(array[1]).normalize }
-    rescue Addressable::URI::InvalidURIError
-      nil
-    end
 
-    domains = urls.map(&:normalized_host).uniq
+    domains = urls.map(&:host).uniq
     valid_domains = Instance.searchable.where(domain: domains).pluck(:domain)
 
     urls.each do |url|
       # We only support `FeaturedCollection` at this time
 
       object = ActivityPub::TagManager.instance.uri_to_resource(url.to_s, Collection)
-      object ||= ResolveURLService.new.call(url.to_s) if valid_domains.include?(url.normalized_host)
+      object ||= ResolveURLService.new.call(url.to_s) if valid_domains.include?(url.host)
       next unless object.is_a?(Collection)
 
       tagged_object = @previous_objects.find { |x| x.object == object || x.uri == url }
