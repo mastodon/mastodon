@@ -1432,12 +1432,12 @@ const startServer = async () => {
  
     logger.info('Shutting down streaming server');
 
-    // Don't accept any new connections, exit process once all existing connections have closed.
+    // Don't accept any new connections, exit process once all existing connections have disconnected.
     server.close(() => {
       process.exit(0);
     });
  
-    // Ask websocket clients to go away politely (1001 = Going Away)
+    // Ask websocket clients to disconnect politely (1001 = Going Away)
     wss.clients.forEach((ws) => {
       ws.close(1001, 'The server is shutting down');
     });
