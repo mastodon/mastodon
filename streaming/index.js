@@ -764,7 +764,7 @@ const startServer = async () => {
           queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
         }
 
-        if (!Object.hasOwn(payload, 'filtered') && !req.cachedFilters) {
+        if (!Object.hasOwn(payload, ) && !req.cachedFilters) {
           // @ts-expect-error
           queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
         }
@@ -782,7 +782,7 @@ const startServer = async () => {
           // If the payload already contains the `filtered` property, it means
           // that filtering has been applied on the ruby on rails side, as
           // such, we don't need to construct or apply the filters in streaming:
-          if (Object.hasOwn(payload, "filtered")) {
+          if (Object.hasOwn(payload, 'filtered')) {
             transmit(event, payload);
             return;
           }
