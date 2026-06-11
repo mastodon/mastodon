@@ -487,6 +487,38 @@ pl:
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
       title: Zablokowane domeny e-mail
+    email_subscriptions:
+      accounts:
+        show:
+          disable_feature: Wyłącz funkcję
+          enable_feature: Włącz funkcję
+      compliance_settings:
+        additional_footer_text:
+          action: Zarządzaj
+        privacy_policy:
+          action: Zarządzaj
+      danger_zone:
+        disable_feature:
+          title: Wyłącz funkcję
+        erase_all_data:
+          action: Wyczyść dane
+          title: Usuń wszystkie dane
+      index:
+        lead: Pozwól odwiedzającym otrzymywać wpisy pocztą e-mail z dedykowanych kont na tym serwerze.
+        title: Newslettery e-mail
+      roles:
+        edit_role: Edytuj rolę
+        manage_roles: Zarządzaj rolami
+        role_name: Nazwa roli
+      setups:
+        show:
+          enable_feature: Włącz funkcję
+          important_information: Ważne informacje
+          list:
+            1_permission_explanation: Po włączeniu tej funkcji konta z odpowiednimi uprawnieniami mogą dodać do swoich profili formularz zapisu na powiadomienia e-mail.
+            2_feature_explanation: Gdy odwiedzający zapiszą się na stronie profilu danego konta i potwierdzą subskrypcję, zaczną otrzymywać powiadomienia e-mail, gdy konto opublikuje nowe wpisy publiczne.
+            3_privacy_policy_warning: Administratorzy serwera będą mieli dostęp do zebranych danych osobowych (adresów e-mail). W związku z tym przed użyciem tej funkcji należy zaktualizować politykę prywatności oraz regulamin serwera.
+            4_cost_warning: Wysyłanie e-maili może wiązać się z dodatkowymi opłatami, w zależności od konfiguracji hostingu. Skonsultuj się z dostawcą hostingu przed włączeniem funkcji, ponieważ może ona drastycznie zwiększyć liczbę e-maili wysyłanych z Twojego serwera.
     export_domain_allows:
       new:
         title: Zaimportuj zezwolenia domen
@@ -763,6 +795,7 @@ pl:
       categories:
         administration: Administracja
         devops: DevOps
+        email: E-mail
         invites: Zaproszenia
         moderation: Moderacja
         special: Specjalne
@@ -1219,6 +1252,7 @@ pl:
   appearance:
     advanced_settings: Ustawienia zaawansowane
     animations_and_accessibility: Animacje i dostępność
+    boosting_preferences_info_html: "<strong>Wskazówka:</strong> Niezależnie od ustawień, <kbd>Shift</kbd> + <kbd>kliknięcie</kbd> ikony %{icon} Podbij natychmiast podbije wpis."
     discovery: Odkrywanie
     localization:
       body: Mastodon jest tłumaczony przez wolontariuszy.
@@ -1411,9 +1445,14 @@ pl:
       your_appeal_rejected: Twoje odwołanie zostało odrzucone
   edit_profile:
     other: Inne
+    privacy_redesign_body: Decyzję o tym, czy pokazywać obserwowanych i obserwujących, podejmujesz teraz bezpośrednio z poziomu swojego profilu.
     redesign_body: Profil możesz teraz edytować bezpośrednio ze swojej publicznej strony.
     redesign_button: Przejdź do edycji
     redesign_title: Nowy sposób edycji profilu
+  email_subscription_mailer:
+    notification:
+      footer:
+        privacy_html: Wiadomości e-mail są wysyłane z %{domain}, serwera obsługiwanego przez Mastodona. Aby zrozumieć, jak ten serwer przetwarza Twoje dane osobowe, zapoznaj się z <a href="%{privacy_policy_path}">polityką prywatności</a>.
   emoji_styles:
     auto: Automatycznie
     native: Natywny
@@ -1447,7 +1486,9 @@ pl:
     blocks: Zablokowani
     bookmarks: Zakładki
     csv: CSV
+    custom_filters: Filtry
     domain_blocks: Blokady domen
+    json: JSON
     lists: Listy
     mutes: Wyciszeni
     storage: Urządzenie przechowujące dane
@@ -1806,6 +1847,8 @@ pl:
       too_few_options: musi zawierać przynajmniej dwie opcje
       too_many_options: nie może zawierać więcej niż %{max} opcji
     vote: Głosuj
+  posting_defaults:
+    explanation: Te ustawienia będą domyślne dla nowych wpisów, ale możesz je zmienić indywidualnie w oknie ich tworzenia.
   preferences:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
@@ -1998,9 +2041,11 @@ pl:
     enabled: Automatycznie usuwaj stare wiadomości
     enabled_hint: Automatycznie usuwa Twoje posty, gdy osiągną określony próg wiekowy, chyba że spełniają jeden z poniższych wyjątków
     exceptions: Wyjątki
+    explanation: Automatyczne usuwanie jest wykonywane z niskim priorytetem. Może wystąpić opóźnienie między osiągnięciem progu wieku a usunięciem wpisu.
     ignore_favs: Ignoruj ulubione
     ignore_reblogs: Ignoruj podbicia
     interaction_exceptions: Wyjątki oparte na interakcjach
+    interaction_exceptions_explanation: Wpisy, które chwilowo przekroczą próg polubień lub podbić, mogą zostać zachowane, nawet jeśli liczba ta później spadnie.
     keep_direct: Zachowaj bezpośrednie wiadomości
     keep_direct_hint: Nie usuwa żadnych bezpośrednich wiadomości
     keep_media: Zachowaj posty z załącznikami multimedialnymi

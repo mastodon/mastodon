@@ -4,6 +4,7 @@ pl:
     hints:
       account:
         attribution_domains: Jedna na linię.
+        discoverable: Możesz być polecany w kolekcjach utworzonych przez innych użytkowników. Ty i Twoje publiczne wpisy mogą być również zasugerowane użytkownikom w różnych miejscach służących do odkrywania treści na Mastodonie.
         display_name: Twoje imię lub pseudonim.
         fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
         indexable: Twoje publiczne wpisy mogą pojawiać się w wynikach wyszukiwania w Mastodonie. Użytkownicy, którzy reagowali na Twoje wpisy, będą mogli je znaleźć niezależnie od tego ustawienia.
@@ -77,6 +78,7 @@ pl:
       featured_tag:
         name: 'Oto niektóre hasztagi, których były ostatnio przez ciebie użyte:'
       filters:
+        action: Wybierz akcję do wykonania, gdy wpis pasuje do filtra
         actions:
           blur: Ukryj media za ostrzeżeniem, bez ukrywania samego tekstu
           hide: Całkowicie ukryj przefiltrowaną zawartość, jakby nie istniała
@@ -106,6 +108,7 @@ pl:
         thumbnail: Obraz o proporcjach mniej więcej 2:1 wyświetlany obok informacji o serwerze.
         trendable_by_default: Pomiń ręczny przegląd treści trendów. Pojedyncze elementy nadal mogą być usuwane z trendów po fakcie.
         trends: Tendencje pokazują, które posty, hasztagi i newsy zyskują popularność na Twoim serwerze.
+        wrapstodon: Zaproponuj lokalnym użytkownikom wygenerowanie żartobliwego podsumowania ich aktywności na Mastodonie w danym roku. Funkcja jest dostępna między 10 a 31 grudnia każdego roku i jest oferowana użytkownikom, którzy w ciągu roku opublikowali co najmniej jeden post publiczny lub cichy publiczny oraz użyli co najmniej jednego hasztagu.
       form_challenge:
         current_password: Wchodzisz w strefę bezpieczną
       imports:
@@ -160,6 +163,7 @@ pl:
         name: Publiczna nazwa roli, jeśli włączone jest wyświetlanie odznaki
         permissions_as_keys: Użytkownicy z tą rolą będą mieli dostęp do...
         position: Wyższa rola decyduje o rozwiązywaniu konfliktów w pewnych sytuacjach. Niektóre działania mogą być wykonywane tylko na rolach z niższym priorytetem
+        require_2fa: Użytkownicy z tą rolą będą musieli skonfigurować uwierzytelnianie dwuskładnikowe, aby korzystać z Mastodona
       username_block:
         allow_with_approval: Zamiast bezwzględnie uniemożliwiać rejestrację, pasujące rejestracje będą wymagały Twojej zgody
         comparison: Proszę pamiętać o problemie Scunthorpe podczas blokowania częściowych dopasowań
@@ -311,6 +315,9 @@ pl:
         trendable_by_default: Zezwalaj na trendy bez wcześniejszego przeglądu
         trends: Włącz trendy
         wrapstodon: Włącz Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Rozumiem, że włączenie tej funkcji może znacząco zwiększyć liczbę e-maili wysyłanych z serwera i że ponoszę wyłączną odpowiedzialność za wszelkie powstałe koszty.
+        agreement_privacy_and_terms: Zaktualizowałem politykę prywatności oraz regulamin serwera.
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie obserwują
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie obserwujesz
@@ -349,6 +356,7 @@ pl:
         hint: Informacje dodatkowe
         text: Zasada
       settings:
+        email_subscriptions: Włącz rejestracje przez adres e-mail
         indexable: Udostępniaj profil wyszukiwarkom
         show_application: Pokazuj program z którego zamieszczasz wpisy
       tag:
@@ -377,11 +385,13 @@ pl:
         role: Rola
         time_zone: Strefa czasowa
       user_role:
+        collection_limit: Maksymalna liczba kolekcji na użytkownika
         color: Kolor odznaki
         highlighted: Wyświetl rolę jako odznakę na profilach użytkowników
         name: Nazwa
         permissions_as_keys: Uprawnienia
         position: Priorytet
+        require_2fa: Wymagaj uwierzytelniania dwuskładnikowego
       username_block:
         allow_with_approval: Zezwól na rejestracje po zatwierdzeniu
         comparison: Metoda porównania
