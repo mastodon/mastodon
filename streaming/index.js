@@ -1432,7 +1432,7 @@ const startServer = async () => {
  
     logger.info('Shutting down streaming server');
 
-    // Don't accept any new connections, exit process once all existing connections have disconnected.
+    // Don't accept any new connections, exit process once all existing connections have disconnected
     server.close(() => {
       process.exit(0);
     });
@@ -1454,7 +1454,7 @@ const startServer = async () => {
     logger.error(err);
 
     server.close();
-    // Exit with a non-zero status code (crash) to restart the service
+    // Exit with a non-zero status code (General Failure)
     process.exit(1);
   };
 
