@@ -246,7 +246,7 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
 
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
-              expect(response.parsed_body['html_data']).to match(/recovery codes/)
+              expect(response.parsed_body['html_data']).to include('recovery codes')
             end
           end
         end
