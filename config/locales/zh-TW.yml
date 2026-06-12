@@ -1640,7 +1640,9 @@ zh-TW:
       empty: 空的 CSV 檔案
       incompatible_type: 與所選的匯入類型不相容
       invalid_csv_file: 無效的 CSV 檔案。錯誤訊息：%{error}
+      invalid_json_file: 無效的 JSON 檔案。錯誤訊息：%{error}
       over_rows_processing_limit: 含有超過 %{count} 行
+      status_not_found_warning: 某些您的過濾器隱藏此伺服器仍未知之特定嘟文。若這些嘟文日後被伺服器發現，它們將不被自動過濾。
       too_large: 檔案大小過大
     failures: 失敗
     imported: 已匯入
@@ -1655,6 +1657,8 @@ zh-TW:
         other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong> 以 <strong>取代您的封鎖帳號列表</strong>。
       bookmarks_html:
         other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個嘟文</strong> 以 <strong>取代您的書籤</strong>。
+      custom_filters_html:
+        other: 您將以 <strong>%{filename}</strong> 之內容<strong>取代您的過濾器</strong>。這將會新增 <strong>%{count} 個過濾器</strong>至新過濾器。
       domain_blocking_html:
         other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個網域</strong> 以 <strong>取代您的封鎖網域列表</strong>。
       following_html:
@@ -1668,6 +1672,8 @@ zh-TW:
         other: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong>。
       bookmarks_html:
         other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個嘟文</strong> 以 <strong>加入至您的書籤</strong>。
+      custom_filters_html:
+        other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個過濾器</strong> 以 <strong>加入至您的過濾器</strong>。
       domain_blocking_html:
         other: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個網域</strong>。
       following_html:

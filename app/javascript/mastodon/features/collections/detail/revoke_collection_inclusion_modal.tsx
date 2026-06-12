@@ -19,7 +19,7 @@ const messages = defineMessages({
   revokeCollectionInclusionMessage: {
     id: 'confirmations.revoke_collection_inclusion.message',
     defaultMessage:
-      "This action is permanent, and the curator won't be able to re-add you to the collection later on.",
+      "The curator won't be able to re-add you to this collection for 24 hours. To prevent them from adding you to collections permanently, you can block them.",
   },
   revokeCollectionInclusionConfirm: {
     id: 'confirmations.revoke_collection_inclusion.confirm',

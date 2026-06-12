@@ -1665,7 +1665,9 @@ el:
       empty: Κενό αρχείο CSV
       incompatible_type: Μη συμβατό με τον επιλεγμένο τύπο εισαγωγής
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
+      invalid_json_file: 'Μη έγκυρο αρχείο JSON. Σφάλμα: %{error}'
       over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
+      status_not_found_warning: Μερικά από τα φίλτρα σας κρύβουν συγκεκριμένες αναρτήσεις που δεν είναι γνωστές από αυτόν τον διακομιστή. Αυτές οι αναρτήσεις δεν θα φιλτραριστούν αυτόματα εάν ανακαλυφθούν αργότερα από τον διακομιστή.
       too_large: Το αρχείο είναι πολύ μεγάλο
     failures: Αποτυχίες
     imported: Εισήχθη
@@ -1682,6 +1684,9 @@ el:
       bookmarks_html:
         one: Πρόκειται να <strong>αντικαταστήσεις τους σελιδοδείκτες σου</strong> με έως και <strong>%{count} ανάρτηση</strong> από το <strong>%{filename}</strong>.
         other: Πρόκειται να <strong>αντικαταστήσεις τους σελιδοδείκτες σου</strong> με έως και <strong>%{count} αναρτήσεις</strong> από το <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Πρόκειται να <strong>αντικαταστήσεις τα φίλτρα σου</strong> με το περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} φίλτρο</strong> θα προστεθεί στα νέα φίλτρα.
+        other: Πρόκειται να <strong>αντικαταστήσεις τα φίλτρα σου</strong> με το περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} φίλτρα</strong> θα προστεθούν στα νέα φίλτρα.
       domain_blocking_html:
         one: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών τομέων</strong> με έως και <strong>%{count} τομέα</strong> από το <strong>%{filename}</strong>.
         other: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών τομέων</strong> με έως και <strong>%{count} τομείς</strong> από το <strong>%{filename}</strong>.
@@ -1689,8 +1694,8 @@ el:
         one: Πρόκειται να <strong>ακολουθήσεις</strong> μέχρι <strong>%{count} λογαριασμό</strong> από το <strong>%{filename}</strong> και <strong>να σταματήσεις να ακολουθείς οποιονδήποτε άλλο</strong>.
         other: Πρόκειται να <strong>ακολουθήσεις</strong> μέχρι <strong>%{count} λογαριασμούς</strong> από το <strong>%{filename}</strong> και <strong>να σταματήσεις να ακολουθείς οποιονδήποτε άλλο</strong>.
       lists_html:
-        one: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} λογαριασμός</strong> θα προστεθεί σε νέες λίστες.
-        other: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} λογαριασμοί</strong> θα προστεθούν σε νέες λίστες.
+        one: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με το περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} λογαριασμός</strong> θα προστεθεί στις νέες λίστες.
+        other: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με το περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} λογαριασμοί</strong> θα προστεθούν στις νέες λίστες.
       muting_html:
         one: Πρόκειται να <strong>αντικαταστήσεις τη λίστα λογαριασμών σε σίγαση</strong> με έως και <strong>%{count} λογαριασμό</strong> από το <strong>%{filename}</strong>.
         other: Πρόκειται να <strong>αντικαταστήσεις τη λίστα λογαριασμών σε σίγαση</strong> με έως και <strong>%{count} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
@@ -1701,6 +1706,9 @@ el:
       bookmarks_html:
         one: Πρόκειται να προσθέσεις μέχρι και <strong>%{count} ανάρτηση</strong> από το <strong>%{filename}</strong> στους <strong>σελιδοδείκτες</strong> σου.
         other: Πρόκειται να προσθέσεις μέχρι και <strong>%{count} αναρτήσεις</strong> από το <strong>%{filename}</strong> στους <strong>σελιδοδείκτες</strong> σου.
+      custom_filters_html:
+        one: Πρόκειται να προσθέσεις μέχρι και <strong>%{count} φίλτρο</strong> από το <strong>%{filename}</strong> στα <strong>φίλτρα</strong> σου.
+        other: Πρόκειται να προσθέσεις μέχρι και <strong>%{count} φίλτρα</strong> από το <strong>%{filename}</strong> στα <strong>φίλτρα</strong> σου.
       domain_blocking_html:
         one: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{count} τόμεα</strong> από το <strong>%{filename}</strong>.
         other: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{count} τομείς</strong> από το <strong>%{filename}</strong>.

@@ -1635,8 +1635,10 @@ zh-CN:
     errors:
       empty: CSV 文件为空
       incompatible_type: 与所选导入类型不兼容
-      invalid_csv_file: '无效的 CSV 文件。错误: %{error}'
+      invalid_csv_file: 无效的 CSV 文件。错误：%{error}
+      invalid_json_file: 无效的 JSON 文件。错误：%{error}
       over_rows_processing_limit: 包含行数超过了 %{count}
+      status_not_found_warning: 你的部分过滤器将会过滤此服务器尚未知晓的嘟文。如果这些嘟文之后被服务器发现，则将不会被自动过滤。
       too_large: 文件过大
     failures: 失败
     imported: 已导入
@@ -1651,6 +1653,8 @@ zh-CN:
         other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>账号<strong>替换你的屏蔽列表</strong>。
       bookmarks_html:
         other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 条</strong>嘟文<strong>替换你的收藏列表</strong>。
+      custom_filters_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的内容<strong>替换你的过滤器</strong>。最多将会有 <strong>%{count} 个过滤器</strong> 被添加为新过滤器。
       domain_blocking_html:
         other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>站点域名<strong>替换你的站点屏蔽列表</strong>。
       following_html:
@@ -1664,6 +1668,8 @@ zh-CN:
         other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
       bookmarks_html:
         other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 篇嘟文</strong>添加到你的<strong>收藏夹</strong>中。
+      custom_filters_html:
+        other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 个过滤器</strong>添加到你的<strong>过滤器</strong>中。
       domain_blocking_html:
         other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个站点</strong>。
       following_html:
