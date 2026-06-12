@@ -1,7 +1,6 @@
 import { initialState } from '@/mastodon/initial_state';
 
 import { toSupportedLocale } from './locale';
-import { reloadCustomEmojis } from './picker';
 import type { EmojiWorkerMessage } from './types';
 import { emojiLogger } from './utils';
 
@@ -39,27 +38,37 @@ export async function initializeEmoji() {
     void fallbackLoad();
   }, WORKER_TIMEOUT);
 
-  tempWorker.addEventListener('message', (event: MessageEvent<string>) => {
-    const { data: message } = event;
+  tempWorker.addEventListener(
+    'message',
+    (event: MessageEvent<EmojiWorkerMessage>) => {
+      const { data: message } = event;
 
-    worker ??= tempWorker;
-    clearTimeout(timeoutId);
+      worker ??= tempWorker;
+      clearTimeout(timeoutId);
 
-    if (message !== 'ready') {
-      workerLog(message);
-      return;
-    }
+      const { type } = message;
+      if (type === 'log') {
+        workerLog(message.message);
+      } else if (type === 'done' && message.storeName === 'custom') {
+        void loadEmojisToStore();
+      }
 
-    const debugValue = localStorage.getItem('debug');
-    if (debugValue) {
-      messageWorker({ type: 'debug', debugValue });
-    }
+      if (type !== 'ready') {
+        return; // Exit for other messages.
+      }
 
-    workerLog('loading data');
-    messageWorker(userLocale);
-    messageWorker('custom');
-    messageWorker('shortcodes');
-  });
+      const debugValue = localStorage.getItem('debug');
+      if (debugValue) {
+        messageWorker({ type: 'debug', debugValue });
+      }
+
+      workerLog('loading data');
+      messageWorker(userLocale);
+      messageWorker('custom');
+      messageWorker('shortcodes');
+      void loadEmojisToStore();
+    },
+  );
 }
 
 async function fallbackLoad() {
@@ -71,8 +80,8 @@ async function fallbackLoad() {
   const customEmojis = await importCustomEmojiData();
   if (customEmojis && customEmojis.length > 0) {
     log('loaded %d custom emojis', customEmojis.length);
-    await reloadCustomEmojis();
   }
+
   const shortcodes = await importLegacyShortcodes();
   if (shortcodes?.length) {
     log('loaded %d legacy shortcodes', shortcodes.length);
@@ -82,6 +91,7 @@ async function fallbackLoad() {
   if (emojis) {
     log('loaded %d emojis to locale %s', emojis.length, userLocale);
   }
+  await loadEmojisToStore();
 }
 
 export async function loadCustomEmoji() {
@@ -92,9 +102,9 @@ export async function loadCustomEmoji() {
     const emojis = await importCustomEmojiData();
     if (emojis && emojis.length > 0) {
       log('loaded %d custom emojis', emojis.length);
-      await reloadCustomEmojis();
     }
   }
+  await loadEmojisToStore();
 }
 
 function messageWorker(data: EmojiWorkerMessage | string) {
@@ -109,4 +119,15 @@ function messageWorker(data: EmojiWorkerMessage | string) {
   } else {
     worker.postMessage(data);
   }
+}
+
+async function loadEmojisToStore() {
+  const { store } = await import('@/mastodon/store');
+  const { loadCustomEmojis, loadLocale } =
+    await import('@/mastodon/reducers/slices/emojis');
+
+  loadLocale(userLocale);
+  await store.dispatch(loadCustomEmojis());
+
+  log('loaded emoji data into store');
 }
