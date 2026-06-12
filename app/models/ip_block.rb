@@ -33,6 +33,9 @@ class IpBlock < ApplicationRecord
 
   after_commit :reset_cache
 
+  scope :matches_ip, ->(value) { where(ip: value) }
+  scope :matches_partial_ip, ->(value) { where(ip_as_text.matches("#{value}%")) }
+
   def to_cidr
     "#{ip}/#{ip.prefix}"
   end
@@ -41,6 +44,13 @@ class IpBlock < ApplicationRecord
   class << self
     def blocked?(remote_ip)
       blocked_ips_map.include?(remote_ip)
+    end
+
+    def ip_as_text
+      Arel::Nodes::NamedFunction.new(
+        'CAST',
+        [Arel::Nodes::As.new(arel_table[:ip], Arel::Nodes::SqlLiteral.new('text'))]
+      )
     end
 
     private
