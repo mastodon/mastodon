@@ -32,7 +32,7 @@ module Admin
     private
 
     def after_create_redirect_path
-      report_id = @collections_batch_action&.report_id || params[:report_id]
+      report_id = @collection_batch_action&.report_id || params[:report_id]
 
       if report_id.present?
         admin_report_path(report_id)
