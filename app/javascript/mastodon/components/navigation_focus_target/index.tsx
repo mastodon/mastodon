@@ -55,13 +55,11 @@ export const FocusTargetProvider: React.FC<{
     | null
   >(null);
 
-  const {
-    pathname,
-    search,
-    state = {},
-  } = useLocation<{ focusTarget?: FocusTarget } | undefined>();
+  const { pathname, search, state } = useLocation<{
+    focusTarget?: FocusTarget;
+  } | null>();
 
-  const { focusTarget } = state;
+  const { focusTarget } = state ?? {};
 
   useLayoutEffect(() => {
     // We never want to set focus on page load, so we keep
