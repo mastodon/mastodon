@@ -1665,7 +1665,9 @@ it:
       empty: File CSV vuoto
       incompatible_type: Incompatibile con il tipo di importazione selezionato
       invalid_csv_file: 'File CSV non valido. Errore: %{error}'
+      invalid_json_file: 'File JSON non valido. Errore: %{error}'
       over_rows_processing_limit: contiene più di %{count} righe
+      status_not_found_warning: Alcuni dei tuoi filtri nascondono post specifici che non sono noti a questo server. Questi post non verranno filtrati automaticamente se vengono scoperti in seguito dal server.
       too_large: Il file è troppo grande
     failures: Fallimenti
     imported: Importato
@@ -1682,6 +1684,9 @@ it:
       bookmarks_html:
         one: Stai per <strong>sostituire i tuoi segnalibri</strong> con <strong>%{count} post</strong> da <strong>%{filename}</strong>.
         other: Stai per <strong>sostituire i tuoi segnalibri</strong> con <strong>%{count} post</strong> da <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Stai per <strong>sostituire i tuoi filtri</strong> con i contenuti di <strong>%{filename}</strong>. Ai nuovi filtri sarà aggiunto fino a un massimo di <strong>%{count} filtro</strong>.
+        other: Stai per <strong>sostituire i tuoi filtri</strong> con i contenuti di <strong>%{filename}</strong>. Ai nuovi filtri saranno aggiunti fino a un massimo di <strong>%{count} filtri</strong>.
       domain_blocking_html:
         one: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con <strong>%{count} dominio</strong> da <strong>%{filename}</strong>.
         other: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con <strong>%{count} domini</strong> da <strong>%{filename}</strong>.
@@ -1701,6 +1706,9 @@ it:
       bookmarks_html:
         one: Stai per aggiungere <strong>%{count} post</strong> da <strong>%{filename}</strong> ai tuoi <strong>segnalibri</strong>.
         other: Stai per aggiungere <strong>%{count} post</strong> da <strong>%{filename}</strong> ai tuoi <strong>segnalibri</strong>.
+      custom_filters_html:
+        one: Stai per aggiungere fino a un massimo di <strong>%{count} filtro</strong> da <strong>%{filename}</strong> ai tuoi <strong>filtri</strong>.
+        other: Stai per aggiungere fino a un massimo di <strong>%{count} filtri</strong> da <strong>%{filename}</strong> ai tuoi <strong>filtri</strong>.
       domain_blocking_html:
         one: Stai per <strong>bloccare</strong> <strong>%{count} dominio</strong> da <strong>%{filename}</strong>.
         other: Stai per <strong>bloccare</strong> <strong>%{count} domini</strong> da <strong>%{filename}</strong>.

@@ -1665,7 +1665,9 @@ pt-BR:
       empty: Arquivo CSV vazio
       incompatible_type: Incompatível com o tipo de importação selecionado
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
+      invalid_json_file: 'Arquivo JSON inválido. Erro: %{error}'
       over_rows_processing_limit: contém mais de %{count} linhas
+      status_not_found_warning: Alguns filtros seus ocultam publicações específicas que não são conhecidas neste servidor. Estas publicações serão filtradas automaticamente se forem descobertas depois pelo servidor.
       too_large: O arquivo é muito grande
     failures: Falhas
     imported: Importado
@@ -1682,6 +1684,9 @@ pt-BR:
       bookmarks_html:
         one: Você está prestes a <strong>substituir seus salvos</strong> por até <strong>%{count} publicação</strong> de <strong>%{filename}</strong>.
         other: Você está prestes a <strong>substituir seus salvos</strong> por até <strong>%{count} publicações</strong> de <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Você está prestes a <strong>substituir seus filtros</strong> com conteúdos de <strong>%{filename}</strong>. Até <strong>%{count} filtro</strong> será adicionado aos novos filtros.
+        other: Você está prestes a <strong>substituir seus filtros</strong> com conteúdos de <strong>%{filename}</strong>. Até <strong>%{count} filtros</strong> será adicionado aos novos filtros.
       domain_blocking_html:
         one: Você está prestes a <strong>substituir seu bloco de lista do domínio</strong> com <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
         other: Você está prestes a <strong>substituir sua lista de bloqueio de domínio</strong> com <strong>domínios%{count}</strong> de <strong>%{filename}</strong>.
@@ -1701,6 +1706,9 @@ pt-BR:
       bookmarks_html:
         one: Você está prestes a adicionar até <strong>%{count} post</strong> de <strong>%{filename}</strong> aos seus <strong>favoritos</strong>.
         other: Você está prestes a adicionar até <strong>%{count} posts</strong> de <strong>%{filename}</strong> aos seus <strong>favoritos</strong>.
+      custom_filters_html:
+        one: Você está prestes a adicionar até <strong>%{count} filtro</strong> de <strong>%{filename}</strong> para seus <strong>filtros</strong>.
+        other: Você está prestes a adicionar até <strong>%{count} filtros</strong> de <strong>%{filename}</strong> para seus <strong>filtros</strong>.
       domain_blocking_html:
         one: Você está prestes a <strong>bloquear</strong> até <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
         other: Você está prestes a <strong>bloquear</strong> até <strong>%{count} domínios</strong> de <strong>%{filename}</strong>.

@@ -1665,7 +1665,9 @@ tr:
       empty: Boş CSV Dosyası
       incompatible_type: Seçilen içe aktarma türüyle uyumsuz
       invalid_csv_file: 'Geçersiz CSV dosyası. Hata: %{error}'
+      invalid_json_file: 'Geçersiz JSON dosyası. Hata: %{error}'
       over_rows_processing_limit: "%{count} satırdan fazlasını içeriyor"
+      status_not_found_warning: Filtrelerinizden bazıları, bu sunucu tarafından tanınmayan belirli gönderileri gizler. Bu gönderiler, daha sonra sunucu tarafından tespit edildiklerinde otomatik olarak filtrelenmeyecektir.
       too_large: Dosya çok büyük
     failures: Başarısızlıklar
     imported: İçe aktarılan
@@ -1682,6 +1684,9 @@ tr:
       bookmarks_html:
         one: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> ile değiştirmek üzeresiniz."
         other: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> ile değiştirmek üzeresiniz."
+      custom_filters_html:
+        one: "<strong>Filtrelerinizi</strong> <strong>%{filename}</strong> dosyasının içeriğiyle değiştirmek üzeresiniz. Yeni filtrelere en fazla <strong>%{count} filtre</strong> eklenecektir."
+        other: "<strong>Filtrelerinizi</strong> <strong>%{filename}</strong> dosyasının içeriğiyle değiştirmek üzeresiniz. Yeni filtrelere en fazla <strong>%{count} filtre</strong> eklenecektir."
       domain_blocking_html:
         one: "<strong>Alan adı engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> ile değiştirmek üzeresiniz."
         other: "<strong>Alan adı engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> ile değiştirmek üzeresiniz."
@@ -1701,6 +1706,9 @@ tr:
       bookmarks_html:
         one: "<strong>Yerimlerinize</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> eklemek üzeresiniz."
         other: "<strong>Yerimlerinize</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> eklemek üzeresiniz."
+      custom_filters_html:
+        one: "<strong>%{filename}</strong> dosyasındaki <strong>%{count} adet </strong> filtresini <strong>filters</strong> listenize eklemek üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasındaki <strong>%{count} adet </strong> filtresini <strong>filters</strong> listenize eklemek üzeresiniz."
       domain_blocking_html:
         one: "<strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> <strong>engellemek</strong> üzeresiniz."
         other: "<strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> <strong>engellemek</strong> üzeresiniz."

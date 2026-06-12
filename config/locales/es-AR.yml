@@ -1665,7 +1665,9 @@ es-AR:
       empty: Archivo CSV vacío
       incompatible_type: Incompatible con el tipo de importación seleccionado
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
+      invalid_json_file: 'Archivo JSON no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
+      status_not_found_warning: Algunos de tus filtros ocultan mensajes específicos que no son conocidos por este servidor. Estos mensajes no serán filtrados automáticamente si son descubiertos más tarde por el servidor.
       too_large: El archivo es demasiado grande
     failures: Fallos
     imported: Importadas
@@ -1682,6 +1684,9 @@ es-AR:
       bookmarks_html:
         one: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{count} mensaje</strong> provenientes de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{count} mensajes</strong> provenientes de <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Estás a punto de <strong>reemplazar tus filtros</strong> con el contenido de <strong>%{filename}</strong>. Se agregarán hasta <strong>%{count} filtro</strong> a filtros nuevos.
+        other: Estás a punto de <strong>reemplazar tus filtros</strong> con el contenido de <strong>%{filename}</strong>. Se agregarán hasta <strong>%{count} filtros</strong> a filtros nuevos.
       domain_blocking_html:
         one: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{count} dominio</strong> provenientes de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
@@ -1701,6 +1706,9 @@ es-AR:
       bookmarks_html:
         one: Está a punto de agregar hasta <strong>%{count} mensaje</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
         other: Está a punto de agregar hasta <strong>%{count} mensajes</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      custom_filters_html:
+        one: Está a punto de agregar hasta <strong>%{count} filtro</strong> proveniente de <strong>%{filename}</strong> a tus <strong>filtros</strong>.
+        other: Está a punto de agregar hasta <strong>%{count} filtros</strong> provenientes de <strong>%{filename}</strong> a tus <strong>filtros</strong>.
       domain_blocking_html:
         one: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominio</strong> provenientes de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
