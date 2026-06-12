@@ -85,16 +85,6 @@ type LegacyEmoji =
       custom: true;
     };
 
-export async function reloadCustomEmojis() {
-  customEmojis = null;
-
-  const { loadEmojisIntoCache } =
-    await import('@/mastodon/hooks/useCustomEmojis');
-
-  await Promise.all([fetchCustomEmojiData(), loadEmojisIntoCache()]);
-  searchCache.clear();
-}
-
 // Replicates the old legacy search function.
 export async function emojiMartSearch(
   token: string,

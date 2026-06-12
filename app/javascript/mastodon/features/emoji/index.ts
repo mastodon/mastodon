@@ -1,7 +1,6 @@
 import { initialState } from '@/mastodon/initial_state';
 
 import { toSupportedLocale } from './locale';
-import { reloadCustomEmojis } from './picker';
 import type { EmojiWorkerMessage } from './types';
 import { emojiLogger } from './utils';
 
@@ -71,8 +70,8 @@ async function fallbackLoad() {
   const customEmojis = await importCustomEmojiData();
   if (customEmojis && customEmojis.length > 0) {
     log('loaded %d custom emojis', customEmojis.length);
-    await reloadCustomEmojis();
   }
+
   const shortcodes = await importLegacyShortcodes();
   if (shortcodes?.length) {
     log('loaded %d legacy shortcodes', shortcodes.length);
@@ -92,7 +91,6 @@ export async function loadCustomEmoji() {
     const emojis = await importCustomEmojiData();
     if (emojis && emojis.length > 0) {
       log('loaded %d custom emojis', emojis.length);
-      await reloadCustomEmojis();
     }
   }
 }
