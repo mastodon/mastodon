@@ -1636,7 +1636,9 @@ vi:
       empty: File CSV trống
       incompatible_type: Không tương thích với loại nhập đã chọn
       invalid_csv_file: 'Tệp CSV không hợp lệ. Lỗi: %{error}'
+      invalid_json_file: 'Tệp JSON không hợp lệ. Lỗi: %{error}'
       over_rows_processing_limit: chứa nhiều hơn %{count} hàng
+      status_not_found_warning: Một số bộ lọc của bạn ẩn các tút cụ thể mà máy chủ này không biết đến. Những tút này sẽ không tự động bị lọc nếu máy chủ phát hiện ra chúng sau này.
       too_large: Tệp quá lớn
     failures: Thất bại
     imported: Đã nhập
@@ -1651,6 +1653,8 @@ vi:
         other: Bạn sắp <strong>thay thế danh sách chặn</strong> với <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
       bookmarks_html:
         other: Bạn sắp <strong>thay thế danh sách tút đã lưu</strong> với <strong>%{count} tút</strong> từ <strong>%{filename}</strong>.
+      custom_filters_html:
+        other: Bạn sắp <strong>thay thế bộ lọc</strong> với nội dung của <strong>%{filename}</strong>. Có <strong>%{count} tài khoản</strong> sẽ được thêm vào những bộ lọc mới.
       domain_blocking_html:
         other: Bạn sắp <strong>thay thế danh sách máy chủ chặn</strong> với <strong>%{count} máy chủ</strong> từ <strong>%{filename}</strong>.
       following_html:
@@ -1664,6 +1668,8 @@ vi:
         other: Bạn sắp <strong>chặn</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
       bookmarks_html:
         other: Bạn sắp thêm tới <strong>%{count} tút</strong> từ <strong>%{filename}</strong> vào <strong>danh sách tút đã lưu</strong>.
+      custom_filters_html:
+        other: Bạn sắp thêm tới <strong>%{count} bộ lọc</strong> từ <strong>%{filename}</strong> vào <strong>bộ lọc</strong>.
       domain_blocking_html:
         other: Bạn sắp <strong>chặn</strong> tới <strong>%{count} máy chủ</strong> từ <strong>%{filename}</strong>.
       following_html:

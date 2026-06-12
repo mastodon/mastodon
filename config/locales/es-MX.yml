@@ -506,21 +506,19 @@ es-MX:
         last_email: Último correo electrónico
         lead: A continuación se mostrarán las cuentas que hayan activado la función y tengan suscriptores.
         show:
-          confirm_disable_feature: |-
-            ¿Desactivar boletines de correo electrónico de %{name}? No se enviarán actualizaciones por correo electrónico para esta cuenta. El usuario aún podrá reactivar esta función en los ajustes de su cuenta.
-            Para eliminar el acceso a esta función permanentemente, modifica los permisos de la cuenta en Roles.
-          confirm_remove_subscriber: "%{email} no recibirá más correos electrónicos de %{name}. Esta acción no se puede deshacer."
-          consent: Los subscriptores solo han autorizado recibir publicaciones por email. No utilices esta lista para otros propósitos.
+          confirm_disable_feature: "¿Deseas desactivar los boletines informativos por correo electrónico para %{name}? Ya no se enviarán actualizaciones por correo electrónico para esta cuenta. El usuario podrá volver a activar esta función en la configuración de su cuenta. Para eliminar de forma permanente el acceso a esta función, edita los permisos de la cuenta en «Roles»."
+          confirm_remove_subscriber: "%{email} ya no recibirá correos electrónicos de %{name}. Esta acción no se puede deshacer."
+          consent: Los suscriptores solo han dado su consentimiento para recibir mensajes por correo electrónico. No utilices esta lista para otros fines.
           date: Fecha de suscripción
           disable_feature: Desactivar función
-          disabled: La función ha sido desactivada y ya no se enviarán correos electrónicos a esta lista.
+          disabled: La función se ha desactivado y ya no se envían correos electrónicos a esta lista.
           email: Dirección de correo electrónico
           empty:
             hint: Nadie se ha suscrito a esta cuenta todavía.
             no_subscribers_yet: Sin suscriptores todavía
           enable_feature: Activar función
-          no_access_html: Esta cuenta ya no tiene los permisos necesarios para activar la función. Modifica esto en <a href="%{roles_path}">Roles</a>.
-          title: Boletines de correo electrónico de %{name}
+          no_access_html: Esta cuenta ya no tiene los permisos necesarios para habilitar la función. Modifica esta configuración en <a href="%{roles_path}">Roles</a>.
+          title: Boletines informativos por correo electrónico de %{name}
           view_account: Ver cuenta
         status: Estado
         subscribers: Suscriptores

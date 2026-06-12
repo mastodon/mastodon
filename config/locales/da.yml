@@ -1665,7 +1665,9 @@ da:
       empty: CSV-fil tom
       incompatible_type: Inkompatibel med valgte importtype
       invalid_csv_file: 'Ugyldig CSV-fil. Fejl: %{error}'
+      invalid_json_file: 'Ugyldig JSON-fil. Fejl: %{error}'
       over_rows_processing_limit: indeholder mere end %{count} rækker
+      status_not_found_warning: Nogle af dine filtre skjuler bestemte indlæg, som denne server ikke kender til. Disse indlæg bliver ikke automatisk filtreret, hvis serveren finder dem senere.
       too_large: Filen for stor
     failures: Mislykket
     imported: Importeret
@@ -1682,6 +1684,9 @@ da:
       bookmarks_html:
         one: Du er ved at <strong>erstatte dine bogmærker</strong> med <strong>%{count} indlæg</strong> fra <strong>%{filename}</strong>.
         other: Du er ved at <strong>erstatte dine bogmærker</strong> med op til <strong>%{count} indlæg</strong> fra <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Du er ved at <strong>udskifte dine filtre</strong> med indholdet af <strong>%{filename}</strong>. Op til <strong>%{count} filter</strong> vil blive føjet til nye filtre.
+        other: Du er ved at <strong>udskifte dine filtre</strong> med indholdet af <strong>%{filename}</strong>. Op til <strong>%{count} filtre</strong> vil blive føjet til nye filtre.
       domain_blocking_html:
         one: Du er ved at <strong>erstatte din domænesortliste</strong> med <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
         other: Du er ved at <strong>erstatte din domænesortliste</strong> med op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
@@ -1701,6 +1706,9 @@ da:
       bookmarks_html:
         one: Du er ved at tilføje <strong>%{count} indlæg</strong> fra <strong>%{filename}</strong> til dine <strong>bogmærker</strong>.
         other: Du er ved at tilføje <strong>%{count} indlæg</strong> fra <strong>%{filename}</strong> til dine <strong>bogmærker</strong>.
+      custom_filters_html:
+        one: Du er ved at tilføje op til <strong>%{count} filter</strong> fra <strong>%{filename}</strong> til dine <strong>filtre</strong>.
+        other: Du er ved at tilføje op til <strong>%{count} filtre</strong> fra <strong>%{filename}</strong> til dine <strong>filtre</strong>.
       domain_blocking_html:
         one: Du er ved at <strong>blokere</strong> <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
         other: Man er ved at <strong>blokere</strong> op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.

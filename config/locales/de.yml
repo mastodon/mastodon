@@ -1648,7 +1648,9 @@ de:
       empty: Leere CSV-Datei
       incompatible_type: Inkompatibel mit dem ausgewählten Importtyp
       invalid_csv_file: 'Ungültige CSV-Datei. Fehler: %{error}'
+      invalid_json_file: 'Ungültige JSON-Datei. Fehler: %{error}'
       over_rows_processing_limit: enthält mehr als %{count} Zeilen
+      status_not_found_warning: Einige deiner Filter blenden bestimmte Beiträge aus, die diesem Server nicht bekannt sind. Diese Beiträge werden nicht automatisch gefiltert, wenn sie dem Server später bekannt werden.
       too_large: Datei ist zu groß
     failures: Fehler
     imported: Importiert
@@ -1665,6 +1667,9 @@ de:
       bookmarks_html:
         one: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beitrag</strong> zu ersetzen.
         other: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beiträge</strong> zu ersetzen.
+      custom_filters_html:
+        one: Du bist dabei, <strong>deine Filter</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Filter</strong> wird zu neuen Filtern hinzugefügt.
+        other: Du bist dabei, <strong>deine Filter</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Filter</strong> werden zu neuen Filtern hinzugefügt.
       domain_blocking_html:
         one: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domain</strong> zu ersetzen.
         other: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domains</strong> zu ersetzen.
@@ -1684,6 +1689,9 @@ de:
       bookmarks_html:
         one: Du bist dabei, bis zu <strong>%{count} Beitrag</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+      custom_filters_html:
+        one: Du bist dabei, bis zu <strong>%{count} Filter</strong> aus <strong>%{filename}</strong> zu deinen <strong>Filtern hinzuzufügen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Filter</strong> aus <strong>%{filename}</strong> zu deinen <strong>Filtern hinzuzufügen</strong>.
       domain_blocking_html:
         one: Du bist dabei, bis zu <strong>%{count} Domain</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
