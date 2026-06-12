@@ -13,8 +13,6 @@ import { usePickerEmojis } from './picker';
 
 const backgroundImageFnDefault = () => `${assetHost}/emoji/sheet_16_0.png`;
 
-export { fetchCustomEmojiData as loadCustomEmojiData } from './picker';
-
 export const Picker: FC<PickerProps> = ({
   set = 'twitter',
   sheetSize = 32,
@@ -24,17 +22,13 @@ export const Picker: FC<PickerProps> = ({
   ...props
 }) => {
   const { mode } = useEmojiAppState();
-  const { customCategories, customEmojis } = usePickerEmojis();
-
-  if (!customEmojis) {
-    return null;
-  }
+  const { categories, emojis } = usePickerEmojis();
 
   return (
     <PickerRaw
       data={EmojiData}
-      custom={customEmojis}
-      include={customCategories}
+      custom={emojis}
+      include={categories}
       set={set}
       sheetSize={sheetSize}
       sheetColumns={sheetColumns}
