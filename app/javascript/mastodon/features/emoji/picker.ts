@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
-
 import type { CategoryName, CustomEmoji } from 'emoji-mart';
 
 import { autoPlayGif } from '@/mastodon/initial_state';
-import { createAppSelector, useAppSelector } from '@/mastodon/store';
+import {
+  createAppSelector,
+  useAppSelector,
+} from '@/mastodon/store/typed_functions';
 import { createLimitedCache } from '@/mastodon/utils/cache';
 
 import { emojiLogger } from './utils';
@@ -95,28 +96,20 @@ const selectPickerData = createAppSelector(
     }
 
     searchCache.clear();
-    log('Regenerated the picker data');
+    log('regenerated the picker data');
 
     return {
-      customEmojis,
-      customCategories: Object.keys(categories),
+      emojis: customEmojis,
+      categories: [
+        'recent',
+        'custom',
+        ...Object.keys(categories).toSorted(),
+        ...defaultCategories,
+      ] as CategoryName[],
     };
   },
 );
 
 export function usePickerEmojis() {
-  const { customCategories, customEmojis } = useAppSelector(selectPickerData);
-
-  return useMemo(
-    () => ({
-      emojis: customEmojis,
-      categories: [
-        'recent',
-        'custom',
-        ...customCategories,
-        ...defaultCategories,
-      ] as CategoryName[],
-    }),
-    [customCategories, customEmojis],
-  );
+  return useAppSelector(selectPickerData);
 }

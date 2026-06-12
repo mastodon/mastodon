@@ -104,6 +104,7 @@ export async function loadCustomEmoji() {
       log('loaded %d custom emojis', emojis.length);
     }
   }
+  await loadEmojisToStore();
 }
 
 function messageWorker(data: EmojiWorkerMessage | string) {

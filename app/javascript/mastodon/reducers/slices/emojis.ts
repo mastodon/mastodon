@@ -5,12 +5,12 @@ import type { Locale } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import { toSupportedLocale } from '@/mastodon/features/emoji/locale';
-import type { ExtraCustomEmojiMap } from '@/mastodon/features/emoji/types';
 import { createAsyncThunk } from '@/mastodon/store/typed_functions';
 
 interface EmojisState {
   custom: Record<string, Pick<ApiCustomEmojiJSON, 'url' | 'static_url'>>;
   customCategories: Record<string, string[]>; // { name: shortcodes[] }
+  customLoaded: boolean;
   localesLoaded: Locale[];
 }
 
@@ -19,6 +19,7 @@ const emojisSlice = createSlice({
   initialState: {
     custom: {},
     customCategories: {},
+    customLoaded: false,
     localesLoaded: [],
   } as EmojisState,
   reducers: {
@@ -49,31 +50,16 @@ const emojisSlice = createSlice({
               state.customCategories[category].push(shortcode);
             }
           }
+
+          state.customLoaded = true;
         }
       },
     });
-  },
-  selectors: {
-    selectCustomEmojis(state): ExtraCustomEmojiMap {
-      const emojis: ExtraCustomEmojiMap = {};
-      for (const shortcode in state.custom) {
-        const emoji = state.custom[shortcode];
-        if (!emoji) {
-          continue;
-        }
-        emojis[shortcode] = {
-          shortcode,
-          ...emoji,
-        };
-      }
-      return emojis;
-    },
   },
 });
 
 export const emojis = emojisSlice.reducer;
 export const { loadLocale } = emojisSlice.actions;
-export const { selectCustomEmojis } = emojisSlice.selectors;
 
 export const loadCustomEmojis = createAsyncThunk(
   `${emojisSlice.name}/loadCustomEmojis`,
