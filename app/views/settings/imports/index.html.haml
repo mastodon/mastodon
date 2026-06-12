@@ -2,7 +2,7 @@
   = t('settings.import')
 
 = simple_form_for @import, url: settings_imports_path do |f|
-  .field-group
+  .fields-group
     = f.input :type,
               as: :grouped_select,
               collection: { constructive: %i(following bookmarks lists), destructive: %i(muting blocking domain_blocking custom_filters) },
@@ -33,7 +33,7 @@
 - unless @recent_imports.empty?
   %hr.spacer/
 
-  %h3= t('imports.recent_imports')
+  %h3.heading-medium= t('imports.recent_imports')
 
   .table-wrapper
     %table.table
