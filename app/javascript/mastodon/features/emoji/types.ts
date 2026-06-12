@@ -28,7 +28,6 @@ export type CacheKey =
   | LocaleWithShortcodes;
 
 export interface EmojiAppState {
-  locales: Locale[];
   currentLocale: Locale;
   mode: EmojiMode;
   darkTheme: boolean;
@@ -82,9 +81,19 @@ export type ExtraCustomEmojiMap = Record<
 >;
 
 export type EmojiWorkerMessage =
+  | { type: 'ready' }
   | {
       type: 'load';
       storeName: string;
+    }
+  | {
+      type: 'done';
+      storeName: string;
+      importCount: number;
+    }
+  | {
+      type: 'log';
+      message: string;
     }
   | {
       type: 'debug';
