@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { normalizeKey, isKeyboardEvent } from './utils';
+import { normalizeKey, isKeyboardEvent, matchesKeyCode } from './utils';
 
 /**
  * In case of multiple hotkeys matching the pressed key(s),
@@ -62,7 +62,7 @@ function optionPlus(key: string): KeyMatcher {
   return (event) => ({
     // Matching against event.code here as alt combos are often
     // mapped to other characters
-    isMatch: event.altKey && event.code === `Key${key.toUpperCase()}`,
+    isMatch: event.altKey && matchesKeyCode(key, event.code),
     priority: hotkeyPriority.combo,
   });
 }
@@ -109,8 +109,8 @@ const hotkeyMatcherMap = {
   mention: just('m'),
   open: any('enter', 'o'),
   openProfile: just('p'),
-  moveDown: any('j', 'pagedown'),
-  moveUp: any('k', 'pageup'),
+  moveDown: optionPlus('PageDown'),
+  moveUp: optionPlus('PageUp'),
   moveToTop: just('0'),
   toggleHidden: just('x'),
   toggleSensitive: just('h'),
