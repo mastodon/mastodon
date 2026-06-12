@@ -38,27 +38,37 @@ export async function initializeEmoji() {
     void fallbackLoad();
   }, WORKER_TIMEOUT);
 
-  tempWorker.addEventListener('message', (event: MessageEvent<string>) => {
-    const { data: message } = event;
+  tempWorker.addEventListener(
+    'message',
+    (event: MessageEvent<EmojiWorkerMessage>) => {
+      const { data: message } = event;
 
-    worker ??= tempWorker;
-    clearTimeout(timeoutId);
+      worker ??= tempWorker;
+      clearTimeout(timeoutId);
 
-    if (message !== 'ready') {
-      workerLog(message);
-      return;
-    }
+      const { type } = message;
+      if (type === 'log') {
+        workerLog(message.message);
+      } else if (type === 'done' && message.storeName === 'custom') {
+        void loadEmojisToStore();
+      }
 
-    const debugValue = localStorage.getItem('debug');
-    if (debugValue) {
-      messageWorker({ type: 'debug', debugValue });
-    }
+      if (type !== 'ready') {
+        return; // Exit for other messages.
+      }
 
-    workerLog('loading data');
-    messageWorker(userLocale);
-    messageWorker('custom');
-    messageWorker('shortcodes');
-  });
+      const debugValue = localStorage.getItem('debug');
+      if (debugValue) {
+        messageWorker({ type: 'debug', debugValue });
+      }
+
+      workerLog('loading data');
+      messageWorker(userLocale);
+      messageWorker('custom');
+      messageWorker('shortcodes');
+      void loadEmojisToStore();
+    },
+  );
 }
 
 async function fallbackLoad() {
@@ -81,6 +91,7 @@ async function fallbackLoad() {
   if (emojis) {
     log('loaded %d emojis to locale %s', emojis.length, userLocale);
   }
+  await loadEmojisToStore();
 }
 
 export async function loadCustomEmoji() {
@@ -107,4 +118,15 @@ function messageWorker(data: EmojiWorkerMessage | string) {
   } else {
     worker.postMessage(data);
   }
+}
+
+async function loadEmojisToStore() {
+  const { store } = await import('@/mastodon/store');
+  const { loadCustomEmojis, loadLocale } =
+    await import('@/mastodon/reducers/slices/emojis');
+
+  loadLocale(userLocale);
+  await store.dispatch(loadCustomEmojis());
+
+  log('loaded emoji data into store');
 }
