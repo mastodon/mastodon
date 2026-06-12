@@ -29,9 +29,7 @@ RSpec.describe Collection do
 
       it { is_expected.to validate_length_of(:description_html).is_at_most(Collection::DESCRIPTION_LENGTH_HARD_LIMIT) }
 
-      it { is_expected.to validate_presence_of(:uri) }
-
-      it { is_expected.to validate_presence_of(:original_number_of_items) }
+      it { is_expected.to validate_presence_of(:original_number_of_items, :uri) }
 
       it { is_expected.to allow_value('randomstuff').for(:language) }
     end
