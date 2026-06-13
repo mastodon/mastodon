@@ -6,6 +6,7 @@ class Admin::ActionLogFilter
     account_id
     target_account_id
     target_domain
+    target_tag
   ).freeze
 
   INSTANCE_TARGET_TYPES = %w(
@@ -55,6 +56,7 @@ class Admin::ActionLogFilter
     enable_custom_emoji: { target_type: 'CustomEmoji', action: 'enable' }.freeze,
     enable_user: { target_type: 'User', action: 'enable' }.freeze,
     enable_relay: { target_type: 'Relay', action: 'enable' }.freeze,
+    listable_tag: { target_type: 'Tag', action: 'listable' }.freeze,
     memorialize_account: { target_type: 'Account', action: 'memorialize' }.freeze,
     promote_user: { target_type: 'User', action: 'promote' }.freeze,
     publish_terms_of_service: { target_type: 'TermsOfService', action: 'publish' }.freeze,
@@ -66,6 +68,7 @@ class Admin::ActionLogFilter
     sensitive_account: { target_type: 'Account', action: 'sensitive' }.freeze,
     silence_account: { target_type: 'Account', action: 'silence' }.freeze,
     suspend_account: { target_type: 'Account', action: 'suspend' }.freeze,
+    trendable_tag: { target_type: 'Tag', action: 'trendable' }.freeze,
     unassigned_report: { target_type: 'Report', action: 'unassigned' }.freeze,
     unsensitive_account: { target_type: 'Account', action: 'unsensitive' }.freeze,
     unsilence_account: { target_type: 'Account', action: 'unsilence' }.freeze,
@@ -77,6 +80,7 @@ class Admin::ActionLogFilter
     update_user_role: { target_type: 'UserRole', action: 'update' }.freeze,
     update_ip_block: { target_type: 'IpBlock', action: 'update' }.freeze,
     unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
+    usable_tag: { target_type: 'Tag', action: 'usable' }.freeze,
     create_username_block: { target_type: 'UsernameBlock', action: 'create' }.freeze,
     update_username_block: { target_type: 'UsernameBlock', action: 'update' }.freeze,
     destroy_username_block: { target_type: 'UsernameBlock', action: 'destroy' }.freeze,
@@ -116,6 +120,8 @@ class Admin::ActionLogFilter
     when 'target_domain'
       normalized_domain = TagManager.instance.normalize_domain(value)
       latest_action_logs.where(human_identifier: normalized_domain, target_type: INSTANCE_TARGET_TYPES)
+    when 'target_tag'
+      latest_action_logs.where(human_identifier: value)
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
