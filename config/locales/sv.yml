@@ -1665,7 +1665,9 @@ sv:
       empty: Tom CSV-fil
       incompatible_type: Inkompatibel med den valda importtypen
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
+      invalid_json_file: 'Ogiltig JSON-fil. Fel: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
+      status_not_found_warning: Några av dina filter döljer specifika inlägg som inte är kända av denna server. Dessa inlägg filtreras inte automatiskt om de upptäcks senare av servern.
       too_large: Filen är för stor
     failures: Misslyckanden
     imported: Importerade
@@ -1682,6 +1684,9 @@ sv:
       bookmarks_html:
         one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
         other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Du är på väg att <strong>ersätta dina filter</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{count} filter</strong> kommer att läggas till nya filter.
+        other: Du är på väg att <strong>ersätta dina filter</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{count} filter</strong> kommer att läggas till i nya filter.
       domain_blocking_html:
         one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} domän</strong> från <strong>%{filename}</strong>.
         other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} domäner</strong> från <strong>%{filename}</strong>.
@@ -1701,6 +1706,9 @@ sv:
       bookmarks_html:
         one: Du håller på att lägga upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong> till dina <strong>bokmärken</strong>.
         other: Du håller på att lägga upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong> till dina <strong>bokmärken</strong>.
+      custom_filters_html:
+        one: Du är på väg att lägga till upp till <strong>%{count} filter</strong> från <strong>%{filename}</strong> till dina <strong>filter</strong>.
+        other: Du är på väg att lägga till upp till <strong>%{count} filter</strong> från <strong>%{filename}</strong> till dina <strong>filter</strong>.
       domain_blocking_html:
         one: Du är på väg att <strong>blockera</strong> upp till <strong>%{count} domän</strong> från <strong>%{filename}</strong>.
         other: Du är på väg att <strong>blockera</strong> upp till <strong>%{count} domäner</strong> från <strong>%{filename}</strong>.
@@ -1737,6 +1745,7 @@ sv:
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
+      custom_filters: Filter
       domain_blocking: Domänblockeringslista
       following: Lista av följare
       lists: Listor

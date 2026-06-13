@@ -1658,18 +1658,20 @@ fr:
       other: Sélectionnez tous l'ensemble des %{count} éléments correspondant à votre recherche.
     today: aujourd’hui
     validation_errors:
-      one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
+      one: Quelque chose ne va pas ! Veuillez vérifier l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
   imports:
     errors:
       empty: Fichier CSV vide
       incompatible_type: Incompatible avec le type d’import sélectionné
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
+      invalid_json_file: 'Fichier JSON non valide. Erreur : %{error}'
       over_rows_processing_limit: contient plus de %{count} lignes
+      status_not_found_warning: Certains de vos filtres masquent des messages spécifiques qui ne sont pas connus par ce serveur. Ces messages ne seront pas filtrés automatiquement s'ils sont découverts plus tard par le serveur.
       too_large: Le fichier est trop lourd
     failures: Échecs
     imported: Importé
-    mismatched_types_warning: Il semblerait que vous avez sélectionné le mauvais type pour cet import, veuillez vérifier attentivement.
+    mismatched_types_warning: Il semblerait que vous avez sélectionné le mauvais type pour cet import, veuillez vérifier.
     modes:
       merge: Fusionner
       merge_long: Garder les enregistrements existants et ajouter les nouveaux
@@ -1677,43 +1679,49 @@ fr:
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
     overwrite_preambles:
       blocking_html:
-        one: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>remplacer votre liste de blocage</strong> par au maximum <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de blocage</strong> par au maximum <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{count} post</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{count} posts</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>remplacer vos marque-pages</strong> par au maximum <strong>%{count} message</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer vos marque-pages</strong> par au maximum <strong>%{count} messages</strong> issus de <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Vous allez <strong>remplacer vos filtres</strong> par le contenu de <strong>%{filename}</strong>. Au maximum <strong>%{count} filtre</strong> sera ajouté aux nouveaux filtres.
+        other: Vous allez <strong>remplacer vos filtres</strong> par le contenu de <strong>%{filename}</strong>. Au maximum <strong>%{count} filtres</strong> seront ajoutés aux nouveaux filtres.
       domain_blocking_html:
-        one: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{count} domaine</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{count} domaines</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>remplacer votre liste de domaines bloqués</strong> par au maximum <strong>%{count} domaine</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de domaines bloqués</strong> par au maximum <strong>%{count} domaines</strong> issus de <strong>%{filename}</strong>.
       following_html:
-        one: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} compte</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
-        other: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+        one: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+        other: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
       lists_html:
-        one: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{count} compte</strong> sera ajouté à de nouvelles listes.
-        other: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{count} comptes</strong> seront ajoutés à de nouvelles listes.
+        one: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Au maximum <strong>%{count} compte</strong> sera ajouté aux nouvelles listes.
+        other: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Au maximum <strong>%{count} comptes</strong> seront ajoutés aux nouvelles listes.
       muting_html:
-        one: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par au maximum <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par au maximum <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
     preambles:
       blocking_html:
-        one: Vous allez <strong>bloquer</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>bloquer</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Vous allez ajouter près de <strong>%{count} message</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
-        other: Vous allez ajouter près de <strong>%{count} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
+        one: Vous allez ajouter jusqu'à <strong>%{count} message</strong> de <strong>%{filename}</strong> à vos <strong>marque-pages</strong>.
+        other: Vous allez ajouter jusqu'à <strong>%{count} messages</strong> de <strong>%{filename}</strong> à vos <strong>marque-pages</strong>.
+      custom_filters_html:
+        one: Vous allez ajouter jusqu'à <strong>%{count} filtre</strong> de <strong>%{filename}</strong> à vos <strong>filtres</strong>.
+        other: Vous allez ajouter jusqu'à <strong>%{count} filtres</strong> de <strong>%{filename}</strong> à vos <strong>filtres</strong>.
       domain_blocking_html:
-        one: Vous allez <strong>bloquer</strong> près de <strong>%{count} domaine</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>bloquer</strong> près de <strong>%{count} domaines</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{count} domaine</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{count} domaines</strong> issus de <strong>%{filename}</strong>.
       following_html:
-        one: Vous allez <strong>suivre</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>suivre</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>suivre</strong> jusqu'à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>suivre</strong> jusqu'à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
       lists_html:
-        one: Vous allez ajouter près de <strong>%{count} compte</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
-        other: Vous allez ajouter près de <strong>%{count} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
+        one: Vous allez ajouter jusqu'à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
+        other: Vous allez ajouter jusqu'à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
       muting_html:
-        one: Vous allez <strong>masquer</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>masquer</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
-    preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
+        one: Vous allez <strong>masquer</strong> jusqu'à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>masquer</strong> jusqu'à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
+    preface: Vous pouvez importer certaines données que vous avez exportées d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     recent_imports: Récents imports
     states:
       finished: Terminé
@@ -1732,15 +1740,16 @@ fr:
       muting: En cours d’importation des comptes masqués
     type: Type d’import
     type_groups:
-      constructive: Abonnements et signets
-      destructive: Blocages et masquages
+      constructive: Abonnements et marque-pages
+      destructive: Comptes bloqués et masqués
     types:
       blocking: Liste de comptes bloqués
       bookmarks: Marque-pages
+      custom_filters: Filtres
       domain_blocking: Liste des serveurs bloqués
       following: Liste de comptes suivis
       lists: Listes
-      muting: Liste de comptes que vous masquez
+      muting: Liste de comptes masqués
     upload: Importer
   invites:
     delete: Désactiver
