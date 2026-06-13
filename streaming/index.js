@@ -764,8 +764,7 @@ const startServer = async () => {
           queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
         }
 
-        // @ts-expect-error
-        if (!payload.filtered && !req.cachedFilters) {
+        if (!Object.hasOwn(payload, 'filtered') && !req.cachedFilters) {
           // @ts-expect-error
           queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
         }
@@ -783,7 +782,7 @@ const startServer = async () => {
           // If the payload already contains the `filtered` property, it means
           // that filtering has been applied on the ruby on rails side, as
           // such, we don't need to construct or apply the filters in streaming:
-          if (Object.hasOwn(payload, "filtered")) {
+          if (Object.hasOwn(payload, 'filtered')) {
             transmit(event, payload);
             return;
           }
@@ -930,9 +929,8 @@ const startServer = async () => {
 
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'private, no-store');
-    res.setHeader('Transfer-Encoding', 'chunked');
 
-    res.write(':)\n');
+    res.write(':)\n\n');
 
     const heartbeat = setInterval(() => res.write(':thump\n\n'), 15000);
 
@@ -1424,9 +1422,31 @@ const startServer = async () => {
     logger.info(`Streaming API now listening on ${address}`);
   });
 
+  let exiting = false;
+
   const onExit = () => {
-    server.close();
-    process.exit(0);
+    if (exiting) {
+      return;
+    }
+    exiting = true;
+ 
+    logger.info('Shutting down streaming server');
+
+    // Don't accept any new connections, exit process once all existing connections have disconnected
+    server.close(() => {
+      process.exit(0);
+    });
+ 
+    // Ask websocket clients to disconnect politely (1001 = Going Away)
+    wss.clients.forEach((ws) => {
+      ws.close(1001, 'The server is shutting down');
+    });
+
+    // 10 Second hard exit
+    setTimeout(() => {
+      server.closeAllConnections();
+      process.exit(0);
+    }, 10000).unref();
   };
 
   /** @param {Error} err */
@@ -1434,12 +1454,12 @@ const startServer = async () => {
     logger.error(err);
 
     server.close();
-    process.exit(0);
+    // Exit with a non-zero status code (General Failure)
+    process.exit(1);
   };
 
   process.on('SIGINT', onExit);
   process.on('SIGTERM', onExit);
-  process.on('exit', onExit);
   process.on('uncaughtException', onError);
 };
 
