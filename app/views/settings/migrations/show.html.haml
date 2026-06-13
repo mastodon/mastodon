@@ -19,7 +19,7 @@
 
 %hr.spacer/
 
-%h3= t('auth.migrate_account')
+%h3.heading-medium= t('auth.migrate_account')
 
 = simple_form_for @migration, url: settings_migration_path do |f|
   - if on_cooldown?
@@ -58,7 +58,7 @@
 - unless @migrations.empty?
   %hr.spacer/
 
-  %h3= t 'migrations.past_migrations'
+  %h3.heading-medium= t 'migrations.past_migrations'
 
   %hr.spacer/
 
@@ -85,5 +85,5 @@
 
 %hr.spacer/
 
-%h3= t 'migrations.incoming_migrations'
+%h3.heading-medium= t 'migrations.incoming_migrations'
 %p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)

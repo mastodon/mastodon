@@ -10,7 +10,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    action_text-trix (2.1.18)
+    action_text-trix (2.1.19)
       railties
     actioncable (8.1.3)
       actionpack (= 8.1.3)
@@ -99,8 +99,8 @@ GEM
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1255.0)
-    aws-sdk-core (3.250.0)
+    aws-partitions (1.1259.0)
+    aws-sdk-core (3.252.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -108,10 +108,10 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.128.0)
+    aws-sdk-kms (1.129.0)
       aws-sdk-core (~> 3, >= 3.248.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.224.0)
+    aws-sdk-s3 (1.225.1)
       aws-sdk-core (~> 3, >= 3.248.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -132,7 +132,7 @@ GEM
     binding_of_caller (2.0.0)
       debug_inspector (>= 1.2.0)
     blurhash (0.1.8)
-    bootsnap (1.24.4)
+    bootsnap (1.24.6)
       msgpack (~> 1.2)
     brakeman (8.0.4)
       racc
@@ -159,7 +159,7 @@ GEM
     cbor (0.5.10.2)
     cgi (0.5.1)
     charlock_holmes (0.7.9)
-    chewy (8.0.1)
+    chewy (8.3.1)
       activesupport (>= 7.2)
       elasticsearch (>= 8.14, < 9.0)
       elasticsearch-dsl
@@ -178,13 +178,14 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    css_parser (2.1.0)
+    css_parser (3.0.0)
       addressable
+      ssrf_filter (~> 1.5)
     csv (3.3.5)
     database_cleaner-active_record (2.2.2)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0)
-    database_cleaner-core (2.0.1)
+    database_cleaner-core (2.1.0)
     date (3.5.1)
     debug (1.11.1)
       irb (~> 1.10)
@@ -209,12 +210,12 @@ GEM
       activerecord (>= 7.0, < 9.0)
     docile (1.4.1)
     domain_name (0.6.20240107)
-    doorkeeper (5.9.0)
+    doorkeeper (5.9.2)
       railties (>= 5)
     dotenv (3.2.0)
     drb (2.2.3)
     dry-cli (1.4.1)
-    elastic-transport (8.5.1)
+    elastic-transport (8.5.2)
       faraday (< 3)
       multi_json
     elasticsearch (8.19.3)
@@ -224,13 +225,11 @@ GEM
     elasticsearch-api (8.19.3)
       multi_json
     elasticsearch-dsl (0.1.10)
-    email_validator (2.2.4)
-      activemodel
     erb (6.0.4)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
-    excon (1.4.2)
+    excon (1.5.0)
       logger
     fabrication (3.0.0)
     faker (3.8.0)
@@ -243,12 +242,12 @@ GEM
       faraday (>= 1, < 3)
     faraday-httpclient (2.0.2)
       httpclient (>= 2.2)
-    faraday-net_http (3.4.3)
+    faraday-net_http (3.4.4)
       net-http (~> 0.5)
     fast_blank (1.0.1)
     fastimage (2.4.1)
     ffi (1.17.4)
-    ffi-compiler (1.3.2)
+    ffi-compiler (1.4.2)
       ffi (>= 1.15.5)
       rake
     flatware (2.4.0)
@@ -273,15 +272,15 @@ GEM
     formatador (1.2.3)
       reline
     forwardable (1.4.0)
-    fugit (1.12.1)
+    fugit (1.12.2)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
     globalid (1.3.0)
       activesupport (>= 6.1)
-    google-protobuf (4.34.1)
+    google-protobuf (4.35.0)
       bigdecimal
       rake (~> 13.3)
-    googleapis-common-protos-types (1.22.0)
+    googleapis-common-protos-types (1.23.0)
       google-protobuf (~> 4.26)
     haml (7.2.0)
       temple (>= 0.8.2)
@@ -354,9 +353,9 @@ GEM
       azure-blob (~> 0.5.2)
       hashie (~> 5.0)
     jmespath (1.6.2)
-    json (2.19.7)
+    json (2.19.8)
     json-canonicalization (1.0.0)
-    json-jwt (1.17.0)
+    json-jwt (1.17.1)
       activesupport (>= 4.2)
       aes_key_wrap
       base64
@@ -452,8 +451,8 @@ GEM
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
-    msgpack (1.8.0)
-    multi_json (1.20.1)
+    msgpack (1.8.1)
+    multi_json (1.21.1)
     mutex_m (0.3.0)
     net-http (0.9.1)
       uri (>= 0.11.1)
@@ -491,10 +490,9 @@ GEM
     omniauth_openid_connect (0.8.0)
       omniauth (>= 1.9, < 3)
       openid_connect (~> 2.2)
-    openid_connect (2.3.1)
+    openid_connect (2.5.0)
       activemodel
       attr_required (>= 1.0.0)
-      email_validator
       faraday (~> 2.0)
       faraday-follow_redirects
       json-jwt (>= 1.16)
@@ -504,7 +502,7 @@ GEM
       tzinfo
       validate_url
       webfinger (~> 2.0)
-    openssl (4.0.1)
+    openssl (4.0.2)
     openssl-signature_algorithm (1.3.0)
       openssl (> 2.0)
     opentelemetry-api (1.10.0)
@@ -523,7 +521,7 @@ GEM
     opentelemetry-helpers-sql-processor (0.5.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-common (~> 0.21)
-    opentelemetry-instrumentation-action_mailer (0.8.0)
+    opentelemetry-instrumentation-action_mailer (0.8.1)
       opentelemetry-instrumentation-active_support (~> 0.10)
     opentelemetry-instrumentation-action_pack (0.18.0)
       opentelemetry-instrumentation-rack (~> 0.29)
@@ -535,7 +533,7 @@ GEM
       opentelemetry-instrumentation-active_support (>= 0.7.0)
     opentelemetry-instrumentation-active_record (0.13.0)
       opentelemetry-instrumentation-base (~> 0.25)
-    opentelemetry-instrumentation-active_storage (0.5.0)
+    opentelemetry-instrumentation-active_storage (0.5.1)
       opentelemetry-instrumentation-active_support (~> 0.10)
     opentelemetry-instrumentation-active_support (0.12.0)
       opentelemetry-instrumentation-base (~> 0.25)
@@ -582,7 +580,7 @@ GEM
       opentelemetry-common (~> 0.20)
       opentelemetry-registry (~> 0.2)
       opentelemetry-semantic_conventions
-    opentelemetry-semantic_conventions (1.37.1)
+    opentelemetry-semantic_conventions (1.39.0)
       opentelemetry-api (~> 1.0)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
@@ -620,11 +618,11 @@ GEM
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
-    psych (5.3.1)
+    psych (5.4.0)
       date
       stringio
     public_suffix (7.0.5)
-    puma (8.0.1)
+    puma (8.0.2)
       nio4r (~> 2.0)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
@@ -721,7 +719,8 @@ GEM
       railties (>= 7.0)
     rexml (3.4.4)
     rotp (6.3.0)
-    rouge (4.7.0)
+    rouge (5.0.0)
+      strscan (~> 3.1)
     rpam2 (4.0.2)
     rqrcode (3.2.0)
       chunky_png (~> 1.0)
@@ -779,15 +778,16 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    rubocop-rails (2.35.3)
+    rubocop-rails (2.35.4)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.44.0, < 2.0)
-    rubocop-rspec (3.9.0)
+    rubocop-rspec (3.10.2)
       lint_roller (~> 1.1)
-      rubocop (~> 1.81)
+      regexp_parser (>= 2.0)
+      rubocop (~> 1.86, >= 1.86.2)
     rubocop-rspec_rails (2.32.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
@@ -844,6 +844,7 @@ GEM
     simplecov-html (0.13.2)
     simplecov-lcov (0.9.0)
     simplecov_json_formatter (0.1.4)
+    ssrf_filter (1.5.0)
     stackprof (0.2.28)
     starry (0.2.0)
       base64
@@ -853,6 +854,7 @@ GEM
     stringio (3.2.0)
     strong_migrations (2.8.0)
       activerecord (>= 7.2)
+    strscan (3.1.8)
     swd (2.0.3)
       activesupport (>= 3)
       attr_required (>= 0.0.5)
@@ -929,7 +931,7 @@ GEM
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.9.2)
-    websocket-driver (0.8.0)
+    websocket-driver (0.8.1)
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -1100,4 +1102,4 @@ RUBY VERSION
   ruby 4.0.5
 
 BUNDLED WITH
-  4.0.11
+  4.0.13

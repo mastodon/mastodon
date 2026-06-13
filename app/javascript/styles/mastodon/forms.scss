@@ -500,6 +500,8 @@ code {
 
     input[type='radio'] {
       accent-color: var(--color-text-brand);
+      width: 15px;
+      height: 15px;
     }
   }
 
@@ -533,6 +535,8 @@ code {
   label.checkbox {
     input[type='checkbox'] {
       accent-color: var(--color-text-brand);
+      width: 15px;
+      height: 15px;
     }
   }
 
@@ -557,7 +561,6 @@ code {
     display: block;
     width: 100%;
     font-family: inherit;
-    resize: vertical;
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border-primary);
     border-radius: 4px;
@@ -582,6 +585,10 @@ code {
     @media screen and (width <= 600px) {
       font-size: 16px;
     }
+  }
+
+  textarea {
+    resize: vertical;
   }
 
   input[type='text'],

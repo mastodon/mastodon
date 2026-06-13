@@ -500,13 +500,26 @@ sv:
     email_subscriptions:
       accounts:
         account: Konto
-        active: Aktiv
         empty:
           hint: Inga konton har prenumeranter ännu.
           no_lists_yet: Inga listor ännu
-        inactive: Inaktiv
         last_email: Senaste e-post
         lead: Konton som har aktiverat funktionen och har prenumeranter kommer att visas nedan.
+        show:
+          confirm_disable_feature: Inaktivera nyhetsbrev för %{name}? E-postuppdateringar kommer inte längre att skickas för detta konto. Användaren kommer fortfarande att kunna återaktivera funktionen i sina kontoinställningar. Redigera behörigheten för kontot i Roller för att permanent ta bort åtkomst till den här funktionen.
+          confirm_remove_subscriber: "%{email} kommer inte längre att ta emot e-post från %{name}. Denna åtgärd kan inte ångras."
+          consent: Prenumeranter har endast samtyckt till att ta emot inlägg via e-post. Använd inte denna lista för andra ändamål.
+          date: Datum för registrering
+          disable_feature: Inaktivera funktion
+          disabled: Funktionen har inaktiverats och e-postmeddelanden skickas inte längre till denna lista.
+          email: E-postadress
+          empty:
+            hint: Ingen prenumererar på detta konto än.
+            no_subscribers_yet: Inga prenumeranter än
+          enable_feature: Aktivera funktion
+          no_access_html: Detta konto har inte längre de behörigheter som krävs för att aktivera funktionen. Ändra detta i <a href="%{roles_path}">Roller</a>.
+          title: E-postnyhetsbrev för %{name}
+          view_account: Visa konto
         status: Status
         subscribers: Prenumeranter
         title: E-postlistor
@@ -746,6 +759,7 @@ sv:
       action_log: Granskningslogg
       action_taken_by: Åtgärder vidtagna av
       actions:
+        delete_description_html: De rapporterade inläggen och/eller samlingarna kommer raderas och en markör kommer registreras för att hjälpa dig att eskalera framtida överträdelser från samma konto.
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         other_description_html: Se fler alternativ för att kontrollera kontots beteende och anpassa kommunikationen till det rapporterade kontot.
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
@@ -772,6 +786,7 @@ sv:
       confirm: Bekräfta
       confirm_action: Bekräfta modereringsåtgärd mot @%{acct}
       created_at: Anmäld
+      delete_and_resolve: Radera innehåll
       forwarded: Vidarebefordrad
       forwarded_replies_explanation: Den här rapporten är från en annans instans användare och handlar om annans instans inlägg. Det har vidarebefordrats till dig eftersom det rapporterade innehållet är som svar till en av dina användare.
       forwarded_to: Vidarebefordrad till %{domain}
@@ -1499,6 +1514,7 @@ sv:
       your_appeal_rejected: Din överklagan har avvisats
   edit_profile:
     other: Övrigt
+    privacy_redesign_body: Valet att visa dina följare och vilka du följer görs nu direkt från din profil.
     redesign_body: Profilredigering kan nu nås direkt från profilsidan.
     redesign_button: Gå dit
     redesign_title: Det finns en ny profilredigeringsupplevelse
@@ -1531,7 +1547,9 @@ sv:
         success_html: Du kommer nu att börja få e-postmeddelanden när %{name} publicerar nya inlägg. Lägg till %{sender} till dina kontakter så att dessa inlägg inte hamnar i din skräppostmapp.
         title: Du är registrerad
         unsubscribe: Avprenumerera
+    disabled: Inaktiverad
     inactive: Inaktiv
+    no_access: Ingen åtkomst
     status: Status
     subscribers: Prenumeranter
   emoji_styles:

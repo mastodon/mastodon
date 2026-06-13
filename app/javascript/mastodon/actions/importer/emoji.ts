@@ -18,13 +18,9 @@ export async function importCustomEmoji(emojis: ApiCustomEmojiJSON[]) {
   );
 
   // If there's a mismatch, re-import all custom emojis.
-  if (existingEmojis.length < emojis.length) {
+  if (existingEmojis.length > 0 && existingEmojis.length < emojis.length) {
     await clearCache('custom');
     await loadCustomEmoji();
-
-    const { reloadCustomEmojis } =
-      await import('@/mastodon/features/emoji/picker');
-    await reloadCustomEmojis();
 
     log('Custom emojis updated, reloaded cache and picker data.');
   }

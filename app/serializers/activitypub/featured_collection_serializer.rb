@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
+  context_extensions :discoverable, :featured_collections, :hashtag, :sensitive
+
   attributes :id, :type, :total_items, :name, :attributed_to, :url,
              :sensitive, :discoverable, :published, :updated
 

@@ -53,6 +53,7 @@ ko:
         label: 역할 변경
         no_role: 역할 없음
         title: "%{username}의 역할 변경"
+      collections: 컬렉션
       confirm: 신원 확인
       confirmed: 확인됨
       confirming: 확인 중
@@ -262,6 +263,7 @@ ko:
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
+        destroy_collection_html: "%{name} 님이 %{target} 님의 컬렉션을 삭제했습니다"
         destroy_custom_emoji_html: "%{name} 님이 에모지 %{target}를 삭제했습니다"
         destroy_domain_allow_html: "%{name} 님이 %{target} 도메인과의 연합을 금지했습니다"
         destroy_domain_block_html: "%{name} 님이 도메인 %{target}의 차단을 해제했습니다"
@@ -301,6 +303,7 @@ ko:
         unsilence_account_html: "%{name} 님이 %{target}의 계정에 대한 제한을 해제했습니다"
         unsuspend_account_html: "%{name} 님이 %{target}의 계정에 대한 정지를 해제했습니다"
         update_announcement_html: "%{name} 님이 공지사항 %{target}을 갱신했습니다"
+        update_collection_html: "%{name} 님이 %{target} 님의 컬렉션을 수정했습니다"
         update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
         update_domain_block_html: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
         update_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 수정했습니다"
@@ -336,6 +339,22 @@ ko:
       unpublish: 게시 취소
       unpublished_msg: 공지가 성공적으로 발행 취소되었습니다!
       updated_msg: 공지가 성공적으로 업데이트되었습니다!
+    collections:
+      accounts: 계정
+      back_to_account: 계정 페이지로 돌아가기
+      back_to_report: 신고 페이지로 돌아가기
+      batch:
+        add_to_report: '신고 #%{id}에 추가'
+        remove_from_report: 신고에서 제거
+        report: 신고
+      collection_title: "%{name}의 컬렉션"
+      contents: 컨텐츠
+      no_collection_selected: 아무 것도 선택되지 않아 어떤 컬렉션도 바뀌지 않았습니다
+      number_of_accounts:
+        other: 계정 %{count}개
+      open: 열기
+      title: 계정 컬렉션 - @%{name}
+      view_publicly: 공개시점으로 보기
     critical_update_pending: 긴급 업데이트 보류 중
     custom_emojis:
       assign_category: 분류 지정
@@ -465,9 +484,66 @@ ko:
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
       not_permitted: 허용하지 않음
+      reset: 초기화
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
       resolved_through_html: "%{domain}을 통해 리졸빙됨"
+      search: 검색
       title: 차단된 이메일 도메인
+    email_subscriptions:
+      accounts:
+        account: 계정
+        empty:
+          hint: 구독자를 가진 계정이 없습니다.
+          no_lists_yet: 리스트가 없습니다
+        last_email: 최근 이메일
+        status: 상태
+        subscribers: 구독자
+        title: 메일링 리스트
+      additional_footer_texts:
+        show:
+          title: 추가 하단 텍스트
+      compliance_settings:
+        additional_footer_text:
+          action: 관리
+          hint: 뉴스레터 이메일의 최하단에만 보여지는 선택적인 텍스트
+          title: 추가 하단 텍스트
+        lead: 이메일 뉴스레터는 운영하는 지역에 따라 마케팅 이메일로 분류될 수 있습니다.
+        privacy_policy:
+          action: 관리
+          hint: 이 정책은 모든 메일 하단에 링크됩니다
+          title: 개인정보처리방침
+        title: 법적 규정 준수 설정
+      danger_zone:
+        disable_feature:
+          action: 비활성화
+          hint: 모든 계정에 대해 기능 비활성화
+          title: 기능 비활성화
+        erase_all_data:
+          action: 데이터 삭제
+          hint: 메일링 리스트에 있는 이메일을 영구적으로 삭제합니다
+          title: 데이터 모두 삭제
+        title: 위험한 영역
+      index:
+        disabled:
+          cannot_be_enabled: 이 서버의 기술제공자가 이 기능을 활성화하지 않았습니다.
+          description: 이 기능은 지정된 계정들이 프로필에 위젯을 추가해 마스토돈 계정 없이도 이메일을 통해 게시물을 받아볼 수 있도록 허용합니다.
+          get_started: 시작하기
+        title: 이메일 뉴스레터
+      roles:
+        accounts: 계정
+        edit_role: 역할 편집
+        empty:
+          hint: 이 기능을 사용할 수 있는 권한을 가진 사람이 없습니다.
+          no_roles_added: 역할 추가되지 않음
+        manage_roles: 역할 관리
+        role_name: 역할 이름
+        title: 역할
+      setups:
+        show:
+          enable_feature: 기능 활성화
+          important_information: 중요한 정보
+          list:
+            1_permission_explanation: 이 기능이 활성화 되면 관련 권한을 가진 계정은 프로필에 이메일 컬렉션을 추가할 수 있게 됩니다.
     export_domain_allows:
       new:
         title: 도메인 허용 목록 불러오기
@@ -648,6 +724,7 @@ ko:
       action_log: 감사 로그
       action_taken_by: 신고 처리자
       actions:
+        delete_description_html: 신고된 게시물 또는 컬렉션은 삭제될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
         mark_as_sensitive_description_html: 신고된 게시물의 미디어는 민감함으로 표시될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
         other_description_html: 계정 동작을 제어하고 신고된 계정과의 의사소통을 사용자 지정하기 위한 추가 옵션을 봅니다.
         resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
@@ -667,12 +744,14 @@ ko:
       cancel: 취소
       category: 카테고리
       category_description_html: 이 계정 또는 게시물이 신고된 이유는 신고된 계정과의 의사소통 과정에 인용됩니다
+      collections: 컬렉션(%{count}개)
       comment:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
       confirm: 확정
       confirm_action: "@%{acct}에 취할 중재 결정에 대한 확인"
       created_at: 신고 시각
+      delete_and_resolve: 컨텐츠 삭제
       forwarded: 전달됨
       forwarded_replies_explanation: 이 신고는 리모트 사용자가 리모트 컨텐츠에 대해 신고한 것입니다. 이것은 신고된 내용이 로컬 사용자에 대한 답글이기 때문에 첨부되었습니다.
       forwarded_to: "%{domain}에게 전달됨"
@@ -695,11 +774,13 @@ ko:
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
       reported_by: 신고자
+      reported_content: 신고된 컨텐츠
       reported_with_application: 신고에 사용된 앱
       resolved: 해결
       resolved_msg: 신고를 잘 해결했습니다!
       skip_to_actions: 작업으로 건너뛰기
       status: 상태
+      statuses: 게시물 (%{count})
       statuses_description_html: 문제가 되는 콘텐츠는 신고된 계정에게 인용되어 전달됩니다
       summary:
         action_preambles:
@@ -733,6 +814,7 @@ ko:
       categories:
         administration: 관리
         devops: 데브옵스
+        email: 이메일
         invites: 초대
         moderation: 중재
         special: 특수
@@ -748,6 +830,7 @@ ko:
         administrator_description: 이 권한을 가진 사용자는 모든 권한을 우회합니다
         delete_user_data: 사용자 데이터 삭제
         delete_user_data_description: 사용자가 다른 사용자의 데이터를 지체 없이 삭제할 수 있도록 허용
+        invite_bypass_approval: 심사 없이 사용자 초대
         invite_users: 사용자 초대
         invite_users_description: 사용자가 다른 사람들을 서버에 초대할 수 있도록 허용
         manage_announcements: 공지 관리
@@ -758,6 +841,8 @@ ko:
         manage_blocks_description: 사용자가 이메일 제공자와 IP 주소를 차단할 수 있도록 허용
         manage_custom_emojis: 커스텀 에모지 관리
         manage_custom_emojis_description: 사용자가 서버의 커스텀 에모지를 관리할 수 있도록 허용
+        manage_email_subscriptions: 이메일 구독 관리
+        manage_email_subscriptions_description: 이 권한을 가진 계정들이 본인들의 계정에 이메일 뉴스레터를 활성화할 수 있도록 허용합니다
         manage_federation: 연합 관리
         manage_federation_description: 사용자가 다른 도메인과의 연합을 차단하거나 허용할 수 있도록 하고, 전달 가능 여부를 조정할 수 있도록 허용
         manage_invites: 초대 관리
@@ -786,6 +871,7 @@ ko:
         view_devops_description: Sidekiq과 pgHero 대시보드에 접근할 수 있도록 허용
         view_feeds: 실시간 및 화제 피드 보기
         view_feeds_description: 서버 설정에 관계 없이 실시간과 해시태그 피드에 접근할 수 있도록 허용
+      requires_2fa: 2단계 인증 필요
       title: 역할
     rules:
       add_new: 규칙 추가
@@ -827,6 +913,7 @@ ko:
         title: 사용자들이 기본적으로 검색엔진에 인덱싱되지 않도록 합니다
       discovery:
         follow_recommendations: 팔로우 추천
+        preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
         privacy: 개인정보
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
@@ -843,6 +930,17 @@ ko:
           authenticated: 로그인한 사용자들만
           disabled: 특정한 사용자 역할 필요
           public: 모두
+      landing_page:
+        hints:
+          about_html: 이 서버의 설명, 연락처, 규칙과 기타 정보들을 보여주는 페이지.
+          local_feed_html: 이 서버 사용자의 최신 게시물을 보여주는 페이지.
+          overview_html: 이 서버 사용자의 최근 게시물과 함께 서버의 정보를 보여주는 페이지.
+          trends_html: 이 서버에서 지금 인기를 얻고 있는 것들을 보여주는 페이지.
+        values:
+          about: 정보 페이지
+          local_feed: 로컬 실시간 피드
+          overview: 개요
+          trends: 유행중
       registrations:
         moderation_recommandation: 모두에게 가입을 열기 전에 적절하고 반응이 빠른 중재 팀을 데리고 있는지 확인해 주세요!
         preamble: 누가 이 서버에 계정을 만들 수 있는지 제어합니다.
@@ -862,6 +960,7 @@ ko:
     site_uploads:
       delete: 업로드한 파일 삭제
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
+    skip_to_content: 내용으로 건너뛰기
     software_updates:
       critical_update: 긴급 — 빠른 업데이트 요망
       description: 최신 수정 사항과 기능을 활용하기 위해 Mastodon 설치를 최신 상태로 유지하기를 권장합니다. 더욱이, 때로는 보안 문제를 피하기 위해 Mastodon을 적절한 시점에 긴급 업데이트해야 하는 경우도 있습니다. 따라서 Mastodon은 30분마다 업데이트를 확인하며, 이메일 알림 환경설정에 따라 사용자에게 알려드립니다.
@@ -1236,6 +1335,7 @@ ko:
     progress:
       confirm: 이메일 확인
       details: 세부사항
+      list: 가입 절차
       review: 심사 결과
       rules: 규정을 수락합니다.
     providers:
@@ -1251,6 +1351,7 @@ ko:
       invited_by: '당신이 받은 초대장 덕분에 %{domain}에 가입할 수 있습니다:'
       preamble: 다음은 %{domain}의 중재자들에 의해 설정되고 적용되는 규칙들입니다.
       preamble_invited: 계속하기 전에, %{domain}의 중재자들이 정해놓은 규칙들을 검토해주세요.
+      read_more: 더 보기
       title: 몇 개의 규칙이 있습니다.
       title_invited: 초대를 받았습니다.
     security: 보안
@@ -1370,6 +1471,31 @@ ko:
       your_appeal_rejected: 소명이 기각되었습니다
   edit_profile:
     other: 기타
+    redesign_body: 프로필 편집은 이제 프로필 페이지에서 바로 접근할 수 있습니다.
+    redesign_button: 이동
+    redesign_title: 새로운 프로필 편집 경험이 기다립니다
+  email_subscription_mailer:
+    confirmation:
+      action: 이메일 주소 확인
+      subject: 이메일 주소 확인
+    notification:
+      create_account: 마스토돈 계정 생성
+      subject:
+        plural: "%{name}의 새 게시물"
+        singular: '새 게시물: "%{excerpt}"'
+      title:
+        plural: "%{name}의 새 게시물"
+        singular: '새 게시물: "%{excerpt}"'
+  email_subscriptions:
+    active: 활성
+    confirmations:
+      show:
+        changed_your_mind: 마음이 바뀌었나요?
+        title: 가입되었습니다
+        unsubscribe: 구독 해제
+    inactive: 비활성
+    status: 상태
+    subscribers: 구독자
   emoji_styles:
     auto: 자동
     native: 시스템 기본
@@ -1403,7 +1529,9 @@ ko:
     blocks: 차단
     bookmarks: 북마크
     csv: CSV
+    custom_filters: 필터
     domain_blocks: 도메인 차단
+    json: JSON
     lists: 리스트
     mutes: 뮤트
     storage: 미디어
@@ -1627,6 +1755,26 @@ ko:
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   navigation:
     toggle_menu: 토글 메뉴
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} 님이 나를 컬렉션에 추가했습니다"
+    admin_report:
+      title_html: "%{name} 님이 %{target}을 신고했습니다"
+    admin_sign_up:
+      title_and_others_html:
+        other: "%{name} 님 외 %{count} 명이 가입했습니다"
+      title_html: "%{name} 님이 가입했습니다"
+    collection_update:
+      title_html: "%{name} 님이 내가 있는 컬렉션을 수정했습니다"
+    generic:
+      sign_in: 마스토돈 웹 앱으로 로그인
+      summary_html: 최신 마스토돈 버전을 지원하지 않는 앱을 사용 중입니다. 모든 기능을 이용하려면 %{link}.
+    moderation_warning:
+      summary_html: 최신 마스토돈 버전을 지원하지 않는 앱을 사용 중입니다. %{link}.
+      title: 중재 경고를 받았습니다.
+    severed_relationships:
+      summary_html: "%{from}의 관리자가 %{target}를 정지했기 때문에 더이상 새로운 정보를 받아보거나 상호작용할 수 없습니다. %{link}를 통해 잃어버린 관계 목록을 받아볼 수 있습니다."
+      title: "%{name} 님과의 연결이 끊어졌습니다"
   notification_mailer:
     admin:
       report:
@@ -1651,16 +1799,22 @@ ko:
       body: "%{name} 님이 나를 멘션했습니다:"
       subject: "%{name} 님의 멘션"
       title: 새 답글
+    moderation_warning:
+      subject: 중재 경고를 받았습니다
     poll:
       subject: "%{name}의 설문이 종료됨"
     quote:
       body: '당신의 게시물을 %{name} 님이 인용했습니다:'
       subject: "%{name} 님이 내 게시물을 인용했습니다"
       title: 새 인용
+    quoted_update:
+      subject: "%{name} 님이 내가 인용한 게시물을 수정했습니다"
     reblog:
       body: '당신의 게시물을 %{name} 님이 부스트 했습니다:'
       subject: "%{name} 님이 내 게시물을 부스트 했습니다"
       title: 새 부스트
+    severed_relationships:
+      subject: 중재 결정으로 인해 연결이 끊어졌습니다
     status:
       subject: "%{name} 님이 방금 게시물을 올렸습니다"
     update:
@@ -1713,6 +1867,7 @@ ko:
     posting_defaults: 게시물 기본설정
     public_timelines: 공개 타임라인
   privacy:
+    email_subscriptions: 이메일로 게시물 보내기
     hint_html: "<strong>내 프로필과 게시물이 어떻게 발견될지를 제어합니다.</strong> 활성화 하면 마스토돈의 다양한 기능들이 내가 더 많은 사람에게 도달할 수 있도록 도와줍니다. 이 설정이 내 용도에 맞는지 잠시 검토하세요."
     privacy: 개인정보
     privacy_hint_html: 다른 이들을 위해 노출할 수 있는 정보의 양을 조절합니다. 누군가는 다른 이들의 팔로우를 둘러보고 어떤 앱에서 게시물을 올렸는지 살피면서 흥미로운 프로필과 멋진 앱을 발견할 수 있지만, 누군가는 이를 숨기고 싶을 수도 있겠죠.
@@ -1898,9 +2053,11 @@ ko:
     enabled: 오래된 게시물 자동 삭제
     enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
     exceptions: 예외
+    explanation: 자동 삭제는 낮은 우선순위로 동작합니다. 임계값에 다다르고 삭제되는 사이엔 지연이 존재할 수 있습니다.
     ignore_favs: 좋아요 무시
     ignore_reblogs: 부스트 무시
     interaction_exceptions: 상호작용에 기반한 예외들
+    interaction_exceptions_explanation: 잠깐동안 즐겨찾기나 부스트 임계값을 넘긴 경우 나중에 값이 감소하더라도 게시물이 남아있을 수 있습니다.
     keep_direct: 다이렉트 메시지 유지
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
@@ -1967,7 +2124,27 @@ ko:
     recovery_codes: 복구 코드
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
+    resume_app_authorization: 앱 인증으로 돌아가기
+    role_requirement: "%{domain}은 마스토돈을 사용하기 전에 2단계 인증을 필수로 설정해야 합니다."
     webauthn: 보안 키
+  unsubscriptions:
+    create:
+      action: 서버 홈페이지로 이동
+      email_subscription:
+        confirmation_html: "%{name}로부터 더이상 메일을 받지 않게 됩니다."
+      title: 구독이 해지되었습니다
+    notification_emails:
+      favourite: 좋아요 알림 이메일
+      follow: 팔로우 알림 이메일
+      follow_request: 팔로우 요청 이메일
+      mention: 멘션 알림 이메일
+      reblog: 부스트 알림 이메일
+    show:
+      action: 구독 해지
+      email_subscription:
+        title: "%{name} 구독을 해지할까요?"
+      user:
+        title: "%{type} 구독을 해지할까요?"
   user_mailer:
     announcement_published:
       description: "%{domain}의 관리자가 공지사항을 게시했습니다:"
@@ -2116,4 +2293,5 @@ ko:
     otp_required: 보안 키를 사용하기 위해서는 2단계 인증을 먼저 활성화 해 주세요
     registered_on: "%{date}에 등록됨"
   wrapstodon:
+    description: "%{name} 님이 마스토돈을 어떻게 사용했는지 확인해봅시다!"
     title: "%{name} 님의 %{year} 랩스토돈"

@@ -15,6 +15,7 @@ class ActivityPub::ProcessFeaturedItemService
     @approval_uri = value_or_id(@item_json['featureAuthorization'])
     return if non_matching_uri_hosts?(@collection.uri, @item_json['id'])
     return if non_matching_actor_and_approval_uris?
+    return if non_supported_object_type?
 
     with_redis_lock("collection_item:#{@item_json['id']}") do
       @collection_item = existing_item || pre_approved_item || new_item
@@ -39,7 +40,7 @@ class ActivityPub::ProcessFeaturedItemService
 
   def pre_approved_item
     # This is a local account that has authorized this item already
-    local_account = ActivityPub::TagManager.instance.uris_to_local_accounts([@item_json['featuredObject']]).first
+    local_account = ActivityPub::TagManager.instance.uris_to_local_accounts([@actor_uri]).first
     @collection.collection_items.accepted_partial(local_account).first if local_account.present?
   end
 
@@ -49,10 +50,24 @@ class ActivityPub::ProcessFeaturedItemService
     )
   end
 
+  def local_actor_uri?
+    return @local_actor_uri if instance_variable_defined?(:@local_actor_uri)
+
+    @local_actor_uri = ActivityPub::TagManager.instance.local_uri?(@actor_uri)
+  end
+
   def non_matching_actor_and_approval_uris?
-    return false if ActivityPub::TagManager.instance.local_uri?(@actor_uri)
+    return false if local_actor_uri?
 
     non_matching_uri_hosts?(@actor_uri, @approval_uri)
+  end
+
+  def non_supported_object_type?
+    return false if local_actor_uri?
+    return false if Account.exists?(uri: @actor_uri)
+
+    object_json = fetch_resource(@actor_uri, true)
+    (Array(object_json['type']) & ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES).empty?
   end
 
   def verify_authorization!

@@ -79,6 +79,10 @@ class Quote < ApplicationRecord
     ActivityPub::QuoteRefreshWorker.perform_in(rand(REFRESH_DEADLINE), id)
   end
 
+  def sign?
+    true
+  end
+
   private
 
   def reset_parent_cache!

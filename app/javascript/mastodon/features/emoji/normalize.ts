@@ -214,6 +214,11 @@ export function extractTokens(
   }
   const tokens: string[] = [];
 
+  // Handle the edge case of thumbs up and down emoticons.
+  if (input === '+1' || input === '-1') {
+    return [input];
+  }
+
   // Prefer to use Intl.Segmenter if available for better locale support.
   if (segmenter) {
     for (const { isWordLike, segment } of segmenter.segment(

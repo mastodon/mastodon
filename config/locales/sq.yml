@@ -500,13 +500,26 @@ sq:
     email_subscriptions:
       accounts:
         account: Llogari
-        active: Aktive
         empty:
           hint: Ende s’ka llogari me pajtimtarë.
           no_lists_yet: Ende pa lista
-        inactive: Joaktive
         last_email: Email-i i fundit
         lead: Llogaritë që kanë aktivizuar veçorinë dhe kanë pajtimtarë do të shfaqen më poshtë.
+        show:
+          confirm_disable_feature: Të çaktivizohen buletine me email për %{name}? Për këtë llogari s’do të dërgohen më përditësime me email. Përdoruesi do të jetë prapëseprapë në gjendje të riaktivizojë veçorinë që nga rregullimet e llogarisë të vet. Për të hequr përgjithnjë përdorimin e kësaj veçorie, përpunoni lejen e llogarisë te Role.
+          confirm_remove_subscriber: "%{email} s’do të marrë më email-e nga %{name}. Ky veprim s’mund të zhbëhet."
+          consent: Pajtimtarët kanë pranuar vetëm të marrin postime përmes email-i. Mos e përdorni këtë listë për qëllime të tjera.
+          date: Datë e regjistrimit
+          disable_feature: Çaktivizoje veçorinë
+          disabled: Veçoria qe çaktivizuar dhe te kjo listë s’dërgohen më email-e.
+          email: Adresë email
+          empty:
+            hint: Te kjo llogari s’është pajtuar ende dikush.
+            no_subscribers_yet: Ende pa pajtimtarë
+          enable_feature: Aktivizoje veçorinë
+          no_access_html: Kjo llogari s’ka më lejet e domosdoshme për aktivizimin e veçorisë. Ndryshojeni këtë që nga <a href="%{roles_path}">Role</a>.
+          title: Buletine me email nga %{name}
+          view_account: Shiheni llogarinë
         status: Gjendje
         subscribers: Pajtimtarë
         title: Lista postimesh
@@ -1490,6 +1503,7 @@ sq:
       your_appeal_rejected: Apelimi juaj është hedhur poshtë
   edit_profile:
     other: Tjetër
+    privacy_redesign_body: Zgjedhja për shfaqjen e ndjekjeve dhe ndjekësve tuaj tanimë bëhet drejt e nga profili juaj.
     redesign_body: Përpunimi i profilit tanimë mund të kryhet drejt e nga faqja e profilit.
     redesign_button: Kalo atje
     redesign_title: Ka një rrugë të re përpunimi profili
@@ -1522,7 +1536,9 @@ sq:
         success_html: Tani do të filloni të merrni email-e, kur %{name} boton postime të reja. Shtojeni %{sender} te kontaktet tuaj, që këto postime të mos përfundojnë te dosja juaj e Të padëshiruarve.
         title: U regjistruat
         unsubscribe: Shpajtohuni
+    disabled: E çaktivizuar
     inactive: Joaktiv
+    no_access: S’lejohet përdorim
     status: Gjendje
     subscribers: Pajtimtarë
   errors:
@@ -1634,7 +1650,9 @@ sq:
       empty: Kartelë CSV e zbrazët
       incompatible_type: E papërputhshme me llojin e përzgjedhur për importim
       invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
+      invalid_json_file: 'Kartelë JSON e pavlefshme. Gabim: %{error}'
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
+      status_not_found_warning: Disa nga filtrat tuaj fshehin postime specifike që s’njihen nga ky shërbyes. Këto postime s’do të filtrohen automatikisht, nëse zbulohen më vonë nga shërbyesi.
       too_large: Kartela është shumë e madhe
     failures: Dështime
     imported: Të importuar

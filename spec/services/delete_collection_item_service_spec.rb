@@ -17,7 +17,7 @@ RSpec.describe DeleteCollectionItemService do
       it 'federates a `Remove` activity' do
         subject.call(collection_item)
 
-        expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+        expect(ActivityPub::CollectionRawDistributionWorker).to have_enqueued_sidekiq_job
       end
 
       context 'when `revoke` is set to true' do
@@ -36,7 +36,7 @@ RSpec.describe DeleteCollectionItemService do
       it 'destroys the collection withouth federating anything' do
         expect { subject.call(collection_item, revoke: true) }.to change(collection.collection_items, :count).by(-1)
 
-        expect(ActivityPub::AccountRawDistributionWorker).to_not have_enqueued_sidekiq_job
+        expect(ActivityPub::CollectionRawDistributionWorker).to_not have_enqueued_sidekiq_job
       end
     end
   end

@@ -490,11 +490,9 @@ nan-TW:
     email_subscriptions:
       accounts:
         account: 口座
-        active: 有效ê
         empty:
           hint: Iáu無半ê口座有訂ê lâng。
           no_lists_yet: Iáu無列單
-        inactive: 停止使用ah
         last_email: 上新ê電子phue箱
         lead: 有啟用tsit ê功能koh有訂ê lâng ê口座ē展示佇下kha。
         status: 狀態
@@ -732,6 +730,7 @@ nan-TW:
       action_log: 審查日誌
       action_taken_by: 操作由
       actions:
+        delete_description_html: 受檢舉ê PO文（以及／á是）收藏ē thâi掉，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
         mark_as_sensitive_description_html: 受檢舉ê PO文內ê媒體ē標做敏感，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
         other_description_html: 看其他控制tsit ê口座ê所行，kap自訂聯絡受檢舉ê口座ê選項。
         resolve_description_html: Buē用行動控制受檢舉ê口座，mā無用橫tsuā記錄，而且tsit ê報告ē關掉。
@@ -758,6 +757,7 @@ nan-TW:
       confirm: 確認
       confirm_action: 確認kā %{acct} 管理ê動作
       created_at: 檢舉tī
+      delete_and_resolve: Thâi掉內容
       forwarded: 轉送ah
       forwarded_replies_explanation: 本報告是tuì別站ê用者送ê，關係別站ê內容。本報告轉hōo lí，因為受檢舉ê內容是回應lí ê服侍器ê用者。
       forwarded_to: 有轉送kàu %{domain}
@@ -937,6 +937,10 @@ nan-TW:
           authenticated: Kan-ta hōo登入ê用者
           disabled: 愛特別ê用者角色
           public: Ta̍k lâng
+      landing_page:
+        hints:
+          about_html: 關係tsit臺服侍器ê敘述、聯絡資訊、規則kap其他資訊ê頁。
+          local_feed_html: 展示tsit臺服侍器用者ê上新PO文ê即時內容。
       registrations:
         moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
         preamble: 控制ē當佇lí ê服侍器註冊ê人。

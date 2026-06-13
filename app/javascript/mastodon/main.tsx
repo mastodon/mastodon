@@ -10,7 +10,7 @@ import { me, reduceMotion } from 'mastodon/initial_state';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
 
-import { isProduction, isDevelopment } from './utils/environment';
+import { isDevelopment, isProduction } from './utils/environment';
 
 function main() {
   perf.start('main()');
@@ -41,29 +41,30 @@ function main() {
     );
     store.dispatch(setupBrowserNotifications());
 
-    if (isProduction() && me && 'serviceWorker' in navigator) {
-      const { Workbox } = await import('workbox-window');
-      const wb = new Workbox(
-        isDevelopment() ? '/packs-dev/dev-sw.js?dev-sw' : '/sw.js',
-        { type: 'module', scope: '/' },
-      );
-      let registration;
-
-      try {
-        registration = await wb.register();
-      } catch (err) {
-        console.error(err);
+    if (
+      me &&
+      'serviceWorker' in navigator &&
+      (isDevelopment() || isProduction()) // Disallow testing environment
+    ) {
+      let swPath = '/sw.js';
+      if (isDevelopment()) {
+        const { default: swDevUrl } =
+          await import('@/mastodon/service_worker/sw?url');
+        swPath = swDevUrl;
       }
 
-      if (
-        registration &&
-        'Notification' in window &&
-        Notification.permission === 'granted'
-      ) {
-        const registerPushNotifications =
-          await import('mastodon/actions/push_notifications');
+      await navigator.serviceWorker.register(swPath, {
+        scope: '/',
+        type: 'module',
+      });
 
-        store.dispatch(registerPushNotifications.register());
+      if (isProduction()) {
+        if ('Notification' in window && Notification.permission === 'granted') {
+          const registerPushNotifications =
+            await import('mastodon/actions/push_notifications');
+
+          store.dispatch(registerPushNotifications.register());
+        }
       }
     }
 

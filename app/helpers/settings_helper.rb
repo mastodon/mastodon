@@ -57,6 +57,10 @@ module SettingsHelper
     end
   end
 
+  def time_zone_options
+    ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.now.formatted_offset}) #{tz.name}", tz.tzinfo.name] }
+  end
+
   private
 
   def links_for_featured_tags(tags)

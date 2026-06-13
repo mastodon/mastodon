@@ -10,4 +10,8 @@ class EmailSubscriptionPolicy < ApplicationPolicy
   alias disable? index?
 
   alias purge? index?
+
+  alias show? index?
+
+  alias destroy? index?
 end

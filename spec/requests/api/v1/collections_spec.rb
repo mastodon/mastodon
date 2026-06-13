@@ -23,6 +23,14 @@ RSpec.describe 'Api::V1::Collections' do
       expect(response.parsed_body[:collections].size).to eq 3
     end
 
+    it 'features a deprecation header when requested via the alpha route' do
+      subject
+      expect(response.headers['Deprecation']).to be_nil
+
+      get "/api/v1_alpha/accounts/#{account.id}/collections", headers: headers, params: params
+      expect(response.headers['Deprecation']).to eq '@1781049600'
+    end
+
     context 'with limit param' do
       let(:params) { { limit: '1' } }
 

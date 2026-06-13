@@ -4,15 +4,16 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
-import { TabLink, TabList } from '@/mastodon/components/tab_list';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { DisplayNameSimple } from 'mastodon/components/display_name/simple';
 import { Scrollable } from 'mastodon/components/scrollable_list/components';
+import { TabLink, TabList } from 'mastodon/components/tab_list';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAccountId, useCurrentAccountId } from 'mastodon/hooks/useAccountId';
 
-import { CollectionsCreatedByYou } from './overview/created_by_you';
+import { CollectionsCreatedByAccount } from './overview/created_by_account';
 import { CollectionsFeaturingYou } from './overview/featuring_you';
 import classes from './styles.module.scss';
 
@@ -71,7 +72,9 @@ export const Collections: React.FC<{
 
       <Scrollable>
         <header className={classes.header}>
-          <h1 className={classes.heading}>{pageTitleHtml}</h1>
+          <NavigationFocusTarget as='h1' className={classes.heading}>
+            {pageTitleHtml}
+          </NavigationFocusTarget>
           <TabList plain>
             <TabLink exact to={`/@${account?.acct}/collections`}>
               {intl.formatMessage(createdByTabMessage, {
@@ -89,7 +92,7 @@ export const Collections: React.FC<{
           </TabList>
         </header>
         <Switch>
-          <Route exact path={path} component={CollectionsCreatedByYou} />
+          <Route exact path={path} component={CollectionsCreatedByAccount} />
           <Route
             exact
             path={`${path}/featuring-you`}

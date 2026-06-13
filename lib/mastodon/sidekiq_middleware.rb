@@ -34,7 +34,7 @@ class Mastodon::SidekiqMiddleware
   # and each such client manages its long-lasting connection to
   # Elasticsearch.
   #
-  # As far as I know, neither `chewy`,  `elasticsearch-transport` or even
+  # As far as I know, neither `chewy`, `elastic-transport` or even
   # `faraday` provide a reliable way to immediately close a connection, and
   # rely on the underlying object to be garbage-collected instead.
   #
@@ -44,7 +44,7 @@ class Mastodon::SidekiqMiddleware
   def clean_up_elasticsearch_connections!
     return unless Chewy.enabled? && Chewy.current[:chewy_client].present?
 
-    Chewy.client.transport.transport.connections.each do |connection|
+    Chewy.client.transport.connections.each do |connection|
       # NOTE: This bit of code is tailored for the HTTPClient Faraday adapter
       connection.connection.app.instance_variable_get(:@client)&.reset_all
     end

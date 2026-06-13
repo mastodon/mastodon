@@ -345,12 +345,20 @@ nn:
       updated_msg: Du oppdaterte kunngjeringa.
     collections:
       accounts: Kontoar
+      back_to_account: Tilbake til kontosida
+      back_to_report: Tilbake til rapporteringssida
+      batch:
+        add_to_report: 'Legg til rapport #%{id}'
+        remove_from_report: Fjern frå rapport
+        report: Rapporter
       collection_title: Samling av %{name}
       contents: Innhald
+      no_collection_selected: Ingen samlingar var valde, så ingen vart endra
       number_of_accounts:
         one: 1 konto
         other: "%{count} kontoar"
       open: Opna
+      title: Kontosamlingar - @%{name}
       view_publicly: Vis offentleg
     critical_update_pending: Kritisk oppdatering ventar
     custom_emojis:
@@ -484,9 +492,74 @@ nn:
         title: Blokker nytt e-postdomene
       no_email_domain_block_selected: Blokkering av e-post-domene vart ikkje endra sidan ingen var valde
       not_permitted: Ikkje tillate
+      reset: Nullstill
       resolved_dns_records_hint_html: Domenenamnet gjer oppslag til desse MX-domena som til sist er ansvarlege for å motta e-post. Blokkering av eit MX-domene vil blokkere registreringar frå alle e-postadresser som bruker same MX-domene, sjølv om det synlege domenenamnet skulle vera noko anna. <strong>Pass på så du ikkje blokkerer dei store e-postleverandørane.</strong>
       resolved_through_html: Løyst gjennom %{domain}
+      search: Søk
       title: Blokkerte e-postdomene
+    email_subscriptions:
+      accounts:
+        account: Konto
+        empty:
+          hint: Ingen brukarkontoar har abonnentar enno.
+          no_lists_yet: Ingen lister enno
+        last_email: Siste epost
+        lead: Nedanfor vil du sjå brukarkontoar som har skrudd på dette og som har abonnentar.
+        status: Status
+        subscribers: Abonnentar
+        title: Epostlister
+      additional_footer_texts:
+        show:
+          title: Ekstra botntekst
+      compliance_settings:
+        additional_footer_text:
+          action: Administrer
+          hint: Valfri tekst du kan setja i botnteksten på epostutsendingar
+          title: Ekstra botntekst
+        lead: Nokre jurisdiksjonar ser på epost-nyhendebrev som marknadsføring, avhengig av kvar du driv tenaren.
+        privacy_policy:
+          action: Administrer
+          hint: Desse retningslinene står i botnteksten på kvar epost
+          title: Personvernsreglar
+        title: Samsvarsinnstillingar
+      danger_zone:
+        disable_feature:
+          action: Slå av
+          hint: Slå av funksjonen for alle kontoar
+          title: Skru av funksjonen
+        erase_all_data:
+          action: Slett data
+          hint: Slettar alle epostar frå alle epostlister
+          title: Slett alt innhald
+        title: Faresone
+      disabled_msg: Du har skrudd av epostabonnementa.
+      index:
+        disabled:
+          cannot_be_enabled: Den tekniske leverandøren din har ikkje teke i bruk denne funksjonen på tenaren din.
+          description: Med denne funksjonen kan du la dei gjevne brukarane få leggja til småprogram på profilane sine, slik at lesarar utan Mastodon-brukarkontoar kan få innlegga deira på epost.
+          get_started: Kom i gang
+        lead: Lat lesarar få innlegga frå utvalde folk på denne tenaren på epost.
+        title: Nytt på epost
+      purged_msg: Alle epost-abonnementa blir sletta.
+      roles:
+        accounts: Kontoar
+        edit_role: Rediger rolle
+        empty:
+          hint: Ingen har løyve til å bruka denne funksjonen.
+          no_roles_added: Ingen roller er lagde til
+        lead: Folk med desse rollene kan bruka denne funksjonen på profilane sine.
+        manage_roles: Handsam roller
+        role_name: Namn på rolla
+        title: Roller
+      setups:
+        show:
+          enable_feature: Skru på funksjonen
+          important_information: Viktig informasjon
+          list:
+            1_permission_explanation: Når denne funksjonen er skrudd på, kan brukarar med løyve leggja til eit skjema for å samla inn epostadresser på profilane sine.
+            2_feature_explanation: Når gjester registrerer seg på ei profilside og stadfestar abonnementet, får dei epostoppdateringar når kontoen legg ut nye offentlege innlegg.
+            3_privacy_policy_warning: Tenaradministratorar får tilgang til innsamla PII (epostadresser). Difor må personvernretnignslinene og brukarvilkåra for tenaren oppdaterast før du kan bruka denne funksjonen.
+            4_cost_warning: Nokre tenaroppsett gjev tilleggskostnader for epostutsending. Drøft med nettverten din før du skrur på funksjonen, fordi det kan føra med seg store mengder epostar frå tenaren din.
     export_domain_allows:
       new:
         title: Importer domenetillatingar
@@ -671,6 +744,7 @@ nn:
       action_log: Tilsynslogg
       action_taken_by: Handling gjort av
       actions:
+        delete_description_html: Dei rapporterte innlegga og/eller samlingane vil bli sletta, og det vil bli lagra ein merknad slik at du kan handla raskare ved framtidige regelbrot frå same person.
         mark_as_sensitive_description_html: Mediene i dei rapporterte innlegga vil verte markerte som ømtolege, og ein merknad vil verte lagra for å hjelpe deg å eskalera ved framtidige regelbrot frå same konto.
         other_description_html: Sjå fleire alternativ når det gjeld kontroll av kontoåtferd og tilpassing av kommunikasjonen til den rapporterte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
@@ -697,6 +771,7 @@ nn:
       confirm: Stadfest
       confirm_action: Stadfest at du vil moderera brukarkontoen @%{acct}
       created_at: Rapportert
+      delete_and_resolve: Slett innhald
       forwarded: Videresendt
       forwarded_replies_explanation: Denne rapporten gjeld innhald på ein annan nettstad. Rapporten er vidaresend til deg fordi det rapporterte innhaldet er eit svar på noko ein av brukarane på nettstaden din har skrive.
       forwarded_to: Videresendt til %{domain}
@@ -790,6 +865,7 @@ nn:
         manage_custom_emojis: Handtere tilpassa emojiar
         manage_custom_emojis_description: Let brukarar handtere tilpassa emojiar på tenaren
         manage_email_subscriptions: Handter epostabonnement
+        manage_email_subscriptions_description: Lat folk med dette løyvet få bruke epostbrev-funksjonen på kontoen sin
         manage_federation: Handtere føderasjon
         manage_federation_description: Let brukarar blokkera eller tillata føderasjon med andre domener, samt styra kva som skal leverast
         manage_invites: Handsam innbydingar
@@ -877,6 +953,9 @@ nn:
           authenticated: Berre godkjende brukarar
           disabled: Krev ei spesifikk brukarrolle
           public: Alle
+      landing_page:
+        hints:
+          about_html: Ei side med skildring, kontaktopplysingar, reglar og andre opplysingar om denne tenaren.
       registrations:
         moderation_recommandation: Pass på at du har mange og kjappe redaktørar og moderatorar på laget ditt før du opnar for allmenn registrering!
         preamble: Kontroller kven som kan oppretta konto på tenaren din.

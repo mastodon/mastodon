@@ -4,7 +4,6 @@ import { uploadCompose } from '../../../actions/compose';
 import UploadButton from '../components/upload_button';
 
 const mapStateToProps = state => {
-  const isPoll = state.getIn(['compose', 'poll']) !== null;
   const isUploading = state.getIn(['compose', 'is_uploading']);
   const readyAttachmentsSize = state.getIn(['compose', 'media_attachments']).size ?? 0;
   const pendingAttachmentsSize = state.getIn(['compose', 'pending_media_attachments']).size ?? 0;
@@ -14,7 +13,7 @@ const mapStateToProps = state => {
   const hasQuote = !!state.compose.get('quoted_status_id');
 
   return {
-    disabled: isPoll || isUploading || isOverLimit || hasVideoOrAudio || hasQuote,
+    disabled: isUploading || isOverLimit || hasVideoOrAudio || hasQuote,
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
   };
 };

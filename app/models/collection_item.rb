@@ -64,6 +64,10 @@ class CollectionItem < ApplicationRecord
     :featured_item
   end
 
+  def sign?
+    true
+  end
+
   private
 
   def set_position

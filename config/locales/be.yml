@@ -520,13 +520,26 @@ be:
     email_subscriptions:
       accounts:
         account: Уліковы запіс
-        active: Актыўны
         empty:
           hint: У ніводнага ўліковага запісу няма падпісчыкаў.
           no_lists_yet: Пакуль няма спісаў
-        inactive: Неактыўны
         last_email: Апошняя электронная пошта
         lead: Уліковыя запісы, якія ўключылі гэту функцыю і маюць падпісчыкаў, будуць паказаныя знізу.
+        show:
+          confirm_disable_feature: Адключыць рассылку па электроннай пошце для %{name}? Абнаўленні больш не будуць прыходзіць на пошту гэтага ўліковага запісу. Карыстальнік усё яшчэ зможа ўключыць гэту функцыю нанова ў наладах уліковага запісу. Каб назаўсёды прыбраць доступ да гэтай функцыі, змяніце дазволы ўліковага запісу ў Ролях.
+          confirm_remove_subscriber: "%{email} больш не будзе атрымліваць электронныя лісты ад %{name}. Гэтае дзеянне незваротнае."
+          consent: Падпісчыкі пагадзіліся толькі атрымліваць допісы на электронную пошту. Не карыстайцеся гэтым спісам у іншых мэтах.
+          date: Дата рэгістрацыі
+          disable_feature: Адключыць функцыю
+          disabled: Функцыя была адключаная і электронныя лісты больш не будуць дасылацца гэтаму спісу.
+          email: Адрас электроннай пошты
+          empty:
+            hint: Ніхто яшчэ не аформіў падпіску на гэты ўліковы запіс.
+            no_subscribers_yet: Пакуль няма падпісчыкаў
+          enable_feature: Уключыць функцыю
+          no_access_html: У гэтага ўліковага запісу больш няма дазволаў, патрэбных, каб уключыць гэту функцыю. Змяніце гэта ў <a href="%{roles_path}">Ролях</a>.
+          title: Паштовая рассылка %{name}
+          view_account: Прагл. уліковы запіс
         status: Стан
         subscribers: Падпісчыкі
         title: Спісы рассылкі
@@ -1543,6 +1556,7 @@ be:
       your_appeal_rejected: Ваша абскарджанне было адхілена
   edit_profile:
     other: Іншае
+    privacy_redesign_body: Уключыць ці адключыць паказ Вашых падпісчыкаў і падпісак цяпер можна прама ў Вашым профілі.
     redesign_body: Рэдагаванне профілю цяпер даступнае наўпрост са старонкі профілю.
     redesign_button: Перайсці туды
     redesign_title: Адбыліся змены ў рэдагаванні профілю
@@ -1577,7 +1591,9 @@ be:
         success_html: Вы цяпер пачняце атрымліваць электронныя лісты, калі %{name} будзе рабіць новыя допісы. Дадайце %{sender} у свае кантакты, каб гэтыя допісы не траплялі ў папку са спамам.
         title: Вы падпісаліся праз эл. пошту
         unsubscribe: Адпісацца
+    disabled: Адключана
     inactive: Неактыўная
+    no_access: Няма доступу
     status: Стан
     subscribers: Падпісчыкі па эл.пошце
   emoji_styles:
@@ -1707,7 +1723,9 @@ be:
       empty: Пусты CSV файл
       incompatible_type: Несумяшчальны з выбраным тыпам імпарту
       invalid_csv_file: 'Несапраўдны файл CSV. Памылка: %{error}'
+      invalid_json_file: 'Няспраўны файл JSON. Памылка: %{error}'
       over_rows_processing_limit: колькасць радкоў большая за %{count}
+      status_not_found_warning: Некаторыя з Вашых фільтраў хаваюць адмысловыя допісы, якія невядомыя гэтаму серверу. Гэтыя допісы будуць аўтаматычна адфільтраваныя, калі яны будуць пазней знойдзеныя на серверы.
       too_large: Файл занадта вялікі
     failures: Няўдала
     imported: Імпартавана
@@ -1728,6 +1746,11 @@ be:
         many: Вы збіраецеся <strong>замяніць свае закладкі</strong> <strong>%{count} допісамі</strong> з <strong>%{filename}</strong>.
         one: Вы збіраецеся <strong>замяніць свае закладкі</strong> <strong>%{count} допісам</strong> з <strong>%{filename}</strong>.
         other: Вы збіраецеся <strong>замяніць свае закладкі</strong> <strong>%{count} допісамі</strong> з <strong>%{filename}</strong>.
+      custom_filters_html:
+        few: Вы збіраецеся <strong>замяніць свае фільтры</strong> змесцівам з <strong>%{filename}</strong>. У новыя фільтры будуць дададзеныя <strong>%{count} фільтры</strong>.
+        many: Вы збіраецеся <strong>замяніць свае фільтры</strong> змесцівам з <strong>%{filename}</strong>. У новыя фільтры будуць дададзеныя <strong>%{count} фільтраў</strong>.
+        one: Вы збіраецеся <strong>замяніць свае фільтры</strong> змесцівам з <strong>%{filename}</strong>. У новыя фільтры будзе дададзены <strong>%{count} фільтр</strong>.
+        other: Вы збіраецеся <strong>замяніць свае фільтры</strong> змесцівам з <strong>%{filename}</strong>. У новыя фільтры будуць дададзеныя <strong>%{count} фільтры</strong>.
       domain_blocking_html:
         few: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных даменаў</strong> <strong>%{count} даменамі</strong> з <strong>%{filename}</strong>.
         many: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных даменаў</strong> <strong>%{count} даменамі</strong> з <strong>%{filename}</strong>.
@@ -1759,6 +1782,11 @@ be:
         many: Вы збіраецеся дадаць <strong>%{count} допісаў</strong> з <strong>%{filename}</strong> у Вашыя <strong>закладкі</strong>.
         one: Вы збіраецеся дадаць <strong>%{count} допіс</strong> з <strong>%{filename}</strong> у Вашыя <strong>закладкі</strong>.
         other: Вы збіраецеся дадаць <strong>%{count} допісаў</strong> з <strong>%{filename}</strong> у Вашыя <strong>закладкі</strong>.
+      custom_filters_html:
+        few: Вы збіраецеся дадаць <strong>%{count} фільтры </strong> з <strong>%{filename}</strong> у свае <strong>фільтры</strong>.
+        many: Вы збіраецеся дадаць <strong>%{count} фільтраў </strong> з <strong>%{filename}</strong> у свае <strong>фільтры</strong>.
+        one: Вы збіраецеся дадаць <strong>%{count} фільтр </strong> з <strong>%{filename}</strong> у свае <strong>фільтры</strong>.
+        other: Вы збіраецеся дадаць <strong>%{count} фільтры </strong> з <strong>%{filename}</strong> у свае <strong>фільтры</strong>.
       domain_blocking_html:
         few: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} дамены</strong> з <strong>%{filename}</strong>.
         many: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} даменаў</strong> з <strong>%{filename}</strong>.

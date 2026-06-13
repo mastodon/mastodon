@@ -490,13 +490,26 @@ zh-CN:
     email_subscriptions:
       accounts:
         account: 账号
-        active: 已生效
         empty:
           hint: 目前还没有账号拥有订阅者。
           no_lists_yet: 尚无列表
-        inactive: 未生效
         last_email: 最新电子邮件
         lead: 已启用此功能并拥有订阅者的账号会在下方显示。
+        show:
+          confirm_disable_feature: 禁用 %{name} 的邮件电子报吗？此后将不再执行此账号的电子邮件推送。该用户仍可以在账号设置中重新启用此功能。要永久移除此功能的访问权限，请在“角色”设置中编辑账号权限。
+          confirm_remove_subscriber: "%{email} 将不会再收到来自 %{name} 的电子邮件。此操作无法撤销。"
+          consent: 此列表中的订阅者仅同意通过电子邮件接受嘟文。请不要将此列表用作其他目的。
+          date: 订阅注册日期
+          disable_feature: 禁用功能
+          disabled: 此功能已被禁用，邮件已不再向此列表内发送。
+          email: 电子邮件地址
+          empty:
+            hint: 暂时没有人订阅这个账号。
+            no_subscribers_yet: 尚无订阅者
+          enable_feature: 启用功能
+          no_access_html: 此账号不再拥有启用该功能所需的权限。请在<a href="%{roles_path}">角色</a>设置处更改。
+          title: "%{name}的邮件电子报"
+          view_account: 查看账号
         status: 状态
         subscribers: 订阅者
         title: 邮件列表
@@ -732,6 +745,7 @@ zh-CN:
       action_log: 审计日志
       action_taken_by: 操作执行者
       actions:
+        delete_description_html: 被举报的嘟文和收藏列表将被删除，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
         mark_as_sensitive_description_html: 被举报的嘟文将被标记为敏感，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
         other_description_html: 查看更多控制该账号行为的选项，并自定义编写与被举报账号的通信。
         resolve_description_html: 不会对被举报账号采取任何动作，举报将被关闭，也不会留下处罚记录。
@@ -758,6 +772,7 @@ zh-CN:
       confirm: 确认
       confirm_action: 确认对 @%{acct} 的管理操作
       created_at: 举报时间
+      delete_and_resolve: 删除内容
       forwarded: 已转发
       forwarded_replies_explanation: 该举报来自外站用户，涉及外站内容。之所以转发给你，是因为被举报的内容是对你站点一位用户的回复。
       forwarded_to: 转发举报到 %{domain}
@@ -1105,7 +1120,7 @@ zh-CN:
       history: 历史记录
       live: 生效中
       no_history: 尚无服务条款变更记录。
-      no_terms_of_service_html: 你还没有设置任何服务条款。设置服务条款可以清晰地界定责任，并在与用户发生争议时有效保护您的权益。
+      no_terms_of_service_html: 你还没有设置任何服务条款。设置服务条款可以清晰地界定责任，并在与用户发生争议时有效保护你的权益。
       notified_on_html: 已于 %{date} 通知用户
       notify_users: 通知用户
       preview:
@@ -1326,7 +1341,7 @@ zh-CN:
     description:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
       prefix_sign_up: 现在就注册 Mastodon 吧！
-      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
+      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其他任何 Mastodon 服务器上的用户交流，而且还有其他更多功能！
     didnt_get_confirmation: 没有收到确认链接？
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
@@ -1478,6 +1493,7 @@ zh-CN:
       your_appeal_rejected: 你的申诉已被驳回
   edit_profile:
     other: 其他
+    privacy_redesign_body: 现在可以直接在个人资料页设置是否展示你的关注者和你关注的人。
     redesign_body: 个人资料编辑功能现在可以直接在个人资料页面访问。
     redesign_button: 前往
     redesign_title: 全新个人资料编辑体验现已到来
@@ -1509,7 +1525,9 @@ zh-CN:
         success_html: 现在开始当 %{name} 发布新嘟文时你会收到邮件提醒。记得将 %{sender} 添加到邮箱联系人中，以免嘟文推送被丢入垃圾邮件文件夹。
         title: 你已成功订阅
         unsubscribe: 取消订阅
+    disabled: 已禁用
     inactive: 未生效
+    no_access: 没有权限
     status: 状态
     subscribers: 订阅者
   emoji_styles:
@@ -1591,7 +1609,7 @@ zh-CN:
       batch:
         remove: 从过滤规则中移除
       index:
-        hint: 此过滤规则适用于选中的个别嘟文，不受其它条件限制。你可以通过网页界面向此过滤规则添加更多嘟文。
+        hint: 此过滤规则适用于选中的个别嘟文，不受其他条件限制。你可以通过网页界面向此过滤规则添加更多嘟文。
         title: 过滤的嘟文
   generic:
     all: 全部
@@ -1617,8 +1635,10 @@ zh-CN:
     errors:
       empty: CSV 文件为空
       incompatible_type: 与所选导入类型不兼容
-      invalid_csv_file: '无效的 CSV 文件。错误: %{error}'
+      invalid_csv_file: 无效的 CSV 文件。错误：%{error}
+      invalid_json_file: 无效的 JSON 文件。错误：%{error}
       over_rows_processing_limit: 包含行数超过了 %{count}
+      status_not_found_warning: 你的部分过滤器将会过滤此服务器尚未知晓的嘟文。如果这些嘟文之后被服务器发现，则将不会被自动过滤。
       too_large: 文件过大
     failures: 失败
     imported: 已导入
@@ -1633,6 +1653,8 @@ zh-CN:
         other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>账号<strong>替换你的屏蔽列表</strong>。
       bookmarks_html:
         other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 条</strong>嘟文<strong>替换你的收藏列表</strong>。
+      custom_filters_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的内容<strong>替换你的过滤器</strong>。最多将会有 <strong>%{count} 个过滤器</strong> 被添加为新过滤器。
       domain_blocking_html:
         other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>站点域名<strong>替换你的站点屏蔽列表</strong>。
       following_html:
@@ -1646,6 +1668,8 @@ zh-CN:
         other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
       bookmarks_html:
         other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 篇嘟文</strong>添加到你的<strong>收藏夹</strong>中。
+      custom_filters_html:
+        other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 个过滤器</strong>添加到你的<strong>过滤器</strong>中。
       domain_blocking_html:
         other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个站点</strong>。
       following_html:
@@ -1744,7 +1768,7 @@ zh-CN:
       not_found: 找不到
       on_cooldown: 你正处于冷却状态
     followers_count: 迁移时的关注者
-    incoming_migrations: 从其它账号迁入
+    incoming_migrations: 从其他账号迁入
     incoming_migrations_html: 要把另一个账号移动到本账号，首先你需要<a href="%{path}">创建一个账号别名</a> 。
     moved_msg: 你的账号现在会跳转到 %{acct} ，同时关注者也会一并迁移 。
     not_redirecting: 你的账号当前未跳转到其它账号。
@@ -2252,7 +2276,7 @@ zh-CN:
       edit_profile_title: 个性化你的个人资料
       explanation: 下面是几个小贴士，希望它们能帮到你
       feature_action: 详细了解
-      feature_audience: Mastodon 为你提供了无需中间商即可管理受众的独特可能。Mastodon 可被部署在你自己的基础设施上，允许你关注其它任何 Mastodon 在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
+      feature_audience: Mastodon 为你提供了无需中间商即可管理受众的独特可能。Mastodon 可被部署在你自己的基础设施上，允许你关注其他任何 Mastodon 在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
       feature_audience_title: 自由吸引你的受众
       feature_control: 你最清楚你想在你自己的主页中看到什么动态。没有算法或广告浪费你的时间。你可以用一个账号关注任何 Mastodon 服务器上的任何人，并按时间顺序获得他们发布的嘟文，让你的互联网的角落更合自己的心意。
       feature_control_title: 掌控自己的时间线

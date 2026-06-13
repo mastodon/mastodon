@@ -500,13 +500,26 @@ es-AR:
     email_subscriptions:
       accounts:
         account: Cuenta
-        active: Activa
         empty:
           hint: Aún no hay cuentas con suscriptores.
           no_lists_yet: Aún no hay listas
-        inactive: Inactiva
         last_email: Último correo electrónico
         lead: Las cuentas que habilitaron la función y tienen suscriptores se mostrarán a continuación.
+        show:
+          confirm_disable_feature: "¿Deshabilitar boletines de correo electrónico para %{name}? Las actualizaciones de correo electrónico ya no se enviarán a esta cuenta. El usuario todavía podrá volver a activar la función en la configuración de su cuenta. Para eliminar permanentemente el acceso a esta función, editá el permiso de la cuenta en Roles."
+          confirm_remove_subscriber: "%{email} ya no recibirá correos electrónicos de %{name}. Esta acción no se puede deshacer."
+          consent: Los suscriptores solo aceptaron recibir mensajes por correo electrónico. No usés esta lista para otros propósitos.
+          date: Fecha de registro
+          disable_feature: Deshabilitar función
+          disabled: La función fue deshabilitada y los correos electrónicos ya no están siendo enviados a esta lista.
+          email: Dirección de correo electrónico
+          empty:
+            hint: Todavía nadie se suscribió a esta cuenta.
+            no_subscribers_yet: Aún no hay suscriptores
+          enable_feature: Habilitar función
+          no_access_html: Esta cuenta ya no tiene los permisos requeridos para habilitar la función. Cambiá esto en <a href="%{roles_path}">Roles</a>.
+          title: Boletines de noticias de %{name}
+          view_account: Ver cuenta
         status: Estado
         subscribers: Suscriptores
         title: Listas de correo
@@ -1501,6 +1514,7 @@ es-AR:
       your_appeal_rejected: Se rechazó tu apelación
   edit_profile:
     other: Otros
+    privacy_redesign_body: La opción de mostrar tus seguidores y seguidores ahora se hace directamente a partir de tu perfil.
     redesign_body: Ahora podés acceder a la edición del perfil desde la propia página de perfil.
     redesign_button: Ir allí
     redesign_title: Hay una nueva experiencia de edición de perfil
@@ -1533,7 +1547,9 @@ es-AR:
         success_html: Ahora vas a empezar a recibir correos electrónicos cuando %{name} publique algo nuevo. Agregá a %{sender} a tus contactos para que estas publicaciones no terminen en tu carpeta de spam o correo no deseado.
         title: Te suscribiste
         unsubscribe: Desuscribirse
+    disabled: Deshabilitada
     inactive: Inactiva
+    no_access: Sin acceso
     status: Estado
     subscribers: Suscriptores
   emoji_styles:
@@ -1649,7 +1665,9 @@ es-AR:
       empty: Archivo CSV vacío
       incompatible_type: Incompatible con el tipo de importación seleccionado
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
+      invalid_json_file: 'Archivo JSON no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
+      status_not_found_warning: Algunos de tus filtros ocultan mensajes específicos que no son conocidos por este servidor. Estos mensajes no serán filtrados automáticamente si son descubiertos más tarde por el servidor.
       too_large: El archivo es demasiado grande
     failures: Fallos
     imported: Importadas
@@ -1666,6 +1684,9 @@ es-AR:
       bookmarks_html:
         one: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{count} mensaje</strong> provenientes de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{count} mensajes</strong> provenientes de <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Estás a punto de <strong>reemplazar tus filtros</strong> con el contenido de <strong>%{filename}</strong>. Se agregarán hasta <strong>%{count} filtro</strong> a filtros nuevos.
+        other: Estás a punto de <strong>reemplazar tus filtros</strong> con el contenido de <strong>%{filename}</strong>. Se agregarán hasta <strong>%{count} filtros</strong> a filtros nuevos.
       domain_blocking_html:
         one: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{count} dominio</strong> provenientes de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
@@ -1685,6 +1706,9 @@ es-AR:
       bookmarks_html:
         one: Está a punto de agregar hasta <strong>%{count} mensaje</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
         other: Está a punto de agregar hasta <strong>%{count} mensajes</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      custom_filters_html:
+        one: Está a punto de agregar hasta <strong>%{count} filtro</strong> proveniente de <strong>%{filename}</strong> a tus <strong>filtros</strong>.
+        other: Está a punto de agregar hasta <strong>%{count} filtros</strong> provenientes de <strong>%{filename}</strong> a tus <strong>filtros</strong>.
       domain_blocking_html:
         one: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominio</strong> provenientes de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.

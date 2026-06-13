@@ -1,7 +1,9 @@
 ---
 zh-TW:
   about:
-    about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，於其建立帳號，您就能與任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。
+    about_mastodon_html: |-
+      社交網路的未來：無廣告、無企業監控、道德
+      去中心化設計！加入 Mastodon，擁有您的資料！
     contact_missing: 未設定
     contact_unavailable: 未公開
     hosted_on: 於 %{domain} 託管之 Mastodon 站點
@@ -490,13 +492,26 @@ zh-TW:
     email_subscriptions:
       accounts:
         account: 帳號
-        active: 生效中
         empty:
           hint: 尚無任何擁有訂閱者之帳號。
           no_lists_yet: 尚無列表
-        inactive: 已停用
         last_email: 最新電子郵件地址
         lead: 已啟用此功能並擁有訂閱者之帳號將於下方顯示。
+        show:
+          confirm_disable_feature: 是否替 %{name} 停用電子報功能？電子報郵件將不被寄至此帳號。該使用者仍能於帳號設定中重新啟用此功能。如欲永久禁用此功能，請於角色設定中編輯該帳號之權限。
+          confirm_remove_subscriber: "%{email} 將不再收到來自 %{name} 之電子郵件。此動作無法回復。"
+          consent: 訂閱者僅同意透過電子郵件接收嘟文。請勿將此名單用於其他用途。
+          date: 註冊日期
+          disable_feature: 停用功能
+          disabled: 此功能已停用且電子郵件將不被寄至此列表。
+          email: 電子郵件地址
+          empty:
+            hint: 尚無任何人訂閱此帳號。
+            no_subscribers_yet: 尚無訂閱者
+          enable_feature: 啟用功能
+          no_access_html: 此帳號不再擁有啟用此功能所需之權限。請於 <a href="%{roles_path}">角色設定</a>中修改此設定。
+          title: "%{name} 之電子報"
+          view_account: 檢視帳號
         status: 狀態
         subscribers: 訂閱者
         title: 電子郵件列表
@@ -776,7 +791,7 @@ zh-TW:
         title: 備註
       notes_description_html: 檢視及留下些給其他管理員與未來的自己的備註
       processed_msg: '檢舉報告 #%{id} 已被成功處理'
-      quick_actions_description_html: 採取一個快速行動，或者下捲以檢視檢舉內容：
+      quick_actions_description_html: 採取快速行動，或者下捲以檢視檢舉內容：
       remote_user_placeholder: 來自 %{instance} 之遠端使用者
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
@@ -1482,6 +1497,7 @@ zh-TW:
       your_appeal_rejected: 您的申訴已被駁回
   edit_profile:
     other: 其他
+    privacy_redesign_body: 您現在能直接於個人資料檔案頁面中選擇是否顯示您的跟隨中與跟隨者。
     redesign_body: 個人檔案編輯功能現在能自個人檔案頁面直接存取。
     redesign_button: 前往
     redesign_title: 全新個人檔案編輯體驗
@@ -1513,7 +1529,9 @@ zh-TW:
         success_html: 您將開始收到當 %{name} 發表新嘟文之電子郵件。請新增 %{sender} 至您的通訊錄使這些嘟文不被分類至垃圾信件夾。
         title: 已完成註冊
         unsubscribe: 取消訂閱
+    disabled: 已停用
     inactive: 已停用
+    no_access: 無法存取
     status: 狀態
     subscribers: 訂閱者
   emoji_styles:
@@ -1622,7 +1640,9 @@ zh-TW:
       empty: 空的 CSV 檔案
       incompatible_type: 與所選的匯入類型不相容
       invalid_csv_file: 無效的 CSV 檔案。錯誤訊息：%{error}
+      invalid_json_file: 無效的 JSON 檔案。錯誤訊息：%{error}
       over_rows_processing_limit: 含有超過 %{count} 行
+      status_not_found_warning: 某些您的過濾器隱藏此伺服器仍未知之特定嘟文。若這些嘟文日後被伺服器發現，它們將不被自動過濾。
       too_large: 檔案大小過大
     failures: 失敗
     imported: 已匯入
@@ -1637,6 +1657,8 @@ zh-TW:
         other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong> 以 <strong>取代您的封鎖帳號列表</strong>。
       bookmarks_html:
         other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個嘟文</strong> 以 <strong>取代您的書籤</strong>。
+      custom_filters_html:
+        other: 您將以 <strong>%{filename}</strong> 之內容<strong>取代您的過濾器</strong>。這將會新增 <strong>%{count} 個過濾器</strong>至新過濾器。
       domain_blocking_html:
         other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個網域</strong> 以 <strong>取代您的封鎖網域列表</strong>。
       following_html:
@@ -1650,6 +1672,8 @@ zh-TW:
         other: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong>。
       bookmarks_html:
         other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個嘟文</strong> 以 <strong>加入至您的書籤</strong>。
+      custom_filters_html:
+        other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個過濾器</strong> 以 <strong>加入至您的過濾器</strong>。
       domain_blocking_html:
         other: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個網域</strong>。
       following_html:

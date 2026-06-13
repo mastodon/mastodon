@@ -19,6 +19,7 @@ import { useIdentity } from 'mastodon/identity_context';
 import { useColumnIndexContext } from '../features/ui/components/columns_area';
 import { getColumnSkipLinkId } from '../features/ui/components/skip_links';
 
+import { NavigationFocusTarget } from './navigation_focus_target';
 import { useAppHistory } from './router';
 
 export const messages = defineMessages({
@@ -152,7 +153,7 @@ export const ColumnHeader: React.FC<Props> = ({
     active,
   });
 
-  const buttonClassName = classNames('column-header', {
+  const headingClassName = classNames('column-header', {
     active,
   });
 
@@ -272,48 +273,49 @@ export const ColumnHeader: React.FC<Props> = ({
       {!backButton && hasIcon && (
         <Icon id={icon} icon={iconComponent} className='column-header__icon' />
       )}
-      {title}
+      <span className='column-header__text'>{title}</span>
     </>
   );
 
-  const HeadingElement = hasTitle ? 'h1' : 'div';
+  const titleClassNames = classNames('column-header__title', {
+    'column-header__title--with-back-button': !!backButton,
+  });
 
   const component = (
     <div className={wrapperClassName}>
-      <HeadingElement className={buttonClassName}>
+      <div className={headingClassName}>
+        {backButton}
         {hasTitle && (
-          <>
-            {backButton}
-
-            {onClick && (
+          <NavigationFocusTarget
+            as='h1'
+            className='column-header__title-wrapper'
+          >
+            {onClick ? (
               <button
                 onClick={handleTitleClick}
-                className='column-header__title'
+                className={titleClassNames}
                 type='button'
                 id={getColumnSkipLinkId(columnIndex)}
               >
                 {titleContents}
               </button>
-            )}
-            {!onClick && (
+            ) : (
               <span
-                className='column-header__title'
+                className={titleClassNames}
                 tabIndex={-1}
                 id={getColumnSkipLinkId(columnIndex)}
               >
                 {titleContents}
               </span>
             )}
-          </>
+          </NavigationFocusTarget>
         )}
-
-        {!hasTitle && backButton}
 
         <div className='column-header__buttons'>
           {extraButton}
           {collapseButton}
         </div>
-      </HeadingElement>
+      </div>
 
       <div
         className={collapsibleClassName}

@@ -26,7 +26,7 @@ namespace :admin do
 
   resources :email_domain_blocks, only: [:index, :new, :create], concerns: :batch
 
-  resources :email_subscriptions, only: [:index] do
+  resources :email_subscriptions, only: [:index, :destroy] do
     collection do
       post :purge
       post :disable
@@ -36,6 +36,13 @@ namespace :admin do
   namespace :email_subscriptions do
     resource :setup, only: [:show, :create]
     resource :additional_footer_text, only: [:show, :update]
+
+    resources :accounts, only: :show do
+      member do
+        post :enable
+        post :disable
+      end
+    end
   end
 
   resources :action_logs, only: [:index]

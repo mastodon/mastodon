@@ -194,7 +194,7 @@ RSpec.describe ActivityPub::Activity::Accept do
 
           expect(collection_item.reload).to be_accepted
           expect(collection_item.approval_uri).to eq 'https://example.com/stamps/1'
-          expect(ActivityPub::AccountRawDistributionWorker)
+          expect(ActivityPub::CollectionRawDistributionWorker)
             .to have_enqueued_sidekiq_job
         end
       end
@@ -206,7 +206,7 @@ RSpec.describe ActivityPub::Activity::Accept do
 
             expect(collection_item.reload).to_not be_accepted
             expect(collection_item.approval_uri).to be_nil
-            expect(ActivityPub::AccountRawDistributionWorker)
+            expect(ActivityPub::CollectionRawDistributionWorker)
               .to_not have_enqueued_sidekiq_job
           end
         end

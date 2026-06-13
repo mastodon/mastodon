@@ -500,13 +500,26 @@ en:
     email_subscriptions:
       accounts:
         account: Account
-        active: Active
         empty:
           hint: No accounts have subscribers yet.
           no_lists_yet: No lists yet
-        inactive: Inactive
         last_email: Last email
         lead: Accounts who have enabled the feature and have subscribers will show below.
+        show:
+          confirm_disable_feature: Disable email newsletters for %{name}? Email updates will no longer be sent for this account. The user will still be able to re-enable the feature in their account settings. To permanently remove access to this feature, edit the account’s permission in Roles.
+          confirm_remove_subscriber: "%{email} will no longer receive emails from %{name}. This action cannot be undone."
+          consent: Subscribers have only consented to receiving posts via email. Do not use this list for other purposes.
+          date: Date of sign-up
+          disable_feature: Disable feature
+          disabled: The feature was disabled and emails are no longer being sent to this list.
+          email: Email address
+          empty:
+            hint: Nobody has subscribed to this account yet.
+            no_subscribers_yet: No subscribers yet
+          enable_feature: Enable feature
+          no_access_html: This account no longer has the permissions required to enable the feature. Change this in <a href="%{roles_path}">Roles</a>.
+          title: Email newsletters of %{name}
+          view_account: View account
         status: Status
         subscribers: Subscribers
         title: Mailing lists
@@ -1501,6 +1514,7 @@ en:
       your_appeal_rejected: Your appeal has been rejected
   edit_profile:
     other: Other
+    privacy_redesign_body: The choice to show your follows and followers is now made directly from your profile.
     redesign_body: Profile editing can now be accessed directly from the profile page.
     redesign_button: Go there
     redesign_title: There’s a new profile editing experience
@@ -1533,7 +1547,9 @@ en:
         success_html: You'll now start receiving emails when %{name} publishes new posts. Add %{sender} to your contacts so these posts don't end up in your Spam folder.
         title: You're signed up
         unsubscribe: Unsubscribe
+    disabled: Disabled
     inactive: Inactive
+    no_access: No access
     status: Status
     subscribers: Subscribers
   emoji_styles:
@@ -1649,7 +1665,9 @@ en:
       empty: Empty CSV file
       incompatible_type: Incompatible with the selected import type
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
+      invalid_json_file: 'Invalid JSON file. Error: %{error}'
       over_rows_processing_limit: contains more than %{count} rows
+      status_not_found_warning: Some of your filters hide specific posts that are not known by this server. These posts will not be automatically filtered if they are discovered later by the server.
       too_large: File is too large
     failures: Failures
     imported: Imported
@@ -1666,6 +1684,9 @@ en:
       bookmarks_html:
         one: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{count} post</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{count} posts</strong> from <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: You are about to <strong>replace your filters</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{count} filter</strong> will be added to new filters.
+        other: You are about to <strong>replace your filters</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{count} filters</strong> will be added to new filters.
       domain_blocking_html:
         one: You are about to <strong>replace your domain block list</strong> with up to <strong>%{count} domain</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>replace your domain block list</strong> with up to <strong>%{count} domains</strong> from <strong>%{filename}</strong>.
@@ -1685,6 +1706,9 @@ en:
       bookmarks_html:
         one: You are about to add up to <strong>%{count} post</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
         other: You are about to add up to <strong>%{count} posts</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
+      custom_filters_html:
+        one: You are about to add up to <strong>%{count} filter</strong> from <strong>%{filename}</strong> to your <strong>filters</strong>.
+        other: You are about to add up to <strong>%{count} filters</strong> from <strong>%{filename}</strong> to your <strong>filters</strong>.
       domain_blocking_html:
         one: You are about to <strong>block</strong> up to <strong>%{count} domain</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>block</strong> up to <strong>%{count} domains</strong> from <strong>%{filename}</strong>.
@@ -1721,6 +1745,7 @@ en:
     types:
       blocking: Blocking list
       bookmarks: Bookmarks
+      custom_filters: Filters
       domain_blocking: Domain blocking list
       following: Following list
       lists: Lists

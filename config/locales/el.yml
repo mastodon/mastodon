@@ -500,13 +500,26 @@ el:
     email_subscriptions:
       accounts:
         account: Λογαριασμός
-        active: Ενεργός
         empty:
           hint: Κανένας λογαριασμός δεν έχει συνδρομητές ακόμη.
           no_lists_yet: Καμία λίστα ακόμη
-        inactive: Ανενεργός
         last_email: Τελευταίο email
         lead: Λογαριασμοί που έχουν ενεργοποιήσει τη λειτουργία και έχουν συνδρομητές θα εμφανίζονται παρακάτω.
+        show:
+          confirm_disable_feature: Απενεργοποιήστε τα ενημερωτικά δελτία email για τον/την %{name}; Οι ενημερώσεις μέσω email δεν θα αποστέλλονται πλέον για αυτόν τον λογαριασμό. Ο χρήστης θα εξακολουθεί να είναι σε θέση να ενεργοποιήσει εκ νέου τη λειτουργία στις ρυθμίσεις του λογαριασμού του. Για να καταργήσετε μόνιμα την πρόσβαση σε αυτή τη λειτουργία, επεξεργαστείτε τα δικαιώματα του λογαριασμού στους Ρόλους.
+          confirm_remove_subscriber: Το %{email} δεν θα λαμβάνει πλέον μηνύματα email από τον/την %{name}. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.
+          consent: Οι συνδρομητές έχουν συναινέσει μόνο στη λήψη αναρτήσεων μέσω email. Μην χρησιμοποιείτε αυτήν τη λίστα για άλλους σκοπούς.
+          date: Ημερομηνία εγγραφής
+          disable_feature: Απενεργοποίηση λειτουργίας
+          disabled: Η λειτουργία απενεργοποιήθηκε και τα email δεν αποστέλλονται πλέον σε αυτήν τη λίστα.
+          email: Διεύθυνση email
+          empty:
+            hint: Κανείς δεν έχει εγγραφεί σε αυτόν τον λογαριασμό ακόμη.
+            no_subscribers_yet: Κανένας συνδρομητής ακόμη
+          enable_feature: Ενεργοποίηση λειτουργίας
+          no_access_html: Αυτός ο λογαριασμός δεν έχει πλέον τα απαιτούμενα δικαιώματα για την ενεργοποίηση της λειτουργίας. Αλλάξτε το αυτό στους <a href="%{roles_path}">Ρόλους</a>.
+          title: Ενημερωτικά δελτία του/της %{name}
+          view_account: Προβολή λογαριασμού
         status: Κατάσταση
         subscribers: Συνδρομητές
         title: Λίστες αλληλογραφίας
@@ -1501,6 +1514,7 @@ el:
       your_appeal_rejected: Η έφεση σου απορρίφθηκε
   edit_profile:
     other: Άλλο
+    privacy_redesign_body: Η επιλογή να εμφανίζεις αυτούς που ακολουθείς και τους ακολούθους σου γίνεται τώρα απευθείας από το προφίλ σου.
     redesign_body: Η επεξεργασία προφίλ μπορεί τώρα να προσεγγιστεί απευθείας από τη σελίδα του προφίλ.
     redesign_button: Πηγαίνετε εκεί
     redesign_title: Υπάρχει μια νέα εμπειρία επεξεργασίας προφίλ
@@ -1533,7 +1547,9 @@ el:
         success_html: Τώρα θα αρχίσετε να λαμβάνετε email όταν ο χρήστης %{name} δημοσιεύει νέες αναρτήσεις. Προσθέστε το %{sender} στις επαφές σας, έτσι ώστε αυτές οι αναρτήσεις να μην καταλήγουν στο φάκελο Ανεπιθύμητα.
         title: Έχετε εγγραφεί
         unsubscribe: Κατάργηση συνδρομής
+    disabled: Απενεργοποιημένη
     inactive: Ανενεργή
+    no_access: Χωρίς πρόσβαση
     status: Κατάσταση
     subscribers: Συνδρομητές
   emoji_styles:
@@ -1649,7 +1665,9 @@ el:
       empty: Κενό αρχείο CSV
       incompatible_type: Μη συμβατό με τον επιλεγμένο τύπο εισαγωγής
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
+      invalid_json_file: 'Μη έγκυρο αρχείο JSON. Σφάλμα: %{error}'
       over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
+      status_not_found_warning: Μερικά από τα φίλτρα σας κρύβουν συγκεκριμένες αναρτήσεις που δεν είναι γνωστές από αυτόν τον διακομιστή. Αυτές οι αναρτήσεις δεν θα φιλτραριστούν αυτόματα εάν ανακαλυφθούν αργότερα από τον διακομιστή.
       too_large: Το αρχείο είναι πολύ μεγάλο
     failures: Αποτυχίες
     imported: Εισήχθη
@@ -1666,6 +1684,9 @@ el:
       bookmarks_html:
         one: Πρόκειται να <strong>αντικαταστήσεις τους σελιδοδείκτες σου</strong> με έως και <strong>%{count} ανάρτηση</strong> από το <strong>%{filename}</strong>.
         other: Πρόκειται να <strong>αντικαταστήσεις τους σελιδοδείκτες σου</strong> με έως και <strong>%{count} αναρτήσεις</strong> από το <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Πρόκειται να <strong>αντικαταστήσεις τα φίλτρα σου</strong> με το περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} φίλτρο</strong> θα προστεθεί στα νέα φίλτρα.
+        other: Πρόκειται να <strong>αντικαταστήσεις τα φίλτρα σου</strong> με το περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} φίλτρα</strong> θα προστεθούν στα νέα φίλτρα.
       domain_blocking_html:
         one: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών τομέων</strong> με έως και <strong>%{count} τομέα</strong> από το <strong>%{filename}</strong>.
         other: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών τομέων</strong> με έως και <strong>%{count} τομείς</strong> από το <strong>%{filename}</strong>.
@@ -1673,8 +1694,8 @@ el:
         one: Πρόκειται να <strong>ακολουθήσεις</strong> μέχρι <strong>%{count} λογαριασμό</strong> από το <strong>%{filename}</strong> και <strong>να σταματήσεις να ακολουθείς οποιονδήποτε άλλο</strong>.
         other: Πρόκειται να <strong>ακολουθήσεις</strong> μέχρι <strong>%{count} λογαριασμούς</strong> από το <strong>%{filename}</strong> και <strong>να σταματήσεις να ακολουθείς οποιονδήποτε άλλο</strong>.
       lists_html:
-        one: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} λογαριασμός</strong> θα προστεθεί σε νέες λίστες.
-        other: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} λογαριασμοί</strong> θα προστεθούν σε νέες λίστες.
+        one: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με το περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} λογαριασμός</strong> θα προστεθεί στις νέες λίστες.
+        other: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με το περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{count} λογαριασμοί</strong> θα προστεθούν στις νέες λίστες.
       muting_html:
         one: Πρόκειται να <strong>αντικαταστήσεις τη λίστα λογαριασμών σε σίγαση</strong> με έως και <strong>%{count} λογαριασμό</strong> από το <strong>%{filename}</strong>.
         other: Πρόκειται να <strong>αντικαταστήσεις τη λίστα λογαριασμών σε σίγαση</strong> με έως και <strong>%{count} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
@@ -1685,6 +1706,9 @@ el:
       bookmarks_html:
         one: Πρόκειται να προσθέσεις μέχρι και <strong>%{count} ανάρτηση</strong> από το <strong>%{filename}</strong> στους <strong>σελιδοδείκτες</strong> σου.
         other: Πρόκειται να προσθέσεις μέχρι και <strong>%{count} αναρτήσεις</strong> από το <strong>%{filename}</strong> στους <strong>σελιδοδείκτες</strong> σου.
+      custom_filters_html:
+        one: Πρόκειται να προσθέσεις μέχρι και <strong>%{count} φίλτρο</strong> από το <strong>%{filename}</strong> στα <strong>φίλτρα</strong> σου.
+        other: Πρόκειται να προσθέσεις μέχρι και <strong>%{count} φίλτρα</strong> από το <strong>%{filename}</strong> στα <strong>φίλτρα</strong> σου.
       domain_blocking_html:
         one: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{count} τόμεα</strong> από το <strong>%{filename}</strong>.
         other: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{count} τομείς</strong> από το <strong>%{filename}</strong>.

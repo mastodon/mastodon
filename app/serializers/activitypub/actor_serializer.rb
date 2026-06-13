@@ -44,6 +44,16 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
   end
 
+  class ImageWithDescription < SimpleDelegator
+    attr_reader :description
+
+    def initialize(object, description)
+      super(object)
+
+      @description = description
+    end
+  end
+
   has_one :endpoints, serializer: EndpointsSerializer
 
   has_one :icon,  serializer: ActivityPub::ImageSerializer, if: :avatar_exists?
@@ -120,11 +130,11 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def icon
-    object.avatar
+    ImageWithDescription.new(object.avatar, object.avatar_description)
   end
 
   def image
-    object.header
+    ImageWithDescription.new(object.header, object.header_description)
   end
 
   def public_key

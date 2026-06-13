@@ -23,13 +23,13 @@ RSpec.describe 'statuses/show.html.haml' do
 
     expect(header_tags)
       .to match(/<meta content=".+" property="og:title">/)
-      .and match(/<meta content="article" property="og:type">/)
+      .and include('<meta content="article" property="og:type">')
       .and match(/<meta content=".+" property="og:image">/)
       .and match(%r{<meta content="http://.+" property="og:url">})
 
     expect(header_tags)
       .to match(%r{<meta content="http://.+/media/.+/player" property="twitter:player">})
-      .and match(/<meta content="player" property="twitter:card">/)
+      .and include('<meta content="player" property="twitter:card">')
   end
 
   def header_tags

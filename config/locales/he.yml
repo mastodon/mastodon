@@ -520,13 +520,26 @@ he:
     email_subscriptions:
       accounts:
         account: חשבון
-        active: פעילים
         empty:
           hint: עדיין אין מנוי לאף חשבון.
           no_lists_yet: אין רשימות עדיין
-        inactive: לא פעילים
         last_email: הודעת דואל אחרונה
         lead: חשבונות שבהם הופעלה האפשרות ויש להם מנויים יופיעו להלן.
+        show:
+          confirm_disable_feature: להשבית מנשרי דוא"ל של %{name}? עדכוני דוא"ל לא ישלחו עוד מטעם חשבון זה. המשתמשת תוכל לאפשר מחדש את התכונה מהעדפות החשבון שלה. כדי לכבות לצמיתות גישה לתכונה הזו, יש לערוך את הרשאות החשבון תחת תפקידים.
+          confirm_remove_subscriber: '%{email} לא יקבלו יותר דוא"ל מאת %{name}. פעולה זו לא בלתי הפיכה.'
+          consent: מנויים הסכימו רק לקבלת הודעות דרך דוא"ל. אין להשתש ברשימה זו לאף מטרה אחרת.
+          date: תאריך ההצטרפות
+          disable_feature: כיבוי תכונה
+          disabled: תכונה זו הושבתה והודעות דוא"ל לא נשלחות יותר אל רשימה זו.
+          email: כתובת דוא"ל
+          empty:
+            hint: אין לחשבון זה נרשמים עדיין.
+            no_subscribers_yet: אין מנויים עדיין
+          enable_feature: אפשר תכונה
+          no_access_html: לחשבון זה אין יותר את ההרשאות הדרושות להפעלת התכונה. שנו זאת תחת <a href="%{roles_path}">תפקידים</a>.
+          title: מנשרי דוא"ל של %{name}
+          view_account: הצג חשבון
         status: מצב
         subscribers: מנויים
         title: רשימות תפוצה
@@ -774,6 +787,7 @@ he:
       action_log: ביקורת יומן
       action_taken_by: פעולה בוצעה ע"י
       actions:
+        delete_description_html: ההודעות המדווחות ו/או אוספים יימחקו ותרשם עבירה על מנת להקל בהעלאה של דיווחים עתידיים על אותו החשבון.
         mark_as_sensitive_description_html: המדיה בהודעות מדווחות תסומן כרגישה ועבירה תרשם כדי לעזור לך להסלים באינטראקציות עתידיות עם אותו החשבון.
         other_description_html: ראו אפשרויות נוספות לשליטה בהתנהגות החשבון וכדי לבצע התאמות בתקשורת עם החשבון המדווח.
         resolve_description_html: אף פעולה לא תבוצע נגד החשבון עליו דווח, לא תירשם עבירה, והדיווח ייסגר.
@@ -800,6 +814,7 @@ he:
       confirm: אישור
       confirm_action: נא לאשר פעולת משמעת לגבי חשבון %{acct}
       created_at: מדווח
+      delete_and_resolve: מחק תוכן
       forwarded: קודם
       forwarded_replies_explanation: דווח זה הגיע מחשבון משתמש חיצוני על תוכן חיצוני. הוא הועבר אליך כיוון שהתוכן שדווח הוא בתשובה למשתמש.ת שלך.
       forwarded_to: קודם ל-%{domain}
@@ -1541,6 +1556,7 @@ he:
       your_appeal_rejected: ערעורך נדחה
   edit_profile:
     other: אחר
+    privacy_redesign_body: הבחירה אם להראות את העוקבים והנעקבים שלך עברה להפעלה ישירה מהפרופיל שלך.
     redesign_body: ניתן להגיע לעריכת הפרופיל ישירות מעמוד הפרופיל.
     redesign_button: לך לשם
     redesign_title: מעתה מוצעת חוויית עריכת פרופיל חדשה
@@ -1575,7 +1591,9 @@ he:
         success_html: מעתה תקבלנה דוא"ל כאשר %{name} יפרסמו הודעות חדשות. הוספנה את %{sender} לאנשי הקשר כדי שההודעות האלו לא יגיעו אל פח הספאם שלכן.
         title: נרשמת
         unsubscribe: ביטול ההרשמה
+    disabled: כבוי
     inactive: לא פעילים
+    no_access: אין גישה
     status: מצב
     subscribers: מנויים
   emoji_styles:

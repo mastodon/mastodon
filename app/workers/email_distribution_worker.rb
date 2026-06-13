@@ -15,7 +15,7 @@ class EmailDistributionWorker
 
     with_redis do |redis|
       @status_ids = redis.smembers("email_subscriptions:#{account_id}:next_batch")
-      redis.srem("email_subscriptions:#{account_id}:next_batch", @status_ids)
+      redis.srem("email_subscriptions:#{account_id}:next_batch", @status_ids) unless @status_ids.empty?
     end
 
     return if @account.email_subscriptions.confirmed.empty? || @status_ids.empty?

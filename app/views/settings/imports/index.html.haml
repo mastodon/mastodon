@@ -2,10 +2,10 @@
   = t('settings.import')
 
 = simple_form_for @import, url: settings_imports_path do |f|
-  .field-group
+  .fields-group
     = f.input :type,
               as: :grouped_select,
-              collection: { constructive: %i(following bookmarks lists), destructive: %i(muting blocking domain_blocking) },
+              collection: { constructive: %i(following bookmarks lists), destructive: %i(muting blocking domain_blocking custom_filters) },
               group_label_method: ->(group) { I18n.t("imports.type_groups.#{group.first}") },
               group_method: :last,
               hint: t('imports.preface'),
@@ -33,7 +33,7 @@
 - unless @recent_imports.empty?
   %hr.spacer/
 
-  %h3= t('imports.recent_imports')
+  %h3.heading-medium= t('imports.recent_imports')
 
   .table-wrapper
     %table.table
@@ -61,5 +61,9 @@
 
             %td
               - if import.failure_count.positive?
-                = link_to_if import.state_finished?, import.failure_count, failures_settings_import_path(import, format: :csv) do
-                  = import.failure_count
+                - if import.type == 'custom_filters'
+                  = link_to_if import.state_finished?, import.failure_count, failures_settings_import_path(import, format: :json) do
+                    = import.failure_count
+                - else
+                  = link_to_if import.state_finished?, import.failure_count, failures_settings_import_path(import, format: :csv) do
+                    = import.failure_count
