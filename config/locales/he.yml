@@ -1655,7 +1655,7 @@ he:
       deprecated_api_multiple_keywords: לא ניתן לשנות פרמטרים אלו מהיישומון הזה בגלל שהם חלים על יותר ממילת מפתח אחת. ניתן להשתמש ביישומון מעודכן יותר או בממשק הוובי.
       invalid_context: לא סופק הקשר או הקשר לא תקין
     index:
-      contexts: פילטרים ב %{contexts}
+      contexts: סננים ב־%{contexts}
       delete: למחוק
       empty: אין לך מסננים.
       expires_in: פג תוקף ב %{distance}
@@ -1680,9 +1680,9 @@ he:
       save: שמירת מסנן חדש
       title: הוספת מסנן חדש
     statuses:
-      back_to_filter: חזרה לפילטר
+      back_to_filter: חזרה לסנן
       batch:
-        remove: הסרה ממסנן
+        remove: הסרה מסנן
       index:
         hint: סנן זה חל באופן של בחירת הודעות בודדות ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד הודעות לסנן זה ממנשק הווב.
         title: הודעות שסוננו
@@ -1723,7 +1723,9 @@ he:
       empty: קובץ CSV ריק
       incompatible_type: אין תאימות עם סוג היבוא שנבחר
       invalid_csv_file: 'קובץ CSV שבור. שגיאה: %{error}'
+      invalid_json_file: 'קובץ JSON שבור. שגיאה: %{error}'
       over_rows_processing_limit: מכיל יותר מ-%{count} עמודות
+      status_not_found_warning: חלק מהסננים שלך מסתירים הודעות ספציפיות שאינן מוכרות על ידי שרת זה. הודעות אלו לא יסוננו אוטומטית אם הן יתגלו על ידי השרת מאוחר יותר.
       too_large: קובץ גדול מדי
     failures: כשלים
     imported: יובא
@@ -1744,6 +1746,11 @@ he:
         one: אתם עומדים <strong>להחליף את רשימת הסימניות</strong><strong> בהודעה אחת</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong>.
+      custom_filters_html:
+        many: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
+        one: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>סנן אחד</strong> יתווסף לסננים חדשים.
+        other: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
+        two: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
       domain_blocking_html:
         many: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> <strong>בשרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
@@ -1775,6 +1782,11 @@ he:
         one: אתם עומדים <strong>להוסיף</strong><strong>הודעה אחת</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
         other: אתם עומדים להוסיף עד <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
         two: אתם עומדים <strong>להוסיף</strong> עד <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+      custom_filters_html:
+        many: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
+        one: אתם עומדים להוסיף עד <strong>סנן אחד</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
+        other: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
+        two: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
       domain_blocking_html:
         many: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>לחסום</strong> עד <strong>שרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
@@ -1819,6 +1831,7 @@ he:
     types:
       blocking: רשימת חסימות
       bookmarks: סימניות
+      custom_filters: סננים
       domain_blocking: רשימת שמות מתחם חסומים
       following: רשימת נעקבים
       lists: רשימות

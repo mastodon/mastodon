@@ -1665,7 +1665,9 @@ nl:
       empty: Leeg CSV-bestand
       incompatible_type: Incompatibel met het geselecteerde importtype
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
+      invalid_json_file: 'Ongeldig JSON-bestand. Foutmelding: %{error}'
       over_rows_processing_limit: bevat meer dan %{count} rijen
+      status_not_found_warning: Sommige van je filters verbergen specifieke berichten die niet bekend zijn bij deze server. Deze berichten worden niet automatisch gefilterd wanneer ze later alsnog door de server worden ontdekt.
       too_large: Bestand is te groot
     failures: Fouten
     imported: Geïmporteerd
@@ -1682,6 +1684,9 @@ nl:
       bookmarks_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>bladwijzers te vervangen</strong> met in het totaal <strong>%{count} bericht</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>bladwijzers te vervangen</strong> met in het totaal <strong>%{count} berichten</strong>.
+      custom_filters_html:
+        one: Je staat op het punt om met de inhoud van <strong>%{filename}</strong> je <strong>filters te vervangen</strong>. In totaal wordt <strong>%{count} filter</strong> aan de nieuwe filters toegevoegd.
+        other: Je staat op het punt om met de inhoud van <strong>%{filename}</strong> je <strong>filters te vervangen</strong>. In totaal worden <strong>%{count} filters</strong> aan de nieuwe filters toegevoegd.
       domain_blocking_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>lijst met geblokkeerde domeinen te vervangen</strong> met in het totaal <strong>%{count} domein</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>lijst met geblokkeerde domeinen te vervangen</strong> met in het totaal <strong>%{count} domeinen</strong>.
@@ -1701,6 +1706,9 @@ nl:
       bookmarks_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} bericht</strong> aan je <strong>bladwijzers</strong> toe te voegen.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} berichten</strong> aan je <strong>bladwijzers</strong> toe te voegen.
+      custom_filters_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in totaal <strong>%{count} filter</strong> aan je <strong>filters</strong> toe te voegen.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} filters</strong> aan je <strong>filters</strong> toe te voegen.
       domain_blocking_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} domein te blokkeren</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} domeinen te blokkeren</strong>.
@@ -1737,6 +1745,7 @@ nl:
     types:
       blocking: Geblokkeerde accounts
       bookmarks: Bladwijzers
+      custom_filters: Filters
       domain_blocking: Geblokkeerde domeinen
       following: Gevolgde accounts
       lists: Lijsten

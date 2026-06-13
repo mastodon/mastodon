@@ -1754,7 +1754,9 @@ ga:
       empty: Comhad CSV folamh
       incompatible_type: Neamh-chomhoiriúnach leis an gcineál iompórtála roghnaithe
       invalid_csv_file: 'Comhad CSV neamhbhailí. Earráid: %{error}'
+      invalid_json_file: 'Comhad JSON neamhbhailí. Earráid: %{error}'
       over_rows_processing_limit: níos mó ná %{count} sraitheanna
+      status_not_found_warning: Cuireann cuid de do scagairí poist shonracha i bhfolach nach bhfuil ar eolas ag an bhfreastalaí seo. Ní scagfar na poist seo go huathoibríoch má aimsíonn an freastalaí iad níos déanaí.
       too_large: Tá an comhad ró-mhór
     failures: Teipeanna
     imported: Iompórtáilte
@@ -1777,6 +1779,12 @@ ga:
         one: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
         other: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
         two: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+      custom_filters_html:
+        few: Tá tú ar tí <strong>do scagairí a athsholáthar</strong> le hábhar <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} scagairí</strong> leis na scagairí nua.
+        many: Tá tú ar tí <strong>do scagairí a athsholáthar</strong> le hábhar <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} scagairí</strong> leis na scagairí nua.
+        one: Tá tú ar tí <strong>do scagairí a athsholáthar</strong> le hábhar <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} scagaire</strong> leis na scagairí nua.
+        other: Tá tú ar tí <strong>do scagairí a athsholáthar</strong> le hábhar <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} scagairí</strong> leis na scagairí nua.
+        two: Tá tú ar tí <strong>do scagairí a athsholáthar</strong> le hábhar <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} scagairí</strong> leis na scagairí nua.
       domain_blocking_html:
         few: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
         many: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
@@ -1814,6 +1822,12 @@ ga:
         one: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
         other: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
         two: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+      custom_filters_html:
+        few: Tá tú ar tí suas le <strong>%{count} scagairí</strong> ó <strong>%{filename}</strong> a chur le do <strong>scagairí</strong>.
+        many: Tá tú ar tí suas le <strong>%{count} scagairí</strong> ó <strong>%{filename}</strong> a chur le do <strong>scagairí</strong>.
+        one: Tá tú ar tí suas le <strong>%{count} scagaire</strong> ó <strong>%{filename}</strong> a chur le do <strong>scagairí</strong>.
+        other: Tá tú ar tí suas le <strong>%{count} scagairí</strong> ó <strong>%{filename}</strong> a chur le do <strong>scagairí</strong>.
+        two: Tá tú ar tí suas le <strong>%{count} scagairí</strong> ó <strong>%{filename}</strong> a chur le do <strong>scagairí</strong>.
       domain_blocking_html:
         few: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
         many: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
@@ -1862,6 +1876,7 @@ ga:
     types:
       blocking: Liosta blocála
       bookmarks: Leabharmharcanna
+      custom_filters: Scagairí
       domain_blocking: Liosta blocála fearainn
       following: Liosta ina dhiaidh sin
       lists: Liostaí

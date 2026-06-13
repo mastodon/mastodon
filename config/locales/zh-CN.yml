@@ -1638,7 +1638,7 @@ zh-CN:
       invalid_csv_file: 无效的 CSV 文件。错误：%{error}
       invalid_json_file: 无效的 JSON 文件。错误：%{error}
       over_rows_processing_limit: 包含行数超过了 %{count}
-      status_not_found_warning: 你的部分过滤器将会过滤此服务器尚未知晓的嘟文。如果这些嘟文之后被服务器发现，则将不会被自动过滤。
+      status_not_found_warning: 你的部分过滤器将会隐藏此服务器暂时未知的特定嘟文。如果这些嘟文以后被服务器发现，则将不会被自动过滤。
       too_large: 文件过大
     failures: 失败
     imported: 已导入
@@ -1702,6 +1702,7 @@ zh-CN:
     types:
       blocking: 屏蔽列表
       bookmarks: 书签
+      custom_filters: 过滤器
       domain_blocking: 站点屏蔽列表
       following: 关注列表
       lists: 列表
