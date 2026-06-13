@@ -5,7 +5,7 @@ module Admin
     def index
       authorize :ip_block, :index?
 
-      @ip_blocks = IpBlock.order(ip: :asc).page(params[:page])
+      @ip_blocks = filter_by_ip.page(params[:page])
       @form      = Form::IpBlockBatch.new
     end
 
@@ -43,6 +43,19 @@ module Admin
 
     private
 
+    def filter_by_ip
+      scope = IpBlock.order(ip: :asc).page(params[:page])
+
+      if params[:ip].present?
+        if full_ip?(params[:ip])
+          scope.merge!(IpBlock.matches_ip(params[:ip]))
+        else
+          scope.merge!(IpBlock.matches_partial_ip(params[:ip]))
+        end
+      end
+      scope
+    end
+
     def resource_params
       params
         .expect(ip_block: [:ip, :severity, :comment, :expires_in])
@@ -55,6 +68,13 @@ module Admin
     def form_ip_block_batch_params
       params
         .expect(form_ip_block_batch: [ip_block_ids: []])
+    end
+
+    def full_ip?(ip)
+      IPAddr.new(ip)
+      true
+    rescue IPAddr::InvalidAddressError
+      false
     end
   end
 end
