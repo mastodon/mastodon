@@ -31,7 +31,7 @@ RSpec.describe 'ActivityPub Follower Synchronizations' do
     context 'with signature from example.com' do
       subject { get account_followers_synchronization_path(account_username: account.username), headers: nil, sign_with: remote_account }
 
-      let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
+      let(:remote_account) { Fabricate(:account_with_private_key, domain: 'example.com', uri: 'https://example.com/instance') }
 
       it 'returns http success and cache control and activity json types and correct items' do
         subject

@@ -229,7 +229,7 @@ RSpec.describe 'ActivityPub Replies' do
     context 'with signature' do
       subject { get account_status_replies_path(account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts), headers: nil, sign_with: remote_querier }
 
-      let(:remote_querier) { Fabricate(:account, domain: 'example.com') }
+      let(:remote_querier) { Fabricate(:account_with_private_key, domain: 'example.com') }
 
       it_behaves_like 'allowed access'
 

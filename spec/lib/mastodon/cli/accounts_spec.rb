@@ -655,7 +655,7 @@ RSpec.describe Mastodon::CLI::Accounts do
 
     context 'when there are duplicate URI accounts' do
       before do
-        Fabricate.times(2, :account, domain: 'host.example', uri: uri)
+        Fabricate.times(2, :account, domain: 'host.example', legacy_keypair: true, uri: uri)
         allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(service_double)
       end
 
@@ -951,15 +951,15 @@ RSpec.describe Mastodon::CLI::Accounts do
       let(:arguments) { [account.username] }
 
       it 'correctly rotates keys for the specified account' do
-        old_private_key = account.private_key
-        old_public_key = account.public_key
+        old_private_key = account.keypair.private_key
+        old_public_key = account.keypair.public_key
 
         expect { subject }
           .to output_results('OK')
         account.reload
 
-        expect(account.private_key).to_not eq(old_private_key)
-        expect(account.public_key).to_not eq(old_public_key)
+        expect(account.keypair.private_key).to_not eq(old_private_key)
+        expect(account.keypair.public_key).to_not eq(old_public_key)
       end
 
       it 'broadcasts the new keys for the specified account' do
@@ -986,15 +986,15 @@ RSpec.describe Mastodon::CLI::Accounts do
       let(:options) { { all: true } }
 
       it 'correctly rotates keys for all local accounts' do
-        old_private_keys = accounts.map(&:private_key)
-        old_public_keys = accounts.map(&:public_key)
+        old_private_keys = accounts.map { |account| account.keypair.private_key }
+        old_public_keys = accounts.map { |account| account.keypair.public_key }
 
         expect { subject }
           .to output_results('rotated')
         accounts.each(&:reload)
 
-        expect(accounts.map(&:private_key)).to_not eq(old_private_keys)
-        expect(accounts.map(&:public_key)).to_not eq(old_public_keys)
+        expect(accounts.map { |account| account.keypair.private_key }).to_not eq(old_private_keys)
+        expect(accounts.map { |account| account.keypair.public_key }).to_not eq(old_public_keys)
       end
 
       it 'broadcasts the new keys for each account' do

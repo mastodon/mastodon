@@ -147,7 +147,7 @@ RSpec.describe 'Status Activity' do
     context 'with signature' do
       subject { get activity_account_status_path(account.username, status), headers: nil, sign_with: remote_account }
 
-      let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+      let(:remote_account) { Fabricate(:account_with_private_key, domain: 'example.com') }
 
       context 'when status is public' do
         before { status.update(visibility: :public) }

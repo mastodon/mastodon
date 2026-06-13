@@ -74,4 +74,21 @@ class Keypair < ApplicationRecord
       type: :rsa
     )
   end
+
+  def self.from_worker_arg(account, private_key_pem_or_hash)
+    if private_key_pem_or_hash.is_a?(String)
+      account.keypairs.build(
+        private_key: private_key_pem_or_hash,
+        uri: ActivityPub::TagManager.instance.key_uri_for(account),
+        type: :rsa
+      )
+    else
+      account.keypairs.build(
+        private_key: private_key_pem_or_hash['private_key'],
+        public_key: private_key_pem_or_hash['public_key'],
+        uri: private_key_pem_or_hash['uri'],
+        type: private_key_pem_or_hash['type']
+      )
+    end
+  end
 end
