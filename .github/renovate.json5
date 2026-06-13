@@ -15,6 +15,28 @@
   // to `null` after any other rule set it to something.
   dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
   postUpdateOptions: ['yarnDedupeHighest'],
+  regexManagers: [
+    {
+      // Update Ruby version in devcontainer Dockerfile to match .ruby-version
+      fileMatch: ['^.devcontainer/Dockerfile$'],
+      matchStrings: [
+        'FROM ghcr\\.io/rails/devcontainer/images/ruby:(?<devcontainerVersion>[^-]+)-(?<currentValue>.*)',
+      ],
+      depNameTemplate: 'ruby',
+      datasourceTemplate: 'ruby-version',
+      versioningTemplate: 'ruby',
+    },
+    {
+      // Update devcontainer version in devcontainer Dockerfile
+      fileMatch: ['^.devcontainer/Dockerfile$'],
+      matchStrings: [
+        'FROM ghcr\\.io/rails/devcontainer/images/ruby:(?<currentValue>[^-]+)-',
+      ],
+      depNameTemplate: 'ghcr.io/rails/devcontainer/images/ruby',
+      datasourceTemplate: 'docker',
+      versioningTemplate: 'semver',
+    },
+  ],
   // The types are now included in recent versions,we ignore them here until we upgrade and remove the dependency
   ignoreDeps: ['@types/emoji-mart'],
   packageRules: [
@@ -53,6 +75,26 @@
       // Require Dependency Dashboard Approval for major & minor bumps for the ruby image, this needs to be synced with .ruby-version
       matchManagers: ['dockerfile'],
       matchPackageNames: ['moritzheiber/ruby-jemalloc'],
+      matchUpdateTypes: ['minor', 'major'],
+      dependencyDashboardApproval: true,
+    },
+    {
+      // Group .ruby-version and devcontainer Ruby version updates together
+      matchManagers: ['ruby-version', 'regex'],
+      matchPackageNames: ['ruby'],
+      groupName: 'Ruby',
+    },
+    {
+      // Require Dependency Dashboard Approval for Ruby version bumps (both .ruby-version and devcontainer)
+      matchManagers: ['ruby-version', 'regex'],
+      matchPackageNames: ['ruby'],
+      matchUpdateTypes: ['minor', 'major'],
+      dependencyDashboardApproval: true,
+    },
+    {
+      // Require Dependency Dashboard Approval for devcontainer version bumps
+      matchManagers: ['regex'],
+      matchPackageNames: ['ghcr.io/rails/devcontainer/images/ruby'],
       matchUpdateTypes: ['minor', 'major'],
       dependencyDashboardApproval: true,
     },
