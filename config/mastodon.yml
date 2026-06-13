@@ -9,7 +9,7 @@ shared:
     environment: <%= ENV.fetch('DONATION_CAMPAIGNS_ENVIRONMENT', nil)&.to_json %>
   source:
     base_url: <%= ENV.fetch('SOURCE_BASE_URL', nil)&.to_json %>
-    repository: <%= ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon') %>
+    repository: <%= ENV.fetch('GITHUB_REPOSITORY', nil).presence || 'mastodon/mastodon' %>
     tag: <%= ENV.fetch('SOURCE_TAG', nil) %>
   version:
     metadata: <%= ENV.fetch('MASTODON_VERSION_METADATA', nil)&.to_json %>
