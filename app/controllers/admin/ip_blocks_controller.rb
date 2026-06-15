@@ -48,7 +48,7 @@ module Admin
 
       if params[:ip].present?
         if full_ip?(params[:ip])
-          scope.merge!(IpBlock.matches_ip(params[:ip]))
+          scope.merge!(IpBlock.contained_by(params[:ip]))
         else
           scope.merge!(IpBlock.matches_partial_ip(params[:ip]))
         end

@@ -33,7 +33,6 @@ class IpBlock < ApplicationRecord
 
   after_commit :reset_cache
 
-  scope :matches_ip, ->(value) { where(ip: value) }
   scope :matches_partial_ip, ->(value) { where(ip_as_text.matches("#{value}%")) }
 
   def to_cidr
