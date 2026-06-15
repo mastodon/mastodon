@@ -496,6 +496,16 @@ ko:
           hint: 구독자를 가진 계정이 없습니다.
           no_lists_yet: 리스트가 없습니다
         last_email: 최근 이메일
+        show:
+          date: 가입 날짜
+          disable_feature: 기능 비활성화
+          email: 이메일 주소
+          empty:
+            hint: 이 계정은 아직 아무도 구독하지 않았습니다.
+            no_subscribers_yet: 구독자가 없습니다
+          enable_feature: 기능 활성화
+          title: "%{name}의 이메일 뉴스레터"
+          view_account: 계정 보기
         status: 상태
         subscribers: 구독자
         title: 메일링 리스트
@@ -528,6 +538,7 @@ ko:
           cannot_be_enabled: 이 서버의 기술제공자가 이 기능을 활성화하지 않았습니다.
           description: 이 기능은 지정된 계정들이 프로필에 위젯을 추가해 마스토돈 계정 없이도 이메일을 통해 게시물을 받아볼 수 있도록 허용합니다.
           get_started: 시작하기
+        lead: 방문자가 이 서버의 전용 계정을 통해 이메일로 게시물을 받을 수 있도록 허용합니다.
         title: 이메일 뉴스레터
       roles:
         accounts: 계정
@@ -1478,6 +1489,7 @@ ko:
     confirmation:
       action: 이메일 주소 확인
       subject: 이메일 주소 확인
+      title: "%{name} 님으로부터 이메일 업데이트를 받겠습니까?"
     notification:
       create_account: 마스토돈 계정 생성
       subject:
@@ -1493,7 +1505,9 @@ ko:
         changed_your_mind: 마음이 바뀌었나요?
         title: 가입되었습니다
         unsubscribe: 구독 해제
+    disabled: 비활성화됨
     inactive: 비활성
+    no_access: 접근 불가
     status: 상태
     subscribers: 구독자
   emoji_styles:
@@ -1602,6 +1616,7 @@ ko:
       empty: 빈 CSV 파일
       incompatible_type: 호환되지 않는 가져오기 유형을 선택함
       invalid_csv_file: '올바르지 않은 CSV 파일입니다. 오류: %{error}'
+      invalid_json_file: '올바르지 않은 JSON 파일입니다. 오류: %{error}'
       over_rows_processing_limit: "%{count}개 이상의 열을 포함합니다"
       too_large: 파일이 너무 큼
     failures: 실패
@@ -1630,6 +1645,8 @@ ko:
         other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 차단하려고 합니다."
       bookmarks_html:
         other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 게시물</strong>을 북마크에 추가하려고 합니다."
+      custom_filters_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 필터</strong>를 <strong>필터</strong>에 추가하려고 합니다."
       domain_blocking_html:
         other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 도메인</strong>을 차단하려고 합니다."
       following_html:
@@ -1662,6 +1679,7 @@ ko:
     types:
       blocking: 차단한 계정 목록
       bookmarks: 북마크
+      custom_filters: 필터
       domain_blocking: 도메인 차단 목록
       following: 팔로잉 목록
       lists: 리스트
@@ -1736,7 +1754,7 @@ ko:
     past_migrations: 과거 이주
     proceed_with_move: 팔로워 이동
     redirected_msg: 당신의 계정은 이제 %{acct} 로 리다이렉트됩니다.
-    redirecting_to: 당신의 계정은 %{acct} 로 리다이렉트됩니다.
+    redirecting_to: 내 계정이 %{acct}에 리디렉트됩니다.
     set_redirect: 리디렉션 설정
     warning:
       backreference_required: 새 계정은 이 계정으로 역참조를 하도록 설정되어 있어야 합니다

@@ -1667,7 +1667,9 @@ es:
       empty: Archivo CSV vacío
       incompatible_type: Incompatible con el tipo de importación seleccionado
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
+      invalid_json_file: 'Fichero JSON no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
+      status_not_found_warning: Algunos de tus filtros ocultan publicaciones específicas que no son conocidas por este servidor. Estas publicaciones no se filtrarán automáticamente si más tarde son descubiertas por el servidor.
       too_large: El archivo es demasiado grande
     failures: Fallos
     imported: Importado
@@ -1703,6 +1705,9 @@ es:
       bookmarks_html:
         one: Está a punto de añadir <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
         other: Está a punto de añadir hasta <strong>%{count} publicaciones</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      custom_filters_html:
+        one: Estás a punto de añadir hasta <strong>%{count} filtro</strong> desde <strong>%{filename}</strong> a tus <strong>filtros</strong>.
+        other: Estás a punto de añadir hasta <strong>%{count} filtros</strong> desde <strong>%{filename}</strong> a tus <strong>filtros</strong>.
       domain_blocking_html:
         one: Estás a punto de <strong>bloquear</strong> <strong>%{count} dominio</strong> proveniente de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
@@ -1739,6 +1744,7 @@ es:
     types:
       blocking: Lista de bloqueados
       bookmarks: Marcadores
+      custom_filters: Filtros
       domain_blocking: Lista de dominios bloqueados
       following: Lista de seguidos
       lists: Listas
