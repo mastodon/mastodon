@@ -186,7 +186,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       MastodonThemes(),
       MastodonAssetsManifest(),
       MastodonServiceWorkerLocales(),
-      MastodonServiceWorkerChunkPaths(`/${outDirName}/`),
+      MastodonServiceWorkerChunkPaths(),
       legacy({
         renderLegacyChunks: false,
         modernPolyfills: true,

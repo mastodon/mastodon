@@ -13,17 +13,27 @@
    correctly regardless of the URL the worker is served from.
 */
 
-import type { Plugin } from 'vite';
+import type { Plugin, ResolvedConfig } from 'vite';
 
 const SERVICE_WORKER_FILENAME = 'sw.js';
 
-export function MastodonServiceWorkerChunkPaths(base: string): Plugin {
+export function MastodonServiceWorkerChunkPaths(): Plugin {
+  let config: ResolvedConfig;
+
   return {
     name: 'mastodon-sw-chunk-paths',
+    configResolved(resolvedConfig) {
+      config = resolvedConfig;
+    },
     renderChunk(code, chunk) {
       if (chunk.fileName !== SERVICE_WORKER_FILENAME) {
         return null;
       }
+
+      // Resolve the base from the final Vite config rather than receiving it as
+      // an argument, so forks or other plugins that alter `base` are respected.
+      // Vite normalises `base` to always include a trailing slash.
+      const { base } = config;
 
       // Drive the rewrite from the chunk's actual dependency list rather than a
       // generic regex, so we only ever touch real (hashed) chunk specifiers and
