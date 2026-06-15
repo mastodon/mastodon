@@ -46,16 +46,23 @@ function just(keyName: string): KeyMatcher {
 }
 
 /**
- * Matches any single key or matcher function out of those provided
+ * Matches any single key out of those provided
  */
-function any(...keysOrMatchers: (string | KeyMatcher)[]): KeyMatcher {
+function any(...keys: string[]): KeyMatcher {
+  return (event) => ({
+    isMatch: keys.some((keyName) => just(keyName)(event).isMatch),
+    priority: hotkeyPriority.singleKey,
+  });
+}
+
+/**
+ * Matches any matcher function out of those provided
+ */
+function anyMatcher(...matchers: KeyMatcher[]): KeyMatcher {
   return (event) => {
     let match: ReturnType<KeyMatcher> | undefined;
 
-    for (const keyOrMatcher of keysOrMatchers) {
-      const matcher =
-        typeof keyOrMatcher === 'string' ? just(keyOrMatcher) : keyOrMatcher;
-
+    for (const matcher of matchers) {
       const matcherResult = matcher(event);
       if (matcherResult.isMatch) {
         match = matcherResult;
@@ -126,8 +133,8 @@ const hotkeyMatcherMap = {
   mention: just('m'),
   open: any('enter', 'o'),
   openProfile: just('p'),
-  moveDown: any('j', optionPlus('PageDown')),
-  moveUp: any('k', optionPlus('PageUp')),
+  moveDown: anyMatcher(just('j'), optionPlus('PageDown')),
+  moveUp: anyMatcher(just('k'), optionPlus('PageUp')),
   moveToTop: just('0'),
   toggleHidden: just('x'),
   toggleSensitive: just('h'),
