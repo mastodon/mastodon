@@ -46,13 +46,30 @@ function just(keyName: string): KeyMatcher {
 }
 
 /**
- * Matches any single key out of those provided
+ * Matches any single key or matcher function out of those provided
  */
-function any(...keys: string[]): KeyMatcher {
-  return (event) => ({
-    isMatch: keys.some((keyName) => just(keyName)(event).isMatch),
-    priority: hotkeyPriority.singleKey,
-  });
+function any(...keysOrMatchers: (string | KeyMatcher)[]): KeyMatcher {
+  return (event) => {
+    let match: ReturnType<KeyMatcher> | undefined;
+
+    for (const keyOrMatcher of keysOrMatchers) {
+      const matcher =
+        typeof keyOrMatcher === 'string' ? just(keyOrMatcher) : keyOrMatcher;
+
+      const matcherResult = matcher(event);
+      if (matcherResult.isMatch) {
+        match = matcherResult;
+        break;
+      }
+    }
+
+    return (
+      match ?? {
+        isMatch: false,
+        priority: hotkeyPriority.singleKey,
+      }
+    );
+  };
 }
 
 /**
