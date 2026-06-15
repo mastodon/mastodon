@@ -188,7 +188,7 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
 
       if (shouldHandleEvent) {
         const matchCandidates: {
-          // A candidate will be have an undefined handler if it's matched,
+          // A candidate can have an undefined handler if it's matched,
           // but handled in a parent component rather than this one.
           handler: HandlerFunction | undefined;
           priority: number;
