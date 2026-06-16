@@ -1,9 +1,10 @@
 ---
 zh-CN:
   about:
-    about_mastodon_html: 来自未来的社交网络：无广告、无监视、去中心化、合乎道德！使用 Mastodon 夺回你的数据！
-    contact_missing: 未设定
+    about_mastodon_html: 迎接未来的社交网络：拒绝广告，告别商业监视，坚持伦理设计，拥抱去中心化！加入 Mastodon，夺回你的数据主权！
+    contact_missing: 未设置
     contact_unavailable: 未公开
+    default_thumbnail_description: 两只微笑的卡通长毛象（看起来像大象）互相扔纸飞机。蔚蓝的穹顶之下，周遭环绕着林木葱郁的漂浮星球，成群的长毛象在其中伫立、繁衍生息。
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
   accounts:
@@ -14,7 +15,7 @@ zh-CN:
     following:
       other: 正在关注
     instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于联合目的，不应该被停用。
-    last_active: 上次活跃
+    last_active: 上次活跃时间
     link_verified_on: 此链接的所有权已在 %{date} 验证
     nothing_here: 空空如也！
     pin_errors:
@@ -82,7 +83,7 @@ zh-CN:
       invite_request_text: 加入理由
       invited_by: 邀请者为
       ip: IP 地址
-      joined: 加入于
+      joined: 加入时间
       location:
         all: 全部
         local: 本站
@@ -90,9 +91,9 @@ zh-CN:
         title: 位置
       login_status: 登录状态
       media_attachments: 媒体文件
-      memorialize: 设为追悼账号
-      memorialized: 已设为追悼账号
-      memorialized_msg: 成功将 %{username} 转换为追悼账号
+      memorialize: 转为纪念账号
+      memorialized: 已转为纪念账号
+      memorialized_msg: 成功将 %{username} 转为纪念账号
       moderation:
         active: 活跃
         all: 全部
@@ -113,11 +114,11 @@ zh-CN:
       previous_strikes: 既往处罚
       previous_strikes_description_html:
         other: 此账号已有<strong>%{count}</strong>次处罚。
-      promote: 设为管理员
+      promote: 提升权限
       protocol: 协议
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
-      redownload: 刷新账号信息
+      redownload: 刷新个人资料
       redownloaded_msg: 成功从来源站点刷新 %{username} 的账号信息
       reject: 拒绝
       rejected_msg: 已拒绝 %{username} 的注册申请
@@ -215,7 +216,7 @@ zh-CN:
         enable_relay: 启用中继站
         enable_sign_in_token_auth_user: 为用户启用邮件令牌身份验证
         enable_user: 启用用户
-        memorialize_account: 设为追悼账号
+        memorialize_account: 转为纪念账号
         promote_user: 指派管理员
         publish_terms_of_service: 发布服务条款
         reject_appeal: 驳回申诉
@@ -284,7 +285,7 @@ zh-CN:
         enable_relay_html: "%{name} 启用了中继站 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 为 %{target} 启用了邮件令牌身份验证"
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
-        memorialize_account_html: "%{name} 将 %{target} 设置为追悼账号"
+        memorialize_account_html: "%{name} 将 %{target} 转为纪念账号"
         promote_user_html: "%{name} 将用户 %{target} 设为管理员"
         publish_terms_of_service_html: "%{name} 更新了服务条款"
         reject_appeal_html: "%{name} 驳回了 %{target} 对审核结果的申诉"
@@ -608,7 +609,7 @@ zh-CN:
         select_capabilities: 选择能力
         sign_in: 登录
         status: 状态
-        title: 联邦宇宙辅助服务提供商（Fediverse Auxiliary Service Providers）
+        title: 联邦宇宙辅助服务提供商
       title: FASP
     follow_recommendations:
       description_html: "<strong>“关注推荐”可帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账号。推荐会每日更新，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
