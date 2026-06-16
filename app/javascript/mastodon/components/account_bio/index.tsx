@@ -1,9 +1,10 @@
 import classNames from 'classnames';
 
-import { useAppSelector } from '../store';
+import { useAppSelector } from '../../store';
+import { EmojiHTML } from '../emoji/html';
+import { useElementHandledLink } from '../status/handled_link';
 
-import { EmojiHTML } from './emoji/html';
-import { useElementHandledLink } from './status/handled_link';
+import classes from './styles.module.scss';
 
 interface AccountBioProps {
   className?: string;
@@ -12,7 +13,7 @@ interface AccountBioProps {
 }
 
 export const AccountBio: React.FC<AccountBioProps> = ({
-  className,
+  className = classes.bio,
   accountId,
   showDropdown = false,
 }) => {
