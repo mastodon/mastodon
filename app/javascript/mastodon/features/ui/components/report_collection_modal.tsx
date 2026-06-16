@@ -13,6 +13,7 @@ import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_targ
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAppDispatch } from 'mastodon/store';
 
+import Category from '../../report/category';
 import Comment from '../../report/comment';
 
 const messages = defineMessages({
@@ -60,8 +61,11 @@ export const ReportCollectionModal: React.FC<{
     'idle' | 'submitting' | 'submitted' | 'error'
   >('idle');
 
-  const [step, setStep] = useState<'comment' | 'thanks'>('comment');
+  const [step, setStep] = useState<'category' | 'comment' | 'thanks'>(
+    'category',
+  );
 
+  const [category, setCategory] = useState<string | null>(null);
   const [comment, setComment] = useState('');
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
 
@@ -71,6 +75,10 @@ export const ReportCollectionModal: React.FC<{
     } else {
       setSelectedDomains((domains) => domains.filter((d) => d !== domain));
     }
+  }, []);
+
+  const submitCategory = useCallback(() => {
+    setStep('comment');
   }, []);
 
   const handleSubmit = useCallback(() => {
@@ -85,7 +93,7 @@ export const ReportCollectionModal: React.FC<{
           forward_to_domains: selectedDomains,
           comment,
           forward: selectedDomains.length > 0,
-          category: 'spam',
+          category: category ?? 'other',
         },
         () => {
           setSubmitState('submitted');
@@ -96,7 +104,7 @@ export const ReportCollectionModal: React.FC<{
         },
       ),
     );
-  }, [account_id, comment, dispatch, collectionId, selectedDomains]);
+  }, [account_id, category, comment, dispatch, collectionId, selectedDomains]);
 
   if (!account) {
     return null;
@@ -108,15 +116,19 @@ export const ReportCollectionModal: React.FC<{
   let stepComponent;
 
   switch (step) {
+    case 'category':
+      stepComponent = (
+        <Category
+          onNextStep={submitCategory}
+          startedFrom='collection'
+          category={category}
+          onChangeCategory={setCategory}
+        />
+      );
+      break;
     case 'comment':
       stepComponent = (
         <Comment
-          modalTitle={
-            <FormattedMessage
-              id='report.collection_comment'
-              defaultMessage='Why do you want to report this collection?'
-            />
-          }
           submitError={
             submitState === 'error' && (
               <Callout
