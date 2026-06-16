@@ -49,7 +49,7 @@ const messages = defineMessages({
 });
 
 type SimulatedMediaAttachmentJSON = ApiMediaAttachmentJSON & {
-  unattached?: boolean;
+  attached?: boolean;
 };
 
 const simulateModifiedApiResponse = (
@@ -67,7 +67,8 @@ const simulateModifiedApiResponse = (
         y: parseFloat(y ?? '0'),
       },
     },
-  } as unknown as SimulatedMediaAttachmentJSON;
+    attached: true,
+  } as SimulatedMediaAttachmentJSON;
 
   return data;
 };
@@ -137,7 +138,7 @@ export const changeUploadCompose = createDataLoadingThunk(
   (media: SimulatedMediaAttachmentJSON) => {
     return {
       media,
-      attached: typeof media.unattached !== 'undefined' && !media.unattached,
+      attached: typeof media.attached !== 'undefined' && media.attached,
     };
   },
   {
