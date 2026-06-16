@@ -16,6 +16,7 @@ module Mastodon
 
       def call(env)
         file = @file_handler.attempt(env)
+
         # If the request is not a static file, move on!
         return @app.call(env) if file.nil?
 
