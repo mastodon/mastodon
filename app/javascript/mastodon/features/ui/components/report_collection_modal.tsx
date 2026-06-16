@@ -90,7 +90,7 @@ export const ReportCollectionModal: React.FC<{
   }, []);
 
   const handleNextStep = useCallback(() => {
-    if (step === 'category' && category === 'legal') {
+    if (step === 'category' && category === 'violation') {
       setStep('rules');
     } else {
       setStep('comment');
