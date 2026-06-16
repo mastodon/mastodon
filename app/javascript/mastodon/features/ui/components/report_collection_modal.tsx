@@ -15,6 +15,7 @@ import { useAppDispatch } from 'mastodon/store';
 
 import Category from '../../report/category';
 import Comment from '../../report/comment';
+import Rules from '../../report/rules';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -61,13 +62,14 @@ export const ReportCollectionModal: React.FC<{
     'idle' | 'submitting' | 'submitted' | 'error'
   >('idle');
 
-  const [step, setStep] = useState<'category' | 'comment' | 'thanks'>(
+  const [step, setStep] = useState<'category' | 'rules' | 'comment' | 'thanks'>(
     'category',
   );
 
   const [category, setCategory] = useState<
     'spam' | 'legal' | 'violation' | 'other' | null
   >(null);
+  const [selectedRuleIds, setSelectedRuleIds] = useState<string[]>([]);
   const [comment, setComment] = useState('');
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
 
@@ -79,9 +81,21 @@ export const ReportCollectionModal: React.FC<{
     }
   }, []);
 
-  const submitCategory = useCallback(() => {
-    setStep('comment');
+  const handleRuleToggle = useCallback((ruleId: string) => {
+    setSelectedRuleIds((ruleIds) =>
+      ruleIds.includes(ruleId)
+        ? ruleIds.filter((id) => ruleId !== id)
+        : [...ruleIds, ruleId],
+    );
   }, []);
+
+  const handleNextStep = useCallback(() => {
+    if (step === 'category' && category === 'legal') {
+      setStep('rules');
+    } else {
+      setStep('comment');
+    }
+  }, [category, step]);
 
   const handleSubmit = useCallback(() => {
     setSubmitState('submitting');
@@ -96,6 +110,7 @@ export const ReportCollectionModal: React.FC<{
           comment,
           forward: selectedDomains.length > 0,
           category: category ?? 'other',
+          rule_ids: selectedRuleIds,
         },
         () => {
           setSubmitState('submitted');
@@ -106,7 +121,15 @@ export const ReportCollectionModal: React.FC<{
         },
       ),
     );
-  }, [account_id, category, comment, dispatch, collectionId, selectedDomains]);
+  }, [
+    account_id,
+    category,
+    selectedRuleIds,
+    comment,
+    dispatch,
+    collectionId,
+    selectedDomains,
+  ]);
 
   if (!account) {
     return null;
@@ -121,10 +144,19 @@ export const ReportCollectionModal: React.FC<{
     case 'category':
       stepComponent = (
         <Category
-          onNextStep={submitCategory}
+          onNextStep={handleNextStep}
           startedFrom='collection'
           category={category}
           onChangeCategory={setCategory}
+        />
+      );
+      break;
+    case 'rules':
+      stepComponent = (
+        <Rules
+          onNextStep={handleNextStep}
+          selectedRuleIds={selectedRuleIds}
+          onToggle={handleRuleToggle}
         />
       );
       break;
