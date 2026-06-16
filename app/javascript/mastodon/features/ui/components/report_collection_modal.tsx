@@ -65,7 +65,9 @@ export const ReportCollectionModal: React.FC<{
     'category',
   );
 
-  const [category, setCategory] = useState<string | null>(null);
+  const [category, setCategory] = useState<
+    'spam' | 'legal' | 'violation' | 'other' | null
+  >(null);
   const [comment, setComment] = useState('');
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
 
