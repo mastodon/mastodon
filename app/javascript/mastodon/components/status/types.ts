@@ -1,27 +1,28 @@
-import type { ComponentClass, MouseEventHandler, ReactNode } from 'react';
+import type { ComponentType, MouseEventHandler, ReactNode } from 'react';
 
-import type { Account } from '@/mastodon/models/account';
-import type { Status } from '@/mastodon/models/status';
+import type { Account as TAccount } from '@/mastodon/models/account';
+import type { Status as TStatus } from '@/mastodon/models/status';
 
 import type { StatusHeaderRenderFn } from './header';
+import Status from './index';
 
 // Taken from the Status component.
 export interface StatusProps {
-  status: Status;
-  account: Account;
+  status: TStatus;
+  account: TAccount;
   children?: ReactNode;
   previousId?: string;
   nextInReplyToId?: string;
   rootId?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
-  onReply: (status: Status) => void;
-  onFavourite: (status: Status) => void;
-  onReblog: (status: Status, event?: unknown) => void;
-  onQuote: (status: Status) => void;
-  onDelete?: (status: Status) => void;
-  onDirect?: (status: Status) => void;
-  onMention: (account: Account) => void;
-  onPin?: (status: Status) => void;
+  onReply: (status: TStatus) => void;
+  onFavourite: (status: TStatus) => void;
+  onReblog: (status: TStatus, event?: unknown) => void;
+  onQuote: (status: TStatus) => void;
+  onDelete?: (status: TStatus) => void;
+  onDirect?: (status: TStatus) => void;
+  onMention: (account: TAccount) => void;
+  onPin?: (status: TStatus) => void;
   onOpenMedia: (
     statusId: string,
     media: unknown,
@@ -34,14 +35,14 @@ export interface StatusProps {
     lang?: string,
     options?: unknown,
   ) => void;
-  onBlock?: (status: Status) => void;
-  onAddFilter?: (status: Status) => void;
-  onEmbed?: (status: Status) => void;
+  onBlock?: (status: TStatus) => void;
+  onAddFilter?: (status: TStatus) => void;
+  onEmbed?: (status: TStatus) => void;
   onHeightChange?: () => void;
-  onToggleHidden: (status: Status) => void;
-  onToggleCollapsed: (status: Status, isCollapsed: boolean) => void;
-  onTranslate: (status: Status) => void;
-  onInteractionModal?: (type: string, status: Status) => void;
+  onToggleHidden: (status: TStatus) => void;
+  onToggleCollapsed: (status: TStatus, isCollapsed: boolean) => void;
+  onTranslate: (status: TStatus) => void;
+  onInteractionModal?: (type: string, status: TStatus) => void;
   muted?: boolean;
   hidden?: boolean;
   unread?: boolean;
@@ -58,7 +59,7 @@ export interface StatusProps {
   skipPrepend?: boolean;
   avatarSize?: number;
   deployPictureInPicture: (
-    status: Status,
+    status: TStatus,
     type: string,
     mediaProps: unknown,
   ) => void;
@@ -73,7 +74,4 @@ export interface StatusProps {
   };
 }
 
-export type StatusComponent = ComponentClass<
-  StatusProps,
-  { showMedia?: boolean; showDespiteFilter?: boolean }
->;
+export const TypedStatus = Status as ComponentType<StatusProps>;

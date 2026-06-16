@@ -1,5 +1,6 @@
 import { Map as ImmutableMap, List } from 'immutable';
 
+import type { ApiPollJSON } from '@/mastodon/api_types/polls';
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
 import type { ApiStatusJSON } from '@/mastodon/api_types/statuses';
 import type {
@@ -99,6 +100,28 @@ export const statusFactoryState = (
     account: options.account?.id ?? '1',
     tags: List(options.tags),
   }) as unknown as Status;
+
+export const pollFactory: FactoryFunction<ApiPollJSON> = (data = {}) => ({
+  id: '1',
+  expires_at: '',
+  expired: false,
+  multiple: false,
+  voters_count: 0,
+  votes_count: 0,
+  voted: false,
+  options: [
+    {
+      title: 'Option 1',
+      votes_count: 0,
+    },
+    {
+      title: 'Option 2',
+      votes_count: 0,
+    },
+  ],
+  emojis: [],
+  ...data,
+});
 
 export const relationshipsFactory: FactoryFunction<ApiRelationshipJSON> = ({
   id,
