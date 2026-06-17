@@ -1,5 +1,6 @@
-import { Map as ImmutableMap, List } from 'immutable';
+import { fromJS } from 'immutable';
 
+import { normalizeStatus } from '@/mastodon/actions/importer/statuses';
 import type { ApiPollJSON } from '@/mastodon/api_types/polls';
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
 import type { ApiStatusJSON } from '@/mastodon/api_types/statuses';
@@ -88,18 +89,17 @@ export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
   tags: [],
   emojis: [],
   tagged_collections: [],
-  contentHtml: data.text ?? '<p>This is a test status.</p>',
+  contentHtml:
+    data.text
+      ?.split('\n')
+      .map((line) => `<p>${line}</p>`)
+      .join('\n') ?? '<p>This is a test status.</p>',
   ...data,
 });
 
 export const statusFactoryState = (
   options: FactoryOptions<ApiStatusJSON> = {},
-) =>
-  ImmutableMap<string, unknown>({
-    ...(statusFactory(options) as unknown as Record<string, unknown>),
-    account: options.account?.id ?? '1',
-    tags: List(options.tags),
-  }) as unknown as Status;
+) => fromJS(normalizeStatus(statusFactory(options))) as unknown as Status;
 
 export const pollFactory: FactoryFunction<ApiPollJSON> = (data = {}) => ({
   id: '1',
