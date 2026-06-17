@@ -353,14 +353,22 @@ gd:
       updated_msg: Chaidh am brath-fios ùrachadh!
     collections:
       accounts: Cunntasan
+      back_to_account: Till gu duilleag a’ chunntais
+      back_to_report: Till gu duilleag a’ ghearain
+      batch:
+        add_to_report: 'Cuir ris a’ ghearan #%{id}'
+        remove_from_report: Thoir air falbh on ghearan
+        report: Dèan gearan
       collection_title: Cruinneachadh le %{name}
       contents: Susbaint
+      no_collection_selected: Cha deach cruinneachadh sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       number_of_accounts:
         few: "%{count} cunntasan"
         one: "%{count} chunntas"
         other: "%{count} cunntas"
         two: "%{count} chunntas"
       open: Fosgail
+      title: Cruinneachaidhean a’ chunntais – @%{name}
       view_publicly: Seall gu poblach
     critical_update_pending: Ùrachadh èiginneach ri dhèiligeadh
     custom_emojis:
@@ -504,9 +512,78 @@ gd:
         title: Bac àrainn puist-d ùr
       no_email_domain_block_selected: Cha deach bacadh àrainn puist-d sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       not_permitted: Chan eil seo ceadaichte
+      reset: Ath-shuidhich
       resolved_dns_records_hint_html: Thèid ainm na h-àrainne fhuasgladh nan àrainnean MX a leanas agus an urra riutha-san gun gabh iad ri post-d. Ma bhacas tu àrainn MX, bacaidh seo an clàradh o sheòladh puist-d sam bith a chleachdas an aon àrainn MX fiù ’s ma bhios ainm àrainne eadar-dhealaichte ’ga sealltainn. <strong>Thoir an aire nach bac thu solaraichean puist-d mòra.</strong>
       resolved_through_html: Chaidh fuasgladh slighe %{domain}
+      search: Lorg
       title: Bacadh àrainnean puist-d
+    email_subscriptions:
+      accounts:
+        account: Cunntas
+        empty:
+          hint: Chan eil fo-sgrìobhaiche aig cunntas sam bith fhathast.
+          no_lists_yet: Chan eil liosta ann fhathast
+        last_email: Am post-d mu dheireadh
+        lead: Thèid na cunntasan a chuir an gleus an comas agus aig a bheil fo-sgrìobhaichean a shealltainn gu h-ìosal.
+        show:
+          confirm_remove_subscriber: Chan fhaigh %{email} puist-d o %{name} tuilleadh. Cha ghabh an gnìomh seo a neo-dhèanamh.
+          consent: Cha do ghabh na fo-sgrìobhaichean ach ri faighinn nam post air a’ phost-d. Na cleachd an liosta seo air adhbhar sam bith eile.
+          date: Ceann-latha a’ chlàraidh
+          disable_feature: Cuir an gleus à comas
+          disabled: Chaidh an gleus a chur à comas ’s cha dèid puist-d a chur dhan liosta seo tuilleadh.
+          email: Seòladh puist-d
+          empty:
+            hint: Cha do dh’fho-sgrìobh neach sam bith dhan chunntas seo fhathast.
+            no_subscribers_yet: Chan eil fo-sgrìobhaiche ann fhathast
+          enable_feature: Cuir an gleus an comas
+          no_access_html: Chan eil cead aig a’ chunntas seo tuilleadh gus an gleus a chur an comas. Atharraich seo sna <a href="%{roles_path}">dreuchdan</a>.
+          title: Cuairt-litrichean puist-d aig %{name}
+          view_account: Seall an cunntas
+        status: Staid
+        subscribers: Fo-sgrìobhaichean
+        title: Liostaichean-puist
+      additional_footer_texts:
+        show:
+          title: Teacsa banna-choise a bharrachd
+      compliance_settings:
+        additional_footer_text:
+          action: Stiùirich
+          hint: Roghainneil teacsa a nochdas sa bhann-choise aig cuairt-litrichean puist-d a-mhàin
+          title: Teacsa banna-choise a bharrachd
+        lead: Dh’fhaoidte gum beachdaichear air cuairt-litrichean mar puist-d margaidheachd a-rèir nan uachdranasan laghail far a bheil thu ag obair.
+        privacy_policy:
+          action: Stiùirich
+          hint: Thèid ceangal ris a’ phoileasaidh seo a chur ri bann-coise gach puist-d
+          title: Poileasaidh prìobhaideachd
+      danger_zone:
+        disable_feature:
+          action: Cuir à comas
+          hint: Cuir an gleus à comas dhan a h-uile cunntas
+          title: Cuir an gleus à comas
+        erase_all_data:
+          action: Suath bàn an dàta
+          hint: Sguabaidh seo às a h-uile post-d aig a h-uile liosta puist-d gu buan
+          title: Suath bàn an dàta air fad
+        title: Earrann chunnartach
+      disabled_msg: Chaidh na fo-sgrìobhaidhean puist-d a chur à comas.
+      index:
+        disabled:
+          cannot_be_enabled: Cha do chuir an solaraiche teicnigeach agad an gleus seo an comas air an fhrithealaiche agad.
+          get_started: Dèan toiseach-tòiseachaidh
+        title: Cuairt-litrichean puist-d
+      roles:
+        accounts: Cunntasan
+        edit_role: Deasaich an dreuchd
+        empty:
+          hint: Chan fhaod neach sam bith an gleus seo a chleachdadh.
+          no_roles_added: Cha deach dreuchd a chur ris
+        manage_roles: Stiùirich na dreuchdan
+        role_name: Ainm na dreuchd
+        title: Dreuchdan
+      setups:
+        show:
+          enable_feature: Cuir an gleus an comas
+          important_information: Fiosrachadh cudromach
     export_domain_allows:
       new:
         title: Ion-phortaich àrainnean ceadaichte
@@ -699,6 +776,7 @@ gd:
       action_log: Sgrùd an loga
       action_taken_by: Chaidh an gnìomh a ghabhail le
       actions:
+        delete_description_html: Thèid na postaichean agus/no cruinneachaidhean le gearan orra a sguabadh às agus rabhadh a chlàradh gus do chuideachadh ach am bi thu nas teinne le droch-ghiùlan on aon chunntas sam àm ri teachd.
         mark_as_sensitive_description_html: Thèid comharra an fhrionasachd a chur ris na meadhanan sna postaichean le gearan orra agus rabhadh a chlàradh gus do chuideachadh ach am bi thu nas teinne le droch-ghiùlan on aon chunntas sam àm ri teachd.
         other_description_html: Seall barrachd roghainnean airson giùlan a’ chunntais a stiùireadh agus an conaltradh leis a’ chunntas a chaidh gearan a dhèanamh mu dhèidhinn a ghnàthachadh.
         resolve_description_html: Cha dèid gnìomh sam bith a ghabhail an aghaidh a’ chunntais le gearan air agus thèid an gearan a dhùnadh gun rabhadh a chlàradh.
@@ -725,6 +803,7 @@ gd:
       confirm: Dearbh
       confirm_action: Dearbh gnìomh na maorsainneachd an aghaidh @%{acct}
       created_at: Chaidh an gearan a dhèanamh
+      delete_and_resolve: Sguab às an t-susbaint
       forwarded: Chaidh a shìneadh air adhart
       forwarded_replies_explanation: Tha an gearan seo o chleachdaiche cèin agus mu shusbaint chèin. Chaidh a shìneadh air adhart thugad on as e freagairt do neach-cleachdaidh agad-sa a tha san t-susbaint a tha na cois.
       forwarded_to: Chaidh a shìneadh air adhart gu %{domain}
@@ -909,6 +988,10 @@ gd:
           authenticated: Cleachdaichean a chlàraich a-steach a-mhàin
           disabled: Iarr dreuchd shònraichte a’ chleachdaiche
           public: A h-uile duine
+      landing_page:
+        values:
+          overview: Foir-shealladh
+          trends: A’ treandadh
       registrations:
         moderation_recommandation: Dèan cinnteach gu bheil sgioba maoir deiseil is deònach agad mus fhosgail thu an clàradh dhan a h-uile duine!
         preamble: Stiùirich cò dh’fhaodas cunntas a chruthachadh air an fhrithealaiche agad.
@@ -928,6 +1011,7 @@ gd:
     site_uploads:
       delete: Sguab às am faidhle a chaidh a luchdadh suas
       destroyed_msg: Chaidh an luchdadh suas dhan làrach a sguabadh às!
+    skip_to_content: Thoir leum dhan t-susbaint
     software_updates:
       critical_update: Èiginneach – ùraich cho luath ’s a ghabhas
       description: Mholamaid gun cùm thu an stàladh agad de Mhastodon ùraichte ach am faigh thu buannachd às na càraidhean ’s gleusan as ùire. A bharrachd air sin, bidh e èiginneach aig amannan gun ùraich thu Mastodon gun dàil airson duilgheadasan tèarainteachd a sheachnadh. Seo as adhbhar gun doir Mastodon sùil airson ùrachaidhean gach leth-uair a thìde ’s gun cuir e brath thugad a-rèir nan roghainnean puist-d agad.
@@ -1453,6 +1537,7 @@ gd:
       your_appeal_rejected: Chaidh an t-ath-thagradh agad a dhiùltadh
   edit_profile:
     other: Eile
+    privacy_redesign_body: Taghaidh tu an seall thu an luchd-leantainn agad is cò leanas tu gus nach seall dìreach on phròifil agad.
     redesign_body: "’S urrainn dhut a’ phròifil agad a dheasachadh air duilleag na pròifile fhèin."
     redesign_button: Tadhail air
     redesign_title: Tha dòigh ùr air deasachadh na pròifil againn
@@ -1487,7 +1572,9 @@ gd:
         success_html: Gheibh thu puist-d a-nis nuair a dh’fhoillsicheas %{name} postaichean ùra. Cuir %{sender} ris an luchd-aithne agad ach nach dèid na postaichean seo a chur do phasgan an spama agad.
         title: Tha thu air clàradh
         unsubscribe: Cuir crìoch air an fho-sgrìobhadh
+    disabled: À comas
     inactive: Neo-ghnìomhach
+    no_access: Gun inntrigeadh
     status: Staid
     subscribers: Fo-sgrìobhaichean
   emoji_styles:
@@ -1523,7 +1610,9 @@ gd:
     blocks: Tha thu a’ bacadh
     bookmarks: Comharran-lìn
     csv: CSV
+    custom_filters: Criathragan
     domain_blocks: Bacaidhean àrainne
+    json: JSON
     lists: Liostaichean
     mutes: Tha thu a’ mùchadh
     storage: Stòras mheadhanan
@@ -1615,7 +1704,9 @@ gd:
       empty: Faidhle CSV falamh
       incompatible_type: Chan eil e co-chòrdail le seòrsa an ion-phortaidh a thagh thu
       invalid_csv_file: 'Faidhle CSV mì-dhligheach. Mearachd: %{error}'
+      invalid_json_file: 'Faidhle JSON mì-dhligheach. Mearachd: %{error}'
       over_rows_processing_limit: tha còrr is %{count} ràgh(an) ann
+      status_not_found_warning: Falaichidh cuid dhe na criathragan agad postaichean sònraichte air nach eil am frithealaiche seo eòlach. Cha dèid na postaichean seo a chriathradh gu fèin-obrachail ma gheibh am frithealaiche lorg orra uaireigin sam àm ri teachd.
       too_large: Tha am faidhle ro mhòr
     failures: Fàilligidhean
     imported: Air ion-phortadh
@@ -1636,6 +1727,11 @@ gd:
         one: Tha thu an impis suas ri <strong>%{count} phost</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
         other: Tha thu an impis suas ri <strong>%{count} post</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
         two: Tha thu an impis suas ri <strong>%{count} phost</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
+      custom_filters_html:
+        few: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan criathragan agad</strong>. Thèid suas ri <strong>%{count} criathragan</strong> a chur ri criathragan ùra.
+        one: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan criathragan agad</strong>. Thèid suas ri <strong>%{count} chriathrag</strong> a chur ri criathragan ùra.
+        other: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan criathragan agad</strong>. Thèid suas ri <strong>%{count} criathrag</strong> a chur ri criathragan ùra.
+        two: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan criathragan agad</strong>. Thèid suas ri <strong>%{count} chriathrag</strong> a chur ri criathragan ùra.
       domain_blocking_html:
         few: Tha thu an impis suas ri <strong>%{count} àrainnean</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
         one: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
@@ -1667,6 +1763,11 @@ gd:
         one: Tha thu an impis suas ri <strong>%{count} phost</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
         other: Tha thu an impis suas ri <strong>%{count} post</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
         two: Tha thu an impis suas ri <strong>%{count} phost</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
+      custom_filters_html:
+        few: Tha thu an impis suas ri <strong>%{count} criathragan</strong> o <strong>%{filename}</strong> a chur ris na <strong>criathragan</strong> agad.
+        one: Tha thu an impis suas ri <strong>%{count} chriathrag</strong> o <strong>%{filename}</strong> a chur ris na <strong>criathragan</strong> agad.
+        other: Tha thu an impis suas ri <strong>%{count} criathrag</strong> o <strong>%{filename}</strong> a chur ris na <strong>criathragan</strong> agad.
+        two: Tha thu an impis suas ri <strong>%{count} chriathrag</strong> o <strong>%{filename}</strong> a chur ris na <strong>criathragan</strong> agad.
       domain_blocking_html:
         few: Tha thu an impis suas ri <strong>%{count} àrainnean</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
         one: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
@@ -1711,6 +1812,7 @@ gd:
     types:
       blocking: Liosta-bhacaidh
       bookmarks: Comharran-lìn
+      custom_filters: Criathragan
       domain_blocking: Liosta-bhacaidh àrainnean
       following: Liosta dhen fheadhainn a leanas tu
       lists: Liostaichean

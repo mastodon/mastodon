@@ -61,10 +61,6 @@ export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
-export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
-export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
-export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
-
 export const COMPOSE_POLL_ADD             = 'COMPOSE_POLL_ADD';
 export const COMPOSE_POLL_REMOVE          = 'COMPOSE_POLL_REMOVE';
 export const COMPOSE_POLL_OPTION_ADD      = 'COMPOSE_POLL_OPTION_ADD';
@@ -458,58 +454,6 @@ export function onChangeMediaFocus(focusX, focusY) {
     type: COMPOSE_CHANGE_MEDIA_FOCUS,
     focusX,
     focusY,
-  };
-}
-
-export function changeUploadCompose(id, params) {
-  return (dispatch, getState) => {
-    dispatch(changeUploadComposeRequest());
-
-    let media = getState().getIn(['compose', 'media_attachments']).find((item) => item.get('id') === id);
-
-    // Editing already-attached media is deferred to editing the post itself.
-    // For simplicity's sake, fake an API reply.
-    if (media && !media.get('unattached')) {
-      const { focus, ...other } = params;
-      const data = { ...media.toJS(), ...other };
-
-      if (focus) {
-        const [x, y] = focus.split(',');
-        data.meta = { focus: { x: parseFloat(x), y: parseFloat(y) } };
-      }
-
-      dispatch(changeUploadComposeSuccess(data, true));
-    } else {
-      api().put(`/api/v1/media/${id}`, params).then(response => {
-        dispatch(changeUploadComposeSuccess(response.data, false));
-      }).catch(error => {
-        dispatch(changeUploadComposeFail(id, error));
-      });
-    }
-  };
-}
-
-export function changeUploadComposeRequest() {
-  return {
-    type: COMPOSE_UPLOAD_CHANGE_REQUEST,
-    skipLoading: true,
-  };
-}
-
-export function changeUploadComposeSuccess(media, attached) {
-  return {
-    type: COMPOSE_UPLOAD_CHANGE_SUCCESS,
-    media: media,
-    attached: attached,
-    skipLoading: true,
-  };
-}
-
-export function changeUploadComposeFail(error) {
-  return {
-    type: COMPOSE_UPLOAD_CHANGE_FAIL,
-    error: error,
-    skipLoading: true,
   };
 }
 

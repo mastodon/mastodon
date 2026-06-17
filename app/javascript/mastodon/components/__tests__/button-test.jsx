@@ -1,23 +1,19 @@
-import renderer from 'react-test-renderer';
-
 import { render, fireEvent, screen } from '@/testing/rendering';
 
 import { Button } from '../button';
 
 describe('<Button />', () => {
   it('renders a button element', () => {
-    const component = renderer.create(<Button />);
-    const tree      = component.toJSON();
+    const { container } = render(<Button />);
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders the given text', () => {
     const text      = 'foo';
-    const component = renderer.create(<Button text={text} />);
-    const tree      = component.toJSON();
+    const { container } = render(<Button text={text} />);
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('handles click events using the given handler', () => {
@@ -37,40 +33,35 @@ describe('<Button />', () => {
   });
 
   it('renders a disabled attribute if props.disabled given', () => {
-    const component = renderer.create(<Button disabled />);
-    const tree      = component.toJSON();
+    const { container } = render(<Button disabled />);
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders the children', () => {
     const children  = <p>children</p>;
-    const component = renderer.create(<Button>{children}</Button>);
-    const tree      = component.toJSON();
+    const { container } = render(<Button>{children}</Button>);
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders the props.text instead of children', () => {
     const text      = 'foo';
     const children  = <p>children</p>;
-    const component = renderer.create(<Button text={text}>{children}</Button>);
-    const tree      = component.toJSON();
+    const { container } = render(<Button text={text}>{children}</Button>);
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('renders class="button--block" if props.block given', () => {
-    const component = renderer.create(<Button block />);
-    const tree      = component.toJSON();
+    const { container } = render(<Button block />);
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('adds class "button-secondary" if props.secondary given', () => {
-    const component = renderer.create(<Button secondary />);
-    const tree      = component.toJSON();
+    const { container } = render(<Button secondary />);
 
-    expect(tree).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
