@@ -68,11 +68,6 @@ export interface StatusProps {
   headerRenderFn?: StatusHeaderRenderFn;
   pictureInPicture: Immutable.Map<'inUse' | 'available', boolean>;
   contextType?: string;
-  history?: {
-    location: { pathname: string };
-    push: (path: string, state?: unknown) => void;
-    replace: (path: string, state?: unknown) => void;
-  };
 }
 
 export const TypedStatus = Status as ComponentType<StatusProps>;
