@@ -33,9 +33,10 @@ interface StatusStoryProps {
   // Contents
   text: string;
   visibility: StatusVisibility;
+  isReblog?: boolean;
   isReply?: boolean;
-  isQuote?: boolean;
   isPoll?: boolean;
+  isQuote?: boolean;
   attachments?: AttachmentTypes;
 
   // Interactions
@@ -47,35 +48,46 @@ interface StatusStoryProps {
   replyCount?: number;
 
   // Display
-  hasNextReply?: boolean;
+  showThread?: boolean;
   contextType?: ContextTypes;
   disableActions?: boolean;
+  showTranslate?: boolean;
 }
 
-const StatusStoryComponent: FC<StatusStoryProps> = ({
-  text,
-  visibility,
-  isReply,
-  hasReblogged: isReblogged,
-  hasFavourited: isFavourited,
-  isQuote,
-  isPoll,
-  hasVoted,
-  hasNextReply,
-  contextType,
-  favouriteCount = 0,
-  replyCount = 0,
-  reblogCount = 0,
-  disableActions = false,
-}) => {
+const otherAccount = accountFactoryState({
+  id: '2',
+  display_name: 'Another user',
+});
+
+const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
+  const {
+    text,
+    visibility,
+    isReblog,
+    isReply,
+    isPoll,
+    isQuote,
+
+    hasFavourited,
+    hasReblogged,
+    hasVoted,
+    favouriteCount = 0,
+    replyCount = 0,
+    reblogCount = 0,
+    disableActions = false,
+
+    contextType,
+    showTranslate,
+    showThread,
+  } = props;
   const { account, status } = useMemo(() => {
     const account = accountFactoryState();
     return {
       account,
       status: statusFactoryState({
         text,
-        reblogged: isReblogged,
-        favourited: isFavourited,
+        reblogged: hasReblogged,
+        favourited: hasFavourited,
         visibility,
         in_reply_to_account_id: isReply ? '2' : undefined,
         in_reply_to_id: isReply ? '2' : undefined,
@@ -88,39 +100,55 @@ const StatusStoryComponent: FC<StatusStoryProps> = ({
         favourites_count: favouriteCount,
         reblogs_count: reblogCount,
         replies_count: replyCount,
+        language: showTranslate ? 'xx' : undefined,
       }).withMutations((status) => {
         status.set('account', account);
+        status.set('matched_filters', false);
+        status.set('matched_media_filters', false);
+        if (isReblog) {
+          status.set(
+            'reblog',
+            statusFactoryState({ id: '2' }).set('account', otherAccount),
+          );
+        }
         if (isPoll) {
           status.set('poll', hasVoted ? '2' : '1');
         }
       }),
     };
   }, [
-    favouriteCount,
-    hasVoted,
-    isFavourited,
-    isPoll,
-    isQuote,
-    isReblogged,
+    text,
+    hasReblogged,
+    hasFavourited,
+    visibility,
     isReply,
+    isQuote,
+    favouriteCount,
     reblogCount,
     replyCount,
-    text,
-    visibility,
+    showTranslate,
+    isReblog,
+    isPoll,
+    hasVoted,
   ]);
 
   return (
-    <TypedStatus
-      {...staticProps}
-      status={status}
-      account={account}
-      previousId={isReply ? '2' : undefined}
-      isQuotedPost={isQuote}
-      nextInReplyToId={hasNextReply ? '1' : undefined}
-      showActions={!disableActions}
-      showThread={isReply}
-      contextType={contextType}
-    />
+    <div style={{ width: 'min(600px, 80vw)' }}>
+      <TypedStatus
+        {...staticProps}
+        key={JSON.stringify(props)} // Update on any props change. Required because Status has updateOnProps set.
+        status={status}
+        account={isReblog ? account : undefined}
+        isQuotedPost={isQuote}
+        showActions={!disableActions}
+        contextType={contextType}
+        // Either we are showing a thread (in a timeline) or it's a full reply chain view.
+        showThread={isReply && showThread}
+        previousId={isReply && !showThread ? '2' : undefined}
+        rootId={isReply && !showThread ? '2' : undefined}
+        nextInReplyToId={isReply && !showThread ? '1' : undefined}
+      />
+    </div>
   );
 };
 
@@ -173,7 +201,7 @@ const categoryInteraction = {
     category: 'interactions',
   },
 } as const;
-const displayInteraction = {
+const categoryDisplay = {
   table: {
     category: 'display',
   },
@@ -193,12 +221,30 @@ const meta = {
         'unlisted',
       ] satisfies StatusVisibility[],
     },
+    isReblog: categoryContents,
+    isReply: categoryContents,
     isPoll: categoryContents,
     isQuote: categoryContents,
-    isReply: categoryContents,
     text: categoryContents,
+
+    hasFavourited: categoryInteraction,
+    hasReblogged: categoryInteraction,
+    hasVoted: {
+      ...categoryInteraction,
+      if: {
+        arg: 'isPoll',
+        truthy: true,
+      },
+    },
+    favouriteCount: categoryInteraction,
+    reblogCount: categoryInteraction,
+    replyCount: categoryInteraction,
+    disableActions: categoryInteraction,
+    showTranslate: categoryInteraction,
+
+    showThread: categoryDisplay,
     contextType: {
-      ...displayInteraction,
+      ...categoryDisplay,
       control: 'select',
       options: [
         'account',
@@ -212,32 +258,20 @@ const meta = {
         'thread',
       ] satisfies ContextTypes[],
     },
-    hasFavourited: categoryInteraction,
-    hasReblogged: categoryInteraction,
-    hasVoted: {
-      ...categoryInteraction,
-      if: {
-        arg: 'isPoll',
-        truthy: true,
-      },
-    },
-    favouriteCount: categoryInteraction,
-    reblogCount: categoryInteraction,
-    replyCount: categoryInteraction,
-    disableActions: displayInteraction,
-    hasNextReply: displayInteraction,
   },
   args: {
     text: 'This is a status',
     visibility: 'public',
     contextType: 'home',
-    isQuote: false,
+    isReblog: false,
     isReply: false,
-    hasFavourited: false,
     isPoll: false,
+    isQuote: false,
+    hasFavourited: false,
     hasVoted: false,
     hasReblogged: false,
-    hasNextReply: false,
+    showThread: false,
+    showTranslate: false,
     favouriteCount: 0,
     reblogCount: 0,
     replyCount: 0,
@@ -245,6 +279,9 @@ const meta = {
   } satisfies StatusStoryProps,
   parameters: {
     state: {
+      accounts: {
+        '2': otherAccount,
+      },
       polls: {
         '1': pollFactory(),
         '2': pollFactory({
@@ -253,6 +290,13 @@ const meta = {
           votes_count: 1,
           own_votes: [0],
         }),
+      },
+      server: {
+        translationLanguages: {
+          item: {
+            xx: ['en', 'de', 'fr'],
+          },
+        },
       },
     },
   },

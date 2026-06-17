@@ -10,7 +10,7 @@ import type { StatusHeaderRenderFn } from './header';
 // Taken from the Status component.
 export interface StatusProps {
   status: TStatus;
-  account: TAccount;
+  account?: TAccount;
   children?: ReactNode;
   previousId?: string;
   nextInReplyToId?: string;
@@ -68,6 +68,7 @@ export interface StatusProps {
   headerRenderFn?: StatusHeaderRenderFn;
   pictureInPicture: Immutable.Map<'inUse' | 'available', boolean>;
   contextType?: string;
+  withCounters?: boolean;
 }
 
 export const TypedStatus = Status as ComponentType<StatusProps>;

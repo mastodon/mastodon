@@ -89,7 +89,7 @@ export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
   tags: [],
   emojis: [],
   tagged_collections: [],
-  contentHtml:
+  content:
     data.text
       ?.split('\n')
       .map((line) => `<p>${line}</p>`)
