@@ -1,6 +1,14 @@
 import { fromJS } from 'immutable';
 
 import { normalizeStatus } from '@/mastodon/actions/importer/statuses';
+import type {
+  ApiAudioAttachmentJSON,
+  ApiGifvAttachmentJSON,
+  ApiImageAttachmentJSON,
+  ApiMediaAttachmentJSON,
+  ApiVideoAttachmentJSON,
+  BaseApiMediaAttachmentJSON,
+} from '@/mastodon/api_types/media_attachments';
 import type { ApiPollJSON } from '@/mastodon/api_types/polls';
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
 import type { ApiStatusJSON } from '@/mastodon/api_types/statuses';
@@ -11,6 +19,7 @@ import type {
 import { createAccountFromServerJSON } from '@/mastodon/models/account';
 import type { AnnualReport } from '@/mastodon/models/annual_report';
 import type { Status } from '@/mastodon/models/status';
+import type { DeepPartial } from '@/mastodon/utils/types';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 
 type FactoryOptions<T> = {
@@ -100,6 +109,120 @@ export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
 export const statusFactoryState = (
   options: FactoryOptions<ApiStatusJSON> = {},
 ) => fromJS(normalizeStatus(statusFactory(options))) as unknown as Status;
+
+const baseAttachment = {
+  id: '1',
+  url: 'https://example.com/image/1',
+  preview_url: 'https://example.com/image/1/preview',
+  blurhash: '',
+} as const;
+const imageMeta = {
+  width: 100,
+  height: 100,
+  aspect: 1,
+  size: '100x100',
+} as const;
+const videoMeta = {
+  width: 100,
+  height: 100,
+  frame_rate: '24',
+  duration: 120,
+  bitrate: 100,
+} as const;
+const colorsMeta = {
+  background: '#ffffff',
+  foreground: '#000000',
+  accent: '#ff0000',
+} as const;
+
+type MediaFactoryArg<T extends BaseApiMediaAttachmentJSON> = Omit<
+  DeepPartial<T>,
+  'type'
+>;
+
+export const imageAttachmentFactory = (
+  data: MediaFactoryArg<ApiImageAttachmentJSON> = {},
+): ApiImageAttachmentJSON => ({
+  ...baseAttachment,
+  ...data,
+  type: 'image',
+  meta: {
+    original: { ...imageMeta, ...data.meta?.original },
+    small: { ...imageMeta, ...data.meta?.small },
+  },
+});
+
+export const videoAttachmentFactory = (
+  data: MediaFactoryArg<ApiVideoAttachmentJSON> = {},
+): ApiVideoAttachmentJSON => ({
+  ...baseAttachment,
+  ...data,
+  type: 'video',
+  meta: {
+    colors: { ...colorsMeta, ...data.meta?.colors },
+    original: { ...videoMeta, ...data.meta?.original },
+    small: { ...imageMeta, ...data.meta?.small },
+    focus: {
+      x: 0,
+      y: 0,
+      ...data.meta?.focus,
+    },
+  },
+});
+
+export const audioAttachmentFactory = (
+  data: MediaFactoryArg<ApiAudioAttachmentJSON> = {},
+): ApiAudioAttachmentJSON => ({
+  ...baseAttachment,
+  ...data,
+  type: 'audio',
+  meta: {
+    colors: { ...colorsMeta, ...data.meta?.colors },
+    original: { ...videoMeta, ...data.meta?.original },
+    small: { ...imageMeta, ...data.meta?.small },
+  },
+});
+
+export const gifvAttachmentFactory = (
+  data: MediaFactoryArg<ApiGifvAttachmentJSON> = {},
+): ApiGifvAttachmentJSON => ({
+  ...baseAttachment,
+  ...data,
+  type: 'gifv',
+  meta: {
+    original: { ...videoMeta, ...data.meta?.original },
+    small: { ...imageMeta, ...data.meta?.small },
+  },
+});
+
+export function mediaAttachmentFactory(
+  data: DeepPartial<ApiMediaAttachmentJSON> = {},
+): ApiMediaAttachmentJSON {
+  switch (data.type ?? 'image') {
+    case 'image':
+      return imageAttachmentFactory(
+        data as DeepPartial<ApiImageAttachmentJSON>,
+      );
+    case 'video':
+      return videoAttachmentFactory(
+        data as DeepPartial<ApiVideoAttachmentJSON>,
+      );
+    case 'audio':
+      return audioAttachmentFactory(
+        data as DeepPartial<ApiAudioAttachmentJSON>,
+      );
+    case 'gifv':
+      return gifvAttachmentFactory(data as DeepPartial<ApiGifvAttachmentJSON>);
+    default: {
+      return {
+        ...baseAttachment,
+        meta: {},
+        ...data,
+        type: 'unknown',
+      };
+    }
+  }
+}
 
 export const pollFactory: FactoryFunction<ApiPollJSON> = (data = {}) => ({
   id: '1',
