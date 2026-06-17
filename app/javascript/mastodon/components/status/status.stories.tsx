@@ -179,6 +179,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         muted={muted}
         hidden={hidden && !contentWarning && !hasFilter}
         skipPrepend={!showPrepend}
+        withDismiss={contextType === 'notifications'}
       />
     </div>
   );
@@ -355,6 +356,9 @@ const meta = {
           },
         },
       },
+    },
+    controls: {
+      disableSaveFromUI: true,
     },
   },
 } satisfies Meta<typeof StatusStoryComponent>;
