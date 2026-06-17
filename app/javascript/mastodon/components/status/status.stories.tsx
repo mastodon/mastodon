@@ -38,12 +38,14 @@ interface StatusStoryProps {
   isPoll?: boolean;
   isQuote?: boolean;
   attachments?: AttachmentTypes;
+  contentWarning?: string;
 
   // Interactions
   hasFavourited?: boolean;
   hasReblogged?: boolean;
   hasBookmarked?: boolean;
   hasReplied?: boolean;
+  hasFilter?: boolean;
   hasVoted?: boolean;
   disableActions?: boolean;
   showTranslate?: boolean;
@@ -55,6 +57,8 @@ interface StatusStoryProps {
   favouriteCount?: number;
   reblogCount?: number;
   replyCount?: number;
+  hidden?: boolean;
+  muted?: boolean;
 }
 
 const otherAccount = accountFactoryState({
@@ -70,10 +74,12 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     isReply,
     isPoll,
     isQuote,
+    contentWarning,
 
     hasFavourited,
     hasReblogged,
     hasBookmarked,
+    hasFilter,
     hasVoted,
     showTranslate,
     disableActions = false,
@@ -84,6 +90,8 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     favouriteCount = 0,
     replyCount = 0,
     reblogCount = 0,
+    hidden,
+    muted,
   } = props;
   const { account, status } = useMemo(() => {
     const account = accountFactoryState();
@@ -107,10 +115,12 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         reblogs_count: reblogCount,
         replies_count: replyCount,
         language: showTranslate ? 'xx' : undefined,
+        spoiler_text: contentWarning,
       }).withMutations((status) => {
         status.set('account', account);
-        status.set('matched_filters', false);
-        status.set('matched_media_filters', false);
+        status.set('matched_filters', hasFilter ? ['test'] : false);
+        status.set('matched_media_filters', hasFilter ? ['test'] : false);
+        status.set('hidden', hidden);
 
         // StatusActionBar checks specifically for null so undefined doesn't work.
         if (!status.get('in_reply_to_id')) {
@@ -140,6 +150,9 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     reblogCount,
     replyCount,
     showTranslate,
+    contentWarning,
+    hasFilter,
+    hidden,
     isReblog,
     isPoll,
     hasVoted,
@@ -161,6 +174,8 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         previousId={isReply && !showThread ? '2' : undefined}
         rootId={isReply && !showThread ? '2' : undefined}
         nextInReplyToId={isReply && !showThread ? '1' : undefined}
+        muted={muted}
+        hidden={hidden && !contentWarning && !hasFilter}
       />
     </div>
   );
@@ -241,11 +256,13 @@ const meta = {
     isPoll: categoryContents,
     isQuote: categoryContents,
     text: categoryContents,
+    contentWarning: categoryContents,
 
     // Interactions
     hasFavourited: categoryInteraction,
     hasReblogged: categoryInteraction,
     hasBookmarked: categoryInteraction,
+    hasFilter: categoryInteraction,
     hasVoted: {
       ...categoryInteraction,
       if: {
@@ -277,6 +294,8 @@ const meta = {
         'thread',
       ] satisfies ContextTypes[],
     },
+    hidden: categoryDisplay,
+    muted: categoryDisplay,
   },
   args: {
     text: 'This is a status',
@@ -285,10 +304,12 @@ const meta = {
     isReply: false,
     isPoll: false,
     isQuote: false,
+    contentWarning: '',
 
     hasFavourited: false,
     hasReblogged: false,
     hasBookmarked: false,
+    hasFilter: false,
     hasVoted: false,
     disableActions: false,
     showTranslate: false,
@@ -299,6 +320,8 @@ const meta = {
     showCounters: true,
     contextType: 'home',
     showThread: false,
+    hidden: false,
+    muted: false,
   } satisfies StatusStoryProps,
   parameters: {
     state: {
