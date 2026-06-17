@@ -42,16 +42,19 @@ interface StatusStoryProps {
   // Interactions
   hasFavourited?: boolean;
   hasReblogged?: boolean;
+  hasBookmarked?: boolean;
+  hasReplied?: boolean;
   hasVoted?: boolean;
-  favouriteCount?: number;
-  reblogCount?: number;
-  replyCount?: number;
+  disableActions?: boolean;
+  showTranslate?: boolean;
 
   // Display
   showThread?: boolean;
   contextType?: ContextTypes;
-  disableActions?: boolean;
-  showTranslate?: boolean;
+  showCounters?: boolean;
+  favouriteCount?: number;
+  reblogCount?: number;
+  replyCount?: number;
 }
 
 const otherAccount = accountFactoryState({
@@ -71,14 +74,15 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     hasFavourited,
     hasReblogged,
     hasVoted,
-    favouriteCount = 0,
-    replyCount = 0,
-    reblogCount = 0,
+    showTranslate,
     disableActions = false,
 
     contextType,
-    showTranslate,
     showThread,
+    showCounters,
+    favouriteCount = 0,
+    replyCount = 0,
+    reblogCount = 0,
   } = props;
   const { account, status } = useMemo(() => {
     const account = accountFactoryState();
@@ -105,6 +109,12 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         status.set('account', account);
         status.set('matched_filters', false);
         status.set('matched_media_filters', false);
+
+        // StatusActionBar checks specifically for null so undefined doesn't work.
+        if (!status.get('in_reply_to_id')) {
+          status.set('in_reply_to_id', null);
+        }
+
         if (isReblog) {
           status.set(
             'reblog',
@@ -142,6 +152,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         isQuotedPost={isQuote}
         showActions={!disableActions}
         contextType={contextType}
+        withCounters={showCounters}
         // Either we are showing a thread (in a timeline) or it's a full reply chain view.
         showThread={isReply && showThread}
         previousId={isReply && !showThread ? '2' : undefined}
@@ -211,6 +222,7 @@ const meta = {
   title: 'Components/Status/Status',
   component: StatusStoryComponent,
   argTypes: {
+    // Contents
     visibility: {
       ...categoryContents,
       control: 'inline-radio',
@@ -227,6 +239,7 @@ const meta = {
     isQuote: categoryContents,
     text: categoryContents,
 
+    // Interactions
     hasFavourited: categoryInteraction,
     hasReblogged: categoryInteraction,
     hasVoted: {
@@ -236,12 +249,14 @@ const meta = {
         truthy: true,
       },
     },
-    favouriteCount: categoryInteraction,
-    reblogCount: categoryInteraction,
-    replyCount: categoryInteraction,
     disableActions: categoryInteraction,
     showTranslate: categoryInteraction,
 
+    // Display
+    showCounters: categoryDisplay,
+    favouriteCount: categoryDisplay,
+    reblogCount: categoryDisplay,
+    replyCount: categoryDisplay,
     showThread: categoryDisplay,
     contextType: {
       ...categoryDisplay,
@@ -262,20 +277,23 @@ const meta = {
   args: {
     text: 'This is a status',
     visibility: 'public',
-    contextType: 'home',
     isReblog: false,
     isReply: false,
     isPoll: false,
     isQuote: false,
+
     hasFavourited: false,
     hasVoted: false,
     hasReblogged: false,
-    showThread: false,
+    disableActions: false,
     showTranslate: false,
+
     favouriteCount: 0,
     reblogCount: 0,
     replyCount: 0,
-    disableActions: false,
+    showCounters: true,
+    contextType: 'home',
+    showThread: false,
   } satisfies StatusStoryProps,
   parameters: {
     state: {
