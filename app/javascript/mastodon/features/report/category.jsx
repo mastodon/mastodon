@@ -22,8 +22,9 @@ const messages = defineMessages({
   violation_description: { id: 'report.reasons.violation_description', defaultMessage: 'You are aware that it breaks specific rules' },
   other: { id: 'report.reasons.other', defaultMessage: 'It\'s something else' },
   other_description: { id: 'report.reasons.other_description', defaultMessage: 'The issue does not fit into other categories' },
-  status: { id: 'report.category.title_status', defaultMessage: 'post' },
-  account: { id: 'report.category.title_account', defaultMessage: 'profile' },
+  status: { id: 'report.category.title_status', defaultMessage: "Tell us what's going on with this post" },
+  account: { id: 'report.category.title_account', defaultMessage: "Tell us what's going on with this profile" },
+  collection: { id: 'report.category.title_collection', defaultMessage: "Tell us what's going on with this collection"}
 });
 
 const mapStateToProps = state => ({
@@ -88,14 +89,7 @@ class Category extends PureComponent {
     return (
       <>
         <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
-          {startedFrom === 'collection' ? (
-            <FormattedMessage
-              id='report.collection_comment'
-              defaultMessage='Why do you want to report this collection?'
-            />
-          ) : (
-            <FormattedMessage id='report.category.title' defaultMessage="Tell us what's going on with this {type}" values={{ type: intl.formatMessage(messages[startedFrom]) }} />
-          )}
+          {intl.formatMessage(messages[startedFrom])}
         </NavigationFocusTarget>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.category.subtitle' defaultMessage='Choose the best match' /></p>
 
