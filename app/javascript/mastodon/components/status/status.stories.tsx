@@ -73,6 +73,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
 
     hasFavourited,
     hasReblogged,
+    hasBookmarked,
     hasVoted,
     showTranslate,
     disableActions = false,
@@ -92,6 +93,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         text,
         reblogged: hasReblogged,
         favourited: hasFavourited,
+        bookmarked: hasBookmarked,
         visibility,
         in_reply_to_account_id: isReply ? '2' : undefined,
         in_reply_to_id: isReply ? '2' : undefined,
@@ -130,6 +132,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     text,
     hasReblogged,
     hasFavourited,
+    hasBookmarked,
     visibility,
     isReply,
     isQuote,
@@ -242,6 +245,7 @@ const meta = {
     // Interactions
     hasFavourited: categoryInteraction,
     hasReblogged: categoryInteraction,
+    hasBookmarked: categoryInteraction,
     hasVoted: {
       ...categoryInteraction,
       if: {
@@ -283,8 +287,9 @@ const meta = {
     isQuote: false,
 
     hasFavourited: false,
-    hasVoted: false,
     hasReblogged: false,
+    hasBookmarked: false,
+    hasVoted: false,
     disableActions: false,
     showTranslate: false,
 
