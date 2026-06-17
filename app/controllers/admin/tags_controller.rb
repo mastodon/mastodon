@@ -39,9 +39,7 @@ module Admin
     def log_action_from_change
       action_log = current_account.action_logs.new(action: 'update', target: @tag)
 
-      action_log.usable = @tag.saved_changes['usable']&.last
-      action_log.trendable = @tag.saved_changes['trendable']&.last
-      action_log.listable = @tag.saved_changes['listable']&.last
+      action_log.log_changes = @tag.saved_changes.slice('usable', 'trendable', 'listable').transform_values(&:last)
       action_log.save
     end
 

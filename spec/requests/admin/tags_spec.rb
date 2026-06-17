@@ -25,7 +25,7 @@ RSpec.describe 'Admin Tags' do
       expect(response).to have_http_status(302)
       expect(Admin::ActionLog.last.human_identifier).to eq('#supertag')
       expect(Admin::ActionLog.pluck(:action)).to eq(%w(update))
-      expect(Admin::ActionLog.pluck(:tag_changes)).to eq([{ 'listable' => false, 'trendable' => true }])
+      expect(Admin::ActionLog.pluck(:log_changes)).to eq([{ 'listable' => false, 'trendable' => true }])
     end
   end
 end

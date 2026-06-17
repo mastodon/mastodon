@@ -19,7 +19,7 @@
 #
 
 class Admin::ActionLog < ApplicationRecord
-  TAG_ATTRIBUTES = %i(usable trendable listable).freeze
+  LOG_ATTRIBUTES = %i(usable trendable listable).freeze
 
   belongs_to :account
   belongs_to :target, polymorphic: true, optional: true
@@ -28,7 +28,7 @@ class Admin::ActionLog < ApplicationRecord
   before_validation :set_route_param
   before_validation :set_permalink
 
-  store_accessor :tag_changes, *TAG_ATTRIBUTES
+  store_accessor :log_changes, *LOG_ATTRIBUTES
 
   scope :latest, -> { order(id: :desc) }
 
