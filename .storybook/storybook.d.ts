@@ -15,6 +15,12 @@ declare module 'storybook/internal/csf' {
       | `${RootPathKeys}.${string}`
       | [RootPathKeys, ...(string | number)[]];
   }
+
+  export interface Globals {
+    locale: string;
+    theme: 'light' | 'dark';
+    loggedIn: 'true' | 'false';
+  }
 }
 
 export {};
