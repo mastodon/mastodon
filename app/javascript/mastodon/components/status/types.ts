@@ -3,8 +3,9 @@ import type { ComponentType, MouseEventHandler, ReactNode } from 'react';
 import type { Account as TAccount } from '@/mastodon/models/account';
 import type { Status as TStatus } from '@/mastodon/models/status';
 
+import Status from '../status';
+
 import type { StatusHeaderRenderFn } from './header';
-import Status from './index';
 
 // Taken from the Status component.
 export interface StatusProps {
