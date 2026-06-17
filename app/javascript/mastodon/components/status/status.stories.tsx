@@ -514,8 +514,27 @@ export const LongText: Story = {
   },
 };
 
+export const Images: Story = {
+  args: {
+    attachments: 'image-3',
+  },
+};
+
+export const Video: Story = {
+  args: {
+    attachments: 'video',
+  },
+};
+
+export const Audio: Story = {
+  args: {
+    attachments: 'audio',
+  },
+};
+
 export const Poll: Story = {
   args: {
     isPoll: true,
+    hasVoted: true,
   },
 };
