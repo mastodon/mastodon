@@ -1665,7 +1665,9 @@ hu:
       empty: Üres CSV-fájl
       incompatible_type: Nem kompatibilis a kiválasztott importálási típussal
       invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
+      invalid_json_file: 'Érvénytelen JSON-fájl. Hiba: %{error}'
       over_rows_processing_limit: több mint %{count} sort tartalmaz
+      status_not_found_warning: A szűrőid olyan bejegyzéseket rejtenek el, melyeket ez a kiszolgáló nem ismer. Ezek a bejegyzések nem lesznek automatikusan kiszűrve, ha a kiszolgáló később felfedezi őket.
       too_large: A fájl túl nagy
     failures: Hibák
     imported: Importálva
@@ -1682,6 +1684,9 @@ hu:
       bookmarks_html:
         one: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{count} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
         other: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{count} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
+      custom_filters_html:
+        one: Arra készülsz, hogy <strong>lecseréld a szűrőidet</strong> a <strong>%{filename}</strong> tartalmára. Legfeljebb <strong>%{count} szűrő</strong> lesz hozzáadva az új szűrőkhöz.
+        other: Arra készülsz, hogy <strong>lecserád a szűrőidet</strong> a <strong>%{filename}</strong> tartalmára. Legfeljebb <strong>%{count} szűrő</strong> lesz hozzáadva az új szűrőkhöz.
       domain_blocking_html:
         one: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{count} domainre</strong> a következőből: <strong>%{filename}</strong>.'
         other: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{count} domainre</strong> a következőből: <strong>%{filename}</strong>.'
@@ -1701,6 +1706,9 @@ hu:
       bookmarks_html:
         one: 'Arra készülsz, hogy legfeljebb <strong>%{count} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
         other: 'Arra készülsz, hogy legfeljebb <strong>%{count} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
+      custom_filters_html:
+        one: Arra készülsz, hogy legfeljebb <strong>%{count} szűrőt</strong> adj hozzá a(z) <strong>%{filename}</strong> fájlból a <strong>szűrőidhöz</strong>.
+        other: Arra készülsz, hogy legfeljebb <strong>%{count} szűrőt</strong> adj hozzá a(z) <strong>%{filename}</strong> fájlból a <strong>szűrőidhöz</strong>.
       domain_blocking_html:
         one: 'Arra készülsz, hogy legfeljebb <strong>%{count} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
         other: 'Arra készülsz, hogy legfeljebb <strong>%{count} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
@@ -1737,6 +1745,7 @@ hu:
     types:
       blocking: Letiltottak listája
       bookmarks: Könyvjelzők
+      custom_filters: Szűrők
       domain_blocking: Letiltott domainek listája
       following: Követettjeid listája
       lists: Listák

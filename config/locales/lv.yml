@@ -515,10 +515,10 @@ lv:
       description_html: "<strong>Sekošanas ieteikumi palīdz jauniem lietotājiem ātri arast saistošu saturu</strong>. Kad lietotājs nav pietiekami mijiedarbojies ar citiem, lai veidotos pielāgoti sekošanas iteikumi, tiek ieteikti šie konti. Tie tiek pārskaitļoti ik dienas, izmantojot kontu, kuriem ir augstākās nesenās iesaistīšanās un lielākais vietējo sekotāju skaits norādītajā valodā."
       language: Valodai
       status: Stāvoklis
-      suppress: Apspiest sekošanas rekomendāciju
+      suppress: Apspiest sekošanas ieteikumu
       suppressed: Apspiestie
       title: Sekošanas ieteikumi
-      unsuppress: Atjaunot sekošanas rekomendāciju
+      unsuppress: Atjaunot sekošanas ieteikumu
     instances:
       audit_log:
         title: Nesenie pārbaudes žurnāli
@@ -738,9 +738,9 @@ lv:
         moderation: Satura pārraudzība
         special: Īpašās
       delete: Dzēst
-      description_html: Izmantojot <strong>lietotāju lomas</strong>, vari pielāgot, kurām Mastodon funkcijām un apgabaliem var piekļūt tavi lietotāji.
+      description_html: Ar <strong>lietotāju lomām</strong>, var pielāgot, kurām Mastodon iespējām un apgabaliem lietotāji var piekļūt.
       edit: Labot lomu '%{name}'
-      everyone: Noklusētās atļaujas
+      everyone: Noklusējuma atļaujas
       everyone_full_description_html: Šī ir <strong>pamata loma</strong>, kas ietekmē <strong>visus lietotājus</strong>, pat tos, kuriem nav piešķirta loma. Visas pārējās lomas manto atļaujas no šīs.
       permissions_count:
         one: "%{count} atļauja"
@@ -827,7 +827,7 @@ lv:
         desc_html: Ietekmē visus lietotājus, kuri paši nav mainījuši šo iestatījumu
         title: Pēc noklusējuma lietotāji būs atteikušies no meklētājprogrammu indeksēšanas
       discovery:
-        follow_recommendations: Sekotšanas rekomendācijas
+        follow_recommendations: Sekošanas ieteikumi
         privacy: Konfidencialitāte
         profile_directory: Profila direktorija
         public_timelines: Publiskās ziņu lentas
@@ -1611,7 +1611,7 @@ lv:
     incoming_migrations_html: Lai pārnāktu no cita konta uz šo, vispirms tev <a href="%{path}">jāizveido konta aizstājvārds</a>.
     moved_msg: Tavs konts tagad tiek novirzīts uz %{acct}, un tavi sekotāji tiek pārvietoti.
     not_redirecting: Tavs konts pašlaik netiek novirzīts uz jebkādu citu kontu.
-    on_cooldown: Tu nesen migrēji savu kontu. Šī funkcija atkal būs pieejama pēc %{count} dienām.
+    on_cooldown: Tu nesen pārcēli savu kontu. Šī iespēja bīs atkal pieejama pēc %{count} dienām.
     past_migrations: Pagātnes migrācijas
     proceed_with_move: Pārvietot sekotājus
     redirected_msg: Tavs konts tagad tiek novirzīts uz %{acct}.
@@ -1714,7 +1714,7 @@ lv:
     posting_defaults: Ierakstu pievienošanas noklusējumi
     public_timelines: Publiskās ziņu lentas
   privacy:
-    hint_html: "<strong>Pielāgo, kā vēlies atrast savu profilu un ziņas.</strong> Dažādas Mastodon funkcijas var palīdzēt sasniegt plašāku auditoriju, ja tās ir iespējotas. Velti laiku, lai pārskatītu šos iestatījumus, lai pārliecinātos, ka tie atbilst tavam lietošanas gadījumam."
+    hint_html: "<strong>Pielāgo, kā vēlies, lai Tavs profils un ieraksti būtu atrodami.</strong> Dažādas Mastodon iespējas var palīdzēt sasniegt plašāku cilvēku loku, kad tās ir iespējotas. Velti laiku, lai pārskatītu šos iestatījumus, lai pārliecinātos, ka tie atbilst Tavām vajadībām."
     privacy: Privātums
     privacy_hint_html: Kontrolē, cik daudz vēlies izpaust citu labā. Cilvēki atklāj interesantus profilus un lieliskas lietotnes, pārlūkojot citu cilvēku sekotājus un redzot, no kurām lietotnēm viņi izliek ziņas, taču tu, iespējams, vēlēsies to slēpt.
     reach: Sasniedzamība

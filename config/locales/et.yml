@@ -505,6 +505,15 @@ et:
           no_lists_yet: Veel pole loetelusid
         last_email: Viimane e-post
         lead: Allpool kuvatakse kontod, kus see funktsioon on aktiveeritud ja millel on tellijaid.
+        show:
+          date: Liitumise kuupäev
+          disable_feature: Lülita funktsionaalsus välja
+          disabled: See funktsionaalsus on lülitatud välja ja e-kirju enam seda loendisse ei saadeta.
+          email: E-posti aadress
+          empty:
+            hint: Mitte keegi pole seda kontot veel tellinud.
+            no_subscribers_yet: Tellijaid veel pole
+          enable_feature: Lülita funktsionaalsus sisse
         status: Olek
         subscribers: Tellijad
         title: Meililistid
@@ -662,7 +671,7 @@ et:
         stop: Peata edastus
         unavailable: Pole saadaval
       delivery_available: Üleandmine on saadaval
-      delivery_error_days: Edastustõrgete päevad
+      delivery_error_days: Päevad, millal tekkis edastusvigu
       delivery_error_hint: Kui edastus pole võimalik %{count} päeva, märgitakse automaatselt edastamatuks.
       destroyed_msg: Domeeni %{domain} andmed on märgitud lõplikuks kustutamiseks.
       empty: Domeene ei leidu.
@@ -1531,7 +1540,9 @@ et:
         success_html: Nüüdsest hakkad saama e-kirju, kui %{name} avaldab uusi postitusi. Lisa %{sender} oma kontaktide hulka, et need postitused ei satuks rämpsposti kausta.
         title: Oled registreeritud
         unsubscribe: Lõpeta tellimus
+    disabled: Väljalülitatud
     inactive: Mitteaktiivne
+    no_access: Ligipääs puudub
     status: Olek
     subscribers: Tellijad
   emoji_styles:
@@ -1646,7 +1657,8 @@ et:
     errors:
       empty: Tühi CSV-fail
       incompatible_type: Ei sobi kokku valitud importimistüübiga
-      invalid_csv_file: 'Vigane CSV-fail. Tõrge: %{error}'
+      invalid_csv_file: 'Vigane CSV-fail. Veateade: %{error}'
+      invalid_json_file: 'Vigane JSON-fail. Viga: %{error}'
       over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
       too_large: Fail on liiga suur
     failures: Ebaõnnestumised
@@ -1683,6 +1695,9 @@ et:
       bookmarks_html:
         one: Oled lisamas kuni <strong>%{count} postituse</strong> failist <strong>%{filename}</strong> oma <strong>järjehoidjatesse</strong>.
         other: Oled lisamas kuni <strong>%{count} postitust</strong> failist <strong>%{filename}</strong> oma <strong>järjehoidjatesse</strong>.
+      custom_filters_html:
+        one: Sa oled <strong>%{filename}</strong> failist lisamas oma <strong>filtrite hulka</strong> <strong>%{count} filtri</strong>.
+        other: Sa oled <strong>%{filename}</strong> failist lisamas oma <strong>filtrite hulka</strong> <strong>%{count} filtrit</strong>.
       domain_blocking_html:
         one: Oled <strong>blokeerimas</strong> kuni <strong>%{count} domeeni</strong> failist <strong>%{filename}</strong>.
         other: Oled <strong>blokeerimas</strong> kuni <strong>%{count} domeeni</strong> failist <strong>%{filename}</strong>.
@@ -1719,6 +1734,7 @@ et:
     types:
       blocking: Blokeeringute nimekiri
       bookmarks: Järjehoidjad
+      custom_filters: Filtrid
       domain_blocking: Domeeniblokeeringute nimekiri
       following: Jälgimiste nimekiri
       lists: Loetelud
@@ -2348,13 +2364,13 @@ et:
   webauthn_credentials:
     add: Uue turvavõtme lisamine
     create:
-      error: Turvavõtme lisamisel tekkis tõrge. Proovi palun uuesti.
+      error: Turvavõtme lisamisel tekkis viga või probleem. Proovi palun uuesti.
       success: Turvavõti edukalt lisatud.
     delete: Kustuta
     delete_confirmation: Kindel, et kustutada see turvavõti?
     description_html: Lubades <strong>turvavõtmega autentimise</strong> on sisenemisel tarvis ühte turvavõtmetest.
     destroy:
-      error: Turvavõtme kustutamisel tekkis tõrge. Palun proovi uuesti.
+      error: Turvavõtme kustutamisel tekkis viga või probleem. Palun proovi uuesti.
       success: Turvavõtmed edukalt kustutatud.
     invalid_credential: Vigane turvavõti
     nickname: Hüüdnimi

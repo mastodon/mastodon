@@ -86,7 +86,6 @@ fi:
         invalid_code_challenge_method:
           one: Muuttujan code_challenge_method arvon on oltava %{challenge_methods}.
           other: 'Muuttujan code_challenge_method arvon on oltava jokin seuraavista: %{challenge_methods}.'
-          zero: Valtuutuspalvelin ei tue PKCE:tä, koska hyväksyttäviä code_challenge_method-arvoja ei ole.
         invalid_grant: Valtuutuslupa on virheellinen, vanhentunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
         invalid_request:
