@@ -59,6 +59,7 @@ interface StatusStoryProps {
   replyCount?: number;
   hidden?: boolean;
   muted?: boolean;
+  showPrepend?: boolean;
 }
 
 const otherAccount = accountFactoryState({
@@ -92,6 +93,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     reblogCount = 0,
     hidden,
     muted,
+    showPrepend = true,
   } = props;
   const { account, status } = useMemo(() => {
     const account = accountFactoryState();
@@ -176,6 +178,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         nextInReplyToId={isReply && !showThread ? '1' : undefined}
         muted={muted}
         hidden={hidden && !contentWarning && !hasFilter}
+        skipPrepend={!showPrepend}
       />
     </div>
   );
@@ -278,7 +281,14 @@ const meta = {
     favouriteCount: categoryDisplay,
     reblogCount: categoryDisplay,
     replyCount: categoryDisplay,
-    showThread: categoryDisplay,
+    showPrepend: categoryDisplay,
+    showThread: {
+      ...categoryDisplay,
+      if: {
+        arg: 'showPrepend',
+        truthy: true,
+      },
+    },
     contextType: {
       ...categoryDisplay,
       control: 'select',
@@ -319,6 +329,7 @@ const meta = {
     replyCount: 0,
     showCounters: true,
     contextType: 'home',
+    showPrepend: true,
     showThread: false,
     hidden: false,
     muted: false,
