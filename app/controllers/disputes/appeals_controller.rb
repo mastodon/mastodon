@@ -8,7 +8,7 @@ class Disputes::AppealsController < Disputes::BaseController
 
     @appeal = AppealService.new.call(@strike, appeal_params[:text])
 
-    redirect_to disputes_strike_path(@strike), notice: I18n.t('disputes.strikes.appealed_msg')
+    redirect_to admin_disputes_strike_path(@strike), notice: I18n.t('disputes.strikes.appealed_msg')
   rescue ActiveRecord::RecordInvalid => e
     @appeal = e.record
     render 'disputes/strikes/show'

@@ -1,4 +1,4 @@
-= link_to disputes_strike_path(appeal.strike), class: ['log-entry', appeal.approved? && 'log-entry--inactive'] do
+= link_to admin_disputes_strike_path(appeal.strike), class: ['log-entry', appeal.approved? && 'log-entry--inactive'] do
   .log-entry__header
     .log-entry__avatar
       = image_tag appeal.account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
