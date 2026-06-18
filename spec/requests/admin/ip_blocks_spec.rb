@@ -23,18 +23,11 @@ RSpec.describe 'Admin IP Blocks' do
     end
   end
 
-  describe 'get /admin/ip_blocks/' do
-    let(:ip_block) { Fabricate(:ip_block, ip: '192.2.2.2/32') }
-    let(:range_ip_block) { Fabricate(:ip_block, ip: '192.2.2.200/32') }
-    let(:anoth_range_ip_block) { Fabricate(:ip_block, ip: '192.2.2.50/32') }
-    let(:other_ip_block) { Fabricate(:ip_block, ip: '192.2.2.0/24') }
-
-    before do
-      ip_block
-      range_ip_block
-      anoth_range_ip_block
-      other_ip_block
-    end
+  describe 'GET /admin/ip_blocks' do
+    let!(:ip_block) { Fabricate(:ip_block, ip: '192.2.2.2/32') }
+    let!(:range_ip_block) { Fabricate(:ip_block, ip: '192.2.2.200/32') }
+    let!(:another_range_ip_block) { Fabricate(:ip_block, ip: '192.2.2.50/32') }
+    let!(:other_ip_block) { Fabricate(:ip_block, ip: '192.2.2.0/24') }
 
     context 'when searching single ip address' do
       let(:params) { { ip: '192.2.2.1' } }
@@ -42,10 +35,10 @@ RSpec.describe 'Admin IP Blocks' do
       it 'renders successfully with partial ip address' do
         get admin_ip_blocks_path(params)
 
-        expect(response.body).to_not include(admin_accounts_path(ip: '192.2.2.2/32'))
-        expect(response.body).to_not include(admin_accounts_path(ip: '192.2.2.200/32'))
-        expect(response.body).to_not include(admin_accounts_path(ip: '192.2.2.50/32'))
-        expect(response.body).to include(admin_accounts_path(ip: '192.2.2.0/24'))
+        expect(response.body).to not_include(admin_accounts_path(ip: ip_block.ip))
+          .and not_include(admin_accounts_path(ip: range_ip_block.ip))
+          .and not_include(admin_accounts_path(ip: another_range_ip_block.ip))
+        expect(response.body).to include(admin_accounts_path(ip: other_ip_block.ip))
       end
     end
 
@@ -55,10 +48,10 @@ RSpec.describe 'Admin IP Blocks' do
       it 'renders ips within range' do
         get admin_ip_blocks_path(params)
 
-        expect(response.body).to include(admin_accounts_path(ip: '192.2.2.2/32'))
-          .and include(admin_accounts_path(ip: '192.2.2.50/32'))
-          .and include(admin_accounts_path(ip: '192.2.2.0/24'))
-          .and include(admin_accounts_path(ip: '192.2.2.200/32'))
+        expect(response.body).to include(admin_accounts_path(ip: ip_block.ip))
+          .and include(admin_accounts_path(ip: range_ip_block.ip))
+          .and include(admin_accounts_path(ip: another_range_ip_block.ip))
+          .and include(admin_accounts_path(ip: other_ip_block.ip))
       end
     end
   end
