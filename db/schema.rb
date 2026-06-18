@@ -226,7 +226,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_114230) do
     t.string "action", default: "", null: false
     t.datetime "created_at", precision: nil, null: false
     t.string "human_identifier"
-    t.jsonb "log_changes"
     t.string "permalink"
     t.jsonb "recorded_changes"
     t.string "route_param"

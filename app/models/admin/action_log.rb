@@ -7,7 +7,6 @@
 #  id               :bigint(8)        not null, primary key
 #  action           :string           default(""), not null
 #  human_identifier :string
-#  log_changes      :jsonb
 #  permalink        :string
 #  recorded_changes :jsonb
 #  route_param      :string
