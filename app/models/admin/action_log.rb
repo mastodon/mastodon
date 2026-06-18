@@ -9,6 +9,7 @@
 #  human_identifier :string
 #  log_changes      :jsonb
 #  permalink        :string
+#  recorded_changes :jsonb
 #  route_param      :string
 #  target_type      :string
 #  created_at       :datetime         not null
