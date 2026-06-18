@@ -43,13 +43,6 @@ class IpBlock < ApplicationRecord
       blocked_ips_map.include?(remote_ip)
     end
 
-    def ip_as_text
-      Arel::Nodes::NamedFunction.new(
-        'CAST',
-        [Arel::Nodes::As.new(arel_table[:ip], Arel::Nodes::SqlLiteral.new('text'))]
-      )
-    end
-
     private
 
     def blocked_ips_map
