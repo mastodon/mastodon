@@ -210,6 +210,15 @@ RSpec.describe UserMailer do
       expect(mail.text_part.body)
         .to match(I18n.t('user_mailer.appeal_approved.title'))
     end
+
+    context 'when user is missing' do
+      let(:mail) { described_class.appeal_approved(nil, appeal) }
+
+      it 'handles missing value without sending' do
+        expect { mail.deliver }
+          .to_not send_email
+      end
+    end
   end
 
   describe '#appeal_rejected' do
@@ -221,6 +230,15 @@ RSpec.describe UserMailer do
         .to send_email(subject: I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at)))
       expect(mail.text_part.body)
         .to match(I18n.t('user_mailer.appeal_rejected.title'))
+    end
+
+    context 'when user is missing' do
+      let(:mail) { described_class.appeal_rejected(nil, appeal) }
+
+      it 'handles missing value without sending' do
+        expect { mail.deliver }
+          .to_not send_email
+      end
     end
   end
 
