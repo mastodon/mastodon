@@ -484,8 +484,10 @@ pl:
         title: Nowa blokada domeny e-mail
       no_email_domain_block_selected: Żadne blokady domeny e-mail nie zostały zmienione, ponieważ żadne z nich nie zostały wybrane
       not_permitted: Brak uprawnień
+      reset: Resetuj
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
+      search: Szukaj
       title: Zablokowane domeny e-mail
     email_subscriptions:
       accounts:
@@ -710,6 +712,7 @@ pl:
       action_log: Dziennik zdarzeń
       action_taken_by: Działanie podjęte przez
       actions:
+        delete_description_html: Zgłoszone wpisy lub kolekcje zostaną usunięte, a w systemie zostanie odnotowane ostrzeżenie, które pomoże w eskalacji przyszłych wykroczeń na tym samym koncie.
         mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagrane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
         resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
@@ -729,12 +732,14 @@ pl:
       cancel: Anuluj
       category: Kategoria
       category_description_html: Powód, dla którego to konto i/lub zawartość zostały zgłoszone, będzie cytowany w komunikacji ze zgłoszonym kontem
+      collections: Kolekcje (%{count})
       comment:
         none: Brak
       comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
       confirm: Potwierdź
       confirm_action: Potwierdzenie działań moderacyjnych wobec @%{acct}
       created_at: Zgłoszono
+      delete_and_resolve: Usuń zawartość
       forwarded: Przekazano
       forwarded_replies_explanation: Ten raport nadszedł od zdalnego użytkownika i dotyczy zdalnej treści. Został ci przekazany, bo raportowana treść jest odpowiedzią na jednego z twoich użytkowników.
       forwarded_to: Przekazano do %{domain}
@@ -757,11 +762,13 @@ pl:
       report: 'Zgłoszenie #%{id}'
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
+      reported_content: Zgłoszona zawartość
       reported_with_application: Zareportowano przez aplikację
       resolved: Rozwiązane
       resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       skip_to_actions: Przejdź do akcji
       status: Stan
+      statuses: Wpisy (%{count})
       statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
       summary:
         action_preambles:
