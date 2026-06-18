@@ -46,13 +46,7 @@ module Admin
     def filter_by_ip
       scope = IpBlock.order(ip: :asc).page(params[:page])
 
-      if params[:ip].present?
-        if cidr?(params[:ip])
-          scope.merge!(IpBlock.contained_by(params[:ip]))
-        else
-          scope.merge!(IpBlock.containing(params[:ip]))
-        end
-      end
+      scope.merge!(IpBlock.overlapping_with(params[:ip])) if params[:ip].present?
       scope
     end
 
@@ -68,14 +62,6 @@ module Admin
     def form_ip_block_batch_params
       params
         .expect(form_ip_block_batch: [ip_block_ids: []])
-    end
-
-    def cidr?(ip)
-      ip_obj = IPAddr.new(ip)
-
-      ip_obj.cidr == ip
-    rescue IPAddr::InvalidAddressError
-      false
     end
   end
 end
