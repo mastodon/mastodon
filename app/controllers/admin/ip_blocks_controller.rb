@@ -46,13 +46,7 @@ module Admin
     def filter_by_ip
       scope = IpBlock.order(ip: :asc).page(params[:page])
 
-      if params[:ip].present?
-        if full_ip?(params[:ip])
-          scope.merge!(IpBlock.contained_by(params[:ip]))
-        else
-          scope.merge!(IpBlock.matches_partial_ip(params[:ip]))
-        end
-      end
+      scope.merge!(IpBlock.contained_by(params[:ip])) if params[:ip].present?
       scope
     end
 
@@ -68,13 +62,6 @@ module Admin
     def form_ip_block_batch_params
       params
         .expect(form_ip_block_batch: [ip_block_ids: []])
-    end
-
-    def full_ip?(ip)
-      IPAddr.new(ip)
-      true
-    rescue IPAddr::InvalidAddressError
-      false
     end
   end
 end

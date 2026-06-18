@@ -33,8 +33,6 @@ class IpBlock < ApplicationRecord
 
   after_commit :reset_cache
 
-  scope :matches_partial_ip, ->(value) { where(ip_as_text.matches("#{value}%")) }
-
   def to_cidr
     "#{ip}/#{ip.prefix}"
   end
