@@ -28,7 +28,7 @@ class Admin::ActionLog < ApplicationRecord
   before_validation :set_route_param
   before_validation :set_permalink
 
-  store_accessor :log_changes, *LOG_ATTRIBUTES
+  store_accessor :recorded_changes, *LOG_ATTRIBUTES
 
   scope :latest, -> { order(id: :desc) }
 
