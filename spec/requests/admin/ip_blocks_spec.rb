@@ -25,37 +25,32 @@ RSpec.describe 'Admin IP Blocks' do
 
   describe 'get /admin/ip_blocks/' do
     let(:ip_block) { Fabricate(:ip_block, ip: '192.2.2.2/32') }
-    let(:other_ip_block) { Fabricate(:ip_block, ip: '192.4.4.2/32') }
-    let(:another_ip_block) { Fabricate(:ip_block, ip: '192.5.5.2/32') }
     let(:range_ip_block) { Fabricate(:ip_block, ip: '192.2.2.200/32') }
+    let(:anoth_range_ip_block) { Fabricate(:ip_block, ip: '192.2.2.50/32') }
+    let(:other_ip_block) { Fabricate(:ip_block, ip: '192.2.2.0/24') }
 
     before do
       ip_block
-      other_ip_block
-      another_ip_block
       range_ip_block
+      anoth_range_ip_block
+      other_ip_block
     end
 
-    context 'with full ip address in search field' do
-      let(:params) { { ip: '192.2.2.1/32' } }
+    context 'when searching single ip address' do
+      let(:params) { { ip: '192.2.2.1' } }
 
       it 'renders successfully with partial ip address' do
         get admin_ip_blocks_path(params)
 
         expect(response.body).to_not include(admin_accounts_path(ip: '192.2.2.2/32'))
+        expect(response.body).to_not include(admin_accounts_path(ip: '192.2.2.200/32'))
+        expect(response.body).to_not include(admin_accounts_path(ip: '192.2.2.50/32'))
+        expect(response.body).to include(admin_accounts_path(ip: '192.2.2.0/24'))
       end
     end
 
     context 'when searching within a range' do
-      let(:anoth_range_ip_block) { Fabricate(:ip_block, ip: '192.2.2.50/32') }
-      let(:ip_block_zero) { Fabricate(:ip_block, ip: '192.2.2.0/24') }
-
-      let(:params) { { ip: '192.2.2.1/24' } }
-
-      before do
-        anoth_range_ip_block
-        ip_block_zero
-      end
+      let(:params) { { ip: '192.2.2.0/24' } }
 
       it 'renders ips within range' do
         get admin_ip_blocks_path(params)
