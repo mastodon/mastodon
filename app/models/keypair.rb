@@ -25,7 +25,10 @@ class Keypair < ApplicationRecord
 
   belongs_to :account
 
-  enum :type, { rsa: 0 }
+  enum :type, {
+    rsa: 0,
+    ed25519: 1,
+  }, validate: true
 
   attr_accessor :require_private_key
 
@@ -46,6 +49,8 @@ class Keypair < ApplicationRecord
       case type
       when 'rsa'
         OpenSSL::PKey::RSA.new(private_key || public_key)
+      when 'ed25519'
+        OpenSSL::PKey.read(private_key || public_key)
       end
     end
   end
