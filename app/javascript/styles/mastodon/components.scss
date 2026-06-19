@@ -3886,6 +3886,7 @@ a.account__display-name {
 }
 
 .scrollable {
+  container: column / inline-size;
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
@@ -4567,6 +4568,7 @@ a.status-card {
 }
 
 .column-header__wrapper {
+  container: column / inline-size;
   position: relative;
   flex: 0 0 auto;
   z-index: 1;
