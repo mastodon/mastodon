@@ -42,11 +42,26 @@ module Admin::ActionLogsHelper
     end
   end
 
-  def translation_key(log, key)
+  def chain_multiple_translations(action_log)
+    translations = +''
+    case action_log.target_type
+    when 'Tag'
+      %i(usable trendable listable).each do |key|
+        fetch_key = permutation_of_key(action_log, key)
+        next if fetch_key.nil?
+
+        translations.concat(" #{t("admin.trends.tags.#{fetch_key}")};")
+      end
+    else
+      return
+    end
+    translations
+  end
+
+  def permutation_of_key(log, key)
     return if log.public_send(key).nil?
 
-    status = log.public_send(key) ? key : :"not_#{key}"
-    "#{t("admin.trends.tags.#{status}")};"
+    log.public_send(key) ? key : :"not_#{key}"
   end
 
   def sorted_action_log_types
