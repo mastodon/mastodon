@@ -65,22 +65,15 @@ RSpec.describe UserMailer do
         .and match(Rails.configuration.x.local_domain)
     end
 
-    it_behaves_like 'localized subject',
-                    'devise.mailer.confirmation_instructions.subject',
-                    instance: Rails.configuration.x.local_domain
-    it_behaves_like 'delivery to memorialized user'
-  end
+    context 'when the user needs to reconfirm' do
+      before { receiver.update!(email: 'new-email@example.com', locale: nil) }
 
-  describe '#reconfirmation_instructions' do
-    let(:mail) { described_class.confirmation_instructions(receiver, 'spec') }
-
-    it 'renders reconfirmation instructions' do
-      receiver.update!(email: 'new-email@example.com', locale: nil)
-
-      expect(mail.text_part.body)
-        .to match(I18n.t('devise.mailer.reconfirmation_instructions.title'))
-        .and match('spec')
-        .and match(Rails.configuration.x.local_domain)
+      it 'renders reconfirmation instructions' do
+        expect(mail.text_part.body)
+          .to match(I18n.t('devise.mailer.reconfirmation_instructions.title'))
+          .and match('spec')
+          .and match(Rails.configuration.x.local_domain)
+      end
     end
 
     it_behaves_like 'localized subject',
