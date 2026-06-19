@@ -349,6 +349,14 @@ class ActivityPub::ProcessAccountService < BaseService
         ]
       )
       [:ed25519, OpenSSL::PKey.read(asn1.to_der).public_to_pem]
+    when :'mldsa-44-pub'
+      asn1 = OpenSSL::ASN1::Sequence(
+        [
+          OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('id-ml-dsa-44')]),
+          OpenSSL::ASN1::BitString(key),
+        ]
+      )
+      [:'ml-dsa-44', OpenSSL::PKey.read(asn1.to_der).public_to_pem]
     end
   rescue ArgumentError
     nil

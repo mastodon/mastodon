@@ -7,6 +7,7 @@ class Multibase
   MULTICODEC_PREFIXES = {
     'rsa-pub': 0x1205,
     'ed25519-pub': 0xED,
+    'mldsa-44-pub': 0x1210,
   }.transform_values do |code|
     bytes = []
 
