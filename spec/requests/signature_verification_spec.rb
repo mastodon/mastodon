@@ -693,6 +693,48 @@ RSpec.describe 'signature verification concern' do
       end
     end
 
+    context 'with a Ed25519 key' do
+      # Include the private key so the tests can be easily adjusted and reviewed
+      let(:actor_keypair) do
+        OpenSSL::PKey.read(<<~PEM_TEXT)
+          -----BEGIN PRIVATE KEY-----
+          MC4CAQAwBQYDK2VwBCIEIE4+t/Xnl3lEh/Uw72qW2IWlMQJOHaLuFUipMUHPfO2M
+          -----END PRIVATE KEY-----
+        PEM_TEXT
+      end
+
+      context 'with a known account' do
+        let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: '') }
+
+        before do
+          Fabricate(:keypair, account: actor, type: :ed25519, public_key: actor_keypair.public_to_pem, uri: 'https://remote.domain/users/bob#main-key')
+        end
+
+        context 'with a valid signature on a GET request' do
+          let(:signature_input) do
+            'sig1=("@method" "@target-uri");created=1703066400;keyid="https://remote.domain/users/bob#main-key"'
+          end
+          let(:signature_header) do
+            'sig1=:o5DKH6Bge3pkaSs4UHqa1lMmbzTyBKOrDkILRA7OQ4La2d1HgM2CbIhi30KwemP+Jd5tgSv8NL65/H+57QbwDQ==:'
+          end
+
+          it 'successfully verifies signature', :aggregate_failures do
+            get '/activitypub/success', headers: {
+              'Host' => 'www.example.com',
+              'Signature-Input' => signature_input,
+              'Signature' => signature_header,
+            }
+
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body).to match(
+              signed_request: true,
+              signature_actor_id: actor.id.to_s
+            )
+          end
+        end
+      end
+    end
+
     context 'with an inaccessible key' do
       let(:signature_input) do
         'sig1=("@method" "@target-uri");created=1703066400;keyid="https://remote.domain/users/alice#main-key"'
