@@ -77,6 +77,6 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def confirmed_owner?
-    value_or_id(@owner['publicKey']) == @json['id']
+    as_array(@owner['publicKey']).map { |value| value_or_id(value) }.include?(@json['id'])
   end
 end

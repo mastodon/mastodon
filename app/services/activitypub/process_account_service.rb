@@ -290,6 +290,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
       # Key is fetched without ID validation because of a GoToSocial bug
       value = fetch_resource_without_id_validation(key_id)
+      next if value.blank?
 
       # Special handling for GoToSocial which returns the whole actor for the key ID
       value = first_of_value(value['publicKey']) if value.is_a?(Hash) && value.key?('publicKey')
