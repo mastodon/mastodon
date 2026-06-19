@@ -124,7 +124,7 @@ Rails.application.routes.draw do
   end
 
   scope path: 'ap', as: 'ap' do
-    resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
+    resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources, constraints: { id: /-?\d+/ } do
       resources :collections, only: [:show], constraints: { id: /\d+/ }
       resources :collection_items, only: [:show]
       resources :feature_authorizations, only: [:show], module: :activitypub
