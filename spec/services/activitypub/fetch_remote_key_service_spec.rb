@@ -81,6 +81,25 @@ RSpec.describe ActivityPub::FetchRemoteKeyService do
         expect(keypair.uri).to eq public_key_id
         expect(keypair.public_key).to eq public_key_pem
       end
+
+      context 'when there are multiple keys' do
+        let(:actor_public_key) do
+          [
+            'https://example.com/unavailable-key.json',
+            public_key_id,
+          ]
+        end
+
+        before do
+          stub_request(:get, 'https://example.com/unavailable-key.json').to_return(status: 404)
+        end
+
+        it 'returns the expected account' do
+          expect(keypair.account.uri).to eq 'https://example.com/alice'
+          expect(keypair.uri).to eq public_key_id
+          expect(keypair.public_key).to eq public_key_pem
+        end
+      end
     end
 
     context 'when the key and owner do not match' do
