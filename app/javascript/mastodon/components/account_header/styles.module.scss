@@ -356,7 +356,7 @@ $button-fallback-breakpoint: $button-breakpoint + 55px;
 
   &.fieldItem {
     border-color: var(--color-border-success-soft);
-    padding-right: 32px; // 8px padding + 16px for the icon + 8px gap
+    padding-right: 30px; // 8px padding + 16px for the icon + 8px gap - 2px tolerance
   }
 }
 
