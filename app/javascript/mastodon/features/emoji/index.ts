@@ -1,4 +1,5 @@
 import { initialState } from '@/mastodon/initial_state';
+
 import { toSupportedLocale } from './locale';
 import type { EmojiWorkerMessage } from './types';
 import { emojiLogger } from './utils';
