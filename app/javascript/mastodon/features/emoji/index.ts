@@ -1,6 +1,4 @@
 import { initialState } from '@/mastodon/initial_state';
-import { loadWorker } from '@/mastodon/utils/workers';
-
 import { toSupportedLocale } from './locale';
 import type { EmojiWorkerMessage } from './types';
 import { emojiLogger } from './utils';
@@ -22,14 +20,8 @@ export async function initializeEmoji() {
   let tempWorker: Worker | null = null;
   if (!worker && 'Worker' in window) {
     try {
-      // Load the worker from its own URL instead of inlining it as a Blob.
-      // Inlined Blob workers embed a `sourceMappingURL` that browsers resolve
-      // against the opaque Blob URL, which Safari rejects with `blob://null…`
-      // "Not allowed to load local resource" errors (#38500). `loadWorker`
-      // keeps CDN/cross-origin support by wrapping the URL in a same-origin
-      // Blob importer only when needed.
-      const { default: workerUrl } = await import('./worker?worker&url');
-      tempWorker = loadWorker(workerUrl, { type: 'module' });
+      const { default: EmojiWorker } = await import('./worker?worker&inline');
+      tempWorker = new EmojiWorker();
     } catch (err) {
       console.warn('Error creating web worker:', err);
     }

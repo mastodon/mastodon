@@ -176,6 +176,13 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     },
     worker: {
       format: 'es',
+      rolldownOptions: {
+        output: {
+          // Inline workers run from Blob URLs, so relative source map comments
+          // resolve to invalid blob://null... URLs in Safari.
+          sourcemap: 'hidden',
+        },
+      },
     },
     plugins: [
       react(),
