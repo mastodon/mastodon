@@ -7,12 +7,13 @@ RSpec.describe ActivityPub::ProcessFeaturedCollectionService do
 
   let(:account) { Fabricate(:remote_account) }
   let(:summary) { '<p>A list of remote actors you should follow.</p>' }
+  let(:attributed_to) { account.uri }
   let(:base_json) do
     {
       '@context' => 'https://www.w3.org/ns/activitystreams',
       'id' => 'https://example.com/featured_collections/1',
       'type' => 'FeaturedCollection',
-      'attributedTo' => account.uri,
+      'attributedTo' => attributed_to,
       'name' => 'Good people from other servers',
       'sensitive' => false,
       'discoverable' => true,
@@ -37,6 +38,16 @@ RSpec.describe ActivityPub::ProcessFeaturedCollectionService do
     it 'does not create a collection and returns `nil`' do
       expect do
         expect(subject.call(non_matching_account, featured_collection_json)).to be_nil
+      end.to_not change(Collection, :count)
+    end
+  end
+
+  context 'when `attributedTo` does not match the given account' do
+    let(:attributed_to) { 'https://example.com/random/account' }
+
+    it 'does not create a collection and returns nil' do
+      expect do
+        expect(subject.call(account, featured_collection_json)).to be_nil
       end.to_not change(Collection, :count)
     end
   end

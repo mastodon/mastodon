@@ -22,7 +22,7 @@ interface ApiNestedQuoteJSON {
 interface ApiQuoteAcceptedJSON {
   state: 'accepted';
   quoted_status: Omit<ApiStatusJSON, 'quote'> & {
-    quote: ApiNestedQuoteJSON | ApiQuoteEmptyJSON;
+    quote?: ApiNestedQuoteJSON | ApiQuoteEmptyJSON;
   };
 }
 

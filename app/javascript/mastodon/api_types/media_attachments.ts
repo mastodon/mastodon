@@ -7,7 +7,7 @@ export type MediaAttachmentType =
   | 'unknown'
   | 'audio';
 
-interface BaseApiMediaAttachmentJSON {
+export interface BaseApiMediaAttachmentJSON {
   id: string;
   type: MediaAttachmentType;
   url: string;
@@ -19,7 +19,7 @@ interface BaseApiMediaAttachmentJSON {
   blurhash: string;
 }
 
-interface ApiImageAttachmentJSON extends BaseApiMediaAttachmentJSON {
+export interface ApiImageAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'image';
   meta: {
     original: ApiImageAttachmentMetaJSON;
@@ -27,7 +27,7 @@ interface ApiImageAttachmentJSON extends BaseApiMediaAttachmentJSON {
   };
 }
 
-interface ApiAudioAttachmentJSON extends BaseApiMediaAttachmentJSON {
+export interface ApiAudioAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'audio';
   meta: {
     colors: ApiColorsAttachmentMetaJSON;
@@ -36,7 +36,7 @@ interface ApiAudioAttachmentJSON extends BaseApiMediaAttachmentJSON {
   };
 }
 
-interface ApiVideoAttachmentJSON extends BaseApiMediaAttachmentJSON {
+export interface ApiVideoAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'video';
   meta: {
     colors: ApiColorsAttachmentMetaJSON;
@@ -49,7 +49,7 @@ interface ApiVideoAttachmentJSON extends BaseApiMediaAttachmentJSON {
   };
 }
 
-interface ApiGifvAttachmentJSON extends BaseApiMediaAttachmentJSON {
+export interface ApiGifvAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'gifv';
   meta: {
     original: ApiVideoAttachmentMetaJSON;
@@ -57,7 +57,7 @@ interface ApiGifvAttachmentJSON extends BaseApiMediaAttachmentJSON {
   };
 }
 
-interface ApiUnknownAttachmentJSON extends BaseApiMediaAttachmentJSON {
+export interface ApiUnknownAttachmentJSON extends BaseApiMediaAttachmentJSON {
   type: 'unknown';
   meta: unknown;
 }

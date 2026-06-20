@@ -4,6 +4,7 @@ de:
     about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Behalte mit Mastodon die Kontrolle über deine Daten!'
     contact_missing: Nicht festgelegt
     contact_unavailable: Nicht verfügbar
+    default_thumbnail_description: Zwei lächelnde Mastodonten, die wie Elefanten aussehen, werfen sich in einem Cartoon-Zeichenstil ein Papierflugzeug zu. Sie sind von einem hellblauen Himmel und anderen Planeten umgeben. Auf den Planeten befinden sich Bäume und weitere Mastodonten.
     hosted_on: Mastodon, eingerichtet auf %{domain}
     title: Über
   accounts:
@@ -505,6 +506,21 @@ de:
           no_lists_yet: Noch keine Listen vorhanden
         last_email: Letzte E-Mail
         lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
+        show:
+          confirm_disable_feature: E-Mail-Newsletter für %{name} deaktivieren? Für dieses Konto werden keine Neuigkeiten mehr über E-Mail versendet. Das Profil kann die Funktion in den Kontoeinstellungen weiterhin reaktivieren. Um den Zugriff auf diese Funktion dauerhaft zu entfernen, passe die Berechtigung in der Rollenverwaltung an.
+          confirm_remove_subscriber: "%{email} wird keine E-Mails mehr von %{name} erhalten. Die Aktion lässt sich nicht rückgängig machen."
+          consent: Abonnent*innen haben ausschließlich dem Erhalt von Beiträgen per E-Mail zugestimmt. Verwende diese Liste nicht zu anderen Zwecken.
+          date: Registrierungsdatum
+          disable_feature: Funktion deaktivieren
+          disabled: Die Funktion wurde deaktiviert und E-Mails werden nicht länger diese Liste gesendet.
+          email: E-Mail-Adresse
+          empty:
+            hint: Noch hat niemand dieses Konto abonniert.
+            no_subscribers_yet: Bisher keine Abonnent*innen
+          enable_feature: Funktion aktivieren
+          no_access_html: Dieses Konto besitzt nicht länger die erforderliche Berechtigung, um die Funktion zu aktivieren. In der <a href="%{roles_path}">Rollenverwaltung</a> kann das angepasst werden.
+          title: E-Mail-Newsletter von %{name}
+          view_account: Konto ansehen
         status: Status
         subscribers: Abonnent*innen
         title: Mailingliste
@@ -714,6 +730,8 @@ de:
       new:
         title: Neue IP-Regel erstellen
       no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurde(n)
+      reset: Zurücksetzen
+      search: Suchen
       title: IP-Regeln
     relationships:
       title: Beziehungen von %{acct}
@@ -1532,7 +1550,9 @@ de:
         success_html: Du wirst nun per E-Mail benachrichtigt, sobald %{name} einen neuen Beitrag veröffentlichen wird. Füge sicherheitshalber noch %{sender} deinem Adressbuch hinzu, damit diese E-Mails nicht fälschlich im Spam-Ordner deines E-Mail-Postfachs landen.
         title: Du hast dich angemeldet
         unsubscribe: Abbestellen
+    disabled: Deaktiviert
     inactive: Deaktiviert
+    no_access: Kein Zugriff
     status: Status
     subscribers: Abonnent*innen
   emoji_styles:

@@ -4,6 +4,7 @@ cs:
     about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S Mastodonem vlastníte svoje data!'
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
+    default_thumbnail_description: Dva usmívající se kreslení mastodonti (kteří vypadají jako sloni) si mezi sebou házejí papírové letadélko. Jsou obklopeni jasně modrou oblohou a létajícími planetami se stromy, na kterých jsou další mastodonti.
     hosted_on: Mastodon na doméně %{domain}
     title: O službě
   accounts:
@@ -275,6 +276,7 @@ cs:
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
         destroy_canonical_email_block_html: "%{name} odblokoval*a e-mail s hashem %{target}"
+        destroy_collection_html: "%{name} odstranil sbírku od %{target}"
         destroy_custom_emoji_html: "%{name} odstranil emoji %{target}"
         destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
@@ -314,6 +316,7 @@ cs:
         unsilence_account_html: Uživatel %{name} zrušil omezení účtu %{target}
         unsuspend_account_html: Uživatel %{name} zrušil pozastavení účtu uživatele %{target}
         update_announcement_html: Uživatel %{name} aktualizoval oznámení %{target}
+        update_collection_html: "%{name} aktualizoval sbírku od %{target}"
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
         update_ip_block_html: "%{name} změnil pravidlo pro IP %{target}"
@@ -351,14 +354,22 @@ cs:
       updated_msg: Oznámení bylo úspěšně aktualizováno!
     collections:
       accounts: Účty
+      back_to_account: Zpět na stránku účtu
+      back_to_report: Zpět na stránku hlášení
+      batch:
+        add_to_report: 'Přidat do hlášení #%{id}'
+        remove_from_report: Odebrat z hlášení
+        report: Hlášení
       collection_title: Sbírka od %{name}
       contents: Obsah
+      no_collection_selected: Žádná sbírka nebyla změněna, jelikož nebyla ani žádná vybrána
       number_of_accounts:
         few: "%{count} účty"
         many: "%{count} účtů"
         one: 1 účet
         other: "%{count} účtů"
       open: Otevřít
+      title: Sbírky účtu - @%{name}
       view_publicly: Zobrazit veřejně
     critical_update_pending: Čeká se na kritickou aktualizaci
     custom_emojis:
@@ -502,12 +513,17 @@ cs:
         title: Blokovat novou e-mailovou doménu
       no_email_domain_block_selected: Žádné blokace e-mailové domény nebyly změněny, protože žádné nebyly vybrány
       not_permitted: Nepovoleno
+      reset: Obnovit
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které mají nakonec na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která používá stejnou MX doménu, i když je viditelné doménové jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       resolved_through_html: Přeložena přes %{domain}
+      search: Hledat
       title: Blokované e-mailové domény
     email_subscriptions:
       accounts:
         account: Účet
+        empty:
+          hint: Žádný účet zatím nemá odběratele.
+          no_lists_yet: Zatím žádné seznamy
         last_email: Poslední e-mail
         status: Status
       compliance_settings:

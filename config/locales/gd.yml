@@ -4,6 +4,7 @@ gd:
     about_mastodon_html: 'An lìonra sòisealta dhan àm ri teachd: Gun sanasachd, gun chaithris corporra, dealbhadh beusail agus dì-mheadhanachadh! Gabh sealbh air an dàta agad fhèin le Mastodon!'
     contact_missing: Cha deach a shuidheachadh
     contact_unavailable: Chan eil seo iomchaidh
+    default_thumbnail_description: Tha dà mhastodon cartùin (seo ainmhidhean coltach ri ailbheanan) le fiamh-ghàire orra a’ sadadh plèana pàipear eatorra. Tha speur gorm ’s planaidean a’ fleòdradh mun timcheall le craobhan is barrachd mhastodonaichean orra.
     hosted_on: Mastodon ’ga òstadh air %{domain}
     title: Mu dhèidhinn
   accounts:
@@ -526,6 +527,7 @@ gd:
         last_email: Am post-d mu dheireadh
         lead: Thèid na cunntasan a chuir an gleus an comas agus aig a bheil fo-sgrìobhaichean a shealltainn gu h-ìosal.
         show:
+          confirm_disable_feature: A bheil thu airson cuairt-litrichean puist-d a chur à comas airson %{name}? Cha dèid naidheachdan a’ chunntais sin a chur air a’ post-d tuilleadh. ’S urrainn dhan chleachdaiche an gleus a chur an comas a-rithist ann an roghainnean a’ chunntais aca ge-tà. Airson an cothrom air a’ ghleus seo a thoirt air falbh gu buan, deasaich ceadan a’ chunntais sna dreuchdan.
           confirm_remove_subscriber: Chan fhaigh %{email} puist-d o %{name} tuilleadh. Cha ghabh an gnìomh seo a neo-dhèanamh.
           consent: Cha do ghabh na fo-sgrìobhaichean ach ri faighinn nam post air a’ phost-d. Na cleachd an liosta seo air adhbhar sam bith eile.
           date: Ceann-latha a’ chlàraidh
@@ -555,6 +557,7 @@ gd:
           action: Stiùirich
           hint: Thèid ceangal ris a’ phoileasaidh seo a chur ri bann-coise gach puist-d
           title: Poileasaidh prìobhaideachd
+        title: Roghainnean a’ ghèillidh
       danger_zone:
         disable_feature:
           action: Cuir à comas
@@ -569,14 +572,18 @@ gd:
       index:
         disabled:
           cannot_be_enabled: Cha do chuir an solaraiche teicnigeach agad an gleus seo an comas air an fhrithealaiche agad.
+          description: Leigidh an gleus seo le cunntasan sònraichte widget a chur ris na pròifilean aca a bheir comas do dh’aoighean aig nach eil cunntas Mastodon am postaichean fhaighinn air a’ phost-d.
           get_started: Dèan toiseach-tòiseachaidh
+        lead: Leigidh seo le aoighean postaichean o chunntasan sònraichte air an fhrithealaiche seo fhaighinn air a’ phost-d.
         title: Cuairt-litrichean puist-d
+      purged_msg: Thèid a h-uile dàta mu fho-sgrìobhaidhean puist-d a shuathadh bàn.
       roles:
         accounts: Cunntasan
         edit_role: Deasaich an dreuchd
         empty:
           hint: Chan fhaod neach sam bith an gleus seo a chleachdadh.
           no_roles_added: Cha deach dreuchd a chur ris
+        lead: "’S urrainn do chunntasan aig a bheil gin dhe na dreuchdan seo an gleus a chur ann comas air a’ phròifil aca."
         manage_roles: Stiùirich na dreuchdan
         role_name: Ainm na dreuchd
         title: Dreuchdan
@@ -584,6 +591,11 @@ gd:
         show:
           enable_feature: Cuir an gleus an comas
           important_information: Fiosrachadh cudromach
+          list:
+            1_permission_explanation: Nuair a bhios an gleus seo an comas, ’s urrainn do chunntasan leis na ceadan iomruinte foirm cruinneachadh phost-d a chur ris a’ phròifil aca.
+            2_feature_explanation: Nuair a chlàraicheas aoighean air duilleag pròifil cunntais ’s ma dhearbhas iad am fo-sgrìobhadh, gheibh iad naidheachd air a’ phost-d nuair a chruthaicheas an cunntas post poblach ùr.
+            3_privacy_policy_warning: Gheibh rianairean an fhrithealaiche cothrom air fiosrachadh a dh’aithnicheadh cò cuideigin (na puist-d) a thèid a chruinneachadh. Mar sin dheth, feumar am poileasaidh prìobhaideachd ’s teirmichean na seirbheise ùrachadh dhan fhrithealaiche mus dèid an gleus seo a chleachdadh.
+            4_cost_warning: Dh’fhaoidte gun cosg puist-d tàille a-rèir rèiteachadh òstadh an fhrithealaiche. Bruidhinn ri solaraiche an òstaidh agad mus cuir thu seo an comas on a dh’fhaodas an gleus seo cur ri meud nam post-d a thèid a chur on fhrithealaiche agad gu mòr.
     export_domain_allows:
       new:
         title: Ion-phortaich àrainnean ceadaichte
@@ -744,6 +756,8 @@ gd:
       new:
         title: Cruthaich riaghailt IP ùr
       no_ip_block_selected: Cha deach riaghailt IP sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      reset: Ath-shuidhich
+      search: Lorg
       title: Riaghailtean IP
     relationships:
       title: Na dàimhean aig %{acct}
@@ -901,6 +915,7 @@ gd:
         manage_custom_emojis: Stiùireadh nan Emojis gnàthaichte
         manage_custom_emojis_description: Leigidh seo le cleachdaichean Emojis gnàthaichte a stiùireadh air an fhrithealaiche
         manage_email_subscriptions: Stiùireadh fo-sgrìobhaidhean puist-d
+        manage_email_subscriptions_description: Leigidh seo le cleachdaidhean aig a bheil an cead seo gleus cuairt-litreach puist-d a chur an comas dhan chunntas aca
         manage_federation: Stiùireadh a’ cho-nasgaidh
         manage_federation_description: Leigidh seo le cleachdaichean an co-nasgadh le àrainnean eile a bhacadh no a cheadachadh agus stiùireadh dè ghabhas lìbhrigeadh
         manage_invites: Stiùireadh nan cuiridhean
@@ -989,7 +1004,14 @@ gd:
           disabled: Iarr dreuchd shònraichte a’ chleachdaiche
           public: A h-uile duine
       landing_page:
+        hints:
+          about_html: Duilleag le tuairisgeul, fiosrachadh conaltraidh, riaghailtean ’s fiosrachadh eile mun fhrithealaiche seo.
+          local_feed_html: Loidhne-ama bheò leis na postaichean as ùire leis na cleachdaichean air an fhrithealaiche seo.
+          overview_html: Duilleag a sheallas tuairisgeul an fhrithealaiche agad còmhla ris na postaichean ionadail as ùire leis na cleachdaichean air an fhrithealaiche seo.
+          trends_html: Duilleag a nochdas na tha fèill mhòr air air an fhrithealaiche seo an-dràsta.
         values:
+          about: Duilleag mu dhèidhinn
+          local_feed: Loidhne-ama ionadail bheò
           overview: Foir-shealladh
           trends: A’ treandadh
       registrations:

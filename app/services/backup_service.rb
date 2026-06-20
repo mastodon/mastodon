@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'zip'
-
 class BackupService < BaseService
   include Payloadable
   include ContextHelper
