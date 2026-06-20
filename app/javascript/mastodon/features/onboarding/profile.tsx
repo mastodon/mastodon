@@ -72,6 +72,11 @@ export const Profile: React.FC<{
   const intl = useIntl();
   const history = useHistory();
 
+  const maxDisplayNameLength = useAppSelector(
+    (state) =>
+      state.server.server.item?.configuration.accounts.max_display_name_length,
+  );
+
   const handleDisplayNameChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setDisplayName(e.target.value);
@@ -218,7 +223,7 @@ export const Profile: React.FC<{
 
           <div className='fields-group'>
             <TextInputField
-              maxLength={30}
+              maxLength={maxDisplayNameLength ?? 40}
               label={
                 <FormattedMessage
                   id='onboarding.profile.display_name'

@@ -1586,6 +1586,10 @@ body > [data-popper-placement] {
     top: 0;
     inset-inline-start: 16px + ((46px - 2px) * 0.5);
 
+    .status__wrapper:has(> .status__prepend) &:not(&--full, &--first) {
+      height: 50px;
+    }
+
     &--full {
       top: 0;
       height: 100%;
@@ -1737,6 +1741,12 @@ body > [data-popper-placement] {
   line-height: 22px;
   font-weight: 500;
   color: var(--color-text-secondary);
+
+  .status__wrapper-reply & {
+    --thread-margin: calc(46px + 8px);
+
+    margin-inline-start: var(--thread-margin);
+  }
 
   &__icon {
     display: flex;
@@ -3886,6 +3896,7 @@ a.account__display-name {
 }
 
 .scrollable {
+  container: column / inline-size;
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1 1 auto;
@@ -4567,6 +4578,7 @@ a.status-card {
 }
 
 .column-header__wrapper {
+  container: column / inline-size;
   position: relative;
   flex: 0 0 auto;
   z-index: 1;
