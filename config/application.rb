@@ -52,6 +52,7 @@ require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
 require_relative '../lib/vite_ruby/sri_extensions'
+require_relative '../lib/json-canonicalization/floats_fix'
 
 Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 

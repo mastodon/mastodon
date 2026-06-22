@@ -6,6 +6,7 @@ AllCops:
     - Vagrantfile
     - config/initializers/json_ld*
     - lib/mastodon/migration_helpers.rb
+    - lib/json-canonicalization/floats_fix.rb
   ExtraDetails: true
   NewCops: enable
   TargetRubyVersion: 3.3 # Oldest supported ruby version
