@@ -341,6 +341,14 @@ class ActivityPub::ProcessAccountService < BaseService
     case tag
     when :'rsa-pub'
       [:rsa, OpenSSL::PKey::RSA.new(key).to_pem]
+    when :'ed25519-pub'
+      asn1 = OpenSSL::ASN1::Sequence(
+        [
+          OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
+          OpenSSL::ASN1::BitString(key),
+        ]
+      )
+      [:ed25519, OpenSSL::PKey.read(asn1.to_der).public_to_pem]
     end
   rescue ArgumentError
     nil
