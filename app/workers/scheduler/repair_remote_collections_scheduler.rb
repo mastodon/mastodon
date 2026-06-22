@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: Remove in the next version
 class Scheduler::RepairRemoteCollectionsScheduler
   include Sidekiq::Worker
   include JsonLdHelper
