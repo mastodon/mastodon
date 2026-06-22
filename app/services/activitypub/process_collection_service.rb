@@ -37,8 +37,20 @@ class ActivityPub::ProcessCollectionService < BaseService
 
       @options[:relayed_through_actor] = @account
 
-      # TODO: handle FEP-8b32
+      # Linked Data Signature verification
       @account = actor_from_verified_ld_signature
+
+      # If Linked Data Signature verification failed, throw away the signature
+      # as other parts of the code use its presence as an indication of whether
+      # to forward the activity (don't throw away compaction though, it is still useful)
+      @json = @json.without('signature') if @account.nil?
+
+      # TODO: in the future, we might extend our forwarding rules to allow activities with
+      # FEP-8b32 Object Integrity Proofs to be forwarded.
+      # This would require keeping the original JSON around and changing forwarding logic in
+      # a few places. This is not worth it right now since FEP-8b32 is not widely supported,
+      # but could be worth doing in the future.
+      @account ||= actor_from_verified_object_integrity_proof(original_json)
     end
 
     return if !@account.is_a?(Account) || different_actor? || suspended_actor? || @account.local?
@@ -95,5 +107,13 @@ class ActivityPub::ProcessCollectionService < BaseService
   rescue JSON::LD::JsonLdError, RDF::WriterError => e
     Rails.logger.debug { "Could not verify LD-Signature for #{value_or_id(@json['actor'])}: #{e.message}" }
     nil
+  end
+
+  def actor_from_verified_object_integrity_proof(original_json)
+    return unless original_json['proof'].present? && original_json['actor'] == @json['actor']
+    return if domain_not_allowed?(@json['proof']['verificationMethod'])
+
+    # Verification is done on the original JSON without a signature
+    ActivityPub::ObjectIntegrityProof.new(original_json.without('signature')).verify_actor!
   end
 end

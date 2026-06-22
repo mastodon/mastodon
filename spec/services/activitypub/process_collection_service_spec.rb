@@ -75,7 +75,7 @@ RSpec.describe ActivityPub::ProcessCollectionService do
     context 'when actor differs from sender' do
       let(:forwarder) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/other_account') }
 
-      it 'does not process payload if no signature exists' do
+      it 'does not process payload if no signature nor FEP-8b32 proof exists' do
         signature_double = instance_double(ActivityPub::LinkedDataSignature, verify_actor!: nil)
         allow(ActivityPub::LinkedDataSignature).to receive(:new).and_return(signature_double)
         allow(ActivityPub::Activity).to receive(:factory)
@@ -90,6 +90,59 @@ RSpec.describe ActivityPub::ProcessCollectionService do
 
         signature_double = instance_double(ActivityPub::LinkedDataSignature, verify_actor!: actor)
         allow(ActivityPub::LinkedDataSignature).to receive(:new).and_return(signature_double)
+        allow(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+
+        subject.call(json, forwarder)
+
+        expect(ActivityPub::Activity).to have_received(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+      end
+
+      it 'processes payload with actor if valid proof exists' do
+        payload['proof'] = {
+          'type' => 'DataIntegrityProof',
+          'proofPurpose' => 'assertionMethod',
+          'cryptosuite' => 'eddsa-jcs-2022',
+        }
+
+        signature_double = instance_double(ActivityPub::ObjectIntegrityProof, verify_actor!: actor)
+        allow(ActivityPub::ObjectIntegrityProof).to receive(:new).and_return(signature_double)
+        allow(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+
+        subject.call(json, forwarder)
+
+        expect(ActivityPub::Activity).to have_received(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+      end
+
+      it 'does not process payload if invalid proof exists' do
+        payload['proof'] = {
+          'type' => 'DataIntegrityProof',
+          'proofPurpose' => 'assertionMethod',
+          'cryptosuite' => 'eddsa-jcs-2022',
+        }
+
+        signature_double = instance_double(ActivityPub::ObjectIntegrityProof, verify_actor!: nil)
+        allow(ActivityPub::ObjectIntegrityProof).to receive(:new).and_return(signature_double)
+        allow(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
+
+        subject.call(json, forwarder)
+
+        expect(ActivityPub::Activity).to_not have_received(:factory)
+      end
+
+      it 'processes payload with actor if invalid signature exists but valid proof exists' do
+        payload['signature'] = { 'type' => 'RsaSignature2017' }
+        payload['proof'] = {
+          'type' => 'DataIntegrityProof',
+          'proofPurpose' => 'assertionMethod',
+          'cryptosuite' => 'eddsa-jcs-2022',
+        }
+
+        ld_sig_double = instance_double(ActivityPub::LinkedDataSignature, verify_actor!: nil)
+        allow(ActivityPub::LinkedDataSignature).to receive(:new).and_return(ld_sig_double)
+
+        signature_double = instance_double(ActivityPub::ObjectIntegrityProof, verify_actor!: actor)
+        allow(ActivityPub::ObjectIntegrityProof).to receive(:new).and_return(signature_double)
+
         allow(ActivityPub::Activity).to receive(:factory).with(instance_of(Hash), actor, instance_of(Hash))
 
         subject.call(json, forwarder)
