@@ -9,14 +9,14 @@ RSpec.describe Scheduler::RepairRemoteCollectionsScheduler do
 
   describe 'perform' do
     let(:owner) do
-      Fabricate(:remote_account, uri: 'https://example.com/accounts/123', collections_url: 'https://example.com/ap/user/123/featured_collections')
+      Fabricate(:remote_account, uri: 'https://example.com/accounts/123', collections_url: 'https://example.com/ap/users/123/featured_collections')
     end
     let(:other_account) do
-      Fabricate(:remote_account, collections_url: 'https://example.com/ap/user/234/featured_collections')
+      Fabricate(:remote_account, collections_url: 'https://example.com/ap/users/234/featured_collections')
     end
     let(:collection) do
       Fabricate(:remote_collection,
-                uri: 'https://example.com/ap/user/123/collections/1',
+                uri: 'https://example.com/ap/users/123/collections/1',
                 account: other_account,
                 created_at: 2.hours.ago)
     end

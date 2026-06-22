@@ -13,7 +13,7 @@ class Scheduler::RepairRemoteCollectionsScheduler
     last_known_good = redis.get('remote_collection_repair:last_known_good')
 
     affected_collections = Collection.joins(:account).where(local: false)
-      .where("regexp_substr(collections.uri, '/ap/user/\\d+/') != regexp_substr(accounts.collections_url, '/ap/user/\\d+/')")
+      .where("regexp_substr(collections.uri, '/ap/users/\\d+/') != regexp_substr(accounts.collections_url, '/ap/users/\\d+/')")
     affected_collections = affected_collections.where(id: last_known_good...) if last_known_good
 
     successful = affected_collections.map do |collection|
