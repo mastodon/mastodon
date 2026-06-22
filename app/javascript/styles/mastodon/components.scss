@@ -1742,7 +1742,7 @@ body > [data-popper-placement] {
   font-weight: 500;
   color: var(--color-text-secondary);
 
-  .status__wrapper-reply & {
+  .status__wrapper-reply.status__wrapper--in-thread & {
     --thread-margin: calc(46px + 8px);
 
     margin-inline-start: var(--thread-margin);
