@@ -5,6 +5,7 @@ import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 
 import { openEmojiDB } from './db-schema';
 import type { Database } from './db-schema';
+import { importEmojiData } from './loader';
 import { localeToSegmenter, toSupportedLocale } from './locale';
 import {
   extractTokens,
@@ -437,7 +438,6 @@ async function toLoadedLocale(localeString: string) {
   }
   if (!loadedLocales.has(locale)) {
     log('Locale %s not loaded, importing...', locale);
-    const { importEmojiData } = await import('./loader');
     await importEmojiData(locale);
     return locale;
   }
