@@ -9,12 +9,12 @@ class Scheduler::RepairRemoteCollectionsScheduler
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
-    max_created_at = Collection.maximum(:created_at)
+    max_id = Collection.maximum(:id)
     last_known_good = redis.get('remote_collection_repair:last_known_good')
 
     affected_collections = Collection.joins(:account).where(local: false)
       .where("regexp_substr(collections.uri, '/ap/user/\\d+/') != regexp_substr(accounts.collections_url, '/ap/user/\\d+/')")
-    affected_collections = affected_collections.where(created_at: Time.zone.parse(last_known_good)..) if last_known_good
+    affected_collections = affected_collections.where(id: last_known_good...) if last_known_good
 
     successful = affected_collections.map do |collection|
       json = fetch_resource(collection.uri, true)
@@ -28,6 +28,6 @@ class Scheduler::RepairRemoteCollectionsScheduler
       true
     end
 
-    redis.set('remote_collection_repair:last_known_good', max_created_at.to_s) if successful.all?
+    redis.set('remote_collection_repair:last_known_good', max_id.to_s) if successful.all?
   end
 end

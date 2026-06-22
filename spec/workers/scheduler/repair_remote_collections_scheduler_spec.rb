@@ -93,7 +93,7 @@ RSpec.describe Scheduler::RepairRemoteCollectionsScheduler do
 
     context 'with flag in redis set' do
       before do
-        redis.set('remote_collection_repair:last_known_good', Time.zone.now)
+        redis.set('remote_collection_repair:last_known_good', collection.id + 1)
       end
 
       it 'does nothing with collections older than the last known good time' do
