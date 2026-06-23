@@ -5,7 +5,7 @@
 import type { RefObject } from 'react';
 import { useEffect } from 'react';
 
-type ElementRef = RefObject<HTMLElement | null>;
+type ElementRef = RefObject<HTMLElement | null> | null;
 
 export function useOnClickOutside(
   excludedElementRef: ElementRef | ElementRef[] | null,
