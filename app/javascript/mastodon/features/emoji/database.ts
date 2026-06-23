@@ -331,14 +331,6 @@ export async function clearCache(key: CacheKey) {
   log('Cleared cache for %s', key);
 }
 
-export async function resetDatabase() {
-  const db = await loadDB();
-  const storeNames = [...db.objectStoreNames];
-  await Promise.all(storeNames.map((storeName) => db.clear(storeName)));
-  loadedLocales.clear();
-  log('Reset emoji database stores: %o', storeNames);
-}
-
 export async function loadEmojiByHexcode(
   hexcode: string,
   localeString: string,

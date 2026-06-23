@@ -1,13 +1,7 @@
 import { IDBFactory } from 'fake-indexeddb';
 
+import { EMOJI_DB_RELOAD_EVENT } from './constants';
 import { openEmojiDB } from './db-schema';
-
-// resetDatabase is called fire-and-forget in the upgrade handler. Mocking it
-// prevents it from operating on a closed connection when a higher-version open
-// triggers its own upgrade, which would cause an InvalidStateError.
-vi.mock('./database', () => ({
-  resetDatabase: vi.fn().mockResolvedValue(undefined),
-}));
 
 describe('openEmojiDB', () => {
   afterEach(() => {
@@ -17,9 +11,9 @@ describe('openEmojiDB', () => {
   });
 
   describe('versionchange handler', () => {
-    test('reloads window in main thread context', async () => {
-      const reloadSpy = vi.fn();
-      vi.stubGlobal('location', { reload: reloadSpy });
+    test('dispatches reload event in main thread context', async () => {
+      const dispatchSpy = vi.fn();
+      window.addEventListener(EMOJI_DB_RELOAD_EVENT, dispatchSpy);
 
       await openEmojiDB();
 
@@ -28,8 +22,10 @@ describe('openEmojiDB', () => {
       indexedDB.open('mastodon-emoji', 9999);
 
       await vi.waitFor(() => {
-        expect(reloadSpy).toHaveBeenCalledOnce();
+        expect(dispatchSpy).toHaveBeenCalledOnce();
       });
+
+      window.removeEventListener(EMOJI_DB_RELOAD_EVENT, dispatchSpy);
     });
 
     test('posts db-blocked message in worker context', async () => {
@@ -47,8 +43,8 @@ describe('openEmojiDB', () => {
     });
 
     test('closes all open connections when versionchange fires', async () => {
-      const reloadSpy = vi.fn();
-      vi.stubGlobal('location', { reload: reloadSpy });
+      const dispatchSpy = vi.fn();
+      window.addEventListener(EMOJI_DB_RELOAD_EVENT, dispatchSpy);
 
       const db1 = await openEmojiDB();
       const db2 = await openEmojiDB();
@@ -58,8 +54,10 @@ describe('openEmojiDB', () => {
       indexedDB.open('mastodon-emoji', 9999);
 
       await vi.waitFor(() => {
-        expect(reloadSpy).toHaveBeenCalledTimes(2);
+        expect(dispatchSpy).toHaveBeenCalledTimes(2);
       });
+
+      window.removeEventListener(EMOJI_DB_RELOAD_EVENT, dispatchSpy);
 
       // Both connections should now be closed.
       expect(() => db1.transaction('etags', 'readonly')).toThrow();

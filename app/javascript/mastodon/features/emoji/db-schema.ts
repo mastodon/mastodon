@@ -11,7 +11,6 @@ import type {
 } from 'idb';
 
 import { EMOJI_DB_RELOAD_EVENT } from './constants';
-import { resetDatabase } from './database';
 import type {
   CustomEmojiData,
   CacheKey,
@@ -107,7 +106,10 @@ export async function openEmojiDB() {
         });
         deleteOldIndexes(shortcodeTable, ['hexcode']);
 
-        void resetDatabase();
+        // Reset all database stores.
+        for (const storeName of database.objectStoreNames) {
+          void trx.objectStore(storeName).clear();
+        }
 
         log(
           'Upgraded emoji database from version %d to %d',
