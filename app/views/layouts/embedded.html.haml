@@ -11,6 +11,7 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
+    = javascript_inline_tag 'at-check.js'
     = javascript_inline_tag 'theme-selection.js'
     = vite_client_tag
     = vite_react_refresh_tag
