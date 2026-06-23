@@ -135,6 +135,7 @@ export const Popover: React.FC<PopoverProps> = ({
         props: {
           ref: refs.setFloating,
           style: floatingStyles,
+          'data-floating-ui': true, // TODO: Remove me
           'data-popper-placement': computedPlacement,
           'data-popper-reference-hidden':
             middlewareData.hide?.referenceHidden ?? false,
