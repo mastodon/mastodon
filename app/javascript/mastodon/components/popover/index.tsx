@@ -25,6 +25,7 @@ export interface PopoverProps {
   isOpen?: boolean;
   onClose: (e: Event) => void;
   reference: ReferenceType | null;
+  popoverElement?: HTMLElement | null;
   placement?: Placement;
   offset?: OffsetOptions;
   strategy?: Strategy;
@@ -39,7 +40,7 @@ export interface PopoverProps {
     placement: Placement | undefined;
     update: () => void;
     props: Record<string, unknown> & {
-      ref: React.RefCallback<HTMLElement>;
+      ref?: React.RefCallback<HTMLElement>;
       style: React.CSSProperties;
     };
   }) => React.ReactNode;
@@ -49,6 +50,7 @@ export const Popover: React.FC<PopoverProps> = ({
   isOpen,
   onClose,
   reference,
+  popoverElement,
   placement,
   offset,
   strategy = 'fixed',
@@ -68,6 +70,7 @@ export const Popover: React.FC<PopoverProps> = ({
   } = useFloating({
     elements: {
       reference,
+      floating: popoverElement,
     },
     placement,
     strategy,
@@ -137,7 +140,7 @@ export const Popover: React.FC<PopoverProps> = ({
         placement: computedPlacement,
         update,
         props: {
-          ref: refs.setFloating,
+          ref: popoverElement ? undefined : refs.setFloating,
           style: floatingStyles,
           'data-floating-ui': true, // TODO: Remove me
           'data-popper-placement': computedPlacement,
