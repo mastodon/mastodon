@@ -110,6 +110,10 @@ export const Popover: React.FC<PopoverProps> = ({
 
   // Close when pressing Escape
   useEffect(() => {
+    if (!isOpen) {
+      return () => null;
+    }
+
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         onClose(event);
@@ -121,7 +125,7 @@ export const Popover: React.FC<PopoverProps> = ({
     return () => {
       document.removeEventListener('keyup', closeOnEscape);
     };
-  }, [onClose]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) {
     return null;
