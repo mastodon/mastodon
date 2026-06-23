@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import Overlay from 'react-overlays/Overlay';
 import Textarea from 'react-textarea-autosize';
 
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
@@ -14,6 +13,7 @@ import { AutosuggestEmoji } from './autosuggest_emoji';
 import { AutosuggestHashtag } from './autosuggest_hashtag';
 import { LocalCustomEmojiProvider } from './emoji/context';
 import { textAtCursorMatchesToken } from './autosuggest/utils';
+import { Popover } from './popover';
 
 const AutosuggestTextarea = forwardRef(({
   value,
@@ -36,6 +36,7 @@ const AutosuggestTextarea = forwardRef(({
 
   const [suggestionsHidden, setSuggestionsHidden] = useState(true);
   const [selectedSuggestion, setSelectedSuggestion] = useState(0);
+  const [textareaElement, setTextareaElement] = useState(null);
   const lastTokenRef = useRef(null);
   const tokenStartRef = useRef(0);
 
@@ -173,10 +174,15 @@ const AutosuggestTextarea = forwardRef(({
     );
   };
 
+  const handleRef = useCallback((element) => {
+    textareaRef.current = element;
+    setTextareaElement(element);
+  }, []);
+
   return (
     <div className={classNames('autosuggest-textarea', className)}>
       <Textarea
-        ref={textareaRef}
+        ref={handleRef}
         className='autosuggest-textarea__textarea'
         disabled={disabled}
         placeholder={placeholder}
@@ -196,15 +202,21 @@ const AutosuggestTextarea = forwardRef(({
       />
 
       <LocalCustomEmojiProvider>
-        <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={textareaRef} popperConfig={{ strategy: 'fixed' }}>
+        <Popover
+          matchReferenceWidth
+          isOpen={!(suggestionsHidden || suggestions.isEmpty())}
+          offset={0}
+          placement='bottom'
+          reference={textareaElement}
+        >
           {({ props }) => (
             <div {...props}>
-              <div className='autosuggest-textarea__suggestions' style={{ width: textareaRef.current?.clientWidth }}>
+              <div className='autosuggest-textarea__suggestions' style={{ width: textareaElement?.clientWidth }}>
                 {suggestions.map(renderSuggestion)}
               </div>
             </div>
           )}
-        </Overlay>
+        </Popover>
       </LocalCustomEmojiProvider>
     </div>
   );

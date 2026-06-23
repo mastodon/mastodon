@@ -197,7 +197,12 @@ export default class AutosuggestInput extends ImmutablePureComponent {
         />
 
         <LocalCustomEmojiProvider>
-          <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={this.input} popperConfig={{ strategy: 'fixed' }}>
+          <Popover
+            reference={this.input}
+            isOpen={!(suggestionsHidden || suggestions.isEmpty())}
+            placement='bottom' 
+            offset={0}
+          >
             {({ props }) => (
               <div {...props}>
                 <div className='autosuggest-textarea__suggestions' style={{ width: this.input?.clientWidth }}>
@@ -205,7 +210,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
                 </div>
               </div>
             )}
-          </Overlay>
+          </Popover>
         </LocalCustomEmojiProvider>
       </div>
     );
