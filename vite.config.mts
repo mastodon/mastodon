@@ -117,7 +117,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     build: {
       commonjsOptions: { transformMixedEsModules: true },
       chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
-      sourcemap: true,
+      sourcemap: isProdBuild ? 'hidden' : true,
       emptyOutDir: mode !== 'production',
       manifest: true,
       outDir,
@@ -176,13 +176,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     },
     worker: {
       format: 'es',
-      rolldownOptions: {
-        output: {
-          // Inline workers run from Blob URLs, so relative source map comments
-          // resolve to invalid blob://null... URLs in Safari.
-          sourcemap: 'hidden',
-        },
-      },
     },
     plugins: [
       react(),
