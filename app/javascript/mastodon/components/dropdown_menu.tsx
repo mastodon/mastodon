@@ -13,8 +13,6 @@ import { Link } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
-import type { OffsetOptions, Placement } from '@floating-ui/react-dom';
-
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import {
   openDropdownMenu,
@@ -35,6 +33,7 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 import { Icon } from './icon';
 import type { IconProp } from './icon';
 import { IconButton } from './icon_button';
+import type { PopoverProps } from './popover';
 import { Popover } from './popover';
 
 let id = 0;
@@ -298,8 +297,8 @@ interface DropdownProps<Item extends object | null = MenuItem> {
   title?: string;
   disabled?: boolean;
   scrollable?: boolean;
-  placement?: Placement;
-  offset?: OffsetOptions;
+  placement?: PopoverProps['placement'];
+  offset?: PopoverProps['offset'];
   /**
    * Prevent the `ScrollableList` with this scrollKey
    * from being scrolled while the dropdown is open
