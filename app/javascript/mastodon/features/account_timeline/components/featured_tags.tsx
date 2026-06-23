@@ -56,7 +56,7 @@ export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
           <Tag
             name={name}
             key={id}
-            inert={hiddenIndex > 0 && index >= hiddenIndex ? '' : undefined}
+            inert={hiddenIndex > 0 && index >= hiddenIndex}
             onClick={onClick}
             active={currentTag === name}
             data-name={name}

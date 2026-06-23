@@ -220,7 +220,7 @@ const FieldHTML: FC<FieldHTMLProps> = ({
 };
 
 function useColumnWrap() {
-  const listRef = useRef<HTMLDListElement | null>(null);
+  const listRef = useRef<HTMLDListElement>(null);
 
   const handleRecalculate = useCallback(() => {
     const listEle = listRef.current;
@@ -330,7 +330,7 @@ function useFieldOverflow() {
   const [isLabelOverflowing, setIsLabelOverflowing] = useState(false);
   const [isValueOverflowing, setIsValueOverflowing] = useState(false);
 
-  const wrapperRef = useRef<HTMLElement | null>(null);
+  const wrapperRef = useRef<HTMLElement>(null);
 
   const handleRecalculate = useCallback(() => {
     const wrapperEle = wrapperRef.current;

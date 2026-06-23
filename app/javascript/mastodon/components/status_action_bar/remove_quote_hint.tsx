@@ -65,8 +65,8 @@ export const RemoveQuoteHint: React.FC<{
           flip
           offset={[12, 10]}
           placement='bottom-end'
-          target={anchorRef}
-          container={anchorRef}
+          target={anchorRef as React.RefObject<HTMLDivElement>}
+          container={anchorRef as React.RefObject<HTMLDivElement>}
         >
           {({ props, placement }) => (
             <div

@@ -9,7 +9,7 @@ export const LearnMoreLink: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const accessibilityId = useId();
   const [open, setOpen] = useState(false);
-  const triggerRef = useRef(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = useCallback(() => {
     setOpen(!open);
@@ -37,7 +37,7 @@ export const LearnMoreLink: React.FC<{ children: React.ReactNode }> = ({
         onHide={handleClick}
         offset={[5, 5]}
         placement='bottom-end'
-        target={triggerRef}
+        target={triggerRef as React.RefObject<HTMLButtonElement>}
       >
         {({ props }) => (
           <div

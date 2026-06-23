@@ -20,7 +20,7 @@ interface AllowedTag {
 }
 
 type AllowedTagsType = {
-  [Tag in keyof React.ReactHTML]?: AllowedTag;
+  [Tag in keyof React.JSX.IntrinsicElements]?: AllowedTag;
 };
 
 const globalAttributes: Record<string, boolean | string> = htmlConfig.global;

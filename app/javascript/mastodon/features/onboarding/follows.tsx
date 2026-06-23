@@ -61,7 +61,7 @@ export const Follows: React.FC<{
     setIsSearching(false);
   }, [setMode, setIsSearching]);
 
-  const searchRequestRef = useRef<AbortController | null>(null);
+  const searchRequestRef = useRef<AbortController>(null);
 
   const handleSearch = useDebouncedCallback(
     (value: string) => {

@@ -30,7 +30,7 @@ CheckboxField.displayName = 'CheckboxField';
 
 export const Checkbox = forwardRef<HTMLInputElement, Props>(
   ({ className, size, indeterminate, ...otherProps }, ref) => {
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const handleRef = useCallback(
       (element: HTMLInputElement | null) => {

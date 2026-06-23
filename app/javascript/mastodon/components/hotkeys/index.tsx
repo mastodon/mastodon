@@ -184,7 +184,7 @@ export type HandlerMap = Partial<Record<HotkeyName, HandlerFunction>>;
 export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
   const ref = useRef<T>(null);
   const bufferedKeys = useRef<string[]>([]);
-  const sequenceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sequenceTimer = useRef<ReturnType<typeof setTimeout>>(null);
 
   /**
    * Store the latest handlers object in a ref so we don't need to
