@@ -11,6 +11,13 @@ class ActivityPub::ProcessCollectionService < BaseService
 
     return unless @json.is_a?(Hash)
 
+    # Ideally, we should treat all ActivityPub payloads as proper JSON-LD.
+    # However, some implementations do not produce valid JSON-LD, and processing JSON-LD is pretty expensive.
+    # Therefore, we only process activities as JSON-LD if they make use of JSON-LD signatures.
+    # The reasons are that this is a strong indication that they are valid JSON-LD documents,
+    # and that Linked Data Signature verification requires JSON-LD processing to begin with.
+    # Doing JSON-LD compaction early ensures we know what we are working with, and avoids
+    # issues like attacks involving swapping external context documents between processing steps.
     begin
       @json = compact(@json) if @json['signature'].is_a?(Hash)
       if unsupported_jsonld_features?(@json)
@@ -22,8 +29,19 @@ class ActivityPub::ProcessCollectionService < BaseService
       @json = original_json.without('signature')
     end
 
-    return if !supported_context? || (different_actor? && verify_account!.nil?) || suspended_actor? || @account.local?
-    return unless @account.is_a?(Account)
+    return unless supported_context?(@json)
+
+    if different_actor?
+      # This has been relayed by a different account.
+      # Record where it's coming from and try to verify proof of the activity.
+
+      @options[:relayed_through_actor] = @account
+
+      # TODO: handle FEP-8b32
+      @account = actor_from_verified_ld_signature
+    end
+
+    return if !@account.is_a?(Account) || different_actor? || suspended_actor? || @account.local?
 
     if @json['signature'].present?
       # We have verified the signature, but in the compaction step above, might
@@ -64,23 +82,16 @@ class ActivityPub::ProcessCollectionService < BaseService
     items.reverse_each.filter_map { |item| process_item(item) }
   end
 
-  def supported_context?
-    super(@json)
-  end
-
   def process_item(item)
     activity = ActivityPub::Activity.factory(item, @account, **@options)
     activity&.perform
   end
 
-  def verify_account!
+  def actor_from_verified_ld_signature
     return unless @json['signature'].is_a?(Hash)
     return if domain_not_allowed?(@json['signature']['creator'])
 
-    @options[:relayed_through_actor] = @account
-    @account = ActivityPub::LinkedDataSignature.new(@json).verify_actor!
-    @account = nil unless @account.is_a?(Account)
-    @account
+    ActivityPub::LinkedDataSignature.new(@json).verify_actor!
   rescue JSON::LD::JsonLdError, RDF::WriterError => e
     Rails.logger.debug { "Could not verify LD-Signature for #{value_or_id(@json['actor'])}: #{e.message}" }
     nil

@@ -110,7 +110,7 @@ RSpec.describe ActivityPub::FetchRemoteKeyService do
         stub_request(:get, public_key_id).to_return(body: key_json.merge({ '@context': ['https://www.w3.org/ns/activitystreams', 'https://w3id.org/security/v1'] }).to_json, headers: { 'Content-Type': 'application/activity+json' })
       end
 
-      it 'returns the nil' do
+      it 'returns nil' do
         expect(keypair).to be_nil
       end
     end
@@ -126,6 +126,13 @@ RSpec.describe ActivityPub::FetchRemoteKeyService do
         controller: 'https://example.com/alice',
         publicKeyMultibase: 'z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGpbnnEGta2doK',
       }
+    end
+    let(:ed25519_key_pem) do
+      <<~TEXT
+        -----BEGIN PUBLIC KEY-----
+        MCowBQYDK2VwAyEALm/M42cB3HkUiODQsXRcweM6TByfzEHGO9ND274JcOY=
+        -----END PUBLIC KEY-----
+      TEXT
     end
 
     let(:rsa_key_id) { 'https://example.com/alice#rsa-key' }
@@ -218,8 +225,61 @@ RSpec.describe ActivityPub::FetchRemoteKeyService do
           stub_request(:get, rsa_key_id).to_return(body: rsa_multikey.merge({ '@context': ['https://www.w3.org/ns/cid/v1'] }).to_json, headers: { 'Content-Type': 'application/activity+json' })
         end
 
-        it 'returns the nil' do
+        it 'returns nil' do
           expect(keypair).to be_nil
+        end
+      end
+
+      context 'with an Ed25519 key' do
+        let(:keypair) { subject.call(ed25519_key_id) }
+
+        context 'when the key is a sub-object from the actor' do
+          before do
+            stub_request(:get, ed25519_key_id).to_return(body: actor.to_json, headers: { 'Content-Type': 'application/activity+json' })
+          end
+
+          it 'returns the expected account' do
+            expect(keypair.account.uri).to eq 'https://example.com/alice'
+
+            expect(keypair)
+              .to have_attributes(
+                uri: ed25519_key_id,
+                type: 'ed25519',
+                public_key: ed25519_key_pem
+              )
+          end
+        end
+
+        context 'when the key is a separate document' do
+          let(:ed25519_key_id) { 'https://example.com/alice-public-key.json' }
+          let(:actor_ed25519_key) { ed25519_key_id }
+
+          before do
+            stub_request(:get, ed25519_key_id).to_return(body: ed25519_multikey.merge({ '@context': ['https://www.w3.org/ns/cid/v1'] }).to_json, headers: { 'Content-Type': 'application/activity+json' })
+          end
+
+          it 'returns the expected account' do
+            expect(keypair.account.uri).to eq 'https://example.com/alice'
+            expect(keypair)
+              .to have_attributes(
+                uri: ed25519_key_id,
+                type: 'ed25519',
+                public_key: ed25519_key_pem
+              )
+          end
+        end
+
+        context 'when the key and owner do not match' do
+          let(:ed25519_key_id) { 'https://example.com/fake-public-key.json' }
+          let(:actor_ed25519_key) { 'https://example.com/alice-public-key.json' }
+
+          before do
+            stub_request(:get, ed25519_key_id).to_return(body: ed25519_multikey.merge({ '@context': ['https://www.w3.org/ns/cid/v1'] }).to_json, headers: { 'Content-Type': 'application/activity+json' })
+          end
+
+          it 'returns nil' do
+            expect(keypair).to be_nil
+          end
         end
       end
     end
