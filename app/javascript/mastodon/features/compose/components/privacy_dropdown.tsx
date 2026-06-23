@@ -139,7 +139,7 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
   }
 
   const selectedOption =
-    options.find((item) => item.value === value) ?? options.at(0);
+    options.find((item) => item.value === value) ?? options[0];
 
   return (
     <div ref={overlayTargetRef}>

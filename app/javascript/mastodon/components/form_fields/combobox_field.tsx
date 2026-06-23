@@ -364,10 +364,10 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       if (highlightedItemIndex === -1) {
         // If no item is highlighted yet, highlight the first or last
         if (direction > 0) {
-          const firstItem = flatItems.at(0);
+          const firstItem = flatItems[0];
           highlightItem(firstItem ? getItemId(firstItem) : null);
         } else {
-          const lastItem = flatItems.at(-1);
+          const lastItem = flatItems[flatItems.length-1];
           highlightItem(lastItem ? getItemId(lastItem) : null);
         }
       } else {

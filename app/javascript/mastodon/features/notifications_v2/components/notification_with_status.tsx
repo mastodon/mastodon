@@ -40,7 +40,7 @@ export const NotificationWithStatus: React.FC<{
   const dispatch = useAppDispatch();
 
   const account = useAppSelector((state) =>
-    state.accounts.get(accountIds.at(0) ?? ''),
+    state.accounts.get(accountIds[0] ?? ''),
   );
   const label = useMemo(
     () =>

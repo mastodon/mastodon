@@ -96,7 +96,7 @@ function optionPlus(key: string): KeyMatcher {
  */
 function sequence(...sequence: string[]): KeyMatcher {
   return (event, bufferedKeys) => {
-    const lastKeyInSequence = sequence.at(-1);
+    const lastKeyInSequence = sequence[sequence.length-1];
     const startOfSequence = sequence.slice(0, -1);
     const relevantBufferedKeys = bufferedKeys?.slice(-startOfSequence.length);
 
@@ -237,7 +237,7 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
         // Sort all matches by priority
         matchCandidates.sort((a, b) => b.priority - a.priority);
 
-        const bestMatchingHandler = matchCandidates.at(0)?.handler;
+        const bestMatchingHandler = matchCandidates[0]?.handler;
         if (bestMatchingHandler) {
           const wasHandled = bestMatchingHandler(event);
           if (wasHandled !== false) {

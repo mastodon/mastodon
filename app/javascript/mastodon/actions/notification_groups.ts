@@ -128,7 +128,7 @@ export const fetchNotifications = createDataLoadingThunk(
     // TODO: might be worth not using gaps for that…
     // if (nextLink) payload.push({ type: 'gap', loadUrl: nextLink.uri });
     if (notifications.length > 1)
-      payload.push({ type: 'gap', maxId: notifications.at(-1)?.page_min_id });
+      payload.push({ type: 'gap', maxId: notifications[notifications.length-1]?.page_min_id });
 
     return payload;
     // dispatch(submitMarkers());

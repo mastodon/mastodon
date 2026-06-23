@@ -69,7 +69,7 @@ export async function search({
     log('no tokens extracted from query "%s"', query);
     return [];
   }
-  const lastToken = queryTokens.at(-1);
+  const lastToken = queryTokens[queryTokens.length-1];
   if (!lastToken) {
     throw new Error('Missing tokens from query');
   }
@@ -238,7 +238,7 @@ async function fullCustomSearch(query: string, existing = new Set<string>()) {
       break;
     }
     log('cursor search got batch of %d emojis', keys.length);
-    lastKey = keys.at(-1) ?? null;
+    lastKey = keys[keys.length-1] ?? null;
 
     for (const key of keys) {
       if (!foundEmojis.has(key) && !existing.has(key) && key.includes(query)) {
@@ -384,7 +384,7 @@ export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
   const sortedCodes = shortcodes.toSorted();
   const results = await db.getAll(
     'custom',
-    IDBKeyRange.bound(sortedCodes.at(0), sortedCodes.at(-1)),
+    IDBKeyRange.bound(sortedCodes[0], sortedCodes[sortedCodes.length-1]),
   );
   return results.filter((emoji) => shortcodes.includes(emoji.shortcode));
 }

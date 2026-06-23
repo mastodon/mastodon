@@ -9,7 +9,7 @@ export function useVisibility({
   const [isIntersecting, setIsIntersecting] = useState(false);
   const handleIntersect: IntersectionObserverCallback = useCallback(
     (entries) => {
-      const entry = entries.at(0);
+      const entry = entries[0];
       if (!entry) {
         return;
       }

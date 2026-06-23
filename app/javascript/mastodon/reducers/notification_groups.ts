@@ -275,7 +275,7 @@ function shouldMarkNewNotificationsAsRead(
 ) {
   const isMounted = mounted > 0;
   const oldestGroup = groups.findLast(isNotificationGroup);
-  const hasMore = groups.at(-1)?.type === 'gap';
+  const hasMore = groups[groups.length-1]?.type === 'gap';
   const oldestGroupReached =
     !hasMore ||
     lastReadId === '0' ||
@@ -339,7 +339,7 @@ function fillNotificationsGap(
   // discarded, while any information on groups appearing after the gap
   // can be updated and re-ordered.
 
-  const oldestPageNotification = notifications.at(-1)?.page_min_id;
+  const oldestPageNotification = notifications[notifications.length-1]?.page_min_id;
 
   // replace the gap with the notifications + a new gap
 
@@ -369,7 +369,7 @@ function fillNotificationsGap(
     // Similarly, if we've fetched more than the gap's, this means we have completely filled it
     toInsert.push({
       type: 'gap',
-      maxId: notifications.at(-1)?.page_max_id,
+      maxId: notifications[notifications.length-1]?.page_max_id,
       sinceId,
     } as NotificationGap);
   }
@@ -414,7 +414,7 @@ function ensureLeadingGap(
 function ensureTrailingGap(
   groups: NotificationGroupsState['groups'],
 ): NotificationGap {
-  const groupOrGap = groups.at(-1);
+  const groupOrGap = groups[groups.length-1];
 
   if (groupOrGap?.type === 'gap') {
     // We're expecting older notifications, so discard sinceId if it's set
