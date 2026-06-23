@@ -51,6 +51,8 @@ export async function initializeEmoji() {
         workerLog(message.message);
       } else if (type === 'done' && message.storeName === 'custom') {
         void loadEmojisToStore();
+      } else if (type === 'db-blocked') {
+        window.location.reload(); // Try to reload the window
       }
 
       if (type !== 'ready') {
