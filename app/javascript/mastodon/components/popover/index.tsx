@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import type {
   ReferenceType,
   Placement,
@@ -88,8 +90,6 @@ export const Popover: React.FC<PopoverProps> = ({
     ],
   });
 
-  // TODO: Handle ESC click to close
-
   const referenceRef =
     elements.reference instanceof Element
       ? { current: elements.reference }
@@ -99,6 +99,7 @@ export const Popover: React.FC<PopoverProps> = ({
       ? { current: elements.floating }
       : null;
 
+  // Close when clicking outside the popover
   useOnClickOutside(
     [referenceRef, floatingRef],
     (e) => {
@@ -106,6 +107,21 @@ export const Popover: React.FC<PopoverProps> = ({
     },
     isOpen && closeOnClickOutside,
   );
+
+  // Close when pressing Escape
+  useEffect(() => {
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        onClose(event);
+      }
+    }
+
+    document.addEventListener('keyup', closeOnEscape);
+
+    return () => {
+      document.removeEventListener('keyup', closeOnEscape);
+    };
+  }, [onClose]);
 
   if (!isOpen) {
     return null;
