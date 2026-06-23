@@ -187,7 +187,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
   return (
     <Dropdown
       placement='bottom-start'
-      offset={[-19, 5]} // This aligns button icon with menu icons
+      offset={{ mainAxis: 5, crossAxis: -19 }} // This aligns button icon with menu icons
       items={items}
       renderItem={renderMenuItem}
       onOpen={handleDropdownOpen}
