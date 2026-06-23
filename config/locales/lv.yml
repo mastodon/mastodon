@@ -93,7 +93,7 @@ lv:
       memorialized: Piemiņa saglabāta
       memorialized_msg: "%{username} sekmīgi pārveidots par piemiņas kontu"
       moderation:
-        active: Aktīvie
+        active: Darbīgi
         all: Visi
         disabled: Atspējota
         pending: Gaida
@@ -362,7 +362,7 @@ lv:
       updated_msg: Emocijzīme sekmīgi atjaunināta.
       upload: Augšupielādēt
     dashboard:
-      active_users: aktīvie lietotāji
+      active_users: darbīgi lietotāji
       interactions: mijiedarbības
       media_storage: Multivides uzglabāšana
       new_users: jauni lietotāji
@@ -917,7 +917,7 @@ lv:
       database_schema_check:
         message_html: Ir nepabeigtas datubāzes migrācijas. Lūgums palaist tās, lai nodrošinātu, ka lietotne darbojas, kā paredzēts
       elasticsearch_analysis_index_mismatch:
-        message_html: 'Elasticsearch indeksa analizatora iestatījumi ir novecojuši. Lūdzu, izpildiet šo komandu: <code>tootctl search deploy --only-mapping --only=%{value}</code>'
+        message_html: Elasticsearch indeksa analizētāja iestatījumi ir novecojuši. Lūgums izpildīt komandu <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch kopa ir neveselīga (sarkans stāvoklis), meklēšanas līdzekļi nav pieejami
       elasticsearch_health_yellow:
@@ -1104,7 +1104,7 @@ lv:
       edit: Labot galapunktu
       empty: Tev vēl nav konfigurēts neviens tīmekļa aizķeres galapunkts.
       enable: Iespējot
-      enabled: Aktīvie
+      enabled: Darbīgi
       enabled_events:
         one: 1 iespējots notikums
         other: "%{count} iespējoti notikumi"

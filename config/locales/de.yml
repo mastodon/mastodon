@@ -506,6 +506,21 @@ de:
           no_lists_yet: Noch keine Listen vorhanden
         last_email: Letzte E-Mail
         lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
+        show:
+          confirm_disable_feature: E-Mail-Newsletter für %{name} deaktivieren? Für dieses Konto werden keine Neuigkeiten mehr über E-Mail versendet. Das Profil kann die Funktion in den Kontoeinstellungen weiterhin reaktivieren. Um den Zugriff auf diese Funktion dauerhaft zu entfernen, passe die Berechtigung in der Rollenverwaltung an.
+          confirm_remove_subscriber: "%{email} wird keine E-Mails mehr von %{name} erhalten. Die Aktion lässt sich nicht rückgängig machen."
+          consent: Abonnent*innen haben ausschließlich dem Erhalt von Beiträgen per E-Mail zugestimmt. Verwende diese Liste nicht zu anderen Zwecken.
+          date: Registrierungsdatum
+          disable_feature: Funktion deaktivieren
+          disabled: Die Funktion wurde deaktiviert und E-Mails werden nicht länger diese Liste gesendet.
+          email: E-Mail-Adresse
+          empty:
+            hint: Noch hat niemand dieses Konto abonniert.
+            no_subscribers_yet: Bisher keine Abonnent*innen
+          enable_feature: Funktion aktivieren
+          no_access_html: Dieses Konto besitzt nicht länger die erforderliche Berechtigung, um die Funktion zu aktivieren. In der <a href="%{roles_path}">Rollenverwaltung</a> kann das angepasst werden.
+          title: E-Mail-Newsletter von %{name}
+          view_account: Konto ansehen
         status: Status
         subscribers: Abonnent*innen
         title: Mailingliste
@@ -1533,7 +1548,9 @@ de:
         success_html: Du wirst nun per E-Mail benachrichtigt, sobald %{name} einen neuen Beitrag veröffentlichen wird. Füge sicherheitshalber noch %{sender} deinem Adressbuch hinzu, damit diese E-Mails nicht fälschlich im Spam-Ordner deines E-Mail-Postfachs landen.
         title: Du hast dich angemeldet
         unsubscribe: Abbestellen
+    disabled: Deaktiviert
     inactive: Deaktiviert
+    no_access: Kein Zugriff
     status: Status
     subscribers: Abonnent*innen
   emoji_styles:
