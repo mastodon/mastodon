@@ -10,6 +10,7 @@ import type {
   StoreNames,
 } from 'idb';
 
+import { EMOJI_DB_RELOAD_EVENT } from './constants';
 import { resetDatabase } from './database';
 import type {
   CustomEmojiData,
@@ -131,7 +132,7 @@ export async function openEmojiDB() {
         db.close();
 
         if (typeof window !== 'undefined') {
-          window.location.reload();
+          window.dispatchEvent(new Event(EMOJI_DB_RELOAD_EVENT));
         } else {
           self.postMessage({ type: 'db-blocked' } satisfies EmojiWorkerMessage);
         }

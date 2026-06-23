@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useIntl } from 'react-intl';
+import { defineMessage, useIntl } from 'react-intl';
 import type { IntlShape } from 'react-intl';
 
 import { dismissAlert } from 'mastodon/actions/alerts';
@@ -75,6 +75,9 @@ const TimedAlert: React.FC<{
 
 export const AlertsController: React.FC = () => {
   const alerts = useAppSelector((state) => state.alerts);
+  const needDbReload = useAppSelector(
+    (state) => !!state.meta.get('needDbReload'),
+  );
 
   return (
     <A11yLiveRegion className='notification-list'>
@@ -85,6 +88,18 @@ export const AlertsController: React.FC = () => {
           dismissAfter={5000 + idx * 1000}
         />
       ))}
+      {needDbReload && <DBReloadAlert />}
     </A11yLiveRegion>
   );
+};
+
+const dbReloadMessage = defineMessage({
+  id: 'alert.db_reload.message',
+  defaultMessage:
+    'The database has been updated. Please reload the page to continue.',
+});
+
+const DBReloadAlert: React.FC = () => {
+  const intl = useIntl();
+  return <Alert isActive message={intl.formatMessage(dbReloadMessage)} />;
 };
