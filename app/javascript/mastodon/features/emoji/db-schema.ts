@@ -1,6 +1,6 @@
 import { SUPPORTED_LOCALES } from 'emojibase';
 import type { Locale } from 'emojibase';
-import { openDB } from 'idb';
+import { deleteDB, openDB } from 'idb';
 import type {
   DBSchema,
   IDBPDatabase,
@@ -10,8 +10,13 @@ import type {
   StoreNames,
 } from 'idb';
 
-import { resetDatabase } from './database';
-import type { CustomEmojiData, CacheKey, UnicodeEmojiData } from './types';
+import { EMOJI_DB_RELOAD_EVENT } from './constants';
+import type {
+  CustomEmojiData,
+  CacheKey,
+  UnicodeEmojiData,
+  EmojiWorkerMessage,
+} from './types';
 import { emojiLogger } from './utils';
 
 const log = emojiLogger('database');
@@ -58,72 +63,95 @@ type Transaction<Mode extends IDBTransactionMode = 'versionchange'> =
 
 export type Database = IDBPDatabase<EmojiDB>;
 
+const DATABASE_NAME = 'mastodon-emoji';
 const SCHEMA_VERSION = 4;
 
 export async function openEmojiDB() {
-  const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
-    upgrade(database, oldVersion, newVersion, trx) {
-      if (!database.objectStoreNames.contains('custom')) {
-        database.createObjectStore('custom', {
-          keyPath: 'shortcode',
-          autoIncrement: false,
-        });
-      }
-      maybeAddIndex({ trx, storeName: 'custom', indexName: 'category' });
-      maybeAddIndex({
-        trx,
-        storeName: 'custom',
-        indexName: 'tokens',
-        options: { multiEntry: true },
-      });
-
-      if (!database.objectStoreNames.contains('etags')) {
-        database.createObjectStore('etags');
-      }
-
-      SUPPORTED_LOCALES.forEach((locale) => {
-        createLocaleTable(locale, database, trx);
-      });
-
-      const shortcodeTable = database.objectStoreNames.contains('shortcodes')
-        ? trx.objectStore('shortcodes')
-        : database.createObjectStore('shortcodes', {
-            keyPath: 'hexcode',
+  try {
+    const db = await openDB<EmojiDB>(DATABASE_NAME, SCHEMA_VERSION, {
+      upgrade(database, oldVersion, newVersion, trx) {
+        if (!database.objectStoreNames.contains('custom')) {
+          database.createObjectStore('custom', {
+            keyPath: 'shortcode',
             autoIncrement: false,
           });
-      maybeAddIndex({
-        trx,
-        storeName: 'shortcodes',
-        indexName: 'shortcodes',
-        options: { multiEntry: true },
-      });
-      deleteOldIndexes(shortcodeTable, ['hexcode']);
+        }
+        maybeAddIndex({ trx, storeName: 'custom', indexName: 'category' });
+        maybeAddIndex({
+          trx,
+          storeName: 'custom',
+          indexName: 'tokens',
+          options: { multiEntry: true },
+        });
 
-      void resetDatabase();
+        if (!database.objectStoreNames.contains('etags')) {
+          database.createObjectStore('etags');
+        }
 
-      log(
-        'Upgraded emoji database from version %d to %d',
-        oldVersion,
-        newVersion,
-      );
-    },
-    blocked(currentVersion, blockedVersion) {
-      log(
-        'Emoji database upgrade from version %d to %d is blocked',
-        currentVersion,
-        blockedVersion,
-      );
-    },
-    blocking(currentVersion, blockedVersion) {
-      log(
-        'Emoji database upgrade from version %d is blocking upgrade to %d',
-        currentVersion,
-        blockedVersion,
-      );
-    },
-  });
+        SUPPORTED_LOCALES.forEach((locale) => {
+          createLocaleTable(locale, database, trx);
+        });
 
-  return db;
+        const shortcodeTable = database.objectStoreNames.contains('shortcodes')
+          ? trx.objectStore('shortcodes')
+          : database.createObjectStore('shortcodes', {
+              keyPath: 'hexcode',
+              autoIncrement: false,
+            });
+        maybeAddIndex({
+          trx,
+          storeName: 'shortcodes',
+          indexName: 'shortcodes',
+          options: { multiEntry: true },
+        });
+        deleteOldIndexes(shortcodeTable, ['hexcode']);
+
+        // Reset all database stores.
+        for (const storeName of database.objectStoreNames) {
+          void trx.objectStore(storeName).clear();
+        }
+
+        log(
+          'Upgraded emoji database from version %d to %d',
+          oldVersion,
+          newVersion,
+        );
+      },
+      blocked(currentVersion, blockedVersion) {
+        log(
+          'Emoji database upgrade from version %d to %d is blocked',
+          currentVersion,
+          blockedVersion,
+        );
+      },
+      blocking(currentVersion, blockedVersion) {
+        log(
+          'Emoji database upgrade from version %d is blocking upgrade to %d, closing connection',
+          currentVersion,
+          blockedVersion,
+        );
+        // Close the database connection immediately.
+        db.close();
+
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new Event(EMOJI_DB_RELOAD_EVENT));
+        } else {
+          self.postMessage({ type: 'db-blocked' } satisfies EmojiWorkerMessage);
+        }
+      },
+    });
+
+    return db;
+  } catch (error) {
+    if (error instanceof DOMException && error.name === 'VersionError') {
+      log(
+        'Emoji database version is newer than expected, deleting and recreating',
+      );
+      await deleteDB(DATABASE_NAME);
+      return openEmojiDB();
+    }
+    throw error;
+  }
 }
 
 function maybeAddIndex<StoreName extends StoreNames<EmojiDB>>({
