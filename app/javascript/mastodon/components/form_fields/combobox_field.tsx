@@ -3,6 +3,7 @@ import {
   forwardRef,
   useCallback,
   useContext,
+  useEffect,
   useId,
   useMemo,
   useRef,
@@ -276,12 +277,6 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     setShouldMenuOpen(false);
   }, []);
 
-  const resetHighlight = useCallback(() => {
-    const firstItem = flatItems[0];
-    const firstItemId = firstItem ? getItemId(firstItem) : null;
-    setHighlightedItemId(firstItemId);
-  }, [getItemId, flatItems]);
-
   const highlightItem = useCallback((id: string | null) => {
     setHighlightedItemId(id);
     if (id) {
@@ -293,6 +288,19 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       }
     }
   }, []);
+
+  const resetHighlight = useCallback(() => {
+    const firstItem = flatItems[0];
+    const firstItemId = firstItem ? getItemId(firstItem) : null;
+    highlightItem(firstItemId);
+  }, [flatItems, getItemId, highlightItem]);
+
+  // Reset scroll & highlight when menu items change
+  useEffect(() => {
+    if (flatItems.length) {
+      resetHighlight();
+    }
+  }, [flatItems, resetHighlight]);
 
   const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
     (e) => {
