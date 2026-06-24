@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Fix combobox menu not closing after a selection (#39595 by @diondiondion)
 - Fix Emoji IndexedDB upgrades when multiple tabs are open (#39576 by @ChaosExAnima)
 - Fix combobox listbox not scrolling up when new suggestions have loaded (#39588 by @diondiondion)
 - Fix media modal navigation in RTL languages (#39587 by @diondiondion)
