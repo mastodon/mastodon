@@ -256,7 +256,7 @@ class ActivityPub::ProcessAccountService < BaseService
     if value.is_a?(Hash) && value['type'] == 'Image'
       url = first_of_value(value['url'])
       url = url['href'] if url.is_a?(Hash)
-      description = value['summary'].presence || value['name'].presence
+      description = first_lang_string(value, 'summary').presence || first_lang_string(value, 'name').presence
       description = description.strip[0...MediaAttachment::MAX_DESCRIPTION_HARD_LENGTH_LIMIT] if description.present?
     else
       url = value
