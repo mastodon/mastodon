@@ -75,8 +75,8 @@ const TimedAlert: React.FC<{
 
 export const AlertsController: React.FC = () => {
   const alerts = useAppSelector((state) => state.alerts);
-  const needDbReload = useAppSelector(
-    (state) => !!state.meta.get('needDbReload'),
+  const needsReload = useAppSelector(
+    (state) => !!state.meta.get('needsReload'),
   );
 
   return (
@@ -88,18 +88,18 @@ export const AlertsController: React.FC = () => {
           dismissAfter={5000 + idx * 1000}
         />
       ))}
-      {needDbReload && <DBReloadAlert />}
+      {needsReload && <ReloadAlert />}
     </A11yLiveRegion>
   );
 };
 
-const dbReloadMessage = defineMessage({
-  id: 'alert.db_reload.message',
+const reloadMessage = defineMessage({
+  id: 'alert.need_reload.message',
   defaultMessage:
-    'The database has been updated. Please reload the page to continue.',
+    'Mastodon has been updated. Some things may not work correctly until you reload the page.',
 });
 
-const DBReloadAlert: React.FC = () => {
+const ReloadAlert: React.FC = () => {
   const intl = useIntl();
-  return <Alert isActive message={intl.formatMessage(dbReloadMessage)} />;
+  return <Alert isActive message={intl.formatMessage(reloadMessage)} />;
 };

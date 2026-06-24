@@ -1,6 +1,6 @@
 import { Map as ImmutableMap } from 'immutable';
 
-import { changeLayout, needDbReload } from 'mastodon/actions/app';
+import { changeLayout, needsReload } from 'mastodon/actions/app';
 import { STORE_HYDRATE } from 'mastodon/actions/store';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 
@@ -8,7 +8,7 @@ const initialState = ImmutableMap({
   streaming_api_base_url: null,
   layout: layoutFromWindow(),
   permissions: '0',
-  needDbReload: false,
+  needsReload: false,
 });
 
 export default function meta(state = initialState, action) {
@@ -18,8 +18,8 @@ export default function meta(state = initialState, action) {
     return state.merge(action.state.get('meta')).delete('access_token').set('permissions', action.state.getIn(['role', 'permissions']));
   case changeLayout.type:
     return state.set('layout', action.payload.layout);
-  case needDbReload.type:
-    return state.set('needDbReload', true);
+  case needsReload.type:
+    return state.set('needsReload', true);
   default:
     return state;
   }
