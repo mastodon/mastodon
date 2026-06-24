@@ -3,7 +3,11 @@ import { Record as ImmutableRecord, List as ImmutableList } from 'immutable';
 
 import { me } from 'mastodon/initial_state';
 import { accountDefaultValues } from 'mastodon/models/account';
-import type { Account, AccountShape } from 'mastodon/models/account';
+import type {
+  Account,
+  AccountShape,
+  AccountShapeFull,
+} from 'mastodon/models/account';
 import type { Relationship } from 'mastodon/models/relationship';
 import { createAppSelector } from 'mastodon/store';
 import type { RootState } from 'mastodon/store';
@@ -49,6 +53,11 @@ export function makeGetAccount() {
     },
   );
 }
+
+export const selectPlainAccount = createAppSelector(
+  [(state, accountId: string) => state.accounts.get(accountId)],
+  (account) => (account ? (account.toJS() as AccountShapeFull) : null),
+);
 
 export const getAccountHidden = createAppSelector(
   [
