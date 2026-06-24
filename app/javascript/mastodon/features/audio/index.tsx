@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import { useSpring, animated, config } from '@react-spring/web';
 
+import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import DownloadIcon from '@/material-icons/400-24px/download.svg?react';
 import Forward5Icon from '@/material-icons/400-24px/forward_5-fill.svg?react';
 import PauseIcon from '@/material-icons/400-24px/pause-fill.svg?react';
@@ -68,19 +69,7 @@ export const Audio: React.FC<{
   startPlaying?: boolean;
   startVolume?: number;
   startMuted?: boolean;
-  deployPictureInPicture?: (
-    type: string,
-    mediaProps: {
-      src: string;
-      muted: boolean;
-      volume: number;
-      currentTime: number;
-      poster?: string;
-      backgroundColor: string;
-      foregroundColor: string;
-      accentColor: string;
-    },
-  ) => void;
+  deployPictureInPicture?: DeployPictureInPictureCallback;
   matchedFilters?: string[];
 }> = ({
   src,

@@ -11,10 +11,10 @@ export interface PIPMediaProps {
   muted: boolean;
   volume: number;
   currentTime: number;
-  poster: string;
-  backgroundColor: string;
-  foregroundColor: string;
-  accentColor: string;
+  poster?: string;
+  backgroundColor?: string;
+  foregroundColor?: string;
+  accentColor?: string;
 }
 
 interface PIPStateWithValue extends Partial<PIPMediaProps> {
@@ -34,7 +34,7 @@ const initialState = {
   muted: false,
   volume: 0,
   currentTime: 0,
-};
+} satisfies PIPStateEmpty;
 
 export const pictureInPictureReducer: Reducer<PIPState> = (
   state = initialState,
