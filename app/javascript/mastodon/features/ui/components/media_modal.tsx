@@ -84,7 +84,9 @@ export const MediaModal = forwardRef<HTMLDivElement, MediaModalProps>(
         setIndex(newIndex);
         setZoomedIn(false);
         if (animate) {
-          void api.start({ x: `calc(${sign}${newIndex * 100}% + 0px)` });
+          void api.start({
+            x: `calc(${sign}${newIndex * 100}% + 0px)`,
+          });
         }
       },
       [api, media.size, sign],
@@ -131,8 +133,9 @@ export const MediaModal = forwardRef<HTMLDivElement, MediaModalProps>(
         }
         // Set the x position via calc to ensure proper centering regardless of screen size.
         const x = active ? mx : 0;
+        const operator = isLtrDir ? '+' : '-';
         void api.start({
-          x: `calc(${index * 100}% + ${sign}${x}px)`,
+          x: `calc(${sign}${index * 100}% ${operator} ${x}px)`,
         });
       },
       { pointer: { capture: false } },
