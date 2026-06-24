@@ -82,6 +82,7 @@ export type ExtraCustomEmojiMap = Record<
 
 export type EmojiWorkerMessage =
   | { type: 'ready' }
+  | { type: 'db-blocked' }
   | {
       type: 'load';
       storeName: string;

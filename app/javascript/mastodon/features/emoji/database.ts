@@ -2,6 +2,7 @@ import { SUPPORTED_LOCALES } from 'emojibase';
 import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
+import { onceAsync } from '@/mastodon/utils/promises';
 
 import { openEmojiDB } from './db-schema';
 import type { Database } from './db-schema';
@@ -22,8 +23,6 @@ const log = emojiLogger('database');
 
 // Loads the database in a way that ensures it's only loaded once.
 const loadDB = (() => {
-  let dbPromise: Promise<Database> | null = null;
-
   // Actually load the DB.
   async function initDB() {
     const db = await openEmojiDB();
@@ -32,17 +31,14 @@ const loadDB = (() => {
     return db;
   }
 
+  let dbPromise = onceAsync(initDB);
+
   // Loads the database, or returns the existing promise if it hasn't resolved yet.
-  const loadPromise = async (): Promise<Database> => {
-    if (dbPromise) {
-      return dbPromise;
-    }
-    dbPromise = initDB();
-    return dbPromise;
-  };
+  const loadPromise = () => dbPromise();
+
   // Special way to reset the database, used for unit testing.
   loadPromise.reset = () => {
-    dbPromise = null;
+    dbPromise = onceAsync(initDB);
   };
   return loadPromise;
 })();
@@ -333,13 +329,6 @@ export async function clearCache(key: CacheKey) {
   const db = await loadDB();
   await db.delete('etags', key);
   log('Cleared cache for %s', key);
-}
-
-export async function resetDatabase() {
-  const db = await loadDB();
-  const storeNames = [...db.objectStoreNames];
-  await Promise.all(storeNames.map((storeName) => db.clear(storeName)));
-  log(storeNames, 'Reset emoji database stores:');
 }
 
 export async function loadEmojiByHexcode(
