@@ -239,6 +239,11 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   const inputRef = useRef<HTMLInputElement | null>();
   const popoverRef = useRef<HTMLDivElement>(null);
 
+  // This ref tracks whether the menu was just closed following a
+  // selection, and prevents the menu from re-opening again
+  // when focus is returned to the input.
+  const wasMenuJustClosedRef = useRef(false);
+
   const [highlightedItemId, setHighlightedItemId] = useState<string | null>(
     null,
   );
@@ -304,7 +309,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 
   const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
     (e) => {
-      if (openOnFocus) {
+      if (openOnFocus && !wasMenuJustClosedRef.current) {
         setShouldMenuOpen(true);
       }
       onFocus?.(e);
@@ -341,6 +346,10 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 
           if (closeOnSelect) {
             closeMenu();
+            wasMenuJustClosedRef.current = true;
+            setTimeout(() => {
+              wasMenuJustClosedRef.current = false;
+            }, 50);
           }
         }
       }
