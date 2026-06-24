@@ -64,7 +64,6 @@ export const MediaModal = forwardRef<HTMLDivElement, MediaModalProps>(
     },
     _ref,
   ) => {
-    console.log({ startIndex });
     const [index, setIndex] = useState(startIndex);
     const [zoomedIn, setZoomedIn] = useState(false);
     const currentMedia = media.get(index);
