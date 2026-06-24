@@ -142,8 +142,7 @@ async function loadEmojisToStore() {
 }
 
 async function handleEmojiDbReload() {
-  log('Emoji database reload needed, triggering page refresh');
-  window.location.reload();
+  log('Emoji database reload needed, triggering warning');
   const { store } = await import('@/mastodon/store');
   const { needDbReload } = await import('@/mastodon/actions/app');
   store.dispatch(needDbReload());
