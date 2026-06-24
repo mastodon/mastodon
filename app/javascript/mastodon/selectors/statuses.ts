@@ -26,7 +26,7 @@ export const selectPlainStatus = createAppSelector(
   },
 );
 
-export const selectExpandedStatus = createAppSelector(
+export const selectAccountStatus = createAppSelector(
   [
     selectPlainStatus,
     (state, statusId: string) => {
@@ -36,45 +36,37 @@ export const selectExpandedStatus = createAppSelector(
       }
       return selectPlainAccount(state, accountId);
     },
-    (state, statusId: string) => {
-      const reblogId = state.statuses.getIn(statusId, 'reblog');
-      if (typeof reblogId !== 'string') {
-        return null;
-      }
-      return selectPlainStatus(state, reblogId);
-    },
-    (state, statusId: string) => {
-      const reblogId = state.statuses.getIn(statusId, 'reblog');
-      if (typeof reblogId !== 'string') {
-        return null;
-      }
-      const accountId = state.statuses.getIn(reblogId, 'account');
-      if (typeof accountId !== 'string') {
-        return null;
-      }
-      return selectPlainAccount(state, accountId);
-    },
   ],
-  (status, account, reblog, reblogAccount): ExpandedStatusShape | null => {
+  (status, account) => {
     if (!status || !account) {
       return null;
     }
+    return {
+      ...status,
+      account,
+    };
+  },
+);
 
-    if (!reblog || !reblogAccount) {
-      return {
-        ...status,
-        account,
-        reblog: undefined,
-      };
+export const selectExpandedStatus = createAppSelector(
+  [
+    selectAccountStatus,
+    (state, statusId: string) => {
+      const reblogId = state.statuses.getIn(statusId, 'reblog');
+      if (typeof reblogId !== 'string') {
+        return null;
+      }
+      return selectAccountStatus(state, reblogId);
+    },
+  ],
+  (status, reblog): ExpandedStatusShape | null => {
+    if (!status) {
+      return null;
     }
 
     return {
       ...status,
-      account,
-      reblog: {
-        ...reblog,
-        account: reblogAccount,
-      },
+      reblog: reblog ?? undefined,
     };
   },
 );
