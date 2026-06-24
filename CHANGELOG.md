@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.12] - 2026-06-24
+
+### Security
+
+- Fix TLS certificate verification being disabled on setups with `LDAP_TLS_NO_VERIFY=true` ([GHSA-3rhr-8phh-jm86](https://github.com/mastodon/mastodon/security/advisories/GHSA-3rhr-8phh-jm86))
+- Update dependencies
+
+### Fixed
+
+- Fix being unable to unmark media as sensitive when "always mark media as sensitive" is enabled in web UI (#39339 by @matrix07012)
+
 ## [4.5.11] - 2026-06-03
 
 ### Security
