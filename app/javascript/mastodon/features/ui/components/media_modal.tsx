@@ -99,11 +99,14 @@ export const MediaModal = forwardRef<HTMLDivElement, MediaModalProps>(
 
     const handleKeyDown = useCallback(
       (event: KeyboardEvent) => {
-        if (event.key === 'ArrowLeft') {
+        const prevKey = isLtrDir ? 'ArrowLeft' : 'ArrowRight';
+        const nextKey = isLtrDir ? 'ArrowRight' : 'ArrowLeft';
+
+        if (event.key === prevKey) {
           handlePrevClick();
           event.preventDefault();
           event.stopPropagation();
-        } else if (event.key === 'ArrowRight') {
+        } else if (event.key === nextKey) {
           handleNextClick();
           event.preventDefault();
           event.stopPropagation();
