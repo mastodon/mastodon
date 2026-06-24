@@ -20,7 +20,7 @@ type FilterResult = Immutable.Map<string, unknown>;
 export const getFilters = createSelector(
   [
     (state: RootState) => state.filters as Immutable.Map<string, Filter>,
-    (_, { contextType }: { contextType: string }) => contextType,
+    (_, { contextType }: { contextType?: string }) => contextType,
   ],
   (filters, contextType) => {
     if (!contextType) {

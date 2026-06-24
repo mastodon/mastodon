@@ -21,9 +21,10 @@ import { compareUrls } from '@/mastodon/utils/compare_urls';
 
 import { PictureInPicturePlaceholder } from '../picture_in_picture_placeholder';
 
-export const StatusAttachments: React.FC<{ statusId: string }> = ({
-  statusId,
-}) => {
+export const StatusAttachments: React.FC<{
+  statusId: string;
+  contextType?: string;
+}> = ({ statusId, contextType }) => {
   // Selectors
   const status = useAppSelector((state) =>
     selectExpandedStatus(state, statusId),
@@ -39,6 +40,7 @@ export const StatusAttachments: React.FC<{ statusId: string }> = ({
       <MediaAttachments
         statusId={statusId}
         accountId={status.account.id}
+        contextType={contextType}
         sensitive={status.sensitive}
         language={status.translation?.language ?? status.language}
         attachment={attachment}
@@ -100,6 +102,7 @@ const Video = lazy(() => import('@/mastodon/features/video'));
 const MediaAttachments: React.FC<{
   statusId: string;
   accountId: string;
+  contextType?: string;
   sensitive: boolean;
   language: string;
   attachment: MediaAttachmentShape;
@@ -108,6 +111,7 @@ const MediaAttachments: React.FC<{
 }> = ({
   statusId,
   accountId,
+  contextType,
   sensitive,
   language,
   attachment,
@@ -124,7 +128,7 @@ const MediaAttachments: React.FC<{
       ) as Immutable.List<MediaAttachment>,
   );
   const mediaFilters = useAppSelector((state) =>
-    selectMediaMatchFilters(state, { statusId, contextType: '' }),
+    selectMediaMatchFilters(state, { statusId, contextType }),
   );
   const pictureInPicture = useAppSelector((state) =>
     selectPictureInPicture(state, statusId),
