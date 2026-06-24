@@ -3,6 +3,14 @@ import { createSelector } from '@reduxjs/toolkit';
 import type { RootState } from 'mastodon/store';
 import { toServerSideType } from 'mastodon/utils/filters';
 
+export interface FilterShape {
+  id: string;
+  title: string;
+  context: string[];
+  expires_at: string | null;
+  filter_action: 'hide' | 'blur' | 'warn';
+}
+
 // TODO: move to `app/javascript/mastodon/models` and use more globally
 type Filter = Immutable.Map<string, unknown>;
 
