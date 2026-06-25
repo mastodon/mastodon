@@ -55,6 +55,14 @@ export interface AccountShape extends Required<
   moved: string | null;
   url: string;
 }
+export type AccountShapeFull = Omit<
+  AccountShape,
+  'emojis' | 'fields' | 'roles'
+> & {
+  emojis: CustomEmoji[];
+  fields: AccountFieldShape[];
+  roles: AccountRoleShape[];
+};
 
 export type Account = RecordOf<AccountShape>;
 
