@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.20] - 2026-06-25
+
+### Security
+
+- Update FFMpeg version used in the container image to fix [CVE-2026-8461](https://github.com/advisories/GHSA-qff7-4q6c-m8h6) (critical severity)
+
 ## [4.4.19] - 2026-06-24
 
 ### Security
