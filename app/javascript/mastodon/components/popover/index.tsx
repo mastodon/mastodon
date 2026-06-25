@@ -193,10 +193,9 @@ export const Popover: React.FC<PopoverProps> = ({
         props: {
           ref: popoverElement ? undefined : refs.setFloating,
           style: floatingStyles,
-          'data-popper-placement': computedPlacement,
-          'data-popper-reference-hidden':
-            middlewareData.hide?.referenceHidden ?? false,
-          'data-popper-escaped': middlewareData.hide?.escaped ?? false,
+          'data-popover-placement': computedPlacement,
+          'data-popover-reference-hidden': middlewareData.hide?.referenceHidden,
+          'data-popover-escaped': middlewareData.hide?.escaped,
         },
       })}
     </Portal>
