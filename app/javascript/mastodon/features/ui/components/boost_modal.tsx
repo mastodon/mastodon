@@ -52,14 +52,6 @@ export const BoostModal: React.FC<{
     onClose();
   }, [onClose]);
 
-  const findContainer = useCallback(
-    () =>
-      document.getElementsByClassName(
-        'modal-root__container',
-      )[0] as HTMLDivElement,
-    [],
-  );
-
   return (
     <div className='modal-root__modal safety-action-modal'>
       <div className='safety-action-modal__top'>
@@ -109,7 +101,6 @@ export const BoostModal: React.FC<{
             <PrivacyDropdown
               noDirect
               value={privacy}
-              container={findContainer}
               onChange={onPrivacyChange}
               disabled={statusVisibility === 'private'}
             />
