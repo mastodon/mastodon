@@ -91,7 +91,7 @@ gem 'stoplight'
 gem 'strong_migrations'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'tzinfo-data', '~> 1.2023'
-gem 'uts58', '~> 0.1'
+gem 'uts58', '~> 0.2.3'
 gem 'webauthn', '~> 3.0'
 gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
