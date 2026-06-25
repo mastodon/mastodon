@@ -73,7 +73,7 @@ export type CustomEmojiMapArg =
   | ExtraCustomEmojiMap
   | ImmutableList<CustomEmoji>
   | CustomEmoji[]
-  | ApiCustomEmojiJSON[];
+  | Pick<ApiCustomEmojiJSON, 'shortcode' | 'static_url' | 'url'>[];
 
 export type ExtraCustomEmojiMap = Record<
   string,
