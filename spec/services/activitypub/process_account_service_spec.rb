@@ -304,6 +304,62 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
   end
 
+  context 'with multiple keypairs using FEP-521a' do
+    let(:payload) do
+      {
+        id: 'https://foo.test/actor',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        preferredUsername: 'alice',
+        assertionMethod: [
+          {
+            id: 'https://foo.test/actor#key1',
+            type: 'Multikey',
+            controller: 'https://foo.test/actor',
+            publicKeyMultibase: 'z4MXj1wBzi9jUstyPMS4jQqB6KdJaiatPkAtVtGc6bQEQEEsKTic4G7Rou3iBf9vPmT5dbkm9qsZsuVNjq8HCuW1w24nhBFGkRE4cd2Uf2tfrB3N7h4mnyPp1BF3ZttHTYv3DLUPi1zMdkULiow3M1GfXkoC6DoxDUm1jmN6GBj22SjVsr6dxezRVQc7aj9TxE7JLbMH1wh5X3kA58H3DFW8rnYMakFGbca5CB2Jf6CnGQZmL7o5uJAdTwXfy2iiiyPxXEGerMhHwhjTA1mKYobyk2CpeEcmvynADfNZ5MBvcCS7m3XkFCMNUYBS9NQ3fze6vMSUPsNa6GVYmKx2x6JrdEjCk3qRMMmyjnjCMfR4pXbRMZa3i', # rubocop:disable Layout/LineLength
+          },
+          {
+            id: 'https://foo.test/actor#key2',
+            type: 'Multikey',
+            controller: 'https://foo.test/actor',
+            publicKeyMultibase: 'z2MGw4gk84USotaWf4AkJ83DcnrfgGaceF86KQXRYMfQ7xqnUG81FVWa2N5inzNigXsDkm2LxpuyYSajqZr1CwHqnJbVEw1rhN25tbJSFyej6TejRh3k67CK9nTVHdXFoVKgAFxLwgiqJwCyyYWesaQKXAQfwXYqCBxPyaDjFfWkya6xeLaNuKFYGLcVzZZQjL99dnzUpNiENFPkVmJokE1wKPpHttGpLgm9sizHNDFuwHaz2ZZRnnZ6CT95FzdrMmaDXofn1ikbKBTdumuiRWSVwwZXffcXRN6Ti1a8NfhxQDdqhT7CAmM9NjQhnrqs1vss6YdcrHP5GmQN2Mz8GenQZFnyhJZK2iPxETnxq7YJRqTduN8KC8SMfjLVB8LD7rBM5d6s8dopdgJCVBpy2p', # rubocop:disable Layout/LineLength
+          },
+        ],
+      }.with_indifferent_access
+    end
+
+    it 'stores the keys' do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account.public_key).to eq ''
+      expect(account.keypairs).to contain_exactly(
+        have_attributes(
+          uri: 'https://foo.test/actor#key1',
+          type: 'rsa'
+        ),
+        have_attributes(
+          uri: 'https://foo.test/actor#key2',
+          type: 'rsa'
+        )
+      )
+    end
+
+    context 'when the account was known with a legacy key' do
+      let!(:alice) { Fabricate(:account, uri: 'https://foo.test/actor', domain: 'example.com', username: 'alice') }
+
+      it 'invalidates the legacy key and stores the new keys' do
+        expect { subject.call('alice', 'example.com', payload) }
+          .to change { alice.reload.public_key }.to('')
+          .and change { alice.keypairs.to_a }.from([]).to(
+            contain_exactly(
+              have_attributes({ uri: 'https://foo.test/actor#key1', type: 'rsa' }),
+              have_attributes({ uri: 'https://foo.test/actor#key2', type: 'rsa' })
+            )
+          )
+      end
+    end
+  end
+
   context 'with attribution domains' do
     let(:payload) do
       {

@@ -2,9 +2,11 @@ import { SUPPORTED_LOCALES } from 'emojibase';
 import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
+import { onceAsync } from '@/mastodon/utils/promises';
 
 import { openEmojiDB } from './db-schema';
 import type { Database } from './db-schema';
+import { importEmojiData } from './loader';
 import { localeToSegmenter, toSupportedLocale } from './locale';
 import {
   extractTokens,
@@ -21,8 +23,6 @@ const log = emojiLogger('database');
 
 // Loads the database in a way that ensures it's only loaded once.
 const loadDB = (() => {
-  let dbPromise: Promise<Database> | null = null;
-
   // Actually load the DB.
   async function initDB() {
     const db = await openEmojiDB();
@@ -31,17 +31,14 @@ const loadDB = (() => {
     return db;
   }
 
+  let dbPromise = onceAsync(initDB);
+
   // Loads the database, or returns the existing promise if it hasn't resolved yet.
-  const loadPromise = async (): Promise<Database> => {
-    if (dbPromise) {
-      return dbPromise;
-    }
-    dbPromise = initDB();
-    return dbPromise;
-  };
+  const loadPromise = () => dbPromise();
+
   // Special way to reset the database, used for unit testing.
   loadPromise.reset = () => {
-    dbPromise = null;
+    dbPromise = onceAsync(initDB);
   };
   return loadPromise;
 })();
@@ -334,13 +331,6 @@ export async function clearCache(key: CacheKey) {
   log('Cleared cache for %s', key);
 }
 
-export async function resetDatabase() {
-  const db = await loadDB();
-  const storeNames = [...db.objectStoreNames];
-  await Promise.all(storeNames.map((storeName) => db.clear(storeName)));
-  log(storeNames, 'Reset emoji database stores:');
-}
-
 export async function loadEmojiByHexcode(
   hexcode: string,
   localeString: string,
@@ -437,8 +427,6 @@ async function toLoadedLocale(localeString: string) {
   }
   if (!loadedLocales.has(locale)) {
     log('Locale %s not loaded, importing...', locale);
-    // Ignore the INEFFECTIVE_DYNAMIC_IMPORT Vite warning, since the static import location is inside an inlined web worker.
-    const { importEmojiData } = await import(/* @vite-ignore */ './loader');
     await importEmojiData(locale);
     return locale;
   }

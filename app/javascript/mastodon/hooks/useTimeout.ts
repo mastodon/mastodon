@@ -1,8 +1,8 @@
 import { useRef, useCallback, useEffect } from 'react';
 
 export const useTimeout = () => {
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
-  const callbackRef = useRef<() => void>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const callbackRef = useRef<() => void>(null);
 
   const set = useCallback((callback: () => void, delay: number) => {
     if (timeoutRef.current) {
@@ -28,8 +28,8 @@ export const useTimeout = () => {
   const cancel = useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
-      timeoutRef.current = undefined;
-      callbackRef.current = undefined;
+      timeoutRef.current = null;
+      callbackRef.current = null;
     }
   }, []);
 

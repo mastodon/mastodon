@@ -114,10 +114,10 @@ export const Audio: React.FC<{
   const [revealed, setRevealed] = useState(false);
 
   const playerRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const seekRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
-  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const { audioContextRef, sourceRef, gainNodeRef, playAudio, pauseAudio } =
     useAudioContext({ audioElementRef: audioRef });

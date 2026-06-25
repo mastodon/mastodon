@@ -86,7 +86,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         offset={[5, 5]}
         placement={placement}
         flip
-        target={containerRef}
+        target={containerRef as React.RefObject<HTMLDivElement>}
         popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}
       >
         {({ props, placement }) => (

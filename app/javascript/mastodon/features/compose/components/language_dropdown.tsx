@@ -328,8 +328,8 @@ export const LanguageDropdown: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState<Placement | undefined>('bottom');
   const [guess, setGuess] = useState('');
-  const activeElementRef = useRef<HTMLElement | null>(null);
-  const targetRef = useRef(null);
+  const activeElementRef = useRef<HTMLElement>(null);
+  const targetRef = useRef<HTMLButtonElement>(null);
 
   const intl = useIntl();
 
@@ -421,7 +421,7 @@ export const LanguageDropdown: React.FC = () => {
         offset={[5, 5]}
         placement={placement}
         flip
-        target={targetRef}
+        target={targetRef as React.RefObject<HTMLButtonElement>}
         popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}
       >
         {({ props, placement }) => (

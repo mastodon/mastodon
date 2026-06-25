@@ -170,7 +170,7 @@ const SensitiveContentNote: React.FC<{ onReveal: () => void }> = ({
 const CollectionHeader: React.FC<{
   collection: ApiCollectionJSON;
   withDescription: boolean;
-  headingRef: React.RefObject<HTMLHeadingElement>;
+  headingRef: React.RefObject<HTMLHeadingElement | null>;
 }> = ({ collection, withDescription, headingRef }) => {
   const intl = useIntl();
   const { name, description, tag, account_id, items } = collection;

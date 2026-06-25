@@ -10,3 +10,5 @@ interface ChangeLayoutPayload {
 }
 export const changeLayout =
   createAction<ChangeLayoutPayload>('APP_LAYOUT_CHANGE');
+
+export const needsReload = createAction('APP_NEED_RELOAD');

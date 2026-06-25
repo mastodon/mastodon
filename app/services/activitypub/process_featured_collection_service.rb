@@ -12,6 +12,7 @@ class ActivityPub::ProcessFeaturedCollectionService
     @json = json
     @request_id = request_id
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
+    return unless @json['attributedTo'] == @account.uri
 
     with_redis_lock("collection:#{@json['id']}") do
       Collection.transaction do

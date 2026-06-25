@@ -70,8 +70,8 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
   disabled,
 }) => {
   const intl = useIntl();
-  const overlayTargetRef = useRef<HTMLDivElement | null>(null);
-  const previousFocusTargetRef = useRef<HTMLElement | null>(null);
+  const overlayTargetRef = useRef<HTMLDivElement>(null);
+  const previousFocusTargetRef = useRef<HTMLElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClose = useCallback(() => {
@@ -171,7 +171,7 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
         offset={[5, 5]}
         placement='bottom'
         flip
-        target={overlayTargetRef}
+        target={overlayTargetRef as React.RefObject<HTMLDivElement>}
         container={container}
         popperConfig={{ strategy: 'fixed' }}
       >

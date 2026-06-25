@@ -20,8 +20,9 @@ export type FocusTarget =
   | boolean
   | (typeof FOCUS_TARGET)[keyof typeof FOCUS_TARGET];
 
-const FocusTargetContext =
-  createContext<React.MutableRefObject<FocusTarget> | null>(null);
+const FocusTargetContext = createContext<React.RefObject<FocusTarget> | null>(
+  null,
+);
 
 /**
  * `FocusTargetProvider` keeps track of whether focus should be

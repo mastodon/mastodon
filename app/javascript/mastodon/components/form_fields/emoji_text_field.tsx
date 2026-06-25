@@ -120,7 +120,7 @@ const EmojiFieldWrapper: FC<
     children: (
       inputProps: InputProps & { onChange: ChangeEventHandler },
     ) => ReactNode;
-    inputRef: RefObject<HTMLTextAreaElement | HTMLInputElement>;
+    inputRef: RefObject<HTMLTextAreaElement | HTMLInputElement | null>;
   }
 > = ({
   value,

@@ -64,7 +64,7 @@ export const AltTextBadge: React.FC<{
         rootClose
         onHide={handleClose}
         show={open}
-        target={buttonRef}
+        target={buttonRef as React.RefObject<HTMLButtonElement>}
         placement='top-end'
         flip
         offset={offset}

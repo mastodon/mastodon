@@ -3,6 +3,7 @@ import {
   forwardRef,
   useCallback,
   useContext,
+  useEffect,
   useId,
   useMemo,
   useRef,
@@ -235,8 +236,13 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 ) => {
   const intl = useIntl();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement | null>();
+  const inputRef = useRef<HTMLInputElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
+
+  // This ref tracks whether the menu was just closed following a
+  // selection, and prevents the menu from re-opening again
+  // when focus is returned to the input.
+  const wasMenuJustClosedRef = useRef(false);
 
   const [highlightedItemId, setHighlightedItemId] = useState<string | null>(
     null,
@@ -276,12 +282,6 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     setShouldMenuOpen(false);
   }, []);
 
-  const resetHighlight = useCallback(() => {
-    const firstItem = flatItems[0];
-    const firstItemId = firstItem ? getItemId(firstItem) : null;
-    setHighlightedItemId(firstItemId);
-  }, [getItemId, flatItems]);
-
   const highlightItem = useCallback((id: string | null) => {
     setHighlightedItemId(id);
     if (id) {
@@ -294,9 +294,22 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     }
   }, []);
 
+  const resetHighlight = useCallback(() => {
+    const firstItem = flatItems[0];
+    const firstItemId = firstItem ? getItemId(firstItem) : null;
+    highlightItem(firstItemId);
+  }, [flatItems, getItemId, highlightItem]);
+
+  // Reset scroll & highlight when menu items change
+  useEffect(() => {
+    if (flatItems.length) {
+      resetHighlight();
+    }
+  }, [flatItems, resetHighlight]);
+
   const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
     (e) => {
-      if (openOnFocus) {
+      if (openOnFocus && !wasMenuJustClosedRef.current) {
         setShouldMenuOpen(true);
       }
       onFocus?.(e);
@@ -333,6 +346,10 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 
           if (closeOnSelect) {
             closeMenu();
+            wasMenuJustClosedRef.current = true;
+            setTimeout(() => {
+              wasMenuJustClosedRef.current = false;
+            }, 50);
           }
         }
       }
@@ -541,7 +558,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         onHide={closeMenu}
         ref={popoverRef}
         target={inputRef as React.RefObject<HTMLInputElement>}
-        container={wrapperRef}
+        container={wrapperRef as React.RefObject<HTMLDivElement>}
         popperConfig={{
           modifiers: [matchWidth],
         }}
