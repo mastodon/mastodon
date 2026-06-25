@@ -33,9 +33,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
   const isProdBuild = mode === 'production' && command === 'build';
 
   let outDirName = 'packs-dev';
-  if (mode === 'test') {
-    outDirName = 'packs-test';
-  } else if (mode === 'production') {
+  if (mode === 'test' || mode === 'production') {
     outDirName = 'packs';
   }
   const outDir = path.resolve('public', outDirName);
