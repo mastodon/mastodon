@@ -198,8 +198,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
           <Popover
             reference={this.input}
             isOpen={!(suggestionsHidden || suggestions.isEmpty())}
-            placement='bottom' 
-            offset={0}
+            flip={false}
           >
             {({ props }) => (
               <div {...props}>

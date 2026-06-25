@@ -127,14 +127,7 @@ export const HashtagMenuController: React.FC = () => {
   }
 
   return (
-    <Popover
-      flip
-      isOpen={open}
-      offset={5}
-      placement='bottom'
-      reference={element}
-      onClose={handleClose}
-    >
+    <Popover isOpen={open} offset={5} reference={element} onClose={handleClose}>
       {({ props, placement }) => (
         <div
           {...props}

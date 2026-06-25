@@ -165,10 +165,8 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
       </button>
 
       <Popover
-        flip
         isOpen={isOpen}
         offset={5}
-        placement='bottom'
         reference={popoverTarget}
         onClose={handleClose}
       >

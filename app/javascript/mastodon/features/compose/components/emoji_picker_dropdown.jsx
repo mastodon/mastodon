@@ -353,9 +353,7 @@ class EmojiPickerDropdown extends PureComponent {
         />
 
         <Popover
-          flip
           isOpen={active}
-          placement='bottom'
           reference={target}
           onClose={this.onHideDropdown}
         >

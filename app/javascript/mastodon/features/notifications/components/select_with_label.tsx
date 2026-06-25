@@ -71,7 +71,6 @@ const Dropdown: React.FC<DropdownProps> = ({
       </button>
 
       <Popover
-        flip
         isOpen={isOpen}
         offset={5}
         placement='bottom-end'

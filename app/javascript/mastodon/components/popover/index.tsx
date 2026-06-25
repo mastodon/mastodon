@@ -57,8 +57,8 @@ export interface PopoverProps {
    */
   offset?: OffsetOptions;
   /**
-   * Change the positioning strategy, defaults to 'fixed'
-   * but can be changed to 'absolute'
+   * Allow the popover to flip to the other side of the reference
+   * if there's no room in the specified direction. Enabled by default.
    */
   flip?: boolean;
   /**
@@ -107,10 +107,10 @@ export const Popover: React.FC<PopoverProps> = ({
   onClose,
   reference,
   popoverElement,
-  placement,
+  placement = 'bottom',
   offset,
   strategy = 'fixed',
-  flip,
+  flip = true,
   container,
   matchReferenceWidth = false,
   closeOnClickOutside = true,

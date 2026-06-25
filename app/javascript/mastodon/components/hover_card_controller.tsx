@@ -208,7 +208,6 @@ export const HoverCardController: React.FC = () => {
 
   return (
     <Popover
-      flip
       onClose={handleClose}
       isOpen={open}
       reference={anchor}

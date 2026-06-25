@@ -63,7 +63,6 @@ export const RemoveQuoteHint: React.FC<{
       {shouldShowHint && isOnlyHint && (
         <Popover
           isOpen
-          flip
           offset={{ mainAxis: 10, crossAxis: 12 }}
           placement='bottom-end'
           reference={anchorElement}

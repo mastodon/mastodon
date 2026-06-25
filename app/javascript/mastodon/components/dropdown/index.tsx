@@ -103,7 +103,6 @@ export const Dropdown: FC<
       </button>
 
       <Popover
-        flip
         matchReferenceWidth
         isOpen={open}
         placement='bottom-start'

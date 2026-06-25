@@ -509,7 +509,6 @@ export const Dropdown = <Item extends object | null = MenuItem>({
       {button}
 
       <Popover
-        flip
         isOpen={open}
         onClose={handleClose}
         offset={offset}

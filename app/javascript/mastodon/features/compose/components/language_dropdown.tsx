@@ -387,11 +387,9 @@ export const LanguageDropdown: React.FC = () => {
       </button>
 
       <Popover
-        flip
         isOpen={open}
         onClose={handleClose}
         offset={5}
-        placement='bottom'
         reference={targetElement}
       >
         {({ props, placement }) => (

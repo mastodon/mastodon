@@ -55,7 +55,6 @@ export const AltTextBadge: React.FC<{
       </button>
 
       <Popover
-        flip
         isOpen={open}
         onClose={handleClose}
         reference={buttonElement}

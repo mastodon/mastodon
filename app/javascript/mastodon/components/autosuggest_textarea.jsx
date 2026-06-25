@@ -205,8 +205,6 @@ const AutosuggestTextarea = forwardRef(({
         <Popover
           matchReferenceWidth
           isOpen={!(suggestionsHidden || suggestions.isEmpty())}
-          offset={0}
-          placement='bottom'
           reference={textareaElement}
         >
           {({ props }) => (
