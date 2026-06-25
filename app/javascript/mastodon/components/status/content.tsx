@@ -48,7 +48,7 @@ export const StatusContent: React.FC<{
       const collapsed =
         (node.clientHeight > MAX_HEIGHT ||
           (text !== null && text.scrollWidth > text.clientWidth)) &&
-        status.spoiler_text?.length === 0;
+        !status.spoiler_text;
 
       dispatch(toggleStatusCollapse(status.id, collapsed));
     },
