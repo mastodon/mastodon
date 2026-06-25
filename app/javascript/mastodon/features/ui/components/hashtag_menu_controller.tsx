@@ -4,13 +4,8 @@ import { useIntl, defineMessages } from 'react-intl';
 
 import { useLocation } from 'react-router-dom';
 
-import type {
-  OffsetValue,
-  UsePopperOptions,
-} from 'react-overlays/esm/usePopper';
-import Overlay from 'react-overlays/Overlay';
-
 import { DropdownMenu } from 'mastodon/components/dropdown_menu';
+import { Popover } from 'mastodon/components/popover';
 import { useIdentity } from 'mastodon/identity_context';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppSelector } from 'mastodon/store';
@@ -26,9 +21,6 @@ const messages = defineMessages({
   },
   muteHashtag: { id: 'hashtag.mute', defaultMessage: 'Mute #{hashtag}' },
 });
-
-const offset = [5, 5] as OffsetValue;
-const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
 const isHashtagLink = (
   element: HTMLAnchorElement | null,
@@ -135,30 +127,26 @@ export const HashtagMenuController: React.FC = () => {
   }
 
   return (
-    <Overlay
-      show={open}
-      offset={offset}
-      placement='bottom'
+    <Popover
       flip
-      target={element}
-      popperConfig={popperConfig}
+      isOpen={open}
+      offset={5}
+      placement='bottom'
+      reference={element}
+      onClose={handleClose}
     >
-      {({ props, arrowProps, placement }) => (
-        <div {...props}>
-          <div className={`dropdown-animation dropdown-menu ${placement}`}>
-            <div
-              className={`dropdown-menu__arrow ${placement}`}
-              {...arrowProps}
-            />
-
-            <DropdownMenu
-              items={menu}
-              onClose={handleClose}
-              openedViaKeyboard={false}
-            />
-          </div>
+      {({ props, placement }) => (
+        <div
+          {...props}
+          className={`dropdown-animation dropdown-menu ${placement}`}
+        >
+          <DropdownMenu
+            items={menu}
+            onClose={handleClose}
+            openedViaKeyboard={false}
+          />
         </div>
       )}
-    </Overlay>
+    </Popover>
   );
 };
