@@ -22,23 +22,79 @@ import { useOnClickOutside } from '@/mastodon/hooks/useOnClickOutside';
 import { Portal } from './portal';
 
 export interface PopoverProps {
-  isOpen?: boolean;
-  onClose: (e: Event) => void;
-  reference: ReferenceType | null;
-  popoverElement?: HTMLElement | null;
-  placement?: Placement;
-  offset?: OffsetOptions;
-  strategy?: Strategy;
-  flip?: boolean;
   /**
-   * Passing `null` will render the popover in place
+   * Set the visibility of the popover
+   */
+  isOpen?: boolean;
+  /**
+   * Callback triggered when the popover needs to be closed
+   * (e.g. because the Esc key was pressed).
+   */
+  onClose: (e: Event) => void;
+  /**
+   * Pass an element that the popover should be attached to.
+   * Must come from `useState`, not `useRef`.
+   */
+  reference: ReferenceType | null;
+  /**
+   * Pass the popover element (useful if you also need the element
+   * in the parent and already have it in state).
+   * Must come from `useState`, not `useRef`.
+   */
+  popoverElement?: HTMLElement | null;
+  /**
+   * Control which element the popover will be rendered into.
+   * Passing `null` will render the popover in place.
    */
   container?: HTMLElement | null;
+  /**
+   * Control where the overlay element is positioned in relation
+   * to the reference element
+   */
+  placement?: Placement;
+  /**
+   * Control the distance between popover and reference
+   */
+  offset?: OffsetOptions;
+  /**
+   * Change the positioning strategy, defaults to 'fixed'
+   * but can be changed to 'absolute'
+   */
+  flip?: boolean;
+  /**
+   * Change the positioning strategy, defaults to 'fixed'
+   * but can be changed to 'absolute'
+   */
+  strategy?: Strategy;
+  /**
+   * Adapt the popover's width to match that of the reference,
+   * useful when attached to text input.
+   */
   matchReferenceWidth?: boolean;
+  /**
+   * Control whether to close the popover when clicking outside
+   * of it (enabled by default).
+   */
   closeOnClickOutside?: boolean;
+  /**
+   * Render prop that must return the popover element.
+   */
   children: (value: {
+    /**
+     * The popover's final computed placement. Can be used to
+     * adjust the popover's style based on its position.
+     */
     placement: Placement | undefined;
+    /**
+     * Re-computes the popover's position – call this when an
+     * action inside of the popover has changed its size.
+     */
     update: () => void;
+    /**
+     * These props must be passed to the popover element to
+     * enable it to be sized and positioned. The `ref` prop
+     * is not passed when the `popoverElement` prop is provided.
+     */
     props: Record<string, unknown> & {
       ref?: React.RefCallback<HTMLElement>;
       style: React.CSSProperties;
@@ -137,7 +193,6 @@ export const Popover: React.FC<PopoverProps> = ({
         props: {
           ref: popoverElement ? undefined : refs.setFloating,
           style: floatingStyles,
-          'data-floating-ui': true, // TODO: Remove me
           'data-popper-placement': computedPlacement,
           'data-popper-reference-hidden':
             middlewareData.hide?.referenceHidden ?? false,
