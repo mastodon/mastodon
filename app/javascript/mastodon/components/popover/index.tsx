@@ -93,18 +93,13 @@ export const Popover: React.FC<PopoverProps> = ({
     ],
   });
 
-  const referenceRef =
-    elements.reference instanceof Element
-      ? { current: elements.reference }
-      : null;
-  const floatingRef =
-    elements.floating instanceof Element
-      ? { current: elements.floating }
-      : null;
-
   // Close when clicking outside the popover
   useOnClickOutside(
-    [referenceRef, floatingRef],
+    [
+      elements.floating,
+      // Only pass reference if it's not a "virtual element"
+      elements.reference instanceof Element ? elements.reference : null,
+    ],
     (e) => {
       onClose(e);
     },
