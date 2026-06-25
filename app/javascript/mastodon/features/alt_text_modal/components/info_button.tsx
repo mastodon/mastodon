@@ -46,7 +46,7 @@ export const InfoButton: React.FC = () => {
         placement='top'
         onHide={handleClick}
         offset={[5, 5]}
-        target={triggerRef}
+        target={triggerRef as React.RefObject<HTMLButtonElement>}
       >
         {({ props }) => (
           <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions

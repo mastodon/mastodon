@@ -106,7 +106,7 @@ export const Carousel = <
     [items.length, onChangeSlide],
   );
 
-  const observerRef = useRef<ResizeObserver | null>(null);
+  const observerRef = useRef<ResizeObserver>(null);
   observerRef.current ??= new ResizeObserver(() => {
     handleSlideChange(0);
   });
@@ -235,7 +235,7 @@ const CarouselSlideWrapper = <SlideProps extends CarouselSlideProps>({
       className={className}
       role='group'
       aria-roledescription='slide'
-      inert={active ? undefined : ''}
+      inert={active}
       data-index={index}
     >
       {children}

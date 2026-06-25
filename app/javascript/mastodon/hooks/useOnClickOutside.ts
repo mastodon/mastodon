@@ -2,10 +2,10 @@
  * Handle clicks that occur outside of the element(s) provided in the first parameter
  */
 
-import type { MutableRefObject } from 'react';
+import type { RefObject } from 'react';
 import { useEffect } from 'react';
 
-type ElementRef = MutableRefObject<HTMLElement | null>;
+type ElementRef = RefObject<HTMLElement | null>;
 
 export function useOnClickOutside(
   excludedElementRef: ElementRef | ElementRef[] | null,

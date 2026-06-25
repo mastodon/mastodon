@@ -99,11 +99,11 @@ const FilterDropdown: FC = () => {
       </button>
       <Overlay
         show={open}
-        target={buttonRef}
+        target={buttonRef as React.RefObject<HTMLButtonElement>}
         placement='bottom-start'
         rootClose
         onHide={handleHide}
-        container={containerRef}
+        container={containerRef as React.RefObject<HTMLDivElement>}
       >
         {({ props }) => (
           <div

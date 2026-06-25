@@ -236,7 +236,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 ) => {
   const intl = useIntl();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement | null>();
+  const inputRef = useRef<HTMLInputElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
   // This ref tracks whether the menu was just closed following a
@@ -558,7 +558,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         onHide={closeMenu}
         ref={popoverRef}
         target={inputRef as React.RefObject<HTMLInputElement>}
-        container={wrapperRef}
+        container={wrapperRef as React.RefObject<HTMLDivElement>}
         popperConfig={{
           modifiers: [matchWidth],
         }}

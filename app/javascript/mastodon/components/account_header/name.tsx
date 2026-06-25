@@ -111,7 +111,7 @@ const AccountNameHelp: FC<{
       <Overlay
         show={open}
         rootClose
-        target={triggerRef}
+        target={triggerRef as React.RefObject<HTMLButtonElement>}
         onHide={handleClick}
         offset={[5, 5]}
       >

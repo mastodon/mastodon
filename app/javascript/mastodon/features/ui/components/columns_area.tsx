@@ -3,6 +3,7 @@ import {
   cloneElement,
   createContext,
   forwardRef,
+  isValidElement,
   useCallback,
   useContext,
 } from 'react';
@@ -179,7 +180,9 @@ export const ColumnsArea = forwardRef<
 
       <ColumnIndexContext.Provider value={columns.size}>
         {Children.map(children, (child) =>
-          cloneElement(child, { multiColumn: true }),
+          isValidElement<{ multiColumn?: boolean }>(child)
+            ? cloneElement(child, { multiColumn: true })
+            : child,
         )}
       </ColumnIndexContext.Provider>
     </main>

@@ -27,7 +27,7 @@ export const HoverCardController: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [accountId, setAccountId] = useState<string | undefined>();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [setLeaveTimeout, cancelLeaveTimeout] = useTimeout();
   const [setEnterTimeout, cancelEnterTimeout, delayEnterTimeout] = useTimeout();
   const [setScrollTimeout] = useTimeout();

@@ -352,7 +352,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
   );
   const [currentId] = useState(id++);
   const open = currentId === openDropdownId;
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const menuId = useId();
   const prefetchAccountId = status
     ? status.getIn(['account', 'id'])
@@ -518,7 +518,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
         offset={offset}
         placement={placement}
         flip
-        target={buttonRef}
+        target={buttonRef as React.RefObject<HTMLButtonElement>}
         popperConfig={popperConfig}
       >
         {({ props, arrowProps, placement }) => (
