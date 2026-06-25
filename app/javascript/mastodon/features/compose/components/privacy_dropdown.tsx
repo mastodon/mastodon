@@ -66,7 +66,7 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
   disabled,
 }) => {
   const intl = useIntl();
-  const [overlayTarget, setOverlayTarget] = useState<HTMLDivElement | null>(
+  const [popoverTarget, setPopoverTarget] = useState<HTMLDivElement | null>(
     null,
   );
   const previousFocusTargetRef = useRef<HTMLElement>(null);
@@ -140,7 +140,7 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
     options.find((item) => item.value === value) ?? options.at(0);
 
   return (
-    <div ref={setOverlayTarget}>
+    <div ref={setPopoverTarget}>
       <button
         type='button'
         title={intl.formatMessage(messages.change_privacy)}
@@ -169,7 +169,7 @@ const PrivacyDropdown: React.FC<PrivacyDropdownProps> = ({
         isOpen={isOpen}
         offset={5}
         placement='bottom'
-        reference={overlayTarget}
+        reference={popoverTarget}
         onClose={handleClose}
       >
         {({ props, placement }) => (

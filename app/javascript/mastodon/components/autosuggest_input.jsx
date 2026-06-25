@@ -5,8 +5,6 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import Overlay from 'react-overlays/Overlay';
-
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 
 import { AutosuggestEmoji } from './autosuggest_emoji';
