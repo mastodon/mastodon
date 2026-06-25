@@ -354,7 +354,7 @@ GEM
       azure-blob (~> 0.5.2)
       hashie (~> 5.0)
     jmespath (1.6.2)
-    json (2.19.9)
+    json (2.20.0)
     json-canonicalization (1.0.0)
     json-jwt (1.17.1)
       activesupport (>= 4.2)
@@ -832,9 +832,10 @@ GEM
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 7.0.0, < 9.0.0)
       thor (>= 1.0, < 3.0)
-    simple-navigation (4.4.1)
-      activesupport (>= 2.3.2)
-      ostruct
+    simple-navigation (4.5.0)
+      activesupport (>= 6.1.0)
+      json
+      zeitwerk
     simple_form (5.4.1)
       actionpack (>= 7.0)
       activemodel (>= 7.0)
