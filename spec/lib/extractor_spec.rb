@@ -32,6 +32,54 @@ RSpec.describe Extractor do
         expect(end_position).to eq 12
       end
     end
+
+    # UASG-004 universal-acceptance domains (one per script), plus a
+    # Tibetan example. Copied from uts58's extractor_spec.rb. A mention
+    # whose host is one of these should still be recognized.
+    funky_domains = [
+      'universal-acceptance-test.international',
+      'universal-acceptance-test.icu',
+      'تجربة-القبول-الشامل.موريتانيا',
+      'համընդհանուր-ընկալում-թեստ.հայ',
+      'সর্বজনীন-স্বীকৃতির-পরীক্ষা.ভারত',
+      'универсальное-принятие-тест.москва',
+      'सार्वभौमिक-स्वीकृति-परीक्षण.संगठन',
+      'უნივერსალური-თავსობადობის-ტესტი.გე',
+      'καθολική-αποδοχή-δοκιμή.ευ',
+      'સાર્વત્રિક-સ્વીકૃતિ-પરીક્ષણ.ભારત',
+      'ਸਰਵਵਿਆਪਕ-ਪ੍ਰਵਾਨਗੀ-ਪਰਖ.ਭਾਰਤ',
+      '다국어도메인이용환경테스트.한국',
+      'מבחן-קבלה-אוניברסלי.קום',
+      'どこでもつかえる.みんな',
+      'ಸಾರ್ವತ್ರಿಕ-ಸ್ವೀಕಾರಾರ್ಹತೆ-ಪರೀಕ್ಷೆ.ಭಾರತ',
+      'ユニバーサルアクセプタンス.クラウド',
+      'ສາກົນ-ການຍອມຮັບ-ທົດລອງ.ລາວ',
+      'സാർവത്രിക-സ്വീകാര്യതാ-പരിശോധന.ഭാരതം',
+      'ଯୁନିଭରସାଲ-ଏକସେପ୍ଟନ୍ସ-ଟେଷ୍ଟ.ଭାରତ',
+      'විශ්ව-සම්මුති-පිරික්සුම.ලංකා',
+      'பொது-ஏற்பு-சோதனை.சிங்கப்பூர்',
+      'యూనివర్సల్-ఆమోదం-పరీక్ష.భారత్',
+      'ยูเอทดสอบ.ไทย',
+      '普遍适用测试.我爱你',
+      '普遍適用測試.台灣',
+      'ሁለንአቀፍ-ተቀባይነት-ሙከራ.com',
+      'ការសាកល្បងទទួលយកជាអន្តរជាតិ.com',
+      'အလုံးစုံလက်ခံမှုစမ်းသပ်ချက်.com',
+      'ދުނިޔެ-ގަބޫލުކުރާ-ޓެސްޓު.com',
+      'universal-acceptance-test.קום',
+      'épreuve-acceptation-universelle.org',
+      'ཡོངས་ཁྱབ་ངོས་ལེན་བརྟག་དཔྱད.com',
+    ]
+
+    funky_domains.each do |domain|
+      it "extracts the mention @info@#{domain}" do
+        text = "@info@#{domain}"
+        extracted = described_class.extract_mentions_or_lists_with_indices(text)
+        expect(extracted).to eq [
+          { screen_name: "info@#{domain}", indices: [0, text.length] },
+        ]
+      end
+    end
   end
 
   describe 'extract_hashtags_with_indices' do
