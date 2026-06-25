@@ -67,11 +67,10 @@ jobs:
           tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs* tmp/cache/vite/last-build*.json
 
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
-        if: matrix.mode == 'test'
         with:
           path: |-
             ./artifacts.tar.gz
-          name: ${{ github.sha }}
+          name: ${{ github.sha }}-${{ matrix.mode }}
           retention-days: 0
 
   test:
@@ -135,7 +134,7 @@ jobs:
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
-          name: ${{ github.sha }}
+          name: ${{ github.sha }}-test
 
       - name: Expand archived asset artifacts
         run: |
@@ -212,6 +211,7 @@ jobs:
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
+      NODE_ENV: production
       RAILS_ENV: test
       BUNDLE_WITH: test
       LOCAL_DOMAIN: localhost:3000
@@ -231,7 +231,7 @@ jobs:
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
-          name: ${{ github.sha }}
+          name: ${{ github.sha }}-production
 
       - name: Expand archived asset artifacts
         run: |
@@ -371,7 +371,7 @@ jobs:
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           path: './'
-          name: ${{ github.sha }}
+          name: ${{ github.sha }}-test
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
