@@ -523,14 +523,6 @@ on('click', '.rules-list button', ({ target }) => {
  */
 function applyRailsA11yPatches() {
   /**
-   * Mark current navigation item with aria-current
-   */
-  const activeNavLink = document.querySelector(
-    '.simple-navigation-active-leaf a.selected',
-  );
-  activeNavLink?.setAttribute('aria-current', 'page');
-
-  /**
    * Hides the asterisk added to labels of required form fields
    * from assistive tech. (Those fields already have the `required` attribute)
    */
