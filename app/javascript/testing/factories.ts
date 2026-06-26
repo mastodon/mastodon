@@ -1,5 +1,7 @@
 import { fromJS } from 'immutable';
 
+import type { PartialDeep } from 'type-fest';
+
 import { normalizeStatus } from '@/mastodon/actions/importer/statuses';
 import type {
   ApiAudioAttachmentJSON,
@@ -26,7 +28,6 @@ import type { AnnualReport } from '@/mastodon/models/annual_report';
 import { CustomEmojiFactory } from '@/mastodon/models/custom_emoji';
 import type { Poll } from '@/mastodon/models/poll';
 import type { Status } from '@/mastodon/models/status';
-import type { DeepPartial } from '@/mastodon/utils/types';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 
 type FactoryOptions<T> = {
@@ -186,7 +187,7 @@ const colorsMeta = {
 } as const;
 
 type MediaFactoryArg<T extends BaseApiMediaAttachmentJSON> = Omit<
-  DeepPartial<T>,
+  PartialDeep<T>,
   'type'
 >;
 
@@ -246,24 +247,24 @@ export const gifvAttachmentFactoryAPI = (
 });
 
 export function mediaAttachmentFactoryAPI(
-  data: DeepPartial<ApiMediaAttachmentJSON> = {},
+  data: PartialDeep<ApiMediaAttachmentJSON> = {},
 ): ApiMediaAttachmentJSON {
   switch (data.type ?? 'image') {
     case 'image':
       return imageAttachmentFactoryAPI(
-        data as DeepPartial<ApiImageAttachmentJSON>,
+        data as PartialDeep<ApiImageAttachmentJSON>,
       );
     case 'video':
       return videoAttachmentFactoryAPI(
-        data as DeepPartial<ApiVideoAttachmentJSON>,
+        data as PartialDeep<ApiVideoAttachmentJSON>,
       );
     case 'audio':
       return audioAttachmentFactoryAPI(
-        data as DeepPartial<ApiAudioAttachmentJSON>,
+        data as PartialDeep<ApiAudioAttachmentJSON>,
       );
     case 'gifv':
       return gifvAttachmentFactoryAPI(
-        data as DeepPartial<ApiGifvAttachmentJSON>,
+        data as PartialDeep<ApiGifvAttachmentJSON>,
       );
     default: {
       return {

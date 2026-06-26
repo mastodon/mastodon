@@ -8,8 +8,9 @@ import type {
 } from 'react';
 import { useCallback, useId, useRef } from 'react';
 
+import type { Merge } from 'type-fest';
+
 import { insertEmojiAtPosition } from '@/mastodon/features/emoji/utils';
-import type { OmitUnion } from '@/mastodon/utils/types';
 
 import { CharacterCounter } from '../character_counter';
 import { EmojiPickerButton } from '../emoji/picker_button';
@@ -29,7 +30,7 @@ export type EmojiInputProps = {
 } & Omit<CommonFieldWrapperProps, 'wrapperClassName'>;
 
 export const EmojiTextInputField: FC<
-  OmitUnion<ComponentPropsWithoutRef<'input'>, EmojiInputProps>
+  Merge<ComponentPropsWithoutRef<'input'>, EmojiInputProps>
 > = ({
   onChange,
   value,
@@ -72,7 +73,7 @@ export const EmojiTextInputField: FC<
 };
 
 export const EmojiTextAreaField: FC<
-  OmitUnion<Omit<TextAreaProps, 'style'>, EmojiInputProps>
+  Merge<Omit<TextAreaProps, 'style'>, EmojiInputProps>
 > = ({
   onChange,
   value,

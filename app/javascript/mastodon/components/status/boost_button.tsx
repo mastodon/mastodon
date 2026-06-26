@@ -5,6 +5,8 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import type { SetRequired } from 'type-fest';
+
 import { quoteComposeById } from '@/mastodon/actions/compose_typed';
 import { toggleReblog } from '@/mastodon/actions/interactions';
 import { openModal } from '@/mastodon/actions/modal';
@@ -13,7 +15,6 @@ import { quickBoosting } from '@/mastodon/initial_state';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Status } from '@/mastodon/models/status';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import type { SomeRequired } from '@/mastodon/utils/types';
 
 import type { RenderItemFn } from '../dropdown_menu';
 import { Dropdown, DropdownMenuItemContent } from '../dropdown_menu';
@@ -91,7 +92,7 @@ interface ReblogButtonProps {
   counters?: boolean;
 }
 
-type ActionMenuItemWithIcon = SomeRequired<ActionMenuItem, 'icon'>;
+type ActionMenuItemWithIcon = SetRequired<ActionMenuItem, 'icon'>;
 
 const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
   const intl = useIntl();
