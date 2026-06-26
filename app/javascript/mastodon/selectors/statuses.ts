@@ -30,7 +30,7 @@ export const selectAccountStatus = createAppSelector(
   [
     selectPlainStatus,
     (state, statusId: string) => {
-      const accountId = state.statuses.getIn(statusId, 'account');
+      const accountId = state.statuses.getIn([statusId, 'account']);
       if (typeof accountId !== 'string') {
         return null;
       }
@@ -52,7 +52,7 @@ export const selectExpandedStatus = createAppSelector(
   [
     selectAccountStatus,
     (state, statusId: string) => {
-      const reblogId = state.statuses.getIn(statusId, 'reblog');
+      const reblogId = state.statuses.getIn([statusId, 'reblog']);
       if (typeof reblogId !== 'string') {
         return null;
       }
