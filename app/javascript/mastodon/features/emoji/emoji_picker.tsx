@@ -60,6 +60,7 @@ export const Emoji: FC<EmojiProps> = ({
       sheetSize={sheetSize}
       skin={1}
       tooltip={false}
+      forceSize={false}
       {...{ useButton: true }}
       {...props}
     />
