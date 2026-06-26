@@ -14,6 +14,7 @@ import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
+import { insertStatusIntoAccountTimelines } from './timelines_typed';
 
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsAccountsController;
@@ -281,7 +282,12 @@ export function submitCompose(successCallback) {
       if (statusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         insertIfOnline('public');
-        insertIfOnline(`account:${response.data.account.id}`);
+      }
+
+      // Account timelines use keys like `account:${id}:0000` (see timelineKey)
+      // and are not streamed, so insert optimistically into matching loaded views.
+      if (statusId === null) {
+        dispatch(insertStatusIntoAccountTimelines(response.data));
       }
 
       dispatch(showAlert({

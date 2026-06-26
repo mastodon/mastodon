@@ -10,6 +10,7 @@ import {
   expandTimeline,
   insertIntoTimeline,
   TIMELINE_NON_STATUS_MARKERS,
+  updateTimeline,
 } from './timelines';
 
 export const expandTimelineByKey = createAppThunk(
@@ -207,6 +208,116 @@ export const timelineDeleteStatus = createAction<{
   statusId: string;
   timelineKey: string;
 }>('timelines/deleteStatus');
+
+/** Minimal status fields needed to decide which account timelines to update. */
+export interface AccountTimelineStatusLike {
+  id: string;
+  account: { id: string };
+  visibility: string;
+  in_reply_to_id: string | null;
+  reblog: unknown;
+  media_attachments?: unknown[] | null;
+  tags?: { name: string }[] | null;
+}
+
+/**
+ * Whether a newly created status belongs in the given account timeline view
+ * (posts / replies / media / tagged filters). Pinned timelines are excluded.
+ */
+export function accountTimelineAcceptsStatus(
+  params: AccountTimelineParams,
+  status: AccountTimelineStatusLike,
+): boolean {
+  if (params.userId !== status.account.id) {
+    return false;
+  }
+
+  if (params.pinned) {
+    return false;
+  }
+
+  if (status.visibility === 'direct') {
+    return false;
+  }
+
+  const isReply = status.in_reply_to_id != null;
+  if (isReply && !params.replies) {
+    return false;
+  }
+
+  const isReblog = status.reblog != null;
+  if (isReblog && !params.boosts) {
+    return false;
+  }
+
+  if (params.media) {
+    const mediaCount = status.media_attachments?.length ?? 0;
+    if (mediaCount === 0) {
+      return false;
+    }
+  }
+
+  if (params.tagged) {
+    const tagNames = status.tags?.map((tag) => tag.name) ?? [];
+    if (!tagNames.includes(params.tagged)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * Optimistically insert a status into loaded account timelines that would
+ * display it (own profile after compose). Account timelines are not streamed,
+ * so we do not require `online` — only that the timeline is already populated.
+ */
+export const insertStatusIntoAccountTimelines = createAppThunk(
+  (status: AccountTimelineStatusLike, { dispatch, getState }) => {
+    const accountId = status.account.id;
+    const timelines = getState().timelines as ImmutableMap<
+      string,
+      ImmutableMap<string, unknown>
+    >;
+
+    timelines.forEach((timeline, key) => {
+      if (
+        !key.startsWith(`account:${accountId}:`) &&
+        key !== `account:${accountId}`
+      ) {
+        return;
+      }
+
+      const parsed = parseTimelineKey(key);
+      if (parsed?.type !== 'account') {
+        return;
+      }
+
+      if (!accountTimelineAcceptsStatus(parsed, status)) {
+        return;
+      }
+
+      const items = timeline.get('items') as
+        | ImmutableList<string | null>
+        | undefined;
+      if (
+        !items ||
+        items.size === 0 ||
+        items.get(0) === null ||
+        items.includes(status.id)
+      ) {
+        return;
+      }
+
+      // Avoid inserting into partial timelines that will be reloaded anyway
+      if (timeline.get('isPartial')) {
+        return;
+      }
+
+      dispatch(updateTimeline(key, status));
+    });
+  },
+);
 
 export const insertPinnedStatusIntoTimelines = createAppThunk(
   (status: Status, { dispatch, getState }) => {
