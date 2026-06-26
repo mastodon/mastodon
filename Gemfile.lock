@@ -619,9 +619,6 @@ GEM
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
-    psych (5.4.0)
-      date
-      stringio
     public_suffix (7.0.5)
     puma (8.0.2)
       nio4r (~> 2.0)
@@ -690,6 +687,10 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.4.2)
+    rbs (4.0.3)
+      logger
+      prism (>= 1.6.0)
+      tsort
     rdf (3.3.4)
       bcp47_spec (~> 0.2)
       bigdecimal (~> 3.1, >= 3.1.5)
@@ -699,9 +700,10 @@ GEM
       readline (~> 0.0)
     rdf-normalize (0.7.0)
       rdf (~> 3.3)
-    rdoc (7.2.0)
+    rdoc (8.0.0)
       erb
-      psych (>= 4.0.0)
+      prism (>= 1.6.0)
+      rbs (>= 4.0.0)
       tsort
     readline (0.0.4)
       reline
@@ -853,7 +855,6 @@ GEM
     stoplight (5.8.2)
       concurrent-ruby
       zeitwerk
-    stringio (3.2.0)
     strong_migrations (2.8.0)
       activerecord (>= 7.2)
     strscan (3.1.8)
