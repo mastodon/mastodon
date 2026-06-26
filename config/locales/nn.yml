@@ -4,6 +4,7 @@ nn:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig dataene dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
+    default_thumbnail_description: To smilande teikneseriemastodontar (som ser ut som elefantar) kastar eit papirfly til kvarandre. Dei er omgjevne av klårblå himmel og flytande planetar med tre og fleire mastodontar på.
     hosted_on: "%{domain} er vert for Mastodon"
     title: Om
   accounts:
@@ -505,6 +506,21 @@ nn:
           no_lists_yet: Ingen lister enno
         last_email: Siste epost
         lead: Nedanfor vil du sjå brukarkontoar som har skrudd på dette og som har abonnentar.
+        show:
+          confirm_disable_feature: Vil du skru av epostbrev for %{name}? Då vil du ikkje lenger kunna senda ut epostbrev frå denne brukarkontoen. Brukaren vil framleis kunna skru på att funksjonen frå kontoinnstillingane. For å ta bort dette løyvet for alltid, må du redigera kontoløyva i Roller.
+          confirm_remove_subscriber: "%{email} vil ikkje lenger få epostar frå %{name}. Du kan ikkje angra dette."
+          consent: Abonnentane har berre godteke å få innlegga på epost. Ikkje bruk denne lista til andre føremål.
+          date: Dato for registrering
+          disable_feature: Skru av funksjonen
+          disabled: Funksjonen vart skrudd av, og det blir ikkje sendt ut epostar til denne lista lenger.
+          email: Epostadresse
+          empty:
+            hint: Ingen har abonnert på denne kontoen enno.
+            no_subscribers_yet: Ingen abonnentar enno
+          enable_feature: Skru på funksjonen
+          no_access_html: Denne kontoen har ikkje lenger lov til å skru på funksjonen. Du kan endra dette i <a href="%{roles_path}">Roller</a>.
+          title: Epostar frå %{name}
+          view_account: Sjå kontoen
         status: Status
         subscribers: Abonnentar
         title: Epostlister
@@ -714,6 +730,8 @@ nn:
       new:
         title: Opprett ny IP-regel
       no_ip_block_selected: Ingen IP-regler ble endret da ingen ble valgt
+      reset: Nullstill
+      search: Søk
       title: IP-regler
     relationships:
       title: "%{acct} sitt forhold"
@@ -956,6 +974,14 @@ nn:
       landing_page:
         hints:
           about_html: Ei side med skildring, kontaktopplysingar, reglar og andre opplysingar om denne tenaren.
+          local_feed_html: Ein direktestraum med dei nyaste innlegga frå folk på denne tenaren.
+          overview_html: Ei side som skildrar denne tenaren, saman med dei nyaste innlegga av folk på tenaren.
+          trends_html: Ei side som viser kva som er populært på denne tenaren nett no.
+        values:
+          about: Om sida
+          local_feed: Lokal direktestraum
+          overview: Oversyn
+          trends: Populært
       registrations:
         moderation_recommandation: Pass på at du har mange og kjappe redaktørar og moderatorar på laget ditt før du opnar for allmenn registrering!
         preamble: Kontroller kven som kan oppretta konto på tenaren din.
@@ -975,6 +1001,7 @@ nn:
     site_uploads:
       delete: Slett opplasta fil
       destroyed_msg: Vellukka sletting av sideopplasting!
+    skip_to_content: Hopp til innhaldet
     software_updates:
       critical_update: Kritisk – gjer vel og oppdater snart
       description: Me rår til å halda Mastodon-installasjonen oppdatert for å dra nytte av nye feilrettingar og funksjonar. Dessutan er det av og til kritisk å oppdatera Mastodon til rett tid for å ungå sikkerheitsproblem. På grunn av dette vil Mastodon sjå etter oppdateringar kvart 30. minutt og halda deg orientert etter innstillingane du har sett for e-postvarsling.
@@ -1490,6 +1517,7 @@ nn:
       your_appeal_rejected: Din klage har blitt avvist
   edit_profile:
     other: Anna
+    privacy_redesign_body: No vel du om du vil visa fylgjarane dine og kven du fylgjer direkte frå profilsida di.
     redesign_body: No kan du gå til profilredigeringssida din direkte frå profilsida.
     redesign_button: Gå dit
     redesign_title: Ny profilredigering
@@ -1522,7 +1550,9 @@ nn:
         success_html: Frå no vil du få epostar når %{name} legg ut nye innlegg. Legg til %{sender} til kontaktane dine så desse epostane ikkje hamnar i søppelposten din.
         title: Du er påmeld
         unsubscribe: Stopp abonnementet
+    disabled: Skrudd av
     inactive: Ikkje aktiv
+    no_access: Ikkje tilgang
     status: Status
     subscribers: Abonnentar
   emoji_styles:
@@ -1558,7 +1588,9 @@ nn:
     blocks: Du blokkerer
     bookmarks: Bokmerker
     csv: CSV
+    custom_filters: Filter
     domain_blocks: Domeneblokkeringer
+    json: JSON
     lists: Lister
     mutes: Du dempar
     storage: Medielagring
@@ -1636,7 +1668,9 @@ nn:
       empty: Tom CSV-fil
       incompatible_type: Ikkje kompatibel med importtypen du valde
       invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
+      invalid_json_file: 'Ugyldig JSON-fil. Feil: %{error}'
       over_rows_processing_limit: inneholder flere enn %{count} rader
+      status_not_found_warning: Nokre av filtra dine gøymer visse innlegg som denne tenaren ikkje kjenner til. Desse innlegga blir ikkje gøymde automatisk viss dei blir oppdaga av tenaren din seinare.
       too_large: Fila er for stor
     failures: Feil
     imported: Importert
@@ -1653,6 +1687,9 @@ nn:
       bookmarks_html:
         one: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong>.
         other: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Du er i ferd med å <strong>erstatta filtra dine</strong> med innhaldet i <strong>%{filename}</strong>. Opptil <strong>%{count} filter</strong> vil bli lagt til i dei nye filtra.
+        other: Du er i ferd med å <strong>erstatta filtra dine</strong> med innhaldet i <strong>%{filename}</strong>. Opptil <strong>%{count} filter</strong> vil bli lagt til i dei nye filtra.
       domain_blocking_html:
         one: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
         other: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
@@ -1672,6 +1709,9 @@ nn:
       bookmarks_html:
         one: Du er i ferd med å leggja til opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
         other: Du er i ferd med å leggja til opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
+      custom_filters_html:
+        one: Du er i ferd med å leggja til opp til <strong>%{count} filter</strong> frå <strong>%{filename}</strong> til <strong>filtra dine</strong>.
+        other: Du er i ferd med å leggja til opp til <strong>%{count} filter</strong> frå <strong>%{filename}</strong> til <strong>filtra dine</strong>.
       domain_blocking_html:
         one: Du skal til å <strong>blokkera</strong> opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
         other: Du skal til å <strong>blokkera</strong> opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
@@ -1708,6 +1748,7 @@ nn:
     types:
       blocking: Blokkeringsliste
       bookmarks: Bokmerker
+      custom_filters: Filter
       domain_blocking: Liste over blokkerte domene
       following: Fylgjeliste
       lists: Lister
@@ -1802,6 +1843,27 @@ nn:
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   navigation:
     toggle_menu: Vis/gøym menyen
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} la deg til i ei samling"
+    admin_report:
+      title_html: "%{name} rapporterte %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} og ein til melde seg på"
+        other: "%{name} og %{count} andre melde seg på"
+      title_html: "%{name} melde seg på"
+    collection_update:
+      title_html: "%{name} oppdaterte ei samling du er med i"
+    generic:
+      sign_in: Logg på Mastodon-vevsida
+      summary_html: Du bruker ein app som ikkje støttar siste utgåva av Mastodon. %{link} for å få alle funksjonane.
+    moderation_warning:
+      summary_html: Du bruker ein app som ikkje støttar siste utgåva av Mastodon. %{link}.
+      title: Du har fått ei moderasjonsåtvaring.
+    severed_relationships:
+      summary_html: Ein administrator på %{from} har kasta ut %{target}, som tyder at du ikkje får oppdateringar eller kan samhandla med dei lenger. %{link} for å få ei liste over dei tapte sambanda.
+      title: Tapte samband med %{name}
   notification_mailer:
     admin:
       report:
