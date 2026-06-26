@@ -111,7 +111,7 @@ const AutosuggestTextarea = forwardRef(({
     onKeyDown(e);
   }, [disabled, suggestions, suggestionsHidden, selectedSuggestion, setSelectedSuggestion, setSuggestionsHidden, onSuggestionSelected, onKeyDown]);
 
-  const handleBlur = useCallback(() => {
+  const closeMenu = useCallback(() => {
     setSuggestionsHidden(true);
   }, [setSuggestionsHidden]);
 
@@ -192,7 +192,7 @@ const AutosuggestTextarea = forwardRef(({
         onKeyDown={handleKeyDown}
         onKeyUp={onKeyUp}
         onFocus={handleFocus}
-        onBlur={handleBlur}
+        onBlur={closeMenu}
         onPaste={handlePaste}
         onDrop={handleDrop}
         dir='auto'
@@ -205,6 +205,7 @@ const AutosuggestTextarea = forwardRef(({
         <Popover
           matchReferenceWidth
           isOpen={!(suggestionsHidden || suggestions.isEmpty())}
+          onClose={closeMenu}
           reference={textareaElement}
         >
           {({ props }) => (
