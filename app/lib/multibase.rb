@@ -24,7 +24,7 @@ class Multibase
 
     case string[0]
     when 'u'
-      Base64.decode(string[1...])
+      Base64.urlsafe_decode64(string[1...])
     when 'z'
       Base58.base58_to_binary(string[1...], :bitcoin)
     else
