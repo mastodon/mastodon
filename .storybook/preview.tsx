@@ -84,7 +84,7 @@ const preview: Preview = {
       // Get the locale from the global toolbar
       // and merge it with any parameters or args state.
       const { locale } = globals as { locale: string };
-      const { state = {} } = parameters;
+      const { state = {}, stateFn } = parameters;
 
       const argsState: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(args)) {
@@ -106,6 +106,16 @@ const preview: Preview = {
         }
       }
 
+      let stateFnState: Record<string, unknown> = {};
+      if (typeof stateFn === 'function') {
+        stateFnState =
+          (
+            stateFn as (
+              args: Record<string, unknown>,
+            ) => Record<string, unknown> | undefined | null
+          )(args) ?? {};
+      }
+
       const reducer = reducerWithInitialState(
         {
           meta: {
@@ -113,6 +123,7 @@ const preview: Preview = {
           },
         },
         state as Record<string, unknown>,
+        stateFnState,
         argsState,
       );
 
