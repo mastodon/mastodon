@@ -120,13 +120,12 @@ const MediaAttachments: React.FC<{
   const description =
     attachment.translation?.description ?? attachment.description;
 
-  const immutableAttachments = useAppSelector(
-    (state) =>
-      state.statuses.getIn(
-        statusId,
-        'media_attachments',
-      ) as Immutable.List<MediaAttachment>,
-  );
+  const immutableAttachments = useAppSelector((state) => {
+    return state.statuses.getIn([
+      statusId,
+      'media_attachments',
+    ]) as Immutable.List<MediaAttachment>;
+  });
   const mediaFilters = useAppSelector((state) =>
     selectMediaMatchFilters(state, { statusId, contextType }),
   );

@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 import type { PartialDeep } from 'type-fest';
 
 import { normalizeStatus } from '@/mastodon/actions/importer/statuses';
+import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
 import type {
   ApiAudioAttachmentJSON,
   ApiGifvAttachmentJSON,
@@ -14,7 +15,10 @@ import type {
 import type { ApiPollJSON } from '@/mastodon/api_types/polls';
 import type { ApiQuotedStatusJSON } from '@/mastodon/api_types/quotes';
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
-import type { ApiStatusJSON } from '@/mastodon/api_types/statuses';
+import type {
+  ApiPreviewCardJSON,
+  ApiStatusJSON,
+} from '@/mastodon/api_types/statuses';
 import type {
   CustomEmojiData,
   UnicodeEmojiData,
@@ -173,7 +177,7 @@ const baseAttachment = {
   id: '1',
   url: 'https://example.com/image/1',
   preview_url: 'https://example.com/image/1/preview',
-  blurhash: '',
+  blurhash: 'LGF5]+Yk^6#M@-5c,1J5@[or[Q6.',
 } as const;
 const imageMeta = {
   width: 100,
@@ -319,6 +323,51 @@ export const pollFactoryImmutable = (
       translation: null,
       ...option,
     })) ?? [],
+});
+
+export const cardFactoryAPI: FactoryFunction<ApiPreviewCardJSON> = (
+  options = {},
+) => ({
+  url: 'https://example.com',
+  title: 'Example Card',
+  description: 'This is an example card',
+  language: 'en',
+  type: 'link',
+  author_name: 'A. Person',
+  author_url: 'https://example.com/person',
+  provider_name: 'example',
+  provider_url: 'https://example.com/provider',
+  html: '<p>Here is an example card</p>',
+  width: 100,
+  height: 100,
+  image: null,
+  embed_url: 'https://example.com/embed',
+  image_description: '',
+  blurhash: '',
+  published_at: null,
+  authors: [],
+  ...options,
+});
+
+export const collectionFactoryAPI: FactoryFunction<ApiCollectionJSON> = (
+  options = {},
+) => ({
+  id: '1',
+  account_id: '1',
+  name: 'Test Collection',
+  uri: options.url ?? 'https://example.com/collection',
+  url: options.uri ?? 'https://example.com/collection',
+  local: true,
+  item_count: options.items?.length ?? 0,
+  description: 'This is a test collection.',
+  tag: null,
+  language: 'en',
+  sensitive: false,
+  discoverable: true,
+  created_at: '2023-01-01',
+  updated_at: '2023-01-01',
+  items: [],
+  ...options,
 });
 
 export const relationshipsFactoryAPI: FactoryFunction<ApiRelationshipJSON> = ({
