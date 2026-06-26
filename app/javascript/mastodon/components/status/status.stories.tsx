@@ -10,9 +10,9 @@ import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachme
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import {
   accountFactoryState,
-  mediaAttachmentFactory,
-  pollFactory,
-  statusFactory,
+  mediaAttachmentFactoryAPI,
+  pollFactoryState,
+  statusFactoryAPI,
   statusFactoryState,
 } from '@/testing/factories';
 
@@ -113,7 +113,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
       // Use fall through add attachments depending on count.
       case 'image-3':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             id: '2',
             url: 'https://cataas.com/cat/EbVq9zMc4Xxv7s73',
             meta: {
@@ -129,7 +129,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
       // eslint-disable-next-line no-fallthrough
       case 'image-2':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             id: '3',
             url: 'https://cataas.com/cat/YFaQ4xWYoWURSz37',
             meta: {
@@ -145,7 +145,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
       // eslint-disable-next-line no-fallthrough
       case 'image-1':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             id: '4',
             url: 'https://cataas.com/cat/bYBTjiFUqjUPIBUD',
             meta: {
@@ -161,7 +161,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         break;
       case 'video':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             type: 'video',
             url: 'https://www.pexels.com/download/video/11760787/',
             meta: {
@@ -175,7 +175,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         break;
       case 'audio':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             type: 'audio',
             url: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Elephant_voice_-_trumpeting.ogg',
           }),
@@ -183,7 +183,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         break;
       case 'gifv':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             type: 'gifv',
             url: 'https://www.pexels.com/download/video/11760787/',
             meta: {
@@ -196,7 +196,9 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         );
         break;
       case 'unknown':
-        media_attachments.push(mediaAttachmentFactory({ type: attachments }));
+        media_attachments.push(
+          mediaAttachmentFactoryAPI({ type: attachments }),
+        );
         break;
     }
 
@@ -215,7 +217,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         quote: isQuote
           ? {
               state: 'accepted',
-              quoted_status: { ...statusFactory(), quote: undefined },
+              quoted_status: { ...statusFactoryAPI(), quote: undefined },
             }
           : undefined,
         favourites_count: favouriteCount,
@@ -469,8 +471,8 @@ const meta = {
         '2': otherAccount,
       },
       polls: {
-        '1': pollFactory(),
-        '2': pollFactory({
+        '1': pollFactoryState(),
+        '2': pollFactoryState({
           voted: true,
           voters_count: 1,
           votes_count: 1,

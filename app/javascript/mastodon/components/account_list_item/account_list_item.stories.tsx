@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { accountFactoryState, relationshipsFactory } from '@/testing/factories';
+import {
+  accountFactoryState,
+  relationshipsFactoryAPI,
+} from '@/testing/factories';
 
 import { PendingBadge } from '../badge';
 
@@ -32,7 +35,7 @@ export const FollowsYou: Story = {
   parameters: {
     state: {
       relationships: {
-        '1': relationshipsFactory({
+        '1': relationshipsFactoryAPI({
           followed_by: true,
         }),
       },
