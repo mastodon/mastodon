@@ -1890,6 +1890,7 @@ nan-TW:
     next: 後一頁
     older: 較舊ê
     prev: 頂一頁
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Lí有投票ah
@@ -2185,7 +2186,35 @@ nan-TW:
       follow_request: 跟tuè請求電子phue
       mention: 提起通知電子phue
       reblog: 轉送通知電子phue
+    show:
+      action: 取消訂
+      email_subscription:
+        confirmation_html: 當tsit ê口座刊出新PO文ê時，汝bē koh收著電子phue。
+        title: Kám beh取消訂 %{name}？
+      user:
+        confirmation_html: Lí ē停止收著對 %{domain} 來ê Mastodon ê %{type}。
+        title: Kám beh取消訂 %{type}？
   user_mailer:
+    announcement_published:
+      description: "%{domain} ê管理員leh發布公告："
+      subject: 服務公告
+      title: "%{domain} 服務公告"
+    appeal_approved:
+      action: 口座ê設定
+      explanation: Lí佇 %{appeal_date} 對kā lí ê口座佇 %{strike_date} 處份ê投訴已經受允准。Lí ê口座koh轉去好ê狀態。
+      subject: Lí佇 %{date} ê投訴有受允准
+      subtitle: Lí ê口座koh轉去好ê狀態。
+      title: 申訴受批准
+    appeal_rejected:
+      explanation: Lí佇 %{appeal_date} 對kā lí ê口座佇 %{strike_date} 處份ê投訴已經受拒絕。
+      subject: Lí佇 %{date} ê投訴有受拒絕
+      subtitle: Lí ê投訴已經受拒絕。
+      title: 投訴受拒絕
+    backup_ready:
+      explanation: Lí要求完整備份lí ê Mastodon口座。
+      extra: 備辦好勢，通載落去！
+      subject: Lí ê備份檔案ē當載落去
+      title: 輸出備份檔
     terms_of_service_changed:
       description: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 %{date} 施行。Gún鼓勵lí佇tsia讀kui篇更新ê規定：
       description_html: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 <strong>%{date}</strong> 施行。Gún鼓勵lí<a href="%{path}" target="_blank">佇tsia讀kui篇更新ê規定</a>：
