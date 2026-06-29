@@ -16,5 +16,22 @@ RSpec.describe 'Privacy Policy' do
         .to be_present
         .and include(:content)
     end
+
+    context 'when text contains percent signs' do
+      before do
+        Setting.site_terms = '100% compliant on %{domain}'
+      end
+
+      it 'returns content without error' do
+        get api_v1_instance_privacy_policy_path
+
+        expect(response)
+          .to have_http_status(200)
+
+        expect(response.parsed_body[:content])
+          .to include('100%')
+          .and include(Rails.configuration.x.local_domain)
+      end
+    end
   end
 end

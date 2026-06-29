@@ -23,6 +23,27 @@ RSpec.describe 'Terms of Service' do
       end
     end
 
+    context 'when text contains percent signs' do
+      before do
+        Fabricate(
+          :terms_of_service,
+          text: '100% compliant on %{domain}',
+          effective_date: Date.yesterday,
+        )
+      end
+
+      it 'returns content without error' do
+        get api_v1_instance_terms_of_service_index_path
+
+        expect(response)
+          .to have_http_status(200)
+
+        expect(response.parsed_body[:content])
+          .to include('100%')
+          .and include(Rails.configuration.x.local_domain)
+      end
+    end
+
     context 'without a current TOS record' do
       it 'returns http success' do
         get api_v1_instance_terms_of_service_index_path
