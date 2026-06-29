@@ -23,6 +23,7 @@ RSpec.describe 'Admin Tags' do
       put admin_tag_path(tag.id, params: { tag: { trendable: true, listable: false } })
 
       expect(response).to have_http_status(302)
+      expect(Admin::ActionLog.last.valid?).to be true
       expect(Admin::ActionLog.last.human_identifier).to eq('#supertag')
       expect(Admin::ActionLog.pluck(:action)).to eq(%w(update))
       expect(Admin::ActionLog.pluck(:recorded_changes)).to eq([{ 'listable' => false, 'trendable' => true }])

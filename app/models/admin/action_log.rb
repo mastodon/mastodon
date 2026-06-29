@@ -31,12 +31,17 @@ class Admin::ActionLog < ApplicationRecord
   store_accessor :recorded_changes, *LOG_ATTRIBUTES
 
   scope :latest, -> { order(id: :desc) }
+  validates :recorded_changes, presence: true, json: { schema: :dynamic_records_schema }
 
   def action
     super.to_sym
   end
 
   private
+
+  def dynamic_records_schema
+    Rails.root.join('config', 'schemas', "#{recorded_changes_format}.json")
+  end
 
   def set_human_identifier
     self.human_identifier = target.to_log_human_identifier if target.respond_to?(:to_log_human_identifier)
