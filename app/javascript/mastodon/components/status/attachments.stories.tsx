@@ -2,24 +2,21 @@ import { List, Map } from 'immutable';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { MediaAttachmentType } from '@/mastodon/api_types/media_attachments';
 import {
   accountFactoryImmutable,
   cardFactoryAPI,
   collectionFactoryAPI,
-  mediaAttachmentFactoryAPI,
   statusFactoryAPI,
   statusFactoryImmutable,
   statusQuotedFactoryAPI,
 } from '@/testing/factories';
 
 import { StatusAttachments } from './attachments';
-
-type AttachmentType = MediaAttachmentType | 'collection' | 'card';
-type ExtraAttachmentType = Exclude<MediaAttachmentType, 'video' | 'audio'>;
+import type { MainAttachmentType, ExtraAttachmentType } from './testing';
+import { attachmentFactory } from './testing';
 
 interface StatusAttachmentsStoryProps {
-  attachment1?: AttachmentType;
+  attachment1?: MainAttachmentType;
   attachment2?: ExtraAttachmentType;
   attachment3?: ExtraAttachmentType;
   isFiltered: boolean;
@@ -57,15 +54,15 @@ const meta = {
         'audio',
         'collection',
         'card',
-      ] satisfies AttachmentType[],
+      ] satisfies MainAttachmentType[],
     },
     attachment2: {
       control: 'select',
-      options: ['image', 'gifv', 'unknown'] satisfies AttachmentType[],
+      options: ['image', 'gifv', 'unknown'] satisfies ExtraAttachmentType[],
     },
     attachment3: {
       control: 'select',
-      options: ['image', 'gifv', 'unknown'] satisfies AttachmentType[],
+      options: ['image', 'gifv', 'unknown'] satisfies ExtraAttachmentType[],
     },
     isFiltered: {
       control: 'boolean',
@@ -139,43 +136,14 @@ const meta = {
         });
       } else if (args.attachment1 === 'collection') {
         status.tagged_collections = [collectionFactoryAPI()];
-      } else if (args.attachment1 === 'audio') {
-        status.media_attachments.push(
-          mediaAttachmentFactoryAPI({
-            type: 'audio',
-            url: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Elephant_voice_-_trumpeting.ogg',
-            preview_url:
-              'https://images.pexels.com/photos/16859306/pexels-photo-16859306.jpeg',
-          }),
-        );
-      } else if (args.attachment1 === 'video') {
-        status.media_attachments.push(
-          mediaAttachmentFactoryAPI({
-            type: 'video',
-            url: 'https://www.pexels.com/download/video/11760787/',
-            preview_url:
-              'https://images.pexels.com/photos/16859306/pexels-photo-16859306.jpeg',
-            meta: {
-              original: {
-                width: 2160,
-                height: 4096,
-              },
-            },
-          }),
-        );
       } else if (args.attachment1) {
-        status.media_attachments.push(extraAttachmentType(args.attachment1));
-        if (args.attachment2) {
-          status.media_attachments.push(
-            extraAttachmentType(args.attachment2, '2'),
-          );
-        }
-
-        if (args.attachment3) {
-          status.media_attachments.push(
-            extraAttachmentType(args.attachment3, '3'),
-          );
-        }
+        status.media_attachments.push(
+          ...attachmentFactory(
+            args.attachment1,
+            args.attachment2,
+            args.attachment3,
+          ),
+        );
       }
 
       return {
@@ -193,83 +161,6 @@ const meta = {
     },
   },
 } as Meta<StatusAttachmentsStoryProps>;
-
-type MediaData = Record<
-  '1' | '2' | '3',
-  { url: string; width: number; height: number }
->;
-
-const imageIdToData = {
-  '1': {
-    url: 'https://cataas.com/cat/bYBTjiFUqjUPIBUD',
-    width: 1280,
-    height: 964,
-  },
-  '2': {
-    url: 'https://cataas.com/cat/YFaQ4xWYoWURSz37',
-    width: 964,
-    height: 1280,
-  },
-  '3': {
-    url: 'https://cataas.com/cat/EbVq9zMc4Xxv7s73',
-    width: 960,
-    height: 1280,
-  },
-} satisfies MediaData;
-const gifIdToData = {
-  '1': {
-    url: 'https://www.pexels.com/download/video/11760787/',
-    width: 2160,
-    height: 4096,
-  },
-  '2': {
-    url: 'https://www.pexels.com/download/video/19787248/',
-    width: 3840,
-    height: 2160,
-  },
-  '3': {
-    url: 'https://www.pexels.com/download/video/37411294/',
-    width: 3840,
-    height: 2160,
-  },
-} satisfies MediaData;
-
-function extraAttachmentType(
-  type: ExtraAttachmentType,
-  id: '1' | '2' | '3' = '1',
-) {
-  const metaData = type === 'image' ? imageIdToData[id] : gifIdToData[id];
-  switch (type) {
-    case 'image':
-      return mediaAttachmentFactoryAPI({
-        id,
-        type: 'image',
-        url: metaData.url,
-        meta: {
-          original: {
-            width: metaData.width,
-            height: metaData.height,
-            size: `${metaData.width}x${metaData.height}`,
-            aspect: metaData.width / metaData.height,
-          },
-        },
-      });
-    case 'gifv':
-      return mediaAttachmentFactoryAPI({
-        id,
-        type: 'gifv',
-        url: metaData.url,
-        meta: {
-          original: {
-            width: metaData.width,
-            height: metaData.height,
-          },
-        },
-      });
-    case 'unknown':
-      return mediaAttachmentFactoryAPI({ id, type: 'unknown' });
-  }
-}
 
 export default meta;
 
@@ -315,6 +206,7 @@ export const Filtered: Story = {
 
 export const PictureInPicture: Story = {
   args: {
+    attachment1: 'video',
     isPictureInPicture: true,
   },
 };
