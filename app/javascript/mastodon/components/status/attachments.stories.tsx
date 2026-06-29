@@ -39,8 +39,8 @@ const meta = {
   },
   args: {
     attachment1: 'image',
-    attachment2: 'image',
-    attachment3: 'image',
+    attachment2: undefined,
+    attachment3: undefined,
     isFiltered: false,
     isSensitive: false,
     isPictureInPicture: false,
@@ -192,7 +192,7 @@ const meta = {
       };
     },
   },
-} satisfies Meta<StatusAttachmentsStoryProps>;
+} as Meta<StatusAttachmentsStoryProps>;
 
 type MediaData = Record<
   '1' | '2' | '3',
@@ -275,4 +275,46 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Image: Story = {};
+
+export const Video: Story = {
+  args: {
+    attachment1: 'video',
+  },
+};
+
+export const Audio: Story = {
+  args: {
+    attachment1: 'audio',
+  },
+};
+
+export const Card: Story = {
+  args: {
+    attachment1: 'card',
+  },
+};
+
+export const Collection: Story = {
+  args: {
+    attachment1: 'collection',
+  },
+};
+
+export const Sensitive: Story = {
+  args: {
+    isSensitive: true,
+  },
+};
+
+export const Filtered: Story = {
+  args: {
+    isFiltered: true,
+  },
+};
+
+export const PictureInPicture: Story = {
+  args: {
+    isPictureInPicture: true,
+  },
+};
