@@ -23,7 +23,9 @@ declare module 'storybook/internal/csf' {
      *
      * Can either be a period separated string or an array.
      */
-    reduxPath?: `${keyof TypedRootState}.${string}`;
+    reduxPath?:
+      | `${keyof TypedRootState}.${string}`
+      | [keyof TypedRootState, ...(string | number)[]];
   }
 
   export interface Globals {
