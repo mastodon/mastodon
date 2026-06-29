@@ -55,6 +55,7 @@ module Admin::ActionLogsHelper
   end
 
   def permutation_of_key(log, key)
+    # we're utilizing the store_accessors here, to get the values from the jsonb like: log.listable => true
     return if log.public_send(key).nil?
 
     log.public_send(key) ? key : :"not_#{key}"
