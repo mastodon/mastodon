@@ -9,11 +9,11 @@ import { fn } from 'storybook/test';
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import {
-  accountFactoryState,
-  mediaAttachmentFactory,
-  pollFactory,
-  statusFactory,
-  statusFactoryState,
+  accountFactoryImmutable,
+  mediaAttachmentFactoryAPI,
+  pollFactoryImmutable,
+  statusFactoryAPI,
+  statusFactoryImmutable,
 } from '@/testing/factories';
 
 import { TypedStatus } from './types';
@@ -71,7 +71,7 @@ interface StatusStoryProps {
   showPrepend?: boolean;
 }
 
-const otherAccount = accountFactoryState({
+const otherAccount = accountFactoryImmutable({
   id: '2',
   display_name: 'Another user',
 });
@@ -106,14 +106,14 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     showPrepend = true,
   } = props;
   const { account, status } = useMemo(() => {
-    const account = accountFactoryState();
+    const account = accountFactoryImmutable();
 
     const media_attachments: ApiMediaAttachmentJSON[] = [];
     switch (attachments) {
       // Use fall through add attachments depending on count.
       case 'image-3':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             id: '2',
             url: 'https://cataas.com/cat/EbVq9zMc4Xxv7s73',
             meta: {
@@ -129,7 +129,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
       // eslint-disable-next-line no-fallthrough
       case 'image-2':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             id: '3',
             url: 'https://cataas.com/cat/YFaQ4xWYoWURSz37',
             meta: {
@@ -145,7 +145,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
       // eslint-disable-next-line no-fallthrough
       case 'image-1':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             id: '4',
             url: 'https://cataas.com/cat/bYBTjiFUqjUPIBUD',
             meta: {
@@ -161,7 +161,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         break;
       case 'video':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             type: 'video',
             url: 'https://www.pexels.com/download/video/11760787/',
             meta: {
@@ -175,7 +175,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         break;
       case 'audio':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             type: 'audio',
             url: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Elephant_voice_-_trumpeting.ogg',
           }),
@@ -183,7 +183,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         break;
       case 'gifv':
         media_attachments.push(
-          mediaAttachmentFactory({
+          mediaAttachmentFactoryAPI({
             type: 'gifv',
             url: 'https://www.pexels.com/download/video/11760787/',
             meta: {
@@ -196,13 +196,15 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         );
         break;
       case 'unknown':
-        media_attachments.push(mediaAttachmentFactory({ type: attachments }));
+        media_attachments.push(
+          mediaAttachmentFactoryAPI({ type: attachments }),
+        );
         break;
     }
 
     return {
       account,
-      status: statusFactoryState({
+      status: statusFactoryImmutable({
         text,
         spoiler_text: contentWarning,
         visibility,
@@ -215,7 +217,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         quote: isQuote
           ? {
               state: 'accepted',
-              quoted_status: { ...statusFactory(), quote: undefined },
+              quoted_status: { ...statusFactoryAPI(), quote: undefined },
             }
           : undefined,
         favourites_count: favouriteCount,
@@ -236,7 +238,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         if (isReblog) {
           status.set(
             'reblog',
-            statusFactoryState({ id: '2' }).set('account', otherAccount),
+            statusFactoryImmutable({ id: '2' }).set('account', otherAccount),
           );
         }
         if (isPoll) {
@@ -469,8 +471,8 @@ const meta = {
         '2': otherAccount,
       },
       polls: {
-        '1': pollFactory(),
-        '2': pollFactory({
+        '1': pollFactoryImmutable(),
+        '2': pollFactoryImmutable({
           voted: true,
           voters_count: 1,
           votes_count: 1,

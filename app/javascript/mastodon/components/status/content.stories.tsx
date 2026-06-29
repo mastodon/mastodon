@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import type { StatusTranslation } from '@/mastodon/models/status';
-import { statusFactoryState } from '@/testing/factories';
+import { statusFactoryImmutable } from '@/testing/factories';
 
 import { StatusContent } from './content';
 
@@ -57,7 +57,7 @@ const meta = {
       },
     },
     stateFn(args: StatusContentProps) {
-      let status = statusFactoryState();
+      let status = statusFactoryImmutable();
       if (args.translatedTo) {
         status = status.set('translation', {
           contentHtml: `${args.text}<p><em>(in ${args.translatedTo})</em></p>`,

@@ -1,52 +1,37 @@
 import { isPlainObject } from '@reduxjs/toolkit';
 
-export type RecordObject = Record<PropertyKey, unknown>;
+import type { Get, IsUnknown, UnknownRecord } from 'type-fest';
 
-export function isRecordObject(obj: unknown): obj is RecordObject {
+export function isRecordObject(obj: unknown): obj is UnknownRecord {
   return isPlainObject(obj);
 }
 
-type NestedProperty<T, K extends readonly PropertyKey[]> = K extends readonly [
-  infer Head,
-  ...infer Tail,
-]
-  ? Head extends keyof NonNullable<T>
-    ? Tail extends readonly PropertyKey[]
-      ? NestedProperty<NonNullable<T>[Head], Tail>
-      : NonNullable<T>[Head]
-    : undefined
-  : T;
+type NestedProperty<TObject, TKeys extends readonly string[]> =
+  IsUnknown<TObject> extends true
+    ? unknown
+    : IsUnknown<Get<TObject, TKeys>> extends true
+      ? undefined
+      : Get<TObject, TKeys>;
 
+export function getNestedProperty<TObject>(object: TObject): TObject;
 export function getNestedProperty<
-  TObject extends RecordObject,
-  const TKeys extends readonly PropertyKey[],
->(object: TObject, ...keys: TKeys): NestedProperty<TObject, TKeys> | undefined;
-export function getNestedProperty(
-  object: unknown,
-  ...keys: PropertyKey[]
-): unknown;
-export function getNestedProperty(
-  object: unknown,
-  ...keys: PropertyKey[]
-): unknown {
-  if (!isRecordObject(object) || keys.length === 0) {
-    return undefined;
+  TObject,
+  const TKeys extends readonly string[],
+>(object: TObject, ...keys: TKeys): NestedProperty<TObject, TKeys>;
+export function getNestedProperty(object: unknown, ...keys: readonly string[]) {
+  if (keys.length === 0) {
+    return object;
   }
 
-  const remainingKeys = [...keys];
-  let currentObject: RecordObject = object;
-  while (remainingKeys.length > 0) {
-    const currentKey = remainingKeys.shift();
-    if (currentKey !== undefined && currentKey in currentObject) {
-      const nextObject = currentObject[currentKey];
-      if (isRecordObject(nextObject)) {
-        currentObject = nextObject;
-        continue;
-      } else if (remainingKeys.length === 0) {
-        return nextObject;
-      }
+  let currentValue = object;
+
+  for (const key of keys) {
+    if (!isRecordObject(currentValue) || !(key in currentValue)) {
+      return undefined;
     }
+
+    currentValue = currentValue[key];
   }
 
-  return undefined;
+  return currentValue;
 }

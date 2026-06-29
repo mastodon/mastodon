@@ -15,6 +15,7 @@ import { throttle } from 'lodash';
 
 import { determineEmojiMode } from '@/mastodon/features/emoji/mode';
 import { updateHtmlWithEmoji } from '@/mastodon/features/emoji/render';
+import type { InitialState } from '@/mastodon/initial_state';
 import loadKeyboardExtensions from '@/mastodon/load_keyboard_extensions';
 import { loadLocale, getLocale } from '@/mastodon/locales';
 import { loadPolyfills } from '@/mastodon/polyfills';
@@ -83,7 +84,7 @@ async function loaded() {
     document.getElementById('initial-state')?.textContent;
   if (initialStateText) {
     const stateEmojiStyle = getNestedProperty(
-      JSON.parse(initialStateText) as unknown,
+      JSON.parse(initialStateText) as InitialState,
       'meta',
       'emoji_style',
     );

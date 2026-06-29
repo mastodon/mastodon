@@ -19,11 +19,13 @@ interface ApiNestedQuoteJSON {
   quoted_status_id: string;
 }
 
+export type ApiQuotedStatusJSON = Omit<ApiStatusJSON, 'quote'> & {
+  quote?: ApiNestedQuoteJSON | ApiQuoteEmptyJSON;
+};
+
 interface ApiQuoteAcceptedJSON {
   state: 'accepted';
-  quoted_status: Omit<ApiStatusJSON, 'quote'> & {
-    quote?: ApiNestedQuoteJSON | ApiQuoteEmptyJSON;
-  };
+  quoted_status: ApiQuotedStatusJSON;
 }
 
 export type ApiQuoteJSON = ApiQuoteAcceptedJSON | ApiQuoteEmptyJSON;

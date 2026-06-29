@@ -1,5 +1,7 @@
 import { fromJS } from 'immutable';
 
+import type { PartialDeep } from 'type-fest';
+
 import { normalizeStatus } from '@/mastodon/actions/importer/statuses';
 import type {
   ApiAudioAttachmentJSON,
@@ -10,17 +12,30 @@ import type {
   BaseApiMediaAttachmentJSON,
 } from '@/mastodon/api_types/media_attachments';
 import type { ApiPollJSON } from '@/mastodon/api_types/polls';
+import type { ApiQuotedStatusJSON } from '@/mastodon/api_types/quotes';
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
 import type { ApiStatusJSON } from '@/mastodon/api_types/statuses';
 import type {
   CustomEmojiData,
   UnicodeEmojiData,
 } from '@/mastodon/features/emoji/types';
-import { createAccountFromServerJSON } from '@/mastodon/models/account';
+import type { AccountShapeFull } from '@/mastodon/models/account';
+import {
+  accountDefaultValues,
+  createAccountFromServerJSON,
+} from '@/mastodon/models/account';
 import type { AnnualReport } from '@/mastodon/models/annual_report';
+import { CustomEmojiFactory } from '@/mastodon/models/custom_emoji';
+import type { Poll } from '@/mastodon/models/poll';
 import type { Status } from '@/mastodon/models/status';
-import type { DeepPartial } from '@/mastodon/utils/types';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+
+/**
+ * Naming conventions for factories:
+ * - API responses should be `*FactoryAPI`
+ * - Plain JS objects in state should be `*FactoryState`
+ * - Immutable factories should be `*FactoryImmutable`
+ */
 
 type FactoryOptions<T> = {
   id?: string;
@@ -28,7 +43,7 @@ type FactoryOptions<T> = {
 
 type FactoryFunction<T> = (options?: FactoryOptions<T>) => T;
 
-export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
+export const accountFactoryAPI: FactoryFunction<ApiAccountJSON> = ({
   id,
   ...data
 } = {}) => ({
@@ -75,9 +90,35 @@ export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
 
 export const accountFactoryState = (
   options: FactoryOptions<ApiAccountJSON> = {},
-) => createAccountFromServerJSON(accountFactory(options));
+): AccountShapeFull => {
+  const accountJSON = accountFactoryAPI(options);
+  return {
+    ...accountJSON,
+    ...accountDefaultValues,
+    moved: accountJSON.moved?.id ?? null,
+    display_name_html: accountJSON.display_name,
+    note_emojified: accountJSON.note,
+    note_plain: accountJSON.note,
+    emojis: accountJSON.emojis.map((emoji) => ({
+      category: '',
+      featured: false,
+      ...emoji,
+    })),
+    fields: accountJSON.fields.map((field) => ({
+      name_emojified: field.name,
+      value_emojified: field.value,
+      value_plain: field.value,
+      ...field,
+    })),
+    roles: accountJSON.roles ?? [],
+  };
+};
 
-export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
+export const accountFactoryImmutable = (
+  options: FactoryOptions<ApiAccountJSON> = {},
+) => createAccountFromServerJSON(accountFactoryAPI(options));
+
+export const statusFactoryAPI: FactoryFunction<ApiStatusJSON> = ({
   id,
   ...data
 } = {}) => ({
@@ -92,7 +133,7 @@ export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
   reblogs_count: 0,
   quotes_count: 0,
   favourites_count: 0,
-  account: accountFactory(),
+  account: accountFactoryAPI(),
   media_attachments: [],
   mentions: [],
   tags: [],
@@ -108,7 +149,25 @@ export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
 
 export const statusFactoryState = (
   options: FactoryOptions<ApiStatusJSON> = {},
-) => fromJS(normalizeStatus(statusFactory(options))) as unknown as Status;
+) => normalizeStatus(statusFactoryAPI(options));
+
+export const statusFactoryImmutable = (
+  options: FactoryOptions<ApiStatusJSON> = {},
+) => fromJS(statusFactoryState(options)) as unknown as Status; // Convert to unknown to avoid excessive type recursion
+
+export const statusQuotedFactoryAPI: FactoryFunction<ApiQuotedStatusJSON> = (
+  options = {},
+) => {
+  const { quote, ...status } = options;
+  return {
+    ...statusFactoryAPI(status),
+    quote: quote
+      ? {
+          ...quote,
+        }
+      : undefined,
+  };
+};
 
 const baseAttachment = {
   id: '1',
@@ -136,11 +195,11 @@ const colorsMeta = {
 } as const;
 
 type MediaFactoryArg<T extends BaseApiMediaAttachmentJSON> = Omit<
-  DeepPartial<T>,
+  PartialDeep<T>,
   'type'
 >;
 
-export const imageAttachmentFactory = (
+export const imageAttachmentFactoryAPI = (
   data: MediaFactoryArg<ApiImageAttachmentJSON> = {},
 ): ApiImageAttachmentJSON => ({
   ...baseAttachment,
@@ -152,7 +211,7 @@ export const imageAttachmentFactory = (
   },
 });
 
-export const videoAttachmentFactory = (
+export const videoAttachmentFactoryAPI = (
   data: MediaFactoryArg<ApiVideoAttachmentJSON> = {},
 ): ApiVideoAttachmentJSON => ({
   ...baseAttachment,
@@ -170,7 +229,7 @@ export const videoAttachmentFactory = (
   },
 });
 
-export const audioAttachmentFactory = (
+export const audioAttachmentFactoryAPI = (
   data: MediaFactoryArg<ApiAudioAttachmentJSON> = {},
 ): ApiAudioAttachmentJSON => ({
   ...baseAttachment,
@@ -183,7 +242,7 @@ export const audioAttachmentFactory = (
   },
 });
 
-export const gifvAttachmentFactory = (
+export const gifvAttachmentFactoryAPI = (
   data: MediaFactoryArg<ApiGifvAttachmentJSON> = {},
 ): ApiGifvAttachmentJSON => ({
   ...baseAttachment,
@@ -195,24 +254,26 @@ export const gifvAttachmentFactory = (
   },
 });
 
-export function mediaAttachmentFactory(
-  data: DeepPartial<ApiMediaAttachmentJSON> = {},
+export function mediaAttachmentFactoryAPI(
+  data: PartialDeep<ApiMediaAttachmentJSON> = {},
 ): ApiMediaAttachmentJSON {
   switch (data.type ?? 'image') {
     case 'image':
-      return imageAttachmentFactory(
-        data as DeepPartial<ApiImageAttachmentJSON>,
+      return imageAttachmentFactoryAPI(
+        data as PartialDeep<ApiImageAttachmentJSON>,
       );
     case 'video':
-      return videoAttachmentFactory(
-        data as DeepPartial<ApiVideoAttachmentJSON>,
+      return videoAttachmentFactoryAPI(
+        data as PartialDeep<ApiVideoAttachmentJSON>,
       );
     case 'audio':
-      return audioAttachmentFactory(
-        data as DeepPartial<ApiAudioAttachmentJSON>,
+      return audioAttachmentFactoryAPI(
+        data as PartialDeep<ApiAudioAttachmentJSON>,
       );
     case 'gifv':
-      return gifvAttachmentFactory(data as DeepPartial<ApiGifvAttachmentJSON>);
+      return gifvAttachmentFactoryAPI(
+        data as PartialDeep<ApiGifvAttachmentJSON>,
+      );
     default: {
       return {
         ...baseAttachment,
@@ -224,7 +285,7 @@ export function mediaAttachmentFactory(
   }
 }
 
-export const pollFactory: FactoryFunction<ApiPollJSON> = (data = {}) => ({
+export const pollFactoryAPI: FactoryFunction<ApiPollJSON> = (data = {}) => ({
   id: '1',
   expires_at: '',
   expired: false,
@@ -246,7 +307,21 @@ export const pollFactory: FactoryFunction<ApiPollJSON> = (data = {}) => ({
   ...data,
 });
 
-export const relationshipsFactory: FactoryFunction<ApiRelationshipJSON> = ({
+export const pollFactoryImmutable = (
+  data: FactoryOptions<ApiPollJSON> = {},
+): Poll => ({
+  ...pollFactoryAPI(data),
+  emojis: data.emojis?.map(CustomEmojiFactory) ?? [],
+  options:
+    data.options?.map((option) => ({
+      voted: false,
+      titleHtml: option.title,
+      translation: null,
+      ...option,
+    })) ?? [],
+});
+
+export const relationshipsFactoryAPI: FactoryFunction<ApiRelationshipJSON> = ({
   id,
   ...data
 } = {}) => ({
@@ -311,7 +386,7 @@ interface AnnualReportFactoryOptions {
   without_posts?: boolean;
 }
 
-export function annualReportFactory({
+export function annualReportFactoryState({
   account_id = '1',
   status_id = '1',
   archetype = 'lurker',
