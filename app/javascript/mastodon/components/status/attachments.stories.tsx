@@ -4,12 +4,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { MediaAttachmentType } from '@/mastodon/api_types/media_attachments';
 import {
-  accountFactoryState,
+  accountFactoryImmutable,
   cardFactoryAPI,
   collectionFactoryAPI,
   mediaAttachmentFactoryAPI,
   statusFactoryAPI,
-  statusFactoryState,
+  statusFactoryImmutable,
   statusQuotedFactoryAPI,
 } from '@/testing/factories';
 
@@ -23,6 +23,7 @@ interface StatusAttachmentsStoryProps {
   attachment2?: ExtraAttachmentType;
   attachment3?: ExtraAttachmentType;
   isFiltered: boolean;
+  isSensitive: boolean;
   isPictureInPicture: boolean;
   isQuote: boolean;
 }
@@ -32,7 +33,7 @@ const meta = {
   render() {
     return (
       <div style={{ width: 'min(600px, 80vw)' }}>
-        <StatusAttachments statusId='1' contextType='home' />;
+        <StatusAttachments statusId='1' contextType='home' />
       </div>
     );
   },
@@ -41,6 +42,7 @@ const meta = {
     attachment2: 'image',
     attachment3: 'image',
     isFiltered: false,
+    isSensitive: false,
     isPictureInPicture: false,
     isQuote: false,
   },
@@ -68,6 +70,9 @@ const meta = {
     isFiltered: {
       control: 'boolean',
     },
+    isSensitive: {
+      control: 'boolean',
+    },
     isPictureInPicture: {
       control: 'boolean',
     },
@@ -87,7 +92,7 @@ const meta = {
         }),
       },
       accounts: {
-        '1': accountFactoryState(),
+        '1': accountFactoryImmutable(),
       },
       server: {
         translationLanguages: {
@@ -116,6 +121,10 @@ const meta = {
         ];
       }
 
+      if (args.isSensitive) {
+        status.sensitive = true;
+      }
+
       if (args.isQuote) {
         status.quote = {
           state: 'accepted',
@@ -124,7 +133,10 @@ const meta = {
       }
 
       if (args.attachment1 === 'card') {
-        status.card = cardFactoryAPI();
+        status.card = cardFactoryAPI({
+          image:
+            'https://images.pexels.com/photos/16859306/pexels-photo-16859306.jpeg',
+        });
       } else if (args.attachment1 === 'collection') {
         status.tagged_collections = [collectionFactoryAPI()];
       } else if (args.attachment1 === 'audio') {
@@ -168,7 +180,7 @@ const meta = {
 
       return {
         statuses: {
-          '1': statusFactoryState(status),
+          '1': statusFactoryImmutable(status),
         },
         picture_in_picture: args.isPictureInPicture
           ? {
