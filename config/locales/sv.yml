@@ -954,7 +954,7 @@ sv:
         title: Undantag användare från sökmotorindexering som standard
       discovery:
         follow_recommendations: Följrekommendationer
-        preamble: Att visa intressant innehåll är avgörande för nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din Server.
+        preamble: Att visa intressant innehåll är viktigt för att introducera nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din server.
         privacy: Integritet
         profile_directory: Profilkatalog
         public_timelines: Offentliga tidslinjer
@@ -1194,7 +1194,7 @@ sv:
         confirm_allow_account: Är du säker på att du vill tillåta valda konton?
         confirm_disallow: Är du säker på att du vill förbjuda valda statusar?
         confirm_disallow_account: Är du säker på att du vill förbjuda valda konton?
-        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoriseras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
+        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoritmarkeras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
         disallow: Tillåt inte inlägg
         disallow_account: Tillåt inte författare
         no_status_selected: Inga trendande inlägg ändrades eftersom inga valdes
@@ -1322,7 +1322,7 @@ sv:
     advanced_settings: Avancerade inställningar
     animations_and_accessibility: Animationer och tillgänglighet
     boosting_preferences: Boostinställningar
-    boosting_preferences_info_html: "<strong>Tips:</strong> Oavsett inställningar kommer <kbd>Skifttangenten</kbd> + <kbd>Klick</kbd> på %{icon} boostikonen att boosta omedelbart."
+    boosting_preferences_info_html: "<strong>Tips:</strong> Oavsett inställningar kommer <kbd>Skift</kbd> + <kbd>Klick</kbd> på %{icon} Boosta-ikonen att boosta direkt."
     discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
@@ -1801,7 +1801,7 @@ sv:
   media_attachments:
     validations:
       images_and_video: Det går inte att bifoga en video till ett inlägg som redan innehåller bilder
-      not_found: Media %{ids} hittades inte eller är redan anslutet till ett annat inlägg
+      not_found: Media %{ids} hittades inte eller har redan bifogats till ett annat inlägg
       not_ready: Kan inte bifoga filer som inte har behandlats färdigt. Försök igen om ett ögonblick!
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
@@ -1935,6 +1935,7 @@ sv:
     next: Nästa
     older: Äldre
     prev: Tidigare
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Du har redan röstat på den här undersökningen
@@ -2068,7 +2069,7 @@ sv:
     delete: Konto radering
     development: Utveckling
     edit_profile: Redigera profil
-    export: Export
+    export: Exportera
     featured_tags: Utvalda hashtaggar
     import: Importera
     import_and_export: Import och export
@@ -2150,7 +2151,7 @@ sv:
     ignore_favs: Bortse från favoriter
     ignore_reblogs: Ignorera boostar
     interaction_exceptions: Undantag baserat på interaktioner
-    interaction_exceptions_explanation: Inlägg som tillfälligt överskrider favorit- eller höjningströskeln kan behållas även om de senare minskas.
+    interaction_exceptions_explanation: Inlägg som tillfälligt överskrider favorit- eller boosttröskeln kan behållas även om de senare minskas.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med mediebilagor
@@ -2229,11 +2230,11 @@ sv:
       user:
         confirmation_html: Du får inte längre %{type} från Mastodon på %{domain}.
     notification_emails:
-      favourite: aviseringsmejl för favoriserade inlägg
+      favourite: aviseringsmejl om favoriter
       follow: aviseringsmejl för följda inlägg
       follow_request: aviseringsmejl för följdförfrågningar
       mention: aviseringsmejl för inlägg där du nämns
-      reblog: aviseringsmejl för förhöjda inlägg
+      reblog: aviseringsmejl om boostar
     show:
       action: Avprenumerera
       email_subscription:
