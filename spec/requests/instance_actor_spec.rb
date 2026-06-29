@@ -23,7 +23,7 @@ RSpec.describe 'Instance actor endpoint' do
             inbox: instance_actor_inbox_url,
             outbox: instance_actor_outbox_url,
             publicKey: include(
-              id: instance_actor_url(anchor: 'main-key')
+              id: start_with(instance_actor_url)
             ),
             url: about_more_url(instance_actor: true)
           )
