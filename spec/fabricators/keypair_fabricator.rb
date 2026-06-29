@@ -14,6 +14,7 @@ Fabricator(:keypair) do
   after_build do |keypair|
     if keypair.account.local?
       keypair.private_key ||= private_key
+      keypair.local_fragment ||= "##{Random.hex}"
     else
       keypair.uri ||= ActivityPub::TagManager.instance.key_uri_for(keypair.account)
     end
