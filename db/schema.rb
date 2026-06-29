@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_18_114230) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_29_124918) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -710,9 +710,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_114230) do
     t.boolean "revoked", default: false, null: false
     t.integer "type", null: false
     t.datetime "updated_at", null: false
-    t.string "uri", null: false
+    t.string "uri"
     t.index ["account_id"], name: "index_keypairs_on_account_id"
-    t.index ["uri"], name: "index_keypairs_on_uri", unique: true
+    t.index ["uri"], name: "index_keypairs_on_non_null_uri", unique: true, where: "(uri IS NOT NULL)"
   end
 
   create_table "list_accounts", force: :cascade do |t|

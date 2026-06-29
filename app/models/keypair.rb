@@ -10,7 +10,7 @@
 #  public_key  :string           not null
 #  revoked     :boolean          default(FALSE), not null
 #  type        :integer          not null
-#  uri         :string           not null
+#  uri         :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  account_id  :bigint(8)        not null
@@ -32,7 +32,9 @@ class Keypair < ApplicationRecord
 
   attr_accessor :require_private_key
 
-  validates :uri, presence: true, uniqueness: true
+  validates :uri, presence: true, uniqueness: true, if: -> { account.remote? }
+  validates :uri, absence: true, if: -> { account.local? }
+
   validates :public_key, presence: true
   validates :private_key, presence: true, if: -> { account.local? }
 
@@ -60,6 +62,8 @@ class Keypair < ApplicationRecord
   end
 
   def self.from_keyid(uri)
+    return if uri.blank?
+
     keypair = find_by(uri: uri)
     return keypair unless keypair.nil?
 
