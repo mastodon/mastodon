@@ -100,7 +100,7 @@ class Request
   def on_behalf_of(actor, sign_with: nil)
     raise ArgumentError, 'actor must not be nil' if actor.nil?
 
-    keypair = sign_with.presence || actor.keypair
+    keypair = sign_with.presence || actor.keypair(type: :rsa)
     @signing = HttpSignatureDraft.new(keypair.keypair, keypair.full_uri)
 
     self

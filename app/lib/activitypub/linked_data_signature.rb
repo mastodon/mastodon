@@ -34,7 +34,7 @@ class ActivityPub::LinkedDataSignature
   end
 
   def sign!(creator, sign_with: nil)
-    keypair = sign_with.presence || creator.keypair
+    keypair = sign_with.presence || creator.keypair(type: :rsa)
 
     options = {
       'type' => 'RsaSignature2017',
