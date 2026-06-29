@@ -36,10 +36,10 @@ RSpec.describe Mastodon::CLI::Accounts do
 
     shared_examples 'a new user with given email address and username' do
       it 'creates user and accounts from options and displays success message' do
-        allow(SecureRandom).to receive(:hex).and_return('test_password')
+        allow(SecureRandom).to receive(:hex).and_return('0abcdef0')
 
         expect { subject }
-          .to output_results('OK', 'New password: test_password')
+          .to output_results('OK', 'New password: 0abcdef0')
         expect(user_from_options).to be_present
         expect(account_from_options).to be_present
       end
@@ -363,7 +363,7 @@ RSpec.describe Mastodon::CLI::Accounts do
 
         let(:user) { Fabricate(:user, password: original_password) }
         let(:original_password) { 'foobar12345' }
-        let(:new_password) { 'new_password12345' }
+        let(:new_password) { '0abcdef0' }
 
         it 'returns a new password for the user' do
           allow(SecureRandom).to receive(:hex).and_return(new_password)
