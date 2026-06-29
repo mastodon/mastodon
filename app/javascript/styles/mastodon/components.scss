@@ -1620,6 +1620,7 @@ body > [data-popover-placement] {
     content: '';
     position: absolute;
     inset: 0;
+    z-index: -1;
     background: var(--color-bg-brand-softest);
     opacity: 0;
     animation: fade 0.7s reverse both 0.3s;
