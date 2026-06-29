@@ -9,11 +9,11 @@ import { fn } from 'storybook/test';
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import {
-  accountFactoryState,
+  accountFactoryImmutable,
   mediaAttachmentFactoryAPI,
-  pollFactoryState,
+  pollFactoryImmutable,
   statusFactoryAPI,
-  statusFactoryState,
+  statusFactoryImmutable,
 } from '@/testing/factories';
 
 import { TypedStatus } from './types';
@@ -71,7 +71,7 @@ interface StatusStoryProps {
   showPrepend?: boolean;
 }
 
-const otherAccount = accountFactoryState({
+const otherAccount = accountFactoryImmutable({
   id: '2',
   display_name: 'Another user',
 });
@@ -106,7 +106,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     showPrepend = true,
   } = props;
   const { account, status } = useMemo(() => {
-    const account = accountFactoryState();
+    const account = accountFactoryImmutable();
 
     const media_attachments: ApiMediaAttachmentJSON[] = [];
     switch (attachments) {
@@ -204,7 +204,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
 
     return {
       account,
-      status: statusFactoryState({
+      status: statusFactoryImmutable({
         text,
         spoiler_text: contentWarning,
         visibility,
@@ -238,7 +238,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
         if (isReblog) {
           status.set(
             'reblog',
-            statusFactoryState({ id: '2' }).set('account', otherAccount),
+            statusFactoryImmutable({ id: '2' }).set('account', otherAccount),
           );
         }
         if (isPoll) {
@@ -471,8 +471,8 @@ const meta = {
         '2': otherAccount,
       },
       polls: {
-        '1': pollFactoryState(),
-        '2': pollFactoryState({
+        '1': pollFactoryImmutable(),
+        '2': pollFactoryImmutable({
           voted: true,
           voters_count: 1,
           votes_count: 1,

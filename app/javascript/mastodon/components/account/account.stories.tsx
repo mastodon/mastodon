@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import {
-  accountFactoryState,
+  accountFactoryImmutable,
   relationshipsFactoryAPI,
 } from '@/testing/factories';
 
@@ -72,7 +72,7 @@ const meta = {
   parameters: {
     state: {
       accounts: {
-        '1': accountFactoryState(),
+        '1': accountFactoryImmutable(),
       },
     },
   },

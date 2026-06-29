@@ -30,6 +30,13 @@ import type { Poll } from '@/mastodon/models/poll';
 import type { Status } from '@/mastodon/models/status';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 
+/**
+ * Naming conventions for factories:
+ * - API responses should be `*FactoryAPI`
+ * - Plain JS objects in state should be `*FactoryState`
+ * - Immutable factories should be `*FactoryImmutable`
+ */
+
 type FactoryOptions<T> = {
   id?: string;
 } & Partial<T>;
@@ -81,7 +88,7 @@ export const accountFactoryAPI: FactoryFunction<ApiAccountJSON> = ({
   ...data,
 });
 
-export const accountFactory = (
+export const accountFactoryState = (
   options: FactoryOptions<ApiAccountJSON> = {},
 ): AccountShapeFull => {
   const accountJSON = accountFactoryAPI(options);
@@ -107,7 +114,7 @@ export const accountFactory = (
   };
 };
 
-export const accountFactoryState = (
+export const accountFactoryImmutable = (
   options: FactoryOptions<ApiAccountJSON> = {},
 ) => createAccountFromServerJSON(accountFactoryAPI(options));
 
@@ -140,12 +147,13 @@ export const statusFactoryAPI: FactoryFunction<ApiStatusJSON> = ({
   ...data,
 });
 
-export const statusFactory = (options: FactoryOptions<ApiStatusJSON> = {}) =>
-  normalizeStatus(statusFactoryAPI(options));
-
 export const statusFactoryState = (
   options: FactoryOptions<ApiStatusJSON> = {},
-) => fromJS(statusFactory(options)) as unknown as Status; // Convert to unknown to avoid excessive type recursion
+) => normalizeStatus(statusFactoryAPI(options));
+
+export const statusFactoryImmutable = (
+  options: FactoryOptions<ApiStatusJSON> = {},
+) => fromJS(statusFactoryState(options)) as unknown as Status; // Convert to unknown to avoid excessive type recursion
 
 export const statusQuotedFactoryAPI: FactoryFunction<ApiQuotedStatusJSON> = (
   options = {},
@@ -299,7 +307,7 @@ export const pollFactoryAPI: FactoryFunction<ApiPollJSON> = (data = {}) => ({
   ...data,
 });
 
-export const pollFactoryState = (
+export const pollFactoryImmutable = (
   data: FactoryOptions<ApiPollJSON> = {},
 ): Poll => ({
   ...pollFactoryAPI(data),
@@ -378,7 +386,7 @@ interface AnnualReportFactoryOptions {
   without_posts?: boolean;
 }
 
-export function annualReportFactory({
+export function annualReportFactoryState({
   account_id = '1',
   status_id = '1',
   archetype = 'lurker',
