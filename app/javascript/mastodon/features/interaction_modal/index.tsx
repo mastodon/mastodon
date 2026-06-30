@@ -26,8 +26,6 @@ const messages = defineMessages({
   },
 });
 
-type InteractionIntent = 'follow' | 'reblog' | 'favourite' | 'reply' | 'vote';
-
 interface LoginFormMessage {
   type:
     | 'fetchInteractionURL'
@@ -36,7 +34,7 @@ interface LoginFormMessage {
   uri_or_domain: string;
   template?: string;
   param?: string;
-  intent?: InteractionIntent;
+  intent?: string;
 }
 
 const PERSISTENCE_KEY = 'mastodon_home';
