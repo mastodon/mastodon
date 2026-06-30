@@ -12,7 +12,8 @@ module SignedRequestHelpers
     keypair = sign_with.keypair
     key_id = keypair.uri
     signed_string = signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
-    signature = Base64.strict_encode64(keypair.keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
+
+    signature = Base64.strict_encode64(private_key_from_keypair(keypair).sign(OpenSSL::Digest.new('SHA256'), signed_string))
 
     headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
 
@@ -32,7 +33,7 @@ module SignedRequestHelpers
     keypair = sign_with.keypair
     key_id = keypair.uri
     signed_string = signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
-    signature = Base64.strict_encode64(keypair.keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
+    signature = Base64.strict_encode64(private_key_from_keypair(keypair).sign(OpenSSL::Digest.new('SHA256'), signed_string))
 
     headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
 
