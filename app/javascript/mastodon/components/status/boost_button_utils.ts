@@ -1,7 +1,7 @@
 import { defineMessages } from 'react-intl';
 import type { MessageDescriptor } from 'react-intl';
 
-import type { Status, StatusVisibility } from '@/mastodon/models/status';
+import { selectPlainStatus } from '@/mastodon/selectors/statuses';
 import { createAppSelector } from '@/mastodon/store';
 import FormatQuote from '@/material-icons/400-24px/format_quote-fill.svg?react';
 import FormatQuoteOff from '@/material-icons/400-24px/format_quote_off-fill.svg?react';
@@ -65,33 +65,31 @@ export const messages = defineMessages({
 export const selectStatusState = createAppSelector(
   [
     (state) => state.meta.get('me') as string | undefined,
-    (_, status: Status) => status,
+    (state, statusId: string) => selectPlainStatus(state, statusId),
   ],
   (userId, status) => {
-    const isPublic = ['public', 'unlisted'].includes(
-      status.get('visibility') as StatusVisibility,
-    );
+    if (!status) {
+      return {};
+    }
+    const isPublic = ['public', 'unlisted'].includes(status.visibility);
     const isMineAndPrivate =
-      userId === status.getIn(['account', 'id']) &&
-      status.get('visibility') === 'private';
+      userId === status.account && status.visibility === 'private';
+    const quoteApproval = status.quote_approval?.current_user;
     return {
       isLoggedIn: !!userId,
       isPublic,
-      isMine: userId === status.getIn(['account', 'id']),
+      isMine: userId === status.account,
       isPrivateReblog:
-        userId === status.getIn(['account', 'id']) &&
-        status.get('visibility') === 'private',
-      isReblogged: !!status.get('reblogged'),
+        userId === status.account && status.visibility === 'private',
+      isReblogged: status.reblogged,
       isReblogAllowed: isPublic || isMineAndPrivate,
       isQuoteAutomaticallyAccepted:
-        status.getIn(['quote_approval', 'current_user']) === 'automatic' &&
-        (isPublic || isMineAndPrivate),
+        quoteApproval === 'automatic' && (isPublic || isMineAndPrivate),
       isQuoteManuallyAccepted:
-        status.getIn(['quote_approval', 'current_user']) === 'manual' &&
-        (isPublic || isMineAndPrivate),
+        quoteApproval === 'manual' && (isPublic || isMineAndPrivate),
       isQuoteFollowersOnly:
-        status.getIn(['quote_approval', 'automatic', 0]) === 'followers' ||
-        status.getIn(['quote_approval', 'manual', 0]) === 'followers',
+        status.quote_approval?.automatic[0] === 'followers' ||
+        status.quote_approval?.manual[0] === 'followers',
     };
   },
 );

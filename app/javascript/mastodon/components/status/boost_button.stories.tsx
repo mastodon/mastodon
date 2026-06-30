@@ -38,29 +38,34 @@ const meta = {
     },
   },
   render: (args) => (
-    <BoostButton status={argsToStatus(args)} counters={args.reblogCount > 0} />
+    <BoostButton statusId='1' counters={args.reblogCount > 0} />
   ),
+  parameters: {
+    stateFn({
+      reblogCount,
+      visibility,
+      quoteAllowed,
+      alreadyBoosted,
+    }: StoryProps) {
+      return {
+        statuses: {
+          '1': statusFactoryImmutable({
+            reblogs_count: reblogCount,
+            visibility,
+            reblogged: alreadyBoosted,
+            quote_approval: {
+              automatic: [],
+              manual: [],
+              current_user: quoteAllowed ? 'automatic' : 'denied',
+            },
+          }),
+        },
+      };
+    },
+  },
 } satisfies Meta<StoryProps>;
 
 export default meta;
-
-function argsToStatus({
-  reblogCount,
-  visibility,
-  quoteAllowed,
-  alreadyBoosted,
-}: StoryProps) {
-  return statusFactoryImmutable({
-    reblogs_count: reblogCount,
-    visibility,
-    reblogged: alreadyBoosted,
-    quote_approval: {
-      automatic: [],
-      manual: [],
-      current_user: quoteAllowed ? 'automatic' : 'denied',
-    },
-  });
-}
 
 type Story = StoryObj<typeof meta>;
 
