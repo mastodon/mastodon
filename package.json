@@ -22,6 +22,8 @@
     "lint:js": "cd $INIT_CWD && eslint --cache --report-unused-disable-directives",
     "lint:css": "stylelint \"**/*.{css,scss}\"",
     "lint": "yarn lint:js && yarn lint:css",
+    "openapi:lint": "redocly lint main",
+    "openapi:bundle": "redocly bundle main -o openapi/openapi.json && oxfmt openapi/openapi.json",
     "postversion": "git push --tags",
     "postinstall": "test -d node_modules/husky && husky || echo \"husky is not installed\"",
     "start": "node ./streaming/index.js",
@@ -128,6 +130,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@formatjs/cli": "^6.1.1",
+    "@redocly/cli": "^2.35.0",
     "@storybook/addon-a11y": "^10.3.0",
     "@storybook/addon-docs": "^10.3.0",
     "@storybook/addon-vitest": "^10.3.0",
