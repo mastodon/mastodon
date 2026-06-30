@@ -111,6 +111,10 @@ class Tag < ApplicationRecord
     @history ||= Trends::History.new('tags', id)
   end
 
+  def to_log_human_identifier
+    formatted_name
+  end
+
   class << self
     def find_or_create_by_names(name_or_names)
       names = Array(name_or_names).map { |str| [normalize_value_for(:name, str), str] }.uniq(&:first)

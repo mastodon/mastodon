@@ -37,7 +37,27 @@ module Admin::ActionLogsHelper
       end
     when 'Relay'
       link_to log.human_identifier, admin_relays_path
+    when 'Tag'
+      link_to log.human_identifier, admin_tag_path(log.target_id)
     end
+  end
+
+  def chain_multiple_translations(action_log)
+    case action_log.target_type
+    when 'Tag'
+      %i(usable trendable listable).filter_map do |key|
+        fetch_key = permutation_of_key(action_log, key)
+        next if fetch_key.nil?
+
+        t "admin.trends.tags.#{fetch_key}"
+      end.join('; ')
+    end
+  end
+
+  def permutation_of_key(log, key)
+    return if log.public_send(key).nil?
+
+    log.public_send(key) ? key : :"not_#{key}"
   end
 
   def sorted_action_log_types

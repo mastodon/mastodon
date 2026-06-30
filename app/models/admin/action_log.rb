@@ -19,12 +19,16 @@
 #
 
 class Admin::ActionLog < ApplicationRecord
+  LOG_ATTRIBUTES = %i(usable trendable listable).freeze
+
   belongs_to :account
   belongs_to :target, polymorphic: true, optional: true
 
   before_validation :set_human_identifier
   before_validation :set_route_param
   before_validation :set_permalink
+
+  store_accessor :recorded_changes, *LOG_ATTRIBUTES
 
   scope :latest, -> { order(id: :desc) }
 
