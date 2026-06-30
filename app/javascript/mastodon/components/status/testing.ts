@@ -1,3 +1,5 @@
+import type { ArgTypes } from '@storybook/react-vite';
+
 import type { MediaAttachmentType } from '@/mastodon/api_types/media_attachments';
 import { mediaAttachmentFactoryAPI } from '@/testing/factories';
 
@@ -6,6 +8,35 @@ export type ExtraAttachmentType = Exclude<
   MediaAttachmentType,
   'video' | 'audio'
 >;
+
+export interface AttachmentArgs {
+  attachment1?: MainAttachmentType;
+  attachment2?: ExtraAttachmentType;
+  attachment3?: ExtraAttachmentType;
+}
+
+export const attachmentArgTypes = {
+  attachment1: {
+    control: 'select',
+    options: [
+      'image',
+      'gifv',
+      'video',
+      'unknown',
+      'audio',
+      'collection',
+      'card',
+    ] satisfies MainAttachmentType[],
+  },
+  attachment2: {
+    control: 'select',
+    options: ['image', 'gifv', 'unknown'] satisfies ExtraAttachmentType[],
+  },
+  attachment3: {
+    control: 'select',
+    options: ['image', 'gifv', 'unknown'] satisfies ExtraAttachmentType[],
+  },
+} as const satisfies ArgTypes<AttachmentArgs>;
 
 export function attachmentFactory(
   attachment1?: MainAttachmentType,

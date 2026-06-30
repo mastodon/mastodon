@@ -12,13 +12,10 @@ import {
 } from '@/testing/factories';
 
 import { StatusAttachments } from './attachments';
-import type { MainAttachmentType, ExtraAttachmentType } from './testing';
-import { attachmentFactory } from './testing';
+import type { AttachmentArgs } from './testing';
+import { attachmentArgTypes, attachmentFactory } from './testing';
 
-interface StatusAttachmentsStoryProps {
-  attachment1?: MainAttachmentType;
-  attachment2?: ExtraAttachmentType;
-  attachment3?: ExtraAttachmentType;
+interface StatusAttachmentsStoryProps extends AttachmentArgs {
   isFiltered: boolean;
   isSensitive: boolean;
   isPictureInPicture: boolean;
@@ -44,26 +41,7 @@ const meta = {
     isQuote: false,
   },
   argTypes: {
-    attachment1: {
-      control: 'select',
-      options: [
-        'image',
-        'gifv',
-        'video',
-        'unknown',
-        'audio',
-        'collection',
-        'card',
-      ] satisfies MainAttachmentType[],
-    },
-    attachment2: {
-      control: 'select',
-      options: ['image', 'gifv', 'unknown'] satisfies ExtraAttachmentType[],
-    },
-    attachment3: {
-      control: 'select',
-      options: ['image', 'gifv', 'unknown'] satisfies ExtraAttachmentType[],
-    },
+    ...attachmentArgTypes,
     isFiltered: {
       control: 'boolean',
     },

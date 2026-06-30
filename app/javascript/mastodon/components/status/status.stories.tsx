@@ -14,8 +14,8 @@ import {
   statusFactoryImmutable,
 } from '@/testing/factories';
 
-import type { ExtraAttachmentType, MainAttachmentType } from './testing';
-import { attachmentFactory } from './testing';
+import type { AttachmentArgs } from './testing';
+import { attachmentArgTypes, attachmentFactory } from './testing';
 import { TypedStatus } from './types';
 
 type ContextTypes =
@@ -29,7 +29,7 @@ type ContextTypes =
   | 'search'
   | 'thread';
 
-interface StatusStoryProps {
+interface StatusStoryProps extends AttachmentArgs {
   // Contents
   text: string;
   visibility: StatusVisibility;
@@ -37,9 +37,6 @@ interface StatusStoryProps {
   isReply?: boolean;
   isPoll?: boolean;
   isQuote?: boolean;
-  attachment1?: MainAttachmentType;
-  attachment2?: ExtraAttachmentType;
-  attachment3?: ExtraAttachmentType;
   contentWarning?: string;
 
   // Interactions
@@ -276,22 +273,15 @@ const meta = {
     text: categoryContents,
     attachment1: {
       ...categoryContents,
-      control: 'select',
-      options: [
-        'image',
-        'gifv',
-        'video',
-        'unknown',
-        'audio',
-      ] satisfies MainAttachmentType[],
+      ...attachmentArgTypes.attachment1,
     },
     attachment2: {
       ...categoryContents,
-      options: ['image', 'gifv', 'unknown'] satisfies ExtraAttachmentType[],
+      ...attachmentArgTypes.attachment2,
     },
     attachment3: {
       ...categoryContents,
-      options: ['image', 'gifv', 'unknown'] satisfies ExtraAttachmentType[],
+      ...attachmentArgTypes.attachment3,
     },
     contentWarning: categoryContents,
 
