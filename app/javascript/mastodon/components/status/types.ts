@@ -7,6 +7,18 @@ import Status from '../status';
 
 import type { StatusHeaderRenderFn } from './header';
 
+export type ContextTypes =
+  | 'account'
+  | 'bookmarks'
+  | 'detailed'
+  | 'favourites'
+  | 'home'
+  | 'notifications'
+  | 'public'
+  | 'search'
+  | 'thread'
+  | `list:${string}`;
+
 // Taken from the Status component.
 export interface StatusProps {
   status: TStatus;

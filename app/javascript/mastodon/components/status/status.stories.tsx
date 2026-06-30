@@ -16,18 +16,8 @@ import {
 
 import type { AttachmentArgs } from './testing';
 import { attachmentArgTypes, attachmentFactory } from './testing';
+import type { ContextTypes } from './types';
 import { TypedStatus } from './types';
-
-type ContextTypes =
-  | 'account'
-  | 'bookmarks'
-  | 'detailed'
-  | 'favourites'
-  | 'home'
-  | 'notifications'
-  | 'public'
-  | 'search'
-  | 'thread';
 
 interface StatusStoryProps extends AttachmentArgs {
   // Contents
