@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_29_125939) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_30_070600) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -714,7 +714,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_29_125939) do
     t.string "uri"
     t.index ["account_id", "local_fragment"], name: "index_keypairs_on_account_id_and_local_fragment", unique: true, where: "(local_fragment IS NOT NULL)"
     t.index ["account_id"], name: "index_keypairs_on_account_id"
-    t.index ["uri"], name: "index_keypairs_on_non_null_uri", unique: true, where: "(uri IS NOT NULL)"
+    t.index ["uri"], name: "index_keypairs_on_uri", unique: true
   end
 
   create_table "list_accounts", force: :cascade do |t|
