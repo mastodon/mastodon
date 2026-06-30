@@ -16,7 +16,7 @@ import {
 
 import type { AttachmentArgs } from './testing';
 import { attachmentArgTypes, attachmentFactory } from './testing';
-import type { ContextTypes } from './types';
+import type { StatusContextType } from './types';
 import { TypedStatus } from './types';
 
 interface StatusStoryProps extends AttachmentArgs {
@@ -41,7 +41,7 @@ interface StatusStoryProps extends AttachmentArgs {
 
   // Display
   showThread?: boolean;
-  contextType?: ContextTypes;
+  contextType?: StatusContextType;
   showCounters?: boolean;
   favouriteCount?: number;
   reblogCount?: number;
@@ -309,6 +309,7 @@ const meta = {
       options: [
         'account',
         'bookmarks',
+        'composer',
         'detailed',
         'favourites',
         'home',
@@ -316,7 +317,7 @@ const meta = {
         'public',
         'search',
         'thread',
-      ] satisfies ContextTypes[],
+      ] satisfies StatusContextType[],
     },
     hidden: categoryDisplay,
     muted: categoryDisplay,
