@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
-import { statusFactoryState } from '@/testing/factories';
+import { statusFactoryImmutable } from '@/testing/factories';
 
 import { BoostButton } from './boost_button';
 
@@ -50,7 +50,7 @@ function argsToStatus({
   quoteAllowed,
   alreadyBoosted,
 }: StoryProps) {
-  return statusFactoryState({
+  return statusFactoryImmutable({
     reblogs_count: reblogCount,
     visibility,
     reblogged: alreadyBoosted,

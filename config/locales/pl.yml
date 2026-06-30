@@ -4,9 +4,12 @@ pl:
     about_mastodon_html: 'Sieć społecznościowa przyszłości: Bez reklam, bez inwigilacji, zaprojektowana etycznie i zdecentralizowanie! Władaj swoimi danymi z Mastodonem!'
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
+    default_thumbnail_description: Dwa uśmiechnięte rysunkowe mastodony (przypominające słonie) przerzucają między sobą papierowy samolocik. Otacza je jasnobłękitne niebo oraz unoszące się planety, na których rosną drzewa i znajdują się kolejne mastodony.
     hosted_on: Mastodon prowadzony na %{domain}
     title: O nas
   accounts:
+    errors:
+      cannot_be_added_to_collections: To konto nie może być dodane do kolekcji.
     followers:
       few: śledzących
       many: śledzących
@@ -342,6 +345,11 @@ pl:
       unpublish: Cofnij publikację
       unpublished_msg: Pomyślnie wycofano publikację ogłoszenia!
       updated_msg: Pomyślnie zaktualizowano ogłoszenie!
+    collections:
+      batch:
+        report: Zgłoś
+      contents: Zawartość
+      view_publicly: Wyświetl publicznie
     critical_update_pending: Czeka krytyczna aktualizacja
     custom_emojis:
       assign_category: Ustaw kategorię
@@ -491,16 +499,25 @@ pl:
       title: Zablokowane domeny e-mail
     email_subscriptions:
       accounts:
+        empty:
+          hint: Żadne konta nie mają jeszcze subskrybentów.
+          no_lists_yet: Brak list
+        last_email: Ostatnie e-maile
         show:
+          date: Data rejestracji
           disable_feature: Wyłącz funkcję
+          email: Adres e-mail
           enable_feature: Włącz funkcję
       compliance_settings:
         additional_footer_text:
           action: Zarządzaj
+          hint: Opcjonalny tekst, który pojawia się wyłącznie w stopce wiadomości newslettera
         privacy_policy:
           action: Zarządzaj
+          title: Polityka prywatności
       danger_zone:
         disable_feature:
+          action: Dezaktywuj
           title: Wyłącz funkcję
         erase_all_data:
           action: Wyczyść dane
@@ -752,7 +769,7 @@ pl:
         create_and_resolve: Rozwiąż i pozostaw notatkę
         create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
         delete: Usuń
-        placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
+        placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia...
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
       processed_msg: 'Zgłoszenie #%{id} zostało pomyślnie przetworzone'
@@ -824,6 +841,8 @@ pl:
         administrator_description: Użytkownicy z tym uprawnieniem omijają każde uprawnienie
         delete_user_data: Usuń dane użytkownika
         delete_user_data_description: Pozwala użytkownikom na bezzwłoczne usuwanie danych innych użytkowników
+        invite_bypass_approval: Zaproś użytkowników bez weryfikacji
+        invite_bypass_approval_description: Pozwala osobom zaproszonym na serwer przez tych użytkowników pominąć zatwierdzenie przez moderację
         invite_users: Zaproś użytkowników
         invite_users_description: Pozwala użytkownikom zapraszać nowych ludzi na serwer
         manage_announcements: Zarządzaj ogłoszeniami
@@ -834,6 +853,8 @@ pl:
         manage_blocks_description: Pozwala użytkownikom na blokowanie dostawców poczty elektronicznej i adresów IP
         manage_custom_emojis: Zarządzaj niestandardowymi emoji
         manage_custom_emojis_description: Pozwala użytkownikom zarządzać niestandardowymi emoji na serwerze
+        manage_email_subscriptions: Zarządzaj subskrypcjami e-mail
+        manage_email_subscriptions_description: Pozwala użytkownikom z tym uprawnieniem włączyć funkcję newslettera e-mail dla swojego konta
         manage_federation: Zarządzaj federacją
         manage_federation_description: Pozwala użytkownikom na blokowanie lub zezwalanie federacji z innymi domenami i kontrolowanie doręczania
         manage_invites: Zarządzaj zaproszeniami
@@ -1336,6 +1357,7 @@ pl:
       invited_by: 'Możesz dołączyć do %{domain} dzięki zaproszeniu, które otrzymano od:'
       preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
       preamble_invited: Zanim przejdziesz dalej, rozważ zasady podstawowe ustalone przez moderatorów %{domain}.
+      read_more: Czytaj więcej
       title: Kilka podstawowych zasad.
       title_invited: Otrzymano zaproszenie.
     security: Bezpieczeństwo
@@ -1460,7 +1482,11 @@ pl:
     redesign_button: Przejdź do edycji
     redesign_title: Nowy sposób edycji profilu
   email_subscription_mailer:
+    confirmation:
+      subject: Potwierdź adres e-mail
+      title: Otrzymać aktualizacje e-mail od %{name}?
     notification:
+      create_account: Utwórz konto Mastodon
       footer:
         privacy_html: Wiadomości e-mail są wysyłane z %{domain}, serwera obsługiwanego przez Mastodona. Aby zrozumieć, jak ten serwer przetwarza Twoje dane osobowe, zapoznaj się z <a href="%{privacy_policy_path}">polityką prywatności</a>.
   emoji_styles:
@@ -1720,6 +1746,7 @@ pl:
     author_html: Przez %{name}
     potentially_sensitive_content:
       action: Kliknij, aby pokazać
+      hide_button: Ukryj
   lists:
     errors:
       limit: Przekroczono maksymalną liczbę utworzonych list
@@ -1843,7 +1870,6 @@ pl:
     next: Następna
     older: Starsze
     prev: Poprzednia
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Już oddałeś(-aś) głos w tym głosowaniu
@@ -2020,6 +2046,8 @@ pl:
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
+    content_warnings:
+      hide: Ukryj wpis
     default_language: Taki sam jak język interfejsu użytkownika
     disallowed_hashtags:
       few: 'zawiera niedozwolone hashtagi: %{tags}'
@@ -2036,12 +2064,16 @@ pl:
       limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
+    quote_error:
+      not_available: Wpis niedostępny
+      revoked: Wpis został usunięty przez autora
     quote_policies:
       followers: Tylko obserwujący
       nobody: Tylko ja
       public: Każdy
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Wzmianka prywatna
       private: Tylko dla obserwujących
       public: Publiczne
       public_long: Każdy na i poza Mastodon
@@ -2096,6 +2128,8 @@ pl:
     past_preamble_html: Od czasu twojej ostatniej wizyty zmieniliśmy warunki korzystania z usługi. Zachęcamy do zapoznania się z aktualnymi warunkami.
     review_link: Przeglądnij Warunki Korzystania
     title: Warunki korzystania z %{domain} zmieniają się
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -2121,6 +2155,10 @@ pl:
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
     webauthn: Klucze bezpieczeństwa
+  unsubscriptions:
+    create:
+      action: Przejdź do strony głównej serwera
+      title: Subskrypcja została anulowana
   user_mailer:
     announcement_published:
       description: 'Administratorzy %{domain} publikują ogłoszenie:'
@@ -2270,3 +2308,5 @@ pl:
     not_supported: Twoja przeglądarka nie obsługuje kluczy bezpieczeństwa
     otp_required: Aby użyć kluczy bezpieczeństwa, najpierw włącz uwierzytelnianie dwuskładnikowe.
     registered_on: Zarejestrowano %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} dla %{name}

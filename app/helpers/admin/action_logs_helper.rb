@@ -43,19 +43,15 @@ module Admin::ActionLogsHelper
   end
 
   def chain_multiple_translations(action_log)
-    translations = +''
     case action_log.target_type
     when 'Tag'
-      %i(usable trendable listable).each do |key|
+      %i(usable trendable listable).filter_map do |key|
         fetch_key = permutation_of_key(action_log, key)
         next if fetch_key.nil?
 
-        translations.concat(" #{t("admin.trends.tags.#{fetch_key}")};")
-      end
-    else
-      return
+        t "admin.trends.tags.#{fetch_key}"
+      end.join('; ')
     end
-    translations
   end
 
   def permutation_of_key(log, key)

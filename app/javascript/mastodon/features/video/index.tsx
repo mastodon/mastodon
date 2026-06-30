@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { useSpring, animated, config } from '@react-spring/web';
 import { throttle } from 'lodash';
 
+import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import Forward5Icon from '@/material-icons/400-24px/forward_5-fill.svg?react';
 import FullscreenIcon from '@/material-icons/400-24px/fullscreen.svg?react';
 import FullscreenExitIcon from '@/material-icons/400-24px/fullscreen_exit.svg?react';
@@ -174,15 +175,7 @@ export const Video: React.FC<{
   alwaysVisible?: boolean;
   visible?: boolean;
   onToggleVisibility?: () => void;
-  deployPictureInPicture?: (
-    type: string,
-    mediaProps: {
-      src: string;
-      muted: boolean;
-      volume: number;
-      currentTime: number;
-    },
-  ) => void;
+  deployPictureInPicture?: DeployPictureInPictureCallback;
   blurhash?: string;
   startPlaying?: boolean;
   startTime?: number;
@@ -225,11 +218,11 @@ export const Video: React.FC<{
   const [hotkeyEvents, setHotkeyEvents] = useState<HotkeyEvent[]>([]);
 
   const playerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const seekRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
-  const doubleClickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
-  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
+  const doubleClickTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const [style, api] = useSpring(() => ({
     progress: '0%',
@@ -241,7 +234,7 @@ export const Video: React.FC<{
     (c: HTMLVideoElement | null) => {
       if (videoRef.current && !videoRef.current.paused && c === null) {
         deployPictureInPicture?.('video', {
-          src: src,
+          src,
           currentTime: videoRef.current.currentTime,
           muted: videoRef.current.muted,
           volume: videoRef.current.volume,

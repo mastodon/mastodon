@@ -2,7 +2,10 @@ import type { ComponentProps } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { accountFactoryState, relationshipsFactory } from '@/testing/factories';
+import {
+  accountFactoryImmutable,
+  relationshipsFactoryAPI,
+} from '@/testing/factories';
 
 import { Account } from './index';
 
@@ -69,7 +72,7 @@ const meta = {
   parameters: {
     state: {
       accounts: {
-        '1': accountFactoryState(),
+        '1': accountFactoryImmutable(),
       },
     },
   },
@@ -121,7 +124,7 @@ export const Blocked: Story = {
   parameters: {
     state: {
       relationships: {
-        '1': relationshipsFactory({
+        '1': relationshipsFactoryAPI({
           blocking: true,
         }),
       },
@@ -134,7 +137,7 @@ export const Muted: Story = {
   parameters: {
     state: {
       relationships: {
-        '1': relationshipsFactory({
+        '1': relationshipsFactoryAPI({
           muting: true,
         }),
       },

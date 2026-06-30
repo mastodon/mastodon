@@ -4,6 +4,7 @@ is:
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     contact_missing: Ekki skilgreint
     contact_unavailable: Ekki til staðar
+    default_thumbnail_description: Tveir brosandi teiknimyndaloðfílar (sem líkjast fílum) henda pappírsskutlu á milli sín. Umhverfis þá er blár himinn og fljótandi plánetur með trjám og fleiri loðfílum á þeim.
     hosted_on: Mastodon hýst á %{domain}
     title: Um hugbúnaðinn
   accounts:
@@ -729,6 +730,8 @@ is:
       new:
         title: Búa til nýja IP-reglu
       no_ip_block_selected: Engum IP-reglum var breytt því ekkert var valið
+      reset: Endurstilla
+      search: Leita
       title: IP-reglur
     relationships:
       title: Vensl %{acct}
@@ -1671,6 +1674,7 @@ is:
       invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
       invalid_json_file: 'Ógild JSON-skrá. Villa: %{error}'
       over_rows_processing_limit: inniheldur meira en %{count} raðir
+      status_not_found_warning: Sumar af síunum þínum fela tilteknar færslur sem þessi netþjónn kann ekki skil á. Þessar færslur verða ekki síaðar sjálfkrafa ef netþjónninn uppgötvar þær síðar.
       too_large: Skráin er of stór
     failures: Mistök
     imported: Flutt inn
@@ -1687,6 +1691,9 @@ is:
       bookmarks_html:
         one: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{count} færslu</strong> úr <strong>%{filename}</strong>.
         other: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{count} færslum</strong> úr <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Þú ert í þann mund að <strong>skipta út síunum þínum</strong> með efninu í <strong>%{filename}</strong>. Allt að <strong>%{count} síu</strong> verður bætt við nýjar síur.
+        other: Þú ert í þann mund að <strong>skipta út síunum þínum</strong> með efninu í <strong>%{filename}</strong>. Allt að <strong>%{count} síum</strong> verður bætt við nýjar síur.
       domain_blocking_html:
         one: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{count} léni</strong> úr <strong>%{filename}</strong>.
         other: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{count} lénum</strong> úr <strong>%{filename}</strong>.
@@ -1706,6 +1713,9 @@ is:
       bookmarks_html:
         one: Þú er í þann mund að fara að bæta við allt að <strong>%{count} færslu</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
         other: Þú er í þann mund að fara að bæta við allt að <strong>%{count} færslum</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
+      custom_filters_html:
+        one: Þú ert í þann mund að bæta við allt að <strong>%{count} síu</strong> úr <strong>%{filename}</strong> við <strong>síurnar þínar</strong>.
+        other: Þú ert í þann mund að bæta við allt að <strong>%{count} síum</strong> úr <strong>%{filename}</strong> við <strong>síurnar þínar</strong>.
       domain_blocking_html:
         one: Þú ert í þann mund að <strong>útiloka</strong> allt að <strong>%{count} lén</strong> úr <strong>%{filename}</strong>.
         other: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{count} lén</strong> úr <strong>%{filename}</strong>.
@@ -1929,7 +1939,7 @@ is:
     next: Næsta
     older: Eldra
     prev: Fyrra
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Þú hefur þegar greitt atkvæði í þessari könnun

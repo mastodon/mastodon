@@ -271,9 +271,11 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def public_keys
-    # TODO: handle FEP-521a
+    @public_keys ||= fep_521a_public_keys.presence || legacy_public_keys
+  end
 
-    @public_keys ||= as_array(@json['publicKey']).take(MAX_PUBLIC_KEYS).filter_map do |value|
+  def legacy_public_keys
+    as_array(@json['publicKey']).take(MAX_PUBLIC_KEYS).filter_map do |value|
       next if value.nil?
 
       if value.is_a?(Hash)
@@ -290,6 +292,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
       # Key is fetched without ID validation because of a GoToSocial bug
       value = fetch_resource_without_id_validation(key_id)
+      next if value.blank?
 
       # Special handling for GoToSocial which returns the whole actor for the key ID
       value = first_of_value(value['publicKey']) if value.is_a?(Hash) && value.key?('publicKey')
@@ -299,6 +302,56 @@ class ActivityPub::ProcessAccountService < BaseService
       key = value['publicKeyPem']
       { type: :rsa, public_key: key, uri: key_id }
     end
+  end
+
+  def fep_521a_public_keys
+    return if @json['assertionMethod'].blank?
+
+    as_array(@json['assertionMethod']).take(MAX_PUBLIC_KEYS).filter_map do |value|
+      next if value.nil?
+
+      if value.is_a?(Hash)
+        next unless value['type'] == 'Multikey' && value['controller'] == @account.uri
+
+        key_type, key = key_from_multikey(value['publicKeyMultibase'])
+        next if key_type.nil?
+
+        value = value['id']
+
+        # Key is contained within the actor document, no need to fetch anything else
+        next { type: key_type, public_key: key, uri: value } if value.split('#').first == @account.uri
+      end
+
+      key_id = value
+
+      value = fetch_resource(key_id, true)
+
+      next unless value['type'] == 'Multikey' && value['controller'] == @account.uri
+
+      key_type, key = key_from_multikey(value['publicKeyMultibase'])
+      next if key_type.nil?
+
+      { type: key_type, public_key: key, uri: key_id }
+    end
+  end
+
+  def key_from_multikey(value)
+    tag, key = Multibase.decode_multicodec(value)
+
+    case tag
+    when :'rsa-pub'
+      [:rsa, OpenSSL::PKey::RSA.new(key).to_pem]
+    when :'ed25519-pub'
+      asn1 = OpenSSL::ASN1::Sequence(
+        [
+          OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
+          OpenSSL::ASN1::BitString(key),
+        ]
+      )
+      [:ed25519, OpenSSL::PKey.read(asn1.to_der).public_to_pem]
+    end
+  rescue ArgumentError
+    nil
   end
 
   def url

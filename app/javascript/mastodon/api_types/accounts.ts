@@ -60,7 +60,7 @@ export interface BaseApiAccountJSON {
   show_featured: boolean;
   noindex?: boolean;
   note: string;
-  roles?: ApiAccountJSON[];
+  roles?: ApiAccountRoleJSON[];
   statuses_count: number;
   uri: string;
   url?: string;

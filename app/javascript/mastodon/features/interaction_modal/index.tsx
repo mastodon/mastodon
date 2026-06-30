@@ -153,7 +153,7 @@ const LoginForm: React.FC<{
 
   const inputRef = useRef<HTMLInputElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const searchRequestRef = useRef<AbortController | null>(null);
+  const searchRequestRef = useRef<AbortController>(null);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent<LoginFormMessage>) => {

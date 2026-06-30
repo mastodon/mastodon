@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe IpBlock do
   it_behaves_like 'Expireable'
+  it_behaves_like 'InetContainer'
 
   describe 'Validations' do
     subject { Fabricate.build :ip_block }

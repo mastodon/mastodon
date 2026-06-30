@@ -26,7 +26,7 @@ export const CopyLinkField = forwardRef<HTMLInputElement, CopyLinkFieldProps>(
     ref,
   ) => {
     const intl = useIntl();
-    const inputRef = useRef<HTMLInputElement | null>();
+    const inputRef = useRef<HTMLInputElement>(null);
     const handleFocus = useCallback(() => {
       inputRef.current?.select();
     }, []);

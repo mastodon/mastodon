@@ -1,7 +1,7 @@
 {
   "name": "@mastodon/mastodon",
   "license": "AGPL-3.0-or-later",
-  "packageManager": "yarn@4.16.0",
+  "packageManager": "yarn@4.17.0",
   "engines": {
     "node": ">=22"
   },
@@ -45,12 +45,13 @@
     "@dnd-kit/modifiers": "^9.0.0",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
+    "@floating-ui/react-dom": "^2.1.8",
     "@formatjs/intl-pluralrules": "^6.0.0",
     "@formatjs/unplugin": "^1.1.5",
     "@gamestdio/websocket": "^0.3.2",
     "@github/webauthn-json": "^2.1.1",
     "@optimize-lodash/rollup-plugin": "^6.0.0",
-    "@react-spring/web": "^9.7.5",
+    "@react-spring/web": "^10.1.1",
     "@reduxjs/toolkit": "^2.0.1",
     "@rolldown/plugin-babel": "^0.2.2",
     "@unhead/react": "^3.1.0",
@@ -97,7 +98,6 @@
     "react-immutable-proptypes": "^2.2.0",
     "react-immutable-pure-component": "^2.2.2",
     "react-intl": "^10.0.0",
-    "react-overlays": "^5.2.1",
     "react-redux": "^9.0.4",
     "react-redux-loading-bar": "^5.0.8",
     "react-router": "^5.3.4",
@@ -179,14 +179,13 @@
     "storybook": "^10.3.0",
     "stylelint": "^17.0.0",
     "stylelint-config-standard-scss": "^17.0.0",
+    "type-fest": "^5.7.0",
     "typescript": "~6.0.0",
     "typescript-eslint": "^8.55.0",
     "typescript-plugin-css-modules": "^5.2.0",
     "vitest": "^4.1.7"
   },
   "resolutions": {
-    "@types/react": "^18.2.7",
-    "@types/react-dom": "^18.2.4",
     "kind-of": "^6.0.3"
   },
   "peerDependenciesMeta": {

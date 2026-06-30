@@ -90,6 +90,7 @@ pl:
         closed_registrations_message: Wyświetlane po zamknięciu rejestracji
         content_cache_retention_period: Wszystkie wpisy z innych serwerów (w tym podbicia i odpowiedzi) zostaną usunięte po danej liczbie dni, bez względu na interakcje z nimi twoich użytkowników. Zawierają się w tym wpisy, które twoi użytkownicy dodali do zakładek lub ulubionych. Prywatne wzmianki od innych instancji zostaną utracone i będą nieprzywracalne. To ustawienie jest przeznaczone dla instancji zastosowania specjalnego i jest niezgodne z wieloma oczekiwaniami użytkowników.
         custom_css: Możesz zastosować niestandardowe style w internetowej wersji Mastodon.
+        email_footer_text: Opcjonalny tekst, który pojawia się wyłącznie w stopce wiadomości newslettera.
         favicon: WEBP, PNG, GIF, albo JPEG. Nadpisuje domyślną faviconę Mastodona.
         mascot: Nadpisuje ilustrację w zaawansowanym interfejsie internetowym.
         media_cache_retention_period: Media z wpisów od obcych użytkowników są cache'owane na twoim serwerze. Kiedy dana wartość jest dodatnia, media te będą usunięte po tylu dniach. Jeżeli usunięte media zostaną potem zażądane, oryginał zostanie ponownie pobrany (o ile jest dalej dostępny). Z powodu ograniczeń dot. częstotliwości z jaką karty podglądu linków dopytują się o dane od stron trzecich, zalecana wartość to min. 14 dni, bo karty podglądu linków nie będą wcześniej odświeżane na żądane.

@@ -20,7 +20,7 @@ export function normalizeStatus(
 ) {
   const normalStatus: StatusShape = {
     hidden: normalOldStatus?.hidden ?? false,
-    collapsed: normalOldStatus?.collapsed ?? false,
+    collapsed: normalOldStatus?.collapsed ?? null,
     content: '',
     contentHtml: '',
     muted: false,

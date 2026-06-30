@@ -20,7 +20,7 @@ RSpec.describe Admin::ActionLogsHelper do
 
     describe '#chain_multiple_translations' do
       it 'returns translation keys for all different states' do
-        expect(helper.chain_multiple_translations(log)).to eq(' Cannot be used; Can be suggested;')
+        expect(helper.chain_multiple_translations(log)).to eq('Cannot be used; Can be suggested')
       end
     end
   end

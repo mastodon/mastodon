@@ -12,6 +12,7 @@ RSpec.describe 'Featured Tags Suggestions API' do
   describe 'GET /api/v1/featured_tags/suggestions' do
     let!(:unused_featured_tag) { Fabricate(:tag, name: 'unused_featured_tag') }
     let!(:used_tag) { Fabricate(:tag, name: 'used_tag') }
+    let!(:used_tag_once) { Fabricate(:tag, name: 'used_tag_once') }
     let!(:used_featured_tag) { Fabricate(:tag, name: 'used_featured_tag') }
 
     before do
@@ -20,7 +21,12 @@ RSpec.describe 'Featured Tags Suggestions API' do
       # Make relevant tags used by account
       status = Fabricate(:status, account: account)
       status.tags << used_tag
+      status.tags << used_tag_once
       status.tags << used_featured_tag
+
+      status2 = Fabricate(:status, account: account)
+      status2.tags << used_tag
+      status2.tags << used_featured_tag
 
       # Feature the relevant tags
       Fabricate :featured_tag, account: account, name: unused_featured_tag.name

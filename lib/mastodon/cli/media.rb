@@ -273,11 +273,12 @@ module Mastodon::CLI
     def lookup(url)
       path = Addressable::URI.parse(url).path
 
-      path_segments = path.split('/')[2..]
-      path_segments.delete('cache')
+      path_segments = path.split('/')
+      segment_count = VALID_PATH_SEGMENTS_SIZE.find { |n| n <= path_segments.length && PRELOADED_MODELS.include?(path_segments[-n].classify) }
 
-      fail_with_message 'Not a media URL' unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
+      fail_with_message 'Not a media URL' unless segment_count
 
+      path_segments = path_segments[-segment_count..]
       model_name = path_segments.first.classify
       record_id  = path_segments[2...-2].join.to_i
 

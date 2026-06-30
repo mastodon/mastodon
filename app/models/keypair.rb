@@ -4,16 +4,17 @@
 #
 # Table name: keypairs
 #
-#  id          :bigint(8)        not null, primary key
-#  expires_at  :datetime
-#  private_key :string
-#  public_key  :string           not null
-#  revoked     :boolean          default(FALSE), not null
-#  type        :integer          not null
-#  uri         :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  account_id  :bigint(8)        not null
+#  id             :bigint(8)        not null, primary key
+#  expires_at     :datetime
+#  local_fragment :string
+#  private_key    :string
+#  public_key     :string           not null
+#  revoked        :boolean          default(FALSE), not null
+#  type           :integer          not null
+#  uri            :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  account_id     :bigint(8)        not null
 #
 
 class Keypair < ApplicationRecord
@@ -25,11 +26,19 @@ class Keypair < ApplicationRecord
 
   belongs_to :account
 
-  enum :type, { rsa: 0 }
+  enum :type, {
+    rsa: 0,
+    ed25519: 1,
+  }, validate: true
 
   attr_accessor :require_private_key
 
-  validates :uri, presence: true, uniqueness: true
+  validates :uri, presence: true, uniqueness: true, if: -> { account.remote? }
+  validates :uri, absence: true, if: -> { account.local? }
+
+  validates :local_fragment, presence: true, uniqueness: { scope: :account_id }, format: { with: /\A#[A-Z0-9-]+\Z/i }, if: -> { account.local? }
+  validates :local_fragment, absence: true, if: -> { account.remote? }
+
   validates :public_key, presence: true
   validates :private_key, presence: true, if: -> { account.local? }
 
@@ -46,6 +55,8 @@ class Keypair < ApplicationRecord
       case type
       when 'rsa'
         OpenSSL::PKey::RSA.new(private_key || public_key)
+      when 'ed25519'
+        OpenSSL::PKey.read(private_key || public_key)
       end
     end
   end
@@ -55,6 +66,8 @@ class Keypair < ApplicationRecord
   end
 
   def self.from_keyid(uri)
+    return if uri.blank?
+
     keypair = find_by(uri: uri)
     return keypair unless keypair.nil?
 

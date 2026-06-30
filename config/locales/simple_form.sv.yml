@@ -65,7 +65,7 @@ sv:
         setting_display_media_hide_all: Varna innan du visar alla medier
         setting_display_media_show_all: Visa alla medier utan varning, inklusive media markerad som känslig
         setting_emoji_style: Hur emojier visas. "Automatiskt" kommer att försöka använda webbläsarens emojier, men faller tillbaka till Twemoji för äldre webbläsare.
-        setting_quick_boosting_html: När aktiverad, klicka på %{boost_icon} Boost-ikonen för att omedelbart boosta istället för att öppna boost/citera-rullgardinsmenyn. Flyttar citering till %{options_icon} (Alternativ)-menyn.
+        setting_quick_boosting_html: När detta är aktiverat boostas inlägget direkt när du klickar på ikonen %{boost_icon} Boosta, i stället för att öppna rullgardinsmenyn för boost/citat. Citatåtgärden flyttas till menyn %{options_icon} (Alternativ).
         setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
         setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
         username: Du kan använda bokstäver, siffror och understreck
@@ -89,7 +89,7 @@ sv:
         backups_retention_period: Användare har möjlighet att generera arkiv av sina inlägg för att ladda ned senare. När det sätts till ett positivt värde raderas dessa arkiv automatiskt från din lagring efter det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer att fästas på toppen av nya användares följ-rekommendationer. Ange en kommaseparerad lista över konton.
         closed_registrations_message: Visas när nyregistreringar är avstängda
-        content_cache_retention_period: Alla inlägg från andra servrar (inklusive booster och svar) kommer att raderas efter det angivna antalet dagar, utan hänsyn till någon lokal användarinteraktion med dessa inlägg. Detta inkluderar inlägg där en lokal användare har markerat det som bokmärke eller favoriter. Privata omnämnanden mellan användare från olika instanser kommer också att gå förlorade och blir omöjliga att återställa. Användningen av denna inställning är avsedd för specialfall och bryter många användarförväntningar när de implementeras för allmänt bruk.
+        content_cache_retention_period: Alla inlägg från andra servrar (inklusive boostar och svar) raderas efter det angivna antalet dagar, utan hänsyn till lokal användarinteraktion med dessa inlägg. Det gäller även inlägg som en lokal användare har lagt till som bokmärke eller favorit. Privata omnämnanden mellan användare på olika instanser går också förlorade och kan inte återställas. Den här inställningen är avsedd för specialiserade instanser och bryter mot många användares förväntningar om den används på allmänna instanser.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         email_footer_text: Valfri text som endast visas i sidfoten av e-post om nyhetsbrev.
         favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
@@ -243,7 +243,7 @@ sv:
         setting_aggregate_reblogs: Gruppera boostar i tidslinjer
         setting_always_send_emails: Skicka alltid e-postnotiser
         setting_auto_play_gif: Spela upp GIF:ar automatiskt
-        setting_boost_modal: Kontrollera boost-synlighet
+        setting_boost_modal: Styr synligheten för boostar
         setting_color_scheme: Färgschema
         setting_contrast: Kontrast
         setting_default_language: Inläggsspråk
@@ -261,7 +261,7 @@ sv:
         setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
         setting_missing_alt_text_modal: Varna mig innan jag gör mediainlägg utan alt-text
-        setting_quick_boosting: Aktivera snabb-boostande
+        setting_quick_boosting: Aktivera snabb boostning
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
         setting_system_scrollbars_ui: Använd systemets standardrullningsfält

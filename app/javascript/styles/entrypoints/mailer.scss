@@ -731,10 +731,12 @@ table + p {
 }
 
 .email-banner-td {
-  padding: 24px 24px 14px;
+  padding: 24px;
 }
 
 .email-banner-text-td {
+  text-align: center;
+
   p {
     margin: 0 0 12px;
     color: #fff;
@@ -743,12 +745,9 @@ table + p {
     line-height: 16.8px;
   }
 
-  .email-desktop-flex {
-    align-items: center;
-  }
-
   .email-btn-table {
     background-color: #fff;
+    margin: 0 auto;
   }
 
   .email-btn-td {
@@ -759,11 +758,6 @@ table + p {
     color: #181820;
     padding-left: 10px;
     padding-right: 10px;
-  }
-
-  div + div {
-    margin-inline-start: auto;
-    margin-bottom: 12px;
   }
 }
 

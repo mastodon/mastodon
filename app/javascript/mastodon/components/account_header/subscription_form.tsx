@@ -90,7 +90,7 @@ export const AccountSubscriptionForm: React.FC<{ accountId: string }> = ({
     [],
   );
 
-  const handleSubmit = useCallback<React.FormEventHandler>(
+  const handleSubmit = useCallback<React.SubmitEventHandler>(
     (e) => {
       e.preventDefault();
 
