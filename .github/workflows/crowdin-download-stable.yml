@@ -63,7 +63,7 @@ jobs:
             This PR will be updated every day with new translations.
 
             Due to a limitation in GitHub Actions, checks are not running on this PR without manual action.
-            If you want to run the checks, then close and re-open it.
+            If you want to run the checks, then please press “Approve workflows to run”.
           branch: i18n/crowdin/translations-${{ github.base_ref || github.ref_name }}
           base: ${{ github.base_ref || github.ref_name }}
           labels: i18n
