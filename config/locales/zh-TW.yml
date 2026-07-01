@@ -287,7 +287,11 @@ zh-TW:
         enable_relay_html: "%{name} 已啟用中繼 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 已啟用 %{target} 之使用者電子郵件 token 驗證"
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
+        listable_tag_html: 能被建議
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳號"
+        not_listable_tag_html: 不能被建議
+        not_trendable_tag_html: 不會登上熱門
+        not_usable_tag_html: 不可被使用
         promote_user_html: "%{name} 對使用者 %{target} 已進行晉級操作"
         publish_terms_of_service_html: "%{name} 已發佈服務條款更新"
         reject_appeal_html: "%{name} 已回絕來自 %{target} 的審核決定申訴"
@@ -300,6 +304,7 @@ zh-TW:
         sensitive_account_html: "%{name} 將 %{target} 的媒體檔案標記為敏感內容"
         silence_account_html: "%{name} 已靜音使用者 %{target}"
         suspend_account_html: "%{name} 已停權 %{target} 的帳號"
+        trendable_tag_html: 能登上熱門
         unassigned_report_html: "%{name} 取消指派 %{target} 的檢舉"
         unblock_email_account_html: "%{name} 已解除封鎖 %{target} 的電子郵件地址"
         unsensitive_account_html: "%{name} 將 %{target} 的媒體檔案取消標記為敏感內容"
@@ -312,8 +317,10 @@ zh-TW:
         update_ip_block_html: "%{name} 已變更 IP %{target} 之規則"
         update_report_html: "%{name} 已更新 %{target} 的檢舉"
         update_status_html: "%{name} 已更新 %{target} 的嘟文"
+        update_tag_html: "%{name} 已變更 %{target} 設定為："
         update_user_role_html: "%{name} 已變更 %{target} 角色"
         update_username_block_html: "%{name} 已變更使用者名稱包含 %{target} 之規則"
+        usable_tag_html: 可被使用；
       deleted_account: 已刪除帳號
       empty: 找不到 log
       filter_by_action: 按動作過濾

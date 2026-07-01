@@ -289,7 +289,11 @@ gl:
         enable_relay_html: "%{name} activou o repetidor %{target}"
         enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no correo para %{target}"
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
+        listable_tag_html: pode ser suxerida
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
+        not_listable_tag_html: non vai ser suxerida
+        not_trendable_tag_html: non aparecerá en tendencias
+        not_usable_tag_html: non pode ser usado
         promote_user_html: "%{name} promocionou a usuaria %{target}"
         publish_terms_of_service_html: "%{name} actualizou as condicións do servizo"
         reject_appeal_html: "%{name} rexeitou a apelación da decisión da moderación de %{target}"
@@ -302,6 +306,7 @@ gl:
         sensitive_account_html: "%{name} marcou o multimedia de %{target} como sensible"
         silence_account_html: "%{name} acalou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
+        trendable_tag_html: pode aparecer nas tendencias
         unassigned_report_html: "%{name} quitoulle a asignación á denuncia %{target}"
         unblock_email_account_html: "%{name} desbloqueou o enderezo de email de %{target}"
         unsensitive_account_html: "%{name} desmarcou como sensible o multimedia de %{target}"
@@ -314,8 +319,10 @@ gl:
         update_ip_block_html: "%{name} cambiou a regra para IP %{target}"
         update_report_html: "%{name} actualizou a denuncia %{target}"
         update_status_html: "%{name} actualizou a publicación de %{target}"
+        update_tag_html: "%{name} cambiou os axustes de %{target} a: "
         update_user_role_html: "%{name} cambiou o rol %{target}"
         update_username_block_html: "%{name} actualizou a regra para identificadores que contén %{target}"
+        usable_tag_html: pódese usar;
       deleted_account: conta eliminada
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción

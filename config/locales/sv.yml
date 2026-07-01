@@ -289,7 +289,11 @@ sv:
         enable_relay_html: "%{name} aktiverat ombudet %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
+        listable_tag_html: kan föreslås
         memorialize_account_html: "%{name} gjorde %{target}s konto till en minnessida"
+        not_listable_tag_html: kommer ej föreslås
+        not_trendable_tag_html: kommer ej visas under trender
+        not_usable_tag_html: kan inte användas
         promote_user_html: "%{name} befordrade användaren %{target}"
         publish_terms_of_service_html: "%{name} publicerade uppdateringar till användarvillkoren"
         reject_appeal_html: "%{name} avvisade överklagande av modereringsbeslut från %{target}"
@@ -302,6 +306,7 @@ sv:
         sensitive_account_html: "%{name} markerade %{target}s media som känsligt"
         silence_account_html: "%{name} begränsade %{target}s konto"
         suspend_account_html: "%{name} stängde av %{target}s konto"
+        trendable_tag_html: kan visas under trender
         unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
         unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
         unsensitive_account_html: "%{name} avmarkerade %{target}s media som känsligt"
@@ -314,8 +319,10 @@ sv:
         update_ip_block_html: "%{name} ändrade regel för IP %{target}"
         update_report_html: "%{name} uppdaterade rapporten %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
+        update_tag_html: "%{name} ändrade %{target} inställningar till: "
         update_user_role_html: "%{name} ändrade rollen %{target}"
         update_username_block_html: "%{name} uppdaterade regel för användarnamn som innehåller %{target}"
+        usable_tag_html: kan användas;
       deleted_account: raderat konto
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd

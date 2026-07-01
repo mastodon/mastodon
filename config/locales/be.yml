@@ -297,7 +297,11 @@ be:
         enable_relay_html: "%{name} уключыў(-ла) рэтранслятар %{target}"
         enable_sign_in_token_auth_user_html: "%{name} уключыў уваход праз эл. пошту для %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
+        listable_tag_html: можа быць прапанавана
         memorialize_account_html: Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці
+        not_listable_tag_html: не будзе прапанавана
+        not_trendable_tag_html: не з'явіцца ў трэндах
+        not_usable_tag_html: немагчыма выкарыстаць
         promote_user_html: "%{name} павысіў карыстальніка %{target}"
         publish_terms_of_service_html: "%{name} апублікаваў(-ла) абнаўленні ва ўмовах выкарыстання"
         reject_appeal_html: "%{name} адхіліў запыт на абскарджанне %{target}"
@@ -310,6 +314,7 @@ be:
         sensitive_account_html: "%{name} адзначыў медыя %{target} як далікатнае"
         silence_account_html: "%{name} абмежаваў уліковы запіс %{target}"
         suspend_account_html: Уліковы запіс %{target} прыпынены %{name}
+        trendable_tag_html: можа з’явіцца ў трэндах
         unassigned_report_html: "%{name} знял(а) прызначэнне скаргі %{target}"
         unblock_email_account_html: "%{name} разблакіраваў эл. пошту %{target}"
         unsensitive_account_html: "%{name} зняў адзнаку далікатнае з медыя %{target}"
@@ -322,8 +327,10 @@ be:
         update_ip_block_html: "%{name} змяніў правіла для IP %{target}"
         update_report_html: "%{name} абнавіў скаргу %{target}"
         update_status_html: "%{name} абнавіў допіс %{target}"
+        update_tag_html: "%{name} змяніў(-ла) %{target} налады на: "
         update_user_role_html: "%{name} змяніў ролю %{target}"
         update_username_block_html: Адміністратар %{name} змяніў правіла для імён карыстальнікаў, у якіх %{target}
+        usable_tag_html: магчыма выкарыстаць;
       deleted_account: выдалены ўліковы запіс
       empty: Логі не знойдзены.
       filter_by_action: Фільтраваць па дзеянню

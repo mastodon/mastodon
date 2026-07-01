@@ -289,7 +289,11 @@ it:
         enable_relay_html: "%{name} ha abilitato il relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ha abilitato l'autenticazione del token e-mail per %{target}"
         enable_user_html: "%{name} ha abilitato l'accesso per l'utente %{target}"
+        listable_tag_html: può essere suggerito
         memorialize_account_html: "%{name} ha trasformato il profilo di %{target} in una pagina commemorativa"
+        not_listable_tag_html: non sarà suggerito
+        not_trendable_tag_html: non apparirà nelle tendenze
+        not_usable_tag_html: non può essere usato
         promote_user_html: "%{name} ha promosso l'utente %{target}"
         publish_terms_of_service_html: "%{name} ha pubblicato aggiornamenti ai termini di servizio"
         reject_appeal_html: "%{name} ha rifiutato il ricorso alla decisione di moderazione da %{target}"
@@ -302,6 +306,7 @@ it:
         sensitive_account_html: "%{name} ha contrassegnato il media di %{target} come sensibile"
         silence_account_html: "%{name} ha silenziato l'account di %{target}"
         suspend_account_html: "%{name} ha sospeso l'account di %{target}"
+        trendable_tag_html: può apparire nelle tendenze
         unassigned_report_html: "%{name} ha disassegnato il rapporto %{target}"
         unblock_email_account_html: "%{name} ha sbloccato l'indirizzo email di %{target}"
         unsensitive_account_html: "%{name} ha annullato il segnare il media di %{target} come sensibile"
@@ -314,8 +319,10 @@ it:
         update_ip_block_html: "%{name} ha cambiato la regola per l'IP %{target}"
         update_report_html: "%{name} ha aggiornato la segnalazione %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
+        update_tag_html: "%{name} ha cambiato le impostazioni di %{target} in: "
         update_user_role_html: "%{name} ha modificato il ruolo %{target}"
         update_username_block_html: "%{name} ha aggiornato la regola per i nomi utente contenenti %{target}"
+        usable_tag_html: può essere usato;
       deleted_account: account eliminato
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
