@@ -43,7 +43,7 @@ class ActivityPub::ObjectIntegrityProof
 
     if proof_options['@context'].present?
       return unless unsecured_document['@context'].is_a?(Array)
-      return unless unsecured_document['@context'][..proof_options['@context'].length] == proof_options['@context']
+      return unless unsecured_document['@context'][...proof_options['@context'].length] == proof_options['@context']
     end
 
     transformed_data = unsecured_document.to_json_c14n
