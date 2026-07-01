@@ -561,7 +561,7 @@ export const Search: React.FC<{
         ref={searchInputRef}
         className='search__input'
         type='text'
-        enterKeyHint='search'
+        inputMode='search'
         placeholder={intl.formatMessage(
           signedIn ? messages.placeholderSignedIn : messages.placeholder,
         )}
