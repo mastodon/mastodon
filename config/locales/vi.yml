@@ -285,7 +285,11 @@ vi:
         enable_relay_html: "%{name} đã bật relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} đã bật xác minh email của %{target}"
         enable_user_html: "%{name} đã bỏ vô hiệu hóa đăng nhập %{target}"
+        listable_tag_html: có thể đề xuất
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
+        not_listable_tag_html: không thể đề xuất
+        not_trendable_tag_html: không cho lên xu hướng
+        not_usable_tag_html: không được phép dùng
         promote_user_html: "%{name} đã nâng vai trò của %{target}"
         publish_terms_of_service_html: "%{name} đã cập nhật điều khoản dịch vụ"
         reject_appeal_html: "%{name} đã từ chối khiếu nại từ %{target}"
@@ -298,6 +302,7 @@ vi:
         sensitive_account_html: "%{name} đã gán nội dung của %{target} là nhạy cảm"
         silence_account_html: "%{name} đã ẩn %{target}"
         suspend_account_html: "%{name} đã vô hiệu hóa %{target}"
+        trendable_tag_html: cho phép lên xu hướng
         unassigned_report_html: "%{name} đã thôi xử lý báo cáo %{target}"
         unblock_email_account_html: "%{name} đã bỏ chặn địa chỉ email của %{target}"
         unsensitive_account_html: "%{name} đã gán nội dung của %{target} là bình thường"
@@ -310,8 +315,10 @@ vi:
         update_ip_block_html: "%{name} đã cập nhật chặn IP %{target}"
         update_report_html: "%{name} đã cập nhật báo cáo %{target}"
         update_status_html: "%{name} đã cập nhật tút của %{target}"
+        update_tag_html: "%{name} đã thay đổi thiết lập %{target} thành: "
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
         update_username_block_html: "%{name} đã cập nhật quy tắc cho tên người dùng chứa %{target}"
+        usable_tag_html: có thể dùng;
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động

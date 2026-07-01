@@ -289,7 +289,11 @@ sq:
         enable_relay_html: "%{name} aktivizoi relenë %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktivizoi mirëfilltësim me token email për %{target}"
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
+        listable_tag_html: mund të sugjerohet
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
+        not_listable_tag_html: s’do të sugjerohet
+        not_trendable_tag_html: s’do të shfaqet nën gjëra në modë
+        not_usable_tag_html: s’mund të përdoret
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
         publish_terms_of_service_html: "%{name} botoi përditësime të kushteve të shërbimit"
         reject_appeal_html: "%{name} hodhi poshtë apelim vendimi moderimi nga %{target}"
@@ -302,6 +306,7 @@ sq:
         sensitive_account_html: "%{name} i vuri shenjë si rezervat medias në %{target}"
         silence_account_html: "%{name} heshtoi llogarinë e %{target}"
         suspend_account_html: "%{name} pezulloi llogarinë e %{target}"
+        trendable_tag_html: mund të shfaqet nën gjëra nën modë
         unassigned_report_html: "%{name} rihapi raportimin %{target}"
         unblock_email_account_html: "%{name} zhbllokoi adresën email të %{target}"
         unsensitive_account_html: "%{name} ia hoqi shenjën si rezervat medias në %{target}"
@@ -314,8 +319,10 @@ sq:
         update_ip_block_html: "%{name} ndryshoi rregull për IP-në %{target}"
         update_report_html: "%{name} përditësoi raportimin %{target}"
         update_status_html: "%{name} përditësoi gjendjen me %{target}"
+        update_tag_html: "%{name} ndryshoi rregullime %{target} në: "
         update_user_role_html: "%{name} ndryshoi rolin për %{target}"
         update_username_block_html: "%{name} përditësoi rregull për emra përdoruesish që përmbajnë %{target}"
+        usable_tag_html: mund të përdoret;
       deleted_account: fshiu llogarinë
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
@@ -1920,6 +1927,7 @@ sq:
     next: Pasuesi
     older: Më të vjetër
     prev: I mëparshmi
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Keni votuar tashmë në këtë pyetësor

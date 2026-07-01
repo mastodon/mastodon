@@ -289,7 +289,11 @@ is:
         enable_relay_html: "%{name} virkjaði endurvarpann %{target}"
         enable_sign_in_token_auth_user_html: "%{name} gerði virka auðkenningu með teikni í tölvupósti fyrir %{target}"
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
+        listable_tag_html: má stinga uppá
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
+        not_listable_tag_html: mun ekki vera stungið uppá
+        not_trendable_tag_html: mun ekki birtast í vinsældum
+        not_usable_tag_html: má ekki nota
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
         publish_terms_of_service_html: "%{name} gaf út uppfærða þjónustuskilmála"
         reject_appeal_html: "%{name} hafnaði áfrýjun á ákvörðun umsjónarmanns frá %{target}"
@@ -302,6 +306,7 @@ is:
         sensitive_account_html: "%{name} merkti myndefni frá %{target} sem viðkvæmt"
         silence_account_html: "%{name} þaggaði niður í aðgangnum %{target}"
         suspend_account_html: "%{name} setti notandaaðganginn %{target} í frysti"
+        trendable_tag_html: má vera með í vinsældum
         unassigned_report_html: "%{name} fjarlægði úthlutun af kæru %{target}"
         unblock_email_account_html: "%{name} opnaði á tölvupóstfangið %{target}"
         unsensitive_account_html: "%{name} tók merkinguna viðkvæmt af myndefni frá %{target}"
@@ -314,8 +319,10 @@ is:
         update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
         update_report_html: "%{name} uppfærði kæru %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
+        update_tag_html: "%{name} breytti %{target} stillingum í: "
         update_user_role_html: "%{name} breytti hlutverki %{target}"
         update_username_block_html: "%{name} uppfærði reglu varðandi notendanöfn sem innihalda %{target}"
+        usable_tag_html: má nota;
       deleted_account: eyddur notandaaðgangur
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð

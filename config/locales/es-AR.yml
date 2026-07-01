@@ -289,7 +289,11 @@ es-AR:
         enable_relay_html: "%{name} eliminó el relé %{target}"
         enable_sign_in_token_auth_user_html: "%{name} habilitó la autenticación de token por correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
+        listable_tag_html: puede ser recomendada
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
+        not_listable_tag_html: no será sugerida
+        not_trendable_tag_html: no aparecerá bajo «Tendencias»
+        not_usable_tag_html: no puede ser usada
         promote_user_html: "%{name} promovió al usuario %{target}"
         publish_terms_of_service_html: "%{name} publicó actualizaciones de los términos del servicio"
         reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
@@ -302,6 +306,7 @@ es-AR:
         sensitive_account_html: "%{name} marcó los medios de %{target} como sensibles"
         silence_account_html: "%{name} limitó la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
+        trendable_tag_html: puede aparecer bajo «Tendencias»
         unassigned_report_html: "%{name} desasignó la denuncia %{target}"
         unblock_email_account_html: "%{name} desbloqueó la dirección de correo electrónico de %{target}"
         unsensitive_account_html: "%{name} desmarcó los medios de %{target} como sensibles"
@@ -314,8 +319,10 @@ es-AR:
         update_ip_block_html: "%{name} cambió la regla para la dirección IP %{target}"
         update_report_html: "%{name} actualizó la denuncia %{target}"
         update_status_html: "%{name} actualizó el mensaje de %{target}"
+        update_tag_html: "%{name} cambió la configuración de %{target} a: "
         update_user_role_html: "%{name} cambió el rol %{target}"
         update_username_block_html: "%{name} actualizó una regla para los nombres de usuario que contienen %{target}"
+        usable_tag_html: puede ser usada;
       deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción

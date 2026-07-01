@@ -289,7 +289,11 @@ nn:
         enable_relay_html: "%{name} skrudde på reléet %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverte e-post-token-autentisering for %{target}"
         enable_user_html: "%{name} aktiverte innlogging for brukaren %{target}"
+        listable_tag_html: kan bli føreslege
         memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
+        not_listable_tag_html: vil ikkje bli føreslege
+        not_trendable_tag_html: kjem ikkje til å syna under trendar
+        not_usable_tag_html: kan ikkje brukast
         promote_user_html: "%{name} fremja brukaren %{target}"
         publish_terms_of_service_html: "%{name} endra bruksvilkåra"
         reject_appeal_html: "%{name} avviste klagen frå %{target} på modereringa"
@@ -302,6 +306,7 @@ nn:
         sensitive_account_html: "%{name} markerte %{target} sitt media som ømtolig"
         silence_account_html: "%{name} avgrensa %{target} sin konto"
         suspend_account_html: "%{name} utviste %{target} sin konto"
+        trendable_tag_html: kan dukka opp under trendar
         unassigned_report_html: "%{name} løyste ein rapport %{target}"
         unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
         unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som ømtolig"
@@ -314,8 +319,10 @@ nn:
         update_ip_block_html: "%{name} endret regel for IP %{target}"
         update_report_html: "%{name} oppdaterte rapporten %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
+        update_tag_html: "%{name} endra innstillingane for %{target} til: "
         update_user_role_html: "%{name} endret %{target} -rolle"
         update_username_block_html: "%{name} oppdaterte regelen for brukarnamn som inneheld %{target}"
+        usable_tag_html: kan brukast;
       deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling

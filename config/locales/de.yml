@@ -289,7 +289,11 @@ de:
         enable_relay_html: "%{name} aktivierte das Relais %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktivierte die E-Mail-Token-Authentisierung für %{target}"
         enable_user_html: "%{name} aktivierte den Zugang für %{target}"
+        listable_tag_html: darf vorgeschlagen werden
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
+        not_listable_tag_html: wird nicht vorgeschlagen
+        not_trendable_tag_html: erscheint nicht unter Trends
+        not_usable_tag_html: darf nicht verwendet werden
         promote_user_html: "%{name} beförderte %{target}"
         publish_terms_of_service_html: "%{name} aktualisierte die Nutzungsbedingungen"
         reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsentscheidung von %{target} ab"
@@ -302,6 +306,7 @@ de:
         sensitive_account_html: "%{name} versah die Medien von %{target} mit einer Inhaltswarnung"
         silence_account_html: "%{name} schaltete das Konto von %{target} stumm"
         suspend_account_html: "%{name} sperrte das Konto von %{target}"
+        trendable_tag_html: darf unter Trends erscheinen
         unassigned_report_html: "%{name} entfernte die Zuweisung der Meldung %{target}"
         unblock_email_account_html: "%{name} entsperrte die E-Mail-Adresse von %{target}"
         unsensitive_account_html: "%{name} hob die Inhaltswarnung für Medien von %{target} auf"
@@ -314,8 +319,10 @@ de:
         update_ip_block_html: "%{name} änderte eine IP-Regel für %{target}"
         update_report_html: "%{name} überarbeitete die Meldung %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
+        update_tag_html: "%{name} änderte %{target} zu: "
         update_user_role_html: "%{name} änderte die Rolle von %{target}"
         update_username_block_html: "%{name} aktualisierte eine Regel für Profilnamen mit %{target}"
+        usable_tag_html: darf verwendet werden;
       deleted_account: gelöschtes Konto
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern

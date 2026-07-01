@@ -285,7 +285,11 @@ zh-CN:
         enable_relay_html: "%{name} 启用了中继站 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 为 %{target} 启用了邮件令牌身份验证"
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
+        listable_tag_html: 可被推荐
         memorialize_account_html: "%{name} 将 %{target} 转为纪念账号"
+        not_listable_tag_html: 不会被推荐
+        not_trendable_tag_html: 不会出现在热门列表中
+        not_usable_tag_html: 不可使用
         promote_user_html: "%{name} 将用户 %{target} 设为管理员"
         publish_terms_of_service_html: "%{name} 更新了服务条款"
         reject_appeal_html: "%{name} 驳回了 %{target} 对审核结果的申诉"
@@ -298,6 +302,7 @@ zh-CN:
         sensitive_account_html: "%{name} 将 %{target} 的媒体标记为敏感内容"
         silence_account_html: "%{name} 隐藏了用户 %{target}"
         suspend_account_html: "%{name} 封禁了用户 %{target}"
+        trendable_tag_html: 可显示在热门列表中
         unassigned_report_html: "%{name} 放弃接管举报 %{target}"
         unblock_email_account_html: "%{name} 取消屏蔽了 %{target} 的邮件地址"
         unsensitive_account_html: "%{name} 去除了 %{target} 的媒体的敏感内容标记"
@@ -310,8 +315,10 @@ zh-CN:
         update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
         update_report_html: "%{name} 更新了举报 %{target}"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
+        update_tag_html: "%{name} 已将 %{target} 的设置更改为："
         update_user_role_html: "%{name} 更改了角色 %{target}"
         update_username_block_html: "%{name} 更新了有关包含 %{target} 的用户名的规则"
+        usable_tag_html: 可以使用；
       deleted_account: 账号已注销
       empty: 没有找到日志
       filter_by_action: 根据操作筛选

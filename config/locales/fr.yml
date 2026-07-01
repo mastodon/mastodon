@@ -289,7 +289,11 @@ fr:
         enable_relay_html: "%{name} a activé le relais %{target}"
         enable_sign_in_token_auth_user_html: "%{name} a activé l'authentification par jeton de courriel pour %{target}"
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
+        listable_tag_html: peut être suggéré
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
+        not_listable_tag_html: ne sera pas suggéré
+        not_trendable_tag_html: n'apparaîtra pas dans les tendances
+        not_usable_tag_html: ne peut pas être utilisé
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
         publish_terms_of_service_html: "%{name} a publié des mises à jour des conditions d'utilisation"
         reject_appeal_html: "%{name} a rejeté l'appel de la décision de modération émis par %{target}"
@@ -302,6 +306,7 @@ fr:
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
         silence_account_html: "%{name} a masqué le compte de %{target}"
         suspend_account_html: "%{name} a suspendu le compte de %{target}"
+        trendable_tag_html: peut apparaître dans les tendances
         unassigned_report_html: "%{name} a désassigné le signalement %{target}"
         unblock_email_account_html: "%{name} a débloqué l’adresse de courriel de %{target}"
         unsensitive_account_html: "%{name} a enlevé le marquage comme sensible du média de %{target}"
@@ -314,8 +319,10 @@ fr:
         update_ip_block_html: "%{name} a modifié la règle pour l'IP %{target}"
         update_report_html: "%{name} a mis à jour le rapport de signalement %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
+        update_tag_html: "%{name} a modifié les paramètres de %{target} pour : "
         update_user_role_html: "%{name} a changé le rôle %{target}"
         update_username_block_html: "%{name} a mis à jour une règle pour les noms d'utilisateurs contenant %{target}"
+        usable_tag_html: peut être utilisé ;
       deleted_account: compte supprimé
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
