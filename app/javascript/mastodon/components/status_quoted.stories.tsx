@@ -1,11 +1,9 @@
-import { Map as ImmutableMap } from 'immutable';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { ApiQuoteJSON } from '@/mastodon/api_types/quotes';
 import {
   accountFactoryImmutable,
   statusFactoryImmutable,
+  statusQuotedFactoryAPI,
 } from '@/testing/factories';
 
 import type { StatusQuoteManagerProps } from './status_quoted';
@@ -31,10 +29,10 @@ const meta = {
           id: '2',
           language: 'en',
           text: 'Quote!',
-          quote: ImmutableMap({
+          quote: {
             state: 'accepted',
-            quoted_status: '1',
-          }) as unknown as ApiQuoteJSON,
+            quoted_status: statusQuotedFactoryAPI({ id: '1' }),
+          },
         }),
         '1001': statusFactoryImmutable({
           id: '1001',
@@ -53,10 +51,10 @@ const meta = {
           language: 'mn-Mong',
           // meaning: Mongolia
           text: 'ᠮᠤᠩᠭᠤᠯ',
-          quote: ImmutableMap({
+          quote: {
             state: 'accepted',
-            quoted_status: '1002',
-          }) as unknown as ApiQuoteJSON,
+            quoted_status: statusQuotedFactoryAPI({ id: '1002' }),
+          },
         }),
       },
     },
