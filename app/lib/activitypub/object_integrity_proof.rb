@@ -8,7 +8,7 @@ class ActivityPub::ObjectIntegrityProof
   SIGNATURE_CONTEXT = 'https://w3id.org/security/v1'
 
   def initialize(json)
-    @json = json.with_indifferent_access
+    @json = json
   end
 
   def verify_actor!(proof_purpose: 'assertionMethod')
@@ -44,6 +44,9 @@ class ActivityPub::ObjectIntegrityProof
     if proof_options['@context'].present?
       return unless unsecured_document['@context'].is_a?(Array)
       return unless unsecured_document['@context'][...proof_options['@context'].length] == proof_options['@context']
+
+      # Step 4.2. from the aforementioned algorithm, it's useful when vocabulary necessary to the cryptosuite had to be added on top of the to-be-signed document
+      unsecured_document['@context'] = proof_options['@context']
     end
 
     transformed_data = unsecured_document.to_json_c14n
