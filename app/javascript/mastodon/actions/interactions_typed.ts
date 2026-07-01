@@ -167,6 +167,24 @@ export const statusInteraction = createAppThunk(
           }),
         );
         return;
+      case 'revoke_quote':
+        if (
+          state.statuses.getIn([status.quote?.quoted_status, 'account']) ===
+          currentAccountId
+        ) {
+          dispatch(
+            openModal({
+              modalType: 'CONFIRM_REVOKE_QUOTE',
+              modalProps: {
+                statusId: statusId,
+                quotedStatusId: status.quote?.quoted_status,
+              },
+            }),
+          );
+        } else {
+          dispatch(showGenericAlert());
+        }
+        return;
     }
 
     // Check if the status account matches the current user, otherwise show an alert.
@@ -247,24 +265,6 @@ export const statusInteraction = createAppThunk(
               },
             }),
           );
-        }
-        return;
-      case 'revoke_quote':
-        if (
-          state.statuses.getIn([status.quote?.quoted_status, 'account']) ===
-          currentAccountId
-        ) {
-          dispatch(
-            openModal({
-              modalType: 'CONFIRM_REVOKE_QUOTE',
-              modalProps: {
-                statusId: statusId,
-                quotedStatusId: status.quote?.quoted_status,
-              },
-            }),
-          );
-        } else {
-          dispatch(showGenericAlert());
         }
         return;
     }
