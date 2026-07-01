@@ -6,16 +6,16 @@ import { Map as ImmutableMap } from 'immutable';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import {
   accountFactoryImmutable,
-  mediaAttachmentFactoryAPI,
   pollFactoryImmutable,
   statusFactoryAPI,
   statusFactoryImmutable,
 } from '@/testing/factories';
 
+import type { AttachmentArgs } from './testing';
+import { attachmentArgTypes, attachmentFactory } from './testing';
 import { TypedStatus } from './types';
 
 type ContextTypes =
@@ -29,16 +29,7 @@ type ContextTypes =
   | 'search'
   | 'thread';
 
-type AttachmentTypes =
-  | 'image-1'
-  | 'image-2'
-  | 'image-3'
-  | 'video'
-  | 'audio'
-  | 'gifv'
-  | 'unknown';
-
-interface StatusStoryProps {
+interface StatusStoryProps extends AttachmentArgs {
   // Contents
   text: string;
   visibility: StatusVisibility;
@@ -46,7 +37,6 @@ interface StatusStoryProps {
   isReply?: boolean;
   isPoll?: boolean;
   isQuote?: boolean;
-  attachments?: AttachmentTypes;
   contentWarning?: string;
 
   // Interactions
@@ -84,7 +74,9 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     isReply,
     isPoll,
     isQuote,
-    attachments,
+    attachment1,
+    attachment2,
+    attachment3,
     contentWarning,
 
     hasFavourited,
@@ -108,107 +100,17 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
   const { account, status } = useMemo(() => {
     const account = accountFactoryImmutable();
 
-    const media_attachments: ApiMediaAttachmentJSON[] = [];
-    switch (attachments) {
-      // Use fall through add attachments depending on count.
-      case 'image-3':
-        media_attachments.push(
-          mediaAttachmentFactoryAPI({
-            id: '2',
-            url: 'https://cataas.com/cat/EbVq9zMc4Xxv7s73',
-            meta: {
-              original: {
-                width: 960,
-                height: 1280,
-                size: '960x1280',
-                aspect: 0.75,
-              },
-            },
-          }),
-        );
-      // eslint-disable-next-line no-fallthrough
-      case 'image-2':
-        media_attachments.push(
-          mediaAttachmentFactoryAPI({
-            id: '3',
-            url: 'https://cataas.com/cat/YFaQ4xWYoWURSz37',
-            meta: {
-              original: {
-                width: 964,
-                height: 1280,
-                size: '964x1280',
-                aspect: 0.753125,
-              },
-            },
-          }),
-        );
-      // eslint-disable-next-line no-fallthrough
-      case 'image-1':
-        media_attachments.push(
-          mediaAttachmentFactoryAPI({
-            id: '4',
-            url: 'https://cataas.com/cat/bYBTjiFUqjUPIBUD',
-            meta: {
-              original: {
-                width: 1280,
-                height: 964,
-                size: '1280x964',
-                aspect: 1.32780083,
-              },
-            },
-          }),
-        );
-        break;
-      case 'video':
-        media_attachments.push(
-          mediaAttachmentFactoryAPI({
-            type: 'video',
-            url: 'https://www.pexels.com/download/video/11760787/',
-            meta: {
-              original: {
-                width: 2160,
-                height: 4096,
-              },
-            },
-          }),
-        );
-        break;
-      case 'audio':
-        media_attachments.push(
-          mediaAttachmentFactoryAPI({
-            type: 'audio',
-            url: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Elephant_voice_-_trumpeting.ogg',
-          }),
-        );
-        break;
-      case 'gifv':
-        media_attachments.push(
-          mediaAttachmentFactoryAPI({
-            type: 'gifv',
-            url: 'https://www.pexels.com/download/video/11760787/',
-            meta: {
-              original: {
-                width: 2160,
-                height: 4096,
-              },
-            },
-          }),
-        );
-        break;
-      case 'unknown':
-        media_attachments.push(
-          mediaAttachmentFactoryAPI({ type: attachments }),
-        );
-        break;
-    }
-
     return {
       account,
       status: statusFactoryImmutable({
         text,
         spoiler_text: contentWarning,
         visibility,
-        media_attachments,
+        media_attachments: attachmentFactory(
+          attachment1,
+          attachment2,
+          attachment3,
+        ),
         reblogged: hasReblogged,
         favourited: hasFavourited,
         bookmarked: hasBookmarked,
@@ -247,10 +149,12 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
       }),
     };
   }, [
-    attachments,
     text,
     contentWarning,
     visibility,
+    attachment1,
+    attachment2,
+    attachment3,
     hasReblogged,
     hasFavourited,
     hasBookmarked,
@@ -367,27 +271,17 @@ const meta = {
     isPoll: categoryContents,
     isQuote: categoryContents,
     text: categoryContents,
-    attachments: {
+    attachment1: {
       ...categoryContents,
-      control: 'select',
-      options: [
-        'One image',
-        'Two images',
-        'Three images',
-        'Video',
-        'Audio',
-        'GIF',
-        'Other',
-      ],
-      mapping: {
-        'One image': 'image-1',
-        'Two images': 'image-2',
-        'Three images': 'image-3',
-        Video: 'video',
-        Audio: 'audio',
-        GIF: 'gifv',
-        Other: 'unknown',
-      } satisfies Record<string, AttachmentTypes>,
+      ...attachmentArgTypes.attachment1,
+    },
+    attachment2: {
+      ...categoryContents,
+      ...attachmentArgTypes.attachment2,
+    },
+    attachment3: {
+      ...categoryContents,
+      ...attachmentArgTypes.attachment3,
     },
     contentWarning: categoryContents,
 
@@ -445,7 +339,9 @@ const meta = {
     isPoll: false,
     isQuote: false,
     contentWarning: '',
-    attachments: undefined,
+    attachment1: undefined,
+    attachment2: undefined,
+    attachment3: undefined,
 
     hasFavourited: false,
     hasReblogged: false,
@@ -518,19 +414,21 @@ export const LongText: Story = {
 
 export const Images: Story = {
   args: {
-    attachments: 'image-3',
+    attachment1: 'image',
+    attachment2: 'image',
+    attachment3: 'image',
   },
 };
 
 export const Video: Story = {
   args: {
-    attachments: 'video',
+    attachment1: 'video',
   },
 };
 
 export const Audio: Story = {
   args: {
-    attachments: 'audio',
+    attachment1: 'audio',
   },
 };
 
