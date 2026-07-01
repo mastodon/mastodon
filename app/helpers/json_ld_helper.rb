@@ -33,13 +33,6 @@ module JsonLdHelper
     end
   end
 
-  def first_string_or_lang_string(value)
-    value = first_of_value(value)
-    return value if value.is_a?(String)
-
-    value['@value'] if value.is_a?(Hash)
-  end
-
   def uri_from_bearcap(str)
     if str&.start_with?('bear:')
       Addressable::URI.parse(str).query_values['u']
