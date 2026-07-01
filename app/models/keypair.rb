@@ -50,6 +50,12 @@ class Keypair < ApplicationRecord
 
   alias actor account
 
+  def full_uri
+    return ActivityPub::TagManager.instance.uri_for(account) + local_fragment if local_fragment.present?
+
+    uri
+  end
+
   def keypair
     @keypair ||= begin
       case type
@@ -86,5 +92,23 @@ class Keypair < ApplicationRecord
       private_key: account.private_key,
       type: :rsa
     )
+  end
+
+  def self.from_worker_arg(account, private_key_pem_or_hash)
+    if private_key_pem_or_hash.is_a?(String)
+      account.keypairs.build(
+        private_key: private_key_pem_or_hash,
+        local_fragment: '#main-key',
+        type: :rsa
+      )
+    else
+      account.keypairs.build(
+        private_key: private_key_pem_or_hash['private_key'],
+        public_key: private_key_pem_or_hash['public_key'],
+        uri: private_key_pem_or_hash['uri'],
+        local_fragment: private_key_pem_or_hash['local_fragment'],
+        type: private_key_pem_or_hash['type']
+      )
+    end
   end
 end

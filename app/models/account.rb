@@ -301,8 +301,22 @@ class Account < ApplicationRecord
     strikes.where(overruled_at: nil).count
   end
 
-  def keypair
-    @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
+  def keypair(type: nil)
+    # Pick the first (oldest) keypair matching the expected type,
+    # as we can expect our key rotation code to add stand-by keys with higher IDs
+    # before pruning older keys with lower IDs after some time.
+
+    scope = keypairs.usable.order(id: :asc)
+    scope = scope.where(type: type) if type.present?
+
+    case type
+    when :rsa, nil
+      # The legacy key is always RSA, so only fallback
+      # when no other type is requested
+      scope.first || Keypair.from_legacy_account(self)
+    else
+      scope.first
+    end
   end
 
   def tags_as_strings=(tag_names)
