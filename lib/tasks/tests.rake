@@ -51,8 +51,13 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.find(Account::INSTANCE_ACTOR_ID).private_key.blank?
+      if Account.find(Account::INSTANCE_ACTOR_ID).keypair.blank?
         puts 'Instance actor does not have a private key'
+        exit(1)
+      end
+
+      if Account.local.where.not(private_key: nil).exists?
+        puts 'Private keys not properly migrated'
         exit(1)
       end
 
