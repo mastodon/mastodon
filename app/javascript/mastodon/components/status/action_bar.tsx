@@ -16,6 +16,7 @@ import {
 } from '@/mastodon/actions/domain_blocks';
 import type { StatusInteractionIntent } from '@/mastodon/actions/interactions';
 import { statusInteraction } from '@/mastodon/actions/interactions';
+import { fetchStatus } from '@/mastodon/actions/statuses';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useStatus } from '@/mastodon/hooks/useStatus';
@@ -298,18 +299,19 @@ const StatusActionMenu: React.FC<{
     ],
   );
   const handleOpen = useCallback(() => {
+    // Replicates needsStatusRefresh of the Dropdown component.
+    if (quickBoosting && !status.quote_approval) {
+      dispatch(
+        fetchStatus(status.id, { forceFetch: true, alsoFetchContext: false }),
+      );
+    }
+
     dismissQuoteHint();
     return true;
-  }, [dismissQuoteHint]);
+  }, [dismissQuoteHint, dispatch, status.id, status.quote_approval]);
 
   return (
-    <Dropdown
-      scrollKey={scrollKey}
-      // status={status}
-      needsStatusRefresh={quickBoosting && !status.quote_approval}
-      items={menu}
-      onOpen={handleOpen}
-    >
+    <Dropdown scrollKey={scrollKey} items={menu} onOpen={handleOpen}>
       <IconButton
         className='status__action-bar__button'
         icon='ellipsis-h'
