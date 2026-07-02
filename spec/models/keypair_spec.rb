@@ -45,8 +45,8 @@ RSpec.describe Keypair do
       end
     end
 
-    context 'when no key with the expected key ID exists but there is an account with the same ID and a key' do
-      let(:account) { Fabricate(:account, domain: 'example.com') }
+    context 'when no key with the expected key ID exists but there is an account with the same ID and a legacy key' do
+      let(:account) { Fabricate(:account, domain: 'example.com', legacy_keypair: true) }
       let(:keyid) { "#{ActivityPub::TagManager.instance.uri_for(account)}#main-rsa-key" }
 
       it 'returns the expected Keypair' do
@@ -60,7 +60,7 @@ RSpec.describe Keypair do
     end
 
     context 'when no key with the expected key ID exists but there is an account with the same ID and no key' do
-      let(:account) { Fabricate(:account, domain: 'example.com', public_key: '', private_key: nil) }
+      let(:account) { Fabricate(:account, domain: 'example.com') }
       let(:keyid) { "#{ActivityPub::TagManager.instance.uri_for(account)}#main-rsa-key" }
 
       it 'returns nil' do
