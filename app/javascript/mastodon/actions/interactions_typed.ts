@@ -64,6 +64,10 @@ const messages = defineMessages({
     id: 'status.public_only',
     defaultMessage: 'This status is private',
   },
+  notQuoted: {
+    id: 'status.not_quoted',
+    defaultMessage: 'You are not quoted in this status',
+  },
 });
 
 export const statusInteraction = createAppThunk(
@@ -88,35 +92,31 @@ export const statusInteraction = createAppThunk(
     }
     const status = statusImmutable.toJS() as unknown as StatusShape;
 
-    // Always allow showing an embed.
-    if (intent === 'embed') {
-      if (interactions.embed) {
+    // Check the permissions and respond if it's not allowed.
+    const permissions = interactions[intent];
+    if (!permissions.allowed) {
+      // Must strictly check for false, as values can be undefined.
+      if (permissions.isLoggedIn === false) {
         dispatch(
           openModal({
-            modalType: 'EMBED',
-            modalProps: { id: statusId },
+            modalType: 'INTERACTION',
+            modalProps: {
+              intent,
+              accountId: status.account,
+              url: status.uri,
+            },
           }),
         );
-      } else {
+      } else if (permissions.isMine === false) {
+        dispatch(showAlert({ message: messages.noEdits }));
+      } else if (
+        permissions.isNotDirect === false ||
+        permissions.isPublic === false
+      ) {
         dispatch(showAlert({ message: messages.privateStatus }));
+      } else if (permissions.isQuoted === false) {
+        dispatch(showAlert({ message: messages.notQuoted }));
       }
-      return;
-    }
-
-    // Not logged in, so show the interaction modal.
-    const { meta } = state;
-    const currentAccountId = meta.get('me') as string | null;
-    if (!currentAccountId) {
-      dispatch(
-        openModal({
-          modalType: 'INTERACTION',
-          modalProps: {
-            intent,
-            accountId: status.account,
-            url: status.uri,
-          },
-        }),
-      );
       return;
     }
 
@@ -129,68 +129,6 @@ export const statusInteraction = createAppThunk(
           dispatch(bookmark(statusImmutable));
         }
         return;
-      case 'filter':
-        dispatch(
-          openModal({
-            modalType: 'FILTER',
-            modalProps: { statusId, contextType },
-          }),
-        );
-        return;
-      case 'favourite':
-        if (status.favourited) {
-          dispatch(unfavourite(statusImmutable));
-        } else {
-          dispatch(favourite(statusImmutable));
-        }
-        return;
-      case 'quote':
-        dispatch(quoteComposeById(statusId));
-        return;
-      case 'reblog':
-        if (status.reblogged) {
-          void dispatch(unreblog({ statusId }));
-        } else {
-          void dispatch(reblog({ statusId, visibility: status.visibility }));
-        }
-        return;
-      case 'reply':
-        dispatch(replyCompose(statusImmutable));
-        return;
-      case 'report':
-        dispatch(
-          openModal({
-            modalType: 'REPORT',
-            modalProps: {
-              accountId: status.account,
-              statusId: statusId,
-            },
-          }),
-        );
-        return;
-      case 'revokeQuote':
-        if (interactions.revokeQuote) {
-          dispatch(
-            openModal({
-              modalType: 'CONFIRM_REVOKE_QUOTE',
-              modalProps: {
-                statusId: statusId,
-                quotedStatusId: status.quote?.quoted_status,
-              },
-            }),
-          );
-        } else {
-          dispatch(showGenericAlert());
-        }
-        return;
-    }
-
-    // Check if the status account matches the current user, otherwise show an alert.
-    if (status.account !== currentAccountId) {
-      dispatch(showAlert({ message: messages.noEdits }));
-    }
-
-    switch (intent) {
       case 'delete':
         if (!deleteModal) {
           void dispatch(deleteStatus(statusId));
@@ -218,20 +156,39 @@ export const statusInteraction = createAppThunk(
         return;
       }
       case 'editQuotePolicy':
-        if (interactions.editQuotePolicy) {
-          dispatch(
-            openModal({
-              modalType: 'COMPOSE_PRIVACY',
-              modalProps: {
-                statusId,
-                onChange: ((_, policy) => {
-                  void dispatch(setStatusQuotePolicy({ statusId, policy }));
-                }) satisfies VisibilityModalCallback,
-              },
-            }),
-          );
+        dispatch(
+          openModal({
+            modalType: 'COMPOSE_PRIVACY',
+            modalProps: {
+              statusId,
+              onChange: ((_, policy) => {
+                void dispatch(setStatusQuotePolicy({ statusId, policy }));
+              }) satisfies VisibilityModalCallback,
+            },
+          }),
+        );
+        return;
+      case 'embed':
+        dispatch(
+          openModal({
+            modalType: 'EMBED',
+            modalProps: { id: statusId },
+          }),
+        );
+        return;
+      case 'filter':
+        dispatch(
+          openModal({
+            modalType: 'FILTER',
+            modalProps: { statusId, contextType },
+          }),
+        );
+        return;
+      case 'favourite':
+        if (status.favourited) {
+          dispatch(unfavourite(statusImmutable));
         } else {
-          dispatch(showAlert({ message: messages.privateStatus }));
+          dispatch(favourite(statusImmutable));
         }
         return;
       case 'mute':
@@ -242,12 +199,20 @@ export const statusInteraction = createAppThunk(
         }
         return;
       case 'pin':
-        if (!interactions.pin) {
-          dispatch(showAlert({ message: messages.privateStatus }));
-        } else if (status.pinned) {
+        if (status.pinned) {
           dispatch(unpin(statusImmutable));
         } else {
           dispatch(pin(statusImmutable));
+        }
+        return;
+      case 'quote':
+        dispatch(quoteComposeById(statusId));
+        return;
+      case 'reblog':
+        if (status.reblogged) {
+          void dispatch(unreblog({ statusId }));
+        } else {
+          void dispatch(reblog({ statusId, visibility: status.visibility }));
         }
         return;
       case 'redraft':
@@ -264,6 +229,31 @@ export const statusInteraction = createAppThunk(
             }),
           );
         }
+        return;
+      case 'reply':
+        dispatch(replyCompose(statusImmutable));
+        return;
+      case 'report':
+        dispatch(
+          openModal({
+            modalType: 'REPORT',
+            modalProps: {
+              accountId: status.account,
+              statusId: statusId,
+            },
+          }),
+        );
+        return;
+      case 'revokeQuote':
+        dispatch(
+          openModal({
+            modalType: 'CONFIRM_REVOKE_QUOTE',
+            modalProps: {
+              statusId: statusId,
+              quotedStatusId: status.quote?.quoted_status,
+            },
+          }),
+        );
         return;
     }
   },

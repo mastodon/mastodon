@@ -89,27 +89,52 @@ export const selectStatusInteractions = createAppSelector(
       return null;
     }
     const isPublic = ['public', 'unlisted'].includes(status.visibility);
+    const isNotDirect = status.visibility === 'direct';
     const isLoggedIn = !!currentAccountId;
-    const isMine = status.account === currentAccountId;
+    const isMine = isLoggedIn && status.account === currentAccountId;
+    const isQuoted = isLoggedIn && currentAccountId === quotedAccountId;
+
+    const conditionals = {
+      isPublic,
+      isLoggedIn,
+      isMine,
+      isQuoted,
+      isNotDirect,
+    };
+
+    function addAllowed(conditions: Partial<typeof conditionals>) {
+      return {
+        ...conditions,
+        allowed: Object.values(conditions).every(Boolean),
+      };
+    }
+
+    const interactions: Record<
+      StatusInteractionIntent,
+      Partial<typeof conditionals> & { allowed: boolean }
+    > = {
+      bookmark: addAllowed({ isLoggedIn }),
+      delete: addAllowed({ isMine }),
+      edit: addAllowed({ isMine }),
+      editQuotePolicy: addAllowed({ isMine, isPublic }),
+      embed: addAllowed({ isPublic }),
+      favourite: addAllowed({ isLoggedIn }),
+      filter: addAllowed({ isLoggedIn }),
+      mute: addAllowed({ isMine }),
+      pin: addAllowed({ isMine, isNotDirect }),
+      quote: addAllowed({ isLoggedIn }),
+      reblog: addAllowed({ isLoggedIn }),
+      redraft: addAllowed({ isMine }),
+      reply: addAllowed({ isLoggedIn }),
+      report: addAllowed({ isLoggedIn }),
+      revokeQuote: addAllowed({ isQuoted }),
+    };
 
     return {
       statusId: status.id,
-      bookmark: isLoggedIn,
-      delete: isMine,
-      edit: isMine,
-      editQuotePolicy: isMine && isPublic,
-      embed: isPublic,
-      favourite: isLoggedIn,
-      filter: isLoggedIn,
-      mute: isMine,
-      pin: isMine && status.visibility !== 'direct',
-      quote: isLoggedIn,
-      reblog: isLoggedIn,
-      redraft: isMine,
-      reply: isLoggedIn,
-      report: isLoggedIn,
-      revokeQuote: isLoggedIn && currentAccountId === quotedAccountId,
-    } satisfies Record<StatusInteractionIntent, boolean> & { statusId: string };
+      ...interactions,
+      ...conditionals,
+    };
   },
 );
 
@@ -118,7 +143,8 @@ export const selectStatusIntentAllowed = createAppSelector(
     selectStatusInteractions,
     (_state, _statusId: string, intent: StatusInteractionIntent) => intent,
   ],
-  (allowedInteractions, intent) => allowedInteractions?.[intent] ?? false,
+  (allowedInteractions, intent) =>
+    allowedInteractions?.[intent].allowed ?? false,
 );
 
 export const selectPictureInPicture = createAppSelector(
