@@ -10,7 +10,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   protected
 
   def perform_query
-    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version, libvips_version, ffmpeg_version].compact
+    [mastodon_version, ruby_version, nodejs_version, postgresql_version, redis_version, elasticsearch_version, libvips_version, ffmpeg_version].compact
   end
 
   def mastodon_version
@@ -31,6 +31,18 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
       value: RUBY_DESCRIPTION,
       human_value: "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}",
     }
+  end
+
+  def nodejs_version
+    version = Terrapin::CommandLine.new('nodejs', '-v').run
+    {
+      key: 'nodejs',
+      human_key: 'Node.JS',
+      value: version,
+      human_value: version,
+    }
+  rescue Terrapin::CommandNotFoundError
+    nil
   end
 
   def postgresql_version
