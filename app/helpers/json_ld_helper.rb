@@ -122,10 +122,10 @@ module JsonLdHelper
     graph.dump(:normalize)
   end
 
-  def compact(json)
-    compacted = JSON::LD::API.compact(json.without('signature'), full_context, documentLoader: method(:load_jsonld_context))
-    compacted['signature'] = json['signature']
-    compacted
+  def compact(json, context = full_context)
+    JSON::LD::API.compact(json.without('signature'), context, documentLoader: method(:load_jsonld_context)).tap do |compacted|
+      compacted['signature'] = json['signature']
+    end
   end
 
   def unsupported_jsonld_features?(json)
