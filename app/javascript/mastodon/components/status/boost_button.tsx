@@ -14,18 +14,14 @@ import { fetchStatus } from '@/mastodon/actions/statuses';
 import { useStatus } from '@/mastodon/hooks/useStatus';
 import { quickBoosting } from '@/mastodon/initial_state';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
+import { selectStatusConditions } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import type { RenderItemFn } from '../dropdown_menu';
 import { Dropdown, DropdownMenuItemContent } from '../dropdown_menu';
 import { IconButton } from '../icon_button';
 
-import {
-  boostItemState,
-  messages,
-  quoteItemState,
-  selectStatusState,
-} from './boost_button_utils';
+import { boostItemState, messages, quoteItemState } from './boost_button_utils';
 
 const StandaloneBoostButton: FC<ReblogButtonProps> = ({
   statusId,
@@ -36,7 +32,7 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({
 
   const status = useStatus(statusId);
   const statusState = useAppSelector((state) =>
-    selectStatusState(state, statusId),
+    selectStatusConditions(state, statusId),
   );
   const { title, meta, iconComponent, disabled } = useMemo(
     () => boostItemState(statusState),
@@ -102,7 +98,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
   const dispatch = useAppDispatch();
   const status = useStatus(statusId);
   const statusState = useAppSelector((state) =>
-    selectStatusState(state, statusId),
+    selectStatusConditions(state, statusId),
   );
   const {
     isLoggedIn,

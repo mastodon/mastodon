@@ -26,7 +26,8 @@ import { IconButton } from '../icon_button';
 import { injectIntl } from '../intl';
 import { BoostButton } from '../status/boost_button';
 import { RemoveQuoteHint } from './remove_quote_hint';
-import { quoteItemState, selectStatusState } from '../status/boost_button_utils';
+import { quoteItemState } from '../status/boost_button_utils';
+import { selectStatusConditions } from '@/mastodon/selectors/statuses';
 
 
 const messages = defineMessages({
@@ -71,7 +72,7 @@ const mapStateToProps = (state, { status }) => {
   return ({
     relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
     quotedAccountId: quotedStatusId ? state.getIn(['statuses', quotedStatusId, 'account']) : null,
-    statusQuoteState: selectStatusState(state, status),
+    statusQuoteState: selectStatusConditions(state, status.get('id')),
   });
 };
 

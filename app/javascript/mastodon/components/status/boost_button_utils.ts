@@ -1,8 +1,7 @@
 import { defineMessages } from 'react-intl';
 import type { MessageDescriptor } from 'react-intl';
 
-import { selectPlainStatus } from '@/mastodon/selectors/statuses';
-import { createAppSelector } from '@/mastodon/store';
+import type { StatusConditions } from '@/mastodon/selectors/statuses';
 import FormatQuote from '@/material-icons/400-24px/format_quote-fill.svg?react';
 import FormatQuoteOff from '@/material-icons/400-24px/format_quote_off-fill.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
@@ -62,40 +61,6 @@ export const messages = defineMessages({
   },
 });
 
-export const selectStatusState = createAppSelector(
-  [
-    (state) => state.meta.get('me') as string | undefined,
-    (state, statusId: string) => selectPlainStatus(state, statusId),
-  ],
-  (userId, status) => {
-    if (!status) {
-      return {};
-    }
-    const isPublic = ['public', 'unlisted'].includes(status.visibility);
-    const isMineAndPrivate =
-      userId === status.account && status.visibility === 'private';
-    const quoteApproval = status.quote_approval?.current_user;
-    return {
-      isLoggedIn: !!userId,
-      isPublic,
-      isMine: userId === status.account,
-      isPrivateReblog:
-        userId === status.account && status.visibility === 'private',
-      isReblogged: status.reblogged,
-      isReblogAllowed: isPublic || isMineAndPrivate,
-      isQuoteAutomaticallyAccepted:
-        quoteApproval === 'automatic' && (isPublic || isMineAndPrivate),
-      isQuoteManuallyAccepted:
-        quoteApproval === 'manual' && (isPublic || isMineAndPrivate),
-      isQuoteFollowersOnly:
-        status.quote_approval?.automatic[0] === 'followers' ||
-        status.quote_approval?.manual[0] === 'followers',
-    };
-  },
-);
-
-export type StatusState = ReturnType<typeof selectStatusState>;
-
 export interface MenuItemState {
   title: MessageDescriptor;
   meta?: MessageDescriptor;
@@ -107,7 +72,7 @@ export function boostItemState({
   isPublic,
   isPrivateReblog,
   isReblogged,
-}: StatusState): MenuItemState {
+}: StatusConditions): MenuItemState {
   if (isReblogged) {
     return {
       title: messages.reblog_cancel,
@@ -137,7 +102,7 @@ export function quoteItemState({
   isQuoteManuallyAccepted,
   isQuoteFollowersOnly,
   isPublic,
-}: StatusState): MenuItemState {
+}: StatusConditions): MenuItemState {
   const iconText: MenuItemState = {
     title: messages.quote,
     iconComponent: FormatQuote,
