@@ -4,17 +4,6 @@ class FetchLinkCardService < BaseService
   include Redisable
   include Lockable
 
-  URL_PATTERN = %r{
-    (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
-    (                                                                                                                           #   $2 URL
-      (https?://)                                                                                                               #   $3 Protocol (required)
-      (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
-      (?::(#{Twitter::TwitterText::Regex[:valid_port_number]}))?                                                                #   $5 Port number (optional)
-      (/#{Twitter::TwitterText::Regex[:valid_url_path]}*)?                                                                      #   $6 URL Path and anchor
-      (\?#{Twitter::TwitterText::Regex[:valid_url_query_chars]}*#{Twitter::TwitterText::Regex[:valid_url_query_ending_chars]})? #   $7 Query String
-    )
-  }iox
-
   def call(status)
     @status       = status
     @original_url = parse_urls
@@ -78,7 +67,12 @@ class FetchLinkCardService < BaseService
 
   def parse_urls
     urls = if @status.local?
-             @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
+             # extract_entities_with_indices runs the URL match alongside
+             # the mention match and resolves overlap, so something like
+             # "@bob@example.com" yields a mention, not a URL.
+             Extractor.extract_entities_with_indices(@status.text).filter_map do |entity|
+               Addressable::URI.parse(entity[:url]).normalize if entity[:url]
+             end
            else
              document = Nokogiri::HTML5(@status.text)
              links = document.css('a')

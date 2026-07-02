@@ -33,6 +33,8 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/page_without_title').to_return(request_fixture('page_without_title.txt'))
     stub_request(:get, 'http://example.com/long_canonical_url').to_return(request_fixture('long_canonical_url.txt'))
     stub_request(:get, 'http://example.com/alternative_utf8_spelling_in_header').to_return(request_fixture('alternative_utf8_spelling_in_header.txt'))
+    stub_request(:get, 'http://example.com/other').to_return(headers: { 'Content-Type' => 'text/html' }, body: '<!doctype html><title>Other</title>')
+    stub_request(:get, 'https://example.com').to_return(headers: { 'Content-Type' => 'text/html' }, body: '<!doctype html><title>Bare</title>')
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
@@ -319,6 +321,60 @@ RSpec.describe FetchLinkCardService do
 
     it 'ignores URLs to hashtags' do
       expect(a_request(:get, 'https://quitter.se/tag/wannacry')).to_not have_been_made
+    end
+  end
+
+  # Both rendering (TextFormatter) and preview fetching (this service, on
+  # local statuses) go through Extractor.extract_urls_with_indices. The
+  # invariant we want is: a substring in a post either becomes a clickable
+  # link AND is a candidate for a preview card, or it stays plain text and
+  # never triggers a fetch. The two extractors must not disagree.
+  describe 'URL extraction parity with TextFormatter' do
+    let(:status) { Fabricate(:status, text: 'http://example.com/html') }
+
+    [
+      'http://example.com/html',
+      'see http://example.com/html for details',
+      '(http://example.com/html)',
+      'http://example.com/html.',
+      'https://nic.みんな/',
+      'https://ja.wikipedia.org/wiki/日本',
+      'ftp://example.com http://example.com/html http://example.com/text',
+      'just some text with no URL at all',
+      'plain example.com without protocol',
+    ].each do |sample|
+      it "agrees on #{sample.inspect}" do
+        formatter_urls = TextFormatter.new(sample).entities.filter_map { |e| e[:url] }
+                                      .map { |u| Addressable::URI.parse(u).normalize.to_s }
+
+        service = described_class.new
+        service.instance_variable_set(:@status, instance_double(Status, local?: true, text: sample))
+        picked = service.send(:parse_urls)&.to_s
+
+        if picked
+          expect(formatter_urls).to include(picked)
+        else
+          # No http(s) URL the renderer would have linked should have been
+          # silently dropped on the service side.
+          fetched_http = formatter_urls.select { |u| u.start_with?('http://', 'https://') }
+                                       .reject { |u| service.send(:bad_url?, Addressable::URI.parse(u)) }
+          expect(fetched_http).to be_empty
+        end
+      end
+    end
+  end
+
+  describe 'preview source selection with mixed schemes' do
+    # Text contains: xmpp URI (non-http, must be skipped), a mention
+    # and a schemaless mention of example.com (which uts58 normalises
+    # to https://example.com). The schemaless one is what should drive
+    # the preview card.
+    let(:status) do
+      Fabricate(:status, text: 'ping xmpp:bob@grå.org or @bob@example.net or or just example.com')
+    end
+
+    it 'fetches the schemaless URL (as https://)' do
+      expect(a_request(:get, 'https://example.com')).to have_been_made
     end
   end
 end
