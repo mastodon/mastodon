@@ -18,6 +18,8 @@ class ActivityPub::LinkedDataSignature
     creator_uri = @json['signature']['creator']
     signature   = @json['signature']['signatureValue']
 
+    return if @json.dig('signature', 'expires')&.to_datetime&.past?
+
     return unless type == 'RsaSignature2017'
 
     keypair = Keypair.from_keyid(creator_uri)

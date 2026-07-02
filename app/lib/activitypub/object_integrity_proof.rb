@@ -17,9 +17,8 @@ class ActivityPub::ObjectIntegrityProof
     proof = @json['proof']
     return unless proof['type'].present? && proof['verificationMethod'].present? && proof['proofPurpose'].present?
 
-    return if proof_purpose != proof['proofPurpose']
-
-    return if proof['type'] != 'DataIntegrityProof'
+    return if proof_purpose != proof['proofPurpose'] || proof['type'] != 'DataIntegrityProof'
+    return if proof['expires']&.to_datetime&.past?
 
     cryptosuite = proof['cryptosuite']
     key_uri = proof['verificationMethod']
