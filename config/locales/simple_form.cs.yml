@@ -4,7 +4,7 @@ cs:
     hints:
       account:
         attribution_domains: Jeden na řádek. Chrání před falešným připisováním autorství.
-        discoverable: Můžete být uvedeni v kolekcích vytvořených jinými uživateli. Vy a vaše veřejné příspěvky mohou být doporučeny také uživatelům v jiných objevovacích zážitcích Mastodonu.
+        discoverable: Můžete být uvedeni v kolekcích vytvořených jinými uživateli. Vy a vaše veřejné příspěvky mohou být doporučeny také uživatelům v jiném doporučeném obsahu Mastodonu.
         display_name: Vaše celé jméno nebo přezdívka.
         fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
         indexable: Vaše veřejné příspěvky se mohou objevit ve výsledcích vyhledávání na Mastodonu. Lidé, kteří s vašimi příspěvky interagovaly, je mohou stále vyhledávat.
@@ -155,6 +155,7 @@ cs:
         jurisdiction: Uveďte zemi, kde žije ten, kdo platí účty. Pokud je to společnost nebo jiný subjekt, uveďte zemi, v níž je zapsán do obchodního rejstříku, a město, region, území, případně stát, pokud je to povinné.
         min_age: Neměla by být pod minimálním věkem požadovaným zákony vaší jurisdikce.
       user:
+        chosen_languages: Je-li zaškrtnuto, budou se ve veřejných osách zobrazovat pouze příspěvky ve vybraných jazycích. Toto nastavení nemá vliv na vaši domovskou osu ani seznamy.
         date_of_birth:
           few: Musíme se ujistit, že je Vám alespoň %{count}, abyste mohli používat %{domain}. Nebudeme to ukládat.
           many: Musíme se ujistit, že je Vám alespoň %{count} let, abyste mohli používat %{domain}. Nebudeme to ukládat.
@@ -180,6 +181,7 @@ cs:
     labels:
       account:
         attribution_domains: Webové stránky s povolením Vám připsat autorství
+        discoverable: Zobrazovat mě v doporučeném obsahu
         fields:
           name: Označení
           value: Obsah
@@ -319,6 +321,7 @@ cs:
         status_page_url: URL stránky se stavem
         theme: Výchozí motiv
         thumbnail: Miniatura serveru
+        thumbnail_description: Popisný text náhledu
         trendable_by_default: Povolit trendy bez předchozí revize
         trends: Povolit trendy
         wrapstodon: Povolit Wrapstodon
