@@ -2,6 +2,7 @@ import type { OrderedSet as ImmutableOrderedSet } from 'immutable';
 
 import { createAppSelector } from 'mastodon/store';
 
+import type { StatusInteractionIntent } from '../actions/interactions_typed';
 import type { ExpandedStatusShape, StatusShape } from '../models/status';
 
 import { selectPlainAccount } from './accounts';
@@ -69,6 +70,53 @@ export const selectExpandedStatus = createAppSelector(
       reblog: reblog ?? undefined,
     };
   },
+);
+
+export const selectStatusInteractions = createAppSelector(
+  [
+    selectPlainStatus,
+    (state) => state.meta.get('me', null) as string | null,
+    (state, statusId: string) =>
+      state.statuses.getIn([
+        state.statuses.getIn([statusId, 'quote', 'quoted_status']),
+        'account',
+      ]) as string | undefined | null,
+  ],
+  (status, currentAccountId, quotedAccountId) => {
+    if (!status) {
+      return null;
+    }
+    const isPublic = ['public', 'unlisted'].includes(status.visibility);
+    const isLoggedIn = !!currentAccountId;
+    const isMine = status.account === currentAccountId;
+
+    return {
+      statusId: status.id,
+      bookmark: isLoggedIn,
+      delete: isMine,
+      edit: isMine,
+      editQuotePolicy: isMine && isPublic,
+      embed: isPublic,
+      favourite: isLoggedIn,
+      filter: isLoggedIn,
+      mute: isMine,
+      pin: isMine && status.visibility !== 'direct',
+      quote: isLoggedIn,
+      reblog: isLoggedIn,
+      redraft: isMine,
+      reply: isLoggedIn,
+      report: isLoggedIn,
+      revokeQuote: isLoggedIn && currentAccountId === quotedAccountId,
+    } satisfies Record<StatusInteractionIntent, boolean> & { statusId: string };
+  },
+);
+
+export const selectStatusIntentAllowed = createAppSelector(
+  [
+    selectStatusInteractions,
+    (_state, _statusId: string, intent: StatusInteractionIntent) => intent,
+  ],
+  (allowedInteractions, intent) => allowedInteractions?.[intent] ?? false,
 );
 
 export const selectPictureInPicture = createAppSelector(

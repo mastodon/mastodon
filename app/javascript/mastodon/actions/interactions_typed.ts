@@ -15,6 +15,7 @@ import {
 } from '@/mastodon/store/typed_functions';
 
 import { deleteModal } from '../initial_state';
+import { selectStatusInteractions } from '../selectors/statuses';
 
 import { showAlert, showGenericAlert } from './alerts';
 import { replyCompose } from './compose';
@@ -40,7 +41,7 @@ import {
 export type StatusInteractionIntent =
   | 'bookmark'
   | 'delete'
-  | 'edit_quote_policy'
+  | 'editQuotePolicy'
   | 'edit'
   | 'embed'
   | 'favourite'
@@ -52,7 +53,7 @@ export type StatusInteractionIntent =
   | 'redraft'
   | 'reply'
   | 'report'
-  | 'revoke_quote';
+  | 'revokeQuote';
 
 const messages = defineMessages({
   noEdits: {
@@ -80,16 +81,16 @@ export const statusInteraction = createAppThunk(
   ) => {
     const state = getState();
     const statusImmutable = state.statuses.get(statusId);
-    if (!statusImmutable) {
+    const interactions = selectStatusInteractions(state, statusId);
+    if (!statusImmutable || !interactions) {
       dispatch(showGenericAlert());
       return;
     }
     const status = statusImmutable.toJS() as unknown as StatusShape;
-    const isPublic = ['public', 'unlisted'].includes(status.visibility);
 
     // Always allow showing an embed.
     if (intent === 'embed') {
-      if (isPublic) {
+      if (interactions.embed) {
         dispatch(
           openModal({
             modalType: 'EMBED',
@@ -167,11 +168,8 @@ export const statusInteraction = createAppThunk(
           }),
         );
         return;
-      case 'revoke_quote':
-        if (
-          state.statuses.getIn([status.quote?.quoted_status, 'account']) ===
-          currentAccountId
-        ) {
+      case 'revokeQuote':
+        if (interactions.revokeQuote) {
           dispatch(
             openModal({
               modalType: 'CONFIRM_REVOKE_QUOTE',
@@ -219,8 +217,8 @@ export const statusInteraction = createAppThunk(
         }
         return;
       }
-      case 'edit_quote_policy':
-        if (isPublic) {
+      case 'editQuotePolicy':
+        if (interactions.editQuotePolicy) {
           dispatch(
             openModal({
               modalType: 'COMPOSE_PRIVACY',
@@ -244,7 +242,7 @@ export const statusInteraction = createAppThunk(
         }
         return;
       case 'pin':
-        if (status.visibility === 'direct') {
+        if (!interactions.pin) {
           dispatch(showAlert({ message: messages.privateStatus }));
         } else if (status.pinned) {
           dispatch(unpin(statusImmutable));
