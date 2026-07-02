@@ -30,7 +30,7 @@ class ProcessLinksService < BaseService
       # We only support `FeaturedCollection` at this time
 
       object = ActivityPub::TagManager.instance.uri_to_resource(url.to_s, Collection)
-      object ||= ResolveURLService.new.call(url.to_s) if valid_domains.include?(url.host)
+      object ||= ResolveURLService.new.call(url.to_s) if valid_domains.include?(url.host) && !DomainBlock.blocked?(url.host)
       next unless object.is_a?(Collection)
 
       tagged_object = @previous_objects.find { |x| x.object == object || x.uri == url }
