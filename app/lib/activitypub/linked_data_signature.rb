@@ -37,13 +37,14 @@ class ActivityPub::LinkedDataSignature
     false
   end
 
-  def sign!(creator, sign_with: nil)
+  def sign!(creator, sign_with: nil, expires_in: 2.days)
     keypair = sign_with.presence || creator.keypair(type: :rsa)
 
     options = {
       'type' => 'RsaSignature2017',
       'creator' => keypair.full_uri,
       'created' => Time.now.utc.iso8601,
+      'expires' => expires_in.from_now.utc.iso8601,
     }
 
     options_hash  = hash(options.without('type', 'id', 'signatureValue').merge('@context' => CONTEXT))
