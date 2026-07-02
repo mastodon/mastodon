@@ -1,95 +1,76 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const emptyComponent = () => null;
 
-class Bundle extends PureComponent {
+const moduleCache = new Map;
 
-  static propTypes = {
-    fetchComponent: PropTypes.func.isRequired,
-    loading: PropTypes.func,
-    error: PropTypes.func,
-    children: PropTypes.func.isRequired,
-    renderDelay: PropTypes.number,
-  };
+const Bundle = ({ fetchComponent, loading: Loading = emptyComponent, error: Error = emptyComponent, renderDelay = 0, children }) => {
+  const [resolvedMod, setResolvedMod] = useState(undefined);
+  const [forceRender, setForceRender] = useState(false);
+  const timestampRef = useRef(null);
+  const timeoutRef = useRef(null);
 
-  static defaultProps = {
-    loading: emptyComponent,
-    error: emptyComponent,
-    renderDelay: 0,
-  };
-
-  static cache = new Map;
-
-  state = {
-    mod: undefined,
-    forceRender: false,
-  };
-
-  componentDidMount() {
-    this.load(this.props);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.fetchComponent !== this.props.fetchComponent) {
-      this.load(this.props);
-    }
-  }
-
-  componentWillUnmount () {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-  }
-
-  load = (props) => {
-    const { fetchComponent, renderDelay } = props || this.props;
-    const cachedMod = Bundle.cache.get(fetchComponent);
+  const loadComponent = useCallback(() => {
+    const cachedMod = moduleCache.get(fetchComponent);
 
     if (fetchComponent === undefined) {
-      this.setState({ mod: null });
-      return Promise.resolve();
+      setResolvedMod(null);
+      return;
     }
 
     if (cachedMod) {
-      this.setState({ mod: cachedMod.default });
-      return Promise.resolve();
+      setResolvedMod(cachedMod.default);
+      return;
     }
 
-    this.setState({ mod: undefined });
+    setResolvedMod(undefined);
 
     if (renderDelay !== 0) {
-      this.timestamp = new Date();
-      this.timeout = setTimeout(() => this.setState({ forceRender: true }), renderDelay);
+      timestampRef.current = new Date();
+      timeoutRef.current = setTimeout(() => setForceRender(true), renderDelay);
     }
 
-    return fetchComponent()
+    fetchComponent()
       .then((mod) => {
-        Bundle.cache.set(fetchComponent, mod);
-        this.setState({ mod: mod.default });
+        moduleCache.set(fetchComponent, mod);
+        setResolvedMod(mod.default);
       })
       .catch((error) => {
         console.error('Bundle fetching error:', error);
-        this.setState({ mod: null });
+        setResolvedMod(null);
       });
-  };
+  }, [fetchComponent, setResolvedMod, setForceRender]);
 
-  render() {
-    const { loading: Loading, error: Error, children, renderDelay } = this.props;
-    const { mod, forceRender } = this.state;
-    const elapsed = this.timestamp ? (new Date() - this.timestamp) : renderDelay;
+  useEffect(() => {
+    loadComponent();
 
-    if (mod === undefined) {
-      return (elapsed >= renderDelay || forceRender) ? <Loading /> : null;
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     }
+  }, [fetchComponent, loadComponent]);
 
-    if (mod === null) {
-      return <Error onRetry={this.load} />;
-    }
+  const elapsed = timestampRef.current ? (new Date() - timestampRef.current) : renderDelay;
 
-    return children(mod);
+  if (resolvedMod === undefined) {
+    return (elapsed >= renderDelay || forceRender) ? <Loading /> : null;
   }
 
-}
+  if (resolvedMod === null) {
+    return <Error onRetry={loadComponent} />;
+  }
+
+  return children(resolvedMod);
+};
+
+Bundle.propTypes = {
+  fetchComponent: PropTypes.func.isRequired,
+  loading: PropTypes.func,
+  error: PropTypes.func,
+  children: PropTypes.func.isRequired,
+  renderDelay: PropTypes.number,
+};
 
 export default Bundle;
