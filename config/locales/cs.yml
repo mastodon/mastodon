@@ -297,7 +297,11 @@ cs:
         enable_relay_html: "%{name} aktivoval*a relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktivoval*a ověřování e-mailovým tokenem pro %{target}"
         enable_user_html: Uživatel %{name} povolil přihlašování pro uživatele %{target}
+        listable_tag_html: může být doporučován
         memorialize_account_html: Uživatel %{name} změnil účet %{target} na „in memoriam“ stránku
+        not_listable_tag_html: nebude doporučován
+        not_trendable_tag_html: nebude se zobrazovat v trendech
+        not_usable_tag_html: nelze použít
         promote_user_html: Uživatel %{name} povýšil uživatele %{target}
         publish_terms_of_service_html: "%{name} zveřejnil*a aktualizace podmínek služby"
         reject_appeal_html: Uživatel %{name} zamítl odvolání proti rozhodnutí moderátora %{target}
@@ -310,6 +314,7 @@ cs:
         sensitive_account_html: "%{name} označil média účtu %{target} jako citlivá"
         silence_account_html: Uživatel %{name} omezil účet %{target}
         suspend_account_html: Uživatel %{name} pozastavil účet uživatele %{target}
+        trendable_tag_html: může se objevit v trendech
         unassigned_report_html: Uživatel %{name} odebral hlášení %{target}
         unblock_email_account_html: Uživatel %{name} odblokoval e-mailovou adresu %{target}
         unsensitive_account_html: "%{name} zrušil označení médií účtu %{target} jako citlivých"
@@ -322,8 +327,10 @@ cs:
         update_ip_block_html: "%{name} změnil pravidlo pro IP %{target}"
         update_report_html: "%{name} aktualizoval hlášení %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
+        update_tag_html: "%{name} změnil/a nastavení %{target} na: "
         update_user_role_html: "%{name} změnil %{target} roli"
         update_username_block_html: "%{name} aktualizovali pravidlo pro uživatelská jména obsahující %{target}"
+        usable_tag_html: lze použít;
       deleted_account: smazaný účet
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
@@ -525,17 +532,77 @@ cs:
           hint: Žádný účet zatím nemá odběratele.
           no_lists_yet: Zatím žádné seznamy
         last_email: Poslední e-mail
+        lead: Účty, které tuto vlastnost povolily a mají sledující, se ukáží níže.
+        show:
+          confirm_disable_feature: Zakázat emailové newslettery pro %{name}? Emailové aktualizace nebudou tomuto účtu zasílány. Uživatel stále bude moci tuto vlastnost ve svém nastavení. Pro úplné odstranění přístupu k této vlastnosti upravte uživatelská práva v Rolích.
+          confirm_remove_subscriber: "%{email} již nebude dostávat emaily od %{name}. Tuto akci nelze vzít zpět."
+          consent: Odběratelé vyjádřili souhlas pouze s přijímáním příspěvků emailem. Nepoužívejte tento seznam k jiným účelům.
+          date: Datum registrace
+          disable_feature: Zakázat vlastnost
+          disabled: Tato funkce byla zakázána a emaily již nejsou na tento seznam zasílány.
+          email: Emailová adresa
+          empty:
+            hint: Nikdo se zatím u tohoto účtu nepřihlásil k odběru.
+            no_subscribers_yet: Zatím žádní odběratelé
+          enable_feature: Povolit funkci
+          no_access_html: Tento účet již nemá oprávnění potřebné k zapnutí funkce. Změňte to v <a href="%{roles_path}">Role</a>.
+          title: "%{name} email newslettery"
+          view_account: Zobrazit účet
         status: Status
+        subscribers: Odběratelé
+        title: Mailové seznamy
+      additional_footer_texts:
+        show:
+          title: Dodatečný text v zápatí
       compliance_settings:
         additional_footer_text:
           action: Spravovat
+          hint: Volitelný text, který se zobrazí pouze v zápatí newsletter e-mailů
+          title: Dodatečný text v zápatí
+        lead: E-mailové newslettery mohou být považovány za marketingové e-maily v závislosti na jurisdikcích, kde působíte.
         privacy_policy:
           action: Spravovat
+          hint: Tyto zásady jsou uvedeny v zápatí každého e-mailu
+          title: Zásady ochrany osobních údajů
+        title: Nastavení souladu s předpisy
+      danger_zone:
+        disable_feature:
+          action: Vypnout
+          hint: Vypnout funkci pro všechny účty
+          title: Vypnout funkci
+        erase_all_data:
+          action: Vymazat data
+          hint: Trvale smaže všechny e-maily ve všech mailových seznamech
+          title: Vymazat všechna data
+        title: Nebezpečná zóna
+      disabled_msg: E-mailové odběry byly úspěšně vypnuty.
+      index:
+        disabled:
+          cannot_be_enabled: Váš poskytovatel technických služeb tuto funkci pro váš server nepovolil.
+          description: Tato funkce umožňuje vybraným účtům přidat si na profil widget, díky kterému mohou návštěvníci bez účtu na Mastodonu odebírat jejich příspěvky e-mailem.
+          get_started: Začít
+        lead: Umožnit návštěvníkům přijímat příspěvky e-mailem z vybraných účtů na tomto serveru.
+        title: Email newslettery
+      purged_msg: Všechna data o odběrech e-mailů se mažou.
       roles:
+        accounts: Účty
         edit_role: Upravit roli
+        empty:
+          hint: Nikdo nemá oprávnění k užívání této funkce.
+          no_roles_added: Nebyly přidány žádné role
+        lead: Účty s následujícími rolemi si mohou tuto funkci aktivovat ve svých profilech.
         manage_roles: Spravovat role
         role_name: Název role
         title: Role
+      setups:
+        show:
+          enable_feature: Povolit funkci
+          important_information: Důležité informace
+          list:
+            1_permission_explanation: Když je tato funkce zapnutá, účty s příslušným oprávněním mohou na své profily přidat formulář pro sběr e-mailů.
+            2_feature_explanation: Jakmile se návštěvníci příhlásí na profilové stránce účtu k odběru a potvrdí ho, začnou dostávat e-mailová upozornění pokaždé, když daný účet vytvoří nový veřejný příspěvek.
+            3_privacy_policy_warning: Administrátoři serveru budou mít přístup k PII (e-mailové adresy). Zásady ochrany osobních údajů a Smluvní podmínky pro server musí být tudíž aktualizovány před použitím této funkce.
+            4_cost_warning: Za odesílání e-mailů si váš hosting může účtovat poplatky. Před spuštěním se raději poraďte s podporou hostingu, jelikož tato funkce může razantně zvýšit počet e-mailů odeslaných z vašeho serveru.
     export_domain_allows:
       new:
         title: Importovat povolené domény
@@ -696,6 +763,8 @@ cs:
       new:
         title: Vytvořit nové IP pravidlo
       no_ip_block_selected: Nebyla změněna žádná IP pravidla, protože nebylo žádné zaškrtnuto
+      reset: Obnovit
+      search: Hledat
       title: IP pravidla
     relationships:
       title: Vztahy uživatele %{acct}
@@ -728,6 +797,7 @@ cs:
       action_log: Protokol auditu
       action_taken_by: Akci vykonal uživatel
       actions:
+        delete_description_html: Nahlášené příspěvky a/nebo kolekce budou smazány a prohřešek zaznamenán pro pomoc s případnou eskalací v případě budoucích přestupků stejného účtu.
         mark_as_sensitive_description_html: Média v nahlášených příspěvcích budou označena jako citlivá a bude zaznamenán prohřešek pro pomoc s eskalací v případě budoucích porušení stejným účtem.
         other_description_html: Podívejte se na další možnosti kontroly chování účtu a přizpůsobte komunikaci k nahlášenému účtu.
         resolve_description_html: Nebudou učiněny žádné kroky proti nahlášenému účtu, žádný prohřešek zaznamenán a hlášení bude uzavřeno.
@@ -754,6 +824,7 @@ cs:
       confirm: Potvrdit
       confirm_action: Potvrdit moderátorskou akci vůči @%{acct}
       created_at: Nahlášené
+      delete_and_resolve: Odstranit obsah
       forwarded: Přeposláno
       forwarded_replies_explanation: Toto hlášení je od uživatele z jiného serveru, a je o obsahu z jeho serveru. Byl převeden na vás, protože nahlášený obsah odpovídá jednomu z vašich uživatelů.
       forwarded_to: Přeposláno na %{domain}
@@ -782,6 +853,7 @@ cs:
       resolved_msg: Hlášení úspěšně vyřešeno!
       skip_to_actions: Přeskočit k akcím
       status: Stav
+      statuses: Příspěvky (%{count})
       statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
       summary:
         action_preambles:
@@ -837,6 +909,8 @@ cs:
         administrator_description: Uživatelé s tímto oprávněním obejdou všechna oprávnění
         delete_user_data: Mazat uživatelská data
         delete_user_data_description: Umožňuje uživatelům bezodkladně mazat data jiných uživatelů
+        invite_bypass_approval: Pozvat uživatele bez kontroly
+        invite_bypass_approval_description: Umožňuje lidem pozvaným na server těmito uživateli obejít schválení moderováním
         invite_users: Pozvat uživatele
         invite_users_description: Umožňuje uživatelům zvát na server nové lidi
         manage_announcements: Spravovat oznámení
@@ -847,6 +921,8 @@ cs:
         manage_blocks_description: Umožňuje uživatelům blokovat poskytovatele e-mailů a IP adresy
         manage_custom_emojis: Spravovat vlastní emoji
         manage_custom_emojis_description: Umožňuje uživatelům spravovat vlastní emoji na serveru
+        manage_email_subscriptions: Spravovat e-mailové odběry
+        manage_email_subscriptions_description: Povolit uživatelům s tímto oprávněním aktivovat funkci email newsletteru pro jejich účet
         manage_federation: Spravovat federaci
         manage_federation_description: Umožňuje uživatelům blokovat nebo povolit federaci s jinými doménami a ovládat doručování
         manage_invites: Spravovat pozvánky
@@ -934,6 +1010,16 @@ cs:
           authenticated: Pouze autentifikovaní uživatelé
           disabled: Vyžadovat specifickou uživatelskou roli
           public: Všichni
+      landing_page:
+        hints:
+          about_html: Stránka s popisem, kontaktními informacemi, pravidly a dalšími informacemi týkajícími se tohoto serveru.
+          local_feed_html: Aktuální přehled nejnovějších příspěvků od uživatelů tohoto serveru.
+          overview_html: Stránka zobrazující popis serveru vedle nejnovějších lokálních příspěvků uživatelů na tomto serveru.
+          trends_html: Stránka, která zobrazuje, co je teď na tomto serveru populární.
+        values:
+          local_feed: Místní živý kanál
+          overview: Přehled
+          trends: Populární
       registrations:
         moderation_recommandation: Před otevřením registrací všem se ujistěte, že máte vhodný a reaktivní moderační tým!
         preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
@@ -953,6 +1039,7 @@ cs:
     site_uploads:
       delete: Odstranit nahraný soubor
       destroyed_msg: Upload stránky byl úspěšně smazán!
+    skip_to_content: Přeskočit na obsah
     software_updates:
       critical_update: Kritické — aktualizujte, prosím, co nejdříve
       description: Doporučuje se udržovat vaši instalaci Mastodonu aktuální, aby se využily nejnovější opravy a funkce. Kromě toho je někdy velmi důležité včas aktualizovat Mastodon, aby se předešlo bezpečnostním problémům. Z těchto důvodů Mastodon kontroluje aktualizace každých 30 minut a bude vás informovat podle nastavení vašeho e-mailového oznámení.
