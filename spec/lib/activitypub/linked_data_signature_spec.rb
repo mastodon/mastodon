@@ -7,8 +7,8 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
   subject { described_class.new(json) }
 
-  let(:keyid) { 'http://example.com/alice#rsa-key' }
   let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice', domain: 'example.com') }
+  let(:keyid) { sender.keypair.uri }
 
   let(:raw_json) do
     {
@@ -55,8 +55,8 @@ RSpec.describe ActivityPub::LinkedDataSignature do
         signature
 
         # Unset key
-        old_key = sender.public_key
-        sender.update!(private_key: '', public_key: '')
+        old_key = sender.keypair.public_key
+        sender.keypairs.delete_all
 
         allow(ActivityPub::FetchRemoteKeyService).to receive(:new).and_return(service_stub)
 
@@ -153,6 +153,9 @@ RSpec.describe ActivityPub::LinkedDataSignature do
       expect(subject['signature']).to be_a Hash
       expect(subject['signature']['signatureValue']).to be_present
       expect(Array(subject['@context'])).to include('https://w3id.org/security/v1')
+
+      # Verification requires fetching the key, which we don't support for local keys
+      allow(Keypair).to receive(:from_keyid).with(sender.keypair(type: :rsa).full_uri).and_return(sender.keypair(type: :rsa))
       expect(described_class.new(subject).verify_actor!).to eq sender
     end
   end

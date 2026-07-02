@@ -89,7 +89,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :accounts, name: :index_accounts_on_username_and_domain_lower
-          duplicate_record(:account, username: duplicate_account_username, domain: duplicate_account_domain)
+          duplicate_record(:account, username: duplicate_account_username, domain: duplicate_account_domain, legacy_keypair: true)
           duplicate_record(:account, username: duplicate_account_username, domain: nil)
         end
 
