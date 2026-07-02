@@ -547,10 +547,7 @@ RSpec.describe Account do
 
       it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
-      it { is_expected.to validate_absence_of(:followers_url).on(:create) }
-      it { is_expected.to validate_absence_of(:inbox_url).on(:create) }
-      it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
-      it { is_expected.to validate_absence_of(:uri).on(:create) }
+      it { is_expected.to validate_absence_of(:inbox_url, :followers_url, :shared_inbox_url, :uri).on(:create) }
 
       it { is_expected.to allow_values([], ['example.com'], (1..domains_limit).to_a).for(:attribution_domains) }
       it { is_expected.to_not allow_values(['example com'], ['@'], (1..(domains_limit + 1)).to_a).for(:attribution_domains) }
