@@ -82,19 +82,17 @@ export function configFromEnv(env, environment) {
   } else if (Object.hasOwn(pgConfigs, environment)) {
     baseConfig = pgConfigs[environment];
 
-    if (env.DB_SSLMODE) {
-      switch(env.DB_SSLMODE) {
-      case 'disable':
-      case '':
-        baseConfig.ssl = false;
-        break;
-      case 'no-verify':
-        baseConfig.ssl = { rejectUnauthorized: false };
-        break;
-      default:
-        baseConfig.ssl = {};
-        break;
-      }
+    switch(env.DB_SSLMODE) {
+    case 'disable':
+      baseConfig.ssl = false;
+      break;
+    case 'no-verify':
+      baseConfig.ssl = { rejectUnauthorized: false };
+      break;
+    case 'prefer':
+    default:
+      baseConfig.ssl = {};
+      break;
     }
   } else {
     throw new Error('Unable to resolve postgresql database configuration.');
