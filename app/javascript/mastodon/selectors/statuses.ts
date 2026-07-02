@@ -1,8 +1,11 @@
 import type { OrderedSet as ImmutableOrderedSet } from 'immutable';
 
-import { createAppSelector } from 'mastodon/store';
-
-import type { ExpandedStatusShape, StatusShape } from '../models/status';
+import type { StatusInteractionIntent } from '@/mastodon/actions/interactions_typed';
+import type {
+  ExpandedStatusShape,
+  StatusShape,
+} from '@/mastodon/models/status';
+import { createAppSelector } from '@/mastodon/store/typed_functions';
 
 import { selectPlainAccount } from './accounts';
 import type { FilterShape } from './filters';
@@ -69,6 +72,75 @@ export const selectExpandedStatus = createAppSelector(
       reblog: reblog ?? undefined,
     };
   },
+);
+
+export const selectStatusConditions = createAppSelector(
+  [
+    selectPlainStatus,
+    (state) => state.meta.get('me', null) as string | null,
+    (state, statusId: string) =>
+      state.statuses.getIn([
+        state.statuses.getIn([statusId, 'quote', 'quoted_status']),
+        'account',
+      ]) as string | undefined | null,
+  ],
+  (status, currentAccountId, quotedAccountId) => ({
+    isPublic: status && ['public', 'unlisted'].includes(status.visibility),
+    isLoggedIn: !!currentAccountId,
+    isMine: status && !!currentAccountId && status.account === currentAccountId,
+    isQuoted:
+      status && !!currentAccountId && quotedAccountId === currentAccountId,
+    isNotDirect: status && status.visibility !== 'direct',
+  }),
+);
+
+export const selectStatusInteractions = createAppSelector(
+  [(_, statusId: string) => statusId, selectStatusConditions],
+  (statusId, conditionals) => {
+    function addAllowed(conditions: Partial<typeof conditionals>) {
+      return {
+        ...conditions,
+        allowed: Object.values(conditions).every(Boolean),
+      };
+    }
+
+    const { isLoggedIn, isMine, isPublic, isQuoted, isNotDirect } =
+      conditionals;
+
+    const interactions: Record<
+      StatusInteractionIntent,
+      Partial<typeof conditionals> & { allowed: boolean }
+    > = {
+      bookmark: addAllowed({ isLoggedIn }),
+      delete: addAllowed({ isMine }),
+      edit: addAllowed({ isMine }),
+      editQuotePolicy: addAllowed({ isMine, isPublic }),
+      embed: addAllowed({ isPublic }),
+      favourite: addAllowed({ isLoggedIn }),
+      filter: addAllowed({ isLoggedIn }),
+      mute: addAllowed({ isMine }),
+      pin: addAllowed({ isMine, isNotDirect }),
+      quote: addAllowed({ isLoggedIn }),
+      reblog: addAllowed({ isLoggedIn }),
+      redraft: addAllowed({ isMine }),
+      reply: addAllowed({ isLoggedIn }),
+      report: addAllowed({ isLoggedIn }),
+      revokeQuote: addAllowed({ isQuoted }),
+    };
+
+    return {
+      statusId,
+      ...interactions,
+    };
+  },
+);
+
+export const selectStatusIntentAllowed = createAppSelector(
+  [
+    selectStatusInteractions,
+    (_state, _statusId: string, intent: StatusInteractionIntent) => intent,
+  ],
+  (allowedInteractions, intent) => allowedInteractions[intent].allowed,
 );
 
 export const selectPictureInPicture = createAppSelector(
