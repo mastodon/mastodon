@@ -31,8 +31,6 @@ class Keypair < ApplicationRecord
     ed25519: 1,
   }, validate: true
 
-  attr_accessor :require_private_key
-
   validates :uri, presence: true, uniqueness: true, if: -> { account.remote? }
   validates :uri, absence: true, if: -> { account.local? }
 
@@ -41,9 +39,7 @@ class Keypair < ApplicationRecord
 
   validates :public_key, presence: true
   validates :private_key, presence: true, if: -> { account.local? }
-
-  # NOTE: this should be true in production, but tests heavily rely on remote accounts having a keypair
-  validates :private_key, absence: true, if: -> { account.remote? && !require_private_key }
+  validates :private_key, absence: true, if: -> { account.remote? }
 
   scope :unexpired, -> { where(expires_at: nil).or(where.not(expires_at: ..Time.now.utc)) }
   scope :usable, -> { unexpired.where(revoked: false) }

@@ -146,6 +146,8 @@ RSpec.describe ActivityPub::LinkedDataSignature do
   describe '#sign!' do
     subject { described_class.new(raw_json).sign!(sender) }
 
+    let(:sender) { Fabricate(:account) }
+
     it 'returns a hash with a signature, the expected context, and the signature can be verified', :aggregate_failures do
       expect(subject).to be_a Hash
       expect(subject['signature']).to be_a Hash
@@ -159,6 +161,6 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     options_hash   = Digest::SHA256.hexdigest(canonicalize(options.merge('@context' => ActivityPub::LinkedDataSignature::CONTEXT)))
     document_hash  = Digest::SHA256.hexdigest(canonicalize(document))
     to_be_verified = options_hash + document_hash
-    Base64.strict_encode64(from_actor.keypair.keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_verified))
+    Base64.strict_encode64(private_key_from_keypair(from_actor.keypair).sign(OpenSSL::Digest.new('SHA256'), to_be_verified))
   end
 end
