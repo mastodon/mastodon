@@ -74,7 +74,7 @@ export const selectExpandedStatus = createAppSelector(
   },
 );
 
-export const selectStatusInteractions = createAppSelector(
+export const selectStatusConditions = createAppSelector(
   [
     selectPlainStatus,
     (state) => state.meta.get('me', null) as string | null,
@@ -84,30 +84,28 @@ export const selectStatusInteractions = createAppSelector(
         'account',
       ]) as string | undefined | null,
   ],
-  (status, currentAccountId, quotedAccountId) => {
-    if (!status) {
-      return null;
-    }
-    const isPublic = ['public', 'unlisted'].includes(status.visibility);
-    const isNotDirect = status.visibility === 'direct';
-    const isLoggedIn = !!currentAccountId;
-    const isMine = isLoggedIn && status.account === currentAccountId;
-    const isQuoted = isLoggedIn && currentAccountId === quotedAccountId;
+  (status, currentAccountId, quotedAccountId) => ({
+    isPublic: status && ['public', 'unlisted'].includes(status.visibility),
+    isLoggedIn: !!currentAccountId,
+    isMine: status && !!currentAccountId && status.account === currentAccountId,
+    isQuoted:
+      status && !!currentAccountId && quotedAccountId === currentAccountId,
+    isNotDirect: status && status.visibility !== 'direct',
+  }),
+);
 
-    const conditionals = {
-      isPublic,
-      isLoggedIn,
-      isMine,
-      isQuoted,
-      isNotDirect,
-    };
-
+export const selectStatusInteractions = createAppSelector(
+  [(_, statusId: string) => statusId, selectStatusConditions],
+  (statusId, conditionals) => {
     function addAllowed(conditions: Partial<typeof conditionals>) {
       return {
         ...conditions,
         allowed: Object.values(conditions).every(Boolean),
       };
     }
+
+    const { isLoggedIn, isMine, isPublic, isQuoted, isNotDirect } =
+      conditionals;
 
     const interactions: Record<
       StatusInteractionIntent,
@@ -131,9 +129,8 @@ export const selectStatusInteractions = createAppSelector(
     };
 
     return {
-      statusId: status.id,
+      statusId,
       ...interactions,
-      ...conditionals,
     };
   },
 );
@@ -143,8 +140,7 @@ export const selectStatusIntentAllowed = createAppSelector(
     selectStatusInteractions,
     (_state, _statusId: string, intent: StatusInteractionIntent) => intent,
   ],
-  (allowedInteractions, intent) =>
-    allowedInteractions?.[intent].allowed ?? false,
+  (allowedInteractions, intent) => allowedInteractions[intent].allowed,
 );
 
 export const selectPictureInPicture = createAppSelector(

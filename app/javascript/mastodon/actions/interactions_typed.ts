@@ -85,14 +85,14 @@ export const statusInteraction = createAppThunk(
   ) => {
     const state = getState();
     const statusImmutable = state.statuses.get(statusId);
-    const interactions = selectStatusInteractions(state, statusId);
-    if (!statusImmutable || !interactions) {
+    if (!statusImmutable) {
       dispatch(showGenericAlert());
       return;
     }
     const status = statusImmutable.toJS() as unknown as StatusShape;
 
     // Check the permissions and respond if it's not allowed.
+    const interactions = selectStatusInteractions(state, statusId);
     const permissions = interactions[intent];
     if (!permissions.allowed) {
       // Must strictly check for false, as values can be undefined.
