@@ -14,7 +14,6 @@ import {
   initDomainBlockModal,
   unblockDomain,
 } from '@/mastodon/actions/domain_blocks';
-import { initAddFilter } from '@/mastodon/actions/filters';
 import type { StatusInteractionIntent } from '@/mastodon/actions/interactions';
 import { statusInteraction } from '@/mastodon/actions/interactions';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
@@ -22,7 +21,7 @@ import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import { useStatus } from '@/mastodon/hooks/useStatus';
 import { useIdentity } from '@/mastodon/identity_context';
 import { quickBoosting } from '@/mastodon/initial_state';
-import type { AccountShapeFull } from '@/mastodon/models/account';
+import type { Account } from '@/mastodon/models/account';
 import type { MenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Relationship } from '@/mastodon/models/relationship';
 import type { StatusShape } from '@/mastodon/models/status';
@@ -30,7 +29,14 @@ import {
   PERMISSION_MANAGE_FEDERATION,
   PERMISSION_MANAGE_USERS,
 } from '@/mastodon/permissions';
-import { selectPlainAccount } from '@/mastodon/selectors/accounts';
+import type {
+  StatusConditions,
+  StatusInteractionsAllowed,
+} from '@/mastodon/selectors/statuses';
+import {
+  selectStatusConditions,
+  selectStatusInteractionsAllowed,
+} from '@/mastodon/selectors/statuses';
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import BookmarkIcon from '@/material-icons/400-24px/bookmark-fill.svg?react';
@@ -46,8 +52,7 @@ import { IconButton } from '../icon_button';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
 import { BoostButton } from './boost_button';
-import type { MenuItemState } from './boost_button_utils';
-import { quoteItemState, selectStatusState } from './boost_button_utils';
+import { quoteItemState } from './boost_button_utils';
 import type { StatusContextType } from './types';
 
 interface StatusActionBarProps {
@@ -242,34 +247,37 @@ const StatusActionMenu: React.FC<{
   scrollKey?: string;
   withDismiss?: boolean;
 }> = ({ status, dismissQuoteHint, contextType, scrollKey, withDismiss }) => {
-  const account = useAppSelector((state) =>
-    selectPlainAccount(state, status.account),
-  );
-  const { signedIn, accountId: currentAccountId, permissions } = useIdentity();
-  const quotedAccountId = useAppSelector(
-    (state) =>
-      (state.statuses.getIn([status.quote?.quoted_status, 'account']) as
-        | string
-        | undefined) ?? null,
-  );
+  const account = useAppSelector((state) => state.accounts.get(status.account));
+  const { permissions } = useIdentity();
   const relationship = useRelationship(account?.id);
-  const statusQuoteState = useAppSelector((state) =>
-    selectStatusState(state, status.id),
-  );
-  const quoteItem = quoteItemState(statusQuoteState);
   const intl = useIntl();
   const dispatch = useAppDispatch();
+
+  const conditions = useAppSelector((state) =>
+    selectStatusConditions(state, status.id),
+  );
+  const interactions = useAppSelector((state) =>
+    selectStatusInteractionsAllowed(state, status.id),
+  );
+  const statusInteractionFactory = useCallback(
+    (intent: StatusInteractionIntent) => {
+      return () => {
+        dispatch(
+          statusInteraction({ statusId: status.id, contextType, intent }),
+        );
+      };
+    },
+    [contextType, dispatch, status.id],
+  );
 
   const menu = useMemo(
     () =>
       getMenuItems({
         status,
         account,
-        signedIn,
-        contextType,
-        currentAccountId,
-        quotedAccountId,
-        quoteItem,
+        conditions,
+        interactions,
+        onStatusInteraction: statusInteractionFactory,
         withDismiss,
         permissions,
         intl,
@@ -277,18 +285,16 @@ const StatusActionMenu: React.FC<{
         dispatch,
       }),
     [
-      account,
-      currentAccountId,
-      dispatch,
-      contextType,
-      intl,
-      permissions,
-      quoteItem,
-      quotedAccountId,
-      relationship,
-      signedIn,
       status,
+      account,
+      conditions,
+      interactions,
+      statusInteractionFactory,
       withDismiss,
+      permissions,
+      intl,
+      relationship,
+      dispatch,
     ],
   );
   const handleOpen = useCallback(() => {
@@ -316,13 +322,11 @@ const StatusActionMenu: React.FC<{
 
 interface MenuItemsParams {
   status: StatusShape;
-  account: AccountShapeFull | null;
-  contextType?: StatusContextType;
-  currentAccountId?: string;
-  quotedAccountId: string | null;
-  quoteItem: MenuItemState;
+  account?: Account;
+  conditions: StatusConditions;
+  interactions: StatusInteractionsAllowed;
+  onStatusInteraction: (intent: StatusInteractionIntent) => () => void;
   withDismiss?: boolean;
-  signedIn: boolean;
   permissions: number;
   intl: ReturnType<typeof useIntl>;
   relationship?: Relationship | null;
@@ -332,11 +336,9 @@ interface MenuItemsParams {
 function getMenuItems({
   status,
   account,
-  signedIn,
-  contextType,
-  currentAccountId,
-  quotedAccountId,
-  quoteItem,
+  conditions,
+  interactions,
+  onStatusInteraction,
   withDismiss,
   permissions,
   intl,
@@ -347,23 +349,14 @@ function getMenuItems({
 
   const statusId = status.id;
   const statusUrl = status.url ?? status.uri;
-  const publicStatus = ['public', 'unlisted'].includes(status.visibility);
-  const pinnableStatus = ['public', 'unlisted', 'private'].includes(
-    status.visibility,
-  );
-  const accountId = status.account;
-  const mutingConversation = status.muted;
-  const writtenByMe = accountId === currentAccountId;
-  const isRemote = account && account.username !== account.acct;
-  const isQuotingMe = quotedAccountId === currentAccountId;
-  const domain = account?.acct.split('@')[1];
+  const { isPublic, isLocal, isLoggedIn, isMine } = conditions;
 
   menu.push({
     text: intl.formatMessage(messages.open),
     to: `/@${account?.acct}/${statusId}`,
   });
 
-  if (publicStatus && isRemote) {
+  if (isPublic && !isLocal) {
     menu.push({
       text: intl.formatMessage(messages.openOriginalPage),
       href: statusUrl,
@@ -377,7 +370,7 @@ function getMenuItems({
     },
   });
 
-  if (publicStatus && 'share' in navigator) {
+  if (isPublic && 'share' in navigator) {
     menu.push({
       text: intl.formatMessage(messages.share),
       action: () => {
@@ -388,211 +381,215 @@ function getMenuItems({
     });
   }
 
-  const statusInteractAction = (intent: StatusInteractionIntent) => {
-    return () => {
-      dispatch(statusInteraction({ statusId, contextType, intent }));
-    };
-  };
-
-  if (publicStatus && !isRemote) {
+  if (interactions.embed) {
     menu.push({
       text: intl.formatMessage(messages.embed),
-      action: statusInteractAction('embed'),
+      action: onStatusInteraction('embed'),
     });
   }
 
-  if (!signedIn) {
+  if (!isLoggedIn) {
     return menu;
   }
 
   if (quickBoosting) {
     menu.push(null);
+    const quoteItem = quoteItemState(conditions);
     menu.push({
       text: intl.formatMessage(quoteItem.title),
       description: quoteItem.meta
         ? intl.formatMessage(quoteItem.meta)
         : undefined,
       disabled: quoteItem.disabled,
-      action: statusInteractAction('quote'),
+      action: onStatusInteraction('quote'),
     });
   }
 
   menu.push(null);
 
-  if (writtenByMe && pinnableStatus) {
+  if (interactions.pin) {
     menu.push({
       text: intl.formatMessage(status.pinned ? messages.unpin : messages.pin),
-      action: statusInteractAction('pin'),
+      action: onStatusInteraction('pin'),
     });
     menu.push(null);
   }
 
-  if (writtenByMe || withDismiss) {
+  if (interactions.mute || withDismiss) {
     menu.push({
       text: intl.formatMessage(
-        mutingConversation
-          ? messages.unmuteConversation
-          : messages.muteConversation,
+        status.muted ? messages.unmuteConversation : messages.muteConversation,
       ),
-      action: statusInteractAction('mute'),
+      action: onStatusInteraction('mute'),
     });
-    if (writtenByMe && !['private', 'direct'].includes(status.visibility)) {
+    if (interactions.editQuotePolicy) {
       menu.push({
         text: intl.formatMessage(messages.quotePolicyChange),
-        action: statusInteractAction('edit_quote_policy'),
+        action: onStatusInteraction('editQuotePolicy'),
       });
     }
     menu.push(null);
   }
 
-  if (writtenByMe) {
+  if (interactions.edit && interactions.delete && interactions.redraft) {
     menu.push({
       text: intl.formatMessage(messages.edit),
-      action: statusInteractAction('edit'),
+      action: onStatusInteraction('edit'),
     });
     menu.push({
       text: intl.formatMessage(messages.delete),
-      action: statusInteractAction('delete'),
+      action: onStatusInteraction('delete'),
       dangerous: true,
     });
     menu.push({
       text: intl.formatMessage(messages.redraft),
-      action: statusInteractAction('redraft'),
+      action: onStatusInteraction('redraft'),
       dangerous: true,
     });
-  } else if (account) {
-    menu.push({
-      text: intl.formatMessage(messages.mention, {
-        name: account.username,
-      }),
-      action: () => {
-        // TODO: FIX ME
-        dispatch(mentionCompose(account));
-      },
-    });
-    menu.push({
-      text: intl.formatMessage(messages.direct, {
-        name: account.username,
-      }),
-      action: () => {
-        // TODO: FIX ME
-        dispatch(directCompose(account));
-      },
-    });
-    menu.push(null);
+  }
 
-    if (isQuotingMe) {
+  if (isMine || !account) {
+    // Add the filter to handle the edge case of not having account data.
+    if (interactions.filter) {
+      menu.push(null);
       menu.push({
-        text: intl.formatMessage(messages.revokeQuote, {
-          name: account.username,
-        }),
-        action: statusInteractAction('revoke_quote'),
+        text: intl.formatMessage(messages.filter),
+        action: onStatusInteraction('filter'),
         dangerous: true,
       });
     }
+    return menu;
+  }
 
-    const isMuted = !!relationship?.get('muting');
+  const domain = account.acct.split('@')[1];
+
+  menu.push({
+    text: intl.formatMessage(messages.mention, {
+      name: account.username,
+    }),
+    action: () => {
+      dispatch(mentionCompose(account));
+    },
+  });
+  menu.push({
+    text: intl.formatMessage(messages.direct, {
+      name: account.username,
+    }),
+    action: () => {
+      dispatch(directCompose(account));
+    },
+  });
+  menu.push(null);
+
+  if (interactions.revokeQuote) {
     menu.push({
-      text: intl.formatMessage(isMuted ? messages.unmute : messages.mute, {
+      text: intl.formatMessage(messages.revokeQuote, {
         name: account.username,
       }),
-      action: () => {
-        if (isMuted) {
-          dispatch(unmuteAccount(accountId));
-        } else {
-          dispatch(muteAccount(accountId));
-        }
-      },
-      dangerous: !isMuted,
+      action: onStatusInteraction('revokeQuote'),
+      dangerous: true,
     });
+  }
 
-    const isBlocking = !!relationship?.blocking;
-    menu.push({
-      text: intl.formatMessage(isBlocking ? messages.unblock : messages.block, {
-        name: account.username,
-      }),
-      action: () => {
-        if (isBlocking) {
-          dispatch(unblockAccount(accountId));
-        } else {
-          // TODO: FIX ME
-          dispatch(initBlockModal(account));
-        }
-      },
-      dangerous: !isBlocking,
-    });
+  const isMuted = !!relationship?.get('muting');
+  menu.push({
+    text: intl.formatMessage(isMuted ? messages.unmute : messages.mute, {
+      name: account.username,
+    }),
+    action: () => {
+      if (isMuted) {
+        dispatch(unmuteAccount(account.id));
+      } else {
+        dispatch(muteAccount(account.id));
+      }
+    },
+    dangerous: !isMuted,
+  });
 
+  const isBlocking = !!relationship?.blocking;
+  menu.push({
+    text: intl.formatMessage(isBlocking ? messages.unblock : messages.block, {
+      name: account.username,
+    }),
+    action: () => {
+      if (isBlocking) {
+        dispatch(unblockAccount(account.id));
+      } else {
+        dispatch(initBlockModal(account));
+      }
+    },
+    dangerous: !isBlocking,
+  });
+
+  if (interactions.filter) {
     menu.push(null);
     menu.push({
       text: intl.formatMessage(messages.filter),
-      action: () => {
-        dispatch(initAddFilter(status, { contextType }));
-      },
+      action: onStatusInteraction('filter'),
       dangerous: true,
     });
+  }
+  menu.push(null);
+
+  menu.push({
+    text: intl.formatMessage(messages.report, {
+      name: account.username,
+    }),
+    action: onStatusInteraction('report'),
+    dangerous: true,
+  });
+
+  if (!isLocal) {
     menu.push(null);
 
+    const isDomainBlocking = !!relationship?.domain_blocking;
     menu.push({
-      text: intl.formatMessage(messages.report, {
+      text: intl.formatMessage(
+        isDomainBlocking ? messages.unblockDomain : messages.blockDomain,
+        { domain },
+      ),
+      action: () => {
+        if (isDomainBlocking) {
+          dispatch(unblockDomain(domain));
+        } else {
+          dispatch(initDomainBlockModal(account));
+        }
+      },
+      dangerous: !isDomainBlocking,
+    });
+  }
+
+  const canManageUsers =
+    (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS;
+  const canManageFederation =
+    (permissions & PERMISSION_MANAGE_FEDERATION) ===
+      PERMISSION_MANAGE_FEDERATION && !isLocal;
+
+  if (!canManageUsers && !canManageFederation) {
+    return menu;
+  }
+
+  menu.push(null);
+  if (canManageUsers) {
+    menu.push({
+      text: intl.formatMessage(messages.admin_account, {
         name: account.username,
       }),
-      action: statusInteractAction('report'),
-      dangerous: true,
+      href: `/admin/accounts/${status.account}`,
     });
-
-    if (isRemote) {
-      menu.push(null);
-
-      const isDomainBlocking = !!relationship?.domain_blocking;
-      menu.push({
-        text: intl.formatMessage(
-          isDomainBlocking ? messages.unblockDomain : messages.blockDomain,
-          { domain },
-        ),
-        action: () => {
-          if (isDomainBlocking) {
-            dispatch(unblockDomain(domain));
-          } else {
-            // TODO: FIX ME
-            dispatch(initDomainBlockModal(account));
-          }
-        },
-        dangerous: !isDomainBlocking,
-      });
-    }
-
-    if (
-      (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
-      (isRemote &&
-        (permissions & PERMISSION_MANAGE_FEDERATION) ===
-          PERMISSION_MANAGE_FEDERATION)
-    ) {
-      menu.push(null);
-      if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
-        menu.push({
-          text: intl.formatMessage(messages.admin_account, {
-            name: account.username,
-          }),
-          href: `/admin/accounts/${status.account}`,
-        });
-        menu.push({
-          text: intl.formatMessage(messages.admin_status),
-          href: `/admin/accounts/${status.account}/statuses/${status.id}`,
-        });
-      }
-      if (
-        isRemote &&
-        (permissions & PERMISSION_MANAGE_FEDERATION) ===
-          PERMISSION_MANAGE_FEDERATION
-      ) {
-        menu.push({
-          text: intl.formatMessage(messages.admin_domain, {
-            domain,
-          }),
-          href: `/admin/instances/${domain}`,
-        });
-      }
-    }
+    menu.push({
+      text: intl.formatMessage(messages.admin_status),
+      href: `/admin/accounts/${status.account}/statuses/${status.id}`,
+    });
   }
+  if (canManageFederation) {
+    menu.push({
+      text: intl.formatMessage(messages.admin_domain, {
+        domain,
+      }),
+      href: `/admin/instances/${domain}`,
+    });
+  }
+
   return menu;
 }
