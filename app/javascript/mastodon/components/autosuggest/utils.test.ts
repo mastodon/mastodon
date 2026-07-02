@@ -22,7 +22,7 @@ describe('textAtCursorMatchesToken', () => {
     'textAtCursorMatchesToken(%s) is %o',
     ([input, expected], { expect }) => {
       expect(
-        textAtCursorMatchesToken(input[0], input[1], input[2]),
+        textAtCursorMatchesToken(input[0], input[1], Array.from(input[2])),
       ).toStrictEqual(expected);
     },
   );
