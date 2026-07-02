@@ -130,11 +130,11 @@ export function unicodeToTwemojiHex(unicodeHex: string): string {
     // Some emoji have their variation selector removed
     if (code === VARIATION_SELECTOR_CODE) {
       // Key emoji
-      if (i === 1 && codes.at(-1) === KEYCAP_CODE) {
+      if (i === 1 && codes[codes.length-1] === KEYCAP_CODE) {
         continue;
       }
       // Eye in speech bubble
-      if (codes.at(0) === EYE_CODE && codes.at(-2) === SPEECH_BUBBLE_CODE) {
+      if (codes[0] === EYE_CODE && codes[codes.length-2] === SPEECH_BUBBLE_CODE) {
         continue;
       }
     }

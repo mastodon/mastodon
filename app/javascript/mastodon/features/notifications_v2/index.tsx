@@ -66,7 +66,7 @@ export const Notifications: React.FC<{
   const notifications = useAppSelector(selectNotificationGroups, isEqual);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((s) => s.notificationGroups.isLoading);
-  const hasMore = notifications.at(-1)?.type === 'gap';
+  const hasMore = notifications[notifications.length-1]?.type === 'gap';
 
   const lastReadId = useAppSelector((s) =>
     selectSettingsNotificationsShowUnread(s)
@@ -117,7 +117,7 @@ export const Notifications: React.FC<{
 
   const handleLoadOlder = useDebouncedCallback(
     () => {
-      const gap = notifications.at(-1);
+      const gap = notifications[notifications.length-1];
       if (gap?.type === 'gap') void dispatch(fetchNotificationsGap({ gap }));
     },
     300,

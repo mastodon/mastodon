@@ -39,7 +39,7 @@ const selectServerName = createAppSelector(
       return undefined;
     }
 
-    const domain = acct.split('@').at(1);
+    const domain = acct.split('@')[1];
     if (domain) {
       return domain;
     }

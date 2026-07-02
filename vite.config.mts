@@ -145,7 +145,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
               // Use a custom name for chunks, to avoid having too many of them called "index"
               const parts = facadeModuleId.split('/');
 
-              const parent = parts.at(-2);
+              const parent = parts[parts.length-2];
 
               if (parent) {
                 return `${parent}-[name]-[hash].js`;
