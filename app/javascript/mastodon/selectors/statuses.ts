@@ -1,9 +1,11 @@
 import type { OrderedSet as ImmutableOrderedSet } from 'immutable';
 
-import { createAppSelector } from 'mastodon/store';
-
-import type { StatusInteractionIntent } from '../actions/interactions_typed';
-import type { ExpandedStatusShape, StatusShape } from '../models/status';
+import type { StatusInteractionIntent } from '@/mastodon/actions/interactions_typed';
+import type {
+  ExpandedStatusShape,
+  StatusShape,
+} from '@/mastodon/models/status';
+import { createAppSelector } from '@/mastodon/store/typed_functions';
 
 import { selectPlainAccount } from './accounts';
 import type { FilterShape } from './filters';
