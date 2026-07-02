@@ -1,26 +1,3 @@
-#### 2026-07-02
-
-##### New Features
-
-- **commitizen:** add standard commitizen config ([3517a4f0](https://github.com/mastodon/mastodon/commit/3517a4f0ed759c5891c547e82e24bd3474280b55))
-
-##### Bug Fixes
-
-- Ignore non-http/https protocols in Service Worker handleFetch ([#39507](https://github.com/mastodon/mastodon/pull/39507)) ([7a635efd](https://github.com/mastodon/mastodon/commit/7a635efdc27d52f66f4d1eb379dd64a19067aeaa))
-
-##### Other Changes
-
-- Fix attempted modification of frozen hash ([#39571](https://github.com/mastodon/mastodon/pull/39571)) ([761c61b4](https://github.com/mastodon/mastodon/commit/761c61b42590a2fd91442fc15a0a7583e48bbea4))
-- Add back to state ([#39402](https://github.com/mastodon/mastodon/pull/39402)) ([963a5466](https://github.com/mastodon/mastodon/commit/963a54664804e60ea8e30795090a0f20de7a48dc))
-
-##### Refactors
-
-- Typing statuses ([#39374](https://github.com/mastodon/mastodon/pull/39374)) ([a7e80c62](https://github.com/mastodon/mastodon/commit/a7e80c62615233a305fdb9f39e1e0451f04e987f))
-
-##### Tests
-
-- **commitizen:** adding something to test changelog creation ([a7d12721](https://github.com/mastodon/mastodon/commit/a7d1272194e8bc88af3f4f0b121b37f01be6362a))
-
 # Changelog
 
 All notable changes to this project will be documented in this file.
