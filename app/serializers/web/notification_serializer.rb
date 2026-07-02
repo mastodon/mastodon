@@ -17,7 +17,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
   end
 
   def notification_id
-    object.id
+    object.id.to_s
   end
 
   def notification_type
