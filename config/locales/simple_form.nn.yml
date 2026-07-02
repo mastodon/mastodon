@@ -4,6 +4,7 @@ nn:
     hints:
       account:
         attribution_domains: Ein per line. Vernar mot falske krediteringar.
+        discoverable: Du kan bli omtala i samlingar som andre folk lagar. Du og dei offentlege innlegga dine kan òg bli føreslegne til folk når dei oppdagar kva som finst på Mastodon.
         display_name: Ditt fulle namn eller ditt tøysenamn.
         fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
         indexable: Dei offentlege innlegga dine kan dukka opp i søkjeresultat på Mastodon. Folk som har reagert på oinnlegga dine kan uansett søkja gjennom dei.
@@ -60,6 +61,9 @@ nn:
         setting_default_quote_policy_private: Innlegg som er skrivne på Mastodon og berre for fylgjarar kan ikkje siterast av andre.
         setting_default_quote_policy_unlisted: Når folk siterer deg, vil innlegget deira ikkje syna på populære tidsliner.
         setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
+        setting_display_media_default: Åtvar før du viser medium merkte som ømtolige
+        setting_display_media_hide_all: Åtvar før du viser alle medium
+        setting_display_media_show_all: Vis alle medium utan åtvaring, òg dei som er merkte som ømtolige
         setting_emoji_style: Korleis du skal visa smilefjes. «Auto» prøver å visa innebygde smilefjes, men bruker Twemoji som reserveløysing for eldre nettlesarar.
         setting_quick_boosting_html: Når dette er skrudd på og du klikkar på %{boost_icon} framhev-ikonet, vil du framheva innlegget med ein gong i staden for å opna framhev/siter-menyen. Du finn siteringa i %{options_icon} (Val)-menyen.
         setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
@@ -87,6 +91,7 @@ nn:
         closed_registrations_message: Vist når det er stengt for registrering
         content_cache_retention_period: Alle innlegg frå andre tenarar (inkludert framhevingar og svar) vil bli sletta etter talet på dagar du skriv inn, uansett om nokon har samhandla med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerke eller som favoritt. Private omtalar mellom brukarar frå ulike nettstader vil gå tapt og vera umogleg å gjenskapa. Bruk av denne innstillinga er meint for spesielle nettstader og bryt med det mange forventar av ein vanleg nettstad.
         custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
+        email_footer_text: Valfri tekst du kan setja i botnteksten einast på epostutsendingar.
         favicon: WEBP, PNG, GIF eller JPG. Overstyrer det standarde Mastodon-favikonet med eit eigendefinert ikon.
         landing_page: Vel kva side nye lesarar ser når dei kjem til tenaren din. Viss du vel «Populært», må du ha skrudd på dette i innstillingane for oppdaging. Viss du vel «Lokalstraum», må du la alle få sjå lokale straumar i innstillingane for oppdaging.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
@@ -104,6 +109,7 @@ nn:
         status_page_url: Adressa til ei side der folk kan sjå statusen til denne tenaren ved feil og utkoplingar
         theme: Tema som er synleg for nye brukarar og besøkjande som ikkje er logga inn.
         thumbnail: Eit omlag 2:1 bilete vist saman med informasjon om tenaren.
+        thumbnail_description: Ei biletskildring som hjelper svaksynte å forstå innhaldet.
         trendable_by_default: Hopp over manuell gjennomgang av populært innhald. Enkeltståande innlegg kan fjernast frå trendar i etterkant.
         trends: Trendar viser kva for nokre innlegg, emneknaggar og nyheiter som er populære på tenaren.
         wrapstodon: Gje lokale brukarar høve til å få ei leiken oppsummering av korleis dei har brukt Mastodon gjennom året. Denne funksjonen er tilgjengeleg mellom 10. og 31. desember kvart år for brukarar som har skrive minst eitt offentleg eller stille offentleg innlegg og har brukt minst ein merkelapp i løpet av året.
@@ -155,6 +161,7 @@ nn:
           other: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
         role: Rolla kontrollerer kva løyve brukaren har.
       user_role:
+        collection_limit: Avgrensar kor mange samlingar ein person med denne rolla kan laga. Merk at viss du minkar dette talet, vil ikkje dei som har overstige grensa mista samlingar, men dei vil ikkje kunna laga fleire.
         color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
         highlighted: Dette gjer rolla synleg offentleg
         name: Offentleg namn på rolla, dersom rolla skal visast som eit emblem
@@ -172,6 +179,7 @@ nn:
     labels:
       account:
         attribution_domains: Nettstader som har lov å kreditera deg
+        discoverable: Lat folk oppdaga meg
         fields:
           name: Merkelapp
           value: Innhald
@@ -286,6 +294,7 @@ nn:
         closed_registrations_message: Eigendefinert melding når registrering ikkje er mogleg
         content_cache_retention_period: Oppbevaringstid for eksternt innhald
         custom_css: Egendefinert CSS
+        email_footer_text: Ekstra botntekst
         favicon: Favorittikon
         landing_page: Startside for nye lesarar
         local_live_feed_access: Tilgang til direktestraumar med lokale innlegg
@@ -310,9 +319,13 @@ nn:
         status_page_url: Adresse til statussida
         theme: Standardtema
         thumbnail: Miniatyrbilete for tenaren
+        thumbnail_description: Alternativ tekst for miniatyrbilete
         trendable_by_default: Tillat trendar utan gjennomgang på førehand
         trends: Aktiver trendar
         wrapstodon: Skru på Mastodon-året
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Eg forstår at viss eg skrur på denne funksjonen, kan det auka talet på epostutsendingar frå denne tenaren monaleg, og at eg er ansvarleg for alle ekstra kostnader.
+        agreement_privacy_and_terms: Eg har oppdatert personvernreglane og bruksvilkåra.
       interactions:
         must_be_follower: Blokker varsel frå folk som ikkje fylgjer deg
         must_be_following: Blokker varsel frå folk du ikkje fylgjer
@@ -380,6 +393,7 @@ nn:
         role: Rolle
         time_zone: Tidssone
       user_role:
+        collection_limit: Maks tal samlingar per brukar
         color: Emblemfarge
         highlighted: Vis rolle som emblem på brukarprofil
         name: Namn

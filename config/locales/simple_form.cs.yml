@@ -4,6 +4,7 @@ cs:
     hints:
       account:
         attribution_domains: Jeden na řádek. Chrání před falešným připisováním autorství.
+        discoverable: Můžete být uvedeni v kolekcích vytvořených jinými uživateli. Vy a vaše veřejné příspěvky mohou být doporučeny také uživatelům v jiném doporučeném obsahu Mastodonu.
         display_name: Vaše celé jméno nebo přezdívka.
         fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
         indexable: Vaše veřejné příspěvky se mohou objevit ve výsledcích vyhledávání na Mastodonu. Lidé, kteří s vašimi příspěvky interagovaly, je mohou stále vyhledávat.
@@ -60,6 +61,9 @@ cs:
         setting_default_quote_policy_private: Příspěvky pouze pro sledující, které jsou vytvořeny na Mastodonu, nemohou být citovány ostatními.
         setting_default_quote_policy_unlisted: Když vás lidé citují, jejich příspěvek bude v časové ose populárních příspěvků také skryt.
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
+        setting_display_media_default: Varovat před zobrazením médií označených jako citlivá
+        setting_display_media_hide_all: Varovat před zobrazením jakýchkoliv médií
+        setting_display_media_show_all: Zobrazit všechna média bez varování, včetně médií označených jako citlivá
         setting_emoji_style: Jak se budou zobrazovat emoji. "Auto" zkusí použít výchozí emoji, ale pro starší prohlížeče použije Twemoji.
         setting_quick_boosting_html: Pokud je povoleno, kliknutím na %{boost_icon} Boost ikonu okamžitě boostnete místo otevření rozbalovací nabídky boost/citace. Přemístí citaci do nabídky %{options_icon} (Možnosti).
         setting_use_blurhash: Gradienty jsou vytvořeny na základě barvev skrytých médií, ale zakrývají veškeré detaily
@@ -87,6 +91,7 @@ cs:
         closed_registrations_message: Zobrazeno při zavření registrace
         content_cache_retention_period: Všechny příspěvky z jiných serverů (včetně boostů a odpovědí) budou po uplynutí stanoveného počtu dní smazány bez ohledu na interakci místního uživatele s těmito příspěvky. To se týká i příspěvků, které místní uživatel přidal do záložek nebo oblíbených. Soukromé zmínky mezi uživateli z různých instancí budou rovněž ztraceny a nebude možné je obnovit. Použití tohoto nastavení je určeno pro instance pro speciální účely a při implementaci pro obecné použití porušuje mnohá očekávání uživatelů.
         custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
+        email_footer_text: Volitelný text, který se zobrazí pouze v zápatí newsletter e-mailů.
         favicon: WEBP, PNG, GIF nebo JPG. Nahradí výchozí favicon Mastodonu vlastní ikonou.
         landing_page: Vybere stránku, kterou návštěvníci uvidí, když prvně přijdou na tvůj server. Pokud zvolíte "Trendy", je třeba povolit trendy v nastavení objevování. Pokud zvolíte "Místní kanál", je třeba v nastavení Objevování nastavit "Přístup k živým kanálům s lokálními příspěvky" na "Všichni".
         mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
@@ -104,6 +109,7 @@ cs:
         status_page_url: URL stránky, kde mohou lidé vidět stav tohoto serveru během výpadku
         theme: Vzhled stránky, který vidí noví a odhlášení uživatelé.
         thumbnail: Přibližně 2:1 obrázek zobrazený vedle informací o vašem serveru.
+        thumbnail_description: Popis obrázku, který pomůže lidem se zrakovým postižením pochopit jeho obsah.
         trendable_by_default: Přeskočit manuální kontrolu populárního obsahu. Jednotlivé položky mohou být odstraněny z trendů později.
         trends: Trendy zobrazují, které příspěvky, hashtagy a zprávy získávají na serveru pozornost.
         wrapstodon: Nabídněte místním uživatelům možnost vygenerovat hravé shrnutí jejich používání Mastodonu během roku. Tato funkce je dostupná od 10. do 31. prosince každého roku a je nabízena uživatelům, kteří během roku vytvořili alespoň jeden veřejný nebo tichý příspěvek a použili alespoň jeden hashtag.
@@ -129,6 +135,7 @@ cs:
         otp: 'Zadejte kód pro dvoufázové ověření vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
         webauthn: Pokud jde o USB klíč, vložte jej a případně se dotkněte jeho tlačítka.
       settings:
+        email_subscriptions: Zakázání zachová stávající odběratele, ale přestane posílat e-maily.
         indexable: Vaše profilová stránka se může objevit ve výsledcích vyhledávání na Google, Bingu a ostatních vyhledávačích.
         show_application: I tak budete vždy moci vidět, která aplikace zveřejnila váš příspěvek.
       tag:
@@ -148,6 +155,7 @@ cs:
         jurisdiction: Uveďte zemi, kde žije ten, kdo platí účty. Pokud je to společnost nebo jiný subjekt, uveďte zemi, v níž je zapsán do obchodního rejstříku, a město, region, území, případně stát, pokud je to povinné.
         min_age: Neměla by být pod minimálním věkem požadovaným zákony vaší jurisdikce.
       user:
+        chosen_languages: Je-li zaškrtnuto, budou se ve veřejných osách zobrazovat pouze příspěvky ve vybraných jazycích. Toto nastavení nemá vliv na vaši domovskou osu ani seznamy.
         date_of_birth:
           few: Musíme se ujistit, že je Vám alespoň %{count}, abyste mohli používat %{domain}. Nebudeme to ukládat.
           many: Musíme se ujistit, že je Vám alespoň %{count} let, abyste mohli používat %{domain}. Nebudeme to ukládat.
@@ -155,6 +163,7 @@ cs:
           other: Musíme se ujistit, že je Vám alespoň %{count}, abyste mohli používat %{domain}. Nebudeme to ukládat.
         role: Role určuje, která oprávnění uživatel má.
       user_role:
+        collection_limit: Omezuje počet kolekcí, které může jeden uživatel s touto rolí vytvořit. Vezměte prosím na vědomí, že pokud snížíte toto číslo, uživatelé, kteří jsou již na tomto limitu, neztratí žádné kolekce. Nebudou však moci vytvářet další.
         color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
         highlighted: Toto roli učiní veřejně viditelnou
         name: Veřejný název role, pokud má být role zobrazena jako odznak
@@ -172,6 +181,7 @@ cs:
     labels:
       account:
         attribution_domains: Webové stránky s povolením Vám připsat autorství
+        discoverable: Zobrazovat mě v doporučeném obsahu
         fields:
           name: Označení
           value: Obsah
@@ -286,6 +296,7 @@ cs:
         closed_registrations_message: Vlastní zpráva, když přihlášení není k dispozici
         content_cache_retention_period: Doba uchovávání vzdáleného obsahu
         custom_css: Vlastní CSS
+        email_footer_text: Dodatečný text zápatí
         favicon: Favicon
         landing_page: Úvodní stránka pro nové návštěvníky
         local_live_feed_access: Přístup k živým kanálům s lokálními příspěvky
@@ -310,9 +321,13 @@ cs:
         status_page_url: URL stránky se stavem
         theme: Výchozí motiv
         thumbnail: Miniatura serveru
+        thumbnail_description: Popisný text náhledu
         trendable_by_default: Povolit trendy bez předchozí revize
         trends: Povolit trendy
         wrapstodon: Povolit Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Chápu, že povolením této funkce se může výrazně zvýšit objem e-mailů odesílaných ze serveru a že jsem výhradně zodpovědný za jakékoliv vynaložené náklady.
+        agreement_privacy_and_terms: Aktualizovali jsme Zásady ochrany osobních údajů a Smluvní podmínky.
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -351,6 +366,7 @@ cs:
         hint: Další informace
         text: Pravidlo
       settings:
+        email_subscriptions: Povolit registraci e-mailem
         indexable: Zahrnout stránku profilu do vyhledávačů
         show_application: Zobrazit aplikaci, ze které jste odeslali příspěvek
       tag:
@@ -379,6 +395,7 @@ cs:
         role: Role
         time_zone: Časové pásmo
       user_role:
+        collection_limit: Maximální počet kolekcí na uživatele
         color: Barva odznaku
         highlighted: Zobrazit roli jako odznak na profilech uživatelů
         name: Název
