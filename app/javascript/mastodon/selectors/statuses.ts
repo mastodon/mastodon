@@ -20,7 +20,7 @@ export const getStatusList = createAppSelector(
 );
 
 export const selectPlainStatus = createAppSelector(
-  [(state, statusId: string) => state.statuses.get(statusId)],
+  [(state, statusId?: string | null) => state.statuses.get(statusId ?? '')],
   (status) => {
     if (!status) {
       return null;
