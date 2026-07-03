@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.6.3] - 2026-07-03
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add “Update available” navigation item at top of navbar when new Mastodon versions are available (#39705 by @ClearlyClaire)
+- Add rendering of post images in emails (#39636 by @diondiondion)
+
+### Fixed
+
+- Fix “view collection” menu item appearing on collection page (#39694 by @mkljczk)
+- Fix incorrect filter cache key sometimes causing incorrect filters to be applied (#39698 by @ClearlyClaire)
+- Fix missing `to_json` to publish announcement reaction worker (#39685 by @mjankowski)
+- Fix duplicate "clear" button shown in main search input in Chrome (#39679 by @diondiondion)
+- Fix visual glitch with the spoiler button (#39677 by @ChaosExAnima)
+- Fix invisible username during post highlight animation (#39659 by @diondiondion)
+- Fix follow button floating on profiles when overview landing page is enabled (#39650 by @FFederi)
+- Fix encryption warning "read more" link (#39635 by @thomas-pike)
+- Fix `tootctl media lookup` failing on some setups (#39615 by @brookmiles)
+- Fix visible transparent navigation link borders in Windows forced-contrast mode (#39614 by @diondiondion)
+- Fix crash with some browser extensions injecting custom elements in the page (#39507 by @OriginalRoOhi)
+
 ## [4.6.2] - 2026-06-25
 
 ### Security
