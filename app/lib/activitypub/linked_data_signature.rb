@@ -14,9 +14,13 @@ class ActivityPub::LinkedDataSignature
     return unless @json['signature'].is_a?(Hash)
     return if unsupported_jsonld_features?(@json)
 
-    type        = @json['signature']['type']
-    creator_uri = @json['signature']['creator']
-    signature   = @json['signature']['signatureValue']
+    signature_options = compact(@json['signature'].merge({ '@context' => CONTEXT }), CONTEXT)
+
+    type        = signature_options['type']
+    creator_uri = signature_options['creator']
+    signature   = signature_options['signatureValue']
+
+    return if signature_options['expires']&.to_datetime&.past?
 
     return unless type == 'RsaSignature2017'
 
@@ -24,7 +28,7 @@ class ActivityPub::LinkedDataSignature
     keypair = ActivityPub::FetchRemoteKeyService.new.call(creator_uri) if keypair&.public_key.blank?
     return if keypair.nil? || !keypair.usable? || keypair.type != 'rsa'
 
-    options_hash   = hash(@json['signature'].without('type', 'id', 'signatureValue').merge('@context' => CONTEXT))
+    options_hash   = hash(signature_options.without('type', 'id', 'signatureValue'))
     document_hash  = hash(@json.without('signature'))
     to_be_verified = options_hash + document_hash
 
@@ -33,13 +37,14 @@ class ActivityPub::LinkedDataSignature
     false
   end
 
-  def sign!(creator, sign_with: nil)
+  def sign!(creator, sign_with: nil, expires_in: 2.days)
     keypair = sign_with.presence || creator.keypair(type: :rsa)
 
     options = {
       'type' => 'RsaSignature2017',
       'creator' => keypair.full_uri,
       'created' => Time.now.utc.iso8601,
+      'expires' => expires_in.from_now.utc.iso8601,
     }
 
     options_hash  = hash(options.without('type', 'id', 'signatureValue').merge('@context' => CONTEXT))

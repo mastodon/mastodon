@@ -45,21 +45,133 @@ RSpec.describe ActivityPub::ObjectIntegrityProof do
       JSON
     end
 
-    before do
-      asn1 = OpenSSL::ASN1::Sequence(
-        [
-          OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
-          OpenSSL::ASN1::BitString(Multibase.decode_multicodec('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')[1]),
-        ]
-      )
-      keypair = OpenSSL::PKey.read(asn1.to_der)
-
-      Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: keypair.public_to_pem)
-    end
-
     context 'when the signature is correct' do
+      before do
+        asn1 = OpenSSL::ASN1::Sequence(
+          [
+            OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
+            OpenSSL::ASN1::BitString(Multibase.decode_multicodec('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')[1]),
+          ]
+        )
+        keypair = OpenSSL::PKey.read(asn1.to_der)
+
+        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: keypair.public_to_pem)
+      end
+
       it 'returns the actor' do
         expect(described_class.new(json).verify_actor!).to eq actor
+      end
+    end
+
+    context 'when the signature is incorrect' do
+      before do
+        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: OpenSSL::PKey.generate_key('Ed25519').public_to_pem)
+      end
+
+      it 'returns nil' do
+        expect(described_class.new(json).verify_actor!).to be_nil
+      end
+    end
+
+    context 'when the signature is correct and has an expiration date set in the future' do
+      let(:json) do
+        JSON.parse(<<~JSON)
+          {
+              "@context": [
+                  "https://www.w3.org/ns/activitystreams",
+                  "https://w3id.org/security/data-integrity/v2"
+              ],
+              "id": "https://server.example/activities/1",
+              "type": "Create",
+              "actor": "https://server.example/users/alice",
+              "object": {
+                  "id": "https://server.example/objects/1",
+                  "type": "Note",
+                  "attributedTo": "https://server.example/users/alice",
+                  "content": "Hello world"
+              },
+              "proof": {
+                  "@context": [
+                      "https://www.w3.org/ns/activitystreams",
+                      "https://w3id.org/security/data-integrity/v2"
+                  ],
+                  "type": "DataIntegrityProof",
+                  "cryptosuite": "eddsa-jcs-2022",
+                  "verificationMethod": "https://server.example/users/alice#ed25519-key",
+                  "proofPurpose": "assertionMethod",
+                  "proofValue": "z4bp44KNvTEeb7h8gY7tpbF9EaJxzbcYc6JNPxMv1wdWDakBt2vVEC3UzjctghA5XP2NevDnDCPzph2oNNb3qRJ8K",
+                  "created": "2023-02-24T23:36:38Z",
+                  "expires": "3000-01-01T00:00:00Z"
+              }
+          }
+        JSON
+      end
+
+      before do
+        asn1 = OpenSSL::ASN1::Sequence(
+          [
+            OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
+            OpenSSL::ASN1::BitString(Multibase.decode_multicodec('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')[1]),
+          ]
+        )
+        keypair = OpenSSL::PKey.read(asn1.to_der)
+
+        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: keypair.public_to_pem)
+      end
+
+      it 'returns the actor' do
+        expect(described_class.new(json).verify_actor!).to eq actor
+      end
+    end
+
+    context 'when the signature is correct and has an expiration date set in the past' do
+      let(:json) do
+        JSON.parse(<<~JSON)
+          {
+              "@context": [
+                  "https://www.w3.org/ns/activitystreams",
+                  "https://w3id.org/security/data-integrity/v2"
+              ],
+              "id": "https://server.example/activities/1",
+              "type": "Create",
+              "actor": "https://server.example/users/alice",
+              "object": {
+                  "id": "https://server.example/objects/1",
+                  "type": "Note",
+                  "attributedTo": "https://server.example/users/alice",
+                  "content": "Hello world"
+              },
+              "proof": {
+                  "@context": [
+                      "https://www.w3.org/ns/activitystreams",
+                      "https://w3id.org/security/data-integrity/v2"
+                  ],
+                  "type": "DataIntegrityProof",
+                  "cryptosuite": "eddsa-jcs-2022",
+                  "verificationMethod": "https://server.example/users/alice#ed25519-key",
+                  "proofPurpose": "assertionMethod",
+                  "proofValue": "z25og1nNL6TLjQ8fHK4WmzWZzjb8BhcVvaoXToxE9qpcB6iqCWmWhmSAifmcWA11rtdomgGpkRNeEPDMXWJY5BDVQ",
+                  "created": "2023-02-24T23:36:38Z",
+                  "expires": "2023-02-24T23:36:39Z"
+              }
+          }
+        JSON
+      end
+
+      before do
+        asn1 = OpenSSL::ASN1::Sequence(
+          [
+            OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
+            OpenSSL::ASN1::BitString(Multibase.decode_multicodec('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')[1]),
+          ]
+        )
+        keypair = OpenSSL::PKey.read(asn1.to_der)
+
+        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: keypair.public_to_pem)
+      end
+
+      it 'returns nil' do
+        expect(described_class.new(json).verify_actor!).to be_nil
       end
     end
   end

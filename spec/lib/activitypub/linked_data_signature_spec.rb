@@ -38,6 +38,38 @@ RSpec.describe ActivityPub::LinkedDataSignature do
       end
     end
 
+    context 'when signature matches and has an expiration date set in the future' do
+      let(:raw_signature) do
+        {
+          'creator' => keyid,
+          'created' => '2017-09-23T20:21:34Z',
+          'expires' => '3000-01-01T00:00:00Z',
+        }
+      end
+
+      let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => sign(sender, raw_signature, raw_json)) }
+
+      it 'returns creator' do
+        expect(subject.verify_actor!).to eq sender
+      end
+    end
+
+    context 'when signature matches but has an expiration date set in the past' do
+      let(:raw_signature) do
+        {
+          'creator' => keyid,
+          'created' => '2017-09-23T20:21:34Z',
+          'expires' => '2017-09-23T20:21:35Z',
+        }
+      end
+
+      let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => sign(sender, raw_signature, raw_json)) }
+
+      it 'returns nil' do
+        expect(subject.verify_actor!).to be_nil
+      end
+    end
+
     context 'when local account record is missing a public key' do
       let(:raw_signature) do
         {
