@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -11,10 +11,16 @@ import { useToggle } from '@/mastodon/hooks/useToggle';
 import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { selectStatusFilters } from '@/mastodon/selectors/filters';
-import { useAppSelector } from '@/mastodon/store';
+import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
+import { createAppSelector, useAppSelector } from '@/mastodon/store';
+import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 
 import { ContentWarning } from '../content_warning';
+import { LinkedDisplayName } from '../display_name';
 import { FilterWarning } from '../filter_warning';
+import { Icon } from '../icon';
+import { StatusThreadLabel } from '../status_thread_label';
 
 import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
@@ -55,35 +61,60 @@ type StatusRedesignProps = Merge<
   }
 >;
 
-export const StatusRedesign: React.FC<StatusRedesignProps> = ({
-  id,
-  muted,
-  rootId,
-  previousId,
-  nextId,
-  unread,
-  unfocusable,
-  contextType,
-  featured,
-  isQuotedPost,
-  accountId,
-  shouldHighlightOnMount,
-  showActions,
-  scrollKey,
-  children,
-  headerRenderFn,
-  avatarSize,
-  withCounters,
-  withDismiss,
-}) => {
-  const status = useExpandedStatus(id ?? undefined);
+const selectStatusReblog = createAppSelector(
+  [(state, id?: string | null) => selectExpandedStatus(state, id ?? undefined)],
+  (status) => {
+    if (!status) {
+      return {};
+    }
+    if (!status.reblog) {
+      return { status };
+    }
+
+    const { reblog, ...statusRest } = status;
+    return {
+      status: reblog,
+      parent: statusRest,
+    };
+  },
+);
+
+export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
+  const {
+    id,
+    muted,
+    rootId,
+    previousId,
+    nextId,
+    unread,
+    skipPrepend,
+    unfocusable,
+    contextType,
+    featured,
+    isQuotedPost,
+    accountId,
+    shouldHighlightOnMount,
+    showActions,
+    scrollKey,
+    children,
+    headerRenderFn,
+    avatarSize,
+    withCounters,
+    withDismiss,
+    showThread,
+  } = props;
+  const { status, parent } = useAppSelector((state) =>
+    selectStatusReblog(state, id),
+  );
+
   const [expanded] = useToggle(false);
   const [showDespiteFilter] = useToggle(false);
   const matchedFilters = useAppSelector((state) =>
-    selectStatusFilters(state, { contextType, statusId: id }),
+    selectStatusFilters(state, { contextType, statusId: parent?.id ?? id }),
   );
   const account = useAppSelector(
-    (state) => selectPlainAccount(state, accountId) ?? undefined,
+    (state) =>
+      parent?.account ?? selectPlainAccount(state, accountId) ?? undefined,
   );
   const handleClick = useCallback(() => {
     // Nothing
@@ -104,8 +135,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   const intl = useIntl();
   const screenReaderText = useTextForScreenReader({
     statusId: id,
-    rebloggedByText: status?.reblog
-      ? intl.formatMessage(messages.boosted, { name: status.account.acct })
+    rebloggedByText: parent
+      ? intl.formatMessage(messages.boosted, { name: parent.account.acct })
       : null,
     isQuote: isQuotedPost,
   });
@@ -113,6 +144,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   if (!status) {
     return null; // loading state
   }
+
+  const actualStatus = parent ?? status;
 
   const hashtagBar = null;
 
@@ -150,12 +183,20 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       aria-label={screenReaderText}
       data-nosnippet={status.account.noindex || undefined}
     >
+      {!skipPrepend && (
+        <StatusPrepend
+          status={actualStatus}
+          isReblog={!!parent}
+          showThread={showThread}
+        />
+      )}
       <StatusContentWrapper
-        status={status}
+        statusId={status.id}
+        inReplyToId={actualStatus.in_reply_to_id}
         rootId={rootId}
         nextId={nextId}
         previousId={previousId}
-        className={classNames({
+        className={classNames(`status-${status.visibility}`, {
           muted,
           'status--is-quote': isQuotedPost,
           'status--has-quote': !!status.quote,
@@ -212,36 +253,44 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
 const StatusContentWrapper: React.FC<
   Pick<StatusRedesignProps, 'rootId' | 'previousId' | 'nextId' | 'children'> & {
-    status: ExpandedStatusShape;
+    statusId: string;
+    inReplyToId?: string;
     className?: string;
   }
-> = ({ status, rootId, previousId, nextId, className, children }) => {
+> = ({
+  statusId,
+  inReplyToId,
+  rootId,
+  previousId,
+  nextId,
+  className,
+  children,
+}) => {
   const nextInReplyToId = useAppSelector((state) =>
     nextId ? state.statuses.getIn([nextId, 'in_reply_to_id']) : null,
   );
-  const connectUp = !!previousId && previousId === status.in_reply_to_id;
-  const connectToRoot = !!rootId && rootId === status.in_reply_to_id;
-  const connectReply = !!nextInReplyToId && nextInReplyToId === status.id;
+  const connectUp = !!previousId && previousId === inReplyToId;
+  const connectToRoot = !!rootId && rootId === inReplyToId;
+  const connectReply = !!nextInReplyToId && nextInReplyToId === statusId;
   return (
     <div
       className={classNames(
         'status',
-        `status-${status.visibility}`,
         {
-          'status-reply': !!status.in_reply_to_id,
+          'status-reply': !!inReplyToId,
           'status--in-thread': !!rootId,
           'status--first-in-thread':
             previousId && (!connectUp || connectToRoot),
         },
         className,
       )}
-      data-id={status.id}
+      data-id={statusId}
     >
       {(connectReply || connectUp || connectToRoot) && (
         <div
           className={classNames('status__line', {
             'status__line--full': connectReply,
-            'status__line--first': !status.in_reply_to_id && !connectToRoot,
+            'status__line--first': !inReplyToId && !connectToRoot,
           })}
         />
       )}
@@ -249,6 +298,64 @@ const StatusContentWrapper: React.FC<
       {children}
     </div>
   );
+};
+
+const StatusPrepend: React.FC<{
+  status: ExpandedStatusShape;
+  showThread?: boolean;
+  isReblog?: boolean;
+}> = ({ status, showThread, isReblog }) => {
+  if (isReblog) {
+    return (
+      <div className='status__prepend'>
+        <div className='status__prepend__icon'>
+          <Icon id='retweet' icon={RepeatIcon} />
+        </div>
+        <FormattedMessage
+          id='status.reblogged_by'
+          defaultMessage='{name} boosted'
+          values={{
+            name: (
+              <LinkedDisplayName
+                displayProps={{
+                  account: status.account,
+                  variant: 'simple',
+                }}
+                className='status__display-name muted'
+              />
+            ),
+          }}
+          tagName='span'
+        />
+      </div>
+    );
+  }
+
+  if (status.visibility === 'direct') {
+    return (
+      <div className='status__prepend'>
+        <div className='status__prepend__icon'>
+          <Icon id='at' icon={AlternateEmailIcon} />
+        </div>
+        <FormattedMessage
+          id='status.direct_indicator'
+          defaultMessage='Private mention'
+          tagName='span'
+        />
+      </div>
+    );
+  }
+
+  if (showThread && status.in_reply_to_account_id) {
+    return (
+      <StatusThreadLabel
+        accountId={status.account.id}
+        inReplyToAccountId={status.in_reply_to_account_id}
+      />
+    );
+  }
+
+  return null;
 };
 
 const domParser = new DOMParser();
