@@ -62,11 +62,11 @@ const messages = defineMessages({
   },
   privateStatus: {
     id: 'status.public_only',
-    defaultMessage: 'This status is private',
+    defaultMessage: 'This post is private',
   },
   notQuoted: {
     id: 'status.not_quoted',
-    defaultMessage: 'You are not quoted in this status',
+    defaultMessage: 'You are not quoted in this post',
   },
 });
 
