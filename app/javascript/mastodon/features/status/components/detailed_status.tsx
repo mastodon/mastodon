@@ -471,7 +471,7 @@ export const DetailedStatus: React.FC<{
 
         {(!matchedFilters || showDespiteFilter) && (
           <ContentWarning
-            status={status}
+            statusId={status.get('id')}
             expanded={expanded}
             onClick={handleExpandedToggle}
           />
