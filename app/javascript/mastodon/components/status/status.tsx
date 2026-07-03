@@ -8,6 +8,7 @@ import type { Merge } from 'type-fest';
 
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
+import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { selectStatusFilters } from '@/mastodon/selectors/filters';
 import { useAppSelector } from '@/mastodon/store';
@@ -58,12 +59,13 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   id,
   muted,
   rootId,
+  previousId,
+  nextId,
   unread,
   unfocusable,
   contextType,
   featured,
   isQuotedPost,
-  previousId,
   accountId,
   shouldHighlightOnMount,
   showActions,
@@ -112,9 +114,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     return null; // loading state
   }
 
-  const connectUp = false as boolean;
-  const connectToRoot = false as boolean;
-  const connectReply = false as boolean;
   const hashtagBar = null;
 
   const header = headerRenderFn ? (
@@ -151,28 +150,18 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       aria-label={screenReaderText}
       data-nosnippet={status.account.noindex || undefined}
     >
-      <div
-        className={classNames('status', `status-${status.visibility}`, {
-          'status-reply': !!status.in_reply_to_id,
-          'status--in-thread': !!rootId,
-          'status--first-in-thread':
-            previousId && (!connectUp || connectToRoot),
-          muted: muted,
+      <StatusContentWrapper
+        status={status}
+        rootId={rootId}
+        nextId={nextId}
+        previousId={previousId}
+        className={classNames({
+          muted,
           'status--is-quote': isQuotedPost,
           'status--has-quote': !!status.quote,
           'status--highlighted-entry': shouldHighlightOnMount,
         })}
-        data-id={status.id}
       >
-        {(connectReply || connectUp || connectToRoot) && (
-          <div
-            className={classNames('status__line', {
-              'status__line--full': connectReply,
-              'status__line--first': !status.in_reply_to_id && !connectToRoot,
-            })}
-          />
-        )}
-
         {header}
 
         {matchedFilters.length > 0 && (
@@ -216,7 +205,48 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             withCounters={withCounters}
           />
         )}
-      </div>
+      </StatusContentWrapper>
+    </div>
+  );
+};
+
+const StatusContentWrapper: React.FC<
+  Pick<StatusRedesignProps, 'rootId' | 'previousId' | 'nextId' | 'children'> & {
+    status: ExpandedStatusShape;
+    className?: string;
+  }
+> = ({ status, rootId, previousId, nextId, className, children }) => {
+  const nextInReplyToId = useAppSelector((state) =>
+    nextId ? state.statuses.getIn([nextId, 'in_reply_to_id']) : null,
+  );
+  const connectUp = !!previousId && previousId === status.in_reply_to_id;
+  const connectToRoot = !!rootId && rootId === status.in_reply_to_id;
+  const connectReply = !!nextInReplyToId && nextInReplyToId === status.id;
+  return (
+    <div
+      className={classNames(
+        'status',
+        `status-${status.visibility}`,
+        {
+          'status-reply': !!status.in_reply_to_id,
+          'status--in-thread': !!rootId,
+          'status--first-in-thread':
+            previousId && (!connectUp || connectToRoot),
+        },
+        className,
+      )}
+      data-id={status.id}
+    >
+      {(connectReply || connectUp || connectToRoot) && (
+        <div
+          className={classNames('status__line', {
+            'status__line--full': connectReply,
+            'status__line--first': !status.in_reply_to_id && !connectToRoot,
+          })}
+        />
+      )}
+
+      {children}
     </div>
   );
 };

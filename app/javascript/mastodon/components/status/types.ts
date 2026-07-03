@@ -25,8 +25,9 @@ export interface StatusContainerProps {
   id?: string | null;
   account?: TAccount;
   children?: ReactNode;
-  previousId?: string;
   rootId?: string;
+  previousId?: string;
+  nextId?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
   muted?: boolean;
   hidden?: boolean;
@@ -54,7 +55,7 @@ export const TypedStatusContainer =
   StatusContainer as ComponentType<StatusContainerProps>;
 
 // Taken from the Status component.
-export interface StatusProps extends StatusContainerProps {
+export interface StatusProps extends Omit<StatusContainerProps, 'nextId'> {
   status: TStatus;
   nextInReplyToId?: string;
   onReply: (status: TStatus) => void;
