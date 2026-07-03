@@ -17,7 +17,6 @@ import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
-import type { FilterShape } from '@/mastodon/selectors/filters';
 import { selectStatusFilters } from '@/mastodon/selectors/filters';
 import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
 import {
@@ -131,14 +130,12 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
   const matchedFilters = useAppSelector((state) =>
     selectStatusFilters(state, { contextType, statusId: parent?.id ?? id }),
   );
-
-  // State
-  const [showDespiteFilter, { onToggle: onFilterToggle }] = useToggle(false);
+  const statusId = status?.id;
 
   // Display
   const intl = useIntl();
   const screenReaderText = useTextForScreenReader({
-    statusId: id,
+    statusId,
     rebloggedByText: parent
       ? intl.formatMessage(messages.boosted, { name: parent.account.acct })
       : null,
@@ -146,21 +143,15 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
   });
 
   // Handlers
-  const handleClick = useCallback(() => {
-    // Nothing
-  }, []);
-  const handleHeaderClick = useCallback(() => {
-    // Nothing
-  }, []);
-  const handleExpandedToggle = useCallback(() => {
-    // Nothing
-  }, []);
-  const handleFilterToggle = useCallback(() => {
-    // Nothing
-  }, []);
-  const handleTranslate = useCallback(() => {
-    // Nothing
-  }, []);
+  const handlers = useStatusHandlers({ status, contextType, onClick });
+  const {
+    showDespiteFilter,
+    onHeaderClick,
+    onExpandedToggle,
+    onFilterToggle,
+    onOpenClick,
+    onTranslate,
+  } = handlers;
 
   if (!status) {
     return null; // loading state
@@ -173,13 +164,9 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
     (!status.hidden || !status.spoiler_text);
 
   const hotkeysProps = {
-    status,
-    matchedFilters,
-    showDespiteFilter,
+    ...handlers,
     muted,
     unfocusable,
-    onFilterToggle,
-    onClick,
   } satisfies Omit<React.ComponentProps<typeof StatusHotkeys>, 'children'>;
 
   if (hidden) {
@@ -204,7 +191,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
       statusId: status.id,
       account,
       avatarSize,
-      onHeaderClick: handleHeaderClick,
+      onHeaderClick,
       featured,
     })
   ) : (
@@ -212,7 +199,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
       statusId={status.id}
       account={account}
       avatarSize={avatarSize}
-      onHeaderClick={handleHeaderClick}
+      onHeaderClick={onHeaderClick}
     />
   );
 
@@ -260,7 +247,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
             <FilterWarning
               title={matchedFilters.map((filter) => filter.title).join(', ')}
               expanded={showDespiteFilter}
-              onClick={handleFilterToggle}
+              onClick={onFilterToggle}
             />
           )}
 
@@ -268,7 +255,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
             <ContentWarning
               statusId={status.id}
               expanded={expanded}
-              onClick={handleExpandedToggle}
+              onClick={onExpandedToggle}
             />
           )}
 
@@ -276,8 +263,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
             <>
               <StatusContent
                 statusId={status.id}
-                onClick={handleClick}
-                onTranslate={handleTranslate}
+                onClick={onOpenClick}
+                onTranslate={onTranslate}
                 collapsible
               />
 
@@ -306,104 +293,16 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
   );
 };
 
-const StatusHotkeys: React.FC<{
-  status: ExpandedStatusShape;
-  matchedFilters: FilterShape[];
-  showDespiteFilter: boolean;
-  onFilterToggle: () => void;
-  muted?: boolean;
-  unfocusable?: boolean;
-  onClick?: () => void;
-  children: React.ReactNode;
-}> = ({
-  status,
-  matchedFilters,
-  showDespiteFilter,
-  onFilterToggle,
-  muted,
-  unfocusable,
-  onClick,
-  children,
-}) => {
-  const dispatch = useAppDispatch();
-  const history = useHistory();
-
-  const handlerFactory = useCallback(
-    (intent: StatusInteractionIntent) => {
-      return () => {
-        dispatch(statusInteraction({ statusId: status.id, intent }));
-      };
-    },
-    [dispatch, status.id],
-  );
-  const handleMention = useCallback(() => {
-    dispatch(mentionComposeById(status.account.id));
-  }, [dispatch, status.account.id]);
-  const handleOpen = useCallback(() => {
-    if (onClick) {
-      onClick();
-      return;
-    }
-
-    const path = `/@${status.account.acct}/${status.id}`;
-
-    if (history.location.pathname.replace('/deck/', '/') === path) {
-      history.replace(path, { focusTarget: FOCUS_TARGET.POST });
-    } else {
-      history.push(path, { focusTarget: FOCUS_TARGET.POST });
-    }
-  }, [history, onClick, status.account.acct, status.id]);
-  const handleOpenProfile = useCallback(() => {
-    history.push(`/@${status.account.acct}`);
-  }, [history, status.account.acct]);
-  const handleToggleHidden = useCallback(() => {
-    if (!matchedFilters.length || showDespiteFilter) {
-      dispatch(toggleStatusSpoilers(status.id));
-    }
-
-    if (!status.hidden || !status.spoiler_text) {
-      onFilterToggle();
-    }
-  }, [
-    dispatch,
-    matchedFilters.length,
-    onFilterToggle,
-    showDespiteFilter,
-    status,
-  ]);
-  const handleOpenMedia = useCallback(() => {
-    const attachment = status.media_attachments[0];
-    if (!attachment) {
-      return;
-    }
-
-    const lang = status.translation?.language ?? status.language;
-    if (attachment.type === 'video') {
-      dispatch(
-        openModal({
-          modalType: 'VIDEO',
-          modalProps: {
-            statusId: status.id,
-            media: attachment,
-            lang,
-            options: { startTime: 0 },
-          },
-        }),
-      );
-    } else {
-      dispatch(
-        openModal({
-          modalType: 'MEDIA',
-          modalProps: {
-            statusId: status.id,
-            media: status.media_attachments,
-            lang,
-            index: 0,
-          },
-        }),
-      );
-    }
-  }, [dispatch, status]);
+const StatusHotkeys: React.FC<
+  {
+    muted?: boolean;
+    unfocusable?: boolean;
+    children: React.ReactNode;
+  } & StatusHandlers
+> = ({ muted, unfocusable, children, ...handlers }) => {
+  const onOpen = useCallback(() => {
+    handlers.onOpen();
+  }, [handlers]);
 
   if (muted) {
     return children;
@@ -412,18 +311,18 @@ const StatusHotkeys: React.FC<{
   return (
     <Hotkeys
       handlers={{
-        reply: handlerFactory('reply'),
-        favourite: handlerFactory('favourite'),
-        boost: handlerFactory('reblog'),
-        quote: handlerFactory('quote'),
-        mention: handleMention,
-        open: handleOpen,
-        openProfile: handleOpenProfile,
-        toggleHidden: handleToggleHidden,
+        reply: handlers.onReply,
+        favourite: handlers.onFavourite,
+        boost: handlers.onBoost,
+        quote: handlers.onQuote,
+        mention: handlers.onMention,
+        open: onOpen,
+        openProfile: handlers.onOpenProfile,
+        toggleHidden: handlers.onToggleHidden,
         // TODO: This is handled in a child component, so needs to be fixed.
         // toggleSensitive: onMediaShowToggle,
-        openMedia: handleOpenMedia,
-        onTranslate: handlerFactory('translate'),
+        openMedia: handlers.onOpenMedia,
+        onTranslate: handlers.onTranslate,
       }}
       focusable={!unfocusable}
     >
@@ -539,9 +438,190 @@ const StatusPrepend: React.FC<{
   return null;
 };
 
-const domParser = new DOMParser();
+function useStatusHandlers({
+  status,
+  contextType,
+  onClick,
+}: { status?: ExpandedStatusShape } & Pick<
+  StatusRedesignProps,
+  'contextType' | 'onClick'
+>) {
+  const matchedFilters = useAppSelector((state) =>
+    selectStatusFilters(state, {}),
+  );
+  const [showDespiteFilter, { onToggle: onFilterToggle }] = useToggle(false);
 
-export function useTextForScreenReader({
+  const dispatch = useAppDispatch();
+  const statusId = status?.id;
+
+  // Display handlers
+  const onExpandedToggle = useCallback(() => {
+    dispatch(toggleStatusSpoilers(statusId));
+  }, [dispatch, statusId]);
+
+  const onToggleHidden = useCallback(() => {
+    if (!status) {
+      return;
+    }
+    if (!matchedFilters.length || showDespiteFilter) {
+      dispatch(toggleStatusSpoilers(status.id));
+    }
+
+    if (!status.hidden || !status.spoiler_text) {
+      onFilterToggle();
+    }
+  }, [
+    dispatch,
+    matchedFilters.length,
+    onFilterToggle,
+    showDespiteFilter,
+    status,
+  ]);
+
+  // Interaction handlers
+  const handlerFactory = useCallback(
+    (intent: StatusInteractionIntent) => {
+      return () => {
+        dispatch(statusInteraction({ statusId, intent, contextType }));
+      };
+    },
+    [contextType, dispatch, statusId],
+  );
+
+  const accountId = status?.account.id;
+  const onMention = useCallback(() => {
+    dispatch(mentionComposeById(accountId));
+  }, [dispatch, accountId]);
+
+  // Navigation handlers
+  const history = useHistory();
+
+  const onOpen = useCallback(
+    (newTab = false) => {
+      if (onClick || !status) {
+        onClick?.();
+        return;
+      }
+
+      const path = `/@${status.account.acct}/${status.id}`;
+
+      if (newTab) {
+        window.open(path, '_blank', 'noopener');
+      } else if (history.location.pathname.replace('/deck/', '/') === path) {
+        history.replace(path, { focusTarget: FOCUS_TARGET.POST });
+      } else {
+        history.push(path, { focusTarget: FOCUS_TARGET.POST });
+      }
+    },
+    [history, onClick, status],
+  );
+
+  const onOpenClick: React.MouseEventHandler = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      if (event.button === 0 && !(event.ctrlKey || event.metaKey)) {
+        onOpen();
+      } else if (
+        event.button === 1 ||
+        (event.button === 0 && (event.ctrlKey || event.metaKey))
+      ) {
+        onOpen(true);
+      }
+    },
+    [onOpen],
+  );
+
+  const onHeaderClick: React.MouseEventHandler = useCallback(
+    (event) => {
+      // Only handle clicks on the empty space above the content
+      if (event.target !== event.currentTarget && event.detail >= 1) {
+        return;
+      }
+
+      onOpenClick(event);
+    },
+    [onOpenClick],
+  );
+
+  const acct = status?.account.acct;
+  const onOpenProfile = useCallback(() => {
+    if (acct) {
+      history.push(`/@${acct}`);
+    }
+  }, [history, acct]);
+
+  const onOpenMedia = useCallback(() => {
+    const attachment = status?.media_attachments[0];
+    if (!attachment) {
+      return;
+    }
+
+    const lang = status.translation?.language ?? status.language;
+    if (attachment.type === 'video') {
+      dispatch(
+        openModal({
+          modalType: 'VIDEO',
+          modalProps: {
+            statusId: status.id,
+            media: attachment,
+            lang,
+            options: { startTime: 0 },
+          },
+        }),
+      );
+    } else {
+      dispatch(
+        openModal({
+          modalType: 'MEDIA',
+          modalProps: {
+            statusId: status.id,
+            media: status.media_attachments,
+            lang,
+            index: 0,
+          },
+        }),
+      );
+    }
+  }, [dispatch, status]);
+
+  return useMemo(
+    () => ({
+      showDespiteFilter,
+      onOpenClick,
+      onExpandedToggle,
+      onFilterToggle,
+      onHeaderClick,
+      onMention,
+      onOpen,
+      onOpenMedia,
+      onOpenProfile,
+      onToggleHidden,
+      onReply: handlerFactory('reply'),
+      onFavourite: handlerFactory('favourite'),
+      onBoost: handlerFactory('reblog'),
+      onQuote: handlerFactory('quote'),
+      onTranslate: handlerFactory('translate'),
+    }),
+    [
+      handlerFactory,
+      onExpandedToggle,
+      onFilterToggle,
+      onHeaderClick,
+      onMention,
+      onOpen,
+      onOpenClick,
+      onOpenMedia,
+      onOpenProfile,
+      onToggleHidden,
+      showDespiteFilter,
+    ],
+  );
+}
+type StatusHandlers = ReturnType<typeof useStatusHandlers>;
+
+const domParser = new DOMParser();
+function useTextForScreenReader({
   statusId,
   rebloggedByText,
   isQuote = false,
