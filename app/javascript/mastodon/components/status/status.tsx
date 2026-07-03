@@ -42,17 +42,6 @@ import { StatusHeader } from './header';
 import type { StatusContainerProps, StatusContextType } from './types';
 
 const messages = defineMessages({
-  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  unlisted_short: {
-    id: 'privacy.unlisted.short',
-    defaultMessage: 'Quiet public',
-  },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers' },
-  direct_short: {
-    id: 'privacy.direct.short',
-    defaultMessage: 'Specific people',
-  },
-  edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
   quote_noun: {
     id: 'status.quote_noun',
     defaultMessage: 'Quote',
@@ -62,7 +51,6 @@ const messages = defineMessages({
     id: 'status.contains_quote',
     defaultMessage: 'Contains quote',
   },
-  quote_cancel: { id: 'status.quote.cancel', defaultMessage: 'Cancel quote' },
   boosted: { id: 'status.reblogged_by', defaultMessage: '{name} boosted' },
 });
 
@@ -143,7 +131,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
   });
 
   // Handlers
-  const handlers = useStatusHandlers({ status, contextType, onClick });
   const {
     showDespiteFilter,
     onHeaderClick,
@@ -151,7 +138,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
     onFilterToggle,
     onOpenClick,
     onTranslate,
-  } = handlers;
+    ...handlers
+  } = useStatusHandlers({ status, contextType, onClick });
 
   if (!status) {
     return null; // loading state
@@ -165,6 +153,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
 
   const hotkeysProps = {
     ...handlers,
+    onTranslate,
     muted,
     unfocusable,
   } satisfies Omit<React.ComponentProps<typeof StatusHotkeys>, 'children'>;
@@ -298,7 +287,14 @@ const StatusHotkeys: React.FC<
     muted?: boolean;
     unfocusable?: boolean;
     children: React.ReactNode;
-  } & StatusHandlers
+  } & Omit<
+    StatusHandlers,
+    | 'showDespiteFilter'
+    | 'onOpenClick'
+    | 'onHeaderClick'
+    | 'onExpandedToggle'
+    | 'onFilterToggle'
+  >
 > = ({ muted, unfocusable, children, ...handlers }) => {
   const onOpen = useCallback(() => {
     handlers.onOpen();
