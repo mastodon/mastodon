@@ -8,7 +8,12 @@ import type { List, Record } from 'immutable';
 
 import { groupBy, minBy } from 'lodash';
 
-import { getStatusContent } from './status_content';
+import type { ApiTagJSON } from '../api_types/statuses';
+import type {
+  MediaAttachmentShape,
+  StatusShape,
+  StatusTranslation,
+} from '../models/status';
 
 // Fit on a single line on desktop
 const VISIBLE_HASHTAGS = 3;
@@ -17,10 +22,11 @@ const VISIBLE_HASHTAGS = 3;
 export type TagLike = Record<{ name: string }>;
 export type StatusLike = Record<{
   tags: List<TagLike>;
-  contentHTML: string;
+  contentHtml: string;
   media_attachments: List<unknown>;
   spoiler_text?: string;
   account: Record<{ id: string }>;
+  translation?: Record<{ contentHtml: string }>;
 }>;
 
 function normalizeHashtag(hashtag: string) {
@@ -88,20 +94,23 @@ function localeAwareInclude(collection: string[], value: string) {
 }
 
 // We use an intermediate function here to make it easier to test
-export function computeHashtagBarForStatus(status: StatusLike): {
-  statusContentProps: { statusContent: string };
-  hashtagsInBar: string[];
-} {
-  let statusContent = getStatusContent(status);
+export function computeHashtagBarForStatus(
+  status: Pick<
+    StatusShape,
+    | 'tags'
+    | 'media_attachments'
+    | 'spoiler_text'
+    | 'translation'
+    | 'contentHtml'
+  >,
+) {
+  let statusContent = status.translation?.contentHtml ?? status.contentHtml;
 
-  const tagNames = status
-    .get('tags')
-    .map((tag) => tag.get('name'))
-    .toJS();
+  const tagNames = status.tags.map((tag) => tag.name);
 
   // this is returned if we stop the processing early, it does not change what is displayed
   const defaultResult = {
-    statusContentProps: { statusContent },
+    statusContent,
     hashtagsInBar: [],
   };
 
@@ -164,8 +173,8 @@ export function computeHashtagBarForStatus(status: StatusLike): {
   });
 
   const isOnlyOneLine = contentWithoutLastLine.content.childElementCount === 0;
-  const hasMedia = status.get('media_attachments').size > 0;
-  const hasSpoiler = !!status.get('spoiler_text');
+  const hasMedia = status.media_attachments.length > 0;
+  const hasSpoiler = !!status.spoiler_text;
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- due to https://github.com/microsoft/TypeScript/issues/9998
   if (onlyHashtags && ((hasMedia && !hasSpoiler) || !isOnlyOneLine)) {
@@ -178,7 +187,7 @@ export function computeHashtagBarForStatus(status: StatusLike): {
   }
 
   return {
-    statusContentProps: { statusContent },
+    statusContent,
     hashtagsInBar: uniqueHashtagsWithCaseHandling(hashtagsInBar),
   };
 }
@@ -191,11 +200,20 @@ export function computeHashtagBarForStatus(status: StatusLike): {
  * @returns Props to be passed to the <StatusContent> component, and the hashtagBar to render
  */
 export function getHashtagBarForStatus(status: StatusLike) {
-  const { statusContentProps, hashtagsInBar } =
-    computeHashtagBarForStatus(status);
+  const { statusContent, hashtagsInBar } = computeHashtagBarForStatus({
+    tags: status.get('tags').toJS() as ApiTagJSON[],
+    media_attachments: status
+      .get('media_attachments')
+      .toJS() as MediaAttachmentShape[],
+    spoiler_text: status.get('spoiler_text'),
+    translation: status
+      .get('translation')
+      ?.toJSON() as unknown as StatusTranslation,
+    contentHtml: status.get('contentHtml'),
+  });
 
   return {
-    statusContentProps,
+    statusContentProps: { statusContent },
     hashtagBar: (
       <HashtagBar
         hashtags={hashtagsInBar}
@@ -205,7 +223,7 @@ export function getHashtagBarForStatus(status: StatusLike) {
   };
 }
 
-const HashtagBar: React.FC<{
+export const HashtagBar: React.FC<{
   hashtags: string[];
   accountId: string;
 }> = ({ hashtags, accountId }) => {

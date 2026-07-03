@@ -23,10 +23,11 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
 export const StatusContent: React.FC<{
   statusId: string;
+  statusContent?: string;
   onClick?: React.MouseEventHandler;
   onTranslate?: React.MouseEventHandler<HTMLButtonElement>;
   collapsible?: boolean;
-}> = ({ statusId, onClick, onTranslate, collapsible }) => {
+}> = ({ statusId, statusContent, onClick, onTranslate, collapsible }) => {
   const status = useStatus(statusId);
   const { signedIn } = useIdentity();
   const targetLanguages = useAppSelector(
@@ -129,7 +130,9 @@ export const StatusContent: React.FC<{
     <EmojiHTML
       className='status__content__text status__content__text--visible translate'
       lang={language}
-      htmlString={status.translation?.contentHtml ?? status.contentHtml}
+      htmlString={
+        statusContent ?? status.translation?.contentHtml ?? status.contentHtml
+      }
       extraEmojis={status.emojis}
       {...htmlHandlers}
     />
