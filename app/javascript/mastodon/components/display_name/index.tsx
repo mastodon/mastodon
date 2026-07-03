@@ -3,14 +3,14 @@ import type { ComponentPropsWithoutRef, FC } from 'react';
 import type { LinkProps } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import type { Account } from '@/mastodon/models/account';
+import type { Account, AccountShapeFull } from '@/mastodon/models/account';
 
 import { DisplayNameDefault } from './default';
 import { DisplayNameWithoutDomain } from './no-domain';
 import { DisplayNameSimple } from './simple';
 
 export interface DisplayNameProps {
-  account?: Account;
+  account?: Account | AccountShapeFull;
   localDomain?: string;
   variant?: 'default' | 'simple' | 'noDomain';
 }

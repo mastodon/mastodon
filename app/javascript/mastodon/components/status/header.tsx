@@ -5,9 +5,9 @@ import { defineMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { isStatusVisibility } from '@/mastodon/api_types/statuses';
-import type { Account } from '@/mastodon/models/account';
-import type { Status } from '@/mastodon/models/status';
+import type { Account, AccountShapeFull } from '@/mastodon/models/account';
+import { selectAccountStatus } from '@/mastodon/selectors/statuses';
+import { useAppSelector } from '@/mastodon/store';
 
 import { Avatar } from '../avatar';
 import { AvatarOverlay } from '../avatar_overlay';
@@ -17,8 +17,8 @@ import { RelativeTimestamp } from '../relative_timestamp';
 import { VisibilityIcon } from '../visibility_icon';
 
 export interface StatusHeaderProps {
-  status: Status;
-  account?: Account;
+  statusId: string;
+  account?: Account | AccountShapeFull;
   avatarSize?: number;
   contentBeforeDate?: ReactNode;
   contentAfterDate?: ReactNode;
@@ -32,7 +32,7 @@ export interface StatusHeaderProps {
 export type StatusHeaderRenderFn = (args: StatusHeaderProps) => ReactNode;
 
 export const StatusHeader: FC<StatusHeaderProps> = ({
-  status,
+  statusId,
   account,
   className,
   avatarSize = 48,
@@ -41,8 +41,14 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
   contentAfterDate,
   onHeaderClick,
 }) => {
-  const statusAccount = status.get('account') as Account | undefined;
-  const editedAt = status.get('edited_at') as string;
+  const status = useAppSelector((state) =>
+    selectAccountStatus(state, statusId),
+  );
+  if (!status) {
+    return null;
+  }
+  const statusAccount = status.account;
+  const editedAt = status.edited_at;
 
   return (
     /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
@@ -62,11 +68,13 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
       {contentBeforeDate}
 
       <Link
-        to={`/@${statusAccount?.acct}/${status.get('id') as string}`}
+        to={`/@${statusAccount.acct}/${status.id}`}
         className='status__relative-time'
       >
-        <StatusVisibility visibility={status.get('visibility')} />
-        <RelativeTimestamp timestamp={status.get('created_at') as string} />
+        <span className='status__visibility-icon'>
+          <VisibilityIcon visibility={status.visibility} />
+        </span>
+        <RelativeTimestamp timestamp={status.created_at} />
         {editedAt && <StatusEditedAt editedAt={editedAt} />}
       </Link>
 
@@ -75,25 +83,12 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
   );
 };
 
-export const StatusVisibility: FC<{ visibility: unknown }> = ({
-  visibility,
-}) => {
-  if (typeof visibility !== 'string' || !isStatusVisibility(visibility)) {
-    return null;
-  }
-  return (
-    <span className='status__visibility-icon'>
-      <VisibilityIcon visibility={visibility} />
-    </span>
-  );
-};
-
 const editMessage = defineMessage({
   id: 'status.edited',
   defaultMessage: 'Edited {date}',
 });
 
-export const StatusEditedAt: FC<{ editedAt: string }> = ({ editedAt }) => {
+const StatusEditedAt: FC<{ editedAt: string }> = ({ editedAt }) => {
   const intl = useIntl();
   return (
     <abbr
@@ -113,9 +108,9 @@ export const StatusEditedAt: FC<{ editedAt: string }> = ({ editedAt }) => {
   );
 };
 
-export const StatusDisplayName: FC<{
-  statusAccount?: Account;
-  friendAccount?: Account;
+const StatusDisplayName: FC<{
+  statusAccount?: AccountShapeFull;
+  friendAccount?: Account | AccountShapeFull;
   avatarSize: number;
 }> = ({ statusAccount, friendAccount, avatarSize }) => {
   const AccountComponent = friendAccount ? AvatarOverlay : Avatar;
