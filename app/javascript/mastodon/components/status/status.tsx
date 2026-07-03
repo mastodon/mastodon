@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import classNames from 'classnames';
 
@@ -12,6 +12,7 @@ import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
 import { ContentWarning } from '../content_warning';
 import { FilterWarning } from '../filter_warning';
+import { computeHashtagBarForStatus, HashtagBar } from '../hashtag_bar';
 import { Hotkeys } from '../hotkeys';
 
 import { StatusActionBar } from './action_bar';
@@ -50,32 +51,31 @@ const selectStatusReblog = createAppSelector(
   },
 );
 
-export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
-  const {
-    id,
-    muted,
-    rootId,
-    previousId,
-    nextId,
-    unread,
-    skipPrepend,
-    unfocusable,
-    contextType,
-    featured,
-    isQuotedPost,
-    accountId,
-    hidden,
-    shouldHighlightOnMount,
-    showActions,
-    scrollKey,
-    children,
-    headerRenderFn,
-    avatarSize,
-    withCounters,
-    withDismiss,
-    onClick,
-    showThread,
-  } = props;
+export const StatusRedesign: React.FC<StatusRedesignProps> = ({
+  id,
+  muted,
+  rootId,
+  previousId,
+  nextId,
+  unread,
+  skipPrepend,
+  unfocusable,
+  contextType,
+  featured,
+  isQuotedPost,
+  accountId,
+  hidden,
+  shouldHighlightOnMount,
+  showActions,
+  scrollKey,
+  children,
+  headerRenderFn,
+  avatarSize,
+  withCounters,
+  withDismiss,
+  onClick,
+  showThread,
+}) => {
   // Select data from store
   const { status, parent } = useAppSelector((state) =>
     selectStatusReblog(state, id),
@@ -95,6 +95,11 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
     reblogAcct: parent?.account.acct,
     isQuote: isQuotedPost,
   });
+  const { statusContent, hashtagsInBar } = useMemo(
+    (): Partial<ReturnType<typeof computeHashtagBarForStatus>> =>
+      status ? computeHashtagBarForStatus(status) : {},
+    [status],
+  );
 
   // Handlers
   const {
@@ -138,8 +143,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
       </StatusHotkeys>
     );
   }
-
-  const hashtagBar = null;
 
   const header = headerRenderFn ? (
     headerRenderFn({
@@ -218,6 +221,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
             <>
               <StatusContent
                 statusId={status.id}
+                statusContent={statusContent}
                 onClick={onOpenClick}
                 onTranslate={onTranslate}
                 collapsible
@@ -227,7 +231,13 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = (props) => {
                 statusId={status.id}
                 contextType={contextType}
               />
-              {hashtagBar}
+
+              {hashtagsInBar && (
+                <HashtagBar
+                  hashtags={hashtagsInBar}
+                  accountId={status.account.id}
+                />
+              )}
 
               {children}
             </>
