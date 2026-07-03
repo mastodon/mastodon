@@ -35,6 +35,8 @@ import {
   editStatus,
   muteStatus,
   setStatusQuotePolicy,
+  translateStatus,
+  undoStatusTranslation,
   unmuteStatus,
 } from './statuses';
 
@@ -53,7 +55,8 @@ export type StatusInteractionIntent =
   | 'redraft'
   | 'reply'
   | 'report'
-  | 'revokeQuote';
+  | 'revokeQuote'
+  | 'translate';
 
 const messages = defineMessages({
   noEdits: {
@@ -255,6 +258,12 @@ export const statusInteraction = createAppThunk(
           }),
         );
         return;
+      case 'translate':
+        if (status.translation) {
+          dispatch(undoStatusTranslation(statusId, status.poll));
+        } else {
+          dispatch(translateStatus(statusId));
+        }
     }
   },
 );

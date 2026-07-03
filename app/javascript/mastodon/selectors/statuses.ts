@@ -157,6 +157,7 @@ export const selectStatusInteractions = createAppSelector(
       reply: addAllowed({ isLoggedIn }),
       report: addAllowed({ isLoggedIn, isNotMine }),
       revokeQuote: addAllowed({ isQuoted, isNotMine }),
+      translate: addAllowed({ isLoggedIn }),
     };
 
     return {
