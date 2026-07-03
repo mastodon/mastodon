@@ -47,6 +47,10 @@ class SoftwareUpdate < ApplicationRecord
       all.to_a.filter(&:pending?)
     end
 
+    def pending?
+      pending_to_a.present?
+    end
+
     def urgent_pending?
       pending_to_a.any?(&:urgent?)
     end
