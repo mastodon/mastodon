@@ -13,10 +13,8 @@ import type {
   MediaAttachmentShape,
 } from '@/mastodon/models/status';
 import { isMediaAttachmentOfType } from '@/mastodon/models/status';
-import {
-  selectMediaMatchFilters,
-  selectPictureInPicture,
-} from '@/mastodon/selectors/statuses';
+import { selectMediaFilters } from '@/mastodon/selectors/filters';
+import { selectPictureInPicture } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { compareUrls } from '@/mastodon/utils/compare_urls';
 
@@ -125,7 +123,7 @@ const MediaAttachments: React.FC<{
     ]) as Immutable.List<MediaAttachment>;
   });
   const mediaFilters = useAppSelector((state) =>
-    selectMediaMatchFilters(state, { statusId, contextType }),
+    selectMediaFilters(state, { statusId, contextType }),
   );
   const pictureInPicture = useAppSelector((state) =>
     selectPictureInPicture(state, statusId),
