@@ -1,6 +1,5 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
-import type { IntlShape } from 'react-intl';
 import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
@@ -9,7 +8,6 @@ import type { Merge } from 'type-fest';
 
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
-import type { ExpandedStatusShape } from '@/mastodon/models/status';
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { selectStatusFilters } from '@/mastodon/selectors/filters';
 import { useAppSelector } from '@/mastodon/store';
@@ -45,6 +43,7 @@ const messages = defineMessages({
     defaultMessage: 'Contains quote',
   },
   quote_cancel: { id: 'status.quote.cancel', defaultMessage: 'Cancel quote' },
+  boosted: { id: 'status.reblogged_by', defaultMessage: '{name} boosted' },
 });
 
 type StatusRedesignProps = Merge<
@@ -101,6 +100,14 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   }, []);
 
   const intl = useIntl();
+  const screenReaderText = useTextForScreenReader({
+    statusId: id,
+    rebloggedByText: status?.reblog
+      ? intl.formatMessage(messages.boosted, { name: status.account.acct })
+      : null,
+    isQuote: isQuotedPost,
+  });
+
   if (!status) {
     return null; // loading state
   }
@@ -108,7 +115,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   const connectUp = false as boolean;
   const connectToRoot = false as boolean;
   const connectReply = false as boolean;
-  const rebloggedByText = '';
   const hashtagBar = null;
 
   const header = headerRenderFn ? (
@@ -142,12 +148,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       )}
       tabIndex={muted || unfocusable ? undefined : 0}
       data-featured={featured ? 'true' : null}
-      aria-label={textForScreenReader({
-        intl,
-        status,
-        rebloggedByText,
-        isQuote: isQuotedPost,
-      })}
+      aria-label={screenReaderText}
       data-nosnippet={status.account.noindex || undefined}
     >
       <div
@@ -222,38 +223,45 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
 const domParser = new DOMParser();
 
-export function textForScreenReader({
-  intl,
-  status,
+export function useTextForScreenReader({
+  statusId,
   rebloggedByText,
   isQuote = false,
 }: {
-  intl: IntlShape;
-  status: ExpandedStatusShape;
-  rebloggedByText?: string;
+  statusId?: string | null;
+  rebloggedByText?: string | null;
   isQuote?: boolean;
 }) {
-  const displayName = status.account.display_name;
+  const intl = useIntl();
+  const status = useExpandedStatus(statusId);
+  return useMemo(() => {
+    if (!status) {
+      return '';
+    }
+    const displayName = status.account.display_name;
 
-  const spoilerText = status.translation?.spoiler_text ?? status.spoiler_text;
-  const contentHtml = status.translation?.contentHtml ?? status.contentHtml;
-  const contentText = domParser.parseFromString(contentHtml, 'text/html')
-    .documentElement.textContent;
+    const spoilerText = status.translation?.spoiler_text ?? status.spoiler_text;
+    const contentHtml = status.translation?.contentHtml ?? status.contentHtml;
+    const contentText = domParser.parseFromString(contentHtml, 'text/html')
+      .documentElement.textContent;
 
-  const values = [
-    isQuote ? intl.formatMessage(messages.quote_noun) : undefined,
-    displayName.length === 0 ? status.account.acct.split('@')[0] : displayName,
-    spoilerText && status.hidden ? spoilerText : contentText,
-    status.quote ? intl.formatMessage(messages.contains_quote) : undefined,
-    intl.formatDate(status.created_at, {
-      hour: '2-digit',
-      minute: '2-digit',
-      month: 'short',
-      day: 'numeric',
-    }),
-    status.account.acct,
-    rebloggedByText,
-  ].filter((val) => !!val);
+    const values = [
+      isQuote ? intl.formatMessage(messages.quote_noun) : undefined,
+      displayName.length === 0
+        ? status.account.acct.split('@')[0]
+        : displayName,
+      spoilerText && status.hidden ? spoilerText : contentText,
+      status.quote ? intl.formatMessage(messages.contains_quote) : undefined,
+      intl.formatDate(status.created_at, {
+        hour: '2-digit',
+        minute: '2-digit',
+        month: 'short',
+        day: 'numeric',
+      }),
+      status.account.acct,
+      rebloggedByText,
+    ].filter((val) => !!val);
 
-  return values.join(', ');
+    return values.join(', ');
+  }, [intl, isQuote, rebloggedByText, status]);
 }
