@@ -6,10 +6,10 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import classnames from 'classnames';
 
 import { toggleStatusCollapse } from '@/mastodon/actions/statuses';
+import { useStatus } from '@/mastodon/hooks/useStatus';
 import { useIdentity } from '@/mastodon/identity_context';
 import { languages as preloadedLanguages } from '@/mastodon/initial_state';
 import type { StatusTranslation } from '@/mastodon/models/status';
-import { selectPlainStatus } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 
@@ -27,7 +27,7 @@ export const StatusContent: React.FC<{
   onTranslate?: React.MouseEventHandler<HTMLButtonElement>;
   collapsible?: boolean;
 }> = ({ statusId, onClick, onTranslate, collapsible }) => {
-  const status = useAppSelector((state) => selectPlainStatus(state, statusId));
+  const status = useStatus(statusId);
   const { signedIn } = useIdentity();
   const targetLanguages = useAppSelector(
     (state) =>

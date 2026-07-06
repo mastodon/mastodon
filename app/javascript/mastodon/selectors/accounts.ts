@@ -59,6 +59,11 @@ export const selectPlainAccount = createAppSelector(
   (account) => (account ? (account.toJS() as AccountShapeFull) : null),
 );
 
+export const selectIsAccountLocal = createAppSelector(
+  [selectPlainAccount],
+  (account) => !!account && account.username === account.acct,
+);
+
 export const getAccountHidden = createAppSelector(
   [
     (state, id: string) => state.accounts.get(id)?.hidden,
