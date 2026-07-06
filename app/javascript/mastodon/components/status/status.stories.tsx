@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { useMemo } from 'react';
 
 import { Map as ImmutableMap } from 'immutable';
 
@@ -7,6 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
+import { useAppSelector } from '@/mastodon/store';
 import {
   accountFactoryImmutable,
   pollFactoryImmutable,
@@ -58,108 +58,47 @@ const otherAccount = accountFactoryImmutable({
 
 const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
   const {
-    text,
-    visibility,
     isReblog,
     isReply,
     isPoll,
     isQuote,
-    attachment1,
-    attachment2,
-    attachment3,
     contentWarning,
 
-    hasFavourited,
-    hasReblogged,
-    hasBookmarked,
     hasFilter,
     hasVoted,
-    showTranslate,
     disableActions = false,
 
     contextType,
     showThread,
     showCounters,
-    favouriteCount = 0,
-    replyCount = 0,
-    reblogCount = 0,
     hidden,
     muted,
     showPrepend = true,
   } = props;
-  const { account, status } = useMemo(() => {
-    const account = accountFactoryImmutable();
+  const account = useAppSelector((state) => state.accounts.get('1'));
+  const status = useAppSelector((state) =>
+    state.statuses.get('1')?.withMutations((status) => {
+      status.set('account', account);
+      status.set('matched_filters', hasFilter ? ['test'] : false);
+      status.set('matched_media_filters', hasFilter ? ['test'] : false);
+      status.set('hidden', hidden);
 
-    return {
-      account,
-      status: statusFactoryImmutable({
-        text,
-        spoiler_text: contentWarning,
-        visibility,
-        media_attachments: attachmentFactory(
-          attachment1,
-          attachment2,
-          attachment3,
-        ),
-        reblogged: hasReblogged,
-        favourited: hasFavourited,
-        bookmarked: hasBookmarked,
-        in_reply_to_account_id: isReply ? '2' : undefined,
-        in_reply_to_id: isReply ? '2' : undefined,
-        quote: isQuote
-          ? {
-              state: 'accepted',
-              quoted_status: { ...statusFactoryAPI(), quote: undefined },
-            }
-          : undefined,
-        favourites_count: favouriteCount,
-        reblogs_count: reblogCount,
-        replies_count: replyCount,
-        language: showTranslate ? 'xx' : undefined,
-      }).withMutations((status) => {
-        status.set('account', account);
-        status.set('matched_filters', hasFilter ? ['test'] : false);
-        status.set('matched_media_filters', hasFilter ? ['test'] : false);
-        status.set('hidden', hidden);
+      // StatusActionBar checks specifically for null so undefined doesn't work.
+      if (!status.get('in_reply_to_id')) {
+        status.set('in_reply_to_id', null);
+      }
 
-        // StatusActionBar checks specifically for null so undefined doesn't work.
-        if (!status.get('in_reply_to_id')) {
-          status.set('in_reply_to_id', null);
-        }
-
-        if (isReblog) {
-          status.set(
-            'reblog',
-            statusFactoryImmutable({ id: '2' }).set('account', otherAccount),
-          );
-        }
-        if (isPoll) {
-          status.set('poll', hasVoted ? '2' : '1');
-        }
-      }),
-    };
-  }, [
-    text,
-    contentWarning,
-    visibility,
-    attachment1,
-    attachment2,
-    attachment3,
-    hasReblogged,
-    hasFavourited,
-    hasBookmarked,
-    isReply,
-    isQuote,
-    favouriteCount,
-    reblogCount,
-    replyCount,
-    showTranslate,
-    hasFilter,
-    hidden,
-    isReblog,
-    isPoll,
-    hasVoted,
-  ]);
+      if (isReblog) {
+        status.set(
+          'reblog',
+          statusFactoryImmutable({ id: '2' }).set('account', otherAccount),
+        );
+      }
+      if (isPoll) {
+        status.set('poll', hasVoted ? '2' : '1');
+      }
+    }),
+  );
 
   return (
     <div style={{ width: 'min(600px, 80vw)' }}>
@@ -373,6 +312,60 @@ const meta = {
           },
         },
       },
+    },
+    stateFn({
+      text,
+      contentWarning,
+      visibility,
+      attachment1,
+      attachment2,
+      attachment3,
+      hasBookmarked,
+      hasFavourited,
+      hasReblogged,
+      isQuote,
+      isReply,
+      favouriteCount,
+      reblogCount,
+      replyCount,
+      showTranslate,
+    }: StatusStoryProps) {
+      const account = accountFactoryImmutable();
+
+      const status = statusFactoryImmutable({
+        text,
+        spoiler_text: contentWarning,
+        visibility,
+        media_attachments: attachmentFactory(
+          attachment1,
+          attachment2,
+          attachment3,
+        ),
+        reblogged: hasReblogged,
+        favourited: hasFavourited,
+        bookmarked: hasBookmarked,
+        in_reply_to_account_id: isReply ? '2' : undefined,
+        in_reply_to_id: isReply ? '2' : undefined,
+        quote: isQuote
+          ? {
+              state: 'accepted',
+              quoted_status: { ...statusFactoryAPI(), quote: undefined },
+            }
+          : undefined,
+        favourites_count: favouriteCount,
+        reblogs_count: reblogCount,
+        replies_count: replyCount,
+        language: showTranslate ? 'xx' : undefined,
+      });
+
+      return {
+        statuses: {
+          '1': status,
+        },
+        accounts: {
+          '1': account,
+        },
+      };
     },
     controls: {
       disableSaveFromUI: true,
