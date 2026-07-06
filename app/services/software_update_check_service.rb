@@ -102,7 +102,7 @@ class SoftwareUpdateCheckService < BaseService
   end
 
   def should_notify_about_end_of_support?(user)
-    true # TODO: user.settings['notification_emails.end_of_support']
+    user.settings['notification_emails.end_of_support']
   end
 
   def send_notification_for_end_of_support_warning!(deprecation_notice, warning_type)
