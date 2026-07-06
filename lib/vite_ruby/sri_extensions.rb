@@ -76,7 +76,7 @@ module ViteRails::TagHelpers::IntegrityExtension
                           skip_preload_tags: false,
                           skip_style_tags: false,
                           crossorigin: '',
-                          media: 'screen',
+                          media: nil,
                           **options)
     entries = vite_manifest.resolve_entries_with_integrity(*names, type: asset_type)
 
