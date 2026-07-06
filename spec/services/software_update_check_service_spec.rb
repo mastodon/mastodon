@@ -68,18 +68,23 @@ RSpec.describe SoftwareUpdateCheckService do
     context 'when the server returns new versions' do
       let(:server_json) do
         {
+          currentVersion: {
+            endOfSupport: nil,
+          },
           updatesAvailable: [
             {
               version: '4.2.1',
               urgent: false,
               type: 'patch',
               releaseNotes: 'https://github.com/mastodon/mastodon/releases/v4.2.1',
+              endOfSupport: '2026-01-08',
             },
             {
               version: '4.3.0',
               urgent: false,
               type: 'minor',
               releaseNotes: 'https://github.com/mastodon/mastodon/releases/v4.3.0',
+              endOfSupport: '2026-05-06',
             },
             {
               version: '5.0.0',
@@ -111,6 +116,9 @@ RSpec.describe SoftwareUpdateCheckService do
       context 'when an update is urgent' do
         let(:server_json) do
           {
+            currentVersion: {
+              endOfSupport: nil,
+            },
             updatesAvailable: [
               {
                 version: '5.0.0',
