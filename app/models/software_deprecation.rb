@@ -19,12 +19,16 @@ class SoftwareDeprecation < ApplicationRecord
     out_of_support_warning: 3,
   }, validate: true, suffix: :issued
 
+  def unsupported?
+    end_of_support.past?
+  end
+
   def self.clear_irrelevant_branches!
     where.not(branch: current_branch).delete_all
   end
 
-  def self.unsupported_branch?
-    find_by(branch: current_branch)&.end_of_support&.past?
+  def self.current
+    find_by(branch: current_branch)
   end
 
   def self.current_branch
