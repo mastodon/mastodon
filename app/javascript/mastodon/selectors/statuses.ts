@@ -106,8 +106,8 @@ export const selectStatusConditions = createAppSelector(
       isNotDirect: !!status && status.visibility !== 'direct',
       isPrivateReblog:
         userId === status?.account && status.visibility === 'private',
-      isReblogged: status?.reblogged ?? false,
-      isReblogAllowed: isPublic || isMineAndPrivate,
+      isBoosted: status?.reblogged ?? false,
+      isBoostingAllowed: isPublic || isMineAndPrivate,
       isQuoteAutomaticallyAccepted:
         quoteApproval === 'automatic' && (isPublic || isMineAndPrivate),
       isQuoteManuallyAccepted:

@@ -71,9 +71,9 @@ export interface MenuItemState {
 export function boostItemState({
   isPublic,
   isPrivateReblog,
-  isReblogged,
+  isBoosted,
 }: StatusConditions): MenuItemState {
-  if (isReblogged) {
+  if (isBoosted) {
     return {
       title: messages.reblog_cancel,
       iconComponent: isPublic ? RepeatActiveIcon : RepeatPrivateActiveIcon,

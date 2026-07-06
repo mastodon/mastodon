@@ -102,8 +102,8 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
   );
   const {
     isLoggedIn,
-    isReblogged,
-    isReblogAllowed,
+    isBoosted,
+    isBoostingAllowed,
     isQuoteAutomaticallyAccepted,
     isQuoteManuallyAccepted,
   } = statusState;
@@ -111,7 +111,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
   const isMenuDisabled =
     !isQuoteAutomaticallyAccepted &&
     !isQuoteManuallyAccepted &&
-    !isReblogAllowed;
+    !isBoostingAllowed;
 
   const wasBoosted = !!status?.reblogged;
   const quoteApproval = status?.quote_approval;
@@ -205,7 +205,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
             ? status.reblogs_count + status.quotes_count
             : undefined
         }
-        active={isReblogged}
+        active={isBoosted}
       />
     </Dropdown>
   );

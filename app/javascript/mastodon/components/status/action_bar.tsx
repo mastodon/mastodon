@@ -463,8 +463,6 @@ function getMenuItems({
     return menu;
   }
 
-  const domain = account.acct.split('@')[1];
-
   menu.push({
     text: intl.formatMessage(messages.mention, {
       name: account.username,
@@ -540,6 +538,8 @@ function getMenuItems({
     action: onStatusInteraction('report'),
     dangerous: true,
   });
+
+  const domain = account.acct.split('@')[1];
 
   if (!isLocal) {
     menu.push(null);
