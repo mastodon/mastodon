@@ -5280,22 +5280,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unhead/bundler@npm:3.1.6":
-  version: 3.1.6
-  resolution: "@unhead/bundler@npm:3.1.6"
+"@unhead/bundler@npm:3.1.7":
+  version: 3.1.7
+  resolution: "@unhead/bundler@npm:3.1.7"
   dependencies:
     "@vitejs/devtools-kit": "npm:^0.3.3"
     magic-string: "npm:^0.30.21"
     oxc-parser: "npm:^0.137.0"
     oxc-walker: "npm:^1.0.0"
     ufo: "npm:^1.6.4"
-    unplugin: "npm:^3.0.0"
+    unplugin: "npm:^3.2.0"
   peerDependencies:
-    "@unhead/cli": ^3.1.6
+    "@unhead/cli": ^3.1.7
     esbuild: ">=0.17.0"
     lightningcss: ">=1.20.0"
     rolldown: ">=1.0.0-beta.0"
-    unhead: ^3.1.6
+    unhead: ^3.1.7
     vite: ">=6.4.2"
     webpack: ">=5.0.0"
   peerDependenciesMeta:
@@ -5311,19 +5311,19 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10c0/e04906fba3593a3104f78f370e20f02a3d3a02b2e2324b1b0dba482be003a267dd67680b109bf773cec26452c52691b050fe45cb9568f11475b5329185dfd299
+  checksum: 10c0/3de0dc425169320c00e153a49195964a16bb9c729a07f5dade24e9e74bdc32ec9412dc72b81091631b438923bb897554ef0d81c889a65bd2382ce876998cc63a
   languageName: node
   linkType: hard
 
 "@unhead/react@npm:^3.1.0":
-  version: 3.1.6
-  resolution: "@unhead/react@npm:3.1.6"
+  version: 3.1.7
+  resolution: "@unhead/react@npm:3.1.7"
   dependencies:
-    "@unhead/bundler": "npm:3.1.6"
+    "@unhead/bundler": "npm:3.1.7"
     magic-string: "npm:^0.30.21"
     oxc-walker: "npm:^1.0.0"
-    unhead: "npm:3.1.6"
-    unplugin: "npm:^3.0.0"
+    unhead: "npm:3.1.7"
+    unplugin: "npm:^3.2.0"
   peerDependencies:
     react: ">=19.2.4"
     vite: ">=6.4.2"
@@ -5333,7 +5333,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10c0/b946959ea5868d0e91e6173dd34d7da56bda0bb9327d7d48a0cbf01d23feeadb81af236d223839ebaf4f132707a4a8fb27760612106b040a18ebab1f58c6624c
+  checksum: 10c0/df090d51bc0d5a9e1b334fd2afbb12f922958098bd57138ac2f4c1c0ba5f3f23cc7a8fa0abfc32ad21030bd1d9e6c56d522b4a1d48f12b8d732ddc31e95d6de2
   languageName: node
   linkType: hard
 
@@ -14594,18 +14594,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unhead@npm:3.1.6":
-  version: 3.1.6
-  resolution: "unhead@npm:3.1.6"
+"unhead@npm:3.1.7":
+  version: 3.1.7
+  resolution: "unhead@npm:3.1.7"
   dependencies:
     hookable: "npm:^6.1.1"
-    unplugin: "npm:^3.0.0"
+    unplugin: "npm:^3.2.0"
   peerDependencies:
     vite: ">=6.4.2"
   peerDependenciesMeta:
     vite:
       optional: true
-  checksum: 10c0/a12927c31d9cc70262567d29bc1a135b948607204581f10c8575c5e7a47ffec620ab09572bfe75a283c5777e37ee0f0701885f4a0733efcb13a8f88d3e47ed12
+  checksum: 10c0/3d80ee9db134117ed6faca8e646fa2c791126e67a73d87ce7e872f14519d18b041f133a4d41bee957f4d8d067fb55bf7caf04edbc03c0cfced133080de463bc2
   languageName: node
   linkType: hard
 
@@ -14684,14 +14684,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unplugin@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "unplugin@npm:3.0.0"
+"unplugin@npm:^3.0.0, unplugin@npm:^3.2.0":
+  version: 3.3.0
+  resolution: "unplugin@npm:3.3.0"
   dependencies:
     "@jridgewell/remapping": "npm:^2.3.5"
-    picomatch: "npm:^4.0.3"
+    picomatch: "npm:^4.0.4"
     webpack-virtual-modules: "npm:^0.6.2"
-  checksum: 10c0/9b3a9eb7c1cfaab677160b9659b008b4562e08360b6c715f31bdd7692738a75de91f217931032ec247979f71e83d4c9b908245cf47d984b26fb318b60b1d2d36
+  peerDependencies:
+    "@farmfe/core": "*"
+    "@rspack/core": "*"
+    bun-types-no-globals: "*"
+    esbuild: "*"
+    rolldown: "*"
+    rollup: "*"
+    unloader: "*"
+    vite: "*"
+    webpack: "*"
+  peerDependenciesMeta:
+    "@farmfe/core":
+      optional: true
+    "@rspack/core":
+      optional: true
+    bun-types-no-globals:
+      optional: true
+    esbuild:
+      optional: true
+    rolldown:
+      optional: true
+    rollup:
+      optional: true
+    unloader:
+      optional: true
+    vite:
+      optional: true
+    webpack:
+      optional: true
+  checksum: 10c0/86ee7c7fde40ffa8260ddeba5da51800e35c6cdd41ee8a556ec3827357b5d2ee13dcbe4ea6820451bc6c2b05b35165f96c7bf20662114af5ed52183a74886404
   languageName: node
   linkType: hard
 
