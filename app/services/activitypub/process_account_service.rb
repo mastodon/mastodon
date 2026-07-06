@@ -271,7 +271,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def public_keys
-    @public_keys ||= fep_521a_public_keys.presence || legacy_public_keys
+    @public_keys ||= (fep_521a_public_keys + legacy_public_keys).uniq { |key| key[:uri] }
   end
 
   def legacy_public_keys
@@ -305,8 +305,6 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def fep_521a_public_keys
-    return if @json['assertionMethod'].blank?
-
     as_array(@json['assertionMethod']).take(MAX_PUBLIC_KEYS).filter_map do |value|
       next if value.nil?
 
