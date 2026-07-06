@@ -301,7 +301,11 @@ ga:
         enable_relay_html: Chuir %{name} an sealaíocht %{target} ar chumas
         enable_sign_in_token_auth_user_html: Chuir %{name} fíordheimhniú comhartha ríomhphoist ar chumas %{target}
         enable_user_html: "%{name} logáil isteach cumasaithe don úsáideoir %{target}"
+        listable_tag_html: is féidir a mholadh
         memorialize_account_html: Rinne %{name} cuntas %{target} a iompú ina leathanach cuimhneacháin
+        not_listable_tag_html: ní mholfar
+        not_trendable_tag_html: ní bheidh sé le feiceáil faoi threochtaí
+        not_usable_tag_html: ní féidir é a úsáid
         promote_user_html: Chuir %{name} úsáideoir %{target} chun cinn
         publish_terms_of_service_html: D'fhoilsigh %{name} nuashonruithe ar na téarmaí seirbhíse
         reject_appeal_html: Dhiúltaigh %{name} achomharc ar chinneadh modhnóireachta ó %{target}
@@ -314,6 +318,7 @@ ga:
         sensitive_account_html: Mharcáil %{name} meán %{target} mar íogair
         silence_account_html: Chuir %{name} teorainn le cuntas %{target}
         suspend_account_html: Chuir %{name} cuntas %{target} ar fionraí
+        trendable_tag_html: is féidir le feiceáil faoi threochtaí
         unassigned_report_html: "%{name} tuairisc neamhshannta %{target}"
         unblock_email_account_html: Bhain %{name} seoladh ríomhphoist %{target} amach
         unsensitive_account_html: "%{name} meán %{target} gan mharcáil mar íogair"
@@ -326,8 +331,10 @@ ga:
         update_ip_block_html: D'athraigh %{name} riail an IP %{target}
         update_report_html: "%{name} tuairisc nuashonraithe %{target}"
         update_status_html: "%{name} postáil nuashonraithe faoi %{target}"
+        update_tag_html: 'D''athraigh %{name} socruithe %{target} go: '
         update_user_role_html: D'athraigh %{name} ról %{target}
         update_username_block_html: Nuashonraíodh riail %{name} le haghaidh ainmneacha úsáideora ina bhfuil %{target}
+        usable_tag_html: is féidir a úsáid;
       deleted_account: cuntas scriosta
       empty: Níor aimsíodh aon logaí.
       filter_by_action: Scag de réir gnímh
@@ -1288,6 +1295,7 @@ ga:
           two: Úsáidte ag %{count} duine le seachtain anuas
       title: Moltaí & Treochtaí
       trending: Treocht
+    update_available: Nuashonrú ar fáil
     username_blocks:
       add_new: Cuir nua leis
       block_registrations: Clárúcháin blocála
