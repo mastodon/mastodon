@@ -334,20 +334,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def key_from_multikey(value)
-    tag, key = Multibase.decode_multicodec(value)
-
-    case tag
-    when :'rsa-pub'
-      [:rsa, OpenSSL::PKey::RSA.new(key).to_pem]
-    when :'ed25519-pub'
-      asn1 = OpenSSL::ASN1::Sequence(
-        [
-          OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
-          OpenSSL::ASN1::BitString(key),
-        ]
-      )
-      [:ed25519, OpenSSL::PKey.read(asn1.to_der).public_to_pem]
-    end
+    Multibase.decode_key_to_pem(value)
   rescue ArgumentError
     nil
   end

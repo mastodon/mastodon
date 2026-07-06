@@ -47,15 +47,9 @@ RSpec.describe ActivityPub::ObjectIntegrityProof do
 
     context 'when the signature is correct' do
       before do
-        asn1 = OpenSSL::ASN1::Sequence(
-          [
-            OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
-            OpenSSL::ASN1::BitString(Multibase.decode_multicodec('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')[1]),
-          ]
-        )
-        keypair = OpenSSL::PKey.read(asn1.to_der)
+        _, pem = Multibase.decode_key_to_pem('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')
 
-        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: keypair.public_to_pem)
+        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: pem)
       end
 
       it 'returns the actor' do
@@ -108,15 +102,9 @@ RSpec.describe ActivityPub::ObjectIntegrityProof do
       end
 
       before do
-        asn1 = OpenSSL::ASN1::Sequence(
-          [
-            OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
-            OpenSSL::ASN1::BitString(Multibase.decode_multicodec('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')[1]),
-          ]
-        )
-        keypair = OpenSSL::PKey.read(asn1.to_der)
+        _, pem = Multibase.decode_key_to_pem('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')
 
-        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: keypair.public_to_pem)
+        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: pem)
       end
 
       it 'returns the actor' do
@@ -159,15 +147,9 @@ RSpec.describe ActivityPub::ObjectIntegrityProof do
       end
 
       before do
-        asn1 = OpenSSL::ASN1::Sequence(
-          [
-            OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
-            OpenSSL::ASN1::BitString(Multibase.decode_multicodec('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')[1]),
-          ]
-        )
-        keypair = OpenSSL::PKey.read(asn1.to_der)
+        _, pem = Multibase.decode_key_to_pem('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')
 
-        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: keypair.public_to_pem)
+        Fabricate(:keypair, account: actor, uri: 'https://server.example/users/alice#ed25519-key', type: :ed25519, public_key: pem)
       end
 
       it 'returns nil' do
@@ -180,14 +162,9 @@ RSpec.describe ActivityPub::ObjectIntegrityProof do
     # https://www.w3.org/TR/vc-di-eddsa/#representation-eddsa-jcs-2022
 
     let(:keypair) do
-      asn1 = OpenSSL::ASN1::Sequence(
-        [
-          OpenSSL::ASN1::Sequence([OpenSSL::ASN1::ObjectId('ED25519')]),
-          OpenSSL::ASN1::BitString(Multibase.decode_multicodec('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')[1]),
-        ]
-      )
+      _, pem = Multibase.decode_key_to_pem('z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2')
 
-      OpenSSL::PKey.read(asn1.to_der)
+      OpenSSL::PKey.read(pem)
     end
 
     let(:secured_json) do
