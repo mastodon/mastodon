@@ -126,6 +126,71 @@ RSpec.describe SoftwareUpdateCheckService do
         end
       end
 
+      context 'when server returns deprecation in 2 months' do
+        let(:deprecation_date) { 2.months.from_now.to_date }
+
+        it 'updates the software deprecation info' do
+          expect { subject.call }
+            .to change { SoftwareDeprecation.pluck(:end_of_support, :warning_issued) }.from([]).to([[deprecation_date, 'three_months_warning']])
+        end
+
+        context 'when an irrelevant deprecation was stored' do
+          before do
+            SoftwareDeprecation.create!(branch: '4.3', end_of_support: '2026-05-06'.to_date, warning_issued: :out_of_support_warning)
+          end
+
+          it 'updates the software deprecation info and sends email' do
+            expect { subject.call }
+              .to change { SoftwareDeprecation.pluck(:end_of_support, :warning_issued) }.from([['2026-05-06'.to_date, 'out_of_support_warning']]).to([[deprecation_date, 'three_months_warning']])
+              .and(have_enqueued_mail(AdminMailer, :end_of_support_three_months_warning).with(hash_including(params: { recipient: owner_user.account })).once)
+          end
+        end
+      end
+
+      context 'when server returns deprecation in 1 week' do
+        let(:deprecation_date) { 1.week.from_now.to_date }
+
+        it 'updates the software deprecation info' do
+          expect { subject.call }
+            .to change { SoftwareDeprecation.pluck(:end_of_support, :warning_issued) }.from([]).to([[deprecation_date, 'two_weeks_warning']])
+            .and(have_enqueued_mail(AdminMailer, :end_of_support_two_weeks_warning).with(hash_including(params: { recipient: owner_user.account })).once)
+        end
+
+        context 'when an irrelevant deprecation was stored' do
+          before do
+            SoftwareDeprecation.create!(branch: '4.3', end_of_support: '2026-05-06'.to_date, warning_issued: :out_of_support_warning)
+          end
+
+          it 'updates the software deprecation info and sends email' do
+            expect { subject.call }
+              .to change { SoftwareDeprecation.pluck(:end_of_support, :warning_issued) }.from([['2026-05-06'.to_date, 'out_of_support_warning']]).to([[deprecation_date, 'two_weeks_warning']])
+              .and(have_enqueued_mail(AdminMailer, :end_of_support_two_weeks_warning).with(hash_including(params: { recipient: owner_user.account })).once)
+          end
+        end
+      end
+
+      context 'when server returns deprecation in the past' do
+        let(:deprecation_date) { 1.week.ago.to_date }
+
+        it 'updates the software deprecation info' do
+          expect { subject.call }
+            .to change { SoftwareDeprecation.pluck(:end_of_support, :warning_issued) }.from([]).to([[deprecation_date, 'out_of_support_warning']])
+            .and(have_enqueued_mail(AdminMailer, :end_of_support_out_of_support_warning).with(hash_including(params: { recipient: owner_user.account })).once)
+        end
+
+        context 'when an irrelevant deprecation was stored' do
+          before do
+            SoftwareDeprecation.create!(branch: '4.3', end_of_support: '2026-05-06'.to_date, warning_issued: :out_of_support_warning)
+          end
+
+          it 'updates the software deprecation info and sends email' do
+            expect { subject.call }
+              .to change { SoftwareDeprecation.pluck(:end_of_support, :warning_issued) }.from([['2026-05-06'.to_date, 'out_of_support_warning']]).to([[deprecation_date, 'out_of_support_warning']])
+              .and(have_enqueued_mail(AdminMailer, :end_of_support_out_of_support_warning).with(hash_including(params: { recipient: owner_user.account })).once)
+          end
+        end
+      end
+
       context 'when no update is urgent' do
         it 'sends e-mail notifications according to settings', :aggregate_failures do
           expect { subject.call }.to have_enqueued_mail(AdminMailer, :new_software_updates)

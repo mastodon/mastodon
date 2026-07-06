@@ -70,7 +70,7 @@ class SoftwareUpdateCheckService < BaseService
 
     deprecation_notice.update(end_of_support: current_version['endOfSupport'].to_date)
 
-    # TODO: notifications
+    notify_of_end_of_support!(deprecation_notice)
   end
 
   def should_notify_user?(user, urgent_version, patch_version)
@@ -98,6 +98,32 @@ class SoftwareUpdateCheckService < BaseService
       else
         AdminMailer.with(recipient: user.account).new_software_updates.deliver_later
       end
+    end
+  end
+
+  def should_notify_about_end_of_support?(user)
+    true # TODO: user.settings['notification_emails.end_of_support']
+  end
+
+  def send_notification_for_end_of_support_warning!(deprecation_notice, warning_type)
+    return if deprecation_notice.warning_issued == warning_type
+
+    User.those_who_can(:view_devops).includes(:account).find_each do |user|
+      next unless should_notify_about_end_of_support?(user)
+
+      AdminMailer.with(recipient: user.account).public_send("end_of_support_#{warning_type}").deliver_later
+    end
+
+    deprecation_notice.update!(warning_issued: warning_type)
+  end
+
+  def notify_of_end_of_support!(deprecation_notice)
+    if deprecation_notice.end_of_support.past?
+      send_notification_for_end_of_support_warning!(deprecation_notice, 'out_of_support_warning')
+    elsif deprecation_notice.end_of_support < 2.weeks.from_now
+      send_notification_for_end_of_support_warning!(deprecation_notice, 'two_weeks_warning')
+    elsif deprecation_notice.end_of_support < 3.months.from_now
+      send_notification_for_end_of_support_warning!(deprecation_notice, 'three_months_warning')
     end
   end
 end

@@ -9,7 +9,7 @@ class AdminMailer < ApplicationMailer
   before_action :process_params
   before_action :set_instance
 
-  after_action :set_important_headers!, only: :new_critical_software_updates
+  after_action :set_important_headers!, only: [:new_critical_software_updates, :end_of_support_out_of_support_warning]
 
   around_action :set_locale
 
@@ -55,6 +55,24 @@ class AdminMailer < ApplicationMailer
     @software_updates = SoftwareUpdate.urgent.by_version
 
     mail subject: default_i18n_subject(instance: @instance)
+  end
+
+  def end_of_support_three_months_warning
+    @software_updates = SoftwareUpdate.by_version
+
+    mail subject: default_i18n_subject(instance: @instance, branch: SoftwareDeprecation.current_branch)
+  end
+
+  def end_of_support_two_weeks_warning
+    @software_updates = SoftwareUpdate.by_version
+
+    mail subject: default_i18n_subject(instance: @instance, branch: SoftwareDeprecation.current_branch)
+  end
+
+  def end_of_support_out_of_support_warning
+    @software_updates = SoftwareUpdate.by_version
+
+    mail subject: default_i18n_subject(instance: @instance, branch: SoftwareDeprecation.current_branch)
   end
 
   def auto_close_registrations

@@ -1287,6 +1287,15 @@ en:
     auto_close_registrations:
       body: Due to a lack of recent moderator activity, registrations on %{instance} have been automatically switched to requiring manual review, to prevent %{instance} from being used as a platform for potential bad actors. You can switch it back to open registrations at any time.
       subject: Registrations for %{instance} have been automatically switched to requiring approval
+    end_of_support_out_of_support_warning:
+      body: The Mastodon version currently in use on your server is not supported anymore. We recommend you to update as soon as possible!
+      subject: Mastodon %{branch} used on %{instance} is now unsupported!
+    end_of_support_three_months_warning:
+      body: The Mastodon version currently in use on your server will stop being supported in 3 months. You may want to update to a newer branch ahead of time.
+      subject: Support for Mastodon %{branch} used on %{instance} to end in 3 months.
+    end_of_support_two_weeks_warning:
+      body: The Mastodon version currently in use on your server will stop being supported in 2 weeks. We recommend you update to a newer branch ahead of time.
+      subject: Support for Mastodon %{branch} used on %{instance} to end in 2 weeks.
     new_appeal:
       actions:
         delete_statuses: to delete their posts
