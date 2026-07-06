@@ -1,7 +1,9 @@
-import { createSelector } from '@reduxjs/toolkit';
-
-import type { RootState } from 'mastodon/store';
+import { createAppSelector } from 'mastodon/store';
 import { toServerSideType } from 'mastodon/utils/filters';
+
+import type { StatusContextType } from '../components/status/types';
+
+import { selectExpandedStatus } from './statuses';
 
 export interface FilterShape {
   id: string;
@@ -17,9 +19,9 @@ type Filter = Immutable.Map<string, unknown>;
 // TODO: move to `app/javascript/mastodon/models` and use more globally
 type FilterResult = Immutable.Map<string, unknown>;
 
-export const getFilters = createSelector(
+export const getFilters = createAppSelector(
   [
-    (state: RootState) => state.filters as Immutable.Map<string, Filter>,
+    (state) => state.filters as Immutable.Map<string, Filter>,
     (_, { contextType }: { contextType?: string }) => contextType,
   ],
   (filters, contextType) => {
@@ -41,18 +43,93 @@ export const getFilters = createSelector(
   },
 );
 
-export const getStatusHidden = (
-  state: RootState,
-  { id, contextType }: { id: string; contextType: string },
-) => {
-  const filters = getFilters(state, { contextType });
-  if (filters === null) return false;
+export const selectPlainFilters = createAppSelector([getFilters], (filters) => {
+  if (!filters) {
+    return null;
+  }
+  return filters.toJS() as unknown as Record<string, FilterShape>;
+});
 
-  const filtered = state.statuses.getIn([id, 'filtered']) as
-    | Immutable.List<FilterResult>
-    | undefined;
-  return filtered?.some(
-    (result) =>
-      filters.getIn([result.get('filter'), 'filter_action']) === 'hide',
-  );
-};
+export const selectStatusFilters = createAppSelector(
+  [
+    (state, { statusId }: { statusId?: string | null }) =>
+      selectExpandedStatus(state, statusId ?? undefined),
+    selectPlainFilters,
+    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
+      warnInsteadOfHide,
+  ],
+  (status, filters) => {
+    const results: FilterShape[] = [];
+    if (!status || !filters) {
+      return results;
+    }
+    const filtered = status.reblog?.filtered ?? status.filtered;
+    for (const result of filtered) {
+      const filter = filters[result.filter];
+      if (!filter) {
+        continue;
+      }
+
+      results.push(filter);
+    }
+
+    return results;
+  },
+);
+
+export const selectStatusLoadingState = createAppSelector(
+  [
+    (state, { statusId }: { statusId?: string | null }) =>
+      selectExpandedStatus(state, statusId ?? undefined),
+    selectStatusFilters,
+    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
+      warnInsteadOfHide,
+  ],
+  (status, filters, warnInsteadOfHide) => {
+    if (!status) {
+      return { state: 'not-found', status: null };
+    }
+
+    if (status.isLoading) {
+      return { state: 'loading', status: null };
+    }
+
+    if (
+      !warnInsteadOfHide &&
+      filters.some((filter) => filter.filter_action === 'hide')
+    ) {
+      return { state: 'filtered', status: null };
+    }
+
+    return { state: 'loaded', status };
+  },
+);
+
+export const selectMediaFilters = createAppSelector(
+  [selectStatusFilters],
+  (filters) =>
+    filters
+      .filter((filter) => filter.filter_action === 'blur')
+      .map((filter) => filter.title),
+);
+
+export const getStatusHidden = createAppSelector(
+  [
+    (state, { contextType }: { contextType: StatusContextType }) =>
+      getFilters(state, { contextType }),
+    (state, { id }: { id: string }) =>
+      state.statuses.getIn([id, 'filtered']) as
+        | Immutable.List<FilterResult>
+        | undefined,
+  ],
+  (filters, filtered) => {
+    if (!filters) {
+      return false;
+    }
+
+    return filtered?.some(
+      (result) =>
+        filters.getIn([result.get('filter'), 'filter_action']) === 'hide',
+    );
+  },
+);

@@ -8,8 +8,6 @@ import type {
 import { createAppSelector } from '@/mastodon/store/typed_functions';
 
 import { selectIsAccountLocal, selectPlainAccount } from './accounts';
-import type { FilterShape } from './filters';
-import { getFilters } from './filters';
 
 export const getStatusList = createAppSelector(
   [
@@ -20,7 +18,7 @@ export const getStatusList = createAppSelector(
 );
 
 export const selectPlainStatus = createAppSelector(
-  [(state, statusId: string) => state.statuses.get(statusId)],
+  [(state, statusId?: string | null) => state.statuses.get(statusId ?? '')],
   (status) => {
     if (!status) {
       return null;
@@ -159,6 +157,7 @@ export const selectStatusInteractions = createAppSelector(
       reply: addAllowed({ isLoggedIn }),
       report: addAllowed({ isLoggedIn, isNotMine }),
       revokeQuote: addAllowed({ isQuoted, isNotMine }),
+      translate: addAllowed({ isLoggedIn }),
     };
 
     return {
@@ -201,27 +200,4 @@ export const selectPictureInPicture = createAppSelector(
     inUse: inUse && available,
     available,
   }),
-);
-
-export const selectMediaMatchFilters = createAppSelector(
-  [
-    (state, { statusId }: { statusId: string }) =>
-      selectPlainStatus(state, statusId),
-    getFilters,
-  ],
-  (status, immutableFilters) => {
-    const filters = immutableFilters
-      ? (immutableFilters.toJS() as unknown as Record<string, FilterShape>)
-      : null;
-    const mediaFilters: string[] = [];
-    if (status?.filtered && filters) {
-      for (const { filter } of status.filtered) {
-        if (filters[filter]?.filter_action === 'blur') {
-          mediaFilters.push(filters[filter].title);
-        }
-      }
-    }
-
-    return mediaFilters;
-  },
 );
