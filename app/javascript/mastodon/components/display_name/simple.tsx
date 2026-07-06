@@ -16,8 +16,8 @@ export const DisplayNameSimple: FC<
       <EmojiHTML
         {...props}
         as='span'
-        htmlString={account.get('display_name_html')}
-        extraEmojis={account.get('emojis')}
+        htmlString={account.display_name_html}
+        extraEmojis={account.emojis}
       />
     </bdi>
   );

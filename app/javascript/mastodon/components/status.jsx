@@ -555,7 +555,7 @@ class Status extends ImmutablePureComponent {
       const taggedCollection = (
         status.get('tagged_collections')
       ).find((item) => compareUrls(item.get('url'), cardUrl));
-  
+
       if (taggedCollection) {
         media = <CollectionPreviewCard collection={taggedCollection.toJS()} headingLevel='h2' />;
       } else {
@@ -579,10 +579,10 @@ class Status extends ImmutablePureComponent {
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
 
     const header = this.props.headerRenderFn
-      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured })
+      ? this.props.headerRenderFn({ statusId: status.get('id'), account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured })
       : (
         <StatusHeader
-          status={status}
+          statusId={status.get('id')}
           account={account}
           avatarSize={avatarSize}
           onHeaderClick={this.handleHeaderClick}
@@ -614,7 +614,7 @@ class Status extends ImmutablePureComponent {
 
             {matchedFilters && <FilterWarning title={matchedFilters.join(', ')} expanded={this.state.showDespiteFilter} onClick={this.handleFilterToggle} />}
 
-            {(!matchedFilters || this.state.showDespiteFilter) && <ContentWarning status={status} expanded={expanded} onClick={this.handleExpandedToggle} />}
+            {(!matchedFilters || this.state.showDespiteFilter) && <ContentWarning statusId={status.get('id')} expanded={expanded} onClick={this.handleExpandedToggle} />}
 
             {expanded && (
               <>

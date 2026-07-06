@@ -55,8 +55,8 @@ export function makeGetAccount() {
 }
 
 export const selectPlainAccount = createAppSelector(
-  [(state, accountId: string) => state.accounts.get(accountId)],
-  (account) => (account ? (account.toJS() as AccountShapeFull) : null),
+  [(state, accountId?: string | null) => state.accounts.get(accountId ?? '')],
+  (account) => (account?.toJS() as AccountShapeFull | undefined) ?? null,
 );
 
 export const selectIsAccountLocal = createAppSelector(
