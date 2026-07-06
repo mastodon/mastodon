@@ -33,6 +33,10 @@ class SoftwareUpdate < ApplicationRecord
     gem_version > runtime_version
   end
 
+  def unsupported?
+    end_of_support&.past?
+  end
+
   class << self
     def check_enabled?
       Rails.configuration.x.mastodon.software_update_url.present?

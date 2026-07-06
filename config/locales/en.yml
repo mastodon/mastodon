@@ -1014,12 +1014,14 @@ en:
       description: It is recommended to keep your Mastodon installation up to date to benefit from the latest fixes and features. Moreover, it is sometimes critical to update Mastodon in a timely manner to avoid security issues. For these reasons, Mastodon checks for updates every 30 minutes, and will notify you according to your email notification preferences.
       documentation_link: Learn more
       release_notes: Release notes
+      supported_until: Support ends on %{date}
       title: Available updates
       type: Type
       types:
         major: Major release
         minor: Minor release
         patch: Patch release — bugfixes and easy to apply changes
+      unsupported_since: Unsupported since %{date}
       version: Version
     statuses:
       account: Author
