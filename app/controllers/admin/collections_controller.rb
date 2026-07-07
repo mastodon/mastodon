@@ -51,7 +51,7 @@ module Admin
     end
 
     def set_collection
-      @collection = @account.collections.includes(accepted_collection_items: :account).find(params[:id])
+      @collection = @account.collections.includes(accepted_collection_items: { account: [:account_stat, user: [:ips, :invite_request]] }).find(params[:id])
     end
 
     def set_collections
