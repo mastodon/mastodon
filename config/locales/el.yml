@@ -289,7 +289,11 @@ el:
         enable_relay_html: Ο χρήστης %{name} ενεργοποίησε το relay %{target}
         enable_sign_in_token_auth_user_html: Ο χρήστης %{name} ενεργοποίησε την πιστοποίηση αναγνωριστικού email του %{target}
         enable_user_html: Ο/Η %{name} ενεργοποίησε τη σύνδεση για τον χρήστη %{target}
+        listable_tag_html: μπορεί να προτείνεται
         memorialize_account_html: O/H %{name} μετέτρεψε τον λογαριασμό του %{target} σε σελίδα εις μνήμην
+        not_listable_tag_html: δεν θα προτείνεται
+        not_trendable_tag_html: δεν θα εμφανίζεται στις τάσεις
+        not_usable_tag_html: δεν θα μπορεί να χρησιμοποιείται
         promote_user_html: Ο/Η %{name} προβίβασε το χρήστη %{target}
         publish_terms_of_service_html: Ο χρήστης %{name} δημοσίευσε ενημερώσεις για τους όρους της υπηρεσίας
         reject_appeal_html: Ο/Η %{name} απέρριψε την έφεση της απόφασης των συντονιστών από %{target}
@@ -302,6 +306,7 @@ el:
         sensitive_account_html: Ο/Η %{name} σήμανε τα πολυμέσα του/της %{target} ως ευαίσθητα
         silence_account_html: Ο/Η %{name} περιόρισε τον λογαριασμό του/της %{target}
         suspend_account_html: Ο/Η %{name} ανέστειλε τον λογαριασμό του/της %{target}
+        trendable_tag_html: μπορεί να εμφανίζεται στις τάσεις
         unassigned_report_html: Ο/Η %{name} αποδέσμευσε την αναφορά %{target}
         unblock_email_account_html: "%{name} έκανε άρση αποκλεισμού στη διεύθυνση email του %{target}"
         unsensitive_account_html: Ο/Η %{name} σήμανε τα πολυμέσα του/της %{target} ως μη ευαίσθητα
@@ -314,8 +319,10 @@ el:
         update_ip_block_html: Ο/Η %{name} άλλαξε τον κανόνα για την IP %{target}
         update_report_html: Ο χρήστης %{name} ενημέρωσε την αναφορά %{target}
         update_status_html: Ο/Η %{name} ενημέρωσε την ανάρτηση του/της %{target}
+        update_tag_html: 'Ο/Η %{name} άλλαξε τις ρυθμίσεις %{target} σε: '
         update_user_role_html: Ο/Η %{name} άλλαξε τον ρόλο %{target}
         update_username_block_html: "%{name} ενημέρωσε κανόνα για ονόματα χρηστών που περιέχουν %{target}"
+        usable_tag_html: μπορεί να χρησιμοποιείται,
       deleted_account: λογαριασμός διαγράφηκε
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
@@ -1228,6 +1235,7 @@ el:
           other: Χρησιμοποιήθηκε από %{count} άτομα την τελευταία εβδομάδα
       title: Προτάσεις και τάσεις
       trending: Τάσεις
+    update_available: Διαθέσιμη ενημέρωση
     username_blocks:
       add_new: Προσθήκη νέου
       block_registrations: Φραγή εγγραφών
@@ -1935,6 +1943,7 @@ el:
     next: Επόμενη
     older: Παλαιότερες
     prev: Προηγούμενη
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Έχετε ήδη ψηφίσει σε αυτή τη δημοσκόπηση
