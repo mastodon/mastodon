@@ -14,6 +14,9 @@
 # when we integrate it with github we can also get the userhandles like following
 # {%- if commit.remote.username -%} (by @{{ commit.remote.username }}){%- endif -%}\
 body = """
+{% if commit_range %}
+  ## last included commit {{ commit_range.to | truncate(length=10, end="") }}
+{% endif %}\
 {% if version %}\
   ## [{{ version }}] - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}\
