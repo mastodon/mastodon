@@ -108,7 +108,6 @@ commit_parsers = [
   { message = "^perf", group = "<!-- 3 -->Changed" },
   { message = "^style", group = "<!-- 3 -->Changed" },
   { message = "^test", group = "<!-- 3 -->Changed" },
-  { message = "^security", group = "<!-- 0 -->Security" },
   { body = ".*security", group = "<!-- 0 -->Security" },
   { message = ".*", group = "<!-- 6 -->Other" },
   # we can also sort by PR labels, if this is easier
