@@ -72,9 +72,7 @@ interface CardProps {
   sensitive?: boolean;
 }
 
-const CardVideo: React.FC<{
-  card: CardType | CardShape;
-}> = ({ card }) => {
+const CardVideo: React.FC<{ card: CardShape }> = ({ card }) => {
   const { html, url, provider_name } = card;
 
   const iframeContent = useMemo(
