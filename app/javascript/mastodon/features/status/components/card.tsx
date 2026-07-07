@@ -72,6 +72,8 @@ interface CardProps {
   sensitive?: boolean;
 }
 
+// Memoisation prevents the embedded video from re-starting when interacting
+// with the containing post. Beware of adding non-primitive props to this component.
 const CardVideo: React.FC<{ html: string; url: string; providerName: string }> =
   memo(({ html, url, providerName }) => (
     <div
