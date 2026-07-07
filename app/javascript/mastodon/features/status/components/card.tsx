@@ -1,4 +1,4 @@
-import { memo, useCallback, useId, useMemo, useState } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -72,20 +72,26 @@ interface CardProps {
   sensitive?: boolean;
 }
 
-// Memoisation prevents the embedded video from re-starting when interacting
-// with the containing post. Beware of adding non-primitive props to this component.
-const CardVideo: React.FC<{ html: string; url: string; providerName: string }> =
-  memo(({ html, url, providerName }) => (
+const CardVideo: React.FC<{
+  card: CardType | CardShape;
+}> = ({ card }) => {
+  const { html, url, provider_name } = card;
+
+  const iframeContent = useMemo(
+    () => ({
+      __html: handleIframeUrl(html, url, provider_name),
+    }),
+    [html, provider_name, url],
+  );
+
+  return (
     <div
       className='status-card__image status-card-video'
-      dangerouslySetInnerHTML={{
-        __html: handleIframeUrl(html, url, providerName),
-      }}
+      dangerouslySetInnerHTML={iframeContent}
       style={{ aspectRatio: '16 / 9' }}
     />
-  ));
-
-CardVideo.displayName = 'CardVideo';
+  );
+};
 
 const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
   const card: CardShape | null = useMemo(
@@ -230,13 +236,7 @@ const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
 
   if (interactive) {
     if (embedded) {
-      embed = (
-        <CardVideo
-          html={card.html}
-          url={card.url}
-          providerName={card.provider_name}
-        />
-      );
+      embed = <CardVideo card={card} />;
     } else {
       embed = (
         <div className='status-card__image'>
