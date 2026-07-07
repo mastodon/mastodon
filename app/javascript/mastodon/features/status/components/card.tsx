@@ -1,4 +1,4 @@
-import { useCallback, useId, useMemo, useState } from 'react';
+import { memo, useCallback, useId, useMemo, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -72,15 +72,18 @@ interface CardProps {
   sensitive?: boolean;
 }
 
-const CardVideo: React.FC<{ card: CardShape }> = ({ card }) => (
-  <div
-    className='status-card__image status-card-video'
-    dangerouslySetInnerHTML={{
-      __html: handleIframeUrl(card.html, card.url, card.provider_name),
-    }}
-    style={{ aspectRatio: '16 / 9' }}
-  />
-);
+const CardVideo: React.FC<{ html: string; url: string; providerName: string }> =
+  memo(({ html, url, providerName }) => (
+    <div
+      className='status-card__image status-card-video'
+      dangerouslySetInnerHTML={{
+        __html: handleIframeUrl(html, url, providerName),
+      }}
+      style={{ aspectRatio: '16 / 9' }}
+    />
+  ));
+
+CardVideo.displayName = 'CardVideo';
 
 const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
   const card: CardShape | null = useMemo(
@@ -225,7 +228,13 @@ const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
 
   if (interactive) {
     if (embedded) {
-      embed = <CardVideo card={card} />;
+      embed = (
+        <CardVideo
+          html={card.html}
+          url={card.url}
+          providerName={card.provider_name}
+        />
+      );
     } else {
       embed = (
         <div className='status-card__image'>
