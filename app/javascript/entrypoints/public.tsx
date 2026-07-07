@@ -269,23 +269,6 @@ async function loaded() {
   });
 }
 
-on('change', '#edit_profile input[type=file]', ({ target }) => {
-  if (!(target instanceof HTMLInputElement)) return;
-
-  const avatar = document.querySelector<HTMLImageElement>(
-    `img#${target.id}-preview`,
-  );
-
-  if (!avatar) return;
-
-  let file: File | undefined;
-  if (target.files) file = target.files[0];
-
-  const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
-
-  if (url) avatar.src = url;
-});
-
 on('click', '.input-copy input', ({ target }) => {
   if (!(target instanceof HTMLInputElement)) return;
 
