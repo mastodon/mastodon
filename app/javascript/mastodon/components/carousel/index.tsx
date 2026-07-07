@@ -235,7 +235,7 @@ const CarouselSlideWrapper = <SlideProps extends CarouselSlideProps>({
       className={className}
       role='group'
       aria-roledescription='slide'
-      inert={active}
+      inert={!active}
       data-index={index}
     >
       {children}
