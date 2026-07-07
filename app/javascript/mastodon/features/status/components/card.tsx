@@ -72,15 +72,24 @@ interface CardProps {
   sensitive?: boolean;
 }
 
-const CardVideo: React.FC<{ card: CardShape }> = ({ card }) => (
-  <div
-    className='status-card__image status-card-video'
-    dangerouslySetInnerHTML={{
-      __html: handleIframeUrl(card.html, card.url, card.provider_name),
-    }}
-    style={{ aspectRatio: '16 / 9' }}
-  />
-);
+const CardVideo: React.FC<{ card: CardShape }> = ({ card }) => {
+  const { html, url, provider_name } = card;
+
+  const iframeContent = useMemo(
+    () => ({
+      __html: handleIframeUrl(html, url, provider_name),
+    }),
+    [html, provider_name, url],
+  );
+
+  return (
+    <div
+      className='status-card__image status-card-video'
+      dangerouslySetInnerHTML={iframeContent}
+      style={{ aspectRatio: '16 / 9' }}
+    />
+  );
+};
 
 const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
   const card: CardShape | null = useMemo(
