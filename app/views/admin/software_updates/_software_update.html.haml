@@ -1,9 +1,14 @@
 %tr{ id: dom_id(software_update) }
   %td= software_update.version
   %td= t("admin.software_updates.types.#{software_update.type}")
-  %td{ class: class_names(critical: software_update.urgent?) }
+  %td
     - if software_update.urgent?
-      = t('admin.software_updates.critical_update')
+      .critical= t('admin.software_updates.critical_update')
+    - if software_update.end_of_support.present?
+      - if software_update.unsupported?
+        .unsupported= t('admin.software_updates.unsupported_since', date: software_update.end_of_support)
+      - else
+        %div= t('admin.software_updates.supported_until', date: software_update.end_of_support)
   %td.release-notes
     = table_link_to 'link',
                     t('admin.software_updates.release_notes'),

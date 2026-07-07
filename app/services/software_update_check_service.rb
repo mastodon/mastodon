@@ -47,9 +47,11 @@ class SoftwareUpdateCheckService < BaseService
     new_update_notices = update_notices['updatesAvailable'].filter { |notice| known_versions.exclude?(notice['version']) }
     return if new_update_notices.blank?
 
-    new_updates = new_update_notices.map do |notice|
-      SoftwareUpdate.create!(version: notice['version'], urgent: notice['urgent'], type: notice['type'], release_notes: notice['releaseNotes'])
-    end
+    SoftwareUpdate.upsert_all(update_notices['updatesAvailable'].map do |notice|
+      { version: notice['version'], urgent: notice['urgent'], type: notice['type'], release_notes: notice['releaseNotes'], end_of_support: notice['endOfSupport']&.to_date }
+    end, unique_by: :version)
+
+    new_updates = SoftwareUpdate.where(version: new_update_notices.pluck('version')).to_a
 
     notify_devops!(new_updates)
   end

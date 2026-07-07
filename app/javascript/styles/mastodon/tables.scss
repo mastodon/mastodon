@@ -15,9 +15,13 @@
     text-align: start;
     background: var(--color-bg-primary);
 
-    &.critical {
+    .critical {
       font-weight: 700;
       color: var(--color-text-warning);
+    }
+
+    .unsupported {
+      color: var(--color-text-error);
     }
   }
 
