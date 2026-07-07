@@ -64,7 +64,7 @@ postprocessors = [
 # render body even when there are no releases to process
 # render_always = true
 # output file path
-output = "test.md"
+output = "unreleased.md"
 
 [git]
 # Parse commits according to the conventional commits specification.
@@ -98,18 +98,19 @@ commit_parsers = [
   { message = "^chore\\(pull\\)", skip = true },
   { message = "^New Crowdin Translations", skip = true },
   { message = "(?i)^update|(?i)^bump", skip = true },
-  { message = "(?i)^add", group = "Added" },
-  { message = "(?i)^feat", group = "Added" },
-  { message = "(?i)^change", group = "Changed" },
-  { message = "(?i)^fix", group = "Fixed" },
-  { message = "(?i)^deprecate", group = "Deprecated" },
-  { message = "(?i)^remove", group = "Removed" },
-  { message = "^doc", group = "Changed" },
-  { message = "^perf", group = "Changed" },
-  { message = "^style", group = "Changed" },
-  { message = "^test", group = "Changed" },
-  { body = ".*security", group = "Security" },
-  { message = ".*", group = "Other" },
+  { message = "(?i)^add", group = "<!-- 1 -->Added" },
+  { message = "(?i)^feat", group = "<!-- 1 -->Added" },
+  { message = "(?i)^change", group = "<!-- 3 -->Changed" },
+  { message = "(?i)^fix", group = "<!-- 2 -->Fixed" },
+  { message = "(?i)^deprecate", group = "<!-- 4 -->Deprecated" },
+  { message = "(?i)^remove", group = "<!-- 5 -->Removed" },
+  { message = "^doc", group = "<!-- 3 -->Changed" },
+  { message = "^perf", group = "<!-- 3 -->Changed" },
+  { message = "^style", group = "<!-- 3 -->Changed" },
+  { message = "^test", group = "<!-- 3 -->Changed" },
+  { message = "^security", group = "<!-- 0 -->Security" },
+  { body = ".*security", group = "<!-- 0 -->Security" },
+  { message = ".*", group = "<!-- 6 -->Other" },
   # we can also sort by PR labels, if this is easier
   # like { field = "github.pr_labels", pattern = "bug", group = "Fixed" },
   # or group renovate PRs
