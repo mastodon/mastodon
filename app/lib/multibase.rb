@@ -19,6 +19,9 @@ class Multibase
     bytes.pack('C*')
   end.freeze
 
+  ED25519_PUB_DER_HEADER = ['302a300506032b6570032100'].pack('H*').freeze
+  ML_DSA_44_PUB_DER_HEADER = ['30820532300b06096086480165030403110382052100'].pack('H*').freeze
+
   def self.decode(string)
     raise ArgumentError if string.nil?
 
@@ -40,5 +43,26 @@ class Multibase
     end
 
     raise ArgumentError
+  end
+
+  def self.decode_key_to_pem(string)
+    tag, binary = decode_multicodec(string)
+
+    case tag
+    when :'rsa-pub'
+      [:rsa, OpenSSL::PKey::RSA.new(binary).to_pem]
+    when :'ed25519-pub'
+      raise ArgumentError unless binary.size == 32
+
+      der = ED25519_PUB_DER_HEADER + binary
+      [:ed25519, "-----BEGIN PUBLIC KEY-----\n#{Base64.strict_encode64(der)}\n-----END PUBLIC KEY-----\n"]
+    when :'mldsa-44-pub'
+      raise ArgumentError unless binary.size == 1312
+
+      der = ML_DSA_44_PUB_DER_HEADER + binary
+      [:'ml-dsa-44', "-----BEGIN PUBLIC KEY-----\n#{Base64.strict_encode64(der).scan(/.{,64}/).join("\n")}-----END PUBLIC KEY-----\n"]
+    else
+      raise ArgumentError
+    end
   end
 end
