@@ -1002,12 +1002,14 @@ zh-TW:
       description: 建議將您的 Mastodon 伺服器升級至最新狀態，以獲得最新錯誤修正及功能更新。此外，即時更新 Mastodon 以避免偶發之安全問題非常重要。因此，Mastodon 每 30 分鐘將檢查一次更新，並依據您的電子郵件通知設定通知您。
       documentation_link: 了解更多
       release_notes: 版本資訊
+      supported_until: 將於 %{date} 停止支援
       title: 可取得的更新
       type: 類型
       types:
         major: 主要版本更新
         minor: 次要版本更新 (minor release)
         patch: 修正版本 (patch release) — 錯誤修正及易於套用之變更
+      unsupported_since: 自 %{date} 停止支援
       version: 版本
     statuses:
       account: 作者
