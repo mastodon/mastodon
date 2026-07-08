@@ -30,7 +30,7 @@ class ActivityPub::ObjectIntegrityProof
     return if keypair.nil? || !keypair.usable? || keypair.type != 'ed25519'
 
     keypair.actor if ActivityPub::ObjectIntegrityProof.verify_eddsa_jcs_2022(@json, keypair.keypair)
-  rescue OpenSSL::PKey::RSAError
+  rescue ArgumentError, TypeError
     false
   end
 
