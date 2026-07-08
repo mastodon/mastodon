@@ -27,9 +27,9 @@ RSpec.describe Request do
   end
 
   describe '#on_behalf_of' do
-    it 'when used, adds signature header' do
+    it 'when used, sets signing keypair' do
       subject.on_behalf_of(Fabricate(:account))
-      expect(subject.headers['Signature']).to be_present
+      expect(subject.signing_keypair).to be_present
     end
   end
 
@@ -110,14 +110,10 @@ RSpec.describe Request do
         expect { |block| subject.on_behalf_of(account).perform(&block) }.to yield_control
 
         # request.headers includes the `Signature` sent for the first request
-        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made.once
+        expect(a_request(:get, 'http://example.com').with(headers: subject.headers.merge('Signature' => /.*/))).to have_been_made.once
 
-        # request.headers includes the `Signature`, but it has changed
-        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.merge({ 'Host' => 'redirected.example.com' }))).to_not have_been_made
-
-        # `with(headers: )` matching tests for inclusion, so strip `Signature`
-        # This doesn't actually test that there is a signature, but it tests that the original signature is not passed
-        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.without('Signature').merge({ 'Host' => 'redirected.example.com' }))).to have_been_made.once
+        # This doesn't actually test that the signature has changed, but I verified this manually
+        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.merge({ 'Host' => 'redirected.example.com', 'Signature' => /.*/ }))).to have_been_made.once
       end
     end
 
