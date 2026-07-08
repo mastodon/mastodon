@@ -335,7 +335,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def key_from_multikey(value)
     Multibase.decode_key_to_pem(value)
-  rescue ArgumentError
+  rescue Multibase::Error
     nil
   end
 
