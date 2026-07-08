@@ -1014,12 +1014,14 @@ da:
       description: Det anbefales at holde din Mastodon-installation opdateret for at drage fordel af de nyeste fejlrettelser og funktioner. Desuden er det nogle gange afgørende at opdatere Mastodon rettidigt for at undgå sikkerhedsproblemer. Af disse grunde tjekker Mastodon for opdateringer hvert 30. minut og giver dig besked i henhold til dine præferencer for e-mail-notifikationer.
       documentation_link: Læs mere
       release_notes: Udgivelsesnoter
+      supported_until: Support ophører %{date}
       title: Tilgængelige opdateringer
       type: Type
       types:
         major: Større version
         minor: Mindre version
         patch: Patch-version – fejlrettelser og ukomplicerede ændringer
+      unsupported_since: Ikke længere understøttet siden %{date}
       version: Version
     statuses:
       account: Forfatter

@@ -1016,12 +1016,14 @@ is:
       description: Mælt er með því að þú haldir Mastodon-uppsetningunni þinni uppfærðri til að vera með nýjustu lagfæringar og eiginleika. Aukinheldur er mikilvægt að halda Mastodon uppfærðu til að komast hjá öryggisveilum. Af þessum ástæðum athugar Mastodon með uppfærslur á 30 mínútna fresti og mun gera þér viðvart í samræmi við stillingar þínar á tilkynningum í tölvupósti.
       documentation_link: Kanna nánar
       release_notes: Útgáfuupplýsingar
+      supported_until: Stuðningur endar þann %{date}
       title: Tiltækar uppfærslur
       type: Tegund
       types:
         major: Aðalútgáfa
         minor: Aukaútgáfa
         patch: Viðgerðauppfærsla - lagfæringar og ýmsar minniháttar breytingar
+      unsupported_since: Ekki stutt síðan %{date}
       version: Útgáfa
     statuses:
       account: Höfundur
@@ -1237,6 +1239,7 @@ is:
           other: Notað af %{count} aðilum síðustu vikuna
       title: Meðmæli og vinsælt
       trending: Vinsælt
+    update_available: Uppfærsla tiltæk
     username_blocks:
       add_new: Bæta við nýju
       block_registrations: Loka á nýskráningar
