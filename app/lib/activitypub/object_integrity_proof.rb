@@ -4,9 +4,6 @@
 class ActivityPub::ObjectIntegrityProof
   include JsonLdHelper
 
-  CONTEXT = 'https://w3id.org/identity/v1'
-  SIGNATURE_CONTEXT = 'https://w3id.org/security/v1'
-
   def initialize(json)
     @json = json
   end
@@ -15,9 +12,8 @@ class ActivityPub::ObjectIntegrityProof
     return unless @json.is_a?(Hash) && @json['proof'].is_a?(Hash)
 
     proof = @json['proof']
-    return unless proof['type'].present? && proof['verificationMethod'].present? && proof['proofPurpose'].present?
+    return unless proof['type'] == 'DataIntegrityProof' && proof['verificationMethod'].present? && proof['proofPurpose'] == proof_purpose
 
-    return if proof_purpose != proof['proofPurpose'] || proof['type'] != 'DataIntegrityProof'
     return if proof['expires']&.to_datetime&.past?
 
     cryptosuite = proof['cryptosuite']
@@ -30,7 +26,7 @@ class ActivityPub::ObjectIntegrityProof
     return if keypair.nil? || !keypair.usable? || keypair.type != 'ed25519'
 
     keypair.actor if ActivityPub::ObjectIntegrityProof.verify_eddsa_jcs_2022(@json, keypair.keypair)
-  rescue OpenSSL::PKey::RSAError
+  rescue Multibase::Error, OpenSSL::PKey::PKeyError
     false
   end
 
