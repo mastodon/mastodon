@@ -25,7 +25,7 @@ class Multibase
   class Error < StandardError; end
 
   def self.decode(string)
-    raise Error, 'Multibase string is null' if string.nil?
+    raise Error, 'Multibase string is nil' if string.nil?
 
     case string[0]
     when 'u'
