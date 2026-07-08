@@ -63,6 +63,28 @@ class Keypair < ApplicationRecord
     end
   end
 
+  def linzer_public_key
+    @linzer_public_key ||= begin
+      case type
+      when 'rsa'
+        Linzer.new_rsa_v1_5_sha256_public_key(public_key)
+      when 'ed25519'
+        Linzer.new_ed25519_public_key(public_key)
+      end
+    end
+  end
+
+  def linzer_private_key
+    @linzer_private_key ||= begin
+      case type
+      when 'rsa'
+        Linzer.new_rsa_v1_5_sha256_key(private_key, full_uri)
+      when 'ed25519'
+        Linzer.new_ed25519_key(private_key, full_uri)
+      end
+    end
+  end
+
   def usable?
     !revoked? && !expired?
   end
