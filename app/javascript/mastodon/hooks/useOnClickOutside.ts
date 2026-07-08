@@ -49,5 +49,5 @@ export function useOnClickOutside(
       };
     }
     return () => null;
-  }, [enabled, excludedElement, onClick]);
+  }, [enabled]);
 }
