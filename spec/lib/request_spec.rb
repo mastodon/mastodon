@@ -27,9 +27,9 @@ RSpec.describe Request do
   end
 
   describe '#on_behalf_of' do
-    it 'when used, adds signature header' do
+    it 'when used, sets signing keypair' do
       subject.on_behalf_of(Fabricate(:account))
-      expect(subject.headers['Signature']).to be_present
+      expect(subject.signing_keypair).to be_present
     end
   end
 
@@ -110,14 +110,12 @@ RSpec.describe Request do
         expect { |block| subject.on_behalf_of(account).perform(&block) }.to yield_control
 
         # request.headers includes the `Signature` sent for the first request
-        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made.once
+        expect(a_request(:get, 'http://example.com').with(headers: subject.headers.merge('Signature' => /.*/))).to have_been_made.once
+        expect(a_request(:get, 'http://example.com').with { |request| verified_signed_mocked_request?(request, account.keypair) }).to have_been_made.once
 
-        # request.headers includes the `Signature`, but it has changed
-        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.merge({ 'Host' => 'redirected.example.com' }))).to_not have_been_made
-
-        # `with(headers: )` matching tests for inclusion, so strip `Signature`
-        # This doesn't actually test that there is a signature, but it tests that the original signature is not passed
-        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.without('Signature').merge({ 'Host' => 'redirected.example.com' }))).to have_been_made.once
+        # This doesn't actually test that the signature has changed, but I verified this manually
+        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.merge({ 'Host' => 'redirected.example.com', 'Signature' => /.*/ }))).to have_been_made.once
+        expect(a_request(:get, 'http://redirected.example.com/foo').with { |request| verified_signed_mocked_request?(request, account.keypair) }).to have_been_made.once
       end
     end
 
@@ -224,5 +222,24 @@ RSpec.describe Request do
       stub_request(:any, 'http://example.com').to_return(body: '', headers: { 'Content-Type' => 'text/html; charset=UTF-8' })
       expect(subject.perform { |response| response.body_with_limit.encoding }).to eq Encoding::UTF_8
     end
+  end
+
+  def verified_signed_mocked_request?(webmock_request, keypair)
+    # Webmock requests are rather barebones and our signature verification
+    # code works with `ActionDispatch::Request` objects.
+
+    # This method builds a test request from the webmock request first,
+    # but this currently does not cover requests with bodies.
+    # A better way would probably be to build a whole Rack env, but
+    # that code was a lot more straightforward, and sufficient for
+    # the added test.
+
+    request = ActionDispatch::TestRequest.create
+    request.request_uri = webmock_request.uri
+    request.path = webmock_request.uri.path
+    request.request_method = webmock_request.method
+    request.headers.merge!(webmock_request.headers)
+
+    SignedRequest.new(request).verified?(keypair)
   end
 end
