@@ -1014,12 +1014,14 @@ it:
       description: Si consiglia di mantenere aggiornata l'installazione di Mastodon per beneficiare delle ultime correzioni e funzionalità. Inoltre, a volte è fondamentale aggiornare Mastodon in modo tempestivo per evitare problemi di sicurezza. Per queste ragioni, Mastodon verifica la presenza di aggiornamenti ogni 30 minuti e ti avviserà in base alle tue preferenze di notifica e-mail.
       documentation_link: Scopri di più
       release_notes: Note di rilascio
+      supported_until: Il supporto termina il %{date}
       title: Aggiornamenti disponibili
       type: Tipo
       types:
         major: Rilascio principale
         minor: Rilascio secondario
         patch: 'Patch: correzioni di bug e modifiche facili da applicare'
+      unsupported_since: Non più supportato dal %{date}
       version: Versione
     statuses:
       account: Autore
