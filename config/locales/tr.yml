@@ -1014,12 +1014,14 @@ tr:
       description: Son düzeltme ve özelliklerden yararlanmak için Mastodon kurulumunu güncel tutmanızı öneriyoruz. Üstelik güvenlik sorunlarından kaçınmak için Mastodon'u zamanında güncellemek kritiktir. Bu nedenlerle Mastodon her 30 dakikada bir güncellemeleri denetler ve e-posta bildirim seçeneğinize göre size haber verir.
       documentation_link: Daha fazlası
       release_notes: Sürüm notları
+      supported_until: Destek %{date} tarihinde bitiyor
       title: Mevcut güncellemeler
       type: Tür
       types:
         major: Ana sürüm
         minor: Alt sürüm
         patch: Yama sürümü — hata düzeltmeleri ve uygulaması kolay değişiklikler
+      unsupported_since: "%{date} tarihinden beri desteklenmiyor"
       version: Sürüm
     statuses:
       account: Yazar

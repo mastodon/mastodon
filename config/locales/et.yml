@@ -1014,12 +1014,14 @@ et:
       description: Soovitatav on hoida oma Mastodoni paigaldus ajakohasena, et saada kasu viimastest parandustest ja funktsioonidest. Lisaks sellele on mõnikord oluline Mastodoni õigeaegne uuendamine, et vältida turvaprobleeme. Neil põhjustel kontrollib Mastodon uuendusi iga 30 minuti järel ja teavitab vastavalt sinu e-posti teavitamise eelistustele.
       documentation_link: Vaata lisa
       release_notes: Väljalaskemärkused
+      supported_until: Tugi lõppeb %{date}
       title: Saadaval uuendused
       type: Tüüp
       types:
         major: Suur uuendus
         minor: Väike uuendus
         patch: Parandusuuendus — veaparandused ja hõlpsalt rakendatavad muudatused
+      unsupported_since: Alates %{date} pole enam toetatud
       version: Versioon
     statuses:
       account: Autor
@@ -1235,6 +1237,7 @@ et:
           other: Kasutatud %{count} kasutaja poolt viimase nädala jooksul
       title: Soovitused ja trendid
       trending: Trendid
+    update_available: Uuendus saadaval
     username_blocks:
       add_new: Lisa uus
       block_registrations: Blokeeri registreerimisi
