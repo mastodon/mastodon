@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_06_122112) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_06_143100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1155,6 +1155,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_06_122112) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "var", default: "", null: false
     t.index ["var"], name: "index_site_uploads_on_var", unique: true
+  end
+
+  create_table "software_deprecations", force: :cascade do |t|
+    t.string "branch", null: false
+    t.datetime "created_at", null: false
+    t.date "end_of_support", null: false
+    t.datetime "updated_at", null: false
+    t.integer "warning_issued", null: false
+    t.index ["branch"], name: "index_software_deprecations_on_branch", unique: true
   end
 
   create_table "software_updates", force: :cascade do |t|
