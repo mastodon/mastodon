@@ -1,0 +1,98 @@
+.wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 1rem;
+  padding: 2rem;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-blend);
+
+  * {
+    min-width: 0;
+  }
+
+  nav {
+    display: block;
+    grid-template-rows: min-content;
+    font-size: 14px;
+
+    input {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      margin-block-end: 1rem;
+      padding: 0.5rem 1rem;
+      color: var(--color-text-primary);
+      background: transparent;
+      border: 1px solid var(--color-border-primary);
+      border-radius: 0.5rem;
+
+      &:focus {
+        border-color: var(--color-border-brand);
+        outline: 1px solid var(--color-border-brand);
+      }
+    }
+
+    a {
+      display: block;
+      padding: 0.5rem 1rem 0.45rem;
+      border-radius: 0.5rem;
+      color: var(--color-text-secondary);
+
+      &[aria-current='page'] {
+        color: var(--color-text-primary);
+        background-color: var(--color-bg-highlight);
+      }
+    }
+
+    aside {
+      display: grid;
+      grid-template-areas:
+        'title button'
+        'subtitle button';
+      grid-template-columns: 1fr min-content;
+      align-items: center;
+      gap: 0.125rem 0.5rem;
+      margin-block-start: 1rem;
+      padding: 0.75rem 1rem;
+      line-height: 1.2;
+      border-radius: 1rem;
+      background-color: var(--color-bg-highlight);
+
+      h2 {
+        grid-area: title;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .subtitle {
+        grid-area: subtitle;
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .menuButton {
+        grid-area: button;
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background-color: var(--color-bg-highlight);
+        border-radius: 99rem;
+      }
+    }
+  }
+
+  main {
+    padding: 2rem;
+    background-color: var(--color-bg-primary);
+    border-radius: 1rem;
+  }
+}
