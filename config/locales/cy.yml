@@ -305,7 +305,11 @@ cy:
         enable_relay_html: Galluogodd %{name} y cyfnewidiad %{target}
         enable_sign_in_token_auth_user_html: Mae %{name} wedi galluogi dilysiad tocyn e-bost %{target}
         enable_user_html: Mae %{name} wedi galluogi mewngofnodi defnyddiwr %{target}
+        listable_tag_html: mae modd ei awgrymu
         memorialize_account_html: Newidiodd %{name} gyfrif %{target} i dudalen memoriam
+        not_listable_tag_html: fydd ddim yn cael ei awgrymu
+        not_trendable_tag_html: fydd ddim yn ymddangos o dan trendiau
+        not_usable_tag_html: does dim modd ei ddefnyddio
         promote_user_html: Mae %{name} wedi hyrwyddo defnyddiwr %{target}
         publish_terms_of_service_html: Mae %{name} wedi cyhoeddi diweddariadau i'r telerau gwasanaeth
         reject_appeal_html: Mae %{name} wedi gwrthod apêl penderfyniad cymedroli %{target}
@@ -318,6 +322,7 @@ cy:
         sensitive_account_html: Mae %{name} wedi marcio cyfrwng %{target} fel un sensitif
         silence_account_html: Mae %{name} wedi cyfyngu cyfrif %{target}
         suspend_account_html: Mae %{name} wedi atal cyfrif %{target}
+        trendable_tag_html: gall ymddangos o dan trendiau
         unassigned_report_html: Mae %{name} wedi dad neilltuo adroddiad %{target}
         unblock_email_account_html: Mae %{name} wedi dad rwystro cyfeiriad e-bost %{target}
         unsensitive_account_html: Mae %{name} wedi dad farcio cyfryngau %{target} fel rhai sensitif
@@ -330,8 +335,10 @@ cy:
         update_ip_block_html: Mae %{name} wedi newid rheol IP %{target}
         update_report_html: Mae %{name} wedi diweddaru adroddiad %{target}
         update_status_html: Mae %{name} wedi diweddaru postiad gan %{target}
+        update_tag_html: 'Newidiodd %{name} osodiadau %{target} i: '
         update_user_role_html: Mae %{name} wedi newid rôl %{target}
         update_username_block_html: Mae %{name} wedi diweddaru rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
+        usable_tag_html: mae modd ei ddefnyddio;
       deleted_account: cyfrif wedi'i ddileu
       empty: Dim logiau ar gael.
       filter_by_action: Hidlo yn ôl gweithred
@@ -1071,12 +1078,14 @@ cy:
       description: Argymhellir cadw'ch gosodiad Mastodon yn gyfredol i elwa o'r atgyweiriadau a'r nodweddion diweddaraf. Hefyd, weithiau mae'n hanfodol diweddaru Mastodon mewn modd amserol er mwyn osgoi materion diogelwch. Am y rhesymau hyn, mae Mastodon yn gwirio am ddiweddariadau bob 30 munud, a bydd yn eich hysbysu yn unol â'ch dewisiadau hysbysu e-bost.
       documentation_link: Dysgu rhagor
       release_notes: Nodiadau ryddhau
+      supported_until: Cymorthyn dod i ben ar %{date}
       title: Diweddariadau ar gael
       type: Math
       types:
         major: Rhyddhad mawr
         minor: Ryddhad llai
         patch: Rhyddhad cywiro - cywiriadau gwallau a newidiadau hawdd eu gosod
+      unsupported_since: Heb ei gynnal ers %{date}
       version: Fersiwn
     statuses:
       account: Awdur
@@ -1308,6 +1317,7 @@ cy:
           zero: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
       title: Argymhellion a Threndiau
       trending: Trendio
+    update_available: Diweddariad ar gael
     username_blocks:
       add_new: Ychwanegu newydd
       block_registrations: Rhwystro cofrestriadau
@@ -2115,6 +2125,7 @@ cy:
     next: Nesaf
     older: Hŷn
     prev: Blaenorol
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Rydych chi eisoes wedi pleidleisio ar yr arolwg hwn

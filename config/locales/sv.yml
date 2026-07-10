@@ -1013,6 +1013,7 @@ sv:
       critical_update: Kritiskt — vänligen uppdatera omgående
       description: Det rekommenderas att hålla din Mastodon-installation uppdaterad för att ta nytta av de senaste fixarna och funktionerna. Dessutom är det ibland viktigt att uppdatera Mastodon i tid för att undvika säkerhetsproblem. Av dessa skäl kontrollerar Mastodon efter uppdateringar var 30:e minut och meddelar dig i enlighet med dina e-postaviseringsinställningar.
       documentation_link: Läs mer
+      nearing_eol: Stödet för den gren du kör för närvarande kommer att sluta den %{date}, vänligen överväg att uppdatera.
       release_notes: Ändringslogg
       supported_until: Support slutar %{date}
       title: Tillgängliga uppdateringar
@@ -1021,6 +1022,7 @@ sv:
         major: Större release
         minor: Mindre release
         patch: Patch release — buggfixar och enkla att tillämpa ändringar
+      unsupported_branch: Den gren du kör för närvarande stöds inte, vänligen uppdatera så snart som möjligt.
       unsupported_since: Stöds inte sedan %{date}
       version: Version
     statuses:
@@ -1287,6 +1289,15 @@ sv:
     auto_close_registrations:
       body: På grund av brist på moderatoraktivitet har registreringar på %{instance} automatiskt bytts till att kräva manuell granskning, för att förhindra att %{instance} används som plattform för potentiella dåliga aktörer. Du kan när som helst byta tillbaka den till öppna registreringar.
       subject: Registreringar för %{instance} har automatiskt bytts till att kräva godkännande
+    end_of_support_out_of_support_warning:
+      body: Mastodon-versionen som används på din server stöds inte längre. Vi rekommenderar att du uppdaterar så snart som möjligt!
+      subject: Mastodon %{branch} som används på %{instance} stöds inte längre!
+    end_of_support_three_months_warning:
+      body: Mastodon-versionen som för närvarande används på din server kommer att sluta att stödjas om 3 månader. Du kanske vill uppdatera till en nyare gren i förväg.
+      subject: Stödet för Mastodon %{branch} som används på %{instance} upphör om 3 månader.
+    end_of_support_two_weeks_warning:
+      body: Mastodon-versionen som används på din server kommer att sluta att stödjas om 2 veckor. Vi rekommenderar att du uppdaterar till en nyare gren i förväg.
+      subject: Stödet för Mastodon %{branch} som används på %{instance} upphör om 2 veckor.
     new_appeal:
       actions:
         delete_statuses: att radera deras inlägg
@@ -1922,6 +1933,7 @@ sv:
     administration_emails: E-postaviseringar från administratör
     email_events: Händelser vid e-postnotiser
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
+    moderation_emails: E-postaviseringar från moderator
   number:
     human:
       decimal_units:

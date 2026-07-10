@@ -1061,6 +1061,7 @@ ga:
       critical_update: Criticiúil - nuashonraigh go tapa le do thoil
       description: Moltar do shuiteáil Mastodon a choinneáil cothrom le dáta chun leas a bhaint as na socruithe agus na gnéithe is déanaí. Ina theannta sin, tá sé ríthábhachtach uaireanta Mastodon a nuashonrú go tráthúil chun saincheisteanna slándála a sheachaint. Ar na cúiseanna seo, seiceálann Mastodon nuashonruithe gach 30 nóiméad, agus tabharfaidh sé fógra duit de réir do shainroghanna fógra ríomhphoist.
       documentation_link: Foghlaim níos mó
+      nearing_eol: Stopfaidh an tacaíocht don bhrainse atá á rith agat faoi láthair ar %{date}, smaoinigh ar nuashonrú.
       release_notes: Nótaí scaoilte
       supported_until: Críochnaíonn an tacaíocht ar %{date}
       title: Nuashonruithe ar fáil
@@ -1069,6 +1070,7 @@ ga:
         major: Mórscaoileadh
         minor: Mionscaoileadh
         patch: Scaoileadh paiste - ceartúcháin agus athruithe atá éasca a chur i bhfeidhm
+      unsupported_branch: Ní thacaítear leis an mbrainse atá á rith agat faoi láthair, nuashonraigh chomh luath agus is féidir.
       unsupported_since: Gan tacaíocht ó %{date}
       version: Leagan
     statuses:
@@ -1350,6 +1352,15 @@ ga:
     auto_close_registrations:
       body: De bharr easpa gníomhaíochta modhnóra le déanaí, aistríodh clárúcháin ar %{instance} go huathoibríoch chuig athbhreithniú de láimh chun nach n-úsáidfear %{instance} mar ardán do dhrochghníomhaithe féideartha. Is féidir leat é a athrú ar ais chuig clárúcháin a oscailt am ar bith.
       subject: Athraíodh clárúcháin le haghaidh %{instance} go huathoibríoch chuig a dteastaíonn ceadú uathu
+    end_of_support_out_of_support_warning:
+      body: Ní thacaítear a thuilleadh leis an leagan Mastodon atá in úsáid faoi láthair ar do fhreastalaí. Molaimid duit nuashonrú a dhéanamh chomh luath agus is féidir!
+      subject: Ní thacaítear le mastodon %{branch} a úsáideadh ar %{instance} anois!
+    end_of_support_three_months_warning:
+      body: Ní thacófar leis an leagan Mastodon atá in úsáid faoi láthair ar do fhreastalaí i gceann 3 mhí. B'fhéidir gur mhaith leat nuashonrú chuig brainse níos nuaí roimh an am.
+      subject: Críochnaíonn an tacaíocht do Mastodon %{branch} ar %{instance} i gceann 3 mhí.
+    end_of_support_two_weeks_warning:
+      body: Ní thacófar leis an leagan Mastodon atá in úsáid faoi láthair ar do fhreastalaí i gceann coicíse. Molaimid duit nuashonrú a dhéanamh ar bhrainse níos nuaí roimh an am.
+      subject: Críochnaíonn an tacaíocht do Mastodon %{branch} ar %{instance} i gceann coicíse.
     new_appeal:
       actions:
         delete_statuses: a gcuid postálacha a scrios
@@ -2059,6 +2070,7 @@ ga:
     administration_emails: Fógraí ríomhphoist admin
     email_events: Imeachtaí le haghaidh fógraí ríomhphoist
     email_events_hint: 'Roghnaigh imeachtaí ar mhaith leat fógraí a fháil ina leith:'
+    moderation_emails: Fógraí ríomhphoist modhnóireachta
   number:
     human:
       decimal_units:

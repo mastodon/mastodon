@@ -1008,12 +1008,14 @@ fi:
       description: On suositeltavaa pitää Mastodon-asennus ajantasaisena ja siten hyödyntää uusimpia korjauksia sekä ominaisuuksia. Lisäksi joskus on ratkaisevan tärkeää päivittää Mastodon ajoissa tietoturvaongelmien välttämiseksi. Näistä syistä Mastodon tarkistaa päivitykset 30 minuutin välein, ja ilmoittaa sinulle sähköposti-ilmoitusasetustesi mukaisesti.
       documentation_link: Lue lisää
       release_notes: Julkaisutiedot
+      supported_until: Tuki päättyy %{date}
       title: Saatavilla olevat päivitykset
       type: Tyyppi
       types:
         major: Pääversiojulkaisu
         minor: Väliversiojulkaisu
         patch: Korjausjulkaisu — korjauksia virheisiin sekä yksinkertaisia muutoksia
+      unsupported_since: Tuki päättynyt %{date}
       version: Versio
     statuses:
       account: Tekijä
