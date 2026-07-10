@@ -45,7 +45,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
             },
           ],
         },
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before do
@@ -126,7 +126,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
           owner: 'https://foo.test/actor',
           publicKeyPem: public_key,
         },
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before { stub_webfinger! }
@@ -290,7 +290,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
             publicKeyPem: 'bar',
           },
         ],
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before { stub_webfinger! }
@@ -350,7 +350,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
             publicKeyMultibase: 'z2MGw4gk84USotaWf4AkJ83DcnrfgGaceF86KQXRYMfQ7xqnUG81FVWa2N5inzNigXsDkm2LxpuyYSajqZr1CwHqnJbVEw1rhN25tbJSFyej6TejRh3k67CK9nTVHdXFoVKgAFxLwgiqJwCyyYWesaQKXAQfwXYqCBxPyaDjFfWkya6xeLaNuKFYGLcVzZZQjL99dnzUpNiENFPkVmJokE1wKPpHttGpLgm9sizHNDFuwHaz2ZZRnnZ6CT95FzdrMmaDXofn1ikbKBTdumuiRWSVwwZXffcXRN6Ti1a8NfhxQDdqhT7CAmM9NjQhnrqs1vss6YdcrHP5GmQN2Mz8GenQZFnyhJZK2iPxETnxq7YJRqTduN8KC8SMfjLVB8LD7rBM5d6s8dopdgJCVBpy2p', # rubocop:disable Layout/LineLength
           },
         ],
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before { stub_webfinger! }
@@ -397,7 +397,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         attributionDomains: [
           'example.com',
         ],
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before { stub_webfinger! }
@@ -420,7 +420,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         showMedia: true,
         showRepliesInMedia: false,
         showFeatured: false,
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before { stub_webfinger! }
@@ -471,7 +471,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         type: 'Actor',
         inbox: 'https://example.com/inbox',
         suspended: true,
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before do
@@ -506,7 +506,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         inbox: 'https://example.com/inbox',
         suspended: false,
         name: 'Hoge',
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before do
@@ -556,7 +556,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
           preferredUsername: 'alice',
           type: 'Actor',
           inbox: "https://#{domain}/inbox",
-        }.with_indifferent_access
+        }.deep_stringify_keys
         described_class.new.call(json)
       end
     end
@@ -570,7 +570,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         webfinger = {
           subject: "acct:alice@#{domain}",
           links: [{ rel: 'self', href: "https://#{domain}/users/1", type: 'application/activity+json' }],
-        }.with_indifferent_access
+        }.deep_stringify_keys
 
         stub_request(:get, "https://#{domain}/.well-known/webfinger?resource=acct:alice@#{domain}").to_return(body: webfinger.to_json, headers: { 'Content-Type': 'application/jrd+json' })
       end
@@ -592,7 +592,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
         inbox: 'https://foo.test/inbox',
         featured: 'https://foo.test/users/1/featured',
         preferredUsername: 'user1',
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before do
@@ -606,7 +606,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
           inbox: 'https://foo.test/inbox',
           featured: "https://foo.test/users/#{i}/featured",
           preferredUsername: "user#{i}",
-        }.with_indifferent_access
+        }.deep_stringify_keys
         status_json = {
           '@context': ['https://www.w3.org/ns/activitystreams'],
           id: "https://foo.test/users/#{i}/status",
@@ -621,18 +621,18 @@ RSpec.describe ActivityPub::ProcessAccountService do
             },
           ],
           to: ['as:Public', "https://foo.test/users/#{i + 1}"],
-        }.with_indifferent_access
+        }.deep_stringify_keys
         featured_json = {
           '@context': ['https://www.w3.org/ns/activitystreams'],
           id: "https://foo.test/users/#{i}/featured",
           type: 'OrderedCollection',
           totalItems: 1,
           orderedItems: [status_json],
-        }.with_indifferent_access
+        }.deep_stringify_keys
         webfinger = {
           subject: "acct:user#{i}@foo.test",
           links: [{ rel: 'self', href: "https://foo.test/users/#{i}", type: 'application/activity+json' }],
-        }.with_indifferent_access
+        }.deep_stringify_keys
         stub_request(:get, "https://foo.test/users/#{i}").to_return(status: 200, body: actor_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, "https://foo.test/users/#{i}/featured").to_return(status: 200, body: featured_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, "https://foo.test/users/#{i}/status").to_return(status: 200, body: status_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
@@ -665,7 +665,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
             ],
           },
         },
-      }.with_indifferent_access
+      }.deep_stringify_keys
     end
 
     before do
