@@ -33,20 +33,16 @@ RSpec.describe ActivityPub::FetchRemoteActorService do
     end
 
     context 'when the account does not have a inbox' do
-      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
-
       before do
         actor[:inbox] = nil
 
         stub_request(:get, 'https://example.com/alice').to_return(body: actor.to_json, headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: webfinger.to_json, headers: { 'Content-Type': 'application/jrd+json' })
       end
 
-      it 'fetches resource and looks up webfinger and returns nil' do
+      it 'fetches resource but skips webfinger lookup and returns nil' do
         expect(account).to be_nil
 
         expect(a_request(:get, 'https://example.com/alice')).to have_been_made.once
-        expect(a_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com')).to have_been_made.once
       end
     end
 
