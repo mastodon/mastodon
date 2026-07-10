@@ -1289,6 +1289,12 @@ is:
     auto_close_registrations:
       body: Vegna skorts á virkni umsjónaraðila að undanförnu, hafa nýskráningar á %{instance} sjálfkrafa verið stilltar á að þarfnast samþykktar umsjónaraðila, til að koma í veg fyrir að %{instance} verði mögulega misnotað af óprúttnum aðilum. Þú getur skipt hvenær sem er aftur yfir í opnar nýskráningar.
       subject: Nýskráningar á %{instance} hafa sjálfkrafa verið stilltar á að krefjast samþykktar
+    end_of_support_out_of_support_warning:
+      subject: Mastodon %{branch} sem notuð er á %{instance} er ekki lengur með stuðning!
+    end_of_support_three_months_warning:
+      subject: Stuðningi við Mastodon %{branch} sem notuð er á %{instance} lýkur eftir 3 mánuði.
+    end_of_support_two_weeks_warning:
+      subject: Stuðningi við Mastodon %{branch} sem notuð er á %{instance} lýkur eftir 2 vikur.
     new_appeal:
       actions:
         delete_statuses: að eyða færslum viðkomandi
@@ -1926,6 +1932,7 @@ is:
     administration_emails: Kerfisstjórnunartilkynningar í tölvupósti
     email_events: Atburðir fyrir tilkynningar í tölvupósti
     email_events_hint: 'Veldu þá atburði sem þú vilt fá tilkynningar í tölvupósti þegar þeir koma upp:'
+    moderation_emails: Tilkynningar umsjónarmanna í tölvupósti
   number:
     human:
       decimal_units:

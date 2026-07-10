@@ -1013,6 +1013,7 @@ da:
       critical_update: Kritisk – opdatér hurtigst muligt
       description: Det anbefales at holde din Mastodon-installation opdateret for at drage fordel af de nyeste fejlrettelser og funktioner. Desuden er det nogle gange afgørende at opdatere Mastodon rettidigt for at undgå sikkerhedsproblemer. Af disse grunde tjekker Mastodon for opdateringer hvert 30. minut og giver dig besked i henhold til dine præferencer for e-mail-notifikationer.
       documentation_link: Læs mere
+      nearing_eol: Udnerstøttelse af den version, du kører, ophører %{date}. Overvej at opdatere.
       release_notes: Udgivelsesnoter
       supported_until: Support ophører %{date}
       title: Tilgængelige opdateringer
@@ -1021,6 +1022,7 @@ da:
         major: Større version
         minor: Mindre version
         patch: Patch-version – fejlrettelser og ukomplicerede ændringer
+      unsupported_branch: Den version, du kører i øjeblikket, understøttes ikke. Opdater venligst så snart som muligt.
       unsupported_since: Ikke længere understøttet siden %{date}
       version: Version
     statuses:
@@ -1287,6 +1289,15 @@ da:
     auto_close_registrations:
       body: Grundet manglende nylig moderatoraktivitet er registreringsproceduren på %{instance} automatisk ændret til at kræve manuel gennemgang for at forhindre, at %{instance} bruges som platform for potentielle dårlige aktører. Proceduren kan til enhver tid ændre igen til åbne registreringer.
       subject: Registreringsproceduren for %{instance} er automatisk ændret til at kræve godkendelse
+    end_of_support_out_of_support_warning:
+      body: Den version af Mastodon, der i øjeblikket er i brug på din server, understøttes ikke længere. Vi anbefaler, at du opdaterer så hurtigt som muligt!
+      subject: Mastodon %{branch} brugt på %{instance} er nu ikke understøttet!
+    end_of_support_three_months_warning:
+      body: Den version af Mastodon, der i øjeblikket er i brug på din server, vil ikke længere være understøttet om 3 måneder. Du bør måske opdatere til en nyere version (branch) i god tid.
+      subject: Mastodon %{branch}, som bruges på %{instance}, understøttes ikke længere om 3 måneder.
+    end_of_support_two_weeks_warning:
+      body: Den version af Mastodon, der i øjeblikket er i brug på din server, vil ikke længere være understøttet om to uger. Vi anbefaler, at du opdaterer til en nyere version (branch) i god tid.
+      subject: Mastodon %{branch}, som bruges på %{instance}, understøttes ikke længere om 2 uger.
     new_appeal:
       actions:
         delete_statuses: for sletning af vedkommendes indlæg
@@ -1922,6 +1933,7 @@ da:
     administration_emails: Admin e-mailnotifikationer
     email_events: Begivenheder for e-mailnotifikationer
     email_events_hint: 'Vælg begivenheder, for hvilke notifikationer skal modtages:'
+    moderation_emails: Moderator e-mailnotifikationer
   number:
     human:
       decimal_units:

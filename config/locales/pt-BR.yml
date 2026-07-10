@@ -1013,6 +1013,7 @@ pt-BR:
       critical_update: Crítico — por favor, atualize rapidamente
       description: É recomendável que você mantenha a instalação do Mastodon atualizada para se beneficiar das correções e das novas funcionalidades. Além disso, às vezes é imprescindível atualizar o Mastodon rapidamente para evitar problemas de segurança. Por esses motivos, o Mastodon verifica se há atualizações a cada 30 minutos e notificará você de acordo com as suas preferências de notificação por e-mail.
       documentation_link: Saiba mais
+      nearing_eol: O suporte para o branch em execução encerrará em %{date}, considere atualizar.
       release_notes: Notas de lançamento
       supported_until: O suporte encerra em %{date}
       title: Atualizações disponíveis
@@ -1021,6 +1022,7 @@ pt-BR:
         major: Versão maior
         minor: Versão menor
         patch: Versão de atualização — correções de erros e alterações de fácil aplicação
+      unsupported_branch: O atual branch em execução não é mais suportado, por favor, atualize o mais rápido possível.
       unsupported_since: Sem suporte desde %{date}
       version: Versão
     statuses:
@@ -1287,6 +1289,15 @@ pt-BR:
     auto_close_registrations:
       body: Devido à falta de atividade recente dos moderadores, as inscrições em %{instance} foram automaticamente alteradas para exigir revisão manual, para evitar que %{instance} seja usada como uma plataforma para potenciais atores mal-intencionados. Você pode alterá-la de volta para inscrições abertas a qualquer momento.
       subject: As inscrições para %{instance} foram automaticamente alteradas para requerer aprovação
+    end_of_support_out_of_support_warning:
+      body: A atual versão do Mastodon em uso no servidor não é mais suportada. Recomendamos que atualize o mais rápido possível!
+      subject: Mastodon %{branch} usado em %{instance} agora não é mais suportada!
+    end_of_support_three_months_warning:
+      body: A atual versão do Mastodon em uso no servidor não será mais suportado em 3 meses. Você talvez deseje atualizar para um branch mais recente.
+      subject: O suporte para Mastodon %{branch} usado em %{instance} encerrará em 3 meses.
+    end_of_support_two_weeks_warning:
+      body: A atual versão do Mastodon em uso no seu servidor não será mais suportado em 2 semanas. Nós recomendamos atualizar para um branch mais recente.
+      subject: O suporte para Mastodon %{branch} usado em %{instance} encerrará em 2 semanas.
     new_appeal:
       actions:
         delete_statuses: para excluir suas publicações
@@ -1922,6 +1933,7 @@ pt-BR:
     administration_emails: Notificações de e-mail do administrador
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos que deseja receber notificações:'
+    moderation_emails: Notificações de moderação por e-mail
   number:
     human:
       decimal_units:
