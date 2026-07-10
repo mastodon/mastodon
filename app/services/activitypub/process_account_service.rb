@@ -21,6 +21,7 @@ class ActivityPub::ProcessAccountService < BaseService
   def call(json, request_id: nil, only_key: false, signed_with_known_key: false, account: nil, suppress_errors: true)
     raise Error, "Actor #{json['id']} has unsupported URI scheme" if unsupported_uri_scheme?(json['id'])
     raise Error, "Actor #{json['id']} has no inbox" if json['inbox'].blank?
+    raise Error, "Actor #{json['id']} does not correspond to provided Account (#{account.uri})" if account.present? && account.uri != json['id']
     return if domain_not_allowed?(json['id']) || account&.local?
 
     @json        = json
@@ -91,8 +92,8 @@ class ActivityPub::ProcessAccountService < BaseService
     end
 
     @account
-  rescue JSON::ParserError
-    nil
+  rescue JSON::ParserError => e
+    raise Error, "Error parsing JSON for actor #{json['id']}: #{e}" unless suppress_errors
   rescue Error
     raise unless suppress_errors
   end
@@ -145,7 +146,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def create_account
-    raise ArgumentError unless @webfinger_verified
+    raise 'Attempting to create an account without having verified its webfinger handle' unless @webfinger_verified
 
     @account = Account.new
     @account.protocol          = :activitypub
