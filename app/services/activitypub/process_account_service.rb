@@ -18,21 +18,21 @@ class ActivityPub::ProcessAccountService < BaseService
 
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
-  def call(username, domain, json, options = {})
+  def call(username, domain, json, request_id: nil, only_key: false, verified_webfinger: false, signed_with_known_key: false)
     return if json['inbox'].blank? || unsupported_uri_scheme?(json['id']) || domain_not_allowed?(domain)
 
-    @options     = options
     @json        = json
     @uri         = @json['id']
+    @only_key    = only_key
     @username    = username
     @domain      = TagManager.instance.normalize_domain(domain)
     @collections = {}
 
     # The key does not need to be unguessable, it just needs to be somewhat unique
-    @options[:request_id] ||= "#{Time.now.utc.to_i}-#{username}@#{domain}"
+    @request_id = request_id || "#{Time.now.utc.to_i}-#{username}@#{domain}"
 
     with_redis_lock("process_account:#{@uri}") do
-      if @options[:only_key]
+      if @only_key
         # `only_key` is used to update an existing account known by its `uri`.
         # Lookup by handle and new account creation do not make sense in this case.
         @account = Account.remote.find_by(uri: @uri)
@@ -49,8 +49,8 @@ class ActivityPub::ProcessAccountService < BaseService
         with_redis do |redis|
           return nil if redis.pfcount("unique_subdomains_for:#{PublicSuffix.domain(@domain, ignore_private: true)}") >= SUBDOMAINS_RATELIMIT
 
-          discoveries = redis.incr("discovery_per_request:#{@options[:request_id]}")
-          redis.expire("discovery_per_request:#{@options[:request_id]}", 5.minutes.seconds)
+          discoveries = redis.incr("discovery_per_request:#{@request_id}")
+          redis.expire("discovery_per_request:#{@request_id}", 5.minutes.seconds)
           return nil if discoveries > DISCOVERIES_PER_REQUEST
         end
 
@@ -60,16 +60,16 @@ class ActivityPub::ProcessAccountService < BaseService
       update_account
       process_tags
 
-      process_duplicate_accounts! if @options[:verified_webfinger]
+      process_duplicate_accounts! if verified_webfinger
     end
 
     after_protocol_change! if protocol_changed?
-    after_key_change! if all_public_keys_changed? && !@options[:signed_with_known_key]
+    after_key_change! if all_public_keys_changed? && !signed_with_known_key
     # TODO: maybe tie tombstones to specific keys? i.e. we don't need to keep tombstones if all keys changed
     clear_tombstones! if all_public_keys_changed?
     after_suspension_change! if suspension_changed?
 
-    unless @options[:only_key] || @account.suspended?
+    unless @only_key || @account.suspended?
       check_featured_collection! if @json['featured'].present?
       check_featured_tags_collection! if @json['featuredTags'].present?
       check_featured_collections_collection! if @json['featuredCollections'].present?
@@ -99,14 +99,14 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def update_account
-    @account.last_webfingered_at = Time.now.utc unless @options[:only_key]
+    @account.last_webfingered_at = Time.now.utc unless @only_key
     @account.protocol            = :activitypub
 
     set_suspension!
     set_immediate_protocol_attributes!
     set_fetchable_key! unless @account.suspended? && @account.suspension_origin_local?
     set_immediate_attributes! unless @account.suspended?
-    set_fetchable_attributes! unless @options[:only_key] || @account.suspended?
+    set_fetchable_attributes! unless @only_key || @account.suspended?
 
     @account.save_with_optional_media!
   end
@@ -214,7 +214,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_featured_collection!
-    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'hashtag' => @json['featuredTags'].blank?, 'collection' => @json['featured'], 'request_id' => @options[:request_id] })
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'hashtag' => @json['featuredTags'].blank?, 'collection' => @json['featured'], 'request_id' => @request_id })
   end
 
   def check_featured_tags_collection!
@@ -222,7 +222,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_featured_collections_collection!
-    ActivityPub::SynchronizeFeaturedCollectionsCollectionWorker.perform_async(@account.id, @options[:request_id])
+    ActivityPub::SynchronizeFeaturedCollectionsCollectionWorker.perform_async(@account.id, @request_id)
   end
 
   def check_links!
@@ -403,7 +403,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def moved_account
     account   = ActivityPub::TagManager.instance.uri_to_resource(@json['movedTo'], Account)
-    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], break_on_redirect: true, request_id: @options[:request_id])
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], break_on_redirect: true, request_id: @request_id)
     account
   end
 
