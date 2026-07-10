@@ -40,6 +40,8 @@
   --overlay-strength-secondary: 4%;
   --color-bg-secondary: var(--color-grey-900);
   --color-bg-tertiary: var(--color-grey-800); // legacy
+  --color-bg-blend: #{utils.css-alpha(var(--color-black), 30%)};
+  --color-bg-highlight: #{utils.css-alpha(var(--color-text-primary), 5%)};
 
   // Utility
   --color-bg-inverted: var(--color-grey-50);
