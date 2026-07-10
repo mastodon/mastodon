@@ -33,7 +33,7 @@ class ActivityPub::LinkedDataSignature
     to_be_verified = options_hash + document_hash
 
     keypair.actor if keypair.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), Base64.decode64(signature), to_be_verified)
-  rescue OpenSSL::PKey::RSAError
+  rescue OpenSSL::PKey::PKeyError
     false
   end
 

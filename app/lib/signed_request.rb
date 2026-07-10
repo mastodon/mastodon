@@ -101,7 +101,7 @@ class SignedRequest
 
     def verify_signature(keypair, signature, compare_signed_string)
       true if keypair.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
-    rescue OpenSSL::PKey::RSAError
+    rescue OpenSSL::PKey::PKeyError
       nil
     end
 

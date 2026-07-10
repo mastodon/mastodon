@@ -67,7 +67,7 @@ class Multibase
     else
       raise Error, 'Unsupported key type'
     end
-  rescue OpenSSL::PKey::RSAError => e
+  rescue OpenSSL::PKey::PKeyError => e
     raise Error, e
   end
 end
