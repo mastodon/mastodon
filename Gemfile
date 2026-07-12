@@ -153,7 +153,7 @@ group :test do
   gem 'shoulda-matchers'
 
   # Coverage formatter for RSpec
-  gem 'simplecov', '1.0.0.rc5', require: false
+  gem 'simplecov', require: false
   gem 'simplecov-lcov', '~> 0.8', require: false
 
   # Stub web requests for specs
