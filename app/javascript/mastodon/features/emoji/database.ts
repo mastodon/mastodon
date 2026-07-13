@@ -193,28 +193,43 @@ function getScoreForEmoji(
   checkTokens = true,
 ) {
   const id = 'shortcode' in emoji ? emoji.shortcode : emoji.label;
-  if (id === query) {
-    return 0;
-  }
 
-  let index = 1;
-  const searchTokens = [id];
+  const searchTokens = new Set([id.toLowerCase()]);
   if (checkTokens) {
     // Check shortcodes before tokens as they are more important.
     if ('shortcodes' in emoji) {
-      searchTokens.push(...emoji.shortcodes);
+      emoji.shortcodes.map((code) => searchTokens.add(code.toLowerCase()));
     }
-    searchTokens.push(...emoji.tokens);
-  }
-  for (const token of searchTokens) {
-    const tokenIndex = token.indexOf(query);
-    if (tokenIndex !== -1) {
-      return index + tokenIndex / token.length;
-    }
-    index++;
+    emoji.tokens.map((token) => searchTokens.add(token.toLowerCase()));
   }
 
-  return null;
+  let index = 0;
+  const lowerQuery = query.toLowerCase();
+  let lowestScore = -1;
+  for (const token of searchTokens) {
+    const indexScore = index / searchTokens.size;
+    const tokenIndex = token.indexOf(lowerQuery);
+
+    // If no match, just increment the index and continue.
+    index++;
+    if (tokenIndex === -1) {
+      continue;
+    }
+
+    const score =
+      indexScore + // what index the token is compared
+      tokenIndex / token.length + // match distance from start of token
+      (1 - lowerQuery.length / token.length); // difference between query and token lengths
+
+    if (score >= 0 && (score < lowestScore || lowestScore < 0)) {
+      lowestScore = score;
+    }
+  }
+
+  if (lowestScore < 0) {
+    return null;
+  }
+  return lowestScore;
 }
 
 async function fullCustomSearch(query: string, existing = new Set<string>()) {
