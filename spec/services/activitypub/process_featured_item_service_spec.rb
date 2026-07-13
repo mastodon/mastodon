@@ -143,6 +143,28 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
         end.to_not change(CollectionItem, :count)
       end
     end
+
+    context 'when featured object cannot be fetched' do
+      let(:hashtag_json) do
+        {
+          'id' => 'https://example.com/hashtags/people',
+          'type' => 'Hashtag',
+          'name' => '#people',
+        }
+      end
+      let(:featured_object_uri) { hashtag_json['id'] }
+
+      before do
+        stub_request(:get, featured_object_uri)
+          .to_return(status: 404)
+      end
+
+      it 'does not create a collection item and returns `nil`' do
+        expect do
+          expect(subject.call(collection, object, position:)).to be_nil
+        end.to_not change(CollectionItem, :count)
+      end
+    end
   end
 
   context 'when only the id of the collection item is given' do
