@@ -135,7 +135,12 @@ class Request
       response = perform_cavage_signed_request
 
       # Then if it fails, double-knock using RFC 9421: HTTP Message Signatures
-      response = perform_rfc9421_signed_request if @signing_keypair.present? && [400, 401].include?(response.code)
+      if @signing_keypair.present? && [400, 401].include?(response.code)
+        # Consume the body of the first response first
+        response.truncated_body if http_client.persistent? && !response.connection.finished_request?
+
+        response = perform_rfc9421_signed_request
+      end
     rescue => e
       raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
