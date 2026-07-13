@@ -15,10 +15,11 @@ import {
 } from './database';
 
 function rawEmojiFactory(data: Partial<CompactEmoji> = {}): CompactEmoji {
+  const factory = unicodeEmojiFactory();
   return {
-    ...unicodeEmojiFactory(),
-    tags: ['test', 'emoji'],
+    ...factory,
     ...data,
+    tags: data.tags ?? factory.tokens,
   };
 }
 
@@ -131,6 +132,32 @@ describe('emoji database', () => {
           shortcode: 'limit',
         }),
       ]);
+    });
+
+    test('exact matches', async () => {
+      await putCustomEmojiData({
+        emojis: [customEmojiFactory({ shortcode: 'sob_other' })],
+      });
+      await putEmojiData(
+        [
+          rawEmojiFactory({
+            label: 'Loudly crying face',
+            hexcode: '1F62D',
+            shortcodes: ['sob', 'loudly_crying_face'],
+            tags: ['sob', 'loudly_crying_face'],
+            unicode: '😭',
+          }),
+        ],
+        'en',
+      );
+
+      const results = await search({ query: 'sob', locale: 'en' });
+
+      expect(results).toHaveLength(2);
+      expect(results[0]).toEqual(expect.objectContaining({ hexcode: '1F62D' }));
+      expect(results[1]).toEqual(
+        expect.objectContaining({ shortcode: 'sob_other' }),
+      );
     });
   });
 
