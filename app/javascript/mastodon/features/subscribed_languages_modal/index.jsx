@@ -15,16 +15,21 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { injectIntl } from '@/mastodon/components/intl';
 import Option from 'mastodon/features/report/components/option';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
+import { selectTimelinesByAccount } from '@/mastodon/selectors/timelines';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-const getAccountLanguages = createSelector([
-  (state, accountId) => state.getIn(['timelines', `account:${accountId}`, 'items'], ImmutableList()),
-  state => state.get('statuses'),
-], (statusIds, statuses) =>
-  ImmutableSet(statusIds.map(statusId => statuses.get(statusId)).filter(status => !status.get('reblog')).map(status => status.get('language'))));
+const getAccountLanguages = createSelector(
+  [selectTimelinesByAccount, (state) => state.get('statuses')],
+  (timelines, statuses) => ImmutableSet(
+    timelines
+      .reduce((statusIds, timeline) => statusIds.concat(timeline.get('items')), ImmutableList())
+      .map(statusId => statuses.get(statusId))
+      .filter(status => !status.get('reblog'))
+      .map(status => status.get('language'))
+  ));
 
 const mapStateToProps = (state, { accountId }) => ({
   acct: state.getIn(['accounts', accountId, 'acct']),
@@ -37,7 +42,6 @@ const mapDispatchToProps = (dispatch, { accountId }) => ({
   onSubmit (languages) {
     dispatch(followAccount(accountId, { languages }));
   },
-
 });
 
 class SubscribedLanguagesModal extends ImmutablePureComponent {
