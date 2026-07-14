@@ -152,6 +152,7 @@ class DeleteAccountService < BaseService
     purge_favourites!
     purge_bookmarks!
     purge_feeds!
+    purge_collections!
     purge_other_associations!
 
     @account.destroy unless keep_account_record?
@@ -201,6 +202,16 @@ class DeleteAccountService < BaseService
     @account.bookmarks.in_batches do |bookmarks|
       Chewy.strategy.current.update(StatusesIndex, bookmarks.pluck(:status_id)) if Chewy.enabled?
       bookmarks.delete_all
+    end
+  end
+
+  def purge_collections!
+    if @account.local?
+      @account.collections.in_batches.each_record do |collection|
+        DeleteCollectionService.new.call(collection)
+      end
+    else
+      @account.collections.in_batches.destroy_all
     end
   end
 
