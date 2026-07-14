@@ -143,7 +143,11 @@ export async function search({
       const scores = oldScores
         ? combineEmojiScores(oldScores, newScores)
         : newScores;
-      resultMap.set(emoji.hexcode, { ...emoji, scores });
+      resultMap.set(emoji.hexcode, {
+        ...emoji,
+        shortcodes: [...shortcodeResult.shortcodes, ...emoji.shortcodes],
+        scores,
+      });
     }
 
     log('found %d results for token "%s"', resultMap.size, token);
