@@ -64,7 +64,7 @@ type Transaction<Mode extends IDBTransactionMode = 'versionchange'> =
 export type Database = IDBPDatabase<EmojiDB>;
 
 const DATABASE_NAME = 'mastodon-emoji';
-const SCHEMA_VERSION = 4;
+const SCHEMA_VERSION = 5;
 
 export async function openEmojiDB() {
   try {

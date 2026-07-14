@@ -134,17 +134,21 @@ describe('emoji database', () => {
       ]);
     });
 
-    test('exact matches', async () => {
+    test('prefix matches', async () => {
       await putCustomEmojiData({
-        emojis: [customEmojiFactory({ shortcode: 'sob_other' })],
+        emojis: [
+          customEmojiFactory({ shortcode: 'sob_other' }),
+          customEmojiFactory({ shortcode: 'meow_sob' }),
+        ],
       });
       await putEmojiData(
         [
           rawEmojiFactory({
-            label: 'Loudly crying face',
+            label: 'loudly crying face',
             hexcode: '1F62D',
-            shortcodes: ['sob', 'loudly_crying_face'],
-            tags: ['sob', 'loudly_crying_face'],
+            shortcodes: ['loudly_crying_face'],
+            tags: ['bawling', 'cry', 'sad', 'sob', 'tear', 'tears', 'unhappy'],
+            emoticon: ":'o",
             unicode: '😭',
           }),
         ],
@@ -153,11 +157,40 @@ describe('emoji database', () => {
 
       const results = await search({ query: 'sob', locale: 'en' });
 
-      expect(results).toHaveLength(2);
-      expect(results[0]).toEqual(expect.objectContaining({ hexcode: '1F62D' }));
-      expect(results[1]).toEqual(
+      expect(results).toHaveLength(3);
+      expect(results).toEqual([
         expect.objectContaining({ shortcode: 'sob_other' }),
+        expect.objectContaining({ shortcode: 'meow_sob' }),
+        expect.objectContaining({ hexcode: '1F62D' }),
+      ]);
+    });
+
+    test('shortcode matches', async () => {
+      await putLegacyShortcodes({ '1F62D': 'sob' });
+      await putEmojiData(
+        [
+          rawEmojiFactory({
+            label: 'loudly crying face',
+            hexcode: '1F62D',
+            shortcodes: ['loudly_crying_face'],
+            tags: ['bawling', 'cry', 'sad', 'sob', 'tear', 'tears', 'unhappy'],
+            emoticon: ":'o",
+            unicode: '😭',
+          }),
+        ],
+        'en',
       );
+      await putCustomEmojiData({
+        emojis: [customEmojiFactory({ shortcode: 'sob_other' })],
+      });
+
+      const results = await search({ query: 'sob', locale: 'en' });
+
+      expect(results).toHaveLength(2);
+      expect(results).toEqual([
+        expect.objectContaining({ hexcode: '1F62D' }),
+        expect.objectContaining({ shortcode: 'sob_other' }),
+      ]);
     });
   });
 

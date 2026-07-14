@@ -1,5 +1,6 @@
 import { SUPPORTED_LOCALES } from 'emojibase';
 import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
+import type { ArrayValues, KeysOfUnion } from 'type-fest';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import { onceAsync } from '@/mastodon/utils/promises';
@@ -43,7 +44,36 @@ const loadDB = (() => {
   return loadPromise;
 })();
 
-type ScoreMap = Map<string, AnyEmojiData & { score: number }>;
+const scoreRanking = [
+  'label',
+  'shortcode',
+  'emoticons',
+  'shortcodes',
+  'tokens',
+] as const satisfies KeysOfUnion<AnyEmojiData>[];
+type ScoreRankingKeys = ArrayValues<typeof scoreRanking>;
+type ScoreRanking = Record<ScoreRankingKeys, number>;
+
+// Identifier fields hold a match against a complete, canonical string (a
+// shortcode, label, emoticon, or legacy shortcode). Token fields only hold
+// matches against derived word fragments (e.g. one half of an
+// underscore-split shortcode, or a single tag word) — a much weaker
+// signal. Identifier matches should always outrank token matches, no
+// matter how good the token match's own score is.
+const identifierFields = new Set<ScoreRankingKeys>([
+  'label',
+  'shortcode',
+  'emoticons',
+  'shortcodes',
+]);
+
+interface BestRank {
+  categoryWeight: number;
+  score: number;
+  fieldWeight: number;
+}
+type ScoredEmoji = AnyEmojiData & { scores: ScoreRanking };
+type ScoreMap = Map<string, ScoredEmoji>;
 
 export async function search({
   query,
@@ -95,52 +125,72 @@ export async function search({
       ],
     );
     const resultMap: ScoreMap = new Map();
+    const checkedSet = new Set<string>();
 
+    // Score unicode results.
     for (const emoji of unicodeResults) {
-      const score = getScoreForEmoji(emoji, token);
-      if (score === null) {
+      if (checkedSet.has(emoji.hexcode)) {
         continue;
       }
-      resultMap.set(emoji.hexcode, { ...emoji, score });
+      checkedSet.add(emoji.hexcode);
+      const scores = getScoreForEmoji(emoji, token);
+      if (scores) {
+        resultMap.set(emoji.hexcode, { ...emoji, scores });
+      }
     }
 
+    // Score custom emojis.
     for (const emoji of customResults) {
-      const score = getScoreForEmoji(emoji, token);
-      if (score === null) {
+      if (checkedSet.has(emoji.shortcode)) {
         continue;
       }
-      existingCustomShortcodes.add(emoji.shortcode);
-      resultMap.set(emoji.shortcode, { ...emoji, score });
+      checkedSet.add(emoji.shortcode);
+      const scores = getScoreForEmoji(emoji, token);
+      if (scores) {
+        existingCustomShortcodes.add(emoji.shortcode);
+        resultMap.set(emoji.shortcode, { ...emoji, scores });
+      }
     }
 
+    // Score based on legacy shortcodes, using the higher score if there's a match.
     for (const shortcodeResult of shortcodeResults) {
-      if (resultMap.has(shortcodeResult.hexcode)) {
+      const emoji =
+        resultMap.get(shortcodeResult.hexcode) ??
+        (await db.get(locale, shortcodeResult.hexcode));
+      if (!emoji || !('hexcode' in emoji)) {
         continue;
       }
-      const emoji = await db.get(locale, shortcodeResult.hexcode);
-      if (!emoji) {
-        continue;
-      }
-      // Score the emoji with the legacy shortcode, even though it's not part of the emoji.
-      const score = getScoreForEmoji(
+
+      const newScores = getScoreForEmoji(
         {
           ...emoji,
-          shortcodes: [...shortcodeResult.shortcodes, ...emoji.shortcodes],
+          shortcodes: shortcodeResult.shortcodes,
         },
         token,
       );
-      if (score === null) {
+      if (!newScores) {
         continue;
       }
-      resultMap.set(emoji.hexcode, { ...emoji, score });
+      const oldScores = resultMap.get(emoji.hexcode)?.scores;
+      let scores = newScores;
+      if (oldScores) {
+        scores = Object.fromEntries(
+          scoreRanking.map((key) => [
+            key,
+            newScores[key] !== -1 && oldScores[key] !== -1
+              ? Math.min(newScores[key], oldScores[key])
+              : Math.max(newScores[key], oldScores[key]),
+          ]),
+        ) as ScoreRanking;
+      }
+      resultMap.set(emoji.hexcode, { ...emoji, scores });
     }
 
     log('found %d results for token "%s"', resultMap.size, token);
     resultArrays.push(resultMap);
   }
 
-  // Utilize maps to find the intersection of all result sets.
-  const results = Array.from(
+  const mixedResults = Array.from(
     resultArrays
       .reduce((prev, curr) => {
         const intersection: ScoreMap = new Map();
@@ -155,7 +205,7 @@ export async function search({
   );
 
   // If there are no results, try a cursor-based custom emoji search instead.
-  if (results.length === 0 || results.length < limit) {
+  if (mixedResults.length === 0 || mixedResults.length < limit) {
     const customEmojisFound = await fullCustomSearch(
       query,
       existingCustomShortcodes,
@@ -166,19 +216,30 @@ export async function search({
         customEmojisFound.length,
         query,
       );
-      results.push(...customEmojisFound);
+      mixedResults.push(...customEmojisFound);
     }
   }
 
-  // Sort by score, descending.
-  results.sort((a, b) => a.score - b.score);
+  const results: ScoredEmoji[] = [];
+  const resultEmojis = new Set<string>();
+  for (const result of mixedResults.toSorted(compareRankedEmoji)) {
+    const id = 'shortcode' in result ? result.shortcode : result.hexcode;
+    if (resultEmojis.has(id)) {
+      continue;
+    }
+    results.push(result);
+    resultEmojis.add(id);
+    if (limit > 0 && results.length > limit) {
+      break;
+    }
+  }
 
   const time = performance.measure('emoji-search-end', 'emoji-search-start');
   log(
     'search for "%s" in locale %s returned %d results and took %dms',
     query,
     locale,
-    results.length,
+    mixedResults.length,
     time.duration,
   );
   if (limit > 0) {
@@ -187,48 +248,122 @@ export async function search({
   return results;
 }
 
-function getScoreForEmoji(
+function hasField(
   emoji: AnyEmojiData,
-  query: string,
-  checkTokens = true,
-) {
-  const id = 'shortcode' in emoji ? emoji.shortcode : emoji.label;
+  field: string,
+): field is keyof typeof emoji {
+  return Object.hasOwn(emoji, field);
+}
 
-  const searchTokens = new Set([id.toLowerCase()]);
-  if (checkTokens) {
-    // Check shortcodes before tokens as they are more important.
-    if ('shortcodes' in emoji) {
-      emoji.shortcodes.map((code) => searchTokens.add(code.toLowerCase()));
+// Creates ranked scores for a given emoji.
+function getScoreForEmoji(emoji: AnyEmojiData, query: string) {
+  const scores = Object.fromEntries(
+    scoreRanking.map((field) => [field, -1]),
+  ) as ScoreRanking;
+  let hasScore = false;
+
+  for (const field of scoreRanking) {
+    if (hasField(emoji, field)) {
+      const value = emoji[field] as string | string[] | undefined;
+      if (value === undefined) {
+        continue;
+      }
+      const tokens = Array.isArray(value) ? value : [value];
+      const score = getScoreForEmojiTokens(tokens, query);
+
+      if (score >= 0) {
+        scores[field] = score;
+        hasScore = true;
+      }
     }
-    emoji.tokens.map((token) => searchTokens.add(token.toLowerCase()));
   }
 
-  let index = 0;
-  const lowerQuery = query.toLowerCase();
-  let lowestScore = -1;
-  for (const token of searchTokens) {
-    const indexScore = index / searchTokens.size;
-    const tokenIndex = token.indexOf(lowerQuery);
+  if (!hasScore) {
+    return null;
+  }
 
-    // If no match, just increment the index and continue.
-    index++;
-    if (tokenIndex === -1) {
+  return scores;
+}
+
+// Compares two scored emojis by getting the best rank.
+function compareRankedEmoji(a: ScoredEmoji, b: ScoredEmoji): number {
+  const rankA = getBestRank(a.scores);
+  const rankB = getBestRank(b.scores);
+
+  // Identifier matches always outrank token matches, regardless of score.
+  if (rankA.categoryWeight !== rankB.categoryWeight) {
+    return rankA.categoryWeight - rankB.categoryWeight;
+  }
+  // Within the same category, compare the scores directly.
+  if (rankA.score !== rankB.score) {
+    return rankA.score - rankB.score;
+  }
+  // If equal, compare field weights.
+  if (rankA.fieldWeight !== rankB.fieldWeight) {
+    return rankA.fieldWeight - rankB.fieldWeight;
+  }
+
+  // Lastly prioritize Unicode emojis.
+  const aIsCustom = hasField(a, 'shortcode');
+  const bIsCustom = hasField(b, 'shortcode');
+  if (aIsCustom !== bIsCustom) {
+    return aIsCustom ? -1 : 1;
+  }
+
+  return 0;
+}
+
+// Extracts the best rank for a score ranking.
+function getBestRank(scores: ScoreRanking): BestRank {
+  let best: BestRank | null = null;
+
+  // Use the index to determine field weight.
+  for (const [fieldWeight, field] of scoreRanking.entries()) {
+    const score = scores[field];
+    if (score < 0) {
       continue;
     }
+    // Also weight identifier fields over other fields.
+    const categoryWeight = identifierFields.has(field) ? 0 : 1;
+    if (
+      !best ||
+      categoryWeight < best.categoryWeight ||
+      (categoryWeight === best.categoryWeight &&
+        (score < best.score ||
+          (score === best.score && fieldWeight < best.fieldWeight)))
+    ) {
+      best = { categoryWeight, score, fieldWeight };
+    }
+  }
 
-    const score =
-      indexScore + // what index the token is compared
-      tokenIndex / token.length + // match distance from start of token
-      (1 - lowerQuery.length / token.length); // difference between query and token lengths
+  return (
+    best ?? {
+      categoryWeight: 2,
+      score: Infinity,
+      fieldWeight: scoreRanking.length,
+    }
+  );
+}
+
+function getScoreForEmojiTokens(tokens: string[], query: string) {
+  let lowestScore = -1;
+
+  for (const token of tokens) {
+    let score = -1;
+    // Priority: exact match, prefix match, substring,
+    if (token === query) {
+      score = 0;
+    } else if (token.startsWith(query)) {
+      score = 1 + query.length / token.length;
+    } else if (token.includes(query)) {
+      score = 2 + query.length / token.length;
+    } // TODO: Add fuzzy search if needed
 
     if (score >= 0 && (score < lowestScore || lowestScore < 0)) {
       lowestScore = score;
     }
   }
 
-  if (lowestScore < 0) {
-    return null;
-  }
   return lowestScore;
 }
 
@@ -262,13 +397,13 @@ async function fullCustomSearch(query: string, existing = new Set<string>()) {
   const emojis = await Promise.all(
     foundEmojis.keys().map((key) => trx.store.get(key)),
   );
-  const results: (CustomEmojiData & { score: number })[] = [];
+  const results: (CustomEmojiData & { scores: ScoreRanking })[] = [];
   for (const emoji of emojis) {
     if (emoji) {
-      const score = getScoreForEmoji(emoji, query, false);
-      if (score && score > 0) {
+      const scores = getScoreForEmoji(emoji, query);
+      if (scores) {
         results.push({
-          score,
+          scores,
           ...emoji,
         });
       }
