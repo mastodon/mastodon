@@ -8569,7 +8569,7 @@ noscript {
   }
 
   &__pagination {
-    padding: 15px;
+    padding: 0 12px 15px 0;
     color: var(--color-text-secondary);
     position: absolute;
     bottom: 3px;
@@ -8594,7 +8594,10 @@ noscript {
   align-items: center;
   margin-top: 15px;
   margin-inline-start: -2px;
-  width: calc(100% - (90px - 33px));
+
+  --pagination-width: 70px;
+
+  width: calc(100% - var(--pagination-width));
 
   &__item {
     flex-shrink: 0;
