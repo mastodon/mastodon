@@ -11,6 +11,20 @@ import { localeToSegmenter, toSupportedLocale } from './locale';
 import { extractTokens } from './normalize';
 import type { AnyEmojiData, CustomEmojiData } from './types';
 
+/*
+Emoji search logic:
+1. When provided a string, extract all tokens and iterate over each.
+2. For each token, do an IDB lookup to get any matches on emojis and shortcodes.
+3. If not enough emoji are found, do a cursor search on custom emojis.
+4. Score each emoji found (see below).
+5. Sort and return the emoji by ranked score, stopping when the optional limit is reached.
+
+Scoring functions as follows:
+- Go over every scoreRanking field in order and extract score data.
+- Scores prefer exact match, then prefix match, and lastly substring match.
+- When sorting, prefer identifier fields first, then score, then category, and lastly prioritize Unicode emojis.
+*/
+
 const scoreRanking = [
   'label',
   'shortcode',
@@ -21,12 +35,6 @@ const scoreRanking = [
 type ScoreRankingKeys = ArrayValues<typeof scoreRanking>;
 type ScoreRanking = Record<ScoreRankingKeys, number>;
 
-// Identifier fields hold a match against a complete, canonical string (a
-// shortcode, label, emoticon, or legacy shortcode). Token fields only hold
-// matches against derived word fragments (e.g. one half of an
-// underscore-split shortcode, or a single tag word) — a much weaker
-// signal. Identifier matches should always outrank token matches, no
-// matter how good the token match's own score is.
 const identifierFields = new Set<ScoreRankingKeys>([
   'label',
   'shortcode',
@@ -201,9 +209,6 @@ export async function search({
     mixedResults.length,
     time.duration,
   );
-  if (limit > 0) {
-    return results.slice(0, limit);
-  }
   return results;
 }
 
