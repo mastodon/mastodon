@@ -98,6 +98,34 @@ RSpec.describe Request do
       end
     end
 
+    context 'with server that only supports RFC 9421' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        # cavage-12
+        stub_request(:get, 'http://example.com')
+          .with { |request| request.headers.key?('Signature') && !request.headers.key?('Signature-Input') }
+          .to_return(status: 401)
+
+        # RFC 9421
+        stub_request(:get, 'http://example.com')
+          .with { |request| request.headers.key?('Signature') && request.headers.key?('Signature-Input') }
+          .to_return(status: 200)
+      end
+
+      it 'makes two valid requests with the specific signatures' do
+        expect { |block| subject.on_behalf_of(account).perform(&block) }.to yield_control
+
+        # Makes a valid request using cavage-12
+        expect(a_request(:get, 'http://example.com').with { |request| verified_signed_mocked_request?(request, account.keypair) && !request.headers.key?('Signature-Input') })
+          .to have_been_made.once
+
+        # Makes a valid request using RFC 9421
+        expect(a_request(:get, 'http://example.com').with { |request| verified_signed_mocked_request?(request, account.keypair) && request.headers.key?('Signature-Input') })
+          .to have_been_made.once
+      end
+    end
+
     context 'with a redirect and HTTP signatures' do
       let(:account) { Fabricate(:account) }
 

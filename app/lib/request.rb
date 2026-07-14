@@ -131,7 +131,16 @@ class Request
 
   def perform
     begin
+      # Try with HTTP Signatures (draft-cavage-http-signatures-12) first
       response = perform_cavage_signed_request
+
+      # Then if it fails, double-knock using RFC 9421: HTTP Message Signatures
+      if @signing_keypair.present? && [400, 401].include?(response.code)
+        # Consume the body of the first response first
+        response.truncated_body if http_client.persistent? && !response.connection.finished_request?
+
+        response = perform_rfc9421_signed_request
+      end
     rescue => e
       raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
@@ -173,6 +182,24 @@ class Request
         http_cavage_signature: {
           keypair: @signing_keypair,
           covered_headers: headers.keys - %w(User-Agent Accept-Encoding Accept),
+        }
+      )
+    end
+
+    client.request(@verb, @url.to_s, @options.merge(headers:))
+  end
+
+  def perform_rfc9421_signed_request
+    headers = @headers
+    headers = headers.merge('content-digest' => "sha-256=:#{OpenSSL::Digest.base64digest('sha256', @options[:body])}:") if @options[:body]
+
+    client = http_client
+
+    if @signing_keypair.present?
+      client = client.use(
+        http_signature: {
+          key: @signing_keypair.linzer_private_key,
+          covered_components: @options.key?(:body) ? %w(@method @target-uri content-digest) : %w(@method @target-uri),
         }
       )
     end

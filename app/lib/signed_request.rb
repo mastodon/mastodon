@@ -171,12 +171,7 @@ class SignedRequest
     end
 
     def verified?(keypair)
-      case keypair.type
-      when 'rsa'
-        key = Linzer.new_rsa_v1_5_sha256_public_key(keypair.public_key)
-      when 'ed25519'
-        key = Linzer.new_ed25519_public_key(keypair.public_key)
-      end
+      key = keypair.linzer_public_key
 
       Linzer.verify(key, @message, @signature)
     rescue Linzer::VerifyError
