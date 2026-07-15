@@ -63,6 +63,12 @@ RSpec.describe DeleteAccountService do
     end
   end
 
+  describe 'ASSOCIATIONS_WITHOUT_SIDE_EFFECTS' do
+    it 'is a subset of ASSOCIATIONS_ON_PURGE' do
+      expect(described_class::ASSOCIATIONS_WITHOUT_SIDE_EFFECTS - described_class::ASSOCIATIONS_ON_PURGE).to eq []
+    end
+  end
+
   describe '#call on local account', :inline_jobs do
     before do
       stub_request(:post, remote_alice.inbox_url).to_return(status: 201)
