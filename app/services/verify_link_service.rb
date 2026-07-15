@@ -42,5 +42,8 @@ class VerifyLinkService < BaseService
     end
 
     redirect_to_url == @link_back
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, IPAddr::AddressFamilyError => e
+    Rails.logger.debug { "Error checking redirect for #{test_url}: #{e}" }
+    false
   end
 end
