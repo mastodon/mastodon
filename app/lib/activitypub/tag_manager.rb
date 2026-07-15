@@ -240,7 +240,7 @@ class ActivityPub::TagManager
   def local_uri?(uri)
     return false if uri.nil?
 
-    uri  = Addressable::URI.parse(uri)
+    uri  = Addressable::URI.parse(uri).normalize
     host = uri.normalized_host
     host = "#{host}:#{uri.port}" if uri.port
 
