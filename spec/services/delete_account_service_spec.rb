@@ -47,6 +47,7 @@ RSpec.describe DeleteAccountService do
       expect { poll.reload }.to raise_error(ActiveRecord::RecordNotFound)
       expect { poll_vote.reload }.to raise_error(ActiveRecord::RecordNotFound)
       expect { account_note.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { collection.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     def expect_deletion_of_associated_target_records
@@ -74,6 +75,7 @@ RSpec.describe DeleteAccountService do
     it_behaves_like 'common behavior' do
       let(:account) { Fabricate(:account) }
       let(:local_follower) { Fabricate(:account) }
+      let!(:collection) { Fabricate(:collection, account:) } # rubocop:disable RSpec/LetSetup
 
       it 'sends a delete actor activity to all known inboxes' do
         subject
@@ -91,6 +93,8 @@ RSpec.describe DeleteAccountService do
     it_behaves_like 'common behavior' do
       let(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
       let(:local_follower) { Fabricate(:account) }
+
+      let!(:collection) { Fabricate(:remote_collection, account:) } # rubocop:disable RSpec/LetSetup
 
       it 'sends expected activities to followed and follower inboxes' do
         subject
