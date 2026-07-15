@@ -37,7 +37,7 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     quote = quote_from_request_json(@object)
     return unless quote.present? && quote.status.local?
 
-    reject_quote!(quoting_status.quote)
+    reject_quote!(quote)
   end
 
   def reject_quote!(quote)
