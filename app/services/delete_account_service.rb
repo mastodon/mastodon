@@ -27,6 +27,7 @@ class DeleteAccountService < BaseService
     report_notes
     scheduled_statuses
     status_pins
+    tag_follows
   ).freeze
 
   # The following associations have no important side-effects
