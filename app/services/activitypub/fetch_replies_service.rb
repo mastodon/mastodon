@@ -14,7 +14,12 @@ class ActivityPub::FetchRepliesService < BaseService
     # process it and return without fetching additional pages
     max_pages = 1 if !allow_synchronous_requests && collection_or_uri.is_a?(Hash)
 
-    @items, n_pages = collection_items(collection_or_uri, max_pages: max_pages, max_items: MAX_REPLIES, reference_uri: @reference_uri)
+    @items, n_pages = collection_items(
+      collection_or_uri,
+      max_pages: max_pages,
+      max_items: max_items_for_collection,
+      reference_uri: @reference_uri
+    )
     return if @items.nil?
 
     @items = filter_replies(@items)
