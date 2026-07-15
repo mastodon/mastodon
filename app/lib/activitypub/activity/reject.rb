@@ -11,8 +11,6 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     case @object['type']
     when 'Follow'
       reject_embedded_follow
-    when 'QuoteRequest'
-      reject_embedded_quote_request
     end
   end
 
@@ -31,13 +29,6 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
 
   def reject_follow_for_relay
     relay.update!(state: :rejected)
-  end
-
-  def reject_embedded_quote_request
-    quote = quote_from_request_json(@object)
-    return unless quote.present? && quote.status.local?
-
-    reject_quote!(quote)
   end
 
   def reject_quote!(quote)
