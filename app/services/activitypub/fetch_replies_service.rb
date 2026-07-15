@@ -30,6 +30,10 @@ class ActivityPub::FetchRepliesService < BaseService
 
   private
 
+  def max_items_for_collection
+    MAX_REPLIES
+  end
+
   def filter_replies(items)
     # Only fetch replies to the same server as the original status to avoid
     # amplification attacks.
