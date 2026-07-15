@@ -28,13 +28,10 @@ class VerifyLinkService < BaseService
 
     links = Nokogiri::HTML5(@body).xpath('(//a|//link)[@rel][nokogiri:link_rel_include(@rel, "me")]', NokogiriHandler)
 
-    if links.any? { |link| link['href']&.downcase == @link_back.downcase }
-      true
-    elsif links.empty?
-      false
-    else
-      link_redirects_back?(links.first['href'])
-    end
+    return true if links.any? { |link| link['href']&.downcase == @link_back.downcase }
+    return false if links.empty?
+
+    links.first(10).any? { |link| link_redirects_back?(link['href']) }
   end
 
   def link_redirects_back?(test_url)
