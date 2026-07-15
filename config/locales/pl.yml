@@ -282,24 +282,24 @@ pl:
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
         destroy_username_block_html: Użytkownik %{name} usunął zasadę dla nazw użytkowników zawierających %{target}
-        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
+        disable_2fa_user_html: Użytkownik %{name} wyłączył uwierzytelnianie dwuskładnikowe użytkownikowi %{target}
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_relay_html: "%{name} wyłączył przekaźnik %{target}"
         disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
-        disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
+        disable_user_html: Użytkownik %{name} zablokował możliwość logowania użytkownikowi %{target}
         enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
         enable_relay_html: "%{name} włączył przekaźnik %{target}"
         enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
-        enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
+        enable_user_html: Użytkownik %{name} przywrócił możliwość logowania użytkownikowi %{target}
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
-        promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        promote_user_html: Użytkownik %{name} podniósł uprawnienia użytkownikowi %{target}
         publish_terms_of_service_html: "%{name} opublikował aktualizacje warunków korzystania z usługi"
         reject_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         reject_user_html: "%{name} odrzucił rejestrację od %{target}"
-        remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
+        remove_avatar_user_html: Użytkownik %{name} usunął awatar użytkownikowi %{target}
         reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
         resend_user_html: "%{name} ponownie wysłał(a) e-mail z potwierdzeniem dla %{target}"
-        reset_password_user_html: "%{name} resetuje hasło użytkownika %{target}"
+        reset_password_user_html: Użytkownik %{name} przywrócił hasło użytkownikowi %{target}
         resolve_report_html: "%{name} rozwiązał(a) zgłoszenie %{target}"
         sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account_html: "%{name} wyciszył(a) konto %{target}"
@@ -348,7 +348,9 @@ pl:
     collections:
       batch:
         report: Zgłoś
+      collection_title: Kolekcje od użytkownika %{name}
       contents: Zawartość
+      title: Kolekcje kont — @%{name}
       view_publicly: Wyświetl publicznie
     critical_update_pending: Czeka krytyczna aktualizacja
     custom_emojis:

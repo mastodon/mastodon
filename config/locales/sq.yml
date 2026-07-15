@@ -1005,6 +1005,7 @@ sq:
       critical_update: Kritik — ju lutemi, përditësojeni pa humbur kohë
       description: Rekomandohet ta mbani të përditësuar instalimin tuaj të Mastodon-it, që të përfitoni nga ndreqjet dhe veçoritë më të reja. Për më tej, ndonjëherë është kritike të përditësohet Mastodon-i në kohën e duhur, për të shmangur probleme sigurie. Për këto arsye, Mastodon-i kontrollon për përditësime çdo 30 minuta dhe do t’ju njoftojë, sipas parapëlqimeve tuaja për njoftime me email.
       documentation_link: Mësoni më tepër
+      nearing_eol: Mbulii i degës që xhironi aktualisht do të reshtë së funksionuari më %{date}, ju lutemi, shihni mundësinë e përditësimit.
       release_notes: Shënime hedhjeje në qarkullim
       supported_until: Asistenca përfundon më %{date}
       title: Përditësime të gatshme
@@ -1013,6 +1014,7 @@ sq:
         major: Hedhje e rëndësishme në qarkullim
         minor: Hedhje e vockël në qarkullim
         patch: Hedhje në qarkullim arnimesh — ndreqje të metash dhe ndryshime të lehta për t’u aplikuar
+      unsupported_branch: Dega që xhironi aktualisht nuk mbulohet, ju lutemi, përditësojeni sa më shpejt që të jetë e mundur.
       unsupported_since: I pambuluar që prej %{date}
       version: Version
     statuses:
@@ -1276,6 +1278,15 @@ sq:
     auto_close_registrations:
       body: Për shkak mungese veprimtarie moderatori së fundi, regjistrimet te %{instance} janë kaluar automatikisht të kërkojnë shqyrtim dorazi, për të penguar përdorimin e %{instance} si një platformë për aktorë të këqij. Mund të kaloni kurdo te regjistrime të hapura.
       subject: Regjistrimet te %{instance} janë kaluar automatikisht të kërkojnë miratim
+    end_of_support_out_of_support_warning:
+      body: Versioni i Mastodon-it aktualisht në përdorim në shërbyesin tuaj nuk mbulohet më. Rekomandojmë ta përditësoni sa më shpejt që të jetë e mundur!
+      subject: Mastodon-i %{branch} i përdorur te %{instance} tanimë nuk mbulohet më tej!
+    end_of_support_three_months_warning:
+      body: Versioni i Mastodon-it aktualisht në përdorim në shërbyesin tuaj do të reshtë të jetë i mbuluar pas 3 muajsh. Mund të donii ta përditësoni në kohë me një degë më të re.
+      subject: Mbulimi i Mastodon -it%{branch} përdorur te %{instance} do të përfundojë pas 3 muajsh.
+    end_of_support_two_weeks_warning:
+      body: Versioni i Mastodon-it aktualisht në përdorim në shërbyesin tuaj do të reshtë të jetë i mbuluar pas 2 javësh. Rekomandohmë ta përditësoni në kohë me një degë më të re.
+      subject: Mbulimi i Mastodon-it %{branch} përdorur te %{instance} do të përfundojë pas 2 javësh.
     new_appeal:
       actions:
         delete_statuses: fshirje e postimeve të tij
@@ -1907,6 +1918,7 @@ sq:
     administration_emails: Njoftime email përgjegjësi
     email_events: Akte për njoftime email
     email_events_hint: 'Përzgjidhni akte për të cilët doni të merrni njoftime:'
+    moderation_emails: Njoftime moderimi me email
   number:
     human:
       decimal_units:

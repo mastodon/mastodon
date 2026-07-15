@@ -1001,6 +1001,7 @@ zh-TW:
       critical_update: 重要 — 請儘速升級
       description: 建議將您的 Mastodon 伺服器升級至最新狀態，以獲得最新錯誤修正及功能更新。此外，即時更新 Mastodon 以避免偶發之安全問題非常重要。因此，Mastodon 每 30 分鐘將檢查一次更新，並依據您的電子郵件通知設定通知您。
       documentation_link: 了解更多
+      nearing_eol: 您正在使用之分支版本支援即將於 %{date} 停止，請考慮更新。
       release_notes: 版本資訊
       supported_until: 將於 %{date} 停止支援
       title: 可取得的更新
@@ -1009,6 +1010,7 @@ zh-TW:
         major: 主要版本更新
         minor: 次要版本更新 (minor release)
         patch: 修正版本 (patch release) — 錯誤修正及易於套用之變更
+      unsupported_branch: 您正在使用之分支版本已停止支援，請考慮儘速更新。
       unsupported_since: 自 %{date} 停止支援
       version: 版本
     statuses:
@@ -1270,6 +1272,15 @@ zh-TW:
     auto_close_registrations:
       body: 由於近日缺少管理員活動，%{instance} 上之註冊已自動切換為需要人工審核，以防止 %{instance} 被作為潛在不良行為者之跳板。您隨時能將其切換回開放註冊。
       subject: "%{instance} 之註冊已自動切換為需要審核"
+    end_of_support_out_of_support_warning:
+      body: 您伺服器正在運行之 Mastodon 版本已停止支援。我們建議您儘速更新！
+      subject: "%{instance} 運行之 Mastodon %{branch} 分支版本已停止支援！"
+    end_of_support_three_months_warning:
+      body: 您伺服器正在運行之 Mastodon 版本將於三個月後停止支援。您可以考慮規劃提早更新至較新的分支版本。
+      subject: "%{instance} 運行之 Mastodon %{branch} 分支版本將於三個月後停止支援。"
+    end_of_support_two_weeks_warning:
+      body: 您伺服器正在運行之 Mastodon 版本將於二週後停止支援。我們建議您規劃提早更新至較新的分支版本。
+      subject: "%{instance} 運行之 Mastodon %{branch} 分支版本將於二週後停止支援。"
     new_appeal:
       actions:
         delete_statuses: 要刪除他們的嘟文
@@ -1881,6 +1892,7 @@ zh-TW:
     administration_emails: 管理員電子郵件通知
     email_events: 電子郵件通知設定
     email_events_hint: 選取您想接收通知的事件：
+    moderation_emails: 管理員電子郵件通知
   number:
     human:
       decimal_units:

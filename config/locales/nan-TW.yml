@@ -285,7 +285,11 @@ nan-TW:
         enable_relay_html: "%{name} 啟用中繼 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 啟用 %{target} ê電子phue ê token驗證"
         enable_user_html: "%{name} kā 用者 %{target} 設做允准登入"
+        listable_tag_html: 通受建議
         memorialize_account_html: "%{name} kā %{target} 設做故人口座"
+        not_listable_tag_html: bē當受建議
+        not_trendable_tag_html: bē刊tī趨勢
+        not_usable_tag_html: bē當用
         promote_user_html: "%{name} kā 用者 %{target} 升級"
         publish_terms_of_service_html: "%{name} 公佈服務規定ê更新"
         reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì管理決定ê投訴"
@@ -298,6 +302,7 @@ nan-TW:
         sensitive_account_html: "%{name} kā %{target} ê媒體標做敏感ê內容"
         silence_account_html: "%{name} 限制 %{target} ê口座"
         suspend_account_html: "%{name} kā %{target} ê口座停止權限ah"
+        trendable_tag_html: 通刊tī趨勢
         unassigned_report_html: "%{name} 取消分配 %{target} ê檢舉"
         unblock_email_account_html: "%{name} 取消封鎖 %{target} ê電子phue地址"
         unsensitive_account_html: "%{name} kā %{target} ê媒體取消標做敏感ê內容"
@@ -310,8 +315,10 @@ nan-TW:
         update_ip_block_html: "%{name} 改變 IP %{target} ê規則"
         update_report_html: "%{name} 更新 %{target} ê檢舉"
         update_status_html: "%{name} kā %{target} ê PO文更新"
+        update_tag_html: "%{name} 有kā %{target} ê設定改做： "
         update_user_role_html: "%{name} 更改 %{target} 角色"
         update_username_block_html: "%{name} 更新用者ê名包含 %{target} ê規則ah"
+        usable_tag_html: ē當用;
       deleted_account: thâi掉ê口座
       empty: Tshuē無log。
       filter_by_action: 照動作過濾
@@ -990,13 +997,17 @@ nan-TW:
       critical_update: 重要—請緊升級
       description: 建議kā lí ê Mastodon安裝維持上新ê狀態，the̍h著上新ê修正kap功能。另外，隨時更新Mastodon有時陣真重要，ē當避免安全問題。因為tsiah-ê原因，Mastodon每30分鐘檢查更新，mā ē根據lí ê電子phue通知ê偏愛設定kā lí通知。
       documentation_link: 看詳細
+      nearing_eol: Lí leh紡ê分支ê支援ē佇 %{date} 結束，請考慮更新。
       release_notes: 版本ê資訊
+      supported_until: 支援ē佇 %{date} 停止
       title: Ē當the̍h ê更新
       type: 類型
       types:
         major: 大ê版本更新
         minor: 細ê版本更新
         patch: 碎布(patch)公開—修正錯誤kap容易作用ê改變
+      unsupported_branch: Lí leh紡ê分支停止支援ah，請盡量較緊更新。
+      unsupported_since: Uì %{date} 停止支援
       version: 版本
     statuses:
       account: 作者
@@ -1208,6 +1219,7 @@ nan-TW:
           other: 頂禮拜hōo %{count} 位用者用
       title: 推薦kap趨勢
       trending: 趨勢
+    update_available: 有通用ê更新
     username_blocks:
       add_new: 加新ê
       block_registrations: 封鎖註冊
@@ -1256,6 +1268,15 @@ nan-TW:
     auto_close_registrations:
       body: 因為欠最近ê管理員活動，佇 %{instance} ê註冊已經自動切kàu需要手動審查，以免 %{instance} hōo 可能行ê pháinn 行為ê當做平臺。Lí不管時lóng通切轉去，開放註冊。
       subject: "%{instance} ê註冊已經自動切kàu需要允准"
+    end_of_support_out_of_support_warning:
+      body: Lí ê服侍器leh用ê Mastodon版本已經無受支援ah。Guán建議汝盡量較緊更新！
+      subject: "%{instance} 用ê Mastodon %{branch} 分支tann無受支援ah！"
+    end_of_support_three_months_warning:
+      body: Lí ê服侍器leh紡ê Mastodon版本ē佇3個月了後停止支援。Lí可能想beh提早更新kàu較新ê分支。
+      subject: "%{instance} 用ê Mastodon %{branch} ē佇3個月了後停止支援。"
+    end_of_support_two_weeks_warning:
+      body: Lí ê服侍器leh紡ê Mastodon版本ē佇2禮拜了後停止支援。Guán建議lí提早更新kàu較新ê分支。
+      subject: "%{instance} 用ê Mastodon %{branch} ē佇2禮拜了後停止支援。"
     new_appeal:
       actions:
         delete_statuses: thâi掉in ê PO文
@@ -1867,6 +1888,7 @@ nan-TW:
     administration_emails: 管理員ê電子phue通知
     email_events: 電子phue通知ê事件
     email_events_hint: 揀lí想beh收ê通知ê事件：
+    moderation_emails: 管理ê電子phue通知
   number:
     human:
       decimal_units:
@@ -2215,7 +2237,22 @@ nan-TW:
       extra: 備辦好勢，通載落去！
       subject: Lí ê備份檔案ē當載落去
       title: 輸出備份檔
+    failed_2fa:
+      details: 下kha是hit ê試登入ê詳細：
+      explanation: 有lâng捌試登入lí ê口座，毋koh提供無效ê第二認證因素。
+      further_actions_html: Nā準tse毋是汝，guán建議汝連鞭 %{action}，因為伊凡勢hőng入侵ah。
+      subject: 第二因素驗證失敗
+      title: 第二因素驗證失敗
+    suspicious_sign_in:
+      change_password: 換lí ê密碼
+      details: 下kha是hit ê登入ê詳細：
+      explanation: Lán有偵測出新ê IP地址登入lí ê口座。
+      further_actions_html: Nā準tse毋是lí，guán建議lí連鞭 %{action}，koh啟用雙因素驗證，來保持lí ê口座安全。
+      subject: Lí ê口座有予新ê IP接近使用
+      title: 新ê登入
     terms_of_service_changed:
+      agreement: 通過繼續用 %{domain}，lí同意tsiah ê條款。若準lí無同意更新ê條款，lí通不管時thâi掉lí ê口座，來中止kap %{domain} ê協議。
+      changelog: 簡單講，tsit改更新ê摘要是：
       description: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 %{date} 施行。Gún鼓勵lí佇tsia讀kui篇更新ê規定：
       description_html: Lí收著tsit張電子phue，是因為gún佇 %{domain} teh修改服務規定。Tsiah ê更新會佇 <strong>%{date}</strong> 施行。Gún鼓勵lí<a href="%{path}" target="_blank">佇tsia讀kui篇更新ê規定</a>：
       sign_off: "%{domain} 小組"
@@ -2227,6 +2264,10 @@ nan-TW:
       appeal_description: Lí若相信tse是出tshê，lí會當kā %{instance} ê人員投。
       categories:
         spam: Pùn-sò訊息
+        violation: 內容違反下kha ê社里守則
+      explanation:
+        delete_statuses: Lí一寡PO文有發現違反一條以上ê社里守則，然後就予 %{instance} ê管理員thâi掉。
+        disable: Lí bē當koh用lí ê口座，毋koh lí ê個人資料kap其他ê資料完整保持。lí通要求lí ê資料ê備份，改口座ê設定，á是thâi掉lí ê口座。
     welcome:
       feature_creativity: Mastodon支持聲音、影kap圖片êPO文、容易使用性ê描述、投票、內容ê警告、動畫ê標頭、自訂ê繪文字kap裁縮小圖ê控制等等，幫tsān lí展現家己。無論beh發表藝術作品、音樂，á是podcast，Mastodon佇tsia為lí服務。
       sign_in_action: 登入

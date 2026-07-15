@@ -1013,6 +1013,7 @@ fr:
       critical_update: Critique — veuillez mettre à jour au plus vite
       description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et fonctionnalités. Par ailleurs, il est parfois critique de mettre à jour Mastodon rapidement de manière à éviter les incidents relatifs à la sécurité. Pour ces raisons, Mastodon examine la disponibilté des mises à jour toutes les 30 minutes, et vous en avisera en fonction de vos préférences de notification par courriel.
       documentation_link: En savoir plus
+      nearing_eol: La branche que vous utilisez actuellement ne sera plus supportée à partir du %{date}, veuillez envisager une mise à jour.
       release_notes: Notes de mises à jour
       supported_until: Le support se termine le %{date}
       title: Mises à jour disponibles
@@ -1021,6 +1022,7 @@ fr:
         major: Mise à jour majeure
         minor: Mise à jour mineure
         patch: Mise à jour corrective — corrections de bugs et changements faciles à appliquer
+      unsupported_branch: La branche que vous utilisez actuellement n'est plus supportée, veuillez la mettre à jour dès que possible.
       unsupported_since: Non supportée depuis le %{date}
       version: Version
     statuses:
@@ -1287,6 +1289,15 @@ fr:
     auto_close_registrations:
       body: En raison du manque d'activité récente des modérateurs, les inscriptions à %{instance} ont été automatiquement changées pour nécessiter une revue manuelle afin d'éviter que votre instance %{instance} ne soit utilisée comme plate-forme pour des acteurs potentiellement malveillants. Vous pouvez ré-ouvrir les inscriptions à tout moment.
       subject: Les inscriptions à %{instance} ont été automatiquement changées pour requérir une approbation
+    end_of_support_out_of_support_warning:
+      body: La version de Mastodon actuellement utilisée sur votre serveur n'est plus supportée. Nous vous recommandons de mettre à jour dès que possible !
+      subject: Mastodon %{branch} utilisé sur %{instance} n'est plus supporté !
+    end_of_support_three_months_warning:
+      body: La version de Mastodon actuellement utilisée sur votre serveur ne sera plus supportée dans 3 mois. Vous voudrez peut-être mettre à jour vers une nouvelle branche à l'avance.
+      subject: Le support de Mastodon %{branch} utilisé sur %{instance} se termine dans 3 mois.
+    end_of_support_two_weeks_warning:
+      body: La version de Mastodon actuellement utilisée sur votre serveur ne sera plus supportée dans 2 semaines. Nous vous recommandons de mettre à jour avant cette échéance.
+      subject: Le support de Mastodon %{branch} utilisé sur %{instance} se termine dans 2 semaines.
     new_appeal:
       actions:
         delete_statuses: effacer les messages
@@ -1922,6 +1933,7 @@ fr:
     administration_emails: Notifications d'administration par courriel
     email_events: Événements pour les notifications par courriel
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
+    moderation_emails: Notifications de modération par courriel
   number:
     human:
       decimal_units:

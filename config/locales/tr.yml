@@ -1013,6 +1013,7 @@ tr:
       critical_update: Kritik — lütfen hemen güncelleyin
       description: Son düzeltme ve özelliklerden yararlanmak için Mastodon kurulumunu güncel tutmanızı öneriyoruz. Üstelik güvenlik sorunlarından kaçınmak için Mastodon'u zamanında güncellemek kritiktir. Bu nedenlerle Mastodon her 30 dakikada bir güncellemeleri denetler ve e-posta bildirim seçeneğinize göre size haber verir.
       documentation_link: Daha fazlası
+      nearing_eol: Şu anda kullandığınız sürümün desteği %{date} tarihinde sona erecektir; lütfen güncellemeyi düşünün.
       release_notes: Sürüm notları
       supported_until: Destek %{date} tarihinde bitiyor
       title: Mevcut güncellemeler
@@ -1021,6 +1022,7 @@ tr:
         major: Ana sürüm
         minor: Alt sürüm
         patch: Yama sürümü — hata düzeltmeleri ve uygulaması kolay değişiklikler
+      unsupported_branch: Şu anda çalıştırdığınız dal desteklenmiyor; lütfen en kısa sürede güncelleme yapın.
       unsupported_since: "%{date} tarihinden beri desteklenmiyor"
       version: Sürüm
     statuses:
@@ -1287,6 +1289,15 @@ tr:
     auto_close_registrations:
       body: Son zamanlardaki moderatör faaliyeti eksikliğinden dolayı, %{instance} üzerindeki kayıtlar, %{instance} sunucusunun olası kötü aktörler tarafından bir platform olarak kullanımını engellemek için otomatik olarak elle onay gerektirecek şekilde değiştirilmiştir. İstediğiniz zaman açık kayıtlara çevirebilirsiniz.
       subject: "%{instance} üzerindeki kayıtlar otomatik olarak onay gerektirecek şekilde değiştirilmiştir"
+    end_of_support_out_of_support_warning:
+      body: Sunucunuzda şu anda kullanılan Mastodon sürümü artık desteklenmiyor. En kısa zamanda güncelleme yapmanızı öneririz!
+      subject: "%{instance} üzerinde kullanılan Mastodon %{branch} artık desteklenmiyor!"
+    end_of_support_three_months_warning:
+      body: Sunucunuzda şu anda kullanılmakta olan Mastodon sürümü, 3 ay sonra desteklenmeyecek. İsterseniz, önceden daha yeni bir dala güncelleme yapabilirsiniz.
+      subject: "%{instance} üzerinde kullanılan Mastodon %{branch} desteği 3 ay sonra sona erecek."
+    end_of_support_two_weeks_warning:
+      body: Sunucunuzda şu anda kullanılmakta olan Mastodon sürümü, 2 hafta sonra desteklenmeyecek. Zamanında daha yeni bir dala geçmenizi öneririz.
+      subject: "%{instance} üzerinde kullanılan Mastodon %{branch} desteği 2 hafta sonra sona erecek."
     new_appeal:
       actions:
         delete_statuses: gönderilerini silme
@@ -1922,6 +1933,7 @@ tr:
     administration_emails: Yönetici e-posta bildirimleri
     email_events: E-posta bildirimi etkinlikleri
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
+    moderation_emails: Moderasyon e-posta bildirimleri
   number:
     human:
       decimal_units:
