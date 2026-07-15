@@ -14,6 +14,10 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
 
   private
 
+  def max_items_for_collection
+    MAX_REPLIES
+  end
+
   def filter_replies(items)
     # Find all statuses that we *shouldn't* update the replies for, and use that as a filter.
     # We don't assume that we have the statuses before they're created,
