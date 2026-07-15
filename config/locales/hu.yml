@@ -1013,6 +1013,7 @@ hu:
       critical_update: Kritikus - frissíts gyorsan
       description: Javasolt, hogy a Mastodon telepítésed naprakész legyen, hogy kihasználhasd a legújabb javításokat és funkciókat. Ezenkívül néha különösen fontos a Mastodon időben történő frissítése a biztonsági problémák elkerülése érdekében. Ezen okok miatt a Mastodon 30 percenként ellenőrzi a frissítéseket és az e-mail-értesítési beállításoknak megfelelően értesítést küld.
       documentation_link: További információ
+      nearing_eol: 'A most futtatott ág támogatása ekkor lejár: %{date}, fontold meg a frissítést.'
       release_notes: Kiadási megjegyzések
       supported_until: 'Támogatás vége: %{date}'
       title: Elérhető frissítések
@@ -1021,6 +1022,7 @@ hu:
         major: Fő kiadás
         minor: Kisebb kiadás
         patch: Javító kiadás - hibajavítások és könnyen alkalmazható változtatások
+      unsupported_branch: A most futtatott ág támogatása lejárt, frissíts, amint lehetséges.
       unsupported_since: 'Ettől kezdve nem támogatott: %{date}'
       version: Verzió
     statuses:
@@ -1287,6 +1289,15 @@ hu:
     auto_close_registrations:
       body: A közelmúlt moderátori tevékenységének hiánya miatt a %{instance} regisztrációja automatikusan kézi ellenőrzést igénylőre váltott azért, hogy megakadályozzuk, hogy a %{instance} potenciálisan rossz szándékú szereplők számára szolgálhasson platformként. A nyílt regisztrációt bármikor visszakapcsolhatod.
       subject: "%{instance} regisztrációja automatikusan átállt jóváhagyást igénylőre"
+    end_of_support_out_of_support_warning:
+      body: A kiszogálón használt Mastodon-verzió már nem támogatott. Azt javasoljuk, hogy frissíts, amint lehetséges.
+      subject: A(z) %{instance} példányon használt Mastodon %{branch} ág már nem támogatott!
+    end_of_support_three_months_warning:
+      body: A most használt Mastodon-verzió 3 hónap múlva már nem lesz támogatott. Még időben frissíts újabb ágra.
+      subject: A(z) %{instance} példányon használt Mastodon %{branch} ág támogatása 3 hónap múlva lejár.
+    end_of_support_two_weeks_warning:
+      body: A kiszolgálón használt Mastodon-verzió 2 hét múlva már nem lesz támogatott. Azt javasoljuk, hogy még időben frissíts újabb ágra.
+      subject: A(z) %{instance} példányon használt Mastodon %{branch} ág támogatása 2 hét múlva lejár.
     new_appeal:
       actions:
         delete_statuses: bejegyzések törléséről
@@ -1922,6 +1933,7 @@ hu:
     administration_emails: Adminisztrátori e-mail-értesítések
     email_events: Az e-mail-értesítések eseményei
     email_events_hint: 'Válaszd ki azokat az eseményeket, melyekről értesítést szeretnél:'
+    moderation_emails: Moderátori e-mail-értesítések
   number:
     human:
       decimal_units:

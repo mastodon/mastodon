@@ -1045,13 +1045,17 @@ cs:
       critical_update: Kritické — aktualizujte, prosím, co nejdříve
       description: Doporučuje se udržovat vaši instalaci Mastodonu aktuální, aby se využily nejnovější opravy a funkce. Kromě toho je někdy velmi důležité včas aktualizovat Mastodon, aby se předešlo bezpečnostním problémům. Z těchto důvodů Mastodon kontroluje aktualizace každých 30 minut a bude vás informovat podle nastavení vašeho e-mailového oznámení.
       documentation_link: Zjistit více
+      nearing_eol: Podpora pro verzi kterou právě používáte skončí %{date}, zvažte prosím aktualizaci.
       release_notes: Poznámky k vydání
+      supported_until: Podpora končí %{date}
       title: Dostupné aktualizace
       type: Typ
       types:
         major: Hlavní vydání
         minor: Menší vydání
         patch: Záplatové vydání — opravy chyb a rychle aplikovatelné změny
+      unsupported_branch: Verze, kterou právě používáte, již není podporována, aktualizujte ji prosím co nejdříve.
+      unsupported_since: Nepodporováno od %{date}
       version: Verze
     statuses:
       account: Autor
@@ -1327,6 +1331,15 @@ cs:
     auto_close_registrations:
       body: Kvůli nedostatku nedávných aktivit od moderátorů byly registrace na %{instance} automaticky přepnuty na vyžadující manuální kontrolu. aby se zabránilo použití %{instance} jako platformy pro potenciálně škodlivých hráčů. Můžete ji kdykoliv přepnout zpět na otevřené registrace.
       subject: Registrace pro %{instance} byly automaticky přepnuty na vyžadující schválení
+    end_of_support_out_of_support_warning:
+      body: Verze Mastodonu, kterou váš server aktuálně používá, již není podporována. Doporučujeme vám provést aktualizaci co nejdříve!
+      subject: Mastodon %{branch} běžící na %{instance} není nyní podporována!
+    end_of_support_three_months_warning:
+      body: Verze Mastodonu, kterou váš server aktuálně používá, přestane být za 3 měsíce podporována. Možná byste měli zvážit včasnou aktualizaci na novější verzi.
+      subject: Podpora pro Mastodon %{branch} běžící na %{instance} skončí za 3 měsíce.
+    end_of_support_two_weeks_warning:
+      body: Verze Mastodonu, kterou váš server aktuálně používá, přestane být za 2 týdny podporována. Doporučujeme předem přejít na novější verzi.
+      subject: Podpora pro Mastodon %{branch} běžící na %{instance} skončí za 2 týdny.
     new_appeal:
       actions:
         delete_statuses: smazání jeho příspěvků
@@ -2010,6 +2023,7 @@ cs:
     administration_emails: E-mailová oznámení administrátora
     email_events: Události pro e-mailová oznámení
     email_events_hint: 'Vyberte události, pro které chcete dostávat oznámení:'
+    moderation_emails: Moderační e-mailová oznámení
   number:
     human:
       decimal_units:

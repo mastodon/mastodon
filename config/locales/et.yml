@@ -1013,6 +1013,7 @@ et:
       critical_update: Kriitiline — uuenda kiiresti
       description: Soovitatav on hoida oma Mastodoni paigaldus ajakohasena, et saada kasu viimastest parandustest ja funktsioonidest. Lisaks sellele on mõnikord oluline Mastodoni õigeaegne uuendamine, et vältida turvaprobleeme. Neil põhjustel kontrollib Mastodon uuendusi iga 30 minuti järel ja teavitab vastavalt sinu e-posti teavitamise eelistustele.
       documentation_link: Vaata lisa
+      nearing_eol: Hetkel kasutuseloleva Mastodoni serveri versiooni kasutajatugi lõppeb %{date}. Soovitame, et uuendad õigeaegselt uuema versioonini.
       release_notes: Väljalaskemärkused
       supported_until: Tugi lõppeb %{date}
       title: Saadaval uuendused
@@ -1021,6 +1022,7 @@ et:
         major: Suur uuendus
         minor: Väike uuendus
         patch: Parandusuuendus — veaparandused ja hõlpsalt rakendatavad muudatused
+      unsupported_branch: Hetkel kasutuseloleva Mastodoni serveri versiooni kasutajatugi on lõppenud. Palun uuenda ta võimalikult kiiresti uuema versioonini.
       unsupported_since: Alates %{date} pole enam toetatud
       version: Versioon
     statuses:
@@ -1287,6 +1289,15 @@ et:
     auto_close_registrations:
       body: Hiljutise vähese modereerimistegevuse tõttu on %{instance} liitumised automaatselt muudetud heakskiitu nõudvaks, et %{instance} ei muutuks võimalike pahategijate tegevusplatvormiks. Registreerumine on võimalik tagasi avatuks muuta igal ajal.
       subject: Serveri %{instance} registreeringud on automaatselt muudetud heakskiitu nõudvaks
+    end_of_support_out_of_support_warning:
+      body: Hetkel kasutuseloleva Mastodoni serveri versiooni kasutajatugi on praeguseks lõppenud. Soovitame, et uuendad ta võimalikult kiiresti uuema versioonini!
+      subject: "%{instance} serveris kasutusel oleva Mastodoni serveri versiooni %{branch} kasutajatugi on nüüd lõppenud!"
+    end_of_support_three_months_warning:
+      body: Hetkel kasutuseloleva Mastodoni serveri versiooni kasutajatugi lõppeb kolme kuu pärast. Soovitame, et uuendad õigeaegselt uuema versioonini.
+      subject: "%{instance} serveris kasutusel oleva Mastodoni serveri versiooni %{branch} kasutajatugi lõppeb kolme kuu pärast."
+    end_of_support_two_weeks_warning:
+      body: Hetkel kasutuseloleva Mastodoni serveri versiooni kasutajatugi lõppeb kahe nädala pärast. Soovitame, et uuendad õigeaegselt uuema versioonini.
+      subject: "%{instance} serveris kasutusel oleva Mastodoni serveri versiooni %{branch} kasutajatugi lõppeb kahe nädala pärast."
     new_appeal:
       actions:
         delete_statuses: kustutada postitused
@@ -1922,6 +1933,7 @@ et:
     administration_emails: Admini e-postiteated
     email_events: Sündmused e-postiteavituste jaoks
     email_events_hint: 'Vali sündmused, mille kohta soovid teavitusi:'
+    moderation_emails: Modereerimise teavitused e-postiga
   number:
     human:
       decimal_units:
