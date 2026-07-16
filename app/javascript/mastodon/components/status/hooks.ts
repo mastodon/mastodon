@@ -42,7 +42,7 @@ export function useStatusHandlers({
   onClick?: () => void;
 }) {
   const matchedFilters = useAppSelector((state) =>
-    selectStatusFilters(state, {}),
+    selectStatusFilters(state, { contextType, statusId: status?.id }),
   );
   const [showDespiteFilter, { onToggle: onFilterToggle }] = useToggle(false);
 
