@@ -1,11 +1,13 @@
+@use '@/styles/mastodon/mixins';
+
 .wrapper {
   position: relative;
   display: grid;
   grid-template-columns: 250px 1fr;
-  gap: 1rem;
-  padding: 2rem;
-  font-size: 16px;
-  line-height: 1.5;
+  gap: var(--space-md);
+  padding: var(--space-3xl);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-normal);
   overflow-wrap: break-word;
   color: var(--color-text-primary);
   background-color: var(--color-bg-blend);
@@ -17,18 +19,19 @@
   nav {
     display: block;
     grid-template-rows: min-content;
-    font-size: 14px;
+    font-size: var(--fs-sm);
 
     input {
       display: block;
       box-sizing: border-box;
       width: 100%;
-      margin-block-end: 1rem;
-      padding: 0.5rem 1rem;
+      margin-block-end: var(--space-md);
+      padding: var(--space-xs) var(--space-md);
       color: var(--color-text-primary);
       background: transparent;
       border: 1px solid var(--color-border-primary);
-      border-radius: 0.5rem;
+      border-radius: var(--radius-xs);
+      font: inherit;
 
       &:focus {
         border-color: var(--color-border-brand);
@@ -38,9 +41,10 @@
 
     a {
       display: block;
-      padding: 0.5rem 1rem 0.45rem;
-      border-radius: 0.5rem;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--radius-xs);
       color: var(--color-text-secondary);
+      @include mixins.type-body-compact;
 
       &[aria-current='page'] {
         color: var(--color-text-primary);
@@ -55,22 +59,23 @@
         'subtitle button';
       grid-template-columns: 1fr min-content;
       align-items: center;
-      gap: 0.125rem 0.5rem;
-      margin-block-start: 1rem;
-      padding: 0.75rem 1rem;
-      line-height: 1.2;
-      border-radius: 1rem;
-      background-color: var(--color-bg-highlight);
+      gap: var(--space-3xs) var(--space-xs);
+      margin-block-start: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-primary);
 
       h2 {
         grid-area: title;
-        font-size: 16px;
-        font-weight: bold;
+        @include mixins.type-body;
+
+        line-height: var(--lh-tighter);
       }
 
       .subtitle {
         grid-area: subtitle;
-        font-size: 12px;
+        @include mixins.type-label-sm;
+
         color: var(--color-text-secondary);
         overflow: hidden;
         text-overflow: ellipsis;
@@ -84,15 +89,31 @@
         width: 32px;
         height: 32px;
         border: none;
-        background-color: var(--color-bg-highlight);
-        border-radius: 99rem;
+        background-color: transparent;
+        border-radius: var(--radius-round);
+
+        &:hover {
+          background-color: var(--color-bg-highlight);
+        }
       }
     }
   }
 
   main {
-    padding: 2rem;
+    padding: var(--space-3xl);
     background-color: var(--color-bg-primary);
-    border-radius: 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: auto var(--space-md) var(--space-md) auto;
+    width: 30%;
+    height: 35%;
+    padding: var(--space-md);
+    background-color: var(--color-bg-primary);
+    border-radius: var(--radius-xl);
+
+    @include mixins.elevation-2;
   }
 }
