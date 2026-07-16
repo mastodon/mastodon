@@ -149,6 +149,8 @@ class ActivityPub::ProcessAccountService < BaseService
     webfinger = Webfinger.new("acct:#{@username}@#{@domain}").perform
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
 
+    raise Error, "Unsupported username format in webfinger response for #{@username}@#{@domain}" unless Account::USERNAME_ONLY_RE.match?(confirmed_username)
+
     if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
       raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
 
@@ -162,6 +164,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
     raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
+    raise Error, "Unsupported username format in webfinger response for #{@username}@#{@domain}" unless Account::USERNAME_ONLY_RE.match?(@username)
 
     @webfinger_verified = true
   rescue Webfinger::RedirectError => e
