@@ -253,14 +253,28 @@ class Account < ApplicationRecord
     "acct:#{local_username_and_domain}"
   end
 
+  def invalidate_username!
+    return if invalidated_username?
+
+    # This uses some characters (`{`, `}`, `!`) that we are extremely unlikely to allow
+    # i nthe future, in order to ensure this will never match a webfinger handle.
+    # Using the local ID ensures we won't have any conflict.
+
+    update_attribute(:username, "{invalid!#{id}}")
+  end
+
+  def invalidated_username?
+    username.start_with?('{invalid!')
+  end
+
   def possibly_stale?
-    last_webfingered_at.nil? || last_webfingered_at <= STALE_THRESHOLD.ago
+    last_webfingered_at.nil? || last_webfingered_at <= STALE_THRESHOLD.ago || invalidated_username?
   end
 
   def needs_background_refresh?
     return false if local?
 
-    return true if last_webfingered_at.blank? || last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+    return true if last_webfingered_at.blank? || last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago || invalidated_username?
 
     # TODO: Remove some time after 4.6
     # This is temporary workaround to speed up account refreshs after

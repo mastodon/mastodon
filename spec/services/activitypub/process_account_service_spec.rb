@@ -496,13 +496,16 @@ RSpec.describe ActivityPub::ProcessAccountService do
     context 'when the destination handle is already occupied' do
       let!(:conflicting_account) { Fabricate(:remote_account, username: 'alice', domain: 'example.com', uri: 'https://foo.test/original_alice', inbox_url: 'https://foo.test/original_alice/inbox') }
 
-      it 'updates the profile but does not touch the usernames or call AccountMergingWorker' do
+      it 'updates the profile without creating a new one or calling AccountMergingWorker, renames conflicting and schedules refresh' do
         expect { subject.call(payload) }
-          .to not_change { account.reload.username }
-          .and not_change { account.reload.domain }
+          .to change { account.reload.username }.from('bob').to('alice')
+          .and change { account.reload.domain }.from('foo.test').to('example.com')
           .and not_change { account.reload.uri }
-          .and not_change { conflicting_account.reload.acct }
+          .and change { conflicting_account.reload.username }.from('alice').to("{invalid!#{conflicting_account.id}}")
           .and(not_change { Account.count })
+
+        expect(AccountRefreshWorker)
+          .to have_enqueued_sidekiq_job(conflicting_account.id, { 'request_id' => /.*-.*@.*/ })
 
         expect(AccountMergingWorker)
           .to_not have_enqueued_sidekiq_job
@@ -575,13 +578,16 @@ RSpec.describe ActivityPub::ProcessAccountService do
     context 'when the destination handle is already occupied' do
       let!(:conflicting_account) { Fabricate(:remote_account, username: 'alice', domain: 'foo.test', uri: 'https://foo.test/original_alice', inbox_url: 'https://foo.test/original_alice/inbox') }
 
-      it 'updates the profile but does not touch the usernames or call AccountMergingWorker' do
+      it 'updates the profile without creating a new one or calling AccountMergingWorker, renames conflicting and schedules refresh' do
         expect { subject.call(payload) }
-          .to not_change { account.reload.username }
+          .to change { account.reload.username }.from('bob').to('alice')
           .and not_change { account.reload.domain }
           .and not_change { account.reload.uri }
-          .and not_change { conflicting_account.reload.acct }
+          .and change { conflicting_account.reload.username }.from('alice').to("{invalid!#{conflicting_account.id}}")
           .and(not_change { Account.count })
+
+        expect(AccountRefreshWorker)
+          .to have_enqueued_sidekiq_job(conflicting_account.id, { 'request_id' => /.*-.*@.*/ })
 
         expect(AccountMergingWorker)
           .to_not have_enqueued_sidekiq_job

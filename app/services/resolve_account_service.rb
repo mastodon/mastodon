@@ -13,11 +13,14 @@ class ResolveAccountService < BaseService
   # @option options [Boolean] :skip_webfinger Do not attempt any webfinger query or refreshing account data
   # @option options [Boolean] :skip_cache Get the latest data from origin even if cache is not due to update yet
   # @option options [Boolean] :suppress_errors When failing, return nil instead of raising an error
+  # @option options [String]  :request_id Used to limit the number of HTTP requests issued from a single outside request
   # @return [Account]
   def call(uri, options = {})
     return if uri.blank?
 
     process_options!(uri, options)
+
+    return ActivityPub::FetchRemoteAccountService.new.call(@account.uri, suppress_errors: @options[:suppress_errors], request_id: options[:request_id]) if @account&.remote? && @account.invalidated_username?
 
     # First of all we want to check if we've got the account
     # record with the URI already, and if so, we can exit early
