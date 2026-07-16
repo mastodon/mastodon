@@ -165,6 +165,30 @@ RSpec.describe Request do
         expect { subject.perform }
           .to raise_error Mastodon::ValidationError
       end
+
+      context 'when the request is signed' do
+        it 'raises Mastodon::ValidationError' do
+          expect { subject.on_behalf_of(Fabricate(:account)).perform }
+            .to raise_error Mastodon::ValidationError
+        end
+
+        context 'when resolving changes between requests' do
+          # rubocop:disable RSpec/SubjectStub -- found no better way than this due to the WebMock interaction
+          before do
+            request =  instance_double(HTTP::Request)
+            connection = instance_double(HTTP::Connection)
+            allow(subject).to receive(:perform_cavage_signed_request).and_return(HTTP::Response.new(status: 401, version: '1.1', connection:, request:))
+          end
+
+          it 'performs the first request and raises Mastodon::ValidationError on the second' do
+            expect { subject.on_behalf_of(Fabricate(:account)).perform }
+              .to raise_error Mastodon::ValidationError
+
+            expect(subject).to have_received(:perform_cavage_signed_request).once
+          end
+          # rubocop:enable RSpec/SubjectStub
+        end
+      end
     end
 
     context 'with persistent connection' do
