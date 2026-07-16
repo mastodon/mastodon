@@ -18,6 +18,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   class Error < StandardError; end
 
+  # It is the caller's responsibility to check that `json` is indeed from the origin matching `json['id']`
   def call(json, request_id: nil, only_key: false, signed_with_known_key: false, account: nil, suppress_errors: true)
     raise Error, "Actor #{json['id']} has unsupported URI scheme" if unsupported_uri_scheme?(json['id'])
     raise Error, "Actor #{json['id']} has no inbox" if json['inbox'].blank?
@@ -30,13 +31,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @only_key    = only_key
     @webfinger_verified = false
 
-    if @account.present?
-      # TODO: handle renaming
-      @username = account.username
-      @domain = account.domain
-    else
-      extract_username_and_domain!
-    end
+    extract_username_and_domain!
 
     @domain = TagManager.instance.normalize_domain(@domain)
     return if @account.nil? && domain_not_allowed?(@domain)
@@ -47,14 +42,17 @@ class ActivityPub::ProcessAccountService < BaseService
     @request_id = request_id || "#{Time.now.utc.to_i}-#{@username}@#{@domain}"
 
     with_redis_lock("process_account:#{@uri}") do
-      if @only_key
-        # `only_key` is used to update an existing account known by its `uri`.
-        # Lookup by handle and new account creation do not make sense in this case.
-        @account ||= Account.remote.find_by(uri: @uri)
-        return if @account.nil?
-      else
-        @account ||= Account.find_remote(@username, @domain)
-      end
+      # Now that Mastodon supports renaming accounts, assume URI is the most
+      # stable/trustworthy identifier.
+      @account ||= Account.remote.find_by(uri: @uri) # rubocop:disable Rails/FindByOrAssignmentMemoization
+
+      # `only_key` is used to update an existing account known by its `uri`.
+      # Lookup by handle and new account creation do not make sense in this case.
+      return if @account.nil? && @only_key
+
+      # Allow accounts to change URIs if they keep the same handle
+      # (typically, losing database or switching ActivityPub server implementation)
+      @account ||= Account.find_remote(@username, @domain) if @webfinger_verified
 
       @old_public_keys = @account.present? ? (@account.keypairs.pluck(:public_key) + [@account.public_key.presence].compact) : []
       @old_protocol = @account&.protocol
@@ -70,16 +68,24 @@ class ActivityPub::ProcessAccountService < BaseService
         end
 
         create_account
+      elsif @webfinger_verified
+        # The user has potentially changed handle, update it
+        rename_account!
       end
 
       update_account
       process_tags
 
+      # NOTE: while this case is unlikely due to the `rename_account!` above,
+      # we do not have a uniqueness constraint on URI, so this still needs to run
       process_duplicate_accounts! if @webfinger_verified
     end
 
     after_protocol_change! if protocol_changed?
+
+    # TODO: extend this to an identity change, and do this on `uri` change as well
     after_key_change! if all_public_keys_changed? && !signed_with_known_key
+
     # TODO: maybe tie tombstones to specific keys? i.e. we don't need to keep tombstones if all keys changed
     clear_tombstones! if all_public_keys_changed?
     after_suspension_change! if suspension_changed?
@@ -100,6 +106,23 @@ class ActivityPub::ProcessAccountService < BaseService
 
   private
 
+  def rename_account!
+    raise 'Attempting to rename an account without having verified its webfinger handle' unless @webfinger_verified
+
+    begin
+      # This will be a no-op if the username and domain haven't changed
+      @account.update!(username: @username, domain: @domain)
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+      # This account (identified by ActivityPub `id`) is being renamed to a handle that was
+      # previously known by this Mastodon server as a different account… ignore the renaming for now
+
+      # TODO: better handle this scenario, by e.g. renaming the user to something unique
+      # and scheduling re-discovery
+
+      @account.restore_attributes([:username, :domain])
+    end
+  end
+
   def extract_username_and_domain!
     # FEP-2c59 defines a `webfinger` attribute that makes things more explicit and spares an extra request in some cases.
     # It supersedes `preferredUsername`.
@@ -113,12 +136,20 @@ class ActivityPub::ProcessAccountService < BaseService
       @domain   = Addressable::URI.parse(@uri).normalized_host
     end
 
-    check_webfinger! unless @only_key
+    if @account.present? && @username == @account.username && @domain == @account.domain
+      # This is an existing account whose handle has not changed, skip webfinger
+      @webfinger_verified = true
+    else
+      # This is either a new account, or an account whose handle has changed
+      check_webfinger! unless @only_key
+    end
   end
 
   def check_webfinger!
     webfinger = Webfinger.new("acct:#{@username}@#{@domain}").perform
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
+
+    raise Error, "Unsupported username format in webfinger response for #{@username}@#{@domain}" unless Account::USERNAME_ONLY_RE.match?(confirmed_username)
 
     if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
       raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
@@ -133,6 +164,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
     raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
+    raise Error, "Unsupported username format in webfinger response for #{@username}@#{@domain}" unless Account::USERNAME_ONLY_RE.match?(@username)
 
     @webfinger_verified = true
   rescue Webfinger::RedirectError => e

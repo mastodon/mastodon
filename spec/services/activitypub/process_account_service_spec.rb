@@ -387,6 +387,224 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
   end
 
+  context 'with an account that has changed URI but not handle (typically, losing Mastodon database)' do
+    let!(:account) { Fabricate(:remote_account, username: 'alice', domain: 'example.com', uri: 'https://example.com/users/alice') }
+
+    let(:payload) do
+      {
+        id: 'https://example.com/ap/users/1234',
+        type: 'Actor',
+        inbox: 'https://example.com/ap/users/1234/inbox',
+        webfinger: 'alice@example.com',
+        preferredUsername: 'alice',
+        attachment: [
+          { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
+          { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
+        ],
+      }.deep_stringify_keys
+    end
+
+    before do
+      stub_webfinger!
+    end
+
+    it 'properly updates the existing account, without creating a new one or calling AccountMergingWorker' do
+      expect { subject.call(payload) }
+        .to change { account.reload.uri }.from('https://example.com/users/alice').to('https://example.com/ap/users/1234')
+        .and not_change { account.reload.acct }
+        .and(not_change { Account.count })
+
+      expect(AccountMergingWorker)
+        .to_not have_enqueued_sidekiq_job(AccountMergingWorker)
+
+      expect(account.fields)
+        .to be_an(Array)
+        .and have_attributes(size: 2)
+      expect(account.fields.first)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Pronouns'),
+          value: eq('They/them')
+        )
+      expect(account.fields.last)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Occupation'),
+          value: eq('Unit test')
+        )
+    end
+  end
+
+  context 'with an account that has changed names through `webfinger` property' do
+    let!(:account) { Fabricate(:remote_account, username: 'bob', domain: 'foo.test', uri: 'https://foo.test', inbox_url: 'https://foo.test/inbox') }
+
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        webfinger: 'alice@example.com',
+        attachment: [
+          { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
+          { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
+        ],
+      }.deep_stringify_keys
+    end
+
+    before do
+      stub_webfinger!
+      webfinger = {
+        subject: 'acct:alice@example.com',
+        links: [
+          {
+            rel: 'self',
+            href: 'https://foo.test',
+            type: 'application/activity+json',
+          },
+        ],
+      }.deep_stringify_keys
+      stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: webfinger.to_json, headers: { 'Content-Type': 'application/jrd+json' })
+    end
+
+    it 'parses property values, avatar and profile header as expected, updates account username without creating a new one or calling AccountMergingWorker' do
+      expect { subject.call(payload) }
+        .to change { account.reload.username }.from('bob').to('alice')
+        .and change { account.reload.domain }.from('foo.test').to('example.com')
+        .and not_change { account.reload.uri }
+        .and(not_change { Account.count })
+
+      expect(AccountMergingWorker)
+        .to_not have_enqueued_sidekiq_job(AccountMergingWorker)
+
+      expect(account.fields)
+        .to be_an(Array)
+        .and have_attributes(size: 2)
+      expect(account.fields.first)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Pronouns'),
+          value: eq('They/them')
+        )
+      expect(account.fields.last)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Occupation'),
+          value: eq('Unit test')
+        )
+    end
+
+    context 'when the destination handle is already occupied' do
+      let!(:conflicting_account) { Fabricate(:remote_account, username: 'alice', domain: 'example.com', uri: 'https://foo.test/original_alice', inbox_url: 'https://foo.test/original_alice/inbox') }
+
+      it 'updates the profile but does not touch the usernames or call AccountMergingWorker' do
+        expect { subject.call(payload) }
+          .to not_change { account.reload.username }
+          .and not_change { account.reload.domain }
+          .and not_change { account.reload.uri }
+          .and not_change { conflicting_account.reload.acct }
+          .and(not_change { Account.count })
+
+        expect(AccountMergingWorker)
+          .to_not have_enqueued_sidekiq_job
+
+        expect(account.fields)
+          .to be_an(Array)
+          .and have_attributes(size: 2)
+        expect(account.fields.first)
+          .to be_an(Account::Field)
+          .and have_attributes(
+            name: eq('Pronouns'),
+            value: eq('They/them')
+          )
+        expect(account.fields.last)
+          .to be_an(Account::Field)
+          .and have_attributes(
+            name: eq('Occupation'),
+            value: eq('Unit test')
+          )
+      end
+    end
+  end
+
+  context 'with an account that has changed names and domain through `preferredUsername` property' do
+    let!(:account) { Fabricate(:remote_account, username: 'bob', domain: 'foo.test', uri: 'https://foo.test', inbox_url: 'https://foo.test/inbox') }
+
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        preferredUsername: 'alice',
+        attachment: [
+          { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
+          { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
+        ],
+      }.deep_stringify_keys
+    end
+
+    before do
+      stub_webfinger!
+    end
+
+    it 'parses property values, avatar and profile header as expected, updates account username without creating a new one or calling AccountMergingWorker' do
+      expect { subject.call(payload) }
+        .to change { account.reload.username }.from('bob').to('alice')
+        .and not_change { account.reload.uri }
+        .and(not_change { Account.count })
+
+      expect(AccountMergingWorker)
+        .to_not have_enqueued_sidekiq_job
+
+      expect(account.fields)
+        .to be_an(Array)
+        .and have_attributes(size: 2)
+      expect(account.fields.first)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Pronouns'),
+          value: eq('They/them')
+        )
+      expect(account.fields.last)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Occupation'),
+          value: eq('Unit test')
+        )
+    end
+
+    context 'when the destination handle is already occupied' do
+      let!(:conflicting_account) { Fabricate(:remote_account, username: 'alice', domain: 'foo.test', uri: 'https://foo.test/original_alice', inbox_url: 'https://foo.test/original_alice/inbox') }
+
+      it 'updates the profile but does not touch the usernames or call AccountMergingWorker' do
+        expect { subject.call(payload) }
+          .to not_change { account.reload.username }
+          .and not_change { account.reload.domain }
+          .and not_change { account.reload.uri }
+          .and not_change { conflicting_account.reload.acct }
+          .and(not_change { Account.count })
+
+        expect(AccountMergingWorker)
+          .to_not have_enqueued_sidekiq_job
+
+        expect(account.fields)
+          .to be_an(Array)
+          .and have_attributes(size: 2)
+        expect(account.fields.first)
+          .to be_an(Account::Field)
+          .and have_attributes(
+            name: eq('Pronouns'),
+            value: eq('They/them')
+          )
+        expect(account.fields.last)
+          .to be_an(Account::Field)
+          .and have_attributes(
+            name: eq('Occupation'),
+            value: eq('Unit test')
+          )
+      end
+    end
+  end
+
   context 'with attribution domains' do
     let(:payload) do
       {
