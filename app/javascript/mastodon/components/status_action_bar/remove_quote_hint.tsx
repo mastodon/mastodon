@@ -65,6 +65,7 @@ export const RemoveQuoteHint: React.FC<{
           isOpen
           offset={{ mainAxis: 10, crossAxis: 12 }}
           placement='bottom-end'
+          strategy='absolute'
           reference={anchorElement}
           container={anchorElement}
           onClose={dismiss}
