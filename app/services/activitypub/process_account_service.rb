@@ -82,7 +82,10 @@ class ActivityPub::ProcessAccountService < BaseService
     end
 
     after_protocol_change! if protocol_changed?
+
+    # TODO: extend this to an identity change, and do this on `uri` change as well
     after_key_change! if all_public_keys_changed? && !signed_with_known_key
+
     # TODO: maybe tie tombstones to specific keys? i.e. we don't need to keep tombstones if all keys changed
     clear_tombstones! if all_public_keys_changed?
     after_suspension_change! if suspension_changed?

@@ -387,6 +387,54 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
   end
 
+  context 'with an account that has changed URI but not handle (typically, losing Mastodon database)' do
+    let!(:account) { Fabricate(:remote_account, username: 'alice', domain: 'example.com', uri: 'https://example.com/users/alice') }
+
+    let(:payload) do
+      {
+        id: 'https://example.com/ap/users/1234',
+        type: 'Actor',
+        inbox: 'https://example.com/ap/users/1234/inbox',
+        webfinger: 'alice@example.com',
+        preferredUsername: 'alice',
+        attachment: [
+          { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
+          { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
+        ],
+      }.deep_stringify_keys
+    end
+
+    before do
+      stub_webfinger!
+    end
+
+    it 'properly updates the existing account, without creating a new one or calling AccountMergingWorker' do
+      expect { subject.call(payload) }
+        .to change { account.reload.uri }.from('https://example.com/users/alice').to('https://example.com/ap/users/1234')
+        .and not_change { account.reload.acct }
+        .and(not_change { Account.count })
+
+      expect(AccountMergingWorker)
+        .to_not have_enqueued_sidekiq_job(AccountMergingWorker)
+
+      expect(account.fields)
+        .to be_an(Array)
+        .and have_attributes(size: 2)
+      expect(account.fields.first)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Pronouns'),
+          value: eq('They/them')
+        )
+      expect(account.fields.last)
+        .to be_an(Account::Field)
+        .and have_attributes(
+          name: eq('Occupation'),
+          value: eq('Unit test')
+        )
+    end
+  end
+
   context 'with an account that has changed names through `webfinger` property' do
     let!(:account) { Fabricate(:remote_account, username: 'bob', domain: 'foo.test', uri: 'https://foo.test', inbox_url: 'https://foo.test/inbox') }
 
@@ -457,7 +505,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
           .and(not_change { Account.count })
 
         expect(AccountMergingWorker)
-          .to_not have_enqueued_sidekiq_job(AccountMergingWorker)
+          .to_not have_enqueued_sidekiq_job
 
         expect(account.fields)
           .to be_an(Array)
