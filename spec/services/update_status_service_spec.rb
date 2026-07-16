@@ -40,6 +40,37 @@ RSpec.describe UpdateStatusService do
         )
       expect(status.edits.ordered.pluck(:text)).to eq %w(Foo Bar)
     end
+
+    context 'when the status has a quote' do
+      before { Fabricate(:quote, status: status) }
+
+      it 'updates text, resets card, saves edit history' do
+        subject.call(status, status.account_id, text: 'Bar')
+
+        expect(status.reload)
+          .to have_attributes(
+            text: 'Bar',
+            preview_card: be_nil
+          )
+        expect(status.edits.ordered.pluck(:text)).to eq %w(Foo Bar)
+      end
+    end
+
+    context 'when the status has a quote and has a spoiler' do
+      before { Fabricate(:quote, status: status) }
+
+      it 'updates text, resets card, saves edit history' do
+        subject.call(status, status.account_id, spoiler_text: 'Bar', text: '')
+
+        expect(status.reload)
+          .to have_attributes(
+            text: '',
+            spoiler_text: 'Bar',
+            preview_card: be_nil
+          )
+        expect(status.edits.ordered.pluck(:text)).to eq ['Foo', '']
+      end
+    end
   end
 
   context 'when content warning changes' do
