@@ -64,12 +64,12 @@ Starting with Mastodon v4.5.0, Mastodon supports requests signed using HTTP Mess
 
 Mastodon supports embedded signatures through either [Linked-Data Signatures](https://docs.joinmastodon.org/spec/security/#ld) or [Object Integrity Proofs](https://docs.joinmastodon.org/spec/security/#fep-8b32).
 
-| Mastodon version        | Support for Linked Data Signatures      | Support FEP-8b32: Object Integrity Proofs |
-| ----------------------- | --------------------------------------- | ----------------------------------------- |
-| v4.4.0 (EOL 2026-12-17) | `RsaSignature2017` inbound and outbound | No                                        |
-| v4.5.0                  | `RsaSignature2017` inbound and outbound | No                                        |
-| v4.6.0                  | `RsaSignature2017` inbound and outbound | No                                        |
-| v4.7.0 (unreleased)     | `RsaSignature2017` inbound and outbound | top-level `eddsa-jcs-2022` inbound        |
+| Mastodon version        | Support for Linked Data Signatures      | Support FEP-8b32: Object Integrity Proofs                |
+| ----------------------- | --------------------------------------- | -------------------------------------------------------- |
+| v4.4.0 (EOL 2026-12-17) | `RsaSignature2017` inbound and outbound | No                                                       |
+| v4.5.0                  | `RsaSignature2017` inbound and outbound | No                                                       |
+| v4.6.0                  | `RsaSignature2017` inbound and outbound | No                                                       |
+| v4.7.0 (unreleased)     | `RsaSignature2017` inbound and outbound | top-level `eddsa-jcs-2022` or `mldsa44-jcs-2024` inbound |
 
 ### Additional documentation
 
