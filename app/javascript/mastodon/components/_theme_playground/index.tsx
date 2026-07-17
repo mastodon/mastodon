@@ -54,7 +54,13 @@ export const ThemePlayground: React.FC = () => {
           </button>
         </aside>
       </nav>
-      <main>Test 1 2 3</main>
+      <main>
+        <h1>Home</h1>
+        <p>Test 1 2 3</p>
+        <p>
+          This is a <strong>bold statement!</strong>
+        </p>
+      </main>
       <div className={classes.overlay}>Hello World</div>
     </div>
   );
