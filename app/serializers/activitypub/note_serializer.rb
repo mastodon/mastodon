@@ -135,7 +135,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def virtual_attachments
-    object.ordered_media_attachments + [object.preview_card]
+    object.ordered_media_attachments + [object.preview_card].compact
   end
 
   def virtual_tags
@@ -256,7 +256,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     end
 
     def href
-      object.original_url
+      object.original_url.presence || object.url
     end
   end
 
