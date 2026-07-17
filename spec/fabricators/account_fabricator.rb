@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../support/signing_keys_helpers'
+
 Fabricator(:account) do
   transient :suspended, :silenced, :legacy_keypair
   username            { sequence(:username) { |i| "#{Faker::Internet.user_name(separators: %w(_))}#{i}" } }
