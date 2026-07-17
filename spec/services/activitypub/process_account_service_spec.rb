@@ -501,7 +501,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
           .to change { account.reload.username }.from('bob').to('alice')
           .and change { account.reload.domain }.from('foo.test').to('example.com')
           .and not_change { account.reload.uri }
-          .and change { conflicting_account.reload.username }.from('alice').to("{invalid!#{conflicting_account.id}}")
+          .and change { conflicting_account.reload.username }.from('alice').to("! #{conflicting_account.id}")
           .and(not_change { Account.count })
 
         expect(AccountRefreshWorker)
@@ -583,7 +583,7 @@ RSpec.describe ActivityPub::ProcessAccountService do
           .to change { account.reload.username }.from('bob').to('alice')
           .and not_change { account.reload.domain }
           .and not_change { account.reload.uri }
-          .and change { conflicting_account.reload.username }.from('alice').to("{invalid!#{conflicting_account.id}}")
+          .and change { conflicting_account.reload.username }.from('alice').to("! #{conflicting_account.id}")
           .and(not_change { Account.count })
 
         expect(AccountRefreshWorker)

@@ -237,7 +237,17 @@ class Account < ApplicationRecord
     local? ? username : "#{username}@#{domain}"
   end
 
+  def pretty_username
+    # Return special username for user-facing invalid handle accounts
+    return id.to_s if invalidated_username?
+
+    username
+  end
+
   def pretty_acct
+    # Return special handle for user-facing invalid handle accounts
+    return "#{id}@handle.invalid" if invalidated_username?
+
     local? ? username : "#{username}@#{Addressable::IDNA.to_unicode(domain)}"
   end
 
@@ -254,17 +264,20 @@ class Account < ApplicationRecord
   end
 
   def invalidate_username!
+    raise ArgumentError if local?
     return if invalidated_username?
 
-    # This uses some characters (`{`, `}`, `!`) that we are extremely unlikely to allow
-    # i nthe future, in order to ensure this will never match a webfinger handle.
+    # It is very unlikely that we will allow `!` in usernames in the future,
+    # and we will never allow ` ` in them either, so this ensure this will never
+    # match a valid username on a remote server.
+
     # Using the local ID ensures we won't have any conflict.
 
-    update_attribute(:username, "{invalid!#{id}}")
+    update_attribute(:username, "! #{id}")
   end
 
   def invalidated_username?
-    username.start_with?('{invalid!')
+    username.start_with?('! ')
   end
 
   def possibly_stale?

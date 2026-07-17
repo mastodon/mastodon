@@ -154,6 +154,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.memorial?
   end
 
+  def username
+    object.pretty_username
+  end
+
   def invalid_handle
     object.invalidated_username?
   end
