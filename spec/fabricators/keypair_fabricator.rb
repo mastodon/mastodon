@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../support/signing_keys_helpers'
+
 Fabricator(:keypair) do
   account     { Fabricate(:account, keypairs: []) }
   type        :rsa
