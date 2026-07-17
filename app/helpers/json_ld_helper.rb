@@ -233,7 +233,7 @@ module JsonLdHelper
   # If an error is raised, it contains the response and can be captured for handling like
   #
   #     begin
-  #       fetch_resource_without_id_validation(uri, nil, true)
+  #       fetch_resource_without_id_validation(uri, raise_on_error: :all)
   #     rescue Mastodon::UnexpectedResponseError => e
   #       e.response
   #     end

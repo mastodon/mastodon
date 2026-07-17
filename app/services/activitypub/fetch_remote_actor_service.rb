@@ -15,10 +15,14 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     @json = begin
       if prefetched_body.nil?
-        fetch_resource(uri, true)
+        fetch_resource(uri, true, raise_on_error: :all)
       else
         body_to_json(prefetched_body, compare_id: uri)
       end
+    rescue Mastodon::UnexpectedResponseError => e
+      queue_deletion!(uri) if e.response.code == 410
+
+      raise Error, "Error fetching actor JSON at #{uri} (HTTP #{e.response.code})"
     rescue JSON::ParserError
       raise Error, "Error parsing JSON-LD document #{uri}"
     end
@@ -38,6 +42,16 @@ class ActivityPub::FetchRemoteActorService < BaseService
   end
 
   private
+
+  def queue_deletion!(uri)
+    account = Account.find_by(uri:)
+    return unless account&.remote?
+
+    Rails.logger.debug { "Deleting actor #{uri} because of HTTP 410 response" }
+
+    account.suspend!(origin: :remote)
+    AccountDeletionWorker.perform_async(account.id, { 'reserve_username' => false, 'skip_activitypub' => true })
+  end
 
   def supported_context?
     super(@json)
