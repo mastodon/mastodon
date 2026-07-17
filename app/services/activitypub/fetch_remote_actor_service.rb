@@ -47,6 +47,8 @@ class ActivityPub::FetchRemoteActorService < BaseService
     account = Account.find_by(uri:)
     return unless account&.remote?
 
+    Rails.logger.debug { "Deleting actor #{uri} because of HTTP 410 response" }
+
     account.suspend!(origin: :remote)
     AccountDeletionWorker.perform_async(account.id, { 'reserve_username' => false, 'skip_activitypub' => true })
   end
