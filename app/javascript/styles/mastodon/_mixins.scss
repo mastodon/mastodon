@@ -1,3 +1,113 @@
+/**
+ * Type styles
+ */
+
+@mixin type-heading-lg {
+  // font-family: Syne;
+  font-size: var(--fs-3xl);
+  font-weight: bold;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-tighter);
+}
+
+@mixin type-heading-md {
+  // font-family: Syne;
+  font-size: var(--fs-2xl);
+  font-weight: bold;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-tight);
+}
+
+@mixin type-heading-sm {
+  // font-family: Syne;
+  font-size: var(--fs-xl);
+  font-weight: bold;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+}
+
+@mixin type-body-lg {
+  // font-family: Inter;
+  font-size: var(--fs-lg);
+  font-weight: normal;
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-body-strong {
+  // font-family: Inter;
+  font-size: var(--fs-md);
+  font-weight: bold;
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-body {
+  // font-family: Inter;
+  font-size: var(--fs-md);
+  font-weight: normal;
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-body-compact {
+  // font-family: Inter;
+  font-size: var(--fs-sm);
+  font-weight: normal;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-label-lg {
+  // font-family: Inter;
+  font-size: var(--fs-sm);
+  font-weight: bold;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-label-md {
+  // font-family: Inter;
+  font-size: var(--fs-xs);
+  font-weight: normal;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-loose);
+}
+
+@mixin type-label-sm {
+  // font-family: Inter;
+  font-size: var(--fs-2xs);
+  font-weight: normal;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-loose);
+}
+
+@mixin type-micro {
+  // font-family: 'JetBrains Mono';
+  font-size: var(--fs-3xs);
+  font-weight: normal;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-looser);
+}
+
+/**
+ * Elevation styles
+ */
+
+@mixin elevation-1 {
+  border: 1px solid var(--color-border-strong);
+  box-shadow: 0 1px 0 var(--color-border-strong);
+}
+
+@mixin elevation-2 {
+  border: 1px solid var(--color-border-strong);
+  box-shadow: 1px 2px 0 var(--color-border-strong);
+}
+
+/**
+ * Search input styles
+ */
+
 @mixin search-input {
   box-sizing: border-box;
   width: 100%;

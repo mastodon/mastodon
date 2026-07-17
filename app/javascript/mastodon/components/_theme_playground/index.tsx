@@ -55,6 +55,7 @@ export const ThemePlayground: React.FC = () => {
         </aside>
       </nav>
       <main>Test 1 2 3</main>
+      <div className={classes.overlay}>Hello World</div>
     </div>
   );
 };

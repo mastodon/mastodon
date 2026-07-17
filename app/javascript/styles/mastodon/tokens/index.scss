@@ -1,10 +1,17 @@
-@use 'base';
-@use 'dark';
-@use 'light';
-@use 'utils';
+@use 'theme/base';
+@use 'theme/dark';
+@use 'theme/light';
+@use 'theme/utils';
+@use 'shape';
+@use 'type';
 
 html {
   @include base.palette;
+  @include shape.space;
+  @include shape.radius;
+  @include type.font-size;
+  @include type.line-height;
+  @include type.letter-spacing;
 }
 
 [data-color-scheme='dark'],
