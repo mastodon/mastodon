@@ -1,16 +1,33 @@
 @use '@/styles/mastodon/mixins';
 
 .wrapper {
+  // Override global body font variable because Storybook
+  // doesn't have the `data-redesign` html attribute
+  --font-body: Inter, sans-serif;
+
   position: relative;
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: var(--space-md);
   padding: var(--space-3xl);
+  font-family: Inter, sans-serif;
   font-size: var(--fs-lg);
   line-height: var(--lh-normal);
   overflow-wrap: break-word;
   color: var(--color-text-primary);
   background-color: var(--color-bg-blend);
+
+  h1 {
+    @include mixins.type-heading-lg;
+  }
+
+  p {
+    @include mixins.type-body;
+  }
+
+  strong {
+    font-weight: bold;
+  }
 
   * {
     min-width: 0;
