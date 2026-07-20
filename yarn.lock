@@ -2569,15 +2569,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-messageformat-parser@npm:3.5.14":
-  version: 3.5.14
-  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.14"
-  dependencies:
-    "@formatjs/icu-skeleton-parser": "npm:2.1.11"
-  checksum: 10c0/5cb5375fa41c0ec62dc414ba7b0740319eeb1550d5ad338cdcea0f3d8490b82d2f3114bc5a7e03b15ebe69afb426fb2ee1023cb4d9779636120eb00b7bd875f4
-  languageName: node
-  linkType: hard
-
 "@formatjs/icu-messageformat-parser@npm:3.5.15":
   version: 3.5.15
   resolution: "@formatjs/icu-messageformat-parser@npm:3.5.15"
@@ -2652,11 +2643,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ts-transformer@npm:4.4.16":
-  version: 4.4.16
-  resolution: "@formatjs/ts-transformer@npm:4.4.16"
+"@formatjs/ts-transformer@npm:4.4.17":
+  version: 4.4.17
+  resolution: "@formatjs/ts-transformer@npm:4.4.17"
   dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:3.5.14"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.15"
     "@types/babel__core": "npm:7"
     "@types/node": "npm:22 || 24"
     json-stable-stringify: "npm:1"
@@ -2666,7 +2657,7 @@ __metadata:
   peerDependenciesMeta:
     ts-jest:
       optional: true
-  checksum: 10c0/3b8067ddb76376dc739bd3cce1892da5d03617708bbf06d4722ed1266afa9d668e1cfb6441de375724b9d3d1f3c780232780e5e768460a846e15e9da469ea074
+  checksum: 10c0/a49ac01114e4092eae28954e10b184ae10a18c1f5c97e799bdcd09a3d87fbe289080f3bd4ebbbf9effbbf9483ddb532b77ff31a6f692adba4438d9ad1ae8ae19
   languageName: node
   linkType: hard
 
@@ -2688,12 +2679,12 @@ __metadata:
   linkType: hard
 
 "@formatjs/unplugin@npm:^1.1.5":
-  version: 1.2.1
-  resolution: "@formatjs/unplugin@npm:1.2.1"
+  version: 1.2.3
+  resolution: "@formatjs/unplugin@npm:1.2.3"
   dependencies:
     "@bazel/runfiles": "npm:6"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.14"
-    "@formatjs/ts-transformer": "npm:4.4.16"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.15"
+    "@formatjs/ts-transformer": "npm:4.4.17"
     "@types/node": "npm:22 || 24"
     decode-named-character-reference: "npm:1"
     magic-string: "npm:0"
@@ -2716,7 +2707,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10c0/1222ad39f619293a836b7fef28b6f71db3657850549ef909dd840cfca5d9bc070c838e47b9ea7a5cd328e104c34ff0420c2aba2bec356e649284226bdfad3666
+  checksum: 10c0/c63a9077906af7d612e5d5a505947852e7bc90e62cf8455c510b68355b9d9a6f529b13e98dc71c6a682d7343b51be67624925a441cba86c0f21d48b28d8ab5e5
   languageName: node
   linkType: hard
 
