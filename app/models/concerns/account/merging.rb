@@ -11,63 +11,33 @@ module Account::Merging
     # account already, therefore mass update will not work and we need
     # to check for (and skip past) uniqueness errors
 
-    owned_classes = [
-      Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
-      Follow, FollowRequest, Block, Mute,
-      AccountModerationNote, AccountPin, AccountStat, ListAccount,
-      PollVote, Mention, AccountDeletionRequest, AccountNote, FollowRecommendationSuppression,
-      Appeal, TagFollow
-    ]
-
-    owned_classes.each do |klass|
-      klass.where(account_id: other_account.id).reorder(nil).find_each do |record|
-        record.update_attribute(:account_id, id)
-      rescue ActiveRecord::RecordNotUnique
-        next
+    {
+      account_id: [
+        Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
+        Follow, FollowRequest, Block, Mute,
+        AccountModerationNote, AccountPin, AccountStat, ListAccount,
+        PollVote, Mention, AccountDeletionRequest, AccountNote, FollowRecommendationSuppression,
+        Appeal, TagFollow, Quote, Collection, CollectionItem
+      ],
+      from_account_id: [
+        Notification, NotificationPermission, NotificationRequest
+      ],
+      target_account_id: [
+        Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin, AccountNote
+      ],
+      reference_account_id: [CanonicalEmailBlock],
+      account_warning_id: [Appeal],
+      local_account_id: [SeveredRelationship],
+      remote_account_id: [SeveredRelationship],
+      quoted_account_id: [Quote],
+    }.each do |attribute, classes|
+      classes.each do |klass|
+        klass.where({ attribute => other_account.id }).reorder(nil).find_each do |record|
+          record.update_attribute(attribute, id)
+        rescue ActiveRecord::RecordNotUnique
+          next
+        end
       end
-    end
-
-    [
-      Notification, NotificationPermission, NotificationRequest
-    ].each do |klass|
-      klass.where(from_account_id: other_account.id).reorder(nil).find_each do |record|
-        record.update_attribute(:from_account_id, id)
-      rescue ActiveRecord::RecordNotUnique
-        next
-      end
-    end
-
-    target_classes = [
-      Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin,
-      AccountNote
-    ]
-
-    target_classes.each do |klass|
-      klass.where(target_account_id: other_account.id).reorder(nil).find_each do |record|
-        record.update_attribute(:target_account_id, id)
-      rescue ActiveRecord::RecordNotUnique
-        next
-      end
-    end
-
-    CanonicalEmailBlock.where(reference_account_id: other_account.id).find_each do |record|
-      record.update_attribute(:reference_account_id, id)
-    end
-
-    Appeal.where(account_warning_id: other_account.id).find_each do |record|
-      record.update_attribute(:account_warning_id, id)
-    end
-
-    SeveredRelationship.about_local_account(other_account).reorder(nil).find_each do |record|
-      record.update_attribute(:local_account_id, id)
-    rescue ActiveRecord::RecordNotUnique
-      next
-    end
-
-    SeveredRelationship.about_remote_account(other_account).reorder(nil).find_each do |record|
-      record.update_attribute(:remote_account_id, id)
-    rescue ActiveRecord::RecordNotUnique
-      next
     end
 
     # Some follow relationships have moved, so the cache is stale
