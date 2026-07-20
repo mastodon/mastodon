@@ -259,6 +259,8 @@ module Mastodon::CLI
       domain configuration.
     LONG_DESC
     def fix_duplicates
+      # TODO: remove this after 4.7.0 as the database constraint ensures uniqueness now
+
       Account.remote.duplicate_uris.pluck(:uri).each do |uri|
         say("Duplicates found for #{uri}")
         begin
