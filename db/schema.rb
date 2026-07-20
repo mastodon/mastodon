@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_06_143100) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_20_092724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -204,7 +204,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_06_143100) do
     t.integer "suspension_origin"
     t.boolean "trendable"
     t.datetime "updated_at", precision: nil, null: false
-    t.string "uri", default: "", null: false
+    t.string "uri"
     t.string "url"
     t.string "username", default: "", null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin

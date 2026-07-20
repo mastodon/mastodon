@@ -54,7 +54,7 @@
 #  suspended_at                  :datetime
 #  suspension_origin             :integer
 #  trendable                     :boolean
-#  uri                           :string           default(""), not null
+#  uri                           :string
 #  url                           :string
 #  username                      :string           default(""), not null
 #  created_at                    :datetime         not null
