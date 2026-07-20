@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# TODO: Remove in the next version
+# TODO: Remove in Mastodon 5.0
 class Scheduler::RepairRemoteCollectionsScheduler
   include Sidekiq::Worker
   include JsonLdHelper
