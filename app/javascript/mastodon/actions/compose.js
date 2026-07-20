@@ -570,7 +570,7 @@ const fetchComposeSuggestionsTags = throttle((dispatch, token) => {
 }, 200, { leading: true, trailing: true });
 
 export function fetchComposeSuggestions(token) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     switch (token[0]) {
     case ':':
       void fetchComposeSuggestionsEmojis(dispatch, token);
