@@ -60,7 +60,7 @@ export function transformEmojiData(
       ...extract(label),
       ...(normalizedEmoticons ?? []),
     ]),
-  ].sort((a, b) => a.localeCompare(b));
+  ];
 
   const res: UnicodeEmojiData = {
     tokens,
