@@ -7,6 +7,7 @@ import {
 } from '@/mastodon/store/typed_functions';
 import { createLimitedCache } from '@/mastodon/utils/cache';
 
+import { search } from './search';
 import { emojiLogger } from './utils';
 
 const log = emojiLogger('picker');
@@ -37,7 +38,6 @@ export async function emojiMartSearch(
     return cachedResult;
   }
 
-  const { search } = await import('./database');
   const results = await search({ query, locale, limit });
   const legacyResults = results.map((emoji) =>
     'shortcode' in emoji

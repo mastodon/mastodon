@@ -397,11 +397,12 @@ export function unicodeEmojiFactory(
   data: Partial<UnicodeEmojiData> = {},
 ): UnicodeEmojiData {
   return {
+    emoticons: undefined,
     hexcode: 'test',
     label: 'Test',
     unicode: '🧪',
     shortcodes: ['test_emoji'],
-    tokens: ['emoji', 'test'],
+    tokens: ['test', 'emoji'],
     group: 1,
     order: 1,
     ...data,
