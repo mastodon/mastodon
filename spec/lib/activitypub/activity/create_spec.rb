@@ -1241,7 +1241,7 @@ RSpec.describe ActivityPub::Activity::Create do
         subject.perform
       end
 
-      let(:object_json) { build_object }
+      let(:object_json) { build_object(to: 'http://example.com/followers') }
 
       it 'creates status' do
         status = sender.statuses.first
@@ -1257,7 +1257,8 @@ RSpec.describe ActivityPub::Activity::Create do
       let!(:local_status) { Fabricate(:status) }
       let(:object_json) do
         build_object(
-          inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+          inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
+          cc: 'https://www.w3.org/ns/activitystreams#Public'
         )
       end
 
