@@ -239,7 +239,11 @@ RSpec.describe TextFormatter do
       let(:text) { 'http://example.com/b<del>b</del>' }
 
       it 'does not include the HTML in the URL' do
-        expect(subject).to include '"http://example.com/b"'
+        # This is subtle: The old spec required that a part of the URL
+        # was included, this requires that the attacker's part is not,
+        # as the text above says. (The code in the same commit creates
+        # no link at all.)
+        expect(subject).to_not match(/<a\b[^>]*del/i)
       end
 
       it 'escapes the HTML' do
@@ -251,7 +255,9 @@ RSpec.describe TextFormatter do
       let(:text) { 'http://example.com/blahblahblahblah/a<script>alert("Hello")</script>' }
 
       it 'does not include the HTML in the URL' do
-        expect(subject).to include '"http://example.com/blahblahblahblah/a"'
+        # Again, this requires that the attacker's attack is not included,
+        # and the code passes by not creating a link at all.
+        expect(subject).to_not match(/<a\b[^>]*(?:script|alert)/i)
       end
 
       it 'escapes the HTML' do
@@ -340,6 +346,87 @@ RSpec.describe TextFormatter do
 
       it 'matches the full URI' do
         expect(subject).to include 'href="magnet:?xt=urn:btih:c12fe1c06bba254a9dc9f519b335aa7c1367a88a"'
+      end
+    end
+
+    context 'when given an xmpp: URI with a resource path' do
+      let(:text) { 'xmpp:grå@grå.org/grønn/blå' }
+
+      it 'matches the full URI including the resource' do
+        expect(subject).to include 'href="xmpp:grå@grå.org/grønn/blå"'
+      end
+    end
+
+    context 'when given a fully populated magnet: URI (xt, dn, xl, tr, as)' do
+      let(:text) do
+        'see magnet:?xt=urn:btih:c12fe1c06bba254a9dc9f519b335aa7c1367a88a' \
+          '&dn=Big+Buck+Bunny&xl=12345&tr=udp%3A%2F%2Ftracker.example.com%3A80' \
+          '&as=http%3A%2F%2Fexample.com%2Ffile here'
+      end
+
+      it 'matches the full URI' do
+        expect(subject).to include 'href="magnet:?xt=urn:btih:c12fe1c06bba254a9dc9f519b335aa7c1367a88a&amp;dn=Big+Buck+Bunny&amp;xl=12345&amp;tr=udp%3A%2F%2Ftracker.example.com%3A80&amp;as=http%3A%2F%2Fexample.com%2Ffile"'
+      end
+    end
+
+    context 'when given a magnet: URI whose dn contains script tags' do
+      let(:text) { 'magnet:?xt=urn:btih:abc&dn=<script>alert("Hello")</script>' }
+
+      it 'does not produce a magnet link' do
+        expect(subject).to_not include 'href="magnet:'
+      end
+    end
+
+    context 'when given a magnet: URI with only an as= param (no xt)' do
+      let(:text) { 'magnet:?as=http%3A%2F%2Fexample.com%2Ffile' }
+
+      it 'does not produce a magnet link' do
+        expect(subject).to_not include 'href="magnet:'
+      end
+    end
+
+    context 'when given a bare xmpp: scheme with no authority' do
+      let(:text) { 'plain xmpp: nothing here' }
+
+      it 'does not produce a link' do
+        expect(subject).to_not match(/<a\b/)
+      end
+    end
+
+    context 'when given a bare magnet: scheme with no query' do
+      let(:text) { 'plain magnet: nothing here' }
+
+      it 'does not produce a link' do
+        expect(subject).to_not match(/<a\b/)
+      end
+    end
+
+    context 'when given an xmpp: URI whose authority contains an @' do
+      # The mention extractor would otherwise grab "@instance.com" out
+      # of the middle; overlap resolution must keep the xmpp URI whole.
+      let(:text) { 'reach me at xmpp:arnt@grå.org if you like' }
+
+      it 'links the URI, not the mention buried inside it' do
+        expect(subject).to include 'href="xmpp:arnt@grå.org"'
+        expect(subject).to_not match(/<a[^>]*class="[^"]*mention/i)
+      end
+
+      it 'leaves the surrounding text intact' do
+        expect(subject).to include 'reach me at '
+        expect(subject).to include ' if you like'
+      end
+    end
+
+    context 'when given a mention next to an xmpp: URI with its own @' do
+      let(:text) { '@alice ping xmpp:bob@grå.org thanks' }
+      let!(:alice) { Fabricate(:account, username: 'alice') }
+
+      it 'keeps the mention' do
+        expect(subject).to match(/<a [^>]*href="#{Regexp.escape(ActivityPub::TagManager.instance.url_for(alice))}"/)
+      end
+
+      it 'keeps the xmpp URI' do
+        expect(subject).to include 'href="xmpp:bob@grå.org"'
       end
     end
   end
