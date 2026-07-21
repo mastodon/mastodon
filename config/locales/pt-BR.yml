@@ -94,9 +94,9 @@ pt-BR:
         title: Localização
       login_status: Situação da conta
       media_attachments: Anexos de mídia
-      memorialize: Converter em memoriam
-      memorialized: Convertidas em memoriam
-      memorialized_msg: "%{username} transformada com sucesso em uma conta memorial"
+      memorialize: Converter em memorial
+      memorialized: Convertidas em memorial
+      memorialized_msg: A conta de %{username} foi transformada em uma conta memorial
       moderation:
         active: Ativa
         all: Todas
@@ -170,7 +170,7 @@ pt-BR:
       undo_silenced: Dessilenciar
       undo_suspension: Desfazer suspensão
       unsilenced_msg: "%{username} dessilenciado com sucesso"
-      unsubscribe: Desinscrever
+      unsubscribe: Cancelar inscrição
       unsuspended_msg: A suspensão da conta de %{username} foi removida
       username: Nome de usuário
       view_domain: Ver resumo para o domínio
@@ -179,7 +179,7 @@ pt-BR:
       whitelisted: Permitido para federação
     action_logs:
       action_types:
-        approve_appeal: Aprovar revisão
+        approve_appeal: Aprovar recurso
         approve_user: Aprovar usuário
         assigned_to_self_report: Atribuir denúncia
         change_email_user: Alterar o Email para o usuário
@@ -223,10 +223,10 @@ pt-BR:
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
         publish_terms_of_service: Publicar termos de serviço
-        reject_appeal: Rejeitar revisão
+        reject_appeal: Rejeitar recurso
         reject_user: Rejeitar usuário
         remove_avatar_user: Remover imagem de perfil
-        reopen_report: Reabrir relatório
+        reopen_report: Reabrir denúncia
         resend_user: Reenviar o e-mail de confirmação
         reset_password_user: Redefinir a senha
         resolve_report: Resolver denúncia
@@ -242,13 +242,13 @@ pt-BR:
         update_custom_emoji: Editar Emoji Personalizado
         update_domain_block: Atualizar bloqueio de domínio
         update_ip_block: Atualizar regra de IP
-        update_report: Atualizar Relatório
-        update_status: Editar Status
+        update_report: Atualizar denúncia
+        update_status: Editar publicação
         update_user_role: Atualizar cargo
         update_username_block: Atualizar regra de usuário
       actions:
         approve_appeal_html: "%{name} aprovou a revisão da decisão da moderação em %{target}"
-        approve_user_html: "%{name} aprovado inscrição de %{target}"
+        approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
         change_role_user_html: "%{name} alterou o cargo de %{target}"
@@ -264,7 +264,7 @@ pt-BR:
         create_relay_html: "%{name} criou uma retransmissão %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
         create_user_role_html: "%{name} criou o cargo %{target}"
-        create_username_block_html: Regra %{name} adicionada para nomes de usuário contendo %{target}
+        create_username_block_html: "%{name} adicionou regra para nomes de usuário contendo %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o endereço e-mail com o hash %{target}"
@@ -273,13 +273,13 @@ pt-BR:
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
-        destroy_instance_html: "%{name} limpou o domínio %{target}"
+        destroy_instance_html: "%{name} purgou o domínio %{target}"
         destroy_ip_block_html: "%{name} excluiu a regra para o IP %{target}"
         destroy_relay_html: "%{name} excluiu uma retransmissão %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         destroy_user_role_html: "%{name} excluiu o cargo %{target}"
-        destroy_username_block_html: Regra %{name} removida por usuário contendo %{target}
+        destroy_username_block_html: "%{name} removeu regra para nomes de usuário contendo %{target}"
         disable_2fa_user_html: "%{name} desativou a exigência da autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_relay_html: "%{name} desativou uma retransmissão %{target}"
@@ -304,20 +304,20 @@ pt-BR:
         reset_password_user_html: "%{name} redefiniu a senha de %{target}"
         resolve_report_html: "%{name} resolveu a denúncia %{target}"
         sensitive_account_html: "%{name} marcou a mídia de %{target} como sensível"
-        silence_account_html: "%{name} limitou a conta de %{target}"
+        silence_account_html: "%{name} silenciou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
-        trendable_tag_html: aparecerá em alta
+        trendable_tag_html: poderá aparecer em alta
         unassigned_report_html: "%{name} desatribuiu a denúncia %{target}"
         unblock_email_account_html: "%{name} desbloqueou o endereço de e-mail de %{target}"
         unsensitive_account_html: "%{name} desmarcou a mídia de %{target} como sensível"
         unsilence_account_html: "%{name} removeu a limitação da conta de %{target}"
-        unsuspend_account_html: "%{name} removeu a suspenção da conta de %{target}"
+        unsuspend_account_html: "%{name} removeu a suspensão da conta de %{target}"
         update_announcement_html: "%{name} atualizou o anúncio %{target}"
         update_collection_html: "%{name} atualizou a coleção de %{target}"
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
         update_ip_block_html: "%{name} alterou a regra para o IP %{target}"
-        update_report_html: "%{name} atualizou o relatório %{target}"
+        update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_tag_html: "%{name} alterou as opções de %{target} para: "
         update_user_role_html: "%{name} alterou o cargo %{target}"
@@ -372,7 +372,7 @@ pt-BR:
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
-      copied_msg: Emoji copiado localmente
+      copied_msg: Emoji copiado localmente com sucesso
       copy: Copiar
       copy_failed_msg: Não foi possível criar cópia local do emoji
       create_new_category: Criar nova categoria
@@ -397,7 +397,7 @@ pt-BR:
       shortcode: Atalho
       shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underlines ("_")
       title: Emojis personalizados
-      uncategorized: Não categorizado
+      uncategorized: Não categorizados
       unlist: Não listar
       unlisted: Não listado
       update_failed_msg: Não foi possível atualizar esse emoji
@@ -426,7 +426,7 @@ pt-BR:
       sources: Origem das inscrições
       space: Uso de espaço em disco
       title: Painel de controle
-      top_languages: Línguas mais ativas
+      top_languages: Idiomas mais ativos
       top_servers: Servidores mais ativos
       website: Site
     disputes:
@@ -434,8 +434,8 @@ pt-BR:
         empty: Sem revisões.
         title: Revisões
     domain_allows:
-      add_new: Permitir domínio
-      created_msg: Domínio foi permitido
+      add_new: Permitir federação com domínio
+      created_msg: A federação com o domínio foi permitida com sucesso
       destroyed_msg: Domínio foi proibido de federar
       export: Exportar
       import: Importar
@@ -498,7 +498,7 @@ pt-BR:
         create: Adicionar domínio
         resolve: Resolver domínio
         title: Bloquear novo domínio de e-mail
-      no_email_domain_block_selected: Nenhum bloco de domínio de email foi alterado, pois, nenhum foi selecionado
+      no_email_domain_block_selected: Nenhum bloqueio de domínio de email foi alterado, pois nenhum foi selecionado
       not_permitted: Não permitido
       reset: Reiniciar
       resolved_dns_records_hint_html: O nome de domínio é associado aos seguintes domínios MX, que são responsáveis por aceitar e-mails. Ao bloquear um domínio MX, você bloqueará as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Tenha cuidado para não bloquear os principais provedores de e-mail.</strong>
@@ -1538,7 +1538,7 @@ pt-BR:
       your_appeal_rejected: Sua revisão foi rejeitada
   edit_profile:
     other: Outro
-    privacy_redesign_body: A escolha de exibir seu seguindo e seguidores agora é feita diretamente de seu perfil.
+    privacy_redesign_body: A escolha de exibir seus seguidos e seguidores agora é feita diretamente de seu perfil.
     redesign_body: A edição de perfil pode ser acessada diretamente a partir da página de perfil.
     redesign_button: Ir para lá
     redesign_title: Há uma nova experiência de edição de perfil
@@ -2349,7 +2349,7 @@ pt-BR:
       checklist_title: Lista de verificação de boas-vindas
       edit_profile_action: Personalizar
       edit_profile_step: Aumente suas interações tendo um perfil completo.
-      edit_profile_title: Customize seu perfil
+      edit_profile_title: Personalize seu perfil
       explanation: Aqui estão algumas dicas para você começar
       feature_action: Saiba mais
       feature_audience: O Mastodon oferece a você uma oportunidade única de gerenciar seu público sem intermediários. O Mastodon implantado em sua própria infraestrutura permite que você siga e seja seguido por qualquer outro servidor Mastodon online e está única e exclusivamente sob o seu controle.
