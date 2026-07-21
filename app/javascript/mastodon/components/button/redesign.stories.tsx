@@ -24,6 +24,7 @@ const meta = {
     size: 'md',
     variant: 'solid',
     color: 'neutral',
+    loading: false,
     as: 'button',
   },
   argTypes: {

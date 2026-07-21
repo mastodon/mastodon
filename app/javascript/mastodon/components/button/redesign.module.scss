@@ -43,7 +43,8 @@
     color: var(--color-text-inverted);
 
     &:hover,
-    &:focus {
+    &:focus,
+    &.disabled {
       background-color: var(--color-bg-brand-base-hover);
     }
   }
@@ -53,7 +54,8 @@
     color: var(--color-text-inverted);
 
     &:hover,
-    &:focus {
+    &:focus,
+    &.disabled {
       color: rgb(from var(--color-text-inverted) r g b / 80%);
     }
   }
@@ -68,24 +70,45 @@
     color: var(--color-text-inverted);
 
     &:hover,
-    &:focus {
+    &:focus,
+    &.disabled {
       background-color: var(--color-bg-error-base-hover);
     }
   }
 }
 
 .text {
+  transition: color 200ms;
+
   &.accent {
     color: var(--color-text-brand);
+
+    &:hover,
+    &:focus,
+    &.disabled {
+      color: var(--color-text-brand-soft);
+    }
   }
 
   &.neutral,
   &.tonal {
     color: var(--color-text-primary);
+
+    &:hover,
+    &:focus,
+    &.disabled {
+      color: rgb(from var(--color-text-primary) r g b / 80%);
+    }
   }
 
   &.destructive {
     color: var(--color-text-error);
+
+    &:hover,
+    &:focus,
+    &.disabled {
+      color: rgb(from var(--color-text-error) r g b / 80%);
+    }
   }
 }
 
@@ -95,4 +118,15 @@
 
 .iconOnly {
   aspect-ratio: 1;
+}
+
+.loading {
+  color: inherit;
+  height: 0.8em;
+  width: 0.8em;
+
+  .iconOnly & {
+    height: 1em;
+    width: 1em;
+  }
 }
