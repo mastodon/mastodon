@@ -9,8 +9,7 @@ RSpec.describe IpBlock do
   describe 'Validations' do
     subject { Fabricate.build :ip_block }
 
-    it { is_expected.to validate_presence_of(:ip) }
-    it { is_expected.to validate_presence_of(:severity) }
+    it { is_expected.to validate_presence_of(:ip, :severity) }
 
     it { is_expected.to validate_uniqueness_of(:ip) }
 

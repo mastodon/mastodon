@@ -25,8 +25,7 @@ RSpec.describe TermsOfService do
     context 'when published' do
       subject { Fabricate.build :terms_of_service, published_at: Time.zone.today }
 
-      it { is_expected.to validate_presence_of(:changelog) }
-      it { is_expected.to validate_presence_of(:effective_date) }
+      it { is_expected.to validate_presence_of(:changelog, :effective_date) }
     end
   end
 
