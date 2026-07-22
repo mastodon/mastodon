@@ -11,7 +11,7 @@ export const ComposeVisibility: React.FC = () => {
       defaultMessage='To: {button}'
       values={{
         button: (
-          <Button className={classes.toolbarGrow}>
+          <Button className={classes.toolbarGrow} size='sm'>
             <FormattedMessage
               id='privacy.public.short'
               defaultMessage='Public'

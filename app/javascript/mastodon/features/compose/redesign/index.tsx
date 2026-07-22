@@ -22,6 +22,7 @@ import { ToggleField } from '@/mastodon/components/form_fields';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 
+import { ComposeFooter } from './footer';
 import { ComposeFormHeader } from './header';
 import { selectComposeCanSubmit, selectComposeState } from './selectors';
 import classes from './styles.module.scss';
@@ -77,13 +78,14 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
           checked={sensitive}
           onChange={onSensitiveChange}
         />
-        <IconButton icon={TranslateIcon}>
+        <IconButton icon={TranslateIcon} size='sm'>
           <FormattedMessage
             id='compose.language.change'
             defaultMessage='Change language'
           />
         </IconButton>
       </div>
+
       <ComposeTextarea
         ref={ref}
         value={text}
@@ -100,6 +102,8 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
         suggestions={suggestions}
         {...handlers}
       />
+
+      <ComposeFooter />
     </div>
   );
 };

@@ -35,10 +35,14 @@ export const selectComposeCharsCount = createAppSelector(
         ? (state.compose.get('spoiler_text') as string)
         : '',
   ],
-  (maxChars, text, spoilerText) => ({
-    current: length((countableText(text) as string) + spoilerText),
-    max: maxChars ?? 500,
-  }),
+  (maxChars, text, spoilerText) => {
+    const allText = (countableText(text) as string) + spoilerText;
+    return {
+      text: allText,
+      current: length(allText),
+      max: maxChars ?? 500,
+    };
+  },
 );
 
 export const selectComposeCanSubmit = createAppSelector(
