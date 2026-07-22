@@ -1,0 +1,150 @@
+.base {
+  --bg: transparent;
+  --fg: var(--color-text-primary);
+
+  background-color: var(--bg);
+  border-radius: var(--radius-round);
+  color: var(--fg);
+  transition:
+    background-color 200ms,
+    color 200ms;
+  border: 0;
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fs-sm);
+  line-height: 1;
+  box-sizing: border-box;
+  gap: var(--space-2xs);
+
+  &:focus-visible,
+  &:focus-within {
+    outline: 2px solid var(--fg);
+  }
+
+  &:disabled,
+  &:hover:disabled {
+    cursor: auto;
+  }
+}
+
+// Override default anchor styles
+a.base {
+  &:focus {
+    border-radius: var(--radius-round);
+  }
+
+  &:hover {
+    text-decoration: inherit;
+  }
+}
+
+.xs {
+  padding: var(--space-3xs) var(--space-xs);
+  font-size: var(--fs-2xs);
+  min-height: 24px;
+}
+
+.sm {
+  padding: var(--space-xs);
+  min-height: 32px;
+}
+
+.md {
+  padding: var(--space-xs) var(--space-sm);
+  min-height: 40px;
+}
+
+.lg {
+  padding: var(--space-sm) var(--space-md);
+  min-height: 48px;
+}
+
+.solid {
+  --bg: var(--color-bg-inverted);
+  --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
+  --fg: var(--color-text-inverted);
+
+  background-color: var(--bg);
+  border-radius: var(--radius-round);
+  color: var(--fg);
+  transition:
+    background-color 200ms,
+    color 200ms;
+
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+
+  &:active {
+    background-color: color-mix(in srgb, var(--bg-hover) 80%, var(--fg));
+  }
+
+  &.accent {
+    --bg: var(--color-bg-brand-base);
+    --bg-hover: var(--color-bg-brand-base-hover);
+  }
+
+  &.tonal {
+    --bg: var(--color-bg-highlight);
+    --fg: var(--color-text-primary);
+  }
+
+  &.destructive {
+    --bg: var(--color-bg-error-base);
+    --bg-hover: var(--color-bg-error-base-hover);
+  }
+
+  &:disabled {
+    --bg: var(--color-bg-disabled);
+    --bg-hover: var(--bg);
+    --fg: var(--color-text-primary);
+  }
+}
+
+.text {
+  &.accent {
+    --fg: var(--color-text-brand);
+
+    &:hover {
+      --fg: var(--color-text-brand-soft);
+    }
+  }
+
+  &.neutral,
+  &.tonal {
+    &:hover {
+      --fg: rgb(from var(--color-text-primary) r g b / 80%);
+    }
+  }
+
+  &.destructive {
+    --fg: var(--color-text-error);
+  }
+
+  &:disabled,
+  &:hover:disabled {
+    --fg: var(--color-text-disabled);
+  }
+}
+
+.icon {
+  width: var(--fs-lg);
+}
+
+.iconOnly {
+  aspect-ratio: 1;
+}
+
+.loading {
+  color: inherit;
+  height: 0.8em;
+  width: 0.8em;
+
+  .iconOnly & {
+    height: 1em;
+    width: 1em;
+  }
+}
