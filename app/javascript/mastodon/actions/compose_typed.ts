@@ -10,7 +10,6 @@ import { apiGetSearch } from '@/mastodon/api/search';
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { selectComposeCanSubmit } from '@/mastodon/features/compose/redesign/selectors';
-import { me, missingAltTextModal } from '@/mastodon/initial_state';
 import type { MediaAttachment } from '@/mastodon/models/media_attachment';
 import type { Status, StatusVisibility } from '@/mastodon/models/status';
 import type { RootState } from '@/mastodon/store';
@@ -309,7 +308,7 @@ export const submitCompose = createAppThunk(
       return;
     }
 
-    const { compose, statuses, settings } = getState();
+    const { compose, meta, statuses, settings } = getState();
     const privacy = compose.get('privacy') as StatusVisibility;
     const missingAltText = (
       compose.get('media_attachments') as unknown as Immutable.List<
@@ -320,6 +319,7 @@ export const submitCompose = createAppThunk(
         ['image', 'gifv'].includes(media.get('type') ?? '') &&
         (media.get('description') ?? '').length === 0,
     );
+    const me = meta.get('me') as string | null;
     const quotedStatusId = compose.get('quoted_status_id') as string | null;
     const quoteToPrivate =
       !!quotedStatusId &&
@@ -330,7 +330,11 @@ export const submitCompose = createAppThunk(
         PRIVATE_QUOTE_MODAL_ID,
       ]);
 
-    if (missingAltTextModal && missingAltText && privacy !== 'direct') {
+    if (
+      !!meta.get('missing_alt_text_modal') &&
+      missingAltText &&
+      privacy !== 'direct'
+    ) {
       dispatch(
         openModal({
           modalType: 'CONFIRM_MISSING_ALT_TEXT',
