@@ -253,22 +253,11 @@ module Mastodon::CLI
     desc 'fix-duplicates', 'Find duplicate remote accounts and merge them'
     option :dry_run, type: :boolean
     long_desc <<-LONG_DESC
-      Merge known remote accounts sharing an ActivityPub actor identifier.
-
-      Such duplicates can occur when a remote server admin misconfigures their
-      domain configuration.
+      This command is deprecated as of Mastodon v4.7.0.
     LONG_DESC
     def fix_duplicates
-      # TODO: remove this after 4.7.0 as the database constraint ensures uniqueness now
-
-      Account.remote.duplicate_uris.pluck(:uri).each do |uri|
-        say("Duplicates found for #{uri}")
-        begin
-          ActivityPub::FetchRemoteAccountService.new.call(uri) unless dry_run?
-        rescue => e
-          say("Error processing #{uri}: #{e}", :red)
-        end
-      end
+      # TODO: remove this after 4.7.0
+      say('This command is deprecated as Mastodon v4.7.0 migrations enforce ActivityPub actor identifier uniqueness', :yellow)
     end
 
     desc 'backup USERNAME', 'Request a backup for a user'

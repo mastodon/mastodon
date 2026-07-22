@@ -648,22 +648,6 @@ RSpec.describe Mastodon::CLI::Accounts do
     end
   end
 
-  describe '#fix_duplicates' do
-    let(:action) { :fix_duplicates }
-    let(:uri) { 'https://host.example/same/value' }
-
-    context 'when there are no duplicates' do
-      before do
-        Fabricate(:account, domain: 'host.example', uri: uri, legacy_keypair: true)
-      end
-
-      it 'runs without errors and reports no duplicate' do
-        expect { subject }
-          .to_not output_results('Duplicates found')
-      end
-    end
-  end
-
   describe '#backup' do
     let(:action) { :backup }
 
