@@ -23,11 +23,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 
 import { ComposeFormHeader } from './header';
-import {
-  selectComposeCanSubmit,
-  selectComposeState,
-  selectComposeType,
-} from './selectors';
+import { selectComposeCanSubmit, selectComposeState } from './selectors';
 import classes from './styles.module.scss';
 import { ComposeVisibility } from './visibility';
 
@@ -47,8 +43,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   autoFocus,
   redirectOnSuccess,
 }) => {
-  const type = useAppSelector(selectComposeType);
-  const { sensitive, suggestions, text, lang, isSubmitting } =
+  const { type, sensitive, suggestions, text, lang, isSubmitting } =
     useAppSelector(selectComposeState);
 
   const { ref, onSensitiveChange, ...handlers } =

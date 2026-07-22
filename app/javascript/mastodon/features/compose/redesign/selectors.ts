@@ -53,18 +53,23 @@ export const selectComposeCanSubmit = createAppSelector(
 );
 
 export const selectComposeState = createAppSelector(
-  [(state) => state.compose],
-  (compose) => {
-    const text = compose.get('text');
-    return {
-      text: typeof text === 'string' ? text : '',
-      sensitive: !!compose.get('spoiler'),
-      lang: compose.get('language') as string,
-      suggestions: compose.get(
-        'suggestions',
-      ) as unknown as Immutable.List<unknown>,
-      canSubmit: false,
-      isSubmitting: !!compose.get('is_submitting'),
-    };
-  },
+  [
+    selectComposeType,
+    (state) => state.compose.get('text') as string,
+    (state) => !!state.compose.get('spoiler'),
+    (state) => state.compose.get('language') as string,
+    (state) =>
+      state.compose.get('suggestions') as unknown as Immutable.List<unknown>,
+    selectComposeCanSubmit,
+    (state) => !!state.compose.get('is_submitting'),
+  ],
+  (type, text, sensitive, lang, suggestions, canSubmit, isSubmitting) => ({
+    type,
+    text,
+    sensitive,
+    lang,
+    suggestions,
+    canSubmit,
+    isSubmitting,
+  }),
 );
