@@ -1,5 +1,9 @@
+import { length } from 'stringz';
+
 import type { StatusVisibility } from '@/mastodon/models/status';
 import { createAppSelector } from '@/mastodon/store';
+
+import { countableText } from '../util/counter';
 
 export type ComposeType = 'post' | 'message' | 'reply';
 
@@ -19,5 +23,48 @@ export const selectComposeType = createAppSelector(
     }
 
     return type;
+  },
+);
+
+export const selectComposeCharsCount = createAppSelector(
+  [
+    (state) => state.server.server.item?.configuration.statuses.max_characters,
+    (state) => state.compose.get('text') as string,
+    (state) =>
+      state.compose.get('spoiler')
+        ? (state.compose.get('spoiler_text') as string)
+        : '',
+  ],
+  (maxChars, text, spoilerText) => ({
+    current: length((countableText(text) as string) + spoilerText),
+    max: maxChars ?? 500,
+  }),
+);
+
+export const selectComposeCanSubmit = createAppSelector(
+  [
+    (state) => !!state.compose.get('is_submitting'),
+    (state) => !!state.compose.get('is_uploading'),
+    (state) => !!state.compose.get('is_changing_upload'),
+    selectComposeCharsCount,
+  ],
+  (isSubmitting, isUploading, isChangingUpload, { current, max }) =>
+    !isSubmitting && !isUploading && !isChangingUpload && current <= max,
+);
+
+export const selectComposeState = createAppSelector(
+  [(state) => state.compose],
+  (compose) => {
+    const text = compose.get('text');
+    return {
+      text: typeof text === 'string' ? text : '',
+      sensitive: !!compose.get('spoiler'),
+      lang: compose.get('language') as string,
+      suggestions: compose.get(
+        'suggestions',
+      ) as unknown as Immutable.List<unknown>,
+      canSubmit: false,
+      isSubmitting: !!compose.get('is_submitting'),
+    };
   },
 );
