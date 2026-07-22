@@ -1,0 +1,8 @@
+.toggle {
+  background: rgb(from var(--color-bg-inverted) r g b / 70%);
+
+  &::before {
+    box-shadow: none;
+    background: var(--color-bg-primary);
+  }
+}
