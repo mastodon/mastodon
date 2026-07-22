@@ -23,7 +23,11 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 
 import { ComposeFormHeader } from './header';
-import { selectComposeState, selectComposeType } from './selectors';
+import {
+  selectComposeCanSubmit,
+  selectComposeState,
+  selectComposeType,
+} from './selectors';
 import classes from './styles.module.scss';
 import { ComposeVisibility } from './visibility';
 
@@ -124,8 +128,13 @@ function useHandlers(redirectOnSuccess?: boolean) {
   const onSensitiveChange = useCallback(() => {
     dispatch(changeComposeSpoilerness());
   }, [dispatch]);
+
+  const canSubmit = useAppSelector(selectComposeCanSubmit);
   const handleSubmit = useCallback(
     (event?: React.SubmitEvent) => {
+      if (!canSubmit) {
+        return;
+      }
       dispatch(
         submitCompose({
           textareaValue: ref.current?.value,
@@ -137,7 +146,7 @@ function useHandlers(redirectOnSuccess?: boolean) {
         event.preventDefault();
       }
     },
-    [dispatch, redirectOnSuccess],
+    [canSubmit, dispatch, redirectOnSuccess],
   );
   const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
     useCallback(
