@@ -187,6 +187,7 @@ class DeleteAccountService < BaseService
 
     Notification.where(from_account: @account).in_batches.delete_all
     NotificationRequest.where(from_account: @account).in_batches.delete_all
+    NotificationRequest.where(account: @account).in_batches.delete_all
   end
 
   def purge_favourites!
