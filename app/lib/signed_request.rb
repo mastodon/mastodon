@@ -224,10 +224,6 @@ class SignedRequest
     def body_digest
       @body_digest ||= Digest::SHA256.base64digest(request_body)
     end
-
-    def missing_required_signature_parameters?
-      @signature.parameters['keyid'].blank?
-    end
   end
 
   attr_reader :signature
