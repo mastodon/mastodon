@@ -107,4 +107,23 @@ RSpec.describe ActivityPub::NoteSerializer do
       })
     end
   end
+
+  context 'with a preview card' do
+    let(:preview_card) { Fabricate(:preview_card) }
+
+    before do
+      PreviewCardsStatus.create(status: parent, preview_card: preview_card)
+    end
+
+    it 'has the expected shape (using FEP-8967)' do
+      expect(subject).to include({
+        'type' => 'Note',
+        'attachment' => contain_exactly(
+          a_hash_including(
+            'href' => preview_card.url
+          )
+        ),
+      })
+    end
+  end
 end
