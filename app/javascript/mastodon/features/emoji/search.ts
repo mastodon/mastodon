@@ -155,8 +155,8 @@ export async function search({
   }
 
   // Iterate over all maps, getting a combined score for emojis that exist in all results.
-  const allEmojiIds = resultArrays.reduce((prev, map) => {
-    if (prev.size === 0) {
+  const allEmojiIds = resultArrays.reduce((prev, map, index) => {
+    if (index === 0) {
       return new Set(map.keys());
     }
     return new Set(map.keys()).intersection(prev);
