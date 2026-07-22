@@ -9,7 +9,6 @@ import { apiUpdateMedia } from '@/mastodon/api/compose';
 import { apiGetSearch } from '@/mastodon/api/search';
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
-import { selectComposeCanSubmit } from '@/mastodon/features/compose/redesign/selectors';
 import type { MediaAttachment } from '@/mastodon/models/media_attachment';
 import type { Status, StatusVisibility } from '@/mastodon/models/status';
 import type { RootState } from '@/mastodon/store';
@@ -19,7 +18,6 @@ import {
 } from '@/mastodon/store/typed_functions';
 
 import type { ApiStatusJSON } from '../api_types/statuses';
-import { PRIVATE_QUOTE_MODAL_ID } from '../features/ui/components/confirmation_modals/private_quote_notify';
 
 import { showAlert } from './alerts';
 import {
@@ -30,6 +28,8 @@ import {
 } from './compose';
 import { importFetchedStatuses } from './importer';
 import { openModal } from './modal';
+
+export const PRIVATE_QUOTE_MODAL_ID = 'quote/private_notify';
 
 const messages = defineMessages({
   quoteErrorEdit: {
@@ -302,10 +302,6 @@ export const submitCompose = createAppThunk(
       (getState().compose.get('text') as string) !== textareaValue
     ) {
       dispatch(changeCompose(textareaValue));
-    }
-
-    if (!selectComposeCanSubmit(getState())) {
-      return;
     }
 
     const { compose, meta, statuses, settings } = getState();
