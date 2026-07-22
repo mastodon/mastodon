@@ -30,3 +30,9 @@ export const Toggle: Story = {
     return <ToggleField {...args} />;
   },
 };
+
+export const ToggleSmall: Story = {
+  render(args) {
+    return <ToggleField {...args} size='sm' />;
+  },
+};
