@@ -36,4 +36,18 @@
   border: none;
   width: 100%;
   outline: none;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.counter {
+  margin-left: auto;
+  font-family: var(--font-monospace);
+  color: var(--color-text-tertiary);
 }
