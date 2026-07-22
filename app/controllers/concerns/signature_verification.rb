@@ -7,8 +7,6 @@ module SignatureVerification
 
   include DomainControlHelper
 
-  EXPIRATION_WINDOW_LIMIT = 12.hours
-  CLOCK_SKEW_MARGIN       = 1.hour
   STOPLIGHT_COOL_OFF_TIME = 5.minutes.seconds
   STOPLIGHT_THRESHOLD = 1
 

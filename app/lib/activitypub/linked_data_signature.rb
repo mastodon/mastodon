@@ -4,7 +4,6 @@ class ActivityPub::LinkedDataSignature
   include JsonLdHelper
 
   CONTEXT = 'https://w3id.org/identity/v1'
-  SIGNATURE_CONTEXT = 'https://w3id.org/security/v1'
 
   def initialize(json)
     @json = json.with_indifferent_access
