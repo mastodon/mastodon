@@ -35,7 +35,7 @@ type ButtonProps = ButtonButtonProps | ButtonAnchorProps | ButtonLinkProps;
 const BaseButton: React.FC<ButtonProps> = ({
   size = 'md',
   variant = 'solid',
-  color = 'neutral',
+  color = 'tonal',
   as: asComp = 'button',
   children,
   className,
