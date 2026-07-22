@@ -1,6 +1,6 @@
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { IconButton } from '@/mastodon/components/icon_button';
+import { IconButton } from '@/mastodon/components/button/redesign';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
@@ -48,14 +48,9 @@ export const ComposeFormHeader: React.FC<{ id?: string }> = ({ id }) => {
   return (
     <header className={classes.header}>
       <h2 id={id}>{intl.formatMessage(titleMessage)}</h2>
-      <IconButton
-        icon='close'
-        iconComponent={CloseIcon}
-        title={intl.formatMessage({
-          id: 'lightbox.close',
-          defaultMessage: 'Close',
-        })}
-      />
+      <IconButton icon={CloseIcon}>
+        <FormattedMessage id='lightbox.close' defaultMessage='Close' />
+      </IconButton>
     </header>
   );
 };

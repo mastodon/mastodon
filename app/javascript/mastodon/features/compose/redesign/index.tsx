@@ -17,8 +17,8 @@ import {
   submitCompose,
 } from '@/mastodon/actions/compose_typed';
 import AutosuggestTextarea from '@/mastodon/components/autosuggest_textarea';
+import { IconButton } from '@/mastodon/components/button/redesign';
 import { ToggleField } from '@/mastodon/components/form_fields';
-import { IconButton } from '@/mastodon/components/icon_button';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 
@@ -32,10 +32,6 @@ import classes from './styles.module.scss';
 import { ComposeVisibility } from './visibility';
 
 const messages = defineMessages({
-  changeLanguage: {
-    id: 'compose.language.change',
-    defaultMessage: 'Change language',
-  },
   sensitive: {
     id: 'compose.sensitive',
     defaultMessage: 'Sensitive',
@@ -78,11 +74,12 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
           checked={sensitive}
           onChange={onSensitiveChange}
         />
-        <IconButton
-          icon='language'
-          iconComponent={TranslateIcon}
-          title={intl.formatMessage(messages.changeLanguage)}
-        />
+        <IconButton icon={TranslateIcon}>
+          <FormattedMessage
+            id='compose.language.change'
+            defaultMessage='Change language'
+          />
+        </IconButton>
       </div>
       <ComposeTextarea
         ref={ref}

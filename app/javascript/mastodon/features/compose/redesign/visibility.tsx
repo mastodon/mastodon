@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import classes from './styles.module.scss';
+import { Button } from '@/mastodon/components/button/redesign';
 
 export const ComposeVisibility: React.FC = () => {
   return (
@@ -9,12 +9,12 @@ export const ComposeVisibility: React.FC = () => {
       defaultMessage='To: {button}'
       values={{
         button: (
-          <button type='button' className={classes.button}>
+          <Button>
             <FormattedMessage
               id='privacy.public.short'
               defaultMessage='Public'
             />
-          </button>
+          </Button>
         ),
       }}
     />
