@@ -46,7 +46,8 @@ class ActivityPub::FetchRemoteActorService < BaseService
   def queue_deletion!(uri)
     account = Account.find_by(uri:)
     return unless account&.remote?
-
+    return if account.suspended?
+  
     Rails.logger.debug { "Deleting actor #{uri} because of HTTP 410 response" }
 
     account.suspend!(origin: :remote)
