@@ -148,9 +148,9 @@ export function unicodeToTwemojiHex(unicodeHex: string): string {
     .toLowerCase();
 }
 
-const CODES_WITH_DARK_BORDER = EMOJIS_WITH_DARK_BORDER.map(emojiToUnicodeHex);
+const CODES_WITH_DARK_BORDER = EMOJIS_WITH_DARK_BORDER.map(emojiToUnicodeHex).map(h => h.toLowerCase());
 
-const CODES_WITH_LIGHT_BORDER = EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
+const CODES_WITH_LIGHT_BORDER = EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex).map(h => h.toLowerCase());
 
 export function unicodeHexToUrl({
   unicodeHex,
