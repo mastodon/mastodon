@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
 
 import ChatIcon from '@/material-icons/400-24px/chat.svg?react';
 import DownloadIcon from '@/material-icons/400-24px/download.svg?react';
@@ -20,20 +21,42 @@ const meta = {
   title: 'Redesign/Button',
   component: Button,
   args: {
-    label: 'Action',
+    children: 'Action',
     size: 'md',
     variant: 'solid',
     color: 'neutral',
+    disabled: false,
     loading: false,
     as: 'button',
+    onClick: fn(),
   },
   argTypes: {
+    children: {
+      control: 'text',
+    },
     as: {
-      control: 'select',
-      options: ['button', 'a'],
+      control: 'inline-radio',
+      options: ['button', 'a', 'link'],
+    },
+    size: {
+      control: 'inline-radio',
+      options: ['xs', 'sm', 'md', 'lg'],
+    },
+    variant: {
+      control: 'inline-radio',
+      options: ['solid', 'text'],
+    },
+    color: {
+      control: 'inline-radio',
+      options: ['neutral', 'accent', 'tonal', 'destructive'],
     },
     leadingIcon: iconArgType,
     trailingIcon: iconArgType,
+    onClick: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -60,7 +83,18 @@ export const IconOnly: Story = {
     return <IconButton {...args} icon={args.leadingIcon ?? ChatIcon} />;
   },
   args: {
-    label: undefined,
     leadingIcon: ChatIcon,
+  },
+};
+
+export const Link: Story = {
+  render(args) {
+    if (args.as === 'link') {
+      return <Button {...args} to='/example' />;
+    }
+    return <Button {...args} />;
+  },
+  args: {
+    as: 'link',
   },
 };

@@ -1,14 +1,44 @@
 .base {
+  --bg: transparent;
+  --fg: var(--color-text-primary);
+
+  background-color: var(--bg);
+  border-radius: var(--radius-round);
+  color: var(--fg);
+  transition:
+    background-color 200ms,
+    color 200ms;
+  border: 0;
+  appearance: none;
+  cursor: pointer;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border: 0;
-  appearance: none;
   font-size: var(--fs-sm);
   line-height: 1;
-  background: none;
   box-sizing: border-box;
   gap: var(--space-2xs);
+
+  &:focus-visible,
+  &:focus-within {
+    outline: 2px solid var(--fg);
+  }
+
+  &:disabled,
+  &:hover:disabled {
+    cursor: auto;
+  }
+}
+
+// Override default anchor styles
+a.base {
+  &:focus {
+    border-radius: var(--radius-round);
+  }
+
+  &:hover {
+    text-decoration: inherit;
+  }
 }
 
 .xs {
@@ -33,82 +63,70 @@
 }
 
 .solid {
+  --bg: var(--color-bg-inverted);
+  --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
+  --fg: var(--color-text-inverted);
+
+  background-color: var(--bg);
   border-radius: var(--radius-round);
+  color: var(--fg);
   transition:
     background-color 200ms,
     color 200ms;
 
-  &.accent {
-    background-color: var(--color-bg-brand-base);
-    color: var(--color-text-inverted);
-
-    &:hover,
-    &:focus,
-    &.disabled {
-      background-color: var(--color-bg-brand-base-hover);
-    }
+  &:hover {
+    background-color: var(--bg-hover);
   }
 
-  &.neutral {
-    background-color: var(--color-bg-inverted);
-    color: var(--color-text-inverted);
+  &:active {
+    background-color: color-mix(in srgb, var(--bg-hover) 80%, var(--fg));
+  }
 
-    &:hover,
-    &:focus,
-    &.disabled {
-      color: rgb(from var(--color-text-inverted) r g b / 80%);
-    }
+  &.accent {
+    --bg: var(--color-bg-brand-base);
+    --bg-hover: var(--color-bg-brand-base-hover);
   }
 
   &.tonal {
-    background-color: var(--color-bg-highlight);
-    color: var(--color-text-primary);
+    --bg: var(--color-bg-highlight);
+    --fg: var(--color-text-primary);
   }
 
   &.destructive {
-    background-color: var(--color-bg-error-base);
-    color: var(--color-text-inverted);
+    --bg: var(--color-bg-error-base);
+    --bg-hover: var(--color-bg-error-base-hover);
+  }
 
-    &:hover,
-    &:focus,
-    &.disabled {
-      background-color: var(--color-bg-error-base-hover);
-    }
+  &:disabled {
+    --bg: var(--color-bg-disabled);
+    --bg-hover: var(--bg);
+    --fg: var(--color-text-primary);
   }
 }
 
 .text {
-  transition: color 200ms;
-
   &.accent {
-    color: var(--color-text-brand);
+    --fg: var(--color-text-brand);
 
-    &:hover,
-    &:focus,
-    &.disabled {
-      color: var(--color-text-brand-soft);
+    &:hover {
+      --fg: var(--color-text-brand-soft);
     }
   }
 
   &.neutral,
   &.tonal {
-    color: var(--color-text-primary);
-
-    &:hover,
-    &:focus,
-    &.disabled {
-      color: rgb(from var(--color-text-primary) r g b / 80%);
+    &:hover {
+      --fg: rgb(from var(--color-text-primary) r g b / 80%);
     }
   }
 
   &.destructive {
-    color: var(--color-text-error);
+    --fg: var(--color-text-error);
+  }
 
-    &:hover,
-    &:focus,
-    &.disabled {
-      color: rgb(from var(--color-text-error) r g b / 80%);
-    }
+  &:disabled,
+  &:hover:disabled {
+    --fg: var(--color-text-disabled);
   }
 }
 
