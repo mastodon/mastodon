@@ -24,6 +24,7 @@ import {
 } from '../collections/overview/created_by_account';
 
 import { CollectionToggle } from './collection_toggle';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   close: {
@@ -176,9 +177,14 @@ export const CollectionAdder: React.FC<{
               <NewCollectionButton onClick={handleNewCollection} />
             </EmptyState>
           ) : (
-            collections.map((item) => (
-              <ListItem key={item.id} collection={item} account={account} />
-            ))
+            <>
+              <div className={classes.newCollection}>
+                <NewCollectionButton onClick={handleNewCollection} />
+              </div>
+              {collections.map((item) => (
+                <ListItem key={item.id} collection={item} account={account} />
+              ))}
+            </>
           )}
         </div>
       </div>
