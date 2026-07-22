@@ -97,10 +97,10 @@ a.base {
     --bg-hover: var(--color-bg-error-base-hover);
   }
 
-  &:disabled {
+  &.solid:disabled {
     --bg: var(--color-bg-disabled);
     --bg-hover: var(--bg);
-    --fg: var(--color-text-primary);
+    --fg: var(--color-text-on-disabled);
   }
 }
 
@@ -133,6 +133,8 @@ a.base {
   &:disabled,
   &:hover:disabled {
     --fg: var(--color-text-disabled);
+    --bg: transparent;
+    --bg-hover: transparent;
   }
 }
 
