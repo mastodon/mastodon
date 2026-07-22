@@ -652,12 +652,12 @@ RSpec.describe Mastodon::CLI::Accounts do
     let(:action) { :fix_duplicates }
     let(:uri) { 'https://host.example/same/value' }
 
-    context 'when there are duplicate URI accounts' do
+    context 'when there are no duplicates' do
       before do
         Fabricate(:account, domain: 'host.example', uri: uri, legacy_keypair: true)
       end
 
-      it 'finds the duplicates and calls fetch remote account service' do
+      it 'runs without errors and reports no duplicate' do
         expect { subject }
           .to_not output_results('Duplicates found')
       end
