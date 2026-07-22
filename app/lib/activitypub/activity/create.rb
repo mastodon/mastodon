@@ -36,6 +36,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
       if @status.nil?
         process_status
+      elsif @status.account_id != @account.id
+        Rails.logger.debug { "Not processing #{object_uri}: authorship change is not supported" }
+        return reject_payload!
       elsif @options[:delivered_to_account_id].present?
         postprocess_audience_and_deliver
       end
@@ -91,7 +94,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def find_existing_status
     status   = status_from_uri(object_uri)
     status ||= Status.find_by(uri: @object['atomUri']) if @object['atomUri'].present?
-    status if status&.account_id == @account.id
+    status
   end
 
   def process_status_params
