@@ -14,7 +14,7 @@ import classes from './redesign.module.scss';
 
 interface ButtonPropsBase<As extends 'a' | 'button'> {
   size?: 'lg' | 'md' | 'sm' | 'xs';
-  variant?: 'solid' | 'text';
+  variant?: 'solid' | 'ghost';
   color?: 'accent' | 'neutral' | 'tonal' | 'destructive';
   onClick?: React.MouseEventHandler<
     As extends 'button' ? HTMLButtonElement : HTMLAnchorElement
