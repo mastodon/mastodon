@@ -6,7 +6,6 @@ module Paperclip
   class ColorExtractor < Paperclip::Processor
     MIN_CONTRAST        = 3.0
     ACCENT_MIN_CONTRAST = 2.0
-    FREQUENCY_THRESHOLD = 0.01
     BINS = 10
 
     def make
