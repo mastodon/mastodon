@@ -32,6 +32,14 @@ const messages = defineMessages({
     id: 'compose.sensitive',
     defaultMessage: 'Sensitive',
   },
+  placeholder: {
+    id: 'compose.post.placeholder',
+    defaultMessage: 'What would you like to say?',
+  },
+  messagePlaceholder: {
+    id: 'compose.message.placeholder',
+    defaultMessage: 'Add your recipients and your message.',
+  },
 });
 
 interface RedesignComposeFormProps {
@@ -79,10 +87,15 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       <ComposeTextarea
         ref={ref}
         value={text}
+        className={classes.textarea}
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={autoFocus}
         lang={lang}
-        // placeholder={intl.formatMessage(messages.placeholder)}
+        placeholder={intl.formatMessage(
+          type === 'message'
+            ? messages.messagePlaceholder
+            : messages.placeholder,
+        )}
         disabled={isSubmitting}
         suggestions={suggestions}
         {...handlers}
