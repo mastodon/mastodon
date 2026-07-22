@@ -1,23 +1,34 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { defineMessages } from 'react-intl';
 
 import { createAction } from '@reduxjs/toolkit';
 import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
-import { apiUpdateMedia } from 'mastodon/api/compose';
-import { apiGetSearch } from 'mastodon/api/search';
-import type { ApiMediaAttachmentJSON } from 'mastodon/api_types/media_attachments';
-import type { MediaAttachment } from 'mastodon/models/media_attachment';
+import { apiUpdateMedia } from '@/mastodon/api/compose';
+import { apiGetSearch } from '@/mastodon/api/search';
+import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
+import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
+import { selectComposeCanSubmit } from '@/mastodon/features/compose/redesign/selectors';
+import { me, missingAltTextModal } from '@/mastodon/initial_state';
+import type { MediaAttachment } from '@/mastodon/models/media_attachment';
+import type { Status, StatusVisibility } from '@/mastodon/models/status';
+import type { RootState } from '@/mastodon/store';
 import {
   createDataLoadingThunk,
   createAppThunk,
-} from 'mastodon/store/typed_functions';
+} from '@/mastodon/store/typed_functions';
 
-import type { ApiQuotePolicy } from '../api_types/quotes';
-import type { Status, StatusVisibility } from '../models/status';
-import type { RootState } from '../store';
+import type { ApiStatusJSON } from '../api_types/statuses';
+import { PRIVATE_QUOTE_MODAL_ID } from '../features/ui/components/confirmation_modals/private_quote_notify';
 
 import { showAlert } from './alerts';
-import { changeCompose, focusCompose } from './compose';
+import {
+  changeCompose,
+  focusCompose,
+  submitCompose as submitComposeApi,
+  uploadCompose,
+} from './compose';
 import { importFetchedStatuses } from './importer';
 import { openModal } from './modal';
 
@@ -159,9 +170,9 @@ export const quoteComposeByStatus = createAppThunk(
     const state = getState();
     const composeState = state.compose;
     const mediaAttachments = composeState.get('media_attachments');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
     const wasQuietPostHintModalDismissed: boolean =
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       state.settings.getIn(
         ['dismissed_banners', 'quote/quiet_post_hint'],
         false,
@@ -277,4 +288,88 @@ export const setComposeQuotePolicy = createAction<ApiQuotePolicy>(
 
 export const setDragUploadEnabled = createAction<boolean>(
   'compose/setDragUploadEnabled',
+);
+
+export const submitCompose = createAppThunk(
+  (
+    {
+      textareaValue = '',
+      redirectOnSuccess,
+    }: { textareaValue?: string; redirectOnSuccess?: boolean },
+    { getState, dispatch },
+  ) => {
+    if (
+      textareaValue &&
+      (getState().compose.get('text') as string) !== textareaValue
+    ) {
+      dispatch(changeCompose(textareaValue));
+    }
+
+    if (!selectComposeCanSubmit(getState())) {
+      return;
+    }
+
+    const { compose, statuses, settings } = getState();
+    const privacy = compose.get('privacy') as StatusVisibility;
+    const missingAltText = (
+      compose.get('media_attachments') as unknown as Immutable.List<
+        Immutable.Map<string, string>
+      >
+    ).some(
+      (media) =>
+        ['image', 'gifv'].includes(media.get('type') ?? '') &&
+        (media.get('description') ?? '').length === 0,
+    );
+    const quotedStatusId = compose.get('quoted_status_id') as string | null;
+    const quoteToPrivate =
+      !!quotedStatusId &&
+      privacy === 'private' &&
+      statuses.getIn([quotedStatusId, 'account']) !== me &&
+      !(settings as Immutable.Map<string, string>).getIn([
+        'dismissed_banners',
+        PRIVATE_QUOTE_MODAL_ID,
+      ]);
+
+    if (missingAltTextModal && missingAltText && privacy !== 'direct') {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_MISSING_ALT_TEXT',
+          modalProps: {},
+        }),
+      );
+    } else if (quoteToPrivate) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_PRIVATE_QUOTE_NOTIFY',
+          modalProps: {},
+        }),
+      );
+    } else {
+      dispatch(
+        submitComposeApi((status: ApiStatusJSON) => {
+          if (redirectOnSuccess) {
+            window.location.assign(status.url);
+          }
+        }),
+      );
+    }
+  },
+);
+
+const urlLikeRegex = /^https?:\/\/[^\s]+\/[^\s]+$/i;
+
+export const processPasteOrDrop = createAppThunk(
+  (transfer: DataTransfer, { dispatch }) => {
+    if (transfer.files.length === 1) {
+      dispatch(uploadCompose(transfer.files));
+    } else if (transfer.files.length === 0) {
+      const data = transfer.getData('text/plain');
+      if (!urlLikeRegex.exec(data)) return;
+
+      try {
+        const url = new URL(data).toString();
+        void dispatch(pasteLinkCompose({ url }));
+      } catch {}
+    }
+  },
 );
