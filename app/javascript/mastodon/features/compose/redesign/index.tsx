@@ -3,6 +3,7 @@ import { useCallback, useId, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { TranslateIcon } from '@phosphor-icons/react';
 import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import {
@@ -20,7 +21,6 @@ import AutosuggestTextarea from '@/mastodon/components/autosuggest_textarea';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { ToggleField } from '@/mastodon/components/form_fields/redesign';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 
 import { ComposeFooter } from './footer';
 import { ComposeFormHeader } from './header';

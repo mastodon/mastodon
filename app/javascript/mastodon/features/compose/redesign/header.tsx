@@ -1,8 +1,9 @@
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { XIcon } from '@phosphor-icons/react';
+
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
-import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import { selectComposeType } from './selectors';
 import classes from './styles.module.scss';
@@ -48,7 +49,7 @@ export const ComposeFormHeader: React.FC<{ id?: string }> = ({ id }) => {
   return (
     <header className={classes.header}>
       <h2 id={id}>{intl.formatMessage(titleMessage)}</h2>
-      <IconButton icon={CloseIcon} variant='ghost' size='sm'>
+      <IconButton icon={XIcon} variant='ghost' size='sm'>
         <FormattedMessage id='lightbox.close' defaultMessage='Close' />
       </IconButton>
     </header>
