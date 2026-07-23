@@ -1077,6 +1077,7 @@ cy:
       critical_update: Hanfodol - diweddarwch yn fuan
       description: Argymhellir cadw'ch gosodiad Mastodon yn gyfredol i elwa o'r atgyweiriadau a'r nodweddion diweddaraf. Hefyd, weithiau mae'n hanfodol diweddaru Mastodon mewn modd amserol er mwyn osgoi materion diogelwch. Am y rhesymau hyn, mae Mastodon yn gwirio am ddiweddariadau bob 30 munud, a bydd yn eich hysbysu yn unol â'ch dewisiadau hysbysu e-bost.
       documentation_link: Dysgu rhagor
+      nearing_eol: Bydd y gefnogaeth i'r gangen rydych chi'n ei rhedeg ar hyn o bryd yn dod i ben ar %{date}, ystyriwch ddiweddaru.
       release_notes: Nodiadau ryddhau
       supported_until: Cymorthyn dod i ben ar %{date}
       title: Diweddariadau ar gael
@@ -1085,6 +1086,7 @@ cy:
         major: Rhyddhad mawr
         minor: Ryddhad llai
         patch: Rhyddhad cywiro - cywiriadau gwallau a newidiadau hawdd eu gosod
+      unsupported_branch: Nid yw'r gangen rydych chi'n ei rhedeg ar hyn o bryd yn cael ei chefnogi, diweddarwch cyn gynted â phosibl.
       unsupported_since: Heb ei gynnal ers %{date}
       version: Fersiwn
     statuses:
@@ -1371,6 +1373,15 @@ cy:
     auto_close_registrations:
       body: Oherwydd diffyg gweithgarwch cymedrolwr diweddar, mae cofrestriadau ar %{instance} wedi'u newid yn awtomatig i'r angen i gael adolygiad â llaw, er mwyn atal %{instance} rhag cael ei ddefnyddio fel llwyfan ar gyfer actorion drwg posibl. Gallwch ei newid yn ôl i agor cofrestriadau ar unrhyw adeg.
       subject: Mae cofrestriadau ar gyfer %{instance} wedi'u newid yn awtomatig i'r angen i gael cymeradwyaeth
+    end_of_support_out_of_support_warning:
+      body: Nid yw'r fersiwn Mastodon sy'n cael ei ddefnyddio ar eich gweinydd ar hyn o bryd yn cael ei gefnogi mwyach. Rydym yn argymell eich bod yn ei ddiweddaru cyn gynted â phosibl!
+      subject: Nid yw Mastodon %{branch} sy'n cael ei ddefnyddio ar %{instance} bellach yn cael ei gynnal!
+    end_of_support_three_months_warning:
+      body: Bydd y fersiwn Mastodon sy'n cael ei ddefnyddio ar hyn o bryd ar eich gweinydd yn peidio cael ei gefnogi ymhen 3 mis. Efallai y byddwch am ddiweddaru i gangen newydd ymlaen llaw.
+      subject: Bydd cefnogaeth ar gyfer Mastodon %{branch} sy'n cael ei ddefnyddio ar %{instance} i ddod i ben ymhen 3 mis.
+    end_of_support_two_weeks_warning:
+      body: Bydd y fersiwn Mastodon sy'n cael ei defnyddio ar hyn o bryd ar eich gweinydd yn peidio cael ei chefnogi mewn 2 wythnos. Rydym yn argymell eich bod yn diweddaru i gangen newydd ymlaen llaw.
+      subject: Bydd cefnogaeth ar gyfer Mastodon %{branch} sy'n cael ei ddefnyddio ar %{instance} i ddod i ben ymhen pythefnos.
     new_appeal:
       actions:
         delete_statuses: i ddileu eu postiadau
@@ -2102,6 +2113,7 @@ cy:
     administration_emails: E-byst hysbysiadau gweinyddol
     email_events: Digwyddiadau ar gyfer hysbysiadau e-bost
     email_events_hint: 'Dewiswch ddigwyddiadau yr ydych am dderbyn hysbysiadau ar eu cyfer:'
+    moderation_emails: Hysbysiadau e-byst cymedroli
   number:
     human:
       decimal_units:
