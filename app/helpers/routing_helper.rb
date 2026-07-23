@@ -71,7 +71,7 @@ module RoutingHelper
     vite_javascript_tag(*names, asset_type: :typescript, **)
   end
 
-  def vite_stylesheet_tag(*names, **options)
+  def vite_stylesheet_tag(*names, type: :stylesheet, **options) # rubocop:disable Lint/UnusedMethodArgument
     style_paths = names.map do |name|
       # If the name is single file we assume it is inside app/javascripts/entrypoints
       name.include?('/') ? "#{VITE_URL}/#{name}" : "#{VITE_URL}/entrypoints/#{name}"
