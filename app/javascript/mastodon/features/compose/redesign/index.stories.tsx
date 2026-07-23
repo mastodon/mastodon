@@ -12,6 +12,9 @@ const meta = {
       </div>
     );
   },
+  parameters: {
+    redesign: true,
+  },
 } satisfies Meta<typeof RedesignComposeForm>;
 
 export default meta;

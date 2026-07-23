@@ -9,6 +9,7 @@ import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 import {
   changeCompose,
   changeComposeSpoilerness,
+  changeComposeSpoilerText,
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
@@ -19,7 +20,10 @@ import {
 } from '@/mastodon/actions/compose_typed';
 import AutosuggestTextarea from '@/mastodon/components/autosuggest_textarea';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { ToggleField } from '@/mastodon/components/form_fields/redesign';
+import {
+  ToggleField,
+  TextInputField,
+} from '@/mastodon/components/form_fields/redesign';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ComposeFooter } from './footer';
@@ -32,6 +36,10 @@ const messages = defineMessages({
   sensitive: {
     id: 'compose.sensitive',
     defaultMessage: 'Sensitive',
+  },
+  sensitiveText: {
+    id: 'compose.sensitive.text',
+    defaultMessage: 'Sensitive content description',
   },
   placeholder: {
     id: 'compose.post.placeholder',
@@ -52,10 +60,17 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   autoFocus,
   redirectOnSuccess,
 }) => {
-  const { type, sensitive, suggestions, text, lang, isSubmitting } =
-    useAppSelector(selectComposeState);
+  const {
+    type,
+    sensitive,
+    sensitiveText,
+    suggestions,
+    text,
+    lang,
+    isSubmitting,
+  } = useAppSelector(selectComposeState);
 
-  const { ref, onSensitiveChange, ...handlers } =
+  const { ref, onSensitiveChange, onSensitiveTextChange, ...handlers } =
     useHandlers(redirectOnSuccess);
 
   const intl = useIntl();
@@ -85,6 +100,14 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
           />
         </IconButton>
       </div>
+
+      {sensitive && (
+        <TextInputField
+          label={intl.formatMessage(messages.sensitiveText)}
+          value={sensitiveText}
+          onChange={onSensitiveTextChange}
+        />
+      )}
 
       <ComposeTextarea
         ref={ref}
@@ -128,18 +151,23 @@ function useHandlers(redirectOnSuccess?: boolean) {
   const ref = useRef<HTMLTextAreaElement>(null);
 
   const dispatch = useAppDispatch();
-  const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
-    (event) => {
-      dispatch(changeCompose(event.target.value));
-    },
-    [dispatch],
-  );
+
+  // Sensitive toggles
   const onSensitiveChange = useCallback(() => {
     dispatch(changeComposeSpoilerness());
   }, [dispatch]);
+  const onSensitiveTextChange: React.ChangeEventHandler<HTMLInputElement> =
+    useCallback(
+      (event) => {
+        dispatch(changeComposeSpoilerText(event.target.value));
+      },
+      [dispatch],
+    );
+
+  // Submit status
 
   const canSubmit = useAppSelector(selectComposeCanSubmit);
-  const handleSubmit = useCallback(
+  const onSubmit = useCallback(
     (event?: React.SubmitEvent) => {
       if (!canSubmit) {
         return;
@@ -157,6 +185,15 @@ function useHandlers(redirectOnSuccess?: boolean) {
     },
     [canSubmit, dispatch, redirectOnSuccess],
   );
+
+  // Text changes
+
+  const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
+    (event) => {
+      dispatch(changeCompose(event.target.value));
+    },
+    [dispatch],
+  );
   const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
     useCallback(
       (event) => {
@@ -164,12 +201,12 @@ function useHandlers(redirectOnSuccess?: boolean) {
           event.key.toLowerCase() === 'enter' &&
           (event.ctrlKey || event.metaKey)
         ) {
-          handleSubmit();
+          onSubmit();
           event.preventDefault();
         }
         blurOnEscape(event);
       },
-      [handleSubmit],
+      [onSubmit],
     );
   const onPaste: React.ClipboardEventHandler = useCallback(
     (event) => {
@@ -190,6 +227,8 @@ function useHandlers(redirectOnSuccess?: boolean) {
     [dispatch],
   );
 
+  // Suggestions
+
   const onSuggestionsFetchRequested = useCallback(
     (token: string) => {
       dispatch(fetchComposeSuggestions(token));
@@ -208,11 +247,13 @@ function useHandlers(redirectOnSuccess?: boolean) {
 
   return {
     ref,
-    onKeyDown,
+    onSubmit,
     onChange,
+    onKeyDown,
     onPaste,
     onDrop,
     onSensitiveChange,
+    onSensitiveTextChange,
     onSuggestionsFetchRequested,
     onSuggestionsClearRequested,
     onSuggestionSelected,
