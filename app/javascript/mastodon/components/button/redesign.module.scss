@@ -18,7 +18,6 @@
   font-size: var(--fs-sm);
   line-height: 1;
   box-sizing: border-box;
-  gap: var(--space-2xs);
 
   &:hover:not(:active) {
     background-color: var(--bg-hover);
@@ -142,6 +141,17 @@ a.base {
 
 .icon {
   width: 1em;
+  height: 1em;
+}
+
+// Adds padding to the text label. This is supposed to be there even if there is no icon.
+.content {
+  display: inline-block;
+  margin: 0 var(--space-2xs);
+
+  .xs & {
+    margin: 0 var(--space-3xs);
+  }
 }
 
 .iconOnly {
