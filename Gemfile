@@ -231,6 +231,6 @@ gem 'hcaptcha', '~> 7.1'
 
 gem 'mail', '~> 2.8'
 
-gem 'vite_rails'
+# gem 'vite_rails'
 
 gem 'base58', '~> 0.2.3'

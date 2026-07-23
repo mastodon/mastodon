@@ -4,7 +4,8 @@ module RoutingHelper
   extend ActiveSupport::Concern
 
   include ActionView::Helpers::AssetTagHelper
-  include ViteRails::TagHelpers
+
+  # include ViteRails::TagHelpers
 
   included do
     include Rails.application.routes.url_helpers
@@ -49,5 +50,40 @@ module RoutingHelper
 
   def use_storage?
     Rails.configuration.x.use_s3 || Rails.configuration.x.use_swift
+  end
+
+  # Temporary vite helper stubs
+  # TODO: Move to their own helper
+
+  def vite_javascript_tag(*)
+    ''
+  end
+
+  def vite_typescript_tag(*)
+    ''
+  end
+
+  def vite_stylesheet_tag(*)
+    ''
+  end
+
+  def vite_client_tag(*)
+    ''
+  end
+
+  def vite_react_refresh_tag(*)
+    ''
+  end
+
+  def vite_asset_path(*)
+    ''
+  end
+
+  def vite_polyfills_tag
+    ''
+  end
+
+  def vite_preload_file_tag(*)
+    ''
   end
 end
