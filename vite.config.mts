@@ -111,6 +111,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         protocol: 'ws',
       },
       port: 3036,
+      // This makes sure things like `await import('x')` include the dev server's host
+      origin: 'http://localhost:3036',
     },
     build: {
       commonjsOptions: { transformMixedEsModules: true },
