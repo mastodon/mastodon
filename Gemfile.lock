@@ -641,6 +641,8 @@ GEM
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
+    rack-proxy (1.0.1)
+      rack (>= 2.0, < 4)
     rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -1039,6 +1041,7 @@ DEPENDENCIES
   pundit (~> 2.3)
   rack-attack (~> 6.6)
   rack-cors
+  rack-proxy
   rack-test (~> 2.1)
   rails (~> 8.1.0)
   rails-i18n (~> 8.0)

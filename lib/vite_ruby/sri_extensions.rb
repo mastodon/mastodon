@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# # frozen_string_literal: true
-
 # module ViteRuby::ManifestIntegrityExtension
 #   def path_and_integrity_for(name, **)
 #     entry = lookup!(name, **)
