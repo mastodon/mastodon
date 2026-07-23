@@ -56,7 +56,8 @@ module RoutingHelper
   # TODO: Move to their own helper
   # TODO: Integrity
 
-  VITE_URL = 'http://localhost:3036/packs-dev'
+  # VITE_URL = 'http://localhost:3036/packs-dev'
+  VITE_URL = '/packs-dev'
 
   def vite_javascript_tag(*names, type: 'module', crossorigin: '', **)
     scripts = names.map do |name|

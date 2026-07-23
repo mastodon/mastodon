@@ -109,10 +109,9 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // Forcing the protocol to be insecure helps if you are proxying your dev server with SSL,
         // because Vite still tries to connect to localhost.
         protocol: 'ws',
+        clientPort: 3036,
       },
       port: 3036,
-      // This makes sure things like `await import('x')` include the dev server's host
-      origin: 'http://localhost:3036',
     },
     build: {
       commonjsOptions: { transformMixedEsModules: true },
