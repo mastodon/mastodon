@@ -20,10 +20,18 @@ class AddUniqueIndexOnAccountsUri < ActiveRecord::Migration[8.1]
   class FollowRecommendationSuppression < ApplicationRecord; end
   class FollowRequest < ApplicationRecord; end
   class ListAccount < ApplicationRecord; end
-  class MediaAttachment < ApplicationRecord; end
+
+  class MediaAttachment < ApplicationRecord
+    self.inheritance_column = nil
+  end
+
   class Mention < ApplicationRecord; end
   class Mute < ApplicationRecord; end
-  class Notification < ApplicationRecord; end
+
+  class Notification < ApplicationRecord
+    self.inheritance_column = nil
+  end
+
   class NotificationPermission < ApplicationRecord; end
   class NotificationRequest < ApplicationRecord; end
   class Poll < ApplicationRecord; end
