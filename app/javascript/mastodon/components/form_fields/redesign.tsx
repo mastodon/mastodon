@@ -18,6 +18,8 @@ type RedesignComponent<
   P = object,
 > = React.FC<Merge<React.ComponentProps<T>, P>>;
 
+// Text field
+
 export const TextInputField: RedesignComponent<typeof OldTextInputField> = ({
   className,
   wrapperClassName,
@@ -36,6 +38,8 @@ export const TextInput: RedesignComponent<typeof OldTextInput> = ({
 }) => (
   <OldTextInput {...props} className={classNames(className, classes.input)} />
 );
+
+// Toggles
 
 interface ToggleProps {
   size?: 'sm' | 'lg';
