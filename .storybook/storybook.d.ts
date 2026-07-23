@@ -39,6 +39,8 @@ declare module 'storybook/internal/csf' {
     state?: TypedRootState;
     /** Callback that is run with the story arguments to generate Redux state for the component. */
     stateFn?: (args: any) => TypedRootState;
+    /** True to set the redesign global settings. */
+    redesign?: boolean;
   }
 }
 
