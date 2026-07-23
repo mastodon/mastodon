@@ -18,7 +18,7 @@ import {
 } from '@/mastodon/actions/compose_typed';
 import AutosuggestTextarea from '@/mastodon/components/autosuggest_textarea';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { ToggleField } from '@/mastodon/components/form_fields';
+import { ToggleField } from '@/mastodon/components/form_fields/redesign';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 

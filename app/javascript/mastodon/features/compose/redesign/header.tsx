@@ -48,7 +48,7 @@ export const ComposeFormHeader: React.FC<{ id?: string }> = ({ id }) => {
   return (
     <header className={classes.header}>
       <h2 id={id}>{intl.formatMessage(titleMessage)}</h2>
-      <IconButton icon={CloseIcon} variant='text' size='sm'>
+      <IconButton icon={CloseIcon} variant='ghost' size='sm'>
         <FormattedMessage id='lightbox.close' defaultMessage='Close' />
       </IconButton>
     </header>
