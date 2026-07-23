@@ -36,6 +36,19 @@
   margin-right: auto;
 }
 
+.toolbarMessage {
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: center;
+  flex-grow: 1;
+  color: var(--color-text-secondary);
+
+  svg {
+    width: var(--space-lg);
+    height: var(--space-lg);
+  }
+}
+
 .textarea > textarea {
   border: none;
   width: 100%;

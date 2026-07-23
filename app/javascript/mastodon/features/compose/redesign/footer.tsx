@@ -9,10 +9,11 @@ import {
 import { Button, IconButton } from '@/mastodon/components/button/redesign';
 import { useAppSelector } from '@/mastodon/store';
 
-import { selectComposeCharsCount } from './selectors';
+import { selectComposeCharsCount, selectComposeType } from './selectors';
 import classes from './styles.module.scss';
 
 export const ComposeFooter: React.FC = () => {
+  const type = useAppSelector(selectComposeType);
   const { current, max } = useAppSelector(selectComposeCharsCount);
   return (
     <footer className={classes.footer}>
@@ -42,7 +43,15 @@ export const ComposeFooter: React.FC = () => {
         />
       </span>
       <Button color='neutral'>
-        <FormattedMessage id='compose.publish' defaultMessage='Publish' />
+        {type !== 'message' && (
+          <FormattedMessage id='compose.publish' defaultMessage='Publish' />
+        )}
+        {type === 'message' && (
+          <FormattedMessage
+            id='compose.message.publish'
+            defaultMessage='Send'
+          />
+        )}
       </Button>
     </footer>
   );

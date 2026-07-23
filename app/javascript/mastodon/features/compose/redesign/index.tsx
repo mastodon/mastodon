@@ -3,7 +3,7 @@ import { useCallback, useId, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { TranslateIcon } from '@phosphor-icons/react';
+import { LockSimpleOpenIcon, TranslateIcon } from '@phosphor-icons/react';
 import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import {
@@ -24,6 +24,7 @@ import {
   ToggleField,
   TextInputField,
 } from '@/mastodon/components/form_fields/redesign';
+import { Icon } from '@/mastodon/components/icon';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ComposeFooter } from './footer';
@@ -81,12 +82,13 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       <div className={classes.toolbar}>
         {type !== 'message' && <ComposeVisibility />}
         {type === 'message' && (
-          <div>
+          <p className={classes.toolbarMessage}>
+            <Icon id='lock-open' icon={LockSimpleOpenIcon} />
             <FormattedMessage
               id='compose.message.notice'
               defaultMessage='Messages are not end-to-end encrypted'
             />
-          </div>
+          </p>
         )}
         <ToggleField
           label={intl.formatMessage(messages.sensitive)}
