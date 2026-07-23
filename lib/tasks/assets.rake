@@ -19,4 +19,4 @@ if Rake::Task.task_defined?('assets:precompile')
 end
 
 # We don't want vite_ruby to run yarn, we do that in a separate step
-Rake::Task['vite:install_dependencies'].clear
+# Rake::Task['vite:install_dependencies'].clear
