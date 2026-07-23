@@ -27,7 +27,7 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
         WITH new_users AS (
           SELECT users.id
           FROM users
-          WHERE date_trunc('day', users.created_at)::date = axis.period
+          WHERE users.account_id >= (date_part('epoch', date_trunc('day', axis.period)::date) * 1000)::bigint << 16 AND users.account_id < ((date_part('epoch', date_trunc('day', axis.period)::date + ('1 day')::interval)) * 1000)::bigint << 16
         )
         SELECT count(*) FROM new_users
       ) AS value
