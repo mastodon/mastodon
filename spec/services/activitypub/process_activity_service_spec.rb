@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::ProcessCollectionService do
+RSpec.describe ActivityPub::ProcessActivityService do
   subject { described_class.new }
 
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account') }

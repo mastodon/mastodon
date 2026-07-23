@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ActivityPub::ProcessCollectionService < BaseService
+class ActivityPub::ProcessActivityService < BaseService
   include JsonLdHelper
   include DomainControlHelper
 
@@ -64,14 +64,8 @@ class ActivityPub::ProcessCollectionService < BaseService
       @json.delete('signature') unless safe_for_forwarding?(original_json, @json)
     end
 
-    case @json['type']
-    when 'Collection', 'CollectionPage'
-      process_items @json['items']
-    when 'OrderedCollection', 'OrderedCollectionPage'
-      process_items @json['orderedItems']
-    else
-      process_items [@json]
-    end
+    activity = ActivityPub::Activity.factory(@json, @account, **@options)
+    activity&.perform
   rescue JSON::ParserError
     nil
   end
@@ -88,15 +82,6 @@ class ActivityPub::ProcessCollectionService < BaseService
 
   def activity_allowed_while_suspended?
     %w(Delete Reject Undo Update).include?(@json['type'])
-  end
-
-  def process_items(items)
-    items.reverse_each.filter_map { |item| process_item(item) }
-  end
-
-  def process_item(item)
-    activity = ActivityPub::Activity.factory(item, @account, **@options)
-    activity&.perform
   end
 
   def actor_from_verified_ld_signature
