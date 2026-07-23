@@ -1,0 +1,19 @@
+.toggle.toggle {
+  background: rgb(from var(--color-bg-inverted) r g b / 70%);
+
+  &::before {
+    box-shadow: none;
+    background: var(--color-bg-primary);
+  }
+}
+
+.toggle.toggleSmall {
+  --padding: 2px;
+  --diameter: 14px;
+
+  width: 32px;
+}
+
+input:checked + .toggle.toggleSmall::before {
+  transform: translateX(var(--diameter));
+}
