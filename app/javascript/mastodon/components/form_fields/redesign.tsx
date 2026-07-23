@@ -18,8 +18,6 @@ type RedesignComponent<
   P = object,
 > = React.FC<Merge<React.ComponentProps<T>, P>>;
 
-// export const TextInput:
-
 export const TextInputField: RedesignComponent<typeof OldTextInputField> = ({
   className,
   wrapperClassName,
