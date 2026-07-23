@@ -1,5 +1,6 @@
 .base {
   --bg: transparent;
+  --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-primary);
 
   background-color: var(--bg);
@@ -17,11 +18,15 @@
   font-size: var(--fs-sm);
   line-height: 1;
   box-sizing: border-box;
-  gap: var(--space-2xs);
+
+  &:hover:not(:active) {
+    background-color: var(--bg-hover);
+  }
 
   &:focus-visible,
   &:focus-within {
-    outline: 2px solid var(--fg);
+    outline: 2px solid var(--color-bg-brand-base);
+    outline-offset: 2px;
   }
 
   &:disabled,
@@ -41,10 +46,12 @@ a.base {
   }
 }
 
+// Sizes
+
 .xs {
-  padding: var(--space-3xs) var(--space-xs);
+  padding: var(--space-3xs) var(--space-2xs);
   font-size: var(--fs-2xs);
-  min-height: 24px;
+  min-height: 20px;
 }
 
 .sm {
@@ -62,32 +69,24 @@ a.base {
   min-height: 48px;
 }
 
+// Solid variant
+
 .solid {
   --bg: var(--color-bg-inverted);
-  --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-inverted);
-
-  background-color: var(--bg);
-  border-radius: var(--radius-round);
-  color: var(--fg);
-  transition:
-    background-color 200ms,
-    color 200ms;
-
-  &:hover {
-    background-color: var(--bg-hover);
-  }
-
-  &:active {
-    background-color: color-mix(in srgb, var(--bg-hover) 80%, var(--fg));
-  }
 
   &.accent {
     --bg: var(--color-bg-brand-base);
     --bg-hover: var(--color-bg-brand-base-hover);
   }
 
-  &.tonal {
+  .neutral {
+    // This technically is a duplicate, but it's added so TS realizes this class is an option.
+    --bg: var(--color-bg-inverted);
+    --fg: var(--color-text-inverted);
+  }
+
+  &.tonal:not(:active) {
     --bg: var(--color-bg-highlight);
     --fg: var(--color-text-primary);
   }
@@ -97,41 +96,62 @@ a.base {
     --bg-hover: var(--color-bg-error-base-hover);
   }
 
-  &:disabled {
+  &.solid:disabled {
     --bg: var(--color-bg-disabled);
     --bg-hover: var(--bg);
-    --fg: var(--color-text-primary);
+    --fg: var(--color-text-on-disabled);
   }
 }
 
-.text {
+// Ghost
+
+.ghost {
+  &:active {
+    --bg: var(--color-bg-inverted);
+    --fg: var(--color-text-inverted);
+  }
+
   &.accent {
     --fg: var(--color-text-brand);
 
-    &:hover {
-      --fg: var(--color-text-brand-soft);
-    }
-  }
-
-  &.neutral,
-  &.tonal {
-    &:hover {
-      --fg: rgb(from var(--color-text-primary) r g b / 80%);
+    &:active {
+      --bg: var(--color-bg-brand-base);
+      --fg: var(--color-text-on-brand-base);
     }
   }
 
   &.destructive {
     --fg: var(--color-text-error);
+
+    &:active {
+      --fg: var(--color-text-on-error-base);
+      --bg: var(--color-bg-error-base);
+    }
   }
 
   &:disabled,
   &:hover:disabled {
     --fg: var(--color-text-disabled);
+    --bg: transparent;
+    --bg-hover: transparent;
   }
 }
 
+// Helper classes
+
 .icon {
-  width: var(--fs-lg);
+  width: 1em;
+  height: 1em;
+}
+
+// Adds padding to the text label. This is supposed to be there even if there is no icon.
+.content {
+  display: inline-block;
+  margin: 0 var(--space-2xs);
+
+  .xs & {
+    margin: 0 var(--space-3xs);
+  }
 }
 
 .iconOnly {

@@ -14,7 +14,7 @@ import classes from './redesign.module.scss';
 
 interface ButtonPropsBase<As extends 'a' | 'button'> {
   size?: 'lg' | 'md' | 'sm' | 'xs';
-  variant?: 'solid' | 'text';
+  variant?: 'solid' | 'ghost';
   color?: 'accent' | 'neutral' | 'tonal' | 'destructive';
   onClick?: React.MouseEventHandler<
     As extends 'button' ? HTMLButtonElement : HTMLAnchorElement
@@ -35,7 +35,7 @@ type ButtonProps = ButtonButtonProps | ButtonAnchorProps | ButtonLinkProps;
 const BaseButton: React.FC<ButtonProps> = ({
   size = 'md',
   variant = 'solid',
-  color = 'neutral',
+  color = 'tonal',
   as: asComp = 'button',
   children,
   className,
@@ -100,7 +100,7 @@ export const Button: React.FC<
       <Icon id='leading' icon={leadingIcon} className={classes.icon} />
     )}
     {props.loading && <LoadingIcon />}
-    {children}
+    <span className={classes.content}>{children}</span>
     {trailingIcon && (
       <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
     )}
