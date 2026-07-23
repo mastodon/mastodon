@@ -76,7 +76,7 @@ class Admin::Metrics::Retention
         WITH new_users AS (
           SELECT users.id
           FROM users
-          WHERE date_trunc(:frequency, users.created_at)::date = axis.cohort_period
+          WHERE users.account_id >= (date_part('epoch', date_trunc(:frequency, axis.cohort_period)::date) * 1000)::bigint << 16 AND users.account_id < ((date_part('epoch', date_trunc(:frequency, axis.cohort_period)::date + ('1' || :frequency)::interval)) * 1000)::bigint << 16
         ),
         retained_users AS (
           SELECT users.id
