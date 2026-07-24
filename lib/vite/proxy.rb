@@ -14,8 +14,7 @@ module Vite
     end
 
     def perform_request(env)
-      # TODO: Do not proxy if there is no dev server running
-      if env['PATH_INFO'].start_with?(config.base_path)
+      if Vite.dev_server.running? && env['PATH_INFO'].start_with?(config.base_path)
         super
       else
         @app.call(env)
