@@ -38,7 +38,7 @@ type Language = [string, string, string];
 const getFrequentlyUsedLanguages = createSelector(
   [
     (state: RootState) =>
-      (state.settings as ImmutableMap<string, unknown>).get(
+      state.settings.get(
         'frequentlyUsedLanguages',
         ImmutableMap(),
       ) as ImmutableMap<string, number>,
