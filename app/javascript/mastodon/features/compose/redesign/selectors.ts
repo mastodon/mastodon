@@ -7,12 +7,18 @@ import { countableText } from '../util/counter';
 
 export type ComposeType = 'post' | 'message' | 'reply';
 
+export const selectComposePrivacy = createAppSelector(
+  [
+    (state) => state.compose.get('privacy') as StatusVisibility | null,
+    (state) => state.compose.get('default_privacy') as StatusVisibility,
+  ],
+  (privacy, defaultPrivacy) => privacy ?? defaultPrivacy,
+);
+
 export const selectComposeType = createAppSelector(
   [
     (state) => state.compose.get('in_reply_to') as string | null,
-    (state) =>
-      (state.compose.get('privacy') as StatusVisibility | null) ??
-      (state.compose.get('default_privacy') as StatusVisibility),
+    selectComposePrivacy,
   ],
   (inReplyToId, privacy) => {
     let type: ComposeType = 'post';
