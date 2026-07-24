@@ -15,29 +15,35 @@ type Props = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
 export const RadioButtonField = forwardRef<
   HTMLInputElement,
   Props & CommonFieldWrapperProps
->(({ id, label, hint, status, required, ...otherProps }, ref) => {
-  const fieldsetName = useContext(FieldsetNameContext);
+>(
+  (
+    { id, label, hint, status, required, wrapperClassName, ...otherProps },
+    ref,
+  ) => {
+    const fieldsetName = useContext(FieldsetNameContext);
 
-  return (
-    <FormFieldWrapper
-      label={label}
-      hint={hint}
-      required={required}
-      status={status}
-      inputId={id}
-      inputPlacement='inline-start'
-    >
-      {(inputProps) => (
-        <RadioButton
-          {...otherProps}
-          {...inputProps}
-          name={otherProps.name || fieldsetName}
-          ref={ref}
-        />
-      )}
-    </FormFieldWrapper>
-  );
-});
+    return (
+      <FormFieldWrapper
+        label={label}
+        hint={hint}
+        required={required}
+        status={status}
+        inputId={id}
+        className={wrapperClassName}
+        inputPlacement='inline-start'
+      >
+        {(inputProps) => (
+          <RadioButton
+            {...otherProps}
+            {...inputProps}
+            name={otherProps.name || fieldsetName}
+            ref={ref}
+          />
+        )}
+      </FormFieldWrapper>
+    );
+  },
+);
 
 RadioButtonField.displayName = 'RadioButtonField';
 

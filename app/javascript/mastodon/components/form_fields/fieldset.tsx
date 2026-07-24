@@ -3,6 +3,8 @@
 import type { ReactNode, FC } from 'react';
 import { createContext, useId } from 'react';
 
+import classNames from 'classnames';
+
 import { A11yLiveRegion } from 'mastodon/components/a11y_live_region';
 import { CalloutInline } from 'mastodon/components/callout_inline';
 
@@ -17,6 +19,7 @@ interface FieldsetProps {
   name?: string;
   status?: FieldStatus | FieldStatus['variant'];
   layout?: 'vertical' | 'horizontal';
+  className?: string;
   children: ReactNode;
 }
 
@@ -33,6 +36,7 @@ export const Fieldset: FC<FieldsetProps> = ({
   name,
   status,
   layout,
+  className,
   children,
 }) => {
   const uniqueId = useId();
@@ -54,23 +58,23 @@ export const Fieldset: FC<FieldsetProps> = ({
 
   return (
     <fieldset
-      className={classes.fieldset}
+      className={classNames(classes.fieldset, className)}
       data-has-error={status === 'error'}
       aria-labelledby={labelId}
       aria-describedby={descriptionIds}
     >
       <div className={formFieldWrapperClasses.labelWrapper}>
-        <div id={labelId} className={formFieldWrapperClasses.label}>
+        <div id={labelId} className={formFieldWrapperClasses.label} data-label>
           {legend}
         </div>
         {hasHint && (
-          <p id={hintId} className={formFieldWrapperClasses.hint}>
+          <p id={hintId} className={formFieldWrapperClasses.hint} data-hint>
             {hint}
           </p>
         )}
       </div>
 
-      <div className={classes.fieldsWrapper} data-layout={layout}>
+      <div className={classes.fieldsWrapper} data-layout={layout} data-fields>
         <FieldsetNameContext.Provider value={fieldsetName}>
           {children}
         </FieldsetNameContext.Provider>
