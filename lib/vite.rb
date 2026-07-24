@@ -5,6 +5,7 @@ module Vite
   autoload :Config, 'vite/config'
   autoload :DevServer, 'vite/dev_server'
   autoload :Proxy, 'vite/proxy'
+  autoload :TagsHelper, 'vite/tags_helper'
 
   def self.setup
     yield config if block_given?
