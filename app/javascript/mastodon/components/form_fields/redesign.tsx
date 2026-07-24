@@ -71,5 +71,6 @@ export const ToggleField: RedesignComponent<
       classes.toggle,
       size === 'sm' && classes.toggleSmall,
     )}
+    size={size === 'sm' ? 14 : 20}
   />
 );
