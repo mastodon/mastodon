@@ -3,7 +3,7 @@
 module Vite
   # Check the status of Vite's dev server
   class DevServer
-    WAIT_TIME = 5
+    WAIT_TIME = 5 # seconds
     attr_reader :config
 
     def initialize(config)

@@ -4,8 +4,7 @@ module RoutingHelper
   extend ActiveSupport::Concern
 
   include ActionView::Helpers::AssetTagHelper
-
-  # include ViteRails::TagHelpers
+  include Vite::TagsHelper
 
   included do
     include Rails.application.routes.url_helpers
@@ -50,68 +49,5 @@ module RoutingHelper
 
   def use_storage?
     Rails.configuration.x.use_s3 || Rails.configuration.x.use_swift
-  end
-
-  # Temporary vite helper stubs
-  # TODO: Move to their own helper
-  # TODO: Integrity
-
-  # VITE_URL = 'http://localhost:3036/packs-dev'
-  VITE_URL = '/packs-dev'
-
-  def vite_javascript_tag(*names, type: 'module', crossorigin: '', **)
-    scripts = names.map do |name|
-      # If the name is single file we assume it is inside app/javascripts/entrypoints
-      name.include?('/') ? "#{VITE_URL}/#{name}" : "#{VITE_URL}/entrypoints/#{name}"
-    end
-
-    javascript_include_tag(*scripts, crossorigin: crossorigin, type: type, extname: false, **)
-  end
-
-  def vite_typescript_tag(*names, **)
-    vite_javascript_tag(*names, asset_type: :typescript, **)
-  end
-
-  def vite_stylesheet_tag(*names, type: :stylesheet, **options) # rubocop:disable Lint/UnusedMethodArgument
-    style_paths = names.map do |name|
-      # If the name is single file we assume it is inside app/javascripts/entrypoints
-      name.include?('/') ? "#{VITE_URL}/#{name}" : "#{VITE_URL}/entrypoints/#{name}"
-    end
-
-    options[:extname] = false if Rails::VERSION::MAJOR >= 7
-
-    stylesheet_link_tag(*style_paths, **options)
-  end
-
-  def vite_client_tag(crossorigin: 'anonymous', **)
-    src = "#{VITE_URL}/@vite/client"
-    javascript_include_tag(src, type: 'module', extname: false, crossorigin: crossorigin, **)
-  end
-
-  def vite_react_refresh_tag(**options)
-    options[:nonce] = true if Rails::VERSION::MAJOR >= 6 && !options.key?(:nonce)
-
-    preamble = <<~REACT_PREAMBLE_CODE
-      import RefreshRuntime from '#{VITE_URL}/@react-refresh'
-      RefreshRuntime.injectIntoGlobalHook(window)
-      window.$RefreshReg$ = () => {}
-      window.$RefreshSig$ = () => (type) => type
-      window.__vite_plugin_react_preamble_installed__ = true
-    REACT_PREAMBLE_CODE
-
-    javascript_tag(preamble.html_safe, type: :module, **options) # rubocop:disable Rails/OutputSafety
-  end
-
-  def vite_asset_path(name, **_options)
-    asset = name.include?('/') ? "#{VITE_URL}/#{name}" : "#{VITE_URL}/entrypoints/#{name}"
-    path_to_asset asset
-  end
-
-  def vite_polyfills_tag
-    ''
-  end
-
-  def vite_preload_file_tag(*)
-    ''
   end
 end
