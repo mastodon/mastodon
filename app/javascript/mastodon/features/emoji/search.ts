@@ -63,12 +63,10 @@ export async function search({
   limit?: number;
   signal?: AbortSignal;
 }) {
+  log('searching for "%s"', rawQuery);
   performance.mark('emoji-search-start');
 
-  // Handle the abort signal
-  signal?.addEventListener('abort', () => {
-    signal.throwIfAborted();
-  });
+  signal?.throwIfAborted();
 
   // Get the locale, and extract tokens from the query.
   const locale = toSupportedLocale(localeString);
@@ -100,6 +98,7 @@ export async function search({
       locale,
       i === queryTokens.length - 1,
     );
+    signal?.throwIfAborted();
     const resultMap: ScoreMap = new Map();
     const checkedSet = new Set<string>();
 
@@ -128,6 +127,7 @@ export async function search({
     }
 
     // Score based on legacy shortcodes, using the higher score if there's a match.
+    signal?.throwIfAborted();
     for (const shortcodeResult of shortcodeResults) {
       const emoji =
         resultMap.get(shortcodeResult.hexcode) ??
@@ -190,7 +190,9 @@ export async function search({
 
   // If there are no results, try a cursor-based custom emoji search instead.
   if (mixedResults.length === 0 || mixedResults.length < limit) {
+    signal?.throwIfAborted();
     const customEmojisFound = await fullCustomSearch(query, allEmojiIds);
+    signal?.throwIfAborted();
     if (customEmojisFound.length > 0) {
       log(
         'cursor search found %d results for "%s"',
@@ -380,6 +382,8 @@ async function fullCustomSearch(query: string, existing = new Set<string>()) {
 
   // First iterate over chunks of 1,000 custom emoji keys and find any matches.
   const chunkSize = 1_000;
+  const maxIterations = 10;
+  let index = 0;
   let lastKey: string | null = null;
   let keys: string[] = [];
   do {
@@ -395,6 +399,10 @@ async function fullCustomSearch(query: string, existing = new Set<string>()) {
       if (!foundEmojis.has(key) && !existing.has(key) && key.includes(query)) {
         foundEmojis.add(key);
       }
+    }
+    index++;
+    if (index >= maxIterations) {
+      break;
     }
   } while (keys.length === chunkSize);
 
