@@ -147,6 +147,10 @@ group :test do
   # Validate schemas in specs
   gem 'json-schema', '~> 6.0'
 
+  # Validate API responses against the OpenAPI specification in specs
+  gem 'committee', '~> 5.0'
+  gem 'committee-rails', '~> 0.10'
+
   # Test harness fo rack components
   gem 'rack-test', '~> 2.1'
 
