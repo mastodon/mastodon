@@ -114,6 +114,12 @@ const collectionSlice = createSlice({
     reset(state) {
       state.editor = initialCollectionState.editor;
     },
+    initNewCollection(state, action: PayloadAction<EditorCollectionItem>) {
+      state.editor = {
+        ...initialCollectionState.editor,
+        items: [action.payload],
+      };
+    },
     updateEditorField<K extends keyof EditorState>(
       state: CollectionState,
       action: PayloadAction<UpdateEditorFieldPayload<K>>,

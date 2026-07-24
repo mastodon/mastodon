@@ -19,6 +19,7 @@ import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
+import { useAppHistory } from 'mastodon/components/router';
 import { useIdentity } from 'mastodon/identity_context';
 import { initialState } from 'mastodon/initial_state';
 import {
@@ -76,6 +77,7 @@ export const CollectionEditorPage: React.FC<{
 }> = ({ multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const history = useAppHistory();
   const { accountId, signedIn } = useIdentity();
   const { id = null } = useParams<{ id?: string }>();
   const { path } = useRouteMatch();
@@ -114,6 +116,14 @@ export const CollectionEditorPage: React.FC<{
       void dispatch(collectionEditorActions.init(collection));
     }
   }, [dispatch, collection]);
+
+  useEffect(() => {
+    return history.listen((location) => {
+      if (!matchPath(location.pathname, { path })) {
+        void dispatch(collectionEditorActions.reset());
+      }
+    });
+  }, [dispatch, history, path]);
 
   const pageTitle = intl.formatMessage(usePageTitle(id));
 
