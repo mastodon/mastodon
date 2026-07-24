@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { TextInputField, ToggleField } from './redesign';
+import CheckIcon from '@/material-icons/400-24px/check.svg?react';
+
+import { Fieldset } from './fieldset';
+import { RadioButtonField, TextInputField, ToggleField } from './redesign';
 
 interface FieldProps {
   label: string;
@@ -27,6 +30,17 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+export const RadioButton: Story = {
+  render(args) {
+    return (
+      <Fieldset name='test' legend='Test radio'>
+        <RadioButtonField {...args} icon={CheckIcon} defaultChecked />
+        <RadioButtonField {...args} icon={CheckIcon} />
+      </Fieldset>
+    );
+  },
+};
 
 export const TextInput: Story = {
   render(args) {

@@ -180,7 +180,15 @@ export const ComboboxFieldWithRef = <
   Item extends ComboboxItem,
   GroupKey extends string,
 >(
-  { id, label, hint, status, required, ...otherProps }: Props<Item, GroupKey>,
+  {
+    id,
+    label,
+    hint,
+    status,
+    required,
+    wrapperClassName,
+    ...otherProps
+  }: Props<Item, GroupKey>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) => (
   <FormFieldWrapper
@@ -189,6 +197,7 @@ export const ComboboxFieldWithRef = <
     required={required}
     status={status}
     inputId={id}
+    className={wrapperClassName}
   >
     {(inputProps) => <Combobox {...otherProps} {...inputProps} ref={ref} />}
   </FormFieldWrapper>
