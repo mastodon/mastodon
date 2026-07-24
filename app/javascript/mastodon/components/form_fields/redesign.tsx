@@ -2,6 +2,10 @@ import classNames from 'classnames';
 
 import type { Merge } from 'type-fest';
 
+import { Icon } from '../icon';
+import type { IconProp } from '../icon';
+
+import { RadioButtonField as OldRadioButtonField } from './radio_button_field';
 import classes from './redesign.module.scss';
 import {
   TextInput as OldTextInput,
@@ -17,6 +21,32 @@ type RedesignComponent<
   T extends React.JSXElementConstructor<any>,
   P = object,
 > = React.FC<Merge<React.ComponentProps<T>, P>>;
+
+// Radio button field
+
+interface RadioButtonProps {
+  icon?: IconProp | null;
+  iconClassName?: string;
+}
+
+export const RadioButtonField: RedesignComponent<
+  typeof OldRadioButtonField,
+  RadioButtonProps
+> = ({ className, icon, iconClassName, wrapperClassName, ...props }) => (
+  <OldRadioButtonField
+    {...props}
+    className={classNames(className, classes.radio)}
+    wrapperClassName={classNames(wrapperClassName, classes.radioWrapper)}
+  >
+    {icon && (
+      <Icon
+        id='checked'
+        icon={icon}
+        className={classNames(classes.icon, iconClassName)}
+      />
+    )}
+  </OldRadioButtonField>
+);
 
 // Text field
 

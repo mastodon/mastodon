@@ -1,3 +1,39 @@
+// Radio
+
+.radioWrapper {
+  [data-input] {
+    position: relative;
+  }
+
+  .icon {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+      color 200ms,
+      opacity 200ms;
+  }
+
+  .icon:has(+ :checked) {
+    opacity: 1;
+  }
+
+  label {
+    font-size: var(--fs-sm);
+  }
+}
+
+.icon {
+  width: var(--fs-lg);
+  height: var(--fs-lg);
+}
+
+.icon + .radio {
+  opacity: 0;
+}
+
+// Text Input
+
 .inputWrapper {
   label {
     font-size: var(--fs-sm);
