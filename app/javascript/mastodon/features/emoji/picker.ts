@@ -22,34 +22,50 @@ type LegacyEmoji =
     };
 
 // Replicates the old legacy search function.
-export async function emojiMartSearch(
-  token: string,
-  locale: string,
+export async function emojiMartSearch({
+  token,
+  locale,
   limit = 5,
-): Promise<LegacyEmoji[]> {
-  const query = token.replace(':', '').trim();
-  if (!query.length) {
-    return [];
+  signal,
+}: {
+  token: string;
+  locale: string;
+  limit?: number;
+  signal?: AbortSignal;
+}): Promise<LegacyEmoji[] | null> {
+  try {
+    const query = token.replace(':', '').trim();
+    if (!query.length) {
+      return [];
+    }
+
+    const cacheKey = `${query}|${locale}|${limit}`;
+    const cachedResult = searchCache.get(cacheKey);
+    if (cachedResult) {
+      return cachedResult;
+    }
+
+    const results = await search({
+      query,
+      locale,
+      limit,
+      signal,
+    });
+    const legacyResults = results.map((emoji) =>
+      'shortcode' in emoji
+        ? ({ id: emoji.shortcode, custom: true } as const)
+        : {
+            id: emoji.label.replaceAll(' ', '_').toLowerCase(),
+            native: emoji.unicode,
+          },
+    );
+    searchCache.set(cacheKey, legacyResults);
+
+    return legacyResults;
+  } catch {
+    log('aborted search for "%s"', token);
+    return null;
   }
-
-  const cacheKey = `${query}|${locale}|${limit}`;
-  const cachedResult = searchCache.get(cacheKey);
-  if (cachedResult) {
-    return cachedResult;
-  }
-
-  const results = await search({ query, locale, limit });
-  const legacyResults = results.map((emoji) =>
-    'shortcode' in emoji
-      ? ({ id: emoji.shortcode, custom: true } as const)
-      : {
-          id: emoji.label.replaceAll(' ', '_').toLowerCase(),
-          native: emoji.unicode,
-        },
-  );
-  searchCache.set(cacheKey, legacyResults);
-
-  return legacyResults;
 }
 
 const defaultCategories = [
