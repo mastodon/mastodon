@@ -11,7 +11,7 @@ Fabricator(:account) do
   suspended_at        { |attrs| attrs[:suspended] ? Time.now.utc : nil }
   silenced_at         { |attrs| attrs[:silenced] ? Time.now.utc : nil }
   user                { |attrs| attrs[:domain].nil? ? Fabricate.build(:user, account: nil) : nil }
-  uri                 { |attrs| attrs[:domain].nil? ? '' : "https://#{attrs[:domain]}/users/#{attrs[:username]}" }
+  uri                 { |attrs| attrs[:domain].nil? ? nil : "https://#{attrs[:domain]}/users/#{attrs[:username]}" }
   discoverable        true
   indexable           true
 
