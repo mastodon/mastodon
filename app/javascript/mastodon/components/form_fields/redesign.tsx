@@ -32,10 +32,9 @@ interface RadioButtonProps {
 export const RadioButtonField: RedesignComponent<
   typeof OldRadioButtonField,
   RadioButtonProps
-> = ({ className, icon, iconClassName, wrapperClassName, ...props }) => (
+> = ({ icon, iconClassName, wrapperClassName, ...props }) => (
   <OldRadioButtonField
     {...props}
-    className={classNames(className, classes.radio)}
     wrapperClassName={classNames(wrapperClassName, classes.radioWrapper)}
   >
     {icon && (

@@ -18,6 +18,10 @@
     opacity: 1;
   }
 
+  input {
+    opacity: 0;
+  }
+
   label {
     font-size: var(--fs-sm);
   }
@@ -26,10 +30,6 @@
 .icon {
   width: var(--fs-lg);
   height: var(--fs-lg);
-}
-
-.icon + .radio {
-  opacity: 0;
 }
 
 // Text Input
