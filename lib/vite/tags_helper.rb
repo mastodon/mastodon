@@ -6,10 +6,7 @@ module Vite
     # TODO: Integrity
 
     def vite_javascript_tag(*names, type: 'module', crossorigin: '', **)
-      scripts = names.map do |name|
-        # If the name is single file we assume it is inside app/javascripts/entrypoints
-        name.include?('/') ? "#{Vite.config.base_path}#{name}" : "#{Vite.config.base_path}entrypoints/#{name}"
-      end
+      scripts = NameResolver.resolve(*names)
 
       javascript_include_tag(*scripts, crossorigin: crossorigin, type: type, extname: false, **)
     end
@@ -19,10 +16,7 @@ module Vite
     end
 
     def vite_stylesheet_tag(*names, type: :stylesheet, **options) # rubocop:disable Lint/UnusedMethodArgument
-      style_paths = names.map do |name|
-        # If the name is single file we assume it is inside app/javascripts/entrypoints
-        name.include?('/') ? "#{Vite.config.base_path}#{name}" : "#{Vite.config.base_path}entrypoints/#{name}"
-      end
+      style_paths = NameResolver.resolve(*names)
 
       options[:extname] = false if Rails::VERSION::MAJOR >= 7
 
@@ -37,7 +31,7 @@ module Vite
     def vite_react_refresh_tag(**options)
       options[:nonce] = true if Rails::VERSION::MAJOR >= 6 && !options.key?(:nonce)
 
-      preamble = <<~REACT_PREAMBLE_CODE
+      preamble = <<~REACT_PREAMBLE_CODE.html_safe # rubocop:disable Rails/OutputSafety
         import RefreshRuntime from '#{Vite.config.base_path}@react-refresh'
         RefreshRuntime.injectIntoGlobalHook(window)
         window.$RefreshReg$ = () => {}
@@ -45,20 +39,38 @@ module Vite
         window.__vite_plugin_react_preamble_installed__ = true
       REACT_PREAMBLE_CODE
 
-      javascript_tag(preamble.html_safe, type: :module, **options) # rubocop:disable Rails/OutputSafety
+      javascript_tag(preamble, type: :module, **options)
     end
 
     def vite_asset_path(name, **_options)
-      asset = name.include?('/') ? "#{Vite.config.base_path}#{name}" : "#{Vite.config.base_path}entrypoints/#{name}"
-      path_to_asset asset
+      path_to_asset NameResolver.resolve(*name).first
     end
 
+    # TODO: This is only necessary if there is no dev server
     def vite_polyfills_tag
       ''
     end
 
-    def vite_preload_file_tag(*)
-      ''
+    def vite_preload_file_tag(name, crossorigin: 'anonymous', **)
+      name = NameResolver.resolve(*name).first
+      vite_preload_tag(name, crossorigin:, **)
+    end
+
+    def vite_preload_tag(*sources, crossorigin:, **options)
+      url_options = options.extract!(:host, :protocol)
+      asset_paths = sources.map { |source| path_to_asset(source, **url_options) }
+      try(:request).try(
+        :send_early_hints,
+        'Link' => asset_paths.map do |href|
+          %(<#{href}>; rel=modulepreload; as=script; crossorigin=#{crossorigin})
+        end.join(',')
+      )
+
+      tags = asset_paths.map do |href|
+        tag.link(rel: 'modulepreload', href: href, as: 'script', crossorigin: crossorigin, **options)
+      end
+
+      safe_join(tags)
     end
   end
 end
