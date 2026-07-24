@@ -26,6 +26,17 @@ RSpec.describe 'Settings Deletes' do
             .to have_http_status(403)
         end
       end
+
+      context 'when already deleted' do
+        let(:user) { Fabricate(:user, account_attributes: { deleted_at: Time.now.utc }) }
+
+        it 'returns http forbidden' do
+          delete settings_delete_path
+
+          expect(response)
+            .to have_http_status(403)
+        end
+      end
     end
 
     context 'when not signed in' do
@@ -52,6 +63,17 @@ RSpec.describe 'Settings Deletes' do
             .to have_http_status(403)
           expect(response.headers['Cache-Control'])
             .to include('private, no-store')
+        end
+      end
+
+      context 'when already deleted' do
+        let(:user) { Fabricate(:user, account_attributes: { deleted_at: Time.now.utc }) }
+
+        it 'returns http forbidden' do
+          get settings_delete_path
+
+          expect(response)
+            .to have_http_status(403)
         end
       end
     end

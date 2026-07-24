@@ -3,13 +3,14 @@
 require_relative '../support/signing_keys_helpers'
 
 Fabricator(:account) do
-  transient :suspended, :silenced, :legacy_keypair
+  transient :suspended, :silenced, :legacy_keypair, :deleted
   username            { sequence(:username) { |i| "#{Faker::Internet.user_name(separators: %w(_))}#{i}" } }
   last_webfingered_at { Time.now.utc }
   public_key          { |attrs| attrs[:legacy_keypair] ? SigningKeysHelpers::PUBLIC_RSA_TEST_KEY : '' }
   private_key         { |attrs| attrs[:legacy_keypair] && attrs[:domain].nil? ? SigningKeysHelpers::PRIVATE_RSA_TEST_KEY : nil }
   suspended_at        { |attrs| attrs[:suspended] ? Time.now.utc : nil }
   silenced_at         { |attrs| attrs[:silenced] ? Time.now.utc : nil }
+  deleted_at          { |attrs| attrs[:deleted] ? Time.now.utc : nil }
   user                { |attrs| attrs[:domain].nil? ? Fabricate.build(:user, account: nil) : nil }
   uri                 { |attrs| attrs[:domain].nil? ? '' : "https://#{attrs[:domain]}/users/#{attrs[:username]}" }
   discoverable        true
