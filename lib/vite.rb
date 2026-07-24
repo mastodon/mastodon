@@ -6,6 +6,7 @@ module Vite
   autoload :DevServer, 'vite/dev_server'
   autoload :NameResolver, 'vite/name_resolver'
   autoload :Proxy, 'vite/proxy'
+  autoload :Tagger, 'vite/tagger'
   autoload :TagsHelper, 'vite/tags_helper'
 
   def self.setup
@@ -18,5 +19,9 @@ module Vite
 
   def self.dev_server
     @dev_server ||= DevServer.new(config)
+  end
+
+  def self.tagger
+    @tagger ||= Tagger.new(config)
   end
 end
