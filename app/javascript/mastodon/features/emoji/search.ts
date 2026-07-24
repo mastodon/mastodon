@@ -56,12 +56,19 @@ export async function search({
   query: rawQuery,
   locale: localeString,
   limit = 0,
+  signal,
 }: {
   query: string;
   locale: string;
   limit?: number;
+  signal?: AbortSignal;
 }) {
   performance.mark('emoji-search-start');
+
+  // Handle the abort signal
+  signal?.addEventListener('abort', () => {
+    signal.throwIfAborted();
+  });
 
   // Get the locale, and extract tokens from the query.
   const locale = toSupportedLocale(localeString);
