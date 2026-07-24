@@ -93,10 +93,8 @@ export const ColumnsArea = forwardRef<
   }
 >(({ children, minimalShell, singleColumn }, ref) => {
   const renderComposePanel = !useBreakpoint('full');
-  const columns = useAppSelector((state) =>
-    (state.settings as Record<{ columns: List<Record<Column>> }>).get(
-      'columns',
-    ),
+  const columns = useAppSelector(
+    (state) => state.settings.get('columns') as List<Record<Column>>,
   );
   const isModalOpen = useAppSelector(
     (state) => !state.modal.get('stack').isEmpty(),

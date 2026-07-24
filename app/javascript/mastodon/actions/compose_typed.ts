@@ -168,9 +168,10 @@ export const quoteComposeByStatus = createAppThunk(
     const composeState = state.compose;
     const mediaAttachments = composeState.get('media_attachments');
 
-    const wasQuietPostHintModalDismissed = !!(
-      state.settings as Immutable.Map<string, unknown>
-    ).getIn(['dismissed_banners', 'quote/quiet_post_hint'], false);
+    const wasQuietPostHintModalDismissed = !!state.settings.getIn(
+      ['dismissed_banners', 'quote/quiet_post_hint'],
+      false,
+    );
 
     if (composeState.get('id')) {
       dispatch(showAlert({ message: messages.quoteErrorEdit }));
@@ -299,7 +300,7 @@ export const submitCompose = createAppThunk(
       dispatch(changeCompose(textareaValue));
     }
 
-    const { compose, meta, statuses } = getState();
+    const { compose, meta, statuses, settings } = getState();
     const privacy = compose.get('privacy') as StatusVisibility;
     const missingAltText = (
       compose.get('media_attachments') as unknown as Immutable.List<
@@ -316,10 +317,7 @@ export const submitCompose = createAppThunk(
       !!quotedStatusId &&
       privacy === 'private' &&
       statuses.getIn([quotedStatusId, 'account']) !== me &&
-      !(getState().settings as Immutable.Map<string, string>).getIn([
-        'dismissed_banners',
-        PRIVATE_QUOTE_MODAL_ID,
-      ]);
+      !settings.getIn(['dismissed_banners', PRIVATE_QUOTE_MODAL_ID]);
 
     if (
       !!meta.get('missing_alt_text_modal') &&
