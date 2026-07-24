@@ -4,6 +4,7 @@
 module Vite
   autoload :Config, 'vite/config'
   autoload :DevServer, 'vite/dev_server'
+  autoload :NameResolver, 'vite/name_resolver'
   autoload :Proxy, 'vite/proxy'
   autoload :TagsHelper, 'vite/tags_helper'
 
