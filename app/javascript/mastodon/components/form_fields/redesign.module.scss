@@ -1,5 +1,41 @@
+.inputWrapper {
+  label {
+    font-size: var(--fs-sm);
+  }
+
+  span {
+    color: var(--color-text-tertiary);
+    font-size: var(--fs-2xs);
+    line-height: var(--fs-lg);
+  }
+}
+
+input.input {
+  font-size: var(--fs-lg);
+  background: none;
+  border-radius: var(--space-xs);
+  border: 0.5px solid var(--color-text-tertiary);
+  padding: var(--space-xs);
+  transition: background 200ms;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 1px var(--space-2xs) 0
+      rgb(from var(--color-text-primary) r g b / 10%);
+    background: var(--color-bg-highlight);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-border-strong);
+  }
+
+  &:disabled {
+    border-color: var(--color-bg-disabled);
+  }
+}
+
+// Use double class to override original styles.
 .toggle.toggle {
-  background: rgb(from var(--color-bg-inverted) r g b / 70%);
+  background: var(--color-text-tertiary);
 
   &::before {
     box-shadow: none;

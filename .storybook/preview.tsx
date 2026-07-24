@@ -204,6 +204,14 @@ const preview: Preview = {
         </IdentityContext.Provider>
       );
     },
+    (Story, { parameters }) => {
+      useEffect(() => {
+        document.documentElement.dataset.redesign = parameters.redesign
+          ? 'true'
+          : 'false';
+      }, [parameters.redesign]);
+      return <Story />;
+    },
   ],
   loaders: [
     mswLoader,

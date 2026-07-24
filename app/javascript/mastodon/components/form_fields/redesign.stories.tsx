@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ToggleField } from './redesign';
+import { TextInputField, ToggleField } from './redesign';
 
 interface FieldProps {
   label: string;
@@ -19,11 +19,20 @@ const meta = {
     hint: 'This is a description of this form field',
     disabled: false,
   },
+  parameters: {
+    redesign: true,
+  },
 } satisfies Meta<FieldProps>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+export const TextInput: Story = {
+  render(args) {
+    return <TextInputField {...args} />;
+  },
+};
 
 export const Toggle: Story = {
   render(args) {
