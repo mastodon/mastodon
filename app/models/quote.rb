@@ -25,7 +25,7 @@ class Quote < ApplicationRecord
   REFRESH_DEADLINE = 6.hours
 
   enum :state,
-       { pending: 0, accepted: 1, rejected: 2, revoked: 3, deleted: 4 },
+       { pending: 0, accepted: 1, rejected: 2, revoked: 3, deleted: 4, pending_delayed: 5, verification_failed: 6 },
        validate: true
 
   belongs_to :status

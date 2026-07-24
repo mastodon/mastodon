@@ -7,6 +7,16 @@ class ActivityPub::RefetchAndVerifyQuoteWorker
 
   sidekiq_options queue: 'pull', retry: 5
 
+  sidekiq_retries_exhausted do |msg|
+    quote_id = msg['args'].first
+
+    ActiveRecord::Base.connection_pool.with_connection do
+      Quote.find(quote_id).update!(state: :verification_failed)
+    rescue ActiveRecord::RecordNotFound
+      true
+    end
+  end
+
   def perform(quote_id, quoted_uri, options = {})
     quote = Quote.find(quote_id)
     ActivityPub::VerifyQuoteService.new.call(quote, options['approval_uri'], fetchable_quoted_uri: quoted_uri, request_id: options['request_id'])
