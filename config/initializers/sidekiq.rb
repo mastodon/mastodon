@@ -2,8 +2,11 @@
 
 require_relative '../../lib/mastodon/sidekiq_middleware'
 require_relative '../../lib/mastodon/worker_batch_middleware'
+require_relative '../../lib/mastodon/database_state_checks'
 
 Sidekiq.configure_server do |config|
+  Mastodon::DatabaseStateChecks.check_database_state!
+
   config.redis = REDIS_CONFIGURATION.sidekiq
 
   # This is used in Kubernetes setups, to signal that the Sidekiq process has started and will begin processing jobs
