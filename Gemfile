@@ -103,7 +103,7 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.10.0'
+gem 'opentelemetry-api', '~> 1.11.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.34.0', require: false
