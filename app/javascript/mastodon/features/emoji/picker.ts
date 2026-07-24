@@ -13,7 +13,6 @@ import { emojiLogger } from './utils';
 const log = emojiLogger('picker');
 
 const searchCache = createLimitedCache<LegacyEmoji[]>({ maxSize: 10, log });
-const searchAbortController = new AbortController();
 
 type LegacyEmoji =
   | { id: string; custom?: false; native: string }
@@ -23,29 +22,34 @@ type LegacyEmoji =
     };
 
 // Replicates the old legacy search function.
-export async function emojiMartSearch(
-  token: string,
-  locale: string,
+export async function emojiMartSearch({
+  token,
+  locale,
   limit = 5,
-): Promise<LegacyEmoji[]> {
-  searchAbortController.abort(); // If we are starting a new search, abort the old one.
-  const query = token.replace(':', '').trim();
-  if (!query.length) {
-    return [];
-  }
-
-  const cacheKey = `${query}|${locale}|${limit}`;
-  const cachedResult = searchCache.get(cacheKey);
-  if (cachedResult) {
-    return cachedResult;
-  }
-
+  signal,
+}: {
+  token: string;
+  locale: string;
+  limit?: number;
+  signal?: AbortSignal;
+}): Promise<LegacyEmoji[] | null> {
   try {
+    const query = token.replace(':', '').trim();
+    if (!query.length) {
+      return [];
+    }
+
+    const cacheKey = `${query}|${locale}|${limit}`;
+    const cachedResult = searchCache.get(cacheKey);
+    if (cachedResult) {
+      return cachedResult;
+    }
+
     const results = await search({
       query,
       locale,
       limit,
-      signal: searchAbortController.signal,
+      signal,
     });
     const legacyResults = results.map((emoji) =>
       'shortcode' in emoji
@@ -59,7 +63,8 @@ export async function emojiMartSearch(
 
     return legacyResults;
   } catch {
-    return [];
+    log('aborted search for "%s"', token);
+    return null;
   }
 }
 
