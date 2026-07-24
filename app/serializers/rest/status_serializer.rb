@@ -201,7 +201,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
 
     def username
-      object.account_username
+      object.account.pretty_username
     end
 
     def url

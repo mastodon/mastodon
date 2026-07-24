@@ -237,7 +237,17 @@ class Account < ApplicationRecord
     local? ? username : "#{username}@#{domain}"
   end
 
+  def pretty_username
+    # Return special username for user-facing invalid handle accounts
+    return id.to_s if invalidated_username?
+
+    username
+  end
+
   def pretty_acct
+    # Return special handle for user-facing invalid handle accounts
+    return "#{id}@handle.invalid" if invalidated_username?
+
     local? ? username : "#{username}@#{Addressable::IDNA.to_unicode(domain)}"
   end
 
@@ -253,14 +263,31 @@ class Account < ApplicationRecord
     "acct:#{local_username_and_domain}"
   end
 
+  def invalidate_username!
+    raise ArgumentError if local?
+    return if invalidated_username?
+
+    # It is very unlikely that we will allow `!` in usernames in the future,
+    # and we will never allow ` ` in them either, so this ensure this will never
+    # match a valid username on a remote server.
+
+    # Using the local ID ensures we won't have any conflict.
+
+    update_attribute(:username, "! #{id}")
+  end
+
+  def invalidated_username?
+    username.start_with?('! ')
+  end
+
   def possibly_stale?
-    last_webfingered_at.nil? || last_webfingered_at <= STALE_THRESHOLD.ago
+    last_webfingered_at.nil? || last_webfingered_at <= STALE_THRESHOLD.ago || invalidated_username?
   end
 
   def needs_background_refresh?
     return false if local?
 
-    return true if last_webfingered_at.blank? || last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
+    return true if last_webfingered_at.blank? || last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago || invalidated_username?
 
     # TODO: Remove some time after 4.6
     # This is temporary workaround to speed up account refreshs after
