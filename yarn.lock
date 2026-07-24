@@ -5367,8 +5367,8 @@ __metadata:
   linkType: hard
 
 "@vitejs/plugin-legacy@npm:^8.0.0":
-  version: 8.2.1
-  resolution: "@vitejs/plugin-legacy@npm:8.2.1"
+  version: 8.2.2
+  resolution: "@vitejs/plugin-legacy@npm:8.2.2"
   dependencies:
     "@babel/core": "npm:^7.29.7"
     "@babel/plugin-transform-dynamic-import": "npm:^7.29.7"
@@ -5379,13 +5379,13 @@ __metadata:
     browserslist: "npm:^4.28.6"
     browserslist-to-esbuild: "npm:^2.1.1"
     core-js: "npm:^3.49.0"
-    magic-string: "npm:^0.30.21"
+    magic-string: "npm:^1.0.0"
     regenerator-runtime: "npm:^0.14.1"
     systemjs: "npm:^6.15.1"
   peerDependencies:
     terser: ^5.16.0
     vite: ^8.0.0
-  checksum: 10c0/c9c65e1c89f93f22d34dccf27fbf2b7ed63be708819741eb4c8efe329911b8dd904d658e9ba7e287da6af7745bd87e870e4237e0b08a2a39c9628df0d3008e6c
+  checksum: 10c0/b317ba6edd105b117c0d6dd5a60a5f66dbf6dcbd08910c60e801c94525d281636529da3d402d5150e3ebdc6b688433bcbe28ee01d4218b4860fd90b98728d6a6
   languageName: node
   linkType: hard
 
@@ -10045,6 +10045,15 @@ __metadata:
   dependencies:
     "@jridgewell/sourcemap-codec": "npm:^1.5.5"
   checksum: 10c0/299378e38f9a270069fc62358522ddfb44e94244baa0d6a8980ab2a9b2490a1d03b236b447eee309e17eb3bddfa482c61259d47960eb018a904f0ded52780c4a
+  languageName: node
+  linkType: hard
+
+"magic-string@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "magic-string@npm:1.1.0"
+  dependencies:
+    "@jridgewell/sourcemap-codec": "npm:^1.5.5"
+  checksum: 10c0/f904dee2fd190ee5450c754234d8a831228677e9092ed2e545e42746beecf18d617156eb911af55a14496ebe1e60179678c4080c919f74eca7738eba3f38f13a
   languageName: node
   linkType: hard
 
