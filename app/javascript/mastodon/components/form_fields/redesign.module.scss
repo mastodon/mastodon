@@ -16,10 +16,12 @@ input.input {
   border-radius: var(--space-xs);
   border: 0.5px solid var(--color-text-tertiary);
   padding: var(--space-xs);
+  transition: background 200ms;
 
   &:hover:not(:disabled) {
     box-shadow: 0 1px var(--space-2xs) 0
       rgb(from var(--color-text-primary) r g b / 10%);
+    background: var(--color-bg-highlight);
   }
 
   &:focus {
@@ -27,9 +29,7 @@ input.input {
   }
 
   &:disabled {
-    color: var(--color-text-primary);
-    border-color: var(--color-text-tertiary);
-    background: var(--color-bg-highlight);
+    border-color: var(--color-bg-disabled);
   }
 }
 
