@@ -105,10 +105,13 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // but it needs to be scoped to the whole domain
         'Service-Worker-Allowed': '/',
       },
-      hmr: {
+      hmr: true,
+      ws: {
         // Forcing the protocol to be insecure helps if you are proxying your dev server with SSL,
         // because Vite still tries to connect to localhost.
         protocol: 'ws',
+        // The client can't connect through the main Rails app proxy since it doesn't support
+        // WebSockets. It needs to connect directly to Vite's server, that's why we set the port again
         clientPort: 3036,
       },
       port: 3036,
