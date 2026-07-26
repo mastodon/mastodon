@@ -108,12 +108,12 @@ class Collection < ApplicationRecord
     collection_items.select { |i| i.accepted? || i.pending? }
   end
 
-  def max_items
+  def max_items_limit
     local? ? MAX_ITEMS : MAX_ITEMS_HARD_LIMIT
   end
 
   def items_do_not_exceed_limit
-    errors.add(:collection_items, :too_many, count: max_items) if pending_or_accepted_items.size > max_items
+    errors.add(:collection_items, :too_many, count: max_items_limit) if pending_or_accepted_items.size > max_items_limit
   end
 
   def user_does_not_exceed_limit
