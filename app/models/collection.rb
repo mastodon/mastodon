@@ -23,7 +23,10 @@
 #
 class Collection < ApplicationRecord
   MAX_ITEMS = 25
+  MAX_ITEMS_HARD_LIMIT = 150
+  NAME_LENGTH = 40
   NAME_LENGTH_HARD_LIMIT = 256
+  DESCRIPTION_LENGTH = 100
   DESCRIPTION_LENGTH_HARD_LIMIT = 2048
 
   belongs_to :account
@@ -36,14 +39,10 @@ class Collection < ApplicationRecord
   has_many :notifications, as: :activity, dependent: :destroy
 
   validates :name, presence: true
-  validates :name, length: { maximum: 40 }, if: :local?
+  validates :name, length: { maximum: NAME_LENGTH }, if: :local?
   validates :name, length: { maximum: NAME_LENGTH_HARD_LIMIT }, if: :remote?
-  validates :description,
-            length: { maximum: 100 },
-            if: :local?
-  validates :description_html,
-            length: { maximum: DESCRIPTION_LENGTH_HARD_LIMIT },
-            if: :remote?
+  validates :description, length: { maximum: DESCRIPTION_LENGTH }, if: :local?
+  validates :description_html, length: { maximum: DESCRIPTION_LENGTH_HARD_LIMIT }, if: :remote?
   validates :local, inclusion: [true, false]
   validates :sensitive, inclusion: [true, false]
   validates :discoverable, inclusion: [true, false]
@@ -109,8 +108,14 @@ class Collection < ApplicationRecord
     collection_items.select { |i| i.accepted? || i.pending? }
   end
 
+  def max_items
+    local? ? MAX_ITEMS : MAX_ITEMS_HARD_LIMIT
+  end
+
   def items_do_not_exceed_limit
-    errors.add(:collection_items, :too_many, count: MAX_ITEMS) if pending_or_accepted_items.size > MAX_ITEMS
+    if pending_or_accepted_items.size > max_items
+      errors.add(:collection_items, :too_many, count: max_items)
+    end
   end
 
   def user_does_not_exceed_limit
