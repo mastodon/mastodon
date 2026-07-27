@@ -81,6 +81,17 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
           expect(new_item.position).to eq 1
         end
       end
+
+      context "when the collection's item count is already at the limit" do
+        before do
+          stub_const('ActivityPub::ProcessFeaturedCollectionService::ITEMS_LIMIT', 3)
+          Fabricate.times(3, :collection_item, collection:)
+        end
+
+        it 'does not create an item' do
+          expect { subject.call(collection, object) }.to_not change(collection.collection_items, :count)
+        end
+      end
     end
 
     context 'when item exists' do
