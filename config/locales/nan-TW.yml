@@ -2268,6 +2268,32 @@ nan-TW:
       explanation:
         delete_statuses: Lí一寡PO文有發現違反一條以上ê社里守則，然後就予 %{instance} ê管理員thâi掉。
         disable: Lí bē當koh用lí ê口座，毋koh lí ê個人資料kap其他ê資料完整保持。lí通要求lí ê資料ê備份，改口座ê設定，á是thâi掉lí ê口座。
+        mark_statuses_as_sensitive: Lí ê一寡PO文有予 %{instance} ê管理員標做敏感ê。Tse意思是lâng佇kā圖先看覓進前愛tshi̍h媒體。Lí未來PO文ê時，家己通標媒體做敏感ê。
+        sensitive: 對tann開始，lí所有傳起去ê媒體lóng會標做敏感ê，mā ē khàm佇愛點ê警告後壁。
+        silence: Lí猶原通用lí ê口座，但是干焦已經綴lí ê lâng ē看著lí佇tsit臺服侍器ê PO文，koh lí可能對tsē-tsē探索功能排除。毋過，別lângē當手動跟tuè lí。
+        suspend: Lí bē當koh用lí ê口座，而且lí ê個人資料hām其他資料lóng bē當接近使用。Lí猶原ē當登入來要求汝資料ê備份，直到資料佇30 kang後總thâi掉，但是lán猶原ē保留一寡基本資料，防止規避中止權限。
+      reason: 原因：
+      statuses: 引用ê PO文：
+      subject:
+        delete_statuses: Lí佇 %{acct} ê口座已經hőng thâi掉
+        disable: Lí ê口座 %{acct} 已經hőng凍結
+        mark_statuses_as_sensitive: Lí佇 %{acct} ê PO文已經hőng標做敏感ê
+        none: 對 %{acct} ê警告
+        sensitive: Tuì tsit-má開始，lí佇 %{acct} ê PO文ē標做敏感ê內容
+        silence: Lí ê口座 %{acct} 已經hőng限制
+        suspend: Lí ê口座 %{acct} 已經hőng停止權限
+      title:
+        delete_statuses: PO文thâi掉ah
+        disable: 口座凍結ah
+        mark_statuses_as_sensitive: PO文hőng標做敏感ê ah
+        none: 警告
+        sensitive: 口座hőng標做敏感ê ah
+        silence: 帳號hőng限制ah
+        suspend: 口座已經受停止
     welcome:
+      apps_android_action: 對Google Play載落去
+      apps_ios_action: 對App Store載落去
+      apps_step: Kā阮ê官方應用程式載落去。
+      apps_title: Mastodon APP
       feature_creativity: Mastodon支持聲音、影kap圖片êPO文、容易使用性ê描述、投票、內容ê警告、動畫ê標頭、自訂ê繪文字kap裁縮小圖ê控制等等，幫tsān lí展現家己。無論beh發表藝術作品、音樂，á是podcast，Mastodon佇tsia為lí服務。
       sign_in_action: 登入
