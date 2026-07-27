@@ -36,7 +36,7 @@ const messages = defineMessages({
 });
 
 const isPollExpired = (expiresAt: Model.Poll['expires_at']) =>
-  new Date(expiresAt).getTime() < Date.now();
+  expiresAt !== null && new Date(expiresAt).getTime() < Date.now();
 
 interface PollProps {
   pollId: string;
@@ -64,7 +64,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
     return poll.expired || isPollExpired(poll.expires_at);
   }, [poll]);
   const timeRemaining = useMemo(() => {
-    if (!poll) {
+    if (!poll?.expires_at) {
       return null;
     }
     if (expired) {
