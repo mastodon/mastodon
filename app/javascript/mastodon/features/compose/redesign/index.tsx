@@ -96,6 +96,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
           label={intl.formatMessage(messages.sensitive)}
           checked={sensitive}
           onChange={onSensitiveChange}
+          size='sm'
         />
 
         <LanguageButton />
