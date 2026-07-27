@@ -3,7 +3,7 @@
 module Vite
   # TODO: Load config from file generated from `vite` command
   class Config
-    attr_accessor :host, :port, :https, :base_path, :tag_strategies
+    attr_accessor :host, :port, :https, :base_path, :tag_strategies, :manifest_path, :manifest_assets_path
 
     def initialize
       @host = 'localhost'
@@ -11,6 +11,9 @@ module Vite
       @https = false
       @base_path = '/packs-dev/'
       @tag_strategies = [:dev_server, :manifest]
+      # TODO: Setup full path using Rails.root or Rails.public_path
+      @manifest_path = 'public/packs-dev/.vite/manifest.json'
+      @manifest_assets_path = 'public/packs-dev/.vite/manifest-assets.json'
     end
 
     def https?
