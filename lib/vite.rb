@@ -25,4 +25,12 @@ module Vite
   def self.tagger
     @tagger ||= Tagger.new(config)
   end
+
+  def self.manifest
+    @manifest ||= Manifest.new(config)
+  end
+
+  def self.preload
+    manifest.load
+  end
 end

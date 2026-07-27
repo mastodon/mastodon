@@ -12,20 +12,6 @@ module Vite
         @config = config
       end
 
-      def vite_javascript_tag(helper, *names, type: 'module', crossorigin: '', asset_type: '', **) # rubocop:disable Lint/UnusedMethodArgument
-        scripts = NameResolver.resolve(*names)
-
-        helper.javascript_include_tag(*scripts, crossorigin:, type:, extname: false, **)
-      end
-
-      def vite_stylesheet_tag(helper, *names, type: :stylesheet, **options) # rubocop:disable Lint/UnusedMethodArgument
-        style_paths = NameResolver.resolve(*names)
-
-        options[:extname] = false if Rails::VERSION::MAJOR >= 7
-
-        helper.stylesheet_link_tag(*style_paths, **options)
-      end
-
       def vite_client_tag(helper, crossorigin: 'anonymous', **)
         src = "#{Vite.config.base_path}@vite/client"
         helper.javascript_include_tag(src, type: 'module', extname: false, crossorigin:, **)
@@ -45,11 +31,25 @@ module Vite
         helper.javascript_tag(preamble, type: :module, **options)
       end
 
+      def vite_javascript_tag(helper, *names, type: 'module', crossorigin: '', asset_type: '', **) # rubocop:disable Lint/UnusedMethodArgument
+        scripts = NameResolver.resolve(*names)
+
+        helper.javascript_include_tag(*scripts, crossorigin:, type:, extname: false, **)
+      end
+
+      def vite_stylesheet_tag(helper, *names, type: :stylesheet, **options) # rubocop:disable Lint/UnusedMethodArgument
+        style_paths = NameResolver.resolve(*names)
+
+        options[:extname] = false if Rails::VERSION::MAJOR >= 7
+
+        helper.stylesheet_link_tag(*style_paths, **options)
+      end
+
       def vite_asset_path(helper, name, **_options)
         helper.path_to_asset NameResolver.resolve(*name).first
       end
 
-      def vite_polyfills_tag(_helper)
+      def vite_polyfills_tag(_helper, crossorigin: 'anonymous', **) # rubocop:disable Lint/UnusedMethodArgument
         ''
       end
 
@@ -76,12 +76,123 @@ module Vite
       end
     end
 
-    # TODO: Build tags from manifest files
+    # FIXME: Control missing entries
+    # FIXME: Improve NameResolve interfaces between multiple names and single names
+    # FIXME: Review vite_ methods and options passed
     class ManifestStrategy
-      attr_reader :config
+      attr_reader :config, :manifest
 
       def initialize(config)
         @config = config
+        # TODO: Better dependency injection?
+        @manifest = Vite.manifest.tap(&:load)
+      end
+
+      def vite_client_tag(*)
+        ''
+      end
+
+      def vite_react_refresh_tag(*)
+        ''
+      end
+
+      def vite_javascript_tag(helper, *names, type: 'module', crossorigin: '', asset_type: '', media: nil, **) # rubocop:disable Lint/UnusedMethodArgument
+        names = NameResolver.partial_resolve(*names)
+
+        # TODO: Add skip_* options (?)
+        scripts = []
+        preloads = []
+        stylesheets = []
+        entries = manifest.fetch(*names)
+
+        entries.each do |entry|
+          scripts << helper.javascript_include_tag(
+            NameResolver.add_base(entry.file).first,
+            integrity: entry.integrity,
+            crossorigin:,
+            type:,
+            extname: false,
+            **
+          )
+
+          preloads = entry.imports.map do |import|
+            vite_preload_tag(
+              helper,
+              NameResolver.add_base(import.file).first,
+              integrity: import.integrity,
+              crossorigin:,
+              **
+            )
+          end
+
+          stylesheets = entry.stylesheets.map do |stylesheet|
+            helper.stylesheet_link_tag(
+              NameResolver.add_base(stylesheet.file).first,
+              integrity: stylesheet.integrity,
+              crossorigin:,
+              media:,
+              **
+            )
+          end
+        end
+
+        helper.safe_join(scripts + preloads + stylesheets)
+      end
+
+      def vite_stylesheet_tag(helper, *names, type: :stylesheet, **options) # rubocop:disable Lint/UnusedMethodArgument
+        options[:extname] = false if Rails::VERSION::MAJOR >= 7
+
+        style_paths = NameResolver.partial_resolve(*names)
+
+        stylesheets = manifest.fetch(*style_paths).map do |entry|
+          helper.stylesheet_link_tag(
+            NameResolver.add_base(entry.file).first,
+            integrity: entry.integrity,
+            **options
+          )
+        end
+
+        helper.safe_join(stylesheets)
+      end
+
+      def vite_asset_path(helper, name, **_options)
+        entry = manifest.fetch(*NameResolver.partial_resolve(*name)).first
+        helper.path_to_asset NameResolver.add_base(*entry.file).first
+      end
+
+      def vite_polyfills_tag(helper, crossorigin: 'anonymous', **)
+        entry = manifest.fetch('polyfills').first
+
+        helper.javascript_include_tag(
+          *NameResolver.add_base(*entry.file).first,
+          type: 'module',
+          integrity: entry.integrity,
+          crossorigin:,
+          **
+        )
+      end
+
+      def vite_preload_file_tag(helper, name, crossorigin: 'anonymous', **)
+        entry = manifest.fetch(*NameResolver.partial_resolve(*name)).first
+        vite_preload_tag(helper, NameResolver.add_base(*entry.file).first, crossorigin:, **)
+      end
+
+      # TODO: Extract to a shared module
+      def vite_preload_tag(helper, *sources, crossorigin:, **options)
+        url_options = options.extract!(:host, :protocol)
+        asset_paths = sources.map { |source| helper.path_to_asset(source, **url_options) }
+        helper.try(:request).try(
+          :send_early_hints,
+          'Link' => asset_paths.map do |href|
+            %(<#{href}>; rel=modulepreload; as=script; crossorigin=#{crossorigin})
+          end.join(',')
+        )
+
+        tags = asset_paths.map do |href|
+          helper.tag.link(rel: 'modulepreload', href:, as: 'script', crossorigin:, **options)
+        end
+
+        helper.safe_join(tags)
       end
     end
 
@@ -90,6 +201,7 @@ module Vite
     def initialize(config)
       @strategies = []
       @strategies << DevServerStrategy.new(config) if config.tag_strategies.include?(:dev_server) && Vite.dev_server.running?
+      @strategies << ManifestStrategy.new(config) if config.tag_strategies.include?(:manifest)
     end
 
     def method_missing(method, ...)

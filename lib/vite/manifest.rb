@@ -80,7 +80,8 @@ module Vite
 
       json = JSON.load_file(config.manifest_path)
       json.each do |key, raw|
-        next unless raw['isEntry']
+        # Only select main entrypoints and locales
+        next unless raw['isEntry'] || key.start_with?('mastodon/locales/')
 
         import_ids, stylesheet_ids = resolve_relations(json, raw)
 
@@ -98,6 +99,11 @@ module Vite
       end
 
       @loaded = true
+    end
+
+    # TODO: Filter by asset type
+    def fetch(*names)
+      names.filter_map { |name| entries[name] }
     end
 
     private

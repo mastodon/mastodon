@@ -29,8 +29,8 @@ module Vite
       Vite.tagger.vite_asset_path(self, name, **)
     end
 
-    def vite_polyfills_tag
-      Vite.tagger.vite_polyfills_tag(self)
+    def vite_polyfills_tag(crossorigin: 'anonymous', **)
+      Vite.tagger.vite_polyfills_tag(self, crossorigin:, **)
     end
 
     def vite_preload_file_tag(name, crossorigin: 'anonymous', **)
