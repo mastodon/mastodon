@@ -95,11 +95,16 @@ export interface PopoverProps {
      * enable it to be sized and positioned. The `ref` prop
      * is not passed when the `popoverElement` prop is provided.
      */
-    props: Record<string, unknown> & {
-      ref?: React.RefCallback<HTMLElement>;
-      style: React.CSSProperties;
-    };
+    props: PopoverChildProps;
   }) => React.ReactNode;
+}
+
+export interface PopoverChildProps {
+  ref?: React.RefCallback<HTMLElement>;
+  style: React.CSSProperties;
+  'data-popover-placement': Placement;
+  'data-popover-reference-hidden'?: boolean;
+  'data-popover-escaped'?: boolean;
 }
 
 export const Popover: React.FC<PopoverProps> = ({
