@@ -16,10 +16,13 @@ class Admin::Metrics::Retention
   alias loaded? loaded
 
   def initialize(start_at, end_at, frequency)
-    @start_at  = start_at&.to_date
-    @end_at    = end_at&.to_date
+    @start_at  = start_at.to_date
+    @end_at    = end_at.to_date
+
     @frequency = %w(day month).include?(frequency) ? frequency : 'day'
     @loaded    = false
+
+    @start_at = [@start_at, @end_at - (@frequency == 'day' ? 31.days : 12.months)].max
   end
 
   def cache_key
