@@ -14,7 +14,7 @@ module Admin
     end
 
     def show
-      authorize @collection, :show?
+      authorize [:admin, @collection], :show?
     end
 
     def batch
