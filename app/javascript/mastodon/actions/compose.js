@@ -536,7 +536,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, token) => {
   });
 }, 200, { leading: true, trailing: true });
 
-const fetchComposeSuggestionsEmojis = throttle((dispatch, token) => {
+const fetchComposeSuggestionsEmojis = (dispatch, token) => {
   dispatch(clearComposeSuggestions());
   searchComposeSuggestionsEmojiController = new AbortController();
 
@@ -554,7 +554,7 @@ const fetchComposeSuggestionsEmojis = throttle((dispatch, token) => {
   }).finally(() => {
     searchComposeSuggestionsEmojiController = undefined;
   });
-}, 200, { leading: true, trailing: true });
+}
 
 const fetchComposeSuggestionsTags = throttle((dispatch, token) => {
   if (fetchComposeSuggestionsTagsController) {
