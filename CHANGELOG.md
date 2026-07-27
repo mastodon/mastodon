@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.6.4] - 2026-07-27
+
+### Security
+
+- Fix incorrect permission enforcement ([GHSA-7jvv-fhmg-wpfw](https://github.com/mastodon/mastodon/security/advisories/GHSA-7jvv-fhmg-wpfw), [GHSA-hx34-2pfw-2qfj](https://github.com/mastodon/mastodon/security/advisories/GHSA-hx34-2pfw-2qfj))
+- Fix SSRF protection bypass via IPv4-compatible IPv6 addresses ([GHSA-vwhj-3g83-v276](https://github.com/mastodon/mastodon/security/advisories/GHSA-vwhj-3g83-v276))
+- Update dependencies
+
+### Changed
+
+- Change autosuggestions to include second word in web UI (#39622 and #39696 by @Gargron and @zunda)
+
+### Fixed
+
+- Fix being unable to vote in polls without an expiration date (#39949 by @ClearlyClaire)
+- Fix “Hide media with a warning” filters not being applied correctly (#39946 by @ClearlyClaire)
+- Fix performance of user-focused queries in admin dashboard (#39929 by @ClearlyClaire)
+- Fix Web Push subscription deletion endpoint incorrectly expecting anti-CSRF tokens (#39918 by @ClearlyClaire)
+- Fix `ActivityPub::Activity::Create` trying to re-create known statuses when author changes (#39916 by @ClearlyClaire)
+- Fix typo in quotes list error handling (#39904 by @shleeable)
+- Fix lax relevancy check in inbound activity processing (#39892 by @ClearlyClaire)
+- Fix `Account::Merging` concern not supporting Quotes or Collections, refactor it (#39884 by @ClearlyClaire)
+- Fix various emoji search issues (#39815 by @ChaosExAnima)
+- Fix swapped order of "accept/reject" actions in follow requests (#39862 by @diondiondion)
+- Fix suspended accounts not being removed from follow request count in `/api/v1/accounts/verify_credentials` (#39858 by @ClearlyClaire)
+- Fix "Learn more" link target in column post privacy hint (#39829 by @diondiondion)
+- Fix page refresh when trying to save custom profile fields (#39828 by @diondiondion)
+- Fix followed tags not being properly cleaned up when an account is deleted (#39824 by @shleeable)
+- Fix CW being copied to body when editing quote posts with empty text (#39823 and #39837 by @shleeable and @ClearlyClaire)
+- Fix handling of `QuoteRequest` rejections when those can't be found by `id` (#39820 by @shleeable)
+- Fix autofollow option being ignored in invite moderation interface (#39819 by @shleeable)
+- Fix pagination overlapping announcement reactions bar (#39814 by @diondiondion)
+- Fix very wide images overflowing posts horizontally (#39812 by @diondiondion)
+- Fix collections not being removed when an account is deleted (#39809 by @oneiros)
+- Fix account followed languages selector (#39801 by @ChaosExAnima)
+- Fix error handling in `ActivityPub::ProcessFeaturedItemService` (#39787 by @ClearlyClaire)
+- Fix display of past relative times (#39742 by @ClearlyClaire)
+- Fix pinned post button width (#39724 by @ChaosExAnima)
+
 ## [4.6.3] - 2026-07-03
 
 ### Security
