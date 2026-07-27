@@ -22,6 +22,8 @@ RSpec.describe 'Admin Measures' do
         domain: 'mastodon.social',
         include_subdomains: true,
       },
+      start_at: '2026-01-01',
+      end_at: '2026-07-01',
     }
   end
 
