@@ -54,7 +54,7 @@ class Collection < ApplicationRecord
             if: :remote?
   validates :language, language: { if: :local?, allow_nil: true }
   validate :tag_is_usable
-  validate :items_do_not_exceed_limit
+  validate :items_do_not_exceed_limit, if: :local?
   validate :user_does_not_exceed_limit, on: :create
 
   scope :with_items, -> { includes(:collection_items).merge(CollectionItem.with_accounts) }
