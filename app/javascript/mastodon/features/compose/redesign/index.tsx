@@ -3,7 +3,7 @@ import { useCallback, useId, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { LockSimpleOpenIcon, TranslateIcon } from '@phosphor-icons/react';
+import { LockSimpleOpenIcon } from '@phosphor-icons/react';
 import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import {
@@ -19,7 +19,6 @@ import {
   submitCompose,
 } from '@/mastodon/actions/compose_typed';
 import AutosuggestTextarea from '@/mastodon/components/autosuggest_textarea';
-import { IconButton } from '@/mastodon/components/button/redesign';
 import {
   ToggleField,
   TextInputField,
@@ -29,6 +28,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ComposeFooter } from './footer';
 import { ComposeFormHeader } from './header';
+import { LanguageButton } from './language';
 import { selectComposeCanSubmit, selectComposeState } from './selectors';
 import classes from './styles.module.scss';
 import { ComposeVisibility } from './visibility';
@@ -81,6 +81,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       <ComposeFormHeader id={titleId} />
       <div className={classes.toolbar}>
         {type !== 'message' && <ComposeVisibility />}
+
         {type === 'message' && (
           <p className={classes.toolbarMessage}>
             <Icon id='lock-open' icon={LockSimpleOpenIcon} />
@@ -90,17 +91,14 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
             />
           </p>
         )}
+
         <ToggleField
           label={intl.formatMessage(messages.sensitive)}
           checked={sensitive}
           onChange={onSensitiveChange}
         />
-        <IconButton icon={TranslateIcon} size='sm'>
-          <FormattedMessage
-            id='compose.language.change'
-            defaultMessage='Change language'
-          />
-        </IconButton>
+
+        <LanguageButton />
       </div>
 
       {sensitive && (

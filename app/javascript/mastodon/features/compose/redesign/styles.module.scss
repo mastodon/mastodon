@@ -150,3 +150,22 @@
   background: none;
   width: 100%;
 }
+
+.languageMenu {
+  padding: var(--space-xs) var(--space-sm);
+
+  :global(.emoji-mart-search) {
+    padding: 0;
+    padding-inline-end: 0;
+  }
+
+  :global(.emoji-mart-search-icon) {
+    top: 0;
+    inset-inline-end: 0;
+  }
+
+  :global(.emoji-mart-scroll) {
+    padding: 0;
+    margin-top: var(--space-xs);
+  }
+}
