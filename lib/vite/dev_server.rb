@@ -6,7 +6,7 @@ module Vite
     WAIT_TIME = 5 # seconds
     attr_reader :config
 
-    def initialize(config)
+    def initialize(config:)
       @config = config
     end
 

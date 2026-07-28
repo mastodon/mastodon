@@ -4,8 +4,8 @@ require 'vite'
 
 Vite.setup do |config|
   if Rails.env.development?
-    # config.tag_strategies = [:dev_server, :manifest]
-    config.tag_strategies = [:manifest]
+    config.tag_strategies = [:dev_server, :manifest]
+    # config.tag_strategies = [:manifest]
 
     # TODO: Only on prod
     Rails.application.config.to_prepare do

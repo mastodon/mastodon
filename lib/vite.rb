@@ -19,15 +19,15 @@ module Vite
   end
 
   def self.dev_server
-    @dev_server ||= DevServer.new(config)
+    @dev_server ||= DevServer.new(config:)
   end
 
   def self.tagger
-    @tagger ||= Tagger.new(config)
+    @tagger ||= Tagger.new(config:, manifest:, dev_server:)
   end
 
   def self.manifest
-    @manifest ||= Manifest.new(config)
+    @manifest ||= Manifest.new(config:)
   end
 
   def self.preload

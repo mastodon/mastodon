@@ -57,7 +57,7 @@ module Vite
 
     attr_reader :config, :entries, :pool
 
-    def initialize(config)
+    def initialize(config:)
       @config = config
       @aliases = {}
       @entries = {}
@@ -101,9 +101,11 @@ module Vite
       @loaded = true
     end
 
-    # TODO: Filter by asset type
-    def fetch(*names)
-      names.filter_map { |name| entries[name] }
+    # TODO: Filter by asset type (?)
+    # TODO: Errors?
+    # TODO: What about virtual types?
+    def fetch(name)
+      entries[name]
     end
 
     private
