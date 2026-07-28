@@ -14,6 +14,23 @@ const meta = {
   },
   parameters: {
     redesign: true,
+    state: {
+      media_attachments: {
+        accept_content_types: [
+          'image/jpeg',
+          'image/png',
+          'image/gif',
+          'image/webp',
+          'image/avif',
+          'video/mp4',
+          'video/quicktime',
+          'video/ogg',
+          'audio/wave',
+          'audio/ogg',
+          'audio/mp3',
+        ],
+      },
+    },
   },
 } satisfies Meta<typeof RedesignComposeForm>;
 

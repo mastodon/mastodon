@@ -1,5 +1,6 @@
 import { length } from 'stringz';
 
+import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { StatusVisibility } from '@/mastodon/models/status';
 import { createAppSelector } from '@/mastodon/store';
 
@@ -76,4 +77,24 @@ export const selectComposeState = createAppSelector(
     canSubmit,
     isSubmitting: !!compose.get('is_submitting'),
   }),
+);
+
+export type ComposeAttachment = ApiMediaAttachmentJSON & {
+  file?: File;
+  unattached: boolean;
+};
+
+export const selectComposeAttachments = createAppSelector(
+  [
+    (state) =>
+      state.compose.get('media_attachments') as
+        | Immutable.List<ComposeAttachment>
+        | undefined,
+  ],
+  (attachments) => {
+    if (!attachments) {
+      return [];
+    }
+    return attachments.toJS() as ComposeAttachment[];
+  },
 );
