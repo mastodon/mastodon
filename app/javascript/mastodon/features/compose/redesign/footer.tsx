@@ -9,7 +9,7 @@ import {
   ChartBarHorizontalIcon,
 } from '@phosphor-icons/react';
 
-import { uploadCompose } from '@/mastodon/actions/compose';
+import { addPoll, uploadCompose } from '@/mastodon/actions/compose';
 import { Button, IconButton } from '@/mastodon/components/button/redesign';
 import {
   createAppSelector,
@@ -30,6 +30,12 @@ export const ComposeFooter: React.FC = () => {
   const hasQuote = useAppSelector(
     (state) => !!state.compose.get('quoted_status_id'),
   );
+  const hasPoll = useAppSelector((state) => !!state.compose.get('poll'));
+
+  const dispatch = useAppDispatch();
+  const handlePoll = useCallback(() => {
+    dispatch(addPoll());
+  }, [dispatch]);
 
   return (
     <footer className={classes.footer}>
@@ -41,12 +47,20 @@ export const ComposeFooter: React.FC = () => {
           defaultMessage='Insert emoji'
         />
       </IconButton>
-      <IconButton size='sm' icon={ChartBarHorizontalIcon} disabled={hasQuote}>
+
+      <IconButton
+        size='sm'
+        icon={ChartBarHorizontalIcon}
+        disabled={hasQuote}
+        onClick={handlePoll}
+        color={hasPoll ? 'neutral' : 'tonal'}
+      >
         <FormattedMessage
           id='poll_button.add_poll'
           defaultMessage='Add a poll'
         />
       </IconButton>
+
       <span className={classes.counter}>
         <FormattedMessage
           id='compose.counter'
@@ -54,6 +68,7 @@ export const ComposeFooter: React.FC = () => {
           values={{ current, max }}
         />
       </span>
+
       <Button color='neutral'>
         {type !== 'message' && (
           <FormattedMessage id='compose.publish' defaultMessage='Publish' />
