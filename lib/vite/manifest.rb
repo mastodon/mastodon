@@ -74,6 +74,31 @@ module Vite
     def load
       return if @loaded
 
+      retries = 0
+
+      begin
+        build if retries.positive?
+        load_manifest
+        @loaded = true
+      rescue Errno::ENOENT => e
+        if retries.zero? && config.auto_build?
+          retries = 1
+          retry
+        else
+          raise e
+        end
+      end
+    end
+
+    # TODO: Errors?
+    def fetch(name, type: nil)
+      name = @virtual[name] if type == :virtual
+      entries[name]
+    end
+
+    private
+
+    def load_manifest
       @virtual = {}
       @entries = {}
       @pool = []
@@ -97,17 +122,12 @@ module Vite
       assets.each do |key, raw|
         @entries[key] = Entry.from_json(raw)
       end
-
-      @loaded = true
     end
 
-    # TODO: Errors?
-    def fetch(name, type: nil)
-      name = @virtual[name] if type == :virtual
-      entries[name]
+    # TODO: Logs
+    def build
+      Open3.capture3(config.build_command)
     end
-
-    private
 
     def resolve_relations(manifest, raw)
       # NOTE: By using Set we make sure we add each asset only once

@@ -14,5 +14,6 @@ Vite.setup do |config|
     Rails.application.config.middleware.insert_before(0, Vite::Proxy, config)
   else
     config.tag_strategies = [:manifest]
+    config.auto_build = false
   end
 end
