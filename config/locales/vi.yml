@@ -997,6 +997,7 @@ vi:
       critical_update: Quan trọng — vui lòng cập nhật sớm
       description: Bạn nên cập nhật Mastodon phiên bản mới nhất để được hưởng lợi từ các bản sửa lỗi và thêm tính năng mới. Nhất là để tránh các vấn đề bảo mật. Vì những lý do này, Mastodon sẽ kiểm tra các bản cập nhật 30 phút một lần và sẽ thông báo cho bạn theo tùy chọn thông báo qua email của bạn.
       documentation_link: Tìm hiểu thêm
+      nearing_eol: Việc hỗ trợ cho nhánh bạn đang sử dụng sẽ kết thúc vào ngày %{date}, vui lòng cân nhắc cập nhật.
       release_notes: Có gì mới?
       supported_until: Kết thúc hỗ trợ vào %{date}
       title: Bản cập nhật mới
@@ -1005,6 +1006,7 @@ vi:
         major: Bản cập nhật lớn
         minor: Bản cập nhật nhỏ
         patch: Bản vá - sửa lỗi và dễ dàng áp dụng các thay đổi
+      unsupported_branch: Việc hỗ trợ cho nhánh bạn đang sử dụng đã kết thúc; vui lòng cân nhắc cập nhật.
       unsupported_since: Không còn được hỗ trợ vào %{date}
       version: Phiên bản
     statuses:
@@ -1266,6 +1268,15 @@ vi:
     auto_close_registrations:
       body: Do gần đây thiếu kiểm duyệt viên nên việc đăng ký trên %{instance} sẽ tự động chuyển thành duyệt thủ công, để tránh %{instance} bị sử dụng làm nền tảng cho những kẻ xấu. Bạn có thể chuyển nó trở lại trạng thái đăng ký mở bất kỳ lúc nào.
       subject: Đăng ký mới %{instance} đã được tự động chuyển sang duyệt thủ công
+    end_of_support_out_of_support_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn không còn được hỗ trợ nữa. Chúng tôi khuyên bạn nên cập nhật càng sớm càng tốt!
+      subject: Mastodon %{branch} đang được sử dụng trên %{instance} hiện không còn được hỗ trợ!
+    end_of_support_three_months_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn sẽ ngừng được hỗ trợ trong vòng 3 tháng tới. Bạn nên cân nhắc cập nhật lên một nhánh mới hơn từ sớm.
+      subject: Hỗ trợ cho Mastodon %{branch} đang được sử dụng trên %{instance} sẽ kết thúc sau 3 tháng nữa.
+    end_of_support_two_weeks_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn sẽ ngừng được hỗ trợ trong 2 tuần nữa. Chúng tôi khuyến nghị bạn nên cập nhật lên một nhánh mới hơn trước thời hạn đó.
+      subject: Hỗ trợ cho Mastodon %{branch} đang được sử dụng trên %{instance} sẽ kết thúc sau 2 tuần nữa.
     new_appeal:
       actions:
         delete_statuses: xóa tút của họ
@@ -1877,6 +1888,7 @@ vi:
     administration_emails: Thông báo email admin
     email_events: Hoạt động thông báo email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
+    moderation_emails: Thông báo qua email về việc kiểm duyệt
   number:
     human:
       decimal_units:
