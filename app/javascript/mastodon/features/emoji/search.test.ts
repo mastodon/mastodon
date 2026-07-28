@@ -185,4 +185,20 @@ describe('search', () => {
       expect.objectContaining({ shortcode: 'sob_other' }),
     ]);
   });
+
+  test('multi-token intersection is order-independent with valid but disjoint tokens', async () => {
+    await putCustomEmojiData({
+      emojis: [
+        customEmojiFactory({ shortcode: 'apple_orange' }),
+        customEmojiFactory({ shortcode: 'apple_banana' }),
+        customEmojiFactory({ shortcode: 'orange_banana' }),
+      ],
+    });
+
+    const results1 = await search({ query: 'apple grape', locale: 'en' });
+    const results2 = await search({ query: 'grape apple', locale: 'en' });
+
+    expect(results1.length).toBe(results2.length);
+  });
+
 });
