@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useId, useRef } from 'react';
+import { useCallback, useEffect, useId, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -72,7 +72,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   } = useAppSelector(selectComposeState);
 
   const {
-    ref,
+    textAreaRef,
     onSensitiveChange,
     onSensitiveTextChange,
     onSubmit,
@@ -117,11 +117,13 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
           label={intl.formatMessage(messages.sensitiveText)}
           value={sensitiveText}
           onChange={onSensitiveTextChange}
+          // eslint-disable-next-line jsx-a11y/no-autofocus -- Focuses on open
+          autoFocus
         />
       )}
 
       <ComposeTextarea
-        ref={ref}
+        ref={textAreaRef}
         value={text}
         className={classes.textarea}
         // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -159,9 +161,17 @@ const ComposeTextarea = AutosuggestTextarea as React.ForwardRefExoticComponent<
 >;
 
 function useHandlers(redirectOnSuccess?: boolean) {
-  const ref = useRef<HTMLTextAreaElement>(null);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const dispatch = useAppDispatch();
+
+  // Focus the sensitive
+  const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
+  useEffect(() => {
+    if (!isSensitive) {
+      textAreaRef.current?.focus();
+    }
+  }, [isSensitive]);
 
   // Sensitive toggles
   const onSensitiveChange = useCallback(() => {
@@ -185,7 +195,7 @@ function useHandlers(redirectOnSuccess?: boolean) {
       }
       dispatch(
         submitCompose({
-          textareaValue: ref.current?.value,
+          textareaValue: textAreaRef.current?.value,
           redirectOnSuccess,
         }),
       );
@@ -257,7 +267,7 @@ function useHandlers(redirectOnSuccess?: boolean) {
   );
 
   return {
-    ref,
+    textAreaRef,
     onSubmit,
     onChange,
     onKeyDown,
