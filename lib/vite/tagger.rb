@@ -101,7 +101,7 @@ module Vite
 
       def initialize(config:, manifest: nil)
         @config = config
-        @manifest = manifest || Manifest.new(config:).tap(&:load)
+        @manifest = manifest || Manifest.new(config:, logger: config.logger)
         @resolver = NameResolver.new(config:)
       end
 

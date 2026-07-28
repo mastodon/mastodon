@@ -23,7 +23,8 @@ module Vite
                   :manifest_path,
                   :manifest_assets_path,
                   :auto_build,
-                  :build_command
+                  :build_command,
+                  :logger
 
     def initialize
       @host = 'localhost'
@@ -37,6 +38,8 @@ module Vite
 
       @auto_build = false
       @build_command = 'yarn build:development'
+
+      @logger = Logger.new($stdout)
     end
 
     def https?

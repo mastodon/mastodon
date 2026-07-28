@@ -63,14 +63,15 @@ module Vite
       end
     end
 
-    attr_reader :config, :entries, :pool
+    attr_reader :config, :entries, :pool, :logger
 
-    def initialize(config:)
+    def initialize(config:, logger:)
       @config = config
       @virtual = {}
       @entries = {}
       @pool = []
       @loaded = false
+      @logger = logger
     end
 
     def reload
@@ -98,6 +99,8 @@ module Vite
     end
 
     def fetch(name, type: nil)
+      load
+
       key = type == :virtual ? @virtual[name] : name
 
       entries[key]
@@ -114,6 +117,7 @@ module Vite
       @entries = {}
       @pool = []
 
+      logger.debug { "loading manifest file: #{config.manifest_path}" }
       json = JSON.load_file(config.manifest_path)
       json.each do |key, raw|
         # Only select main entrypoints and locales
@@ -129,15 +133,31 @@ module Vite
         end
       end
 
+      logger.debug { "loading manifest file: #{config.manifest_assets_path}" }
       assets = JSON.load_file(config.manifest_assets_path)
       assets.each do |key, raw|
         @entries[key] = Entry.from_json(raw)
       end
     end
 
-    # TODO: Logs
     def build
-      Open3.capture3(config.build_command)
+      logger.debug { "AutoBuild: Building assets with vite with command: '#{config.build_command}'" }
+      Open3.popen3(config.build_command) do |_stdin, stdout, stderr, _wait_thread|
+        read_io(stdout) do |line|
+          logger.debug { line }
+        end
+        read_io(stderr) do |line|
+          logger.warn { line }
+        end
+      end
+    end
+
+    def read_io(io)
+      while (line = io.gets)
+        next if line.blank?
+
+        yield line
+      end
     end
 
     def resolve_relations(manifest, raw)

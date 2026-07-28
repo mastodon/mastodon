@@ -18,6 +18,10 @@ module Vite
     @config ||= Config.new
   end
 
+  def self.logger
+    @logger ||= config.logger
+  end
+
   def self.dev_server
     @dev_server ||= DevServer.new(config:)
   end
@@ -27,7 +31,7 @@ module Vite
   end
 
   def self.manifest
-    @manifest ||= Manifest.new(config:)
+    @manifest ||= Manifest.new(config:, logger:)
   end
 
   def self.preload
