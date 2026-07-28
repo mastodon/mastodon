@@ -200,5 +200,4 @@ describe('search', () => {
 
     expect(results1.length).toBe(results2.length);
   });
-
 });
