@@ -71,13 +71,23 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
     isSubmitting,
   } = useAppSelector(selectComposeState);
 
-  const { ref, onSensitiveChange, onSensitiveTextChange, ...handlers } =
-    useHandlers(redirectOnSuccess);
+  const {
+    ref,
+    onSensitiveChange,
+    onSensitiveTextChange,
+    onSubmit,
+    ...handlers
+  } = useHandlers(redirectOnSuccess);
 
   const intl = useIntl();
   const titleId = useId();
   return (
-    <div role='dialog' aria-labelledby={titleId} className={classes.root}>
+    <form
+      role='dialog'
+      onSubmit={onSubmit}
+      aria-labelledby={titleId}
+      className={classes.root}
+    >
       <ComposeFormHeader id={titleId} />
       <div className={classes.toolbar}>
         {type !== 'message' && <ComposeVisibility />}
@@ -128,7 +138,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       />
 
       <ComposeFooter />
-    </div>
+    </form>
   );
 };
 

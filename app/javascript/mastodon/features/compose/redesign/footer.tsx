@@ -19,6 +19,7 @@ import {
 
 import {
   selectComposeAttachments,
+  selectComposeCanSubmit,
   selectComposeCharsCount,
   selectComposeType,
 } from './selectors';
@@ -31,6 +32,10 @@ export const ComposeFooter: React.FC = () => {
     (state) => !!state.compose.get('quoted_status_id'),
   );
   const hasPoll = useAppSelector((state) => !!state.compose.get('poll'));
+  const isSubmitting = useAppSelector(
+    (state) => !!state.compose.get('is_submitting'),
+  );
+  const canSubmit = useAppSelector(selectComposeCanSubmit);
 
   const dispatch = useAppDispatch();
   const handlePoll = useCallback(() => {
@@ -69,7 +74,12 @@ export const ComposeFooter: React.FC = () => {
         />
       </span>
 
-      <Button color='neutral'>
+      <Button
+        color='neutral'
+        type='submit'
+        disabled={!canSubmit}
+        loading={isSubmitting}
+      >
         {type !== 'message' && (
           <FormattedMessage id='compose.publish' defaultMessage='Publish' />
         )}
