@@ -261,6 +261,29 @@ export function useListFocus({
   );
 }
 
+interface ListItem {
+  id: string | number;
+  disabled?: boolean;
+}
+
+export function useListItemsFocus({
+  items,
+  ...rest
+}: Omit<UseListFocusArgs, 'ids' | 'getIsIdDisabled'> & {
+  items: ListItem[];
+}) {
+  const ids = useMemo(() => items.map(({ id }) => id.toString()), [items]);
+  const getIsIdDisabled = useCallback(
+    (id: string) => !!items.find(({ id: itemId }) => id === itemId)?.disabled,
+    [items],
+  );
+  return useListFocus({
+    ids,
+    getIsIdDisabled,
+    ...rest,
+  });
+}
+
 function safeId(id: string, baseId: string) {
   return CSS.escape(`${baseId}-${id}`);
 }
