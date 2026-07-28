@@ -7,6 +7,7 @@ module Admin
 
     layout 'admin'
 
+    before_action :require_moderator_or_admin_permissions
     before_action :set_referrer_policy_header
 
     after_action :verify_authorized
@@ -19,6 +20,11 @@ module Admin
 
     def set_user
       @user = Account.find(params[:account_id]).user || raise(ActiveRecord::RecordNotFound)
+    end
+
+    def require_moderator_or_admin_permissions
+      # not using #authorize here, so #verify_authorized still makes sure more fine-grained rules are enforced down the line
+      forbidden unless Admin::BasePolicy.new(current_account, :base).access?
     end
   end
 end
