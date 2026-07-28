@@ -19,6 +19,8 @@ import { updateTimeline } from './timelines';
 let fetchComposeSuggestionsAccountsController;
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsTagsController;
+/** @type {AbortController | undefined} */
+let searchComposeSuggestionsEmojiController;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
@@ -497,9 +499,8 @@ export function undoUploadCompose(media_id) {
 }
 
 export function clearComposeSuggestions() {
-  if (fetchComposeSuggestionsAccountsController) {
-    fetchComposeSuggestionsAccountsController.abort();
-  }
+  fetchComposeSuggestionsAccountsController?.abort();
+  searchComposeSuggestionsEmojiController?.abort();
   return {
     type: COMPOSE_SUGGESTIONS_CLEAR,
   };
@@ -532,12 +533,25 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, token) => {
   });
 }, 200, { leading: true, trailing: true });
 
-const fetchComposeSuggestionsEmojis = async (dispatch, token) => {
-  // Right now we are hard-coding the locale to English since the picker search only supports English.
-  // Once we replace the legacy picker we can remove this and use the actual locale of the user.
-  const results = await emojiMartSearch(token, 'en', 5);
-  dispatch(readyComposeSuggestionsEmojis(token, results));
-};
+const fetchComposeSuggestionsEmojis = (dispatch, token) => {
+  dispatch(clearComposeSuggestions());
+  searchComposeSuggestionsEmojiController = new AbortController();
+
+  void emojiMartSearch({
+    token,
+    // Right now we are hard-coding the locale to English since the picker search only supports English.
+    // Once we replace the legacy picker we can remove this and use the actual locale of the user.
+    locale: 'en',
+    limit: 5,
+    signal: searchComposeSuggestionsEmojiController.signal,
+  }).then((results) => {
+    if (results) {
+      dispatch(readyComposeSuggestionsEmojis(token, results));
+    }
+  }).finally(() => {
+    searchComposeSuggestionsEmojiController = undefined;
+  });
+}
 
 const fetchComposeSuggestionsTags = throttle((dispatch, token) => {
   if (fetchComposeSuggestionsTagsController) {
