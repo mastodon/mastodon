@@ -246,13 +246,18 @@ export function useListFocus({
 
   return useMemo(
     () => ({
+      // Has a stable referenced map of id to props in case getItemProps is causing unneeded re-renders.
+      idProps: ids.reduce<Record<string, ItemComponentProps>>((map, id) => {
+        map[id] = getItemProps(id);
+        return map;
+      }, {}),
       getItemProps,
       selectedId,
       onSelect,
       highlightedId,
       onHighlight,
     }),
-    [getItemProps, highlightedId, onHighlight, onSelect, selectedId],
+    [getItemProps, highlightedId, ids, onHighlight, onSelect, selectedId],
   );
 }
 
