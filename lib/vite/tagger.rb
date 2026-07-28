@@ -94,7 +94,6 @@ module Vite
     end
 
     # FIXME: Control missing entries
-    # FIXME: Review vite_ methods and options passed
     class ManifestStrategy
       include Common
 
@@ -114,14 +113,13 @@ module Vite
         ''
       end
 
-      def vite_javascript_tag(helper, *names, type: 'module', crossorigin: '', asset_type: '', media: nil, **) # rubocop:disable Lint/UnusedMethodArgument
+      def vite_javascript_tag(helper, *names, type: 'module', crossorigin: '', asset_type: '', media: nil, **)
         names = names.map { |name| resolver.entrypoint_path(name) }
 
-        # TODO: Add skip_* options (?)
         scripts = []
         preloads = []
         stylesheets = []
-        entries = names.map { |name| manifest.fetch(name) }
+        entries = names.map { |name| manifest.fetch(name, type: asset_type) }
 
         entries.each do |entry|
           scripts << helper.javascript_include_tag(
@@ -157,11 +155,11 @@ module Vite
         helper.safe_join(scripts + preloads + stylesheets)
       end
 
-      def vite_stylesheet_tag(helper, *names, type: :stylesheet, **options) # rubocop:disable Lint/UnusedMethodArgument
+      def vite_stylesheet_tag(helper, *names, type: :stylesheet, **options)
         options[:extname] = false if Rails::VERSION::MAJOR >= 7
 
         stylesheets = names.map do |name|
-          entry = manifest.fetch(resolver.entrypoint_path(name))
+          entry = manifest.fetch(resolver.entrypoint_path(name), type:)
           helper.stylesheet_link_tag(
             resolver.bundle_path(entry.file),
             integrity: entry.integrity,
@@ -172,13 +170,13 @@ module Vite
         helper.safe_join(stylesheets)
       end
 
-      def vite_asset_path(helper, name, **_options)
-        entry = manifest.fetch(resolver.entrypoint_path(name))
+      def vite_asset_path(helper, name, type: nil, **)
+        entry = manifest.fetch(resolver.entrypoint_path(name), type:)
         helper.path_to_asset resolver.bundle_path(entry.file)
       end
 
       def vite_polyfills_tag(helper, crossorigin: 'anonymous', **)
-        entry = manifest.fetch('polyfills')
+        entry = manifest.fetch('polyfills', type: :virtual)
 
         helper.javascript_include_tag(
           resolver.bundle_path(entry.file),

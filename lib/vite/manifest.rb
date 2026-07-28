@@ -59,7 +59,7 @@ module Vite
 
     def initialize(config:)
       @config = config
-      @aliases = {}
+      @virtual = {}
       @entries = {}
       @pool = []
       @loaded = false
@@ -74,8 +74,8 @@ module Vite
     def load
       return if @loaded
 
-      @aliases = {}
-      @entries = Hash.new { |hash, key| hash[@aliases[key]] if @aliases.key?(key) }
+      @virtual = {}
+      @entries = {}
       @pool = []
 
       json = JSON.load_file(config.manifest_path)
@@ -85,7 +85,7 @@ module Vite
 
         import_ids, stylesheet_ids = resolve_relations(json, raw)
 
-        @aliases[raw['name']] = key
+        @virtual[raw['name']] = key
         @entries[key] = Entry.from_json(raw).tap do |entry|
           entry.import_ids = import_ids
           entry.stylesheet_ids = stylesheet_ids
@@ -101,16 +101,16 @@ module Vite
       @loaded = true
     end
 
-    # TODO: Filter by asset type (?)
     # TODO: Errors?
-    # TODO: What about virtual types?
-    def fetch(name)
+    def fetch(name, type: nil)
+      name = @virtual[name] if type == :virtual
       entries[name]
     end
 
     private
 
     def resolve_relations(manifest, raw)
+      # NOTE: By using Set we make sure we add each asset only once
       imports = Set.new
       stylesheets = Set.new
 
@@ -119,14 +119,16 @@ module Vite
         next unless raw
 
         id = find_or_create_entry(Entry.from_json(raw))
-        imports.add id
         subimports, substyles = resolve_relations(manifest, raw)
 
         subimports.each { |sub| imports.add sub }
         substyles.each { |sub| stylesheets.add sub }
+        imports.add id
       end
 
       (raw['css'] || []).each do |stylesheet|
+        # the css field includes the file names of the stylesheets and not
+        # the src names which are the ones used as keys in the manifest
         raw = manifest.values.find { |value| value['file'] == stylesheet }
         next unless raw
 
