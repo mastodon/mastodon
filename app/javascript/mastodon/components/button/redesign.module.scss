@@ -139,9 +139,10 @@ a.base {
 
 // Helper classes
 
-.icon {
-  width: 1em;
-  height: 1em;
+.icon,
+.loading {
+  width: var(--fs-xl);
+  height: var(--fs-xl);
 }
 
 // Adds padding to the text label. This is supposed to be there even if there is no icon.
@@ -156,15 +157,9 @@ a.base {
 
 .iconOnly {
   aspect-ratio: 1;
+  padding: 0;
 }
 
 .loading {
   color: inherit;
-  height: 0.8em;
-  width: 0.8em;
-
-  .iconOnly & {
-    height: 1em;
-    width: 1em;
-  }
 }
