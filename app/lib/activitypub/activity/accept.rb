@@ -10,8 +10,6 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
     case @object['type']
     when 'Follow'
       accept_embedded_follow
-    when 'QuoteRequest'
-      accept_embedded_quote_request
     end
   end
 
@@ -33,16 +31,6 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
     request.authorize!
 
     RemoteAccountRefreshWorker.perform_async(request.target_account_id) if is_first_follow
-  end
-
-  def accept_embedded_quote_request
-    approval_uri = value_or_id(first_of_value(@json['result']))
-    return if approval_uri.nil?
-
-    quote = quote_from_request_json(@object)
-    return unless quote.present? && quote.status.local?
-
-    accept_quote!(quote)
   end
 
   def accept_feature_request!
