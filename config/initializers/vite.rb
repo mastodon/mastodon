@@ -3,17 +3,13 @@
 require 'vite'
 
 Vite.setup do |config|
-  if Rails.env.development?
-    config.tag_strategies = [:dev_server, :manifest]
-    # config.tag_strategies = [:manifest]
+  config.copy_from Rails.application.config_for(:vite)
 
-    # TODO: Only on prod
+  if Rails.env.development?
+    Rails.application.config.middleware.insert_before(0, Vite::Proxy, config)
+  else
     Rails.application.config.to_prepare do
       Vite.preload
     end
-    Rails.application.config.middleware.insert_before(0, Vite::Proxy, config)
-  else
-    config.tag_strategies = [:manifest]
-    config.auto_build = false
   end
 end

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Vite
-  # TODO: Load config from file generated from `vite` command
   class Config
     attr_accessor :host,
                   :port,
@@ -18,9 +17,8 @@ module Vite
       @port = 3036
       @https = false
       @base_path = '/packs-dev/'
-      @tag_strategies = [:dev_server, :manifest]
 
-      # TODO: Setup full path using Rails.root or Rails.public_path
+      @tag_strategies = [:dev_server, :manifest]
       @manifest_path = 'public/packs-dev/.vite/manifest.json'
       @manifest_assets_path = 'public/packs-dev/.vite/manifest-assets.json'
 
@@ -42,6 +40,20 @@ module Vite
 
     def auto_build?
       auto_build
+    end
+
+    def copy_from(other)
+      self.host = other[:host] unless other[:host].nil?
+      self.port = other[:port] unless other[:port].nil?
+      self.https = other[:https] unless other[:https].nil?
+      self.base_path = other[:base_path] unless other[:base_path].nil?
+
+      self.tag_strategies = other[:tag_strategies].map(&:to_sym) unless other[:tag_strategies].nil?
+      self.manifest_path = other[:manifest_path] unless other[:manifest_path].nil?
+      self.manifest_assets_path = other[:manifest_assets_path] unless other[:manifest_assets_path].nil?
+
+      self.auto_build = other[:auto_build] unless other[:auto_build].nil?
+      self.build_command = other[:build_command] unless other[:build_command].nil?
     end
   end
 end
