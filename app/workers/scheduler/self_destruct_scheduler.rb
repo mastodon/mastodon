@@ -36,7 +36,7 @@ class Scheduler::SelfDestructScheduler
     # deletion request.
 
     # This targets accounts that have not been deleted nor marked for deletion yet
-    Account.local.without_deleted.reorder(id: :asc).take(MAX_ACCOUNT_DELETIONS_PER_JOB).each do |account|
+    Account.local.kept.reorder(id: :asc).take(MAX_ACCOUNT_DELETIONS_PER_JOB).each do |account|
       delete_account!(account)
     end
 

@@ -64,7 +64,10 @@
 #
 
 class Account < ApplicationRecord
+  include Discard::Model
+
   self.ignored_columns += %w(devices_url)
+  self.discard_column = :deleted_at
 
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
   REFRESH_DEADLINE = 6.hours
@@ -148,7 +151,6 @@ class Account < ApplicationRecord
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
-  scope :without_deleted, -> { where(deleted_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
   scope :non_automated, -> { where.not(actor_type: AUTOMATED_ACTOR_TYPES) }
@@ -288,7 +290,7 @@ class Account < ApplicationRecord
   end
 
   def deleted?
-    deleted_at.present? && !instance_actor?
+    discarded? && !instance_actor?
   end
 
   def permanently_deleted?

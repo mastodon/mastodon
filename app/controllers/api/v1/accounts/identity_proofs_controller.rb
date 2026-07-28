@@ -15,6 +15,6 @@ class Api::V1::Accounts::IdentityProofsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.without_deleted.find(params[:account_id])
+    @account = Account.kept.find(params[:account_id])
   end
 end

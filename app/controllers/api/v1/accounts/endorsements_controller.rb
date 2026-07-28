@@ -29,7 +29,7 @@ class Api::V1::Accounts::EndorsementsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.without_deleted.find(params[:account_id])
+    @account = Account.kept.find(params[:account_id])
   end
 
   def set_endorsed_accounts

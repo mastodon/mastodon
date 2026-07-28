@@ -84,7 +84,7 @@ class Api::V1::AccountsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.without_deleted.find(params[:id])
+    @account = Account.kept.find(params[:id])
   end
 
   def set_accounts

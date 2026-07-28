@@ -102,7 +102,7 @@ class User < ApplicationRecord
   validates :date_of_birth, presence: true, date_of_birth: true, on: :create, if: -> { Setting.min_age.present? && !bypass_registration_checks? }
   validate :validate_role_elevation
 
-  scope :account_available, -> { joins(:account).merge(Account.without_suspended.without_deleted) }
+  scope :account_available, -> { joins(:account).merge(Account.without_suspended.kept) }
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
