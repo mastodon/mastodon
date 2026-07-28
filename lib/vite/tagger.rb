@@ -119,7 +119,7 @@ module Vite
         scripts = []
         preloads = []
         stylesheets = []
-        entries = names.map { |name| manifest.fetch(name, type: asset_type) }
+        entries = names.map { |name| manifest.fetch!(name, type: asset_type) }
 
         entries.each do |entry|
           scripts << helper.javascript_include_tag(
@@ -159,7 +159,7 @@ module Vite
         options[:extname] = false if Rails::VERSION::MAJOR >= 7
 
         stylesheets = names.map do |name|
-          entry = manifest.fetch(resolver.entrypoint_path(name), type:)
+          entry = manifest.fetch!(resolver.entrypoint_path(name), type:)
           helper.stylesheet_link_tag(
             resolver.bundle_path(entry.file),
             integrity: entry.integrity,
@@ -171,12 +171,12 @@ module Vite
       end
 
       def vite_asset_path(helper, name, type: nil, **)
-        entry = manifest.fetch(resolver.entrypoint_path(name), type:)
+        entry = manifest.fetch!(resolver.entrypoint_path(name), type:)
         helper.path_to_asset resolver.bundle_path(entry.file)
       end
 
       def vite_polyfills_tag(helper, crossorigin: 'anonymous', **)
-        entry = manifest.fetch('polyfills', type: :virtual)
+        entry = manifest.fetch!('polyfills', type: :virtual)
 
         helper.javascript_include_tag(
           resolver.bundle_path(entry.file),
@@ -189,6 +189,8 @@ module Vite
 
       def vite_preload_file_tag(helper, name, crossorigin: 'anonymous', **)
         entry = manifest.fetch(resolver.entrypoint_path(name))
+        return unless entry
+
         vite_preload_tag(helper, resolver.bundle_path(entry.file), integrity: entry.integrity, crossorigin:, **)
       end
     end

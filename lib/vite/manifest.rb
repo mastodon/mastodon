@@ -23,6 +23,14 @@ module Vite
   # list of IDs of imports and stylesheets it will need to link in the backend, without further recursive
   # checks.
   class Manifest
+    class MissingManifestError < StandardError; end
+
+    class MissingEntryError < StandardError
+      def initialize(entry)
+        super("Failed to find entry '#{entry}' in manifest files")
+      end
+    end
+
     class Entry
       attr_reader :file, :integrity
       attr_accessor :import_ids, :stylesheet_ids, :pool
@@ -70,7 +78,6 @@ module Vite
       load
     end
 
-    # TODO: Error handling
     def load
       return if @loaded
 
@@ -85,15 +92,19 @@ module Vite
           retries = 1
           retry
         else
-          raise e
+          raise MissingManifestError, e.message
         end
       end
     end
 
-    # TODO: Errors?
     def fetch(name, type: nil)
-      name = @virtual[name] if type == :virtual
-      entries[name]
+      key = type == :virtual ? @virtual[name] : name
+
+      entries[key]
+    end
+
+    def fetch!(name, type: nil)
+      fetch(name, type:) || raise(MissingEntryError, name)
     end
 
     private
@@ -139,11 +150,11 @@ module Vite
         next unless raw
 
         id = find_or_create_entry(Entry.from_json(raw))
+        imports.add id
         subimports, substyles = resolve_relations(manifest, raw)
 
         subimports.each { |sub| imports.add sub }
         substyles.each { |sub| stylesheets.add sub }
-        imports.add id
       end
 
       (raw['css'] || []).each do |stylesheet|
