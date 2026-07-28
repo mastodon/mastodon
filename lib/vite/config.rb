@@ -1,6 +1,19 @@
 # frozen_string_literal: true
 
 module Vite
+  # Main configuration options to ingrate with Vite:
+  # - host: Main host for Vite's dev server. Default: localhost
+  # - port: Main port for Vite's dev server. Default: 5173
+  # - https: Whether to use HTTPS to connect to the dev server or not. Default: false
+  # - base_path: The prefix path added to the assets. Default: /packs-dev/
+  # - tag_strategies: How to generate javascript and stylesheet tags in views. Possible values are:
+  #   * dev_server: Generate tags linking directly to the dev server through an internal proxy
+  #   * manifest: Generate tags using assets listed in Vite's manifest files
+  #   Default: [:dev_server, :manifest]
+  # - manifest_path: Where the manifest file is located. Default: public/packs-dev/.vite/manifest.json
+  # - manifest_assets_path: Where the manifest-assets file is located. Default: public/packs-dev/.vite/manifest-assets.json
+  # - auto_build: Whether to automatically build assets or not. This is useful for tests. Default: false
+  # - build_command: How to build assets when auto_build is enabled. Default: 'yarn build:development'
   class Config
     attr_accessor :host,
                   :port,
@@ -14,7 +27,7 @@ module Vite
 
     def initialize
       @host = 'localhost'
-      @port = 3036
+      @port = 5173
       @https = false
       @base_path = '/packs-dev/'
 
@@ -22,7 +35,7 @@ module Vite
       @manifest_path = 'public/packs-dev/.vite/manifest.json'
       @manifest_assets_path = 'public/packs-dev/.vite/manifest-assets.json'
 
-      @auto_build = true
+      @auto_build = false
       @build_command = 'yarn build:development'
     end
 
