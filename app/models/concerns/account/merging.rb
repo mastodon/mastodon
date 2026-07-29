@@ -16,10 +16,10 @@ module Account::Merging
       Notification, NotificationPermission, NotificationRequest
     ],
     target_account_id: [
-      Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin, AccountNote
+      Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin, AccountNote,
+      AccountWarning
     ],
     reference_account_id: [CanonicalEmailBlock],
-    account_warning_id: [Appeal],
     local_account_id: [SeveredRelationship],
     remote_account_id: [SeveredRelationship],
     quoted_account_id: [Quote],
