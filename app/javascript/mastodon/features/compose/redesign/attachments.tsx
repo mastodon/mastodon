@@ -32,13 +32,22 @@ const ComposeMediaAttachments: React.FC = () => {
   );
   const totalAttachments = attachments.length + pendingAttachments;
 
+  if (totalAttachments === 1) {
+    return (
+      <ComposeUpload
+        id={attachments.at(0)?.id}
+        className={classes.mediaSingle}
+      />
+    );
+  }
+
   return (
     <div className={classes.mediaGrid} data-number={totalAttachments}>
       {attachments.map(({ id }) => (
         <ComposeUpload key={id} id={id} />
       ))}
-      {Array(pendingAttachments).map((_, index) => (
-        <div key={index}>Pending: {index}</div>
+      {[...Array(pendingAttachments).keys()].map((_, index) => (
+        <ComposeUpload key={index} className={classes.mediaUploadPending} />
       ))}
     </div>
   );

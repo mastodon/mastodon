@@ -172,20 +172,20 @@
 
 // Attachments
 
+.mediaSingle {
+  min-width: 120px;
+  max-height: var(--max-media-height-large);
+  width: var(--width);
+  height: var(--height);
+}
+
 .mediaGrid {
   display: grid;
   gap: var(--space-3xs);
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   aspect-ratio: 3/2;
-  max-height: 570px;
-  max-width: 530px;
 
-  &[data-number='1'] {
-    grid-template-columns: 1fr;
-  }
-
-  &[data-number='1'],
   &[data-number='2'] {
     grid-template-rows: 1fr;
   }
@@ -201,6 +201,21 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.mediaUploadPending {
+  animation: pulse 1s ease-in-out infinite;
+  background-color: var(--color-bg-disabled);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .mediaMenuButton {

@@ -87,11 +87,13 @@ export const selectComposeHasAttachments = createAppSelector(
       state.compose.get('media_attachments') as
         | Immutable.List<unknown>
         | undefined,
+    (state) => Number(state.compose.get('pending_media_attachments')),
   ],
-  (hasPoll, quotedStatusId, attachments) => {
+  (hasPoll, quotedStatusId, attachments, pendingAttachments) => {
     return {
       hasPoll,
-      hasAttachments: attachments && attachments.size > 0,
+      hasAttachments:
+        (attachments && attachments.size > 0) || pendingAttachments > 0,
       quotedStatusId,
     };
   },

@@ -40,6 +40,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Post: Story = {};
 
+export const PostPending: Story = {
+  parameters: {
+    state: {
+      compose: {
+        pending_media_attachments: 2,
+      },
+    },
+  },
+};
+
 export const Reply: Story = {
   parameters: {
     state: {
