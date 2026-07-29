@@ -27,4 +27,5 @@ production:
   manifest_path: 'public/packs/.vite/manifest.json'
   manifest_assets_path: 'public/packs/.vite/manifest-assets.json'
   auto_build: false
+  build_command: 'yarn build:production'
   tag_strategies: ['manifest']

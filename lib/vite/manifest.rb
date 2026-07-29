@@ -141,23 +141,12 @@ module Vite
     end
 
     def build
-      logger.debug { "AutoBuild: Building assets with vite with command: '#{config.build_command}'" }
-      Open3.popen3(config.build_command) do |_stdin, stdout, stderr, _wait_thread|
-        read_io(stdout) do |line|
-          logger.debug { line }
-        end
-        read_io(stderr) do |line|
-          logger.warn { line }
-        end
-      end
+      logger.debug { 'AutoBuild enabled' }
+      builder.build
     end
 
-    def read_io(io)
-      while (line = io.gets)
-        next if line.blank?
-
-        yield line
-      end
+    def builder
+      @builder ||= Vite::Builder.new(config:, logger:)
     end
 
     def resolve_relations(manifest, raw)

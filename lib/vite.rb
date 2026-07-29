@@ -2,6 +2,7 @@
 
 # Integration library between Mastodon backend and Vite
 module Vite
+  autoload :Builder, 'vite/builder'
   autoload :Config, 'vite/config'
   autoload :DevServer, 'vite/dev_server'
   autoload :Manifest, 'vite/manifest'
@@ -34,7 +35,13 @@ module Vite
     @manifest ||= Manifest.new(config:, logger:)
   end
 
+  def self.build(&block)
+    Vite::Builder.new(config:, logger:).build(&block)
+  end
+
   def self.preload
     manifest.load
+  rescue Vite::Manifest::MissingManifestError => e
+    logger.error { e.message }
   end
 end
