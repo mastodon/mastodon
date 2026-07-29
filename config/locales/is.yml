@@ -1015,6 +1015,7 @@ is:
       critical_update: Áríðandi - uppfærðu eins fljótt og auðið er
       description: Mælt er með því að þú haldir Mastodon-uppsetningunni þinni uppfærðri til að vera með nýjustu lagfæringar og eiginleika. Aukinheldur er mikilvægt að halda Mastodon uppfærðu til að komast hjá öryggisveilum. Af þessum ástæðum athugar Mastodon með uppfærslur á 30 mínútna fresti og mun gera þér viðvart í samræmi við stillingar þínar á tilkynningum í tölvupósti.
       documentation_link: Kanna nánar
+      nearing_eol: Stuðningur við kerfisgreinina sem þú ert að keyra mun hætta %{date}, íhugaðu að uppfæra.
       release_notes: Útgáfuupplýsingar
       supported_until: Stuðningur endar þann %{date}
       title: Tiltækar uppfærslur
@@ -1023,6 +1024,7 @@ is:
         major: Aðalútgáfa
         minor: Aukaútgáfa
         patch: Viðgerðauppfærsla - lagfæringar og ýmsar minniháttar breytingar
+      unsupported_branch: Kerfisgreinin sem þú ert að keyra er ekki með neinn stuðning lengur, uppfærðu kerfið við fyrsta tækifæri.
       unsupported_since: Ekki stutt síðan %{date}
       version: Útgáfa
     statuses:
@@ -1290,10 +1292,13 @@ is:
       body: Vegna skorts á virkni umsjónaraðila að undanförnu, hafa nýskráningar á %{instance} sjálfkrafa verið stilltar á að þarfnast samþykktar umsjónaraðila, til að koma í veg fyrir að %{instance} verði mögulega misnotað af óprúttnum aðilum. Þú getur skipt hvenær sem er aftur yfir í opnar nýskráningar.
       subject: Nýskráningar á %{instance} hafa sjálfkrafa verið stilltar á að krefjast samþykktar
     end_of_support_out_of_support_warning:
+      body: Sú útgáfa Mastodon sem þú ert að keyra er ekki með neinn stuðning lengur. Við mælum með að þú uppfærir kerfið við fyrsta tækifæri!
       subject: Mastodon %{branch} sem notuð er á %{instance} er ekki lengur með stuðning!
     end_of_support_three_months_warning:
+      body: Sú útgáfa Mastodon sem þú ert að keyra hættir að fá stuðning eftir 3 mánuði. Þú gætir viljað uppfæra í nýrri kerfisgrein áður en að því kemur.
       subject: Stuðningi við Mastodon %{branch} sem notuð er á %{instance} lýkur eftir 3 mánuði.
     end_of_support_two_weeks_warning:
+      body: Sú útgáfa Mastodon sem þú ert að keyra hættir að fá stuðning eftir 2 vikur. Þú gætir viljað uppfæra í nýrri kerfisgrein áður en að því kemur.
       subject: Stuðningi við Mastodon %{branch} sem notuð er á %{instance} lýkur eftir 2 vikur.
     new_appeal:
       actions:
