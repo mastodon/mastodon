@@ -7,7 +7,7 @@ Vite.setup do |config|
   config.logger = Rails.logger.tagged('vite')
 
   if Rails.env.development?
-    Rails.application.config.middleware.insert_before(0, Vite::Proxy, config)
+    Rails.application.config.middleware.insert_before(0, Vite::Proxy, config:, dev_server: Vite.dev_server)
   else
     Rails.application.config.to_prepare do
       Vite.preload
