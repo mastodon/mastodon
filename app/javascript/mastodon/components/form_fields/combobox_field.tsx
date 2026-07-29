@@ -14,6 +14,7 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -507,17 +508,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       );
     });
 
-  const mergeInputRefs = useCallback(
-    (element: HTMLInputElement | null) => {
-      setInputElement(element);
-      if (typeof ref === 'function') {
-        ref(element);
-      } else if (ref) {
-        ref.current = element;
-      }
-    },
-    [ref],
-  );
+  const mergedRef = useMergedRefs(ref, setInputElement);
 
   const id = useId();
   const listId = `${id}-list`;
@@ -543,7 +534,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         onKeyDown={handleInputKeyDown}
         icon={icon ?? undefined}
         className={classNames(classes.input, className)}
-        ref={mergeInputRefs}
+        ref={mergedRef}
       />
       {hasMenuContent && (
         <IconButton
