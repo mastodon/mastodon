@@ -33,7 +33,7 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
 
         <div className='account-card__title'>
           <div className='account-card__title__avatar'>
-            <Avatar account={account as Account} size={56} />
+            <Avatar account={account} size={56} />
           </div>
           <DisplayName account={account as Account} />
         </div>

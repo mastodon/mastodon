@@ -122,7 +122,7 @@ const preview: Preview = {
             locale,
           },
         },
-        state as Record<string, unknown>,
+        state,
         stateFnState,
         argsState,
       );
