@@ -110,7 +110,7 @@ class AttachmentBatch
 
     keys.each_slice(LIMIT) do |keys_slice|
       logger.debug { "Deleting #{keys_slice.size} objects" }
-      retries = 0  # Reset for each slice
+      retries = 0 # Reset for each slice
       begin
         with_overridden_timeout(bucket.client, 120) do
           bucket.delete_objects(delete: {
