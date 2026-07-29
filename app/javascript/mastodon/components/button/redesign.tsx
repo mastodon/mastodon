@@ -113,7 +113,7 @@ export const IconButton: React.FC<ButtonProps & { icon: IconProp }> = ({
   children,
   ...props
 }) => (
-  <BaseButton {...props} className={classNames(classNames, classes.iconOnly)}>
+  <BaseButton {...props} className={classNames(className, classes.iconOnly)}>
     {props.loading ? (
       <LoadingIcon />
     ) : (
