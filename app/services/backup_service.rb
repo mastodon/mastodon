@@ -42,7 +42,7 @@ class BackupService < BaseService
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
           item[:object][:attachment].each do |attachment|
-            attachment[:url] = Addressable::URI.parse(attachment[:url]).path.delete_prefix('/system/')
+            attachment[:url] = Addressable::URI.parse(attachment[:url]).path.delete_prefix('/system/') if attachment[:type] == 'Document'
           end
         end
 
