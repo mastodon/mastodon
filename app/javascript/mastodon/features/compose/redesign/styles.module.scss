@@ -87,7 +87,7 @@
 }
 
 .menuItem,
-.chatButton {
+.menuItemButton {
   @include mixins.type-label-lg;
 
   --cursor: pointer;
@@ -141,7 +141,7 @@
   }
 }
 
-.chatButton {
+.menuItemButton {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
@@ -168,4 +168,66 @@
     padding: 0;
     margin-top: var(--space-xs);
   }
+}
+
+// Attachments
+
+.mediaGrid {
+  display: grid;
+  gap: var(--space-3xs);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  aspect-ratio: 3/2;
+  max-height: 570px;
+  max-width: 530px;
+
+  &[data-number='1'] {
+    grid-template-columns: 1fr;
+  }
+
+  &[data-number='1'],
+  &[data-number='2'] {
+    grid-template-rows: 1fr;
+  }
+
+  &[data-number='3'] .mediaUpload:first-child {
+    grid-row: span 2;
+  }
+}
+
+.mediaUpload {
+  border-radius: var(--radius-md);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.mediaMenuButton {
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-xs);
+}
+
+.mediaAlt {
+  @include mixins.type-micro;
+
+  display: block;
+  padding: var(--space-2xs);
+  border-radius: var(--radius-xs);
+  background: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+  position: absolute;
+  bottom: var(--space-xs);
+  right: var(--space-xs);
+  text-transform: uppercase;
+}
+
+.mediaMenu {
+  max-width: 170px;
+  padding: var(--space-2xs) 0;
+}
+
+.mediaMenuDelete {
+  color: var(--color-text-error);
 }

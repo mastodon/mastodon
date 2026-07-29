@@ -79,6 +79,24 @@ export const selectComposeState = createAppSelector(
   }),
 );
 
+export const selectComposeHasAttachments = createAppSelector(
+  [
+    (state) => !!state.compose.get('poll'),
+    (state) => state.compose.get('quoted_status_id') as string | null,
+    (state) =>
+      state.compose.get('media_attachments') as
+        | Immutable.List<unknown>
+        | undefined,
+  ],
+  (hasPoll, quotedStatusId, attachments) => {
+    return {
+      hasPoll,
+      hasAttachments: attachments && attachments.size > 0,
+      quotedStatusId,
+    };
+  },
+);
+
 export type ComposeAttachment = ApiMediaAttachmentJSON & {
   file?: File;
   unattached: boolean;
@@ -96,5 +114,23 @@ export const selectComposeAttachments = createAppSelector(
       return [];
     }
     return attachments.toJS() as ComposeAttachment[];
+  },
+);
+
+export const selectComposePoll = createAppSelector(
+  [
+    (state) =>
+      state.compose.get('poll') as Immutable.Map<string, unknown> | null,
+  ],
+  (rawPoll) => {
+    if (rawPoll === null) {
+      return null;
+    }
+
+    return {
+      options: (rawPoll.get('options') as Immutable.List<string>).toArray(),
+      expiresIn: Number(rawPoll.get('expires_in')),
+      multiple: !!rawPoll.get('multiple'),
+    };
   },
 );
