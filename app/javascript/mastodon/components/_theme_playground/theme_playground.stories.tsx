@@ -7,6 +7,7 @@ const meta = {
   component: ThemePlayground,
   parameters: {
     layout: 'fullscreen',
+    redesign: true,
   },
 } satisfies Meta<typeof ThemePlayground>;
 
