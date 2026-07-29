@@ -159,11 +159,11 @@ module Vite
         next unless raw
 
         id = find_or_create_entry(Entry.from_json(raw))
-        imports.add id
         subimports, substyles = resolve_relations(manifest, raw)
 
         subimports.each { |sub| imports.add sub }
         substyles.each { |sub| stylesheets.add sub }
+        imports.add id
       end
 
       (raw['css'] || []).each do |stylesheet|
