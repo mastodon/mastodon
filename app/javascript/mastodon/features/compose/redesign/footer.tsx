@@ -57,9 +57,8 @@ export const ComposeFooter: React.FC = () => {
       <IconButton
         size='sm'
         icon={ChartBarHorizontalIcon}
-        disabled={hasQuote}
+        disabled={hasQuote || hasPoll}
         onClick={handlePoll}
-        color={hasPoll ? 'neutral' : 'tonal'}
       >
         <FormattedMessage
           id='poll_button.add_poll'

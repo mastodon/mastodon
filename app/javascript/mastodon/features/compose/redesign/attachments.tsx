@@ -1,5 +1,8 @@
+import type React from 'react';
+
 import { useAppSelector } from '@/mastodon/store';
 
+import { ComposePoll } from './poll';
 import {
   selectComposeAttachments,
   selectComposeHasAttachments,
@@ -51,10 +54,6 @@ const ComposeMediaAttachments: React.FC = () => {
       ))}
     </div>
   );
-};
-
-const ComposePoll: React.FC = () => {
-  return <div>TODO: Poll</div>;
 };
 
 const ComposeQuotedStatus: React.FC<{ id: string }> = ({ id }) => {
