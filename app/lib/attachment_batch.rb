@@ -54,10 +54,9 @@ class AttachmentBatch
     records.each do |record|
       @attachment_names.each do |attachment_name|
         attachment = record.public_send(attachment_name)
-        styles     = BASE_STYLES | attachment.styles.keys
-
         next if attachment.blank?
 
+        styles = BASE_STYLES | attachment.styles.keys
         styles.each do |style|
           case @storage_mode
           when :s3
