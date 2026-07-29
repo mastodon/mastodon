@@ -24,6 +24,7 @@ export interface ApiImageAttachmentJSON extends BaseApiMediaAttachmentJSON {
   meta: {
     original: ApiImageAttachmentMetaJSON;
     small: ApiImageAttachmentMetaJSON;
+    focus?: ApiFocusAttachmentMetaJSON;
   };
 }
 
@@ -42,10 +43,7 @@ export interface ApiVideoAttachmentJSON extends BaseApiMediaAttachmentJSON {
     colors: ApiColorsAttachmentMetaJSON;
     original: ApiVideoAttachmentMetaJSON;
     small: ApiImageAttachmentMetaJSON;
-    focus: {
-      x: number;
-      y: number;
-    };
+    focus?: ApiFocusAttachmentMetaJSON;
   };
 }
 
@@ -54,6 +52,7 @@ export interface ApiGifvAttachmentJSON extends BaseApiMediaAttachmentJSON {
   meta: {
     original: ApiVideoAttachmentMetaJSON;
     small: ApiImageAttachmentMetaJSON;
+    focus?: ApiFocusAttachmentMetaJSON;
   };
 }
 
@@ -88,4 +87,9 @@ export interface ApiColorsAttachmentMetaJSON {
   background: string;
   foreground: string;
   accent: string;
+}
+
+export interface ApiFocusAttachmentMetaJSON {
+  x: number;
+  y: number;
 }
