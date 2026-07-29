@@ -219,6 +219,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if @object['tag'].nil?
 
     as_array(@object['tag']).each do |tag|
+      next if tag.nil?
+
       if equals_or_includes?(tag['type'], 'Hashtag')
         process_hashtag tag
       elsif equals_or_includes?(tag['type'], 'Mention')
