@@ -1,0 +1,272 @@
+type: object
+description: Information about the server.
+required:
+  - domain
+  - title
+  - version
+  - source_url
+  - description
+  - usage
+  - thumbnail
+  - icon
+  - languages
+  - configuration
+  - registrations
+  - api_versions
+  - contact
+  - rules
+  - wrapstodon
+properties:
+  domain:
+    type: string
+    description: The domain name of the instance.
+  title:
+    type: string
+    description: The title of the website.
+  version:
+    type: string
+    description: The version of Mastodon installed on the instance.
+  source_url:
+    type: string
+    format: uri
+    description: The URL for the source code of the software running on this instance.
+  description:
+    type: string
+    description: A short, plain-text description of the website.
+  usage:
+    type: object
+    required: [users]
+    properties:
+      users:
+        type: object
+        required: [active_month]
+        properties:
+          active_month:
+            type: integer
+  thumbnail:
+    type: object
+    required: [url]
+    properties:
+      url:
+        type: string
+        format: uri
+      blurhash:
+        type: string
+      versions:
+        type: object
+        properties:
+          '@1x':
+            type: string
+            format: uri
+          '@2x':
+            type: string
+            format: uri
+      description:
+        type: string
+        nullable: true
+  icon:
+    type: array
+    items:
+      type: object
+      required: [src, size]
+      properties:
+        src:
+          type: string
+          format: uri
+        size:
+          type: string
+          example: '36x36'
+  languages:
+    type: array
+    items:
+      type: string
+      description: ISO 639-1 language code.
+  configuration:
+    type: object
+    required:
+      - urls
+      - vapid
+      - accounts
+      - statuses
+      - media_attachments
+      - polls
+      - translation
+      - timelines_access
+      - limited_federation
+    properties:
+      urls:
+        type: object
+        required: [streaming, status, about, privacy_policy, terms_of_service]
+        properties:
+          streaming:
+            type: string
+            format: uri
+          status:
+            type: string
+            format: uri
+            nullable: true
+          about:
+            type: string
+            format: uri
+          privacy_policy:
+            type: string
+            format: uri
+            nullable: true
+          terms_of_service:
+            type: string
+            format: uri
+            nullable: true
+      vapid:
+        type: object
+        required: [public_key]
+        properties:
+          public_key:
+            type: string
+      accounts:
+        type: object
+        required:
+          - max_display_name_length
+          - max_note_length
+          - max_avatar_description_length
+          - max_header_description_length
+          - max_featured_tags
+          - max_pinned_statuses
+          - max_profile_fields
+          - profile_field_name_limit
+          - profile_field_value_limit
+        properties:
+          max_display_name_length: { type: integer }
+          max_note_length: { type: integer }
+          max_avatar_description_length: { type: integer }
+          max_header_description_length: { type: integer }
+          max_featured_tags: { type: integer }
+          max_pinned_statuses: { type: integer }
+          max_profile_fields: { type: integer }
+          profile_field_name_limit: { type: integer }
+          profile_field_value_limit: { type: integer }
+      statuses:
+        type: object
+        required:
+          [max_characters, max_media_attachments, characters_reserved_per_url]
+        properties:
+          max_characters: { type: integer }
+          max_media_attachments: { type: integer }
+          characters_reserved_per_url: { type: integer }
+      media_attachments:
+        type: object
+        required:
+          - description_limit
+          - image_matrix_limit
+          - image_size_limit
+          - supported_mime_types
+          - video_frame_rate_limit
+          - video_matrix_limit
+          - video_size_limit
+        properties:
+          description_limit: { type: integer }
+          image_matrix_limit: { type: integer }
+          image_size_limit: { type: integer }
+          supported_mime_types:
+            type: array
+            items:
+              type: string
+          video_frame_rate_limit: { type: integer }
+          video_matrix_limit: { type: integer }
+          video_size_limit: { type: integer }
+      polls:
+        type: object
+        required:
+          - max_options
+          - max_characters_per_option
+          - min_expiration
+          - max_expiration
+        properties:
+          max_options: { type: integer }
+          max_characters_per_option: { type: integer }
+          min_expiration: { type: integer }
+          max_expiration: { type: integer }
+      translation:
+        type: object
+        required: [enabled]
+        properties:
+          enabled: { type: boolean }
+      timelines_access:
+        type: object
+        required: [live_feeds, hashtag_feeds, trending_link_feeds]
+        properties:
+          live_feeds:
+            type: object
+            required: [local, remote]
+            properties:
+              local:
+                type: string
+                enum: [public, authenticated, disabled]
+              remote:
+                type: string
+                enum: [public, authenticated, disabled]
+          hashtag_feeds:
+            type: object
+            required: [local, remote]
+            properties:
+              local:
+                type: string
+                enum: [public, authenticated]
+              remote:
+                type: string
+                enum: [public, authenticated, disabled]
+          trending_link_feeds:
+            type: object
+            required: [local, remote]
+            properties:
+              local:
+                type: string
+                enum: [public, authenticated]
+              remote:
+                type: string
+                enum: [public, authenticated, disabled]
+      limited_federation:
+        type: boolean
+  registrations:
+    type: object
+    required:
+      [enabled, approval_required, reason_required, message, min_age, url]
+    properties:
+      enabled:
+        type: boolean
+      approval_required:
+        type: boolean
+      reason_required:
+        type: boolean
+      message:
+        type: string
+        nullable: true
+      min_age:
+        type: integer
+        nullable: true
+      url:
+        type: string
+        nullable: true
+  api_versions:
+    type: object
+    description: Per-software API version numbers (e.g. mastodon, mitra).
+    additionalProperties:
+      type: integer
+  contact:
+    type: object
+    required: [email, account]
+    properties:
+      email:
+        type: string
+      account:
+        type: object
+        nullable: true
+        description: The account that can be contacted natively.
+  rules:
+    type: array
+    items:
+      type: object
+      description: A rule that visitors should agree to.
+  wrapstodon:
+    type: integer
+    nullable: true
+    description: Year of the current Wrapstodon (annual report) campaign, if active.

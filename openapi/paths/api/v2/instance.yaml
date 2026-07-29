@@ -1,0 +1,13 @@
+get:
+  operationId: getInstanceV2
+  summary: View server information (V2)
+  description: |
+    Obtain general information about the server.
+  security: []
+  responses:
+    '200':
+      description: Server information.
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/V2Instance.yaml'
