@@ -21,7 +21,6 @@ import svgr from 'vite-plugin-svgr';
 
 import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
-import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
 import { MastodonServiceWorkerChunkPaths } from './config/vite/plugin-sw-chunk-paths';
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 
@@ -206,7 +205,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         (visualizer({
           template: process.env.CI ? 'raw-data' : 'treemap',
         }) as PluginOption),
-      MastodonNameLookup(),
     ],
   } satisfies UserConfig;
 };
