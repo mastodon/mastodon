@@ -21,6 +21,7 @@ import {
   selectComposeAttachments,
   selectComposeCanSubmit,
   selectComposeCharsCount,
+  selectComposeHasAttachments,
   selectComposeType,
 } from './selectors';
 import classes from './styles.module.scss';
@@ -28,10 +29,10 @@ import classes from './styles.module.scss';
 export const ComposeFooter: React.FC = () => {
   const type = useAppSelector(selectComposeType);
   const { current, max } = useAppSelector(selectComposeCharsCount);
-  const hasQuote = useAppSelector(
-    (state) => !!state.compose.get('quoted_status_id'),
+  const { hasPoll, quotedStatusId } = useAppSelector(
+    selectComposeHasAttachments,
   );
-  const hasPoll = useAppSelector((state) => !!state.compose.get('poll'));
+  const hasQuote = !!quotedStatusId;
   const isSubmitting = useAppSelector(
     (state) => !!state.compose.get('is_submitting'),
   );

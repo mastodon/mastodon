@@ -191,7 +191,7 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
 
       <button
         type='button'
-        className={classes.chatButton}
+        className={classes.menuItemButton}
         onClick={handleSwitchToMessage}
       >
         <Icon id='chat' icon={ChatCircleIcon} />
