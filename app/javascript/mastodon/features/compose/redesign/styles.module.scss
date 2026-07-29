@@ -1,8 +1,10 @@
+@use '@/styles/mastodon/mixins';
+
 .root {
-  border: 1px solid var(--color-border-strong);
+  @include mixins.elevation-2;
+
   border-radius: var(--radius-xl);
   background: var(--color-bg-primary);
-  box-shadow: 2px 3px 0 0 var(--color-border-strong);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -15,10 +17,7 @@
   align-items: center;
 
   h2 {
-    font-family: var(--font-heading);
-    font-size: var(--fs-xl);
-    font-weight: 700;
-    letter-spacing: var(--ls-tight);
+    @include mixins.type-heading-sm;
   }
 }
 
@@ -50,11 +49,11 @@
 }
 
 .textarea > textarea {
+  @include mixins.type-body-lg;
+
   border: none;
   width: 100%;
   outline: none;
-  font-family: var(--font-body);
-  line-height: 1.5;
 }
 
 .footer {
@@ -70,14 +69,14 @@
 }
 
 .menu {
+  @include mixins.elevation-1;
+
   background: var(--color-bg-primary);
   width: 100%;
   max-width: 280px;
   padding: var(--space-2xs) 0;
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-strong);
   overflow: hidden;
-  box-shadow: 0 1px 0 0 var(--color-border-strong);
 
   > hr {
     height: 1px;
@@ -89,17 +88,18 @@
 
 .menuItem,
 .chatButton {
+  @include mixins.type-label-lg;
+
   --cursor: pointer;
 
-  font-size: var(--fs-sm);
   padding: var(--space-xs) var(--space-sm);
-  cursor: var(--pointer);
+  cursor: var(--cursor);
   transition:
     background 200ms,
     color 200ms;
 
   label {
-    cursor: var(--pointer);
+    cursor: var(--cursor);
   }
 
   &:hover {
@@ -126,9 +126,9 @@
   display: block;
 
   [data-label] {
-    font-size: var(--fs-2xs);
+    @include mixins.type-label-sm;
+
     color: var(--color-text-tertiary);
-    line-height: var(--fs-lg);
     padding: var(--space-xs) var(--space-sm) 0;
   }
 
