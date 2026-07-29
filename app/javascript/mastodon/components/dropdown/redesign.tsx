@@ -13,14 +13,17 @@ import classes from './redesign.module.scss';
 
 export const menuItemClass = classes.menuItem;
 
-export interface DropdownProps {
-  children: React.ReactNode;
-  elevation?: 1 | 2;
-}
+export type DropdownProps<As extends React.ElementType> = Merge<
+  {
+    as?: As;
+    children: React.ReactNode;
+    className?: string;
+    elevation?: 1 | 2;
+  },
+  React.ComponentProps<As>
+>;
 
-export const DropdownPopover: React.FC<
-  DropdownProps & React.ComponentProps<'div'> & Omit<PopoverProps, 'children'>
-> = ({
+export const DropdownPopover = <As extends React.ElementType = 'div'>({
   isOpen,
   onClose,
   reference,
@@ -34,7 +37,7 @@ export const DropdownPopover: React.FC<
   closeOnClickOutside,
   children,
   ...props
-}) => {
+}: DropdownProps<As> & Omit<PopoverProps, 'children'>) => {
   const popoverProps = {
     isOpen,
     onClose,
@@ -59,17 +62,22 @@ export const DropdownPopover: React.FC<
   );
 };
 
-export const Dropdown: React.FC<
-  DropdownProps & React.ComponentProps<'div'>
-> = ({ children, className, elevation = 1, ...props }) => {
+export const Dropdown = <As extends React.ElementType = 'div'>({
+  as: asComp,
+  children,
+  className,
+  elevation = 1,
+  ...props
+}: DropdownProps<As>) => {
+  const Component = asComp ?? 'div';
   return (
-    <div
+    <Component
       {...props}
       className={classNames(className, classes.menu)}
       data-elevation={elevation}
     >
       {children}
-    </div>
+    </Component>
   );
 };
 

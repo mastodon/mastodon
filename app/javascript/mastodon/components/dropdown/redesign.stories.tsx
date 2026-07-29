@@ -34,7 +34,7 @@ const meta = {
       options: [1, 2],
     },
   },
-} satisfies Meta<Omit<DropdownProps, 'children'>>;
+} satisfies Meta<Omit<DropdownProps<'div'>, 'children'>>;
 
 export default meta;
 
