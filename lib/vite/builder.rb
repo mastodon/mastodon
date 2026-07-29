@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-# Integration library between Mastodon backend and Vite
 module Vite
+  # Execute the configured build command and log its output
+  # @see Vite::Config#build_command
   class Builder
     attr_reader :config, :logger
 

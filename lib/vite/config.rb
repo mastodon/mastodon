@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Vite
-  # Main configuration options to ingrate with Vite:
+  # Main configuration options to integrate with Vite:
   # - host: Main host for Vite's dev server. Default: localhost
   # - port: Main port for Vite's dev server. Default: 5173
   # - https: Whether to use HTTPS to connect to the dev server or not. Default: false
@@ -12,8 +12,9 @@ module Vite
   #   Default: [:dev_server, :manifest]
   # - manifest_path: Where the manifest file is located. Default: public/packs-dev/.vite/manifest.json
   # - manifest_assets_path: Where the manifest-assets file is located. Default: public/packs-dev/.vite/manifest-assets.json
-  # - auto_build: Whether to automatically build assets or not. This is useful for tests. Default: false
+  # - auto_build: Whether to automatically build assets or not. This is useful for tess. Default: false
   # - build_command: How to build assets when auto_build is enabled. Default: 'yarn build:development'
+  # - logger: Main logger instance for other Vite classes. Default: Logger.new($stdout)
   class Config
     attr_accessor :host,
                   :port,
