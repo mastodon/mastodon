@@ -17,6 +17,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @uri                       = @status_parser.uri
     @status                    = status
     @account                   = status.account
+    @preview_card_changed      = false
     @media_attachments_changed = false
     @poll_changed              = false
     @quote_changed             = false
@@ -94,6 +95,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       if attachment['href'].present?
         preview_card_parser = ActivityPub::Parser::PreviewCardParser.new(attachment)
         @next_links << preview_card_parser.url if preview_card_parser.url.present?
+
+        existing_preview_card = @status.preview_card
+        @preview_card_changed = true if existing_preview_card && preview_card_parser.significantly_changes?(existing_preview_card)
+
         next
       end
 
@@ -184,7 +189,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
-    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed || @quote_changed
+    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed || @quote_changed || @preview_card_changed
 
     @status.edited_at = @status_parser.edited_at if significant_changes?
 
