@@ -26,6 +26,7 @@ import {
 import { Icon } from '@/mastodon/components/icon';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import { ComposeAttachments } from './attachments';
 import { ComposeFooter } from './footer';
 import { ComposeFormHeader } from './header';
 import { LanguageButton } from './language';
@@ -138,6 +139,8 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
         suggestions={suggestions}
         {...handlers}
       />
+
+      <ComposeAttachments />
 
       <ComposeFooter />
     </form>
