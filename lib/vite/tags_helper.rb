@@ -2,9 +2,6 @@
 
 module Vite
   module TagsHelper
-    # Temporary vite helper stubs
-    # TODO: Integrity
-
     def vite_javascript_tag(*names, type: 'module', crossorigin: '', **)
       Vite.tagger.vite_javascript_tag(self, *names, type:, crossorigin:, **)
     end
