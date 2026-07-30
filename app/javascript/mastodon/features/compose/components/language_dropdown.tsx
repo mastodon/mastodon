@@ -56,13 +56,15 @@ const getFrequentlyUsedLanguages = createSelector(
 
 const isTextLongEnoughForGuess = (text: string) => text.length > 20;
 
-const LanguageDropdownMenu: React.FC<{
+const emptyArray: Language[] = [];
+
+export const LanguageDropdownMenu: React.FC<{
   value: string;
-  guess?: string;
+  guess: string;
   onClose: () => void;
   onChange: (arg0: string) => void;
 }> = ({ value, guess, onClose, onChange }) => {
-  const languages = preloadedLanguages as Language[];
+  const languages = preloadedLanguages ?? emptyArray;
   const intl = useIntl();
   const [searchValue, setSearchValue] = useState('');
   const nodeRef = useRef<HTMLDivElement>(null);
@@ -317,7 +319,7 @@ export const LanguageDropdown: React.FC = () => {
   const text = useAppSelector((state) => state.compose.get('text') as string);
 
   const current =
-    (preloadedLanguages as Language[]).find((lang) => lang[0] === value) ?? [];
+    (preloadedLanguages ?? []).find((lang) => lang[0] === value) ?? [];
 
   const handleMouseDown = useCallback(() => {
     if (!open && document.activeElement instanceof HTMLElement) {

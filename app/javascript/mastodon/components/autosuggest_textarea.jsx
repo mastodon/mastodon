@@ -153,7 +153,7 @@ const AutosuggestTextarea = forwardRef(({
     }
   }, [lang]);
 
-  const renderSuggestion = (suggestion, i) => {
+  const renderSuggestion = useCallback((suggestion, i) => {
     let inner, key;
 
     if (suggestion.type === 'emoji') {
@@ -172,7 +172,7 @@ const AutosuggestTextarea = forwardRef(({
         {inner}
       </div>
     );
-  };
+  }, [selectedSuggestion, handleSuggestionClick]);
 
   const handleRef = useCallback((element) => {
     textareaRef.current = element;

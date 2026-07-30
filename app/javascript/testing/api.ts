@@ -2,9 +2,16 @@ import type { CompactEmoji } from 'emojibase';
 import { http, HttpResponse } from 'msw';
 import { action } from 'storybook/actions';
 
+import type { MediaAttachmentType } from '@/mastodon/api_types/media_attachments';
 import { toSupportedLocale } from '@/mastodon/features/emoji/locale';
 
-import { customEmojiFactory, relationshipsFactoryAPI } from './factories';
+import {
+  customEmojiFactory,
+  mediaAttachmentFactoryAPI,
+  relationshipsFactoryAPI,
+} from './factories';
+
+const mediaStorageMap = new Map<string, File>();
 
 export const mockHandlers = {
   mute: http.post<{ id: string }>('/api/v1/accounts/:id/mute', ({ params }) => {
@@ -43,6 +50,53 @@ export const mockHandlers = {
       );
     },
   ),
+  mediaUpload: http.post('/api/v2/media', async ({ request }) => {
+    action('uploaded media')();
+
+    const formData = await request.formData();
+    const file = formData.get('file');
+    if (!file) {
+      return new HttpResponse('Missing media', { status: 400 });
+    }
+
+    if (!(file instanceof File)) {
+      return new HttpResponse('Media is not file', { status: 400 });
+    }
+
+    const { type: mimeType } = file;
+    const id = mediaStorageMap.size.toString();
+    mediaStorageMap.set(id, file);
+    let type: MediaAttachmentType = 'unknown';
+    if (mimeType === 'image/gif') {
+      type = 'gifv';
+    } else if (mimeType.startsWith('image/')) {
+      type = 'image';
+    } else if (mimeType.startsWith('video/')) {
+      type = 'video';
+    } else if (mimeType.startsWith('audio/')) {
+      type = 'audio';
+    }
+
+    return HttpResponse.json(
+      mediaAttachmentFactoryAPI({
+        id,
+        type,
+        url: `/mock_media/${id}`,
+        preview_url: `/mock_media/${id}`,
+      }),
+    );
+  }),
+  mediaGet: http.get<{ id: string }>('/mock_media/:id', async ({ params }) => {
+    const { id } = params;
+    action(`getting media id ${id}`)();
+
+    const media = mediaStorageMap.get(id);
+    if (!media) {
+      return new HttpResponse('Not found', { status: 404 });
+    }
+
+    return HttpResponse.arrayBuffer(await media.arrayBuffer());
+  }),
   emojiCustomData: http.get('/api/v1/custom_emojis', () => {
     action('fetching custom emoji data')();
     return HttpResponse.json([customEmojiFactory()]);

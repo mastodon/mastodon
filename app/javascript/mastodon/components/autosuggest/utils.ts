@@ -23,12 +23,12 @@ export const textAtCursorMatchesToken = (
   word = word.trim();
 
   if (word.length < 3 || (word[0] && !searchTokens.includes(word[0]))) {
-    return [null, null];
+    return [null, null] as const;
   }
 
   if (word.length > 0) {
-    return [left + 1, word];
+    return [left + 1, word] as const;
   } else {
-    return [null, null];
+    return [null, null] as const;
   }
 };
