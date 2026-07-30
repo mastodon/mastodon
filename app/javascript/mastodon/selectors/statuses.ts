@@ -30,7 +30,7 @@ export const selectPlainStatus = createAppSelector(
 export const selectAccountStatus = createAppSelector(
   [
     selectPlainStatus,
-    (state, statusId: string) => {
+    (state, statusId?: string | null) => {
       const accountId = state.statuses.getIn([statusId, 'account']);
       if (typeof accountId !== 'string') {
         return null;
