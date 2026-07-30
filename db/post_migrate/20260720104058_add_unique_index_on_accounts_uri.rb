@@ -98,7 +98,6 @@ class AddUniqueIndexOnAccountsUri < ActiveRecord::Migration[8.1]
         Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin, AccountNote
       ],
       reference_account_id: [CanonicalEmailBlock],
-      account_warning_id: [Appeal],
       local_account_id: [SeveredRelationship],
       remote_account_id: [SeveredRelationship],
       quoted_account_id: [Quote],
