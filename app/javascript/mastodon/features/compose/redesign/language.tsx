@@ -7,6 +7,7 @@ import { TranslateIcon } from '@phosphor-icons/react';
 
 import { changeComposeLanguage } from '@/mastodon/actions/compose';
 import { IconButton } from '@/mastodon/components/button/redesign';
+import { Dropdown } from '@/mastodon/components/dropdown/redesign';
 import type { PopoverChildProps } from '@/mastodon/components/popover';
 import { Popover } from '@/mastodon/components/popover';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -87,14 +88,14 @@ export const LanguageDropdown: React.FC<
   );
 
   return (
-    <div {...props} className={`${classes.menu} ${classes.languageMenu}`}>
+    <Dropdown {...props} className={classes.languageMenu} maxWidth={280}>
       <LanguageDropdownMenu
         value={language}
         guess={guess}
         onChange={handleChange}
         onClose={onClose}
       />
-    </div>
+    </Dropdown>
   );
 };
 

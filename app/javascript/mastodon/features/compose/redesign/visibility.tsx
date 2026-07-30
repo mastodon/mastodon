@@ -12,9 +12,13 @@ import {
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import { Button } from '@/mastodon/components/button/redesign';
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownItemButton,
+} from '@/mastodon/components/dropdown/redesign';
 import { Fieldset, RadioButtonField } from '@/mastodon/components/form_fields';
 import { ToggleField } from '@/mastodon/components/form_fields/redesign';
-import { Icon } from '@/mastodon/components/icon';
 import { Popover } from '@/mastodon/components/popover';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -119,7 +123,7 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
     }, [dispatch]);
 
   return (
-    <div {...wrapperProps} className={classes.menu}>
+    <Dropdown {...wrapperProps} maxWidth={280}>
       <Fieldset
         name='visibility'
         legend={
@@ -130,76 +134,76 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
         }
         className={classes.visibilityFieldset}
       >
-        <RadioButtonField
-          name='public'
-          label={
-            <FormattedMessage
-              id='privacy.public.short'
-              defaultMessage='Public'
-            />
-          }
-          checked={privacy === 'public' || privacy === 'unlisted'}
-          onChange={handlePrivacyChange}
-          wrapperClassName={classes.menuItem}
-        />
-        <RadioButtonField
-          name='private'
-          label={
-            <FormattedMessage
-              id='privacy.private.short'
-              defaultMessage='Followers'
-            />
-          }
-          checked={privacy === 'private'}
-          onChange={handlePrivacyChange}
-          wrapperClassName={classes.menuItem}
-        />
+        <DropdownItem>
+          <RadioButtonField
+            name='public'
+            label={
+              <FormattedMessage
+                id='privacy.public.short'
+                defaultMessage='Public'
+              />
+            }
+            checked={privacy === 'public' || privacy === 'unlisted'}
+            onChange={handlePrivacyChange}
+          />
+        </DropdownItem>
+
+        <DropdownItem>
+          <RadioButtonField
+            name='private'
+            label={
+              <FormattedMessage
+                id='privacy.private.short'
+                defaultMessage='Followers'
+              />
+            }
+            checked={privacy === 'private'}
+            onChange={handlePrivacyChange}
+          />
+        </DropdownItem>
       </Fieldset>
 
       <hr />
 
-      <ToggleField
-        name='unlisted'
-        label={
-          <FormattedMessage
-            id='compose.discoverable'
-            defaultMessage='Discoverable in public feeds & search results'
-          />
-        }
-        wrapperClassName={classes.menuItem}
-        disabled={privacy === 'private'}
-        checked={privacy === 'public'}
-        onChange={handlePrivacyChange}
-        size='sm'
-      />
+      <DropdownItem>
+        <ToggleField
+          name='unlisted'
+          label={
+            <FormattedMessage
+              id='compose.discoverable'
+              defaultMessage='Discoverable in public feeds & search results'
+            />
+          }
+          disabled={privacy === 'private'}
+          checked={privacy === 'public'}
+          onChange={handlePrivacyChange}
+          size='sm'
+        />
+      </DropdownItem>
 
-      <ToggleField
-        label={
-          <FormattedMessage
-            id='compose.quotable'
-            defaultMessage='Allow others to quote'
-          />
-        }
-        wrapperClassName={classes.menuItem}
-        disabled={privacy === 'private'}
-        checked={quotePolicy === 'public' && privacy !== 'private'}
-        onChange={handleQuotePolicyChange}
-        size='sm'
-      />
+      <DropdownItem>
+        <ToggleField
+          label={
+            <FormattedMessage
+              id='compose.quotable'
+              defaultMessage='Allow others to quote'
+            />
+          }
+          disabled={privacy === 'private'}
+          checked={quotePolicy === 'public' && privacy !== 'private'}
+          onChange={handleQuotePolicyChange}
+          size='sm'
+        />
+      </DropdownItem>
 
       <hr />
 
-      <button
-        type='button'
-        className={classes.menuItemButton}
-        onClick={handleSwitchToMessage}
-      >
-        <Icon id='chat' icon={ChatCircleIcon} />
+      <DropdownItemButton icon={ChatCircleIcon} onClick={handleSwitchToMessage}>
         <FormattedMessage
           id='compose.post.to_message'
           defaultMessage='Compose a message instead'
         />
-      </button>
-    </div>
+      </DropdownItemButton>
+    </Dropdown>
   );
 };

@@ -9,8 +9,10 @@ import { DotsThreeIcon, PlusIcon, TrashIcon } from '@phosphor-icons/react';
 import { undoUploadCompose } from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { Icon } from '@/mastodon/components/icon';
-import { Popover } from '@/mastodon/components/popover';
+import {
+  DropdownItemButton,
+  DropdownPopover,
+} from '@/mastodon/components/dropdown/redesign';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import {
   createAppSelector,
@@ -101,49 +103,34 @@ export const ComposeUpload: React.FC<{ id?: string; className?: string }> = ({
         />
       </IconButton>
 
-      <Popover
+      <DropdownPopover
         isOpen={open}
         onClose={onFalse}
         reference={target}
         placement='bottom-end'
         offset={4}
+        maxWidth={170}
       >
-        {({ props }) => (
-          <div
-            {...props}
-            className={classNames(classes.menu, classes.mediaMenu)}
-          >
-            <button
-              type='button'
-              className={classes.menuItemButton}
-              onClick={handleEdit}
-            >
-              <Icon id='plus' icon={PlusIcon} />
-              <FormattedMessage
-                id='compose.upload.menu.add_alt'
-                defaultMessage='Add alt text'
-              />
-            </button>
+        <DropdownItemButton onClick={handleEdit} icon={PlusIcon}>
+          <FormattedMessage
+            id='compose.upload.menu.add_alt'
+            defaultMessage='Add alt text'
+          />
+        </DropdownItemButton>
 
-            <hr />
+        <hr />
 
-            <button
-              type='button'
-              className={classNames(
-                classes.menuItemButton,
-                classes.mediaMenuDelete,
-              )}
-              onClick={handleDelete}
-            >
-              <Icon id='trash' icon={TrashIcon} />
-              <FormattedMessage
-                id='compose.upload.menu.delete'
-                defaultMessage='Remove image'
-              />
-            </button>
-          </div>
-        )}
-      </Popover>
+        <DropdownItemButton
+          className={classes.mediaMenuDelete}
+          onClick={handleDelete}
+          icon={TrashIcon}
+        >
+          <FormattedMessage
+            id='compose.upload.menu.delete'
+            defaultMessage='Remove image'
+          />
+        </DropdownItemButton>
+      </DropdownPopover>
 
       {attachment.description && (
         <span className={classes.mediaAlt}>

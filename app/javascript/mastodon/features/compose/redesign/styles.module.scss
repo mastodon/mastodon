@@ -68,60 +68,6 @@
   color: var(--color-text-tertiary);
 }
 
-.menu {
-  @include mixins.elevation-1;
-
-  background: var(--color-bg-primary);
-  width: 100%;
-  max-width: 280px;
-  padding: var(--space-2xs) 0;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-
-  > hr {
-    height: 1px;
-    background-color: var(--color-border-primary);
-    margin: var(--space-2xs) var(--space-sm);
-    border: none;
-  }
-}
-
-.menuItem,
-.menuItemButton {
-  @include mixins.type-label-lg;
-
-  --cursor: pointer;
-
-  padding: var(--space-xs) var(--space-sm);
-  cursor: var(--cursor);
-  transition:
-    background 200ms,
-    color 200ms;
-
-  label {
-    cursor: var(--cursor);
-  }
-
-  &:hover {
-    background-color: color-mix(
-      in srgb,
-      var(--color-bg-primary) 90%,
-      var(--color-bg-inverted)
-    );
-  }
-
-  &:active {
-    background-color: var(--color-bg-inverted);
-    color: var(--color-text-inverted);
-  }
-
-  &:has(:disabled) {
-    --cursor: not-allowed;
-
-    background-color: var(--color-bg-primary);
-  }
-}
-
 .visibilityFieldset {
   display: block;
 
@@ -139,16 +85,6 @@
   [role='status'] {
     margin-top: 0;
   }
-}
-
-.menuItemButton {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  appearance: none;
-  border: none;
-  background: none;
-  width: 100%;
 }
 
 .languageMenu {
@@ -236,11 +172,6 @@
   bottom: var(--space-xs);
   right: var(--space-xs);
   text-transform: uppercase;
-}
-
-.mediaMenu {
-  max-width: 170px;
-  padding: var(--space-2xs) 0;
 }
 
 .mediaMenuDelete {
