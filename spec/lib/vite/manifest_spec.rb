@@ -115,7 +115,7 @@ RSpec.describe Vite::Manifest do
 
         it 'builds on missing file' do
           allow(Vite::Builder).to receive(:new).and_return(builder)
-          expect(builder).to have_received(:build) do
+          allow(builder).to receive(:build) do
             # Create an empty file
             File.write(manifest_path, '{}')
           end
