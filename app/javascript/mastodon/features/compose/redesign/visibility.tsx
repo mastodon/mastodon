@@ -89,26 +89,28 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
   const defaultPrivacy = useAppSelector(
     (state) => state.compose.get('default_privacy') as StatusVisibility,
   );
-  const quotePolicy = useAppSelector(
-    (state) =>
-      (state.compose.get('quote_policy') as ApiQuotePolicy | undefined) ??
-      (state.compose.get('default_quote_policy') as ApiQuotePolicy),
+  const currentQuotePolicy = useAppSelector(
+    (state) => state.compose.get('quote_policy') as ApiQuotePolicy | undefined,
   );
+  const defaultQuotePolicy = useAppSelector(
+    (state) => state.compose.get('default_quote_policy') as ApiQuotePolicy,
+  );
+  const quotePolicy = currentQuotePolicy ?? defaultQuotePolicy;
 
   const dispatch = useAppDispatch();
   const handlePrivacyChange: React.ChangeEventHandler<HTMLInputElement> =
     useCallback(
       (event) => {
-        const { name } = event.target;
-        if (name === 'private' && privacy !== 'private') {
-          dispatch(changeComposeVisibility(name));
-        } else if (name === 'public' && privacy === 'private') {
+        const { value } = event.target;
+        if (value === 'private' && privacy !== 'private') {
+          dispatch(changeComposeVisibility(value));
+        } else if (value === 'public' && privacy === 'private') {
           dispatch(
             changeComposeVisibility(
               defaultPrivacy === 'unlisted' ? 'unlisted' : 'public',
             ),
           );
-        } else if (name === 'unlisted' && privacy !== 'private') {
+        } else if (value === 'unlisted' && privacy !== 'private') {
           dispatch(
             changeComposeVisibility(
               privacy === 'public' ? 'unlisted' : 'public',
@@ -121,10 +123,27 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
   const handleQuotePolicyChange: React.ChangeEventHandler<HTMLInputElement> =
     useCallback(
       (event) => {
-        const checked = event.target.checked;
-        dispatch(setComposeQuotePolicy(checked ? 'public' : 'nobody'));
+        const { value, checked } = event.target;
+        let newQuotePolicy: ApiQuotePolicy = 'nobody';
+        switch (value) {
+          case 'public':
+            newQuotePolicy = 'public';
+            break;
+          case 'followers':
+            newQuotePolicy = 'followers';
+            break;
+          case 'others':
+            // If it's not checked, then it's nobody.
+            if (checked) {
+              // Only use the default if it's not nobody, as then it'll never be enabled.
+              newQuotePolicy =
+                defaultQuotePolicy !== 'nobody' ? defaultQuotePolicy : 'public';
+            }
+            break;
+        }
+        dispatch(setComposeQuotePolicy(newQuotePolicy));
       },
-      [dispatch],
+      [defaultQuotePolicy, dispatch],
     );
   const handleSwitchToMessage: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(() => {
@@ -144,7 +163,8 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
         className={classes.visibilityFieldset}
       >
         <DropdownRadioCheckField
-          name='public'
+          name='visibility'
+          value='public'
           checked={privacy === 'public' || privacy === 'unlisted'}
           onChange={handlePrivacyChange}
         >
@@ -152,7 +172,8 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
         </DropdownRadioCheckField>
 
         <DropdownRadioCheckField
-          name='private'
+          name='visibility'
+          value='private'
           checked={privacy === 'private'}
           onChange={handlePrivacyChange}
         >
@@ -166,7 +187,7 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
       <hr />
 
       <DropdownToggleField
-        name='unlisted'
+        value='unlisted'
         disabled={privacy === 'private'}
         checked={privacy === 'public'}
         onChange={handlePrivacyChange}
@@ -179,8 +200,9 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
       </DropdownToggleField>
 
       <DropdownToggleField
+        value='others'
         disabled={privacy === 'private'}
-        checked={quotePolicy === 'public' && privacy !== 'private'}
+        checked={quotePolicy !== 'nobody' && privacy !== 'private'}
         onChange={handleQuotePolicyChange}
         icon={QuotesIcon}
       >
@@ -189,6 +211,43 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
           defaultMessage='Allow others to quote'
         />
       </DropdownToggleField>
+
+      {quotePolicy !== 'nobody' && privacy !== 'private' && (
+        <Fieldset
+          name='quote_policy'
+          legend={
+            <FormattedMessage
+              id='compose.visibility.quote_policy'
+              defaultMessage='Who can quote'
+            />
+          }
+          className={classes.visibilityFieldset}
+        >
+          <DropdownRadioCheckField
+            name='quote_policy'
+            value='public'
+            checked={quotePolicy === 'public'}
+            onChange={handleQuotePolicyChange}
+          >
+            <FormattedMessage
+              id='compose.visibility.quote_policy.anyone'
+              defaultMessage='Anyone'
+            />
+          </DropdownRadioCheckField>
+
+          <DropdownRadioCheckField
+            name='quote_policy'
+            value='followers'
+            checked={quotePolicy === 'followers'}
+            onChange={handleQuotePolicyChange}
+          >
+            <FormattedMessage
+              id='compose.visibility.quote_policy.followers'
+              defaultMessage='Followers'
+            />
+          </DropdownRadioCheckField>
+        </Fieldset>
+      )}
 
       <hr />
 
