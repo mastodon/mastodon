@@ -141,28 +141,28 @@ module Vite
 
         entries.each do |entry|
           scripts << helper.javascript_include_tag(
-            resolver.bundle_path(entry.file),
-            integrity: entry.integrity,
+            resolver.bundle_path(entry[:file]),
+            integrity: entry[:integrity],
             crossorigin:,
             type:,
             extname: false,
             **
           )
 
-          preloads = entry.imports.map do |import|
+          preloads = manifest.imports_for(entry).map do |import|
             vite_preload_tag(
               helper,
-              resolver.bundle_path(import.file),
-              integrity: import.integrity,
+              resolver.bundle_path(import[:file]),
+              integrity: import[:integrity],
               crossorigin:,
               **
             )
           end
 
-          stylesheets = entry.stylesheets.map do |stylesheet|
+          stylesheets = manifest.stylesheets_for(entry).map do |stylesheet|
             helper.stylesheet_link_tag(
-              resolver.bundle_path(stylesheet.file),
-              integrity: stylesheet.integrity,
+              resolver.bundle_path(stylesheet[:file]),
+              integrity: stylesheet[:integrity],
               crossorigin:,
               media:,
               **
@@ -179,8 +179,8 @@ module Vite
         stylesheets = names.map do |name|
           entry = manifest.fetch!(resolver.entrypoint_path(name), type:)
           helper.stylesheet_link_tag(
-            resolver.bundle_path(entry.file),
-            integrity: entry.integrity,
+            resolver.bundle_path(entry[:file]),
+            integrity: entry[:integrity],
             **options
           )
         end
@@ -190,16 +190,16 @@ module Vite
 
       def vite_asset_path(helper, name, type: nil, **)
         entry = manifest.fetch!(resolver.entrypoint_path(name), type:)
-        helper.path_to_asset resolver.bundle_path(entry.file)
+        helper.path_to_asset resolver.bundle_path(entry[:file])
       end
 
       def vite_polyfills_tag(helper, crossorigin: 'anonymous', **)
         entry = manifest.fetch!('polyfills', type: :virtual)
 
         helper.javascript_include_tag(
-          resolver.bundle_path(entry.file),
+          resolver.bundle_path(entry[:file]),
           type: 'module',
-          integrity: entry.integrity,
+          integrity: entry[:integrity],
           crossorigin:,
           **
         )
@@ -209,7 +209,7 @@ module Vite
         entry = manifest.fetch(resolver.entrypoint_path(name))
         return SKIP unless entry
 
-        vite_preload_tag(helper, resolver.bundle_path(entry.file), integrity: entry.integrity, crossorigin:, **)
+        vite_preload_tag(helper, resolver.bundle_path(entry[:file]), integrity: entry[:integrity], crossorigin:, **)
       end
     end
 

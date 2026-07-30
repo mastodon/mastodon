@@ -24,43 +24,43 @@ RSpec.describe Vite::Manifest do
   describe '#fetch' do
     it 'gets assets from manifest_assets' do
       entry = subject.fetch('icons/main.png')
-      expect(entry.file).to eq('assets/main-abc.png')
-      expect(entry.integrity).to eq('abc-9')
+      expect(entry[:file]).to eq('assets/main-abc.png')
+      expect(entry[:integrity]).to eq('abc-9')
     end
 
     it 'gets locales' do
       entry = subject.fetch('mastodon/locales/en-GB.json')
-      expect(entry.file).to eq('intl/en-GB.js')
-      expect(entry.integrity).to eq('abc-1')
+      expect(entry[:file]).to eq('intl/en-GB.js')
+      expect(entry[:integrity]).to eq('abc-1')
     end
 
     it 'gets virtual assets' do
       entry = subject.fetch('polyfills', type: :virtual)
-      expect(entry.file).to eq('polyfills.js')
-      expect(entry.integrity).to eq('abc-8')
+      expect(entry[:file]).to eq('polyfills.js')
+      expect(entry[:integrity]).to eq('abc-8')
     end
 
     it 'gets stylesheets' do
       entry = subject.fetch('styles/entrypoints/inert.scss')
-      expect(entry.file).to eq('assets/inert-xyz.css')
-      expect(entry.integrity).to eq('abc-10')
+      expect(entry[:file]).to eq('assets/inert-xyz.css')
+      expect(entry[:integrity]).to eq('abc-10')
     end
 
     context 'when assets have dependencies' do
       let(:entry) { subject.fetch('entrypoints/application.ts') }
 
       it 'gets the entrypoint' do
-        expect(entry.file).to eq('application.js')
-        expect(entry.integrity).to eq('abc-2')
+        expect(entry[:file]).to eq('application.js')
+        expect(entry[:integrity]).to eq('abc-2')
       end
 
       it 'resolves all the imports from bottom to top without duplicates' do
-        imports = entry.imports.map(&:file)
+        imports = subject.imports_for(entry).pluck(:file)
         expect(imports).to eq(%w(no-deps.js dep-1-1.js dep-1-2.js dep-1.js dep-2.js))
       end
 
       it 'resolves all the stylesheets from bottom to top without duplicates' do
-        stylesheets = entry.stylesheets.map(&:file)
+        stylesheets = subject.stylesheets_for(entry).pluck(:file)
         expect(stylesheets).to eq(%w(assets/dep-1-1.css assets/dep-1.css assets/dep-2.css assets/main.css))
       end
     end
@@ -86,7 +86,7 @@ RSpec.describe Vite::Manifest do
       pool = subject.pool
       expect(pool.count).to eq(9)
       # This file is present in the manifest but not referenced by any entrypoint
-      expect(pool.find { |entry| entry.file == 'package.js' }).to be_nil
+      expect(pool.find { |entry| entry[:file] == 'package.js' }).to be_nil
     end
 
     context 'when the manifest is missing' do

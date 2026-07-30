@@ -31,38 +31,6 @@ module Vite
       end
     end
 
-    class Entry
-      attr_reader :file, :integrity
-      attr_accessor :import_ids, :stylesheet_ids, :pool
-
-      def self.from_json(raw)
-        new(file: raw['file'], integrity: raw['integrity'], name: raw['name'])
-      end
-
-      def initialize(file:, integrity:, name: '', import_ids: [], stylesheet_ids: [], pool: [])
-        @file = file
-        @integrity = integrity
-        @name = name
-        @import_ids = import_ids
-        @stylesheet_ids = stylesheet_ids
-        @pool = pool
-      end
-
-      def imports
-        find_entries(@import_ids)
-      end
-
-      def stylesheets
-        find_entries(@stylesheet_ids)
-      end
-
-      private
-
-      def find_entries(ids)
-        ids.filter_map { |id| @pool[id] }
-      end
-    end
-
     attr_reader :config, :entries, :pool, :logger
 
     def initialize(config:, logger:)
@@ -110,6 +78,14 @@ module Vite
       fetch(name, type:) || raise(MissingEntryError, name)
     end
 
+    def imports_for(entry)
+      find_entries(entry[:import_ids] || [])
+    end
+
+    def stylesheets_for(entry)
+      find_entries(entry[:stylesheet_ids] || [])
+    end
+
     private
 
     def load_manifest
@@ -126,17 +102,21 @@ module Vite
         import_ids, stylesheet_ids = resolve_relations(json, raw)
 
         @virtual[raw['name']] = key
-        @entries[key] = Entry.from_json(raw).tap do |entry|
-          entry.import_ids = import_ids
-          entry.stylesheet_ids = stylesheet_ids
-          entry.pool = @pool
-        end
+        @entries[key] = {
+          file: raw['file'],
+          integrity: raw['integrity'],
+          import_ids: import_ids,
+          stylesheet_ids: stylesheet_ids,
+        }
       end
 
       logger.debug { "loading manifest file: #{config.manifest_assets_path}" }
       assets = JSON.load_file(config.manifest_assets_path)
       assets.each do |key, raw|
-        @entries[key] = Entry.from_json(raw)
+        @entries[key] = {
+          file: raw['file'],
+          integrity: raw['integrity'],
+        }
       end
     end
 
@@ -158,7 +138,7 @@ module Vite
         raw_import = manifest[import]
         next unless raw_import
 
-        id = find_or_create_entry(Entry.from_json(raw_import))
+        id = find_or_create_entry({ file: raw_import['file'], integrity: raw_import['integrity'] })
         subimports, substyles = resolve_relations(manifest, raw_import)
 
         subimports.each { |sub| imports.add sub }
@@ -172,11 +152,7 @@ module Vite
         raw_style = manifest.values.find { |value| value['file'] == stylesheet }
         next unless raw_style
 
-        id = find_or_create_entry(Entry.from_json(raw_style))
-        subimports, substyles = resolve_relations(manifest, raw_style)
-
-        subimports.each { |sub| imports.add sub }
-        substyles.each { |sub| stylesheets.add sub }
+        id = find_or_create_entry({ file: raw_style['file'], integrity: raw_style['integrity'] })
         stylesheets.add id
       end
 
@@ -184,13 +160,17 @@ module Vite
     end
 
     def find_or_create_entry(entry)
-      id = @pool.find_index { |record| record.file == entry.file }
+      id = @pool.find_index { |record| record[:file] == entry[:file] }
       if id.nil?
         @pool << entry
         id = @pool.size - 1 # last ID
       end
 
       id
+    end
+
+    def find_entries(ids)
+      ids.filter_map { |id| pool[id] }
     end
   end
 end
