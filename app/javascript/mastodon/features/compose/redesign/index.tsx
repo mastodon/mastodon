@@ -12,6 +12,7 @@ import {
   changeComposeSpoilerText,
   clearComposeSuggestions,
   fetchComposeSuggestions,
+  insertEmojiCompose,
   selectComposeSuggestion,
 } from '@/mastodon/actions/compose';
 import {
@@ -27,6 +28,7 @@ import { Icon } from '@/mastodon/components/icon';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ComposeAttachments } from './attachments';
+import type { OnEmojiPick } from './emoji';
 import { ComposeFooter } from './footer';
 import { ComposeFormHeader } from './header';
 import { LanguageButton } from './language';
@@ -76,6 +78,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
     textAreaRef,
     onSensitiveChange,
     onSensitiveTextChange,
+    onEmojiPick,
     onSubmit,
     ...handlers
   } = useHandlers(redirectOnSuccess);
@@ -142,7 +145,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
 
       <ComposeAttachments />
 
-      <ComposeFooter />
+      <ComposeFooter onEmojiPick={onEmojiPick} />
     </form>
   );
 };
@@ -163,8 +166,12 @@ const ComposeTextarea = AutosuggestTextarea as React.ForwardRefExoticComponent<
     React.RefAttributes<HTMLTextAreaElement>
 >;
 
+const allowedAroundShortCode =
+  '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
+
 function useHandlers(redirectOnSuccess?: boolean) {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const text = useAppSelector((state) => state.compose.get('text') as string);
 
   const dispatch = useAppDispatch();
 
@@ -250,6 +257,19 @@ function useHandlers(redirectOnSuccess?: boolean) {
     },
     [dispatch],
   );
+  const onEmojiPick: OnEmojiPick = useCallback(
+    (emoji) => {
+      const position = textAreaRef.current?.selectionStart ?? 0;
+      const beforePosition = text[position - 1];
+      const needsSpace =
+        'custom' in emoji &&
+        !!emoji.custom &&
+        !!beforePosition &&
+        !allowedAroundShortCode.includes(beforePosition);
+      dispatch(insertEmojiCompose(position, emoji, needsSpace));
+    },
+    [dispatch, text],
+  );
 
   // Suggestions
 
@@ -276,6 +296,7 @@ function useHandlers(redirectOnSuccess?: boolean) {
     onKeyDown,
     onPaste,
     onDrop,
+    onEmojiPick,
     onSensitiveChange,
     onSensitiveTextChange,
     onSuggestionsFetchRequested,
