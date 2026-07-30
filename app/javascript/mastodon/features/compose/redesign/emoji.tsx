@@ -13,11 +13,9 @@ import { changeSetting } from '@/mastodon/actions/settings';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { Popover } from '@/mastodon/components/popover';
 import { useToggle } from '@/mastodon/hooks/useToggle';
-import {
-  createAppSelector,
-  useAppDispatch,
-  useAppSelector,
-} from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+
+import { selectFrequentlyUsedEmoji } from './selectors';
 
 export type OnEmojiPick = (emoji: EmojiData) => void;
 
@@ -83,58 +81,6 @@ const Emoji = lazy(() =>
   import('@/mastodon/features/emoji/emoji_picker').then(({ Emoji }) => ({
     default: Emoji,
   })),
-);
-
-const PER_LINE = 8;
-const LINES = 2;
-const DEFAULTS = [
-  '+1',
-  'grinning',
-  'kissing_heart',
-  'heart_eyes',
-  'laughing',
-  'stuck_out_tongue_winking_eye',
-  'sweat_smile',
-  'joy',
-  'yum',
-  'disappointed',
-  'thinking_face',
-  'weary',
-  'sob',
-  'sunglasses',
-  'heart',
-  'ok_hand',
-];
-
-const selectFrequentlyUsedEmoji = createAppSelector(
-  [
-    (state) =>
-      state.settings.get('frequentlyUsedEmojis') as
-        | Immutable.Map<string, number>
-        | undefined,
-  ],
-  (emojiCounters) => {
-    if (!emojiCounters) {
-      return DEFAULTS;
-    }
-    let emojis = emojiCounters
-      .toArray()
-      .sort((a, b) => a[1] - b[1])
-      .reverse()
-      .slice(0, PER_LINE * LINES)
-      .map(([emoji]) => emoji);
-
-    if (emojis.length < DEFAULTS.length) {
-      const uniqueDefaults = DEFAULTS.filter(
-        (emoji) => !emojis.includes(emoji),
-      );
-      emojis = emojis.concat(
-        uniqueDefaults.slice(0, DEFAULTS.length - emojis.length),
-      );
-    }
-
-    return emojis;
-  },
 );
 
 const ComposeEmojiDropdown: React.FC<{
