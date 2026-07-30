@@ -3060,7 +3060,7 @@ __metadata:
     lodash: "npm:^4.17.21"
     marky: "npm:^1.2.5"
     msw: "npm:^2.12.1"
-    msw-storybook-addon: "npm:^2.0.6"
+    msw-storybook-addon: "npm:^3.0.0"
     oxfmt: "npm:^0.47.0"
     path-complete-extname: "npm:^1.0.0"
     playwright: "npm:^1.61.1"
@@ -9146,7 +9146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-node-process@npm:^1.0.1, is-node-process@npm:^1.2.0":
+"is-node-process@npm:^1.2.0":
   version: 1.2.0
   resolution: "is-node-process@npm:1.2.0"
   checksum: 10c0/5b24fda6776d00e42431d7bcd86bce81cb0b6cabeb944142fe7b077a54ada2e155066ad06dbe790abdb397884bdc3151e04a9707b8cd185099efbc79780573ed
@@ -10321,14 +10321,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw-storybook-addon@npm:^2.0.6":
-  version: 2.0.6
-  resolution: "msw-storybook-addon@npm:2.0.6"
-  dependencies:
-    is-node-process: "npm:^1.0.1"
+"msw-storybook-addon@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "msw-storybook-addon@npm:3.0.0"
   peerDependencies:
-    msw: ^2.0.0
-  checksum: 10c0/e108e8bf247326f5475c1914fdcfaaa6603f1e46f0920ed40d1f1725e2c2f62698658ff8b7d75aee0a0ea1fc0a9714fd6caaf5278426b6dcefd5da381f462c8e
+    msw: ">=2"
+    storybook: ">=9"
+  bin:
+    msw-storybook-migrate: ./build/migrate.mjs
+  checksum: 10c0/235e141f80c9f9ef916825a7351d9c80f3479cd12b62afed032eee1be3c0918f51c835b1e75fb289b6abad975910ccff376d20c79fb1c5773b9b4792ca58d237
   languageName: node
   linkType: hard
 
