@@ -74,7 +74,7 @@ es:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
       email_domain_block:
         domain: Este puede ser el nombre de dominio que aparece en la dirección de correo electrónico o el registro MX que utiliza. Se comprobarán al registrarse.
-        with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
+        with_dns_records: Se intentará resolver los registros DNS del dominio dado y los resultados también serán bloqueados
       featured_tag:
         name: 'Aquí están algunas de las etiquetas que más has utilizado recientemente:'
       filters:
@@ -187,23 +187,23 @@ es:
         show_collections: Mostrar seguidos y seguidores en el perfil
         unlocked: Aceptar automáticamente nuevos seguidores
       account_alias:
-        acct: Maneja la cuenta antigua
+        acct: Alias de la cuenta antigua
       account_migration:
         acct: Alias de la nueva cuenta
       account_warning_preset:
         text: Texto predefinido
         title: Título
       admin_account_action:
-        include_statuses: Incluir en el correo electrónico a las publicaciones denunciadas
+        include_statuses: Incluir en el correo electrónico las publicaciones denunciadas
         send_email_notification: Notificar al usuario por correo electrónico
         text: Aviso personalizado
         type: Acción
         types:
           disable: Deshabilitar
-          none: No hacer nada
+          none: Enviar una advertencia
           sensitive: Sensible
           silence: Silenciar
-          suspend: Suspender y eliminar de forma irreversible la información de la cuenta
+          suspend: Suspender
         warning_preset_id: Usar un aviso predeterminado
       announcement:
         all_day: Evento de todo el día
@@ -222,7 +222,7 @@ es:
         confirm_password: Confirmar contraseña
         context: Filtrar contextos
         current_password: Contraseña actual
-        data: Información
+        data: Datos
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Expirar tras
@@ -232,7 +232,7 @@ es:
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
         irreversible: Rechazar en lugar de ocultar
-        locale: Idioma
+        locale: Idioma de la interfaz
         max_uses: Máx. número de usos
         new_password: Nueva contraseña
         note: Biografía
@@ -348,9 +348,9 @@ es:
         end_of_support: La versión actual de Mastodon está cerca de quedarse sin soporte
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación
         follow: Enviar correo electrónico cuando alguien te siga
-        follow_request: Enviar correo electrónico cuando alguien solicita seguirte
-        mention: Enviar correo electrónico cuando alguien te mencione
-        pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
+        follow_request: Alguien solicitó seguirte
+        mention: Alguien te mencionó
+        pending_account: Nueva cuenta necesita revisión
         quote: Alguien te ha citado
         reblog: Alguien ha impulsado tu publicación
         report: Nuevo informe enviado
