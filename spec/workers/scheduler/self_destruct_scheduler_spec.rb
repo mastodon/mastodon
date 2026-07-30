@@ -44,11 +44,11 @@ RSpec.describe Scheduler::SelfDestructScheduler do
         it 'deletes local non-deleted accounts' do
           worker.perform
 
-          expect(account.reload.deleted_at).to_not be_nil
+          expect(account.reload.requested_deletion_at).to_not be_nil
         end
 
         it 'deletes local accounts marked for deletion' do
-          account.update(deleted_at: 10.days.ago)
+          account.update(requested_deletion_at: 10.days.ago)
           deletion_request = Fabricate(:account_deletion_request, account: account)
 
           worker.perform
@@ -56,7 +56,7 @@ RSpec.describe Scheduler::SelfDestructScheduler do
           expect(ActivityPub::DeliveryWorker)
             .to have_enqueued_sidekiq_job(match_json_values(type: 'Delete', signature: be_present), account.id, other_account.inbox_url)
 
-          expect(account.reload.deleted_at).to be > 1.day.ago
+          expect(account.reload.requested_deletion_at).to be > 1.day.ago
           expect { deletion_request.reload }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end

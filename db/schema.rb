@@ -164,7 +164,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_28_145507) do
     t.datetime "avatar_updated_at", precision: nil
     t.string "collections_url"
     t.datetime "created_at", precision: nil, null: false
-    t.datetime "deleted_at"
     t.boolean "discoverable"
     t.string "display_name", default: "", null: false
     t.string "domain"
@@ -193,6 +192,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_28_145507) do
     t.text "private_key"
     t.integer "protocol", default: 0, null: false
     t.text "public_key", default: "", null: false
+    t.datetime "requested_deletion_at"
     t.datetime "requested_review_at", precision: nil
     t.datetime "reviewed_at", precision: nil
     t.datetime "sensitized_at", precision: nil
@@ -1633,7 +1633,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_28_145507) do
             WHERE ((statuses.account_id = accounts.id) AND (statuses.deleted_at IS NULL) AND (statuses.reblog_of_id IS NULL))
             ORDER BY statuses.id DESC
            LIMIT 20) t0)
-    WHERE ((accounts.suspended_at IS NULL) AND (accounts.deleted_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
+    WHERE ((accounts.suspended_at IS NULL) AND (accounts.requested_deletion_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
     GROUP BY accounts.id;
   SQL
   add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true

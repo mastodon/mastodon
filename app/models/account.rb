@@ -16,7 +16,6 @@
 #  avatar_storage_schema_version :integer
 #  avatar_updated_at             :datetime
 #  collections_url               :string
-#  deleted_at                    :datetime
 #  discoverable                  :boolean
 #  display_name                  :string           default(""), not null
 #  domain                        :string
@@ -44,6 +43,7 @@
 #  private_key                   :text
 #  protocol                      :integer          default("ostatus"), not null
 #  public_key                    :text             default(""), not null
+#  requested_deletion_at         :datetime
 #  requested_review_at           :datetime
 #  reviewed_at                   :datetime
 #  sensitized_at                 :datetime
@@ -64,10 +64,7 @@
 #
 
 class Account < ApplicationRecord
-  include Discard::Model
-
   self.ignored_columns += %w(devices_url)
-  self.discard_column = :deleted_at
 
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
   REFRESH_DEADLINE = 6.hours
@@ -290,7 +287,7 @@ class Account < ApplicationRecord
   end
 
   def deleted?
-    discarded? && !instance_actor?
+    requested_deletion_at.present? && !instance_actor?
   end
 
   def permanently_deleted?
@@ -300,7 +297,7 @@ class Account < ApplicationRecord
   def mark_deleted!(date: Time.now.utc)
     transaction do
       create_deletion_request!
-      update!(deleted_at: date)
+      update!(requested_deletion_at: date)
     end
   end
 

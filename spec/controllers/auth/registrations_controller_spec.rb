@@ -143,7 +143,7 @@ RSpec.describe Auth::RegistrationsController do
     end
 
     context 'when deleted' do
-      let(:user) { Fabricate(:user, account_attributes: { username: 'test', deleted_at: Time.now.utc }) }
+      let(:user) { Fabricate(:user, account_attributes: { username: 'test', requested_deletion_at: Time.now.utc }) }
 
       it 'returns http forbidden' do
         put :update

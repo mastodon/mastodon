@@ -230,7 +230,7 @@ class DeleteAccountService < BaseService
       @account.suspended_at      = @options[:suspended_at]
       @account.suspension_origin = :local
     else
-      @account.deleted_at = Time.now.utc
+      @account.requested_deletion_at ||= Time.now.utc
     end
 
     @account.silenced_at         = nil

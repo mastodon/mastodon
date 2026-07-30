@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class BackfillAccountDeletedAt < ActiveRecord::Migration[8.1]
+class BackfillAccountRequestedDeletionAt < ActiveRecord::Migration[8.1]
   def up
     safety_assured do
       execute <<~SQL
         UPDATE
           accounts
         SET
-          deleted_at = suspended_at, suspended_at = NULL, suspension_origin = NULL
+          requested_deletion_at = suspended_at, suspended_at = NULL, suspension_origin = NULL
         WHERE
           -- rule out remote accounts, as deleted remote accounts are deleted locally
           domain IS NULL
@@ -23,7 +23,7 @@ class BackfillAccountDeletedAt < ActiveRecord::Migration[8.1]
 
   def down
     safety_assured do
-      'UPDATE accounts SET suspended_at = deleted_at WHERE domain is NULL AND suspended_at IS NULL AND deleted_at IS NOT NULL'
+      execute 'UPDATE accounts SET suspended_at = requested_deletion_at WHERE domain is NULL AND suspended_at IS NULL AND requested_deletion_at IS NOT NULL'
     end
   end
 end

@@ -77,7 +77,7 @@ RSpec.describe ApplicationController do
     end
 
     it 'redirects to account status page if the account is pending deletion' do
-      sign_in(Fabricate(:account, deleted: true).user)
+      sign_in(Fabricate(:account, requested_deletion: true).user)
       get 'success'
       expect(response).to redirect_to(edit_user_registration_path)
     end

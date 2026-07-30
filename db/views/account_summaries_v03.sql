@@ -16,7 +16,7 @@ CROSS JOIN LATERAL (
   LIMIT 20
 ) t0
 WHERE accounts.suspended_at IS NULL
-  AND accounts.deleted_at IS NULL
+  AND accounts.requested_deletion_at IS NULL
   AND accounts.silenced_at IS NULL
   AND accounts.moved_to_account_id IS NULL
   AND accounts.discoverable = 't'

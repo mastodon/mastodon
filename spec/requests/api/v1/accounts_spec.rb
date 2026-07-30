@@ -49,7 +49,7 @@ RSpec.describe '/api/v1/accounts' do
     end
 
     context 'when requesting a permanently deleted account' do
-      let(:other_account) { Fabricate(:account, deleted: true) }
+      let(:other_account) { Fabricate(:account, requested_deletion: true) }
 
       before do
         get "/api/v1/accounts/#{other_account.id}"

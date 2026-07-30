@@ -80,7 +80,7 @@ RSpec.describe User do
         non_suspended_account = Fabricate(:account, suspended_at: nil)
         suspended_user = Fabricate(:user, account: suspended_account)
         non_suspended_user = Fabricate(:user, account: non_suspended_account)
-        deleted_account = Fabricate(:account, deleted_at: 10.days.ago)
+        deleted_account = Fabricate(:account, requested_deletion_at: 10.days.ago)
         deleted_user = Fabricate(:user, account: deleted_account)
 
         expect(described_class.account_available)

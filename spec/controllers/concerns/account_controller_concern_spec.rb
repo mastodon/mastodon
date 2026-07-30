@@ -52,7 +52,7 @@ RSpec.describe AccountControllerConcern do
 
   context 'when account is permanently deleted' do
     it 'returns http gone' do
-      account = Fabricate(:account, deleted: true)
+      account = Fabricate(:account, requested_deletion: true)
       get 'success', params: { account_username: account.username }
       expect(response).to have_http_status(410)
     end

@@ -80,7 +80,7 @@ RSpec.describe AccountSearchService do
 
     it 'returns the fuzzy match first, and does not return deleted exacts' do
       partial = Fabricate(:account, username: 'exactness')
-      Fabricate(:account, username: 'exact', deleted: true)
+      Fabricate(:account, username: 'exact', requested_deletion: true)
       results = subject.call('exact', nil, limit: 10)
 
       expect(results.size).to eq 1
@@ -96,7 +96,7 @@ RSpec.describe AccountSearchService do
     end
 
     it 'does not return deleted remote accounts' do
-      Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', deleted: true)
+      Fabricate(:account, username: 'a', domain: 'remote', display_name: 'e', requested_deletion: true)
       results = subject.call('a@example.com', nil, limit: 2)
 
       expect(results.size).to eq 0

@@ -28,7 +28,7 @@ RSpec.describe 'Settings Deletes' do
       end
 
       context 'when already deleted' do
-        let(:user) { Fabricate(:user, account_attributes: { deleted_at: Time.now.utc }) }
+        let(:user) { Fabricate(:user, account_attributes: { requested_deletion_at: Time.now.utc }) }
 
         it 'returns http forbidden' do
           delete settings_delete_path
@@ -67,7 +67,7 @@ RSpec.describe 'Settings Deletes' do
       end
 
       context 'when already deleted' do
-        let(:user) { Fabricate(:user, account_attributes: { deleted_at: Time.now.utc }) }
+        let(:user) { Fabricate(:user, account_attributes: { requested_deletion_at: Time.now.utc }) }
 
         it 'returns http forbidden' do
           get settings_delete_path
