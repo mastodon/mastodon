@@ -1,9 +1,14 @@
 import type React from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ChatCircleIcon } from '@phosphor-icons/react';
+import {
+  ChatCircleIcon,
+  CheckIcon,
+  MagnifyingGlassIcon,
+  QuotesIcon,
+} from '@phosphor-icons/react';
 
 import {
   changeComposeVisibility,
@@ -17,8 +22,12 @@ import {
   DropdownItem,
   DropdownItemButton,
 } from '@/mastodon/components/dropdown/redesign';
-import { Fieldset, RadioButtonField } from '@/mastodon/components/form_fields';
-import { ToggleField } from '@/mastodon/components/form_fields/redesign';
+import { Fieldset } from '@/mastodon/components/form_fields';
+import {
+  ToggleField,
+  RadioButtonField,
+} from '@/mastodon/components/form_fields/redesign';
+import type { IconProp } from '@/mastodon/components/icon';
 import { Popover } from '@/mastodon/components/popover';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -134,71 +143,59 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
         }
         className={classes.visibilityFieldset}
       >
-        <DropdownItem>
-          <RadioButtonField
-            name='public'
-            label={
-              <FormattedMessage
-                id='privacy.public.short'
-                defaultMessage='Public'
-              />
-            }
-            checked={privacy === 'public' || privacy === 'unlisted'}
-            onChange={handlePrivacyChange}
-          />
-        </DropdownItem>
+        <DropdownRadioCheckField
+          name='public'
+          checked={privacy === 'public' || privacy === 'unlisted'}
+          onChange={handlePrivacyChange}
+        >
+          <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
+        </DropdownRadioCheckField>
 
-        <DropdownItem>
-          <RadioButtonField
-            name='private'
-            label={
-              <FormattedMessage
-                id='privacy.private.short'
-                defaultMessage='Followers'
-              />
-            }
-            checked={privacy === 'private'}
-            onChange={handlePrivacyChange}
+        <DropdownRadioCheckField
+          name='private'
+          checked={privacy === 'private'}
+          onChange={handlePrivacyChange}
+        >
+          <FormattedMessage
+            id='privacy.private.short'
+            defaultMessage='Followers'
           />
-        </DropdownItem>
+        </DropdownRadioCheckField>
       </Fieldset>
 
       <hr />
 
-      <DropdownItem>
-        <ToggleField
-          name='unlisted'
-          label={
-            <FormattedMessage
-              id='compose.discoverable'
-              defaultMessage='Discoverable in public feeds & search results'
-            />
-          }
-          disabled={privacy === 'private'}
-          checked={privacy === 'public'}
-          onChange={handlePrivacyChange}
-          size='sm'
+      <DropdownToggleField
+        name='unlisted'
+        disabled={privacy === 'private'}
+        checked={privacy === 'public'}
+        onChange={handlePrivacyChange}
+        icon={MagnifyingGlassIcon}
+      >
+        <FormattedMessage
+          id='compose.discoverable'
+          defaultMessage='Discoverable in public feeds & search results'
         />
-      </DropdownItem>
+      </DropdownToggleField>
 
-      <DropdownItem>
-        <ToggleField
-          label={
-            <FormattedMessage
-              id='compose.quotable'
-              defaultMessage='Allow others to quote'
-            />
-          }
-          disabled={privacy === 'private'}
-          checked={quotePolicy === 'public' && privacy !== 'private'}
-          onChange={handleQuotePolicyChange}
-          size='sm'
+      <DropdownToggleField
+        disabled={privacy === 'private'}
+        checked={quotePolicy === 'public' && privacy !== 'private'}
+        onChange={handleQuotePolicyChange}
+        icon={QuotesIcon}
+      >
+        <FormattedMessage
+          id='compose.quotable'
+          defaultMessage='Allow others to quote'
         />
-      </DropdownItem>
+      </DropdownToggleField>
 
       <hr />
 
-      <DropdownItemButton icon={ChatCircleIcon} onClick={handleSwitchToMessage}>
+      <DropdownItemButton
+        leadingIcon={ChatCircleIcon}
+        onClick={handleSwitchToMessage}
+      >
         <FormattedMessage
           id='compose.post.to_message'
           defaultMessage='Compose a message instead'
@@ -207,3 +204,62 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
     </Dropdown>
   );
 };
+
+const DropdownRadioCheckField: React.FC<
+  Omit<
+    React.ComponentProps<typeof RadioButtonField>,
+    'label' | 'icon' | 'iconClassName'
+  > & {
+    children: React.ReactNode;
+  }
+> = ({ children, onClick, ...props }) => {
+  const { ref, onWrapperClick } = useDropdownControl();
+
+  return (
+    <DropdownItem onClick={onWrapperClick}>
+      <RadioButtonField
+        {...props}
+        ref={ref}
+        label={children}
+        icon={CheckIcon}
+        wrapperClassName={classes.dropdownItemControl}
+      />
+    </DropdownItem>
+  );
+};
+
+const DropdownToggleField: React.FC<
+  Omit<React.ComponentProps<typeof ToggleField>, 'label'> & {
+    children: React.ReactNode;
+    icon?: IconProp;
+  }
+> = ({ children, icon, ...props }) => {
+  const { ref, onWrapperClick } = useDropdownControl();
+
+  return (
+    <DropdownItem onClick={onWrapperClick} leadingIcon={icon}>
+      <ToggleField
+        size='sm'
+        {...props}
+        ref={ref}
+        label={children}
+        wrapperClassName={classes.dropdownItemControl}
+      />
+    </DropdownItem>
+  );
+};
+
+function useDropdownControl() {
+  const ref = useRef<HTMLInputElement | null>(null);
+  const onWrapperClick: React.MouseEventHandler = useCallback((event) => {
+    const { target } = event;
+    if (
+      target instanceof HTMLLabelElement ||
+      target instanceof HTMLInputElement
+    ) {
+      return;
+    }
+    ref.current?.click();
+  }, []);
+  return { ref, onWrapperClick };
+}
