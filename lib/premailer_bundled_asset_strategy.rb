@@ -2,7 +2,7 @@
 
 module PremailerBundledAssetStrategy
   def load(url)
-    if Raisl.env.development? && Vite.dev_server.running?
+    if Rails.env.development? && Vite.dev_server.running?
       # Request from the dev server
       return unless url.start_with?(Vite.config.base_path)
 
