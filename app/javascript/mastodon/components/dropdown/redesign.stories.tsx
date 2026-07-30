@@ -13,7 +13,6 @@ import { useToggle } from '@/mastodon/hooks/useToggle';
 
 import { Button } from '../button/redesign';
 import { ToggleField } from '../form_fields/redesign';
-import { Icon } from '../icon';
 
 import type { DropdownProps } from './redesign';
 import {
@@ -47,13 +46,13 @@ export const Simple: Story = {
     return (
       <Dropdown {...args}>
         <DropdownItemButton
-          icon={NumberCircleOneIcon}
+          leadingIcon={NumberCircleOneIcon}
           onClick={handleMenuItemClick}
         >
           First item
         </DropdownItemButton>
         <DropdownItemButton
-          icon={NumberCircleTwoIcon}
+          leadingIcon={NumberCircleTwoIcon}
           onClick={handleMenuItemClick}
         >
           Second item
@@ -81,13 +80,13 @@ export const Popover: Story = {
           {...args}
         >
           <DropdownItemButton
-            icon={NumberCircleOneIcon}
+            leadingIcon={NumberCircleOneIcon}
             onClick={handleMenuItemClick}
           >
             First item
           </DropdownItemButton>
           <DropdownItemButton
-            icon={NumberCircleTwoIcon}
+            leadingIcon={NumberCircleTwoIcon}
             onClick={handleMenuItemClick}
           >
             Second item
@@ -109,12 +108,7 @@ export const Controls: Story = {
 
         <hr />
 
-        <DropdownItem>
-          {sun ? (
-            <Icon id='sun' icon={SunIcon} />
-          ) : (
-            <Icon id='moon' icon={MoonIcon} />
-          )}
+        <DropdownItem leadingIcon={sun ? SunIcon : MoonIcon}>
           <ToggleField label='Daytime toggle' size='sm' onChange={onToggle} />
         </DropdownItem>
       </Dropdown>
