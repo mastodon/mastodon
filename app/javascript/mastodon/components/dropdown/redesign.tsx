@@ -19,11 +19,13 @@ export type DropdownProps<As extends React.ElementType> = Merge<
     children: React.ReactNode;
     className?: string;
     elevation?: 1 | 2;
+    maxWidth?: number | string;
+    style?: React.CSSProperties;
   },
   React.ComponentProps<As>
 >;
 
-export const DropdownPopover = <As extends React.ElementType = 'div'>({
+export const DropdownPopover = <As extends React.ElementType>({
   isOpen,
   onClose,
   reference,
@@ -62,11 +64,13 @@ export const DropdownPopover = <As extends React.ElementType = 'div'>({
   );
 };
 
-export const Dropdown = <As extends React.ElementType = 'div'>({
+export const Dropdown = <As extends React.ElementType>({
   as: asComp,
   children,
   className,
   elevation = 1,
+  maxWidth,
+  style,
   ...props
 }: DropdownProps<As>) => {
   const Component = asComp ?? 'div';
@@ -75,6 +79,10 @@ export const Dropdown = <As extends React.ElementType = 'div'>({
       {...props}
       className={classNames(className, classes.menu)}
       data-elevation={elevation}
+      style={{
+        maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
+        ...style,
+      }}
     >
       {children}
     </Component>
@@ -82,11 +90,11 @@ export const Dropdown = <As extends React.ElementType = 'div'>({
 };
 
 type DropdownItemProps<As extends React.ElementType> = Merge<
-  { as?: As; children: React.ReactNode; className?: string; active?: boolean },
+  { as?: As; children?: React.ReactNode; className?: string; active?: boolean },
   React.ComponentPropsWithoutRef<As>
 >;
 
-export const DropdownItem = <As extends React.ElementType = 'div'>({
+export const DropdownItem = <As extends React.ElementType>({
   active,
   as: AsComp,
   children,
