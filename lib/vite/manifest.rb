@@ -154,30 +154,30 @@ module Vite
       imports = Set.new
       stylesheets = Set.new
 
-      (raw['imports'] || []).each do |import|
-        raw = manifest[import]
-        next unless raw
+      raw['imports']&.each do |import|
+        raw_import = manifest[import]
+        next unless raw_import
 
-        id = find_or_create_entry(Entry.from_json(raw))
-        subimports, substyles = resolve_relations(manifest, raw)
+        id = find_or_create_entry(Entry.from_json(raw_import))
+        subimports, substyles = resolve_relations(manifest, raw_import)
 
         subimports.each { |sub| imports.add sub }
         substyles.each { |sub| stylesheets.add sub }
         imports.add id
       end
 
-      (raw['css'] || []).each do |stylesheet|
+      raw['css']&.each do |stylesheet|
         # the css field includes the file names of the stylesheets and not
         # the src names which are the ones used as keys in the manifest
-        raw = manifest.values.find { |value| value['file'] == stylesheet }
-        next unless raw
+        raw_style = manifest.values.find { |value| value['file'] == stylesheet }
+        next unless raw_style
 
-        id = find_or_create_entry(Entry.from_json(raw))
-        stylesheets.add id
-        subimports, substyles = resolve_relations(manifest, raw)
+        id = find_or_create_entry(Entry.from_json(raw_style))
+        subimports, substyles = resolve_relations(manifest, raw_style)
 
         subimports.each { |sub| imports.add sub }
         substyles.each { |sub| stylesheets.add sub }
+        stylesheets.add id
       end
 
       [imports, stylesheets].map(&:to_a)

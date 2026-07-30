@@ -12,9 +12,7 @@ RSpec.describe Vite::Proxy do
   let(:stack) { ->(_env) { [404, { 'content-type' => 'text/plain' }, ['Not Found']] } }
 
   let(:config) do
-    Vite::Config.new.tap do |config|
-      config.copy_from({ https: false, base_path: '/specs/' })
-    end
+    Vite::Config.new({ https: false, base_path: '/specs/' })
   end
 
   describe '#call' do

@@ -27,7 +27,7 @@ module Vite
                   :build_command,
                   :logger
 
-    def initialize
+    def initialize(cnf = nil)
       @host = 'localhost'
       @port = 5173
       @https = false
@@ -41,6 +41,8 @@ module Vite
       @build_command = 'yarn build:development'
 
       @logger = Logger.new($stdout)
+
+      copy_from(cnf) unless cnf.nil?
     end
 
     def https?
