@@ -21,7 +21,7 @@ es:
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
     nothing_here: "¡No hay nada aquí!"
     pin_errors:
-      following: Debes estar siguiendo a la persona a la que quieres aprobar
+      following: Debes estar ya siguiendo a la persona a la que quieres aprobar
     posts:
       one: Publicación
       other: Publicaciones
@@ -32,9 +32,9 @@ es:
       action: Realizar acción
       already_silenced: Esta cuenta ya ha sido limitada.
       already_suspended: Esta cuenta ya ha sido suspendida.
-      title: Moderar %{acct}
+      title: Realizar acción de moderación en %{acct}
     account_moderation_notes:
-      create: Crear
+      create: Dejar nota
       created_msg: "¡Nota de moderación creada con éxito!"
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
@@ -434,14 +434,14 @@ es:
         empty: No se encontraron apelaciones.
         title: Apelaciones
     domain_allows:
-      add_new: Añadir dominio a la lista blanca
-      created_msg: Dominio añadido a la lista blanca con éxito
-      destroyed_msg: Dominio quitado de la lista blanca con éxito
+      add_new: Permitir federación con el dominio
+      created_msg: El dominio se ha permitido con éxito para la federación
+      destroyed_msg: El dominio ha sido excluido de la federación
       export: Exportar
       import: Importar
-      undo: Quitar de la lista blanca
+      undo: No permitir federación con dominio
     domain_blocks:
-      add_new: Añadir nuevo
+      add_new: Añadir nuevo bloqueo de dominio
       confirm_suspension:
         cancel: Cancelar
         confirm: Suspender
@@ -755,9 +755,9 @@ es:
       enabled: Habilitado
       inbox_url: URL del relé
       pending: Esperando la aprobación del relé
-      save_and_enable: Guardar y conectar
+      save_and_enable: Guardar y habilitar
       setup: Preparar una conexión de relés
-      signatures_not_enabled: Los relés no funcionarán correctamente mientras el modo seguro o el modo de lista blanca estén habilitados
+      signatures_not_enabled: Los repetidores pueden no funcionar correctamente mientras que el modo seguro o el modo federación limitada está habilitado
       status: Estado
       title: Relés
     report_notes:
@@ -1115,7 +1115,7 @@ es:
         message_html: "<strong>Su servidor web está mal configurado. La privacidad de sus usuarios está en riesgo.</strong>"
       upload_check_privacy_error_object_storage:
         action: Haga clic aquí para obtener más información
-        message_html: "<strong>El almacenamiento de su objeto está mal configurado. La privacidad de sus usuarios está en riesgo.</strong>"
+        message_html: "<strong>Tu almacenamiento de objetos está mal configurado. La privacidad de sus usuarios está en riesgo.</strong>"
     tags:
       moderation:
         not_trendable: No puede ser tendencia
@@ -1207,7 +1207,7 @@ es:
         confirm_allow_account: "¿Estás seguro de que deseas permitir las cuentas seleccionadas?"
         confirm_disallow: "¿Estás seguro de que deseas restringir los estados seleccionados?"
         confirm_disallow_account: "¿Estás seguro de que deseas restringir las cuentas seleccionadas?"
-        description_html: Estas son publicaciones que tu servidor conoce que están siendo compartidas y marcadas como favoritas mucho en este momento. Pueden ayudar a tus usuarios nuevos y retornantes a encontrar más personas a las que seguir. No hay mensajes que se muestren públicamente hasta que apruebes el autor y el autor permita que su cuenta sea sugerida a otros. También puedes permitir o rechazar mensajes individuales.
+        description_html: Estas son publicaciones que tu servidor conoce que están siendo muy compartidas y marcadas como favoritas en este momento. Pueden ayudar a tus usuarios nuevos y retornantes a encontrar más personas a las que seguir. No hay mensajes que se muestren públicamente hasta que apruebes el autor y el autor permita que su cuenta sea sugerida a otros. También puedes permitir o rechazar mensajes individuales.
         disallow: No permitir publicación
         disallow_account: No permitir autor
         no_status_selected: No se cambió ninguna publicación en tendencia, ya que no se seleccionó ninguna
@@ -1953,10 +1953,10 @@ es:
     instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrás que ingresar cuando quieras iniciar sesión."
     manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
     setup: Configurar
-    wrong_code: "¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?"
+    wrong_code: "¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y del servidor?"
   pagination:
-    newer: Más nuevo
-    next: Próximo
+    newer: Más reciente
+    next: Siguiente
     older: Más antiguo
     prev: Anterior
     truncate_html: "&hellip;"
@@ -2074,7 +2074,7 @@ es:
       ios: iOS
       kai_os: KaiOS
       linux: GNU Linux
-      mac: Mac
+      mac: macOS
       unknown_platform: Plataforma Desconocida
       windows: Windows
       windows_mobile: Windows Mobile
@@ -2230,7 +2230,7 @@ es:
       too_many_requests: Ha habido demasiadas solicitudes al servicio de traducción recientemente.
   two_factor_authentication:
     add: Añadir
-    disable: Deshabilitar
+    disable: Deshabilitar 2FA
     disabled_success: Autenticación de doble factor desactivada correctamente
     edit: Editar
     enabled: La autenticación de dos factores está activada
