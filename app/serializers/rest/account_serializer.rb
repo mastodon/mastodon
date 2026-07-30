@@ -15,7 +15,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
-  attribute :suspended, if: :suspended?
+  attribute :suspended, if: :unavailable?
   attribute :silenced, key: :limited, if: :silenced?
   attribute :noindex, if: :local?
 
@@ -164,7 +164,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.user_prefers_noindex?
   end
 
-  delegate :suspended?, :silenced?, :local?, :memorial?, to: :object
+  delegate :unavailable?, :silenced?, :local?, :memorial?, to: :object
 
   def moved_and_not_nested?
     object.moved?
