@@ -111,7 +111,7 @@ export const ComposeUpload: React.FC<{ id?: string; className?: string }> = ({
         offset={4}
         maxWidth={170}
       >
-        <DropdownItemButton onClick={handleEdit} icon={PlusIcon}>
+        <DropdownItemButton onClick={handleEdit} leadingIcon={PlusIcon}>
           <FormattedMessage
             id='compose.upload.menu.add_alt'
             defaultMessage='Add alt text'
@@ -123,7 +123,7 @@ export const ComposeUpload: React.FC<{ id?: string; className?: string }> = ({
         <DropdownItemButton
           className={classes.mediaMenuDelete}
           onClick={handleDelete}
-          icon={TrashIcon}
+          leadingIcon={TrashIcon}
         >
           <FormattedMessage
             id='compose.upload.menu.delete'
