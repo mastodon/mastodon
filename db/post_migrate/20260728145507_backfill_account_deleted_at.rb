@@ -1,9 +1,23 @@
 # frozen_string_literal: true
 
-class BackfillAccountDeletedAt < ActiveRecord::Migration[6.1]
+class BackfillAccountDeletedAt < ActiveRecord::Migration[8.1]
   def up
     safety_assured do
-      execute 'UPDATE accounts SET deleted_at = suspended_at, suspended_at = NULL WHERE domain IS NULL AND suspended_at IS NOT NULL AND NOT EXISTS (SELECT 1 FROM users WHERE account_id = accounts.id)'
+      execute <<~SQL
+        UPDATE
+          accounts
+        SET
+          deleted_at = suspended_at, suspended_at = NULL, suspension_origin = NULL
+        WHERE
+          -- rule out remote accounts, as deleted remote accounts are deleted locally
+          domain IS NULL
+          -- only care about accounts marked as suspended (which prior to this migration applies to both suspended and self-deleted accounts)
+          AND suspended_at IS NOT NULL
+          -- rule accounts that were not self-deleted (might still include suspended but self-deleted accounts)
+          AND NOT EXISTS (SELECT 1 FROM users WHERE account_id = accounts.id) AND NOT EXISTS (SELECT 1 FROM canonical_email_blocks WHERE reference_account_id = accounts.id)
+          -- rule out accounts that have a canonical email block: sign they were suspended and not unsuspended
+          AND NOT EXISTS (SELECT 1 FROM canonical_email_blocks WHERE reference_account_id = accounts.id)
+      SQL
     end
   end
 
