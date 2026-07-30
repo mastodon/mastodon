@@ -90,7 +90,15 @@ export const Dropdown = <As extends React.ElementType>({
 };
 
 type DropdownItemProps<As extends React.ElementType> = Merge<
-  { as?: As; children?: React.ReactNode; className?: string; active?: boolean },
+  {
+    as?: As;
+    children?: React.ReactNode;
+    className?: string;
+    active?: boolean;
+    leadingIcon?: IconProp;
+    trailingIcon?: IconProp;
+    iconClassName?: string;
+  },
   React.ComponentPropsWithoutRef<As>
 >;
 
@@ -99,6 +107,9 @@ export const DropdownItem = <As extends React.ElementType>({
   as: AsComp,
   children,
   className,
+  leadingIcon,
+  trailingIcon,
+  iconClassName,
   ...props
 }: DropdownItemProps<As>) => {
   const Component = AsComp ?? 'div';
@@ -111,14 +122,30 @@ export const DropdownItem = <As extends React.ElementType>({
         active && classes.menuItemActive,
       )}
     >
+      {leadingIcon && (
+        <Icon
+          id='menu'
+          icon={leadingIcon}
+          className={classNames(iconClassName, classes.menuItemIcon)}
+        />
+      )}
+
       {children}
+
+      {trailingIcon && (
+        <Icon
+          id='menu'
+          icon={trailingIcon}
+          className={classNames(iconClassName, classes.menuItemIcon)}
+        />
+      )}
     </Component>
   );
 };
 
 export const DropdownItemButton: React.FC<
-  { icon?: IconProp } & React.ComponentProps<'button'>
-> = ({ icon, children, className, ...props }) => {
+  Omit<DropdownItemProps<'button'>, 'as'>
+> = ({ children, className, ...props }) => {
   return (
     <DropdownItem
       type='button'
@@ -126,7 +153,6 @@ export const DropdownItemButton: React.FC<
       as='button'
       className={classNames(className, classes.menuItemButton)}
     >
-      {icon && <Icon id='menu' icon={icon} />}
       {children}
     </DropdownItem>
   );
