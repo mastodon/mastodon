@@ -61,7 +61,19 @@
 
   border: none;
   width: 100%;
-  outline: none;
+  user-select: none;
+}
+
+.textarea {
+  flex-grow: 1;
+
+  > textarea {
+    @include mixins.type-body-lg;
+
+    border: none;
+    width: 100%;
+    outline: none;
+  }
 }
 
 .footer {
