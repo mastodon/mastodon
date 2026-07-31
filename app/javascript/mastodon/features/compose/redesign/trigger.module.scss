@@ -17,7 +17,8 @@
 
 .composer {
   width: min(560px, calc(100vw - var(--space-md) * 2));
-  height: min(520px, 80vh);
+  min-height: 520px;
+  max-height: 80vh;
 }
 
 .composerMinimized {
