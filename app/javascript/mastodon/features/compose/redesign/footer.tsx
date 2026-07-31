@@ -61,30 +61,32 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
         />
       </IconButton>
 
-      <span className={classes.counter}>
-        <FormattedMessage
-          id='compose.counter'
-          defaultMessage='{current, number}/{max, number}'
-          values={{ current, max }}
-        />
-      </span>
-
-      <Button
-        color='neutral'
-        type='submit'
-        disabled={!canSubmit}
-        loading={isSubmitting}
-      >
-        {type !== 'message' && (
-          <FormattedMessage id='compose.publish' defaultMessage='Publish' />
-        )}
-        {type === 'message' && (
+      <div className={classes.flexGrowWrap}>
+        <span className={classes.counter}>
           <FormattedMessage
-            id='compose.message.publish'
-            defaultMessage='Send'
+            id='compose.counter'
+            defaultMessage='{current, number}/{max, number}'
+            values={{ current, max }}
           />
-        )}
-      </Button>
+        </span>
+
+        <Button
+          color='neutral'
+          type='submit'
+          disabled={!canSubmit}
+          loading={isSubmitting}
+        >
+          {type !== 'message' && (
+            <FormattedMessage id='compose.publish' defaultMessage='Publish' />
+          )}
+          {type === 'message' && (
+            <FormattedMessage
+              id='compose.message.publish'
+              defaultMessage='Send'
+            />
+          )}
+        </Button>
+      </div>
     </footer>
   );
 };

@@ -101,17 +101,19 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       <ComposeFormHeader id={titleId} noMinimize={noMinimize} />
 
       <div className={classes.toolbar}>
-        {type !== 'message' && <ComposeVisibility />}
+        <div className={classes.flexGrowWrap}>
+          {type !== 'message' && <ComposeVisibility />}
 
-        {type === 'message' && (
-          <p className={classes.toolbarMessage}>
-            <Icon id='lock-open' icon={LockSimpleOpenIcon} />
-            <FormattedMessage
-              id='compose.message.notice'
-              defaultMessage='Messages are not end-to-end encrypted'
-            />
-          </p>
-        )}
+          {type === 'message' && (
+            <p className={classes.toolbarMessage}>
+              <Icon id='lock-open' icon={LockSimpleOpenIcon} />
+              <FormattedMessage
+                id='compose.message.notice'
+                defaultMessage='Messages are not end-to-end encrypted'
+              />
+            </p>
+          )}
+        </div>
 
         <ToggleField
           label={intl.formatMessage(messages.sensitive)}
