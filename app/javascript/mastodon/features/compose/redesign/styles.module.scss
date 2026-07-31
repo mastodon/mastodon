@@ -140,10 +140,16 @@
 // Attachments
 
 .mediaSingle {
-  min-width: 120px;
-  max-height: var(--max-media-height-large);
-  width: var(--width);
-  height: var(--height);
+  overflow: auto;
+
+  .mediaUpload {
+    aspect-ratio: var(--width) / var(--height);
+    width: var(--width);
+    min-width: 120px;
+    max-width: 100%;
+    height: var(--height);
+    max-height: var(--max-media-height-large);
+  }
 }
 
 .mediaGrid {
