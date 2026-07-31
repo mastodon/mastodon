@@ -1,11 +1,24 @@
-.button {
+.button,
+.composer,
+.composerMinimized {
   position: fixed;
   bottom: var(--space-md);
   right: var(--space-md);
 }
 
+.composer,
+.composerMinimized {
+  width: 100vw;
+  height: 80vh;
+}
+
 .composer {
-  position: fixed;
-  bottom: 0;
-  right: 200px;
+  max-width: 560px;
+  max-height: 520px;
+}
+
+.composerMinimized {
+  max-width: 320px;
+  height: auto;
+  padding: var(--space-md);
 }
