@@ -23,6 +23,14 @@ module Vite
     @logger ||= config.logger
   end
 
+  def self.with_logger(new_logger)
+    @prev_logger = logger
+    @logger = new_logger
+    yield
+  ensure
+    @logger = @prev_logger
+  end
+
   def self.dev_server
     @dev_server ||= DevServer.new(config:)
   end
