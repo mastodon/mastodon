@@ -10,6 +10,7 @@ module Vite
   autoload :Proxy, 'vite/proxy'
   autoload :Tagger, 'vite/tagger'
   autoload :TagsHelper, 'vite/tags_helper'
+  autoload :Tasks, 'vite/tasks'
 
   def self.setup
     yield config if block_given?
@@ -21,14 +22,6 @@ module Vite
 
   def self.logger
     @logger ||= config.logger
-  end
-
-  def self.with_logger(new_logger)
-    @prev_logger = logger
-    @logger = new_logger
-    yield
-  ensure
-    @logger = @prev_logger
   end
 
   def self.dev_server
@@ -43,16 +36,8 @@ module Vite
     @manifest ||= Manifest.new(config:, logger:)
   end
 
-  def self.builder
-    @builder ||= Vite::Builder.new(config:, logger:)
-  end
-
-  def self.build
-    builder.build
-  end
-
-  def self.build!
-    builder.build!
+  def self.tasks
+    @tasks ||= Vite::Tasks.new(config:)
   end
 
   def self.preload

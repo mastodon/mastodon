@@ -2,6 +2,8 @@
 # see lib/vite/config.rb for more info
 #
 # All values need to match Vite's configuration in vite.config.mts
+shared:
+  cache_dir: 'node_modules/.vite'
 
 development:
   host: 'localhost'
@@ -13,6 +15,7 @@ development:
   auto_build: true
   build_command: 'yarn build:development'
   tag_strategies: ['dev_server', 'manifest']
+  out_dir: 'public/packs-dev'
 
 test:
   base_path: '/packs/'
@@ -21,6 +24,7 @@ test:
   auto_build: true
   build_command: 'yarn build:production'
   tag_strategies: ['manifest']
+  out_dir: 'public/packs'
 
 production:
   base_path: '/packs/'
@@ -29,3 +33,4 @@ production:
   auto_build: false
   build_command: 'yarn build:production'
   tag_strategies: ['manifest']
+  out_dir: 'public/packs'
