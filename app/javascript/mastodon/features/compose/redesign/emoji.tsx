@@ -1,5 +1,5 @@
 import type React from 'react';
-import { lazy, Suspense, useCallback, useMemo, useState } from 'react';
+import { lazy, Suspense, useCallback, useMemo, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -11,11 +11,15 @@ import type { EmojiData, EmojiSkin } from 'emoji-mart';
 import { emojiUse } from '@/mastodon/actions/emojis';
 import { changeSetting } from '@/mastodon/actions/settings';
 import { IconButton } from '@/mastodon/components/button/redesign';
+import { CircularProgress } from '@/mastodon/components/circular_progress';
+import { Dropdown } from '@/mastodon/components/dropdown/redesign';
+import type { PopoverChildProps } from '@/mastodon/components/popover';
 import { Popover } from '@/mastodon/components/popover';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { selectFrequentlyUsedEmoji } from './selectors';
+import { PER_LINE, selectFrequentlyUsedEmoji } from './selectors';
+import classes from './styles.module.scss';
 
 export type OnEmojiPick = (emoji: EmojiData) => void;
 
@@ -58,14 +62,20 @@ export const ComposeEmojiButton: React.FC<{ onPick: OnEmojiPick }> = ({
         />
       </IconButton>
 
-      <Popover isOpen={open} onClose={onFalse} reference={target}>
+      <Popover
+        isOpen={open}
+        onClose={onFalse}
+        reference={target}
+        placement='bottom'
+        offset={4}
+      >
         {({ props, placement }) => (
-          <div
+          <ComposeEmojiDropdown
+            onPick={onPick}
+            onClose={onFalse}
+            className={placement}
             {...props}
-            className={classNames('dropdown-animation', placement)}
-          >
-            <ComposeEmojiDropdown onPick={onPick} onClose={onFalse} />
-          </div>
+          />
         )}
       </Popover>
     </>
@@ -83,10 +93,13 @@ const Emoji = lazy(() =>
   })),
 );
 
-const ComposeEmojiDropdown: React.FC<{
-  onClose: () => void;
-  onPick: OnEmojiPick;
-}> = ({ onPick, onClose }) => {
+const ComposeEmojiDropdown: React.FC<
+  {
+    onClose: () => void;
+    onPick: OnEmojiPick;
+    className?: string;
+  } & PopoverChildProps
+> = ({ onPick, onClose, className, ...props }) => {
   const intl = useIntl();
   const skinTone = useAppSelector(
     (state) => state.settings.get('skinTone') as EmojiSkin | undefined,
@@ -112,7 +125,6 @@ const ComposeEmojiDropdown: React.FC<{
     [intl],
   );
 
-  const [open, { onTrue, onFalse }] = useToggle();
   const dispatch = useAppDispatch();
   const handleEmojiPick = useCallback(
     (rawEmoji: EmojiData, event: React.MouseEvent<HTMLInputElement>) => {
@@ -130,13 +142,46 @@ const ComposeEmojiDropdown: React.FC<{
     [dispatch, onPick, onClose],
   );
 
+  // Close modifier window if it's not clicked in.
+  const modifierRef = useRef<HTMLDivElement>(null);
+  const [open, { onTrue, onFalse }] = useToggle();
+  const handleRootClick: React.MouseEventHandler<HTMLDivElement> = useCallback(
+    (event) => {
+      if (
+        !open ||
+        (event.target instanceof Node &&
+          modifierRef.current?.contains(event.target))
+      ) {
+        return;
+      }
+      onFalse();
+    },
+    [onFalse, open],
+  );
+
   return (
-    <div
-      className={classNames('emoji-picker-dropdown__menu', open && 'selecting')}
+    <Dropdown
+      {...props}
+      className={classNames(
+        'dropdown-animation',
+        classes.emojiRoot,
+        className,
+        open && 'selecting',
+      )}
+      onClick={handleRootClick}
     >
-      <Suspense>
+      <Suspense
+        fallback={
+          <CircularProgress
+            size={50}
+            strokeWidth={2}
+            role='none'
+            className={classes.emojiLoading}
+          />
+        }
+      >
         <EmojiPicker
-          perLine={8}
+          perLine={PER_LINE}
           emojiSize={22}
           color=''
           emoji=''
@@ -156,19 +201,21 @@ const ComposeEmojiDropdown: React.FC<{
 
         <div className='emoji-picker-dropdown__modifiers'>
           <Emoji emoji='fist' size={22} skin={skinTone} onClick={onTrue} />
-          {open && (
-            <div className='emoji-picker-dropdown__modifiers__menu'>
-              <ModifierButton skin={1} onClose={onFalse} />
-              <ModifierButton skin={2} onClose={onFalse} />
-              <ModifierButton skin={3} onClose={onFalse} />
-              <ModifierButton skin={4} onClose={onFalse} />
-              <ModifierButton skin={5} onClose={onFalse} />
-              <ModifierButton skin={6} onClose={onFalse} />
-            </div>
-          )}
+          <div
+            className='emoji-picker-dropdown__modifiers__menu'
+            hidden={!open}
+            ref={modifierRef}
+          >
+            <ModifierButton skin={1} onClose={onFalse} />
+            <ModifierButton skin={2} onClose={onFalse} />
+            <ModifierButton skin={3} onClose={onFalse} />
+            <ModifierButton skin={4} onClose={onFalse} />
+            <ModifierButton skin={5} onClose={onFalse} />
+            <ModifierButton skin={6} onClose={onFalse} />
+          </div>
         </div>
       </Suspense>
-    </div>
+    </Dropdown>
   );
 };
 
@@ -177,10 +224,14 @@ const ModifierButton: React.FC<{ skin: EmojiSkin; onClose: () => void }> = ({
   onClose,
 }) => {
   const dispatch = useAppDispatch();
-  const handleClick = useCallback(() => {
-    dispatch(changeSetting(['skinTone'], skin));
-    onClose();
-  }, [dispatch, onClose, skin]);
+  const handleClick: React.MouseEventHandler = useCallback(
+    (event) => {
+      event.preventDefault();
+      dispatch(changeSetting(['skinTone'], skin));
+      onClose();
+    },
+    [dispatch, onClose, skin],
+  );
   return (
     <button type='button' onClick={handleClick} data-index={1}>
       <Emoji emoji='fist' size={22} skin={skin} />
