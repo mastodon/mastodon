@@ -15,7 +15,7 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
       target_collections  = target_collections_by_account.fetch(target_account.id, [])
       replied_to_accounts = target_statuses.nil? ? [] : Account.local.where(id: target_statuses.filter_map(&:in_reply_to_account_id))
 
-      next if target_account.suspended? || (!target_account.local? && replied_to_accounts.none?)
+      next if target_account.suspended? || target_account.permanently_deleted? || (!target_account.local? && replied_to_accounts.none?)
 
       ReportService.new.call(
         @account,

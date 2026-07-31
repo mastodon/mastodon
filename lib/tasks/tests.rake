@@ -117,6 +117,21 @@ namespace :tests do
         exit(1)
       end
 
+      unless Account.find_by(username: 'suspended', domain: nil).suspended?
+        puts 'Unexpected value for Account#suspended? for user @suspended'
+        exit(1)
+      end
+
+      if Account.find_by(username: 'deleted', domain: nil).suspended?
+        puts 'Unexpected value for Account#suspended? for user @deleted'
+        exit(1)
+      end
+
+      unless Account.find_by(username: 'deleted', domain: nil).deleted?
+        puts 'Unexpected value for Account#deleted? for user @deleted'
+        exit(1)
+      end
+
       unless Identity.where(provider: 'foo', uid: 0).one?
         puts 'Identities not deduplicated as expected'
         exit(1)
@@ -226,11 +241,11 @@ namespace :tests do
         INSERT INTO "accounts"
           (id, username, domain, uri, private_key, public_key, created_at, updated_at, last_webfingered_at)
         VALUES
-          (12, 'alice', 'social.example.com', 'https://social.example.com/alice', NULL, #{user_public_key}, '2021-01-01'::date, now(), '2021-01-09'::date),
-          (13, 'alice', 'example.com', 'https://social.example.com/alice', NULL, #{user_public_key}, '2021-01-10'::date, now(), '2021-01-11'::date),
-          (14, 'bogus1', 'example.com', '', NULL, '', now(), now(), now()),
-          (15, 'bogus2', 'example.com', '', NULL, '', now(), now(), now()),
-          (16, 'bogus3', 'example.com', '', NULL, '', now(), now(), now());
+          (14, 'alice', 'social.example.com', 'https://social.example.com/alice', NULL, #{user_public_key}, '2021-01-01'::date, now(), '2021-01-09'::date),
+          (15, 'alice', 'example.com', 'https://social.example.com/alice', NULL, #{user_public_key}, '2021-01-10'::date, now(), '2021-01-11'::date),
+          (16, 'bogus1', 'example.com', '', NULL, '', now(), now(), now()),
+          (17, 'bogus2', 'example.com', '', NULL, '', now(), now(), now()),
+          (18, 'bogus3', 'example.com', '', NULL, '', now(), now(), now());
       SQL
     end
 
@@ -291,20 +306,20 @@ namespace :tests do
         INSERT INTO "accounts"
           (id, username, domain, private_key, public_key, created_at, updated_at)
         VALUES
-          (10, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now()),
-          (11, 'qcuser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
+          (12, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now()),
+          (13, 'qcuser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin, locale, chosen_languages)
         VALUES
-          (4, 10, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
+          (5, 12, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, locale,
            encrypted_otp_secret, encrypted_otp_secret_iv, encrypted_otp_secret_salt,
            otp_required_for_login)
         VALUES
-          (5, 11, 'qcuser@localhost', now(), now(), 'fr-QC',
+          (6, 13, 'qcuser@localhost', now(), now(), 'fr-QC',
            E'Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n',
            'rys3THICkr60BoWC',
            '_LMkAGvdg7a+sDIKjI3mR2Q==',
@@ -313,7 +328,7 @@ namespace :tests do
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES
-          (5, 'User', 4, 'default_language', E'--- kmr\n', now(), now()),
+          (5, 'User', 5, 'default_language', E'--- kmr\n', now(), now()),
           (6, 'User', 1, 'interactions', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nmust_be_follower: false\nmust_be_following: true\nmust_be_following_dm: false\n', now(), now());
 
         INSERT INTO "identities"
@@ -390,18 +405,25 @@ namespace :tests do
            'https://activitypub.com/users/evil/inbox', 'https://activitypub.com/users/evil/outbox',
            'https://activitypub.com/users/evil/followers', true);
 
+        INSERT INTO "accounts"
+          (id, username, domain, private_key, public_key, created_at, updated_at, suspended)
+        VALUES
+          (10, 'suspended', NULL, #{admin_private_key}, #{admin_public_key}, now(), now(), true),
+          (11, 'deleted',  NULL, #{user_private_key},  #{user_public_key},  now(), now(), true);
+
         -- users
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin)
         VALUES
           (1, 1, 'admin@localhost', now(), now(), true),
-          (2, 2, 'user@localhost', now(), now(), false);
+          (2, 2, 'user@localhost', now(), now(), false),
+          (3, 10, 'suspended@localhost', now(), now(), false);
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin, locale)
         VALUES
-          (3, 8, 'ptuser@localhost', now(), now(), false, 'pt');
+          (4, 8, 'ptuser@localhost', now(), now(), false, 'pt');
 
         -- conversations
         INSERT INTO "conversations" (id, created_at, updated_at) VALUES (1, now(), now());
