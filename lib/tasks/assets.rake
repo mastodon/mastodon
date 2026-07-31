@@ -17,7 +17,7 @@ if Rake::Task.task_defined?('assets:precompile')
     # Vite integration
     task_logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new($stdout)).tagged('vite')
     Vite.with_logger(task_logger) do
-      Vite.build
+      Vite.build!
     end
 
     Rake::Task['assets:generate_static_pages'].invoke

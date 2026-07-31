@@ -17,12 +17,14 @@ RSpec.describe Vite::Builder do
 
       expect(buffer.read).to include('spec builder')
     end
+  end
 
+  describe '#build!' do
     context 'when the command fails' do
       let(:config) { Struct.new(:build_command).new('false') }
 
       it 'raises an error' do
-        expect { subject.build }.to raise_error(Vite::Builder::BuildError)
+        expect { subject.build! }.to raise_error(Vite::Builder::BuildError)
       end
     end
   end

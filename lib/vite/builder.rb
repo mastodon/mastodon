@@ -19,7 +19,7 @@ module Vite
 
     def build
       logger.info { "Build: Building assets with vite with command: '#{config.build_command}'" }
-      status = Open3.popen3(config.build_command) do |_stdin, stdout, stderr, wait_thread|
+      Open3.popen3(config.build_command) do |_stdin, stdout, stderr, wait_thread|
         read_pipe(stdout) do |line|
           logger.info { line.strip }
         end
@@ -29,6 +29,10 @@ module Vite
 
         wait_thread.value
       end
+    end
+
+    def build!
+      status = build
 
       raise(BuildError.new(config.build_command, status.exitstatus)) unless status.success?
     end
