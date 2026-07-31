@@ -47,12 +47,7 @@ export const ComposeVisibility: React.FC = () => {
         defaultMessage='To: {button}'
         values={{
           button: (
-            <Button
-              className={classes.toolbarGrow}
-              size='sm'
-              onClick={onToggle}
-              ref={setTrigger}
-            >
+            <Button size='sm' onClick={onToggle} ref={setTrigger}>
               {privacy !== 'private' && (
                 <FormattedMessage
                   id='privacy.public.short'
