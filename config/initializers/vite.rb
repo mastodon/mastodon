@@ -10,7 +10,7 @@ Vite.setup do |config|
     Rails.application.config.middleware.insert_before(0, Vite::Proxy, config:, dev_server: Vite.dev_server)
   else
     Rails.application.config.to_prepare do
-      Vite.preload
+      Vite.preload if defined?(Rails::Server) || defined?(Rails::Console)
     end
   end
 end
