@@ -142,14 +142,13 @@ module Vite
         raw_import = manifest[import]
         next unless raw_import
 
-        id, status = find_or_create_entry({ file: raw_import['file'], integrity: raw_import['integrity'] })
-        if status == :new
-          subimports, substyles = resolve_relations(manifest, raw_import)
-
-          subimports.each { |sub| imports.add sub }
-          substyles.each { |sub| stylesheets.add sub }
+        id, subimports, substyles = find_or_create_entry(file: raw_import['file'], integrity: raw_import['integrity']) do
+          resolve_relations(manifest, raw_import)
         end
-        imports.add id
+
+        imports.merge(subimports)
+        stylesheets.merge(substyles)
+        imports.add(id)
       end
 
       raw['css']&.each do |stylesheet|
@@ -158,25 +157,24 @@ module Vite
         raw_style = manifest.values.find { |value| value['file'] == stylesheet }
         next unless raw_style
 
-        id, = find_or_create_entry({ file: raw_style['file'], integrity: raw_style['integrity'] })
+        id, = find_or_create_entry(file: raw_style['file'], integrity: raw_style['integrity'])
         stylesheets.add id
       end
 
       [imports, stylesheets].map(&:to_a)
     end
 
-    def find_or_create_entry(entry)
-      status = :found
-      id = @lookup[entry]
+    def find_or_create_entry(file:, integrity:)
+      id, subimports, substyles = @lookup[file]
 
       if id.nil?
-        status = :new
-        @pool << entry
-        id = @pool.size - 1 # last ID
-        @lookup[entry] = id
+        id = @pool.size
+        @pool << { file:, integrity: }
+        subimports, substyles = yield if block_given?
+        @lookup[file] = [id, subimports, substyles]
       end
 
-      [id, status]
+      [id, subimports, substyles]
     end
 
     def find_entries(ids)
