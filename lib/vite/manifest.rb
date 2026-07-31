@@ -92,6 +92,8 @@ module Vite
       @virtual = {}
       @entries = {}
       @pool = []
+      # intermediate Hash for fast lookups while parsing the manifest
+      @lookup = {}
 
       logger.debug { "loading manifest file: #{config.manifest_path}" }
       json = JSON.load_file(config.manifest_path)
@@ -118,6 +120,8 @@ module Vite
           integrity: raw['integrity'],
         }
       end
+    ensure
+      @lookup = {}
     end
 
     def build
@@ -138,11 +142,13 @@ module Vite
         raw_import = manifest[import]
         next unless raw_import
 
-        id = find_or_create_entry({ file: raw_import['file'], integrity: raw_import['integrity'] })
-        subimports, substyles = resolve_relations(manifest, raw_import)
+        id, status = find_or_create_entry({ file: raw_import['file'], integrity: raw_import['integrity'] })
+        if status == :new
+          subimports, substyles = resolve_relations(manifest, raw_import)
 
-        subimports.each { |sub| imports.add sub }
-        substyles.each { |sub| stylesheets.add sub }
+          subimports.each { |sub| imports.add sub }
+          substyles.each { |sub| stylesheets.add sub }
+        end
         imports.add id
       end
 
@@ -152,7 +158,7 @@ module Vite
         raw_style = manifest.values.find { |value| value['file'] == stylesheet }
         next unless raw_style
 
-        id = find_or_create_entry({ file: raw_style['file'], integrity: raw_style['integrity'] })
+        id, = find_or_create_entry({ file: raw_style['file'], integrity: raw_style['integrity'] })
         stylesheets.add id
       end
 
@@ -160,13 +166,17 @@ module Vite
     end
 
     def find_or_create_entry(entry)
-      id = @pool.find_index { |record| record[:file] == entry[:file] }
+      status = :found
+      id = @lookup[entry]
+
       if id.nil?
+        status = :new
         @pool << entry
         id = @pool.size - 1 # last ID
+        @lookup[entry] = id
       end
 
-      id
+      [id, status]
     end
 
     def find_entries(ids)
