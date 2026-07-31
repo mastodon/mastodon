@@ -15,6 +15,15 @@
     "css": ["assets/main.css"],
     "integrity": "abc-2"
   },
+  "entrypoints/admin.ts": {
+    "file": "admin.js",
+    "name": "admin",
+    "src": "entrypoints/admin.ts",
+    "isEntry": true,
+    "imports": ["_no-deps.js", "_dep-1.js", "_dep-2.js", "_dep-3.js"],
+    "css": ["assets/main.css"],
+    "integrity": "cba-2"
+  },
   "_no-deps.js": {
     "file": "no-deps.js",
     "name": "no-deps",
@@ -33,6 +42,11 @@
     "imports": ["_dep-1-1.js"],
     "css": ["assets/dep-2.css"],
     "integrity": "abc-5"
+  },
+  "_dep-3.js": {
+    "file": "dep-3.js",
+    "name": "dep-3",
+    "integrity": "cba-5"
   },
   "_dep-1-1.js": {
     "file": "dep-1-1.js",

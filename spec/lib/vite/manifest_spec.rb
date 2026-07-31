@@ -63,6 +63,20 @@ RSpec.describe Vite::Manifest do
         stylesheets = subject.stylesheets_for(entry).pluck(:file)
         expect(stylesheets).to eq(%w(assets/dep-1-1.css assets/dep-1.css assets/dep-2.css assets/main.css))
       end
+
+      context 'when another entrypoint has the same dependencies' do
+        let(:entry) { subject.fetch('entrypoints/admin.ts') }
+
+        it 'resolves all the imports from bottom to top without duplicates' do
+          imports = subject.imports_for(entry).pluck(:file)
+          expect(imports).to eq(%w(no-deps.js dep-1-1.js dep-1-2.js dep-1.js dep-2.js dep-3.js))
+        end
+
+        it 'resolves all the stylesheets from bottom to top without duplicates' do
+          stylesheets = subject.stylesheets_for(entry).pluck(:file)
+          expect(stylesheets).to eq(%w(assets/dep-1-1.css assets/dep-1.css assets/dep-2.css assets/main.css))
+        end
+      end
     end
   end
 
@@ -77,14 +91,14 @@ RSpec.describe Vite::Manifest do
       subject.load
 
       entries = subject.entries
-      expect(entries.keys.count).to eq(5)
+      expect(entries.keys.count).to eq(6)
     end
 
     it 'only keeps track of dependencies' do
       subject.load
 
       pool = subject.pool
-      expect(pool.count).to eq(9)
+      expect(pool.count).to eq(10)
       # This file is present in the manifest but not referenced by any entrypoint
       expect(pool.find { |entry| entry[:file] == 'package.js' }).to be_nil
     end

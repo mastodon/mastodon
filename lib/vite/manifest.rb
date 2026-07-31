@@ -142,13 +142,12 @@ module Vite
         raw_import = manifest[import]
         next unless raw_import
 
-        id, status = find_or_create_entry({ file: raw_import['file'], integrity: raw_import['integrity'] })
-        if status == :new
-          subimports, substyles = resolve_relations(manifest, raw_import)
-
-          subimports.each { |sub| imports.add sub }
-          substyles.each { |sub| stylesheets.add sub }
+        id, deps = lookup(file: raw_import['file'], integrity: raw_import['integrity']) do
+          resolve_relations(manifest, raw_import)
         end
+
+        deps[0].each { |sub| imports.add sub }
+        deps[1].each { |sub| stylesheets.add sub }
         imports.add id
       end
 
@@ -158,25 +157,26 @@ module Vite
         raw_style = manifest.values.find { |value| value['file'] == stylesheet }
         next unless raw_style
 
-        id, = find_or_create_entry({ file: raw_style['file'], integrity: raw_style['integrity'] })
+        id, = lookup(file: raw_style['file'], integrity: raw_style['integrity'])
         stylesheets.add id
       end
 
       [imports, stylesheets].map(&:to_a)
     end
 
-    def find_or_create_entry(entry)
-      status = :found
-      id = @lookup[entry]
+    # Lookup in the internal cache if an entry has been processed
+    # If not, yield and save the result of the block as the entry deps
+    def lookup(file:, integrity:)
+      id, deps = @lookup[file] || []
 
       if id.nil?
-        status = :new
-        @pool << entry
+        @pool << { file:, integrity: }
         id = @pool.size - 1 # last ID
-        @lookup[entry] = id
+        deps = yield if block_given?
+        @lookup[file] = [id, deps]
       end
 
-      [id, status]
+      [id, deps]
     end
 
     def find_entries(ids)
