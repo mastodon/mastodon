@@ -79,8 +79,8 @@ export const selectComposeState = createAppSelector(
   }),
 );
 
-const PER_LINE = 8;
-const LINES = 2;
+export const PER_LINE = 8;
+export const LINES = 2;
 const DEFAULTS = [
   '+1',
   'grinning',
