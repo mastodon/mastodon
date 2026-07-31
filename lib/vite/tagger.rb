@@ -60,7 +60,7 @@ module Vite
       def vite_react_refresh_tag(helper, **options)
         return SKIP unless dev_server.running?
 
-        options[:nonce] = true if Rails::VERSION::MAJOR >= 6 && !options.key?(:nonce)
+        options[:nonce] = true unless options.key?(:nonce)
 
         react_refresh = resolver.bundle_path('@react-refresh')
 
@@ -88,7 +88,7 @@ module Vite
 
         style_paths = names.map { |name| resolver.full_path(name) }
 
-        options[:extname] = false if Rails::VERSION::MAJOR >= 7
+        options[:extname] = false
 
         helper.stylesheet_link_tag(*style_paths, **options)
       end
@@ -174,7 +174,7 @@ module Vite
       end
 
       def vite_stylesheet_tag(helper, *names, type: :stylesheet, **options)
-        options[:extname] = false if Rails::VERSION::MAJOR >= 7
+        options[:extname] = false
 
         stylesheets = names.map do |name|
           entry = manifest.fetch!(resolver.entrypoint_path(name), type:)
