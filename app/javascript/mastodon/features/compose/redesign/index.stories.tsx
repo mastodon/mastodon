@@ -7,7 +7,7 @@ const meta = {
   component: RedesignComposeForm,
   render() {
     return (
-      <div style={{ width: '40vw' }}>
+      <div style={{ width: 'max(40vw, 400px)' }}>
         <RedesignComposeForm />
       </div>
     );

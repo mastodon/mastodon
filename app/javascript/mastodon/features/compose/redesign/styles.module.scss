@@ -9,6 +9,7 @@
   flex-direction: column;
   gap: var(--space-md);
   padding: var(--space-md);
+  min-width: 300px;
 }
 
 .header {
@@ -225,4 +226,24 @@
 .pollControls {
   display: flex;
   justify-content: space-between;
+}
+
+// Emoji picker
+
+div.emojiRoot {
+  position: relative;
+  z-index: 2;
+  padding: 0;
+  min-width: 300px;
+  min-height: 300px;
+
+  &:has(.emojiLoading) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (width > 400px) {
+    min-height: 370px;
+  }
 }
