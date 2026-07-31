@@ -38,6 +38,7 @@ export const DropdownPopover = <As extends React.ElementType>({
   matchReferenceWidth,
   closeOnClickOutside,
   children,
+  className,
   ...props
 }: DropdownProps<As> & Omit<PopoverProps, 'children'>) => {
   const popoverProps = {
@@ -56,7 +57,14 @@ export const DropdownPopover = <As extends React.ElementType>({
   return (
     <Popover {...popoverProps}>
       {({ props: popoverChildProps }) => (
-        <Dropdown {...props} {...popoverChildProps}>
+        <Dropdown
+          {...props}
+          {...popoverChildProps}
+          className={classNames(
+            className,
+            props.maxWidth && classes.popoverMenu,
+          )}
+        >
           {children}
         </Dropdown>
       )}
