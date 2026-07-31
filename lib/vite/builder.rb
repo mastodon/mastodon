@@ -15,10 +15,10 @@ module Vite
       logger.info { "Build: Building assets with vite with command: '#{config.build_command}'" }
       Open3.popen3(config.build_command) do |_stdin, stdout, stderr, _wait_thread|
         read_pipe(stdout) do |line|
-          logger.info { line }
+          logger.info { line.strip }
         end
         read_pipe(stderr) do |line|
-          logger.warn { line }
+          logger.warn { line.strip }
         end
       end
     end
