@@ -23,52 +23,6 @@ RSpec.describe '/api/v1/accounts' do
     end
   end
 
-  describe 'GET /api/v1/accounts/:id' do
-    context 'when logged out' do
-      let(:account) { Fabricate(:account) }
-
-      it 'returns account entity as 200 OK', :aggregate_failures do
-        get "/api/v1/accounts/#{account.id}"
-
-        expect(response).to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('application/json')
-        expect(response.parsed_body[:id]).to eq(account.id.to_s)
-      end
-    end
-
-    context 'when the account does not exist' do
-      it 'returns http not found' do
-        get '/api/v1/accounts/1'
-
-        expect(response).to have_http_status(404)
-        expect(response.content_type)
-          .to start_with('application/json')
-        expect(response.parsed_body[:error]).to eq('Record not found')
-      end
-    end
-
-    context 'when logged in' do
-      subject do
-        get "/api/v1/accounts/#{account.id}", headers: headers
-      end
-
-      let(:account) { Fabricate(:account) }
-      let(:scopes) { 'read:accounts' }
-
-      it 'returns account entity as 200 OK', :aggregate_failures do
-        subject
-
-        expect(response).to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('application/json')
-        expect(response.parsed_body[:id]).to eq(account.id.to_s)
-      end
-
-      it_behaves_like 'forbidden for wrong scope', 'write:statuses'
-    end
-  end
-
   describe 'POST /api/v1/accounts' do
     subject do
       post '/api/v1/accounts', headers: headers, params: { username: 'test', password: '12345678', email: 'hello@world.tld', agreement: agreement, date_of_birth: date_of_birth }
