@@ -1,6 +1,6 @@
-.button,
-.composer,
-.composerMinimized {
+@use '@/styles/mastodon/variables';
+
+.button {
   position: fixed;
   bottom: var(--space-md);
   right: var(--space-md);
@@ -8,17 +8,26 @@
 
 .composer,
 .composerMinimized {
-  width: 100vw;
-  height: 80vh;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: var(--space-md);
+  box-sizing: border-box;
 }
 
 .composer {
-  max-width: 560px;
-  max-height: 520px;
+  width: min(560px, calc(100vw - var(--space-md) * 2));
+  height: min(520px, 80vh);
 }
 
 .composerMinimized {
-  max-width: 320px;
-  height: auto;
+  width: min(320px, calc(100vw - var(--space-md) * 2));
   padding: var(--space-md);
+}
+
+@media (width < #{variables.$mobile-menu-breakpoint}) {
+  .composer,
+  .composerMinimized {
+    bottom: var(--mobile-bottom-nav-height);
+  }
 }
