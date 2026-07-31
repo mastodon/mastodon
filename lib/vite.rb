@@ -43,8 +43,16 @@ module Vite
     @manifest ||= Manifest.new(config:, logger:)
   end
 
-  def self.build(&block)
-    Vite::Builder.new(config:, logger:).build(&block)
+  def self.builder
+    @builder ||= Vite::Builder.new(config:, logger:)
+  end
+
+  def self.build
+    builder.build
+  end
+
+  def self.build!
+    builder.build!
   end
 
   def self.preload
