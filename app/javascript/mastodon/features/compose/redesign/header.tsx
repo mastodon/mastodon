@@ -4,9 +4,12 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { ArrowsOutSimpleIcon, MinusIcon, XIcon } from '@phosphor-icons/react';
 
-import { resetCompose } from '@/mastodon/actions/compose';
-import { minimizeNewComposer } from '@/mastodon/actions/compose_typed';
 import { IconButton } from '@/mastodon/components/button/redesign';
+import {
+  hideComposer,
+  minimizeComposerToggle,
+  selectIsMinimized,
+} from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
   useAppDispatch,
@@ -56,16 +59,14 @@ export const ComposeFormHeader: React.FC<{
 }> = ({ id, noMinimize }) => {
   const intl = useIntl();
   const titleMessage = useAppSelector(selectComposeFormTitle);
-  const isMinimized = useAppSelector(
-    (state) => !!state.compose.get('minimizeNewComposer'),
-  );
+  const isMinimized = useAppSelector(selectIsMinimized);
 
   const dispatch = useAppDispatch();
   const onClose = useCallback(() => {
-    dispatch(resetCompose());
+    dispatch(hideComposer());
   }, [dispatch]);
   const onMinimize = useCallback(() => {
-    dispatch(minimizeNewComposer());
+    dispatch(minimizeComposerToggle());
   }, [dispatch]);
 
   return (

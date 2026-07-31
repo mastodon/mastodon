@@ -10,26 +10,32 @@ import {
   PenNibIcon,
 } from '@phosphor-icons/react';
 
-import { openNewComposer } from '@/mastodon/actions/compose_typed';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { CircularProgress } from '@/mastodon/components/circular_progress';
 import {
+  Dropdown,
   DropdownItemButton,
   DropdownPopover,
 } from '@/mastodon/components/dropdown/redesign';
 import { useToggle } from '@/mastodon/hooks/useToggle';
+import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
+import { ComposeFormHeader } from './header';
 import classes from './trigger.module.scss';
+
+const ComposeLazyForm = lazy(() =>
+  import('./index').then(({ RedesignComposeForm }) => ({
+    default: RedesignComposeForm,
+  })),
+);
 
 export const ComposeRedesignButton: React.FC = () => {
   const [ref, setRef] = useState<HTMLButtonElement | null>(null);
   const [menuOpen, { onFalse: onMenuClose, onToggle: onMenuToggle }] =
     useToggle();
-  const isComposerOpen = useAppSelector(
-    (state) => !!state.compose.get('showNewComposer'),
-  );
+  const displayState = useAppSelector((state) => state.composer.displayState);
 
   const dispatch = useAppDispatch();
   const handleComposerOpen: React.MouseEventHandler<HTMLButtonElement> =
@@ -50,8 +56,20 @@ export const ComposeRedesignButton: React.FC = () => {
     return null;
   }
 
-  if (isComposerOpen) {
-    return <ComposeRedesignModal />;
+  if (displayState === 'minimized') {
+    return (
+      <Dropdown className={classes.composerMinimized} elevation={2}>
+        <ComposeFormHeader />
+      </Dropdown>
+    );
+  }
+
+  if (displayState === 'showing') {
+    return (
+      <Suspense fallback={<CircularProgress strokeWidth={2} size={50} />}>
+        <ComposeLazyForm autoFocus className={classes.composer} />
+      </Suspense>
+    );
   }
 
   return (
@@ -84,6 +102,7 @@ export const ComposeRedesignButton: React.FC = () => {
         >
           <FormattedMessage id='compose.new.post' defaultMessage='Post' />
         </DropdownItemButton>
+
         <DropdownItemButton
           name='message'
           onClick={handleComposerOpen}
@@ -93,21 +112,5 @@ export const ComposeRedesignButton: React.FC = () => {
         </DropdownItemButton>
       </DropdownPopover>
     </>
-  );
-};
-
-const ComposeLazyForm = lazy(() =>
-  import('./index').then(({ RedesignComposeForm }) => ({
-    default: RedesignComposeForm,
-  })),
-);
-
-const ComposeRedesignModal: React.FC = () => {
-  return (
-    <div className={classes.composer}>
-      <Suspense fallback={<CircularProgress strokeWidth={2} size={50} />}>
-        <ComposeLazyForm autoFocus />
-      </Suspense>
-    </div>
   );
 };
