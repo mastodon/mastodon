@@ -146,8 +146,8 @@ module Vite
           resolve_relations(manifest, raw_import)
         end
 
-        deps[0].each { |sub| imports.add sub }
-        deps[1].each { |sub| stylesheets.add sub }
+        imports.merge(deps[0])
+        stylesheets.merge(deps[1])
         imports.add id
       end
 
