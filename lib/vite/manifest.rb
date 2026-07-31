@@ -161,7 +161,7 @@ module Vite
         stylesheets.add id
       end
 
-      [imports, stylesheets].map(&:to_a)
+      [imports, stylesheets]
     end
 
     # Lookup in the internal cache if an entry has been processed
