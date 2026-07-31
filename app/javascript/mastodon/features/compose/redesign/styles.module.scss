@@ -9,15 +9,17 @@
   flex-direction: column;
   gap: var(--space-md);
   padding: var(--space-md);
+  overflow: auto;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   h2 {
     @include mixins.type-heading-sm;
+
+    flex-grow: 1;
   }
 }
 
@@ -25,21 +27,32 @@
   display: flex;
   gap: var(--space-xs);
   align-items: center;
+  flex-wrap: wrap;
 
   label {
     font-weight: inherit;
   }
 }
 
-.toolbarGrow {
-  margin-right: auto;
+.flexGrowWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-grow: 1;
+
+  @media (width < 310px) {
+    flex-basis: 100%;
+  }
+
+  .footer & {
+    justify-content: space-between;
+  }
 }
 
 .toolbarMessage {
   display: flex;
   gap: var(--space-2xs);
   align-items: center;
-  flex-grow: 1;
   color: var(--color-text-secondary);
 
   svg {
@@ -54,22 +67,26 @@
   user-select: none;
 }
 
-.textarea > textarea {
-  @include mixins.type-body-lg;
+.textarea {
+  flex-grow: 1;
 
-  border: none;
-  width: 100%;
-  outline: none;
+  > textarea {
+    @include mixins.type-body-lg;
+
+    border: none;
+    width: 100%;
+    outline: none;
+  }
 }
 
 .footer {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+  flex-wrap: wrap;
 }
 
 .counter {
-  margin-left: auto;
   font-family: var(--font-monospace);
   color: var(--color-text-tertiary);
 }
@@ -115,10 +132,16 @@
 // Attachments
 
 .mediaSingle {
-  min-width: 120px;
-  max-height: var(--max-media-height-large);
-  width: var(--width);
-  height: var(--height);
+  overflow: auto;
+
+  .mediaUpload {
+    aspect-ratio: var(--width) / var(--height);
+    width: var(--width);
+    min-width: 120px;
+    max-width: 100%;
+    height: var(--height);
+    max-height: var(--max-media-height-large);
+  }
 }
 
 .mediaGrid {

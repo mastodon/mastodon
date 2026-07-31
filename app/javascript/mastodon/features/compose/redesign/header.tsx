@@ -1,9 +1,20 @@
+import { useCallback } from 'react';
+
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { XIcon } from '@phosphor-icons/react';
+import { ArrowsOutSimpleIcon, MinusIcon, XIcon } from '@phosphor-icons/react';
 
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { createAppSelector, useAppSelector } from '@/mastodon/store';
+import {
+  hideComposer,
+  minimizeComposerToggle,
+  selectIsMinimized,
+} from '@/mastodon/reducers/slices/composer';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
 
 import { selectComposeType } from './selectors';
 import classes from './styles.module.scss';
@@ -42,14 +53,48 @@ const selectComposeFormTitle = createAppSelector(
   },
 );
 
-export const ComposeFormHeader: React.FC<{ id?: string }> = ({ id }) => {
+export const ComposeFormHeader: React.FC<{
+  id?: string;
+  noMinimize?: boolean;
+}> = ({ id, noMinimize }) => {
   const intl = useIntl();
   const titleMessage = useAppSelector(selectComposeFormTitle);
+  const isMinimized = useAppSelector(selectIsMinimized);
+
+  const dispatch = useAppDispatch();
+  const onClose = useCallback(() => {
+    dispatch(hideComposer());
+  }, [dispatch]);
+  const onMinimize = useCallback(() => {
+    dispatch(minimizeComposerToggle());
+  }, [dispatch]);
 
   return (
     <header className={classes.header}>
       <h2 id={id}>{intl.formatMessage(titleMessage)}</h2>
-      <IconButton icon={XIcon} variant='ghost' size='sm'>
+
+      {!noMinimize && (
+        <IconButton
+          size='sm'
+          variant='ghost'
+          icon={isMinimized ? ArrowsOutSimpleIcon : MinusIcon}
+          onClick={onMinimize}
+        >
+          {isMinimized ? (
+            <FormattedMessage
+              id='compose.expand'
+              defaultMessage='Show composer'
+            />
+          ) : (
+            <FormattedMessage
+              id='compose.minimize'
+              defaultMessage='Minimize composer'
+            />
+          )}
+        </IconButton>
+      )}
+
+      <IconButton icon={XIcon} variant='ghost' size='sm' onClick={onClose}>
         <FormattedMessage id='lightbox.close' defaultMessage='Close' />
       </IconButton>
     </header>
