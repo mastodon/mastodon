@@ -1,12 +1,11 @@
 import { length } from 'stringz';
 
+import type { ComposeType } from '@/mastodon/actions/compose_typed';
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import type { StatusVisibility } from '@/mastodon/models/status';
 import { createAppSelector } from '@/mastodon/store';
 
 import { countableText } from '../util/counter';
-
-export type ComposeType = 'post' | 'message' | 'reply';
 
 export const selectComposePrivacy = createAppSelector(
   [
