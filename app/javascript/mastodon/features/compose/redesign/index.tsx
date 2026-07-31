@@ -3,6 +3,8 @@ import { useCallback, useEffect, useId, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { LockSimpleOpenIcon } from '@phosphor-icons/react';
 import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
@@ -55,11 +57,15 @@ const messages = defineMessages({
 
 interface RedesignComposeFormProps {
   autoFocus?: boolean;
+  className?: string;
+  noMinimize?: boolean;
   redirectOnSuccess?: boolean;
 }
 
 export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   autoFocus,
+  className,
+  noMinimize,
   redirectOnSuccess,
 }) => {
   const {
@@ -87,9 +93,10 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       role='dialog'
       onSubmit={onSubmit}
       aria-labelledby={titleId}
-      className={classes.root}
+      className={classNames(className, classes.root)}
     >
-      <ComposeFormHeader id={titleId} />
+      <ComposeFormHeader id={titleId} noMinimize={noMinimize} />
+
       <div className={classes.toolbar}>
         {type !== 'message' && <ComposeVisibility />}
 

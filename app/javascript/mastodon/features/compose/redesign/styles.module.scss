@@ -55,12 +55,16 @@
   user-select: none;
 }
 
-.textarea > textarea {
-  @include mixins.type-body-lg;
+.textarea {
+  flex-grow: 1;
 
-  border: none;
-  width: 100%;
-  outline: none;
+  > textarea {
+    @include mixins.type-body-lg;
+
+    border: none;
+    width: 100%;
+    outline: none;
+  }
 }
 
 .footer {
