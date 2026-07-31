@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
+class Api::V1::Accounts::FollowingAccountsController < Api::V1::Accounts::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }
   before_action :set_account
   after_action :insert_pagination_headers
@@ -12,10 +12,6 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   end
 
   private
-
-  def set_account
-    @account = Account.find(params[:account_id])
-  end
 
   def load_accounts
     return [] if hide_results?
