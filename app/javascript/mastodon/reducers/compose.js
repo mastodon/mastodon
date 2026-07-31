@@ -9,6 +9,7 @@ import {
   pasteLinkCompose,
   cancelPasteLinkCompose,
   setDragUploadEnabled,
+  openNewComposer,
 } from '@/mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
@@ -98,6 +99,9 @@ const initialState = ImmutableMap({
   quote_policy: 'public',
   default_quote_policy: 'public', // Set in hydration.
   fetching_link: null,
+
+  // Redesign
+  showNewComposer: false,
 });
 
 const initialPoll = ImmutableMap({
@@ -116,6 +120,10 @@ function statusToTextMentions(state, status) {
   return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
 }
 
+/**
+ * @param {typeof initialState} state
+ * @returns {typeof initialState}
+ */
 function clearAll(state) {
   return state.withMutations(map => {
     map.set('id', null);
@@ -135,6 +143,9 @@ function clearAll(state) {
     map.set('quoted_status_id', null);
     map.set('quote_policy', state.get('default_quote_policy'));
     map.set('isDragDisabled', false);
+
+    // Redesign only
+    map.set('showNewComposer', false);
   });
 }
 
@@ -368,6 +379,25 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('fetching_link', null);
   } else if (setDragUploadEnabled.match(action)) {
     return state.set('isDragDisabled', !action.payload);
+  }
+
+  // Redesign actions
+  if (openNewComposer.match(action)) {
+    return clearAll(state).withMutations((newState) => {
+      const { payload } = action;
+      if (payload.type === 'message') {
+        newState.set('privacy', 'direct');
+        if (payload.toAccountId) {
+          newState.update('text', (text) =>
+            [text.trim(), `@${action.account.get('acct')} `].filter(Boolean).join(' ')
+          );
+        }
+      } else if (payload.type === 'reply') {
+        newState.set('in_reply_to', payload.toStatusId);
+      }
+
+      newState.set('showNewComposer', true);
+    });
   }
 
   switch(action.type) {

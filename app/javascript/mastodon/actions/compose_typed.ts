@@ -81,6 +81,24 @@ const simulateModifiedApiResponse = (
   return data;
 };
 
+export type ComposeType = 'post' | 'message' | 'reply';
+
+interface ComposeNewPost {
+  type?: 'post';
+}
+interface ComposeNewReply {
+  type: 'reply';
+  toStatusId: string;
+}
+interface ComposeNewMessage {
+  type: 'message';
+  toAccountId?: string;
+}
+type ComposeNewPayload = ComposeNewPost | ComposeNewReply | ComposeNewMessage;
+
+export const openNewComposer =
+  createAction<ComposeNewPayload>('compose/open_new');
+
 export const changeComposeVisibility = createAppThunk(
   'compose/visibility_change',
   (visibility: StatusVisibility, { dispatch, getState }) => {
