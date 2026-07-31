@@ -14,11 +14,12 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   h2 {
     @include mixins.type-heading-sm;
+
+    flex-grow: 1;
   }
 }
 
