@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useCallback, useMemo } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -46,8 +47,16 @@ import { WizardStepTitle } from './wizard_step_title';
 export const CollectionDetails: React.FC = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const { id, name, description, topic, discoverable, sensitive, accountIds } =
-    useAppSelector((state) => state.collections.editor);
+  const {
+    id,
+    name,
+    description,
+    topic,
+    language,
+    discoverable,
+    sensitive,
+    items,
+  } = useAppSelector((state) => state.collections.editor);
 
   const handleNameChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,8 +109,8 @@ export const CollectionDetails: React.FC = () => {
   const accountId = useCurrentAccountId();
   const { acct: currentUserName } = useAccount(accountId) ?? {};
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+  const handleSubmit: React.SubmitEventHandler = useCallback(
+    (e) => {
       e.preventDefault();
 
       if (id) {
@@ -110,6 +119,7 @@ export const CollectionDetails: React.FC = () => {
           name,
           description,
           tag_name: topic || null,
+          language: language || null,
           discoverable,
           sensitive,
         };
@@ -123,8 +133,11 @@ export const CollectionDetails: React.FC = () => {
           description,
           discoverable,
           sensitive,
-          account_ids: accountIds,
+          account_ids: items.map((item) => item.account_id),
         };
+        if (language) {
+          payload.language = language;
+        }
         if (topic) {
           payload.tag_name = topic;
         }
@@ -149,10 +162,11 @@ export const CollectionDetails: React.FC = () => {
       description,
       topic,
       discoverable,
+      language,
       sensitive,
       dispatch,
       history,
-      accountIds,
+      items,
       currentUserName,
     ],
   );
@@ -392,12 +406,7 @@ const renderTagItem = (item: TagSearchResult) => (
 
 const LanguageField: React.FC = () => {
   const dispatch = useAppDispatch();
-  const initialLanguage = useAppSelector(
-    (state) => state.compose.get('default_language') as string,
-  );
   const { language } = useAppSelector((state) => state.collections.editor);
-
-  const selectedLanguage = language ?? initialLanguage;
 
   const handleLanguageChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -419,7 +428,7 @@ const LanguageField: React.FC = () => {
           defaultMessage='Language'
         />
       }
-      value={selectedLanguage}
+      value={language}
       onChange={handleLanguageChange}
     >
       <option value=''>

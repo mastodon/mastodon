@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import {
-  accountFactoryState,
-  annualReportFactory,
-  statusFactoryState,
+  accountFactoryImmutable,
+  annualReportFactoryState,
+  statusFactoryImmutable,
 } from '@/testing/factories';
 
 import { AnnualReport } from '.';
@@ -22,12 +22,12 @@ const meta = {
   parameters: {
     state: {
       accounts: {
-        '1': accountFactoryState({ display_name: 'Freddie Fruitbat' }),
+        '1': accountFactoryImmutable({ display_name: 'Freddie Fruitbat' }),
       },
       statuses: {
-        '1': statusFactoryState(),
+        '1': statusFactoryImmutable(),
       },
-      annualReport: annualReportFactory({
+      annualReport: annualReportFactoryState({
         top_hashtag: SAMPLE_HASHTAG,
       }),
     },
@@ -54,7 +54,7 @@ export const ArchetypeOracle: Story = {
   ...InModal,
   parameters: {
     state: {
-      annualReport: annualReportFactory({
+      annualReport: annualReportFactoryState({
         archetype: 'oracle',
         top_hashtag: SAMPLE_HASHTAG,
       }),
@@ -66,7 +66,7 @@ export const NoHashtag: Story = {
   ...InModal,
   parameters: {
     state: {
-      annualReport: annualReportFactory({
+      annualReport: annualReportFactoryState({
         archetype: 'booster',
       }),
     },
@@ -77,7 +77,7 @@ export const NoNewPosts: Story = {
   ...InModal,
   parameters: {
     state: {
-      annualReport: annualReportFactory({
+      annualReport: annualReportFactoryState({
         archetype: 'pollster',
         top_hashtag: SAMPLE_HASHTAG,
         without_posts: true,
@@ -90,7 +90,7 @@ export const NoNewPostsNoHashtag: Story = {
   ...InModal,
   parameters: {
     state: {
-      annualReport: annualReportFactory({
+      annualReport: annualReportFactoryState({
         archetype: 'replier',
         without_posts: true,
       }),

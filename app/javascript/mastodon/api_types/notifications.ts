@@ -90,22 +90,22 @@ interface ReportNotificationJSON extends BaseNotificationJSON {
 
 interface AddedToCollectionNotificationGroupJSON extends BaseNotificationGroupJSON {
   type: 'added_to_collection';
-  collection: ApiCollectionJSON;
+  collection: ApiCollectionJSON | null;
 }
 
 interface AddedToCollectionNotificationJSON extends BaseNotificationJSON {
   type: 'added_to_collection';
-  collection: ApiCollectionJSON;
+  collection: ApiCollectionJSON | null;
 }
 
 interface CollectionUpdateNotificationGroupJSON extends BaseNotificationGroupJSON {
   type: 'collection_update';
-  collection: ApiCollectionJSON;
+  collection: ApiCollectionJSON | null;
 }
 
 interface CollectionUpdateNotificationJSON extends BaseNotificationJSON {
   type: 'collection_update';
-  collection: ApiCollectionJSON;
+  collection: ApiCollectionJSON | null;
 }
 
 type SimpleNotificationTypes = 'follow' | 'follow_request' | 'admin.sign_up';

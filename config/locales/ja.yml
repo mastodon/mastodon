@@ -645,7 +645,6 @@ ja:
       action_log: 監査ログ
       action_taken_by: 通報処理者
       actions:
-        delete_description_html: 報告された投稿は削除され、ストライクが記録されます。同じアカウントによる今後の違反行為のエスカレーションに役立てられます。
         mark_as_sensitive_description_html: 報告された投稿のメディアは閲覧注意となり、ストライクが記録され、同じアカウントによる今後の違反行為のエスカレーションに役立てられます。
         other_description_html: アカウントの動作を制御するためのオプションや、報告されたアカウントへの通信をカスタマイズするためのオプションを確認してください。
         resolve_description_html: 報告されたアカウントに対していかなる措置も取られず、ストライクも記録されず、報告は終了します。
@@ -672,7 +671,6 @@ ja:
       confirm: 確認
       confirm_action: "@%{acct} さんに対するアクション"
       created_at: 通報日時
-      delete_and_resolve: 投稿を削除
       forwarded: 転送済み
       forwarded_replies_explanation: これはリモートユーザーによる、リモートコンテンツについての報告です。問題のコンテンツはあなたのサーバー利用者への返信なので、こちらにも転送されて来ました。
       forwarded_to: "%{domain}に転送されました"
@@ -841,9 +839,6 @@ ja:
           authenticated: ログイン済みユーザーのみ
           disabled: 特定ロールのユーザーのみ
           public: 制限なし
-      landing_page:
-        values:
-          trends: トレンド
       registrations:
         moderation_recommandation: 登録受付を開始する前に、迅速かつ適切にモデレーションを行うチームを編成しましょう！
         preamble: あなたのサーバー上でアカウントを作成できるユーザーを制御します。
@@ -1680,7 +1675,6 @@ ja:
     next: 次
     older: 以前の投稿
     prev: 前
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: このアンケートには投票済みです
@@ -1870,7 +1864,7 @@ ja:
       private: フォロワーのみ
       public: 公開
       public_long: すべての人 (Mastodon以外も含む)
-      unlisted: 非表示
+      unlisted: ひかえめな公開
       unlisted_long: Mastodonの検索結果、トレンド、公開タイムラインに表示しない
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する

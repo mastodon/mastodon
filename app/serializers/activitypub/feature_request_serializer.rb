@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::FeatureRequestSerializer < ActivityPub::Serializer
+  context_extensions :feature_requests
+
   attributes :id, :type, :instrument
   attribute :virtual_object, key: :object
 

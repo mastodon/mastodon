@@ -29,6 +29,14 @@ export const Default: Story = {
   },
 };
 
+export const Error: Story = {
+  args: {
+    image: 'error',
+    title: 'Error',
+    message: 'Something went wrong loading the page.',
+  },
+};
+
 export const WithAction: Story = {
   args: {
     ...Default.args,

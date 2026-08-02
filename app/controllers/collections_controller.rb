@@ -8,9 +8,9 @@ class CollectionsController < ApplicationController
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
-  before_action :check_feature_enabled
   before_action :require_account_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_collection
+  before_action :redirect_to_canonical_url
 
   skip_around_action :set_locale, if: -> { request.format == :json }
   skip_before_action :require_functional!, only: :show, unless: :limited_federation_mode?
@@ -19,7 +19,6 @@ class CollectionsController < ApplicationController
     respond_to do |format|
       format.html do
         expires_in expiration_duration, public: true unless user_signed_in?
-        render template: 'home/index'
       end
 
       format.json do
@@ -47,12 +46,12 @@ class CollectionsController < ApplicationController
     not_found
   end
 
+  def redirect_to_canonical_url
+    redirect_to collection_path(@collection) if request.format.html? && request.path.starts_with?('/ap/')
+  end
+
   def expiration_duration
     recently_updated = @collection.updated_at > 15.minutes.ago
     recently_updated ? 30.seconds : 5.minutes
-  end
-
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.collections_enabled?
   end
 end

@@ -16,7 +16,7 @@ class DeleteCollectionItemService
   private
 
   def distribute_remove_activity
-    ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, @collection.account.id)
+    ActivityPub::CollectionRawDistributionWorker.perform_async(activity_json, @collection.id)
   end
 
   def activity_json

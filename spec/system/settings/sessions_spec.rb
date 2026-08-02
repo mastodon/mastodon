@@ -19,7 +19,7 @@ RSpec.describe 'Settings Sessions' do
       expect { session_activation.reload }
         .to raise_error(ActiveRecord::RecordNotFound)
       expect(page)
-        .to have_content(I18n.t('sessions.revoke_success'))
+        .to have_text(I18n.t('sessions.revoke_success'))
     end
   end
 end

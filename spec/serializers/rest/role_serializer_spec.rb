@@ -27,7 +27,7 @@ RSpec.describe REST::RoleSerializer do
       })
   end
 
-  context 'when collections are enabled', feature: :collections do
+  context 'when collections are enabled' do
     it 'includes the relevant attributes' do
       expect(subject)
         .to include({

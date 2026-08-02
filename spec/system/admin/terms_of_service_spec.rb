@@ -15,7 +15,7 @@ RSpec.describe 'Admin Terms of services' do
         .to have_title(I18n.t('admin.terms_of_service.title'))
 
       expect(page)
-        .to have_content(terms.text)
+        .to have_text(terms.text)
     end
   end
 end

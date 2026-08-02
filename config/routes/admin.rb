@@ -26,6 +26,25 @@ namespace :admin do
 
   resources :email_domain_blocks, only: [:index, :new, :create], concerns: :batch
 
+  resources :email_subscriptions, only: [:index, :destroy] do
+    collection do
+      post :purge
+      post :disable
+    end
+  end
+
+  namespace :email_subscriptions do
+    resource :setup, only: [:show, :create]
+    resource :additional_footer_text, only: [:show, :update]
+
+    resources :accounts, only: :show do
+      member do
+        post :enable
+        post :disable
+      end
+    end
+  end
+
   resources :action_logs, only: [:index]
   resources :warning_presets, except: [:new, :show]
 
@@ -145,7 +164,7 @@ namespace :admin do
     resource :reset, only: [:create]
     resource :action, only: [:new, :create], controller: 'account_actions'
 
-    resources :collections, only: [:show]
+    resources :collections, only: [:index, :show], concerns: :batch
     resources :statuses, only: [:index, :show], concerns: :batch
 
     resources :relationships, only: [:index]
@@ -186,6 +205,8 @@ namespace :admin do
   end
 
   namespace :disputes do
+    resources :strikes, only: [:show, :index]
+
     resources :appeals, only: [:index] do
       member do
         post :approve

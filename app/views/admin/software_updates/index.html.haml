@@ -1,6 +1,12 @@
 - content_for :page_title do
   = t('admin.software_updates.title')
 
+- current_deprecation = SoftwareDeprecation.current
+- if current_deprecation&.unsupported?
+  .flash-message.alert= t('admin.software_updates.unsupported_branch')
+- elsif current_deprecation.present?
+  .flash-message.warning= t('admin.software_updates.nearing_eol', date: current_deprecation.end_of_support)
+
 .simple_form
   %p.lead
     = t('admin.software_updates.description')

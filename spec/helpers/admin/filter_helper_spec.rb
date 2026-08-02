@@ -10,12 +10,12 @@ RSpec.describe Admin::FilterHelper do
     allow(helper).to receive_messages(params: params, url_for: '/test')
     result = helper.filter_link_to('text', { resolved: true })
 
-    expect(result).to match(/text/)
+    expect(result).to include('text')
   end
 
   it 'Uses table_link_to to create icon links' do
     result = helper.table_link_to 'icon', 'text', 'path'
 
-    expect(result).to match(/text/)
+    expect(result).to include('text')
   end
 end

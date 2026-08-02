@@ -4,22 +4,22 @@
 #
 # Table name: admin_action_logs
 #
-#  id               :bigint(8)        not null, primary key
-#  action           :string           default(""), not null
-#  human_identifier :string
-#  permalink        :string
-#  route_param      :string
-#  target_type      :string
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  account_id       :bigint(8)        not null
-#  target_id        :bigint(8)
+#  id                      :bigint(8)        not null, primary key
+#  action                  :string           default(""), not null
+#  human_identifier        :string
+#  permalink               :string
+#  recorded_changes        :jsonb
+#  recorded_changes_format :string
+#  route_param             :string
+#  target_type             :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  account_id              :bigint(8)        not null
+#  target_id               :bigint(8)
 #
 
 class Admin::ActionLog < ApplicationRecord
-  self.ignored_columns += %w(
-    recorded_changes
-  )
+  LOG_ATTRIBUTES = %i(usable trendable listable).freeze
 
   belongs_to :account
   belongs_to :target, polymorphic: true, optional: true
@@ -27,6 +27,8 @@ class Admin::ActionLog < ApplicationRecord
   before_validation :set_human_identifier
   before_validation :set_route_param
   before_validation :set_permalink
+
+  store_accessor :recorded_changes, *LOG_ATTRIBUTES
 
   scope :latest, -> { order(id: :desc) }
 

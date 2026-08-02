@@ -120,7 +120,7 @@ RSpec.describe ActivityPub::Activity::Delete do
       end
     end
 
-    context 'with a FeatureAuthorization', feature: :collections do
+    context 'with a FeatureAuthorization' do
       let(:recipient) { Fabricate(:account) }
       let(:approval_uri) { 'https://example.com/authorizations/1' }
       let(:collection) { Fabricate(:collection, account: recipient) }
@@ -139,7 +139,7 @@ RSpec.describe ActivityPub::Activity::Delete do
         subject.perform
 
         expect(collection_item.reload).to be_revoked
-        expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+        expect(ActivityPub::CollectionRawDistributionWorker).to have_enqueued_sidekiq_job
       end
     end
   end

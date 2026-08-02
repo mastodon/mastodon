@@ -4,6 +4,7 @@ fr:
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
     contact_missing: Non défini
     contact_unavailable: Non disponible
+    default_thumbnail_description: Un dessin représentant deux mastodontes (qui ressemblent à des éléphants) souriants qui se lancent un avion en papier. Derrière eux flottent des planètes avec des arbres et d'autres mastodontes, et en fond un ciel bleu vif.
     hosted_on: Serveur Mastodon hébergé sur %{domain}
     title: À propos
   accounts:
@@ -288,7 +289,11 @@ fr:
         enable_relay_html: "%{name} a activé le relais %{target}"
         enable_sign_in_token_auth_user_html: "%{name} a activé l'authentification par jeton de courriel pour %{target}"
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
+        listable_tag_html: peut être suggéré
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
+        not_listable_tag_html: ne sera pas suggéré
+        not_trendable_tag_html: n'apparaîtra pas dans les tendances
+        not_usable_tag_html: ne peut pas être utilisé
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
         publish_terms_of_service_html: "%{name} a publié des mises à jour des conditions d'utilisation"
         reject_appeal_html: "%{name} a rejeté l'appel de la décision de modération émis par %{target}"
@@ -301,6 +306,7 @@ fr:
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
         silence_account_html: "%{name} a masqué le compte de %{target}"
         suspend_account_html: "%{name} a suspendu le compte de %{target}"
+        trendable_tag_html: peut apparaître dans les tendances
         unassigned_report_html: "%{name} a désassigné le signalement %{target}"
         unblock_email_account_html: "%{name} a débloqué l’adresse de courriel de %{target}"
         unsensitive_account_html: "%{name} a enlevé le marquage comme sensible du média de %{target}"
@@ -313,8 +319,10 @@ fr:
         update_ip_block_html: "%{name} a modifié la règle pour l'IP %{target}"
         update_report_html: "%{name} a mis à jour le rapport de signalement %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
+        update_tag_html: "%{name} a modifié les paramètres de %{target} pour : "
         update_user_role_html: "%{name} a changé le rôle %{target}"
         update_username_block_html: "%{name} a mis à jour une règle pour les noms d'utilisateurs contenant %{target}"
+        usable_tag_html: peut être utilisé ;
       deleted_account: compte supprimé
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
@@ -345,12 +353,20 @@ fr:
       updated_msg: L’annonce a été mise à jour avec succès !
     collections:
       accounts: Comptes
+      back_to_account: Retour à la page du compte
+      back_to_report: Retour à la page du signalement
+      batch:
+        add_to_report: 'Ajouter au signalement #%{id}'
+        remove_from_report: Retirer du signalement
+        report: Signaler
       collection_title: Collection par %{name}
       contents: Contenu
+      no_collection_selected: Aucune collection n'a était changé car qu'aucune n'a était sélectionnée
       number_of_accounts:
         one: 1 compte
         other: "%{count} comptes"
       open: Ouvrir
+      title: Collections du compte - @%{name}
       view_publicly: Afficher publiquement
     critical_update_pending: Mise à jour critique en attente
     custom_emojis:
@@ -484,9 +500,89 @@ fr:
         title: Blocage d'un nouveau domaine de messagerie électronique
       no_email_domain_block_selected: Aucun blocage de domaine de messagerie n'a été modifié comme aucun n'a été sélectionné
       not_permitted: Non autorisé
+      reset: Réinitialiser
       resolved_dns_records_hint_html: Le nom de domaine est lié aux domaines MX suivants, qui sont responsables de la réception des courriels. Le blocage d'un domaine MX empêchera l'inscription de toute adresse de courriel utilisant le même domaine MX, et ce même si le nom de domaine visible est différent. <strong>Veillez à ne pas bloquer les principaux fournisseurs de services de messagerie.</strong>
       resolved_through_html: Résolu par %{domain}
+      search: Rechercher
       title: Domaines de messagerie électronique bloqués
+    email_subscriptions:
+      accounts:
+        account: Compte
+        empty:
+          hint: Aucun compte n'a d'abonné·e·s pour l'instant.
+          no_lists_yet: Aucune liste pour l'instant
+        last_email: Dernier courriel
+        lead: Les comptes ayant activé la fonctionnalité et qui ont des abonné·e·s apparaîtront ci-dessous.
+        show:
+          confirm_disable_feature: Désactiver les courriels d'information pour %{name} ? Les notifications par courriel ne seront plus envoyées pour ce compte. L'utilisateur·rice pourra toujours réactiver la fonctionnalité dans les paramètres de son compte. Pour supprimer définitivement l'accès à cette fonction, modifiez les permissions du compte dans Rôles.
+          confirm_remove_subscriber: "%{email} ne recevra plus de courriels de %{name}. Cette action ne peut pas être annulée."
+          consent: Les abonné·e·s ont uniquement consenti à recevoir des messages par courriels. N'utilisez pas cette liste à d'autres fins.
+          date: Date d'inscription
+          disable_feature: Désactiver la fonctionnalité
+          disabled: La fonctionnalité a été désactivée et les courriels ne sont plus envoyés à cette liste.
+          email: Adresse de courriel
+          empty:
+            hint: Personne ne s'est abonné à ce compte pour l'instant.
+            no_subscribers_yet: Pas d'abonné·e pour l'instant
+          enable_feature: Activer la fonctionnalité
+          no_access_html: Ce compte n'a plus l'autorisation nécessaire pour activer la fonctionnalité. Changez cela dans <a href="%{roles_path}">Rôles</a>.
+          title: Lettres d'information par courriel de %{name}
+          view_account: Afficher le compte
+        status: État
+        subscribers: Abonné·e·s
+        title: Listes de diffusion
+      additional_footer_texts:
+        show:
+          title: Texte de pied de page supplémentaire
+      compliance_settings:
+        additional_footer_text:
+          action: Gérer
+          hint: Texte facultatif qui apparaît uniquement dans le pied de page des lettres d'information par courriel
+          title: Texte de pied de page supplémentaire
+        lead: Les lettres d'information peuvent être considérées comme des courriels de marketing, selon les juridictions où vous opérez.
+        privacy_policy:
+          action: Gérer
+          hint: Cette politique est liée dans le pied de page de chaque courriel
+          title: Politique de confidentialité
+        title: Paramètres de conformité
+      danger_zone:
+        disable_feature:
+          action: Désactiver
+          hint: Désactiver la fonctionnalité pour tous les comptes
+          title: Désactiver la fonctionnalité
+        erase_all_data:
+          action: Effacer les données
+          hint: Supprime définitivement toutes les adresses de courriel de toutes les listes de diffusion
+          title: Effacer toutes les données
+        title: Zone de danger
+      disabled_msg: Les abonnements par courriel ont été désactivés avec succès.
+      index:
+        disabled:
+          cannot_be_enabled: Votre fournisseur technique n'a pas activé cette fonctionnalité pour votre serveur.
+          description: Cette fonctionnalité permet aux comptes spécifiés d'ajouter un composant à leurs profils, permettant aux visiteur·euse·s sans compte Mastodon de recevoir leurs messages par courriel.
+          get_started: Premiers pas
+        lead: Permettre aux visiteur·euse·s de recevoir des messages par courriel à partir de comptes dédiés sur ce serveur.
+        title: Lettres d'information par courriel
+      purged_msg: Toutes les données d'abonnement par courriel sont en cours de suppression.
+      roles:
+        accounts: Comptes
+        edit_role: Modifier le rôle
+        empty:
+          hint: Personne n'a l'autorisation d'utiliser cette fonctionnalité.
+          no_roles_added: Aucun rôle ajouté
+        lead: Les comptes avec les rôles suivants peuvent activer cette fonctionnalité sur leurs profils.
+        manage_roles: Gérer les rôles
+        role_name: Nom du rôle
+        title: Rôles
+      setups:
+        show:
+          enable_feature: Activer la fonctionnalité
+          important_information: Information importante
+          list:
+            1_permission_explanation: Lorsque cette fonctionnalité est activée, les comptes avec les autorisations désignées peuvent ajouter un formulaire de collecte d'adresses de courriel à leur profil.
+            2_feature_explanation: Lorsque des visiteur·euse·s s'inscrivent sur la page de profil d'un compte et confirment leur abonnement, des notifications par courriel seront envoyées lorsque le compte publie de nouveaux messages publics.
+            3_privacy_policy_warning: L'équipe d'administration du serveur aura accès aux informations personnelles (adresses de courriel) collectées. Pour cette raison, la politique de confidentialité et les conditions d'utilisation du serveur doivent être mises à jour avant d'utiliser cette fonctionnalité.
+            4_cost_warning: Les courriels peuvent entraîner des frais en fonction de la configuration de l'hébergement. Discutez avec votre hébergeur avant de l'activer, car cette fonctionnalité pourrait considérablement augmenter le nombre de courriels envoyés par votre serveur.
     export_domain_allows:
       new:
         title: Importer les autorisations de domaine
@@ -641,6 +737,8 @@ fr:
       new:
         title: Créer une nouvelle règle IP
       no_ip_block_selected: Aucune règle IP n’a été modifiée car aucune n’a été sélectionnée
+      reset: Réinitialiser
+      search: Rechercher
       title: Règles IP
     relationships:
       title: Relations de %{acct}
@@ -671,7 +769,7 @@ fr:
       action_log: Journal d’audit
       action_taken_by: Intervention de
       actions:
-        delete_description_html: Les messages signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
+        delete_description_html: Les messages ou les collections signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas de nouvelles infractions par le même compte.
         mark_as_sensitive_description_html: Les médias des messages signalés seront marqués comme sensibles et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
@@ -698,7 +796,7 @@ fr:
       confirm: Confirmer
       confirm_action: Confirmer l'action de modération contre @%{acct}
       created_at: Signalé
-      delete_and_resolve: Supprimer les messages
+      delete_and_resolve: Supprimer le contenu
       forwarded: Transféré
       forwarded_replies_explanation: Ce rapport provient d'un utilisateur sur une autre instance et concerne du contenu non-local. Il vous a été transmis car le contenu signalé est en réponse à l'un de vos utilisateurs.
       forwarded_to: Transféré à %{domain}
@@ -792,7 +890,7 @@ fr:
         manage_custom_emojis: Gérer les émojis personnalisés
         manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
         manage_email_subscriptions: Gérer les abonnements par courriel
-        manage_email_subscriptions_description: Autoriser l'abonnement par courriel aux comptes ayant cette permission
+        manage_email_subscriptions_description: Permettre aux comptes ayant cette autorisation d'activer la fonctionnalité de lettre d'information par courriel
         manage_federation: Gérer de la féderation
         manage_federation_description: Permet aux utilisateur⋅rice⋅s de bloquer ou d'autoriser la fédération avec d'autres domaines, et de contrôler la capacité de livraison
         manage_invites: Gérer les invitations
@@ -881,9 +979,15 @@ fr:
           disabled: Nécessite un rôle spécifique
           public: Tout le monde
       landing_page:
+        hints:
+          about_html: Une page avec la description, les informations de contact, les règles et d'autres informations concernant ce serveur.
+          local_feed_html: Un flux en direct avec les messages les plus récents des utilisateur·rice·s sur ce serveur.
+          overview_html: Une page montrant la description de votre serveur avec les derniers messages locaux des utilisateur·rice·s sur ce serveur.
+          trends_html: Une page présentant ce qui est populaire sur ce serveur en ce moment.
         values:
-          about: À propos
-          local_feed: Fil local
+          about: Page À propos
+          local_feed: Flux local en direct
+          overview: Aperçu 
           trends: Tendances
       registrations:
         moderation_recommandation: Veuillez vous assurer d'avoir une équipe de modération adéquate et réactive avant d'ouvrir les inscriptions à tout le monde !
@@ -904,17 +1008,22 @@ fr:
     site_uploads:
       delete: Supprimer le fichier téléversé
       destroyed_msg: Téléversement sur le site supprimé avec succès !
+    skip_to_content: Accéder au contenu
     software_updates:
       critical_update: Critique — veuillez mettre à jour au plus vite
       description: Il est recommandé de maintenir votre installation de Mastodon à jour afin de bénéficier des derniers correctifs et fonctionnalités. Par ailleurs, il est parfois critique de mettre à jour Mastodon rapidement de manière à éviter les incidents relatifs à la sécurité. Pour ces raisons, Mastodon examine la disponibilté des mises à jour toutes les 30 minutes, et vous en avisera en fonction de vos préférences de notification par courriel.
       documentation_link: En savoir plus
+      nearing_eol: La branche que vous utilisez actuellement ne sera plus supportée à partir du %{date}, veuillez envisager la mise à jour.
       release_notes: Notes de mises à jour
+      supported_until: Le support se termine le %{date}
       title: Mises à jour disponibles
       type: Type
       types:
         major: Mise à jour majeure
         minor: Mise à jour mineure
-        patch: Mise à jour « patch » — correctifs de bugs et changements faciles à faire
+        patch: Mise à jour corrective — corrections de bugs et changements faciles à appliquer
+      unsupported_branch: La branche que vous utilisez actuellement n'est plus supportée, veuillez la mettre à jour dès que possible.
+      unsupported_since: Non supportée depuis le %{date}
       version: Version
     statuses:
       account: Auteur·rice
@@ -1124,14 +1233,15 @@ fr:
         trendable: Peut apparaître sous les tendances
         trending_rank: 'Tendance #%{rank}'
         usable: Peut être utilisé
-        usage_comparison: Utilisé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+        usage_comparison: Utilisé %{today} fois aujourd'hui, et %{yesterday} fois hier
         used_by_over_week:
           one: Utilisé par %{count} personne au cours de la dernière semaine
           other: Utilisé par %{count} personnes au cours de la dernière semaine
       title: Recommandations et tendances
       trending: Tendances
+    update_available: Mise à jour disponible
     username_blocks:
-      add_new: Ajouter un nouveau
+      add_new: Ajouter une règle
       block_registrations: Bloquer les inscriptions
       comparison:
         contains: Contient
@@ -1179,6 +1289,15 @@ fr:
     auto_close_registrations:
       body: En raison du manque d'activité récente des modérateurs, les inscriptions à %{instance} ont été automatiquement changées pour nécessiter une revue manuelle afin d'éviter que votre instance %{instance} ne soit utilisée comme plate-forme pour des acteurs potentiellement malveillants. Vous pouvez ré-ouvrir les inscriptions à tout moment.
       subject: Les inscriptions à %{instance} ont été automatiquement changées pour requérir une approbation
+    end_of_support_out_of_support_warning:
+      body: La version de Mastodon actuellement utilisée sur votre serveur n'est plus supportée. Nous vous recommandons de mettre à jour dès que possible !
+      subject: Mastodon %{branch} utilisé sur %{instance} n'est plus supporté !
+    end_of_support_three_months_warning:
+      body: La version de Mastodon actuellement utilisée sur votre serveur ne sera plus supportée dans 3 mois. Vous voudrez peut-être mettre à jour vers une nouvelle branche en avance.
+      subject: Le support de Mastodon %{branch} utilisé sur %{instance} se termine dans 3 mois.
+    end_of_support_two_weeks_warning:
+      body: La version de Mastodon actuellement utilisée sur votre serveur ne sera plus supportée dans 2 semaines. Nous vous recommandons de mettre à jour avant cette échéance.
+      subject: Le support de Mastodon %{branch} utilisé sur %{instance} se termine dans 2 semaines.
     new_appeal:
       actions:
         delete_statuses: effacer les messages
@@ -1419,6 +1538,7 @@ fr:
       your_appeal_rejected: Votre appel a été rejeté
   edit_profile:
     other: Autre
+    privacy_redesign_body: Le choix de montrer vos abonnements et vos abonné·e·s est maintenant fait directement depuis votre profil.
     redesign_body: La modification du profil est maintenant accessible directement depuis la page de profil.
     redesign_button: Accéder
     redesign_title: Nouvelle expérience de modification du profil
@@ -1451,7 +1571,9 @@ fr:
         success_html: Vous allez maintenant commencer à recevoir des courriels quand %{name} publie de nouveaux messages. Ajoutez %{sender} à vos contacts pour que ces messages ne soient pas considérés comme des courriels indésirables.
         title: Vous êtes abonné·e
         unsubscribe: Se désabonner
+    disabled: Désactivé
     inactive: Inactif
+    no_access: Pas d'accès
     status: État
     subscribers: Abonné·e·s
   emoji_styles:
@@ -1487,7 +1609,9 @@ fr:
     blocks: Vous bloquez
     bookmarks: Marque-pages
     csv: CSV
+    custom_filters: Filtres
     domain_blocks: Blocages de domaine
+    json: JSON
     lists: Listes
     mutes: Vous masquez
     storage: Médias stockés
@@ -1558,18 +1682,20 @@ fr:
       other: Sélectionnez tous l'ensemble des %{count} éléments correspondant à votre recherche.
     today: aujourd’hui
     validation_errors:
-      one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
+      one: Quelque chose ne va pas ! Veuillez vérifier l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
   imports:
     errors:
       empty: Fichier CSV vide
       incompatible_type: Incompatible avec le type d’import sélectionné
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
+      invalid_json_file: 'Fichier JSON non valide. Erreur : %{error}'
       over_rows_processing_limit: contient plus de %{count} lignes
+      status_not_found_warning: Certains de vos filtres masquent des messages spécifiques qui ne sont pas connus par ce serveur. Ces messages ne seront pas filtrés automatiquement s'ils sont découverts plus tard par le serveur.
       too_large: Le fichier est trop lourd
     failures: Échecs
     imported: Importé
-    mismatched_types_warning: Il semblerait que vous avez sélectionné le mauvais type pour cet import, veuillez vérifier attentivement.
+    mismatched_types_warning: Il semblerait que vous avez sélectionné le mauvais type pour cet import, veuillez vérifier.
     modes:
       merge: Fusionner
       merge_long: Garder les enregistrements existants et ajouter les nouveaux
@@ -1577,43 +1703,49 @@ fr:
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
     overwrite_preambles:
       blocking_html:
-        one: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>remplacer votre liste de blocage</strong> par au maximum <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de blocage</strong> par au maximum <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{count} post</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{count} posts</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>remplacer vos marque-pages</strong> par au maximum <strong>%{count} message</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer vos marque-pages</strong> par au maximum <strong>%{count} messages</strong> issus de <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Vous allez <strong>remplacer vos filtres</strong> par le contenu de <strong>%{filename}</strong>. Au maximum <strong>%{count} filtre</strong> sera ajouté aux nouveaux filtres.
+        other: Vous allez <strong>remplacer vos filtres</strong> par le contenu de <strong>%{filename}</strong>. Au maximum <strong>%{count} filtres</strong> seront ajoutés aux nouveaux filtres.
       domain_blocking_html:
-        one: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{count} domaine</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{count} domaines</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>remplacer votre liste de domaines bloqués</strong> par au maximum <strong>%{count} domaine</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de domaines bloqués</strong> par au maximum <strong>%{count} domaines</strong> issus de <strong>%{filename}</strong>.
       following_html:
-        one: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} compte</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
-        other: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+        one: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+        other: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
       lists_html:
-        one: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{count} compte</strong> sera ajouté à de nouvelles listes.
-        other: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{count} comptes</strong> seront ajoutés à de nouvelles listes.
+        one: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Au maximum <strong>%{count} compte</strong> sera ajouté aux nouvelles listes.
+        other: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Au maximum <strong>%{count} comptes</strong> seront ajoutés aux nouvelles listes.
       muting_html:
-        one: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par au maximum <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par au maximum <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
     preambles:
       blocking_html:
-        one: Vous allez <strong>bloquer</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>bloquer</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Vous allez ajouter près de <strong>%{count} message</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
-        other: Vous allez ajouter près de <strong>%{count} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
+        one: Vous allez ajouter jusqu'à <strong>%{count} message</strong> de <strong>%{filename}</strong> à vos <strong>marque-pages</strong>.
+        other: Vous allez ajouter jusqu'à <strong>%{count} messages</strong> de <strong>%{filename}</strong> à vos <strong>marque-pages</strong>.
+      custom_filters_html:
+        one: Vous allez ajouter jusqu'à <strong>%{count} filtre</strong> de <strong>%{filename}</strong> à vos <strong>filtres</strong>.
+        other: Vous allez ajouter jusqu'à <strong>%{count} filtres</strong> de <strong>%{filename}</strong> à vos <strong>filtres</strong>.
       domain_blocking_html:
-        one: Vous allez <strong>bloquer</strong> près de <strong>%{count} domaine</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>bloquer</strong> près de <strong>%{count} domaines</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{count} domaine</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{count} domaines</strong> issus de <strong>%{filename}</strong>.
       following_html:
-        one: Vous allez <strong>suivre</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>suivre</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+        one: Vous allez <strong>suivre</strong> jusqu'à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>suivre</strong> jusqu'à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
       lists_html:
-        one: Vous allez ajouter près de <strong>%{count} compte</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
-        other: Vous allez ajouter près de <strong>%{count} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
+        one: Vous allez ajouter jusqu'à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
+        other: Vous allez ajouter jusqu'à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
       muting_html:
-        one: Vous allez <strong>masquer</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
-        other: Vous allez <strong>masquer</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
-    preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
+        one: Vous allez <strong>masquer</strong> jusqu'à <strong>%{count} compte</strong> issu de <strong>%{filename}</strong>.
+        other: Vous allez <strong>masquer</strong> jusqu'à <strong>%{count} comptes</strong> issus de <strong>%{filename}</strong>.
+    preface: Vous pouvez importer certaines données que vous avez exportées d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     recent_imports: Récents imports
     states:
       finished: Terminé
@@ -1632,15 +1764,16 @@ fr:
       muting: En cours d’importation des comptes masqués
     type: Type d’import
     type_groups:
-      constructive: Abonnements et signets
-      destructive: Blocages et masquages
+      constructive: Abonnements et marque-pages
+      destructive: Comptes bloqués et masqués
     types:
       blocking: Liste de comptes bloqués
       bookmarks: Marque-pages
+      custom_filters: Filtres
       domain_blocking: Liste des serveurs bloqués
       following: Liste de comptes suivis
       lists: Listes
-      muting: Liste de comptes que vous masquez
+      muting: Liste de comptes masqués
     upload: Importer
   invites:
     delete: Désactiver
@@ -1726,11 +1859,32 @@ fr:
   moderation:
     title: Modération
   move_handler:
-    carry_blocks_over_text: Cet utilisateur que vous aviez bloqué est parti de %{acct}.
-    carry_mutes_over_text: Cet utilisateur que vous aviez masqué est parti de %{acct}.
+    carry_blocks_over_text: Ce compte a déménagé de %{acct}, que vous aviez bloqué.
+    carry_mutes_over_text: Ce compte a déménagé de %{acct}, que vous aviez masqué.
     copy_account_note_text: 'Cet·te utilisateur·rice est parti·e de %{acct}, voici vos notes précédentes à son sujet :'
   navigation:
     toggle_menu: Basculer l'affichage du menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} vous a ajouté·e à une collection"
+    admin_report:
+      title_html: "%{name} a signalé %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} et un·e autre se sont inscrit·e·s"
+        other: "%{name} et %{count} autres se sont inscrit·e·s"
+      title_html: "%{name} s'est inscrit·e"
+    collection_update:
+      title_html: "%{name} a mis à jour une collection dans laquelle vous figurez"
+    generic:
+      sign_in: Connectez-vous à l'application Web Mastodon
+      summary_html: Vous utilisez une application qui ne prend pas en charge la version la plus récente de Mastodon. %{link} pour accéder à toutes les fonctionnalités.
+    moderation_warning:
+      summary_html: Vous utilisez une application qui ne supporte pas la version la plus récente de Mastodon. %{link}.
+      title: Vous avez reçu un avertissement de la modération.
+    severed_relationships:
+      summary_html: L'équipe d'administration de %{from} a suspendu %{target}, ce qui signifie que vous ne pouvez plus recevoir de notifications de leur part ou interagir avec. %{link} pour récupérer la liste des relations perdues.
+      title: Connexions perdues avec %{name}
   notification_mailer:
     admin:
       report:
@@ -1779,6 +1933,7 @@ fr:
     administration_emails: Notifications d'administration par courriel
     email_events: Événements pour les notifications par courriel
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
+    moderation_emails: Notifications de modération par courriel
   number:
     human:
       decimal_units:
@@ -1802,10 +1957,10 @@ fr:
     next: Suivant
     older: Plus ancien
     prev: Précédent
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
-      already_voted: Vous avez déjà voté sur ce sondage
+      already_voted: Vous avez déjà participé à ce sondage
       duplicate_options: contient des doublons
       duration_too_long: est trop loin dans le futur
       duration_too_short: est trop tôt

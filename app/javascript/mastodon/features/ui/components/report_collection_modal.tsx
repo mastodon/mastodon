@@ -9,10 +9,13 @@ import { fetchServer } from 'mastodon/actions/server';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Button } from 'mastodon/components/button';
 import { IconButton } from 'mastodon/components/icon_button';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAppDispatch } from 'mastodon/store';
 
+import Category from '../../report/category';
 import Comment from '../../report/comment';
+import Rules from '../../report/rules';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -23,12 +26,12 @@ const CollectionThanks: React.FC<{
 }> = ({ onClose }) => {
   return (
     <>
-      <h3 className='report-dialog-modal__title'>
+      <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
         <FormattedMessage
           id='report.thanks.title_actionable'
           defaultMessage="Thanks for reporting, we'll look into this."
         />
-      </h3>
+      </NavigationFocusTarget>
 
       <div className='flex-spacer' />
 
@@ -52,15 +55,21 @@ export const ReportCollectionModal: React.FC<{
   const account = useAccount(account_id);
 
   useEffect(() => {
-    dispatch(fetchServer());
+    void dispatch(fetchServer());
   }, [dispatch]);
 
   const [submitState, setSubmitState] = useState<
     'idle' | 'submitting' | 'submitted' | 'error'
   >('idle');
 
-  const [step, setStep] = useState<'comment' | 'thanks'>('comment');
+  const [step, setStep] = useState<'category' | 'rules' | 'comment' | 'thanks'>(
+    'category',
+  );
 
+  const [category, setCategory] = useState<
+    'spam' | 'legal' | 'violation' | 'other' | null
+  >(null);
+  const [selectedRuleIds, setSelectedRuleIds] = useState<string[]>([]);
   const [comment, setComment] = useState('');
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
 
@@ -71,6 +80,22 @@ export const ReportCollectionModal: React.FC<{
       setSelectedDomains((domains) => domains.filter((d) => d !== domain));
     }
   }, []);
+
+  const handleRuleToggle = useCallback((ruleId: string) => {
+    setSelectedRuleIds((ruleIds) =>
+      ruleIds.includes(ruleId)
+        ? ruleIds.filter((id) => ruleId !== id)
+        : [...ruleIds, ruleId],
+    );
+  }, []);
+
+  const handleNextStep = useCallback(() => {
+    if (step === 'category' && category === 'violation') {
+      setStep('rules');
+    } else {
+      setStep('comment');
+    }
+  }, [category, step]);
 
   const handleSubmit = useCallback(() => {
     setSubmitState('submitting');
@@ -84,7 +109,8 @@ export const ReportCollectionModal: React.FC<{
           forward_to_domains: selectedDomains,
           comment,
           forward: selectedDomains.length > 0,
-          category: 'spam',
+          category: category ?? 'other',
+          rule_ids: selectedRuleIds,
         },
         () => {
           setSubmitState('submitted');
@@ -95,7 +121,15 @@ export const ReportCollectionModal: React.FC<{
         },
       ),
     );
-  }, [account_id, comment, dispatch, collectionId, selectedDomains]);
+  }, [
+    account_id,
+    category,
+    selectedRuleIds,
+    comment,
+    dispatch,
+    collectionId,
+    selectedDomains,
+  ]);
 
   if (!account) {
     return null;
@@ -107,15 +141,28 @@ export const ReportCollectionModal: React.FC<{
   let stepComponent;
 
   switch (step) {
+    case 'category':
+      stepComponent = (
+        <Category
+          onNextStep={handleNextStep}
+          startedFrom='collection'
+          category={category}
+          onChangeCategory={setCategory}
+        />
+      );
+      break;
+    case 'rules':
+      stepComponent = (
+        <Rules
+          onNextStep={handleNextStep}
+          selectedRuleIds={selectedRuleIds}
+          onToggle={handleRuleToggle}
+        />
+      );
+      break;
     case 'comment':
       stepComponent = (
         <Comment
-          modalTitle={
-            <FormattedMessage
-              id='report.collection_comment'
-              defaultMessage='Why do you want to report this collection?'
-            />
-          }
           submitError={
             submitState === 'error' && (
               <Callout

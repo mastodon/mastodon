@@ -3,7 +3,7 @@ import type { ComponentPropsWithoutRef, Key } from 'react';
 
 import classNames from 'classnames';
 
-import type { OmitUnion } from '@/mastodon/utils/types';
+import type { Merge } from 'type-fest';
 
 import { MiniCard } from '.';
 import type { MiniCardProps as BaseCardProps } from '.';
@@ -19,7 +19,7 @@ interface MiniCardListProps {
 
 export const MiniCardList = forwardRef<
   HTMLDListElement,
-  OmitUnion<ComponentPropsWithoutRef<'dl'>, MiniCardListProps>
+  Merge<ComponentPropsWithoutRef<'dl'>, MiniCardListProps>
 >(({ cards = [], className, children, ...props }, ref) => {
   if (!cards.length) {
     return null;

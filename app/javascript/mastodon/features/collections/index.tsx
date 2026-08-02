@@ -1,56 +1,44 @@
-import { useEffect } from 'react';
+import { defineMessages, useIntl } from 'react-intl';
 
-import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Helmet } from '@unhead/react/helmet';
 
-import AddIcon from '@/material-icons/400-24px/add.svg?react';
-import CollectionsFilledIcon from '@/material-icons/400-24px/category-fill.svg?react';
-import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { DisplayNameSimple } from 'mastodon/components/display_name/simple';
-import { Icon } from 'mastodon/components/icon';
-import {
-  ItemList,
-  Scrollable,
-} from 'mastodon/components/scrollable_list/components';
+import { Scrollable } from 'mastodon/components/scrollable_list/components';
+import { TabLink, TabList } from 'mastodon/components/tab_list';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useAccountId, useCurrentAccountId } from 'mastodon/hooks/useAccountId';
-import {
-  fetchAccountCollections,
-  selectAccountCollections,
-} from 'mastodon/reducers/slices/collections';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { CollectionListItem } from './components/collection_list_item';
-import {
-  messages as editorMessages,
-  MaxCollectionsCallout,
-  userCollectionLimit,
-} from './editor';
-import { areCollectionsEnabled } from './utils';
+import { CollectionsCreatedByAccount } from './overview/created_by_account';
+import { CollectionsFeaturingYou } from './overview/featuring_you';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
-  headingMe: { id: 'column.my_collections', defaultMessage: 'My collections' },
+  headingMe: {
+    id: 'column.your_collections',
+    defaultMessage: 'Your Collections',
+  },
   headingOther: {
     id: 'column.other_collections',
-    defaultMessage: 'Collections by {name}',
+    defaultMessage: "{name}'s Collections",
+  },
+  createdByYou: {
+    id: 'collections.list.created_by_you',
+    defaultMessage: 'Created by you',
+  },
+  createdByAuthor: {
+    id: 'collections.list.created_by_author',
+    defaultMessage: 'Created by {name}',
+  },
+  featuringYou: {
+    id: 'collections.list.featuring_you',
+    defaultMessage: 'Featuring you',
   },
 });
-
-export function useAccountCollections(accountId: string | null | undefined) {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (accountId && areCollectionsEnabled()) {
-      void dispatch(fetchAccountCollections({ accountId }));
-    }
-  }, [dispatch, accountId]);
-
-  return useAppSelector((state) => selectAccountCollections(state, accountId));
-}
 
 export const Collections: React.FC<{
   multiColumn?: boolean;
@@ -59,37 +47,11 @@ export const Collections: React.FC<{
   const me = useCurrentAccountId();
   const accountId = useAccountId();
   const account = useAccount(accountId);
+  const { path } = useRouteMatch();
 
-  const { collections, status } = useAccountCollections(accountId);
+  const isOwnCollectionsPage = accountId === me;
 
-  const emptyMessage =
-    status === 'error' || !accountId ? (
-      <FormattedMessage
-        id='collections.error_loading_collections'
-        defaultMessage='There was an error when trying to load your collections.'
-        tagName='span'
-      />
-    ) : (
-      <>
-        <span>
-          <FormattedMessage
-            id='collections.no_collections_yet'
-            defaultMessage='No collections yet.'
-          />
-          <br />
-          <FormattedMessage
-            id='collections.create_a_collection_hint'
-            defaultMessage='Create a collection to recommend or share your favourite accounts with others.'
-          />
-        </span>
-
-        <SquigglyArrow className='empty-column-indicator__arrow' />
-      </>
-    );
-
-  const canCreateMoreCollections = collections.length < userCollectionLimit;
-  const isOwnCollection = accountId === me;
-  const titleMessage = isOwnCollection
+  const titleMessage = isOwnCollectionsPage
     ? messages.headingMe
     : messages.headingOther;
 
@@ -100,45 +62,43 @@ export const Collections: React.FC<{
     name: <DisplayNameSimple account={account} />,
   });
 
+  const createdByTabMessage = isOwnCollectionsPage
+    ? messages.createdByYou
+    : messages.createdByAuthor;
+
   return (
     <Column bindToDocument={!multiColumn} label={pageTitle}>
-      <ColumnHeader
-        title={pageTitleHtml}
-        icon='collections'
-        iconComponent={CollectionsFilledIcon}
-        multiColumn={multiColumn}
-        extraButton={
-          isOwnCollection &&
-          status === 'idle' &&
-          canCreateMoreCollections && (
-            <Link
-              to='/collections/new'
-              className='column-header__button'
-              title={intl.formatMessage(editorMessages.create)}
-              aria-label={intl.formatMessage(editorMessages.create)}
-            >
-              <Icon id='plus' icon={AddIcon} />
-            </Link>
-          )
-        }
-      />
+      <ColumnHeader showBackButton multiColumn={multiColumn} />
 
       <Scrollable>
-        {status === 'idle' && !canCreateMoreCollections && (
-          <MaxCollectionsCallout />
-        )}
-        <ItemList emptyMessage={emptyMessage} isLoading={status === 'loading'}>
-          {collections.map((item, index) => (
-            <CollectionListItem
-              withTimestamp
-              withAuthorHandle={false}
-              key={item.id}
-              collection={item}
-              positionInList={index + 1}
-              listSize={collections.length}
-            />
-          ))}
-        </ItemList>
+        <header className={classes.header}>
+          <NavigationFocusTarget as='h1' className={classes.heading}>
+            {pageTitleHtml}
+          </NavigationFocusTarget>
+          <TabList plain>
+            <TabLink exact to={`/@${account?.acct}/collections`}>
+              {intl.formatMessage(createdByTabMessage, {
+                name: <DisplayNameSimple account={account} />,
+              })}
+            </TabLink>
+            {isOwnCollectionsPage && (
+              <TabLink
+                exact
+                to={`/@${account?.acct}/collections/featuring-you`}
+              >
+                {intl.formatMessage(messages.featuringYou)}
+              </TabLink>
+            )}
+          </TabList>
+        </header>
+        <Switch>
+          <Route exact path={path} component={CollectionsCreatedByAccount} />
+          <Route
+            exact
+            path={`${path}/featuring-you`}
+            component={CollectionsFeaturingYou}
+          />
+        </Switch>
       </Scrollable>
 
       <Helmet>

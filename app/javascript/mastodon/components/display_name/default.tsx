@@ -14,7 +14,7 @@ export function useAccountHandle(
     if (!account) {
       return null;
     }
-    let acct = account.get('acct');
+    let acct = account.acct;
 
     if (!acct.includes('@') && localDomain) {
       acct = `${acct}@${localDomain}`;

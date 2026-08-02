@@ -43,6 +43,17 @@ RSpec.describe Form::Import do
       end
     end
 
+    describe 'when the import type is custom_filters' do
+      let(:data)        { fixture_file_upload(import_file, content_type) }
+      let(:import_file) { File.open('spec/fixtures/files/custom_filters.json') }
+      let(:import_type) { 'custom_filters' }
+      let(:content_type) { 'application/json' }
+
+      it 'passes validation' do
+        expect(subject).to be_valid
+      end
+    end
+
     context 'when the file too large' do
       let(:import_type) { 'following' }
       let(:import_file) { 'imports.txt' }
@@ -246,6 +257,69 @@ RSpec.describe Form::Import do
               type: eq(subject.type),
               original_filename: eq(subject.data.original_filename),
               likely_mismatched?: eq(subject.likely_mismatched?),
+              overwrite?: eq(!!subject.overwrite), # rubocop:disable Style/DoubleNegation
+              processed_items: eq(0),
+              imported_items: eq(0),
+              total_items: eq(bulk_import.rows.count),
+              state_unconfirmed?: be(true)
+            )
+          expect(bulk_import.rows.pluck(:data))
+            .to match_array(expected_rows)
+        end
+      end
+    end
+
+    describe 'when importing json' do
+      let(:import_type) { 'custom_filters' }
+      let(:data) { fixture_file_upload('custom_filters.json', 'application/json') }
+      let(:import_mode) { 'merge' }
+      let(:expected_rows) do
+        [
+          {
+            'title' => 'dfjswa',
+            'expires_at' => nil,
+            'context' => ['home'],
+            'action' => 'warn',
+            'keywords_attributes' => [{ 'keyword' => 'dvshja', 'whole_word' => true }],
+            'statuses' => [],
+          },
+          {
+            'title' => 'filter with a phrase as title',
+            'expires_at' => nil,
+            'context' => %w(home notifications public),
+            'action' => 'warn',
+            'keywords_attributes' => [
+              { 'keyword' => "more words let's see ", 'whole_word' => true },
+            ],
+            'statuses' => [],
+          },
+          {
+            'title' => 'how do I add a status to a filter?',
+            'expires_at' => nil,
+            'context' => ['public', 'account'],
+            'action' => 'warn',
+            'keywords_attributes' => [
+              { 'keyword' => 'something something', 'whole_word' => true },
+            ],
+            'statuses' => [],
+          },
+        ]
+      end
+
+      before do
+        subject.save
+      end
+
+      context 'with a BulkImport' do
+        let(:bulk_import) { account.bulk_imports.first }
+
+        it 'creates a bulk import with correct values' do
+          expect(bulk_import)
+            .to be_present
+            .and have_attributes(
+              type: eq(subject.type),
+              original_filename: eq(subject.data.original_filename),
+              likely_mismatched?: eq(subject.likely_mismatched_json?),
               overwrite?: eq(!!subject.overwrite), # rubocop:disable Style/DoubleNegation
               processed_items: eq(0),
               imported_items: eq(0),

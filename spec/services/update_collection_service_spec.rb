@@ -14,14 +14,14 @@ RSpec.describe UpdateCollectionService do
         expect { subject.call(collection, { name: 'Newly updated name' }) }
           .to change(collection, :name).to('Newly updated name')
           .and enqueue_sidekiq_job(LocalNotificationWorker).with(collection_item.account_id, collection.id, collection.class.name, 'collection_update')
-          .and enqueue_sidekiq_job(ActivityPub::AccountRawDistributionWorker)
+          .and enqueue_sidekiq_job(ActivityPub::CollectionRawDistributionWorker)
       end
 
       context 'when nothing changed' do
         it 'does not federate an activity' do
           subject.call(collection, { name: collection.name })
 
-          expect(ActivityPub::AccountRawDistributionWorker).to_not have_enqueued_sidekiq_job
+          expect(ActivityPub::CollectionRawDistributionWorker).to_not have_enqueued_sidekiq_job
           expect(LocalNotificationWorker).to_not have_enqueued_sidekiq_job
         end
       end

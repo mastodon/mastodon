@@ -33,6 +33,7 @@ RSpec.describe 'Policies' do
           filter_not_followers: false,
           filter_new_accounts: false,
           filter_private_mentions: true,
+          filter_bots: false,
           summary: a_hash_including(
             pending_requests_count: 1,
             pending_notifications_count: 0
@@ -63,11 +64,17 @@ RSpec.describe 'Policies' do
         filter_not_followers: false,
         filter_new_accounts: false,
         filter_private_mentions: true,
+        filter_bots: false,
         summary: a_hash_including(
           pending_requests_count: 0,
           pending_notifications_count: 0
         )
       )
+    end
+
+    it 'updates filter_bots' do
+      put '/api/v1/notifications/policy', headers: headers, params: { filter_bots: true }
+      expect(response.parsed_body).to include(filter_bots: true)
     end
   end
 end

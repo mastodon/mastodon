@@ -30,7 +30,7 @@ RSpec.describe ResolveURLService do
       expect(subject.call(url)).to eq known_account
     end
 
-    context 'when searching for a remote collection', feature: :collections do
+    context 'when searching for a remote collection' do
       let(:account) { Fabricate(:account) }
       let(:collection_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub) }
 
@@ -63,7 +63,7 @@ RSpec.describe ResolveURLService do
       end
     end
 
-    context 'when searching for a local collection', feature: :collections do
+    context 'when searching for a local collection' do
       let(:account) { Fabricate(:account) }
       let(:collection) { Fabricate(:collection) }
 

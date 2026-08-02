@@ -19,6 +19,28 @@ RSpec.describe BlockService do
         .to change { sender.blocking?(bob) }.from(false).to(true)
         .and change { NotificationPermission.exists?(account: sender, from_account: bob) }.from(true).to(false)
     end
+
+    context 'when the block affects collections' do
+      context 'when the sender features the target in a collection' do
+        let(:collection) { Fabricate(:collection, account: sender) }
+        let!(:collection_item) { Fabricate(:collection_item, collection:, account: bob) }
+
+        it 'removes the affected item from the collection' do
+          expect { subject.call(sender, bob) }.to change(CollectionItem, :count).by(-1)
+          expect { collection_item.reload }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+
+      context 'when the sender is featured by the target in a collection' do
+        let(:collection) { Fabricate(:collection, account: bob) }
+        let!(:collection_item) { Fabricate(:collection_item, collection:, account: sender) }
+
+        it 'revokes the inclusion in the collection' do
+          subject.call(sender, bob)
+          expect(collection_item.reload).to be_revoked
+        end
+      end
+    end
   end
 
   describe 'remote ActivityPub' do

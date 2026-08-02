@@ -6,7 +6,6 @@ module Paperclip
   class ColorExtractor < Paperclip::Processor
     MIN_CONTRAST        = 3.0
     ACCENT_MIN_CONTRAST = 2.0
-    FREQUENCY_THRESHOLD = 0.01
     BINS = 10
 
     def make
@@ -213,18 +212,6 @@ module Paperclip
               end
 
       ColorDiff::Color::RGB.new(*hsl_to_rgb(hue, saturation, light))
-    end
-
-    def palette_from_im_histogram(result, quantity)
-      frequencies       = result.scan(/([0-9]+):/).flatten.map(&:to_f)
-      hex_values        = result.scan(/\#([0-9A-Fa-f]{6,8})/).flatten
-      total_frequencies = frequencies.sum.to_f
-
-      frequencies.map.with_index { |f, i| [f / total_frequencies, hex_values[i]] }
-        .sort_by { |r| -r[0] }
-        .reject { |r| r[1].size == 8 && r[1].end_with?('00') }
-        .map { |r| ColorDiff::Color::RGB.new(*r[1][0..5].scan(/../).map { |c| c.to_i(16) }) }
-        .slice(0, quantity)
     end
 
     def rgb_to_hex(rgb)

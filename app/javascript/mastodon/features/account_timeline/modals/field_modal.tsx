@@ -2,6 +2,7 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import type { AccountField } from '@/mastodon/components/account_header/fields';
 import { Button } from '@/mastodon/components/button';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import {
@@ -9,8 +10,8 @@ import {
   ModalShellActions,
   ModalShellBody,
 } from '@/mastodon/components/modal_shell';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 
-import type { AccountField } from '../common';
 import { useFieldHtml } from '../hooks/useFieldHtml';
 
 import classes from './styles.module.scss';
@@ -24,12 +25,14 @@ export const AccountFieldModal: FC<{
   return (
     <ModalShell>
       <ModalShellBody>
-        <EmojiHTML
-          as='h2'
-          htmlString={field.name_emojified}
-          onElement={handleLabelElement}
-          className={classes.fieldName}
-        />
+        <NavigationFocusTarget as='h1'>
+          <EmojiHTML
+            as='span'
+            htmlString={field.name_emojified}
+            onElement={handleLabelElement}
+            className={classes.fieldName}
+          />
+        </NavigationFocusTarget>
         <EmojiHTML
           as='p'
           htmlString={field.value_emojified}

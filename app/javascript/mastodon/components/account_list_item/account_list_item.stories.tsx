@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { accountFactoryState } from '@/testing/factories';
+import {
+  accountFactoryImmutable,
+  relationshipsFactoryAPI,
+} from '@/testing/factories';
+
+import { PendingBadge } from '../badge';
 
 import { AccountListItem } from './index';
 
@@ -14,7 +19,7 @@ const meta = {
   parameters: {
     state: {
       accounts: {
-        '1': accountFactoryState(),
+        '1': accountFactoryImmutable(),
       },
     },
   },
@@ -26,9 +31,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
+export const FollowsYou: Story = {
+  parameters: {
+    state: {
+      relationships: {
+        '1': relationshipsFactoryAPI({
+          followed_by: true,
+        }),
+      },
+    },
+  },
+};
+
 export const WithCustomStats: Story = {
   args: {
     stats: ['posts', 'last-active'],
+  },
+};
+
+export const WithCustomBadge: Story = {
+  args: {
+    badge: <PendingBadge />,
   },
 };
 

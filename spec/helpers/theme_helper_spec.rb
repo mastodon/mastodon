@@ -12,7 +12,7 @@ RSpec.describe ThemeHelper do
       it 'returns the default stylesheet' do
         expect(html_links.last.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/default/))
+            href: have_attributes(value: include('default'))
           )
       end
     end

@@ -32,6 +32,8 @@ import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
 import { CollectionPreviewCard } from '../features/collections/components/collection_preview_card';
+import { compareUrls } from '../utils/compare_urls';
+import { FOCUS_TARGET } from './navigation_focus_target';
 
 const domParser = new DOMParser();
 
@@ -310,9 +312,9 @@ class Status extends ImmutablePureComponent {
       window.open(path, '_blank', 'noopener');
     } else {
       if (history.location.pathname.replace('/deck/', '/') === path) {
-        history.replace(path);
+        history.replace(path, {focusTarget: FOCUS_TARGET.POST});
       } else {
-        history.push(path);
+        history.push(path, {focusTarget: FOCUS_TARGET.POST});
       }
     }
   };
@@ -553,9 +555,9 @@ class Status extends ImmutablePureComponent {
       const taggedCollection = (
         status.get('tagged_collections')
       ).find((item) => compareUrls(item.get('url'), cardUrl));
-  
+
       if (taggedCollection) {
-        media = <CollectionPreviewCard collection={taggedCollection} />;
+        media = <CollectionPreviewCard collection={taggedCollection.toJS()} headingLevel='h2' />;
       } else {
         media = (
           <Card
@@ -565,11 +567,11 @@ class Status extends ImmutablePureComponent {
           />
         );
       }
-    } else if (status.get('tagged_collections').size) {
+    } else if (status.get('tagged_collections').size && !status.get('quote')) {
       const firstLinkedCollection = status.get('tagged_collections').first();
       if (firstLinkedCollection) {
         media = (
-          <CollectionPreviewCard collection={firstLinkedCollection.toJS()} />
+          <CollectionPreviewCard collection={firstLinkedCollection.toJS()} headingLevel='h2' />
         );
       }
     }
@@ -577,10 +579,10 @@ class Status extends ImmutablePureComponent {
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
 
     const header = this.props.headerRenderFn
-      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured })
+      ? this.props.headerRenderFn({ statusId: status.get('id'), account, avatarSize, messages, onHeaderClick: this.handleHeaderClick, featured })
       : (
         <StatusHeader
-          status={status}
+          statusId={status.get('id')}
           account={account}
           avatarSize={avatarSize}
           onHeaderClick={this.handleHeaderClick}
@@ -589,7 +591,7 @@ class Status extends ImmutablePureComponent {
 
     return (
       <Hotkeys handlers={handlers} focusable={!unfocusable}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted })} tabIndex={this.props.muted || unfocusable ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader({intl, status, rebloggedByText, isQuote: isQuotedPost})} ref={this.handleRef} data-nosnippet={status.getIn(['account', 'noindex'], true) || undefined}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), 'status__wrapper--in-thread': !!rootId, unread, focusable: !this.props.muted })} tabIndex={this.props.muted || unfocusable ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader({intl, status, rebloggedByText, isQuote: isQuotedPost})} ref={this.handleRef} data-nosnippet={status.getIn(['account', 'noindex'], true) || undefined}>
           {!skipPrepend && prepend}
 
           <div
@@ -612,7 +614,7 @@ class Status extends ImmutablePureComponent {
 
             {matchedFilters && <FilterWarning title={matchedFilters.join(', ')} expanded={this.state.showDespiteFilter} onClick={this.handleFilterToggle} />}
 
-            {(!matchedFilters || this.state.showDespiteFilter) && <ContentWarning status={status} expanded={expanded} onClick={this.handleExpandedToggle} />}
+            {(!matchedFilters || this.state.showDespiteFilter) && <ContentWarning statusId={status.get('id')} expanded={expanded} onClick={this.handleExpandedToggle} />}
 
             {expanded && (
               <>

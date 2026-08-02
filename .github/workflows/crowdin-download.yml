@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Increase Git http.postBuffer
         # This is needed due to a bug in Ubuntu's cURL version?
@@ -26,7 +26,7 @@ jobs:
 
       # Download the translation files from Crowdin
       - name: crowdin action
-        uses: crowdin/github-action@b4b468cffefb50bdd99dd83e5d2eaeb63c880380 # v2
+        uses: crowdin/github-action@52aa776766211d83d975df51f3b9c53c2f8ba35f # v2
         with:
           upload_sources: false
           upload_translations: false
@@ -52,7 +52,7 @@ jobs:
 
       # Create or update the pull request
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
         with:
           commit-message: 'New Crowdin translations'
           title: 'New Crowdin Translations (automated)'
@@ -65,7 +65,7 @@ jobs:
             This PR will be updated every day with new translations.
 
             Due to a limitation in GitHub Actions, checks are not running on this PR without manual action.
-            If you want to run the checks, then close and re-open it.
+            If you want to run the checks, then please press “Approve workflows to run”.
           branch: i18n/crowdin/translations
           base: main
           labels: i18n

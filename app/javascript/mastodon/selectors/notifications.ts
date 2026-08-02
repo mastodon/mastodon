@@ -29,7 +29,10 @@ const filterNotificationsByAllowedTypes = (
     (item) =>
       item.type === 'gap' ||
       allowedType === item.type ||
-      (allowedType === 'mention' && item.type === 'quote'),
+      (allowedType === 'mention' && item.type === 'quote') ||
+      (allowedType === 'collection' &&
+        (item.type === 'collection_update' ||
+          item.type === 'added_to_collection')),
   );
 };
 

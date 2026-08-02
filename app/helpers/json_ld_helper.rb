@@ -3,6 +3,8 @@
 module JsonLdHelper
   include ContextHelper
 
+  UNSUPPORTED_JSONLD_KEYWORDS = %w(@graph @included @reverse).freeze
+
   def equals_or_includes?(haystack, needle)
     haystack.is_a?(Array) ? haystack.include?(needle) : haystack == needle
   end
@@ -13,6 +15,22 @@ module JsonLdHelper
 
   def first_of_value(value)
     value.is_a?(Array) ? value.first : value
+  end
+
+  # Some attributes we read can be either `xsd:string` or `rdf:langString`
+  # and will lead to different compacted forms depending on which they are.
+  # Furthermore, we don't unconditionally compact to our context, so we
+  # may also find non-compacted forms.
+  # This is the case of `summary`, `name` and `content` as defined in ActivityStreams.
+  def first_lang_string(json, name)
+    if json[name]
+      value = first_of_value(json[name])
+      return value if value.is_a?(String)
+
+      value['@value'] if value.is_a?(Hash)
+    elsif json["#{name}Map"]
+      json["#{name}Map"].values.first
+    end
   end
 
   def uri_from_bearcap(str)
@@ -104,10 +122,20 @@ module JsonLdHelper
     graph.dump(:normalize)
   end
 
-  def compact(json)
-    compacted = JSON::LD::API.compact(json.without('signature'), full_context, documentLoader: method(:load_jsonld_context))
-    compacted['signature'] = json['signature']
-    compacted
+  def compact(json, context = full_context)
+    JSON::LD::API.compact(json.without('signature'), context, documentLoader: method(:load_jsonld_context)).tap do |compacted|
+      compacted['signature'] = json['signature']
+    end
+  end
+
+  def unsupported_jsonld_features?(json)
+    if json.is_a?(Hash)
+      json.any? { |key, value| UNSUPPORTED_JSONLD_KEYWORDS.include?(key) || unsupported_jsonld_features?(value) }
+    elsif json.is_a?(Array)
+      json.any? { |value| unsupported_jsonld_features?(value) }
+    else
+      false
+    end
   end
 
   # Patches a JSON-LD document to avoid compatibility issues on redistribution
@@ -205,7 +233,7 @@ module JsonLdHelper
   # If an error is raised, it contains the response and can be captured for handling like
   #
   #     begin
-  #       fetch_resource_without_id_validation(uri, nil, true)
+  #       fetch_resource_without_id_validation(uri, raise_on_error: :all)
   #     rescue Mastodon::UnexpectedResponseError => e
   #       e.response
   #     end

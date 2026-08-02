@@ -9,7 +9,9 @@
   - if status.ordered_media_attachments.size.positive?
     %p.email-status-media
       - status.ordered_media_attachments.each do |a|
-        - if status.local?
+        - if a.image? && !a.needs_redownload?
+          %img{ src: full_asset_url(a.file.url(:original)), alt: a.description }
+        - elsif status.local?
           = link_to full_asset_url(a.file.url(:original)), full_asset_url(a.file.url(:original))
         - else
           = link_to a.remote_url, a.remote_url

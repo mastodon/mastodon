@@ -1,15 +1,15 @@
-import { useState, useRef, useCallback, useId } from 'react';
+import { useState, useCallback, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import Overlay from 'react-overlays/Overlay';
+import { Popover } from './popover';
 
 export const LearnMoreLink: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const accessibilityId = useId();
   const [open, setOpen] = useState(false);
-  const triggerRef = useRef(null);
+  const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
 
   const handleClick = useCallback(() => {
     setOpen(!open);
@@ -19,7 +19,7 @@ export const LearnMoreLink: React.FC<{ children: React.ReactNode }> = ({
     <>
       <button
         className='link-button'
-        ref={triggerRef}
+        ref={setTrigger}
         onClick={handleClick}
         aria-expanded={open}
         aria-controls={accessibilityId}
@@ -31,13 +31,12 @@ export const LearnMoreLink: React.FC<{ children: React.ReactNode }> = ({
         />
       </button>
 
-      <Overlay
-        show={open}
-        rootClose
-        onHide={handleClick}
-        offset={[5, 5]}
+      <Popover
+        isOpen={open}
+        onClose={handleClick}
+        offset={5}
         placement='bottom-end'
-        target={triggerRef}
+        reference={trigger}
       >
         {({ props }) => (
           <div
@@ -62,7 +61,7 @@ export const LearnMoreLink: React.FC<{ children: React.ReactNode }> = ({
             </div>
           </div>
         )}
-      </Overlay>
+      </Popover>
     </>
   );
 };

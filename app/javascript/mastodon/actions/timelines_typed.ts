@@ -3,6 +3,7 @@ import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 
+import type { ApiStatusJSON } from '../api_types/statuses';
 import type { Status } from '../models/status';
 import { createAppThunk } from '../store/typed_functions';
 
@@ -10,6 +11,7 @@ import {
   expandTimeline,
   insertIntoTimeline,
   TIMELINE_NON_STATUS_MARKERS,
+  updateTimeline,
 } from './timelines';
 
 export const expandTimelineByKey = createAppThunk(
@@ -207,6 +209,34 @@ export const timelineDeleteStatus = createAction<{
   statusId: string;
   timelineKey: string;
 }>('timelines/deleteStatus');
+
+export const insertStatusIntoAccountTimelines = createAppThunk(
+  (status: ApiStatusJSON, { dispatch, getState }) => {
+    const currentAccountId = getState().meta.get('me', null) as string | null;
+    if (!currentAccountId) {
+      return;
+    }
+
+    const tags = status.tags.map((tag) => tag.name);
+
+    const timelines = getState().timelines as ImmutableMap<string, unknown>;
+    const accountTimelines = timelines.filter((_, key) => {
+      if (!key.startsWith(`account:${currentAccountId}:`)) {
+        return false;
+      }
+      const parsed = parseTimelineKey(key);
+      if (parsed?.type !== 'account' || parsed.pinned) {
+        return false;
+      }
+
+      return !parsed.tagged || tags.includes(parsed.tagged);
+    });
+
+    accountTimelines.forEach((_, timelineKey) => {
+      dispatch(updateTimeline(timelineKey, status));
+    });
+  },
+);
 
 export const insertPinnedStatusIntoTimelines = createAppThunk(
   (status: Status, { dispatch, getState }) => {

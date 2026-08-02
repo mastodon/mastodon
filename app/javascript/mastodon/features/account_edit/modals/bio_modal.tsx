@@ -36,13 +36,7 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   );
   const [newBio, setNewBio] = useState(bio ?? '');
   const maxLength = useAppSelector(
-    (state) =>
-      state.server.getIn([
-        'server',
-        'configuration',
-        'accounts',
-        'max_note_length',
-      ]) as number | undefined,
+    (state) => state.server.server.item?.configuration.accounts.max_note_length,
   );
 
   const dispatch = useAppDispatch();

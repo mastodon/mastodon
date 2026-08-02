@@ -66,7 +66,6 @@ pt-BR:
         setting_display_media_show_all: Mostre todas as mídias sem aviso, incluindo mídias marcadas como conteúdo sensível
         setting_emoji_style: Como exibir emojis. "Automáticos" tentará usar emojis nativos, mas voltará para o Twemoji para navegadores legados.
         setting_quick_boosting_html: Quando ativado, clicar no ícone de impulsionamento %{boost_icon} impulsionará imediatamente o texto, em vez de abrir o menu suspenso de impulsionamento/citação. Move a ação de citação para o menu %{options_icon} (Opções).
-        setting_system_scrollbars_ui: Se aplica apenas para navegadores de computador baseado no Safari e Chrome
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
         username: Você pode usar letras, números e underlines
@@ -92,6 +91,7 @@ pt-BR:
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
         content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
+        email_footer_text: Texto opcional que aparece no rodapé dos e-mails do boletim informativo.
         favicon: WEBP, PNG, GIF ou JPG. Sobrescreve o favicon padrão do Mastodon com um ícone personalizado.
         landing_page: Seleciona a página que os novos visitantes veem ao acessar seu servidor pela primeira vez. Se você selecionar "Tendências", as tendências precisam estar ativadas nas Configurações de Descoberta. Se você selecionar "Feed local", o "Acesso a feeds ao vivo com publicações locais" precisa estar definido como "Todos" nas Configurações de Descoberta.
         mascot: Substitui a ilustração na interface web avançada.
@@ -109,6 +109,7 @@ pt-BR:
         status_page_url: URL de uma página onde as pessoas podem ver o status deste servidor durante uma interrupção
         theme: Tema que visitantes e novos usuários veem.
         thumbnail: Uma imagem de aproximadamente 2:1 exibida ao lado da informação de sua instância.
+        thumbnail_description: Uma descrição da imagem para auxiliar pessoas com deficiências visuais a entenderem seu conteúdo.
         trendable_by_default: Pular a revisão manual do conteúdo em tendência. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
         trends: Tendências mostram quais publicações, hashtags e notícias estão ganhando destaque na sua instância.
         wrapstodon: Oferece aos usuários locais gerar um resumo divertido do Mastodon deles durante o ano. Este recurso está disponível entre 10 e 31 de dezembro de cada ano e é oferecido aos usuários que fizeram ao menos uma publicação Pública ou Silenciosa e usou ao menos uma hashtag no ano.
@@ -293,6 +294,7 @@ pt-BR:
         closed_registrations_message: Mensagem personalizada quando inscrições não estão disponíveis
         content_cache_retention_period: Período de retenção de conteúdo remoto
         custom_css: CSS personalizável
+        email_footer_text: Texto de rodapé adicional
         favicon: Favicon
         landing_page: Página inicial para novos visitantes
         local_live_feed_access: Acessar feeds ao vivo com destaque em publicações locais
@@ -317,9 +319,13 @@ pt-BR:
         status_page_url: Endereço da página de status
         theme: Tema padrão
         thumbnail: Miniatura do servidor
+        thumbnail_description: Texto alternativo da miniatura
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Habilitar tendências
         wrapstodon: Ativar Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Eu compreendo que habilitar este recurso pode aumentar significativamente o volume de emails enviados a partir do servidor e que eu sou o único responsável por quaisquer custos incorridos.
+        agreement_privacy_and_terms: Eu atualizei a Política de Privacidade e os Termos de Serviço.
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de não-seguidos
@@ -339,6 +345,7 @@ pt-BR:
       notification_emails:
         appeal: Alguém solicitou uma revisão de uma decisão da moderação
         digest: Enviar e-mails de resumo
+        end_of_support: A versão atual do Mastodon está perto do fim do suporte
         favourite: Enviar e-mail quando alguém favoritar teus toots
         follow: Enviar e-mail quando alguém te seguir
         follow_request: Enviar e-mail quando alguém quiser te seguir

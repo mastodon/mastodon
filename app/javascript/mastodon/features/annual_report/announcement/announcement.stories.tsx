@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
+import type { ConditionalExcept } from 'type-fest';
 
-import type { AnyFunction, OmitValueType } from '@/mastodon/utils/types';
+import type { AnyFunction } from '@/mastodon/utils/types';
 
 import type { AnnualReportAnnouncementProps } from '.';
 import { AnnualReportAnnouncement } from '.';
 
-type Props = OmitValueType<
+type Props = ConditionalExcept<
   // We can't use the name 'state' here because it's reserved for overriding Redux state.
   Omit<AnnualReportAnnouncementProps, 'state'> & {
     reportState: AnnualReportAnnouncementProps['state'];
   },
-  AnyFunction // Remove any functions, as they can't meaningfully be controlled in Storybook.
+  AnyFunction | undefined // Remove any functions, as they can't meaningfully be controlled in Storybook.
 >;
 
 const meta = {

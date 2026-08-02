@@ -9,7 +9,7 @@ et:
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
         indexable: Sinu avalikud postitused võivad ilmuda Mastodoni otsingutulemustes. Inimesed, kes on sinu postitustele reageerinud, saavad neid otsida nii või naa.
         note: 'Saad @mainida teisi inimesi või #teemaviiteid.'
-        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata häälestuse valikust.
+        show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata seadistusest.
         unlocked: Teised kasutajad saavad sind jälgima hakata nõusolekut küsimata. Eemalda märge, kui soovid jälgimistaotlusi üle vaadata ja valida, kas nõustuda või keelduda uute jälgijatega.
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
@@ -66,7 +66,6 @@ et:
         setting_display_media_show_all: Näita alati meediat ilma hoiatuseta, ka tundlikuks märgitud meediat
         setting_emoji_style: See määrab emojide kuvamise viisi. Automaatse valiku puhul üritatakse kasutada platvormi või klientrakenduse oma emojisid, kuid varuvariandina jääb toimima Twemoji (näiteks vanade veebibrauserite puhul).
         setting_quick_boosting_html: Selle eelistuse kasutamisel, Hooandmise ikooni %{boost_icon} teeb toimingu kohe ilma avamata Hooandmise/Tsiteerimise menüüvalikut. Sel puhul tsiteerimise link leidub %{options_icon} (Valikud) menüüs.
-        setting_system_scrollbars_ui: Kehtib vaid Safaril ja Chrome'il põhinevatel tavaarvuti veebibrauserite puhul
         setting_use_blurhash: Värvid põhinevad peidetud visuaalidel, kuid hägustavad igasuguseid detaile
         setting_use_pending_items: Voo automaatse kerimise asemel peida ajajoone uuendused kliki taha
         username: Võid kasutada ladina tähti, numbreid ja allkriipsu
@@ -92,6 +91,7 @@ et:
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
         content_cache_retention_period: Kõik teiste serverite postitused (sealhulgas jagamised ja vastused) kustutatakse pärast määratud arvu päevade möödumist, sõltumata, kuidas kohalik kasutaja on nende postitustega interakteerunud. Hõlmatud on ka postitused, mille kohalik kasutaja on märkinud järjehoidjaks või lemmikuks. Ka eri instantside kasutajate vahelised privaatsed mainimised kaovad ja neid on võimatu taastada. See seadistus on mõeldud eriotstarbeliste instantside jaoks ja rikub paljude kasutajate ootusi, kui seda rakendatakse üldotstarbelise kasutuse puhul.
         custom_css: Mastodoni veebiliideses on võimalik kasutada kohandatud stiile.
+        email_footer_text: Valikuline tekst, mida kuvatakse ainult uudis-e-kirjade jaluses.
         favicon: WEBP, PNG, GIF või JPG. Asendab Mastodoni vaike- favicon ikooni kohandatud ikooniga.
         landing_page: Sellega valid lehe, mida uued külastajad sinu serverisse tulles näevad. Kui sa valid „Trendid“, siis peavad nad olema lubatud. Kui sa valid „Kohalike postituste voog“, siis seadistuse „Ligipääs kohalike postituste voole“ väärtus peab olema „Kõik“.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
@@ -109,6 +109,7 @@ et:
         status_page_url: Lehe URL, kus saab serveri maas oleku ajal näha serveri olekut
         theme: Teema, mida näevad sisenemata ning uued kasutajad.
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
+        thumbnail_description: Pildi selgitus, mis aitab nägemispuudega inimestel aru saada pildi sisust.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
         trends: Trendid näitavad, millised postitused, teemaviited ja uudislood koguvad sinu serveris tähelepanu.
         wrapstodon: Paku kohalikele kasutajatele luua nende Mastodoni kasutamise aastast mänguline kokkuvõte. See võimalus on saadaval igal aastal 10. ja 31. detsembri vahel ja seda pakutakse kasutajatele, kes tegid vähemalt ühe avaliku või vaikse avaliku postituse ja kes kasutas aasta jooksul vähemalt ühte teemaviidet.
@@ -293,6 +294,7 @@ et:
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         content_cache_retention_period: Kaugsisu säilitamise aeg
         custom_css: Kohandatud CSS
+        email_footer_text: Täiendav jaluse tekst
         favicon: Favicon
         landing_page: Avaleht uute külastajate jaoks
         local_live_feed_access: Ligipääs kohalike postituste voole
@@ -317,9 +319,13 @@ et:
         status_page_url: Oleku lehe URL
         theme: Vaikmisi teema
         thumbnail: Serveri pisipilt
+        thumbnail_description: Pisipildi selgitustekst
         trendable_by_default: Luba trendid eelneva ülevaatuseta
         trends: Luba trendid
         wrapstodon: Luba Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Ma mõistan, et selle funktsiooni aktiveerimine võib märkimisväärselt suurendada serverist saadetavate e-kirjade mahtu ning et vastutan tekkivate kulude eest täielikult ise.
+        agreement_privacy_and_terms: Olen uuendanud privaatsuspoliitikat ja kasutustingimusi.
       interactions:
         must_be_follower: Keela teavitused mittejälgijatelt
         must_be_following: Keela teavitused kasutajatelt, keda sa ei jälgi
@@ -339,6 +345,7 @@ et:
       notification_emails:
         appeal: Moderaatori otsus on vaidlustatud
         digest: Saada ülevaatlike e-kirju
+        end_of_support: Praeguse Mastodoni versiooni kasutajatugi lõppeb õige pea
         favourite: Saada e-kiri, kui keegi lisab su postituse lemmikuks
         follow: Saada e-kiri, kui keegi alustab jälgimist
         follow_request: Saada e-kiri, kui keegi soovib sind jälgida

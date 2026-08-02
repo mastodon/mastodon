@@ -329,6 +329,106 @@ RSpec.describe BulkImportService do
       end
     end
 
+    context 'when importing custom_filters' do
+      let(:import_type) { 'custom_filters' }
+      let!(:rows) do
+        [{
+          'title' => 'baz',
+          'expires_at' => nil,
+          'context' => ['home', 'notifications'],
+          'action' => 'warn',
+          'keywords_attributes' => [{
+            'keyword' => 'discourse',
+            'whole_word' => true,
+          }, {
+            'keyword' => 'something',
+            'whole_word' => false,
+          }],
+          'statuses' => ['http://localhost:3000/ap/users/116646814515254858/statuses/116681350935935708'],
+        }, {
+          'title' => 'buzz',
+          'expires_at' => nil,
+          'context' => ['notifications'],
+          'action' => 'warn',
+          'keywords_attributes' => [{
+            'keyword' => 'discourse',
+            'whole_word' => true,
+          }, {
+            'keyword' => 'something',
+            'whole_word' => false,
+          }],
+          'statuses' => [ActivityPub::TagManager.instance.uri_for(status)],
+        }].map { |data| import.rows.create!(data: data) }
+      end
+      let(:overwrite) { false }
+      let(:status) { Fabricate(:status, account: account, text: 'something something') }
+      let(:filter) { Fabricate(:custom_filter, account: account, title: 'a mazing title') }
+      let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter, status: status) }
+
+      before do
+        status_filter
+      end
+
+      it 'enqueues workers for the expected rows and updates filters, keywords and statuses after worker run' do
+        subject.call(import)
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
+        stub_fetch_remote_and_drain_workers
+        expect(account.custom_filters.count).to eq(3)
+        expect(account.custom_filters.order(:phrase).last.statuses.count).to eq(1)
+        expect(account.custom_filters.last.keywords.count).to eq(2)
+      end
+    end
+
+    context 'when importing custom_filters with overwrite' do
+      let(:import_type) { 'custom_filters' }
+      let!(:rows) do
+        [{
+          'title' => 'baz',
+          'expires_at' => nil,
+          'context' => ['home', 'notifications'],
+          'action' => 'warn',
+          'keywords_attributes' => [{
+            'keyword' => 'discourse',
+            'whole_word' => true,
+          }, {
+            'keyword' => 'something',
+            'whole_word' => false,
+          }],
+          'statuses' => ['http://localhost:3000/ap/users/116646814515254858/statuses/116681350935935708'],
+        }, {
+          'title' => 'buzz',
+          'expires_at' => nil,
+          'context' => ['notifications'],
+          'action' => 'warn',
+          'keywords_attributes' => [{
+            'keyword' => 'discourse',
+            'whole_word' => true,
+          }, {
+            'keyword' => 'something',
+            'whole_word' => false,
+          }],
+          'statuses' => [ActivityPub::TagManager.instance.uri_for(status)],
+        }].map { |data| import.rows.create!(data: data) }
+      end
+      let(:overwrite) { true }
+      let(:status) { Fabricate(:status, text: 'something something') }
+      let(:filter) { Fabricate(:custom_filter, account: account, title: 'a mazing title') }
+      let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter, status: status) }
+
+      before do
+        status_filter
+      end
+
+      it 'enqueues workers for the expected rows and updates filters, keywords and statuses after worker run' do
+        subject.call(import)
+        expect(row_worker_job_args).to match_array(rows.map(&:id))
+        stub_fetch_remote_and_drain_workers
+        expect(account.custom_filters.count).to eq(2)
+        expect(account.custom_filters.order(:phrase).last.statuses.count).to eq(1)
+        expect(account.custom_filters.order(:phrase).last.keywords.count).to eq(2)
+      end
+    end
+
     def row_worker_job_args
       Import::RowWorker
         .jobs

@@ -16,7 +16,7 @@ RSpec.describe 'Admin::Trends::Tags' do
 
         within('.filter-subset') do
           expect(page)
-            .to have_content("#{I18n.t('admin.accounts.moderation.pending')} (0)")
+            .to have_text("#{I18n.t('admin.accounts.moderation.pending')} (0)")
         end
       end
     end
@@ -31,7 +31,7 @@ RSpec.describe 'Admin::Trends::Tags' do
 
         click_on button_for_allow
 
-        expect(page).to have_content(selection_error_text)
+        expect(page).to have_text(selection_error_text)
       end
     end
 

@@ -1,8 +1,10 @@
-import { useCallback, useId, useState } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+
+import { isMap } from 'immutable';
 
 import punycode from 'punycode/';
 
@@ -13,8 +15,8 @@ import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
 import { MoreFromAuthor } from 'mastodon/components/more_from_author';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import { useBlurhash } from 'mastodon/initial_state';
-import type { Card as CardType } from 'mastodon/models/status';
+import { displayMedia, useBlurhash } from 'mastodon/initial_state';
+import type { CardShape, Card as CardType } from 'mastodon/models/status';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -63,31 +65,41 @@ const handleIframeUrl = (html: string, url: string, providerName: string) => {
   return html;
 };
 
+const hideAllMedia = displayMedia === 'hide_all';
+
 interface CardProps {
-  card: CardType | null;
+  card: CardType | CardShape | null;
   sensitive?: boolean;
 }
 
-const CardVideo: React.FC<Pick<CardProps, 'card'>> = ({ card }) => (
-  <div
-    className='status-card__image status-card-video'
-    dangerouslySetInnerHTML={{
-      __html: card
-        ? handleIframeUrl(
-            card.get('html'),
-            card.get('url'),
-            card.get('provider_name'),
-          )
-        : '',
-    }}
-    style={{ aspectRatio: '16 / 9' }}
-  />
-);
+const CardVideo: React.FC<{ card: CardShape }> = ({ card }) => {
+  const { html, url, provider_name } = card;
 
-const Card: React.FC<CardProps> = ({ card, sensitive }) => {
+  const iframeContent = useMemo(
+    () => ({
+      __html: handleIframeUrl(html, url, provider_name),
+    }),
+    [html, provider_name, url],
+  );
+
+  return (
+    <div
+      className='status-card__image status-card-video'
+      dangerouslySetInnerHTML={iframeContent}
+      style={{ aspectRatio: '16 / 9' }}
+    />
+  );
+};
+
+const Card: React.FC<CardProps> = ({ card: rawCard, sensitive }) => {
+  const card: CardShape | null = useMemo(
+    () => (isMap(rawCard) ? (rawCard.toJS() as CardShape) : rawCard),
+    [rawCard],
+  );
+
   const [previewLoaded, setPreviewLoaded] = useState(false);
   const [embedded, setEmbedded] = useState(false);
-  const [revealed, setRevealed] = useState(!sensitive);
+  const [revealed, setRevealed] = useState(!sensitive && !hideAllMedia);
 
   const handleEmbedClick = useCallback(() => {
     setEmbedded(true);
@@ -114,52 +126,43 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
   }
 
   const provider =
-    card.get('provider_name').length === 0
-      ? decodeIDNA(getHostname(card.get('url')))
-      : card.get('provider_name');
-  const interactive = card.get('type') === 'video';
-  const language = card.get('language') ?? '';
-  const hasImage = (card.get('image')?.length ?? 0) > 0;
-  const largeImage =
-    (hasImage && card.get('width') > card.get('height')) || interactive;
-  const showAuthor = !!card.getIn(['authors', 0, 'accountId']);
+    card.provider_name.length === 0
+      ? decodeIDNA(getHostname(card.url))
+      : card.provider_name;
+  const interactive = card.type === 'video';
+  const language = card.language ?? '';
+  const hasImage = (card.image?.length ?? 0) > 0;
+  const largeImage = (hasImage && card.width > card.height) || interactive;
+  const author = card.authors.at(0)?.accountId;
 
   const description = (
     <div className='status-card__content' dir='auto'>
       <span className='status-card__host'>
         <span lang={language}>{provider}</span>
-        {card.get('published_at') && (
+        {card.published_at && (
           <>
             {' '}
-            ·{' '}
-            <RelativeTimestamp
-              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              timestamp={card.get('published_at')!}
-            />
+            · <RelativeTimestamp timestamp={card.published_at} />
           </>
         )}
       </span>
 
-      <strong
-        className='status-card__title'
-        title={card.get('title')}
-        lang={language}
-      >
-        {card.get('title')}
+      <strong className='status-card__title' title={card.title} lang={language}>
+        {card.title}
       </strong>
 
-      {!showAuthor &&
-        (card.get('author_name').length > 0 ? (
+      {!author &&
+        (card.author_name.length > 0 ? (
           <span className='status-card__author'>
             <FormattedMessage
               id='link_preview.author'
               defaultMessage='By {name}'
-              values={{ name: <strong>{card.get('author_name')}</strong> }}
+              values={{ name: <strong>{card.author_name}</strong> }}
             />
           </span>
         ) : (
           <span className='status-card__description' lang={language}>
-            {card.get('description')}
+            {card.description}
           </span>
         ))}
     </div>
@@ -170,7 +173,7 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
     aspectRatio: '1',
   };
 
-  if (largeImage && card.get('type') === 'video') {
+  if (largeImage && card.type === 'video') {
     thumbnailStyle.aspectRatio = `16 / 9`;
   } else if (largeImage) {
     thumbnailStyle.aspectRatio = '1.91 / 1';
@@ -183,15 +186,15 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
       className={classNames('status-card__image-preview', {
         'status-card__image-preview--hidden': revealed && previewLoaded,
       })}
-      hash={card.get('blurhash')}
+      hash={card.blurhash}
       dummy={!useBlurhash}
     />
   );
 
-  const thumbnailDescription = card.get('image_description');
+  const thumbnailDescription = card.image_description;
   const thumbnail = (
     <img
-      src={card.get('image') ?? undefined}
+      src={card.image ?? undefined}
       alt={thumbnailDescription}
       title={thumbnailDescription}
       lang={language}
@@ -249,7 +252,7 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
                   <Icon id='play' icon={PlayArrowIcon} />
                 </button>
                 <a
-                  href={card.get('url')}
+                  href={card.url}
                   onClick={handleExternalLinkClick}
                   target='_blank'
                   rel='noopener'
@@ -269,7 +272,7 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
       <div className={classNames('status-card', { expanded: largeImage })}>
         {embed}
         <a
-          href={card.get('url')}
+          href={card.url}
           target='_blank'
           rel='noopener'
           onClick={revealed ? undefined : handleReveal}
@@ -279,10 +282,11 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
         </a>
       </div>
     );
-  } else if (card.get('image')) {
+  } else if (card.image) {
     embed = (
       <div className='status-card__image'>
         {canvas}
+        {revealed ? undefined : spoilerButton}
         {thumbnail}
       </div>
     );
@@ -297,10 +301,10 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
   return (
     <>
       <a
-        href={card.get('url')}
+        href={card.url}
         className={classNames('status-card', {
           expanded: largeImage,
-          bottomless: showAuthor,
+          bottomless: !!author,
         })}
         target='_blank'
         rel='noopener'
@@ -309,11 +313,7 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
         {description}
       </a>
 
-      {showAuthor && (
-        <MoreFromAuthor
-          accountId={card.getIn(['authors', 0, 'accountId']) as string}
-        />
-      )}
+      {author && <MoreFromAuthor accountId={author} />}
     </>
   );
 };

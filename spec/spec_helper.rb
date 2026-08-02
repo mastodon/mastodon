@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+if ENV.fetch('COVERAGE', false)
+  require 'simplecov'
+  SimpleCov.start 'rails'
+end
+
 RSpec.configure do |config|
   config.example_status_persistence_file_path = 'tmp/rspec/examples.txt'
   config.expect_with :rspec do |expectations|

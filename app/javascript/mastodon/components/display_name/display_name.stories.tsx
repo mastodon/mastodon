@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { accountFactoryState } from '@/testing/factories';
+import { accountFactoryImmutable } from '@/testing/factories';
 
 import { DisplayName, LinkedDisplayName } from './index';
 
@@ -23,7 +23,7 @@ const meta = {
   tags: [],
   render({ name, username, loading, ...args }) {
     const account = !loading
-      ? accountFactoryState({
+      ? accountFactoryImmutable({
           display_name: name,
           acct: username,
         })
@@ -69,7 +69,7 @@ export const LocalUser: Story = {
 export const Linked: Story = {
   render({ name, username, loading, ...args }) {
     const account = !loading
-      ? accountFactoryState({
+      ? accountFactoryImmutable({
           display_name: name,
           acct: username,
         })

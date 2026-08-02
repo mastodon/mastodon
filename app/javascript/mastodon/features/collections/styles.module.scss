@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 24px;
+  padding-inline: 16px;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.heading {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 28px;
+  padding-top: 16px;
+  padding-inline: 16px;
+}
+
+.subHeading {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+.maxCollectionsError {
+  margin: 8px 16px;
+}
+
+.error {
+  flex-grow: 1;
+}

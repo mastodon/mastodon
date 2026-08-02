@@ -3,6 +3,7 @@ import {
   forwardRef,
   useCallback,
   useContext,
+  useEffect,
   useId,
   useMemo,
   useRef,
@@ -13,16 +14,14 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import Overlay from 'react-overlays/Overlay';
-
+import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
-import { matchWidth } from 'mastodon/components/dropdown/utils';
 import { IconButton } from 'mastodon/components/icon_button';
-import { useOnClickOutside } from 'mastodon/hooks/useOnClickOutside';
 
 import { LoadingIndicator } from '../loading_indicator';
+import { Popover } from '../popover';
 
 import classes from './combobox.module.scss';
 import { FormFieldWrapper } from './form_field_wrapper';
@@ -101,6 +100,10 @@ interface ComboboxProps<
    */
   icon?: TextInputProps['icon'] | null;
   /**
+   * Set to true to open as soon as there is focus
+   */
+  openOnFocus?: boolean;
+  /**
    * Set to false to keep the menu open when an item is selected
    */
   closeOnSelect?: boolean;
@@ -178,7 +181,15 @@ export const ComboboxFieldWithRef = <
   Item extends ComboboxItem,
   GroupKey extends string,
 >(
-  { id, label, hint, status, required, ...otherProps }: Props<Item, GroupKey>,
+  {
+    id,
+    label,
+    hint,
+    status,
+    required,
+    wrapperClassName,
+    ...otherProps
+  }: Props<Item, GroupKey>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) => (
   <FormFieldWrapper
@@ -187,6 +198,7 @@ export const ComboboxFieldWithRef = <
     required={required}
     status={status}
     inputId={id}
+    className={wrapperClassName}
   >
     {(inputProps) => <Combobox {...otherProps} {...inputProps} ref={ref} />}
   </FormFieldWrapper>
@@ -217,8 +229,10 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     renderGroupTitle,
     renderItem,
     onSelectItem,
+    onFocus,
     onChange,
     onKeyDown,
+    openOnFocus = false,
     closeOnSelect = true,
     suppressMenu = false,
     icon = SearchIcon,
@@ -229,8 +243,17 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 ) => {
   const intl = useIntl();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement | null>();
-  const popoverRef = useRef<HTMLDivElement>(null);
+  const [inputElement, setInputElement] = useState<HTMLInputElement | null>(
+    null,
+  );
+  const [popoverElement, setPopoverElement] = useState<HTMLDivElement | null>(
+    null,
+  );
+
+  // This ref tracks whether the menu was just closed following a
+  // selection, and prevents the menu from re-opening again
+  // when focus is returned to the input.
+  const wasMenuJustClosedRef = useRef(false);
 
   const [highlightedItemId, setHighlightedItemId] = useState<string | null>(
     null,
@@ -263,30 +286,50 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 
   const openMenu = useCallback(() => {
     setShouldMenuOpen(true);
-    inputRef.current?.focus();
-  }, []);
+    inputElement?.focus();
+  }, [inputElement]);
 
   const closeMenu = useCallback(() => {
     setShouldMenuOpen(false);
   }, []);
 
+  const highlightItem = useCallback(
+    (id: string | null) => {
+      setHighlightedItemId(id);
+      if (id) {
+        const itemElement = popoverElement?.querySelector<HTMLLIElement>(
+          `[data-item-id='${id}']`,
+        );
+        if (itemElement && popoverElement) {
+          scrollItemIntoView(itemElement, popoverElement);
+        }
+      }
+    },
+    [popoverElement],
+  );
+
   const resetHighlight = useCallback(() => {
     const firstItem = flatItems[0];
     const firstItemId = firstItem ? getItemId(firstItem) : null;
-    setHighlightedItemId(firstItemId);
-  }, [getItemId, flatItems]);
+    highlightItem(firstItemId);
+  }, [flatItems, getItemId, highlightItem]);
 
-  const highlightItem = useCallback((id: string | null) => {
-    setHighlightedItemId(id);
-    if (id) {
-      const itemElement = popoverRef.current?.querySelector<HTMLLIElement>(
-        `[data-item-id='${id}']`,
-      );
-      if (itemElement && popoverRef.current) {
-        scrollItemIntoView(itemElement, popoverRef.current);
-      }
+  // Reset scroll & highlight when menu items change
+  useEffect(() => {
+    if (flatItems.length) {
+      resetHighlight();
     }
-  }, []);
+  }, [flatItems, resetHighlight]);
+
+  const handleFocus: React.FocusEventHandler<HTMLInputElement> = useCallback(
+    (e) => {
+      if (openOnFocus && !wasMenuJustClosedRef.current) {
+        setShouldMenuOpen(true);
+      }
+      onFocus?.(e);
+    },
+    [onFocus, openOnFocus],
+  );
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -317,12 +360,23 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
 
           if (closeOnSelect) {
             closeMenu();
+            wasMenuJustClosedRef.current = true;
+            setTimeout(() => {
+              wasMenuJustClosedRef.current = false;
+            }, 50);
           }
         }
       }
-      inputRef.current?.focus();
+      inputElement?.focus();
     },
-    [closeMenu, closeOnSelect, getIsItemDisabled, flatItems, onSelectItem],
+    [
+      flatItems,
+      inputElement,
+      getIsItemDisabled,
+      onSelectItem,
+      closeOnSelect,
+      closeMenu,
+    ],
   );
 
   const handleSelectItem = useCallback(
@@ -372,8 +426,6 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
     },
     [getItemId, highlightItem, highlightedItemId, flatItems],
   );
-
-  useOnClickOutside(wrapperRef, closeMenu);
 
   const handleInputKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -456,17 +508,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       );
     });
 
-  const mergeRefs = useCallback(
-    (element: HTMLInputElement | null) => {
-      inputRef.current = element;
-      if (typeof ref === 'function') {
-        ref(element);
-      } else if (ref) {
-        ref.current = element;
-      }
-    },
-    [ref],
-  );
+  const mergedRef = useMergedRefs(ref, setInputElement);
 
   const id = useId();
   const listId = `${id}-list`;
@@ -487,11 +529,12 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
         autoComplete='off'
         spellCheck='false'
         value={value}
+        onFocus={handleFocus}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
         icon={icon ?? undefined}
         className={classNames(classes.input, className)}
-        ref={mergeRefs}
+        ref={mergedRef}
       />
       {hasMenuContent && (
         <IconButton
@@ -517,20 +560,23 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
       <span role='status' aria-live='polite' className='sr-only'>
         {isMenuOpen && statusMessage}
       </span>
-      <Overlay
-        show={isMenuOpen}
-        offset={[0, 1]}
+      <Popover
+        matchReferenceWidth
+        isOpen={isMenuOpen}
+        onClose={closeMenu}
+        offset={1}
         placement='bottom-start'
-        onHide={closeMenu}
-        ref={popoverRef}
-        target={inputRef as React.RefObject<HTMLInputElement>}
-        container={wrapperRef}
-        popperConfig={{
-          modifiers: [matchWidth],
-        }}
+        strategy='absolute'
+        popoverElement={popoverElement}
+        reference={inputElement}
+        container={null}
       >
         {({ props, placement }) => (
-          <div {...props} className={classNames(classes.popover, placement)}>
+          <div
+            {...props}
+            ref={setPopoverElement}
+            className={classNames(classes.popover, placement)}
+          >
             <StatusMessageWrapper
               showStatus={showStatusMessageInMenu}
               isLoading={isLoading}
@@ -574,7 +620,7 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
             </StatusMessageWrapper>
           </div>
         )}
-      </Overlay>
+      </Popover>
     </div>
   );
 };

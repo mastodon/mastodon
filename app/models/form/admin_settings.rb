@@ -46,6 +46,7 @@ class Form::AdminSettings
     remote_topic_feed_access
     landing_page
     wrapstodon
+    email_footer_text
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -93,7 +94,7 @@ class Form::AdminSettings
   REGISTRATION_MODES = %w(open approved none).freeze
   FEED_ACCESS_MODES = %w(public authenticated disabled).freeze
   ALTERNATE_FEED_ACCESS_MODES = %w(public authenticated).freeze
-  LANDING_PAGE = %w(trends about local_feed).freeze
+  LANDING_PAGE = %w(trends overview local_feed about).freeze
 
   attr_accessor(*KEYS)
 

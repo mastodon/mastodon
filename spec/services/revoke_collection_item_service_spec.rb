@@ -21,7 +21,7 @@ RSpec.describe RevokeCollectionItemService do
       subject.call(collection_item)
 
       expect(ActivityPub::DeliveryWorker).to have_enqueued_sidekiq_job.with(instance_of(String), collection_item.account_id, 'https://example.com/actor/1/inbox')
-      expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+      expect(ActivityPub::CollectionRawDistributionWorker).to have_enqueued_sidekiq_job
     end
   end
 end

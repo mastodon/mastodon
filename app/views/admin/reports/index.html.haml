@@ -39,6 +39,8 @@
         %br/
         - if target_account.suspended?
           %span.red= t('admin.accounts.suspended')
+        - elsif target_account.deleted?
+          %span.red= t('admin.accounts.deleted')
         - elsif target_account.silenced?
           %span.red= t('admin.accounts.silenced')
         - elsif target_account.user_disabled?
@@ -67,10 +69,9 @@
                 = material_symbol('photo_camera')
                 = report.media_attachments_count
 
-              - if Mastodon::Feature.collections_enabled?
-                %span.report-card__summary__item__content__icon{ title: t('admin.accounts.collections') }
-                  = material_symbol('groups-fill')
-                  = report.collections.size
+              %span.report-card__summary__item__content__icon{ title: t('admin.accounts.collections') }
+                = material_symbol('category')
+                = report.collections.size
 
               - if report.forwarded?
                 ·

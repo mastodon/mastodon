@@ -5,7 +5,8 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { OmitUnion } from '@/mastodon/utils/types';
+import type { Merge } from 'type-fest';
+
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import type { IconProp } from '../icon';
@@ -24,7 +25,7 @@ export interface TagProps {
 
 export const Tag = forwardRef<
   HTMLButtonElement,
-  OmitUnion<ComponentPropsWithoutRef<'button'>, TagProps>
+  Merge<ComponentPropsWithoutRef<'button'>, TagProps>
 >(({ name, active, icon, className, children, ...props }, ref) => {
   if (!name) {
     return null;
@@ -47,7 +48,7 @@ Tag.displayName = 'Tag';
 
 export const EditableTag = forwardRef<
   HTMLSpanElement,
-  OmitUnion<
+  Merge<
     ComponentPropsWithoutRef<'span'>,
     TagProps & {
       onRemove: () => void;

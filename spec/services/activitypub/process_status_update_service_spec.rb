@@ -7,6 +7,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
   let!(:status) { Fabricate(:status, text: 'Hello world', uri: 'https://example.com/statuses/1234', account: Fabricate(:account, domain: 'example.com')) }
   let(:bogus_mention) { 'https://example.com/users/erroringuser' }
+  let(:bogus_collection) { 'https://example.com/collections/erroringcollection' }
   let(:payload) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -21,6 +22,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
         { type: 'Mention', href: bogus_mention },
         { type: 'FeaturedCollection', id: ActivityPub::TagManager.instance.uri_for(featured_collection) },
+        { type: 'FeaturedCollection', id: bogus_collection },
       ],
     }
   end
@@ -39,6 +41,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     tags.each { |t| status.tags << t }
     media_attachments.each { |m| status.media_attachments << m }
     stub_request(:get, bogus_mention).to_raise(HTTP::ConnectionError)
+    stub_request(:get, bogus_collection).to_raise(HTTP::ConnectionError)
   end
 
   describe '#call' do
@@ -50,6 +53,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
           spoiler_text: eq('Show more')
         )
       expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, bogus_mention, anything)
+      expect(TaggedCollectionResolveWorker).to have_enqueued_sidekiq_job(status.id, bogus_collection, anything)
     end
 
     context 'when the changes are only in sanitized-out HTML' do

@@ -19,15 +19,12 @@ module Settings::ExportControllerConcern
 
   def send_export_file
     respond_to do |format|
-      format.csv { send_data export_data, filename: export_filename }
+      format.csv { send_data export_data, filename: "#{controller_name}.csv" }
+      format.json { send_data export_data, filename: "#{controller_name}.json" }
     end
   end
 
   def export_data
     raise 'Override in controller'
-  end
-
-  def export_filename
-    "#{controller_name}.csv"
   end
 end

@@ -2,9 +2,9 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
+import { Helmet } from '@unhead/react/helmet';
 import { useDebouncedCallback } from 'use-debounce';
 
 import PersonIcon from '@/material-icons/400-24px/person.svg?react';
@@ -61,7 +61,7 @@ export const Follows: React.FC<{
     setIsSearching(false);
   }, [setMode, setIsSearching]);
 
-  const searchRequestRef = useRef<AbortController | null>(null);
+  const searchRequestRef = useRef<AbortController>(null);
 
   const handleSearch = useDebouncedCallback(
     (value: string) => {

@@ -28,7 +28,6 @@ require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
 
 require_relative '../lib/paperclip/gif_transcoder'
-require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
 require_relative '../lib/paperclip/transcoder'
 require_relative '../lib/paperclip/type_corrector'
 require_relative '../lib/paperclip/response_with_limit_adapter'
@@ -52,6 +51,7 @@ require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
 require_relative '../lib/vite_ruby/sri_extensions'
+require_relative '../lib/json-canonicalization/floats_fix'
 
 Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 

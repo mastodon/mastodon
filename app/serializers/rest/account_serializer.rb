@@ -15,14 +15,14 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
-  attribute :suspended, if: :suspended?
+  attribute :suspended, if: :unavailable?
   attribute :silenced, key: :limited, if: :silenced?
   attribute :noindex, if: :local?
 
   attribute :memorial, if: :memorial?
 
-  attribute :feature_approval, if: -> { Mastodon::Feature.collections_enabled? }
-  attribute :email_subscriptions, if: -> { Mastodon::Feature.email_subscriptions_enabled? }
+  attribute :feature_approval
+  attribute :email_subscriptions, if: -> { Rails.application.config.x.email_subscriptions && Setting.email_subscriptions }
 
   class AccountDecorator < SimpleDelegator
     def self.model_name
@@ -164,7 +164,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.user_prefers_noindex?
   end
 
-  delegate :suspended?, :silenced?, :local?, :memorial?, to: :object
+  delegate :unavailable?, :silenced?, :local?, :memorial?, to: :object
 
   def moved_and_not_nested?
     object.moved?

@@ -4,6 +4,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { useLocation } from 'react-router';
 
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { me } from '@/mastodon/initial_state';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { changeCompose, focusCompose } from 'mastodon/actions/compose';
@@ -24,11 +25,13 @@ import classes from './share_modal.module.scss';
 const messages = defineMessages({
   shareTextOwn: {
     id: 'collection.share_template_own',
-    defaultMessage: 'Check out my new collection: {link}',
+    defaultMessage: 'Check out my new collection:',
+    description: 'Collection links are appended after a new line',
   },
   shareTextOther: {
     id: 'collection.share_template_other',
-    defaultMessage: 'Check out this cool collection: {link}',
+    defaultMessage: 'Check out this cool collection:',
+    description: 'Collection links are appended after a new line',
   },
 });
 
@@ -42,7 +45,7 @@ export const CollectionShareModal: React.FC<{
   const isNew = !!location.state?.newCollection;
   const isOwnCollection = collection.account_id === me;
 
-  const collectionLink = `${window.location.origin}/collections/${collection.id}`;
+  const collectionLink = collection.url;
 
   const handleShareOnDevice = useCallback(() => {
     void navigator.share({
@@ -51,13 +54,10 @@ export const CollectionShareModal: React.FC<{
   }, [collectionLink]);
 
   const handleShareViaPost = useCallback(() => {
-    const shareMessage = isOwnCollection
-      ? intl.formatMessage(messages.shareTextOwn, {
-          link: collectionLink,
-        })
-      : intl.formatMessage(messages.shareTextOther, {
-          link: collectionLink,
-        });
+    let shareMessage = isOwnCollection
+      ? intl.formatMessage(messages.shareTextOwn)
+      : intl.formatMessage(messages.shareTextOther);
+    shareMessage += `\n\n${collectionLink}`;
 
     onClose();
     dispatch(changeCompose(shareMessage));
@@ -67,7 +67,7 @@ export const CollectionShareModal: React.FC<{
   return (
     <ModalShell>
       <ModalShellBody>
-        <h1 className={classes.heading}>
+        <NavigationFocusTarget as='h1' className={classes.heading}>
           {isNew ? (
             <FormattedMessage
               id='collection.share_modal.title_new'
@@ -79,7 +79,7 @@ export const CollectionShareModal: React.FC<{
               defaultMessage='Share collection'
             />
           )}
-        </h1>
+        </NavigationFocusTarget>
 
         <IconButton
           title={intl.formatMessage({
@@ -93,7 +93,7 @@ export const CollectionShareModal: React.FC<{
         />
 
         <div className={classes.preview}>
-          <CollectionPreviewCard collection={collection} />
+          <CollectionPreviewCard collection={collection} headingLevel='h2' />
         </div>
 
         <CopyLinkField

@@ -9,7 +9,8 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
 
   let(:collection) { Fabricate(:remote_collection, uri: 'https://other.example.com/collection/1') }
   let(:position) { 3 }
-  let(:featured_object_uri) { 'https://example.com/actor/1' }
+  let(:account) { Fabricate(:remote_account, uri: 'https://example.com/actor/1') }
+  let(:featured_object_uri) { account.uri }
   let(:feature_authorization_uri) { 'https://example.com/auth/1' }
   let(:featured_item_json) do
     {
@@ -33,6 +34,16 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
   shared_examples 'non-matching URIs' do
     context "when the item's URI does not match the collection's" do
       let(:collection) { Fabricate(:remote_collection) }
+
+      it 'does not create a collection item and returns `nil`' do
+        expect do
+          expect(subject.call(collection, object, position:)).to be_nil
+        end.to_not change(CollectionItem, :count)
+      end
+    end
+
+    context 'when the actor URI does not match the approval URI' do
+      let(:feature_authorization_uri) { 'https://other.example.com/auth/1' }
 
       it 'does not create a collection item and returns `nil`' do
         expect do
@@ -70,17 +81,38 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
           expect(new_item.position).to eq 1
         end
       end
+
+      context "when the collection's item count is already at the limit" do
+        before do
+          stub_const('ActivityPub::ProcessFeaturedCollectionService::ITEMS_LIMIT', 3)
+          Fabricate.times(3, :collection_item, collection:)
+        end
+
+        it 'does not create an item' do
+          expect { subject.call(collection, object) }.to_not change(collection.collection_items, :count)
+        end
+      end
     end
 
-    context 'when item exists at a different position' do
+    context 'when item exists' do
       let!(:collection_item) do
         Fabricate(:collection_item, collection:, uri: featured_item_json['id'], position: 2)
       end
 
-      it 'updates the position' do
-        expect { subject.call(collection, object, position:) }.to_not change(collection.collection_items, :count)
+      context 'when no position is given' do
+        it 'does not change the position' do
+          expect { subject.call(collection, object) }.to_not change(collection.collection_items, :count)
 
-        expect(collection_item.reload.position).to eq 3
+          expect(collection_item.reload.position).to eq 2
+        end
+      end
+
+      context 'when a different position is given' do
+        it 'updates the position' do
+          expect { subject.call(collection, object, position:) }.to_not change(collection.collection_items, :count)
+
+          expect(collection_item.reload.position).to eq 3
+        end
       end
     end
 
@@ -94,6 +126,54 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
       it 'updates the URI of the existing record' do
         expect { subject.call(collection, object, position:) }.to_not change(collection.collection_items, :count)
         expect(collection_item.reload.uri).to eq 'https://other.example.com/featured_item/1'
+      end
+    end
+
+    context 'when featured object is of an unsupported type' do
+      let(:hashtag_json) do
+        {
+          'id' => 'https://example.com/hashtags/people',
+          'type' => 'Hashtag',
+          'name' => '#people',
+        }
+      end
+      let(:featured_object_uri) { hashtag_json['id'] }
+
+      before do
+        stub_request(:get, featured_object_uri)
+          .to_return_json(
+            status: 200,
+            body: hashtag_json,
+            headers: { 'Content-Type' => 'application/activity+json' }
+          )
+      end
+
+      it 'does not create a collection item and returns `nil`' do
+        expect do
+          expect(subject.call(collection, object, position:)).to be_nil
+        end.to_not change(CollectionItem, :count)
+      end
+    end
+
+    context 'when featured object cannot be fetched' do
+      let(:hashtag_json) do
+        {
+          'id' => 'https://example.com/hashtags/people',
+          'type' => 'Hashtag',
+          'name' => '#people',
+        }
+      end
+      let(:featured_object_uri) { hashtag_json['id'] }
+
+      before do
+        stub_request(:get, featured_object_uri)
+          .to_return(status: 404)
+      end
+
+      it 'does not create a collection item and returns `nil`' do
+        expect do
+          expect(subject.call(collection, object, position:)).to be_nil
+        end.to_not change(CollectionItem, :count)
       end
     end
   end

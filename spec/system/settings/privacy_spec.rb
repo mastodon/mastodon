@@ -15,7 +15,7 @@ RSpec.describe 'Settings Privacy' do
         # View settings page
         visit settings_privacy_path
         expect(page)
-          .to have_content(I18n.t('privacy.title'))
+          .to have_text(I18n.t('privacy.title'))
           .and have_private_cache_control
 
         # Fill out form and submit
@@ -24,8 +24,8 @@ RSpec.describe 'Settings Privacy' do
         expect { click_on submit_button }
           .to change { user.account.reload.discoverable }.to(true)
         expect(page)
-          .to have_content(I18n.t('privacy.title'))
-          .and have_content(success_message)
+          .to have_text(I18n.t('privacy.title'))
+          .and have_text(success_message)
         expect(ActivityPub::UpdateDistributionWorker)
           .to have_enqueued_sidekiq_job(user.account.id)
       end
@@ -40,7 +40,7 @@ RSpec.describe 'Settings Privacy' do
         # View settings page
         visit settings_privacy_path
         expect(page)
-          .to have_content(I18n.t('privacy.title'))
+          .to have_text(I18n.t('privacy.title'))
           .and have_private_cache_control
 
         # Fill out form and submit
@@ -49,7 +49,7 @@ RSpec.describe 'Settings Privacy' do
         expect { click_on submit_button }
           .to_not(change { user.account.reload.discoverable })
         expect(page)
-          .to have_content(I18n.t('privacy.title'))
+          .to have_text(I18n.t('privacy.title'))
         expect(ActivityPub::UpdateDistributionWorker)
           .to_not have_enqueued_sidekiq_job(anything)
       end

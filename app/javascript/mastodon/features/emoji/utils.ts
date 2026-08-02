@@ -5,6 +5,9 @@ import { emojiRegexPolyfill } from '@/mastodon/polyfills';
 import { VARIATION_SELECTOR_CODE } from './constants';
 
 export function emojiLogger(segment: string) {
+  if (typeof window === 'undefined') {
+    return debug(`emojis:worker:${segment}`);
+  }
   return debug(`emojis:${segment}`);
 }
 

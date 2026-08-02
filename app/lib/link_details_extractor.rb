@@ -28,11 +28,11 @@ class LinkDetailsExtractor
     end
 
     def headline
-      json['headline']
+      text_or_language_tagged_string(json['headline'])
     end
 
     def description
-      json['description']
+      text_or_language_tagged_string(json['description'])
     end
 
     def language
@@ -94,6 +94,10 @@ class LinkDetailsExtractor
 
     def first_of_hash(arr)
       arr.is_a?(Array) ? arr.flatten.find { |item| item.is_a?(Hash) } : arr
+    end
+
+    def text_or_language_tagged_string(obj)
+      obj.is_a?(Hash) && obj['@value'] && obj['@language'] ? obj['@value'] : obj
     end
 
     def root_array(root)

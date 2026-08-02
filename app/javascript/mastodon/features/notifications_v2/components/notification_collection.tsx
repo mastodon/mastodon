@@ -24,8 +24,13 @@ export const NotificationCollection: React.FC<{
   unread: boolean;
 }> = ({ notification, unread }) => {
   const { collection, type } = notification;
-  const collectionCreatorAccount = useAccount(collection.account_id);
+
+  const collectionCreatorAccount = useAccount(collection?.account_id);
   const confirmRevoke = useConfirmRevoke(collection);
+
+  if (!collection) {
+    return null;
+  }
 
   return (
     <div
@@ -41,7 +46,7 @@ export const NotificationCollection: React.FC<{
 
       <div className='notification-group__main'>
         <div className='notification-group__main__header'>
-          <div className='notification-group__main__header__label'>
+          <h2 className='notification-group__main__header__label'>
             {type === 'added_to_collection' && (
               <FormattedMessage
                 id='notification.added_to_collection'
@@ -74,7 +79,7 @@ export const NotificationCollection: React.FC<{
                 }}
               />
             )}
-          </div>
+          </h2>
         </div>
 
         <CollectionPreviewCard collection={collection} />

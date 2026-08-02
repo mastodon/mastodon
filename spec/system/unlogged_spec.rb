@@ -12,6 +12,6 @@ RSpec.describe 'UnloggedBrowsing', :js, :streaming do
   it 'loads the home page' do
     expect(subject).to have_css('div.app-holder')
 
-    expect(subject).to have_css('div.columns-area__panels__main')
+    expect(subject).to have_css('main.columns-area__panels__main')
   end
 end

@@ -7,7 +7,7 @@ class EmailDistributionWorker
   sidekiq_options lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform(account_id)
-    return unless Mastodon::Feature.email_subscriptions_enabled?
+    return unless Rails.application.config.x.email_subscriptions && Setting.email_subscriptions
 
     @account = Account.find(account_id)
 
@@ -15,7 +15,7 @@ class EmailDistributionWorker
 
     with_redis do |redis|
       @status_ids = redis.smembers("email_subscriptions:#{account_id}:next_batch")
-      redis.srem("email_subscriptions:#{account_id}:next_batch", @status_ids)
+      redis.srem("email_subscriptions:#{account_id}:next_batch", @status_ids) unless @status_ids.empty?
     end
 
     return if @account.email_subscriptions.confirmed.empty? || @status_ids.empty?

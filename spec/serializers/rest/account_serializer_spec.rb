@@ -76,74 +76,65 @@ RSpec.describe REST::AccountSerializer do
   end
 
   describe '#feature_approval' do
-    # TODO: Remove when feature flag is removed
-    context 'when collections feature is disabled' do
-      it 'does not include the approval policy' do
-        expect(subject).to_not have_key('feature_approval')
+    context 'when account is local' do
+      context 'when account is discoverable' do
+        it 'includes a policy that allows featuring' do
+          expect(subject['feature_approval']).to include({
+            'automatic' => ['public'],
+            'manual' => [],
+            'current_user' => 'automatic',
+          })
+        end
+
+        context 'when account is locked' do
+          let(:account) { Fabricate(:account, locked: true) }
+
+          context 'when the current account does not follow the user' do
+            it 'includes a policy that allows featuring for followers and has "denied" for the current user' do
+              expect(subject['feature_approval']).to include({
+                'automatic' => ['followers'],
+                'manual' => [],
+                'current_user' => 'denied',
+              })
+            end
+          end
+
+          context 'when the current account follows the user' do
+            before { current_user.account.follow!(account) }
+
+            it 'includes a policy that allows featuring for followers and has "automatic" for the current user' do
+              expect(subject['feature_approval']).to include({
+                'automatic' => ['followers'],
+                'manual' => [],
+                'current_user' => 'automatic',
+              })
+            end
+          end
+        end
+      end
+
+      context 'when account is not discoverable' do
+        let(:account) { Fabricate(:account, discoverable: false) }
+
+        it 'includes a policy that disallows featuring' do
+          expect(subject['feature_approval']).to include({
+            'automatic' => [],
+            'manual' => [],
+            'current_user' => 'denied',
+          })
+        end
       end
     end
 
-    context 'when collections feature is enabled', feature: :collections do
-      context 'when account is local' do
-        context 'when account is discoverable' do
-          it 'includes a policy that allows featuring' do
-            expect(subject['feature_approval']).to include({
-              'automatic' => ['public'],
-              'manual' => [],
-              'current_user' => 'automatic',
-            })
-          end
+    context 'when account is remote' do
+      let(:account) { Fabricate(:account, domain: 'example.com', feature_approval_policy: 0b11000000000000000010) }
 
-          context 'when account is locked' do
-            let(:account) { Fabricate(:account, locked: true) }
-
-            context 'when the current account does not follow the user' do
-              it 'includes a policy that allows featuring for followers and has "denied" for the current user' do
-                expect(subject['feature_approval']).to include({
-                  'automatic' => ['followers'],
-                  'manual' => [],
-                  'current_user' => 'denied',
-                })
-              end
-            end
-
-            context 'when the current account follows the user' do
-              before { current_user.account.follow!(account) }
-
-              it 'includes a policy that allows featuring for followers and has "automatic" for the current user' do
-                expect(subject['feature_approval']).to include({
-                  'automatic' => ['followers'],
-                  'manual' => [],
-                  'current_user' => 'automatic',
-                })
-              end
-            end
-          end
-        end
-
-        context 'when account is not discoverable' do
-          let(:account) { Fabricate(:account, discoverable: false) }
-
-          it 'includes a policy that disallows featuring' do
-            expect(subject['feature_approval']).to include({
-              'automatic' => [],
-              'manual' => [],
-              'current_user' => 'denied',
-            })
-          end
-        end
-      end
-
-      context 'when account is remote' do
-        let(:account) { Fabricate(:account, domain: 'example.com', feature_approval_policy: 0b11000000000000000010) }
-
-        it 'includes the matching policy' do
-          expect(subject['feature_approval']).to include({
-            'automatic' => ['followers', 'following'],
-            'manual' => ['public'],
-            'current_user' => 'manual',
-          })
-        end
+      it 'includes the matching policy' do
+        expect(subject['feature_approval']).to include({
+          'automatic' => ['followers', 'following'],
+          'manual' => ['public'],
+          'current_user' => 'manual',
+        })
       end
     end
   end

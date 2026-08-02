@@ -1,0 +1,20 @@
+- content_for :page_title, @collection.name
+
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex, noarchive' }/
+
+  %link{ rel: 'alternate', type: 'application/activity+json', href: ap_account_collection_url(@collection.account_id, @collection) }/
+  %link{ rel: 'alternate', type: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"', href: ap_account_collection_url(@collection.account_id, @collection) }/
+
+  - unless @collection.sensitive?
+    %meta{ name: 'description', content: @collection.description }/
+    = opengraph 'og:description', @collection.description
+  = opengraph 'og:site_name', site_title
+  = opengraph 'og:type', 'website'
+  = opengraph 'og:title', @collection.name
+  = opengraph 'og:url', collection_url(@collection)
+  - if @collection.language.present?
+    = opengraph 'og:locale', @collection.language
+  = opengraph 'twitter:card', 'summary'
+
+= render 'shared/web_app'

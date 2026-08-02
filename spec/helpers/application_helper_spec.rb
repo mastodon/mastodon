@@ -16,8 +16,8 @@ RSpec.describe ApplicationHelper do
 
       it 'uses the current theme and user settings classes in the result' do
         expect(helper.html_classes)
-          .to match(/system-font/)
-          .and match(/reduce-motion/)
+          .to include('system-font')
+          .and include('reduce-motion')
       end
 
       private
@@ -38,7 +38,7 @@ RSpec.describe ApplicationHelper do
         helper.content_for(:body_classes) { 'admin' }
 
         expect(helper.body_classes)
-          .to match(/admin/)
+          .to include('admin')
       end
     end
   end

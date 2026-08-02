@@ -34,6 +34,15 @@ export const Default: Story = {
   },
 };
 
+export const NoTitle: Story = {
+  args: {
+    title: '',
+    primaryLabel: '',
+    secondaryLabel: '',
+    onClose: undefined,
+  },
+};
+
 export const NoIcon: Story = {
   args: {
     icon: false,
@@ -56,11 +65,11 @@ export const OnlyText: Story = {
   },
 };
 
-// export const Subtle: Story = {
-//   args: {
-//     variant: 'subtle',
-//   },
-// };
+export const Subtle: Story = {
+  args: {
+    variant: 'subtle',
+  },
+};
 
 export const Feature: Story = {
   args: {

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import Base from 'mastodon/components/modal_root';
 import { AltTextModal } from 'mastodon/features/alt_text_modal';
@@ -77,6 +77,7 @@ export const MODAL_COMPONENTS = {
   'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
   'REPORT_COLLECTION': ReportCollectionModal,
+  'COLLECTION_ADDER': () => import('@/mastodon/features/collection_adder').then(module => ({ default: module.CollectionAdder })),
   'SHARE_COLLECTION': () => import('@/mastodon/features/collections/components/share_modal').then(module => ({ default: module.CollectionShareModal })),
   'REVOKE_COLLECTION_INCLUSION': () => import('@/mastodon/features/collections/detail/revoke_collection_inclusion_modal').then(module => ({ default: module.RevokeCollectionInclusionModal })),
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),

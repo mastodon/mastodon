@@ -40,7 +40,7 @@ RSpec.describe 'Admin Confirmations' do
           .to send_email(to: user.email)
         expect(page)
           .to have_title(I18n.t('admin.accounts.title'))
-          .and have_content(I18n.t('admin.accounts.resend_confirmation.success'))
+          .and have_text(I18n.t('admin.accounts.resend_confirmation.success'))
       end
     end
 

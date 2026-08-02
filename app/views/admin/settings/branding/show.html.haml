@@ -75,10 +75,11 @@
 
   .fields-row
     = f.input :landing_page,
+              as: :radio_buttons,
               collection: f.object.class::LANDING_PAGE,
               include_blank: false,
-              label_method: ->(page) { I18n.t("admin.settings.landing_page.values.#{page}") },
-              wrapper: :with_label
+              label_method: ->(page) { safe_join([I18n.t("admin.settings.landing_page.values.#{page}"), content_tag(:span, I18n.t("admin.settings.landing_page.hints.#{page}_html"), class: 'hint')]) },
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

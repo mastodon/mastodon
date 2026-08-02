@@ -2,41 +2,36 @@
 
 exports[`<Button /> > adds class "button-secondary" if props.secondary given 1`] = `
 <button
-  className="button button-secondary"
-  onClick={[Function]}
+  class="button button-secondary"
   type="button"
 />
 `;
 
 exports[`<Button /> > renders a button element 1`] = `
 <button
-  className="button"
-  onClick={[Function]}
+  class="button"
   type="button"
 />
 `;
 
 exports[`<Button /> > renders a disabled attribute if props.disabled given 1`] = `
 <button
-  className="button"
-  disabled={true}
-  onClick={[Function]}
+  class="button"
+  disabled=""
   type="button"
 />
 `;
 
 exports[`<Button /> > renders class="button--block" if props.block given 1`] = `
 <button
-  className="button button--block"
-  onClick={[Function]}
+  class="button button--block"
   type="button"
 />
 `;
 
 exports[`<Button /> > renders the children 1`] = `
 <button
-  className="button"
-  onClick={[Function]}
+  class="button"
   type="button"
 >
   <p>
@@ -47,8 +42,7 @@ exports[`<Button /> > renders the children 1`] = `
 
 exports[`<Button /> > renders the given text 1`] = `
 <button
-  className="button"
-  onClick={[Function]}
+  class="button"
   type="button"
 >
   foo
@@ -57,8 +51,7 @@ exports[`<Button /> > renders the given text 1`] = `
 
 exports[`<Button /> > renders the props.text instead of children 1`] = `
 <button
-  className="button"
-  onClick={[Function]}
+  class="button"
   type="button"
 >
   foo

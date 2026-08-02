@@ -1,0 +1,32 @@
+{
+  "custom_filters": [
+    {
+      "title": "dfjswa",
+      "expires_at": null,
+      "context": ["home"],
+      "action": "warn",
+      "keywords_attributes": [{ "keyword": "dvshja", "whole_word": true }],
+      "statuses": []
+    },
+    {
+      "title": "filter with a phrase as title",
+      "expires_at": null,
+      "context": ["home", "notifications", "public"],
+      "action": "warn",
+      "keywords_attributes": [
+        { "keyword": "more words let's see ", "whole_word": true }
+      ],
+      "statuses": []
+    },
+    {
+      "title": "how do I add a status to a filter?",
+      "expires_at": null,
+      "context": ["public", "account"],
+      "action": "warn",
+      "keywords_attributes": [
+        { "keyword": "something something", "whole_word": true }
+      ],
+      "statuses": []
+    }
+  ]
+}

@@ -59,7 +59,7 @@ Mastodon is a **free, open-source social network server** based on [ActivityPub]
 - **Ruby** 3.3+
 - **PostgreSQL** 14+
 - **Redis** 7.0+
-- **Node.js** 20+
+- **Node.js** 22+
 - **FFmpeg** 5.1+
 
 This repository includes deployment configurations for **Docker and docker-compose**, as well as for other environments like Heroku and Scalingo. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). A [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the main documentation.
@@ -78,12 +78,12 @@ If you would like to help with translations 🌐 you can do so on [Crowdin](http
 
 ## LICENSE
 
-Copyright (c) 2016-2025 Eugen Rochko (+ [`mastodon authors`](AUTHORS.md))
+Copyright (c) 2016-2026 Eugen Rochko (+ [`mastodon authors`](AUTHORS.md))
 
 Licensed under GNU Affero General Public License as stated in the [LICENSE](LICENSE):
 
 ```text
-Copyright (c) 2016-2025 Eugen Rochko & other Mastodon contributors
+Copyright (c) 2016-2026 Eugen Rochko & other Mastodon contributors
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Affero General Public License as published by the Free

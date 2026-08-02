@@ -5,7 +5,7 @@ module Admin
     def index
       authorize :ip_block, :index?
 
-      @ip_blocks = IpBlock.order(ip: :asc).page(params[:page])
+      @ip_blocks = filter_by_ip(IpBlock.order(ip: :asc).page(params[:page]))
       @form      = Form::IpBlockBatch.new
     end
 
@@ -42,6 +42,11 @@ module Admin
     end
 
     private
+
+    def filter_by_ip(scope)
+      scope.merge!(IpBlock.overlapping_with(params[:ip])) if params[:ip].present?
+      scope
+    end
 
     def resource_params
       params

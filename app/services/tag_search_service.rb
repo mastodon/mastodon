@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TagSearchService < BaseService
+  include SearchStoplight
+
   def call(query, options = {})
     MastodonOTELTracer.in_span('TagSearchService#call') do |span|
       @query   = query.strip.delete_prefix('#')
@@ -29,8 +31,8 @@ class TagSearchService < BaseService
     definition = TagsIndex.query(elastic_search_query)
     definition = definition.filter(elastic_search_filter) if @options[:exclude_unreviewed]
 
-    ensure_exact_match(definition.limit(@limit).offset(@offset).objects.compact)
-  rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
+    elastic_stoplight_wrapper.run { ensure_exact_match(definition.limit(@limit).offset(@offset).objects.compact) }
+  rescue Stoplight::Error::RedLight, Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH, OpenSSL::SSL::SSLError, Elastic::Transport::Transport::Error
     nil
   end
 

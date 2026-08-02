@@ -16,7 +16,7 @@
                 wrapper: :with_label
     .fields-group.fields-row__column.fields-row__column-6
       = f.input :time_zone,
-                collection: ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.formatted_offset}) #{tz.name}", tz.tzinfo.name] },
+                collection: time_zone_options,
                 hint: false,
                 selected: current_user.time_zone || Time.zone.tzinfo.name,
                 wrapper: :with_label
@@ -51,17 +51,16 @@
                    label_method: ->(contrast) { I18n.t("contrast.#{contrast}", default: contrast) },
                    wrapper: :with_label,
                    required: false
-
-  .fields-group
-    = f.simple_fields_for :settings, current_user.settings do |ff|
-      = ff.input :'web.emoji_style',
-                 collection: user_settings_collection('web.emoji_style'),
-                 include_blank: false,
-                 hint: I18n.t('simple_form.hints.defaults.setting_emoji_style'),
-                 label: I18n.t('simple_form.labels.defaults.setting_emoji_style'),
-                 label_method: ->(emoji_style) { I18n.t("emoji_styles.#{emoji_style}", default: emoji_style) },
-                 wrapper: :with_label,
-                 required: false
+      .input.horizontal-options
+        = ff.input :'web.emoji_style',
+                   as: :radio_buttons,
+                   collection: user_settings_collection('web.emoji_style'),
+                   include_blank: false,
+                   hint: I18n.t('simple_form.hints.defaults.setting_emoji_style'),
+                   label: I18n.t('simple_form.labels.defaults.setting_emoji_style'),
+                   label_method: ->(emoji_style) { I18n.t("emoji_styles.#{emoji_style}", default: emoji_style) },
+                   wrapper: :with_label,
+                   required: false
 
   - unless I18n.locale == :en
     .flash-message.translation-prompt
@@ -83,7 +82,7 @@
       = ff.input :'web.disable_swiping', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_disable_swiping')
       = ff.input :'web.disable_hover_cards', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_disable_hover_cards')
       = ff.input :'web.use_system_font', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_system_font_ui')
-      = ff.input :'web.use_system_scrollbars', wrapper: :with_label, hint: I18n.t('simple_form.hints.defaults.setting_system_scrollbars_ui'), label: I18n.t('simple_form.labels.defaults.setting_system_scrollbars_ui')
+      = ff.input :'web.use_system_scrollbars', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_system_scrollbars_ui')
 
     %h2= t 'appearance.discovery'
 

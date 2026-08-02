@@ -18,6 +18,8 @@ class BulkImportService < BaseService
       import_bookmarks!
     when :lists
       import_lists!
+    when :custom_filters
+      import_custom_filters!
     end
 
     @import.update!(state: :finished, finished_at: Time.now.utc) if @import.processing_complete?
@@ -177,6 +179,16 @@ class BulkImportService < BaseService
     included_lists.each do |title|
       @account.owned_lists.find_or_create_by!(title: title)
     end
+
+    Import::RowWorker.push_bulk(rows) do |row|
+      [row.id]
+    end
+  end
+
+  def import_custom_filters!
+    rows = @import.rows.to_a
+
+    @account.custom_filters.destroy_all if @import.overwrite?
 
     Import::RowWorker.push_bulk(rows) do |row|
       [row.id]

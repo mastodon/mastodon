@@ -76,6 +76,15 @@ class TextFormatter
     rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
       h(url)
     end
+
+    def link_to_mention(account, with_domain: false)
+      url = ActivityPub::TagManager.instance.url_for(account)
+      display_username = with_domain ? account.pretty_acct : account.username
+
+      <<~HTML.squish
+        <span class="h-card" translate="no"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
+      HTML
+    end
   end
 
   private
@@ -136,12 +145,7 @@ class TextFormatter
 
     return "@#{h(entity[:screen_name])}" if account.nil?
 
-    url = ActivityPub::TagManager.instance.url_for(account)
-    display_username = same_username_hits&.positive? || with_domains? ? account.pretty_acct : account.username
-
-    <<~HTML.squish
-      <span class="h-card" translate="no"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
-    HTML
+    TextFormatter.link_to_mention(account, with_domain: same_username_hits&.positive? || with_domains?)
   end
 
   def entity_cache

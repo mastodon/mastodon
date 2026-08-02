@@ -66,7 +66,6 @@ da:
         setting_display_media_show_all: Vis alle medier uden advarsel, inklusive medier markeret som følsomme
         setting_emoji_style: Hvordan emojis skal vises. "Auto" vil forsøge at bruge indbyggede emojis, men skifter tilbage til Twemoji i ældre webbrowsere.
         setting_quick_boosting_html: Når aktiveret, vil klik på %{boost_icon} fremhæv-ikonet straks fremhæve i stedet for at åbne fremhæv/citér-foldudmenuen. Flytter citeringshandlingen til %{options_icon} menuen (Indstillinger).
-        setting_system_scrollbars_ui: Gælder kun for desktop-browsere baseret på Safari og Chrome
         setting_use_blurhash: Gradienter er baseret på de skjulte grafikelementers farver, men slører alle detaljer
         setting_use_pending_items: Skjul tidslinjeopdateringer bag et klik i stedet for brug af auto-feedrulning
         username: Bogstaver, cifre og understregningstegn kan benyttes
@@ -92,6 +91,7 @@ da:
         closed_registrations_message: Vises, når tilmeldinger er lukket
         content_cache_retention_period: Alle indlæg fra andre servere (herunder fremhævelser og besvarelser) slettes efter det angivne antal dage uden hensyn til lokal brugerinteraktion med disse indlæg. Dette omfatter indlæg, hvor en lokal bruger har markeret dem som bogmærker eller favoritter. Private omtaler mellem brugere fra forskellige instanser vil også være tabt og umulige at gendanne. Brugen af denne indstilling er beregnet til særlige formål instanser og bryder mange brugerforventninger ved implementering til almindelig brug.
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
+        email_footer_text: Valgfri tekst, der vises i sidefoden på e-mail-nyhedsbreve.
         favicon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard Mastodon favikonet på mobilenheder med et tilpasset ikon.
         landing_page: Vælger, hvilken side nye besøgende ser, når de først ankommer til din server. Hvis du vælger "Trender", skal trends være aktiveret i Opdagelse-indstillingerne. Hvis du vælger "Lokalt feed", skal "Adgang til live feeds med lokale indlæg" være indstillet til "Alle" i Opdagelse-indstillingerne.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
@@ -294,6 +294,7 @@ da:
         closed_registrations_message: Tilpasset besked, når tilmelding er utilgængelig
         content_cache_retention_period: Opbevaringsperiode for eksternt indhold
         custom_css: Tilpasset CSS
+        email_footer_text: Yderligere tekst til sidefod
         favicon: Favikon
         landing_page: Landingside for nye besøgende
         local_live_feed_access: Adgang til live feeds med lokale indlæg
@@ -322,6 +323,9 @@ da:
         trendable_by_default: Tillad ikke-reviderede trends
         trends: Aktivér trends
         wrapstodon: Aktivér Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Jeg er indforstået med, at aktivering af denne funktion kan medføre en betydelig stigning i antallet af e-mails, der sendes fra serveren, og at jeg alene er ansvarlig for eventuelle omkostninger i den forbindelse.
+        agreement_privacy_and_terms: Jeg har opdateret privatlivspolitikken og servicevilkårene.
       interactions:
         must_be_follower: Blokér notifikationer fra bruger, der ikke følger dig
         must_be_following: Blokér notifikationer fra brugere, du ikke følger
@@ -341,6 +345,7 @@ da:
       notification_emails:
         appeal: En moderatorafgørelse er appelleret
         digest: Send resumé e-mails
+        end_of_support: Understøttelsen af den nuværende version af Mastodon ophører snart
         favourite: Nogen favoritmarkerede dit indlæg
         follow: Nogen begyndte at følge dig
         follow_request: Nogen anmodede om at følge dig

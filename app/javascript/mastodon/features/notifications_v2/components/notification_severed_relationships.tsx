@@ -11,5 +11,6 @@ export const NotificationSeveredRelationships: React.FC<{
     followersCount={event.followers_count}
     followingCount={event.following_count}
     unread={unread}
+    hidden={false}
   />
 );

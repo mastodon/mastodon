@@ -6,7 +6,7 @@ import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import ScrollableList from '@/mastodon/components/scrollable_list';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import { useLayout } from '@/mastodon/hooks/useLayout';
@@ -28,6 +28,7 @@ interface AccountListProps {
   list?: AccountList | null;
   loadMore: () => void;
   prependAccountId?: string | null;
+  withoutFollowsYouBadge?: boolean;
   scrollKey: string;
 }
 
@@ -40,6 +41,7 @@ export const AccountList: FC<AccountListProps> = ({
   list,
   loadMore,
   prependAccountId,
+  withoutFollowsYouBadge,
   scrollKey,
 }) => {
   const account = useAccount(accountId);
@@ -57,6 +59,7 @@ export const AccountList: FC<AccountListProps> = ({
           key={followerId}
           accountId={followerId}
           withBio={false}
+          badge={withoutFollowsYouBadge ? false : null}
         />
       )) ?? [];
 
@@ -66,11 +69,12 @@ export const AccountList: FC<AccountListProps> = ({
           key={prependAccountId}
           accountId={prependAccountId}
           withBio={false}
+          badge={withoutFollowsYouBadge ? false : null}
         />,
       );
     }
     return children;
-  }, [prependAccountId, list, forceEmptyState]);
+  }, [prependAccountId, list, forceEmptyState, withoutFollowsYouBadge]);
 
   const { multiColumn } = useLayout();
 

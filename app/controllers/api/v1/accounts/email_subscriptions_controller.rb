@@ -19,7 +19,7 @@ class Api::V1::Accounts::EmailSubscriptionsController < Api::BaseController
   end
 
   def require_feature_enabled!
-    head 404 unless Mastodon::Feature.email_subscriptions_enabled?
+    head 404 unless Rails.application.config.x.email_subscriptions && Setting.email_subscriptions
   end
 
   def require_account_permissions!

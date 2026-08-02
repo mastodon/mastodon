@@ -2,50 +2,31 @@
 
 exports[`<AvatarOverlay > renders a overlay avatar 1`] = `
 <div
-  className="account__avatar-overlay"
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  style={
-    {
-      "height": 46,
-      "width": 46,
-    }
-  }
+  class="account__avatar-overlay"
+  style="width: 46px; height: 46px;"
 >
   <div
-    className="account__avatar-overlay-base"
+    class="account__avatar-overlay-base"
   >
     <div
-      className="account__avatar"
-      style={
-        {
-          "height": "36px",
-          "width": "36px",
-        }
-      }
+      class="account__avatar"
+      style="width: 36px; height: 36px;"
     >
       <img
         alt="alice"
-        onError={[Function]}
         src="/static/alice.jpg"
       />
     </div>
   </div>
   <div
-    className="account__avatar-overlay-overlay"
+    class="account__avatar-overlay-overlay"
   >
     <div
-      className="account__avatar"
-      style={
-        {
-          "height": "24px",
-          "width": "24px",
-        }
-      }
+      class="account__avatar"
+      style="width: 24px; height: 24px;"
     >
       <img
         alt="eve@blackhat.lair"
-        onError={[Function]}
         src="/static/eve.jpg"
       />
     </div>

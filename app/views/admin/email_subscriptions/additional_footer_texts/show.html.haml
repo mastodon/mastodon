@@ -1,0 +1,16 @@
+- content_for :page_title do
+  = t('.title')
+
+= simple_form_for @admin_settings, url: admin_email_subscriptions_additional_footer_text_path do |form|
+  = render 'shared/error_messages', object: @admin_settings
+
+  .fields-group
+    = form.input :email_footer_text,
+                 as: :text,
+                 input_html: { rows: 8 },
+                 wrapper: :with_block_label
+
+  .actions
+    = form.button :button,
+                  t('generic.save_changes'),
+                  type: :submit

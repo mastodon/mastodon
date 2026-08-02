@@ -33,12 +33,7 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   );
   const maxLength = useAppSelector(
     (state) =>
-      state.server.getIn([
-        'server',
-        'configuration',
-        'accounts',
-        'max_display_name_length',
-      ]) as number | undefined,
+      state.server.server.item?.configuration.accounts.max_display_name_length,
   );
 
   const [newName, setNewName] = useState(displayName ?? '');

@@ -111,7 +111,7 @@ export function fetchStatusFail(id, error, skipLoading, parentQuotePostId) {
 
 export function redraft(status, raw_text, quoted_status_id = null) {
   return (dispatch, getState) => {
-    const maxOptions = getState().server.getIn(['server', 'configuration', 'polls', 'max_options']);
+    const maxOptions = getState().server.server.item?.configuration.polls.max_options;
 
     dispatch({
       type: REDRAFT,

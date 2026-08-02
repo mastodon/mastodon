@@ -36,7 +36,7 @@ export const CollapsiblePanel: React.FC<{
   }, [setExpanded]);
 
   return (
-    <div className='navigation-panel__list-panel'>
+    <li className='navigation-panel__list-panel'>
       <div className='navigation-panel__list-panel__header'>
         <ColumnLink
           transparent
@@ -64,7 +64,7 @@ export const CollapsiblePanel: React.FC<{
               }
               title={expanded ? collapseTitle : expandTitle}
               onClick={handleClick}
-              aria-controls={`${accessibilityId}-content`}
+              ariaControls={`${accessibilityId}-content`}
             />
           </>
         )}
@@ -80,6 +80,6 @@ export const CollapsiblePanel: React.FC<{
           {children}
         </div>
       )}
-    </div>
+    </li>
   );
 };

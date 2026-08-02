@@ -15,7 +15,6 @@ RSpec.describe ActivityPub::FeaturedItemSerializer do
         'type' => 'FeaturedItem',
         'id' => ActivityPub::TagManager.instance.uri_for(collection_item),
         'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_item.account),
-        'featuredObjectType' => 'Person',
         'featureAuthorization' => ap_account_feature_authorization_url(collection_item.account_id, collection_item),
         'published' => '2026-04-16T01:00:00Z',
       })
@@ -32,7 +31,6 @@ RSpec.describe ActivityPub::FeaturedItemSerializer do
         'type' => 'FeaturedItem',
         'id' => ActivityPub::TagManager.instance.uri_for(collection_item),
         'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_item.account),
-        'featuredObjectType' => 'Person',
         'featureAuthorization' => 'https://example.com/auth/1',
       })
     end

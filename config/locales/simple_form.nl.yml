@@ -66,7 +66,6 @@ nl:
         setting_display_media_show_all: Geef geen waarschuwing bij het tonen van alle media, inclusief als gevoelig gemarkeerde media
         setting_emoji_style: Waarmee moeten emojis worden weergegeven. ‘Auto’ probeert de systeemeigen emojis te gebruiken, maar valt terug op Twemoji voor oudere webbrowsers.
         setting_quick_boosting_html: Wanneer dit is ingeschakeld, boost je in één keer wanneer je op het %{boost_icon} boostpictogram klikt en verplaatst de citeeroptie zich naar het %{options_icon} optiemenu. Wanneer dit is uitgeschakeld krijg je gelijk de mogelijkheid om te boosten of te citeren.
-        setting_system_scrollbars_ui: Alleen van toepassing op desktopbrowsers gebaseerd op Safari en Chrome
         setting_use_blurhash: Wazige kleurovergangen zijn gebaseerd op de kleuren van de verborgen media, waarmee elk detail verdwijnt
         setting_use_pending_items: De tijdlijn wordt bijgewerkt door op het aantal nieuwe items te klikken, in plaats van dat deze automatisch wordt bijgewerkt
         username: Je kunt letters, cijfers en underscores gebruiken
@@ -92,6 +91,7 @@ nl:
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
         content_cache_retention_period: Alle berichten van andere servers (inclusief boosts en reacties) worden verwijderd na het opgegeven aantal dagen, ongeacht enige lokale gebruikersinteractie met die berichten. Dit betreft ook berichten die een lokale gebruiker aan diens bladwijzers heeft toegevoegd of als favoriet heeft gemarkeerd. Privéberichten tussen gebruikers van verschillende servers gaan ook verloren en zijn onmogelijk te herstellen. Het gebruik van deze instelling is bedoeld voor servers die een speciaal doel dienen en overtreedt veel gebruikersverwachtingen wanneer deze voor algemeen gebruik wordt geïmplementeerd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
+        email_footer_text: Optionele tekst dat alleen onderin de e-mailnieuwsbrieven verschijnt.
         favicon: WEBP, PNG, GIF of JPG. Vervangt de standaard Mastodon favicon met een aangepast pictogram.
         landing_page: Selecteert welke pagina nieuwe bezoekers te zien krijgen wanneer ze voor het eerst op jouw server terechtkomen. Wanneer je ‘Trends’ selecteert, moeten trends ingeschakeld zijn onder 'Serverinstellingen > Ontdekken'. Wanneer je ‘Lokale tijdlijn’ selecteert, moet ‘Toegang tot openbare lokale berichten’ worden ingesteld op ‘Iedereen’ onder 'Serverinstellingen > Ontdekken'.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
@@ -109,6 +109,7 @@ nl:
         status_page_url: URL van een pagina waar mensen de status van deze server kunnen zien tijdens een storing
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
+        thumbnail_description: Een omschrijving van de afbeelding om mensen met een visuele beperking te helpen de inhoud ervan te begrijpen.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
         wrapstodon: Lokale gebruikers de mogelijkheid geven om een speelse samenvatting van hun Mastodon-gebruik over het afgelopen jaar aan te maken. Deze functie is elk jaar beschikbaar tussen 10 en 31 december, en wordt aangeboden aan gebruikers die tijdens het afgelopen jaar ten minste één openbaar of minder openbaar bericht hebben geplaatst en ten minste één hashtag hebben gebruikt.
@@ -293,6 +294,7 @@ nl:
         closed_registrations_message: Aangepast bericht wanneer registratie is uitgeschakeld
         content_cache_retention_period: Bewaartermijn voor externe inhoud
         custom_css: Aangepaste CSS
+        email_footer_text: Aanvullende voettekst
         favicon: Favicon
         landing_page: Landingspagina voor nieuwe bezoekers
         local_live_feed_access: Toegang tot openbare lokale berichten
@@ -317,9 +319,13 @@ nl:
         status_page_url: URL van statuspagina
         theme: Standaardthema
         thumbnail: Server-miniatuur
+        thumbnail_description: Alt-tekst thumbnail
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
         wrapstodon: Wrapstodon inschakelen
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Ik begrijp dat het inschakelen van deze functionaliteit de hoeveelheid e-mails die door de server wordt verzonden aanzienlijk kan verhogen en dat ik alleen verantwoordelijk ben voor alle gemaakte kosten.
+        agreement_privacy_and_terms: Ik heb het Privacybeleid en de Gebruiksvoorwaarden bijgewerkt.
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -339,6 +345,7 @@ nl:
       notification_emails:
         appeal: Iemand heeft bezwaar ingediend tegen een beslissing van een moderator
         digest: Periodiek e-mails met een samenvatting versturen
+        end_of_support: De huidige Mastodon-versie wordt bijna niet meer ondersteund
         favourite: Wanneer iemand jouw bericht als favoriet markeert
         follow: Wanneer iemand jou is gaan volgen
         follow_request: Wanneer iemand jou wil volgen

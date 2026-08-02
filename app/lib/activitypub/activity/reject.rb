@@ -11,8 +11,6 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     case @object['type']
     when 'Follow'
       reject_embedded_follow
-    when 'QuoteRequest'
-      reject_embedded_quote_request
     end
   end
 
@@ -33,13 +31,6 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     relay.update!(state: :rejected)
   end
 
-  def reject_embedded_quote_request
-    quote = quote_from_request_json(@object)
-    return unless quote.present? && quote.status.local?
-
-    reject_quote!(quoting_status.quote)
-  end
-
   def reject_quote!(quote)
     return unless quote.quoted_account == @account && quote.status.local?
 
@@ -51,7 +42,7 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     collection_item = feature_request_from_object
     return unless collection_item.account == @account && collection_item.local?
 
-    collection_item.destroy!
+    collection_item.reject!
   end
 
   def relay

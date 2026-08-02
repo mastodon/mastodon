@@ -14,14 +14,19 @@ import {
 } from './database';
 
 function rawEmojiFactory(data: Partial<CompactEmoji> = {}): CompactEmoji {
+  const factory = unicodeEmojiFactory();
   return {
-    ...unicodeEmojiFactory(),
-    tags: ['test', 'emoji'],
+    ...factory,
     ...data,
+    tags: data.tags ?? factory.tokens,
   };
 }
 
 describe('emoji database', () => {
+  beforeEach(async () => {
+    await testGet(); // Loads the database schema.
+  });
+
   afterEach(() => {
     testClear();
     indexedDB = new IDBFactory();

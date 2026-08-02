@@ -143,7 +143,34 @@ RSpec.describe ActivityPub::Activity::Flag do
       end
     end
 
-    context 'when an account is passed but no status' do
+    context 'when the activity includes and account and a collection' do
+      let(:collection) { Fabricate(:collection, account: flagged) }
+      let(:json) do
+        {
+          '@context' => 'https://www.w3.org/ns/activitystreams',
+          'id' => flag_id,
+          'type' => 'Flag',
+          'content' => 'Boo!!',
+          'actor' => ActivityPub::TagManager.instance.uri_for(sender),
+          'object' => [
+            ActivityPub::TagManager.instance.uri_for(flagged),
+            ActivityPub::TagManager.instance.uri_for(collection),
+          ],
+        }
+      end
+
+      it 'creates a report with an attached collection' do
+        subject.perform
+
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment).to eq 'Boo!!'
+        expect(report.collections).to contain_exactly(collection)
+      end
+    end
+
+    context 'when an account is passed but no status or collection' do
       let(:mentioned) { Fabricate(:account) }
 
       let(:json) do

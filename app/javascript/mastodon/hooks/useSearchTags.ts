@@ -44,7 +44,7 @@ export function useSearchTags({
     'idle' | 'loading' | 'error'
   >('idle');
 
-  const searchRequestRef = useRef<AbortController | null>(null);
+  const searchRequestRef = useRef<AbortController>(null);
 
   const searchTags = useDebouncedCallback(
     (value: string) => {

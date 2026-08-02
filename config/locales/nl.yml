@@ -4,6 +4,7 @@ nl:
     about_mastodon_html: 'Het sociale netwerk van de toekomst: geen reclame, geen meekijkende bedrijven, ethisch ontwerp, en gedecentraliseerd! Met Mastodon ben je baas over je eigen gegevens!'
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
+    default_thumbnail_description: Twee glimlachende getekende mastodonten (die op olifanten lijken) gooien een papieren vliegtuigje tussen elkaar in. Ze zijn omringd door een heldere blauwe lucht en zwevende planeten met bomen en meer mastodonten erop.
     hosted_on: Mastodon op %{domain}
     title: Over
   accounts:
@@ -288,7 +289,11 @@ nl:
         enable_relay_html: "%{name} heeft de relay %{target} ingeschakeld"
         enable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail ingeschakeld voor %{target}"
         enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
+        listable_tag_html: kan worden aanbevolen
         memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
+        not_listable_tag_html: wordt niet aanbevolen
+        not_trendable_tag_html: verschijnt niet onder trends
+        not_usable_tag_html: kan niet worden gebruikt
         promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
         publish_terms_of_service_html: "%{name} publiceerde bijgewerkte gebruiksvoorwaarden"
         reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} afgewezen"
@@ -301,6 +306,7 @@ nl:
         sensitive_account_html: "%{name} markeerde de media van %{target} als gevoelig"
         silence_account_html: Account %{target} is door %{name} beperkt
         suspend_account_html: Account %{target} is door %{name} opgeschort
+        trendable_tag_html: kan onder trends verschijnen
         unassigned_report_html: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
         unblock_email_account_html: "%{name} deblokkeerde het e-mailadres van %{target}"
         unsensitive_account_html: "%{name} markeerde media van %{target} als niet gevoelig"
@@ -313,8 +319,10 @@ nl:
         update_ip_block_html: "%{name} wijzigde de IP-regel voor %{target}"
         update_report_html: Rapportage %{target} is door %{name} bijgewerkt
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
+        update_tag_html: "%{name} heeft de instellingen van %{target} gewijzigd naar: "
         update_user_role_html: "%{name} wijzigde de rol %{target}"
         update_username_block_html: "%{name} heeft regel bijgewerkt voor gebruikersnamen die %{target} bevatten"
+        usable_tag_html: kan worden gebruikt;
       deleted_account: verwijderd account
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -345,12 +353,20 @@ nl:
       updated_msg: Bijwerken van mededeling geslaagd!
     collections:
       accounts: Accounts
+      back_to_account: Terug naar de accountpagina
+      back_to_report: Terug naar de rapportagepagina
+      batch:
+        add_to_report: 'Aan rapportage #%{id} toevoegen'
+        remove_from_report: Uit de rapportage verwijderen
+        report: Rapportage
       collection_title: Verzameling van %{name}
       contents: Inhoud
+      no_collection_selected: Er werden geen verzamelingen gewijzigd, omdat er geen enkele werd geselecteerd
       number_of_accounts:
         one: 1 account
         other: "%{count} accounts"
       open: Openen
+      title: Accountverzamelingen - @%{name}
       view_publicly: Openbare verzameling bekijken
     critical_update_pending: Kritieke update in behandeling
     custom_emojis:
@@ -484,9 +500,89 @@ nl:
         title: Nieuw e-maildomein blokkeren
       no_email_domain_block_selected: Er werden geen e-maildomeinblokkades gewijzigd, omdat er geen enkele werd geselecteerd
       not_permitted: Niet toegestaan
+      reset: Opnieuw
       resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
       resolved_through_html: Geblokkeerd via %{domain}
+      search: Zoeken
       title: Geblokkeerde e-maildomeinen
+    email_subscriptions:
+      accounts:
+        account: Account
+        empty:
+          hint: Geen enkel account heeft nog abonnees.
+          no_lists_yet: Nog geen lijsten
+        last_email: Meest recente e-mail
+        lead: Accounts die deze functionaliteit hebben ingeschakeld en abonnees hebben, worden hieronder getoond.
+        show:
+          confirm_disable_feature: E-mailnieuwsbrieven voor %{name} uitschakelen? E-mailupdates voor dit account worden niet langer verzonden. De gebruiker kan deze functionaliteit nog steeds in diens accountinstellingen inschakelen. Om de toegang tot deze functie permanent te verwijderen, wijzig dan de rechten van het account onder 'Beheer > rollen'.
+          confirm_remove_subscriber: "%{email} ontvangt niet langer e-mails van %{name}. Deze actie kan niet ongedaan worden gemaakt."
+          consent: Abonnees hebben alleen toestemming gegeven om berichten via e-mail te ontvangen. Gebruik deze lijst niet voor andere doeleinden.
+          date: Datum van abonneren
+          disable_feature: Functionaliteit uitschakelen
+          disabled: De functionaliteit is uitgeschakeld en e-mails worden niet meer naar deze lijst verzonden.
+          email: E-mailadres
+          empty:
+            hint: Niemand heeft zich nog op dit account geabonneerd.
+            no_subscribers_yet: Nog geen abonnees
+          enable_feature: Functionaliteit inschakelen
+          no_access_html: Dit account is niet langer gemachtigd om de functionaliteit in te schakelen. Wijzig dit onder 'Beheer > <a href="%{roles_path}">rollen</a>'.
+          title: E-mailnieuwsbrieven van %{name}
+          view_account: Account bekijken
+        status: Status
+        subscribers: Abonnees
+        title: Mailinglijsten
+      additional_footer_texts:
+        show:
+          title: Aanvullende voettekst
+      compliance_settings:
+        additional_footer_text:
+          action: Beheren
+          hint: Optionele tekst dat alleen onderin de e-mailnieuwsbrief verschijnt
+          title: Aanvullende voettekst
+        lead: E-mailnieuwsbrieven kunnen, afhankelijk van jouw jurisdictie, als marketingmails worden gezien.
+        privacy_policy:
+          action: Beheren
+          hint: Dit beleid wordt onderaan elke e-mail gelinkt
+          title: Privacybeleid
+        title: Compliance-instellingen
+      danger_zone:
+        disable_feature:
+          action: Uitschakelen
+          hint: Functionaliteit voor alle accounts uitschakelen
+          title: Functionaliteit uitschakelen
+        erase_all_data:
+          action: Gegevens verwijderen
+          hint: Verwijderd permanent alle e-mails in alle mailinglijsten
+          title: Alle gegevens verwijderen
+        title: Gevarenzone
+      disabled_msg: Het uitschakelen van e-mailabonnementen is geslaagd.
+      index:
+        disabled:
+          cannot_be_enabled: Jouw serverbeheerder heeft deze functionaliteit op deze server niet ingeschakeld.
+          description: Deze functionaliteit staat bepaalde accounts toe om een widget op hun profiel te plaatsen, waardoor bezoekers zonder Mastodon-account hun berichten via e-mail kunnen ontvangen.
+          get_started: Aan de slag
+        lead: Sta bezoekers toe om berichten van bepaalde accounts op deze server via e-mail te ontvangen.
+        title: E-mailnieuwsbrieven
+      purged_msg: Alle gegevens van e-mailabonnementen worden verwijderd.
+      roles:
+        accounts: Accounts
+        edit_role: Rol bewerken
+        empty:
+          hint: Niemand heeft het recht om deze functionaliteit te gebruiken.
+          no_roles_added: Geen rollen toegevoegd
+        lead: Accounts met de volgende rollen kunnen deze functionaliteit op hun profiel inschakelen.
+        manage_roles: Rollen beheren
+        role_name: Naam rol
+        title: Rollen
+      setups:
+        show:
+          enable_feature: Functionaliteit inschakelen
+          important_information: Belangrijke informatie
+          list:
+            1_permission_explanation: Wanneer deze functionaliteit is ingeschakeld, kunnen accounts met de bijbehorende rechten een e-mailaanmeldformulier aan hun profiel toevoegen.
+            2_feature_explanation: Wanneer bezoekers zich op een accountprofiel aanmelden en hun abonnement bevestigen, zullen zij e-mailupdates ontvangen wanneer het account nieuwe openbare berichten plaatst.
+            3_privacy_policy_warning: Serverbeheerders hebben toegang tot verzamelde Persoonlijk Identificeerbare Informatie (e-mailadressen). Daarom moeten voordat deze functioniteit wordt gebruikt het privacybeleid en de gebruiksvoorwaarden voor de server worden bijgewerkt.
+            4_cost_warning: E-mails kunnen, afhankelijk van de gebruikte hosting, kosten met zich meebrengen. Overleg met je hostingprovider voordat je dit inschakelt, omdat deze functionaliteit het aantal e-mails van je server drastisch kan verhogen.
     export_domain_allows:
       new:
         title: Toegestane domeinen importeren
@@ -641,6 +737,8 @@ nl:
       new:
         title: Nieuwe IP-regel aanmaken
       no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
+      reset: Opnieuw
+      search: Zoeken
       title: IP-regels
     relationships:
       title: Volgrelaties van %{acct}
@@ -671,7 +769,7 @@ nl:
       action_log: Auditlog
       action_taken_by: Maatregel genomen door
       actions:
-        delete_description_html: De gerapporteerde berichten worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
+        delete_description_html: De gerapporteerde berichten en/of verzamelingen worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen door hetzelfde account sneller af te kunnen handelen.
         mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
         other_description_html: Bekijk meer opties voor het controleren van het gedrag van en de communicatie met het gerapporteerde account.
         resolve_description_html: Er wordt tegen het gerapporteerde account geen maatregel genomen, geen overtreding geregistreerd en de rapportage wordt gemarkeerd als opgelost.
@@ -698,7 +796,7 @@ nl:
       confirm: Bevestigen
       confirm_action: Bevestig moderatiemaatregel tegen @%{acct}
       created_at: Gerapporteerd op
-      delete_and_resolve: Bericht verwijderen
+      delete_and_resolve: Inhoud verwijderen
       forwarded: Doorgestuurd
       forwarded_replies_explanation: Dit rapport komt van een externe gebruiker en gaat over externe inhoud. Het is naar je doorgestuurd omdat de gerapporteerde inhoud een reactie is op een van jouw gebruikers.
       forwarded_to: Doorgestuurd naar %{domain}
@@ -725,7 +823,7 @@ nl:
       reported_with_application: Gerapporteerd met applicatie
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
-      skip_to_actions: Ga direct naar de maatregelen
+      skip_to_actions: Ga naar de acties
       status: Rapportages
       statuses: Berichten (%{count})
       statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
@@ -792,7 +890,7 @@ nl:
         manage_custom_emojis: Lokale emoji's beheren
         manage_custom_emojis_description: Staat gebruikers toe om lokale emoji's op de server te beheren
         manage_email_subscriptions: E-mailabonnementen beheren
-        manage_email_subscriptions_description: Sta gebruikers toe om zich per e-mail te abonneren op gebruikers met deze rechten
+        manage_email_subscriptions_description: Gebruikers met deze rechten toestaan om e-mailnieuwsbrieven voor hun account in te schakelen
         manage_federation: Federatie beheren
         manage_federation_description: Staat gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en om de bezorging te bepalen
         manage_invites: Uitnodigingen beheren
@@ -881,9 +979,15 @@ nl:
           disabled: Specifieke gebruikersrol vereisen
           public: Iedereen
       landing_page:
+        hints:
+          about_html: Een pagina met de beschrijving, contactgegevens, regels en andere informatie over deze server.
+          local_feed_html: Een openbaar toegankelijke tijdlijn met de meest recente berichten van gebruikers op deze server.
+          overview_html: Een pagina die de beschrijving van je server laat zien, naast de meest recente lokale berichten van gebruikers op deze server.
+          trends_html: Een pagina met wat momenteel populair op deze server is.
         values:
-          about: Over
-          local_feed: Lokale tijdlijn
+          about: Pagina over ons
+          local_feed: Openbare lokale tijdlijn
+          overview: Overzicht
           trends: Trends
       registrations:
         moderation_recommandation: Zorg ervoor dat je een adequaat en responsief moderatieteam hebt voordat je registraties voor iedereen openstelt!
@@ -904,17 +1008,22 @@ nl:
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
+    skip_to_content: Ga naar de inhoud
     software_updates:
       critical_update: Kritiek — update snel
       description: Het wordt aanbevolen om je Mastodon-installatie up-to-date te houden om gebruik te kunnen maken van de nieuwste oplossingen en functies. Bovendien is het soms cruciaal om Mastodon tijdig bij te werken om veiligheidsproblemen te voorkomen. Om deze redenen controleert Mastodon elke 30 minuten updates en brengt je hiervan op de hoogte volgens jouw voorkeuren voor e-mailmeldingen.
       documentation_link: Meer leren
+      nearing_eol: De ondersteuning voor de branch die je momenteel gebruikt stopt op %{date}. Overweeg om Mastodon te updaten.
       release_notes: Release-opmerkingen
+      supported_until: Ondersteuning eindigt op %{date}
       title: Beschikbare updates
       type: Type
       types:
         major: Grote release
         minor: Kleine release
         patch: Patchrelease - bugfixes en eenvoudig toe te passen wijzigingen
+      unsupported_branch: De branch die je momenteel gebruikt wordt niet meer ondersteund. Werk Mastodon alsjeblieft zo snel mogelijk bij.
+      unsupported_since: Niet meer ondersteund sinds %{date}
       version: Versie
     statuses:
       account: Account
@@ -1130,6 +1239,7 @@ nl:
           other: Door %{count} mensen tijdens de afgelopen week gebruikt
       title: Aanbevelingen & trends
       trending: Trending
+    update_available: Update beschikbaar
     username_blocks:
       add_new: Nieuwe toevoegen
       block_registrations: Registraties blokkeren
@@ -1179,6 +1289,15 @@ nl:
     auto_close_registrations:
       body: In verband met een gebrek aan recentelijke moderatoractiviteit, is de registratiemodus op %{instance} automatisch gewijzigd naar handmatige beoordeling door moderatoren. Dit om te voorkomen dat %{instance} als platform voor eventueel misbruik kan worden gebruikt. Je kunt op elk gewenst moment weer terugschakelen naar open registraties.
       subject: De registratie-modus op %{instance} is automatisch veranderd naar handmatige beoordeling door moderatoren
+    end_of_support_out_of_support_warning:
+      body: De Mastodon-versie die jouw server momenteel gebruikt wordt niet meer ondersteund. We raden je aan om Mastodon zo snel mogelijk bij te werken!
+      subject: Mastodon %{branch} op %{instance} wordt nu niet ondersteund!
+    end_of_support_three_months_warning:
+      body: De Mastodon-versie die jouw server momenteel gebruikt, wordt over 3 maanden niet meer ondersteund. We raden je aan om Mastodon zo snel mogelijk naar een nieuwere branch bij te werken.
+      subject: De ondersteuning voor Mastodon %{branch} op %{instance} eindigt over 3 maanden.
+    end_of_support_two_weeks_warning:
+      body: De Mastodon-versie die jouw server momenteel gebruikt, wordt over 2 weken niet meer ondersteund. We raden je aan om Mastodon zo snel mogelijk naar een nieuwere branch bij te werken.
+      subject: De ondersteuning voor Mastodon %{branch} op %{instance} eindigt over 2 weken.
     new_appeal:
       actions:
         delete_statuses: het verwijderen van diens berichten
@@ -1419,6 +1538,7 @@ nl:
       your_appeal_rejected: Jouw bezwaar is afgewezen
   edit_profile:
     other: Overige
+    privacy_redesign_body: Je kunt nu direct op je profiel de keuze maken om jouw volgers en wie jij volgt wel of niet te tonen.
     redesign_body: Het bewerken van je profiel is nu toegankelijk vanaf de profielpagina.
     redesign_button: Ga erheen
     redesign_title: Er is een nieuwe manier om je profiel te bewerken
@@ -1451,7 +1571,9 @@ nl:
         success_html: Je ontvangt nu e-mails wanneer %{name} nieuwe berichten publiceert. Voeg %{sender} toe aan je contactpersonen, zodat deze berichten niet in je spam terechtkomen.
         title: Je bent ingeschreven
         unsubscribe: Afmelden
+    disabled: Uitgeschakeld
     inactive: Inactief
+    no_access: Geen toegang
     status: Status
     subscribers: Abonnees
   emoji_styles:
@@ -1487,7 +1609,9 @@ nl:
     blocks: Geblokkeerde accounts
     bookmarks: Bladwijzers
     csv: CSV
+    custom_filters: Filters
     domain_blocks: Geblokkeerde domeinen
+    json: JSON
     lists: Lijsten
     mutes: Genegeerde accounts
     storage: Mediabestanden
@@ -1565,7 +1689,9 @@ nl:
       empty: Leeg CSV-bestand
       incompatible_type: Incompatibel met het geselecteerde importtype
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
+      invalid_json_file: 'Ongeldig JSON-bestand. Foutmelding: %{error}'
       over_rows_processing_limit: bevat meer dan %{count} rijen
+      status_not_found_warning: Sommige van je filters verbergen specifieke berichten die niet bekend zijn bij deze server. Deze berichten worden niet automatisch gefilterd wanneer ze later alsnog door de server worden ontdekt.
       too_large: Bestand is te groot
     failures: Fouten
     imported: Geïmporteerd
@@ -1582,6 +1708,9 @@ nl:
       bookmarks_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>bladwijzers te vervangen</strong> met in het totaal <strong>%{count} bericht</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>bladwijzers te vervangen</strong> met in het totaal <strong>%{count} berichten</strong>.
+      custom_filters_html:
+        one: Je staat op het punt om met de inhoud van <strong>%{filename}</strong> je <strong>filters te vervangen</strong>. In totaal wordt <strong>%{count} filter</strong> aan de nieuwe filters toegevoegd.
+        other: Je staat op het punt om met de inhoud van <strong>%{filename}</strong> je <strong>filters te vervangen</strong>. In totaal worden <strong>%{count} filters</strong> aan de nieuwe filters toegevoegd.
       domain_blocking_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>lijst met geblokkeerde domeinen te vervangen</strong> met in het totaal <strong>%{count} domein</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>lijst met geblokkeerde domeinen te vervangen</strong> met in het totaal <strong>%{count} domeinen</strong>.
@@ -1601,6 +1730,9 @@ nl:
       bookmarks_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} bericht</strong> aan je <strong>bladwijzers</strong> toe te voegen.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} berichten</strong> aan je <strong>bladwijzers</strong> toe te voegen.
+      custom_filters_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in totaal <strong>%{count} filter</strong> aan je <strong>filters</strong> toe te voegen.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} filters</strong> aan je <strong>filters</strong> toe te voegen.
       domain_blocking_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} domein te blokkeren</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} domeinen te blokkeren</strong>.
@@ -1637,6 +1769,7 @@ nl:
     types:
       blocking: Geblokkeerde accounts
       bookmarks: Bladwijzers
+      custom_filters: Filters
       domain_blocking: Geblokkeerde domeinen
       following: Gevolgde accounts
       lists: Lijsten
@@ -1731,6 +1864,27 @@ nl:
     copy_account_note_text: 'Deze gebruiker is verhuisd vanaf %{acct}. Je hebt de volgende opmerkingen over dat account gemaakt:'
   navigation:
     toggle_menu: Menu tonen/verbergen
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} heeft jou aan een verzameling toegevoegd"
+    admin_report:
+      title_html: "%{name} rapporteerde %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} en één ander hebben zich geregistreerd"
+        other: "%{name} en %{count} anderen hebben zich geregistreerd"
+      title_html: "%{name} heeft zich geregistreerd"
+    collection_update:
+      title_html: "%{name} werkte een verzameling bij waar jij in zit"
+    generic:
+      sign_in: In de Mastodon web-app inloggen
+      summary_html: Je gebruikt een app die de meest recente versie van Mastodon niet ondersteunt. Ga naar %{link} voor de volledige functionaliteit.
+    moderation_warning:
+      summary_html: Je gebruikt een app die de meest recente versie van Mastodon niet ondersteunt. %{link}.
+      title: Je hebt een moderatie-waarschuwing ontvangen.
+    severed_relationships:
+      summary_html: Een beheerder van %{from} heeft %{target} geschorst, wat betekent dat je geen updates meer van deze gebruiker kunt ontvangen of met deze gebruiker kunt communiceren. Ga naar %{link} voor een overzicht van verloren verbindingen.
+      title: Verloren verbindingen met %{name}
   notification_mailer:
     admin:
       report:
@@ -1779,6 +1933,7 @@ nl:
     administration_emails: E-mailmeldingen beheerder
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
+    moderation_emails: E-mailmeldingen moderatoren
   number:
     human:
       decimal_units:
@@ -1802,7 +1957,7 @@ nl:
     next: Volgende
     older: Ouder
     prev: Vorige
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Je hebt al aan deze peiling deelgenomen

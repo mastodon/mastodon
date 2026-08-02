@@ -12,6 +12,7 @@ import ClearColumnButton from './clear_column_button';
 import GrantPermissionButton from './grant_permission_button';
 import { PolicyControls } from './policy_controls';
 import SettingToggle from './setting_toggle';
+import { ColumnSettingsGroup } from './column_settings_group';
 
 class ColumnSettings extends PureComponent {
   static propTypes = {
@@ -186,6 +187,11 @@ class ColumnSettings extends PureComponent {
             <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'update']} onChange={onChange} label={soundStr} />
           </div>
         </section>
+
+        <ColumnSettingsGroup
+          type="collections"
+          label={<FormattedMessage id='notifications.column_settings.collections' defaultMessage='Collections:' />}
+        />
 
         {((this.props.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) && (
           <section role='group' aria-labelledby='notifications-admin-sign-up'>

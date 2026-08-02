@@ -4,6 +4,7 @@ he:
     about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
     contact_missing: ללא הגדרה
     contact_unavailable: לא רלוונטי/חסר
+    default_thumbnail_description: שני מסטודונים מצויירים (הדומים לפילים) משחקים במטוס נייר. הם מוקפים בשמיים כחולים בהירים ופלנטות מרחפות עם עצים ומסטודונים נוספים עליהם.
     hosted_on: מסטודון שיושב בכתובת %{domain}
     title: אודות
   accounts:
@@ -296,7 +297,11 @@ he:
         enable_relay_html: "%{name} החיו את הממסר %{target}"
         enable_sign_in_token_auth_user_html: '%{name} אפשר/ה אימות בעזרת אסימון דוא"ל עבור %{target}'
         enable_user_html: "%{name} אפשר/ה כניסה עבור המשתמש %{target}"
+        listable_tag_html: ניתנות להצעה
         memorialize_account_html: "%{name} הפך/ה את חשבונו של %{target} לדף הנצחה"
+        not_listable_tag_html: לא תוצענה
+        not_trendable_tag_html: לא תופענה תחת נושאים חמים
+        not_usable_tag_html: לא שמישות
         promote_user_html: "%{name} העלה בדרגה את המשתמש %{target}"
         publish_terms_of_service_html: "%{name} פירסמו עדכון לתנאי השירות"
         reject_appeal_html: "%{name} דחו ערעור על החלטת הנהלת הקהילה מ-%{target}"
@@ -309,6 +314,7 @@ he:
         sensitive_account_html: "%{name} סימן/ה את המדיה של %{target} כרגיש"
         silence_account_html: "%{name} הגביל/ה את חשבונו של %{target}"
         suspend_account_html: "%{name} השעו את חשבונו של %{target}"
+        trendable_tag_html: עשויה להופיע תחת נושאים חמים
         unassigned_report_html: '%{name} דו"ח לא מוקצה %{target}'
         unblock_email_account_html: '%{name} הסיר/ה חסימה מחשבון הדוא"ל של %{target}'
         unsensitive_account_html: "%{name} ביטל/ה את סימון המדיה של %{target} כרגישה"
@@ -321,8 +327,10 @@ he:
         update_ip_block_html: "%{name} שינה כלל עבור IP %{target}"
         update_report_html: '%{name} עדכן/ה דו"ח %{target}'
         update_status_html: "%{name} עדכן/ה הודעה של %{target}"
+        update_tag_html: "%{name} שינו את העדפותיהם לגבי %{target} באופן הבא: "
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
         update_username_block_html: "%{name} עידכנו חוק לשמות משתמש המכילים %{target}"
+        usable_tag_html: ניתנת לשימוש;
       deleted_account: חשבון מחוק
       empty: לא נמצאו יומנים.
       filter_by_action: סינון לפי פעולה
@@ -353,14 +361,22 @@ he:
       updated_msg: ההכרזה עודכנה בהצלחה!
     collections:
       accounts: חשבונות
+      back_to_account: חזרה לדף החשבון
+      back_to_report: חזרה לעמוד הדיווח
+      batch:
+        add_to_report: להוסיף לדו"ח מספר %{id}
+        remove_from_report: הסרה מהדוח
+        report: דווח
       collection_title: אוספים מאת %{name}
       contents: תוכן
+      no_collection_selected: לא בוצעו שינויים באוספים שכן לא נבחרו כאלו
       number_of_accounts:
         many: "%{count} חשבונות"
         one: חשבון אחד
         other: "%{count} חשבונות"
         two: חשבונותיים
       open: פתיחה
+      title: אוספי החשבון - @%{name}
       view_publicly: צפיה בפומבי
     critical_update_pending: עידכון קריטי ממתין
     custom_emojis:
@@ -504,9 +520,89 @@ he:
         title: חסימת מתחם כתובות דואל חדש
       no_email_domain_block_selected: לא בוצעו שינויים לחסימת מתחמי דוא"ל שכן לא נבחרו מתחמים
       not_permitted: נאסר
+      reset: איפוס
       resolved_dns_records_hint_html: שם הדומיין מוביל למתחמי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת שם MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בכתובת MX זו, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
       resolved_through_html: נמצא דרך %{domain}
+      search: חיפוש
       title: מתחמי כתובות דוא"ל חסומים
+    email_subscriptions:
+      accounts:
+        account: חשבון
+        empty:
+          hint: עדיין אין מנוי לאף חשבון.
+          no_lists_yet: אין רשימות עדיין
+        last_email: הודעת דואל אחרונה
+        lead: חשבונות שבהם הופעלה האפשרות ויש להם מנויים יופיעו להלן.
+        show:
+          confirm_disable_feature: להשבית מנשרי דוא"ל של %{name}? עדכוני דוא"ל לא ישלחו עוד מטעם חשבון זה. המשתמשת תוכל לאפשר מחדש את התכונה מהעדפות החשבון שלה. כדי לכבות לצמיתות גישה לתכונה הזו, יש לערוך את הרשאות החשבון תחת תפקידים.
+          confirm_remove_subscriber: '%{email} לא יקבלו יותר דוא"ל מאת %{name}. פעולה זו לא בלתי הפיכה.'
+          consent: מנויים הסכימו רק לקבלת הודעות דרך דוא"ל. אין להשתש ברשימה זו לאף מטרה אחרת.
+          date: תאריך ההצטרפות
+          disable_feature: כיבוי תכונה
+          disabled: תכונה זו הושבתה והודעות דוא"ל לא נשלחות יותר אל רשימה זו.
+          email: כתובת דוא"ל
+          empty:
+            hint: אין לחשבון זה נרשמים עדיין.
+            no_subscribers_yet: אין מנויים עדיין
+          enable_feature: אפשר תכונה
+          no_access_html: לחשבון זה אין יותר את ההרשאות הדרושות להפעלת התכונה. שנו זאת תחת <a href="%{roles_path}">תפקידים</a>.
+          title: מנשרי דוא"ל של %{name}
+          view_account: הצג חשבון
+        status: מצב
+        subscribers: מנויים
+        title: רשימות תפוצה
+      additional_footer_texts:
+        show:
+          title: מלל תחתית נוסף
+      compliance_settings:
+        additional_footer_text:
+          action: ניהול
+          hint: ניתן להוסיף מלל לתחתית מנשרי דואל
+          title: מלל תחתית נוסף
+        lead: מנשרי דואל עשויים להחשב לדואל שיווקי, בכפוף לחוקי תחום השיפוט בו אתם פועלים.
+        privacy_policy:
+          action: ניהול
+          hint: מדיניות זו מקושרת בתחתית כל דיוור דואל
+          title: מדיניות פרטיות
+        title: כיוונוני תאימות לחוק
+      danger_zone:
+        disable_feature:
+          action: השבתה
+          hint: כיבוי התכונה לכל החשבונות
+          title: כיבוי תכונה
+        erase_all_data:
+          action: מחיקת נתונים
+          hint: מחיקה לצמיתות של כל כתובות הדואל מכל רשימות התפוצה
+          title: מחק את כל הנתונים
+        title: אזור סכנה
+      disabled_msg: הרשמות דואל כובו בהצלחה.
+      index:
+        disabled:
+          cannot_be_enabled: הספק הטכני לא איפשר תכונה זו לשרת שלך.
+          description: התכונה מאפשרת לחשבונות שצוינו להוסיף כרטיסיה לפרופיל שלהם המאפשרת למבקרים חסרי חשבון מסטודון להרשם לקבלת הודעותיהם בדוא"ל.
+          get_started: בואו נתחיל
+        lead: לאפשר למבקרים לקבל הודעות משרת זה דרך הדואל בעזרת חשבונות יעודיים.
+        title: מנשרי דואל
+      purged_msg: כל מידע הרשמות הדואל עובר מחיקה.
+      roles:
+        accounts: חשבונות
+        edit_role: עריכת תפקיד
+        empty:
+          hint: לאף אחד אין רשות להשתמש בתכונה זו.
+          no_roles_added: לא הוספו תפקידים
+        lead: חשבונות עם התפקידים המפורטים יוכלו לאפשר תכונה זו בפרופילים שלהם.
+        manage_roles: ניהול תפקידים
+        role_name: שם תפקיד
+        title: תפקידים
+      setups:
+        show:
+          enable_feature: אפשר תכונה
+          important_information: מידע חשוב
+          list:
+            1_permission_explanation: כאשר תכונה זו מאופשרת, חשבונות עם ההרשאות היעודיות יוכלו להוסיף טופס אוסף דואל לפרופילים שלהם.
+            2_feature_explanation: כאשר מבקרים נרשמים בעמוד הפרופיל של חשבון ומאשרים את ההרשמה, הן יתחילו לקבל עידכוני דוא"ל כאשר החשבון ייצור הודעות פומביות חדשות.
+            3_privacy_policy_warning: למנהלי שרתים יש גישה למידע מזהה אישי שנאסף (כתובות דואל). בשל כך יש לעדכן את מדיניות הפרטיות שתכלול מידע זה לפני אפשור התכונה.
+            4_cost_warning: שליחת דואל עלולה לעלות כסף בכפוף לתצורת ניהול השרת. דונו עם ספק האירוח לפני שתאפשרו, שכן תכונה זו עשויה להעלות משמעותית את כמות הדואל הנשלח מהשרת.
     export_domain_allows:
       new:
         title: יבוא רשימת שרתים מאושרים
@@ -667,6 +763,8 @@ he:
       new:
         title: יצירת כלל IP
       no_ip_block_selected: שום כלל IP לא שונה כי שום כלל IP לא נבחר
+      reset: איפוס
+      search: חיפוש
       title: כללי IP
     relationships:
       title: היחסים של %{acct}
@@ -699,7 +797,7 @@ he:
       action_log: ביקורת יומן
       action_taken_by: פעולה בוצעה ע"י
       actions:
-        delete_description_html: ההודעות המדווחות יימחקו ותרשם עבירה על מנת להקל בהעלאה של דיווחים עתידיים על אותו החשבון.
+        delete_description_html: ההודעות המדווחות ו/או אוספים יימחקו ותרשם עבירה על מנת להקל בהעלאה של דיווחים עתידיים על אותו החשבון.
         mark_as_sensitive_description_html: המדיה בהודעות מדווחות תסומן כרגישה ועבירה תרשם כדי לעזור לך להסלים באינטראקציות עתידיות עם אותו החשבון.
         other_description_html: ראו אפשרויות נוספות לשליטה בהתנהגות החשבון וכדי לבצע התאמות בתקשורת עם החשבון המדווח.
         resolve_description_html: אף פעולה לא תבוצע נגד החשבון עליו דווח, לא תירשם עבירה, והדיווח ייסגר.
@@ -726,7 +824,7 @@ he:
       confirm: אישור
       confirm_action: נא לאשר פעולת משמעת לגבי חשבון %{acct}
       created_at: מדווח
-      delete_and_resolve: מחיקת הודעות
+      delete_and_resolve: מחק תוכן
       forwarded: קודם
       forwarded_replies_explanation: דווח זה הגיע מחשבון משתמש חיצוני על תוכן חיצוני. הוא הועבר אליך כיוון שהתוכן שדווח הוא בתשובה למשתמש.ת שלך.
       forwarded_to: קודם ל-%{domain}
@@ -824,7 +922,7 @@ he:
         manage_custom_emojis: ניהול סמלונים בהתאמה אישית
         manage_custom_emojis_description: מאפשר למשתמשים לנהל סמלונים בהתאמה אישית של השרת
         manage_email_subscriptions: ניהול הרשמות דוא"ל
-        manage_email_subscriptions_description: לאפשר למשתמשיםות להרשים למשתמשיםות ע"י הרשאה בדוא"ל
+        manage_email_subscriptions_description: להתיר למתמשים עם הרשאה זו לאפשר תכונת מנשר הדואל לחשבונם
         manage_federation: ניהול פדרציה
         manage_federation_description: מאפשר למשתמשים לחסום או לאפשר התממשקות עם שמות מתחם אחרים
         manage_invites: ניהול הזמנות
@@ -913,10 +1011,16 @@ he:
           disabled: נדרש תפקיד משתמש מסוים
           public: כולם
       landing_page:
+        hints:
+          about_html: עמוד עם תיאור השרת, פרטי התקשרות, חוקים ושאר המידע.
+          local_feed_html: זרם הודעות חי של הפרסומים האחרונים של משתמשים בשרת זה.
+          overview_html: עמוד המציג את תיאור השרת לצד ההודעות המקומיות האחרונות של משתמשיו ומשתמשותיו.
+          trends_html: עמוד המציג את התכנים המושכים כניין כרגע על שרת זה.
         values:
-          about: אודות
-          local_feed: פיד מקומי
-          trends: נושאים חמים
+          about: דף אודות השרת
+          local_feed: זרם הודעות בזמן אמת
+          overview: סקירה כללית
+          trends: מגמות
       registrations:
         moderation_recommandation: יש לוודא שלאתר יש צוות מנחות ומנחי שיחה מספק ושירותי בטרם תבחרו לפתוח הרשמה לכולם!
         preamble: שליטה בהרשאות יצירת חשבון בשרת שלך.
@@ -936,17 +1040,22 @@ he:
     site_uploads:
       delete: מחיקת קובץ שהועלה
       destroyed_msg: העלאת אתר נמחקה בהצלחה!
+    skip_to_content: דילוג לתוכן
     software_updates:
       critical_update: חשוב -- יש לעדכן במהירות
       description: מומלץ לשמור את התקנת המסטודון שלך עדכנית כדי להרוויח מהיכולות והתיקונים האחרונים. למעלה מכך, לעיתים קריטי לעדכן את מסטודון בהקדם כדי להמנע מפרצות אבטחה. מסיבות אלו, השרת יבדוק כל 30 דקות, ויודיע לך לפי העדפות הדואל שלך.
       documentation_link: למידע נוסף
+      nearing_eol: תמיכה עבור ענף גרסת התוכנה שרץ אצלך תסתיים בתאריך %{date}, יש לשקול שדרוג.
       release_notes: פרטי הגרסה
+      supported_until: התמיכה תסתיים בתאריך %{date}
       title: עדכונים זמינים
       type: סוג
       types:
         major: שחרור משמעותי (Major release)
         minor: שחרור משני (Minor release)
         patch: עדכון טלאי — תיקוני שקצים ושינויים קלים
+      unsupported_branch: ענף גרסת התוכנה שרץ אצלך אינו נתמך, יש לעדכן בהקדם האפשרי.
+      unsupported_since: לא נתמך מאז %{date}
       version: גרסה
     statuses:
       account: מחבר
@@ -1170,6 +1279,7 @@ he:
           two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
       title: המלצות ונושאים חמים
       trending: נושאים חמים
+    update_available: יש עדכון זמין
     username_blocks:
       add_new: הוספת חדש
       block_registrations: חסימת הרשמות
@@ -1221,6 +1331,15 @@ he:
     auto_close_registrations:
       body: עקב חוסר פעילות מנחים, הרשמות אל %{instance} עברו אוטומטית למצב אישור ידני, כדי למנוע משרת %{instance} לשמש לכר פעילות לגורמים עוינים. ניתן תמיד לחזור להרשמה פתוחה.
       subject: הרשמות אל %{instance} הועברו אוטומטית לדרישה לאישור ידני
+    end_of_support_out_of_support_warning:
+      body: גרסת תוכנת מסטודון שרץ אצלך בשרת כבר איננה נתמכת. אנו ממליצים על שדרוג בהקדם האפשרי!
+      subject: מסטודון %{branch} המשמש על %{instance} איננו נתמך יותר!
+    end_of_support_three_months_warning:
+      body: גרסת תוכנת מסטודון שרץ אצלך בשרת תפסיק להתמך בעוד 3 חודשים. אנו ממליצים על שדרוג גרסא קודם לכן.
+      subject: תמיכה עבור מסטודון %{branch} המשמש על %{instance} תסתיים בעוד שלושה חודשים.
+    end_of_support_two_weeks_warning:
+      body: גרסת תוכנת מסטודון שרץ אצלך בשרת תפסיק להתמך בעוד שבועיים. אנו ממליצים על שדרוג גרסא קודם לכן.
+      subject: תמיכה עבור מסטודון %{branch} המשמש על %{instance} תסתיים בעוד שבועיים.
     new_appeal:
       actions:
         delete_statuses: כדי למחוק את הודעותיהם
@@ -1461,6 +1580,7 @@ he:
       your_appeal_rejected: ערעורך נדחה
   edit_profile:
     other: אחר
+    privacy_redesign_body: הבחירה אם להראות את העוקבים והנעקבים שלך עברה להפעלה ישירה מהפרופיל שלך.
     redesign_body: ניתן להגיע לעריכת הפרופיל ישירות מעמוד הפרופיל.
     redesign_button: לך לשם
     redesign_title: מעתה מוצעת חוויית עריכת פרופיל חדשה
@@ -1495,7 +1615,9 @@ he:
         success_html: מעתה תקבלנה דוא"ל כאשר %{name} יפרסמו הודעות חדשות. הוספנה את %{sender} לאנשי הקשר כדי שההודעות האלו לא יגיעו אל פח הספאם שלכן.
         title: נרשמת
         unsubscribe: ביטול ההרשמה
+    disabled: כבוי
     inactive: לא פעילים
+    no_access: אין גישה
     status: מצב
     subscribers: מנויים
   emoji_styles:
@@ -1531,7 +1653,9 @@ he:
     blocks: רשימת חסימות
     bookmarks: סימניות
     csv: CSV
+    custom_filters: מסננים
     domain_blocks: חסימות דומיינים
+    json: JSON
     lists: רשימות
     mutes: רשימת השתקות
     storage: אחסון מדיה
@@ -1555,7 +1679,7 @@ he:
       deprecated_api_multiple_keywords: לא ניתן לשנות פרמטרים אלו מהיישומון הזה בגלל שהם חלים על יותר ממילת מפתח אחת. ניתן להשתמש ביישומון מעודכן יותר או בממשק הוובי.
       invalid_context: לא סופק הקשר או הקשר לא תקין
     index:
-      contexts: פילטרים ב %{contexts}
+      contexts: סננים ב־%{contexts}
       delete: למחוק
       empty: אין לך מסננים.
       expires_in: פג תוקף ב %{distance}
@@ -1580,9 +1704,9 @@ he:
       save: שמירת מסנן חדש
       title: הוספת מסנן חדש
     statuses:
-      back_to_filter: חזרה לפילטר
+      back_to_filter: חזרה לסנן
       batch:
-        remove: הסרה ממסנן
+        remove: הסרה מסנן
       index:
         hint: סנן זה חל באופן של בחירת הודעות בודדות ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד הודעות לסנן זה ממנשק הווב.
         title: הודעות שסוננו
@@ -1623,7 +1747,9 @@ he:
       empty: קובץ CSV ריק
       incompatible_type: אין תאימות עם סוג היבוא שנבחר
       invalid_csv_file: 'קובץ CSV שבור. שגיאה: %{error}'
+      invalid_json_file: 'קובץ JSON שבור. שגיאה: %{error}'
       over_rows_processing_limit: מכיל יותר מ-%{count} עמודות
+      status_not_found_warning: חלק מהסננים שלך מסתירים הודעות ספציפיות שאינן מוכרות על ידי שרת זה. הודעות אלו לא יסוננו אוטומטית אם הן יתגלו על ידי השרת מאוחר יותר.
       too_large: קובץ גדול מדי
     failures: כשלים
     imported: יובא
@@ -1644,6 +1770,11 @@ he:
         one: אתם עומדים <strong>להחליף את רשימת הסימניות</strong><strong> בהודעה אחת</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong>.
+      custom_filters_html:
+        many: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
+        one: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>סנן אחד</strong> יתווסף לסננים חדשים.
+        other: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
+        two: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
       domain_blocking_html:
         many: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> <strong>בשרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
@@ -1675,6 +1806,11 @@ he:
         one: אתם עומדים <strong>להוסיף</strong><strong>הודעה אחת</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
         other: אתם עומדים להוסיף עד <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
         two: אתם עומדים <strong>להוסיף</strong> עד <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+      custom_filters_html:
+        many: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
+        one: אתם עומדים להוסיף עד <strong>סנן אחד</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
+        other: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
+        two: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
       domain_blocking_html:
         many: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>לחסום</strong> עד <strong>שרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
@@ -1719,6 +1855,7 @@ he:
     types:
       blocking: רשימת חסימות
       bookmarks: סימניות
+      custom_filters: סננים
       domain_blocking: רשימת שמות מתחם חסומים
       following: רשימת נעקבים
       lists: רשימות
@@ -1815,6 +1952,29 @@ he:
     copy_account_note_text: 'חשבון זה הועבר מ-%{acct}, הנה הערותיך הקודמות לגביהם:'
   navigation:
     toggle_menu: הצגת\הסתרת תפריט
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} הוסיפו אותך לאוסף"
+    admin_report:
+      title_html: "%{name} דיווח.ה על %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        many: "%{name} ועוד %{count} נרשמו"
+        one: "%{name} ועוד אחד נרשמו"
+        other: "%{name} ועוד %{count} נרשמו"
+        two: "%{name} ועוד שניים נרשמו"
+      title_html: "%{name} נרשמו"
+    collection_update:
+      title_html: "%{name} עדכנו אוסף הכולל אותך"
+    generic:
+      sign_in: התחברו ליישומון הווב של מסטודון
+      summary_html: אתם משתמשים ביישומון שאינו תומך בגרסא העדכנית של מסטודון. %{link} כדי לקבל את מלוא השמישות.
+    moderation_warning:
+      summary_html: אתם משתמשים ביישומון שאינו תומך בגרסא העדכנית של מסטודון. %{link}.
+      title: קיבלת אזהרת מנהל.
+    severed_relationships:
+      summary_html: מנהל מאתר %{from} הקפיא את %{target}, כלומר לא תוכלו לקבל יותר עדכונים מהם או להתכתב איתם. %{link} כדי לקבל רשימת מערכות יחסים שאבדו.
+      title: הקשר אבד עם %{name}
   notification_mailer:
     admin:
       report:
@@ -1863,6 +2023,7 @@ he:
     administration_emails: התראות לדוא"ל חשבון מנהל
     email_events: ארועים להתראות דוא"ל
     email_events_hint: 'בחר/י ארועים עבורים תרצה/י לקבל התראות:'
+    moderation_emails: התראות לדוא"ל חשבון מנחה
   number:
     human:
       decimal_units:
@@ -1886,7 +2047,7 @@ he:
     next: הבא
     older: ישן יותר
     prev: הקודם
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: כבר הצבעת בסקר זה
@@ -2292,7 +2453,7 @@ he:
       feature_audience_title: בנו את הקהל שלכםן בבטחה
       feature_control: אתםן יודעיםות בדיוק מה תרצו לראות בפיד הבית. אין פה פרסומות ואלגוריתמים שיבזבזו את זמנכם. עקבו אחרי כל משתמשי מסטודון משלל שרתים מתוך חשבון אחד וקבלו את ההודעות שלהםן לפי סדר הפרסום, וכך תצרו לכם את פינת האינטרנט המתאימה לכן אישית.
       feature_control_title: השארו בשליטה על ציר הזמן שלכם
-      feature_creativity: מסטודון תומך בהודעות עם שמע, חוזי ותמונות, עם תאורים למוגבלי ראייה, משאלים, אזהרות תוכן, אווטרים מונפשים, אמוג'י מותאמים אישית, שליטה בחיתוך תמונות מוקטנות ועוד, כדי שתוכלו לבטא את עצמכןם ברשת. בין אם תפרסמו אמנות, מוזיקה או פודקסטים אישיים, מסטודון פה בשבילכם.
+      feature_creativity: מסטודון תומך בהודעות עם שמע, חוזי ותמונות, עם תאורים ללקויי ראייה, משאלים, אזהרות תוכן, אווטרים מונפשים, אמוג'י מותאמים אישית, שליטה בחיתוך תמונות מוקטנות ועוד, כדי שתוכלו לבטא את עצמכןם ברשת. בין אם תפרסמו אמנות, מוזיקה או פודקסטים אישיים, מסטודון פה בשבילכם.
       feature_creativity_title: יצירתיות ללא פשרות
       feature_moderation: מסטודון מחזיר לידיכן את ההחלטות. כל שרת יוצר לעצמו את חוקיו, שנאכפים מקומית ולא "מלמעלה" כמו באתרים מסחריים, מה שהופך אותו לגמיש ביותר בשירות הרצונות והצרכים של קבוצות שונות. הצטרפו לשרת שאתםן מסכימותים עם חוקיו, או הקימו משלכןם.
       feature_moderation_title: ניהול דיונים כמו שצריך

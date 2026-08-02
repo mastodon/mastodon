@@ -2,9 +2,9 @@ import { useEffect, useCallback, useRef } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
-
 import { isFulfilled } from '@reduxjs/toolkit';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import {

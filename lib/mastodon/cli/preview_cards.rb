@@ -11,18 +11,17 @@ module Mastodon::CLI
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean, default: false
     option :link, type: :boolean, default: false
-    desc 'remove', 'Remove preview cards'
+    desc 'remove', 'Remove preview card media'
     long_desc <<-DESC
       Removes local thumbnails for preview cards.
 
-      The --days option specifies how old preview cards have to be before
-      they are removed. It defaults to 180 days. Since preview cards will
-      not be re-fetched unless the link is re-posted after 2 weeks from
-      last time, it is not recommended to delete preview cards within the
-      last 14 days.
+      The --days option sets the age a preview card must be before attached
+      media will be removed. Preview cards will not be re-fetched unless the
+      link is posted again two weeks after the last usage, so it is not
+      recommended to delete preview card media from within the last 14 days.
 
-      With the --link option, only link-type preview cards will be deleted,
-      leaving video and photo cards untouched.
+      With the --link option, only media from link-type preview cards will be
+      deleted, skipping video and photo cards.
     DESC
     def remove
       time_ago = options[:days].days.ago
@@ -44,7 +43,7 @@ module Mastodon::CLI
         size
       end
 
-      say("Removed #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
+      say("Removed media from #{processed} #{link}preview cards (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
     end
   end
 end

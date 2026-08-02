@@ -7,13 +7,17 @@ import {
   defineMessages,
 } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link, useParams } from 'react-router-dom';
 
+import { Helmet } from '@unhead/react/helmet';
+
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { apiGetTermsOfService } from 'mastodon/api/instance';
 import type { ApiTermsOfServiceJSON } from 'mastodon/api_types/instance';
 import { Column } from 'mastodon/components/column';
-import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from 'mastodon/features/ui/components/bundle_column_error';
+
+import { getColumnSkipLinkId } from '../ui/components/skip_links';
 
 const messages = defineMessages({
   title: { id: 'terms_of_service.title', defaultMessage: 'Terms of Service' },
@@ -54,12 +58,12 @@ const TermsOfService: React.FC<{
     >
       <div className='scrollable privacy-policy'>
         <div className='column-title'>
-          <h3>
+          <NavigationFocusTarget as='h1' id={getColumnSkipLinkId(1)}>
             <FormattedMessage
               id='terms_of_service.title'
               defaultMessage='Terms of Service'
             />
-          </h3>
+          </NavigationFocusTarget>
           <p className='prose'>
             {response?.effective ? (
               <FormattedMessage

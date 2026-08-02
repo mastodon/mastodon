@@ -4,6 +4,7 @@ sv:
     about_mastodon_html: 'Framtidens sociala medium: Ingen reklam. Ingen övervakning. Etisk design och decentralisering! Äg din data med Mastodon!'
     contact_missing: Inte inställd
     contact_unavailable: Ej tillämplig
+    default_thumbnail_description: Två leende tecknade mastodonter (som ser ut som elefanter) kastar ett pappersplan mellan dem. De är omgivna av en klarblå himmel och svävande planeter med träd och fler mastodonter på dem.
     hosted_on: Mastodon-värd på %{domain}
     title: Om
   accounts:
@@ -288,7 +289,11 @@ sv:
         enable_relay_html: "%{name} aktiverat ombudet %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
+        listable_tag_html: kan föreslås
         memorialize_account_html: "%{name} gjorde %{target}s konto till en minnessida"
+        not_listable_tag_html: kommer ej föreslås
+        not_trendable_tag_html: kommer ej visas under trender
+        not_usable_tag_html: kan inte användas
         promote_user_html: "%{name} befordrade användaren %{target}"
         publish_terms_of_service_html: "%{name} publicerade uppdateringar till användarvillkoren"
         reject_appeal_html: "%{name} avvisade överklagande av modereringsbeslut från %{target}"
@@ -301,6 +306,7 @@ sv:
         sensitive_account_html: "%{name} markerade %{target}s media som känsligt"
         silence_account_html: "%{name} begränsade %{target}s konto"
         suspend_account_html: "%{name} stängde av %{target}s konto"
+        trendable_tag_html: kan visas under trender
         unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
         unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
         unsensitive_account_html: "%{name} avmarkerade %{target}s media som känsligt"
@@ -313,8 +319,10 @@ sv:
         update_ip_block_html: "%{name} ändrade regel för IP %{target}"
         update_report_html: "%{name} uppdaterade rapporten %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
+        update_tag_html: "%{name} ändrade %{target} inställningar till: "
         update_user_role_html: "%{name} ändrade rollen %{target}"
         update_username_block_html: "%{name} uppdaterade regel för användarnamn som innehåller %{target}"
+        usable_tag_html: kan användas;
       deleted_account: raderat konto
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
@@ -345,12 +353,20 @@ sv:
       updated_msg: Kungörelsen uppdaterades!
     collections:
       accounts: Konton
+      back_to_account: Tillbaka till kontosidan
+      back_to_report: Tillbaka till rapportsidan
+      batch:
+        add_to_report: 'Lägg till i rapport #%{id}'
+        remove_from_report: Ta bort från rapport
+        report: Rapportera
       collection_title: Samling av %{name}
       contents: Innehåll
+      no_collection_selected: Inga samlingar ändrades eftersom inga valdes
       number_of_accounts:
         one: 1 konto
         other: "%{count} konton"
       open: Öppna
+      title: Kontosamlingar - @%{name}
       view_publicly: Visa offentligt
     critical_update_pending: Kritisk uppdatering väntar
     custom_emojis:
@@ -484,9 +500,89 @@ sv:
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
       not_permitted: Ej tillåtet
+      reset: Återställ
       resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
+      search: Sök
       title: Blockerade e-postdomäner
+    email_subscriptions:
+      accounts:
+        account: Konto
+        empty:
+          hint: Inga konton har prenumeranter ännu.
+          no_lists_yet: Inga listor ännu
+        last_email: Senaste e-post
+        lead: Konton som har aktiverat funktionen och har prenumeranter kommer att visas nedan.
+        show:
+          confirm_disable_feature: Inaktivera nyhetsbrev för %{name}? E-postuppdateringar kommer inte längre att skickas för detta konto. Användaren kommer fortfarande att kunna återaktivera funktionen i sina kontoinställningar. Redigera behörigheten för kontot i Roller för att permanent ta bort åtkomst till den här funktionen.
+          confirm_remove_subscriber: "%{email} kommer inte längre att ta emot e-post från %{name}. Denna åtgärd kan inte ångras."
+          consent: Prenumeranter har endast samtyckt till att ta emot inlägg via e-post. Använd inte denna lista för andra ändamål.
+          date: Datum för registrering
+          disable_feature: Inaktivera funktion
+          disabled: Funktionen har inaktiverats och e-postmeddelanden skickas inte längre till denna lista.
+          email: E-postadress
+          empty:
+            hint: Ingen prenumererar på detta konto än.
+            no_subscribers_yet: Inga prenumeranter än
+          enable_feature: Aktivera funktion
+          no_access_html: Detta konto har inte längre de behörigheter som krävs för att aktivera funktionen. Ändra detta i <a href="%{roles_path}">Roller</a>.
+          title: E-postnyhetsbrev för %{name}
+          view_account: Visa konto
+        status: Status
+        subscribers: Prenumeranter
+        title: E-postlistor
+      additional_footer_texts:
+        show:
+          title: Ytterligare sidfotstext
+      compliance_settings:
+        additional_footer_text:
+          action: Hantera
+          hint: Valfri text som endast visas i sidfoten av e-post om nyhetsbrev
+          title: Ytterligare sidfotstext
+        lead: E-postnyhetsbrev kan anses vara e-post om marknadsföring, beroende på lagarna där du befinner dig.
+        privacy_policy:
+          action: Hantera
+          hint: Denna policy är länkad i sidfoten av varje e-post
+          title: Integritetspolicy
+        title: Inställningar för efterlevnad
+      danger_zone:
+        disable_feature:
+          action: Inaktivera
+          hint: Stäng av funktionen för alla konton
+          title: Inaktivera funktion
+        erase_all_data:
+          action: Radera data
+          hint: Raderar permanent alla e-postmeddelanden i alla e-postlistor
+          title: Radera all data
+        title: Farozon
+      disabled_msg: E-postprenumerationer har inaktiverats.
+      index:
+        disabled:
+          cannot_be_enabled: Din tekniska leverantör har inte aktiverat denna funktion för din server.
+          description: Denna funktion tillåter specificerade konton att lägga till en widget i sina profiler, vilket gör att besökare utan ett Mastodon-konto kan ta emot sina inlägg via e-post.
+          get_started: Kom igång
+        lead: Tillåt besökare att ta emot inlägg via e-post från dedikerade konton på denna server.
+        title: Nyhetsbrev via e-post
+      purged_msg: All data från e-postprenumerationer tas bort.
+      roles:
+        accounts: Konton
+        edit_role: Redigera roll
+        empty:
+          hint: Ingen har behörighet att använda den här funktionen.
+          no_roles_added: Inga roller tillagda
+        lead: Konton med följande roller kan aktivera denna funktion på sina profiler.
+        manage_roles: Hantera roller
+        role_name: Rollnamn
+        title: Roller
+      setups:
+        show:
+          enable_feature: Aktivera funktion
+          important_information: Viktig information
+          list:
+            1_permission_explanation: När denna funktion är aktiverad kan konton med de angivna behörigheterna lägga till ett insamlingsformulär för e-post till sina profiler.
+            2_feature_explanation: När besökare registrerar sig på ett kontos profilsida och bekräftar sin prenumeration, kommer de att börja ta emot e-postuppdateringar när kontot skapar nya offentliga inlägg.
+            3_privacy_policy_warning: Serveradministratörer kommer att ha tillgång till PII (e-postadresser) samlade. Därmed måste sekretesspolicyn och användarvillkoren för servern uppdateras innan den här funktionen används.
+            4_cost_warning: E-postmeddelanden kan medföra en avgift beroende på hosting-setup. Diskutera med ditt webbhotells leverantör innan aktivering, eftersom denna funktion drastiskt kan öka mängden e-post som skickas från din server.
     export_domain_allows:
       new:
         title: Importera domäntillåtelser
@@ -641,6 +737,8 @@ sv:
       new:
         title: Skapa ny IP-regel
       no_ip_block_selected: Inga IP-regler ändrades då inga var valda
+      reset: Återställ
+      search: Sök
       title: IP-regler
     relationships:
       title: "%{acct}s relationer"
@@ -671,7 +769,7 @@ sv:
       action_log: Granskningslogg
       action_taken_by: Åtgärder vidtagna av
       actions:
-        delete_description_html: De rapporterade inläggen kommer raderas och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
+        delete_description_html: De rapporterade inläggen och/eller samlingarna kommer raderas och en markör kommer registreras för att hjälpa dig att eskalera framtida överträdelser från samma konto.
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         other_description_html: Se fler alternativ för att kontrollera kontots beteende och anpassa kommunikationen till det rapporterade kontot.
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
@@ -698,7 +796,7 @@ sv:
       confirm: Bekräfta
       confirm_action: Bekräfta modereringsåtgärd mot @%{acct}
       created_at: Anmäld
-      delete_and_resolve: Ta bort inlägg
+      delete_and_resolve: Radera innehåll
       forwarded: Vidarebefordrad
       forwarded_replies_explanation: Den här rapporten är från en annans instans användare och handlar om annans instans inlägg. Det har vidarebefordrats till dig eftersom det rapporterade innehållet är som svar till en av dina användare.
       forwarded_to: Vidarebefordrad till %{domain}
@@ -792,7 +890,7 @@ sv:
         manage_custom_emojis: Hantera egna emojier
         manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
         manage_email_subscriptions: Hantera e-postprenumerationer
-        manage_email_subscriptions_description: Tillåt användare att prenumerera på användare med denna behörighet via e-post
+        manage_email_subscriptions_description: Tillåt användare med denna behörighet att aktivera funktionen för e-postnyhetsbrev för deras konto
         manage_federation: Hantera federering
         manage_federation_description: Tillåter användare att blockera eller tillåta federering med andra domäner, samt kontrollera levererbarhet
         manage_invites: Hantera inbjudningar
@@ -863,7 +961,7 @@ sv:
         title: Undantag användare från sökmotorindexering som standard
       discovery:
         follow_recommendations: Följrekommendationer
-        preamble: Att visa intressant innehåll är avgörande för nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din Server.
+        preamble: Att visa intressant innehåll är viktigt för att introducera nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din server.
         privacy: Integritet
         profile_directory: Profilkatalog
         public_timelines: Offentliga tidslinjer
@@ -881,10 +979,16 @@ sv:
           disabled: Kräv specifik användarroll
           public: Alla
       landing_page:
+        hints:
+          about_html: En sida med beskrivning, kontaktuppgifter, regler och annan information om denna server.
+          local_feed_html: Ett realtidsflöde med senaste inlägg av användare på den här servern.
+          overview_html: En sida som visar beskrivningen av din server tillsammans med de senaste lokala inläggen av användare på denna server.
+          trends_html: En sida med vad som är populärt på denna server just nu.
         values:
-          about: Om
-          local_feed: Lokalt flöde
-          trends: Trender
+          about: Om sidan
+          local_feed: Lokalt realtidsflöde
+          overview: Översikt
+          trends: Trendande
       registrations:
         moderation_recommandation: Se till att du har ett tillräckligt och reaktivt modereringsteam innan du öppnar registreringar till alla!
         preamble: Kontrollera vem som kan skapa ett konto på din server.
@@ -904,17 +1008,22 @@ sv:
     site_uploads:
       delete: Radera uppladdad fil
       destroyed_msg: Webbplatsuppladdningen har raderats!
+    skip_to_content: Hoppa till innehåll
     software_updates:
       critical_update: Kritiskt — vänligen uppdatera omgående
       description: Det rekommenderas att hålla din Mastodon-installation uppdaterad för att ta nytta av de senaste fixarna och funktionerna. Dessutom är det ibland viktigt att uppdatera Mastodon i tid för att undvika säkerhetsproblem. Av dessa skäl kontrollerar Mastodon efter uppdateringar var 30:e minut och meddelar dig i enlighet med dina e-postaviseringsinställningar.
       documentation_link: Läs mer
+      nearing_eol: Stödet för den gren du kör för närvarande kommer att sluta den %{date}, vänligen överväg att uppdatera.
       release_notes: Ändringslogg
+      supported_until: Support slutar %{date}
       title: Tillgängliga uppdateringar
       type: Typ
       types:
         major: Större release
         minor: Mindre release
         patch: Patch release — buggfixar och enkla att tillämpa ändringar
+      unsupported_branch: Den gren du kör för närvarande stöds inte, vänligen uppdatera så snart som möjligt.
+      unsupported_since: Stöds inte sedan %{date}
       version: Version
     statuses:
       account: Författare
@@ -1096,7 +1205,7 @@ sv:
         confirm_allow_account: Är du säker på att du vill tillåta valda konton?
         confirm_disallow: Är du säker på att du vill förbjuda valda statusar?
         confirm_disallow_account: Är du säker på att du vill förbjuda valda konton?
-        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoriseras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
+        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoritmarkeras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
         disallow: Tillåt inte inlägg
         disallow_account: Tillåt inte författare
         no_status_selected: Inga trendande inlägg ändrades eftersom inga valdes
@@ -1130,6 +1239,7 @@ sv:
           other: Använd av %{count} personer under den senaste veckan
       title: Rekommendationer & Trender
       trending: Trendande
+    update_available: Uppdatering tillgänglig
     username_blocks:
       add_new: Lägg till ny
       block_registrations: Registrerade blockeringar
@@ -1179,6 +1289,15 @@ sv:
     auto_close_registrations:
       body: På grund av brist på moderatoraktivitet har registreringar på %{instance} automatiskt bytts till att kräva manuell granskning, för att förhindra att %{instance} används som plattform för potentiella dåliga aktörer. Du kan när som helst byta tillbaka den till öppna registreringar.
       subject: Registreringar för %{instance} har automatiskt bytts till att kräva godkännande
+    end_of_support_out_of_support_warning:
+      body: Mastodon-versionen som används på din server stöds inte längre. Vi rekommenderar att du uppdaterar så snart som möjligt!
+      subject: Mastodon %{branch} som används på %{instance} stöds inte längre!
+    end_of_support_three_months_warning:
+      body: Mastodon-versionen som för närvarande används på din server kommer att sluta att stödjas om 3 månader. Du kanske vill uppdatera till en nyare gren i förväg.
+      subject: Stödet för Mastodon %{branch} som används på %{instance} upphör om 3 månader.
+    end_of_support_two_weeks_warning:
+      body: Mastodon-versionen som används på din server kommer att sluta att stödjas om 2 veckor. Vi rekommenderar att du uppdaterar till en nyare gren i förväg.
+      subject: Stödet för Mastodon %{branch} som används på %{instance} upphör om 2 veckor.
     new_appeal:
       actions:
         delete_statuses: att radera deras inlägg
@@ -1224,7 +1343,7 @@ sv:
     advanced_settings: Avancerade inställningar
     animations_and_accessibility: Animationer och tillgänglighet
     boosting_preferences: Boostinställningar
-    boosting_preferences_info_html: "<strong>Tips:</strong> Oavsett inställningar kommer <kbd>Skifttangenten</kbd> + <kbd>Klick</kbd> på %{icon} boostikonen att boosta omedelbart."
+    boosting_preferences_info_html: "<strong>Tips:</strong> Oavsett inställningar kommer <kbd>Skift</kbd> + <kbd>Klick</kbd> på %{icon} Boosta-ikonen att boosta direkt."
     discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
@@ -1419,6 +1538,7 @@ sv:
       your_appeal_rejected: Din överklagan har avvisats
   edit_profile:
     other: Övrigt
+    privacy_redesign_body: Valet att visa dina följare och vilka du följer görs nu direkt från din profil.
     redesign_body: Profilredigering kan nu nås direkt från profilsidan.
     redesign_button: Gå dit
     redesign_title: Det finns en ny profilredigeringsupplevelse
@@ -1451,7 +1571,9 @@ sv:
         success_html: Du kommer nu att börja få e-postmeddelanden när %{name} publicerar nya inlägg. Lägg till %{sender} till dina kontakter så att dessa inlägg inte hamnar i din skräppostmapp.
         title: Du är registrerad
         unsubscribe: Avprenumerera
+    disabled: Inaktiverad
     inactive: Inaktiv
+    no_access: Ingen åtkomst
     status: Status
     subscribers: Prenumeranter
   emoji_styles:
@@ -1487,7 +1609,9 @@ sv:
     blocks: Du blockerar
     bookmarks: Bokmärken
     csv: CSV
+    custom_filters: Filter
     domain_blocks: Domän-blockeringar
+    json: JSON
     lists: Listor
     mutes: Du tystar
     storage: Medialagring
@@ -1565,7 +1689,9 @@ sv:
       empty: Tom CSV-fil
       incompatible_type: Inkompatibel med den valda importtypen
       invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
+      invalid_json_file: 'Ogiltig JSON-fil. Fel: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
+      status_not_found_warning: Några av dina filter döljer specifika inlägg som inte är kända av denna server. Dessa inlägg filtreras inte automatiskt om de upptäcks senare av servern.
       too_large: Filen är för stor
     failures: Misslyckanden
     imported: Importerade
@@ -1582,6 +1708,9 @@ sv:
       bookmarks_html:
         one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
         other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Du är på väg att <strong>ersätta dina filter</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{count} filter</strong> kommer att läggas till nya filter.
+        other: Du är på väg att <strong>ersätta dina filter</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{count} filter</strong> kommer att läggas till i nya filter.
       domain_blocking_html:
         one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} domän</strong> från <strong>%{filename}</strong>.
         other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} domäner</strong> från <strong>%{filename}</strong>.
@@ -1601,6 +1730,9 @@ sv:
       bookmarks_html:
         one: Du håller på att lägga upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong> till dina <strong>bokmärken</strong>.
         other: Du håller på att lägga upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong> till dina <strong>bokmärken</strong>.
+      custom_filters_html:
+        one: Du är på väg att lägga till upp till <strong>%{count} filter</strong> från <strong>%{filename}</strong> till dina <strong>filter</strong>.
+        other: Du är på väg att lägga till upp till <strong>%{count} filter</strong> från <strong>%{filename}</strong> till dina <strong>filter</strong>.
       domain_blocking_html:
         one: Du är på väg att <strong>blockera</strong> upp till <strong>%{count} domän</strong> från <strong>%{filename}</strong>.
         other: Du är på väg att <strong>blockera</strong> upp till <strong>%{count} domäner</strong> från <strong>%{filename}</strong>.
@@ -1637,6 +1769,7 @@ sv:
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
+      custom_filters: Filter
       domain_blocking: Domänblockeringslista
       following: Lista av följare
       lists: Listor
@@ -1689,7 +1822,7 @@ sv:
   media_attachments:
     validations:
       images_and_video: Det går inte att bifoga en video till ett inlägg som redan innehåller bilder
-      not_found: Media %{ids} hittades inte eller är redan anslutet till ett annat inlägg
+      not_found: Media %{ids} hittades inte eller har redan bifogats till ett annat inlägg
       not_ready: Kan inte bifoga filer som inte har behandlats färdigt. Försök igen om ett ögonblick!
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
@@ -1731,6 +1864,27 @@ sv:
     copy_account_note_text: 'Den här användaren flyttade från %{acct}, här var dina föregående anteckningar om dem:'
   navigation:
     toggle_menu: Växla meny
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} lade till dig i en samling"
+    admin_report:
+      title_html: "%{name} rapporterade %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} och en annan anmälde sig"
+        other: "%{name} och %{count} andra anmälde sig"
+      title_html: "%{name} registrerade sig"
+    collection_update:
+      title_html: "%{name} uppdaterade en samling du är med i"
+    generic:
+      sign_in: Logga in på Mastodons webbapp
+      summary_html: Du är på en app som inte stöder den senaste versionen av Mastodon. %{link} för full funktionalitet.
+    moderation_warning:
+      summary_html: Du är på en app som inte stöder den senaste versionen av Mastodon. %{link}.
+      title: Du har fått en moderationsvarning.
+    severed_relationships:
+      summary_html: En administratör från %{from} har stängt av %{target}, vilket innebär att du inte längre kan ta emot uppdateringar från dem eller interagera med dem. %{link} för att hämta en lista över förlorade relationer.
+      title: Förlorade kontakter med %{name}
   notification_mailer:
     admin:
       report:
@@ -1779,6 +1933,7 @@ sv:
     administration_emails: E-postaviseringar från administratör
     email_events: Händelser vid e-postnotiser
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
+    moderation_emails: E-postaviseringar från moderator
   number:
     human:
       decimal_units:
@@ -1802,7 +1957,7 @@ sv:
     next: Nästa
     older: Äldre
     prev: Tidigare
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Du har redan röstat på den här undersökningen
@@ -1936,7 +2091,7 @@ sv:
     delete: Konto radering
     development: Utveckling
     edit_profile: Redigera profil
-    export: Export
+    export: Exportera
     featured_tags: Utvalda hashtaggar
     import: Importera
     import_and_export: Import och export
@@ -2018,7 +2173,7 @@ sv:
     ignore_favs: Bortse från favoriter
     ignore_reblogs: Ignorera boostar
     interaction_exceptions: Undantag baserat på interaktioner
-    interaction_exceptions_explanation: Inlägg som tillfälligt överskrider favorit- eller höjningströskeln kan behållas även om de senare minskas.
+    interaction_exceptions_explanation: Inlägg som tillfälligt överskrider favorit- eller boosttröskeln kan behållas även om de senare minskas.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med mediebilagor
@@ -2097,11 +2252,11 @@ sv:
       user:
         confirmation_html: Du får inte längre %{type} från Mastodon på %{domain}.
     notification_emails:
-      favourite: aviseringsmejl för favoriserade inlägg
+      favourite: aviseringsmejl om favoriter
       follow: aviseringsmejl för följda inlägg
       follow_request: aviseringsmejl för följdförfrågningar
       mention: aviseringsmejl för inlägg där du nämns
-      reblog: aviseringsmejl för förhöjda inlägg
+      reblog: aviseringsmejl om boostar
     show:
       action: Avprenumerera
       email_subscription:

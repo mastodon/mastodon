@@ -11,7 +11,7 @@ import type {
 import { unescapeHTML } from 'mastodon/utils/html';
 
 import { CustomEmojiFactory } from './custom_emoji';
-import type { CustomEmoji } from './custom_emoji';
+import type { CustomEmoji, CustomEmojiShape } from './custom_emoji';
 
 // AccountField
 export interface AccountFieldShape extends Required<ApiAccountFieldJSON> {
@@ -55,6 +55,14 @@ export interface AccountShape extends Required<
   moved: string | null;
   url: string;
 }
+export type AccountShapeFull = Omit<
+  AccountShape,
+  'emojis' | 'fields' | 'roles'
+> & {
+  emojis: CustomEmojiShape[];
+  fields: AccountFieldShape[];
+  roles: AccountRoleShape[];
+};
 
 export type Account = RecordOf<AccountShape>;
 

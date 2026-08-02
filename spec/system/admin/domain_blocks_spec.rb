@@ -66,7 +66,7 @@ RSpec.describe 'blocking domains through the moderation interface' do
       submit_domain_block('example.com', 'noop')
 
       expect(page)
-        .to have_content(/You have already imposed stricter limits on example.com/)
+        .to have_text(/You have already imposed stricter limits on example.com/)
     end
   end
 
@@ -77,7 +77,7 @@ RSpec.describe 'blocking domains through the moderation interface' do
       submit_domain_block('', 'noop')
 
       expect(page)
-        .to have_content(/review the error below/)
+        .to have_text(/review the error below/)
     end
   end
 

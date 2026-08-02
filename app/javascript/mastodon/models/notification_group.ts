@@ -91,11 +91,11 @@ export interface NotificationGroupAdminReport extends BaseNotification<'admin.re
 
 type Collection = ApiCollectionJSON;
 export interface NotificationGroupAddedToCollection extends BaseNotification<'added_to_collection'> {
-  collection: Collection;
+  collection: Collection | null;
 }
 
 export interface NotificationGroupCollectionUpdate extends BaseNotification<'collection_update'> {
-  collection: Collection;
+  collection: Collection | null;
 }
 
 export type NotificationGroup =

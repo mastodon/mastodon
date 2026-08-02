@@ -1,0 +1,84 @@
+- content_for :page_title do
+  = t('.title', name: display_name(@account))
+
+- content_for :heading do
+  .content__heading__row
+    .heading-with-lead
+      %h1= display_name(@account)
+      %p.lead= acct(@account)
+    .content__heading__actions
+      = link_to t('.view_account'), admin_account_path(@account.id), class: 'button button-secondary'
+      - if @account.user_can?(:manage_email_subscriptions)
+        - if @account.user_email_subscriptions_enabled?
+          = link_to t('.disable_feature'),
+                    disable_admin_email_subscriptions_account_path(@account.id),
+                    class: 'button button-secondary button--destructive',
+                    data: { method: 'post', confirm: t('.confirm_disable_feature', name: display_name(@account)) }
+        - else
+          = link_to t('.enable_feature'), enable_admin_email_subscriptions_account_path(@account.id), class: 'button button-secondary', data: { method: 'post' }
+
+%dl.metadata
+  %div
+    %dt= t('email_subscriptions.status')
+    %dd= render 'admin/email_subscriptions/status', account: @account
+  %div
+    %dt= t('email_subscriptions.subscribers')
+    %dd= number_with_delimiter @email_subscriptions_count
+  %div
+    %dt= t('admin.email_subscriptions.accounts.last_email')
+    %dd
+      - if @account.last_status_at.present?
+        = l(@account.last_status_at)
+      - else
+        \-
+
+- if !@account.user_email_subscriptions_enabled?
+  %aside.callout.variantError
+    = material_symbol 'info'
+    .content
+      .body
+        %p= t('.disabled')
+- elsif @account.user_email_subscriptions_enabled? && !@account.user_can?(:manage_email_subscriptions)
+  %aside.callout.variantError
+    = material_symbol 'info'
+    .content
+      .body
+        %p= t('.no_access_html', roles_path: admin_roles_path)
+- else
+  %aside.callout.variantWarning
+    = material_symbol 'warning'
+    .content
+      .body
+        %p= t('.consent')
+
+.table-wrapper
+  - if @email_subscriptions.empty?
+    .empty-state
+      = emptyphaunt
+
+      .empty-state__title-and-description
+        .empty-state__title-and-description__title
+          = t('.empty.no_subscribers_yet')
+        .empty-state__title-and-description__description
+          = t('.empty.hint')
+  - else
+    %table.table
+      %thead
+        %tr
+          %th= t('.email')
+          %th= t('.date')
+          %th
+      %tbody
+        - @email_subscriptions.each do |email_subscription|
+          %tr
+            %td.valign-middle
+              = email_subscription.email
+            %td.valign-middle
+              = l(email_subscription.created_at)
+            %td.valign-middle.align-end
+              = link_to material_symbol('delete'),
+                        admin_email_subscription_path(email_subscription),
+                        data: { method: 'delete', confirm: t('.confirm_remove_subscriber', email: email_subscription.email, name: display_name(@account)) },
+                        class: 'table-icon-link table-icon-link--danger'
+
+= paginate @email_subscriptions

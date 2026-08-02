@@ -19,7 +19,6 @@ RSpec.describe InstanceModerationNote do
 
     it { is_expected.to allow_value('non-existent.example').for(:domain) }
     it { is_expected.to validate_length_of(:content).is_at_most(described_class::CONTENT_SIZE_LIMIT) }
-    it { is_expected.to validate_presence_of(:content) }
-    it { is_expected.to validate_presence_of(:domain) }
+    it { is_expected.to validate_presence_of(:content, :domain) }
   end
 end

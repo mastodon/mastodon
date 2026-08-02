@@ -15,6 +15,8 @@
 - [FEP-5feb: Search indexing consent for actors](https://codeberg.org/fediverse/fep/src/branch/main/fep/5feb/fep-5feb.md)
 - [FEP-044f: Consent-respecting quote posts](https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md)
 - [FEP-3b86: Activity Intents](https://codeberg.org/fediverse/fep/src/branch/main/fep/3b86/fep-3b86.md): offer handlers for `Object` and `Create` (with support for the `content` parameter only), has support for the `Follow`, `Announce`, `Like` and `Object` intents
+- [FEP-521a: Representing actor's public keys](https://codeberg.org/fediverse/fep/src/branch/main/fep/521a/fep-521a.md): starting with Mastodon 4.7, we support RSA and Ed25519 keys exposed through FEP-521a, but we do not expose our keys this way
+- [FEP-8b32: Object Integrity Proofs](https://codeberg.org/fediverse/fep/src/branch/main/fep/8b32/fep-8b32.md): starting with Mastodon 4.7, we support top-level Object Integrity Proofs using the `eddsa-jcs-2022` cryptosuite, but we do not emit any Object Integrity Proof
 
 ## ActivityPub in Mastodon
 
@@ -39,12 +41,35 @@ In order to authenticate activities, Mastodon relies on HTTP Signatures, signing
 
 Mastodon requires all `POST` requests to be signed, and MAY require `GET` requests to be signed, depending on the configuration of the Mastodon server.
 
+Before Mastodon v4.5.0, Mastodon only supported HTTP Signatures such as defined in the [draft-cavage-http-signatures-12](https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures) specification draft.
+
+Starting with Mastodon v4.5.0, Mastodon supports requests signed using HTTP Message Signatures (RFC9421) with the [`rsa-v1_5-sha256` algorithm](https://datatracker.ietf.org/doc/html/rfc9421#name-rsassa-pkcs1-v1_5-using-sha) in addition to the old `draft-cavage-http-signatures-12` draft. Mastodon v4.7 also supports verifying signatures using the [`ed25519` algorithm](https://datatracker.ietf.org/doc/html/rfc9421#name-eddsa-using-curve-edwards25), and uses RFC 9421 in outbound requests when `draft-cavage-http-signatures-12` requests are met with a 400 or 401 error code.
+
+| Mastodon version        | Support for `draft-cavage-http-signatures-12` | Support for RFC 9421                                                              |
+| ----------------------- | --------------------------------------------- | --------------------------------------------------------------------------------- |
+| v4.4.0 (EOL 2026-12-17) | `rsa-sha256` inbound and outbound             | No                                                                                |
+| v4.5.0                  | `rsa-sha256` inbound and outbound             | `rsa-v1_5-sha256` inbound                                                         |
+| v4.6.0                  | `rsa-sha256` inbound and outbound             | `rsa-v1_5-sha256` inbound                                                         |
+| v4.7.0 (unreleased)     | `rsa-sha256` inbound and outbound             | `rsa-v1_5-sha256` and `ed25519` inbound, `rsa-v1_5-sha256` outbound as a fallback |
+
 - [HTTP Signatures information and examples](https://docs.joinmastodon.org/spec/security/#http)
+- [HTTP Message Signatures information and examples](https://docs.joinmastodon.org/spec/security/#http-message-signatures)
 
 ### Optional extensions
 
 - [Linked-Data Signatures](https://docs.joinmastodon.org/spec/security/#ld)
 - [Bearcaps](https://docs.joinmastodon.org/spec/bearcaps/)
+
+#### Embedded signatures
+
+Mastodon supports embedded signatures through either [Linked-Data Signatures](https://docs.joinmastodon.org/spec/security/#ld) or [Object Integrity Proofs](https://docs.joinmastodon.org/spec/security/#fep-8b32).
+
+| Mastodon version        | Support for Linked Data Signatures      | Support FEP-8b32: Object Integrity Proofs                |
+| ----------------------- | --------------------------------------- | -------------------------------------------------------- |
+| v4.4.0 (EOL 2026-12-17) | `RsaSignature2017` inbound and outbound | No                                                       |
+| v4.5.0                  | `RsaSignature2017` inbound and outbound | No                                                       |
+| v4.6.0                  | `RsaSignature2017` inbound and outbound | No                                                       |
+| v4.7.0 (unreleased)     | `RsaSignature2017` inbound and outbound | top-level `eddsa-jcs-2022` or `mldsa44-jcs-2024` inbound |
 
 ### Additional documentation
 

@@ -30,7 +30,7 @@ export const SpoilerButton: React.FC<Props> = ({
     action = (
       <FormattedMessage id='status.media.open' defaultMessage='Click to open' />
     );
-  } else if (matchedFilters) {
+  } else if (matchedFilters?.length) {
     warning = (
       <FormattedMessage
         id='filter_warning.matches_filter'
@@ -80,7 +80,7 @@ export const SpoilerButton: React.FC<Props> = ({
         disabled={uncached}
       >
         <span className='spoiler-button__overlay__label'>
-          {warning}
+          <span className='spoiler-button__overlay__text'>{warning}</span>
           <span className='spoiler-button__overlay__action'>{action}</span>
         </span>
       </button>

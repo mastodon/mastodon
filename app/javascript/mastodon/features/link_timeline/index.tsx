@@ -1,7 +1,8 @@
 import { useRef, useEffect, useCallback } from 'react';
 
-import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import { expandLinkTimeline } from 'mastodon/actions/timelines';

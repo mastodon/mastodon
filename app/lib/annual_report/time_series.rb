@@ -23,12 +23,6 @@ class AnnualReport::TimeSeries < AnnualReport::Source
     @followers_this_year ||= @account.passive_relationships.where(created_in_year, @year).count
   end
 
-  def date_part_month
-    Arel.sql(<<~SQL.squish)
-      DATE_PART('month', created_at)::int
-    SQL
-  end
-
   def created_in_year
     Arel.sql(<<~SQL.squish)
       DATE_PART('year', created_at) = ?

@@ -4,6 +4,7 @@ hu:
     about_mastodon_html: 'A jövő közösségi hálózata: Hirdetések és céges megfigyelés nélkül, etikus dizájnnal és decentralizációval! Legyél a saját adataid ura a Mastodonnal!'
     contact_missing: Nincs megadva
     contact_unavailable: N/A
+    default_thumbnail_description: Két mosolygó rajzfilmes kinézetű masztodon (úgy néznek ki mint az elefántok) papírrepülőt dob egymásnak. Kék ég és lebegő bolygók veszik őket körbe, a bolygókon fák és további masztodonok vannak.
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
@@ -288,7 +289,11 @@ hu:
         enable_relay_html: "%{name} engedélyezte az átirányítót: %{target}"
         enable_sign_in_token_auth_user_html: "%{name} engedélyezte a tokenes e-mail-hitelesítést %{target} felhasználóra"
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
+        listable_tag_html: javasolható
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
+        not_listable_tag_html: nem lesz javasolva
+        not_trendable_tag_html: nem fog megjelenni a trendek alatt
+        not_usable_tag_html: nem használható
         promote_user_html: "%{name} előléptette %{target} felhasználót"
         publish_terms_of_service_html: "%{name} frissítette a felhasználási feltételeket"
         reject_appeal_html: "%{name} visszautasított egy fellebbezést %{target} moderátori döntéséről"
@@ -301,6 +306,7 @@ hu:
         sensitive_account_html: "%{name} kényesnek jelölte %{target} médiatartalmát"
         silence_account_html: "%{name} lenémította %{target} felhasználói fiókját"
         suspend_account_html: "%{name} felfüggesztette %{target} felhasználói fiókját"
+        trendable_tag_html: megjelenhet a trendek alatt
         unassigned_report_html: "%{name} törölte a %{target} bejelentés hozzárendelését"
         unblock_email_account_html: "%{name} feloldotta a(z) %{target} e-mail-cím tiltását"
         unsensitive_account_html: "%{name} levette a kényesnek jelölést %{target} médiatartalmáról"
@@ -313,8 +319,10 @@ hu:
         update_ip_block_html: "%{name} módosította a(z) %{target} IP-címre vonatkozó szabályt"
         update_report_html: "%{name} frissítette a %{target} bejelentést"
         update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
+        update_tag_html: "%{name} erre változtatta a(z) %{target} beállításait: "
         update_user_role_html: "%{name} módosította a(z) %{target} szerepkört"
         update_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt frissített: %{target}"
+        usable_tag_html: használható;
       deleted_account: törölt fiók
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
@@ -345,12 +353,20 @@ hu:
       updated_msg: A közlemény sikeresen frissítve!
     collections:
       accounts: Fiókok
+      back_to_account: Vissza a fiók oldalára
+      back_to_report: Vissza a bejelentés oldalra
+      batch:
+        add_to_report: 'Hozzáadás ehhez a jelentéshez: #%{id}'
+        remove_from_report: Eltávolítás a bejelentésből
+        report: Jelentés
       collection_title: "%{name} gyűjteménye"
       contents: Tartalom
+      no_collection_selected: Nem változott meg egy gyűjtemény sem, mert semmi sem volt kiválasztva
       number_of_accounts:
         one: 1 fiók
         other: "%{count} fiók"
       open: Megnyitás
+      title: Fiók gyűjteményei – @%{name}
       view_publicly: Megtekintés nyilvánosan
     critical_update_pending: Függőben levő kritikus frissítés
     custom_emojis:
@@ -484,9 +500,89 @@ hu:
         title: Új e-mail-domain tiltása
       no_email_domain_block_selected: Nem változott meg egy domaintiltás sem, mert semmi sem volt kiválasztva
       not_permitted: Nem engedélyezett
+      reset: Visszaállítás
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
+      search: Keresés
       title: Tiltott e-mail-domainek
+    email_subscriptions:
+      accounts:
+        account: Fiók
+        empty:
+          hint: Egyik fióknak sincs feliratkozója.
+          no_lists_yet: Még nincsenek listák
+        last_email: Legutóbbi e-mail
+        lead: A fiókok, melyek bekapcsolták a funkciót, és vannak feliratkozóik, itt fognak megjelenni alább.
+        show:
+          confirm_disable_feature: Letiltod %{name} e-mailes hírleveleit? Az e-mailek ettől kezdve nem lesznek elküldve ennek a fióknak. A felhasználó továbbra is újra be tudja kapcsolni a funkciót a fiókbeállításaiban. A funkció elérésének végleges eltávolításához szerkeszd a fiók jogosultságait a Szerepekben.
+          confirm_remove_subscriber: 'A(z) %{email} már nem fog leveleket kapni a következőtől: %{name}. Ez a művelet nem vonható vissza.'
+          consent: A feliratkozók csak abba egyeztek bele, hogy levélben megkapják a bejegyzéseket. Ezt a listát ne használd más célokra.
+          date: Regisztráció dátuma
+          disable_feature: Funkció kikapcsolása
+          disabled: A funkció ki lett kapcsolva, és az e-mailek már nem kerülnek elküldésre erre a listára.
+          email: E-mail-cím
+          empty:
+            hint: Még senki sem iratkozott fel erre a fiókra.
+            no_subscribers_yet: Még nincsenek feliratkozók
+          enable_feature: Funkció bekapcsolása
+          no_access_html: A fióknak már nincs meg a szükséges jogosultsága a funkció bekapcsolásához. Módosítsd a <a href="%{roles_path}">Szerepekben</a>.
+          title: "%{name} e-mailes hírlevelei"
+          view_account: Fiók megtekintése
+        status: Állapot
+        subscribers: Feliratkozók
+        title: Levelezőlisták
+      additional_footer_texts:
+        show:
+          title: További láblécszöveg
+      compliance_settings:
+        additional_footer_text:
+          action: Kezelés
+          hint: Nem kötelező szöveg, amely csak a hírlevelek láblécében jelenik meg
+          title: További láblécszöveg
+        lead: Az e-mailes hírlevelek marketinglevélnek számíthatnak a joghatóságodtól függően.
+        privacy_policy:
+          action: Kezelés
+          hint: Ez a nyilatkozat minden egyes levél láblécében be lesz hivatkozva
+          title: Adatvédelmi szabályzat
+        title: Megfelelőségi beállítások
+      danger_zone:
+        disable_feature:
+          action: Kikapcsolás
+          hint: Funkció kikapcsolása az összes fióknál
+          title: Funkció kikapcsolása
+        erase_all_data:
+          action: Adatok törlése
+          hint: Véglegesen törli az összes e-mailt az összes levelezőlistában
+          title: Összes adat törlése
+        title: Veszélyzóna
+      disabled_msg: Az e-mail-feliratkozások sikeresen ki lettek kapcsolva.
+      index:
+        disabled:
+          cannot_be_enabled: A műszaki szolgáltató nem kapcsolta be ezt a funkciót a kiszolgálód számára.
+          description: A funkció lehetővé teszi, hogy a megadott fiókok hozzáadjanak egy kisalkalmazást a profiljukhoz, mellyel a Mastodon-fiók nélküli látogatók e-mailben megkaphatják a bejegyzéseiket.
+          get_started: Első lépések
+        lead: Lehetővé teszi, hogy a látogatók e-mailben kapják meg a kiszolgáló dedikált fiókjainak bejegyzéseit.
+        title: E-mailes hírlevelek
+      purged_msg: Az összes e-mail-feliratkozási adat törlése folyamatban van.
+      roles:
+        accounts: Fiókok
+        edit_role: Szerep szerkesztése
+        empty:
+          hint: Senkinek sincs engedélye a funkció használatához.
+          no_roles_added: Nincsenek szerepek hozzáadva
+        lead: A következő szereppel rendelkező fiókok kapcsolhatják be ezt a funkciót a profiljukban.
+        manage_roles: Szerepek kezelése
+        role_name: Szerep neve
+        title: Szerepek
+      setups:
+        show:
+          enable_feature: Funkció bekapcsolása
+          important_information: Fontos információk
+          list:
+            1_permission_explanation: Ha ez a funkció be van kapcsolva, akkor a kijelölt engedéllyel rendelkező fiókok e-mail-gyűjtési űrlapot adhatnak hozzá a profiljukhoz.
+            2_feature_explanation: Amikor a látogatók feliratkoznak egy fiók profiloldalán, és megerősítik a feliratkozásukat, akkor e-mailben értesítést kapnak arról, ha a fiók új nyilvános bejegyzést tesz közzé.
+            3_privacy_policy_warning: A kiszolgálóadminok hozzá fognak férni a gyűjtött személyazonosításra alkalmas információkhoz (e-mail-címek). Ezért a funkció használata előtt frissíteni kell a kiszolgáló Adatvédelmi szabályzatát és a Felhasználási feltételeket.
+            4_cost_warning: A levelek költséget jelenthetnek a kiszolgálótól függően. A bekapcsolása előtt beszélj a szolgáltatóval, mert a funkció drasztikusan növelheti a kiszolgálóról küldött e-mailek számát.
     export_domain_allows:
       new:
         title: Domain engedélyezések importálása
@@ -641,6 +737,8 @@ hu:
       new:
         title: Új IP szabály létrehozása
       no_ip_block_selected: Nem változott meg egy IP-szabály sem, mert semmi sem volt kiválasztva
+      reset: Visszaállítás
+      search: Keresés
       title: IP szabály
     relationships:
       title: "%{acct} kapcsolatai"
@@ -671,7 +769,7 @@ hu:
       action_log: Audit napló
       action_taken_by: 'Kezelte:'
       actions:
-        delete_description_html: A bejelentett bejegyzéseket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
+        delete_description_html: A bejelentett bejegyzéseket vagy gyűjteményeket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
         resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel vétséget, és bezárjuk a bejelentést.
@@ -698,7 +796,7 @@ hu:
       confirm: Megerősítés
       confirm_action: Moderációs művelet jóváhagyása @%{acct} fiókon
       created_at: Jelentve
-      delete_and_resolve: Bejegyzések törlése
+      delete_and_resolve: Tartalom törlése
       forwarded: Továbbítva
       forwarded_replies_explanation: Ez a jelentés egy távoli flehasználótól származik, és távoli tartalomról szól. Azért lett neked továbbítva, mert a jelentett tartalom az egyik felhasználódnak küldött válasz.
       forwarded_to: 'Továbbítva ide: %{domain}'
@@ -792,7 +890,7 @@ hu:
         manage_custom_emojis: Egyedi emodzsik kezelése
         manage_custom_emojis_description: Lehetővé teszi a felhasználó számára, hogy a kiszolgáló egyéni emodzsiait kezelje
         manage_email_subscriptions: E-mail-feliratkozások kezelése
-        manage_email_subscriptions_description: Engedélyezés, hogy a felhasználók e-maillel feliratkozzanak az ilyen jogosultságú felhasználókra
+        manage_email_subscriptions_description: Engedélyezés, hogy az ezzel az engedéllyel rendelkező felhasználók bekapcsolhassák a hírlevél funkciót a fiókjukhoz
         manage_federation: Föderáció kezelése
         manage_federation_description: Lehetővé teszi a felhasználó számára, hogy más domainnekkel való föderációt engedélyezzen vagy letiltson, illetve szabályozza a kézbesítést
         manage_invites: Meghívások kezelése
@@ -881,10 +979,16 @@ hu:
           disabled: Konkrét felhasználói szerepkör megkövetelése
           public: Mindenki
       landing_page:
+        hints:
+          about_html: Egy oldal a leírással, névjegyinformációkkal, szabályokkal és a kiszolgálóval kapcsolatos egyéb információkkal.
+          local_feed_html: Élő hírfolyam a kiszolgálón lévő felhasználók legfrissebb bejegyzéseivel.
+          overview_html: Egy oldal, amely a kiszolgáló leírása mellett a felhasználók legfrissebb, ezen a kiszolgálón közzétett bejegyzései is megjelennek.
+          trends_html: Egy oldal, amely a kiszolgálón épp népszerű tartalmakat mutatja be.
         values:
-          about: Névjegy
-          local_feed: Helyi idővonal
-          trends: Trendek
+          about: Névjegy oldal
+          local_feed: Helyi élő hírfolyam
+          overview: Áttekintés
+          trends: Felkapott
       registrations:
         moderation_recommandation: Győződj meg arról, hogy megfelelő és gyors reagálású moderátor csapatod van, mielőtt mindenki számára megnyitod a regisztrációt!
         preamble: Szabályozd, hogy ki hozhat létre fiókot a kiszolgálón.
@@ -904,17 +1008,22 @@ hu:
     site_uploads:
       delete: Feltöltött fájl törlése
       destroyed_msg: Sikeresen töröltük a site feltöltését!
+    skip_to_content: Ugrás a tartalomhoz
     software_updates:
       critical_update: Kritikus - frissíts gyorsan
       description: Javasolt, hogy a Mastodon telepítésed naprakész legyen, hogy kihasználhasd a legújabb javításokat és funkciókat. Ezenkívül néha különösen fontos a Mastodon időben történő frissítése a biztonsági problémák elkerülése érdekében. Ezen okok miatt a Mastodon 30 percenként ellenőrzi a frissítéseket és az e-mail-értesítési beállításoknak megfelelően értesítést küld.
       documentation_link: További információ
+      nearing_eol: 'A most futtatott ág támogatása ekkor lejár: %{date}, fontold meg a frissítést.'
       release_notes: Kiadási megjegyzések
+      supported_until: 'Támogatás vége: %{date}'
       title: Elérhető frissítések
       type: Típus
       types:
         major: Fő kiadás
         minor: Kisebb kiadás
         patch: Javító kiadás - hibajavítások és könnyen alkalmazható változtatások
+      unsupported_branch: A most futtatott ág támogatása lejárt, frissíts, amint lehetséges.
+      unsupported_since: 'Ettől kezdve nem támogatott: %{date}'
       version: Verzió
     statuses:
       account: Szerző
@@ -1130,6 +1239,7 @@ hu:
           other: "%{count} ember használta a múlt héten"
       title: Ajánlások és trendek
       trending: Felkapott
+    update_available: Frissítés érhető el
     username_blocks:
       add_new: Új hozzáadása
       block_registrations: Regisztrációk blokkolása
@@ -1179,6 +1289,15 @@ hu:
     auto_close_registrations:
       body: A közelmúlt moderátori tevékenységének hiánya miatt a %{instance} regisztrációja automatikusan kézi ellenőrzést igénylőre váltott azért, hogy megakadályozzuk, hogy a %{instance} potenciálisan rossz szándékú szereplők számára szolgálhasson platformként. A nyílt regisztrációt bármikor visszakapcsolhatod.
       subject: "%{instance} regisztrációja automatikusan átállt jóváhagyást igénylőre"
+    end_of_support_out_of_support_warning:
+      body: A kiszogálón használt Mastodon-verzió már nem támogatott. Azt javasoljuk, hogy frissíts, amint lehetséges.
+      subject: A(z) %{instance} példányon használt Mastodon %{branch} ág már nem támogatott!
+    end_of_support_three_months_warning:
+      body: A most használt Mastodon-verzió 3 hónap múlva már nem lesz támogatott. Még időben frissíts újabb ágra.
+      subject: A(z) %{instance} példányon használt Mastodon %{branch} ág támogatása 3 hónap múlva lejár.
+    end_of_support_two_weeks_warning:
+      body: A kiszolgálón használt Mastodon-verzió 2 hét múlva már nem lesz támogatott. Azt javasoljuk, hogy még időben frissíts újabb ágra.
+      subject: A(z) %{instance} példányon használt Mastodon %{branch} ág támogatása 2 hét múlva lejár.
     new_appeal:
       actions:
         delete_statuses: bejegyzések törléséről
@@ -1419,6 +1538,7 @@ hu:
       your_appeal_rejected: A fellebbezésedet visszautasították
   edit_profile:
     other: Egyéb
+    privacy_redesign_body: A döntés, hogy megjeleníted-e a követettjeidet és követőidet, most már közvetlenül a profilodon tehető meg.
     redesign_body: A profil szerkesztése most már közvetlenül elérhető a profiloldalon.
     redesign_button: Ugrás oda
     redesign_title: Az új profilszerkesztési élmény
@@ -1451,7 +1571,9 @@ hu:
         success_html: Mostantól levelet fogsz kapni, ha %{name} új bejegyzést tesz közzé. Add hozzá a feladót (%{sender}) a névjegyeidhez, hogy ne kerüljön a Levélszemét mappádba.
         title: Feliratkoztál
         unsubscribe: Leiratkozás
+    disabled: Kikapcsolva
     inactive: Inaktív
+    no_access: Nincs hozzáférés
     status: Állapot
     subscribers: Feliratkozók
   emoji_styles:
@@ -1487,7 +1609,9 @@ hu:
     blocks: Tiltás
     bookmarks: Könyvjelző
     csv: CSV
+    custom_filters: Szűrők
     domain_blocks: Tiltott domain
+    json: JSON
     lists: Lista
     mutes: Némítás
     storage: Médiatároló
@@ -1565,7 +1689,9 @@ hu:
       empty: Üres CSV-fájl
       incompatible_type: Nem kompatibilis a kiválasztott importálási típussal
       invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
+      invalid_json_file: 'Érvénytelen JSON-fájl. Hiba: %{error}'
       over_rows_processing_limit: több mint %{count} sort tartalmaz
+      status_not_found_warning: A szűrőid olyan bejegyzéseket rejtenek el, melyeket ez a kiszolgáló nem ismer. Ezek a bejegyzések nem lesznek automatikusan kiszűrve, ha a kiszolgáló később felfedezi őket.
       too_large: A fájl túl nagy
     failures: Hibák
     imported: Importálva
@@ -1582,6 +1708,9 @@ hu:
       bookmarks_html:
         one: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{count} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
         other: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{count} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
+      custom_filters_html:
+        one: Arra készülsz, hogy <strong>lecseréld a szűrőidet</strong> a <strong>%{filename}</strong> tartalmára. Legfeljebb <strong>%{count} szűrő</strong> lesz hozzáadva az új szűrőkhöz.
+        other: Arra készülsz, hogy <strong>lecserád a szűrőidet</strong> a <strong>%{filename}</strong> tartalmára. Legfeljebb <strong>%{count} szűrő</strong> lesz hozzáadva az új szűrőkhöz.
       domain_blocking_html:
         one: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{count} domainre</strong> a következőből: <strong>%{filename}</strong>.'
         other: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{count} domainre</strong> a következőből: <strong>%{filename}</strong>.'
@@ -1601,6 +1730,9 @@ hu:
       bookmarks_html:
         one: 'Arra készülsz, hogy legfeljebb <strong>%{count} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
         other: 'Arra készülsz, hogy legfeljebb <strong>%{count} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
+      custom_filters_html:
+        one: Arra készülsz, hogy legfeljebb <strong>%{count} szűrőt</strong> adj hozzá a(z) <strong>%{filename}</strong> fájlból a <strong>szűrőidhöz</strong>.
+        other: Arra készülsz, hogy legfeljebb <strong>%{count} szűrőt</strong> adj hozzá a(z) <strong>%{filename}</strong> fájlból a <strong>szűrőidhöz</strong>.
       domain_blocking_html:
         one: 'Arra készülsz, hogy legfeljebb <strong>%{count} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
         other: 'Arra készülsz, hogy legfeljebb <strong>%{count} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
@@ -1637,6 +1769,7 @@ hu:
     types:
       blocking: Letiltottak listája
       bookmarks: Könyvjelzők
+      custom_filters: Szűrők
       domain_blocking: Letiltott domainek listája
       following: Követettjeid listája
       lists: Listák
@@ -1731,6 +1864,27 @@ hu:
     copy_account_note_text: 'Ez a fiók elköltözött innen: %{acct}, itt vannak az előző megjegyzéseid róla:'
   navigation:
     toggle_menu: Menü be/ki
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} hozzáadott egy gyűjteményhez"
+    admin_report:
+      title_html: "%{name} jelentette: %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} és még egy felhasználó feliratkozott"
+        other: "%{name} és még %{count} felhasználó feliratkozott"
+      title_html: "%{name} feliratkozott"
+    collection_update:
+      title_html: "%{name} frissített egy gyűjteményt, amelyben szerepelsz"
+    generic:
+      sign_in: Jelentkezz be a Mastodon webalkalmazásba
+      summary_html: Olyan alkalmazást használsz, amely nem támogatja a Mastodon legfrissebb verzióját. %{link} a teljes funkcionalitáshoz.
+    moderation_warning:
+      summary_html: Olyan alkalmazást használsz, amely nem támogatja a Mastodon legfrissebb verzióját. %{link}.
+      title: Moderációs figyelmeztetést kaptál.
+    severed_relationships:
+      summary_html: 'A(z) %{from} egy rendszergazdája felfüggesztette ezt: %{target}, ez azt jelenti, hogy többé nem kapsz értesítést onnan, és nem tudsz interakcióba lépni velük. %{link} az elveszett kapcsolatok felsorolásáért.'
+      title: 'Elvesztek a kapcsolatok vele: %{name}'
   notification_mailer:
     admin:
       report:
@@ -1779,6 +1933,7 @@ hu:
     administration_emails: Adminisztrátori e-mail-értesítések
     email_events: Az e-mail-értesítések eseményei
     email_events_hint: 'Válaszd ki azokat az eseményeket, melyekről értesítést szeretnél:'
+    moderation_emails: Moderátori e-mail-értesítések
   number:
     human:
       decimal_units:
@@ -1802,7 +1957,7 @@ hu:
     next: Következő
     older: Régebbi
     prev: Előző
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Ezen a szavazáson már voksoltál

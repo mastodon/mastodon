@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     resource :unsubscribe, only: [:show, :create], controller: :unsubscriptions
 
     namespace :auth do
+      resource :acceptance, only: [:create]
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create]
       post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
@@ -123,7 +124,7 @@ Rails.application.routes.draw do
   end
 
   scope path: 'ap', as: 'ap' do
-    resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
+    resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources, constraints: { id: /-?\d+/ } do
       resources :collections, only: [:show], constraints: { id: /\d+/ }
       resources :collection_items, only: [:show]
       resources :feature_authorizations, only: [:show], module: :activitypub
@@ -141,7 +142,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :collections, only: [:show]
+  resources :collections, only: [:show], constraints: { id: /\d+/ }
 
   resource :inbox, only: [:create], module: :activitypub
   resources :contexts, only: [:show], module: :activitypub, constraints: { id: /[0-9]+-[0-9]+/ } do
@@ -189,6 +190,7 @@ Rails.application.routes.draw do
   namespace :redirect do
     resources :accounts, only: :show
     resources :statuses, only: :show
+    resources :collections, only: :show
   end
 
   namespace :email_subscriptions do

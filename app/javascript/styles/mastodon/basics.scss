@@ -8,6 +8,14 @@ html {
     scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
   }
 
+  --font-body: mastodon-font-sans-serif, sans-serif;
+  --font-heading: Syne, sans-serif;
+  --font-monospace: mastodon-font-monospace, monospace;
+
+  &[data-redesign='true'] {
+    --font-body: Inter, sans-serif;
+  }
+
   --outline-focus-default: 2px solid var(--color-border-brand);
   --avatar-border-radius: 8px;
   --max-media-height-small: 460px;
@@ -45,7 +53,7 @@ html.has-modal {
 }
 
 body {
-  font-family: $font-sans-serif, sans-serif;
+  font-family: var(--font-body);
   background: var(--color-bg-primary);
   font-size: 13px;
   line-height: 18px;
@@ -73,7 +81,6 @@ body {
     // Fira Sans => Firefox OS
     // Droid Sans => Older Androids (<4.0)
     // Helvetica Neue => Older macOS <10.11
-    // $font-sans-serif => web-font (Roboto) fallback and newer Androids (>=4.0)
     font-family:
       system-ui,
       -apple-system,
@@ -85,7 +92,6 @@ body {
       'Fira Sans',
       'Droid Sans',
       'Helvetica Neue',
-      $font-sans-serif,
       sans-serif;
   }
 

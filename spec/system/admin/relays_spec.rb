@@ -13,8 +13,8 @@ RSpec.describe 'Admin Relays' do
         visit admin_relays_path
 
         expect(page)
-          .to have_content(I18n.t('admin.relays.title'))
-          .and have_content(relay.inbox_url)
+          .to have_text(I18n.t('admin.relays.title'))
+          .and have_text(relay.inbox_url)
       end
     end
 
@@ -25,21 +25,21 @@ RSpec.describe 'Admin Relays' do
         # Visit new page
         click_on I18n.t('admin.relays.setup')
         expect(page)
-          .to have_content(I18n.t('admin.relays.add_new'))
+          .to have_text(I18n.t('admin.relays.add_new'))
 
         # Invalid submission
         fill_in 'relay_inbox_url', with: ''
         expect { submit_form }
           .to_not change(Relay, :count)
         expect(page)
-          .to have_content(/errors below/)
+          .to have_text(/errors below/)
 
         # Valid submission
         fill_in 'relay_inbox_url', with: 'https://host.example/hooks/123'
         expect { submit_form }
           .to change(Relay, :count).by(1)
         expect(page)
-          .to have_content(I18n.t('admin.relays.title'))
+          .to have_text(I18n.t('admin.relays.title'))
       end
 
       def submit_form

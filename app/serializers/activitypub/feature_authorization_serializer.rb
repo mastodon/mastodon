@@ -3,6 +3,8 @@
 class ActivityPub::FeatureAuthorizationSerializer < ActivityPub::Serializer
   include RoutingHelper
 
+  context_extensions :feature_authorizations
+
   attributes :id, :type, :interacting_object, :interaction_target
 
   def id

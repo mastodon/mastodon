@@ -16,7 +16,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
     @json = fetch_resource(uri, false)
 
     raise Error, "Unable to fetch key JSON at #{uri}" if @json.nil?
-    raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?(@json) || (supported_security_context?(@json) && @json['owner'].present? && !actor_type?)
+    raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context_for_type?(@json)
     raise Error, "Unexpected object type for key #{uri}" unless expected_type?
     return keypair_from_actor_json(@json['id'], @json) if actor_type?
 
@@ -34,6 +34,15 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   private
+
+  def supported_context_for_type?(json)
+    case @json['type']
+    when 'Multikey'
+      equals_or_includes?(json['@context'], 'https://www.w3.org/ns/cid/v1')
+    else
+      supported_context?(json) || (supported_security_context?(@json) && @json['owner'].present? && !actor_type?)
+    end
+  end
 
   def keypair_from_actor_json(actor_uri, actor_json)
     actor = find_actor(actor_uri, actor_json)
@@ -65,11 +74,15 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def public_key?
-    @json['publicKeyPem'].present? && @json['owner'].present?
+    if @json['type'] == 'Multikey'
+      @json['publicKeyMultibase'].present? && @json['controller'].present?
+    else
+      @json['publicKeyPem'].present? && @json['owner'].present?
+    end
   end
 
   def owner_uri
-    @owner_uri ||= value_or_id(@json['owner'])
+    @owner_uri ||= @json['type'] == 'Multikey' ? value_or_id(@json['controller']) : value_or_id(@json['owner'])
   end
 
   def expected_owner_type?
@@ -77,6 +90,11 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def confirmed_owner?
-    value_or_id(@owner['publicKey']) == @json['id']
+    case @json['type']
+    when 'Multikey'
+      as_array(@owner['assertionMethod']).map { |value| value_or_id(value) }.include?(@json['id'])
+    else
+      as_array(@owner['publicKey']).map { |value| value_or_id(value) }.include?(@json['id'])
+    end
   end
 end

@@ -1,0 +1,78 @@
+@use '@/styles/mastodon/mixins';
+
+.menu {
+  @include mixins.elevation-1;
+
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2xs) 0;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+
+  &[data-elevation='2'] {
+    @include mixins.elevation-2;
+  }
+
+  > hr {
+    height: 1px;
+    background-color: var(--color-border-primary);
+    margin: var(--space-2xs) var(--space-sm);
+    border: none;
+  }
+}
+
+.menuItem {
+  @include mixins.type-body-compact;
+
+  --cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  cursor: var(--cursor);
+  transition:
+    background 200ms,
+    color 200ms;
+
+  label {
+    cursor: inherit;
+    font-weight: inherit;
+  }
+
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--color-bg-primary) 90%,
+      var(--color-bg-inverted)
+    );
+  }
+
+  &:active,
+  .menuItemActive {
+    background-color: var(--color-bg-inverted);
+    color: var(--color-text-inverted);
+  }
+
+  &:has(:disabled) {
+    --cursor: not-allowed;
+
+    background-color: var(--color-bg-primary);
+  }
+}
+
+.menuItemButton {
+  appearance: none;
+  background: none;
+  border: none;
+  width: 100%;
+}
+
+.menu > hr {
+  height: 1px;
+  background-color: var(--color-border-primary);
+  margin: var(--space-2xs) var(--space-sm);
+  border: none;
+  width: calc(100% - (2 * var(--space-sm)));
+}

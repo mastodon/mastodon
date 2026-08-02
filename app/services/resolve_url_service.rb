@@ -28,7 +28,7 @@ class ResolveURLService < BaseService
       status = FetchRemoteStatusService.new.call(resource_url, prefetched_body: body)
       authorize_with @on_behalf_of, status, :show? unless status.nil?
       status
-    elsif type == 'FeaturedCollection' && Mastodon::Feature.collections_enabled?
+    elsif type == 'FeaturedCollection'
       collection = ActivityPub::FetchRemoteFeaturedCollectionService.new.call(resource_url, prefetched_body: body)
       authorize_with @on_behalf_of, collection, :show? unless collection.nil?
       collection

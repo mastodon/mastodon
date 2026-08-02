@@ -26,6 +26,7 @@ export const AccountFieldActions: FC<{ id: string }> = ({ id }) => {
       openModal({
         modalType: 'ACCOUNT_EDIT_FIELD_EDIT',
         modalProps: { fieldKey: id },
+        ignoreFocus: true,
       }),
     );
   }, [dispatch, id]);

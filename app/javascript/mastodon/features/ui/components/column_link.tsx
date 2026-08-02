@@ -3,6 +3,7 @@ import { useRouteMatch, NavLink } from 'react-router-dom';
 
 import { Icon } from 'mastodon/components/icon';
 import type { IconProp } from 'mastodon/components/icon';
+import type { MastodonLocationDescriptor } from 'mastodon/components/router';
 
 export const ColumnLink: React.FC<{
   icon: React.ReactNode;
@@ -11,7 +12,7 @@ export const ColumnLink: React.FC<{
   activeIconComponent?: IconProp;
   isActive?: (match: unknown, location: { pathname: string }) => boolean;
   text: string;
-  to?: string;
+  to?: MastodonLocationDescriptor;
   href?: string;
   method?: string;
   badge?: React.ReactNode;
@@ -31,7 +32,9 @@ export const ColumnLink: React.FC<{
   transparent,
   ...other
 }) => {
-  const match = useRouteMatch(to ?? '');
+  const match = useRouteMatch(
+    (typeof to === 'string' ? to : to?.pathname) ?? '',
+  );
   const className = classNames('column-link', {
     'column-link--transparent': transparent,
   });

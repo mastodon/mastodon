@@ -4,6 +4,7 @@ nn:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig dataene dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
+    default_thumbnail_description: To smilande teikneseriemastodontar (som ser ut som elefantar) kastar eit papirfly til kvarandre. Dei er omgjevne av klårblå himmel og flytande planetar med tre og fleire mastodontar på.
     hosted_on: "%{domain} er vert for Mastodon"
     title: Om
   accounts:
@@ -288,7 +289,11 @@ nn:
         enable_relay_html: "%{name} skrudde på reléet %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverte e-post-token-autentisering for %{target}"
         enable_user_html: "%{name} aktiverte innlogging for brukaren %{target}"
+        listable_tag_html: kan bli føreslege
         memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
+        not_listable_tag_html: vil ikkje bli føreslege
+        not_trendable_tag_html: kjem ikkje til å syna under trendar
+        not_usable_tag_html: kan ikkje brukast
         promote_user_html: "%{name} fremja brukaren %{target}"
         publish_terms_of_service_html: "%{name} endra bruksvilkåra"
         reject_appeal_html: "%{name} avviste klagen frå %{target} på modereringa"
@@ -301,6 +306,7 @@ nn:
         sensitive_account_html: "%{name} markerte %{target} sitt media som ømtolig"
         silence_account_html: "%{name} avgrensa %{target} sin konto"
         suspend_account_html: "%{name} utviste %{target} sin konto"
+        trendable_tag_html: kan dukka opp under trendar
         unassigned_report_html: "%{name} løyste ein rapport %{target}"
         unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
         unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som ømtolig"
@@ -313,8 +319,10 @@ nn:
         update_ip_block_html: "%{name} endret regel for IP %{target}"
         update_report_html: "%{name} oppdaterte rapporten %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
+        update_tag_html: "%{name} endra innstillingane for %{target} til: "
         update_user_role_html: "%{name} endret %{target} -rolle"
         update_username_block_html: "%{name} oppdaterte regelen for brukarnamn som inneheld %{target}"
+        usable_tag_html: kan brukast;
       deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
@@ -345,12 +353,20 @@ nn:
       updated_msg: Du oppdaterte kunngjeringa.
     collections:
       accounts: Kontoar
+      back_to_account: Tilbake til kontosida
+      back_to_report: Tilbake til rapporteringssida
+      batch:
+        add_to_report: 'Legg til rapport #%{id}'
+        remove_from_report: Fjern frå rapport
+        report: Rapporter
       collection_title: Samling av %{name}
       contents: Innhald
+      no_collection_selected: Ingen samlingar var valde, så ingen vart endra
       number_of_accounts:
         one: 1 konto
         other: "%{count} kontoar"
       open: Opna
+      title: Kontosamlingar - @%{name}
       view_publicly: Vis offentleg
     critical_update_pending: Kritisk oppdatering ventar
     custom_emojis:
@@ -484,9 +500,89 @@ nn:
         title: Blokker nytt e-postdomene
       no_email_domain_block_selected: Blokkering av e-post-domene vart ikkje endra sidan ingen var valde
       not_permitted: Ikkje tillate
+      reset: Nullstill
       resolved_dns_records_hint_html: Domenenamnet gjer oppslag til desse MX-domena som til sist er ansvarlege for å motta e-post. Blokkering av eit MX-domene vil blokkere registreringar frå alle e-postadresser som bruker same MX-domene, sjølv om det synlege domenenamnet skulle vera noko anna. <strong>Pass på så du ikkje blokkerer dei store e-postleverandørane.</strong>
       resolved_through_html: Løyst gjennom %{domain}
+      search: Søk
       title: Blokkerte e-postdomene
+    email_subscriptions:
+      accounts:
+        account: Konto
+        empty:
+          hint: Ingen brukarkontoar har abonnentar enno.
+          no_lists_yet: Ingen lister enno
+        last_email: Siste epost
+        lead: Nedanfor vil du sjå brukarkontoar som har skrudd på dette og som har abonnentar.
+        show:
+          confirm_disable_feature: Vil du skru av epostbrev for %{name}? Då vil du ikkje lenger kunna senda ut epostbrev frå denne brukarkontoen. Brukaren vil framleis kunna skru på att funksjonen frå kontoinnstillingane. For å ta bort dette løyvet for alltid, må du redigera kontoløyva i Roller.
+          confirm_remove_subscriber: "%{email} vil ikkje lenger få epostar frå %{name}. Du kan ikkje angra dette."
+          consent: Abonnentane har berre godteke å få innlegga på epost. Ikkje bruk denne lista til andre føremål.
+          date: Dato for registrering
+          disable_feature: Skru av funksjonen
+          disabled: Funksjonen vart skrudd av, og det blir ikkje sendt ut epostar til denne lista lenger.
+          email: Epostadresse
+          empty:
+            hint: Ingen har abonnert på denne kontoen enno.
+            no_subscribers_yet: Ingen abonnentar enno
+          enable_feature: Skru på funksjonen
+          no_access_html: Denne kontoen har ikkje lenger lov til å skru på funksjonen. Du kan endra dette i <a href="%{roles_path}">Roller</a>.
+          title: Epostar frå %{name}
+          view_account: Sjå kontoen
+        status: Status
+        subscribers: Abonnentar
+        title: Epostlister
+      additional_footer_texts:
+        show:
+          title: Ekstra botntekst
+      compliance_settings:
+        additional_footer_text:
+          action: Administrer
+          hint: Valfri tekst du kan setja i botnteksten på epostutsendingar
+          title: Ekstra botntekst
+        lead: Nokre jurisdiksjonar ser på epost-nyhendebrev som marknadsføring, avhengig av kvar du driv tenaren.
+        privacy_policy:
+          action: Administrer
+          hint: Desse retningslinene står i botnteksten på kvar epost
+          title: Personvernsreglar
+        title: Samsvarsinnstillingar
+      danger_zone:
+        disable_feature:
+          action: Slå av
+          hint: Slå av funksjonen for alle kontoar
+          title: Skru av funksjonen
+        erase_all_data:
+          action: Slett data
+          hint: Slettar alle epostar frå alle epostlister
+          title: Slett alt innhald
+        title: Faresone
+      disabled_msg: Du har skrudd av epostabonnementa.
+      index:
+        disabled:
+          cannot_be_enabled: Den tekniske leverandøren din har ikkje teke i bruk denne funksjonen på tenaren din.
+          description: Med denne funksjonen kan du la dei gjevne brukarane få leggja til småprogram på profilane sine, slik at lesarar utan Mastodon-brukarkontoar kan få innlegga deira på epost.
+          get_started: Kom i gang
+        lead: Lat lesarar få innlegga frå utvalde folk på denne tenaren på epost.
+        title: Nytt på epost
+      purged_msg: Alle epost-abonnementa blir sletta.
+      roles:
+        accounts: Kontoar
+        edit_role: Rediger rolle
+        empty:
+          hint: Ingen har løyve til å bruka denne funksjonen.
+          no_roles_added: Ingen roller er lagde til
+        lead: Folk med desse rollene kan bruka denne funksjonen på profilane sine.
+        manage_roles: Handsam roller
+        role_name: Namn på rolla
+        title: Roller
+      setups:
+        show:
+          enable_feature: Skru på funksjonen
+          important_information: Viktig informasjon
+          list:
+            1_permission_explanation: Når denne funksjonen er skrudd på, kan brukarar med løyve leggja til eit skjema for å samla inn epostadresser på profilane sine.
+            2_feature_explanation: Når gjester registrerer seg på ei profilside og stadfestar abonnementet, får dei epostoppdateringar når kontoen legg ut nye offentlege innlegg.
+            3_privacy_policy_warning: Tenaradministratorar får tilgang til innsamla PII (epostadresser). Difor må personvernretnignslinene og brukarvilkåra for tenaren oppdaterast før du kan bruka denne funksjonen.
+            4_cost_warning: Nokre tenaroppsett gjev tilleggskostnader for epostutsending. Drøft med nettverten din før du skrur på funksjonen, fordi det kan føra med seg store mengder epostar frå tenaren din.
     export_domain_allows:
       new:
         title: Importer domenetillatingar
@@ -641,6 +737,8 @@ nn:
       new:
         title: Opprett ny IP-regel
       no_ip_block_selected: Ingen IP-regler ble endret da ingen ble valgt
+      reset: Nullstill
+      search: Søk
       title: IP-regler
     relationships:
       title: "%{acct} sitt forhold"
@@ -671,7 +769,7 @@ nn:
       action_log: Tilsynslogg
       action_taken_by: Handling gjort av
       actions:
-        delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        delete_description_html: Dei rapporterte innlegga og/eller samlingane vil bli sletta, og det vil bli lagra ein merknad slik at du kan handla raskare ved framtidige regelbrot frå same person.
         mark_as_sensitive_description_html: Mediene i dei rapporterte innlegga vil verte markerte som ømtolege, og ein merknad vil verte lagra for å hjelpe deg å eskalera ved framtidige regelbrot frå same konto.
         other_description_html: Sjå fleire alternativ når det gjeld kontroll av kontoåtferd og tilpassing av kommunikasjonen til den rapporterte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
@@ -698,7 +796,7 @@ nn:
       confirm: Stadfest
       confirm_action: Stadfest at du vil moderera brukarkontoen @%{acct}
       created_at: Rapportert
-      delete_and_resolve: Slett innlegg
+      delete_and_resolve: Slett innhald
       forwarded: Videresendt
       forwarded_replies_explanation: Denne rapporten gjeld innhald på ein annan nettstad. Rapporten er vidaresend til deg fordi det rapporterte innhaldet er eit svar på noko ein av brukarane på nettstaden din har skrive.
       forwarded_to: Videresendt til %{domain}
@@ -792,7 +890,7 @@ nn:
         manage_custom_emojis: Handtere tilpassa emojiar
         manage_custom_emojis_description: Let brukarar handtere tilpassa emojiar på tenaren
         manage_email_subscriptions: Handter epostabonnement
-        manage_email_subscriptions_description: Folk kan abonnera på brukarar med dette løyvet via epost
+        manage_email_subscriptions_description: Lat folk med dette løyvet få bruke epostbrev-funksjonen på kontoen sin
         manage_federation: Handtere føderasjon
         manage_federation_description: Let brukarar blokkera eller tillata føderasjon med andre domener, samt styra kva som skal leverast
         manage_invites: Handsam innbydingar
@@ -881,9 +979,15 @@ nn:
           disabled: Krev ei spesifikk brukarrolle
           public: Alle
       landing_page:
+        hints:
+          about_html: Ei side med skildring, kontaktopplysingar, reglar og andre opplysingar om denne tenaren.
+          local_feed_html: Ein direktestraum med dei nyaste innlegga frå folk på denne tenaren.
+          overview_html: Ei side som skildrar denne tenaren, saman med dei nyaste innlegga av folk på tenaren.
+          trends_html: Ei side som viser kva som er populært på denne tenaren nett no.
         values:
-          about: Om
-          local_feed: Lokal tidsline
+          about: Om sida
+          local_feed: Lokal direktestraum
+          overview: Oversyn
           trends: Populært
       registrations:
         moderation_recommandation: Pass på at du har mange og kjappe redaktørar og moderatorar på laget ditt før du opnar for allmenn registrering!
@@ -904,17 +1008,22 @@ nn:
     site_uploads:
       delete: Slett opplasta fil
       destroyed_msg: Vellukka sletting av sideopplasting!
+    skip_to_content: Hopp til innhaldet
     software_updates:
       critical_update: Kritisk – gjer vel og oppdater snart
       description: Me rår til å halda Mastodon-installasjonen oppdatert for å dra nytte av nye feilrettingar og funksjonar. Dessutan er det av og til kritisk å oppdatera Mastodon til rett tid for å ungå sikkerheitsproblem. På grunn av dette vil Mastodon sjå etter oppdateringar kvart 30. minutt og halda deg orientert etter innstillingane du har sett for e-postvarsling.
       documentation_link: Lær meir
+      nearing_eol: Støtte for utgåva du køyrer vil enda %{date}. Du bør vurdera å oppdatera.
       release_notes: Oppdateringsnotat
+      supported_until: Støtta endar %{date}
       title: Tilgjengelege oppdateringar
       type: Type
       types:
         major: Stor oppdatering
         minor: Mindre oppdatering
         patch: Lita oppdatering – feilrettingar og endringar som er lette å leggja til
+      unsupported_branch: Utgåva du køyrer, er ikkje støtta. Oppdater så snart som mogleg.
+      unsupported_since: Ikkje støtta sidan %{date}
       version: Versjon
     statuses:
       account: Forfatter
@@ -1130,6 +1239,7 @@ nn:
           other: Brukt av %{count} personer i løpet av den seneste uken
       title: Tilrådingar og trendar
       trending: Trender
+    update_available: Ei oppdatering er tilgjengeleg
     username_blocks:
       add_new: Lag ny
       block_registrations: Blokker registreringar
@@ -1179,6 +1289,15 @@ nn:
     auto_close_registrations:
       body: På grunn av mangel på nyleg moderatoraktivitet, er registreringar på %{instance} automatisk bytt til å krevje manuell gjennomgang, for å hindre at %{instance} vert brukt som ein plattform for potensielle dårlege aktørar. Du kan byte tilbake for å opne registreringar når som helst.
       subject: Registreringar for %{instance} er automatisk bytt til å krevje godkjenning
+    end_of_support_out_of_support_warning:
+      body: Denne utgåva av Mastodon er ikkje støtta lenger. Me rår til at du oppgraderer så snart som råd!
+      subject: Mastodon %{branch} som er brukt på %{instance} er ikkje støtta lenger!
+    end_of_support_three_months_warning:
+      body: Mastodon-versjonen som er i bruk på tenaren din, vil ikkje vera støtta lenger enn tre månader frå no. Du bør oppdatera til ei nyare utgåve før den tid.
+      subject: Støtte for Mastodon %{branch}, som er i bruk på %{instance}, vil enda om tre månader.
+    end_of_support_two_weeks_warning:
+      body: Mastodon-versjonen som er i bruk på tenaren din, vil ikkje vera støtta lenger enn to veker frå no. Du bør oppdatera til ei nyare utgåve før den tid.
+      subject: Støtte for Mastodon %{branch}, som er i bruk på %{instance}, vil enda om to veker.
     new_appeal:
       actions:
         delete_statuses: å slette sine innlegg
@@ -1419,6 +1538,7 @@ nn:
       your_appeal_rejected: Din klage har blitt avvist
   edit_profile:
     other: Anna
+    privacy_redesign_body: No vel du om du vil visa fylgjarane dine og kven du fylgjer direkte frå profilsida di.
     redesign_body: No kan du gå til profilredigeringssida din direkte frå profilsida.
     redesign_button: Gå dit
     redesign_title: Ny profilredigering
@@ -1451,7 +1571,9 @@ nn:
         success_html: Frå no vil du få epostar når %{name} legg ut nye innlegg. Legg til %{sender} til kontaktane dine så desse epostane ikkje hamnar i søppelposten din.
         title: Du er påmeld
         unsubscribe: Stopp abonnementet
+    disabled: Skrudd av
     inactive: Ikkje aktiv
+    no_access: Ikkje tilgang
     status: Status
     subscribers: Abonnentar
   emoji_styles:
@@ -1487,7 +1609,9 @@ nn:
     blocks: Du blokkerer
     bookmarks: Bokmerker
     csv: CSV
+    custom_filters: Filter
     domain_blocks: Domeneblokkeringer
+    json: JSON
     lists: Lister
     mutes: Du dempar
     storage: Medielagring
@@ -1565,7 +1689,9 @@ nn:
       empty: Tom CSV-fil
       incompatible_type: Ikkje kompatibel med importtypen du valde
       invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
+      invalid_json_file: 'Ugyldig JSON-fil. Feil: %{error}'
       over_rows_processing_limit: inneholder flere enn %{count} rader
+      status_not_found_warning: Nokre av filtra dine gøymer visse innlegg som denne tenaren ikkje kjenner til. Desse innlegga blir ikkje gøymde automatisk viss dei blir oppdaga av tenaren din seinare.
       too_large: Fila er for stor
     failures: Feil
     imported: Importert
@@ -1582,6 +1708,9 @@ nn:
       bookmarks_html:
         one: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong>.
         other: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Du er i ferd med å <strong>erstatta filtra dine</strong> med innhaldet i <strong>%{filename}</strong>. Opptil <strong>%{count} filter</strong> vil bli lagt til i dei nye filtra.
+        other: Du er i ferd med å <strong>erstatta filtra dine</strong> med innhaldet i <strong>%{filename}</strong>. Opptil <strong>%{count} filter</strong> vil bli lagt til i dei nye filtra.
       domain_blocking_html:
         one: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
         other: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
@@ -1601,6 +1730,9 @@ nn:
       bookmarks_html:
         one: Du er i ferd med å leggja til opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
         other: Du er i ferd med å leggja til opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
+      custom_filters_html:
+        one: Du er i ferd med å leggja til opp til <strong>%{count} filter</strong> frå <strong>%{filename}</strong> til <strong>filtra dine</strong>.
+        other: Du er i ferd med å leggja til opp til <strong>%{count} filter</strong> frå <strong>%{filename}</strong> til <strong>filtra dine</strong>.
       domain_blocking_html:
         one: Du skal til å <strong>blokkera</strong> opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
         other: Du skal til å <strong>blokkera</strong> opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
@@ -1637,6 +1769,7 @@ nn:
     types:
       blocking: Blokkeringsliste
       bookmarks: Bokmerker
+      custom_filters: Filter
       domain_blocking: Liste over blokkerte domene
       following: Fylgjeliste
       lists: Lister
@@ -1731,6 +1864,27 @@ nn:
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   navigation:
     toggle_menu: Vis/gøym menyen
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} la deg til i ei samling"
+    admin_report:
+      title_html: "%{name} rapporterte %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} og ein til melde seg på"
+        other: "%{name} og %{count} andre melde seg på"
+      title_html: "%{name} melde seg på"
+    collection_update:
+      title_html: "%{name} oppdaterte ei samling du er med i"
+    generic:
+      sign_in: Logg på Mastodon-vevsida
+      summary_html: Du bruker ein app som ikkje støttar siste utgåva av Mastodon. %{link} for å få alle funksjonane.
+    moderation_warning:
+      summary_html: Du bruker ein app som ikkje støttar siste utgåva av Mastodon. %{link}.
+      title: Du har fått ei moderasjonsåtvaring.
+    severed_relationships:
+      summary_html: Ein administrator på %{from} har kasta ut %{target}, som tyder at du ikkje får oppdateringar eller kan samhandla med dei lenger. %{link} for å få ei liste over dei tapte sambanda.
+      title: Tapte samband med %{name}
   notification_mailer:
     admin:
       report:
@@ -1779,6 +1933,7 @@ nn:
     administration_emails: Epostvarsel for administrator
     email_events: Hendingar for epostvarsel
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
+    moderation_emails: Varsel om modereringsepostar
   number:
     human:
       decimal_units:
@@ -1802,7 +1957,7 @@ nn:
     next: Neste
     older: Eldre
     prev: Førre
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Du har allereie røysta i denne rundspørjinga

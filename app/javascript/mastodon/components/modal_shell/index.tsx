@@ -1,16 +1,17 @@
 import classNames from 'classnames';
 
+import { polymorphicForwardRef } from '@/types/polymorphic';
+
 interface ModalShellProps {
   className?: string;
   children?: React.ReactNode;
 }
 
-export const ModalShell: React.FC<ModalShellProps> = ({
-  children,
-  className,
-}) => {
-  return (
-    <div
+export const ModalShell = polymorphicForwardRef<'form', ModalShellProps>(
+  ({ as: Comp = 'form', children, className, ...restProps }, ref) => (
+    <Comp
+      {...restProps}
+      ref={ref}
       className={classNames(
         'modal-root__modal',
         'safety-action-modal',
@@ -18,9 +19,10 @@ export const ModalShell: React.FC<ModalShellProps> = ({
       )}
     >
       {children}
-    </div>
-  );
-};
+    </Comp>
+  ),
+);
+ModalShell.displayName = 'ModalShell';
 
 export const ModalShellBody: React.FC<ModalShellProps> = ({
   children,

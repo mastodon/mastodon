@@ -20,7 +20,7 @@ RSpec.describe 'Admin Tags' do
       expect { click_on submit_button }
         .to_not(change { tag.reload.display_name })
       expect(page)
-        .to have_content(match_error_text)
+        .to have_text(match_error_text)
 
       fill_in display_name_field, with: 'TEST'
       expect { click_on submit_button }

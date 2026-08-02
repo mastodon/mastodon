@@ -23,10 +23,6 @@ class Api::V1::ReportsController < Api::BaseController
   end
 
   def report_params
-    if Mastodon::Feature.collections_enabled?
-      params.permit(:account_id, :comment, :category, :forward, forward_to_domains: [], status_ids: [], collection_ids: [], rule_ids: [])
-    else
-      params.permit(:account_id, :comment, :category, :forward, forward_to_domains: [], status_ids: [], rule_ids: [])
-    end
+    params.permit(:account_id, :comment, :category, :forward, forward_to_domains: [], status_ids: [], collection_ids: [], rule_ids: [])
   end
 end

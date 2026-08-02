@@ -9,7 +9,10 @@ import { CollectionMenu } from 'mastodon/features/collections/components/collect
 
 import classes from './collection_list_item.module.scss';
 
-interface CollectionListItemProps extends CollectionLockupProps {
+interface CollectionListItemProps extends Omit<
+  CollectionLockupProps,
+  'sideContent'
+> {
   withoutBorder?: boolean;
   positionInList: number;
   listSize: number;
@@ -20,30 +23,38 @@ export const CollectionListItem: React.FC<CollectionListItemProps> = ({
   withoutBorder,
   positionInList,
   listSize,
+  className,
   ...otherProps
 }) => {
   const uniqueId = useId();
-  const linkId = `${uniqueId}-link`;
-  const infoId = `${uniqueId}-info`;
+  const titleId = `${uniqueId}-title`;
+  const subtitleId = `${uniqueId}-info`;
 
   return (
     <Article
       focusable
-      className={classNames(
-        classes.wrapper,
-        withoutBorder && classes.wrapperWithoutBorder,
-      )}
-      aria-labelledby={linkId}
-      aria-describedby={infoId}
+      aria-labelledby={titleId}
+      aria-describedby={subtitleId}
       aria-posinset={positionInList}
       aria-setsize={listSize}
     >
-      <CollectionLockup collection={collection} {...otherProps} />
-
-      <CollectionMenu
-        context='list'
+      <CollectionLockup
         collection={collection}
-        className={classes.menuButton}
+        className={classNames(
+          classes.wrapper,
+          withoutBorder && classes.wrapperWithoutBorder,
+          className,
+        )}
+        sideContent={
+          <CollectionMenu
+            context='list'
+            collection={collection}
+            className={classes.menuButton}
+          />
+        }
+        titleId={titleId}
+        subtitleId={subtitleId}
+        {...otherProps}
       />
     </Article>
   );

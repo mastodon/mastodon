@@ -1,4 +1,4 @@
-import type { MutableRefObject, RefCallback } from 'react';
+import type { RefObject, RefCallback } from 'react';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 import { useMutationObserver, useResizeObserver } from './useObserver';
@@ -20,7 +20,7 @@ export function useOverflowButton({
   const [maxWidth, setMaxWidth] = useState<number | 'none'>('none');
 
   // This is the item container element.
-  const listRef = useRef<HTMLElement | null>(null);
+  const listRef = useRef<HTMLElement>(null);
 
   // The main recalculation function.
   const handleRecalculate = useCallback(() => {
@@ -102,7 +102,7 @@ export function useOverflowScroll({
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  const bodyRef = useRef<HTMLElement | null>(null);
+  const bodyRef = useRef<HTMLElement>(null);
 
   // Recalculate scrollable state
   const handleRecalculate = useCallback(() => {
@@ -176,13 +176,11 @@ export function useOverflowObservers({
   onWrapperRef,
 }: {
   onRecalculate: () => void;
-  onListRef?: RefCallback<HTMLElement> | MutableRefObject<HTMLElement | null>;
-  onWrapperRef?:
-    | RefCallback<HTMLElement>
-    | MutableRefObject<HTMLElement | null>;
+  onListRef?: RefCallback<HTMLElement> | RefObject<HTMLElement | null>;
+  onWrapperRef?: RefCallback<HTMLElement> | RefObject<HTMLElement | null>;
 }) {
   // This is the item container element.
-  const listRef = useRef<HTMLElement | null>(null);
+  const listRef = useRef<HTMLElement>(null);
 
   const resizeObserver = useResizeObserver(onRecalculate);
 
@@ -213,7 +211,7 @@ export function useOverflowObservers({
   }, [handleChildrenChange, mutationObserver, resizeObserver]);
 
   // Watch the wrapper for size changes, and recalculate when it resizes.
-  const wrapperRef = useRef<HTMLElement | null>(null);
+  const wrapperRef = useRef<HTMLElement>(null);
   const wrapperRefCallback = useCallback(
     (node: HTMLElement | null) => {
       if (node) {

@@ -15,10 +15,14 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     @json = begin
       if prefetched_body.nil?
-        fetch_resource(uri, true)
+        fetch_resource(uri, true, raise_on_error: :all)
       else
         body_to_json(prefetched_body, compare_id: uri)
       end
+    rescue Mastodon::UnexpectedResponseError => e
+      queue_deletion!(uri) if e.response.code == 410
+
+      raise Error, "Error fetching actor JSON at #{uri} (HTTP #{e.response.code})"
     rescue JSON::ParserError
       raise Error, "Error parsing JSON-LD document #{uri}"
     end
@@ -31,51 +35,22 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     @uri = @json['id']
 
-    # FEP-2c59 defines a `webfinger` attribute that makes things more explicit and spares an extra request in some cases.
-    # It supersedes `preferredUsername`.
-    @username, @domain = split_acct(@json['webfinger']) if @json['webfinger'].present? && @json['webfinger'].is_a?(String)
-
-    if @username.blank? || @domain.blank?
-      raise "Actor #{uri} has no `preferredUsername`, and either a bogus or missing `webfinger`, which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank?
-
-      Rails.logger.debug { "Actor #{uri} has an invalid `webfinger` value, falling back to `preferredUsername`" } if @json['webfinger'].present?
-      @username = @json['preferredUsername']
-      @domain   = Addressable::URI.parse(@uri).normalized_host
-    end
-
-    check_webfinger! unless only_key
-
-    ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key, request_id: request_id)
-  rescue Error => e
+    ActivityPub::ProcessAccountService.new.call(@json, only_key:, request_id:, suppress_errors:)
+  rescue Error, ActivityPub::ProcessAccountService::Error => e
     Rails.logger.debug { "Fetching actor #{uri} failed: #{e.message}" }
     raise unless suppress_errors
   end
 
   private
 
-  def check_webfinger!
-    webfinger = Webfinger.new("acct:#{@username}@#{@domain}").perform
-    confirmed_username, confirmed_domain = split_acct(webfinger.subject)
+  def queue_deletion!(uri)
+    account = Account.find_by(uri:)
+    return unless account&.remote?
 
-    if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
-      raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
+    Rails.logger.debug { "Deleting actor #{uri} because of HTTP 410 response" }
 
-      return
-    end
-
-    webfinger = Webfinger.new("acct:#{confirmed_username}@#{confirmed_domain}").perform
-    @username, @domain                   = split_acct(webfinger.subject)
-
-    raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-    raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
-  rescue Webfinger::RedirectError => e
-    raise Error, e.message
-  rescue Webfinger::Error => e
-    raise Error, "Webfinger error when resolving #{@username}@#{@domain}: #{e.message}"
-  end
-
-  def split_acct(acct)
-    acct.delete_prefix('acct:').split('@')
+    account.suspend!(origin: :remote)
+    AccountDeletionWorker.perform_async(account.id, { 'reserve_username' => false, 'skip_activitypub' => true })
   end
 
   def supported_context?

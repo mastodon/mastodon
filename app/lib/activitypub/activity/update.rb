@@ -13,7 +13,7 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
       update_account
     elsif supported_object_type? || converted_object_type?
       update_status
-    elsif equals_or_includes_any?(@object['type'], ['FeaturedCollection']) && Mastodon::Feature.collections_enabled?
+    elsif equals_or_includes_any?(@object['type'], ['FeaturedCollection'])
       update_collection
     end
   end
@@ -23,7 +23,7 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
   def update_account
     return reject_payload! if @account.uri != object_uri
 
-    ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object, signed_with_known_key: true, request_id: @options[:request_id])
+    ActivityPub::ProcessAccountService.new.call(@object, account: @account, signed_with_known_key: true, request_id: @options[:request_id])
   end
 
   def update_status

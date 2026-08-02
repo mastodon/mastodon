@@ -14,7 +14,7 @@ RSpec.describe 'Settings aliases page' do
 
       # View index page
       expect(page)
-        .to have_content(I18n.t('settings.aliases'))
+        .to have_text(I18n.t('settings.aliases'))
         .and have_private_cache_control
     end
   end
@@ -31,7 +31,7 @@ RSpec.describe 'Settings aliases page' do
         expect { submit_form }
           .to change(AccountAlias, :count).by(1)
         expect(page)
-          .to have_content(I18n.t('aliases.created_msg'))
+          .to have_text(I18n.t('aliases.created_msg'))
       end
     end
 
@@ -44,7 +44,7 @@ RSpec.describe 'Settings aliases page' do
         expect { submit_form }
           .to not_change(AccountAlias, :count)
         expect(page)
-          .to have_content(I18n.t('settings.aliases'))
+          .to have_text(I18n.t('settings.aliases'))
       end
     end
 
@@ -66,8 +66,8 @@ RSpec.describe 'Settings aliases page' do
         .to change(AccountAlias, :count).by(-1)
 
       expect(page)
-        .to have_content(I18n.t('settings.aliases'))
-        .and have_content(I18n.t('aliases.deleted_msg'))
+        .to have_text(I18n.t('settings.aliases'))
+        .and have_text(I18n.t('aliases.deleted_msg'))
       expect { account_alias.reload }
         .to raise_error(ActiveRecord::RecordNotFound)
     end

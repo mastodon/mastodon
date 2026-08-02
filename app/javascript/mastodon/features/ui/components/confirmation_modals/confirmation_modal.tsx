@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { Button } from 'mastodon/components/button';
 import {
   ModalShell,
@@ -51,13 +52,18 @@ export const ConfirmationModal: React.FC<
   noCloseOnConfirm = false,
   noFocusButton = false,
 }) => {
-  const handleClick = useCallback(() => {
-    if (!noCloseOnConfirm) {
-      onClose();
-    }
+  const handleSubmit = useCallback<React.SubmitEventHandler<HTMLFormElement>>(
+    (e) => {
+      e.preventDefault();
 
-    void onConfirm();
-  }, [onClose, onConfirm, noCloseOnConfirm]);
+      if (!noCloseOnConfirm) {
+        onClose();
+      }
+
+      void onConfirm();
+    },
+    [onClose, onConfirm, noCloseOnConfirm],
+  );
 
   const handleSecondary = useCallback(() => {
     onClose();
@@ -65,9 +71,15 @@ export const ConfirmationModal: React.FC<
   }, [onClose, onSecondary]);
 
   return (
-    <ModalShell>
+    <ModalShell onSubmit={handleSubmit}>
       <ModalShellBody className={className}>
-        <h1 id={titleId}>{title}</h1>
+        {noFocusButton ? (
+          <NavigationFocusTarget as='h1' id={titleId}>
+            {title}
+          </NavigationFocusTarget>
+        ) : (
+          <h1>{title}</h1>
+        )}
         {message && <p>{message}</p>}
 
         {extraContent ?? children}
@@ -99,7 +111,7 @@ export const ConfirmationModal: React.FC<
 
         {/* eslint-disable jsx-a11y/no-autofocus -- we are in a modal and thus autofocusing is justified */}
         <Button
-          onClick={handleClick}
+          type='submit'
           loading={updating}
           disabled={disabled}
           autoFocus={!noFocusButton}

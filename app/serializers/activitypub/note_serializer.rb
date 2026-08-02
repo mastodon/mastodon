@@ -135,11 +135,11 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def virtual_attachments
-    object.ordered_media_attachments
+    object.ordered_media_attachments + [object.preview_card].compact
   end
 
   def virtual_tags
-    object.active_mentions.to_a.sort_by(&:id) + object.tags + object.emojis + object.tagged_objects.map(&:object)
+    object.active_mentions.to_a.sort_by(&:id) + object.tags + object.emojis + object.tagged_objects.filter_map(&:object)
   end
 
   def atom_uri
@@ -248,6 +248,18 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     }
   end
 
+  class PreviewCardSerializer < ActivityPub::Serializer
+    attributes :type, :href
+
+    def type
+      'Link'
+    end
+
+    def href
+      object.original_url.presence || object.url
+    end
+  end
+
   class MediaAttachmentSerializer < ActivityPub::Serializer
     context_extensions :blurhash, :focal_point
 
@@ -257,6 +269,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     attribute :focal_point, if: :focal_point?
     attribute :width, if: :width?
     attribute :height, if: :height?
+    attribute :duration, if: :duration?
 
     has_one :icon, serializer: ActivityPub::ImageSerializer, if: :thumbnail?
 
@@ -300,12 +313,20 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
       object.file.meta&.dig('original', 'height').present?
     end
 
+    def duration?
+      object.file.meta&.dig('original', 'duration').present?
+    end
+
     def width
       object.file.meta.dig('original', 'width')
     end
 
     def height
       object.file.meta.dig('original', 'height')
+    end
+
+    def duration
+      object.file.meta.dig('original', 'duration').seconds.iso8601
     end
   end
 

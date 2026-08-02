@@ -13,11 +13,6 @@
 #
 
 class EmailDomainBlock < ApplicationRecord
-  self.ignored_columns += %w(
-    ips
-    last_refresh_at
-  )
-
   include DomainNormalizable
   include Paginable
 
@@ -29,6 +24,7 @@ class EmailDomainBlock < ApplicationRecord
   validates :domain, presence: true, uniqueness: true, domain: true
 
   scope :parents, -> { where(parent_id: nil) }
+  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
   # Used for adding multiple blocks at once
   attr_accessor :other_domains

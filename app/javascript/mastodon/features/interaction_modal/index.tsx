@@ -8,6 +8,7 @@ import { escapeRegExp } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { DisplayName } from '@/mastodon/components/display_name';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { openModal, closeModal } from 'mastodon/actions/modal';
 import { apiRequest } from 'mastodon/api';
 import { Button } from 'mastodon/components/button';
@@ -25,8 +26,6 @@ const messages = defineMessages({
   },
 });
 
-type InteractionIntent = 'follow' | 'reblog' | 'favourite' | 'reply' | 'vote';
-
 interface LoginFormMessage {
   type:
     | 'fetchInteractionURL'
@@ -35,7 +34,7 @@ interface LoginFormMessage {
   uri_or_domain: string;
   template?: string;
   param?: string;
-  intent?: InteractionIntent;
+  intent?: string;
 }
 
 const PERSISTENCE_KEY = 'mastodon_home';
@@ -152,7 +151,7 @@ const LoginForm: React.FC<{
 
   const inputRef = useRef<HTMLInputElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const searchRequestRef = useRef<AbortController | null>(null);
+  const searchRequestRef = useRef<AbortController>(null);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent<LoginFormMessage>) => {
@@ -419,9 +418,7 @@ const InteractionModal: React.FC<{
 }> = ({ accountId, url, intent }) => {
   const dispatch = useAppDispatch();
   const signupUrl = useAppSelector(
-    (state) =>
-      (state.server.getIn(['server', 'registrations', 'url'], null) ||
-        '/auth/sign_up') as string,
+    (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',
   );
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const name = <DisplayName account={account} variant='simple' />;
@@ -476,18 +473,26 @@ const InteractionModal: React.FC<{
   return (
     <div className='modal-root__modal interaction-modal'>
       <div className='interaction-modal__lead'>
-        <h3>
+        <NavigationFocusTarget as='h1'>
           <FormattedMessage
             id='interaction_modal.title'
             defaultMessage='Sign in to continue'
           />
-        </h3>
+        </NavigationFocusTarget>
         <p>
-          <FormattedMessage
-            id='interaction_modal.action'
-            defaultMessage="To interact with {name}'s post, you need to sign into your account on whatever Mastodon server you use."
-            values={{ name }}
-          />
+          {intent === 'follow' ? (
+            <FormattedMessage
+              id='interaction_modal.action_follow'
+              defaultMessage='To follow {name}, you need to sign into your account on whatever Mastodon server you use.'
+              values={{ name }}
+            />
+          ) : (
+            <FormattedMessage
+              id='interaction_modal.action'
+              defaultMessage="To interact with {name}'s post, you need to sign into your account on whatever Mastodon server you use."
+              values={{ name }}
+            />
+          )}
         </p>
       </div>
 

@@ -27,8 +27,43 @@ export function useEmojiAppState(): EmojiAppState {
 
   return {
     currentLocale: locale,
-    locales: [locale],
     mode,
+    darkTheme: isDarkMode(),
+    assetHost,
+  };
+}
+
+export function getEmojiAppState(): EmojiAppState {
+  const currentLocale = toSupportedLocale(document.documentElement.lang);
+
+  let emojiStyle = 'auto';
+  const initialStateText =
+    document.getElementById('initial-state')?.textContent;
+  if (initialStateText) {
+    try {
+      const state = JSON.parse(initialStateText) as unknown;
+      if (
+        state !== null &&
+        typeof state === 'object' &&
+        'meta' in state &&
+        state.meta !== null &&
+        typeof state.meta === 'object' &&
+        'emoji_style' in state.meta &&
+        typeof state.meta.emoji_style === 'string'
+      ) {
+        emojiStyle = state.meta.emoji_style;
+      }
+    } catch (err: unknown) {
+      console.warn(
+        'Failed to parse initial state for emoji, defaulting to auto. Error:',
+        err,
+      );
+    }
+  }
+
+  return {
+    currentLocale,
+    mode: determineEmojiMode(emojiStyle),
     darkTheme: isDarkMode(),
     assetHost,
   };

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe REST::Admin::ReportSerializer do
-  subject { serialized_record_json(report, described_class) }
+  subject { serialized_record_json(report, described_class, options: { scope_name: :current_user, scope: nil }) }
 
   context 'with timestamps' do
     let(:report) { Fabricate(:report, action_taken_at: 3.days.ago) }

@@ -4,6 +4,7 @@ de:
     about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Behalte mit Mastodon die Kontrolle über deine Daten!'
     contact_missing: Nicht festgelegt
     contact_unavailable: Nicht verfügbar
+    default_thumbnail_description: Zwei lächelnde Mastodonten, die wie Elefanten aussehen, werfen sich in einem Cartoon-Zeichenstil ein Papierflugzeug zu. Sie sind von einem hellblauen Himmel und anderen Planeten umgeben. Auf den Planeten befinden sich Bäume und weitere Mastodonten.
     hosted_on: Mastodon, eingerichtet auf %{domain}
     title: Über
   accounts:
@@ -288,7 +289,11 @@ de:
         enable_relay_html: "%{name} aktivierte das Relais %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktivierte die E-Mail-Token-Authentisierung für %{target}"
         enable_user_html: "%{name} aktivierte den Zugang für %{target}"
+        listable_tag_html: darf vorgeschlagen werden
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
+        not_listable_tag_html: wird nicht vorgeschlagen
+        not_trendable_tag_html: erscheint nicht unter Trends
+        not_usable_tag_html: darf nicht verwendet werden
         promote_user_html: "%{name} beförderte %{target}"
         publish_terms_of_service_html: "%{name} aktualisierte die Nutzungsbedingungen"
         reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsentscheidung von %{target} ab"
@@ -301,6 +306,7 @@ de:
         sensitive_account_html: "%{name} versah die Medien von %{target} mit einer Inhaltswarnung"
         silence_account_html: "%{name} schaltete das Konto von %{target} stumm"
         suspend_account_html: "%{name} sperrte das Konto von %{target}"
+        trendable_tag_html: darf unter Trends erscheinen
         unassigned_report_html: "%{name} entfernte die Zuweisung der Meldung %{target}"
         unblock_email_account_html: "%{name} entsperrte die E-Mail-Adresse von %{target}"
         unsensitive_account_html: "%{name} hob die Inhaltswarnung für Medien von %{target} auf"
@@ -313,8 +319,10 @@ de:
         update_ip_block_html: "%{name} änderte eine IP-Regel für %{target}"
         update_report_html: "%{name} überarbeitete die Meldung %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
+        update_tag_html: "%{name} änderte %{target} zu: "
         update_user_role_html: "%{name} änderte die Rolle von %{target}"
         update_username_block_html: "%{name} aktualisierte eine Regel für Profilnamen mit %{target}"
+        usable_tag_html: darf verwendet werden;
       deleted_account: gelöschtes Konto
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
@@ -345,12 +353,20 @@ de:
       updated_msg: Ankündigung erfolgreich aktualisiert!
     collections:
       accounts: Konten
+      back_to_account: Zurück zum Konto
+      back_to_report: Zurück zu den Meldungen
+      batch:
+        add_to_report: Der Meldung Nr. %{id} hinzufügen
+        remove_from_report: Aus der Meldung entfernen
+        report: Meldung
       collection_title: Sammlung von %{name}
       contents: Inhalte
+      no_collection_selected: Keine Sammlungen wurden geändert, da keine ausgewählt wurden
       number_of_accounts:
         one: 1 Konto
         other: "%{count} Konten"
       open: Öffnen
+      title: Sammlungen des Kontos – @%{name}
       view_publicly: Sammlung öffnen
     critical_update_pending: Kritisches Update ausstehend
     custom_emojis:
@@ -484,9 +500,89 @@ de:
         title: Neue E-Mail-Domain sperren
       no_email_domain_block_selected: Es wurden keine E-Mail-Domain-Sperren geändert, da keine ausgewählt wurden
       not_permitted: Nicht erlaubt
+      reset: Zurücksetzen
       resolved_dns_records_hint_html: Die Domain wird zu den folgenden MX-Domains aufgelöst, die für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, keine großen E-Mail-Anbieter versehentlich zu sperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
+      search: Suchen
       title: Gesperrte E-Mail-Domains
+    email_subscriptions:
+      accounts:
+        account: Konto
+        empty:
+          hint: Bisher wurden keine Konten abonniert.
+          no_lists_yet: Noch keine Listen vorhanden
+        last_email: Letzte E-Mail
+        lead: Konten, die die Funktion aktiviert haben und abonniert wurden, werden unten angezeigt.
+        show:
+          confirm_disable_feature: E-Mail-Newsletter für %{name} deaktivieren? Für dieses Konto werden keine Neuigkeiten mehr über E-Mail versendet. Das Profil kann die Funktion in den Kontoeinstellungen weiterhin reaktivieren. Um den Zugriff auf diese Funktion dauerhaft zu entfernen, passe die Berechtigung in der Rollenverwaltung an.
+          confirm_remove_subscriber: "%{email} wird keine E-Mails mehr von %{name} erhalten. Die Aktion lässt sich nicht rückgängig machen."
+          consent: Abonnent*innen haben ausschließlich dem Erhalt von Beiträgen per E-Mail zugestimmt. Verwende diese Liste nicht zu anderen Zwecken.
+          date: Registrierungsdatum
+          disable_feature: Funktion deaktivieren
+          disabled: Die Funktion wurde deaktiviert und E-Mails werden nicht länger diese Liste gesendet.
+          email: E-Mail-Adresse
+          empty:
+            hint: Noch hat niemand dieses Konto abonniert.
+            no_subscribers_yet: Bisher keine Abonnent*innen
+          enable_feature: Funktion aktivieren
+          no_access_html: Dieses Konto besitzt nicht länger die erforderliche Berechtigung, um die Funktion zu aktivieren. In der <a href="%{roles_path}">Rollenverwaltung</a> kann das angepasst werden.
+          title: E-Mail-Newsletter von %{name}
+          view_account: Konto ansehen
+        status: Status
+        subscribers: Abonnent*innen
+        title: Mailingliste
+      additional_footer_texts:
+        show:
+          title: Fußzeile
+      compliance_settings:
+        additional_footer_text:
+          action: Verwalten
+          hint: Der Text erscheint ausschließlich in der Fußzeile von E-Mails
+          title: Fußzeile
+        lead: E-Mail-Newsletter können abhängig vom geltenden Recht als Marketing-E-Mails betrachtet werden.
+        privacy_policy:
+          action: Verwalten
+          hint: Die Datenschutzerklärung wird in der Fußzeile jeder E-Mail beigefügt
+          title: Datenschutzerklärung
+        title: Einstellungen zur Einhaltung von Vorschriften
+      danger_zone:
+        disable_feature:
+          action: Deaktivieren
+          hint: Funktion für alle Konten deaktivieren
+          title: Funktion deaktivieren
+        erase_all_data:
+          action: Daten löschen
+          hint: Löscht dauerhaft alle E-Mails aus allen Mailinglisten
+          title: Alle Daten löschen
+        title: Gefahrenzone
+      disabled_msg: E-Mail-Abonnements wurden erfolgreich deaktiviert.
+      index:
+        disabled:
+          cannot_be_enabled: Die Administrator*innen deines Mastodon-Servers haben diese Funktion noch nicht aktiviert.
+          description: Diese Funktion ermöglicht bestimmten Konten, ein Widget zu ihrem Profil hinzuzufügen, damit Gäste ohne Mastodon-Konto deren Beiträge per E-Mail erhalten können.
+          get_started: Loslegen
+        lead: Ermögliche Gästen, Beiträge von ausgewählten Konten dieses Servers per E-Mail zu abonnieren.
+        title: E-Mail-Newsletter
+      purged_msg: Alle Daten zu E-Mail-Abonnements werden gelöscht.
+      roles:
+        accounts: Konten
+        edit_role: Rolle bearbeiten
+        empty:
+          hint: Niemand hat die Berechtigung, diese Funktion zu verwenden.
+          no_roles_added: Keine Rollen hinzugefügt
+        lead: Die folgenden Rollen berechtigen zur Aktivierung der Funktion.
+        manage_roles: Rollen verwalten
+        role_name: Rolle
+        title: Rollen
+      setups:
+        show:
+          enable_feature: Funktion aktivieren
+          important_information: Wichtige Informationen
+          list:
+            1_permission_explanation: Wenn die Funktion aktiviert ist, können alle berechtigten Konten ein E-Mail-Formular zu ihrem Profil hinzufügen.
+            2_feature_explanation: Sobald Gäste ein Profil abonnieren und das Abonnement bestätigen, werden sie E-Mails über neue öffentliche Beiträge des betreffenden Profils erhalten.
+            3_privacy_policy_warning: Server-Admins werden Zugriff auf persönlich identifizierbare Informationen (E-Mail-Adressen) haben. Daher müssen die Datenschutzerklärung und Nutzungsbedingungen im Vorfeld aktualisiert werden, bevor diese Funktion verwendet werden kann.
+            4_cost_warning: Abhängig vom Hosting-Provider können Gebühren für den E-Mail-Versand anfallen. Kläre für deinen Server vorher alle Details, da diese Funktion die Anzahl versendeter E-Mails drastisch erhöhen kann.
     export_domain_allows:
       new:
         title: Erlaubte Domains importieren
@@ -641,6 +737,8 @@ de:
       new:
         title: Neue IP-Regel erstellen
       no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurde(n)
+      reset: Zurücksetzen
+      search: Suchen
       title: IP-Regeln
     relationships:
       title: Beziehungen von %{acct}
@@ -671,7 +769,7 @@ de:
       action_log: Protokoll
       action_taken_by: Maßnahme ergriffen von
       actions:
-        delete_description_html: Der gemeldete Beitrag wird gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
+        delete_description_html: Die gemeldeten Beiträge/Sammlungen werden gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
         mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und der Vorfall wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
         other_description_html: Weitere Optionen zur Steuerung des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen und der Vorgang wird nicht aufgezeichnet – die Meldung wird hiermit geschlossen.
@@ -698,7 +796,7 @@ de:
       confirm: Bestätigen
       confirm_action: Maßnahme gegen @%{acct} bestätigen
       created_at: Gemeldet am
-      delete_and_resolve: Beiträge löschen
+      delete_and_resolve: Inhalt löschen
       forwarded: Weitergeleitet
       forwarded_replies_explanation: Diese Meldung stammt von einem externen Profil und betrifft einen externen Inhalt. Der Inhalt wurde an dich weitergeleitet, weil er eine Antwort auf ein bei dir registriertes Profil ist.
       forwarded_to: Weitergeleitet an %{domain}
@@ -792,7 +890,7 @@ de:
         manage_custom_emojis: Emojis
         manage_custom_emojis_description: Spezielle Emojis dieses Servers verwalten
         manage_email_subscriptions: E-Mail-Abonnements
-        manage_email_subscriptions_description: Profile können per E-Mail-Benachrichtigung abonniert werden
+        manage_email_subscriptions_description: Konten mit dieser Berechtigung dürfen die Funktion für E-Mail-Newsletter verwenden
         manage_federation: Föderation
         manage_federation_description: Domains anderer Mastodon-Server sperren/zulassen – und Zustellbarkeit kontrollieren
         manage_invites: Einladungen
@@ -881,10 +979,16 @@ de:
           disabled: Bestimmte Rolle erforderlich
           public: Alle
       landing_page:
+        hints:
+          about_html: Eine Seite mit der Beschreibung, den Kontaktinformationen, den Regeln und weiteren Informationen zu diesem Server.
+          local_feed_html: Ein Live-Feed mit den neuesten Beiträgen der Nutzer auf diesem Server.
+          overview_html: Eine Seite, die die Beschreibung deines Servers zusammen mit den neuesten lokalen Beiträgen der Nutzer zeigt.
+          trends_html: Eine Seite mit dem, was auf diesem Server gerade im Trend liegt.
         values:
-          about: Über
-          local_feed: Lokaler Feed
-          trends: Trends
+          about: Über-Seite
+          local_feed: Lokaler Live-Feed
+          overview: Übersicht
+          trends: Trendet
       registrations:
         moderation_recommandation: Bitte vergewissere dich, dass du ein geeignetes und reaktionsschnelles Moderationsteam hast, bevor du die Registrierungen uneingeschränkt zulässt!
         preamble: Lege fest, wer auf deinem Server ein Konto erstellen darf.
@@ -904,17 +1008,22 @@ de:
     site_uploads:
       delete: Hochgeladene Datei löschen
       destroyed_msg: Upload erfolgreich gelöscht!
+    skip_to_content: Zum Inhalt wechseln
     software_updates:
       critical_update: Kritisch — bitte zügig aktualisieren
       description: Es wird empfohlen, deine Mastodon-Installation auf dem aktuellen Stand zu halten, um von den neuesten Fehlerkorrekturen und Funktionen zu profitieren. Darüber hinaus ist es wichtig, Mastodon zeitnah zu aktualisieren, um Sicherheitslücken zu schließen. Aus diesen Gründen prüft Mastodon alle 30 Minuten auf Updates und du wirst deinen Einstellungen entsprechend per E-Mail informiert.
       documentation_link: Mehr erfahren
+      nearing_eol: Der aktuelle Branch wird ab dem %{date} nicht mehr unterstützt. Bitte ziehe eine Aktualisierung in Erwägung.
       release_notes: Versionshinweise
+      supported_until: Support endet am %{date}
       title: Verfügbare Updates
       type: Art
       types:
         major: Hauptversion
         minor: Nebenversion
         patch: Revision — Fehlerkorrekturen und einfach zu implementierende Änderungen
+      unsupported_branch: Der aktuelle Branch wird nicht mehr unterstützt. Bitte führe so bald wie möglich eine Aktualisierung durch.
+      unsupported_since: Nicht mehr unterstützt seit %{date}
       version: Version
     statuses:
       account: Autor*in
@@ -1130,6 +1239,7 @@ de:
           other: In den vergangenen 7 Tagen von %{count} Profilen verwendet
       title: Empfehlungen & Trends
       trending: Angesagt
+    update_available: Update verfügbar
     username_blocks:
       add_new: Neue Regel
       block_registrations: Registrierungen sperren
@@ -1179,6 +1289,15 @@ de:
     auto_close_registrations:
       body: Aufgrund fehlender Aktivität von Moderator*innen müssen neue Registrierungen auf %{instance} jetzt manuell genehmigt werden. Dies wurde automatisch umgestellt, damit %{instance} nicht als Plattform für Böswillige missbraucht werden kann. Du kannst jederzeit auf uneingeschränkte Registrierungen zurückwechseln.
       subject: Registrierungen auf %{instance} müssen ab jetzt manuell genehmigt werden (automatisch umgestellt)
+    end_of_support_out_of_support_warning:
+      body: Die derzeitige Mastodon-Version wird nicht mehr unterstützt. Bitte führe so bald wie möglich eine Aktualisierung durch!
+      subject: Mastodon %{branch} auf %{instance} wird nicht länger unterstützt!
+    end_of_support_three_months_warning:
+      body: Die derzeitige Mastodon-Version wird in 3 Monaten nicht mehr unterstützt. Bitte führe so bald wie möglich eine Aktualisierung auf einen neueren Branch durch.
+      subject: Mastodon %{branch} auf %{instance} wird in 3 Monaten nicht mehr unterstützt.
+    end_of_support_two_weeks_warning:
+      body: Die derzeitige Mastodon-Version wird in 2 Wochen nicht mehr unterstützt. Bitte führe so bald wie möglich eine Aktualisierung auf einen neueren Branch durch.
+      subject: Mastodon %{branch} auf %{instance} wird in 2 Wochen nicht mehr unterstützt.
     new_appeal:
       actions:
         delete_statuses: das Löschen der Beiträge
@@ -1419,6 +1538,7 @@ de:
       your_appeal_rejected: Dein Einspruch wurde abgelehnt
   edit_profile:
     other: Andere
+    privacy_redesign_body: Die Option, deine Follower und „Folge ich“ allen anzuzeigen oder sie vor allen zu verbergen, findest du jetzt auch direkt in deinen Profileinstellungen.
     redesign_body: Dein Profil kannst du jetzt direkt auf deiner Profilseite bearbeiten.
     redesign_button: Loslegen
     redesign_title: Es gibt eine brandneue Möglichkeit, das Profil zu bearbeiten
@@ -1451,7 +1571,9 @@ de:
         success_html: Du wirst nun per E-Mail benachrichtigt, sobald %{name} einen neuen Beitrag veröffentlichen wird. Füge sicherheitshalber noch %{sender} deinem Adressbuch hinzu, damit diese E-Mails nicht fälschlich im Spam-Ordner deines E-Mail-Postfachs landen.
         title: Du hast dich angemeldet
         unsubscribe: Abbestellen
+    disabled: Deaktiviert
     inactive: Deaktiviert
+    no_access: Kein Zugriff
     status: Status
     subscribers: Abonnent*innen
   emoji_styles:
@@ -1487,7 +1609,9 @@ de:
     blocks: Blockierte Profile
     bookmarks: Lesezeichen
     csv: CSV
+    custom_filters: Filter
     domain_blocks: Blockierte Domains
+    json: JSON
     lists: Listen
     mutes: Stummgeschaltete Profile
     storage: Medienspeicher
@@ -1565,7 +1689,9 @@ de:
       empty: Leere CSV-Datei
       incompatible_type: Inkompatibel mit dem ausgewählten Importtyp
       invalid_csv_file: 'Ungültige CSV-Datei. Fehler: %{error}'
+      invalid_json_file: 'Ungültige JSON-Datei. Fehler: %{error}'
       over_rows_processing_limit: enthält mehr als %{count} Zeilen
+      status_not_found_warning: Einige deiner Filter blenden bestimmte Beiträge aus, die diesem Server nicht bekannt sind. Diese Beiträge werden nicht automatisch gefiltert, wenn sie dem Server später bekannt werden.
       too_large: Datei ist zu groß
     failures: Fehler
     imported: Importiert
@@ -1582,6 +1708,9 @@ de:
       bookmarks_html:
         one: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beitrag</strong> zu ersetzen.
         other: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beiträge</strong> zu ersetzen.
+      custom_filters_html:
+        one: Du bist dabei, <strong>deine Filter</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Filter</strong> wird zu neuen Filtern hinzugefügt.
+        other: Du bist dabei, <strong>deine Filter</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Filter</strong> werden zu neuen Filtern hinzugefügt.
       domain_blocking_html:
         one: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domain</strong> zu ersetzen.
         other: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domains</strong> zu ersetzen.
@@ -1601,6 +1730,9 @@ de:
       bookmarks_html:
         one: Du bist dabei, bis zu <strong>%{count} Beitrag</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+      custom_filters_html:
+        one: Du bist dabei, bis zu <strong>%{count} Filter</strong> aus <strong>%{filename}</strong> zu deinen <strong>Filtern hinzuzufügen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Filter</strong> aus <strong>%{filename}</strong> zu deinen <strong>Filtern hinzuzufügen</strong>.
       domain_blocking_html:
         one: Du bist dabei, bis zu <strong>%{count} Domain</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
@@ -1637,6 +1769,7 @@ de:
     types:
       blocking: Blockierte Profile
       bookmarks: Lesezeichen
+      custom_filters: Filter
       domain_blocking: Blockierte Domains
       following: Folge ich
       lists: Listen
@@ -1731,6 +1864,27 @@ de:
     copy_account_note_text: 'Dieses Konto ist von %{acct} umgezogen. Hier deine damals verfassten Notizen zum Profil:'
   navigation:
     toggle_menu: Menü ein-/ausblenden
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} fügte dich zu einer Sammlung hinzu"
+    admin_report:
+      title_html: "%{name} meldete %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} und noch jemand anderes registrierten sich"
+        other: "%{name} und %{count} weitere registrierten sich"
+      title_html: "%{name} registrierte sich"
+    collection_update:
+      title_html: "%{name} aktualisierte eine Sammlung, in der du vorgestellt wirst"
+    generic:
+      sign_in: Auf der Mastodon-Website anmelden
+      summary_html: Deine App unterstützt nicht die neueste Mastodon-Version. Rufe %{link} auf, um alle Funktionen nutzen zu können.
+    moderation_warning:
+      summary_html: Deine App unterstützt nicht die neueste Mastodon-Version. %{link}.
+      title: Die Moderator*innen haben dich verwarnt.
+    severed_relationships:
+      summary_html: Administrator*innen von %{from} haben den Zugriff auf den externen Server %{target} gesperrt. Das bedeutet, dass du keine Inhalte mehr von dort erhältst. Du kannst auch nicht mehr mit den Profilen dieses Servers interagieren. Rufe %{link} auf, um alle Profile, denen du folgtest und die dir folgten, einzusehen.
+      title: Verbindung zu %{name} verloren
   notification_mailer:
     admin:
       report:
@@ -1779,6 +1933,7 @@ de:
     administration_emails: Benachrichtigungen per E-Mail an die Admins
     email_events: Benachrichtigungen per E-Mail
     email_events_hint: 'Bitte die Ereignisse auswählen, für die du Benachrichtigungen per E-Mail erhalten möchtest:'
+    moderation_emails: Moderation E-Mail-Benachrichtigungen
   number:
     human:
       decimal_units:
@@ -1803,7 +1958,7 @@ de:
     next: Weiter
     older: Älter
     prev: Zurück
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: An dieser Umfrage hast du bereits teilgenommen
@@ -1821,10 +1976,11 @@ de:
     explanation: Diese Einstellungen werden standardmäßig für neue Beiträge verwendet, aber du kannst sie für jeden Beitrag individuell anpassen.
   preferences:
     other: Erweitert
-    posting_defaults: Standardeinstellungen für Beiträge
+    posting_defaults: Beiträge
     public_timelines: Öffentliche Timelines
   privacy:
     email_subscriptions: Sende Beiträge per E-Mail
+    email_subscriptions_hint_html: Füge deinem Profil ein E-Mail-Formular für nicht angemeldete Personen hinzu. Dadurch können sie von Mastodon E-Mails über deine neuen öffentlichen Beiträge erhalten.
     hint_html: "<strong>Bestimme selbst, wie dein Profil und deine Beiträge gefunden werden sollen.</strong> Zahlreiche Mastodon-Funktionen können dir für eine größere Reichweite behilflich sein. Nimm dir einen Moment Zeit, um diese Einstellungen zu überprüfen."
     privacy: Datenschutz
     privacy_hint_html: Bestimme, wie viele Informationen du für andere preisgeben möchtest. Viele Menschen entdecken interessante Profile und coole Apps, indem sie die Follower anderer Profile durchstöbern und die Apps sehen, über die Beiträge veröffentlicht wurden – möglicherweise möchtest du diese Informationen ausblenden.
@@ -1945,7 +2101,7 @@ de:
     preferences: Einstellungen
     profile: Öffentliches Profil
     relationships: Follower und Folge ich
-    severed_relationships: Getrennte Beziehungen
+    severed_relationships: Getrennte Verbindungen
     statuses_cleanup: Automatisiertes Löschen
     strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung
@@ -1958,7 +2114,7 @@ de:
       user_domain_block: Du hast %{target_name} blockiert
     lost_followers: Verlorene Follower
     lost_follows: Konten entfolgt
-    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Beziehungen herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
+    preamble: Möglicherweise verlierst du Follower und entfolgst Konten, wenn du eine Domain blockierst oder Moderator*innen externe Server sperren. Sollte das der Fall sein, wirst du eine Liste mit den getrennten Verbindungen einsehen und herunterladen können. Dadurch kannst du die Änderungen einsehen oder die Liste auf einen anderen Server importieren.
     purged: Informationen über diesen Server wurden von deinen Server-Administrator*innen entfernt.
     type: Ereignis
   statuses:
@@ -2094,11 +2250,21 @@ de:
       email_subscription:
         confirmation_html: Du erhältst keine E-Mails mehr von %{name}.
       title: Du wurdest abgemeldet
+      user:
+        confirmation_html: Du erhältst von Mastodon zukünftig keine %{type} auf %{domain}.
+    notification_emails:
+      favourite: E-Mail-Benachrichtigungen über neue Favoriten
+      follow: E-Mail-Benachrichtigungen über neue Follower
+      follow_request: E-Mail-Benachrichtigungen über neue Follower-Anfragen
+      mention: E-Mail-Benachrichtigungen über neue Erwähnungen
+      reblog: E-Mail-Benachrichtigungen über geteilte Beiträge
     show:
       action: Abbestellen
       email_subscription:
+        confirmation_html: Du wirst bei neuen Beiträgen keine E-Mails mehr erhalten.
         title: "%{name} abbestellen?"
       user:
+        confirmation_html: Du wirst von Mastodon zukünftig keine %{type} auf %{domain} erhalten.
         title: "%{type} abbestellen?"
   user_mailer:
     announcement_published:

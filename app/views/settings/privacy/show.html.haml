@@ -34,14 +34,19 @@
 
   %p.lead= t('privacy.privacy_hint_html')
 
-  .fields-group
-    = f.input :show_collections, as: :boolean, wrapper: :with_label
-
   = f.simple_fields_for :settings, current_user.settings do |ff|
     .fields-group
       = ff.input :show_application, wrapper: :with_label
 
-  - if Mastodon::Feature.email_subscriptions_enabled? && current_user.can?(:manage_email_subscriptions)
+  %aside.callout
+    = material_symbol 'info'
+    .content
+      .body
+        %p.title= t('edit_profile.redesign_title')
+        %p= t('edit_profile.privacy_redesign_body')
+      = link_to t('edit_profile.redesign_button'), '/profile/edit'
+
+  - if Rails.application.config.x.email_subscriptions && Setting.email_subscriptions && current_user.can?(:manage_email_subscriptions)
     %h2= t('privacy.email_subscriptions')
 
     %p.lead= t('privacy.email_subscriptions_hint_html')
@@ -52,7 +57,11 @@
           %tbody
             %tr
               %th= t('email_subscriptions.status')
-              %td= @account.user_email_subscriptions_enabled? ? t('email_subscriptions.active') : t('email_subscriptions.inactive')
+              %td
+                - if @account.user_email_subscriptions_enabled?
+                  %span.status-badge.positive= t('email_subscriptions.active')
+                - else
+                  %span.status-badge.negative= t('email_subscriptions.inactive')
             %tr
               %th= t('email_subscriptions.subscribers')
               %td= number_with_delimiter @email_subscriptions_count

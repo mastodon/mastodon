@@ -2,13 +2,14 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
+import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 
 import { useColumnsContext } from '../../ui/util/columns_context';
 import classes from '../styles.module.scss';

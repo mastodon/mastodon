@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
 class REST::NotificationGroupSerializer < ActiveModel::Serializer
+  include RoutingHelper
+  include ActionView::Helpers::UrlHelper
+  include NotificationFallbackConcern
+
   # Please update app/javascript/mastodon/api_types/notifications.ts when making changes to the attributes
   attributes :group_key, :notifications_count, :type, :most_recent_notification_id
 
   attribute :page_min_id, if: :paginated?
   attribute :page_max_id, if: :paginated?
   attribute :latest_page_notification_at, if: :paginated?
+
+  attribute :fallback, if: :needs_fallback?
 
   attribute :sample_account_ids
   attribute :status_id, if: :status_type?

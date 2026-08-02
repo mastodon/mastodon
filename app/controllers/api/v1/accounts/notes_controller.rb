@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Accounts::NotesController < Api::BaseController
+class Api::V1::Accounts::NotesController < Api::V1::Accounts::BaseController
   include Authorization
 
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }
@@ -19,10 +19,6 @@ class Api::V1::Accounts::NotesController < Api::BaseController
   end
 
   private
-
-  def set_account
-    @account = Account.find(params[:account_id])
-  end
 
   def relationships_presenter
     AccountRelationshipsPresenter.new([@account], current_user.account_id)

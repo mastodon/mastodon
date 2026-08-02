@@ -1,5 +1,5 @@
 
-import renderer from 'react-test-renderer';
+import { render } from '@/testing/rendering';
 
 import { accountDefaultValues, createAccountFromServerJSON } from '@/mastodon/models/account';
 
@@ -19,19 +19,17 @@ describe('<Avatar />', () => {
 
   describe('Autoplay', () => {
     it('renders a animated avatar', () => {
-      const component = renderer.create(<Avatar account={account} animate size={size} />);
-      const tree      = component.toJSON();
+      const { container } = render(<Avatar account={account} animate size={size} />);
 
-      expect(tree).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('Still', () => {
     it('renders a still avatar', () => {
-      const component = renderer.create(<Avatar account={account} size={size} />);
-      const tree      = component.toJSON();
+      const { container } = render(<Avatar account={account} size={size} />);
 
-      expect(tree).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 

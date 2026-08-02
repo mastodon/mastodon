@@ -48,9 +48,13 @@
 
 .status {
   // If there's no content, we need to compensate for the parent's
-  // flex gap to avoid extra spacing below the field.
+  // flex gap to avoid extra spacing below or next to the field.
   &:empty {
     margin-top: calc(-1 * var(--form-field-label-gap));
+  }
+
+  [data-input-placement^='inline'] &:empty {
+    margin-inline-start: calc(-1 * var(--form-field-label-gap));
   }
 }
 

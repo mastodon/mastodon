@@ -7,7 +7,6 @@ class CollectionItemsController < ApplicationController
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
-  before_action :check_feature_enabled
   before_action :require_account_signature!, if: -> { authorized_fetch_mode? }
   before_action :set_collection_item
 
@@ -34,9 +33,5 @@ class CollectionItemsController < ApplicationController
     authorize @collection_item.collection, :show?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
-  end
-
-  def check_feature_enabled
-    raise ActionController::RoutingError unless Mastodon::Feature.collections_enabled?
   end
 end

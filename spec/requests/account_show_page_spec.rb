@@ -16,18 +16,4 @@ RSpec.describe 'The account show page' do
     expect(head_meta_content('og:image')).to match '.+'
     expect(head_meta_content('og:url')).to eq short_account_url(username: alice.username)
   end
-
-  def head_link_icons
-    response
-      .parsed_body
-      .search('html head link[rel=icon]')
-  end
-
-  def head_meta_content(property)
-    response
-      .parsed_body
-      .search("html head meta[property='#{property}']")
-      .attr('content')
-      .text
-  end
 end

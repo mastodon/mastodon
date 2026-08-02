@@ -2,7 +2,7 @@
 @use 'variables' as *;
 
 code {
-  font-family: $font-monospace, monospace;
+  font-family: var(--font-monospace);
   font-weight: 400;
 }
 
@@ -71,6 +71,24 @@ code {
 }
 
 .simple_form {
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .numbered-list {
+    list-style: decimal;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 16px;
+    margin-inline-start: 28px;
+
+    li {
+      margin-bottom: 4px;
+    }
+  }
+
   &.hidden {
     display: none;
   }
@@ -482,6 +500,8 @@ code {
 
     input[type='radio'] {
       accent-color: var(--color-text-brand);
+      width: 15px;
+      height: 15px;
     }
   }
 
@@ -515,6 +535,8 @@ code {
   label.checkbox {
     input[type='checkbox'] {
       accent-color: var(--color-text-brand);
+      width: 15px;
+      height: 15px;
     }
   }
 
@@ -539,7 +561,6 @@ code {
     display: block;
     width: 100%;
     font-family: inherit;
-    resize: vertical;
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border-primary);
     border-radius: 4px;
@@ -564,6 +585,10 @@ code {
     @media screen and (width <= 600px) {
       font-size: 16px;
     }
+  }
+
+  textarea {
+    resize: vertical;
   }
 
   input[type='text'],
@@ -870,7 +895,7 @@ code {
     width: 100%;
     border: 0;
     padding: 10px;
-    font-family: $font-monospace, monospace;
+    font-family: var(--font-monospace);
     background: var(--color-bg-secondary);
     color: var(--color-text-primary);
     font-size: 14px;
@@ -1121,7 +1146,7 @@ code {
 .form_admin_settings_custom_css,
 .form_admin_settings_closed_registrations_message {
   textarea {
-    font-family: $font-monospace, monospace;
+    font-family: var(--font-monospace);
   }
 }
 
@@ -1146,7 +1171,7 @@ code {
     border: 0;
     padding: 10px;
     font-size: 14px;
-    font-family: $font-monospace, monospace;
+    font-family: var(--font-monospace);
   }
 
   button {

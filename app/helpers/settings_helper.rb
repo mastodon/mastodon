@@ -9,6 +9,12 @@ module SettingsHelper
     LanguagesHelper.sorted_locale_keys(I18n.available_locales)
   end
 
+  def inline_qrcode_svg(code)
+    code
+      .as_svg(padding: 0, module_size: 4, use_path: true)
+      .html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   def featured_tags_hint(recently_used_tags)
     recently_used_tags.present? &&
       safe_join(
@@ -55,6 +61,10 @@ module SettingsHelper
     link_to ActivityPub::TagManager.instance.url_for(account), class: 'name-tag', title: account.acct do
       safe_join([image_tag(account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar'), content_tag(:span, account.acct, class: 'username')], ' ')
     end
+  end
+
+  def time_zone_options
+    ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.now.formatted_offset}) #{tz.name}", tz.tzinfo.name] }
   end
 
   private

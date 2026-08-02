@@ -4,12 +4,13 @@ import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import type { Merge } from 'type-fest';
+
 import CancelFillIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import { revealAccount } from 'mastodon/actions/accounts_typed';
 import { fetchStatus } from 'mastodon/actions/statuses';
 import { LearnMoreLink } from 'mastodon/components/learn_more_link';
-import StatusContainer from 'mastodon/containers/status_container';
 import { domain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import type { Status } from 'mastodon/models/status';
@@ -22,6 +23,8 @@ import { Button } from './button';
 import { IconButton } from './icon_button';
 import type { StatusHeaderRenderFn } from './status/header';
 import { StatusHeader } from './status/header';
+import { TypedStatusContainer } from './status/types';
+import type { StatusContainerProps, StatusContextType } from './status/types';
 
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
@@ -144,7 +147,7 @@ const FilteredQuote: React.FC<{
 
 interface QuotedStatusProps {
   quote: QuoteMap;
-  contextType?: string;
+  contextType?: StatusContextType;
   parentQuotePostId?: string | null;
   variant?: 'full' | 'link';
   nestingLevel?: number;
@@ -225,17 +228,20 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   const intl = useIntl();
   const headerRenderFn: StatusHeaderRenderFn = useCallback(
     (props) => (
-      <StatusHeader {...props}>
-        {onQuoteCancel && (
-          <IconButton
-            onClick={onQuoteCancel}
-            className='status__quote-cancel'
-            title={intl.formatMessage(quoteCancelMessage)}
-            icon='cancel-fill'
-            iconComponent={CancelFillIcon}
-          />
-        )}
-      </StatusHeader>
+      <StatusHeader
+        {...props}
+        contentAfterDate={
+          onQuoteCancel && (
+            <IconButton
+              onClick={onQuoteCancel}
+              className='status__quote-cancel'
+              title={intl.formatMessage(quoteCancelMessage)}
+              icon='cancel-fill'
+              iconComponent={CancelFillIcon}
+            />
+          )
+        }
+      />
     ),
     [intl, onQuoteCancel],
   );
@@ -335,7 +341,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
 
   return (
     <div className='status__quote'>
-      <StatusContainer
+      <TypedStatusContainer
         isQuotedPost
         id={quotedStatusId}
         contextType={contextType}
@@ -353,16 +359,17 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
             nestingLevel={nestingLevel + 1}
           />
         )}
-      </StatusContainer>
+      </TypedStatusContainer>
     </div>
   );
 };
 
-export interface StatusQuoteManagerProps {
-  id: string;
-  contextType?: string;
-  [key: string]: unknown;
-}
+export type StatusQuoteManagerProps = Merge<
+  StatusContainerProps,
+  {
+    id: string;
+  }
+>;
 
 /**
  * This wrapper component takes a status ID and, if the associated status
@@ -380,15 +387,15 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
 
   if (quote) {
     return (
-      <StatusContainer {...props}>
+      <TypedStatusContainer {...props}>
         <QuotedStatus
           quote={quote}
           parentQuotePostId={status?.get('id') as string}
           contextType={props.contextType}
         />
-      </StatusContainer>
+      </TypedStatusContainer>
     );
   }
 
-  return <StatusContainer {...props} />;
+  return <TypedStatusContainer {...props} />;
 };

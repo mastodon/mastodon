@@ -66,9 +66,9 @@ namespace :db do
     abort 'This version of Mastodon requires PostgreSQL 14.0 or newer. Please update PostgreSQL before updating Mastodon.' if pg_version < 140_000
 
     schema_version = ActiveRecord::Migrator.current_version
-    abort <<~MESSAGE if ENV['SKIP_POST_DEPLOYMENT_MIGRATIONS'] && schema_version < 2023_09_07_150100
-      Zero-downtime migrations from Mastodon versions earlier than 4.2.0 are not supported.
-      Please update to Mastodon 4.2.x first or upgrade by stopping all services and running migrations without `SKIP_POST_DEPLOYMENT_MIGRATIONS`.
+    abort <<~MESSAGE if ENV['SKIP_POST_DEPLOYMENT_MIGRATIONS'] && schema_version < 2024_10_07_071624
+      Zero-downtime migrations from Mastodon versions earlier than 4.3.0 are not supported.
+      Please update to Mastodon 4.3.x first or upgrade by stopping all services and running migrations without `SKIP_POST_DEPLOYMENT_MIGRATIONS`.
     MESSAGE
   end
 

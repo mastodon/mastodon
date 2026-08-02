@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
       }
     } else if (path[0] === 'quickFilter') {
       dispatch(changeSetting(['notifications', ...path], checked));
-      dispatch(setNotificationsFilter('all'));
+      dispatch(setNotificationsFilter({ filterType: 'all' }));
     } else if (path[0] === 'alerts' && checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
       if (checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
         dispatch(requestBrowserPermission((permission) => {

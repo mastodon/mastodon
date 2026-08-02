@@ -30,7 +30,7 @@ class AddAccountToCollectionService
   end
 
   def distribute_add_activity
-    ActivityPub::AccountRawDistributionWorker.perform_async(add_activity_json, @collection.account_id)
+    ActivityPub::CollectionRawDistributionWorker.perform_async(add_activity_json, @collection.id)
   end
 
   def distribute_feature_request_activity

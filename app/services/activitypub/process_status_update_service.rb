@@ -22,6 +22,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @quote_changed             = false
     @request_id                = request_id
     @quote                     = nil
+    @next_media_attachments    = []
+    @next_links                = []
 
     return @status if !expected_type? || already_updated_more_recently?
 
@@ -87,12 +89,17 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def update_media_attachments!
     previous_media_attachments     = @status.media_attachments.to_a
     previous_media_attachments_ids = @status.ordered_media_attachment_ids || previous_media_attachments.map(&:id)
-    @next_media_attachments        = []
 
     as_array(@json['attachment']).each do |attachment|
+      if attachment['href'].present?
+        preview_card_parser = ActivityPub::Parser::PreviewCardParser.new(attachment)
+        @next_links << preview_card_parser.url if preview_card_parser.url.present?
+        next
+      end
+
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
 
-      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > Status::MEDIA_ATTACHMENTS_LIMIT
+      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size >= Status::MEDIA_ATTACHMENTS_LIMIT
 
       begin
         media_attachment   = previous_media_attachments.find { |previous_media_attachment| previous_media_attachment.remote_url == media_attachment_parser.remote_url }
@@ -237,11 +244,22 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_tagged_objects!
+    unresolved_tagged_objects = []
+
     current_tagged_objects = @raw_tagged_objects.filter_map do |tagged_object|
       url = tagged_object['id']
 
       # TODO: We probably want to resolve unknown objects at authoring time
-      ActivityPub::TagManager.instance.uri_to_resource(url, Collection)
+      collection = ActivityPub::TagManager.instance.uri_to_resource(url, Collection)
+      collection ||= ActivityPub::FetchRemoteFeaturedCollectionService.new.call(url, request_id: @request_id)
+
+      collection
+    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+      # Since previous tagged objects are about already-known collections,
+      # they don't try to resolve again and won't fall into this case.
+      # In other words, this failure case is only for new collections and can safely be retried later
+      unresolved_tagged_objects << url
+      nil
     end
 
     # Any previously-unresolved URI would be resolved here
@@ -252,6 +270,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     # Remove unused links
     @status.tagged_objects.where.not(uri: current_tagged_objects.map { |object| ActivityPub::TagManager.instance.uri_for(object) }).delete_all
+
+    # Queue unresolved collections for later
+    unresolved_tagged_objects.uniq.each do |uri|
+      TaggedCollectionResolveWorker.perform_in(rand(PROCESSING_DELAY), @status.id, uri, { 'request_id' => @request_id })
+    end
   end
 
   def update_mentions!
@@ -369,7 +392,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def update_counts!
     likes = @status_parser.favourites_count
-    shares =  @status_parser.reblogs_count
+    shares = @status_parser.reblogs_count
+
     return if likes.nil? && shares.nil?
 
     @status.status_stat.tap do |status_stat|
@@ -422,7 +446,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def reset_preview_card!
     @status.reset_preview_card!
-    LinkCrawlWorker.perform_in(rand(CRAWL_DELAY), @status.id)
+    LinkCrawlWorker.perform_in(rand(CRAWL_DELAY), @status.id, @next_links.first)
   end
 
   def broadcast_updates!

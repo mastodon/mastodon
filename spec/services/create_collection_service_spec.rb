@@ -32,7 +32,7 @@ RSpec.describe CreateCollectionService do
       it 'federates an `Add` activity' do
         subject.call(base_params, author)
 
-        expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+        expect(ActivityPub::CollectionRawDistributionWorker).to have_enqueued_sidekiq_job
       end
 
       context 'when given account ids' do

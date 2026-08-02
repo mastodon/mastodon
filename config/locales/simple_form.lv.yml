@@ -32,7 +32,7 @@ lv:
       announcement:
         all_day: Atzīmējot šo opciju, tiks parādīti tikai laika diapazona datumi
         ends_at: Neobligāts. Paziņojums šoreiz tiks automātiski atcelts
-        scheduled_at: Lai nekavējoties publicētu paziņojumu, atstāj tukšu
+        scheduled_at: Atstāt tukšu, lai nekavējoties publicētu paziņojumu
         starts_at: Neobligāts. Ja tavs paziņojums ir saistīts ar noteiktu laika diapazonu
         text: Varari izmantot ziņu sintaksi. Lūdzu, apdomā lauku, ko paziņojums aizņems lietotāja ekrānā
       appeal:
@@ -56,7 +56,6 @@ lv:
         setting_aggregate_reblogs: Nerādīt jaunus pastiprinājumus ierakstiem, kas nesen tikuši pastiprināti (ietekmēs tikai turpmāk saņemtos pastiprinājumus)
         setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
         setting_default_sensitive: Pēc noklusējuma jūtīgi informācijas nesēji ir paslēpti, un tos var atklāt ar klikšķi
-        setting_system_scrollbars_ui: Attiecas tikai uz darbvirsmas pārlūkiem, kuru pamatā ir Safari vai Chrome
         setting_use_blurhash: Pāreju pamatā ir paslēpto uzskatāmo līdzekļu krāsas, bet saturs tiek padarīts neskaidrs
         setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis ar automātisku plūsmas ritināšanu
         username: Tu vari lietot burtus, ciparus un zemsvītras
@@ -74,7 +73,7 @@ lv:
           hide: Paslēp filtrēto saturu pilnībā, izturoties tā, it kā tas neeksistētu
           warn: Paslēp filtrēto saturu aiz brīdinājuma, kurā minēts filtra nosaukums
       form_admin_settings:
-        activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
+        activity_api_enabled: Vietēji pievienoto ierakstu, darbīgo lietotāju un jauno reģistrāciju skaits iknedēļas kopās
         app_icon: WEBP, PNG, GIF vai JPG. Mobilajās ierīcēs aizstāj noklusējuma lietotnes ikonu ar pielāgotu.
         backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
@@ -93,7 +92,7 @@ lv:
         site_short_description: Īss apraksts, kas palīdzēs unikāli identificēt tavu serveri. Kurš to darbina, kam tas paredzēts?
         site_terms: Izmanto pats savu konfidencialitātes politiku vai atstāj tukšu, lai izmantotu noklusējuma iestatījumu. Var strukturēt ar Markdown sintaksi.
         site_title: Kā cilvēki var atsaukties uz tavu serveri, izņemot tā domēna nosaukumu.
-        status_page_url: Tās lapas URL, kurā lietotāji var redzēt šī servera statusu pārtraukuma laikā
+        status_page_url: Lapas, kurā cilvēki var redzēt šī servera stāvokli darbības pārtraukumu laikā, URL
         theme: Tēma, kuru redz apmeklētāji, kuri ir atteikušies, un jaunie lietotāji.
         thumbnail: Aptuveni 2:1 attēls, kas tiek parādīts kopā ar tava servera informāciju.
         trendable_by_default: Izlaist aktuālā satura manuālu pārskatīšanu. Atsevišķas preces joprojām var noņemt no tendencēm pēc fakta.
@@ -107,7 +106,7 @@ lv:
       ip_block:
         comment: Neobligāts. Atceries, kādēļ tu pievienoji šo nosacījumu.
         expires_in: IP adreses ir ierobežots resurss, tās dažreiz tiek koplietotas un bieži maina turētāju. Šī iemesla dēļ nedefinēti IP bloki nav ieteicami.
-        ip: Ievadi IPv4 vai IPv6 adresi. Izmantojot CIDR sintaksi, tu vari bloķēt visus diapazonus. Esi piesardzīgs un neizslēdz pats sevi!
+        ip: Jāievada IPv4 vai IPv6 adrese. Ar CIDR pierakstu var liegt veselus apgabalus. Esi piesardzīgs un neizslēdz pats sevi!
         severities:
           no_access: Bloķēt piekļuvi visiem resursiem
           sign_up_block: Jaunas pieteikšanās nebūs iespējamas
@@ -121,7 +120,7 @@ lv:
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
       settings:
         indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
-        show_application: Tu vienmēr varēsi redzēt, kura lietotne publicēja tavu ziņu.
+        show_application: Tu vienmēr varēsi redzēt, kura lietotne pievienoja Tavu ierakstu.
       tag:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
       terms_of_service:
@@ -209,7 +208,7 @@ lv:
         setting_aggregate_reblogs: Grupēt pastiprinājumus ierakstu lentās
         setting_always_send_emails: Vienmēr sūtīt e-pasta paziņojumus
         setting_auto_play_gif: Automātiski atskaņot animētos GIF
-        setting_default_language: Publicēšanas valoda
+        setting_default_language: Ierakstu pievienošanas valoda
         setting_default_quote_policy: Kas var citēt
         setting_default_sensitive: Vienmēr atzīmēt informācijas nesējus kā jūtīgus
         setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
@@ -248,7 +247,7 @@ lv:
         activity_api_enabled: Publicējiet apkopotu statistiku par lietotāju darbībām API
         app_icon: Lietotnes ikona
         backups_retention_period: Lietotāja arhīva glabāšanas periods
-        bootstrap_timeline_accounts: Vienmēr iesaki šos kontus jaunajiem lietotājiem
+        bootstrap_timeline_accounts: Vienmēr ieteikt šos kontus jaunajiem lietotājiem
         closed_registrations_message: Pielāgots ziņojums, ja reģistrēšanās nav pieejama
         content_cache_retention_period: Attālā satura paturēšanas laika posms
         custom_css: Pielāgots CSS
@@ -268,8 +267,8 @@ lv:
         site_short_description: Servera apraksts
         site_terms: Privātuma Politika
         site_title: Servera nosaukums
-        status_page_url: Statusa lapas URL
-        theme: Noklusētā tēma
+        status_page_url: Stāvokļa lapas URL
+        theme: Noklusējuma izskats
         thumbnail: Servera sīkbilde
         trendable_by_default: Atļaut tendences bez iepriekšējas pārskatīšanas
         trends: Iespējot tendences
@@ -304,7 +303,7 @@ lv:
           all: Paziņot par visiem atjauninājumiem
           critical: Paziņot tikai par kritiskajiem atjauninājumiem
           label: Ir pieejama jauna Mastodon versija
-          none: Nekad neziņot par atjauninājumiem (nerekomendēts)
+          none: Nekad neziņot par atjauninājumiem (nav ieteicams)
           patch: Paziņot par novērsto kļūdu atjauninājumiem
         trending_tag: Jaunā tendence ir jāpārskata
       rule:

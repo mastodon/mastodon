@@ -174,9 +174,7 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
   const suggestions = useAppSelector((state) => state.suggestions.items);
   const isLoading = useAppSelector((state) => state.suggestions.isLoading);
   const dismissed = useAppSelector(
-    (state) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-      state.settings.getIn(['dismissed_banners', DISMISSIBLE_ID]) as boolean,
+    (state) => !!state.settings.getIn(['dismissed_banners', DISMISSIBLE_ID]),
   );
 
   useEffect(() => {
@@ -212,12 +210,12 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
       tabIndex={-1}
     >
       <div className='inline-follow-suggestions__header'>
-        <h3 id={uniqueId}>
+        <h2 id={uniqueId} className='inline-follow-suggestions__title'>
           <FormattedMessage
             id='follow_suggestions.who_to_follow'
             defaultMessage='Who to follow'
           />
-        </h3>
+        </h2>
 
         <div className='inline-follow-suggestions__header__actions'>
           <button className='link-button' onClick={handleDismiss} type='button'>

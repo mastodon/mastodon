@@ -77,7 +77,7 @@ export function PinnedStatuses () {
 }
 
 export function AccountTimeline () {
-  return import('../../account_timeline/v2');
+  return import('../../account_timeline');
 }
 
 export function AccountGallery () {

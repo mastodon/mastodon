@@ -17,7 +17,7 @@ RSpec.describe 'Admin::Settings::Discovery' do
     click_on submit_button
 
     expect(page)
-      .to have_content(success_message)
+      .to have_text(success_message)
   end
 
   def trends_box

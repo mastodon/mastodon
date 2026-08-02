@@ -4,6 +4,7 @@ vi:
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
     contact_missing: Chưa thiết lập
     contact_unavailable: N/A
+    default_thumbnail_description: Hai chú voi ma mút hoạt hình đang mỉm cười và tung một chiếc máy bay giấy cho nhau. Chúng được bao quanh bởi bầu trời xanh tươi sáng và những hành tinh trôi nổi với cây cối và nhiều voi ma mút khác trên đó.
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     title: Giới thiệu
   accounts:
@@ -284,7 +285,11 @@ vi:
         enable_relay_html: "%{name} đã bật relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} đã bật xác minh email của %{target}"
         enable_user_html: "%{name} đã bỏ vô hiệu hóa đăng nhập %{target}"
+        listable_tag_html: có thể đề xuất
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
+        not_listable_tag_html: không thể đề xuất
+        not_trendable_tag_html: không cho lên xu hướng
+        not_usable_tag_html: không được phép dùng
         promote_user_html: "%{name} đã nâng vai trò của %{target}"
         publish_terms_of_service_html: "%{name} đã cập nhật điều khoản dịch vụ"
         reject_appeal_html: "%{name} đã từ chối khiếu nại từ %{target}"
@@ -297,6 +302,7 @@ vi:
         sensitive_account_html: "%{name} đã gán nội dung của %{target} là nhạy cảm"
         silence_account_html: "%{name} đã ẩn %{target}"
         suspend_account_html: "%{name} đã vô hiệu hóa %{target}"
+        trendable_tag_html: cho phép lên xu hướng
         unassigned_report_html: "%{name} đã thôi xử lý báo cáo %{target}"
         unblock_email_account_html: "%{name} đã bỏ chặn địa chỉ email của %{target}"
         unsensitive_account_html: "%{name} đã gán nội dung của %{target} là bình thường"
@@ -309,8 +315,10 @@ vi:
         update_ip_block_html: "%{name} đã cập nhật chặn IP %{target}"
         update_report_html: "%{name} đã cập nhật báo cáo %{target}"
         update_status_html: "%{name} đã cập nhật tút của %{target}"
+        update_tag_html: "%{name} đã thay đổi thiết lập %{target} thành: "
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
         update_username_block_html: "%{name} đã cập nhật quy tắc cho tên người dùng chứa %{target}"
+        usable_tag_html: có thể dùng;
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
@@ -341,11 +349,19 @@ vi:
       updated_msg: Cập nhật thông báo thành công!
     collections:
       accounts: Tài khoản
+      back_to_account: Quay lại trang tài khoản
+      back_to_report: Quay lại trang báo cáo
+      batch:
+        add_to_report: 'Thêm vào báo cáo #%{id}'
+        remove_from_report: Xóa khỏi báo cáo
+        report: Báo cáo
       collection_title: Gói khởi đầu bởi %{name}
       contents: Nội dung
+      no_collection_selected: Không có gói khởi đầu nào thay đổi vì không có mục nào được chọn
       number_of_accounts:
         other: "%{count} tài khoản"
       open: Mở
+      title: Gói khởi đầu - @%{name}
       view_publicly: Xem công khai
     critical_update_pending: Cập nhật quan trọng đang chờ
     custom_emojis:
@@ -474,9 +490,89 @@ vi:
         title: Chặn tên miền email mới
       no_email_domain_block_selected: Không có thay đổi vì không có mục nào được chọn
       not_permitted: Không cho phép
+      reset: Đặt lại
       resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
       resolved_through_html: Đã xử lý thông qua %{domain}
+      search: Tìm kiếm
       title: Tên miền email đã chặn
+    email_subscriptions:
+      accounts:
+        account: Tài khoản
+        empty:
+          hint: Hiện chưa có tài khoản nào có người đăng ký đọc.
+          no_lists_yet: Chưa có danh sách nào
+        last_email: Email gần nhất
+        lead: Các tài khoản đã kích hoạt tính năng này và có người đăng ký sẽ hiển thị bên dưới.
+        show:
+          confirm_disable_feature: Tắt bản tin email cho %{name}? Bản tin cập nhật qua email sẽ không còn được gửi cho tài khoản này nữa. Người dùng vẫn có thể bật lại tính năng này trong cài đặt tài khoản của họ. Để xóa vĩnh viễn quyền truy cập vào tính năng này, hãy chỉnh sửa quyền của tài khoản trong mục Vai trò.
+          confirm_remove_subscriber: "%{email} sẽ không còn nhận được email từ %{name} nữa. Hành động này không thể hoàn tác."
+          consent: Người đăng ký chỉ đồng ý nhận bài viết qua email. Vui lòng không sử dụng danh sách này cho mục đích khác.
+          date: Ngày đăng ký
+          disable_feature: Tắt tính năng
+          disabled: Tính năng này đã bị vô hiệu hóa và email không còn được gửi đến danh sách này nữa.
+          email: Địa chỉ email
+          empty:
+            hint: Hiện chưa có ai đăng ký theo dõi tài khoản này.
+            no_subscribers_yet: Chưa có đăng ký theo dõi
+          enable_feature: Bật tính năng
+          no_access_html: Tài khoản này không còn quyền hạn cần thiết để kích hoạt tính năng này nữa. Thay đổi trong <a href="%{roles_path}">Vai trò</a>.
+          title: Bản tin email của %{name}
+          view_account: Xem tài khoản
+        status: Trạng thái
+        subscribers: Người đăng ký đọc
+        title: Danh sách gửi thư
+      additional_footer_texts:
+        show:
+          title: Văn bản chân trang bổ sung
+      compliance_settings:
+        additional_footer_text:
+          action: Quản lý
+          hint: Văn bản tùy chọn chỉ xuất hiện ở phần chân trang của bản tin email
+          title: Văn bản chân trang bổ sung
+        lead: Tùy thuộc vào khu vực pháp lý nơi bạn hoạt động, bản tin email có thể được coi là email tiếp thị.
+        privacy_policy:
+          action: Quản lý
+          hint: Chính sách này được liên kết ở phần chân trang của mỗi email
+          title: Chính sách bảo mật
+        title: Cài đặt tuân thủ
+      danger_zone:
+        disable_feature:
+          action: Tắt
+          hint: Tắt tính năng này cho tất cả tài khoản
+          title: Tắt tính năng
+        erase_all_data:
+          action: Xóa dữ liệu
+          hint: Xóa vĩnh viễn tất cả email trong tất cả danh sách gửi thư
+          title: Xóa tất cả dữ liệu
+        title: Khu vực nguy hiểm
+      disabled_msg: Việc đăng ký nhận email đã được vô hiệu hóa thành công.
+      index:
+        disabled:
+          cannot_be_enabled: Nhà cung cấp kỹ thuật của bạn chưa kích hoạt tính năng này cho máy chủ của bạn.
+          description: Tính năng này cho phép các tài khoản được chỉ định thêm tiện ích vào hồ sơ của họ, giúp khách truy cập không có tài khoản Mastodon vẫn có thể nhận bài đăng qua email.
+          get_started: Bắt đầu
+        lead: Cho phép khách truy cập nhận tút qua email từ các tài khoản đặc biệt trên máy chủ này.
+        title: Bản tin email
+      purged_msg: Tất cả dữ liệu đăng ký nhận email đang được xóa.
+      roles:
+        accounts: Tài khoản
+        edit_role: Chỉnh sửa vai trò
+        empty:
+          hint: Không ai có quyền dùng tính năng này.
+          no_roles_added: Chưa có vai trò nào được thêm
+        lead: Các tài khoản có vai trò sau đây có thể kích hoạt tính năng này trên hồ sơ của họ.
+        manage_roles: Quản lý vai trò
+        role_name: Tên vai trò
+        title: Vai trò
+      setups:
+        show:
+          enable_feature: Bật tính năng
+          important_information: Thông tin quan trọng
+          list:
+            1_permission_explanation: Khi tính năng này được kích hoạt, các tài khoản có quyền được chỉ định có thể thêm biểu mẫu thu thập email vào hồ sơ của họ.
+            2_feature_explanation: Khi khách truy cập đăng ký trên trang hồ sơ tài khoản và xác nhận đăng ký của họ, họ sẽ bắt đầu nhận được thông báo qua email mỗi khi tài khoản đó đăng tút công khai mới.
+            3_privacy_policy_warning: Quản trị viên máy chủ sẽ có quyền truy cập vào thông tin nhận dạng cá nhân (địa chỉ email) đã thu thập được. Do đó, chính sách bảo mật và Điều khoản dịch vụ của máy chủ phải được cập nhật trước khi sử dụng tính năng này.
+            4_cost_warning: Việc gửi email có thể phát sinh phí tùy thuộc vào cấu hình máy chủ. Hãy thảo luận với nhà cung cấp dịch vụ lưu trữ của bạn trước khi kích hoạt tính năng này, vì nó có thể làm tăng đáng kể số lượng email được gửi từ máy chủ của bạn.
     export_domain_allows:
       new:
         title: Nhập tên miền cho phép
@@ -628,6 +724,8 @@ vi:
       new:
         title: Chặn một IP mới
       no_ip_block_selected: Bạn chưa chọn bất kỳ IP nào
+      reset: Đặt lại
+      search: Tìm kiếm
       title: Những IP bị chặn
     relationships:
       title: Mối quan hệ của %{acct}
@@ -657,7 +755,7 @@ vi:
       action_log: Nhật ký kiểm duyệt
       action_taken_by: Quyết định bởi
       actions:
-        delete_description_html: Xóa các tút và ghi lại 1 lần cảnh cáo.
+        delete_description_html: Xóa các tút/gói khởi đầu và ghi lại 1 lần cảnh cáo.
         mark_as_sensitive_description_html: Đánh dấu nhạy cảm media trong các tút và ghi lại 1 lần cảnh cáo.
         other_description_html: Tùy chọn cách kiểm soát và giao tiếp với tài khoản bị báo cáo.
         resolve_description_html: Không áp dụng trừng phạt nào và đóng báo cáo.
@@ -684,7 +782,7 @@ vi:
       confirm: Xác nhận
       confirm_action: Xác nhận kiểm duyệt với %{acct}
       created_at: Báo cáo lúc
-      delete_and_resolve: Xóa tút
+      delete_and_resolve: Xóa nội dung
       forwarded: Chuyển tiếp
       forwarded_replies_explanation: Báo cáo này từ người dùng ở một máy chủ khác và về nội dung ở một máy chủ khác. Nó được chuyển tiếp tới bạn vì nội dung bị báo cáo là lượt trả lời cho một trong những người dùng của bạn.
       forwarded_to: Chuyển tiếp tới %{domain}
@@ -776,7 +874,7 @@ vi:
         manage_custom_emojis: Quản lý emoji
         manage_custom_emojis_description: Cho phép quản lý các emoji tùy chỉnh trên máy chủ
         manage_email_subscriptions: Quản lý đăng ký đọc qua email
-        manage_email_subscriptions_description: Cho phép người dùng đăng ký nhận thông báo qua email từ những người dùng có quyền này
+        manage_email_subscriptions_description: Cho phép người dùng có quyền này kích hoạt tính năng nhận bản tin email cho tài khoản của họ
         manage_federation: Quản lý liên hợp
         manage_federation_description: Cho phép chặn hoặc liên hợp với các máy chủ khác và kiểm soát khả năng phân phối
         manage_invites: Quản lý lời mời
@@ -865,9 +963,15 @@ vi:
           disabled: Yêu cầu vai trò người dùng cụ thể
           public: Mọi người
       landing_page:
+        hints:
+          about_html: Trang này chứa mô tả, thông tin liên hệ, nội quy và các thông tin khác liên quan đến máy chủ này.
+          local_feed_html: Đây là bảng tin hiển thị các tút mới nhất của người dùng trên máy chủ này.
+          overview_html: Trang này hiển thị mô tả về máy chủ của bạn cùng với các tút gần đây nhất của người dùng trên máy chủ này.
+          trends_html: Trang này hiển thị những nội dung đang phổ biến trên máy chủ này hiện tại.
         values:
-          about: Giới thiệu
+          about: Trang Giới thiệu
           local_feed: Bảng tin máy chủ
+          overview: Tổng quan
           trends: Xu hướng
       registrations:
         moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
@@ -888,17 +992,22 @@ vi:
     site_uploads:
       delete: Xóa tệp đã tải lên
       destroyed_msg: Đã xóa tệp tải lên thành công!
+    skip_to_content: Đến nội dung chính
     software_updates:
       critical_update: Quan trọng — vui lòng cập nhật sớm
       description: Bạn nên cập nhật Mastodon phiên bản mới nhất để được hưởng lợi từ các bản sửa lỗi và thêm tính năng mới. Nhất là để tránh các vấn đề bảo mật. Vì những lý do này, Mastodon sẽ kiểm tra các bản cập nhật 30 phút một lần và sẽ thông báo cho bạn theo tùy chọn thông báo qua email của bạn.
       documentation_link: Tìm hiểu thêm
+      nearing_eol: Việc hỗ trợ cho nhánh bạn đang sử dụng sẽ kết thúc vào ngày %{date}, vui lòng cân nhắc cập nhật.
       release_notes: Có gì mới?
+      supported_until: Kết thúc hỗ trợ vào %{date}
       title: Bản cập nhật mới
       type: Loại
       types:
         major: Bản cập nhật lớn
         minor: Bản cập nhật nhỏ
         patch: Bản vá - sửa lỗi và dễ dàng áp dụng các thay đổi
+      unsupported_branch: Việc hỗ trợ cho nhánh bạn đang sử dụng đã kết thúc; vui lòng cân nhắc cập nhật.
+      unsupported_since: Không còn được hỗ trợ vào %{date}
       version: Phiên bản
     statuses:
       account: Người đăng
@@ -1110,6 +1219,7 @@ vi:
           other: "%{count} người dùng tuần rồi"
       title: Đề xuất và Xu hướng
       trending: Xu hướng
+    update_available: Bản cập nhật có sẵn
     username_blocks:
       add_new: Thêm mới
       block_registrations: Cấm đăng ký
@@ -1158,6 +1268,15 @@ vi:
     auto_close_registrations:
       body: Do gần đây thiếu kiểm duyệt viên nên việc đăng ký trên %{instance} sẽ tự động chuyển thành duyệt thủ công, để tránh %{instance} bị sử dụng làm nền tảng cho những kẻ xấu. Bạn có thể chuyển nó trở lại trạng thái đăng ký mở bất kỳ lúc nào.
       subject: Đăng ký mới %{instance} đã được tự động chuyển sang duyệt thủ công
+    end_of_support_out_of_support_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn không còn được hỗ trợ nữa. Chúng tôi khuyên bạn nên cập nhật càng sớm càng tốt!
+      subject: Mastodon %{branch} đang được sử dụng trên %{instance} hiện không còn được hỗ trợ!
+    end_of_support_three_months_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn sẽ ngừng được hỗ trợ trong vòng 3 tháng tới. Bạn nên cân nhắc cập nhật lên một nhánh mới hơn từ sớm.
+      subject: Hỗ trợ cho Mastodon %{branch} đang được sử dụng trên %{instance} sẽ kết thúc sau 3 tháng nữa.
+    end_of_support_two_weeks_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn sẽ ngừng được hỗ trợ trong 2 tuần nữa. Chúng tôi khuyến nghị bạn nên cập nhật lên một nhánh mới hơn trước thời hạn đó.
+      subject: Hỗ trợ cho Mastodon %{branch} đang được sử dụng trên %{instance} sẽ kết thúc sau 2 tuần nữa.
     new_appeal:
       actions:
         delete_statuses: xóa tút của họ
@@ -1398,6 +1517,7 @@ vi:
       your_appeal_rejected: Khiếu nại của bạn bị từ chối
   edit_profile:
     other: Khác
+    privacy_redesign_body: Lựa chọn hiện lượt theo dõi và người theo dõi bạn giờ có thể điều chỉnh trực tiếp trên hồ sơ.
     redesign_body: Giờ đây, hồ sơ đã có thể chỉnh sửa trực tiếp từ trang hồ sơ.
     redesign_button: Tới đó
     redesign_title: Đã có trải nghiệm sửa hồ sơ mới
@@ -1429,7 +1549,9 @@ vi:
         success_html: Bạn sẽ bắt đầu nhận được email khi %{name} đăng tút mới. Thêm %{sender} vào danh bạ của bạn để những tút này không bị chuyển vào thư mục Spam.
         title: Bạn đã đăng ký đọc
         unsubscribe: Hủy đăng ký đọc
+    disabled: Đã tắt
     inactive: Không hoạt động
+    no_access: Không có quyền
     status: Trạng thái
     subscribers: Người đăng ký đọc
   emoji_styles:
@@ -1465,7 +1587,9 @@ vi:
     blocks: Tài khoản đã chặn
     bookmarks: Tút đã lưu
     csv: CSV
+    custom_filters: Bộ lọc
     domain_blocks: Máy chủ đã chặn
+    json: JSON
     lists: Danh sách
     mutes: Tài khoản đã phớt lờ
     storage: Tệp
@@ -1536,7 +1660,9 @@ vi:
       empty: File CSV trống
       incompatible_type: Không tương thích với loại nhập đã chọn
       invalid_csv_file: 'Tệp CSV không hợp lệ. Lỗi: %{error}'
+      invalid_json_file: 'Tệp JSON không hợp lệ. Lỗi: %{error}'
       over_rows_processing_limit: chứa nhiều hơn %{count} hàng
+      status_not_found_warning: Một số bộ lọc của bạn ẩn các tút cụ thể mà máy chủ này không biết đến. Những tút này sẽ không tự động bị lọc nếu máy chủ phát hiện ra chúng sau này.
       too_large: Tệp quá lớn
     failures: Thất bại
     imported: Đã nhập
@@ -1551,6 +1677,8 @@ vi:
         other: Bạn sắp <strong>thay thế danh sách chặn</strong> với <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
       bookmarks_html:
         other: Bạn sắp <strong>thay thế danh sách tút đã lưu</strong> với <strong>%{count} tút</strong> từ <strong>%{filename}</strong>.
+      custom_filters_html:
+        other: Bạn sắp <strong>thay thế bộ lọc</strong> với nội dung của <strong>%{filename}</strong>. Có <strong>%{count} tài khoản</strong> sẽ được thêm vào những bộ lọc mới.
       domain_blocking_html:
         other: Bạn sắp <strong>thay thế danh sách máy chủ chặn</strong> với <strong>%{count} máy chủ</strong> từ <strong>%{filename}</strong>.
       following_html:
@@ -1564,6 +1692,8 @@ vi:
         other: Bạn sắp <strong>chặn</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
       bookmarks_html:
         other: Bạn sắp thêm tới <strong>%{count} tút</strong> từ <strong>%{filename}</strong> vào <strong>danh sách tút đã lưu</strong>.
+      custom_filters_html:
+        other: Bạn sắp thêm tới <strong>%{count} bộ lọc</strong> từ <strong>%{filename}</strong> vào <strong>bộ lọc</strong>.
       domain_blocking_html:
         other: Bạn sắp <strong>chặn</strong> tới <strong>%{count} máy chủ</strong> từ <strong>%{filename}</strong>.
       following_html:
@@ -1596,6 +1726,7 @@ vi:
     types:
       blocking: Danh sách người đã chặn
       bookmarks: Tút đã lưu
+      custom_filters: Bộ lọc
       domain_blocking: Danh sách máy chủ đã chặn
       following: Danh sách người theo dõi
       lists: Danh sách
@@ -1689,6 +1820,26 @@ vi:
     copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là lịch sử kiểm duyệt của họ:'
   navigation:
     toggle_menu: Bật/tắt menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} đã thêm bạn vào một gói khởi đầu"
+    admin_report:
+      title_html: "%{name} báo cáo %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        other: "%{name} và %{count} người khác đã đăng ký"
+      title_html: "%{name} đã đăng ký"
+    collection_update:
+      title_html: "%{name} đã cập nhật gói khởi đầu có bạn"
+    generic:
+      sign_in: Đăng nhập Mastodon bản web
+      summary_html: Bạn đang sử dụng một ứng dụng không hỗ trợ phiên bản Mastodon mới nhất. %{link} để có đầy đủ tính năng.
+    moderation_warning:
+      summary_html: Bạn đang sử dụng một ứng dụng không hỗ trợ phiên bản Mastodon mới nhất. %{link}.
+      title: Bạn vừa nhận một cảnh cáo kiểm duyệt.
+    severed_relationships:
+      summary_html: Quản trị viên %{from} vừa vô hiệu hóa %{target}, điều này nghĩa là bạn không thể nhận được thông báo cập nhật từ họ hoặc tương tác với họ nữa. %{link} để khôi phục danh sách các mối quan hệ đã mất.
+      title: Mất kết nối với %{name}
   notification_mailer:
     admin:
       report:
@@ -1737,6 +1888,7 @@ vi:
     administration_emails: Thông báo email admin
     email_events: Hoạt động thông báo email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
+    moderation_emails: Thông báo qua email về việc kiểm duyệt
   number:
     human:
       decimal_units:
@@ -1760,7 +1912,7 @@ vi:
     next: Kế tiếp
     older: Cũ hơn
     prev: Trước đó
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Bạn đã vốt xong rồi

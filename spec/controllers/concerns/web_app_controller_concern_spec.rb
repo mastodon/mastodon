@@ -31,7 +31,7 @@ RSpec.describe WebAppControllerConcern do
         expect(response)
           .to have_http_status(:success)
         expect(response.body)
-          .to match(/show/)
+          .to include('show')
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe WebAppControllerConcern do
           expect(response)
             .to have_http_status(:success)
           expect(response.body)
-            .to match(/show/)
+            .to include('show')
         end
       end
 

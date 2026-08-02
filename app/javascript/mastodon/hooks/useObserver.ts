@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 export function useResizeObserver(callback: ResizeObserverCallback) {
-  const observerRef = useRef<ResizeObserver | null>(null);
+  const observerRef = useRef<ResizeObserver>(null);
   observerRef.current ??= new ResizeObserver(callback);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export function useResizeObserver(callback: ResizeObserverCallback) {
 }
 
 export function useMutationObserver(callback: MutationCallback) {
-  const observerRef = useRef<MutationObserver | null>(null);
+  const observerRef = useRef<MutationObserver>(null);
   observerRef.current ??= new MutationObserver(callback);
 
   useEffect(() => {

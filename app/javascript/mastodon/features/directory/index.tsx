@@ -3,9 +3,9 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
-
 import { List as ImmutableList } from 'immutable';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import {

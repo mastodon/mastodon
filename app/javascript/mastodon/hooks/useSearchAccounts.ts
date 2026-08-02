@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -8,16 +8,20 @@ import { apiRequest } from 'mastodon/api';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { useAppDispatch } from 'mastodon/store';
 
+import { useCurrentAccountId } from './useAccountId';
+
 export function useSearchAccounts({
   onSettled,
   filterResults,
   resetOnInputClear = true,
   withRelationships = false,
+  withDefaultFollows = false,
 }: {
   onSettled?: (value: string) => void;
   filterResults?: (account: ApiAccountJSON) => boolean;
   resetOnInputClear?: boolean;
   withRelationships?: boolean;
+  withDefaultFollows?: boolean;
 } = {}) {
   const dispatch = useAppDispatch();
 
@@ -26,10 +30,10 @@ export function useSearchAccounts({
     'idle' | 'loading' | 'error'
   >('idle');
 
-  const searchRequestRef = useRef<AbortController | null>(null);
+  const searchRequestRef = useRef<AbortController>(null);
 
   const searchAccounts = useDebouncedCallback(
-    (value: string) => {
+    async (value: string) => {
       if (searchRequestRef.current) {
         searchRequestRef.current.abort();
       }
@@ -46,41 +50,105 @@ export function useSearchAccounts({
 
       searchRequestRef.current = new AbortController();
 
-      void apiRequest<ApiAccountJSON[]>('GET', 'v1/accounts/search', {
-        signal: searchRequestRef.current.signal,
-        params: {
-          q: value,
-          resolve: true,
-        },
-      })
-        .then((data) => {
-          const accounts = filterResults ? data.filter(filterResults) : data;
-          const accountIds = accounts.map((a) => a.id);
-          dispatch(importFetchedAccounts(accounts));
-          if (withRelationships) {
-            dispatch(fetchRelationships(accountIds));
-          }
-          setAccounts(accounts);
-          setLoadingState('idle');
-          onSettled?.(value);
-        })
-        .catch(() => {
-          setLoadingState('error');
-          onSettled?.(value);
-        });
+      try {
+        const accounts = await apiRequest<ApiAccountJSON[]>(
+          'GET',
+          'v1/accounts/search',
+          {
+            signal: searchRequestRef.current.signal,
+            params: {
+              q: value,
+              resolve: true,
+            },
+          },
+        );
+        const accountIds = accounts.map((a) => a.id);
+        dispatch(importFetchedAccounts(accounts));
+        if (withRelationships) {
+          dispatch(fetchRelationships(accountIds));
+        }
+        setAccounts(accounts);
+        setLoadingState('idle');
+        onSettled?.(value);
+      } catch {
+        setLoadingState('error');
+        onSettled?.(value);
+      }
     },
     500,
     { leading: true, trailing: true },
+  );
+
+  const startSearch = useCallback(
+    (value: string) => {
+      void searchAccounts(value);
+    },
+    [searchAccounts],
   );
 
   const resetAccounts = useCallback(() => {
     setAccounts([]);
   }, []);
 
-  return {
-    searchAccounts,
-    resetAccounts,
+  const currentUserId = useCurrentAccountId();
+  const [defaultAccounts, setDefaultAccounts] = useState<
+    ApiAccountJSON[] | null
+  >(null);
+
+  useEffect(() => {
+    if (
+      !currentUserId ||
+      loadingState !== 'idle' ||
+      defaultAccounts !== null ||
+      !withDefaultFollows
+    ) {
+      return;
+    }
+
+    async function doRequest() {
+      setLoadingState('loading');
+      try {
+        const accounts = await apiRequest<ApiAccountJSON[]>(
+          'GET',
+          `v1/accounts/${currentUserId}/following`,
+          { params: { limit: 40 } },
+        );
+        const accountIds = accounts.map((a) => a.id);
+        dispatch(importFetchedAccounts(accounts));
+        if (withRelationships) {
+          dispatch(fetchRelationships(accountIds));
+        }
+        setDefaultAccounts(accounts);
+        setLoadingState('idle');
+      } catch {
+        setLoadingState('error');
+      }
+    }
+    void doRequest();
+  }, [
+    currentUserId,
     accounts,
+    dispatch,
+    filterResults,
+    loadingState,
+    withRelationships,
+    defaultAccounts,
+    withDefaultFollows,
+  ]);
+
+  const accountsToReturn =
+    accounts.length === 0 && withDefaultFollows
+      ? (defaultAccounts ?? [])
+      : accounts;
+
+  const filteredAccounts = filterResults
+    ? accountsToReturn.filter(filterResults)
+    : accountsToReturn;
+
+  return {
+    searchAccounts: startSearch,
+    resetAccounts,
+    accounts: filteredAccounts,
     isLoading: loadingState === 'loading',
     isError: loadingState === 'error',
   };

@@ -18,8 +18,8 @@ RSpec.describe 'Admin Dashboard' do
 
       expect(page)
         .to have_title(I18n.t('admin.dashboard.title'))
-        .and have_content(I18n.t('admin.system_checks.software_version_patch_check.message_html'))
-        .and have_content('0 pending hashtags')
+        .and have_text(I18n.t('admin.system_checks.software_version_patch_check.message_html'))
+        .and have_text('0 pending hashtags')
     end
 
     private

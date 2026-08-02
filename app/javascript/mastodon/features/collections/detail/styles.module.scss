@@ -64,11 +64,30 @@
 }
 
 .sensitiveScreen {
-  margin: 16px;
+  margin-inline: 16px;
+}
+
+.subheadingWithSelect {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding-inline: 16px;
+}
+
+.selectWrapper {
+  // Align to right edge even when wrapped to new line
+  margin-inline-start: auto;
+}
+
+.select {
+  height: 36px;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: var(--color-bg-primary);
 }
 
 .columnSubheading {
-  padding-inline: 16px;
   font-size: 15px;
   font-weight: 500;
 }

@@ -12,15 +12,16 @@ jobs:
   pathcheck:
     name: Check for relevant changes
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     outputs:
       changed: ${{ steps.filter.outputs.src }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
 
-      - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3
+      - uses: dorny/paths-filter@d1c1ffe0248fe513906c8e24db8ea791d46f8590 # v3
         id: filter
         with:
           filters: |
@@ -38,11 +39,12 @@ jobs:
   chromatic:
     name: Run Chromatic
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: pathcheck
     if: github.repository == 'mastodon/mastodon' && needs.pathcheck.outputs.changed == 'true'
     steps:
       - name: Checkout code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
 
@@ -53,7 +55,7 @@ jobs:
         run: yarn build-storybook
 
       - name: Run Chromatic
-        uses: chromaui/action@07791f8243f4cb2698bf4d00426baf4b2d1cb7e0 # v13
+        uses: chromaui/action@98132da0fca2211fb41b3af7b49ce85176007851 # v17
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           zip: true

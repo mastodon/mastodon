@@ -7,6 +7,7 @@ import { multiply } from 'color-blend';
 import { createBrowserHistory } from 'history';
 
 import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
+import { IGNORE_FOCUS_ON_OPEN } from '../reducers/modal';
 
 class ModalRoot extends PureComponent {
 
@@ -21,7 +22,10 @@ class ModalRoot extends PureComponent {
         b: PropTypes.number,
       }),
     ]),
-    ignoreFocus: PropTypes.bool,
+    ignoreFocus: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string, // 'on-open', see IGNORE_FOCUS_ON_OPEN
+    ]),
     ...WithOptionalRouterPropTypes,
   };
 
@@ -118,7 +122,11 @@ class ModalRoot extends PureComponent {
   _ensureHistoryBuffer () {
     const { pathname, search, hash, state } = this.history.location;
     if (!state || state.mastodonModalKey !== this._modalHistoryKey) {
-      this.history.push({ pathname, search, hash }, { ...state, mastodonModalKey: this._modalHistoryKey });
+      this.history.push({ pathname, search, hash }, {
+        ...state,
+        focusTarget: this.props.ignoreFocus !== IGNORE_FOCUS_ON_OPEN,
+        mastodonModalKey: this._modalHistoryKey,
+      });
     }
   }
 

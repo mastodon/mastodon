@@ -2,16 +2,19 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
+import { Helmet } from '@unhead/react/helmet';
+
+import { NotSignedInIndicator } from '@/mastodon/components/not_signed_in_indicator';
+import { useIdentity } from '@/mastodon/identity_context';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { fetchList } from 'mastodon/actions/lists';
 import { createList, updateList } from 'mastodon/actions/lists_typed';
-import { apiGetAccounts } from 'mastodon/api/lists';
+import { apiGetListAccounts } from 'mastodon/api/lists';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type { RepliesPolicyType } from 'mastodon/api_types/lists';
 import { Avatar } from 'mastodon/components/avatar';
@@ -43,7 +46,7 @@ const MembersLink: React.FC<{
   const [avatarAccounts, setAvatarAccounts] = useState<ApiAccountJSON[]>([]);
 
   useEffect(() => {
-    void apiGetAccounts(id)
+    void apiGetListAccounts(id)
       .then((data) => {
         setAvatarCount(data.length);
         setAvatarAccounts(data.slice(0, 3));
@@ -249,16 +252,17 @@ const NewListWrapper: React.FC<{
 }> = ({ multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const { signedIn } = useIdentity();
   const { id } = useParams<{ id?: string }>();
   const list = useAppSelector((state) =>
     id ? state.lists.get(id) : undefined,
   );
 
   useEffect(() => {
-    if (id) {
+    if (signedIn && id) {
       dispatch(fetchList(id));
     }
-  }, [dispatch, id]);
+  }, [dispatch, signedIn, id]);
 
   const isLoading = id && !list;
 
@@ -276,7 +280,13 @@ const NewListWrapper: React.FC<{
       />
 
       <div className='scrollable'>
-        {isLoading ? <LoadingIndicator /> : <NewList list={list} />}
+        {!signedIn ? (
+          <NotSignedInIndicator />
+        ) : isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          <NewList list={list} />
+        )}
       </div>
 
       <Helmet>

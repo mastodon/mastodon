@@ -39,6 +39,15 @@ RSpec.describe 'API Web Push Subscriptions' do
   describe 'DELETE /api/web/push_subscriptions/:id' do
     subject { delete api_web_push_subscription_path(token) }
 
+    around do |example|
+      old = ActionController::Base.allow_forgery_protection
+      ActionController::Base.allow_forgery_protection = true
+
+      example.run
+
+      ActionController::Base.allow_forgery_protection = old
+    end
+
     context 'when the subscription exists' do
       let!(:web_push_subscription) do
         Fabricate(:web_push_subscription)

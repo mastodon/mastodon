@@ -287,6 +287,41 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.provider_name).to eq 'Pet News'
       end
     end
+
+    context 'with headline and description as language tagged strings' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          'headline' => {
+            '@value' => 'Title in English',
+            '@language' => 'en',
+          },
+          'description' => {
+            '@value' => 'Text in English.',
+            '@language' => 'en',
+          },
+        }.to_json
+      end
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it 'gives correct title' do
+        expect(subject.title).to eq 'Title in English'
+      end
+
+      it 'gives correct description' do
+        expect(subject.description).to eq 'Text in English.'
+      end
+    end
   end
 
   context 'when Open Graph protocol data is present' do

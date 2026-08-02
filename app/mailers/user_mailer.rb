@@ -172,6 +172,8 @@ class UserMailer < Devise::Mailer
   end
 
   def appeal_approved(user, appeal)
+    return if user.nil?
+
     @resource = user
     @appeal   = appeal
 
@@ -181,6 +183,8 @@ class UserMailer < Devise::Mailer
   end
 
   def appeal_rejected(user, appeal)
+    return if user.nil?
+
     @resource = user
     @appeal   = appeal
 

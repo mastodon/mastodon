@@ -66,7 +66,6 @@ gl:
         setting_display_media_show_all: Mostrar todo o multimedia sen avisar, incluíndo o multimedia marcado como sensible
         setting_emoji_style: Forma de mostrar emojis. «Auto» intentará usar os emojis nativos, e se falla recurrirase a Twemoji en navegadores antigos.
         setting_quick_boosting_html: Se está activo, ao premer na icona %{boost_icon} Promover farase automáticamente a promoción no lugar de abrir  o menú despregable promover/citar. Sitúa a acción de citar no menú %{options_icon} (Opcións).
-        setting_system_scrollbars_ui: Aplícase só en navegadores de escritorio baseados en Safari e Chrome
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esvaecendo tódolos detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
         username: Podes usar letras, números e trazos baixos
@@ -92,6 +91,7 @@ gl:
         closed_registrations_message: Móstrase cando non se admiten novas usuarias
         content_cache_retention_period: Todas as publicacións procedentes de outros servidores (incluído promocións e respostas) van ser eliminadas despois do número de días indicado, sen importar as interaccións das usuarias locais con esas publicacións. Esto inclúe publicacións que a usuaria local marcou como favoritas ou incluíu nos marcadores. As mencións privadas entre usuarias de diferentes instancias tamén se eliminarán e non se poderán restablecer. O uso desta ferramenta esta orientado a situacións especiais e estraga moitas das expectativas das usuarias ao implementala cun propósito de uso xeral.
         custom_css: Podes aplicar deseños personalizados na versión web de Mastodon.
+        email_footer_text: Texto optativo que só aparece no rodapé dos correos co boletín.
         favicon: WEBP, PNG, GIF ou JPG. Sobrescribe a icona de favoritos de Mastodon por defecto cunha icona personalizada.
         landing_page: Elixe a páxina que verán as persoas que se acheguen por primeira vez ao teu servidor. Se elixes «Tendencias» entón debes activar as tendencias nos Axustes de Descubrimento. Se elixes «Cronoloxía local», hai que configurar nos Axustes de Descubrimento a opción «Acceso das cronoloxías en directo ás publicacións locais» como «Calquera».
         mascot: Sobrescribe a ilustración na interface web avanzada.
@@ -294,6 +294,7 @@ gl:
         closed_registrations_message: Mensaxe personalizada para cando o rexistro está pechado
         content_cache_retention_period: Período de retención de contido remoto
         custom_css: CSS personalizado
+        email_footer_text: Texto adicional no rodapé
         favicon: Favicon
         landing_page: Páxina que se mostra ás visitas
         local_live_feed_access: Acceso a cronoloxías ao vivo que mostran publicacións locais
@@ -322,6 +323,9 @@ gl:
         trendable_by_default: Permitir tendencias sen aprobación previa
         trends: Activar tendencias
         wrapstodon: Activar Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Comprendo que activar esta ferramenta pode aumentar de xeito significativo o volume de correos electrónicos que envía o servidor e que é responsabilidade miña calquera custo que xenere.
+        agreement_privacy_and_terms: Actualicei a Directiva de Privacidade e os Termos do Servizo.
       interactions:
         must_be_follower: Bloquea as notificacións de persoas que non te seguen
         must_be_following: Bloquea as notificacións de persoas que non segues
@@ -341,6 +345,7 @@ gl:
       notification_emails:
         appeal: Alguén apelou contra a decisión da moderación
         digest: Enviar correos con resumos
+        end_of_support: Vai rematar o desenvolvemento da versión de Mastodon que estás a usar.
         favourite: Enviar un correo cando alguén marca como favorita unha das tuas publicacións
         follow: Enviar un correo cando alguén te segue
         follow_request: Enviar un correo cando alguén solicita seguirte

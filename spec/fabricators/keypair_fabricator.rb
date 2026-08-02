@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
-keypair     = OpenSSL::PKey::RSA.new(2048)
-public_key  = keypair.public_key.to_pem
-private_key = keypair.to_pem
+require_relative '../support/signing_keys_helpers'
 
 Fabricator(:keypair) do
-  account
+  account     { Fabricate(:account, keypairs: []) }
   type        :rsa
-  public_key  public_key
+  public_key  SigningKeysHelpers::PUBLIC_RSA_TEST_KEY
   expires_at  nil
   revoked     false
 
   after_build do |keypair|
-    keypair.uri ||= ActivityPub::TagManager.instance.key_uri_for(keypair.account)
-    keypair.private_key ||= private_key if keypair.account.local?
+    if keypair.account.local?
+      keypair.private_key ||= SigningKeysHelpers::PRIVATE_RSA_TEST_KEY
+      keypair.local_fragment ||= "##{Random.hex}"
+    else
+      keypair.uri ||= "#{ActivityPub::TagManager.instance.uri_for(keypair.account)}##{Random.hex}"
+    end
   end
 end

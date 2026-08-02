@@ -52,11 +52,17 @@ RSpec.describe RequestPool do
       end
 
       it 'closes the connections' do
-        subject.with('http://example.com') do |http_client|
-          http_client.get('/').flush
+        notifications = capture_notifications('with.request_pool') do
+          subject.with('http://example.com') do |http_client|
+            http_client.get('/').flush
+          end
         end
 
         expect { reaper_observes_idle_timeout }.to change(subject, :size).from(1).to(0)
+
+        expect(notifications.size).to eq(1)
+        expect(notifications.first.payload[:host]).to eq('http://example.com')
+        expect(notifications.first.payload[:miss]).to be(true)
       end
 
       def reaper_observes_idle_timeout

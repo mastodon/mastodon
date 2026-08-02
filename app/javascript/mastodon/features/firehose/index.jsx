@@ -3,7 +3,7 @@ import { useRef, useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 import { NavLink } from 'react-router-dom';
 
 import { useIdentity } from '@/mastodon/identity_context';
