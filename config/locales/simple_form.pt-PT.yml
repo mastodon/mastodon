@@ -91,6 +91,7 @@ pt-PT:
         closed_registrations_message: Apresentado quando as inscrições estiverem encerradas
         content_cache_retention_period: Todas as publicações de outros servidores (incluindo partilhas e respostas) serão eliminadas após o número de dias especificado, independentemente de qualquer interação do utilizador local com essas publicações. Isto inclui mensagens em que um utilizador local as tenha salvo ou adicionado aos favoritos. As menções privadas entre utilizadores de instâncias diferentes também se perderão e serão impossíveis de recuperar. A utilização desta definição destina-se a instâncias para fins especiais e quebra muitas expectativas dos utilizadores quando implementada para utilização geral.
         custom_css: Pode aplicar estilos personalizados na versão web do Mastodon.
+        email_footer_text: Texto opcional que aparece no rodapé de e-mails de newsletters apenas.
         favicon: WEBP, PNG, GIF ou JPG. Substitui o ícone de favorito padrão do Mastodon por um ícone personalizado.
         landing_page: Seleciona a página que os novos visitantes veem quando chegam ao seu servidor pela primeira vez. Se selecionar «Tendências», então as tendências precisam estar ativas nas Definições de Descoberta. Se selecionar «Cronologia local», então «Acesso a cronologias com publicações locais em destaque» precisa de estar definido como «Todos» nas Definições de Descoberta.
         mascot: Sobrepõe-se à ilustração na interface web avançada.
@@ -108,6 +109,7 @@ pt-PT:
         status_page_url: URL de uma página onde as pessoas podem ver o estado deste servidor durante uma interrupção
         theme: Tema que os visitantes e os novos utilizadores veem.
         thumbnail: Uma imagem de cerca de 2:1, apresentada ao lado da informação do seu servidor.
+        thumbnail_description: Uma descrição da imagem para ajudar pessoas com deficiências visuais a compreender o seu conteúdo.
         trendable_by_default: Ignorar a revisão manual do conteúdo em destaque. Os itens individuais poderão ainda assim ser posteriormente removidos das tendências.
         trends: As tendências mostram quais as publicações, etiquetas e notícias que estão a ganhar destaque no seu servidor.
         wrapstodon: Ofereça aos utilizadores locais a possibilidade de gerar um resumo divertido da sua utilização do Mastodon durante o ano. Esta funcionalidade está disponível entre 10 e 31 de Dezembro de cada ano e é oferecida aos utilizadores que fizeram pelo menos uma publicação Pública ou Não listada e utilizaram pelo menos uma etiqueta durante o ano.
@@ -159,6 +161,7 @@ pt-PT:
           other: Temos de nos certificar que tem pelo menos %{count} para utilizar %{domain}. Não vamos guardar esta informação.
         role: A função controla as permissões que o utilizador tem.
       user_role:
+        collection_limit: Limita o número de Coleções que um único utilizador com esta função pode criar. Tenha em atenção que, ao diminuir este número, os utilizadores que já atingiram este limite não perderão quaisquer Coleções. No entanto, estes não poderão criar outras adicionais.
         color: Cor a ser utilizada para a função em toda a interface de utilizador, como RGB no formato hexadecimal
         highlighted: Isto torna a função visível publicamente
         name: Nome público da função, se esta estiver definida para ser apresentada com um emblema
@@ -213,7 +216,7 @@ pt-PT:
       defaults:
         autofollow: Convidar para seguir a sua conta
         avatar: Imagem de perfil
-        bot: Esta é uma conta robô
+        bot: Esta é uma conta automatizada
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nova palavra-passe
         confirm_password: Confirmar palavra-passe
@@ -291,6 +294,7 @@ pt-PT:
         closed_registrations_message: Mensagem personalizada quando as inscrições não estiverem disponíveis
         content_cache_retention_period: Período de retenção de conteúdos remotos
         custom_css: CSS personalizado
+        email_footer_text: Texto adicional de rodapé
         favicon: Ícone de favoritos
         landing_page: Página inicial para novos visitantes
         local_live_feed_access: Acesso a cronologias com publicações locais em destaque
@@ -315,9 +319,13 @@ pt-PT:
         status_page_url: URL da página de estado
         theme: Tema predefinido
         thumbnail: Miniatura do servidor
+        thumbnail_description: Texto alternativo da miniatura
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Ativar destaques
         wrapstodon: Ativar Wrapstodon
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: Compreendo que ativar esta funcionalidade pode aumentar significativamente o volume de e-mails enviados pelo servidor e que sou o único responsável por quaisquer custos incorridos.
+        agreement_privacy_and_terms: Eu atualizei a Política de Privacidade e os Termos de Serviço.
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
@@ -337,6 +345,7 @@ pt-PT:
       notification_emails:
         appeal: Alguém contestou uma decisão de moderação
         digest: Enviar e-mails de resumo
+        end_of_support: A versão atual do Mastodon está a aproximar-se do fim do suporte
         favourite: Quando alguém adiciona uma publicação sua aos favoritos
         follow: Alguém começou a segui-lo
         follow_request: Alguém pediu para ser seu seguidor
@@ -385,6 +394,7 @@ pt-PT:
         role: Função
         time_zone: Fuso horário
       user_role:
+        collection_limit: Número máximo de Coleções por utilizador
         color: Cor do emblema
         highlighted: Apresentar o cargo como emblema nos perfis de utilizador
         name: Nome
