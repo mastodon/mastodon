@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_03_140751) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_03_172525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -632,6 +632,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_03_140751) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "uri"
     t.index ["account_id", "target_account_id"], name: "index_follow_requests_on_account_id_and_target_account_id", unique: true
+    t.index ["target_account_id", "account_id"], name: "index_follow_requests_on_target_account_id_and_account_id"
   end
 
   create_table "follows", force: :cascade do |t|
