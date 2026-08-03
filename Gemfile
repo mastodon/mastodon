@@ -74,6 +74,7 @@ gem 'public_suffix', '~> 7.0'
 gem 'pundit', '~> 2.3'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', require: 'rack/cors'
+gem 'rack-proxy', require: 'rack/proxy'
 gem 'rails-i18n', '~> 8.0'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 5'
@@ -230,7 +231,5 @@ gem 'rubyzip', '~> 3.0'
 gem 'hcaptcha', '~> 7.1'
 
 gem 'mail', '~> 2.8'
-
-gem 'vite_rails'
 
 gem 'base58', '~> 0.2.3'
