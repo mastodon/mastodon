@@ -12,7 +12,7 @@
     "src": "entrypoints/application.ts",
     "isEntry": true,
     "imports": ["_no-deps.js", "_dep-1.js", "_dep-2.js"],
-    "css": ["assets/main.css"],
+    "css": ["assets/main.css", "assets/unlisted.css"],
     "integrity": "abc-2"
   },
   "entrypoints/admin.ts": {
@@ -21,7 +21,7 @@
     "src": "entrypoints/admin.ts",
     "isEntry": true,
     "imports": ["_no-deps.js", "_dep-1.js", "_dep-2.js", "_dep-3.js"],
-    "css": ["assets/main.css"],
+    "css": ["assets/main.css", "assets/unlisted.css"],
     "integrity": "cba-2"
   },
   "_no-deps.js": {

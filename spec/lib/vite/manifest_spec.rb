@@ -61,7 +61,7 @@ RSpec.describe Vite::Manifest do
 
       it 'resolves all the stylesheets from bottom to top without duplicates' do
         stylesheets = subject.stylesheets_for(entry).pluck(:file)
-        expect(stylesheets).to eq(%w(assets/dep-1-1.css assets/dep-1.css assets/dep-2.css assets/main.css))
+        expect(stylesheets).to eq(%w(assets/dep-1-1.css assets/dep-1.css assets/dep-2.css assets/main.css assets/unlisted.css))
       end
 
       context 'when another entrypoint has the same dependencies' do
@@ -74,7 +74,7 @@ RSpec.describe Vite::Manifest do
 
         it 'resolves all the stylesheets from bottom to top without duplicates' do
           stylesheets = subject.stylesheets_for(entry).pluck(:file)
-          expect(stylesheets).to eq(%w(assets/dep-1-1.css assets/dep-1.css assets/dep-2.css assets/main.css))
+          expect(stylesheets).to eq(%w(assets/dep-1-1.css assets/dep-1.css assets/dep-2.css assets/main.css assets/unlisted.css))
         end
       end
     end
@@ -98,7 +98,7 @@ RSpec.describe Vite::Manifest do
       subject.load
 
       pool = subject.pool
-      expect(pool.count).to eq(10)
+      expect(pool.count).to eq(11)
       # This file is present in the manifest but not referenced by any entrypoint
       expect(pool.find { |entry| entry[:file] == 'package.js' }).to be_nil
     end

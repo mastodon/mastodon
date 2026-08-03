@@ -138,7 +138,8 @@ RSpec.describe Vite::Tagger do
           '<link rel="stylesheet" crossorigin="" href="/packs-dev/assets/dep-1-1.css" />' \
           '<link rel="stylesheet" crossorigin="" href="/packs-dev/assets/dep-1.css" />' \
           '<link rel="stylesheet" crossorigin="" href="/packs-dev/assets/dep-2.css" />' \
-          '<link rel="stylesheet" crossorigin="" href="/packs-dev/assets/main.css" />'
+          '<link rel="stylesheet" crossorigin="" href="/packs-dev/assets/main.css" />' \
+          '<link rel="stylesheet" crossorigin="" href="/packs-dev/assets/unlisted.css" />'
       end
 
       it 'returns tags for the main javascript module and its dependencies' do

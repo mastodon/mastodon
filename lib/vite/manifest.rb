@@ -155,7 +155,10 @@ module Vite
         # the css field includes the file names of the stylesheets and not
         # the src names which are the ones used as keys in the manifest
         raw_style = manifest.values.find { |value| value['file'] == stylesheet }
-        next unless raw_style
+        # some listed CSS files are not included as a entry in the manifest,
+        # but they are among the generated assets. We can still link to them
+        # but without the integrity field
+        raw_style = { 'file' => stylesheet } if raw_style.nil?
 
         id, = lookup(file: raw_style['file'], integrity: raw_style['integrity'])
         stylesheets.add id
