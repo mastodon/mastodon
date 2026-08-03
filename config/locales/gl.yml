@@ -64,6 +64,8 @@ gl:
       custom: Personalizado
       delete: Eliminar datos
       deleted: Eliminado
+      deletion_irreversible: Elimináronse definitivamente os datos desta conta.
+      deletion_reversible_hint_html: Esta conta está pendente para eliminala, e os datos vanse eliminar totalmente o %{date}.
       demote: Rebaixar
       destroyed_msg: Os datos de %{username} están na cola para ser eliminados axiña
       disable: Desactivar
@@ -1013,13 +1015,17 @@ gl:
       critical_update: Crítica - actualiza axiña
       description: Aconsellamos manter actualizado o teu servidor Mastodon para beneficiarte dos últimos arranxos e características. A maiores, de cando en vez hai actualizacións para evitar problemas importantes de seguridade. Debido a isto, Mastodon comproba cada 30 minutos se hai actualizacións e avisarate seguindo as túas preferencias de notificación por correo electrónico.
       documentation_link: Saber máis
+      nearing_eol: A versión que estás a utilizar vai deixar de ter mantemento o %{date}, pensa en actualizala.
       release_notes: Notas da versión
+      supported_until: O mantemento remata o %{date}
       title: Actualizacións dispoñibles
       type: Tipo
       types:
         major: Versión principal
         minor: Versión intermedia
         patch: Versión de arranxos - solución de problemas e cambios simples
+      unsupported_branch: A versión que estás utilizando non recibe mantemento, considera actualizar o máis axiña posible.
+      unsupported_since: Sen mantemento desde %{date}
       version: Versión
     statuses:
       account: Autoría
@@ -1285,6 +1291,15 @@ gl:
     auto_close_registrations:
       body: Debido á falta de actividade recente de moderación, a creación de contas en %{instance} mudou ao modo de revisión manual das solicitudes, para evitar que %{instance} sexa usada como plataforma por actores maliciosos. Podes volver ao rexistro aberto en calquera momento.
       subject: O modo de creación de contas en %{instance} mudou automáticamente a aprobación manual
+    end_of_support_out_of_support_warning:
+      body: A versión de Mastodon que estás utilizando no servidor xa non recibe mantemento. Recomendámosche actualizala o máis axiña posible!
+      subject: A versión Mastodon %{branch} utilizada para %{instance} xa non recibe mantemento!
+    end_of_support_three_months_warning:
+      body: A versión de Mastodon que se utiliza actualmente no teu servidor vai deixar de recibir mantemento en 3 meses. Aconsellámosche actualizala con tempo a unha versión máis recente.
+      subject: O mantemento de Mastodon %{branch} que utiliza %{instance} remata en 3 meses.
+    end_of_support_two_weeks_warning:
+      body: A versión de Mastodon que se utiliza actualmente no teu servidor vai deixar de recibir mantemento en 2 semanas. Aconsellámosche actualizala con tempo a unha versión máis recente.
+      subject: O mantemento de Mastodon %{branch} que utiliza %{instance} remata en 2 semanas.
     new_appeal:
       actions:
         delete_statuses: borrar as súas publicacións
