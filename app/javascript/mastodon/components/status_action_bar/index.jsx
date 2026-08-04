@@ -314,9 +314,11 @@ class StatusActionBar extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick, dangerous: true });
         menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick, dangerous: true });
       } else {
-        menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
-        menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
-        menu.push(null);
+        if (!account.get('invalid_handle')) {
+          menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
+          menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
+          menu.push(null);
+        }
 
         if (isQuotingMe) {
           menu.push({ text: intl.formatMessage(messages.revokeQuote, { name: account.get('username') }), action: this.handleRevokeQuoteClick, dangerous: true });
@@ -342,7 +344,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
         menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.handleReport, dangerous: true });
 
-        if (account.get('acct') !== account.get('username')) {
+        if (account.get('acct') !== account.get('username') && !account.get('invalid_handle')) {
           const domain = account.get('acct').split('@')[1];
 
           menu.push(null);
