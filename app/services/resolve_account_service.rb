@@ -25,7 +25,13 @@ class ResolveAccountService < BaseService
     # First of all we want to check if we've got the account
     # record with the URI already, and if so, we can exit early
 
-    return if domain_not_allowed?(@domain) || @domain == 'handle.invalid'
+    return if domain_not_allowed?(@domain)
+
+    # Special-case resolving invalid handles
+    if @domain == 'handle.invalid'
+      account = Account.remote.find_by(id: @username)
+      return account if account.invalidated_username? && account.id.to_s == @username
+    end
 
     @account ||= Account.find_remote(@username, @domain)
 
