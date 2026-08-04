@@ -322,5 +322,22 @@ RSpec.describe ActivityPub::ProcessActivityService do
         end
       end
     end
+
+    context 'with OpenTelemetry traces' do
+      let(:span) { instance_double(OpenTelemetry::Trace::Span) }
+
+      before do
+        allow(OpenTelemetry::Trace).to receive(:current_span).and_return(span)
+        allow(span).to receive(:recording?).and_return(true)
+        allow(span).to receive(:set_attribute)
+      end
+
+      it 'adds attributes to current span' do
+        subject.call(json, actor)
+
+        expect(span).to have_received(:set_attribute).with('activitypub.activity.id', payload[:id])
+        expect(span).to have_received(:set_attribute).with('activitypub.activity.type', payload[:type])
+      end
+    end
   end
 end
