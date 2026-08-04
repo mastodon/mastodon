@@ -24,6 +24,8 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :feature_approval
   attribute :email_subscriptions, if: -> { Rails.application.config.x.email_subscriptions && Setting.email_subscriptions }
 
+  attribute :invalid_handle, if: :invalid_handle?
+
   class AccountDecorator < SimpleDelegator
     def self.model_name
       Account.model_name
@@ -151,6 +153,15 @@ class REST::AccountSerializer < ActiveModel::Serializer
   def memorial
     object.memorial?
   end
+
+  def username
+    object.pretty_username
+  end
+
+  def invalid_handle
+    object.invalidated_username?
+  end
+  alias invalid_handle? invalid_handle
 
   def roles
     if object.unavailable? || object.user.nil?

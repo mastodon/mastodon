@@ -25,6 +25,8 @@ module Account::FinderConcern
     end
 
     def find_remote(username, domain)
+      return if domain == 'handle.invalid'
+
       Account
         .with_username(username)
         .with_domain(domain)
