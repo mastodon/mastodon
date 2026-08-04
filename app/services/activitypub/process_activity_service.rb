@@ -11,6 +11,8 @@ class ActivityPub::ProcessActivityService < BaseService
 
     return unless @json.is_a?(Hash)
 
+    ActivityPub::OpenTelemetry.decorate_current_span(payload: @json)
+
     # Ideally, we should treat all ActivityPub payloads as proper JSON-LD.
     # However, some implementations do not produce valid JSON-LD, and processing JSON-LD is pretty expensive.
     # Therefore, we only process activities as JSON-LD if they make use of JSON-LD signatures.
