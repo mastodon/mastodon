@@ -3,7 +3,7 @@
 class CreateGeneratedAnnualReports < ActiveRecord::Migration[7.1]
   def change
     create_table :generated_annual_reports do |t|
-      t.belongs_to :account, null: false, foreign_key: { on_cascade: :delete }, index: false
+      t.belongs_to :account, null: false, foreign_key: true, index: false
       t.integer :year, null: false
       t.jsonb :data, null: false
       t.integer :schema_version, null: false
