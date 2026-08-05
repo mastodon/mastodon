@@ -194,7 +194,7 @@ class DeleteAccountService < BaseService
       ids = favourites.pluck(:status_id)
       StatusStat.where(status_id: ids).update_all('favourites_count = GREATEST(0, favourites_count - 1)')
       Chewy.strategy.current.update(StatusesIndex, ids) if Chewy.enabled?
-      Rails.cache.delete_multi(ids.map { |id| "statuses/#{id}" })
+      Rails.cache.delete_multi(ids.flat_map { |id| ["v3:statuses/#{id}", "statuses/show:v3:statuses/#{id}"] })
       favourites.delete_all
     end
   end
