@@ -79,6 +79,8 @@ const NewListItem: React.FC<{
   );
 
   const handleSubmit = useCallback(() => {
+    e.preventDefault();
+
     if (title.trim().length === 0) {
       return;
     }
