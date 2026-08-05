@@ -384,7 +384,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def fetch_and_verify_quote!(quote, approval_uri, quote_uri)
-    embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @activity_json['context'])
+    embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @activity_json['@context'])
     ActivityPub::VerifyQuoteService.new.call(quote, approval_uri, fetchable_quoted_uri: quote_uri, prefetched_quoted_object: embedded_quote, request_id: @request_id)
   rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
     ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(PROCESSING_DELAY), quote.id, quote_uri, { 'request_id' => @request_id, 'approval_uri' => approval_uri })
