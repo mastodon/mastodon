@@ -18,8 +18,6 @@ class BackupService < BaseService
     @backup  = backup
     @account = backup.user.account
 
-    return if @account.nil?
-
     build_archive!
   end
 
