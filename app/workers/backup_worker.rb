@@ -26,5 +26,7 @@ class BackupWorker
 
     user.backups.where.not(id: backup.id).destroy_all
     UserMailer.backup_ready(user, backup).deliver_later
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end
