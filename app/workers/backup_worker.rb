@@ -28,4 +28,3 @@ class BackupWorker
     UserMailer.backup_ready(user, backup).deliver_later
   end
 end
-
