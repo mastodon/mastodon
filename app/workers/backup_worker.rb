@@ -17,16 +17,15 @@ class BackupWorker
   end
 
   def perform(backup_id)
-    backup = Backup.find(backup_id)
-    user   = backup.user
+    backup = Backup.find_by(id: backup_id)
+    return true if backup&.user.nil?
 
-    return true if user.nil?
+    user = backup.user
 
     BackupService.new.call(backup)
 
     user.backups.where.not(id: backup.id).destroy_all
     UserMailer.backup_ready(user, backup).deliver_later
-  rescue ActiveRecord::RecordNotFound
-    true
   end
 end
+
