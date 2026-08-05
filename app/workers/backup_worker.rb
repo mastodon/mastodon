@@ -20,6 +20,8 @@ class BackupWorker
     backup = Backup.find(backup_id)
     user   = backup.user
 
+    return true if user.nil?
+
     BackupService.new.call(backup)
 
     user.backups.where.not(id: backup.id).destroy_all
