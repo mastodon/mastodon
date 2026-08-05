@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_04_081821) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_05_130216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1551,7 +1551,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_081821) do
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
-  add_foreign_key "generated_annual_reports", "accounts"
+  add_foreign_key "generated_annual_reports", "accounts", on_delete: :cascade
   add_foreign_key "global_follow_recommendations", "accounts", on_delete: :cascade
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
   add_foreign_key "instance_moderation_notes", "accounts", on_delete: :cascade
