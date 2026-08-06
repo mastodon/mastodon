@@ -371,7 +371,7 @@ function fillNotificationsGap(
       type: 'gap',
       maxId: notifications.at(-1)?.page_max_id,
       sinceId,
-    } as NotificationGap);
+    } satisfies NotificationGap);
   }
 
   // Remove older groups covered by the API
