@@ -130,7 +130,7 @@ const InvalidAccountHelp: FC = () => {
             />
             <FormattedMessage
               id='account.name.help.invalid_explanation'
-              defaultMessage='This can happen when a user changes username, and is generally temporary.'
+              defaultMessage='This can happen when a user changes username, and is generally temporary. If this persists, it may be because of an unavailable server or some misconfiguration on their end.'
               tagName='p'
             />
           </div>
