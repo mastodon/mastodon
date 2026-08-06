@@ -87,7 +87,7 @@ class BatchedRemoveStatusService < BaseService
     pipeline.publish('timeline:public', payload)
     pipeline.publish(status.local? ? 'timeline:public:local' : 'timeline:public:remote', payload)
 
-    if status.media_attachments.any?
+    if status.ordered_media_attachment_ids.present?
       pipeline.publish('timeline:public:media', payload)
       pipeline.publish(status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', payload)
     end
