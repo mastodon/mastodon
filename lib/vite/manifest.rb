@@ -31,6 +31,9 @@ module Vite
       end
     end
 
+    Entrypoint = Struct.new(:file, :integrity, :import_ids, :stylesheet_ids)
+    Asset = Struct.new(:file, :integrity)
+
     attr_reader :config, :entries, :pool, :logger
 
     def initialize(config:, logger:)
@@ -104,21 +107,21 @@ module Vite
         import_ids, stylesheet_ids = resolve_relations(json, raw)
 
         @virtual[raw['name']] = key
-        @entries[key] = {
-          file: raw['file'],
-          integrity: raw['integrity'],
-          import_ids: import_ids,
-          stylesheet_ids: stylesheet_ids,
-        }
+        @entries[key] = Entrypoint.new(
+          raw['file'],
+          raw['integrity'],
+          import_ids,
+          stylesheet_ids
+        )
       end
 
       logger.debug { "loading manifest file: #{config.manifest_assets_path}" }
       assets = JSON.load_file(config.manifest_assets_path)
       assets.each do |key, raw|
-        @entries[key] = {
-          file: raw['file'],
-          integrity: raw['integrity'],
-        }
+        @entries[key] = Asset.new(
+          raw['file'],
+          raw['integrity']
+        )
       end
     ensure
       @lookup = {}
@@ -173,7 +176,7 @@ module Vite
       id, deps = @lookup[file] || []
 
       if id.nil?
-        @pool << { file:, integrity: }
+        @pool << Asset.new(file, integrity)
         id = @pool.size - 1 # last ID
         deps = yield if block_given?
         @lookup[file] = [id, deps]
