@@ -465,23 +465,25 @@ function getMenuItems({
     return menu;
   }
 
-  menu.push({
-    text: intl.formatMessage(messages.mention, {
-      name: account.username,
-    }),
-    action: () => {
-      dispatch(mentionCompose(account));
-    },
-  });
-  menu.push({
-    text: intl.formatMessage(messages.direct, {
-      name: account.username,
-    }),
-    action: () => {
-      dispatch(directCompose(account));
-    },
-  });
-  menu.push(null);
+  if (!account.invalid_handle) {
+    menu.push({
+      text: intl.formatMessage(messages.mention, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(mentionCompose(account));
+      },
+    });
+    menu.push({
+      text: intl.formatMessage(messages.direct, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(directCompose(account));
+      },
+    });
+    menu.push(null);
+  }
 
   if (interactions.revokeQuote) {
     menu.push({

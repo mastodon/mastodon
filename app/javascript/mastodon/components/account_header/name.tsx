@@ -62,14 +62,81 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
         {relationship?.followed_by && <FollowsYouBadge />}
       </div>
 
-      <AccountNameHelp
-        username={username}
-        domain={domain}
-        isSelf={account.id === me}
-      />
+      {account.invalid_handle ? (
+        <InvalidAccountHelp />
+      ) : (
+        <AccountNameHelp
+          username={username}
+          domain={domain}
+          isSelf={account.id === me}
+        />
+      )}
 
       <AccountBadges accountId={accountId} />
     </div>
+  );
+};
+
+const InvalidAccountHelp: FC = () => {
+  const accessibilityId = useId();
+  const intl = useIntl();
+  const [open, setOpen] = useState(false);
+  const [triggerElement, setTriggerElement] =
+    useState<HTMLButtonElement | null>(null);
+
+  const handleClick = useCallback(() => {
+    setOpen((prev) => !prev);
+  }, []);
+
+  return (
+    <>
+      <button
+        type='button'
+        ref={setTriggerElement}
+        className={classNames(classes.handleHelpButton)}
+        onClick={handleClick}
+        aria-expanded={open}
+        aria-controls={accessibilityId}
+      >
+        <FormattedMessage
+          id='account.hame.invalid_handle'
+          defaultMessage='Handle unavailable'
+        />
+
+        <Icon
+          id='help'
+          icon={HelpIcon}
+          aria-label={intl.formatMessage(messages.nameInfo)}
+        />
+      </button>
+
+      <Popover
+        isOpen={open}
+        reference={triggerElement}
+        onClose={handleClick}
+        offset={5}
+      >
+        {({ props }) => (
+          <div
+            {...props}
+            role='region'
+            id={accessibilityId}
+            className={classNames('dropdown-animation', classes.handleHelp)}
+          >
+            <FormattedMessage
+              id='account.name.help.invalid_header'
+              defaultMessage="This user's handle is being updated"
+              tagName='h3'
+            />
+            <FormattedMessage
+              id='account.name.help.invalid_explanation'
+              defaultMessage='This can happen when a user changes username, and is generally temporary. If this persists, it may be because of an unavailable server or some misconfiguration on their end.'
+              tagName='p'
+            />
+          </div>
+        )}
+      </Popover>
+    </>
   );
 };
 
