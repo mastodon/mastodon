@@ -326,6 +326,10 @@ class Account < ApplicationRecord
       create_deletion_request!
       update!(requested_deletion_at: date)
     end
+
+    # This terminates all connections for the given account with the streaming
+    # server:
+    redis.publish("timeline:system:#{id}", { event: :kill }.to_json) if local?
   end
 
   def memorialize!
