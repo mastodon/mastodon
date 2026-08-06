@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.6.5] - 2026-08-06
+
+- Fix Collection items being rejected because of incorrect attribute being read (#40052 by @shleeable)
+- Fix typo in embedded quote handling code (#40049 by @shleeable)
+- Fix account merging worker incorrectly merging `Appeal` and `AccountWarning` records (#39982 by @shleeable)
+- Fix off-by-one in handling of updated remote posts allowing up to 5 attachments (#39978 by @shleeable)
+- Fix collection items limit not being consistently applied (#39969 by @oneiros)
+- Fix oversized profile image crop uploads (#39958 by @sharlayan)
+- Fix emoji autocomplete sometimes suggesting emojis for earlier keystrokes (#39947 by @ChaosExAnima)
+
 ## [4.6.4] - 2026-07-27
 
 ### Security
