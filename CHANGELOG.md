@@ -2,7 +2,76 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.7.0] - UNRELEASED
+
+### Added
+
+- Add audit logs for Hashtags (#39473, #39337 and #39670 by @arte7)
+- Add search field to admin ip blocks (#39404 by @arte7)
+- Add notifications for out-of-support versions of Mastodon (#39732 and #39734 by @ClearlyClaire)
+- Add Elasticsearch request timeout of 10s (can be overridden through `ES_QUERY_TIMEOUT`) (#40064 by @ClearlyClaire)
+- Add ActivityPub attributes to current span when processing Activities (#40041 by @jhbabon)
+- Add OTel span attribute to deprecated endpoints (#40030 by @jhbabon)
+- Add default permission check to admin area (#39974 by @oneiros)
+- Add uniqueness constraint on Account `uri` (#39882, #39999 and #39861 by @ClearlyClaire)
+- Add new theme tokens `bg-blend`, `bg-highlight`, and `border-strong` (#39786 by @diondiondion)
+- Add support for `Link` objects in `attachment` (FEP-8967) (#36104, #39977 and #39983 by @Gargron, @TheEssem and @shleeable)
+  - Mastodon will use the first `Link` attachment, if any, as preview card.
+  - If there is no `Link` attachment, Mastodon will still scan the message content's to populate one. This may change in a later release.
+  - Mastodon sets a `Link` attachment for outgoing posts with a preview card.
+- Add support for remote accounts changing handles (#39785, #39850, #39865 and #40045 by @ClearlyClaire)
+  - ActivityPub actor `id` is now used as the primary identifier, instead of webfinger handle.
+  - Remote actors that change handles are now renamed instead of a duplicate account being created then the two merged.
+  - Mastodon does not offer its users to change handles yet.
+  - The concept of “invalid handles” has been added to handle some edge cases. An account with an invalid handle
+    is an account for which the handle cannot be currently verified, but is otherwise valid.
+    In the REST API, they have their `username` and `domain` attribute overridden and this is made explicit through the [`invalid_handle` attribute](https://docs.joinmastodon.org/entities/Account/#invalid_handle).
+- Add outgoing RFC9421 HTTP Message Signatures as fallback to earlier draft (#39756 by @ClearlyClaire)
+- Change how local users' keypairs are stored (#39658, #39668, #39662, #39684, #39686 and #39690 by @ClearlyClaire)
+  - This moves local users' keypairs to the dedicated table that was created in 4.6.
+  - Private keys are now encrypted at rest, and the new infrastructure will allow for key rotation in the future.
+- Add support for `expires` in Linked Data Signatures and Object Integrity Proofs (#39701 by @ClearlyClaire)
+- Add verification of FEP-8b32 Object Integrity Proofs (#39530, #39728, #39754, #39760, #39522 and #39747 by @ClearlyClaire)
+  - Both `eddsa-jcs-2022` and `mldsa44-jcs-2024` are supported.
+  - `mldsa44-jcs-2024` verification requires OpenSSL >= 3.5 to be verified.
+- Add support for Ed25519 signatures in HTTP Message Signatures (#39518 by @ClearlyClaire)
+- Add inbound support for FEP-521a (#39497, #39618, and #39725 by @ClearlyClaire and @shleeable)
+
+### Fixed
+
+- Fix performance of listing follow requests by adding appropriate index (#40033 by @ClearlyClaire)
+- Fix missing `on_delete: :cascade` on `GeneratedAnnualReport` foreign key (#40063 by @ClearlyClaire)
+- Fix `DeleteAccountService#purge_favourites!` only invalidating deprecated cache keys (#40048 by @shleeable)
+- Fix spam-filtered scheduled posts raising an error rather than being silently ignored (#40051 by @shleeable)
+- Fix error when processing backups for deleted accounts (#40053 by @shleeable)
+- Fix notification filter selection after settings change (#39872 by @sharlayan)
+- Fix timeline unable to load more when the last item is a `inline-follow-suggestions` (#39773 by @sharlayan)
+- Fix embedded videos restarting when interacting with post (or other posts in the same feed) (#39746 by @diondiondion)
+- Fix N+1 queries when rendering accounts on the admin collection page (#39738 by @rubys)
+- Fix authored posts not immediately appearing in timelines (#39733 by @ChaosExAnima)
+- Fix newletter button display on some e-mail clients (#39634 by @diondiondion)
+- Fix handling of `rdf:langString` in media `summary` and `name` (#39590 by @ClearlyClaire)
+- Fix error when rejecting appeal of already-deleted user (#39490 by @shleeable)
+- Fix navigation switching to user “Account” category when viewing appeal for moderation interface (#39476, #39619 and #40026 by @ClearlyClaire and @shleeable)
+
+### Changed
+
+- Change follow recommendation materialized views to manually-maintained tables (#40039 by @ClearlyClaire)
+- Change database schema to distinguish deleted-but-not-suspended accounts (#23617, #40027, #40029, #40034, #40083 and #40078 by @ClearlyClaire and @shleeable)
+- Change reblogs to be deduplicated within the last 80 posts instead of the last 40 (#39784 by @ClearlyClaire)
+- Change `AttachmentBatch` to reset retry attempt counter for each S3 batch (#39979 by @shleeable)
+- Change featured tag recommendation criteria (#39567 by @renchap)
+
+### Removed
+
+- Remove inbox processing of collections of activities (#39932 by @ClearlyClaire)
+- Remove support for `Reject` and `Accept` of `QuoteRequest` that cannot be found by `id` (#39833 by @ClearlyClaire)
+- Remove deprecated `bin/update` script (#39443 by @mjankowski)
+- Remove support for pre-Mastodon 4.3.0 cookies (#38918 by @ClearlyClaire)
+
 ## [4.6.5] - 2026-08-06
+
+### Fixed
 
 - Fix Collection items being rejected because of incorrect attribute being read (#40052 by @shleeable)
 - Fix typo in embedded quote handling code (#40049 by @shleeable)
