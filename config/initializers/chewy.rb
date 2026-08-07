@@ -7,7 +7,7 @@ user            = ENV.fetch('ES_USER', nil).presence
 password        = ENV.fetch('ES_PASS', nil).presence
 prefix          = ENV.fetch('ES_PREFIX', nil)
 ca_file         = ENV.fetch('ES_CA_FILE', nil).presence
-verify_ssl      = ENV.fetch('ES_VERIFY_SSL', 'true') == 'true'
+verify_ssl      = ENV.fetch('ES_VERIFY_SSL', 'true') != 'false'
 
 ssl_options = {}
 ssl_options[:ca_file] = ca_file if ca_file.present?
