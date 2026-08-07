@@ -30,6 +30,12 @@ FROM ${BASE_REGISTRY}/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
 ARG MASTODON_VERSION_PRERELEASE=""
 # Append build metadata or fork information to version.rb [--build-arg MASTODON_VERSION_METADATA="pr-123456"]
 ARG MASTODON_VERSION_METADATA=""
+# GitHub repository to use for 'View source code' link in Mastodon footer [--build-arg GITHUB_REPOSITORY="mastodon/mastodon"]
+ARG GITHUB_REPOSITORY=""
+# Git repository URL to use for 'View source code' link in Mastodon footer [--build-arg SOURCE_BASE_URL="https://github.com/$GITHUB_REPOSITORY"]
+ARG SOURCE_BASE_URL=""
+# Precise tag or branch to use for 'View source code' link in Mastodon footer [--build-arg SOURCE_TAG="v4.3.2"]
+ARG SOURCE_TAG=""
 # Will be available as Mastodon::Version.source_commit
 ARG SOURCE_COMMIT=""
 
@@ -50,6 +56,9 @@ ARG GID="991"
 ENV \
   MASTODON_VERSION_PRERELEASE="${MASTODON_VERSION_PRERELEASE}" \
   MASTODON_VERSION_METADATA="${MASTODON_VERSION_METADATA}" \
+  GITHUB_REPOSITORY="${GITHUB_REPOSITORY}" \
+  SOURCE_BASE_URL="${SOURCE_BASE_URL}" \
+  SOURCE_TAG="${SOURCE_TAG}" \
   SOURCE_COMMIT="${SOURCE_COMMIT}" \
   RAILS_SERVE_STATIC_FILES="${RAILS_SERVE_STATIC_FILES}" \
   RUBY_YJIT_ENABLE="${RUBY_YJIT_ENABLE}" \
