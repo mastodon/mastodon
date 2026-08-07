@@ -3,6 +3,7 @@
 class Web::PushNotificationWorker
   include Sidekiq::Worker
   include RoutingHelper
+  include DatabaseHelper
 
   sidekiq_options queue: 'push', retry: 5
 
@@ -10,10 +11,15 @@ class Web::PushNotificationWorker
   URGENCY = 'normal'
 
   def perform(subscription_id, notification_id)
-    @subscription = Web::PushSubscription.find(subscription_id)
-    @notification = Notification.find(notification_id)
+    @subscription = Web::PushSubscription.find_by(id: subscription_id)
+    return if @subscription.nil?
 
-    return if @notification.updated_at < TTL.ago
+    @notification = with_read_replica { Notification.find_by(id: notification_id) }
+
+    # Take care of replica lag by rescheduling if the notification is in the main database but not the replica
+    raise ActiveRecord::RecordNotFound if @notification.nil? && with_read_replica? && Notification.exists?(id: notification_id)
+
+    return if @notification.nil? || @notification.updated_at < TTL.ago
 
     # Clean up old Web::PushSubscriptions that were added before validation of
     # the endpoint and keys: #30542, #30540
@@ -33,8 +39,6 @@ class Web::PushNotificationWorker
     else
       perform_standard_request
     end
-  rescue ActiveRecord::RecordNotFound
-    true
   end
 
   private
