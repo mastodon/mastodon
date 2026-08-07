@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import { Icon }  from 'mastodon/components/icon';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
@@ -35,11 +36,12 @@ class TranslateButton extends PureComponent {
 
   static propTypes = {
     translation: ImmutablePropTypes.map,
+    isTranslating: PropTypes.bool,
     onClick: PropTypes.func,
   };
 
   render () {
-    const { translation, onClick } = this.props;
+    const { translation, isTranslating, onClick } = this.props;
 
     if (translation) {
       const language     = preloadedLanguages.find(lang => lang[0] === translation.get('detected_source_language'));
@@ -56,6 +58,19 @@ class TranslateButton extends PureComponent {
             <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
           </div>
         </div>
+      );
+    }
+
+    if (isTranslating) {
+      return (
+        <button
+          className='status__content__translate-button status__content__translate-button--loading'
+          disabled
+          aria-busy='true'
+        >
+          <LoadingIndicator role='none' />
+          <FormattedMessage id='status.translating' defaultMessage='Translating…' />
+        </button>
       );
     }
 
@@ -204,7 +219,11 @@ class StatusContent extends PureComponent {
     );
 
     const translateButton = renderTranslate && (
-      <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
+      <TranslateButton
+        onClick={this.handleTranslate}
+        translation={status.get('translation')}
+        isTranslating={status.get('isTranslating')}
+      />
     );
 
     const poll = !!status.get('poll') && (

@@ -1449,6 +1449,29 @@ body > [data-popover-placement] {
     width: 15px;
     height: 15px;
   }
+
+  &--loading {
+    gap: 8px;
+    cursor: wait;
+    pointer-events: none;
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+
+    .loading-indicator {
+      position: static;
+      transform: none;
+      color: inherit;
+    }
+
+    .circular-progress {
+      color: inherit;
+      width: 14px;
+      height: 14px;
+    }
+  }
 }
 
 .translate-button {

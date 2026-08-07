@@ -24,7 +24,9 @@ import {
   STATUS_REVEAL,
   STATUS_HIDE,
   STATUS_COLLAPSE,
+  STATUS_TRANSLATE_REQUEST,
   STATUS_TRANSLATE_SUCCESS,
+  STATUS_TRANSLATE_FAIL,
   STATUS_TRANSLATE_UNDO,
   STATUS_FETCH_REQUEST,
   STATUS_FETCH_FAIL,
@@ -146,8 +148,12 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.id, 'collapsed'], action.isCollapsed);
   case timelineDelete.type:
     return deleteStatus(state, action.payload.statusId, action.payload.references);
+  case STATUS_TRANSLATE_REQUEST:
+    return state.setIn([action.id, 'isTranslating'], true);
   case STATUS_TRANSLATE_SUCCESS:
-    return statusTranslateSuccess(state, action.id, action.translation);
+    return statusTranslateSuccess(state, action.id, action.translation).deleteIn([action.id, 'isTranslating']);
+  case STATUS_TRANSLATE_FAIL:
+    return state.deleteIn([action.id, 'isTranslating']);
   case STATUS_TRANSLATE_UNDO:
     return statusTranslateUndo(state, action.id);
   default:
