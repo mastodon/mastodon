@@ -255,7 +255,7 @@ module Mastodon::CLI
           media_attachment.save
         end
 
-        media_attachment.file_file_size + (media_attachment.thumbnail_file_size || 0)
+        (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
       end
 
       say("Downloaded #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
