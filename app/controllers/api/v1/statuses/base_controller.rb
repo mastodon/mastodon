@@ -12,5 +12,7 @@ class Api::V1::Statuses::BaseController < Api::BaseController
     authorize @status, :show?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
+  else
+    render json: { error: 'This operation is not allowed on reblogs' }, status: 400 if @status.reblog?
   end
 end
