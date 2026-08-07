@@ -395,6 +395,7 @@ function getMenuItems({
         ),
         action: () => {
           dispatch(
+            // @ts-expect-error this action is not typed yet
             followAccount(account.id, {
               reblogs: !relationship.showing_reblogs,
             }),
