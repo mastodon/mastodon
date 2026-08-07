@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
 import pg from 'pg';
 import pgConnectionString from 'pg-connection-string';
 
@@ -83,18 +86,33 @@ export function configFromEnv(env, environment) {
     baseConfig = pgConfigs[environment];
 
     if (env.DB_SSLMODE) {
-      switch(env.DB_SSLMODE) {
+      // This is the same logic used by `pg` for handling sslmode:
+      switch (env.DB_SSLMODE) {
       case 'disable':
-      case '':
         baseConfig.ssl = false;
+        break;
+      case 'prefer':
+      case 'require':
+      case 'verify-ca':
+      case 'verify-full':
+        baseConfig.ssl = {};
         break;
       case 'no-verify':
         baseConfig.ssl = { rejectUnauthorized: false };
         break;
-      default:
-        baseConfig.ssl = {};
-        break;
       }
+    }
+
+    if (typeof env.DB_SSL_CERT === 'string' && typeof baseConfig.ssl === 'object') {
+      baseConfig.ssl.cert = fs.readFileSync(path.resolve(env.DB_SSL_CERT), 'ascii');
+    }
+
+    if (typeof env.DB_SSL_KEY === 'string' && typeof baseConfig.ssl === 'object') {
+      baseConfig.ssl.key = fs.readFileSync(path.resolve(env.DB_SSL_KEY), 'ascii');
+    }
+
+    if (typeof env.DB_SSL_CA === 'string' && typeof baseConfig.ssl === 'object') {
+      baseConfig.ssl.ca = fs.readFileSync(path.resolve(env.DB_SSL_CA), 'ascii');
     }
   } else {
     throw new Error('Unable to resolve postgresql database configuration.');
