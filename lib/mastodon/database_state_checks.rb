@@ -42,3 +42,9 @@ module Mastodon
     module_function :check_database_newer_than_code!
   end
 end
+
+class DatabaseCheckRailtie < Rails::Railtie
+  server do
+    Mastodon::DatabaseStateChecks.check_database_state!
+  end
+end
