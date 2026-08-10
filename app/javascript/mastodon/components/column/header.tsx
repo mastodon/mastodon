@@ -73,7 +73,7 @@ const BackButton: React.FC<{
   );
 };
 
-export interface Props {
+export interface ColumnHeaderProps {
   title?: React.ReactNode;
   icon?: string;
   iconComponent?: IconProp;
@@ -93,7 +93,7 @@ export interface Props {
   onPin?: () => void;
 }
 
-export const ColumnHeader: React.FC<Props> = ({
+export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   title,
   icon,
   iconComponent,
