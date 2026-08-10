@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_13_112507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -812,6 +812,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true
     t.index ["status_id"], name: "index_mentions_on_status_id"
+  end
+
+  create_table "moderation_subscriptions", force: :cascade do |t|
+    t.boolean "apply_automatically", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "last_synced_at"
+    t.integer "list_action"
+    t.string "name"
+    t.boolean "preserve_relationships", default: true, null: false
+    t.integer "priority"
+    t.boolean "retract_automatically", default: true, null: false
+    t.integer "type", null: false
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
   end
 
   create_table "mutes", force: :cascade do |t|
