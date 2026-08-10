@@ -47,11 +47,15 @@ export const scrollRight = (node: Element, position: number) =>
     }
   });
 
-export const scrollTop = (node: Element) =>
+export const scrollTop = (
+  node: Element,
+  { callback, ...rest }: IdleRequestOptions & { callback?: () => void } = {},
+) =>
   requestIdleCallback(() => {
     if (isScrollBehaviorSupported) {
       node.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       scroll(node, 'scrollTop', 0);
     }
-  });
+    callback?.();
+  }, rest);

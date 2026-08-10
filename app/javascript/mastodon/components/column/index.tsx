@@ -2,6 +2,8 @@ import { useRef, useMemo } from 'react';
 
 import classNames from 'classnames';
 
+import { useDebouncedCallback } from 'use-debounce';
+
 import { scrollTop } from 'mastodon/scroll';
 
 import { ColumnContext } from './context';
@@ -13,6 +15,8 @@ interface ColumnProps {
   className?: string;
 }
 
+const TIMEOUT = 200;
+
 export const Column: React.FC<ColumnProps> = ({
   children,
   label,
@@ -21,6 +25,7 @@ export const Column: React.FC<ColumnProps> = ({
 }) => {
   const nodeRef = useRef<HTMLDivElement>(null);
 
+  const idleCallbackId = useRef<number>(null);
   const contextValue = useMemo(
     () => ({
       scrollTop() {
@@ -36,11 +41,22 @@ export const Column: React.FC<ColumnProps> = ({
           return;
         }
 
-        scrollTop(scrollable);
+        idleCallbackId.current = scrollTop(scrollable, {
+          timeout: TIMEOUT,
+          callback() {
+            idleCallbackId.current = null;
+          },
+        });
       },
     }),
     [bindToDocument],
   );
+
+  const handleScroll = useDebouncedCallback(() => {
+    if (typeof idleCallbackId.current === 'number') {
+      cancelIdleCallback(idleCallbackId.current);
+    }
+  }, TIMEOUT);
 
   return (
     <div
@@ -48,6 +64,7 @@ export const Column: React.FC<ColumnProps> = ({
       aria-label={label}
       className={classNames('column', className)}
       ref={nodeRef}
+      onScroll={handleScroll}
     >
       <ColumnContext.Provider value={contextValue}>
         {children}
