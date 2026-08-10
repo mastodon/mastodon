@@ -4,9 +4,10 @@ import classNames from 'classnames';
 
 import { useDebouncedCallback } from 'use-debounce';
 
+import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
 import { scrollTop } from 'mastodon/scroll';
 
-import { ColumnContext } from './context';
+import { ColumnContext, useColumnIndexContext } from './context';
 
 interface ColumnProps {
   children?: React.ReactNode;
@@ -58,13 +59,18 @@ export const Column: React.FC<ColumnProps> = ({
     }
   }, TIMEOUT);
 
+  const columnIndex = useColumnIndexContext();
+
   return (
     <div
       role='region'
-      aria-label={label}
-      className={classNames('column', className)}
       ref={nodeRef}
       onScroll={handleScroll}
+      className={classNames('column', className)}
+      aria-label={label}
+      aria-labelledby={
+        label === undefined ? getColumnSkipLinkId(columnIndex) : undefined
+      }
     >
       <ColumnContext.Provider value={contextValue}>
         {children}
