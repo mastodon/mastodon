@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
@@ -12,13 +12,13 @@ import { addColumn } from 'mastodon/actions/columns';
 import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { localLiveFeedAccess, remoteLiveFeedAccess, domain } from 'mastodon/initial_state';
 import { canViewFeed } from 'mastodon/permissions';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import SettingToggle from '../notifications/components/setting_toggle';
 import StatusListContainer from '../ui/containers/status_list_container';
 
@@ -62,7 +62,6 @@ const Firehose = ({ feedType, multiColumn }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const { signedIn, permissions } = useIdentity();
-  const columnRef = useRef(null);
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
   const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
@@ -100,8 +99,6 @@ const Firehose = ({ feedType, multiColumn }) => {
     },
     [dispatch, onlyMedia, feedType],
   );
-
-  const handleHeaderClick = useCallback(() => columnRef.current?.scrollTop(), []);
 
   useEffect(() => {
     let disconnect;
@@ -180,15 +177,15 @@ const Firehose = ({ feedType, multiColumn }) => {
   }
 
   return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
+    <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='globe'
         iconComponent={PublicIcon}
         active={hasUnread}
         title={intl.formatMessage(title)}
         onPin={handlePin}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
+        scrollTopOnClick
       >
         <ColumnSettings />
       </ColumnHeader>

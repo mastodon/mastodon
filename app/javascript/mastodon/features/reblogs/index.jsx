@@ -12,11 +12,11 @@ import { debounce } from 'lodash';
 
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 import { Account } from 'mastodon/components/account';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { Icon }  from 'mastodon/components/icon';
 import { injectIntl } from '@/mastodon/components/intl';
 
 import { fetchReblogs, expandReblogs } from '../../actions/interactions';
-import ColumnHeader from '../../components/column_header';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import Column from '../ui/components/column';

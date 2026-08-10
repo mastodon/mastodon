@@ -7,6 +7,8 @@ import { List as ImmutableList } from 'immutable';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import {
   addColumn,
@@ -15,8 +17,6 @@ import {
   changeColumnParams,
 } from 'mastodon/actions/columns';
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadMore } from 'mastodon/components/load_more';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';

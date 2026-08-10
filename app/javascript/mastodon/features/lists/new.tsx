@@ -8,6 +8,8 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { NotSignedInIndicator } from '@/mastodon/components/not_signed_in_indicator';
 import { useIdentity } from '@/mastodon/identity_context';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
@@ -19,8 +21,6 @@ import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type { RepliesPolicyType } from 'mastodon/api_types/lists';
 import { Avatar } from 'mastodon/components/avatar';
 import { AvatarGroup } from 'mastodon/components/avatar_group';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import {
   SelectField,
   TextInputField,

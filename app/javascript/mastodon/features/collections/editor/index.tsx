@@ -13,10 +13,10 @@ import {
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { Callout } from 'mastodon/components/callout';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { NotSignedInIndicator } from 'mastodon/components/not_signed_in_indicator';
 import { useIdentity } from 'mastodon/identity_context';

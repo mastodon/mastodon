@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
-import { Column } from 'mastodon/components/column';
+import { Column } from '@/mastodon/components/column';
 
 import { NavigationPanel } from '../navigation_panel';
 import { LinkFooter } from '../ui/components/link_footer';

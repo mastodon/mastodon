@@ -4,14 +4,14 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import {
   fetchFavouritedStatuses,
   expandFavouritedStatuses,
 } from 'mastodon/actions/favourites';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';

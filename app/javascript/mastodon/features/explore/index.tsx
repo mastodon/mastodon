@@ -4,9 +4,9 @@ import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { SymbolLogo } from 'mastodon/components/logo';
 import { Search } from 'mastodon/features/compose/components/search';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';

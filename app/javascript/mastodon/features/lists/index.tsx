@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { NotSignedInIndicator } from '@/mastodon/components/not_signed_in_indicator';
 import { useIdentity } from '@/mastodon/identity_context';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
@@ -14,8 +16,6 @@ import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchLists } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';

@@ -4,10 +4,10 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
 import { apiGetDomainBlocks } from 'mastodon/api/domain_blocks';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { Domain } from 'mastodon/components/domain';
 import ScrollableList from 'mastodon/components/scrollable_list';
 

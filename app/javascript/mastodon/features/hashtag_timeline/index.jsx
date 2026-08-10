@@ -13,8 +13,8 @@ import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { remoteTopicFeedAccess, me, localTopicFeedAccess } from 'mastodon/initial_state';
 

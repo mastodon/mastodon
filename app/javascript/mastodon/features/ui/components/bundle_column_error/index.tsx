@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
 import { CopyButton } from '@/mastodon/components/copy_button';
 import { EmptyState } from '@/mastodon/components/empty_state';
 import { Button } from 'mastodon/components/button';
-import { Column } from 'mastodon/components/column';
 
 import classes from './styles.module.scss';
 

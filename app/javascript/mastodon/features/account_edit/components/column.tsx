@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column_header';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
 

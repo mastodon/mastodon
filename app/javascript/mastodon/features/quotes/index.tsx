@@ -6,9 +6,9 @@ import { List as ImmutableList } from 'immutable';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 import { fetchQuotes } from 'mastodon/actions/interactions_typed';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import StatusList from 'mastodon/components/status_list';

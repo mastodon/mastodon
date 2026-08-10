@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 
 import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { Hotkeys }  from 'mastodon/components/hotkeys';
 import { Icon }  from 'mastodon/components/icon';
 import { injectIntl } from '@/mastodon/components/intl';
@@ -59,7 +60,6 @@ import {
   undoStatusTranslation,
 } from '../../actions/statuses';
 import { setStatusQuotePolicy } from '../../actions/statuses_typed';
-import ColumnHeader from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import { StatusQuoteManager } from '../../components/status_quoted';
 import { deleteModal } from '../../initial_state';

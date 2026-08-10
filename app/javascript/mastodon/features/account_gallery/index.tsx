@@ -7,7 +7,7 @@ import { List as ImmutableList, isList } from 'immutable';
 import { openModal } from '@/mastodon/actions/modal';
 import { expandAccountMediaTimeline } from '@/mastodon/actions/timelines';
 import { AccountHeader } from '@/mastodon/components/account_header';
-import { ColumnBackButton } from '@/mastodon/components/column_back_button';
+import { ColumnBackButton } from '@/mastodon/components/column/back_button';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import ScrollableList from '@/mastodon/components/scrollable_list';

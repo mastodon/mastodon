@@ -6,6 +6,8 @@ import { isFulfilled } from '@reduxjs/toolkit';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import {
   fetchFollowedHashtags,
@@ -13,8 +15,6 @@ import {
 } from 'mastodon/actions/tags_typed';
 import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
 import { Button } from 'mastodon/components/button';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { Hashtag } from 'mastodon/components/hashtag';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';

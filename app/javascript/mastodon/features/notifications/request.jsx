@@ -17,8 +17,8 @@ import {
   acceptNotificationRequest,
   dismissNotificationRequest,
 } from 'mastodon/actions/notification_requests';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { IconButton } from 'mastodon/components/icon_button';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { SensitiveMediaContextProvider } from 'mastodon/features/ui/util/sensitive_media_context';

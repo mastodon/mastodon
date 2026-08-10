@@ -4,6 +4,8 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
 import FindInPageIcon from '@/material-icons/400-24px/find_in_page.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
@@ -12,8 +14,6 @@ import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { submitSearch, expandSearch } from 'mastodon/actions/search';
 import type { ApiSearchType } from 'mastodon/api_types/search';
 import { Account } from 'mastodon/components/account';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { CompatibilityHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';

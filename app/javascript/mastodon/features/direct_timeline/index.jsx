@@ -11,8 +11,8 @@ import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?re
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'mastodon/actions/conversations';
 import { connectDirectStream } from 'mastodon/actions/streaming';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 
 import { ConversationsList } from './components/conversations_list';
 

@@ -4,10 +4,10 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { apiGetPrivacyPolicy } from 'mastodon/api/instance';
 import type { ApiPrivacyPolicyJSON } from 'mastodon/api_types/instance';
-import { Column } from 'mastodon/components/column';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Skeleton } from 'mastodon/components/skeleton';
 

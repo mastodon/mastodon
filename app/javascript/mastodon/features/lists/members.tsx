@@ -6,6 +6,9 @@ import { useParams, Link } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnSearchHeader } from '@/mastodon/components/column/search_header';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
@@ -22,9 +25,6 @@ import {
 import { Avatar } from 'mastodon/components/avatar';
 import { VerifiedBadge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
-import { ColumnSearchHeader } from 'mastodon/components/column_search_header';
 import { FollowersCounter } from 'mastodon/components/counters';
 import { DisplayName } from 'mastodon/components/display_name';
 import ScrollableList from 'mastodon/components/scrollable_list';

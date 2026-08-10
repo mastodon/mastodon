@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions';
 import { Account } from 'mastodon/components/account';
-import { ColumnHeader } from 'mastodon/components/column_header';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { Icon }  from 'mastodon/components/icon';
 import { injectIntl } from '@/mastodon/components/intl';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';

@@ -9,7 +9,7 @@ import { List as ImmutableList } from 'immutable';
 import { fetchEndorsedAccounts } from '@/mastodon/actions/accounts';
 import { AccountHeader } from '@/mastodon/components/account_header';
 import { AccountListItem } from '@/mastodon/components/account_list_item';
-import { ColumnBackButton } from '@/mastodon/components/column_back_button';
+import { ColumnBackButton } from '@/mastodon/components/column/back_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import {
