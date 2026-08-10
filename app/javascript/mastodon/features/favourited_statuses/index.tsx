@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -11,7 +11,6 @@ import {
   expandFavouritedStatuses,
 } from 'mastodon/actions/favourites';
 import { Column } from 'mastodon/components/column';
-import type { ColumnRef } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
@@ -27,7 +26,6 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
 }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
-  const columnRef = useRef<ColumnRef>(null);
   const statusIds = useAppSelector((state) =>
     getStatusList(state, 'favourites'),
   );
@@ -58,10 +56,6 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
     [dispatch, columnId],
   );
 
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
-
   const handleLoadMore = useCallback(() => {
     dispatch(expandFavouritedStatuses());
   }, [dispatch]);
@@ -78,7 +72,6 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.heading)}
     >
       <ColumnHeader
@@ -87,9 +80,9 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
         title={intl.formatMessage(messages.heading)}
         onPin={handlePin}
         onMove={handleMove}
-        onClick={handleHeaderClick}
         pinned={pinned}
         multiColumn={multiColumn}
+        scrollTopOnClick
       />
 
       <StatusList

@@ -1,14 +1,8 @@
-import { forwardRef, useRef, useImperativeHandle } from 'react';
-import type { Ref } from 'react';
+import { useRef, createContext, useContext, useMemo } from 'react';
 
 import classNames from 'classnames';
 
 import { scrollTop } from 'mastodon/scroll';
-
-export interface ColumnRef {
-  scrollTop: () => void;
-  node: HTMLDivElement | null;
-}
 
 interface ColumnProps {
   children?: React.ReactNode;
@@ -17,13 +11,24 @@ interface ColumnProps {
   className?: string;
 }
 
-export const Column = forwardRef<ColumnRef, ColumnProps>(
-  ({ children, label, bindToDocument, className }, ref: Ref<ColumnRef>) => {
-    const nodeRef = useRef<HTMLDivElement>(null);
+const ColumnContext = createContext({
+  scrollTop: () => {
+    // Implemented below
+  },
+});
 
-    useImperativeHandle(ref, () => ({
-      node: nodeRef.current,
+export const useColumn = () => useContext(ColumnContext);
 
+export const Column: React.FC<ColumnProps> = ({
+  children,
+  label,
+  bindToDocument,
+  className,
+}) => {
+  const nodeRef = useRef<HTMLDivElement>(null);
+
+  const contextValue = useMemo(
+    () => ({
       scrollTop() {
         let scrollable = null;
 
@@ -39,22 +44,20 @@ export const Column = forwardRef<ColumnRef, ColumnProps>(
 
         scrollTop(scrollable);
       },
-    }));
+    }),
+    [bindToDocument],
+  );
 
-    return (
-      <div
-        role='region'
-        aria-label={label}
-        className={classNames('column', className)}
-        ref={nodeRef}
-      >
+  return (
+    <div
+      role='region'
+      aria-label={label}
+      className={classNames('column', className)}
+      ref={nodeRef}
+    >
+      <ColumnContext.Provider value={contextValue}>
         {children}
-      </div>
-    );
-  },
-);
-
-Column.displayName = 'Column';
-
-// eslint-disable-next-line import/no-default-export
-export default Column;
+      </ColumnContext.Provider>
+    </div>
+  );
+};

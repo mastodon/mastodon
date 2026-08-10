@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
@@ -13,7 +13,6 @@ import { submitSearch, expandSearch } from 'mastodon/actions/search';
 import type { ApiSearchType } from 'mastodon/api_types/search';
 import { Account } from 'mastodon/components/account';
 import { Column } from 'mastodon/components/column';
-import type { ColumnRef } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { CompatibilityHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';
@@ -72,7 +71,6 @@ const typeFromParam = (param?: string): SearchType => {
 export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
   multiColumn,
 }) => {
-  const columnRef = useRef<ColumnRef>(null);
   const intl = useIntl();
   const [q] = useSearchParam('q');
   const [type, setType] = useSearchParam('type');
@@ -92,10 +90,6 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
       );
     }
   }, [dispatch, trimmedValue, mappedType]);
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
 
   const handleSelectAll = useCallback(() => {
     setType(null);
@@ -243,15 +237,14 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.title, { q })}
     >
       <ColumnHeader
         icon={'search'}
         iconComponent={SearchIcon}
         title={intl.formatMessage(messages.title, { q })}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
+        scrollTopOnClick
         appendContent={
           <>
             <div className='explore__search-header'>
