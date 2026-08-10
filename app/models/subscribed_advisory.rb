@@ -26,6 +26,9 @@ class SubscribedAdvisory < ApplicationRecord
     domain: 0,
   }, suffix: :target_type
 
+  ACTIONS = actions.keys.freeze
+  TARGET_TYPES = target_types.keys.freeze
+
   before_validation :normalize_target_key
 
   # TODO: handle subdomains
