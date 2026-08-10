@@ -48,6 +48,12 @@
   }
 }
 
+.dropdownItemControl {
+  color: inherit;
+  width: 100%;
+  user-select: none;
+}
+
 .textarea > textarea {
   @include mixins.type-body-lg;
 
