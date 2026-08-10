@@ -116,6 +116,10 @@ function statusToTextMentions(state, status) {
   return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
 }
 
+/**
+ * @param {typeof initialState} state
+ * @returns {typeof initialState}
+ */
 function clearAll(state) {
   return state.withMutations(map => {
     map.set('id', null);

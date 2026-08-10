@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { lazy, PureComponent, Suspense } from 'react';
 
 import { defineMessages } from 'react-intl';
 
@@ -23,6 +23,7 @@ import { PictureInPicture } from 'mastodon/features/picture_in_picture';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { checkAnnualReport } from '@/mastodon/reducers/slices/annual_report';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
@@ -269,8 +270,12 @@ class SwitchingColumnsArea extends PureComponent {
       </ColumnsContextProvider>
     );
   }
-
 }
+
+const LazyRedesignComposeButton = lazy(
+  () => import('@/mastodon/features/compose/redesign/trigger')
+    .then(({ ComposeRedesignButton }) => ({ default: ComposeRedesignButton }))
+);
 
 class UI extends PureComponent {
   static propTypes = {
@@ -665,6 +670,12 @@ class UI extends PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
+
+          {isRedesignEnabled() && (
+            <Suspense>
+              <LazyRedesignComposeButton />
+            </Suspense>
+          )}
         </div>
       </Hotkeys>
     );

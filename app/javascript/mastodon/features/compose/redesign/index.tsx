@@ -3,6 +3,8 @@ import { useCallback, useEffect, useId, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { LockSimpleOpenIcon } from '@phosphor-icons/react';
 import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
@@ -57,11 +59,15 @@ const messages = defineMessages({
 
 interface RedesignComposeFormProps {
   autoFocus?: boolean;
+  className?: string;
+  noMinimize?: boolean;
   redirectOnSuccess?: boolean;
 }
 
 export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   autoFocus,
+  className,
+  noMinimize,
   redirectOnSuccess,
 }) => {
   const {
@@ -90,21 +96,24 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       role='dialog'
       onSubmit={onSubmit}
       aria-labelledby={titleId}
-      className={classes.root}
+      className={classNames(className, classes.root)}
     >
-      <ComposeFormHeader id={titleId} />
-      <div className={classes.toolbar}>
-        {type !== 'message' && <ComposeVisibility />}
+      <ComposeFormHeader id={titleId} noMinimize={noMinimize} />
 
-        {type === 'message' && (
-          <p className={classes.toolbarMessage}>
-            <Icon id='lock-open' icon={LockSimpleOpenIcon} />
-            <FormattedMessage
-              id='compose.message.notice'
-              defaultMessage='Messages are not end-to-end encrypted'
-            />
-          </p>
-        )}
+      <div className={classes.toolbar}>
+        <div className={classes.flexGrowWrap}>
+          {type !== 'message' && <ComposeVisibility />}
+
+          {type === 'message' && (
+            <p className={classes.toolbarMessage}>
+              <Icon id='lock-open' icon={LockSimpleOpenIcon} />
+              <FormattedMessage
+                id='compose.message.notice'
+                defaultMessage='Messages are not end-to-end encrypted'
+              />
+            </p>
+          )}
+        </div>
 
         <ToggleField
           label={intl.formatMessage(messages.sensitive)}
