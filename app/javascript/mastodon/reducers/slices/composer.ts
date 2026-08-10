@@ -19,11 +19,13 @@ interface ComposerState {
   displayState: DisplayState;
 }
 
+const initialState: ComposerState = {
+  displayState: 'hidden',
+};
+
 const composerSlice = createSlice({
   name: 'composer',
-  initialState: {
-    displayState: 'hidden',
-  } as ComposerState,
+  initialState,
   reducers: {
     showComposer(state) {
       state.displayState = 'showing';
