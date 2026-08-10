@@ -42,7 +42,7 @@ az:
         reset_password_user_html: "%{name}, %{target} istifadəçisinin parolunu sıfırladı"
       deleted_account: silinmiş hesab
     dashboard:
-      media_storage: Media anbarı
+      media_storage: Media deposu
       software: Yazılım
     domain_allows:
       export: Xaricə köçür
@@ -79,6 +79,7 @@ az:
         create: Moderasiya notu əlavə et
         description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
         title: Moderasiya notları
+      purge_description_html: Əgər bu domenin tamamilə oflayn olduğuna inanırsınızsa, deponuzdan bu domenə aid olan bütün hesab qeydlərini və əlaqəli veriləri silə bilərsiniz. Bu bir az vaxt aparacaq.
       totals_time_period_hint_html: Aşağıdakı cəmlərə bütün vaxtlardakı verilər daxildir.
     reports:
       actions:
@@ -122,6 +123,8 @@ az:
         message_html: Elasticsearch-a bağlana bilmədi. Lütfən çalışdığına əmin olun və ya tam mətn axtarışını sıradan çıxardın
       elasticsearch_version_check:
         message_html: 'Uyumlu olmayan Elasticsearch versiyası: %{value}'
+      upload_check_privacy_error_object_storage:
+        message_html: "<strong>Obyekt deponuz yanlış konfiqurasiya olunub. İstifadəçilərinizin məxfiliyi risk altındadır.</strong>"
     tags:
       updated_msg: Mövzu etiketi ayarları uğurla güncəlləndi
     trends:
@@ -203,7 +206,7 @@ az:
     archive_takeout:
       hint_html: "<strong>Göndərişlərinizin və yüklədiyiniz medianın</strong> bir arxivini tələb edə bilərsiniz. Xaricə köçürülmüş verilər, istənilən uyumlu yazılım tərəfindən oxuna bilən ActivityPub formatında olacaq. Hər 7 gündə bir dəfə arxiv tələb edə bilərsiniz."
     domain_blocks: Domen əngəlləmələri
-    storage: Media anbarı
+    storage: Media deposu
   filters:
     contexts:
       public: Ümumi zaman xətləri
