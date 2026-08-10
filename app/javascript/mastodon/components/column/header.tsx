@@ -16,12 +16,11 @@ import { Icon } from 'mastodon/components/icon';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
 import { useIdentity } from 'mastodon/identity_context';
 
-import { useColumnIndexContext } from '../../features/ui/components/columns_area';
 import { getColumnSkipLinkId } from '../../features/ui/components/skip_links';
 import { NavigationFocusTarget } from '../navigation_focus_target';
 import { useAppHistory } from '../router';
 
-import { useColumn } from '.';
+import { useColumn, useColumnIndexContext } from './context';
 
 export const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },

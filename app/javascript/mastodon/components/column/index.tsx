@@ -1,8 +1,10 @@
-import { useRef, createContext, useContext, useMemo } from 'react';
+import { useRef, useMemo } from 'react';
 
 import classNames from 'classnames';
 
 import { scrollTop } from 'mastodon/scroll';
+
+import { ColumnContext } from './context';
 
 interface ColumnProps {
   children?: React.ReactNode;
@@ -10,14 +12,6 @@ interface ColumnProps {
   bindToDocument?: boolean;
   className?: string;
 }
-
-const ColumnContext = createContext({
-  scrollTop: () => {
-    // Implemented below
-  },
-});
-
-export const useColumn = () => useContext(ColumnContext);
 
 export const Column: React.FC<ColumnProps> = ({
   children,
