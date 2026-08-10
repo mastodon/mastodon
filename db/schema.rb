@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_112507) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_13_120312) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1297,6 +1297,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_112507) do
     t.index ["status_id"], name: "index_statuses_tags_on_status_id"
   end
 
+  create_table "subscribed_advisories", force: :cascade do |t|
+    t.integer "action", null: false
+    t.datetime "created_at", null: false
+    t.bigint "moderation_subscription_id", null: false
+    t.string "target_key", null: false
+    t.integer "target_type", null: false
+    t.datetime "updated_at", null: false
+    t.index ["moderation_subscription_id"], name: "index_subscribed_advisories_on_moderation_subscription_id"
+    t.index ["target_type", "target_key", "moderation_subscription_id"], name: "idx_on_target_type_target_key_moderation_subscripti_a3f09c29b9", unique: true
+  end
+
   create_table "tag_follows", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
@@ -1635,6 +1646,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_112507) do
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
   add_foreign_key "statuses_tags", "statuses", on_delete: :cascade
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
+  add_foreign_key "subscribed_advisories", "moderation_subscriptions"
   add_foreign_key "tag_follows", "accounts", on_delete: :cascade
   add_foreign_key "tag_follows", "tags", on_delete: :cascade
   add_foreign_key "tag_trends", "tags", on_delete: :cascade

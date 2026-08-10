@@ -21,6 +21,8 @@
 class ModerationSubscription < ApplicationRecord
   self.inheritance_column = nil
 
+  has_many :advisories, class_name: 'SubscribedAdvisory', inverse_of: :moderation_subscription, dependent: :delete_all
+
   enum :type, {
     csv_list: 0,
   }
