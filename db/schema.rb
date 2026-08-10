@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_120312) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_13_123810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -828,6 +828,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_120312) do
     t.string "url", null: false
   end
 
+  create_table "moderation_suggestions", force: :cascade do |t|
+    t.integer "action", null: false
+    t.datetime "created_at", null: false
+    t.bigint "moderation_subscription_id"
+    t.integer "state", default: 0, null: false
+    t.string "target_key", null: false
+    t.integer "target_type", null: false
+    t.datetime "updated_at", null: false
+    t.index ["moderation_subscription_id"], name: "index_moderation_suggestions_on_moderation_subscription_id"
+    t.index ["target_type", "target_key", "action"], name: "idx_on_target_type_target_key_action_4f6ab01ebc", unique: true
+  end
+
   create_table "mutes", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", precision: nil, null: false
@@ -1593,6 +1605,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_120312) do
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify
   add_foreign_key "mentions", "accounts", name: "fk_970d43f9d1", on_delete: :cascade
   add_foreign_key "mentions", "statuses", on_delete: :cascade
+  add_foreign_key "moderation_suggestions", "moderation_subscriptions", on_delete: :nullify
   add_foreign_key "mutes", "accounts", column: "target_account_id", name: "fk_eecff219ea", on_delete: :cascade
   add_foreign_key "mutes", "accounts", name: "fk_b8d8daf315", on_delete: :cascade
   add_foreign_key "notification_permissions", "accounts", column: "from_account_id", on_delete: :cascade
