@@ -50,7 +50,7 @@ Starting with Mastodon v4.5.0, Mastodon supports requests signed using HTTP Mess
 | v4.4.0 (EOL 2026-12-17) | `rsa-sha256` inbound and outbound             | No                                                                                |
 | v4.5.0                  | `rsa-sha256` inbound and outbound             | `rsa-v1_5-sha256` inbound                                                         |
 | v4.6.0                  | `rsa-sha256` inbound and outbound             | `rsa-v1_5-sha256` inbound                                                         |
-| v4.7.0 (unreleased)     | `rsa-sha256` inbound and outbound             | `rsa-v1_5-sha256` and `ed25519` inbound, `rsa-v1_5-sha256` outbound as a fallback |
+| v4.7.0                  | `rsa-sha256` inbound and outbound             | `rsa-v1_5-sha256` and `ed25519` inbound, `rsa-v1_5-sha256` outbound as a fallback |
 
 - [HTTP Signatures information and examples](https://docs.joinmastodon.org/spec/security/#http)
 - [HTTP Message Signatures information and examples](https://docs.joinmastodon.org/spec/security/#http-message-signatures)
@@ -69,7 +69,7 @@ Mastodon supports embedded signatures through either [Linked-Data Signatures](ht
 | v4.4.0 (EOL 2026-12-17) | `RsaSignature2017` inbound and outbound | No                                                       |
 | v4.5.0                  | `RsaSignature2017` inbound and outbound | No                                                       |
 | v4.6.0                  | `RsaSignature2017` inbound and outbound | No                                                       |
-| v4.7.0 (unreleased)     | `RsaSignature2017` inbound and outbound | top-level `eddsa-jcs-2022` or `mldsa44-jcs-2024` inbound |
+| v4.7.0                  | `RsaSignature2017` inbound and outbound | top-level `eddsa-jcs-2022` or `mldsa44-jcs-2024` inbound |
 
 ### Additional documentation
 
