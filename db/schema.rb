@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_13_123810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -814,6 +814,33 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
     t.index ["status_id"], name: "index_mentions_on_status_id"
   end
 
+  create_table "moderation_subscriptions", force: :cascade do |t|
+    t.boolean "apply_automatically", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "last_synced_at"
+    t.integer "list_action"
+    t.string "name"
+    t.boolean "override_unattributed", default: false, null: false
+    t.boolean "preserve_relationships", default: true, null: false
+    t.integer "priority"
+    t.boolean "retract_automatically", default: true, null: false
+    t.integer "type", null: false
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
+  end
+
+  create_table "moderation_suggestions", force: :cascade do |t|
+    t.integer "action", null: false
+    t.datetime "created_at", null: false
+    t.bigint "moderation_subscription_id"
+    t.integer "state", default: 0, null: false
+    t.string "target_key", null: false
+    t.integer "target_type", null: false
+    t.datetime "updated_at", null: false
+    t.index ["moderation_subscription_id"], name: "index_moderation_suggestions_on_moderation_subscription_id"
+    t.index ["target_type", "target_key", "action"], name: "idx_on_target_type_target_key_action_4f6ab01ebc", unique: true
+  end
+
   create_table "mutes", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", precision: nil, null: false
@@ -1283,6 +1310,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
     t.index ["status_id"], name: "index_statuses_tags_on_status_id"
   end
 
+  create_table "subscribed_advisories", force: :cascade do |t|
+    t.integer "action", null: false
+    t.datetime "created_at", null: false
+    t.bigint "moderation_subscription_id", null: false
+    t.string "target_key", null: false
+    t.integer "target_type", null: false
+    t.datetime "updated_at", null: false
+    t.index ["moderation_subscription_id"], name: "index_subscribed_advisories_on_moderation_subscription_id"
+    t.index ["target_type", "target_key", "moderation_subscription_id"], name: "idx_on_target_type_target_key_moderation_subscripti_a3f09c29b9", unique: true
+  end
+
   create_table "tag_follows", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
@@ -1568,6 +1606,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
   add_foreign_key "media_attachments", "statuses", on_delete: :nullify
   add_foreign_key "mentions", "accounts", name: "fk_970d43f9d1", on_delete: :cascade
   add_foreign_key "mentions", "statuses", on_delete: :cascade
+  add_foreign_key "moderation_suggestions", "moderation_subscriptions", on_delete: :nullify
   add_foreign_key "mutes", "accounts", column: "target_account_id", name: "fk_eecff219ea", on_delete: :cascade
   add_foreign_key "mutes", "accounts", name: "fk_b8d8daf315", on_delete: :cascade
   add_foreign_key "notification_permissions", "accounts", column: "from_account_id", on_delete: :cascade
@@ -1621,6 +1660,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
   add_foreign_key "statuses_tags", "statuses", on_delete: :cascade
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
+  add_foreign_key "subscribed_advisories", "moderation_subscriptions"
   add_foreign_key "tag_follows", "accounts", on_delete: :cascade
   add_foreign_key "tag_follows", "tags", on_delete: :cascade
   add_foreign_key "tag_trends", "tags", on_delete: :cascade
