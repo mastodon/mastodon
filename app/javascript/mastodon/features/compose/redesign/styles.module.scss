@@ -87,8 +87,16 @@
 }
 
 .counter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
   font-family: var(--font-monospace);
   color: var(--color-text-tertiary);
+  margin-inline-start: auto;
+}
+
+.counterError {
+  color: var(--color-text-error);
 }
 
 .visibilityFieldset {
