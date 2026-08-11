@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { CSSProperties, FC } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn, userEvent, expect } from 'storybook/test';
@@ -10,16 +10,19 @@ interface TestSlideProps {
   id: number;
   text: string;
   color: string;
+  style?: CSSProperties;
 }
 
 const TestSlide: FC<TestSlideProps & { active: boolean }> = ({
   active,
   text,
   color,
+  style,
 }) => (
   <div
     className='test-slide'
     style={{
+      ...style,
       backgroundColor: active ? color : undefined,
     }}
   >
@@ -114,7 +117,7 @@ export const DifferentHeights: Story = {
   args: {
     items: slides.map((props, index) => ({
       ...props,
-      styles: { height: 100 + index * 100 },
+      style: { height: 100 + index * 100 },
     })),
   },
 };
