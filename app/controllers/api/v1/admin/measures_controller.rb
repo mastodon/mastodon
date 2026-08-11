@@ -18,8 +18,8 @@ class Api::V1::Admin::MeasuresController < Api::BaseController
   def set_measures
     @measures = Admin::Metrics::Measure.retrieve(
       params.require(:keys),
-      params.require(:start_at),
-      params.require(:end_at),
+      params[:start_at],
+      params[:end_at],
       params
     )
   end
