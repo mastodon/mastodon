@@ -51,6 +51,20 @@ RSpec.describe 'Admin Measures' do
         expect(response.parsed_body)
           .to be_an(Array)
       end
+
+      context 'without start_at and end_at' do
+        it 'returns http success and status json' do
+          post '/api/v1/admin/measures', params: params.merge({ start_at: nil, end_at: nil }), headers: headers
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+
+          expect(response.parsed_body)
+            .to be_an(Array)
+        end
+      end
     end
   end
 end
