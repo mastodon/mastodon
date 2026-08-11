@@ -12,12 +12,17 @@ class Admin::Metrics::Measure::BaseMeasure
   alias loaded? loaded
 
   def initialize(start_at, end_at, params)
-    @start_at = start_at.to_datetime
-    @end_at   = end_at.to_datetime
+    @start_at = start_at&.to_datetime
+    @end_at   = end_at&.to_datetime
     @params   = params
     @loaded   = false
 
-    @start_at = [@start_at, @end_at - 2.years].max
+    if @start_at.present? && @end_at.present?
+      @start_at = [@start_at, @end_at - 2.years].max
+    else
+      @start_at = nil
+      @end_at = nil
+    end
   end
 
   def cache_key
