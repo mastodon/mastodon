@@ -62,6 +62,8 @@
 }
 
 .dropdownItemControl {
+  @include mixins.type-body-compact;
+
   color: inherit;
   width: 100%;
   user-select: none;

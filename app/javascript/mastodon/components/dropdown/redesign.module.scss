@@ -43,11 +43,11 @@
     font-size: var(--fs-sm);
   }
 
-  &:hover {
+  &:hover:not(.menuItemDisabled) {
     background-color: var(--color-bg-highlight);
   }
 
-  &:active,
+  &:active:not(.menuItemDisabled),
   .menuItemActive {
     background-color: var(--color-bg-inverted);
     color: var(--color-text-inverted);
@@ -57,10 +57,11 @@
     }
   }
 
-  &:has(:disabled) {
+  &:has(:disabled),
+  .menuItemDisabled {
     --cursor: not-allowed;
 
-    background-color: var(--color-bg-primary);
+    opacity: 0.5;
   }
 }
 

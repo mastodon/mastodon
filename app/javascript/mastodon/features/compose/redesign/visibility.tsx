@@ -266,16 +266,17 @@ const DropdownRadioCheckField: React.FC<
   > & {
     children: React.ReactNode;
   }
-> = ({ children, onClick, ...props }) => {
+> = ({ children, onClick, disabled, ...props }) => {
   const { ref, onWrapperClick } = useDropdownControl();
 
   return (
-    <DropdownItem onClick={onWrapperClick}>
+    <DropdownItem onClick={onWrapperClick} disabled={disabled}>
       <RadioButtonField
         {...props}
         ref={ref}
         label={children}
         icon={CheckIcon}
+        disabled={disabled}
         wrapperClassName={classes.dropdownItemControl}
       />
     </DropdownItem>
@@ -287,14 +288,19 @@ const DropdownToggleField: React.FC<
     children: React.ReactNode;
     icon?: IconProp;
   }
-> = ({ children, icon, ...props }) => {
+> = ({ children, icon, disabled, ...props }) => {
   const { ref, onWrapperClick } = useDropdownControl();
 
   return (
-    <DropdownItem onClick={onWrapperClick} leadingIcon={icon}>
+    <DropdownItem
+      onClick={onWrapperClick}
+      leadingIcon={icon}
+      disabled={disabled}
+    >
       <ToggleField
         size='sm'
         {...props}
+        disabled={disabled}
         ref={ref}
         label={children}
         wrapperClassName={classes.dropdownItemControl}
