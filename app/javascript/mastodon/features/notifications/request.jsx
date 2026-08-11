@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -17,8 +17,8 @@ import {
   acceptNotificationRequest,
   dismissNotificationRequest,
 } from 'mastodon/actions/notification_requests';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { IconButton } from 'mastodon/components/icon_button';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { SensitiveMediaContextProvider } from 'mastodon/features/ui/util/sensitive_media_context';
@@ -32,7 +32,6 @@ const messages = defineMessages({
 });
 
 export const NotificationRequest = ({ multiColumn, params: { id } }) => {
-  const columnRef = useRef();
   const intl = useIntl();
   const dispatch = useDispatch();
   const notificationRequest = useSelector(state => state.notificationRequests.current.item?.id === id ? state.notificationRequests.current.item : null);
@@ -42,10 +41,6 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
   const isLoading = useSelector(state => state.notificationRequests.current.notifications.isLoading);
   const hasMore = useSelector(state => !!state.notificationRequests.current.notifications.next);
   const removed = useSelector(state => state.notificationRequests.current.removed);
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, [columnRef]);
 
   const handleLoadMore = useCallback(() => {
     dispatch(expandNotificationsForRequest({ accountId }));
@@ -89,14 +84,14 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
   }
 
   return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={columnTitle}>
+    <Column bindToDocument={!multiColumn} label={columnTitle}>
       <ColumnHeader
         icon='archive'
         iconComponent={InventoryIcon}
         title={columnTitle}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
         showBackButton
+        scrollTopOnClick
         extraButton={!removed && (
           <>
             <IconButton className='column-header__button' iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />

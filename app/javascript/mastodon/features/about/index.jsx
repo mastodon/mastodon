@@ -13,7 +13,7 @@ import { domain } from 'mastodon/initial_state';
 import { injectIntl } from '@/mastodon/components/intl';
 import { fetchServer, fetchExtendedDescription, fetchDomainBlocks  } from 'mastodon/actions/server';
 import { Account } from 'mastodon/components/account';
-import Column from 'mastodon/components/column';
+import { Column } from '@/mastodon/components/column';
 import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { Skeleton } from 'mastodon/components/skeleton';

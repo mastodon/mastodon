@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -19,8 +19,8 @@ import {
 } from 'mastodon/actions/notification_requests';
 import { changeSetting } from 'mastodon/actions/settings';
 import { CheckBox } from 'mastodon/components/check_box';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
@@ -163,7 +163,6 @@ SelectRow.propTypes = {
 };
 
 export const NotificationRequests = ({ multiColumn }) => {
-  const columnRef = useRef();
   const intl = useIntl();
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.notificationRequests.isLoading);
@@ -173,10 +172,6 @@ export const NotificationRequests = ({ multiColumn }) => {
   const [selectionMode, setSelectionMode] = useState(false);
   const [checkedRequestIds, setCheckedRequestIds] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, [columnRef]);
 
   const handleCheck = useCallback(id => {
     setCheckedRequestIds(ids => {
@@ -213,14 +208,14 @@ export const NotificationRequests = ({ multiColumn }) => {
   }, [dispatch]);
 
   return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
+    <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='archive'
         iconComponent={InventoryIcon}
         title={intl.formatMessage(messages.title)}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
         showBackButton
+        scrollTopOnClick
         appendContent={
           notificationRequests.length > 0 && (
             <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />

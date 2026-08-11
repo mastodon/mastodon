@@ -14,7 +14,7 @@ import {
 } from '@/mastodon/actions/timelines_typed';
 import { AccountHeader } from '@/mastodon/components/account_header';
 import { Column } from '@/mastodon/components/column';
-import { ColumnBackButton } from '@/mastodon/components/column_back_button';
+import { ColumnBackButton } from '@/mastodon/components/column/back_button';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';

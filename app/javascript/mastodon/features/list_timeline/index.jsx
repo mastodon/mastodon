@@ -17,8 +17,8 @@ import { fetchList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
 import { connectListStream } from 'mastodon/actions/streaming';
 import { expandListTimeline } from 'mastodon/actions/timelines';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
@@ -59,10 +59,6 @@ class ListTimeline extends PureComponent {
     dispatch(moveColumn(columnId, dir));
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
   componentDidMount () {
     const { dispatch } = this.props;
     const { id } = this.props.params;
@@ -95,10 +91,6 @@ class ListTimeline extends PureComponent {
       this.disconnect = null;
     }
   }
-
-  setRef = c => {
-    this.column = c;
-  };
 
   handleLoadMore = maxId => {
     const { id } = this.props.params;
@@ -133,7 +125,7 @@ class ListTimeline extends PureComponent {
     }
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
+      <Column bindToDocument={!multiColumn} label={title}>
         <ColumnHeader
           icon='list-ul'
           iconComponent={ListAltIcon}
@@ -141,9 +133,9 @@ class ListTimeline extends PureComponent {
           title={title}
           onPin={this.handlePin}
           onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          scrollTopOnClick
         >
           <div className='column-settings'>
             <section className='column-header__links'>

@@ -4,9 +4,9 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { DisplayNameSimple } from 'mastodon/components/display_name/simple';
 import { Scrollable } from 'mastodon/components/scrollable_list/components';
 import { TabLink, TabList } from 'mastodon/components/tab_list';

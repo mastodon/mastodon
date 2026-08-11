@@ -6,17 +6,16 @@ import { List as ImmutableList } from 'immutable';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { fetchQuotes } from '@/mastodon/actions/interactions_typed';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
+import { Icon } from '@/mastodon/components/icon';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import StatusList from '@/mastodon/components/status_list';
+import { useIdentity } from '@/mastodon/identity_context';
+import { domain } from '@/mastodon/initial_state';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
-import { fetchQuotes } from 'mastodon/actions/interactions_typed';
-import { ColumnHeader } from 'mastodon/components/column_header';
-import { Icon } from 'mastodon/components/icon';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import StatusList from 'mastodon/components/status_list';
-import { useIdentity } from 'mastodon/identity_context';
-import { domain } from 'mastodon/initial_state';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
-
-import Column from '../ui/components/column';
 
 const messages = defineMessages({
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },

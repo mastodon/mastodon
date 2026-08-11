@@ -13,8 +13,8 @@ import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { remoteTopicFeedAccess, me, localTopicFeedAccess } from 'mastodon/initial_state';
 
@@ -90,10 +90,6 @@ class HashtagTimeline extends PureComponent {
     dispatch(moveColumn(columnId, dir));
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
   _subscribe (dispatch, id, tags = {}, local) {
     const { signedIn } = this.props.identity;
 
@@ -156,10 +152,6 @@ class HashtagTimeline extends PureComponent {
     this._unsubscribe();
   }
 
-  setRef = c => {
-    this.column = c;
-  };
-
   handleLoadMore = maxId => {
     const { dispatch, params, local } = this.props;
     const { id, tags }  = params;
@@ -173,7 +165,7 @@ class HashtagTimeline extends PureComponent {
     const pinned = !!columnId;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
+      <Column bindToDocument={!multiColumn} label={`#${id}`}>
         <ColumnHeader
           icon='hashtag'
           iconComponent={TagIcon}
@@ -181,10 +173,10 @@ class HashtagTimeline extends PureComponent {
           title={this.title()}
           onPin={this.handlePin}
           onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
           showBackButton
+          scrollTopOnClick
         >
           {columnId && <ColumnSettingsContainer columnId={columnId} />}
         </ColumnHeader>

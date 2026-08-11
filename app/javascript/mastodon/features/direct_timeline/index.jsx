@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -11,8 +11,8 @@ import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?re
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { mountConversations, unmountConversations, expandConversations } from 'mastodon/actions/conversations';
 import { connectDirectStream } from 'mastodon/actions/streaming';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 
 import { ConversationsList } from './components/conversations_list';
 
@@ -21,7 +21,6 @@ const messages = defineMessages({
 });
 
 const DirectTimeline = ({ columnId, multiColumn }) => {
-  const columnRef = useRef();
   const intl = useIntl();
   const dispatch = useDispatch();
   const pinned = !!columnId;
@@ -38,10 +37,6 @@ const DirectTimeline = ({ columnId, multiColumn }) => {
     dispatch(moveColumn(columnId, dir));
   }, [dispatch, columnId]);
 
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current.scrollTop();
-  }, [columnRef]);
-
   useEffect(() => {
     dispatch(mountConversations());
     dispatch(expandConversations());
@@ -55,16 +50,16 @@ const DirectTimeline = ({ columnId, multiColumn }) => {
   }, [dispatch]);
 
   return (
-    <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
+    <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='at'
         iconComponent={AlternateEmailIcon}
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}
         onMove={handleMove}
-        onClick={handleHeaderClick}
         pinned={pinned}
         multiColumn={multiColumn}
+        scrollTopOnClick
       />
 
       <ConversationsList

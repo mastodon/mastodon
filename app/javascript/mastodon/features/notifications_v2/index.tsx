@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -6,6 +6,16 @@ import { Helmet } from '@unhead/react/helmet';
 import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
+import {
+  addColumn,
+  removeColumn,
+  moveColumn,
+} from '@/mastodon/actions/columns';
+import { submitMarkers } from '@/mastodon/actions/markers';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
+import { LoadGap } from '@/mastodon/components/load_gap';
+import ScrollableList from '@/mastodon/components/scrollable_list';
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import {
@@ -33,13 +43,6 @@ import {
 } from 'mastodon/selectors/settings';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { submitMarkers } from '../../actions/markers';
-import { Column } from '../../components/column';
-import type { ColumnRef } from '../../components/column';
-import { ColumnHeader } from '../../components/column_header';
-import { LoadGap } from '../../components/load_gap';
-import ScrollableList from '../../components/scrollable_list';
 import {
   FilteredNotificationsBanner,
   FilteredNotificationsIconButton,
@@ -95,8 +98,6 @@ export const Notifications: React.FC<{
   const needsNotificationPermission = useAppSelector(
     selectNeedsNotificationPermission,
   );
-
-  const columnRef = useRef<ColumnRef>(null);
 
   // Keep track of mounted components for unread notification handling
   useEffect(() => {
@@ -158,10 +159,6 @@ export const Notifications: React.FC<{
     },
     [dispatch, columnId],
   );
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
 
   const handleMarkAsRead = useCallback(() => {
     dispatch(markNotificationsAsRead());
@@ -255,7 +252,6 @@ export const Notifications: React.FC<{
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
@@ -265,10 +261,10 @@ export const Notifications: React.FC<{
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}
         onMove={handleMove}
-        onClick={handleHeaderClick}
         pinned={pinned}
         multiColumn={multiColumn}
         extraButton={extraButton}
+        scrollTopOnClick
       >
         <ColumnSettingsContainer />
       </ColumnHeader>
