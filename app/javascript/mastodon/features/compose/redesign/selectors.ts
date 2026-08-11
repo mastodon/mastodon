@@ -59,7 +59,11 @@ export const selectComposeCanSubmit = createAppSelector(
     selectComposeCharsCount,
   ],
   (isSubmitting, isUploading, isChangingUpload, { current, max }) =>
-    !isSubmitting && !isUploading && !isChangingUpload && current <= max,
+    !isSubmitting &&
+    !isUploading &&
+    !isChangingUpload &&
+    current <= max &&
+    current > 0,
 );
 
 export const selectComposeSensitive = createAppSelector(
