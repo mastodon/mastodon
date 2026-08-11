@@ -69,6 +69,7 @@
 
 .textareaWrapper {
   flex-grow: 1;
+  overflow: hidden auto;
 
   > textarea {
     @include mixins.type-body-lg;
