@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_123810) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_13_125012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -491,13 +491,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_123810) do
   create_table "domain_allows", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.string "domain", default: "", null: false
+    t.bigint "moderation_subscription_id"
     t.datetime "updated_at", precision: nil, null: false
     t.index ["domain"], name: "index_domain_allows_on_domain", unique: true
+    t.index ["moderation_subscription_id"], name: "index_domain_allows_on_moderation_subscription_id"
   end
 
   create_table "domain_blocks", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.string "domain", default: "", null: false
+    t.bigint "moderation_subscription_id"
     t.boolean "obfuscate", default: false, null: false
     t.text "private_comment"
     t.text "public_comment"
@@ -506,6 +509,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_123810) do
     t.integer "severity", default: 0
     t.datetime "updated_at", precision: nil, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
+    t.index ["moderation_subscription_id"], name: "index_domain_blocks_on_moderation_subscription_id"
   end
 
   create_table "email_domain_blocks", force: :cascade do |t|
@@ -1569,6 +1573,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_123810) do
   add_foreign_key "custom_filter_statuses", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
+  add_foreign_key "domain_allows", "moderation_subscriptions", on_delete: :nullify
+  add_foreign_key "domain_blocks", "moderation_subscriptions", on_delete: :nullify
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
   add_foreign_key "email_subscriptions", "accounts", on_delete: :cascade
   add_foreign_key "fasp_backfill_requests", "fasp_providers"
