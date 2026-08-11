@@ -62,19 +62,14 @@ export const selectComposeCanSubmit = createAppSelector(
     !isSubmitting && !isUploading && !isChangingUpload && current <= max,
 );
 
-export const selectComposeState = createAppSelector(
-  [(state) => state.compose, selectComposeType, selectComposeCanSubmit],
-  (compose, type, canSubmit) => ({
-    type,
-    text: compose.get('text') as string,
-    sensitive: !!compose.get('spoiler'),
-    sensitiveText: compose.get('spoiler_text') as string,
-    lang: compose.get('language') as string,
-    suggestions: compose.get(
-      'suggestions',
-    ) as unknown as Immutable.List<unknown>,
-    canSubmit,
-    isSubmitting: !!compose.get('is_submitting'),
+export const selectComposeSensitive = createAppSelector(
+  [
+    (state) => !!state.compose.get('spoiler'),
+    (state) => state.compose.get('spoiler_text'),
+  ],
+  (sensitive, text) => ({
+    sensitive,
+    sensitiveText: typeof text === 'string' ? text : '',
   }),
 );
 

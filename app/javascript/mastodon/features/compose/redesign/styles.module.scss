@@ -67,15 +67,7 @@
   user-select: none;
 }
 
-.textarea > textarea {
-  @include mixins.type-body-lg;
-
-  border: none;
-  width: 100%;
-  user-select: none;
-}
-
-.textarea {
+.textareaWrapper {
   flex-grow: 1;
 
   > textarea {
