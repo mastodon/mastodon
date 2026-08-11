@@ -285,6 +285,35 @@ export const setDragUploadEnabled = createAction<boolean>(
   'compose/setDragUploadEnabled',
 );
 
+export const addPollOption = createAppThunk(
+  'compose/addPollOption',
+  (_arg, { getState }) => ({
+    maxOptions:
+      getState().server.server.item?.configuration.polls.max_options ?? 4,
+  }),
+);
+
+export const updatePollOption = createAppThunk(
+  'compose/updatePollOption',
+  (
+    arg: {
+      index: number;
+      text: string;
+    },
+    { getState },
+  ) => {
+    return {
+      ...arg,
+      maxOptions:
+        getState().server.server.item?.configuration.polls.max_options ?? 4,
+    };
+  },
+);
+
+export const deletePollOption = createAction<{ index: number }>(
+  'compose/deletePollOption',
+);
+
 export const submitCompose = createAppThunk(
   (
     {

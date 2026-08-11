@@ -1,12 +1,16 @@
-import { useCallback } from 'react';
+import type React from 'react';
+import { useCallback, useId } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { PlusIcon } from '@phosphor-icons/react';
+
+import { changePollSettings, removePoll } from '@/mastodon/actions/compose';
 import {
-  changePollSettings,
-  removePoll,
-  changePollOption,
-} from '@/mastodon/actions/compose';
+  addPollOption,
+  deletePollOption,
+  updatePollOption,
+} from '@/mastodon/actions/compose_typed';
 import { Button } from '@/mastodon/components/button/redesign';
 import {
   ToggleField,
@@ -37,34 +41,91 @@ const messages = defineMessages({
 });
 
 export const ComposePoll: React.FC = () => {
-  const poll = useAppSelector(selectComposePoll);
+  const { options, maxOptions, expiresIn, multiple } =
+    useAppSelector(selectComposePoll);
+  const listId = useId();
 
   const dispatch = useAppDispatch();
+  const handleAdd = useCallback(() => {
+    dispatch(addPollOption());
+  }, [dispatch]);
   const handlePollChangeMultiple: React.ChangeEventHandler<HTMLInputElement> =
     useCallback(
       (event) => {
-        dispatch(changePollSettings(poll?.expiresIn, event.target.checked));
+        dispatch(changePollSettings(expiresIn, event.target.checked));
       },
-      [dispatch, poll?.expiresIn],
+      [dispatch, expiresIn],
     );
   const handleDelete = useCallback(() => {
     dispatch(removePoll());
   }, [dispatch]);
 
-  if (!poll) {
-    return null;
-  }
+  const handleKeyDown = useCallback(
+    (index: number, event: React.KeyboardEvent<HTMLInputElement>) => {
+      const value = event.currentTarget.value;
+
+      // Disable Enter key to avoid submitting the form.
+      if (event.key === 'Enter') {
+        event.preventDefault();
+      }
+
+      // Attempt to move to the next item, adding a new one if there is room and the current index has content.
+      if (
+        (event.key === 'Enter' || event.key === 'ArrowDown') &&
+        value &&
+        !focusOnIndex(listId, index + 1) &&
+        index + 1 < maxOptions
+      ) {
+        dispatch(addPollOption());
+        focusOnIndex(listId, index + 1, true);
+
+        // Delete the last option on backspace.
+      } else if (event.key === 'Backspace' && index > 0 && !value) {
+        dispatch(deletePollOption({ index }));
+        focusOnIndex(listId, index - 1, true);
+
+        // Move to the last item with the up arrow.
+      } else if (event.key === 'ArrowUp' && index > 0) {
+        focusOnIndex(listId, index - 1);
+      }
+    },
+    [dispatch, listId, maxOptions],
+  );
+
+  const firstItemEmpty = !options.at(0);
 
   return (
     <div className={classes.poll}>
-      <ol>
-        {poll.options.map((option, index) => (
-          <ComposePollOption key={index} value={option} index={index} />
+      <ol id={listId}>
+        {options.map((option, index) => (
+          <ComposePollOption
+            key={index}
+            value={option}
+            index={index}
+            onKeyDown={handleKeyDown}
+            disabled={firstItemEmpty && index > 0}
+          />
         ))}
       </ol>
 
+      {options.length < maxOptions && (
+        <div className={classes.pollAddNew}>
+          <Button
+            variant='ghost'
+            leadingIcon={PlusIcon}
+            size='sm'
+            onClick={handleAdd}
+          >
+            <FormattedMessage
+              id='compose.poll.add'
+              defaultMessage='Add another option'
+            />
+          </Button>
+        </div>
+      )}
+
       <ToggleField
-        checked={poll.multiple}
+        checked={multiple}
         wrapperClassName={classes.pollMultipleToggle}
         size='sm'
         onChange={handlePollChangeMultiple}
@@ -110,36 +171,64 @@ export const ComposePoll: React.FC = () => {
   );
 };
 
-const ComposePollOption: React.FC<{ index: number; value: string }> = ({
-  index,
-  value,
-}) => {
+const ComposePollOption: React.FC<{
+  index: number;
+  value: string;
+  onKeyDown: (
+    index: number,
+    event: React.KeyboardEvent<HTMLInputElement>,
+  ) => void;
+  disabled: boolean;
+}> = ({ index, value, disabled, onKeyDown }) => {
   const intl = useIntl();
-  const maxOptions = useAppSelector(
-    (state) => state.server.server.item?.configuration.polls.max_options ?? 4,
-  );
 
   const dispatch = useAppDispatch();
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
-      dispatch(changePollOption(index, event.target.value, maxOptions));
+      dispatch(updatePollOption({ index, text: event.target.value }));
     },
-    [dispatch, index, maxOptions],
+    [dispatch, index],
   );
+  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> =
+    useCallback(
+      (event) => {
+        onKeyDown(index, event);
+      },
+      [index, onKeyDown],
+    );
 
   return (
     <li key={index} className={classes.pollOption}>
       <TextInput
         value={value}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         placeholder={intl.formatMessage(messages.option_placeholder, {
           number: index + 1,
         })}
         maxLength={50}
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={index === 0}
+        data-index={index}
         spellCheck
+        autoComplete='off'
+        disabled={disabled}
       />
     </li>
   );
 };
+
+function focusOnIndex(id: string, index: number, deferred = false) {
+  if (deferred) {
+    requestAnimationFrame(() => {
+      focusOnIndex(id, index);
+    });
+    return true;
+  }
+
+  const element = document.querySelector<HTMLInputElement>(
+    `#${id} input[data-index="${index}"]`,
+  );
+  element?.focus();
+  return !!element;
+}
