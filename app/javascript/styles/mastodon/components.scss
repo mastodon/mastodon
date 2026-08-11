@@ -8260,6 +8260,10 @@ noscript {
   justify-content: center;
   align-items: center;
 
+  img {
+    user-select: none;
+  }
+
   &.dragging {
     cursor: grabbing;
   }
@@ -8271,7 +8275,7 @@ noscript {
     transform: translate(-50%, -50%);
     border: 2px solid var(--color-text-on-media);
     border-radius: 50%;
-    box-shadow: 0 0 0 9999em var(--color-shadow-primary);
+    box-shadow: 0 0 0 9999em rgb(from black r g b / 25%);
     pointer-events: none;
   }
 }
