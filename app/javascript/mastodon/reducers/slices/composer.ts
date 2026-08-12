@@ -6,6 +6,7 @@ import {
   resetCompose,
 } from '@/mastodon/actions/compose';
 import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
+import { openModal } from '@/mastodon/actions/modal';
 import {
   createAppSelector,
   createAppThunk,
@@ -74,9 +75,30 @@ export const openNewComposer = createAppThunk(
   },
 );
 
-export const hideComposer = createAppThunk((_arg, { dispatch }) => {
+export const resetComposer = createAppThunk((_arg, { dispatch }) => {
   dispatch(composerSlice.actions.hideComposer());
   dispatch(resetCompose());
+});
+
+export const hideComposer = createAppThunk((_arg, { getState, dispatch }) => {
+  const compose = getState().compose;
+  const isChanged =
+    !!compose.get('text') ||
+    !!compose.get('spoiler_text') ||
+    !!compose.get('poll') ||
+    (compose.get('media_attachments') as unknown as Immutable.List<unknown>)
+      .size > 0;
+
+  if (!isChanged) {
+    dispatch(resetComposer());
+  } else {
+    dispatch(
+      openModal({
+        modalType: 'COMPOSER_DRAFT_DELETE',
+        modalProps: {},
+      }),
+    );
+  }
 });
 
 export const selectIsMinimized = createAppSelector(
