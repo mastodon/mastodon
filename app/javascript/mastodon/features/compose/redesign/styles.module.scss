@@ -71,7 +71,7 @@
 }
 
 .editorWrapper {
-  overflow: hidden auto;
+  overflow-y: auto;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -84,13 +84,14 @@
 .textareaWrapper {
   flex-grow: 1;
   padding: var(--space-xs);
+  margin: 2px;
   border-radius: var(--radius-xs);
-  border: 2px solid transparent;
   transition: border 200ms;
   cursor: text;
 
   &:focus-within {
-    border-color: var(--color-border-brand);
+    outline: 2px solid var(--color-border-brand);
+    outline-offset: -2px;
   }
 
   textarea {

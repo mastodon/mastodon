@@ -15,15 +15,8 @@ import {
   createAppThunk,
 } from '@/mastodon/store/typed_functions';
 
-import type { ApiStatusJSON } from '../api_types/statuses';
-
 import { showAlert } from './alerts';
-import {
-  changeCompose,
-  focusCompose,
-  submitCompose as submitComposeApi,
-  uploadCompose,
-} from './compose';
+import { changeCompose, focusCompose, uploadCompose } from './compose';
 import { importFetchedStatuses } from './importer';
 import { openModal } from './modal';
 
@@ -312,70 +305,6 @@ export const updatePollOption = createAppThunk(
 
 export const deletePollOption = createAction<{ index: number }>(
   'compose/deletePollOption',
-);
-
-export const submitCompose = createAppThunk(
-  (
-    {
-      textareaValue = '',
-      redirectOnSuccess,
-    }: { textareaValue?: string; redirectOnSuccess?: boolean },
-    { getState, dispatch },
-  ) => {
-    if (
-      textareaValue &&
-      (getState().compose.get('text') as string) !== textareaValue
-    ) {
-      dispatch(changeCompose(textareaValue));
-    }
-
-    const { compose, meta, statuses, settings } = getState();
-    const privacy = compose.get('privacy') as StatusVisibility;
-    const missingAltText = (
-      compose.get('media_attachments') as unknown as Immutable.List<
-        Immutable.Map<string, string>
-      >
-    ).some(
-      (media) =>
-        ['image', 'gifv'].includes(media.get('type') ?? '') &&
-        (media.get('description') ?? '').length === 0,
-    );
-    const me = meta.get('me') as string | null;
-    const quotedStatusId = compose.get('quoted_status_id') as string | null;
-    const quoteToPrivate =
-      !!quotedStatusId &&
-      privacy === 'private' &&
-      statuses.getIn([quotedStatusId, 'account']) !== me &&
-      !settings.getIn(['dismissed_banners', PRIVATE_QUOTE_MODAL_ID]);
-
-    if (
-      !!meta.get('missing_alt_text_modal') &&
-      missingAltText &&
-      privacy !== 'direct'
-    ) {
-      dispatch(
-        openModal({
-          modalType: 'CONFIRM_MISSING_ALT_TEXT',
-          modalProps: {},
-        }),
-      );
-    } else if (quoteToPrivate) {
-      dispatch(
-        openModal({
-          modalType: 'CONFIRM_PRIVATE_QUOTE_NOTIFY',
-          modalProps: {},
-        }),
-      );
-    } else {
-      dispatch(
-        submitComposeApi((status: ApiStatusJSON) => {
-          if (redirectOnSuccess) {
-            window.location.assign(status.url);
-          }
-        }),
-      );
-    }
-  },
 );
 
 const urlLikeRegex = /^https?:\/\/[^\s]+\/[^\s]+$/i;

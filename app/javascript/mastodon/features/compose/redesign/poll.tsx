@@ -79,12 +79,12 @@ export const ComposePoll: React.FC = () => {
         dispatch(addPollOption());
         focusOnIndex(listId, index + 1, true);
 
-        // Delete the last option on backspace.
+        // Delete the previous option on backspace.
       } else if (event.key === 'Backspace' && index > 0 && !value) {
         dispatch(deletePollOption({ index }));
         focusOnIndex(listId, index - 1, true);
 
-        // Move to the last item with the up arrow.
+        // Move to the previous item with the up arrow.
       } else if (event.key === 'ArrowUp' && index > 0) {
         focusOnIndex(listId, index - 1);
       }
@@ -219,6 +219,8 @@ const ComposePollOption: React.FC<{
 };
 
 function focusOnIndex(id: string, index: number, deferred = false) {
+  // When adding options using React and Redux there is sometimes a delay which prevents focusing from working as intended.
+  // By passing deferred, it ensures that the layout is recalculated correctly.
   if (deferred) {
     requestAnimationFrame(() => {
       focusOnIndex(id, index);

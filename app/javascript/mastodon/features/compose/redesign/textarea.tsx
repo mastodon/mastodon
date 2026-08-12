@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -16,6 +16,7 @@ import {
 import { processPasteOrDrop } from '@/mastodon/actions/compose_typed';
 import AutosuggestTextareaOriginal from '@/mastodon/components/autosuggest_textarea';
 import { useToggle } from '@/mastodon/hooks/useToggle';
+import { COMPOSER_TEXTAREA_ID } from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
   useAppDispatch,
@@ -53,17 +54,16 @@ const AutosuggestTextarea =
       React.RefAttributes<HTMLTextAreaElement>
   >;
 
-type ComposeTextareaProps = React.RefAttributes<HTMLTextAreaElement> &
-  Omit<
-    TextareaAutosizeProps,
-    | 'placeholder'
-    | 'onFocus'
-    | 'onBlur'
-    | 'onPaste'
-    | 'onDrop'
-    | 'onChange'
-    | 'onKeyDown'
-  > & { onSubmit: () => void };
+type ComposeTextareaProps = Omit<
+  TextareaAutosizeProps,
+  | 'placeholder'
+  | 'onFocus'
+  | 'onBlur'
+  | 'onPaste'
+  | 'onDrop'
+  | 'onChange'
+  | 'onKeyDown'
+> & { onSubmit: () => void };
 
 const selectComposeTextState = createAppSelector(
   [(state) => state.compose],
@@ -78,7 +78,6 @@ const selectComposeTextState = createAppSelector(
 );
 
 export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
-  ref,
   onSubmit,
   className,
   disabled,
@@ -168,6 +167,8 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     placeholder = '';
   }
 
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- This just moves focus to the textarea.
     <div
@@ -176,7 +177,8 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     >
       <AutosuggestTextarea
         {...props}
-        ref={ref}
+        id={COMPOSER_TEXTAREA_ID}
+        ref={textareaRef}
         value={text}
         lang={lang}
         placeholder={placeholder}

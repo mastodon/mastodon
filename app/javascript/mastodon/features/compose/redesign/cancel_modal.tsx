@@ -4,7 +4,10 @@ import { FormattedMessage } from 'react-intl';
 
 import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button/redesign';
-import { resetComposer } from '@/mastodon/reducers/slices/composer';
+import {
+  focusComposerTextarea,
+  resetComposer,
+} from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch } from '@/mastodon/store';
 
 import classes from './modals.module.scss';
@@ -21,6 +24,9 @@ const ComposerCancelConfirmModal: React.FC = () => {
     dispatch(
       closeModal({ modalType: 'COMPOSER_DRAFT_DELETE', ignoreFocus: false }),
     );
+    requestAnimationFrame(() => {
+      focusComposerTextarea();
+    });
   }, [dispatch]);
 
   return (

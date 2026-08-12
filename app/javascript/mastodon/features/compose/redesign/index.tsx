@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useEffect, useId, useRef } from 'react';
+import { useCallback, useEffect, useId } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -12,12 +12,16 @@ import {
   changeComposeSpoilerText,
   insertEmojiCompose,
 } from '@/mastodon/actions/compose';
-import { submitCompose } from '@/mastodon/actions/compose_typed';
 import {
   ToggleField,
   TextInputField,
 } from '@/mastodon/components/form_fields/redesign';
 import { Icon } from '@/mastodon/components/icon';
+import {
+  focusComposerTextarea,
+  getComposerTextarea,
+  submitComposer,
+} from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ComposeAttachments } from './attachments';
@@ -61,13 +65,8 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   const type = useAppSelector(selectComposeType);
   const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
 
-  const {
-    textAreaRef,
-    onSensitiveChange,
-    onSensitiveTextChange,
-    onEmojiPick,
-    onSubmit,
-  } = useComposeHandlers(redirectOnSuccess);
+  const { onSensitiveChange, onSensitiveTextChange, onEmojiPick, onSubmit } =
+    useComposeHandlers(redirectOnSuccess);
 
   const intl = useIntl();
   const titleId = useId();
@@ -117,7 +116,6 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
 
       <div className={classes.editorWrapper}>
         <ComposeTextarea
-          ref={textAreaRef}
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={autoFocus}
           onSubmit={onSubmit}
@@ -135,7 +133,6 @@ const allowedAroundShortCode =
   '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
 function useComposeHandlers(redirectOnSuccess?: boolean) {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const text = useAppSelector((state) => state.compose.get('text') as string);
 
   const dispatch = useAppDispatch();
@@ -144,7 +141,7 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
   const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
   useEffect(() => {
     if (!isSensitive) {
-      textAreaRef.current?.focus();
+      focusComposerTextarea();
     }
   }, [isSensitive]);
 
@@ -161,7 +158,7 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
 
   const onEmojiPick: OnEmojiPick = useCallback(
     (emoji) => {
-      const position = textAreaRef.current?.selectionStart ?? 0;
+      const position = getComposerTextarea()?.selectionStart ?? 0;
       const beforePosition = text[position - 1];
       const needsSpace =
         'custom' in emoji &&
@@ -181,8 +178,7 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
         return;
       }
       dispatch(
-        submitCompose({
-          textareaValue: textAreaRef.current?.value,
+        submitComposer({
           redirectOnSuccess,
         }),
       );
@@ -195,7 +191,6 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
   );
 
   return {
-    textAreaRef,
     onSubmit,
     onEmojiPick,
     onSensitiveChange,
