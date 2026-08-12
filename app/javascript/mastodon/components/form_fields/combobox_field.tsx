@@ -317,6 +317,9 @@ const ComboboxWithRef = <Item extends ComboboxItem, GroupKey extends string>(
   // Reset scroll & highlight when menu items change
   useEffect(() => {
     if (flatItems.length) {
+      // This only runs when the items change so should be safe from
+      // cascade renders.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       resetHighlight();
     }
   }, [flatItems, resetHighlight]);

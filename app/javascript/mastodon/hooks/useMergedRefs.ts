@@ -24,5 +24,6 @@ export function useMergedRefs<T>(...refs: React.Ref<T>[]) {
     },
     [refs],
   );
+  // eslint-disable-next-line react-hooks/immutability
   return setRef;
 }
