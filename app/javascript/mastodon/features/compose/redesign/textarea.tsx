@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useCallback } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
@@ -91,6 +92,14 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   );
 
   const dispatch = useAppDispatch();
+  const onClickWrapper: React.MouseEventHandler<HTMLDivElement> = useCallback(
+    (event) => {
+      if (event.target instanceof HTMLDivElement) {
+        event.target.querySelector('textarea')?.focus();
+      }
+    },
+    [],
+  );
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       dispatch(changeCompose(event.target.value));
@@ -160,24 +169,29 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   }
 
   return (
-    <AutosuggestTextarea
-      {...props}
-      ref={ref}
-      value={text}
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- This just moves focus to the textarea.
+    <div
+      onClick={onClickWrapper}
       className={classNames(className, classes.textareaWrapper)}
-      lang={lang}
-      placeholder={placeholder}
-      disabled={disabled || isSubmitting}
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      onSuggestionSelected={onSuggestionSelected}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onKeyDown={onKeyDown}
-      onDrop={onDrop}
-      onPaste={onPaste}
-      onChange={onChange}
-    />
+    >
+      <AutosuggestTextarea
+        {...props}
+        ref={ref}
+        value={text}
+        lang={lang}
+        placeholder={placeholder}
+        disabled={disabled || isSubmitting}
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        onSuggestionSelected={onSuggestionSelected}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
+        onDrop={onDrop}
+        onPaste={onPaste}
+        onChange={onChange}
+      />
+    </div>
   );
 };

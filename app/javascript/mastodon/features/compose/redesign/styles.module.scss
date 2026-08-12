@@ -72,8 +72,17 @@
 .textareaWrapper {
   flex-grow: 1;
   overflow: hidden auto;
+  padding: var(--space-xs);
+  border-radius: var(--radius-xs);
+  border: 2px solid transparent;
+  transition: border 200ms;
+  cursor: text;
 
-  > textarea {
+  &:focus-within {
+    border-color: var(--color-border-brand);
+  }
+
+  textarea {
     @include mixins.type-body-lg;
 
     border: none;
