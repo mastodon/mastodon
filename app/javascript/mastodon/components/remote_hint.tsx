@@ -13,7 +13,7 @@ export const RemoteHint: React.FC<RemoteHintProps> = ({ accountId }) => {
     accountId ? state.accounts.get(accountId) : undefined,
   );
   const domain = account?.acct ? account.acct.split('@')[1] : undefined;
-  if (!account?.url || account.acct !== account.username || !domain) {
+  if (!account?.url || account.acct !== account.username || !domain || account.invalid_handle) {
     return null;
   }
 
