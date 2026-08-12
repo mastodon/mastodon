@@ -174,12 +174,17 @@ export const CollectionAdder: React.FC<{
                 />
               }
             >
-              <NewCollectionButton onClick={handleNewCollection} />
+              <NewCollectionButton compact onClick={handleNewCollection} />
             </EmptyState>
           ) : (
             <>
               <div className={classes.newCollection}>
-                <NewCollectionButton onClick={handleNewCollection} />
+                <NewCollectionButton secondary onClick={handleNewCollection}>
+                  <FormattedMessage
+                    id='collections.create_new_collection'
+                    defaultMessage='Create new collection'
+                  />
+                </NewCollectionButton>
               </div>
               {collections.map((item) => (
                 <ListItem key={item.id} collection={item} account={account} />
