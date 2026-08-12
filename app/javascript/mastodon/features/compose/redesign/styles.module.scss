@@ -3,6 +3,7 @@
 .root {
   @include mixins.elevation-2;
 
+  container-type: size;
   border-radius: var(--radius-xl);
   background: var(--color-bg-primary);
   display: flex;
@@ -40,7 +41,7 @@
   gap: var(--space-xs);
   flex-grow: 1;
 
-  @media (width < 310px) {
+  @container (width < 310px) {
     flex-basis: 100%;
   }
 
@@ -295,7 +296,7 @@ div.emojiRoot {
     justify-content: center;
   }
 
-  @media screen and (width > 400px) {
+  @container (width > 400px) {
     min-height: 370px;
   }
 }
