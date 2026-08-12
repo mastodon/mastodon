@@ -44,26 +44,22 @@ export const ComposeVisibility: React.FC = () => {
     <>
       <FormattedMessage
         id='compose.post.to'
-        defaultMessage='To: {button}'
-        values={{
-          button: (
-            <Button size='sm' onClick={onToggle} ref={setTrigger}>
-              {privacy !== 'private' && (
-                <FormattedMessage
-                  id='privacy.public.short'
-                  defaultMessage='Public'
-                />
-              )}
-              {privacy === 'private' && (
-                <FormattedMessage
-                  id='privacy.private.short'
-                  defaultMessage='Followers'
-                />
-              )}
-            </Button>
-          ),
-        }}
+        defaultMessage='To:'
+        description='Before button that indicates who a post is for (Public, Followers, mentioned people)'
       />
+
+      <Button size='sm' onClick={onToggle} ref={setTrigger}>
+        {privacy !== 'private' && (
+          <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
+        )}
+        {privacy === 'private' && (
+          <FormattedMessage
+            id='privacy.private.short'
+            defaultMessage='Followers'
+          />
+        )}
+      </Button>
+
       <Popover
         isOpen={showMenu}
         onClose={onFalse}
