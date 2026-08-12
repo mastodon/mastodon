@@ -488,6 +488,8 @@ export const Dropdown = <Item extends object | null = MenuItem>({
   };
 
   if (children) {
+    // We're just assigning the ref to an element so this is safe
+    // eslint-disable-next-line react-hooks/refs
     button = cloneElement(Children.only(children), buttonProps);
   } else if (icon && iconComponent) {
     button = (
