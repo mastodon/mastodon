@@ -836,7 +836,7 @@ export const Video: React.FC<{
             role='button'
             tabIndex={0}
             aria-label={alt}
-            title={alt}
+            title={fullscreen ? undefined : alt}
             lang={lang}
             onClick={handleClick}
             onKeyDownCapture={handleVideoKeyDown}
