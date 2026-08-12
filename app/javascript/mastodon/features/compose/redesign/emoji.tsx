@@ -66,7 +66,7 @@ export const ComposeEmojiButton: React.FC<{ onPick: OnEmojiPick }> = ({
         isOpen={open}
         onClose={onFalse}
         reference={target}
-        placement='bottom'
+        placement='top-start'
         offset={4}
       >
         {({ props, placement }) => (
