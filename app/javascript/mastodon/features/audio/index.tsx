@@ -20,8 +20,10 @@ import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime, getPointerPosition } from 'mastodon/features/video';
 import { useAudioContext } from 'mastodon/hooks/useAudioContext';
 import { useAudioVisualizer } from 'mastodon/hooks/useAudioVisualizer';
-import { displayMedia, useBlurhash } from 'mastodon/initial_state';
+import { useBlurhash } from 'mastodon/initial_state';
 import { playerSettings } from 'mastodon/settings';
+
+import { useRevealedMedia } from '../../hooks/useRevealedMedia';
 
 import { AudioVisualizer } from './visualizer';
 
@@ -100,7 +102,7 @@ export const Audio: React.FC<{
   const [volume, setVolume] = useState(0.5);
   const [hovered, setHovered] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useRevealedMedia({ visible, sensitive });
 
   const playerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -176,17 +178,6 @@ export const Audio: React.FC<{
       gainNodeRef.current.gain.value = muted ? 0 : volume;
     }
   }, [volume, muted, gainNodeRef]);
-
-  useEffect(() => {
-    if (typeof visible !== 'undefined') {
-      setRevealed(visible);
-    } else {
-      setRevealed(
-        displayMedia === 'show_all' ||
-          (displayMedia !== 'hide_all' && !sensitive),
-      );
-    }
-  }, [visible, sensitive]);
 
   useEffect(() => {
     if (!revealed) {
