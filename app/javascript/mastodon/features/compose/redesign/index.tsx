@@ -115,14 +115,16 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
         />
       )}
 
-      <ComposeTextarea
-        ref={textAreaRef}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus={autoFocus}
-        onSubmit={onSubmit}
-      />
+      <div className={classes.editorWrapper}>
+        <ComposeTextarea
+          ref={textAreaRef}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus={autoFocus}
+          onSubmit={onSubmit}
+        />
 
-      <ComposeAttachments />
+        <ComposeAttachments />
+      </div>
 
       <ComposeFooter onEmojiPick={onEmojiPick} />
     </form>

@@ -3,7 +3,7 @@
 .root {
   @include mixins.elevation-2;
 
-  container-type: size;
+  container-type: inline-size;
   border-radius: var(--radius-xl);
   background: var(--color-bg-primary);
   display: flex;
@@ -70,9 +70,19 @@
   user-select: none;
 }
 
+.editorWrapper {
+  overflow: hidden auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  overscroll-behavior-y: contain;
+}
+
 .textareaWrapper {
   flex-grow: 1;
-  overflow: hidden auto;
   padding: var(--space-xs);
   border-radius: var(--radius-xs);
   border: 2px solid transparent;
