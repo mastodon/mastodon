@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_05_130216) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -728,7 +728,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_05_130216) do
     t.datetime "updated_at", null: false
     t.string "uri"
     t.index ["account_id", "local_fragment"], name: "index_keypairs_on_account_id_and_local_fragment", unique: true
-    t.index ["account_id"], name: "index_keypairs_on_account_id"
     t.index ["uri"], name: "index_keypairs_on_uri", unique: true
   end
 
