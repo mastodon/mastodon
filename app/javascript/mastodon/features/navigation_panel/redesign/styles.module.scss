@@ -1,0 +1,11 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.list {
+  margin-top: var(--space-xl);
+  margin-inline: var(--space-md);
+}
