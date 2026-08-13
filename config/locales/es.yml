@@ -21,7 +21,7 @@ es:
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
     nothing_here: "¡No hay nada aquí!"
     pin_errors:
-      following: Debes estar siguiendo a la persona a la que quieres aprobar
+      following: Debes estar ya siguiendo a la persona a la que quieres aprobar
     posts:
       one: Publicación
       other: Publicaciones
@@ -32,9 +32,9 @@ es:
       action: Realizar acción
       already_silenced: Esta cuenta ya ha sido limitada.
       already_suspended: Esta cuenta ya ha sido suspendida.
-      title: Moderar %{acct}
+      title: Realizar acción de moderación en %{acct}
     account_moderation_notes:
-      create: Crear
+      create: Dejar nota
       created_msg: "¡Nota de moderación creada con éxito!"
       destroyed_msg: "¡Nota de moderación destruida con éxito!"
     accounts:
@@ -93,7 +93,7 @@ es:
         remote: Remoto
         title: Localización
       login_status: Estado de inicio de sesión
-      media_attachments: Multimedia
+      media_attachments: Adjuntos multimedia
       memorialize: Convertir en memorial
       memorialized: Cuenta conmemorativa
       memorialized_msg: "%{username} se convirtió con éxito en una cuenta conmemorativa"
@@ -147,7 +147,7 @@ es:
       security_measures:
         only_password: Solo contraseña
         password_and_2fa: Contraseña y 2FA
-      sensitive: Sensible
+      sensitive: Sensible forzado
       sensitized: Marcada como sensible
       shared_inbox_url: URL de bandeja compartida
       show:
@@ -176,7 +176,7 @@ es:
       view_domain: Ver resumen del dominio
       warn: Advertir
       web: Web
-      whitelisted: Añadido a la lista blanca
+      whitelisted: Permitido para federación
     action_logs:
       action_types:
         approve_appeal: Aprobar Apelación
@@ -221,7 +221,7 @@ es:
         enable_sign_in_token_auth_user: Habilitar la Autenticación por Token de Correo Electrónico para el Usuario
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
-        promote_user: Promover Usuario
+        promote_user: Promocionar usuario
         publish_terms_of_service: Publicar términos del servicio
         reject_appeal: Rechazar Apelación
         reject_user: Rechazar Usuario
@@ -290,7 +290,7 @@ es:
         enable_sign_in_token_auth_user_html: "%{name} ha habilitado la autenticación por token de correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
-        promote_user_html: "%{name} promoción al usuario %{target}"
+        promote_user_html: "%{name} promocionó al usuario %{target}"
         publish_terms_of_service_html: "%{name} ha publicado actualizaciones de los términos del servicio"
         reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
         reject_user_html: "%{name} rechazó el registro de %{target}"
@@ -300,9 +300,9 @@ es:
         reset_password_user_html: "%{name} reinició la contraseña del usuario %{target}"
         resolve_report_html: "%{name} resolvió el informe %{target}"
         sensitive_account_html: "%{name} marcó la multimedia de %{target} como sensible"
-        silence_account_html: "%{name} silenció la cuenta de %{target}"
+        silence_account_html: "%{name} limitó la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
-        unassigned_report_html: "%{name} des-asignó el informe %{target}"
+        unassigned_report_html: "%{name} desasignó el informe %{target}"
         unblock_email_account_html: "%{name} ha desbloqueado la dirección de correo de %{target}"
         unsensitive_account_html: "%{name} desmarcó la multimedia de %{target} como sensible"
         unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
@@ -371,7 +371,7 @@ es:
       create_new_category: Crear una nueva categoría
       created_msg: "¡Emoji creado con éxito!"
       delete: Borrar
-      destroyed_msg: "¡Emojo destruido con éxito!"
+      destroyed_msg: "¡Emoji destruido con éxito!"
       disable: Deshabilitar
       disabled: Desactivado
       disabled_msg: Se deshabilitó con éxito ese emoji
@@ -427,14 +427,14 @@ es:
         empty: No se encontraron apelaciones.
         title: Apelaciones
     domain_allows:
-      add_new: Añadir dominio a la lista blanca
-      created_msg: Dominio añadido a la lista blanca con éxito
-      destroyed_msg: Dominio quitado de la lista blanca con éxito
+      add_new: Permitir federación con el dominio
+      created_msg: El dominio se ha permitido con éxito para la federación
+      destroyed_msg: El dominio ha sido excluido de la federación
       export: Exportar
       import: Importar
-      undo: Quitar de la lista blanca
+      undo: No permitir federación con dominio
     domain_blocks:
-      add_new: Añadir nuevo
+      add_new: Añadir nuevo bloqueo de dominio
       confirm_suspension:
         cancel: Cancelar
         confirm: Suspender
@@ -461,7 +461,7 @@ es:
           silence: Limitar
           suspend: Suspender
         title: Nuevo bloqueo de dominio
-      no_domain_block_selected: No se cambió ningún bloqueo de dominio ya que ninguno fue seleccionado
+      no_domain_block_selected: No se cambió ningún bloqueo de dominio, ya que ninguno fue seleccionado
       not_permitted: No tienes permiso para realizar esta acción
       obfuscate: Ocultar nombre de dominio
       obfuscate_hint: Oculta parcialmente el nombre de dominio en la lista si mostrar la lista de limitaciones de dominio está habilitado
@@ -473,7 +473,7 @@ es:
       reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar informes
       reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante para suspensiones
-      undo: Deshacer
+      undo: Deshacer bloqueo de dominio
       view: Ver dominio bloqueado
     email_domain_blocks:
       add_new: Añadir nuevo
@@ -702,7 +702,7 @@ es:
       public_comment: Comentario público
       purge: Purgar
       purge_description_html: Si crees que este dominio está desconectado, puedes borrar todos los registros de cuentas y los datos asociados de este dominio de tu almacenamiento. Esto puede llevar un tiempo.
-      title: Instancias conocidas
+      title: Federación
       total_blocked_by_us: Bloqueado por nosotros
       total_followed_by_them: Seguidos por ellos
       total_followed_by_us: Seguido por nosotros
@@ -736,21 +736,21 @@ es:
     relationships:
       title: Relaciones de %{acct}
     relays:
-      add_new: Añadir un nuevo relés
+      add_new: Añadir un nuevo relé
       delete: Borrar
       description_html: Un <strong>relé de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de publicaciones públicas entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
       disable: Deshabilitar
       disabled: Deshabilitado
-      enable: Hablitar
+      enable: Habilitar
       enable_hint: Una vez conectado, tu servidor se suscribirá a todos las publicaciones públicas de este relé, y comenzará a enviar las publicaciones públicas de este servidor hacia él.
       enabled: Habilitado
-      inbox_url: URL del relés
-      pending: Esperando la aprobación del relés
-      save_and_enable: Guardar y conectar
+      inbox_url: URL del relé
+      pending: Esperando la aprobación del relé
+      save_and_enable: Guardar y habilitar
       setup: Preparar una conexión de relés
-      signatures_not_enabled: Los relés no funcionarán correctamente mientras el modo seguro o el modo de lista blanca estén habilitados
+      signatures_not_enabled: Los relés pueden no funcionar correctamente mientras que el modo seguro o el modo federación limitada está habilitado
       status: Estado
-      title: Releses
+      title: Relés
     report_notes:
       created_msg: "¡El registro de la denuncia se ha creado correctamente!"
       destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
@@ -766,7 +766,7 @@ es:
         mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
-        silence_description_html: La cuenta será visible sólo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los informes contra esta cuenta.
+        silence_description_html: La cuenta será visible solo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los informes contra esta cuenta.
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los informes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este informe. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
@@ -829,7 +829,7 @@ es:
         actions:
           delete_html: Eliminar los mensajes ofensivos
           mark_as_sensitive_html: Marcar los mensajes ofensivos como sensibles
-          silence_html: Limitar severamente el alcance de <strong>@%{acct}</strong> haciendo que su perfil y contenido sólo sean visibles para las personas que ya lo siguen o que consulten manualmente su perfil
+          silence_html: Limitar severamente el alcance de <strong>@%{acct}</strong> haciendo que su perfil y contenido solo sean visibles para las personas que ya lo siguen o que consulten manualmente su perfil
           suspend_html: Suspender <strong>@%{acct}</strong>, haciendo su perfil y contenido inaccesibles y la interacción con la cuenta imposible
         close_report: 'Marcar informe #%{id} como resuelto'
         close_reports_html: Marcar <strong>todos los</strong> informes contra <strong>@%{acct}</strong> como resueltos
@@ -885,7 +885,7 @@ es:
         manage_email_subscriptions: Administrar suscripciones de correo electrónico
         manage_email_subscriptions_description: Permite a los usuarios con este permiso habilitar la función del boletín de noticias por correo electrónico para su cuenta
         manage_federation: Administrar Federación
-        manage_federation_description: Permite a los usuarios bloquear o permitir la federación con otros dominios, y controlar la entregabilidad
+        manage_federation_description: Permite a los usuarios bloquear o permitir la federación con otros dominios, y controlar la capacidad de entrega
         manage_invites: Administrar Invitaciones
         manage_invites_description: Permite a los usuarios navegar y desactivar los enlaces de invitación
         manage_reports: Administrar Informes
@@ -957,7 +957,7 @@ es:
         preamble: Exponer contenido interesante es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie en Mastodon. Controla cómo funcionan en tu servidor las diferentes opciones de descubrimiento.
         privacy: Privacidad
         profile_directory: Directorio de perfiles
-        public_timelines: Lineas de tiempo públicas
+        public_timelines: Líneas de tiempo públicas
         publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
@@ -1102,7 +1102,7 @@ es:
         message_html: "<strong>Su servidor web está mal configurado. La privacidad de sus usuarios está en riesgo.</strong>"
       upload_check_privacy_error_object_storage:
         action: Haga clic aquí para obtener más información
-        message_html: "<strong>El almacenamiento de su objeto está mal configurado. La privacidad de sus usuarios está en riesgo.</strong>"
+        message_html: "<strong>Tu almacenamiento de objetos está mal configurado. La privacidad de sus usuarios está en riesgo.</strong>"
     tags:
       moderation:
         not_trendable: No puede ser tendencia
@@ -1132,7 +1132,7 @@ es:
       generate: Usar plantilla
       generates:
         action: Generar
-        chance_to_review_html: "<strong>Los términos del servicio generados no se publicarán automáticamente..</strong> Tendrás la oportunidad de revisar el resultado. Por favor, rellena los detalles necesarios para continuar."
+        chance_to_review_html: "<strong>Los términos del servicio generados no se publicarán automáticamente.</strong> Tendrás la oportunidad de revisar el resultado. Por favor, rellena los detalles necesarios para continuar."
         explanation_html: La plantilla de términos de servicio ofrecida es únicamente para propósito informativo, y no debería ser considerada asesoramiento legal sobre ningún tema. Por favor, consulta con tu propio consejo legal sobre tu situación y las cuestiones legales específicas que tengas.
         title: Configuración de términos del servicio
       going_live_on_html: En vigor desde %{date}
@@ -1148,7 +1148,7 @@ es:
         send_to_all:
           one: Enviar %{display_count} correo electrónico
           other: Enviar %{display_count} correos electrónicos
-        title: Vista previa de la notificación de términos del servicios
+        title: Vista previa de la notificación de términos del servicio
       publish: Publicar
       published_on_html: Publicado el %{date}
       save_draft: Guardar borrador
@@ -1170,16 +1170,16 @@ es:
         description_html: Estos son enlaces que actualmente están siendo compartidos mucho por las cuentas desde las que tu servidor ve los mensajes. Pueden ayudar a tus usuarios a averiguar qué está pasando en el mundo. Ningún enlace se muestren públicamente hasta que autorice al dominio. También puede permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
-        no_link_selected: No se cambió ningún enlace ya que no se seleccionó ninguno
+        no_link_selected: No se cambió ningún enlace, ya que no se seleccionó ninguno
         publishers:
-          no_publisher_selected: No se cambió ningún editor ya que no se seleccionó ninguno
+          no_publisher_selected: No se cambió ningún editor, ya que no se seleccionó ninguno
         shared_by_over_week:
           one: Compartido por una persona durante la última semana
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con %{yesterday} ayer
       not_allowed_to_trend: No permitido para tendencia
-      only_allowed: Sólo las permitidas
+      only_allowed: Solo las permitidas
       pending_review: Revisión pendiente
       preview_card_providers:
         allowed: Los enlaces de este medio pueden ser tendencia
@@ -1194,15 +1194,15 @@ es:
         confirm_allow_account: "¿Estás seguro de que deseas permitir las cuentas seleccionadas?"
         confirm_disallow: "¿Estás seguro de que deseas restringir los estados seleccionados?"
         confirm_disallow_account: "¿Estás seguro de que deseas restringir las cuentas seleccionadas?"
-        description_html: Estos son publicaciones que tu servidor conoce que están siendo compartidas y marcadas como favoritas mucho en este momento. Pueden ayudar a tus usuarios nuevos y retornantes a encontrar más personas a las que seguir. No hay mensajes que se muestren públicamente hasta que apruebes el autor y el autor permita que su cuenta sea sugerida a otros. También puedes permitir o rechazar mensajes individuales.
+        description_html: Estas son publicaciones que tu servidor conoce que están siendo muy compartidas y marcadas como favoritas en este momento. Pueden ayudar a tus usuarios nuevos y retornantes a encontrar más personas a las que seguir. No hay mensajes que se muestren públicamente hasta que apruebes el autor y el autor permita que su cuenta sea sugerida a otros. También puedes permitir o rechazar mensajes individuales.
         disallow: No permitir publicación
         disallow_account: No permitir autor
-        no_status_selected: No se cambió ninguna publicación en tendencia ya que no se seleccionó ninguna
+        no_status_selected: No se cambió ninguna publicación en tendencia, ya que no se seleccionó ninguna
         not_discoverable: El autor no ha optado por ser detectable
         shared_by:
           one: Compartido o marcado como favorito una vez
-          other: Compatido o marcado como favorito %{friendly_count} veces
-        title: Publicaciones destacadas
+          other: Compartido o marcado como favorito %{friendly_count} veces
+        title: Publicaciones en Tendencia
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -1213,7 +1213,7 @@ es:
           tag_uses_measure: usos totales
         description_html: Estos son etiquetas que están apareciendo en muchas publicaciones que llegan a tu servidor. Pueden ayudar a tus usuarios a averiguar de qué es lo que más hablan las personas en estos momentos. No hay etiquetas que se muestren públicamente hasta que las apruebes.
         listable: Pueden ser recomendadas
-        no_tag_selected: No se cambió ninguna etiqueta ya que no se seleccionó ninguna
+        no_tag_selected: No se cambió ninguna etiqueta, ya que no se seleccionó ninguna
         not_listable: No serán recomendadas
         not_trendable: No aparecerán en tendencias
         not_usable: No pueden ser usadas
@@ -1228,6 +1228,7 @@ es:
           other: Usada por %{count} personas durante la última semana
       title: Recomendaciones y Tendencias
       trending: En tendencia
+    update_available: Actualización disponible
     username_blocks:
       add_new: Añadir nueva
       block_registrations: Bloquear registros
@@ -1285,7 +1286,7 @@ es:
         none: una advertencia
         sensitive: para marcar su cuenta como sensible
         silence: para limitar su cuenta
-        suspend: suspender su cuenta
+        suspend: para suspender su cuenta
       body: "%{target} está apelando a una solicitud de moderación de %{action_taken_by} el %{date}, del tipo %{type}. Ellos escribieron:"
       next_steps: Puedes aprobar la apelación para deshacer la decisión de moderación, o ignorarla.
       subject: "%{username} está apelando a una decisión de moderación en %{instance}"
@@ -1293,11 +1294,11 @@ es:
       body: Se han lanzado nuevas versiones críticas de Mastodon, ¡es posible que quieras actualizar lo antes posible!
       subject: "¡Hay actualizaciones de Mastodon críticas disponibles para %{instance}!"
     new_pending_account:
-      body: Los detalles de la nueva cuenta están abajos. Puedes aprobar o rechazar esta aplicación.
+      body: Los detalles de la nueva cuenta están abajo. Puedes aprobar o rechazar esta aplicación.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
     new_report:
       body: "%{reporter} ha reportado a %{target}"
-      body_remote: Alguien de %{domain} a reportado a %{target}
+      body_remote: Alguien de %{domain} ha reportado a %{target}
       subject: Nuevo informe para %{instance} (#%{id})
     new_software_updates:
       body: Se han liberado nuevas versiones de Mastodon, ¡es posible que quieras actualizar!
@@ -1331,14 +1332,14 @@ es:
     sensitive_content: Contenido sensible
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
-    salutation: "%{name}:"
+    salutation: "%{name},"
     unsubscribe: Cancelar suscripción
     view: 'Vista:'
     view_profile: Ver perfil
     view_status: Ver publicación
   applications:
     created: Aplicación creada exitosamente
-    destroyed: Apicación eliminada exitosamente
+    destroyed: Aplicación eliminada exitosamente
     logout: Cerrar sesión
     regenerate_token: Regenerar token de acceso
     token_regenerated: Token de acceso regenerado exitosamente
@@ -1560,7 +1561,7 @@ es:
     native: Nativo
     twemoji: Twemoji
   errors:
-    '400': La solicitud que has enviado no es valida o estaba malformada.
+    '400': La solicitud que has enviado no es válida o estaba mal formada.
     '403': No tienes permiso para acceder a esta página.
     '404': La página que estabas buscando no existe.
     '406': Esta página no está disponible en el formato solicitado.
@@ -1573,7 +1574,7 @@ es:
       content: Lo sentimos, algo ha funcionado mal por nuestra parte.
       title: Esta página no es correcta
     '503': La página no se ha podido cargar debido a un fallo temporal del servidor.
-    noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodon para tu plataforma.
+    noscript_html: Para usar la aplicación web de Mastodon, por favor activa JavaScript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodon para tu plataforma.
   existing_username_validator:
     not_found: no pudo encontrar un usuario local con ese nombre de usuario
     not_found_multiple: no pudo encontrar %{usernames}
@@ -1612,7 +1613,7 @@ es:
       title: Editar filtro
     errors:
       deprecated_api_multiple_keywords: Estos parámetros no se pueden cambiar desde esta aplicación porque se aplican a más de una palabra clave de filtro. Utilice una aplicación más reciente o la interfaz web.
-      invalid_context: Se suminstró un contexto inválido o vacío
+      invalid_context: Se suministró un contexto inválido o vacío
     index:
       contexts: Filtros en %{contexts}
       delete: Borrar
@@ -1700,11 +1701,11 @@ es:
         one: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se añadirá <strong>%{count} cuenta</strong> a una nueva lista.
         other: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se añadirán <strong>%{count} cuentas</strong> a nuevas listas.
       muting_html:
-        one: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con <strong>%{count} cuenta</strong> proveninete de <strong>%{filename}</strong>.
+        one: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preambles:
       blocking_html:
-        one: Estás a punto de <strong>bloquear</strong> a <strong>%{count} cuenta</strong> proveninete de <strong>%{filename}</strong>.
+        one: Estás a punto de <strong>bloquear</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
       bookmarks_html:
         one: Está a punto de añadir <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
@@ -1882,7 +1883,7 @@ es:
       action: Administrar solicitudes para seguir
       body: "%{name} ha solicitado seguirte"
       subject: 'Seguidor pendiente: %{name}'
-      title: Nueva solicitud para seguir
+      title: Nueva solicitud de seguimiento
     mention:
       action: Responder
       body: 'Fuiste mencionado por %{name} en:'
@@ -1901,7 +1902,7 @@ es:
     reblog:
       body: 'Tu publicación fue impulsada por %{name}:'
       subject: "%{name} impulsó tu publicación"
-      title: Nueva difusión
+      title: Nuevo impulso
     severed_relationships:
       subject: Has perdido conexiones debido a una decisión de moderación
     status:
@@ -1923,16 +1924,16 @@ es:
           thousand: m
           trillion: B
   otp_authentication:
-    code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
+    code_hint: Introduzca el código generado por su aplicación de autenticación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
     enable: Activar
-    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrásque ingresar cuando quieras iniciar sesión."
+    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrás que ingresar cuando quieras iniciar sesión."
     manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
     setup: Configurar
-    wrong_code: "¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?"
+    wrong_code: "¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y del servidor?"
   pagination:
-    newer: Más nuevo
-    next: Próximo
+    newer: Más reciente
+    next: Siguiente
     older: Más antiguo
     prev: Anterior
     truncate: "&hellip;"
@@ -2050,7 +2051,7 @@ es:
       ios: iOS
       kai_os: KaiOS
       linux: GNU Linux
-      mac: Mac
+      mac: macOS
       unknown_platform: Plataforma Desconocida
       windows: Windows
       windows_mobile: Windows Mobile
@@ -2206,7 +2207,7 @@ es:
       too_many_requests: Ha habido demasiadas solicitudes al servicio de traducción recientemente.
   two_factor_authentication:
     add: Añadir
-    disable: Deshabilitar
+    disable: Deshabilitar 2FA
     disabled_success: Autenticación de doble factor desactivada correctamente
     edit: Editar
     enabled: La autenticación de dos factores está activada
@@ -2267,7 +2268,7 @@ es:
     failed_2fa:
       details: 'Estos son los detalles del intento de inicio de sesión:'
       explanation: Alguien ha intentado iniciar sesión en tu cuenta pero proporcionó un segundo factor de autenticación inválido.
-      further_actions_html: Si no fuiste tú, se recomienda %{action} inmediatamente ya que puede estar comprometida.
+      further_actions_html: Si no fuiste tú, se recomienda %{action} inmediatamente, ya que puede estar comprometida.
       subject: Fallo de autenticación del segundo factor
       title: Fallo en la autenticación del segundo factor
     suspicious_sign_in:
@@ -2356,12 +2357,12 @@ es:
       share_title: Comparte tu perfil de Mastodon
       sign_in_action: Regístrate
       subject: Bienvenido a Mastodon
-      title: Te damos la bienvenida a bordo, %{name}!
+      title: "¡Te damos la bienvenida a bordo, %{name}!"
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
     go_to_sso_account_settings: Diríjase a la configuración de la cuenta de su proveedor de identidad
     invalid_otp_token: Código de dos factores incorrecto
-    otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
+    otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contacto con %{email}
     rate_limited: Demasiados intentos de autenticación, inténtalo de nuevo más tarde.
     seamless_external_login: Has iniciado sesión desde un servicio externo, por lo que los ajustes de contraseña y correo electrónico no están disponibles.
     signed_in_as: 'Sesión iniciada como:'

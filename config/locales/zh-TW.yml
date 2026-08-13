@@ -1210,6 +1210,7 @@ zh-TW:
           other: 上週被 %{count} 個人使用
       title: 推薦內容與熱門趨勢
       trending: 熱門
+    update_available: 有可用更新
     username_blocks:
       add_new: 新增
       block_registrations: 禁止註冊
@@ -1433,8 +1434,8 @@ zh-TW:
       invalid_key: 這不是一把有效的 Ed25519 或 Curve25519 金鑰
   date:
     formats:
-      default: "%Y年%b月%d日"
-      with_month_name: "%Y年%B月%d日"
+      default: "%Y年%b%d日"
+      with_month_name: "%Y年%B%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}小時前"
@@ -2149,7 +2150,7 @@ zh-TW:
     default: Mastodon
   time:
     formats:
-      default: "%Y 年 %b 月 %d 日 %H:%M"
+      default: "%Y 年 %b %d 日 %H:%M"
       month: "%b %Y"
       time: "%H:%M"
       with_time_zone: "%b %d, %Y, %H:%M %Z"

@@ -69,6 +69,7 @@ lt:
       domain_allow:
         domain: Nurodytas domenas galės gauti duomenis iš šio serverio ir iš jo gaunami duomenys bus apdorojami ir saugomi
       email_domain_block:
+        domain: Tai gali būti domeno vardas, kuris nurodytas el. pašto adrese, arba jo naudojamas MX įrašas. Šie duomenys bus patikrinti registracijos metu.
         with_dns_records: Bus bandoma išspręsti nurodyto domeno DNS įrašus, o rezultatai taip pat bus blokuojami
       featured_tag:
         name: 'Štai keletas pastaruoju metu dažniausiai tavo naudotų grotažymių:'
@@ -82,7 +83,7 @@ lt:
         app_icon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją programos piktogramą mobiliuosiuose įrenginiuose pasirinktine piktograma.
         backups_retention_period: Naudotojai gali generuoti savo įrašų archyvus, kuriuos vėliau galės atsisiųsti. Nustačius teigiamą reikšmę, šie archyvai po nurodyto dienų skaičiaus bus automatiškai ištrinti iš saugyklos.
         bootstrap_timeline_accounts: Šios paskyros bus rekomenduojamos naujiems naudotojams Rekomenduojami sekimai skyrelyje. Pateikite rekomenduojamas paskyras, atskirtas kableliais.
-        content_cache_retention_period: Visi įrašai iš kitų serverių (įskaitant pakėlimus ir atsakymus) bus ištrinti po nurodyto dienų skaičiaus, neatsižvelgiant į bet kokią vietinio naudotojo sąveiką su tais įrašais. Tai taikoma ir tiems įrašams, kuriuos vietinis naudotojas yra pažymėjęs kaip žymes ar mėgstamus. Privačios paminėjimai tarp naudotojų iš skirtingų instancijų taip pat bus prarastos ir jų bus neįmanoma atkurti. Šis nustatymas skirtas naudoti ypatingos paskirties instancijose, o įgyvendinus jį bendram naudojimui, pažeidžiami daugelio naudotojų lūkesčiai.
+        content_cache_retention_period: Visi įrašai iš kitų serverių (įskaitant pakėlimus ir atsakymus) bus ištrinti po nurodyto dienų skaičiaus, neatsižvelgiant į bet kokią vietinio naudotojo sąveiką su tais įrašais. Tai taikoma ir tiems įrašams, kuriuos vietinis naudotojas yra pažymėjęs kaip žymes ar mėgstamus. Privačios žinutės tarp naudotojų iš skirtingų instancijų taip pat bus prarastos ir jų bus neįmanoma atkurti. Šis nustatymas skirtas naudoti ypatingos paskirties instancijose, o įgyvendinus jį bendram naudojimui, pažeidžiami daugelio naudotojų lūkesčiai.
         favicon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją Mastodon svetaines piktogramą pasirinktine piktograma.
         mascot: Pakeičia išplėstinės žiniatinklio sąsajos iliustraciją.
         media_cache_retention_period: Nuotolinių naudotojų įrašytų įrašų medijos failai talpinami tavo serveryje. Nustačius teigiamą reikšmę, medijos bus ištrinamos po nurodyto dienų skaičiaus. Jei medijos duomenų bus paprašyta po to, kai jie bus ištrinti, jie bus atsiųsti iš naujo, jei šaltinio turinys vis dar prieinamas. Dėl apribojimų, susijusių su nuorodų peržiūros kortelių apklausos dažnumu trečiųjų šalių svetainėse, rekomenduojama nustatyti šią reikšmę ne trumpesnę kaip 14 dienų, kitaip nuorodų peržiūros kortelės nebus atnaujinamos pagal pareikalavimą iki to laiko.
@@ -127,6 +128,8 @@ lt:
           one: Turime įsitikinti, kad esate bent %{count} norint naudotis %{domain}. Mes to neišsaugosime.
           other: Turime įsitikinti, kad esate bent %{count} norint naudotis %{domain}. Mes to neišsaugosime.
         role: Vaidmuo valdo, kokius leidimus naudotojas turi.
+      user_role:
+        name: Viešas rolės pavadinimas, jei nustatyta, kad rolė turi būti rodomas kaip ženkliukas
     labels:
       account:
         attribution_domains: Svetainės, kuriuose leidžiama jus įvardyti
@@ -230,7 +233,7 @@ lt:
         follow_request: Kažkas paprašė sekti tave
         mention: Kažkas paminėjo tave
         pending_account: Reikia peržiūros naujam paskyrui
-        quote: Kažkas jus paminėjo
+        quote: Kažkas pacitavo tave
         reblog: Kažkas dalinosi tavo įrašu
         software_updates:
           label: Yra nauja Mastodon versija
