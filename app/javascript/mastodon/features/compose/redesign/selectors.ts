@@ -4,6 +4,7 @@ import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachme
 import type { StatusVisibility } from '@/mastodon/models/status';
 import type { ComposeType } from '@/mastodon/reducers/slices/composer';
 import { createAppSelector } from '@/mastodon/store';
+import { DAY, MINUTE } from '@/mastodon/utils/time';
 
 import { countableText } from '../util/counter';
 
@@ -59,22 +60,21 @@ export const selectComposeCanSubmit = createAppSelector(
     selectComposeCharsCount,
   ],
   (isSubmitting, isUploading, isChangingUpload, { current, max }) =>
-    !isSubmitting && !isUploading && !isChangingUpload && current <= max,
+    !isSubmitting &&
+    !isUploading &&
+    !isChangingUpload &&
+    current <= max &&
+    current > 0,
 );
 
-export const selectComposeState = createAppSelector(
-  [(state) => state.compose, selectComposeType, selectComposeCanSubmit],
-  (compose, type, canSubmit) => ({
-    type,
-    text: compose.get('text') as string,
-    sensitive: !!compose.get('spoiler'),
-    sensitiveText: compose.get('spoiler_text') as string,
-    lang: compose.get('language') as string,
-    suggestions: compose.get(
-      'suggestions',
-    ) as unknown as Immutable.List<unknown>,
-    canSubmit,
-    isSubmitting: !!compose.get('is_submitting'),
+export const selectComposeSensitive = createAppSelector(
+  [
+    (state) => !!state.compose.get('spoiler'),
+    (state) => state.compose.get('spoiler_text'),
+  ],
+  (sensitive, text) => ({
+    sensitive,
+    sensitiveText: typeof text === 'string' ? text : '',
   }),
 );
 
@@ -174,16 +174,29 @@ export const selectComposePoll = createAppSelector(
   [
     (state) =>
       state.compose.get('poll') as Immutable.Map<string, unknown> | null,
+    (state) => state.server.server.item?.configuration.polls,
   ],
-  (rawPoll) => {
+  (rawPoll, rawConfig) => {
+    const config = {
+      maxOptions: rawConfig?.max_options ?? 4,
+      maxCharacters: rawConfig?.max_characters_per_option ?? 50,
+      minExpiration: rawConfig?.min_expiration ?? 5 * MINUTE,
+      maxExpiration: rawConfig?.max_expiration ?? 30 * DAY,
+    };
     if (rawPoll === null) {
-      return null;
+      return {
+        options: [],
+        expiresIn: DAY,
+        multiple: false,
+        ...config,
+      };
     }
 
     return {
       options: (rawPoll.get('options') as Immutable.List<string>).toArray(),
       expiresIn: Number(rawPoll.get('expires_in')),
       multiple: !!rawPoll.get('multiple'),
+      ...config,
     };
   },
 );

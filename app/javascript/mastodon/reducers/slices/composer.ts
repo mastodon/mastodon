@@ -1,15 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
+  changeCompose,
   directCompose,
   replyComposeById,
   resetCompose,
+  submitCompose,
 } from '@/mastodon/actions/compose';
-import { changeComposeVisibility } from '@/mastodon/actions/compose_typed';
+import {
+  changeComposeVisibility,
+  PRIVATE_QUOTE_MODAL_ID,
+} from '@/mastodon/actions/compose_typed';
+import { openModal } from '@/mastodon/actions/modal';
+import type {
+  ApiStatusJSON,
+  StatusVisibility,
+} from '@/mastodon/api_types/statuses';
 import {
   createAppSelector,
   createAppThunk,
 } from '@/mastodon/store/typed_functions';
+
+export const COMPOSER_TEXTAREA_ID = 'composer-text';
+export function getComposerTextarea() {
+  const textarea = document.getElementById(COMPOSER_TEXTAREA_ID);
+  if (textarea instanceof HTMLTextAreaElement) {
+    return textarea;
+  }
+  return null;
+}
+export function focusComposerTextarea() {
+  getComposerTextarea()?.focus();
+}
 
 type DisplayState = 'hidden' | 'showing' | 'minimized';
 
@@ -74,12 +96,95 @@ export const openNewComposer = createAppThunk(
   },
 );
 
-export const hideComposer = createAppThunk((_arg, { dispatch }) => {
+export const resetComposer = createAppThunk((_arg, { dispatch }) => {
   dispatch(composerSlice.actions.hideComposer());
   dispatch(resetCompose());
+});
+
+export const hideComposer = createAppThunk((_arg, { getState, dispatch }) => {
+  const compose = getState().compose;
+  const isChanged =
+    !!compose.get('text') ||
+    !!compose.get('spoiler_text') ||
+    !!compose.get('poll') ||
+    (compose.get('media_attachments') as unknown as Immutable.List<unknown>)
+      .size > 0;
+
+  if (!isChanged) {
+    dispatch(resetComposer());
+  } else {
+    dispatch(
+      openModal({
+        modalType: 'COMPOSER_DRAFT_DELETE',
+        modalProps: {},
+      }),
+    );
+  }
 });
 
 export const selectIsMinimized = createAppSelector(
   [(state) => state.composer.displayState],
   (displayState) => displayState === 'minimized',
+);
+
+export const submitComposer = createAppThunk(
+  (
+    { redirectOnSuccess }: { redirectOnSuccess?: boolean },
+    { getState, dispatch },
+  ) => {
+    const textareaValue = getComposerTextarea()?.value;
+    if (
+      textareaValue &&
+      (getState().compose.get('text') as string) !== textareaValue
+    ) {
+      dispatch(changeCompose(textareaValue));
+    }
+
+    const { compose, meta, statuses, settings } = getState();
+    const privacy = compose.get('privacy') as StatusVisibility;
+    const missingAltText = (
+      compose.get('media_attachments') as unknown as Immutable.List<
+        Immutable.Map<string, string>
+      >
+    ).some(
+      (media) =>
+        ['image', 'gifv'].includes(media.get('type') ?? '') &&
+        (media.get('description') ?? '').length === 0,
+    );
+    const me = meta.get('me') as string | null;
+    const quotedStatusId = compose.get('quoted_status_id') as string | null;
+    const quoteToPrivate =
+      !!quotedStatusId &&
+      privacy === 'private' &&
+      statuses.getIn([quotedStatusId, 'account']) !== me &&
+      !settings.getIn(['dismissed_banners', PRIVATE_QUOTE_MODAL_ID]);
+
+    if (
+      !!meta.get('missing_alt_text_modal') &&
+      missingAltText &&
+      privacy !== 'direct'
+    ) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_MISSING_ALT_TEXT',
+          modalProps: {},
+        }),
+      );
+    } else if (quoteToPrivate) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_PRIVATE_QUOTE_NOTIFY',
+          modalProps: {},
+        }),
+      );
+    } else {
+      dispatch(
+        submitCompose((status: ApiStatusJSON) => {
+          if (redirectOnSuccess) {
+            window.location.assign(status.url);
+          }
+        }),
+      );
+    }
+  },
 );

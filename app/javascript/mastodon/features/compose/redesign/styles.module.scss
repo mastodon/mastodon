@@ -3,6 +3,7 @@
 .root {
   @include mixins.elevation-2;
 
+  container-type: inline-size;
   border-radius: var(--radius-xl);
   background: var(--color-bg-primary);
   display: flex;
@@ -14,7 +15,7 @@
 
 .header {
   display: flex;
-  align-items: center;
+  align-items: start;
 
   h2 {
     @include mixins.type-heading-sm;
@@ -40,7 +41,7 @@
   gap: var(--space-xs);
   flex-grow: 1;
 
-  @media (width < 310px) {
+  @container (width < 310px) {
     flex-basis: 100%;
   }
 
@@ -62,23 +63,38 @@
 }
 
 .dropdownItemControl {
+  @include mixins.type-body-compact;
+
   color: inherit;
   width: 100%;
   user-select: none;
 }
 
-.textarea > textarea {
-  @include mixins.type-body-lg;
-
-  border: none;
-  width: 100%;
-  user-select: none;
+.editorWrapper {
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  overscroll-behavior-y: contain;
 }
 
-.textarea {
+.textareaWrapper {
   flex-grow: 1;
+  padding: var(--space-xs);
+  margin: 2px;
+  border-radius: var(--radius-xs);
+  transition: border 200ms;
+  cursor: text;
 
-  > textarea {
+  &:focus-within {
+    outline: 2px solid var(--color-border-brand);
+    outline-offset: -2px;
+  }
+
+  textarea {
     @include mixins.type-body-lg;
 
     border: none;
@@ -90,13 +106,21 @@
 .footer {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-2xs);
   flex-wrap: wrap;
 }
 
 .counter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
   font-family: var(--font-monospace);
   color: var(--color-text-tertiary);
+  margin-inline-start: auto;
+}
+
+.counterError {
+  color: var(--color-text-error);
 }
 
 .visibilityFieldset {
@@ -247,12 +271,16 @@
   &::before {
     @include mixins.type-micro;
 
-    content: counter(poll, alpha);
+    content: counter(poll, upper-alpha);
     width: 8px;
     padding: var(--space-2xs);
     border-radius: var(--radius-xs);
     background: var(--color-bg-highlight);
   }
+}
+
+.pollAddNew {
+  margin-left: var(--space-lg);
 }
 
 .pollMultipleToggle {
@@ -279,7 +307,7 @@ div.emojiRoot {
     justify-content: center;
   }
 
-  @media screen and (width > 400px) {
+  @container (width > 400px) {
     min-height: 370px;
   }
 }

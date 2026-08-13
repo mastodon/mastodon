@@ -3,7 +3,13 @@ import { useCallback, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { ImageSquareIcon, ChartBarHorizontalIcon } from '@phosphor-icons/react';
+import classNames from 'classnames';
+
+import {
+  ImageSquareIcon,
+  ChartBarHorizontalIcon,
+  WarningCircleIcon,
+} from '@phosphor-icons/react';
 
 import { addPoll, uploadCompose } from '@/mastodon/actions/compose';
 import { Button, IconButton } from '@/mastodon/components/button/redesign';
@@ -62,7 +68,13 @@ export const ComposeFooter: React.FC<{ onEmojiPick: OnEmojiPick }> = ({
       </IconButton>
 
       <div className={classes.flexGrowWrap}>
-        <span className={classes.counter}>
+        <span
+          className={classNames(
+            classes.counter,
+            current > max && classes.counterError,
+          )}
+        >
+          {current > max && <WarningCircleIcon weight='fill' />}
           <FormattedMessage
             id='compose.counter'
             defaultMessage='{current, number}/{max, number}'

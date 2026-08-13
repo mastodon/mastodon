@@ -44,26 +44,22 @@ export const ComposeVisibility: React.FC = () => {
     <>
       <FormattedMessage
         id='compose.post.to'
-        defaultMessage='To: {button}'
-        values={{
-          button: (
-            <Button size='sm' onClick={onToggle} ref={setTrigger}>
-              {privacy !== 'private' && (
-                <FormattedMessage
-                  id='privacy.public.short'
-                  defaultMessage='Public'
-                />
-              )}
-              {privacy === 'private' && (
-                <FormattedMessage
-                  id='privacy.private.short'
-                  defaultMessage='Followers'
-                />
-              )}
-            </Button>
-          ),
-        }}
+        defaultMessage='To:'
+        description='Before button that indicates who a post is for (Public, Followers, mentioned people)'
       />
+
+      <Button size='sm' onClick={onToggle} ref={setTrigger}>
+        {privacy !== 'private' && (
+          <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
+        )}
+        {privacy === 'private' && (
+          <FormattedMessage
+            id='privacy.private.short'
+            defaultMessage='Followers'
+          />
+        )}
+      </Button>
+
       <Popover
         isOpen={showMenu}
         onClose={onFalse}
@@ -266,16 +262,17 @@ const DropdownRadioCheckField: React.FC<
   > & {
     children: React.ReactNode;
   }
-> = ({ children, onClick, ...props }) => {
+> = ({ children, onClick, disabled, ...props }) => {
   const { ref, onWrapperClick } = useDropdownControl();
 
   return (
-    <DropdownItem onClick={onWrapperClick}>
+    <DropdownItem onClick={onWrapperClick} disabled={disabled}>
       <RadioButtonField
         {...props}
         ref={ref}
         label={children}
         icon={CheckIcon}
+        disabled={disabled}
         wrapperClassName={classes.dropdownItemControl}
       />
     </DropdownItem>
@@ -287,14 +284,19 @@ const DropdownToggleField: React.FC<
     children: React.ReactNode;
     icon?: IconProp;
   }
-> = ({ children, icon, ...props }) => {
+> = ({ children, icon, disabled, ...props }) => {
   const { ref, onWrapperClick } = useDropdownControl();
 
   return (
-    <DropdownItem onClick={onWrapperClick} leadingIcon={icon}>
+    <DropdownItem
+      onClick={onWrapperClick}
+      leadingIcon={icon}
+      disabled={disabled}
+    >
       <ToggleField
         size='sm'
         {...props}
+        disabled={disabled}
         ref={ref}
         label={children}
         wrapperClassName={classes.dropdownItemControl}

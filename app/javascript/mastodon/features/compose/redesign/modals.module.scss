@@ -1,0 +1,25 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  @include mixins.elevation-2;
+
+  border-radius: var(--radius-xl);
+  background: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  pointer-events: auto;
+  user-select: text;
+  max-width: 100vw;
+}
+
+.title {
+  @include mixins.type-heading-sm;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -52,7 +52,10 @@ input.input {
   border-radius: var(--space-xs);
   border: 0.5px solid var(--color-text-tertiary);
   padding: var(--space-xs);
-  transition: background 200ms;
+  transition:
+    background 200ms,
+    border 200ms,
+    opacity 200ms;
 
   &:hover:not(:disabled) {
     box-shadow: 0 1px var(--space-2xs) 0
@@ -66,6 +69,7 @@ input.input {
 
   &:disabled {
     border-color: var(--color-bg-disabled);
+    opacity: 0.5;
   }
 }
 

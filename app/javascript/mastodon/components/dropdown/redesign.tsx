@@ -103,6 +103,7 @@ type DropdownItemProps<As extends React.ElementType> = Merge<
     children?: React.ReactNode;
     className?: string;
     active?: boolean;
+    disabled?: boolean;
     leadingIcon?: IconProp;
     trailingIcon?: IconProp;
     iconClassName?: string;
@@ -112,6 +113,7 @@ type DropdownItemProps<As extends React.ElementType> = Merge<
 
 export const DropdownItem = <As extends React.ElementType>({
   active,
+  disabled,
   as: AsComp,
   children,
   className,
@@ -128,6 +130,7 @@ export const DropdownItem = <As extends React.ElementType>({
         className,
         classes.menuItem,
         active && classes.menuItemActive,
+        disabled && classes.menuItemDisabled,
       )}
     >
       {leadingIcon && (

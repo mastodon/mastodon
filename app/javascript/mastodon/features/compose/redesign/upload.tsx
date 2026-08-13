@@ -4,7 +4,12 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { DotsThreeIcon, PlusIcon, TrashIcon } from '@phosphor-icons/react';
+import {
+  DotsThreeIcon,
+  PencilIcon,
+  PlusIcon,
+  TrashIcon,
+} from '@phosphor-icons/react';
 
 import { undoUploadCompose } from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
@@ -111,11 +116,21 @@ export const ComposeUpload: React.FC<{ id?: string; className?: string }> = ({
         offset={4}
         maxWidth={170}
       >
-        <DropdownItemButton onClick={handleEdit} leadingIcon={PlusIcon}>
-          <FormattedMessage
-            id='compose.upload.menu.add_alt'
-            defaultMessage='Add alt text'
-          />
+        <DropdownItemButton
+          onClick={handleEdit}
+          leadingIcon={attachment.description ? PencilIcon : PlusIcon}
+        >
+          {attachment.description ? (
+            <FormattedMessage
+              id='compose.upload.menu.edit_alt'
+              defaultMessage='Edit alt text'
+            />
+          ) : (
+            <FormattedMessage
+              id='compose.upload.menu.add_alt'
+              defaultMessage='Add alt text'
+            />
+          )}
         </DropdownItemButton>
 
         <hr />

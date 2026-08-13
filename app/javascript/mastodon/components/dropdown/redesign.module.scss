@@ -5,7 +5,7 @@
 
   display: flex;
   flex-direction: column;
-  padding: var(--space-2xs) 0;
+  padding: var(--space-2xs);
   border-radius: var(--radius-md);
   background: var(--color-bg-primary);
   overflow: hidden;
@@ -29,6 +29,7 @@
 
   display: flex;
   align-items: center;
+  border-radius: var(--radius-sm);
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-sm);
   cursor: var(--cursor);
@@ -39,26 +40,28 @@
   label {
     cursor: inherit;
     font-weight: inherit;
+    font-size: var(--fs-sm);
   }
 
-  &:hover {
-    background-color: color-mix(
-      in srgb,
-      var(--color-bg-primary) 90%,
-      var(--color-bg-inverted)
-    );
+  &:hover:not(.menuItemDisabled) {
+    background-color: var(--color-bg-highlight);
   }
 
-  &:active,
+  &:active:not(.menuItemDisabled),
   .menuItemActive {
     background-color: var(--color-bg-inverted);
     color: var(--color-text-inverted);
+
+    label {
+      color: var(--color-text-inverted);
+    }
   }
 
-  &:has(:disabled) {
+  &:has(:disabled),
+  .menuItemDisabled {
     --cursor: not-allowed;
 
-    background-color: var(--color-bg-primary);
+    opacity: 0.5;
   }
 }
 
