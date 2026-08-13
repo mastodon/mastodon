@@ -2,7 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.6.6] - 2026-08-13
+
+### Changed
+
+- Change `mastodon:setup` task warning about trademark to match `masto` but ignore subdomains (#40143 by @ClearlyClaire)
+
+### Fixed
+
+- Fix connection errors when processing `fediverse:creator` preventing creation of preview cards (#40135 by @ClearlyClaire)
+- Fix Web UI being inaccessible with URLs ending with `.zip` (#40134 by @ClearlyClaire)
+- Fix semitransparent background of picture-in-picture video player (#40132 by @diondiondion)
+- Fix title tooltip appearing for fullscreen videos (#40127 by @diondiondion)
+- Fix image preview too dark in alt text editor dialog (#40126 by @diondiondion)
+- Fix domain block impact queries being rejected (#40122 by @ClearlyClaire)
+- Fix mobile navigation scrolling to top while opening (#40042 by @sharlayan)
+- Fix selected account being lost when creating a collection (#39897 and #40133 by @diondiondion and @sharlayan)
+
 ## [4.6.5] - 2026-08-06
+
+### Fixed
 
 - Fix Collection items being rejected because of incorrect attribute being read (#40052 by @shleeable)
 - Fix typo in embedded quote handling code (#40049 by @shleeable)
