@@ -227,7 +227,7 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
 }
 
 function wrapperUpdate(ele: HTMLElement) {
-  const scrollMax = ele.scrollHeight - ele.offsetHeight;
+  const scrollMax = ele.scrollHeight - ele.offsetHeight - 5; // 5px padding to account for sub-pixel issues
   if (scrollMax > 0 && ele.scrollTop < scrollMax) {
     ele.dataset.scrollDown = 'true';
   } else {
