@@ -4,6 +4,9 @@
     %meta{ charset: 'utf-8' }/
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' }/
 
+    - if ENV['STAGING_BANNER'] == 'true'
+      %meta{ name: 'robots', content: 'noindex, nofollow, noarchive' }/
+
     - if cdn_host?
       %link{ rel: 'dns-prefetch', href: cdn_host }/
       %meta{ name: 'cdn-host', content: cdn_host }/
@@ -42,6 +45,9 @@
     = yield :header_tags
 
   %body{ class: body_classes }
+    - if ENV['STAGING_BANNER'] == 'true'
+      #staging-banner{ 'aria-hidden' => 'true', title: 'Staging environment', style: 'position:fixed;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(45deg,#ff6a00,#ff6a00 10px,#ffb800 10px,#ffb800 20px);z-index:2147483000;pointer-events:none;' }
+
     = content_for?(:content) ? yield(:content) : yield
 
     .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => 'true' }
