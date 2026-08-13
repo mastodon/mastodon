@@ -45,9 +45,10 @@ export const selectComposeCharsCount = createAppSelector(
   (maxChars, text, spoilerText) => {
     const allText = (countableText(text) as string) + spoilerText;
     return {
-      text: allText,
-      current: length(allText),
+      text,
+      allText,
       max: maxChars ?? 500,
+      current: length(allText),
     };
   },
 );
@@ -59,12 +60,12 @@ export const selectComposeCanSubmit = createAppSelector(
     (state) => !!state.compose.get('is_changing_upload'),
     selectComposeCharsCount,
   ],
-  (isSubmitting, isUploading, isChangingUpload, { current, max }) =>
+  (isSubmitting, isUploading, isChangingUpload, { text, max }) =>
     !isSubmitting &&
     !isUploading &&
     !isChangingUpload &&
-    current <= max &&
-    current > 0,
+    text.trim().length <= max &&
+    text.trim().length > 0,
 );
 
 export const selectComposeSensitive = createAppSelector(
