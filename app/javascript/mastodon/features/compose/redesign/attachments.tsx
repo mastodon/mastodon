@@ -38,7 +38,7 @@ const ComposeMediaAttachments: React.FC = () => {
   if (totalAttachments === 1) {
     return (
       <div className={classes.mediaSingle}>
-        <ComposeUpload id={attachments.at(0)?.id} />
+        <ComposeUpload id={attachments.at(0)?.id} single />
       </div>
     );
   }

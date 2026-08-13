@@ -38,10 +38,11 @@ const selectAttachment = createAppSelector(
   },
 );
 
-export const ComposeUpload: React.FC<{ id?: string; className?: string }> = ({
-  id,
-  className,
-}) => {
+export const ComposeUpload: React.FC<{
+  id?: string;
+  className?: string;
+  single?: boolean;
+}> = ({ id, className, single }) => {
   const attachment = useAppSelector((state) => selectAttachment(state, id));
   const [open, { onToggle, onFalse }] = useToggle();
   const [target, setTarget] = useState<HTMLButtonElement | null>(null);
@@ -82,16 +83,15 @@ export const ComposeUpload: React.FC<{ id?: string; className?: string }> = ({
   return (
     <div
       className={classNames(classes.mediaUpload, className)}
-      style={
-        {
-          backgroundImage: attachment.preview_url
-            ? `url(${attachment.preview_url})`
-            : undefined,
-          backgroundPosition: `${x}% ${y}%`,
-          '--width': `${attachment.meta.original.width}px`,
-          '--height': `${attachment.meta.original.height}px`,
-        } as React.CSSProperties // Cast to allow properties
-      }
+      style={{
+        backgroundImage: attachment.preview_url
+          ? `url(${attachment.preview_url})`
+          : undefined,
+        backgroundPosition: `${x}% ${y}%`,
+        aspectRatio: single
+          ? `${attachment.meta.original.width} / ${attachment.meta.original.height}`
+          : undefined,
+      }}
       data-color-scheme='dark'
     >
       <IconButton
