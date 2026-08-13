@@ -108,7 +108,8 @@ export const hideComposer = createAppThunk((_arg, { getState, dispatch }) => {
     !!compose.get('spoiler_text') ||
     !!compose.get('poll') ||
     (compose.get('media_attachments') as unknown as Immutable.List<unknown>)
-      .size > 0;
+      .size > 0 ||
+    Number(compose.get('pending_media_attachments')) > 0;
 
   if (!isChanged) {
     dispatch(resetComposer());
