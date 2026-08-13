@@ -86,7 +86,6 @@ is:
         invalid_code_challenge_method:
           one: code_challenge_method verður að vera %{challenge_methods}.
           other: code_challenge_method verður að vera eitt af %{challenge_methods}.
-          zero: Auðkenningarþjónninn styður ekki PKCE þar sem það eru engin samþykkt gildi fyrir code_challenge_method.
         invalid_grant: Uppgefin auðkenningarheimild er ógild, útrunnin, afturkölluð, samsvarar ekki endurbirtingarslóðinni í auðkenningarbeiðninni, eða var gefin út til annars biðlara.
         invalid_redirect_uri: Endurbeiningarslóðin sem fylgdi er ekki gild.
         invalid_request:
