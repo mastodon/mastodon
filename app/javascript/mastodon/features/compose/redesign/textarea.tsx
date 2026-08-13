@@ -15,7 +15,6 @@ import {
 } from '@/mastodon/actions/compose';
 import { processPasteOrDrop } from '@/mastodon/actions/compose_typed';
 import AutosuggestTextareaOriginal from '@/mastodon/components/autosuggest_textarea';
-import { useToggle } from '@/mastodon/hooks/useToggle';
 import { COMPOSER_TEXTAREA_ID } from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
@@ -152,15 +151,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     [dispatch],
   );
 
-  // Only show placeholder if we don't have focus
-  let placeholder = intl.formatMessage(
-    type === 'message' ? messages.messagePlaceholder : messages.placeholder,
-  );
-  const [focused, { onTrue: onFocus, onFalse: onBlur }] = useToggle();
-  if (focused) {
-    placeholder = '';
-  }
-
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   return (
@@ -175,14 +165,16 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         ref={textareaRef}
         value={text}
         lang={lang}
-        placeholder={placeholder}
+        placeholder={intl.formatMessage(
+          type === 'message'
+            ? messages.messagePlaceholder
+            : messages.placeholder,
+        )}
         disabled={disabled || isSubmitting}
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
         onSuggestionsClearRequested={onSuggestionsClearRequested}
         onSuggestionSelected={onSuggestionSelected}
-        onFocus={onFocus}
-        onBlur={onBlur}
         onKeyDown={onKeyDown}
         onDrop={onDrop}
         onPaste={onPaste}

@@ -115,6 +115,10 @@
   &:focus-within {
     outline: 2px solid var(--color-border-brand);
     outline-offset: -2px;
+
+    textarea::placeholder {
+      color: transparent;
+    }
   }
 
   textarea {
