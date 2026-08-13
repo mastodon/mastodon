@@ -12,6 +12,8 @@ import { Icon } from '../icon';
 
 import classes from './redesign.module.scss';
 
+export const buttonClasses = classes;
+
 interface ButtonPropsBase<As extends 'a' | 'button'> {
   size?: 'lg' | 'md' | 'sm' | 'xs';
   variant?: 'solid' | 'ghost';
