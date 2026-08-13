@@ -3,6 +3,8 @@ import {
   cloneElement,
   forwardRef,
   isValidElement,
+  lazy,
+  Suspense,
   useCallback,
 } from 'react';
 
@@ -12,6 +14,7 @@ import type { List, Record } from 'immutable';
 
 import { ColumnIndexContext } from '@/mastodon/components/column/context';
 import { useAppSelector } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 import { Header } from 'mastodon/features/custom_homepage/components/header';
 import { CollapsibleNavigationPanel } from 'mastodon/features/navigation_panel';
@@ -37,6 +40,12 @@ import { BundleColumnError } from './bundle_column_error';
 import { ColumnLoading } from './column_loading';
 import { ComposePanel, RedirectToMobileComposeIfNeeded } from './compose_panel';
 import DrawerLoading from './drawer_loading';
+
+const LazyRedesignNavigationPanel = lazy(() =>
+  import('@/mastodon/features/navigation_panel/redesign').then(
+    ({ RedesignNavigationPanel }) => ({ default: RedesignNavigationPanel }),
+  ),
+);
 
 const componentMap = {
   COMPOSE: Compose,
@@ -119,8 +128,16 @@ export const ColumnsArea = forwardRef<
       <div className='columns-area__panels'>
         <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
           <div className='columns-area__panels__pane__inner'>
-            {renderComposePanel && <ComposePanel />}
-            <RedirectToMobileComposeIfNeeded />
+            {isRedesignEnabled() ? (
+              <Suspense>
+                <LazyRedesignNavigationPanel />
+              </Suspense>
+            ) : (
+              <>
+                {renderComposePanel && <ComposePanel />}
+                <RedirectToMobileComposeIfNeeded />
+              </>
+            )}
           </div>
         </div>
 
