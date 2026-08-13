@@ -17,11 +17,25 @@ class StagingBasicAuth
     auth = Rack::Auth::Basic::Request.new(env)
 
     if auth.provided? && auth.basic? && valid?(*auth.credentials)
-      @app.call(env)
+      status, headers, body = @app.call(env)
+      # Any cache (browser or Elestio's edge proxy) must treat authenticated
+      # and unauthenticated requests as different responses -- otherwise a
+      # cached authenticated page could be served to someone without
+      # credentials, or vice versa.
+      headers['Vary'] = [headers['Vary'], 'Authorization'].compact.join(', ')
+      [status, headers, body]
     else
       [
         401,
-        { 'Content-Type' => 'text/plain', 'WWW-Authenticate' => 'Basic realm="Staging"' },
+        {
+          'Content-Type' => 'text/plain',
+          'WWW-Authenticate' => 'Basic realm="Staging"',
+          # Must never be cached (by the browser or Elestio's edge proxy) --
+          # a cached 401 would keep rejecting correct credentials submitted
+          # shortly after within the cache window.
+          'Cache-Control' => 'no-store, private, max-age=0',
+          'Vary' => 'Authorization',
+        },
         ['Authentication required'],
       ]
     end
