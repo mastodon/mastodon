@@ -55,7 +55,7 @@ gem 'hiredis-client'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.3.0'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.7.0', require: false
+gem 'httplog', '~> 1.8.0', require: false
 gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'

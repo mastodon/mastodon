@@ -122,6 +122,7 @@ GEM
     base64 (0.3.0)
     bcp47_spec (0.2.1)
     bcrypt (3.1.22)
+    benchmark (0.5.0)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -321,7 +322,8 @@ GEM
     http_accept_language (2.1.1)
     httpclient (2.9.0)
       mutex_m
-    httplog (1.7.3)
+    httplog (1.8.0)
+      benchmark
       rack (>= 2.0)
       rainbow (>= 2.0.0)
     i18n (1.14.7)
@@ -626,7 +628,7 @@ GEM
       activesupport (>= 3.0.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.2.6)
+    rack (3.2.7)
     rack-attack (6.8.0)
       rack (>= 1.0, < 4)
     rack-cors (3.0.0)
@@ -982,7 +984,7 @@ DEPENDENCIES
   htmlentities (~> 4.3)
   http (~> 5.3.0)
   http_accept_language (~> 2.1)
-  httplog (~> 1.7.0)
+  httplog (~> 1.8.0)
   i18n
   i18n-tasks (~> 1.0)
   idn-ruby
