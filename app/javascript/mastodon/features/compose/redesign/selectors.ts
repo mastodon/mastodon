@@ -68,6 +68,32 @@ export const selectComposeCanSubmit = createAppSelector(
     text.trim().length > 0,
 );
 
+export const selectComposeMentions = createAppSelector(
+  [
+    (state) => state.accounts_map,
+    (state) => state.compose.get('text') as string,
+    (state) => state.server.server.item?.domain,
+  ],
+  (accountsMap, text, localDomain) => {
+    const accounts = new Set<string>();
+    const potentialAccounts = text.matchAll(
+      /@(?<username>[a-zA-Z0-9_.-]+)(?<domain>@[a-zA-Z0-9_.-]+)?/g,
+    );
+    for (const match of potentialAccounts) {
+      const { username, domain } = match.groups ?? {};
+      if (!username) {
+        continue;
+      }
+      const account =
+        domain && domain !== localDomain ? `${username}@${domain}` : username;
+      if (accountsMap[account]) {
+        accounts.add(accountsMap[account]);
+      }
+    }
+    return accounts;
+  },
+);
+
 export const selectComposeSensitive = createAppSelector(
   [
     (state) => !!state.compose.get('spoiler'),

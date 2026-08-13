@@ -32,11 +32,12 @@ import { Popover } from '@/mastodon/components/popover';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { selectComposePrivacy } from './selectors';
+import { selectComposeMentions, selectComposePrivacy } from './selectors';
 import classes from './styles.module.scss';
 
 export const ComposeVisibility: React.FC = () => {
   const privacy = useAppSelector(selectComposePrivacy);
+  const mentions = useAppSelector(selectComposeMentions);
   const [trigger, setTrigger] = useState<HTMLElement | null>(null);
   const [showMenu, { onToggle, onFalse }] = useToggle();
 
@@ -54,8 +55,10 @@ export const ComposeVisibility: React.FC = () => {
         )}
         {privacy === 'private' && (
           <FormattedMessage
-            id='privacy.private.short'
-            defaultMessage='Followers'
+            id='compose.post.privacy.followers'
+            defaultMessage='Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
+            description='Count is # of other people mentioned in the post. If zero, just output "Followers".'
+            values={{ count: mentions.size }}
           />
         )}
       </Button>
