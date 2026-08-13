@@ -272,8 +272,11 @@
     @include mixins.type-micro;
 
     content: counter(poll, upper-alpha);
-    width: 8px;
-    padding: var(--space-2xs);
+    width: var(--space-lg);
+    height: var(--space-lg);
+    flex-shrink: 0;
+    line-height: var(--space-lg);
+    text-align: center;
     border-radius: var(--radius-xs);
     background: var(--color-bg-highlight);
   }
