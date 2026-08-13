@@ -11,7 +11,6 @@ import IconVerified from '@/images/icons/icon_verified.svg?react';
 import type { OnAttributeHandler } from '@/mastodon/utils/html';
 import BlockIcon from '@/material-icons/400-24px/block.svg?react';
 import GroupsIcon from '@/material-icons/400-24px/group.svg?react';
-import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import SmartToyIcon from '@/material-icons/400-24px/smart_toy.svg?react';
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 
@@ -28,6 +27,7 @@ interface BadgeProps extends React.ComponentPropsWithoutRef<'div'> {
   variant?:
     | 'default'
     | 'subtle'
+    | 'accent'
     | 'inverted'
     | 'success'
     | 'warning'
@@ -40,7 +40,7 @@ type PresetBadgeProps = Omit<
 >;
 
 export const Badge: FC<BadgeProps> = ({
-  icon = <PersonIcon />,
+  icon,
   variant = 'default',
   label,
   className,
