@@ -108,18 +108,12 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
     useCallback(
       (event) => {
-        if (
-          event.key.toLowerCase() === 'enter' &&
-          (event.ctrlKey || event.metaKey)
-        ) {
+        const key = event.key.toLowerCase();
+        if (key === 'enter' && (event.ctrlKey || event.metaKey)) {
           onSubmit();
           event.preventDefault();
-        }
-        if (
-          ['esc', 'escape'].includes(event.key.toLowerCase()) &&
-          event.target instanceof HTMLTextAreaElement
-        ) {
-          event.target.blur();
+        } else if (['esc', 'escape'].includes(key)) {
+          event.currentTarget.blur();
         }
       },
       [onSubmit],
@@ -153,7 +147,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   }, [dispatch]);
   const onSuggestionSelected: SuggestSelectedHandler = useCallback(
     (position, token, suggestion) => {
-      dispatch(selectComposeSuggestion(position, token, suggestion));
+      dispatch(selectComposeSuggestion(position, token, suggestion, ['text']));
     },
     [dispatch],
   );
