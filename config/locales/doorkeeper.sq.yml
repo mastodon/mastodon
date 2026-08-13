@@ -86,7 +86,6 @@ sq:
         invalid_code_challenge_method:
           one: code_challenge_method duhet të jetë %{challenge_methods}.
           other: code_challenge_method duhet të jetë një nga %{challenge_methods}.
-          zero: Shërbyesi i autorizimeve s’mbulon PKCE, ngaqë s’ka vlera code_challenge_method të pranuara.
         invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar, s’përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit, ose është emetuar për klient tjetër.
         invalid_redirect_uri: URI e ridrejtimit s’është e vlefshme.
         invalid_request:

@@ -86,7 +86,6 @@ es-AR:
         invalid_code_challenge_method:
           one: "«code_challenge_method» debe ser %{challenge_methods}."
           other: "«code_challenge_method» debe ser uno de %{challenge_methods}."
-          zero: El servidor de autorización no es compatible con PKCE, ya que no hay valores aceptados de «code_challenge_method».
         invalid_grant: La concesión de autorización ofrecida no es válida, venció, se revocó, no coincide con la dirección web de redireccionamiento usada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La dirección web de redireccionamiento incluida no es válida.
         invalid_request:
