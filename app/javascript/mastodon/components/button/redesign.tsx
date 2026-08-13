@@ -20,6 +20,7 @@ interface ButtonPropsBase<As extends 'a' | 'button'> {
     As extends 'button' ? HTMLButtonElement : HTMLAnchorElement
   >;
   loading?: boolean;
+  active?: boolean;
   children: ReactNode;
 }
 
@@ -41,6 +42,7 @@ const BaseButton: React.FC<ButtonProps> = ({
   className,
   onClick,
   loading,
+  active,
   'aria-disabled': ariaDisabled,
   'aria-live': ariaLive,
   ...props
@@ -75,6 +77,7 @@ const BaseButton: React.FC<ButtonProps> = ({
         classes[size],
         classes[color],
         classes[variant],
+        active && classes.active,
       )}
       onClick={handleClick}
       // Disabled buttons can't have focus, so we don't really

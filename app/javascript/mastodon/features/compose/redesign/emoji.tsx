@@ -55,6 +55,7 @@ export const ComposeEmojiButton: React.FC<{ onPick: OnEmojiPick }> = ({
         icon={SmileyIcon}
         ref={setTarget}
         onClick={onToggle}
+        active={open}
       >
         <FormattedMessage
           id='emoji_button.label'

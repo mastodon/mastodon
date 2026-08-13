@@ -20,7 +20,7 @@
   line-height: 1;
   box-sizing: border-box;
 
-  &:hover:not(:active, :disabled) {
+  &:hover:not(:active, .active, :disabled) {
     background-color: var(--bg-hover);
   }
 
@@ -87,7 +87,7 @@ a.base {
     --fg: var(--color-text-inverted);
   }
 
-  &.tonal:not(:active) {
+  &.tonal:not(:active, .active) {
     --bg: var(--color-bg-highlight);
     --fg: var(--color-text-primary);
   }
@@ -101,7 +101,8 @@ a.base {
 // Ghost
 
 .ghost {
-  &:active {
+  &:active,
+  &.active {
     --bg: var(--color-bg-inverted);
     --fg: var(--color-text-inverted);
   }
@@ -109,7 +110,8 @@ a.base {
   &.accent {
     --fg: var(--color-text-brand);
 
-    &:active {
+    &:active,
+    &.active {
       --bg: var(--color-bg-brand-base);
       --fg: var(--color-text-on-brand-base);
     }
@@ -118,7 +120,8 @@ a.base {
   &.destructive {
     --fg: var(--color-text-error);
 
-    &:active {
+    &:active,
+    &.active {
       --fg: var(--color-text-on-error-base);
       --bg: var(--color-bg-error-base);
     }
