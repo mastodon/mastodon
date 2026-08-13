@@ -27,10 +27,16 @@ namespace :mastodon do
         q.messages[:valid?] = 'Invalid domain. If you intend to use unicode characters, enter punycode here'
       end
 
-      if env['LOCAL_DOMAIN'].include?('mastodon') || env['LOCAL_DOMAIN'].include?('mstdn')
-        prompt.warn 'The Mastodon name is a trademark and its use is restricted.'
-        prompt.warn 'You can read the trademark policy at https://joinmastodon.org/trademark'
-        next prompt.warn 'Nothing saved. Bye!' if prompt.no?('Continue anyway?')
+      begin
+        # This strips subdomains, only keeping one label + a public suffix
+        domain = Addressable::URI.new(host: env['LOCAL_DOMAIN']).domain
+        if domain.include?('masto') || domain.include?('mstdn')
+          prompt.warn 'The Mastodon name is a trademark and its use is restricted.'
+          prompt.warn 'You can read the trademark policy at https://joinmastodon.org/trademark'
+          next prompt.warn 'Nothing saved. Bye!' if prompt.no?('Continue anyway?')
+        end
+      rescue Addressable::URI::InvalidURIError
+        nil
       end
 
       prompt.say "\n"
