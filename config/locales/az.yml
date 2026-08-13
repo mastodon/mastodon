@@ -42,14 +42,20 @@ az:
         reset_password_user_html: "%{name}, %{target} istifadəçisinin parolunu sıfırladı"
       deleted_account: silinmiş hesab
     dashboard:
-      media_storage: Media anbarı
+      media_storage: Media deposu
       software: Yazılım
     domain_allows:
       export: Xaricə köçür
     domain_blocks:
       export: Xaricə köçür
     email_subscriptions:
+      additional_footer_texts:
+        show:
+          title: Əlavə alt məlumat mətni
       compliance_settings:
+        additional_footer_text:
+          hint: Yalnız bülleten e-poçtlarının alt məlumatlarında görünən ixtiyari mətn
+          title: Əlavə alt məlumat mətni
         title: Riayətlilik ayarları
       danger_zone:
         erase_all_data:
@@ -73,6 +79,7 @@ az:
         create: Moderasiya notu əlavə et
         description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
         title: Moderasiya notları
+      purge_description_html: Əgər bu domenin tamamilə oflayn olduğuna inanırsınızsa, deponuzdan bu domenə aid olan bütün hesab qeydlərini və əlaqəli veriləri silə bilərsiniz. Bu bir az vaxt aparacaq.
       totals_time_period_hint_html: Aşağıdakı cəmlərə bütün vaxtlardakı verilər daxildir.
     reports:
       actions:
@@ -112,8 +119,12 @@ az:
       application: Tətbiq
       metadata: Meta veri
     system_checks:
+      elasticsearch_running_check:
+        message_html: Elasticsearch-a bağlana bilmədi. Lütfən çalışdığına əmin olun və ya tam mətn axtarışını sıradan çıxardın
       elasticsearch_version_check:
         message_html: 'Uyumlu olmayan Elasticsearch versiyası: %{value}'
+      upload_check_privacy_error_object_storage:
+        message_html: "<strong>Obyekt deponuz yanlış konfiqurasiya olunub. İstifadəçilərinizin məxfiliyi risk altındadır.</strong>"
     tags:
       updated_msg: Mövzu etiketi ayarları uğurla güncəlləndi
     trends:
@@ -175,6 +186,8 @@ az:
       account_status: Hesab statusu
       functional: Hesabınız tamamilə işləkdir.
       self_destruct: "%{domain} bağlandığı üçün, hesabınıza yalnız məhdud erişiminiz olacaq."
+  author_attribution:
+    example_title: Nümunə mətn
   challenge:
     hint_html: "<strong>İpucu:</strong> Sonrakı bir saat ərzində sizdən parolu soruşmayacağıq."
     invalid_password: Yararsız parol
@@ -193,12 +206,14 @@ az:
     archive_takeout:
       hint_html: "<strong>Göndərişlərinizin və yüklədiyiniz medianın</strong> bir arxivini tələb edə bilərsiniz. Xaricə köçürülmüş verilər, istənilən uyumlu yazılım tərəfindən oxuna bilən ActivityPub formatında olacaq. Hər 7 gündə bir dəfə arxiv tələb edə bilərsiniz."
     domain_blocks: Domen əngəlləmələri
-    storage: Media anbarı
+    storage: Media deposu
   filters:
     contexts:
       public: Ümumi zaman xətləri
     edit:
       statuses_hint_html: Bu filtr, aşağıdakı açar sözləri ilə uyuşmasından asılı olmayaraq fərdi göndərişləri seçmək üçün tətbiq olunur. <a href="%{path}">Göndərişləri incələyin və ya filtrdən silin</a>.
+    errors:
+      invalid_context: Heç bir kontekts yoxdur və ya yararsız kontekts təqdim olunub
     index:
       contexts: "%{contexts} üzrə filtrlər"
       empty: Filtriniz yoxdur.
