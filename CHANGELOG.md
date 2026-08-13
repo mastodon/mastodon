@@ -2,7 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.16] - 2026-08-13
+
+### Changed
+
+- Change `mastodon:setup` task warning about trademark to match `masto` but ignore subdomains (#40143 by @ClearlyClaire)
+
+### Fixed
+
+- Fix connection errors when processing `fediverse:creator` preventing creation of preview cards (#40135 by @ClearlyClaire)
+- Fix Web UI being inaccessible with URLs ending with `.zip` (#40134 by @ClearlyClaire)
+- Fix domain block impact queries being rejected (#40122 by @ClearlyClaire)
+
 ## [4.5.15] - 2026-08-06
+
+### Fixed
 
 - Fix typo in embedded quote handling code (#40049 by @shleeable)
 - Fix account merging worker incorrectly merging `Appeal` and `AccountWarning` records (#39982 by @shleeable)
