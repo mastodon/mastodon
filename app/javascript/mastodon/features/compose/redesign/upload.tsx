@@ -25,8 +25,8 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 
+import classes from './attachments.module.scss';
 import { selectComposeAttachments } from './selectors';
-import classes from './styles.module.scss';
 
 const selectAttachment = createAppSelector(
   [selectComposeAttachments, (_, id?: string) => id],

@@ -2,12 +2,12 @@ import type React from 'react';
 
 import { useAppSelector } from '@/mastodon/store';
 
+import classes from './attachments.module.scss';
 import { ComposePoll } from './poll';
 import {
   selectComposeAttachments,
   selectComposeHasAttachments,
 } from './selectors';
-import classes from './styles.module.scss';
 import { ComposeUpload } from './upload';
 
 export const ComposeAttachments: React.FC = () => {
