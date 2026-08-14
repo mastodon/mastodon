@@ -224,13 +224,32 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
             end
           end
 
-          context 'when user has not enabled 2FA yet' do
-            it 'updates user secret' do
+          context 'when user has enabled OTP but has spent every recovery code' do
+            before do
+              user.otp_secret = User.generate_otp_secret(32)
+              user.otp_required_for_login = true
+              codes = user.generate_otp_backup_codes!
+              user.save!
+              codes.each { |code| user.invalidate_otp_backup_code!(code) }
+            end
+
+            it 'issues new backup codes without invalidating the authenticator app' do
               controller.session[:webauthn_challenge] = challenge
 
               expect do
                 post :create, params: { credential: new_webauthn_credential, nickname: nickname }
-              end.to(change { user.reload.otp_secret })
+              end.to change { user.reload.otp_backup_codes.size }.from(0).to(User.otp_number_of_backup_codes)
+                .and(not_change { user.reload.otp_secret })
+            end
+          end
+
+          context 'when user has not enabled 2FA yet' do
+            it 'does not set an otp secret' do
+              controller.session[:webauthn_challenge] = challenge
+
+              expect do
+                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+              end.to(not_change { user.reload.otp_secret })
             end
 
             it 'generates backup codes' do

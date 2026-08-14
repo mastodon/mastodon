@@ -49,7 +49,6 @@ module Settings
             status = :ok
 
             if current_user.otp_backup_codes.blank?
-              current_user.otp_secret = User.generate_otp_secret(32)
               session[:new_recovery_codes] = current_user.generate_otp_backup_codes!
               current_user.save!
 
