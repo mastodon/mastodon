@@ -60,7 +60,7 @@ export interface BaseApiAccountJSON {
   show_featured: boolean;
   noindex?: boolean;
   note: string;
-  roles?: ApiAccountJSON[];
+  roles?: ApiAccountRoleJSON[];
   statuses_count: number;
   uri: string;
   url?: string;
@@ -71,6 +71,7 @@ export interface BaseApiAccountJSON {
   memorial?: boolean;
   hide_collections: boolean;
   email_subscriptions?: boolean;
+  invalid_handle?: boolean;
 }
 
 // See app/serializers/rest/muted_account_serializer.rb

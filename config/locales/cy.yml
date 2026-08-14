@@ -4,6 +4,7 @@ cy:
     about_mastodon_html: 'Rhwydwaith cymdeithasol y dyfodol: Dim hysbysebion, dim gwyliadwriaeth gorfforaethol, dylunio moesegol a datganoli! Chi sy berchen eich data gyda Mastodon!'
     contact_missing: Heb ei osodF
     contact_unavailable: Ddim yn berthnasol
+    default_thumbnail_description: Mae dau mastodon cartŵn yn gwenu (sy'n edrych fel eliffantod) yn taflu awyren bapur rhyngddyn nhw. Maen nhw wedi'u hamgylchynu gan awyr las llachar a phlanedau arnofiol gyda choed a rhagor o mastodonau arnyn nhw.
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     title: Ynghylch
   accounts:
@@ -34,7 +35,7 @@ cy:
       many: Postiad
       one: Postiad
       other: Postiad
-      two: Bostiad
+      two: Postiad
       zero: Postiad
     posts_tab_heading: Postiadau
     self_follow_error: Chewch chi ddim dilyn eich cyfrif eich hun
@@ -75,6 +76,8 @@ cy:
       custom: Cyfaddas
       delete: Dileu data
       deleted: Wedi dileu
+      deletion_irreversible: Mae data'r cyfrif hwn wedi'i ddileu a does dim modd ei adfer.
+      deletion_reversible_hint_html: Mae'r cyfrif hwn yn aros i gael ei ddileu, a bydd y data'n cael ei ddileu'n llwyr ar %{date}.
       demote: Diraddio
       destroyed_msg: Mae data %{username} bellach mewn ciw i gael ei ddileu yn fuan
       disable: Rhewi
@@ -304,7 +307,11 @@ cy:
         enable_relay_html: Galluogodd %{name} y cyfnewidiad %{target}
         enable_sign_in_token_auth_user_html: Mae %{name} wedi galluogi dilysiad tocyn e-bost %{target}
         enable_user_html: Mae %{name} wedi galluogi mewngofnodi defnyddiwr %{target}
+        listable_tag_html: mae modd ei awgrymu
         memorialize_account_html: Newidiodd %{name} gyfrif %{target} i dudalen memoriam
+        not_listable_tag_html: fydd ddim yn cael ei awgrymu
+        not_trendable_tag_html: fydd ddim yn ymddangos o dan trendiau
+        not_usable_tag_html: does dim modd ei ddefnyddio
         promote_user_html: Mae %{name} wedi hyrwyddo defnyddiwr %{target}
         publish_terms_of_service_html: Mae %{name} wedi cyhoeddi diweddariadau i'r telerau gwasanaeth
         reject_appeal_html: Mae %{name} wedi gwrthod apêl penderfyniad cymedroli %{target}
@@ -317,6 +324,7 @@ cy:
         sensitive_account_html: Mae %{name} wedi marcio cyfrwng %{target} fel un sensitif
         silence_account_html: Mae %{name} wedi cyfyngu cyfrif %{target}
         suspend_account_html: Mae %{name} wedi atal cyfrif %{target}
+        trendable_tag_html: gall ymddangos o dan trendiau
         unassigned_report_html: Mae %{name} wedi dad neilltuo adroddiad %{target}
         unblock_email_account_html: Mae %{name} wedi dad rwystro cyfeiriad e-bost %{target}
         unsensitive_account_html: Mae %{name} wedi dad farcio cyfryngau %{target} fel rhai sensitif
@@ -329,8 +337,10 @@ cy:
         update_ip_block_html: Mae %{name} wedi newid rheol IP %{target}
         update_report_html: Mae %{name} wedi diweddaru adroddiad %{target}
         update_status_html: Mae %{name} wedi diweddaru postiad gan %{target}
+        update_tag_html: 'Newidiodd %{name} osodiadau %{target} i: '
         update_user_role_html: Mae %{name} wedi newid rôl %{target}
         update_username_block_html: Mae %{name} wedi diweddaru rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
+        usable_tag_html: mae modd ei ddefnyddio;
       deleted_account: cyfrif wedi'i ddileu
       empty: Dim logiau ar gael.
       filter_by_action: Hidlo yn ôl gweithred
@@ -545,6 +555,21 @@ cy:
           no_lists_yet: Dim rhestrau eto
         last_email: E-bost diwethaf
         lead: Bydd cyfrifon sydd wedi galluogi'r nodwedd ac sydd â thanysgrifwyr yn ymddangos isod.
+        show:
+          confirm_disable_feature: Analluogi cylchlythyrau e - bost ar gyfer %{name}? Fydd diweddariadau e - bost ddim yn cael eu hanfon ar gyfer y cyfrif hwn mwyach. Bydd y defnyddiwr yn dal i allu ail alluogi'r nodwedd yn eu gosodiadau cyfrif. I ddileu mynediad i'r nodwedd hon yn barhaol, golygwch ganiatâd y cyfrif yn Rolau.
+          confirm_remove_subscriber: Fydd %{email} ddim yn derbyn negeseuon e-bost gan %{name} mwyach. Does dim modd dadwneud y weithred hon.
+          consent: Mae tanysgrifwyr wedi cydsynio i dderbyn postiadau trwy e-bost yn unig. Peidiwch â defnyddio'r dudalen hon at unrhyw ddiben arall.
+          date: Dyddiad cofrestru
+          disable_feature: Analluogi nodwedd
+          disabled: Roedd y nodwedd wedi'i hanalluogi ac nid yw e-byst bellach yn cael eu hanfon at y rhestr hon.
+          email: Cyfeiriad e-bost
+          empty:
+            hint: Does neb tanysgrifio i'r cyfrif hwn eto.
+            no_subscribers_yet: Dim tanysgrifwyr eto
+          enable_feature: Galluogi nodwedd
+          no_access_html: Does gan y cyfrif hwn ddim mo'r caniatâd angenrheidiol mwyach i alluogi'r nodwedd. Newidiwch hyn yn <a href="%{roles_path}">Rolau</a>.
+          title: Cylchlythyrau e-bost %{name}
+          view_account: Gweld cyfrif
         status: Statws
         subscribers: Tanysgrifwyr
         title: Rhestrau postio
@@ -766,6 +791,8 @@ cy:
       new:
         title: Creu rheol IP newydd
       no_ip_block_selected: Heb newid unrhyw reolau IP gan na ddewiswyd yr un ohonyn nhw
+      reset: Ailosod
+      search: Chwilio
       title: Rheolau IP
     relationships:
       title: Perthnasau %{acct}
@@ -800,6 +827,7 @@ cy:
       action_log: Log archwilio
       action_taken_by: Camau a gymerwyd gan
       actions:
+        delete_description_html: Bydd y postiadau yr adroddwyd amdanyn nhw'n cael eu dileu a bydd rhybudd yn cael ei recordio i'ch helpu i gynyddu achosion o dordyletswydd yn y dyfodol gan yr un cyfrif.
         mark_as_sensitive_description_html: Bydd y cyfryngau yn y postiadau sy'n cael eu hadrodd yn cael eu marcio'n sensitif a bydd rhybudd yn cael ei recordio i'ch helpu i gynyddu achosion o dorri rheolau yn y dyfodol gan yr un cyfrif.
         other_description_html: Gweld rhagor o ddewisiadau rheoli ymddygiad y cyfrif a chyfaddasu cyfathrebiad i'r cyfrif a adroddwyd.
         resolve_description_html: Ni fydd unrhyw gamau yn cael eu cymryd yn erbyn y cyfrif a adroddwyd, ni chofnodwyd rhybudd, a bydd yr adroddiad yn cael ei gau.
@@ -826,6 +854,7 @@ cy:
       confirm: Cadarnhau
       confirm_action: Cadarnhau gweithred cymedroli yn erbyn @%{acct}
       created_at: Adroddwyd
+      delete_and_resolve: Dileu cynnwys
       forwarded: Wedi'i anfon ymlaen
       forwarded_replies_explanation: Mae'r adroddiad hwn gan ddefnyddiwr o weinydd arall ac am gynnwys pell. Mae wedi ei anfon ymlaen atoch chi oherwydd bod y cynnwys sy'n cael ei adrodd yn ateb i un o'ch defnyddwyr.
       forwarded_to: Wedi'i anfon ymlaen i %{domain}
@@ -1015,6 +1044,17 @@ cy:
           authenticated: Defnyddwyr dilys yn unig
           disabled: Gofyn am rôl defnyddiwr penodol
           public: Pawb
+      landing_page:
+        hints:
+          about_html: Tudalen gyda'r disgrifiad, manylion cyswllt, rheolau a manylion eraill am y gweinydd hwn.
+          local_feed_html: Llif byw sy'n cynnwys y postiadau diweddaraf gan ddefnyddwyr ar y gweinydd hwn.
+          overview_html: Tudalen sy'n dangos disgrifiad eich gweinydd ochr yn ochr â'r postiadau lleol diweddaraf gan ddefnyddwyr ar y gweinydd hwn.
+          trends_html: Tudalen sy'n dangos beth sy'n boblogaidd ar y gweinydd hwn ar hyn o bryd.
+        values:
+          about: Tudalen amdanom ni
+          local_feed: Llif byw lleol
+          overview: Trosolwg
+          trends: Yn Trendio
       registrations:
         moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
         preamble: Rheoli pwy all greu cyfrif ar eich gweinydd.
@@ -1034,17 +1074,22 @@ cy:
     site_uploads:
       delete: Dileu ffeil sydd wedi'i llwytho
       destroyed_msg: Llwytho i fyny i'r wefan wedi'i dileu yn llwyddiannus!
+    skip_to_content: Mynd i'r cynnwys
     software_updates:
       critical_update: Hanfodol - diweddarwch yn fuan
       description: Argymhellir cadw'ch gosodiad Mastodon yn gyfredol i elwa o'r atgyweiriadau a'r nodweddion diweddaraf. Hefyd, weithiau mae'n hanfodol diweddaru Mastodon mewn modd amserol er mwyn osgoi materion diogelwch. Am y rhesymau hyn, mae Mastodon yn gwirio am ddiweddariadau bob 30 munud, a bydd yn eich hysbysu yn unol â'ch dewisiadau hysbysu e-bost.
       documentation_link: Dysgu rhagor
+      nearing_eol: Bydd y gefnogaeth i'r gangen rydych chi'n ei rhedeg ar hyn o bryd yn dod i ben ar %{date}, ystyriwch ddiweddaru.
       release_notes: Nodiadau ryddhau
+      supported_until: Cymorthyn dod i ben ar %{date}
       title: Diweddariadau ar gael
       type: Math
       types:
         major: Rhyddhad mawr
         minor: Ryddhad llai
         patch: Rhyddhad cywiro - cywiriadau gwallau a newidiadau hawdd eu gosod
+      unsupported_branch: Nid yw'r gangen rydych chi'n ei rhedeg ar hyn o bryd yn cael ei chefnogi, diweddarwch cyn gynted â phosibl.
+      unsupported_since: Heb ei gynnal ers %{date}
       version: Fersiwn
     statuses:
       account: Awdur
@@ -1276,6 +1321,7 @@ cy:
           zero: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
       title: Argymhellion a Threndiau
       trending: Trendio
+    update_available: Diweddariad ar gael
     username_blocks:
       add_new: Ychwanegu newydd
       block_registrations: Rhwystro cofrestriadau
@@ -1329,6 +1375,15 @@ cy:
     auto_close_registrations:
       body: Oherwydd diffyg gweithgarwch cymedrolwr diweddar, mae cofrestriadau ar %{instance} wedi'u newid yn awtomatig i'r angen i gael adolygiad â llaw, er mwyn atal %{instance} rhag cael ei ddefnyddio fel llwyfan ar gyfer actorion drwg posibl. Gallwch ei newid yn ôl i agor cofrestriadau ar unrhyw adeg.
       subject: Mae cofrestriadau ar gyfer %{instance} wedi'u newid yn awtomatig i'r angen i gael cymeradwyaeth
+    end_of_support_out_of_support_warning:
+      body: Nid yw'r fersiwn Mastodon sy'n cael ei ddefnyddio ar eich gweinydd ar hyn o bryd yn cael ei gefnogi mwyach. Rydym yn argymell eich bod yn ei ddiweddaru cyn gynted â phosibl!
+      subject: Nid yw Mastodon %{branch} sy'n cael ei ddefnyddio ar %{instance} bellach yn cael ei gynnal!
+    end_of_support_three_months_warning:
+      body: Bydd y fersiwn Mastodon sy'n cael ei ddefnyddio ar hyn o bryd ar eich gweinydd yn peidio cael ei gefnogi ymhen 3 mis. Efallai y byddwch am ddiweddaru i gangen newydd ymlaen llaw.
+      subject: Bydd cefnogaeth ar gyfer Mastodon %{branch} sy'n cael ei ddefnyddio ar %{instance} i ddod i ben ymhen 3 mis.
+    end_of_support_two_weeks_warning:
+      body: Bydd y fersiwn Mastodon sy'n cael ei defnyddio ar hyn o bryd ar eich gweinydd yn peidio cael ei chefnogi mewn 2 wythnos. Rydym yn argymell eich bod yn diweddaru i gangen newydd ymlaen llaw.
+      subject: Bydd cefnogaeth ar gyfer Mastodon %{branch} sy'n cael ei ddefnyddio ar %{instance} i ddod i ben ymhen pythefnos.
     new_appeal:
       actions:
         delete_statuses: i ddileu eu postiadau
@@ -1569,6 +1624,7 @@ cy:
       your_appeal_rejected: Mae eich apêl wedi'i gwrthod
   edit_profile:
     other: Arall
+    privacy_redesign_body: Mae'r dewis i ddangos y rhai sy'n eich dilynwyr a'ch dilynwyr bellach yn cael ei wneud yn eich proffil.
     redesign_body: Mae modd golygu proffiliau’n uniongyrchol o’r dudalen proffil nawr.
     redesign_button: Ewch yno
     redesign_title: Mae profiad golygu proffil newydd
@@ -1605,7 +1661,9 @@ cy:
         success_html: Byddwch nawr yn dechrau derbyn negeseuon e-bost pan fydd %{name} yn cyhoeddi postiadau newydd. Ychwanegwch %{sender} at eich cysylltiadau fel nad yw'r postiadau hyn yn mynd i'ch ffolder Sbam.
         title: Rydych chi wedi cofrestru
         unsubscribe: Dad-danysgrifio
+    disabled: Analluogwyd
     inactive: Anweithredol
+    no_access: Dim mynediad
     status: Statws
     subscribers: Tanysgrifwyr
   emoji_styles:
@@ -1641,7 +1699,9 @@ cy:
     blocks: Rydych chi'n blocio
     bookmarks: Llyfrnodau
     csv: CSV
+    custom_filters: Hidlau
     domain_blocks: Blociau parth
+    json: JSON
     lists: Rhestrau
     mutes: Rydych chi'n anwybyddu
     storage: Storfa cyfryngau
@@ -1747,7 +1807,9 @@ cy:
       empty: Ffeil CSV wag
       incompatible_type: Nid yw'n gydnaws â'r math mewnforio a ddewiswyd
       invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
+      invalid_json_file: 'Ffeil JSON annilys. Gwall: %{error}'
       over_rows_processing_limit: yn cynnwys mwy na %{count} o resi
+      status_not_found_warning: Mae rhai o'ch hidlau yn cuddio postiadau penodol nad yw'r gweinydd hwn yn eu hadnabod. Fydd y cofnodion hyn ddim yn cael eu hidlo'n awtomatig os fyddan nhw'n cael eu darganfod yn ddiweddarach gan y gweinydd.
       too_large: Mae'r ffeil yn rhy fawr
     failures: Methiannau
     imported: Mewnforwyd
@@ -1772,6 +1834,13 @@ cy:
         other: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiadau</strong> gan <strong>%{filename}</strong>.
         two: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiadau</strong> gan <strong>%{filename}</strong>.
         zero: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiadau</strong> gan <strong>%{filename}</strong>.
+      custom_filters_html:
+        few: Rydych ar fin <strong>amnewid eich hidlau</strong> â chynnwys <strong>%{filename}.</strong> Bydd hyd at <strong>%{count} o hidlau</strong> yn cael eu hychwanegu at hidlau newydd.
+        many: Rydych ar fin <strong>amnewid eich hidlau</strong> â chynnwys <strong>%{filename}.</strong> Bydd hyd at <strong>%{count} o hidlau</strong> yn cael eu hychwanegu at hidlau newydd.
+        one: Rydych ar fin <strong>amnewid eich hidlau</strong> â chynnwys <strong>%{filename}.</strong> Bydd hyd at <strong>%{count} o hidlau</strong> yn cael eu hychwanegu at hidlau newydd.
+        other: Rydych ar fin <strong>amnewid eich hidlau</strong> â chynnwys <strong>%{filename}.</strong> Bydd hyd at <strong>%{count} o hidlau</strong> yn cael eu hychwanegu at hidlau newydd.
+        two: Rydych ar fin <strong>amnewid eich hidlau</strong> â chynnwys <strong>%{filename}.</strong> Bydd hyd at <strong>%{count} o hidlau</strong> yn cael eu hychwanegu at hidlau newydd.
+        zero: Rydych ar fin <strong>amnewid eich hidlau</strong> â chynnwys <strong>%{filename}.</strong> Bydd hyd at <strong>%{count} o hidlau</strong> yn cael eu hychwanegu at hidlau newydd.
       domain_blocking_html:
         few: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
         many: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
@@ -1815,6 +1884,13 @@ cy:
         other: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
         two: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
         zero: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
+      custom_filters_html:
+        few: Rydych ar fin ychwanegu hyd at <strong>%{count} hidl</strong> o <strong>%{filename} </strong> at eich <strong>hidlau</strong>.
+        many: Rydych ar fin ychwanegu hyd at <strong>%{count} hidl</strong> o <strong>%{filename} </strong> at eich <strong>hidlau</strong>.
+        one: Rydych ar fin ychwanegu hyd at <strong>hidlydd %{count} </strong> o <strong>%{filename} </strong> at eich <strong>hidlwyr</strong>.
+        other: Rydych ar fin ychwanegu hyd at <strong>%{count} hidl</strong> o <strong>%{filename} </strong> at eich <strong>hidlau</strong>.
+        two: Rydych ar fin ychwanegu hyd at <strong>%{count} hidl</strong> o <strong>%{filename} </strong> at eich <strong>hidlau</strong>.
+        zero: Rydych ar fin ychwanegu hyd at <strong>%{count} hidl</strong> o <strong>%{filename} </strong> at eich <strong>hidlau</strong>.
       domain_blocking_html:
         few: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
         many: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
@@ -1867,6 +1943,7 @@ cy:
     types:
       blocking: Rhestr blocio
       bookmarks: Llyfrnodau
+      custom_filters: Hidlau
       domain_blocking: Rhestr rhwystro parth
       following: Rhestr ddilynion
       lists: Rhestrau
@@ -2038,6 +2115,7 @@ cy:
     administration_emails: E-byst hysbysiadau gweinyddol
     email_events: Digwyddiadau ar gyfer hysbysiadau e-bost
     email_events_hint: 'Dewiswch ddigwyddiadau yr ydych am dderbyn hysbysiadau ar eu cyfer:'
+    moderation_emails: Hysbysiadau e-byst cymedroli
   number:
     human:
       decimal_units:
@@ -2061,7 +2139,7 @@ cy:
     next: Nesaf
     older: Hŷn
     prev: Blaenorol
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Rydych chi eisoes wedi pleidleisio ar yr arolwg hwn

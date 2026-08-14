@@ -16,7 +16,7 @@ export const SkipLinks: React.FC<{
 }> = ({ multiColumn, onFocusGettingStartedColumn }) => {
   const intl = useIntl();
   const columnCount = useAppSelector((state) => {
-    const settings = state.settings as Immutable.Collection<string, unknown>;
+    const settings = state.settings;
     return (settings.get('columns') as Immutable.Map<number, unknown>).size;
   });
 

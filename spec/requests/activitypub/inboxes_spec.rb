@@ -62,6 +62,33 @@ RSpec.describe 'ActivityPub Inboxes' do
               .to have_http_status(202)
           end
         end
+
+        context 'when account is permanently deleted' do
+          before do
+            account.mark_deleted!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            subject
+
+            expect(response)
+              .to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            account.mark_deleted!
+          end
+
+          it 'returns http accepted' do
+            subject
+
+            expect(response)
+              .to have_http_status(202)
+          end
+        end
       end
     end
 
@@ -134,6 +161,30 @@ RSpec.describe 'ActivityPub Inboxes' do
 
         expect(response)
           .to have_http_status(202)
+      end
+
+      context 'with OpenTelemetry traces' do
+        subject { post inbox_path, params: activity.to_json, headers:, sign_with: remote_account }
+
+        let(:activity) { { id: 'https://example.net/~mallory/87374', type: 'Like' } }
+
+        let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
+
+        let(:span) { instance_double(OpenTelemetry::Trace::Span) }
+
+        before do
+          allow(OpenTelemetry::Trace).to receive(:current_span).and_return(span)
+          allow(span).to receive(:recording?).and_return(true)
+          allow(span).to receive(:set_attribute)
+        end
+
+        it 'adds attributes to current span' do
+          subject
+
+          expect(response).to have_http_status(202)
+          expect(span).to have_received(:set_attribute).with('activitypub.activity.id', activity[:id])
+          expect(span).to have_received(:set_attribute).with('activitypub.activity.type', activity[:type])
+        end
       end
 
       def stub_follow_sync_worker

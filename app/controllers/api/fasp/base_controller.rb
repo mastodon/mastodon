@@ -4,7 +4,6 @@ class Api::Fasp::BaseController < ApplicationController
   class Error < ::StandardError; end
 
   DIGEST_PATTERN = /sha-256=:(.*?):/
-  KEYID_PATTERN = /keyid="(.*?)"/
 
   attr_reader :current_provider
 

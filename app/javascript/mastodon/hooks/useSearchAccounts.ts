@@ -30,7 +30,7 @@ export function useSearchAccounts({
     'idle' | 'loading' | 'error'
   >('idle');
 
-  const searchRequestRef = useRef<AbortController | null>(null);
+  const searchRequestRef = useRef<AbortController>(null);
 
   const searchAccounts = useDebouncedCallback(
     async (value: string) => {

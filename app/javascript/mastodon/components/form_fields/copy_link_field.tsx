@@ -22,11 +22,21 @@ interface CopyLinkFieldProps extends CommonFieldWrapperProps, TextInputProps {
 
 export const CopyLinkField = forwardRef<HTMLInputElement, CopyLinkFieldProps>(
   (
-    { id, label, hint, status, value, required, className, ...otherProps },
+    {
+      id,
+      label,
+      hint,
+      status,
+      value,
+      required,
+      className,
+      wrapperClassName,
+      ...otherProps
+    },
     ref,
   ) => {
     const intl = useIntl();
-    const inputRef = useRef<HTMLInputElement | null>();
+    const inputRef = useRef<HTMLInputElement>(null);
     const handleFocus = useCallback(() => {
       inputRef.current?.select();
     }, []);
@@ -50,6 +60,7 @@ export const CopyLinkField = forwardRef<HTMLInputElement, CopyLinkFieldProps>(
         required={required}
         status={status}
         inputId={id}
+        className={wrapperClassName}
       >
         {(inputProps) => (
           <div className={classes.wrapper}>

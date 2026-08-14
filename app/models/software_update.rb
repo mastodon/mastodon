@@ -4,13 +4,14 @@
 #
 # Table name: software_updates
 #
-#  id            :bigint(8)        not null, primary key
-#  release_notes :string           default(""), not null
-#  type          :integer          default("patch"), not null
-#  urgent        :boolean          default(FALSE), not null
-#  version       :string           not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id             :bigint(8)        not null, primary key
+#  end_of_support :date
+#  release_notes  :string           default(""), not null
+#  type           :integer          default("patch"), not null
+#  urgent         :boolean          default(FALSE), not null
+#  version        :string           not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 class SoftwareUpdate < ApplicationRecord
@@ -32,6 +33,10 @@ class SoftwareUpdate < ApplicationRecord
     gem_version > runtime_version
   end
 
+  def unsupported?
+    end_of_support&.past?
+  end
+
   class << self
     def check_enabled?
       Rails.configuration.x.mastodon.software_update_url.present?
@@ -45,6 +50,10 @@ class SoftwareUpdate < ApplicationRecord
       return [] unless check_enabled?
 
       all.to_a.filter(&:pending?)
+    end
+
+    def pending?
+      pending_to_a.present?
     end
 
     def urgent_pending?

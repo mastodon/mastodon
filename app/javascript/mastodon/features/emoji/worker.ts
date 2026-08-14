@@ -9,13 +9,13 @@ import {
 import type { EmojiWorkerMessage } from './types';
 
 addEventListener('message', handleMessage);
-self.postMessage('ready'); // After the worker is ready, notify the main thread
+self.postMessage({ type: 'ready' } satisfies EmojiWorkerMessage); // After the worker is ready, notify the main thread
 
 function handleMessage(event: MessageEvent<EmojiWorkerMessage>) {
   const { data } = event;
   if (data.type === 'debug') {
     debug.enable(data.debugValue);
-  } else {
+  } else if (data.type === 'load') {
     void loadData(data.storeName);
   }
 }
@@ -31,6 +31,10 @@ async function loadData(storeName: string) {
   }
 
   if (importCount) {
-    self.postMessage(`loaded ${importCount} emojis into ${storeName}`);
+    self.postMessage({
+      type: 'done',
+      storeName,
+      importCount,
+    } satisfies EmojiWorkerMessage);
   }
 }

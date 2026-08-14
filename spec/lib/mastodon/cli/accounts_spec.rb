@@ -36,10 +36,10 @@ RSpec.describe Mastodon::CLI::Accounts do
 
     shared_examples 'a new user with given email address and username' do
       it 'creates user and accounts from options and displays success message' do
-        allow(SecureRandom).to receive(:hex).and_return('test_password')
+        allow(SecureRandom).to receive(:hex).and_return('0abcdef0')
 
         expect { subject }
-          .to output_results('OK', 'New password: test_password')
+          .to output_results('OK', 'New password: 0abcdef0')
         expect(user_from_options).to be_present
         expect(account_from_options).to be_present
       end
@@ -363,7 +363,7 @@ RSpec.describe Mastodon::CLI::Accounts do
 
         let(:user) { Fabricate(:user, password: original_password) }
         let(:original_password) { 'foobar12345' }
-        let(:new_password) { 'new_password12345' }
+        let(:new_password) { '0abcdef0' }
 
         it 'returns a new password for the user' do
           allow(SecureRandom).to receive(:hex).and_return(new_password)
@@ -644,25 +644,6 @@ RSpec.describe Mastodon::CLI::Accounts do
         expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
-      end
-    end
-  end
-
-  describe '#fix_duplicates' do
-    let(:action) { :fix_duplicates }
-    let(:service_double) { instance_double(ActivityPub::FetchRemoteAccountService, call: nil) }
-    let(:uri) { 'https://host.example/same/value' }
-
-    context 'when there are duplicate URI accounts' do
-      before do
-        Fabricate.times(2, :account, domain: 'host.example', uri: uri)
-        allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(service_double)
-      end
-
-      it 'finds the duplicates and calls fetch remote account service' do
-        expect { subject }
-          .to output_results('Duplicates found')
-        expect(service_double).to have_received(:call).with(uri)
       end
     end
   end
@@ -951,15 +932,15 @@ RSpec.describe Mastodon::CLI::Accounts do
       let(:arguments) { [account.username] }
 
       it 'correctly rotates keys for the specified account' do
-        old_private_key = account.private_key
-        old_public_key = account.public_key
+        old_private_key = account.keypair.private_key
+        old_public_key = account.keypair.public_key
 
         expect { subject }
           .to output_results('OK')
         account.reload
 
-        expect(account.private_key).to_not eq(old_private_key)
-        expect(account.public_key).to_not eq(old_public_key)
+        expect(account.keypair.private_key).to_not eq(old_private_key)
+        expect(account.keypair.public_key).to_not eq(old_public_key)
       end
 
       it 'broadcasts the new keys for the specified account' do
@@ -986,15 +967,15 @@ RSpec.describe Mastodon::CLI::Accounts do
       let(:options) { { all: true } }
 
       it 'correctly rotates keys for all local accounts' do
-        old_private_keys = accounts.map(&:private_key)
-        old_public_keys = accounts.map(&:public_key)
+        old_private_keys = accounts.map { |account| account.keypair.private_key }
+        old_public_keys = accounts.map { |account| account.keypair.public_key }
 
         expect { subject }
           .to output_results('rotated')
         accounts.each(&:reload)
 
-        expect(accounts.map(&:private_key)).to_not eq(old_private_keys)
-        expect(accounts.map(&:public_key)).to_not eq(old_public_keys)
+        expect(accounts.map { |account| account.keypair.private_key }).to_not eq(old_private_keys)
+        expect(accounts.map { |account| account.keypair.public_key }).to_not eq(old_public_keys)
       end
 
       it 'broadcasts the new keys for each account' do

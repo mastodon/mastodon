@@ -10,6 +10,7 @@ import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import type { Account } from '@/mastodon/models/account';
 import {
   addCollectionItem,
+  collectionEditorActions,
   removeCollectionItem,
 } from '@/mastodon/reducers/slices/collections';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
@@ -23,6 +24,7 @@ import {
 } from '../collections/overview/created_by_account';
 
 import { CollectionToggle } from './collection_toggle';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   close: {
@@ -107,6 +109,23 @@ export const CollectionAdder: React.FC<{
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const currentAccountId = useCurrentAccountId();
   const { collections, status } = useCollectionsCreatedBy(currentAccountId);
+  const dispatch = useAppDispatch();
+
+  const handleNewCollection = useCallback(() => {
+    if (account) {
+      dispatch(
+        collectionEditorActions.reset({
+          account_id: account.id,
+          state:
+            account.feature_approval.current_user === 'manual'
+              ? 'pending'
+              : 'accepted',
+        }),
+      );
+    }
+
+    onClose();
+  }, [account, dispatch, onClose]);
 
   return (
     <div className='modal-root__modal dialog-modal'>
@@ -155,12 +174,22 @@ export const CollectionAdder: React.FC<{
                 />
               }
             >
-              <NewCollectionButton onClick={onClose} />
+              <NewCollectionButton compact onClick={handleNewCollection} />
             </EmptyState>
           ) : (
-            collections.map((item) => (
-              <ListItem key={item.id} collection={item} account={account} />
-            ))
+            <>
+              <div className={classes.newCollection}>
+                <NewCollectionButton secondary onClick={handleNewCollection}>
+                  <FormattedMessage
+                    id='collections.create_new_collection'
+                    defaultMessage='Create new collection'
+                  />
+                </NewCollectionButton>
+              </div>
+              {collections.map((item) => (
+                <ListItem key={item.id} collection={item} account={account} />
+              ))}
+            </>
           )}
         </div>
       </div>

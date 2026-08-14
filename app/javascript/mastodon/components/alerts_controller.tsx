@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useIntl } from 'react-intl';
+import { defineMessage, useIntl } from 'react-intl';
 import type { IntlShape } from 'react-intl';
 
 import { dismissAlert } from 'mastodon/actions/alerts';
@@ -75,6 +75,9 @@ const TimedAlert: React.FC<{
 
 export const AlertsController: React.FC = () => {
   const alerts = useAppSelector((state) => state.alerts);
+  const needsReload = useAppSelector(
+    (state) => !!state.meta.get('needsReload'),
+  );
 
   return (
     <A11yLiveRegion className='notification-list'>
@@ -85,6 +88,18 @@ export const AlertsController: React.FC = () => {
           dismissAfter={5000 + idx * 1000}
         />
       ))}
+      {needsReload && <ReloadAlert />}
     </A11yLiveRegion>
   );
+};
+
+const reloadMessage = defineMessage({
+  id: 'alert.need_reload.message',
+  defaultMessage:
+    'Mastodon has been updated. Some things may not work correctly until you reload the page.',
+});
+
+const ReloadAlert: React.FC = () => {
+  const intl = useIntl();
+  return <Alert isActive message={intl.formatMessage(reloadMessage)} />;
 };

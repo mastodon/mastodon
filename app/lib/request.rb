@@ -60,6 +60,25 @@ class PerOperationWithDeadline < HTTP::Timeout::PerOperation
   end
 end
 
+# Implement HTTP Signature cavage draft as a HTTP.rb middleware
+class CavageSignatureFeature < HTTP::Feature
+  def initialize(keypair: nil, covered_headers: [])
+    super
+
+    @signing = HttpSignatureDraft.new(keypair.keypair, keypair.full_uri) if keypair.present?
+    @covered_headers = covered_headers
+  end
+
+  def wrap_request(request)
+    signed_headers = request.headers.to_h.slice(*@covered_headers)
+    request.headers['Signature'] = @signing.sign(signed_headers, request.verb, Addressable::URI.parse(request.uri))
+    request
+  end
+
+  # Register this feature with http.rb
+  ::HTTP::Options.register_feature(:http_cavage_signature, self)
+end
+
 class Request
   # We enforce a 5s timeout on DNS resolving, 5s timeout on socket opening
   # and 5s timeout on the TLS handshake, meaning the worst case should take
@@ -68,6 +87,8 @@ class Request
   SAFE_PRESERVED_CHARS = '+,'
 
   include RoutingHelper
+
+  attr_reader :headers, :signing_keypair
 
   def initialize(verb, url, **options)
     raise ArgumentError if url.blank?
@@ -79,7 +100,6 @@ class Request
     @options     = {
       follow: {
         max_hops: 3,
-        on_redirect: ->(response, request) { re_sign_on_redirect(response, request) },
       },
     }.merge(options).merge(
       socket_class: use_proxy? || @allow_local ? ProxySocket : Socket,
@@ -89,20 +109,17 @@ class Request
     @options     = @options.merge(proxy_url) if use_proxy?
     @headers     = {}
 
-    @signing = nil
+    @signing_keypair = nil
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
 
     set_common_headers!
-    set_digest! if options.key?(:body)
   end
 
   def on_behalf_of(actor, sign_with: nil)
     raise ArgumentError, 'actor must not be nil' if actor.nil?
 
-    key_id = ActivityPub::TagManager.instance.key_uri_for(actor)
-    keypair = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : actor.keypair
-    @signing = HttpSignatureDraft.new(keypair, key_id)
+    @signing_keypair = sign_with.presence || actor.keypair(type: :rsa)
 
     self
   end
@@ -114,7 +131,16 @@ class Request
 
   def perform
     begin
-      response = http_client.request(@verb, @url.to_s, @options.merge(headers: headers))
+      # Try with HTTP Signatures (draft-cavage-http-signatures-12) first
+      response = perform_cavage_signed_request
+
+      # Then if it fails, double-knock using RFC 9421: HTTP Message Signatures
+      if @signing_keypair.present? && [400, 401].include?(response.code)
+        # Consume the body of the first response first
+        response.truncated_body if http_client.persistent? && !response.connection.finished_request?
+
+        response = perform_rfc9421_signed_request
+      end
     rescue => e
       raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
@@ -125,10 +151,6 @@ class Request
       response.truncated_body if http_client.persistent? && !response.connection.finished_request?
       http_client.close unless http_client.persistent? && response.connection.finished_request?
     end
-  end
-
-  def headers
-    (@signing ? @headers.merge('Signature' => signature) : @headers)
   end
 
   class << self
@@ -148,6 +170,42 @@ class Request
   end
 
   private
+
+  def perform_cavage_signed_request
+    headers = @headers
+    headers = headers.merge('Digest' => "SHA-256=#{Digest::SHA256.base64digest(@options[:body])}") if @options[:body]
+
+    client = http_client
+
+    if @signing_keypair.present?
+      client = client.use(
+        http_cavage_signature: {
+          keypair: @signing_keypair,
+          covered_headers: headers.keys - %w(User-Agent Accept-Encoding Accept),
+        }
+      )
+    end
+
+    client.request(@verb, @url.to_s, @options.merge(headers:))
+  end
+
+  def perform_rfc9421_signed_request
+    headers = @headers
+    headers = headers.merge('content-digest' => "sha-256=:#{OpenSSL::Digest.base64digest('sha256', @options[:body])}:") if @options[:body]
+
+    client = http_client
+
+    if @signing_keypair.present?
+      client = client.use(
+        http_signature: {
+          key: @signing_keypair.linzer_private_key,
+          covered_components: @options.key?(:body) ? %w(@method @target-uri content-digest) : %w(@method @target-uri),
+        }
+      )
+    end
+
+    client.request(@verb, @url.to_s, @options.merge(headers:))
+  end
 
   # Using code from https://github.com/sporkmonger/addressable/blob/3450895887d0a1770660d8831d1b6fcfed9bd9d6/lib/addressable/uri.rb#L1609-L1635
   # to preserve some URL Encodings while normalizing
@@ -182,34 +240,6 @@ class Request
     @headers['Host']            = @url.host
     @headers['Date']            = Time.now.utc.httpdate
     @headers['Accept-Encoding'] = 'gzip' if @verb != :head
-  end
-
-  def set_digest!
-    @headers['Digest'] = "SHA-256=#{Digest::SHA256.base64digest(@options[:body])}"
-  end
-
-  def signature
-    @signing.sign(@headers.without('User-Agent', 'Accept-Encoding'), @verb, @url)
-  end
-
-  def re_sign_on_redirect(_response, request)
-    # Delete existing signature if there is one, since it will be invalid
-    request.headers.delete('Signature')
-
-    return unless @signing.present? && @verb == :get
-
-    signed_headers = request.headers.to_h.slice(*@headers.keys)
-    unless @headers.keys.all? { |key| signed_headers.key?(key) }
-      # We have lost some headers in the process, so don't sign the new
-      # request, in order to avoid issuing a valid signature with fewer
-      # conditions than expected.
-
-      Rails.logger.warn { "Some headers (#{@headers.keys - signed_headers.keys}) have been lost on redirect from {@uri} to #{request.uri}, this should not happen. Skipping signatures" }
-      return
-    end
-
-    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding', 'Accept'), @verb, Addressable::URI.parse(request.uri))
-    request.headers['Signature'] = signature_value
   end
 
   def http_client

@@ -62,9 +62,7 @@ export const EditedTimestamp: React.FC<{
       const formattedDate = (
         <RelativeTimestamp timestamp={item.get('created_at') as string} long />
       );
-      const formattedName = (
-        <InlineAccount accountId={item.get('account') as string} />
-      );
+      const formattedName = <InlineAccount accountId={item.get('account')} />;
 
       const label = (item.get('original') as boolean) ? (
         <FormattedMessage

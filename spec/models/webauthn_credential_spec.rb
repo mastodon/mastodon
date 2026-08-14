@@ -6,10 +6,7 @@ RSpec.describe WebauthnCredential do
   describe 'Validations' do
     subject { Fabricate.build :webauthn_credential }
 
-    it { is_expected.to validate_presence_of(:external_id) }
-    it { is_expected.to validate_presence_of(:public_key) }
-    it { is_expected.to validate_presence_of(:nickname) }
-    it { is_expected.to validate_presence_of(:sign_count) }
+    it { is_expected.to validate_presence_of(:external_id, :nickname, :public_key, :sign_count) }
 
     it { is_expected.to validate_uniqueness_of(:external_id) }
     it { is_expected.to validate_uniqueness_of(:nickname).scoped_to(:user_id) }

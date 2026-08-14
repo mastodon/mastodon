@@ -246,9 +246,10 @@ RSpec.describe Account do
   end
 
   describe '#keypair' do
-    it 'returns an RSA key pair' do
+    it 'returns a Keypair object with a RSA key pair' do
       account = Fabricate(:account)
-      expect(account.keypair).to be_instance_of OpenSSL::PKey::RSA
+      expect(account.keypair).to be_instance_of Keypair
+      expect(account.keypair.keypair).to be_instance_of OpenSSL::PKey::RSA
     end
   end
 
@@ -546,10 +547,7 @@ RSpec.describe Account do
 
       it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
-      it { is_expected.to validate_absence_of(:followers_url).on(:create) }
-      it { is_expected.to validate_absence_of(:inbox_url).on(:create) }
-      it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
-      it { is_expected.to validate_absence_of(:uri).on(:create) }
+      it { is_expected.to validate_absence_of(:inbox_url, :followers_url, :shared_inbox_url, :uri).on(:create) }
 
       it { is_expected.to allow_values([], ['example.com'], (1..domains_limit).to_a).for(:attribution_domains) }
       it { is_expected.to_not allow_values(['example com'], ['@'], (1..(domains_limit + 1)).to_a).for(:attribution_domains) }
@@ -735,10 +733,10 @@ RSpec.describe Account do
     it 'generates keys' do
       account = described_class.create!(domain: nil, username: 'user_without_keys')
 
-      expect(account)
-        .to be_private_key
-        .and be_public_key
-      expect(account.keypair)
+      expect(account.private_key).to be_nil
+      expect(account.public_key).to eq ''
+
+      expect(account.keypair.keypair)
         .to be_private
         .and be_public
     end
@@ -748,7 +746,7 @@ RSpec.describe Account do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
       account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: 'remote_user_with_public', public_key: key.to_pem)
-      expect(account.keypair.params).to eq key.params
+      expect(account.keypair.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do

@@ -19,17 +19,8 @@
                   %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                     %tr
                       %td.email-banner-text-td
-                        .email-desktop-flex
-                          /[if mso]
-                            <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:100%;" role="presentation"><tr><td vertical-align:top;">
-                          %div
-                            %p= t('.interact_with_this_post', count: @statuses.size)
-                          /[if mso]
-                            </td><td style="vertical-align:top;">
-                          %div
-                            = render 'application/mailer/button', text: t('.create_account'), url: available_sign_up_url, has_arrow: false
-                          /[if mso]
-                            </td></tr></table>
+                        %p= t('.interact_with_this_post', count: @statuses.size)
+                        = render 'application/mailer/button', text: t('.create_account'), url: available_sign_up_url, has_arrow: false
 
 - content_for :footer do
   %p.email-footer-p= t('.footer.reason_for_email_html', name: display_name(@subscription.account), unsubscribe_path: @unsubscribe_url)

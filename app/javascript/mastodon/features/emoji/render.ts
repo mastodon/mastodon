@@ -109,7 +109,7 @@ export async function updateHtmlWithEmoji({
 }: {
   element: Element;
   locale: string;
-} & Omit<EmojiAppState, 'currentLocale' | 'locales'>) {
+} & Omit<EmojiAppState, 'currentLocale'>) {
   if (mode === EMOJI_MODE_NATIVE) {
     return;
   }

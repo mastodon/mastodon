@@ -298,6 +298,7 @@ eu:
         update_report_html: "%{name}-k %{target} txostena eguneratu du"
         update_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa eguneratu du"
         update_user_role_html: "%{name} erabiltzaileak %{target} rola aldatu du"
+        usable_tag_html: erabili daiteke;
       deleted_account: ezabatu kontua
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
@@ -326,6 +327,18 @@ eu:
       unpublish: Desargitaratu
       unpublished_msg: Iragarpena ongi desargitaratu da!
       updated_msg: Iragarpena ongi eguneratu da!
+    collections:
+      accounts: Kontuak
+      back_to_account: Atzera kontuaren orrira
+      back_to_report: Atzera txostenaren orrira
+      batch:
+        remove_from_report: Kendu txostenetik
+        report: Salatu
+      collection_title: "%{name}-(r)en bildumak"
+      contents: Edukiak
+      no_collection_selected: Ez da bildumarik aldatu ez delako bat ere hautatu
+      open: Ireki
+      view_publicly: Publikoki ikusi
     critical_update_pending: Eguneraketa kritikoa egiteke
     custom_emojis:
       assign_category: Esleitu kategoria
@@ -460,9 +473,14 @@ eu:
         title: Posta domeinu berria blokeatu
       no_email_domain_block_selected: Ez da eposta domeinu blokeorik aldatu ez delako bat ere hautatu
       not_permitted: Baimendu gabea
+      reset: Berrezarri
       resolved_dns_records_hint_html: Domeinu-izena ondorengo MX domeinuetara ebazten da, zeinek eposta onartzeko ardura duten. MX domeinu bat blokeatzeak MX domeinu hori erabiltzen duen edozein helbide elektronikotatik izena-ematea blokeatzen du, baita ikusgai dagoen domeinu-izena beste bat bada ere. <strong>Kontuz ibili eposta hornitzaile nagusiak blokeatu gabe.</strong>
       resolved_through_html: "%{domain} domeinuaren bidez ebatzia"
+      search: Bilatu
       title: Email domeinua blokeatuta
+    email_subscriptions:
+      accounts:
+        account: Kontua
     export_domain_allows:
       new:
         title: Baimendutako domeinuak inportatu
@@ -1639,7 +1657,6 @@ eu:
     next: Hurrengoa
     older: Zaharragoa
     prev: Aurrekoa
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Inkesta honetan dagoeneko bozkatu duzu

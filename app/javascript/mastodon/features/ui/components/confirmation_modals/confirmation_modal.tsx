@@ -52,13 +52,18 @@ export const ConfirmationModal: React.FC<
   noCloseOnConfirm = false,
   noFocusButton = false,
 }) => {
-  const handleClick = useCallback(() => {
-    if (!noCloseOnConfirm) {
-      onClose();
-    }
+  const handleSubmit = useCallback<React.SubmitEventHandler<HTMLFormElement>>(
+    (e) => {
+      e.preventDefault();
 
-    void onConfirm();
-  }, [onClose, onConfirm, noCloseOnConfirm]);
+      if (!noCloseOnConfirm) {
+        onClose();
+      }
+
+      void onConfirm();
+    },
+    [onClose, onConfirm, noCloseOnConfirm],
+  );
 
   const handleSecondary = useCallback(() => {
     onClose();
@@ -66,7 +71,7 @@ export const ConfirmationModal: React.FC<
   }, [onClose, onSecondary]);
 
   return (
-    <ModalShell onSubmit={handleClick}>
+    <ModalShell onSubmit={handleSubmit}>
       <ModalShellBody className={className}>
         {noFocusButton ? (
           <NavigationFocusTarget as='h1' id={titleId}>
@@ -107,7 +112,6 @@ export const ConfirmationModal: React.FC<
         {/* eslint-disable jsx-a11y/no-autofocus -- we are in a modal and thus autofocusing is justified */}
         <Button
           type='submit'
-          onClick={handleClick}
           loading={updating}
           disabled={disabled}
           autoFocus={!noFocusButton}

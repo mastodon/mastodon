@@ -16,6 +16,7 @@ import {
   importLegacyShortcodes,
   importEmojiData,
 } from '@/mastodon/features/emoji/loader';
+import { IdentityContext } from '@/mastodon/identity_context';
 import type { LocaleData } from '@/mastodon/locales';
 import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
@@ -55,22 +56,35 @@ const preview: Preview = {
       description: 'Theme for the story',
       toolbar: {
         title: 'Theme',
-        icon: 'circlehollow',
-        items: [{ value: 'light' }, { value: 'dark' }],
-        dynamicTitle: true,
+        items: [
+          { value: 'light', icon: 'circlehollow' },
+          { value: 'dark', icon: 'circle' },
+        ],
+      },
+    },
+    loggedIn: {
+      description: 'Whether a user is logged in',
+      toolbar: {
+        title: 'Logged in',
+        icon: 'user',
+        items: [
+          { value: 'true', title: 'logged in' },
+          { value: 'false', title: 'logged out' },
+        ],
       },
     },
   },
   initialGlobals: {
     locale: 'en',
     theme: 'light',
+    loggedIn: 'true',
   },
   decorators: [
     (Story, { parameters, globals, args, argTypes }) => {
       // Get the locale from the global toolbar
       // and merge it with any parameters or args state.
       const { locale } = globals as { locale: string };
-      const { state = {} } = parameters;
+      const { state = {}, stateFn } = parameters;
 
       const argsState: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(args)) {
@@ -92,13 +106,24 @@ const preview: Preview = {
         }
       }
 
+      let stateFnState: Record<string, unknown> = {};
+      if (typeof stateFn === 'function') {
+        stateFnState =
+          (
+            stateFn as (
+              args: Record<string, unknown>,
+            ) => Record<string, unknown> | undefined | null
+          )(args) ?? {};
+      }
+
       const reducer = reducerWithInitialState(
         {
           meta: {
             locale,
           },
         },
-        state as Record<string, unknown>,
+        state,
+        stateFnState,
         argsState,
       );
 
@@ -115,7 +140,7 @@ const preview: Preview = {
       );
     },
     (Story, { globals }) => {
-      const currentLocale = (globals.locale as string) || 'en';
+      const currentLocale = globals.locale || 'en';
       const [messages, setMessages] = useState<
         Record<string, Record<string, string>>
       >({});
@@ -143,7 +168,7 @@ const preview: Preview = {
       );
     },
     (Story, { globals }) => {
-      const theme = (globals.theme as string) || 'light';
+      const theme = globals.theme;
       useEffect(() => {
         document.body.setAttribute('data-color-scheme', theme);
       }, [theme]);
@@ -164,12 +189,35 @@ const preview: Preview = {
         />
       </MemoryRouter>
     ),
+    (Story, { globals }) => {
+      const signedIn = globals.loggedIn !== 'false';
+      return (
+        <IdentityContext.Provider
+          value={{
+            signedIn,
+            accountId: signedIn ? '123' : undefined,
+            disabledAccountId: undefined,
+            permissions: 0,
+          }}
+        >
+          <Story />
+        </IdentityContext.Provider>
+      );
+    },
+    (Story, { parameters }) => {
+      useEffect(() => {
+        document.documentElement.dataset.redesign = parameters.redesign
+          ? 'true'
+          : 'false';
+      }, [parameters.redesign]);
+      return <Story />;
+    },
   ],
   loaders: [
     mswLoader,
     importCustomEmojiData,
     importLegacyShortcodes,
-    ({ globals: { locale } }) => importEmojiData(locale as string),
+    ({ globals: { locale } }) => importEmojiData(locale),
   ],
   parameters: {
     layout: 'centered',

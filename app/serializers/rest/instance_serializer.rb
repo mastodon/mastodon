@@ -31,6 +31,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     else
       {
         url: frontend_asset_url('images/preview.png'),
+        description: I18n.t('about.default_thumbnail_description', locale: object.languages[0]),
       }
     end
   end

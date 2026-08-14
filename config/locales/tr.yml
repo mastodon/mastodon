@@ -4,6 +4,7 @@ tr:
     about_mastodon_html: 'Geleceğin sosyal ağı: Reklam yok, kurumsal gözetim yok, etik tasarım ve merkeziyetsizlik! Mastodon ile verilerinizin sahibi olun!'
     contact_missing: Ayarlanmadı
     contact_unavailable: Bulunamadı
+    default_thumbnail_description: İki gülümseyen (fil gibi görünen) çizgi film mastodonu aralarında bir kağıt uçak atıp tutuyorlar. Etraflarını parlak mavi bir gökyüzü ve üzerinde ağaçlar ile başka mastodonlar bulunan süzülen gezegenler çevreliyor.
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     title: Hakkında
   accounts:
@@ -63,6 +64,8 @@ tr:
       custom: Özel
       delete: Veriyi sil
       deleted: Silindi
+      deletion_irreversible: Bu hesaba ait veriler geri dönüşümsüz bir şekilde silindi.
+      deletion_reversible_hint_html: Bu hesap silinme sürecindedir ve veriler %{date} tarihinde tamamen silinecektir.
       demote: Düşür
       destroyed_msg: "%{username} adlı kullanıcının verilerinin silinmesi sıraya alındı"
       disable: Dondur
@@ -288,7 +291,11 @@ tr:
         enable_relay_html: "%{name}, %{target} aktarıcısını etkinleştirdi"
         enable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı etkinleştirdi"
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
+        listable_tag_html: önerilebilir
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
+        not_listable_tag_html: önerilmeyecek
+        not_trendable_tag_html: öne çıkanlar altında görünmeyecek
+        not_usable_tag_html: kullanılamaz
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
         publish_terms_of_service_html: "%{name} hizmet şartları güncellemelerini yayınladı"
         reject_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını reddetti"
@@ -301,6 +308,7 @@ tr:
         sensitive_account_html: "%{name}, %{target} kullanıcısının medyasını hassas olarak işaretledi"
         silence_account_html: "%{name}, %{target} kullanıcısının hesabını sessize aldı"
         suspend_account_html: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
+        trendable_tag_html: öne çıkanlar altında görünebilir
         unassigned_report_html: "%{name}, %{target} şikayetinin atamasını kaldırdı"
         unblock_email_account_html: "%{name}, %{target} kişisinin e-posta adresinin engelini kaldırdı"
         unsensitive_account_html: "%{name}, %{target} kullanıcısının medyasının hassas işaretini kaldırdı"
@@ -313,8 +321,10 @@ tr:
         update_ip_block_html: "%{name}, %{target} IP adresi için kuralı güncelledi"
         update_report_html: "%{name}, %{target} raporunu güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
+        update_tag_html: "%{name}, %{target} ayarlarını değiştirdi: "
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
         update_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural güncellendi"
+        usable_tag_html: kullanılabilir;
       deleted_account: hesap silindi
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
@@ -729,6 +739,8 @@ tr:
       new:
         title: Yeni IP kuralı oluştur
       no_ip_block_selected: Hiçbiri seçilmediğinden hiçbir IP kuralı değiştirilmedi
+      reset: Sıfırla
+      search: Ara
       title: IP kuralları
     relationships:
       title: "%{acct} kişisinin ilişkileri"
@@ -1003,13 +1015,17 @@ tr:
       critical_update: Kritik — lütfen hemen güncelleyin
       description: Son düzeltme ve özelliklerden yararlanmak için Mastodon kurulumunu güncel tutmanızı öneriyoruz. Üstelik güvenlik sorunlarından kaçınmak için Mastodon'u zamanında güncellemek kritiktir. Bu nedenlerle Mastodon her 30 dakikada bir güncellemeleri denetler ve e-posta bildirim seçeneğinize göre size haber verir.
       documentation_link: Daha fazlası
+      nearing_eol: Şu anda kullandığınız sürümün desteği %{date} tarihinde sona erecektir; lütfen güncellemeyi düşünün.
       release_notes: Sürüm notları
+      supported_until: Destek %{date} tarihinde bitiyor
       title: Mevcut güncellemeler
       type: Tür
       types:
         major: Ana sürüm
         minor: Alt sürüm
         patch: Yama sürümü — hata düzeltmeleri ve uygulaması kolay değişiklikler
+      unsupported_branch: Şu anda çalıştırdığınız dal desteklenmiyor; lütfen en kısa sürede güncelleme yapın.
+      unsupported_since: "%{date} tarihinden beri desteklenmiyor"
       version: Sürüm
     statuses:
       account: Yazar
@@ -1225,6 +1241,7 @@ tr:
           other: Geçen hafta %{count} kişi tarafından kullanıldı
       title: Öneriler ve Öne Çıkanlar
       trending: Öne çıkanlar
+    update_available: Güncelleme var
     username_blocks:
       add_new: Yeni ekle
       block_registrations: Kayıtları engelle
@@ -1274,6 +1291,15 @@ tr:
     auto_close_registrations:
       body: Son zamanlardaki moderatör faaliyeti eksikliğinden dolayı, %{instance} üzerindeki kayıtlar, %{instance} sunucusunun olası kötü aktörler tarafından bir platform olarak kullanımını engellemek için otomatik olarak elle onay gerektirecek şekilde değiştirilmiştir. İstediğiniz zaman açık kayıtlara çevirebilirsiniz.
       subject: "%{instance} üzerindeki kayıtlar otomatik olarak onay gerektirecek şekilde değiştirilmiştir"
+    end_of_support_out_of_support_warning:
+      body: Sunucunuzda şu anda kullanılan Mastodon sürümü artık desteklenmiyor. En kısa zamanda güncelleme yapmanızı öneririz!
+      subject: "%{instance} üzerinde kullanılan Mastodon %{branch} artık desteklenmiyor!"
+    end_of_support_three_months_warning:
+      body: Sunucunuzda şu anda kullanılmakta olan Mastodon sürümü, 3 ay sonra desteklenmeyecek. İsterseniz, önceden daha yeni bir dala güncelleme yapabilirsiniz.
+      subject: "%{instance} üzerinde kullanılan Mastodon %{branch} desteği 3 ay sonra sona erecek."
+    end_of_support_two_weeks_warning:
+      body: Sunucunuzda şu anda kullanılmakta olan Mastodon sürümü, 2 hafta sonra desteklenmeyecek. Zamanında daha yeni bir dala geçmenizi öneririz.
+      subject: "%{instance} üzerinde kullanılan Mastodon %{branch} desteği 2 hafta sonra sona erecek."
     new_appeal:
       actions:
         delete_statuses: gönderilerini silme
@@ -1745,6 +1771,7 @@ tr:
     types:
       blocking: Engellenenler listesi
       bookmarks: Yer imleri
+      custom_filters: Filtreler
       domain_blocking: Alan adı engelleme listesi
       following: Takip edilenler listesi
       lists: Listeler
@@ -1908,6 +1935,7 @@ tr:
     administration_emails: Yönetici e-posta bildirimleri
     email_events: E-posta bildirimi etkinlikleri
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
+    moderation_emails: Moderasyon e-posta bildirimleri
   number:
     human:
       decimal_units:
@@ -1931,7 +1959,7 @@ tr:
     next: Sonraki
     older: Daha eski
     prev: Önceki
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Bu ankete daha önce oy verdiniz

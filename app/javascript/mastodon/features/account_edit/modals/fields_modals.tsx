@@ -140,7 +140,7 @@ export const EditFieldModal = forwardRef<
 
   const customEmojis = useCustomEmojis();
   const customEmojiCodes = useMemo(
-    () => Object.keys(customEmojis ?? {}),
+    () => Object.keys(customEmojis),
     [customEmojis],
   );
   const checkField = useCallback(

@@ -26,8 +26,6 @@ const messages = defineMessages({
   },
 });
 
-type InteractionIntent = 'follow' | 'reblog' | 'favourite' | 'reply' | 'vote';
-
 interface LoginFormMessage {
   type:
     | 'fetchInteractionURL'
@@ -36,7 +34,7 @@ interface LoginFormMessage {
   uri_or_domain: string;
   template?: string;
   param?: string;
-  intent?: InteractionIntent;
+  intent?: string;
 }
 
 const PERSISTENCE_KEY = 'mastodon_home';
@@ -153,7 +151,7 @@ const LoginForm: React.FC<{
 
   const inputRef = useRef<HTMLInputElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const searchRequestRef = useRef<AbortController | null>(null);
+  const searchRequestRef = useRef<AbortController>(null);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent<LoginFormMessage>) => {

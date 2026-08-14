@@ -4,6 +4,7 @@ es-MX:
     about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, con un diseño ético y descentralizada! ¡Sé dueño de tus datos con Mastodon!'
     contact_missing: No establecido
     contact_unavailable: No disponible
+    default_thumbnail_description: Dos dibujos de mastodontes sonrientes (que parecen elefantes) se lanzan un avión de papel el uno al otro. Están rodeados por un cielo azul brillante y planetas flotantes con árboles y más mastodontes en ellos.
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
@@ -63,6 +64,8 @@ es-MX:
       custom: Personalizado
       delete: Eliminar datos
       deleted: Eliminado
+      deletion_irreversible: Los datos de esta cuenta se han eliminado de forma irreversible.
+      deletion_reversible_hint_html: Esta cuenta está pendiente de eliminación, y los datos se borrarán por completo el %{date}.
       demote: Degradar
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
@@ -288,7 +291,11 @@ es-MX:
         enable_relay_html: "%{name} activó el relé %{target}"
         enable_sign_in_token_auth_user_html: "%{name} activó autenticación por token de correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
+        listable_tag_html: puede ser recomendada
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
+        not_listable_tag_html: no puede ser recomendada
+        not_trendable_tag_html: no puede aparecer en tendencia
+        not_usable_tag_html: no se puede usar
         promote_user_html: "%{name} promoción al usuario %{target}"
         publish_terms_of_service_html: "%{name} publicó actualizaciones de las condiciones del servicio"
         reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
@@ -301,6 +308,7 @@ es-MX:
         sensitive_account_html: "%{name} marcó la multimedia de %{target} como sensible"
         silence_account_html: "%{name} silenció la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
+        trendable_tag_html: puede aparecer en tendencia
         unassigned_report_html: "%{name} des-asignó el informe %{target}"
         unblock_email_account_html: "%{name} ha desbloqueado la dirección de correo de %{target}"
         unsensitive_account_html: "%{name} desmarcó la multimedia de %{target} como sensible"
@@ -313,8 +321,10 @@ es-MX:
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
         update_report_html: "%{name} actualizó el informe %{target}"
         update_status_html: "%{name} actualizó la publicación de %{target}"
+        update_tag_html: "%{name} cambió la configuración de %{target} a: "
         update_user_role_html: "%{name} cambió el rol %{target}"
         update_username_block_html: "%{name} actualizó una regla para los nombres de usuario que contienen %{target}"
+        usable_tag_html: se puede usar;
       deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
@@ -729,6 +739,8 @@ es-MX:
       new:
         title: Crear nueva regla IP
       no_ip_block_selected: No se modificó ninguna regla de IP, ya que no se seleccionó ninguna
+      reset: Restablecer
+      search: Buscar
       title: Reglas IP
     relationships:
       title: Relaciones de %{acct}
@@ -1003,13 +1015,17 @@ es-MX:
       critical_update: Crítico — por favor actualiza rápidamente
       description: Se recomienda mantener tu instalación de Mastodon actualizada para beneficiarte de las últimas correcciones y características. Además, a veces es crítico actualizar Mastodon a tiempo para evitar problemas de seguridad. Por estas razones, Mastodon busca actualizaciones cada 30 minutos, y le notificará de acuerdo a sus preferencias de notificación por correo electrónico.
       documentation_link: Saber más
+      nearing_eol: El soporte para la versión que estás ejecutando actualmente finalizará el %{date}; te recomendamos que consideres actualizarla.
       release_notes: Notas de la versión
+      supported_until: El soporte termina el %{date}
       title: Actualizaciones disponibles
       type: Tipo
       types:
         major: Versión principal
         minor: Versión menor
         patch: Versión del parche — correcciones de errores y cambios fáciles de aplicar
+      unsupported_branch: La versión que estás utilizando actualmente no tiene soporte; actualízala lo antes posible.
+      unsupported_since: Sin soporte desde el %{date}
       version: Versión
     statuses:
       account: Autor
@@ -1225,6 +1241,7 @@ es-MX:
           other: Usada por %{count} personas durante la última semana
       title: Recomendaciones y Tendencias
       trending: En tendencia
+    update_available: Actualización disponible
     username_blocks:
       add_new: Añadir nuevo
       block_registrations: Bloquear registros
@@ -1274,6 +1291,15 @@ es-MX:
     auto_close_registrations:
       body: Debido al faltante de actividad reciente de moderación, los registros en %{instance} han cambiado automáticamente para requerir la revisión manial, para evitar que %{instance} se utilice como una plataforma para potenciales malos actores. Puedes revertir este cambio en los registros en cualquier momento.
       subject: Los registros para %{instance} han sido cambiados automáticamente para requerir aprobación
+    end_of_support_out_of_support_warning:
+      body: La versión de Mastodon que se utiliza actualmente en tu servidor ya no es compatible. ¡Te recomendamos que la actualices lo antes posible!
+      subject: "¡La versión %{branch} de Mastodon utilizada en %{instance} ya no es compatible!"
+    end_of_support_three_months_warning:
+      body: La versión de Mastodon que se utiliza actualmente en tu servidor dejará de recibir soporte dentro de 3 meses. Quizás te convenga actualizar a una versión más reciente antes de esa fecha.
+      subject: El soporte para Mastodon %{branch} utilizado en %{instance} finalizará en 3 meses.
+    end_of_support_two_weeks_warning:
+      body: La versión de Mastodon que se utiliza actualmente en tu servidor dejará de recibir soporte en 2 semanas. Te recomendamos que actualices a una versión más reciente con anticipación.
+      subject: El soporte para Mastodon %{branch} utilizado en %{instance} finalizará en 2 semanas.
     new_appeal:
       actions:
         delete_statuses: para eliminar sus publicaciones
@@ -1665,7 +1691,9 @@ es-MX:
       empty: Archivo CSV vacío
       incompatible_type: Incompatible con el tipo de importación seleccionado
       invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
+      invalid_json_file: 'Fichero JSON no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
+      status_not_found_warning: Algunos de tus filtros ocultan publicaciones específicas que este servidor no conoce. Estas publicaciones no se filtrarán automáticamente si el servidor las detecta más adelante.
       too_large: El archivo es demasiado grande
     failures: Fallos
     imported: Importado
@@ -1682,6 +1710,9 @@ es-MX:
       bookmarks_html:
         one: Estás a punto de <strong>reemplazar tus marcadores</strong> por <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{count} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Estás a punto de <strong>reemplazar tus filtros</strong> por el contenido de <strong>%{filename}</strong>. Se añadirán hasta <strong>%{count} filtro</strong> a los nuevos filtros.
+        other: Estás a punto de <strong>reemplazar tus filtros</strong> por el contenido de <strong>%{filename}</strong>. Se añadirán hasta <strong>%{count} filtros</strong> a los nuevos filtros.
       domain_blocking_html:
         one: Estás a punto de <strong>reemplazar tu lista de dominios bloqueados</strong> con <strong>%{count} dominio</strong> de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>reemplazar tu lista de dominios bloqueados</strong> con hasta <strong>%{count} dominios</strong> de <strong>%{filename}</strong>.
@@ -1701,6 +1732,9 @@ es-MX:
       bookmarks_html:
         one: Estás a punto de agregar <strong>%{count} publicación</strong> de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
         other: Estás a punto de agregar <strong>%{count} publicaciones</strong> de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      custom_filters_html:
+        one: Estás a punto de añadir <strong>%{count} filtro</strong> de <strong>%{filename}</strong> a tus <strong>filtros</strong>.
+        other: Estás a punto de añadir hasta <strong>%{count} filtros</strong> de <strong>%{filename}</strong> a tus <strong>filtros</strong>.
       domain_blocking_html:
         one: Estás a punto de <strong>bloquear</strong> <strong>%{count} dominio</strong> de <strong>%{filename}</strong>.
         other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominios</strong> de <strong>%{filename}</strong>.
@@ -1737,6 +1771,7 @@ es-MX:
     types:
       blocking: Lista de bloqueados
       bookmarks: Marcadores
+      custom_filters: Filtros
       domain_blocking: Lista de dominios bloqueados
       following: Lista de seguidos
       lists: Listas
@@ -1900,6 +1935,7 @@ es-MX:
     administration_emails: Notificaciones de administración por correo electrónico
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
+    moderation_emails: Notificaciones por correo electrónico sobre moderación
   number:
     human:
       decimal_units:
@@ -1923,7 +1959,7 @@ es-MX:
     next: Próximo
     older: Más antiguo
     prev: Anterior
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Ya has votado en esta encuesta

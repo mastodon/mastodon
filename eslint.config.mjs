@@ -10,7 +10,6 @@ import jsxA11Y from 'eslint-plugin-jsx-a11y';
 import promisePlugin from 'eslint-plugin-promise';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-// @ts-expect-error -- No types available for this package
 import storybook from 'eslint-plugin-storybook';
 import { globalIgnores } from 'eslint/config';
 import globals from 'globals';
@@ -137,7 +136,6 @@ export default tseslint.config([
   reactHooks.configs.flat.recommended,
   jsxA11Y.flatConfigs.recommended,
   importPlugin.flatConfigs.react,
-  // @ts-expect-error -- For some reason the formatjs package exports an empty object?
   formatjs.configs.strict,
   storybook.configs['flat/recommended'],
   {

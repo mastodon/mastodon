@@ -174,9 +174,7 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
   const suggestions = useAppSelector((state) => state.suggestions.items);
   const isLoading = useAppSelector((state) => state.suggestions.isLoading);
   const dismissed = useAppSelector(
-    (state) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-      state.settings.getIn(['dismissed_banners', DISMISSIBLE_ID]) as boolean,
+    (state) => !!state.settings.getIn(['dismissed_banners', DISMISSIBLE_ID]),
   );
 
   useEffect(() => {

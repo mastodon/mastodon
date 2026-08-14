@@ -6,6 +6,7 @@ class Admin::ActionLogFilter
     account_id
     target_account_id
     target_domain
+    target_tag
   ).freeze
 
   INSTANCE_TARGET_TYPES = %w(
@@ -77,6 +78,7 @@ class Admin::ActionLogFilter
     update_user_role: { target_type: 'UserRole', action: 'update' }.freeze,
     update_ip_block: { target_type: 'IpBlock', action: 'update' }.freeze,
     unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
+    update_tag: { target_type: 'Tag', action: 'update' }.freeze,
     create_username_block: { target_type: 'UsernameBlock', action: 'create' }.freeze,
     update_username_block: { target_type: 'UsernameBlock', action: 'update' }.freeze,
     destroy_username_block: { target_type: 'UsernameBlock', action: 'destroy' }.freeze,
@@ -116,6 +118,8 @@ class Admin::ActionLogFilter
     when 'target_domain'
       normalized_domain = TagManager.instance.normalize_domain(value)
       latest_action_logs.where(human_identifier: normalized_domain, target_type: INSTANCE_TARGET_TYPES)
+    when 'target_tag'
+      latest_action_logs.where(human_identifier: value)
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end

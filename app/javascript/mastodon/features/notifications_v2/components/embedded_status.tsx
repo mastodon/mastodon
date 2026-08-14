@@ -26,7 +26,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
 }) => {
   const history = useHistory();
-  const clickCoordinatesRef = useRef<[number, number] | null>();
+  const clickCoordinatesRef = useRef<[number, number]>(null);
   const dispatch = useAppDispatch();
 
   const status = useAppSelector((state) => state.statuses.get(statusId));
@@ -109,7 +109,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
       </div>
 
       <ContentWarning
-        status={status}
+        statusId={status.get('id') as string}
         onClick={handleContentWarningClick}
         expanded={expanded}
       />

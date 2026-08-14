@@ -32,21 +32,62 @@ RSpec.describe ActivityPub::FetchRemoteActorService do
       end
     end
 
-    context 'when the account does not have a inbox' do
-      let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
+    context 'when the account is already known and the actor document returns a temporary error' do
+      let!(:known_account) { Fabricate(:remote_account, uri: 'https://example.com/alice') }
 
+      before do
+        stub_request(:get, 'https://example.com/alice').to_return(status: 500)
+      end
+
+      it 'returns nil but keeps the existing account intact' do
+        expect(account).to be_nil
+        expect(known_account.reload.suspended?).to be false
+        expect(a_request(:get, 'https://example.com/alice')).to have_been_made.once
+        expect(AccountDeletionWorker).to_not have_enqueued_sidekiq_job
+      end
+    end
+
+    context 'when the account is already known and the actor document returns a 404 not found error' do
+      let!(:known_account) { Fabricate(:remote_account, uri: 'https://example.com/alice') }
+
+      before do
+        stub_request(:get, 'https://example.com/alice').to_return(status: 404)
+      end
+
+      it 'returns nil but keeps the existing account intact' do
+        expect(account).to be_nil
+        expect(known_account.reload.suspended?).to be false
+        expect(a_request(:get, 'https://example.com/alice')).to have_been_made.once
+        expect(AccountDeletionWorker).to_not have_enqueued_sidekiq_job
+      end
+    end
+
+    context 'when the account is already known and the actor document returns a 410 gone error' do
+      let!(:known_account) { Fabricate(:remote_account, uri: 'https://example.com/alice') }
+
+      before do
+        stub_request(:get, 'https://example.com/alice').to_return(status: 410)
+      end
+
+      it 'returns nil and marks the known account for deletion' do
+        expect(account).to be_nil
+        expect(known_account.reload.suspended?).to be true
+        expect(a_request(:get, 'https://example.com/alice')).to have_been_made.once
+        expect(AccountDeletionWorker).to have_enqueued_sidekiq_job(known_account.id, { 'reserve_username' => false, 'skip_activitypub' => true })
+      end
+    end
+
+    context 'when the account does not have a inbox' do
       before do
         actor[:inbox] = nil
 
         stub_request(:get, 'https://example.com/alice').to_return(body: actor.to_json, headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: webfinger.to_json, headers: { 'Content-Type': 'application/jrd+json' })
       end
 
-      it 'fetches resource and looks up webfinger and returns nil' do
+      it 'fetches resource but skips webfinger lookup and returns nil' do
         expect(account).to be_nil
 
         expect(a_request(:get, 'https://example.com/alice')).to have_been_made.once
-        expect(a_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com')).to have_been_made.once
       end
     end
 

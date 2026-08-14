@@ -4,6 +4,7 @@ pt-PT:
     about_mastodon_html: 'A rede social do futuro: sem publicidade e sem vigilância empresarial; desenho ético e descentralizado! Toma posse dos teus dados com o Mastodon!'
     contact_missing: Por definir
     contact_unavailable: n.d.
+    default_thumbnail_description: Dois mastodontes de desenho animado sorridentes (que se parecem com elefantes) atiram um avião de papel um ao outro. Estão rodeados por um céu azul brilhante e planetas flutuantes com árvores e mais mastodontes neles.
     hosted_on: Mastodon alojado em %{domain}
     title: Sobre
   accounts:
@@ -63,6 +64,8 @@ pt-PT:
       custom: Personalizado
       delete: Eliminar dados
       deleted: Eliminada
+      deletion_irreversible: Os dados desta conta foram eliminados irreversivelmente.
+      deletion_reversible_hint_html: Esta conta está pendente para eliminação, e os dados serão totalmente removidos em %{date}.
       demote: Despromovida
       destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
       disable: Congelar
@@ -288,7 +291,11 @@ pt-PT:
         enable_relay_html: "%{name} ativou o retransmissor %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ativou o token de autenticação por e-mail para %{target}"
         enable_user_html: "%{name} ativou o início de sessão para o utilizador %{target}"
+        listable_tag_html: pode ser sugerida
         memorialize_account_html: "%{name} transformou a conta de %{target} num memorial"
+        not_listable_tag_html: não será sugerida
+        not_trendable_tag_html: não aparecerá nas tendências
+        not_usable_tag_html: não pode ser utilizada
         promote_user_html: "%{name} promoveu o utilizador %{target}"
         publish_terms_of_service_html: "%{name} publicou a atualização dos termos de serviço"
         reject_appeal_html: "%{name} rejeitou a contestação da decisão de moderação de %{target}"
@@ -301,6 +308,7 @@ pt-PT:
         sensitive_account_html: "%{name} marcou a media de %{target} como sensível"
         silence_account_html: "%{name} limitou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
+        trendable_tag_html: pode aparecer nas tendências
         unassigned_report_html: "%{name} deixou de atribuir a denúncia %{target}"
         unblock_email_account_html: "%{name} desbloqueou o endereço de e-mail de %{target}"
         unsensitive_account_html: "%{name} desmarcou a media de %{target} como sensível"
@@ -313,8 +321,10 @@ pt-PT:
         update_ip_block_html: "%{name} alterou regra para o IP %{target}"
         update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
+        update_tag_html: "%{name} alterou as configurações de %{target} para: "
         update_user_role_html: "%{name} alterou a função %{target}"
         update_username_block_html: "%{name} atualizou regra para nomes de utilizadores que contêm %{target}"
+        usable_tag_html: pode ser utilizada;
       deleted_account: conta eliminada
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
@@ -345,12 +355,20 @@ pt-PT:
       updated_msg: Mensagem de manutenção atualizada com sucesso!
     collections:
       accounts: Contas
+      back_to_account: Voltar à página da conta
+      back_to_report: Voltar à página da denúncia
+      batch:
+        add_to_report: 'Adicionar à denúncia #%{id}'
+        remove_from_report: Remover da denúncia
+        report: Denúncia
       collection_title: Colecionado por %{name}
       contents: Conteúdo
+      no_collection_selected: Nenhuma coleção foi alterada, pois nenhuma foi selecionada
       number_of_accounts:
         one: 1 conta
         other: "%{count} contas"
       open: Abrir
+      title: Coleções da conta - @%{name}
       view_publicly: Ver publicamente
     critical_update_pending: Atualização crítica pendente
     custom_emojis:
@@ -484,9 +502,89 @@ pt-PT:
         title: Bloquear novo domínio de e-mail
       no_email_domain_block_selected: Não foram alterados quaisquer bloqueios de domínios de e-mail, uma vez que nenhum foi selecionado
       not_permitted: Não permitido
+      reset: Repor
       resolved_dns_records_hint_html: O nome de domínio resolve para os seguintes domínios MX, que são, em última análise, responsáveis por aceitar o e-mail. Bloquear um domínio MX irá bloquear as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo quando o nome de domínio visível é diferente. <strong>Cuidado para não bloquear os principais fornecedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
+      search: Pesquisar
       title: Domínios de e-mail bloqueados
+    email_subscriptions:
+      accounts:
+        account: Conta
+        empty:
+          hint: Ainda nenhuma conta tem subscritores.
+          no_lists_yet: Ainda não há listas
+        last_email: Último e-mail
+        lead: As contas que ativaram a funcionalidade e que têm subscritores serão apresentadas abaixo.
+        show:
+          confirm_disable_feature: Desativar newsletters por e-mail para %{name}? As atualizações por e-mail deixarão de ser enviadas para esta conta. O utilizador ainda poderá voltar a ativar a funcionalidade nas definições da sua conta. Para remover permanentemente o acesso a esta funcionalidade, edite a permissão da conta em Funções.
+          confirm_remove_subscriber: "%{email} deixará de receber e-mails de %{name}. Esta ação não pode ser anulada."
+          consent: Os subscritores apenas consentiram receber publicações por e-mail. Não utilize esta lista para outros fins.
+          date: Data de inscrição
+          disable_feature: Desativar funcionalidade
+          disabled: A funcionalidade foi desativada e já não estão a ser enviados e-mails para esta lista.
+          email: Endereços de e-mail
+          empty:
+            hint: Ainda ninguém subscreveu esta conta.
+            no_subscribers_yet: Ainda sem subscritores
+          enable_feature: Ativar funcionalidade
+          no_access_html: Esta conta já não tem as permissões necessárias para ativar a funcionalidade. Altere isto em <a href="%{roles_path}">Funções</a>.
+          title: Newsletters por e-mail de %{name}
+          view_account: Ver conta
+        status: Estado
+        subscribers: Subscritores
+        title: Listas de e-mail
+      additional_footer_texts:
+        show:
+          title: Texto adicional de rodapé
+      compliance_settings:
+        additional_footer_text:
+          action: Gerir
+          hint: Texto opcional que aparece no rodapé dos e-mails apenas da newsletter
+          title: Texto adicional de rodapé
+        lead: As newsletters por e-mail podem ser consideradas e-mails de marketing, dependendo das jurisdições onde opera.
+        privacy_policy:
+          action: Gerir
+          hint: Uma ligação para esta política é colocada no rodapé de cada e-mail
+          title: Política de privacidade
+        title: Definições de conformidade
+      danger_zone:
+        disable_feature:
+          action: Desativar
+          hint: Desativar a funcionalidade para todas as contas
+          title: Desativar funcionalidade
+        erase_all_data:
+          action: Apagar dados
+          hint: Eliminar permanentemente todos os e-mails em todas as listas de e-mails
+          title: Apagar todos os dados
+        title: Zona perigosa
+      disabled_msg: As subscrições por e-mail foram desativadas com sucesso.
+      index:
+        disabled:
+          cannot_be_enabled: O seu fornecedor técnico não ativou esta funcionalidade para o seu servidor.
+          description: Esta funcionalidade permite que contas especificadas adicionem um widget aos seus perfis, permitindo que visitantes sem uma conta no Mastodon recebam as suas publicações via e-mail.
+          get_started: Começar agora
+        lead: Permitir que os visitantes recebam publicações via e-mail de contas dedicadas neste servidor.
+        title: Newsletters por e-mail
+      purged_msg: Todos os dados de subscrições de e-mail estão a ser apagados.
+      roles:
+        accounts: Contas
+        edit_role: Editar função
+        empty:
+          hint: Ninguém tem permissão para utilizar esta funcionalidade.
+          no_roles_added: Nenhuma função adicionada
+        lead: Contas com as seguintes funções podem ativar esta funcionalidade nos seus perfis.
+        manage_roles: Gerir funções
+        role_name: Nome da função
+        title: Funções
+      setups:
+        show:
+          enable_feature: Ativar funcionalidade
+          important_information: Informação importante
+          list:
+            1_permission_explanation: Quando esta funcionalidade estiver ativada, as contas com as permissões designadas podem adicionar um formulário de recolha de e-mail aos seus perfis.
+            2_feature_explanation: Quando os visitantes se registarem na página de perfil de uma conta e confirmarem a sua subscrição, passarão a receber atualizações por e-mail quando a conta criar novas publicações públicas.
+            3_privacy_policy_warning: Os administradores do servidor terão acesso a informações de identificação pessoal (endereços de e-mail) recolhidas. Como tal, a política de privacidade e os Termos de Serviço do servidor devem ser atualizados antes de utilizar esta funcionalidade.
+            4_cost_warning: E-mails podem ter custos associados, dependendo da configuração de alojamento. Fale com o seu fornecedor de alojamento antes de ativar, pois esta funcionalidade poderá aumentar drasticamente a quantidade de e-mails enviados a partir do seu servidor.
     export_domain_allows:
       new:
         title: Importar permissões de domínio
@@ -641,6 +739,8 @@ pt-PT:
       new:
         title: Criar nova regra de IP
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
+      reset: Repor
+      search: Pesquisar
       title: Regras de IP
     relationships:
       title: Relações de %{acct}
@@ -671,6 +771,7 @@ pt-PT:
       action_log: Registo de auditoria
       action_taken_by: Ação tomada por
       actions:
+        delete_description_html: As publicações denunciadas e/ou coleções serão eliminadas e um aviso será registado para o ajudar a tomar medidas em futuras infrações pela mesma conta.
         mark_as_sensitive_description_html: A media nas publicações denunciadas será marcada como sensível e uma punição será registada para ajudá-lo a escalar ações em futuras infrações pela mesma conta.
         other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação para a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, não será registada nenhuma reprimenda e a denúncia será fechada.
@@ -697,6 +798,7 @@ pt-PT:
       confirm: Confirmar
       confirm_action: Confirmar a ação de moderação contra @%{acct}
       created_at: Denunciado
+      delete_and_resolve: Eliminar conteúdo
       forwarded: Encaminhado
       forwarded_replies_explanation: Esta denúncia é de um utilizador remoto e sobre conteúdo remoto. Foi encaminhada para si porque o conteúdo denunciado é em resposta a um dos seus utilizadores.
       forwarded_to: Encaminhado para %{domain}
@@ -790,6 +892,7 @@ pt-PT:
         manage_custom_emojis: Gerir emojis personalizados
         manage_custom_emojis_description: Permite aos utilizadores gerirem os emojis personalizados do servidor
         manage_email_subscriptions: Gerir Subscrições de E-mail
+        manage_email_subscriptions_description: Permitir a utilizadores com esta permissão ativar a funcionalidade de newsletter por e-mail para a sua conta
         manage_federation: Gerir federação
         manage_federation_description: Permite aos utilizadores bloquearem ou permitirem a federação com outros domínios e controlar a entregabilidade
         manage_invites: Gerir convites
@@ -877,6 +980,17 @@ pt-PT:
           authenticated: Apesar utilizadores autenticados
           disabled: Requerer função de utilizador especifica
           public: Todos
+      landing_page:
+        hints:
+          about_html: Uma página com a descrição, informações de contacto, regras e outras informações relativas a este servidor.
+          local_feed_html: Um feed em direto que apresenta as publicações mais recentes de utilizadores neste servidor.
+          overview_html: Uma página que apresenta a descrição do seu servidor, juntamente com as publicações locais mais recentes dos utilizadores neste servidor.
+          trends_html: Uma página que destaca o que é popular neste servidor neste momento.
+        values:
+          about: Página Sobre
+          local_feed: Cronologia local
+          overview: Visão Geral
+          trends: Em destaque
       registrations:
         moderation_recommandation: Certifique-se de que dispõe de uma equipa de moderação adequada e reativa antes de abrir as inscrições a todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
@@ -896,17 +1010,22 @@ pt-PT:
     site_uploads:
       delete: Eliminar ficheiro enviado
       destroyed_msg: Envio do site eliminado com sucesso!
+    skip_to_content: Saltar para o conteúdo
     software_updates:
       critical_update: Crítico — por favor, atualize rapidamente
       description: Recomenda-se que mantenha a sua instalação do Mastodon atualizada para beneficiar das últimas correções e funcionalidades. Além disso, é por vezes crítico atualizar o Mastodon de forma atempada para evitar problemas de segurança. Por estas razões, o Mastodon verifica as atualizações a cada 30 minutos e irá notificá-lo de acordo com as suas preferências de notificação por e-mail.
       documentation_link: Saber mais
+      nearing_eol: O suporte para a versão que está a utilizar terminará a %{date}, por favor considere atualizar.
       release_notes: Notas de lançamento
+      supported_until: Suporte termina em %{date}
       title: Atualizações disponíveis
       type: Tipo
       types:
         major: Versão principal
         minor: Versão menor
         patch: Versão de atualização — correções de problemas e alterações fáceis de aplicar
+      unsupported_branch: A versão que está a utilizar não é suportada, por favor atualize assim que possível.
+      unsupported_since: Sem suporte desde %{date}
       version: Versão
     statuses:
       account: Autor
@@ -1122,6 +1241,7 @@ pt-PT:
           other: Utilizada por %{count} pessoas na última semana
       title: Recomendações e destaques
       trending: Em destaque
+    update_available: Atualização disponível
     username_blocks:
       add_new: Adicionar novo
       block_registrations: Bloquear inscrições
@@ -1171,6 +1291,15 @@ pt-PT:
     auto_close_registrations:
       body: Devido à falta de atividade recente dos moderadores, as inscrições em %{instance} foram automaticamente alteradas para requererem revisão manual, para evitar que %{instance} seja utilizada como plataforma para potenciais más intenções. Pode voltar a alterar para inscrições abertas em qualquer altura.
       subject: As inscrições em %{instance} foram automaticamente alteradas para requererem aprovação
+    end_of_support_out_of_support_warning:
+      body: A versão do Mastodon atualmente em uso no seu servidor já não é suportada. Recomendamos que atualize o mais brevemente possível!
+      subject: Mastodon %{branch} utilizado em %{instance} já não é suportado!
+    end_of_support_three_months_warning:
+      body: A versão do Mastodon atualmente em uso no seu servidor deixará de ser suportada em 3 meses. Poderá ser do seu interesse atualizar para uma versão mais recente antecipadamente.
+      subject: O suporte para o Mastodon %{branch} utilizado em %{instance} terminará em 3 meses.
+    end_of_support_two_weeks_warning:
+      body: A versão do Mastodon atualmente em uso no seu servidor deixará de ser suportada em 2 semanas. Poderá ser do seu interesse atualizar para uma versão mais recente antecipadamente.
+      subject: O suporte para o Mastodon %{branch} utilizado em %{instance} terminará em 2 semanas.
     new_appeal:
       actions:
         delete_statuses: para eliminar as publicações dele
@@ -1411,6 +1540,7 @@ pt-PT:
       your_appeal_rejected: A tua contestação foi rejeitada
   edit_profile:
     other: Outro
+    privacy_redesign_body: A escolha de mostrar as tuas contas seguidas e seguidores é agora feita diretamente no teu perfil.
     redesign_body: Agora é possível aceder à edição do perfil diretamente a partir da página de perfil.
     redesign_button: Vamos lá
     redesign_title: Existe uma nova experiência de edição de perfil
@@ -1443,7 +1573,9 @@ pt-PT:
         success_html: A partir de agora, começará a receber e-mails sempre que %{name} publicar novas atualizações. Adicione %{sender} aos seus contactos para que essas mensagens não acabem na pasta de correio indesejado.
         title: Está inscrito
         unsubscribe: Cancelar subscrição
+    disabled: Desativado
     inactive: Inativa
+    no_access: Sem acesso
     status: Estado
     subscribers: Subscritores
   emoji_styles:
@@ -1479,7 +1611,9 @@ pt-PT:
     blocks: Bloqueaste
     bookmarks: Itens Salvos
     csv: CSV
+    custom_filters: Filtros
     domain_blocks: Bloqueios de domínio
+    json: JSON
     lists: Listas
     mutes: Que ocultaste
     storage: Armazenamento de media
@@ -1557,7 +1691,9 @@ pt-PT:
       empty: Ficheiro CSV vazio
       incompatible_type: Incompatível com o tipo de importação selecionado
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
+      invalid_json_file: 'Ficheiro JSON inválido. Erro: %{error}'
       over_rows_processing_limit: contém mais de %{count} linhas
+      status_not_found_warning: Alguns dos teus filtros ocultam publicações específicas que não são conhecidas por este servidor. Estas publicações não serão filtradas automaticamente se forem descobertas mais tarde pelo servidor.
       too_large: O ficheiro é demasiado grande
     failures: Falhas
     imported: Importado
@@ -1574,6 +1710,9 @@ pt-PT:
       bookmarks_html:
         one: Está prestes a <strong>substituir os seus itens salvos</strong> com até <strong>%{count} publicação</strong> de <strong>%{filename}</strong>.
         other: Está prestes a <strong>substituir os seus itens salvos</strong> com até <strong>%{count} publicações</strong> de <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Está prestes a <strong>substituir os seus filtros</strong> pelo conteúdo de <strong>%{filename}</strong>. Até <strong>%{count} filtro</strong> será adicionado aos novos filtros.
+        other: Está prestes a <strong>substituir os seus filtros</strong> pelo conteúdo de <strong>%{filename}</strong>. Até <strong>%{count} filtros</strong> serão adicionados aos novos filtros.
       domain_blocking_html:
         one: Estás prestes a <strong>substituir a tua lista de bloqueios de domínio</strong> com até <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>substituir a tua lista de bloqueios de domínio</strong> com até <strong>%{count} domínios</strong> de <strong>%{filename}</strong>.
@@ -1593,6 +1732,9 @@ pt-PT:
       bookmarks_html:
         one: Está prestes a adicionar até <strong>%{count} publicação</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
         other: Está prestes a adicionar até <strong>%{count} publicações</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+      custom_filters_html:
+        one: Está prestes a adicionar até <strong>%{count} filtro</strong> de <strong>%{filename}</strong> aos seus <strong>filtros</strong>.
+        other: Está prestes a adicionar até <strong>%{count} filtros</strong> de <strong>%{filename}</strong> aos seus <strong>filtros</strong>.
       domain_blocking_html:
         one: Estás prestes a <strong>bloquear</strong> até <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>bloquear</strong> até <strong>%{count} domínios</strong> de <strong>%{filename}</strong>.
@@ -1629,6 +1771,7 @@ pt-PT:
     types:
       blocking: Lista de bloqueios
       bookmarks: Itens Salvos
+      custom_filters: Filtros
       domain_blocking: Lista de domínios bloqueados
       following: Lista de pessoas que estás a seguir
       lists: Listas
@@ -1723,6 +1866,27 @@ pt-PT:
     copy_account_note_text: 'Este utilizador migrou de %{acct}, aqui estão as tuas notas anteriores sobre ele:'
   navigation:
     toggle_menu: Alternar o menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} adicionou-o a uma coleção"
+    admin_report:
+      title_html: "%{name} denunciou %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        one: "%{name} e mais outra pessoa inscreveu-se"
+        other: "%{name} e mais %{count} pessoas inscreveram-se"
+      title_html: "%{name} inscreveu-se"
+    collection_update:
+      title_html: "%{name} atualizou uma coleção em que está incluído"
+    generic:
+      sign_in: Iniciar sessão na aplicação web do Mastodon
+      summary_html: Está a utilizar uma aplicação que não suporta a versão mais recente do Mastodon. %{link} para funcionalidade completa.
+    moderation_warning:
+      summary_html: Está a utilizar uma aplicação que não suporta a versão mais recente do Mastodon. %{link}.
+      title: Recebeu um aviso de moderação.
+    severed_relationships:
+      summary_html: Um administrador de %{from} suspendeu %{target}, o que significa que já não pode receber atualizações ou interagir com eles. %{link} para obter uma lista das relações perdidas.
+      title: Ligações perdidas com %{name}
   notification_mailer:
     admin:
       report:
@@ -1771,6 +1935,7 @@ pt-PT:
     administration_emails: Notificações por e-mail do administrador
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Seleciona os casos para os quais desejas receber notificações:'
+    moderation_emails: Notificações de moderação por e-mail
   number:
     human:
       decimal_units:
@@ -1794,7 +1959,7 @@ pt-PT:
     next: Seguinte
     older: Mais antiga
     prev: Anterior
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Já votaste nesta sondagem

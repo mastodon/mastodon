@@ -1,13 +1,21 @@
+@use '@/styles/mastodon/mixins';
+
 .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-width: 1lh;
+  padding: var(--space-2xs);
+  gap: var(--space-2xs);
+  border-radius: var(--radius-xs);
   color: var(--color-text-primary);
   font-size: 13px;
   font-weight: 400;
-  display: inline-flex;
-  max-width: 100%;
-  padding: 4px;
-  gap: 4px;
-  border-radius: 8px;
-  align-items: center;
+
+  &:not(.badgeWithoutIcon) {
+    padding-inline-end: var(--space-xs);
+  }
 
   > svg {
     flex-shrink: 0;
@@ -20,10 +28,6 @@
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  &:not(.badgeWithoutIcon) {
-    padding-inline-end: 8px;
   }
 }
 
@@ -44,6 +48,11 @@
 
 .subtle {
   background-color: var(--color-bg-brand-softest);
+}
+
+.accent {
+  color: var(--color-text-on-brand-base);
+  background-color: var(--color-bg-brand-base);
 }
 
 .feature {

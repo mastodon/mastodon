@@ -58,7 +58,7 @@ const makeMapStateToProps = () => {
    */
   const mapStateToProps = (state, { timelineId, initialLoadingState = true, maxItems }) => ({
     statusIds: getStatusIds(state, { type: timelineId, maxItems }),
-    lastId:    state.getIn(['timelines', timelineId, 'items'])?.last(),
+    lastId:    state.getIn(['timelines', timelineId, 'items'])?.findLast(id => !isNonStatusId(id)),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], initialLoadingState),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),

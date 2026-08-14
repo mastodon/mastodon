@@ -10,6 +10,8 @@ class AccountSearchService < BaseService
   # Min. number of characters to look for non-exact matches
   MIN_QUERY_LENGTH = 3
 
+  ES_QUERY_TIMEOUT = ENV.fetch('ES_QUERY_TIMEOUT', '10s')
+
   class QueryBuilder
     def initialize(query, account, options = {})
       @query = query
@@ -253,7 +255,7 @@ class AccountSearchService < BaseService
       end
     end
 
-    records = elastic_stoplight_wrapper.run { query_builder.build.limit(limit_for_non_exact_results).offset(offset).objects.compact }
+    records = elastic_stoplight_wrapper.run { query_builder.build.limit(limit_for_non_exact_results).timeout(ES_QUERY_TIMEOUT).offset(offset).objects.compact }
 
     ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
 

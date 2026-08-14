@@ -10,12 +10,12 @@ import { debounce } from 'lodash';
 
 import { injectIntl } from '@/mastodon/components/intl';
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
-import { Account } from 'mastodon/components/account';
-
-import { fetchBlocks, expandBlocks } from '../../actions/blocks';
-import { LoadingIndicator } from '../../components/loading_indicator';
-import ScrollableList from '../../components/scrollable_list';
-import Column from '../ui/components/column';
+import { fetchBlocks, expandBlocks } from '@/mastodon/actions/blocks';
+import { Account } from '@/mastodon/components/account';
+import { Column } from '@/mastodon/components/column';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import ScrollableList from '@/mastodon/components/scrollable_list';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
@@ -61,7 +61,8 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn}>
+        <ColumnHeader icon='ban' iconComponent={BlockIcon} title={intl.formatMessage(messages.heading)} showBackButton />
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}

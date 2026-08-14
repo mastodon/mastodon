@@ -7,14 +7,14 @@ import { useHistory } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import { updateAccount } from 'mastodon/actions/accounts';
 import { closeOnboarding } from 'mastodon/actions/onboarding';
 import { Button } from 'mastodon/components/button';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import {
   TextAreaField,
   TextInputField,
@@ -71,6 +71,11 @@ export const Profile: React.FC<{
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const history = useHistory();
+
+  const maxDisplayNameLength = useAppSelector(
+    (state) =>
+      state.server.server.item?.configuration.accounts.max_display_name_length,
+  );
 
   const handleDisplayNameChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -218,7 +223,7 @@ export const Profile: React.FC<{
 
           <div className='fields-group'>
             <TextInputField
-              maxLength={30}
+              maxLength={maxDisplayNameLength ?? 40}
               label={
                 <FormattedMessage
                   id='onboarding.profile.display_name'

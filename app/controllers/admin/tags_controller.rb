@@ -17,12 +17,15 @@ module Admin
       authorize @tag, :show?
 
       @time_period = report_range
+      @action_logs = Admin::ActionLogFilter.new(target_tag: @tag.formatted_name).results.limit(5)
     end
 
     def update
       authorize @tag, :update?
 
       if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
+        log_action_from_change if @tag.saved_changes?
+
         redirect_to admin_tag_path(@tag.id), notice: I18n.t('admin.tags.updated_msg')
       else
         @time_period = report_range
@@ -32,6 +35,13 @@ module Admin
     end
 
     private
+
+    def log_action_from_change
+      action_log = current_account.action_logs.new(action: 'update', target: @tag)
+      action_log.recorded_changes = @tag.saved_changes.slice('usable', 'trendable', 'listable').transform_values(&:last)
+      action_log.recorded_changes_format = 'tags_format_1.0'
+      action_log.save
+    end
 
     def set_tag
       @tag = Tag.find(params[:id])

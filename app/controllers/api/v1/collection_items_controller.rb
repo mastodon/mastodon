@@ -50,7 +50,7 @@ class Api::V1::CollectionItemsController < Api::BaseController
   def set_account
     return render(json: { error: '`account_id` parameter is missing' }, status: 422) if params[:account_id].blank?
 
-    @account = Account.find(params[:account_id])
+    @account = Account.without_requested_deletion.find(params[:account_id])
   end
 
   def set_collection_item

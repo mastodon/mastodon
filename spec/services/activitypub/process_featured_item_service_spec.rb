@@ -81,6 +81,17 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
           expect(new_item.position).to eq 1
         end
       end
+
+      context "when the collection's item count is already at the limit" do
+        before do
+          stub_const('ActivityPub::ProcessFeaturedCollectionService::ITEMS_LIMIT', 3)
+          Fabricate.times(3, :collection_item, collection:)
+        end
+
+        it 'does not create an item' do
+          expect { subject.call(collection, object) }.to_not change(collection.collection_items, :count)
+        end
+      end
     end
 
     context 'when item exists' do
@@ -135,6 +146,28 @@ RSpec.describe ActivityPub::ProcessFeaturedItemService do
             body: hashtag_json,
             headers: { 'Content-Type' => 'application/activity+json' }
           )
+      end
+
+      it 'does not create a collection item and returns `nil`' do
+        expect do
+          expect(subject.call(collection, object, position:)).to be_nil
+        end.to_not change(CollectionItem, :count)
+      end
+    end
+
+    context 'when featured object cannot be fetched' do
+      let(:hashtag_json) do
+        {
+          'id' => 'https://example.com/hashtags/people',
+          'type' => 'Hashtag',
+          'name' => '#people',
+        }
+      end
+      let(:featured_object_uri) { hashtag_json['id'] }
+
+      before do
+        stub_request(:get, featured_object_uri)
+          .to_return(status: 404)
       end
 
       it 'does not create a collection item and returns `nil`' do

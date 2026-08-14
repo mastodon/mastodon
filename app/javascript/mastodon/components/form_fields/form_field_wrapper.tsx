@@ -83,7 +83,9 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   };
 
   const input = (
-    <div className={classes.inputWrapper}>{children(inputProps)}</div>
+    <div className={classes.inputWrapper} data-input>
+      {children(inputProps)}
+    </div>
   );
 
   return (
@@ -105,7 +107,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
         </label>
 
         {hasHint && (
-          <span className={classes.hint} id={hintId}>
+          <span className={classes.hint} id={hintId} data-hint>
             {hint}
           </span>
         )}

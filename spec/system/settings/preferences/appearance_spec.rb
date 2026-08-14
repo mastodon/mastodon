@@ -38,10 +38,6 @@ RSpec.describe 'Settings preferences appearance page' do
     form_label('defaults.setting_boost_modal')
   end
 
-  def theme_selection_field
-    form_label('defaults.setting_theme')
-  end
-
   def advanced_layout_field
     form_label('defaults.setting_advanced_layout')
   end

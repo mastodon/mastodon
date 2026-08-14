@@ -4,9 +4,12 @@ pl:
     about_mastodon_html: 'Sieć społecznościowa przyszłości: Bez reklam, bez inwigilacji, zaprojektowana etycznie i zdecentralizowanie! Władaj swoimi danymi z Mastodonem!'
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
+    default_thumbnail_description: Dwa uśmiechnięte rysunkowe mastodony (przypominające słonie) przerzucają między sobą papierowy samolocik. Otacza je jasnobłękitne niebo oraz unoszące się planety, na których rosną drzewa i znajdują się kolejne mastodony.
     hosted_on: Mastodon prowadzony na %{domain}
     title: O nas
   accounts:
+    errors:
+      cannot_be_added_to_collections: To konto nie może być dodane do kolekcji.
     followers:
       few: śledzących
       many: śledzących
@@ -279,24 +282,24 @@ pl:
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
         destroy_username_block_html: Użytkownik %{name} usunął zasadę dla nazw użytkowników zawierających %{target}
-        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
+        disable_2fa_user_html: Użytkownik %{name} wyłączył uwierzytelnianie dwuskładnikowe użytkownikowi %{target}
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_relay_html: "%{name} wyłączył przekaźnik %{target}"
         disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
-        disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
+        disable_user_html: Użytkownik %{name} zablokował możliwość logowania użytkownikowi %{target}
         enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
         enable_relay_html: "%{name} włączył przekaźnik %{target}"
         enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
-        enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
+        enable_user_html: Użytkownik %{name} przywrócił możliwość logowania użytkownikowi %{target}
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
-        promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        promote_user_html: Użytkownik %{name} podniósł uprawnienia użytkownikowi %{target}
         publish_terms_of_service_html: "%{name} opublikował aktualizacje warunków korzystania z usługi"
         reject_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         reject_user_html: "%{name} odrzucił rejestrację od %{target}"
-        remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
+        remove_avatar_user_html: Użytkownik %{name} usunął awatar użytkownikowi %{target}
         reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
         resend_user_html: "%{name} ponownie wysłał(a) e-mail z potwierdzeniem dla %{target}"
-        reset_password_user_html: "%{name} resetuje hasło użytkownika %{target}"
+        reset_password_user_html: Użytkownik %{name} przywrócił hasło użytkownikowi %{target}
         resolve_report_html: "%{name} rozwiązał(a) zgłoszenie %{target}"
         sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account_html: "%{name} wyciszył(a) konto %{target}"
@@ -342,6 +345,13 @@ pl:
       unpublish: Cofnij publikację
       unpublished_msg: Pomyślnie wycofano publikację ogłoszenia!
       updated_msg: Pomyślnie zaktualizowano ogłoszenie!
+    collections:
+      batch:
+        report: Zgłoś
+      collection_title: Kolekcje od użytkownika %{name}
+      contents: Zawartość
+      title: Kolekcje kont — @%{name}
+      view_publicly: Wyświetl publicznie
     critical_update_pending: Czeka krytyczna aktualizacja
     custom_emojis:
       assign_category: Ustaw kategorię
@@ -484,21 +494,32 @@ pl:
         title: Nowa blokada domeny e-mail
       no_email_domain_block_selected: Żadne blokady domeny e-mail nie zostały zmienione, ponieważ żadne z nich nie zostały wybrane
       not_permitted: Brak uprawnień
+      reset: Resetuj
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
+      search: Szukaj
       title: Zablokowane domeny e-mail
     email_subscriptions:
       accounts:
+        empty:
+          hint: Żadne konta nie mają jeszcze subskrybentów.
+          no_lists_yet: Brak list
+        last_email: Ostatnie e-maile
         show:
+          date: Data rejestracji
           disable_feature: Wyłącz funkcję
+          email: Adres e-mail
           enable_feature: Włącz funkcję
       compliance_settings:
         additional_footer_text:
           action: Zarządzaj
+          hint: Opcjonalny tekst, który pojawia się wyłącznie w stopce wiadomości newslettera
         privacy_policy:
           action: Zarządzaj
+          title: Polityka prywatności
       danger_zone:
         disable_feature:
+          action: Dezaktywuj
           title: Wyłącz funkcję
         erase_all_data:
           action: Wyczyść dane
@@ -710,6 +731,7 @@ pl:
       action_log: Dziennik zdarzeń
       action_taken_by: Działanie podjęte przez
       actions:
+        delete_description_html: Zgłoszone wpisy lub kolekcje zostaną usunięte, a w systemie zostanie odnotowane ostrzeżenie, które pomoże w eskalacji przyszłych wykroczeń na tym samym koncie.
         mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagrane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
         resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
@@ -729,12 +751,14 @@ pl:
       cancel: Anuluj
       category: Kategoria
       category_description_html: Powód, dla którego to konto i/lub zawartość zostały zgłoszone, będzie cytowany w komunikacji ze zgłoszonym kontem
+      collections: Kolekcje (%{count})
       comment:
         none: Brak
       comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
       confirm: Potwierdź
       confirm_action: Potwierdzenie działań moderacyjnych wobec @%{acct}
       created_at: Zgłoszono
+      delete_and_resolve: Usuń zawartość
       forwarded: Przekazano
       forwarded_replies_explanation: Ten raport nadszedł od zdalnego użytkownika i dotyczy zdalnej treści. Został ci przekazany, bo raportowana treść jest odpowiedzią na jednego z twoich użytkowników.
       forwarded_to: Przekazano do %{domain}
@@ -747,7 +771,7 @@ pl:
         create_and_resolve: Rozwiąż i pozostaw notatkę
         create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
         delete: Usuń
-        placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
+        placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia...
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
       processed_msg: 'Zgłoszenie #%{id} zostało pomyślnie przetworzone'
@@ -757,11 +781,13 @@ pl:
       report: 'Zgłoszenie #%{id}'
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
+      reported_content: Zgłoszona zawartość
       reported_with_application: Zareportowano przez aplikację
       resolved: Rozwiązane
       resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       skip_to_actions: Przejdź do akcji
       status: Stan
+      statuses: Wpisy (%{count})
       statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
       summary:
         action_preambles:
@@ -817,6 +843,8 @@ pl:
         administrator_description: Użytkownicy z tym uprawnieniem omijają każde uprawnienie
         delete_user_data: Usuń dane użytkownika
         delete_user_data_description: Pozwala użytkownikom na bezzwłoczne usuwanie danych innych użytkowników
+        invite_bypass_approval: Zaproś użytkowników bez weryfikacji
+        invite_bypass_approval_description: Pozwala osobom zaproszonym na serwer przez tych użytkowników pominąć zatwierdzenie przez moderację
         invite_users: Zaproś użytkowników
         invite_users_description: Pozwala użytkownikom zapraszać nowych ludzi na serwer
         manage_announcements: Zarządzaj ogłoszeniami
@@ -827,6 +855,8 @@ pl:
         manage_blocks_description: Pozwala użytkownikom na blokowanie dostawców poczty elektronicznej i adresów IP
         manage_custom_emojis: Zarządzaj niestandardowymi emoji
         manage_custom_emojis_description: Pozwala użytkownikom zarządzać niestandardowymi emoji na serwerze
+        manage_email_subscriptions: Zarządzaj subskrypcjami e-mail
+        manage_email_subscriptions_description: Pozwala użytkownikom z tym uprawnieniem włączyć funkcję newslettera e-mail dla swojego konta
         manage_federation: Zarządzaj federacją
         manage_federation_description: Pozwala użytkownikom na blokowanie lub zezwalanie federacji z innymi domenami i kontrolowanie doręczania
         manage_invites: Zarządzaj zaproszeniami
@@ -1329,6 +1359,7 @@ pl:
       invited_by: 'Możesz dołączyć do %{domain} dzięki zaproszeniu, które otrzymano od:'
       preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
       preamble_invited: Zanim przejdziesz dalej, rozważ zasady podstawowe ustalone przez moderatorów %{domain}.
+      read_more: Czytaj więcej
       title: Kilka podstawowych zasad.
       title_invited: Otrzymano zaproszenie.
     security: Bezpieczeństwo
@@ -1453,7 +1484,11 @@ pl:
     redesign_button: Przejdź do edycji
     redesign_title: Nowy sposób edycji profilu
   email_subscription_mailer:
+    confirmation:
+      subject: Potwierdź adres e-mail
+      title: Otrzymać aktualizacje e-mail od %{name}?
     notification:
+      create_account: Utwórz konto Mastodon
       footer:
         privacy_html: Wiadomości e-mail są wysyłane z %{domain}, serwera obsługiwanego przez Mastodona. Aby zrozumieć, jak ten serwer przetwarza Twoje dane osobowe, zapoznaj się z <a href="%{privacy_policy_path}">polityką prywatności</a>.
   emoji_styles:
@@ -1713,6 +1748,7 @@ pl:
     author_html: Przez %{name}
     potentially_sensitive_content:
       action: Kliknij, aby pokazać
+      hide_button: Ukryj
   lists:
     errors:
       limit: Przekroczono maksymalną liczbę utworzonych list
@@ -1767,7 +1803,7 @@ pl:
   moderation:
     title: Moderacja
   move_handler:
-    carry_blocks_over_text: Ten użytkownik przeniósł się z konta %{acct}, które zablokowałeś(-aś).
+    carry_blocks_over_text: Ten użytkownik przeniósł się z konta %{acct}, które zablokowano.
     carry_mutes_over_text: Ten użytkownik przeniósł się z konta %{acct}, które wyciszyłeś(-aś).
     copy_account_note_text: 'Ten użytkownik przeniósł się z konta %{acct}, oto Twoje poprzednie notatki o nim:'
   navigation:
@@ -1836,7 +1872,6 @@ pl:
     next: Następna
     older: Starsze
     prev: Poprzednia
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Już oddałeś(-aś) głos w tym głosowaniu
@@ -1859,11 +1894,11 @@ pl:
   privacy:
     hint_html: "<strong>Dostosuj tryb odnajdowania twojego profilu i wpisów.</strong> Funkcje Mastodona mogą pomóc ci zwiększać twoją publiczność – przejrzyj te ustawienia i dostosuj je do swojego sposobu użytkowania."
     privacy: Prywatność
-    privacy_hint_html: Ustaw, ile chcesz ujawniać innym. Ciekawe profile i programy często znajduje się przy przeglądaniu cudzych list obserwowanych i tego, z jakich programów zamieszczają, ale może wolisz to ukryć.
+    privacy_hint_html: Kontroluj, ile chcesz ujawniać innym. Ludzie odkrywają ciekawe profile i aplikacje przy przeglądaniu cudzych list obserwowanych i tego, z jakich aplikacji publikują posty, ale może wolisz to ukryć.
     reach: Zasięg
     reach_hint_html: Ustaw, czy chcesz dać się odkryć i zaobserwować. Chcesz, żeby twoje wpisy pojawiały się w zakładce "Odkrywaj"? Chcesz, żeby sugerowano twoje konto do obserwacji? Chcesz przyjmować nowych obserwujących automatycznie, czy aprobować ich ręcznie?
     search: Wyszukiwanie
-    search_hint_html: Ustaw, w jakim zakresie będziesz znajdowalny(a). Chcesz pojawiać się w wynikach po twoich publicznych wpisach? Chcesz by twój profil dało się znaleźć spoza Mastodona? Pamiętaj, że nie da się zapewnić całkowitego wykluczenia wszystkich informacji publicznie dostępnych z wyszukiwarek.
+    search_hint_html: Kontroluj zakres znajdowalności swojego profilu. Chcesz, aby inni mogli znaleźć Cię po Twoich publicznych wpisach? Chcesz, aby Twój profil dało się znaleźć poza Mastodonem podczas przeszukiwania internetu? Pamiętaj, że nie da się zapewnić całkowitego wykluczenia wszystkich publicznie dostępnych informacji z wyszukiwarek.
     title: Prywatność i zasięg
   privacy_policy:
     title: Polityka prywatności
@@ -2013,6 +2048,8 @@ pl:
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
+    content_warnings:
+      hide: Ukryj wpis
     default_language: Taki sam jak język interfejsu użytkownika
     disallowed_hashtags:
       few: 'zawiera niedozwolone hashtagi: %{tags}'
@@ -2029,12 +2066,16 @@ pl:
       limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
+    quote_error:
+      not_available: Wpis niedostępny
+      revoked: Wpis został usunięty przez autora
     quote_policies:
       followers: Tylko obserwujący
       nobody: Tylko ja
       public: Każdy
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Wzmianka prywatna
       private: Tylko dla obserwujących
       public: Publiczne
       public_long: Każdy na i poza Mastodon
@@ -2089,6 +2130,8 @@ pl:
     past_preamble_html: Od czasu twojej ostatniej wizyty zmieniliśmy warunki korzystania z usługi. Zachęcamy do zapoznania się z aktualnymi warunkami.
     review_link: Przeglądnij Warunki Korzystania
     title: Warunki korzystania z %{domain} zmieniają się
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -2114,6 +2157,10 @@ pl:
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
     webauthn: Klucze bezpieczeństwa
+  unsubscriptions:
+    create:
+      action: Przejdź do strony głównej serwera
+      title: Subskrypcja została anulowana
   user_mailer:
     announcement_published:
       description: 'Administratorzy %{domain} publikują ogłoszenie:'
@@ -2263,3 +2310,5 @@ pl:
     not_supported: Twoja przeglądarka nie obsługuje kluczy bezpieczeństwa
     otp_required: Aby użyć kluczy bezpieczeństwa, najpierw włącz uwierzytelnianie dwuskładnikowe.
     registered_on: Zarejestrowano %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} dla %{name}

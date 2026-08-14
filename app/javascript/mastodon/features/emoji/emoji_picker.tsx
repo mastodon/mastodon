@@ -13,8 +13,6 @@ import { usePickerEmojis } from './picker';
 
 const backgroundImageFnDefault = () => `${assetHost}/emoji/sheet_16_0.png`;
 
-export { fetchCustomEmojiData as loadCustomEmojiData } from './picker';
-
 export const Picker: FC<PickerProps> = ({
   set = 'twitter',
   sheetSize = 32,
@@ -24,17 +22,13 @@ export const Picker: FC<PickerProps> = ({
   ...props
 }) => {
   const { mode } = useEmojiAppState();
-  const { customCategories, customEmojis } = usePickerEmojis();
-
-  if (!customEmojis) {
-    return null;
-  }
+  const { categories, emojis } = usePickerEmojis();
 
   return (
     <PickerRaw
       data={EmojiData}
-      custom={customEmojis}
-      include={customCategories}
+      custom={emojis}
+      include={categories}
       set={set}
       sheetSize={sheetSize}
       sheetColumns={sheetColumns}
@@ -57,15 +51,17 @@ export const Emoji: FC<EmojiProps> = ({
   const { mode } = useEmojiAppState();
   return (
     <EmojiRaw
-      // eslint-disable-next-line @typescript-eslint/no-deprecated -- In React props are frozen, but the library we use is old so doesn't respect that.
-      {...(EmojiRaw.defaultProps ?? {})}
+      backgroundImageFn={backgroundImageFn}
       data={EmojiData}
+      native={mode === EMOJI_MODE_NATIVE}
       set={set}
-      sheetSize={sheetSize}
       sheetColumns={sheetColumns}
       sheetRows={sheetRows}
-      backgroundImageFn={backgroundImageFn}
-      native={mode === EMOJI_MODE_NATIVE}
+      sheetSize={sheetSize}
+      skin={1}
+      tooltip={false}
+      forceSize={false}
+      {...{ useButton: true }}
       {...props}
     />
   );

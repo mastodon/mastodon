@@ -253,20 +253,11 @@ module Mastodon::CLI
     desc 'fix-duplicates', 'Find duplicate remote accounts and merge them'
     option :dry_run, type: :boolean
     long_desc <<-LONG_DESC
-      Merge known remote accounts sharing an ActivityPub actor identifier.
-
-      Such duplicates can occur when a remote server admin misconfigures their
-      domain configuration.
+      This command is deprecated as of Mastodon v4.7.0.
     LONG_DESC
     def fix_duplicates
-      Account.remote.duplicate_uris.pluck(:uri).each do |uri|
-        say("Duplicates found for #{uri}")
-        begin
-          ActivityPub::FetchRemoteAccountService.new.call(uri) unless dry_run?
-        rescue => e
-          say("Error processing #{uri}: #{e}", :red)
-        end
-      end
+      # TODO: remove this after 4.7.0
+      say('This command is deprecated as Mastodon v4.7.0 migrations enforce ActivityPub actor identifier uniqueness', :yellow)
     end
 
     desc 'backup USERNAME', 'Request a backup for a user'
@@ -612,10 +603,22 @@ module Mastodon::CLI
     def rotate_keys_for_account(account, delay = 0)
       fail_with_message 'No such account' if account.nil?
 
-      old_key = account.private_key
+      old_key = account.keypair
       new_key = OpenSSL::PKey::RSA.new(2048)
-      account.update(private_key: new_key.to_pem, public_key: new_key.public_key.to_pem)
-      ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, { 'sign_with' => old_key })
+
+      account.update(private_key: nil, public_key: '', keypairs: [account.keypairs.build(local_fragment: '#main-key', type: :rsa, public_key: new_key.public_key.to_pem, private_key: new_key.to_pem)])
+
+      ActivityPub::UpdateDistributionWorker.perform_in(
+        delay,
+        account.id,
+        {
+          'sign_with' => {
+            'private_key' => old_key.private_key,
+            'local_fragment' => old_key.local_fragment,
+            'type' => old_key.type,
+          },
+        }
+      )
     end
   end
 end

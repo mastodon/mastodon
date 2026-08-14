@@ -4,6 +4,7 @@ es-AR:
     about_mastodon_html: 'La red social del futuro: ¡sin publicidad, sin vigilancia corporativa, con diseño ético y descentralización! ¡Con Mastodon vos sos el dueño de tus datos!'
     contact_missing: No establecido
     contact_unavailable: No disponible
+    default_thumbnail_description: Dos dibujos de mastodontes sonrientes (que se parecen a elefantes) se lanzan un avión de papel el uno al otro. A su alrededor, un cielo azul claro y planetas flotando con árboles y más mastodontes en ellos.
     hosted_on: Mastodon alojado en %{domain}
     title: Información
   accounts:
@@ -63,6 +64,8 @@ es-AR:
       custom: Personalizar
       delete: Eliminar datos
       deleted: Eliminado
+      deletion_irreversible: Los datos de esta cuenta fueron eliminados irreversiblemente.
+      deletion_reversible_hint_html: Esta cuenta está pendiente de eliminación, y los datos se eliminarán completamente el %{date}.
       demote: Bajar de nivel
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Congelar
@@ -288,7 +291,11 @@ es-AR:
         enable_relay_html: "%{name} eliminó el relé %{target}"
         enable_sign_in_token_auth_user_html: "%{name} habilitó la autenticación de token por correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
+        listable_tag_html: puede ser recomendada
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
+        not_listable_tag_html: no será sugerida
+        not_trendable_tag_html: no aparecerá bajo «Tendencias»
+        not_usable_tag_html: no puede ser usada
         promote_user_html: "%{name} promovió al usuario %{target}"
         publish_terms_of_service_html: "%{name} publicó actualizaciones de los términos del servicio"
         reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
@@ -301,6 +308,7 @@ es-AR:
         sensitive_account_html: "%{name} marcó los medios de %{target} como sensibles"
         silence_account_html: "%{name} limitó la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
+        trendable_tag_html: puede aparecer bajo «Tendencias»
         unassigned_report_html: "%{name} desasignó la denuncia %{target}"
         unblock_email_account_html: "%{name} desbloqueó la dirección de correo electrónico de %{target}"
         unsensitive_account_html: "%{name} desmarcó los medios de %{target} como sensibles"
@@ -313,8 +321,10 @@ es-AR:
         update_ip_block_html: "%{name} cambió la regla para la dirección IP %{target}"
         update_report_html: "%{name} actualizó la denuncia %{target}"
         update_status_html: "%{name} actualizó el mensaje de %{target}"
+        update_tag_html: "%{name} cambió la configuración de %{target} a: "
         update_user_role_html: "%{name} cambió el rol %{target}"
         update_username_block_html: "%{name} actualizó una regla para los nombres de usuario que contienen %{target}"
+        usable_tag_html: puede ser usada;
       deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
@@ -729,6 +739,8 @@ es-AR:
       new:
         title: Crear nueva regla de dirección IP
       no_ip_block_selected: No se cambió ninguna regla de dirección IP, ya que no se seleccionó ninguna
+      reset: Restablecer
+      search: Buscar
       title: Reglas de dirección IP
     relationships:
       title: Relaciones de %{acct}
@@ -1003,13 +1015,17 @@ es-AR:
       critical_update: Crítica — por favor, actualizá cuanto antes
       description: Se recomienda mantener actualizada tu instalación de Mastodon para beneficiarte de las últimas correcciones y funciones. Además, a veces es crítico actualizar Mastodon inmediatamente para evitar problemas de seguridad. Por estas razones, Mastodon comprueba si hay actualizaciones cada 30 minutos, y te notificará de acuerdo a tu configuración de notificaciones por correo electrónico.
       documentation_link: Aprendé más
+      nearing_eol: El soporte para la rama que estás ejecutando finalizará en %{date}; por favor, considerá actualizar.
       release_notes: Notas de lanzamiento
+      supported_until: El soporte termina en %{date}
       title: Actualización disponible
       type: Tipo
       types:
         major: Lanzamiento importante
         minor: Lanzamiento menor
         patch: Lanzamiento parche — correcciones de errores y cambios fáciles de aplicar
+      unsupported_branch: La rama que estás ejecutando no está soportada; por favor, actualizá lo antes posible.
+      unsupported_since: Sin soporte desde %{date}
       version: Versión
     statuses:
       account: Autor
@@ -1225,6 +1241,7 @@ es-AR:
           other: Usada por %{count} personas durante la última semana
       title: Recomendaciones y tendencias
       trending: En tendencia
+    update_available: Actualización disponible
     username_blocks:
       add_new: Agregar nueva
       block_registrations: Bloquear registros
@@ -1274,6 +1291,15 @@ es-AR:
     auto_close_registrations:
       body: Debido a la falta de actividad reciente por parte de moderadores, los registros en %{instance} fueron cambiados automáticamente para requerir revisión manual, para evitar que %{instance} se use como una plataforma para potenciales malos actores. Podés volver a cambiar esto para abrir los registros en cualquier momento.
       subject: Los registros de %{instance} se cambiaron automáticamente para requerir aprobación
+    end_of_support_out_of_support_warning:
+      body: La versión de Mastodon que está actualmente en uso en tu servidor ya no es compatible. ¡Te recomendamos que actualicés lo antes posible!
+      subject: "¡Mastodon %{branch} usado en %{instance} no es compatible!"
+    end_of_support_three_months_warning:
+      body: La versión de Mastodon que está actualmente en uso en tu servidor dejará de ser soportada en 3 meses. Puede ser una buena idea actualizar a una rama más reciente con anticipación.
+      subject: El soporte para Mastodon %{branch} usado en %{instance} finalizará en 3 meses.
+    end_of_support_two_weeks_warning:
+      body: La versión de Mastodon que está actualmente en uso en tu servidor dejará de ser soportada en 2 semanas. Puede ser una buena idea actualizar a una rama más reciente con anticipación.
+      subject: El soporte para Mastodon %{branch} usado en %{instance} finalizará en 2 semanas.
     new_appeal:
       actions:
         delete_statuses: para eliminar sus mensajes
@@ -1745,6 +1771,7 @@ es-AR:
     types:
       blocking: Lista de bloqueados
       bookmarks: Marcadores
+      custom_filters: Filtros
       domain_blocking: Lista de dominios bloqueados
       following: Lista de seguidos
       lists: Listas
@@ -1908,6 +1935,7 @@ es-AR:
     administration_emails: Notificaciones de administración por correo electrónico
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Seleccioná los eventos para los que querés recibir notificaciones:'
+    moderation_emails: Notificaciones de correo de moderación
   number:
     human:
       decimal_units:
@@ -1931,7 +1959,7 @@ es-AR:
     next: Siguiente
     older: Más antiguos
     prev: Anterior
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Ya votaste en esta encuesta

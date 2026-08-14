@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useCallback, useId, useMemo, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -24,7 +25,6 @@ import {
 import {
   Article,
   ItemList,
-  Scrollable,
 } from 'mastodon/components/scrollable_list/components';
 import { useAccount } from 'mastodon/hooks/useAccount';
 import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
@@ -340,8 +340,8 @@ export const CollectionAccounts: React.FC<{
     [addAccountItem, instantAddAccountItem, isEditMode, resetAccounts],
   );
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+  const handleSubmit: React.SubmitEventHandler = useCallback(
+    (e) => {
       e.preventDefault();
 
       if (!id) {
@@ -417,43 +417,42 @@ export const CollectionAccounts: React.FC<{
             </AccountsHeadingElement>
           )}
 
-          <Scrollable className={classes.scrollableWrapper}>
-            <ItemList
-              emptyMessage={
-                <EmptyState
-                  title={
-                    <FormattedMessage
-                      id='collections.accounts.empty_editor_title'
-                      defaultMessage='No one is in this collection yet'
-                    />
-                  }
-                  message={
-                    <FormattedMessage
-                      id='collections.accounts.empty_description'
-                      defaultMessage='Add up to {count} accounts'
-                      values={{
-                        count: MAX_COLLECTION_ACCOUNT_COUNT,
-                      }}
-                    />
-                  }
-                />
-              }
-            >
-              {editorItems.map(({ account_id, state }, index) => (
-                <Article
-                  key={account_id}
-                  aria-posinset={index}
-                  aria-setsize={editorItems.length}
-                >
-                  <AddedAccountItem
-                    accountId={account_id}
-                    pending={state === 'pending'}
-                    onRemove={handleRemoveAccountItem}
+          <ItemList
+            className={classes.accountList}
+            emptyMessage={
+              <EmptyState
+                title={
+                  <FormattedMessage
+                    id='collections.accounts.empty_editor_title'
+                    defaultMessage='No one is in this collection yet'
                   />
-                </Article>
-              ))}
-            </ItemList>
-          </Scrollable>
+                }
+                message={
+                  <FormattedMessage
+                    id='collections.accounts.empty_description'
+                    defaultMessage='Add up to {count} accounts'
+                    values={{
+                      count: MAX_COLLECTION_ACCOUNT_COUNT,
+                    }}
+                  />
+                }
+              />
+            }
+          >
+            {editorItems.map(({ account_id, state }, index) => (
+              <Article
+                key={account_id}
+                aria-posinset={index}
+                aria-setsize={editorItems.length}
+              >
+                <AddedAccountItem
+                  accountId={account_id}
+                  pending={state === 'pending'}
+                  onRemove={handleRemoveAccountItem}
+                />
+              </Article>
+            ))}
+          </ItemList>
         </div>
       </FormStack>
       {!isEditMode && hasItems && (

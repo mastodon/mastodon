@@ -21,7 +21,7 @@ import svgr from 'vite-plugin-svgr';
 
 import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
-import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
+import { MastodonServiceWorkerChunkPaths } from './config/vite/plugin-sw-chunk-paths';
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
@@ -32,9 +32,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
   const isProdBuild = mode === 'production' && command === 'build';
 
   let outDirName = 'packs-dev';
-  if (mode === 'test') {
-    outDirName = 'packs-test';
-  } else if (mode === 'production') {
+  if (mode === 'test' || mode === 'production') {
     outDirName = 'packs';
   }
   const outDir = path.resolve('public', outDirName);
@@ -106,10 +104,14 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // but it needs to be scoped to the whole domain
         'Service-Worker-Allowed': '/',
       },
-      hmr: {
+      hmr: true,
+      ws: {
         // Forcing the protocol to be insecure helps if you are proxying your dev server with SSL,
         // because Vite still tries to connect to localhost.
         protocol: 'ws',
+        // The client can't connect through the main Rails app proxy since it doesn't support
+        // WebSockets. It needs to connect directly to Vite's server, that's why we set the port again
+        clientPort: 3036,
       },
       port: 3036,
     },
@@ -185,6 +187,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       MastodonThemes(),
       MastodonAssetsManifest(),
       MastodonServiceWorkerLocales(),
+      MastodonServiceWorkerChunkPaths(),
       legacy({
         renderLegacyChunks: false,
         modernPolyfills: true,
@@ -202,7 +205,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         (visualizer({
           template: process.env.CI ? 'raw-data' : 'treemap',
         }) as PluginOption),
-      MastodonNameLookup(),
     ],
   } satisfies UserConfig;
 };

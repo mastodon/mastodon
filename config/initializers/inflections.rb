@@ -30,6 +30,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'SEO'
   inflect.acronym 'TOC'
   inflect.acronym 'URL'
+  inflect.acronym 'OpenTelemetry'
 
   inflect.singular 'data', 'data'
 end

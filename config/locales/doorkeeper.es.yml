@@ -6,7 +6,7 @@ es:
         name: Nombre de aplicación
         redirect_uri: URI para redirección
         scopes: Ámbitos
-        website: Sitio web
+        website: Sitio web de la aplicación
     errors:
       models:
         doorkeeper/application:
@@ -43,12 +43,12 @@ es:
         new: Nueva aplicación
         scopes: Ámbitos
         show: Mostrar
-        title: Sus aplicaciones
+        title: Tus aplicaciones
       new:
         title: Nueva aplicación
       show:
         actions: Acciones
-        application_id: Id de la aplicación
+        application_id: Clave de cliente
         callback_urls: URLs de callback
         scopes: Ámbitos
         secret: Secreto
@@ -82,7 +82,7 @@ es:
       messages:
         access_denied: El propietario del recurso o servidor de autorización denegó la petición.
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
-        invalid_client: La autentificación del cliente falló debido o a que es un cliente desconocido o no está incluída la autentificación del cliente o el método de autentificación no está confirmado.
+        invalid_client: La autentificación del cliente falló debido o a que es un cliente desconocido o no está incluida la autentificación del cliente o el método de autentificación no está confirmado.
         invalid_code_challenge_method:
           one: El code_challenge_method debe ser %{challenge_methods}.
           other: El code_challenge_method debe ser uno de %{challenge_methods}.
@@ -96,12 +96,12 @@ es:
         invalid_resource_owner: Las credenciales proporcionadas del propietario del recurso no son válidas, o el propietario del recurso no puede ser encontrado
         invalid_scope: El ámbito pedido es inválido, desconocido o erróneo.
         invalid_token:
-          expired: El autentificador de acceso expiró
-          revoked: El autentificador de acceso fue revocado
-          unknown: El autentificador de acceso es inválido
+          expired: El token de acceso ha expirado
+          revoked: El token de acceso ha sido revocado
+          unknown: El token de acceso es inválido
         resource_owner_authenticator_not_configured: El propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_authenticator está sin configurar.
-        server_error: El servidor de la autorización entontró una condición inesperada que le impidió cumplir con la solicitud.
-        temporarily_unavailable: El servidor de la autorización es actualmente incapaz de manejar la petición debido a una sobrecarga temporal o un trabajo de mantenimiento del servidor.
+        server_error: El servidor de la autorización encontró una condición inesperada que le impidió cumplir con la solicitud.
+        temporarily_unavailable: El servidor de autorización no puede manejar actualmente la solicitud debido a una sobrecarga temporal o a mantenimiento del servidor.
         unauthorized_client: El cliente no está autorizado a realizar esta petición utilizando este método.
         unsupported_grant_type: El tipo de concesión de autorización no está soportado por el servidor de autorización.
         unsupported_response_type: El servidor de autorización no soporta este tipo de respuesta.
@@ -120,7 +120,7 @@ es:
       access:
         read: Acceso de solo lectura
         read/write: Acceso de lectura y escritura
-        write: Acceso de sólo escritura
+        write: Acceso de solo escritura
       title:
         accounts: Cuentas
         admin/accounts: Administración de cuentas
@@ -169,23 +169,23 @@ es:
       admin:write:ip_blocks: ejecutar acciones de moderación en bloqueos de IP
       admin:write:reports: realizar acciones de moderación en informes
       crypto: usar cifrado de extremo a extremo
-      follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
+      follow: modificar las relaciones entre cuentas
       profile: leer sólo la información del perfil de tu cuenta
       push: recibir tus notificaciones push
       read: leer los datos de tu cuenta
       read:accounts: ver información de cuentas
       read:blocks: ver a quién has bloqueado
-      read:bookmarks: ver tus marcadores
+      read:bookmarks: Ver tus marcadores
       read:favourites: ver tus favoritos
       read:filters: ver tus filtros
       read:follows: ver a quién sigues
       read:lists: ver tus listas
       read:mutes: ver a quién has silenciado
       read:notifications: ver tus notificaciones
-      read:reports: ver tus informes
-      read:search: buscar en su nombre
+      read:reports: Ver tus informes
+      read:search: buscar en tu nombre
       read:statuses: ver todas las publicaciones
-      write: publicar en tu nombre
+      write: modificar todos los datos de tu cuenta
       write:accounts: modifica tu perfil
       write:blocks: bloquear cuentas y dominios
       write:bookmarks: guardar publicaciones como marcadores

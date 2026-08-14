@@ -163,11 +163,7 @@ export const CollectionMenu: React.FC<{
         return ownerItems;
       }
     } else {
-      const nonOwnerItems: MenuItem[] = [
-        viewCollectionItem,
-        ...shareItems,
-        null,
-      ];
+      const nonOwnerItems: MenuItem[] = [...shareItems, null];
 
       // Collection notifications already have a prominent 'Remove me' button
       if (currentAccountInCollection && context !== 'notifications') {
@@ -187,6 +183,10 @@ export const CollectionMenu: React.FC<{
           text: intl.formatMessage(messages.blockOwner),
           action: openBlockModal,
         });
+      }
+
+      if (context !== 'collection') {
+        return [viewCollectionItem, ...nonOwnerItems];
       }
 
       return nonOwnerItems;

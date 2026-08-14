@@ -5,33 +5,34 @@ import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import type { SetRequired } from 'type-fest';
+
 import { quoteComposeById } from '@/mastodon/actions/compose_typed';
 import { toggleReblog } from '@/mastodon/actions/interactions';
 import { openModal } from '@/mastodon/actions/modal';
 import { fetchStatus } from '@/mastodon/actions/statuses';
+import { useStatus } from '@/mastodon/hooks/useStatus';
 import { quickBoosting } from '@/mastodon/initial_state';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
-import type { Status } from '@/mastodon/models/status';
+import { selectStatusConditions } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import type { SomeRequired } from '@/mastodon/utils/types';
 
 import type { RenderItemFn } from '../dropdown_menu';
 import { Dropdown, DropdownMenuItemContent } from '../dropdown_menu';
 import { IconButton } from '../icon_button';
 
-import {
-  boostItemState,
-  messages,
-  quoteItemState,
-  selectStatusState,
-} from './boost_button_utils';
+import { boostItemState, messages, quoteItemState } from './boost_button_utils';
 
-const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
+const StandaloneBoostButton: FC<ReblogButtonProps> = ({
+  statusId,
+  counters,
+}) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
+  const status = useStatus(statusId);
   const statusState = useAppSelector((state) =>
-    selectStatusState(state, status),
+    selectStatusConditions(state, statusId),
   );
   const { title, meta, iconComponent, disabled } = useMemo(
     () => boostItemState(statusState),
@@ -41,36 +42,35 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
   const handleClick: MouseEventHandler = useCallback(
     (event) => {
       if (statusState.isLoggedIn) {
-        dispatch(toggleReblog(status.get('id') as string, event.shiftKey));
+        dispatch(toggleReblog(statusId, event.shiftKey));
       } else {
         dispatch(
           openModal({
             modalType: 'INTERACTION',
             modalProps: {
               intent: 'reblog',
-              accountId: status.getIn(['account', 'id']),
-              url: status.get('uri'),
+              accountId: status?.account,
+              url: status?.uri,
             },
           }),
         );
       }
     },
-    [dispatch, status, statusState.isLoggedIn],
+    [dispatch, status, statusId, statusState.isLoggedIn],
   );
 
   return (
     <IconButton
       disabled={disabled}
-      active={!!status.get('reblogged')}
+      active={!!status?.reblogged}
       title={intl.formatMessage(meta ?? title)}
       icon='retweet'
       iconComponent={iconComponent}
       className='status__action-bar__button'
       onClick={!disabled ? handleClick : undefined}
       counter={
-        counters
-          ? (status.get('reblogs_count') as number) +
-            (status.get('quotes_count') as number)
+        counters && status
+          ? status.reblogs_count + status.quotes_count
           : undefined
       }
     />
@@ -87,22 +87,23 @@ const renderMenuItem: RenderItemFn<ActionMenuItem> = (item, index, onClick) => (
 );
 
 interface ReblogButtonProps {
-  status: Status;
+  statusId: string;
   counters?: boolean;
 }
 
-type ActionMenuItemWithIcon = SomeRequired<ActionMenuItem, 'icon'>;
+type ActionMenuItemWithIcon = SetRequired<ActionMenuItem, 'icon'>;
 
-const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
+const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const status = useStatus(statusId);
   const statusState = useAppSelector((state) =>
-    selectStatusState(state, status),
+    selectStatusConditions(state, statusId),
   );
   const {
     isLoggedIn,
-    isReblogged,
-    isReblogAllowed,
+    isBoosted,
+    isBoostingAllowed,
     isQuoteAutomaticallyAccepted,
     isQuoteManuallyAccepted,
   } = statusState;
@@ -110,11 +111,10 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
   const isMenuDisabled =
     !isQuoteAutomaticallyAccepted &&
     !isQuoteManuallyAccepted &&
-    !isReblogAllowed;
+    !isBoostingAllowed;
 
-  const statusId = status.get('id') as string;
-  const wasBoosted = !!status.get('reblogged');
-  const quoteApproval = status.get('quote_approval');
+  const wasBoosted = !!status?.reblogged;
+  const quoteApproval = status?.quote_approval;
 
   const showLoginPrompt = useCallback(() => {
     dispatch(
@@ -122,8 +122,8 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
         modalType: 'INTERACTION',
         modalProps: {
           intent: 'reblog',
-          accountId: status.getIn(['account', 'id']),
-          url: status.get('uri'),
+          accountId: status?.account,
+          url: status?.uri,
         },
       }),
     );
@@ -169,7 +169,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
       }
 
       if (event.shiftKey) {
-        dispatch(toggleReblog(status.get('id'), true));
+        dispatch(toggleReblog(statusId, true));
         return false;
       }
 
@@ -181,13 +181,13 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
 
       return true;
     },
-    [dispatch, isLoggedIn, showLoginPrompt, status, quoteApproval, statusId],
+    [dispatch, isLoggedIn, showLoginPrompt, quoteApproval, statusId],
   );
 
   return (
     <Dropdown
       placement='bottom-start'
-      offset={[-19, 5]} // This aligns button icon with menu icons
+      offset={{ mainAxis: 5, crossAxis: -19 }} // This aligns button icon with menu icons
       items={items}
       renderItem={renderMenuItem}
       onOpen={handleDropdownOpen}
@@ -201,12 +201,11 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
         className='status__action-bar__button'
         iconComponent={boostIcon}
         counter={
-          counters
-            ? (status.get('reblogs_count') as number) +
-              (status.get('quotes_count') as number)
+          counters && status
+            ? status.reblogs_count + status.quotes_count
             : undefined
         }
-        active={isReblogged}
+        active={isBoosted}
       />
     </Dropdown>
   );

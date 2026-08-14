@@ -2,13 +2,13 @@ import { useCallback } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { messages as columnHeaderMessages } from '@/mastodon/components/column/header';
 import { useAppDispatch } from '@/mastodon/store';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import UnfoldMoreIcon from '@/material-icons/400-24px/unfold_more.svg?react';
 import { requestBrowserPermission } from 'mastodon/actions/notifications';
 import { changeSetting } from 'mastodon/actions/settings';
 import { Button } from 'mastodon/components/button';
-import { messages as columnHeaderMessages } from 'mastodon/components/column_header';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 

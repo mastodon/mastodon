@@ -51,8 +51,13 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.find(Account::INSTANCE_ACTOR_ID).private_key.blank?
+      if Account.find(Account::INSTANCE_ACTOR_ID).keypair.blank?
         puts 'Instance actor does not have a private key'
+        exit(1)
+      end
+
+      if Account.local.where.not(private_key: nil).exists?
+        puts 'Private keys not properly migrated'
         exit(1)
       end
 
@@ -112,6 +117,21 @@ namespace :tests do
         exit(1)
       end
 
+      unless Account.find_by(username: 'suspended', domain: nil).suspended?
+        puts 'Unexpected value for Account#suspended? for user @suspended'
+        exit(1)
+      end
+
+      if Account.find_by(username: 'deleted', domain: nil).suspended?
+        puts 'Unexpected value for Account#suspended? for user @deleted'
+        exit(1)
+      end
+
+      unless Account.find_by(username: 'deleted', domain: nil).deleted?
+        puts 'Unexpected value for Account#deleted? for user @deleted'
+        exit(1)
+      end
+
       unless Identity.where(provider: 'foo', uid: 0).one?
         puts 'Identities not deduplicated as expected'
         exit(1)
@@ -159,11 +179,23 @@ namespace :tests do
         exit(1)
       end
 
+      unless Account.find_by(uri: 'https://social.example.com/alice').domain == 'example.com'
+        puts 'Duplicate accounts with same URI incorrectly deduplicated'
+        exit(1)
+      end
+
+      if Account.exists?(domain: 'example.com', username: %w(bogus1 bogus2 bogus3))
+        puts 'Bogus remote accounts not correctly purged'
+        exit(1)
+      end
+
       puts 'No errors found. Database state is consistent with a successful migration process.'
     end
 
     desc 'Populate the database with test data for 3.3.0'
     task populate_v3_3_0: :environment do # rubocop:disable Naming/VariableNumber
+      user_public_key = ActiveRecord::Base.connection.quote(OpenSSL::PKey::RSA.new(2048).public_key.to_pem)
+
       ActiveRecord::Base.connection.execute(<<~SQL.squish)
         INSERT INTO "webauthn_credentials"
           (user_id, nickname, external_id, public_key, created_at, updated_at)
@@ -201,6 +233,19 @@ namespace :tests do
           (token, application_id, scopes, resource_owner_id, created_at)
         VALUES
           ('secret', 2, 'write:accounts read:me', 4, now());
+
+        /* Duplicate remote accounts
+           Before Mastodon v4.7.0, we had no uniqueness constraint on account `uri`, which lead to issues.
+           Furthermore, older tests caused remote accounts without protocol identifiers.
+        */
+        INSERT INTO "accounts"
+          (id, username, domain, uri, private_key, public_key, created_at, updated_at, last_webfingered_at)
+        VALUES
+          (14, 'alice', 'social.example.com', 'https://social.example.com/alice', NULL, #{user_public_key}, '2021-01-01'::date, now(), '2021-01-09'::date),
+          (15, 'alice', 'example.com', 'https://social.example.com/alice', NULL, #{user_public_key}, '2021-01-10'::date, now(), '2021-01-11'::date),
+          (16, 'bogus1', 'example.com', '', NULL, '', now(), now(), now()),
+          (17, 'bogus2', 'example.com', '', NULL, '', now(), now(), now()),
+          (18, 'bogus3', 'example.com', '', NULL, '', now(), now(), now());
       SQL
     end
 
@@ -261,20 +306,20 @@ namespace :tests do
         INSERT INTO "accounts"
           (id, username, domain, private_key, public_key, created_at, updated_at)
         VALUES
-          (10, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now()),
-          (11, 'qcuser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
+          (12, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now()),
+          (13, 'qcuser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin, locale, chosen_languages)
         VALUES
-          (4, 10, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
+          (5, 12, 'kmruser@localhost', now(), now(), false, 'ku', '{en,kmr,ku,ckb}');
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, locale,
            encrypted_otp_secret, encrypted_otp_secret_iv, encrypted_otp_secret_salt,
            otp_required_for_login)
         VALUES
-          (5, 11, 'qcuser@localhost', now(), now(), 'fr-QC',
+          (6, 13, 'qcuser@localhost', now(), now(), 'fr-QC',
            E'Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n',
            'rys3THICkr60BoWC',
            '_LMkAGvdg7a+sDIKjI3mR2Q==',
@@ -283,7 +328,7 @@ namespace :tests do
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES
-          (5, 'User', 4, 'default_language', E'--- kmr\n', now(), now()),
+          (5, 'User', 5, 'default_language', E'--- kmr\n', now(), now()),
           (6, 'User', 1, 'interactions', E'--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nmust_be_follower: false\nmust_be_following: true\nmust_be_following_dm: false\n', now(), now());
 
         INSERT INTO "identities"
@@ -331,19 +376,19 @@ namespace :tests do
           (2, 'user',  NULL, #{user_private_key},  #{user_public_key},  now(), now());
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at, remote_url, salmon_url)
+          (id, username, domain, uri, private_key, public_key, created_at, updated_at, remote_url, salmon_url)
         VALUES
-          (3, 'remote', 'remote.com', NULL, #{remote_public_key}, now(), now(),
+          (3, 'remote', 'remote.com', 'https://remote.com/remote', NULL, #{remote_public_key}, now(), now(),
            'https://remote.com/@remote', 'https://remote.com/salmon/1'),
-          (4, 'Remote', 'remote.com', NULL, #{remote_public_key}, now(), now(),
+          (4, 'Remote', 'remote.com', 'https://remote.com/Remote', NULL, #{remote_public_key}, now(), now(),
            'https://remote.com/@Remote', 'https://remote.com/salmon/1'),
-          (5, 'REMOTE', 'Remote.com', NULL, #{remote_public_key2}, now() - interval '1 year', now() - interval '1 year',
+          (5, 'REMOTE', 'Remote.com', 'https://remote.com/stale/remote', NULL, #{remote_public_key2}, now() - interval '1 year', now() - interval '1 year',
            'https://remote.com/stale/@REMOTE', 'https://remote.com/stale/salmon/1');
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url)
+          (id, username, domain, uri, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url)
         VALUES
-          (6, 'bob', 'ActivityPub.com', NULL, #{remote_public_key_ap}, now(), now(),
+          (6, 'bob', 'ActivityPub.com', 'https://activitypub.com/users/bob', NULL, #{remote_public_key_ap}, now(), now(),
            1, 'https://activitypub.com/users/bob/inbox', 'https://activitypub.com/users/bob/outbox', 'https://activitypub.com/users/bob/followers');
 
         INSERT INTO "accounts"
@@ -353,11 +398,18 @@ namespace :tests do
           (8, 'pt_user', NULL, #{user_private_key}, #{user_public_key}, now(), now());
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url, suspended)
+          (id, username, domain, uri, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url, suspended)
         VALUES
-          (9, 'evil', 'activitypub.com', NULL, #{remote_public_key_ap}, now(), now(),
-           1, 'https://activitypub.com/users/evil/inbox', 'https://activitypub.com/users/evil/outbox',
+          (9, 'evil', 'activitypub.com', 'https://activitypub.com/users/evil', NULL,
+           #{remote_public_key_ap}, now(), now(), 1,
+           'https://activitypub.com/users/evil/inbox', 'https://activitypub.com/users/evil/outbox',
            'https://activitypub.com/users/evil/followers', true);
+
+        INSERT INTO "accounts"
+          (id, username, domain, private_key, public_key, created_at, updated_at, suspended)
+        VALUES
+          (10, 'suspended', NULL, #{admin_private_key}, #{admin_public_key}, now(), now(), true),
+          (11, 'deleted',  NULL, #{user_private_key},  #{user_public_key},  now(), now(), true);
 
         -- users
 
@@ -365,12 +417,13 @@ namespace :tests do
           (id, account_id, email, created_at, updated_at, admin)
         VALUES
           (1, 1, 'admin@localhost', now(), now(), true),
-          (2, 2, 'user@localhost', now(), now(), false);
+          (2, 2, 'user@localhost', now(), now(), false),
+          (3, 10, 'suspended@localhost', now(), now(), false);
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin, locale)
         VALUES
-          (3, 8, 'ptuser@localhost', now(), now(), false, 'pt');
+          (4, 8, 'ptuser@localhost', now(), now(), false, 'pt');
 
         -- conversations
         INSERT INTO "conversations" (id, created_at, updated_at) VALUES (1, now(), now());

@@ -9,7 +9,8 @@ import { List as ImmutableList } from 'immutable';
 import { fetchEndorsedAccounts } from '@/mastodon/actions/accounts';
 import { AccountHeader } from '@/mastodon/components/account_header';
 import { AccountListItem } from '@/mastodon/components/account_list_item';
-import { ColumnBackButton } from '@/mastodon/components/column_back_button';
+import { Column } from '@/mastodon/components/column';
+import { ColumnBackButton } from '@/mastodon/components/column/back_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import {
@@ -20,7 +21,6 @@ import {
 import type { TruncatedListItemInfo } from '@/mastodon/components/truncated_list';
 import { TruncatedListItems } from '@/mastodon/components/truncated_list';
 import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
-import Column from '@/mastodon/features/ui/components/column';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';

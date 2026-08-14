@@ -88,6 +88,7 @@ RSpec.configure do |config|
   config.include Redisable
   config.include DomainHelpers
   config.include ThreadingHelpers
+  config.include SigningKeysHelpers
   config.include SignedRequestHelpers, type: :request
   config.include CommandLineHelpers, type: :cli
   config.include SystemHelpers, type: :system

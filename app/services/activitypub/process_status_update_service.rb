@@ -22,6 +22,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @quote_changed             = false
     @request_id                = request_id
     @quote                     = nil
+    @next_media_attachments    = []
+    @next_links                = []
 
     return @status if !expected_type? || already_updated_more_recently?
 
@@ -87,12 +89,17 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def update_media_attachments!
     previous_media_attachments     = @status.media_attachments.to_a
     previous_media_attachments_ids = @status.ordered_media_attachment_ids || previous_media_attachments.map(&:id)
-    @next_media_attachments        = []
 
     as_array(@json['attachment']).each do |attachment|
+      if attachment['href'].present?
+        preview_card_parser = ActivityPub::Parser::PreviewCardParser.new(attachment)
+        @next_links << preview_card_parser.url if preview_card_parser.url.present?
+        next
+      end
+
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
 
-      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > Status::MEDIA_ATTACHMENTS_LIMIT
+      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size >= Status::MEDIA_ATTACHMENTS_LIMIT
 
       begin
         media_attachment   = previous_media_attachments.find { |previous_media_attachment| previous_media_attachment.remote_url == media_attachment_parser.remote_url }
@@ -377,7 +384,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def fetch_and_verify_quote!(quote, approval_uri, quote_uri)
-    embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @activity_json['context'])
+    embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @activity_json['@context'])
     ActivityPub::VerifyQuoteService.new.call(quote, approval_uri, fetchable_quoted_uri: quote_uri, prefetched_quoted_object: embedded_quote, request_id: @request_id)
   rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
     ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(PROCESSING_DELAY), quote.id, quote_uri, { 'request_id' => @request_id, 'approval_uri' => approval_uri })
@@ -385,7 +392,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def update_counts!
     likes = @status_parser.favourites_count
-    shares =  @status_parser.reblogs_count
+    shares = @status_parser.reblogs_count
+
     return if likes.nil? && shares.nil?
 
     @status.status_stat.tap do |status_stat|
@@ -438,7 +446,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def reset_preview_card!
     @status.reset_preview_card!
-    LinkCrawlWorker.perform_in(rand(CRAWL_DELAY), @status.id)
+    LinkCrawlWorker.perform_in(rand(CRAWL_DELAY), @status.id, @next_links.first)
   end
 
   def broadcast_updates!

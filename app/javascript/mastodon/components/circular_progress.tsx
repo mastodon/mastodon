@@ -1,9 +1,13 @@
+import classNames from 'classnames';
+
 interface Props {
   size: number;
   strokeWidth: number;
 }
 
-export const CircularProgress: React.FC<Props> = ({ size, strokeWidth }) => {
+export const CircularProgress: React.FC<
+  Props & React.SVGAttributes<SVGElement>
+> = ({ size, strokeWidth, className, ...props }) => {
   const viewBox = `0 0 ${size} ${size}`;
   const radius = (size - strokeWidth) / 2;
 
@@ -12,8 +16,9 @@ export const CircularProgress: React.FC<Props> = ({ size, strokeWidth }) => {
       width={size}
       height={size}
       viewBox={viewBox}
-      className='circular-progress'
+      className={classNames('circular-progress', className)}
       role='progressbar'
+      {...props}
     >
       <circle
         fill='none'

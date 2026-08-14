@@ -41,21 +41,21 @@ es:
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
-        bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
+        bot: Señalar a los demás que la cuenta realiza principalmente acciones automáticas y podría no estar monitorizada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
         email: Te enviaremos un correo electrónico de confirmación
         header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
-        inbox_url: Copia la URL de la página principal del relés que quieres utilizar
+        inbox_url: Copia la URL de la página principal del relé que quieres utilizar
         irreversible: Las publicaciones filtradas desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
         password: Utiliza al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
-        scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
+        scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel más alto, no necesitas seleccionar las individuales.
         setting_advanced_layout: Mostrar Mastodon con vista de varias columnas, permitiéndote ver tu cronología, notificaciones y una tercera columna que tú elijas. No recomendado para pantallas pequeñas.
-        setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a los impulsos recibidos recientemente)
+        setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (solo afecta a los impulsos recibidos recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_boost_modal: Si está activado, impulsar una publicación abrirá una ventana donde podrás cambiar la visibilidad de tu impulso.
         setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
@@ -74,7 +74,7 @@ es:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
       email_domain_block:
         domain: Este puede ser el nombre de dominio que aparece en la dirección de correo electrónico o el registro MX que utiliza. Se comprobarán al registrarse.
-        with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
+        with_dns_records: Se intentará resolver los registros DNS del dominio dado y los resultados también serán bloqueados
       featured_tag:
         name: 'Aquí están algunas de las etiquetas que más has utilizado recientemente:'
       filters:
@@ -99,7 +99,7 @@ es:
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Aquí no se incluye ningún dato sobre si federas con un servidor determinado, solo que tu servidor lo conoce. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
-        require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
+        require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?", en lugar de opcional
         site_contact_email: Cómo pueden ponerse en contacto contigo para consultas legales o de ayuda.
         site_contact_username: Cómo pueden contactarte en Mastodon.
         site_extended_description: Cualquier información adicional que pueda ser útil para los visitantes y sus usuarios. Se puede estructurar con formato Markdown.
@@ -139,7 +139,7 @@ es:
         indexable: Puede que tu página de perfil aparezca en los resultados de búsqueda en Google, Bing y otros.
         show_application: Tú siempre podrás ver desde qué aplicación se ha publicado tu publicación.
       tag:
-        name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
+        name: Solo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       terms_of_service:
         changelog: Se puede estructurar con sintaxis Markdown.
         effective_date: Un plazo razonable puede oscilar entre 10 y 30 días a partir de la fecha de notificación a los usuarios.
@@ -166,7 +166,7 @@ es:
         highlighted: Esto hace que el rol sea públicamente visible
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a...
-        position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
+        position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones solo pueden llevarse a cabo en roles con menor prioridad
         require_2fa: Los usuarios con este rol deberán activar la autenticación en dos pasos para usar Mastodon
       username_block:
         allow_with_approval: En lugar de impedir directamente el registro, los registros coincidentes requerirán tu aprobación
@@ -187,23 +187,23 @@ es:
         show_collections: Mostrar seguidos y seguidores en el perfil
         unlocked: Aceptar automáticamente nuevos seguidores
       account_alias:
-        acct: Maneja la cuenta antigua
+        acct: Alias de la cuenta antigua
       account_migration:
         acct: Alias de la nueva cuenta
       account_warning_preset:
         text: Texto predefinido
         title: Título
       admin_account_action:
-        include_statuses: Incluir en el correo electrónico a las publicaciones denunciadas
+        include_statuses: Incluir en el correo electrónico las publicaciones denunciadas
         send_email_notification: Notificar al usuario por correo electrónico
         text: Aviso personalizado
         type: Acción
         types:
           disable: Deshabilitar
-          none: No hacer nada
+          none: Enviar una advertencia
           sensitive: Sensible
           silence: Silenciar
-          suspend: Suspender y eliminar de forma irreversible la información de la cuenta
+          suspend: Suspender
         warning_preset_id: Usar un aviso predeterminado
       announcement:
         all_day: Evento de todo el día
@@ -222,7 +222,7 @@ es:
         confirm_password: Confirmar contraseña
         context: Filtrar contextos
         current_password: Contraseña actual
-        data: Información
+        data: Datos
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Expirar tras
@@ -232,7 +232,7 @@ es:
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
         irreversible: Rechazar en lugar de ocultar
-        locale: Idioma
+        locale: Idioma de la interfaz
         max_uses: Máx. número de usos
         new_password: Nueva contraseña
         note: Biografía
@@ -345,13 +345,14 @@ es:
       notification_emails:
         appeal: Alguien ha apelado una decisión de moderación
         digest: Enviar resumen de correos electrónicos
+        end_of_support: La versión actual de Mastodon está cerca de quedarse sin soporte
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación
         follow: Enviar correo electrónico cuando alguien te siga
-        follow_request: Enviar correo electrónico cuando alguien solicita seguirte
-        mention: Enviar correo electrónico cuando alguien te mencione
-        pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
+        follow_request: Alguien solicitó seguirte
+        mention: Alguien te mencionó
+        pending_account: Nueva cuenta necesita revisión
         quote: Alguien te ha citado
-        reblog: Enviar correo electrónico cuando alguien comparta su publicación
+        reblog: Alguien ha impulsado tu publicación
         report: Nuevo informe enviado
         software_updates:
           all: Notificar de cualquier actualización
@@ -370,7 +371,7 @@ es:
       tag:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio del perfil
         name: Etiqueta
-        trendable: Permitir que esta etiqueta aparezca bajo tendencias
+        trendable: Permitir que esta etiqueta aparezca en tendencia
         usable: Permitir a las publicaciones usar esta etiqueta localmente
       terms_of_service:
         changelog: "¿Qué ha cambiado?"

@@ -40,7 +40,7 @@ RSpec.describe Admin::Disputes::AppealsController do
       emails = capture_emails { subject }
 
       expect(response)
-        .to redirect_to(disputes_strike_path(appeal.strike))
+        .to redirect_to(admin_disputes_strike_path(appeal.strike))
 
       expect(target_account.reload)
         .to_not be_suspended
@@ -64,7 +64,7 @@ RSpec.describe Admin::Disputes::AppealsController do
       emails = capture_emails { subject }
 
       expect(response)
-        .to redirect_to(disputes_strike_path(appeal.strike))
+        .to redirect_to(admin_disputes_strike_path(appeal.strike))
 
       expect(emails.size)
         .to eq(1)

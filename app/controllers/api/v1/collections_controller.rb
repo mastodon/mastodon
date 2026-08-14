@@ -69,7 +69,7 @@ class Api::V1::CollectionsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.find(params[:account_id])
+    @account = Account.without_requested_deletion.find(params[:account_id])
   end
 
   def set_collections

@@ -23,6 +23,10 @@ class ActivityPub::UpdateDistributionWorker < ActivityPub::RawDistributionWorker
   end
 
   def payload
-    @payload ||= serialize_payload(@account, ActivityPub::UpdateActorSerializer, signer: @account, sign_with: @options[:sign_with]).to_json
+    @payload ||= serialize_payload(@account, ActivityPub::UpdateActorSerializer, signer: @account, sign_with: sign_with).to_json
+  end
+
+  def sign_with
+    @options[:sign_with].presence && Keypair.from_worker_arg(@account, @options[:sign_with])
   end
 end

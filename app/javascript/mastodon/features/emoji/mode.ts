@@ -27,7 +27,6 @@ export function useEmojiAppState(): EmojiAppState {
 
   return {
     currentLocale: locale,
-    locales: [locale],
     mode,
     darkTheme: isDarkMode(),
     assetHost,
@@ -64,7 +63,6 @@ export function getEmojiAppState(): EmojiAppState {
 
   return {
     currentLocale,
-    locales: [currentLocale],
     mode: determineEmojiMode(emojiStyle),
     darkTheme: isDarkMode(),
     assetHost,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -130,6 +130,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
     t.index ["account_id"], name: "index_account_statuses_cleanup_policies_on_account_id"
   end
 
+  create_table "account_summaries", primary_key: "account_id", force: :cascade do |t|
+    t.string "language"
+    t.boolean "sensitive", default: false, null: false
+    t.index ["account_id", "language", "sensitive"], name: "idx_on_account_id_language_sensitive_250461e1eb"
+  end
+
   create_table "account_warning_presets", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.text "text", default: "", null: false
@@ -192,6 +198,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
     t.text "private_key"
     t.integer "protocol", default: 0, null: false
     t.text "public_key", default: "", null: false
+    t.datetime "requested_deletion_at"
     t.datetime "requested_review_at", precision: nil
     t.datetime "reviewed_at", precision: nil
     t.datetime "sensitized_at", precision: nil
@@ -204,14 +211,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
     t.integer "suspension_origin"
     t.boolean "trendable"
     t.datetime "updated_at", precision: nil, null: false
-    t.string "uri", default: "", null: false
+    t.string "uri"
     t.string "url"
     t.string "username", default: "", null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["domain", "id"], name: "index_accounts_on_domain_and_id"
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id", where: "(moved_to_account_id IS NOT NULL)"
-    t.index ["uri"], name: "index_accounts_on_uri"
+    t.index ["uri"], name: "index_accounts_on_uri", unique: true
     t.index ["url"], name: "index_accounts_on_url", opclass: :text_pattern_ops, where: "(url IS NOT NULL)"
   end
 
@@ -227,6 +234,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
     t.datetime "created_at", precision: nil, null: false
     t.string "human_identifier"
     t.string "permalink"
+    t.jsonb "recorded_changes"
+    t.string "recorded_changes_format"
     t.string "route_param"
     t.bigint "target_id"
     t.string "target_type"
@@ -629,6 +638,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "uri"
     t.index ["account_id", "target_account_id"], name: "index_follow_requests_on_account_id_and_target_account_id", unique: true
+    t.index ["target_account_id", "account_id"], name: "index_follow_requests_on_target_account_id_and_account_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -654,6 +664,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
     t.datetime "viewed_at"
     t.integer "year", null: false
     t.index ["account_id", "year"], name: "index_generated_annual_reports_on_account_id_and_year", unique: true
+  end
+
+  create_table "global_follow_recommendations", primary_key: "account_id", force: :cascade do |t|
+    t.decimal "rank", null: false
+    t.string "reason", null: false, array: true
+    t.boolean "stale", default: false, null: false
+    t.index ["rank"], name: "index_global_follow_recommendations_on_rank"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -703,13 +720,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "expires_at"
+    t.string "local_fragment"
     t.string "private_key"
     t.string "public_key", null: false
     t.boolean "revoked", default: false, null: false
     t.integer "type", null: false
     t.datetime "updated_at", null: false
-    t.string "uri", null: false
-    t.index ["account_id"], name: "index_keypairs_on_account_id"
+    t.string "uri"
+    t.index ["account_id", "local_fragment"], name: "index_keypairs_on_account_id_and_local_fragment", unique: true
     t.index ["uri"], name: "index_keypairs_on_uri", unique: true
   end
 
@@ -1153,8 +1171,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
     t.index ["var"], name: "index_site_uploads_on_var", unique: true
   end
 
+  create_table "software_deprecations", force: :cascade do |t|
+    t.string "branch", null: false
+    t.datetime "created_at", null: false
+    t.date "end_of_support", null: false
+    t.datetime "updated_at", null: false
+    t.integer "warning_issued", null: false
+    t.index ["branch"], name: "index_software_deprecations_on_branch", unique: true
+  end
+
   create_table "software_updates", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.date "end_of_support"
     t.string "release_notes", default: "", null: false
     t.integer "type", default: 0, null: false
     t.datetime "updated_at", null: false
@@ -1468,6 +1496,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
   add_foreign_key "account_relationship_severance_events", "relationship_severance_events", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
   add_foreign_key "account_statuses_cleanup_policies", "accounts", on_delete: :cascade
+  add_foreign_key "account_summaries", "accounts", on_delete: :cascade
   add_foreign_key "account_warnings", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_warnings", "accounts", on_delete: :nullify
   add_foreign_key "account_warnings", "reports", on_delete: :cascade
@@ -1521,7 +1550,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
-  add_foreign_key "generated_annual_reports", "accounts"
+  add_foreign_key "generated_annual_reports", "accounts", on_delete: :cascade
+  add_foreign_key "global_follow_recommendations", "accounts", on_delete: :cascade
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
   add_foreign_key "instance_moderation_notes", "accounts", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
@@ -1605,56 +1635,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_11_150940) do
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
   add_foreign_key "webauthn_credentials", "users", on_delete: :cascade
-
-  create_view "account_summaries", materialized: true, sql_definition: <<-SQL
-      SELECT accounts.id AS account_id,
-      mode() WITHIN GROUP (ORDER BY t0.language) AS language,
-      mode() WITHIN GROUP (ORDER BY t0.sensitive) AS sensitive
-     FROM (accounts
-       CROSS JOIN LATERAL ( SELECT statuses.account_id,
-              statuses.language,
-              statuses.sensitive
-             FROM statuses
-            WHERE ((statuses.account_id = accounts.id) AND (statuses.deleted_at IS NULL) AND (statuses.reblog_of_id IS NULL))
-            ORDER BY statuses.id DESC
-           LIMIT 20) t0)
-    WHERE ((accounts.suspended_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
-    GROUP BY accounts.id;
-  SQL
-  add_index "account_summaries", ["account_id", "language", "sensitive"], name: "idx_on_account_id_language_sensitive_250461e1eb"
-  add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true
-
-  create_view "global_follow_recommendations", materialized: true, sql_definition: <<-SQL
-      SELECT account_id,
-      sum(rank) AS rank,
-      array_agg(reason) AS reason
-     FROM ( SELECT account_summaries.account_id,
-              ((count(follows.id))::numeric / (1.0 + (count(follows.id))::numeric)) AS rank,
-              'most_followed'::text AS reason
-             FROM ((follows
-               JOIN account_summaries ON ((account_summaries.account_id = follows.target_account_id)))
-               JOIN users ON ((users.account_id = follows.account_id)))
-            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (account_summaries.sensitive = false) AND (NOT (EXISTS ( SELECT 1
-                     FROM follow_recommendation_suppressions
-                    WHERE (follow_recommendation_suppressions.account_id = follows.target_account_id)))))
-            GROUP BY account_summaries.account_id
-           HAVING (count(follows.id) >= 5)
-          UNION ALL
-           SELECT account_summaries.account_id,
-              (sum((status_stats.reblogs_count + status_stats.favourites_count)) / (1.0 + sum((status_stats.reblogs_count + status_stats.favourites_count)))) AS rank,
-              'most_interactions'::text AS reason
-             FROM ((status_stats
-               JOIN statuses ON ((statuses.id = status_stats.status_id)))
-               JOIN account_summaries ON ((account_summaries.account_id = statuses.account_id)))
-            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (account_summaries.sensitive = false) AND (NOT (EXISTS ( SELECT 1
-                     FROM follow_recommendation_suppressions
-                    WHERE (follow_recommendation_suppressions.account_id = statuses.account_id)))))
-            GROUP BY account_summaries.account_id
-           HAVING (sum((status_stats.reblogs_count + status_stats.favourites_count)) >= (5)::numeric)) t0
-    GROUP BY account_id
-    ORDER BY (sum(rank)) DESC;
-  SQL
-  add_index "global_follow_recommendations", ["account_id"], name: "index_global_follow_recommendations_on_account_id", unique: true
 
   create_view "instances", materialized: true, sql_definition: <<-SQL
       WITH domain_counts(domain, accounts_count) AS (

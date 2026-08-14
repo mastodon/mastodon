@@ -19,6 +19,14 @@ RSpec.describe SettingsHelper do
     end
   end
 
+  describe '#inline_qrcode_svg' do
+    subject { inline_qrcode_svg(code) }
+
+    let(:code) { RQRCode::QRCode.new('https://host.example') }
+
+    it { is_expected.to include('</svg>').and(be_html_safe) }
+  end
+
   describe 'session_device_icon' do
     context 'with a mobile device' do
       let(:session) { SessionActivation.new(user_agent: 'Mozilla/5.0 (iPhone)') }

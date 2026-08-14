@@ -44,30 +44,30 @@ class ActivityPub::FeaturedCollectionsController < ApplicationController
   end
 
   def next_page_url
-    ap_account_featured_collections_url(@account, page: @collections.next_page) if @collections.respond_to?(:next_page)
+    ap_account_featured_collections_url(@account.id, page: @collections.next_page) if @collections.respond_to?(:next_page)
   end
 
   def prev_page_url
-    ap_account_featured_collections_url(@account, page: @collections.prev_page) if @collections.respond_to?(:prev_page)
+    ap_account_featured_collections_url(@account.id, page: @collections.prev_page) if @collections.respond_to?(:prev_page)
   end
 
   def collection_presenter
     if page_requested?
       ActivityPub::CollectionPresenter.new(
-        id: ap_account_featured_collections_url(@account, page: params.fetch(:page, 1)),
+        id: ap_account_featured_collections_url(@account.id, page: params.fetch(:page, 1)),
         type: :unordered,
         size: @account.collections.count,
         items: @collections,
-        part_of: ap_account_featured_collections_url(@account),
+        part_of: ap_account_featured_collections_url(@account.id),
         next: next_page_url,
         prev: prev_page_url
       )
     else
       ActivityPub::CollectionPresenter.new(
-        id: ap_account_featured_collections_url(@account),
+        id: ap_account_featured_collections_url(@account.id),
         type: :unordered,
         size: @account.collections.count,
-        first: ap_account_featured_collections_url(@account, page: 1)
+        first: ap_account_featured_collections_url(@account.id, page: 1)
       )
     end
   end

@@ -24,7 +24,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   attribute :interaction_policy
   attribute :featured_collections
 
-  has_one :public_key, serializer: ActivityPub::PublicKeySerializer
+  has_one :keypair, key: :public_key, serializer: ActivityPub::PublicKeySerializer
 
   has_many :virtual_tags, key: :tag
   has_many :virtual_attachments, key: :attachment

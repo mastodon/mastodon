@@ -4,21 +4,13 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type {
-  OffsetValue,
-  UsePopperOptions,
-} from 'react-overlays/esm/usePopper';
-import Overlay from 'react-overlays/Overlay';
-
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { useSelectableClick } from 'mastodon/hooks/useSelectableClick';
 
 import { IconButton } from '../icon_button';
+import { Popover } from '../popover';
 
 import classes from './styles.module.scss';
-
-const offset = [0, 4] as OffsetValue;
-const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
 export const AltTextBadge: React.FC<{
   description: string;
@@ -28,7 +20,9 @@ export const AltTextBadge: React.FC<{
   const uniqueId = useId();
   const popoverId = `${uniqueId}-popover`;
   const titleId = `${uniqueId}-title`;
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [buttonElement, setButtonElement] = useState<HTMLButtonElement | null>(
+    null,
+  );
   const popoverRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
 
@@ -41,8 +35,8 @@ export const AltTextBadge: React.FC<{
 
   const handleClose = useCallback(() => {
     setOpen(false);
-    buttonRef.current?.focus();
-  }, [setOpen]);
+    buttonElement?.focus();
+  }, [buttonElement]);
 
   const [handleMouseDown, handleMouseUp] = useSelectableClick(handleClose);
 
@@ -50,7 +44,7 @@ export const AltTextBadge: React.FC<{
     <>
       <button
         type='button'
-        ref={buttonRef}
+        ref={setButtonElement}
         className={classNames('media-gallery__alt__label', className)}
         onClick={handleClick}
         aria-expanded={open}
@@ -60,15 +54,12 @@ export const AltTextBadge: React.FC<{
         ALT
       </button>
 
-      <Overlay
-        rootClose
-        onHide={handleClose}
-        show={open}
-        target={buttonRef}
+      <Popover
+        isOpen={open}
+        onClose={handleClose}
+        reference={buttonElement}
         placement='top-end'
-        flip
-        offset={offset}
-        popperConfig={popperConfig}
+        offset={4}
       >
         {({ props }) => (
           <div {...props} className='hover-card-controller'>
@@ -105,7 +96,7 @@ export const AltTextBadge: React.FC<{
             </div>
           </div>
         )}
-      </Overlay>
+      </Popover>
     </>
   );
 };

@@ -7,7 +7,6 @@ module Account::Header
   HEADER_IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
   HEADER_LIMIT = 8.megabytes
   HEADER_DIMENSIONS = [1500, 500].freeze
-  HEADER_GEOMETRY = [HEADER_DIMENSIONS.first, HEADER_DIMENSIONS.last].join('x')
   HEADER_MAX_PIXELS = HEADER_DIMENSIONS.first * HEADER_DIMENSIONS.last
 
   class_methods do

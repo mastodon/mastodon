@@ -135,11 +135,11 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def virtual_attachments
-    object.ordered_media_attachments
+    object.ordered_media_attachments + [object.preview_card].compact
   end
 
   def virtual_tags
-    object.active_mentions.to_a.sort_by(&:id) + object.tags + object.emojis + object.tagged_objects.map(&:object)
+    object.active_mentions.to_a.sort_by(&:id) + object.tags + object.emojis + object.tagged_objects.filter_map(&:object)
   end
 
   def atom_uri
@@ -246,6 +246,18 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
         automaticApproval: approved_uris,
       },
     }
+  end
+
+  class PreviewCardSerializer < ActivityPub::Serializer
+    attributes :type, :href
+
+    def type
+      'Link'
+    end
+
+    def href
+      object.original_url.presence || object.url
+    end
   end
 
   class MediaAttachmentSerializer < ActivityPub::Serializer

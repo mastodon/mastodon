@@ -1,6 +1,8 @@
 import { joinShortcodes } from 'emojibase';
 import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 
+import { onceAsyncByArgs } from '@/mastodon/utils/promises';
+
 import {
   putEmojiData,
   putCustomEmojiData,
@@ -17,6 +19,12 @@ const log = emojiLogger('loader');
 export async function importEmojiData(localeString: string, shortcodes = true) {
   const locale = toSupportedLocale(localeString);
 
+  return importEmojiDataOnce(locale, shortcodes);
+}
+
+const importEmojiDataOnce = onceAsyncByArgs(importEmojiDataImpl);
+
+async function importEmojiDataImpl(locale: Locale, shortcodes: boolean) {
   log(
     'importing emoji data for locale %s%s',
     locale,
@@ -171,9 +179,7 @@ async function fetchAndCheckEtag({
 
   // Use location.origin as this script may be loaded from a CDN domain.
   const url = new URL(path, location.origin);
-  const response = await fetch(url, {
-    headers,
-  });
+  const response = await fetch(url, { headers });
 
   // If not modified, return null
   if (response.status === 304) {

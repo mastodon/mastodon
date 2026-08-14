@@ -136,7 +136,7 @@ class Notification < ApplicationRecord
     belongs_to :generated_annual_report, inverse_of: false
     belongs_to :quote, inverse_of: :notification
     belongs_to :collection_item, inverse_of: false # TODO: have an inverse?
-    belongs_to :collection, inverse_of: false # TODO: have an inverse?
+    belongs_to :collection, inverse_of: :notifications
   end
 
   validates :type, inclusion: { in: TYPES }

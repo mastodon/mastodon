@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Vacuum::PreviewCardsVacuum
-  TTL = 1.day.freeze
-
   def initialize(retention_period)
     @retention_period = retention_period
   end

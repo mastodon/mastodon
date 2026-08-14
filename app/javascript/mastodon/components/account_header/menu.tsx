@@ -226,6 +226,10 @@ const redesignMessages = defineMessages({
     id: 'account.menu.open_original_page',
     defaultMessage: 'View on {domain}',
   },
+  openOriginalPageInvalid: {
+    id: 'account.menu.open_original_page_no_domain',
+    defaultMessage: 'View on original server',
+  },
   removeFollower: {
     id: 'account.menu.remove_follower',
     defaultMessage: 'Remove follower',
@@ -270,32 +274,37 @@ function getMenuItems({
   // Open on remote page.
   if (isRemote) {
     items.push({
-      text: intl.formatMessage(redesignMessages.openOriginalPage, {
-        domain: remoteDomain,
-      }),
+      text: account.invalid_handle
+        ? intl.formatMessage(redesignMessages.openOriginalPageInvalid)
+        : intl.formatMessage(redesignMessages.openOriginalPage, {
+            domain: remoteDomain,
+          }),
       href: account.url,
     });
   }
 
   // Mention and direct message options
   if (signedIn && !account.suspended) {
-    items.push(
-      null,
-      {
-        text: intl.formatMessage(redesignMessages.mention),
-        action: () => {
-          dispatch(mentionCompose(account));
+    if (account.invalid_handle) items.push(null);
+    else {
+      items.push(
+        null,
+        {
+          text: intl.formatMessage(redesignMessages.mention),
+          action: () => {
+            dispatch(mentionCompose(account));
+          },
         },
-      },
 
-      {
-        text: intl.formatMessage(redesignMessages.direct),
-        action: () => {
-          dispatch(directCompose(account));
+        {
+          text: intl.formatMessage(redesignMessages.direct),
+          action: () => {
+            dispatch(directCompose(account));
+          },
         },
-      },
-      null,
-    );
+        null,
+      );
+    }
   }
 
   if (!signedIn) {
@@ -386,6 +395,7 @@ function getMenuItems({
         ),
         action: () => {
           dispatch(
+            // @ts-expect-error this action is not typed yet
             followAccount(account.id, {
               reblogs: !relationship.showing_reblogs,
             }),
@@ -484,7 +494,7 @@ function getMenuItems({
     });
   }
 
-  if (remoteDomain) {
+  if (remoteDomain && !account.invalid_handle) {
     items.push(null, {
       text: intl.formatMessage(
         relationship?.domain_blocking
@@ -524,6 +534,7 @@ function getMenuItems({
     }
     if (
       remoteDomain &&
+      !account.invalid_handle &&
       (permissions & PERMISSION_MANAGE_FEDERATION) ===
         PERMISSION_MANAGE_FEDERATION
     ) {

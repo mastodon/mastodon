@@ -1,6 +1,6 @@
 const HASHTAG_SEPARATORS = '_\\u00b7\\u200c';
 const ALPHA = '\\p{L}\\p{M}';
-const WORD = '\\p{L}\\p{M}\\p{N}\\p{Pc}';
+export const WORD = '\\p{L}\\p{M}\\p{N}\\p{Pc}';
 
 const buildHashtagPatternRegex = () => {
   try {

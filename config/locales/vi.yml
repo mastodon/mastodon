@@ -4,6 +4,7 @@ vi:
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
     contact_missing: Chưa thiết lập
     contact_unavailable: N/A
+    default_thumbnail_description: Hai chú voi ma mút hoạt hình đang mỉm cười và tung một chiếc máy bay giấy cho nhau. Chúng được bao quanh bởi bầu trời xanh tươi sáng và những hành tinh trôi nổi với cây cối và nhiều voi ma mút khác trên đó.
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     title: Giới thiệu
   accounts:
@@ -60,6 +61,8 @@ vi:
       custom: Tùy chỉnh
       delete: Xóa dữ liệu
       deleted: Đã xóa
+      deletion_irreversible: Dữ liệu của người này đã bị xóa vĩnh viễn.
+      deletion_reversible_hint_html: Tài khoản này đang chờ xóa và dữ liệu sẽ bị xóa hoàn toàn vào ngày %{date}.
       demote: Hạ vai trò
       destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
       disable: Khóa
@@ -284,7 +287,11 @@ vi:
         enable_relay_html: "%{name} đã bật relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} đã bật xác minh email của %{target}"
         enable_user_html: "%{name} đã bỏ vô hiệu hóa đăng nhập %{target}"
+        listable_tag_html: có thể đề xuất
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
+        not_listable_tag_html: không thể đề xuất
+        not_trendable_tag_html: không cho lên xu hướng
+        not_usable_tag_html: không được phép dùng
         promote_user_html: "%{name} đã nâng vai trò của %{target}"
         publish_terms_of_service_html: "%{name} đã cập nhật điều khoản dịch vụ"
         reject_appeal_html: "%{name} đã từ chối khiếu nại từ %{target}"
@@ -297,6 +304,7 @@ vi:
         sensitive_account_html: "%{name} đã gán nội dung của %{target} là nhạy cảm"
         silence_account_html: "%{name} đã ẩn %{target}"
         suspend_account_html: "%{name} đã vô hiệu hóa %{target}"
+        trendable_tag_html: cho phép lên xu hướng
         unassigned_report_html: "%{name} đã thôi xử lý báo cáo %{target}"
         unblock_email_account_html: "%{name} đã bỏ chặn địa chỉ email của %{target}"
         unsensitive_account_html: "%{name} đã gán nội dung của %{target} là bình thường"
@@ -309,8 +317,10 @@ vi:
         update_ip_block_html: "%{name} đã cập nhật chặn IP %{target}"
         update_report_html: "%{name} đã cập nhật báo cáo %{target}"
         update_status_html: "%{name} đã cập nhật tút của %{target}"
+        update_tag_html: "%{name} đã thay đổi thiết lập %{target} thành: "
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
         update_username_block_html: "%{name} đã cập nhật quy tắc cho tên người dùng chứa %{target}"
+        usable_tag_html: có thể dùng;
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
@@ -716,6 +726,8 @@ vi:
       new:
         title: Chặn một IP mới
       no_ip_block_selected: Bạn chưa chọn bất kỳ IP nào
+      reset: Đặt lại
+      search: Tìm kiếm
       title: Những IP bị chặn
     relationships:
       title: Mối quan hệ của %{acct}
@@ -987,13 +999,17 @@ vi:
       critical_update: Quan trọng — vui lòng cập nhật sớm
       description: Bạn nên cập nhật Mastodon phiên bản mới nhất để được hưởng lợi từ các bản sửa lỗi và thêm tính năng mới. Nhất là để tránh các vấn đề bảo mật. Vì những lý do này, Mastodon sẽ kiểm tra các bản cập nhật 30 phút một lần và sẽ thông báo cho bạn theo tùy chọn thông báo qua email của bạn.
       documentation_link: Tìm hiểu thêm
+      nearing_eol: Việc hỗ trợ cho nhánh bạn đang sử dụng sẽ kết thúc vào ngày %{date}, vui lòng cân nhắc cập nhật.
       release_notes: Có gì mới?
+      supported_until: Kết thúc hỗ trợ vào %{date}
       title: Bản cập nhật mới
       type: Loại
       types:
         major: Bản cập nhật lớn
         minor: Bản cập nhật nhỏ
         patch: Bản vá - sửa lỗi và dễ dàng áp dụng các thay đổi
+      unsupported_branch: Việc hỗ trợ cho nhánh bạn đang sử dụng đã kết thúc; vui lòng cân nhắc cập nhật.
+      unsupported_since: Không còn được hỗ trợ vào %{date}
       version: Phiên bản
     statuses:
       account: Người đăng
@@ -1205,6 +1221,7 @@ vi:
           other: "%{count} người dùng tuần rồi"
       title: Đề xuất và Xu hướng
       trending: Xu hướng
+    update_available: Bản cập nhật có sẵn
     username_blocks:
       add_new: Thêm mới
       block_registrations: Cấm đăng ký
@@ -1253,6 +1270,15 @@ vi:
     auto_close_registrations:
       body: Do gần đây thiếu kiểm duyệt viên nên việc đăng ký trên %{instance} sẽ tự động chuyển thành duyệt thủ công, để tránh %{instance} bị sử dụng làm nền tảng cho những kẻ xấu. Bạn có thể chuyển nó trở lại trạng thái đăng ký mở bất kỳ lúc nào.
       subject: Đăng ký mới %{instance} đã được tự động chuyển sang duyệt thủ công
+    end_of_support_out_of_support_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn không còn được hỗ trợ nữa. Chúng tôi khuyên bạn nên cập nhật càng sớm càng tốt!
+      subject: Mastodon %{branch} đang được sử dụng trên %{instance} hiện không còn được hỗ trợ!
+    end_of_support_three_months_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn sẽ ngừng được hỗ trợ trong vòng 3 tháng tới. Bạn nên cân nhắc cập nhật lên một nhánh mới hơn từ sớm.
+      subject: Hỗ trợ cho Mastodon %{branch} đang được sử dụng trên %{instance} sẽ kết thúc sau 3 tháng nữa.
+    end_of_support_two_weeks_warning:
+      body: Phiên bản Mastodon hiện đang được sử dụng trên máy chủ của bạn sẽ ngừng được hỗ trợ trong 2 tuần nữa. Chúng tôi khuyến nghị bạn nên cập nhật lên một nhánh mới hơn trước thời hạn đó.
+      subject: Hỗ trợ cho Mastodon %{branch} đang được sử dụng trên %{instance} sẽ kết thúc sau 2 tuần nữa.
     new_appeal:
       actions:
         delete_statuses: xóa tút của họ
@@ -1702,6 +1728,7 @@ vi:
     types:
       blocking: Danh sách người đã chặn
       bookmarks: Tút đã lưu
+      custom_filters: Bộ lọc
       domain_blocking: Danh sách máy chủ đã chặn
       following: Danh sách người theo dõi
       lists: Danh sách
@@ -1863,6 +1890,7 @@ vi:
     administration_emails: Thông báo email admin
     email_events: Hoạt động thông báo email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
+    moderation_emails: Thông báo qua email về việc kiểm duyệt
   number:
     human:
       decimal_units:
@@ -1886,7 +1914,7 @@ vi:
     next: Kế tiếp
     older: Cũ hơn
     prev: Trước đó
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Bạn đã vốt xong rồi

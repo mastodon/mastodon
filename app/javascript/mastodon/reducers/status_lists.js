@@ -159,7 +159,7 @@ export default function statusLists(state = initialState, action) {
     else if (fetchQuotes.pending.match(action))
       return state.setIn(['quotes', 'isLoading'], true).setIn(['quotes', 'statusId'], action.meta.arg.statusId);
     else if (fetchQuotes.rejected.match(action))
-      return state.setIn(['quotes', 'isLoading', false]).setIn(['quotes', 'statusId'], action.meta.arg.statusId);
+      return state.setIn(['quotes', 'isLoading'], false).setIn(['quotes', 'statusId'], action.meta.arg.statusId);
     else
       return state;
   }

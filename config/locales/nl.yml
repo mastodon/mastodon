@@ -4,6 +4,7 @@ nl:
     about_mastodon_html: 'Het sociale netwerk van de toekomst: geen reclame, geen meekijkende bedrijven, ethisch ontwerp, en gedecentraliseerd! Met Mastodon ben je baas over je eigen gegevens!'
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
+    default_thumbnail_description: Twee glimlachende getekende mastodonten (die op olifanten lijken) gooien een papieren vliegtuigje tussen elkaar in. Ze zijn omringd door een heldere blauwe lucht en zwevende planeten met bomen en meer mastodonten erop.
     hosted_on: Mastodon op %{domain}
     title: Over
   accounts:
@@ -63,6 +64,8 @@ nl:
       custom: Handmatig
       delete: Gegevens verwijderen
       deleted: Verwijderd
+      deletion_irreversible: De gegevens van dit account zijn definitief verwijderd.
+      deletion_reversible_hint_html: Dit account is in afwachting van verwijdering en de gegevens worden op %{date} volledig verwijderd.
       demote: Degraderen
       destroyed_msg: De verwijdering van de gegevens van %{username} staat nu in de wachtrij
       disable: Bevriezen
@@ -288,7 +291,11 @@ nl:
         enable_relay_html: "%{name} heeft de relay %{target} ingeschakeld"
         enable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail ingeschakeld voor %{target}"
         enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
+        listable_tag_html: kan worden aanbevolen
         memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
+        not_listable_tag_html: wordt niet aanbevolen
+        not_trendable_tag_html: verschijnt niet onder trends
+        not_usable_tag_html: kan niet worden gebruikt
         promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
         publish_terms_of_service_html: "%{name} publiceerde bijgewerkte gebruiksvoorwaarden"
         reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} afgewezen"
@@ -301,6 +308,7 @@ nl:
         sensitive_account_html: "%{name} markeerde de media van %{target} als gevoelig"
         silence_account_html: Account %{target} is door %{name} beperkt
         suspend_account_html: Account %{target} is door %{name} opgeschort
+        trendable_tag_html: kan onder trends verschijnen
         unassigned_report_html: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
         unblock_email_account_html: "%{name} deblokkeerde het e-mailadres van %{target}"
         unsensitive_account_html: "%{name} markeerde media van %{target} als niet gevoelig"
@@ -313,8 +321,10 @@ nl:
         update_ip_block_html: "%{name} wijzigde de IP-regel voor %{target}"
         update_report_html: Rapportage %{target} is door %{name} bijgewerkt
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
+        update_tag_html: "%{name} heeft de instellingen van %{target} gewijzigd naar: "
         update_user_role_html: "%{name} wijzigde de rol %{target}"
         update_username_block_html: "%{name} heeft regel bijgewerkt voor gebruikersnamen die %{target} bevatten"
+        usable_tag_html: kan worden gebruikt;
       deleted_account: verwijderd account
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -729,6 +739,8 @@ nl:
       new:
         title: Nieuwe IP-regel aanmaken
       no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
+      reset: Opnieuw
+      search: Zoeken
       title: IP-regels
     relationships:
       title: Volgrelaties van %{acct}
@@ -1003,13 +1015,17 @@ nl:
       critical_update: Kritiek — update snel
       description: Het wordt aanbevolen om je Mastodon-installatie up-to-date te houden om gebruik te kunnen maken van de nieuwste oplossingen en functies. Bovendien is het soms cruciaal om Mastodon tijdig bij te werken om veiligheidsproblemen te voorkomen. Om deze redenen controleert Mastodon elke 30 minuten updates en brengt je hiervan op de hoogte volgens jouw voorkeuren voor e-mailmeldingen.
       documentation_link: Meer leren
+      nearing_eol: De ondersteuning voor de branch die je momenteel gebruikt stopt op %{date}. Overweeg om Mastodon te updaten.
       release_notes: Release-opmerkingen
+      supported_until: Ondersteuning eindigt op %{date}
       title: Beschikbare updates
       type: Type
       types:
         major: Grote release
         minor: Kleine release
         patch: Patchrelease - bugfixes en eenvoudig toe te passen wijzigingen
+      unsupported_branch: De branch die je momenteel gebruikt wordt niet meer ondersteund. Werk Mastodon alsjeblieft zo snel mogelijk bij.
+      unsupported_since: Niet meer ondersteund sinds %{date}
       version: Versie
     statuses:
       account: Account
@@ -1225,6 +1241,7 @@ nl:
           other: Door %{count} mensen tijdens de afgelopen week gebruikt
       title: Aanbevelingen & trends
       trending: Trending
+    update_available: Update beschikbaar
     username_blocks:
       add_new: Nieuwe toevoegen
       block_registrations: Registraties blokkeren
@@ -1274,6 +1291,15 @@ nl:
     auto_close_registrations:
       body: In verband met een gebrek aan recentelijke moderatoractiviteit, is de registratiemodus op %{instance} automatisch gewijzigd naar handmatige beoordeling door moderatoren. Dit om te voorkomen dat %{instance} als platform voor eventueel misbruik kan worden gebruikt. Je kunt op elk gewenst moment weer terugschakelen naar open registraties.
       subject: De registratie-modus op %{instance} is automatisch veranderd naar handmatige beoordeling door moderatoren
+    end_of_support_out_of_support_warning:
+      body: De Mastodon-versie die jouw server momenteel gebruikt wordt niet meer ondersteund. We raden je aan om Mastodon zo snel mogelijk bij te werken!
+      subject: Mastodon %{branch} op %{instance} wordt nu niet ondersteund!
+    end_of_support_three_months_warning:
+      body: De Mastodon-versie die jouw server momenteel gebruikt, wordt over 3 maanden niet meer ondersteund. We raden je aan om Mastodon zo snel mogelijk naar een nieuwere branch bij te werken.
+      subject: De ondersteuning voor Mastodon %{branch} op %{instance} eindigt over 3 maanden.
+    end_of_support_two_weeks_warning:
+      body: De Mastodon-versie die jouw server momenteel gebruikt, wordt over 2 weken niet meer ondersteund. We raden je aan om Mastodon zo snel mogelijk naar een nieuwere branch bij te werken.
+      subject: De ondersteuning voor Mastodon %{branch} op %{instance} eindigt over 2 weken.
     new_appeal:
       actions:
         delete_statuses: het verwijderen van diens berichten
@@ -1665,7 +1691,9 @@ nl:
       empty: Leeg CSV-bestand
       incompatible_type: Incompatibel met het geselecteerde importtype
       invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
+      invalid_json_file: 'Ongeldig JSON-bestand. Foutmelding: %{error}'
       over_rows_processing_limit: bevat meer dan %{count} rijen
+      status_not_found_warning: Sommige van je filters verbergen specifieke berichten die niet bekend zijn bij deze server. Deze berichten worden niet automatisch gefilterd wanneer ze later alsnog door de server worden ontdekt.
       too_large: Bestand is te groot
     failures: Fouten
     imported: Geïmporteerd
@@ -1682,6 +1710,9 @@ nl:
       bookmarks_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>bladwijzers te vervangen</strong> met in het totaal <strong>%{count} bericht</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>bladwijzers te vervangen</strong> met in het totaal <strong>%{count} berichten</strong>.
+      custom_filters_html:
+        one: Je staat op het punt om met de inhoud van <strong>%{filename}</strong> je <strong>filters te vervangen</strong>. In totaal wordt <strong>%{count} filter</strong> aan de nieuwe filters toegevoegd.
+        other: Je staat op het punt om met de inhoud van <strong>%{filename}</strong> je <strong>filters te vervangen</strong>. In totaal worden <strong>%{count} filters</strong> aan de nieuwe filters toegevoegd.
       domain_blocking_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>lijst met geblokkeerde domeinen te vervangen</strong> met in het totaal <strong>%{count} domein</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>lijst met geblokkeerde domeinen te vervangen</strong> met in het totaal <strong>%{count} domeinen</strong>.
@@ -1701,6 +1732,9 @@ nl:
       bookmarks_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} bericht</strong> aan je <strong>bladwijzers</strong> toe te voegen.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} berichten</strong> aan je <strong>bladwijzers</strong> toe te voegen.
+      custom_filters_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in totaal <strong>%{count} filter</strong> aan je <strong>filters</strong> toe te voegen.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} filters</strong> aan je <strong>filters</strong> toe te voegen.
       domain_blocking_html:
         one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} domein te blokkeren</strong>.
         other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} domeinen te blokkeren</strong>.
@@ -1737,6 +1771,7 @@ nl:
     types:
       blocking: Geblokkeerde accounts
       bookmarks: Bladwijzers
+      custom_filters: Filters
       domain_blocking: Geblokkeerde domeinen
       following: Gevolgde accounts
       lists: Lijsten
@@ -1900,6 +1935,7 @@ nl:
     administration_emails: E-mailmeldingen beheerder
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
+    moderation_emails: E-mailmeldingen moderatoren
   number:
     human:
       decimal_units:
@@ -1923,7 +1959,7 @@ nl:
     next: Volgende
     older: Ouder
     prev: Vorige
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Je hebt al aan deze peiling deelgenomen

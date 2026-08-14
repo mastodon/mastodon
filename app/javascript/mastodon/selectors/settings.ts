@@ -48,7 +48,12 @@ export const selectSettingsNotificationsShowUnread = (state: RootState) =>
   state.settings.getIn(['notifications', 'showUnread']) as boolean;
 
 export const selectNeedsNotificationPermission = (state: RootState) =>
-  (state.settings.getIn(['notifications', 'alerts']).includes(true) &&
+  ((
+    state.settings.getIn(['notifications', 'alerts']) as Immutable.Map<
+      string,
+      boolean
+    >
+  ).includes(true) &&
     state.notifications.get('browserSupport') &&
     state.notifications.get('browserPermission') === 'default' &&
     !state.settings.getIn([

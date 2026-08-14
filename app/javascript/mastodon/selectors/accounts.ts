@@ -1,12 +1,16 @@
 import type { Map as ImmutableMap } from 'immutable';
 import { Record as ImmutableRecord, List as ImmutableList } from 'immutable';
 
-import { me } from 'mastodon/initial_state';
-import { accountDefaultValues } from 'mastodon/models/account';
-import type { Account, AccountShape } from 'mastodon/models/account';
-import type { Relationship } from 'mastodon/models/relationship';
-import { createAppSelector } from 'mastodon/store';
-import type { RootState } from 'mastodon/store';
+import { me } from '@/mastodon/initial_state';
+import { accountDefaultValues } from '@/mastodon/models/account';
+import type {
+  Account,
+  AccountShape,
+  AccountShapeFull,
+} from '@/mastodon/models/account';
+import type { Relationship } from '@/mastodon/models/relationship';
+import type { RootState } from '@/mastodon/store';
+import { createAppSelector } from '@/mastodon/store/typed_functions';
 
 import type { ApiHashtagJSON } from '../api_types/tags';
 
@@ -49,6 +53,16 @@ export function makeGetAccount() {
     },
   );
 }
+
+export const selectPlainAccount = createAppSelector(
+  [(state, accountId?: string | null) => state.accounts.get(accountId ?? '')],
+  (account) => (account?.toJS() as AccountShapeFull | undefined) ?? null,
+);
+
+export const selectIsAccountLocal = createAppSelector(
+  [selectPlainAccount],
+  (account) => !!account && account.username === account.acct,
+);
 
 export const getAccountHidden = createAppSelector(
   [

@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useCallback, useMemo } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -108,8 +109,8 @@ export const CollectionDetails: React.FC = () => {
   const accountId = useCurrentAccountId();
   const { acct: currentUserName } = useAccount(accountId) ?? {};
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+  const handleSubmit: React.SubmitEventHandler = useCallback(
+    (e) => {
       e.preventDefault();
 
       if (id) {

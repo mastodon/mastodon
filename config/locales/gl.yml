@@ -4,6 +4,7 @@ gl:
     about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
     contact_missing: Non establecido
     contact_unavailable: Non dispoñíbel
+    default_thumbnail_description: Dous mastodóns sorrintes debuxados (que semellan elefantes) tiran un avión de papel polo aire entre eles. De fondo vese o ceo azul con planetas flotando entre árbores e máis mastodóns neles.
     hosted_on: Mastodon aloxado en %{domain}
     title: Sobre
   accounts:
@@ -63,6 +64,8 @@ gl:
       custom: Personalizado
       delete: Eliminar datos
       deleted: Eliminado
+      deletion_irreversible: Elimináronse definitivamente os datos desta conta.
+      deletion_reversible_hint_html: Esta conta está pendente para eliminala, e os datos vanse eliminar totalmente o %{date}.
       demote: Rebaixar
       destroyed_msg: Os datos de %{username} están na cola para ser eliminados axiña
       disable: Desactivar
@@ -288,7 +291,11 @@ gl:
         enable_relay_html: "%{name} activou o repetidor %{target}"
         enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no correo para %{target}"
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
+        listable_tag_html: pode ser suxerida
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
+        not_listable_tag_html: non vai ser suxerida
+        not_trendable_tag_html: non aparecerá en tendencias
+        not_usable_tag_html: non pode ser usado
         promote_user_html: "%{name} promocionou a usuaria %{target}"
         publish_terms_of_service_html: "%{name} actualizou as condicións do servizo"
         reject_appeal_html: "%{name} rexeitou a apelación da decisión da moderación de %{target}"
@@ -301,6 +308,7 @@ gl:
         sensitive_account_html: "%{name} marcou o multimedia de %{target} como sensible"
         silence_account_html: "%{name} acalou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
+        trendable_tag_html: pode aparecer nas tendencias
         unassigned_report_html: "%{name} quitoulle a asignación á denuncia %{target}"
         unblock_email_account_html: "%{name} desbloqueou o enderezo de email de %{target}"
         unsensitive_account_html: "%{name} desmarcou como sensible o multimedia de %{target}"
@@ -313,8 +321,10 @@ gl:
         update_ip_block_html: "%{name} cambiou a regra para IP %{target}"
         update_report_html: "%{name} actualizou a denuncia %{target}"
         update_status_html: "%{name} actualizou a publicación de %{target}"
+        update_tag_html: "%{name} cambiou os axustes de %{target} a: "
         update_user_role_html: "%{name} cambiou o rol %{target}"
         update_username_block_html: "%{name} actualizou a regra para identificadores que contén %{target}"
+        usable_tag_html: pódese usar;
       deleted_account: conta eliminada
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción
@@ -729,6 +739,8 @@ gl:
       new:
         title: Crear nova regra IP
       no_ip_block_selected: Non se cambiou ningunha regra iP porque non seleccionaches ningunha
+      reset: Restablecer
+      search: Buscar
       title: Regras IP
     relationships:
       title: Relacións de %{acct}
@@ -1003,13 +1015,17 @@ gl:
       critical_update: Crítica - actualiza axiña
       description: Aconsellamos manter actualizado o teu servidor Mastodon para beneficiarte dos últimos arranxos e características. A maiores, de cando en vez hai actualizacións para evitar problemas importantes de seguridade. Debido a isto, Mastodon comproba cada 30 minutos se hai actualizacións e avisarate seguindo as túas preferencias de notificación por correo electrónico.
       documentation_link: Saber máis
+      nearing_eol: A versión que estás a utilizar vai deixar de ter mantemento o %{date}, pensa en actualizala.
       release_notes: Notas da versión
+      supported_until: O mantemento remata o %{date}
       title: Actualizacións dispoñibles
       type: Tipo
       types:
         major: Versión principal
         minor: Versión intermedia
         patch: Versión de arranxos - solución de problemas e cambios simples
+      unsupported_branch: A versión que estás utilizando non recibe mantemento, considera actualizar o máis axiña posible.
+      unsupported_since: Sen mantemento desde %{date}
       version: Versión
     statuses:
       account: Autoría
@@ -1225,6 +1241,7 @@ gl:
           other: Utilizado por %{count} persoas na última semana
       title: Recomendacións e Suxestións
       trending: Popularidade
+    update_available: Actualización dispoñible
     username_blocks:
       add_new: Engadir nova
       block_registrations: Bloqueo dos rexistros
@@ -1274,6 +1291,15 @@ gl:
     auto_close_registrations:
       body: Debido á falta de actividade recente de moderación, a creación de contas en %{instance} mudou ao modo de revisión manual das solicitudes, para evitar que %{instance} sexa usada como plataforma por actores maliciosos. Podes volver ao rexistro aberto en calquera momento.
       subject: O modo de creación de contas en %{instance} mudou automáticamente a aprobación manual
+    end_of_support_out_of_support_warning:
+      body: A versión de Mastodon que estás utilizando no servidor xa non recibe mantemento. Recomendámosche actualizala o máis axiña posible!
+      subject: A versión Mastodon %{branch} utilizada para %{instance} xa non recibe mantemento!
+    end_of_support_three_months_warning:
+      body: A versión de Mastodon que se utiliza actualmente no teu servidor vai deixar de recibir mantemento en 3 meses. Aconsellámosche actualizala con tempo a unha versión máis recente.
+      subject: O mantemento de Mastodon %{branch} que utiliza %{instance} remata en 3 meses.
+    end_of_support_two_weeks_warning:
+      body: A versión de Mastodon que se utiliza actualmente no teu servidor vai deixar de recibir mantemento en 2 semanas. Aconsellámosche actualizala con tempo a unha versión máis recente.
+      subject: O mantemento de Mastodon %{branch} que utiliza %{instance} remata en 2 semanas.
     new_appeal:
       actions:
         delete_statuses: borrar as súas publicacións
@@ -1665,7 +1691,9 @@ gl:
       empty: Ficheiro CSV de baleiro
       incompatible_type: Non é compatible co tipo de importación seleccionado
       invalid_csv_file: 'Ficheiro CSV non válido. Erro: %{error}'
+      invalid_json_file: 'Ficheiro JSON non válido. Erro: %{error}'
       over_rows_processing_limit: contén máis de %{count} filas
+      status_not_found_warning: Algún dos teus filtros oculta publicacións concretas que non son coñecidas por este servidor. Estas publicacións non se van filtrar automaticamente se son descubertas máis tarde polo servidor.
       too_large: O ficheiro é demasiado grande
     failures: Erros
     imported: Importado
@@ -1682,6 +1710,9 @@ gl:
       bookmarks_html:
         one: Vas <strong>substituír os marcadores</strong> por <strong>%{count} publicación</strong> desde <strong>%{filename}</strong>.
         other: Vas <strong>substituír os marcadores</strong> por <strong>%{count} publicacións</strong> desde <strong>%{filename}</strong>.
+      custom_filters_html:
+        one: Vas <strong>substituír os teus filtros</strong> co contido de <strong>%{filename}</strong>. Vaise engadir só <strong>%{count} filtro</strong> aos novos filtros.
+        other: Vas <strong>substituír os teus filtros</strong> co contido de <strong>%{filename}</strong>. Vaise engadir <strong>%{count} filtros</strong> aos novos filtros.
       domain_blocking_html:
         one: Vas <strong>substituír a lista de dominios bloqueados</strong> por <strong>%{count} dominio</strong> desde <strong>%{filename}</strong>.
         other: Vas <strong>substituír a lista de dominios bloqueados</strong> por <strong>%{count} dominios</strong> desde <strong>%{filename}</strong>.
@@ -1701,6 +1732,9 @@ gl:
       bookmarks_html:
         one: Vas engadir <strong>%{count} publicación</strong> desde <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
         other: Vas engadir <strong>%{count} publicacións</strong> desde <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+      custom_filters_html:
+        one: Vas a engadir <strong>%{count} filtro</strong> desde <strong>%{filename}</strong> aos teus <strong>filtros</strong>.
+        other: Vas a engadir <strong>%{count} filtros</strong> desde <strong>%{filename}</strong> aos teus <strong>filtros</strong>.
       domain_blocking_html:
         one: Vas <strong>bloquear</strong> a <strong>%{count} dominio</strong> desde <strong>%{filename}</strong>.
         other: Vas <strong>bloquear</strong> a <strong>%{count} dominios</strong> desde <strong>%{filename}</strong>.
@@ -1737,6 +1771,7 @@ gl:
     types:
       blocking: Lista de bloqueo
       bookmarks: Marcadores
+      custom_filters: Filtros
       domain_blocking: Lista de bloqueo de dominios
       following: Lista de seguimento
       lists: Listas
@@ -1874,7 +1909,7 @@ gl:
     mention:
       action: Responder
       body: "%{name} mencionoute en:"
-      subject: Foches mencionada por %{name}
+      subject: "%{name} mencionoute"
       title: Nova mención
     moderation_warning:
       subject: Recibiches unha advertencia da moderación
@@ -1900,6 +1935,7 @@ gl:
     administration_emails: Administrar notificacións por correo
     email_events: Eventos para as notificación por correo
     email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
+    moderation_emails: Notificacións da moderación por correo
   number:
     human:
       decimal_units:
@@ -1923,7 +1959,7 @@ gl:
     next: Seguinte
     older: Máis antigo
     prev: Previo
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Xa votaches nesta enquisa

@@ -148,11 +148,7 @@ export const AccountHeader: React.FC<{
             <div className={classes.bioButtonsWrapper}>
               {me && account.id !== me && <AccountNote accountId={accountId} />}
 
-              <AccountBio
-                showDropdown
-                accountId={accountId}
-                className={classes.bio}
-              />
+              <AccountBio showDropdown accountId={accountId} />
 
               <AccountHeaderFields accountId={accountId} />
 

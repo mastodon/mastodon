@@ -60,6 +60,7 @@ oc:
       error:
         title: I a agut un error
       new:
+        prompt_html: "%{client_name} volriá l’autorizacion d’accedir a vòstre compte. <strong> Autorizatz aquesta demanda sonque se reconeissètz e vos fisatz de la font.</strong>"
         review_permissions: Repassar las autorizacions
         title: Cal l’autorizacion
       show:
@@ -82,6 +83,9 @@ oc:
         access_denied: Lo proprietari de la ressorça o lo servider d’autorizacion refusèt la demanda.
         credential_flow_not_configured: Lo flux de qualificacion del senhal del proprietari de la ressorça capitèt pas pr’amor que Doorkeeper.configure.resource_owner_from_credentials es pas configurat.
         invalid_client: L’autorizacion del client capitèt pas pr’amor que lo client es desconegut, l’autorizacion del client es pas enclús, o lo metòde d’autorizacion es pas suportat.
+        invalid_code_challenge_method:
+          one: Lo code_challenge_method deu èsser %{challenge_methods}.
+          other: Lo code_challenge_method deu èsser un dels %{challenge_methods}.
         invalid_grant: L’acòrdi d’autorizacion donadat es pas valid, expirat, revocat, una redireccion URI utilizat en la demanda d’autorizacion no correspond, o a estat desliurat a un altre client.
         invalid_redirect_uri: L’URL de redireccion es pas valida.
         invalid_request:

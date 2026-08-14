@@ -205,6 +205,8 @@ namespace :admin do
   end
 
   namespace :disputes do
+    resources :strikes, only: [:show, :index]
+
     resources :appeals, only: [:index] do
       member do
         post :approve

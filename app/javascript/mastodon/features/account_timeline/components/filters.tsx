@@ -1,15 +1,14 @@
-import { useCallback, useId, useRef, useState } from 'react';
+import { useCallback, useId, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import { useParams } from 'react-router';
 
-import Overlay from 'react-overlays/esm/Overlay';
-
 import { AccountTabs } from '@/mastodon/components/account_header/tabs';
 import { Toggle } from '@/mastodon/components/form_fields';
 import { Icon } from '@/mastodon/components/icon';
+import { Popover } from '@/mastodon/components/popover';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 
 import { useAccountContext } from '../hooks/useAccountContext';
@@ -32,10 +31,12 @@ export const AccountFilters: FC = () => {
 
 const FilterDropdown: FC = () => {
   const [open, setOpen] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [buttonElement, setButtonElement] = useState<HTMLButtonElement | null>(
+    null,
+  );
 
   const handleClick = useCallback(() => {
-    setOpen(true);
+    setOpen((prev) => !prev);
   }, []);
   const handleHide = useCallback(() => {
     setOpen(false);
@@ -55,14 +56,13 @@ const FilterDropdown: FC = () => {
   );
 
   const accessibleId = useId();
-  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={containerRef}>
+    <div>
       <button
         type='button'
         className={classes.filterSelectButton}
-        ref={buttonRef}
+        ref={setButtonElement}
         onClick={handleClick}
         aria-expanded={open}
         aria-controls={`${accessibleId}-wrapper`}
@@ -97,13 +97,13 @@ const FilterDropdown: FC = () => {
           className={classes.filterSelectIcon}
         />
       </button>
-      <Overlay
-        show={open}
-        target={buttonRef}
+      <Popover
+        isOpen={open}
+        reference={buttonElement}
         placement='bottom-start'
-        rootClose
-        onHide={handleHide}
-        container={containerRef}
+        onClose={handleHide}
+        strategy='absolute'
+        container={null}
       >
         {({ props }) => (
           <div
@@ -138,7 +138,7 @@ const FilterDropdown: FC = () => {
             />
           </div>
         )}
-      </Overlay>
+      </Popover>
     </div>
   );
 };

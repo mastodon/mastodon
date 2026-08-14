@@ -103,7 +103,7 @@ const Preview: React.FC<{
   position: FocalPoint;
   onPositionChange: (arg0: FocalPoint) => void;
 }> = ({ mediaId, position, onPositionChange }) => {
-  const nodeRef = useRef<HTMLImageElement | HTMLVideoElement | null>(null);
+  const nodeRef = useRef<HTMLImageElement | HTMLVideoElement>(null);
 
   const [dragging, setDragging] = useState<'started' | 'moving' | null>(null);
 

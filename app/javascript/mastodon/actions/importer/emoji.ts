@@ -22,10 +22,6 @@ export async function importCustomEmoji(emojis: ApiCustomEmojiJSON[]) {
     await clearCache('custom');
     await loadCustomEmoji();
 
-    const { reloadCustomEmojis } =
-      await import('@/mastodon/features/emoji/picker');
-    await reloadCustomEmojis();
-
     log('Custom emojis updated, reloaded cache and picker data.');
   }
 }

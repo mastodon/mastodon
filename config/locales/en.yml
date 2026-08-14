@@ -4,6 +4,7 @@ en:
     about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralization! Own your data with Mastodon!'
     contact_missing: Not set
     contact_unavailable: N/A
+    default_thumbnail_description: Two smiling cartoon mastodons (who look like elephants) toss a paper plane between them. They're surrounded by a bright blue sky and floating planets with trees and more mastodons on them.
     hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
@@ -63,6 +64,8 @@ en:
       custom: Custom
       delete: Delete data
       deleted: Deleted
+      deletion_irreversible: The data of this account has been irreversibly deleted.
+      deletion_reversible_hint_html: This account is pending deletion, and the data will be fully removed on %{date}.
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
@@ -288,7 +291,11 @@ en:
         enable_relay_html: "%{name} enabled the relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} enabled email token authentication for %{target}"
         enable_user_html: "%{name} enabled login for user %{target}"
+        listable_tag_html: can be suggested
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
+        not_listable_tag_html: won't be suggested
+        not_trendable_tag_html: won't appear under trends
+        not_usable_tag_html: cannot be used
         promote_user_html: "%{name} promoted user %{target}"
         publish_terms_of_service_html: "%{name} published updates to the terms of service"
         reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
@@ -301,6 +308,7 @@ en:
         sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
         silence_account_html: "%{name} limited %{target}'s account"
         suspend_account_html: "%{name} suspended %{target}'s account"
+        trendable_tag_html: can appear under trends
         unassigned_report_html: "%{name} unassigned report %{target}"
         unblock_email_account_html: "%{name} unblocked %{target}'s email address"
         unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
@@ -313,8 +321,10 @@ en:
         update_ip_block_html: "%{name} changed rule for IP %{target}"
         update_report_html: "%{name} updated report %{target}"
         update_status_html: "%{name} updated post by %{target}"
+        update_tag_html: "%{name} changed %{target} settings to: "
         update_user_role_html: "%{name} changed %{target} role"
         update_username_block_html: "%{name} updated rule for usernames containing %{target}"
+        usable_tag_html: can be used;
       deleted_account: deleted account
       empty: No logs found.
       filter_by_action: Filter by action
@@ -729,6 +739,8 @@ en:
       new:
         title: Create new IP rule
       no_ip_block_selected: No IP rules were changed as none were selected
+      reset: Reset
+      search: Search
       title: IP rules
     relationships:
       title: "%{acct}'s relationships"
@@ -1003,13 +1015,17 @@ en:
       critical_update: Critical — please update quickly
       description: It is recommended to keep your Mastodon installation up to date to benefit from the latest fixes and features. Moreover, it is sometimes critical to update Mastodon in a timely manner to avoid security issues. For these reasons, Mastodon checks for updates every 30 minutes, and will notify you according to your email notification preferences.
       documentation_link: Learn more
+      nearing_eol: Support for the branch you are currently running will stop on %{date}, please consider updating.
       release_notes: Release notes
+      supported_until: Support ends on %{date}
       title: Available updates
       type: Type
       types:
         major: Major release
         minor: Minor release
         patch: Patch release — bugfixes and easy to apply changes
+      unsupported_branch: The branch you are currently running is unsupported, please update as soon as possible.
+      unsupported_since: Unsupported since %{date}
       version: Version
     statuses:
       account: Author
@@ -1225,6 +1241,7 @@ en:
           other: Used by %{count} people over the last week
       title: Recommendations & Trends
       trending: Trending
+    update_available: Update available
     username_blocks:
       add_new: Add new
       block_registrations: Block registrations
@@ -1274,6 +1291,15 @@ en:
     auto_close_registrations:
       body: Due to a lack of recent moderator activity, registrations on %{instance} have been automatically switched to requiring manual review, to prevent %{instance} from being used as a platform for potential bad actors. You can switch it back to open registrations at any time.
       subject: Registrations for %{instance} have been automatically switched to requiring approval
+    end_of_support_out_of_support_warning:
+      body: The Mastodon version currently in use on your server is not supported anymore. We recommend you to update as soon as possible!
+      subject: Mastodon %{branch} used on %{instance} is now unsupported!
+    end_of_support_three_months_warning:
+      body: The Mastodon version currently in use on your server will stop being supported in 3 months. You may want to update to a newer branch ahead of time.
+      subject: Support for Mastodon %{branch} used on %{instance} to end in 3 months.
+    end_of_support_two_weeks_warning:
+      body: The Mastodon version currently in use on your server will stop being supported in 2 weeks. We recommend you update to a newer branch ahead of time.
+      subject: Support for Mastodon %{branch} used on %{instance} to end in 2 weeks.
     new_appeal:
       actions:
         delete_statuses: to delete their posts
@@ -1909,6 +1935,7 @@ en:
     administration_emails: Admin email notifications
     email_events: Events for email notifications
     email_events_hint: 'Select events that you want to receive notifications for:'
+    moderation_emails: Moderation email notifications
   number:
     human:
       decimal_units:
@@ -1935,7 +1962,7 @@ en:
     next: Next
     older: Older
     prev: Prev
-    truncate: "&hellip;"
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: You have already voted on this poll

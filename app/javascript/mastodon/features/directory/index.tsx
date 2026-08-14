@@ -1,5 +1,5 @@
 import type { ChangeEventHandler } from 'react';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -7,6 +7,8 @@ import { List as ImmutableList } from 'immutable';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import {
   addColumn,
@@ -15,9 +17,6 @@ import {
   changeColumnParams,
 } from 'mastodon/actions/columns';
 import { fetchDirectory, expandDirectory } from 'mastodon/actions/directory';
-import { Column } from 'mastodon/components/column';
-import type { ColumnRef } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadMore } from 'mastodon/components/load_more';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
@@ -48,8 +47,6 @@ export const Directory: React.FC<{
 }> = ({ columnId, multiColumn, params }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-
-  const column = useRef<ColumnRef>(null);
 
   const [orderParam, setOrderParam] = useSearchParam('order');
   const [localParam, setLocalParam] = useSearchParam('local');
@@ -97,10 +94,6 @@ export const Directory: React.FC<{
     },
     [dispatch, columnId],
   );
-
-  const handleHeaderClick = useCallback(() => {
-    column.current?.scrollTop();
-  }, []);
 
   const handleChangeOrder = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (e) => {
@@ -194,7 +187,6 @@ export const Directory: React.FC<{
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={column}
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
@@ -203,9 +195,9 @@ export const Directory: React.FC<{
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}
         onMove={handleMove}
-        onClick={handleHeaderClick}
         pinned={pinned}
         multiColumn={multiColumn}
+        scrollTopOnClick
       />
 
       {multiColumn && !pinned ? (

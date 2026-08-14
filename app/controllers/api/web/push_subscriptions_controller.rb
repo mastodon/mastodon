@@ -6,6 +6,8 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :destroy_previous_subscriptions, only: :create, if: :prior_subscriptions?
   after_action :update_session_with_subscription, only: :create
 
+  skip_forgery_protection only: :destroy
+
   def create
     @push_subscription = ::Web::PushSubscription.create!(web_push_subscription_params)
 

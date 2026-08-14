@@ -73,7 +73,7 @@ jobs:
       BUNDLE_RETRY: 3
 
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -104,8 +104,8 @@ jobs:
           bin/rails db:create
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
 
-          # Migrate up to v4.2.0 breakpoint
-          bin/rails db:migrate VERSION=20230907150100
+          # Migrate up to v4.3.0 breakpoint
+          bin/rails db:migrate VERSION=20241007071624
 
           # Migrate the rest
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate

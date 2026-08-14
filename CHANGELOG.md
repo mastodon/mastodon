@@ -2,11 +2,208 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.6.0] - UNRELEASED
+## [4.7.0] - UNRELEASED
 
 ### Added
 
-- **Add collections** (#37992, #37005, #37049, #37020, #37053, #37110, #37117, #37122, #37154, #37157, #37176, #37192, #37222, #37225, #37254, #37277, #37298, #37322, #37434, #37468, #37514, #37512, #37549, #37556, #37560, #37580, #37591, #37552, #37618, #37643, #37658, #37731, #37678, #37741, #37762, #37790, #37805, #37823, #37837, #37842, #37850, #37848, #37812, #37950, #37898, #37916, #37920, #37927, #37928, #37961, #37967, #37974, #37989, #37986, #38004, #38026, #38027, #38030, #38038, #38065, #38081, #38082, #38096, #38106, #38113, #38124, #38133, #38144, #38153, #38166, #38167, #38169, #38170, #38177, #38193, #38213, #38251, #38255, #38256, #38282, #38298, #38292, #38307, #38306, #38316, #38115, #38329, #38334, #38337, #38351, #38368, #38370, #38356, #38383, #38386, #38385, #38394, #38393, #38399, #38402, #38409, #38414, #38413, #38424, #38425, #38450, #38508, #38528, #38534, #38536, #38540, #38543, #38491, #38586, #38611, #38588, #38612, #38628, #38626, #38630, #38633, #38629, #38638, #38645, #38644, #38636, #38660, #38657, #38688, #38690, #38672, #38698, #38697, #38708, #38712, #38713, #38709, #38719, #38728, #38730, #38732, #38739, #38749, #38751, #38750, #38767, #38769, #38783, #38785, #38959, #38786, #38794, #38776, #38817, #38792, #38822, #38827, #38831, #38830, #38844, #38843, #38852, #38850, #38847, #38865, #38897, #38900, #38919, #38933, #38934, #38935, #38942, #38941, #38954, #38961, #38957, #38962, #38991, #39009, #39062, #39029, #39069, #39020, #39073, #39082, #39096, #39080, #39182, #39143, #39127, #37929, #38029, #39194, #39198, #39210, #39211, #39202, #39214, #39215, #39220, #39234, #39260, #39251, #39361, #39357, #39349, #39287, #39376, #39289, #39342, #38711, #39379, #39282, #39286, #39296, #39047, #39346, #39373, #39372 by @ChaosExAnima, @ClearlyClaire, @Gargron, @arte7, @diondiondion, @mjankowski, @oneiros, and @shleeable)
+- Add audit logs for Hashtags (#39473, #39337 and #39670 by @arte7)
+- Add search field to admin ip blocks (#39404 by @arte7)
+- Add notifications for out-of-support versions of Mastodon (#39732 and #39734 by @ClearlyClaire)
+- Add Elasticsearch request timeout of 10s (can be overridden through `ES_QUERY_TIMEOUT`) (#40064 by @ClearlyClaire)
+- Add ActivityPub attributes to current span when processing Activities (#40041 by @jhbabon)
+- Add OTel span attribute to deprecated endpoints (#40030 by @jhbabon)
+- Add default permission check to admin area (#39974 by @oneiros)
+- Add uniqueness constraint on Account `uri` (#39882, #39999 and #39861 by @ClearlyClaire)
+- Add new theme tokens `bg-blend`, `bg-highlight`, and `border-strong` (#39786 by @diondiondion)
+- Add support for `Link` objects in `attachment` (FEP-8967) (#36104, #39977 and #39983 by @Gargron, @TheEssem and @shleeable)
+  - Mastodon will use the first `Link` attachment, if any, as preview card.
+  - If there is no `Link` attachment, Mastodon will still scan the message content's to populate one. This may change in a later release.
+  - Mastodon sets a `Link` attachment for outgoing posts with a preview card.
+- Add support for remote accounts changing handles (#39785, #39850, #39865 and #40045 by @ClearlyClaire)
+  - ActivityPub actor `id` is now used as the primary identifier, instead of webfinger handle.
+  - Remote actors that change handles are now renamed instead of a duplicate account being created then the two merged.
+  - Mastodon does not offer its users to change handles yet.
+  - The concept of “invalid handles” has been added to handle some edge cases. An account with an invalid handle
+    is an account for which the handle cannot be currently verified, but is otherwise valid.
+    In the REST API, they have their `username` and `domain` attribute overridden and this is made explicit through the [`invalid_handle` attribute](https://docs.joinmastodon.org/entities/Account/#invalid_handle).
+- Add outgoing RFC9421 HTTP Message Signatures as fallback to earlier draft (#39756 by @ClearlyClaire)
+- Change how local users' keypairs are stored (#39658, #39668, #39662, #39684, #39686, #39690 and #40138 by @ClearlyClaire)
+  - This moves local users' keypairs to the dedicated table that was created in 4.6.
+  - Private keys are now encrypted at rest, and the new infrastructure will allow for key rotation in the future.
+- Add support for `expires` in Linked Data Signatures and Object Integrity Proofs (#39701 by @ClearlyClaire)
+- Add verification of FEP-8b32 Object Integrity Proofs (#39530, #39728, #39754, #39760, #39522 and #39747 by @ClearlyClaire)
+  - Both `eddsa-jcs-2022` and `mldsa44-jcs-2024` are supported.
+  - `mldsa44-jcs-2024` verification requires OpenSSL >= 3.5 to be verified.
+- Add support for Ed25519 signatures in HTTP Message Signatures (#39518 by @ClearlyClaire)
+- Add inbound support for FEP-521a (#39497, #39618, and #39725 by @ClearlyClaire and @shleeable)
+
+### Fixed
+
+- Fix error in `tootctl media refresh` when cleaning some incompletely processed files (#40056 by @shleeable)
+- Fix plain-text formatter not treating `<BR>` as newline (#40079 by @shleeable)
+- Fix performance of listing follow requests by adding appropriate index (#40033 by @ClearlyClaire)
+- Fix missing `on_delete: :cascade` on `GeneratedAnnualReport` foreign key (#40063 by @ClearlyClaire)
+- Fix `DeleteAccountService#purge_favourites!` only invalidating deprecated cache keys (#40048 by @shleeable)
+- Fix spam-filtered scheduled posts raising an error rather than being silently ignored (#40051 by @shleeable)
+- Fix error when processing backups for deleted accounts (#40053 by @shleeable)
+- Fix notification filter selection after settings change (#39872 by @sharlayan)
+- Fix timeline unable to load more when the last item is a `inline-follow-suggestions` (#39773 by @sharlayan)
+- Fix embedded videos restarting when interacting with post (or other posts in the same feed) (#39746 by @diondiondion)
+- Fix N+1 queries when rendering accounts on the admin collection page (#39738 by @rubys)
+- Fix authored posts not immediately appearing in timelines (#39733 by @ChaosExAnima)
+- Fix newletter button display on some e-mail clients (#39634 by @diondiondion)
+- Fix handling of `rdf:langString` in media `summary` and `name` (#39590 by @ClearlyClaire)
+- Fix error when rejecting appeal of already-deleted user (#39490 by @shleeable)
+- Fix navigation switching to user “Account” category when viewing appeal for moderation interface (#39476, #39619 and #40026 by @ClearlyClaire and @shleeable)
+
+### Changed
+
+- Change follow recommendation materialized views to manually-maintained tables (#40039 by @ClearlyClaire)
+- Change database schema to distinguish deleted-but-not-suspended accounts (#23617, #40027, #40029, #40034, #40083 and #40078 by @ClearlyClaire and @shleeable)
+- Change reblogs to be deduplicated within the last 80 posts instead of the last 40 (#39784 by @ClearlyClaire)
+- Change `AttachmentBatch` to reset retry attempt counter for each S3 batch (#39979 by @shleeable)
+- Change featured tag recommendation criteria (#39567 by @renchap)
+
+### Removed
+
+- Remove inbox processing of collections of activities (#39932 by @ClearlyClaire)
+- Remove support for `Reject` and `Accept` of `QuoteRequest` that cannot be found by `id` (#39833 by @ClearlyClaire)
+- Remove deprecated `bin/update` script (#39443 by @mjankowski)
+- Remove support for pre-Mastodon 4.3.0 cookies (#38918 by @ClearlyClaire)
+
+## [4.6.6] - 2026-08-13
+
+### Changes
+
+- Change `mastodon:setup` task warning about trademark to match `masto` but ignore subdomains (#40143 by @ClearlyClaire)
+
+### Fixed
+
+- Fix connection errors when processing `fediverse:creator` preventing creation of preview cards (#40135 by @ClearlyClaire)
+- Fix Web UI being inaccessible with URLs ending with `.zip` (#40134 by @ClearlyClaire)
+- Fix semitransparent background of picture-in-picture video player (#40132 by @diondiondion)
+- Fix title tooltip appearing for fullscreen videos (#40127 by @diondiondion)
+- Fix image preview too dark in alt text editor dialog (#40126 by @diondiondion)
+- Fix domain block impact queries being rejected (#40122 by @ClearlyClaire)
+- Fix mobile navigation scrolling to top while opening (#40042 by @sharlayan)
+- Fix selected account being lost when creating a collection (#39897 and #40133 by @diondiondion and @sharlayan)
+
+## [4.6.5] - 2026-08-06
+
+### Fixed
+
+- Fix Collection items being rejected because of incorrect attribute being read (#40052 by @shleeable)
+- Fix typo in embedded quote handling code (#40049 by @shleeable)
+- Fix account merging worker incorrectly merging `Appeal` and `AccountWarning` records (#39982 by @shleeable)
+- Fix off-by-one in handling of updated remote posts allowing up to 5 attachments (#39978 by @shleeable)
+- Fix collection items limit not being consistently applied (#39969 by @oneiros)
+- Fix oversized profile image crop uploads (#39958 by @sharlayan)
+- Fix emoji autocomplete sometimes suggesting emojis for earlier keystrokes (#39947 by @ChaosExAnima)
+
+## [4.6.4] - 2026-07-27
+
+### Security
+
+- Fix incorrect permission enforcement ([GHSA-7jvv-fhmg-wpfw](https://github.com/mastodon/mastodon/security/advisories/GHSA-7jvv-fhmg-wpfw), [GHSA-hx34-2pfw-2qfj](https://github.com/mastodon/mastodon/security/advisories/GHSA-hx34-2pfw-2qfj))
+- Fix SSRF protection bypass via IPv4-compatible IPv6 addresses ([GHSA-vwhj-3g83-v276](https://github.com/mastodon/mastodon/security/advisories/GHSA-vwhj-3g83-v276))
+- Update dependencies
+
+### Changed
+
+- Change autosuggestions to include second word in web UI (#39622 and #39696 by @Gargron and @zunda)
+
+### Fixed
+
+- Fix being unable to vote in polls without an expiration date (#39949 by @ClearlyClaire)
+- Fix “Hide media with a warning” filters not being applied correctly (#39946 by @ClearlyClaire)
+- Fix performance of user-focused queries in admin dashboard (#39929 by @ClearlyClaire)
+- Fix Web Push subscription deletion endpoint incorrectly expecting anti-CSRF tokens (#39918 by @ClearlyClaire)
+- Fix `ActivityPub::Activity::Create` trying to re-create known statuses when author changes (#39916 by @ClearlyClaire)
+- Fix typo in quotes list error handling (#39904 by @shleeable)
+- Fix lax relevancy check in inbound activity processing (#39892 by @ClearlyClaire)
+- Fix `Account::Merging` concern not supporting Quotes or Collections, refactor it (#39884 by @ClearlyClaire)
+- Fix various emoji search issues (#39815 by @ChaosExAnima)
+- Fix swapped order of "accept/reject" actions in follow requests (#39862 by @diondiondion)
+- Fix suspended accounts not being removed from follow request count in `/api/v1/accounts/verify_credentials` (#39858 by @ClearlyClaire)
+- Fix "Learn more" link target in column post privacy hint (#39829 by @diondiondion)
+- Fix page refresh when trying to save custom profile fields (#39828 by @diondiondion)
+- Fix followed tags not being properly cleaned up when an account is deleted (#39824 by @shleeable)
+- Fix CW being copied to body when editing quote posts with empty text (#39823 and #39837 by @shleeable and @ClearlyClaire)
+- Fix handling of `QuoteRequest` rejections when those can't be found by `id` (#39820 by @shleeable)
+- Fix autofollow option being ignored in invite moderation interface (#39819 by @shleeable)
+- Fix pagination overlapping announcement reactions bar (#39814 by @diondiondion)
+- Fix very wide images overflowing posts horizontally (#39812 by @diondiondion)
+- Fix collections not being removed when an account is deleted (#39809 by @oneiros)
+- Fix account followed languages selector (#39801 by @ChaosExAnima)
+- Fix error handling in `ActivityPub::ProcessFeaturedItemService` (#39787 by @ClearlyClaire)
+- Fix display of past relative times (#39742 by @ClearlyClaire)
+- Fix pinned post button width (#39724 by @ChaosExAnima)
+
+## [4.6.3] - 2026-07-03
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add “Update available” navigation item at top of navbar when new Mastodon versions are available (#39705 by @ClearlyClaire)
+- Add rendering of post images in emails (#39636 by @diondiondion)
+
+### Fixed
+
+- Fix “view collection” menu item appearing on collection page (#39694 by @mkljczk)
+- Fix incorrect filter cache key sometimes causing incorrect filters to be applied (#39698 by @ClearlyClaire)
+- Fix missing `to_json` to publish announcement reaction worker (#39685 by @mjankowski)
+- Fix duplicate "clear" button shown in main search input in Chrome (#39679 by @diondiondion)
+- Fix visual glitch with the spoiler button (#39677 by @ChaosExAnima)
+- Fix invisible username during post highlight animation (#39659 by @diondiondion)
+- Fix follow button floating on profiles when overview landing page is enabled (#39650 by @FFederi)
+- Fix encryption warning "read more" link (#39635 by @thomas-pike)
+- Fix `tootctl media lookup` failing on some setups (#39615 by @brookmiles)
+- Fix visible transparent navigation link borders in Windows forced-contrast mode (#39614 by @diondiondion)
+- Fix crash with some browser extensions injecting custom elements in the page (#39507 by @OriginalRoOhi)
+
+## [4.6.2] - 2026-06-25
+
+### Security
+
+- Update FFMpeg version used in the container image to fix [CVE-2026-8461](https://github.com/advisories/GHSA-qff7-4q6c-m8h6) (critical severity)
+
+## [4.6.1] - 2026-06-24
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add `avatar_description` and `header_description` to `/api/v1/accounts/update_credentials` (#39547 and #39574 by @ClearlyClaire and @mkljczk)
+  - This is available starting from Mastodon API version `11` and intended to provide an easier implementation path for clients implementing a similar feature in forks.
+  - The new `/api/v1/profile` API remains the recommended API for setting avatar and header description as well as other profile values.
+
+### Fixed
+
+- Fix combobox menu not closing after a selection (#39595 by @diondiondion)
+- Fix Emoji IndexedDB upgrades when multiple tabs are open (#39576 by @ChaosExAnima)
+- Fix combobox listbox not scrolling up when new suggestions have loaded (#39588 by @diondiondion)
+- Fix media modal navigation in RTL languages (#39587 by @diondiondion)
+- Fix accounts not visible in collection editor in advanced web interface (#39586 by @diondiondion)
+- Fix error on login with certain LDAP configurations (#39571 by @oneiros)
+- Fix simplified layout applying to other pages in web UI (#39570 by @Gargron)
+- Fix emoji database loading in web worker (#39558 and #39562 by @ChaosExAnima)
+- Fix display name length limit being incorrectly enforced in web UI (#39499 by @shleeable)
+- Fix advanced UI columns not using mobile styles (#39528 by @diondiondion)
+- Fix "private mention" post heading overlapping thread line (#39521 and #39554 by @diondiondion)
+- Fix misattribution of remote featured collections in some cases (#39523, #39525, and #39550 by @oneiros)
+- Fix custom profile field overflow (#39513 by @diondiondion)
+- Fix fetching unknown key when it's not the actor's first, and add error handling for unavailable keys (#39512 by @ClearlyClaire)
+
+## [4.6.0] - 2026-06-17
+
+### Added
+
+- **Add collections** (#37992, #37005, #37049, #37020, #37053, #37110, #37117, #37122, #37154, #37157, #37176, #37192, #37222, #37225, #37254, #37277, #37298, #37322, #37434, #37468, #37514, #37512, #37549, #37556, #37560, #37580, #37591, #37552, #37618, #37643, #37658, #37731, #37678, #37741, #37762, #37790, #37805, #37823, #37837, #37842, #37850, #37848, #37812, #37950, #37898, #37916, #37920, #37927, #37928, #37961, #37967, #37974, #37989, #37986, #38004, #38026, #38027, #38030, #38038, #38065, #38081, #38082, #38096, #38106, #38113, #38124, #38133, #38144, #38153, #38166, #38167, #38169, #38170, #38177, #38193, #38213, #38251, #38255, #38256, #38282, #38298, #38292, #38307, #38306, #38316, #38115, #38329, #38334, #38337, #38351, #38368, #38370, #38356, #38383, #38386, #38385, #38394, #38393, #38399, #38402, #38409, #38414, #38413, #38424, #38425, #38450, #38508, #38528, #38534, #38536, #38540, #38543, #38491, #38586, #38611, #38588, #38612, #38628, #38626, #38630, #38633, #38629, #38638, #38645, #38644, #38636, #38660, #38657, #38688, #38690, #38672, #38698, #38697, #38708, #38712, #38713, #38709, #38719, #38728, #38730, #38732, #38739, #38749, #38751, #38750, #38767, #38769, #38783, #38785, #38959, #38786, #38794, #38776, #38817, #38792, #38822, #38827, #38831, #38830, #38844, #38843, #38852, #38850, #38847, #38865, #38897, #38900, #38919, #38933, #38934, #38935, #38942, #38941, #38954, #38961, #38957, #38962, #38991, #39009, #39062, #39029, #39069, #39020, #39073, #39082, #39096, #39080, #39182, #39143, #39127, #37929, #38029, #39194, #39198, #39210, #39211, #39202, #39214, #39215, #39220, #39234, #39260, #39251, #39361, #39357, #39349, #39287, #39376, #39289, #39342, #38711, #39379, #39282, #39286, #39296, #39047, #39346, #39373, #39372, #39429, and #39457 by @ChaosExAnima, @ClearlyClaire, @Gargron, @arte7, @diondiondion, @mjankowski, @oneiros, and @shleeable)
   - Create collections with up to 25 accounts each, then share them with others. You can read more about this feature [on our blog](https://blog.joinmastodon.org/2026/04/designing-collections/). This is based on FEP-7aa9 (Featured Collections) to be interoperable with the wider Fediverse. All the new API methods [are documented here](https://docs.joinmastodon.org/client/collections/).
 - **Add email subscriptions** (#38163, #38507, #38502, #38487, #38527, #38582, #38741, #38907, #39162, #39271 by @ClearlyClaire and @Gargron)
   - Admins can allow specific roles to enable email subscriptions on their profile, allowing anonymous visitors to subscribe to their posts via email.
@@ -27,7 +224,7 @@ All notable changes to this project will be documented in this file.
 - Add fallback attributes to notifications for new and infrequent notifications in REST API (#38832 and #38860 by @ClearlyClaire)
   - This adds a [`supported_types`](https://docs.joinmastodon.org/methods/notifications/#query-parameters-1) parameter to `GET /api/v1/notifications`, `GET /api/v1/notifications/:id`, `GET /api/v2/notifications`, and `GET /api/v2/notifications/:group_key` along with a new `fallback` attribute for notifications and notification groups.
 - Add support for posts in vertical languages in web UI (#37204, #38205, and #38797 by @shimon1024)
-- Add `PageUp` and `PageDown` hotkeys for list navigation (#39252 by @diondiondion)
+- Add `Alt` + `PageUp` and `Alt` + `PageDown` hotkeys for list navigation (#39252 and #39427 by @diondiondion)
 - Add `g`+`e` keyboard shortcut to access the trending page in web UI (#38014 by @antoinecellerier)
 - Add `Cmd`/`Ctrl`+`Enter` for form submissions in more text areas in web UI (#37821 by @diondiondion)
 - Add support for quoting by dragging a link into the compose form in web UI (#36859 and #36896 by @ClearlyClaire and @tribela)
@@ -47,7 +244,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- **Change design of profiles in web UI** (#37472, #37490, #37479, #37513, #37527, #37550, #37538, #37632, #37627, #37593, #37638, #37626, #37645, #37653, #37683, #37707, #37682, #37742, #37747, #37760, #37761, #37831, #37766, #37811, #37813, #37825, #37854, #37851, #37876, #37885, #37892, #37890, #37907, #37922, #37952, #37958, #37996, #37990, #37994, #38005, #38012, #38040, #38052, #38066, #38083, #38147, #38148, #38152, #38168, #38156, #38175, #38191, #38189, #38235, #38283, #38310, #38309, #38315, #38314, #38365, #38366, #38363, #38346, #38382, #38384, #38400, #38404, #38417, #38426, #38440, #38442, #38443, #38445, #38446, #38451, #38456, #38509, #38510, #38512, #38513, #38517, #38529, #38531, #38535, #38532, #38544, #38549, #38575, #38579, #38580, #38581, #38585, #38584, #38604, #38605, #38606, #38607, #38622, #38616, #38625, #38632, #38640, #38663, #38667, #38646, #38691, #38692, #38766, #38791, #38687, #38826, #38828, #38863, #38845, #38870, #38872, #38932, #38945, #38963, #38964, #39055, #39042, #38893, #39079, #39084, #39160, #39070, #39217, #39309, #39354, #39324, #39387 by @ChaosExAnima, @ClearlyClaire, @Coro365, @diondiondion, and @shleeable)
+- **Change design of profiles in web UI** (#37472, #37490, #37479, #37513, #37527, #37550, #37538, #37632, #37627, #37593, #37638, #37626, #37645, #37653, #37683, #37707, #37682, #37742, #37747, #37760, #37761, #37831, #37766, #37811, #37813, #37825, #37854, #37851, #37876, #37885, #37892, #37890, #37907, #37922, #37952, #37958, #37996, #37990, #37994, #38005, #38012, #38040, #38052, #38066, #38083, #38147, #38148, #38152, #38168, #38156, #38175, #38191, #38189, #38235, #38283, #38310, #38309, #38315, #38314, #38365, #38366, #38363, #38346, #38382, #38384, #38400, #38404, #38417, #38426, #38440, #38442, #38443, #38445, #38446, #38451, #38456, #38509, #38510, #38512, #38513, #38517, #38529, #38531, #38535, #38532, #38544, #38549, #38575, #38579, #38580, #38581, #38585, #38584, #38604, #38605, #38606, #38607, #38622, #38616, #38625, #38632, #38640, #38663, #38667, #38646, #38691, #38692, #38766, #38791, #38687, #38826, #38828, #38863, #38845, #38870, #38872, #38932, #38945, #38963, #38964, #39055, #39042, #38893, #39079, #39084, #39160, #39070, #39217, #39309, #39354, #39324, #39387, #39452, #39467 by @ChaosExAnima, @ClearlyClaire, @Coro365, @diondiondion, and @shleeable)
   - The profile screen has been entirely redesigned, has new features, and allows you to update your own profile directly without going into the preferences panel. You can read more about it [on our blog](https://blog.joinmastodon.org/2026/03/a-redesign-for-profiles/).
 - **Change how #Wrapstodon reports are generated and displayed** (#37033, #37045, #37093, #37055, #37096, #37047, #37103, #37104, #37106, #37109, #37121, #37138, #37134, #37177, #37182, #37169, #37186, #37187, #37188, #37189, #37190, #37193, #37198, #37201, #37203, #37205, #37206, #37207, #37209, #37202, #37216, #37219, #37224, #37226, #37229, #37249, #37251, #37256, #37261, #37269, #37270, #37273, and #37289 by @ChaosExAnima, @ClearlyClaire, @channyeintun, and @diondiondion)
   - This finishes up work started in 2024 by completely revamping how Wrapstodon reports are generated and displayed, reducing the amount of data collected and generating reports when active users ask for them.
@@ -55,9 +252,10 @@ All notable changes to this project will be documented in this file.
   - The design of the Wrapstodon report has also been fully reworked to be more delightful and easier to share!
   - The relevant API endpoints are documented at https://docs.joinmastodon.org/methods/annual_reports/
 - Change limitation to allow posts with both media and a poll to be created (#39203, #39368, #39388 by @ClearlyClaire and @Gargron)
+- Change account display name length limit from 30 to 40 characters (#39458 by @mjankowski)
 - Change alt text limit for media attachments to 10,000 characters (#39306 by @ClearlyClaire)
 - Change pending user notification email to link directly to the pending account (#39206 by @vmstan)
-- Changed emoji processing in web UI to make it less resource intensive and more robust (#39077, #39008, #39088, #38892, #38885, #38965, #38854, #38825, #38784, #38541, #37442, #37300, #37306, #37271, #37255, #37284, #37272, #37178, #37084, #37080, #37418, #39167, #39126, #39353, #39378, #39382 by @ChaosExAnima, @ClearlyClaire, @diondiondion, and @gomasy)
+- Changed emoji processing in web UI to make it less resource intensive and more robust (#39077, #39008, #39088, #38892, #38885, #38965, #38854, #38825, #38784, #38541, #37442, #37300, #37306, #37271, #37255, #37284, #37272, #37178, #37084, #37080, #37418, #39167, #39126, #39353, #39378, #39382, #39402, and #39421 by @ChaosExAnima, @ClearlyClaire, @diondiondion, @gomasy, and @Hanage999)
 - Change composer textarea to have a limited height to prevent column scrolling (#39268 by @diondiondion)
 - Change mentions of “Mastodon gGmbH” to “Mastodon GmbH” (#39261 by @renchap)
 - Change the limited profile message to be less misleading (#39231 by @mortie)
@@ -102,7 +300,10 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Fix accessibility issues in web UI (#37250, #38006, #38033, #38188, #38230, #38252, #38257, #38285, #38293, #38362, #38387, #38459, #38796, #38801, #39098, #39111, #39120, #39129, #39133, #39134, #39144, #39145, #39149, #39164, #39165, #39169, #39181, #39335, #39305, #39331, #39356, #39350, #39358, #39360, #39325, #39270 by @ChaosExAnima and @diondiondion)
+- Fix accessibility issues in web UI (#37250, #38006, #38033, #38188, #38230, #38252, #38257, #38285, #38293, #38362, #38387, #38459, #38796, #38801, #39098, #39111, #39120, #39129, #39133, #39134, #39144, #39145, #39149, #39164, #39165, #39169, #39181, #39335, #39305, #39331, #39356, #39350, #39358, #39360, #39325, #39270, #39439, #39400, and #39408 by @ChaosExAnima and @diondiondion)
+- Fix report modal heading being impossible to translate properly in some languages (#39457 by @diondiondion)
+- Fix being unable to edit an attachment twice without submitting (#39453 by @ClearlyClaire)
+- Fix error with audio player in Safari Lockdown Mode (#39397 by @Federicorao)
 - Fix tiny checkboxes and radio buttons in Safari (#39332 by @diondiondion)
 - Fix handling of offset in timezone list in settings (#39334 by @mjankowski)
 - Fix being unable to unmark media as sensitive when "always mark media as sensitive" is enabled in web UI (#39339 by @matrix07012)
@@ -110,6 +311,7 @@ All notable changes to this project will be documented in this file.
 - Fix some inputs incorrectly having resize handles in Firefox (#39274 by @diondiondion)
 - Fix processing some link previews where text is language-tagged (#39190 by @zunda)
 - Fix error when “New trends” email is sent at the same time trends are recomputed (#39122 by @arte7)
+- Fix hovercard not showing in compose column (#39430 by @diondiondion)
 - Fix hover card opening even when not preceded by mouse movement in web UI (#39166, #39381 by @diondiondion)
 - Fix [ominous](https://mastodon.social/@mcc/116404362104299129) "Moments remaining" timestamp in web UI (#38488 and #38689 by @ChaosExAnima and @MitarashiDango)
 - Fix filters not being applied to search results in web UI (#36346 by @ClearlyClaire)

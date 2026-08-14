@@ -16,21 +16,29 @@ export function relativeTimeParts(
 ): { value: number; unit: TimeUnit; delta: number } {
   const delta = ts - now;
   const absDelta = Math.abs(delta);
+  const sign = Math.sign(delta);
 
   if (absDelta < MINUTE) {
-    return { value: Math.floor(delta / SECOND), unit: 'second', delta };
+    return {
+      value: sign * Math.floor(absDelta / SECOND),
+      unit: 'second',
+      delta,
+    };
   }
 
   if (absDelta < HOUR) {
-    return { value: Math.floor(delta / MINUTE), unit: 'minute', delta };
+    return {
+      value: sign * Math.floor(absDelta / MINUTE),
+      unit: 'minute',
+      delta,
+    };
   }
 
   if (absDelta < DAY) {
-    return { value: Math.floor(delta / HOUR), unit: 'hour', delta };
+    return { value: sign * Math.floor(absDelta / HOUR), unit: 'hour', delta };
   }
 
-  // Round instead of use floor as days are big enough that the value is usually off by a few hours.
-  return { value: Math.round(delta / DAY), unit: 'day', delta };
+  return { value: sign * Math.floor(absDelta / DAY), unit: 'day', delta };
 }
 
 export function isToday(ts: number, now = Date.now()): boolean {

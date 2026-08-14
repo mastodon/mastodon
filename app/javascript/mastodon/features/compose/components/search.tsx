@@ -560,7 +560,8 @@ export const Search: React.FC<{
       <input
         ref={searchInputRef}
         className='search__input'
-        type='search'
+        type='text'
+        inputMode='search'
         placeholder={intl.formatMessage(
           signedIn ? messages.placeholderSignedIn : messages.placeholder,
         )}

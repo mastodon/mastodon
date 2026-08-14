@@ -1,8 +1,35 @@
+// Regular
 @font-face {
   font-family: Inter;
-  src: url('../../fonts/inter/inter-variable-font-slnt-wght.woff2')
-    format('woff2-variations');
-  font-weight: 100 900;
+  src: url('../../fonts/inter/inter-regular.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
-  mso-generic-font-family: swiss;
+  font-display: swap;
+}
+
+// Italic
+@font-face {
+  font-family: Inter;
+  src: url('../../fonts/inter/inter-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+// SemiBold (native 600, mapped to 700 so that `font-weight: bold` uses it)
+@font-face {
+  font-family: Inter;
+  src: url('../../fonts/inter/inter-semibold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// SemiBold Italic (native 600, mapped to 700 so that `font-weight: bold` uses it)
+@font-face {
+  font-family: Inter;
+  src: url('../../fonts/inter/inter-semibold-italic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }

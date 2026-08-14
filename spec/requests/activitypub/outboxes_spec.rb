@@ -61,6 +61,33 @@ RSpec.describe 'ActivityPub Outboxes' do
               .to have_http_status(403)
           end
         end
+
+        context 'when account is permanently deleted' do
+          before do
+            account.mark_deleted!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            subject
+
+            expect(response)
+              .to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            account.mark_deleted!
+          end
+
+          it 'returns http forbidden' do
+            subject
+
+            expect(response)
+              .to have_http_status(403)
+          end
+        end
       end
 
       context 'with page requested' do
@@ -102,6 +129,33 @@ RSpec.describe 'ActivityPub Outboxes' do
 
         context 'when account is temporarily suspended' do
           before { account.suspend! }
+
+          it 'returns http forbidden' do
+            subject
+
+            expect(response)
+              .to have_http_status(403)
+          end
+        end
+
+        context 'when account is permanently deleted' do
+          before do
+            account.mark_deleted!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            subject
+
+            expect(response)
+              .to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            account.mark_deleted!
+          end
 
           it 'returns http forbidden' do
             subject

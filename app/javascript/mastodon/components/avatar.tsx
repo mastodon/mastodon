@@ -5,14 +5,15 @@ import { Link } from 'react-router-dom';
 
 import { useHovering } from 'mastodon/hooks/useHovering';
 import { autoPlayGif } from 'mastodon/initial_state';
-import type { Account } from 'mastodon/models/account';
+import type { Account, AccountShapeFull } from 'mastodon/models/account';
 
 import { useAccount } from '../hooks/useAccount';
 
 interface Props {
-  account:
-    | Pick<Account, 'id' | 'acct' | 'avatar' | 'avatar_static'>
-    | undefined; // FIXME: remove `undefined` once we know for sure its always there
+  account?: Pick<
+    Account | AccountShapeFull,
+    'id' | 'acct' | 'avatar' | 'avatar_static'
+  >;
   alt?: string;
   size?: number;
   style?: React.CSSProperties;

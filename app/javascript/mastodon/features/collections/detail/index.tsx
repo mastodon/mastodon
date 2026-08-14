@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import HelpIcon from '@/material-icons/400-24px/help.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
@@ -18,8 +20,6 @@ import type {
 } from 'mastodon/api_types/collections';
 import { Badge } from 'mastodon/components/badge';
 import { Callout } from 'mastodon/components/callout';
-import { Column } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { DisplayName } from 'mastodon/components/display_name';
 import { useAccountHandle } from 'mastodon/components/display_name/default';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
@@ -170,7 +170,7 @@ const SensitiveContentNote: React.FC<{ onReveal: () => void }> = ({
 const CollectionHeader: React.FC<{
   collection: ApiCollectionJSON;
   withDescription: boolean;
-  headingRef: React.RefObject<HTMLHeadingElement>;
+  headingRef: React.RefObject<HTMLHeadingElement | null>;
 }> = ({ collection, withDescription, headingRef }) => {
   const intl = useIntl();
   const { name, description, tag, account_id, items } = collection;

@@ -33,6 +33,7 @@ class Collection < ApplicationRecord
   has_many :accepted_collection_items, -> { accepted }, class_name: 'CollectionItem', inverse_of: :collection # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :collection_reports, dependent: :delete_all
   has_many :accounts, -> { merge(CollectionItem.pending_or_accepted) }, through: :collection_items
+  has_many :notifications, as: :activity, dependent: :destroy
 
   validates :name, presence: true
   validates :name, length: { maximum: 40 }, if: :local?
@@ -53,7 +54,7 @@ class Collection < ApplicationRecord
             if: :remote?
   validates :language, language: { if: :local?, allow_nil: true }
   validate :tag_is_usable
-  validate :items_do_not_exceed_limit
+  validate :items_do_not_exceed_limit, if: :local?
   validate :user_does_not_exceed_limit, on: :create
 
   scope :with_items, -> { includes(:collection_items).merge(CollectionItem.with_accounts) }

@@ -1,15 +1,33 @@
-import type { ComponentClass, MouseEventHandler, ReactNode } from 'react';
+import type { ComponentType, MouseEventHandler, ReactNode } from 'react';
 
-import type { Account } from '@/mastodon/models/account';
+import StatusContainer from '@/mastodon/containers/status_container';
+import type { Account as TAccount } from '@/mastodon/models/account';
+import type { Status as TStatus } from '@/mastodon/models/status';
+
+import Status from '../status';
 
 import type { StatusHeaderRenderFn } from './header';
 
-// Taken from the Status component.
-export interface StatusProps {
-  account?: Account;
+export type StatusContextType =
+  | 'account'
+  | 'bookmarks'
+  | 'composer'
+  | 'detailed'
+  | 'favourites'
+  | 'home'
+  | `list:${string}`
+  | 'notifications'
+  | 'public'
+  | 'search'
+  | 'thread';
+
+export interface StatusContainerProps {
+  id?: string | null;
+  account?: TAccount;
   children?: ReactNode;
-  previousId?: string;
   rootId?: string;
+  previousId?: string;
+  nextId?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
   muted?: boolean;
   hidden?: boolean;
@@ -19,6 +37,10 @@ export interface StatusProps {
   showActions?: boolean;
   isQuotedPost?: boolean;
   shouldHighlightOnMount?: boolean;
+  contextType?: StatusContextType;
+  withCounters?: boolean;
+  unfocusable?: boolean;
+  headerRenderFn?: StatusHeaderRenderFn;
   getScrollPosition?: () => null | { height: number; top: number };
   updateScrollBottom?: (snapshot: number) => void;
   cacheMediaWidth?: (width: number) => void;
@@ -26,12 +48,50 @@ export interface StatusProps {
   scrollKey?: string;
   skipPrepend?: boolean;
   avatarSize?: number;
-  unfocusable?: boolean;
-  headerRenderFn?: StatusHeaderRenderFn;
-  contextType?: string;
+  withDismiss?: boolean;
 }
 
-export type StatusComponent = ComponentClass<
-  StatusProps,
-  { showMedia?: boolean; showDespiteFilter?: boolean }
->;
+export const TypedStatusContainer =
+  StatusContainer as ComponentType<StatusContainerProps>;
+
+// Taken from the Status component.
+export interface StatusProps extends Omit<StatusContainerProps, 'nextId'> {
+  status: TStatus;
+  nextInReplyToId?: string;
+  onReply: (status: TStatus) => void;
+  onFavourite: (status: TStatus) => void;
+  onReblog: (status: TStatus, event?: unknown) => void;
+  onQuote: (status: TStatus) => void;
+  onDelete?: (status: TStatus) => void;
+  onDirect?: (status: TStatus) => void;
+  onMention: (account: TAccount) => void;
+  onPin?: (status: TStatus) => void;
+  onOpenMedia: (
+    statusId: string,
+    media: unknown,
+    index: number,
+    lang?: string,
+  ) => void;
+  onOpenVideo: (
+    statusId: string,
+    media: unknown,
+    lang?: string,
+    options?: unknown,
+  ) => void;
+  onBlock?: (status: TStatus) => void;
+  onAddFilter?: (status: TStatus) => void;
+  onEmbed?: (status: TStatus) => void;
+  onHeightChange?: () => void;
+  onToggleHidden: (status: TStatus) => void;
+  onToggleCollapsed: (status: TStatus, isCollapsed: boolean) => void;
+  onTranslate: (status: TStatus) => void;
+  onInteractionModal?: (type: string, status: TStatus) => void;
+  deployPictureInPicture: (
+    status: TStatus,
+    type: string,
+    mediaProps: unknown,
+  ) => void;
+  pictureInPicture: Immutable.Map<'inUse' | 'available', boolean>;
+}
+
+export const TypedStatus = Status as ComponentType<StatusProps>;

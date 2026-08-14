@@ -4,7 +4,6 @@ class ActivityPub::LinkedDataSignature
   include JsonLdHelper
 
   CONTEXT = 'https://w3id.org/identity/v1'
-  SIGNATURE_CONTEXT = 'https://w3id.org/security/v1'
 
   def initialize(json)
     @json = json.with_indifferent_access
@@ -14,38 +13,44 @@ class ActivityPub::LinkedDataSignature
     return unless @json['signature'].is_a?(Hash)
     return if unsupported_jsonld_features?(@json)
 
-    type        = @json['signature']['type']
-    creator_uri = @json['signature']['creator']
-    signature   = @json['signature']['signatureValue']
+    signature_options = compact(@json['signature'].merge({ '@context' => CONTEXT }), CONTEXT)
+
+    type        = signature_options['type']
+    creator_uri = signature_options['creator']
+    signature   = signature_options['signatureValue']
+
+    return if signature_options['expires']&.to_datetime&.past?
 
     return unless type == 'RsaSignature2017'
 
     keypair = Keypair.from_keyid(creator_uri)
     keypair = ActivityPub::FetchRemoteKeyService.new.call(creator_uri) if keypair&.public_key.blank?
-    return if keypair.nil? || !keypair.usable?
+    return if keypair.nil? || !keypair.usable? || keypair.type != 'rsa'
 
-    options_hash   = hash(@json['signature'].without('type', 'id', 'signatureValue').merge('@context' => CONTEXT))
+    options_hash   = hash(signature_options.without('type', 'id', 'signatureValue'))
     document_hash  = hash(@json.without('signature'))
     to_be_verified = options_hash + document_hash
 
     keypair.actor if keypair.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), Base64.decode64(signature), to_be_verified)
-  rescue OpenSSL::PKey::RSAError
+  rescue OpenSSL::PKey::PKeyError
     false
   end
 
-  def sign!(creator, sign_with: nil)
+  def sign!(creator, sign_with: nil, expires_in: 2.days)
+    keypair = sign_with.presence || creator.keypair(type: :rsa)
+
     options = {
       'type' => 'RsaSignature2017',
-      'creator' => ActivityPub::TagManager.instance.key_uri_for(creator),
+      'creator' => keypair.full_uri,
       'created' => Time.now.utc.iso8601,
+      'expires' => expires_in.from_now.utc.iso8601,
     }
 
     options_hash  = hash(options.without('type', 'id', 'signatureValue').merge('@context' => CONTEXT))
     document_hash = hash(@json.without('signature'))
     to_be_signed  = options_hash + document_hash
-    keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : creator.keypair
 
-    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_signed))
+    signature = Base64.strict_encode64(keypair.keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_signed))
 
     # Mastodon's context is either an array or a single URL
     context_with_security = Array(@json['@context'])

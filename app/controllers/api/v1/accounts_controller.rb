@@ -84,11 +84,11 @@ class Api::V1::AccountsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.find(params[:id])
+    @account = Account.without_requested_deletion.find(params[:id])
   end
 
   def set_accounts
-    @accounts = Account.where(id: account_ids).without_unapproved
+    @accounts = Account.where(id: account_ids).without_unapproved.without_requested_deletion
   end
 
   def check_account_approval

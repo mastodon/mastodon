@@ -1,15 +1,45 @@
-import { Map as ImmutableMap, List } from 'immutable';
+import { fromJS } from 'immutable';
 
+import type { PartialDeep } from 'type-fest';
+
+import { normalizeStatus } from '@/mastodon/actions/importer/statuses';
+import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
+import type {
+  ApiAudioAttachmentJSON,
+  ApiGifvAttachmentJSON,
+  ApiImageAttachmentJSON,
+  ApiMediaAttachmentJSON,
+  ApiVideoAttachmentJSON,
+  BaseApiMediaAttachmentJSON,
+} from '@/mastodon/api_types/media_attachments';
+import type { ApiPollJSON } from '@/mastodon/api_types/polls';
+import type { ApiQuotedStatusJSON } from '@/mastodon/api_types/quotes';
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
-import type { ApiStatusJSON } from '@/mastodon/api_types/statuses';
+import type {
+  ApiPreviewCardJSON,
+  ApiStatusJSON,
+} from '@/mastodon/api_types/statuses';
 import type {
   CustomEmojiData,
   UnicodeEmojiData,
 } from '@/mastodon/features/emoji/types';
-import { createAccountFromServerJSON } from '@/mastodon/models/account';
+import type { AccountShapeFull } from '@/mastodon/models/account';
+import {
+  accountDefaultValues,
+  createAccountFromServerJSON,
+} from '@/mastodon/models/account';
 import type { AnnualReport } from '@/mastodon/models/annual_report';
+import { CustomEmojiFactory } from '@/mastodon/models/custom_emoji';
+import type { Poll } from '@/mastodon/models/poll';
 import type { Status } from '@/mastodon/models/status';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+
+/**
+ * Naming conventions for factories:
+ * - API responses should be `*FactoryAPI`
+ * - Plain JS objects in state should be `*FactoryState`
+ * - Immutable factories should be `*FactoryImmutable`
+ */
 
 type FactoryOptions<T> = {
   id?: string;
@@ -17,7 +47,7 @@ type FactoryOptions<T> = {
 
 type FactoryFunction<T> = (options?: FactoryOptions<T>) => T;
 
-export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
+export const accountFactoryAPI: FactoryFunction<ApiAccountJSON> = ({
   id,
   ...data
 } = {}) => ({
@@ -64,9 +94,35 @@ export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
 
 export const accountFactoryState = (
   options: FactoryOptions<ApiAccountJSON> = {},
-) => createAccountFromServerJSON(accountFactory(options));
+): AccountShapeFull => {
+  const accountJSON = accountFactoryAPI(options);
+  return {
+    ...accountJSON,
+    ...accountDefaultValues,
+    moved: accountJSON.moved?.id ?? null,
+    display_name_html: accountJSON.display_name,
+    note_emojified: accountJSON.note,
+    note_plain: accountJSON.note,
+    emojis: accountJSON.emojis.map((emoji) => ({
+      category: '',
+      featured: false,
+      ...emoji,
+    })),
+    fields: accountJSON.fields.map((field) => ({
+      name_emojified: field.name,
+      value_emojified: field.value,
+      value_plain: field.value,
+      ...field,
+    })),
+    roles: accountJSON.roles ?? [],
+  };
+};
 
-export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
+export const accountFactoryImmutable = (
+  options: FactoryOptions<ApiAccountJSON> = {},
+) => createAccountFromServerJSON(accountFactoryAPI(options));
+
+export const statusFactoryAPI: FactoryFunction<ApiStatusJSON> = ({
   id,
   ...data
 } = {}) => ({
@@ -81,26 +137,240 @@ export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
   reblogs_count: 0,
   quotes_count: 0,
   favourites_count: 0,
-  account: accountFactory(),
+  account: accountFactoryAPI(),
   media_attachments: [],
   mentions: [],
   tags: [],
   emojis: [],
   tagged_collections: [],
-  contentHtml: data.text ?? '<p>This is a test status.</p>',
+  content:
+    data.text
+      ?.split('\n')
+      .map((line) => `<p>${line}</p>`)
+      .join('\n') ?? '<p>This is a test status.</p>',
   ...data,
 });
 
 export const statusFactoryState = (
   options: FactoryOptions<ApiStatusJSON> = {},
-) =>
-  ImmutableMap<string, unknown>({
-    ...(statusFactory(options) as unknown as Record<string, unknown>),
-    account: options.account?.id ?? '1',
-    tags: List(options.tags),
-  }) as unknown as Status;
+) => normalizeStatus(statusFactoryAPI(options));
 
-export const relationshipsFactory: FactoryFunction<ApiRelationshipJSON> = ({
+export const statusFactoryImmutable = (
+  options: FactoryOptions<ApiStatusJSON> = {},
+) => fromJS(statusFactoryState(options)) as unknown as Status; // Convert to unknown to avoid excessive type recursion
+
+export const statusQuotedFactoryAPI: FactoryFunction<ApiQuotedStatusJSON> = (
+  options = {},
+) => {
+  const { quote, ...status } = options;
+  return {
+    ...statusFactoryAPI(status),
+    quote: quote
+      ? {
+          ...quote,
+        }
+      : undefined,
+  };
+};
+
+const baseAttachment = {
+  id: '1',
+  url: 'https://example.com/image/1',
+  preview_url: 'https://example.com/image/1/preview',
+  blurhash: 'LGF5]+Yk^6#M@-5c,1J5@[or[Q6.',
+} as const;
+const imageMeta = {
+  width: 100,
+  height: 100,
+  aspect: 1,
+  size: '100x100',
+} as const;
+const videoMeta = {
+  width: 100,
+  height: 100,
+  frame_rate: '24',
+  duration: 120,
+  bitrate: 100,
+} as const;
+const colorsMeta = {
+  background: '#ffffff',
+  foreground: '#000000',
+  accent: '#ff0000',
+} as const;
+
+type MediaFactoryArg<T extends BaseApiMediaAttachmentJSON> = Omit<
+  PartialDeep<T>,
+  'type'
+>;
+
+export const imageAttachmentFactoryAPI = (
+  data: MediaFactoryArg<ApiImageAttachmentJSON> = {},
+): ApiImageAttachmentJSON => ({
+  ...baseAttachment,
+  ...data,
+  type: 'image',
+  meta: {
+    original: { ...imageMeta, ...data.meta?.original },
+    small: { ...imageMeta, ...data.meta?.small },
+  },
+});
+
+export const videoAttachmentFactoryAPI = (
+  data: MediaFactoryArg<ApiVideoAttachmentJSON> = {},
+): ApiVideoAttachmentJSON => ({
+  ...baseAttachment,
+  ...data,
+  type: 'video',
+  meta: {
+    colors: { ...colorsMeta, ...data.meta?.colors },
+    original: { ...videoMeta, ...data.meta?.original },
+    small: { ...imageMeta, ...data.meta?.small },
+    focus: {
+      x: 0,
+      y: 0,
+      ...data.meta?.focus,
+    },
+  },
+});
+
+export const audioAttachmentFactoryAPI = (
+  data: MediaFactoryArg<ApiAudioAttachmentJSON> = {},
+): ApiAudioAttachmentJSON => ({
+  ...baseAttachment,
+  ...data,
+  type: 'audio',
+  meta: {
+    colors: { ...colorsMeta, ...data.meta?.colors },
+    original: { ...videoMeta, ...data.meta?.original },
+    small: { ...imageMeta, ...data.meta?.small },
+  },
+});
+
+export const gifvAttachmentFactoryAPI = (
+  data: MediaFactoryArg<ApiGifvAttachmentJSON> = {},
+): ApiGifvAttachmentJSON => ({
+  ...baseAttachment,
+  ...data,
+  type: 'gifv',
+  meta: {
+    original: { ...videoMeta, ...data.meta?.original },
+    small: { ...imageMeta, ...data.meta?.small },
+  },
+});
+
+export function mediaAttachmentFactoryAPI(
+  data: PartialDeep<ApiMediaAttachmentJSON> = {},
+): ApiMediaAttachmentJSON {
+  switch (data.type ?? 'image') {
+    case 'image':
+      return imageAttachmentFactoryAPI(
+        data as PartialDeep<ApiImageAttachmentJSON>,
+      );
+    case 'video':
+      return videoAttachmentFactoryAPI(
+        data as PartialDeep<ApiVideoAttachmentJSON>,
+      );
+    case 'audio':
+      return audioAttachmentFactoryAPI(
+        data as PartialDeep<ApiAudioAttachmentJSON>,
+      );
+    case 'gifv':
+      return gifvAttachmentFactoryAPI(
+        data as PartialDeep<ApiGifvAttachmentJSON>,
+      );
+    default: {
+      return {
+        ...baseAttachment,
+        meta: {},
+        ...data,
+        type: 'unknown',
+      };
+    }
+  }
+}
+
+export const pollFactoryAPI: FactoryFunction<ApiPollJSON> = (data = {}) => ({
+  id: '1',
+  expires_at: '',
+  expired: false,
+  multiple: false,
+  voters_count: 0,
+  votes_count: 0,
+  voted: false,
+  options: [
+    {
+      title: 'Option 1',
+      votes_count: 0,
+    },
+    {
+      title: 'Option 2',
+      votes_count: 0,
+    },
+  ],
+  emojis: [],
+  ...data,
+});
+
+export const pollFactoryImmutable = (
+  data: FactoryOptions<ApiPollJSON> = {},
+): Poll => ({
+  ...pollFactoryAPI(data),
+  emojis: data.emojis?.map(CustomEmojiFactory) ?? [],
+  options:
+    data.options?.map((option) => ({
+      voted: false,
+      titleHtml: option.title,
+      translation: null,
+      ...option,
+    })) ?? [],
+});
+
+export const cardFactoryAPI: FactoryFunction<ApiPreviewCardJSON> = (
+  options = {},
+) => ({
+  url: 'https://example.com',
+  title: 'Example Card',
+  description: 'This is an example card',
+  language: 'en',
+  type: 'link',
+  author_name: 'A. Person',
+  author_url: 'https://example.com/person',
+  provider_name: 'example',
+  provider_url: 'https://example.com/provider',
+  html: '<p>Here is an example card</p>',
+  width: 100,
+  height: 100,
+  image: null,
+  embed_url: 'https://example.com/embed',
+  image_description: '',
+  blurhash: '',
+  published_at: null,
+  authors: [],
+  ...options,
+});
+
+export const collectionFactoryAPI: FactoryFunction<ApiCollectionJSON> = (
+  options = {},
+) => ({
+  id: '1',
+  account_id: '1',
+  name: 'Test Collection',
+  uri: options.url ?? 'https://example.com/collection',
+  url: options.uri ?? 'https://example.com/collection',
+  local: true,
+  item_count: options.items?.length ?? 0,
+  description: 'This is a test collection.',
+  tag: null,
+  language: 'en',
+  sensitive: false,
+  discoverable: true,
+  created_at: '2023-01-01',
+  updated_at: '2023-01-01',
+  items: [],
+  ...options,
+});
+
+export const relationshipsFactoryAPI: FactoryFunction<ApiRelationshipJSON> = ({
   id,
   ...data
 } = {}) => ({
@@ -127,11 +397,12 @@ export function unicodeEmojiFactory(
   data: Partial<UnicodeEmojiData> = {},
 ): UnicodeEmojiData {
   return {
+    emoticons: undefined,
     hexcode: 'test',
     label: 'Test',
     unicode: '🧪',
     shortcodes: ['test_emoji'],
-    tokens: ['emoji', 'test'],
+    tokens: ['test', 'emoji'],
     group: 1,
     order: 1,
     ...data,
@@ -165,7 +436,7 @@ interface AnnualReportFactoryOptions {
   without_posts?: boolean;
 }
 
-export function annualReportFactory({
+export function annualReportFactoryState({
   account_id = '1',
   status_id = '1',
   archetype = 'lurker',

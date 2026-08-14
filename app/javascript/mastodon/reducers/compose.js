@@ -1,4 +1,4 @@
-import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS, isList } from 'immutable';
 
 import {
   changeComposeVisibility,
@@ -9,6 +9,9 @@ import {
   pasteLinkCompose,
   cancelPasteLinkCompose,
   setDragUploadEnabled,
+  addPollOption,
+  updatePollOption,
+  deletePollOption,
 } from '@/mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
@@ -116,6 +119,10 @@ function statusToTextMentions(state, status) {
   return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
 }
 
+/**
+ * @param {typeof initialState} state
+ * @returns {typeof initialState}
+ */
 function clearAll(state) {
   return state.withMutations(map => {
     map.set('id', null);
@@ -368,6 +375,40 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('fetching_link', null);
   } else if (setDragUploadEnabled.match(action)) {
     return state.set('isDragDisabled', !action.payload);
+  } else if (addPollOption.match(action)) {
+    return state.updateIn(['poll', 'options'], (options) => {
+      if (!isList(options)) {
+        return ImmutableList(['', '']);
+      }
+
+      if (options.size >= action.payload.maxOptions) {
+        return options;
+      }
+      return options.push('');
+    })
+  } else if (updatePollOption.match(action)) {
+    return state.updateIn(['poll', 'options'], (options) => {
+      const { index, text, maxOptions } = action.payload
+      if (index + 1 > maxOptions) {
+        return options;
+      }
+      if (!isList(options)) {
+        return ImmutableList([text]);
+      }
+      return options.set(index, text);
+    })
+  } else if (deletePollOption.match(action)) {
+    return state.updateIn(['poll', 'options'], (options) => {
+      if (!isList(options)) {
+        return options;
+      }
+
+      if (options.size === 1) {
+        return ImmutableList(['']);
+      }
+
+      return options.delete(action.payload.index);
+    });
   }
 
   switch(action.type) {

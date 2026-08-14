@@ -29,9 +29,7 @@ RSpec.describe Collection do
 
       it { is_expected.to validate_length_of(:description_html).is_at_most(Collection::DESCRIPTION_LENGTH_HARD_LIMIT) }
 
-      it { is_expected.to validate_presence_of(:uri) }
-
-      it { is_expected.to validate_presence_of(:original_number_of_items) }
+      it { is_expected.to validate_presence_of(:original_number_of_items, :uri) }
 
       it { is_expected.to allow_value('randomstuff').for(:language) }
     end
@@ -53,20 +51,28 @@ RSpec.describe Collection do
     end
 
     context 'when there are more items than allowed' do
-      subject { Fabricate.build(:collection, collection_items:) }
-
       let(:collection_items) { Fabricate.build_times(described_class::MAX_ITEMS + 1, :collection_item, collection: nil) }
 
-      it { is_expected.to_not be_valid }
+      context 'when collection is local' do
+        subject { Fabricate.build(:collection, collection_items:) }
 
-      context 'when the limit is only exceeded due to `rejected` and `revoked` items' do
-        let(:collection_items) do
-          items = Fabricate.build_times(described_class::MAX_ITEMS - 2, :collection_item, collection: nil, state: :accepted)
-          items << Fabricate.build(:collection_item, collection: nil, state: :pending)
-          items << Fabricate.build(:collection_item, collection: nil, state: :rejected)
-          items << Fabricate.build(:collection_item, collection: nil, state: :revoked)
-          items
+        it { is_expected.to_not be_valid }
+
+        context 'when the limit is only exceeded due to `rejected` and `revoked` items' do
+          let(:collection_items) do
+            items = Fabricate.build_times(described_class::MAX_ITEMS - 2, :collection_item, collection: nil, state: :accepted)
+            items << Fabricate.build(:collection_item, collection: nil, state: :pending)
+            items << Fabricate.build(:collection_item, collection: nil, state: :rejected)
+            items << Fabricate.build(:collection_item, collection: nil, state: :revoked)
+            items
+          end
+
+          it { is_expected.to be_valid }
         end
+      end
+
+      context 'when collection is remote' do
+        subject { Fabricate.build(:remote_collection, collection_items:) }
 
         it { is_expected.to be_valid }
       end
@@ -219,6 +225,21 @@ RSpec.describe Collection do
   describe '#to_log_permalink' do
     it 'includes the URI of the collection' do
       expect(subject.to_log_permalink).to eq ActivityPub::TagManager.instance.uri_for(subject)
+    end
+  end
+
+  describe '#destroy' do
+    let(:collection) { Fabricate(:collection) }
+
+    before do
+      Fabricate(:notification, activity: collection, type: :added_to_collection)
+      Fabricate(:notification, activity: collection, type: :collection_update)
+    end
+
+    it 'removes the collection and all notifications that reference it' do
+      expect { collection.destroy }
+        .to change(described_class, :count).by(-1)
+        .and change(Notification, :count).by(-2)
     end
   end
 end
