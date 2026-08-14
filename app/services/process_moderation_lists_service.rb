@@ -51,11 +51,20 @@ class ProcessModerationListsService < BaseService
         )
       end
 
-      DomainBlock.where(moderation_subscription_id: subscription.id).where.not(domain: subscription.advisories.domain_target_type.reject_action.pluck(:target_key)).find_each do |domain_block|
-        next unless domain_block.suspend? # TODO: support more than suspend
+      DomainBlock.where(moderation_subscription_id: subscription.id).where.not(domain: subscription.advisories.domain_target_type.where(action: ['limit', 'reject']).pluck(:target_key)).find_each do |domain_block|
+        next if domain_block.noop?
+
+        action = begin
+          case domain_block.severity
+          when 'silence'
+            'limit'
+          when 'suspend'
+            'reject'
+          end
+        end
 
         retractions[domain_block.domain] = Retraction.new(
-          action: 'reject',
+          action:,
           target_type: 'domain',
           retract_automatically: subscription.retract_automatically,
           moderation_subscription_id: subscription.id
@@ -94,7 +103,7 @@ class ProcessModerationListsService < BaseService
     if Rails.configuration.x.mastodon.limited_federation_mode
       # Filter out any block suggestion, as this is just the default
       # TODO: consider them as retractions instead?
-      @suggestions.delete_if { |_, suggestion| suggestion[:action] == 'reject' }
+      @suggestions.delete_if { |_, suggestion| ['reject', 'limit'].include?(suggestion[:action]) }
     else
       # Filter out any allow suggestion, as it is just the default
       # TODO: consider them as retractions instead?
@@ -117,11 +126,10 @@ class ProcessModerationListsService < BaseService
       # TODO: error handling
       DomainAllow.create!(domain: suggestion[:target_key], moderation_subscription_id: suggestion[:moderation_subscription_id])
       true
-    when ['domain', 'reject']
+    when ['domain', 'reject'], ['domain', 'limit']
       # TODO: log
       # TODO: error handling
-      # TODO: handle more options than just suspend
-      domain_block = DomainBlock.create!(domain: suggestion[:target_key], moderation_subscription_id: suggestion[:moderation_subscription_id], obfuscate: false, severity: :suspend)
+      domain_block = DomainBlock.create!(domain: suggestion[:target_key], moderation_subscription_id: suggestion[:moderation_subscription_id], obfuscate: false, severity: suggestion[:action] == 'reject' ? 'suspend' : 'limit')
       DomainBlockWorker.perform_async(domain_block.id)
       true
     else

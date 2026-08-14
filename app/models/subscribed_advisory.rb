@@ -19,6 +19,7 @@ class SubscribedAdvisory < ApplicationRecord
   enum :action, {
     accept: 0,
     reject: 1,
+    limit: 2,
   }, suffix: :action
 
   enum :target_type, {
