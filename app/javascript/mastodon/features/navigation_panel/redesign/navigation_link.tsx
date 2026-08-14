@@ -11,13 +11,12 @@ import { Badge } from '@/mastodon/components/badge';
 import classes from './navigation_link.module.scss';
 
 type NavigationLinkProps = {
-  as?: 'link' | 'button';
   iconComponent: Icon;
   badgeCount?: number;
   withSpaceAfter?: boolean;
 } & (
   | ({ as?: 'button' } & React.ComponentPropsWithRef<'button'>)
-  | ({ as: 'link' } & NavLinkProps)
+  | ({ as?: 'link' } & NavLinkProps)
 );
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
