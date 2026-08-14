@@ -8,6 +8,7 @@ module Settings
       skip_before_action :require_functional!
 
       before_action :verify_otp_not_enabled, only: [:show]
+      before_action :verify_otp_enabled, only: [:destroy]
       before_action :require_challenge!, only: [:create]
 
       def show
@@ -30,6 +31,10 @@ module Settings
 
       def verify_otp_not_enabled
         redirect_to settings_two_factor_authentication_methods_path if current_user.otp_enabled?
+      end
+
+      def verify_otp_enabled
+        redirect_to settings_two_factor_authentication_methods_path unless current_user.otp_enabled?
       end
     end
   end

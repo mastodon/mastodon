@@ -120,16 +120,32 @@ RSpec.describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
     end
   end
 
-  describe 'GET #destroy' do
+  describe 'DELETE #destroy' do
     context 'when signed in' do
       before do
         sign_in user, scope: :user
       end
 
-      it 'redirects to two factor authentication methods list page' do
-        delete :destroy
+      describe 'when user has OTP enabled' do
+        before do
+          user.update(otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+        end
 
-        expect(response).to redirect_to settings_two_factor_authentication_methods_path
+        it 'disables OTP login' do
+          expect { delete :destroy }
+            .to change { user.reload.otp_required_for_login }.to(false)
+            .and(change { user.reload.otp_secret }.to(nil))
+
+          expect(response).to redirect_to settings_two_factor_authentication_methods_path
+        end
+      end
+
+      describe 'when user does not have OTP enabled' do
+        it 'redirects to two factor authentication methods list page' do
+          delete :destroy
+
+          expect(response).to redirect_to settings_two_factor_authentication_methods_path
+        end
       end
     end
 
