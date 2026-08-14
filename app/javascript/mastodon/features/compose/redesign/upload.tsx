@@ -13,6 +13,7 @@ import {
 
 import { undoUploadCompose } from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
+import { Blurhash } from '@/mastodon/components/blurhash';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
   DropdownItemButton,
@@ -44,6 +45,7 @@ export const ComposeUpload: React.FC<{
   single?: boolean;
 }> = ({ id, className, single }) => {
   const attachment = useAppSelector((state) => selectAttachment(state, id));
+  const sensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
   const [open, { onToggle, onFalse }] = useToggle();
   const [target, setTarget] = useState<HTMLButtonElement | null>(null);
 
@@ -84,9 +86,10 @@ export const ComposeUpload: React.FC<{
     <div
       className={classNames(classes.mediaUpload, className)}
       style={{
-        backgroundImage: attachment.preview_url
-          ? `url(${attachment.preview_url})`
-          : undefined,
+        backgroundImage:
+          !sensitive && attachment.preview_url
+            ? `url(${attachment.preview_url})`
+            : undefined,
         backgroundPosition: `${x}% ${y}%`,
         aspectRatio: single
           ? `${attachment.meta.original.width} / ${attachment.meta.original.height}`
@@ -94,6 +97,10 @@ export const ComposeUpload: React.FC<{
       }}
       data-color-scheme='dark'
     >
+      {sensitive && attachment.blurhash && (
+        <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
+      )}
+
       <IconButton
         icon={DotsThreeIcon}
         size='sm'
