@@ -18,6 +18,7 @@ import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifi
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { NavigationAccountCard } from './account_card';
+import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
 import { NavigationLink } from './navigation_link';
 import classes from './styles.module.scss';
@@ -98,6 +99,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
           </ul>
           <footer className={classes.footer}>
             <NavigationAccountCard />
+            <NavigationFooterLinks />
           </footer>
         </>
       )}
