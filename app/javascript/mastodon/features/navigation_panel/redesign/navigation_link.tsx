@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import classNames from 'classnames';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
 import type { NavLinkProps } from 'react-router-dom';

@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
 import { DotsThreeIcon } from '@phosphor-icons/react';
