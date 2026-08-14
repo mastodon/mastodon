@@ -76,6 +76,8 @@ class ProcessModerationListsService < BaseService
   end
 
   def handle_retractions!
+    representative = Account.representative
+
     @retractions.each do |domain, attributes|
       suggestion = @suggestions[domain]
       if suggestion && suggestion[:action] == attributes[:action]
@@ -84,8 +86,8 @@ class ProcessModerationListsService < BaseService
         domain_block&.update(moderation_subscription_id: suggestion[:moderation_subscription_id])
         @suggestions.delete(domain)
       elsif attributes[:retract_automatically]
-        # TODO: log
         domain_block = DomainBlock.find_by(domain: domain)
+        representative.action_logs.create!(action: 'destroy', target: domain_block, recorded_changes: { moderation_subscription_id: domain_block.moderation_subscription_id })
         UnblockDomainService.new.call(domain_block)
       else
         # TODO: what about if there is another kind of suggestion for the same target?
@@ -120,16 +122,18 @@ class ProcessModerationListsService < BaseService
   end
 
   def apply_automatic_suggestion!(suggestion)
+    representative = Account.representative
+
     case [suggestion[:target_type], suggestion[:action]]
     when ['domain', 'accept']
-      # TODO: log
       # TODO: error handling
-      DomainAllow.create!(domain: suggestion[:target_key], moderation_subscription_id: suggestion[:moderation_subscription_id])
+      domain_allow = DomainAllow.create!(domain: suggestion[:target_key], moderation_subscription_id: suggestion[:moderation_subscription_id])
+      representative.action_logs.create!(action: 'create', target: domain_allow, recorded_changes: { moderation_subscription_id: domain_allow.moderation_subscription_id })
       true
     when ['domain', 'reject'], ['domain', 'limit']
-      # TODO: log
       # TODO: error handling
       domain_block = DomainBlock.create!(domain: suggestion[:target_key], moderation_subscription_id: suggestion[:moderation_subscription_id], obfuscate: false, severity: suggestion[:action] == 'reject' ? 'suspend' : 'limit')
+      representative.action_logs.create!(action: 'create', target: domain_block, recorded_changes: { moderation_subscription_id: domain_block.moderation_subscription_id })
       DomainBlockWorker.perform_async(domain_block.id)
       true
     else
