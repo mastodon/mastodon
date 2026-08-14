@@ -65,6 +65,27 @@ const composerSlice = createSlice({
 export const composer = composerSlice.reducer;
 export const { minimizeComposerToggle } = composerSlice.actions;
 
+export const selectComposerIsChanged = createAppSelector(
+  [
+    (state) => state.compose.get('text') as string,
+    (state) => state.compose.get('spoiler_text') as string,
+    (state) => !!state.compose.get('poll'),
+    (state) => !!state.compose.get('quoted_status_id'),
+    (state) =>
+      state.compose.get(
+        'media_attachments',
+      ) as unknown as Immutable.List<unknown>,
+    (state) => Number(state.compose.get('pending_media_attachments')),
+  ],
+  (text, spoilerText, hasPoll, hasQuote, attachments, pendingAttachmentsNum) =>
+    text.trim().length > 0 ||
+    spoilerText.trim().length > 0 ||
+    hasPoll ||
+    hasQuote ||
+    attachments.size > 0 ||
+    pendingAttachmentsNum > 0,
+);
+
 interface ComposeNewPost {
   type?: 'post';
 }
@@ -76,10 +97,26 @@ interface ComposeNewMessage {
   type: 'message';
   toAccountId?: string;
 }
-type ComposeNewPayload = ComposeNewPost | ComposeNewReply | ComposeNewMessage;
+type ComposeNewPayload = (
+  | ComposeNewPost
+  | ComposeNewReply
+  | ComposeNewMessage
+) & { force?: boolean };
 
 export const openNewComposer = createAppThunk(
   (payload: ComposeNewPayload, { dispatch, getState }) => {
+    if (!payload.force && selectComposerIsChanged(getState())) {
+      dispatch(
+        openModal({
+          modalType: 'COMPOSER_DRAFT_DELETE',
+          modalProps: {
+            openNew: true,
+          },
+        }),
+      );
+      return;
+    }
+
     dispatch(resetCompose());
     if (payload.type === 'message') {
       const account =
@@ -93,6 +130,11 @@ export const openNewComposer = createAppThunk(
       dispatch(replyComposeById(payload.toStatusId));
     }
     dispatch(composerSlice.actions.showComposer());
+
+    // Delay for a frame to ensure the DOM has updated.
+    requestAnimationFrame(() => {
+      focusComposerTextarea();
+    });
   },
 );
 
@@ -101,15 +143,23 @@ export const resetComposer = createAppThunk((_arg, { dispatch }) => {
   dispatch(resetCompose());
 });
 
-export const hideComposer = createAppThunk((_arg, { getState, dispatch }) => {
-  const compose = getState().compose;
-  const isChanged =
-    !!compose.get('text') ||
-    !!compose.get('spoiler_text') ||
-    !!compose.get('poll') ||
-    (compose.get('media_attachments') as unknown as Immutable.List<unknown>)
-      .size > 0 ||
-    Number(compose.get('pending_media_attachments')) > 0;
+export const closeComposer = createAppThunk((_arg, { getState, dispatch }) => {
+  const isChanged = selectComposerIsChanged(getState());
+
+  if (!isChanged) {
+    dispatch(resetComposer());
+  } else {
+    dispatch(
+      openModal({
+        modalType: 'COMPOSER_DRAFT_DELETE',
+        modalProps: {},
+      }),
+    );
+  }
+});
+
+export const newComposer = createAppThunk((_arg, { getState, dispatch }) => {
+  const isChanged = selectComposerIsChanged(getState());
 
   if (!isChanged) {
     dispatch(resetComposer());

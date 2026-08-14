@@ -6,7 +6,7 @@ import { ArrowsOutSimpleIcon, MinusIcon, XIcon } from '@phosphor-icons/react';
 
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
-  hideComposer,
+  closeComposer,
   minimizeComposerToggle,
   selectIsMinimized,
 } from '@/mastodon/reducers/slices/composer';
@@ -63,7 +63,7 @@ export const ComposeFormHeader: React.FC<{
 
   const dispatch = useAppDispatch();
   const onClose = useCallback(() => {
-    dispatch(hideComposer());
+    dispatch(closeComposer());
   }, [dispatch]);
   const onMinimize = useCallback(() => {
     dispatch(minimizeComposerToggle());
