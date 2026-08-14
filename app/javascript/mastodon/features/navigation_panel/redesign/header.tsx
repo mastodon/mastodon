@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { IconLogo } from '@/mastodon/components/logo';
-import { domain } from 'mastodon/initial_state';
+import { domain } from '@/mastodon/initial_state';
 
 import classes from './header.module.scss';
 
