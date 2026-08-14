@@ -7,9 +7,7 @@ import { TranslateIcon } from '@phosphor-icons/react';
 
 import { changeComposeLanguage } from '@/mastodon/actions/compose';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { Dropdown } from '@/mastodon/components/dropdown/redesign';
-import type { PopoverChildProps } from '@/mastodon/components/popover';
-import { Popover } from '@/mastodon/components/popover';
+import { DropdownPopover } from '@/mastodon/components/dropdown/redesign';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { LanguageDropdownMenu } from '../components/language_dropdown';
@@ -57,22 +55,24 @@ export const LanguageButton: React.FC = () => {
         />
       </IconButton>
 
-      <Popover
+      <DropdownPopover
         isOpen={open}
         onClose={handleClose}
         offset={4}
         placement='bottom-end'
         reference={trigger}
+        className={classes.languageMenu}
+        maxWidth={280}
       >
-        {({ props }) => <LanguageDropdown {...props} onClose={handleClose} />}
-      </Popover>
+        <LanguageDropdown onClose={handleClose} />
+      </DropdownPopover>
     </>
   );
 };
 
-export const LanguageDropdown: React.FC<
-  PopoverChildProps & { onClose: () => void }
-> = ({ onClose, ...props }) => {
+export const LanguageDropdown: React.FC<{ onClose: () => void }> = ({
+  onClose,
+}) => {
   const language = useAppSelector(
     (state) => state.compose.get('language') as string,
   );
@@ -88,14 +88,12 @@ export const LanguageDropdown: React.FC<
   );
 
   return (
-    <Dropdown {...props} className={classes.languageMenu} maxWidth={280}>
-      <LanguageDropdownMenu
-        value={language}
-        guess={guess}
-        onChange={handleChange}
-        onClose={onClose}
-      />
-    </Dropdown>
+    <LanguageDropdownMenu
+      value={language}
+      guess={guess}
+      onChange={handleChange}
+      onClose={onClose}
+    />
   );
 };
 

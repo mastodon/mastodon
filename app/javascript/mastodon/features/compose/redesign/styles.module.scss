@@ -71,20 +71,42 @@
 }
 
 .editorWrapper {
+  --fade-size: var(--space-xl);
+
   overflow-y: auto;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
   scrollbar-width: thin;
-  scrollbar-gutter: stable;
   overscroll-behavior-y: contain;
+  position: relative;
+
+  &::after {
+    content: '';
+    height: var(--fade-size);
+    background: linear-gradient(
+      to top,
+      var(--color-bg-primary),
+      transparent var(--fade-size)
+    );
+    position: sticky;
+    bottom: 0;
+    flex-shrink: 0;
+    margin-top: calc((-1 * var(--fade-size)) - var(--space-md));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms;
+  }
+
+  &[data-scroll-down]::after {
+    opacity: 1;
+  }
 }
 
 .textareaWrapper {
   flex-grow: 1;
   padding: var(--space-xs);
-  margin: 2px;
   border-radius: var(--radius-xs);
   transition: border 200ms;
   cursor: text;
@@ -92,6 +114,10 @@
   &:focus-within {
     outline: 2px solid var(--color-border-brand);
     outline-offset: -2px;
+
+    textarea::placeholder {
+      color: transparent;
+    }
   }
 
   textarea {
