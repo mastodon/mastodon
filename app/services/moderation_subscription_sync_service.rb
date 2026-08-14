@@ -40,8 +40,14 @@ class ModerationSubscriptionSyncService < BaseService
       rows = csv_data.take(Admin::Import::ROWS_PROCESSING_LIMIT + 1)
 
       SubscribedAdvisory.upsert_all(
-        # TODO: handle other actions than `:reject`
-        rows.map { |row| { target_key: TagManager.instance.normalize_domain(row['#domain']), target_type: :domain, moderation_subscription_id: subscription.id, action: subscription.list_action || :reject } },
+        rows.map do |row|
+          {
+            target_key: TagManager.instance.normalize_domain(row['#domain']),
+            target_type: :domain,
+            moderation_subscription_id: subscription.id,
+            action: action_from_severity(subscription, row),
+          }
+        end,
         unique_by: [:target_type, :target_key, :moderation_subscription_id]
       )
 
@@ -55,5 +61,18 @@ class ModerationSubscriptionSyncService < BaseService
     Rails.logger.warn "Failed syncing moderation subscription #{subscription.url}: #{e}"
 
     false
+  end
+
+  def action_from_severity(subscription, row)
+    return subscription.list_action if subscription.list_action.present?
+
+    case row['#severity']
+    when 'accept', 'allow'
+      'accept'
+    when 'limit', 'silence'
+      'limit'
+    else
+      'reject'
+    end
   end
 end
