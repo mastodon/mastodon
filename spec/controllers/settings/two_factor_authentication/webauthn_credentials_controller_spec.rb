@@ -241,12 +241,21 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
               end.to(change { user.reload.otp_backup_codes })
             end
 
-            it "returns backup codes page in response's html_data attribute" do
+            it 'stores the generated recovery codes in the session' do
               controller.session[:webauthn_challenge] = challenge
 
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
-              expect(response.parsed_body['html_data']).to include('recovery codes')
+              expect(controller.session[:new_recovery_codes])
+                .to have_attributes(size: User.otp_number_of_backup_codes)
+            end
+
+            it 'redirects to the recovery codes page' do
+              controller.session[:webauthn_challenge] = challenge
+
+              post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+
+              expect(response.parsed_body['redirect_path']).to eq settings_two_factor_authentication_recovery_codes_path
             end
           end
         end

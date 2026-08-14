@@ -50,7 +50,7 @@ namespace :settings do
   end
 
   namespace :two_factor_authentication do
-    resources :recovery_codes, only: [:create]
+    resources :recovery_codes, only: [:index, :create]
     resource :confirmation, only: [:new, :create]
   end
 
