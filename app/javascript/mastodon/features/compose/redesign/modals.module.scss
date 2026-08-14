@@ -23,3 +23,49 @@
   align-items: center;
   justify-content: space-between;
 }
+
+// Attachment rearrange modal
+
+.attachmentRoot {
+  min-width: 400px;
+}
+
+.attachmentList {
+  overflow: hidden;
+}
+
+.attachmentItem {
+  --cursor: grab;
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+  cursor: var(--cursor);
+  touch-action: manipulation;
+  transition:
+    opacity 200ms,
+    var(--transition, none);
+  border-bottom: 0.5px solid var(--color-border-primary);
+
+  img {
+    height: 60px;
+    width: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+}
+
+.attachmentHandle {
+  padding: var(--space-xs) 0;
+  aspect-ratio: auto;
+  cursor: var(--cursor);
+}
+
+.attachmentGrabbed {
+  opacity: 0;
+}
+
+.attachmentOverlay {
+  --cursor: grabbing;
+}

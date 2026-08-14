@@ -199,6 +199,16 @@ export const selectComposeAttachments = createAppSelector(
   },
 );
 
+export const selectComposeAttachment = createAppSelector(
+  [selectComposeAttachments, (_, id?: string) => id],
+  (attachments, id) => {
+    if (!id) {
+      return null;
+    }
+    return attachments.find((attachment) => attachment.id === id) ?? null;
+  },
+);
+
 export const selectComposePoll = createAppSelector(
   [
     (state) =>

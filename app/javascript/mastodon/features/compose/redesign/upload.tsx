@@ -17,32 +17,20 @@ import {
   DropdownPopover,
 } from '@/mastodon/components/dropdown/redesign';
 import { useToggle } from '@/mastodon/hooks/useToggle';
-import {
-  createAppSelector,
-  useAppDispatch,
-  useAppSelector,
-} from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from './attachments.module.scss';
 import type { ComposeAttachment } from './selectors';
-import { selectComposeAttachments } from './selectors';
-
-const selectAttachment = createAppSelector(
-  [selectComposeAttachments, (_, id?: string) => id],
-  (attachments, id) => {
-    if (!id) {
-      return null;
-    }
-    return attachments.find((attachment) => attachment.id === id) ?? null;
-  },
-);
+import { selectComposeAttachment } from './selectors';
 
 export const ComposeUpload: React.FC<{
   id?: string;
   className?: string;
   single?: boolean;
 }> = ({ id, className, single }) => {
-  const attachment = useAppSelector((state) => selectAttachment(state, id));
+  const attachment = useAppSelector((state) =>
+    selectComposeAttachment(state, id),
+  );
   const sensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
   const [open, { onToggle, onFalse }] = useToggle();
   const [target, setTarget] = useState<HTMLButtonElement | null>(null);
