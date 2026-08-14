@@ -5,12 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import {
-  DotsThreeIcon,
-  PencilIcon,
-  PlusIcon,
-  TrashIcon,
-} from '@phosphor-icons/react';
+import { DotsThreeIcon, TrashIcon } from '@phosphor-icons/react';
 
 import { undoUploadCompose } from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
@@ -60,6 +55,10 @@ export const ComposeUpload: React.FC<{
       );
     }
   }, [dispatch, id]);
+  const handleRearrange = useCallback(() => {
+    onFalse();
+    dispatch(openModal({ modalType: 'COMPOSER_REARRANGE', modalProps: {} }));
+  }, [dispatch, onFalse]);
   const handleDelete = useCallback(() => {
     if (id) {
       dispatch(undoUploadCompose(id));
@@ -124,10 +123,7 @@ export const ComposeUpload: React.FC<{
         offset={4}
         maxWidth={170}
       >
-        <DropdownItemButton
-          onClick={handleEdit}
-          leadingIcon={attachment.description ? PencilIcon : PlusIcon}
-        >
+        <DropdownItemButton onClick={handleEdit}>
           {attachment.description ? (
             <FormattedMessage
               id='compose.upload.menu.edit_alt'
@@ -140,6 +136,15 @@ export const ComposeUpload: React.FC<{
             />
           )}
         </DropdownItemButton>
+
+        {!single && (
+          <DropdownItemButton onClick={handleRearrange}>
+            <FormattedMessage
+              id='compose.upload.menu.rearrange'
+              defaultMessage='Rearrange&hellip;'
+            />
+          </DropdownItemButton>
+        )}
 
         <hr />
 
