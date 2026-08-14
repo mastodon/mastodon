@@ -31,7 +31,7 @@ export const ComposeAttachments: React.FC = () => {
 const ComposeMediaAttachments: React.FC = () => {
   const attachments = useAppSelector(selectComposeAttachments);
   const pendingAttachments = useAppSelector((state) =>
-    Number(state.compose.get('pending_media_attachments')),
+    Math.max(Number(state.compose.get('pending_media_attachments')), 0),
   );
   const totalAttachments = attachments.length + pendingAttachments;
 
