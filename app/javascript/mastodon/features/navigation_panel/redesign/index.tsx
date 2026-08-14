@@ -99,7 +99,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
           </ul>
           <footer className={classes.footer}>
             <NavigationAccountCard />
-            <NavigationFooterLinks />
+            <NavigationFooterLinks siteName={siteName} />
           </footer>
         </>
       )}

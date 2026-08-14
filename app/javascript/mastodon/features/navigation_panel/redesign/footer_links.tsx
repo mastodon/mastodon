@@ -6,10 +6,12 @@ import { domain, termsOfServiceEnabled } from '@/mastodon/initial_state';
 
 import classes from './footer_links.module.scss';
 
-export const NavigationFooterLinks: React.FC = () => {
+export const NavigationFooterLinks: React.FC<{ siteName?: string }> = ({
+  siteName = domain,
+}) => {
   return (
     <div className={classes.root}>
-      <h2 className={classes.heading}>{domain}</h2>
+      <h2 className={classes.heading}>{siteName}</h2>
       <ul className={classes.list}>
         <li>
           <Link to='/about'>
