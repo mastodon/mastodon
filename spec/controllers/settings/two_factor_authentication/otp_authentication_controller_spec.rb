@@ -129,6 +129,8 @@ RSpec.describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
       describe 'when user has OTP enabled' do
         before do
           user.update(otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+          user.generate_otp_backup_codes!
+          user.save
         end
 
         describe 'when the challenge has not been passed' do
@@ -141,20 +143,48 @@ RSpec.describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
           end
         end
 
-        describe 'when the challenge has been passed' do
-          it 'disables OTP login' do
+        describe 'when user has a security key' do
+          before do
+            user.update(webauthn_id: WebAuthn.generate_user_id)
+            Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB Key')
+          end
+
+          it 'disables OTP login but keeps the recovery codes for the security key' do
             expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
               .to change { user.reload.otp_required_for_login }.to(false)
               .and(change { user.reload.otp_secret }.to(nil))
+              .and(not_change { user.reload.otp_backup_codes })
 
             expect(response).to redirect_to settings_two_factor_authentication_methods_path
+          end
+
+          it 'does not notify the user that two-factor authentication is disabled', :inline_jobs do
+            expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
+              .to_not send_email(subject: I18n.t('devise.mailer.two_factor_disabled.subject'))
+          end
+        end
+
+        describe 'when user has no other two-factor authentication method' do
+          it 'disables two-factor authentication and clears the recovery codes' do
+            expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
+              .to change { user.reload.otp_required_for_login }.to(false)
+              .and(change { user.reload.otp_secret }.to(nil))
+              .and(change { user.reload.otp_backup_codes }.to(be_empty))
+
+            expect(response).to redirect_to settings_two_factor_authentication_methods_path
+          end
+
+          it 'notifies the user that two-factor authentication is disabled', :inline_jobs do
+            expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
+              .to send_email(to: user.email, subject: I18n.t('devise.mailer.two_factor_disabled.subject'))
           end
         end
       end
 
       describe 'when user does not have OTP enabled' do
-        it 'redirects to two factor authentication methods list page' do
-          delete :destroy
+        it 'redirects to two factor authentication methods list page without notifying the user', :inline_jobs do
+          expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
+            .to_not send_email(subject: I18n.t('devise.mailer.two_factor_disabled.subject'))
 
           expect(response).to redirect_to settings_two_factor_authentication_methods_path
         end

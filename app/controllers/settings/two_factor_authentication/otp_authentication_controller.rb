@@ -22,7 +22,12 @@ module Settings
       end
 
       def destroy
-        current_user.disable_otp_login!
+        if current_user.webauthn_enabled?
+          current_user.disable_otp_login!
+        else
+          current_user.disable_two_factor!
+          UserMailer.two_factor_disabled(current_user).deliver_later!
+        end
 
         redirect_to settings_two_factor_authentication_methods_path
       end
