@@ -80,26 +80,30 @@
 // Audio
 
 .audioWrapper {
-  aspect-ratio: 4 / 3;
-  background-color: var(--color-bg-blend);
-  background-size: cover;
-  max-width: 400px;
+  --height: var(--space-5xl);
+
   display: flex;
   align-items: center;
-  justify-content: center;
   border-radius: var(--radius-md);
-  position: relative;
+  gap: var(--space-2xs);
+  border: 0.5px solid var(--color-text-tertiary);
+  padding: var(--space-xs);
 }
 
-.audioWaveformIcon {
-  color: var(--color-text-inverted);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: auto;
-  width: min(80px, 20%);
-  height: auto;
+.audioCover {
+  height: var(--height);
+  width: auto;
   aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+}
+
+.audioControl {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  display: block;
+  box-sizing: border-box;
+  flex-grow: 1;
+  height: var(--height);
 }
 
 // Polls

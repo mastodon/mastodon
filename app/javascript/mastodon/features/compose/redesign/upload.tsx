@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -10,7 +10,6 @@ import {
   PencilIcon,
   PlusIcon,
   TrashIcon,
-  WaveformIcon,
 } from '@phosphor-icons/react';
 
 import { undoUploadCompose } from '@/mastodon/actions/compose';
@@ -22,18 +21,12 @@ import {
   DropdownItemButton,
   DropdownPopover,
 } from '@/mastodon/components/dropdown/redesign';
-import { Icon } from '@/mastodon/components/icon';
-import { useAudioContext } from '@/mastodon/hooks/useAudioContext';
-import { useAudioVisualizer } from '@/mastodon/hooks/useAudioVisualizer';
 import { useToggle } from '@/mastodon/hooks/useToggle';
-import { selectAccountAvatarUrl } from '@/mastodon/selectors/accounts';
 import {
   createAppSelector,
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
-
-import { AudioVisualizer } from '../../audio/visualizer';
 
 import classes from './attachments.module.scss';
 import type { ComposeAttachment } from './selectors';
@@ -175,7 +168,6 @@ const ComposeAudioUpload: React.FC<{
   attachment: ComposeAttachment<ApiAudioAttachmentJSON>;
 }> = ({ attachment }) => {
   const { id, preview_url } = attachment;
-  const userAvatar = useAppSelector(selectAccountAvatarUrl);
   const sensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
 
   const dispatch = useAppDispatch();
@@ -183,42 +175,25 @@ const ComposeAudioUpload: React.FC<{
     dispatch(undoUploadCompose(id));
   }, [dispatch, id]);
 
-  const audioElementRef = useRef<HTMLAudioElement>(null);
-  const { audioContextRef, sourceRef } = useAudioContext({ audioElementRef });
-  const frequencyBands = useAudioVisualizer({
-    audioContextRef,
-    sourceRef,
-    numBands: 3,
-  });
-
-  const showAvatar = !preview_url || sensitive;
-
   return (
-    <div
-      className={classes.audioWrapper}
-      style={{
-        backgroundImage: !showAvatar ? `url(${preview_url})` : undefined,
-      }}
-    >
-      <audio src={attachment.url} ref={audioElementRef} hidden />
+    <div className={classes.audioWrapper}>
+      {!sensitive && preview_url && (
+        <img src={preview_url} alt='' className={classes.audioCover} />
+      )}
 
-      <AudioVisualizer
-        poster={showAvatar ? userAvatar : undefined}
-        frequencyBands={frequencyBands}
-      />
-
-      <Icon
-        id='waveform'
-        icon={WaveformIcon}
-        className={classes.audioWaveformIcon}
+      <audio
+        src={attachment.url}
+        controls
+        className={classes.audioControl}
+        controlsList='nodownload noplaybackrate'
       />
 
       <IconButton
-        size='sm'
+        size='md'
+        variant='ghost'
         icon={TrashIcon}
         color='destructive'
         onClick={handleDelete}
-        className={classes.mediaMenuButton}
       >
         <FormattedMessage
           id='compose.upload.audio.delete'
