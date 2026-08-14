@@ -77,6 +77,31 @@
   color: var(--color-text-error);
 }
 
+// Audio
+
+.audioWrapper {
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-bg-blend);
+  background-size: cover;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.audioWaveformIcon {
+  color: var(--color-text-inverted);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  width: min(80px, 20%);
+  height: auto;
+  aspect-ratio: 1;
+}
+
 // Polls
 
 .poll {
