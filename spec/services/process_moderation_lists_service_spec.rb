@@ -33,12 +33,18 @@ RSpec.describe ProcessModerationListsService do
       end
     end
 
-    it 'creates the epxected suggestions' do
+    it 'creates the epxected suggestions and audit log entries' do
       expect { subject.call }
         .to change(ModerationSuggestion, :count)
         .and change { DomainBlock.exists?(domain: 'retract-me.com') }.from(true).to(false)
         .and change { DomainBlock.exists?(domain: 'automatic-block.org') }.from(false).to(true)
         .and change { DomainBlock.find_by(domain: 'carried-over-block.com').moderation_subscription_id }.from(subscription_with_automatic_application.id).to(low_priority_subscription.id)
+
+      expect(Admin::ActionLog.pluck(:action, :target_type, :human_identifier, :recorded_changes))
+        .to contain_exactly(
+          ['destroy', 'DomainBlock', 'retract-me.com', a_hash_including('moderation_subscription_id' => low_priority_subscription.id)],
+          ['create', 'DomainBlock', 'automatic-block.org', a_hash_including('moderation_subscription_id' => subscription_with_automatic_application.id)]
+        )
 
       expect(ModerationSuggestion.pluck(:target_type, :target_key, :action))
         .to contain_exactly(['domain', 'example.com', 'reject'], ['domain', 'evil.com', 'reject'], ['domain', 'retracted-block.com', 'retract'])
