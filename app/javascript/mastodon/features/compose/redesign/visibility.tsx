@@ -49,7 +49,12 @@ export const ComposeVisibility: React.FC = () => {
         description='Before button that indicates who a post is for (Public, Followers, mentioned people)'
       />
 
-      <Button size='sm' onClick={onToggle} ref={setTrigger} active={showMenu}>
+      <Button
+        size='sm'
+        onClick={onToggle}
+        ref={setTrigger}
+        aria-expanded={showMenu}
+      >
         {privacy !== 'private' && (
           <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
         )}

@@ -44,7 +44,6 @@ export const LanguageButton: React.FC = () => {
       <IconButton
         icon={TranslateIcon}
         size='sm'
-        active={open}
         ref={setTrigger}
         aria-expanded={open}
         onClick={handleToggle}

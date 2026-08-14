@@ -20,7 +20,12 @@
   line-height: 1;
   box-sizing: border-box;
 
-  &:hover:not(:active, .active, :disabled) {
+  &:hover:not(
+      :active,
+      :disabled,
+      [aria-pressed='true'],
+      [aria-expanded='true']
+    ) {
     background-color: var(--bg-hover);
   }
 
@@ -87,7 +92,7 @@ a.base {
     --fg: var(--color-text-inverted);
   }
 
-  &.tonal:not(:active, .active) {
+  &.tonal:not(:active, [aria-pressed='true'], [aria-expanded='true']) {
     --bg: var(--color-bg-highlight);
     --fg: var(--color-text-primary);
   }
@@ -102,7 +107,8 @@ a.base {
 
 .ghost {
   &:active,
-  &.active {
+  &[aria-pressed='true'],
+  &[aria-expanded='true'] {
     --bg: var(--color-bg-inverted);
     --fg: var(--color-text-inverted);
   }
@@ -111,7 +117,8 @@ a.base {
     --fg: var(--color-text-brand);
 
     &:active,
-    &.active {
+    &[aria-pressed='true'],
+    &[aria-expanded='true'] {
       --bg: var(--color-bg-brand-base);
       --fg: var(--color-text-on-brand-base);
     }
@@ -121,7 +128,8 @@ a.base {
     --fg: var(--color-text-error);
 
     &:active,
-    &.active {
+    &[aria-pressed='true'],
+    &[aria-expanded='true'] {
       --fg: var(--color-text-on-error-base);
       --bg: var(--color-bg-error-base);
     }
