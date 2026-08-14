@@ -6,20 +6,27 @@ import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button/redesign';
 import {
   focusComposerTextarea,
+  openNewComposer,
   resetComposer,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch } from '@/mastodon/store';
 
 import classes from './modals.module.scss';
 
-const ComposerCancelConfirmModal: React.FC = () => {
+const ComposerCancelConfirmModal: React.FC<{ openNew?: boolean }> = ({
+  openNew,
+}) => {
   const dispatch = useAppDispatch();
   const handleDelete = useCallback(() => {
-    dispatch(resetComposer());
+    if (openNew) {
+      dispatch(openNewComposer({ force: true }));
+    } else {
+      dispatch(resetComposer());
+    }
     dispatch(
       closeModal({ modalType: 'COMPOSER_DRAFT_DELETE', ignoreFocus: false }),
     );
-  }, [dispatch]);
+  }, [dispatch, openNew]);
   const handleContinue = useCallback(() => {
     dispatch(
       closeModal({ modalType: 'COMPOSER_DRAFT_DELETE', ignoreFocus: false }),
