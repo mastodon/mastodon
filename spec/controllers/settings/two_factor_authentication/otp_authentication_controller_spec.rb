@@ -131,12 +131,24 @@ RSpec.describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
           user.update(otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
         end
 
-        it 'disables OTP login' do
-          expect { delete :destroy }
-            .to change { user.reload.otp_required_for_login }.to(false)
-            .and(change { user.reload.otp_secret }.to(nil))
+        describe 'when the challenge has not been passed' do
+          it 'renders the challenge page and keeps OTP enabled' do
+            expect { delete :destroy }
+              .to_not(change { user.reload.otp_required_for_login })
 
-          expect(response).to redirect_to settings_two_factor_authentication_methods_path
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body).to have_title(I18n.t('challenge.prompt'))
+          end
+        end
+
+        describe 'when the challenge has been passed' do
+          it 'disables OTP login' do
+            expect { delete :destroy, session: { challenge_passed_at: Time.now.utc } }
+              .to change { user.reload.otp_required_for_login }.to(false)
+              .and(change { user.reload.otp_secret }.to(nil))
+
+            expect(response).to redirect_to settings_two_factor_authentication_methods_path
+          end
         end
       end
 

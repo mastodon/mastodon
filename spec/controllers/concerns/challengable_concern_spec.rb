@@ -17,12 +17,17 @@ RSpec.describe ChallengableConcern do
     def bar
       render plain: 'bar'
     end
+
+    def baz
+      render plain: 'baz'
+    end
   end
 
   before do
     routes.draw do
-      get  'foo' => 'anonymous#foo'
-      post 'bar' => 'anonymous#bar'
+      get    'foo' => 'anonymous#foo'
+      post   'bar' => 'anonymous#bar'
+      delete 'baz' => 'anonymous#baz'
     end
   end
 
@@ -116,6 +121,25 @@ RSpec.describe ChallengableConcern do
           .to have_title(I18n.t('challenge.prompt'))
         expect(session[:challenge_passed_at])
           .to be_nil
+      end
+    end
+
+    context 'with DELETE requests' do
+      before { delete :baz }
+
+      it 'renders challenge asking to confirm with the same request method' do
+        expect(response.parsed_body)
+          .to have_title(I18n.t('challenge.prompt'))
+          .and have_css('form input[name="_method"][value="delete"]', visible: :all)
+      end
+
+      it 'accepts correct password' do
+        delete :baz, params: { form_challenge: { current_password: password } }
+
+        expect(response.body)
+          .to eq 'baz'
+        expect(session[:challenge_passed_at])
+          .to_not be_nil
       end
     end
   end

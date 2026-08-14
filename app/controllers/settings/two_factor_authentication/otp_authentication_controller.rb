@@ -9,7 +9,7 @@ module Settings
 
       before_action :verify_otp_not_enabled, only: [:show]
       before_action :verify_otp_enabled, only: [:destroy]
-      before_action :require_challenge!, only: [:create]
+      before_action :require_challenge!, only: [:create, :destroy]
 
       def show
         @confirmation = Form::TwoFactorConfirmation.new
