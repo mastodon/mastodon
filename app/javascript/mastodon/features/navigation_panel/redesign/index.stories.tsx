@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import IconLogo from '@/images/logo-symbol-icon.svg?react';
+import { accountFactoryImmutable } from '@/testing/factories';
 
 import { RedesignNavigationPanel } from '.';
 
@@ -23,6 +24,11 @@ const meta = {
   },
   parameters: {
     redesign: true,
+    state: {
+      accounts: {
+        '123': accountFactoryImmutable(),
+      },
+    },
   },
 } satisfies Meta<typeof RedesignNavigationPanel>;
 
