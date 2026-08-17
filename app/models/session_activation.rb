@@ -5,12 +5,12 @@
 # Table name: session_activations
 #
 #  id                       :bigint(8)        not null, primary key
-#  session_id               :string           not null
+#  ip                       :inet
+#  user_agent               :string           default(""), not null
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
-#  user_agent               :string           default(""), not null
-#  ip                       :inet
 #  access_token_id          :bigint(8)
+#  session_id               :string           not null
 #  user_id                  :bigint(8)        not null
 #  web_push_subscription_id :bigint(8)
 #
@@ -38,9 +38,7 @@ class SessionActivation < ApplicationRecord
     end
 
     def activate(**)
-      activation = create!(**)
-      purge_old
-      activation
+      create!(**).tap { purge_old }
     end
 
     def deactivate(id)

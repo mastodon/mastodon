@@ -35,7 +35,7 @@ class Quote < ApplicationRecord
   belongs_to :quoted_account, class_name: 'Account', optional: true
 
   before_validation :set_accounts
-  before_validation :set_activity_uri, only: :create, if: -> { account.local? && quoted_account&.remote? }
+  before_validation :set_activity_uri, on: :create, if: -> { account.local? && quoted_account&.remote? }
   validates :activity_uri, presence: true, if: -> { account.local? && quoted_account&.remote? }
   validates :approval_uri, absence: true, if: -> { quoted_account&.local? }
   validate :validate_visibility
@@ -45,15 +45,21 @@ class Quote < ApplicationRecord
   after_destroy_commit :decrement_counter_caches!
   after_update_commit :update_counter_caches!
 
-  def accept!
-    update!(state: :accepted)
+  def accept!(approval_uri: nil)
+    if approval_uri.present?
+      update!(state: :accepted, approval_uri:)
+    else
+      update!(state: :accepted)
+    end
+
+    reset_parent_cache! if attribute_previously_changed?(:state)
   end
 
   def reject!
     if accepted?
-      update!(state: :revoked)
+      update!(state: :revoked, approval_uri: nil)
     elsif !revoked?
-      update!(state: :rejected)
+      update!(state: :rejected, approval_uri: nil)
     end
   end
 
@@ -73,7 +79,20 @@ class Quote < ApplicationRecord
     ActivityPub::QuoteRefreshWorker.perform_in(rand(REFRESH_DEADLINE), id)
   end
 
+  def sign?
+    true
+  end
+
   private
+
+  def reset_parent_cache!
+    return if status_id.nil?
+
+    Rails.cache.delete("v3:statuses/#{status_id}")
+
+    # This clears the web cache for the ActivityPub representation
+    Rails.cache.delete("statuses/show:v3:statuses/#{status_id}")
+  end
 
   def set_accounts
     self.account = status.account

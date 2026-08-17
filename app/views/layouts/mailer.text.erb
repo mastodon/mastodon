@@ -1,5 +1,9 @@
 <%= yield %>
 ---
 
-<%= t 'about.hosted_on', domain: site_hostname %>
-<%= t('application_mailer.settings', link: settings_preferences_url) %>
+<%- unless defined?(@skip_preferences_link) %>
+<%= t('application_mailer.notification_preferences') %>: <%= settings_preferences_url %>
+<%- end %>
+<%- if defined?(@unsubscribe_url) %>
+<%= t('application_mailer.unsubscribe') %>: <%= @unsubscribe_url %>
+<%- end %>

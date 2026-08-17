@@ -35,6 +35,17 @@ RSpec.describe DomainBlock do
       expect(described_class.rule_for('example.com')).to eq block
     end
 
+    it 'returns most specific rule matching a blocked domain' do
+      _block = Fabricate(:domain_block, domain: 'example.com')
+      blog_block = Fabricate(:domain_block, domain: 'blog.example.com')
+      expect(described_class.rule_for('host.blog.example.com')).to eq blog_block
+    end
+
+    it 'returns rule matching a blocked domain when string needs normalization' do
+      block = Fabricate(:domain_block, domain: 'example.com')
+      expect(described_class.rule_for('  example.com/')).to eq block
+    end
+
     it 'returns a rule matching a subdomain of a blocked domain' do
       block = Fabricate(:domain_block, domain: 'example.com')
       expect(described_class.rule_for('sub.example.com')).to eq block

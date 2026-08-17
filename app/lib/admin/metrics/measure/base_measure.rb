@@ -16,6 +16,13 @@ class Admin::Metrics::Measure::BaseMeasure
     @end_at   = end_at&.to_datetime
     @params   = params
     @loaded   = false
+
+    if @start_at.present? && @end_at.present?
+      @start_at = [@start_at, @end_at - 2.years].max
+    else
+      @start_at = nil
+      @end_at = nil
+    end
   end
 
   def cache_key
@@ -94,7 +101,7 @@ class Admin::Metrics::Measure::BaseMeasure
   end
 
   def length_of_period
-    @length_of_period ||= @end_at - @start_at
+    @length_of_period ||= @end_at.to_date - @start_at.to_date
   end
 
   def params

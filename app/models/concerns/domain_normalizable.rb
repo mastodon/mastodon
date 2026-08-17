@@ -17,12 +17,17 @@ module DomainNormalizable
         SQL
       )
     end
+
+    def domain_variants(domain)
+      segments = domain.to_s.split('.')
+      Array.new(segments.size) { |i| segments[i..].join('.') }
+    end
   end
 
   private
 
   def normalize_domain
-    self.domain = TagManager.instance.normalize_domain(domain&.strip)
+    self.domain = TagManager.instance.normalize_domain(domain)
   rescue Addressable::URI::InvalidURIError
     errors.add(:domain, :invalid)
   end

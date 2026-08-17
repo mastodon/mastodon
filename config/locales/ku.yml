@@ -10,7 +10,6 @@ ku:
     followers:
       one: Şopîner
       other: Şopîner
-    following: Dişopîne
     instance_actor_flash: Ev ajimêr listikvaneke rastkî ye ku ji bo wek nûnerê rajekar bixwe tê bikaranîn û ne bikarhênerek kesane. Ew ji bo mebestên giştî tê bikaranîn û divê neyê rawestandin.
     last_active: çalakiya dawî
     link_verified_on: Xwedaniya li vê girêdanê di %{date} de hatiye kontrolkirin
@@ -545,7 +544,6 @@ ku:
       action_log: Tomarê çavdêriyê
       action_taken_by: Çalakî hate kirin ji aliyê
       actions:
-        delete_description_html: Şandiyên hatine ragihandin wê werin jêbirin û were tomarkirin da ku ji te re bibe alîkar ku tu ji hêla heman ajimêrê ve binpêkirinên pêşerojê bêtir bikî.
         mark_as_sensitive_description_html: Şandiyên hatine ragihandin wê werin nîşandan wekî hestyar û were tomarkirin da ku ji te re bibe alîkar ku tu ji hêla heman ajimêrê ve binpêkirinên pêşerojê bêtir bikî.
         other_description_html: Bêtir vebijêrkên ji bo kontrolkirina tevgera ajimêrê bibîne û pêwendiyê li ser ajimêra ragihandî kesane bike.
         resolve_description_html: Li hemberî ajimêra hatiye ragihandin wê tiştek pêk neyê, binpêkirin nayên tomarkirin û ragihandin wê were girtin.
@@ -560,7 +558,6 @@ ku:
         none: Ne yek
       comment_description_html: 'Bo bêtir zanyarî bidî, %{name} nivîsand:'
       created_at: Hate ragihandin
-      delete_and_resolve: Şandiyan jê bibe
       forwarded: Beralîkirî
       forwarded_to: Beralîkirî bo %{domain}
       mark_as_resolved: Wekî çareserkirî nîşan bide
@@ -585,7 +582,6 @@ ku:
       resolved_msg: Ragihandin bi awayekî serkeftî hate çareserkirin!
       skip_to_actions: Derbasî çalakiyan bibe
       status: Rewş
-      statuses: Naveroka ragihandî
       statuses_description_html: Naveroka sûcdar wê di danûstendina bi xwediyê ajimêra ragihandî re wê werê diyarkirin
       target_origin: Jêdera ajimêrê ragihandî
       title: Ragihandinên
@@ -1038,9 +1034,6 @@ ku:
     lists: Rêzok
     mutes: Te bêdeng kir
     storage: Bîrdanaka medyayê
-  featured_tags:
-    add_new: Yeka nû tevlî bike
-    hint_html: "<strong> Hashtagên destnîşankirî çi ne? </strong> Ew bi eşkere li ser profîla te ya gelemperî têne xuyakirin û dihêlin ku mirov bi taybetî di binê wan hashtagan de li şandiyên te yên gelemperî bigere. Ew ji bo şopandina karên afirîner an projeyên demdirêj amûrek girîng in."
   filters:
     contexts:
       account: Profîl
@@ -1189,7 +1182,6 @@ ku:
       disabled_account: Ajimêra te ya heyî dê paşê bi tevahî neyê bikaranîn. Lê belê, tu dikarî bigihîje derxistinê daneyan û hem jî ji nû ve çalakkirinê.
       followers: Ev çalakî dê hemî şopînerên ji ajimêra heyî bar bike ajimêra nû
       only_redirect_html: Wekî din, tu dikarî <a href="%{path}"> tenê beralîkirinekê li ser profîla xwe bicîh bike </a>.
-      other_data: Daneyên din dê bi xweberî neyên livandin
       redirect: Profîla ajimêra te ya heyî dê bi nîşeyeke beralîkirinê were nûve kirin û ji lêgerînan were bi dûrxistin
   moderation:
     title: Çavdêrî
@@ -1406,11 +1398,9 @@ ku:
     enabled: Şandiyên berê bi xweberî va jê bibe
     enabled_hint: Gava ku ew gihîştibe sînorê temenê diyarkirî, şandiyên te bi xweberî jê dibe, ji bilî van awareteyên jêrîn
     exceptions: Awarte
-    explanation: Ji ber ku jêbirina şandiyan pêvajoyeke biha ye, ev hêdî hêdî bi demê re tê kirin dema ku rajekar wekî din mijûl nebe. Ji ber vê sedemê, dibe ku şandiyên te demek şûnda ku bigihîjin sînorê temenê wê werin jêbirin.
     ignore_favs: Ecibandinan paşguh bike
     ignore_reblogs: Bilindkirinan piştguh bike
     interaction_exceptions: Awarteyên li ser bingehên têkiliyan
-    interaction_exceptions_explanation: Bizanibe ku şandiyeke ku ji binî ve têkeve jêrî bijarte yan bilindkirinê piştî ku carek din di ser wan re derbas bibe, garantiyek tune ku werin jêbirin.
     keep_direct: Peyamên rasterast veşêre
     keep_direct_hint: Tu peyamên te yekcar jê naçe
     keep_media: Peyamên bi pêvekên medyayê ve ne biveşêre
@@ -1443,10 +1433,6 @@ ku:
       too_late: Pir dereng e ji bo îtîrazê li ser vê binpêkirinê
   tags:
     does_not_match_previous_name: bi navê berê re li hev nayê
-  themes:
-    contrast: Mastodon (Dijberiya bilind)
-    default: Mastodon (Tarî)
-    mastodon-light: Mastodon (Ronahî)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

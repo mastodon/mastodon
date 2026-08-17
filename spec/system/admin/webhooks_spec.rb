@@ -13,12 +13,12 @@ RSpec.describe 'Admin Webhooks' do
         visit admin_webhooks_path
 
         expect(page)
-          .to have_content(I18n.t('admin.webhooks.title'))
-          .and have_content(webhook.url)
+          .to have_text(I18n.t('admin.webhooks.title'))
+          .and have_text(webhook.url)
 
         click_on(webhook.url)
         expect(page)
-          .to have_content(I18n.t('admin.webhooks.title'))
+          .to have_text(I18n.t('admin.webhooks.title'))
       end
     end
 
@@ -29,14 +29,14 @@ RSpec.describe 'Admin Webhooks' do
         # Visit new page
         click_on I18n.t('admin.webhooks.add_new')
         expect(page)
-          .to have_content(I18n.t('admin.webhooks.new'))
+          .to have_text(I18n.t('admin.webhooks.new'))
 
         # Invalid submission (missing url, no events selected)
         fill_in 'webhook_url', with: ''
         expect { submit_form }
           .to_not change(Webhook, :count)
         expect(page)
-          .to have_content(/errors below/)
+          .to have_text(/errors below/)
 
         # Valid submission
         fill_in 'webhook_url', with: 'https://host.example/hooks/123'
@@ -44,7 +44,7 @@ RSpec.describe 'Admin Webhooks' do
         expect { submit_form }
           .to change(Webhook, :count).by(1)
         expect(page)
-          .to have_content(I18n.t('admin.webhooks.title'))
+          .to have_text(I18n.t('admin.webhooks.title'))
       end
 
       it 'fails to create with no events selected' do
@@ -54,7 +54,7 @@ RSpec.describe 'Admin Webhooks' do
         expect { submit_form }
           .to_not change(Webhook, :count)
         expect(page)
-          .to have_content(/errors below/)
+          .to have_text(/errors below/)
       end
 
       def submit_form

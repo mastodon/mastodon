@@ -18,4 +18,12 @@ module RegistrationHelper
   def ip_blocked?(remote_ip)
     IpBlock.severity_sign_up_block.containing(remote_ip.to_s).exists?
   end
+
+  def terms_agreement_label
+    if TermsOfService.live.exists?
+      t('auth.user_agreement_html', privacy_policy_path: privacy_policy_path, terms_of_service_path: terms_of_service_path)
+    else
+      t('auth.user_privacy_agreement_html', privacy_policy_path: privacy_policy_path)
+    end
+  end
 end

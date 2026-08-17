@@ -10,7 +10,6 @@ sco:
     followers:
       one: Follaer
       other: Follaers
-    following: Follaein
     instance_actor_flash: This accoont is a virtual actor uised tae represent the server itsel an no onie individual uiser. It is uised fir federation purposes an shuidnae be suspendit.
     last_active: last active
     link_verified_on: Ainership o this link wis checkt on %{date}
@@ -541,7 +540,6 @@ sco:
       action_log: Audit log
       action_taken_by: Action taen bi
       actions:
-        delete_description_html: The clyped on posts wull be deletit an a strike wull be recordit fir tae help ye escalate on future infractions bi the same accoont.
         mark_as_sensitive_description_html: The media in the clyped on posts will be mairked as sensitive an a strike wull be recordit fir tae help ye escalate on future infractions bi the same accoont.
         other_description_html: See mair options fir controllin the accoont's behaviour an customize communication tae the clyped on accoont.
         resolve_description_html: Nae action wull be taen aginst the clyped on accoont, nae strike recordit, an the clype wull be shut.
@@ -556,7 +554,6 @@ sco:
         none: Naen
       comment_description_html: 'Fir tae gie mair information, %{name} wrate:'
       created_at: Clyped on
-      delete_and_resolve: Delete posts
       forwarded: Forretit
       forwarded_to: Forertit tae %{domain}
       mark_as_resolved: Mairk as resolvt
@@ -581,7 +578,6 @@ sco:
       resolved_msg: Clype successfully resolvt!
       skip_to_actions: Jouk tae actions
       status: Status
-      statuses: Clyped on content
       statuses_description_html: Offendin content wull be citit in communication wi the clyped on accoont
       target_origin: Origin o clyped on accoont
       title: Clypes
@@ -1028,9 +1024,6 @@ sco:
     lists: Lists
     mutes: Ye wheesht
     storage: Media storage
-  featured_tags:
-    add_new: Add new
-    hint_html: "<strong>Whit's featurt hashtags?</strong> They get pit prominently on yer public profile an alloo fowk fir tae broose yer public posts specifically unner thae hashtags. They'r a braw tuil fir keepin track o creative warks or lang-term projects."
   filters:
     contexts:
       account: Profiles
@@ -1179,7 +1172,6 @@ sco:
       disabled_account: Yer current accoont wullnae be fully uisable efterwart. Hou an iver, ye wull hae access tae data export as weil as re-activation.
       followers: This action wull flit aw follaers fae the current accoont tae the new accoont
       only_redirect_html: Alternatively, ye kin <a href="%{path}">ainly pit up a redirect on yer profile</a>.
-      other_data: Nae ither data wull get flittit automatically
       redirect: Yer current accoont's profile wull get updatit wi a redirect note an be excludit fae seirches
   moderation:
     title: Moderation
@@ -1396,11 +1388,9 @@ sco:
     enabled: Automatically delete auld posts
     enabled_hint: Automatically deletes yer posts ance they reach a specified age threshold, unless they match ane o the exceptions ablow
     exceptions: Exceptions
-    explanation: Acause deletin posts is an expensive operation, this is duin slow ower time whan the server isnae itherwise busy. Fir this raison, yer posts wull mibbie be deletit a wee while efter they reach the age threshaud.
     ignore_favs: Ignore favourites
     ignore_reblogs: Ignore heezes
     interaction_exceptions: Exceptions based on interactions
-    interaction_exceptions_explanation: Note thit there nae guarantee fir posts tae get deletit if they gae ablow the favourite or heeze threshaud efter haein ance went ower them.
     keep_direct: Keep direck messages
     keep_direct_hint: Disnae delete onie o yer direck messages
     keep_media: Keep posts wi media attachments
@@ -1433,10 +1423,6 @@ sco:
       too_late: It is ower late fir tae appeal this strike
   tags:
     does_not_match_previous_name: disnae match the previous nemm
-  themes:
-    contrast: Mastodon (Heich contrast)
-    default: Mastodon (Daurk)
-    mastodon-light: Mastodon (Licht)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

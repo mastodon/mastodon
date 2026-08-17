@@ -2,7 +2,7 @@
   = t('admin.terms_of_service.title')
 
 - content_for :heading do
-  %h2= t('admin.terms_of_service.title')
+  %h1= t('admin.terms_of_service.title')
   = render partial: 'links'
 
 - if @terms_of_service.present?
@@ -31,7 +31,7 @@
 
   %hr.spacer/
 
-  %h3= t('admin.terms_of_service.changelog')
+  %h2.heading-medium= t('admin.terms_of_service.changelog')
 
   .prose
     = markdown(@terms_of_service.changelog)

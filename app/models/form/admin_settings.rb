@@ -22,6 +22,7 @@ class Form::AdminSettings
     custom_css
     profile_directory
     thumbnail
+    thumbnail_description
     mascot
     trends
     trendable_by_default
@@ -44,6 +45,8 @@ class Form::AdminSettings
     local_topic_feed_access
     remote_topic_feed_access
     landing_page
+    wrapstodon
+    email_footer_text
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -66,6 +69,7 @@ class Form::AdminSettings
     require_invite_text
     captcha_enabled
     authorized_fetch
+    wrapstodon
   ).freeze
 
   UPLOAD_KEYS = %i(
@@ -83,12 +87,14 @@ class Form::AdminSettings
     authorized_fetch: :authorized_fetch_mode?,
   }.freeze
 
+  UPLOAD_MIME_TYPES = %w(image/jpeg image/png image/gif image/webp).freeze
+
   DESCRIPTION_LIMIT = 200
   DOMAIN_BLOCK_AUDIENCES = %w(disabled users all).freeze
   REGISTRATION_MODES = %w(open approved none).freeze
   FEED_ACCESS_MODES = %w(public authenticated disabled).freeze
   ALTERNATE_FEED_ACCESS_MODES = %w(public authenticated).freeze
-  LANDING_PAGE = %w(trends about local_feed).freeze
+  LANDING_PAGE = %w(trends overview local_feed about).freeze
 
   attr_accessor(*KEYS)
 
@@ -105,6 +111,7 @@ class Form::AdminSettings
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
   validates :min_age, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@min_age) }
   validates :site_short_description, length: { maximum: DESCRIPTION_LIMIT }, if: -> { defined?(@site_short_description) }
+  validates :thumbnail_description, length: { maximum: DESCRIPTION_LIMIT }, if: -> { defined?(@thumbnail_description) }
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
   validates :landing_page, inclusion: { in: LANDING_PAGE }, if: -> { defined?(@landing_page) }
@@ -152,6 +159,10 @@ class Form::AdminSettings
         setting.update(value: typecast_value(key, instance_variable_get(:"@#{key}")))
       end
     end
+  end
+
+  def persisted?
+    true
   end
 
   private

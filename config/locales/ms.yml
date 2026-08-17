@@ -9,7 +9,6 @@ ms:
   accounts:
     followers:
       other: Pengikut
-    following: Mengikuti
     instance_actor_flash: Akaun ini ialah pelaku maya yang digunakan untuk mewakili pelayan itu sendiri dan bukan mana-mana pengguna individu. Ia digunakan untuk tujuan persekutuan dan tidak patut digantung.
     last_active: aktif terakhir
     link_verified_on: Pemilikan pautan ini diperiksa pada %{date}
@@ -554,7 +553,6 @@ ms:
       action_log: Log audit
       action_taken_by: Tindakan diambil oleh
       actions:
-        delete_description_html: Hantaran yang dilaporkan akan dihapuskan dan pelanggaran itu akan direkodkan bagi membantu anda menguruskan pelanggaran pada akaun yang sama di masa akan datang.
         mark_as_sensitive_description_html: Media di dalam hantaran yang dilaporkan akan ditandakan sebagai sensitif dan pelanggaran itu akan direkodkan bagi membantu anda menguruskan pelanggaran pada akaun yang sama di masa akan datang.
         other_description_html: Lihat lebih banyak pilihan untuk mengawal tingkah laku akaun dan menyesuaikan komunikasi ke akaun yang dilaporkan.
         resolve_description_html: Tiada tindakan akan diambil terhadap akaun yang dilaporkan, tiada pelanggaran direkodkan dan laporan akan ditutup.
@@ -575,7 +573,6 @@ ms:
       confirm: Konfirm
       confirm_action: Sahkan tindakan penyederhanaan terhadap @%{acct}
       created_at: Dilaporkan
-      delete_and_resolve: Padam hantaran
       forwarded: Dipanjangkan
       forwarded_to: Dipanjangkan ke %{domain}
       mark_as_resolved: Tanda sebagai sudah selesai
@@ -601,7 +598,6 @@ ms:
       resolved_msg: Laporan berjaya diselesaikan!
       skip_to_actions: Langkau ke tindakan
       status: Status
-      statuses: Kandungan yang dilaporkan
       statuses_description_html: Kandungan yang menyinggung perasaan akan disebut dalam komunikasi dengan akaun yang dilaporkan
       summary:
         action_preambles:
@@ -1110,8 +1106,6 @@ ms:
       your_appeal_pending: Anda telah menghantar rayuan
       your_appeal_rejected: Rayuan anda telah ditolak
   edit_profile:
-    basic_information: Maklumat Asas
-    hint_html: "<strong>Sesuaikan perkara yang orang lihat pada profil awam anda dan di sebelah siaran anda.</strong> Orang lain lebih berkemungkinan mengikuti anda kembali dan berinteraksi dengan anda apabila anda mempunyai profil dan gambar profil yang telah diisi."
     other: Lain-lain
   errors:
     '400': Permintaan yang anda serahkan tidak sah atau salah bentuk.
@@ -1147,10 +1141,8 @@ ms:
     mutes: Redaman anda
     storage: Storan Media
   featured_tags:
-    add_new: Tambah baharu
     errors:
       limit: Anda telah memaparkan bilangan maksimum hashtag
-    hint_html: "<strong>Tampilkan hashtag paling penting anda pada profil anda.</strong> Alat yang hebat untuk menjejaki karya kreatif dan projek jangka panjang anda, hashtag yang ditampilkan dipaparkan dengan jelas pada profil anda dan membenarkan akses pantas kepada pos anda sendiri."
   filters:
     contexts:
       account: Profil
@@ -1280,14 +1272,6 @@ ms:
     failed_sign_in_html: Percubaan log masuk gagal dengan %{method} daripada %{ip} (%{browser})
     successful_sign_in_html: Log masuk yang berjaya dengan %{method} daripada %{ip} (%{browser})
     title: Sejarah pengesahan
-  mail_subscriptions:
-    unsubscribe:
-      action: Ya, nyahlanggan
-      complete: Menyahlanggan
-      emails:
-        notification_emails:
-          favourite: emel pemberitahuan sukaan
-      title: Hentikan langganan
   media_attachments:
     validations:
       images_and_video: Tidak boleh melampirkan video pada pos yang sudah mengandungi imej
@@ -1321,7 +1305,6 @@ ms:
       disabled_account: Akaun semasa anda tidak akan dapat digunakan sepenuhnya selepas itu. Walau bagaimanapun, anda akan mempunyai akses kepada eksport data serta pengaktifan semula.
       followers: Tindakan ini akan mengalihkan semua pengikut daripada akaun semasa ke akaun baharu
       only_redirect_html: Sebagai alternatif, anda boleh <a href="%{path}">hanya meletakkan ubah hala pada profil anda</a>.
-      other_data: Tiada data lain akan dialihkan secara automatik
       redirect: Profil akaun semasa anda akan dikemas kini dengan notis ubah hala dan dikecualikan daripada carian
   moderation:
     title: Penyederhanaan
@@ -1555,11 +1538,9 @@ ms:
     enabled: Padam hantaran lama secara automatik
     enabled_hint: Memadamkan pos anda secara automatik setelah mereka mencapai ambang umur yang ditentukan, melainkan ia sepadan dengan salah satu pengecualian di bawah
     exceptions: Pengecualian
-    explanation: Oleh kerana pemadaman pos adalah operasi yang mahal, ini dilakukan perlahan-lahan dari semasa ke semasa apabila server tidak sibuk. Atas sebab ini, pos anda mungkin dipadamkan seketika selepas ia mencapai ambang umur.
     ignore_favs: Abaikan sukaan
     ignore_reblogs: Abaikan rangsangan
     interaction_exceptions: Pengecualian berdasarkan interaksi
-    interaction_exceptions_explanation: Sila ambil perhatian bahawa tiada jaminan untuk pos dipadamkan jika ia berada di bawah ambang kegemaran atau tingkatkan selepas sekali melepasinya.
     keep_direct: Simpan mesej langsung
     keep_direct_hint: Tidak memadamkan sebarang mesej langsung anda
     keep_media: Simpan siaran dengan lampiran media
@@ -1593,10 +1574,6 @@ ms:
       too_late: Rayuan pelanggaran ini sudah terlalu lambat
   tags:
     does_not_match_previous_name: tidak sepadan dengan nama sebelumnya
-  themes:
-    contrast: Mastodon (Kontras tinggi)
-    default: Mastodon (Gelap)
-    mastodon-light: Mastodon (Cahaya)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

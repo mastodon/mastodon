@@ -1,20 +1,12 @@
 # frozen_string_literal: true
 
-class Admin::StatusBatchAction
-  include ActiveModel::Model
-  include ActiveModel::Attributes
-  include AccountableConcern
-  include Authorization
+class Admin::StatusBatchAction < Admin::BaseAction
+  TYPES = %w(
+    report
+    remove_from_report
+  ).freeze
 
-  attr_accessor :current_account, :type,
-                :status_ids, :report_id,
-                :text
-
-  attribute :send_email_notification, :boolean
-
-  def save!
-    process_action!
-  end
+  attr_accessor :status_ids
 
   private
 
@@ -26,80 +18,11 @@ class Admin::StatusBatchAction
     return if status_ids.empty?
 
     case type
-    when 'delete'
-      handle_delete!
-    when 'mark_as_sensitive'
-      handle_mark_as_sensitive!
     when 'report'
       handle_report!
     when 'remove_from_report'
       handle_remove_from_report!
     end
-  end
-
-  def handle_delete!
-    statuses.each { |status| authorize([:admin, status], :destroy?) }
-
-    ApplicationRecord.transaction do
-      statuses.each do |status|
-        status.discard_with_reblogs
-        log_action(:destroy, status)
-      end
-
-      if with_report?
-        report.resolve!(current_account)
-        log_action(:resolve, report)
-      end
-
-      @warning = target_account.strikes.create!(
-        action: :delete_statuses,
-        account: current_account,
-        report: report,
-        status_ids: status_ids,
-        text: text
-      )
-
-      statuses.each { |status| Tombstone.find_or_create_by(uri: status.uri, account: status.account, by_moderator: true) } unless target_account.local?
-    end
-
-    process_notification!
-
-    RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { 'preserve' => target_account.local?, 'immediate' => !target_account.local? }] }
-  end
-
-  def handle_mark_as_sensitive!
-    representative_account = Account.representative
-
-    # Can't use a transaction here because UpdateStatusService queues
-    # Sidekiq jobs
-    statuses.includes(:media_attachments, preview_cards_status: :preview_card).find_each do |status|
-      next if status.discarded? || !(status.with_media? || status.with_preview_card?)
-
-      authorize([:admin, status], :update?)
-
-      if target_account.local?
-        UpdateStatusService.new.call(status, representative_account.id, sensitive: true)
-      else
-        status.update(sensitive: true)
-      end
-
-      log_action(:update, status)
-
-      if with_report?
-        report.resolve!(current_account)
-        log_action(:resolve, report)
-      end
-    end
-
-    @warning = target_account.strikes.create!(
-      action: :mark_statuses_as_sensitive,
-      account: current_account,
-      report: report,
-      status_ids: status_ids,
-      text: text
-    )
-
-    process_notification!
   end
 
   def handle_report!
@@ -115,25 +38,6 @@ class Admin::StatusBatchAction
 
     report.status_ids -= status_ids.map(&:to_i)
     report.save!
-  end
-
-  def report
-    @report ||= Report.find(report_id) if report_id.present?
-  end
-
-  def with_report?
-    !report.nil?
-  end
-
-  def process_notification!
-    return unless warnable?
-
-    UserMailer.warning(target_account.user, @warning).deliver_later!
-    LocalNotificationWorker.perform_async(target_account.id, @warning.id, 'AccountWarning', 'moderation_warning')
-  end
-
-  def warnable?
-    send_email_notification && target_account.local?
   end
 
   def target_account

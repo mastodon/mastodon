@@ -6,10 +6,10 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  content    :text             not null
-#  report_id  :bigint(8)        not null
-#  account_id :bigint(8)        not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  account_id :bigint(8)        not null
+#  report_id  :bigint(8)        not null
 #
 
 class ReportNote < ApplicationRecord

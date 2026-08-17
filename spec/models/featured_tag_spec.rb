@@ -93,24 +93,22 @@ RSpec.describe FeaturedTag do
   end
 
   describe '#display_name' do
-    subject { Fabricate.build :featured_tag, name: name, tag: tag }
+    subject { featured_tag.display_name }
 
-    context 'with a name value present' do
-      let(:name) { 'Test' }
+    let(:featured_tag) { Fabricate.build :featured_tag, name: name, tag: tag }
+
+    context 'with a name value present on the featured tag' do
+      let(:name) { 'FeaturedTagName' }
       let(:tag) { nil }
 
-      it 'uses name value' do
-        expect(subject.display_name).to eq('Test')
-      end
+      it { is_expected.to eq('FeaturedTagName') }
     end
 
-    context 'with a missing name value but a present tag' do
+    context 'with a missing name value but a present linked tag' do
       let(:name) { nil }
-      let(:tag) { Fabricate.build :tag, name: 'Tester' }
+      let(:tag) { Fabricate.build :tag, display_name: 'LinkedTagDisplayName' }
 
-      it 'uses name value' do
-        expect(subject.display_name).to eq('Tester')
-      end
+      it { is_expected.to eq('LinkedTagDisplayName') }
     end
   end
 

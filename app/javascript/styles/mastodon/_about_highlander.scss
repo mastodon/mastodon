@@ -1,15 +1,13 @@
-@use 'variables' as *;
-
 .about {
   &__guide {
-    color: $secondary-text-color;
+    color: var(--color-text-secondary);
   }
 
   &__guide__app-title {
     font-size: 1.6rem;
     line-height: 1.3;
     font-weight: 700;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
     margin: 0 0 8px;
   }
 
@@ -17,7 +15,7 @@
     margin: 0 0 12px;
     font-size: 1.05rem;
     line-height: 1.5;
-    color: $darker-text-color;
+    color: var(--color-text-tertiary);
   }
 
   &__guide__lead,
@@ -32,7 +30,7 @@
     font-size: 1.2rem;
     line-height: 1.4;
     font-weight: 600;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
   }
 
   &__guide__step {
@@ -42,7 +40,7 @@
   &__guide__step-title,
   &__guide__platform-title {
     margin: 0 0 12px;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
     font-weight: 600;
   }
 
@@ -59,35 +57,35 @@
   &__guide__step-image {
     display: block;
     max-width: 100%;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--color-border-primary);
     border-radius: 8px;
     margin: 12px 0 0;
   }
 
   &__guide__divider {
     border: 0;
-    border-top: 1px solid var(--background-border-color);
+    border-top: 1px solid var(--color-border-primary);
     margin: 32px 0;
   }
 
   &__guide__callout {
     margin: 0 0 16px;
     padding: 10px 14px;
-    border-inline-start: 3px solid $highlight-text-color;
+    border-inline-start: 3px solid var(--color-text-brand);
     border-radius: 4px;
-    background: darken($ui-base-color, 4%);
-    color: $secondary-text-color;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
   }
 
   &__guide__list {
     margin: 0 0 16px;
     padding-inline-start: 24px;
-    color: $secondary-text-color;
+    color: var(--color-text-secondary);
     list-style: decimal;
     list-style-position: outside;
 
     &::marker {
-      color: $secondary-text-color;
+      color: var(--color-text-secondary);
     }
 
     li {
@@ -95,7 +93,7 @@
       line-height: 1.65;
 
       &::marker {
-        color: $secondary-text-color;
+        color: var(--color-text-secondary);
       }
     }
 

@@ -86,6 +86,7 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
         ) =>
           // Hack to allow accessing scrollBehavior._stateStorage
           shouldUpdateScroll.call(
+            // eslint-disable-next-line react-hooks/immutability
             scrollBehavior,
             prevLocationContext,
             locationContext,

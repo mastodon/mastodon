@@ -6,9 +6,9 @@ module Api::InteractionPoliciesConcern
   def quote_approval_policy
     case status_params[:quote_approval_policy].presence || current_user.setting_default_quote_policy
     when 'public'
-      Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16
+      InteractionPolicy::POLICY_FLAGS[:public] << 16
     when 'followers'
-      Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16
+      InteractionPolicy::POLICY_FLAGS[:followers] << 16
     when 'nobody'
       0
     else

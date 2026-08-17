@@ -19,7 +19,7 @@ RSpec.describe 'Admin::Statuses' do
       it 'displays a notice about selection' do
         click_on button_for_report
 
-        expect(page).to have_content(selection_error_text)
+        expect(page).to have_text(selection_error_text)
       end
     end
 

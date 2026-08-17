@@ -8,9 +8,11 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
 
     target_accounts            = object_uris.filter_map { |uri| account_from_uri(uri) }
     target_statuses_by_account = object_uris.filter_map { |uri| status_from_uri(uri) }.group_by(&:account_id)
+    target_collections_by_account = object_uris.filter_map { |uri| collection_from_uri(uri) }.group_by(&:account_id)
 
     target_accounts.each do |target_account|
       target_statuses     = target_statuses_by_account[target_account.id]
+      target_collections  = target_collections_by_account.fetch(target_account.id, [])
       replied_to_accounts = target_statuses.nil? ? [] : Account.local.where(id: target_statuses.filter_map(&:in_reply_to_account_id))
 
       next if target_account.suspended? || (!target_account.local? && replied_to_accounts.none?)
@@ -19,6 +21,7 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
         @account,
         target_account,
         status_ids: target_statuses.nil? ? [] : target_statuses.map(&:id),
+        collection_ids: target_collections.map(&:id),
         comment: report_comment,
         uri: report_uri
       )

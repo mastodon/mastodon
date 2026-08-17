@@ -5,7 +5,7 @@
 = simple_form_for(resource,
                   as: resource_name,
                   url: session_path(resource_name),
-                  html: { method: :post, id: 'webauthn-form' }.merge(hidden ? { class: 'hidden' } : {})) do |f|
+                  html: { method: :post, id: 'webauthn-form', class: [hidden:] }) do |f|
   %h3.title= t('simple_form.title.sessions.webauthn')
   %p.hint= t('simple_form.hints.sessions.webauthn')
 

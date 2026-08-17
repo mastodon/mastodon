@@ -25,7 +25,7 @@ RSpec.describe 'Admin::Settings::Branding' do
       .to change(Setting, :site_short_description).to('new key value')
 
     expect(page)
-      .to have_content(success_message)
+      .to have_text(success_message)
   end
 
   def short_description_field

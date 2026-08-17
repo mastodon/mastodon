@@ -3,7 +3,9 @@
 class ActivityPub::ContextSerializer < ActivityPub::Serializer
   include RoutingHelper
 
-  attributes :id, :type, :attributed_to, :first
+  attributes :id, :type, :attributed_to
+
+  has_one :first, serializer: ActivityPub::CollectionSerializer
 
   def type
     'Collection'

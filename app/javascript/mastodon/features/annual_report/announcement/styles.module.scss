@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 60px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  background:
+    radial-gradient(at 40% 87%, #240c9a99 0, transparent 50%),
+    radial-gradient(at 19% 10%, #6b0c9a99 0, transparent 50%),
+    radial-gradient(at 90% 27%, #9a0c8299 0, transparent 50%),
+    radial-gradient(at 16% 95%, #1e948299 0, transparent 50%)
+      var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-primary);
+  position: relative;
+  pointer-events: all;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .closeButton {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    margin-inline: 0;
+  }
+
+  :global(.modal-root__modal) & {
+    border-radius: 16px;
+  }
+}

@@ -4,15 +4,22 @@ cs:
     about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S Mastodonem vlastníte svoje data!'
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
+    default_thumbnail_description: Dva usmívající se kreslení mastodonti (kteří vypadají jako sloni) si mezi sebou házejí papírové letadélko. Jsou obklopeni jasně modrou oblohou a létajícími planetami se stromy, na kterých jsou další mastodonti.
     hosted_on: Mastodon na doméně %{domain}
     title: O službě
   accounts:
+    errors:
+      cannot_be_added_to_collections: Tento účet nelze přidat do kolekcí.
     followers:
       few: Sledující
       many: Sledujících
       one: Sledující
       other: Sledujících
-    following: Sledovaných
+    following:
+      few: Sleduje
+      many: Sleduje
+      one: Sleduje
+      other: Sleduje
     instance_actor_flash: Tento účet je virtuální aktér, který představuje server samotný, nikoliv jednotlivého uživatele. Používá se pro účely federace a neměl by být pozastaven.
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
@@ -56,6 +63,7 @@ cs:
         label: Změnit roli
         no_role: Žádná role
         title: Změnit roli pro %{username}
+      collections: Kolekce
       confirm: Potvrdit
       confirmed: Potvrzeno
       confirming: Potvrzuji
@@ -268,6 +276,7 @@ cs:
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
         destroy_canonical_email_block_html: "%{name} odblokoval*a e-mail s hashem %{target}"
+        destroy_collection_html: "%{name} odstranil kolekci od %{target}"
         destroy_custom_emoji_html: "%{name} odstranil emoji %{target}"
         destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
@@ -307,6 +316,7 @@ cs:
         unsilence_account_html: Uživatel %{name} zrušil omezení účtu %{target}
         unsuspend_account_html: Uživatel %{name} zrušil pozastavení účtu uživatele %{target}
         update_announcement_html: Uživatel %{name} aktualizoval oznámení %{target}
+        update_collection_html: "%{name} aktualizoval kolekci od %{target}"
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
         update_ip_block_html: "%{name} změnil pravidlo pro IP %{target}"
@@ -342,6 +352,25 @@ cs:
       unpublish: Skrýt
       unpublished_msg: Zveřejněné oznámení bylo úspěšně skryto!
       updated_msg: Oznámení bylo úspěšně aktualizováno!
+    collections:
+      accounts: Účty
+      back_to_account: Zpět na stránku účtu
+      back_to_report: Zpět na stránku hlášení
+      batch:
+        add_to_report: 'Přidat do hlášení #%{id}'
+        remove_from_report: Odebrat z hlášení
+        report: Hlášení
+      collection_title: Kolekce od %{name}
+      contents: Obsah
+      no_collection_selected: Žádná kolekce nebyla změněna, jelikož nebyla ani žádná vybrána
+      number_of_accounts:
+        few: "%{count} účty"
+        many: "%{count} účtů"
+        one: 1 účet
+        other: "%{count} účtů"
+      open: Otevřít
+      title: Kolekce účtu - @%{name}
+      view_publicly: Zobrazit veřejně
     critical_update_pending: Čeká se na kritickou aktualizaci
     custom_emojis:
       assign_category: Přiřadit kategorii
@@ -484,9 +513,89 @@ cs:
         title: Blokovat novou e-mailovou doménu
       no_email_domain_block_selected: Žádné blokace e-mailové domény nebyly změněny, protože žádné nebyly vybrány
       not_permitted: Nepovoleno
+      reset: Obnovit
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které mají nakonec na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která používá stejnou MX doménu, i když je viditelné doménové jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       resolved_through_html: Přeložena přes %{domain}
+      search: Hledat
       title: Blokované e-mailové domény
+    email_subscriptions:
+      accounts:
+        account: Účet
+        empty:
+          hint: Žádný účet zatím nemá odběratele.
+          no_lists_yet: Zatím žádné seznamy
+        last_email: Poslední e-mail
+        lead: Účty, které tuto vlastnost povolily a mají sledující, se ukáží níže.
+        show:
+          confirm_disable_feature: Zakázat emailové newslettery pro %{name}? Emailové aktualizace nebudou tomuto účtu zasílány. Uživatel stále bude moci tuto vlastnost ve svém nastavení. Pro úplné odstranění přístupu k této vlastnosti upravte uživatelská práva v Rolích.
+          confirm_remove_subscriber: "%{email} již nebude dostávat emaily od %{name}. Tuto akci nelze vzít zpět."
+          consent: Odběratelé vyjádřili souhlas pouze s přijímáním příspěvků emailem. Nepoužívejte tento seznam k jiným účelům.
+          date: Datum registrace
+          disable_feature: Zakázat vlastnost
+          disabled: Tato funkce byla zakázána a emaily již nejsou na tento seznam zasílány.
+          email: Emailová adresa
+          empty:
+            hint: Nikdo se zatím u tohoto účtu nepřihlásil k odběru.
+            no_subscribers_yet: Zatím žádní odběratelé
+          enable_feature: Povolit funkci
+          no_access_html: Tento účet již nemá oprávnění potřebné k zapnutí funkce. Změňte to v <a href="%{roles_path}">Role</a>.
+          title: "%{name} email newslettery"
+          view_account: Zobrazit účet
+        status: Status
+        subscribers: Odběratelé
+        title: Mailové seznamy
+      additional_footer_texts:
+        show:
+          title: Dodatečný text v zápatí
+      compliance_settings:
+        additional_footer_text:
+          action: Spravovat
+          hint: Volitelný text, který se zobrazí pouze v zápatí newsletter e-mailů
+          title: Dodatečný text v zápatí
+        lead: E-mailové newslettery mohou být považovány za marketingové e-maily v závislosti na jurisdikcích, kde působíte.
+        privacy_policy:
+          action: Spravovat
+          hint: Tyto zásady jsou uvedeny v zápatí každého e-mailu
+          title: Zásady ochrany osobních údajů
+        title: Nastavení souladu s předpisy
+      danger_zone:
+        disable_feature:
+          action: Vypnout
+          hint: Vypnout funkci pro všechny účty
+          title: Vypnout funkci
+        erase_all_data:
+          action: Vymazat data
+          hint: Trvale smaže všechny e-maily ve všech mailových seznamech
+          title: Vymazat všechna data
+        title: Nebezpečná zóna
+      disabled_msg: E-mailové odběry byly úspěšně vypnuty.
+      index:
+        disabled:
+          cannot_be_enabled: Váš poskytovatel technických služeb tuto funkci pro váš server nepovolil.
+          description: Tato funkce umožňuje vybraným účtům přidat si na profil widget, díky kterému mohou návštěvníci bez účtu na Mastodonu odebírat jejich příspěvky e-mailem.
+          get_started: Začít
+        lead: Umožnit návštěvníkům přijímat příspěvky e-mailem z vybraných účtů na tomto serveru.
+        title: Email newslettery
+      purged_msg: Všechna data o odběrech e-mailů se mažou.
+      roles:
+        accounts: Účty
+        edit_role: Upravit roli
+        empty:
+          hint: Nikdo nemá oprávnění k užívání této funkce.
+          no_roles_added: Nebyly přidány žádné role
+        lead: Účty s následujícími rolemi si mohou tuto funkci aktivovat ve svých profilech.
+        manage_roles: Spravovat role
+        role_name: Název role
+        title: Role
+      setups:
+        show:
+          enable_feature: Povolit funkci
+          important_information: Důležité informace
+          list:
+            1_permission_explanation: Když je tato funkce zapnutá, účty s příslušným oprávněním mohou na své profily přidat formulář pro sběr e-mailů.
+            2_feature_explanation: Jakmile se návštěvníci příhlásí na profilové stránce účtu k odběru a potvrdí ho, začnou dostávat e-mailová upozornění pokaždé, když daný účet vytvoří nový veřejný příspěvek.
+            3_privacy_policy_warning: Administrátoři serveru budou mít přístup k PII (e-mailové adresy). Zásady ochrany osobních údajů a Smluvní podmínky pro server musí být tudíž aktualizovány před použitím této funkce.
+            4_cost_warning: Za odesílání e-mailů si váš hosting může účtovat poplatky. Před spuštěním se raději poraďte s podporou hostingu, jelikož tato funkce může razantně zvýšit počet e-mailů odeslaných z vašeho serveru.
     export_domain_allows:
       new:
         title: Importovat povolené domény
@@ -679,7 +788,7 @@ cs:
       action_log: Protokol auditu
       action_taken_by: Akci vykonal uživatel
       actions:
-        delete_description_html: Nahlášené příspěvky budou smazány a prohřešek zaznamenán pro pomoc s eskalací v případě budoucích porušení stejným účtem.
+        delete_description_html: Nahlášené příspěvky a/nebo kolekce budou smazány a prohřešek zaznamenán pro pomoc s případnou eskalací v případě budoucích přestupků stejného účtu.
         mark_as_sensitive_description_html: Média v nahlášených příspěvcích budou označena jako citlivá a bude zaznamenán prohřešek pro pomoc s eskalací v případě budoucích porušení stejným účtem.
         other_description_html: Podívejte se na další možnosti kontroly chování účtu a přizpůsobte komunikaci k nahlášenému účtu.
         resolve_description_html: Nebudou učiněny žádné kroky proti nahlášenému účtu, žádný prohřešek zaznamenán a hlášení bude uzavřeno.
@@ -699,13 +808,14 @@ cs:
       cancel: Zrušit
       category: Kategorie
       category_description_html: Důvod nahlášení tohoto účtu a/nebo obsahu bude uveden v komunikaci s nahlášeným účtem
+      collections: Kolekce (%{count})
       comment:
         none: Žádné
       comment_description_html: 'Pro upřesnění uživatel %{name} napsal:'
       confirm: Potvrdit
       confirm_action: Potvrdit moderátorskou akci vůči @%{acct}
       created_at: Nahlášené
-      delete_and_resolve: Smazat příspěvky
+      delete_and_resolve: Odstranit obsah
       forwarded: Přeposláno
       forwarded_replies_explanation: Toto hlášení je od uživatele z jiného serveru, a je o obsahu z jeho serveru. Byl převeden na vás, protože nahlášený obsah odpovídá jednomu z vašich uživatelů.
       forwarded_to: Přeposláno na %{domain}
@@ -728,12 +838,13 @@ cs:
       report: 'Hlášení #%{id}'
       reported_account: Nahlášený účet
       reported_by: Nahlášeno uživatelem
+      reported_content: Nahlášený obsah
       reported_with_application: Nahlášeno aplikací
       resolved: Vyřešeno
       resolved_msg: Hlášení úspěšně vyřešeno!
       skip_to_actions: Přeskočit k akcím
       status: Stav
-      statuses: Nahlášený obsah
+      statuses: Příspěvky (%{count})
       statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
       summary:
         action_preambles:
@@ -770,6 +881,7 @@ cs:
       categories:
         administration: Administrace
         devops: DevOps
+        email: E-mail
         invites: Pozvánky
         moderation: Moderování
         special: Speciální
@@ -788,6 +900,8 @@ cs:
         administrator_description: Uživatelé s tímto oprávněním obejdou všechna oprávnění
         delete_user_data: Mazat uživatelská data
         delete_user_data_description: Umožňuje uživatelům bezodkladně mazat data jiných uživatelů
+        invite_bypass_approval: Pozvat uživatele bez kontroly
+        invite_bypass_approval_description: Umožňuje lidem pozvaným na server těmito uživateli obejít schválení moderováním
         invite_users: Pozvat uživatele
         invite_users_description: Umožňuje uživatelům zvát na server nové lidi
         manage_announcements: Spravovat oznámení
@@ -798,6 +912,8 @@ cs:
         manage_blocks_description: Umožňuje uživatelům blokovat poskytovatele e-mailů a IP adresy
         manage_custom_emojis: Spravovat vlastní emoji
         manage_custom_emojis_description: Umožňuje uživatelům spravovat vlastní emoji na serveru
+        manage_email_subscriptions: Spravovat e-mailové odběry
+        manage_email_subscriptions_description: Povolit uživatelům s tímto oprávněním aktivovat funkci email newsletteru pro jejich účet
         manage_federation: Spravovat federaci
         manage_federation_description: Umožňuje uživatelům blokovat nebo povolit federaci s jinými doménami a ovládat doručování
         manage_invites: Spravovat pozvánky
@@ -826,6 +942,7 @@ cs:
         view_devops_description: Umožňuje uživatelům přístup k ovládacím panelům Sidekiq a pgHero
         view_feeds: Zobrazit živé a tematické kanály
         view_feeds_description: Umožňuje uživatelům přístup k živým a tematickým kanálům bez ohledu na nastavení serveru
+      requires_2fa: Vyžaduje dvoufázové ověření
       title: Role
     rules:
       add_new: Přidat pravidlo
@@ -874,6 +991,7 @@ cs:
         publish_statistics: Zveřejnit statistiku
         title: Objevování
         trends: Trendy
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Všem
         disabled: Nikomu
@@ -884,10 +1002,16 @@ cs:
           disabled: Vyžadovat specifickou uživatelskou roli
           public: Všichni
       landing_page:
+        hints:
+          about_html: Stránka s popisem, kontaktními informacemi, pravidly a dalšími informacemi týkajícími se tohoto serveru.
+          local_feed_html: Aktuální přehled nejnovějších příspěvků od uživatelů tohoto serveru.
+          overview_html: Stránka zobrazující popis serveru vedle nejnovějších lokálních příspěvků uživatelů na tomto serveru.
+          trends_html: Stránka, která zobrazuje, co je teď na tomto serveru populární.
         values:
-          about: O službě
-          local_feed: Místní kanál
-          trends: Trendy
+          about: Informační stránka
+          local_feed: Místní živý kanál
+          overview: Přehled
+          trends: Populární
       registrations:
         moderation_recommandation: Před otevřením registrací všem se ujistěte, že máte vhodný a reaktivní moderační tým!
         preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
@@ -907,6 +1031,7 @@ cs:
     site_uploads:
       delete: Odstranit nahraný soubor
       destroyed_msg: Upload stránky byl úspěšně smazán!
+    skip_to_content: Přeskočit na obsah
     software_updates:
       critical_update: Kritické — aktualizujte, prosím, co nejdříve
       description: Doporučuje se udržovat vaši instalaci Mastodonu aktuální, aby se využily nejnovější opravy a funkce. Kromě toho je někdy velmi důležité včas aktualizovat Mastodon, aby se předešlo bezpečnostním problémům. Z těchto důvodů Mastodon kontroluje aktualizace každých 30 minut a bude vás informovat podle nastavení vašeho e-mailového oznámení.
@@ -1141,6 +1266,7 @@ cs:
           other: Použit %{count} lidmi za poslední týden
       title: Doporučení & Trendy
       trending: Populární
+    update_available: Je dostupná aktualizace
     username_blocks:
       add_new: Přidat
       block_registrations: Blokovat registrace
@@ -1247,7 +1373,6 @@ cs:
   application_mailer:
     notification_preferences: Změnit předvolby e-mailu
     salutation: "%{name},"
-    settings: 'Změnit předvolby e-mailu: %{link}'
     unsubscribe: Přestat odebírat
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
@@ -1297,6 +1422,7 @@ cs:
     progress:
       confirm: Potvrdit e-mail
       details: Vaše údaje
+      list: Proces registrace
       review: Naše hodnocení
       rules: Přijmout pravidla
     providers:
@@ -1312,6 +1438,7 @@ cs:
       invited_by: 'Můžete se připojit k %{domain} díky pozvánce, kterou jste obdrželi od:'
       preamble: Tohle nastavují a prosazují moderátoři %{domain}.
       preamble_invited: Než budete pokračovat, vezměte prosím v úvahu základní pravidla stanovená moderátory %{domain}.
+      read_more: Zobrazit více
       title: Některá základní pravidla.
       title_invited: Byl/a jsi pozván/a.
     security: Zabezpečení
@@ -1354,6 +1481,13 @@ cs:
     hint_html: "<strong>Tip:</strong> Po dobu jedné hodiny vás o heslo nebudeme znovu žádat."
     invalid_password: Neplatné heslo
     prompt: Pokračujte potvrzením hesla
+  color_scheme:
+    auto: Auto
+    dark: Tmavý
+    light: Světlý
+  contrast:
+    auto: Auto
+    high: Vysoký
   crypto:
     errors:
       invalid_key: není platný klíč Ed25519 nebo Curve25519
@@ -1423,9 +1557,47 @@ cs:
       your_appeal_pending: Podali jste odvolání
       your_appeal_rejected: Vaše odvolání bylo zamítnuto
   edit_profile:
-    basic_information: Základní informace
-    hint_html: "<strong>Nastavte si, co lidé uvidí na vašem veřejném profilu a vedle vašich příspěvků.</strong> Ostatní lidé vás budou spíše sledovat a komunikovat s vámi, když budete mít vyplněný profil a profilový obrázek."
     other: Další
+    privacy_redesign_body: Možnost zobrazit sledované a sledující je nyní možno nastavit přímo ve vašem profilu.
+    redesign_body: Úprava profilu je nyní dostupná přímo z profilové stránky.
+    redesign_button: Začít
+    redesign_title: K dispozici je nové prostředí pro úpravu profilu
+  email_subscription_mailer:
+    confirmation:
+      action: Potvrdit emailovou adresu
+      instructions_to_confirm: Potvrďte, že chcete dostávat e-maily od %{name} (@%{acct}), když publikují nové příspěvky.
+      instructions_to_ignore: Pokud si nejste jisti, proč jste obdrželi tento e-mail, můžete jej smazat. Nebudete přihlášeni, pokud nekliknete na odkaz výše.
+      subject: Potvrďte svou e-mailovou adresu
+      title: Dostávat e-mailem novinky od %{name}?
+    notification:
+      create_account: Vytvořit Mastodon účet
+      footer:
+        privacy_html: E-maily jsou odesílány z %{domain}, serveru poháněného Mastodonem. Pro, jak tento server zpracovává vaše osobní údaje, se podívejte na <a href="%{privacy_policy_path}">Zásady ochrany osobních údajů</a>.
+        reason_for_email_html: Obdrželi jste tento e-mail, protože jste se přihlásili k e-mailovým aktualizacím od %{name}. Nechcete dostávat tyto e-maily? <a href="%{unsubscribe_path}">Odhlásit se</a>
+      interact_with_this_post:
+        few: Interagujte s těmito příspěvky a objevujte více.
+        many: Interagujte s těmito příspěvky a objevujte více.
+        one: Interagujte s tímto příspěvkem a objevte jemu podobné.
+        other: Interagujte s těmito příspěvky a objevujte více.
+      subject:
+        plural: Nové příspěvky od %{name}
+        singular: 'Nový příspěvek: „%{excerpt}“'
+      title:
+        plural: Nové příspěvky od %{name}
+        singular: 'Nový příspěvek: „%{excerpt}“'
+  email_subscriptions:
+    active: Aktivní
+    confirmations:
+      show:
+        changed_your_mind: Rozmysleli jste si to?
+        success_html: Nyní začnete dostávat e-maily, když %{name} publikuje nové příspěvky. Přidejte %{sender} do svých kontaktů, aby tyto příspěvky neskončily ve složce nevyžádané pošty.
+        title: Jste přihlášeni
+        unsubscribe: Odhlásit odběr
+    disabled: Vypnuto
+    inactive: Neaktivní
+    no_access: Bez přístupu
+    status: Stav
+    subscribers: Odběratelé
   emoji_styles:
     auto: Auto
     native: Výchozí
@@ -1459,15 +1631,15 @@ cs:
     blocks: Blokujete
     bookmarks: Záložky
     csv: CSV
+    custom_filters: Filtry
     domain_blocks: Doménové blokace
+    json: JSON
     lists: Seznamy
     mutes: Skrýváte
     storage: Úložiště médií
   featured_tags:
-    add_new: Přidat nový
     errors:
       limit: Již jste zvýraznili maximální počet hashtagů
-    hint_html: "<strong>Co jsou zvýrazněné hashtagy?</strong> Zobrazují se prominentně na vašem veřejném profilu a dovolují lidem prohlížet si vaše veřejné příspěvky konkrétně pod těmi hashtagy. Je to skvělý nástroj pro sledování kreativních děl nebo dlouhodobých projektů."
   filters:
     contexts:
       account: Profily
@@ -1553,7 +1725,9 @@ cs:
       empty: Prázdný CSV soubor
       incompatible_type: Nekompatibilní s vybraným typem importu
       invalid_csv_file: 'Neplatný soubor CSV. Chyba: %{error}'
+      invalid_json_file: 'Neplatný JSON soubor. Chyba: %{error}'
       over_rows_processing_limit: obsahuje více než %{count} řádků
+      status_not_found_warning: Některé z vašich filtrů skrývají specifické příspěvky, které nejsou tímto serverem známy. Tyto příspěvky nebudou automaticky filtrovány, pokud budou objeveny později.
       too_large: Soubor je příliš velký
     failures: Chyby
     imported: Importováno
@@ -1574,6 +1748,11 @@ cs:
         many: Chystáte se <strong>nahradit své záložky</strong> s <strong>%{count} příspěvky</strong> z <strong>%{filename}</strong>.
         one: Chystáte se <strong>nahradit své záložky</strong> s <strong>%{count} příspěvkem</strong> z <strong>%{filename}</strong>.
         other: Chystáte se <strong>nahradit své záložky</strong> s <strong>%{count} příspěvky</strong> z <strong>%{filename}</strong>.
+      custom_filters_html:
+        few: Chystáte se <strong>nahradit vaše filtry</strong> s obsahem <strong>%{filename}</strong>. K novým filtrům bude přidáno až <strong>%{count} filtrů</strong>.
+        many: Chystáte se <strong>nahradit vaše filtry</strong> s obsahem <strong>%{filename}</strong>. K novým filtrům bude přidáno až <strong>%{count} filtrů</strong>.
+        one: Chystáte se <strong>nahradit vaše filtry</strong> s obsahem <strong>%{filename}</strong>. K novým filtrům bude přidán až <strong>%{count} filtr</strong>.
+        other: Chystáte se <strong>nahradit vaše filtry</strong> s obsahem <strong>%{filename}</strong>. K novým filtrům bude přidáno až <strong>%{count} filtrů</strong>.
       domain_blocking_html:
         few: Chystáte se <strong>nahradit Váš seznam zablokovaných domén</strong> s <strong>%{count} stránky</strong> z <strong>%{filename}</strong>.
         many: Chystáte se <strong>nahradit Váš seznam zablokovaných domén</strong> s <strong>%{count} stránky</strong> z <strong>%{filename}</strong>.
@@ -1605,6 +1784,11 @@ cs:
         many: Chystáte se přidat až <strong>%{count} příspěvků</strong> z <strong>%{filename}</strong> do vašich <strong>záložek</strong>.
         one: Chystáte se přidat až <strong>%{count} příspěvek</strong> z <strong>%{filename}</strong> do vašich <strong>záložek</strong>.
         other: Chystáte se přidat až <strong>%{count} příspěvků</strong> z <strong>%{filename}</strong> do vašich <strong>záložek</strong>.
+      custom_filters_html:
+        few: Chystáte se přidat až <strong>%{count} filtrů</strong> z <strong>%{filename}</strong> do vašich <strong>filtrů</strong>.
+        many: Chystáte se přidat až <strong>%{count} filtrů</strong> z <strong>%{filename}</strong> do vašich <strong>filtrů</strong>.
+        one: Chystáte se přidat až <strong>%{count} filtr</strong> z <strong>%{filename}</strong> do vašich <strong>filtrů</strong>.
+        other: Chystáte se přidat až <strong>%{count} filtrů</strong> z <strong>%{filename}</strong> do vašich <strong>filtrů</strong>.
       domain_blocking_html:
         few: Chystáte se <strong>zablokovat</strong> až <strong>%{count} domény</strong> z <strong>%{filename}</strong>.
         many: Chystáte se <strong>zablokovat</strong> až <strong>%{count} domén</strong> z <strong>%{filename}</strong>.
@@ -1649,6 +1833,7 @@ cs:
     types:
       blocking: Seznam blokovaných
       bookmarks: Záložky
+      custom_filters: Filtry
       domain_blocking: Seznam blokovaných domén
       following: Seznam sledovaných
       lists: Seznamy
@@ -1700,21 +1885,6 @@ cs:
     failed_sign_in_html: Neúspěšný pokus o přihlášení %{method} z %{ip} (%{browser})
     successful_sign_in_html: Úspěšné přihlášení %{method} z %{ip} (%{browser})
     title: Historie přihlášení
-  mail_subscriptions:
-    unsubscribe:
-      action: Ano, odeberte odběr
-      complete: Odběr byl odhlášen
-      confirmation_html: Jste si jisti, že chcete odhlásit odběr %{type} pro Mastodon na %{domain} na váš e-mail %{email}? Vždy se můžete znovu přihlásit ve svém nastavení <a href="%{settings_path}">e-mailových oznámení</a>.
-      emails:
-        notification_emails:
-          favourite: e-mailové oznámení při oblíbení
-          follow: e-mailové oznámení při sledování
-          follow_request: e-mail při žádost o sledování
-          mention: e-mailové oznámení při zmínění
-          reblog: e-mailové oznámení při boostu
-      resubscribe_html: Pokud jste se odhlásili omylem, můžete se znovu přihlásit ve svých nastavení <a href="%{settings_path}">e-mailových oznámení</a>.
-      success_html: Již nebudete dostávat %{type} pro Mastodon na %{domain} na vaši e-mailovou adresu %{email}.
-      title: Odhlásit odběr
   media_attachments:
     validations:
       images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
@@ -1750,7 +1920,7 @@ cs:
       disabled_account: Váš aktuální účet nebude poté zcela použitelný. Budete však mít přístup k datovým exportům a budete ho moci znovu aktivovat.
       followers: Touto akcí přesunete všechny sledující z aktuálního účtu na nový
       only_redirect_html: Alternativně můžete <a href="%{path}">nastavit pouze přesměrování na váš profil</a>.
-      other_data: Žádná další data nebudou přesunuta automaticky
+      other_data: Žádná další data nebudou automaticky přesunuta (včetně vašich příspěvků a seznamu účtů, které sledujete)
       redirect: Profil vašeho aktuálního účtu bude aktualizován s oznámením o přesměrování a bude vyloučen z výsledků hledání
   moderation:
     title: Moderování
@@ -1760,6 +1930,29 @@ cs:
     copy_account_note_text: 'Tento účet se přesunul z %{acct}, zde byly Vaše předchozí poznámky o něm:'
   navigation:
     toggle_menu: Přepnout menu
+  notification_fallbacks:
+    added_to_collection:
+      title_html: "%{name} vás přidali do kolekce"
+    admin_report:
+      title_html: "%{name} nahlásili %{target}"
+    admin_sign_up:
+      title_and_others_html:
+        few: "%{name} a %{count} dalších se zaregistrovali"
+        many: "%{name} a %{count} dalších se zaregistrovali"
+        one: "%{name} a jeden další se zaregistrovali"
+        other: "%{name} a %{count} dalších se zaregistrovali"
+      title_html: "%{name} se zaregistrovali"
+    collection_update:
+      title_html: "%{name} aktualizoval/a kolekci, ve které se nacházíte"
+    generic:
+      sign_in: Přihlaste se do webové aplikace Mastodon
+      summary_html: Jste na aplikaci, která nepodporuje nejnovější verzi Mastodonu. %{link} pro plnou funkčnost.
+    moderation_warning:
+      summary_html: Jste na aplikaci, která nepodporuje nejnovější verzi Mastodonu. %{link}.
+      title: Obdrželi jste moderační varování.
+    severed_relationships:
+      summary_html: Administrátor z %{from} pozastavil %{target}, což znamená, že od nich již nemůžete přijímat novinky ani s nimi interagovat. %{link} pro načtení seznamu ztracených kontaktů.
+      title: Kontakt ztracen s %{name}
   notification_mailer:
     admin:
       report:
@@ -1784,16 +1977,22 @@ cs:
       body: 'Uživatel %{name} vás zmínil v:'
       subject: Uživatel %{name} vás zmínil
       title: Nová zmínka
+    moderation_warning:
+      subject: Obdrželi jste moderační varování
     poll:
       subject: Anketa od %{name} skončila
     quote:
       body: 'Váš příspěvek citoval účet %{name}:'
       subject: "%{name} citovali váš příspěvek"
       title: Nová citace
+    quoted_update:
+      subject: "%{name} upravili příspěvek, který jste citovali"
     reblog:
       body: 'Uživatel %{name} boostnul váš příspěvek:'
       subject: Uživatel %{name} boostnul váš příspěvek
       title: Nový boost
+    severed_relationships:
+      subject: Ztratili jste spojení, kvůli moderačnímu rozhodnutí
     status:
       subject: Nový příspěvek od %{name}
     update:
@@ -1846,6 +2045,8 @@ cs:
     posting_defaults: Výchozí nastavení příspěvků
     public_timelines: Veřejné časové osy
   privacy:
+    email_subscriptions: Poslat příspěvky e-mailem
+    email_subscriptions_hint_html: Přidejte si na profil formulář pro přihlášení k odběru e-mailů, který se bude zobrazovat odhlášeným uživatelům. Jakmile návštěvníci zadají svou e-mailovou adresu a potvrdí odběr, Mastodon jim bude zasílat e-mailové upozornění o vašich veřejných příspěvcích.
     hint_html: "<strong>Nastavte si, jak chcete, aby šlo váš profil a vaše příspěvky nalézt.</strong> Řada funkcí v Mastodonu vám může po zapnutí pomoci získat širší publikum. Věnujte chvíli kontrole těchto nastavení, aby vyhovovala vašim potřebám."
     privacy: Soukromí
     privacy_hint_html: Nastavte si, kolik toho chcete zveřejnit ve prospěch ostatních. Lidé objevují zajímavé profily a skvělé aplikace procházením sledovaných ostatních lidí i tím, že vidí, z jakých aplikací ostatní posílají příspěvky, vy se však můžete rozhodnout tyto údaje skrýt.
@@ -2015,6 +2216,7 @@ cs:
     errors:
       in_reply_not_found: Příspěvek, na který se pokoušíte odpovědět, neexistuje.
       quoted_status_not_found: Zdá se, že příspěvek, který se pokoušíte citovat neexistuje.
+      quoted_user_not_mentioned: Nelze citovat nezmíněného uživatele v soukromé zmínce.
     over_character_limit: byl překročen limit %{max} znaků
     pin_errors:
       direct: Příspěvky viditelné pouze zmíněným uživatelům nelze připnout
@@ -2042,11 +2244,11 @@ cs:
     enabled: Automaticky mazat staré příspěvky
     enabled_hint: Automaticky maže vaše příspěvky poté, co dosáhnou stanoveného stáří, nesplňují-li některou z výjimek níže
     exceptions: Výjimky
-    explanation: Protože je mazání příspěvků nákladná operace, je prováděno pomalu v čase, kdy server není zaneprázdněn ničím jiným. Z tohoto důvodu mohou být vaše příspěvky smazány delší dobu po dosažení stanoveného stáří.
+    explanation: Automatické smazání je prováděno s nízkou prioritou. Může dojít ke zpoždění mezi dosažením věkové hranice a odstraněním.
     ignore_favs: Ignorovat oblíbení
     ignore_reblogs: Ignorovat boosty
     interaction_exceptions: Výjimky založené na interakcích
-    interaction_exceptions_explanation: Upozorňujeme, že není zaručeno smazání příspěvků, které nedosahují stanového počtu oblíbení nebo boostnutí poté, co už byly jednou zkontrolovány.
+    interaction_exceptions_explanation: Příspěvky, které dočasně překročí práh oblíbených nebo boostů, mohou být zachovány, i pokud se později počet sníží.
     keep_direct: Zachovat přímé zprávy
     keep_direct_hint: Nesmaže žádnou z vašich přímých zpráv
     keep_media: Zachovat příspěvky s mediálními přílohami
@@ -2088,10 +2290,7 @@ cs:
     review_link: Zkontrolovat podmínky užívání služby
     title: Podmínky služby %{domain} se mění
   themes:
-    contrast: Mastodon (vysoký kontrast)
-    default: Mastodon (tmavý)
-    mastodon-light: Mastodon (světlý)
-    system: Automaticky (dle motivu systému)
+    default: Mastodon
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -2116,7 +2315,31 @@ cs:
     recovery_codes: Záložní kódy pro obnovu
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerovány
     recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
+    resume_app_authorization: Pokračovat v autorizaci aplikace
+    role_requirement: "%{domain} vyžaduje nastavení dvoufázového ověření, než budete moci použít Mastodon."
     webauthn: Bezpečnostní klíče
+  unsubscriptions:
+    create:
+      action: Přejít na domovskou stránku serveru
+      email_subscription:
+        confirmation_html: Již nebudete dostávat e-maily od %{name}.
+      title: Jste odhlášeni
+      user:
+        confirmation_html: Již nebudete dostávat %{type} od Mastodonu na %{domain}.
+    notification_emails:
+      favourite: e-mailové oznámení při oblíbení
+      follow: e-mailové oznámení při sledování
+      follow_request: e-mail při žádost o sledování
+      mention: e-mailové oznámení při zmínění
+      reblog: e-mailové oznámení při boostnutí
+    show:
+      action: Odhlásit se
+      email_subscription:
+        confirmation_html: Přestanete dostávat e-maily, když tento účet publikuje nové příspěvky.
+        title: Odhlásit se z %{name}?
+      user:
+        confirmation_html: Přestanete dostávat %{type} z Mastodonu na %{domain}.
+        title: Odhlásit se z %{type}?
   user_mailer:
     announcement_published:
       description: 'Správci %{domain} oznamují:'
@@ -2261,8 +2484,12 @@ cs:
       error: Při odstraňování bezpečnostního klíče došlo k chybě. Zkuste to prosím znovu.
       success: Váš bezpečnostní klíč byl úspěšně odstraněn.
     invalid_credential: Neplatný bezpečnostní klíč
+    nickname: Přezdívka
     nickname_hint: Zadejte přezdívku nového bezpečnostního klíče
     not_enabled: Zatím jste nepovolili WebAuthn
     not_supported: Tento prohlížeč nepodporuje bezpečnostní klíče
     otp_required: Pro použití bezpečnostních klíčů prosím nejprve zapněte dvoufázové ověřování.
     registered_on: Přidán %{date}
+  wrapstodon:
+    description: Podívejte se, jak %{name} používali Mastodon v tomto roce!
+    title: Wrapstodon %{year} pro %{name}

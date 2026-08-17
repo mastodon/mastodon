@@ -200,7 +200,7 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
             expect do
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
             end.to change { user.webauthn_credentials.count }.by(1)
-                                                             .and not_change(user, :webauthn_id)
+              .and not_change(user, :webauthn_id)
 
             expect(response).to have_http_status(200)
           end

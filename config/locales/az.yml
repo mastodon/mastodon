@@ -42,27 +42,45 @@ az:
         reset_password_user_html: "%{name}, %{target} istifadəçisinin parolunu sıfırladı"
       deleted_account: silinmiş hesab
     dashboard:
-      media_storage: Media anbarı
+      media_storage: Media deposu
       software: Yazılım
     domain_allows:
       export: Xaricə köçür
     domain_blocks:
       export: Xaricə köçür
+    email_subscriptions:
+      additional_footer_texts:
+        show:
+          title: Əlavə alt məlumat mətni
+      compliance_settings:
+        additional_footer_text:
+          hint: Yalnız bülleten e-poçtlarının alt məlumatlarında görünən ixtiyari mətn
+          title: Əlavə alt məlumat mətni
+        title: Riayətlilik ayarları
+      danger_zone:
+        erase_all_data:
+          action: Veriləri sil
+          title: Bütün veriləri sil
+      purged_msg: Bütün e-poçt abunəlik veriləri silinir.
     export_domain_blocks:
       import:
         title: Əngəllənən domenləri daxilə köçür
       new:
         title: Əngəllənən domenləri daxilə köçür
     instances:
+      confirm_purge: Bu domendən veriləri həmişəlik silmək istədiyinizə əminsiniz?
       dashboard:
         instance_followers_measure: oradakı izləyicilərimiz
         instance_follows_measure: buradakı izləyiciləri
+      destroyed_msg: "%{domain} domenindən verilər artıq silinmək üçün növbədədir."
       moderation:
         title: Moderasiya
       moderation_notes:
         create: Moderasiya notu əlavə et
         description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
         title: Moderasiya notları
+      purge_description_html: Əgər bu domenin tamamilə oflayn olduğuna inanırsınızsa, deponuzdan bu domenə aid olan bütün hesab qeydlərini və əlaqəli veriləri silə bilərsiniz. Bu bir az vaxt aparacaq.
+      totals_time_period_hint_html: Aşağıdakı cəmlərə bütün vaxtlardakı verilər daxildir.
     reports:
       actions:
         suspend_description_html: Hesab və onun bütün məzmunları əlçatmaz olacaq və nəticədə silinəcək və onunla əlaqə qurmaq mümkün olmayacaq. 30 gün ərzində geri qaytarıla bilər. Bu hesaba aid bütün hesabatları bağlayır.
@@ -101,8 +119,12 @@ az:
       application: Tətbiq
       metadata: Meta veri
     system_checks:
+      elasticsearch_running_check:
+        message_html: Elasticsearch-a bağlana bilmədi. Lütfən çalışdığına əmin olun və ya tam mətn axtarışını sıradan çıxardın
       elasticsearch_version_check:
         message_html: 'Uyumlu olmayan Elasticsearch versiyası: %{value}'
+      upload_check_privacy_error_object_storage:
+        message_html: "<strong>Obyekt deponuz yanlış konfiqurasiya olunub. İstifadəçilərinizin məxfiliyi risk altındadır.</strong>"
     tags:
       updated_msg: Mövzu etiketi ayarları uğurla güncəlləndi
     trends:
@@ -118,6 +140,7 @@ az:
       next_steps: Moderasiya qərarını geri almaq üçün etirazı təsdiqləyə, ya da etirazı yox saya bilərsiniz.
       subject: "%{username}, %{instance} üzərindəki bir moderasiya qərarına etiraz edir"
   appearance:
+    advanced_settings: Qabaqcıl ayarlar
     animations_and_accessibility: Animasiyalar və erişiləbilənlik
     discovery: Kəşf et
     localization:
@@ -128,6 +151,7 @@ az:
     destroyed: Tətbiq uğurla silindi
     regenerate_token: Erişim tokenini təkrar yarat
     token_regenerated: Erişim tokeni uğurla yaradıldı
+    warning: Bu verilərə çox diqqətlə yanaşın. Bunları heç kəslə paylaşmayın!
     your_token: Erişim tokeniniz
   auth:
     captcha_confirmation:
@@ -162,6 +186,8 @@ az:
       account_status: Hesab statusu
       functional: Hesabınız tamamilə işləkdir.
       self_destruct: "%{domain} bağlandığı üçün, hesabınıza yalnız məhdud erişiminiz olacaq."
+  author_attribution:
+    example_title: Nümunə mətn
   challenge:
     hint_html: "<strong>İpucu:</strong> Sonrakı bir saat ərzində sizdən parolu soruşmayacağıq."
     invalid_password: Yararsız parol
@@ -170,19 +196,24 @@ az:
     confirm_password: Kimliyinizi doğrulamaq üçün hazırkı parolunuzu daxil edin
     proceed: Hesabı sil
     success_msg: Hesabınız uğurla silindi
-  edit_profile:
-    basic_information: Təməl məlumatlar
-    hint_html: "<strong>İnsanların hər kəsə açıq profilinizdə və göndərişlərinizin yanında nə göstərmək istədiyinizi özəlləşdirin.</strong> Doldurulmuş bir profilə və bir profil şəklinə sahib olduğunuz zaman digər şəxslərin sizi izləmə və sizinlə əlaqə qurma ehtimalı yüksəkdir."
+    warning:
+      data_removal: Göndərişləriniz və digər veriləriniz həmişəlik silinəcək
+  email_subscription_mailer:
+    notification:
+      footer:
+        privacy_html: E-poçtlar, Mastodon tərəfindən dəstəklənən %{domain} serverindən göndərilir. Bu serverin fərdi verilərinizi necə emal etdiyini anlamaq üçün <a href="%{privacy_policy_path}">Məxfilik Siyasətinə</a> baxın.
   exports:
     archive_takeout:
       hint_html: "<strong>Göndərişlərinizin və yüklədiyiniz medianın</strong> bir arxivini tələb edə bilərsiniz. Xaricə köçürülmüş verilər, istənilən uyumlu yazılım tərəfindən oxuna bilən ActivityPub formatında olacaq. Hər 7 gündə bir dəfə arxiv tələb edə bilərsiniz."
     domain_blocks: Domen əngəlləmələri
-    storage: Media anbarı
+    storage: Media deposu
   filters:
     contexts:
       public: Ümumi zaman xətləri
     edit:
       statuses_hint_html: Bu filtr, aşağıdakı açar sözləri ilə uyuşmasından asılı olmayaraq fərdi göndərişləri seçmək üçün tətbiq olunur. <a href="%{path}">Göndərişləri incələyin və ya filtrdən silin</a>.
+    errors:
+      invalid_context: Heç bir kontekts yoxdur və ya yararsız kontekts təqdim olunub
     index:
       contexts: "%{contexts} üzrə filtrlər"
       empty: Filtriniz yoxdur.
@@ -199,6 +230,7 @@ az:
     errors:
       incompatible_type: Seçilmiş daxilə köçürmə növü ilə uyumlu deyil
     preface: Başqa serverdən xaricə köçürdüyünüz veriləri (məsələn, izlədiyiniz və ya əngəllədiyiniz insanların siyahısını) daxilə köçürə bilərsiniz.
+    success: Veriləriniz uğurla yüklənib və zamanla emal olunacaq
     type_groups:
       constructive: İzlənilənlər və Əlfəcinlər
   invites:
@@ -211,17 +243,13 @@ az:
       otp: iki faktorlu kimlik doğrulama tətbiqi
       password: parol
     description_html: Əgər tanımadığınız bir fəaliyyəti görsəniz, parolunuzu dəyişdirməyi və iki faktorlu kimlik doğrulamanı fəallaşdırmağı düşünə bilərsiniz
-  mail_subscriptions:
-    unsubscribe:
-      emails:
-        notification_emails:
-          reblog: təkrar paylaşma bildirişi e-poçtları
   migrations:
     incoming_migrations: Fərqli bir hesabdan daşı
     incoming_migrations_html: Başqa bir hesabdan bu hesaba daşımaq üçün əvvəlcə <a href="%{path}">bir hesab alias-ı yaratmalısınız</a>.
     proceed_with_move: İzləyiciləri daşı
     warning:
       disabled_account: Hazırkı hesabınız daha sonra istifadəyə yararsız olacaq. Ancaq, verilərin xaricə köçürülməsinə, həmçinin təkrar aktivləşdirmə prosesinə erişə biləcəksiniz.
+      other_data: Başqa (göndərişləriniz və izlədiyiniz hesabların siyahısı daxil olmaqla) heç bir veri avtomatik olaraq danışmayacaq
   moderation:
     title: Moderasiya
   notification_mailer:
@@ -254,6 +282,8 @@ az:
     remove_selected_followers: Seçilmiş izləyiciləri çıxart
     remove_selected_follows: Seçilmiş istifadəçiləri izləmədən çıxart
     status: Hesab statusu
+  self_destruct:
+    lead_html: Təəssüf ki, <strong>%{domain}</strong> həmişəlik bağlanır. Əgər orda bir hesabınız varsa, onu istifadə etməyə davam edə bilməyəcəksiniz, ancaq hələ də verilərinizin bir nüsxəsini istəyə bilərsiniz.
   sessions:
     browsers:
       edge: Microsoft Edge
@@ -284,10 +314,8 @@ az:
     enabled: Köhnə göndərişləri avtomatik sil
     enabled_hint: Aşağıdakı istisnalardan heç birinə uyuşmadığı müddətcə, göndərişləriniz qeyd edilmiş yaş həddinə çatdıqda avtomatik silinir
     exceptions: İstisnalar
-    explanation: Göndərişlərin silinməsi bahalı əməliyyat olduğu üçün, server çox məşğul olmadığı zaman bu proses yavaş-yavaş icra edilir. Bu səbəbdən, bəzi göndərişləriniz yaş həddinə çatdıqdan bir müddət sonra silinə bilər.
     ignore_reblogs: Təkrar paylaşımları yox say
     interaction_exceptions: Qarşılıqlı əlaqələrə əsaslanan istisnalar
-    interaction_exceptions_explanation: Nəzərə alın ki, bir göndəriş sevimlilərə əlavə edilmə və ya təkrar paylaşma həddini keçdikdən sonra həmin həddin altına düşsə belə, onun silinəcəyinə zəmanət verilmir.
     keep_direct: Birbaşa mesajları saxla
     keep_direct_hint: Birbaşa yazdığınız mesajların heç biri silinməyəcək
     keep_media: Media qoşmaları olan göndərişləri saxla

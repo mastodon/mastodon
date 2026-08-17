@@ -1,0 +1,25 @@
+.details {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-top: 8px;
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    margin-bottom: 8px;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
+
+  :global(.icon) {
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: middle;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &[open] :global(.icon) {
+    transform: rotate(-180deg);
+  }
+}

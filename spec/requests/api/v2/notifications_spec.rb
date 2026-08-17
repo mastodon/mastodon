@@ -3,10 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Notifications' do
+  include_context 'with API authentication', oauth_scopes: 'read:notifications write:notifications'
+
   let(:user)    { Fabricate(:user, account_attributes: { username: 'alice' }) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read:notifications write:notifications' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   describe 'GET /api/v2/notifications/unread_count', :inline_jobs do
     subject do
@@ -323,7 +322,7 @@ RSpec.describe 'Notifications' do
         expect(response.content_type)
           .to start_with('application/json')
         expect(response.parsed_body[:partial_accounts].size).to be > 0
-        expect(response.parsed_body[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
+        expect(response.parsed_body[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :avatar_description, :bot, :id, :locked, :url)
         expect(response.parsed_body[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
         expect(response.parsed_body[:accounts].pluck(:id)).to include(recent_account.id.to_s)
       end

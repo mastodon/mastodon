@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper do
-  describe 'body_classes' do
-    context 'with a body class string from a controller' do
+  describe 'html_classes' do
+    context 'with non-default user settings' do
       before do
         user = Fabricate :user
         user.settings['web.use_system_font'] = true
@@ -15,17 +15,9 @@ RSpec.describe ApplicationHelper do
       end
 
       it 'uses the current theme and user settings classes in the result' do
-        expect(helper.body_classes)
-          .to match(/theme-default/)
-          .and match(/system-font/)
-          .and match(/reduce-motion/)
-      end
-
-      it 'includes values set via content_for' do
-        helper.content_for(:body_classes) { 'admin' }
-
-        expect(helper.body_classes)
-          .to match(/admin/)
+        expect(helper.html_classes)
+          .to include('system-font')
+          .and include('reduce-motion')
       end
 
       private
@@ -35,9 +27,18 @@ RSpec.describe ApplicationHelper do
           def current_account
             @current_account ||= Fabricate(:account, user: User.last)
           end
-
-          def current_theme = 'default'
         end
+      end
+    end
+  end
+
+  describe 'body_classes' do
+    context 'with a body class string from a controller' do
+      it 'includes values set via content_for' do
+        helper.content_for(:body_classes) { 'admin' }
+
+        expect(helper.body_classes)
+          .to include('admin')
       end
     end
   end
@@ -93,14 +94,14 @@ RSpec.describe ApplicationHelper do
     end
   end
 
-  describe 'available_sign_up_path' do
+  describe 'available_sign_up_url' do
     context 'when registrations are closed' do
       before do
         allow(Setting).to receive(:[]).with('registrations_mode').and_return 'none'
       end
 
       it 'redirects to joinmastodon site' do
-        expect(helper.available_sign_up_path).to match(/joinmastodon.org/)
+        expect(helper.available_sign_up_url).to match(/joinmastodon.org/)
       end
     end
 
@@ -112,13 +113,13 @@ RSpec.describe ApplicationHelper do
       end
 
       it 'redirects to joinmastodon site' do
-        expect(helper.available_sign_up_path).to match(/joinmastodon.org/)
+        expect(helper.available_sign_up_url).to match(/joinmastodon.org/)
       end
     end
 
     context 'when registrations are allowed' do
       it 'returns a link to the registration page' do
-        expect(helper.available_sign_up_path).to eq(new_user_registration_path)
+        expect(helper.available_sign_up_url).to eq(new_user_registration_url)
       end
     end
   end

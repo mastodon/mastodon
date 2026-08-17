@@ -75,6 +75,33 @@ RSpec.describe 'Credentials' do
       end
     end
 
+    context 'with client credentials' do
+      let(:application) { Fabricate(:application, scopes: 'read admin:write') }
+      let(:token) { Fabricate(:client_credentials_token, application: application, scopes: 'read admin:write') }
+      let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+
+      it 'returns http success and returns app information' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(response.parsed_body).to match(
+          a_hash_including(
+            id: token.application.id.to_s,
+            name: token.application.name,
+            website: token.application.website,
+            scopes: token.application.scopes.map(&:to_s),
+            redirect_uris: token.application.redirect_uris,
+            # Deprecated properties as of 4.3:
+            redirect_uri: token.application.redirect_uri.split.first,
+            vapid_key: Rails.configuration.x.vapid.public_key
+          )
+        )
+      end
+    end
+
     context 'without an oauth token' do
       let(:headers) { {} }
 

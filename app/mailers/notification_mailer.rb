@@ -15,52 +15,36 @@ class NotificationMailer < ApplicationMailer
 
   before_deliver :verify_functional_user
 
+  around_action :set_locale
+
   default to: -> { email_address_with_name(@user.email, @me.username) }
+
+  rescue_from(ActiveRecord::RecordNotFound) { false }
 
   layout 'mailer'
 
   def mention
-    return if @status.blank?
-
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @status.account.acct)
-    end
+    mail subject: default_i18n_subject(name: @status.account.acct)
   end
 
   def quote
-    return if @status.blank?
-
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @status.account.acct)
-    end
+    mail subject: default_i18n_subject(name: @status.account.acct)
   end
 
   def follow
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    mail subject: default_i18n_subject(name: @account.acct)
   end
 
   def favourite
-    return if @status.blank?
-
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    mail subject: default_i18n_subject(name: @account.acct)
   end
 
   def reblog
-    return if @status.blank?
-
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    mail subject: default_i18n_subject(name: @account.acct)
   end
 
   def follow_request
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    mail subject: default_i18n_subject(name: @account.acct)
   end
 
   private
@@ -74,11 +58,15 @@ class NotificationMailer < ApplicationMailer
   end
 
   def set_status
-    @status = @notification.target_status
+    @status = @notification.target_status || raise(ActiveRecord::RecordNotFound)
   end
 
   def set_account
     @account = @notification.from_account
+  end
+
+  def set_locale(&block)
+    locale_for_account(@me, &block)
   end
 
   def verify_functional_user

@@ -60,6 +60,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
   def trustworthy_attribution?(uri, attributed_to)
     return false if uri.nil? || attributed_to.nil?
+    return false if unsupported_uri_scheme?(uri) || unsupported_uri_scheme?(attributed_to)
 
     Addressable::URI.parse(uri).normalized_host.casecmp(Addressable::URI.parse(attributed_to).normalized_host).zero?
   end
@@ -92,7 +93,6 @@ class ActivityPub::FetchRemoteStatusService < BaseService
       existing_status = Status.remote.find_by(uri: uri)
       if existing_status&.distributable?
         Rails.logger.debug { "FetchRemoteStatusService - Got 404 for orphaned status with URI #{uri}, deleting" }
-        Tombstone.find_or_create_by(uri: uri, account: existing_status.account)
         RemoveStatusService.new.call(existing_status, redraft: false)
       end
     end

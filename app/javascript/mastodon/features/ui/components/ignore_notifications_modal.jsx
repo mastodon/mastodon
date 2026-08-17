@@ -12,6 +12,7 @@ import { closeModal } from 'mastodon/actions/modal';
 import { updateNotificationsPolicy } from 'mastodon/actions/notification_policies';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 
 export const IgnoreNotificationsModal = ({ filterType }) => {
   const dispatch = useDispatch();
@@ -48,31 +49,34 @@ export const IgnoreNotificationsModal = ({ filterType }) => {
   case 'for_limited_accounts':
     title = <FormattedMessage id='ignore_notifications_modal.limited_accounts_title' defaultMessage='Ignore notifications from moderated accounts?' />;
     break;
+  case 'for_bots':
+    title = <FormattedMessage id='ignore_notifications_modal.bots_title' defaultMessage='Ignore notifications from bots?' />;
+    break;
   }
 
   return (
     <div className='modal-root__modal safety-action-modal'>
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__header'>
-          <h1>{title}</h1>
+          <NavigationFocusTarget as='h1'>{title}</NavigationFocusTarget>
         </div>
 
-        <div className='safety-action-modal__bullet-points'>
-          <div>
+        <ul className='safety-action-modal__bullet-points'>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={InventoryIcon} /></div>
             <div><FormattedMessage id='ignore_notifications_modal.filter_to_review_separately' defaultMessage='You can review filtered notifications separately' /></div>
-          </div>
+          </li>
 
-          <div>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={PersonAlertIcon} /></div>
             <div><FormattedMessage id='ignore_notifications_modal.filter_to_act_users' defaultMessage="You'll still be able to accept, reject, or report users" /></div>
-          </div>
+          </li>
 
-          <div>
+          <li>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={ShieldQuestionIcon} /></div>
             <div><FormattedMessage id='ignore_notifications_modal.filter_to_avoid_confusion' defaultMessage='Filtering helps avoid potential confusion' /></div>
-          </div>
-        </div>
+          </li>
+        </ul>
 
         <div>
           <FormattedMessage id='ignore_notifications_modal.disclaimer' defaultMessage="Mastodon cannot inform users that you've ignored their notifications. Ignoring notifications will not stop the messages themselves from being sent." />

@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Announcements' do
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { 'read' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read'
 
   let!(:announcement) { Fabricate(:announcement) }
 

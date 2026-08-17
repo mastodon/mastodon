@@ -22,4 +22,8 @@ module SystemHelpers
   def frontend_translations(key)
     FRONTEND_TRANSLATIONS[key]
   end
+
+  def email_links(email)
+    URI.extract(email.text_part.to_s, %w(http https))
+  end
 end

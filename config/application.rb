@@ -58,7 +58,7 @@ Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 8.0
+    config.load_defaults 8.1
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -94,13 +94,7 @@ module Mastodon
       require 'mastodon/redis_configuration'
       ::REDIS_CONFIGURATION = Mastodon::RedisConfiguration.new
 
-      config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] != 'false'
-
-      if config.x.use_vips
-        require_relative '../lib/paperclip/vips_lazy_thumbnail'
-      else
-        require_relative '../lib/paperclip/lazy_thumbnail'
-      end
+      require_relative '../lib/paperclip/vips_lazy_thumbnail'
     end
 
     config.x.cache_buster = config_for(:cache_buster)

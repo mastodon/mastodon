@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback, useState } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
 import { apiGetDomainBlocks } from 'mastodon/api/domain_blocks';
@@ -19,14 +19,12 @@ const messages = defineMessages({
 const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const intl = useIntl();
   const [domains, setDomains] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [next, setNext] = useState<string | undefined>();
   const hasMore = !!next;
   const columnRef = useRef<ColumnRef>(null);
 
   useEffect(() => {
-    setLoading(true);
-
     void apiGetDomainBlocks()
       .then(({ domains, links }) => {
         const next = links.refs.find((link) => link.rel === 'next');
@@ -40,7 +38,7 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       .catch(() => {
         setLoading(false);
       });
-  }, [setLoading, setDomains, setNext]);
+  }, []);
 
   const handleLoadMore = useCallback(() => {
     setLoading(true);
@@ -62,6 +60,10 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
   const handleHeaderClick = useCallback(() => {
     columnRef.current?.scrollTop();
+  }, []);
+
+  const handleUnblock = useCallback((domain: string) => {
+    setDomains((prev) => prev.filter((d) => d !== domain));
   }, []);
 
   const emptyMessage = (
@@ -97,7 +99,7 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         bindToDocument={!multiColumn}
       >
         {domains.map((domain) => (
-          <Domain key={domain} domain={domain} />
+          <Domain key={domain} domain={domain} onUnblock={handleUnblock} />
         ))}
       </ScrollableList>
 

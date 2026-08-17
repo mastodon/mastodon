@@ -3,7 +3,6 @@
 import path from 'node:path';
 
 import js from '@eslint/js';
-import { globalIgnores } from 'eslint/config';
 import formatjs from 'eslint-plugin-formatjs';
 import importPlugin from 'eslint-plugin-import';
 import jsdoc from 'eslint-plugin-jsdoc';
@@ -11,7 +10,9 @@ import jsxA11Y from 'eslint-plugin-jsx-a11y';
 import promisePlugin from 'eslint-plugin-promise';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+// @ts-expect-error -- No types available for this package
 import storybook from 'eslint-plugin-storybook';
+import { globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -90,57 +91,6 @@ export const baseConfig = [
       'import/no-relative-packages': 'error',
       'import/no-self-import': 'error',
       'import/no-useless-path-segments': 'error',
-      'import/order': [
-        'error',
-        {
-          alphabetize: {
-            order: 'asc',
-          },
-
-          'newlines-between': 'always',
-
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            ['index', 'sibling'],
-            'object',
-          ],
-
-          pathGroups: [
-            {
-              pattern: '{react,react-dom,react-dom/client,prop-types}',
-              group: 'builtin',
-              position: 'after',
-            },
-            {
-              pattern: '{react-intl,intl-messageformat}',
-              group: 'builtin',
-              position: 'after',
-            },
-            {
-              pattern:
-                '{classnames,react-helmet,react-router,react-router-dom}',
-              group: 'external',
-              position: 'before',
-            },
-            {
-              pattern:
-                '{immutable,@reduxjs/toolkit,react-redux,react-immutable-proptypes,react-immutable-pure-component}',
-              group: 'external',
-              position: 'before',
-            },
-            {
-              pattern: '{mastodon/**}',
-              group: 'internal',
-              position: 'after',
-            },
-          ],
-
-          pathGroupsExcludedImportTypes: [],
-        },
-      ],
 
       'jsdoc/check-types': 'off',
       'jsdoc/no-undefined-types': 'off',
@@ -180,10 +130,11 @@ export default tseslint.config([
     'vendor/**/*',
     'streaming/**/*',
     '.bundle/**/*',
+    'storybook-static/**/*',
   ]),
   react.configs.flat.recommended,
   react.configs.flat['jsx-runtime'],
-  reactHooks.configs['recommended-latest'],
+  reactHooks.configs.flat.recommended,
   jsxA11Y.flatConfigs.recommended,
   importPlugin.flatConfigs.react,
   // @ts-expect-error -- For some reason the formatjs package exports an empty object?
@@ -290,6 +241,7 @@ export default tseslint.config([
       'react/jsx-tag-spacing': 'error',
       'react/jsx-wrap-multilines': 'error',
       'react/self-closing-comp': 'error',
+      'react/button-has-type': 'error',
     },
   },
   {
@@ -327,7 +279,7 @@ export default tseslint.config([
       tseslint.configs.stylisticTypeChecked,
       react.configs.flat.recommended,
       react.configs.flat['jsx-runtime'],
-      reactHooks.configs['recommended-latest'],
+      reactHooks.configs.flat.recommended,
       jsxA11Y.flatConfigs.recommended,
       importPlugin.flatConfigs.react,
       importPlugin.flatConfigs.typescript,
@@ -397,6 +349,7 @@ export default tseslint.config([
           allowNumber: true,
         },
       ],
+      '@typescript-eslint/non-nullable-type-assertion-style': 'off',
     },
   },
   {
@@ -416,6 +369,7 @@ export default tseslint.config([
     files: ['**/*.stories.ts', '**/*.stories.tsx', '.storybook/*'],
     rules: {
       'import/no-default-export': 'off',
+      'react-hooks/rules-of-hooks': 'off',
     },
   },
   {
@@ -423,6 +377,7 @@ export default tseslint.config([
     rules: {
       '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
       '@typescript-eslint/no-unnecessary-condition': 'off',
+      '@typescript-eslint/no-useless-default-assignment': 'off',
       '@typescript-eslint/prefer-nullish-coalescing': 'off',
     },
   },

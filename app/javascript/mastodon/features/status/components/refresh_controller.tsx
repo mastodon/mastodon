@@ -295,7 +295,7 @@ export const RefreshController: React.FC<{
   if (loadingState === 'loading') {
     return (
       <div
-        className='load-more load-gap'
+        className='load-more load-more--large'
         aria-busy
         aria-live='polite'
         aria-label={intl.formatMessage(messages.loadingInitial)}

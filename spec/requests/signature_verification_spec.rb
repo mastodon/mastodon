@@ -71,7 +71,47 @@ RSpec.describe 'signature verification concern' do
 
   context 'with an HTTP Signature (draft version)' do
     context 'with a known account' do
-      let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem) }
+      let!(:actor) { Fabricate(:account, username: 'bob', domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem, protocol: :activitypub) }
+
+      let(:actor_json) do
+        {
+          '@context': [
+            'https://www.w3.org/ns/activitystreams',
+            'https://w3id.org/security/v1',
+          ],
+          id: ActivityPub::TagManager.instance.uri_for(actor),
+          type: 'Person',
+          preferredUsername: 'bob',
+          inbox: 'https://remote.domain/inbox',
+          publicKey: {
+            id: 'https://remote.domain/users/bob#main-key',
+            owner: 'https://remote.domain/users/bob',
+            publicKeyPem: actor_keypair.public_key.to_pem,
+          },
+        }
+      end
+
+      context 'with an acct key ID' do
+        let(:signature_header) do
+          'keyId="acct:bob@remote.domain",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="' # rubocop:disable Layout/LineLength
+        end
+
+        it 'successfuly verifies signature', :aggregate_failures do
+          expect(signature_header).to eq build_signature_string(actor_keypair, 'acct:bob@remote.domain', 'get /activitypub/success', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
+
+          get '/activitypub/success', headers: {
+            'Host' => 'www.example.com',
+            'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
+            'Signature' => signature_header,
+          }
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body).to match(
+            signed_request: true,
+            signature_actor_id: actor.id.to_s
+          )
+        end
+      end
 
       context 'with a valid signature on a GET request' do
         let(:signature_header) do
@@ -92,6 +132,30 @@ RSpec.describe 'signature verification concern' do
             signed_request: true,
             signature_actor_id: actor.id.to_s
           )
+        end
+
+        context 'when the key material has changed' do
+          # Let the user be known with the default test keys
+          let!(:actor) { Fabricate(:account, username: 'bob', domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, protocol: :activitypub) }
+
+          # Needed to update the keypair
+          before { stub_key_requests }
+
+          it 'successfuly verifies signature after refreshing the account', :aggregate_failures do
+            expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
+
+            get '/activitypub/success', headers: {
+              'Host' => 'www.example.com',
+              'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT',
+              'Signature' => signature_header,
+            }
+
+            expect(response).to have_http_status(200)
+            expect(response.parsed_body).to match(
+              signed_request: true,
+              signature_actor_id: actor.id.to_s
+            )
+          end
         end
       end
 
@@ -144,6 +208,9 @@ RSpec.describe 'signature verification concern' do
           'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="SDMa4r/DQYMXYxVgYO2yEqGWWUXugKjVuz0I8dniQAk+aunzBaF2aPu+4grBfawAshlx1Xytl8lhb0H2MllEz16/tKY7rUrb70MK0w8ohXgpb0qs3YvQgdj4X24L1x2MnkFfKHR/J+7TBlnivq0HZqXm8EIkPWLv+eQxu8fbowLwHIVvRd/3t6FzvcfsE0UZKkoMEX02542MhwSif6cu7Ec/clsY9qgKahb9JVGOGS1op9Lvg/9y1mc8KCgD83U5IxVygYeYXaVQ6gixA9NgZiTCwEWzHM5ELm7w5hpdLFYxYOHg/3G3fiqJzpzNQAcCD4S4JxfE7hMI0IzVlNLT6A=="' # rubocop:disable Layout/LineLength
         end
 
+        # Signature verification will fail, so the key will be refetched
+        before { stub_key_requests }
+
         it 'fails to verify signature', :aggregate_failures do
           expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success?foo=42', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
 
@@ -162,6 +229,9 @@ RSpec.describe 'signature verification concern' do
       end
 
       context 'with a mismatching path' do
+        # Signature verification will fail, so the key will be refetched
+        before { stub_key_requests }
+
         it 'fails to verify signature', :aggregate_failures do
           get '/activitypub/alternative-path', headers: {
             'Host' => 'www.example.com',
@@ -313,6 +383,9 @@ RSpec.describe 'signature verification concern' do
       end
 
       context 'with a tampered path in a POST request' do
+        # Signature verification will fail, so the key will be refetched
+        before { stub_key_requests }
+
         it 'fails to verify signature', :aggregate_failures do
           post '/activitypub/alternative-path', params: 'Hello world', headers: {
             'Host' => 'www.example.com',
@@ -661,6 +734,11 @@ RSpec.describe 'signature verification concern' do
       match :via => [:get, :post], '/activitypub/alternative-path' => 'activitypub/tests#alternative_success'
       match :via => [:get, :post], '/activitypub/signature_required' => 'activitypub/tests#signature_required'
     end
+  end
+
+  def stub_key_requests
+    stub_request(:get, 'https://remote.domain/users/bob').to_return(status: 200, body: actor_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
+    stub_request(:get, 'https://remote.domain/users/bob#main-key').to_return(status: 200, body: actor_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
   end
 
   def activitypub_tests_controller

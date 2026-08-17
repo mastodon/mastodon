@@ -36,9 +36,8 @@ class ActivityPub::ContextsController < ActivityPub::BaseController
 
   def context_presenter
     first_page = ActivityPub::CollectionPresenter.new(
-      id: items_context_url(@conversation, page_params),
       type: :unordered,
-      part_of: items_context_url(@conversation),
+      part_of: context_url(@conversation),
       next: next_page,
       items: @items.map { |status| status.local? ? ActivityPub::TagManager.instance.uri_for(status) : status.uri }
     )
@@ -52,7 +51,7 @@ class ActivityPub::ContextsController < ActivityPub::BaseController
     page = ActivityPub::CollectionPresenter.new(
       id: items_context_url(@conversation, page_params),
       type: :unordered,
-      part_of: items_context_url(@conversation),
+      part_of: context_url(@conversation),
       next: next_page,
       items: @items.map { |status| status.local? ? ActivityPub::TagManager.instance.uri_for(status) : status.uri }
     )

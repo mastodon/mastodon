@@ -7,10 +7,12 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :web, safe_join([material_symbol('chevron_left'), t('settings.back')]), root_path
 
     n.item :software_updates,
-           safe_join([material_symbol('report'), t('admin.critical_update_pending')]),
+           safe_join(
+             SoftwareUpdate.urgent_pending? ? [material_symbol('report'), t('admin.critical_update_pending')] : [material_symbol('system_update_alt'), t('admin.update_available')]
+           ),
            admin_software_updates_path,
-           if: -> { Rails.configuration.x.mastodon.software_update_url.present? && current_user.can?(:view_devops) && SoftwareUpdate.urgent_pending? },
-           html: { class: 'warning' }
+           html: { class: SoftwareUpdate.urgent_pending? ? 'warning' : nil },
+           if: -> { Rails.configuration.x.mastodon.software_update_url.present? && current_user.can?(:view_devops) && SoftwareUpdate.pending? }
 
     n.item :profile, safe_join([material_symbol('person'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification}
     n.item :privacy, safe_join([material_symbol('globe'), t('privacy.title')]), settings_privacy_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/privacy}
@@ -75,6 +77,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :roles, safe_join([material_symbol('contact_mail'), t('admin.roles.title')]), admin_roles_path, highlights_on: %r{/admin/roles}, if: -> { current_user.can?(:manage_roles) }
       s.item :categories, safe_join([material_symbol('bookmarks'), t('admin.categories.title')]), admin_categories_path, highlights_on: %r{/admin/categories}, if: -> { current_user.can?(:manage_categories) }
       s.item :announcements, safe_join([material_symbol('campaign'), t('admin.announcements.title')]), admin_announcements_path, highlights_on: %r{/admin/announcements}, if: -> { current_user.can?(:manage_announcements) }
+      s.item :email_subscriptions, safe_join([material_symbol('mail'), t('admin.email_subscriptions.index.title')]), admin_email_subscriptions_path, highlights_on: %r{/admin/email_subscriptions}, if: -> { current_user.can?(:manage_settings) }
       s.item :custom_emojis, safe_join([material_symbol('mood'), t('admin.custom_emojis.title')]), admin_custom_emojis_path, highlights_on: %r{/admin/custom_emojis}, if: -> { current_user.can?(:manage_custom_emojis) }
       s.item :webhooks, safe_join([material_symbol('inbox'), t('admin.webhooks.title')]), admin_webhooks_path, highlights_on: %r{/admin/webhooks}, if: -> { current_user.can?(:manage_webhooks) }
       s.item :fasp, safe_join([material_symbol('extension'), t('admin.fasp.title')]), admin_fasp_providers_path, highlights_on: %r{/admin/fasp}, if: -> { current_user.can?(:manage_federation) } if Mastodon::Feature.fasp_enabled?

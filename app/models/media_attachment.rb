@@ -4,29 +4,30 @@
 #
 # Table name: media_attachments
 #
-#  id                          :bigint(8)        not null, primary key
-#  status_id                   :bigint(8)
-#  file_file_name              :string
-#  file_content_type           :string
-#  file_file_size              :integer
-#  file_updated_at             :datetime
-#  remote_url                  :string           default(""), not null
-#  created_at                  :datetime         not null
-#  updated_at                  :datetime         not null
-#  shortcode                   :string
-#  type                        :integer          default("image"), not null
-#  file_meta                   :json
-#  account_id                  :bigint(8)
-#  description                 :text
-#  scheduled_status_id         :bigint(8)
-#  blurhash                    :string
-#  processing                  :integer
-#  file_storage_schema_version :integer
-#  thumbnail_file_name         :string
-#  thumbnail_content_type      :string
-#  thumbnail_file_size         :integer
-#  thumbnail_updated_at        :datetime
-#  thumbnail_remote_url        :string
+#  id                               :bigint(8)        not null, primary key
+#  blurhash                         :string
+#  description                      :text
+#  file_content_type                :string
+#  file_file_name                   :string
+#  file_file_size                   :integer
+#  file_meta                        :json
+#  file_storage_schema_version      :integer
+#  file_updated_at                  :datetime
+#  processing                       :integer
+#  remote_url                       :string           default(""), not null
+#  shortcode                        :string
+#  thumbnail_content_type           :string
+#  thumbnail_file_name              :string
+#  thumbnail_file_size              :integer
+#  thumbnail_remote_url             :string
+#  thumbnail_storage_schema_version :integer
+#  thumbnail_updated_at             :datetime
+#  type                             :integer          default("image"), not null
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  account_id                       :bigint(8)
+#  scheduled_status_id              :bigint(8)
+#  status_id                        :bigint(8)
 #
 
 class MediaAttachment < ApplicationRecord
@@ -37,7 +38,10 @@ class MediaAttachment < ApplicationRecord
   enum :type, { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
   enum :processing, { queued: 0, in_progress: 1, complete: 2, failed: 3 }, prefix: true
 
-  MAX_DESCRIPTION_LENGTH = 1_500
+  SHORTCODE_LENGTH = 19
+
+  MAX_DESCRIPTION_LENGTH = 10_000
+  MAX_DESCRIPTION_HARD_LENGTH_LIMIT = 10_000
 
   IMAGE_LIMIT = 16.megabytes
   VIDEO_LIMIT = 99.megabytes
@@ -201,7 +205,7 @@ class MediaAttachment < ApplicationRecord
   remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
 
   validates :account, presence: true
-  validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }
+  validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }, if: :local?
   validates :file, presence: true, if: :local?
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
@@ -213,6 +217,14 @@ class MediaAttachment < ApplicationRecord
   scope :remote, -> { where.not(remote_url: '') }
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
   scope :updated_before, ->(value) { where(arel_table[:updated_at].lt(value)) }
+  scope :without_local_interaction, lambda {
+    where.not(Favourite.joins(:account).merge(Account.local).where(Favourite.arel_table[:status_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+      .where.not(Bookmark.where(Bookmark.arel_table[:status_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+      .where.not(Status.local.where(Status.arel_table[:in_reply_to_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+      .where.not(Status.local.where(Status.arel_table[:reblog_of_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+      .where.not(Quote.joins(:status).merge(Status.local).where(Quote.arel_table[:quoted_status_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+      .where.not(Quote.joins(:quoted_status).merge(Status.local).where(Quote.arel_table[:status_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+  }
 
   attr_accessor :skip_download
 
@@ -290,6 +302,10 @@ class MediaAttachment < ApplicationRecord
   after_post_process :set_meta
 
   class << self
+    def identified(identifier)
+      identifier.size == SHORTCODE_LENGTH ? find_by!(shortcode: identifier) : find(identifier)
+    end
+
     def supported_mime_types
       IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
     end

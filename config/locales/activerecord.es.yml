@@ -32,6 +32,12 @@ es:
           attributes:
             url:
               invalid: no es una URL válida
+        collection:
+          attributes:
+            collection_items:
+              too_many: son demasiados, no se permiten más de %{count}
+            tag:
+              unusable: podría no utilizarse
         doorkeeper/application:
           attributes:
             website:

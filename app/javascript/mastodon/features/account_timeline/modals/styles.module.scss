@@ -1,0 +1,108 @@
+@use '@/styles/mastodon/variables' as *;
+
+.noteCallout {
+  margin-bottom: 16px;
+}
+
+.noteInput {
+  min-height: 70px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
+  appearance: none;
+  resize: none;
+  margin-top: 4px;
+}
+
+.noteInput:focus-visible {
+  outline: var(--outline-focus-default);
+  outline-offset: 2px;
+}
+
+.fieldName,
+.fieldValue {
+  word-break: break-all;
+}
+
+.fieldValue {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+@media screen and (min-width: ($mobile-breakpoint + 1)) {
+  .joinShell {
+    > :global(.safety-action-modal__top) {
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      border-bottom-width: 1px;
+    }
+  }
+}
+
+.joinWrapper {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-primary);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 120px;
+  gap: 16px;
+
+  p,
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  h1 {
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: 600;
+  }
+}
+
+.joinBanner {
+  width: 120px;
+  height: 110px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 40px;
+    margin-top: 8px;
+  }
+
+  h3 {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+  }
+}
+
+.joinClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}

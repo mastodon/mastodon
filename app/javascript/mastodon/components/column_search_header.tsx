@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect, useRef } from 'react';
+import { useCallback, useState, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -12,11 +12,15 @@ export const ColumnSearchHeader: React.FC<{
   const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState('');
 
-  useEffect(() => {
+  // Reset the component when it turns from active to inactive.
+  // [More on this pattern](https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes)
+  const [previousActive, setPreviousActive] = useState(active);
+  if (active !== previousActive) {
+    setPreviousActive(active);
     if (!active) {
       setValue('');
     }
-  }, [active]);
+  }
 
   const handleChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {

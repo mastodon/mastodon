@@ -21,9 +21,12 @@
       - else
         %time.formatted{ datetime: invite.expires_at.iso8601, title: l(invite.expires_at) }
           = l invite.expires_at
-  - else
+  - elsif invite.expired?
     %td{ colspan: 2 }
       = t('invites.expired')
+  - else
+    %td{ colspan: 2 }
+      = t('invites.invalid')
 
   %td
     - if invite.user_role.present?

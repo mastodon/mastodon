@@ -59,6 +59,7 @@ export const InfoButton: React.FC = () => {
           >
             <FormattedMessage
               id='info_button.what_is_alt_text'
+              // eslint-disable-next-line formatjs/prefer-full-sentence
               defaultMessage='<h1>What is alt text?</h1>
 
             <p>Alt text provides image descriptions for people with vision impairments, low-bandwidth connections, or those seeking extra context.</p>

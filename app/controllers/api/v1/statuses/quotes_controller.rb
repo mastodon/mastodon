@@ -41,8 +41,8 @@ class Api::V1::Statuses::QuotesController < Api::V1::Statuses::BaseController
     if current_account&.id != @status.account_id
       domains = @statuses.filter_map(&:account_domain).uniq
       account_ids = @statuses.map(&:account_id).uniq
-      relations = current_account&.relations_map(account_ids, domains) || {}
-      @statuses.reject! { |status| StatusFilter.new(status, current_account, relations).filtered? }
+      current_account&.preload_relations!(account_ids, domains)
+      @statuses.reject! { |status| StatusFilter.new(status, current_account).filtered? }
     end
   end
 

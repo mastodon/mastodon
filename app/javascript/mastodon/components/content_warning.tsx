@@ -31,7 +31,7 @@ export const ContentWarning: React.FC<{
       <EmojiHTML
         as='span'
         htmlString={text}
-        extraEmojis={status.get('emoji') as List<CustomEmoji>}
+        extraEmojis={status.get('emojis') as List<CustomEmoji>}
       />
     </StatusBanner>
   );

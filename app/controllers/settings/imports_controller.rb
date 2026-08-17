@@ -13,6 +13,7 @@ class Settings::ImportsController < Settings::BaseController
     domain_blocking: 'blocked_domains_failures.csv',
     bookmarks: 'bookmarks_failures.csv',
     lists: 'lists_failures.csv',
+    custom_filters: 'custom_filters_failures.json',
   }.freeze
 
   TYPE_TO_HEADERS_MAP = {
@@ -58,6 +59,21 @@ class Settings::ImportsController < Settings::BaseController
             end
           end
         end
+
+        send_data export_data, filename: filename
+      end
+
+      format.json do
+        filename = TYPE_TO_FILENAME_MAP[@bulk_import.type.to_sym]
+
+        data_collection = { custom_filters: [] }
+        @bulk_import.rows.find_each do |row|
+          case @bulk_import.type.to_sym
+          when :custom_filters
+            data_collection[:custom_filters] << row.data
+          end
+        end
+        export_data = JSON.generate(data_collection)
 
         send_data export_data, filename: filename
       end

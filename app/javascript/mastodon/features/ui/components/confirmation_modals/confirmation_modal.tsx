@@ -2,26 +2,41 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 import { Button } from 'mastodon/components/button';
+import {
+  ModalShell,
+  ModalShellActions,
+  ModalShellBody,
+} from 'mastodon/components/modal_shell';
 
 export interface BaseConfirmationModalProps {
   onClose: () => void;
 }
 
+interface ConfirmationModalProps {
+  title: React.ReactNode;
+  titleId?: string;
+  message?: React.ReactNode;
+  confirm: React.ReactNode;
+  cancel?: React.ReactNode;
+  secondary?: React.ReactNode;
+  onSecondary?: () => void;
+  onConfirm: () => void | Promise<void>;
+  noCloseOnConfirm?: boolean;
+  extraContent?: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
+  updating?: boolean;
+  disabled?: boolean;
+  noFocusButton?: boolean;
+}
+
 export const ConfirmationModal: React.FC<
-  {
-    title: React.ReactNode;
-    message?: React.ReactNode;
-    confirm: React.ReactNode;
-    cancel?: React.ReactNode;
-    secondary?: React.ReactNode;
-    onSecondary?: () => void;
-    onConfirm: () => void;
-    closeWhenConfirm?: boolean;
-    extraContent?: React.ReactNode;
-  } & BaseConfirmationModalProps
+  ConfirmationModalProps & BaseConfirmationModalProps
 > = ({
   title,
+  titleId,
   message,
   confirm,
   cancel,
@@ -29,16 +44,26 @@ export const ConfirmationModal: React.FC<
   onConfirm,
   secondary,
   onSecondary,
-  closeWhenConfirm = true,
   extraContent,
+  children,
+  className,
+  updating,
+  disabled,
+  noCloseOnConfirm = false,
+  noFocusButton = false,
 }) => {
-  const handleClick = useCallback(() => {
-    if (closeWhenConfirm) {
-      onClose();
-    }
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
 
-    onConfirm();
-  }, [onClose, onConfirm, closeWhenConfirm]);
+      if (!noCloseOnConfirm) {
+        onClose();
+      }
+
+      void onConfirm();
+    },
+    [onClose, onConfirm, noCloseOnConfirm],
+  );
 
   const handleSecondary = useCallback(() => {
     onClose();
@@ -46,42 +71,55 @@ export const ConfirmationModal: React.FC<
   }, [onClose, onSecondary]);
 
   return (
-    <div className='modal-root__modal safety-action-modal'>
-      <div className='safety-action-modal__top'>
-        <div className='safety-action-modal__confirmation'>
+    <ModalShell onSubmit={handleSubmit}>
+      <ModalShellBody className={className}>
+        {noFocusButton ? (
+          <NavigationFocusTarget as='h1' id={titleId}>
+            {title}
+          </NavigationFocusTarget>
+        ) : (
           <h1>{title}</h1>
-          {message && <p>{message}</p>}
+        )}
+        {message && <p>{message}</p>}
 
-          {extraContent}
-        </div>
-      </div>
+        {extraContent ?? children}
+      </ModalShellBody>
 
-      <div className='safety-action-modal__bottom'>
-        <div className='safety-action-modal__actions'>
-          <button onClick={onClose} className='link-button'>
-            {cancel ?? (
-              <FormattedMessage
-                id='confirmation_modal.cancel'
-                defaultMessage='Cancel'
-              />
-            )}
-          </button>
-
-          {secondary && (
-            <>
-              <div className='spacer' />
-              <button onClick={handleSecondary} className='link-button'>
-                {secondary}
-              </button>
-            </>
+      <ModalShellActions>
+        <button onClick={onClose} className='link-button' type='button'>
+          {cancel ?? (
+            <FormattedMessage
+              id='confirmation_modal.cancel'
+              defaultMessage='Cancel'
+            />
           )}
+        </button>
 
-          {/* eslint-disable-next-line jsx-a11y/no-autofocus -- we are in a modal and thus autofocusing is justified */}
-          <Button onClick={handleClick} autoFocus>
-            {confirm}
-          </Button>
-        </div>
-      </div>
-    </div>
+        {secondary && (
+          <>
+            <div className='spacer' />
+            <button
+              onClick={handleSecondary}
+              className='link-button'
+              type='button'
+              disabled={disabled}
+            >
+              {secondary}
+            </button>
+          </>
+        )}
+
+        {/* eslint-disable jsx-a11y/no-autofocus -- we are in a modal and thus autofocusing is justified */}
+        <Button
+          type='submit'
+          loading={updating}
+          disabled={disabled}
+          autoFocus={!noFocusButton}
+        >
+          {confirm}
+        </Button>
+        {/* eslint-enable */}
+      </ModalShellActions>
+    </ModalShell>
   );
 };

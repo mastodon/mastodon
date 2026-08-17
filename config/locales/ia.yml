@@ -10,7 +10,6 @@ ia:
     followers:
       one: Sequitor
       other: Sequitores
-    following: Sequente
     instance_actor_flash: Iste conto es un agente virtual usate pro representar le servitor mesme e non alcun usator individual. Illo es usate pro le federation e non debe esser suspendite.
     last_active: ultime activitate
     link_verified_on: Le proprietate de iste ligamine ha essite verificate le %{date}
@@ -655,7 +654,6 @@ ia:
       action_log: Registro de inspection
       action_taken_by: Mesura prendite per
       actions:
-        delete_description_html: Le messages reportate essera delite e un sanction essera registrate pro adjutar te a prender mesuras adequate in caso de futur infractiones committite desde le mesme conto.
         mark_as_sensitive_description_html: Le files multimedial in le messages reportate essera marcate como sensibile e un sanction essera registrate pro adjutar te a prender mesuras adequate in caso de futur infractiones committite desde le mesme conto.
         other_description_html: Vider plus optiones pro controlar le comportamento del conto e personalisar le communication al conto signalate.
         resolve_description_html: Necun mesura essera prendite contra le conto denunciate, necun sanction registrate, e le reporto essera claudite.
@@ -681,7 +679,6 @@ ia:
       confirm: Confirmar
       confirm_action: Confirmar le mesura de moderation contra %{acct}
       created_at: Reportate
-      delete_and_resolve: Deler le messages
       forwarded: Reexpedite
       forwarded_replies_explanation: Iste reporto proveni de un usator remote e concerne contento remote. Illo te ha essite reexpedite perque le contento reportate es in responsa a un usator tue.
       forwarded_to: Reexpedite a %{domain}
@@ -709,7 +706,6 @@ ia:
       resolved_msg: Reporto resolvite con successo!
       skip_to_actions: Saltar al actiones
       status: Stato
-      statuses: Contento reportate
       statuses_description_html: Le contento offensive essera citate in communication con le conto reportate
       summary:
         action_preambles:
@@ -855,11 +851,6 @@ ia:
           authenticated: Solmente usatores authenticate
           disabled: Requirer un rolo de usator specific
           public: Omnes
-      landing_page:
-        values:
-          about: A proposito
-          local_feed: Canal local
-          trends: Tendentias
       registrations:
         moderation_recommandation: Per favor assecura te de haber un equipa de moderation adequate e reactive ante de aperir le inscription a omnes!
         preamble: Controla qui pote crear un conto sur tu servitor.
@@ -1209,7 +1200,6 @@ ia:
   application_mailer:
     notification_preferences: Cambiar preferentias de e-mail
     salutation: "%{name},"
-    settings: 'Cambiar preferentias de e-mail: %{link}'
     unsubscribe: Cancellar subscription
     view: 'Visita:'
     view_profile: Vider profilo
@@ -1385,8 +1375,6 @@ ia:
       your_appeal_pending: Tu ha submittite un appello
       your_appeal_rejected: Tu appello ha essite rejectate
   edit_profile:
-    basic_information: Information basic
-    hint_html: "<strong>Personalisa lo que le personas vide sur tu profilo public e presso tu messages.</strong> Il es plus probabile que altere personas te seque e interage con te quando tu ha un profilo complete e un photo."
     other: Alteres
   emoji_styles:
     auto: Automatic
@@ -1426,10 +1414,8 @@ ia:
     mutes: Tu ha silentiate
     storage: Immagazinage multimedial
   featured_tags:
-    add_new: Adder nove
     errors:
       limit: Tu ha jam mittite in evidentia le maxime numero de hashtags
-    hint_html: "<strong>Monstra tu plus importante hashtags sur tu profilo.</strong> Un excellente instrumento pro tener tracia de tu labores creative e projectos de longe termino, le hashtags que tu mitte in evidentia appare prominentemente sur tu profilo e permitte le accesso rapide a tu proprie messages."
   filters:
     contexts:
       account: Profilos
@@ -1622,21 +1608,6 @@ ia:
     failed_sign_in_html: Tentativa de authentication fallite con %{method} ab %{ip} (%{browser})
     successful_sign_in_html: Apertura de session succedite con %{method} desde %{ip} (%{browser})
     title: Historia de authentication
-  mail_subscriptions:
-    unsubscribe:
-      action: Si, cancellar subscription
-      complete: Desubscribite
-      confirmation_html: Es tu secur de voler cancellar le subscription al %{type} de Mastodon sur %{domain} pro tu adresse de e-mail %{email}? Tu pote sempre resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
-      emails:
-        notification_emails:
-          favourite: notificationes de favorites in e-mail
-          follow: notificationes de sequimento in e-mail
-          follow_request: requestas de sequimento in e-mail
-          mention: notificationes de mentiones in e-mail
-          reblog: notificationes de impulsos in e-mail
-      resubscribe_html: Si tu ha cancellate le subscription in error, tu pote resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
-      success_html: Tu non recipera plus %{type} pro Mastodon sur %{domain} a tu adresse de e-mail %{email}.
-      title: Desubcriber
   media_attachments:
     validations:
       images_and_video: Impossibile annexar un video a un message que jam contine imagines
@@ -1672,7 +1643,6 @@ ia:
       disabled_account: Tu conto actual non essera plenmente usabile postea. Nonobstante, tu habera accesso al exportation de datos e al reactivation.
       followers: Iste action transferera tote le sequitores del conto actual al conto nove
       only_redirect_html: Como alternativa, tu pote <a href="%{path}">poner solmente un redirection sur tu profilo</a>.
-      other_data: Nulle altere datos essera migrate automaticamente
       redirect: Le profilo de tu conto actual essera actualisate con un aviso de redirection e excludite de recercas
   moderation:
     title: Moderation
@@ -1956,11 +1926,9 @@ ia:
     enabled: Deler automaticamente le messages ancian
     enabled_hint: Dele automaticamente tu messages un vice que illos attinge un limine de etate specificate, salvo que illes concorda un del exceptiones infra
     exceptions: Exceptiones
-    explanation: Pois que deler messages es un operation costose, isto es facite lentemente in le tempore quando le servitor non es alteremente occupate. Pro iste ration, tu messages pote esser delite un poco post que illos attinge le limine de etate.
     ignore_favs: Ignorar favorites
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Exceptiones basate sur interactiones
-    interaction_exceptions_explanation: Nota que il non ha garantia que le messages essera delite si illos va sub le limine de favorites o impulsos post haber lo superate un vice.
     keep_direct: Mantener le messages directe
     keep_direct_hint: Non dele alcun de tu messages directe
     keep_media: Conservar messages con annexos multimedial
@@ -2001,11 +1969,6 @@ ia:
     past_preamble_html: Nos ha cambiate nostre conditiones de servicio desde tu ultime visita. Nos te invita a revider le conditiones actualisate.
     review_link: Revider le conditiones de servicio
     title: Le conditiones de servicio de %{domain} cambia
-  themes:
-    contrast: Mastodon (Alte contrasto)
-    default: Mastodon (Obscur)
-    mastodon-light: Mastodon (Clar)
-    system: Automatic (usar thema del systema)
   time:
     formats:
       default: "%d %b %Y, %H:%M"

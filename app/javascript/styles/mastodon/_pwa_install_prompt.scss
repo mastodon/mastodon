@@ -10,7 +10,7 @@
   transform: translateX(-50%);
 
   .dismissable-banner {
-    background-color: $white;
+    background-color: var(--color-white);
   }
 
   &__title {
@@ -20,7 +20,7 @@
 
   &__callout {
     margin-bottom: 15px;
-    color: $darker-text-color;
+    color: var(--color-text-tertiary);
     font-size: 14px;
   }
 

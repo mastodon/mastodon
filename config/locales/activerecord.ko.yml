@@ -32,6 +32,12 @@ ko:
           attributes:
             url:
               invalid: 올바른 URL이 아닙니다
+        collection:
+          attributes:
+            collection_items:
+              too_many: 너무 많습니다. %{count}개를 초과할 수 없습니다
+            tag:
+              unusable: 사용할 수 없음
         doorkeeper/application:
           attributes:
             website:

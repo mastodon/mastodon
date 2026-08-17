@@ -88,6 +88,13 @@ export const PolicyControls: React.FC = () => {
     [dispatch],
   );
 
+  const handleFilterBots = useCallback(
+    (value: string) => {
+      changeFilter(dispatch, 'for_bots', value);
+    },
+    [dispatch],
+  );
+
   if (!notificationPolicy) return null;
 
   const options = [
@@ -206,6 +213,24 @@ export const PolicyControls: React.FC = () => {
             <FormattedMessage
               id='notifications.policy.filter_limited_accounts_hint'
               defaultMessage='Limited by server moderators'
+            />
+          }
+        />
+
+        <SelectWithLabel
+          value={notificationPolicy.for_bots}
+          onChange={handleFilterBots}
+          options={options}
+          label={
+            <FormattedMessage
+              id='notifications.policy.filter_bots_title'
+              defaultMessage='Bots'
+            />
+          }
+          hint={
+            <FormattedMessage
+              id='notifications.policy.filter_bots_hint'
+              defaultMessage='Accounts marked as automated'
             />
           }
         />

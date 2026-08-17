@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { Button } from 'mastodon/components/button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import StatusCheckBox from 'mastodon/features/report/containers/status_check_box_container';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 
 const mapStateToProps = (state, { accountId }) => ({
   availableStatusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])),
@@ -37,7 +38,9 @@ class Statuses extends PureComponent {
 
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.statuses.title' defaultMessage='Are there any posts that back up this report?' /></h3>
+        <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
+          <FormattedMessage id='report.statuses.title' defaultMessage='Are there any posts that back up this report?' />
+        </NavigationFocusTarget>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.statuses.subtitle' defaultMessage='Select all that apply' /></p>
 
         <div className='report-dialog-modal__statuses'>

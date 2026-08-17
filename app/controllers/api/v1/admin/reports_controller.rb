@@ -16,6 +16,7 @@ class Api::V1::Admin::ReportsController < Api::BaseController
 
   FILTER_PARAMS = %i(
     resolved
+    unresolved
     account_id
     target_account_id
   ).freeze

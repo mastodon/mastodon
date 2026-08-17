@@ -6,15 +6,17 @@ import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
 import { fetchRelationships } from './accounts';
 import { importFetchedAccounts } from './importer';
 
+const DIRECTORY_FETCH_LIMIT = 20;
+
 export const fetchDirectory = createDataLoadingThunk(
   'directory/fetch',
   async (params: Parameters<typeof apiGetDirectory>[0]) =>
-    apiGetDirectory(params),
+    apiGetDirectory(params, DIRECTORY_FETCH_LIMIT),
   (data, { dispatch }) => {
     dispatch(importFetchedAccounts(data));
     dispatch(fetchRelationships(data.map((x) => x.id)));
 
-    return { accounts: data };
+    return { accounts: data, isLast: data.length < DIRECTORY_FETCH_LIMIT };
   },
 );
 
@@ -26,12 +28,15 @@ export const expandDirectory = createDataLoadingThunk(
       'items',
     ]) as ImmutableList<unknown>;
 
-    return apiGetDirectory({ ...params, offset: loadedItems.size }, 20);
+    return apiGetDirectory(
+      { ...params, offset: loadedItems.size },
+      DIRECTORY_FETCH_LIMIT,
+    );
   },
   (data, { dispatch }) => {
     dispatch(importFetchedAccounts(data));
     dispatch(fetchRelationships(data.map((x) => x.id)));
 
-    return { accounts: data };
+    return { accounts: data, isLast: data.length < DIRECTORY_FETCH_LIMIT };
   },
 );

@@ -5,14 +5,14 @@
 # Table name: follow_requests
 #
 #  id                :bigint(8)        not null, primary key
+#  languages         :string           is an Array
+#  notify            :boolean          default(FALSE), not null
+#  show_reblogs      :boolean          default(TRUE), not null
+#  uri               :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  account_id        :bigint(8)        not null
 #  target_account_id :bigint(8)        not null
-#  show_reblogs      :boolean          default(TRUE), not null
-#  uri               :string
-#  notify            :boolean          default(FALSE), not null
-#  languages         :string           is an Array
 #
 
 class FollowRequest < ApplicationRecord
@@ -51,7 +51,7 @@ class FollowRequest < ApplicationRecord
     false # Force uri_for to use uri attribute
   end
 
-  before_validation :set_uri, only: :create
+  before_validation :set_uri, on: :create
   after_commit :invalidate_follow_recommendations_cache
 
   private

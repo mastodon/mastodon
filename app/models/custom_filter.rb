@@ -30,6 +30,8 @@ class CustomFilter < ApplicationRecord
 
   EXPIRATION_DURATIONS = [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].freeze
 
+  TITLE_LENGTH_LIMIT = 256
+
   include Expireable
   include Redisable
 
@@ -41,6 +43,7 @@ class CustomFilter < ApplicationRecord
   accepts_nested_attributes_for :keywords, reject_if: :all_blank, allow_destroy: true
 
   validates :title, :context, presence: true
+  validates :title, length: { maximum: TITLE_LENGTH_LIMIT }
   validate :context_must_be_valid
 
   normalizes :context, with: ->(context) { context.map(&:strip).filter_map(&:presence) }
@@ -65,6 +68,8 @@ class CustomFilter < ApplicationRecord
   end
 
   def self.cached_filters_for(account_id)
+    raise ArgumentError unless account_id.is_a?(String) || account_id.is_a?(Integer)
+
     active_filters = Rails.cache.fetch("filters:v3:#{account_id}") do
       filters_hash = {}
 
@@ -112,8 +117,8 @@ class CustomFilter < ApplicationRecord
     @should_invalidate_cache = false
 
     Rails.cache.delete("filters:v3:#{account_id}")
-    redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
-    redis.publish("timeline:system:#{account_id}", Oj.dump(event: :filters_changed))
+    redis.publish("timeline:#{account_id}", { event: :filters_changed }.to_json)
+    redis.publish("timeline:system:#{account_id}", { event: :filters_changed }.to_json)
   end
 
   private

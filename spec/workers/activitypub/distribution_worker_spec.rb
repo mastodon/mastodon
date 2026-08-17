@@ -19,9 +19,10 @@ RSpec.describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to followers' do
-        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything]]) do
-          subject.perform(status.id)
-        end
+        subject.perform(status.id)
+
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything)
       end
     end
 
@@ -31,9 +32,10 @@ RSpec.describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to followers' do
-        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything]]) do
-          subject.perform(status.id)
-        end
+        subject.perform(status.id)
+
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything)
       end
     end
 
@@ -46,8 +48,52 @@ RSpec.describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to mentioned accounts' do
-        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'https://foo.bar/inbox', anything]]) do
-          subject.perform(status.id)
+        subject.perform(status.id)
+
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(match_json_values(type: 'Create'), status.account.id, 'https://foo.bar/inbox', anything)
+      end
+    end
+
+    context 'with a reblog' do
+      before do
+        follower.follow!(reblog.account)
+      end
+
+      context 'when the reblogged status is not private' do
+        let(:status) { Fabricate(:status) }
+        let(:reblog) { Fabricate(:status, reblog: status) }
+
+        it 'delivers an activity without inlining the status' do
+          expected_json = {
+            type: 'Announce',
+            object: ActivityPub::TagManager.instance.uri_for(status),
+          }
+
+          subject.perform(reblog.id)
+
+          expect(ActivityPub::DeliveryWorker)
+            .to have_enqueued_sidekiq_job(match_json_values(expected_json), reblog.account.id, 'http://example.com', anything)
+        end
+      end
+
+      context 'when the reblogged status is private' do
+        let(:status) { Fabricate(:status, visibility: :private) }
+        let(:reblog) { Fabricate(:status, reblog: status, account: status.account) }
+
+        it 'delivers an activity that inlines the status' do
+          expected_json = {
+            type: 'Announce',
+            object: a_hash_including({
+              id: ActivityPub::TagManager.instance.uri_for(status),
+              type: 'Note',
+            }),
+          }
+
+          subject.perform(reblog.id)
+
+          expect(ActivityPub::DeliveryWorker)
+            .to have_enqueued_sidekiq_job(match_json_values(expected_json), reblog.account.id, 'http://example.com', anything)
         end
       end
     end

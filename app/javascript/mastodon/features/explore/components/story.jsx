@@ -58,7 +58,7 @@ export const Story = ({
         </a>
 
         <div className='story__details__shared'>
-          {author ? <FormattedMessage id='link_preview.author' className='story__details__shared__author' defaultMessage='By {name}' values={{ name: authorAccount ? <AuthorLink accountId={authorAccount} /> : <strong>{author}</strong> }} /> : <span />}
+          {author ? <FormattedMessage id='link_preview.author' className='story__details__shared__author' defaultMessage='By {name}' values={{ name: authorAccount ? <AuthorLink accountId={authorAccount} /> : <strong>{author}</strong> }} tagName='span' /> : <span />}
           {typeof sharedTimes === 'number' ? <Link className='story__details__shared__pill' to={`/links/${encodeURIComponent(url)}`}><ShortNumber value={sharedTimes} renderer={sharesCountRenderer} /></Link> : <Skeleton width='10ch' />}
         </div>
       </div>

@@ -4,7 +4,6 @@ fo:
     hints:
       account:
         attribution_domains: Eitt á hvørja reglu. Tað verjir fyri skeivum tilsipingum.
-        discoverable: Tínir almennu postar og tín vangi kunnu vera drigin fram og viðmæld ymsa staðni í Mastodon og vangin hjá tær kann vera viðmæltur øðrum brúkarum.
         display_name: Títt fulla navn og títt stuttliga navn.
         fields: Heimasíðan hjá tær, fornøvn, aldur ella hvat tú vil.
         indexable: Almennu postar tínir kunnu vera sjónligir í leitiúrslitum á Mastodon. Óansæð, so kunnu fólk, sum hava samvirkað við tínar postar, finna teir.
@@ -61,12 +60,8 @@ fo:
         setting_default_quote_policy_private: Postar, sum einans eru fyri fylgjarar á Mastodon, kunnu ikki siterast av øðrum.
         setting_default_quote_policy_unlisted: Tá fólk sitera teg, so vera teirra postar eisini fjaldir frá tíðarlinjum við ráki.
         setting_default_sensitive: Viðkvæmar miðlafílur eru fjaldar og kunnu avdúkast við einum klikki
-        setting_display_media_default: Fjal miðlafílur, sum eru merktar sum viðkvæmar
-        setting_display_media_hide_all: Fjal altíð miðlafílur
-        setting_display_media_show_all: Vís altíð miðlafílur
         setting_emoji_style: Hvussu kenslutekn vera víst. "Sjálvvirkandi" roynir at brúka upprunalig kenslutekn, men fellir aftur á Twitter kenslutekn í eldri kagum.
         setting_quick_boosting_html: Tá hetta er virkið, hendir stimbranin beinanvegin tá trýst verður á %{boost_icon} Stimbranar-ímyndin, í staðin fyri at stimbranar/siterings-valmyndin verður latin um. Flytir siteringsmøguleikan til %{options_icon} (Valmøguleikar) valmyndina.
-        setting_system_scrollbars_ui: Er einans viðkomandi fyri skriviborðskagar grundaðir á Safari og Chrome
         setting_use_blurhash: Gradientar eru grundaðir á litirnar av fjaldu myndunum, men grugga allar smálutir
         setting_use_pending_items: Fjal tíðarlinjudagføringar aftan fyri eitt klikk heldur enn at skrulla tilføringina sjálvvirkandi
         username: Tú kanst brúka bókstavir, tøl og botnstrikur
@@ -88,7 +83,7 @@ fo:
         activity_api_enabled: Tal av lokalt útgivnum postum, virknum brúkarum og nýggjum skrásetingum býtt vikuliga
         app_icon: WEBP, PNG, GIF ella JPG. Býtir vanligu ikonina á fartelefoneindum um við eina ser-ikon.
         backups_retention_period: Brúkarar hava møguleika at gera trygdaravrit av teirra postum, sum tey kunnu taka niður seinni. Tá hetta er sett til eitt virði størri enn 0, so verða hesi trygdaravrit strikaði av sær sjálvum frá tínar goymslu eftir ásetta talið av døgum.
-        bootstrap_timeline_accounts: Hesar kontur verða festar ovast á listanum yvir brúkarar, sum tey nýggju verða mælt til at fylgja.
+        bootstrap_timeline_accounts: Hesar konturnar verða festar ovast í fylgjaratilmælunum hjá nýggjum brúkarum. Kom við einum komma-skildum lista av kontum.
         closed_registrations_message: Víst tá stongt er fyri tilmeldingum
         content_cache_retention_period: Allir postar frá øðrum ambætarum (íroknað stimbranir og svar) verða strikaði eftir ásetta talið av døgum, óansæð hvussu lokalir brúkarar hava samvirkað við hesar postar. Hetta fevnir eisini um postar, sum lokalir brúkarar hava bókamerkt ella yndismerkt. Privatar umrøður millum brúkarar frá ymiskum ambætarum verða eisini burturmistar og ómøguligar at endurskapa. Brúk av hesi stillingini er einans hugsað til serligar støður og oyðileggur nógv, sum brúkarar vænta av einum vanligum ambætara.
         custom_css: Tú kanst seta títt egna snið upp í net-útgávuni av Mastodon.
@@ -111,6 +106,7 @@ fo:
         thumbnail: Ein mynd í lutfallinum 2:1, sum verður víst saman við ambætaraupplýsingunum hjá tær.
         trendable_by_default: Loyp uppum serskilda eftirkannan av tilfari, sum er vælumtókt. Einstakir lutir kunnu framvegis strikast frá listum við vælumtóktum tilfari seinni.
         trends: Listar við vælumtóktum tilfari vísa, hvørjir postar, frámerki og tíðindasøgur hava framburð á tínum ambætara.
+        wrapstodon: Bjóða lokalum brúkarum at gera ein stuttligan samandrátt av teirra Mastodon-nýtslu í árinum. Hendan funkan er tøk millum 10. og 31. desember hvørt ár og verður bjóðað brúkarum, ið hava gjørt í minsta lagi eitt alment ella stilt alment uppslag og hava nýtt í minsta lagi eitt frámerki í árinum.
       form_challenge:
         current_password: Tú ert á veg til eitt trygt øki
       imports:
@@ -152,7 +148,6 @@ fo:
         jurisdiction: Lista landið, har sum tann, ið rindar rokningarnar, livir. Er tað eitt felag ella ein onnur eind, lista landið, har tað er skrásett, umframt býin, økið, umveldið ella statin, alt eftir hvat er hóskandi.
         min_age: Eigur ikki at vera undir lægsta aldri, sum lógirnar í tínum rættarøki krevja.
       user:
-        chosen_languages: Tá hetta er valt, verða einans postar í valdum málum vístir á almennum tíðarlinjum
         date_of_birth:
           one: Vit mugu tryggja okkum, at tú er í minsta lagi %{count} fyri at brúka %{domain}. Vit goyma ikki hesar upplýsingar.
           other: Vit mugu tryggja okkum, at tú er í minsta lagi %{count} ár fyri at brúka %{domain}. Vit goyma ikki hesar upplýsingar.
@@ -163,6 +158,7 @@ fo:
         name: Almenna navnið á leiklutinum, um leikluturin er settur at verða vístur sum eitt tignarmerki
         permissions_as_keys: Brúkarar við hesum leiklutinum fara at fáa atgongd til...
         position: Hægri leiklutur er avgerandi fyri loysn av ósemjum í ávísum støðum. Ávísar atgerðir kunnu einans verða gjørdar móti leiklutum, sum hava eina lægri raðfesting
+        require_2fa: Krav verður sett til brúkarar við hesum leiklutinum at seta upp váttan í tveimum stigum fyri at brúka Mastodon
       username_block:
         allow_with_approval: Í staðin fyri at forða heilt fyri skráseting, fara samsvarandi skrásetingar at krevja, at tú góðkennir tær
         comparison: Vinarliga gev Scunthorpe-trupulleikanum gætur, tá tú blokerar lutvís samsvar
@@ -174,7 +170,6 @@ fo:
     labels:
       account:
         attribution_domains: Heimasíður, sum hava loyvi at sipa til tín
-        discoverable: Framheva vanga og postar í uppdagingar-algoritmum
         fields:
           name: Spjaldur
           value: Innihald
@@ -222,6 +217,7 @@ fo:
         email: Teldubrævabústaður
         expires_in: Endar aftan á
         fields: Metadátur hjá vanganum
+        filter_action: Filtrera atgerð
         header: Høvd
         honeypot: "%{label} (ikki fylla út)"
         inbox_url: URL'ur hjá innbakkanum hjá reiðlagnum
@@ -238,6 +234,8 @@ fo:
         setting_always_send_emails: Send altíð fráboðanir við telduposti
         setting_auto_play_gif: Spæl teknimyndagjørdar GIFar sjálvvirkandi
         setting_boost_modal: Stýr hvussu stimbranir síggjast
+        setting_color_scheme: Litskipan
+        setting_contrast: Kontrastur
         setting_default_language: Mál, sum verður brúkt til postar
         setting_default_privacy: Postar sýni
         setting_default_quote_policy: Hvør kann sitera
@@ -312,6 +310,7 @@ fo:
         thumbnail: Ambætarasmámynd
         trendable_by_default: Loyv vælumtóktum tilfari uttan at viðgera tað fyrst
         trends: Loyv ráki
+        wrapstodon: Ger Wrapstodon virkið
       interactions:
         must_be_follower: Blokera fráboðanum frá teimum, sum ikki fylgja tær
         must_be_following: Blokera fráboðanum frá teimum, tú ikki fylgir
@@ -372,9 +371,9 @@ fo:
         jurisdiction: Løgdømi
         min_age: Lægsti aldur
       user:
-        date_of_birth_1i: Dagur
+        date_of_birth_1i: Ár
         date_of_birth_2i: Mánaði
-        date_of_birth_3i: Ár
+        date_of_birth_3i: Dagur
         role: Leiklutur
         time_zone: Tíðarsona
       user_role:
@@ -383,6 +382,7 @@ fo:
         name: Navn
         permissions_as_keys: Loyvi
         position: Raðfesting
+        require_2fa: Krev váttan í tveimum stigum
       username_block:
         allow_with_approval: Loyv skrásetingum við góðkenning
         comparison: Samanberingarmetoda

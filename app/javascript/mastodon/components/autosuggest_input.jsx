@@ -9,33 +9,10 @@ import Overlay from 'react-overlays/Overlay';
 
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 
-import AutosuggestEmoji from './autosuggest_emoji';
+import { AutosuggestEmoji } from './autosuggest_emoji';
 import { AutosuggestHashtag } from './autosuggest_hashtag';
-
-const textAtCursorMatchesToken = (str, caretPosition, searchTokens) => {
-  let word;
-
-  let left  = str.slice(0, caretPosition).search(/\S+$/);
-  let right = str.slice(caretPosition).search(/\s/);
-
-  if (right < 0) {
-    word = str.slice(left);
-  } else {
-    word = str.slice(left, right + caretPosition);
-  }
-
-  if (!word || word.trim().length < 3 || searchTokens.indexOf(word[0]) === -1) {
-    return [null, null];
-  }
-
-  word = word.trim().toLowerCase();
-
-  if (word.length > 0) {
-    return [left + 1, word];
-  } else {
-    return [null, null];
-  }
-};
+import { LocalCustomEmojiProvider } from './emoji/context';
+import { textAtCursorMatchesToken } from './autosuggest/utils';
 
 export default class AutosuggestInput extends ImmutablePureComponent {
 
@@ -159,8 +136,8 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     this.input.focus();
   };
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden && this.state.focused) {
+  componentDidUpdate (prevProps) {
+    if (prevProps.suggestions !== this.props.suggestions && this.props.suggestions.size > 0 && this.state.suggestionsHidden && this.state.focused) {
       this.setState({ suggestionsHidden: false });
     }
   }
@@ -219,15 +196,17 @@ export default class AutosuggestInput extends ImmutablePureComponent {
           spellCheck={spellCheck}
         />
 
-        <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={this.input} popperConfig={{ strategy: 'fixed' }}>
-          {({ props }) => (
-            <div {...props}>
-              <div className='autosuggest-textarea__suggestions' style={{ width: this.input?.clientWidth }}>
-                {suggestions.map(this.renderSuggestion)}
+        <LocalCustomEmojiProvider>
+          <Overlay show={!(suggestionsHidden || suggestions.isEmpty())} offset={[0, 0]} placement='bottom' target={this.input} popperConfig={{ strategy: 'fixed' }}>
+            {({ props }) => (
+              <div {...props}>
+                <div className='autosuggest-textarea__suggestions' style={{ width: this.input?.clientWidth }}>
+                  {suggestions.map(this.renderSuggestion)}
+                </div>
               </div>
-            </div>
-          )}
-        </Overlay>
+            )}
+          </Overlay>
+        </LocalCustomEmojiProvider>
       </div>
     );
   }
