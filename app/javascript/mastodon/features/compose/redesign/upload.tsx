@@ -126,7 +126,7 @@ export const ComposeUpload: React.FC<{
           <MenuItem onClick={handleRearrange}>
             <FormattedMessage
               id='compose.upload.menu.rearrange'
-              defaultMessage='Rearrange&hellip;'
+              defaultMessage='Rearrange…'
             />
           </MenuItem>
         )}
