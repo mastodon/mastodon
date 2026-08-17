@@ -5,7 +5,7 @@
 
 %hr.spacer/
 
-= simple_form_for @rule, url: admin_rules_path do |form|
+= simple_form_for [:admin, @rule] do |form|
   = render 'shared/error_messages', object: @rule
 
   = render form

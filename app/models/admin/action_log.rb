@@ -17,10 +17,6 @@
 #
 
 class Admin::ActionLog < ApplicationRecord
-  self.ignored_columns += %w(
-    recorded_changes
-  )
-
   belongs_to :account
   belongs_to :target, polymorphic: true, optional: true
 

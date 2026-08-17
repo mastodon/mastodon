@@ -47,23 +47,7 @@ const getFrequentlyUsedEmojis = createSelector([
   return emojis;
 });
 
-const getCustomEmojis = createSelector([
-  state => state.get('custom_emojis'),
-], emojis => emojis.filter(e => e.get('visible_in_picker')).sort((a, b) => {
-  const aShort = a.get('shortcode').toLowerCase();
-  const bShort = b.get('shortcode').toLowerCase();
-
-  if (aShort < bShort) {
-    return -1;
-  } else if (aShort > bShort ) {
-    return 1;
-  } else {
-    return 0;
-  }
-}));
-
 const mapStateToProps = state => ({
-  custom_emojis: getCustomEmojis(state),
   skinTone: state.getIn(['settings', 'skinTone']),
   frequentlyUsedEmojis: getFrequentlyUsedEmojis(state),
 });

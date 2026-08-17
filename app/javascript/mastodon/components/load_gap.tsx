@@ -32,6 +32,7 @@ export const LoadGap = <T,>({ disabled, param, onClick }: Props<T>) => {
       onClick={handleClick}
       aria-label={intl.formatMessage(messages.load_more)}
       title={intl.formatMessage(messages.load_more)}
+      type='button'
     >
       {loading ? (
         <LoadingIndicator />

@@ -58,7 +58,7 @@ const Option = ({ multipleChoice, index, title, autoFocus }) => {
   const dispatch = useDispatch();
   const suggestions = useSelector(state => state.getIn(['compose', 'suggestions']));
   const lang = useSelector(state => state.getIn(['compose', 'language']));
-  const maxOptions = useSelector(state => state.getIn(['server', 'server', 'configuration', 'polls', 'max_options']));
+  const maxOptions = useSelector(state => state.getIn(['server', 'server', 'item', 'configuration', 'polls', 'max_options']));
 
   const handleChange = useCallback(({ target: { value } }) => {
     dispatch(changePollOption(index, value, maxOptions));

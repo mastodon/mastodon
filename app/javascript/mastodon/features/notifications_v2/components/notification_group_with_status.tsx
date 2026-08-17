@@ -125,8 +125,8 @@ export const NotificationGroupWithStatus: React.FC<{
               )}
             </div>
 
-            <div className='notification-group__main__header__label'>
-              {label}
+            <h2 className='notification-group__main__header__label'>
+              <span>{label}</span>
               {timestamp && (
                 <>
                   <span className='notification-group__main__header__label-separator'>
@@ -135,7 +135,7 @@ export const NotificationGroupWithStatus: React.FC<{
                   <RelativeTimestamp timestamp={timestamp} />
                 </>
               )}
-            </div>
+            </h2>
           </div>
 
           {statusId && (

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import { OrderedSet } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -12,6 +12,7 @@ import { submitReport } from 'mastodon/actions/reports';
 import { fetchServer } from 'mastodon/actions/server';
 import { expandAccountTimeline } from 'mastodon/actions/timelines';
 import { IconButton } from 'mastodon/components/icon_button';
+import { injectIntl } from '@/mastodon/components/intl';
 import Category from 'mastodon/features/report/category';
 import Comment from 'mastodon/features/report/comment';
 import Rules from 'mastodon/features/report/rules';

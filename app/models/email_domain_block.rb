@@ -5,19 +5,14 @@
 # Table name: email_domain_blocks
 #
 #  id                  :bigint(8)        not null, primary key
+#  allow_with_approval :boolean          default(FALSE), not null
 #  domain              :string           default(""), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  parent_id           :bigint(8)
-#  allow_with_approval :boolean          default(FALSE), not null
 #
 
 class EmailDomainBlock < ApplicationRecord
-  self.ignored_columns += %w(
-    ips
-    last_refresh_at
-  )
-
   include DomainNormalizable
   include Paginable
 
@@ -29,6 +24,7 @@ class EmailDomainBlock < ApplicationRecord
   validates :domain, presence: true, uniqueness: true, domain: true
 
   scope :parents, -> { where(parent_id: nil) }
+  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
   # Used for adding multiple blocks at once
   attr_accessor :other_domains
@@ -59,7 +55,7 @@ class EmailDomainBlock < ApplicationRecord
 
     def blocking?(allow_with_approval: false)
       blocks = EmailDomainBlock.where(domain: domains_with_variants, allow_with_approval: allow_with_approval).by_domain_length
-      blocks.each { |block| block.history.add(@attempt_ip) } if @attempt_ip.present?
+      blocks.each { |block| block.history.add(@attempt_ip.to_s) } if @attempt_ip.present?
       blocks.any?
     end
 
@@ -67,10 +63,8 @@ class EmailDomainBlock < ApplicationRecord
       @uris.flat_map do |uri|
         next if uri.nil?
 
-        segments = uri.normalized_host.split('.')
-
-        segments.map.with_index { |_, i| segments[i..].join('.') }
-      end
+        self.class.module_parent.domain_variants(uri.normalized_host)
+      end.uniq
     end
 
     def extract_uris(domain_or_domains)

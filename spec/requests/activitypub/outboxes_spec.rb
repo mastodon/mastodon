@@ -81,8 +81,8 @@ RSpec.describe 'ActivityPub Outboxes' do
           expect(response.parsed_body)
             .to include(
               orderedItems: be_an(Array)
-              .and(have_attributes(size: 2))
-              .and(all(satisfy { |item| targets_public_collection?(item) }))
+                .and(have_attributes(size: 2))
+                .and(all(satisfy { |item| targets_public_collection?(item) }))
             )
         end
 
@@ -133,8 +133,8 @@ RSpec.describe 'ActivityPub Outboxes' do
           expect(response.parsed_body)
             .to include(
               orderedItems: be_an(Array)
-              .and(have_attributes(size: 2))
-              .and(all(satisfy { |item| targets_public_collection?(item) }))
+                .and(have_attributes(size: 2))
+                .and(all(satisfy { |item| targets_public_collection?(item) }))
             )
         end
       end
@@ -155,8 +155,8 @@ RSpec.describe 'ActivityPub Outboxes' do
           expect(response.parsed_body)
             .to include(
               orderedItems: be_an(Array)
-              .and(have_attributes(size: 3))
-              .and(all(satisfy { |item| targets_public_collection?(item) || targets_followers_collection?(item, account) }))
+                .and(have_attributes(size: 3))
+                .and(all(satisfy { |item| targets_public_collection?(item) || targets_followers_collection?(item, account) }))
             )
         end
       end

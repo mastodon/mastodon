@@ -34,11 +34,11 @@ module ApplicationHelper
     Setting.registrations_mode == 'none'
   end
 
-  def available_sign_up_path
+  def available_sign_up_url
     if closed_registrations? || omniauth_only?
-      'https://joinmastodon.org/#getting-started'
+      'https://joinmastodon.org/'
     else
-      ENV.fetch('SSO_ACCOUNT_SIGN_UP', new_user_registration_path)
+      ENV.fetch('SSO_ACCOUNT_SIGN_UP', new_user_registration_url)
     end
   end
 
@@ -127,6 +127,10 @@ module ApplicationHelper
     )
   end
 
+  def emptyphaunt
+    inline_svg_tag 'elephant_ui.svg'
+  end
+
   def check_icon
     inline_svg_tag 'check.svg'
   end
@@ -153,14 +157,32 @@ module ApplicationHelper
     tag.meta(content: content, property: property)
   end
 
-  def body_classes
+  def html_attributes
+    base = {
+      lang: I18n.locale,
+      class: html_classes,
+      'data-contrast': contrast.parameterize,
+      'data-color-scheme': page_color_scheme.parameterize,
+    }
+
+    base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto'
+
+    base
+  end
+
+  def html_classes
     output = []
-    output << content_for(:body_classes)
-    output << "theme-#{current_theme.parameterize}"
+    output << content_for(:html_classes)
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << 'custom-scrollbars' unless current_account&.user&.setting_system_scrollbars_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
+    output.compact_blank.join(' ')
+  end
+
+  def body_classes
+    output = []
+    output << content_for(:body_classes)
     output.compact_blank.join(' ')
   end
 

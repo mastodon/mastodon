@@ -1,0 +1,83 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.description {
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.listHeading {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Ensure sticky footer isn't covered by mobile bottom nav */
+.form {
+  --bottom-spacing: 0;
+
+  padding-bottom: 0;
+
+  @media (width < 760px) {
+    --bottom-spacing: var(--mobile-bottom-nav-height);
+  }
+}
+
+.stickyFooter {
+  position: sticky;
+  bottom: var(--bottom-spacing);
+  margin-top: -16px;
+  padding: 16px;
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-bg-primary) 24px
+  );
+}
+
+.formFieldStack {
+  gap: 16px;
+}
+
+.accountList {
+  margin-inline: -16px;
+}
+
+.suggestion {
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--color-border-primary);
+
+  &[data-highlighted='true'] {
+    background: var(--color-bg-overlay-highlight);
+  }
+
+  &[aria-disabled='true'] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.suggestionGroup {
+  padding-bottom: 4px;
+}
+
+.maxCollectionsError {
+  margin: 16px;
+}

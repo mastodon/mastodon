@@ -1,4 +1,9 @@
-@use '../mastodon/variables' as *;
+// Mailer stylesheets are inlined into HTML email and must use literal
+// colors — CSS custom properties are unreliable across email clients.
+$mailer-text-color: #181820; // matches --color-text-primary (light theme)
+$mailer-border-color: #eeedf3; // matches --color-grey-100
+$mailer-callout-bg: #f6f6f9; // matches --color-bg-secondary (light theme)
+$mailer-brand-color: #d33; // Highlander brand red
 
 .email-body-padding-top-0 {
   padding-top: 0;
@@ -10,7 +15,7 @@
 
 .email-welcome-step-title {
   margin: 0 0 8px;
-  color: $ui-base-color;
+  color: $mailer-text-color;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -18,20 +23,20 @@
 
 .email-welcome-step-subtitle {
   margin: 0 0 8px;
-  color: $ui-base-color;
+  color: $mailer-text-color;
   font-size: 16px;
   font-weight: 600;
   line-height: 22px;
 }
 
 .email-welcome-step-body {
-  color: $ui-base-color;
+  color: $mailer-text-color;
 }
 
 .email-welcome-step-image {
   display: block;
   width: 100%;
-  border: 1px solid $grey-100;
+  border: 1px solid $mailer-border-color;
   border-radius: 12px;
 }
 
@@ -40,15 +45,15 @@
 }
 
 .email-welcome-callout-td {
-  background: $ui-secondary-color;
-  border-left: 3px solid $red-500;
+  background: $mailer-callout-bg;
+  border-left: 3px solid $mailer-brand-color;
   border-radius: 4px;
   padding: 10px 14px;
 }
 
 .email-welcome-callout-p {
   margin: 0;
-  color: $ui-base-color;
+  color: $mailer-text-color;
   font-size: 14px;
   line-height: 20px;
 }
@@ -56,7 +61,7 @@
 .email-welcome-list {
   margin: 0 0 16px 20px;
   padding: 0;
-  color: $ui-base-color;
+  color: $mailer-text-color;
   font-size: 14px;
   line-height: 20px;
 }

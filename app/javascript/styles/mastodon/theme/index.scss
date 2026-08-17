@@ -1,0 +1,33 @@
+@use 'base';
+@use 'dark';
+@use 'light';
+@use 'utils';
+
+html {
+  @include base.palette;
+}
+
+[data-color-scheme='dark'],
+html:not([data-color-scheme]) {
+  color-scheme: dark;
+
+  @include dark.tokens;
+  @include utils.invert-on-dark;
+
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
+    @include dark.contrast-overrides;
+  }
+}
+
+[data-color-scheme='light'] {
+  color-scheme: light;
+
+  @include light.tokens;
+  @include utils.invert-on-light;
+
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
+    @include light.contrast-overrides;
+  }
+}

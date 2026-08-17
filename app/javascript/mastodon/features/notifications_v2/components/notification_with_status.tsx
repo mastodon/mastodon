@@ -101,12 +101,12 @@ export const NotificationWithStatus: React.FC<{
         )}
         tabIndex={0}
       >
-        <div className='notification-ungrouped__header'>
+        <h2 className='notification-ungrouped__header'>
           <div className='notification-ungrouped__header__icon'>
             <Icon icon={icon} id={iconId} />
           </div>
-          {label}
-        </div>
+          <span>{label}</span>
+        </h2>
 
         <StatusQuoteManager
           id={statusId}

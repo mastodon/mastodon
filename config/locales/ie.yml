@@ -10,7 +10,6 @@ ie:
     followers:
       one: Sequitor
       other: Sequitores
-    following: Sequent
     instance_actor_flash: Ti-ci conto es un virtual actor usat por representer li servitor self e null individual usator. It es usat por federational rasones e deve ne esser suspendet.
     last_active: ultim activitá
     link_verified_on: Proprietá de ti-ci ligament esset verificat ye %{date}
@@ -562,7 +561,6 @@ ie:
       action_log: Jurnale de audit
       action_taken_by: Action fat de
       actions:
-        delete_description_html: Li raportat postas va esser deletet e un admoniment va esser registrat por auxiliar te escalar si hay futuri infractiones del sam conto.
         mark_as_sensitive_description_html: Li medie in li raportat postas va esser marcat quam sensitiv e un admoniment va esser registrat por auxiliar te escalar si hay futuri infractiones del sam conto.
         other_description_html: Vider plu optiones por controlar li conduida del conto e customisar comunication al raportat conto.
         resolve_description_html: Null action va esser fat contra li raportat conto, null admoniment registrat, e li raporte va esser cludet.
@@ -586,7 +584,6 @@ ie:
       confirm: Confirmar
       confirm_action: Confirmar moderatori action contra @%{acct}
       created_at: Raportat
-      delete_and_resolve: Deleter postas
       forwarded: Reinviat
       forwarded_replies_explanation: Ti-ci raporte es de un lontan usator e pri lontan contenete. It ha esset reinviat a vos pro que li raportat contenete es un response a un de tui usatores.
       forwarded_to: Misset anc a %{domain}
@@ -613,7 +610,6 @@ ie:
       resolved_msg: Raporte successosimen soluet!
       skip_to_actions: Ear rect al actiones
       status: Statu
-      statuses: Contenete raportat
       statuses_description_html: Ofensiv contenete va esser citat in comunication con li raportat conto
       summary:
         action_preambles:
@@ -1143,8 +1139,6 @@ ie:
       your_appeal_pending: Tu ha fat un apelle
       your_appeal_rejected: Tui apelle ha esset rejectet
   edit_profile:
-    basic_information: Basic information
-    hint_html: "<strong>Customisa ti quel gente vide sur tui public profil e apu tui postas.</strong> Altri persones es plu probabil sequer te e interacter con te si tu have un detalliat profil e un profil-image."
     other: Altri
   errors:
     '400': Li demande quel tu inviat esset ínvalid o misformat.
@@ -1180,10 +1174,8 @@ ie:
     mutes: Tu silentia
     storage: Inmagasination de medie
   featured_tags:
-    add_new: Adjunter un nov
     errors:
       limit: Tu ja ha pinglat li maxim númere de hashtags
-    hint_html: "<strong>Pinglar tui max important hashtags sur tui profil.</strong> Un bonissim maniere de mantener un registre de tui ovres e projectes, pinglat hashtags es monstrat prominentmen sur tui profil e permisse rapid accesse a tui propri postas."
   filters:
     contexts:
       account: Profiles
@@ -1330,11 +1322,6 @@ ie:
     failed_sign_in_html: Fallit prova de apertion de session per %{method} de %{ip} (%{browser})
     successful_sign_in_html: Successosi apertion de session per %{method} de %{ip} (%{browser})
     title: Historie de autentication
-  mail_subscriptions:
-    unsubscribe:
-      action: Yes, desabonnar
-      complete: Desabonnat
-      title: Desabonnar
   media_attachments:
     validations:
       images_and_video: On ne posse atachar un video a un posta quel ja contene images
@@ -1369,7 +1356,6 @@ ie:
       disabled_account: Tui actual conto ne va esser completmen usabil pos to. Támen, tu va posser accesser li exportation de data, e anc reactivisation.
       followers: Ti-ci action va mover omni sequitores del actual conto al nov conto
       only_redirect_html: Alternativmen, tu posse <a href="%{path}">solmen meter un redirection sur tui profil</a>.
-      other_data: Necun altri data va esser translocat automaticmen
       redirect: Li profil de tui actual conto va esser actualisat con un anuncie de redirection e va esser excludet de serchas
   moderation:
     title: Moderation
@@ -1623,11 +1609,9 @@ ie:
     enabled: Automaticmen deleter old postas
     enabled_hint: Deleter automaticmen tui postas quande ili atinge un cert etá, except si ili concorda con un del exceptiones ci infra
     exceptions: Exceptiones
-    explanation: Deletion de postas es un operation expensiv, e pro to es efectuat lentmen quande li servitor ne es ocupat. Pro to, on posse deleter tui postas un cert témpor pos atinger un cert etá.
     ignore_favs: Ignorar favorites
     ignore_reblogs: Ignorar boosts
     interaction_exceptions: Exceptiones basat sur interactiones
-    interaction_exceptions_explanation: Nota que it ne es garantit que un posta va esser deletet si su númere de favoritisationes o boosts descresce sub li sill pos que it ha esset súper it.
     keep_direct: Retener missages direct
     keep_direct_hint: Ne delete quelcunc de tui direct missages
     keep_media: Conservar postas con medie-atachamentes
@@ -1661,11 +1645,6 @@ ie:
       too_late: It es tro tard por apellar ti admoniment
   tags:
     does_not_match_previous_name: ne concorda li anteyan nómine
-  themes:
-    contrast: Mastodon (Alt contraste)
-    default: Mastodon (Obscur)
-    mastodon-light: Mastodon (Luminosi)
-    system: Automatic (usar tema del sistema)
   time:
     formats:
       default: "%d.%m.%Y ye %H:%M"

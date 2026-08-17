@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { quoteComposeById } from '@/mastodon/actions/compose_typed';
 import { toggleReblog } from '@/mastodon/actions/interactions';
 import { openModal } from '@/mastodon/actions/modal';
+import { fetchStatus } from '@/mastodon/actions/statuses';
 import { quickBoosting } from '@/mastodon/initial_state';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Status } from '@/mastodon/models/status';
@@ -15,7 +16,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import type { SomeRequired } from '@/mastodon/utils/types';
 import { canPost } from 'mastodon/permissions';
 
-import type { RenderItemFn, RenderItemFnHandlers } from '../dropdown_menu';
+import type { RenderItemFn } from '../dropdown_menu';
 import { Dropdown, DropdownMenuItemContent } from '../dropdown_menu';
 import { IconButton } from '../icon_button';
 
@@ -47,6 +48,7 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
           openModal({
             modalType: 'INTERACTION',
             modalProps: {
+              intent: 'reblog',
               accountId: status.getIn(['account', 'id']),
               url: status.get('uri'),
             },
@@ -64,6 +66,7 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
       title={intl.formatMessage(meta ?? title)}
       icon='retweet'
       iconComponent={iconComponent}
+      className='status__action-bar__button'
       onClick={!disabled ? handleClick : undefined}
       counter={
         counters
@@ -75,18 +78,12 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
   );
 };
 
-const renderMenuItem: RenderItemFn<ActionMenuItem> = (
-  item,
-  index,
-  handlers,
-  focusRefCallback,
-) => (
+const renderMenuItem: RenderItemFn<ActionMenuItem> = (item, index, onClick) => (
   <ReblogMenuItem
     index={index}
     item={item}
-    handlers={handlers}
+    onClick={onClick}
     key={`${item.text}-${index}`}
-    focusRefCallback={focusRefCallback}
   />
 );
 
@@ -119,12 +116,14 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
 
   const statusId = status.get('id') as string;
   const wasBoosted = !!status.get('reblogged');
+  const quoteApproval = status.get('quote_approval');
 
   const showLoginPrompt = useCallback(() => {
     dispatch(
       openModal({
         modalType: 'INTERACTION',
         modalProps: {
+          intent: 'reblog',
           accountId: status.getIn(['account', 'id']),
           url: status.get('uri'),
         },
@@ -175,9 +174,16 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
         dispatch(toggleReblog(status.get('id'), true));
         return false;
       }
+
+      if (quoteApproval === null) {
+        dispatch(
+          fetchStatus(statusId, { forceFetch: true, alsoFetchContext: false }),
+        );
+      }
+
       return true;
     },
-    [dispatch, isLoggedIn, showLoginPrompt, status],
+    [dispatch, isLoggedIn, showLoginPrompt, status, quoteApproval, statusId],
   );
 
   return (
@@ -194,6 +200,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
           isMenuDisabled ? messages.all_disabled : messages.reblog_or_quote,
         )}
         icon='retweet'
+        className='status__action-bar__button'
         iconComponent={boostIcon}
         counter={
           counters
@@ -210,16 +217,10 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
 interface ReblogMenuItemProps {
   item: ActionMenuItem;
   index: number;
-  handlers: RenderItemFnHandlers;
-  focusRefCallback?: (c: HTMLAnchorElement | HTMLButtonElement | null) => void;
+  onClick: React.MouseEventHandler;
 }
 
-const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
-  index,
-  item,
-  handlers,
-  focusRefCallback,
-}) => {
+const ReblogMenuItem: FC<ReblogMenuItemProps> = ({ index, item, onClick }) => {
   const { text, highlighted, disabled } = item;
 
   return (
@@ -230,10 +231,10 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
       key={`${text}-${index}`}
     >
       <button
-        {...handlers}
-        ref={focusRefCallback}
+        onClick={onClick}
         aria-disabled={disabled}
         data-index={index}
+        type='button'
       >
         <DropdownMenuItemContent item={item} />
       </button>

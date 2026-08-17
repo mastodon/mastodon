@@ -1,11 +1,10 @@
-import { useCallback, useState, useEffect, useRef } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
 
-import { useDebouncedCallback } from 'use-debounce';
+import { Helmet } from '@unhead/react/helmet';
 
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
@@ -14,15 +13,14 @@ import { showAlertForError } from 'mastodon/actions/alerts';
 import { importFetchedAccounts } from 'mastodon/actions/importer';
 import { fetchList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
-import { apiRequest } from 'mastodon/api';
 import { apiFollowAccount } from 'mastodon/api/accounts';
 import {
-  apiGetAccounts,
+  apiGetListAccounts,
   apiAddAccountToList,
   apiRemoveAccountFromList,
 } from 'mastodon/api/lists';
-import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { Avatar } from 'mastodon/components/avatar';
+import { VerifiedBadge } from 'mastodon/components/badge';
 import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
@@ -31,7 +29,7 @@ import { FollowersCounter } from 'mastodon/components/counters';
 import { DisplayName } from 'mastodon/components/display_name';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { ShortNumber } from 'mastodon/components/short_number';
-import { VerifiedBadge } from 'mastodon/components/verified_badge';
+import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -163,16 +161,30 @@ const ListMembers: React.FC<{
 
   const [searching, setSearching] = useState(false);
   const [accountIds, setAccountIds] = useState<string[]>([]);
-  const [searchAccountIds, setSearchAccountIds] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!!id);
   const [mode, setMode] = useState<Mode>('remove');
+
+  const {
+    accounts: accountsFromSearch,
+    isLoading: loadingSearchResults,
+    searchAccounts: handleSearch,
+  } = useSearchAccounts({
+    resetOnInputClear: false,
+    onSettled: (value) => {
+      if (value.trim().length === 0) {
+        setSearching(false);
+      } else {
+        setSearching(true);
+      }
+    },
+  });
+  const accountIdsFromSearch = accountsFromSearch.map((item) => item.id);
 
   useEffect(() => {
     if (id) {
-      setLoading(true);
       dispatch(fetchList(id));
 
-      void apiGetAccounts(id)
+      void apiGetListAccounts(id)
         .then((data) => {
           dispatch(importFetchedAccounts(data));
           setAccountIds(data.map((a) => a.id));
@@ -207,50 +219,10 @@ const ListMembers: React.FC<{
     [accountIds, setAccountIds],
   );
 
-  const searchRequestRef = useRef<AbortController | null>(null);
-
-  const handleSearch = useDebouncedCallback(
-    (value: string) => {
-      if (searchRequestRef.current) {
-        searchRequestRef.current.abort();
-      }
-
-      if (value.trim().length === 0) {
-        setSearching(false);
-        return;
-      }
-
-      setLoading(true);
-
-      searchRequestRef.current = new AbortController();
-
-      void apiRequest<ApiAccountJSON[]>('GET', 'v1/accounts/search', {
-        signal: searchRequestRef.current.signal,
-        params: {
-          q: value,
-          resolve: true,
-        },
-      })
-        .then((data) => {
-          dispatch(importFetchedAccounts(data));
-          setSearchAccountIds(data.map((a) => a.id));
-          setLoading(false);
-          setSearching(true);
-          return '';
-        })
-        .catch(() => {
-          setSearching(true);
-          setLoading(false);
-        });
-    },
-    500,
-    { leading: true, trailing: true },
-  );
-
   let displayedAccountIds: string[];
 
   if (mode === 'add' && searching) {
-    displayedAccountIds = searchAccountIds;
+    displayedAccountIds = accountIdsFromSearch;
   } else {
     displayedAccountIds = accountIds;
   }
@@ -280,7 +252,7 @@ const ListMembers: React.FC<{
         scrollKey='list_members'
         trackScroll={!multiColumn}
         bindToDocument={!multiColumn}
-        isLoading={loading}
+        isLoading={loading || loadingSearchResults}
         showLoading={loading && displayedAccountIds.length === 0}
         hasMore={false}
         footer={
@@ -315,6 +287,7 @@ const ListMembers: React.FC<{
             <FormattedMessage
               id='lists.no_results_found'
               defaultMessage='No results found.'
+              tagName='span'
             />
           )
         }

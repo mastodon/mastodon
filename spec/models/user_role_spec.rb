@@ -31,6 +31,12 @@ RSpec.describe UserRole do
       it { is_expected.to_not allow_values('x', '112233445566', '#xxyyzz').for(:color) }
     end
 
+    describe 'collection_limit' do
+      subject { Fabricate.build :user_role }
+
+      it { is_expected.to validate_numericality_of(:collection_limit).only_integer.is_greater_than_or_equal_to(0) }
+    end
+
     context 'when current_account is set' do
       subject { Fabricate :user_role }
 
@@ -47,6 +53,17 @@ RSpec.describe UserRole do
 
         it { is_expected.to_not allow_value(100).for(:permissions).against(:permissions_as_keys).with_message(:own_role) }
         it { is_expected.to_not allow_value(100).for(:position).with_message(:own_role) }
+        it { is_expected.to_not allow_value(true).for(:require_2fa).with_message(:own_role) }
+      end
+
+      context 'when current_account is changing their own role and is an admin' do
+        subject { Fabricate(:user_role, permissions: UserRole::FLAGS[:administrator]) }
+
+        let(:account) { Fabricate :account, user: Fabricate(:user, role: subject) }
+
+        it { is_expected.to_not allow_value(100).for(:permissions).against(:permissions_as_keys).with_message(:own_role) }
+        it { is_expected.to_not allow_value(100).for(:position).with_message(:own_role) }
+        it { is_expected.to allow_value(true).for(:require_2fa) }
       end
     end
   end

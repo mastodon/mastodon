@@ -24,13 +24,13 @@
       .account-card__counters
         .account-card__counters__item
           = friendly_number_to_human report.target_account.statuses_count
-          %small= t('accounts.posts', count: report.target_account.statuses_count).downcase
+          %small= t('accounts.posts', count: report.target_account.statuses_count)
         .account-card__counters__item
           = friendly_number_to_human report.target_account.followers_count
-          %small= t('accounts.followers', count: report.target_account.followers_count).downcase
+          %small= t('accounts.followers', count: report.target_account.followers_count)
         .account-card__counters__item
           = friendly_number_to_human report.target_account.following_count
-          %small= t('accounts.following', count: report.target_account.following_count).downcase
+          %small= t('accounts.following', count: report.target_account.following_count)
       .account-card__actions__button
         = link_to t('admin.reports.view_profile'), admin_account_path(report.target_account_id), class: 'button'
   .report-header__details.report-header__details--horizontal

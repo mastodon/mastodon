@@ -224,13 +224,25 @@ RSpec.describe NotifyService do
         end
       end
 
+      context 'when sender is considered silenced through `silenced` option and recipient has a policy to ignore silenced accounts' do
+        subject { described_class.new(notification, silenced: true) }
+
+        before do
+          notification.account.create_notification_policy!(for_limited_accounts: :drop)
+        end
+
+        it 'returns true' do
+          expect(subject.drop?).to be true
+        end
+      end
+
       context 'when sender is new and recipient has a default policy' do
         it 'returns false' do
           expect(subject.drop?).to be false
         end
       end
 
-      context 'when sender is new and recipient has a policy to ignore silenced accounts' do
+      context 'when sender is new and recipient has a policy to ignore new accounts' do
         before do
           notification.account.create_notification_policy!(for_new_accounts: :drop)
         end
@@ -240,7 +252,7 @@ RSpec.describe NotifyService do
         end
       end
 
-      context 'when sender is new and followed and recipient has a policy to ignore silenced accounts' do
+      context 'when sender is new and followed and recipient has a policy to ignore new accounts' do
         before do
           notification.account.create_notification_policy!(for_new_accounts: :drop)
           notification.account.follow!(notification.from_account)
@@ -260,6 +272,61 @@ RSpec.describe NotifyService do
           expect(subject.drop?).to be true
         end
       end
+
+      context 'with bot policies' do
+        let(:bot_sender) { Fabricate(:account, bot: true) }
+        let(:human_sender) { Fabricate(:account, bot: false) }
+        let(:original_status) { Fabricate(:status) }
+        let(:recipient) { Fabricate(:account) }
+
+        def reblog_notification(from)
+          activity = Fabricate(:status, account: from, reblog: original_status)
+          Fabricate(:notification, type: :reblog, activity: activity, from_account: from, account: recipient)
+        end
+
+        before do
+          recipient.create_notification_policy!(
+            for_not_following: :accept,
+            for_not_followers: :accept,
+            for_new_accounts: :accept,
+            for_private_mentions: :accept,
+            for_limited_accounts: :accept,
+            for_bots: bots_policy
+          )
+        end
+
+        context 'when recipient is dropping bots' do
+          let(:bots_policy) { :drop }
+
+          it 'drops bot reblogs' do
+            notification = reblog_notification(bot_sender)
+            expect(described_class.new(notification).drop?).to be true
+          end
+
+          it 'keeps human reblogs' do
+            notification = reblog_notification(human_sender)
+            expect(described_class.new(notification).drop?).to be false
+          end
+        end
+
+        context 'when recipient is filtering bots' do
+          let(:bots_policy) { :filter }
+
+          it 'does not drop bot reblogs' do
+            notification = reblog_notification(bot_sender)
+            expect(described_class.new(notification).drop?).to be false
+          end
+        end
+
+        context 'when recipient is accepting bots' do
+          let(:bots_policy) { :accept }
+
+          it 'does not drop bot reblogs' do
+            notification = reblog_notification(bot_sender)
+            expect(described_class.new(notification).drop?).to be false
+          end
+        end
+      end
     end
   end
 
@@ -274,6 +341,34 @@ RSpec.describe NotifyService do
         before do
           notification.from_account.silence!
         end
+
+        it 'returns true' do
+          expect(subject.filter?).to be true
+        end
+
+        context 'when recipient follows sender' do
+          before do
+            notification.account.follow!(notification.from_account)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
+        context 'when recipient is allowing limited accounts' do
+          before do
+            notification.account.create_notification_policy!(for_limited_accounts: :accept)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+      end
+
+      context 'when sender is considered silenced through the `silenced` option' do
+        subject { described_class.new(notification, silenced: true) }
 
         it 'returns true' do
           expect(subject.filter?).to be true
@@ -475,6 +570,61 @@ RSpec.describe NotifyService do
             it 'returns true' do
               expect(subject.filter?).to be true
             end
+          end
+        end
+      end
+
+      context 'with bot policies' do
+        let(:bot_sender) { Fabricate(:account, bot: true) }
+        let(:human_sender) { Fabricate(:account, bot: false) }
+        let(:original_status) { Fabricate(:status) }
+        let(:recipient) { Fabricate(:account) }
+
+        def reblog_notification(from)
+          activity = Fabricate(:status, account: from, reblog: original_status)
+          Fabricate(:notification, type: :reblog, activity: activity, from_account: from, account: recipient)
+        end
+
+        before do
+          recipient.create_notification_policy!(
+            for_not_following: :accept,
+            for_not_followers: :accept,
+            for_new_accounts: :accept,
+            for_private_mentions: :accept,
+            for_limited_accounts: :accept,
+            for_bots: bots_policy
+          )
+        end
+
+        context 'when recipient is dropping bots' do
+          let(:bots_policy) { :drop }
+
+          it 'does not filter bot reblogs' do
+            notification = reblog_notification(bot_sender)
+            expect(described_class.new(notification).filter?).to be false
+          end
+        end
+
+        context 'when recipient is filtering bots' do
+          let(:bots_policy) { :filter }
+
+          it 'filters bot reblogs' do
+            notification = reblog_notification(bot_sender)
+            expect(described_class.new(notification).filter?).to be true
+          end
+
+          it 'keeps human reblogs' do
+            notification = reblog_notification(human_sender)
+            expect(described_class.new(notification).filter?).to be false
+          end
+        end
+
+        context 'when recipient is accepting bots' do
+          let(:bots_policy) { :accept }
+
+          it 'does not filter bot reblogs' do
+            notification = reblog_notification(bot_sender)
+            expect(described_class.new(notification).filter?).to be false
           end
         end
       end

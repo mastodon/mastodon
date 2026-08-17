@@ -4,7 +4,6 @@ fy:
     hints:
       account:
         attribution_domains: Ien per rigel. Beskermet tsjin falske attribúsjes.
-        discoverable: Jo iepenbiere berjochten kinne útljochte wurde op ferskate plakken binnen Mastodon en jo account kin oanrekommandearre wurde oan oare brûkers.
         display_name: Jo folsleine namme of in aardige bynamme.
         fields: Jo website, persoanlike foarnammewurden, leeftiid, alles wat jo mar kwyt wolle.
         indexable: Jo iepenbiere berjochten kinne ferskine yn de sykresultaten op Mastodon. Minsken dy’t reagearre hawwe op jo berjochten kinne se hoe dan ek trochsykje.
@@ -57,11 +56,7 @@ fy:
         setting_aggregate_reblogs: Gjin nije boosts toane foar berjochten dy’t resintlik noch boost binne (hat allinnich effekt op nij ûntfongen boosts)
         setting_always_send_emails: Normaliter wurde der gjin e-mailmeldingen ferstjoerd wannear’t jo aktyf Mastodon brûke
         setting_default_sensitive: Gefoelige media wurdt standert ferstoppe en kin mei ien klik toand wurde
-        setting_display_media_default: As gefoelich markearre media ferstopje
-        setting_display_media_hide_all: Media altyd ferstopje
-        setting_display_media_show_all: Media altyd toane
         setting_emoji_style: Wêrmei moatte emojis werjûn wurde. ‘Automatysk’ probearret de systeemeigen emojis te brûken, mar falt werom op Twemoji foar âldere browsers.
-        setting_system_scrollbars_ui: Allinnich fan tapassing op desktopbrowsers basearre op Safari en Chromium
         setting_use_blurhash: Dizige kleuroergongen binne basearre op de kleuren fan de ferstoppe media, wêrmei elk detail ferdwynt
         setting_use_pending_items: De tiidline wurdt bywurke troch op it oantal nije items te klikken, yn stee fan dat dizze automatysk bywurke wurdt
         username: Jo kinne letters, sifers en ûnderstreekjes brûke
@@ -74,7 +69,6 @@ fy:
       featured_tag:
         name: 'Hjir binne inkelde fan de hashtags dy’t jo koartlyn brûkt hawwe:'
       filters:
-        action: Kies hokker aksjes útfierd wurde moatte, wannear’t in berjocht oerienkomt mei it filter
         actions:
           blur: Media ferstopje efter in warskôging, sûnder de tekst sels te ferstopjen
           hide: Ferstopje de filtere ynhâld folslein, as oft it net bestiet
@@ -83,7 +77,6 @@ fy:
         activity_api_enabled: Tal lokaal publisearre artikelen, aktive brûkers en nije registraasjes yn wyklikse werjefte
         app_icon: WEBP, PNG, GIF of JPG. Ferfangt op mobile apparaten it standert app-pictogram mei in oanpast piktogram.
         backups_retention_period: Brûkers hawwe de mooglikheid om argiven fan harren berjochten te generearjen om letter te downloaden. Wannear ynsteld op in positive wearde, wurde dizze argiven automatysk fuortsmiten út jo ûnthâld nei it opjûne oantal dagen.
-        bootstrap_timeline_accounts: Dizze accounts wurde boppe oan de oanrekommandaasjes oan nije brûkers toand. Meardere brûkersnammen troch komma’s skiede.
         closed_registrations_message: Werjûn wannear’t registraasje fan nije accounts útskeakele is
         content_cache_retention_period: Alle berjochten fan oare servers (ynklusyf boosts en reaksjes) wurde fuortsmiten nei it opjûne oantal dagen, nettsjinsteande iennige lokale brûkersynteraksje mei dy berjochten. Dit oanbelanget ek berjochten dy’t in lokale brûker oan harren blêdwizers tafoege hat of as favoryt markearre hat. Priveeberjochten tusken brûkers fan ferskate servers gean ek ferlern en binne ûnmooglik te werstellen. It gebrûk fan dizze ynstelling is bedoeld foar servers dy’t in spesjaal doel tsjinje en oertrêdet in protte brûkersferwachtingen wannear’t dizze foar algemien gebrûk ymplemintearre wurdt.
         custom_css: Jo kinne oanpaste CSS tapasse op de webferzje fan dizze Mastodon-server.
@@ -146,7 +139,6 @@ fy:
         jurisdiction: Fermeld it lân wêr’t de persoan wennet dy’t de rekkeningen betellet. As it in bedriuw of in oare entiteit is, fermeld it lân wêr’t it opnommen is en de stêd, regio, grûngebiet of steat, foar safier fan tapassing.
         min_age: Mei net leger wêze as de minimale fereaske leeftiid neffens de wetten fan jo jurisdiksje.
       user:
-        chosen_languages: Allinnich berjochten yn de selektearre talen wurde op de iepenbiere tiidline toand
         date_of_birth:
           one: Wy moatte derfoar soargje dat jo op syn minst %{count} binne om %{domain} brûke te meien. Dit wurdt net bewarre.
           other: Wy moatte derfoar soargje dat jo op syn minst %{count} binne om %{domain} brûke te meien. Dit wurdt net bewarre.
@@ -164,7 +156,6 @@ fy:
     labels:
       account:
         attribution_domains: Websites dy’t jo wurdearring jaan meie
-        discoverable: Profyl en bydragen yn sykalgoritmen opnimme litte
         fields:
           name: Label
           value: Ynhâld
@@ -351,9 +342,7 @@ fy:
         jurisdiction: Rjochtsgebiet
         min_age: Minimum leeftiid
       user:
-        date_of_birth_1i: Dei
         date_of_birth_2i: Moanne
-        date_of_birth_3i: Jier
         role: Rol
         time_zone: Tiidsône
       user_role:

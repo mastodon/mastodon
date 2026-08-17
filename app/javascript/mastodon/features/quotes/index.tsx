@@ -2,9 +2,9 @@ import { useCallback, useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
-
 import { List as ImmutableList } from 'immutable';
+
+import { Helmet } from '@unhead/react/helmet';
 
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 import { fetchQuotes } from 'mastodon/actions/interactions_typed';

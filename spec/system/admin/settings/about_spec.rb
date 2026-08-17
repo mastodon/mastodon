@@ -19,7 +19,7 @@ RSpec.describe 'Admin::Settings::About' do
       .to change(Setting, :site_terms).to('Updated terms for Highlander')
 
     expect(page)
-      .to have_content(success_message)
+      .to have_text(success_message)
   end
 
   def site_terms_field

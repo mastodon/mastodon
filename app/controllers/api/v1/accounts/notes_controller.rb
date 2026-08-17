@@ -9,9 +9,9 @@ class Api::V1::Accounts::NotesController < Api::BaseController
 
   def create
     if params[:comment].blank?
-      AccountNote.find_by(account: current_account, target_account: @account)&.destroy
+      current_account.account_notes.find_by(target_account: @account)&.destroy
     else
-      @note = AccountNote.find_or_initialize_by(account: current_account, target_account: @account)
+      @note = current_account.account_notes.find_or_initialize_by(target_account: @account)
       @note.comment = params[:comment]
       @note.save! if @note.changed?
     end

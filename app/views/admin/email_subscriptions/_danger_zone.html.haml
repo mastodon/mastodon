@@ -1,0 +1,22 @@
+.subheading-with-action
+  .subheading-with-action__subheading
+    %h3= t('.title')
+
+.actions-list
+  .actions-list__item
+    .actions-list__item__label
+      .actions-list__item__label__label
+        = t('.disable_feature.title')
+      .actions-list__item__label__hint
+        = t('.disable_feature.hint')
+    .actions-list__item__action
+      = link_to t('.disable_feature.action'), disable_admin_email_subscriptions_path, class: 'button button-secondary button--destructive', data: { method: 'post', confirm: t('admin.accounts.are_you_sure') }
+  - unless accounts.empty?
+    .actions-list__item
+      .actions-list__item__label
+        .actions-list__item__label__label
+          = t('.erase_all_data.title')
+        .actions-list__item__label__hint
+          = t('.erase_all_data.hint')
+      .actions-list__item__action
+        = link_to t('.erase_all_data.action'), purge_admin_email_subscriptions_path, class: 'button button-secondary button--destructive', data: { method: 'post', confirm: t('admin.accounts.are_you_sure') }

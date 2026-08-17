@@ -4,7 +4,7 @@
 = simple_form_for [:admin, @provider] do |f|
   = render 'shared/error_messages', object: @provider
 
-  %h4= t('admin.fasp.providers.select_capabilities')
+  %h2= t('admin.fasp.providers.select_capabilities')
 
   .fields_group
     = f.fields_for :capabilities do |cf|

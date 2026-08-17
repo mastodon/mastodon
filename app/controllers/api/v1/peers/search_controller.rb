@@ -47,10 +47,6 @@ class Api::V1::Peers::SearchController < Api::BaseController
   end
 
   def normalized_domain
-    TagManager.instance.normalize_domain(query_value)
-  end
-
-  def query_value
-    params[:q].strip
+    TagManager.instance.normalize_domain(params[:q])
   end
 end

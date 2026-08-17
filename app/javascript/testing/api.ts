@@ -51,13 +51,17 @@ export const mockHandlers = {
     '/packs-dev/emoji/:locale.json',
     async ({ params }) => {
       const locale = toSupportedLocale(params.locale);
+      const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
+      const emojiModules = import.meta.glob<CompactEmoji[]>(
+        '../../../../../node_modules/emojibase-data/**/compact.json',
+        { import: 'default' },
+      );
+      const path = emojiModules[key];
+      if (!path) {
+        throw new Error(`Unsupported locale: ${locale}`);
+      }
       action('fetching emoji data')(locale);
-      const { default: data } = (await import(
-        /* @vite-ignore */
-        `emojibase-data/${locale}/compact.json`
-      )) as {
-        default: CompactEmoji[];
-      };
+      const data = await path();
 
       return HttpResponse.json([data]);
     },

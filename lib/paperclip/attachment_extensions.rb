@@ -16,8 +16,7 @@ module Paperclip
       # if we're processing the original, close + unlink the source tempfile
       intermediate_files << original if name == :original
 
-      @queued_for_write[name] = style.processors
-                                     .inject(original) do |file, processor|
+      @queued_for_write[name] = style.processors.inject(original) do |file, processor|
         file = Paperclip.processor(processor).make(file, style.processor_options, self)
         intermediate_files << file unless file == original
         file
@@ -25,7 +24,7 @@ module Paperclip
 
       unadapted_file = @queued_for_write[name]
       @queued_for_write[name] = Paperclip.io_adapters
-                                         .for(@queued_for_write[name], @options[:adapter_options])
+        .for(@queued_for_write[name], @options[:adapter_options])
       unadapted_file.close if unadapted_file.respond_to?(:close)
       @queued_for_write[name]
     rescue Paperclip::Errors::NotIdentifiedByImageMagickError => e

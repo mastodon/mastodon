@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Accounts Familiar Followers API' do
-  let(:user)     { Fabricate(:user) }
-  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)   { 'read:follows' }
-  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:follows'
+
   let(:account) { Fabricate(:account) }
 
   describe 'GET /api/v1/accounts/familiar_followers' do

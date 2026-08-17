@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import Base from 'mastodon/components/modal_root';
 import { AltTextModal } from 'mastodon/features/alt_text_modal';
@@ -10,6 +10,7 @@ import {
   BlockModal,
   DomainBlockModal,
   ReportModal,
+  ReportCollectionModal,
   EmbedModal,
   ListAdder,
   CompareHistoryModal,
@@ -21,15 +22,15 @@ import {
   AnnualReportModal,
 } from 'mastodon/features/ui/util/async-components';
 
-import BundleContainer from '../containers/bundle_container';
-
 import { ActionsModal } from './actions_modal';
 import AudioModal from './audio_modal';
 import { BoostModal } from './boost_modal';
+import Bundle from './bundle';
 import {
   ConfirmationModal,
   ConfirmDeleteStatusModal,
   ConfirmDeleteListModal,
+  ConfirmDeleteCollectionModal,
   ConfirmReplyModal,
   ConfirmEditStatusModal,
   ConfirmUnblockModal,
@@ -58,6 +59,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'CONFIRM_DELETE_STATUS': () => Promise.resolve({ default: ConfirmDeleteStatusModal }),
   'CONFIRM_DELETE_LIST': () => Promise.resolve({ default: ConfirmDeleteListModal }),
+  'CONFIRM_DELETE_COLLECTION': () => Promise.resolve({ default: ConfirmDeleteCollectionModal }),
   'CONFIRM_REPLY': () => Promise.resolve({ default: ConfirmReplyModal }),
   'CONFIRM_EDIT_STATUS': () => Promise.resolve({ default: ConfirmEditStatusModal }),
   'CONFIRM_UNBLOCK': () => Promise.resolve({ default: ConfirmUnblockModal }),
@@ -74,6 +76,10 @@ export const MODAL_COMPONENTS = {
   'BLOCK': BlockModal,
   'DOMAIN_BLOCK': DomainBlockModal,
   'REPORT': ReportModal,
+  'REPORT_COLLECTION': ReportCollectionModal,
+  'COLLECTION_ADDER': () => import('@/mastodon/features/collection_adder').then(module => ({ default: module.CollectionAdder })),
+  'SHARE_COLLECTION': () => import('@/mastodon/features/collections/components/share_modal').then(module => ({ default: module.CollectionShareModal })),
+  'REVOKE_COLLECTION_INCLUSION': () => import('@/mastodon/features/collections/detail/revoke_collection_inclusion_modal').then(module => ({ default: module.RevokeCollectionInclusionModal })),
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
   'FOCAL_POINT': () => Promise.resolve({ default: AltTextModal }),
@@ -86,7 +92,26 @@ export const MODAL_COMPONENTS = {
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
   'ANNUAL_REPORT': AnnualReportModal,
   'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
+  'ACCOUNT_NOTE': () => import('@/mastodon/features/account_timeline/modals/note_modal').then(module => ({ default: module.AccountNoteModal })),
+  'ACCOUNT_FIELD_OVERFLOW': () => import('@/mastodon/features/account_timeline/modals/field_modal').then(module => ({ default: module.AccountFieldModal })),
+  'ACCOUNT_JOIN_DATE': () => import('@/mastodon/features/account_timeline/modals/join_modal').then(module => ({ default: module.AccountJoinModal })),
+  'ACCOUNT_EDIT_NAME': accountEditModal('NameModal'),
+  'ACCOUNT_EDIT_BIO': accountEditModal('BioModal'),
+  'ACCOUNT_EDIT_PROFILE_DISPLAY': accountEditModal('ProfileDisplayModal'),
+  'ACCOUNT_EDIT_VERIFY_LINKS': accountEditModal('VerifiedModal'),
+  'ACCOUNT_EDIT_FIELD_EDIT': accountEditModal('EditFieldModal'),
+  'ACCOUNT_EDIT_FIELD_DELETE': accountEditModal('DeleteFieldModal'),
+  'ACCOUNT_EDIT_FIELDS_REORDER': accountEditModal('ReorderFieldsModal'),
+  'ACCOUNT_EDIT_IMAGE_ALT': accountEditModal('ImageAltModal'),
+  'ACCOUNT_EDIT_IMAGE_DELETE': accountEditModal('ImageDeleteModal'),
+  'ACCOUNT_EDIT_IMAGE_UPLOAD': accountEditModal('ImageUploadModal'),
+  'ACCOUNT_HIDE_FEATURED_TAB': () => import('@/mastodon/features/ui/components/confirmation_modals/hide_featured_tab').then(module => ({ default: module.ConfirmHideFeaturedTabModal })),
 };
+
+/** @arg {keyof import('@/mastodon/features/account_edit/modals')} type */
+function accountEditModal(type) {
+  return () => import('@/mastodon/features/account_edit/modals').then(module => ({ default: module[type] }));
+}
 
 export default class ModalRoot extends PureComponent {
 
@@ -136,11 +161,11 @@ export default class ModalRoot extends PureComponent {
       <Base backgroundColor={backgroundColor} onClose={this.handleClose} ignoreFocus={ignoreFocus}>
         {visible && (
           <>
-            <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
+            <Bundle key={type} fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
               {(SpecificComponent) => {
                 return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />;
               }}
-            </BundleContainer>
+            </Bundle>
 
             <Helmet>
               <meta name='robots' content='noindex' />

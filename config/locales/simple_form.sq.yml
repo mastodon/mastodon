@@ -4,7 +4,7 @@ sq:
     hints:
       account:
         attribution_domains: Një për rresht. Kjo mbron nga atribuime të rreme.
-        discoverable: Postimet dhe profili juaj publik mund të shfaqen, ose rekomandohen në zona të ndryshme të Mastodon-it dhe profili juaj mund të sugjerohet përdoruesve të tjerë.
+        discoverable: Mund të shfaqeni në koleksione të krijuar nga përdorues të tjerë. Ju dhe postimet tuaja publike mund të sugjerohen gjithashtu nga përdorues në mënyra të tjera zbulimi nëpër Mastodon.
         display_name: Emri juaj i plotë, ose emri juaj lojcak.
         fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
         indexable: Postimet tuaja publike mund të shfaqen në përfundime kërkimesh në Mastodon. Pavarësisht nga kjo, personat që kanë ndërvepruar me postimet tuaja, mund të jenë në gjendje të kërkojnë për to.
@@ -61,11 +61,10 @@ sq:
         setting_default_quote_policy_private: Në Mastodon s’mund të citohen nga të tjerë postim Vetëm-për-ndjekësit.
         setting_default_quote_policy_unlisted: Kur njerëzit ju citojnë, nga rrjedha kohore e gjërave në modë do të kalohen si të fshehura edhe postimet e tyre.
         setting_default_sensitive: Media rezervat fshihet, si parazgjedhje, dhe mund të shfaqet me një klikim
-        setting_display_media_default: Fshih media me shenjën rezervat
-        setting_display_media_hide_all: Fshih përherë mediat
-        setting_display_media_show_all: Mediat shfaqi përherë
+        setting_display_media_default: Sinjalizo, para se të shfaqësh media të shënuar si me spec
+        setting_display_media_hide_all: Sinjalizo, para shfaqjes së çfarëdo medieje
+        setting_display_media_show_all: Shfaq krejt mediat pa sinjalizuar, përfshi media të shënuar si me spec
         setting_quick_boosting_html: Kur aktivizohet, klikimi mbi ikonën e Përforcimeve %{boost_icon} do të bëjë menjëherë përforcimin, në vend se të hapet menuja hapmbyll e përforcimeve/citimeve. E rikalon veprimin e citimit te menuja %{options_icon} (Mundësi).
-        setting_system_scrollbars_ui: Ka vend vetëm për shfletues desktop bazuar në Safari dhe Chrome
         setting_use_blurhash: Gradientët bazohen në ngjyrat e elementëve pamorë të fshehur, por errësojnë çfarëdo hollësie
         setting_use_pending_items: Fshihi përditësimet e rrjedhës kohore pas një klikimi, në vend të rrëshqitjes automatike nëpër prurje
         username: Mund të përdorni shkronja, numra dhe nënvija
@@ -78,7 +77,7 @@ sq:
       featured_tag:
         name: 'Ja disa nga hashtag-ët që përdorët tani afër:'
       filters:
-        action: Zgjidhni cili veprim të kryhet, kur një postim ka përputhje me një filtër
+        action: Zgjidhni cili veprim të kryhet, kur një postim ka përkim me një filtër
         actions:
           blur: Fshihe median pas një sinjalizimi, pa fshehur vetë tekstin
           hide: Fshihe plotësisht lëndën e filtruar, duke u sjellë sikur të mos ekzistonte
@@ -87,10 +86,11 @@ sq:
         activity_api_enabled: Numër postimesh të botuar lokalisht, përdoruesish aktiv dhe regjistrimesh të reja sipas matjesh javore
         app_icon: WEBP, PNG, GIF, ose JPG. Anashkalon ikonë parazgjedhje aplikacioni në pajisje celulare me një ikonë vetjake.
         backups_retention_period: Përdorues kanë aftësinë të prodhojnë arkiva të postimeve të tyre për t’i shkarkuar më vonë. Kur i jepet një vlerë pozitive, këto arkiva do të fshihen automatikisht prej depozitës tuaj pas numrit të dhënë të ditëve.
-        bootstrap_timeline_accounts: Këto llogari do të fiksohen në krye të rekomandimeve për ndjekje nga përdorues të rinj.
+        bootstrap_timeline_accounts: Këto llogari do të fiksohen në krye të rekomandimeve për ndjekje për përdoruesin e ri. Jepni një listë llogarish ndarë me presje.
         closed_registrations_message: Shfaqur kur mbyllen dritare regjistrimesh
         content_cache_retention_period: Krejt postimet prej shërbyesve të tjerë (përfshi përforcime dhe përgjigje) do të fshihen pas numrit të caktuar të ditëve, pa marrë parasysh çfarëdo ndërveprimi përdoruesi me këto postime. Kjo përfshin postime kur një përdorues vendor u ka vënë shenjë si faqerojtës, ose të parapëlqyer. Do të humbin gjithashtu dhe përmendje private mes përdoruesish nga instanca të ndryshme dhe s’do të jetë e mundshme të rikthehen. Përdorimi i këtij rregullimi është menduar për instanca me qëllim të caktuar dhe ndërhyn në çka presin mjaft përdorues, kur sendërtohet për përdorim të përgjithshëm.
         custom_css: Stile vetjakë mund të aplikoni në versionin web të Mastodon-it.
+        email_footer_text: Tekst opsional që shfaqet vetëm te fundfaqja e email-eve të buletinit.
         favicon: WEBP, PNG, GIF, ose JPG. Anashkalon favikonën parazgjedhje Mastodon me një ikonë vetjake.
         landing_page: Përzgjedh cilën faqe shohin vizitorët e rinj, kur vijnë për herë të parë në shërbyesin tuaj. Nëse përzgjidhni “Në modë”, atëherë “në modë” duhet aktivizuar te Rregullime për Zbulime. Nëse përzgjidhni “Prurje vendore”, atëherë “Hyrje te prurje vendore që përmbajnë postime vendore” duhet vënë si “Gjithkush”, te Rregullime për Zbulime.
         mascot: Anashkalon ilustrimin te ndërfaqja web e thelluar.
@@ -108,8 +108,10 @@ sq:
         status_page_url: URL e faqe ku njerëzit mund të shohin gjendjen e këtij shërbyesi, gjatë një ndërprerje të funksionimit
         theme: Temë që shohin vizitorët që kanë bërë daljen dhe përdorues të rinj.
         thumbnail: Një figurë afërsisht 2:1 e shfaqur tok me hollësi mbi shërbyesin tuaj.
+        thumbnail_description: Një përshkrim i figurës, për të ndihmuar persona me probleme të pari të kuptojnë ç’përmban.
         trendable_by_default: Anashkalo shqyrtim dorazi lënde në modë. Gjëra individuale prapë mund të hiqen nga lëndë në modë pas publikimi.
         trends: Gjërat në modë shfaqin cilat postime, hashtagë dhe histori të reja po tërheqin vëmendjen në shërbyesin tuaj.
+        wrapstodon: Jepuni përdoruesve vendorë mundësinë të prodhojnë një përmbledhje lojcake të përdorimit të Mastodon-it prej tyre përgjatë vitit. Kjo veçori është e përdorshme mes 10 dhe 31 dhjetorit të çdo viti dhe u ofrohet përdoruesve që kanë për të paktën një postim Publik, ose Publik të Heshtur dhe që kanë përdorur të paktën një hashtag brenda vitit.
       form_challenge:
         current_password: Po hyni në një zonë të sigurt
       imports:
@@ -132,6 +134,7 @@ sq:
         otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimeve:'
         webauthn: Nëse është një diskth USB, sigurohuni se e keni futur dhe, në qoftë e nevojshme, prekeni.
       settings:
+        email_subscriptions: Çaktivzimi i mban pajtimtarët ekzistues, por resht dërgim email-esh.
         indexable: Faqja e profilit tuaj mund të shfaqet në përfundime kërkimi në Google, Bing dhe të tjerë.
         show_application: Pavarësisht nga kjo, do të jeni përherë në gjendje të shihni cili aplikacion botoi postimin tuaj.
       tag:
@@ -151,17 +154,19 @@ sq:
         jurisdiction: Vendosni vendin ku jeton cilido që paguan faturat. Nëse është një shoqëri apo tjetër njësi, vendosni vendin ku është regjistruar, si dhe qytetin, rajonin, territorin apo shtetin përkatës.
         min_age: S’duhet të jetë nën moshën minimum të domosdoshme nga ligjet në juridiksionin tuaj.
       user:
-        chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
+        chosen_languages: Kur i vihet shenjë, në rrjedha kohore publike do të shfaqen vetëm postime në gjuhët e përzgjedhura. Ky rregullim s’prek rrjedhën tuaj kohore Kreu dhe lista në të.
         date_of_birth:
           one: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
           other: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
         role: Roli kontrollon cilat leje ka përdoruesi.
       user_role:
+        collection_limit: Kufizon numrin e Koleksioneve që mund të krijojë një përdorues me këtë rol. Ju lutemi, kini parasysh se kur zvogëloni këtë numër, përdoruesit që janë tashmë në këtë kufi, s’do të humbin ndonjë Koleksion. Por s’do të jenë në gjendje të krijojnë të rinj të tjerë.
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
         highlighted: Kjo e bën rolin të dukshëm publikisht
         name: Emër publik për rolin, nëse roli është ujdisur të shfaqet si një stemë
         permissions_as_keys: Përdoruesit me këtë rol do të mund të…
         position: Role më të lartë vendosin zgjidhje përplasje në disa raste. Disa veprime mund të kryhen vetëm mbi role të një shkalle më të ulët
+        require_2fa: Përdoruesve me këtë rol do t’u kërkohet doemos të ujdisin mirëfilltësim dyfaktorësh, që të përdorin Mastodon-in
       username_block:
         allow_with_approval: Në vend të pengimit aty për aty të regjistrimit, regjistrime me përkim do të duan miratimin tuaj
         comparison: Ju lutemi, mbani parasysh Problemin Scunthorpe, kur bllokohen përkime të pjesshme
@@ -173,7 +178,7 @@ sq:
     labels:
       account:
         attribution_domains: Sajte të lejuar t’ju japin hakë
-        discoverable: Profilin dhe postimet bëji objekt të algoritmeve të zbulimit
+        discoverable: Shfaqmëni në mënyra zbulimi
         fields:
           name: Etiketë
           value: Lëndë
@@ -221,6 +226,7 @@ sq:
         email: Adresë email
         expires_in: Skadon pas
         fields: Tejtëdhëna profili
+        filter_action: Veprim filtri
         header: Krye
         honeypot: "%{label} (mos plotësoni gjë këtu)"
         inbox_url: URL e Të marrëve të relesë
@@ -237,6 +243,8 @@ sq:
         setting_always_send_emails: Dërgo përherë njoftime me email
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Kontrolloni dukshmëri përforcimesh
+        setting_color_scheme: Skemë ngjyrash
+        setting_contrast: Kontrast
         setting_default_language: Gjuhë postimi
         setting_default_privacy: Dukshmëri postimi
         setting_default_quote_policy: Cilët mund të citojnë
@@ -285,6 +293,7 @@ sq:
         closed_registrations_message: Mesazh vetjak për pamundësi regjistrimesh të reja
         content_cache_retention_period: Periudhë mbajtjeje lënde të largët
         custom_css: CSS Vetjake
+        email_footer_text: Tekst fundfaqeje shtesë
         favicon: Favikonë
         landing_page: Faqe mbërritje për vizitorë të rinj
         local_live_feed_access: Hyrje te prurje të atypëratyshme që përmbajnë postime vendore
@@ -309,8 +318,13 @@ sq:
         status_page_url: URL faqeje gjendjesh
         theme: Temë parazgjedhje
         thumbnail: Miniaturë shërbyesi
+        thumbnail_description: Tekst alternativ miniature
         trendable_by_default: Lejoni gjëra në modë pa shqyrtim paraprak
         trends: Aktivizo gjëra në modë
+        wrapstodon: Aktivizo Përmbledhjedon-in
+      form_email_subscriptions_confirmation:
+        agreement_email_volume: E kuptoj se aktivizimi i kësaj veçorie mund të rrisë në mënyrë domethënëse vëllimin e email-eve nga shërbyesi dhe se jam i vetmi që mban përgjegjësi për çfarëdo kostos që rrjedhin prej kësaj.
+        agreement_privacy_and_terms: Kam përditësuar Rregulla Privatësie dhe Kushte Shërbimi.
       interactions:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që s’i ndiqni
@@ -349,6 +363,7 @@ sq:
         hint: Informacion shtesë
         text: Rregull
       settings:
+        email_subscriptions: Aktivizo regjistrime me email
         indexable: Përfshi faqe profili në motorë kërkimesh
         show_application: Shfaq prej cilit aplikacion dërguat një postim
       tag:
@@ -371,17 +386,19 @@ sq:
         jurisdiction: Juridiksion ligjor
         min_age: Mosha minimale
       user:
-        date_of_birth_1i: Ditë
+        date_of_birth_1i: Vit
         date_of_birth_2i: Muaj
-        date_of_birth_3i: Vit
+        date_of_birth_3i: Ditë
         role: Rol
         time_zone: Zonë kohore
       user_role:
+        collection_limit: Numër maksimum Koleksionesh për përdorues
         color: Ngjyrë steme
         highlighted: Shfaqe rolin si një stemë në profile përdoruesish
         name: Emër
         permissions_as_keys: Leje
         position: Përparësi
+        require_2fa: Kërko doemos mirëfilltësim dyfaktorësh
       username_block:
         allow_with_approval: Lejo regjistrim me miratim
         comparison: Metodë krahasimi

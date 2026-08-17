@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Reports' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:scopes)  { 'admin:read:reports admin:write:reports' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read:reports admin:write:reports'
 
   describe 'GET /api/v1/admin/reports' do
     subject do
@@ -76,6 +72,17 @@ RSpec.describe 'Reports' do
         let(:scope)  { Report.resolved }
 
         it 'returns only the resolved reports' do
+          subject
+
+          expect(response.parsed_body).to match_array(expected_response)
+        end
+      end
+
+      context 'with both resolved and unresolved params' do
+        let(:params) { { resolved: true, unresolved: true } }
+        let(:scope)  { Report.all }
+
+        it 'returns all reports' do
           subject
 
           expect(response.parsed_body).to match_array(expected_response)

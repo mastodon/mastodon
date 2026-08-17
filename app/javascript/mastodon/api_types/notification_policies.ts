@@ -8,6 +8,7 @@ export interface NotificationPolicyJSON {
   for_new_accounts: NotificationPolicyValue;
   for_private_mentions: NotificationPolicyValue;
   for_limited_accounts: NotificationPolicyValue;
+  for_bots: NotificationPolicyValue;
   summary: {
     pending_requests_count: number;
     pending_notifications_count: number;

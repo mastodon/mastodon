@@ -1,6 +1,7 @@
 .batch-table__row{ class: [!account.unavailable? && account.user_pending? && 'batch-table__row--attention', (account.unavailable? || account.user_unconfirmed?) && 'batch-table__row--muted'] }
   %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
-    = f.check_box :account_ids, { multiple: true, include_hidden: false }, account.id
+    - if local_assigns[:f].present?
+      = f.check_box :account_ids, { multiple: true, include_hidden: false }, account.id
   .batch-table__row__content.batch-table__row__content--unpadded
     %table.accounts-table
       %tbody
@@ -12,13 +13,13 @@
               \-
             - else
               = friendly_number_to_human account.statuses_count
-            %small= t('accounts.posts', count: account.statuses_count).downcase
+            %small= t('accounts.posts', count: account.statuses_count)
           %td.accounts-table__count.optional
             - if account.unavailable? || account.user_pending?
               \-
             - else
               = friendly_number_to_human account.followers_count
-            %small= t('accounts.followers', count: account.followers_count).downcase
+            %small= t('accounts.followers', count: account.followers_count)
           %td.accounts-table__count
             = relevant_account_timestamp(account)
             %small= t('accounts.last_active')

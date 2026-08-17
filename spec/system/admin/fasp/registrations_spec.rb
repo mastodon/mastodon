@@ -31,7 +31,7 @@ RSpec.describe 'FASP registration', feature: :fasp do
 
       click_on I18n.t('admin.fasp.providers.registrations.confirm')
 
-      expect(page).to have_css('h2', text: I18n.t('admin.fasp.providers.edit'))
+      expect(page).to have_css('h1', text: I18n.t('admin.fasp.providers.edit'))
 
       expect(provider.reload).to be_confirmed
     end

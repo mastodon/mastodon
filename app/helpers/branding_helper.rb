@@ -11,11 +11,14 @@ module BrandingHelper
   end
 
   def _logo_as_symbol_wordmark
-    content_tag(:svg, tag.use(href: '#logo-symbol-wordmark'), viewBox: '0 0 261 66', class: 'logo logo--wordmark')
+    tag.svg(viewBox: '0 0 261 66', class: 'logo logo--wordmark') do
+      tag.title('Mastodon') +
+        tag.use(href: '#logo-symbol-wordmark')
+    end
   end
 
   def _logo_as_symbol_icon
-    content_tag(:svg, tag.use(href: '#logo-symbol-icon'), viewBox: '0 0 79 79', class: 'logo logo--icon')
+    tag.svg(tag.use(href: '#logo-symbol-icon'), viewBox: '0 0 79 79', class: 'logo logo--icon')
   end
 
   def render_logo

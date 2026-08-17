@@ -6,6 +6,9 @@ RSpec.describe 'Tags' do
   describe 'GET /tags/:id' do
     context 'when tag exists' do
       let(:tag) { Fabricate :tag }
+      let(:status) { Fabricate :status }
+
+      before { status.tags << tag }
 
       context 'with HTML format' do
         before { get tag_path(tag) }
@@ -51,6 +54,8 @@ RSpec.describe 'Tags' do
             .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
           expect(response.content_type)
             .to start_with('application/rss+xml')
+          expect(response.body)
+            .to include(status.text)
         end
       end
     end

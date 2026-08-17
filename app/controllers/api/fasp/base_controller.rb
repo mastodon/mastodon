@@ -47,7 +47,7 @@ class Api::Fasp::BaseController < ApplicationController
     provider = nil
 
     Linzer.verify!(request.rack_request, no_older_than: 5.minutes) do |keyid|
-      provider = Fasp::Provider.find(keyid)
+      provider = Fasp::Provider.confirmed.find(keyid)
       Linzer.new_ed25519_public_key(provider.provider_public_key_pem, keyid)
     end
 

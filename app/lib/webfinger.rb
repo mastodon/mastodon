@@ -12,7 +12,7 @@ class Webfinger
 
     def initialize(uri, body)
       @uri  = uri
-      @json = Oj.load(body, mode: :strict)
+      @json = JSON.parse(body)
 
       validate_response!
     end
@@ -57,10 +57,12 @@ class Webfinger
 
   def perform
     Response.new(@uri, body_from_webfinger)
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     raise Webfinger::Error, "Invalid JSON in response for #{@uri}"
   rescue Addressable::URI::InvalidURIError
     raise Webfinger::Error, "Invalid URI for #{@uri}"
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS => e
+    raise Webfinger::Error, "Error performing webfinger query for #{@uri}: #{e}"
   end
 
   private

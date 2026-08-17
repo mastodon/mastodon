@@ -7,7 +7,7 @@ class AccountRefreshWorker
 
   def perform(account_id)
     account = Account.find_by(id: account_id)
-    return if account.nil? || account.last_webfingered_at > Account::BACKGROUND_REFRESH_INTERVAL.ago
+    return unless account&.needs_background_refresh?
 
     ResolveAccountService.new.call(account)
   end

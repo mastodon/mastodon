@@ -1,6 +1,3 @@
-@use 'sass:color';
-@use 'variables' as *;
-
 .category-badges {
   margin: 6px 0 0;
   display: flex;
@@ -34,8 +31,8 @@
   margin: 0 0 12px;
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid $ui-secondary-color;
-  background: color.adjust($ui-base-color, $lightness: 3%);
+  border: 1px solid var(--color-border-primary);
+  background: var(--color-bg-secondary);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 6%);
 
   &__header {
@@ -71,11 +68,11 @@
   &__title {
     font-size: 15px;
     font-weight: 700;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
   }
 
   &__subtitle {
-    color: $darker-text-color;
+    color: var(--color-text-tertiary);
     font-size: 13px;
   }
 
@@ -92,7 +89,7 @@
     gap: 12px;
     padding: 8px 10px;
     border-radius: 10px;
-    background: color.adjust($ui-base-color, $lightness: 6%);
+    background: var(--color-bg-tertiary);
     border: 1px solid transparent;
   }
 
@@ -128,22 +125,22 @@
 
   &__name {
     font-weight: 600;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
   }
 
   &__meta {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: $darker-text-color;
+    color: var(--color-text-tertiary);
     font-size: 13px;
   }
 
   &__badge {
     border-radius: 999px;
     padding: 2px 8px;
-    border: 1px solid $highlight-text-color;
-    color: $highlight-text-color;
+    border: 1px solid var(--color-text-brand);
+    color: var(--color-text-brand);
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -151,7 +148,7 @@
 
   &__state {
     font-size: 13px;
-    color: $darker-text-color;
+    color: var(--color-text-tertiary);
   }
 
   &__loading {
@@ -159,13 +156,13 @@
     align-items: center;
     gap: 8px;
     margin-top: 12px;
-    color: $darker-text-color;
+    color: var(--color-text-tertiary);
     font-size: 14px;
   }
 
   &__empty {
     margin: 12px 0 4px;
-    color: $darker-text-color;
+    color: var(--color-text-tertiary);
     font-size: 14px;
   }
 }

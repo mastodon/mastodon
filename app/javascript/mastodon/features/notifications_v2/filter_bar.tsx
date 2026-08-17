@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
@@ -26,6 +27,10 @@ const tooltips = defineMessages({
   boosts: { id: 'notifications.filter.boosts', defaultMessage: 'Boosts' },
   polls: { id: 'notifications.filter.polls', defaultMessage: 'Poll results' },
   follows: { id: 'notifications.filter.follows', defaultMessage: 'Follows' },
+  collections: {
+    id: 'notifications.filter.collections',
+    defaultMessage: 'Collections',
+  },
   statuses: {
     id: 'notifications.filter.statuses',
     defaultMessage: 'Updates from people you follow',
@@ -50,6 +55,7 @@ const BarButton: React.FC<
       className={selectedFilter === type ? 'active' : ''}
       onClick={onClick}
       title={title}
+      type='button'
     >
       {children}
     </button>
@@ -122,6 +128,14 @@ export const FilterBar: React.FC = () => {
           title={intl.formatMessage(tooltips.follows)}
         >
           <Icon id='user-plus' icon={PersonAddIcon} />
+        </BarButton>
+        <BarButton
+          selectedFilter={selectedFilter}
+          type='collection'
+          key='collection'
+          title={intl.formatMessage(tooltips.collections)}
+        >
+          <Icon id='collections' icon={CollectionsIcon} />
         </BarButton>
       </div>
     );

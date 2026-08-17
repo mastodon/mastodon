@@ -15,7 +15,7 @@ class Api::V1::CategoryNotificationsController < Api::BaseController
     @category_notification = current_account.account_category_notifications.find_or_create_by!(category: @category)
     render json: @category_notification, serializer: REST::CategoryNotificationSerializer
   rescue ActiveRecord::RecordInvalid => e
-    render json: { error: e.message }, status: :unprocessable_entity
+    render json: { error: e.message }, status: 422
   end
 
   def destroy

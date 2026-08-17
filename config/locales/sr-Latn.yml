@@ -11,7 +11,6 @@ sr-Latn:
       few: Pratioca
       one: Pratilac
       other: Pratilaca
-    following: Pratim
     instance_actor_flash: Ovaj nalog je virtuelni akter koji ne predstavlja nijednog korisnika lično, već sâm server. Koristi se u svrhu federacije i ne treba ga suspendovati.
     last_active: najskorija aktivnost
     link_verified_on: Vlasništvo nad ovom vezom je provereno %{date}
@@ -576,7 +575,6 @@ sr-Latn:
       action_log: Zapisnik
       action_taken_by: Akciju izveo
       actions:
-        delete_description_html: Prijavljene objave će biti obrisane i prekršaj će biti upisan da bi Vam olakšali intervenciju prilikom budućih prestupa sa istog naloga.
         mark_as_sensitive_description_html: Multimedijalni sadržaj sa prijavljenih objava će biti označen kao osetljiv i prekršaj će biti upisan radi lakše intervencije u slučaju daljih prekršaja sa istog naloga.
         other_description_html: Pogledajte više opcija za kontrolisanje ponašanja naloga i prilagodite komunikaciju sa prijavljenim nalogom.
         resolve_description_html: Nijedna radnja neće biti preduzeta protiv prijavljenog naloga, nijedan prestup nije upisan i prijava će biti zatvorena.
@@ -600,7 +598,6 @@ sr-Latn:
       confirm: Potvrdi
       confirm_action: Potvrdi moderacijsku radnju prema @%{acct}
       created_at: Prijavljena
-      delete_and_resolve: Obriši objave
       forwarded: Prosleđeno
       forwarded_replies_explanation: Ovaj izveštaj je od udaljenog korisnika i o udaljenom sadržaju. Prosleđen vam je jer je prijavljeni sadržaj u odgovoru jednom od vaših korisnika.
       forwarded_to: Prosleđeno ka %{domain}
@@ -627,7 +624,6 @@ sr-Latn:
       resolved_msg: Prijava uspešno razrešena!
       skip_to_actions: Preskoči do radnji
       status: Status
-      statuses: Prijavljeni sadržaj
       statuses_description_html: Sporni sadržaj će biti naveden u komunikaciji sa prijavljenim nalogom
       summary:
         action_preambles:
@@ -1164,8 +1160,6 @@ sr-Latn:
       your_appeal_pending: Priložili ste žalbu
       your_appeal_rejected: Vaša žalba je odbijena
   edit_profile:
-    basic_information: Osnovne informacije
-    hint_html: "<strong>Prilagodite šta ljudi vide na vašem javnom profilu i pored vaših objava.</strong> Veća je verovatnoća da će vas drugi pratiti i komunicirati sa vama kada imate popunjen profil i sliku profila."
     other: Ostalo
   errors:
     '400': Zahtev koji ste podneli je bio nelegitiman ili u pogrešnom formatu.
@@ -1201,10 +1195,8 @@ sr-Latn:
     mutes: Ignorišete
     storage: Multimedijalno skladište
   featured_tags:
-    add_new: Dodaj novu
     errors:
       limit: Već ste istakli maksimalan broj heš oznaka
-    hint_html: "<strong>Istaknite najvažnije heš oznake na svom profilu.</strong> Odličan alat za praćenje vaših kreativnih radova i dugoročnih projekata, istaknute heš oznake su istaknute na vašem profilu i omogućuju brz pristup vašim objavama."
   filters:
     contexts:
       account: Profili
@@ -1359,11 +1351,6 @@ sr-Latn:
     failed_sign_in_html: Neuspešan pokušaj prijavljivanja putem %{method} sa %{ip} (%{browser})
     successful_sign_in_html: Uspešan pokušaj prijavljivanja putem %{method} sa %{ip} (%{browser})
     title: Istorija autentifikacije
-  mail_subscriptions:
-    unsubscribe:
-      action: Da, odjavi me
-      complete: Odjavljen
-      title: Odjavi se
   media_attachments:
     validations:
       images_and_video: Ne može da se prikači video na status koji već ima slike
@@ -1398,7 +1385,6 @@ sr-Latn:
       disabled_account: Vaš trenutni nalog više neće biti upotrebljiv. Međutim, imaćete pristup izvozu podataka kao i reaktivaciji.
       followers: Ova radnja će premestiti sve pratioce sa trenutnog naloga na novi nalog
       only_redirect_html: Umesto preseljenja, možete <a href="%{path}">samo dodati preusmeravajući link na svoj profil.</a>.
-      other_data: Ostali podaci neće biti automatski prebačeni
       redirect: Profil Vašeg sadašnjeg naloga će biti ažuriran sa obaveštenjem o preusmerenju i biće isključen iz pretrage
   moderation:
     title: Moderacija
@@ -1656,11 +1642,9 @@ sr-Latn:
     enabled: Automatski izbriši stare objave
     enabled_hint: Automatski briše vaše objave kada dostignu određeni starosni prag, osim ako se ne podudaraju sa jednim od izuzetaka u nastavku
     exceptions: Izuzeci
-    explanation: Pošto je brisanje objava skupa operacija, ovo se radi polako tokom vremena kada server inače nije zauzet. Iz tog razloga, vaše objave mogu biti izbrisane neko vreme nakon što dostignu starosni prag.
     ignore_favs: Ignoriši omiljene
     ignore_reblogs: Ignoriši podržavanja
     interaction_exceptions: Izuzeci zasnovani na interakcijama
-    interaction_exceptions_explanation: Imajte na umu da ne postoji garancija da će objave biti izbrisane ako broj označavanja kao omiljenih ili broj podržavanja padne ispod praga nakon što ga premaše.
     keep_direct: Zadrži direktne poruke
     keep_direct_hint: Ne briše nijednu od vaših direktnih poruka
     keep_media: Zadrži objave sa medijskim prilozima
@@ -1694,11 +1678,6 @@ sr-Latn:
       too_late: Istekao je rok za podnošenje žalbe na zabeležen prestup
   tags:
     does_not_match_previous_name: ne poklapa se sa prethodnim imenom
-  themes:
-    contrast: Veliki kontrast
-    default: Mastodon (tamna)
-    mastodon-light: Mastodon (svetla)
-    system: Automatski (korišćenje sistemske teme)
   time:
     formats:
       default: "%d %b %Y, %H:%M"

@@ -1,0 +1,8 @@
+- if account.user_can?(:manage_email_subscriptions) && account.user_email_subscriptions_enabled?
+  %span.status-badge.positive= t('email_subscriptions.active')
+- elsif account.user_can?(:manage_email_subscriptions) && !account.user_email_subscriptions_enabled?
+  %span.status-badge.negative= t('email_subscriptions.disabled')
+- elsif account.user_email_subscriptions_enabled? && !account.user_can?(:manage_email_subscriptions)
+  %span.status-badge.negative= t('email_subscriptions.no_access')
+- else
+  %span.status-badge.negative= t('email_subscriptions.inactive')

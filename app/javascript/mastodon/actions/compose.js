@@ -6,8 +6,8 @@ import { throttle } from 'lodash';
 import api from 'mastodon/api';
 import { browserHistory } from 'mastodon/components/router';
 import { countableText } from 'mastodon/features/compose/util/counter';
-import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
 import { tagHistory } from 'mastodon/settings';
+import { emojiMartSearch } from '@/mastodon/features/emoji/picker';
 
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
@@ -19,6 +19,8 @@ import { updateTimeline } from './timelines';
 let fetchComposeSuggestionsAccountsController;
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsTagsController;
+/** @type {AbortController | undefined} */
+let searchComposeSuggestionsEmojiController;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
@@ -61,10 +63,6 @@ export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
-export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
-export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
-export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
-
 export const COMPOSE_POLL_ADD             = 'COMPOSE_POLL_ADD';
 export const COMPOSE_POLL_REMOVE          = 'COMPOSE_POLL_REMOVE';
 export const COMPOSE_POLL_OPTION_ADD      = 'COMPOSE_POLL_OPTION_ADD';
@@ -93,13 +91,13 @@ const messages = defineMessages({
 
 export const ensureComposeIsVisible = (getState) => {
   if (!getState().getIn(['compose', 'mounted'])) {
-    browserHistory.push('/publish');
+    browserHistory.push('/publish', { focusTarget: false });
   }
 };
 
 export function setComposeToStatus(status, text, spoiler_text) {
   return (dispatch, getState) => {
-    const maxOptions = getState().server.getIn(['server', 'configuration', 'polls', 'max_options']);
+    const maxOptions = getState().server.server.item?.configuration.polls.max_options;
 
     dispatch({
       type: COMPOSE_SET_STATUS,
@@ -153,10 +151,11 @@ export function resetCompose() {
   };
 }
 
-export const focusCompose = (defaultText = '') => (dispatch, getState) => {
+export const focusCompose = (defaultText = '', caretStart = false) => (dispatch, getState) => {
   dispatch({
     type: COMPOSE_FOCUS,
     defaultText,
+    caretStart,
   });
 
   ensureComposeIsVisible(getState);
@@ -291,7 +290,10 @@ export function submitCompose(successCallback) {
         message: statusId === null ? messages.published : messages.saved,
         action: messages.open,
         dismissAfter: 10000,
-        onClick: () => browserHistory.push(`/@${response.data.account.username}/${response.data.id}`),
+        onClick: () => browserHistory.push(
+          `/@${response.data.account.username}/${response.data.id}`,
+          { focusTarget: 'detailed-status' }
+        ),
       }));
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -326,7 +328,7 @@ export function uploadCompose(files) {
       dispatch(showAlert({ message: messages.uploadQuote }));
       return;
     }
-    const uploadLimit = getState().getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']);
+    const uploadLimit = getState().getIn(['server', 'server', 'item', 'configuration', 'statuses', 'max_media_attachments']);
     const media = getState().getIn(['compose', 'media_attachments']);
     const pending = getState().getIn(['compose', 'pending_media_attachments']);
     const progress = new Array(files.length).fill(0);
@@ -335,11 +337,6 @@ export function uploadCompose(files) {
 
     if (files.length + media.size + pending > uploadLimit) {
       dispatch(showAlert({ message: messages.uploadErrorLimit }));
-      return;
-    }
-
-    if (getState().getIn(['compose', 'poll'])) {
-      dispatch(showAlert({ message: messages.uploadErrorPoll }));
       return;
     }
 
@@ -462,58 +459,6 @@ export function onChangeMediaFocus(focusX, focusY) {
   };
 }
 
-export function changeUploadCompose(id, params) {
-  return (dispatch, getState) => {
-    dispatch(changeUploadComposeRequest());
-
-    let media = getState().getIn(['compose', 'media_attachments']).find((item) => item.get('id') === id);
-
-    // Editing already-attached media is deferred to editing the post itself.
-    // For simplicity's sake, fake an API reply.
-    if (media && !media.get('unattached')) {
-      const { focus, ...other } = params;
-      const data = { ...media.toJS(), ...other };
-
-      if (focus) {
-        const [x, y] = focus.split(',');
-        data.meta = { focus: { x: parseFloat(x), y: parseFloat(y) } };
-      }
-
-      dispatch(changeUploadComposeSuccess(data, true));
-    } else {
-      api().put(`/api/v1/media/${id}`, params).then(response => {
-        dispatch(changeUploadComposeSuccess(response.data, false));
-      }).catch(error => {
-        dispatch(changeUploadComposeFail(id, error));
-      });
-    }
-  };
-}
-
-export function changeUploadComposeRequest() {
-  return {
-    type: COMPOSE_UPLOAD_CHANGE_REQUEST,
-    skipLoading: true,
-  };
-}
-
-export function changeUploadComposeSuccess(media, attached) {
-  return {
-    type: COMPOSE_UPLOAD_CHANGE_SUCCESS,
-    media: media,
-    attached: attached,
-    skipLoading: true,
-  };
-}
-
-export function changeUploadComposeFail(error) {
-  return {
-    type: COMPOSE_UPLOAD_CHANGE_FAIL,
-    error: error,
-    skipLoading: true,
-  };
-}
-
 export function uploadComposeRequest() {
   return {
     type: COMPOSE_UPLOAD_REQUEST,
@@ -554,15 +499,14 @@ export function undoUploadCompose(media_id) {
 }
 
 export function clearComposeSuggestions() {
-  if (fetchComposeSuggestionsAccountsController) {
-    fetchComposeSuggestionsAccountsController.abort();
-  }
+  fetchComposeSuggestionsAccountsController?.abort();
+  searchComposeSuggestionsEmojiController?.abort();
   return {
     type: COMPOSE_SUGGESTIONS_CLEAR,
   };
 }
 
-const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => {
+const fetchComposeSuggestionsAccounts = throttle((dispatch, token) => {
   if (fetchComposeSuggestionsAccountsController) {
     fetchComposeSuggestionsAccountsController.abort();
   }
@@ -589,12 +533,27 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
   });
 }, 200, { leading: true, trailing: true });
 
-const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
-  const results = emojiSearch(token.replace(':', ''), { maxResults: 5 });
-  dispatch(readyComposeSuggestionsEmojis(token, results));
-};
+const fetchComposeSuggestionsEmojis = (dispatch, token) => {
+  dispatch(clearComposeSuggestions());
+  searchComposeSuggestionsEmojiController = new AbortController();
 
-const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
+  void emojiMartSearch({
+    token,
+    // Right now we are hard-coding the locale to English since the picker search only supports English.
+    // Once we replace the legacy picker we can remove this and use the actual locale of the user.
+    locale: 'en',
+    limit: 5,
+    signal: searchComposeSuggestionsEmojiController.signal,
+  }).then((results) => {
+    if (results) {
+      dispatch(readyComposeSuggestionsEmojis(token, results));
+    }
+  }).finally(() => {
+    searchComposeSuggestionsEmojiController = undefined;
+  });
+}
+
+const fetchComposeSuggestionsTags = throttle((dispatch, token) => {
   if (fetchComposeSuggestionsTagsController) {
     fetchComposeSuggestionsTagsController.abort();
   }
@@ -625,17 +584,17 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
 }, 200, { leading: true, trailing: true });
 
 export function fetchComposeSuggestions(token) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     switch (token[0]) {
     case ':':
-      fetchComposeSuggestionsEmojis(dispatch, getState, token);
+      void fetchComposeSuggestionsEmojis(dispatch, token);
       break;
     case '#':
     case '＃':
-      fetchComposeSuggestionsTags(dispatch, getState, token);
+      fetchComposeSuggestionsTags(dispatch, token);
       break;
     default:
-      fetchComposeSuggestionsAccounts(dispatch, getState, token);
+      fetchComposeSuggestionsAccounts(dispatch, token);
       break;
     }
   };
@@ -668,13 +627,22 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
     let completion, startPosition;
 
     if (suggestion.type === 'emoji') {
-      completion    = suggestion.native || suggestion.colons;
+      completion    = suggestion.native || `:${suggestion.id}:`;
       startPosition = position - 1;
 
       dispatch(useEmoji(suggestion));
     } else if (suggestion.type === 'hashtag') {
-      completion    = suggestion.name.slice(token.length - 1);
-      startPosition = position + token.length;
+      // TODO: it could make sense to keep the “most capitalized” of the two
+      const tokenName = token.slice(1); // strip leading '#'
+      const suggestionPrefix = suggestion.name.slice(0, tokenName.length);
+      const prefixMatchesSuggestion = suggestionPrefix.localeCompare(tokenName, undefined, { sensitivity: 'accent' }) === 0;
+      if (prefixMatchesSuggestion) {
+        completion = token + suggestion.name.slice(tokenName.length);
+      } else {
+        completion = `${token.slice(0, 1)}${suggestion.name}`;
+      }
+
+      startPosition = position - 1;
     } else if (suggestion.type === 'account') {
       completion    = `@${getState().getIn(['accounts', suggestion.id, 'acct'])}`;
       startPosition = position - 1;

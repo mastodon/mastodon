@@ -16,10 +16,13 @@ class Admin::Metrics::Retention
   alias loaded? loaded
 
   def initialize(start_at, end_at, frequency)
-    @start_at  = start_at&.to_date
-    @end_at    = end_at&.to_date
+    @start_at  = start_at.to_date
+    @end_at    = end_at.to_date
+
     @frequency = %w(day month).include?(frequency) ? frequency : 'day'
     @loaded    = false
+
+    @start_at = [@start_at, @end_at - (@frequency == 'day' ? 31.days : 12.months)].max
   end
 
   def cache_key
@@ -76,7 +79,7 @@ class Admin::Metrics::Retention
         WITH new_users AS (
           SELECT users.id
           FROM users
-          WHERE date_trunc(:frequency, users.created_at)::date = axis.cohort_period
+          WHERE users.account_id >= (date_part('epoch', date_trunc(:frequency, axis.cohort_period)::date) * 1000)::bigint << 16 AND users.account_id < ((date_part('epoch', date_trunc(:frequency, axis.cohort_period)::date + ('1' || :frequency)::interval)) * 1000)::bigint << 16
         ),
         retained_users AS (
           SELECT users.id

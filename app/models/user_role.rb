@@ -4,14 +4,16 @@
 #
 # Table name: user_roles
 #
-#  id          :bigint(8)        not null, primary key
-#  name        :string           default(""), not null
-#  color       :string           default(""), not null
-#  position    :integer          default(0), not null
-#  permissions :bigint(8)        default(0), not null
-#  highlighted :boolean          default(FALSE), not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id               :bigint(8)        not null, primary key
+#  collection_limit :integer          default(10), not null
+#  color            :string           default(""), not null
+#  highlighted      :boolean          default(FALSE), not null
+#  name             :string           default(""), not null
+#  permissions      :bigint(8)        default(0), not null
+#  position         :integer          default(0), not null
+#  require_2fa      :boolean          default(FALSE), not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class UserRole < ApplicationRecord
@@ -42,6 +44,8 @@ class UserRole < ApplicationRecord
     reblog_statuses: (1 << 23),
     fav_statuses: (1 << 24),
     manage_categories: (1 << 25),
+    invite_bypass_approval: (1 << 26),
+    manage_email_subscriptions: (1 << 27),
   }.freeze
 
   EVERYONE_ROLE_ID = -99
@@ -55,10 +59,16 @@ class UserRole < ApplicationRecord
     ALL  = FLAGS.values.reduce(&:|)
 
     DEFAULT = FLAGS[:invite_users]
+    SAFE = FLAGS[:invite_users] | FLAGS[:invite_bypass_approval]
 
     CATEGORIES = {
       invites: %i(
         invite_users
+        invite_bypass_approval
+      ).freeze,
+
+      email: %i(
+        manage_email_subscriptions
       ).freeze,
 
       interaction: %i(
@@ -114,6 +124,7 @@ class UserRole < ApplicationRecord
   validates :name, presence: true, unless: :everyone?
   validates :color, format: { with: CSS_COLORS }, if: :color?
   validates :position, numericality: { in: (-POSITION_LIMIT..POSITION_LIMIT) }
+  validates :collection_limit, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   validate :validate_permissions_elevation
   validate :validate_position_elevation
@@ -180,7 +191,7 @@ class UserRole < ApplicationRecord
     @computed_permissions ||= begin
       permissions = self.class.everyone.permissions | self.permissions
 
-      if permissions & FLAGS[:administrator] == FLAGS[:administrator]
+      if administrator?
         Flags::ALL
       else
         permissions
@@ -190,6 +201,10 @@ class UserRole < ApplicationRecord
 
   def to_log_human_identifier
     name
+  end
+
+  def administrator?
+    permissions & FLAGS[:administrator] == FLAGS[:administrator]
   end
 
   private
@@ -209,6 +224,7 @@ class UserRole < ApplicationRecord
 
     errors.add(:permissions_as_keys, :own_role) if permissions_changed?
     errors.add(:position, :own_role) if position_changed?
+    errors.add(:require_2fa, :own_role) if require_2fa_changed? && !administrator?
   end
 
   def validate_permissions_elevation
@@ -220,8 +236,8 @@ class UserRole < ApplicationRecord
   end
 
   def validate_dangerous_permissions
-    # Allow the everyone role to include the default flags plus interaction flags (reply/fav/reblog)
-    allowed_flags = Flags::DEFAULT | Flags::INTERACTION
+    # Allow the everyone role to include the safe flags plus interaction flags (reply/fav/reblog)
+    allowed_flags = Flags::SAFE | Flags::INTERACTION
     errors.add(:permissions_as_keys, :dangerous) if everyone? && (allowed_flags & permissions) != permissions
   end
 end

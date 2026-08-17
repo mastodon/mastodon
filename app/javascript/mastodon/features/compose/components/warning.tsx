@@ -31,7 +31,7 @@ export const Warning = () => {
           defaultMessage='Your account is not {locked}. Anyone can follow you to view your follower-only posts.'
           values={{
             locked: (
-              <a href='/settings/profile'>
+              <a href='/settings/privacy#account_unlocked'>
                 <FormattedMessage
                   id='compose_form.lock_disclaimer.lock'
                   defaultMessage='locked'
@@ -62,7 +62,11 @@ export const Warning = () => {
           id='compose_form.encryption_warning'
           defaultMessage='Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.'
         />{' '}
-        <a href='/terms' target='_blank'>
+        <a
+          href='https://docs.joinmastodon.org/user/posting/#private'
+          rel='noreferrer'
+          target='_blank'
+        >
           <FormattedMessage
             id='compose_form.direct_message_warning_learn_more'
             defaultMessage='Learn more'

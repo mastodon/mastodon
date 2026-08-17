@@ -4,8 +4,23 @@
 - content_for :heading_actions do
   = link_to t('admin.email_domain_blocks.add_new'), new_admin_email_domain_block_path, class: 'button'
 
+= form_with url: admin_email_domain_blocks_path, method: :get, class: :simple_form do |f|
+  .fields-group
+    .input.string.optional
+      = f.text_field :domain,
+                     value: params[:domain],
+                     class: 'string optional',
+                     placeholder: t('admin.email_domain_blocks.domain')
+
+  .actions
+    %button.button= t('admin.email_domain_blocks.search')
+    = link_to t('admin.email_domain_blocks.reset'), admin_email_domain_blocks_path, class: 'button button--dangerous'
+
+%hr.spacer/
+
 = form_with model: @form, url: batch_admin_email_domain_blocks_path do |f|
   = hidden_field_tag :page, params[:page] || 1
+  = hidden_field_tag :domain, params[:domain] if params[:domain].present?
 
   .batch-table
     .batch-table__toolbar

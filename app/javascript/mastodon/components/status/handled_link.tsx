@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
+import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 export interface HandledLinkProps {
@@ -13,6 +14,7 @@ export interface HandledLinkProps {
   prevText?: string;
   hashtagAccountId?: string;
   mention?: Pick<ApiMentionJSON, 'id' | 'acct'>;
+  collectionId?: string;
 }
 
 export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
@@ -21,22 +23,25 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   prevText,
   hashtagAccountId,
   mention,
+  collectionId,
   className,
   children,
   ...props
 }) => {
   // Handle hashtags
   if (
-    text.startsWith('#') ||
-    prevText?.endsWith('#') ||
-    text.startsWith('＃') ||
-    prevText?.endsWith('＃')
+    (text.startsWith('#') ||
+      prevText?.endsWith('#') ||
+      text.startsWith('＃') ||
+      prevText?.endsWith('＃')) &&
+    !text.includes('%')
   ) {
     const hashtag = text.slice(1).trim();
+
     return (
       <Link
         className={classNames('mention hashtag', className)}
-        to={`/tags/${hashtag}`}
+        to={`/tags/${encodeURIComponent(hashtag)}`}
         rel='tag'
         data-menu-hashtag={hashtagAccountId}
       >
@@ -51,6 +56,15 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         to={`/@${mention.acct}`}
         title={`@${mention.acct}`}
         data-hover-card-account={mention.id}
+      >
+        {children}
+      </Link>
+    );
+  } else if (collectionId) {
+    return (
+      <Link
+        className={classNames(className)}
+        to={getCollectionPath(collectionId)}
       >
         {children}
       </Link>
@@ -73,7 +87,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
       title={href}
       className={classNames('unhandled-link', className)}
       target='_blank'
-      rel='noreferrer noopener'
+      rel='noopener'
       translate='no'
     >
       {children}
@@ -83,15 +97,18 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
 
 export const useElementHandledLink = ({
   hashtagAccountId,
+  hrefToCollectionId: hrefToCollection,
   hrefToMention,
 }: {
   hashtagAccountId?: string;
+  hrefToCollectionId?: (href: string) => string | undefined;
   hrefToMention?: (href: string) => ApiMentionJSON | undefined;
 } = {}) => {
   const onElement = useCallback<OnElementHandler>(
     (element, { key, ...props }, children) => {
       if (element instanceof HTMLAnchorElement) {
         const mention = hrefToMention?.(element.href);
+        const collectionId = hrefToCollection?.(element.href);
         return (
           <HandledLink
             {...props}
@@ -101,6 +118,7 @@ export const useElementHandledLink = ({
             prevText={element.previousSibling?.textContent ?? undefined}
             hashtagAccountId={hashtagAccountId}
             mention={mention}
+            collectionId={collectionId}
           >
             {children}
           </HandledLink>
@@ -108,7 +126,7 @@ export const useElementHandledLink = ({
       }
       return undefined;
     },
-    [hashtagAccountId, hrefToMention],
+    [hashtagAccountId, hrefToCollection, hrefToMention],
   );
   return { onElement };
 };
