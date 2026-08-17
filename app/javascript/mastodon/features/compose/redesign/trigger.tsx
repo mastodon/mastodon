@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import type React from 'react';
-import { lazy, Suspense, useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -13,11 +13,12 @@ import {
 import { IconButton } from '@/mastodon/components/button/redesign';
 import { CircularProgress } from '@/mastodon/components/circular_progress';
 import {
-  Dropdown,
-  DropdownItemButton,
-  DropdownPopover,
-} from '@/mastodon/components/dropdown/redesign';
-import { useToggle } from '@/mastodon/hooks/useToggle';
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from '@/mastodon/components/menu';
+import { MenuCard } from '@/mastodon/components/menu/card';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
@@ -32,9 +33,6 @@ const ComposeLazyForm = lazy(() =>
 );
 
 export const ComposeRedesignButton: React.FC = () => {
-  const [ref, setRef] = useState<HTMLButtonElement | null>(null);
-  const [menuOpen, { onFalse: onMenuClose, onToggle: onMenuToggle }] =
-    useToggle();
   const displayState = useAppSelector((state) => state.composer.displayState);
 
   const dispatch = useAppDispatch();
@@ -46,10 +44,9 @@ export const ComposeRedesignButton: React.FC = () => {
         } = event;
         if (name === 'post' || name === 'message') {
           dispatch(openNewComposer({ type: name }));
-          onMenuClose();
         }
       },
-      [dispatch, onMenuClose],
+      [dispatch],
     );
 
   if (!isRedesignEnabled()) {
@@ -58,9 +55,9 @@ export const ComposeRedesignButton: React.FC = () => {
 
   if (displayState === 'minimized') {
     return (
-      <Dropdown className={classes.composerMinimized} elevation={2}>
+      <MenuCard className={classes.composerMinimized} elevation={2}>
         <ComposeFormHeader />
-      </Dropdown>
+      </MenuCard>
     );
   }
 
@@ -73,12 +70,11 @@ export const ComposeRedesignButton: React.FC = () => {
   }
 
   return (
-    <>
-      <IconButton
+    <Menu>
+      <MenuButton
+        as={IconButton}
         icon={PenNibIcon}
         color='neutral'
-        ref={setRef}
-        onClick={onMenuToggle}
         className={classes.button}
         size='lg'
       >
@@ -86,24 +82,18 @@ export const ComposeRedesignButton: React.FC = () => {
           id='compose.new'
           defaultMessage='Write a new post or messsage'
         />
-      </IconButton>
+      </MenuButton>
 
-      <DropdownPopover
-        isOpen={menuOpen}
-        maxWidth={180}
-        reference={ref}
-        onClose={onMenuClose}
-        placement='top-end'
-      >
-        <DropdownItemButton
+      <MenuList maxWidth={180} placement='top-end'>
+        <MenuItem
           name='post'
           onClick={handleComposerOpen}
           leadingIcon={NewspaperIcon}
         >
           <FormattedMessage id='compose.new.post' defaultMessage='Post' />
-        </DropdownItemButton>
+        </MenuItem>
 
-        <DropdownItemButton
+        <MenuItem
           name='message'
           onClick={handleComposerOpen}
           leadingIcon={ChatCircleIcon}
@@ -113,8 +103,8 @@ export const ComposeRedesignButton: React.FC = () => {
             defaultMessage='Message'
             description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
           />
-        </DropdownItemButton>
-      </DropdownPopover>
-    </>
+        </MenuItem>
+      </MenuList>
+    </Menu>
   );
 };

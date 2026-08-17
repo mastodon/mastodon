@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -16,20 +16,19 @@ import {
 } from '@/mastodon/actions/compose_typed';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
-import { Button } from '@/mastodon/components/button/redesign';
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownItemButton,
-} from '@/mastodon/components/dropdown/redesign';
 import { Fieldset } from '@/mastodon/components/form_fields';
 import {
   ToggleField,
   RadioButtonField,
 } from '@/mastodon/components/form_fields/redesign';
 import type { IconProp } from '@/mastodon/components/icon';
-import { Popover } from '@/mastodon/components/popover';
-import { useToggle } from '@/mastodon/hooks/useToggle';
+import {
+  Menu,
+  MenuList,
+  MenuButton,
+  MenuItemBase,
+  MenuItem,
+} from '@/mastodon/components/menu';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposeMentions, selectComposePrivacy } from './selectors';
@@ -38,8 +37,6 @@ import classes from './styles.module.scss';
 export const ComposeVisibility: React.FC = () => {
   const privacy = useAppSelector(selectComposePrivacy);
   const mentions = useAppSelector(selectComposeMentions);
-  const [trigger, setTrigger] = useState<HTMLElement | null>(null);
-  const [showMenu, { onToggle, onFalse }] = useToggle();
 
   return (
     <>
@@ -48,42 +45,31 @@ export const ComposeVisibility: React.FC = () => {
         defaultMessage='To:'
         description='Before button that indicates who a post is for (Public, Followers, mentioned people)'
       />
+      <Menu>
+        <MenuButton size='sm'>
+          {privacy !== 'private' && (
+            <FormattedMessage
+              id='privacy.public.short'
+              defaultMessage='Public'
+            />
+          )}
+          {privacy === 'private' && (
+            <FormattedMessage
+              id='compose.post.privacy.followers'
+              defaultMessage='Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
+              description='Count is # of other people mentioned in the post. If zero, just output "Followers".'
+              values={{ count: mentions.size }}
+            />
+          )}
+        </MenuButton>
 
-      <Button
-        size='sm'
-        onClick={onToggle}
-        ref={setTrigger}
-        aria-expanded={showMenu}
-      >
-        {privacy !== 'private' && (
-          <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
-        )}
-        {privacy === 'private' && (
-          <FormattedMessage
-            id='compose.post.privacy.followers'
-            defaultMessage='Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
-            description='Count is # of other people mentioned in the post. If zero, just output "Followers".'
-            values={{ count: mentions.size }}
-          />
-        )}
-      </Button>
-
-      <Popover
-        isOpen={showMenu}
-        onClose={onFalse}
-        reference={trigger}
-        placement='bottom-start'
-        offset={4}
-      >
-        {({ props }) => <ComposeVisibilityMenu {...props} />}
-      </Popover>
+        <ComposeVisibilityMenu />
+      </Menu>
     </>
   );
 };
 
-const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
-  wrapperProps,
-) => {
+const ComposeVisibilityMenu: React.FC = () => {
   const privacy = useAppSelector(selectComposePrivacy);
   const defaultPrivacy = useAppSelector(
     (state) => state.compose.get('default_privacy') as StatusVisibility,
@@ -150,7 +136,7 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
     }, [dispatch]);
 
   return (
-    <Dropdown {...wrapperProps} maxWidth={280}>
+    <MenuList placement='bottom-start' offset={4} maxWidth={280}>
       <Fieldset
         name='visibility'
         legend={
@@ -250,17 +236,14 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
 
       <hr />
 
-      <DropdownItemButton
-        leadingIcon={ChatCircleIcon}
-        onClick={handleSwitchToMessage}
-      >
+      <MenuItem leadingIcon={ChatCircleIcon} onClick={handleSwitchToMessage}>
         <FormattedMessage
           id='compose.post.to_message'
           defaultMessage='Compose a message instead'
           description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
         />
-      </DropdownItemButton>
-    </Dropdown>
+      </MenuItem>
+    </MenuList>
   );
 };
 
@@ -275,7 +258,7 @@ const DropdownRadioCheckField: React.FC<
   const { ref, onWrapperClick } = useDropdownControl();
 
   return (
-    <DropdownItem onClick={onWrapperClick} disabled={disabled}>
+    <MenuItemBase onClick={onWrapperClick} disabled={disabled}>
       <RadioButtonField
         {...props}
         ref={ref}
@@ -284,7 +267,7 @@ const DropdownRadioCheckField: React.FC<
         disabled={disabled}
         wrapperClassName={classes.dropdownItemControl}
       />
-    </DropdownItem>
+    </MenuItemBase>
   );
 };
 
@@ -297,7 +280,7 @@ const DropdownToggleField: React.FC<
   const { ref, onWrapperClick } = useDropdownControl();
 
   return (
-    <DropdownItem
+    <MenuItemBase
       onClick={onWrapperClick}
       leadingIcon={icon}
       disabled={disabled}
@@ -310,7 +293,7 @@ const DropdownToggleField: React.FC<
         label={children}
         wrapperClassName={classes.dropdownItemControl}
       />
-    </DropdownItem>
+    </MenuItemBase>
   );
 };
 

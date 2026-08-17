@@ -12,10 +12,7 @@ import { openModal } from '@/mastodon/actions/modal';
 import type { ApiAudioAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import { Blurhash } from '@/mastodon/components/blurhash';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import {
-  DropdownItemButton,
-  DropdownPopover,
-} from '@/mastodon/components/dropdown/redesign';
+import { MenuItem, MenuList } from '@/mastodon/components/menu';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
@@ -103,7 +100,7 @@ export const ComposeUpload: React.FC<{
         />
       </IconButton>
 
-      <DropdownPopover
+      <MenuList
         isOpen={open}
         onClose={onFalse}
         reference={target}
@@ -111,7 +108,7 @@ export const ComposeUpload: React.FC<{
         offset={4}
         maxWidth={170}
       >
-        <DropdownItemButton onClick={handleEdit}>
+        <MenuItem onClick={handleEdit}>
           {attachment.description ? (
             <FormattedMessage
               id='compose.upload.menu.edit_alt'
@@ -123,20 +120,20 @@ export const ComposeUpload: React.FC<{
               defaultMessage='Add alt text'
             />
           )}
-        </DropdownItemButton>
+        </MenuItem>
 
         {!single && (
-          <DropdownItemButton onClick={handleRearrange}>
+          <MenuItem onClick={handleRearrange}>
             <FormattedMessage
               id='compose.upload.menu.rearrange'
               defaultMessage='Rearrange&hellip;'
             />
-          </DropdownItemButton>
+          </MenuItem>
         )}
 
         <hr />
 
-        <DropdownItemButton
+        <MenuItem
           className={classes.mediaMenuDelete}
           onClick={handleDelete}
           leadingIcon={TrashIcon}
@@ -145,8 +142,8 @@ export const ComposeUpload: React.FC<{
             id='compose.upload.menu.delete'
             defaultMessage='Remove image'
           />
-        </DropdownItemButton>
-      </DropdownPopover>
+        </MenuItem>
+      </MenuList>
 
       {attachment.description && (
         <span className={classes.mediaAlt}>
