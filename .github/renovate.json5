@@ -24,7 +24,18 @@
   },
   // The types are now included in recent versions,we ignore them here until we upgrade and remove the dependency
   ignoreDeps: ['@types/emoji-mart'],
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ['before 8am on monday'],
+  },
   packageRules: [
+    {
+      // Disable lock file maintenance for bundler for now, as we do not yet pin gems to their exact versions
+      matchManagers: ['bundler'],
+      lockFileMaintenance: {
+        enabled: false,
+      },
+    },
     {
       // Require Dependency Dashboard Approval for major version bumps of these node packages
       matchManagers: ['npm'],
