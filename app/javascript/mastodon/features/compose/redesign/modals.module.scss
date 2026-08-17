@@ -28,25 +28,29 @@
 
 .attachmentRoot {
   min-width: 400px;
-}
+  padding: var(--space-md) 0;
 
-.attachmentList {
-  overflow: hidden;
+  .title,
+  .footer {
+    padding: 0 var(--space-md);
+  }
 }
 
 .attachmentItem {
-  --cursor: grab;
-
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-xs) 0;
-  cursor: var(--cursor);
-  touch-action: manipulation;
+  padding: var(--space-xs) var(--space-xs);
+  margin: 0 var(--space-xs);
   transition:
     opacity 200ms,
     var(--transition, none);
   border-bottom: 0.5px solid var(--color-border-primary);
+
+  &:focus {
+    outline: 2px solid var(--color-bg-brand-base);
+    outline-offset: -2px;
+  }
 
   img {
     height: 60px;
@@ -59,13 +63,15 @@
 .attachmentHandle {
   padding: var(--space-xs) 0;
   aspect-ratio: auto;
-  cursor: var(--cursor);
+  cursor: inherit;
 }
 
-.attachmentGrabbed {
+.attachmentGrabbed > * {
   opacity: 0;
 }
 
 .attachmentOverlay {
-  --cursor: grabbing;
+  cursor: grabbing;
+  border-bottom: 0;
+  margin: 0;
 }

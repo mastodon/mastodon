@@ -16,6 +16,7 @@ interface SortableListItemOwnProps<As extends ValidItemElement> {
   id: UniqueIdentifier;
   draggingClassName?: string;
   overClassName?: string;
+  noTransition?: boolean;
 }
 
 export type SortableListItemProps<As extends ValidItemElement> =
@@ -33,6 +34,7 @@ export const SortableListItem = <As extends ValidItemElement = 'li'>({
   draggingClassName,
   overClassName,
   style: componentStyle,
+  noTransition,
   ...props
 }: SortableListItemProps<As>) => {
   const ItemComponent = AsComp ?? 'li';
@@ -56,7 +58,8 @@ export const SortableListItem = <As extends ValidItemElement = 'li'>({
   const style = {
     ...componentStyle,
     transform: CSS.Translate.toString(transform),
-    transition,
+    transition: noTransition ? undefined : transition,
+    ['--transition']: transition,
   };
 
   return (
@@ -74,6 +77,8 @@ export const SortableListItem = <As extends ValidItemElement = 'li'>({
         isDragging && draggingClassName,
         isOver && overClassName,
       )}
+      data-dragging={isDragging}
+      data-over={isOver}
     >
       <ItemHandleContext.Provider value={{ registerHandle, id }}>
         {children}

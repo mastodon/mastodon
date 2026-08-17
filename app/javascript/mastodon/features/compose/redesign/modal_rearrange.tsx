@@ -1,42 +1,20 @@
 import type React from 'react';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type {
-  Announcements,
-  DragEndEvent,
-  DragStartEvent,
-  ScreenReaderInstructions,
-  UniqueIdentifier,
-} from '@dnd-kit/core';
-import {
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core';
-import {
-  restrictToParentElement,
-  restrictToVerticalAxis,
-} from '@dnd-kit/modifiers';
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  useSortable,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import type { UniqueIdentifier } from '@dnd-kit/core';
 import { DotsSixVerticalIcon } from '@phosphor-icons/react';
 
 import { rearrangeComposeAttachments } from '@/mastodon/actions/compose_typed';
 import { Button, IconButton } from '@/mastodon/components/button/redesign';
-import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
+import {
+  SortableList,
+  SortableListItem,
+} from '@/mastodon/components/sortable_list';
+import { useSortableList } from '@/mastodon/components/sortable_list/hooks';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from './modals.module.scss';
@@ -80,18 +58,10 @@ const ComposerModalRearrange: React.FC<{ onClose: () => void }> = ({
   const [attachmentIds, setAttachmentIds] = useState(() =>
     attachments.map(({ id }) => id),
   );
-  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
-  );
+  const { activeId, onDragStart, onDragEnd, onModalExit } = useSortableList({
+    onCancel: onClose,
+  });
 
   const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
@@ -99,106 +69,20 @@ const ComposerModalRearrange: React.FC<{ onClose: () => void }> = ({
     onClose();
   }, [attachmentIds, dispatch, onClose]);
 
-  // Combines the Escape shortcut for closing the modal and for cancelling the drag, depending on the current state.
-  const handleEscape: React.KeyboardEventHandler = useCallback(
-    (event) => {
-      const key = normalizeKey(event.key);
-
-      if (key === 'escape') {
-        // Stops propagation to avoid triggering the handler in ModalRoot.
-        event.stopPropagation();
-
-        // Trigger the drag cancel here, since onDragCancel triggers before this handler.
-        if (activeId !== null) {
-          setActiveId(null);
-        } else {
-          onClose();
-        }
-      }
-    },
-    [activeId, onClose],
-  );
-
-  // Drag handlers
-  const handleDragStart = useCallback((event: DragStartEvent) => {
-    setActiveId(event.active.id);
-  }, []);
-
-  const handleDragEnd = useCallback((event: DragEndEvent) => {
-    const { active, over } = event;
-
-    setAttachmentIds((prev) => {
-      if (!over) {
-        return prev;
-      }
-      const oldIndex = prev.indexOf(active.id as string);
-      const newIndex = prev.indexOf(over.id as string);
-
-      return arrayMove(prev, oldIndex, newIndex);
-    });
-    setActiveId(null);
-  }, []);
-
-  // Accessibility
-  const intl = useIntl();
   const activeToIndex = useCallback(
     (active: { id: UniqueIdentifier } | null) => {
       if (!active) {
-        return 0;
+        return '0';
       }
-      return attachmentIds.indexOf(String(active.id)) + 1;
+      return (attachmentIds.indexOf(String(active.id)) + 1).toString();
     },
     [attachmentIds],
-  );
-  const accessibility: {
-    screenReaderInstructions: ScreenReaderInstructions;
-    announcements: Announcements;
-  } = useMemo(
-    () => ({
-      screenReaderInstructions: {
-        draggable: intl.formatMessage(messages.screenReaderInstructions),
-      },
-
-      announcements: {
-        onDragStart({ active }) {
-          return intl.formatMessage(messages.onDragStart, {
-            index: activeToIndex(active),
-          });
-        },
-
-        onDragOver({ active, over }) {
-          if (over && active.id !== over.id) {
-            return intl.formatMessage(messages.onDragMoveOver, {
-              index: activeToIndex(active),
-              over: activeToIndex(over),
-            });
-          }
-          return intl.formatMessage(messages.onDragMove, {
-            index: activeToIndex(active),
-          });
-        },
-
-        onDragEnd({ active, over }) {
-          return intl.formatMessage(messages.onDragEnd, {
-            index: activeToIndex(active),
-            newIndex: activeToIndex(over),
-          });
-        },
-
-        onDragCancel({ active }) {
-          return intl.formatMessage(messages.onDragCancel, {
-            index: activeToIndex(active),
-          });
-        },
-      },
-    }),
-    [activeToIndex, intl],
   );
 
   return (
     <div
       className={classNames(classes.root, classes.attachmentRoot)}
-      onKeyUpCapture={handleEscape}
+      onKeyUpCapture={onModalExit}
     >
       <h2 className={classes.title}>
         <FormattedMessage
@@ -207,41 +91,31 @@ const ComposerModalRearrange: React.FC<{ onClose: () => void }> = ({
         />
       </h2>
 
-      <DndContext
-        sensors={sensors}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis, restrictToParentElement]}
-        accessibility={accessibility}
+      <SortableList
+        ids={attachmentIds}
+        onSort={setAttachmentIds}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        messages={messages}
+        messageLabelCb={activeToIndex}
+        overlay={<ComposeOverlay activeId={activeId} ids={attachmentIds} />}
+        dropAnimation={null}
       >
-        <ol className={classes.attachmentList}>
-          <SortableContext
-            items={attachmentIds}
-            strategy={verticalListSortingStrategy}
+        {attachmentIds.map((id) => (
+          <SortableListItem
+            id={id}
+            key={id}
+            noTransition
+            className={classes.attachmentItem}
+            draggingClassName={classes.attachmentGrabbed}
           >
-            {attachmentIds.map((id) => (
-              <ComposeRearrangeItem key={id} id={id} />
-            ))}
-          </SortableContext>
-        </ol>
-
-        <DragOverlay dropAnimation={null}>
-          <div
-            className={classNames(
-              classes.attachmentItem,
-              classes.attachmentOverlay,
-            )}
-          >
-            {typeof activeId === 'string' && (
-              <ComposeRearrangeItemDisplay
-                id={activeId}
-                index={attachmentIds.indexOf(activeId)}
-                aria-pressed
-              />
-            )}
-          </div>
-        </DragOverlay>
-      </DndContext>
+            <ComposeRearrangeItemDisplay
+              id={id}
+              index={attachmentIds.indexOf(id)}
+            />
+          </SortableListItem>
+        ))}
+      </SortableList>
 
       <div className={classes.footer}>
         <Button onClick={onClose}>
@@ -262,39 +136,22 @@ const ComposerModalRearrange: React.FC<{ onClose: () => void }> = ({
   );
 };
 
-const ComposeRearrangeItem: React.FC<{ id: string }> = ({ id }) => {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    index,
-    isDragging,
-  } = useSortable({
-    id,
-  });
-
-  const style = {
-    transform: CSS.Translate.toString(transform),
-    ['--transition']: transition,
-  } as React.CSSProperties;
-
-  return (
-    <li
-      ref={setNodeRef}
-      style={style}
-      {...listeners}
-      {...attributes}
-      className={classNames(
-        classes.attachmentItem,
-        isDragging && classes.attachmentGrabbed,
-      )}
-    >
-      <ComposeRearrangeItemDisplay id={id} index={index} />
-    </li>
-  );
-};
+const ComposeOverlay: React.FC<{
+  activeId: UniqueIdentifier | null;
+  ids: string[];
+}> = ({ activeId, ids }) => (
+  <div
+    className={classNames(classes.attachmentItem, classes.attachmentOverlay)}
+  >
+    {typeof activeId === 'string' && (
+      <ComposeRearrangeItemDisplay
+        id={activeId}
+        index={ids.indexOf(activeId)}
+        aria-pressed
+      />
+    )}
+  </div>
+);
 
 const ComposeRearrangeItemDisplay: React.FC<
   {
