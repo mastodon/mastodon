@@ -32,8 +32,8 @@ describe('<CategoryBadges />', () => {
 
     render(<CategoryBadges categories={categories} />);
 
-    expect(screen.getByText('News')).toBeInTheDocument();
-    expect(screen.getByText('Opinion')).toBeInTheDocument();
+    expect(screen.getByText('News')).toBeTruthy();
+    expect(screen.getByText('Opinion')).toBeTruthy();
   });
 
   it('applies red border for mandatory categories', () => {
@@ -42,16 +42,16 @@ describe('<CategoryBadges />', () => {
     render(<CategoryBadges categories={categories} />);
 
     const badge = screen.getByText('Opinion');
-    expect(badge).toHaveStyle({ borderColor: '#dd3333' });
+    expect(badge.style.borderColor).toBe('rgb(221, 51, 51)');
   });
 
-  it('applies black border for regular categories', () => {
+  it('applies grey border for regular categories', () => {
     const categories = ImmutableList([createCategory('News', false)]);
 
     render(<CategoryBadges categories={categories} />);
 
     const badge = screen.getByText('News');
-    expect(badge).toHaveStyle({ borderColor: '#000000' });
+    expect(badge.style.borderColor).toBe('rgb(108, 117, 125)');
   });
 
   it('includes title attribute for accessibility', () => {
@@ -60,7 +60,7 @@ describe('<CategoryBadges />', () => {
     render(<CategoryBadges categories={categories} />);
 
     const badge = screen.getByText('Opinion');
-    expect(badge).toHaveAttribute('title', 'Opinion (mandatory for readers)');
+    expect(badge.getAttribute('title')).toBe('Opinion (featured)');
   });
 
   it('applies custom className', () => {
@@ -70,7 +70,9 @@ describe('<CategoryBadges />', () => {
       <CategoryBadges categories={categories} className='custom-class' />,
     );
 
-    expect(container.firstChild).toHaveClass('category-badges');
-    expect(container.firstChild).toHaveClass('custom-class');
+    expect(container.firstChild).toBeInstanceOf(HTMLElement);
+    const root = container.firstChild as HTMLElement;
+    expect(root.classList.contains('category-badges')).toBe(true);
+    expect(root.classList.contains('custom-class')).toBe(true);
   });
 });

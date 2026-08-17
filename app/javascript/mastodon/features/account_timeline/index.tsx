@@ -92,11 +92,9 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
   // highlander: readers without posting permissions (e.g. the Poster role
   // requirement) have no content on this timeline, so skip fetching it.
   const postsHidden = account
-    ? !(
-        (replies
-          ? account.can_reply_to_statuses || account.can_create_statuses
-          : account.can_create_statuses || account.can_reblog_statuses)
-      )
+    ? !(replies
+        ? account.can_reply_to_statuses || account.can_create_statuses
+        : account.can_create_statuses || account.can_reblog_statuses)
     : false;
   const forceEmptyState = blockedBy || hidden || suspended || postsHidden;
 

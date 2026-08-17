@@ -13,7 +13,7 @@ class Api::V1::CategoryFiltersController < Api::BaseController
 
   def create
     if @category.mandatory_for_readers?
-      render json: { error: I18n.t('api.category_filters.errors.mandatory') }, status: :unprocessable_entity
+      render json: { error: I18n.t('api.category_filters.errors.mandatory') }, status: 422
       return
     end
 
@@ -21,7 +21,7 @@ class Api::V1::CategoryFiltersController < Api::BaseController
     current_user.regenerate_home_feed!
     render json: @category_filter, serializer: REST::CategoryFilterSerializer
   rescue ActiveRecord::RecordInvalid => e
-    render json: { error: e.message }, status: :unprocessable_entity
+    render json: { error: e.message }, status: 422
   end
 
   def destroy

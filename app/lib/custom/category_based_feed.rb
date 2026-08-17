@@ -93,16 +93,16 @@ module Custom::CategoryBasedFeed
 
     # Reader's hidden categories (opt-out filters). Indexed for O(1) lookups.
     crutches[:hidden_categories] = AccountCategoryFilter
-                                   .where(account_id: receiver_id)
-                                   .pluck(:category_id)
-                                   .index_with(true)
+      .where(account_id: receiver_id)
+      .pluck(:category_id)
+      .index_with(true)
 
     # Map involved accounts to their category IDs to avoid per-status queries.
     statuses_account_ids = statuses.flat_map { |s| [s.account_id, s.reblog&.account_id] }.compact
     crutches[:authors_categories] = AccountCategory
-                                    .where(account_id: statuses_account_ids)
-                                    .pluck(:account_id, :category_id)
-                                    .each_with_object({}) do |(account_id, category_id), mapping|
+      .where(account_id: statuses_account_ids)
+      .pluck(:account_id, :category_id)
+      .each_with_object({}) do |(account_id, category_id), mapping|
       (mapping[account_id] ||= []) << category_id
     end
 
@@ -113,7 +113,7 @@ module Custom::CategoryBasedFeed
 
   def source_accounts(account_id)
     Account.without_suspended.without_silenced.where.not(id: account_id)
-           .includes(:account_stat).references(:account_stat).where.not(account_stats: { last_status_at: nil })
-           .reorder(nil)
+      .includes(:account_stat).references(:account_stat).where.not(account_stats: { last_status_at: nil })
+      .reorder(nil)
   end
 end

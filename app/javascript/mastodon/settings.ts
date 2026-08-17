@@ -54,7 +54,7 @@ export const pushNotificationsSetting = new Settings<
 export const tagHistory = new Settings<Record<string, string[]>>(
   'mastodon_tag_history',
 );
-export const bannerSettings = new Settings<Record<string, boolean>>(
+export const bannerSettings = new Settings<Record<string, boolean | number>>(
   'mastodon_banner_settings',
 );
 export const searchHistory = new Settings<Record<string, RecentSearch[]>>(

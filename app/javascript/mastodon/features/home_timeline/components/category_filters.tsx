@@ -4,8 +4,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { IntlShape } from 'react-intl';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import Toggle from 'react-toggle';
-
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import ExpandMoreIcon from '@/material-icons/400-24px/expand_more.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
@@ -27,6 +25,7 @@ import {
   register as registerPushNotifications,
 } from 'mastodon/actions/push_notifications';
 import { CircularProgress } from 'mastodon/components/circular_progress';
+import { Toggle } from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import { me } from 'mastodon/initial_state';

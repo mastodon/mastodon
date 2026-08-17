@@ -17,7 +17,7 @@ module Admin
         log_action :change_categories, @account
         redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.categories.changed_msg')
       else
-        render :show, status: :unprocessable_entity
+        render :show, status: 422
       end
     end
 
