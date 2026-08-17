@@ -1059,7 +1059,8 @@ body > [data-popover-placement] {
   position: relative;
   overflow-wrap: break-word;
   font-weight: 400;
-  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 1em;
   text-overflow: ellipsis;
   text-autospace: normal;
   font-size: 15px;
