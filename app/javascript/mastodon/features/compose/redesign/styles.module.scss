@@ -190,6 +190,8 @@
 // Reply
 
 .reply {
+  @include mixins.type-body-compact;
+
   border-left: 0.5px solid var(--color-border-primary);
   padding: 0 var(--space-md);
 }
@@ -209,6 +211,11 @@
 
 .replyText {
   @include mixins.line-clamp(2);
+
+  max-height: round(
+    calc(2 * calc(var(--fs-sm) * var(--lh-tight))),
+    5px
+  ); // 40px at default REM size
 
   a {
     color: var(--color-text-brand);
