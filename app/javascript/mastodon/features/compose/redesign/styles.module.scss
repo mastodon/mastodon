@@ -187,6 +187,34 @@
   }
 }
 
+// Reply
+
+.reply {
+  border-left: 0.5px solid var(--color-border-primary);
+  padding: 0 var(--space-md);
+}
+
+.replyAccount {
+  display: flex;
+  margin-bottom: var(--space-2xs);
+}
+
+.replyAvatar {
+  margin-right: var(--space-xs);
+}
+
+.replyTime {
+  color: var(--color-text-tertiary);
+}
+
+.replyText {
+  @include mixins.line-clamp(2);
+
+  a {
+    color: var(--color-text-brand);
+  }
+}
+
 // Attachments
 
 .mediaSingle {
