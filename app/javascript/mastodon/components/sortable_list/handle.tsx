@@ -18,12 +18,13 @@ export const SortableListHandle = <As extends ValidHandleElement = 'button'>({
   ...props
 }: SortableListHandleProps<As>) => {
   const Component = asComp ?? 'button';
-  const { listeners, isDragging } = useSortableHandle();
+  const { attributes, listeners, isDragging } = useSortableHandle();
 
   return (
     <Component
-      type='button'
+      type={asComp === 'button' ? 'button' : undefined}
       {...props}
+      {...attributes}
       {...listeners}
       className={classNames(
         className,

@@ -60,24 +60,25 @@ export function useSortableList<Id extends UniqueIdentifier = string>({
 }
 
 export const ItemHandleContext = createContext<{
-  callback: () => void;
+  registerHandle: () => void;
   id: UniqueIdentifier;
 }>({
-  callback: () => {
+  registerHandle: () => {
     // Empty
   },
   id: '',
 });
 
 export function useSortableHandle() {
-  const { callback, id } = useContext(ItemHandleContext);
+  const { registerHandle, id } = useContext(ItemHandleContext);
   useEffect(() => {
-    callback();
-  }, [callback]);
+    registerHandle();
+  }, [registerHandle]);
 
-  const { listeners, isDragging } = useSortable({ id });
+  const { listeners, attributes, isDragging } = useSortable({ id });
   return {
     isDragging,
     listeners,
+    attributes,
   };
 }

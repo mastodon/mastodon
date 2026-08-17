@@ -49,7 +49,7 @@ export const SortableListItem = <As extends ValidItemElement = 'li'>({
     id,
   });
   const [hasHandle, setHasHandle] = useState(false);
-  const handleCallback = useCallback(() => {
+  const registerHandle = useCallback(() => {
     setHasHandle(true);
   }, []);
 
@@ -63,7 +63,7 @@ export const SortableListItem = <As extends ValidItemElement = 'li'>({
     <ItemComponent
       {...(props as React.HTMLAttributes<HTMLElement>)}
       {...(hasHandle ? null : listeners)}
-      {...attributes}
+      {...(hasHandle ? null : attributes)}
       style={style}
       ref={setNodeRef}
       className={classNames(
@@ -75,7 +75,7 @@ export const SortableListItem = <As extends ValidItemElement = 'li'>({
         isOver && overClassName,
       )}
     >
-      <ItemHandleContext.Provider value={{ callback: handleCallback, id }}>
+      <ItemHandleContext.Provider value={{ registerHandle, id }}>
         {children}
       </ItemHandleContext.Provider>
     </ItemComponent>
