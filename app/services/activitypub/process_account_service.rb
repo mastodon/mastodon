@@ -406,6 +406,8 @@ class ActivityPub::ProcessAccountService < BaseService
       next unless value['owner'] == @account.uri
 
       key = value['publicKeyPem']
+      next if key.nil?
+
       { type: :rsa, public_key: key, uri: key_id }
     end
   end
@@ -433,7 +435,7 @@ class ActivityPub::ProcessAccountService < BaseService
       next unless value['type'] == 'Multikey' && value['controller'] == @account.uri
 
       key_type, key = key_from_multikey(value['publicKeyMultibase'])
-      next if key_type.nil?
+      next if key_type.nil? || key.nil?
 
       { type: key_type, public_key: key, uri: key_id }
     end
