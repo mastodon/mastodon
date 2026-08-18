@@ -70,6 +70,8 @@ gd:
       custom: Gnàthaichte
       delete: Sguab às an dàta
       deleted: Chaidh a sguabadh às
+      deletion_irreversible: Chaidh dàta a’ chunntais seo a sguabadh às gu buan.
+      deletion_reversible_hint_html: Tha sinn gu bhith sguabadh às a’ chunntais seo ’s thèid an dàta aige a sguabadh às gu buan %{date}.
       demote: Ìslich
       destroyed_msg: Chaidh an dàta aig %{username} a chur air a’ chiutha ach an dèid a sguabadh às an ceann greis bheag
       disable: Reòth
@@ -297,7 +299,11 @@ gd:
         enable_relay_html: Chuir %{name} an t-ath-sheachadan %{target} an comas
         enable_sign_in_token_auth_user_html: Chuir %{name} an comas dearbhadh le tòcan puist-d dha %{target}
         enable_user_html: Chuir %{name} an clàradh a-steach an comas dhan chleachdaiche %{target}
+        listable_tag_html: faodar a mholadh
         memorialize_account_html: Rinn %{name} duilleag cuimhneachain dhen chunntas aig %{target}
+        not_listable_tag_html: cha dèid a mholadh
+        not_trendable_tag_html: cha nochd e am measg nan treandaichean
+        not_usable_tag_html: chan fhaodar a chleachdadh
         promote_user_html: Dh’àrdaich %{name} an cleachdaiche %{target}
         publish_terms_of_service_html: Dh’fhoillsich %{name} ùrachadh air teirmichean na seirbheise
         reject_appeal_html: Dhiùlt %{name} an t-ath-thagradh air co-dhùnadh na maorsainneachd o %{target}
@@ -310,6 +316,7 @@ gd:
         sensitive_account_html: Chuir %{name} comharra gu bheil e frionasach ri meadhan aig %{target}
         silence_account_html: Chuingich %{name} an cunntas aig %{target}
         suspend_account_html: Chuir %{name} an cunntas aig %{target} à rèim
+        trendable_tag_html: faodaidh e nochdadh am measg nan treandaichean
         unassigned_report_html: Neo-iomruin %{name} an gearan %{target}
         unblock_email_account_html: Dhì-bhac %{name} an seòladh puist-d aig %{target}
         unsensitive_account_html: Chuir %{name} comharra nach eil e frionasach ri meadhan aig %{target}
@@ -322,8 +329,10 @@ gd:
         update_ip_block_html: Sguab %{name} às riaghailt dhan IP %{target}
         update_report_html: Dh’ùraich %{name} an gearan %{target}
         update_status_html: Dh’ùraich %{name} post le %{target}
+        update_tag_html: 'Dh’atharraich %{name} roghainnean %{target} gu: '
         update_user_role_html: Dh’atharraich %{name} an dreuchd %{target}
         update_username_block_html: Dh’ùraich %{name} an riaghailt airson ainmean-cleachdaidh sa bheil %{target}
+        usable_tag_html: faodar a chleachdadh;
       deleted_account: chaidh an cunntas a sguabadh às
       empty: Cha deach loga a lorg.
       filter_by_action: Criathraich a-rèir gnìomha
@@ -1038,13 +1047,17 @@ gd:
       critical_update: Èiginneach – ùraich cho luath ’s a ghabhas
       description: Mholamaid gun cùm thu an stàladh agad de Mhastodon ùraichte ach am faigh thu buannachd às na càraidhean ’s gleusan as ùire. A bharrachd air sin, bidh e èiginneach aig amannan gun ùraich thu Mastodon gun dàil airson duilgheadasan tèarainteachd a sheachnadh. Seo as adhbhar gun doir Mastodon sùil airson ùrachaidhean gach leth-uair a thìde ’s gun cuir e brath thugad a-rèir nan roghainnean puist-d agad.
       documentation_link: Barrachd fiosrachaidh
+      nearing_eol: Chan fhaigh am branch a tha thu a’ cleachdadh taic tuilleadh on %{date} a-mach, beachdaich air ùrachadh.
       release_notes: Nòtaichean sgaoilidh
+      supported_until: Thig an taic gu crìoch %{date}
       title: Ùrachaidhean a tha ri fhaighinn
       type: Seòrsa
       types:
         major: Sgaoileadh mòr
         minor: Sgaoileadh beag
         patch: Sgaoileadh brèide – càraidhean aig bugaichean ’s atharraichean a tha furasta a chur an sàs
+      unsupported_branch: Chan eil taic ris a’ branch a tha thu a’ ruith, ùraich cho luath ’s a ghabhas.
+      unsupported_since: Chan eil taic ris os cionn %{date}
       version: Tionndadh
     statuses:
       account: Ùghdar
@@ -1268,6 +1281,7 @@ gd:
           two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
       title: Molaidhean ⁊ treandaichean
       trending: A’ treandadh
+    update_available: Tha ùrachadh ri fhaighinn
     username_blocks:
       add_new: Cuir tè ùr ris
       block_registrations: Bac clàradh
@@ -1319,6 +1333,15 @@ gd:
     auto_close_registrations:
       body: Ri linn dìth gnìomhachd nam maor o chionn goirid, dh’atharraich Mastodon modh nan clàraidhean aig %{instance} ach am feum cunntasan ùra aontachadh a làimh leis an amas gun dèid %{instance} a dhìon o chleachdadh air dòighean droch-rùnach. ’S urrainn dhut na clàraidhean fhosgladh a-rithist uair sam bith.
       subject: Feumaidh clàradh le %{instance} aontachadh a-nis
+    end_of_support_out_of_support_warning:
+      body: Chan eil taic tuilleadh ris an tionndadh de Mhastodon a tha am frithealaiche agad a chleachdadh. Mholamaid gun dèan thu ùrachadh cho luath ’s a ghabhas!
+      subject: Chan eil taic tuilleadh ri Mastodon %{branch} a tha ’ga chleachdadh air %{instance}!
+    end_of_support_three_months_warning:
+      body: Cha bhi taic tuilleadh ris an tionndadh de Mhastodon a tha am frithealaiche a’ cleachdadh an ceann 3 mìosan. Mholamaid gun dèan thu ùrachadh gu branch nas ùire roimhe sin.
+      subject: Thig an taic ri Mastodon %{branch} a tha ’ga chleachdadh air %{instance} gu crìch an ceann 3 mìosan.
+    end_of_support_two_weeks_warning:
+      body: Cha bhi taic tuilleadh ris an tionndadh de Mhastodon a tha am frithealaiche a’ cleachdadh an ceann 2 mhìos. Mholamaid gun dèan thu ùrachadh gu branch nas ùire roimhe sin.
+      subject: Thig an taic ri Mastodon %{branch} a tha ’ga chleachdadh air %{instance} gu crìch an ceann 2 mhìos.
     new_appeal:
       actions:
         delete_statuses: sguabadh às nam postaichean aca
@@ -2002,6 +2025,7 @@ gd:
     administration_emails: Brathan puist-d na rianachd
     email_events: Tachartasan nam brathan puist-d
     email_events_hint: 'Tagh na tachartasan dhan a bheil thu airson brathan fhaighinn:'
+    moderation_emails: Brathan puist-d na maorsainneachd
   number:
     human:
       decimal_units:
@@ -2025,6 +2049,7 @@ gd:
     next: Air adhart
     older: Nas sine
     prev: Air ais
+    truncate_html: "&hellip;"
   polls:
     errors:
       already_voted: Chuir thu bhòt sa chunntas-bheachd seo mu thràth
