@@ -33,6 +33,8 @@ const messages = defineMessages({
   messagePlaceholder: {
     id: 'compose.message.placeholder',
     defaultMessage: 'Add your recipients and your message.',
+    description:
+      'Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.',
   },
 });
 

@@ -100,6 +100,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
               <FormattedMessage
                 id='compose.message.notice'
                 defaultMessage='Messages are not end-to-end encrypted'
+                description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
               />
             </p>
           )}

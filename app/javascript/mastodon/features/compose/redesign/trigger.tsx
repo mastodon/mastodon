@@ -108,7 +108,11 @@ export const ComposeRedesignButton: React.FC = () => {
           onClick={handleComposerOpen}
           leadingIcon={ChatCircleIcon}
         >
-          <FormattedMessage id='compose.new.message' defaultMessage='Message' />
+          <FormattedMessage
+            id='compose.new.message'
+            defaultMessage='Message'
+            description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
+          />
         </DropdownItemButton>
       </DropdownPopover>
     </>

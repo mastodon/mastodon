@@ -257,6 +257,7 @@ const ComposeVisibilityMenu: React.FC<Record<string, unknown>> = (
         <FormattedMessage
           id='compose.post.to_message'
           defaultMessage='Compose a message instead'
+          description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
         />
       </DropdownItemButton>
     </Dropdown>
