@@ -1,0 +1,38 @@
+@use '@/styles/mastodon/mixins';
+
+.modal {
+  @include mixins.elevation-1;
+
+  border-radius: var(--radius-xl);
+  background: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  pointer-events: auto;
+  user-select: text;
+  overflow: hidden;
+}
+
+.modalElevated {
+  @include mixins.elevation-2;
+}
+
+.title {
+  @include mixins.type-heading-sm;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.actionsLeft {
+  justify-content: flex-start;
+}
+
+.actionsRight {
+  justify-content: flex-end;
+}
