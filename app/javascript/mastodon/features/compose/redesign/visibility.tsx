@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import {
   ChatCircleIcon,
   MagnifyingGlassIcon,
+  NewspaperIcon,
   QuotesIcon,
 } from '@phosphor-icons/react';
 
@@ -15,6 +16,7 @@ import {
 } from '@/mastodon/actions/compose_typed';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import {
   Menu,
   MenuList,
@@ -24,7 +26,9 @@ import {
   MenuItem,
   MenuItemRadio,
   MenuItemCheckbox,
+  MenuItemBase,
 } from '@/mastodon/components/menu';
+import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposeMentions, selectComposePrivacy } from './selectors';
@@ -32,6 +36,9 @@ import { selectComposeMentions, selectComposePrivacy } from './selectors';
 export const ComposeVisibility: React.FC = () => {
   const privacy = useAppSelector(selectComposePrivacy);
   const mentions = useAppSelector(selectComposeMentions);
+  const firstMentionedAccount = useAppSelector((state) =>
+    selectPlainAccount(state, mentions.at(0)),
+  );
 
   return (
     <>
@@ -42,7 +49,7 @@ export const ComposeVisibility: React.FC = () => {
       />
       <Menu>
         <MenuButton size='sm'>
-          {privacy !== 'private' && (
+          {(privacy === 'public' || privacy === 'unlisted') && (
             <FormattedMessage
               id='privacy.public.short'
               defaultMessage='Public'
@@ -53,12 +60,30 @@ export const ComposeVisibility: React.FC = () => {
               id='compose.post.privacy.followers'
               defaultMessage='Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
               description='Count is # of other people mentioned in the post. If zero, just output "Followers".'
-              values={{ count: mentions.size }}
+              values={{ count: mentions.length }}
+            />
+          )}
+          {privacy === 'direct' && mentions.length === 0 && '-'}
+          {privacy === 'direct' && mentions.length > 0 && (
+            <FormattedMessage
+              id='compose.message.direct.followers'
+              defaultMessage='{name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
+              description='Name is the primary display name, count is # of other people mentioned in the post'
+              values={{
+                name: <DisplayNameSimple account={firstMentionedAccount} />,
+                count: mentions.length - 1,
+              }}
             />
           )}
         </MenuButton>
 
-        <ComposeVisibilityMenu />
+        <MenuList placement='bottom-start' offset={4} maxWidth={280}>
+          {privacy !== 'direct' ? (
+            <ComposeVisibilityMenu />
+          ) : (
+            <ComposeDirectMenu />
+          )}
+        </MenuList>
       </Menu>
     </>
   );
@@ -125,7 +150,7 @@ const ComposeVisibilityMenu: React.FC = () => {
     }, [dispatch]);
 
   return (
-    <MenuList placement='bottom-start' offset={4} maxWidth={280}>
+    <>
       <MenuItemGroup
         label={
           <FormattedMessage
@@ -228,6 +253,48 @@ const ComposeVisibilityMenu: React.FC = () => {
           description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
         />
       </MenuItem>
-    </MenuList>
+    </>
+  );
+};
+
+const ComposeDirectMenu: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const defaultPrivacy = useAppSelector(
+    (state) =>
+      (state.compose.get('default_privacy') as StatusVisibility | undefined) ??
+      'public',
+  );
+  const handleSwitchToPost: React.MouseEventHandler<HTMLButtonElement> =
+    useCallback(() => {
+      dispatch(changeComposeVisibility(defaultPrivacy));
+    }, [defaultPrivacy, dispatch]);
+
+  return (
+    <>
+      <MenuItemGroup
+        label={
+          <FormattedMessage
+            id='compose.visibility.title'
+            defaultMessage='Visibility'
+          />
+        }
+      >
+        <MenuItemBase>
+          <FormattedMessage
+            id='compose.visibility.direct_note'
+            defaultMessage='Everyone you mention will be able to see this message.'
+          />
+        </MenuItemBase>
+      </MenuItemGroup>
+
+      <MenuItemDivider />
+
+      <MenuItem icon={NewspaperIcon} onClick={handleSwitchToPost}>
+        <FormattedMessage
+          id='compose.visibility.to_post'
+          defaultMessage='Compose a post instead'
+        />
+      </MenuItem>
+    </>
   );
 };
