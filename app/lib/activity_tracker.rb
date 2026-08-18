@@ -39,7 +39,7 @@ class ActivityTracker
   end
 
   def sum(start_at, end_at = Time.now.utc)
-    keys = (start_at.to_date...end_at.to_date).flat_map { |date| [key_at(date.to_time(:utc)), legacy_key_at(date)] }.uniq
+    keys = (start_at.to_date..end_at.to_date).flat_map { |date| [key_at(date.to_time(:utc)), legacy_key_at(date)] }.uniq
 
     case @type
     when :basic
