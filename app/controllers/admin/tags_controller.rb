@@ -48,7 +48,7 @@ module Admin
     end
 
     def report_range
-      (PERIOD_DAYS.ago.to_date...Time.now.utc.to_date)
+      (PERIOD_DAYS.ago.to_date..Time.now.utc.to_date)
     end
 
     def tag_params
