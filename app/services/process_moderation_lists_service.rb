@@ -23,14 +23,15 @@ class ProcessModerationListsService < BaseService
     ModerationSubscription.order(priority: :desc).each do |subscription|
       # Handle new advisories
       subscription.advisories.domain_target_type.find_each do |advisory|
-        next if suggestions.key?(advisory.target_key)
+        next if suggestions.dig(advisory.target_key, advisory.action)
 
-        suggestions[advisory.target_key] = Suggestion.new(
+        suggestions[advisory.target_key] ||= {}
+        suggestions[advisory.target_key][advisory.action] = Suggestion.new(
           action: advisory.action,
           target_type: advisory.target_type,
           target_key: advisory.target_key,
           moderation_subscription_id: subscription.id,
-          apply_automatically: subscription.apply_automatically
+          apply_automatically: subscription.apply_automatically && suggestions[advisory.target_key].blank?
         )
       end
     end
@@ -79,7 +80,7 @@ class ProcessModerationListsService < BaseService
     representative = Account.representative
 
     @retractions.each do |domain, attributes|
-      suggestion = @suggestions[domain]
+      suggestion = @suggestions.dig(domain, attributes[:action])
       if suggestion && suggestion[:action] == attributes[:action]
         # TODO: log
         domain_block = DomainBlock.find_by(domain: domain)
@@ -91,7 +92,8 @@ class ProcessModerationListsService < BaseService
         UnblockDomainService.new.call(domain_block)
       else
         # TODO: what about if there is another kind of suggestion for the same target?
-        @suggestions[domain] = Suggestion.new(
+        @suggestions[domain] ||= {}
+        @suggestions[domain]['retract'] = Suggestion.new(
           target_type: attributes[:target_type],
           target_key: domain,
           action: 'retract',
@@ -105,19 +107,24 @@ class ProcessModerationListsService < BaseService
     if Rails.configuration.x.mastodon.limited_federation_mode
       # Filter out any block suggestion, as this is just the default
       # TODO: consider them as retractions instead?
-      @suggestions.delete_if { |_, suggestion| ['reject', 'limit'].include?(suggestion[:action]) }
+      @suggestions.each_value do |suggestion|
+        suggestion.delete('reject')
+        suggestion.delete('limit')
+      end
     else
       # Filter out any allow suggestion, as it is just the default
       # TODO: consider them as retractions instead?
-      @suggestions.delete_if { |_, suggestion| suggestion[:action] == 'accept' }
+      @suggestions.each_value { |suggestion| suggestion.delete('accept') }
     end
   end
 
   def apply_automatic_suggestions!
-    @suggestions.delete_if do |_, suggestion|
-      next false unless suggestion[:apply_automatically]
+    @suggestions.each_value do |suggestions|
+      suggestions.delete_if do |_, suggestion|
+        next false unless suggestion[:apply_automatically]
 
-      apply_automatic_suggestion!(suggestion)
+        apply_automatic_suggestion!(suggestion)
+      end
     end
   end
 
@@ -143,14 +150,14 @@ class ProcessModerationListsService < BaseService
 
   def save_suggestions!
     # Remove irrelevant suggestions
-    @suggestions.values.group_by { |suggestion| suggestion[:target_type] }.each do |target_type, suggestions|
+    @suggestions.values.flat_map(&:values).group_by { |suggestion| suggestion[:target_type] }.each do |target_type, suggestions|
       ModerationSuggestion.where(target_type: target_type).where.not(target_key: suggestions.pluck(:target_key)).delete_all
     end
 
     # Insert suggestions
     ModerationSuggestion.upsert_all(
-      @suggestions.values.map { |suggestion| suggestion.to_h.without(:apply_automatically) },
-      unique_by: [:target_type, :target_key],
+      @suggestions.values.flat_map(&:values).map { |suggestion| suggestion.to_h.without(:apply_automatically) },
+      unique_by: [:target_type, :target_key, :action],
       on_duplicate: Arel.sql('action = EXCLUDED.action, moderation_subscription_id = EXCLUDED.moderation_subscription_id, state = CASE WHEN moderation_suggestions.action = EXCLUDED.action THEN moderation_suggestions.state ELSE EXCLUDED.state END')
     )
   end

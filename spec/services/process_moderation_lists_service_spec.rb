@@ -46,8 +46,13 @@ RSpec.describe ProcessModerationListsService do
           ['create', 'DomainBlock', 'automatic-block.org', a_hash_including('moderation_subscription_id' => subscription_with_automatic_application.id)]
         )
 
-      expect(ModerationSuggestion.pluck(:target_type, :target_key, :action))
-        .to contain_exactly(['domain', 'example.com', 'reject'], ['domain', 'evil.com', 'reject'], ['domain', 'retracted-block.com', 'retract'])
+      expect(ModerationSuggestion.pluck(:target_type, :target_key, :action, :moderation_subscription_id))
+        .to contain_exactly(
+          ['domain', 'example.com', 'reject', high_priority_subscription.id],
+          ['domain', 'good.org', 'reject', low_priority_subscription.id],
+          ['domain', 'evil.com', 'reject', low_priority_subscription.id],
+          ['domain', 'retracted-block.com', 'retract', high_priority_subscription.id]
+        )
     end
   end
 end
