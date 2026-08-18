@@ -17,7 +17,12 @@ class ProcessModerationListsService < BaseService
 
       # 1. apply automatic suggestions, if possible/needed
       if subscription.apply_automatically
+        if subscription.preserve_relationships
+          domains_with_follows = Instance.with_domain_follows(advisories.filter_map { |advisory| advisory.target_key if advisory.target_type == 'domain' && advisory.action == 'reject' }).pluck(:domain)
+        end
+
         advisories.delete_if do |advisory|
+          next false if subscription.preserve_relationships && advisory.target_type == 'domain' && domains_with_follows.include?(advisory.target_key)
           next false if SubscribedAdvisory.conflicting_advisories(advisory).exists?
 
           apply_automatic_advisory!(advisory)
