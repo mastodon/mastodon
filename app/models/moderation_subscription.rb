@@ -24,6 +24,7 @@ class ModerationSubscription < ApplicationRecord
   PRIORITY_LIMIT = (2**31) - 1
 
   has_many :advisories, class_name: 'SubscribedAdvisory', inverse_of: :moderation_subscription, dependent: :delete_all
+  has_many :suggestions, class_name: 'ModerationSuggestion', inverse_of: :moderation_subscription, dependent: :delete_all
 
   validates :name, presence: true
   validates :url, presence: true, url: true

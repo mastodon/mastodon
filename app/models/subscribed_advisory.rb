@@ -28,6 +28,29 @@ class SubscribedAdvisory < ApplicationRecord
 
   before_validation :normalize_target_key
 
+  # TODO: handle subdomains
+  scope :conflicting_advisories, lambda { |advisory|
+    joins(:moderation_subscription)
+      .where(
+        target_type: advisory.target_type,
+        target_key: advisory.target_key,
+        moderation_subscription: { priority: ..advisory.moderation_subscription.priority }
+      )
+      .where.not(action: advisory.action)
+      .where.not(moderation_subscription_id: advisory.moderation_subscription_id)
+  }
+
+  # TODO: handle subdomains?
+  scope :superseding_advisories, lambda { |advisory|
+    joins(:moderation_subscription)
+      .where(
+        target_type: advisory.target_type,
+        target_key: advisory.target_key,
+        action: advisory.action,
+        moderation_subscription: { priority: ...advisory.moderation_subscription.priority }
+      )
+  }
+
   private
 
   def normalize_target_key
