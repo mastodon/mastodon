@@ -6,10 +6,10 @@ RSpec.describe ProcessModerationListsService do
   subject { described_class.new }
 
   describe '#call' do
-    let(:high_priority_subscription) { Fabricate(:moderation_subscription, priority: 100, retract_automatically: false) }
-    let(:intermediate_priority_subscription) { Fabricate(:moderation_subscription, priority: 50, list_action: :accept) }
-    let(:subscription_with_automatic_application) { Fabricate(:moderation_subscription, priority: 30, apply_automatically: true, retract_automatically: true) }
-    let(:low_priority_subscription) { Fabricate(:moderation_subscription, priority: 0, retract_automatically: true) }
+    let(:high_priority_subscription) { Fabricate(:moderation_subscription, priority: 0, retract_automatically: false) }
+    let(:intermediate_priority_subscription) { Fabricate(:moderation_subscription, priority: 10, list_action: :accept) }
+    let(:subscription_with_automatic_application) { Fabricate(:moderation_subscription, priority: 20, apply_automatically: true, retract_automatically: true) }
+    let(:low_priority_subscription) { Fabricate(:moderation_subscription, priority: 30, retract_automatically: true) }
 
     before do
       Fabricate(:domain_block, domain: 'retracted-block.com', moderation_subscription: high_priority_subscription, severity: :suspend)

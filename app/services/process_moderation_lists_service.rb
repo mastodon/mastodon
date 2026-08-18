@@ -5,160 +5,137 @@ class ProcessModerationListsService < BaseService
   Retraction = Struct.new(:target_type, :action, :moderation_subscription_id, :retract_automatically)
 
   def call
-    @retractions = collect_retractions!
-    @suggestions = collect_suggestions!
+    applicable_actions = Rails.configuration.x.mastodon.limited_federation_mode ? ['accept'] : ['reject', 'limit']
 
+    @retractions = {}
+
+    ModerationSubscription.order(priority: :desc).each do |subscription|
+      advisories = subscription.advisories.where(action: applicable_actions).to_a
+
+      # TODO: optimize this
+      advisories.delete_if { |advisory| SubscribedAdvisory.superseding_advisories(advisory).exists? }
+
+      # 1. apply automatic suggestions, if possible/needed
+      if subscription.apply_automatically
+        advisories.delete_if do |advisory|
+          next false if SubscribedAdvisory.conflicting_advisories(advisory).exists?
+
+          apply_automatic_advisory!(advisory)
+        end
+      end
+
+      # 2. upsert remaining suggestions
+      ModerationSuggestion.upsert_all(
+        advisories.map do |advisory|
+          {
+            target_type: advisory.target_type,
+            target_key: advisory.target_key,
+            action: advisory.action,
+            moderation_subscription_id: subscription.id,
+          }
+        end,
+        unique_by: [:target_type, :target_key, :action]
+      )
+
+      # 3. orphan suggestions
+      advisories.group_by(&:target_type).each do |target_type, advisories|
+        subscription
+          .suggestions
+          .where(target_type: target_type)
+          .where.not(target_key: advisories.map(&:target_key))
+          .update_all(moderation_subscription_id: nil)
+      end
+
+      # 4. retractions
+      collect_retractions!(subscription)
+    end
+
+    # Cleanup: is it really it?
+    ModerationSuggestion.where(moderation_subscription_id: nil).delete_all
+
+    # Handle retractions
     handle_retractions!
-    filter_suggestions!
-    apply_automatic_suggestions!
-
-    save_suggestions!
   end
 
   private
 
-  def collect_suggestions!
-    suggestions = {}
-
-    ModerationSubscription.order(priority: :desc).each do |subscription|
-      # Handle new advisories
-      subscription.advisories.domain_target_type.find_each do |advisory|
-        next if suggestions.dig(advisory.target_key, advisory.action)
-
-        suggestions[advisory.target_key] ||= {}
-        suggestions[advisory.target_key][advisory.action] = Suggestion.new(
-          action: advisory.action,
-          target_type: advisory.target_type,
-          target_key: advisory.target_key,
-          moderation_subscription_id: subscription.id,
-          apply_automatically: subscription.apply_automatically && suggestions[advisory.target_key].blank?
-        )
-      end
+  def collect_retractions!(subscription)
+    DomainAllow.where(moderation_subscription_id: subscription.id).where.not(domain: subscription.advisories.domain_target_type.accept_action.pluck(:target_key)).find_each do |domain_allow|
+      @retractions[domain_allow.domain] = Retraction.new(
+        action: 'accept',
+        target_type: 'domain',
+        retract_automatically: subscription.retract_automatically,
+        moderation_subscription_id: subscription.id
+      )
     end
 
-    suggestions
-  end
+    DomainBlock.where(moderation_subscription_id: subscription.id).where.not(domain: subscription.advisories.domain_target_type.where(action: ['limit', 'reject']).pluck(:target_key)).find_each do |domain_block|
+      next if domain_block.noop?
 
-  def collect_retractions!
-    retractions = {}
-
-    ModerationSubscription.find_each do |subscription|
-      DomainAllow.where(moderation_subscription_id: subscription.id).where.not(domain: subscription.advisories.domain_target_type.accept_action.pluck(:target_key)).find_each do |domain_allow|
-        retractions[domain_allow.domain] = Retraction.new(
-          action: 'accept',
-          target_type: 'domain',
-          retract_automatically: subscription.retract_automatically,
-          moderation_subscription_id: subscription.id
-        )
-      end
-
-      DomainBlock.where(moderation_subscription_id: subscription.id).where.not(domain: subscription.advisories.domain_target_type.where(action: ['limit', 'reject']).pluck(:target_key)).find_each do |domain_block|
-        next if domain_block.noop?
-
-        action = begin
-          case domain_block.severity
-          when 'silence'
-            'limit'
-          when 'suspend'
-            'reject'
-          end
+      action = begin
+        case domain_block.severity
+        when 'silence'
+          'limit'
+        when 'suspend'
+          'reject'
         end
-
-        retractions[domain_block.domain] = Retraction.new(
-          action:,
-          target_type: 'domain',
-          retract_automatically: subscription.retract_automatically,
-          moderation_subscription_id: subscription.id
-        )
       end
-    end
 
-    retractions
+      @retractions[domain_block.domain] = Retraction.new(
+        action:,
+        target_type: 'domain',
+        retract_automatically: subscription.retract_automatically,
+        moderation_subscription_id: subscription.id
+      )
+    end
   end
 
   def handle_retractions!
     representative = Account.representative
 
     @retractions.each do |domain, attributes|
-      suggestion = @suggestions.dig(domain, attributes[:action])
-      if suggestion && suggestion[:action] == attributes[:action]
+      suggestion = ModerationSuggestion.find_by(target_type: attributes[:target_type], target_key: domain, action: attributes[:action])
+      if suggestion
         # TODO: log
         domain_block = DomainBlock.find_by(domain: domain)
-        domain_block&.update(moderation_subscription_id: suggestion[:moderation_subscription_id])
-        @suggestions.delete(domain)
+        domain_block&.update(moderation_subscription_id: suggestion.moderation_subscription_id)
+        suggestion.destroy
       elsif attributes[:retract_automatically]
         domain_block = DomainBlock.find_by(domain: domain)
         representative.action_logs.create!(action: 'destroy', target: domain_block, recorded_changes: { moderation_subscription_id: domain_block.moderation_subscription_id })
         UnblockDomainService.new.call(domain_block)
       else
         # TODO: what about if there is another kind of suggestion for the same target?
-        @suggestions[domain] ||= {}
-        @suggestions[domain]['retract'] = Suggestion.new(
-          target_type: attributes[:target_type],
-          target_key: domain,
-          action: 'retract',
-          moderation_subscription_id: attributes[:moderation_subscription_id]
+        ModerationSuggestion.upsert(
+          {
+            target_type: attributes[:target_type],
+            target_key: domain,
+            action: 'retract',
+            moderation_subscription_id: attributes[:moderation_subscription_id],
+          },
+          unique_by: [:target_type, :target_key, :action]
         )
       end
     end
   end
 
-  def filter_suggestions!
-    if Rails.configuration.x.mastodon.limited_federation_mode
-      # Filter out any block suggestion, as this is just the default
-      # TODO: consider them as retractions instead?
-      @suggestions.each_value do |suggestion|
-        suggestion.delete('reject')
-        suggestion.delete('limit')
-      end
-    else
-      # Filter out any allow suggestion, as it is just the default
-      # TODO: consider them as retractions instead?
-      @suggestions.each_value { |suggestion| suggestion.delete('accept') }
-    end
-  end
-
-  def apply_automatic_suggestions!
-    @suggestions.each_value do |suggestions|
-      suggestions.delete_if do |_, suggestion|
-        next false unless suggestion[:apply_automatically]
-
-        apply_automatic_suggestion!(suggestion)
-      end
-    end
-  end
-
-  def apply_automatic_suggestion!(suggestion)
+  def apply_automatic_advisory!(advisory)
     representative = Account.representative
 
-    case [suggestion[:target_type], suggestion[:action]]
+    case [advisory.target_type, advisory.action]
     when ['domain', 'accept']
       # TODO: error handling
-      domain_allow = DomainAllow.create!(domain: suggestion[:target_key], moderation_subscription_id: suggestion[:moderation_subscription_id])
+      domain_allow = DomainAllow.create!(domain: advisory.target_key, moderation_subscription_id: advisory.moderation_subscription_id)
       representative.action_logs.create!(action: 'create', target: domain_allow, recorded_changes: { moderation_subscription_id: domain_allow.moderation_subscription_id })
       true
     when ['domain', 'reject'], ['domain', 'limit']
       # TODO: error handling
-      domain_block = DomainBlock.create!(domain: suggestion[:target_key], moderation_subscription_id: suggestion[:moderation_subscription_id], obfuscate: false, severity: suggestion[:action] == 'reject' ? 'suspend' : 'limit')
+      domain_block = DomainBlock.create!(domain: advisory.target_key, moderation_subscription_id: advisory.moderation_subscription_id, obfuscate: false, severity: advisory.action == 'reject' ? 'suspend' : 'limit')
       representative.action_logs.create!(action: 'create', target: domain_block, recorded_changes: { moderation_subscription_id: domain_block.moderation_subscription_id })
       DomainBlockWorker.perform_async(domain_block.id)
       true
     else
       false
     end
-  end
-
-  def save_suggestions!
-    # Remove irrelevant suggestions
-    @suggestions.values.flat_map(&:values).group_by { |suggestion| suggestion[:target_type] }.each do |target_type, suggestions|
-      ModerationSuggestion.where(target_type: target_type).where.not(target_key: suggestions.pluck(:target_key)).delete_all
-    end
-
-    # Insert suggestions
-    ModerationSuggestion.upsert_all(
-      @suggestions.values.flat_map(&:values).map { |suggestion| suggestion.to_h.without(:apply_automatically) },
-      unique_by: [:target_type, :target_key, :action],
-      on_duplicate: Arel.sql('action = EXCLUDED.action, moderation_subscription_id = EXCLUDED.moderation_subscription_id, state = CASE WHEN moderation_suggestions.action = EXCLUDED.action THEN moderation_suggestions.state ELSE EXCLUDED.state END')
-    )
   end
 end
