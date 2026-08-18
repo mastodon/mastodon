@@ -36,6 +36,7 @@ import {
 } from '@/mastodon/permissions';
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import BlockIcon from '@/material-icons/400-24px/block.svg?react';
 import LinkIcon from '@/material-icons/400-24px/link_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
@@ -110,6 +111,12 @@ const messages = defineMessages({
   direct: {
     id: 'account.menu.direct',
     defaultMessage: 'Privately mention',
+  },
+  redesignMessage: {
+    id: 'account.menu.message',
+    defaultMessage: 'Message',
+    description:
+      'Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.',
   },
   mute: { id: 'account.menu.mute', defaultMessage: 'Mute account' },
   unmute: {
@@ -247,25 +254,33 @@ function getMenuItems({
 
   // Mention and direct message options
   if (signedIn && !account.suspended) {
-    if (account.invalid_handle) items.push(null);
-    else {
-      items.push(
-        null,
-        {
-          text: intl.formatMessage(messages.mention),
-          action: () => {
-            dispatch(mentionCompose(account));
-          },
-        },
-
-        {
-          text: intl.formatMessage(messages.direct),
+    items.push(null);
+    if (!account.invalid_handle) {
+      if (isRedesignEnabled()) {
+        items.push({
+          text: intl.formatMessage(messages.redesignMessage),
           action: () => {
             dispatch(directCompose(account));
           },
-        },
-        null,
-      );
+        });
+      } else {
+        items.push(
+          {
+            text: intl.formatMessage(messages.mention),
+            action: () => {
+              dispatch(mentionCompose(account));
+            },
+          },
+
+          {
+            text: intl.formatMessage(messages.direct),
+            action: () => {
+              dispatch(directCompose(account));
+            },
+          },
+        );
+      }
+      items.push(null);
     }
   }
 
