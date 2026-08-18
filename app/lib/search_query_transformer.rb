@@ -20,6 +20,7 @@ class SearchQueryTransformer < Parslet::Transform
       @options = options
 
       flags_from_clauses!
+      validate_clauses!
     end
 
     def request
@@ -33,6 +34,11 @@ class SearchQueryTransformer < Parslet::Transform
     end
 
     private
+
+    def validate_clauses!
+      # At least one clause should be a positive match unless searching within the library
+      raise 'Empty query not supported' if @flags['in'] != 'library' && (must_clauses + filter_clauses).none? { |clause| clause.is_a?(TermClause) && clause.term.present? }
+    end
 
     def clauses_by_operator
       @clauses_by_operator ||= @clauses.compact.group_by(&:operator)
@@ -130,16 +136,9 @@ class SearchQueryTransformer < Parslet::Transform
     end
   end
 
-  class PhraseClause
-    attr_reader :operator, :phrase
-
-    def initialize(operator, phrase)
-      @operator = Operator.symbol(operator)
-      @phrase = phrase
-    end
-
+  class PhraseClause < TermClause
     def to_query
-      { match_phrase: { text: { query: @phrase } } }
+      { match_phrase: { text: { query: @term } } }
     end
   end
 
