@@ -97,7 +97,7 @@ class Admin::Metrics::Measure::BaseMeasure
   end
 
   def previous_time_period
-    ((@start_at.to_date - length_of_period)..(@end_at.to_date - length_of_period))
+    ((@start_at.to_date - (length_of_period + 1))..(@end_at.to_date - (length_of_period + 1)))
   end
 
   def length_of_period
