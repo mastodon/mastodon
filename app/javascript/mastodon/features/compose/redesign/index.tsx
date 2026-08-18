@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { LockSimpleOpenIcon } from '@phosphor-icons/react';
 import { useDebouncedCallback } from 'use-debounce';
 
+import messageBackground from '@/images/composer_message.svg?url';
 import {
   changeComposeSpoilerness,
   changeComposeSpoilerText,
@@ -69,6 +70,11 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   const type = useAppSelector(selectComposeType);
   const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
 
+  let background: string | null = null;
+  if (type === 'message') {
+    background = messageBackground;
+  }
+
   const {
     onSensitiveChange,
     onSensitiveTextChange,
@@ -80,6 +86,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
 
   const intl = useIntl();
   const titleId = useId();
+
   return (
     <form
       role='dialog'
@@ -87,25 +94,19 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       aria-labelledby={titleId}
       className={classNames(className, classes.root)}
     >
+      {background && (
+        <div
+          className={classes.background}
+          style={{ maskImage: `url(${background})` }}
+        />
+      )}
+
       <ComposeFormHeader id={titleId} noMinimize={noMinimize} />
 
       <ComposeReply />
 
       <div className={classes.toolbar}>
-        <div className={classes.flexGrowWrap}>
-          {type !== 'message' && <ComposeVisibility />}
-
-          {type === 'message' && (
-            <p className={classes.toolbarMessage}>
-              <Icon id='lock-open' icon={LockSimpleOpenIcon} />
-              <FormattedMessage
-                id='compose.message.notice'
-                defaultMessage='Messages are not end-to-end encrypted'
-                description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-              />
-            </p>
-          )}
-        </div>
+        <ComposeVisibility className={classes.flexGrowWrap} />
 
         <ToggleField
           label={intl.formatMessage(messages.sensitive)}
@@ -116,6 +117,16 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
 
         <LanguageButton />
       </div>
+
+      {type === 'message' && (
+        <p className={classes.toolbarMessage}>
+          <Icon id='lock-open' icon={LockSimpleOpenIcon} />
+          <FormattedMessage
+            id='compose.message.notice'
+            defaultMessage='Messages are not end-to-end encrypted'
+          />
+        </p>
+      )}
 
       {sensitive && (
         <TextInputField

@@ -33,7 +33,9 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposeMentions, selectComposePrivacy } from './selectors';
 
-export const ComposeVisibility: React.FC = () => {
+export const ComposeVisibility: React.FC<{ className?: string }> = ({
+  className,
+}) => {
   const privacy = useAppSelector(selectComposePrivacy);
   const mentions = useAppSelector(selectComposeMentions);
   const firstMentionedAccount = useAppSelector((state) =>
@@ -41,7 +43,7 @@ export const ComposeVisibility: React.FC = () => {
   );
 
   return (
-    <>
+    <div className={className}>
       <FormattedMessage
         id='compose.post.to'
         defaultMessage='To:'
@@ -85,7 +87,7 @@ export const ComposeVisibility: React.FC = () => {
           )}
         </MenuList>
       </Menu>
-    </>
+    </div>
   );
 };
 
