@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import { Avatar } from '@/mastodon/components/avatar';
-import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { RelativeTimestamp } from '@/mastodon/components/relative_timestamp';
 import { useHandlersForStatus } from '@/mastodon/components/status/hooks';
@@ -23,11 +25,19 @@ export const ComposeReply: React.FC = () => {
   return (
     <blockquote cite={status.uri} className={classes.reply}>
       <cite className={classes.replyAccount}>
-        <Avatar account={status.account} className={classes.replyAvatar} />
-        <DisplayNameSimple account={status.account} />
+        <Avatar
+          account={status.account}
+          className={classes.replyAvatar}
+          withLink
+        />
+        <LinkedDisplayName
+          displayProps={{ account: status.account, variant: 'simple' }}
+        />
         <span className={classes.replyTime}>
           &middot;&nbsp;
-          <RelativeTimestamp timestamp={status.created_at} />
+          <Link to={`/@${status.account.acct}/${status.id}`}>
+            <RelativeTimestamp timestamp={status.created_at} />
+          </Link>
         </span>
       </cite>
 
