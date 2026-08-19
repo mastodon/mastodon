@@ -38,7 +38,7 @@ type ElementRef<As extends ElementType> =
  * Merge additional props with intrinsic/element props for `as`.
  * Additional props win on conflicts.
  */
-type PolymorphicProps<
+type OldPolymorphicProps<
   As extends ElementType,
   AdditionalProps extends object = object,
 > = AdditionalProps &
@@ -52,7 +52,9 @@ type PolymorphicWithRef<
   DefaultAs extends ElementType,
   AdditionalProps extends object = object,
 > = <As extends ElementType = DefaultAs>(
-  props: PolymorphicProps<As, AdditionalProps> & { ref?: Ref<ElementRef<As>> },
+  props: OldPolymorphicProps<As, AdditionalProps> & {
+    ref?: Ref<ElementRef<As>>;
+  },
 ) => ReactElement | null;
 
 /**
@@ -64,12 +66,22 @@ type PolyRefFunction = <
 >(
   render: ForwardRefRenderFunction<
     ElementRef<DefaultAs>,
-    PolymorphicProps<DefaultAs, AdditionalProps>
+    OldPolymorphicProps<DefaultAs, AdditionalProps>
   >,
 ) => PolymorphicWithRef<DefaultAs, AdditionalProps> &
-  ForwardRefExoticComponent<PolymorphicProps<DefaultAs, AdditionalProps>>;
+  ForwardRefExoticComponent<OldPolymorphicProps<DefaultAs, AdditionalProps>>;
 
 /**
  * Polymorphic `forwardRef` function.
  */
 export const polymorphicForwardRef = forwardRef as PolyRefFunction;
+
+// Use this for modern React 19 props
+
+export type PolymorphicProps<
+  AdditionalProps extends object,
+  As extends React.ElementType,
+> = {
+  as?: As;
+} & Omit<React.ComponentPropsWithoutRef<As>, keyof AdditionalProps | 'as'> &
+  AdditionalProps;
