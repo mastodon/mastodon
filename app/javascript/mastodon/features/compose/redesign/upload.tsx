@@ -12,7 +12,11 @@ import { openModal } from '@/mastodon/actions/modal';
 import type { ApiAudioAttachmentJSON } from '@/mastodon/api_types/media_attachments';
 import { Blurhash } from '@/mastodon/components/blurhash';
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { MenuItem, MenuList } from '@/mastodon/components/menu';
+import {
+  MenuItem,
+  MenuItemDivider,
+  MenuList,
+} from '@/mastodon/components/menu';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
@@ -131,12 +135,12 @@ export const ComposeUpload: React.FC<{
           </MenuItem>
         )}
 
-        <hr />
+        <MenuItemDivider />
 
         <MenuItem
           className={classes.mediaMenuDelete}
           onClick={handleDelete}
-          leadingIcon={TrashIcon}
+          icon={TrashIcon}
         >
           <FormattedMessage
             id='compose.upload.menu.delete'
