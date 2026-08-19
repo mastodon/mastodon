@@ -4,6 +4,8 @@ import classNames from 'classnames';
 
 import type { PolymorphicProps } from '@/types/polymorphic';
 
+import { NavigationFocusTarget } from '../navigation_focus_target';
+
 import classes from './redesign.module.scss';
 
 export interface ModalShellProps {
@@ -44,13 +46,22 @@ export const ModalShell = <As extends React.ElementType>({
 
 type HeadingLevels = 1 | 2 | 3 | 4 | 5 | 6;
 
+type ModalTitleProps = { children: React.ReactNode; level?: HeadingLevels } & (
+  | { noFocus: true }
+  | { noFocus?: false; focusTargetName?: string }
+);
+
 export const ModalTitle: React.FC<
-  {
-    children: React.ReactNode;
-    level?: 1 | 2 | 3 | 4 | 5 | 6;
-  } & React.ComponentPropsWithRef<`h${HeadingLevels}`>
-> = ({ level = 2, children, className, ...props }) => {
+  ModalTitleProps & React.ComponentPropsWithRef<`h${HeadingLevels}`>
+> = ({ level = 2, children, className, noFocus, ...props }) => {
   const Header = `h${level}` as const;
+  if (!noFocus) {
+    return (
+      <NavigationFocusTarget as={Header} {...props}>
+        {children}
+      </NavigationFocusTarget>
+    );
+  }
   return (
     <Header {...props} className={classNames(className, classes.title)}>
       {children}
