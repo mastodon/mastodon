@@ -3,7 +3,6 @@ import { useCallback, useId } from 'react';
 import classNames from 'classnames';
 
 import { CheckIcon } from '@phosphor-icons/react';
-import type { Merge } from 'type-fest';
 
 import { Toggle } from '../form_fields/redesign';
 import { Icon } from '../icon';
@@ -35,9 +34,8 @@ export const MenuItemDivider: React.FC = () => {
   return <hr className={classes.itemDivider} />;
 };
 
-type MenuItemProps<As extends React.ElementType> = Merge<
-  React.ComponentPropsWithoutRef<As>,
-  {
+type MenuItemProps<As extends React.ElementType> =
+  React.ComponentPropsWithoutRef<As> & {
     as?: As;
     children?: React.ReactNode;
     className?: string;
@@ -46,8 +44,7 @@ type MenuItemProps<As extends React.ElementType> = Merge<
     icon?: IconProp | 'reserve-space';
     trailingContent?: React.ReactNode;
     iconClassName?: string;
-  }
->;
+  };
 
 export const MenuItemBase = <As extends React.ElementType>({
   active,
