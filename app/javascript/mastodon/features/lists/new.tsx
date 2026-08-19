@@ -117,7 +117,7 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
     [setRepliesPolicy],
   );
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
