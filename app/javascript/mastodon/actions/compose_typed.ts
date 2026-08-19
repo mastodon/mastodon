@@ -57,12 +57,14 @@ const simulateModifiedApiResponse = (
   media: MediaAttachment,
   params: { description?: string; focus?: string },
 ): SimulatedMediaAttachmentJSON => {
+  const mediaJS = media.toJS();
   const [x, y] = (params.focus ?? '').split(',');
 
   const data = {
-    ...media.toJS(),
+    ...mediaJS,
     ...params,
     meta: {
+      ...mediaJS.meta,
       focus: {
         x: parseFloat(x ?? '0'),
         y: parseFloat(y ?? '0'),
