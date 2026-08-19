@@ -17,7 +17,7 @@ import { EmojiHTML } from '../emoji/html';
 import { Icon } from '../icon';
 import { Poll } from '../poll';
 
-import { useElementHandledLink } from './handled_link';
+import { useHandlersForStatus } from './hooks';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -72,20 +72,7 @@ export const StatusContent: React.FC<{
     [onClick],
   );
 
-  const hrefToMention = useCallback(
-    (href: string) => status?.mentions.find((item) => item.url === href),
-    [status?.mentions],
-  );
-  const hrefToCollectionId = useCallback(
-    (href: string) =>
-      status?.tagged_collections.find((item) => item.url === href)?.id,
-    [status?.tagged_collections],
-  );
-  const htmlHandlers = useElementHandledLink({
-    hashtagAccountId: status?.account,
-    hrefToCollectionId,
-    hrefToMention,
-  });
+  const htmlHandlers = useHandlersForStatus(status);
 
   if (!status) {
     return null;

@@ -31,6 +31,7 @@ import type { OnEmojiPick } from './emoji';
 import { ComposeFooter } from './footer';
 import { ComposeFormHeader } from './header';
 import { LanguageButton } from './language';
+import { ComposeReply } from './reply';
 import {
   selectComposeCanSubmit,
   selectComposeSensitive,
@@ -86,6 +87,8 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       className={classNames(className, classes.root)}
     >
       <ComposeFormHeader id={titleId} noMinimize={noMinimize} />
+
+      <ComposeReply />
 
       <div className={classes.toolbar}>
         <div className={classes.flexGrowWrap}>
