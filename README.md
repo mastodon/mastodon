@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+<a href="https://inspect.software/software/mastodon/mastodon"><img src="https://raw.githubusercontent.com/inspect-software/badges/main/v1/m/mastodon/mastodon.svg" alt="inspect.software score badge for mastodon/mastodon" /></a>
   <a style="text-decoration:none" href="https://github.com/mastodon/mastodon/releases">
     <img src="https://img.shields.io/github/release/mastodon/mastodon.svg" alt="Release" /></a>
   <a style="text-decoration:none" href="https://github.com/mastodon/mastodon/actions/workflows/test-ruby.yml">
