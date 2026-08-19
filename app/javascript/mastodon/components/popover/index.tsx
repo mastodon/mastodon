@@ -190,18 +190,22 @@ export const Popover: React.FC<PopoverProps> = ({
     return null;
   }
 
+  const props: PopoverChildProps = {
+    style: floatingStyles,
+    'data-popover-placement': computedPlacement,
+    'data-popover-reference-hidden': middlewareData.hide?.referenceHidden,
+    'data-popover-escaped': middlewareData.hide?.escaped,
+  };
+  if (!popoverElement) {
+    props.ref = refs.setFloating;
+  }
+
   return (
     <Portal container={container}>
       {children({
         placement: computedPlacement,
         update,
-        props: {
-          ref: popoverElement ? undefined : refs.setFloating,
-          style: floatingStyles,
-          'data-popover-placement': computedPlacement,
-          'data-popover-reference-hidden': middlewareData.hide?.referenceHidden,
-          'data-popover-escaped': middlewareData.hide?.escaped,
-        },
+        props,
       })}
     </Portal>
   );

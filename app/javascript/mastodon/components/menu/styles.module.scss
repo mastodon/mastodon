@@ -1,6 +1,6 @@
 @use '@/styles/mastodon/mixins';
 
-.menu {
+.menuCard {
   @include mixins.elevation-1;
 
   display: flex;
@@ -9,6 +9,7 @@
   border-radius: var(--radius-md);
   background: var(--color-bg-primary);
   overflow: hidden;
+  z-index: calc(infinity);
 
   &[data-elevation='2'] {
     @include mixins.elevation-2;
@@ -20,6 +21,10 @@
     margin: var(--space-2xs) var(--space-sm);
     border: none;
   }
+}
+
+.popoverMenuCard {
+  width: 100%;
 }
 
 .menuItem {
@@ -37,17 +42,24 @@
     background 200ms,
     color 200ms;
 
+  &:where(button) {
+    appearance: none;
+    background: none;
+    border: none;
+    width: 100%;
+  }
+
   label {
     cursor: inherit;
     font-weight: inherit;
     font-size: var(--fs-sm);
   }
 
-  &:hover:not(.menuItemDisabled) {
+  &:hover:not([aria-disabled='true']) {
     background-color: var(--color-bg-highlight);
   }
 
-  &:active:not(.menuItemDisabled),
+  &:active:not([aria-disabled='true']),
   .menuItemActive {
     background-color: var(--color-bg-inverted);
     color: var(--color-text-inverted);
@@ -58,18 +70,11 @@
   }
 
   &:has(:disabled),
-  .menuItemDisabled {
+  [aria-disabled='true'] {
     --cursor: not-allowed;
 
     opacity: 0.5;
   }
-}
-
-.menuItemButton {
-  appearance: none;
-  background: none;
-  border: none;
-  width: 100%;
 }
 
 .menuItemIcon {
@@ -83,8 +88,4 @@
   margin: var(--space-2xs) var(--space-sm);
   border: none;
   width: calc(100% - (2 * var(--space-sm)));
-}
-
-.popoverMenu {
-  width: 100%;
 }
