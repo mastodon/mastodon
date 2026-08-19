@@ -108,7 +108,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
   const { isLoading: isPinnedLoading, statusIds: pinnedStatusIds } =
     usePinnedStatusIds({ accountId, tagged, forceEmptyState });
 
-  const isLoading = timeline === null || !!timeline?.isLoading || isPinnedLoading;
+  const isLoading = timeline === null || timeline.isLoading || isPinnedLoading;
 
   return (
     <Column bindToDocument={!multiColumn}>
