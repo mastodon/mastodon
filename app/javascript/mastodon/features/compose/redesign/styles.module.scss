@@ -62,14 +62,6 @@
   }
 }
 
-.dropdownItemControl {
-  @include mixins.type-body-compact;
-
-  color: inherit;
-  width: 100%;
-  user-select: none;
-}
-
 .editorWrapper {
   --fade-size: var(--space-xl);
 
@@ -147,25 +139,6 @@
 
 .counterError {
   color: var(--color-text-error);
-}
-
-.visibilityFieldset {
-  display: block;
-
-  [data-label] {
-    @include mixins.type-label-sm;
-
-    color: var(--color-text-tertiary);
-    padding: var(--space-xs) var(--space-sm) 0;
-  }
-
-  [data-fields] {
-    display: block;
-  }
-
-  [role='status'] {
-    margin-top: 0;
-  }
 }
 
 .languageMenu {

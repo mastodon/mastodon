@@ -85,18 +85,14 @@ export const ComposeRedesignButton: React.FC = () => {
       </MenuButton>
 
       <MenuList maxWidth={180} placement='top-end'>
-        <MenuItem
-          name='post'
-          onClick={handleComposerOpen}
-          leadingIcon={NewspaperIcon}
-        >
+        <MenuItem name='post' onClick={handleComposerOpen} icon={NewspaperIcon}>
           <FormattedMessage id='compose.new.post' defaultMessage='Post' />
         </MenuItem>
 
         <MenuItem
           name='message'
           onClick={handleComposerOpen}
-          leadingIcon={ChatCircleIcon}
+          icon={ChatCircleIcon}
         >
           <FormattedMessage
             id='compose.new.message'
