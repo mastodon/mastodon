@@ -13,14 +13,13 @@ class Api::V2::SearchController < Api::BaseController
     before_action :query_pagination_error, if: :pagination_requested?
     before_action :remote_resolve_error, if: :remote_resolve_requested?
   end
+
   before_action :require_valid_pagination_options!
   before_action :handle_fasp_requests
 
   def index
     @search = Search.new(search_results)
     render json: @search, serializer: REST::SearchSerializer
-  rescue Mastodon::SyntaxError
-    unprocessable_content
   rescue ActiveRecord::RecordNotFound
     not_found
   end
