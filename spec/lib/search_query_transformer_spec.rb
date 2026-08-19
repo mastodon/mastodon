@@ -45,7 +45,7 @@ RSpec.describe SearchQueryTransformer do
       let(:query) { '-hello' }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error(RuntimeError)
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe SearchQueryTransformer do
       let(:query) { 'after:0000' }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error(RuntimeError)
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe SearchQueryTransformer do
       let(:query) { 'before:9999' }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error(RuntimeError)
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
       end
     end
 
@@ -69,7 +69,7 @@ RSpec.describe SearchQueryTransformer do
       let(:query) { 'is:reply' }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error(RuntimeError)
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe SearchQueryTransformer do
       let(:query) { 'is:reply " "' }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error(RuntimeError)
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
       end
     end
 
