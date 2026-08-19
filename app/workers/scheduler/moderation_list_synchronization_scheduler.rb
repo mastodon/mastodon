@@ -10,7 +10,7 @@ class Scheduler::ModerationListSynchronizationScheduler
 
     ProcessModerationListsService.new.call
 
-    # TODO: mail suggestions
+    mail_suggestions!
   end
 
   private
@@ -19,5 +19,17 @@ class Scheduler::ModerationListSynchronizationScheduler
     ModerationSubscription.all.map do |subscription|
       ModerationSubscriptionSyncService.new.call(subscription)
     end.any?
+  end
+
+  def mail_suggestions!
+    return unless ModerationSuggestion.exists?(state: :new)
+
+    User.those_who_can(:manage_federation).includes(:account).find_each do |user|
+      next unless user.settings['notification_emails.moderation_suggestions']
+
+      AdminMailer.with(recipient: user.account).new_moderation_suggestions.deliver_later
+    end
+
+    ModerationSuggestion.where(state: :new).in_batches.update_all(state: :mailed)
   end
 end
