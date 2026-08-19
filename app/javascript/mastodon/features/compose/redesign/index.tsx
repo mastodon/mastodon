@@ -30,6 +30,7 @@ import { ComposeAttachments } from './attachments';
 import type { OnEmojiPick } from './emoji';
 import { ComposeFooter } from './footer';
 import { ComposeFormHeader } from './header';
+import { ComposeHints } from './hints';
 import { LanguageButton } from './language';
 import { ComposeReply } from './reply';
 import {
@@ -139,6 +140,8 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
 
         <ComposeAttachments />
       </div>
+
+      <ComposeHints />
 
       <ComposeFooter onEmojiPick={onEmojiPick} />
     </form>

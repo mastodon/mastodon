@@ -1,7 +1,11 @@
 import type { ApiAnnualReportState } from './api/annual_report';
 import type { ApiAccountJSON } from './api_types/accounts';
 
-type InitialStateLanguage = [code: string, name: string, localName: string];
+export type InitialStateLanguage = [
+  code: string,
+  name: string,
+  localName: string,
+];
 
 interface InitialStateMeta {
   access_token: string;
