@@ -38,7 +38,7 @@ ToggleField.displayName = 'ToggleField';
 export const Toggle = forwardRef<HTMLInputElement, Props>(
   ({ className, size, ...otherProps }, ref) => (
     <span
-      className={classes.wrapper}
+      className={classNames(classes.wrapper, className)}
       style={{ '--diameter': size ? `${size}px` : undefined } as CSSProperties}
     >
       <input
@@ -47,7 +47,7 @@ export const Toggle = forwardRef<HTMLInputElement, Props>(
         className={classes.input}
         ref={ref}
       />
-      <span className={classNames(classes.toggle, className)} hidden />
+      <span className={classes.toggle} hidden />
     </span>
   ),
 );
