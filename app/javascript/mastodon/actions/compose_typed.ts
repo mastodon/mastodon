@@ -64,7 +64,7 @@ const simulateModifiedApiResponse = (
     ...mediaJS,
     ...params,
     meta: {
-      ...mediaJS.meta,
+      ...(mediaJS.meta ?? {}),
       focus: {
         x: parseFloat(x ?? '0'),
         y: parseFloat(y ?? '0'),
