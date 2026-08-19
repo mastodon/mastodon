@@ -58,7 +58,7 @@ export const Callout = <As extends React.ElementType>({
 }: CalloutProps<As>) => {
   const Comp = asComp ?? 'div';
 
-  const wrappedChildren = <div>{children}</div>;
+  const wrappedChildren = <div className={classes.textWrapper}>{children}</div>;
 
   const actionButton = actionText ? (
     <Button onClick={actionClick} size={size === 'sm' ? 'xs' : 'sm'}>
