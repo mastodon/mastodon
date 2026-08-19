@@ -742,6 +742,49 @@ en:
       reset: Reset
       search: Search
       title: IP rules
+    moderation_subscriptions:
+      add_new: Add subscription
+      advisories_count:
+        one: "%{count} advisory"
+        other: "%{count} advisories"
+      advisory_action: 'Action: %{action}'
+      advisory_actions:
+        allow: allow
+        limit: silence
+        reject: suspend
+      apply_automatically: Apply advisories automatically
+      apply_conditions:
+        always: Always
+        never: Never
+        safely: Only if it does not break relationships
+      empty: No moderation list has been subscribed to yet.
+      empty_subscription: This subscription has no advisory yet.
+      last_synced_at: Last synced at
+      list_action: List action
+      list_actions:
+        accept: Subscribed as an allow-list
+        default: Advised actions decided by list
+        reject: Subscribed as a block-list
+      name: Name
+      new:
+        create: Subscribe
+        title: New moderation subscription
+      policies:
+        apply_advisories: Automatically applies advisories
+        apply_advisories_safely: Automatically applies advisories that do not break relationships
+        apply_retractions: Automatically applies retractions
+      priority: Priority
+      retract_automatically: Retract advisories automatically
+      show_title: 'Moderation subscription: %{name}'
+      tabs:
+        logs: Logs
+        subscriptions: Subscriptions
+        suggestions: Suggestions
+      title: Moderation subscriptions
+      type: Type
+      types:
+        csv_list: CSV list
+      url: URL
     relationships:
       title: "%{acct}'s relationships"
     relays:
