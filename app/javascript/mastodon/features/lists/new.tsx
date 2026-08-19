@@ -118,6 +118,7 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
   );
 
   const handleSubmit = useCallback(() => {
+    e.preventDefault();
     setSubmitting(true);
 
     if (id) {
