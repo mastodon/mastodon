@@ -147,6 +147,10 @@ export const changeUploadCompose = createDataLoadingThunk(
   },
 );
 
+export const rearrangeComposeAttachments = createAction<string[]>(
+  'compose/rearrangeAttachments',
+);
+
 export const quoteCompose = createAppThunk(
   'compose/quoteComposeStatus',
   (status: Status, { dispatch }) => {

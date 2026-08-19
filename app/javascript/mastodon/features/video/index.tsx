@@ -811,7 +811,7 @@ export const Video: React.FC<{
         )}
 
         {(revealed || editable) && (
-          <video /* eslint-disable-line jsx-a11y/media-has-caption */
+          <video
             ref={handleVideoRef}
             src={src}
             poster={preview}

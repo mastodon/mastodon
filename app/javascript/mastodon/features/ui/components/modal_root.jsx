@@ -106,7 +106,8 @@ export const MODAL_COMPONENTS = {
   'ACCOUNT_EDIT_IMAGE_DELETE': accountEditModal('ImageDeleteModal'),
   'ACCOUNT_EDIT_IMAGE_UPLOAD': accountEditModal('ImageUploadModal'),
   'ACCOUNT_HIDE_FEATURED_TAB': () => import('@/mastodon/features/ui/components/confirmation_modals/hide_featured_tab').then(module => ({ default: module.ConfirmHideFeaturedTabModal })),
-  'COMPOSER_DRAFT_DELETE': () => import('@/mastodon/features/compose/redesign/cancel_modal'),
+  'COMPOSER_DRAFT_DELETE': () => import('@/mastodon/features/compose/redesign/modal_cancel'),
+  'COMPOSER_REARRANGE': () => import('@/mastodon/features/compose/redesign/modal_rearrange'),
 };
 
 /** @arg {keyof import('@/mastodon/features/account_edit/modals')} type */

@@ -303,6 +303,8 @@ export default tseslint.config([
       'jsdoc/require-param': 'off',
       'jsdoc/require-returns': 'off',
 
+      'jsx-a11y/media-has-caption': 'off',
+
       'react/prefer-stateless-function': 'warn',
       'react/function-component-definition': [
         'error',

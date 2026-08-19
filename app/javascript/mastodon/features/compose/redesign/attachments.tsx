@@ -2,12 +2,12 @@ import type React from 'react';
 
 import { useAppSelector } from '@/mastodon/store';
 
+import classes from './attachments.module.scss';
 import { ComposePoll } from './poll';
 import {
   selectComposeAttachments,
   selectComposeHasAttachments,
 } from './selectors';
-import classes from './styles.module.scss';
 import { ComposeUpload } from './upload';
 
 export const ComposeAttachments: React.FC = () => {
@@ -31,14 +31,14 @@ export const ComposeAttachments: React.FC = () => {
 const ComposeMediaAttachments: React.FC = () => {
   const attachments = useAppSelector(selectComposeAttachments);
   const pendingAttachments = useAppSelector((state) =>
-    Number(state.compose.get('pending_media_attachments')),
+    Math.max(Number(state.compose.get('pending_media_attachments')), 0),
   );
   const totalAttachments = attachments.length + pendingAttachments;
 
   if (totalAttachments === 1) {
     return (
       <div className={classes.mediaSingle}>
-        <ComposeUpload id={attachments.at(0)?.id} />
+        <ComposeUpload id={attachments.at(0)?.id} single />
       </div>
     );
   }

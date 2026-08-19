@@ -6,28 +6,24 @@ import {
   useState,
 } from 'react';
 
-import type { UniqueIdentifier } from '@dnd-kit/core';
+import type { DragStartEvent, UniqueIdentifier } from '@dnd-kit/core';
 import { useSortable } from '@dnd-kit/sortable';
 
 import { normalizeKey } from '../hotkeys/utils';
 
-interface UseSortableListArgs<Id extends UniqueIdentifier = string> {
-  ids: Id[];
-  onSort: (ids: Id[]) => void;
+interface UseSortableListArgs {
   onCancel: () => void;
 }
 
-export function useSortableList<Id extends UniqueIdentifier = string>({
-  onCancel,
-}: UseSortableListArgs<Id>) {
-  const [isDragging, setIsDragging] = useState(false);
+export function useSortableList({ onCancel }: UseSortableListArgs) {
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
 
-  const onDragStart = useCallback(() => {
-    setIsDragging(true);
+  const onDragStart = useCallback((event: DragStartEvent) => {
+    setActiveId(event.active.id);
   }, []);
 
   const onDragEnd = useCallback(() => {
-    setIsDragging(false);
+    setActiveId(null);
   }, []);
 
   // Combines the Escape shortcut for closing the modal and for cancelling the drag, depending on the current state.
@@ -40,21 +36,20 @@ export function useSortableList<Id extends UniqueIdentifier = string>({
         event.stopPropagation();
 
         // Trigger the drag cancel here, since onDragCancel triggers before this handler.
-        if (isDragging) {
-          setIsDragging(false);
+        if (activeId) {
+          setActiveId(null);
         } else {
           onCancel();
         }
       }
     },
-    [isDragging, onCancel],
+    [activeId, onCancel],
   );
 
   return {
-    isDragging,
+    activeId,
     onDragStart,
     onDragEnd,
-    onCancel,
     onModalExit,
   };
 }

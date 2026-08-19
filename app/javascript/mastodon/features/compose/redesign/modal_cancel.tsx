@@ -13,7 +13,7 @@ import { useAppDispatch } from '@/mastodon/store';
 
 import classes from './modals.module.scss';
 
-const ComposerCancelConfirmModal: React.FC<{ openNew?: boolean }> = ({
+const ComposerModalCancelConfirm: React.FC<{ openNew?: boolean }> = ({
   openNew,
 }) => {
   const dispatch = useAppDispatch();
@@ -69,4 +69,4 @@ const ComposerCancelConfirmModal: React.FC<{ openNew?: boolean }> = ({
 };
 
 // eslint-disable-next-line import/no-default-export -- Modals import from default
-export default ComposerCancelConfirmModal;
+export default ComposerModalCancelConfirm;

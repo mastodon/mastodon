@@ -177,7 +177,9 @@ export const selectComposeHasAttachments = createAppSelector(
   },
 );
 
-export type ComposeAttachment = ApiMediaAttachmentJSON & {
+export type ComposeAttachment<
+  TAttachment extends ApiMediaAttachmentJSON = ApiMediaAttachmentJSON,
+> = TAttachment & {
   file?: File;
   unattached: boolean;
 };
@@ -194,6 +196,16 @@ export const selectComposeAttachments = createAppSelector(
       return [];
     }
     return attachments.toJS() as ComposeAttachment[];
+  },
+);
+
+export const selectComposeAttachment = createAppSelector(
+  [selectComposeAttachments, (_, id?: string) => id],
+  (attachments, id) => {
+    if (!id) {
+      return null;
+    }
+    return attachments.find((attachment) => attachment.id === id) ?? null;
   },
 );
 

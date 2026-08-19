@@ -5,14 +5,18 @@ import type { MessageDescriptor } from 'react-intl';
 import { useIntl } from 'react-intl';
 
 import type {
+  Active,
   Announcements,
   DragEndEvent,
   DragStartEvent,
+  DropAnimation,
+  Over,
   ScreenReaderInstructions,
   UniqueIdentifier,
 } from '@dnd-kit/core';
 import {
   DndContext,
+  DragOverlay,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -62,10 +66,13 @@ interface SortableListOwnProps<
   ids: Id[];
   renderItem?: (id: Id) => React.ReactNode;
   messages?: SortableListMessages;
+  messageLabelCb?: (item: Active | Over) => Id;
   as?: As;
   onSort?: (ids: Id[]) => void;
   onDragStart?: (event: DragStartEvent) => void;
   onDragEnd?: (event: DragEndEvent) => void;
+  overlay?: React.ReactNode;
+  dropAnimation?: DropAnimation | null;
 }
 
 export type SortableListProps<
@@ -86,6 +93,9 @@ export const SortableList = <
   onDragEnd: onDragEndParent,
   messages,
   children,
+  overlay,
+  dropAnimation,
+  messageLabelCb,
   ...props
 }: SortableListProps<As, Id>) => {
   const sensors = useSensors(
@@ -122,6 +132,9 @@ export const SortableList = <
     if (!messages) {
       return undefined;
     }
+
+    const itemRender = messageLabelCb ?? (({ id }) => String(id));
+
     return {
       screenReaderInstructions: {
         draggable: intl.formatMessage(messages.screenReaderInstructions),
@@ -133,15 +146,15 @@ export const SortableList = <
             return undefined;
           }
           return intl.formatMessage(messages.onDragStart, {
-            item: active.id,
+            item: itemRender(active),
           });
         },
 
         onDragOver({ active, over }) {
           if (over && active.id !== over.id && messages.onDragMoveOver) {
             return intl.formatMessage(messages.onDragMoveOver, {
-              item: active.id,
-              over: over.id,
+              item: itemRender(active),
+              over: itemRender(over),
             });
           }
 
@@ -150,30 +163,32 @@ export const SortableList = <
           }
 
           return intl.formatMessage(messages.onDragMove, {
-            item: active.id,
+            item: itemRender(active),
           });
         },
 
-        onDragEnd({ active }) {
+        onDragEnd({ active, over }) {
           if (!messages.onDragEnd) {
             return undefined;
           }
           return intl.formatMessage(messages.onDragEnd, {
-            item: active.id,
+            item: itemRender(active),
+            over: over ? itemRender(over) : undefined,
           });
         },
 
-        onDragCancel({ active }) {
+        onDragCancel({ active, over }) {
           if (!messages.onDragCancel) {
             return undefined;
           }
           return intl.formatMessage(messages.onDragCancel, {
-            item: active.id,
+            item: itemRender(active),
+            over: over ? itemRender(over) : undefined,
           });
         },
       } satisfies Announcements,
     };
-  }, [intl, messages]);
+  }, [intl, messageLabelCb, messages]);
 
   const ListComponent = AsComp ?? 'ol';
 
@@ -196,6 +211,10 @@ export const SortableList = <
               )))}
         </SortableContext>
       </ListComponent>
+
+      {overlay && (
+        <DragOverlay dropAnimation={dropAnimation}>{overlay}</DragOverlay>
+      )}
     </DndContext>
   );
 };
