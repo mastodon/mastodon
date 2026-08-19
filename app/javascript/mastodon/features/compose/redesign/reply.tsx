@@ -23,8 +23,8 @@ export const ComposeReply: React.FC = () => {
   }
 
   return (
-    <blockquote cite={status.uri} className={classes.reply}>
-      <cite className={classes.replyAccount}>
+    <figure className={classes.reply}>
+      <figcaption className={classes.replyAccount}>
         <Avatar
           account={status.account}
           className={classes.replyAvatar}
@@ -39,15 +39,17 @@ export const ComposeReply: React.FC = () => {
             <RelativeTimestamp timestamp={status.created_at} />
           </Link>
         </span>
-      </cite>
+      </figcaption>
 
       <EmojiHTML
+        as='blockquote'
+        cite={status.uri}
         htmlString={status.translation?.contentHtml ?? status.contentHtml}
         extraEmojis={status.emojis}
         className={classes.replyText}
         lang={status.translation?.language ?? status.language}
         {...htmlHandlers}
       />
-    </blockquote>
+    </figure>
   );
 };
