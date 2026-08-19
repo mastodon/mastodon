@@ -53,7 +53,7 @@ type ModalTitleProps = { children: React.ReactNode; level?: HeadingLevels } & (
 
 export const ModalTitle: React.FC<
   ModalTitleProps & React.ComponentPropsWithRef<`h${HeadingLevels}`>
-> = ({ level = 2, children, className, noFocus, ...props }) => {
+> = ({ level = 1, children, className, noFocus, ...props }) => {
   const Header = `h${level}` as const;
   if (!noFocus) {
     return (
