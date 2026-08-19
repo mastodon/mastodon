@@ -1,6 +1,6 @@
 @use '@/styles/mastodon/mixins';
 
-.menuCard {
+.card {
   @include mixins.elevation-1;
 
   display: flex;
@@ -14,20 +14,27 @@
   &[data-elevation='2'] {
     @include mixins.elevation-2;
   }
-
-  > hr {
-    height: 1px;
-    background-color: var(--color-border-primary);
-    margin: var(--space-2xs) var(--space-sm);
-    border: none;
-  }
 }
 
-.popoverMenuCard {
+.popoverCard {
   width: 100%;
 }
 
-.menuItem {
+.itemGroupLabel {
+  @include mixins.type-label-sm;
+
+  color: var(--color-text-tertiary);
+  padding: var(--space-xs) var(--space-sm) 0;
+}
+
+.itemDivider {
+  height: 1px;
+  background-color: var(--color-border-primary);
+  margin: var(--space-2xs) var(--space-sm);
+  border: none;
+}
+
+.item {
   @include mixins.type-body-compact;
 
   --cursor: pointer;
@@ -47,20 +54,20 @@
     background: none;
     border: none;
     width: 100%;
-  }
-
-  label {
-    cursor: inherit;
-    font-weight: inherit;
-    font-size: var(--fs-sm);
+    text-align: start;
   }
 
   &:hover:not([aria-disabled='true']) {
     background-color: var(--color-bg-highlight);
   }
 
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
+
   &:active:not([aria-disabled='true']),
-  .menuItemActive {
+  .itemActive {
     background-color: var(--color-bg-inverted);
     color: var(--color-text-inverted);
 
@@ -70,22 +77,18 @@
   }
 
   &:has(:disabled),
-  [aria-disabled='true'] {
+  &[aria-disabled='true'] {
     --cursor: not-allowed;
 
     opacity: 0.5;
   }
 }
 
-.menuItemIcon {
+.itemIcon {
   width: var(--space-lg);
   height: var(--space-lg);
 }
 
-.menu > hr {
-  height: 1px;
-  background-color: var(--color-border-primary);
-  margin: var(--space-2xs) var(--space-sm);
-  border: none;
-  width: calc(100% - (2 * var(--space-sm)));
+.itemTrailingContent {
+  margin-inline-start: auto;
 }

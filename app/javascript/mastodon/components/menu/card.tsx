@@ -32,7 +32,7 @@ export const MenuCard = <As extends React.ElementType>({
   return (
     <Component
       {...props}
-      className={classNames(className, classes.menuCard)}
+      className={classNames(className, classes.card)}
       data-elevation={elevation}
       style={{
         maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
@@ -83,7 +83,7 @@ export const PopoverMenuCard = <As extends React.ElementType>({
           {...props}
           className={classNames(
             className,
-            props.maxWidth && classes.popoverMenuCard,
+            props.maxWidth && classes.popoverCard,
           )}
         >
           {children}

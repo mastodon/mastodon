@@ -1,3 +1,5 @@
+import { useCallback, useState } from 'react';
+
 import {
   MoonIcon,
   NumberCircleOneIcon,
@@ -9,9 +11,16 @@ import { action } from 'storybook/actions';
 
 import { useToggle } from '@/mastodon/hooks/useToggle';
 
-import { ToggleField } from '../form_fields/redesign';
-
-import { Menu, MenuButton, MenuList, MenuItemBase, MenuItem } from '.';
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemDivider,
+  MenuItemCheckbox,
+  MenuItemGroup,
+  MenuItemRadio,
+} from '.';
 import type { MenuCardProps } from './card';
 import { MenuCard } from './card';
 
@@ -38,16 +47,10 @@ export const Simple: Story = {
   render(args) {
     return (
       <MenuCard {...args}>
-        <MenuItem
-          leadingIcon={NumberCircleOneIcon}
-          onClick={handleMenuItemClick}
-        >
+        <MenuItem icon={NumberCircleOneIcon} onClick={handleMenuItemClick}>
           First item
         </MenuItem>
-        <MenuItem
-          leadingIcon={NumberCircleTwoIcon}
-          onClick={handleMenuItemClick}
-        >
+        <MenuItem icon={NumberCircleTwoIcon} onClick={handleMenuItemClick}>
           Second item
         </MenuItem>
       </MenuCard>
@@ -63,16 +66,10 @@ export const Popover: Story = {
           <MenuButton>Click to show dropdown</MenuButton>
 
           <MenuList {...args}>
-            <MenuItem
-              leadingIcon={NumberCircleOneIcon}
-              onClick={handleMenuItemClick}
-            >
+            <MenuItem icon={NumberCircleOneIcon} onClick={handleMenuItemClick}>
               First item
             </MenuItem>
-            <MenuItem
-              leadingIcon={NumberCircleTwoIcon}
-              onClick={handleMenuItemClick}
-            >
+            <MenuItem icon={NumberCircleTwoIcon} onClick={handleMenuItemClick}>
               Second item
             </MenuItem>
           </MenuList>
@@ -82,18 +79,53 @@ export const Popover: Story = {
   },
 };
 
-export const Controls: Story = {
+export const Complex: Story = {
   render(args) {
     const [sun, { onToggle }] = useToggle();
+    const [precip, setPrecip] = useState('none');
+
+    const handlePrecipChange = useCallback(({ value }: { value: string }) => {
+      setPrecip(value);
+    }, []);
+
     return (
       <MenuCard {...args}>
         <MenuItem onClick={handleMenuItemClick}>First item</MenuItem>
 
-        <hr />
+        <MenuItemDivider />
 
-        <MenuItemBase leadingIcon={sun ? SunIcon : MoonIcon}>
-          <ToggleField label='Daytime toggle' size='sm' onChange={onToggle} />
-        </MenuItemBase>
+        <MenuItemCheckbox
+          icon={sun ? SunIcon : MoonIcon}
+          checked={sun}
+          onChange={onToggle}
+          value='daytime'
+        >
+          Daytime toggle
+        </MenuItemCheckbox>
+        <MenuItemDivider />
+        <MenuItemGroup label='Precipitation'>
+          <MenuItemRadio
+            value='none'
+            checked={precip === 'none'}
+            onChange={handlePrecipChange}
+          >
+            None
+          </MenuItemRadio>
+          <MenuItemRadio
+            value='rain'
+            checked={precip === 'rain'}
+            onChange={handlePrecipChange}
+          >
+            Rain
+          </MenuItemRadio>
+          <MenuItemRadio
+            value='snow'
+            checked={precip === 'snow'}
+            onChange={handlePrecipChange}
+          >
+            Snow
+          </MenuItemRadio>
+        </MenuItemGroup>
       </MenuCard>
     );
   },

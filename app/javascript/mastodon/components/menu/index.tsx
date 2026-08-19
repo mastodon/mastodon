@@ -8,19 +8,24 @@ import {
   useState,
 } from 'react';
 
-import classNames from 'classnames';
-
 import type { Merge } from 'type-fest';
 
 import { Button } from '../button/redesign';
-import { Icon } from '../icon';
-import type { IconProp } from '../icon';
 
 import { PopoverMenuCard } from './card';
 import type { PopoverMenuCardProps } from './card';
 import classes from './styles.module.scss';
 
-export const menuItemClass = classes.menuItem;
+export const menuItemClass = classes.item;
+
+export {
+  MenuItemDivider,
+  MenuItemGroup,
+  MenuItemBase,
+  MenuItem,
+  MenuItemRadio,
+  MenuItemCheckbox,
+} from './items';
 
 interface PopoverState {
   isMenuOpen: boolean;
@@ -71,7 +76,7 @@ export function useMenuContext(): MenuState {
 function getAllMenuItems(menuListElement: HTMLDivElement) {
   return Array.from(
     menuListElement.querySelectorAll<HTMLElement>(
-      ':scope [data-menu-item]:not([disabled], [aria-disabled])',
+      ':scope [data-menu-item]:not([disabled])',
     ),
   );
 }
@@ -256,81 +261,5 @@ export const MenuList = <As extends React.ElementType>({
     >
       {children}
     </PopoverMenuCard>
-  );
-};
-
-type MenuItemProps<As extends React.ElementType> = Merge<
-  {
-    as?: As;
-    children?: React.ReactNode;
-    className?: string;
-    active?: boolean;
-    disabled?: boolean;
-    leadingIcon?: IconProp;
-    trailingIcon?: IconProp;
-    iconClassName?: string;
-  },
-  React.ComponentPropsWithoutRef<As>
->;
-
-export const MenuItemBase = <As extends React.ElementType>({
-  active,
-  disabled,
-  as: AsComp,
-  children,
-  className,
-  leadingIcon,
-  trailingIcon,
-  iconClassName,
-  ...props
-}: MenuItemProps<As>) => {
-  const Component = AsComp ?? 'div';
-  return (
-    <Component
-      {...props}
-      data-menu-item
-      className={classNames(
-        className,
-        classes.menuItem,
-        active && classes.menuItemActive,
-      )}
-      aria-disabled={disabled}
-    >
-      {leadingIcon && (
-        <Icon
-          id='menu'
-          icon={leadingIcon}
-          className={classNames(iconClassName, classes.menuItemIcon)}
-        />
-      )}
-
-      {children}
-
-      {trailingIcon && (
-        <Icon
-          id='menu'
-          icon={trailingIcon}
-          className={classNames(iconClassName, classes.menuItemIcon)}
-        />
-      )}
-    </Component>
-  );
-};
-
-export const MenuItem: React.FC<Omit<MenuItemProps<'button'>, 'as'>> = ({
-  children,
-  className,
-  ...props
-}) => {
-  return (
-    <MenuItemBase
-      as='button'
-      type='button'
-      role='menuitem'
-      {...props}
-      className={className}
-    >
-      {children}
-    </MenuItemBase>
   );
 };
