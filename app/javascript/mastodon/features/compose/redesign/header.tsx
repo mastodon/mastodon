@@ -39,10 +39,14 @@ const messages = defineMessages({
   messageNew: {
     id: 'compose_form.message.title.new',
     defaultMessage: 'New message',
+    description:
+      'Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.',
   },
   messageEdit: {
     id: 'compose_form.message.title.edit',
     defaultMessage: 'Edit message',
+    description:
+      'Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.',
   },
 });
 

@@ -91,6 +91,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
               <FormattedMessage
                 id='tabs_bar.messages'
                 defaultMessage='Messages'
+                description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
               />
             </NavigationLink>
             <NavigationLink to='/bookmarks' iconComponent={BookmarkSimpleIcon}>
