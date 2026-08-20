@@ -17,7 +17,7 @@ import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { NavigationAccountCard } from './account_card';
+import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
 import { NavigationLink } from './navigation_link';
@@ -99,7 +99,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
             </NavigationLink>
           </ul>
           <footer className={classes.footer}>
-            <NavigationAccountCard />
+            <NavigationAccountCardAndMenu />
             <NavigationFooterLinks siteName={siteName} />
           </footer>
         </>
