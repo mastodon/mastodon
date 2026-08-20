@@ -31,7 +31,6 @@ import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposeMentions, selectComposePrivacy } from './selectors';
-import classes from './styles.module.scss';
 
 export const ComposeVisibility: React.FC<{ className?: string }> = ({
   className,
@@ -288,12 +287,12 @@ const ComposeDirectMenu: React.FC = () => {
           />
         }
       >
-        <p className={classes.visibilityMessageHint}>
+        <MenuItemRadio value='direct' disabled checked>
           <FormattedMessage
             id='compose.visibility.direct_note'
-            defaultMessage='Everyone you mention will be able to see this message.'
+            defaultMessage='Everyone mentioned'
           />
-        </p>
+        </MenuItemRadio>
       </MenuItemGroup>
 
       <MenuItemDivider />
