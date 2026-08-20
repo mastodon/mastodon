@@ -13,7 +13,7 @@ import { useToggle } from '@/mastodon/hooks/useToggle';
 
 import {
   Menu,
-  MenuButton,
+  MenuTrigger,
   MenuList,
   MenuItem,
   MenuItemDivider,
@@ -48,7 +48,7 @@ export const Default: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         <Menu>
-          <MenuButton>Show actions</MenuButton>
+          <MenuTrigger>Show actions</MenuTrigger>
 
           <MenuList {...args}>
             <MenuItem icon={NumberCircleOneIcon} onClick={handleMenuItemClick}>
@@ -76,7 +76,7 @@ export const Complex: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         <Menu>
-          <MenuButton>World settings</MenuButton>
+          <MenuTrigger>World settings</MenuTrigger>
 
           <MenuList {...args}>
             <MenuItem onClick={handleMenuItemClick}>First item</MenuItem>
@@ -127,7 +127,7 @@ export const Navigation: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         <Menu type='navigation'>
-          <MenuButton>More links</MenuButton>
+          <MenuTrigger>More links</MenuTrigger>
 
           <MenuList {...args}>
             <MenuItemLink to='/about'>About</MenuItemLink>
