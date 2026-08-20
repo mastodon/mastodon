@@ -37,10 +37,6 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
   className,
 }) => {
   const privacy = useAppSelector(selectComposePrivacy);
-  const mentions = useAppSelector(selectComposeMentions);
-  const firstMentionedAccount = useAppSelector((state) =>
-    selectPlainAccount(state, mentions.at(0)),
-  );
 
   return (
     <div className={className}>
@@ -51,32 +47,7 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
       />
       <Menu>
         <MenuButton size='sm'>
-          {(privacy === 'public' || privacy === 'unlisted') && (
-            <FormattedMessage
-              id='privacy.public.short'
-              defaultMessage='Public'
-            />
-          )}
-          {privacy === 'private' && (
-            <FormattedMessage
-              id='compose.post.privacy.followers'
-              defaultMessage='Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
-              description='Count is # of other people mentioned in the post. If zero, just output "Followers".'
-              values={{ count: mentions.length }}
-            />
-          )}
-          {privacy === 'direct' && mentions.length === 0 && '-'}
-          {privacy === 'direct' && mentions.length > 0 && (
-            <FormattedMessage
-              id='compose.message.direct.followers'
-              defaultMessage='{name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
-              description='Name is the primary display name, count is # of other people mentioned in the post'
-              values={{
-                name: <DisplayNameSimple account={firstMentionedAccount} />,
-                count: mentions.length - 1,
-              }}
-            />
-          )}
+          <ComposeVisibilityButtonText privacy={privacy} />
         </MenuButton>
 
         <MenuList placement='bottom-start' offset={4} maxWidth={280}>
@@ -89,6 +60,44 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
       </Menu>
     </div>
   );
+};
+
+const ComposeVisibilityButtonText: React.FC<{
+  privacy: StatusVisibility;
+}> = ({ privacy }) => {
+  const mentions = useAppSelector(selectComposeMentions);
+  const firstMentionedAccount = useAppSelector((state) =>
+    selectPlainAccount(state, mentions.at(0)),
+  );
+
+  if (privacy === 'public' || privacy === 'unlisted') {
+    return (
+      <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
+    );
+  } else if (privacy === 'private') {
+    return (
+      <FormattedMessage
+        id='compose.post.privacy.followers'
+        defaultMessage='Followers {count, plural, =0 {} one {+ # other} other {+ # others}}'
+        description='Count is # of other people mentioned in the post. If zero, just output "Followers".'
+        values={{ count: mentions.length }}
+      />
+    );
+  } else if (mentions.length > 0) {
+    return (
+      <FormattedMessage
+        id='compose.message.direct.followers'
+        defaultMessage='{name} {count, plural, =0 {} one {+ # other} other {+ # others}}'
+        description='Name is the primary display name, count is # of other people mentioned in the post'
+        values={{
+          name: <DisplayNameSimple account={firstMentionedAccount} />,
+          count: mentions.length - 1,
+        }}
+      />
+    );
+  }
+
+  return '-';
 };
 
 const ComposeVisibilityMenu: React.FC = () => {
