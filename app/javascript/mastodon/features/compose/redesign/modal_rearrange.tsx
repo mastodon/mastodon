@@ -28,26 +28,26 @@ const messages = defineMessages({
   },
   onDragStart: {
     id: 'compose.rearrange_modal.drag_start',
-    defaultMessage: 'Picked up attachment at index {index, number}.',
+    defaultMessage: 'Picked up attachment at index {item, number}.',
   },
   onDragMove: {
     id: 'compose.rearrange_modal.drag_move',
-    defaultMessage: 'Attachment index {index, number} was moved.',
+    defaultMessage: 'Attachment index {item, number} was moved.',
   },
   onDragMoveOver: {
     id: 'compose.rearrange_modal.drag_over',
     defaultMessage:
-      'Attachment index {index, number} was moved over index {over, number}.',
+      'Attachment index {item, number} was moved over index {over, number}.',
   },
   onDragEnd: {
     id: 'compose.rearrange_modal.drag_end',
     defaultMessage:
-      'Attachment index {index, number} was moved to index {newIndex, number}.',
+      'Attachment index {item, number} was moved to index {over, number}.',
   },
   onDragCancel: {
     id: 'compose.rearrange_modal.drag_cancel',
     defaultMessage:
-      'Dragging was cancelled. Attachment index {index, number} was dropped.',
+      'Dragging was cancelled. Attachment index {item, number} was dropped.',
   },
 });
 
