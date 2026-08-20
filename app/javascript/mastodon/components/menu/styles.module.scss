@@ -45,6 +45,7 @@
   border-radius: var(--radius-sm);
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-sm);
+  text-decoration: none;
   cursor: var(--cursor);
   transition:
     background 200ms,
@@ -58,8 +59,17 @@
     text-align: start;
   }
 
+  &:hover {
+    text-decoration: none;
+  }
+
   &:hover:not([aria-disabled='true']) {
     background-color: var(--color-bg-highlight);
+  }
+
+  &:focus {
+    // Override overeager global styles
+    border-radius: var(--radius-sm);
   }
 
   &:focus-visible {
