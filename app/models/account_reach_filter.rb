@@ -89,6 +89,6 @@ class AccountReachFilter < ApplicationRecord
   end
 
   def set_filter_data
-    self.bloom_filter = saturated ? nil : filter.to_msgpack
+    self.bloom_filter = saturated ? nil : @filter.to_msgpack if @filter
   end
 end
