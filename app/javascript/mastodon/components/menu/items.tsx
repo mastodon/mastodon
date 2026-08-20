@@ -74,7 +74,10 @@ const MenuItemBase = <As extends React.ElementType>({
   const closeMenuOnClick = useCallback<React.MouseEventHandler>(
     (e) => {
       if (!keepMenuOpenOnClick) {
-        popover.closeMenu();
+        // Closing with a short delay feels nicer than an instant close
+        setTimeout(() => {
+          popover.closeMenu();
+        }, 100);
       }
 
       onClick?.(e);
