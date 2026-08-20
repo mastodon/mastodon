@@ -14,7 +14,7 @@ import { Blurhash } from '@/mastodon/components/blurhash';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
   Menu,
-  MenuButton,
+  MenuTrigger,
   MenuItem,
   MenuItemDivider,
   MenuList,
@@ -73,7 +73,7 @@ export const ComposeUpload: React.FC<{
       )}
 
       <Menu>
-        <MenuButton
+        <MenuTrigger
           as={IconButton}
           icon={DotsThreeIcon}
           size='sm'
@@ -84,7 +84,7 @@ export const ComposeUpload: React.FC<{
             id='compose.upload.menu'
             defaultMessage='Add alt text or remove the image'
           />
-        </MenuButton>
+        </MenuTrigger>
 
         <ComposeUploadMenu attachment={attachment} single={single} />
       </Menu>
