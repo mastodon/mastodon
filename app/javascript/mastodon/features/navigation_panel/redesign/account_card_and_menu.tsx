@@ -63,7 +63,7 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
         >
           <FormattedMessage id='tabs_bar.more' defaultMessage='More' />
         </MenuTrigger>
-        <MenuList>
+        <MenuList placement='top' offset={8}>
           <MenuItemLink to={accountBasePath} icon={UserIcon}>
             <FormattedMessage
               id='navigation_bar.profile'
