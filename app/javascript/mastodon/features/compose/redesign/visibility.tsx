@@ -177,6 +177,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           value='public'
           checked={privacy === 'public' || privacy === 'unlisted'}
           onChange={handlePrivacyChange}
+          keepMenuOpenOnClick
         >
           <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
         </MenuItemRadio>
@@ -186,6 +187,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           value='private'
           checked={privacy === 'private'}
           onChange={handlePrivacyChange}
+          keepMenuOpenOnClick
         >
           <FormattedMessage
             id='privacy.private.short'
@@ -201,6 +203,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           checked={privacy === 'public'}
           onChange={handlePrivacyChange}
           icon={MagnifyingGlassIcon}
+          keepMenuOpenOnClick
         >
           <FormattedMessage
             id='compose.discoverable'
@@ -214,6 +217,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           checked={quotePolicy !== 'nobody' && privacy !== 'private'}
           onChange={handleQuotePolicyChange}
           icon={QuotesIcon}
+          keepMenuOpenOnClick
         >
           <FormattedMessage
             id='compose.quotable'
@@ -236,6 +240,7 @@ const ComposeVisibilityMenu: React.FC = () => {
             value='public'
             checked={quotePolicy === 'public'}
             onChange={handleQuotePolicyChange}
+            keepMenuOpenOnClick
           >
             <FormattedMessage
               id='compose.visibility.quote_policy.anyone'
@@ -248,6 +253,7 @@ const ComposeVisibilityMenu: React.FC = () => {
             value='followers'
             checked={quotePolicy === 'followers'}
             onChange={handleQuotePolicyChange}
+            keepMenuOpenOnClick
           >
             <FormattedMessage
               id='compose.visibility.quote_policy.followers'
