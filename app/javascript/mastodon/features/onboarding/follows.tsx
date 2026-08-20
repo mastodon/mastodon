@@ -169,7 +169,13 @@ export const Follows: React.FC<{
         }
       >
         {displayedAccountIds.map((accountId) => (
-          <Account id={accountId} key={accountId} withBio withMenu={false} />
+          <Account
+            id={accountId}
+            key={accountId}
+            withBio
+            withMenu={false}
+            reference='onboarding'
+          />
         ))}
       </ScrollableList>
 
