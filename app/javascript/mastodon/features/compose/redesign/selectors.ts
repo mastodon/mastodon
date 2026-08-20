@@ -90,7 +90,7 @@ export const selectComposeMentions = createAppSelector(
         accounts.add(accountsMap[account]);
       }
     }
-    return accounts;
+    return [...accounts];
   },
 );
 

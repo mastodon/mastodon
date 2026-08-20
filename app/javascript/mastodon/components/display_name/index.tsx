@@ -10,7 +10,7 @@ import { DisplayNameWithoutDomain } from './no-domain';
 import { DisplayNameSimple } from './simple';
 
 export interface DisplayNameProps {
-  account?: Account | AccountShapeFull;
+  account?: Account | AccountShapeFull | null;
   localDomain?: string;
   variant?: 'default' | 'simple' | 'noDomain';
 }

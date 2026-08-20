@@ -29,8 +29,18 @@ export function getComposerTextarea() {
   }
   return null;
 }
-export function focusComposerTextarea() {
-  getComposerTextarea()?.focus();
+/**
+ * Focuses on the composer textarea.
+ * @param defer Waits before focusing. Useful if the composer may not be focusable immediately.
+ */
+export function focusComposerTextarea(defer = false) {
+  if (defer) {
+    requestAnimationFrame(() => {
+      getComposerTextarea()?.focus();
+    });
+  } else {
+    getComposerTextarea()?.focus();
+  }
 }
 
 type DisplayState = 'hidden' | 'showing' | 'minimized';
@@ -131,10 +141,7 @@ export const openNewComposer = createAppThunk(
     }
     dispatch(composerSlice.actions.showComposer());
 
-    // Delay for a frame to ensure the DOM has updated.
-    requestAnimationFrame(() => {
-      focusComposerTextarea();
-    });
+    focusComposerTextarea(true);
   },
 );
 

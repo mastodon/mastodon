@@ -34,9 +34,7 @@ const ComposerModalCancelConfirm: React.FC<{ openNew?: boolean }> = ({
     dispatch(
       closeModal({ modalType: 'COMPOSER_DRAFT_DELETE', ignoreFocus: false }),
     );
-    requestAnimationFrame(() => {
-      focusComposerTextarea();
-    });
+    focusComposerTextarea(true);
   }, [dispatch]);
 
   return (

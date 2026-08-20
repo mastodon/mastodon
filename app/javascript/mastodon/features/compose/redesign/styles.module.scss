@@ -11,6 +11,20 @@
   gap: var(--space-md);
   padding: var(--space-md);
   min-width: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.background {
+  mask-repeat: repeat;
+  background-color: var(--color-bg-brand-base);
+  opacity: 0.15;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 800px;
+  height: 800px;
+  pointer-events: none;
 }
 
 .header {

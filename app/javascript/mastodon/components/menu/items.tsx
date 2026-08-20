@@ -102,7 +102,7 @@ interface MenuItemRadioProps extends Omit<
 > {
   checked: boolean;
   value: string;
-  onChange: (change: { value: string }) => void;
+  onChange?: (change: { value: string }) => void;
 }
 
 export const MenuItemRadio: React.FC<MenuItemRadioProps> = ({
@@ -113,7 +113,7 @@ export const MenuItemRadio: React.FC<MenuItemRadioProps> = ({
   ...props
 }) => {
   const handleChange = useCallback(() => {
-    onChange({ value });
+    onChange?.({ value });
   }, [value, onChange]);
 
   return (
@@ -132,7 +132,7 @@ export const MenuItemRadio: React.FC<MenuItemRadioProps> = ({
 
 interface MenuItemCheckboxProps extends Omit<MenuItemRadioProps, 'onChange'> {
   icon?: IconProp;
-  onChange: (change: { value: string; checked: boolean }) => void;
+  onChange?: (change: { value: string; checked: boolean }) => void;
 }
 
 export const MenuItemCheckbox: React.FC<MenuItemCheckboxProps> = ({
@@ -143,7 +143,7 @@ export const MenuItemCheckbox: React.FC<MenuItemCheckboxProps> = ({
   ...props
 }) => {
   const handleChange = useCallback(() => {
-    onChange({ value, checked: !checked });
+    onChange?.({ value, checked: !checked });
   }, [onChange, value, checked]);
 
   return (
