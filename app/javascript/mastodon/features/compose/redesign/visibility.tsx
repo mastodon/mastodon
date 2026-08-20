@@ -26,12 +26,12 @@ import {
   MenuItem,
   MenuItemRadio,
   MenuItemCheckbox,
-  MenuItemBase,
 } from '@/mastodon/components/menu';
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { selectComposeMentions, selectComposePrivacy } from './selectors';
+import classes from './styles.module.scss';
 
 export const ComposeVisibility: React.FC<{ className?: string }> = ({
   className,
@@ -50,13 +50,11 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
           <ComposeVisibilityButtonText privacy={privacy} />
         </MenuButton>
 
-        <MenuList placement='bottom-start' offset={4} maxWidth={280}>
-          {privacy !== 'direct' ? (
-            <ComposeVisibilityMenu />
-          ) : (
-            <ComposeDirectMenu />
-          )}
-        </MenuList>
+        {privacy !== 'direct' ? (
+          <ComposeVisibilityMenu />
+        ) : (
+          <ComposeDirectMenu />
+        )}
       </Menu>
     </div>
   );
@@ -161,7 +159,7 @@ const ComposeVisibilityMenu: React.FC = () => {
     }, [dispatch]);
 
   return (
-    <>
+    <MenuList placement='bottom-start' offset={4} maxWidth={280}>
       <MenuItemGroup
         label={
           <FormattedMessage
@@ -264,7 +262,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
         />
       </MenuItem>
-    </>
+    </MenuList>
   );
 };
 
@@ -281,7 +279,7 @@ const ComposeDirectMenu: React.FC = () => {
     }, [defaultPrivacy, dispatch]);
 
   return (
-    <>
+    <MenuList placement='bottom-start' offset={4} maxWidth={280}>
       <MenuItemGroup
         label={
           <FormattedMessage
@@ -290,12 +288,12 @@ const ComposeDirectMenu: React.FC = () => {
           />
         }
       >
-        <MenuItemBase>
+        <p className={classes.visibilityMessageHint}>
           <FormattedMessage
             id='compose.visibility.direct_note'
             defaultMessage='Everyone you mention will be able to see this message.'
           />
-        </MenuItemBase>
+        </p>
       </MenuItemGroup>
 
       <MenuItemDivider />
@@ -306,6 +304,6 @@ const ComposeDirectMenu: React.FC = () => {
           defaultMessage='Compose a post instead'
         />
       </MenuItem>
-    </>
+    </MenuList>
   );
 };
