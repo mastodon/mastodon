@@ -57,7 +57,11 @@ export const ModalTitle: React.FC<
   const Header = `h${level}` as const;
   if (!noFocus) {
     return (
-      <NavigationFocusTarget as={Header} {...props}>
+      <NavigationFocusTarget
+        as={Header}
+        {...props}
+        className={classNames(className, classes.title)}
+      >
         {children}
       </NavigationFocusTarget>
     );
