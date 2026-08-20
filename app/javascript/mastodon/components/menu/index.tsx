@@ -133,6 +133,7 @@ export const Menu: React.FC<MenuProps> = ({ type = 'actions', children }) => {
       if (!listElement) {
         if (event.code === 'ArrowDown') {
           openMenu();
+          event.preventDefault();
         }
         return;
       }
