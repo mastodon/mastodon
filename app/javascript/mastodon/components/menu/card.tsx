@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react';
+
 import classNames from 'classnames';
 
 import type { Merge } from 'type-fest';
@@ -34,10 +36,13 @@ export const MenuCard = <As extends React.ElementType>({
       {...props}
       className={classNames(className, classes.card)}
       data-elevation={elevation}
-      style={{
-        maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
-        ...style,
-      }}
+      style={
+        {
+          '--_max-card-width':
+            typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
+          ...style,
+        } as CSSProperties
+      }
     >
       {children}
     </Component>
