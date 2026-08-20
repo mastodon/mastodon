@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -13,11 +13,13 @@ import type { ApiAudioAttachmentJSON } from '@/mastodon/api_types/media_attachme
 import { Blurhash } from '@/mastodon/components/blurhash';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
+  Menu,
+  MenuButton,
   MenuItem,
   MenuItemDivider,
   MenuList,
+  useMenuContext,
 } from '@/mastodon/components/menu';
-import { useToggle } from '@/mastodon/hooks/useToggle';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from './attachments.module.scss';
@@ -33,26 +35,6 @@ export const ComposeUpload: React.FC<{
     selectComposeAttachment(state, id),
   );
   const sensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
-  const [open, { onToggle, onFalse }] = useToggle();
-  const [target, setTarget] = useState<HTMLButtonElement | null>(null);
-
-  const dispatch = useAppDispatch();
-  const handleEdit = useCallback(() => {
-    if (id) {
-      dispatch(
-        openModal({ modalType: 'FOCAL_POINT', modalProps: { mediaId: id } }),
-      );
-    }
-  }, [dispatch, id]);
-  const handleRearrange = useCallback(() => {
-    onFalse();
-    dispatch(openModal({ modalType: 'COMPOSER_REARRANGE', modalProps: {} }));
-  }, [dispatch, onFalse]);
-  const handleDelete = useCallback(() => {
-    if (id) {
-      dispatch(undoUploadCompose(id));
-    }
-  }, [dispatch, id]);
 
   if (!attachment || attachment.type === 'unknown') {
     return <div className={classNames(classes.mediaUpload, className)} />;
@@ -90,64 +72,22 @@ export const ComposeUpload: React.FC<{
         <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
       )}
 
-      <IconButton
-        icon={DotsThreeIcon}
-        size='sm'
-        color='neutral'
-        className={classes.mediaMenuButton}
-        onClick={onToggle}
-        ref={setTarget}
-      >
-        <FormattedMessage
-          id='compose.upload.menu'
-          defaultMessage='Add alt text or remove the image'
-        />
-      </IconButton>
-
-      <MenuList
-        isOpen={open}
-        onClose={onFalse}
-        reference={target}
-        placement='bottom-end'
-        offset={4}
-        maxWidth={170}
-      >
-        <MenuItem onClick={handleEdit}>
-          {attachment.description ? (
-            <FormattedMessage
-              id='compose.upload.menu.edit_alt'
-              defaultMessage='Edit alt text'
-            />
-          ) : (
-            <FormattedMessage
-              id='compose.upload.menu.add_alt'
-              defaultMessage='Add alt text'
-            />
-          )}
-        </MenuItem>
-
-        {!single && (
-          <MenuItem onClick={handleRearrange}>
-            <FormattedMessage
-              id='compose.upload.menu.rearrange'
-              defaultMessage='Rearrange…'
-            />
-          </MenuItem>
-        )}
-
-        <MenuItemDivider />
-
-        <MenuItem
-          className={classes.mediaMenuDelete}
-          onClick={handleDelete}
-          icon={TrashIcon}
+      <Menu>
+        <MenuButton
+          as={IconButton}
+          icon={DotsThreeIcon}
+          size='sm'
+          color='neutral'
+          className={classes.mediaMenuButton}
         >
           <FormattedMessage
-            id='compose.upload.menu.delete'
-            defaultMessage='Remove image'
+            id='compose.upload.menu'
+            defaultMessage='Add alt text or remove the image'
           />
-        </MenuItem>
-      </MenuList>
+        </MenuButton>
+
+        <ComposeUploadMenu attachment={attachment} single={single} />
+      </Menu>
 
       {attachment.description && (
         <span className={classes.mediaAlt}>
@@ -155,6 +95,71 @@ export const ComposeUpload: React.FC<{
         </span>
       )}
     </div>
+  );
+};
+
+const ComposeUploadMenu: React.FC<{
+  attachment: ComposeAttachment;
+  single?: boolean;
+}> = ({ attachment, single }) => {
+  const dispatch = useAppDispatch();
+  const id = attachment.id;
+
+  const { popover } = useMenuContext();
+
+  const handleEdit = useCallback(() => {
+    popover.closeMenu();
+    dispatch(
+      openModal({ modalType: 'FOCAL_POINT', modalProps: { mediaId: id } }),
+    );
+  }, [dispatch, id, popover]);
+  const handleRearrange = useCallback(() => {
+    popover.closeMenu();
+    dispatch(openModal({ modalType: 'COMPOSER_REARRANGE', modalProps: {} }));
+  }, [dispatch, popover]);
+  const handleDelete = useCallback(() => {
+    popover.closeMenu();
+    dispatch(undoUploadCompose(id));
+  }, [dispatch, id, popover]);
+
+  return (
+    <MenuList placement='bottom-end' offset={4} maxWidth={170}>
+      <MenuItem onClick={handleEdit}>
+        {attachment.description ? (
+          <FormattedMessage
+            id='compose.upload.menu.edit_alt'
+            defaultMessage='Edit alt text'
+          />
+        ) : (
+          <FormattedMessage
+            id='compose.upload.menu.add_alt'
+            defaultMessage='Add alt text'
+          />
+        )}
+      </MenuItem>
+
+      {!single && (
+        <MenuItem onClick={handleRearrange}>
+          <FormattedMessage
+            id='compose.upload.menu.rearrange'
+            defaultMessage='Rearrange…'
+          />
+        </MenuItem>
+      )}
+
+      <MenuItemDivider />
+
+      <MenuItem
+        className={classes.mediaMenuDelete}
+        onClick={handleDelete}
+        icon={TrashIcon}
+      >
+        <FormattedMessage
+          id='compose.upload.menu.delete'
+          defaultMessage='Remove image'
+        />
+      </MenuItem>
+    </MenuList>
   );
 };
 
