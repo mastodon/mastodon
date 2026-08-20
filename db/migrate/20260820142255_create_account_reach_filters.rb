@@ -5,6 +5,7 @@ class CreateAccountReachFilters < ActiveRecord::Migration[8.1]
     create_table :account_reach_filters do |t|
       t.references :account, null: false, foreign_key: { on_delete: :cascade }
       t.string :salt, null: false
+      t.boolean :saturated, null: false, default: false
       t.binary :bloom_filter
 
       t.timestamps

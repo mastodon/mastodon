@@ -52,7 +52,7 @@ class AccountsController < ApplicationController
     # It's not ideal, but we have no way to tell the remote account about it…
     return if signed_request_account.preferred_inbox_url.blank?
 
-    account_reach_filter_id = AccountReachFilter.where(account_id: @account.id).pick(:id)
+    account_reach_filter_id = AccountReachFilter.where(account_id: @account.id, saturated: false).pick(:id)
     return if account_reach_filter_id.nil?
 
     with_redis do |redis|

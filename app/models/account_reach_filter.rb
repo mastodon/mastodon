@@ -7,6 +7,7 @@
 #  id           :bigint(8)        not null, primary key
 #  bloom_filter :binary
 #  salt         :string           not null
+#  saturated    :boolean          default(FALSE), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  account_id   :bigint(8)        not null
@@ -17,20 +18,38 @@ class AccountReachFilter < ApplicationRecord
   after_initialize :set_salt
   before_save :set_filter_data
 
+  # Ideal false positive rate
   TARGET_FALSE_POSITIVE_RATE = 0.001
+
+  # Tolerated false positive rate for largest-size bloom filters
+  TARGET_SATURATION_FALSE_POSITIVE_RATE = 0.75
+
+  # Largest allowed size for a bloom filter before upgrade
   BLOOM_SIZE_FILTER_THRESHOLD = 1.kilobyte * 8
 
   def add(*hosts)
-    threshold = (TARGET_FALSE_POSITIVE_RATE**(1.0 / filter.k)) * filter.m
+    return if saturated
+
+    threshold = ((filter.size < BLOOM_SIZE_FILTER_THRESHOLD ? TARGET_FALSE_POSITIVE_RATE : TARGET_SATURATION_FALSE_POSITIVE_RATE)**(1.0 / filter.k)) * filter.m
 
     hosts.each do |host|
       filter.add("#{salt}:#{host}")
 
-      upgrade_filter! if filter.size < BLOOM_SIZE_FILTER_THRESHOLD && filter.set_bits >= threshold
+      if filter.size < BLOOM_SIZE_FILTER_THRESHOLD
+        upgrade_filter! if filter.set_bits >= threshold
+
+        threshold = (TARGET_SATURATION_FALSE_POSITIVE_RATE**(1.0 / filter.k)) * filter.m
+      elsif filter.set_bits >= threshold
+        update!(saturated: true, bloom_filter: nil)
+
+        break
+      end
     end
   end
 
   def include?(host)
+    return true if saturated
+
     filter.include?("#{salt}:#{host}")
   end
 
@@ -38,7 +57,7 @@ class AccountReachFilter < ApplicationRecord
   def reload
     super
 
-    @filter = BloomFit.unpack(bloom_filter) if defined?(@filter)
+    @filter = nil if defined?(@filter)
 
     self
   end
@@ -70,6 +89,6 @@ class AccountReachFilter < ApplicationRecord
   end
 
   def set_filter_data
-    self.bloom_filter = filter.to_msgpack
+    self.bloom_filter = saturated ? nil : filter.to_msgpack
   end
 end
