@@ -9,6 +9,7 @@ import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import { selectAccountAvatarUrl } from '@/mastodon/selectors/accounts';
 import CloseIcon from '@/material-icons/400-20px/close.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import SoundIcon from '@/material-icons/400-24px/graphic_eq.svg?react';
@@ -18,18 +19,9 @@ import { openModal } from 'mastodon/actions/modal';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
-import {
-  createAppSelector,
-  useAppDispatch,
-  useAppSelector,
-} from 'mastodon/store';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { AudioVisualizer } from '../../audio/visualizer';
-
-const selectUserAvatar = createAppSelector(
-  [(state) => state.accounts, (state) => state.meta.get('me') as string],
-  (accounts, myId) => accounts.get(myId)?.avatar_static,
-);
 
 export const Upload: React.FC<{
   id: string;
@@ -50,7 +42,7 @@ export const Upload: React.FC<{
   const sensitive = useAppSelector(
     (state) => state.compose.get('spoiler') as boolean,
   );
-  const userAvatar = useAppSelector(selectUserAvatar);
+  const userAvatar = useAppSelector(selectAccountAvatarUrl);
 
   const handleUndoClick = useCallback(() => {
     dispatch(undoUploadCompose(id));

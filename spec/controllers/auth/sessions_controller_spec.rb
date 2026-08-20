@@ -48,6 +48,19 @@ RSpec.describe Auth::SessionsController do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
+
+    context 'with a deleted user' do
+      before do
+        user.account.mark_deleted!
+      end
+
+      it 'redirects to home after sign out' do
+        sign_in(user, scope: :user)
+        delete :destroy
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
   end
 
   describe 'POST #create' do
@@ -70,7 +83,7 @@ RSpec.describe Auth::SessionsController do
         end
 
         it 'shows a login error and does not log the user in' do
-          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
+          expect(flash[:alert]).to match(/#{failure_message_invalid_email}/i)
 
           expect(controller.current_user).to be_nil
         end
@@ -163,7 +176,7 @@ RSpec.describe Auth::SessionsController do
         end
 
         it 'shows a login error and does not log the user in' do
-          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
+          expect(flash[:alert]).to match(/#{failure_message_invalid_email}/i)
 
           expect(controller.current_user).to be_nil
         end
@@ -226,8 +239,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders two factor authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.hints.sessions.otp'))
+            expect(response.parsed_body)
+              .to have_css('p.hint.authentication-hint', text: I18n.t('simple_form.hints.sessions.otp'))
           end
         end
 
@@ -242,8 +255,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders two factor authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.hints.sessions.otp'))
+            expect(response.parsed_body)
+              .to have_css('p.hint.authentication-hint', text: I18n.t('simple_form.hints.sessions.otp'))
           end
         end
 
@@ -253,8 +266,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders two factor authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.hints.sessions.otp'))
+            expect(response.parsed_body)
+              .to have_css('p.hint.authentication-hint', text: I18n.t('simple_form.hints.sessions.otp'))
           end
         end
 
@@ -387,8 +400,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders webauthn authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.title.sessions.webauthn'))
+            expect(response.parsed_body)
+              .to have_css('h3.title', text: I18n.t('simple_form.title.sessions.webauthn'))
           end
         end
 
@@ -398,8 +411,8 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'renders webauthn authentication page' do
-            expect(response.body)
-              .to include(I18n.t('simple_form.title.sessions.webauthn'))
+            expect(response.parsed_body)
+              .to have_css('h3.title', text: I18n.t('simple_form.title.sessions.webauthn'))
           end
         end
 
@@ -419,6 +432,10 @@ RSpec.describe Auth::SessionsController do
           end
         end
       end
+    end
+
+    def failure_message_invalid_email
+      I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
     end
   end
 end

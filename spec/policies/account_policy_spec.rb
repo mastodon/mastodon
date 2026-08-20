@@ -165,7 +165,7 @@ RSpec.describe AccountPolicy do
     end
 
     context 'when account is not featureable' do
-      before { allow(alice).to receive(:featureable?).and_return(false) }
+      before { allow(alice).to receive(:featureable_by?).and_return(false) }
 
       it 'denies' do
         expect(subject).to_not permit(john, alice)

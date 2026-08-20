@@ -6,14 +6,14 @@
 #
 #  id              :bigint(8)        not null, primary key
 #  domain          :string           default(""), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  severity        :integer          default("silence")
-#  reject_media    :boolean          default(FALSE), not null
-#  reject_reports  :boolean          default(FALSE), not null
+#  obfuscate       :boolean          default(FALSE), not null
 #  private_comment :text
 #  public_comment  :text
-#  obfuscate       :boolean          default(FALSE), not null
+#  reject_media    :boolean          default(FALSE), not null
+#  reject_reports  :boolean          default(FALSE), not null
+#  severity        :integer          default("silence")
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 class DomainBlock < ApplicationRecord
@@ -69,9 +69,7 @@ class DomainBlock < ApplicationRecord
       return if domain.blank?
 
       uri      = Addressable::URI.new.tap { |u| u.host = domain.strip.delete('/') }
-      segments = uri.normalized_host.split('.')
-      variants = segments.map.with_index { |_, i| segments[i..].join('.') }
-
+      variants = domain_variants(uri.normalized_host)
       where(domain: variants).by_domain_length.first
     rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
       nil

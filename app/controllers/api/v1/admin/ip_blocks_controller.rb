@@ -33,7 +33,7 @@ class Api::V1::Admin::IpBlocksController < Api::BaseController
 
   def update
     authorize @ip_block, :update?
-    @ip_block.update(resource_params)
+    @ip_block.update!(resource_params)
     log_action :update, @ip_block
     render json: @ip_block, serializer: REST::Admin::IpBlockSerializer
   end

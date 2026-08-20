@@ -1,19 +1,21 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
-import { getStatusList } from 'mastodon/selectors';
+import { fetchPinnedStatuses } from '@/mastodon/actions/pin_statuses';
+import { Column } from '@/mastodon/components/column';
+import { injectIntl } from '@/mastodon/components/intl';
+import StatusList from '@/mastodon/components/status_list';
+import { getStatusList } from '@/mastodon/selectors';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 
-import { fetchPinnedStatuses } from '../../actions/pin_statuses';
-import StatusList from '../../components/status_list';
-import Column from '../ui/components/column';
 
 const messages = defineMessages({
   heading: { id: 'column.pins', defaultMessage: 'Pinned post' },
@@ -38,19 +40,12 @@ class PinnedStatuses extends ImmutablePureComponent {
     this.props.dispatch(fetchPinnedStatuses());
   }
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
-  setRef = c => {
-    this.column = c;
-  };
-
   render () {
     const { intl, statusIds, hasMore, multiColumn } = this.props;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='thumb-tack' iconComponent={PushPinIcon} heading={intl.formatMessage(messages.heading)} ref={this.setRef} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn}>
+        <ColumnHeader icon='thumb-tack' iconComponent={PushPinIcon} title={intl.formatMessage(messages.heading)} showBackButton />
         <StatusList
           statusIds={statusIds}
           scrollKey='pinned_statuses'

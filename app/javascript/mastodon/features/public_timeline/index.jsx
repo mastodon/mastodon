@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
+import { injectIntl } from '@/mastodon/components/intl';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { domain, localLiveFeedAccess, remoteLiveFeedAccess } from 'mastodon/initial_state';
 import { canViewFeed } from 'mastodon/permissions';
@@ -16,8 +19,6 @@ import { canViewFeed } from 'mastodon/permissions';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectPublicStream } from '../../actions/streaming';
 import { expandPublicTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
@@ -72,10 +73,6 @@ class PublicTimeline extends PureComponent {
     dispatch(moveColumn(columnId, dir));
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
   componentDidMount () {
     const { dispatch, onlyMedia, onlyRemote } = this.props;
     const { signedIn } = this.props.identity;
@@ -112,10 +109,6 @@ class PublicTimeline extends PureComponent {
     }
   }
 
-  setRef = c => {
-    this.column = c;
-  };
-
   handleLoadMore = maxId => {
     const { dispatch, onlyMedia, onlyRemote } = this.props;
 
@@ -140,7 +133,7 @@ class PublicTimeline extends PureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='globe'
           iconComponent={PublicIcon}
@@ -148,9 +141,9 @@ class PublicTimeline extends PureComponent {
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          scrollTopOnClick
         >
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>

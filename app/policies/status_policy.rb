@@ -13,9 +13,8 @@ class StatusPolicy < ApplicationPolicy
     end
   end
 
-  # This is about requesting a quote post, not validating it
   def quote?
-    show? && record.quote_policy_for_account(current_account) != :denied
+    show? && !blocking_author? && record.quote_policy_for_account(current_account) != :denied
   end
 
   def reblog?

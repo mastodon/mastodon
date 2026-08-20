@@ -1,4 +1,5 @@
 import React, {
+  isValidElement,
   useContext,
   useEffect,
   useImperativeHandle,
@@ -34,14 +35,14 @@ export const ScrollContainer: React.FC<ScrollContainerProps> = ({
 }) => {
   const scrollBehaviorContext = useContext(ScrollBehaviorContext);
 
-  const containerRef = useRef<HTMLElement>();
+  const containerRef = useRef<HTMLElement>(null);
 
   /**
    * If a childRef is passed, sync it with the containerRef. This
    * is necessary because in this component's return statement,
    * we're overwriting the immediate child component's ref prop.
    */
-  useImperativeHandle(childRef, () => containerRef.current, []);
+  useImperativeHandle(childRef, () => containerRef.current ?? undefined, []);
 
   /**
    * Register/unregister scrollable element with ScrollBehavior
@@ -71,6 +72,10 @@ export const ScrollContainer: React.FC<ScrollContainerProps> = ({
   }, []);
 
   return React.Children.only(
-    React.cloneElement(children, { ref: containerRef }),
+    isValidElement<{
+      ref: React.RefObject<HTMLElement | null>;
+    }>(children)
+      ? React.cloneElement(children, { ref: containerRef })
+      : children,
   );
 };

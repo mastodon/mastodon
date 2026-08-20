@@ -13,7 +13,7 @@ class Admin::Instances::ModerationNotesController < Admin::BaseController
       redirect_to admin_instance_path(@instance.domain, anchor: helpers.dom_id(@instance_moderation_note)), notice: I18n.t('admin.instances.moderation_notes.created_msg')
     else
       @instance_moderation_notes = @instance.moderation_notes.includes(:account).chronological
-      @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+      @time_period = (6.days.ago.to_date..Time.now.utc.to_date)
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(5)
 
       render 'admin/instances/show'
@@ -34,8 +34,11 @@ class Admin::Instances::ModerationNotesController < Admin::BaseController
   end
 
   def set_instance
-    domain = params[:instance_id]&.strip
-    @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(domain))
+    @instance = Instance.find_or_initialize_by(domain: normalized_domain)
+  end
+
+  def normalized_domain
+    TagManager.instance.normalize_domain(params[:instance_id])
   end
 
   def set_instance_note

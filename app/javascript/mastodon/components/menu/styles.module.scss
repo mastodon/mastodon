@@ -1,0 +1,94 @@
+@use '@/styles/mastodon/mixins';
+
+.card {
+  @include mixins.elevation-1;
+
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2xs);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  z-index: calc(infinity);
+
+  &[data-elevation='2'] {
+    @include mixins.elevation-2;
+  }
+}
+
+.popoverCard {
+  width: 100%;
+}
+
+.itemGroupLabel {
+  @include mixins.type-label-sm;
+
+  color: var(--color-text-tertiary);
+  padding: var(--space-xs) var(--space-sm) 0;
+}
+
+.itemDivider {
+  height: 1px;
+  background-color: var(--color-border-primary);
+  margin: var(--space-2xs) var(--space-sm);
+  border: none;
+}
+
+.item {
+  @include mixins.type-body-compact;
+
+  --cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  cursor: var(--cursor);
+  transition:
+    background 200ms,
+    color 200ms;
+
+  &:where(button) {
+    appearance: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: start;
+  }
+
+  &:hover:not([aria-disabled='true']) {
+    background-color: var(--color-bg-highlight);
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
+
+  &:active:not([aria-disabled='true']),
+  .itemActive {
+    background-color: var(--color-bg-inverted);
+    color: var(--color-text-inverted);
+
+    label {
+      color: var(--color-text-inverted);
+    }
+  }
+
+  &:has(:disabled),
+  &[aria-disabled='true'] {
+    --cursor: not-allowed;
+
+    opacity: 0.5;
+  }
+}
+
+.itemIcon {
+  width: var(--space-lg);
+  height: var(--space-lg);
+}
+
+.itemTrailingContent {
+  margin-inline-start: auto;
+}

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import { useSpring, animated, config } from '@react-spring/web';
 
+import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import DownloadIcon from '@/material-icons/400-24px/download.svg?react';
 import Forward5Icon from '@/material-icons/400-24px/forward_5-fill.svg?react';
 import PauseIcon from '@/material-icons/400-24px/pause-fill.svg?react';
@@ -19,8 +20,10 @@ import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime, getPointerPosition } from 'mastodon/features/video';
 import { useAudioContext } from 'mastodon/hooks/useAudioContext';
 import { useAudioVisualizer } from 'mastodon/hooks/useAudioVisualizer';
-import { displayMedia, useBlurhash } from 'mastodon/initial_state';
+import { useBlurhash } from 'mastodon/initial_state';
 import { playerSettings } from 'mastodon/settings';
+
+import { useRevealedMedia } from '../../hooks/useRevealedMedia';
 
 import { AudioVisualizer } from './visualizer';
 
@@ -68,19 +71,7 @@ export const Audio: React.FC<{
   startPlaying?: boolean;
   startVolume?: number;
   startMuted?: boolean;
-  deployPictureInPicture?: (
-    type: string,
-    mediaProps: {
-      src: string;
-      muted: boolean;
-      volume: number;
-      currentTime: number;
-      poster?: string;
-      backgroundColor: string;
-      foregroundColor: string;
-      accentColor: string;
-    },
-  ) => void;
+  deployPictureInPicture?: DeployPictureInPictureCallback;
   matchedFilters?: string[];
 }> = ({
   src,
@@ -111,13 +102,13 @@ export const Audio: React.FC<{
   const [volume, setVolume] = useState(0.5);
   const [hovered, setHovered] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useRevealedMedia({ visible, sensitive });
 
   const playerRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const seekRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
-  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   const { audioContextRef, sourceRef, gainNodeRef, playAudio, pauseAudio } =
     useAudioContext({ audioElementRef: audioRef });
@@ -187,17 +178,6 @@ export const Audio: React.FC<{
       gainNodeRef.current.gain.value = muted ? 0 : volume;
     }
   }, [volume, muted, gainNodeRef]);
-
-  useEffect(() => {
-    if (typeof visible !== 'undefined') {
-      setRevealed(visible);
-    } else {
-      setRevealed(
-        displayMedia === 'show_all' ||
-          (displayMedia !== 'hide_all' && !sensitive),
-      );
-    }
-  }, [visible, sensitive]);
 
   useEffect(() => {
     if (!revealed) {
@@ -573,7 +553,7 @@ export const Audio: React.FC<{
         />
       )}
 
-      <audio /* eslint-disable-line jsx-a11y/media-has-caption */
+      <audio
         src={src}
         ref={handleAudioRef}
         preload={startPlaying ? 'auto' : 'none'}

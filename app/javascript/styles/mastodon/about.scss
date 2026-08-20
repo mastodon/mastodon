@@ -34,34 +34,6 @@ $fluid-breakpoint: $maximum-width + 20px;
     counter-increment: list-counter;
     min-height: 4ch;
 
-    button {
-      background: transparent;
-      border: 0;
-      padding: 0;
-      margin: 0;
-      text-align: start;
-      font: inherit;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background: transparent;
-      }
-
-      &[aria-expanded='false'] .rules-list__hint {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        @supports (-webkit-line-clamp: 2) {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          white-space: normal;
-        }
-      }
-    }
-
     &::before {
       content: counter(list-counter);
       position: absolute;
@@ -91,6 +63,53 @@ $fluid-breakpoint: $maximum-width + 20px;
     font-size: 14px;
     font-weight: 400;
     color: var(--color-text-secondary);
+
+    // Giving this a focus outline as the hint
+    // will be focused when toggling the full hint
+    &:focus-visible {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
+  }
+
+  &__toggle-button {
+    position: relative;
+    display: inline-flex;
+    vertical-align: -0.25em;
+    border: none;
+    border-radius: 4px;
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
+
+    &[hidden] {
+      display: none;
+    }
+
+    &[aria-expanded='true'] .icon-expand,
+    &[aria-expanded='false'] .icon-collapse {
+      display: none;
+    }
+
+    .icon {
+      width: 1lh;
+      height: 1lh;
+    }
+
+    &:hover {
+      background: var(--color-bg-tertiary);
+    }
+
+    &:focus-visible {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
+
+    &::before {
+      // Increase clickable size
+      content: '';
+      position: absolute;
+      inset: -12px;
+    }
   }
 }
 

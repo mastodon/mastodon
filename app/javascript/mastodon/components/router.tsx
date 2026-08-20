@@ -11,17 +11,28 @@ import type {
 } from 'history';
 import { createBrowserHistory } from 'history';
 
-import { layoutFromWindow } from 'mastodon/is_mobile';
 import { isDevelopment } from 'mastodon/utils/environment';
+
+import { forceSingleColumn, hasMultiColumnPath } from '../initial_state';
+
+import type { FocusTarget } from './navigation_focus_target';
 
 interface MastodonLocationState {
   fromMastodon?: boolean;
   mastodonModalKey?: string;
+  // Controls which element is focused after a navigation.
+  // Set to `false` to prevent navigation focus.
+  focusTarget?: FocusTarget;
+  // Prevent the rightmost column in advanced UI from scrolling
+  // into view on location changes
+  preventMultiColumnAutoScroll?: string;
 }
 
 export type LocationState = MastodonLocationState | null | undefined;
 
 export type MastodonLocation = ReturnType<typeof useLocation<LocationState>>;
+
+export type MastodonLocationDescriptor = LocationDescriptor<LocationState>;
 
 type HistoryPath = Path | LocationDescriptor<LocationState>;
 
@@ -53,7 +64,8 @@ function normalizePath(
   }
 
   if (
-    layoutFromWindow() === 'multi-column' &&
+    !forceSingleColumn &&
+    hasMultiColumnPath &&
     location.pathname &&
     !location.pathname.startsWith('/deck')
   ) {

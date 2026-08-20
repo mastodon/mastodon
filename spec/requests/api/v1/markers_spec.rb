@@ -7,8 +7,10 @@ RSpec.describe 'API Markers' do
 
   describe 'GET /api/v1/markers' do
     before do
-      Fabricate(:marker, timeline: 'home', last_read_id: 123, user: user)
-      Fabricate(:marker, timeline: 'notifications', last_read_id: 456, user: user)
+      travel_to DateTime.parse('2026-03-15T12:34:56.789Z'), with_usec: true do
+        Fabricate(:marker, timeline: 'home', last_read_id: 123, user: user)
+        Fabricate(:marker, timeline: 'notifications', last_read_id: 456, user: user)
+      end
 
       get '/api/v1/markers', headers: headers, params: { timeline: %w(home notifications) }
     end
@@ -22,6 +24,11 @@ RSpec.describe 'API Markers' do
           home: include(last_read_id: '123'),
           notifications: include(last_read_id: '456')
         )
+    end
+
+    it 'uses a specific style of IS08601 timestamps' do
+      expect(response.parsed_body)
+        .to include(home: include(updated_at: eq('2026-03-15T12:34:56.789Z')))
     end
   end
 

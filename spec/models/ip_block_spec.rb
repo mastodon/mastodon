@@ -4,12 +4,12 @@ require 'rails_helper'
 
 RSpec.describe IpBlock do
   it_behaves_like 'Expireable'
+  it_behaves_like 'InetContainer'
 
   describe 'Validations' do
     subject { Fabricate.build :ip_block }
 
-    it { is_expected.to validate_presence_of(:ip) }
-    it { is_expected.to validate_presence_of(:severity) }
+    it { is_expected.to validate_presence_of(:ip, :severity) }
 
     it { is_expected.to validate_uniqueness_of(:ip) }
 

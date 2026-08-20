@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Collections' do
-  describe 'GET /ap/users/@:account_id/featured_collections', feature: :collections do
+  describe 'GET /ap/users/@:account_id/featured_collections' do
     subject { get ap_account_featured_collections_path(account.id, format: :json) }
 
     let(:collection) { Fabricate(:collection) }

@@ -1,0 +1,45 @@
+.tabList {
+  display: flex;
+  gap: 16px;
+}
+
+.withSpaceAndBorder {
+  padding-inline: 16px;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.tab {
+  display: block;
+  padding: 18px 0;
+  color: var(--color-text-primary);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 0;
+  transition: color 0.2s ease-in-out;
+
+  @container (width < 500px) {
+    flex: 1 1 0px;
+    text-align: center;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    // Override silly global border radius on focused links
+    border-radius: 0;
+    outline-offset: 2px;
+  }
+
+  &:not(:global(.active)):is(:hover, :focus) {
+    color: var(--color-text-brand-soft);
+  }
+
+  &:global(.active) {
+    color: var(--color-text-brand);
+    border-bottom: 4px solid var(--color-border-brand);
+    padding-bottom: 14px;
+  }
+}

@@ -11,9 +11,7 @@ class MediaProxyController < ApplicationController
   before_action :authenticate_user!, if: :limited_federation_mode?
   before_action :set_media_attachment
 
-  rescue_from ActiveRecord::RecordInvalid, with: :not_found
-  rescue_from Mastodon::UnexpectedResponseError, with: :not_found
-  rescue_from Mastodon::NotPermittedError, with: :not_found
+  rescue_from ActiveRecord::RecordInvalid, Mastodon::NotPermittedError, Mastodon::UnexpectedResponseError, with: :not_found
   rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
 
   def show

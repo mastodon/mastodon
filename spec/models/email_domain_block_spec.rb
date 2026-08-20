@@ -56,16 +56,20 @@ RSpec.describe EmailDomainBlock do
   end
 
   describe '.requires_approval?' do
-    subject { described_class.requires_approval?(input) }
+    subject { described_class.requires_approval?(input, attempt_ip: IPAddr.new('100.100.100.100')) }
 
     let(:input) { nil }
 
     context 'with a matching block requiring approval' do
-      before { Fabricate :email_domain_block, domain: input, allow_with_approval: true }
+      let!(:email_domain_block) { Fabricate :email_domain_block, domain: input, allow_with_approval: true }
 
       let(:input) { 'host.example' }
 
-      it { is_expected.to be true }
+      it 'returns true and records attempt' do
+        expect do
+          expect(subject).to be(true)
+        end.to change { email_domain_block.history.get(Date.current).accounts }.by(1)
+      end
     end
 
     context 'with a matching block not requiring approval' do

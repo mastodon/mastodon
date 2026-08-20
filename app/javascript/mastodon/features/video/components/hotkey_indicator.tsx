@@ -24,7 +24,9 @@ export const HotkeyIndicator: React.FC<{
     enter: [{ opacity: 1 }],
     leave: [{ opacity: 0 }],
     onRest: (_result, _ctrl, item) => {
-      onDismiss(item);
+      if (item) {
+        onDismiss(item);
+      }
     },
   });
 

@@ -1,4 +1,9 @@
-import type { MouseEventHandler, PropsWithChildren } from 'react';
+import type {
+  FC,
+  MouseEventHandler,
+  PropsWithChildren,
+  ReactNode,
+} from 'react';
 import {
   createContext,
   useCallback,
@@ -8,6 +13,7 @@ import {
 } from 'react';
 
 import { cleanExtraEmojis } from '@/mastodon/features/emoji/normalize';
+import { useCustomEmojis } from '@/mastodon/hooks/useCustomEmojis';
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { polymorphicForwardRef } from '@/types/polymorphic';
 import type {
@@ -92,11 +98,21 @@ export const CustomEmojiContext = createContext<ExtraCustomEmojiMap>({});
 export const CustomEmojiProvider = ({
   children,
   emojis: rawEmojis,
-}: PropsWithChildren<{ emojis?: CustomEmojiMapArg }>) => {
-  const emojis = useMemo(() => cleanExtraEmojis(rawEmojis) ?? {}, [rawEmojis]);
+}: PropsWithChildren<{ emojis?: CustomEmojiMapArg | null }>) => {
+  const emojis = useMemo(() => cleanExtraEmojis(rawEmojis), [rawEmojis]);
+  if (!emojis) {
+    return children;
+  }
   return (
     <CustomEmojiContext.Provider value={emojis}>
       {children}
     </CustomEmojiContext.Provider>
   );
+};
+
+export const LocalCustomEmojiProvider: FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const emojis = useCustomEmojis();
+  return <CustomEmojiProvider emojis={emojis}>{children}</CustomEmojiProvider>;
 };

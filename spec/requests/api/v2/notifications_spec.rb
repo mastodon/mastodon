@@ -322,7 +322,7 @@ RSpec.describe 'Notifications' do
         expect(response.content_type)
           .to start_with('application/json')
         expect(response.parsed_body[:partial_accounts].size).to be > 0
-        expect(response.parsed_body[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :bot, :id, :locked, :url)
+        expect(response.parsed_body[:partial_accounts][0].keys.map(&:to_sym)).to contain_exactly(:acct, :avatar, :avatar_static, :avatar_description, :bot, :id, :locked, :url)
         expect(response.parsed_body[:partial_accounts].pluck(:id)).to_not include(recent_account.id.to_s)
         expect(response.parsed_body[:accounts].pluck(:id)).to include(recent_account.id.to_s)
       end

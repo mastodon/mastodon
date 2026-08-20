@@ -68,6 +68,8 @@ class CustomFilter < ApplicationRecord
   end
 
   def self.cached_filters_for(account_id)
+    raise ArgumentError unless account_id.is_a?(String) || account_id.is_a?(Integer)
+
     active_filters = Rails.cache.fetch("filters:v3:#{account_id}") do
       filters_hash = {}
 
@@ -115,8 +117,8 @@ class CustomFilter < ApplicationRecord
     @should_invalidate_cache = false
 
     Rails.cache.delete("filters:v3:#{account_id}")
-    redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
-    redis.publish("timeline:system:#{account_id}", Oj.dump(event: :filters_changed))
+    redis.publish("timeline:#{account_id}", { event: :filters_changed }.to_json)
+    redis.publish("timeline:system:#{account_id}", { event: :filters_changed }.to_json)
   end
 
   private

@@ -155,8 +155,12 @@ export async function apiRequest<
 export async function apiRequestGet<ApiResponse = unknown, ApiParams = unknown>(
   url: ApiUrl,
   params?: RequestParamsOrData<ApiParams>,
+  args: {
+    signal?: AbortSignal;
+    timeout?: number;
+  } = {},
 ) {
-  return apiRequest<ApiResponse>('GET', url, { params });
+  return apiRequest<ApiResponse>('GET', url, { params, ...args });
 }
 
 export async function apiRequestPost<ApiResponse = unknown, ApiData = unknown>(
@@ -178,4 +182,11 @@ export async function apiRequestDelete<
   ApiParams = unknown,
 >(url: ApiUrl, params?: RequestParamsOrData<ApiParams>) {
   return apiRequest<ApiResponse>('DELETE', url, { params });
+}
+
+export async function apiRequestPatch<ApiResponse = unknown, ApiData = unknown>(
+  url: ApiUrl,
+  data?: RequestParamsOrData<ApiData>,
+) {
+  return apiRequest<ApiResponse>('PATCH', url, { data });
 }

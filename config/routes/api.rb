@@ -6,14 +6,22 @@ namespace :api, format: false do
 
   # Experimental JSON / REST API
   namespace :v1_alpha do
+    resources :async_refreshes, only: :show
+  end
+
+  # TODO: Remove once apps switch over to v1
+  scope :v1_alpha, as: :v1_alpha, module: :v1 do
     resources :accounts, only: [] do
       resources :collections, only: [:index]
+      resources :in_collections, only: [:index]
     end
 
-    resources :async_refreshes, only: :show
-
     resources :collections, only: [:show, :create, :update, :destroy] do
-      resources :items, only: [:create, :destroy], controller: 'collection_items'
+      resources :items, only: [:create, :destroy], controller: 'collection_items' do
+        member do
+          post :revoke
+        end
+      end
     end
   end
 
@@ -24,6 +32,7 @@ namespace :api, format: false do
         resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
         resources :favourited_by, controller: :favourited_by_accounts, only: :index
         resource :reblog, only: :create
+        resource :context, only: :show
         post :unreblog, to: 'reblogs#destroy'
 
         resources :quotes, only: :index do
@@ -51,10 +60,6 @@ namespace :api, format: false do
 
         post :translate, to: 'translations#create'
       end
-
-      member do
-        get :context
-      end
     end
 
     namespace :timelines do
@@ -74,6 +79,7 @@ namespace :api, format: false do
     resources :suggestions, only: [:index, :destroy]
     resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
     resources :preferences, only: [:index]
+    resources :donation_campaigns, only: [:index]
 
     resources :annual_reports, only: [:index, :show] do
       member do
@@ -111,9 +117,11 @@ namespace :api, format: false do
     resources :endorsements, only: [:index]
     resources :markers, only: [:index, :create]
 
-    namespace :profile do
-      resource :avatar, only: :destroy
-      resource :header, only: :destroy
+    resource :profile, only: [:show, :update] do
+      scope module: :profile do
+        resource :avatar, only: :destroy
+        resource :header, only: :destroy
+      end
     end
 
     namespace :apps do
@@ -138,14 +146,13 @@ namespace :api, format: false do
         resources :peers, only: [:index]
         resources :rules, only: [:index]
         resources :domain_blocks, only: [:index]
+        resources :terms_of_service, only: [:index, :show], param: :date
+
         resource :privacy_policy, only: [:show]
-        resource :terms_of_service, only: [:show]
         resource :extended_description, only: [:show]
         resource :translation_languages, only: [:show]
         resource :languages, only: [:show]
         resource :activity, only: [:show], controller: :activity
-
-        get '/terms_of_service/:date', to: 'terms_of_services#show'
       end
     end
 
@@ -214,7 +221,11 @@ namespace :api, format: false do
         resources :identity_proofs, only: :index
         resources :featured_tags, only: :index
         resources :endorsements, only: :index
+        resources :email_subscriptions, only: :create
       end
+
+      resources :collections, only: [:index]
+      resources :in_collections, only: [:index]
 
       member do
         post :follow
@@ -251,7 +262,7 @@ namespace :api, format: false do
     end
 
     namespace :featured_tags do
-      get :suggestions, to: 'suggestions#index'
+      resources :suggestions, only: :index
     end
 
     resources :featured_tags, only: [:index, :create, :destroy]
@@ -293,32 +304,20 @@ namespace :api, format: false do
       resources :ip_blocks, only: [:index, :show, :update, :create, :destroy]
 
       namespace :trends do
-        resources :tags, only: [:index] do
+        concern :approvable do
           member do
             post :approve
             post :reject
           end
         end
-        resources :links, only: [:index] do
-          member do
-            post :approve
-            post :reject
-          end
-        end
-        resources :statuses, only: [:index] do
-          member do
-            post :approve
-            post :reject
-          end
+        with_options only: [:index], concerns: :approvable do
+          resources :tags
+          resources :links
+          resources :statuses
         end
 
         namespace :links do
-          resources :preview_card_providers, only: [:index], path: :publishers do
-            member do
-              post :approve
-              post :reject
-            end
-          end
+          resources :preview_card_providers, only: [:index], path: :publishers, concerns: :approvable
         end
       end
 
@@ -333,6 +332,14 @@ namespace :api, format: false do
       end
 
       resources :tags, only: [:index, :show, :update]
+    end
+
+    resources :collections, only: [:show, :create, :update, :destroy] do
+      resources :items, only: [:create, :destroy], controller: 'collection_items' do
+        member do
+          post :revoke
+        end
+      end
     end
   end
 

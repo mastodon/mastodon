@@ -1,0 +1,28 @@
+@use '@/styles/mastodon/mixins';
+
+.rootLarge,
+.rootSmall {
+  align-items: center;
+  background-color: var(--color-bg-highlight);
+  border-radius: var(--radius-sm);
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.rootLarge {
+  padding: var(--space-sm);
+}
+
+.rootSmall {
+  padding: var(--space-xs);
+}
+
+.textWrapper {
+  flex-grow: 1;
+}
+
+.icon {
+  width: var(--space-lg);
+  height: var(--space-lg);
+}

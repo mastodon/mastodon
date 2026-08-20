@@ -1,0 +1,45 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding: var(--space-xl) var(--space-lg);
+  background: linear-gradient(
+    to top,
+    transparent,
+    var(--color-bg-primary) var(--space-xl)
+  );
+}
+
+.siteNameLink {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  outline-offset: var(--space-3xs);
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.serverName {
+  @include mixins.type-heading-sm;
+}
+
+.poweredBy {
+  @include mixins.type-label-sm;
+
+  color: var(--color-text-tertiary);
+
+  svg {
+    width: 1em;
+    height: 1em;
+    margin-inline-end: var(--space-3xs);
+    vertical-align: middle;
+    color: inherit;
+  }
+}

@@ -51,7 +51,7 @@ export const ComposePanel: React.FC = () => {
       {signedIn && !hideComposer && <ComposeFormContainer singleColumn />}
       {signedIn && hideComposer && <div className='compose-form' />}
 
-      <LinkFooter multiColumn={!singleColumn} />
+      <LinkFooter context={singleColumn ? 'default' : 'multi-column'} />
     </div>
   );
 };
@@ -71,7 +71,7 @@ export const RedirectToMobileComposeIfNeeded: React.FC = () => {
 
   useLayoutEffect(() => {
     if (shouldRedirect) {
-      history.push('/publish');
+      history.push('/publish', { focusTarget: false });
     }
   }, [history, shouldRedirect]);
 

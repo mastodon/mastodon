@@ -16,20 +16,21 @@ import {
   importLegacyShortcodes,
   importEmojiData,
 } from '@/mastodon/features/emoji/loader';
+import { IdentityContext } from '@/mastodon/identity_context';
 import type { LocaleData } from '@/mastodon/locales';
 import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
 import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 
-// If you want to run the dark theme during development,
-// you can change the below to `/application.scss`
-import '../app/javascript/styles/mastodon-light.scss';
-import './styles.css';
 import { modes } from './modes';
 
-const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
-  query: { as: 'json' },
-});
+import '../app/javascript/styles/application.scss';
+import './styles.css';
+
+// Disabling locales in Storybook as it's breaking with Vite 8.
+// const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
+//   query: { as: 'json' },
+// });
 
 // Initialize MSW
 initialize({
@@ -40,37 +41,50 @@ const preview: Preview = {
   // Auto-generate docs: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   globalTypes: {
-    locale: {
-      description: 'Locale for the story',
-      toolbar: {
-        title: 'Locale',
-        icon: 'globe',
-        items: Object.keys(localeFiles).map((path) =>
-          path.replace('/mastodon/locales/', '').replace('.json', ''),
-        ),
-        dynamicTitle: true,
-      },
-    },
+    // locale: {
+    //   description: 'Locale for the story',
+    //   toolbar: {
+    //     title: 'Locale',
+    //     icon: 'globe',
+    //     items: Object.keys(localeFiles).map((path) =>
+    //       path.replace('/mastodon/locales/', '').replace('.json', ''),
+    //     ),
+    //     dynamicTitle: true,
+    //   },
+    // },
     theme: {
       description: 'Theme for the story',
       toolbar: {
         title: 'Theme',
-        icon: 'circlehollow',
-        items: [{ value: 'light' }, { value: 'dark' }],
-        dynamicTitle: true,
+        items: [
+          { value: 'light', icon: 'circlehollow' },
+          { value: 'dark', icon: 'circle' },
+        ],
+      },
+    },
+    loggedIn: {
+      description: 'Whether a user is logged in',
+      toolbar: {
+        title: 'Logged in',
+        icon: 'user',
+        items: [
+          { value: 'true', title: 'logged in' },
+          { value: 'false', title: 'logged out' },
+        ],
       },
     },
   },
   initialGlobals: {
     locale: 'en',
     theme: 'light',
+    loggedIn: 'true',
   },
   decorators: [
     (Story, { parameters, globals, args, argTypes }) => {
       // Get the locale from the global toolbar
       // and merge it with any parameters or args state.
       const { locale } = globals as { locale: string };
-      const { state = {} } = parameters;
+      const { state = {}, stateFn } = parameters;
 
       const argsState: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(args)) {
@@ -92,13 +106,24 @@ const preview: Preview = {
         }
       }
 
+      let stateFnState: Record<string, unknown> = {};
+      if (typeof stateFn === 'function') {
+        stateFnState =
+          (
+            stateFn as (
+              args: Record<string, unknown>,
+            ) => Record<string, unknown> | undefined | null
+          )(args) ?? {};
+      }
+
       const reducer = reducerWithInitialState(
         {
           meta: {
             locale,
           },
         },
-        state as Record<string, unknown>,
+        state,
+        stateFnState,
         argsState,
       );
 
@@ -115,7 +140,7 @@ const preview: Preview = {
       );
     },
     (Story, { globals }) => {
-      const currentLocale = (globals.locale as string) || 'en';
+      const currentLocale = globals.locale || 'en';
       const [messages, setMessages] = useState<
         Record<string, Record<string, string>>
       >({});
@@ -137,17 +162,13 @@ const preview: Preview = {
       }, [currentLocale, currentLocaleData]);
 
       return (
-        <IntlProvider
-          locale={currentLocale}
-          messages={currentLocaleData}
-          textComponent='span'
-        >
+        <IntlProvider locale={currentLocale} messages={currentLocaleData}>
           <Story />
         </IntlProvider>
       );
     },
     (Story, { globals }) => {
-      const theme = (globals.theme as string) || 'light';
+      const theme = globals.theme;
       useEffect(() => {
         document.body.setAttribute('data-color-scheme', theme);
       }, [theme]);
@@ -168,12 +189,35 @@ const preview: Preview = {
         />
       </MemoryRouter>
     ),
+    (Story, { globals }) => {
+      const signedIn = globals.loggedIn !== 'false';
+      return (
+        <IdentityContext.Provider
+          value={{
+            signedIn,
+            accountId: signedIn ? '123' : undefined,
+            disabledAccountId: undefined,
+            permissions: 0,
+          }}
+        >
+          <Story />
+        </IdentityContext.Provider>
+      );
+    },
+    (Story, { parameters }) => {
+      useEffect(() => {
+        document.documentElement.dataset.redesign = parameters.redesign
+          ? 'true'
+          : 'false';
+      }, [parameters.redesign]);
+      return <Story />;
+    },
   ],
   loaders: [
     mswLoader,
     importCustomEmojiData,
     importLegacyShortcodes,
-    ({ globals: { locale } }) => importEmojiData(locale as string),
+    ({ globals: { locale } }) => importEmojiData(locale),
   ],
   parameters: {
     layout: 'centered',

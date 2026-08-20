@@ -42,6 +42,14 @@ class BulkImportRowService
       FollowService.new.call(@account, @target_account) unless @account.id == @target_account.id
 
       list.accounts << @target_account
+    when :custom_filters
+      filter = @account.custom_filters.create!(title: @data['title'], context: @data['context'])
+      filter.keywords = @data['keywords_attributes'].map { |keyword| CustomFilterKeyword.new(keyword: keyword['keyword'], whole_word: keyword['whole_word']) }
+      filter.action = @data['action'].to_sym
+      filter.expires_at = @data['expires_at']
+      status_ids = Status.where(uri: @data['statuses']).ids
+      filter.statuses = status_ids.map { |status| CustomFilterStatus.new(status_id: status) } if status_ids.any?
+      filter.save!
     end
 
     true

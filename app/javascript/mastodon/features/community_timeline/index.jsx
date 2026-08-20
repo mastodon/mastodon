@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
+import { injectIntl } from '@/mastodon/components/intl';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { domain, localLiveFeedAccess } from 'mastodon/initial_state';
@@ -16,8 +19,6 @@ import { canViewFeed } from 'mastodon/permissions';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectCommunityStream } from '../../actions/streaming';
 import { expandCommunityTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
@@ -69,10 +70,6 @@ class CommunityTimeline extends PureComponent {
     dispatch(moveColumn(columnId, dir));
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
   componentDidMount () {
     const { dispatch, onlyMedia } = this.props;
     const { signedIn } = this.props.identity;
@@ -109,10 +106,6 @@ class CommunityTimeline extends PureComponent {
     }
   }
 
-  setRef = c => {
-    this.column = c;
-  };
-
   handleLoadMore = maxId => {
     const { dispatch, onlyMedia } = this.props;
 
@@ -137,7 +130,7 @@ class CommunityTimeline extends PureComponent {
     );
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
           icon='users'
           iconComponent={PeopleIcon}
@@ -145,9 +138,9 @@ class CommunityTimeline extends PureComponent {
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
           onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          scrollTopOnClick
         >
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>

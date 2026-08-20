@@ -31,6 +31,10 @@ class TermsOfService < ApplicationRecord
     live.first || upcoming.first # For the case when none of the published terms have become effective yet
   end
 
+  def usable_effective_date
+    effective_date || Time.zone.today
+  end
+
   def published?
     published_at.present?
   end

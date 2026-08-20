@@ -69,8 +69,9 @@ on('change', '#batch_checkbox_all', ({ target }) => {
     '.batch-table__select-all',
   );
 
-  document
-    .querySelectorAll<HTMLInputElement>(batchCheckboxClassName)
+  target
+    .closest('.batch-table')
+    ?.querySelectorAll<HTMLInputElement>(batchCheckboxClassName)
     .forEach((content) => {
       content.checked = target.checked;
     });
@@ -112,17 +113,20 @@ on('click', '.batch-table__select-all button', () => {
   }
 });
 
-on('change', batchCheckboxClassName, () => {
-  const checkAllElement = document.querySelector<HTMLInputElement>(
+on('change', batchCheckboxClassName, (event) => {
+  const targetTable = (event.target as HTMLElement).closest('.batch-table');
+  if (!targetTable) return;
+
+  const checkAllElement = targetTable.querySelector<HTMLInputElement>(
     'input#batch_checkbox_all',
   );
-  const selectAllMatchingElement = document.querySelector(
+  const selectAllMatchingElement = targetTable.querySelector(
     '.batch-table__select-all',
   );
 
   if (checkAllElement) {
     const allCheckboxes = Array.from(
-      document.querySelectorAll<HTMLInputElement>(batchCheckboxClassName),
+      targetTable.querySelectorAll<HTMLInputElement>(batchCheckboxClassName),
     );
     checkAllElement.checked = allCheckboxes.every((content) => content.checked);
     checkAllElement.indeterminate =
@@ -165,6 +169,38 @@ const onDomainBlockSeverityChange = (target: HTMLSelectElement) => {
 on('change', '#domain_block_severity', ({ target }) => {
   if (target instanceof HTMLSelectElement) onDomainBlockSeverityChange(target);
 });
+
+const onChangeInviteUsersPermission = (target: HTMLInputElement) => {
+  const inviteBypassApprovalCheckbox = document.querySelector<HTMLInputElement>(
+    'input#user_role_permissions_as_keys_invite_bypass_approval',
+  );
+
+  if (inviteBypassApprovalCheckbox) {
+    inviteBypassApprovalCheckbox.disabled = !target.checked;
+
+    if (target.checked) {
+      inviteBypassApprovalCheckbox.parentElement?.classList.remove('disabled');
+      inviteBypassApprovalCheckbox.parentElement?.parentElement?.classList.remove(
+        'disabled',
+      );
+    } else {
+      inviteBypassApprovalCheckbox.parentElement?.classList.add('disabled');
+      inviteBypassApprovalCheckbox.parentElement?.parentElement?.classList.add(
+        'disabled',
+      );
+    }
+  }
+};
+
+on(
+  'change',
+  'input#user_role_permissions_as_keys_invite_users',
+  ({ target }) => {
+    if (target instanceof HTMLInputElement) {
+      onChangeInviteUsersPermission(target);
+    }
+  },
+);
 
 function onEnableBootstrapTimelineAccountsChange(target: HTMLInputElement) {
   const bootstrapTimelineAccountsField =
@@ -290,6 +326,13 @@ ready(() => {
     'select#form_admin_settings_registrations_mode',
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
+
+  const inviteUsersPermissionChecbkox =
+    document.querySelector<HTMLInputElement>(
+      'input#user_role_permissions_as_keys_invite_users',
+    );
+  if (inviteUsersPermissionChecbkox)
+    onChangeInviteUsersPermission(inviteUsersPermissionChecbkox);
 
   const checkAllElement = document.querySelector<HTMLInputElement>(
     '#batch_checkbox_all',

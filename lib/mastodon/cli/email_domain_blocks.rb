@@ -5,7 +5,7 @@ require_relative 'base'
 
 module Mastodon::CLI
   class EmailDomainBlocks < Base
-    option :only_blocked, type: :boolean, defaut: false
+    option :only_blocked, type: :boolean, default: false
     option :only_with_approval, type: :boolean, default: false
     desc 'list', 'List blocked e-mail domains'
     long_desc <<-LONG_DESC
@@ -43,7 +43,7 @@ module Mastodon::CLI
     end
 
     option :with_dns_records, type: :boolean
-    option :allow_with_approval, type: :boolean, defaut: false
+    option :allow_with_approval, type: :boolean, default: false
     desc 'add DOMAIN...', 'Block e-mail domain(s)'
     long_desc <<-LONG_DESC
       Blocking an e-mail domain prevents users from signing up

@@ -43,7 +43,7 @@ RSpec.describe 'Admin::Roles' do
       expect { click_on I18n.t('admin.roles.add_new') }
         .to_not change(UserRole, :count)
       expect(page)
-        .to have_content(I18n.t('activerecord.errors.models.user_role.attributes.position.elevated'))
+        .to have_text(I18n.t('activerecord.errors.models.user_role.attributes.position.elevated'))
 
       # Valid submission
       fill_in 'user_role_name', with: 'Baz'
@@ -73,6 +73,20 @@ RSpec.describe 'Admin::Roles' do
         .to change(UserRole, :count).by(-1)
       expect(page)
         .to have_title(I18n.t('admin.roles.title'))
+    end
+
+    it 'Manages the `everyone` user role' do
+      role = UserRole.everyone
+
+      visit edit_admin_role_path(role)
+      expect(page)
+        .to have_title(I18n.t('admin.roles.edit', name: I18n.t('admin.roles.everyone')))
+        .and have_text('This is the base role affecting all users')
+
+      # Update role attribute
+      check 'user_role_require_2fa' # Require 2FA for everyone
+      expect { click_on submit_button }
+        .to(change { role.reload.require_2fa }.to(true))
     end
   end
 end

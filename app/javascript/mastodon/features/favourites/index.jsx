@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -13,11 +13,12 @@ import { debounce } from 'lodash';
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 import { fetchFavourites, expandFavourites } from 'mastodon/actions/interactions';
 import { Account } from 'mastodon/components/account';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from 'mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
 import { Icon }  from 'mastodon/components/icon';
+import { injectIntl } from '@/mastodon/components/intl';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
-import Column from 'mastodon/features/ui/components/column';
 
 const messages = defineMessages({
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },

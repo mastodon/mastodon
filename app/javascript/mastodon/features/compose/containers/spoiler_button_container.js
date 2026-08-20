@@ -1,8 +1,9 @@
-import { injectIntl, defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import { connect } from 'react-redux';
 
 import WarningIcon from '@/material-icons/400-20px/warning.svg?react';
+import { injectIntl } from '@/mastodon/components/intl';
 import { IconButton } from 'mastodon/components/icon_button';
 
 import { changeComposeSpoilerness } from '../../../actions/compose';

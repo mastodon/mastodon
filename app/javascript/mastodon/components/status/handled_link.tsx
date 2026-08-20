@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
+import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 export interface HandledLinkProps {
@@ -13,6 +14,7 @@ export interface HandledLinkProps {
   prevText?: string;
   hashtagAccountId?: string;
   mention?: Pick<ApiMentionJSON, 'id' | 'acct'>;
+  collectionId?: string;
 }
 
 export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
@@ -21,6 +23,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   prevText,
   hashtagAccountId,
   mention,
+  collectionId,
   className,
   children,
   ...props
@@ -57,6 +60,15 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         {children}
       </Link>
     );
+  } else if (collectionId) {
+    return (
+      <Link
+        className={classNames(className)}
+        to={getCollectionPath(collectionId)}
+      >
+        {children}
+      </Link>
+    );
   }
 
   // Non-absolute paths treated as internal links. This shouldn't happen, but just in case.
@@ -85,15 +97,18 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
 
 export const useElementHandledLink = ({
   hashtagAccountId,
+  hrefToCollectionId: hrefToCollection,
   hrefToMention,
 }: {
   hashtagAccountId?: string;
+  hrefToCollectionId?: (href: string) => string | undefined;
   hrefToMention?: (href: string) => ApiMentionJSON | undefined;
 } = {}) => {
   const onElement = useCallback<OnElementHandler>(
     (element, { key, ...props }, children) => {
       if (element instanceof HTMLAnchorElement) {
         const mention = hrefToMention?.(element.href);
+        const collectionId = hrefToCollection?.(element.href);
         return (
           <HandledLink
             {...props}
@@ -103,6 +118,7 @@ export const useElementHandledLink = ({
             prevText={element.previousSibling?.textContent ?? undefined}
             hashtagAccountId={hashtagAccountId}
             mention={mention}
+            collectionId={collectionId}
           >
             {children}
           </HandledLink>
@@ -110,7 +126,7 @@ export const useElementHandledLink = ({
       }
       return undefined;
     },
-    [hashtagAccountId, hrefToMention],
+    [hashtagAccountId, hrefToCollection, hrefToMention],
   );
   return { onElement };
 };

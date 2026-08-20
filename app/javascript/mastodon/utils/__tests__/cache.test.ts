@@ -40,11 +40,13 @@ describe('createCache', () => {
   });
 
   test('removes oldest item cached if it exceeds a set size', () => {
-    const cache = createLimitedCache({ maxSize: 1 });
+    const cache = createLimitedCache({ maxSize: 2 });
     cache.set('test1', 1);
     cache.set('test2', 2);
+    cache.set('test3', 3);
     expect(cache.get('test1')).toBeUndefined();
     expect(cache.get('test2')).toBe(2);
+    expect(cache.get('test3')).toBe(3);
   });
 
   test('retrieving a value bumps up last access', () => {
@@ -63,13 +65,13 @@ describe('createCache', () => {
     const cache = createLimitedCache({ maxSize: 1, log });
     cache.set('test1', 1);
     expect(log).toHaveBeenLastCalledWith(
-      'Added %s to cache, now size %d',
+      'Added %o to cache, now size %d',
       'test1',
       1,
     );
     cache.set('test2', 1);
     expect(log).toHaveBeenLastCalledWith(
-      'Added %s and deleted %s from cache, now size %d',
+      'Added %o and deleted %o from cache, now size %d',
       'test2',
       'test1',
       1,

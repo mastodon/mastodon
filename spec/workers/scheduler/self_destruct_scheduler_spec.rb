@@ -39,19 +39,24 @@ RSpec.describe Scheduler::SelfDestructScheduler do
       end
 
       context 'when sidekiq is operational' do
-        it 'suspends local non-suspended accounts' do
+        let!(:other_account) { Fabricate :account, inbox_url: 'https://host.example/inbox', domain: 'host.example', protocol: :activitypub }
+
+        it 'deletes local non-deleted accounts' do
           worker.perform
 
-          expect(account.reload.suspended_at).to_not be_nil
+          expect(account.reload.requested_deletion_at).to_not be_nil
         end
 
-        it 'suspends local suspended accounts marked for deletion' do
-          account.update(suspended_at: 10.days.ago)
+        it 'deletes local accounts marked for deletion' do
+          account.update(requested_deletion_at: 10.days.ago)
           deletion_request = Fabricate(:account_deletion_request, account: account)
 
           worker.perform
 
-          expect(account.reload.suspended_at).to be > 1.day.ago
+          expect(ActivityPub::DeliveryWorker)
+            .to have_enqueued_sidekiq_job(match_json_values(type: 'Delete', signature: be_present), account.id, other_account.inbox_url)
+
+          expect(account.reload.requested_deletion_at).to be > 1.day.ago
           expect { deletion_request.reload }.to raise_error(ActiveRecord::RecordNotFound)
         end
       end

@@ -8,16 +8,35 @@
     ':enableVulnerabilityAlertsWithLabel(security)',
   ],
   rebaseWhen: 'conflicted',
-  minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
+  minimumReleaseAge: '3 days', // Wait 3 days after the package has been published before upgrading it
+  prCreation: 'not-pending',
   // packageRules order is important, they are applied from top to bottom and are merged,
   // meaning the most important ones must be at the bottom, for example grouping rules
   // If we do not want a package to be grouped with others, we need to set its groupName
   // to `null` after any other rule set it to something.
   dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
   postUpdateOptions: ['yarnDedupeHighest'],
+  devcontainer: {
+    managerFilePatterns: [
+      '/^\.devcontainer\/devcontainer\.json$/',
+      '/^\.devcontainer\.json$/',
+      '/^\.devcontainer\/devcontainer-lock\.json$/',
+    ],
+  },
   // The types are now included in recent versions,we ignore them here until we upgrade and remove the dependency
   ignoreDeps: ['@types/emoji-mart'],
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ['before 8am on monday'],
+  },
   packageRules: [
+    {
+      // Disable lock file maintenance for bundler for now, as we do not yet pin gems to their exact versions
+      matchManagers: ['bundler'],
+      lockFileMaintenance: {
+        enabled: false,
+      },
+    },
     {
       // Require Dependency Dashboard Approval for major version bumps of these node packages
       matchManagers: ['npm'],
@@ -25,9 +44,6 @@
         // react-router: Requires manual upgrade
         'history',
         'react-router-dom',
-
-        // react-spring: Requires manual upgrade when upgrading react
-        '@react-spring/web',
       ],
       matchUpdateTypes: ['major'],
       dependencyDashboardApproval: true,
@@ -113,6 +129,7 @@
       ],
       matchUpdateTypes: ['major'],
       groupName: 'artifact actions (major)',
+      extends: ['helpers:pinGitHubActionDigests'],
     },
     {
       // Update @types/* packages every week, with one grouped PR
@@ -153,9 +170,15 @@
       groupName: 'opentelemetry-ruby (non-major)',
     },
     {
-      // Group Playwright Ruby & JS deps in the same PR, as they need to be in sync
-      matchManagers: ['bundler', 'npm'],
-      matchPackageNames: ['playwright-ruby-client', 'playwright'],
+      // The ruby portion of the Playwright group
+      matchManagers: ['bundler'],
+      matchPackageNames: ['playwright-ruby-client'],
+      groupName: 'Playwright',
+    },
+    {
+      // The node portion of the Playwright group
+      matchManagers: ['npm'],
+      matchPackageNames: ['playwright'],
       groupName: 'Playwright',
     },
     // Add labels depending on package manager

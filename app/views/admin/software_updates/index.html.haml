@@ -1,6 +1,12 @@
 - content_for :page_title do
   = t('admin.software_updates.title')
 
+- current_deprecation = SoftwareDeprecation.current
+- if current_deprecation&.unsupported?
+  .flash-message.alert= t('admin.software_updates.unsupported_branch')
+- elsif current_deprecation.present?
+  .flash-message.warning= t('admin.software_updates.nearing_eol', date: current_deprecation.end_of_support)
+
 .simple_form
   %p.lead
     = t('admin.software_updates.description')
@@ -18,12 +24,4 @@
           %th
           %th
       %tbody
-        - @software_updates.each do |update|
-          %tr
-            %td= update.version
-            %td= t("admin.software_updates.types.#{update.type}")
-            - if update.urgent?
-              %td.critical= t('admin.software_updates.critical_update')
-            - else
-              %td
-            %td= table_link_to 'link', t('admin.software_updates.release_notes'), update.release_notes
+        = render collection: @software_updates, partial: 'admin/software_updates/software_update'

@@ -40,26 +40,40 @@ RSpec.describe Tag do
       I18n.t('tags.does_not_match_previous_name')
     end
 
-    it 'invalid with #' do
-      expect(described_class.new(name: '#hello_world')).to_not be_valid
+    describe 'when skipping normalizations' do
+      subject { described_class.new }
+
+      before { subject.attributes[:name] = name }
+
+      context 'with a # in string' do
+        let(:name) { '#hello_world' }
+
+        it { is_expected.to_not be_valid }
+      end
+
+      context 'with a . in string' do
+        let(:name) { '.abcdef123' }
+
+        it { is_expected.to_not be_valid }
+      end
+
+      context 'with a space in string' do
+        let(:name) { 'hello world' }
+
+        it { is_expected.to_not be_valid }
+      end
     end
 
-    it 'invalid with .' do
-      expect(described_class.new(name: '.abcdef123')).to_not be_valid
-    end
-
-    it 'invalid with spaces' do
-      expect(described_class.new(name: 'hello world')).to_not be_valid
-    end
-
-    it 'valid with ａｅｓｔｈｅｔｉｃ' do
-      expect(described_class.new(name: 'ａｅｓｔｈｅｔｉｃ')).to be_valid
-    end
+    it { is_expected.to allow_value('ａｅｓｔｈｅｔｉｃ').for(:name) }
   end
 
   describe 'Normalizations' do
     it { is_expected.to normalize(:display_name).from('#HelloWorld').to('HelloWorld') }
     it { is_expected.to normalize(:display_name).from('Hello❤️World').to('HelloWorld') }
+
+    it { is_expected.to normalize(:name).from('#hello_world').to('hello_world') }
+    it { is_expected.to normalize(:name).from('hello world').to('helloworld') }
+    it { is_expected.to normalize(:name).from('.abcdef123').to('abcdef123') }
   end
 
   describe 'HASHTAG_RE' do
@@ -83,6 +97,14 @@ RSpec.describe Tag do
 
     it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
+    end
+
+    it 'does not match URLs with hashtag-like anchors after a dot' do
+      expect(subject.match('https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America,_Inc.#Decision')).to be_nil
+    end
+
+    it 'matches a hashtag preceded by a non-break space' do
+      expect(subject.match('test #foo').to_s).to eq '#foo'
     end
 
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
@@ -206,7 +228,7 @@ RSpec.describe Tag do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
       downcase_string = 'abcabcａｂｃａｂｃやゆよ'
 
-      tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
+      tag = Fabricate(:tag, name: downcase_string)
       expect(described_class.find_normalized(upcase_string)).to eq tag
     end
   end
@@ -235,7 +257,7 @@ RSpec.describe Tag do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
       downcase_string = 'abcabcａｂｃａｂｃやゆよ'
 
-      tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
+      tag = Fabricate(:tag, name: downcase_string)
       expect(described_class.matches_name(upcase_string)).to eq [tag]
     end
 
@@ -250,7 +272,7 @@ RSpec.describe Tag do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
       downcase_string = 'abcabcａｂｃａｂｃやゆよ'
 
-      tag = Fabricate(:tag, name: HashtagNormalizer.new.normalize(downcase_string))
+      tag = Fabricate(:tag, name: downcase_string)
       expect(described_class.matching_name(upcase_string)).to eq [tag]
     end
   end
@@ -316,6 +338,23 @@ RSpec.describe Tag do
       expect(results).to eq [tag]
     end
 
+    it 'finds tag records from padded term queries' do
+      tag = Fabricate(:tag, name: 'MATCH')
+      _miss_tag = Fabricate(:tag, name: 'miss')
+
+      results = described_class.search_for('  match  ')
+
+      expect(results)
+        .to contain_exactly(tag)
+    end
+
+    it 'handles nil query' do
+      results = described_class.search_for(nil)
+
+      expect(results)
+        .to be_empty
+    end
+
     it 'finds the exact matching tag as the first item' do
       similar_tag = Fabricate(:tag, name: 'matchlater', reviewed_at: Time.now.utc)
       tag = Fabricate(:tag, name: 'match', reviewed_at: Time.now.utc)
@@ -341,6 +380,17 @@ RSpec.describe Tag do
       results = described_class.search_for('match', 5, 0, exclude_unlistable: false)
 
       expect(results).to eq [tag, unlisted_tag]
+    end
+
+    it 'excludes non reviewed tags via option' do
+      tag = Fabricate(:tag, name: 'match', reviewed_at: 5.days.ago)
+      unreviewed_tag = Fabricate(:tag, name: 'matchreviewed', reviewed_at: nil)
+
+      results = described_class.search_for('match', 5, 0, exclude_unreviewed: true)
+
+      expect(results)
+        .to include(tag)
+        .and not_include(unreviewed_tag)
     end
   end
 end

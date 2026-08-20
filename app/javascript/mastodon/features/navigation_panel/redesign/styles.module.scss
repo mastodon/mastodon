@@ -1,0 +1,22 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.list {
+  margin-top: var(--space-xl);
+  margin-inline: var(--space-md);
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+  padding: var(--space-xl);
+  padding-top: 0;
+  background-color: var(--color-bg-primary);
+}

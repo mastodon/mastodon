@@ -25,8 +25,7 @@ RSpec.describe TermsOfService do
     context 'when published' do
       subject { Fabricate.build :terms_of_service, published_at: Time.zone.today }
 
-      it { is_expected.to validate_presence_of(:changelog) }
-      it { is_expected.to validate_presence_of(:effective_date) }
+      it { is_expected.to validate_presence_of(:changelog, :effective_date) }
     end
   end
 
@@ -105,6 +104,24 @@ RSpec.describe TermsOfService do
 
     it 'includes only users created before the terms of service were published' do
       expect(subject.pluck(:id)).to match_array(user_before.id)
+    end
+  end
+
+  describe '#usable_effective_date' do
+    subject { terms_of_service.usable_effective_date }
+
+    let(:terms_of_service) { Fabricate.build(:terms_of_service, effective_date:) }
+
+    context 'when effective_date value is set' do
+      let(:effective_date) { 5.days.ago }
+
+      it { is_expected.to eq(effective_date.to_date) }
+    end
+
+    context 'when effective_date value is not set' do
+      let(:effective_date) { nil }
+
+      it { is_expected.to eq(Time.zone.today) }
     end
   end
 

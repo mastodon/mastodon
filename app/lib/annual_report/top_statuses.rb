@@ -27,20 +27,6 @@ class AnnualReport::TopStatuses < AnnualReport::Source
       .first
   end
 
-  def most_favourited_status
-    base_scope
-      .excluding(most_reblogged_status)
-      .order(favourites_count: :desc)
-      .first
-  end
-
-  def most_replied_status
-    base_scope
-      .excluding(most_reblogged_status, most_favourited_status)
-      .order(replies_count: :desc)
-      .first
-  end
-
   def base_scope
     report_statuses
       .distributable_visibility

@@ -12,6 +12,8 @@ RSpec.describe 'Home page' do
       expect(page)
         .to have_css('noscript', text: /Mastodon/)
         .and have_css('body', class: 'app-body')
+      expect(find('.app-holder#mastodon')['data-props'])
+        .to eq('{"locale":"en"}')
     end
   end
 

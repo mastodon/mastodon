@@ -16,9 +16,10 @@ RSpec.describe ActivityPub::DistributePollUpdateWorker do
     end
 
     it 'delivers to followers' do
-      expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Update'), account.id, 'http://example.com']]) do
-        subject.perform(status.id)
-      end
+      subject.perform(status.id)
+
+      expect(ActivityPub::DeliveryWorker)
+        .to have_enqueued_sidekiq_job(match_json_values(type: 'Update'), account.id, 'http://example.com')
     end
   end
 end

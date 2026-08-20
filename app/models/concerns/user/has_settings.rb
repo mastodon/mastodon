@@ -15,6 +15,10 @@ module User::HasSettings
     settings['noindex']
   end
 
+  def email_subscriptions_enabled?
+    settings['email_subscriptions']
+  end
+
   def preferred_posting_language
     valid_locale_cascade(settings['default_language'], locale, I18n.locale)
   end

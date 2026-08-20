@@ -3,9 +3,9 @@ import { forwardRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { CommonFieldWrapperProps } from './form_field_wrapper';
+import { FormFieldWrapper } from './form_field_wrapper';
 import classes from './toggle.module.css';
-import type { CommonFieldWrapperProps } from './wrapper';
-import { FormFieldWrapper } from './wrapper';
 
 type Props = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
   size?: number;
@@ -14,39 +14,41 @@ type Props = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
 export const ToggleField = forwardRef<
   HTMLInputElement,
   Props & CommonFieldWrapperProps
->(({ id, label, hint, hasError, required, ...otherProps }, ref) => (
-  <FormFieldWrapper
-    label={label}
-    hint={hint}
-    required={required}
-    hasError={hasError}
-    inputId={id}
-  >
-    {(inputProps) => (
-      <PlainToggleField {...otherProps} {...inputProps} ref={ref} />
-    )}
-  </FormFieldWrapper>
-));
+>(
+  (
+    { id, label, hint, status, required, wrapperClassName, ...otherProps },
+    ref,
+  ) => (
+    <FormFieldWrapper
+      label={label}
+      hint={hint}
+      required={required}
+      status={status}
+      inputId={id}
+      inputPlacement='inline-end'
+      className={wrapperClassName}
+    >
+      {(inputProps) => <Toggle {...otherProps} {...inputProps} ref={ref} />}
+    </FormFieldWrapper>
+  ),
+);
 
 ToggleField.displayName = 'ToggleField';
 
-export const PlainToggleField = forwardRef<HTMLInputElement, Props>(
+export const Toggle = forwardRef<HTMLInputElement, Props>(
   ({ className, size, ...otherProps }, ref) => (
-    <>
+    <span
+      className={classNames(classes.wrapper, className)}
+      style={{ '--diameter': size ? `${size}px` : undefined } as CSSProperties}
+    >
       <input
         {...otherProps}
         type='checkbox'
         className={classes.input}
         ref={ref}
       />
-      <span
-        className={classNames(classes.toggle, className)}
-        style={
-          { '--diameter': size ? `${size}px` : undefined } as CSSProperties
-        }
-        hidden
-      />
-    </>
+      <span className={classes.toggle} hidden />
+    </span>
   ),
 );
-PlainToggleField.displayName = 'PlainToggleField';
+Toggle.displayName = 'Toggle';

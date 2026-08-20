@@ -3,7 +3,7 @@ import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
 
 
-import { useEmoji } from '../../../actions/emojis';
+import { emojiUse } from '../../../actions/emojis';
 import { changeSetting } from '../../../actions/settings';
 import EmojiPickerDropdown from '../components/emoji_picker_dropdown';
 
@@ -47,23 +47,7 @@ const getFrequentlyUsedEmojis = createSelector([
   return emojis;
 });
 
-const getCustomEmojis = createSelector([
-  state => state.get('custom_emojis'),
-], emojis => emojis.filter(e => e.get('visible_in_picker')).sort((a, b) => {
-  const aShort = a.get('shortcode').toLowerCase();
-  const bShort = b.get('shortcode').toLowerCase();
-
-  if (aShort < bShort) {
-    return -1;
-  } else if (aShort > bShort ) {
-    return 1;
-  } else {
-    return 0;
-  }
-}));
-
 const mapStateToProps = state => ({
-  custom_emojis: getCustomEmojis(state),
   skinTone: state.getIn(['settings', 'skinTone']),
   frequentlyUsedEmojis: getFrequentlyUsedEmojis(state),
 });
@@ -74,8 +58,7 @@ const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
   },
 
   onPickEmoji: emoji => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
-    dispatch(useEmoji(emoji));
+    dispatch(emojiUse(emoji));
 
     if (onPickEmoji) {
       onPickEmoji(emoji);

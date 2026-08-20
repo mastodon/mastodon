@@ -24,12 +24,14 @@ interface AnnualReportState {
   report?: AnnualReport;
 }
 
+const initialState: AnnualReportState = {
+  year: wrapstodon?.year,
+  state: wrapstodon?.state,
+};
+
 const annualReportSlice = createSlice({
   name: 'annualReport',
-  initialState: {
-    year: wrapstodon?.year,
-    state: wrapstodon?.state,
-  } as AnnualReportState,
+  initialState,
   reducers: {
     setReport(state, action: PayloadAction<AnnualReport>) {
       state.report = action.payload;

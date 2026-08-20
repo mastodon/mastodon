@@ -59,6 +59,8 @@ class ActivityPub::Activity
         ActivityPub::Activity::Move
       when 'QuoteRequest'
         ActivityPub::Activity::QuoteRequest
+      when 'FeatureRequest'
+        ActivityPub::Activity::FeatureRequest
       end
     end
   end
@@ -71,6 +73,10 @@ class ActivityPub::Activity
 
   def account_from_uri(uri)
     ActivityPub::TagManager.instance.uri_to_resource(uri, Account)
+  end
+
+  def collection_from_uri(uri)
+    ActivityPub::TagManager.instance.uri_to_resource(uri, Collection)
   end
 
   def object_uri
@@ -116,20 +122,6 @@ class ActivityPub::Activity
     fetch_remote_original_status
   end
 
-  def quote_from_request_json(json)
-    quoted_status_uri = value_or_id(json['object'])
-    quoting_status_uri = value_or_id(json['instrument'])
-    return if quoting_status_uri.nil? || quoted_status_uri.nil?
-
-    quoting_status = status_from_uri(quoting_status_uri)
-    return unless quoting_status.present? && quoting_status.quote.present?
-
-    quoted_status = status_from_uri(quoted_status_uri)
-    return unless quoted_status.present? && quoted_status.account == @account && quoting_status.quote.quoted_status == quoted_status
-
-    quoting_status.quote
-  end
-
   def dereference_object!
     return unless @object.is_a?(String)
 
@@ -163,6 +155,12 @@ class ActivityPub::Activity
 
   def follow_from_object
     @follow_from_object ||= ::Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+  end
+
+  def feature_request_from_object
+    return @collection_item if instance_variable_defined?(:@collection_item)
+
+    @collection_item = CollectionItem.local.find_by(activity_uri: value_or_id(@object), account_id: @account.id)
   end
 
   def fetch_remote_original_status

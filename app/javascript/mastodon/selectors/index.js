@@ -75,8 +75,8 @@ function getStatusResultFunction(
     status: statusBase.withMutations(map => {
       map.set('reblog', statusReblog);
       map.set('account', accountBase);
-      map.set('matched_filters', filtered);
-      map.set('matched_media_filters', mediaFiltered);
+      map.set('matched_filters', filtered ? filtered.toJS() : false);
+      map.set('matched_media_filters', mediaFiltered ? mediaFiltered.toJS() : false);
     }),
     loadingState: statusBase.get('isLoading') ? 'loading' : 'complete'
   };

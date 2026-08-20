@@ -1,4 +1,4 @@
-@use '../fonts/inter';
+@use '../fonts/inter-mailer';
 
 body {
   accent-color: #6364ff;
@@ -719,6 +719,46 @@ table + p {
   text-align: center;
   font-size: 16px;
   line-height: 24px;
+}
+
+// Banner item
+.email-banner-table {
+  border-radius: 12px;
+  background-color: #1b001f;
+  background-image: url('../../images/mailer-new/common/header-bg-start.png');
+  background-position: left top;
+  background-repeat: repeat;
+}
+
+.email-banner-td {
+  padding: 24px;
+}
+
+.email-banner-text-td {
+  text-align: center;
+
+  p {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16.8px;
+  }
+
+  .email-btn-table {
+    background-color: #fff;
+    margin: 0 auto;
+  }
+
+  .email-btn-td {
+    mso-padding-alt: 10px;
+  }
+
+  .email-btn-a {
+    color: #181820;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 // Checklist item

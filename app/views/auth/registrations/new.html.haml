@@ -21,17 +21,17 @@
     = f.simple_fields_for :account do |ff|
       = ff.input :username,
                  append: "@#{site_hostname}",
-                 input_html: { autocomplete: 'off', pattern: '[a-zA-Z0-9_]+', maxlength: Account::USERNAME_LENGTH_LIMIT, placeholder: ' ' },
+                 input_html: { autocomplete: 'off', pattern: '[a-zA-Z0-9_]+', maxlength: Account::USERNAME_LENGTH_LIMIT },
                  required: true,
                  wrapper: :with_label
     = f.input :email,
               hint: false,
-              input_html: { autocomplete: 'username', placeholder: ' ' },
+              input_html: { autocomplete: 'username' },
               required: true,
               wrapper: :with_label
     = f.input :password,
               hint: false,
-              input_html: { autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last, placeholder: ' ' },
+              input_html: { autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last },
               required: true,
               wrapper: :with_label
     = f.input :password_confirmation,
@@ -61,14 +61,11 @@
                 wrapper: :with_block_label
 
   - if approved_registrations? && @invite.blank?
-    %p.lead= t('auth.sign_up.manual_review', domain: site_hostname)
-
     .fields-group
       = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
         = invite_request_fields.input :text,
                                       as: :text,
-                                      hint: false,
-                                      label: false,
+                                      hint: t('auth.sign_up.manual_review', domain: site_hostname),
                                       input_html: { maxlength: UserInviteRequest::TEXT_SIZE_LIMIT },
                                       required: Setting.require_invite_text,
                                       wrapper: :with_block_label
@@ -79,7 +76,7 @@
   .fields-group
     = f.input :agreement,
               as: :boolean,
-              label: TermsOfService.live.exists? ? t('auth.user_agreement_html', privacy_policy_path: privacy_policy_path, terms_of_service_path: terms_of_service_path) : t('auth.user_privacy_agreement_html', privacy_policy_path: privacy_policy_path),
+              label: terms_agreement_label,
               required: false,
               wrapper: :with_label
 

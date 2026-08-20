@@ -44,15 +44,10 @@
 class User < ApplicationRecord
   self.ignored_columns += %w(
     admin
-    current_sign_in_ip
     encrypted_otp_secret
     encrypted_otp_secret_iv
     encrypted_otp_secret_salt
-    filtered_languages
-    last_sign_in_ip
     moderator
-    remember_created_at
-    remember_token
     skip_sign_in_token
   )
 
@@ -92,10 +87,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
   validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
-  validates :email, presence: true, email_address: true
+  validates :email, presence: true, email_address: true, length: { maximum: 320 }
+  validates :email, email_mx: { attempt_ip: :sign_up_ip }, if: :validate_email_dns?
 
   validates_with UserEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
-  validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
   # Honeypot/anti-spam fields
@@ -107,15 +102,15 @@ class User < ApplicationRecord
   validates :date_of_birth, presence: true, date_of_birth: true, on: :create, if: -> { Setting.min_age.present? && !bypass_registration_checks? }
   validate :validate_role_elevation
 
-  scope :account_not_suspended, -> { joins(:account).merge(Account.without_suspended) }
+  scope :account_available, -> { joins(:account).merge(Account.without_suspended.without_requested_deletion) }
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
-  scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
+  scope :active, -> { confirmed.signed_in_recently.account_available }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
-  scope :matches_ip, ->(value) { left_joins(:ips).merge(IpBlock.contained_by(value)).group(users: [:id]) }
+  scope :matches_ip, ->(value) { left_joins(:ips).merge(UserIp.contained_by(value)).group(users: [:id]) }
 
   before_validation :sanitize_role
   before_create :set_approved
@@ -168,12 +163,16 @@ class User < ApplicationRecord
     invite_id.present? && invite.valid_for_use?
   end
 
+  def valid_bypassing_invitation?
+    valid_invitation? && invite.bypass_approval?
+  end
+
   def disable!
     update!(disabled: true)
 
     # This terminates all connections for the given account with the streaming
     # server:
-    redis.publish("timeline:system:#{account.id}", Oj.dump(event: :kill))
+    redis.publish("timeline:system:#{account.id}", { event: :kill }.to_json)
   end
 
   def enable!
@@ -209,8 +208,10 @@ class User < ApplicationRecord
 
     increment(:sign_in_count) if new_sign_in
 
-    save(validate: false) unless new_record?
-    prepare_returning_user!
+    unless new_record?
+      save(validate: false)
+      prepare_returning_user!
+    end
   end
 
   def pending?
@@ -226,7 +227,11 @@ class User < ApplicationRecord
   end
 
   def functional_or_moved?
-    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial?
+    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial? && !missing_2fa?
+  end
+
+  def missing_2fa?
+    !two_factor_enabled? && role.require_2fa?
   end
 
   def unconfirmed_or_pending?
@@ -341,7 +346,7 @@ class User < ApplicationRecord
       # Revoke each access token for the Streaming API, since `update_all``
       # doesn't trigger ActiveRecord Callbacks:
       # TODO: #28793 Combine into a single topic
-      payload = Oj.dump(event: :kill)
+      payload = { event: :kill }.to_json
       redis.pipelined do |pipeline|
         batch.ids.each do |id|
           pipeline.publish("timeline:access_token:#{id}", payload)
@@ -414,7 +419,7 @@ class User < ApplicationRecord
       if requires_approval?
         false
       else
-        open_registrations? || valid_invitation? || external?
+        open_registrations? || valid_bypassing_invitation? || external?
       end
     end
   end
@@ -457,18 +462,15 @@ class User < ApplicationRecord
   end
 
   def sign_up_email_requires_approval?
-    return false if email.blank?
-
-    _, domain = email.split('@', 2)
-    return false if domain.blank?
+    return false if email_domain.blank?
 
     records = []
 
     # Doing this conditionally is not very satisfying, but this is consistent
     # with the MX records validations we do and keeps the specs tractable.
-    records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
+    records = DomainResource.new(email_domain).mx unless self.class.skip_mx_check?
 
-    EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
+    EmailDomainBlock.requires_approval?(records + [email_domain], attempt_ip: sign_up_ip)
   end
 
   def sign_up_username_requires_approval?

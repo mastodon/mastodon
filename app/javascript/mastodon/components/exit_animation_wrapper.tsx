@@ -26,7 +26,7 @@ export const ExitAnimationWrapper: React.FC<{
    * Render prop that provides the nested component with the `delayedIsActive` flag
    */
   children: (delayedIsActive: boolean) => React.ReactNode;
-}> = ({ isActive = false, delayMs = 500, withEntryDelay, children }) => {
+}> = ({ isActive, delayMs = 500, withEntryDelay, children }) => {
   const [delayedIsActive, setDelayedIsActive] = useState(
     isActive && !withEntryDelay,
   );

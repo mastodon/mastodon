@@ -292,7 +292,7 @@ function shouldMarkNewNotificationsAsRead(
 
 function updateLastReadId(
   state: NotificationGroupsState,
-  group: NotificationGroup | undefined = undefined,
+  group?: NotificationGroup,
 ) {
   if (shouldMarkNewNotificationsAsRead(state)) {
     group = group ?? state.groups.find(isNotificationGroup);
@@ -371,7 +371,7 @@ function fillNotificationsGap(
       type: 'gap',
       maxId: notifications.at(-1)?.page_max_id,
       sinceId,
-    } as NotificationGap);
+    } satisfies NotificationGap);
   }
 
   // Remove older groups covered by the API

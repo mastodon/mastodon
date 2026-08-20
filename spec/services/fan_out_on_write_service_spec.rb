@@ -54,11 +54,18 @@ RSpec.describe FanOutOnWriteService do
         .and be_in(home_feed_of(bob))
         .and be_in(home_feed_of(tom))
 
-      expect(redis).to have_received(:publish).with('timeline:hashtag:hoge', anything)
-      expect(redis).to have_received(:publish).with('timeline:hashtag:hoge:local', anything)
-      expect(redis).to have_received(:publish).with('timeline:public', anything)
-      expect(redis).to have_received(:publish).with('timeline:public:local', anything)
-      expect(redis).to have_received(:publish).with('timeline:public:media', anything)
+      expected_payload = { event: 'update', payload: include(id: status.id.to_s, created_at: status.created_at.iso8601(3), content: /<p>Hello/) }
+
+      expect(redis)
+        .to have_received(:publish).with('timeline:hashtag:hoge', match_json_values(expected_payload))
+      expect(redis)
+        .to have_received(:publish).with('timeline:hashtag:hoge:local', match_json_values(expected_payload))
+      expect(redis)
+        .to have_received(:publish).with('timeline:public', match_json_values(expected_payload))
+      expect(redis)
+        .to have_received(:publish).with('timeline:public:local', match_json_values(expected_payload))
+      expect(redis)
+        .to have_received(:publish).with('timeline:public:media', match_json_values(expected_payload))
     end
 
     context 'with silenced_account_ids' do

@@ -10,8 +10,6 @@ RSpec.describe User do
   let(:account) { Fabricate(:account, username: 'alice') }
 
   it_behaves_like 'two_factor_backupable'
-  it_behaves_like 'User::Activity'
-  it_behaves_like 'User::Confirmation'
 
   describe 'otp_secret' do
     it 'encrypts the saved value' do
@@ -76,16 +74,19 @@ RSpec.describe User do
       end
     end
 
-    describe 'account_not_suspended' do
+    describe 'account_available' do
       it 'returns with linked accounts that are not suspended' do
         suspended_account = Fabricate(:account, suspended_at: 10.days.ago)
         non_suspended_account = Fabricate(:account, suspended_at: nil)
         suspended_user = Fabricate(:user, account: suspended_account)
         non_suspended_user = Fabricate(:user, account: non_suspended_account)
+        deleted_account = Fabricate(:account, requested_deletion_at: 10.days.ago)
+        deleted_user = Fabricate(:user, account: deleted_account)
 
-        expect(described_class.account_not_suspended)
+        expect(described_class.account_available)
           .to include(non_suspended_user)
           .and not_include(suspended_user)
+          .and not_include(deleted_user)
       end
     end
 
@@ -208,9 +209,13 @@ RSpec.describe User do
     context 'with a new user' do
       let(:user) { Fabricate.build :user }
 
+      before { allow(ActivityTracker).to receive(:record) }
+
       it 'does not persist the user' do
         expect { user.update_sign_in! }
           .to_not change(user, :persisted?).from(false)
+        expect(ActivityTracker)
+          .to_not have_received(:record).with('activity:logins', anything)
       end
     end
   end
@@ -399,7 +404,32 @@ RSpec.describe User do
       expect(user).to have_attributes(disabled: true)
 
       expect(redis)
-        .to have_received(:publish).with("timeline:system:#{user.account.id}", Oj.dump(event: :kill)).once
+        .to have_received(:publish).with("timeline:system:#{user.account.id}", { event: :kill }.to_json).once
+    end
+  end
+
+  describe '#revoke_access!' do
+    subject(:user) { Fabricate(:user, disabled: false, current_sign_in_at: current_sign_in_at, last_sign_in_at: nil) }
+
+    let(:current_sign_in_at) { Time.zone.now }
+
+    let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id) }
+
+    let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
+
+    before do
+      allow(redis)
+        .to receive(:pipelined)
+        .and_yield(redis_pipeline_stub)
+    end
+
+    it 'revokes tokens' do
+      user.revoke_access!
+
+      expect(redis_pipeline_stub)
+        .to have_received(:publish).with("timeline:access_token:#{token.id}", { event: :kill }.to_json).once
+
+      expect(token.reload.revoked?).to be true
     end
   end
 
@@ -441,7 +471,7 @@ RSpec.describe User do
       expect { web_push_subscription.reload }
         .to raise_error(ActiveRecord::RecordNotFound)
       expect(redis_pipeline_stub)
-        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", { event: :kill }.to_json).once
     end
 
     def remove_activated_sessions

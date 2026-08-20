@@ -153,7 +153,8 @@ export function fetchAccountFail(id, error) {
  */
 export function followAccount(id, options = { reblogs: true }) {
   return (dispatch, getState) => {
-    const alreadyFollowing = getState().getIn(['relationships', id, 'following']);
+    const relationship = getState().getIn(['relationships', id]);
+    const alreadyFollowing = relationship?.following || relationship?.requested;
     const locked = getState().getIn(['accounts', id, 'locked'], false);
 
     dispatch(followAccountRequest({ id, locked }));

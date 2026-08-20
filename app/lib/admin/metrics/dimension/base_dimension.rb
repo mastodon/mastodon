@@ -17,6 +17,13 @@ class Admin::Metrics::Dimension::BaseDimension
     @limit    = limit&.to_i
     @params   = params
     @loaded   = false
+
+    if @start_at.present? && @end_at.present?
+      @start_at = [@start_at, @end_at - 2.years].max
+    else
+      @start_at = nil
+      @end_at = nil
+    end
   end
 
   def key

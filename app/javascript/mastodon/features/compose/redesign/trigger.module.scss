@@ -1,0 +1,35 @@
+@use '@/styles/mastodon/variables';
+
+.button {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+}
+
+.composer,
+.composerMinimized {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: var(--space-md);
+  box-sizing: border-box;
+  border-radius: var(--radius-xl);
+}
+
+.composer {
+  width: min(560px, calc(100vw - var(--space-md) * 2));
+  min-height: 520px;
+  max-height: 80vh;
+}
+
+.composerMinimized {
+  width: min(320px, calc(100vw - var(--space-md) * 2));
+  padding: var(--space-md);
+}
+
+@media (width < #{variables.$mobile-menu-breakpoint}) {
+  .composer,
+  .composerMinimized {
+    bottom: var(--mobile-bottom-nav-height);
+  }
+}

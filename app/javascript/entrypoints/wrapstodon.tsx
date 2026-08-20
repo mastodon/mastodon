@@ -5,6 +5,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { importFetchedStatuses } from '@/mastodon/actions/importer';
 import { hydrateStore } from '@/mastodon/actions/store';
 import type { ApiAnnualReportResponse } from '@/mastodon/api/annual_report';
+import { FocusTargetProvider } from '@/mastodon/components/navigation_focus_target';
 import { Router } from '@/mastodon/components/router';
 import { WrapstodonSharedPage } from '@/mastodon/features/annual_report/shared_page';
 import { IntlProvider, loadLocale } from '@/mastodon/locales';
@@ -52,7 +53,9 @@ function loaded() {
     <IntlProvider>
       <ReduxProvider store={store}>
         <Router>
-          <WrapstodonSharedPage />
+          <FocusTargetProvider>
+            <WrapstodonSharedPage />
+          </FocusTargetProvider>
         </Router>
       </ReduxProvider>
     </IntlProvider>,

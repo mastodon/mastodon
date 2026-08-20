@@ -3,7 +3,6 @@
   simple_form:
     hints:
       account:
-        discoverable: Dine offentlige innlegg og profil kan bli omtalt eller anbefalt i ulike deler av Mastodon, og profilen din kan foreslås til andre brukere.
         display_name: Ditt fulle navn eller ditt morsomme navn.
         fields: Din hjemmeside, uttalelse, alder, eller alt annet du vil.
         indexable: Dine offentlige innlegg kan vises i søkeresultat på Mastodon. Personer som har samhandlet med innleggene dine kan finne de uansett.
@@ -55,9 +54,6 @@
         setting_aggregate_reblogs: Ikke vis nye fremhevinger for innlegg som nylig har blitt fremhevet (påvirker kun nylige fremhevinger)
         setting_always_send_emails: E-postvarsler sendes normalt sett ikke mens du aktivt bruker Mastodon
         setting_default_sensitive: Følsomme media blir i utgangspunktet skjult, og kan vises frem ved hjelp av et klikk
-        setting_display_media_default: Skjul media som er merket som følsomt
-        setting_display_media_hide_all: Skjul alltid all media
-        setting_display_media_show_all: Alltid vis media som er merket som sensitivt
         setting_use_blurhash: Gradientene er basert på fargene til de skjulte visualitetene, men gjør alle detaljer uklare
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
         username: Du kan bruke bokstaver, tall og understrekingstegn
@@ -117,8 +113,6 @@
         show_application: Du vil uansett kunne se hvilken app publiserte ditt innlegg.
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
-      user:
-        chosen_languages: Hvis noen av dem er valgt, vil kun innlegg i de valgte språkene bli vist i de offentlige tidslinjene
       user_role:
         color: Farge som skal brukes for rollen gjennom hele UI, som RGB i hex-format
         highlighted: Dette gjør rollen offentlig synlig
@@ -131,7 +125,6 @@
         url: Hvor hendelser vil bli sendt til
     labels:
       account:
-        discoverable: Anbefal profil og innlegg i Mastodons algoritmer
         fields:
           name: Etikett
           value: Innhold

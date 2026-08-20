@@ -63,7 +63,7 @@ class FetchResourceService < BaseService
   end
 
   def expected_type?(json)
-    equals_or_includes_any?(json['type'], ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
+    equals_or_includes_any?(json['type'], ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES + %w(FeaturedCollection))
   end
 
   def process_html(response)

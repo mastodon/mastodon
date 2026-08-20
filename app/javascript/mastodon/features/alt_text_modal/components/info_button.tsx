@@ -1,11 +1,10 @@
-import { useState, useRef, useCallback, useId } from 'react';
+import { useState, useCallback, useId } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
-import Overlay from 'react-overlays/Overlay';
-
+import { Popover } from '@/mastodon/components/popover';
 import QuestionMarkIcon from '@/material-icons/400-24px/question_mark.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import { useSelectableClick } from 'mastodon/hooks/useSelectableClick';
@@ -17,7 +16,7 @@ const messages = defineMessages({
 export const InfoButton: React.FC = () => {
   const intl = useIntl();
   const [open, setOpen] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
   const accessibilityId = useId();
 
   const handleClick = useCallback(() => {
@@ -31,7 +30,7 @@ export const InfoButton: React.FC = () => {
       <button
         type='button'
         className={classNames('help-button', { active: open })}
-        ref={triggerRef}
+        ref={setTrigger}
         onClick={handleClick}
         aria-expanded={open}
         aria-controls={accessibilityId}
@@ -40,13 +39,12 @@ export const InfoButton: React.FC = () => {
         <Icon id='' icon={QuestionMarkIcon} />
       </button>
 
-      <Overlay
-        show={open}
-        rootClose
+      <Popover
+        isOpen={open}
         placement='top'
-        onHide={handleClick}
-        offset={[5, 5]}
-        target={triggerRef}
+        onClose={handleClick}
+        offset={5}
+        reference={trigger}
       >
         {({ props }) => (
           <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
@@ -59,6 +57,7 @@ export const InfoButton: React.FC = () => {
           >
             <FormattedMessage
               id='info_button.what_is_alt_text'
+              // eslint-disable-next-line formatjs/prefer-full-sentence
               defaultMessage='<h1>What is alt text?</h1>
 
             <p>Alt text provides image descriptions for people with vision impairments, low-bandwidth connections, or those seeking extra context.</p>
@@ -81,7 +80,7 @@ export const InfoButton: React.FC = () => {
             />
           </div>
         )}
-      </Overlay>
+      </Popover>
     </>
   );
 };

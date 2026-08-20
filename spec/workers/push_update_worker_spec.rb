@@ -15,7 +15,7 @@ RSpec.describe PushUpdateWorker do
 
     context 'with valid records' do
       let(:account) { Fabricate :account }
-      let(:status) { Fabricate :status }
+      let(:status) { Fabricate :status, text: 'Test Post' }
 
       before { allow(redis).to receive(:publish) }
 
@@ -25,7 +25,16 @@ RSpec.describe PushUpdateWorker do
 
         expect(redis)
           .to have_received(:publish)
-          .with(redis_key, anything)
+          .with(
+            redis_key,
+            match_json_values(
+              event: 'update',
+              payload: include(
+                created_at: status.created_at.iso8601(3),
+                content: eq('<p>Test Post</p>')
+              )
+            )
+          )
       end
 
       def redis_key

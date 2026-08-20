@@ -17,6 +17,7 @@ module Mastodon::CLI
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
+    option :keep_interacted, type: :boolean, default: false
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
       Removes locally cached copies of media attachments (and optionally profile
@@ -26,6 +27,9 @@ module Mastodon::CLI
       they are removed. In case of avatars and headers, it specifies how old
       the last webfinger request and update to the user has to be before they
       are pruned. It defaults to 7 days.
+      If --keep-interacted is specified, any media attached to a status that
+      was favourited, bookmarked, quoted, replied to, or reblogged by a local
+      account will be preserved.
       If --prune-profiles is specified, only avatars and headers are removed.
       If --remove-headers is specified, only headers are removed.
       If --include-follows is specified along with --prune-profiles or
@@ -61,7 +65,11 @@ module Mastodon::CLI
       end
 
       unless options[:prune_profiles] || options[:remove_headers]
-        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.remote.where(created_at: ..time_ago)) do |media_attachment|
+        attachment_scope = MediaAttachment.cached.remote.where(created_at: ..time_ago)
+
+        attachment_scope = attachment_scope.without_local_interaction if options[:keep_interacted]
+
+        processed, aggregate = parallelize_with_progress(attachment_scope) do |media_attachment|
           next if media_attachment.file.blank?
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
@@ -247,7 +255,7 @@ module Mastodon::CLI
           media_attachment.save
         end
 
-        media_attachment.file_file_size + (media_attachment.thumbnail_file_size || 0)
+        (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
       end
 
       say("Downloaded #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run_mode_suffix}", :green, true)
@@ -265,11 +273,12 @@ module Mastodon::CLI
     def lookup(url)
       path = Addressable::URI.parse(url).path
 
-      path_segments = path.split('/')[2..]
-      path_segments.delete('cache')
+      path_segments = path.split('/')
+      segment_count = VALID_PATH_SEGMENTS_SIZE.find { |n| n <= path_segments.length && PRELOADED_MODELS.include?(path_segments[-n].classify) }
 
-      fail_with_message 'Not a media URL' unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
+      fail_with_message 'Not a media URL' unless segment_count
 
+      path_segments = path_segments[-segment_count..]
       model_name = path_segments.first.classify
       record_id  = path_segments[2...-2].join.to_i
 

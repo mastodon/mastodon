@@ -1,6 +1,5 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
-import { timelineDelete, isNonStatusId } from 'mastodon/actions/timelines_typed';
 
 import {
   blockAccountSuccess,
@@ -21,8 +20,15 @@ import {
   TIMELINE_GAP,
   disconnectTimeline,
 } from '../actions/timelines';
+import {
+  timelineDelete,
+  timelineDeleteStatus,
+  isTimelineKeyPinned,
+  isNonStatusId,
+} from '../actions/timelines_typed';
 import { compareId } from '../compare_id';
 
+/** @type {ImmutableMap<string, typeof initialTimeline>} */
 const initialState = ImmutableMap();
 
 const initialTimeline = ImmutableMap({
@@ -31,7 +37,9 @@ const initialTimeline = ImmutableMap({
   top: true,
   isLoading: false,
   hasMore: true,
+  /** @type {ImmutableList<string>} */
   pendingItems: ImmutableList(),
+  /** @type {ImmutableList<string>} */
   items: ImmutableList(),
 });
 
@@ -50,7 +58,7 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
 
     if (!next && !isLoadingRecent) mMap.set('hasMore', false);
 
-    if (timeline.endsWith(':pinned')) {
+    if (isTimelineKeyPinned(timeline)) {
       mMap.set('items', statuses.map(status => status.get('id')));
     } else if (!statuses.isEmpty()) {
       usePendingItems = isLoadingRecent && (usePendingItems || !mMap.get('pendingItems').isEmpty());
@@ -101,19 +109,19 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
   }));
 };
 
-const updateTimeline = (state, timeline, status, usePendingItems) => {
+const updateTimeline = (state, timeline, statusId, usePendingItems) => {
   const top = state.getIn([timeline, 'top']);
 
   if (usePendingItems || !state.getIn([timeline, 'pendingItems']).isEmpty()) {
-    if (state.getIn([timeline, 'pendingItems'], ImmutableList()).includes(status.get('id')) || state.getIn([timeline, 'items'], ImmutableList()).includes(status.get('id'))) {
+    if (state.getIn([timeline, 'pendingItems'], ImmutableList()).includes(statusId) || state.getIn([timeline, 'items'], ImmutableList()).includes(statusId)) {
       return state;
     }
 
-    return state.update(timeline, initialTimeline, map => map.update('pendingItems', list => list.unshift(status.get('id'))).update('unread', unread => unread + 1));
+    return state.update(timeline, initialTimeline, map => map.update('pendingItems', list => list.unshift(statusId)).update('unread', unread => unread + 1));
   }
 
   const ids        = state.getIn([timeline, 'items'], ImmutableList());
-  const includesId = ids.includes(status.get('id'));
+  const includesId = ids.includes(statusId);
   const unread     = state.getIn([timeline, 'unread'], 0);
 
   if (includesId) {
@@ -125,7 +133,7 @@ const updateTimeline = (state, timeline, status, usePendingItems) => {
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     if (!top) mMap.set('unread', unread + 1);
     if (top && ids.size > 40) newIds = newIds.take(20);
-    mMap.set('items', newIds.unshift(status.get('id')));
+    mMap.set('items', newIds.unshift(statusId));
   }));
 };
 
@@ -144,6 +152,11 @@ const deleteStatus = (state, id, references, exclude_account = null) => {
 
   return state;
 };
+
+const deleteStatusFromTimeline = (state, statusId, timelineKey) => {
+  const helper = list => list.filterNot((status) => status === statusId);
+  return state.updateIn([timelineKey, 'items'], helper).updateIn([timelineKey, 'pendingItems'], helper);
+}
 
 const clearTimeline = (state, timeline) => {
   return state.set(timeline, initialTimeline);
@@ -187,6 +200,7 @@ const reconnectTimeline = (state, usePendingItems) => {
   });
 };
 
+/** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export default function timelines(state = initialState, action) {
   switch(action.type) {
   case TIMELINE_LOAD_PENDING:
@@ -199,26 +213,13 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_EXPAND_SUCCESS:
     return expandNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial, action.isLoadingRecent, action.usePendingItems);
   case TIMELINE_UPDATE:
-    return updateTimeline(state, action.timeline, fromJS(action.status), action.usePendingItems);
-  case timelineDelete.type:
-    return deleteStatus(state, action.payload.statusId, action.payload.references, action.payload.reblogOf);
+    return updateTimeline(state, action.timeline, action.status.id, action.usePendingItems);
   case TIMELINE_CLEAR:
     return clearTimeline(state, action.timeline);
-  case blockAccountSuccess.type:
-  case muteAccountSuccess.type:
-    return filterTimelines(state, action.payload.relationship, action.payload.statuses);
-  case unfollowAccountSuccess.type:
-    return filterTimeline('home', state, action.payload.relationship, action.payload.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:
     return state.update(action.timeline, initialTimeline, map => reconnectTimeline(map, action.usePendingItems));
-  case disconnectTimeline.type:
-    return state.update(
-      action.payload.timeline,
-      initialTimeline,
-      map => map.set('online', false).update(action.payload.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(TIMELINE_GAP) : items),
-    );
   case TIMELINE_MARK_AS_PARTIAL:
     return state.update(
       action.timeline,
@@ -238,6 +239,29 @@ export default function timelines(state = initialState, action) {
       })
     );
   default:
+    if (timelineDelete.match(action)) {
+      return deleteStatus(state, action.payload.statusId, action.payload.references, action.payload.reblogOf);
+    } else if (timelineDeleteStatus.match(action)) {
+      return deleteStatusFromTimeline(state, action.payload.statusId, action.payload.timelineKey);
+    } else if (blockAccountSuccess.match(action) || muteAccountSuccess.match(action)) {
+      return filterTimelines(state, action.payload.relationship, action.payload.statuses);
+    } else if (unfollowAccountSuccess.match(action)) {
+      return filterTimeline('home', state, action.payload.relationship, action.payload.statuses);
+    } else if (disconnectTimeline.match(action)) {
+      return state.update(
+        action.payload.timeline,
+        initialTimeline,
+        (map) => map.set('online', false).update(
+          action.payload.usePendingItems
+            ? 'pendingItems'
+            : 'items',
+          items => items.first()
+            ? items.unshift(TIMELINE_GAP)
+            : items
+        ),
+      );
+    }
+
     return state;
   }
 }

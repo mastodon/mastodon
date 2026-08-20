@@ -112,6 +112,11 @@ RSpec.describe JsonLdHelper do
       expect(fetch_resource_without_id_validation('https://host.test/')).to be_nil
     end
 
+    it 'returns nil if the body is not parsable' do
+      stub_request(:get, 'https://host.test/').to_return(status: 200, body: 'XXX', headers: { 'Content-Type': 'application/activity+json' })
+      expect(fetch_resource_without_id_validation('https://host.test/')).to be_nil
+    end
+
     it 'returns hash' do
       stub_request(:get, 'https://host.test/').to_return(status: 200, body: '{}', headers: { 'Content-Type': 'application/activity+json' })
       expect(fetch_resource_without_id_validation('https://host.test/')).to eq({})

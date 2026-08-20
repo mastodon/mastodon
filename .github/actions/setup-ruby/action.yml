@@ -1,4 +1,4 @@
-name: 'Setup RUby'
+name: 'Setup Ruby'
 description: 'Setup a Ruby environment ready to run the Mastodon code'
 inputs:
   ruby-version:
@@ -13,11 +13,18 @@ runs:
     - name: Install system dependencies
       shell: bash
       run: |
+        sudo sed -i s:azure\.archive\.ubuntu\.com:archive.ubuntu.com:g /etc/apt/apt-mirrors.txt
         sudo apt-get update
-        sudo apt-get install -y libicu-dev libidn11-dev libvips42 ${{ inputs.additional-system-dependencies }}
+        sudo apt-get install --no-install-recommends -y \
+          libicu-dev \
+          libidn11-dev \
+          libvips42 \
+          libheif-plugin-aomdec \
+          libheif-plugin-libde265 \
+          ${{ inputs.additional-system-dependencies }}
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@6e5d382445ae5590b7449d8b3bc8cb1c2c27f617 # v1
       with:
         ruby-version: ${{ inputs.ruby-version }}
         bundler-cache: true

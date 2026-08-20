@@ -6,6 +6,7 @@ import { showAlertForError } from 'mastodon/actions/alerts';
 import api from 'mastodon/api';
 import { Button } from 'mastodon/components/button';
 import { CopyPasteText } from 'mastodon/components/copy_paste_text';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
 import { useAppDispatch } from 'mastodon/store';
 
 interface OEmbedResponse {
@@ -17,7 +18,7 @@ const EmbedModal: React.FC<{
   onClose: () => void;
 }> = ({ id, onClose }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const intervalRef = useRef<ReturnType<typeof setInterval>>(null);
   const [oembed, setOembed] = useState<OEmbedResponse | null>(null);
   const dispatch = useAppDispatch();
 
@@ -76,9 +77,9 @@ const EmbedModal: React.FC<{
         <Button onClick={onClose}>
           <FormattedMessage id='report.close' defaultMessage='Done' />
         </Button>
-        <span className='dialog-modal__header__title'>
+        <NavigationFocusTarget as='h1' className='dialog-modal__header__title'>
           <FormattedMessage id='status.embed' defaultMessage='Get embed code' />
-        </span>
+        </NavigationFocusTarget>
         <Button secondary onClick={onClose}>
           <FormattedMessage
             id='confirmation_modal.cancel'

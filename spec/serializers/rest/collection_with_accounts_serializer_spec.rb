@@ -26,11 +26,14 @@ RSpec.describe REST::CollectionWithAccountsSerializer do
               discoverable: false,
               tag:)
   end
-
-  before do
-    accounts[1..2].each do |account|
+  let(:collection_items) do
+    accounts[1..2].map do |account|
       Fabricate(:collection_item, collection:, account:)
     end
+  end
+
+  before do
+    collection_items
     collection.reload
   end
 
@@ -55,5 +58,15 @@ RSpec.describe REST::CollectionWithAccountsSerializer do
         })
       )
     expect(subject['accounts'].size).to eq 3
+  end
+
+  context 'when collection includes pending items without account' do
+    let(:collection_items) do
+      [Fabricate(:collection_item, collection:, account: nil, object_uri: 'https://example.com/actor/1', state: :pending)]
+    end
+
+    it 'renders successfully' do
+      expect(subject).to be_a Hash
+    end
   end
 end

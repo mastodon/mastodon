@@ -2,7 +2,10 @@ import type { ComponentProps } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { accountFactoryState, relationshipsFactory } from '@/testing/factories';
+import {
+  accountFactoryImmutable,
+  relationshipsFactoryAPI,
+} from '@/testing/factories';
 
 import { Account } from './index';
 
@@ -50,6 +53,10 @@ const meta = {
       type: 'boolean',
       description: 'Whether to display the account menu or not',
     },
+    withBorder: {
+      type: 'boolean',
+      description: 'Whether to display the bottom border or not',
+    },
   },
   args: {
     name: 'Test User',
@@ -60,11 +67,12 @@ const meta = {
     defaultAction: 'mute',
     withBio: false,
     withMenu: true,
+    withBorder: true,
   },
   parameters: {
     state: {
       accounts: {
-        '1': accountFactoryState(),
+        '1': accountFactoryImmutable(),
       },
     },
   },
@@ -103,6 +111,12 @@ export const NoMenu: Story = {
   },
 };
 
+export const NoBorder: Story = {
+  args: {
+    withBorder: false,
+  },
+};
+
 export const Blocked: Story = {
   args: {
     defaultAction: 'block',
@@ -110,7 +124,7 @@ export const Blocked: Story = {
   parameters: {
     state: {
       relationships: {
-        '1': relationshipsFactory({
+        '1': relationshipsFactoryAPI({
           blocking: true,
         }),
       },
@@ -123,7 +137,7 @@ export const Muted: Story = {
   parameters: {
     state: {
       relationships: {
-        '1': relationshipsFactory({
+        '1': relationshipsFactoryAPI({
           muting: true,
         }),
       },

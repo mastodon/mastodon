@@ -10,9 +10,8 @@ import {
   insertEmojiCompose,
   uploadCompose,
 } from 'mastodon/actions/compose';
-import { pasteLinkCompose } from 'mastodon/actions/compose_typed';
+import { pasteLinkCompose, PRIVATE_QUOTE_MODAL_ID } from 'mastodon/actions/compose_typed';
 import { openModal } from 'mastodon/actions/modal';
-import { PRIVATE_QUOTE_MODAL_ID } from 'mastodon/features/ui/components/confirmation_modals/private_quote_notify';
 import { me } from 'mastodon/initial_state';
 
 import ComposeForm from '../components/compose_form';
@@ -58,7 +57,7 @@ const mapStateToProps = state => ({
     && !state.getIn(['settings', 'dismissed_banners', PRIVATE_QUOTE_MODAL_ID]),
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
-  maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
+  maxChars: state.getIn(['server', 'server', 'item', 'configuration', 'statuses', 'max_characters'], 500),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

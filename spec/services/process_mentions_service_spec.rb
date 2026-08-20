@@ -54,10 +54,10 @@ RSpec.describe ProcessMentionsService do
 
       context 'when mentioning a user several times when not saving records' do
         let!(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
-        let(:status)       { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct} @#{remote_user.acct} @#{remote_user.acct}", visibility: :public) }
+        let(:status)       { Fabricate.build(:status, account: account, text: "Hello @#{remote_user.acct} @#{remote_user.acct} @#{remote_user.acct}", visibility: :public) }
 
         it 'creates exactly one mention' do
-          subject.call(status, save_records: false)
+          subject.call(status)
 
           expect(status.mentions.size).to eq 1
         end

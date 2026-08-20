@@ -5,6 +5,9 @@ import { emojiRegexPolyfill } from '@/mastodon/polyfills';
 import { VARIATION_SELECTOR_CODE } from './constants';
 
 export function emojiLogger(segment: string) {
+  if (typeof window === 'undefined') {
+    return debug(`emojis:worker:${segment}`);
+  }
   return debug(`emojis:${segment}`);
 }
 
@@ -65,6 +68,24 @@ export function emojiToUnicodeHex(emoji: string): string {
   }
 
   return codes.join('-');
+}
+
+const CHARS_ALLOWED_AROUND_EMOJI =
+  // eslint-disable-next-line no-control-regex
+  /[>< …\u0009-\u000d\u0085\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]/;
+
+// TODO: Move to picker file when that's being built out.
+export function insertEmojiAtPosition(
+  text: string,
+  emoji: string,
+  position = text.length,
+): string {
+  const isShortcode = isCustomEmoji(emoji);
+  const needsSpace =
+    isShortcode &&
+    position > 0 &&
+    !CHARS_ALLOWED_AROUND_EMOJI.test(text[position - 1] ?? '');
+  return `${text.slice(0, position)}${needsSpace ? ' ' : ''}${emoji} ${text.slice(position)}`;
 }
 
 function supportsRegExpSets() {

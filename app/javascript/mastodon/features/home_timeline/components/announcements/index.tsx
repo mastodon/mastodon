@@ -7,6 +7,7 @@ import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import type { RenderSlideFn } from '@/mastodon/components/carousel';
 import { Carousel } from '@/mastodon/components/carousel';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
+import { useCustomEmojis } from '@/mastodon/hooks/useCustomEmojis';
 import { mascot } from '@/mastodon/initial_state';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
@@ -23,7 +24,7 @@ const announcementSelector = createAppSelector(
 
 export const Announcements: FC = () => {
   const announcements = useAppSelector(announcementSelector);
-  const emojis = useAppSelector((state) => state.custom_emojis);
+  const emojis = useCustomEmojis();
 
   const renderSlide: RenderSlideFn<{
     id: string;

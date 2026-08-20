@@ -1,11 +1,13 @@
 import { customEmojiFactory, unicodeEmojiFactory } from '@/testing/factories';
 
+import { EMOJI_MODE_TWEMOJI } from './constants';
 import * as db from './database';
 import * as loader from './loader';
 import {
   loadEmojiDataToState,
   stringToEmojiState,
   tokenizeText,
+  updateHtmlWithEmoji,
 } from './render';
 import type { EmojiStateCustom, EmojiStateUnicode } from './types';
 
@@ -107,6 +109,74 @@ describe('stringToEmojiState', () => {
   });
 });
 
+describe('updateHtmlWithEmoji', () => {
+  const defaultOptions = {
+    assetHost: '',
+    darkTheme: false,
+    mode: EMOJI_MODE_TWEMOJI,
+    locale: 'en',
+  } as const;
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  test('updates element text with emojis', async () => {
+    const element = document.createElement('div');
+    element.textContent = '😊';
+
+    vi.spyOn(db, 'loadLegacyShortcodesByShortcode').mockResolvedValueOnce(
+      undefined,
+    );
+    vi.spyOn(db, 'loadEmojiByHexcode').mockResolvedValueOnce(
+      unicodeEmojiFactory(),
+    );
+
+    await updateHtmlWithEmoji({
+      ...defaultOptions,
+      element,
+    });
+
+    const img = element.querySelector('img');
+    expect(img).toBeDefined();
+  });
+
+  test('does not update element text when mode is native', async () => {
+    const element = document.createElement('div');
+    element.textContent = '😊';
+
+    const dbShortcodeCall = vi.spyOn(db, 'loadLegacyShortcodesByShortcode');
+    const dbEmojiCall = vi.spyOn(db, 'loadEmojiByHexcode');
+
+    await updateHtmlWithEmoji({
+      ...defaultOptions,
+      mode: 'native',
+      element,
+    });
+
+    expect(dbShortcodeCall).not.toHaveBeenCalled();
+    expect(dbEmojiCall).not.toHaveBeenCalled();
+    expect(element.textContent).toBe('😊');
+  });
+
+  test('does not try to load custom emojis', async () => {
+    const element = document.createElement('div');
+    element.textContent = ':smile:';
+
+    const dbShortcodeCall = vi.spyOn(db, 'loadLegacyShortcodesByShortcode');
+    const dbEmojiCall = vi.spyOn(db, 'loadEmojiByHexcode');
+
+    await updateHtmlWithEmoji({
+      ...defaultOptions,
+      element,
+    });
+
+    expect(dbShortcodeCall).not.toHaveBeenCalled();
+    expect(dbEmojiCall).not.toHaveBeenCalled();
+    expect(element.textContent).toBe(':smile:');
+  });
+});
+
 describe('loadEmojiDataToState', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -135,6 +205,18 @@ describe('loadEmojiDataToState', () => {
       data: unicodeEmojiFactory(),
       shortcode: 'legacy_code',
     });
+  });
+
+  test('converts unicode emoji code to hexcode when loading data', async () => {
+    const dbCall = vi
+      .spyOn(db, 'loadEmojiByHexcode')
+      .mockResolvedValue(unicodeEmojiFactory());
+    const unicodeState = {
+      type: 'unicode',
+      code: '😊',
+    } as const satisfies EmojiStateUnicode;
+    await loadEmojiDataToState(unicodeState, 'en');
+    expect(dbCall).toHaveBeenCalledWith('1F60A', 'en');
   });
 
   test('returns null for custom emoji without data', async () => {

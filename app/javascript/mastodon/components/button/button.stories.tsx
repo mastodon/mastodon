@@ -74,6 +74,24 @@ export const Compact: Story = {
   play: buttonTest,
 };
 
+export const CompactSecondary: Story = {
+  args: {
+    compact: true,
+    secondary: true,
+    children: 'Compact secondary button',
+  },
+  play: buttonTest,
+};
+
+export const CompactPlain: Story = {
+  args: {
+    compact: true,
+    plain: true,
+    children: 'Compact plain button',
+  },
+  play: buttonTest,
+};
+
 export const Dangerous: Story = {
   args: {
     dangerous: true,

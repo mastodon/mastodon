@@ -15,9 +15,9 @@ class FetchLinkCardService < BaseService
     )
   }iox
 
-  def call(status)
+  def call(status, original_url = nil)
     @status       = status
-    @original_url = parse_urls
+    @original_url = original_url || parse_urls
 
     return if @original_url.nil? || @status.with_preview_card? || @status.with_media? || @status.quote.present?
 
@@ -159,7 +159,14 @@ class FetchLinkCardService < BaseService
 
     @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
     @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
-    @card.author_account = linked_account if linked_account&.can_be_attributed_from?(domain) || provider&.trendable?
+
+    if linked_account.present?
+      # There is an overlap in the two conditions when `provider` is trendable. This is on purpose to give users
+      # a heads-up before we remove the `provider&.trendable?` condition.
+      @card.author_account = linked_account if linked_account.can_be_attributed_from?(domain) || provider&.trendable?
+      @card.unverified_author_account = linked_account if linked_account.local? && !linked_account.can_be_attributed_from?(domain)
+    end
+
     @card.save_with_optional_image! unless @card.title.blank? && @card.html.blank?
   end
 end

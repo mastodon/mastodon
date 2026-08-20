@@ -1,19 +1,29 @@
 import { createRoot } from 'react-dom/client';
 
 import { IntlMessageFormat } from 'intl-messageformat';
-import type { MessageDescriptor, PrimitiveType } from 'react-intl';
+import type {
+  FormatDateOptions,
+  IntlShape,
+  MessageDescriptor,
+  PrimitiveType,
+} from 'react-intl';
 import { defineMessages } from 'react-intl';
 
 import axios from 'axios';
 import { on } from 'delegated-events';
 import { throttle } from 'lodash';
 
-import { timeAgoString } from '../mastodon/components/relative_timestamp';
-import emojify from '../mastodon/features/emoji/emoji';
-import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
-import { loadLocale, getLocale } from '../mastodon/locales';
-import { loadPolyfills } from '../mastodon/polyfills';
-import ready from '../mastodon/ready';
+import { determineEmojiMode } from '@/mastodon/features/emoji/mode';
+import { updateHtmlWithEmoji } from '@/mastodon/features/emoji/render';
+import type { InitialState } from '@/mastodon/initial_state';
+import loadKeyboardExtensions from '@/mastodon/load_keyboard_extensions';
+import { loadLocale, getLocale } from '@/mastodon/locales';
+import { loadPolyfills } from '@/mastodon/polyfills';
+import ready from '@/mastodon/ready';
+import { assetHost } from '@/mastodon/utils/config';
+import { getNestedProperty } from '@/mastodon/utils/objects';
+import { isDarkMode } from '@/mastodon/utils/theme';
+import { formatTime } from '@/mastodon/utils/time';
 
 import 'cocoon-js-vanilla';
 
@@ -32,7 +42,7 @@ const messages = defineMessages({
   },
 });
 
-function loaded() {
+async function loaded() {
   const { messages: localeData } = getLocale();
 
   const locale = document.documentElement.lang;
@@ -58,7 +68,7 @@ function loaded() {
   const formatMessage = (
     { id, defaultMessage }: MessageDescriptor,
     values?: Record<string, PrimitiveType>,
-  ) => {
+  ): string => {
     let message: string | undefined = undefined;
 
     if (id) message = localeData[id];
@@ -69,9 +79,30 @@ function loaded() {
     return messageFormat.format(values) as string;
   };
 
-  document.querySelectorAll('.emojify').forEach((content) => {
-    content.innerHTML = emojify(content.innerHTML);
-  });
+  let emojiStyle = 'auto';
+  const initialStateText =
+    document.getElementById('initial-state')?.textContent;
+  if (initialStateText) {
+    const stateEmojiStyle = getNestedProperty(
+      JSON.parse(initialStateText) as InitialState,
+      'meta',
+      'emoji_style',
+    );
+    if (typeof stateEmojiStyle === 'string') {
+      emojiStyle = stateEmojiStyle;
+    }
+  }
+  const emojiMode = determineEmojiMode(emojiStyle);
+  const darkTheme = isDarkMode();
+  for (const element of document.querySelectorAll('.emojify')) {
+    await updateHtmlWithEmoji({
+      assetHost,
+      element,
+      locale,
+      mode: emojiMode,
+      darkTheme,
+    });
+  }
 
   document
     .querySelectorAll<HTMLTimeElement>('time.formatted')
@@ -126,28 +157,32 @@ function loaded() {
     .querySelectorAll<HTMLTimeElement>('time.time-ago')
     .forEach((content) => {
       const datetime = new Date(content.dateTime);
-      const now = new Date();
 
       const timeGiven = content.dateTime.includes('T');
       content.title = timeGiven
         ? dateTimeFormat.format(datetime)
         : dateFormat.format(datetime);
-      content.textContent = timeAgoString(
-        {
-          formatMessage,
-          formatDate: (date: Date, options) =>
+      const now = Date.now();
+      content.textContent = formatTime({
+        // We don't want to show future dates.
+        timestamp: Math.min(datetime.getTime(), now),
+        now,
+        intl: {
+          formatMessage: formatMessage as IntlShape['formatMessage'],
+          formatDate: (date: Date, options: FormatDateOptions) =>
             new Intl.DateTimeFormat(locale, options).format(date),
         },
-        datetime,
-        now.getTime(),
-        now.getFullYear(),
-        timeGiven,
-      );
+        noTime: !timeGiven,
+      });
     });
 
   updateDefaultQuotePrivacyFromPrivacy(
     document.querySelector('#user_settings_attributes_default_privacy'),
   );
+
+  truncateRuleHints();
+
+  applyRailsA11yPatches();
 
   const reactComponents = document.querySelectorAll('[data-component]');
 
@@ -182,15 +217,25 @@ function loaded() {
       ({ target }) => {
         if (!(target instanceof HTMLInputElement)) return;
 
-        if (target.value && target.value.length > 0) {
+        const checkedUsername = target.value;
+        if (checkedUsername && checkedUsername.length > 0) {
           axios
-            .get('/api/v1/accounts/lookup', { params: { acct: target.value } })
+            .get('/api/v1/accounts/lookup', {
+              params: { acct: checkedUsername },
+            })
             .then(() => {
-              target.setCustomValidity(formatMessage(messages.usernameTaken));
+              // Only update the validity if the result is for the currently-typed username
+              if (checkedUsername === target.value) {
+                target.setCustomValidity(formatMessage(messages.usernameTaken));
+              }
+
               return true;
             })
             .catch(() => {
-              target.setCustomValidity('');
+              // Only update the validity if the result is for the currently-typed username
+              if (checkedUsername === target.value) {
+                target.setCustomValidity('');
+              }
             });
         } else {
           target.setCustomValidity('');
@@ -366,9 +411,9 @@ on('change', '#account_statuses_cleanup_policy_enabled', ({ target }) => {
   if (!(target instanceof HTMLInputElement) || !target.form) return;
 
   target.form
-    .querySelectorAll<
-      HTMLInputElement | HTMLSelectElement
-    >('input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select')
+    .querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+      'input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select',
+    )
     .forEach((input) => {
       setInputDisabled(input, !target.checked);
     });
@@ -415,23 +460,137 @@ on('submit', '#registration_new_user,#new_user', () => {
   });
 });
 
+// Truncate long rule hints
+
+const MAX_RULE_HINT_LENGTH = 100;
+
+function truncateRuleHints() {
+  const ruleListItems =
+    document.querySelectorAll<HTMLLIElement>('.rules-list li');
+  if (!ruleListItems.length) return;
+
+  ruleListItems.forEach((item) => {
+    toggleRuleHint(item, true);
+  });
+}
+
+function toggleRuleHint(listItem: HTMLLIElement, isInitialSetup?: boolean) {
+  const hint = listItem.querySelector<HTMLSpanElement>(
+    '.rules-list__hint-text',
+  );
+  if (!hint) return;
+
+  const hintText = hint.innerHTML;
+  const hintToggleButton = listItem.querySelector('button');
+
+  if (hintText.length > MAX_RULE_HINT_LENGTH) {
+    // Store full hint in a data attribute, then truncate it with an '…'
+    hint.dataset.fullHint = hintText;
+    hint.innerHTML = `${hintText.slice(0, MAX_RULE_HINT_LENGTH - 1).trim()}…`;
+
+    if (hintToggleButton) {
+      // Reveal toggle button if needed
+      hintToggleButton.removeAttribute('hidden');
+      hintToggleButton.setAttribute('aria-expanded', 'false');
+    }
+  } else if (!isInitialSetup) {
+    const { fullHint } = hint.dataset;
+    if (fullHint) {
+      // Restore full hint from data attribute, then delete attribute
+      hint.innerHTML = fullHint;
+      delete hint.dataset.fullHint;
+
+      hintToggleButton?.setAttribute('aria-expanded', 'true');
+      hint.parentElement?.focus();
+    }
+  }
+}
+
 on('click', '.rules-list button', ({ target }) => {
   if (!(target instanceof HTMLElement)) {
     return;
   }
 
-  const button = target.closest('button');
+  const listItem = target.closest('li');
 
-  if (!button) {
-    return;
-  }
-
-  if (button.ariaExpanded === 'true') {
-    button.ariaExpanded = 'false';
-  } else {
-    button.ariaExpanded = 'true';
+  if (listItem) {
+    toggleRuleHint(listItem);
   }
 });
+
+/**
+ * Patch accessibility issues caused by Ruby Gems that
+ * don't produce accessible markup (simple-forms & simple-navigation)
+ */
+function applyRailsA11yPatches() {
+  /**
+   * Hides the asterisk added to labels of required form fields
+   * from assistive tech. (Those fields already have the `required` attribute)
+   */
+  document
+    .querySelectorAll<HTMLElement>('.simple_form label.required abbr')
+    .forEach((element) => {
+      element.setAttribute('aria-hidden', 'true');
+    });
+
+  /**
+   * Associate form field hints with their inputs via aria-describedby
+   */
+  document
+    .querySelectorAll<HTMLDivElement>('.simple_form .field_with_hint')
+    .forEach((field) => {
+      const inputs = field.querySelectorAll<
+        HTMLInputElement | HTMLTextAreaElement
+      >("input[type='text'], input[type='checkbox'], textarea");
+
+      const hint = field.querySelector<HTMLDivElement>('.hint');
+
+      // Bail out if there are more than one input as
+      // the association can't be safely made.
+      if (inputs.length !== 1 || !inputs[0] || !hint) {
+        return;
+      }
+
+      const input = inputs[0];
+      const inputId = input.getAttribute('id');
+      const hintId = `${inputId}_hint`;
+
+      input.setAttribute('aria-describedby', hintId);
+      hint.setAttribute('id', hintId);
+    });
+
+  /**
+   * Add fieldset-like group labels ("legends") to the date-of-birth selector
+   * and groups of radio buttons
+   */
+  const groups = document.querySelectorAll<HTMLDivElement>(
+    '.simple_form .date_of_birth, .simple_form .input.with_label.radio_buttons',
+  );
+  groups.forEach((groupWrapper) => {
+    // This is the element serving as the label of the group.
+    const groupLabel = groupWrapper.querySelector<HTMLLabelElement>('label');
+    const labelWithId =
+      groupWrapper.querySelector<HTMLLabelElement>('label[for]');
+    const groupHint = groupWrapper.querySelector<HTMLDivElement>('.hint');
+
+    // We need a unique ID to generate the aria associations. If `groupLabel`
+    // doesn't have one, we just take the first label with a `for` attribute
+    // that we can find, which is fine because we'll modify it before use.
+    const inputId =
+      groupLabel?.getAttribute('for') ?? labelWithId?.getAttribute('for');
+    const labelId = `${inputId}_label`;
+    const hintId = `${inputId}_hint`;
+
+    groupLabel?.setAttribute('id', labelId);
+    groupHint?.setAttribute('id', hintId);
+
+    groupWrapper.setAttribute('role', 'group');
+    groupWrapper.setAttribute('aria-labelledby', labelId);
+    if (groupHint) {
+      groupWrapper.setAttribute('aria-describedby', hintId);
+    }
+  });
+}
 
 function main() {
   ready(loaded).catch((error: unknown) => {

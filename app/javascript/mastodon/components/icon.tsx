@@ -11,7 +11,7 @@ export type IconProp = React.FC<SVGPropsWithTitle>;
 
 interface Props extends React.SVGProps<SVGSVGElement> {
   children?: never;
-  id: string;
+  id?: string;
   icon: IconProp;
   noFill?: boolean;
 }
@@ -46,7 +46,7 @@ export const Icon: React.FC<Props> = ({
     <IconComponent
       className={classNames(
         'icon',
-        `icon-${id}`,
+        id && `icon-${id}`,
         noFill && 'icon--no-fill',
         className,
       )}

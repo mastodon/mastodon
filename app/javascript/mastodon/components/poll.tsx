@@ -15,7 +15,6 @@ import { fetchPoll, vote } from 'mastodon/actions/polls';
 import { Icon } from 'mastodon/components/icon';
 import { useIdentity } from 'mastodon/identity_context';
 import type * as Model from 'mastodon/models/poll';
-import type { Status } from 'mastodon/models/status';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { RelativeTimestamp } from './relative_timestamp';
@@ -36,16 +35,22 @@ const messages = defineMessages({
 });
 
 const isPollExpired = (expiresAt: Model.Poll['expires_at']) =>
-  new Date(expiresAt).getTime() < Date.now();
+  expiresAt !== null && new Date(expiresAt).getTime() < Date.now();
 
 interface PollProps {
   pollId: string;
-  status: Status;
+  accountId: string;
+  statusUrl: string;
   lang?: string;
   disabled?: boolean;
 }
 
-export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
+export const Poll: React.FC<PollProps> = ({
+  pollId,
+  disabled,
+  accountId,
+  statusUrl,
+}) => {
   // Third party hooks
   const poll = useAppSelector((state) => state.polls[pollId]);
   const identity = useIdentity();
@@ -64,13 +69,13 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
     return poll.expired || isPollExpired(poll.expires_at);
   }, [poll]);
   const timeRemaining = useMemo(() => {
-    if (!poll) {
+    if (!poll?.expires_at) {
       return null;
     }
     if (expired) {
       return intl.formatMessage(messages.closed);
     }
-    return <RelativeTimestamp timestamp={poll.expires_at} futureDate />;
+    return <RelativeTimestamp hasFuture timestamp={poll.expires_at} />;
   }, [expired, intl, poll]);
   const votesCount = useMemo(() => {
     if (!poll) {
@@ -110,13 +115,22 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            accountId: status.getIn(['account', 'id']),
-            url: status.get('uri'),
+            accountId,
+            intent: 'vote',
+            url: statusUrl,
           },
         }),
       );
     }
-  }, [voteDisabled, dispatch, identity, pollId, selected, status]);
+  }, [
+    voteDisabled,
+    dispatch,
+    identity,
+    pollId,
+    selected,
+    accountId,
+    statusUrl,
+  ]);
 
   const handleReveal = useCallback(() => {
     setRevealed(true);

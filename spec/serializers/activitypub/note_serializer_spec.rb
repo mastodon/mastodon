@@ -43,6 +43,26 @@ RSpec.describe ActivityPub::NoteSerializer do
       .and(not_include(reply_by_account_visibility_direct.uri)) # Replies with direct visibility
   end
 
+  context 'with tagged featured collections' do
+    let(:collection) { Fabricate(:collection) }
+
+    before do
+      parent.tagged_objects.create!(object: collection, ap_type: 'FeaturedCollection', uri: ActivityPub::TagManager.instance.uri_for(collection))
+    end
+
+    it 'has the expected shape' do
+      expect(subject).to include({
+        'type' => 'Note',
+        'tag' => include(
+          a_hash_including({
+            'type' => 'FeaturedCollection',
+            'id' => ActivityPub::TagManager.instance.uri_for(collection),
+          })
+        ),
+      })
+    end
+  end
+
   context 'with a quote' do
     let(:quoted_status) { Fabricate(:status) }
     let!(:quote) { Fabricate(:quote, status: parent, quoted_status: quoted_status, state: :accepted) }
@@ -82,6 +102,25 @@ RSpec.describe ActivityPub::NoteSerializer do
         'interactionPolicy' => a_hash_including(
           'canQuote' => a_hash_including(
             'automaticApproval' => [ActivityPub::TagManager.instance.followers_uri_for(parent.account)]
+          )
+        ),
+      })
+    end
+  end
+
+  context 'with a preview card' do
+    let(:preview_card) { Fabricate(:preview_card) }
+
+    before do
+      PreviewCardsStatus.create(status: parent, preview_card: preview_card)
+    end
+
+    it 'has the expected shape (using FEP-8967)' do
+      expect(subject).to include({
+        'type' => 'Note',
+        'attachment' => contain_exactly(
+          a_hash_including(
+            'href' => preview_card.url
           )
         ),
       })

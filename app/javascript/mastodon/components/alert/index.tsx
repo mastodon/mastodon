@@ -53,6 +53,7 @@ export const Alert: React.FC<{
           className='notification-bar__action'
           onClick={onActionClick}
           type='button'
+          aria-hidden='true'
         >
           {action}
         </button>

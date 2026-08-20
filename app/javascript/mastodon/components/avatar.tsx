@@ -5,12 +5,16 @@ import { Link } from 'react-router-dom';
 
 import { useHovering } from 'mastodon/hooks/useHovering';
 import { autoPlayGif } from 'mastodon/initial_state';
-import type { Account } from 'mastodon/models/account';
+import type { Account, AccountShapeFull } from 'mastodon/models/account';
+
+import { useAccount } from '../hooks/useAccount';
 
 interface Props {
-  account:
-    | Pick<Account, 'id' | 'acct' | 'avatar' | 'avatar_static'>
-    | undefined; // FIXME: remove `undefined` once we know for sure its always there
+  account?: Pick<
+    Account | AccountShapeFull,
+    'id' | 'acct' | 'avatar' | 'avatar_static'
+  >;
+  alt?: string;
   size?: number;
   style?: React.CSSProperties;
   inline?: boolean;
@@ -23,6 +27,7 @@ interface Props {
 
 export const Avatar: React.FC<Props> = ({
   account,
+  alt = '',
   animate = autoPlayGif,
   size = 20,
   inline = false,
@@ -53,7 +58,7 @@ export const Avatar: React.FC<Props> = ({
   }, [setError]);
 
   const avatar = (
-    <div
+    <span
       className={classNames(className, 'account__avatar', {
         'account__avatar--inline': inline,
         'account__avatar--loading': loading,
@@ -63,18 +68,18 @@ export const Avatar: React.FC<Props> = ({
       style={style}
     >
       {src && !error && (
-        <img src={src} alt='' onLoad={handleLoad} onError={handleError} />
+        <img src={src} alt={alt} onLoad={handleLoad} onError={handleError} />
       )}
 
       {counter && (
-        <div
+        <span
           className='account__avatar__counter'
           style={{ borderColor: counterBorderColor }}
         >
           {counter}
-        </div>
+        </span>
       )}
-    </div>
+    </span>
   );
 
   if (withLink) {
@@ -90,4 +95,11 @@ export const Avatar: React.FC<Props> = ({
   }
 
   return avatar;
+};
+
+export const AvatarById: React.FC<
+  { accountId: string | undefined } & Omit<Props, 'account'>
+> = ({ accountId, ...otherProps }) => {
+  const account = useAccount(accountId);
+  return <Avatar account={account} {...otherProps} />;
 };

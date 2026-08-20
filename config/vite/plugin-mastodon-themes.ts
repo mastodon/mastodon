@@ -4,7 +4,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 import type { Plugin } from 'vite';
 
 type Themes = Record<string, string>;
@@ -24,7 +24,7 @@ export function MastodonThemes(): Plugin {
 
       let entrypoints: Record<string, string> = {};
 
-      const existingInputs = userConfig.build?.rollupOptions?.input;
+      const existingInputs = userConfig.build?.rolldownOptions?.input;
 
       if (typeof existingInputs === 'string') {
         entrypoints[path.basename(existingInputs)] = existingInputs;
@@ -46,7 +46,7 @@ export function MastodonThemes(): Plugin {
 
       return {
         build: {
-          rollupOptions: {
+          rolldownOptions: {
             input: entrypoints,
           },
         },

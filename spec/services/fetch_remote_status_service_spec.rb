@@ -19,17 +19,15 @@ RSpec.describe FetchRemoteStatusService do
   context 'when protocol is :activitypub' do
     subject { described_class.new.call(note[:id], prefetched_body: prefetched_body) }
 
-    let(:prefetched_body) { Oj.dump(note) }
-
-    before do
-      subject
-    end
+    let(:prefetched_body) { note.to_json }
 
     it 'creates status' do
-      status = account.statuses.first
+      expect { subject }
+        .to change(Status, :count).by(1)
 
-      expect(status).to_not be_nil
-      expect(status.text).to eq 'Lorem ipsum'
+      expect(account.statuses.first)
+        .to be_present
+        .and have_attributes(text: 'Lorem ipsum')
     end
   end
 end

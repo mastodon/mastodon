@@ -1,20 +1,21 @@
-import { useCallback, useRef } from 'react';
-
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import classNames from 'classnames';
 import { NavLink, Switch, Route } from 'react-router-dom';
 
+import { Helmet } from '@unhead/react/helmet';
+
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
-import { Column } from 'mastodon/components/column';
-import type { ColumnRef } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
 import { SymbolLogo } from 'mastodon/components/logo';
 import { Search } from 'mastodon/features/compose/components/search';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
 
 import Links from './links';
+import redesignClasses from './redesign.module.scss';
 import Statuses from './statuses';
 import Suggestions from './suggestions';
 import Tags from './tags';
@@ -26,28 +27,27 @@ const messages = defineMessages({
 const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const { signedIn } = useIdentity();
   const intl = useIntl();
-  const columnRef = useRef<ColumnRef>(null);
   const logoRequired = useBreakpoint('full');
-
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
 
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.title)}
     >
       <ColumnHeader
         icon={'explore'}
         iconComponent={logoRequired ? SymbolLogo : TrendingUpIcon}
         title={intl.formatMessage(messages.title)}
-        onClick={handleHeaderClick}
         multiColumn={multiColumn}
+        scrollTopOnClick
       />
 
-      <div className='explore__search-header'>
+      <div
+        className={classNames(
+          'explore__search-header',
+          isRedesignEnabled() && redesignClasses.searchHeader,
+        )}
+      >
         <Search singleColumn />
       </div>
 

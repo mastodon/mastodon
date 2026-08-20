@@ -8,12 +8,13 @@ import StackTrace from 'stacktrace-js';
 import Bundle from '../components/bundle';
 import BundleColumnError from '../components/bundle_column_error';
 import { ColumnLoading } from '../components/column_loading';
+import { forceSingleColumn, hasMultiColumnPath } from '@/mastodon/initial_state';
 
 // Small wrapper to pass multiColumn to the route components
 export const WrappedSwitch = ({ multiColumn, children }) => {
   const  location = useLocation();
 
-  const decklessLocation = multiColumn && location.pathname.startsWith('/deck')
+  const decklessLocation = !forceSingleColumn && hasMultiColumnPath && location.pathname.startsWith('/deck')
     ? {...location, pathname: location.pathname.slice(5)}
     : location;
 

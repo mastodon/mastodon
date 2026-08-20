@@ -14,21 +14,14 @@ class NotifyService < BaseService
     moderation_warning
     severed_relationships
     annual_report
+    added_to_collection
+    collection_update
   ).freeze
 
   class BaseCondition
     NEW_ACCOUNT_THRESHOLD = 30.days.freeze
 
     NEW_FOLLOWER_THRESHOLD = 3.days.freeze
-
-    NON_FILTERABLE_TYPES = %i(
-      admin.sign_up
-      admin.report
-      poll
-      update
-      account_warning
-      annual_report
-    ).freeze
 
     def initialize(notification, **options)
       @recipient = notification.account
@@ -84,7 +77,7 @@ class NotifyService < BaseService
       # This queries private mentions from the recipient to the sender up in the thread.
       # This allows up to 100 messages that do not match in the thread, allowing conversations
       # involving multiple people.
-      Status.count_by_sql([<<-SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @sender.id, depth_limit: 100])
+      Status.count_by_sql([<<~SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @sender.id, depth_limit: 100])
         WITH RECURSIVE ancestors(id, in_reply_to_id, mention_id, path, depth) AS (
             SELECT s.id, s.in_reply_to_id, m.id, ARRAY[s.id], 0
             FROM statuses s
@@ -103,6 +96,10 @@ class NotifyService < BaseService
         JOIN statuses s ON s.id = ancestors.id
         WHERE ancestors.mention_id IS NOT NULL AND s.account_id = :recipient_id AND s.visibility = 3
       SQL
+    end
+
+    def from_bot?
+      @sender.bot?
     end
   end
 
@@ -127,7 +124,8 @@ class NotifyService < BaseService
         blocked_by_not_following_policy? ||
         blocked_by_not_followers_policy? ||
         blocked_by_new_accounts_policy? ||
-        blocked_by_private_mentions_policy?
+        blocked_by_private_mentions_policy? ||
+        blocked_by_bots_policy?
     end
 
     private
@@ -167,6 +165,10 @@ class NotifyService < BaseService
     def blocked_by_limited_accounts_policy?
       @policy.drop_limited_accounts? && (@options[:silenced] || @sender.silenced?) && not_following?
     end
+
+    def blocked_by_bots_policy?
+      @policy.drop_bots? && from_bot? && not_following?
+    end
   end
 
   class FilterCondition < BaseCondition
@@ -179,7 +181,8 @@ class NotifyService < BaseService
         filtered_by_not_following_policy? ||
         filtered_by_not_followers_policy? ||
         filtered_by_new_accounts_policy? ||
-        filtered_by_private_mentions_policy?
+        filtered_by_private_mentions_policy? ||
+        filtered_by_bots_policy?
     end
 
     private
@@ -202,6 +205,10 @@ class NotifyService < BaseService
 
     def filtered_by_limited_accounts_policy?
       @policy.filter_limited_accounts? && (@options[:silenced] || @sender.silenced?) && not_following?
+    end
+
+    def filtered_by_bots_policy?
+      @policy.filter_bots? && from_bot? && not_following?
     end
   end
 
@@ -259,7 +266,7 @@ class NotifyService < BaseService
   end
 
   def push_to_streaming_api!
-    redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    redis.publish("timeline:#{@recipient.id}:notifications", { event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification) }.to_json)
   end
 
   def subscribed_to_streaming_api?

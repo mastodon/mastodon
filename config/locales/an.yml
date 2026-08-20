@@ -10,7 +10,6 @@ an:
     followers:
       one: Seguidor
       other: Seguidores
-    following: Seguindo
     instance_actor_flash: Esta cuenta ye un actor virtual utilizau pa representar a lo servidor en ell mesmo y no a garra usuario individual. S'utiliza pa propositos d'a federación y no s'ha de suspender.
     last_active: zaguera connexión
     link_verified_on: La propiedat d'este vinclo estió verificada lo %{date}
@@ -543,7 +542,6 @@ an:
       action_log: Rechistro de auditoría
       action_taken_by: Acción presa per
       actions:
-        delete_description_html: Los mensaches denunciaus serán eliminaus y se rechistrará una amonestación pa aduyar-te a escalar en futuras infraccions per la mesma cuenta.
         mark_as_sensitive_description_html: Los fichers multimedia en os mensaches informaus se marcarán como sensibles y s'aplicará una amonestación pa aduyar-te a escalar las futuras infraccions d'a mesma cuenta.
         other_description_html: Veyer mas opcions pa controlar lo comportamiento d'a cuenta y personalizar la comunicación d'a cuenta denunciada.
         resolve_description_html: No se prendrán medidas contra la cuenta denunciada, no se rechistrará l'amonestación, y se zarrará l'informe.
@@ -561,7 +559,6 @@ an:
         none: Garra
       comment_description_html: 'Pa proporcionar mas información, %{name} escribió:'
       created_at: Denunciau
-      delete_and_resolve: Eliminar publicacions
       forwarded: Reninviau
       forwarded_to: Reninviau a %{domain}
       mark_as_resolved: Marcar como resuelto
@@ -586,7 +583,6 @@ an:
       resolved_msg: La denuncia s'ha resuelto correctament!
       skip_to_actions: Ir dreitament a las accions
       status: Estau
-      statuses: Conteniu denunciau
       statuses_description_html: Lo conteniu ofensivo se citará en a comunicación con a cuenta denunciada
       target_origin: Orichen d'a cuenta denunciada
       title: Reportes
@@ -1040,9 +1036,6 @@ an:
     lists: Listas
     mutes: Tiens en silencio
     storage: Almagazenamiento
-  featured_tags:
-    add_new: Anyadir nuevo
-    hint_html: "<strong>Qué son las etiquetas destacadas?</strong> S'amuestran de forma prominent en o tuyo perfil publico y permiten a los usuarios navegar per las tuyas publicacions publicas especificament baixo ixas etiquetas. Son una gran ferramienta pa fer un seguimiento de treballos creativos u prochectos a largo plazo."
   filters:
     contexts:
       account: Perfils
@@ -1259,7 +1252,6 @@ an:
     next: Proximo
     older: Mas antigo
     prev: Anterior
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ya has votau en esta enqüesta
@@ -1445,10 +1437,6 @@ an:
       too_late: Ye masiau tarde pa apelar esta amonestación
   tags:
     does_not_match_previous_name: no coincide con o nombre anterior
-  themes:
-    contrast: Mastodon (Alto contraste)
-    default: Mastodon (Fosco)
-    mastodon-light: Mastodon (claro)
   time:
     formats:
       default: "%d de %b de %Y, %H:%M"

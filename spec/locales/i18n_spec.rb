@@ -15,7 +15,7 @@ RSpec.describe 'I18n' do
 
       it 'translates to `en` correctly and without error' do
         expect { subject }.to_not raise_error
-        expect(subject).to match(/the error below/)
+        expect(subject).to include('the error below')
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe 'I18n' do
 
       it 'translates to `my` correctly and without error' do
         expect { subject }.to_not raise_error
-        expect(subject).to match(/1/)
+        expect(subject).to include('1')
       end
     end
   end

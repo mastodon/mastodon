@@ -1,43 +1,25 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`<Avatar /> > Autoplay > renders a animated avatar 1`] = `
-<div
-  className="account__avatar account__avatar--loading"
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  style={
-    {
-      "height": "100px",
-      "width": "100px",
-    }
-  }
+<span
+  class="account__avatar account__avatar--loading"
+  style="width: 100px; height: 100px;"
 >
   <img
     alt=""
-    onError={[Function]}
-    onLoad={[Function]}
     src="/animated/alice.gif"
   />
-</div>
+</span>
 `;
 
 exports[`<Avatar /> > Still > renders a still avatar 1`] = `
-<div
-  className="account__avatar account__avatar--loading"
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  style={
-    {
-      "height": "100px",
-      "width": "100px",
-    }
-  }
+<span
+  class="account__avatar account__avatar--loading"
+  style="width: 100px; height: 100px;"
 >
   <img
     alt=""
-    onError={[Function]}
-    onLoad={[Function]}
     src="/static/alice.jpg"
   />
-</div>
+</span>
 `;
