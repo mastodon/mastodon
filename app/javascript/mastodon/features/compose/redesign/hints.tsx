@@ -59,12 +59,13 @@ export const ComposeHints = () => {
           defaultMessage="You're replying to a followers-only post. People not following {user} might see your reply without the context of what you’re replying to."
           values={{ user: `@${replyFollowersHandle}` }}
         />,
+        'followers-reply',
       ),
     );
   }
 
   if (isDifferentLanguage) {
-    messages.push(<LanguageHint guess={guess} />);
+    messages.push(<LanguageHint guess={guess} key='different-language' />);
   }
 
   if (missingAlt && count === 1) {
@@ -74,6 +75,7 @@ export const ComposeHints = () => {
           id='compose.hints.missing-alt'
           defaultMessage='Your attachment is missing alt text.'
         />,
+        'missing-alt',
       ),
     );
   } else if (missingAlt) {
@@ -83,6 +85,7 @@ export const ComposeHints = () => {
           id='compose.hints.missing-alt-many'
           defaultMessage='One or more of your attachments are missing alt text.'
         />,
+        'missing-alts',
       ),
     );
   }
@@ -94,8 +97,10 @@ export const ComposeHints = () => {
   return <div>{messages}</div>;
 };
 
-const defaultWrapper = (children: React.ReactNode) => (
-  <Callout icon={WarningIcon}>{children}</Callout>
+const defaultWrapper = (children: React.ReactNode, key: string) => (
+  <Callout icon={WarningIcon} key={key}>
+    {children}
+  </Callout>
 );
 
 const LanguageHint: React.FC<{ guess: string }> = ({ guess }) => {
