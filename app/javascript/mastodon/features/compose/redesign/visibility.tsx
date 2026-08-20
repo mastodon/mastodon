@@ -27,7 +27,6 @@ import {
   MenuItem,
   MenuItemRadio,
   MenuItemCheckbox,
-  useMenuContext,
 } from '@/mastodon/components/menu';
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -155,12 +154,10 @@ const ComposeVisibilityMenu: React.FC = () => {
     [defaultQuotePolicy, dispatch],
   );
 
-  const { popover } = useMenuContext();
   const handleSwitchToMessage: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(() => {
-      popover.closeMenu();
       dispatch(changeComposeVisibility('direct'));
-    }, [dispatch, popover]);
+    }, [dispatch]);
 
   return (
     <MenuList placement='bottom-start' offset={4} maxWidth={280}>
@@ -278,14 +275,12 @@ const ComposeVisibilityMenu: React.FC = () => {
 
 const ComposeDirectMenu: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { popover } = useMenuContext();
   const handleSwitchToPost: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(() => {
       dispatch(
         openModal({ modalType: 'COMPOSER_SWITCH_TO_POST', modalProps: {} }),
       );
-      popover.closeMenu();
-    }, [dispatch, popover]);
+    }, [dispatch]);
 
   return (
     <MenuList placement='bottom-start' offset={4} maxWidth={280}>
