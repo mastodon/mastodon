@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'singleton'
-
 class InlineScriptManager
   include Singleton
   include ActionView::Helpers::TagHelper
