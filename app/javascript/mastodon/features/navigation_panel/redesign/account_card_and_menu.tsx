@@ -97,10 +97,7 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
 
           <MenuItemDivider />
 
-          <MenuItemLink
-            to={`${accountBasePath}/followers`}
-            icon={UsersThreeIcon}
-          >
+          <MenuItemLink as='a' href='/relationships' icon={UsersThreeIcon}>
             <FormattedMessage
               id='navigation_bar.followers_and_following'
               defaultMessage='Followers & Following'
