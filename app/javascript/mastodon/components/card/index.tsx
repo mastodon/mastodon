@@ -56,11 +56,11 @@ export const Card = <As extends React.ElementType>({
         <IconButton
           icon={TrashIcon}
           onClick={onDelete}
-          size={hasImage ? 'sm' : 'xs'}
-          variant={hasImage ? 'solid' : 'ghost'}
           color='destructive'
           className={classes.delete}
+          size={hasImage ? 'sm' : 'xs'}
           aria-describedby={`${id}_title`}
+          data-color-scheme={hasImage ? 'dark' : undefined}
         >
           <FormattedMessage id='card.delete' defaultMessage='Remove this' />
         </IconButton>
