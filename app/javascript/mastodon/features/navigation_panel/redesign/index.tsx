@@ -7,11 +7,11 @@ import {
   HouseIcon,
   MagnifyingGlassIcon,
   BellIcon,
-  BellRingingIcon,
   ChatCircleIcon,
   BookmarkSimpleIcon,
 } from '@phosphor-icons/react';
 
+import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
@@ -75,30 +75,45 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
                 defaultMessage='Explore'
               />
             </NavigationLink>
-            <NavigationLink
-              to='/notifications'
-              iconComponent={
-                notificationsCount > 0 ? BellRingingIcon : BellIcon
-              }
-              badgeCount={notificationsCount}
-            >
+            <NavigationLink to='/public/local' iconComponent={FediIcon}>
               <FormattedMessage
-                id='tabs_bar.notifications'
-                defaultMessage='Notifications'
+                id='tabs_bar.fediverse_feeds'
+                defaultMessage='Fediverse Feeds'
               />
-            </NavigationLink>
-            <NavigationLink to='/conversations' iconComponent={ChatCircleIcon}>
-              <FormattedMessage
-                id='tabs_bar.messages'
-                defaultMessage='Messages'
-                description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
-              />
-            </NavigationLink>
-            <NavigationLink to='/bookmarks' iconComponent={BookmarkSimpleIcon}>
-              <FormattedMessage id='tabs_bar.saved' defaultMessage='Saved' />
             </NavigationLink>
           </ul>
           <footer className={classes.footer}>
+            <ul className={classes.footerNav}>
+              <NavigationLink
+                stacked
+                to='/notifications'
+                iconComponent={BellIcon}
+                badgeCount={notificationsCount}
+              >
+                <FormattedMessage
+                  id='tabs_bar.notifications'
+                  defaultMessage='Notifications'
+                />
+              </NavigationLink>
+              <NavigationLink
+                stacked
+                to='/conversations'
+                iconComponent={ChatCircleIcon}
+              >
+                <FormattedMessage
+                  id='tabs_bar.messages'
+                  defaultMessage='Messages'
+                  description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
+                />
+              </NavigationLink>
+              <NavigationLink
+                stacked
+                to='/bookmarks'
+                iconComponent={BookmarkSimpleIcon}
+              >
+                <FormattedMessage id='tabs_bar.saved' defaultMessage='Saved' />
+              </NavigationLink>
+            </ul>
             <NavigationAccountCardAndMenu />
             <NavigationFooterLinks siteName={siteName} />
           </footer>

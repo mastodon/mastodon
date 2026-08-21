@@ -1,3 +1,5 @@
+import type { SVGProps } from 'react';
+
 import classNames from 'classnames';
 import { NavLink, matchPath, useLocation } from 'react-router-dom';
 import type { NavLinkProps } from 'react-router-dom';
@@ -9,7 +11,8 @@ import { Badge } from '@/mastodon/components/badge';
 import classes from './navigation_link.module.scss';
 
 type NavigationLinkProps = {
-  iconComponent: Icon;
+  stacked?: boolean;
+  iconComponent: Icon | React.FC<SVGProps<SVGSVGElement>>;
   badgeCount?: number;
   withSpaceAfter?: boolean;
 } & (
@@ -18,6 +21,7 @@ type NavigationLinkProps = {
 );
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
+  stacked = false,
   as = 'link',
   iconComponent: IconComp,
   badgeCount = 0,
@@ -47,12 +51,21 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
         withSpaceAfter && classes.wrapperWithSpace,
       )}
     >
-      <Comp {...otherProps} className={classes.link}>
+      <Comp
+        {...otherProps}
+        className={classNames(classes.link, stacked && classes.linkStacked)}
+      >
         <span className={classes.icon}>
           <IconComp size={20} weight={isActive ? 'fill' : undefined} />
         </span>
         <span className={classes.label}>{children}</span>
-        {badgeCount > 0 && <Badge variant='accent' label={badgeCount} />}
+        {badgeCount > 0 && (
+          <Badge
+            variant='accent'
+            label={badgeCount}
+            className={classes.badge}
+          />
+        )}
       </Comp>
     </li>
   );

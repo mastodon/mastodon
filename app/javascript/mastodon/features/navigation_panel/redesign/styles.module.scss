@@ -20,3 +20,10 @@
   padding-top: 0;
   background-color: var(--color-bg-primary);
 }
+
+.footerNav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-xs);
+}
