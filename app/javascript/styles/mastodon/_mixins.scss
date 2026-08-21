@@ -5,7 +5,8 @@
 @mixin type-heading-lg {
   font-family: var(--font-heading);
   font-size: var(--fs-3xl);
-  font-weight: bold;
+  font-weight: 500;
+  font-variation-settings: 'GEOM' 50;
   line-height: var(--lh-tighter);
   letter-spacing: var(--ls-tighter);
 }
@@ -13,7 +14,8 @@
 @mixin type-heading-md {
   font-family: var(--font-heading);
   font-size: var(--fs-2xl);
-  font-weight: bold;
+  font-weight: 500;
+  font-variation-settings: 'GEOM' 50;
   line-height: var(--lh-tighter);
   letter-spacing: var(--ls-tight);
 }
@@ -21,7 +23,8 @@
 @mixin type-heading-sm {
   font-family: var(--font-heading);
   font-size: var(--fs-xl);
-  font-weight: bold;
+  font-weight: 500;
+  font-variation-settings: 'GEOM' 50;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-tight);
 }
