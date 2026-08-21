@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# TODO: remove some time after 4.7.0
+# TODO: remove after 5.0.0
 module Account::Merging
   extend ActiveSupport::Concern
 
