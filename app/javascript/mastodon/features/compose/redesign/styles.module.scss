@@ -13,17 +13,20 @@
   min-width: 300px;
   position: relative;
   overflow: hidden;
+  z-index: 1; // To cover the sidebar
 }
 
 .background {
   mask-repeat: repeat;
-  background-color: var(--color-bg-brand-base);
+  mask-image: url('@/images/composer_message.svg');
+  mask-size: 311.36px auto;
+  background-color: var(--color-border-brand);
   opacity: 0.15;
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 800px;
-  height: 800px;
+  top: 0;
+  left: 0;
   pointer-events: none;
 }
 
