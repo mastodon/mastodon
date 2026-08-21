@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.7.0] - UNRELEASED
+## [4.7.0] - 2026-08-20
 
 ### Added
 
@@ -39,6 +39,10 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Fix autosuggestions overstaying their welcome in languages that don't use spaces (#40217 by @Gargron)
+- Fix error when processing remote actors with `null` public keys (#40194 by @ClearlyClaire)
+- Fix various off-by-one errors in statistics time ranges (#40193 by @ClearlyClaire)
+- Fix `/deck` being removed from path when resizing window (#40180 by @ClearlyClaire)
 - Fix error in `tootctl media refresh` when cleaning some incompletely processed files (#40056 by @shleeable)
 - Fix plain-text formatter not treating `<BR>` as newline (#40079 by @shleeable)
 - Fix performance of listing follow requests by adding appropriate index (#40033 by @ClearlyClaire)
