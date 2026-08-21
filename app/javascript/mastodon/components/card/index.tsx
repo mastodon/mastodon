@@ -1,5 +1,5 @@
 import type React from 'react';
-import { createContext, use, useEffect, useState } from 'react';
+import { createContext, use, useId, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -23,10 +23,12 @@ type CardProps<As extends React.ElementType> = PolymorphicProps<
   As
 >;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const CardContext = createContext((_value: boolean) => {
-  // empty
-});
+interface CardContext {
+  id: string;
+  registerImage?: (ref: HTMLImageElement) => void;
+}
+
+const CardContext = createContext<CardContext>({ id: '' });
 
 export const Card = <As extends React.ElementType>({
   as: asComp,
@@ -37,15 +39,20 @@ export const Card = <As extends React.ElementType>({
 }: CardProps<As>) => {
   const Comp = asComp ?? 'div';
 
-  const [hasImage, registerImage] = useState(false);
+  const id = useId();
+  const [hasImage, registerImage] = useState<HTMLImageElement | null>(null);
+
+  // Disable the button if this is an interactive element, including a Link component.
+  const hideButton =
+    !onDelete || asComp === 'a' || asComp === 'button' || 'to' in props;
 
   return (
     <Comp {...props} className={classNames(className, classes.root)}>
-      <CardContext.Provider value={registerImage}>
+      <CardContext.Provider value={{ id, registerImage }}>
         {children}
       </CardContext.Provider>
 
-      {onDelete && (
+      {!hideButton && (
         <IconButton
           icon={TrashIcon}
           onClick={onDelete}
@@ -53,6 +60,7 @@ export const Card = <As extends React.ElementType>({
           variant={hasImage ? 'solid' : 'ghost'}
           color='destructive'
           className={classes.delete}
+          aria-describedby={`${id}_title`}
         >
           <FormattedMessage id='card.delete' defaultMessage='Remove this' />
         </IconButton>
@@ -74,13 +82,15 @@ export const CardTitle: React.FC<CardTitleProps> = ({
   imageAlt = '',
   timestamp,
 }) => {
+  const { id } = use(CardContext);
+
   return (
     <div className={classes.title}>
       {imageSrc && (
         <img src={imageSrc} alt={imageAlt} className={classes.titleImage} />
       )}
 
-      {children}
+      <span id={`${id}_title`}>{children}</span>
 
       {timestamp && (
         // eslint-disable-next-line no-restricted-syntax -- Allow &bull;
@@ -124,16 +134,10 @@ export const CardImage: React.FC<React.ComponentPropsWithRef<'img'>> = ({
   alt,
   ...props
 }) => {
-  const registerImage = use(CardContext);
-  useEffect(() => {
-    registerImage(true);
-    return () => {
-      registerImage(false);
-    };
-  }, [registerImage]);
+  const { registerImage } = use(CardContext);
 
   return (
-    <div className={classes.image}>
+    <div className={classes.image} ref={registerImage}>
       <img {...props} alt={alt} />
     </div>
   );

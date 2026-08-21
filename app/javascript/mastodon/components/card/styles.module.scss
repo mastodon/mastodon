@@ -3,6 +3,7 @@
 .root {
   border: 0.5px solid var(--color-border-primary);
   border-radius: var(--radius-md);
+  display: block;
   overflow: hidden;
   padding: var(--space-sm);
   position: relative;
@@ -52,6 +53,8 @@ a.root {
 
 .body {
   @include mixins.type-body-compact;
+
+  overflow-wrap: break-word;
 
   a {
     color: var(--color-text-brand);
