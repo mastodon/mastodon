@@ -10,6 +10,8 @@ import {
   HeartIcon,
   UsersThreeIcon,
   ProhibitIcon,
+  GavelIcon,
+  ShieldStarIcon,
   SignOutIcon,
 } from '@phosphor-icons/react';
 
@@ -26,13 +28,17 @@ import {
 } from '@/mastodon/components/menu';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
+import {
+  canManageReports,
+  canViewAdminDashboard,
+} from '@/mastodon/permissions';
 import { useAppDispatch } from '@/mastodon/store';
 
 import classes from './account_card_and_menu.module.scss';
 
 export const NavigationAccountCardAndMenu: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { accountId } = useIdentity();
+  const { accountId, permissions } = useIdentity();
   const account = useAccount(accountId);
 
   const confirmLogout = useCallback(() => {
@@ -42,6 +48,9 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
   if (!accountId) {
     return null;
   }
+
+  const isManager = canManageReports(permissions);
+  const isAdmin = canViewAdminDashboard(permissions);
 
   const accountBasePath = `/@${account?.acct}`;
 
@@ -97,10 +106,7 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
 
           <MenuItemDivider />
 
-          <MenuItemLink
-            to={`${accountBasePath}/followers`}
-            icon={UsersThreeIcon}
-          >
+          <MenuItemLink as='a' href='/relationships' icon={UsersThreeIcon}>
             <FormattedMessage
               id='navigation_bar.followers_and_following'
               defaultMessage='Followers & Following'
@@ -113,6 +119,34 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
               defaultMessage='Blocked accounts'
             />
           </MenuItemLink>
+
+          {(isManager || isAdmin) && (
+            <>
+              <MenuItemDivider />
+
+              {isAdmin && (
+                <MenuItemLink as='a' href='/admin/dashboard' icon={GavelIcon}>
+                  <FormattedMessage
+                    id='navigation_bar.administration'
+                    defaultMessage='Administration'
+                  />
+                </MenuItemLink>
+              )}
+
+              {isManager && (
+                <MenuItemLink
+                  as='a'
+                  href='/admin/reports'
+                  icon={ShieldStarIcon}
+                >
+                  <FormattedMessage
+                    id='navigation_bar.moderation'
+                    defaultMessage='Moderation'
+                  />
+                </MenuItemLink>
+              )}
+            </>
+          )}
 
           <MenuItemDivider />
 
