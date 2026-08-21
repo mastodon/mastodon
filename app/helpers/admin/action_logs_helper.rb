@@ -39,6 +39,8 @@ module Admin::ActionLogsHelper
       link_to log.human_identifier, admin_relays_path
     when 'Tag'
       link_to log.human_identifier, admin_tag_path(log.target_id)
+    when 'ModerationSubscription'
+      link_to log.human_identifier, admin_moderation_subscription_path(log.target_id)
     end
   end
 

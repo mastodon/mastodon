@@ -1,0 +1,6 @@
+.directory__tag
+  = link_to admin_instance_path(advisory.target_key) do
+    %h4
+      = advisory.target_key
+
+      %small= t('admin.moderation_subscriptions.advisory_action', action: t("admin.moderation_subscriptions.advisory_actions.#{advisory.action}"))
