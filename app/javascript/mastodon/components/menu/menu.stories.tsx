@@ -79,7 +79,9 @@ export const Complex: Story = {
           <MenuTrigger>World settings</MenuTrigger>
 
           <MenuList {...args}>
-            <MenuItem onClick={handleMenuItemClick}>First item</MenuItem>
+            <MenuItem onClick={handleMenuItemClick} keepMenuOpenOnClick>
+              First item
+            </MenuItem>
 
             <MenuItemDivider />
 
@@ -88,6 +90,7 @@ export const Complex: Story = {
               checked={sun}
               onChange={onToggle}
               value='daytime'
+              keepMenuOpenOnClick
             >
               Daytime toggle
             </MenuItemCheckbox>
@@ -97,6 +100,7 @@ export const Complex: Story = {
                 value='none'
                 checked={precip === 'none'}
                 onChange={handlePrecipChange}
+                keepMenuOpenOnClick
               >
                 None
               </MenuItemRadio>
@@ -104,6 +108,7 @@ export const Complex: Story = {
                 value='rain'
                 checked={precip === 'rain'}
                 onChange={handlePrecipChange}
+                keepMenuOpenOnClick
               >
                 Rain
               </MenuItemRadio>
@@ -111,6 +116,7 @@ export const Complex: Story = {
                 value='snow'
                 checked={precip === 'snow'}
                 onChange={handlePrecipChange}
+                keepMenuOpenOnClick
               >
                 Snow
               </MenuItemRadio>

@@ -51,6 +51,8 @@ type MenuItemProps<As extends React.ElementType> =
     icon?: IconProp | 'reserve-space';
     trailingContent?: React.ReactNode;
     iconClassName?: string;
+    keepMenuOpenOnClick?: boolean;
+    onClick?: React.MouseEventHandler;
   };
 
 const MenuItemBase = <As extends React.ElementType>({
@@ -62,9 +64,27 @@ const MenuItemBase = <As extends React.ElementType>({
   icon,
   trailingContent,
   iconClassName,
+  keepMenuOpenOnClick,
+  onClick,
   ...props
 }: MenuItemProps<As>) => {
   const Component = AsComp ?? 'div';
+  const { popover } = useMenuContext();
+
+  const closeMenuOnClick = useCallback<React.MouseEventHandler>(
+    (e) => {
+      if (!keepMenuOpenOnClick) {
+        // Closing with a short delay feels nicer than an instant close
+        setTimeout(() => {
+          popover.closeMenu();
+        }, 100);
+      }
+
+      onClick?.(e);
+    },
+    [keepMenuOpenOnClick, onClick, popover],
+  );
+
   return (
     <Component
       {...props}
@@ -75,6 +95,7 @@ const MenuItemBase = <As extends React.ElementType>({
         active && classes.itemActive,
       )}
       aria-disabled={disabled}
+      onClick={closeMenuOnClick}
     >
       {icon && icon !== 'reserve-space' && (
         <Icon

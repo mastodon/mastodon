@@ -27,7 +27,6 @@ import {
   MenuItem,
   MenuItemRadio,
   MenuItemCheckbox,
-  useMenuContext,
 } from '@/mastodon/components/menu';
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -155,12 +154,10 @@ const ComposeVisibilityMenu: React.FC = () => {
     [defaultQuotePolicy, dispatch],
   );
 
-  const { popover } = useMenuContext();
   const handleSwitchToMessage: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(() => {
-      popover.closeMenu();
       dispatch(changeComposeVisibility('direct'));
-    }, [dispatch, popover]);
+    }, [dispatch]);
 
   return (
     <MenuList placement='bottom-start' offset={4} maxWidth={280}>
@@ -177,6 +174,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           value='public'
           checked={privacy === 'public' || privacy === 'unlisted'}
           onChange={handlePrivacyChange}
+          keepMenuOpenOnClick
         >
           <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
         </MenuItemRadio>
@@ -186,6 +184,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           value='private'
           checked={privacy === 'private'}
           onChange={handlePrivacyChange}
+          keepMenuOpenOnClick
         >
           <FormattedMessage
             id='privacy.private.short'
@@ -201,6 +200,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           checked={privacy === 'public'}
           onChange={handlePrivacyChange}
           icon={MagnifyingGlassIcon}
+          keepMenuOpenOnClick
         >
           <FormattedMessage
             id='compose.discoverable'
@@ -214,6 +214,7 @@ const ComposeVisibilityMenu: React.FC = () => {
           checked={quotePolicy !== 'nobody' && privacy !== 'private'}
           onChange={handleQuotePolicyChange}
           icon={QuotesIcon}
+          keepMenuOpenOnClick
         >
           <FormattedMessage
             id='compose.quotable'
@@ -236,6 +237,7 @@ const ComposeVisibilityMenu: React.FC = () => {
             value='public'
             checked={quotePolicy === 'public'}
             onChange={handleQuotePolicyChange}
+            keepMenuOpenOnClick
           >
             <FormattedMessage
               id='compose.visibility.quote_policy.anyone'
@@ -248,6 +250,7 @@ const ComposeVisibilityMenu: React.FC = () => {
             value='followers'
             checked={quotePolicy === 'followers'}
             onChange={handleQuotePolicyChange}
+            keepMenuOpenOnClick
           >
             <FormattedMessage
               id='compose.visibility.quote_policy.followers'
@@ -272,14 +275,12 @@ const ComposeVisibilityMenu: React.FC = () => {
 
 const ComposeDirectMenu: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { popover } = useMenuContext();
   const handleSwitchToPost: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(() => {
       dispatch(
         openModal({ modalType: 'COMPOSER_SWITCH_TO_POST', modalProps: {} }),
       );
-      popover.closeMenu();
-    }, [dispatch, popover]);
+    }, [dispatch]);
 
   return (
     <MenuList placement='bottom-start' offset={4} maxWidth={280}>
