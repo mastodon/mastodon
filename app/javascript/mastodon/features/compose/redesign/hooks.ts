@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import type { InitialStateLanguage } from '@/mastodon/initial_state';
 import { languages } from '@/mastodon/initial_state';
 import { useAppSelector } from '@/mastodon/store';
 
-const emptyArray: InitialStateLanguage[] = [];
-
-export function useLanguages() {
-  return languages ?? emptyArray;
+export function languageName(code: string) {
+  return languages?.find(([lang]) => lang === code)?.[1];
 }
 
 export function useLanguageGuess() {

@@ -1,18 +1,16 @@
 import type React from 'react';
 import { useCallback, useRef, useState } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
 import { TranslateIcon } from '@phosphor-icons/react';
 
 import { changeComposeLanguage } from '@/mastodon/actions/compose';
-import { IconButton } from '@/mastodon/components/button/redesign';
+import { Button } from '@/mastodon/components/button/redesign';
 import { PopoverMenuCard } from '@/mastodon/components/menu/card';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { LanguageDropdownMenu } from '../components/language_dropdown';
 
-import { useLanguageGuess } from './hooks';
+import { languageName, useLanguageGuess } from './hooks';
 import classes from './styles.module.scss';
 
 export const LanguageButton: React.FC = () => {
@@ -40,21 +38,23 @@ export const LanguageButton: React.FC = () => {
     setOpen(false);
   }, [open]);
 
+  const langCode = useAppSelector(
+    (state) => state.compose.get('language') as string,
+  );
+  const language = languageName(langCode);
+
   return (
     <>
-      <IconButton
-        icon={TranslateIcon}
+      <Button
+        leadingIcon={TranslateIcon}
         size='sm'
         ref={setTrigger}
         aria-expanded={open}
         onClick={handleToggle}
         onMouseDown={handleMouseDown}
       >
-        <FormattedMessage
-          id='compose.language.change'
-          defaultMessage='Change language'
-        />
-      </IconButton>
+        {language}
+      </Button>
 
       <PopoverMenuCard
         isOpen={open}
