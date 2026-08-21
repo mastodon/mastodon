@@ -250,16 +250,6 @@ module Mastodon::CLI
       say('OK', :green)
     end
 
-    desc 'fix-duplicates', 'Find duplicate remote accounts and merge them'
-    option :dry_run, type: :boolean
-    long_desc <<-LONG_DESC
-      This command is deprecated as of Mastodon v4.7.0.
-    LONG_DESC
-    def fix_duplicates
-      # TODO: remove this after 4.7.0
-      say('This command is deprecated as Mastodon v4.7.0 migrations enforce ActivityPub actor identifier uniqueness', :yellow)
-    end
-
     desc 'backup USERNAME', 'Request a backup for a user'
     long_desc <<-LONG_DESC
       Request a new backup for an account with a given USERNAME.
