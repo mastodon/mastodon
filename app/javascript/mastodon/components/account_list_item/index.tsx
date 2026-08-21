@@ -199,6 +199,12 @@ const defaultRenderButton = ({ accountId }: RenderButtonOptions) => (
 
 export const AccountListItemFollowButton: React.FC<{
   accountId: string | undefined;
-}> = ({ accountId }) => (
-  <FollowButton compact labelLength='short' accountId={accountId} />
+  reference?: string;
+}> = ({ accountId, reference }) => (
+  <FollowButton
+    compact
+    labelLength='short'
+    accountId={accountId}
+    reference={reference}
+  />
 );
