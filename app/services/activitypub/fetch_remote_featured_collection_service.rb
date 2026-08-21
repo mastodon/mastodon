@@ -13,14 +13,22 @@ class ActivityPub::FetchRemoteFeaturedCollectionService < BaseService
     return unless supported_context?(json)
     return unless json['type'] == 'FeaturedCollection'
 
-    # Fetching an unknown account should eventually also fetch its
-    # collections, so it should be OK to only handle known accounts here
-    account = Account.find_by(uri: json['attributedTo'])
+    # A collection can be resolved on its own (e.g. through authorize_interaction)
+    # before its account is known, so the account is fetched if necessary
+    account = account_from_uri(value_or_id(first_of_value(json['attributedTo'])), request_id)
     return unless account
 
     existing_collection = account.collections.find_by(uri:)
     return existing_collection if existing_collection.present?
 
     ActivityPub::ProcessFeaturedCollectionService.new.call(account, json, request_id:)
+  end
+
+  private
+
+  def account_from_uri(uri, request_id)
+    account = ActivityPub::TagManager.instance.uri_to_resource(uri, Account)
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(uri, request_id:)
+    account
   end
 end

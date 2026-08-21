@@ -61,4 +61,47 @@ RSpec.describe ActivityPub::FetchRemoteFeaturedCollectionService do
       expect(subject.call(uri)).to be_nil
     end
   end
+
+  context 'when the attributed account is not known yet' do
+    let(:actor_uri) { 'https://example.com/alice' }
+    let(:response) do
+      {
+        '@context' => 'https://www.w3.org/ns/activitystreams',
+        'id' => uri,
+        'type' => 'FeaturedCollection',
+        'name' => 'Incredible people',
+        'attributedTo' => actor_uri,
+        'sensitive' => false,
+        'discoverable' => true,
+        'totalItems' => 0,
+      }
+    end
+    let(:actor) do
+      {
+        '@context': 'https://www.w3.org/ns/activitystreams',
+        id: actor_uri,
+        type: 'Person',
+        preferredUsername: 'alice',
+        inbox: 'https://example.com/alice/inbox',
+      }
+    end
+    let(:webfinger) do
+      { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: actor_uri, type: 'application/activity+json' }] }
+    end
+
+    before do
+      stub_request(:get, actor_uri)
+        .to_return(body: actor.to_json, headers: { 'Content-Type': 'application/activity+json' })
+      stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com')
+        .to_return(body: webfinger.to_json, headers: { 'Content-Type': 'application/jrd+json' })
+    end
+
+    it 'fetches the account and creates the collection' do
+      collection = nil
+      expect { collection = subject.call(uri) }.to change(Collection, :count).by(1)
+
+      expect(collection.uri).to eq uri
+      expect(collection.account.uri).to eq actor_uri
+    end
+  end
 end
