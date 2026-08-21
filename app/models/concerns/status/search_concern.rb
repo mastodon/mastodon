@@ -17,6 +17,7 @@ module Status::SearchConcern
       ids += local_favorited.pluck(:id)
       ids += local_reblogged.pluck(:id)
       ids += local_bookmarked.pluck(:id)
+      ids += local_replied.pluck(:id)
       ids += preloadable_poll.local_voters.pluck(:id) if preloadable_poll.present?
 
       ids.uniq
