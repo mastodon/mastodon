@@ -108,7 +108,7 @@ class Keypair < ApplicationRecord
       account:,
       uri: uri.presence || ActivityPub::TagManager.instance.key_uri_for(account),
       public_key: account.public_key,
-      private_key: account.private_key,
+      private_key: nil,
       type: :rsa
     )
   end
