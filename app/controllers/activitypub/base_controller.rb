@@ -7,8 +7,13 @@ class ActivityPub::BaseController < Api::BaseController
   skip_before_action :require_authenticated_user!
   skip_before_action :require_not_suspended!
   skip_around_action :set_locale
+  before_action :set_federated
 
   private
+
+  def set_federated
+    @account.update!(has_federated: true) if @account.present? && !@account.has_federated?
+  end
 
   def skip_temporary_suspension_response?
     false
