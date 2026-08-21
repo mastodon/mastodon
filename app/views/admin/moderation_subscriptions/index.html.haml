@@ -1,0 +1,16 @@
+- content_for(:heading) do
+  .content__heading__row
+    %h1= t('admin.moderation_subscriptions.title')
+
+    .content__heading__actions
+      = link_to t('admin.moderation_subscriptions.add_new'), new_admin_moderation_subscription_path, class: 'button', id: 'add-subscription-button' if can?(:create, :moderation_subscription)
+
+  = render 'admin/moderation_subscriptions/shared/links'
+
+%hr.spacer/
+
+- if @moderation_subscriptions.empty?
+  .muted-hint.center-text
+    = t 'admin.moderation_subscriptions.empty'
+- else
+  = render partial: 'moderation_subscription', collection: @moderation_subscriptions

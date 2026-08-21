@@ -38,4 +38,31 @@ class ModerationSubscription < ApplicationRecord
     accept: 0,
     reject: 1,
   }, suffix: :action
+
+  def to_log_human_identifier
+    name
+  end
+
+  def apply_conditions
+    if apply_automatically?
+      preserve_relationships? ? :safely : :always
+    else
+      :never
+    end
+  end
+
+  def apply_conditions=(conditions)
+    case conditions.to_s
+    when 'never'
+      self.apply_automatically = false
+    when 'always'
+      self.apply_automatically = true
+      self.preserve_relationships = false
+    when 'safely'
+      self.apply_automatically = true
+      self.preserve_relationships = true
+    else
+      raise ArgumentError
+    end
+  end
 end

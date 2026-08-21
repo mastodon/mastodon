@@ -62,6 +62,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :instances, safe_join([material_symbol('cloud'), t('admin.instances.title')]), admin_instances_path(limited: limited_federation_mode? ? nil : '1'), highlights_on: %r{/admin/instances|/admin/domain_blocks|/admin/domain_allows|/admin/export_domain_blocks}, if: lambda {
         current_user.can?(:manage_federation)
       }
+      s.item :moderation_subscriptions, safe_join([material_symbol('cloud_download'), t('admin.moderation_subscriptions.title')]), admin_moderation_subscriptions_path, highlights_on: %r{/admin/moderation_subscriptions|/admin/moderation_suggestions}, if: -> { current_user.can?(:manage_federation) }
       s.item :email_domain_blocks, safe_join([material_symbol('mail'), t('admin.email_domain_blocks.title')]), admin_email_domain_blocks_path, highlights_on: %r{/admin/email_domain_blocks}, if: -> { current_user.can?(:manage_blocks) }
       s.item :username_blocks, safe_join([material_symbol('supervised_user_circle_off'), t('admin.username_blocks.title')]), admin_username_blocks_path, highlights_on: %r{/admin/username_blocks}, if: -> { current_user.can?(:manage_blocks) }
       s.item :ip_blocks, safe_join([material_symbol('hide_source'), t('admin.ip_blocks.title')]), admin_ip_blocks_path, highlights_on: %r{/admin/ip_blocks}, if: -> { current_user.can?(:manage_blocks) }
