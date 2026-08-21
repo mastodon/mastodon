@@ -164,6 +164,13 @@ export const MenuItemLink: React.FC<MenuItemLinkProps> = ({
 
   const Wrapper = type === 'actions' ? Fragment : 'li';
   const asElement = (as ?? 'link') === 'link' ? NavLink : 'a';
+  const externalLinkProps =
+    as === 'a'
+      ? {
+          target: '_blank',
+          rel: 'noopener',
+        }
+      : undefined;
 
   return (
     <Wrapper>
@@ -171,6 +178,7 @@ export const MenuItemLink: React.FC<MenuItemLinkProps> = ({
         as={asElement}
         role={type === 'actions' ? 'menuitem' : undefined}
         onKeyDown={handleSpacebarPress}
+        {...externalLinkProps}
         {...props}
       >
         {children}
