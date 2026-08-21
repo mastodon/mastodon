@@ -9,12 +9,13 @@
 }
 
 .link {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   width: 100%;
   padding: var(--space-xs);
-  gap: var(--space-sm);
+  column-gap: var(--space-sm);
   border-radius: var(--radius-sm);
   border: none;
   color: inherit;
@@ -35,14 +36,46 @@
   &:focus-visible {
     outline: var(--outline-focus-default);
   }
+
+  &:focus {
+    // Override silly global focus style
+    border-radius: var(--radius-sm);
+  }
+}
+
+.linkStacked {
+  flex-direction: column;
+  row-gap: var(--space-2xs);
+  padding-inline: 0;
+  @include mixins.type-micro;
 }
 
 .icon {
   width: 20px;
   height: 20px;
+
+  & > svg {
+    width: inherit;
+    height: inherit;
+  }
 }
 
 .label {
   min-width: 0;
   flex-grow: 1;
+  flex-shrink: 1;
+  overflow-wrap: break-word;
+  hyphens: auto;
+
+  .linkStacked & {
+    text-align: center;
+  }
+}
+
+.badge {
+  .linkStacked & {
+    position: absolute;
+    top: var(--space-3xs);
+    inset-inline-start: calc(50% + var(--space-3xs));
+  }
 }
