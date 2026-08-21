@@ -24,7 +24,7 @@ import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
 import { MastodonServiceWorkerChunkPaths } from './config/vite/plugin-sw-chunk-paths';
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 
-const jsRoot = path.resolve(__dirname, 'app/javascript');
+const jsRoot = path.resolve(import.meta.dirname, 'app/javascript');
 
 const cssAliasClasses: ReadonlyArray<string> = ['components', 'features'];
 
@@ -40,7 +40,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
   return {
     root: jsRoot,
     base: `/${outDirName}/`,
-    envDir: __dirname,
+    envDir: import.meta.dirname,
     resolve: {
       tsconfigPaths: true,
       alias: {
