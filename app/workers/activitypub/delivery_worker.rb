@@ -79,7 +79,7 @@ class ActivityPub::DeliveryWorker
   end
 
   def stoplight_wrapper
-    Stoplight(
+    StoplightRegistry.fetch(
       @inbox_url,
       cool_off_time: STOPLIGHT_COOL_OFF_TIME,
       threshold: STOPLIGHT_FAILURE_THRESHOLD
