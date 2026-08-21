@@ -1,0 +1,36 @@
+.fields-group
+  = form.input :name,
+               label: t('admin.moderation_subscriptions.name'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :url,
+               label: t('admin.moderation_subscriptions.url'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :priority,
+               label: t('admin.moderation_subscriptions.priority'),
+               hint: 'TODO',
+               wrapper: :with_label
+
+.fields-group
+  = form.input :list_action,
+               collection: ['accept', 'reject'],
+               include_blank: I18n.t('admin.moderation_subscriptions.list_actions.default'),
+               label_method: ->(type) { t("admin.moderation_subscriptions.list_actions.#{type}") },
+               label: t('admin.moderation_subscriptions.list_action'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :apply_conditions,
+               collection: ['never', 'safely', 'always'],
+               include_blank: false,
+               label_method: ->(type) { t("admin.moderation_subscriptions.apply_conditions.#{type}") },
+               label: t('admin.moderation_subscriptions.apply_automatically'),
+               wrapper: :with_label
+
+.fields-group
+  = form.input :retract_automatically,
+               as: :boolean,
+               wrapper: :with_label

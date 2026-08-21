@@ -110,6 +110,9 @@ namespace :admin do
     resources :moderation_notes, module: :instances, only: [:create, :destroy]
   end
 
+  resources :moderation_subscriptions
+  resources :moderation_suggestions
+
   resources :rules, only: [:index, :new, :create, :edit, :update, :destroy] do
     member do
       post :move_up

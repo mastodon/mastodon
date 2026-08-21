@@ -23,7 +23,7 @@
     .fields-group
       = ff.input :always_send_emails, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_always_send_emails'), hint: I18n.t('simple_form.hints.defaults.setting_always_send_emails')
 
-    - if current_user.can?(:manage_reports, :manage_appeals, :manage_users, :manage_taxonomies)
+    - if current_user.can?(:manage_reports, :manage_appeals, :manage_users, :manage_taxonomies, :manage_federation)
       %h2= t 'notifications.moderation_emails'
 
       .fields-group
@@ -31,6 +31,7 @@
         = ff.input :'notification_emails.appeal', as: :boolean, wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.appeal') if current_user.can?(:manage_appeals)
         = ff.input :'notification_emails.pending_account', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.pending_account') if current_user.can?(:manage_users)
         = ff.input :'notification_emails.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.trending_tag') if current_user.can?(:manage_taxonomies)
+        = ff.input :'notification_emails.moderation_suggestions', wrapper: :with_label, label: I18n.t('simple_form.labels.notification_emails.moderation_suggestions') if current_user.can?(:manage_federation)
 
     - if SoftwareUpdate.check_enabled? && current_user.can?(:view_devops)
       %h2= t 'notifications.administration_emails'

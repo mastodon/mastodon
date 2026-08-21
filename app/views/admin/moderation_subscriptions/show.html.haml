@@ -1,0 +1,41 @@
+- content_for :page_title do
+  = I18n.t('admin.moderation_subscriptions.show_title', name: @moderation_subscription.name)
+
+.table-wrapper
+  %table.table.inline-table
+    %tbody
+      %tr
+        %th= t('admin.moderation_subscriptions.priority')
+        %td= @moderation_subscription.priority
+      %tr
+        %th= t('admin.moderation_subscriptions.type')
+        %td= t("admin.moderation_subscriptions.types.#{@moderation_subscription.type}")
+      %tr
+        %th= t('admin.moderation_subscriptions.url')
+        %td= @moderation_subscription.url
+      %tr
+        %th= t('admin.moderation_subscriptions.list_action')
+        %td= t("admin.moderation_subscriptions.list_actions.#{@moderation_subscription.list_action}")
+      %tr
+        %th= t('admin.moderation_subscriptions.apply_automatically')
+        %td= t("admin.moderation_subscriptions.apply_conditions.#{@moderation_subscription.apply_conditions}")
+      %tr
+        %th= t('admin.moderation_subscriptions.retract_automatically')
+        %td= @moderation_subscription.retract_automatically? ? t('admin.moderation_subscriptions.apply_conditions.always') : t('admin.moderation_subscriptions.apply_conditions.never')
+      - if @moderation_subscription.last_synced_at.present?
+        %tr
+          %th= t('admin.moderation_subscriptions.last_synced_at')
+          %td
+            %time.formatted{ datetime: @moderation_subscription.last_synced_at.iso8601 }= @moderation_subscription.last_synced_at
+
+-# TODO: actions
+
+%hr.spacer/
+
+- if @subscribed_advisories.empty?
+  .muted-hint.center-text
+    = t 'admin.moderation_subscriptions.empty_subscription'
+- else
+  = render partial: 'advisory', collection: @subscribed_advisories
+
+= paginate @subscribed_advisories

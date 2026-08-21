@@ -1,0 +1,22 @@
+- content_for(:heading) do
+  .content__heading__row
+    %h1= t('admin.moderation_subscriptions.title')
+
+    .content__heading__actions
+      = link_to t('admin.moderation_subscriptions.add_new'), new_admin_moderation_subscription_path, class: 'button', id: 'add-subscription-button'
+
+  .content__heading__tabs
+    = render_navigation renderer: :links do |primary|
+      :ruby
+        primary.item :subscriptions, safe_join([material_symbol('edit'), t('admin.moderation_suggestions.tabs.subscriptions')]), admin_moderation_subscriptions_path
+        primary.item :suggestions, safe_join([material_symbol('flag'), t('admin.moderation_suggestions.tabs.suggestions')]), admin_moderation_suggestions_path
+        primary.item :logs, safe_join([material_symbol('list'), t('admin.moderation_suggestions.tabs.logs')]), '/admin/moderation_subscriptions/logs'
+
+
+%hr.spacer/
+
+- if @moderation_subscriptions.empty?
+  .muted-hint.center-text
+    = t 'admin.moderation_subscriptions.empty'
+- else
+  = render partial: 'moderation_subscription', collection: @moderation_subscriptions
