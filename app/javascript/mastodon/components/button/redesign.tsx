@@ -3,8 +3,8 @@ import type { ReactNode } from 'react';
 import { useCallback } from 'react';
 
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
-import type { NavLinkProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import type { LinkProps } from 'react-router-dom';
 
 import { CircularProgress } from '../circular_progress';
 import type { IconProp } from '../icon';
@@ -30,7 +30,7 @@ type ButtonButtonProps = { as?: 'button' } & ButtonPropsBase<'button'> &
 type ButtonAnchorProps = { as: 'a' } & ButtonPropsBase<'a'> &
   Omit<React.ComponentPropsWithRef<'a'>, 'children'>;
 type ButtonLinkProps = { as: 'link' } & ButtonPropsBase<'a'> &
-  Omit<NavLinkProps, 'children'>;
+  Omit<LinkProps, 'children'>;
 
 type ButtonProps = ButtonButtonProps | ButtonAnchorProps | ButtonLinkProps;
 
@@ -64,7 +64,7 @@ const BaseButton: React.FC<ButtonProps> = ({
 
   let Comp: React.ElementType = asComp;
   if (asComp === 'link') {
-    Comp = NavLink;
+    Comp = Link;
   }
 
   return (
