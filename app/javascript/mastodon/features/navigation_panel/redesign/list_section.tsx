@@ -7,10 +7,7 @@ import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 import classes from './list_section.module.scss';
 
 export const ListSection: React.FC<{
-  title: {
-    label: ReactNode;
-    link: MastodonLocationDescriptor;
-  };
+  title: ReactNode;
   action?: {
     label: ReactNode;
     link: MastodonLocationDescriptor;
@@ -23,16 +20,7 @@ export const ListSection: React.FC<{
   return (
     <li className={classes.root}>
       <div className={classes.titleWrapper}>
-        <Button
-          as='link'
-          exact
-          to={title.link}
-          size='xs'
-          variant='ghost'
-          className={classes.title}
-        >
-          {title.label}
-        </Button>
+        <span className={classes.title}>{title}</span>
         {action && (
           <Button
             as='link'

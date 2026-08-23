@@ -120,15 +120,12 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
               />
             </NavigationLink>
             <ListSection
-              title={{
-                label: (
-                  <FormattedMessage
-                    id='tabs_bar.custom_feeds'
-                    defaultMessage='Custom feeds'
-                  />
-                ),
-                link: '/lists',
-              }}
+              title={
+                <FormattedMessage
+                  id='tabs_bar.custom_feeds'
+                  defaultMessage='Custom feeds'
+                />
+              }
               action={{
                 label: (
                   <FormattedMessage
@@ -158,11 +155,17 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
 
             {followedHashtags.length > 0 && (
               <ListSection
-                title={{
+                title={
+                  <FormattedMessage
+                    id='navigation_bar.followed_tags'
+                    defaultMessage='Followed hashtags'
+                  />
+                }
+                action={{
                   label: (
                     <FormattedMessage
-                      id='navigation_bar.followed_tags'
-                      defaultMessage='Followed hashtags'
+                      id='navigation_bar.followed_tags_view_all'
+                      defaultMessage='View all'
                     />
                   ),
                   link: '/followed_tags',
