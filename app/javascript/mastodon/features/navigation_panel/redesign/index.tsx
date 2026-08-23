@@ -168,7 +168,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
                   link: '/followed_tags',
                 }}
               >
-                {followedHashtags.slice(0, 5).map((tag) => (
+                {followedHashtags.slice(0, 4).map((tag) => (
                   <NavigationLink key={tag.name} to={`/tags/${tag.name}`}>
                     #{tag.name}
                   </NavigationLink>
