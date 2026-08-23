@@ -14,6 +14,7 @@ import {
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchLists } from '@/mastodon/actions/lists';
+import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
 import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
@@ -49,6 +50,19 @@ function useCustomFeeds() {
   };
 }
 
+function useFollowedHashtags() {
+  const dispatch = useAppDispatch();
+  const { tags, stale } = useAppSelector((state) => state.followedTags);
+
+  useEffect(() => {
+    if (stale) {
+      void dispatch(fetchFollowedHashtags());
+    }
+  }, [dispatch, stale]);
+
+  return { followedHashtags: tags };
+}
+
 export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
   siteName,
 }) => {
@@ -64,6 +78,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
   }, [dispatch]);
 
   const { customFeeds } = useCustomFeeds();
+  const { followedHashtags } = useFollowedHashtags();
 
   return (
     <nav
@@ -140,6 +155,26 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
                 </NavigationLink>
               ))}
             </ListSection>
+
+            {followedHashtags.length > 0 && (
+              <ListSection
+                title={{
+                  label: (
+                    <FormattedMessage
+                      id='navigation_bar.followed_tags'
+                      defaultMessage='Followed hashtags'
+                    />
+                  ),
+                  link: '/followed_tags',
+                }}
+              >
+                {followedHashtags.slice(0, 5).map((tag) => (
+                  <NavigationLink key={tag.name} to={`/tags/${tag.name}`}>
+                    #{tag.name}
+                  </NavigationLink>
+                ))}
+              </ListSection>
+            )}
           </ul>
           <footer className={classes.footer}>
             <ul className={classes.footerNav}>
