@@ -149,7 +149,11 @@ export const ColumnsArea = forwardRef<
           <div className='columns-area columns-area--mobile'>{children}</div>
         </main>
 
-        <CollapsibleNavigationPanel />
+        {isRedesignEnabled() ? (
+          <div className='columns-area__panels__pane' />
+        ) : (
+          <CollapsibleNavigationPanel />
+        )}
       </div>
     );
   }
