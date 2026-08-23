@@ -20,6 +20,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
+import { ListSection } from './list_section';
 import { NavigationLink } from './navigation_link';
 import classes from './styles.module.scss';
 
@@ -75,12 +76,38 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
                 defaultMessage='Explore'
               />
             </NavigationLink>
-            <NavigationLink to='/public/local' iconComponent={FediIcon}>
+            <NavigationLink
+              withSpaceAfter
+              to='/public/local'
+              iconComponent={FediIcon}
+            >
               <FormattedMessage
                 id='tabs_bar.fediverse_feeds'
                 defaultMessage='Fediverse Feeds'
               />
             </NavigationLink>
+            <ListSection
+              title={{
+                label: (
+                  <FormattedMessage
+                    id='tabs_bar.custom_feeds'
+                    defaultMessage='Custom feeds'
+                  />
+                ),
+                link: '/lists',
+              }}
+              action={{
+                label: (
+                  <FormattedMessage
+                    id='tabs_bar.create_custom_feed'
+                    defaultMessage='Create feed'
+                  />
+                ),
+                link: '/lists/new',
+              }}
+            >
+              List
+            </ListSection>
           </ul>
           <footer className={classes.footer}>
             <ul className={classes.footerNav}>

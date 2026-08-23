@@ -1,0 +1,20 @@
+@use '@/styles/mastodon/mixins';
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  padding-inline: var(--space-xs);
+  padding-block: calc(var(--space-xs) - var(--space-3xs));
+}
+
+.title {
+  --fg: var(--color-text-secondary);
+
+  // Ensure text is flush against inline-start edge
+  // by subtracting the button's horizontal padding
+  margin-inline-start: calc(-1 * (var(--space-2xs) + var(--space-3xs)));
+}
+
+.action {
+  margin-inline-start: auto;
+}
