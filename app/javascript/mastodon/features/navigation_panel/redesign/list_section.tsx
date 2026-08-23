@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 
 import { Button } from '@/mastodon/components/button/redesign';
 import type { MastodonLocationDescriptor } from '@/mastodon/components/router';
+import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 
 import classes from './list_section.module.scss';
 
@@ -15,12 +16,16 @@ export const ListSection: React.FC<{
     link: MastodonLocationDescriptor;
   };
   children: ReactNode;
-}> = ({ title, action, children }) => {
+  emptyMessage?: ReactNode;
+}> = ({ title, action, children, emptyMessage }) => {
+  const hasContent = hasReactChildren(children);
+
   return (
-    <li>
+    <li className={classes.root}>
       <div className={classes.titleWrapper}>
         <Button
           as='link'
+          exact
           to={title.link}
           size='xs'
           variant='ghost'
@@ -39,7 +44,11 @@ export const ListSection: React.FC<{
           </Button>
         )}
       </div>
-      <ul>{children}</ul>
+      {hasContent ? (
+        <ul>{children}</ul>
+      ) : (
+        emptyMessage && <div className={classes.emptyState}>{emptyMessage}</div>
+      )}
     </li>
   );
 };

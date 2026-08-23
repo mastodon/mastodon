@@ -1,5 +1,11 @@
 @use '@/styles/mastodon/mixins';
 
+.root {
+  &:not(:last-child) {
+    margin-bottom: var(--space-md);
+  }
+}
+
 .titleWrapper {
   display: flex;
   align-items: center;
@@ -13,8 +19,30 @@
   // Ensure text is flush against inline-start edge
   // by subtracting the button's horizontal padding
   margin-inline-start: calc(-1 * (var(--space-2xs) + var(--space-3xs)));
+
+  &[aria-current] {
+    --fg: var(--color-text-primary);
+    --bg: var(--color-bg-highlight);
+
+    // Add a visual selection indicator
+    &::after {
+      content: '';
+      display: block;
+      width: 0.5em;
+      height: 0.5em;
+      border-radius: var(--radius-round);
+      background-color: var(--color-text-primary);
+      margin-inline-start: var(--space-3xs);
+    }
+  }
 }
 
 .action {
   margin-inline-start: auto;
+}
+
+.emptyState {
+  @include mixins.type-label-sm;
+
+  padding-inline: var(--space-xs);
 }

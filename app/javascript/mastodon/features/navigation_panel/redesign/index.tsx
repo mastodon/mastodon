@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -6,14 +6,17 @@ import {
   PenNibIcon,
   HouseIcon,
   MagnifyingGlassIcon,
+  RssSimpleIcon,
   BellIcon,
   ChatCircleIcon,
   BookmarkSimpleIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
+import { fetchLists } from '@/mastodon/actions/lists';
 import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
+import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
@@ -33,6 +36,19 @@ const messages = defineMessages({
   },
 });
 
+function useCustomFeeds() {
+  const dispatch = useAppDispatch();
+  const customFeeds = useAppSelector((state) => getOrderedLists(state));
+
+  useEffect(() => {
+    void dispatch(fetchLists());
+  }, [dispatch]);
+
+  return {
+    customFeeds,
+  };
+}
+
 export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
   siteName,
 }) => {
@@ -46,6 +62,8 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
   const openComposer = useCallback(() => {
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
+
+  const { customFeeds } = useCustomFeeds();
 
   return (
     <nav
@@ -105,8 +123,22 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
                 ),
                 link: '/lists/new',
               }}
+              emptyMessage={
+                <FormattedMessage
+                  id='tabs_bar.custom_feeds_empty'
+                  defaultMessage='You have no custom feeds yet.'
+                />
+              }
             >
-              List
+              {customFeeds.map((feed) => (
+                <NavigationLink
+                  key={feed.id}
+                  to={`/lists/${feed.id}`}
+                  iconComponent={RssSimpleIcon}
+                >
+                  {feed.title}
+                </NavigationLink>
+              ))}
             </ListSection>
           </ul>
           <footer className={classes.footer}>
