@@ -158,7 +158,7 @@ const Card: React.FC<{
         )}
       </div>
 
-      <FollowButton accountId={id} />
+      <FollowButton accountId={id} reference='inline_suggestions' />
     </div>
   );
 };
