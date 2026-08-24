@@ -98,7 +98,7 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
     end
 
     it 'filters by domain' do
-      fill_in 'domain', with: 'example.com'
+      fill_in 'by_domain', with: 'example.com'
       click_on I18n.t('admin.email_domain_blocks.search')
 
       expect(page).to have_text('example.com')
@@ -106,7 +106,7 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
     end
 
     it 'shows empty page when no such domains are blocked' do
-      fill_in 'domain', with: 'mydomain.com'
+      fill_in 'by_domain', with: 'mydomain.com'
       click_on I18n.t('admin.email_domain_blocks.search')
 
       expect(page).to have_no_text('mydomain.com')
@@ -114,7 +114,7 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
     end
 
     it 'returns to the list when resetting the search' do
-      fill_in 'domain', with: 'example.com'
+      fill_in 'by_domain', with: 'example.com'
       click_on I18n.t('admin.email_domain_blocks.search')
       click_on I18n.t('admin.email_domain_blocks.reset')
 
