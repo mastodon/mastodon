@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 
-import type { Merge } from 'type-fest';
+import type { PolymorphicProps } from '@/types/polymorphic';
 
 import { Button } from '../button/redesign';
 
@@ -243,18 +243,11 @@ export const Menu: React.FC<MenuProps> = ({ type = 'actions', children }) => {
   return <MenuContext value={contextValue}>{children}</MenuContext>;
 };
 
-export type MenuTriggerProps<As extends React.ElementType> = Merge<
-  React.ComponentProps<As>,
-  {
-    as?: As;
-  }
->;
-
 export const MenuTrigger = <As extends React.ElementType>({
   as: asComp,
   children,
   ...props
-}: MenuTriggerProps<As>) => {
+}: PolymorphicProps<object, As>) => {
   const Component = asComp ?? Button;
   const { menuTriggerProps } = useMenuContext();
   return (

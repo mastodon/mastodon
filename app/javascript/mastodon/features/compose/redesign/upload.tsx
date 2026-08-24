@@ -76,7 +76,7 @@ export const ComposeUpload: React.FC<{
           as={IconButton}
           icon={DotsThreeIcon}
           size='sm'
-          color='neutral'
+          variant='solid'
           className={classes.mediaMenuButton}
         >
           <FormattedMessage

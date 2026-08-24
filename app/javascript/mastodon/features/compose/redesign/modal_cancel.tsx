@@ -52,13 +52,13 @@ const ComposerModalCancelConfirm: React.FC<{ openNew?: boolean }> = ({
       />
 
       <ModalActions>
-        <Button color='destructive' onClick={handleDelete}>
+        <Button variant='solid' color='destructive' onClick={handleDelete}>
           <FormattedMessage
             id='compose.cancel_modal.delete'
             defaultMessage='Delete draft'
           />
         </Button>
-        <Button color='neutral' onClick={handleContinue}>
+        <Button variant='solid' onClick={handleContinue}>
           <FormattedMessage
             id='compose.cancel_modal.continue'
             defaultMessage='Continue draft'

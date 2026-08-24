@@ -54,6 +54,7 @@ export const Card = <As extends React.ElementType>({
 
       {!hideButton && (
         <IconButton
+          variant='solid'
           icon={TrashIcon}
           onClick={onDelete}
           color='destructive'

@@ -38,7 +38,7 @@ const meta = {
         <ModalActions align={actionAlign}>
           <Button>Cancel</Button>
 
-          <Button color='neutral'>Save</Button>
+          <Button variant='solid'>Save</Button>
         </ModalActions>
       </ModalShell>
     );
