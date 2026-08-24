@@ -43,6 +43,8 @@
 
 // Override default anchor styles
 a.base {
+  text-decoration: none;
+
   &:focus {
     border-radius: var(--radius-round);
   }

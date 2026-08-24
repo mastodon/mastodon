@@ -1,0 +1,31 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  &:not(:last-child) {
+    margin-bottom: var(--space-md);
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  padding-inline: var(--space-xs);
+  padding-block: calc(var(--space-xs) - var(--space-3xs));
+}
+
+.title {
+  @include mixins.type-label-sm;
+
+  color: var(--color-text-secondary);
+  cursor: default;
+}
+
+.action {
+  margin-inline-start: auto;
+}
+
+.emptyState {
+  @include mixins.type-label-sm;
+
+  padding-inline: var(--space-xs);
+}

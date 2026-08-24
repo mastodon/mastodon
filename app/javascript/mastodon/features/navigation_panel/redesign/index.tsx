@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -6,20 +6,25 @@ import {
   PenNibIcon,
   HouseIcon,
   MagnifyingGlassIcon,
+  RssSimpleIcon,
   BellIcon,
   ChatCircleIcon,
   BookmarkSimpleIcon,
 } from '@phosphor-icons/react';
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
+import { fetchLists } from '@/mastodon/actions/lists';
+import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
 import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
+import { getOrderedLists } from '@/mastodon/selectors/lists';
 import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifications';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
+import { ListSection } from './list_section';
 import { NavigationLink } from './navigation_link';
 import classes from './styles.module.scss';
 
@@ -31,6 +36,32 @@ const messages = defineMessages({
       'Label for the main navigation; should not contain the word "navigation".',
   },
 });
+
+function useCustomFeeds() {
+  const dispatch = useAppDispatch();
+  const customFeeds = useAppSelector((state) => getOrderedLists(state));
+
+  useEffect(() => {
+    void dispatch(fetchLists());
+  }, [dispatch]);
+
+  return {
+    customFeeds,
+  };
+}
+
+function useFollowedHashtags() {
+  const dispatch = useAppDispatch();
+  const { tags, stale } = useAppSelector((state) => state.followedTags);
+
+  useEffect(() => {
+    if (stale) {
+      void dispatch(fetchFollowedHashtags());
+    }
+  }, [dispatch, stale]);
+
+  return { followedHashtags: tags };
+}
 
 export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
   siteName,
@@ -45,6 +76,9 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
   const openComposer = useCallback(() => {
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
+
+  const { customFeeds } = useCustomFeeds();
+  const { followedHashtags } = useFollowedHashtags();
 
   return (
     <nav
@@ -75,12 +109,75 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
                 defaultMessage='Explore'
               />
             </NavigationLink>
-            <NavigationLink to='/public/local' iconComponent={FediIcon}>
+            <NavigationLink
+              withSpaceAfter
+              to='/public/local'
+              iconComponent={FediIcon}
+            >
               <FormattedMessage
                 id='tabs_bar.fediverse_feeds'
                 defaultMessage='Fediverse Feeds'
               />
             </NavigationLink>
+            <ListSection
+              title={
+                <FormattedMessage
+                  id='tabs_bar.custom_feeds'
+                  defaultMessage='Custom feeds'
+                />
+              }
+              action={{
+                label: (
+                  <FormattedMessage
+                    id='tabs_bar.create_custom_feed'
+                    defaultMessage='Create feed'
+                  />
+                ),
+                link: '/lists/new',
+              }}
+              emptyMessage={
+                <FormattedMessage
+                  id='tabs_bar.custom_feeds_empty'
+                  defaultMessage='You have no custom feeds yet.'
+                />
+              }
+            >
+              {customFeeds.map((feed) => (
+                <NavigationLink
+                  key={feed.id}
+                  to={`/lists/${feed.id}`}
+                  iconComponent={RssSimpleIcon}
+                >
+                  {feed.title}
+                </NavigationLink>
+              ))}
+            </ListSection>
+
+            {followedHashtags.length > 0 && (
+              <ListSection
+                title={
+                  <FormattedMessage
+                    id='navigation_bar.followed_tags'
+                    defaultMessage='Followed hashtags'
+                  />
+                }
+                action={{
+                  label: (
+                    <FormattedMessage
+                      id='navigation_bar.followed_tags_view_all'
+                      defaultMessage='View all'
+                    />
+                  ),
+                  link: '/followed_tags',
+                }}
+              >
+                {followedHashtags.slice(0, 4).map((tag) => (
+                  <NavigationLink key={tag.name} to={`/tags/${tag.name}`}>
+                    #{tag.name}
+                  </NavigationLink>
+                ))}
+              </ListSection>
+            )}
           </ul>
           <footer className={classes.footer}>
             <ul className={classes.footerNav}>
