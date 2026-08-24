@@ -16,8 +16,8 @@ export const buttonClasses = classes;
 
 interface ButtonPropsBase<As extends 'a' | 'button'> {
   size?: 'lg' | 'md' | 'sm' | 'xs';
-  variant?: 'solid' | 'ghost';
-  color?: 'accent' | 'neutral' | 'tonal' | 'destructive';
+  variant?: 'solid' | 'tonal' | 'ghost';
+  color?: 'accent' | 'neutral' | 'destructive';
   onClick?: React.MouseEventHandler<
     As extends 'button' ? HTMLButtonElement : HTMLAnchorElement
   >;
@@ -36,8 +36,8 @@ type ButtonProps = ButtonButtonProps | ButtonAnchorProps | ButtonLinkProps;
 
 const BaseButton: React.FC<ButtonProps> = ({
   size = 'md',
-  variant = 'solid',
-  color = 'tonal',
+  variant = 'tonal',
+  color = 'neutral',
   as: asComp = 'button',
   children,
   className,
