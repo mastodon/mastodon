@@ -165,3 +165,21 @@
 .pollDurationSelect {
   text-align: center;
 }
+
+// Quotes
+
+.quoteSpoiler {
+  > summary {
+    align-items: flex-start;
+    background: var(--color-bg-highlight);
+    border-radius: var(--radius-sm);
+    display: flex;
+    margin: var(--space-2xs) 0;
+    overflow: hidden;
+    padding: var(--space-xs);
+  }
+}
+
+.quoteSpoilerToggle {
+  margin-inline-start: auto;
+}
