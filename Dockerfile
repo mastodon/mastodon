@@ -399,7 +399,7 @@ RUN \
 
 RUN \
   # Precompile bootsnap code for faster Rails startup
-  bundle exec bootsnap precompile --gemfile app/ lib/;
+  bundle exec bootsnap precompile --gemfile app/ lib/ config/;
 
 RUN \
   # Pre-create and chown system volume to Mastodon user
