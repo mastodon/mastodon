@@ -74,7 +74,7 @@ export const ComposeRedesignButton: React.FC = () => {
       <MenuTrigger
         as={IconButton}
         icon={PenNibIcon}
-        color='neutral'
+        variant='solid'
         className={classes.button}
         size='lg'
       >

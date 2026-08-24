@@ -54,6 +54,14 @@ a.base {
   }
 }
 
+@mixin active {
+  &:active,
+  &[aria-pressed='true'],
+  &[aria-expanded='true'] {
+    @content;
+  }
+}
+
 // Sizes
 
 .xs {
@@ -85,33 +93,64 @@ a.base {
 
   &.accent {
     --bg: var(--color-bg-brand-base);
-    --bg-hover: var(--color-bg-brand-base-hover);
-  }
-
-  .neutral {
-    // This technically is a duplicate, but it's added so TS realizes this class is an option.
-    --bg: var(--color-bg-inverted);
-    --fg: var(--color-text-inverted);
-  }
-
-  &.tonal:not(:active, [aria-pressed='true'], [aria-expanded='true']) {
-    --bg: var(--color-bg-highlight);
-    --fg: var(--color-text-primary);
+    --fg: var(--color-text-on-brand-base);
   }
 
   &.destructive {
     --bg: var(--color-bg-error-base);
-    --bg-hover: var(--color-bg-error-base-hover);
     --fg: var(--color-text-on-error-base);
+  }
+}
+
+// Tonal
+
+.tonal {
+  --bg-color: var(--color-text-primary);
+  --bg-opacity: 4%;
+  --bg: rgb(from var(--bg-color) r g b / var(--bg-opacity));
+  --bg-hover-opacity: 10%;
+  --bg-hover: rgb(from var(--bg-color) r g b / var(--bg-hover-opacity));
+
+  &.neutral {
+    @include active {
+      --bg: var(--color-bg-inverted);
+      --fg: var(--color-text-inverted);
+    }
+  }
+
+  &.accent,
+  &.destructive {
+    --bg-opacity: 10%;
+    --bg-hover-opacity: 20%;
+
+    @include active {
+      --bg-opacity: 100%;
+    }
+  }
+
+  &.accent {
+    --bg-color: var(--color-bg-brand-base);
+    --fg: var(--color-text-brand);
+
+    @include active {
+      --fg: var(--color-text-on-brand-base);
+    }
+  }
+
+  &.destructive {
+    --bg-color: var(--color-bg-error-base);
+    --fg: var(--color-text-error);
+
+    @include active {
+      --fg: var(--color-text-on-error-base);
+    }
   }
 }
 
 // Ghost
 
 .ghost {
-  &:active,
-  &[aria-pressed='true'],
-  &[aria-expanded='true'] {
+  @include active {
     --bg: var(--color-bg-inverted);
     --fg: var(--color-text-inverted);
   }
@@ -119,9 +158,7 @@ a.base {
   &.accent {
     --fg: var(--color-text-brand);
 
-    &:active,
-    &[aria-pressed='true'],
-    &[aria-expanded='true'] {
+    @include active {
       --bg: var(--color-bg-brand-base);
       --fg: var(--color-text-on-brand-base);
     }
@@ -130,11 +167,9 @@ a.base {
   &.destructive {
     --fg: var(--color-text-error);
 
-    &:active,
-    &[aria-pressed='true'],
-    &[aria-expanded='true'] {
-      --fg: var(--color-text-on-error-base);
+    @include active {
       --bg: var(--color-bg-error-base);
+      --fg: var(--color-text-on-error-base);
     }
   }
 }

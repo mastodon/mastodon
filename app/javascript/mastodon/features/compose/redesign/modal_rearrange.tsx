@@ -127,7 +127,7 @@ const ComposerModalRearrange: React.FC<{ onClose: () => void }> = ({
           />
         </Button>
 
-        <Button color='neutral' onClick={handleSave}>
+        <Button variant='solid' onClick={handleSave}>
           <FormattedMessage
             id='compose.rearrange_modal.save'
             defaultMessage='Save'

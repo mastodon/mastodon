@@ -44,11 +44,11 @@ const meta = {
     },
     variant: {
       control: 'inline-radio',
-      options: ['solid', 'ghost'],
+      options: ['solid', 'tonal', 'ghost'],
     },
     color: {
       control: 'inline-radio',
-      options: ['neutral', 'accent', 'tonal', 'destructive'],
+      options: ['neutral', 'accent', 'destructive'],
     },
     leadingIcon: iconArgType,
     trailingIcon: iconArgType,
