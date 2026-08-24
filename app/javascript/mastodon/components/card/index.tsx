@@ -1,5 +1,5 @@
 import type React from 'react';
-import { createContext, use, useId, useState } from 'react';
+import { createContext, use, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -18,6 +18,7 @@ type CardProps<As extends React.ElementType> = PolymorphicProps<
   {
     children: React.ReactNode;
     className?: string;
+    image?: React.ReactNode;
     onDelete?: React.MouseEventHandler<HTMLButtonElement>;
   },
   As
@@ -25,43 +26,49 @@ type CardProps<As extends React.ElementType> = PolymorphicProps<
 
 interface CardContext {
   id: string;
-  registerImage?: (ref: HTMLImageElement) => void;
 }
 
 const CardContext = createContext<CardContext>({ id: '' });
 
-export const Card = <As extends React.ElementType>({
+export const Card = <As extends React.ElementType = 'div'>({
   as: asComp,
   children,
   className,
+  image,
   onDelete,
   ...props
 }: CardProps<As>) => {
   const Comp = asComp ?? 'div';
 
   const id = useId();
-  const [hasImage, registerImage] = useState<HTMLImageElement | null>(null);
 
   // Disable the button if this is an interactive element, including a Link component.
   const hideButton =
     !onDelete || asComp === 'a' || asComp === 'button' || 'to' in props;
 
+  const imageComp =
+    typeof image === 'string' ? (
+      <img src={image} alt='' className={classes.image} />
+    ) : (
+      image && <div className={classes.image}>{image}</div>
+    );
+
   return (
     <Comp {...props} className={classNames(className, classes.root)}>
-      <CardContext.Provider value={{ id, registerImage }}>
-        {children}
-      </CardContext.Provider>
+      <CardContext.Provider value={{ id }}>{children}</CardContext.Provider>
+
+      {imageComp}
 
       {!hideButton && (
         <IconButton
-          variant='solid'
+          size='sm'
           icon={TrashIcon}
           onClick={onDelete}
           color='destructive'
           className={classes.delete}
-          size={hasImage ? 'sm' : 'xs'}
           aria-describedby={`${id}_title`}
-          data-color-scheme={hasImage ? 'dark' : undefined}
+          variant={image ? 'solid' : 'ghost'}
+          data-color-scheme={image ? 'dark' : undefined}
         >
           <FormattedMessage id='card.delete' defaultMessage='Remove this' />
         </IconButton>
@@ -72,24 +79,20 @@ export const Card = <As extends React.ElementType>({
 
 interface CardTitleProps {
   children: React.ReactNode;
-  imageSrc?: string;
-  imageAlt?: string;
+  image?: React.ReactNode;
   timestamp?: string;
 }
 
 export const CardTitle: React.FC<CardTitleProps> = ({
   children,
-  imageSrc,
-  imageAlt = '',
+  image,
   timestamp,
 }) => {
   const { id } = use(CardContext);
 
   return (
     <div className={classes.title}>
-      {imageSrc && (
-        <img src={imageSrc} alt={imageAlt} className={classes.titleImage} />
-      )}
+      {image && <span className={classes.titleImage}>{image}</span>}
 
       <span id={`${id}_title`}>{children}</span>
 
@@ -128,18 +131,5 @@ export const CardBody = <As extends React.ElementType>({
     >
       {children}
     </Comp>
-  );
-};
-
-export const CardImage: React.FC<React.ComponentPropsWithRef<'img'>> = ({
-  alt,
-  ...props
-}) => {
-  const { registerImage } = use(CardContext);
-
-  return (
-    <div className={classes.image} ref={registerImage}>
-      <img {...props} alt={alt} />
-    </div>
   );
 };

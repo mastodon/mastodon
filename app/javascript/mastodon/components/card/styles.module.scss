@@ -3,7 +3,9 @@
 .root {
   border: 0.5px solid var(--color-border-primary);
   border-radius: var(--radius-md);
+  box-sizing: border-box;
   display: block;
+  min-height: 90px;
   overflow: hidden;
   padding: var(--space-sm);
   position: relative;
@@ -45,6 +47,7 @@ a.root {
 
 .titleImage {
   border-radius: var(--radius-round);
+  display: block;
   height: var(--space-lg);
   margin-inline-end: var(--space-xs);
   overflow: hidden;

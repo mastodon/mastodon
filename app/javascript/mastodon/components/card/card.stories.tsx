@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import { Card, CardBody, CardImage, CardTitle } from './index';
+import { Card, CardBody, CardTitle } from './index';
 
 interface StoryProps {
   avatar: boolean;
@@ -63,12 +63,18 @@ const meta = {
       : {};
 
     return (
-      <Card {...props} onDelete={deleteBtn ? deleteCb : undefined}>
-        <CardTitle timestamp={tsString} imageSrc={avatar ? img : undefined}>
+      <Card
+        {...props}
+        onDelete={deleteBtn ? deleteCb : undefined}
+        image={image && <img src={img} alt='' />}
+      >
+        <CardTitle
+          timestamp={tsString}
+          image={avatar && <img src={img} alt='' />}
+        >
           {titleText}
         </CardTitle>
         <CardBody noClamp={!clamp}>{body}</CardBody>
-        {image && <CardImage src={img} />}
       </Card>
     );
   },
