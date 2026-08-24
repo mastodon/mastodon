@@ -103,7 +103,10 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
             <NavigationLink to='/home' iconComponent={HouseIcon}>
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>
-            <NavigationLink to='/explore' iconComponent={MagnifyingGlassIcon}>
+            <NavigationLink
+              to={{ pathname: '/explore', state: { focusTarget: 'search' } }}
+              iconComponent={MagnifyingGlassIcon}
+            >
               <FormattedMessage
                 id='tabs_bar.explore'
                 defaultMessage='Explore'
