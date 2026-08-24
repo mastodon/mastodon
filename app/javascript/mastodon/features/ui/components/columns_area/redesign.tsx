@@ -1,27 +1,16 @@
-import { lazy, Suspense, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import classNames from 'classnames';
 
+import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel/redesign';
 import { useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 import { Header } from 'mastodon/features/custom_homepage/components/header';
-import { CollapsibleNavigationPanel } from 'mastodon/features/navigation_panel';
 
-import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useColumnsContext } from '../../util/columns_context';
-import {
-  ComposePanel,
-  RedirectToMobileComposeIfNeeded,
-} from '../compose_panel';
 
 import { MultiColumnContent } from './multi_column_content';
-
-const LazyColumnsAreaRedesign = lazy(() =>
-  import('@/mastodon/features/ui/components/columns_area/redesign').then(
-    ({ ColumnsAreaRedesign }) => ({ default: ColumnsAreaRedesign }),
-  ),
-);
+import classes from './redesign.module.scss';
 
 const TabsBarPortal = () => {
   const { setTabsBarElement } = useColumnsContext();
@@ -38,28 +27,20 @@ const TabsBarPortal = () => {
   return <div id='tabs-bar__portal' ref={setRef} />;
 };
 
-interface ColumnsAreaProps {
+export const ColumnsAreaRedesign: React.FC<{
   singleColumn?: boolean;
   minimalShell?: boolean;
   children: React.ReactElement | React.ReactElement[];
   ref?: React.Ref<HTMLDivElement>;
-}
-
-const ColumnsAreaLegacy: React.FC<ColumnsAreaProps> = ({
-  children,
-  minimalShell,
-  singleColumn,
-  ref,
-}) => {
-  const renderComposePanel = !useBreakpoint('full');
+}> = ({ children, minimalShell, singleColumn, ref }) => {
   const isModalOpen = useAppSelector(
     (state) => !state.modal.get('stack').isEmpty(),
   );
 
   if (minimalShell) {
     return (
-      <div className='columns-area__panels'>
-        <div className='columns-area__panels__main'>
+      <div className={classes.root}>
+        <div className={classes.main}>
           <Header />
 
           <div className='tabs-bar__wrapper'>
@@ -76,23 +57,18 @@ const ColumnsAreaLegacy: React.FC<ColumnsAreaProps> = ({
 
   if (singleColumn) {
     return (
-      <div className='columns-area__panels'>
-        <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
-          <div className='columns-area__panels__pane__inner'>
-            {renderComposePanel && <ComposePanel />}
-            <RedirectToMobileComposeIfNeeded />
-          </div>
+      <div className={classes.root}>
+        <div className={classes.navigationWrapper}>
+          <RedesignNavigationPanel />
         </div>
 
-        <main className='columns-area__panels__main'>
+        <main className={classes.main}>
           <div className='tabs-bar__wrapper'>
             <TabsBarPortal />
           </div>
 
           <div className='columns-area columns-area--mobile'>{children}</div>
         </main>
-
-        <CollapsibleNavigationPanel />
       </div>
     );
   }
@@ -106,16 +82,4 @@ const ColumnsAreaLegacy: React.FC<ColumnsAreaProps> = ({
       <MultiColumnContent>{children}</MultiColumnContent>
     </main>
   );
-};
-
-export const ColumnsArea: React.FC<ColumnsAreaProps> = (props) => {
-  if (isRedesignEnabled()) {
-    return (
-      <Suspense>
-        <LazyColumnsAreaRedesign {...props} />
-      </Suspense>
-    );
-  } else {
-    return <ColumnsAreaLegacy {...props} />;
-  }
 };
