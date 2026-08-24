@@ -9,8 +9,11 @@ class FeatureUsageTracker
 
   REF_VALUES = %w(
     collection
+    inline_suggestions
     onboarding
     profile
+    search
+    suggestions
   ).freeze
 
   EXPIRE_AFTER = 6.months.seconds

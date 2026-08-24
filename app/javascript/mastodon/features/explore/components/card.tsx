@@ -116,7 +116,7 @@ export const Card: React.FC<{ id: string; source: SuggestionSource }> = ({
             title={intl.formatMessage(messages.dismiss)}
             className='explore-suggestions-card__dismiss-button'
           />
-          <FollowButton accountId={account.get('id')} />
+          <FollowButton accountId={account.get('id')} reference='suggestions' />
         </div>
       </div>
     </div>
