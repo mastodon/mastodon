@@ -50,9 +50,9 @@ type FetchedComponent = React.FC<{
   params: unknown;
 }>;
 
-const ErrorComponent = (props: { onRetry: () => void }) => {
-  return <BundleColumnError multiColumn errorType='network' {...props} />;
-};
+const ErrorComponent = (props: { onRetry: () => void }) => (
+  <BundleColumnError multiColumn errorType='network' {...props} />
+);
 
 const renderLoading = (columnId: string) => {
   const LoadingComponent =

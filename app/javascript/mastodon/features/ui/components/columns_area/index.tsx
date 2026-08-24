@@ -2,14 +2,15 @@ import { lazy, Suspense, useCallback } from 'react';
 
 import classNames from 'classnames';
 
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { Footer } from '@/mastodon/features/custom_homepage/components/footer';
+import { Header } from '@/mastodon/features/custom_homepage/components/header';
+import { CollapsibleNavigationPanel } from '@/mastodon/features/navigation_panel';
+import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
+import { useColumnsContext } from '@/mastodon/features/ui/util/columns_context';
 import { useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
-import { Footer } from 'mastodon/features/custom_homepage/components/footer';
-import { Header } from 'mastodon/features/custom_homepage/components/header';
-import { CollapsibleNavigationPanel } from 'mastodon/features/navigation_panel';
 
-import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { useColumnsContext } from '../../util/columns_context';
 import {
   ComposePanel,
   RedirectToMobileComposeIfNeeded,
@@ -111,7 +112,7 @@ const ColumnsAreaLegacy: React.FC<ColumnsAreaProps> = ({
 export const ColumnsArea: React.FC<ColumnsAreaProps> = (props) => {
   if (isRedesignEnabled()) {
     return (
-      <Suspense>
+      <Suspense fallback={<LoadingIndicator />}>
         <LazyColumnsAreaRedesign {...props} />
       </Suspense>
     );
