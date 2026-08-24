@@ -1,4 +1,3 @@
-import type React from 'react';
 import {
   createContext,
   use,
@@ -275,7 +274,7 @@ export const MenuList = <As extends React.ElementType>({
       reference={popover.reference}
       popoverElement={popover.popover}
       container={null}
-      {...props}
+      {...(props as React.ComponentPropsWithoutRef<As>)}
       {...menuListProps}
     >
       {type === 'navigation' ? <ul>{children}</ul> : children}
