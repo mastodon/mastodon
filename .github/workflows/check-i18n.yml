@@ -48,5 +48,8 @@ jobs:
       - name: Check for wrong string interpolations
         run: bin/i18n-tasks check-consistent-interpolations
 
+      - name: Check translation files for ICU errors
+        run: yarn lint:i18n
+
       - name: Check that all required locale files exist
         run: bin/rake repo:check_locales_files

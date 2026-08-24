@@ -207,6 +207,7 @@ export default tseslint.config([
             'app/javascript/**/*.test.ts',
             'app/javascript/**/*.test.tsx',
             '.storybook/**/*',
+            '.eloqnt/*',
           ],
         },
       ],
@@ -366,7 +367,7 @@ export default tseslint.config([
     },
   },
   {
-    files: ['**/*.stories.ts', '**/*.stories.tsx', '.storybook/*'],
+    files: ['**/*.stories.ts', '**/*.stories.tsx', '.storybook/*', '.eloqnt/*'],
     rules: {
       'import/no-default-export': 'off',
       'react-hooks/rules-of-hooks': 'off',

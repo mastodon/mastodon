@@ -21,6 +21,7 @@
     "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' config/vite/plugin-sw-locales.ts --ignore '**/*.d.ts' --out-file app/javascript/mastodon/locales/en.json --format config/formatjs-formatter.js",
     "lint:js": "cd $INIT_CWD && eslint --cache --report-unused-disable-directives",
     "lint:css": "stylelint \"**/*.{css,scss}\"",
+    "lint:i18n": "eloqnt lint",
     "lint": "yarn lint:js && yarn lint:css",
     "postversion": "git push --tags",
     "postinstall": "test -d node_modules/husky && husky || echo \"husky is not installed\"",
@@ -127,6 +128,7 @@
     "wicg-inert": "3.1.3"
   },
   "devDependencies": {
+    "@eloqnt/cli": "^0.6.20",
     "@eslint/js": "9.39.5",
     "@formatjs/cli": "6.14.4",
     "@storybook/addon-a11y": "10.3.3",
