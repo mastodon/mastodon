@@ -10,10 +10,13 @@
   height: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  padding-inline: var(--space-2xs);
   padding-bottom: env(safe-area-inset-bottom);
 
-  @media screen and (min-width: $mobile-menu-breakpoint) {
+  @media (min-width: $no-gap-breakpoint) {
+    padding-inline: var(--space-2xs);
+  }
+
+  @media (min-width: $mobile-menu-breakpoint) {
     display: grid;
     grid-template-columns:
       minmax(var(--navigation-min-width), 1fr)
@@ -30,6 +33,10 @@
   max-width: var(--navigation-max-width);
   height: 100dvh;
   padding-bottom: env(safe-area-inset-bottom);
+
+  @media (max-width: ($mobile-menu-breakpoint - 1)) {
+    display: none;
+  }
 }
 
 .main {
@@ -42,4 +49,8 @@
   container: column / inline-size;
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
+
+  @media ($mobile-menu-breakpoint < width < $no-gap-breakpoint) {
+    border-inline: 1px solid var(--color-border-primary);
+  }
 }

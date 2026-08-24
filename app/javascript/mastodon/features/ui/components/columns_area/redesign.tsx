@@ -2,11 +2,13 @@ import { useCallback } from 'react';
 
 import classNames from 'classnames';
 
+import { CollapsibleNavigationPanel } from '@/mastodon/features/navigation_panel';
 import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel/redesign';
 import { useAppSelector } from '@/mastodon/store';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 import { Header } from 'mastodon/features/custom_homepage/components/header';
 
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { useColumnsContext } from '../../util/columns_context';
 
 import { MultiColumnContent } from './multi_column_content';
@@ -36,6 +38,7 @@ export const ColumnsAreaRedesign: React.FC<{
   const isModalOpen = useAppSelector(
     (state) => !state.modal.get('stack').isEmpty(),
   );
+  const renderLegacyNavForMobile = useBreakpoint('openable');
 
   if (minimalShell) {
     return (
@@ -68,6 +71,8 @@ export const ColumnsAreaRedesign: React.FC<{
           </div>
 
           <div className='columns-area columns-area--mobile'>{children}</div>
+
+          {renderLegacyNavForMobile && <CollapsibleNavigationPanel />}
         </main>
       </div>
     );
