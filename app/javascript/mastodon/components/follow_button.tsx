@@ -61,12 +61,14 @@ export const FollowButton: React.FC<{
   labelLength?: 'auto' | 'short' | 'long';
   className?: string;
   withUnmute?: boolean;
+  reference?: string;
 }> = ({
   accountId,
   compact,
   labelLength = 'auto',
   className,
   withUnmute = true,
+  reference,
 }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -125,9 +127,17 @@ export const FollowButton: React.FC<{
       );
     } else {
       // @ts-expect-error this action is not typed yet
-      dispatch(followAccount(accountId));
+      dispatch(followAccount(accountId, { ref: reference }));
     }
-  }, [signedIn, relationship, accountId, withUnmute, account, dispatch]);
+  }, [
+    signedIn,
+    relationship,
+    accountId,
+    withUnmute,
+    account,
+    dispatch,
+    reference,
+  ]);
 
   const isNarrow = useBreakpoint('narrow');
   const useShortLabel =

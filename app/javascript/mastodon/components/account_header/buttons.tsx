@@ -96,6 +96,7 @@ const AccountButtonsOther: FC<
           accountId={accountId}
           className={classes.followButton}
           labelLength='long'
+          reference='profile'
         />
       )}
       {isFollowing && (
