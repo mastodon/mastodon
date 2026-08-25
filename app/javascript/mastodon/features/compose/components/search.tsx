@@ -22,6 +22,7 @@ import { isFulfilled } from '@reduxjs/toolkit';
 import { useFocusOnNavigation } from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -561,7 +562,10 @@ export const Search: React.FC<{
       className={classNames('search', { active: expanded })}
     >
       <input
-        ref={useMergedRefs(searchInputRef, focusOnNavigation)}
+        ref={useMergedRefs(
+          searchInputRef,
+          isRedesignEnabled() ? focusOnNavigation : null,
+        )}
         className='search__input'
         type='text'
         inputMode='search'
