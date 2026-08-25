@@ -1,12 +1,12 @@
 import type React from 'react';
 import type { RefCallback } from 'react';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { TextareaAutosizeProps } from 'react-textarea-autosize';
+import type { VirtualElement } from '@floating-ui/react-dom';
 
 import {
   changeCompose,
@@ -64,7 +64,7 @@ const messages = defineMessages({
 });
 
 type ComposeTextareaProps = Omit<
-  TextareaAutosizeProps,
+  React.ComponentPropsWithoutRef<'textarea'>,
   | 'placeholder'
   | 'onFocus'
   | 'onBlur'
@@ -83,6 +83,8 @@ const selectComposeTextState = createAppSelector(
   }),
 );
 
+const MIRROR_ID = `${COMPOSER_TEXTAREA_ID}-mirror`;
+
 export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   onSubmit,
   className,
@@ -97,38 +99,19 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const dispatch = useAppDispatch();
 
   // Suggestion logic
-  const suggestions = useAppSelector(selectSuggestions);
-  const lastTokenRef = useRef<string | null>(null);
-  const tokenStartRef = useRef(0);
-  const onSuggestionClick: React.MouseEventHandler<HTMLButtonElement> =
-    useCallback(
-      (event) => {
-        const { id, index, type } = event.currentTarget.dataset;
-        const suggestion = suggestions.find((suggestion, i) =>
-          suggestion.type === type && suggestion.id
-            ? suggestion.id === id
-            : index && Number.parseInt(index) === i,
-        );
-        if (!suggestion) {
-          return;
-        }
-
-        dispatch(
-          selectComposeSuggestion(
-            tokenStartRef.current,
-            lastTokenRef.current,
-            suggestion,
-            ['text'],
-          ),
-        );
-        focusComposerTextarea(true);
-      },
-      [dispatch, suggestions],
-    );
   const [textArea, setTextArea] = useState<HTMLTextAreaElement | null>(null);
   const [suggestionList, setSuggestionList] = useState<HTMLDivElement | null>(
     null,
   );
+  const suggestions = useAppSelector(selectSuggestions);
+  const lastTokenRef = useRef<string | null>(null);
+  const tokenStartRef = useRef(0);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearComposeSuggestions());
+    };
+  }, [dispatch]);
 
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
@@ -159,14 +142,64 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         if (key === 'enter' && (event.ctrlKey || event.metaKey)) {
           onSubmit();
           event.preventDefault();
+          dispatch(clearComposeSuggestions());
         } else if (key === 'escape') {
-          event.currentTarget.blur();
+          // Dismiss the suggestions if we're displaying any.
+          if (suggestions.length > 0) {
+            dispatch(clearComposeSuggestions());
+          } else {
+            // Otherwise lose focus on the textarea.
+            event.currentTarget.blur();
+          }
         } else if (key === 'down' && suggestions.length > 0 && suggestionList) {
           (getAllMenuItems(suggestionList).at(0) ?? suggestionList).focus();
         }
       },
-      [onSubmit, suggestionList, suggestions.length],
+      [dispatch, onSubmit, suggestionList, suggestions.length],
     );
+
+  // When showing suggestions, dismiss them if the selection changes.
+  const onSelect: React.ReactEventHandler<HTMLTextAreaElement> = useCallback(
+    (event) => {
+      if (lastTokenRef.current === null) {
+        return;
+      }
+
+      const { selectionStart } = event.currentTarget;
+      const tokenEnd = tokenStartRef.current + lastTokenRef.current.length;
+
+      if (selectionStart < tokenStartRef.current || selectionStart > tokenEnd) {
+        lastTokenRef.current = null;
+        dispatch(clearComposeSuggestions());
+      }
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    if (!textArea) {
+      return;
+    }
+
+    const rect = textArea.getBoundingClientRect();
+    const div = document.createElement('div');
+    const styles = getComputedStyle(textArea);
+    div.style.width = `${rect.width}px`;
+    div.style.whiteSpace = 'pre-wrap';
+    div.style.padding = styles.padding;
+    div.style.maxHeight = `${rect.height}px`;
+    div.style.border = styles.border;
+    div.ariaHidden = 'true';
+    div.style.visibility = 'hidden';
+
+    div.id = MIRROR_ID;
+
+    document.body.appendChild(div);
+
+    return () => {
+      document.body.removeChild(div);
+    };
+  }, [textArea]);
 
   const onPasteOrDrop = useCallback(
     (event: React.ClipboardEvent | React.DragEvent) => {
@@ -180,10 +213,38 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     [dispatch],
   );
 
+  const onSuggestionClick: React.MouseEventHandler<HTMLButtonElement> =
+    useCallback(
+      (event) => {
+        const { id, index, type } = event.currentTarget.dataset;
+        const suggestion = suggestions.find((suggestion, i) =>
+          suggestion.type === type && suggestion.id
+            ? suggestion.id === id
+            : index && Number.parseInt(index) === i,
+        );
+        if (!suggestion) {
+          return;
+        }
+
+        dispatch(
+          selectComposeSuggestion(
+            tokenStartRef.current,
+            lastTokenRef.current,
+            suggestion,
+            ['text'],
+          ),
+        );
+        focusComposerTextarea(true);
+      },
+      [dispatch, suggestions],
+    );
+
   return (
     <>
       <TextArea
         {...props}
+        dir='auto'
+        aria-autocomplete='list'
         id={COMPOSER_TEXTAREA_ID}
         className={classNames(className, classes.textareaWrapper)}
         ref={setTextArea}
@@ -199,10 +260,12 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onDrop={onPasteOrDrop}
         onPaste={onPasteOrDrop}
         onChange={onChange}
+        onSelect={onSelect}
+        aria-controls={suggestionList?.id}
       />
 
-      {suggestions.length > 0 && (
-        <Menu noFocus>
+      <Menu noFocus>
+        {suggestions.length > 0 && (
           <AutosuggestMenuList textElement={textArea} ref={setSuggestionList}>
             {suggestions.map((suggestion, index) => (
               <MenuItem
@@ -216,8 +279,8 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
               </MenuItem>
             ))}
           </AutosuggestMenuList>
-        </Menu>
-      )}
+        )}
+      </Menu>
     </>
   );
 };
@@ -241,12 +304,43 @@ const AutosuggestMenuList: React.FC<{
 
   const mergedRef = useMergedRefs(menuListProps.ref, ref);
 
+  if (!textElement) {
+    return null;
+  }
+
+  const virtualEle = {
+    getBoundingClientRect() {
+      const rect = textElement.getBoundingClientRect();
+      let height = rect.height;
+
+      const div = document.getElementById(MIRROR_ID);
+      if (div) {
+        div.textContent = textElement.value.slice(0, textElement.selectionEnd);
+        const relativeHeight = div.offsetHeight - textElement.scrollTop;
+        height = Math.min(Math.max(relativeHeight + 4, 0), rect.height);
+      }
+
+      return {
+        x: rect.x,
+        y: rect.y,
+        top: rect.top,
+        bottom: rect.bottom,
+        left: rect.left,
+        right: rect.right,
+        height: height,
+        width: rect.width,
+      };
+    },
+    contextElement: textElement,
+  } satisfies VirtualElement;
+
   return (
     <PopoverMenuCard
       isOpen={popover.isMenuOpen}
       onClose={popover.closeMenu}
-      reference={textElement}
+      reference={virtualEle}
       popoverElement={popover.popover}
+      offset={4}
       container={null}
       placement='bottom-start'
       {...menuListProps}
