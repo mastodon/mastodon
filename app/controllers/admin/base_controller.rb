@@ -5,6 +5,12 @@ module Admin
     include Authorization
     include AccountableConcern
 
+    content_security_policy do |p|
+      policy = ContentSecurityPolicy.new
+      p.img_src(*p.img_src, *policy.admin_media_hosts)
+      p.media_src(*p.media_src, *policy.admin_media_hosts)
+    end
+
     layout 'admin'
 
     before_action :require_moderator_or_admin_permissions

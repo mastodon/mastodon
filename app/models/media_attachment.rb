@@ -244,6 +244,10 @@ class MediaAttachment < ApplicationRecord
     status&.discarded? || (status_id.present? && status.nil?)
   end
 
+  def on_hold?
+    discarded? || account&.suspended?
+  end
+
   def significantly_changed?
     description_previously_changed? || thumbnail_updated_at_previously_changed? || file_meta_previously_changed?
   end
