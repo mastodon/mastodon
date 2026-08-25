@@ -16,4 +16,9 @@
     --account-handle-color: var(--color-text-secondary);
     --account-handle-size: var(--fs-2xs);
   }
+
+  & :global(.display-name) {
+    // Allow display name to wrap instead of truncating with ellipsis
+    white-space: normal;
+  }
 }
