@@ -920,7 +920,7 @@ sv:
         view_devops: DevOps
         view_devops_description: Ger användare tillgång till instrumentpanelerna Sidekiq och pgHero
         view_feeds: Visa live- och ämnesflöden
-        view_feeds_description: Ger användare tillgång till live-och ämnesflöden oavsett serverinställningar
+        view_feeds_description: Ger användare tillgång till live- och ämnesflöden oavsett serverinställningar
       requires_2fa: Kräver tvåfaktorsautentisering
       title: Roller
     rules:
@@ -1596,7 +1596,7 @@ sv:
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
     '503': Sidan kunde inte visas på grund av ett tillfälligt serverfel.
-    noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
+    noscript_html: Aktivera JavaScript för att använda Mastodons webbapplikation. Alternativt kan du prova någon av Mastodons <a href="%{apps_path}">plattformsspecifika appar</a> för din plattform.
   existing_username_validator:
     not_found: kunde inte hitta en lokal användare med det användarnamnet
     not_found_multiple: kunde inte hitta %{usernames}
@@ -1951,7 +1951,7 @@ sv:
     description_html: Om du aktiverar <strong>tvåfaktorsautentisering</strong> med en autentiseringsapp kommer du behöva din mobiltelefon för att logga in, som kommer generera koder för dig att ange.
     enable: Aktivera
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app i din telefon</strong>. Från och med nu så kommer den appen att generera symboler som du måste skriva in när du ska logga in."
-    manual_instructions: 'Om du inte kan skanna QR-koden och istället behöver skriva in nyckeln i oformatterad text, finns den här:'
+    manual_instructions: 'Om du inte kan skanna QR-koden och behöver ange den manuellt finns klartextnyckeln här:'
     setup: Konfigurera
     wrong_code: Den ifyllda koden är ogiltig! Är server-tiden och enhetens tid korrekt?
   pagination:
@@ -2390,7 +2390,7 @@ sv:
     seamless_external_login: Du är inloggad via en extern tjänst. Därför finns inställningar för lösenord och e-post inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
-    extra_instructions_html: <strong>Tips:</strong> Länken på din webbplats kan vara osynlig. Den viktiga delen är <code>rel="me"</code> som förhindrar personifiering på webbplatser med användargenererat innehåll. Du kan även använda en <code>länk</code> tagg i huvudet på sidan istället för <code>en</code>, men HTML:en måste vara tillgänglig utan att exekvera JavaScript.
+    extra_instructions_html: <strong>Tips:</strong> Länken på din webbplats kan vara osynlig. Den viktiga delen är <code>rel="me"</code>, som förhindrar personifiering på webbplatser med användargenererat innehåll. Du kan även använda en <code>link</code>-tagg i sidhuvudet i stället för <code>a</code>, men HTML-koden måste vara tillgänglig utan att JavaScript körs.
     here_is_how: Så här gör du
     hint_html: "<strong>Verifiera din identitet på Mastodon är för alla.</strong> Baserat på öppna webbstandarder, nu och för evigt fria. Allt du behöver är en personlig webbplats som folk känner igen dig med. När du länkar till denna webbplats från din profil kommer vi att kontrollera att webbplatsen länkar tillbaka till din profil och visa en visuell indikator på den."
     instructions_html: Kopiera och klistra in koden nedan in i HTML-koden på din webbplats. Lägg sedan till adressen till din webbplats i ett av de extra fälten på din profil från fliken "Redigera profil" och spara ändringar.
