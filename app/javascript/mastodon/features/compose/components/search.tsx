@@ -19,7 +19,10 @@ import { useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
-import { useFocusOnNavigation } from '@/mastodon/components/navigation_focus_target';
+import {
+  FOCUS_TARGET,
+  useFocusOnNavigation,
+} from '@/mastodon/components/navigation_focus_target';
 import { getCollectionPath } from '@/mastodon/features/collections/utils';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
@@ -108,7 +111,7 @@ export const Search: React.FC<{
   const [expanded, setExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
-  const focusOnNavigation = useFocusOnNavigation('search');
+  const focusOnNavigation = useFocusOnNavigation(FOCUS_TARGET.SEARCH);
 
   const unfocus = useCallback(() => {
     document.querySelector('.ui')?.parentElement?.focus();

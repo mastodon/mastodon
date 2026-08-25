@@ -15,6 +15,7 @@ import {
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchLists } from '@/mastodon/actions/lists';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
+import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
@@ -104,7 +105,10 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
               <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
             </NavigationLink>
             <NavigationLink
-              to={{ pathname: '/explore', state: { focusTarget: 'search' } }}
+              to={{
+                pathname: '/explore',
+                state: { focusTarget: FOCUS_TARGET.SEARCH },
+              }}
               iconComponent={MagnifyingGlassIcon}
             >
               <FormattedMessage
