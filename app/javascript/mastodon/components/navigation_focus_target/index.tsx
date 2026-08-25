@@ -110,7 +110,11 @@ export function useFocusOnNavigation(targetName?: string) {
         return;
       }
 
-      if (focusTarget === true || focusTarget === targetName) {
+      const shouldSetFocus = targetName
+        ? focusTarget === targetName
+        : focusTarget === true;
+
+      if (shouldSetFocus) {
         setTimeout(() => {
           element.focus({ preventScroll: true });
         }, 0);
