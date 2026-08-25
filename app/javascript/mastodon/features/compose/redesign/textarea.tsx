@@ -19,6 +19,7 @@ import { textAtCursorMatchesToken } from '@/mastodon/components/autosuggest/util
 import { Avatar } from '@/mastodon/components/avatar';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { Emoji } from '@/mastodon/components/emoji';
+import { LocalCustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
@@ -262,7 +263,7 @@ const AutosuggestMenuList: React.FC<{
       {...menuListProps}
       ref={mergedRef}
     >
-      {children}
+      <LocalCustomEmojiProvider>{children}</LocalCustomEmojiProvider>
     </PopoverMenuCard>
   );
 };
