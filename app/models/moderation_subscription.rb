@@ -21,7 +21,13 @@
 class ModerationSubscription < ApplicationRecord
   self.inheritance_column = nil
 
+  PRIORITY_LIMIT = (2**31) - 1
+
   has_many :advisories, class_name: 'SubscribedAdvisory', inverse_of: :moderation_subscription, dependent: :delete_all
+
+  validates :name, presence: true
+  validates :url, presence: true, url: true
+  validates :priority, presence: true, numericality: { in: (-PRIORITY_LIMIT..PRIORITY_LIMIT) }
 
   enum :type, {
     csv_list: 0,
