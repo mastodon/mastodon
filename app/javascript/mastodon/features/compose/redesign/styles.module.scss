@@ -151,7 +151,7 @@ textarea.textarea {
 }
 
 .textareaMirror {
-  // visibility: hidden;
+  visibility: hidden;
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -160,8 +160,9 @@ textarea.textarea {
 
   // height: calc(var(--fs-lg) * var(--lh-normal));
   white-space: pre-wrap;
-  background-color: red;
-  opacity: 0.5;
+
+  // background-color: red;
+  // opacity: 0.5;
 }
 
 .attachments {
