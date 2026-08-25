@@ -134,8 +134,20 @@ class ProcessModerationListsService < BaseService
       representative.action_logs.create!(action: 'create', target: domain_allow, moderation_subscription_id: domain_allow.moderation_subscription_id)
       true
     when ['domain', 'reject'], ['domain', 'limit']
+      existing_domain_block = DomainBlock.rule_for(advisory.target_key)
+      domain_block = DomainBlock.new(domain: advisory.target_key, moderation_subscription_id: advisory.moderation_subscription_id, obfuscate: false, severity: advisory.action == 'reject' ? 'suspend' : 'limit')
+
+      # Skip if it would downgrade an existing block
+      return if existing_domain_block.present? && !domain_block.stricter_than?(existing_domain_block)
+
+      # Allow transparently upgrading a domain block
+      if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(domain_block.domain)
+        existing_domain_block.assign_attributes(moderation_subscription_id: advisory.moderation_subscription_id, severity: domain_block.severity)
+        domain_block = existing_domain_block
+      end
+
       # TODO: error handling
-      domain_block = DomainBlock.create!(domain: advisory.target_key, moderation_subscription_id: advisory.moderation_subscription_id, obfuscate: false, severity: advisory.action == 'reject' ? 'suspend' : 'limit')
+      domain_block.save!
       representative.action_logs.create!(action: 'create', target: domain_block, moderation_subscription_id: domain_block.moderation_subscription_id)
       DomainBlockWorker.perform_async(domain_block.id)
       true
