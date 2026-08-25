@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom';
 
 import { IconLogo } from '@/mastodon/components/logo';
 import { domain, title } from '@/mastodon/initial_state';
+import { useAppSelector } from '@/mastodon/store';
 
 import classes from './header.module.scss';
 
 export const NavigationHeader: React.FC<{ siteName?: string }> = ({
   siteName,
 }) => {
-  const appIconUrl = document
-    .querySelector('link[rel="apple-touch-icon"][sizes="120x120"]')
-    ?.getAttribute('href');
+  const { item: server } = useAppSelector((state) => state.server.server);
+  const appIconUrl = server?.icon[3]?.src;
 
   return (
     <header className={classes.root}>
