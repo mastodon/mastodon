@@ -549,6 +549,12 @@ namespace :mastodon do
           require_relative '../../config/environment'
           disable_log_stdout!
 
+          ActiveRecord::Encryption.configure(
+            primary_key: ENV.fetch('ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY'),
+            deterministic_key: ENV.fetch('ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY'),
+            key_derivation_salt: ENV.fetch('ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT')
+          )
+
           username = prompt.ask('Username:') do |q|
             q.required true
             q.default 'admin'
