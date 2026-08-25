@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import type { PolymorphicProps } from '@/types/polymorphic';
 
+import type { NamedFocusTarget } from '../navigation_focus_target';
 import { NavigationFocusTarget } from '../navigation_focus_target';
 
 import classes from './redesign.module.scss';
@@ -48,7 +49,7 @@ type HeadingLevels = 1 | 2 | 3 | 4 | 5 | 6;
 
 type ModalTitleProps = { children: React.ReactNode; level?: HeadingLevels } & (
   | { noFocus: true }
-  | { noFocus?: false; focusTargetName?: string }
+  | { noFocus?: false; focusTargetName?: NamedFocusTarget }
 );
 
 export const ModalTitle: React.FC<
