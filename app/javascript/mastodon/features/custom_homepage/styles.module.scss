@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .page {
   border-radius: 16px;
   border: 1px solid var(--color-border-primary);
@@ -42,12 +44,10 @@
   }
 
   p {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    @include mixins.line-clamp(2);
+
     font-size: 16px;
     line-height: 24px;
-    text-overflow: ellipsis;
   }
 }
 
