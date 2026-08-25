@@ -6,7 +6,6 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { VirtualElement } from '@floating-ui/react-dom';
 import { useThrottledCallback } from 'use-debounce';
 
 import {
@@ -85,8 +84,6 @@ const selectComposeTextState = createAppSelector(
   }),
 );
 
-const MIRROR_ID = `${COMPOSER_TEXTAREA_ID}-mirror`;
-
 export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   onSubmit,
   className,
@@ -101,19 +98,12 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const dispatch = useAppDispatch();
 
   // Suggestion logic
-  const [textArea, setTextArea] = useState<HTMLTextAreaElement | null>(null);
   const [suggestionList, setSuggestionList] = useState<HTMLDivElement | null>(
     null,
   );
   const suggestions = useAppSelector(selectSuggestions);
   const lastTokenRef = useRef<string | null>(null);
   const tokenStartRef = useRef(0);
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearComposeSuggestions());
-    };
-  }, [dispatch]);
 
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
@@ -161,14 +151,16 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     );
 
   // When showing suggestions, dismiss them if the selection changes.
+  const [selectedText, setSelectedText] = useState(text);
   const onSelect: React.ReactEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       if (lastTokenRef.current === null) {
         return;
       }
 
-      const { selectionStart } = event.currentTarget;
+      const { selectionStart, value } = event.currentTarget;
       const tokenEnd = tokenStartRef.current + lastTokenRef.current.length;
+      setSelectedText(value.slice(0, tokenEnd));
 
       if (selectionStart < tokenStartRef.current || selectionStart > tokenEnd) {
         lastTokenRef.current = null;
@@ -177,29 +169,24 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     },
     [dispatch],
   );
+  const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null);
+  const updatePopoverRef = useRef<(() => void) | null>(null);
+  const [textArea, setTextArea] = useState<HTMLTextAreaElement | null>(null);
+  const onTextAreaScroll = useThrottledCallback(() => {
+    // Call the popover update callback.
+    updatePopoverRef.current?.();
 
-  useEffect(() => {
-    if (!textArea) {
-      return;
+    if (textArea && mirrorElement) {
+      // Set top to scroll offset so bottom edge looks right.
+      mirrorElement.style.setProperty('top', `${-1 * textArea.scrollTop}px`);
+
+      const { height } = textArea.getBoundingClientRect();
+      const offset = mirrorElement.offsetHeight - textArea.scrollTop;
+      if (offset < 0 || offset > height) {
+        dispatch(clearComposeSuggestions());
+      }
     }
-
-    const rect = textArea.getBoundingClientRect();
-    const div = document.createElement('div');
-    if (classes.textareaMirror) {
-      div.classList.add(classes.textareaMirror);
-    }
-    div.style.width = `${rect.width}px`;
-    div.style.top = `${rect.y}px`;
-    div.style.left = `${rect.x}px`;
-
-    div.id = MIRROR_ID;
-
-    document.body.appendChild(div);
-
-    return () => {
-      document.body.removeChild(div);
-    };
-  }, [textArea]);
+  }, 0);
 
   const onPasteOrDrop = useCallback(
     (event: React.ClipboardEvent | React.DragEvent) => {
@@ -240,7 +227,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     );
 
   return (
-    <>
+    <div className={classes.textareaWrapper}>
       <TextArea
         {...props}
         dir='auto'
@@ -261,12 +248,21 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onPaste={onPasteOrDrop}
         onChange={onChange}
         onSelect={onSelect}
+        onScroll={onTextAreaScroll}
         aria-controls={suggestionList?.id}
       />
 
+      <div className={classes.textareaMirror} ref={setMirrorElement}>
+        {selectedText}
+      </div>
+
       <Menu noFocus>
         {suggestions.length > 0 && (
-          <AutosuggestMenuList textElement={textArea} ref={setSuggestionList}>
+          <AutosuggestMenuList
+            listRef={setSuggestionList}
+            mirrorElement={mirrorElement}
+            updateRef={updatePopoverRef}
+          >
             {suggestions.map((suggestion, index) => (
               <MenuItem
                 key={`${suggestion.type}:${suggestion.id}`}
@@ -281,15 +277,16 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
           </AutosuggestMenuList>
         )}
       </Menu>
-    </>
+    </div>
   );
 };
 
 const AutosuggestMenuList: React.FC<{
   children: React.ReactElement[];
-  textElement: HTMLTextAreaElement | null;
-  ref: RefCallback<HTMLDivElement>;
-}> = ({ children, textElement, ref }) => {
+  listRef: RefCallback<HTMLDivElement>;
+  mirrorElement: HTMLElement | null;
+  updateRef: React.RefObject<(() => void) | null>;
+}> = ({ children, listRef, mirrorElement, updateRef }) => {
   const suggestions = useAppSelector(selectSuggestions);
   const token = useAppSelector((state) =>
     stringOrUndefined(state.compose.get('suggestion_token')),
@@ -302,78 +299,34 @@ const AutosuggestMenuList: React.FC<{
     popover.openMenu();
   }
 
-  const mergedRef = useMergedRefs(menuListProps.ref, ref);
+  useEffect(() => {
+    const update = updateRef;
+    return () => {
+      update.current = null;
+    };
+  }, [updateRef]);
 
-  if (!textElement) {
-    return null;
-  }
-
-  const virtualEle = {
-    getBoundingClientRect() {
-      const rect = textElement.getBoundingClientRect();
-      const offset = getCursorOffset();
-
-      return {
-        x: rect.x,
-        y: rect.y,
-        top: rect.top,
-        bottom: rect.bottom,
-        left: rect.left,
-        right: rect.right,
-        height:
-          offset === null
-            ? rect.height
-            : Math.min(Math.max(offset, 0), rect.height),
-        width: rect.width,
-      };
-    },
-    contextElement: textElement,
-  } satisfies VirtualElement;
+  const mergedRef = useMergedRefs(menuListProps.ref, listRef);
 
   return (
     <Popover
       isOpen={popover.isMenuOpen}
       onClose={popover.closeMenu}
-      reference={virtualEle}
+      reference={mirrorElement}
       popoverElement={popover.popover}
       container={null}
       placement='bottom-start'
-      {...menuListProps}
     >
-      {({ props: popoverChildProps, update }) => (
-        <MenuCard {...popoverChildProps} ref={mergedRef}>
-          <LocalCustomEmojiProvider>{children}</LocalCustomEmojiProvider>
-          <AutosuggestScrollUpdate textArea={textElement} update={update} />
-        </MenuCard>
-      )}
+      {({ props: popoverChildProps, update }) => {
+        updateRef.current = update;
+        return (
+          <MenuCard {...popoverChildProps} {...menuListProps} ref={mergedRef}>
+            <LocalCustomEmojiProvider>{children}</LocalCustomEmojiProvider>
+          </MenuCard>
+        );
+      }}
     </Popover>
   );
-};
-
-const AutosuggestScrollUpdate: React.FC<{
-  textArea: HTMLTextAreaElement;
-  update: () => void;
-}> = ({ textArea, update }) => {
-  const dispatch = useAppDispatch();
-  const onUpdate = useThrottledCallback(() => {
-    const offset = getCursorOffset();
-    const { height } = textArea.getBoundingClientRect();
-
-    if (offset === null || offset < 0 || offset > height) {
-      dispatch(clearComposeSuggestions());
-    } else {
-      update();
-    }
-  }, 0);
-
-  useEffect(() => {
-    textArea.addEventListener('scroll', onUpdate);
-    return () => {
-      textArea.removeEventListener('scroll', onUpdate);
-    };
-  }, [onUpdate, textArea]);
-
-  return null;
 };
 
 const AutosuggestItem: React.FC<{ suggestion: Suggestion }> = ({
@@ -409,14 +362,3 @@ const AutosuggestAccount: React.FC<{ id: string }> = ({ id }) => {
     </div>
   );
 };
-
-function getCursorOffset() {
-  const textArea = document.getElementById(COMPOSER_TEXTAREA_ID);
-  const mirror = document.getElementById(MIRROR_ID);
-  if (!mirror || !(textArea instanceof HTMLTextAreaElement)) {
-    return null;
-  }
-
-  mirror.textContent = textArea.value.slice(0, textArea.selectionEnd);
-  return mirror.offsetHeight - textArea.scrollTop;
-}

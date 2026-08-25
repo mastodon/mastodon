@@ -112,6 +112,14 @@
   }
 }
 
+.textareaWrapper {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .textarea,
 .textareaMirror {
   @include mixins.type-body-lg;
@@ -143,17 +151,17 @@ textarea.textarea {
 }
 
 .textareaMirror {
-  box-sizing: border-box;
-  white-space: pre-wrap;
-  visibility: hidden;
+  // visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 
-  // This is for debugging, and should be removed on merge.
-  // opacity: 0.1;
-  // position: absolute;
-  // pointer-events: none;
-  // background-color: pink;
-  // color: white;
-  // z-index: 100;
+  // height: calc(var(--fs-lg) * var(--lh-normal));
+  white-space: pre-wrap;
+  background-color: red;
+  opacity: 0.5;
 }
 
 .attachments {
