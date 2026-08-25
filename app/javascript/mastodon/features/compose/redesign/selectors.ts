@@ -4,6 +4,7 @@ import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachme
 import type { StatusVisibility } from '@/mastodon/models/status';
 import type { ComposeType } from '@/mastodon/reducers/slices/composer';
 import { createAppSelector } from '@/mastodon/store';
+import { isRecordObject } from '@/mastodon/utils/objects';
 import { DAY, MINUTE } from '@/mastodon/utils/time';
 
 import { countableText } from '../util/counter';
@@ -239,3 +240,100 @@ export const selectComposePoll = createAppSelector(
     };
   },
 );
+
+interface AccountSuggestion {
+  type: 'account';
+  id: string;
+}
+interface EmojiSuggestion {
+  type: 'emoji';
+  id: string;
+  custom?: boolean;
+  native?: string;
+  imageUrl?: string;
+}
+interface HashtagSuggestion {
+  type: 'hashtag';
+  id?: string;
+  name: string;
+  totalUses: number;
+}
+
+export type Suggestion =
+  | AccountSuggestion
+  | EmojiSuggestion
+  | HashtagSuggestion;
+
+export const selectSuggestions = createAppSelector(
+  [
+    (state) =>
+      state.compose.get('suggestions') as unknown as Immutable.List<unknown>,
+  ],
+  (list) => {
+    const suggestions: Suggestion[] = [];
+    const hashtagSet = new Set<string>();
+
+    let fakeId = 0;
+
+    for (const suggestion of list.toArray()) {
+      if (!isRecordObject(suggestion)) {
+        continue;
+      }
+      const type = suggestion.type;
+      const id = stringOrUndefined(suggestion.id) ?? `fake-${fakeId++}`; // Fake ID so we don't have React key issues.
+
+      switch (type) {
+        case 'account':
+          suggestions.push({
+            type,
+            id,
+          });
+          break;
+        case 'emoji':
+          suggestions.push({
+            type,
+            id,
+            custom: !!suggestion.custom,
+            native: stringOrUndefined(suggestion.native),
+            imageUrl: stringOrUndefined(suggestion.imageUrl),
+          });
+          break;
+        case 'hashtag': {
+          const name = stringOrUndefined(suggestion.name);
+          if (!name || hashtagSet.has(name)) {
+            continue;
+          }
+
+          hashtagSet.add(name);
+
+          suggestions.push({
+            type,
+            name,
+            id,
+            totalUses: tagHistoryToUses(suggestion.history),
+          });
+        }
+      }
+    }
+
+    return suggestions;
+  },
+);
+
+export function stringOrUndefined(input: unknown) {
+  return typeof input === 'string' ? input : undefined;
+}
+
+function tagHistoryToUses(history: unknown) {
+  if (!Array.isArray(history)) {
+    return 0;
+  }
+
+  return history.reduce<number>(
+    (total, current) =>
+      isRecordObject(current) && typeof current.uses === 'number'
+        ? total + current.uses
+        : total,
+    0,
+  );
+}
