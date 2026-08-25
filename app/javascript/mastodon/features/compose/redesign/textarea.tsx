@@ -7,6 +7,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import type { VirtualElement } from '@floating-ui/react-dom';
+import { useThrottledCallback } from 'use-debounce';
 
 import {
   changeCompose,
@@ -28,7 +29,8 @@ import {
   MenuItem,
   useMenuContext,
 } from '@/mastodon/components/menu';
-import { PopoverMenuCard } from '@/mastodon/components/menu/card';
+import { MenuCard } from '@/mastodon/components/menu/card';
+import { Popover } from '@/mastodon/components/popover';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import {
@@ -183,14 +185,12 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
     const rect = textArea.getBoundingClientRect();
     const div = document.createElement('div');
-    const styles = getComputedStyle(textArea);
+    if (classes.textareaMirror) {
+      div.classList.add(classes.textareaMirror);
+    }
     div.style.width = `${rect.width}px`;
-    div.style.whiteSpace = 'pre-wrap';
-    div.style.padding = styles.padding;
-    div.style.maxHeight = `${rect.height}px`;
-    div.style.border = styles.border;
-    div.ariaHidden = 'true';
-    div.style.visibility = 'hidden';
+    div.style.top = `${rect.y}px`;
+    div.style.left = `${rect.x}px`;
 
     div.id = MIRROR_ID;
 
@@ -246,7 +246,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         dir='auto'
         aria-autocomplete='list'
         id={COMPOSER_TEXTAREA_ID}
-        className={classNames(className, classes.textareaWrapper)}
+        className={classNames(className, classes.textarea)}
         ref={setTextArea}
         value={text}
         lang={lang}
@@ -311,14 +311,7 @@ const AutosuggestMenuList: React.FC<{
   const virtualEle = {
     getBoundingClientRect() {
       const rect = textElement.getBoundingClientRect();
-      let height = rect.height;
-
-      const div = document.getElementById(MIRROR_ID);
-      if (div) {
-        div.textContent = textElement.value.slice(0, textElement.selectionEnd);
-        const relativeHeight = div.offsetHeight - textElement.scrollTop;
-        height = Math.min(Math.max(relativeHeight + 4, 0), rect.height);
-      }
+      const offset = getCursorOffset();
 
       return {
         x: rect.x,
@@ -327,7 +320,10 @@ const AutosuggestMenuList: React.FC<{
         bottom: rect.bottom,
         left: rect.left,
         right: rect.right,
-        height: height,
+        height:
+          offset === null
+            ? rect.height
+            : Math.min(Math.max(offset, 0), rect.height),
         width: rect.width,
       };
     },
@@ -335,20 +331,49 @@ const AutosuggestMenuList: React.FC<{
   } satisfies VirtualElement;
 
   return (
-    <PopoverMenuCard
+    <Popover
       isOpen={popover.isMenuOpen}
       onClose={popover.closeMenu}
       reference={virtualEle}
       popoverElement={popover.popover}
-      offset={4}
       container={null}
       placement='bottom-start'
       {...menuListProps}
-      ref={mergedRef}
     >
-      <LocalCustomEmojiProvider>{children}</LocalCustomEmojiProvider>
-    </PopoverMenuCard>
+      {({ props: popoverChildProps, update }) => (
+        <MenuCard {...popoverChildProps} ref={mergedRef}>
+          <LocalCustomEmojiProvider>{children}</LocalCustomEmojiProvider>
+          <AutosuggestScrollUpdate textArea={textElement} update={update} />
+        </MenuCard>
+      )}
+    </Popover>
   );
+};
+
+const AutosuggestScrollUpdate: React.FC<{
+  textArea: HTMLTextAreaElement;
+  update: () => void;
+}> = ({ textArea, update }) => {
+  const dispatch = useAppDispatch();
+  const onUpdate = useThrottledCallback(() => {
+    const offset = getCursorOffset();
+    const { height } = textArea.getBoundingClientRect();
+
+    if (offset === null || offset < 0 || offset > height) {
+      dispatch(clearComposeSuggestions());
+    } else {
+      update();
+    }
+  }, 0);
+
+  useEffect(() => {
+    textArea.addEventListener('scroll', onUpdate);
+    return () => {
+      textArea.removeEventListener('scroll', onUpdate);
+    };
+  }, [onUpdate, textArea]);
+
+  return null;
 };
 
 const AutosuggestItem: React.FC<{ suggestion: Suggestion }> = ({
@@ -384,3 +409,14 @@ const AutosuggestAccount: React.FC<{ id: string }> = ({ id }) => {
     </div>
   );
 };
+
+function getCursorOffset() {
+  const textArea = document.getElementById(COMPOSER_TEXTAREA_ID);
+  const mirror = document.getElementById(MIRROR_ID);
+  if (!mirror || !(textArea instanceof HTMLTextAreaElement)) {
+    return null;
+  }
+
+  mirror.textContent = textArea.value.slice(0, textArea.selectionEnd);
+  return mirror.offsetHeight - textArea.scrollTop;
+}
