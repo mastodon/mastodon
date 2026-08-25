@@ -95,14 +95,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
 
   const dispatch = useAppDispatch();
-  const onClickWrapper: React.MouseEventHandler<HTMLDivElement> = useCallback(
-    (event) => {
-      if (event.target instanceof HTMLDivElement) {
-        event.target.querySelector('textarea')?.focus();
-      }
-    },
-    [],
-  );
 
   // Suggestion logic
   const suggestions = useAppSelector(selectSuggestions);
@@ -189,14 +181,11 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   );
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- This just moves focus to the textarea.
-    <div
-      onClick={onClickWrapper}
-      className={classNames(className, classes.textareaWrapper)}
-    >
+    <>
       <TextArea
         {...props}
         id={COMPOSER_TEXTAREA_ID}
+        className={classNames(className, classes.textareaWrapper)}
         ref={setTextArea}
         value={text}
         lang={lang}
@@ -229,7 +218,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
           </AutosuggestMenuList>
         </Menu>
       )}
-    </div>
+    </>
   );
 };
 
