@@ -68,7 +68,7 @@ RSpec.describe Web::PushNotificationWorker do
     end
 
     # We allow subject stub to encrypt the same input than the RFC8291 example
-    # rubocop:disable RSpec/SubjectStub
+    # rubocop:disable-next RSpec/SubjectStub
     it 'Standard push calls the relevant service with the standard headers' do
       # Mock server keys to match RFC example
       allow(OpenSSL::PKey::EC).to receive(:generate).and_return(std_as_keys)
@@ -84,7 +84,6 @@ RSpec.describe Web::PushNotificationWorker do
       expect(standard_web_push_endpoint_request)
         .to have_been_made
     end
-    # rubocop:enable RSpec/SubjectStub
 
     context 'with invalid record that will fail' do
       before do

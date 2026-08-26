@@ -65,7 +65,7 @@ module Mastodon::CLI
       With the --approve option, the account will be approved.
     LONG_DESC
     def create(username)
-      role_id  = nil
+      role_id = nil
 
       if options[:role]
         role = UserRole.find_by(name: options[:role])
