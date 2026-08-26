@@ -1,12 +1,16 @@
 import type React from 'react';
 
+import classNames from 'classnames';
+
 import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { useAppSelector } from '@/mastodon/store';
 
 import { Avatar } from '../avatar';
 import { DisplayName } from '../display_name';
 import { Emoji } from '../emoji';
+import { ShortNumber } from '../short_number';
 
+import classes from './styles.module.scss';
 import type {
   EmojiSuggestion,
   HashtagSuggestion,
@@ -14,15 +18,22 @@ import type {
   Suggestion,
 } from './types';
 
-export const AutosuggestItem: React.FC<{ suggestion: Suggestion }> = ({
-  suggestion,
-}) => {
+export const AutosuggestItem: React.FC<{
+  suggestion: Suggestion;
+  className?: string;
+}> = ({ suggestion, className }) => {
+  let suggestComp: React.ReactNode = null;
   if (suggestion.type === 'account') {
-    return <AutosuggestAccount {...suggestion} />;
+    suggestComp = <AutosuggestAccount {...suggestion} />;
   } else if (suggestion.type === 'hashtag') {
-    return <AutosuggestHashtag {...suggestion} />;
+    suggestComp = <AutosuggestHashtag {...suggestion} />;
+  } else {
+    suggestComp = <AutosuggestEmoji {...suggestion} />;
   }
-  return <AutosuggestEmoji {...suggestion} />;
+
+  return (
+    <div className={classNames(classes.item, className)}>{suggestComp}</div>
+  );
 };
 
 const AutosuggestAccount: React.FC<{ id: string }> = ({ id }) => {
@@ -33,26 +44,44 @@ const AutosuggestAccount: React.FC<{ id: string }> = ({ id }) => {
   }
 
   return (
-    <div>
-      <Avatar account={account} />
-      <DisplayName account={account} />
-    </div>
+    <>
+      <Avatar account={account} className={classes.itemIcon} size={32} />
+      <div>
+        <DisplayName
+          account={account}
+          variant='noDomain'
+          className={classes.itemAccountName}
+        />
+        <span className={classes.itemAccountHandle}>{account.acct}</span>
+      </div>
+    </>
   );
 };
 
 const AutosuggestEmoji: React.FC<EmojiSuggestion> = ({ id, native }) => {
   const colons = `:${id}:`;
   return (
-    <div>
-      <Emoji code={native ?? colons} />
+    <>
+      <span className={classes.itemIcon}>
+        <Emoji code={native ?? colons} />
+      </span>
 
-      {colons}
-    </div>
+      <span>{colons}</span>
+    </>
   );
 };
 
 const AutosuggestHashtag: React.FC<
   HashtagSuggestion | LocalHashtagSuggestion
-> = ({ name }) => {
-  return <div>#{name}</div>;
+> = ({ name, ...props }) => {
+  return (
+    <>
+      #{name}
+      {'totalUses' in props ? (
+        <span className={classes.itemHashUses}>
+          <ShortNumber value={props.totalUses} />
+        </span>
+      ) : null}{' '}
+    </>
+  );
 };
