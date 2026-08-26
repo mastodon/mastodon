@@ -1,6 +1,7 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -18,8 +19,24 @@
   bottom: 0;
   margin-top: auto;
   padding: var(--space-xl);
-  padding-top: 0;
+  padding-top: var(--space-2xs);
   background-color: var(--color-bg-primary);
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    inset-inline: 0;
+    height: var(--space-2xl);
+    background: linear-gradient(to top, var(--color-bg-primary), transparent);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity linear 200ms;
+  }
+
+  &[data-stuck='true']::before {
+    opacity: 1;
+  }
 }
 
 .footerNav {

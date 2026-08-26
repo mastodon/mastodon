@@ -6,12 +6,34 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  padding: var(--space-xl) var(--space-lg);
-  background: linear-gradient(
-    to top,
-    transparent,
-    var(--color-bg-primary) var(--space-xl)
-  );
+
+  // We're distributing the bottom spacing between padding and margin so that
+  // not too much of it overlaps the navigation links when scrolled down
+  --half-bottom-spacing: calc(var(--space-xl) / 2);
+
+  padding: var(--space-xl) var(--space-lg) var(--half-bottom-spacing);
+  margin-bottom: var(--half-bottom-spacing);
+  background: var(--color-bg-primary);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    height: var(--space-2xl);
+    background: linear-gradient(
+      to bottom,
+      var(--color-bg-primary),
+      transparent
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity linear 200ms;
+  }
+
+  &[data-stuck='true']::after {
+    opacity: 1;
+  }
 }
 
 .siteNameLink {
