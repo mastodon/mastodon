@@ -27,6 +27,7 @@ import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
 import { ListSection } from './list_section';
+import { LoggedOutInfo } from './logged_out_info';
 import { NavigationLink } from './navigation_link';
 import classes from './styles.module.scss';
 
@@ -239,6 +240,12 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
             <NavigationFooterLinks siteName={siteName} />
           </footer>
         </>
+      )}
+      {!signedIn && (
+        <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
+          <LoggedOutInfo />
+          <NavigationFooterLinks siteName={siteName} />
+        </footer>
       )}
       {bottomSensor}
     </nav>
