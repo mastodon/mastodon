@@ -1,6 +1,4 @@
-import type React from 'react';
-import type { RefCallback } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -15,40 +13,24 @@ import {
   selectComposeSuggestion,
 } from '@/mastodon/actions/compose';
 import { processPasteOrDrop } from '@/mastodon/actions/compose_typed';
-import { textAtCursorMatchesToken } from '@/mastodon/components/autosuggest/utils';
-import { Avatar } from '@/mastodon/components/avatar';
-import { DisplayName } from '@/mastodon/components/display_name';
-import { Emoji } from '@/mastodon/components/emoji';
-import { LocalCustomEmojiProvider } from '@/mastodon/components/emoji/context';
+import type { OnSuggestionSelect } from '@/mastodon/components/autosuggest/list';
+import {
+  AutosuggestMenu,
+  useAutosuggestMenu,
+} from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
-import {
-  getAllMenuItems,
-  Menu,
-  MenuItem,
-  useMenuContext,
-} from '@/mastodon/components/menu';
-import { MenuCard } from '@/mastodon/components/menu/card';
-import { Popover } from '@/mastodon/components/popover';
-import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
-import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import {
   COMPOSER_TEXTAREA_ID,
   focusComposerTextarea,
 } from '@/mastodon/reducers/slices/composer';
-import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import {
   createAppSelector,
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
 
-import type { Suggestion } from './selectors';
-import {
-  selectComposeType,
-  selectSuggestions,
-  stringOrUndefined,
-} from './selectors';
+import { selectComposeType, selectSuggestions } from './selectors';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -95,42 +77,52 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   // Selectors
   const type = useAppSelector(selectComposeType);
   const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
-  const suggestions = useAppSelector(selectSuggestions);
   const dispatch = useAppDispatch();
+
+  // Suggestion hooks
+  const onSuggestionFetch = useCallback(
+    (token: string) => {
+      dispatch(fetchComposeSuggestions(token));
+    },
+    [dispatch],
+  );
+
+  const onSuggestion: OnSuggestionSelect = useCallback(
+    (tokenStart, token, suggestion) => {
+      dispatch(
+        selectComposeSuggestion(tokenStart, token, suggestion, ['text']),
+      );
+      focusComposerTextarea(true);
+    },
+    [dispatch],
+  );
+
+  const onSuggestionClear = useCallback(() => {
+    dispatch(clearComposeSuggestions());
+  }, [dispatch]);
+
+  const suggestions = useAppSelector(selectSuggestions);
+  const { textChange, focus, getToken, ...suggestionProps } =
+    useAutosuggestMenu({
+      suggestions,
+      onSelect: onSuggestion,
+      onFetch: onSuggestionFetch,
+      onClear: onSuggestionClear,
+    });
 
   // Suggestion state and refs
   const [textArea, setTextArea] = useState<HTMLTextAreaElement | null>(null); // The textarea itself.
-  const [suggestionList, setSuggestionList] = useState<HTMLDivElement | null>( // Suggestion list element.
-    null,
-  );
   const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null); // Reference to the mirror element.
   const [selectedText, setSelectedText] = useState(text); // The actual selected text inside the mirror.
-  const lastTokenRef = useRef<string | null>(null); // The last suggestion token encountered.
-  const tokenStartRef = useRef(0); // Character location of the token start.
-  const updatePopoverRef = useRef<(() => void) | null>(null); // Reference to the popover update callback.
+  const [updatePopover, setUpdatePopover] = useState<(() => void) | null>(null); // Reference to the popover update callback.
 
+  // Update the composer text and trigger suggestions.
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
-      // Update the composer text.
       dispatch(changeCompose(event.target.value));
-
-      // Detect a token, and if so fetch suggestions, or dismiss them if not.
-      const [tokenStart, token] = textAtCursorMatchesToken(
-        event.target.value,
-        event.target.selectionStart,
-        ['@', '＠', ':', '#', '＃'],
-      );
-
-      if (token !== null && lastTokenRef.current !== token) {
-        tokenStartRef.current = tokenStart;
-        lastTokenRef.current = token;
-        dispatch(fetchComposeSuggestions(token));
-      } else if (token === null) {
-        lastTokenRef.current = null;
-        dispatch(clearComposeSuggestions());
-      }
+      textChange(event);
     },
-    [dispatch, lastTokenRef],
+    [dispatch, textChange],
   );
 
   const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
@@ -141,46 +133,45 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         if (key === 'enter' && (event.ctrlKey || event.metaKey)) {
           onSubmit();
           event.preventDefault();
-          dispatch(clearComposeSuggestions());
+          onSuggestionClear();
         } else if (key === 'escape') {
           // Dismiss the suggestions if we're displaying any.
           if (suggestions.length > 0) {
-            dispatch(clearComposeSuggestions());
+            onSuggestionClear();
           } else {
             // Otherwise lose focus on the textarea.
             event.currentTarget.blur();
           }
-        } else if (key === 'down' && suggestions.length > 0 && suggestionList) {
-          // If we have suggestions, the down arrow selects the first one.
-          (getAllMenuItems(suggestionList).at(0) ?? suggestionList).focus();
+        } else if (key === 'down') {
+          focus(event);
         }
       },
-      [dispatch, onSubmit, suggestionList, suggestions.length],
+      [onSubmit, onSuggestionClear, suggestions.length, focus],
     );
 
   // When the caret or selection changes, update the selected text and clear the composer if it doesn't include a token.
   const onSelect: React.ReactEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
-      if (lastTokenRef.current === null) {
+      const { token, startPosition } = getToken();
+      if (token === null) {
         return;
       }
 
       const { selectionStart, value } = event.currentTarget;
-      const tokenEnd = tokenStartRef.current + lastTokenRef.current.length;
+      const tokenEnd = startPosition + token.length;
       setSelectedText(value.slice(0, tokenEnd)); // Only set the text up to the selected end point.
 
-      if (selectionStart < tokenStartRef.current || selectionStart > tokenEnd) {
-        lastTokenRef.current = null;
-        dispatch(clearComposeSuggestions());
+      if (selectionStart < startPosition || selectionStart > tokenEnd) {
+        onSuggestionClear();
       }
     },
-    [dispatch],
+    [getToken, onSuggestionClear],
   );
 
   // Debounced callback to update the popover on scroll.
   const onTextAreaScroll = useThrottledCallback(() => {
     // Call the popover update callback. This enables the popover to adjust position with scroll.
-    updatePopoverRef.current?.();
+    updatePopover?.();
 
     if (textArea && mirrorElement) {
       // Set top to scroll offset so bottom edge looks right.
@@ -189,7 +180,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       const { height } = textArea.getBoundingClientRect();
       const offset = mirrorElement.offsetHeight - textArea.scrollTop;
       if (offset < 0 || offset > height) {
-        dispatch(clearComposeSuggestions());
+        onSuggestionClear();
       }
     }
   }, 0);
@@ -205,32 +196,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     },
     [dispatch],
   );
-
-  const onSuggestionClick: React.MouseEventHandler<HTMLButtonElement> =
-    useCallback(
-      (event) => {
-        const { id, index, type } = event.currentTarget.dataset;
-        const suggestion = suggestions.find((suggestion, i) =>
-          suggestion.type === type && suggestion.id
-            ? suggestion.id === id
-            : index && Number.parseInt(index) === i,
-        );
-        if (!suggestion) {
-          return;
-        }
-
-        dispatch(
-          selectComposeSuggestion(
-            tokenStartRef.current,
-            lastTokenRef.current,
-            suggestion,
-            ['text'],
-          ),
-        );
-        focusComposerTextarea(true);
-      },
-      [dispatch, suggestions],
-    );
 
   return (
     <div className={classes.textareaWrapper}>
@@ -255,116 +220,16 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onChange={onChange}
         onSelect={onSelect}
         onScroll={onTextAreaScroll}
-        aria-controls={suggestionList?.id}
       />
 
       <div className={classes.textareaMirror} ref={setMirrorElement}>
         {selectedText}
       </div>
 
-      <Menu noFocus>
-        {suggestions.length > 0 && (
-          <AutosuggestMenuList
-            listRef={setSuggestionList}
-            mirrorElement={mirrorElement}
-            updateRef={updatePopoverRef}
-          >
-            {suggestions.map((suggestion, index) => (
-              <MenuItem
-                key={`${suggestion.type}:${suggestion.id}`}
-                onClick={onSuggestionClick}
-                data-index={index}
-                data-type={suggestion.type}
-                data-id={suggestion.id}
-              >
-                <AutosuggestItem suggestion={suggestion} />
-              </MenuItem>
-            ))}
-          </AutosuggestMenuList>
-        )}
-      </Menu>
-    </div>
-  );
-};
-
-const AutosuggestMenuList: React.FC<{
-  children: React.ReactElement[];
-  listRef: RefCallback<HTMLDivElement>;
-  mirrorElement: HTMLElement | null;
-  updateRef: React.RefObject<(() => void) | null>;
-}> = ({ children, listRef, mirrorElement, updateRef }) => {
-  const suggestions = useAppSelector(selectSuggestions);
-  const token = useAppSelector((state) =>
-    stringOrUndefined(state.compose.get('suggestion_token')),
-  );
-  const lastToken = usePrevious(token);
-
-  const { popover, menuListProps } = useMenuContext();
-
-  if (!popover.isMenuOpen && token !== lastToken && suggestions.length > 0) {
-    popover.openMenu();
-  }
-
-  useEffect(() => {
-    const update = updateRef;
-    return () => {
-      update.current = null;
-    };
-  }, [updateRef]);
-
-  const mergedRef = useMergedRefs(menuListProps.ref, listRef);
-
-  return (
-    <Popover
-      isOpen={popover.isMenuOpen}
-      onClose={popover.closeMenu}
-      reference={mirrorElement}
-      popoverElement={popover.popover}
-      container={null}
-      placement='bottom-start'
-    >
-      {({ props: popoverChildProps, update }) => {
-        updateRef.current = update;
-        return (
-          <MenuCard {...popoverChildProps} {...menuListProps} ref={mergedRef}>
-            <LocalCustomEmojiProvider>{children}</LocalCustomEmojiProvider>
-          </MenuCard>
-        );
-      }}
-    </Popover>
-  );
-};
-
-const AutosuggestItem: React.FC<{ suggestion: Suggestion }> = ({
-  suggestion,
-}) => {
-  if (suggestion.type === 'account') {
-    return <AutosuggestAccount id={suggestion.id} />;
-  } else if (suggestion.type === 'hashtag') {
-    return <div>#{suggestion.name}</div>;
-  } else {
-    const colons = `:${suggestion.id}:`;
-    return (
-      <div>
-        <Emoji code={suggestion.native ?? colons} />
-
-        {colons}
-      </div>
-    );
-  }
-};
-
-const AutosuggestAccount: React.FC<{ id: string }> = ({ id }) => {
-  const account = useAppSelector((state) => selectPlainAccount(state, id));
-
-  if (!account) {
-    return null;
-  }
-
-  return (
-    <div>
-      <Avatar account={account} />
-      <DisplayName account={account} />
+      <AutosuggestMenu
+        {...suggestionProps}
+        updatePopoverCb={setUpdatePopover}
+      />
     </div>
   );
 };
