@@ -64,7 +64,8 @@ export const ComposeHints = () => {
     );
   }
 
-  if (isDifferentLanguage) {
+  const { wasDismissed } = useDismissible('compose_language_hint');
+  if (isDifferentLanguage && !wasDismissed) {
     messages.push(<LanguageHint guess={guess} key='different-language' />);
   }
 
