@@ -2,6 +2,7 @@
 
 class Api::V1::Admin::Trends::Links::PreviewCardProvidersController < Api::BaseController
   include Authorization
+  include Admin::PermissionsConcern
 
   LIMIT = 100
 
