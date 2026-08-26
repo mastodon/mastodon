@@ -16,6 +16,7 @@ import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchLists } from '@/mastodon/actions/lists';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
+import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { getOrderedLists } from '@/mastodon/selectors/lists';
@@ -81,12 +82,24 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
   const { customFeeds } = useCustomFeeds();
   const { followedHashtags } = useFollowedHashtags();
 
+  const { sensor: topSensor, isInViewport: isScrolledToTop } = useScrollSensor({
+    placement: 'top',
+    // Only show overlay fade after a bit of scrolling, as the nav header has
+    // a bit of bottom spacing where the fade isn't needed yet
+    tolerance: 36,
+  });
+  const { sensor: bottomSensor, isInViewport: isScrolledToBottom } =
+    useScrollSensor({
+      placement: 'bottom',
+    });
+
   return (
     <nav
       className={classes.root}
       aria-label={intl.formatMessage(messages.main)}
     >
-      <NavigationHeader siteName={siteName} />
+      {topSensor}
+      <NavigationHeader siteName={siteName} isStuck={!isScrolledToTop} />
       {signedIn && (
         <>
           <ul className={classes.list}>
@@ -186,7 +199,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
               </ListSection>
             )}
           </ul>
-          <footer className={classes.footer}>
+          <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
             <ul className={classes.footerNav}>
               <NavigationLink
                 stacked
@@ -223,6 +236,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
           </footer>
         </>
       )}
+      {bottomSensor}
     </nav>
   );
 };
