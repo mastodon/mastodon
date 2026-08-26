@@ -25,6 +25,7 @@ RSpec.describe 'API V1 Admin Trends Statuses' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns http success' do
       expect(response).to have_http_status(200)
@@ -40,6 +41,7 @@ RSpec.describe 'API V1 Admin Trends Statuses' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns http success' do
       expect(response).to have_http_status(200)

@@ -2,6 +2,7 @@
 
 class Api::V1::Admin::Trends::TagsController < Api::V1::Trends::TagsController
   include Authorization
+  include Admin::PermissionsConcern
 
   before_action -> { authorize_if_got_token! :'admin:read' }, only: :index
   before_action -> { authorize_if_got_token! :'admin:write' }, except: :index
