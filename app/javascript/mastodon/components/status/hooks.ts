@@ -284,7 +284,7 @@ export function useHandlersForStatus(
     hashtagAccountId:
       typeof status?.account === 'string'
         ? status.account
-        : status?.account.acct,
+        : status?.account.id,
     hrefToCollectionId,
     hrefToMention,
   });
