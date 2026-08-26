@@ -228,6 +228,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
       <AutosuggestMenu
         {...suggestionProps}
+        reference={mirrorElement}
         updatePopoverCb={setUpdatePopover}
       />
     </div>
