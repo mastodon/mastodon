@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import classNames from 'classnames';
+
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { usePrevious } from '@/mastodon/hooks/usePrevious';
 
@@ -9,6 +11,7 @@ import { MenuCard } from '../menu/card';
 import { Popover } from '../popover';
 
 import { AutosuggestItem } from './items';
+import classes from './styles.module.scss';
 import type { Suggestion } from './types';
 
 export interface AutosuggestMenuProps {
@@ -19,6 +22,7 @@ export interface AutosuggestMenuProps {
   listRef?: React.Ref<HTMLDivElement>;
   reference?: HTMLElement | null;
   updatePopoverCb?: (update: () => void) => void;
+  maxWidth?: number | string;
 }
 
 export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
@@ -49,9 +53,9 @@ export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
   );
 };
 
-type AutosuggestMenuListProps = Pick<
+type AutosuggestMenuListProps = Omit<
   AutosuggestMenuProps,
-  'listRef' | 'suggestions' | 'tokenCb' | 'reference' | 'updatePopoverCb'
+  'onSuggestionClick'
 > & {
   children: React.ReactNode;
 };
@@ -63,6 +67,7 @@ const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
   suggestions,
   reference,
   updatePopoverCb,
+  maxWidth,
 }) => {
   const token = tokenCb();
   const lastToken = usePrevious(token);
@@ -90,7 +95,19 @@ const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
         updatePopoverCb?.(update);
 
         return (
-          <MenuCard {...popoverChildProps} {...menuListProps} ref={mergedRef}>
+          <MenuCard
+            {...popoverChildProps}
+            {...menuListProps}
+            style={
+              {
+                '--_max-card-width':
+                  typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
+                ...popoverChildProps.style,
+              } as React.CSSProperties
+            }
+            ref={mergedRef}
+            className={classNames(maxWidth && classes.menuWidth)}
+          >
             <LocalCustomEmojiProvider>{children}</LocalCustomEmojiProvider>
           </MenuCard>
         );
