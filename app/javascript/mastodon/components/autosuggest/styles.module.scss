@@ -1,0 +1,19 @@
+.mirror {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.textAreaMirror {
+  white-space: pre-wrap; // This makes the formatting match the text area.
+}
+
+.debug.mirror {
+  visibility: visible;
+  opacity: 0.2;
+  background-color: red;
+  color: white;
+}

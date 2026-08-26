@@ -28,3 +28,8 @@ export type Suggestion =
   | HashtagSuggestion;
 
 export type AutosuggestSourceElements = HTMLInputElement | HTMLTextAreaElement;
+
+export type Source =
+  | React.RefObject<AutosuggestSourceElements | null>
+  | AutosuggestSourceElements
+  | null;

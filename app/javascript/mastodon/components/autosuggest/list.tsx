@@ -12,9 +12,10 @@ import { Popover } from '../popover';
 import { AutosuggestItem } from './items';
 import type { Suggestion } from './types';
 
-interface AutosuggestMenuProps {
+export interface AutosuggestMenuProps {
   suggestions: Suggestion[];
   onSuggestionClick: React.MouseEventHandler;
+  children?: React.ReactNode;
   listRef?: React.Ref<HTMLDivElement>;
   reference?: HTMLElement | null;
   updatePopoverCb?: (update: () => void) => void;
@@ -23,23 +24,25 @@ interface AutosuggestMenuProps {
 export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
   suggestions,
   onSuggestionClick,
+  children,
   ...menuProps
 }) => {
   return (
     <Menu noFocus>
       {suggestions.length > 0 && (
         <AutosuggestMenuList {...menuProps}>
-          {suggestions.map((suggestion, index) => (
-            <MenuItem
-              key={`${suggestion.type}:${suggestion.id}`}
-              onClick={onSuggestionClick}
-              data-index={index}
-              data-type={suggestion.type}
-              data-id={suggestion.id}
-            >
-              <AutosuggestItem suggestion={suggestion} />
-            </MenuItem>
-          ))}
+          {children ??
+            suggestions.map((suggestion, index) => (
+              <MenuItem
+                key={`${suggestion.type}:${suggestion.id}`}
+                onClick={onSuggestionClick}
+                data-index={index}
+                data-type={suggestion.type}
+                data-id={suggestion.id}
+              >
+                <AutosuggestItem suggestion={suggestion} />
+              </MenuItem>
+            ))}
         </AutosuggestMenuList>
       )}
     </Menu>
@@ -50,10 +53,10 @@ type AutosuggestMenuListProps = Pick<
   AutosuggestMenuProps,
   'listRef' | 'reference' | 'updatePopoverCb'
 > & {
-  children: React.ReactElement[];
+  children: React.ReactNode;
 };
 
-export const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
+const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
   children,
   listRef,
   reference,
@@ -84,6 +87,7 @@ export const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
     >
       {({ props: popoverChildProps, update }) => {
         updatePopoverCb?.(update);
+
         return (
           <MenuCard {...popoverChildProps} {...menuListProps} ref={mergedRef}>
             <LocalCustomEmojiProvider>{children}</LocalCustomEmojiProvider>

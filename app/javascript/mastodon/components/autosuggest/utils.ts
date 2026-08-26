@@ -3,7 +3,7 @@ import { stringOrUndefined } from '@/mastodon/utils/strings';
 
 import { WORD } from '../../utils/hashtags';
 
-import type { Suggestion } from './types';
+import type { Source, Suggestion } from './types';
 
 export function textAtCursorMatchesToken(
   str: string,
@@ -100,4 +100,8 @@ export function tagHistoryToUses(history: unknown) {
         : total,
     0,
   );
+}
+
+export function sourceToElement(source: Source) {
+  return !source || source instanceof HTMLElement ? source : source.current;
 }

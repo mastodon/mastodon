@@ -1,10 +1,8 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
-
-import { useThrottledCallback } from 'use-debounce';
 
 import {
   changeCompose,
@@ -14,7 +12,7 @@ import {
 } from '@/mastodon/actions/compose';
 import { processPasteOrDrop } from '@/mastodon/actions/compose_typed';
 import type { OnSuggestionSelect } from '@/mastodon/components/autosuggest/hooks';
-import { useAutosuggestMenu } from '@/mastodon/components/autosuggest/hooks';
+import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/hooks';
 import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
@@ -77,7 +75,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
   const dispatch = useAppDispatch();
 
-  // Suggestion hooks
+  // Suggestion logic
   const onSuggestionFetch = useCallback(
     (token: string) => {
       dispatch(fetchComposeSuggestions(token));
@@ -100,19 +98,18 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   }, [dispatch]);
 
   const suggestions = useAppSelector(selectSuggestions);
-  const { textChange, focus, getToken, ...suggestionProps } =
-    useAutosuggestMenu({
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const { textChange, focus, mirror, sourceProps, suggestProps } =
+    useAutosuggestFloatingMenu({
       suggestions,
+      text,
+      className: classes.textareaMirror,
+      sourceRef: textAreaRef,
       onSelect: onSuggestion,
       onFetch: onSuggestionFetch,
       onClear: onSuggestionClear,
     });
-
-  // Suggestion state and refs
-  const [textArea, setTextArea] = useState<HTMLTextAreaElement | null>(null); // The textarea itself.
-  const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null); // Reference to the mirror element.
-  const [selectedText, setSelectedText] = useState(text); // The actual selected text inside the mirror.
-  const [updatePopover, setUpdatePopover] = useState<(() => void) | null>(null); // Reference to the popover update callback.
 
   // Update the composer text and trigger suggestions.
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
@@ -147,42 +144,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       [onSubmit, onSuggestionClear, suggestions.length, focus],
     );
 
-  // When the caret or selection changes, update the selected text and clear the composer if it doesn't include a token.
-  const onSelect: React.ReactEventHandler<HTMLTextAreaElement> = useCallback(
-    (event) => {
-      const { token, startPosition } = getToken();
-      if (token === null) {
-        return;
-      }
-
-      const { selectionStart, value } = event.currentTarget;
-      const tokenEnd = startPosition + token.length;
-      setSelectedText(value.slice(0, tokenEnd)); // Only set the text up to the selected end point.
-
-      if (selectionStart < startPosition || selectionStart > tokenEnd) {
-        onSuggestionClear();
-      }
-    },
-    [getToken, onSuggestionClear],
-  );
-
-  // Debounced callback to update the popover on scroll.
-  const onTextAreaScroll = useThrottledCallback(() => {
-    // Call the popover update callback. This enables the popover to adjust position with scroll.
-    updatePopover?.();
-
-    if (textArea && mirrorElement) {
-      // Set top to scroll offset so bottom edge looks right.
-      mirrorElement.style.setProperty('top', `${-1 * textArea.scrollTop}px`);
-
-      const { height } = textArea.getBoundingClientRect();
-      const offset = mirrorElement.offsetHeight - textArea.scrollTop;
-      if (offset < 0 || offset > height) {
-        onSuggestionClear();
-      }
-    }
-  }, 0);
-
   const onPasteOrDrop = useCallback(
     (event: React.ClipboardEvent | React.DragEvent) => {
       const data =
@@ -203,7 +164,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         aria-autocomplete='list'
         id={COMPOSER_TEXTAREA_ID}
         className={classNames(className, classes.textarea)}
-        ref={setTextArea}
+        ref={textAreaRef}
         value={text}
         lang={lang}
         placeholder={intl.formatMessage(
@@ -216,19 +177,12 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onDrop={onPasteOrDrop}
         onPaste={onPasteOrDrop}
         onChange={onChange}
-        onSelect={onSelect}
-        onScroll={onTextAreaScroll}
+        {...sourceProps}
       />
 
-      <div className={classes.textareaMirror} ref={setMirrorElement}>
-        {selectedText}
-      </div>
+      {mirror}
 
-      <AutosuggestMenu
-        {...suggestionProps}
-        reference={mirrorElement}
-        updatePopoverCb={setUpdatePopover}
-      />
+      <AutosuggestMenu {...suggestProps} />
     </div>
   );
 };
