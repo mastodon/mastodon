@@ -41,11 +41,14 @@ const messages = defineMessages({
 
 function useCustomFeeds() {
   const dispatch = useAppDispatch();
+  const { signedIn } = useIdentity();
   const customFeeds = useAppSelector((state) => getOrderedLists(state));
 
   useEffect(() => {
-    void dispatch(fetchLists());
-  }, [dispatch]);
+    if (signedIn) {
+      void dispatch(fetchLists());
+    }
+  }, [dispatch, signedIn]);
 
   return {
     customFeeds,
@@ -54,13 +57,14 @@ function useCustomFeeds() {
 
 function useFollowedHashtags() {
   const dispatch = useAppDispatch();
+  const { signedIn } = useIdentity();
   const { tags, stale } = useAppSelector((state) => state.followedTags);
 
   useEffect(() => {
-    if (stale) {
+    if (stale && signedIn) {
       void dispatch(fetchFollowedHashtags());
     }
-  }, [dispatch, stale]);
+  }, [dispatch, stale, signedIn]);
 
   return { followedHashtags: tags };
 }
