@@ -45,6 +45,9 @@ export const useScrollSensor = ({
     // Assign the IntersectionObserver to a ref so we don't
     // need to re-create it when the effect reruns
     if (!observerRef.current) {
+      // This could be enhanced with a util to actually walk up
+      // the tree to find the nearest scrollable element. For now,
+      // it assumes the immediate parent as the scroll root.
       const root = global ? null : sensor.parentElement;
 
       observerRef.current = new IntersectionObserver(
@@ -54,7 +57,7 @@ export const useScrollSensor = ({
           }
         },
         {
-          root: root === document.scrollingElement ? null : root,
+          root,
         },
       );
     }
