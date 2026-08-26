@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
+import { useDebouncedCallback } from 'use-debounce';
+
+import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import type { InitialStateLanguage } from '@/mastodon/initial_state';
 import { languages } from '@/mastodon/initial_state';
 import { useAppSelector } from '@/mastodon/store';
@@ -40,4 +43,48 @@ export function useLanguageGuess() {
   }
 
   return guess;
+}
+
+// Handle wrapper fade to indicate scroll.
+export function useBottomFade() {
+  const onWrapperScroll = useDebouncedCallback(wrapperScroll, 20, {
+    leading: true,
+  });
+  const observer = useResizeObserver(wrapperResize);
+  const onWrapperMount: React.RefCallback<HTMLElement> = useCallback(
+    (ele) => {
+      if (ele) {
+        observer.observe(ele);
+      }
+    },
+    [observer],
+  );
+
+  return {
+    ref: onWrapperMount,
+    onScroll: onWrapperScroll,
+  };
+}
+
+function wrapperUpdate(ele: HTMLElement) {
+  const scrollMax = ele.scrollHeight - ele.offsetHeight - 5; // 5px padding to account for sub-pixel issues
+  if (scrollMax > 0 && ele.scrollTop < scrollMax) {
+    ele.dataset.scrollDown = 'true';
+  } else {
+    delete ele.dataset.scrollDown;
+  }
+}
+
+function wrapperResize(entries: ResizeObserverEntry[]) {
+  for (const entry of entries) {
+    if (entry.target instanceof HTMLElement) {
+      wrapperUpdate(entry.target);
+    }
+  }
+}
+
+function wrapperScroll(event: React.UIEvent<HTMLElement>) {
+  if (event.target instanceof HTMLElement) {
+    wrapperUpdate(event.target);
+  }
 }
