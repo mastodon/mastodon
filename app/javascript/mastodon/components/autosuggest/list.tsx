@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { selectSuggestions } from '@/mastodon/features/compose/redesign/selectors';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { usePrevious } from '@/mastodon/hooks/usePrevious';
@@ -70,9 +72,11 @@ const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
 
   const { popover, menuListProps } = useMenuContext();
 
-  if (!popover.isMenuOpen && token !== lastToken && suggestions.length > 0) {
-    popover.openMenu();
-  }
+  useEffect(() => {
+    if (!popover.isMenuOpen && token !== lastToken && suggestions.length > 0) {
+      popover.openMenu();
+    }
+  }, [lastToken, popover, suggestions.length, token]);
 
   const mergedRef = useMergedRefs(menuListProps.ref, listRef);
 

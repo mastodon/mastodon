@@ -24,17 +24,35 @@ interface UseAutosuggestMenuOptions {
   onClear?: () => void;
 }
 
+interface UseAutosuggestReturn {
+  onTextChange: React.ChangeEventHandler<AutosuggestSourceElements>;
+  focus: (event?: React.SyntheticEvent) => void;
+  getToken: () => { token: string | null; startPosition: number };
+
+  mirror?: React.JSX.Element;
+
+  suggestProps: Omit<AutosuggestMenuProps, 'children'>;
+
+  sourceProps?: Pick<
+    React.DetailedHTMLProps<
+      React.HTMLAttributes<AutosuggestSourceElements>,
+      AutosuggestSourceElements
+    >,
+    'onSelect' | 'onScroll'
+  >;
+}
+
 export function useAutosuggestMenu({
   suggestions,
   onSelect,
   onFetch,
   onClear,
-}: UseAutosuggestMenuOptions) {
+}: UseAutosuggestMenuOptions): UseAutosuggestReturn {
   const lastTokenRef = useRef<string | null>(null); // The last suggestion token encountered.
   const tokenStartRef = useRef(0); // Character location of the token start.
   const listRef = useRef<HTMLDivElement>(null);
 
-  const textChange: React.ChangeEventHandler<AutosuggestSourceElements> =
+  const onTextChange: React.ChangeEventHandler<AutosuggestSourceElements> =
     useCallback(
       (event) => {
         // Detect a token, and if so fetch suggestions, or dismiss them if not.
@@ -57,9 +75,9 @@ export function useAutosuggestMenu({
     );
 
   const focus = useCallback(
-    (event: React.SyntheticEvent) => {
+    (event?: React.SyntheticEvent) => {
       if (suggestions.length > 0 && listRef.current) {
-        event.preventDefault();
+        event?.preventDefault();
         (getAllMenuItems(listRef.current).at(0) ?? listRef.current).focus();
       }
     },
@@ -94,7 +112,7 @@ export function useAutosuggestMenu({
 
   return {
     // Used by the parent.
-    textChange,
+    onTextChange,
     focus,
     getToken,
 
@@ -118,10 +136,10 @@ export function useAutosuggestFloatingMenu({
   sourceRef,
   className,
   ...suggestOptions
-}: UseAutosuggestFloatingMenuOptions) {
+}: UseAutosuggestFloatingMenuOptions): UseAutosuggestReturn {
   const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null); // Reference to the mirror element.
   const [selectedText, setSelectedText] = useState(text); // The actual selected text inside the mirror.
-  const [updatePopover, setUpdatePopover] = useState<(() => void) | null>(null); // Reference to the popover update callback.
+  const updatePopover = useRef<() => void>(null); // Reference to the popover update callback.
 
   const { getToken, ...autosuggestProps } = useAutosuggestMenu(suggestOptions);
 
@@ -132,7 +150,7 @@ export function useAutosuggestFloatingMenu({
   // Update the popover on scroll or select.
   const onUpdate = useCallback(() => {
     // Call the popover update callback. This enables the popover to adjust position with scroll.
-    updatePopover?.();
+    updatePopover.current?.();
 
     if (source && mirrorElement) {
       // Set top to scroll offset so bottom edge looks right.
@@ -171,7 +189,7 @@ export function useAutosuggestFloatingMenu({
 
   const onScroll = useThrottledCallback(onUpdate, 0);
   const updatePopoverCb = useCallback((update: () => void) => {
-    setUpdatePopover(() => update); // We use the callback form here as otherwise update gets called.
+    updatePopover.current = () => update;
   }, []);
 
   const mirror = (

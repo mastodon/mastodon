@@ -100,7 +100,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const suggestions = useAppSelector(selectSuggestions);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const { textChange, focus, mirror, sourceProps, suggestProps } =
+  const { onTextChange, focus, mirror, sourceProps, suggestProps } =
     useAutosuggestFloatingMenu({
       suggestions,
       text,
@@ -115,9 +115,9 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       dispatch(changeCompose(event.target.value));
-      textChange(event);
+      onTextChange(event);
     },
-    [dispatch, textChange],
+    [dispatch, onTextChange],
   );
 
   const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
