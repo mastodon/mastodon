@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
+import type { Simplify } from 'type-fest';
 import { useThrottledCallback } from 'use-debounce';
 
 import { getAllMenuItems } from '../menu';
@@ -24,6 +25,11 @@ interface UseAutosuggestMenuOptions {
   onClear?: () => void;
 }
 
+type SourceProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<AutosuggestSourceElements>,
+  AutosuggestSourceElements
+>;
+
 interface UseAutosuggestReturn {
   onTextChange: React.ChangeEventHandler<AutosuggestSourceElements>;
   focus: (event?: React.SyntheticEvent) => void;
@@ -31,15 +37,9 @@ interface UseAutosuggestReturn {
 
   mirror?: React.JSX.Element;
 
-  suggestProps: Omit<AutosuggestMenuProps, 'children'>;
+  suggestProps: Simplify<Omit<AutosuggestMenuProps, 'children'>>;
 
-  sourceProps?: Pick<
-    React.DetailedHTMLProps<
-      React.HTMLAttributes<AutosuggestSourceElements>,
-      AutosuggestSourceElements
-    >,
-    'onSelect' | 'onScroll'
-  >;
+  sourceProps?: Simplify<Pick<SourceProps, 'onSelect' | 'onScroll'>>;
 }
 
 export function useAutosuggestMenu({
@@ -215,10 +215,7 @@ export function useAutosuggestFloatingMenu({
     sourceProps: {
       onScroll,
       onSelect,
-    } satisfies React.DetailedHTMLProps<
-      React.HTMLAttributes<AutosuggestSourceElements>,
-      AutosuggestSourceElements
-    >,
+    } satisfies SourceProps,
 
     suggestProps: {
       ...autosuggestProps.suggestProps,
