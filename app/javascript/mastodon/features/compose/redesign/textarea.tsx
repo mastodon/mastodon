@@ -92,23 +92,29 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 }) => {
   const intl = useIntl();
 
+  // Selectors
   const type = useAppSelector(selectComposeType);
   const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
-
+  const suggestions = useAppSelector(selectSuggestions);
   const dispatch = useAppDispatch();
 
-  // Suggestion logic
-  const [suggestionList, setSuggestionList] = useState<HTMLDivElement | null>(
+  // Suggestion state and refs
+  const [textArea, setTextArea] = useState<HTMLTextAreaElement | null>(null); // The textarea itself.
+  const [suggestionList, setSuggestionList] = useState<HTMLDivElement | null>( // Suggestion list element.
     null,
   );
-  const suggestions = useAppSelector(selectSuggestions);
-  const lastTokenRef = useRef<string | null>(null);
-  const tokenStartRef = useRef(0);
+  const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null); // Reference to the mirror element.
+  const [selectedText, setSelectedText] = useState(text); // The actual selected text inside the mirror.
+  const lastTokenRef = useRef<string | null>(null); // The last suggestion token encountered.
+  const tokenStartRef = useRef(0); // Character location of the token start.
+  const updatePopoverRef = useRef<(() => void) | null>(null); // Reference to the popover update callback.
 
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
+      // Update the composer text.
       dispatch(changeCompose(event.target.value));
 
+      // Detect a token, and if so fetch suggestions, or dismiss them if not.
       const [tokenStart, token] = textAtCursorMatchesToken(
         event.target.value,
         event.target.selectionStart,
@@ -131,6 +137,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     useCallback(
       (event) => {
         const key = normalizeKey(event.key);
+
         if (key === 'enter' && (event.ctrlKey || event.metaKey)) {
           onSubmit();
           event.preventDefault();
@@ -144,14 +151,14 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
             event.currentTarget.blur();
           }
         } else if (key === 'down' && suggestions.length > 0 && suggestionList) {
+          // If we have suggestions, the down arrow selects the first one.
           (getAllMenuItems(suggestionList).at(0) ?? suggestionList).focus();
         }
       },
       [dispatch, onSubmit, suggestionList, suggestions.length],
     );
 
-  // When showing suggestions, dismiss them if the selection changes.
-  const [selectedText, setSelectedText] = useState(text);
+  // When the caret or selection changes, update the selected text and clear the composer if it doesn't include a token.
   const onSelect: React.ReactEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       if (lastTokenRef.current === null) {
@@ -160,7 +167,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
       const { selectionStart, value } = event.currentTarget;
       const tokenEnd = tokenStartRef.current + lastTokenRef.current.length;
-      setSelectedText(value.slice(0, tokenEnd));
+      setSelectedText(value.slice(0, tokenEnd)); // Only set the text up to the selected end point.
 
       if (selectionStart < tokenStartRef.current || selectionStart > tokenEnd) {
         lastTokenRef.current = null;
@@ -169,11 +176,10 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     },
     [dispatch],
   );
-  const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null);
-  const updatePopoverRef = useRef<(() => void) | null>(null);
-  const [textArea, setTextArea] = useState<HTMLTextAreaElement | null>(null);
+
+  // Debounced callback to update the popover on scroll.
   const onTextAreaScroll = useThrottledCallback(() => {
-    // Call the popover update callback.
+    // Call the popover update callback. This enables the popover to adjust position with scroll.
     updatePopoverRef.current?.();
 
     if (textArea && mirrorElement) {
