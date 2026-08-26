@@ -26,3 +26,5 @@ export type Suggestion =
   | EmojiSuggestion
   | LocalHashtagSuggestion
   | HashtagSuggestion;
+
+export type AutosuggestSourceElements = HTMLInputElement | HTMLTextAreaElement;

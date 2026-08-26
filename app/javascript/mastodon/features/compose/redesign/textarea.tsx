@@ -13,11 +13,9 @@ import {
   selectComposeSuggestion,
 } from '@/mastodon/actions/compose';
 import { processPasteOrDrop } from '@/mastodon/actions/compose_typed';
-import type { OnSuggestionSelect } from '@/mastodon/components/autosuggest/list';
-import {
-  AutosuggestMenu,
-  useAutosuggestMenu,
-} from '@/mastodon/components/autosuggest/list';
+import type { OnSuggestionSelect } from '@/mastodon/components/autosuggest/hooks';
+import { useAutosuggestMenu } from '@/mastodon/components/autosuggest/hooks';
+import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
 import {
