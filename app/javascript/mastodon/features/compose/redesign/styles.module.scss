@@ -86,7 +86,6 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
   scrollbar-width: thin;
   overscroll-behavior-y: contain;
   position: relative;
@@ -102,13 +101,13 @@
     position: sticky;
     bottom: 0;
     flex-shrink: 0;
-    margin-top: calc((-1 * var(--fade-size)) - var(--space-md));
+    margin-top: calc(-1 * var(--fade-size));
     opacity: 0;
     pointer-events: none;
     transition: opacity 200ms;
   }
 
-  &[data-scroll-down]::after {
+  &[data-scroll-down='true']::after {
     opacity: 1;
   }
 }
@@ -136,6 +135,10 @@
     width: 100%;
     outline: none;
   }
+}
+
+.attachments {
+  margin-top: var(--space-md);
 }
 
 .footer {

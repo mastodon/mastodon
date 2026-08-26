@@ -17,6 +17,7 @@ import {
   TextInputField,
 } from '@/mastodon/components/form_fields/redesign';
 import { Icon } from '@/mastodon/components/icon';
+import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
   focusComposerTextarea,
   getComposerTextarea,
@@ -29,7 +30,6 @@ import type { OnEmojiPick } from './emoji';
 import { ComposeFooter } from './footer';
 import { ComposeFormHeader } from './header';
 import { ComposeHints } from './hints';
-import { useBottomFade } from './hooks';
 import { LanguageButton } from './language';
 import { ComposeReply } from './reply';
 import {
@@ -74,7 +74,10 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   const intl = useIntl();
   const titleId = useId();
 
-  const editorWrapperProps = useBottomFade();
+  const { sensor, isInViewport } = useScrollSensor({
+    placement: 'bottom',
+    tolerance: 10,
+  });
 
   return (
     <form
@@ -122,14 +125,16 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
         />
       )}
 
-      <div {...editorWrapperProps} className={classes.editorWrapper}>
+      <div data-scroll-down={!isInViewport} className={classes.editorWrapper}>
         <ComposeTextarea
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={autoFocus}
           onSubmit={onSubmit}
         />
 
-        <ComposeAttachments />
+        <ComposeAttachments className={classes.attachments} />
+
+        {sensor}
       </div>
 
       <ComposeHints />
