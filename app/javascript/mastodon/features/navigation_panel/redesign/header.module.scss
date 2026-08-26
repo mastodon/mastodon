@@ -7,6 +7,8 @@
   display: flex;
   align-items: center;
 
+  // We're distributing the bottom spacing between padding and margin so that
+  // not too much of it overlaps the navigation links when scrolled down
   --half-bottom-spacing: calc(var(--space-xl) / 2);
 
   padding: var(--space-xl) var(--space-lg) var(--half-bottom-spacing);
