@@ -19,6 +19,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when there are no domain blocks' do
       it 'returns an empty list' do
@@ -93,6 +94,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns the expected domain block content', :aggregate_failures do
       subject
@@ -135,6 +137,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'creates a domain block with the expected domain name and severity', :aggregate_failures do
       subject
@@ -243,6 +246,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns the updated domain block', :aggregate_failures do
       subject
@@ -285,6 +289,7 @@ RSpec.describe 'Domain Blocks' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'deletes the domain block', :aggregate_failures do
       subject
