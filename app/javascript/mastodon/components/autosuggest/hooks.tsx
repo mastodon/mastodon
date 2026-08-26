@@ -91,6 +91,7 @@ export function useAutosuggestMenu({
     }),
     [],
   );
+  const tokenCb = useCallback(() => lastTokenRef.current, []);
 
   const onSuggestionClick: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(
@@ -121,12 +122,13 @@ export function useAutosuggestMenu({
       suggestions,
       onSuggestionClick,
       listRef,
+      tokenCb,
     } satisfies AutosuggestMenuProps,
   };
 }
 
 interface UseAutosuggestFloatingMenuOptions extends UseAutosuggestMenuOptions {
-  text: string;
+  text?: string;
   sourceRef: Source;
   className?: string;
 }
@@ -138,7 +140,7 @@ export function useAutosuggestFloatingMenu({
   ...suggestOptions
 }: UseAutosuggestFloatingMenuOptions): UseAutosuggestReturn {
   const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null); // Reference to the mirror element.
-  const [selectedText, setSelectedText] = useState(text); // The actual selected text inside the mirror.
+  const [selectedText, setSelectedText] = useState(text ?? ''); // The actual selected text inside the mirror.
   const updatePopover = useRef<() => void>(null); // Reference to the popover update callback.
 
   const { getToken, ...autosuggestProps } = useAutosuggestMenu(suggestOptions);

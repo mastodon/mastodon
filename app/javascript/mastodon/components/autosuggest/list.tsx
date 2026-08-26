@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 
-import { selectSuggestions } from '@/mastodon/features/compose/redesign/selectors';
 import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { usePrevious } from '@/mastodon/hooks/usePrevious';
-import { useAppSelector } from '@/mastodon/store';
-import { stringOrUndefined } from '@/mastodon/utils/strings';
 
 import { LocalCustomEmojiProvider } from '../emoji/context';
 import { Menu, MenuItem, useMenuContext } from '../menu';
@@ -16,6 +13,7 @@ import type { Suggestion } from './types';
 
 export interface AutosuggestMenuProps {
   suggestions: Suggestion[];
+  tokenCb: () => string | null;
   onSuggestionClick: React.MouseEventHandler;
   children?: React.ReactNode;
   listRef?: React.Ref<HTMLDivElement>;
@@ -32,7 +30,7 @@ export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
   return (
     <Menu noFocus>
       {suggestions.length > 0 && (
-        <AutosuggestMenuList {...menuProps}>
+        <AutosuggestMenuList {...menuProps} suggestions={suggestions}>
           {children ??
             suggestions.map((suggestion, index) => (
               <MenuItem
@@ -53,7 +51,7 @@ export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
 
 type AutosuggestMenuListProps = Pick<
   AutosuggestMenuProps,
-  'listRef' | 'reference' | 'updatePopoverCb'
+  'listRef' | 'suggestions' | 'tokenCb' | 'reference' | 'updatePopoverCb'
 > & {
   children: React.ReactNode;
 };
@@ -61,13 +59,12 @@ type AutosuggestMenuListProps = Pick<
 const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
   children,
   listRef,
+  tokenCb,
+  suggestions,
   reference,
   updatePopoverCb,
 }) => {
-  const suggestions = useAppSelector(selectSuggestions);
-  const token = useAppSelector((state) =>
-    stringOrUndefined(state.compose.get('suggestion_token')),
-  );
+  const token = tokenCb();
   const lastToken = usePrevious(token);
 
   const { popover, menuListProps } = useMenuContext();
@@ -84,7 +81,7 @@ const AutosuggestMenuList: React.FC<AutosuggestMenuListProps> = ({
     <Popover
       isOpen={popover.isMenuOpen}
       onClose={popover.closeMenu}
-      reference={reference !== undefined ? reference : popover.reference}
+      reference={reference ?? null}
       popoverElement={popover.popover}
       container={null}
       placement='bottom-start'
