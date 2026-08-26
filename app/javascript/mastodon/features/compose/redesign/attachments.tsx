@@ -10,7 +10,9 @@ import {
 } from './selectors';
 import { ComposeUpload } from './upload';
 
-export const ComposeAttachments: React.FC = () => {
+export const ComposeAttachments: React.FC<{ className?: string }> = ({
+  className,
+}) => {
   const { hasPoll, hasAttachments, quotedStatusId } = useAppSelector(
     selectComposeHasAttachments,
   );
@@ -20,11 +22,11 @@ export const ComposeAttachments: React.FC = () => {
   }
 
   return (
-    <>
+    <div className={className}>
       {hasPoll && <ComposePoll />}
       {hasAttachments && <ComposeMediaAttachments />}
       {quotedStatusId && <ComposeQuotedStatus id={quotedStatusId} />}
-    </>
+    </div>
   );
 };
 

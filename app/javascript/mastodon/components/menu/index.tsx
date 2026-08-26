@@ -46,7 +46,7 @@ interface MenuTriggerContextProps {
 }
 
 interface MenuListContextProps {
-  ref: (button: HTMLDivElement | null) => void;
+  ref: (list: HTMLDivElement | null) => void;
   role?: 'menu'; // only for menus of type === 'actions'
   tabIndex: -1;
   id: string;
@@ -75,7 +75,7 @@ export function useMenuContext(): MenuState {
   return context;
 }
 
-function getAllMenuItems(menuListElement: HTMLDivElement) {
+export function getAllMenuItems(menuListElement: HTMLDivElement) {
   return Array.from(
     menuListElement.querySelectorAll<HTMLElement>(
       ':scope [data-menu-item]:not([disabled])',
@@ -91,9 +91,14 @@ interface MenuProps {
    */
   type?: MenuType;
   children: React.ReactNode;
+  noFocus?: boolean;
 }
 
-export const Menu: React.FC<MenuProps> = ({ type = 'actions', children }) => {
+export const Menu: React.FC<MenuProps> = ({
+  type = 'actions',
+  children,
+  noFocus,
+}) => {
   const id = useId();
   const triggerId = `${id}-trigger`;
   const listId = `${id}-list`;
@@ -105,13 +110,13 @@ export const Menu: React.FC<MenuProps> = ({ type = 'actions', children }) => {
     (element: HTMLDivElement | null) => {
       setListElement(element);
 
-      if (element && type === 'actions') {
+      if (element && type === 'actions' && !noFocus) {
         const menuItems = getAllMenuItems(element);
         const elementToFocus = menuItems[0] ?? element;
         elementToFocus.focus();
       }
     },
-    [type],
+    [noFocus, type],
   );
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);

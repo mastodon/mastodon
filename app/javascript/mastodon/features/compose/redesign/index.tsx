@@ -6,7 +6,6 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import { LockSimpleOpenIcon } from '@phosphor-icons/react';
-import { useDebouncedCallback } from 'use-debounce';
 
 import {
   changeComposeSpoilerness,
@@ -18,7 +17,7 @@ import {
   TextInputField,
 } from '@/mastodon/components/form_fields/redesign';
 import { Icon } from '@/mastodon/components/icon';
-import { useResizeObserver } from '@/mastodon/hooks/useObserver';
+import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
   focusComposerTextarea,
   getComposerTextarea,
@@ -69,17 +68,16 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   const type = useAppSelector(selectComposeType);
   const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
 
-  const {
-    onSensitiveChange,
-    onSensitiveTextChange,
-    onEmojiPick,
-    onSubmit,
-    onWrapperMount,
-    onWrapperScroll,
-  } = useComposeHandlers(redirectOnSuccess);
+  const { onSensitiveChange, onSensitiveTextChange, onEmojiPick, onSubmit } =
+    useComposeHandlers(redirectOnSuccess);
 
   const intl = useIntl();
   const titleId = useId();
+
+  const { sensor, isInViewport } = useScrollSensor({
+    placement: 'bottom',
+    tolerance: 10,
+  });
 
   return (
     <form
@@ -127,18 +125,16 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
         />
       )}
 
-      <div
-        ref={onWrapperMount}
-        onScroll={onWrapperScroll}
-        className={classes.editorWrapper}
-      >
+      <div data-scroll-down={!isInViewport} className={classes.editorWrapper}>
         <ComposeTextarea
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={autoFocus}
           onSubmit={onSubmit}
         />
 
-        <ComposeAttachments />
+        <ComposeAttachments className={classes.attachments} />
+
+        {sensor}
       </div>
 
       <ComposeHints />
@@ -209,49 +205,10 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
     [canSubmit, dispatch, redirectOnSuccess],
   );
 
-  // Handle wrapper fade to indicate scroll.
-  const onWrapperScroll = useDebouncedCallback(wrapperScroll, 20, {
-    leading: true,
-  });
-  const observer = useResizeObserver(wrapperResize);
-  const onWrapperMount: React.RefCallback<HTMLElement> = useCallback(
-    (ele) => {
-      if (ele) {
-        observer.observe(ele);
-      }
-    },
-    [observer],
-  );
-
   return {
     onSubmit,
     onEmojiPick,
     onSensitiveChange,
     onSensitiveTextChange,
-    onWrapperScroll,
-    onWrapperMount,
   };
-}
-
-function wrapperUpdate(ele: HTMLElement) {
-  const scrollMax = ele.scrollHeight - ele.offsetHeight - 5; // 5px padding to account for sub-pixel issues
-  if (scrollMax > 0 && ele.scrollTop < scrollMax) {
-    ele.dataset.scrollDown = 'true';
-  } else {
-    delete ele.dataset.scrollDown;
-  }
-}
-
-function wrapperResize(entries: ResizeObserverEntry[]) {
-  for (const entry of entries) {
-    if (entry.target instanceof HTMLElement) {
-      wrapperUpdate(entry.target);
-    }
-  }
-}
-
-function wrapperScroll(event: React.UIEvent<HTMLElement>) {
-  if (event.target instanceof HTMLElement) {
-    wrapperUpdate(event.target);
-  }
 }

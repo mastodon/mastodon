@@ -119,21 +119,15 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       },
       [onSubmit],
     );
-  const onPaste: React.ClipboardEventHandler = useCallback(
-    (event) => {
-      if (event.clipboardData.files.length === 1) {
+
+  const onPasteOrDrop = useCallback(
+    (event: React.ClipboardEvent | React.DragEvent) => {
+      const data =
+        'clipboardData' in event ? event.clipboardData : event.dataTransfer;
+      if (data.files.length === 1) {
         event.preventDefault();
       }
-      dispatch(processPasteOrDrop(event.clipboardData));
-    },
-    [dispatch],
-  );
-  const onDrop: React.DragEventHandler = useCallback(
-    (event) => {
-      if (event.dataTransfer.files.length === 1) {
-        event.preventDefault();
-      }
-      dispatch(processPasteOrDrop(event.dataTransfer));
+      dispatch(processPasteOrDrop(data));
     },
     [dispatch],
   );
@@ -178,8 +172,8 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
         onSuggestionsClearRequested={onSuggestionsClearRequested}
         onSuggestionSelected={onSuggestionSelected}
         onKeyDown={onKeyDown}
-        onDrop={onDrop}
-        onPaste={onPaste}
+        onDrop={onPasteOrDrop}
+        onPaste={onPasteOrDrop}
         onChange={onChange}
       />
     </div>

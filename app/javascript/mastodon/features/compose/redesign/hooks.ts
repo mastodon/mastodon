@@ -11,7 +11,9 @@ export function useLanguages() {
 }
 
 export function useLanguageGuess() {
-  const text = useAppSelector((state) => state.compose.get('text') as string);
+  const text = useAppSelector((state) =>
+    (state.compose.get('text') as string).trim(),
+  );
   const [guess, setGuess] = useState('');
 
   useEffect(() => {
