@@ -16,6 +16,7 @@ import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/ho
 import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
+import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
   COMPOSER_TEXTAREA_ID,
   focusComposerTextarea,
@@ -66,6 +67,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   onSubmit,
   className,
   disabled,
+  children,
   ...props
 }) => {
   const intl = useIntl();
@@ -156,8 +158,13 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     [dispatch],
   );
 
+  const { sensor, isInViewport } = useScrollSensor({
+    placement: 'bottom',
+    tolerance: 10,
+  });
+
   return (
-    <div className={classes.textareaWrapper}>
+    <div className={classes.textareaWrapper} data-scroll-down={!isInViewport}>
       <TextArea
         {...props}
         dir='auto'
@@ -182,6 +189,8 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       {mirror}
 
       <AutosuggestMenu {...suggestProps} maxWidth={280} />
+
+      {sensor}
     </div>
   );
 };

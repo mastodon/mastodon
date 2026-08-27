@@ -1,6 +1,7 @@
 .sensor {
   height: 1px;
   pointer-events: none;
+  flex-shrink: 0;
 
   &[data-placement='top'] {
     position: absolute;
