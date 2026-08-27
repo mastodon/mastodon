@@ -2,7 +2,6 @@ import { useCallback, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import type { Simplify } from 'type-fest';
 import { useThrottledCallback } from 'use-debounce';
 
 import { getAllMenuItems } from '../menu';
@@ -30,26 +29,12 @@ type SourceProps = React.DetailedHTMLProps<
   AutosuggestSourceElements
 >;
 
-interface UseAutosuggestReturn {
-  onTextChange: React.ChangeEventHandler<AutosuggestSourceElements>;
-  focus: (event?: React.SyntheticEvent) => void;
-  getToken: () => { token: string | null; startPosition: number };
-
-  mirror?: React.JSX.Element;
-
-  suggestProps: Simplify<Omit<AutosuggestMenuProps, 'children'>>;
-
-  sourceProps: Simplify<
-    Pick<SourceProps, 'onSelect' | 'onScroll' | 'aria-autocomplete'>
-  >;
-}
-
 export function useAutosuggestMenu({
   suggestions,
   onSelect,
   onFetch,
   onClear,
-}: UseAutosuggestMenuOptions): UseAutosuggestReturn {
+}: UseAutosuggestMenuOptions) {
   const lastTokenRef = useRef<string | null>(null); // The last suggestion token encountered.
   const tokenStartRef = useRef(0); // Character location of the token start.
   const listRef = useRef<HTMLDivElement>(null);
@@ -144,7 +129,7 @@ export function useAutosuggestFloatingMenu({
   sourceRef,
   className,
   ...suggestOptions
-}: UseAutosuggestFloatingMenuOptions): UseAutosuggestReturn {
+}: UseAutosuggestFloatingMenuOptions) {
   const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null); // Reference to the mirror element.
   const [selectedText, setSelectedText] = useState(text ?? ''); // The actual selected text inside the mirror.
   const updatePopover = useRef<() => void>(null); // Reference to the popover update callback.
