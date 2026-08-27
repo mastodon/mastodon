@@ -120,8 +120,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
         autoFocus={autoFocus}
         onSubmit={onSubmit}
       >
-        {' '}
-        <ComposeAttachments className={classes.attachments} />{' '}
+        <ComposeAttachments className={classes.attachments} />
       </ComposeTextarea>
 
       <ComposeHints />
