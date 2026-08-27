@@ -181,7 +181,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
       {mirror}
 
-      <AutosuggestMenu {...suggestProps} />
+      <AutosuggestMenu {...suggestProps} maxWidth={280} />
     </div>
   );
 };
