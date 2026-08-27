@@ -5,18 +5,14 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import {
-  CheckSquareIcon,
-  LockSimpleOpenIcon,
-  SquareIcon,
-} from '@phosphor-icons/react';
+import { LockSimpleOpenIcon, TagIcon } from '@phosphor-icons/react';
 
 import {
   changeComposeSpoilerness,
   changeComposeSpoilerText,
   insertEmojiCompose,
 } from '@/mastodon/actions/compose';
-import { Button } from '@/mastodon/components/button/redesign';
+import { ToggleButton } from '@/mastodon/components/button/redesign';
 import { TextInputField } from '@/mastodon/components/form_fields/redesign';
 import { Icon } from '@/mastodon/components/icon';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
@@ -95,14 +91,14 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
 
         <LanguageButton />
 
-        <Button
+        <ToggleButton
           size='sm'
-          aria-pressed={sensitive}
+          active={sensitive}
           onClick={onSensitiveChange}
-          leadingIcon={sensitive ? CheckSquareIcon : SquareIcon}
+          leadingIcon={TagIcon}
         >
           <FormattedMessage id='compose.sensitive' defaultMessage='Sensitive' />
-        </Button>
+        </ToggleButton>
       </div>
 
       {type === 'message' && (
