@@ -201,6 +201,7 @@ export function useAutosuggestFloatingMenu({
   return {
     mirror,
     getToken,
+    onUpdate,
     ...autosuggestProps,
 
     sourceProps: {

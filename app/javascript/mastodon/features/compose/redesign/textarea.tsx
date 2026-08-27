@@ -1,8 +1,11 @@
+import type React from 'react';
 import { useCallback, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
+
+import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import {
   changeCompose,
@@ -44,7 +47,7 @@ const messages = defineMessages({
 });
 
 type ComposeTextareaProps = Omit<
-  React.ComponentPropsWithoutRef<'textarea'>,
+  TextareaAutosizeProps,
   | 'placeholder'
   | 'onFocus'
   | 'onBlur'
@@ -102,16 +105,23 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const suggestions = useAppSelector(selectSuggestions);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const { onTextChange, focus, mirror, sourceProps, suggestProps } =
-    useAutosuggestFloatingMenu({
-      suggestions,
-      text,
-      className: classes.textareaMirror,
-      sourceRef: textAreaRef,
-      onSelect: onSuggestion,
-      onFetch: onSuggestionFetch,
-      onClear: onSuggestionClear,
-    });
+  const {
+    onTextChange,
+    focus,
+    mirror,
+    sourceProps: fullSourceProps,
+    suggestProps,
+  } = useAutosuggestFloatingMenu({
+    suggestions,
+    text,
+    className: classes.textareaMirror,
+    sourceRef: textAreaRef,
+    onSelect: onSuggestion,
+    onFetch: onSuggestionFetch,
+    onClear: onSuggestionClear,
+  });
+
+  const { onScroll, ...sourceProps } = fullSourceProps;
 
   // Update the composer text and trigger suggestions.
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
@@ -164,12 +174,17 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   });
 
   return (
-    <div className={classes.textareaWrapper} data-scroll-down={!isInViewport}>
+    <div
+      className={classes.textareaWrapper}
+      data-scroll-down={!isInViewport}
+      onScrollCapture={onScroll} // Requires capture so it fires before TextArea.
+    >
       <TextArea
         {...props}
         dir='auto'
         id={COMPOSER_TEXTAREA_ID}
         className={classNames(className, classes.textarea)}
+        autoSize
         ref={textAreaRef}
         value={text}
         lang={lang}
@@ -189,6 +204,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       {mirror}
 
       <AutosuggestMenu {...suggestProps} maxWidth={280} />
+      {children}
 
       {sensor}
     </div>
