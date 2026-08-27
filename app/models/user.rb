@@ -317,13 +317,6 @@ class User < ApplicationRecord
     super
   end
 
-  def external_or_valid_password?(compare_password)
-    # If encrypted_password is blank, we got the user from LDAP or PAM,
-    # so credentials are already valid
-
-    encrypted_password.blank? || valid_password?(compare_password)
-  end
-
   def send_reset_password_instructions
     return false if encrypted_password.blank?
 
