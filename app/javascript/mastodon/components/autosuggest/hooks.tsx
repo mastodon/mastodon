@@ -114,6 +114,9 @@ export function useAutosuggestMenu({
 
     sourceProps: {
       'aria-autocomplete': 'list',
+      'aria-expanded': suggestions.length > 0,
+      'aria-haspopup': 'listbox',
+      role: 'combobox',
     } satisfies SourceProps,
   };
 }
