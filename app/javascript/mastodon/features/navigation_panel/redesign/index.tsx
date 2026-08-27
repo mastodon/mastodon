@@ -27,6 +27,7 @@ import { NavigationAccountCardAndMenu } from './account_card_and_menu';
 import { NavigationFooterLinks } from './footer_links';
 import { NavigationHeader } from './header';
 import { ListSection } from './list_section';
+import { LoggedOutInfo } from './logged_out_info';
 import { NavigationLink } from './navigation_link';
 import classes from './styles.module.scss';
 
@@ -41,11 +42,14 @@ const messages = defineMessages({
 
 function useCustomFeeds() {
   const dispatch = useAppDispatch();
+  const { signedIn } = useIdentity();
   const customFeeds = useAppSelector((state) => getOrderedLists(state));
 
   useEffect(() => {
-    void dispatch(fetchLists());
-  }, [dispatch]);
+    if (signedIn) {
+      void dispatch(fetchLists());
+    }
+  }, [dispatch, signedIn]);
 
   return {
     customFeeds,
@@ -54,13 +58,14 @@ function useCustomFeeds() {
 
 function useFollowedHashtags() {
   const dispatch = useAppDispatch();
+  const { signedIn } = useIdentity();
   const { tags, stale } = useAppSelector((state) => state.followedTags);
 
   useEffect(() => {
-    if (stale) {
+    if (stale && signedIn) {
       void dispatch(fetchFollowedHashtags());
     }
-  }, [dispatch, stale]);
+  }, [dispatch, stale, signedIn]);
 
   return { followedHashtags: tags };
 }
@@ -235,6 +240,12 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
             <NavigationFooterLinks siteName={siteName} />
           </footer>
         </>
+      )}
+      {!signedIn && (
+        <footer className={classes.footer} data-stuck={!isScrolledToBottom}>
+          <LoggedOutInfo />
+          <NavigationFooterLinks siteName={siteName} />
+        </footer>
       )}
       {bottomSensor}
     </nav>
