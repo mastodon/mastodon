@@ -374,7 +374,7 @@ RSpec.describe Mastodon::CLI::Accounts do
             .to output_results(new_password)
 
           expect(user).to have_received(:change_password!).with(new_password)
-          expect(user.reload).to_not be_external_or_valid_password(original_password)
+          expect(user.reload).to_not be_valid_password(original_password)
         end
       end
 

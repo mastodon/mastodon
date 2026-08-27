@@ -27,7 +27,7 @@ RSpec.describe 'Auth Passwords' do
 
         expect(User.find(user.id))
           .to be_present
-          .and be_external_or_valid_password(user.password)
+          .and be_valid_password(user.password)
       end
     end
   end

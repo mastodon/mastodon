@@ -38,7 +38,7 @@ module Auth::TwoFactorAuthenticationConcern
   def authenticate_with_two_factor
     if user_params[:email].present?
       user = self.resource = find_user_from_params
-      prompt_for_two_factor(user) if user&.external_or_valid_password?(user_params[:password])
+      prompt_for_two_factor(user) if user && (@password_verified_externally || user.valid_password?(user_params[:password]))
     elsif session[:attempt_user_id]
       user = self.resource = User.find_by(id: session[:attempt_user_id])
       return if user.nil?
