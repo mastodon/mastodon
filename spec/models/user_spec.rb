@@ -465,7 +465,7 @@ RSpec.describe User do
         .and remove_user_web_subscriptions
 
       expect(user)
-        .to_not be_external_or_valid_password(original_password)
+        .to_not be_valid_password(original_password)
       expect { session_activation.reload }
         .to raise_error(ActiveRecord::RecordNotFound)
       expect { web_push_subscription.reload }

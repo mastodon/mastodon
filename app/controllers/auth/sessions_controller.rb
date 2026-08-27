@@ -51,8 +51,14 @@ class Auth::SessionsController < Devise::SessionsController
   def find_user_from_params
     user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
     user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
-    user ||= User.find_for_authentication(email: user_params[:email])
-    user
+
+    if user.present?
+      @password_verified_externally = true
+      return user
+    end
+
+    user = User.find_for_authentication(email: user_params[:email])
+    user if user&.encrypted_password.present?
   end
 
   def user_params
