@@ -662,7 +662,7 @@ class UI extends PureComponent {
             {children}
           </SwitchingColumnsArea>
 
-          {!minimalShell && <NavigationBar />}
+          {!minimalShell && !isRedesignEnabled() && <NavigationBar />}
           {layout !== 'mobile' && <PictureInPicture />}
           <AlertsController />
           {!disableHoverCards && <HoverCardController />}
