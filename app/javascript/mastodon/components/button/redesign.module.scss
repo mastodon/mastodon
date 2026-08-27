@@ -200,3 +200,21 @@ a.base {
 .loading {
   color: inherit;
 }
+
+// Toggle tonal buttons by default show the neutral color, but when pressed show the brand color.
+.toggle {
+  &.tonal {
+    @include active {
+      --bg: rgb(from var(--color-bg-brand-base) r g b / 10%);
+      --fg: var(--color-text-brand);
+    }
+  }
+
+  &.solid,
+  &.ghost {
+    @include active {
+      --bg: var(--color-bg-brand-base);
+      --fg: var(--color-text-on-brand-base);
+    }
+  }
+}
