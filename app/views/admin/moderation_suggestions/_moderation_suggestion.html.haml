@@ -1,0 +1,28 @@
+.applications-list__item{ id: dom_id(moderation_suggestion) }
+  %strong.announcements-list__item__title
+    = moderation_suggestion.target_key
+
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      = t('admin.moderation_suggestions.suggested_from_html', link: link_to(moderation_suggestion.moderation_subscription.name, admin_moderation_subscription_path(moderation_suggestion.moderation_subscription)))
+
+    .announcements-list__item__actions
+      = table_link_to 'check', t("admin.moderation_suggestions.apply_#{moderation_suggestion.action}"), 'TODO' # TODO
+      = table_link_to 'close', t('admin.moderation_suggestions.dismiss'), admin_moderation_suggestion_path(moderation_suggestion), method: :delete
+      -# table_link_to 'close', t('doorkeeper.authorized_applications.buttons.revoke'), oauth_authorized_application_path(application), method: :delete, data: { confirm: t('doorkeeper.authorized_applications.confirmations.revoke') }
+
+  .announcements-list__item__permissions
+    -# TODO: optimize
+    - advisories = SubscribedAdvisory.where(target_type: moderation_suggestion.target_type, target_key: moderation_suggestion.target_key).joins(:moderation_subscription).group_by { |advisory| advisory.action }.to_h
+    - first_action = advisories.delete(moderation_suggestion.action) || [moderation_suggestion]
+    - ([first_action] + advisories.values).each do |advisories|
+      %ul.permissions-list
+        %li.permissions-list__item
+          .permissions-list__item__icon
+            -# TODO: move to a helper
+            = material_symbol({ 'accept' => 'check', 'reject' => 'block', 'limit' => 'block', 'retract' => 'backspace' }.fetch(advisories.first.action))
+          .permissions-list__item__text
+            .permissions-list__item__text__title
+              = t(advisories.first.action, scope: 'admin.moderation_suggestions.actions')
+            .permissions-list__item__text__type
+              = t('admin.moderation_suggestions.suggested_from_html', link: safe_join(advisories.map { |advisory| link_to(advisory.moderation_subscription.name, admin_moderation_subscription_path(advisory.moderation_subscription)) }))

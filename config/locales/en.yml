@@ -792,7 +792,19 @@ en:
         csv_list: CSV list
       url: URL
     moderation_suggestions:
+      actions:
+        accept: Allow
+        limit: Limit
+        reject: Suspend
+        retract: Retract current policy
+      apply_accept: Apply allow
+      apply_limit: Apply limit
+      apply_reject: Apply suspend
+      apply_retract: Apply retraction
+      destroyed_msg: Successfully dismissed suggestion
+      dismiss: Dismiss
       empty: There is no moderation suggestion at this time.
+      suggested_from_html: This suggestion has been generated from %{link}
       title: Moderation suggestions
     relationships:
       title: "%{acct}'s relationships"
