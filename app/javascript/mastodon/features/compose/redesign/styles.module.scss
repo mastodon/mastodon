@@ -114,27 +114,50 @@
 
 .textareaWrapper {
   flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.textarea,
+.textareaMirror {
+  @include mixins.type-body-lg;
+
   padding: var(--space-xs);
+}
+
+.textarea {
+  flex-grow: 1;
   border-radius: var(--radius-xs);
   transition: border 200ms;
   cursor: text;
+  border: none;
+  width: 100%;
+  outline: none;
 
-  &:focus-within {
+  &:focus {
     outline: 2px solid var(--color-border-brand);
     outline-offset: -2px;
 
-    textarea::placeholder {
+    &::placeholder {
       color: transparent;
     }
   }
+}
 
-  textarea {
-    @include mixins.type-body-lg;
+textarea.textarea {
+  resize: none;
+}
 
-    border: none;
-    width: 100%;
-    outline: none;
-  }
+.textareaMirror {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  white-space: pre-wrap; // This makes the formatting match the text area.
 }
 
 .attachments {

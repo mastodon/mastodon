@@ -1,6 +1,7 @@
 import { length } from 'stringz';
 
 import type { ApiMediaAttachmentJSON } from '@/mastodon/api_types/media_attachments';
+import { immutableListToSuggestions } from '@/mastodon/components/autosuggest/utils';
 import type { StatusVisibility } from '@/mastodon/models/status';
 import type { ComposeType } from '@/mastodon/reducers/slices/composer';
 import { createAppSelector } from '@/mastodon/store';
@@ -238,4 +239,12 @@ export const selectComposePoll = createAppSelector(
       ...config,
     };
   },
+);
+
+export const selectSuggestions = createAppSelector(
+  [
+    (state) =>
+      state.compose.get('suggestions') as unknown as Immutable.List<unknown>,
+  ],
+  (list) => immutableListToSuggestions(list),
 );

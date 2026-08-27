@@ -1,11 +1,8 @@
-import type React from 'react';
 import { useCallback, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
-
-import type { TextareaAutosizeProps } from 'react-textarea-autosize';
 
 import {
   changeCompose,
@@ -14,15 +11,22 @@ import {
   selectComposeSuggestion,
 } from '@/mastodon/actions/compose';
 import { processPasteOrDrop } from '@/mastodon/actions/compose_typed';
-import AutosuggestTextareaOriginal from '@/mastodon/components/autosuggest_textarea';
-import { COMPOSER_TEXTAREA_ID } from '@/mastodon/reducers/slices/composer';
+import type { OnSuggestionSelect } from '@/mastodon/components/autosuggest/hooks';
+import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/hooks';
+import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
+import { TextArea } from '@/mastodon/components/form_fields';
+import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
+import {
+  COMPOSER_TEXTAREA_ID,
+  focusComposerTextarea,
+} from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
 
-import { selectComposeType } from './selectors';
+import { selectComposeType, selectSuggestions } from './selectors';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -38,25 +42,8 @@ const messages = defineMessages({
   },
 });
 
-type SuggestSelectedHandler = (
-  position: number,
-  token: string,
-  suggestion: unknown,
-) => void;
-
-const AutosuggestTextarea =
-  AutosuggestTextareaOriginal as React.ForwardRefExoticComponent<
-    {
-      suggestions: Immutable.List<unknown>;
-      onSuggestionSelected: SuggestSelectedHandler;
-      onSuggestionsClearRequested: () => void;
-      onSuggestionsFetchRequested: (token: string) => void;
-    } & TextareaAutosizeProps &
-      React.RefAttributes<HTMLTextAreaElement>
-  >;
-
 type ComposeTextareaProps = Omit<
-  TextareaAutosizeProps,
+  React.ComponentPropsWithoutRef<'textarea'>,
   | 'placeholder'
   | 'onFocus'
   | 'onBlur'
@@ -71,9 +58,6 @@ const selectComposeTextState = createAppSelector(
   (compose) => ({
     text: compose.get('text') as string,
     lang: compose.get('language') as string,
-    suggestions: compose.get(
-      'suggestions',
-    ) as unknown as Immutable.List<unknown>,
     isSubmitting: !!compose.get('is_submitting'),
   }),
 );
@@ -86,38 +70,78 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 }) => {
   const intl = useIntl();
 
+  // Selectors
   const type = useAppSelector(selectComposeType);
-  const { suggestions, text, lang, isSubmitting } = useAppSelector(
-    selectComposeTextState,
-  );
-
+  const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
   const dispatch = useAppDispatch();
-  const onClickWrapper: React.MouseEventHandler<HTMLDivElement> = useCallback(
-    (event) => {
-      if (event.target instanceof HTMLDivElement) {
-        event.target.querySelector('textarea')?.focus();
-      }
-    },
-    [],
-  );
-  const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
-    (event) => {
-      dispatch(changeCompose(event.target.value));
+
+  // Suggestion logic
+  const onSuggestionFetch = useCallback(
+    (token: string) => {
+      dispatch(fetchComposeSuggestions(token));
     },
     [dispatch],
   );
+
+  const onSuggestion: OnSuggestionSelect = useCallback(
+    (tokenStart, token, suggestion) => {
+      dispatch(
+        selectComposeSuggestion(tokenStart, token, suggestion, ['text']),
+      );
+      focusComposerTextarea(true);
+    },
+    [dispatch],
+  );
+
+  const onSuggestionClear = useCallback(() => {
+    dispatch(clearComposeSuggestions());
+  }, [dispatch]);
+
+  const suggestions = useAppSelector(selectSuggestions);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const { onTextChange, focus, mirror, sourceProps, suggestProps } =
+    useAutosuggestFloatingMenu({
+      suggestions,
+      text,
+      className: classes.textareaMirror,
+      sourceRef: textAreaRef,
+      onSelect: onSuggestion,
+      onFetch: onSuggestionFetch,
+      onClear: onSuggestionClear,
+    });
+
+  // Update the composer text and trigger suggestions.
+  const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
+    (event) => {
+      dispatch(changeCompose(event.target.value));
+      onTextChange(event);
+    },
+    [dispatch, onTextChange],
+  );
+
   const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> =
     useCallback(
       (event) => {
-        const key = event.key.toLowerCase();
+        const key = normalizeKey(event.key);
+
         if (key === 'enter' && (event.ctrlKey || event.metaKey)) {
           onSubmit();
           event.preventDefault();
-        } else if (['esc', 'escape'].includes(key)) {
-          event.currentTarget.blur();
+          onSuggestionClear();
+        } else if (key === 'escape') {
+          // Dismiss the suggestions if we're displaying any.
+          if (suggestions.length > 0) {
+            onSuggestionClear();
+          } else {
+            // Otherwise lose focus on the textarea.
+            event.currentTarget.blur();
+          }
+        } else if (key === 'down') {
+          focus(event);
         }
       },
-      [onSubmit],
+      [onSubmit, onSuggestionClear, suggestions.length, focus],
     );
 
   const onPasteOrDrop = useCallback(
@@ -131,34 +155,15 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
     },
     [dispatch],
   );
-  const onSuggestionsFetchRequested = useCallback(
-    (token: string) => {
-      dispatch(fetchComposeSuggestions(token));
-    },
-    [dispatch],
-  );
-  const onSuggestionsClearRequested = useCallback(() => {
-    dispatch(clearComposeSuggestions());
-  }, [dispatch]);
-  const onSuggestionSelected: SuggestSelectedHandler = useCallback(
-    (position, token, suggestion) => {
-      dispatch(selectComposeSuggestion(position, token, suggestion, ['text']));
-    },
-    [dispatch],
-  );
-
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- This just moves focus to the textarea.
-    <div
-      onClick={onClickWrapper}
-      className={classNames(className, classes.textareaWrapper)}
-    >
-      <AutosuggestTextarea
+    <div className={classes.textareaWrapper}>
+      <TextArea
         {...props}
+        dir='auto'
         id={COMPOSER_TEXTAREA_ID}
-        ref={textareaRef}
+        className={classNames(className, classes.textarea)}
+        ref={textAreaRef}
         value={text}
         lang={lang}
         placeholder={intl.formatMessage(
@@ -167,15 +172,16 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
             : messages.placeholder,
         )}
         disabled={disabled || isSubmitting}
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={onSuggestionsClearRequested}
-        onSuggestionSelected={onSuggestionSelected}
         onKeyDown={onKeyDown}
         onDrop={onPasteOrDrop}
         onPaste={onPasteOrDrop}
         onChange={onChange}
+        {...sourceProps}
       />
+
+      {mirror}
+
+      <AutosuggestMenu {...suggestProps} maxWidth={280} />
     </div>
   );
 };
