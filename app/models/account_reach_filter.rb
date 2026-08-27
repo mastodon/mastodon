@@ -58,12 +58,15 @@ class AccountReachFilter < ApplicationRecord
 
     hosts.each do |host|
       filter.add("#{salt}:#{host}")
+      next if filter.set_bits < threshold
 
+      # We have reached the threshold after which false-positives are too frequent for us.
+      # Either update the filter or mark it as saturated.
       if filter.size < BLOOM_SIZE_FILTER_THRESHOLD
-        upgrade_filter! if filter.set_bits >= threshold
+        upgrade_filter!
 
         threshold = (TARGET_SATURATION_FALSE_POSITIVE_RATE**(1.0 / filter.k)) * filter.m
-      elsif filter.set_bits >= threshold
+      else
         update!(saturated: true, bloom_filter: nil)
 
         break
