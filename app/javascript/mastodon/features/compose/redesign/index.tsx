@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { LockSimpleOpenIcon, TagIcon } from '@phosphor-icons/react';
+import { LockSimpleOpenIcon, PepperIcon } from '@phosphor-icons/react';
 
 import {
   changeComposeSpoilerness,
@@ -95,7 +95,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
           size='sm'
           active={sensitive}
           onClick={onSensitiveChange}
-          leadingIcon={TagIcon}
+          leadingIcon={PepperIcon}
         >
           <FormattedMessage id='compose.sensitive' defaultMessage='Sensitive' />
         </ToggleButton>
