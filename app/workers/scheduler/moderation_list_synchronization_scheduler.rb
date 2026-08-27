@@ -16,8 +16,8 @@ class Scheduler::ModerationListSynchronizationScheduler
   private
 
   def update_lists!
-    ModerationSubscription.to_a.any? do |subscription|
+    ModerationSubscription.all.map do |subscription|
       ModerationSubscriptionSyncService.new.call(subscription)
-    end
+    end.any?
   end
 end

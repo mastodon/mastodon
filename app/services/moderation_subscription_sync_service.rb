@@ -19,12 +19,10 @@ class ModerationSubscriptionSyncService < BaseService
       # TODO: find a way to deduplicate with `Admin::Import`
       csv_converter = lambda do |field, field_info|
         case field_info.header
-        when '#domain'
+        when '#domain', '#severity'
           field&.downcase&.strip
         when '#public_comment'
           field&.strip
-        when '#severity'
-          field&.downcase&.strip&.to_sym
         when '#reject_media', '#reject_reports', '#obfuscate'
           ActiveModel::Type::Boolean.new.cast(field&.downcase)
         else
