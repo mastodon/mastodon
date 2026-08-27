@@ -161,7 +161,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       <TextArea
         {...props}
         dir='auto'
-        aria-autocomplete='list'
         id={COMPOSER_TEXTAREA_ID}
         className={classNames(className, classes.textarea)}
         ref={textAreaRef}

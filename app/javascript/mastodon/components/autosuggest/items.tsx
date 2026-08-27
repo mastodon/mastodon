@@ -8,6 +8,7 @@ import { useAppSelector } from '@/mastodon/store';
 import { Avatar } from '../avatar';
 import { DisplayName } from '../display_name';
 import { Emoji } from '../emoji';
+import { MenuItem } from '../menu';
 import { ShortNumber } from '../short_number';
 
 import classes from './styles.module.scss';
@@ -18,10 +19,12 @@ import type {
   Suggestion,
 } from './types';
 
-export const AutosuggestItem: React.FC<{
-  suggestion: Suggestion;
-  className?: string;
-}> = ({ suggestion, className }) => {
+export const AutosuggestItem: React.FC<
+  {
+    suggestion: Suggestion;
+    className?: string;
+  } & React.ComponentPropsWithoutRef<'button'>
+> = ({ suggestion, className, ...props }) => {
   let suggestComp: React.ReactNode = null;
   if (suggestion.type === 'account') {
     suggestComp = <AutosuggestAccount {...suggestion} />;
@@ -32,7 +35,14 @@ export const AutosuggestItem: React.FC<{
   }
 
   return (
-    <div className={classNames(classes.item, className)}>{suggestComp}</div>
+    <MenuItem
+      {...props}
+      className={classNames(classes.item, className)}
+      data-id={suggestion.id}
+      data-type={suggestion.type}
+    >
+      {suggestComp}
+    </MenuItem>
   );
 };
 

@@ -39,7 +39,9 @@ interface UseAutosuggestReturn {
 
   suggestProps: Simplify<Omit<AutosuggestMenuProps, 'children'>>;
 
-  sourceProps?: Simplify<Pick<SourceProps, 'onSelect' | 'onScroll'>>;
+  sourceProps: Simplify<
+    Pick<SourceProps, 'onSelect' | 'onScroll' | 'aria-autocomplete'>
+  >;
 }
 
 export function useAutosuggestMenu({
@@ -124,6 +126,10 @@ export function useAutosuggestMenu({
       listRef,
       tokenCb,
     } satisfies AutosuggestMenuProps,
+
+    sourceProps: {
+      'aria-autocomplete': 'list',
+    } satisfies SourceProps,
   };
 }
 
@@ -213,6 +219,7 @@ export function useAutosuggestFloatingMenu({
     ...autosuggestProps,
 
     sourceProps: {
+      ...autosuggestProps.sourceProps,
       onScroll,
       onSelect,
     } satisfies SourceProps,

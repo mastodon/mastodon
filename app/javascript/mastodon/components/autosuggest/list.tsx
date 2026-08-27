@@ -6,7 +6,7 @@ import { useMergedRefs } from '@/mastodon/hooks/useMergedRefs';
 import { usePrevious } from '@/mastodon/hooks/usePrevious';
 
 import { LocalCustomEmojiProvider } from '../emoji/context';
-import { Menu, MenuItem, useMenuContext } from '../menu';
+import { Menu, useMenuContext } from '../menu';
 import { MenuCard } from '../menu/card';
 import { Popover } from '../popover';
 
@@ -37,15 +37,12 @@ export const AutosuggestMenu: React.FC<AutosuggestMenuProps> = ({
         <AutosuggestMenuList {...menuProps} suggestions={suggestions}>
           {children ??
             suggestions.map((suggestion, index) => (
-              <MenuItem
+              <AutosuggestItem
                 key={`${suggestion.type}:${suggestion.id}`}
                 onClick={onSuggestionClick}
+                suggestion={suggestion}
                 data-index={index}
-                data-type={suggestion.type}
-                data-id={suggestion.id}
-              >
-                <AutosuggestItem suggestion={suggestion} />
-              </MenuItem>
+              />
             ))}
         </AutosuggestMenuList>
       )}
