@@ -1,12 +1,13 @@
 import type { SVGProps } from 'react';
 
 import classNames from 'classnames';
-import { NavLink, matchPath, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import type { NavLinkProps } from 'react-router-dom';
 
 import type { Icon } from '@phosphor-icons/react';
 
 import { Badge } from '@/mastodon/components/badge';
+import { useIsLinkActive } from '@/mastodon/hooks/useIsLinkActive';
 
 import classes from './navigation_link.module.scss';
 
@@ -29,20 +30,14 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   children,
   ...otherProps
 }) => {
-  const location = useLocation();
-
   let Comp: React.ElementType = as;
   if (as === 'link') {
     Comp = NavLink;
   }
 
-  const to = 'to' in otherProps && otherProps.to;
-  const isActive =
-    to && typeof to !== 'function'
-      ? !!matchPath(location.pathname, {
-          path: typeof to === 'string' ? to : to.pathname,
-        })
-      : false;
+  const isActive = useIsLinkActive(
+    'to' in otherProps ? otherProps.to : undefined,
+  );
 
   return (
     <li
