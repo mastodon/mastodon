@@ -18,7 +18,7 @@ export type MenuCardProps<As extends React.ElementType> = PolymorphicProps<
   As
 >;
 
-export const MenuCard = <As extends React.ElementType>({
+export const MenuCard = <As extends React.ElementType = 'div'>({
   as: asComp,
   children,
   className,

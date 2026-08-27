@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import {
+  CaretDownIcon,
   ChatCircleIcon,
   MagnifyingGlassIcon,
   NewspaperIcon,
@@ -46,7 +47,7 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
         description='Before button that indicates who a post is for (Public, Followers, mentioned people)'
       />
       <Menu>
-        <MenuTrigger size='sm'>
+        <MenuTrigger size='sm' trailingIcon={CaretDownIcon}>
           <ComposeVisibilityButtonText privacy={privacy} />
         </MenuTrigger>
 

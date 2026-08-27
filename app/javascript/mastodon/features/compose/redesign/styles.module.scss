@@ -184,22 +184,30 @@ textarea.textarea {
   color: var(--color-text-error);
 }
 
+// Language selector
+
 .languageMenu {
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xs);
 
-  :global(.emoji-mart-search) {
-    padding: 0;
-    padding-inline-end: 0;
+  input {
+    margin-bottom: var(--space-xs);
+
+    &:focus::placeholder {
+      color: transparent;
+    }
   }
+}
 
-  :global(.emoji-mart-search-icon) {
-    top: 0;
-    inset-inline-end: 0;
-  }
+.languageList {
+  max-height: 350px;
+  overflow-y: auto;
+}
 
-  :global(.emoji-mart-scroll) {
-    padding: 0;
-    margin-top: var(--space-xs);
+.languageItem {
+  display: block;
+
+  span {
+    color: var(--color-text-secondary);
   }
 }
 
