@@ -11,11 +11,12 @@ class NotificationGroup < ActiveModelSerializers::Model
 
     grouped_types = grouped_types.presence&.map(&:to_sym) || Notification::GROUPABLE_NOTIFICATION_TYPES
 
-    grouped_notifications = notifications.filter { |notification| notification.group_key.present? && grouped_types.include?(notification.type) }
+    grouped_notifications, ungrouped_notifications = notifications.partition { |notification| notification.group_key.present? && grouped_types.include?(notification.type) }
     group_keys = grouped_notifications.pluck(:group_key)
 
     groups_data = load_groups_data(notifications.first.account_id, group_keys, pagination_range: pagination_range)
-    accounts_map = Account.where(id: groups_data.values.pluck(1).flatten).index_by(&:id)
+    account_ids = groups_data.values.pluck(1).flatten.concat(ungrouped_notifications.pluck(:from_account_id)).uniq
+    accounts_map = Account.where(id: account_ids).index_by(&:id)
 
     notifications.map do |notification|
       if notification.group_key.present? && grouped_types.include?(notification.type)
@@ -37,7 +38,7 @@ class NotificationGroup < ActiveModelSerializers::Model
         NotificationGroup.new(
           notification: notification,
           group_key: "ungrouped-#{notification.id}",
-          sample_accounts: [notification.from_account],
+          sample_accounts: [accounts_map[notification.from_account_id]],
           notifications_count: 1,
           most_recent_notification_id: notification.id,
           pagination_data: pagination_data
