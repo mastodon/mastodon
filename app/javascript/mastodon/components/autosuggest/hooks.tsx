@@ -182,7 +182,7 @@ export function useAutosuggestFloatingMenu({
 
   const onScroll = useThrottledCallback(onUpdate, 0);
   const updatePopoverCb = useCallback((update: () => void) => {
-    updatePopover.current = () => update;
+    updatePopover.current = update;
   }, []);
 
   const mirror = (
