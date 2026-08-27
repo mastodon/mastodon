@@ -247,7 +247,7 @@ export const Menu: React.FC<MenuProps> = ({
   return <MenuContext value={contextValue}>{children}</MenuContext>;
 };
 
-export const MenuTrigger = <As extends React.ElementType>({
+export const MenuTrigger = <As extends React.ElementType = typeof Button>({
   as: asComp,
   children,
   ...props
