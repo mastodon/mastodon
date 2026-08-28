@@ -272,11 +272,6 @@ class SwitchingColumnsArea extends PureComponent {
   }
 }
 
-const LazyRedesignComposeButton = lazy(
-  () => import('@/mastodon/features/compose/redesign/trigger')
-    .then(({ ComposeRedesignButton }) => ({ default: ComposeRedesignButton }))
-);
-
 class UI extends PureComponent {
   static propTypes = {
     identity: identityContextPropShape,
@@ -670,12 +665,6 @@ class UI extends PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
-
-          {isRedesignEnabled() && (
-            <Suspense>
-              <LazyRedesignComposeButton />
-            </Suspense>
-          )}
         </div>
       </Hotkeys>
     );

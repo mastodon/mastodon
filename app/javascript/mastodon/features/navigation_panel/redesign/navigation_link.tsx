@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react';
+import type { ReactNode, SVGProps } from 'react';
 
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -52,7 +52,10 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
       >
         {IconComp && (
           <span className={classes.icon}>
-            <IconComp size={20} weight={isActive ? 'fill' : undefined} />
+            <IconComp
+              size={stacked ? 24 : 20}
+              weight={isActive ? 'fill' : undefined}
+            />
           </span>
         )}
         <span className={classes.label}>{children}</span>
@@ -64,6 +67,52 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
           />
         )}
       </Comp>
+    </li>
+  );
+};
+
+type MobileNavLink = NavLinkProps & {
+  withDot?: boolean;
+  children: ReactNode;
+} & (
+    | {
+        iconComponent: Icon | React.FC<SVGProps<SVGSVGElement>>;
+        customIcon?: never;
+      }
+    | {
+        customIcon: ReactNode;
+        iconComponent?: never;
+      }
+  );
+
+export const MobileNavLink: React.FC<MobileNavLink> = ({
+  iconComponent: IconComp,
+  customIcon,
+  withDot,
+  children,
+  ...otherProps
+}) => {
+  const isActive = useIsLinkActive(
+    'to' in otherProps ? otherProps.to : undefined,
+  );
+
+  return (
+    <li>
+      <NavLink
+        {...otherProps}
+        className={classNames(classes.link, classes.linkMobile)}
+      >
+        <span
+          className={classNames(classes.icon, withDot && classes.iconWithDot)}
+        >
+          {IconComp ? (
+            <IconComp size={24} weight={isActive ? 'fill' : undefined} />
+          ) : (
+            customIcon
+          )}
+        </span>
+        <span className='sr-only'>{children}</span>
+      </NavLink>
     </li>
   );
 };
