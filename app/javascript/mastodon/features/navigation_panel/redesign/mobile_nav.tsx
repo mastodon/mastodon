@@ -29,15 +29,23 @@ import classes from './mobile_nav.module.scss';
 import { MobileNavLink } from './navigation_link';
 
 export const RedesignMobileNavigation: React.FC = () => {
-  const { accountId } = useIdentity();
+  const dispatch = useAppDispatch();
+
+  const { accountId, signedIn } = useIdentity();
   const account = useAccount(accountId);
+
   const notificationsCount = useAppSelector(
     selectUnreadNotificationGroupsCount,
   );
-  const dispatch = useAppDispatch();
-  const handleMenuClick = useCallback(() => {
+
+  const handleOpenNavigation = useCallback(() => {
     dispatch(openNavigation());
   }, [dispatch]);
+
+  if (!signedIn) {
+    return null;
+  }
+
   return (
     <>
       <nav className={classes.root}>
@@ -84,7 +92,7 @@ export const RedesignMobileNavigation: React.FC = () => {
         <IconButton // Silly placeholder – will be replaced with button in column header
           icon={HamburgerIcon}
           variant='solid'
-          onClick={handleMenuClick}
+          onClick={handleOpenNavigation}
         >
           Menu
         </IconButton>
