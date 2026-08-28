@@ -3,9 +3,10 @@ import { useCallback } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { CaretDownIcon, MagnifyingGlassIcon } from '@phosphor-icons/react';
+import { MagnifyingGlassIcon } from '@phosphor-icons/react';
 
 import { changeComposeLanguage } from '@/mastodon/actions/compose';
+import { CaretIcon } from '@/mastodon/components/button/redesign';
 import { TextInput } from '@/mastodon/components/form_fields/redesign';
 import {
   Menu,
@@ -32,7 +33,7 @@ export const LanguageButton: React.FC = () => {
 
   return (
     <Menu>
-      <MenuTrigger size='sm' trailingIcon={CaretDownIcon}>
+      <MenuTrigger size='sm' trailingIcon={CaretIcon}>
         {langCode.toLocaleUpperCase()}
       </MenuTrigger>
 
