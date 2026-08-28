@@ -20,7 +20,7 @@ import classes from './attachments.module.scss';
 
 export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
   const status = useAppSelector((state) => selectAccountStatus(state, id));
-  const [showSensitive, { onToggle }] = useToggle();
+  const [showSensitive, { onToggle }] = useToggle(!status?.sensitive);
 
   const dispatch = useAppDispatch();
   const handleDelete = useCallback(() => {
