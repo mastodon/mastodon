@@ -46,7 +46,14 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
   return (
     <Card image={imageEle} onDelete={handleDelete}>
       <CardTitle
-        image={<Avatar account={status.account} withLink />}
+        className={classes.quoteTitle}
+        image={
+          <Avatar
+            account={status.account}
+            className={classes.quoteAccountLink}
+            withLink
+          />
+        }
         afterContent={
           <Link to={statusTo}>
             <RelativeTimestamp timestamp={status.created_at} />
@@ -55,6 +62,7 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
       >
         <LinkedDisplayName
           displayProps={{ account: status.account, variant: 'noDomain' }}
+          className={classes.quoteAccountLink}
         />
       </CardTitle>
 

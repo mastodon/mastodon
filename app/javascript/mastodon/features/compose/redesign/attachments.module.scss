@@ -173,6 +173,13 @@
   text-decoration: none;
 }
 
+// If hovering over an account link, underline all account links.
+.quoteTitle:has(.quoteAccountLink:hover) {
+  .quoteAccountLink {
+    text-decoration: underline;
+  }
+}
+
 .quoteSpoiler {
   background: var(--color-bg-highlight);
   border-radius: var(--radius-sm);

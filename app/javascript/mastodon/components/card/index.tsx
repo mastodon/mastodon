@@ -82,15 +82,13 @@ interface CardTitleProps {
   afterContent?: React.ReactNode;
 }
 
-export const CardTitle: React.FC<CardTitleProps> = ({
-  children,
-  image,
-  afterContent,
-}) => {
+export const CardTitle: React.FC<
+  CardTitleProps & React.ComponentPropsWithRef<'div'>
+> = ({ children, image, afterContent, className, ...props }) => {
   const { id } = use(CardContext);
 
   return (
-    <div className={classes.title}>
+    <div {...props} className={classNames(className, classes.title)}>
       {image && <span className={classes.titleImage}>{image}</span>}
 
       <span id={`${id}_title`}>{children}</span>
