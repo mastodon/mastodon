@@ -121,24 +121,19 @@ RSpec.describe 'Reports' do
         end
       end
 
-      it 'loads report statuses, rules, and status relationships in batches' do
+      it 'loads report statuses, rules, and status relationships in batches', :aggregate_failures do
         rule = Fabricate(:rule)
         3.times do
           statuses = Fabricate.times(2, :status, account: spammer)
           Fabricate(:report, category: :violation, target_account: spammer, status_ids: statuses.map(&:id), rule_ids: [rule.id])
         end
 
-        queries = []
-        subscriber = lambda do |_name, _start, _finish, _id, payload|
-          queries << payload[:sql] unless payload[:name] == 'SCHEMA'
-        end
-
-        ActiveSupport::Notifications.subscribed(subscriber, 'sql.active_record') { subject }
+        notifications = capture_notifications('sql.active_record') { subject }
 
         expect(response).to have_http_status(:success)
-        expect(queries.grep(/SELECT "statuses"\.\* FROM "statuses" WHERE "statuses"\."id" IN/).size).to eq(1)
-        expect(queries.grep(/SELECT "rules"\.\* FROM "rules" WHERE/).size).to eq(1)
-        expect(queries.grep(/FROM "favourites" WHERE "favourites"\."status_id" IN/).size).to eq(1)
+        expect(notifications.count { |event| event.payload[:name] == 'Status Load' && event.payload[:sql].start_with?('SELECT "statuses".*') }).to eq(1)
+        expect(notifications.count { |event| event.payload[:name] == 'Rule Load' }).to eq(1)
+        expect(notifications.count { |event| event.payload[:name] == 'Favourite Load' }).to eq(1)
       end
     end
   end
