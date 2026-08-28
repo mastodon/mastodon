@@ -21,8 +21,8 @@
   --radius-round: calc(1px * infinity);
 }
 
-@mixin border {
-  --border-w-sm: 0.5px;
-  --border-w-md: 1px;
-  --border-w-lg: 2px;
+@mixin border-widths {
+  --border-w-thin: 0.5px;
+  --border-w-normal: 1px;
+  --border-w-strong: 2px;
 }
