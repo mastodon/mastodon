@@ -46,3 +46,29 @@
 .avatar img {
   border-radius: var(--radius-round);
 }
+
+.slideOutWrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  background: rgb(from var(--color-bg-overlay) r g b/50%);
+  opacity: 0;
+  transition: opacity 250ms ease;
+
+  &[data-is-open='true'] {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
+
+.slideOut {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: -70px;
+  width: var(--navigation-max-width);
+  padding-inline-end: 70px;
+  touch-action: pan-y;
+  background: var(--color-bg-primary);
+  box-shadow: var(--dropdown-shadow);
+}
