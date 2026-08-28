@@ -108,6 +108,18 @@
 }
 
 /**
+ * Focus styles
+ */
+
+@mixin focus($offset: false) {
+  outline: var(--border-w-strong) solid var(--color-border-brand);
+
+  @if $offset not false {
+    outline-offset: var(--border-w-strong);
+  }
+}
+
+/**
  * Search input styles
  */
 
