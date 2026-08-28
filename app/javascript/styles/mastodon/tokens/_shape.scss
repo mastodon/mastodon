@@ -20,3 +20,9 @@
   --radius-xl: 28px;
   --radius-round: calc(1px * infinity);
 }
+
+@mixin border {
+  --border-w-sm: 0.5px;
+  --border-w-md: 1px;
+  --border-w-lg: 2px;
+}
