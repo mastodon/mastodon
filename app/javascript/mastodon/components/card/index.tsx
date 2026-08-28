@@ -10,7 +10,6 @@ import { TrashIcon } from '@phosphor-icons/react';
 import type { PolymorphicProps } from '@/types/polymorphic';
 
 import { IconButton } from '../button/redesign';
-import { RelativeTimestamp } from '../relative_timestamp';
 
 import classes from './styles.module.scss';
 
@@ -80,13 +79,13 @@ export const Card = <As extends React.ElementType = 'div'>({
 interface CardTitleProps {
   children: React.ReactNode;
   image?: React.ReactNode;
-  timestamp?: string;
+  afterContent?: React.ReactNode;
 }
 
 export const CardTitle: React.FC<CardTitleProps> = ({
   children,
   image,
-  timestamp,
+  afterContent,
 }) => {
   const { id } = use(CardContext);
 
@@ -96,11 +95,11 @@ export const CardTitle: React.FC<CardTitleProps> = ({
 
       <span id={`${id}_title`}>{children}</span>
 
-      {timestamp && (
+      {afterContent && (
         // eslint-disable-next-line no-restricted-syntax -- Allow &bull;
         <span>
           &nbsp;&bull;&nbsp;
-          <RelativeTimestamp timestamp={timestamp} />
+          {afterContent}
         </span>
       )}
     </div>

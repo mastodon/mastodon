@@ -11,6 +11,7 @@ import { Blurhash } from '@/mastodon/components/blurhash';
 import { Card, CardBody, CardTitle } from '@/mastodon/components/card';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
+import { RelativeTimestamp } from '@/mastodon/components/relative_timestamp';
 import type { AccountStatusShape } from '@/mastodon/models/status';
 import { selectAccountStatus } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -40,22 +41,24 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
     );
   }
 
+  const statusTo = `/@${status.account.acct}/${status.id}`;
+
   return (
     <Card image={imageEle} onDelete={handleDelete}>
       <CardTitle
         image={<Avatar account={status.account} withLink />}
-        timestamp={status.created_at}
+        afterContent={
+          <Link to={statusTo}>
+            <RelativeTimestamp timestamp={status.created_at} />
+          </Link>
+        }
       >
         <LinkedDisplayName
           displayProps={{ account: status.account, variant: 'noDomain' }}
         />
       </CardTitle>
 
-      <CardBody
-        className={classes.quoteBody}
-        as={Link}
-        to={`/@${status.account.acct}/${status.id}`}
-      >
+      <CardBody className={classes.quoteBody} as={Link} to={statusTo}>
         {!status.spoiler_text ? (
           <ComposeQuoteBody status={status} />
         ) : (

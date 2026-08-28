@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
@@ -42,14 +40,6 @@ const meta = {
     timestamp,
     titleText,
   }) {
-    const tsString = useMemo(
-      () =>
-        timestamp
-          ? new Date(new Date().setMonth(0, 1)).toDateString()
-          : undefined,
-      [timestamp],
-    );
-
     const body = bodyText.includes('\n')
       ? bodyText.split('\n').map((line, index) => <p key={index}>{line}</p>)
       : bodyText;
@@ -69,8 +59,8 @@ const meta = {
         image={image && <img src={img} alt='' />}
       >
         <CardTitle
-          timestamp={tsString}
           image={avatar && <img src={img} alt='' />}
+          afterContent={timestamp && '1 Jan'}
         >
           {titleText}
         </CardTitle>
