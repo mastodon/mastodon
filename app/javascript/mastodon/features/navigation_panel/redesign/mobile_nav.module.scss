@@ -63,11 +63,17 @@
 }
 
 .slideOut {
+  // We extend the size of the slideOut to go beyond the viewport
+  // so that when it's pulled away from the side it was opened from,
+  // the background underneath the menu isn't revealed
+  --pull-tolerance: 70px;
+
   position: fixed;
   inset-block: 0;
-  inset-inline-end: -70px;
+  inset-inline-start: calc(-1 * var(--pull-tolerance));
   width: var(--navigation-max-width);
-  padding-inline-end: 70px;
+  max-width: calc(100vw - var(--space-3xl));
+  padding-inline-start: var(--pull-tolerance);
   touch-action: pan-y;
   background: var(--color-bg-primary);
   box-shadow: var(--dropdown-shadow);

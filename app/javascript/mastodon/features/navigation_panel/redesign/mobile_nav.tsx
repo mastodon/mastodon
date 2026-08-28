@@ -131,7 +131,7 @@ const SlideOutNavigation: React.FC = () => {
 
   const isLtrDir = getComputedStyle(document.body).direction !== 'rtl';
 
-  const OPEN_MENU_OFFSET = isLtrDir ? MENU_WIDTH : -MENU_WIDTH;
+  const OPEN_MENU_OFFSET = isLtrDir ? -MENU_WIDTH : MENU_WIDTH;
 
   const [{ x }, spring] = useSpring(
     () => ({
@@ -157,8 +157,8 @@ const SlideOutNavigation: React.FC = () => {
       direction: [xDirection],
       cancel,
     }) => {
-      const logicalXDirection = isLtrDir ? xDirection : -xDirection;
-      const logicalXOffset = isLtrDir ? xOffset : -xOffset;
+      const logicalXDirection = isLtrDir ? -xDirection : xDirection;
+      const logicalXOffset = isLtrDir ? -xOffset : xOffset;
       const hasReachedDragThreshold = logicalXOffset < -70;
 
       if (hasReachedDragThreshold) {
@@ -182,7 +182,7 @@ const SlideOutNavigation: React.FC = () => {
       from: () => [x.get(), 0],
       axis: 'x',
       filterTaps: true,
-      bounds: isLtrDir ? { left: 0 } : { right: 0 },
+      bounds: isLtrDir ? { right: 0 } : { left: 0 },
       rubberband: true,
     },
   );
@@ -190,10 +190,9 @@ const SlideOutNavigation: React.FC = () => {
   const previouslyFocusedElementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      const firstLink = document.querySelector<HTMLAnchorElement>(
-        '.navigation-panel__menu .column-link',
-      );
+    const overlay = overlayRef.current;
+    if (isOpen && overlay) {
+      const firstLink = overlay.querySelector<HTMLAnchorElement>('a');
       previouslyFocusedElementRef.current =
         document.activeElement as HTMLElement;
       firstLink?.focus();

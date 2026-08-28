@@ -7,6 +7,14 @@
   height: 100%;
   overflow-y: auto;
   scrollbar-width: thin;
+
+  // Approximate height of fixed navigation elements
+  // to ensure focused elements are scrolled into view
+  // as needed.
+  --header-height: 80px;
+  --footer-height: 200px;
+
+  scroll-padding-block: var(--header-height) var(--footer-height);
 }
 
 .list {
