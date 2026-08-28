@@ -6,7 +6,7 @@
   bottom: env(safe-area-inset-bottom);
   inset-inline: 0;
   padding: 0 var(--space-md) var(--space-md);
-  z-index: calc(infinity);
+  z-index: 100;
   display: flex;
 
   // This moves the compose FAB above the navigation,
