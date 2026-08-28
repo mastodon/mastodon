@@ -1,9 +1,7 @@
-import { useMemo } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
-import { Card, CardBody, CardImage, CardTitle } from './index';
+import { Card, CardBody, CardTitle } from './index';
 
 interface StoryProps {
   avatar: boolean;
@@ -42,14 +40,6 @@ const meta = {
     timestamp,
     titleText,
   }) {
-    const tsString = useMemo(
-      () =>
-        timestamp
-          ? new Date(new Date().setMonth(0, 1)).toDateString()
-          : undefined,
-      [timestamp],
-    );
-
     const body = bodyText.includes('\n')
       ? bodyText.split('\n').map((line, index) => <p key={index}>{line}</p>)
       : bodyText;
@@ -63,12 +53,18 @@ const meta = {
       : {};
 
     return (
-      <Card {...props} onDelete={deleteBtn ? deleteCb : undefined}>
-        <CardTitle timestamp={tsString} imageSrc={avatar ? img : undefined}>
+      <Card
+        {...props}
+        onDelete={deleteBtn ? deleteCb : undefined}
+        image={image && <img src={img} alt='' />}
+      >
+        <CardTitle
+          image={avatar && <img src={img} alt='' />}
+          afterContent={timestamp && '1 Jan'}
+        >
           {titleText}
         </CardTitle>
         <CardBody noClamp={!clamp}>{body}</CardBody>
-        {image && <CardImage src={img} />}
       </Card>
     );
   },
