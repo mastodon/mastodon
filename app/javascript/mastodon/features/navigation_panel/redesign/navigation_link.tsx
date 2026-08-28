@@ -1,12 +1,13 @@
-import type { SVGProps } from 'react';
+import type { ReactNode, SVGProps } from 'react';
 
 import classNames from 'classnames';
-import { NavLink, matchPath, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import type { NavLinkProps } from 'react-router-dom';
 
 import type { Icon } from '@phosphor-icons/react';
 
 import { Badge } from '@/mastodon/components/badge';
+import { useIsLinkActive } from '@/mastodon/hooks/useIsLinkActive';
 
 import classes from './navigation_link.module.scss';
 
@@ -29,20 +30,14 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   children,
   ...otherProps
 }) => {
-  const location = useLocation();
-
   let Comp: React.ElementType = as;
   if (as === 'link') {
     Comp = NavLink;
   }
 
-  const to = 'to' in otherProps && otherProps.to;
-  const isActive =
-    to && typeof to !== 'function'
-      ? !!matchPath(location.pathname, {
-          path: typeof to === 'string' ? to : to.pathname,
-        })
-      : false;
+  const isActive = useIsLinkActive(
+    'to' in otherProps ? otherProps.to : undefined,
+  );
 
   return (
     <li
@@ -57,7 +52,10 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
       >
         {IconComp && (
           <span className={classes.icon}>
-            <IconComp size={20} weight={isActive ? 'fill' : undefined} />
+            <IconComp
+              size={stacked ? 24 : 20}
+              weight={isActive ? 'fill' : undefined}
+            />
           </span>
         )}
         <span className={classes.label}>{children}</span>
@@ -69,6 +67,52 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
           />
         )}
       </Comp>
+    </li>
+  );
+};
+
+type MobileNavLink = NavLinkProps & {
+  withDot?: boolean;
+  children: ReactNode;
+} & (
+    | {
+        iconComponent: Icon | React.FC<SVGProps<SVGSVGElement>>;
+        customIcon?: never;
+      }
+    | {
+        customIcon: ReactNode;
+        iconComponent?: never;
+      }
+  );
+
+export const MobileNavLink: React.FC<MobileNavLink> = ({
+  iconComponent: IconComp,
+  customIcon,
+  withDot,
+  children,
+  ...otherProps
+}) => {
+  const isActive = useIsLinkActive(
+    'to' in otherProps ? otherProps.to : undefined,
+  );
+
+  return (
+    <li>
+      <NavLink
+        {...otherProps}
+        className={classNames(classes.link, classes.linkMobile)}
+      >
+        <span
+          className={classNames(classes.icon, withDot && classes.iconWithDot)}
+        >
+          {IconComp ? (
+            <IconComp size={24} weight={isActive ? 'fill' : undefined} />
+          ) : (
+            customIcon
+          )}
+        </span>
+        <span className='sr-only'>{children}</span>
+      </NavLink>
     </li>
   );
 };

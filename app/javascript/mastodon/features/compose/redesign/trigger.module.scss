@@ -1,9 +1,12 @@
 @use '@/styles/mastodon/variables';
 
 .button {
-  position: fixed;
-  bottom: var(--space-md);
-  right: var(--space-md);
+  &:not(.buttonInline) {
+    position: fixed;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    z-index: 2;
+  }
 }
 
 .composer,
