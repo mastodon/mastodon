@@ -4,6 +4,8 @@ import { lazy, Suspense, useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import {
   ChatCircleIcon,
   NewspaperIcon,
@@ -32,7 +34,12 @@ const ComposeLazyForm = lazy(() =>
   })),
 );
 
-export const ComposeRedesignButton: React.FC = () => {
+export const ComposeRedesignButton: React.FC<{
+  /**
+   * Render the button in regular document flow instead of fixed positioning for mobile layout
+   */
+  inline?: boolean;
+}> = ({ inline }) => {
   const displayState = useAppSelector((state) => state.composer.displayState);
 
   const dispatch = useAppDispatch();
@@ -75,7 +82,7 @@ export const ComposeRedesignButton: React.FC = () => {
         as={IconButton}
         icon={PenNibIcon}
         variant='solid'
-        className={classes.button}
+        className={classNames(classes.button, inline && classes.buttonInline)}
         size='lg'
       >
         <FormattedMessage
