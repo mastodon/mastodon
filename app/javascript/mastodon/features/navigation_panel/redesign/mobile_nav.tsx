@@ -81,7 +81,7 @@ export const RedesignMobileNavigation: React.FC = () => {
           </MobileNavLink>
         </ul>
         <ComposeRedesignButton inline />
-        <IconButton
+        <IconButton // Silly placeholder – will be replaced with button in column header
           icon={HamburgerIcon}
           variant='solid'
           onClick={handleMenuClick}
