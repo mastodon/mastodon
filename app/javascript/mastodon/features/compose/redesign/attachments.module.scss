@@ -168,18 +168,14 @@
 
 // Quotes
 
-.quoteSpoiler {
-  > summary {
-    align-items: flex-start;
-    background: var(--color-bg-highlight);
-    border-radius: var(--radius-sm);
-    display: flex;
-    margin: var(--space-2xs) 0;
-    overflow: hidden;
-    padding: var(--space-xs);
-  }
+.quoteBody {
+  color: inherit;
+  text-decoration: none;
 }
 
-.quoteSpoilerToggle {
-  margin-inline-start: auto;
+.quoteSpoiler {
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-sm);
+  margin: var(--space-2xs) 0;
+  padding: var(--space-xs);
 }

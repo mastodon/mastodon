@@ -3,24 +3,23 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { Link } from 'react-router-dom';
+
 import { quoteComposeCancel } from '@/mastodon/actions/compose_typed';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Blurhash } from '@/mastodon/components/blurhash';
-import { Button } from '@/mastodon/components/button/redesign';
 import { Card, CardBody, CardTitle } from '@/mastodon/components/card';
-import { DisplayName } from '@/mastodon/components/display_name';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
-import { useHandlersForStatus } from '@/mastodon/components/status/hooks';
-import { useToggle } from '@/mastodon/hooks/useToggle';
 import type { AccountStatusShape } from '@/mastodon/models/status';
 import { selectAccountStatus } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import type { OnElementHandler } from '@/mastodon/utils/html';
 
 import classes from './attachments.module.scss';
 
 export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
   const status = useAppSelector((state) => selectAccountStatus(state, id));
-  const [showSensitive, { onToggle }] = useToggle(!status?.sensitive);
 
   const dispatch = useAppDispatch();
   const handleDelete = useCallback(() => {
@@ -34,7 +33,7 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
   let imageEle: React.ReactNode = null;
   const image = status.media_attachments.find(({ type }) => type !== 'unknown');
   if (image) {
-    imageEle = showSensitive ? (
+    imageEle = !status.sensitive ? (
       <img src={image.preview_url} alt={image.description} />
     ) : (
       <Blurhash hash={image.blurhash} width={120} />
@@ -44,75 +43,53 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
   return (
     <Card image={imageEle} onDelete={handleDelete}>
       <CardTitle
-        image={<Avatar account={status.account} />}
+        image={<Avatar account={status.account} withLink />}
         timestamp={status.created_at}
       >
-        <DisplayName account={status.account} variant='noDomain' />
+        <LinkedDisplayName
+          displayProps={{ account: status.account, variant: 'noDomain' }}
+        />
       </CardTitle>
 
-      <CardBody>
-        <ComposeQuoteBody
-          status={status}
-          showing={showSensitive}
-          onToggle={onToggle}
-        />
+      <CardBody
+        className={classes.quoteBody}
+        as={Link}
+        to={`/@${status.account.acct}/${status.id}`}
+      >
+        {!status.spoiler_text ? (
+          <ComposeQuoteBody status={status} />
+        ) : (
+          <div className={classes.quoteSpoiler}>
+            <FormattedMessage
+              id='compose.quote.spoiler'
+              defaultMessage='Content:'
+              description='Comes before user-provided spoiler description'
+            />
+            &nbsp;
+            {status.spoiler_text}
+          </div>
+        )}
       </CardBody>
     </Card>
   );
 };
 
 const ComposeQuoteBody: React.FC<{
-  onToggle: () => void;
-  showing: boolean;
   status: AccountStatusShape;
-}> = ({ onToggle, showing, status }) => {
-  const htmlHandlers = useHandlersForStatus(status);
-
-  const handleToggle: React.MouseEventHandler = useCallback((event) => {
-    event.preventDefault();
-  }, []);
-
-  const body = (
+}> = ({ status }) => {
+  return (
     <EmojiHTML
       htmlString={status.translation?.contentHtml ?? status.contentHtml}
       extraEmojis={status.emojis}
       lang={status.translation?.language ?? status.language}
-      {...htmlHandlers}
+      onElement={onStatusLinks}
     />
   );
+};
 
-  if (!status.sensitive) {
-    return body;
+const onStatusLinks: OnElementHandler = (element, { key }, children) => {
+  if (element instanceof HTMLAnchorElement) {
+    return <span key={key as string}>{children}</span>;
   }
-
-  return (
-    <details open={showing} className={classes.quoteSpoiler}>
-      <summary tabIndex={-1} onClick={handleToggle}>
-        <FormattedMessage
-          id='compose.quote.spoiler'
-          defaultMessage='Content:'
-        />{' '}
-        {status.spoilerHtml}
-        <Button
-          size='xs'
-          onClick={onToggle}
-          className={classes.quoteSpoilerToggle}
-        >
-          {showing ? (
-            <FormattedMessage
-              id='compose.quote.spoiler.hide'
-              defaultMessage='Hide'
-            />
-          ) : (
-            <FormattedMessage
-              id='compose.quote.spoiler.show'
-              defaultMessage='Show'
-            />
-          )}
-        </Button>
-      </summary>
-
-      {body}
-    </details>
-  );
+  return undefined;
 };
