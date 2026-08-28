@@ -16,7 +16,7 @@
 
 .fields-group
   = form.input :list_action,
-               collection: ['accept', 'reject'],
+               collection: %w(accept reject),
                include_blank: I18n.t('admin.moderation_subscriptions.list_actions.default'),
                label_method: ->(type) { t("admin.moderation_subscriptions.list_actions.#{type}") },
                label: t('admin.moderation_subscriptions.list_action'),
@@ -24,7 +24,7 @@
 
 .fields-group
   = form.input :apply_conditions,
-               collection: ['never', 'safely', 'always'],
+               collection: %w(never safely always),
                include_blank: false,
                label_method: ->(type) { t("admin.moderation_subscriptions.apply_conditions.#{type}") },
                label: t('admin.moderation_subscriptions.apply_automatically'),

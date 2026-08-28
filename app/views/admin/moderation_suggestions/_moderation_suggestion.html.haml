@@ -13,7 +13,7 @@
 
   .announcements-list__item__permissions
     -# TODO: optimize
-    - advisories = SubscribedAdvisory.where(target_type: moderation_suggestion.target_type, target_key: moderation_suggestion.target_key).joins(:moderation_subscription).group_by { |advisory| advisory.action }.to_h
+    - advisories = SubscribedAdvisory.where(target_type: moderation_suggestion.target_type, target_key: moderation_suggestion.target_key).joins(:moderation_subscription).group_by(&:action).to_h
     - first_action = advisories.delete(moderation_suggestion.action) || [moderation_suggestion]
     - ([first_action] + advisories.values).each do |advisories|
       %ul.permissions-list

@@ -2,7 +2,12 @@
   = I18n.t('admin.moderation_subscriptions.show_title', name: @moderation_subscription.name)
 
 - content_for :heading_actions do
-  = link_to t('admin.moderation_subscriptions.delete'), admin_moderation_subscription_path(@moderation_subscription), method: :delete, data: { confirm: t('admin.moderation_subscriptions.delete_confirm') }, class: 'button button--destructive' if can?(:destroy, @moderation_subscription)
+  - if can?(:destroy, @moderation_subscription)
+    = link_to t('admin.moderation_subscriptions.delete'),
+              admin_moderation_subscription_path(@moderation_subscription),
+              method: :delete,
+              data: { confirm: t('admin.moderation_subscriptions.delete_confirm') },
+              class: 'button button--destructive'
 
 .table-wrapper
   %table.table.inline-table
