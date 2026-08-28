@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import type { LinkProps } from 'react-router-dom';
 
+import { CaretDownIcon } from '@phosphor-icons/react';
+
 import { CircularProgress } from '../circular_progress';
 import type { IconProp } from '../icon';
 import { Icon } from '../icon';
@@ -128,6 +130,17 @@ export const IconButton: React.FC<BaseButtonProps & { icon: IconProp }> = ({
     )}
     <span className='sr-only'>{children}</span>
   </BaseButton>
+);
+
+export const CaretIcon = (
+  props: React.SVGProps<SVGSVGElement> & { title?: string },
+) => (
+  <CaretDownIcon
+    {...props}
+    className={classNames(props.className, classes.iconCustom)}
+    weight='fill'
+    size={12}
+  />
 );
 
 const LoadingIcon: React.FC = () => (
