@@ -87,6 +87,8 @@ const MenuItemBase = <As extends React.ElementType>({
 
   return (
     <Component
+      // If it's a button, set the type by default or it will submit forms.
+      type={AsComp === 'button' ? 'button' : undefined}
       {...props}
       data-menu-item
       className={classNames(
@@ -260,7 +262,13 @@ export const MenuItemCheckbox: React.FC<MenuItemCheckboxProps> = ({
       aria-checked={checked}
       onClick={handleChange}
       trailingContent={
-        <Toggle aria-hidden='true' tabIndex={-1} size='sm' checked={checked} />
+        <Toggle
+          aria-hidden='true'
+          tabIndex={-1}
+          size='sm'
+          checked={checked}
+          readOnly
+        />
       }
     >
       {children}
