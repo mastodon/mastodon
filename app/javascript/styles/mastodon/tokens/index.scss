@@ -2,14 +2,16 @@
 @use 'theme/dark';
 @use 'theme/light';
 @use 'theme/utils';
+@use 'border';
 @use 'shape';
 @use 'type';
 
 html {
   @include base.palette;
+  @include border.border-widths;
+  @include border.borders;
   @include shape.space;
   @include shape.radius;
-  @include shape.border-widths;
   @include type.font-size;
   @include type.line-height;
   @include type.letter-spacing;
