@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .base {
   --bg: transparent;
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
@@ -16,8 +18,8 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fs-sm);
-  line-height: 1;
+  @include mixins.type-label-lg;
+
   box-sizing: border-box;
 
   &:hover:not(
@@ -66,7 +68,6 @@ a.base {
 
 .xs {
   padding: var(--space-3xs) var(--space-2xs);
-  font-size: var(--fs-2xs);
   min-height: 20px;
 }
 
