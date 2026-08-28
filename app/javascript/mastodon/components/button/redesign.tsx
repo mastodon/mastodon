@@ -107,7 +107,7 @@ export const Button: React.FC<ButtonProps> = ({
       <Icon id='leading' icon={leadingIcon} className={classes.icon} />
     )}
     {props.loading && <LoadingIcon />}
-    <span className={classes.content}>{children}</span>
+    {children}
     {trailingIcon && (
       <Icon id='trailing' icon={trailingIcon} className={classes.icon} />
     )}

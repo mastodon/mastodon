@@ -59,6 +59,9 @@ const meta = {
       },
     },
   },
+  parameters: {
+    redesign: true,
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
