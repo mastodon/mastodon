@@ -31,9 +31,7 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  align-self: center;
-  width: 100%;
-  max-width: 400px;
+  align-self: stretch;
   padding: var(--space-2xs);
   background-color: var(--color-bg-primary);
   border-radius: var(--radius-round);
@@ -47,4 +45,36 @@
 .avatar,
 .avatar img {
   border-radius: var(--radius-round);
+}
+
+.slideOutWrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  background: rgb(from var(--color-bg-overlay) r g b/50%);
+  opacity: 0;
+  transition: opacity 250ms ease;
+
+  &[data-is-open='true'] {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
+
+.slideOut {
+  // We extend the size of the slideOut to go beyond the viewport
+  // so that when it's pulled away from the side it was opened from,
+  // the background underneath the menu isn't revealed
+  --pull-tolerance: 70px;
+
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: calc(-1 * var(--pull-tolerance));
+  width: var(--navigation-max-width);
+  max-width: calc(100vw - var(--space-3xl));
+  padding-inline-start: var(--pull-tolerance);
+  touch-action: pan-y;
+  background: var(--color-bg-primary);
+  box-shadow: var(--dropdown-shadow);
 }

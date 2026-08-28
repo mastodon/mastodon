@@ -1,4 +1,5 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
 
 .wrapper {
   padding-bottom: var(--space-3xs);
@@ -31,6 +32,10 @@
 
   &:not(:where(.linkStacked, .linkMobile)) {
     color: var(--color-text-secondary);
+  }
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 40px;
   }
 
   &:hover,
