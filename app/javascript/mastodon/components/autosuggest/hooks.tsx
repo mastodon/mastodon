@@ -2,7 +2,6 @@ import { useCallback, useRef, useState } from 'react';
 
 import classNames from 'classnames';
 
-import type { Simplify } from 'type-fest';
 import { useThrottledCallback } from 'use-debounce';
 
 import { getAllMenuItems } from '../menu';
@@ -30,26 +29,12 @@ type SourceProps = React.DetailedHTMLProps<
   AutosuggestSourceElements
 >;
 
-interface UseAutosuggestReturn {
-  onTextChange: React.ChangeEventHandler<AutosuggestSourceElements>;
-  focus: (event?: React.SyntheticEvent) => void;
-  getToken: () => { token: string | null; startPosition: number };
-
-  mirror?: React.JSX.Element;
-
-  suggestProps: Simplify<Omit<AutosuggestMenuProps, 'children'>>;
-
-  sourceProps: Simplify<
-    Pick<SourceProps, 'onSelect' | 'onScroll' | 'aria-autocomplete'>
-  >;
-}
-
 export function useAutosuggestMenu({
   suggestions,
   onSelect,
   onFetch,
   onClear,
-}: UseAutosuggestMenuOptions): UseAutosuggestReturn {
+}: UseAutosuggestMenuOptions) {
   const lastTokenRef = useRef<string | null>(null); // The last suggestion token encountered.
   const tokenStartRef = useRef(0); // Character location of the token start.
   const listRef = useRef<HTMLDivElement>(null);
@@ -129,6 +114,8 @@ export function useAutosuggestMenu({
 
     sourceProps: {
       'aria-autocomplete': 'list',
+      'aria-expanded': suggestions.length > 0,
+      'aria-haspopup': 'listbox',
     } satisfies SourceProps,
   };
 }
@@ -144,7 +131,7 @@ export function useAutosuggestFloatingMenu({
   sourceRef,
   className,
   ...suggestOptions
-}: UseAutosuggestFloatingMenuOptions): UseAutosuggestReturn {
+}: UseAutosuggestFloatingMenuOptions) {
   const [mirrorElement, setMirrorElement] = useState<HTMLElement | null>(null); // Reference to the mirror element.
   const [selectedText, setSelectedText] = useState(text ?? ''); // The actual selected text inside the mirror.
   const updatePopover = useRef<() => void>(null); // Reference to the popover update callback.
@@ -161,12 +148,19 @@ export function useAutosuggestFloatingMenu({
     updatePopover.current?.();
 
     if (source && mirrorElement) {
-      // Set top to scroll offset so bottom edge looks right.
-      mirrorElement.style.setProperty('top', `${-1 * source.scrollTop}px`);
+      // Set top to scroll offset so the mirror matches the current line location.
+      const lineOffset =
+        mirrorElement.scrollHeight - mirrorElement.clientHeight;
+      mirrorElement.style.setProperty(
+        'top',
+        `${lineOffset - source.scrollTop}px`,
+      );
 
-      const { height } = source.getBoundingClientRect();
-      const offset = mirrorElement.offsetHeight - source.scrollTop;
-      if (offset < 0 || offset > height) {
+      // Get the wrapper and mirror element bounds to check if the new location is out of sight...
+      const wrapper = mirrorElement.parentElement?.getBoundingClientRect();
+      const { bottom, top } = mirrorElement.getBoundingClientRect();
+      if (wrapper && (bottom <= wrapper.top || top >= wrapper.bottom)) {
+        // And clear the results if so.
         onClear?.();
       }
     }
@@ -197,7 +191,7 @@ export function useAutosuggestFloatingMenu({
 
   const onScroll = useThrottledCallback(onUpdate, 0);
   const updatePopoverCb = useCallback((update: () => void) => {
-    updatePopover.current = () => update;
+    updatePopover.current = update;
   }, []);
 
   const mirror = (
@@ -216,6 +210,7 @@ export function useAutosuggestFloatingMenu({
   return {
     mirror,
     getToken,
+    onUpdate,
     ...autosuggestProps,
 
     sourceProps: {

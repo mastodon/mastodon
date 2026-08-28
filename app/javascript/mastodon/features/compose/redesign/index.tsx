@@ -15,7 +15,6 @@ import {
 import { ToggleButton } from '@/mastodon/components/button/redesign';
 import { TextInputField } from '@/mastodon/components/form_fields/redesign';
 import { Icon } from '@/mastodon/components/icon';
-import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
   focusComposerTextarea,
   getComposerTextarea,
@@ -68,11 +67,6 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   const intl = useIntl();
   const titleId = useId();
 
-  const { sensor, isInViewport } = useScrollSensor({
-    placement: 'bottom',
-    tolerance: 10,
-  });
-
   return (
     <form
       role='dialog'
@@ -121,17 +115,13 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
         />
       )}
 
-      <div data-scroll-down={!isInViewport} className={classes.editorWrapper}>
-        <ComposeTextarea
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          autoFocus={autoFocus}
-          onSubmit={onSubmit}
-        />
-
+      <ComposeTextarea
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={autoFocus}
+        onSubmit={onSubmit}
+      >
         <ComposeAttachments className={classes.attachments} />
-
-        {sensor}
-      </div>
+      </ComposeTextarea>
 
       <ComposeHints />
 

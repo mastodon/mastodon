@@ -79,7 +79,7 @@
   }
 }
 
-.editorWrapper {
+.textareaWrapper {
   --fade-size: var(--space-xl);
 
   overflow-y: auto;
@@ -112,14 +112,6 @@
   }
 }
 
-.textareaWrapper {
-  flex-grow: 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
 .textarea,
 .textareaMirror {
   @include mixins.type-body-lg;
@@ -129,12 +121,14 @@
 
 .textarea {
   flex-grow: 1;
+  flex-shrink: 0;
   border-radius: var(--radius-xs);
   transition: border 200ms;
   cursor: text;
   border: none;
   width: 100%;
   outline: none;
+  background: none;
 
   &:focus {
     outline: 2px solid var(--color-border-brand);
@@ -161,6 +155,9 @@ textarea.textarea {
 }
 
 .attachments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
   margin-top: var(--space-md);
 }
 
