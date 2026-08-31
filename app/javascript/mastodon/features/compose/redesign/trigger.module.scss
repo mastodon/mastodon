@@ -17,10 +17,24 @@
 }
 
 .composer {
-  width: calc(100vw - var(--space-md) * 2);
-  max-width: 500px;
-  min-height: 520px;
+  width: 100%;
+  top: env(safe-area-inset-top);
+
+  // Set from the visualViewport API.
+  height: var(--viewport-height, 80vh);
   max-height: 80vh;
+  transition: height 200ms;
+
+  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+    top: auto;
+    bottom: 0;
+    min-height: 520px;
+    height: auto;
+    min-width: 300px;
+    width: calc(100vw - var(--space-md) * 2);
+    max-width: 500px;
+    margin: var(--space-md);
+  }
 }
 
 .composerMinimized {

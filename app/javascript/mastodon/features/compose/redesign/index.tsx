@@ -52,12 +52,9 @@ interface RedesignComposeFormProps {
   redirectOnSuccess?: boolean;
 }
 
-export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
-  autoFocus,
-  className,
-  noMinimize,
-  redirectOnSuccess,
-}) => {
+export const RedesignComposeForm: React.FC<
+  RedesignComposeFormProps & React.ComponentPropsWithRef<'form'>
+> = ({ autoFocus, className, noMinimize, redirectOnSuccess, ...props }) => {
   const type = useAppSelector(selectComposeType);
   const { sensitive, sensitiveText } = useAppSelector(selectComposeSensitive);
 
@@ -69,6 +66,7 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
 
   return (
     <form
+      {...props}
       role='dialog'
       onSubmit={onSubmit}
       aria-labelledby={titleId}
