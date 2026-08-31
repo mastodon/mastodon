@@ -40,7 +40,11 @@ class SearchQueryTransformer < Parslet::Transform
 
     def validate_clauses!
       # At least one clause should be a positive match unless searching within the library
-      raise QueryError, 'At least one keyword or phrase is required' if @flags['in'] != 'library' && (must_clauses + filter_clauses).none? { |clause| clause.is_a?(TermClause) && clause.term.present? }
+      # `from:me` (or `from:<self>`) is effectively a library-scoped query, so allow it without `in:library`
+      return if @flags['in'] == 'library'
+      return if filter_clauses.any? { |clause| clause.is_a?(PrefixClause) && clause.prefix == 'from' && !clause.negated? && clause.term == @options[:current_account].id }
+
+      raise QueryError, 'At least one keyword or phrase is required' if (must_clauses + filter_clauses).none? { |clause| clause.is_a?(TermClause) && clause.term.present? }
     end
 
     def clauses_by_operator
@@ -195,6 +199,10 @@ class SearchQueryTransformer < Parslet::Transform
       else
         { @type => { @filter => @term } }
       end
+    end
+
+    def negated?
+      @negated
     end
 
     private

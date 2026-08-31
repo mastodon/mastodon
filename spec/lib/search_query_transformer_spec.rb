@@ -88,6 +88,72 @@ RSpec.describe SearchQueryTransformer do
         expect { subject }.to_not raise_error
       end
     end
+
+    context 'with "from:me after:0000"' do
+      let(:query) { 'from:me after:0000' }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:me before:2026-08-28"' do
+      let(:query) { 'from:me before:2026-08-28' }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:me during:2024"' do
+      let(:query) { 'from:me during:2024' }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:<own username> after:0000"' do
+      let(:query) { "from:#{account.username} after:0000" }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:<own username>@<local domain> after:0000"' do
+      let(:query) { "from:#{account.username}@#{Rails.configuration.x.local_domain} after:0000" }
+
+      it 'does not raise an exception' do
+        expect { subject }.to_not raise_error
+      end
+    end
+
+    context 'with "from:<other user> after:0000"' do
+      let(:other_account) { Fabricate(:account) }
+      let(:query) { "from:#{other_account.username} after:0000" }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with "from:<remote user> after:0000"' do
+      let(:remote_account) { Fabricate(:account, domain: 'remote.host', username: 'remoteuser') }
+      let(:query) { "from:#{remote_account.username}@#{remote_account.domain} after:0000" }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
+
+    context 'with "-from:me after:0000"' do
+      let(:query) { '-from:me after:0000' }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(SearchQueryTransformer::QueryError)
+      end
+    end
   end
 
   context 'with "hello world"' do
