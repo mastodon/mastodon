@@ -116,7 +116,11 @@ export const Button: React.FC<ButtonProps> = ({
   </BaseButton>
 );
 
-export const IconButton: React.FC<BaseButtonProps & { icon: IconProp }> = ({
+export type IconButtonProps = BaseButtonProps & {
+  icon: IconProp;
+};
+
+export const IconButton: React.FC<IconButtonProps> = ({
   icon,
   className,
   children,
