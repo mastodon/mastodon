@@ -10,7 +10,13 @@ const meta = {
   component: RedesignNavigationPanel,
   render(args) {
     return (
-      <div style={{ width: 320 }}>
+      <div
+        style={{
+          width: 320,
+          height: 600,
+          backgroundColor: 'var(--color-bg-blend-solid)',
+        }}
+      >
         <RedesignNavigationPanel {...args} />
         <div inert aria-hidden='true' className='logo-resources'>
           {/* In our web app, this icon is embedded server-side */}

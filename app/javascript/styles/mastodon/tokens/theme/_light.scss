@@ -36,7 +36,16 @@
   --overlay-strength-secondary: 4%;
   --color-bg-secondary: var(--color-grey-50);
   --color-bg-tertiary: var(--color-grey-100); // legacy
-  --color-bg-blend: #{utils.css-alpha(var(--color-text-primary), 4%)};
+  --color-bg-blend-strength: 4%;
+  --color-bg-blend: #{utils.css-alpha(
+      var(--color-grey-950),
+      var(--color-bg-blend-strength)
+    )};
+  --color-bg-blend-solid: color-mix(
+    in srgb,
+    var(--color-bg-primary),
+    var(--color-grey-950) var(--color-bg-blend-strength)
+  );
   --color-bg-highlight: #{utils.css-alpha(var(--color-text-primary), 4%)};
 
   // Utility

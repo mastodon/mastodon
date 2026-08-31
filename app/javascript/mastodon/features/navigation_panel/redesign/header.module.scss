@@ -13,22 +13,13 @@
 
   padding: var(--space-xl) var(--space-lg) var(--half-bottom-spacing);
   margin-bottom: var(--half-bottom-spacing);
-  background: var(--color-bg-primary);
+  background: var(--color-bg-blend-solid);
 
   &::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    inset-inline: 0;
-    height: var(--space-2xl);
-    background: linear-gradient(
-      to bottom,
-      var(--color-bg-primary),
-      transparent
-    );
-    pointer-events: none;
+    @include mixins.scroll-gradient(top, var(--color-bg-blend-solid));
+
     opacity: 0;
-    transition: opacity linear 200ms;
+    transition: opacity ease 250ms;
   }
 
   &[data-stuck='true']::after {

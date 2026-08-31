@@ -120,6 +120,25 @@
 }
 
 /**
+ * Scroll gradient
+ */
+
+@mixin scroll-gradient($position, $background-color: var(--color-bg-primary)) {
+  content: '';
+  position: absolute;
+  @if $position == 'top' {
+    top: 100%;
+  } @else {
+    bottom: 100%;
+  }
+
+  inset-inline: 0;
+  height: calc(var(--space-4xl) * 2);
+  background: linear-gradient(to $position, transparent, $background-color);
+  pointer-events: none;
+}
+
+/**
  * Search input styles
  */
 

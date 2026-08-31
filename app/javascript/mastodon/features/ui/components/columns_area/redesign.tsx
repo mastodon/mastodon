@@ -68,7 +68,7 @@ export const ColumnsAreaRedesign: React.FC<{
         {isMobile ? <RedesignMobileNavigation /> : <ComposeRedesignButton />}
 
         <main className={classes.main}>
-          <div className='tabs-bar__wrapper'>
+          <div className={classes.columnHeader}>
             <TabsBarPortal />
           </div>
 
