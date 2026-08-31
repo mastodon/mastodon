@@ -98,12 +98,12 @@
  */
 
 @mixin elevation-1 {
-  border: var(--border-w-md) solid var(--color-border-strong);
+  border: var(--border-w-normal) solid var(--color-border-strong);
   box-shadow: 0 1px 0 var(--color-border-strong);
 }
 
 @mixin elevation-2 {
-  border: var(--border-w-md) solid var(--color-border-strong);
+  border: var(--border-w-normal) solid var(--color-border-strong);
   box-shadow: 1px 2px 0 var(--color-border-strong);
 }
 
@@ -131,7 +131,7 @@
   background: var(--color-bg-secondary);
   color: var(--color-text-primary);
   border-radius: 4px;
-  border: var(--border-w-md) solid var(--color-border-primary);
+  border: var(--border-w-normal) solid var(--color-border-primary);
   font-size: 17px;
   line-height: normal;
   margin: 0;
