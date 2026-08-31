@@ -28,18 +28,13 @@
   margin-top: auto;
   padding: var(--space-xl);
   padding-top: var(--space-2xs);
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-blend-solid);
 
   &::before {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    inset-inline: 0;
-    height: var(--space-2xl);
-    background: linear-gradient(to top, var(--color-bg-primary), transparent);
-    pointer-events: none;
+    @include mixins.scroll-gradient(bottom, var(--color-bg-blend-solid));
+
     opacity: 0;
-    transition: opacity linear 200ms;
+    transition: opacity ease 250ms;
   }
 
   &[data-stuck='true']::before {
