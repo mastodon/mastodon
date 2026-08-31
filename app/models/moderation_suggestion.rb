@@ -36,6 +36,23 @@ class ModerationSuggestion < ApplicationRecord
 
   before_validation :normalize_target_key
 
+  def mark_as_applied!
+    update!(state: :applied)
+    ModerationSuggestion.where(target_type: target_type, target_key: target_key).where.not(id: id).update_all(state: :dismissed)
+  end
+
+  def to_domain_allow
+    raise ArgumentError unless target_type == 'domain' && action == 'accept'
+
+    DomainAllow.new(domain: target_key, moderation_subscription_id: moderation_subscription_id)
+  end
+
+  def to_domain_block
+    raise ArgumentError unless target_type == 'domain' && %w(limit reject).include?(action)
+
+    DomainBlock.new(domain: target_key, moderation_subscription_id: moderation_subscription_id, severity: action == 'reject' ? :suspend : :silence)
+  end
+
   private
 
   def normalize_target_key

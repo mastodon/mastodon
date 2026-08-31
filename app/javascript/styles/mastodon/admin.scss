@@ -2511,3 +2511,25 @@ a.sparkline {
     }
   }
 }
+
+// TODO: Temporary hacks for moderation subscriptions interface, rework after design pass
+
+.permissions-list__item__text__type a {
+  color: inherit;
+}
+
+.moderation_suggestion-retract {
+  color: inherit;
+}
+
+.moderation_suggestion-limit {
+  color: var(--color-text-warning);
+}
+
+.moderation_suggestion-reject {
+  color: var(--color-text-error);
+}
+
+.permissions-list__item .table-action-link {
+  padding: 0;
+}

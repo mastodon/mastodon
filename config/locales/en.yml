@@ -797,15 +797,23 @@ en:
         limit: Limit
         reject: Suspend
         retract: Retract current policy
+      applied_msg: Successfully applied suggestion for %{target_key}
       apply_accept: Apply allow
       apply_limit: Apply limit
       apply_reject: Apply suspend
       apply_retract: Apply retraction
-      destroyed_msg: Successfully dismissed suggestion
+      current_states:
+        accept: currently allowed
+        limit: currently limited
+        reject: currently suspended
+      description: Below are suggestions from your moderation subscriptions, ordered by priority.
+      destroyed_msg: Successfully dismissed suggestion for %{target_key}
       dismiss: Dismiss
       empty: There is no moderation suggestion at this time.
-      suggested_from_html: This suggestion has been generated from %{link}
+      retracted_msg: Successfully retracted policy for %{target_key}
+      suggested_from_html: Action suggested by %{link}
       title: Moderation suggestions
+      unable_to_apply_msg: Unable to apply suggestion for %{target_key}
     relationships:
       title: "%{acct}'s relationships"
     relays:

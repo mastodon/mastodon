@@ -111,7 +111,11 @@ namespace :admin do
   end
 
   resources :moderation_subscriptions
-  resources :moderation_suggestions
+  resources :moderation_suggestions do
+    member do
+      post :apply
+    end
+  end
 
   resources :rules, only: [:index, :new, :create, :edit, :update, :destroy] do
     member do

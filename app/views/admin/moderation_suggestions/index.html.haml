@@ -6,9 +6,11 @@
 
 %hr.spacer/
 
-- if @moderation_suggestions.empty?
+- if @moderation_suggestion_targets.empty?
   .muted-hint.center-text
     = t 'admin.moderation_suggestions.empty'
 - else
   .applications-list
-    = render partial: 'moderation_suggestion', collection: @moderation_suggestions
+    = render partial: 'moderation_suggestion_target',
+             collection: @moderation_suggestion_targets,
+             locals: { moderation_advisories_by_target: @moderation_advisories_by_target, moderation_suggestions_by_target: @moderation_suggestions_by_target, current_state_by_target: @current_state_by_target }
