@@ -11,12 +11,10 @@ he:
     errors:
       cannot_be_added_to_collections: לא ניתן להוסיף חשבון זה לאוספים.
     followers:
-      many: עוקבים
       one: עוקב
       other: עוקבים
       two: עוקבים
     following:
-      many: נעקבים
       one: נעקבים
       other: נעקבים
       two: נעקביים
@@ -27,7 +25,6 @@ he:
     pin_errors:
       following: עליך לעקוב אחרי חשבון לפני שניתן יהיה להמליץ עליו
     posts:
-      many: הודעות
       one: הודעה
       other: הודעות
       two: הודעותיים
@@ -124,7 +121,6 @@ he:
       perform_full_suspension: ביצוע השעייה מלאה
       previous_strikes: פסילות קודמות
       previous_strikes_description_html:
-        many: לחשבון הזה יש <strong>%{count}</strong> פסילות.
         one: לחשבון הזה פסילה <strong>אחת</strong>.
         other: לחשבון הזה יש <strong>%{count}</strong> פסילות.
         two: לחשבון הזה יש <strong>שתי</strong> פסילות.
@@ -373,7 +369,6 @@ he:
       contents: תוכן
       no_collection_selected: לא בוצעו שינויים באוספים שכן לא נבחרו כאלו
       number_of_accounts:
-        many: "%{count} חשבונות"
         one: חשבון אחד
         other: "%{count} חשבונות"
         two: חשבונותיים
@@ -422,22 +417,18 @@ he:
       new_users: משתמשים חדשים
       opened_reports: דו"חות פתוחים
       pending_appeals_html:
-        many: "<strong>%{count}</strong> ערעורים ממתינים"
         one: ערעור <strong>%{count}</strong> ממתין
         other: "<strong>%{count}</strong> ערעורים ממתינים"
         two: "<strong>%{count}</strong> ערעורים ממתינים"
       pending_reports_html:
-        many: "<strong>%{count}</strong> דוחות ממתינים"
         one: דו"ח <strong>%{count}</strong> ממתין
         other: "<strong>%{count}</strong> דוחות ממתינים"
         two: "<strong>%{count}</strong> דוחות ממתינים"
       pending_tags_html:
-        many: "<strong>%{count}</strong> תגיות ממתינות"
         one: תגית <strong>%{count}</strong> ממתינה
         other: "<strong>%{count}</strong> תגיות ממתינות"
         two: "<strong>%{count}</strong> תגיות ממתינות"
       pending_users_html:
-        many: "<strong>%{count}</strong> משתמשים ממתינים"
         one: "<strong>%{count}</strong> משתמש/ת ממתינ/ה"
         other: "<strong>%{count}</strong> משתמשים ממתינים"
         two: "<strong>%{count}</strong> משתמשים ממתינים"
@@ -506,7 +497,6 @@ he:
       add_new: הוספת חדש
       allow_registrations_with_approval: הרשאת הרשמה לאחר אישור
       attempts_over_week:
-        many: "%{count} נסיונות הרשמה במשך השבוע שעבר"
         one: "%{count} נסיון במשך השבוע שעבר"
         other: "%{count} נסיונות הרשמה במשך השבוע שעבר"
         two: "%{count} נסיונות הרשמה במשך השבוע שעבר"
@@ -664,13 +654,11 @@ he:
         view_all: צפיה ביומני הביקורת המלאים
       availability:
         description_html:
-          many: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
           one: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
           other: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
           two: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
         failure_threshold_reached: סף כשלון הושג ב-%{date}.
         failures_recorded:
-          many: נסיונות כושלים ב-%{count} ימים שונים.
           one: נסיון כושל ביום %{count}.
           other: נסיונות כושלים ב-%{count} ימים שונים.
           two: נסיונות כושלים ב-%{count} ימים שונים.
@@ -716,7 +704,6 @@ he:
       destroyed_msg: מידע מ-%{domain} נמצא עתה בתור למחיקה מיידית.
       empty: לא נמצאו דומיינים.
       known_accounts:
-        many: "%{count} חשבונות ידועים"
         one: חשבון ידוע %{count}
         other: "%{count} חשבונות ידועים"
         two: "%{count} חשבונות ידועים"
@@ -792,7 +779,6 @@ he:
     reports:
       account:
         notes:
-          many: "%{count} הערות"
           one: הערה %{count}
           other: "%{count} הערות"
           two: "%{count} הערות"
@@ -885,7 +871,6 @@ he:
     roles:
       add_new: הוספת תפקיד
       assigned_users:
-        many: "%{count} משתמשים"
         one: 'משתמש %{count} '
         other: "%{count} משתמשים"
         two: "%{count} שני משתמשים"
@@ -902,7 +887,6 @@ he:
       everyone: הרשאות ברירת מחדל
       everyone_full_description_html: זהו <strong>התפקיד הבסיסי </strong> שמשפיע על <strong>כלל המשתשמשים</strong>, אפילו אלו ללא תפקיד. כל התפקידים האחרים יורשים את ההרשאות שלהם ממנו.
       permissions_count:
-        many: "%{count} הרשאות"
         one: הרשאה %{count}
         other: "%{count} הרשאות"
         two: "%{count} הרשאות"
@@ -1191,7 +1175,6 @@ he:
         explanation_html: 'הדואל ישלח אל <strong>%{display_count} משתמשיםות</strong> שנרשמו לפני %{date}. להלן המלל שישלח בדואל:'
         send_preview: שליחת הצצה מוקדמת אל %{email}
         send_to_all:
-          many: שליחת %{display_count} הודעות דואל
           one: שליחת הודעת דואל
           other: שליחת %{display_count} הודעות דואל
           two: שליחת שתי הודעות דואל
@@ -1221,7 +1204,6 @@ he:
         publishers:
           no_publisher_selected: לא בוצעו שינויים במפרסמים שכן לא נבחרו כאלו
         shared_by_over_week:
-          many: הופץ על ידי %{count} אנשים בשבוע האחרון
           one: הופץ על ידי אדם אחד בשבוע האחרון
           other: הופץ על ידי %{count} אנשים בשבוע האחרון
           two: הופץ על ידי %{count} אנשים בשבוע האחרון
@@ -1249,7 +1231,6 @@ he:
         no_status_selected: לא בוצעו שינויים בהודעות חמות שכן לא נבחרו כאלו
         not_discoverable: המחבר/ת לא בחר/ה לאפשר את גילויים
         shared_by:
-          many: הודהד וחובב %{friendly_count} פעמים
           one: הודהד או חובב פעם אחת
           other: הודהד וחובב %{friendly_count} פעמים
           two: הודהד וחובב %{friendly_count} פעמים
@@ -1275,7 +1256,6 @@ he:
         usable: ניתנת לשימוש
         usage_comparison: שומשה %{today} פעמים היום, לעומת %{yesterday} אתמול
         used_by_over_week:
-          many: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
           one: הוצגה על ידי משתמש בודד במשך השבוע שעבר
           other: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
           two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
@@ -1318,7 +1298,6 @@ he:
       enable: אפשר
       enabled: פעילים
       enabled_events:
-        many: "%{count} אירועים אופשרו"
         one: אירוע %{count} מאופשר
         other: "%{count} אירועים אופשרו"
         two: "%{count} אירועים אופשרו"
@@ -1599,7 +1578,6 @@ he:
         privacy_html: דוא"ל ישלח מ- %{domain}, שרת הפועל על מסטודון. כדי להבין כיצד שרת זה מנהל את המידע האישי שלך, יש לפנות של <a href="%{privacy_policy_path}">מדיניות הפרטיוות</a>.
         reason_for_email_html: קיבלתם הודעת דוא"ל זו כי ביקשתם לקבל עידכונים מאת %{name}. אין ברצונכן לקבל הודעות אלו? <a href="%{unsubscribe_path}">ביטול הרשמה</a>
       interact_with_this_post:
-        many: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
         one: תקשרו עם ההודעה הזו כדי לגלות עוד כמוה.
         other: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
         two: תקשרו עם ההודעות הללו כדי לגלות עוד כמוהן.
@@ -1687,17 +1665,14 @@ he:
       expires_in: פג תוקף ב %{distance}
       expires_on: פג תוקף ב %{date}
       keywords:
-        many: "%{count} מילות מפתח"
         one: מילת מפתח %{count}
         other: "%{count} מילות מפתח"
         two: "%{count} מילות מפתח"
       statuses:
-        many: "%{count} הודעות"
         one: הודעה %{count}
         other: "%{count} הודעות"
         two: "%{count} הודעותיים"
       statuses_long:
-        many: "%{count} הודעות הוסתרו"
         one: הודעה %{count} יחידה הוסתרה
         other: "%{count} הודעות הוסתרו"
         two: הודעותיים %{count} הוסתרו
@@ -1715,12 +1690,10 @@ he:
   generic:
     all: הכל
     all_items_on_page_selected_html:
-      many: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
       one: פריט <strong>%{count}</strong> נבחר בעמוד זה.
       other: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
       two: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
     all_matching_items_selected_html:
-      many: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
       one: נבחר פריט <strong>%{count}</strong> שתאם לחיפוש בעמוד זה.
       other: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
       two: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
@@ -1734,13 +1707,11 @@ he:
     order_by: מיין לפי
     save_changes: לשמור שינויים
     select_all_matching_items:
-      many: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
       one: בחר.י פריט %{count} שתאם לחיפוש שלך.
       other: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
       two: בחר. י %{count} פריטים שתאמו לחיפוש שלך.
     today: היום
     validation_errors:
-      many: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
       one: משהו עדיין לא בסדר! נא לעיין בשגיאה להלן
       other: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
       two: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
@@ -1763,73 +1734,59 @@ he:
       overwrite_long: החלף רשומות נוכחיות בחדשות
     overwrite_preambles:
       blocking_html:
-        many: אתם עומדים <strong>להחליף את רשימת החסימות</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>להחליף את רשימת החסימות</strong> <strong>%{count} בחשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>להחליף את רשימת החסימות</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>להחליף את רשימת החסימות</strong> בעד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
       bookmarks_html:
-        many: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>להחליף את רשימת הסימניות</strong><strong> בהודעה אחת</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong>.
       custom_filters_html:
-        many: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
         one: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>סנן אחד</strong> יתווסף לסננים חדשים.
         other: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
         two: הפעולה הבאה <strong>תחליף את סנניך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} סננים</strong> יתווספו לסננים חדשים.
       domain_blocking_html:
-        many: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> <strong>בשרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>שני שרתים</strong> מהקובץ <strong>%{filename}</strong>.
       following_html:
-        many: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
         one: אתם עומדים <strong>לעקוב</strong> אחרי <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
         other: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
         two: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
       lists_html:
-        many: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} חשבונות</strong> יתווספו לרשימות חדשות.
         one: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>חשבון אחד</strong> יתווסף לרשימות חדשות.
         other: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} חשבונות</strong> יתווספו לרשימות חדשות.
         two: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>שני חשבונות</strong> יתווספו לרשימות חדשות.
       muting_html:
-        many: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> ב<strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
     preambles:
       blocking_html:
-        many: אתם עומדים <strong>לחסום</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>לחסום</strong><strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>לחסום</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>לחסום</strong> עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
       bookmarks_html:
-        many: אתם עומדים להוסיף עד <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
         one: אתם עומדים <strong>להוסיף</strong><strong>הודעה אחת</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
         other: אתם עומדים להוסיף עד <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
         two: אתם עומדים <strong>להוסיף</strong> עד <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
       custom_filters_html:
-        many: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
         one: אתם עומדים להוסיף עד <strong>סנן אחד</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
         other: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
         two: אתם עומדים להוסיף עד <strong>%{count} סננים</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסננים שלכם</strong>.
       domain_blocking_html:
-        many: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>לחסום</strong> עד <strong>שרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>לחסום</strong> עד כדי <strong>שני שרתים</strong> מהקובץ <strong>%{filename}</strong>.
       following_html:
-        many: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
       lists_html:
-        many: הפעולה הבאה תוסיף עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
         one: הפעולה הבאה תוסיף עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
         other: הפעולה הבאה תוסיף עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
         two: הפעולה הבאה תוסיף עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
       muting_html:
-        many: אתם עומדים <strong>להשתיק</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         one: אתם עומדים <strong>להשתיק</strong> עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
         other: אתם עומדים <strong>להשתיק</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
         two: אתם עומדים <strong>להשתיק</strong> עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
@@ -1878,7 +1835,6 @@ he:
     invalid: הזמנה זו אינה תקפה
     invited_by: הוזמנת ע"י
     max_uses:
-      many: "%{count} שימושים"
       one: שימוש אחד
       other: "%{count} שימושים"
       two: "%{count} שימושים"
@@ -1961,7 +1917,6 @@ he:
       title_html: "%{name} דיווח.ה על %{target}"
     admin_sign_up:
       title_and_others_html:
-        many: "%{name} ועוד %{count} נרשמו"
         one: "%{name} ועוד אחד נרשמו"
         other: "%{name} ועוד %{count} נרשמו"
         two: "%{name} ועוד שניים נרשמו"
@@ -2211,18 +2166,15 @@ he:
   statuses:
     attached:
       audio:
-        many: "%{count} אודיו"
         one: אודיו %{count}
         other: "%{count} אודיו"
         two: "%{count} אודיו"
       description: 'מצורף: %{attached}'
       image:
-        many: "%{count} תמונות"
         one: תמונה %{count}
         other: "%{count} תמונות"
         two: "%{count} תמונותיים"
       video:
-        many: "%{count} סרטונים"
         one: סרטון %{count}
         other: "%{count} סרטונים"
         two: "%{count} סרטונים"
@@ -2233,7 +2185,6 @@ he:
       show: הצג עוד
     default_language: זהה לשפת ממשק
     disallowed_hashtags:
-      many: 'מכיל את התגיות האסורות: %{tags}'
       one: 'מכיל את התגית האסורה: %{tags}'
       other: 'מכיל את התגיות האסורות: %{tags}'
       two: 'מכיל את התגיות האסורות: %{tags}'
@@ -2466,7 +2417,6 @@ he:
       follows_title: אחרי מי לעקוב
       follows_view_more: ראו עוד א.נשים לעקוב אחריהן.ם
       hashtags_recent_count:
-        many: "%{people} אנשים ביומיים האחרונים"
         one: איש אחד ביומיים האחרונים
         other: "%{people} אנשים ביומיים האחרונים"
         two: שני אנשים ביומיים האחרונים
