@@ -53,9 +53,10 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
     return (
       <Link
         className={classNames('mention', className)}
-        to={`/@${mention.acct}`}
+        to={{ pathname: `/@${mention.acct}`, state: { reference: 'status' } }}
         title={`@${mention.acct}`}
         data-hover-card-account={mention.id}
+        data-hover-card-reference='status'
       >
         {children}
       </Link>

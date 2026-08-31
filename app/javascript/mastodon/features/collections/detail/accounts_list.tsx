@@ -197,6 +197,7 @@ export const CollectionAccountsList: React.FC<{
           withBorder={!isLastElement}
           badge={item.state === 'pending' ? <PendingBadge /> : null}
           renderButton={renderAccountItemButton}
+          reference='collection'
         />
       </Article>
     ),

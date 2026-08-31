@@ -151,7 +151,10 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                   aria-posinset={index + 1}
                   aria-setsize={featuredAccountIds.size}
                 >
-                  <AccountListItem accountId={featuredAccountId} />
+                  <AccountListItem
+                    accountId={featuredAccountId}
+                    reference='featured_account'
+                  />
                 </Article>
               ))}
             </ItemList>

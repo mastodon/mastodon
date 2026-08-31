@@ -432,6 +432,7 @@ class Status extends ImmutablePureComponent {
             variant: 'simple'
           }}
           className='status__display-name muted'
+          reference='status'
         />
       )
 
