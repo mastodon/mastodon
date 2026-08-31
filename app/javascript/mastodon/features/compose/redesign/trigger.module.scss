@@ -12,11 +12,8 @@
 .composer,
 .composerMinimized {
   position: fixed;
-  bottom: 0;
   right: 0;
-  margin: var(--space-md);
   box-sizing: border-box;
-  border-radius: var(--radius-xl);
 }
 
 .composer {
@@ -27,13 +24,15 @@
 }
 
 .composerMinimized {
+  bottom: 0;
   width: min(320px, calc(100vw - var(--space-md) * 2));
   padding: var(--space-md);
-}
+  margin: var(--space-md);
 
-@media (width < #{variables.$mobile-menu-breakpoint}) {
-  .composer,
-  .composerMinimized {
+  @media (width < #{variables.$mobile-menu-breakpoint}) {
     bottom: var(--mobile-bottom-nav-height);
+    width: auto;
+    padding: 0;
+    border-radius: var(--radius-round);
   }
 }

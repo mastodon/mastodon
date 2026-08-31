@@ -3,8 +3,10 @@ import { useCallback } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { ArrowsOutSimpleIcon, MinusIcon, XIcon } from '@phosphor-icons/react';
+import { ReadCvLogoIcon } from '@phosphor-icons/react/dist/ssr';
 
 import { IconButton } from '@/mastodon/components/button/redesign';
+import { useLayout } from '@/mastodon/hooks/useLayout';
 import {
   closeComposer,
   minimizeComposerToggle,
@@ -72,6 +74,17 @@ export const ComposeFormHeader: React.FC<{
   const onMinimize = useCallback(() => {
     dispatch(minimizeComposerToggle());
   }, [dispatch]);
+
+  const { layout } = useLayout();
+  const isMobile = layout === 'mobile';
+
+  if (isMobile && isMinimized && !noMinimize) {
+    return (
+      <IconButton icon={ReadCvLogoIcon} onClick={onMinimize} size='lg'>
+        <FormattedMessage id='compose.expand' defaultMessage='Show composer' />
+      </IconButton>
+    );
+  }
 
   return (
     <header className={classes.header}>
