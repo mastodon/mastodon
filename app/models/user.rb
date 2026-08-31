@@ -525,7 +525,7 @@ class User < ApplicationRecord
   end
 
   def invite_text_required?
-    Setting.require_invite_text && !open_registrations? && !invited? && !external? && !bypass_registration_checks?
+    Setting.require_invite_text && !open_registrations? && !invite&.bypass_approval? && !external? && !bypass_registration_checks?
   end
 
   def trigger_webhooks
