@@ -83,5 +83,5 @@ export type PolymorphicProps<
   As extends React.ElementType,
 > = {
   as?: As;
-} & Omit<React.ComponentPropsWithoutRef<As>, keyof AdditionalProps | 'as'> &
+} & Omit<React.ComponentPropsWithRef<As>, keyof AdditionalProps | 'as'> &
   AdditionalProps;

@@ -1,4 +1,5 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
 
 .wrapper {
   padding-bottom: var(--space-3xs);
@@ -9,6 +10,9 @@
 }
 
 .link {
+  --icon-size: 20px;
+  --border-radius: var(--radius-sm);
+
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -16,7 +20,7 @@
   width: 100%;
   padding: var(--space-xs);
   column-gap: var(--space-sm);
-  border-radius: var(--radius-sm);
+  border-radius: var(--border-radius);
   border: none;
   color: inherit;
   background-color: transparent;
@@ -26,11 +30,23 @@
   text-decoration: none;
   text-align: start;
 
+  &:not(:where(.linkStacked, .linkMobile)) {
+    color: var(--color-text-secondary);
+  }
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 40px;
+  }
+
   &:hover,
   &:focus-visible,
   &[aria-current='page'] {
     background-color: var(--color-bg-highlight);
     text-decoration: none;
+  }
+
+  &[aria-current='page'] {
+    color: var(--color-text-primary);
   }
 
   &:focus-visible {
@@ -39,24 +55,53 @@
 
   &:focus {
     // Override silly global focus style
-    border-radius: var(--radius-sm);
+    border-radius: var(--border-radius);
   }
 }
 
 .linkStacked {
+  --icon-size: 24px;
+
   flex-direction: column;
   row-gap: var(--space-2xs);
   padding-inline: 0;
   @include mixins.type-micro;
 }
 
+.linkMobile {
+  --icon-size: 24px;
+  --border-radius: var(--radius-round);
+
+  width: 100%;
+  justify-content: center;
+  gap: 0;
+  padding-block: var(--space-sm);
+}
+
 .icon {
-  width: 20px;
-  height: 20px;
+  width: var(--icon-size);
+  height: var(--icon-size);
 
   & > svg {
     width: inherit;
     height: inherit;
+  }
+}
+
+// A dot is shown instead of a number badge on mobile
+.iconWithDot {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: var(--space-4xs);
+    left: calc(50% + var(--space-3xs));
+    width: var(--space-xs);
+    height: var(--space-xs);
+    border-radius: var(--radius-round);
+    background-color: var(--color-bg-brand-base);
+    border: 1px solid var(--color-bg-primary);
   }
 }
 

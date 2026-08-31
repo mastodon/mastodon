@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .base {
   --bg: transparent;
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
@@ -16,8 +18,9 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fs-sm);
-  line-height: 1;
+  column-gap: var(--space-2xs);
+  @include mixins.type-label-lg;
+
   box-sizing: border-box;
 
   &:hover:not(
@@ -65,23 +68,22 @@ a.base {
 // Sizes
 
 .xs {
-  padding: var(--space-3xs) var(--space-2xs);
-  font-size: var(--fs-2xs);
+  padding-inline: var(--space-xs);
   min-height: 20px;
 }
 
 .sm {
-  padding: var(--space-xs);
+  padding: var(--space-2xs) var(--space-sm);
   min-height: 32px;
 }
 
 .md {
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
   min-height: 40px;
 }
 
 .lg {
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
   min-height: 48px;
 }
 
@@ -182,14 +184,9 @@ a.base {
   height: var(--fs-xl);
 }
 
-// Adds padding to the text label. This is supposed to be there even if there is no icon.
-.content {
-  display: inline-block;
-  margin: 0 var(--space-2xs);
-
-  .xs & {
-    margin: 0 var(--space-3xs);
-  }
+.iconCustom {
+  width: inherit;
+  height: inherit;
 }
 
 .iconOnly {
@@ -199,4 +196,22 @@ a.base {
 
 .loading {
   color: inherit;
+}
+
+// Toggle tonal buttons by default show the neutral color, but when pressed show the brand color.
+.toggle {
+  &.tonal {
+    @include active {
+      --bg: rgb(from var(--color-bg-brand-base) r g b / 10%);
+      --fg: var(--color-text-brand);
+    }
+  }
+
+  &.solid,
+  &.ghost {
+    @include active {
+      --bg: var(--color-bg-brand-base);
+      --fg: var(--color-text-on-brand-base);
+    }
+  }
 }

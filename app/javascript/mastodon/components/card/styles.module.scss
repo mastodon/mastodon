@@ -3,10 +3,14 @@
 .root {
   border: 0.5px solid var(--color-border-primary);
   border-radius: var(--radius-md);
-  display: block;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 90px;
   overflow: hidden;
   padding: var(--space-sm);
   position: relative;
+  transition: background 200ms ease-in-out;
 
   &:has(.image) {
     column-gap: var(--space-sm);
@@ -40,11 +44,17 @@ a.root {
   a {
     color: inherit;
     text-decoration: none;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
   }
 }
 
 .titleImage {
   border-radius: var(--radius-round);
+  display: block;
   height: var(--space-lg);
   margin-inline-end: var(--space-xs);
   overflow: hidden;
@@ -55,6 +65,7 @@ a.root {
   @include mixins.type-body-compact;
 
   overflow-wrap: break-word;
+  flex-grow: 1;
 
   a {
     color: var(--color-text-brand);
@@ -67,13 +78,25 @@ a.root {
   }
 }
 
+// Linked body
+a.body {
+  padding: 0 var(--space-sm) var(--space-sm);
+  margin: calc(-1 * var(--space-sm));
+  margin-top: 0;
+
+  .root:has(&:hover) {
+    background-color: var(--color-bg-highlight);
+  }
+}
+
 .image {
   contain: size;
   grid-column: 2;
   grid-row: 1 / span 2;
   margin-block: calc(-1 * var(--space-sm));
 
-  img {
+  &,
+  & > img {
     height: 100%;
     object-fit: cover;
     width: 100%;

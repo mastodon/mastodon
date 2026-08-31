@@ -17,6 +17,7 @@ import {
 import { openModal } from '@/mastodon/actions/modal';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
+import { CaretIcon } from '@/mastodon/components/button/redesign';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import {
   Menu,
@@ -46,7 +47,7 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
         description='Before button that indicates who a post is for (Public, Followers, mentioned people)'
       />
       <Menu>
-        <MenuTrigger size='sm'>
+        <MenuTrigger size='sm' trailingIcon={CaretIcon}>
           <ComposeVisibilityButtonText privacy={privacy} />
         </MenuTrigger>
 

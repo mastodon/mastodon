@@ -1,9 +1,12 @@
 @use '@/styles/mastodon/variables';
 
 .button {
-  position: fixed;
-  bottom: var(--space-md);
-  right: var(--space-md);
+  &:not(.buttonInline) {
+    position: fixed;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    z-index: 2;
+  }
 }
 
 .composer,
@@ -17,7 +20,8 @@
 }
 
 .composer {
-  width: min(560px, calc(100vw - var(--space-md) * 2));
+  width: calc(100vw - var(--space-md) * 2);
+  max-width: 500px;
   min-height: 520px;
   max-height: 80vh;
 }

@@ -4,6 +4,7 @@ import { useAppSelector } from '@/mastodon/store';
 
 import classes from './attachments.module.scss';
 import { ComposePoll } from './poll';
+import { ComposeQuote } from './quote';
 import {
   selectComposeAttachments,
   selectComposeHasAttachments,
@@ -25,7 +26,7 @@ export const ComposeAttachments: React.FC<{ className?: string }> = ({
     <div className={className}>
       {hasPoll && <ComposePoll />}
       {hasAttachments && <ComposeMediaAttachments />}
-      {quotedStatusId && <ComposeQuotedStatus id={quotedStatusId} />}
+      {quotedStatusId && <ComposeQuote id={quotedStatusId} />}
     </div>
   );
 };
@@ -55,8 +56,4 @@ const ComposeMediaAttachments: React.FC = () => {
       ))}
     </div>
   );
-};
-
-const ComposeQuotedStatus: React.FC<{ id: string }> = ({ id }) => {
-  return <div>Quoting status {id}</div>;
 };

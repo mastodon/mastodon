@@ -86,8 +86,10 @@ export interface StatusShape {
   replies_count: number;
   visibility: StatusVisibility;
 }
-export type ExpandedStatusShape = Omit<StatusShape, 'account' | 'reblog'> & {
+export type AccountStatusShape = Omit<StatusShape, 'account'> & {
   account: AccountShapeFull;
+};
+export type ExpandedStatusShape = Omit<AccountStatusShape, 'reblog'> & {
   reblog?: Omit<ExpandedStatusShape, 'reblog'>;
 };
 

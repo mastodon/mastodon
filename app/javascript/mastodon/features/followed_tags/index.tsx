@@ -20,7 +20,7 @@ import ScrollableList from 'mastodon/components/scrollable_list';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
-  heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
+  heading: { id: 'followed_tags', defaultMessage: 'Followed Hashtags' },
 });
 
 const FollowedTag: React.FC<{

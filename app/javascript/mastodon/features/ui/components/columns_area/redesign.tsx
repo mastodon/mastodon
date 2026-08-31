@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 
 import classNames from 'classnames';
 
-import { CollapsibleNavigationPanel } from '@/mastodon/features/navigation_panel';
+import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
 import { RedesignNavigationPanel } from '@/mastodon/features/navigation_panel/redesign';
+import { RedesignMobileNavigation } from '@/mastodon/features/navigation_panel/redesign/mobile_nav';
 import { useAppSelector } from '@/mastodon/store';
 import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 import { Header } from 'mastodon/features/custom_homepage/components/header';
@@ -38,7 +39,7 @@ export const ColumnsAreaRedesign: React.FC<{
   const isModalOpen = useAppSelector(
     (state) => !state.modal.get('stack').isEmpty(),
   );
-  const renderLegacyNavForMobile = useBreakpoint('openable');
+  const isMobile = useBreakpoint('openable');
 
   if (minimalShell) {
     return (
@@ -64,6 +65,7 @@ export const ColumnsAreaRedesign: React.FC<{
         <div className={classes.navigationWrapper}>
           <RedesignNavigationPanel />
         </div>
+        {isMobile ? <RedesignMobileNavigation /> : <ComposeRedesignButton />}
 
         <main className={classes.main}>
           <div className='tabs-bar__wrapper'>
@@ -71,8 +73,6 @@ export const ColumnsAreaRedesign: React.FC<{
           </div>
 
           <div className='columns-area columns-area--mobile'>{children}</div>
-
-          {renderLegacyNavForMobile && <CollapsibleNavigationPanel />}
         </main>
       </div>
     );

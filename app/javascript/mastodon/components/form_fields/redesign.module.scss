@@ -73,6 +73,17 @@ input.input {
   }
 }
 
+.inputIcon {
+  svg {
+    width: 20px;
+    height: 20px;
+    inset-inline-start: var(--space-xs);
+    inset-block-start: var(--space-xs);
+  }
+}
+
+// Toggles
+
 .toggle > span {
   background: var(--color-text-tertiary);
 

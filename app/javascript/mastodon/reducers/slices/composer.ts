@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   changeCompose,
+  clearComposeSuggestions,
   directCompose,
   replyComposeById,
   resetCompose,
@@ -73,7 +74,17 @@ const composerSlice = createSlice({
 });
 
 export const composer = composerSlice.reducer;
-export const { minimizeComposerToggle } = composerSlice.actions;
+
+export const minimizeComposerToggle = createAppThunk(
+  (_arg, { dispatch, getState }) => {
+    dispatch(composerSlice.actions.minimizeComposerToggle());
+
+    const displayState = getState().composer.displayState;
+    if (displayState !== 'showing') {
+      dispatch(clearComposeSuggestions());
+    }
+  },
+);
 
 export const selectComposerIsChanged = createAppSelector(
   [
@@ -148,6 +159,7 @@ export const openNewComposer = createAppThunk(
 export const resetComposer = createAppThunk((_arg, { dispatch }) => {
   dispatch(composerSlice.actions.hideComposer());
   dispatch(resetCompose());
+  dispatch(clearComposeSuggestions());
 });
 
 export const closeComposer = createAppThunk((_arg, { getState, dispatch }) => {

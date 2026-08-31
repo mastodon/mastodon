@@ -1,0 +1,61 @@
+@use '@/styles/mastodon/mixins';
+
+.mirror {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1lh;
+  overflow: hidden;
+}
+
+.textAreaMirror {
+  white-space: pre-wrap; // This makes the formatting match the text area.
+}
+
+.debug.mirror {
+  visibility: visible;
+  opacity: 0.2;
+  background-color: red;
+  color: white;
+}
+
+.menuWidth {
+  width: 100%;
+  max-width: var(--_max-card-width);
+}
+
+.item {
+  display: flex;
+  gap: var(--space-xs);
+  min-height: var(--space-3xl);
+}
+
+.itemIcon {
+  width: var(--space-3xl);
+  height: var(--space-3xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-round);
+  overflow: hidden;
+  background-color: var(--color-bg-highlight);
+}
+
+.itemHashUses {
+  color: var(--color-text-tertiary);
+  margin-inline-start: auto;
+  font-size: var(--fs-xs);
+}
+
+.itemAccountName {
+  @include mixins.type-label-lg;
+}
+
+.itemAccountHandle {
+  @include mixins.type-label-sm;
+
+  color: var(--color-text-tertiary);
+}

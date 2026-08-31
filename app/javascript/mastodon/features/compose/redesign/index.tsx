@@ -5,19 +5,16 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { LockSimpleOpenIcon } from '@phosphor-icons/react';
+import { LockSimpleOpenIcon, PepperIcon } from '@phosphor-icons/react';
 
 import {
   changeComposeSpoilerness,
   changeComposeSpoilerText,
   insertEmojiCompose,
 } from '@/mastodon/actions/compose';
-import {
-  ToggleField,
-  TextInputField,
-} from '@/mastodon/components/form_fields/redesign';
+import { ToggleButton } from '@/mastodon/components/button/redesign';
+import { TextInputField } from '@/mastodon/components/form_fields/redesign';
 import { Icon } from '@/mastodon/components/icon';
-import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
   focusComposerTextarea,
   getComposerTextarea,
@@ -42,10 +39,6 @@ import { ComposeTextarea } from './textarea';
 import { ComposeVisibility } from './visibility';
 
 const messages = defineMessages({
-  sensitive: {
-    id: 'compose.sensitive',
-    defaultMessage: 'Sensitive',
-  },
   sensitiveText: {
     id: 'compose.sensitive.text',
     defaultMessage: 'Sensitive content description',
@@ -74,11 +67,6 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
   const intl = useIntl();
   const titleId = useId();
 
-  const { sensor, isInViewport } = useScrollSensor({
-    placement: 'bottom',
-    tolerance: 10,
-  });
-
   return (
     <form
       role='dialog'
@@ -95,14 +83,16 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
       <div className={classes.toolbar}>
         <ComposeVisibility className={classes.flexGrowWrap} />
 
-        <ToggleField
-          label={intl.formatMessage(messages.sensitive)}
-          checked={sensitive}
-          onChange={onSensitiveChange}
-          size='sm'
-        />
-
         <LanguageButton />
+
+        <ToggleButton
+          size='sm'
+          active={sensitive}
+          onClick={onSensitiveChange}
+          leadingIcon={PepperIcon}
+        >
+          <FormattedMessage id='compose.sensitive' defaultMessage='Sensitive' />
+        </ToggleButton>
       </div>
 
       {type === 'message' && (
@@ -125,17 +115,13 @@ export const RedesignComposeForm: React.FC<RedesignComposeFormProps> = ({
         />
       )}
 
-      <div data-scroll-down={!isInViewport} className={classes.editorWrapper}>
-        <ComposeTextarea
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          autoFocus={autoFocus}
-          onSubmit={onSubmit}
-        />
-
+      <ComposeTextarea
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={autoFocus}
+        onSubmit={onSubmit}
+      >
         <ComposeAttachments className={classes.attachments} />
-
-        {sensor}
-      </div>
+      </ComposeTextarea>
 
       <ComposeHints />
 

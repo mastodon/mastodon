@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
+import { useToggle } from '@/mastodon/hooks/useToggle';
 import ChatIcon from '@/material-icons/400-24px/chat.svg?react';
 import DownloadIcon from '@/material-icons/400-24px/download.svg?react';
 import HeadphonesIcon from '@/material-icons/400-24px/headphones.svg?react';
 
-import { Button, IconButton } from './redesign';
+import { Button, IconButton, ToggleButton } from './redesign';
 
 const iconArgType = {
   control: 'select',
@@ -58,6 +59,9 @@ const meta = {
       },
     },
   },
+  parameters: {
+    redesign: true,
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -96,5 +100,12 @@ export const Link: Story = {
   },
   args: {
     as: 'link',
+  },
+};
+
+export const Toggle: Story = {
+  render(args) {
+    const [active, { onToggle }] = useToggle();
+    return <ToggleButton {...args} active={active} onClick={onToggle} />;
   },
 };

@@ -282,9 +282,7 @@ export function useHandlersForStatus(
   );
   return useElementHandledLink({
     hashtagAccountId:
-      typeof status?.account === 'string'
-        ? status.account
-        : status?.account.acct,
+      typeof status?.account === 'string' ? status.account : status?.account.id,
     hrefToCollectionId,
     hrefToMention,
   });

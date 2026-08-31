@@ -15,7 +15,7 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 
-import { useLanguageGuess, useLanguages } from './hooks';
+import { languageName, useLanguageGuess } from './hooks';
 import { selectComposeAttachments } from './selectors';
 
 const selectComposeAttachmentsWithoutAlt = createAppSelector(
@@ -105,8 +105,7 @@ const defaultWrapper = (children: React.ReactNode, key: string) => (
 );
 
 const LanguageHint: React.FC<{ guess: string }> = ({ guess }) => {
-  const languages = useLanguages();
-  const language = languages.find(([lang]) => lang === guess);
+  const language = languageName(guess);
 
   const { wasDismissed, dismiss } = useDismissible('compose_language_hint');
 
@@ -142,9 +141,7 @@ const LanguageHint: React.FC<{ guess: string }> = ({ guess }) => {
       <FormattedMessage
         id='compose.hints.language'
         defaultMessage='Change this post’s language to {language}?'
-        values={{
-          language: language[1],
-        }}
+        values={{ language }}
       />
     </Callout>
   );
