@@ -309,8 +309,9 @@ export const Account: React.FC<AccountProps> = ({
           <Link
             className='account__display-name focusable'
             title={account?.acct}
-            to={`/@${account?.acct}`}
+            to={{ pathname: `/@${account?.acct}`, state: { reference } }}
             data-hover-card-account={id}
+            data-hover-card-reference={reference}
           >
             <div className='account__avatar-wrapper'>
               {account ? (

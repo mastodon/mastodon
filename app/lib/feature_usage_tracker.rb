@@ -8,11 +8,15 @@ class FeatureUsageTracker
   ).freeze
 
   REF_VALUES = %w(
+    author_attribution
     collection
+    featured_account
+    hover_card
     inline_suggestions
     onboarding
     profile
     search
+    status
     suggestions
   ).freeze
 
