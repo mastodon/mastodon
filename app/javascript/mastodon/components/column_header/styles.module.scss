@@ -1,0 +1,53 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  position: relative;
+  display: grid;
+
+  // Ensure title is centered regardless of side-content
+  grid-template-columns:
+    minmax(min-content, 1fr)
+    minmax(0, auto)
+    minmax(min-content, 1fr);
+  align-items: center;
+  min-height: 40px;
+  padding: var(--space-sm);
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  text-align: center;
+  color: var(--color-text-primary);
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-primary) 50%,
+    transparent
+  );
+}
+
+.title {
+  @include mixins.type-heading-sm;
+
+  grid-column: 2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-width: 0;
+
+  > button {
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    border: none;
+    font: inherit;
+    background: transparent;
+  }
+}
+
+.leftButton {
+  justify-self: start;
+}
+
+.rightButtons {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+}
