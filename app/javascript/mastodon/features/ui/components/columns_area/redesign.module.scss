@@ -56,3 +56,21 @@
     border-inline: 1px solid var(--color-border-primary);
   }
 }
+
+.columnHeader {
+  background: var(--color-bg-blend-solid);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-top: 0;
+
+  @media (width >= $no-gap-breakpoint) {
+    border-top: 10px solid var(--color-bg-blend-solid);
+  }
+
+  // Fix bg color for legacy column headers.
+  // Remove when new column headers are in.
+  & :global(.column-header) {
+    background: var(--color-bg-primary);
+  }
+}
