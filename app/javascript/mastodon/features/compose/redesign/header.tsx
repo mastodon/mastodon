@@ -6,7 +6,6 @@ import { ArrowsOutSimpleIcon, MinusIcon, XIcon } from '@phosphor-icons/react';
 import { ReadCvLogoIcon } from '@phosphor-icons/react/dist/ssr';
 
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { useLayout } from '@/mastodon/hooks/useLayout';
 import {
   closeComposer,
   minimizeComposerToggle,
@@ -17,6 +16,8 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '@/mastodon/store';
+
+import { useBreakpoint } from '../../ui/hooks/useBreakpoint';
 
 import { selectComposeType } from './selectors';
 import classes from './styles.module.scss';
@@ -75,8 +76,7 @@ export const ComposeFormHeader: React.FC<{
     dispatch(minimizeComposerToggle());
   }, [dispatch]);
 
-  const { layout } = useLayout();
-  const isMobile = layout === 'mobile';
+  const isMobile = useBreakpoint('openable');
 
   if (isMobile && isMinimized && !noMinimize) {
     return (
