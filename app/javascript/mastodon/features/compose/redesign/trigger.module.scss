@@ -12,28 +12,50 @@
 .composer,
 .composerMinimized {
   position: fixed;
-  bottom: 0;
   right: 0;
-  margin: var(--space-md);
   box-sizing: border-box;
-  border-radius: var(--radius-xl);
 }
 
 .composer {
-  width: calc(100vw - var(--space-md) * 2);
-  max-width: 500px;
-  min-height: 520px;
+  width: 100%;
+  top: env(safe-area-inset-top);
+
+  // Set from the visualViewport API.
+  height: var(--viewport-height, 80vh);
   max-height: 80vh;
+  transition: height 200ms;
+  box-shadow: 0 2px var(--color-border-strong);
+
+  @media (width >= #{variables.$mobile-menu-breakpoint}) {
+    top: auto;
+    bottom: 0;
+    min-height: 520px;
+    height: auto;
+    min-width: 300px;
+    width: calc(100vw - var(--space-md) * 2);
+    max-width: 500px;
+    margin: var(--space-md);
+  }
+}
+
+// When in the mobile view and the composer is open, disable scroll on the body element.
+// This prevents scrolling the textarea accidentally hitting the body instead.
+@media (width < #{variables.$mobile-menu-breakpoint}) {
+  body:has(.composer) {
+    overflow-y: hidden !important;
+  }
 }
 
 .composerMinimized {
+  bottom: 0;
   width: min(320px, calc(100vw - var(--space-md) * 2));
   padding: var(--space-md);
-}
+  margin: var(--space-md);
 
-@media (width < #{variables.$mobile-menu-breakpoint}) {
-  .composer,
-  .composerMinimized {
+  @media (width < #{variables.$mobile-menu-breakpoint}) {
     bottom: var(--mobile-bottom-nav-height);
+    width: auto;
+    padding: 0;
+    border-radius: var(--radius-round);
   }
 }
