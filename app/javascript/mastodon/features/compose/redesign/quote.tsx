@@ -1,5 +1,4 @@
-import type React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -108,6 +107,24 @@ const ComposeQuoteBody: React.FC<{
       ApiImageAttachmentJSON | ApiGifvAttachmentJSON
     > => attachment.type === 'gifv' || attachment.type === 'image',
   );
+  const duration = useMemo(() => {
+    const duration = mainAttachment?.meta.original.duration;
+    if (!duration) {
+      return '';
+    }
+    const locale = document.documentElement.lang;
+    const formatter = new Intl.DurationFormat(locale, {
+      style: 'digital',
+      hoursDisplay: 'auto',
+    });
+
+    const totalSeconds = Math.floor(duration);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    return formatter.format({ hours, minutes, seconds });
+  }, [mainAttachment?.meta.original.duration]);
 
   return (
     <>
@@ -117,45 +134,49 @@ const ComposeQuoteBody: React.FC<{
         lang={status.translation?.language ?? status.language}
         onElement={onStatusLinks}
       />
+
       {mainAttachment?.type === 'audio' && (
         <div className={classes.quoteSpoiler}>
           <FormattedMessage
             id='compose.quote.audio'
-            defaultMessage='Audio file ({duration})'
-            values={{ duration: mainAttachment.meta.original.duration }}
+            defaultMessage='Audio file {duration}'
+            values={{
+              duration: `(${duration})`,
+            }}
           />
         </div>
       )}
+
       {mainAttachment?.type === 'video' && (
         <div className={classNames(classes.quoteMedia, classes.mediaSingle)}>
           <ComposeImage attachment={mainAttachment} sensitive={sensitive}>
             <div className={classes.quoteVideoDuration}>
               <Icon icon={PlayIcon} weight='fill' />
 
-              {mainAttachment.meta.original.duration}
+              {duration}
             </div>
           </ComposeImage>
         </div>
       )}
-      {imageAttachments.length > 0 ||
-        (mainAttachment?.type === 'video' && (
-          <div
-            className={classNames(
-              classes.quoteMedia,
-              imageAttachments.length === 1 && classes.mediaSingle,
-              imageAttachments.length > 1 && classes.mediaGrid,
-            )}
-            data-number={imageAttachments.length}
-          >
-            {imageAttachments.map((attachment) => (
-              <ComposeImage
-                attachment={attachment}
-                sensitive={sensitive}
-                key={attachment.id}
-              />
-            ))}
-          </div>
-        ))}
+
+      {imageAttachments.length > 0 && (
+        <div
+          className={classNames(
+            classes.quoteMedia,
+            imageAttachments.length === 1 && classes.mediaSingle,
+            imageAttachments.length > 1 && classes.mediaGrid,
+          )}
+          data-number={imageAttachments.length}
+        >
+          {imageAttachments.map((attachment) => (
+            <ComposeImage
+              attachment={attachment}
+              sensitive={sensitive}
+              key={attachment.id}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };
