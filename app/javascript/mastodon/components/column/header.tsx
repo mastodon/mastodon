@@ -13,7 +13,7 @@ import UnfoldLessIcon from '@/material-icons/400-24px/unfold_less.svg?react';
 import UnfoldMoreIcon from '@/material-icons/400-24px/unfold_more.svg?react';
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
-import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
+import { RenderIntoTabsBarPortal } from 'mastodon/features/ui/util/columns_context';
 import { useIdentity } from 'mastodon/identity_context';
 
 import { getColumnSkipLinkId } from '../../features/ui/components/skip_links';
@@ -340,6 +340,6 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   if (placeholder) {
     return component;
   } else {
-    return <ButtonInTabsBar>{component}</ButtonInTabsBar>;
+    return <RenderIntoTabsBarPortal>{component}</RenderIntoTabsBarPortal>;
   }
 };

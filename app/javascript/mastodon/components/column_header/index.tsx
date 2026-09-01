@@ -9,7 +9,7 @@ import { ArrowLeftIcon, ListIcon } from '@phosphor-icons/react';
 import { openNavigation } from '@/mastodon/actions/navigation';
 import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
 import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
-import { ButtonInTabsBar } from '@/mastodon/features/ui/util/columns_context';
+import { RenderIntoTabsBarPortal } from '@/mastodon/features/ui/util/columns_context';
 import { useAppDispatch } from '@/mastodon/store';
 import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 
@@ -39,7 +39,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   const columnIndex = useColumnIndexContext();
 
   return (
-    <ButtonInTabsBar>
+    <RenderIntoTabsBarPortal>
       <header {...props} className={classNames(className, classes.root)}>
         {withBackButton ? <BackButton /> : <MobileMenuButton />}
         <NavigationFocusTarget className={classes.title}>
@@ -55,7 +55,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
           <div className={classes.rightButtons}>{extraButtons}</div>
         )}
       </header>
-    </ButtonInTabsBar>
+    </RenderIntoTabsBarPortal>
   );
 };
 
