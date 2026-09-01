@@ -18,7 +18,7 @@
   color: var(--color-text-primary);
   background: linear-gradient(
     to bottom,
-    var(--color-bg-primary) 50%,
+    var(--color-bg-primary) var(--column-header-gradient-start, 55%),
     transparent
   );
 }

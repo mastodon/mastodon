@@ -6,11 +6,17 @@ import { useParams } from 'react-router-dom';
 
 import type { List as ImmutableList } from 'immutable';
 
+import { ArrowClockwiseIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import {
+  ColumnHeader,
+  ColumnHeaderButton,
+} from '@/mastodon/components/column_header';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 import {
   fetchFavourites,
@@ -23,6 +29,7 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
 
 const messages = defineMessages({
+  title: { id: 'status.favourites_title', defaultMessage: 'Post favorites' },
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },
 });
 
@@ -80,21 +87,36 @@ const Favourites: React.FC<{ multiColumn?: boolean }> = ({ multiColumn }) => {
 
   return (
     <Column bindToDocument={!multiColumn}>
-      <ColumnHeader
-        showBackButton
-        multiColumn={multiColumn}
-        extraButton={
-          <button
-            type='button'
-            className='column-header__button'
-            title={intl.formatMessage(messages.refresh)}
-            aria-label={intl.formatMessage(messages.refresh)}
-            onClick={handleRefresh}
-          >
-            <Icon id='refresh' icon={RefreshIcon} />
-          </button>
-        }
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.title)}
+          extraButtons={
+            <ColumnHeaderButton
+              icon={ArrowClockwiseIcon}
+              onClick={handleRefresh}
+            >
+              {intl.formatMessage(messages.refresh)}
+            </ColumnHeaderButton>
+          }
+        />
+      ) : (
+        <LegacyColumnHeader
+          showBackButton
+          multiColumn={multiColumn}
+          extraButton={
+            <button
+              type='button'
+              className='column-header__button'
+              title={intl.formatMessage(messages.refresh)}
+              aria-label={intl.formatMessage(messages.refresh)}
+              onClick={handleRefresh}
+            >
+              <Icon id='refresh' icon={RefreshIcon} />
+            </button>
+          }
+        />
+      )}
 
       <ScrollableList
         scrollKey='favourites'
