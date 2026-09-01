@@ -21,10 +21,8 @@
   top: env(safe-area-inset-top);
 
   // Set from the visualViewport API.
-  height: var(--viewport-height, 80vh);
-  max-height: 80vh;
-  transition: height 200ms;
-  box-shadow: 0 2px var(--color-border-strong);
+  height: var(--viewport-height, 100vh);
+  max-height: 100vh;
 
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
     top: auto;
