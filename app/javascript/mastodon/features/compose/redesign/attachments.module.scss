@@ -6,6 +6,7 @@
   min-width: 120px;
   max-width: min(100%, 400px);
   max-height: var(--max-media-height-large);
+  aspect-ratio: var(--aspect);
 }
 
 .mediaGrid {
@@ -185,4 +186,25 @@
   border-radius: var(--radius-sm);
   margin: var(--space-2xs) 0;
   padding: var(--space-xs);
+}
+
+.quoteMedia {
+  margin-top: var(--space-2xs);
+
+  &.mediaGrid {
+    height: 260px;
+  }
+
+  .mediaUpload {
+    max-height: 260px;
+    border-radius: var(--radius-xs);
+  }
+}
+
+.quoteVideoDuration {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: var(--space-xs);
+  left: var(--space-xs);
 }
