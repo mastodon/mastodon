@@ -13,7 +13,7 @@ az:
         setting_use_blurhash: Meyillər, gizli vizualların rənglərinə əsaslanır, ancaq detalları gizlədir
         setting_use_pending_items: Lenti avtomatik diyirləmək əvəzinə, zaman xətti güncəlləmələrini tək bir kliklə gizlət
       domain_allow:
-        domain: Bu domen, bu serverdən veri ala biləcək və ondan gələn verilər emal olunacaq və saxlanılanacaq
+        domain: Bu domen, bu serverdən veri ala biləcək və ondan gələn verilər emal olunacaq və depolanacaq
       featured_tag:
         name: 'Budur, təzəlikcə istifadə etdiyiniz mövzu etiketlərindən bəziləri:'
       form_admin_settings:
@@ -27,6 +27,8 @@ az:
       sessions:
         otp: 'Telefon tətbiqiniz tərəfindən yaradılmış iki faktorlu kodu daxil edin və ya geri qaytarma kodlarınızdan birini istifadə edin:'
         webauthn: Əgər USB açarıdırsa, taxdığınıza və gərək olarsa üzərinə toxunduğunuza əmin olun.
+      user:
+        role: Rol, istifadəçinin sahib olduğu izinlərə nəzarət edir.
       user_role:
         permissions_as_keys: Bu rola sahib istifadəçilər bunlara erişə biləcək...
     labels:
@@ -64,6 +66,9 @@ az:
         setting_use_pending_items: Yavaş rejim
       form_admin_settings:
         show_domain_blocks: Əngəllənən domenləri göstər
+        site_terms: Məxfilik Siyasəti
+      form_email_subscriptions_confirmation:
+        agreement_privacy_and_terms: Məxfilik Siyasəti və Xidmət Şərtlərini güncəllədim.
       ip_block:
         severities:
           no_access: Erişimi əngəllə
@@ -75,5 +80,7 @@ az:
         mention: Kimsə adınızı çəkdi
         quote: Kimsə sizdən sitat gətirdi
         reblog: Kimsə göndərişinizi təkrar paylaşdı
+      user_role:
+        permissions_as_keys: İzinlər
       username_block:
         username: Uyuşacaq söz

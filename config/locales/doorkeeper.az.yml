@@ -55,7 +55,7 @@ az:
         title: Bir xəta baş verdi
       new:
         prompt_html: "%{client_name} hesabınıza erişmək üçün izin istəyir. <strong>Yalnız bu mənbəni tanıyırsınızsa və ona güvənirsinizsə bu istəyi təsdiqləyin.</strong>"
-        review_permissions: İcazələri incələ
+        review_permissions: İzinləri incələ
         title: Səlahiyyət tələb olunur
       show:
         title: Bu səlahiyyət kodunu kopyalayın və tətbiqə yapışdırın.
@@ -69,16 +69,19 @@ az:
         description_html: Bunlar, API istifadə edərək hesabınıza erişəbilən tətbiqlərdir. Əgər burada tanımadığınız tətbiqlər və ya yanlış davranan bir tətbiq varsa, erişimini ləğv edə bilərsiniz.
         last_used_at: Ən son %{date} istifadə edilib
         never_used: Heç vaxt istifadə edilməyib
-        scopes: İcazələr
+        scopes: İzinlər
         superapp: Daxili
         title: Səlahiyyətli tətbiqləriniz
     errors:
       messages:
         access_denied: Resurs sahibi və ya avtorizasiya serveri istəyə rədd cavabı verdi.
+        invalid_client: 'Bu səbəblərdən birinə görə istəkçi kimlik doğrulaması uğursuz oldu: naməlum istəkçi; istəkçi kimlik doğrulaması daxil edilməyib; kimlik doğrulama üsulu dəstəklənmir.'
+        invalid_grant: Təqdim edilən səlahiyyət vermə icazəsi yararsızdır, müddəti bitib, ləğv edilib, səlahiyyət vermə sorğusunda istifadə olunan yönləndirmə URI-si ilə uyuşmur və ya başqa istəkçiyə verilib.
         invalid_token:
           expired: Erişim tokeninin vaxtı bitib
           revoked: Erişim tokeni ləğv edilib
           unknown: Erişim tokeni yararsızdır
+        unauthorized_client: İstəkçinin bu üsulu istifadə edərək bu sorğunu icra etmək səlahiyyəti yoxdur.
     flash:
       applications:
         create:

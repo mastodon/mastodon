@@ -216,8 +216,13 @@ kab:
       title: Ilɣa
     collections:
       accounts: Imiḍanen
+      back_to_account: Tuɣalin ɣer usebter n umiḍan
+      back_to_report: Tuɣalin ɣer usebter n uneqqis
       collection_title: Talkensit sɣur %{name}
       contents: Agbur
+      number_of_accounts:
+        one: 1 n umiḍan
+        other: "%{count} n imiḍanen"
       open: Ldi
     custom_emojis:
       assign_category: Efk taggayt
@@ -287,12 +292,14 @@ kab:
       domain: Taɣult
       new:
         create: Rnu taɣult
+      reset: Wennez
       search: Nadi
     email_subscriptions:
       accounts:
         account: Amiḍan
         last_email: Imayl aneggaru
         show:
+          email: Tansa imayl
           view_account: Wali amiḍan
         status: Addad
       compliance_settings:
@@ -362,6 +369,9 @@ kab:
       delivery_available: Yella usiweḍ
       delivery_error_days: Ussan n tuccḍiwin n usiweḍ
       empty: Ulac taɣultin yettwafen.
+      known_accounts:
+        one: "%{count} n umiḍan yettwassen"
+        other: "%{count} n imiḍan ttwassnen"
       moderation:
         all: Akk
         limited: Yettwasgugem
@@ -397,6 +407,7 @@ kab:
       new:
         title: Rnu alugen n IP amaynut
       no_ip_block_selected: Ula yiwen n ulugen n IP ur yettwabeddel acku ula yiwen ur yettwafren
+      reset: Wennez
       search: Nadi
       title: Ilugan n IP
     relationships:
@@ -500,6 +511,9 @@ kab:
       feed_access:
         modes:
           public: Yal yiwen
+      landing_page:
+        values:
+          about: Asebter n Ɣef
       registrations:
         title: Ajerred
       registrations_mode:
@@ -584,6 +598,7 @@ kab:
       tags:
         dashboard:
           tag_languages_dimension: Tutlayin ifazen
+          tag_servers_measure: iqeddacen nniḍen
         listable: Yezmer ad yettwasumer
         not_listable: Ur-d yettwasumer ara
         title: Ihacṭagen inezzaɣ
@@ -608,6 +623,7 @@ kab:
       enable: Rmed
       enabled: D urmid
       events: Ineḍruyen
+      status: Addad
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
@@ -791,6 +807,8 @@ kab:
     blocks: Tregleḍ
     bookmarks: Ticraḍ
     csv: CSV
+    custom_filters: Imsizdigen
+    json: JSON
     lists: Tibdarin
     mutes: Wid tesgugmeḍ
   filters:
@@ -934,7 +952,9 @@ kab:
     posting_defaults: Iɣewwaṛen n usuffeɣ imezwura
   privacy:
     privacy: Tabaḍnit
+    reach: Awwaḍ
     search: Anadi
+    title: Tabḍnit akked wawwaḍ
   privacy_policy:
     title: Tasertit tabaḍnit
   redirects:
