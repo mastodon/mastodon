@@ -29,7 +29,7 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
 
 const messages = defineMessages({
-  title: { id: 'status.favourites_title', defaultMessage: 'Post favorites' },
+  title: { id: 'status.likes_title', defaultMessage: 'Post Likes' },
   refresh: { id: 'refresh', defaultMessage: 'Refresh' },
 });
 
