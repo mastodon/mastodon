@@ -105,7 +105,11 @@ const Bookmarks: React.FC<{
       />
 
       <Helmet>
-        <title>{intl.formatMessage(messages.heading)}</title>
+        <title>
+          {isRedesignEnabled()
+            ? intl.formatMessage(messages.headingRedesign)
+            : intl.formatMessage(messages.heading)}
+        </title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>
