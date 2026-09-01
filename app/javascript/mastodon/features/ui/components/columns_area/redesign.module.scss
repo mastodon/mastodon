@@ -82,3 +82,22 @@
     background: var(--color-bg-primary);
   }
 }
+
+.content {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  :global(.column) {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  :global(.scrollable) {
+    contain: content;
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+  }
+}

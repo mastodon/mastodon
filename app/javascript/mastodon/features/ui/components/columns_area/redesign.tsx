@@ -15,7 +15,7 @@ import { useColumnsContext } from '../../util/columns_context';
 import { MultiColumnContent } from './multi_column_content';
 import classes from './redesign.module.scss';
 
-const TabsBarPortal = () => {
+const TabsBarPortal: React.FC<React.ComponentProps<'div'>> = (props) => {
   const { setTabsBarElement } = useColumnsContext();
 
   const setRef = useCallback(
@@ -27,7 +27,7 @@ const TabsBarPortal = () => {
     [setTabsBarElement],
   );
 
-  return <div id='tabs-bar__portal' ref={setRef} />;
+  return <div {...props} ref={setRef} />;
 };
 
 export const ColumnsAreaRedesign: React.FC<{
@@ -47,11 +47,9 @@ export const ColumnsAreaRedesign: React.FC<{
         <div className={classes.main}>
           <Header />
 
-          <div className='tabs-bar__wrapper'>
-            <TabsBarPortal />
-          </div>
+          <TabsBarPortal className={classes.columnHeader} />
 
-          <div className='columns-area columns-area--mobile'>{children}</div>
+          <div className={classes.content}>{children}</div>
 
           <Footer />
         </div>
@@ -68,11 +66,9 @@ export const ColumnsAreaRedesign: React.FC<{
         {isMobile ? <RedesignMobileNavigation /> : <ComposeRedesignButton />}
 
         <main className={classes.main}>
-          <div className={classes.columnHeader}>
-            <TabsBarPortal />
-          </div>
+          <TabsBarPortal className={classes.columnHeader} />
 
-          <div className='columns-area columns-area--mobile'>{children}</div>
+          <div className={classes.content}>{children}</div>
         </main>
       </div>
     );
