@@ -11,17 +11,25 @@ html {
   --font-body: mastodon-font-sans-serif, sans-serif;
   --font-heading: Cal Sans UI, sans-serif;
   --font-monospace: mastodon-font-monospace, monospace;
-
-  &[data-redesign='true'] {
-    --font-body: Inter, sans-serif;
-
-    background: var(--color-bg-blend-solid);
-  }
-
   --outline-focus-default: 2px solid var(--color-border-brand);
   --avatar-border-radius: 8px;
   --max-media-height-small: 460px;
   --max-media-height-large: 566px;
+  --mobile-bottom-nav-height: 55px;
+
+  // Compensate for column header height when scrolling elements into view
+  --column-header-height: 62px;
+
+  &[data-redesign='true'] {
+    --font-body: Inter, sans-serif;
+    --avatar-border-radius: var(--radius-round);
+    --mobile-bottom-nav-height: calc(58px + var(--space-md));
+
+    // Compensate for column header height when scrolling elements into view
+    --column-header-height: 74px;
+
+    background: var(--color-bg-blend-solid);
+  }
 
   // Variable for easily inverting directional UI elements,
   --text-x-direction: 1;
@@ -29,9 +37,6 @@ html {
   &.rtl {
     --text-x-direction: -1;
   }
-
-  // Compensate for column header height when scrolling elements into view
-  --column-header-height: 62px;
 
   scroll-padding-top: var(--column-header-height);
 
