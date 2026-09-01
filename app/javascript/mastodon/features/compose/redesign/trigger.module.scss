@@ -24,6 +24,7 @@
   height: var(--viewport-height, 80vh);
   max-height: 80vh;
   transition: height 200ms;
+  box-shadow: 0 2px var(--color-border-strong);
 
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
     top: auto;
