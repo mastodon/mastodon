@@ -37,6 +37,14 @@
   }
 }
 
+// When in the mobile view and the composer is open, disable scroll on the body element.
+// This prevents scrolling the textarea accidentally hitting the body instead.
+@media (width < #{variables.$mobile-menu-breakpoint}) {
+  body:has(.composer) {
+    overflow-y: hidden !important;
+  }
+}
+
 .composerMinimized {
   bottom: 0;
   width: min(320px, calc(100vw - var(--space-md) * 2));
