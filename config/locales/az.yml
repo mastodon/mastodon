@@ -13,6 +13,7 @@ az:
       destroyed_msg: Moderasiya notu uğurla məhv edildi!
     accounts:
       delete: Veriləri sil
+      deletion_irreversible: Bu hesabın veriləri geri qaytarılmayacaq şəkildə silinib.
       destroyed_msg: "%{username} - verilərinin tezliklə silinməsi növbədədir"
       display_name: Ekran adı
       followers: İzləyicilər
@@ -56,6 +57,8 @@ az:
         additional_footer_text:
           hint: Yalnız bülleten e-poçtlarının alt məlumatlarında görünən ixtiyari mətn
           title: Əlavə alt məlumat mətni
+        privacy_policy:
+          title: Məxfilik siyasəti
         title: Riayətlilik ayarları
       danger_zone:
         erase_all_data:
@@ -70,8 +73,11 @@ az:
     instances:
       confirm_purge: Bu domendən veriləri həmişəlik silmək istədiyinizə əminsiniz?
       dashboard:
+        instance_accounts_measure: depolanmış hesablar
         instance_followers_measure: oradakı izləyicilərimiz
         instance_follows_measure: buradakı izləyiciləri
+        instance_media_attachments_measure: depolanmış media qoşmaları
+        instance_statuses_measure: depolanmış göndərişlər
       destroyed_msg: "%{domain} domenindən verilər artıq silinmək üçün növbədədir."
       moderation:
         title: Moderasiya
@@ -91,7 +97,12 @@ az:
     roles:
       categories:
         moderation: Moderasiya
+      everyone: İlkin izinlər
+      permissions_count:
+        one: "%{count} izin"
+        other: "%{count} izin"
       privileges:
+        administrator_description: Bu iznə sahib istifadəçilər bütün izinləri yan keçə bilər
         delete_user_data: İstifadəçi verilərini sil
         delete_user_data_description: İstifadəçilərin, digər istifadəçilərin verilərini gecikmə olmadan silməsinə icazə verir
         manage_appeals_description: İstifadəçilərin moderasiya əməliyyatlarına etdiyi etirazları incələməsinə icazə verir
@@ -107,7 +118,10 @@ az:
     settings:
       appearance:
         title: Görünüş
+      content_retention:
+        preamble: İstifadəçilərin yaratdığı məzmunun Mastodon-da necə depolanacağına nəzarət edin.
       discovery:
+        privacy: Məxfilik
         public_timelines: Ümumi zaman xətləri
         title: Kəşf et
       registrations:
@@ -201,13 +215,17 @@ az:
     success_msg: Hesabınız uğurla silindi
     warning:
       data_removal: Göndərişləriniz və digər veriləriniz həmişəlik silinəcək
+      irreversible: Hesabınızı bərpa edə və ya təkrar aktivləşdirə bilməyəcəksiniz
   email_subscription_mailer:
     notification:
       footer:
         privacy_html: E-poçtlar, Mastodon tərəfindən dəstəklənən %{domain} serverindən göndərilir. Bu serverin fərdi verilərinizi necə emal etdiyini anlamaq üçün <a href="%{privacy_policy_path}">Məxfilik Siyasətinə</a> baxın.
+  errors:
+    '403': Bu səhifəyə baxmaq üçün izniniz yoxdur.
   exports:
     archive_takeout:
       hint_html: "<strong>Göndərişlərinizin və yüklədiyiniz medianın</strong> bir arxivini tələb edə bilərsiniz. Xaricə köçürülmüş verilər, istənilən uyumlu yazılım tərəfindən oxuna bilən ActivityPub formatında olacaq. Hər 7 gündə bir dəfə arxiv tələb edə bilərsiniz."
+      in_progress: Arxiviniz dərlənir...
     domain_blocks: Domen əngəlləmələri
     storage: Media deposu
   filters:
@@ -269,6 +287,11 @@ az:
   preferences:
     posting_defaults: Göndəriş ilkin ayarları
     public_timelines: Ümumi zaman xətləri
+  privacy:
+    privacy: Məxfilik
+    title: Məxfilik və əlçatanlıq
+  privacy_policy:
+    title: Məxfilik Siyasəti
   relationships:
     activity: Hesab fəaliyyəti
     confirm_follow_selected_followers: Seçilmiş izləyicləri izləmək istədiyinizə əminsiniz?
