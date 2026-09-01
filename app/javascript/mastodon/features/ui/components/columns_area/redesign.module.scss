@@ -51,20 +51,24 @@
   container: column / inline-size;
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
-
-  @media ($mobile-menu-breakpoint < width < $no-gap-breakpoint) {
-    border-inline: 1px solid var(--color-border-primary);
-  }
 }
 
 .columnHeader {
-  background: var(--color-bg-blend-solid);
+  // Make bottom half of column header transparent to make the
+  // overlay gradient of the nested `ColumnHeader` component work
+  --column-header-gradient-start: 55%;
+
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-blend-solid) var(--column-header-gradient-start),
+    transparent var(--column-header-gradient-start)
+  );
   position: sticky;
   top: 0;
   z-index: 2;
   border-top: 0;
 
-  @media (width >= $no-gap-breakpoint) {
+  @media (width >= $mobile-menu-breakpoint) {
     border-top: 10px solid var(--color-bg-blend-solid);
   }
 
@@ -72,5 +76,24 @@
   // Remove when new column headers are in.
   & :global(.column-header) {
     background: var(--color-bg-primary);
+  }
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  :global(.column) {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  :global(.scrollable) {
+    contain: content;
+    overflow: visible;
+    border: none;
+    border-radius: 0;
   }
 }

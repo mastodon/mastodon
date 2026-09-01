@@ -5,7 +5,9 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import {
   fetchBookmarkedStatuses,
@@ -18,6 +20,7 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
   heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },
+  headingRedesign: { id: 'column.saved_posts', defaultMessage: 'Saved Posts' },
 });
 
 const Bookmarks: React.FC<{
@@ -74,16 +77,20 @@ const Bookmarks: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.heading)}
     >
-      <ColumnHeader
-        icon='bookmarks'
-        iconComponent={BookmarksIcon}
-        title={intl.formatMessage(messages.heading)}
-        onPin={handlePin}
-        onMove={handleMove}
-        pinned={pinned}
-        multiColumn={multiColumn}
-        scrollTopOnClick
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader title={intl.formatMessage(messages.headingRedesign)} />
+      ) : (
+        <LegacyColumnHeader
+          icon='bookmarks'
+          iconComponent={BookmarksIcon}
+          title={intl.formatMessage(messages.heading)}
+          onPin={handlePin}
+          onMove={handleMove}
+          pinned={pinned}
+          multiColumn={multiColumn}
+          scrollTopOnClick
+        />
+      )}
 
       <StatusList
         trackScroll={!pinned}
@@ -98,7 +105,11 @@ const Bookmarks: React.FC<{
       />
 
       <Helmet>
-        <title>{intl.formatMessage(messages.heading)}</title>
+        <title>
+          {isRedesignEnabled()
+            ? intl.formatMessage(messages.headingRedesign)
+            : intl.formatMessage(messages.heading)}
+        </title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>
