@@ -51,10 +51,6 @@
   container: column / inline-size;
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
-
-  @media ($mobile-menu-breakpoint < width < $no-gap-breakpoint) {
-    border-inline: 1px solid var(--color-border-primary);
-  }
 }
 
 .columnHeader {
@@ -72,7 +68,7 @@
   z-index: 2;
   border-top: 0;
 
-  @media (width >= $no-gap-breakpoint) {
+  @media (width >= $mobile-menu-breakpoint) {
     border-top: 10px solid var(--color-bg-blend-solid);
   }
 
