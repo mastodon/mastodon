@@ -28,10 +28,10 @@
   margin-top: auto;
   padding: var(--space-xl);
   padding-top: var(--space-2xs);
-  background-color: var(--color-bg-blend-solid);
+  background-color: var(--color-bg-blend);
 
   &::before {
-    @include mixins.scroll-gradient(bottom, var(--color-bg-blend-solid));
+    @include mixins.scroll-gradient(bottom, var(--color-bg-blend));
 
     opacity: 0;
     transition: opacity ease 250ms;

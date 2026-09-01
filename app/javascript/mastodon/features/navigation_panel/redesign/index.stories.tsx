@@ -14,7 +14,7 @@ const meta = {
         style={{
           width: 320,
           height: 600,
-          backgroundColor: 'var(--color-bg-blend-solid)',
+          backgroundColor: 'var(--color-bg-blend)',
         }}
       >
         <RedesignNavigationPanel {...args} />
