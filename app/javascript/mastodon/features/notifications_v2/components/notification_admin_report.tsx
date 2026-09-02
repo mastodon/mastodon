@@ -78,7 +78,7 @@ export const NotificationAdminReport: React.FC<{
       message = (
         <FormattedMessage
           id='notification.admin.report_statuses_other'
-          defaultMessage='{name} reported {target}  ({isLocal})'
+          defaultMessage='{name} reported {target} ({isLocal})'
           values={values}
         />
       );
@@ -86,7 +86,7 @@ export const NotificationAdminReport: React.FC<{
       message = (
         <FormattedMessage
           id='notification.admin.report_statuses'
-          defaultMessage='{name} reported {target} for {category}  ({isLocal})'
+          defaultMessage='{name} reported {target} for {category} ({isLocal})'
           values={values}
         />
       );
