@@ -6,7 +6,11 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
-import { ColumnHeader } from '@/mastodon/components/column_header';
+import {
+  ColumnHeader,
+  ColumnSettingsMenu,
+} from '@/mastodon/components/column_header';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import { useAppDispatch } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
@@ -23,6 +27,10 @@ import { ConversationsList } from './components/conversations_list';
 const messages = defineMessages({
   title: { id: 'column.direct', defaultMessage: 'Private mentions' },
   title_redesign: { id: 'tab_bar.messages', defaultMessage: 'Messages' },
+  settings: {
+    id: 'tab_bar.messages_settings',
+    defaultMessage: 'Messages Column Settings',
+  },
 });
 
 interface ColumnBase {
@@ -69,8 +77,19 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
     >
       {isRedesignEnabled() ? (
         <ColumnHeader
-          withBackButton={multiColumn && 'auto'}
           title={intl.formatMessage(messages.title_redesign)}
+          withBackButton={multiColumn && !pinned && 'auto'}
+          extraButtons={
+            multiColumn && (
+              <ColumnSettingsMenu label={intl.formatMessage(messages.settings)}>
+                <MultiColumnMenuItems
+                  onPin={handlePin}
+                  onMove={handleMove}
+                  pinned={pinned}
+                />
+              </ColumnSettingsMenu>
+            )
+          }
         />
       ) : (
         <LegacyColumnHeader
