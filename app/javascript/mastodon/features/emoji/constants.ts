@@ -2,19 +2,6 @@
 export const VARIATION_SELECTOR_CODE = 0xfe0f;
 export const KEYCAP_CODE = 0x20e3;
 
-// Gender codes
-export const GENDER_FEMALE_CODE = 0x2640;
-export const GENDER_MALE_CODE = 0x2642;
-
-// Skin tone codes
-export const SKIN_TONE_CODES = [
-  0x1f3fb, // Light skin tone
-  0x1f3fc, // Medium-light skin tone
-  0x1f3fd, // Medium skin tone
-  0x1f3fe, // Medium-dark skin tone
-  0x1f3ff, // Dark skin tone
-] as const;
-
 export const EMOJI_MIN_TOKEN_LENGTH = 2;
 
 // Emoji rendering modes. A mode is what we are using to render emojis, a style is what the user has selected.
