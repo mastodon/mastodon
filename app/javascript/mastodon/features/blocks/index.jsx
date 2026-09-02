@@ -15,10 +15,14 @@ import { Account } from '@/mastodon/components/account';
 import { Column } from '@/mastodon/components/column';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import ScrollableList from '@/mastodon/components/scrollable_list';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { Helmet } from '@unhead/react/helmet';
 
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
+  heading_redesign: { id: 'column.blocked_accounts', defaultMessage: 'Blocked Accounts' },
 });
 
 const mapStateToProps = state => ({
@@ -62,7 +66,11 @@ class Blocks extends ImmutablePureComponent {
 
     return (
       <Column bindToDocument={!multiColumn}>
-        <ColumnHeader icon='ban' iconComponent={BlockIcon} title={intl.formatMessage(messages.heading)} showBackButton />
+        {isRedesignEnabled() ? (
+          <ColumnHeader withBackButton={multiColumn && 'auto'} title={intl.formatMessage(messages.heading_redesign)} />
+        ) : (
+          <LegacyColumnHeader icon='ban' iconComponent={BlockIcon} title={intl.formatMessage(messages.heading)} showBackButton />
+        )}
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}
@@ -75,6 +83,13 @@ class Blocks extends ImmutablePureComponent {
             <Account key={id} id={id} defaultAction='block' />,
           )}
         </ScrollableList>
+
+        <Helmet>
+          <title>
+            {intl.formatMessage(isRedesignEnabled() ? messages.heading_redesign : messages.heading)}
+          </title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

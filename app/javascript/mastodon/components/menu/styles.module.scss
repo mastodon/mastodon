@@ -11,6 +11,7 @@
   overflow: hidden;
   z-index: calc(infinity);
   max-width: var(--_max-card-width, 100vw);
+  text-align: start;
 
   &[data-elevation='2'] {
     @include mixins.elevation-2;

@@ -1,4 +1,5 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
 
 .root {
   position: relative;
@@ -12,8 +13,6 @@
   align-items: center;
   min-height: 40px;
   padding: var(--space-sm);
-  border-top-left-radius: var(--radius-xl);
-  border-top-right-radius: var(--radius-xl);
   text-align: center;
   color: var(--color-text-primary);
   background: linear-gradient(
@@ -21,12 +20,29 @@
     var(--color-bg-primary) var(--column-header-gradient-start, 55%),
     transparent
   );
+
+  @media (width >= variables.$mobile-menu-breakpoint) {
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+  }
+
+  &[data-has-unread='true']::after {
+    content: '';
+    grid-row: 1;
+    grid-column: 2;
+    width: var(--space-xs);
+    height: var(--space-xs);
+    background-color: var(--color-text-brand);
+    border-radius: var(--radius-round);
+    justify-self: center;
+    align-self: end;
+  }
 }
 
 .title {
   @include mixins.type-heading-sm;
 
-  grid-column: 2;
+  grid-area: 1 / 2;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -43,10 +59,12 @@
 }
 
 .leftButton {
+  grid-area: 1 / 1;
   justify-self: start;
 }
 
 .rightButtons {
+  grid-area: 1 / 3;
   display: flex;
   align-items: center;
   justify-self: end;

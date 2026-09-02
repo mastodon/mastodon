@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { useLocation } from 'react-router';
 
 import { ArrowLeftIcon, ListIcon } from '@phosphor-icons/react';
 
@@ -17,13 +18,19 @@ import type { IconButtonProps } from '../button/redesign';
 import { Button, IconButton } from '../button/redesign';
 import { useColumn, useColumnIndexContext } from '../column/context';
 import { NavigationFocusTarget } from '../navigation_focus_target';
+import type { LocationState } from '../router';
 import { useAppHistory } from '../router';
 
 import classes from './styles.module.scss';
 
+export { ColumnSettingsMenu } from './column_settings_menu';
+
 export interface ColumnHeaderProps {
   title: string;
-  withBackButton?: boolean;
+  // Set to auto to display the back button based on
+  // the `fromMastodon` location state
+  withBackButton?: boolean | 'auto';
+  withUnreadMarker?: boolean;
   extraButtons?: React.ReactNode;
   className?: string;
 }
@@ -31,17 +38,26 @@ export interface ColumnHeaderProps {
 export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   title,
   withBackButton,
+  withUnreadMarker,
   extraButtons,
   className,
   ...props
 }: ColumnHeaderProps) => {
   const { scrollTop } = useColumn();
   const columnIndex = useColumnIndexContext();
+  const location = useLocation<LocationState>();
+  const hasBackButton =
+    withBackButton === true ||
+    (withBackButton === 'auto' && location.state?.fromMastodon);
 
   return (
     <RenderIntoTabsBarPortal>
-      <header {...props} className={classNames(className, classes.root)}>
-        {withBackButton ? <BackButton /> : <MobileMenuButton />}
+      <header
+        {...props}
+        className={classNames(className, classes.root)}
+        data-has-unread={withUnreadMarker}
+      >
+        {hasBackButton ? <BackButton /> : <MobileMenuButton />}
         <NavigationFocusTarget className={classes.title}>
           <button
             type='button'
@@ -49,6 +65,15 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
             id={getColumnSkipLinkId(columnIndex)}
           >
             {title}
+            {withUnreadMarker && (
+              <span className='sr-only'>
+                {' '}
+                <FormattedMessage
+                  id='column.has_unread_content'
+                  defaultMessage='(has unread content)'
+                />
+              </span>
+            )}
           </button>
         </NavigationFocusTarget>
         {hasReactChildren(extraButtons) && (

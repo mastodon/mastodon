@@ -8044,9 +8044,12 @@ a.status-card {
   display: flex;
   flex-shrink: 0;
 
+  [data-redesign='true'] & {
+    border-inline: none;
+  }
+
   @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
-    border-right: 0;
-    border-left: 0;
+    border-inline: none;
   }
 
   button {
