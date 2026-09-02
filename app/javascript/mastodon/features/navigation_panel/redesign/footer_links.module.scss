@@ -3,8 +3,9 @@
 .root {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: var(--space-xs);
+  align-items: center;
+
   margin-top: var(--space-xl);
 
   @include mixins.type-label-sm;
@@ -17,8 +18,8 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
   gap: var(--space-xs);
+  align-items: baseline;
 
   a {
     color: var(--color-text-secondary);

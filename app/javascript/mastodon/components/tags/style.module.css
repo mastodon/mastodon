@@ -1,14 +1,18 @@
 .tag {
-  border-radius: 9999px;
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+
+  padding: 6px 8px;
   border: 1px solid var(--color-border-primary);
+  border-radius: 9999px;
+
+  color: var(--color-text-primary);
+
   appearance: none;
   background: none;
-  padding: 6px 8px;
+
   transition: all 0.2s ease-in-out;
-  color: var(--color-text-primary);
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
 }
 
 button.tag:hover,
@@ -23,19 +27,19 @@ button.tag:focus-visible {
 
 .active {
   border-color: var(--color-border-brand);
-  background: var(--color-bg-brand-softest);
   color: var(--color-text-brand);
+  background: var(--color-bg-brand-softest);
 }
 
 .icon {
-  height: 1.2em;
   width: 1.2em;
+  height: 1.2em;
 }
 
 .closeButton {
   svg {
-    height: 1.2em;
     width: 1.2em;
+    height: 1.2em;
   }
 }
 

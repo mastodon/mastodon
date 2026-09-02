@@ -2,34 +2,40 @@
 @use '@/styles/mastodon/variables';
 
 .root {
+  z-index: 1; // To cover the sidebar
+
   container-type: inline-size;
-  background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+
   padding: var(--space-md);
-  z-index: 1; // To cover the sidebar
+
+  background: var(--color-bg-primary);
 
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
     @include mixins.elevation-2;
 
-    border-radius: var(--radius-xl);
     overflow: hidden;
+    border-radius: var(--radius-xl);
   }
 }
 
 .background {
-  mask-repeat: repeat;
-  mask-image: url('@/images/composer_message.svg');
-  mask-size: 311.36px auto;
-  background-color: var(--color-border-brand);
-  opacity: 0.15;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  left: 0;
   pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  opacity: 0.15;
+  background-color: var(--color-border-brand);
+
+  mask-image: url('@/images/composer_message.svg');
+  mask-repeat: repeat;
+  mask-size: 311.36px auto;
 }
 
 .header {
@@ -45,9 +51,9 @@
 
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-xs);
   align-items: center;
-  flex-wrap: wrap;
 
   label {
     font-weight: inherit;
@@ -56,9 +62,9 @@
 
 .flexGrowWrap {
   display: flex;
-  align-items: center;
-  gap: var(--space-xs);
   flex-grow: 1;
+  gap: var(--space-xs);
+  align-items: center;
 
   @container (width < 310px) {
     flex-basis: 100%;
@@ -84,28 +90,35 @@
 .textareaWrapper {
   --fade-size: var(--space-xl);
 
-  overflow-y: auto;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
   scrollbar-width: thin;
-  overscroll-behavior-y: contain;
+
   position: relative;
 
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
   &::after {
+    pointer-events: none;
     content: '';
+
+    position: sticky;
+    bottom: 0;
+
+    flex-shrink: 0;
+
     height: var(--fade-size);
+    margin-top: calc(-1 * var(--fade-size));
+
+    opacity: 0;
     background: linear-gradient(
       to top,
       var(--color-bg-primary),
       transparent var(--fade-size)
     );
-    position: sticky;
-    bottom: 0;
-    flex-shrink: 0;
-    margin-top: calc(-1 * var(--fade-size));
-    opacity: 0;
-    pointer-events: none;
+
     transition: opacity 200ms;
   }
 
@@ -122,15 +135,19 @@
 }
 
 .textarea {
+  cursor: text;
+
   flex-grow: 1;
   flex-shrink: 0;
-  border-radius: var(--radius-xs);
-  transition: border 200ms;
-  cursor: text;
-  border: none;
+
   width: 100%;
-  outline: none;
+  border: none;
+  border-radius: var(--radius-xs);
+
   background: none;
+  outline: none;
+
+  transition: border 200ms;
 
   &:focus {
     outline: 2px solid var(--color-border-brand);
@@ -147,13 +164,16 @@ textarea.textarea {
 }
 
 .textareaMirror {
-  visibility: hidden;
   pointer-events: none;
+
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
+
   white-space: pre-wrap; // This makes the formatting match the text area.
+
+  visibility: hidden;
 }
 
 .attachments {
@@ -165,18 +185,20 @@ textarea.textarea {
 
 .footer {
   display: flex;
-  align-items: center;
-  gap: var(--space-2xs);
   flex-wrap: wrap;
+  gap: var(--space-2xs);
+  align-items: center;
 }
 
 .counter {
   display: flex;
-  align-items: center;
   gap: var(--space-3xs);
+  align-items: center;
+
+  margin-inline-start: auto;
+
   font-family: var(--font-monospace);
   color: var(--color-text-tertiary);
-  margin-inline-start: auto;
 }
 
 .counterError {
@@ -198,8 +220,8 @@ textarea.textarea {
 }
 
 .languageList {
-  max-height: 350px;
   overflow-y: auto;
+  max-height: 350px;
 }
 
 .languageItem {
@@ -213,8 +235,8 @@ textarea.textarea {
 // Reply
 
 .reply {
-  border-inline-start: 0.5px solid var(--color-border-primary);
   padding: 0 var(--space-md);
+  border-inline-start: 0.5px solid var(--color-border-primary);
 }
 
 .replyAccount {
@@ -228,9 +250,9 @@ textarea.textarea {
 }
 
 .replyAvatar {
+  overflow: hidden;
   margin-inline-end: var(--space-xs);
   border-radius: var(--radius-round);
-  overflow: hidden;
 }
 
 .replyTime {
@@ -260,9 +282,10 @@ textarea.textarea {
 div.emojiRoot {
   position: relative;
   z-index: 2;
-  padding: 0;
+
   min-width: 300px;
   min-height: 300px;
+  padding: 0;
 
   &:has(.emojiLoading) {
     display: flex;

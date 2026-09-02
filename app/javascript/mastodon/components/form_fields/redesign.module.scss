@@ -6,8 +6,8 @@
   }
 
   .icon {
-    position: absolute;
     pointer-events: none;
+    position: absolute;
     opacity: 0;
     transition:
       color 200ms,
@@ -40,27 +40,30 @@
   }
 
   span {
-    color: var(--color-text-tertiary);
     font-size: var(--fs-2xs);
     line-height: var(--fs-lg);
+    color: var(--color-text-tertiary);
   }
 }
 
 input.input {
-  font-size: var(--fs-lg);
-  background: none;
-  border-radius: var(--space-xs);
-  border: 0.5px solid var(--color-text-tertiary);
   padding: var(--space-xs);
+  border: 0.5px solid var(--color-text-tertiary);
+  border-radius: var(--space-xs);
+
+  font-size: var(--fs-lg);
+
+  background: none;
+
   transition:
     background 200ms,
     border 200ms,
     opacity 200ms;
 
   &:hover:not(:disabled) {
+    background: var(--color-bg-highlight);
     box-shadow: 0 1px var(--space-2xs) 0
       rgb(from var(--color-text-primary) r g b / 10%);
-    background: var(--color-bg-highlight);
   }
 
   &:focus {
@@ -75,10 +78,10 @@ input.input {
 
 .inputIcon {
   svg {
+    inset-block-start: var(--space-xs);
+    inset-inline-start: var(--space-xs);
     width: 20px;
     height: 20px;
-    inset-inline-start: var(--space-xs);
-    inset-block-start: var(--space-xs);
   }
 }
 
@@ -88,8 +91,8 @@ input.input {
   background: var(--color-text-tertiary);
 
   &::before {
-    box-shadow: none;
     background: var(--color-bg-primary);
+    box-shadow: none;
   }
 }
 

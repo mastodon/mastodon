@@ -9,46 +9,90 @@
   --color-bg-thumb-hover: var(--color-bg-brand-base-hover);
   --color-bg-track: var(--color-bg-secondary);
 
-  width: 100%;
-  margin: 6px 0;
-  background-color: transparent;
-  appearance: none;
   display: block;
 
-  &:focus {
-    outline: none;
-  }
+  width: 100%;
+  margin: 6px 0;
+
+  appearance: none;
+  background-color: transparent;
 
   // Thumb
 
   &::-webkit-slider-thumb {
-    margin-top: -6px;
+    cursor: pointer;
+
     width: 16px;
     height: 16px;
-    background: var(--color-bg-thumb);
+    margin-top: -6px;
     border: 0;
     border-radius: 50px;
-    cursor: pointer;
+
     -webkit-appearance: none;
+    background: var(--color-bg-thumb);
   }
 
   &::-moz-range-thumb {
+    cursor: pointer;
+
     width: 16px;
     height: 16px;
-    background: var(--color-bg-thumb);
     border: 0;
     border-radius: 50px;
-    cursor: pointer;
+
+    background: var(--color-bg-thumb);
   }
 
   &::-ms-thumb {
+    cursor: pointer;
+
     width: 16px;
     height: 16px;
-    background: var(--color-bg-thumb);
+    margin-top: 0; // Needed to keep the Edge thumb centred
     border: 0;
     border-radius: 50px;
+
+    background: var(--color-bg-thumb);
+  }
+
+  // Track
+
+  &::-webkit-slider-runnable-track {
     cursor: pointer;
-    margin-top: 0; // Needed to keep the Edge thumb centred
+
+    width: 100%;
+    height: 4px;
+    border: 0;
+    border-radius: 1.3px;
+
+    background: var(--color-bg-track);
+  }
+
+  &::-moz-range-track {
+    cursor: pointer;
+
+    width: 100%;
+    height: 4px;
+    border: 0;
+    border-radius: 1.3px;
+
+    background: var(--color-bg-track);
+  }
+
+  &::-ms-track {
+    cursor: pointer;
+
+    width: 100%;
+    height: 4px;
+    border: 0;
+
+    color: transparent;
+
+    background: var(--color-bg-track);
+  }
+
+  &:focus {
+    outline: none;
   }
 
   &:focus,
@@ -82,46 +126,20 @@
       outline-offset: 2px;
     }
   }
-
-  // Track
-
-  &::-webkit-slider-runnable-track {
-    background: var(--color-bg-track);
-    border: 0;
-    border-radius: 1.3px;
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-  }
-
-  &::-moz-range-track {
-    background: var(--color-bg-track);
-    border: 0;
-    border-radius: 1.3px;
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-  }
-
-  &::-ms-track {
-    background: var(--color-bg-track);
-    border: 0;
-    color: transparent;
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-  }
 }
 
 .markers {
+  user-select: none;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  writing-mode: vertical-lr;
+
   width: 100%;
+
+  writing-mode: vertical-lr;
   font-size: 11px;
   color: var(--color-text-secondary);
-  user-select: none;
 
   option {
     padding: 0;

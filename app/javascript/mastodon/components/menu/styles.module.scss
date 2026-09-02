@@ -3,14 +3,17 @@
 .card {
   @include mixins.elevation-1;
 
+  z-index: calc(infinity);
+
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  max-width: var(--_max-card-width, 100vw);
   padding: var(--space-2xs);
   border-radius: var(--radius-md);
+
   background: var(--color-bg-primary);
-  overflow: hidden;
-  z-index: calc(infinity);
-  max-width: var(--_max-card-width, 100vw);
 
   &[data-elevation='2'] {
     @include mixins.elevation-2;
@@ -24,15 +27,15 @@
 .itemGroupLabel {
   @include mixins.type-label-sm;
 
-  color: var(--color-text-tertiary);
   padding: var(--space-xs) var(--space-sm) 0;
+  color: var(--color-text-tertiary);
 }
 
 .itemDivider {
   height: 1px;
-  background-color: var(--color-border-primary);
   margin: var(--space-2xs) var(--space-sm);
   border: none;
+  background-color: var(--color-border-primary);
 }
 
 .item {
@@ -40,24 +43,30 @@
 
   --cursor: pointer;
 
+  cursor: var(--cursor);
+
   display: flex;
-  align-items: center;
-  border-radius: var(--radius-sm);
   gap: var(--space-xs);
+  align-items: center;
+
   padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+
   color: var(--color-text-primary);
   text-decoration: none;
-  cursor: var(--cursor);
+
   transition:
     background 200ms,
     color 200ms;
 
   &:where(button) {
+    width: 100%;
+    border: none;
+
+    text-align: start;
+
     appearance: none;
     background: none;
-    border: none;
-    width: 100%;
-    text-align: start;
   }
 
   &:hover {
@@ -80,8 +89,8 @@
 
   &:active:not([aria-disabled='true']),
   .itemActive {
-    background-color: var(--color-bg-inverted);
     color: var(--color-text-inverted);
+    background-color: var(--color-bg-inverted);
 
     label {
       color: var(--color-text-inverted);

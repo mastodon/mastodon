@@ -5,23 +5,27 @@
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-primary);
 
-  background-color: var(--bg);
+  cursor: pointer;
+
+  display: inline-flex;
+  column-gap: var(--space-2xs);
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  border: 0;
   border-radius: var(--radius-round);
+
   color: var(--fg);
+
+  appearance: none;
+  background-color: var(--bg);
+
   transition:
     background-color 200ms,
     color 200ms,
     opacity 200ms;
-  border: 0;
-  appearance: none;
-  cursor: pointer;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: var(--space-2xs);
   @include mixins.type-label-lg;
-
-  box-sizing: border-box;
 
   &:hover:not(
       :active,
@@ -68,23 +72,23 @@ a.base {
 // Sizes
 
 .xs {
-  padding-inline: var(--space-xs);
   min-height: 20px;
+  padding-inline: var(--space-xs);
 }
 
 .sm {
-  padding: var(--space-2xs) var(--space-sm);
   min-height: 32px;
+  padding: var(--space-2xs) var(--space-sm);
 }
 
 .md {
-  padding: var(--space-xs) var(--space-md);
   min-height: 40px;
+  padding: var(--space-xs) var(--space-md);
 }
 
 .lg {
-  padding: var(--space-sm) var(--space-lg);
   min-height: 48px;
+  padding: var(--space-sm) var(--space-lg);
 }
 
 // Solid variant

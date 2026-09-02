@@ -9,15 +9,15 @@
 .titleWrapper {
   display: flex;
   align-items: center;
-  padding-inline: var(--space-xs);
   padding-block: calc(var(--space-xs) - var(--space-3xs));
+  padding-inline: var(--space-xs);
 }
 
 .title {
   @include mixins.type-label-sm;
 
-  color: var(--color-text-secondary);
   cursor: default;
+  color: var(--color-text-secondary);
 }
 
 .action {

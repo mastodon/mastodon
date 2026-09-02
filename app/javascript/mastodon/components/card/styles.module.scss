@@ -1,21 +1,24 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
-  border: 0.5px solid var(--color-border-primary);
-  border-radius: var(--radius-md);
-  box-sizing: border-box;
+  position: relative;
+
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  box-sizing: border-box;
   min-height: 90px;
-  overflow: hidden;
   padding: var(--space-sm);
-  position: relative;
+  border: 0.5px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+
   transition: background 200ms ease-in-out;
 
   &:has(.image) {
-    column-gap: var(--space-sm);
     display: grid;
     grid-template-columns: minmax(0, 1fr) 120px;
+    column-gap: var(--space-sm);
     padding-inline-end: 0;
   }
 }
@@ -37,9 +40,9 @@ a.root {
 .title {
   @include mixins.type-label-md;
 
-  color: var(--color-text-secondary);
   display: flex;
   margin-bottom: var(--space-2xs);
+  color: var(--color-text-secondary);
 
   a {
     color: inherit;
@@ -53,19 +56,20 @@ a.root {
 }
 
 .titleImage {
-  border-radius: var(--radius-round);
+  overflow: hidden;
   display: block;
+
+  width: var(--space-lg);
   height: var(--space-lg);
   margin-inline-end: var(--space-xs);
-  overflow: hidden;
-  width: var(--space-lg);
+  border-radius: var(--radius-round);
 }
 
 .body {
   @include mixins.type-body-compact;
 
-  overflow-wrap: break-word;
   flex-grow: 1;
+  overflow-wrap: break-word;
 
   a {
     color: var(--color-text-brand);
@@ -80,9 +84,9 @@ a.root {
 
 // Linked body
 a.body {
-  padding: 0 var(--space-sm) var(--space-sm);
   margin: calc(-1 * var(--space-sm));
   margin-top: 0;
+  padding: 0 var(--space-sm) var(--space-sm);
 
   .root:has(&:hover) {
     background-color: var(--color-bg-highlight);
@@ -97,9 +101,9 @@ a.body {
 
   &,
   & > img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    width: 100%;
   }
 }
 

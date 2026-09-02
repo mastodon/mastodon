@@ -2,6 +2,7 @@
 
 .root {
   position: relative;
+
   display: grid;
 
   // Ensure title is centered regardless of side-content
@@ -10,12 +11,15 @@
     minmax(0, auto)
     minmax(min-content, 1fr);
   align-items: center;
+
   min-height: 40px;
   padding: var(--space-sm);
   border-top-left-radius: var(--radius-xl);
   border-top-right-radius: var(--radius-xl);
-  text-align: center;
+
   color: var(--color-text-primary);
+  text-align: center;
+
   background: linear-gradient(
     to bottom,
     var(--color-bg-primary) var(--column-header-gradient-start, 55%),
@@ -26,18 +30,23 @@
 .title {
   @include mixins.type-heading-sm;
 
-  grid-column: 2;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
+  grid-column: 2;
+
   min-width: 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   > button {
     overflow: hidden;
+
     width: 100%;
     padding: 0;
     border: none;
+
     font: inherit;
+
     background: transparent;
   }
 }

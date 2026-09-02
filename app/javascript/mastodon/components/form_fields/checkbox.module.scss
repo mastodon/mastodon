@@ -2,51 +2,60 @@
   --size: 16px;
   --border-width: 1px;
 
-  appearance: none;
-  box-sizing: border-box;
+  cursor: pointer;
+
   position: relative;
+
   display: inline-flex;
-  margin: 0;
+
+  box-sizing: border-box;
   width: var(--size);
   height: var(--size);
-  vertical-align: top;
-  border-radius: calc(var(--size) / 4);
+  margin: 0;
   border: var(--border-width) solid var(--color-border-primary);
+  border-radius: calc(var(--size) / 4);
+
+  vertical-align: top;
+
+  appearance: none;
   background-color: var(--color-bg-primary);
+
   transition: 0.15s ease-out;
   transition-property: background-color, border-color;
-  cursor: pointer;
 
   /* Increase clickable area, prevents misclicks and covers gap between control and label */
   &::after {
-    content: '';
-    position: absolute;
-
     --spread: calc(var(--border-width) + var(--form-field-label-gap, 8px));
 
-    inset-inline: calc(-1 * var(--spread));
+    content: '';
+    position: absolute;
     inset-block: calc(-0.75 * var(--spread));
-  }
-
-  &:disabled {
-    background: var(--color-bg-tertiary);
-    border: none;
-    cursor: not-allowed;
+    inset-inline: calc(-1 * var(--spread));
   }
 
   /* Tick icon */
   &::before {
     content: '';
-    opacity: 0;
-    background-color: var(--color-text-on-brand-base);
+
     display: block;
-    margin: auto;
+
     width: calc(var(--size) * 0.625);
     height: calc(var(--size) * 0.5);
+    margin: auto;
+
+    opacity: 0;
+    background-color: var(--color-text-on-brand-base);
+
     mask-image: url("data:image/svg+xml;utf8,<svg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8.29289 0.292893C8.68342 -0.0976311 9.31643 -0.0976311 9.70696 0.292893C10.0975 0.683418 10.0975 1.31643 9.70696 1.70696L4.20696 7.20696C3.81643 7.59748 3.18342 7.59748 2.79289 7.20696L0.292893 4.70696C-0.0976311 4.31643 -0.0976311 3.68342 0.292893 3.29289C0.683418 2.90237 1.31643 2.90237 1.70696 3.29289L3.49992 5.08586L8.29289 0.292893Z' fill='black'/></svg>");
+    mask-repeat: no-repeat;
     mask-position: center;
     mask-size: 100%;
-    mask-repeat: no-repeat;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: none;
+    background: var(--color-bg-tertiary);
   }
 
   /* 'Minus' icon */
@@ -58,8 +67,12 @@
 
   &:checked,
   &:indeterminate {
-    background-color: var(--color-bg-brand-base);
     border-color: var(--color-bg-brand-base);
+    background-color: var(--color-bg-brand-base);
+
+    &::before {
+      opacity: 1;
+    }
 
     &:disabled {
       border: none;
@@ -68,10 +81,6 @@
       &::before {
         background-color: var(--color-bg-tertiary);
       }
-    }
-
-    &::before {
-      opacity: 1;
     }
   }
 

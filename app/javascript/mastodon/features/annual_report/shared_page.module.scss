@@ -15,13 +15,15 @@ $mobile-breakpoint: 540px;
 .footer {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1.8rem;
+  align-items: center;
+
   margin-top: 2rem;
+
   font-size: 16px;
   line-height: 1.4;
-  text-align: center;
   color: var(--color-text-secondary);
+  text-align: center;
 
   strong {
     font-weight: 600;
@@ -46,13 +48,13 @@ $mobile-breakpoint: 540px;
 .footerSection {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .linkList {
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  list-style: none;
 }

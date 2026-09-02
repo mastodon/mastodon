@@ -1,10 +1,10 @@
 @use '@/styles/mastodon/mixins';
 
 .page {
-  border-radius: 16px;
-  border: 1px solid var(--color-border-primary);
-  background: var(--color-bg-primary);
   min-height: 100%;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 16px;
+  background: var(--color-bg-primary);
 
   :global(.item-list) article:last-child :global(.status) {
     border-bottom: 0;
@@ -31,9 +31,11 @@
 
 .topSection {
   display: flex;
-  padding: 16px;
   flex-direction: column;
   gap: 8px;
+
+  padding: 16px;
+
   color: var(--color-text-primary);
 
   h1 {
@@ -55,26 +57,26 @@
   padding: 16px;
 
   h2 {
+    margin-bottom: 8px;
     font-size: 16px;
     font-weight: 500;
     line-height: 22.4px;
-    margin-bottom: 8px;
   }
 
   :global(.account) {
-    border: 1px solid var(--color-border-primary);
-    padding: 18px 16px;
-    border-radius: 12px;
-
     --avatar-border-radius: 50%;
+
+    padding: 18px 16px;
+    border: 1px solid var(--color-border-primary);
+    border-radius: 12px;
   }
 }
 
 .placeholder {
-  padding: 4px 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 4px 0;
 
   :global(.skeleton) {
     height: 40px;
@@ -84,10 +86,10 @@
 }
 
 .minimalHeader {
-  padding-top: 24px;
-  padding-bottom: 12px;
   display: flex;
   align-items: center;
+  padding-top: 24px;
+  padding-bottom: 12px;
 
   @media screen and (width <= 1175px) {
     padding-inline-start: 12px;
@@ -96,36 +98,38 @@
 }
 
 .leftSide {
+  max-width: 300px;
   font-size: 15px;
   font-weight: 600;
-  max-width: 300px;
 
   a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
   }
 }
 
 .rightSide {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 4px;
   flex: 1 0 0;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .minimalFooter {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
-  color: var(--color-text-secondary);
+  justify-content: space-between;
+
+  padding-top: 28px;
+  padding-bottom: 54px;
+
   font-size: 16px;
   font-weight: 500;
   line-height: 22.4px;
-  padding-top: 28px;
-  padding-bottom: 54px;
-  gap: 8px;
-  flex-wrap: wrap;
+  color: var(--color-text-secondary);
 
   a {
     color: inherit;

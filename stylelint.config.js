@@ -52,6 +52,7 @@ module.exports = {
         'app/javascript/**/*.module.scss',
         'app/javascript/**/*.module.css',
       ],
+      extends: ['stylelint-config-clean-order'],
       rules: {
         'selector-pseudo-class-no-unknown': [
           true,

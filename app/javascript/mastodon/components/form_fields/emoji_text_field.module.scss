@@ -13,10 +13,11 @@
 
 .fieldWrapper :global(.emoji-picker-dropdown) {
   position: absolute;
+  z-index: 1;
   top: 8px;
   right: 8px;
+
   height: 24px;
-  z-index: 1;
 
   :global(.icon-button) {
     color: var(--color-text-secondary);

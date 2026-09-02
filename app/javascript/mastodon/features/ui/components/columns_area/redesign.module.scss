@@ -5,8 +5,9 @@
   --navigation-min-width: 280px;
   --navigation-max-width: 320px;
 
-  box-sizing: border-box;
   display: flex;
+
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -29,8 +30,9 @@
 
 .navigationWrapper {
   position: sticky;
-  top: 0;
   z-index: 1;
+  top: 0;
+
   max-width: var(--navigation-max-width);
   height: 100dvh;
   padding-bottom: env(safe-area-inset-bottom);
@@ -41,15 +43,18 @@
 }
 
 .main {
-  box-sizing: border-box;
-  grid-column: 2;
-  display: flex;
-  flex-direction: column;
-  flex: 0 1 auto;
-  width: 100%;
-  contain: inline-size layout paint style;
   container: column / inline-size;
+  contain: inline-size layout paint style;
+  display: flex;
+  grid-column: 2;
+  flex: 0 1 auto;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: 100%;
+
   color: var(--color-text-primary);
+
   background-color: var(--color-bg-primary);
 }
 
@@ -58,24 +63,26 @@
   // overlay gradient of the nested `ColumnHeader` component work
   --column-header-gradient-start: 55%;
 
+  position: sticky;
+  z-index: 2;
+  top: 0;
+
+  border-top: 0;
+
   background: linear-gradient(
     to bottom,
     var(--color-bg-blend-solid) var(--column-header-gradient-start),
     transparent var(--column-header-gradient-start)
   );
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  border-top: 0;
-
-  @media (width >= $mobile-menu-breakpoint) {
-    border-top: 10px solid var(--color-bg-blend-solid);
-  }
 
   // Fix bg color for legacy column headers.
   // Remove when new column headers are in.
   & :global(.column-header) {
     background: var(--color-bg-primary);
+  }
+
+  @media (width >= $mobile-menu-breakpoint) {
+    border-top: 10px solid var(--color-bg-blend-solid);
   }
 }
 

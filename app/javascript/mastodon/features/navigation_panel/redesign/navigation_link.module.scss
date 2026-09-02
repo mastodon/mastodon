@@ -14,35 +14,32 @@
   --border-radius: var(--radius-sm);
 
   position: relative;
-  box-sizing: border-box;
+
   display: flex;
+  column-gap: var(--space-sm);
   align-items: center;
+
+  box-sizing: border-box;
   width: 100%;
   padding: var(--space-xs);
-  column-gap: var(--space-sm);
-  border-radius: var(--border-radius);
   border: none;
+  border-radius: var(--border-radius);
+
   color: inherit;
-  background-color: transparent;
-
-  @include mixins.type-body-compact;
-
-  text-decoration: none;
   text-align: start;
+  text-decoration: none;
+
+  background-color: transparent;
 
   &:not(:where(.linkStacked, .linkMobile)) {
     color: var(--color-text-secondary);
   }
 
-  @media (width < variables.$mobile-menu-breakpoint) {
-    min-height: 40px;
-  }
-
   &:hover,
   &:focus-visible,
   &[aria-current='page'] {
-    background-color: var(--color-bg-highlight);
     text-decoration: none;
+    background-color: var(--color-bg-highlight);
   }
 
   &[aria-current='page'] {
@@ -57,6 +54,12 @@
     // Override silly global focus style
     border-radius: var(--border-radius);
   }
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 40px;
+  }
+
+  @include mixins.type-body-compact;
 }
 
 .linkStacked {
@@ -72,9 +75,9 @@
   --icon-size: 24px;
   --border-radius: var(--radius-round);
 
-  width: 100%;
-  justify-content: center;
   gap: 0;
+  justify-content: center;
+  width: 100%;
   padding-block: var(--space-sm);
 }
 
@@ -94,24 +97,29 @@
 
   &::after {
     content: '';
+
     position: absolute;
     top: var(--space-4xs);
     left: calc(50% + var(--space-3xs));
+
     width: var(--space-xs);
     height: var(--space-xs);
-    border-radius: var(--radius-round);
-    background-color: var(--color-bg-brand-base);
     border: 1px solid var(--color-bg-primary);
+    border-radius: var(--radius-round);
+
+    background-color: var(--color-bg-brand-base);
   }
 }
 
 .label {
-  max-width: 100%;
-  min-width: 0;
   flex-grow: 1;
   flex-shrink: 1;
-  overflow-wrap: break-word;
+
+  min-width: 0;
+  max-width: 100%;
+
   hyphens: auto;
+  overflow-wrap: break-word;
 
   .linkStacked & {
     text-align: center;
@@ -121,7 +129,7 @@
 .badge {
   .linkStacked & {
     position: absolute;
-    top: var(--space-3xs);
     inset-inline-start: calc(50% + var(--space-3xs));
+    top: var(--space-3xs);
   }
 }

@@ -1,28 +1,32 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  gap: 16px;
   align-items: center;
   justify-content: center;
+
   max-width: 600px;
   padding: 24px;
-  gap: 16px;
-  text-align: center;
+
   color: var(--color-text-primary);
+  text-align: center;
 }
 
 .content {
   max-width: 370px;
 
   > :where(svg, img) {
-    width: 200px;
     aspect-ratio: 1;
-    object-fit: contain;
+    width: 200px;
     max-width: 100%;
     margin-bottom: 16px;
+
+    object-fit: contain;
   }
 
   p {
     margin-top: 8px;
+
     font-size: 15px;
     line-height: 1.4;
     color: var(--color-text-secondary);
@@ -37,8 +41,8 @@
 .heading {
   font-size: 17px;
   font-weight: 500;
-  text-wrap: balance;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 .errorImage {

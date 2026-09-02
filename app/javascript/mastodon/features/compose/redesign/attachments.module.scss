@@ -10,9 +10,10 @@
 
 .mediaGrid {
   display: grid;
-  gap: var(--space-3xs);
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  gap: var(--space-3xs);
+
   aspect-ratio: 3/2;
 
   &[data-number='2'] {
@@ -25,12 +26,15 @@
 }
 
 .mediaUpload {
-  border-radius: var(--radius-md);
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
   overflow: hidden;
+
+  border-radius: var(--radius-md);
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .blurHash {
@@ -39,8 +43,8 @@
 }
 
 .mediaUploadPending {
-  animation: pulse 1s ease-in-out infinite;
   background-color: var(--color-bg-disabled);
+  animation: pulse 1s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -62,15 +66,19 @@
 .mediaAlt {
   @include mixins.type-micro;
 
+  position: absolute;
+  right: var(--space-xs);
+  bottom: var(--space-xs);
+
   display: block;
+
   padding: var(--space-2xs);
   border-radius: var(--radius-xs);
-  background: var(--color-bg-inverted);
+
   color: var(--color-text-inverted);
-  position: absolute;
-  bottom: var(--space-xs);
-  right: var(--space-xs);
   text-transform: uppercase;
+
+  background: var(--color-bg-inverted);
 }
 
 .mediaMenuDelete {
@@ -83,27 +91,29 @@
   --height: var(--space-5xl);
 
   display: flex;
-  align-items: center;
-  border-radius: var(--radius-md);
   gap: var(--space-2xs);
-  border: 0.5px solid var(--color-text-tertiary);
+  align-items: center;
+
   padding: var(--space-xs);
+  border: 0.5px solid var(--color-text-tertiary);
+  border-radius: var(--radius-md);
 }
 
 .audioCover {
-  height: var(--height);
-  width: auto;
   aspect-ratio: 1;
+  width: auto;
+  height: var(--height);
   border-radius: var(--radius-sm);
 }
 
 .audioControl {
   overflow: hidden;
-  border-radius: var(--radius-sm);
   display: block;
-  box-sizing: border-box;
   flex-grow: 1;
+
+  box-sizing: border-box;
   height: var(--height);
+  border-radius: var(--radius-sm);
 }
 
 // Polls
@@ -112,15 +122,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+
+  padding: var(--space-xs);
   border: 0.5px solid var(--color-text-tertiary);
   border-radius: var(--radius-md);
-  padding: var(--space-xs);
 
   ol {
+    counter-reset: poll;
+
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
-    counter-reset: poll;
+
     width: 100%;
   }
 
@@ -130,21 +143,25 @@
 }
 
 .pollOption {
+  counter-increment: poll;
   display: flex;
   gap: var(--space-sm);
   align-items: center;
-  counter-increment: poll;
 
   &::before {
     @include mixins.type-micro;
 
     content: counter(poll, upper-alpha);
+
+    flex-shrink: 0;
+
     width: var(--space-lg);
     height: var(--space-lg);
-    flex-shrink: 0;
+    border-radius: var(--radius-xs);
+
     line-height: var(--space-lg);
     text-align: center;
-    border-radius: var(--radius-xs);
+
     background: var(--color-bg-highlight);
   }
 }
@@ -181,8 +198,8 @@
 }
 
 .quoteSpoiler {
-  background: var(--color-bg-highlight);
-  border-radius: var(--radius-sm);
   margin: var(--space-2xs) 0;
   padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-highlight);
 }

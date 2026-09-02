@@ -3,15 +3,18 @@
 .modal {
   @include mixins.elevation-1;
 
-  border-radius: var(--radius-xl);
-  background: var(--color-bg-primary);
+  pointer-events: auto;
+  user-select: text;
+
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+
   padding: var(--space-md);
-  pointer-events: auto;
-  user-select: text;
-  overflow: hidden;
+  border-radius: var(--radius-xl);
+
+  background: var(--color-bg-primary);
 }
 
 .modalElevated {
@@ -24,9 +27,9 @@
 
 .actions {
   display: flex;
+  gap: var(--space-md);
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-md);
 }
 
 .actionsLeft {

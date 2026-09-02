@@ -2930,7 +2930,9 @@ __metadata:
     storybook: "npm:10.3.3"
     stringz: "npm:2.1.0"
     stylelint: "npm:17.10.0"
+    stylelint-config-clean-order: "npm:^10.0.0"
     stylelint-config-standard-scss: "npm:17.0.0"
+    stylelint-order: "npm:^8.1.1"
     substring-trie: "npm:1.0.2"
     terser: "npm:5.50.0"
     tesseract.js: "npm:7.0.0"
@@ -11335,6 +11337,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-sorting@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "postcss-sorting@npm:10.0.0"
+  peerDependencies:
+    postcss: ^8.4.20
+  checksum: 10c0/2e53560ccfaefb6ccfaa44cd258735f815de7a06ff6c79e6fb0fe789422f10242266044902c716e2eec9680879d7e0872b4ecd5d89e9bd8670f6d9f6c3ce5adc
+  languageName: node
+  linkType: hard
+
 "postcss-value-parser@npm:^4.2.0":
   version: 4.2.0
   resolution: "postcss-value-parser@npm:4.2.0"
@@ -11342,7 +11353,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.5.13, postcss@npm:^8.5.25":
+"postcss@npm:^8.5.13, postcss@npm:^8.5.25, postcss@npm:^8.5.8":
   version: 8.5.26
   resolution: "postcss@npm:8.5.26"
   dependencies:
@@ -12950,6 +12961,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stylelint-config-clean-order@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "stylelint-config-clean-order@npm:10.0.0"
+  peerDependencies:
+    stylelint: ">=16"
+    stylelint-order: ">=6"
+  checksum: 10c0/6a9d9579bcdf0303138fc999bbec5f7d53520d23b423bc3ee5613ef3350440f519b260a8fb7695be3c2a731abb39bd240a47cc6d53fffe7011c111bc2795da90
+  languageName: node
+  linkType: hard
+
 "stylelint-config-recommended-scss@npm:^17.0.0":
   version: 17.0.1
   resolution: "stylelint-config-recommended-scss@npm:17.0.1"
@@ -13000,6 +13021,18 @@ __metadata:
   peerDependencies:
     stylelint: ^17.0.0
   checksum: 10c0/d8942552d53a3afda59b64d0c49503bb626fe5cef39a9e8c9583fcd60869f21431125ef4480ff27a59f7f2cf0da8af810d377129ef1d670ddc5def4defe2880c
+  languageName: node
+  linkType: hard
+
+"stylelint-order@npm:^8.1.1":
+  version: 8.1.1
+  resolution: "stylelint-order@npm:8.1.1"
+  dependencies:
+    postcss: "npm:^8.5.8"
+    postcss-sorting: "npm:^10.0.0"
+  peerDependencies:
+    stylelint: ^16.18.0 || ^17.0.0
+  checksum: 10c0/ef135a414d3ed98a53cc19e52f1cdff25105e34d96430ecc805d831dbdf4f505031d692dba0f2275b6e7b3a4f4b406f352d85a3924e2e3d89931af65a64eb047
   languageName: node
   linkType: hard
 
