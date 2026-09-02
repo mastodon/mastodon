@@ -89,13 +89,16 @@
 
   .fields-group
     = f.input :authorized_fetch,
-              as: :boolean,
+              as: :radio_buttons,
+              collection: f.object.class::AUTHORIZED_FETCH_MODES,
               disabled: authorized_fetch_overridden?,
-              hint: discovery_hint_text,
+              hint: authorized_fetch_hint_text,
               label: t('admin.settings.security.authorized_fetch'),
-              recommended: discovery_recommended_value,
-              warning_hint: discovery_warning_hint_text,
-              wrapper: :with_label
+              include_blank: false,
+              label_method: ->(mode) { safe_join([I18n.t(mode, scope: 'admin.settings.security.authorized_fetch_modes'), content_tag(:span, I18n.t(mode, scope: 'admin.settings.security.authorized_fetch_hints'), class: 'hint')]) },
+              recommended: authorized_fetch_recommended_value,
+              warning_hint: authorized_fetch_warning_hint_text,
+              wrapper: :with_block_label
 
   %h2= t('admin.settings.discovery.follow_recommendations')
 
