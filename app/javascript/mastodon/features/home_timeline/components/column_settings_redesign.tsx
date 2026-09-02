@@ -37,7 +37,7 @@ export const HomeColumnSettings: React.FC<{
     <ColumnSettingsMenu
       icon={SlidersHorizontalIcon}
       label={
-        <FormattedMessage id='home.settings' defaultMessage='Home settings' />
+        <FormattedMessage id='home.settings' defaultMessage='Home Settings' />
       }
     >
       <MenuItemCheckbox
