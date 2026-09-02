@@ -27,6 +27,10 @@ class AccountReachFilter < ApplicationRecord
   # Largest allowed size for a bloom filter before upgrade
   BLOOM_SIZE_FILTER_THRESHOLD = 1.kilobyte * 8
 
+  # Target capacity for bloom filters before and after update
+  INITIAL_BLOOM_FILTER_CAPACITY = 300
+  UPGRADED_BLOOM_FILTER_CAPACITY = 10_000
+
   class << self
     include Redisable
     include AuthorizedFetchHelper
@@ -107,14 +111,14 @@ class AccountReachFilter < ApplicationRecord
       if bloom_filter
         BloomFit.unpack(bloom_filter)
       else
-        BloomFit.new(capacity: 300, false_positive_rate: TARGET_FALSE_POSITIVE_RATE)
+        BloomFit.new(capacity: INITIAL_BLOOM_FILTER_CAPACITY, false_positive_rate: TARGET_FALSE_POSITIVE_RATE)
       end
     end
   end
 
   def upgrade_filter!
     # TODO: is this a good idea? this will be expensive
-    @filter = BloomFit.new(capacity: 10_000, false_positive_rate: TARGET_FALSE_POSITIVE_RATE).tap do |new_filter|
+    @filter = BloomFit.new(capacity: UPGRADED_BLOOM_FILTER_CAPACITY, false_positive_rate: TARGET_FALSE_POSITIVE_RATE).tap do |new_filter|
       Account.inboxes.each do |inbox|
         entry = "#{salt}:#{Addressable::URI.parse(inbox).normalized_host}"
         new_filter.add(entry) if @filter.include?(entry)
