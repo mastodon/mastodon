@@ -2,7 +2,7 @@ import type { Locale } from 'emojibase';
 import { SUPPORTED_LOCALES } from 'emojibase';
 
 import { EMOJI_DB_NAME_SHORTCODES, EMOJI_TYPE_CUSTOM } from './constants';
-import type { CacheKey, LocaleOrCustom, LocaleWithShortcodes } from './types';
+import type { CacheKey, LocaleWithShortcodes } from './types';
 
 export function toSupportedLocale(localeBase: string): Locale {
   const locale = localeBase.toLowerCase();
@@ -10,13 +10,6 @@ export function toSupportedLocale(localeBase: string): Locale {
     return locale;
   }
   return 'en'; // Default to English if unsupported
-}
-
-export function toSupportedLocaleOrCustom(locale: string): LocaleOrCustom {
-  if (locale.toLowerCase() === EMOJI_TYPE_CUSTOM) {
-    return EMOJI_TYPE_CUSTOM;
-  }
-  return toSupportedLocale(locale);
 }
 
 export function toValidCacheKey(input: string): CacheKey {
