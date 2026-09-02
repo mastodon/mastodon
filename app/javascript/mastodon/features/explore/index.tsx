@@ -106,7 +106,11 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       </Switch>
 
       <Helmet>
-        <title>{intl.formatMessage(messages.title)}</title>
+        <title>
+          {intl.formatMessage(
+            isRedesignEnabled() ? messages.titleRedesign : messages.title,
+          )}
+        </title>
         <meta name='robots' content='all' />
       </Helmet>
     </Column>
