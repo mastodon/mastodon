@@ -70,9 +70,10 @@ function useFollowedHashtags() {
   return { followedHashtags: tags };
 }
 
-export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
-  siteName,
-}) => {
+export const RedesignNavigationPanel: React.FC<{
+  siteName?: string;
+  mode?: 'static' | 'slide-out';
+}> = ({ siteName, mode = 'static' }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
@@ -101,6 +102,7 @@ export const RedesignNavigationPanel: React.FC<{ siteName?: string }> = ({
   return (
     <nav
       className={classes.root}
+      data-mode={mode}
       aria-label={intl.formatMessage(messages.main)}
     >
       {topSensor}
