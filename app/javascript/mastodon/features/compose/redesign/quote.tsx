@@ -18,6 +18,7 @@ import type {
 import { Avatar } from '@/mastodon/components/avatar';
 import { Card, CardBody, CardTitle } from '@/mastodon/components/card';
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { Icon } from '@/mastodon/components/icon';
 import { RelativeTimestamp } from '@/mastodon/components/relative_timestamp';
@@ -26,6 +27,7 @@ import type {
   MediaAttachmentShape,
   AccountStatusShape,
 } from '@/mastodon/models/status';
+import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { selectAccountStatus } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import type { OnElementHandler } from '@/mastodon/utils/html';
@@ -119,6 +121,9 @@ const ComposeQuoteBody: React.FC<{
   const sensitive = status.sensitive;
 
   const poll = useAppSelector((state) => state.polls[status.poll ?? '']);
+  const inReplyToAccount = useAppSelector((state) =>
+    selectPlainAccount(state, status.in_reply_to_account_id),
+  );
 
   if (status.spoilerHtml) {
     return (
@@ -139,8 +144,31 @@ const ComposeQuoteBody: React.FC<{
     );
   }
 
+  // Show reply or thread text.
+  let reply: React.ReactNode = null;
+  if (status.in_reply_to_account_id === status.account.id) {
+    reply = (
+      <FormattedMessage
+        id='status.continued_thread'
+        defaultMessage='Continued thread'
+      />
+    );
+  } else if (inReplyToAccount) {
+    reply = (
+      <FormattedMessage
+        id='status.replied_to'
+        defaultMessage='Replied to {name}'
+        values={{
+          name: <DisplayNameSimple account={inReplyToAccount} />,
+        }}
+      />
+    );
+  }
+
   return (
     <>
+      {!!reply && <p className={classes.quoteReply}>{reply}</p>}
+
       <EmojiHTML
         htmlString={status.translation?.contentHtml ?? status.contentHtml}
         extraEmojis={status.emojis}
