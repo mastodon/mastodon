@@ -26,6 +26,7 @@ export { ColumnSettingsMenu } from './column_settings_menu';
 export interface ColumnHeaderProps {
   title: string;
   withBackButton?: boolean;
+  withUnreadMarker?: boolean;
   extraButtons?: React.ReactNode;
   className?: string;
 }
@@ -33,6 +34,7 @@ export interface ColumnHeaderProps {
 export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   title,
   withBackButton,
+  withUnreadMarker,
   extraButtons,
   className,
   ...props
@@ -42,7 +44,11 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
 
   return (
     <RenderIntoTabsBarPortal>
-      <header {...props} className={classNames(className, classes.root)}>
+      <header
+        {...props}
+        className={classNames(className, classes.root)}
+        data-has-unread={withUnreadMarker}
+      >
         {withBackButton ? <BackButton /> : <MobileMenuButton />}
         <NavigationFocusTarget className={classes.title}>
           <button
@@ -51,6 +57,15 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
             id={getColumnSkipLinkId(columnIndex)}
           >
             {title}
+            {withUnreadMarker && (
+              <span className='sr-only'>
+                {' '}
+                <FormattedMessage
+                  id='column.has_unread_content'
+                  defaultMessage='(has unread content)'
+                />
+              </span>
+            )}
           </button>
         </NavigationFocusTarget>
         {hasReactChildren(extraButtons) && (

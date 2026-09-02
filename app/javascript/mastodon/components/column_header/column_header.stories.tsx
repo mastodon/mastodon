@@ -35,9 +35,16 @@ export const WithBackButton: Story = {
   },
 };
 
+export const WithUnreadMarker: Story = {
+  args: {
+    withUnreadMarker: true,
+  },
+};
+
 export const WithButtons: Story = {
   args: {
     withBackButton: true,
+    withUnreadMarker: false,
     extraButtons: (
       <>
         <ColumnHeaderButton icon={DotsThreeIcon}>Options</ColumnHeaderButton>

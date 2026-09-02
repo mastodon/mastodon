@@ -186,8 +186,9 @@ const Firehose = ({ feedType, multiColumn }) => {
     <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
       {isRedesignEnabled ? (
         <ColumnHeader
-          withBackButton={multiColumn && location.state?.fromMastodon}
           title={intl.formatMessage(messages.title_redesign)}
+          withBackButton={multiColumn && location.state?.fromMastodon}
+          withUnreadMarker={hasUnread}
           extraButtons={multiColumn &&
             <ColumnSettingsMenu label={intl.formatMessage(messages.settings_title)}>
               <MultiColumnMenuItems onPin={handlePin} />

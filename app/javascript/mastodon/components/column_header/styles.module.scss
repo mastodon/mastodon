@@ -25,11 +25,25 @@
     border-top-left-radius: var(--radius-xl);
     border-top-right-radius: var(--radius-xl);
   }
+
+  &[data-has-unread='true']::after {
+    content: '';
+    grid-row: 1;
+    grid-column: 2;
+    width: var(--space-xs);
+    height: var(--space-xs);
+    background-color: var(--color-text-brand);
+    border-radius: var(--radius-round);
+    justify-self: center;
+    align-self: end;
+  }
 }
 
 .title {
   @include mixins.type-heading-sm;
 
+  position: relative;
+  grid-row: 1;
   grid-column: 2;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -47,10 +61,12 @@
 }
 
 .leftButton {
+  grid-row: 1;
   justify-self: start;
 }
 
 .rightButtons {
+  grid-row: 1;
   display: flex;
   align-items: center;
   justify-self: end;
