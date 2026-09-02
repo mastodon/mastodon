@@ -69,7 +69,7 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
       </CardTitle>
 
       <CardBody className={classes.quoteBody} as={Link} to={statusTo}>
-        {!status.spoiler_text ? (
+        {!status.spoilerHtml ? (
           <ComposeQuoteBody status={status} />
         ) : (
           <div className={classes.quoteSpoiler}>
@@ -79,7 +79,12 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
               description='Comes before user-provided spoiler description'
             />
             &nbsp;
-            {status.spoiler_text}
+            <EmojiHTML
+              as='span'
+              htmlString={status.translation?.spoilerHtml ?? status.spoilerHtml}
+              lang={status.translation?.language ?? status.language}
+              extraEmojis={status.emojis}
+            />
           </div>
         )}
       </CardBody>
