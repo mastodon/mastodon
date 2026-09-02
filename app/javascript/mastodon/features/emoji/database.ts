@@ -155,17 +155,6 @@ export async function loadEmojiByHexcode(
   return skinHexcodeToEmoji(hexcode, skinResult);
 }
 
-export async function loadAllUnicodeEmojis(localeString: string) {
-  const locale = await toLoadedLocale(localeString);
-  const db = await loadDB();
-  return db.getAll(locale);
-}
-
-export async function loadCustomEmojiByShortcode(shortcode: string) {
-  const db = await loadDB();
-  return db.get('custom', shortcode);
-}
-
 export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
   if (shortcodes.length === 0) {
     return [];
@@ -204,11 +193,6 @@ export async function loadLegacyShortcodesByShortcode(shortcode: string) {
     'shortcodes',
     IDBKeyRange.only(shortcode),
   );
-}
-
-export async function loadAllShortcodes() {
-  const db = await loadDB();
-  return db.getAll('shortcodes');
 }
 
 // Private functions
