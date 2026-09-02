@@ -150,6 +150,7 @@ class HomeTimeline extends PureComponent {
         {isRedesignEnabled() ? (
           <ColumnHeader
             title={intl.formatMessage(messages.title)}
+            withUnreadMarker={hasUnread}
             extraButtons={
               <HomeColumnSettings>
                 {multiColumn &&
