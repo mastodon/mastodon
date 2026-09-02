@@ -21,6 +21,7 @@ import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { Icon } from '@/mastodon/components/icon';
 import { RelativeTimestamp } from '@/mastodon/components/relative_timestamp';
+import { domain } from '@/mastodon/initial_state';
 import type {
   MediaAttachmentShape,
   AccountStatusShape,
@@ -70,27 +71,10 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
       </CardTitle>
 
       <CardBody className={classes.quoteBody} as={Link} to={statusTo}>
-        {!status.spoilerHtml ? (
-          <ComposeQuoteBody status={status} />
-        ) : (
-          <div className={classes.quoteSpoiler}>
-            <FormattedMessage
-              id='compose.quote.spoiler'
-              defaultMessage='Content:'
-              description='Comes before user-provided spoiler description'
-            />
-            &nbsp;
-            <EmojiHTML
-              as='span'
-              htmlString={status.translation?.spoilerHtml ?? status.spoilerHtml}
-              lang={status.translation?.language ?? status.language}
-              extraEmojis={status.emojis}
-            />
-          </div>
-        )}
+        <ComposeQuoteBody status={status} />
       </CardBody>
 
-      <ComposeQuoteLink status={status} />
+      {!status.spoilerHtml && <ComposeQuoteLink status={status} />}
     </Card>
   );
 };
@@ -134,6 +118,25 @@ const ComposeQuoteBody: React.FC<{
   }, [mainAttachment?.meta.original.duration]);
   const sensitive = status.sensitive;
 
+  if (status.spoilerHtml) {
+    return (
+      <div className={classes.quoteSpoiler}>
+        <FormattedMessage
+          id='compose.quote.spoiler'
+          defaultMessage='Content:'
+          description='Comes before user-provided spoiler description'
+        />
+        &nbsp;
+        <EmojiHTML
+          as='span'
+          htmlString={status.translation?.spoilerHtml ?? status.spoilerHtml}
+          lang={status.translation?.language ?? status.language}
+          extraEmojis={status.emojis}
+        />
+      </div>
+    );
+  }
+
   return (
     <>
       <EmojiHTML
@@ -141,6 +144,7 @@ const ComposeQuoteBody: React.FC<{
         extraEmojis={status.emojis}
         lang={status.translation?.language ?? status.language}
         onElement={onStatusLinks}
+        extraArgs={status}
       />
 
       {mainAttachment?.type === 'audio' && (
@@ -204,22 +208,59 @@ const ComposeQuoteLink: React.FC<{ status: AccountStatusShape }> = ({
     selectAccountStatus(state, status.quote?.quoted_status),
   );
 
-  if (!quotedPost || status.spoilerHtml) {
-    return null;
-  }
+  let link: React.ReactNode = null;
 
-  return (
-    <CardBody>
+  if (quotedPost) {
+    link = (
       <Link to={`/@${quotedPost.account.acct}/${quotedPost.id}`}>
         {quotedPost.uri}
       </Link>
-    </CardBody>
-  );
+    );
+  }
+
+  if (status.card) {
+    if (new URL(status.card.url).host === domain) {
+      link = <Link to={status.card.url}>{status.card.url}</Link>;
+    } else {
+      link = (
+        <a href={status.card.url} target='_blank' rel='noopener'>
+          {status.card.url}
+        </a>
+      );
+    }
+  }
+
+  const collection = status.tagged_collections[0];
+  if (collection) {
+    link = <Link to={`/collections/${collection.id}`}>{collection.url}</Link>;
+  }
+
+  if (!link) {
+    return null;
+  }
+
+  return <CardBody>{link}</CardBody>;
 };
 
-const onStatusLinks: OnElementHandler = (element, { key }, children) => {
-  if (element instanceof HTMLAnchorElement) {
-    return <span key={key as string}>{children}</span>;
+const onStatusLinks: OnElementHandler<AccountStatusShape> = (
+  element,
+  { key, href },
+  children,
+  status,
+) => {
+  // If this is a paragraph with just a link and it matches the card, don't add it.
+  if (
+    element instanceof HTMLParagraphElement &&
+    element.children.length === 1 &&
+    element.firstChild instanceof HTMLAnchorElement &&
+    element.firstChild.href === status.card?.url
+  ) {
+    return null;
+  } else if (element instanceof HTMLAnchorElement) {
+    if (href === status.card?.url) {
+      return null;
+    }
+    return <strong key={key as string}>{children}</strong>;
   }
   return undefined;
 };
