@@ -67,7 +67,7 @@ class Blocks extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn}>
         {isRedesignEnabled() ? (
-          <ColumnHeader title={intl.formatMessage(messages.heading_redesign)} />
+          <ColumnHeader withBackButton={multiColumn && 'auto'} title={intl.formatMessage(messages.heading_redesign)} />
         ) : (
           <LegacyColumnHeader icon='ban' iconComponent={BlockIcon} title={intl.formatMessage(messages.heading)} showBackButton />
         )}
