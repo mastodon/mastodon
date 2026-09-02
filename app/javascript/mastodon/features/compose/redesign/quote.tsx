@@ -118,6 +118,8 @@ const ComposeQuoteBody: React.FC<{
   }, [mainAttachment?.meta.original.duration]);
   const sensitive = status.sensitive;
 
+  const poll = useAppSelector((state) => state.polls[status.poll ?? '']);
+
   if (status.spoilerHtml) {
     return (
       <div className={classes.quoteSpoiler}>
@@ -146,6 +148,20 @@ const ComposeQuoteBody: React.FC<{
         onElement={onStatusLinks}
         extraArgs={status}
       />
+
+      {poll && (
+        <div className={classes.quoteSpoiler}>
+          <FormattedMessage
+            id='compose.quote.poll'
+            defaultMessage='Poll {sep} {isOpen, select, open {Accepting responses} other {Closed}}'
+            values={{
+              isOpen: poll.expired ? 'closed' : 'open',
+              // eslint-disable-next-line no-restricted-syntax
+              sep: <>&bull;</>,
+            }}
+          />
+        </div>
+      )}
 
       {mainAttachment?.type === 'audio' && (
         <div
