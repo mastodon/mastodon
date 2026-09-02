@@ -43,11 +43,9 @@
 
 class User < ApplicationRecord
   self.ignored_columns += %w(
-    admin
     encrypted_otp_secret
     encrypted_otp_secret_iv
     encrypted_otp_secret_salt
-    moderator
     skip_sign_in_token
   )
 
