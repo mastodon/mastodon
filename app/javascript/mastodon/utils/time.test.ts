@@ -1,4 +1,13 @@
-import { DAY, HOUR, MINUTE, relativeTimeParts, SECOND } from './time';
+import { createIntl } from 'react-intl';
+
+import {
+  DAY,
+  HOUR,
+  MINUTE,
+  SECOND,
+  relativeTimeParts,
+  formatTime,
+} from './time';
 
 describe('relativeTimeParts', () => {
   const now = Date.now();
@@ -34,5 +43,21 @@ describe('relativeTimeParts', () => {
     [2 * DAY, { value: 2, unit: 'day' }],
   ])('should return correct value and unit for %d ms', (input, expected) => {
     expect(relativeTimeParts(now + input, now)).toMatchObject(expected);
+  });
+});
+
+describe('formatTime with day-only timestamps', () => {
+  const intl = createIntl({ locale: 'en' });
+
+  const now = Date.parse('2026-08-20T22:56:00Z');
+
+  test.concurrent.each([
+    ['2026-08-20', 'today'],
+    ['2026-08-19', '1 day ago'],
+    ['2026-08-17', '3 days ago'],
+  ])('should format the day-only value %s as "%s"', (date, expected) => {
+    expect(
+      formatTime({ timestamp: Date.parse(date), intl, now, noTime: true }),
+    ).toBe(expected);
   });
 });
