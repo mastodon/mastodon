@@ -1,14 +1,13 @@
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { NavLink, Switch, Route, useLocation } from 'react-router-dom';
+import { NavLink, Switch, Route } from 'react-router-dom';
 
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnHeader } from '@/mastodon/components/column_header';
-import type { LocationState } from '@/mastodon/components/router';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import { SymbolLogo } from 'mastodon/components/logo';
@@ -28,7 +27,6 @@ const messages = defineMessages({
 });
 
 const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
-  const location = useLocation<LocationState>();
   const { signedIn } = useIdentity();
   const intl = useIntl();
   const logoRequired = useBreakpoint('full');
@@ -40,7 +38,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     >
       {isRedesignEnabled() ? (
         <ColumnHeader
-          withBackButton={multiColumn && location.state?.fromMastodon}
+          withBackButton={multiColumn && 'auto'}
           title={intl.formatMessage(messages.titleRedesign)}
         />
       ) : (

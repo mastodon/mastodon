@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { useLocation } from 'react-router';
 
 import { ArrowLeftIcon, ListIcon } from '@phosphor-icons/react';
 
@@ -17,6 +18,7 @@ import type { IconButtonProps } from '../button/redesign';
 import { Button, IconButton } from '../button/redesign';
 import { useColumn, useColumnIndexContext } from '../column/context';
 import { NavigationFocusTarget } from '../navigation_focus_target';
+import type { LocationState } from '../router';
 import { useAppHistory } from '../router';
 
 import classes from './styles.module.scss';
@@ -25,7 +27,9 @@ export { ColumnSettingsMenu } from './column_settings_menu';
 
 export interface ColumnHeaderProps {
   title: string;
-  withBackButton?: boolean;
+  // Set to auto to display the back button based on
+  // the `fromMastodon` location state
+  withBackButton?: boolean | 'auto';
   withUnreadMarker?: boolean;
   extraButtons?: React.ReactNode;
   className?: string;
@@ -41,6 +45,10 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
 }: ColumnHeaderProps) => {
   const { scrollTop } = useColumn();
   const columnIndex = useColumnIndexContext();
+  const location = useLocation<LocationState>();
+  const hasBackButton =
+    withBackButton === true ||
+    (withBackButton === 'auto' && location.state?.fromMastodon);
 
   return (
     <RenderIntoTabsBarPortal>
@@ -49,7 +57,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         className={classNames(className, classes.root)}
         data-has-unread={withUnreadMarker}
       >
-        {withBackButton ? <BackButton /> : <MobileMenuButton />}
+        {hasBackButton ? <BackButton /> : <MobileMenuButton />}
         <NavigationFocusTarget className={classes.title}>
           <button
             type='button'

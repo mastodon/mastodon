@@ -4,7 +4,7 @@ import { useCallback, useEffect } from 'react';
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from '@unhead/react/helmet';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { useIdentity } from '@/mastodon/identity_context';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
@@ -67,7 +67,6 @@ const Firehose = ({ feedType, multiColumn }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const { signedIn, permissions } = useIdentity();
-  const location = useLocation();
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
   const hasUnread = useAppSelector((state) => state.getIn(['timelines', `${feedType}${onlyMedia ? ':media' : ''}`, 'unread'], 0) > 0);
@@ -187,7 +186,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       {isRedesignEnabled ? (
         <ColumnHeader
           title={intl.formatMessage(messages.title_redesign)}
-          withBackButton={multiColumn && location.state?.fromMastodon}
+          withBackButton={multiColumn && 'auto'}
           withUnreadMarker={hasUnread}
           extraButtons={multiColumn &&
             <ColumnSettingsMenu label={intl.formatMessage(messages.settings_title)}>
