@@ -51,6 +51,7 @@ bg:
         label: Промяна на ролята
         no_role: Без роля
         title: Промяна на ролята за %{username}
+      collections: Колекции
       confirm: Потвърждаване
       confirmed: Потвърдено
       confirming: Потвърждаване
@@ -585,7 +586,7 @@ bg:
       title: Федерация
       total_blocked_by_us: Блокирано от нас
       total_followed_by_them: Последвани от тях
-      total_followed_by_us: Последвано от нас
+      total_followed_by_us: Следвани от нас
       total_reported: Доклади за тях
       total_storage: Прикачена мултимедия
       totals_time_period_hint_html: Общите стойности, показани по-долу, включват данни за всички времена.
@@ -1287,6 +1288,13 @@ bg:
     hint_html: "<strong>Съвет</strong>: няма да ви питаме пак за паролата през следващия час."
     invalid_password: Невалидна парола
     prompt: Потвърдете паролата, за да продължите
+  color_scheme:
+    auto: Автоматична
+    dark: Тъмна
+    light: Светла
+  contrast:
+    auto: Автоматичен
+    high: Висок
   crypto:
     errors:
       invalid_key: не е валиден ключ Ed25519 или Curve25519
@@ -1357,6 +1365,10 @@ bg:
       your_appeal_rejected: Вашето обжалване е отхвърлено
   edit_profile:
     other: Друго
+    privacy_redesign_body: Изборът да показвате своите последвани и последователи вече се прави направо от вашия профил.
+    redesign_body: Редактирането на профила вече е достъпно направо от страницата на профила.
+    redesign_button: Идете там
+    redesign_title: Има нов начин за редактиране на профила
   emoji_styles:
     auto: Автоматично
     native: Естествено системно
@@ -1455,7 +1467,7 @@ bg:
     deselect: Размаркиране на всичко
     none: Нищо
     order_by: Подреждане по
-    save_changes: Запази промените
+    save_changes: Запазване на промените
     select_all_matching_items:
       one: Избор на %{count} елемент, съвпадащ с вашето търсене.
       other: Избор на %{count} елементи, съвпадащи с вашето търсене.
@@ -1608,7 +1620,7 @@ bg:
       on_cooldown: В процес на охлаждане
     followers_count: Последователи по време на преместването
     incoming_migrations: Преместване от различен акаунт
-    incoming_migrations_html: За да се преместите от друг акаунт към този, първо трябва да<a href="%{path}">създадете псевдоним за акаунта</a>.
+    incoming_migrations_html: За да се преместите от друг акаунт към този, първо трябва да <a href="%{path}">създадете псевдоним за акаунта</a>.
     moved_msg: Вашият акаунт се пренасочва и последователите ви биват преместени към %{acct}.
     not_redirecting: В момента вашият акаунт не се пренасочва към друг.
     on_cooldown: Пренасочили сте акаунта си наскоро. Това действие ще бъде отново достъпно след %{count} дни.
@@ -1774,7 +1786,7 @@ bg:
     lead_html: За жалост, <strong>%{domain}</strong> е трайно затворен. Ако сте имали там акаунт, то няма да може да продължите да го употребявате, но още може да заявите резервно копие на данните си.
     title: Този сървър се затваря
   sessions:
-    activity: Последна активност
+    activity: Последна дейност
     browser: Браузър
     browsers:
       alipay: Alipay
@@ -1830,7 +1842,7 @@ bg:
     development: Разработка
     edit_profile: Редактирай профила си
     export: Изнасяне
-    featured_tags: Актуални хаштагове
+    featured_tags: Отличени хаштагове
     import: Импортиране
     import_and_export: Импортиране и експортиране
     migrate: Миграция на акаунта
@@ -1892,7 +1904,7 @@ bg:
     quote_policies:
       followers: Само последователи
       nobody: Само аз
-      public: Някой
+      public: Всеки
     quote_post_author: Цитирах публикация от %{acct}
     title: "%{name}: „%{quote}“"
     visibilities:
