@@ -50,7 +50,7 @@ export const NotificationAdminReport: React.FC<{
     target: <DisplayName account={targetAccount} variant='simple' />,
     category: intl.formatMessage(messages[report.category]),
     count: report.status_ids.length,
-    isLocal: isLocal ? 'local' : 'remote',
+    isLocal: isLocal ? 'Local' : 'Remote',
   };
 
   let message;
