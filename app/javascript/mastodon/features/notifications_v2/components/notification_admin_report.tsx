@@ -43,9 +43,16 @@ export const NotificationAdminReport: React.FC<{
 
   if (!account || !targetAccount) return null;
 
+  const isLocal = !targetAccount.acct.includes('@');
+
   const values = {
     name: <DisplayName account={account} variant='simple' />,
-    target: <DisplayName account={targetAccount} variant='simple' />,
+    target: (
+      <>
+        <DisplayName account={targetAccount} variant='simple' /> (
+        {isLocal ? 'local' : 'remote'})
+      </>
+    ),
     category: intl.formatMessage(messages[report.category]),
     count: report.status_ids.length,
   };
