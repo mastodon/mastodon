@@ -22,6 +22,7 @@ import { expandPublicTimeline } from '../../actions/timelines';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },

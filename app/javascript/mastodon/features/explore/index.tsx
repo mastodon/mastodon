@@ -24,6 +24,7 @@ import Tags from './tags';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Trending' },
+  titleRedesign: { id: 'tabs_bar.explore', defaultMessage: 'Explore' },
 });
 
 const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
@@ -40,7 +41,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       {isRedesignEnabled() ? (
         <ColumnHeader
           withBackButton={multiColumn && location.state?.fromMastodon}
-          title={intl.formatMessage(messages.title)}
+          title={intl.formatMessage(messages.titleRedesign)}
         />
       ) : (
         <LegacyColumnHeader

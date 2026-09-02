@@ -3,7 +3,6 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { useHistory } from 'react-router';
-// import { DotsThreeIcon } from '@phosphor-icons/react';
 
 import { MenuItem, MenuItemDivider } from '@/mastodon/components/menu';
 
@@ -11,7 +10,7 @@ interface MultiColumnMenuItemsProps {
   withDivider?: boolean;
   pinned: boolean;
   onPin: () => void;
-  onMove: (direction: number) => void;
+  onMove?: (direction: number) => void;
 }
 
 export const MultiColumnMenuItems: React.FC<MultiColumnMenuItemsProps> = ({
@@ -31,11 +30,11 @@ export const MultiColumnMenuItems: React.FC<MultiColumnMenuItemsProps> = ({
   }, [history, pinned, onPin]);
 
   const moveLeft = useCallback(() => {
-    onMove(-1);
+    onMove?.(-1);
   }, [onMove]);
 
   const moveRight = useCallback(() => {
-    onMove(1);
+    onMove?.(1);
   }, [onMove]);
 
   return (
@@ -54,7 +53,7 @@ export const MultiColumnMenuItems: React.FC<MultiColumnMenuItemsProps> = ({
           />
         )}
       </MenuItem>
-      {pinned && (
+      {pinned && onMove && (
         <>
           <MenuItem onClick={moveLeft} keepMenuOpenOnClick>
             <FormattedMessage
