@@ -200,13 +200,15 @@ function useAssertMenuType(componentName: string) {
   }
 }
 
+export type MenuItemRadioChangeHandler = (change: { value: string }) => void;
+
 interface MenuItemRadioProps extends Omit<
   MenuItemProps<'button'>,
   'as' | 'onChange' | 'icon'
 > {
   checked: boolean;
   value: string;
-  onChange?: (change: { value: string }) => void;
+  onChange?: MenuItemRadioChangeHandler;
 }
 
 export const MenuItemRadio: React.FC<MenuItemRadioProps> = ({
@@ -236,9 +238,14 @@ export const MenuItemRadio: React.FC<MenuItemRadioProps> = ({
   );
 };
 
+export type MenuItemCheckboxChangeHandler = (change: {
+  value: string;
+  checked: boolean;
+}) => void;
+
 interface MenuItemCheckboxProps extends Omit<MenuItemRadioProps, 'onChange'> {
   icon?: IconProp;
-  onChange?: (change: { value: string; checked: boolean }) => void;
+  onChange?: MenuItemCheckboxChangeHandler;
 }
 
 export const MenuItemCheckbox: React.FC<MenuItemCheckboxProps> = ({
