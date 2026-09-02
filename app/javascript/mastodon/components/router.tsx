@@ -26,6 +26,8 @@ interface MastodonLocationState {
   // Prevent the rightmost column in advanced UI from scrolling
   // into view on location changes
   preventMultiColumnAutoScroll?: string;
+  // Used to track where a follow is coming from
+  reference?: string;
 }
 
 export type LocationState = MastodonLocationState | null | undefined;
