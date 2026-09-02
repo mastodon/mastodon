@@ -1,6 +1,6 @@
 import { SUPPORTED_LOCALES } from 'emojibase';
 
-import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
+import { toSupportedLocale } from './locale';
 
 describe('toSupportedLocale', () => {
   test('returns the same locale if it is supported', () => {
@@ -13,17 +13,6 @@ describe('toSupportedLocale', () => {
     const unsupportedLocales = ['xx', 'fr-CA'];
     for (const locale of unsupportedLocales) {
       expect(toSupportedLocale(locale)).toBe('en');
-    }
-  });
-});
-
-describe('toSupportedLocaleOrCustom', () => {
-  test('returns custom for "custom" locale', () => {
-    expect(toSupportedLocaleOrCustom('custom')).toBe('custom');
-  });
-  test('returns supported locale for valid locales', () => {
-    for (const locale of SUPPORTED_LOCALES) {
-      expect(toSupportedLocaleOrCustom(locale)).toBe(locale);
     }
   });
 });
