@@ -21,6 +21,8 @@ import { useAppHistory } from '../router';
 
 import classes from './styles.module.scss';
 
+export { ColumnSettingsMenu } from './column_settings_menu';
+
 export interface ColumnHeaderProps {
   title: string;
   withBackButton?: boolean;
