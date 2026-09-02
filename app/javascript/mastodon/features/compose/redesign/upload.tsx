@@ -54,7 +54,6 @@ export const ComposeUpload: React.FC<{
       attachment={attachment}
       className={className}
       sensitive={sensitive}
-      data-color-scheme='dark'
     >
       {sensitive && attachment.blurhash && (
         <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
@@ -124,6 +123,7 @@ export const ComposeImage: React.FC<
       {...props}
       className={classNames(classes.mediaUpload, className)}
       style={imgStyle}
+      data-color-scheme='dark'
     >
       {sensitive && attachment.blurhash && (
         <Blurhash hash={attachment.blurhash} className={classes.blurHash} />

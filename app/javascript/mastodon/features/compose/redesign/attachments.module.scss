@@ -202,10 +202,22 @@
 }
 
 .quoteVideoDuration {
+  @include mixins.type-label-md;
+
   display: flex;
   gap: var(--space-2xs);
   align-items: center;
   position: absolute;
   bottom: var(--space-xs);
   left: var(--space-xs);
+  padding: var(--space-2xs) var(--space-3xs);
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-xs);
+  color: var(--color-text-primary);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+  }
 }

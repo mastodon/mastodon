@@ -93,9 +93,8 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
 };
 
 const ComposeQuoteBody: React.FC<{
-  sensitive?: boolean;
   status: AccountStatusShape;
-}> = ({ sensitive, status }) => {
+}> = ({ status }) => {
   const attachments = status.media_attachments;
   const mainAttachment = attachments.find(
     (
@@ -130,6 +129,7 @@ const ComposeQuoteBody: React.FC<{
 
     return formatter.format({ hours, minutes, seconds });
   }, [mainAttachment?.meta.original.duration]);
+  const sensitive = status.sensitive;
 
   return (
     <>
@@ -141,7 +141,10 @@ const ComposeQuoteBody: React.FC<{
       />
 
       {mainAttachment?.type === 'audio' && (
-        <div className={classes.quoteSpoiler}>
+        <div
+          className={classNames(classes.quoteMedia, classes.quoteSpoiler)}
+          aria-label={mainAttachment.description}
+        >
           <FormattedMessage
             id='compose.quote.audio'
             defaultMessage='Audio file {duration}'
@@ -154,7 +157,11 @@ const ComposeQuoteBody: React.FC<{
 
       {mainAttachment?.type === 'video' && (
         <div className={classNames(classes.quoteMedia, classes.mediaSingle)}>
-          <ComposeImage attachment={mainAttachment} sensitive={sensitive}>
+          <ComposeImage
+            attachment={mainAttachment}
+            sensitive={sensitive}
+            aria-label={mainAttachment.description}
+          >
             <div className={classes.quoteVideoDuration}>
               <Icon icon={PlayIcon} weight='fill' />
 
@@ -178,6 +185,7 @@ const ComposeQuoteBody: React.FC<{
               attachment={attachment}
               sensitive={sensitive}
               key={attachment.id}
+              aria-label={attachment.description}
             />
           ))}
         </div>
