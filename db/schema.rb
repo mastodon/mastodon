@@ -97,7 +97,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_20_142255) do
     t.string "salt", null: false
     t.boolean "saturated", default: false, null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_account_reach_filters_on_account_id"
+    t.index ["account_id"], name: "index_account_reach_filters_on_account_id", unique: true
   end
 
   create_table "account_relationship_severance_events", force: :cascade do |t|
