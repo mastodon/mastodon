@@ -216,7 +216,7 @@ const SlideOutNavigation: React.FC = () => {
       ref={overlayRef}
     >
       <animated.div className={classes.slideOut} {...bind()} style={{ x }}>
-        <RedesignNavigationPanel />
+        <RedesignNavigationPanel mode='slide-out' />
       </animated.div>
     </div>
   );

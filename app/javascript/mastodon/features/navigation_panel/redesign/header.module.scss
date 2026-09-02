@@ -13,10 +13,10 @@
 
   padding: var(--space-xl) var(--space-lg) var(--half-bottom-spacing);
   margin-bottom: var(--half-bottom-spacing);
-  background: var(--color-bg-blend);
+  background: var(--navigation-background-color);
 
   &::after {
-    @include mixins.scroll-gradient(top, var(--color-bg-blend));
+    @include mixins.scroll-gradient(top, var(--navigation-background-color));
 
     opacity: 0;
     transition: opacity ease 250ms;

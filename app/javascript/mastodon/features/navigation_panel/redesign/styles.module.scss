@@ -15,6 +15,12 @@
   --footer-height: 200px;
 
   scroll-padding-block: var(--header-height) var(--footer-height);
+
+  --navigation-background-color: var(--color-bg-blend);
+
+  &[data-mode='slide-out'] {
+    --navigation-background-color: var(--color-bg-primary);
+  }
 }
 
 .list {
@@ -28,10 +34,10 @@
   margin-top: auto;
   padding: var(--space-xl);
   padding-top: var(--space-2xs);
-  background-color: var(--color-bg-blend);
+  background-color: var(--navigation-background-color);
 
   &::before {
-    @include mixins.scroll-gradient(bottom, var(--color-bg-blend));
+    @include mixins.scroll-gradient(bottom, var(--navigation-background-color));
 
     opacity: 0;
     transition: opacity ease 250ms;
