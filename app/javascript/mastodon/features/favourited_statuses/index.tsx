@@ -28,10 +28,6 @@ const messages = defineMessages({
     id: 'navigation_bar.liked_posts',
     defaultMessage: 'Liked Posts',
   },
-  column_settings: {
-    id: 'navigation_bar.liked_posts_settings',
-    defaultMessage: 'Liked Posts Settings',
-  },
 });
 
 const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
@@ -95,7 +91,7 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
           extraButtons={
             multiColumn && (
               <ColumnSettingsMenu
-                label={intl.formatMessage(messages.column_settings)}
+                labelPrefix={intl.formatMessage(messages.heading_redesign)}
               >
                 <MultiColumnMenuItems
                   onPin={handlePin}

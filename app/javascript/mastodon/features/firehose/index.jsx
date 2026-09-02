@@ -36,7 +36,6 @@ const messages = defineMessages({
     defaultMessage: 'Live feed',
   },
   title_redesign: { id: 'tabs_bar.fediverse_feeds', defaultMessage: 'Fediverse Feeds' },
-  settings_title: { id: 'column.fediverse_feeds_settings', defaultMessage: 'Fediverse Feeds Settings' },
 });
 
 const ColumnSettings = () => {
@@ -189,7 +188,7 @@ const Firehose = ({ feedType, multiColumn }) => {
           withBackButton={multiColumn && 'auto'}
           withUnreadMarker={hasUnread}
           extraButtons={multiColumn &&
-            <ColumnSettingsMenu label={intl.formatMessage(messages.settings_title)}>
+            <ColumnSettingsMenu labelPrefix={intl.formatMessage(messages.title_redesign)}>
               <MultiColumnMenuItems onPin={handlePin} />
             </ColumnSettingsMenu>
           }

@@ -6,7 +6,11 @@ import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
-import { ColumnHeader } from '@/mastodon/components/column_header';
+import {
+  ColumnHeader,
+  ColumnSettingsMenu,
+} from '@/mastodon/components/column_header';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import {
@@ -21,6 +25,10 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 const messages = defineMessages({
   heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },
   headingRedesign: { id: 'column.saved_posts', defaultMessage: 'Saved Posts' },
+  settings: {
+    id: 'column.settings',
+    defaultMessage: 'Column Settings',
+  },
 });
 
 const Bookmarks: React.FC<{
@@ -78,7 +86,23 @@ const Bookmarks: React.FC<{
       label={intl.formatMessage(messages.heading)}
     >
       {isRedesignEnabled() ? (
-        <ColumnHeader title={intl.formatMessage(messages.headingRedesign)} />
+        <ColumnHeader
+          title={intl.formatMessage(messages.headingRedesign)}
+          withBackButton={multiColumn && !pinned && 'auto'}
+          extraButtons={
+            multiColumn && (
+              <ColumnSettingsMenu
+                labelPrefix={intl.formatMessage(messages.headingRedesign)}
+              >
+                <MultiColumnMenuItems
+                  pinned={pinned}
+                  onPin={handlePin}
+                  onMove={handleMove}
+                />
+              </ColumnSettingsMenu>
+            )
+          }
+        />
       ) : (
         <LegacyColumnHeader
           icon='bookmarks'

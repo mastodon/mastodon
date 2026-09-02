@@ -27,10 +27,6 @@ import { ConversationsList } from './components/conversations_list';
 const messages = defineMessages({
   title: { id: 'column.direct', defaultMessage: 'Private mentions' },
   title_redesign: { id: 'tab_bar.messages', defaultMessage: 'Messages' },
-  settings: {
-    id: 'tab_bar.messages_settings',
-    defaultMessage: 'Messages Column Settings',
-  },
 });
 
 interface ColumnBase {
@@ -81,7 +77,9 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
           withBackButton={multiColumn && !pinned && 'auto'}
           extraButtons={
             multiColumn && (
-              <ColumnSettingsMenu label={intl.formatMessage(messages.settings)}>
+              <ColumnSettingsMenu
+                labelPrefix={intl.formatMessage(messages.title_redesign)}
+              >
                 <MultiColumnMenuItems
                   onPin={handlePin}
                   onMove={handleMove}
