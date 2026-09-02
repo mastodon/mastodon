@@ -1,3 +1,4 @@
+import type React from 'react';
 import { useCallback, useMemo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -88,6 +89,8 @@ export const ComposeQuote: React.FC<{ id: string }> = ({ id }) => {
           </div>
         )}
       </CardBody>
+
+      <ComposeQuoteLink status={status} />
     </Card>
   );
 };
@@ -191,6 +194,26 @@ const ComposeQuoteBody: React.FC<{
         </div>
       )}
     </>
+  );
+};
+
+const ComposeQuoteLink: React.FC<{ status: AccountStatusShape }> = ({
+  status,
+}) => {
+  const quotedPost = useAppSelector((state) =>
+    selectAccountStatus(state, status.quote?.quoted_status),
+  );
+
+  if (!quotedPost || status.spoilerHtml) {
+    return null;
+  }
+
+  return (
+    <CardBody>
+      <Link to={`/@${quotedPost.account.acct}/${quotedPost.id}`}>
+        {quotedPost.uri}
+      </Link>
+    </CardBody>
   );
 };
 
