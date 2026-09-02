@@ -5,8 +5,10 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { useAppDispatch } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import {
@@ -20,6 +22,7 @@ import { ConversationsList } from './components/conversations_list';
 
 const messages = defineMessages({
   title: { id: 'column.direct', defaultMessage: 'Private mentions' },
+  title_redesign: { id: 'tab_bar.messages', defaultMessage: 'Messages' },
 });
 
 interface ColumnBase {
@@ -64,16 +67,23 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
-      <ColumnHeader
-        icon='at'
-        iconComponent={AlternateEmailIcon}
-        title={intl.formatMessage(messages.title)}
-        onPin={handlePin}
-        onMove={handleMove}
-        pinned={pinned}
-        multiColumn={multiColumn}
-        scrollTopOnClick
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton={multiColumn && 'auto'}
+          title={intl.formatMessage(messages.title_redesign)}
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='at'
+          iconComponent={AlternateEmailIcon}
+          title={intl.formatMessage(messages.title)}
+          onPin={handlePin}
+          onMove={handleMove}
+          pinned={pinned}
+          multiColumn={multiColumn}
+          scrollTopOnClick
+        />
+      )}
 
       <ConversationsList
         trackScroll={!pinned}
@@ -109,7 +119,11 @@ const DirectTimeline: React.FC<ColumnBase> = ({ columnId, multiColumn }) => {
       />
 
       <Helmet>
-        <title>{intl.formatMessage(messages.title)}</title>
+        <title>
+          {intl.formatMessage(
+            isRedesignEnabled() ? messages.title_redesign : messages.title,
+          )}
+        </title>
         <meta name='robots' content='noindex' />
       </Helmet>
     </Column>
