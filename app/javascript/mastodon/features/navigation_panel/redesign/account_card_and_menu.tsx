@@ -100,7 +100,7 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
           <MenuItemLink to='/favourites' icon={HeartIcon}>
             <FormattedMessage
               id='navigation_bar.liked_posts'
-              defaultMessage='Liked posts'
+              defaultMessage='Liked Posts'
             />
           </MenuItemLink>
 
