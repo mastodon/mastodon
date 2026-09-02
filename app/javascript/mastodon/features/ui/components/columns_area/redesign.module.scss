@@ -60,7 +60,7 @@
 
   background: linear-gradient(
     to bottom,
-    var(--color-bg-blend-solid) var(--column-header-gradient-start),
+    var(--color-bg-blend) var(--column-header-gradient-start),
     transparent var(--column-header-gradient-start)
   );
   position: sticky;
@@ -69,7 +69,7 @@
   border-top: 0;
 
   @media (width >= $mobile-menu-breakpoint) {
-    border-top: 10px solid var(--color-bg-blend-solid);
+    border-top: 10px solid var(--color-bg-blend);
   }
 
   // Fix bg color for legacy column headers.
