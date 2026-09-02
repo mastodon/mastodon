@@ -24,11 +24,7 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
   heading: { id: 'column.bookmarks', defaultMessage: 'Bookmarks' },
-  headingRedesign: { id: 'column.saved_posts', defaultMessage: 'Saved Posts' },
-  settings: {
-    id: 'column.settings',
-    defaultMessage: 'Column Settings',
-  },
+  heading_redesign: { id: 'column.saved_posts', defaultMessage: 'Saved Posts' },
 });
 
 const Bookmarks: React.FC<{
@@ -87,12 +83,12 @@ const Bookmarks: React.FC<{
     >
       {isRedesignEnabled() ? (
         <ColumnHeader
-          title={intl.formatMessage(messages.headingRedesign)}
+          title={intl.formatMessage(messages.heading_redesign)}
           withBackButton={multiColumn && !pinned && 'auto'}
           extraButtons={
             multiColumn && (
               <ColumnSettingsMenu
-                labelPrefix={intl.formatMessage(messages.headingRedesign)}
+                labelPrefix={intl.formatMessage(messages.heading_redesign)}
               >
                 <MultiColumnMenuItems
                   pinned={pinned}
@@ -131,7 +127,7 @@ const Bookmarks: React.FC<{
       <Helmet>
         <title>
           {isRedesignEnabled()
-            ? intl.formatMessage(messages.headingRedesign)
+            ? intl.formatMessage(messages.heading_redesign)
             : intl.formatMessage(messages.heading)}
         </title>
         <meta name='robots' content='noindex' />
