@@ -1,21 +1,24 @@
 .wrapper {
   display: flex;
-  align-items: start;
-  padding: 12px;
   gap: 8px;
-  background-color: var(--color-bg-brand-softest);
-  color: var(--color-text-primary);
+  align-items: start;
+
+  padding: 12px;
   border-radius: 12px;
+
   font-size: 15px;
   line-height: 1.3333;
+  color: var(--color-text-primary);
+
+  background-color: var(--color-bg-brand-softest);
 }
 
 .icon {
-  padding: 4px;
-  border-radius: 9999px;
   width: 1rem;
   height: 1rem;
   margin-block: -2px;
+  padding: 4px;
+  border-radius: 9999px;
 }
 
 .content,
@@ -25,9 +28,9 @@
 
 .content {
   display: flex;
-  gap: 8px;
   flex-direction: column;
   flex-grow: 1;
+  gap: 8px;
 }
 
 @media screen and (width >= 630px) {
@@ -38,16 +41,16 @@
 
 .body {
   flex-grow: 1;
-  overflow-wrap: break-word;
   hyphens: auto;
+  overflow-wrap: break-word;
 
   a {
     color: inherit;
   }
 
   h3 {
-    font-weight: 500;
     margin-bottom: 3px;
+    font-weight: 500;
   }
 }
 
@@ -58,15 +61,18 @@
 }
 
 .action {
-  appearance: none;
-  background: none;
+  padding: 0;
   border: none;
-  color: inherit;
+
   font: inherit;
   font-weight: 500;
-  padding: 0;
-  text-wrap: nowrap;
+  color: inherit;
   text-decoration: underline;
+  text-wrap: nowrap;
+
+  appearance: none;
+  background: none;
+
   transition: color 0.1s ease-in-out;
 
   &:hover {
@@ -105,8 +111,8 @@
 }
 
 .variantFeature {
-  background-color: var(--color-bg-brand-base);
   color: var(--color-text-on-brand-base);
+  background-color: var(--color-bg-brand-base);
 
   button:hover {
     color: color-mix(var(--color-text-on-brand-base), transparent 20%);
@@ -114,8 +120,8 @@
 }
 
 .variantInverted {
-  background-color: var(--color-bg-inverted);
   color: var(--color-text-inverted);
+  background-color: var(--color-bg-inverted);
 }
 
 .variantSuccess {

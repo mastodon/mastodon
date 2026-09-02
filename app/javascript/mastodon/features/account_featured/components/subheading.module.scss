@@ -1,25 +1,30 @@
 .subheading {
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  box-sizing: border-box;
   min-height: 52px;
   padding: 12px 16px;
+
   font-size: 13px;
   font-weight: 500;
-  text-transform: uppercase;
   color: var(--color-text-primary);
+  text-transform: uppercase;
+
   background: var(--color-bg-secondary);
 }
 
 .link {
   display: flex;
+
   padding-block: 4px;
+
   font-size: 13px;
   font-weight: 500;
-  text-transform: none;
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
+  text-transform: none;
 
   &:hover {
     text-decoration: underline;

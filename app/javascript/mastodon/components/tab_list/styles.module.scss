@@ -10,12 +10,15 @@
 
 .tab {
   display: block;
+
   padding: 18px 0;
-  color: var(--color-text-primary);
+  border-radius: 0;
+
   font-size: 15px;
   font-weight: 500;
+  color: var(--color-text-primary);
   text-decoration: none;
-  border-radius: 0;
+
   transition: color 0.2s ease-in-out;
 
   @container (width < 500px) {
@@ -38,8 +41,8 @@
   }
 
   &:global(.active) {
-    color: var(--color-text-brand);
-    border-bottom: 4px solid var(--color-border-brand);
     padding-bottom: 14px;
+    border-bottom: 4px solid var(--color-border-brand);
+    color: var(--color-text-brand);
   }
 }

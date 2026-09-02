@@ -1,15 +1,17 @@
 .details {
-  color: var(--color-text-secondary);
-  font-size: 13px;
   margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
 
   summary {
     cursor: pointer;
-    font-weight: 600;
-    list-style: none;
+
     margin-bottom: 8px;
+
+    font-weight: 600;
     text-decoration: underline;
     text-decoration-style: dotted;
+    list-style: none;
   }
 
   :global(.icon) {

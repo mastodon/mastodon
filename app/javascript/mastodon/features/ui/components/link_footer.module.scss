@@ -1,9 +1,11 @@
 .wrapper {
   z-index: 1;
-  flex: 0 0 auto;
+
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   gap: 20px;
+
   font-size: 13px;
   color: var(--color-text-secondary);
 
@@ -17,9 +19,9 @@
 
   &[data-context='about'] {
     margin-top: 60px;
-    text-align: center;
     font-size: 15px;
     line-height: 22px;
+    text-align: center;
 
     @media screen and (width >= 1175px) {
       display: none;

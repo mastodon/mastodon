@@ -1,20 +1,22 @@
 @use '@/styles/mastodon/mixins';
 
 .root {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-  scrollbar-width: thin;
-
   // Approximate height of fixed navigation elements
   // to ensure focused elements are scrolled into view
   // as needed.
   --header-height: 80px;
   --footer-height: 200px;
 
+  scrollbar-width: thin;
   scroll-padding-block: var(--header-height) var(--footer-height);
+
+  position: relative;
+
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
 }
 
 .list {
@@ -25,9 +27,11 @@
 .footer {
   position: sticky;
   bottom: 0;
+
   margin-top: auto;
   padding: var(--space-xl);
   padding-top: var(--space-2xs);
+
   background-color: var(--color-bg-blend-solid);
 
   &::before {

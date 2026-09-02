@@ -2,12 +2,14 @@
 
 .rootLarge,
 .rootSmall {
-  align-items: center;
-  background-color: var(--color-bg-highlight);
-  border-radius: var(--radius-sm);
-  box-sizing: border-box;
   display: flex;
   gap: var(--space-xs);
+  align-items: center;
+
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+
+  background-color: var(--color-bg-highlight);
 }
 
 .rootLarge {

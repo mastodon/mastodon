@@ -1,20 +1,23 @@
 // Profile Edit Page
 
 .profileImage {
-  height: 120px;
-  background: var(--color-bg-secondary);
-  border-bottom: 1px solid var(--color-border-primary);
-  overflow: hidden;
   position: relative;
+
+  overflow: hidden;
+
+  height: 120px;
+  border-bottom: 1px solid var(--color-border-primary);
+
+  background: var(--color-bg-secondary);
 
   @container (width >= 500px) {
     height: 160px;
   }
 
   > img {
-    object-fit: cover;
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 
   .imageButton {
@@ -24,18 +27,18 @@
 }
 
 .avatar {
-  margin-top: -64px;
-  margin-left: 22px;
   position: relative;
   width: 82px;
+  margin-top: -64px;
+  margin-left: 22px;
 
   > :global(.account__avatar) {
     border: 1px solid var(--color-border-primary);
   }
 
   .imageButton {
-    bottom: -8px;
     right: -8px;
+    bottom: -8px;
   }
 }
 
@@ -64,10 +67,10 @@
 }
 
 .field {
-  padding: 12px 0;
   display: flex;
   gap: 4px;
   align-items: start;
+  padding: 12px 0;
 
   > div {
     flex-grow: 1;
@@ -104,8 +107,8 @@
 
 .tagSuggestions {
   display: flex;
-  gap: 4px;
   flex-wrap: wrap;
+  gap: 4px;
   align-items: center;
 
   // Add more padding to the suggestions label
@@ -130,27 +133,28 @@
 .columnHeader {
   :global(.column-header__buttons) {
     align-items: center;
-    padding-inline-end: 16px;
     height: auto;
+    padding-inline-end: 16px;
   }
 }
 
 // Edit button component
 
 .editButton {
-  border: 1px solid var(--color-border-primary);
-  border-radius: 8px;
   box-sizing: border-box;
   padding: 4px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+
   transition:
     color 0.2s ease-in-out,
     background-color 0.2s ease-in-out;
 
   &:global(.button) {
-    background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-    font-size: 13px;
     padding: 4px 8px;
+    font-size: 13px;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
 
     &:active,
     &:focus,
@@ -159,8 +163,8 @@
     }
 
     &:disabled {
-      background-color: var(--color-bg-primary);
       opacity: 0.5;
+      background-color: var(--color-bg-primary);
     }
   }
 
@@ -184,13 +188,13 @@
 }
 
 .fieldName {
-  color: var(--color-text-secondary);
   font-size: 13px;
+  color: var(--color-text-secondary);
 }
 
 .fieldValue {
-  color: var(--color-text-primary);
   font-size: 15px;
+  color: var(--color-text-primary);
 }
 
 // Image edit component
@@ -198,22 +202,24 @@
 .imageButton {
   --default-bg-color: var(--color-bg-primary);
 
+  position: absolute;
+
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 9999px;
+
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+
   &,
   &:global(.active) {
     // Overrides the transparent background added by default with .active
     --hover-bg-color: var(--color-bg-brand-softest);
   }
-
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--color-border-primary);
-  border-radius: 9999px;
-  box-sizing: border-box;
-  padding: 4px;
-  transition:
-    color 0.2s ease-in-out,
-    background-color 0.2s ease-in-out;
 
   svg {
     width: 18px;
@@ -244,8 +250,8 @@
 
 .itemListButtons {
   display: flex;
-  align-items: center;
   gap: 4px;
+  align-items: center;
 }
 
 // Section component
@@ -262,8 +268,8 @@
 
 .sectionHeader {
   display: flex;
-  align-items: center;
   gap: 8px;
+  align-items: center;
   margin-bottom: 16px;
 }
 

@@ -2,16 +2,18 @@
 
 .badge {
   display: inline-flex;
+  gap: var(--space-2xs);
   align-items: center;
   justify-content: center;
-  max-width: 100%;
+
   min-width: 1lh;
+  max-width: 100%;
   padding: var(--space-2xs);
-  gap: var(--space-2xs);
   border-radius: var(--radius-xs);
-  color: var(--color-text-primary);
+
   font-size: 13px;
   font-weight: 400;
+  color: var(--color-text-primary);
 
   &:not(.badgeWithoutIcon) {
     padding-inline-end: var(--space-xs);
@@ -19,10 +21,13 @@
 
   > svg {
     flex-shrink: 0;
+
     width: auto;
     height: 17px;
-    fill: currentColor;
+
     opacity: 0.85;
+
+    fill: currentColor;
   }
 
   a {
@@ -32,14 +37,14 @@
 }
 
 .content {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .domain {
-  opacity: 0.75;
   letter-spacing: 0;
+  opacity: 0.75;
 }
 
 .default {
@@ -56,13 +61,13 @@
 }
 
 .feature {
-  background-color: var(--color-bg-brand-base);
   color: var(--color-text-on-brand-base);
+  background-color: var(--color-bg-brand-base);
 }
 
 .inverted {
-  background-color: var(--color-bg-inverted);
   color: var(--color-text-inverted);
+  background-color: var(--color-bg-inverted);
 }
 
 .success {
@@ -74,6 +79,6 @@
 }
 
 .danger {
-  background-color: var(--color-bg-error-base);
   color: var(--color-text-on-error-base);
+  background-color: var(--color-bg-error-base);
 }

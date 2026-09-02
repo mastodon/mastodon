@@ -3,15 +3,19 @@
 }
 
 .filterSelectButton {
-  appearance: none;
-  border: none;
-  color: inherit;
-  background: none;
-  padding: 8px 0;
-  font-size: 15px;
-  font-weight: 500;
   display: flex;
   align-items: center;
+
+  padding: 8px 0;
+  border: none;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: inherit;
+
+  appearance: none;
+  background: none;
+
   transition: color 0.2s ease-in-out;
 
   &:hover,
@@ -26,16 +30,19 @@
 }
 
 .filterOverlay {
-  background: var(--color-bg-primary);
-  border-radius: 12px;
-  box-shadow: var(--dropdown-shadow);
-  min-width: 230px;
+  z-index: 1;
+
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: stretch;
   row-gap: 16px;
+  align-items: stretch;
+
+  min-width: 230px;
   padding: 8px 12px;
-  z-index: 1;
+  border-radius: 12px;
+
+  background: var(--color-bg-primary);
+  box-shadow: var(--dropdown-shadow);
 
   > label {
     cursor: pointer;
@@ -57,16 +64,17 @@
 .tagsWrapper {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: flex-start;
   gap: 8px;
+  justify-content: flex-start;
 }
 
 .tagsList {
-  display: flex;
-  gap: 4px;
-  flex-wrap: nowrap;
-  overflow: hidden;
   position: relative;
+
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
 
   > button {
     flex-shrink: 0;
@@ -74,8 +82,8 @@
 }
 
 .tagsListShowAll {
-  flex-wrap: wrap;
   overflow: visible;
+  flex-wrap: wrap;
   max-width: none !important;
 }
 
@@ -90,21 +98,24 @@
 }
 
 .pinnedViewAllButton {
-  background-color: var(--color-bg-primary);
-  border-radius: 8px;
-  border: 1px solid var(--color-border-primary);
   box-sizing: border-box;
-  color: var(--color-text-primary);
-  line-height: normal;
+  width: calc(100% - 32px);
   margin: 12px 16px;
   padding: 8px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+
+  line-height: normal;
+  color: var(--color-text-primary);
+
+  background-color: var(--color-bg-primary);
+
   transition: border-color 0.2s ease-in-out;
-  width: calc(100% - 32px);
 
   &:hover,
   &:focus {
-    background-color: inherit;
     border-color: var(--color-bg-brand-base-hover);
+    background-color: inherit;
   }
 }
 
@@ -125,8 +136,7 @@
 }
 
 .pinnedBadge {
-  justify-self: end;
-
   // Allow "click to open post" event to pass through
   pointer-events: none;
+  justify-self: end;
 }

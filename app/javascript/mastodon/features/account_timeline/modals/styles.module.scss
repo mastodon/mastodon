@@ -5,16 +5,18 @@
 }
 
 .noteInput {
-  min-height: 70px;
-  width: 100%;
-  padding: 8px;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background: var(--color-bg-primary);
-  border: 1px solid var(--color-border-primary);
-  appearance: none;
   resize: none;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 70px;
   margin-top: 4px;
+  padding: 8px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+
+  appearance: none;
+  background: var(--color-bg-primary);
 }
 
 .noteInput:focus-visible {
@@ -28,30 +30,33 @@
 }
 
 .fieldValue {
-  color: var(--color-text-primary);
-  font-weight: 600;
   margin-top: 4px;
+  font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 @media screen and (min-width: ($mobile-breakpoint + 1)) {
   .joinShell {
     > :global(.safety-action-modal__top) {
-      border-bottom-left-radius: 16px;
-      border-bottom-right-radius: 16px;
       border-bottom-width: 1px;
+      border-bottom-right-radius: 16px;
+      border-bottom-left-radius: 16px;
     }
   }
 }
 
 .joinWrapper {
+  position: relative;
+
   display: flex;
   flex-direction: column;
-  color: var(--color-text-primary);
+  gap: 16px;
   align-items: center;
   justify-content: center;
-  position: relative;
+
   min-height: 120px;
-  gap: 16px;
+
+  color: var(--color-text-primary);
 
   p,
   h1 {
@@ -71,26 +76,28 @@
 }
 
 .joinBanner {
-  width: 120px;
-  height: 110px;
   position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  width: 120px;
+  height: 110px;
+
   svg {
-    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
   }
 
   h2 {
+    margin-top: 8px;
     font-size: 40px;
     font-weight: 600;
     line-height: 40px;
-    margin-top: 8px;
   }
 
   h3 {
@@ -102,7 +109,7 @@
 
 .joinClose {
   position: absolute;
+  z-index: 1;
   top: 0;
   right: 0;
-  z-index: 1;
 }

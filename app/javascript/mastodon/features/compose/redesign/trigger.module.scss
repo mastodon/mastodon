@@ -3,9 +3,9 @@
 .button {
   &:not(.buttonInline) {
     position: fixed;
-    bottom: var(--space-md);
-    right: var(--space-md);
     z-index: 2;
+    right: var(--space-md);
+    bottom: var(--space-md);
   }
 }
 
@@ -17,8 +17,8 @@
 }
 
 .composer {
-  width: 100%;
   top: env(safe-area-inset-top);
+  width: 100%;
 
   // Set from the visualViewport API.
   height: var(--viewport-height, 100vh);
@@ -27,11 +27,12 @@
   @media (width >= #{variables.$mobile-menu-breakpoint}) {
     top: auto;
     bottom: 0;
-    min-height: 520px;
-    height: auto;
-    min-width: 300px;
+
     width: calc(100vw - var(--space-md) * 2);
+    min-width: 300px;
     max-width: 500px;
+    height: auto;
+    min-height: 520px;
     margin: var(--space-md);
   }
 }
@@ -47,8 +48,8 @@
 .composerMinimized {
   bottom: 0;
   width: min(320px, calc(100vw - var(--space-md) * 2));
-  padding: var(--space-md);
   margin: var(--space-md);
+  padding: var(--space-md);
 
   @media (width < #{variables.$mobile-menu-breakpoint}) {
     bottom: var(--mobile-bottom-nav-height);

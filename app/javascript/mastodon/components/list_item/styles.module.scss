@@ -3,13 +3,16 @@
   --list-item-padding-block: var(--list-item-padding);
   --list-item-gap: 12px;
 
-  box-sizing: border-box;
   position: relative;
+
   display: flex;
-  align-items: center;
-  width: 100%;
   gap: var(--list-item-gap);
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
   padding: var(--list-item-padding-block) var(--list-item-padding);
+
   font-size: 15px;
   color: var(--color-text-primary);
 }
@@ -26,19 +29,21 @@
   button {
     padding: 0;
     border: none;
-    color: inherit;
-    background: none;
+
     font: inherit;
+    color: inherit;
     text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
+    background: none;
 
     &::before {
       content: '';
       position: absolute;
       inset: var(--clickable-area-spread, 0);
+    }
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 }
@@ -51,8 +56,9 @@
 .sideContent {
   display: flex;
   gap: var(--list-item-gap);
-  align-self: stretch;
   align-items: center;
+  align-self: stretch;
+
   margin-inline-start: auto;
 
   &:has(button, a) {
@@ -65,10 +71,11 @@
     // padding box around the sideContent
     &::before {
       content: '';
+
       position: absolute;
+      z-index: -1;
       inset-block: calc(-1 * var(--list-item-padding-block));
       inset-inline: calc(-1 * var(--list-item-padding));
-      z-index: -1;
     }
   }
 

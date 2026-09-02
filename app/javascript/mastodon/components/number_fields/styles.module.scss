@@ -3,9 +3,11 @@
 
   display: flex;
   flex-wrap: wrap;
+  gap: 4px var(--_item-gap);
+
   margin: 0;
   padding: 0;
-  gap: 4px var(--_item-gap);
+
   font-size: 13px;
   color: var(--color-text-secondary);
 }
@@ -19,9 +21,10 @@
   button,
   strong {
     display: block;
+
+    font-size: 15px;
     font-weight: 600;
     color: var(--color-text-primary);
-    font-size: 15px;
     white-space: nowrap;
   }
 
@@ -39,10 +42,12 @@
   }
 
   button {
+    display: block;
+
+    padding: 0;
+    border: none;
+
     appearance: none;
     background: none;
-    border: none;
-    display: block;
-    padding: 0;
   }
 }

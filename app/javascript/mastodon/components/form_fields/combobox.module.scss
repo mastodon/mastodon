@@ -15,26 +15,33 @@
   &::before {
     // Subtle divider line separating the button from the input field
     content: '';
+
     position: absolute;
-    inset-inline-start: 0;
     inset-block: 10px;
+    inset-inline-start: 0;
+
     border-inline-start: 1px solid var(--color-border-primary);
   }
 }
 
 .popover {
-  z-index: 9999;
-  box-sizing: border-box;
-  max-height: min(320px, 50dvh);
-  border-radius: 4px;
-  color: var(--color-text-primary);
-  background: var(--color-bg-primary);
-  border: 1px solid var(--color-border-primary);
-  box-shadow: var(--dropdown-shadow);
-  overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
+
+  z-index: 9999;
+
+  overflow-y: auto;
   overscroll-behavior-y: contain;
+
+  box-sizing: border-box;
+  max-height: min(320px, 50dvh);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+
+  color: var(--color-text-primary);
+
+  background: var(--color-bg-primary);
+  box-shadow: var(--dropdown-shadow);
 }
 
 .groupTitle {
@@ -45,17 +52,20 @@
 }
 
 .menuItem {
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  margin-inline: 4px;
-  gap: 12px;
-  font-size: 14px;
-  line-height: 20px;
-  border-radius: 4px;
-  color: var(--color-text-primary);
   cursor: pointer;
   user-select: none;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  margin-inline: 4px;
+  padding: 8px 12px;
+  border-radius: 4px;
+
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
 
   &:first-child {
     margin-top: 4px;
@@ -70,29 +80,33 @@
   }
 
   &[aria-disabled='true'] {
-    color: var(--color-text-disabled);
     cursor: not-allowed;
+    color: var(--color-text-disabled);
   }
 }
 
 .emptyMessage {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   gap: 8px;
+  align-items: center;
+
   padding: 16px;
+
   font-size: 13px;
+  text-align: center;
 }
 
 .loadingIndicator {
   --spinner-size: 20px;
 
   position: relative;
+
+  overflow: hidden;
   display: block;
+
   width: var(--spinner-size);
   height: var(--spinner-size);
-  overflow: hidden;
 
   & :global(.circular-progress) {
     width: var(--spinner-size);

@@ -2,29 +2,32 @@ $mobile-breakpoint: 540px;
 
 @font-face {
   font-family: silkscreen-wrapstodon;
+  font-weight: normal;
+  font-style: normal;
+
+  font-display: swap;
   src: url('@/fonts/silkscreen-wrapstodon/silkscreen-regular.woff2')
     format('woff2');
-  font-weight: normal;
-  font-display: swap;
-  font-style: normal;
 }
 
 .modalWrapper {
-  box-sizing: border-box;
+  scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
+
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  box-sizing: border-box;
   width: 100%;
   padding: 40px;
-  overflow-y: auto;
-  scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
-
-  @media (width < $mobile-breakpoint) {
-    padding: 0;
-  }
 
   .loading-indicator .circular-progress {
     color: var(--lime);
+  }
+
+  @media (width < $mobile-breakpoint) {
+    padding: 0;
   }
 }
 
@@ -38,6 +41,7 @@ $mobile-breakpoint: 540px;
   position: absolute;
   top: var(--corner-distance);
   right: var(--corner-distance);
+
   padding: 8px;
   border-radius: 100%;
 
@@ -51,15 +55,21 @@ $mobile-breakpoint: 540px;
 .wrapper {
   --gradient-strength: 0.4;
 
-  box-sizing: border-box;
+  pointer-events: all;
+
   position: relative;
+
+  contain: layout;
+  flex: 0 0 auto;
+
+  box-sizing: border-box;
   max-width: 600px;
   padding: 24px;
   padding-top: 40px;
-  contain: layout;
-  flex: 0 0 auto;
-  pointer-events: all;
+  border-radius: 40px;
+
   color: var(--color-text-primary);
+
   background: var(--color-bg-primary);
   background:
     radial-gradient(
@@ -88,11 +98,10 @@ $mobile-breakpoint: 540px;
         transparent 40%
       )
       var(--color-bg-primary);
-  border-radius: 40px;
 
   @media (width < $mobile-breakpoint) {
-    padding-inline: 12px;
     padding-bottom: 12px;
+    padding-inline: 12px;
     border-radius: 0;
   }
 }
@@ -102,15 +111,16 @@ $mobile-breakpoint: 540px;
   text-align: center;
 
   h1 {
-    font-family: silkscreen-wrapstodon, monospace;
-    font-size: 28px;
-    line-height: 1;
     margin-bottom: 4px;
     padding-inline: 40px; // Prevent overlap with close button
 
+    font-family: silkscreen-wrapstodon, monospace;
+    font-size: 28px;
+    line-height: 1;
+
     @media (width < $mobile-breakpoint) {
-      font-size: 22px;
       margin-bottom: 4px;
+      font-size: 22px;
     }
   }
 
@@ -129,18 +139,24 @@ $mobile-breakpoint: 540px;
 
 .box {
   position: relative;
+
   padding: 24px;
   border-radius: 16px;
+
   background: rgb(from var(--color-bg-primary) r g b / 60%);
   box-shadow: inset 0 0 0 1px rgb(from var(--color-text-primary) r g b / 40%);
 
   &::before,
   &::after {
     content: '';
+
     position: absolute;
     inset-inline: 0;
+
     display: block;
+
     height: 1px;
+
     background-image: linear-gradient(
       to right,
       transparent,
@@ -161,8 +177,9 @@ $mobile-breakpoint: 540px;
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 8px;
+  justify-content: center;
+
   font-size: 14px;
   text-align: center;
   text-wrap: balance;
@@ -173,9 +190,9 @@ $mobile-breakpoint: 540px;
 }
 
 .title {
-  text-transform: uppercase;
-  color: var(--color-text-brand-soft);
   font-weight: 500;
+  color: var(--color-text-brand-soft);
+  text-transform: uppercase;
 
   &:last-child {
     margin-bottom: -3px;
@@ -200,43 +217,36 @@ $mobile-breakpoint: 540px;
 }
 
 .mostBoostedPost {
+  overflow: hidden;
   padding: 0;
   padding-top: 24px;
-  overflow: hidden;
 }
 
 .statsGrid {
   display: grid;
-  gap: var(--grid-spacing);
-  grid-template-columns: 1fr 2fr;
   grid-template-areas:
     'followers hashtag'
     'new-posts hashtag';
-
-  @media (width < $mobile-breakpoint) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      'followers new-posts'
-      'hashtag hashtag';
-  }
+  grid-template-columns: 1fr 2fr;
+  gap: var(--grid-spacing);
 
   &:empty {
     display: none;
   }
 
   &.onlyHashtag {
-    grid-template-columns: 1fr;
     grid-template-areas: 'hashtag';
+    grid-template-columns: 1fr;
   }
 
   &.noHashtag {
-    grid-template-columns: 1fr 1fr;
     grid-template-areas: 'followers new-posts';
+    grid-template-columns: 1fr 1fr;
   }
 
   &.singleNumber {
-    grid-template-columns: 1fr 2fr;
     grid-template-areas: 'number hashtag';
+    grid-template-columns: 1fr 2fr;
 
     @media (width < $mobile-breakpoint) {
       grid-template-areas:
@@ -246,8 +256,15 @@ $mobile-breakpoint: 540px;
   }
 
   &.singleNumber.noHashtag {
-    grid-template-columns: 1fr;
     grid-template-areas: 'number';
+    grid-template-columns: 1fr;
+  }
+
+  @media (width < $mobile-breakpoint) {
+    grid-template-areas:
+      'followers new-posts'
+      'hashtag hashtag';
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -275,8 +292,8 @@ $mobile-breakpoint: 540px;
 .archetype {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 16px;
+  align-items: center;
 
   p {
     max-width: 460px;
@@ -285,10 +302,12 @@ $mobile-breakpoint: 540px;
 
 .archetypeArtboard {
   position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   align-self: center;
+
   width: 180px;
   padding-top: 40px;
 }
@@ -297,23 +316,31 @@ $mobile-breakpoint: 540px;
   position: absolute;
   top: 7px;
   left: 4px;
-  border-radius: 100%;
+
   overflow: hidden;
+
+  border-radius: 100%;
 }
 
 .archetypeIllustrationWrapper {
   position: relative;
-  width: 92px;
-  aspect-ratio: 1;
+
   overflow: hidden;
+
+  aspect-ratio: 1;
+  width: 92px;
   border-radius: 100%;
 
   &::after {
     content: '';
-    display: block;
+
     position: absolute;
     inset: 0;
+
+    display: block;
+
     border-radius: inherit;
+
     box-shadow: inset -10px -4px 15px #00000080;
   }
 }

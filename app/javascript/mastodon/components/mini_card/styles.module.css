@@ -4,13 +4,15 @@
 }
 
 .card {
-  border: 1px solid var(--color-border-primary);
-  padding: 8px;
-  border-radius: 8px;
-  flex-shrink: 0;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
+  flex-shrink: 0;
   column-gap: 8px;
+
+  padding: 8px;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+
   font-size: 13px;
   line-height: 1rem;
   color: var(--color-text-secondary);
@@ -21,23 +23,25 @@
 }
 
 .icon {
-  grid-row: span 2;
   grid-column: 1;
+  grid-row: span 2;
+  align-self: center;
+
   width: 100%;
   height: auto;
-  align-self: center;
+
   fill: currentColor;
 }
 
 .value {
-  color: var(--color-text-primary);
   font-weight: 500;
+  color: var(--color-text-primary);
 
   a {
     color: var(--color-text-brand);
     text-decoration: none;
-    transition: color 0.2s ease-in-out;
     outline: none;
+    transition: color 0.2s ease-in-out;
 
     &:hover,
     &:focus {
@@ -49,8 +53,8 @@
 .label,
 .value {
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
 
   .cardWithIcon & {
     grid-column: 2;
