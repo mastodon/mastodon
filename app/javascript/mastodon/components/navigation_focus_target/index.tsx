@@ -8,7 +8,7 @@ import {
 
 import { useLocation } from 'react-router-dom';
 
-import { polymorphicForwardRef } from '@/types/polymorphic';
+import type { PolymorphicProps } from '@/types/polymorphic';
 
 import type { MastodonLocation } from '../router';
 
@@ -129,10 +129,13 @@ interface FocusTargetElementProps extends React.ComponentPropsWithoutRef<'h1'> {
   focusTargetName?: NamedFocusTarget;
 }
 
-export const NavigationFocusTarget = polymorphicForwardRef<
-  'h1',
-  FocusTargetElementProps
->(({ as: Component = 'h1', focusTargetName, children, ...otherProps }) => {
+export const NavigationFocusTarget = <As extends React.ElementType = 'h1'>({
+  as: asComp,
+  focusTargetName,
+  children,
+  ...otherProps
+}: PolymorphicProps<FocusTargetElementProps, As>) => {
+  const Component = asComp ?? 'h1';
   const focusOnNavigation = useFocusOnNavigation(focusTargetName);
 
   return (
@@ -140,4 +143,4 @@ export const NavigationFocusTarget = polymorphicForwardRef<
       {children}
     </Component>
   );
-});
+};
