@@ -18,8 +18,22 @@
   @include mixins.elevation-2;
 }
 
+.titleWrapper {
+  display: flex;
+  align-items: start;
+  gap: var(--space-md);
+}
+
 .title {
   @include mixins.type-heading-sm;
+
+  flex: 1 1 auto;
+}
+
+.closeButton {
+  // Prevent close button from increasing spacing around title
+  margin-block: calc(-1 * var(--space-xs));
+  margin-inline-end: calc(-1 * var(--space-xs));
 }
 
 .actions {

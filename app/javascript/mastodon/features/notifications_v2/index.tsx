@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { GearIcon } from '@phosphor-icons/react';
 import { Helmet } from '@unhead/react/helmet';
 import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
@@ -12,10 +13,18 @@ import {
   moveColumn,
 } from '@/mastodon/actions/columns';
 import { submitMarkers } from '@/mastodon/actions/markers';
+import { openModal } from '@/mastodon/actions/modal';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import {
+  ColumnHeader,
+  ColumnHeaderButton,
+  ColumnSettingsMenu,
+} from '@/mastodon/components/column_header';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 import { LoadGap } from '@/mastodon/components/load_gap';
 import ScrollableList from '@/mastodon/components/scrollable_list';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import {
@@ -165,6 +174,15 @@ export const Notifications: React.FC<{
     void dispatch(submitMarkers({ immediate: true }));
   }, [dispatch]);
 
+  const openSettingsModal = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'NOTIFICATION_SETTINGS',
+        modalProps: {},
+      }),
+    );
+  }, [dispatch]);
+
   const pinned = !!columnId;
   const emptyMessage = (
     <FormattedMessage
@@ -254,20 +272,49 @@ export const Notifications: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
-      <ColumnHeader
-        icon='bell'
-        iconComponent={NotificationsIcon}
-        active={isUnread}
-        title={intl.formatMessage(messages.title)}
-        onPin={handlePin}
-        onMove={handleMove}
-        pinned={pinned}
-        multiColumn={multiColumn}
-        extraButton={extraButton}
-        scrollTopOnClick
-      >
-        <ColumnSettingsContainer />
-      </ColumnHeader>
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          title={intl.formatMessage(messages.title)}
+          withUnreadMarker={isUnread}
+          withBackButton={multiColumn && !pinned && 'auto'}
+          extraButtons={
+            <>
+              <ColumnHeaderButton icon={GearIcon} onClick={openSettingsModal}>
+                <FormattedMessage
+                  id='notifications.settings'
+                  defaultMessage='Notification Settings'
+                />
+              </ColumnHeaderButton>
+              {multiColumn && (
+                <ColumnSettingsMenu
+                  labelPrefix={intl.formatMessage(messages.title)}
+                >
+                  <MultiColumnMenuItems
+                    pinned={pinned}
+                    onPin={handlePin}
+                    onMove={handleMove}
+                  />
+                </ColumnSettingsMenu>
+              )}
+            </>
+          }
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='bell'
+          iconComponent={NotificationsIcon}
+          active={isUnread}
+          title={intl.formatMessage(messages.title)}
+          onPin={handlePin}
+          onMove={handleMove}
+          pinned={pinned}
+          multiColumn={multiColumn}
+          extraButton={extraButton}
+          scrollTopOnClick
+        >
+          <ColumnSettingsContainer />
+        </LegacyColumnHeader>
+      )}
 
       {filterBar}
 
