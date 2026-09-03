@@ -294,8 +294,8 @@ class Status extends ImmutablePureComponent {
   };
 
   _openStatus = (newTab = false) => {
-    if (this.props.onClick) {
-      this.props.onClick();
+    if (this.props.onOpen) {
+      this.props.onOpen();
       return;
     }
 

@@ -1,5 +1,4 @@
-import type React from 'react';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
@@ -29,7 +28,6 @@ type StatusRedesignProps = Merge<
   {
     accountId?: string;
     contextType?: StatusContextType;
-    onClick?: () => void;
   }
 >;
 
@@ -73,7 +71,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   avatarSize,
   withCounters,
   withDismiss,
-  onClick,
+  onOpen,
   showThread,
 }) => {
   // Select data from store
@@ -110,7 +108,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     onOpenClick,
     onTranslate,
     ...handlers
-  } = useStatusHandlers({ status, contextType, onClick });
+  } = useStatusHandlers({ status, contextType, onOpen });
 
   if (!status) {
     return null; // loading state
@@ -272,10 +270,6 @@ const StatusHotkeys: React.FC<
     | 'onFilterToggle'
   >
 > = ({ muted, unfocusable, children, ...handlers }) => {
-  const onOpen = useCallback(() => {
-    handlers.onOpen();
-  }, [handlers]);
-
   if (muted) {
     return children;
   }
@@ -288,7 +282,7 @@ const StatusHotkeys: React.FC<
         boost: handlers.onBoost,
         quote: handlers.onQuote,
         mention: handlers.onMention,
-        open: onOpen,
+        open: handlers.onOpen,
         openProfile: handlers.onOpenProfile,
         toggleHidden: handlers.onToggleHidden,
         // TODO: This is handled in a child component, so needs to be fixed.
