@@ -4,7 +4,6 @@ import classNames from 'classnames';
 
 import type { Merge } from 'type-fest';
 
-import { selectPlainAccount } from '@/mastodon/selectors/accounts';
 import { selectStatusFilters } from '@/mastodon/selectors/filters';
 import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
@@ -17,10 +16,10 @@ import { Hotkeys } from '../hotkeys';
 import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
-import { StatusHeader } from './header';
 import type { StatusHandlers } from './hooks';
 import { useStatusHandlers, useTextForScreenReader } from './hooks';
 import { StatusPrepend } from './prepend';
+import { StatusRedesignHeader } from './redesign/header';
 import type { StatusContainerProps, StatusContextType } from './types';
 
 type StatusRedesignProps = Merge<
@@ -28,6 +27,7 @@ type StatusRedesignProps = Merge<
   {
     accountId?: string;
     contextType?: StatusContextType;
+    headerContents?: React.ReactNode;
   }
 >;
 
@@ -61,26 +61,21 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   contextType,
   featured,
   isQuotedPost,
-  accountId,
   hidden,
   shouldHighlightOnMount,
   showActions = true,
   scrollKey,
   children,
-  headerRenderFn,
   avatarSize = 40,
   withCounters,
   withDismiss,
   onOpen,
   showThread,
+  headerContents,
 }) => {
   // Select data from store
   const { status, parent } = useAppSelector((state) =>
     selectStatusReblog(state, id),
-  );
-  const account = useAppSelector(
-    (state) =>
-      parent?.account ?? selectPlainAccount(state, accountId) ?? undefined,
   );
   const matchedFilters = useAppSelector((state) =>
     selectStatusFilters(state, { contextType, statusId: parent?.id ?? id }),
@@ -142,23 +137,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     );
   }
 
-  const header = headerRenderFn ? (
-    headerRenderFn({
-      statusId: status.id,
-      account,
-      avatarSize,
-      onHeaderClick,
-      featured,
-    })
-  ) : (
-    <StatusHeader
-      statusId={status.id}
-      account={account}
-      avatarSize={avatarSize}
-      onHeaderClick={onHeaderClick}
-    />
-  );
-
   return (
     <StatusHotkeys {...hotkeysProps}>
       <div
@@ -197,7 +175,9 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             'status--highlighted-entry': shouldHighlightOnMount,
           })}
         >
-          {header}
+          <StatusRedesignHeader status={status} avatarSize={avatarSize}>
+            {headerContents}
+          </StatusRedesignHeader>
 
           {matchedFilters.length > 0 && (
             <FilterWarning
