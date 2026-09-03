@@ -1,18 +1,11 @@
-.directory__tag
-  = link_to admin_moderation_subscription_path(moderation_subscription) do
-    %h4
-      = moderation_subscription.name
+.applications-list__item
+  - list_action = moderation_subscription.list_action || 'default'
+  = link_to admin_moderation_subscription_path(moderation_subscription), class: 'announcements-list__item__title' do
+    = moderation_subscription.name
+    .information-badge{ class: list_action }= I18n.t(list_action, scope: 'admin.moderation_subscriptions.list_actions_short')
 
-      %small= moderation_subscription.url
-      %small
-        - if moderation_subscription.accept_action?
-          = I18n.t('admin.moderation_subscriptions.list_actions.accept')
-        - elsif moderation_subscription.reject_action?
-          = I18n.t('admin.moderation_subscriptions.list_actions.reject')
-        - else
-          = I18n.t('admin.moderation_subscriptions.list_actions.default')
-      -# TODO: figure out what to display and how
-      %small= moderation_subscription_policy_list(moderation_subscription)
-
-    -# TODO: optimize/preload/memoize
-    .trends__item__current{ title: t('admin.moderation_subscriptions.advisories_count', count: moderation_subscription.advisories.count) }= friendly_number_to_human moderation_subscription.advisories.count
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      = moderation_subscription.url
+    .announcements-list__item__meta
+      = moderation_subscription_policy_list(moderation_subscription)

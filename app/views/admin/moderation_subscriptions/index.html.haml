@@ -13,4 +13,5 @@
   .muted-hint.center-text
     = t 'admin.moderation_subscriptions.empty'
 - else
-  = render partial: 'moderation_subscription', collection: @moderation_subscriptions
+  .applications-list
+    = render partial: 'moderation_subscription', collection: @moderation_subscriptions
