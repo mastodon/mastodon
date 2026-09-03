@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -9,14 +9,12 @@ import {
   ChatCircleIcon,
   HouseIcon,
   MagnifyingGlassIcon,
-  HamburgerIcon,
 } from '@phosphor-icons/react';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
 import { closeNavigation, openNavigation } from '@/mastodon/actions/navigation';
 import { Avatar } from '@/mastodon/components/avatar';
-import { IconButton } from '@/mastodon/components/button/redesign';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
 import { useAccount } from '@/mastodon/hooks/useAccount';
@@ -29,18 +27,12 @@ import classes from './mobile_nav.module.scss';
 import { MobileNavLink } from './navigation_link';
 
 export const RedesignMobileNavigation: React.FC = () => {
-  const dispatch = useAppDispatch();
-
   const { accountId, signedIn } = useIdentity();
   const account = useAccount(accountId);
 
   const notificationsCount = useAppSelector(
     selectUnreadNotificationGroupsCount,
   );
-
-  const handleOpenNavigation = useCallback(() => {
-    dispatch(openNavigation());
-  }, [dispatch]);
 
   if (!signedIn) {
     return null;
@@ -89,13 +81,6 @@ export const RedesignMobileNavigation: React.FC = () => {
           </MobileNavLink>
         </ul>
         <ComposeRedesignButton inline />
-        <IconButton // Silly placeholder – will be replaced with button in column header
-          icon={HamburgerIcon}
-          variant='solid'
-          onClick={handleOpenNavigation}
-        >
-          Menu
-        </IconButton>
       </nav>
       <SlideOutNavigation />
     </>
