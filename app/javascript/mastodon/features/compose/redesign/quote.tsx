@@ -184,7 +184,6 @@ const ComposeQuoteBody: React.FC<{
             defaultMessage='Poll {sep} {isOpen, select, open {Accepting responses} other {Closed}}'
             values={{
               isOpen: poll.expired ? 'closed' : 'open',
-              // eslint-disable-next-line no-restricted-syntax
               sep: <>&bull;</>,
             }}
           />

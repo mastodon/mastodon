@@ -94,7 +94,6 @@ export const CardTitle: React.FC<
       <span id={`${id}_title`}>{children}</span>
 
       {afterContent && (
-        // eslint-disable-next-line no-restricted-syntax -- Allow &bull;
         <span>
           &nbsp;&bull;&nbsp;
           {afterContent}
