@@ -9,7 +9,12 @@ import { DotsThreeIcon, TrashIcon } from '@phosphor-icons/react';
 
 import { undoUploadCompose } from '@/mastodon/actions/compose';
 import { openModal } from '@/mastodon/actions/modal';
-import type { ApiAudioAttachmentJSON } from '@/mastodon/api_types/media_attachments';
+import type {
+  ApiAudioAttachmentJSON,
+  ApiGifvAttachmentJSON,
+  ApiImageAttachmentJSON,
+  ApiVideoAttachmentJSON,
+} from '@/mastodon/api_types/media_attachments';
 import { Blurhash } from '@/mastodon/components/blurhash';
 import { IconButton } from '@/mastodon/components/button/redesign';
 import {
@@ -19,6 +24,7 @@ import {
   MenuItemDivider,
   MenuList,
 } from '@/mastodon/components/menu';
+import type { MediaAttachmentShape } from '@/mastodon/models/status';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from './attachments.module.scss';
@@ -43,29 +49,11 @@ export const ComposeUpload: React.FC<{
     return <ComposeAudioUpload attachment={attachment} />;
   }
 
-  let x = 50;
-  let y = 50;
-  const focusX = attachment.meta.focus?.x;
-  const focusY = attachment.meta.focus?.y;
-  if (focusX && focusY) {
-    x = (focusX / 2 + 0.5) * 100;
-    y = (focusY / -2 + 0.5) * 100;
-  }
-
   return (
-    <div
-      className={classNames(classes.mediaUpload, className)}
-      style={{
-        backgroundImage:
-          !sensitive && attachment.preview_url
-            ? `url(${attachment.preview_url})`
-            : undefined,
-        backgroundPosition: `${x}% ${y}%`,
-        aspectRatio: single
-          ? `${attachment.meta.original.width} / ${attachment.meta.original.height}`
-          : undefined,
-      }}
-      data-color-scheme='dark'
+    <ComposeImage
+      attachment={attachment}
+      className={className}
+      sensitive={sensitive}
     >
       {sensitive && attachment.blurhash && (
         <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
@@ -93,6 +81,55 @@ export const ComposeUpload: React.FC<{
           <FormattedMessage id='compose.upload.alt' defaultMessage='Alt' />
         </span>
       )}
+    </ComposeImage>
+  );
+};
+
+type ComposeImageAttachmentJSON =
+  | ApiImageAttachmentJSON
+  | ApiGifvAttachmentJSON
+  | ApiVideoAttachmentJSON;
+
+export const ComposeImage: React.FC<
+  {
+    attachment:
+      | ComposeImageAttachmentJSON
+      | MediaAttachmentShape<ComposeImageAttachmentJSON>;
+    children?: React.ReactNode;
+    sensitive?: boolean;
+  } & React.ComponentPropsWithRef<'div'>
+> = ({ attachment, children, sensitive, className, style, ...props }) => {
+  let x = 50;
+  let y = 50;
+  const focusX = attachment.meta.focus?.x;
+  const focusY = attachment.meta.focus?.y;
+  if (focusX && focusY) {
+    x = (focusX / 2 + 0.5) * 100;
+    y = (focusY / -2 + 0.5) * 100;
+  }
+
+  const imgStyle = {
+    backgroundImage:
+      !sensitive && attachment.preview_url
+        ? `url(${attachment.preview_url})`
+        : undefined,
+    backgroundPosition: `${x}% ${y}%`,
+    '--aspect': `${attachment.meta.original.width} / ${attachment.meta.original.height}`,
+    ...style,
+  };
+
+  return (
+    <div
+      {...props}
+      className={classNames(classes.mediaUpload, className)}
+      style={imgStyle}
+      data-color-scheme='dark'
+    >
+      {sensitive && attachment.blurhash && (
+        <Blurhash hash={attachment.blurhash} className={classes.blurHash} />
+      )}
+
+      {children}
     </div>
   );
 };

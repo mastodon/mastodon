@@ -6,6 +6,7 @@
   min-width: 120px;
   max-width: min(100%, 400px);
   max-height: var(--max-media-height-large);
+  aspect-ratio: var(--aspect);
 }
 
 .mediaGrid {
@@ -168,11 +169,6 @@
 
 // Quotes
 
-.quoteBody {
-  color: inherit;
-  text-decoration: none;
-}
-
 // If hovering over an account link, underline all account links.
 .quoteTitle:has(.quoteAccountLink:hover) {
   .quoteAccountLink {
@@ -185,4 +181,57 @@
   border-radius: var(--radius-sm);
   margin: var(--space-2xs) 0;
   padding: var(--space-xs);
+}
+
+.quoteBody {
+  color: inherit;
+  text-decoration: none;
+
+  // If a body only has an empty div (such as when quoting just a link), just hide it.
+  &:has(> div:only-child:empty) {
+    display: none;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+.quoteReply {
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xs);
+}
+
+.quoteMedia {
+  margin-top: var(--space-2xs);
+
+  &.mediaGrid {
+    height: 260px;
+  }
+
+  .mediaUpload {
+    max-height: 260px;
+    border-radius: var(--radius-xs);
+  }
+}
+
+.quoteVideoDuration {
+  @include mixins.type-label-md;
+
+  display: flex;
+  gap: var(--space-2xs);
+  align-items: center;
+  position: absolute;
+  inset-block-end: var(--space-xs);
+  inset-inline-start: var(--space-xs);
+  padding: var(--space-2xs) var(--space-3xs);
+  background: var(--color-bg-highlight);
+  border-radius: var(--radius-xs);
+  color: var(--color-text-primary);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+  }
 }
