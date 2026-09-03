@@ -327,10 +327,17 @@ en:
         update_user_role_html: "%{name} changed %{target} role"
         update_username_block_html: "%{name} updated rule for usernames containing %{target}"
         usable_tag_html: can be used;
+      automated_actions:
+        create_domain_allow_html: Automatically allowed federation with domain %{target}
+        create_domain_block_html: Automatically blocked domain %{target}
+        destroy_domain_allow_html: Automatically disallowed federation with domain %{target}
+        destroy_domain_block_html: Automatically unblocked domain %{target}
+        update_domain_block_html: Automatically updated domain block for %{target}
       deleted_account: deleted account
       empty: No logs found.
       filter_by_action: Filter by action
       filter_by_user: Filter by user
+      suggested_by_html: Action suggested by %{subscription}
       title: Audit log
       unavailable_instance: "(domain name unavailable)"
     announcements:
