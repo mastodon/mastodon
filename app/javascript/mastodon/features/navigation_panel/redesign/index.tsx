@@ -188,21 +188,18 @@ export const RedesignNavigationPanel: React.FC<{
                     defaultMessage='Followed Hashtags'
                   />
                 }
-                action={{
-                  label: (
-                    <FormattedMessage
-                      id='tabs_bar.followed_tags_view_all'
-                      defaultMessage='View all'
-                    />
-                  ),
-                  link: '/followed_tags',
-                }}
               >
                 {followedHashtags.slice(0, 4).map((tag) => (
                   <NavigationLink key={tag.name} to={`/tags/${tag.name}`}>
                     #{tag.name}
                   </NavigationLink>
                 ))}
+                <NavigationLink key='view-all' to='/followed_tags'>
+                  <FormattedMessage
+                    id='tabs_bar.followed_tags_view_all'
+                    defaultMessage='View all'
+                  />
+                </NavigationLink>
               </ListSection>
             )}
           </ul>
