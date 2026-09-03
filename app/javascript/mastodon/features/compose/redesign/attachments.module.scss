@@ -193,7 +193,7 @@
   }
 
   strong {
-    font-weight: 600;
+    font-weight: bold;
   }
 }
 
@@ -222,8 +222,8 @@
   gap: var(--space-2xs);
   align-items: center;
   position: absolute;
-  bottom: var(--space-xs);
-  left: var(--space-xs);
+  inset-block-end: var(--space-xs);
+  inset-inline-start: var(--space-xs);
   padding: var(--space-2xs) var(--space-3xs);
   background: var(--color-bg-highlight);
   border-radius: var(--radius-xs);
