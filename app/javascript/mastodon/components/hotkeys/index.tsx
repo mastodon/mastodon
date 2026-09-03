@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import type { PolymorphicProps } from '@/types/polymorphic';
+
 import { normalizeKey, isKeyboardEvent, matchesKeyCode } from './utils';
 
 /**
@@ -271,6 +273,24 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
   return ref;
 }
 
+interface HotkeysProps {
+  /**
+   * An object containing functions to be run when a hotkey is pressed.
+   * The key must be the name of a registered hotkey, e.g. "help" or "search"
+   */
+  handlers: HandlerMap;
+  /**
+   * When enabled, hotkeys will be matched against the document root
+   * rather than only inside of this component's DOM node.
+   */
+  global?: boolean;
+  /**
+   * Allow the rendered `div` to be focused
+   */
+  focusable?: boolean;
+  children: React.ReactNode;
+}
+
 /**
  * The Hotkeys component allows us to globally register keyboard combinations
  * under a name and assign actions to them, either globally or scoped to a portion
@@ -290,28 +310,24 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
  *
  * Now this function will be called when the 'open' hotkey is pressed by the user.
  */
-export const Hotkeys: React.FC<{
-  /**
-   * An object containing functions to be run when a hotkey is pressed.
-   * The key must be the name of a registered hotkey, e.g. "help" or "search"
-   */
-  handlers: HandlerMap;
-  /**
-   * When enabled, hotkeys will be matched against the document root
-   * rather than only inside of this component's DOM node.
-   */
-  global?: boolean;
-  /**
-   * Allow the rendered `div` to be focused
-   */
-  focusable?: boolean;
-  children: React.ReactNode;
-}> = ({ handlers, global, focusable = true, children }) => {
+export const Hotkeys = <As extends React.ElementType = 'div'>({
+  as: asComp,
+  handlers,
+  global,
+  focusable = true,
+  children,
+  ...props
+}: PolymorphicProps<HotkeysProps, As>) => {
   const ref = useHotkeys<HTMLDivElement>(handlers);
+  const Comp = asComp ?? 'div';
 
   return (
-    <div ref={global ? undefined : ref} tabIndex={focusable ? -1 : undefined}>
+    <Comp
+      {...props}
+      ref={global ? undefined : ref}
+      tabIndex={focusable ? -1 : undefined}
+    >
       {children}
-    </div>
+    </Comp>
   );
 };
