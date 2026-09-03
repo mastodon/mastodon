@@ -9,6 +9,7 @@ import { Helmet } from '@unhead/react/helmet';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnSearchHeader } from '@/mastodon/components/column/search_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
@@ -33,7 +34,7 @@ import { useSearchAccounts } from 'mastodon/hooks/useSearchAccounts';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-export const messages = defineMessages({
+const messagesLegacy = defineMessages({
   manageMembers: {
     id: 'column.list_members',
     defaultMessage: 'Manage list members',
@@ -47,6 +48,21 @@ export const messages = defineMessages({
   remove: { id: 'lists.remove_member', defaultMessage: 'Remove' },
   back: { id: 'column_back_button.label', defaultMessage: 'Back' },
 });
+
+const messagesRedesign = defineMessages({
+  manageMembers: {
+    id: 'custom_feeds.manage_accounts',
+    defaultMessage: 'Manage Feed Members',
+  },
+  enterSearch: {
+    id: 'custom_feeds.add_to_feed',
+    defaultMessage: 'Add to feed',
+  },
+});
+
+const messages = isRedesignEnabled()
+  ? { ...messagesLegacy, ...messagesRedesign }
+  : messagesLegacy;
 
 type Mode = 'remove' | 'add';
 
