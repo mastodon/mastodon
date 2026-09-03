@@ -27,6 +27,7 @@ import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
 import { MenuItem, MenuItemLink } from '@/mastodon/components/menu';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 
 const mapStateToProps = (state, props) => ({
   list: state.getIn(['lists', props.params.id]),
@@ -132,6 +133,7 @@ class ListTimeline extends PureComponent {
         {isRedesignEnabled() ? (
           <ColumnHeader
             title={title}
+            withBackButton={multiColumn && !pinned && 'auto'}
             extraButtons={
               <ColumnSettingsMenu
                 label={
@@ -147,6 +149,12 @@ class ListTimeline extends PureComponent {
                 <MenuItem onClick={this.handleDeleteClick}>
                   <FormattedMessage id='custom_feed.delete' defaultMessage='Delete feed' />
                 </MenuItem>
+                <MultiColumnMenuItems
+                  withDivider
+                  pinned={pinned}
+                  onPin={this.handlePin}
+                  onMove={this.handleMove}
+                />
               </ColumnSettingsMenu>
             }
           />
