@@ -80,10 +80,8 @@ a.root {
 
 // Linked body
 a.body {
-  padding-inline-start: var(--space-sm);
-  padding-inline-end: var(--space-sm);
-  margin-inline-start: calc(-1 * var(--space-sm));
-  margin-inline-end: calc(-1 * var(--space-sm));
+  padding-inline: var(--space-sm);
+  margin-inline: calc(-1 * var(--space-sm));
 
   .root:has(&:hover) {
     background-color: var(--color-bg-highlight);
