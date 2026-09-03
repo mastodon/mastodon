@@ -1,6 +1,6 @@
 .content__heading__tabs
   = render_navigation renderer: :links do |primary|
     :ruby
-      primary.item :subscriptions, safe_join([material_symbol('edit'), t('admin.moderation_suggestions.tabs.subscriptions')]), admin_moderation_subscriptions_path
-      primary.item :suggestions, safe_join([material_symbol('flag'), t('admin.moderation_suggestions.tabs.suggestions')]), admin_moderation_suggestions_path
-      primary.item :logs, safe_join([material_symbol('list'), t('admin.moderation_suggestions.tabs.logs')]), '/admin/moderation_subscriptions/logs'
+      primary.item :suggestions, safe_join([material_symbol('flag'), t('admin.moderation_subscriptions.tabs.suggestions')]), admin_moderation_suggestions_path
+      primary.item :subscriptions, safe_join([material_symbol('edit'), t('admin.moderation_subscriptions.tabs.subscriptions')]), admin_moderation_subscriptions_path
+      primary.item :logs, safe_join([material_symbol('list'), t('admin.moderation_subscriptions.tabs.logs')]), '/admin/moderation_subscriptions/logs'
