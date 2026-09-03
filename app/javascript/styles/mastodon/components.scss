@@ -5123,6 +5123,14 @@ a.status-card {
     }
   }
 
+  [data-redesign='true'] & section {
+    padding-inline: 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
   h3 {
     font-size: 16px;
     line-height: 24px;
