@@ -52,7 +52,7 @@ const messagesLegacy = defineMessages({
 
 const messagesRedesign = defineMessages({
   manageMembers: {
-    id: 'custom_feeds.manage_accounts',
+    id: 'custom_feeds.manage_accounts_title',
     defaultMessage: 'Manage Feed Members',
   },
   enterSearch: {
