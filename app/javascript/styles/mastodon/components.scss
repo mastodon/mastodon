@@ -6079,16 +6079,23 @@ a.status-card {
   height: 100%;
   max-width: 100vw;
   max-height: 100vh;
+  padding: var(--space-lg);
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: space-around;
   z-index: 9999;
   pointer-events: none;
   user-select: none;
   overscroll-behavior: none;
+  overflow-y: auto;
+
+  @media screen and (width <= $mobile-breakpoint) {
+    padding-bottom: 0;
+    padding-inline: var(--space-xs);
+  }
+
+  > * {
+    margin: auto;
+  }
 }
 
 .modal-root__modal {
@@ -6098,10 +6105,10 @@ a.status-card {
   max-width: 100vw;
 
   @media screen and (width <= $mobile-breakpoint) {
-    margin-top: auto;
+    margin-bottom: initial;
 
     &.video-modal {
-      margin-top: 0;
+      margin-bottom: auto;
     }
   }
 }
