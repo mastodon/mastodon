@@ -66,22 +66,25 @@ class Admin::ModerationSuggestionsController < Admin::BaseController
       # Require explicit confirmation on block
       return render :confirm_reject if requires_confirmation?(domain_block)
 
-      # TODO: log
       domain_block.save!
+      # TODO: is this the way we want to log it?
+      log_action (update ? :update : :create), domain_block, moderation_subscription_id: domain_block.moderation_subscription_id
       DomainBlockWorker.perform_async(domain_block.id, update)
       @moderation_suggestion.mark_as_applied!
 
       redirect_to admin_moderation_suggestions_path, notice: I18n.t('admin.moderation_suggestions.applied_msg', target_key: @moderation_suggestion.target_key)
     when ['domain', 'retract']
       ApplicationRecord.transaction do
-        # TODO: log
-
         if Rails.configuration.x.mastodon.limited_federation_mode
           domain_allow = DomainAllow.find_by(domain: @moderation_suggestion.target_key)
           UnallowDomainService.new.call(domain_allow)
+          # TODO: is this the way we want to log it?
+          log_action :destroy, domain_allow, moderation_subscription_id: domain_block.moderation_subscription_id
         else
           domain_block = DomainBlock.find_by(domain: @moderation_suggestion.target_key)
           UnblockDomainService.new.call(domain_block)
+          # TODO: is this the way we want to log it?
+          log_action :destroy, domain_block, moderation_subscription_id: domain_block.moderation_subscription_id
         end
 
         @moderation_suggestion.mark_as_applied!
