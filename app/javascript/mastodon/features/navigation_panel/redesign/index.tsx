@@ -157,7 +157,7 @@ export const RedesignNavigationPanel: React.FC<{
                 label: (
                   <FormattedMessage
                     id='tabs_bar.create_custom_feed'
-                    defaultMessage='Create feed'
+                    defaultMessage='Create'
                   />
                 ),
                 link: '/lists/new',
