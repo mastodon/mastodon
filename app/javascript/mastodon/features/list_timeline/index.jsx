@@ -18,12 +18,16 @@ import { openModal } from 'mastodon/actions/modal';
 import { connectListStream } from 'mastodon/actions/streaming';
 import { expandListTimeline } from 'mastodon/actions/timelines';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
+import { MenuItem, MenuItemLink } from '@/mastodon/components/menu';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
 
 const mapStateToProps = (state, props) => ({
   list: state.getIn(['lists', props.params.id]),
@@ -126,36 +130,71 @@ class ListTimeline extends PureComponent {
 
     return (
       <Column bindToDocument={!multiColumn} label={title}>
-        <ColumnHeader
-          icon='list-ul'
-          iconComponent={ListAltIcon}
-          active={hasUnread}
-          title={title}
-          onPin={this.handlePin}
-          onMove={this.handleMove}
-          pinned={pinned}
-          multiColumn={multiColumn}
-          scrollTopOnClick
-        >
-          <div className='column-settings'>
-            <section className='column-header__links'>
-              <Link to={`/lists/${id}/edit`} className='text-btn column-header__setting-btn'>
-                <Icon id='pencil' icon={EditIcon} /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
-              </Link>
+        {isRedesignEnabled() ? (
+          <ColumnHeader
+            title={title}
+            withBackButton={multiColumn && !pinned && 'auto'}
+            extraButtons={
+              <ColumnSettingsMenu
+                label={
+                  <FormattedMessage id='custom_feed.options' defaultMessage='Feed Options' />
+                }
+              >
+                <MenuItemLink as='link' to={`/lists/${id}/edit`}>
+                  <FormattedMessage id='custom_feed.edit' defaultMessage='Edit feed' />
+                </MenuItemLink>
+                <MenuItemLink as='link' to={`/lists/${id}/members`}>
+                  <FormattedMessage id='custom_feed.manage_accounts' defaultMessage='Manage members' />
+                </MenuItemLink>
+                <MenuItem onClick={this.handleDeleteClick}>
+                  <FormattedMessage id='custom_feed.delete' defaultMessage='Delete feed' />
+                </MenuItem>
+                {multiColumn &&
+                  <MultiColumnMenuItems
+                    withDivider
+                    pinned={pinned}
+                    onPin={this.handlePin}
+                    onMove={this.handleMove}
+                  />
+                }
+              </ColumnSettingsMenu>
+            }
+          />
+        ) : (
+          <LegacyColumnHeader
+            icon='list-ul'
+            iconComponent={ListAltIcon}
+            active={hasUnread}
+            title={title}
+            onPin={this.handlePin}
+            onMove={this.handleMove}
+            pinned={pinned}
+            multiColumn={multiColumn}
+            scrollTopOnClick
+          >
+            <div className='column-settings'>
+              <section className='column-header__links'>
+                <Link to={`/lists/${id}/edit`} className='text-btn column-header__setting-btn'>
+                  <Icon id='pencil' icon={EditIcon} /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
+                </Link>
 
-              <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
-                <Icon id='trash' icon={DeleteIcon} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
-              </button>
-            </section>
-          </div>
-        </ColumnHeader>
+                <button type='button' className='text-btn column-header__setting-btn' tabIndex={0} onClick={this.handleDeleteClick}>
+                  <Icon id='trash' icon={DeleteIcon} /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
+                </button>
+              </section>
+            </div>
+          </LegacyColumnHeader>
+        )}
 
         <StatusListContainer
           trackScroll={!pinned}
           scrollKey={`list_timeline-${columnId}`}
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
+          emptyMessage={isRedesignEnabled
+            ? <FormattedMessage id='empty_column.custom_feed' defaultMessage='There is nothing in this custom feed yet. When members of this feed post new statuses, they will appear here.' />
+            : <FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />
+          }
           bindToDocument={!multiColumn}
         />
 

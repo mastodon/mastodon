@@ -11019,11 +11019,13 @@ noscript {
   display: flex;
   gap: 12px;
   align-items: center;
-  border: 1px solid var(--color-border-primary);
-  border-top: 0;
-  border-bottom: 0;
+  border-inline: 1px solid var(--color-border-primary);
   padding: 16px;
   padding-bottom: 8px;
+
+  [data-redesign='true'] & {
+    border-inline: none;
+  }
 
   input {
     background: var(--color-bg-secondary);
