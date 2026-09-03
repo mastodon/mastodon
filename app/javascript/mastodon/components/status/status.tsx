@@ -20,6 +20,7 @@ import type { StatusHandlers } from './hooks';
 import { useStatusHandlers, useTextForScreenReader } from './hooks';
 import { StatusPrepend } from './prepend';
 import { StatusRedesignHeader } from './redesign/header';
+import classes from './styles.module.scss';
 import type { StatusContainerProps, StatusContextType } from './types';
 
 type StatusRedesignProps = Merge<
@@ -168,7 +169,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           rootId={rootId}
           nextId={nextId}
           previousId={previousId}
-          className={classNames(`status-${status.visibility}`, {
+          className={classNames(`status-${status.visibility}`, classes.root, {
             muted,
             'status--is-quote': isQuotedPost,
             'status--has-quote': !!status.quote,
