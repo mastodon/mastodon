@@ -3,3 +3,15 @@
   flex-direction: column;
   gap: var(--space-xs);
 }
+
+.actions {
+  display: flex;
+
+  button:not(:hover, :active) {
+    opacity: 0.7;
+  }
+}
+
+.actionsButtonGap {
+  margin-inline-end: auto;
+}
