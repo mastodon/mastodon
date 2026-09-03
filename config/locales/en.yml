@@ -446,6 +446,12 @@ en:
       undo: Disallow federation with domain
     domain_blocks:
       add_new: Add new domain block
+      confirm_downgrade:
+        cancel: Cancel
+        confirm: Downgrade
+        permanent_action: Undoing the suspension will not restore any data or relationship.
+        preamble_html: You are about to downgrade the existing block on <strong>%{domain}</strong> and its subdomains.
+        title: Confirm domain block downgrade for %{domain}
       confirm_suspension:
         cancel: Cancel
         confirm: Suspend

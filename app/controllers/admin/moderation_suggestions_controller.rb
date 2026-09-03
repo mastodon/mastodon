@@ -41,12 +41,26 @@ class Admin::ModerationSuggestionsController < Admin::BaseController
 
       # TODO: factor with `DomainBlocksController#create`?
       existing_domain_block = DomainBlock.rule_for(domain_block.domain)
-      return redirect_to admin_moderation_suggestions_path, alert: I18n.t('admin.moderation_suggestions.unable_to_apply_msg', target_key: @moderation_suggestion.target_key) if existing_domain_block.present? && !domain_block.stricter_than?(existing_domain_block)
+
+      # We can't create a laxer block for a subdomain than we have for a domain
+      if existing_domain_block.present? && existing_domain_block.domain != TagManager.instance.normalize_domain(domain_block.domain) && !domain_block.stricter_than?(existing_domain_block)
+        return redirect_to admin_moderation_suggestions_path,
+                           alert: I18n.t('admin.moderation_suggestions.unable_to_apply_msg',
+                                         target_key: @moderation_suggestion.target_key)
+      end
+
+      update = false
 
       # Allow transparently upgrading a domain block
       if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(domain_block.domain)
+        # Downgrading requires confirmation
+        return render :confirm_downgrade unless domain_block.stricter_than?(existing_domain_block) || params[:confirm_downgrade]
+
+        # Transparent upgrading is allowed
         existing_domain_block.assign_attributes(domain_block.attributes.without('id', 'created_at', 'updated_at'))
         domain_block = existing_domain_block
+
+        update = domain_block.severity_changed?
       end
 
       # Require explicit confirmation on block
@@ -54,7 +68,7 @@ class Admin::ModerationSuggestionsController < Admin::BaseController
 
       # TODO: log
       domain_block.save!
-      DomainBlockWorker.perform_async(domain_block.id)
+      DomainBlockWorker.perform_async(domain_block.id, update)
       @moderation_suggestion.mark_as_applied!
 
       redirect_to admin_moderation_suggestions_path, notice: I18n.t('admin.moderation_suggestions.applied_msg', target_key: @moderation_suggestion.target_key)
