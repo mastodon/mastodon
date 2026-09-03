@@ -149,12 +149,14 @@ class ListTimeline extends PureComponent {
                 <MenuItem onClick={this.handleDeleteClick}>
                   <FormattedMessage id='custom_feed.delete' defaultMessage='Delete feed' />
                 </MenuItem>
-                <MultiColumnMenuItems
-                  withDivider
-                  pinned={pinned}
-                  onPin={this.handlePin}
-                  onMove={this.handleMove}
-                />
+                {multiColumn &&
+                  <MultiColumnMenuItems
+                    withDivider
+                    pinned={pinned}
+                    onPin={this.handlePin}
+                    onMove={this.handleMove}
+                  />
+                }
               </ColumnSettingsMenu>
             }
           />
