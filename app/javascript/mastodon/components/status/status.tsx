@@ -54,8 +54,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   id,
   muted,
   rootId,
-  previousId,
-  nextId,
   unread,
   skipPrepend,
   unfocusable,
@@ -63,7 +61,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   featured,
   isQuotedPost,
   hidden,
-  shouldHighlightOnMount,
   showActions = true,
   scrollKey,
   children,
@@ -117,146 +114,139 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     (!status.hidden || !status.spoiler_text);
 
   const hotkeysProps = {
-    ...handlers,
-    onTranslate,
+    handlers: {
+      ...handlers,
+      onTranslate,
+    },
     muted,
     unfocusable,
-  } satisfies Omit<React.ComponentProps<typeof StatusHotkeys>, 'children'>;
+    'data-id': id,
+  };
 
   if (hidden) {
     return (
-      <StatusHotkeys {...hotkeysProps}>
-        <div
-          className={classNames('status__wrapper', { focusable: !muted })}
-          tabIndex={unfocusable ? undefined : 0}
-        >
-          <span>{status.account.display_name || status.account.username}</span>
-          {status.spoiler_text && <span>{status.spoiler_text}</span>}
-          {expanded && <span>{status.content}</span>}
-        </div>
+      <StatusHotkeys
+        {...hotkeysProps}
+        className={classNames('status__wrapper', { focusable: !muted })}
+      >
+        <span>{status.account.display_name || status.account.username}</span>
+        {status.spoiler_text && <span>{status.spoiler_text}</span>}
+        {expanded && <span>{status.content}</span>}
       </StatusHotkeys>
     );
   }
 
   return (
-    <StatusHotkeys {...hotkeysProps}>
-      <div
-        className={classNames(
-          'status__wrapper',
-          `status__wrapper-${status.visibility}`,
-          {
-            'status__wrapper-reply': !!status.in_reply_to_id,
-            'status__wrapper--in-thread': !!rootId,
-            unread,
-            focusable: !muted,
-          },
-        )}
-        tabIndex={muted || unfocusable ? undefined : 0}
-        data-featured={featured ? 'true' : null}
-        aria-label={screenReaderText}
-        data-nosnippet={status.account.noindex || undefined}
-      >
-        {!skipPrepend && (
-          <StatusPrepend
-            status={actualStatus}
-            isReblog={!!parent}
-            showThread={showThread}
-          />
-        )}
-        <StatusContentWrapper
+    <StatusHotkeys
+      {...hotkeysProps}
+      className={classNames(
+        classes.root,
+        'status__wrapper',
+        `status__wrapper-${status.visibility}`,
+        {
+          'status__wrapper-reply': !!status.in_reply_to_id,
+          'status__wrapper--in-thread': !!rootId,
+          unread,
+          focusable: !muted,
+        },
+      )}
+      data-featured={featured ? 'true' : null}
+      aria-label={screenReaderText}
+      data-nosnippet={status.account.noindex || undefined}
+    >
+      {!skipPrepend && (
+        <StatusPrepend
+          status={actualStatus}
+          isReblog={!!parent}
+          showThread={showThread}
+        />
+      )}
+
+      <StatusRedesignHeader status={status} avatarSize={avatarSize}>
+        {headerContents}
+      </StatusRedesignHeader>
+
+      {matchedFilters.length > 0 && (
+        <FilterWarning
+          title={matchedFilters.map((filter) => filter.title).join(', ')}
+          expanded={showDespiteFilter}
+          onClick={onFilterToggle}
+        />
+      )}
+
+      {(matchedFilters.length === 0 || showDespiteFilter) && (
+        <ContentWarning
           statusId={status.id}
-          inReplyToId={actualStatus.in_reply_to_id}
-          rootId={rootId}
-          nextId={nextId}
-          previousId={previousId}
-          className={classNames(`status-${status.visibility}`, classes.root, {
-            muted,
-            'status--is-quote': isQuotedPost,
-            'status--has-quote': !!status.quote,
-            'status--highlighted-entry': shouldHighlightOnMount,
-          })}
-        >
-          <StatusRedesignHeader status={status} avatarSize={avatarSize}>
-            {headerContents}
-          </StatusRedesignHeader>
+          expanded={expanded}
+          onClick={onExpandedToggle}
+        />
+      )}
 
-          {matchedFilters.length > 0 && (
-            <FilterWarning
-              title={matchedFilters.map((filter) => filter.title).join(', ')}
-              expanded={showDespiteFilter}
-              onClick={onFilterToggle}
+      {expanded && (
+        <>
+          <StatusContent
+            statusId={status.id}
+            statusContent={statusContent}
+            onClick={onOpenClick}
+            onTranslate={onTranslate}
+            collapsible
+          />
+
+          <StatusAttachments statusId={status.id} contextType={contextType} />
+
+          {hashtagsInBar && (
+            <HashtagBar
+              hashtags={hashtagsInBar}
+              accountId={status.account.id}
             />
           )}
 
-          {(matchedFilters.length === 0 || showDespiteFilter) && (
-            <ContentWarning
-              statusId={status.id}
-              expanded={expanded}
-              onClick={onExpandedToggle}
-            />
-          )}
+          {children}
+        </>
+      )}
 
-          {expanded && (
-            <>
-              <StatusContent
-                statusId={status.id}
-                statusContent={statusContent}
-                onClick={onOpenClick}
-                onTranslate={onTranslate}
-                collapsible
-              />
-
-              <StatusAttachments
-                statusId={status.id}
-                contextType={contextType}
-              />
-
-              {hashtagsInBar && (
-                <HashtagBar
-                  hashtags={hashtagsInBar}
-                  accountId={status.account.id}
-                />
-              )}
-
-              {children}
-            </>
-          )}
-
-          {showActions && !isQuotedPost && (
-            <StatusActionBar
-              scrollKey={scrollKey}
-              statusId={status.id}
-              contextType={contextType}
-              withDismiss={withDismiss}
-              withCounters={withCounters}
-            />
-          )}
-        </StatusContentWrapper>
-      </div>
+      {showActions && !isQuotedPost && (
+        <StatusActionBar
+          scrollKey={scrollKey}
+          statusId={status.id}
+          contextType={contextType}
+          withDismiss={withDismiss}
+          withCounters={withCounters}
+        />
+      )}
     </StatusHotkeys>
   );
 };
 
-const StatusHotkeys: React.FC<
-  {
-    muted?: boolean;
-    unfocusable?: boolean;
-    children: React.ReactNode;
-  } & Omit<
+interface StatusHotkeysProps {
+  muted?: boolean;
+  unfocusable?: boolean;
+  children: React.ReactNode;
+  handlers: Omit<
     StatusHandlers,
     | 'showDespiteFilter'
     | 'onOpenClick'
     | 'onHeaderClick'
     | 'onExpandedToggle'
     | 'onFilterToggle'
-  >
-> = ({ muted, unfocusable, children, ...handlers }) => {
+  >;
+}
+
+const StatusHotkeys = ({
+  muted,
+  unfocusable,
+  children,
+  handlers,
+  ...props
+}: StatusHotkeysProps & React.ComponentPropsWithoutRef<'article'>) => {
   if (muted) {
-    return children;
+    return <article {...props}>{children}</article>;
   }
 
   return (
     <Hotkeys
+      {...props}
+      as='article'
       handlers={{
         reply: handlers.onReply,
         favourite: handlers.onFavourite,
@@ -275,54 +265,5 @@ const StatusHotkeys: React.FC<
     >
       {children}
     </Hotkeys>
-  );
-};
-
-const StatusContentWrapper: React.FC<
-  Pick<StatusRedesignProps, 'rootId' | 'previousId' | 'nextId' | 'children'> & {
-    statusId: string;
-    inReplyToId?: string;
-    className?: string;
-  }
-> = ({
-  statusId,
-  inReplyToId,
-  rootId,
-  previousId,
-  nextId,
-  className,
-  children,
-}) => {
-  const nextInReplyToId = useAppSelector((state) =>
-    nextId ? state.statuses.getIn([nextId, 'in_reply_to_id']) : null,
-  );
-  const connectUp = !!previousId && previousId === inReplyToId;
-  const connectToRoot = !!rootId && rootId === inReplyToId;
-  const connectReply = !!nextInReplyToId && nextInReplyToId === statusId;
-  return (
-    <div
-      className={classNames(
-        'status',
-        {
-          'status-reply': !!inReplyToId,
-          'status--in-thread': !!rootId,
-          'status--first-in-thread':
-            previousId && (!connectUp || connectToRoot),
-        },
-        className,
-      )}
-      data-id={statusId}
-    >
-      {(connectReply || connectUp || connectToRoot) && (
-        <div
-          className={classNames('status__line', {
-            'status__line--full': connectReply,
-            'status__line--first': !inReplyToId && !connectToRoot,
-          })}
-        />
-      )}
-
-      {children}
-    </div>
   );
 };
