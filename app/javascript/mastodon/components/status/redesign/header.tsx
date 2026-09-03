@@ -8,6 +8,7 @@ import { DisplayName } from '../../display_name';
 import { useAccountHandle } from '../../display_name/default';
 import { RelativeTimestamp } from '../../relative_timestamp';
 import { Skeleton } from '../../skeleton';
+import { statusLink } from '../utils';
 
 import classes from './styles.module.scss';
 
@@ -52,7 +53,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
           &bull;
           <Link
             to={{
-              pathname: `/@{statusAccount.acct}/${status.id}`,
+              pathname: statusLink(status),
               state: { reference: 'status' },
             }}
           >
