@@ -11,6 +11,7 @@ RSpec.describe Form::AccountBatch do
     let(:account)     { Fabricate(:admin_user).account }
     let(:account_ids) { [] }
     let(:query)       { Account.none }
+    let(:select_all_matching) { false }
 
     before do
       account_batch.assign_attributes(
@@ -76,6 +77,38 @@ RSpec.describe Form::AccountBatch do
       def relevant_account_suspension_statuses
         [target_account.reload, target_account2.reload].map(&:suspended?)
       end
+    end
+
+    context 'when action is "approve"' do
+      let(:action) { 'approve' }
+      let(:account_ids) { [unapproved_user_account.id] }
+      let(:unapproved_user_account) { Fabricate :account }
+
+      before { unapproved_user_account.user.update!(approved: false) }
+
+      it 'approves the user of the supplied accounts' do
+        expect { subject }
+          .to change { unapproved_user_account.reload.user.approved? }.to(true)
+      end
+    end
+
+    context 'when action is "reject"' do
+      let(:action) { 'reject' }
+      let(:account_ids) { [reject_user_account.id] }
+      let(:reject_user_account) { Fabricate :account }
+
+      before { reject_user_account.user.update!(approved: false) }
+
+      it 'rejects the user of the supplied accounts' do
+        expect { subject }
+          .to change { reject_user_account.reload.suspended? }.to(true)
+      end
+    end
+
+    context 'when action is "unknown"' do
+      let(:action) { 'unknown' }
+
+      it { is_expected.to be_nil }
     end
   end
 end
