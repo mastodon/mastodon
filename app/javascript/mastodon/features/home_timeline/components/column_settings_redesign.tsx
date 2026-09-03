@@ -37,7 +37,10 @@ export const HomeColumnSettings: React.FC<{
     <ColumnSettingsMenu
       icon={SlidersHorizontalIcon}
       label={
-        <FormattedMessage id='home.settings' defaultMessage='Home Settings' />
+        <FormattedMessage
+          id='column.following_settings'
+          defaultMessage='Following Feed Settings'
+        />
       }
     >
       <MenuItemCheckbox
