@@ -6,7 +6,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
-import { useAppSelector } from '@/mastodon/store';
 import {
   accountFactoryImmutable,
   pollFactoryImmutable,
@@ -14,10 +13,10 @@ import {
   statusFactoryImmutable,
 } from '@/testing/factories';
 
+import { StatusRedesign } from './status';
 import type { AttachmentArgs } from './testing';
 import { attachmentArgTypes, attachmentFactory } from './testing';
 import type { StatusContextType } from './types';
-import { TypedStatus } from './types';
 
 interface StatusStoryProps extends AttachmentArgs {
   // Contents
@@ -60,12 +59,10 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
   const {
     isReblog,
     isReply,
-    isPoll,
     isQuote,
     contentWarning,
 
     hasFilter,
-    hasVoted,
     disableActions = false,
 
     contextType,
@@ -75,53 +72,25 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     muted,
     showPrepend = true,
   } = props;
-  const account = useAppSelector((state) => state.accounts.get('1'));
-  const status = useAppSelector((state) =>
-    state.statuses.get('1')?.withMutations((status) => {
-      status.set('account', account);
-      status.set('matched_filters', hasFilter ? ['test'] : false);
-      status.set('matched_media_filters', hasFilter ? ['test'] : false);
-      status.set('hidden', hidden);
-
-      // StatusActionBar checks specifically for null so undefined doesn't work.
-      if (!status.get('in_reply_to_id')) {
-        status.set('in_reply_to_id', null);
-      }
-
-      if (isReblog) {
-        status.set(
-          'reblog',
-          statusFactoryImmutable({ id: '2' }).set('account', otherAccount),
-        );
-      }
-      if (isPoll) {
-        status.set('poll', hasVoted ? '2' : '1');
-      }
-    }),
-  );
-
   return (
-    <div style={{ width: 'min(600px, 80vw)' }}>
-      <TypedStatus
-        {...staticProps}
-        key={JSON.stringify(props)} // Update on any props change. Required because Status has updateOnProps set.
-        status={status}
-        account={isReblog ? account : undefined}
-        isQuotedPost={isQuote}
-        showActions={!disableActions}
-        contextType={contextType}
-        withCounters={showCounters}
-        // Either we are showing a thread (in a timeline) or it's a full reply chain view.
-        showThread={isReply && showThread}
-        previousId={isReply && !showThread ? '2' : undefined}
-        rootId={isReply && !showThread ? '2' : undefined}
-        nextInReplyToId={isReply && !showThread ? '1' : undefined}
-        muted={muted}
-        hidden={hidden && !contentWarning && !hasFilter}
-        skipPrepend={!showPrepend}
-        withDismiss={contextType === 'notifications'}
-      />
-    </div>
+    <StatusRedesign
+      {...staticProps}
+      id='1'
+      accountId={isReblog ? '1' : undefined}
+      isQuotedPost={isQuote}
+      showActions={!disableActions}
+      contextType={contextType}
+      withCounters={showCounters}
+      // Either we are showing a thread (in a timeline) or it's a full reply chain view.
+      showThread={isReply && showThread}
+      previousId={isReply && !showThread ? '2' : undefined}
+      rootId={isReply && !showThread ? '2' : undefined}
+      nextInReplyToId={isReply && !showThread ? '1' : undefined}
+      muted={muted}
+      hidden={hidden && !contentWarning && !hasFilter}
+      skipPrepend={!showPrepend}
+      withDismiss={contextType === 'notifications'}
+    />
   );
 };
 
@@ -181,7 +150,7 @@ const categoryDisplay = {
 } as const;
 
 const meta = {
-  title: 'Components/Status/Status',
+  title: 'Redesign/Status',
   component: StatusStoryComponent,
   argTypes: {
     // Contents
@@ -370,7 +339,15 @@ const meta = {
     controls: {
       disableSaveFromUI: true,
     },
+    redesign: true,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 'min(600px, 80vw)' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof StatusStoryComponent>;
 
 export default meta;
