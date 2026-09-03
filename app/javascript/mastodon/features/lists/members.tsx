@@ -7,8 +7,9 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from '@unhead/react/helmet';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnSearchHeader } from '@/mastodon/components/column/search_header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
@@ -248,13 +249,20 @@ const ListMembers: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.manageMembers)}
     >
-      <ColumnHeader
-        title={intl.formatMessage(messages.manageMembers)}
-        icon='list-ul'
-        iconComponent={ListAltIcon}
-        multiColumn={multiColumn}
-        showBackButton
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.manageMembers)}
+        />
+      ) : (
+        <LegacyColumnHeader
+          title={intl.formatMessage(messages.manageMembers)}
+          icon='list-ul'
+          iconComponent={ListAltIcon}
+          multiColumn={multiColumn}
+          showBackButton
+        />
+      )}
 
       <ColumnSearchHeader
         placeholder={intl.formatMessage(messages.placeholder)}
