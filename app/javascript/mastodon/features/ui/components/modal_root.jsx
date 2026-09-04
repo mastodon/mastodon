@@ -110,6 +110,7 @@ export const MODAL_COMPONENTS = {
   'COMPOSER_REARRANGE': () => import('@/mastodon/features/compose/redesign/modal_rearrange'),
   'COMPOSER_SWITCH_TO_POST': () => import('@/mastodon/features/compose/redesign/modal_switch'),
   'NOTIFICATION_SETTINGS': () => import('@/mastodon/features/notifications_v2/components/notification_settings_modal'),
+  'HASHTAG_SETTINGS': () => import('@/mastodon/features/hashtag_timeline/components/column_settings_modal'),
 };
 
 /** @arg {keyof import('@/mastodon/features/account_edit/modals')} type */
