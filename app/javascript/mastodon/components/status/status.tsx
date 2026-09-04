@@ -12,6 +12,7 @@ import { ContentWarning } from '../content_warning';
 import { FilterWarning } from '../filter_warning';
 import { computeHashtagBarForStatus, HashtagBar } from '../hashtag_bar';
 import { Hotkeys } from '../hotkeys';
+import { Poll } from '../poll';
 
 import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
@@ -95,7 +96,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     onHeaderClick,
     onExpandedToggle,
     onFilterToggle,
-    onOpenClick,
     onTranslate,
     ...handlers
   } = useStatusHandlers({ status, contextType, onOpen });
@@ -172,15 +172,23 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       {expanded && (
         <>
           <StatusContent
-            statusId={status.id}
+            status={status}
             statusContent={statusContent}
-            onClick={onOpenClick}
             onTranslate={onTranslate}
             className={classes.content}
             collapsible
-          />
+          >
+            {!!status.poll && (
+              <Poll
+                pollId={status.poll}
+                statusUrl={status.uri}
+                accountId={status.account.id}
+                lang={status.translation?.language ?? status.language}
+              />
+            )}
 
-          <StatusAttachments statusId={status.id} contextType={contextType} />
+            <StatusAttachments statusId={status.id} contextType={contextType} />
+          </StatusContent>
 
           {hashtagsInBar && (
             <HashtagBar
