@@ -39,23 +39,19 @@ class ModerationSubscriptionSyncService < BaseService
       csv_data.rewind
       rows = csv_data.take(Admin::Import::ROWS_PROCESSING_LIMIT + 1)
 
-      SubscribedAdvisory.upsert_all(
-        rows.map do |row|
-          {
-            target_key: TagManager.instance.normalize_domain(row['#domain']),
-            target_type: :domain,
-            moderation_subscription_id: subscription.id,
-            action: action_from_severity(subscription, row['#severity']),
-          }
-        end,
-        unique_by: [:target_type, :target_key, :moderation_subscription_id]
-      )
+      advisories = rows.filter_map do |row|
+        action = action_from_severity(subscription, row['#severity'])
+        next if action.blank?
 
-      subscription.advisories.domain_target_type.where.not(target_key: rows.map { |row| TagManager.instance.normalize_domain(row['#domain']) }).delete_all
+        {
+          target_key: TagManager.instance.normalize_domain(row['#domain']),
+          target_type: 'domain',
+          moderation_subscription_id: subscription.id,
+          action: action,
+        }
+      end
 
-      subscription.touch(:last_synced_at)
-
-      true
+      synchronize_advisories(subscription, advisories)
     end
   rescue *Mastodon::HTTP_CONNECTION_ERRORS => e
     Rails.logger.warn "Failed syncing moderation subscription #{subscription.url}: #{e}"
@@ -70,23 +66,19 @@ class ModerationSubscriptionSyncService < BaseService
       data = JSON.parse(res.body_with_limit)
       return false unless data.is_a?(Array)
 
-      SubscribedAdvisory.upsert_all(
-        data.map do |block|
-          {
-            target_key: TagManager.instance.normalize_domain(block['domain']),
-            target_type: :domain,
-            moderation_subscription_id: subscription.id,
-            action: action_from_severity(subscription, block['severity']),
-          }
-        end,
-        unique_by: [:target_type, :target_key, :moderation_subscription_id]
-      )
+      advisories = data.filter_map do |block|
+        action = action_from_severity(subscription, block['severity'])
+        next if action.blank?
 
-      subscription.advisories.domain_target_type.where.not(target_key: data.map { |block| TagManager.instance.normalize_domain(block['domain']) }).delete_all
+        {
+          target_key: TagManager.instance.normalize_domain(block['domain']),
+          target_type: 'domain',
+          moderation_subscription_id: subscription.id,
+          action: action,
+        }
+      end
 
-      subscription.touch(:last_synced_at)
-
-      true
+      synchronize_advisories(subscription, advisories)
     end
   rescue JSON::ParserError, *Mastodon::HTTP_CONNECTION_ERRORS => e
     Rails.logger.warn "Failed syncing moderation subscription #{subscription.url}: #{e}"
@@ -94,16 +86,31 @@ class ModerationSubscriptionSyncService < BaseService
     false
   end
 
-  def action_from_severity(subscription, severity)
-    return subscription.list_action if subscription.list_action.present?
+  def synchronize_advisories(subscription, advisories)
+    SubscribedAdvisory.upsert_all(
+      advisories,
+      unique_by: [:target_type, :target_key, :moderation_subscription_id]
+    )
 
+    SubscribedAdvisory::TARGET_TYPES.each do |target_type|
+      subscription.advisories.where(target_type: target_type).where.not(target_key: advisories.filter_map { |advisory| advisory[:target_key] if advisory[:target_type] == target_type }).delete_all
+    end
+
+    subscription.touch(:last_synced_at)
+
+    true
+  end
+
+  def action_from_severity(subscription, severity)
     case severity
+    when '', nil
+      subscription.list_action || 'reject'
     when 'accept', 'allow'
-      'accept'
+      'accept' unless subscription.list_action == 'reject'
     when 'limit', 'silence'
-      'limit'
-    else
-      'reject'
+      'limit' unless subscription.list_action == 'accept'
+    when 'block', 'reject', 'suspend'
+      'reject' unless subscription.list_action == 'accept'
     end
   end
 end

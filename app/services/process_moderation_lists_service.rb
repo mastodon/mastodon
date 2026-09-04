@@ -4,9 +4,6 @@ class ProcessModerationListsService < BaseService
   Suggestion = Struct.new(:target_type, :target_key, :action, :moderation_subscription_id, :apply_automatically)
   Retraction = Struct.new(:target_type, :action, :moderation_subscription_id, :retract_automatically)
 
-  TARGET_TYPES = %w(domain).freeze
-  ACTIONS = %w(accept reject limit).freeze
-
   def call
     applicable_actions = Rails.configuration.x.mastodon.limited_federation_mode ? ['accept'] : ['reject', 'limit']
 
@@ -47,8 +44,8 @@ class ProcessModerationListsService < BaseService
 
       # 3. orphan suggestions
       grouped_target_keys = advisories.group_by { |advisory| [advisory.target_type, advisory.action] }.transform_values { |advisories| advisories.map(&:target_key) }
-      TARGET_TYPES.each do |target_type|
-        ACTIONS.each do |action|
+      SubscribedAdvisory::TARGET_TYPES.each do |target_type|
+        SubscribedAdvisory::ACTIONS.each do |action|
           subscription
             .suggestions
             .where(target_type: target_type)
