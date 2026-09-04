@@ -1,3 +1,5 @@
+@use '@/styles/mastodon/mixins';
+
 .root {
   --col-gap: var(--space-xs);
   --avatar-size: 40px;
@@ -17,6 +19,41 @@
 .content,
 .actions {
   grid-column: 2;
+}
+
+.content {
+  @include mixins.type-body;
+
+  p:not(:last-child) {
+    margin-block-end: 1em;
+  }
+
+  &.collapsed {
+    position: relative;
+    max-height: 15lh;
+    overflow-y: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      height: calc(var(--space-4xl) * 2);
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--color-bg-blend)
+      );
+      pointer-events: none;
+    }
+  }
+}
+
+.contentReadMore {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  z-index: 1;
 }
 
 .actions {

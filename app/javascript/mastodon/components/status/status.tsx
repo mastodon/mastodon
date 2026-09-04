@@ -93,7 +93,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   // Handlers
   const {
     showDespiteFilter,
-    onHeaderClick,
     onExpandedToggle,
     onFilterToggle,
     onTranslate,
@@ -122,10 +121,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
   if (hidden) {
     return (
-      <StatusHotkeys
-        {...hotkeysProps}
-        className={classNames('status__wrapper', { focusable: !muted })}
-      >
+      <StatusHotkeys {...hotkeysProps}>
         <span>{status.account.display_name || status.account.username}</span>
         {status.spoiler_text && <span>{status.spoiler_text}</span>}
         {expanded && <span>{status.content}</span>}
@@ -174,8 +170,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           <StatusContent
             status={status}
             statusContent={statusContent}
+            onReadMore={handlers.onOpen}
             onTranslate={onTranslate}
-            className={classes.content}
             collapsible
           >
             {!!status.poll && (

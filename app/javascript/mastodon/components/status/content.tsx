@@ -29,12 +29,14 @@ export const StatusContent: React.FC<
     status: StatusShape | ExpandedStatusShape;
     statusContent?: string;
     onTranslate?: () => void;
+    onReadMore?: () => void;
     collapsible?: boolean;
   } & React.ComponentPropsWithRef<'div'>
 > = ({
   status,
   statusContent,
   onTranslate,
+  onReadMore,
   collapsible,
   children,
   className,
@@ -50,18 +52,17 @@ export const StatusContent: React.FC<
   const [collapsed, setCollapsed] = useState(false);
   const onRef = useCallback(
     (node: HTMLDivElement | null) => {
-      if (!node || !collapsible) {
+      if (!node || collapsed) {
         return;
       }
 
-      const collapsed =
+      setCollapsed(
         (node.clientHeight > MAX_HEIGHT ||
           node.scrollWidth > node.clientWidth) &&
-        !status.spoiler_text;
-
-      setCollapsed(collapsed);
+          !status.spoiler_text,
+      );
     },
-    [collapsible, status],
+    [collapsed, status.spoiler_text],
   );
 
   const htmlHandlers = useHandlersForStatus(status);
@@ -75,12 +76,16 @@ export const StatusContent: React.FC<
     status.search_index?.trim().length &&
     targetLanguages?.includes(intl.locale.replace(/[_-].*/, ''))
   );
-  const renderReadMore = collapsed;
+  const isCollapsed = !!onReadMore && collapsible && collapsed;
 
   return (
     <EmojiHTML
       {...props}
-      className={classNames(className)}
+      className={classNames(
+        className,
+        classes.content,
+        isCollapsed && classes.collapsed,
+      )}
       ref={onRef}
       lang={language}
       htmlString={
@@ -98,12 +103,13 @@ export const StatusContent: React.FC<
         />
       )}
 
-      {renderReadMore && (
+      {isCollapsed && (
         <Button
           size='sm'
           variant='ghost'
+          onClick={onReadMore}
           trailingIcon={CaretRightIcon}
-          className={classes.buttonAlign}
+          className={classNames(classes.contentReadMore)}
         >
           <FormattedMessage id='status.read_more' defaultMessage='Read more' />
         </Button>
