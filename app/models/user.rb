@@ -146,11 +146,9 @@ class User < ApplicationRecord
   end
 
   def role
-    if role_id.nil?
-      UserRole.everyone
-    else
-      super
-    end
+    return super unless role_id.nil?
+
+    association(:role).target ||= UserRole.everyone
   end
 
   def invited?
