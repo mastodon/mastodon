@@ -2486,6 +2486,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/icu-messageformat-parser@npm:3.5.17":
+  version: 3.5.17
+  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.17"
+  dependencies:
+    "@formatjs/icu-skeleton-parser": "npm:2.1.11"
+  checksum: 10c0/ad22981a2a96da0256aa8aa4990e540a03e1eb0c8f61c4ac94e8c91f3af1819b5cd9204ccf209433857b11a2d8afc5c66332768d5ea92e5c9523074ce6cbfb36
+  languageName: node
+  linkType: hard
+
 "@formatjs/icu-skeleton-parser@npm:2.1.11":
   version: 2.1.11
   resolution: "@formatjs/icu-skeleton-parser@npm:2.1.11"
@@ -2512,14 +2521,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl@npm:4.1.18":
-  version: 4.1.18
-  resolution: "@formatjs/intl@npm:4.1.18"
+"@formatjs/intl@npm:4.1.20":
+  version: 4.1.20
+  resolution: "@formatjs/intl@npm:4.1.20"
   dependencies:
     "@formatjs/fast-memoize": "npm:3.1.7"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.16"
-    intl-messageformat: "npm:11.2.13"
-  checksum: 10c0/20cab0d2ef6df45ff9fdea4eb915aa81e001557f6a69a95ed8ab2a89ddc3f0a47869c410cc4ed7a29fd5add27a2b17c6cb00941ae904cb8f47f294d07c6ef324
+    "@formatjs/icu-messageformat-parser": "npm:3.5.17"
+    intl-messageformat: "npm:11.2.14"
+  checksum: 10c0/bd0dadd4990cb671ec54adf188bde104bc1868efe5de371f720cf2c9e72a65946502c964a0e1dec4245360ddcae43ad894e7b0e162987833cc7345518913045b
   languageName: node
   linkType: hard
 
@@ -2892,7 +2901,7 @@ __metadata:
     husky: "npm:9.1.7"
     idb: "npm:8.0.3"
     immutable: "npm:4.3.9"
-    intl-messageformat: "npm:11.2.13"
+    intl-messageformat: "npm:11.2.14"
     js-yaml: "npm:5.3.0"
     lande: "npm:1.0.10"
     lint-staged: "npm:17.0.5"
@@ -2911,7 +2920,7 @@ __metadata:
     react-easy-crop: "npm:6.2.3"
     react-immutable-proptypes: "npm:2.2.0"
     react-immutable-pure-component: "npm:2.2.2"
-    react-intl: "npm:10.1.20"
+    react-intl: "npm:10.1.25"
     react-redux: "npm:9.3.0"
     react-redux-loading-bar: "npm:5.0.8"
     react-router: "npm:5.3.4"
@@ -8824,13 +8833,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:11.2.13":
-  version: 11.2.13
-  resolution: "intl-messageformat@npm:11.2.13"
+"intl-messageformat@npm:11.2.14":
+  version: 11.2.14
+  resolution: "intl-messageformat@npm:11.2.14"
   dependencies:
     "@formatjs/fast-memoize": "npm:3.1.7"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.16"
-  checksum: 10c0/94ff2ce99285c7d39df854beb16f87ba7c737baa35e891810f6bbcd364d4decf8f9509f0aae2d86b914f3c918fe6b0b6f6de606badb8506157bc1b78ab072e02
+    "@formatjs/icu-messageformat-parser": "npm:3.5.17"
+  checksum: 10c0/b29d319f22af64d3faf70c81e7ac43c1685ad0065e9a3e618872c1f77e6ee361054254366077f4481636fa57b633a6af28efc6c479d7aa61ffd5cc34711c87ce
   languageName: node
   linkType: hard
 
@@ -11615,17 +11624,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intl@npm:10.1.20":
-  version: 10.1.20
-  resolution: "react-intl@npm:10.1.20"
+"react-intl@npm:10.1.25":
+  version: 10.1.25
+  resolution: "react-intl@npm:10.1.25"
   dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:3.5.16"
-    "@formatjs/intl": "npm:4.1.18"
-    intl-messageformat: "npm:11.2.13"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.17"
+    "@formatjs/intl": "npm:4.1.20"
+    intl-messageformat: "npm:11.2.14"
   peerDependencies:
     "@types/react": ">=18.0.0"
     react: ">=18.0.0"
-  checksum: 10c0/96b27aadfc7943284307414a871d3ebf87c0fa073d8fa521c5dbb3784edddc41eafae5b7b0f861a45041fda1a087513570f81035732cdf1e17f37864d0a59723
+  checksum: 10c0/8c53275d145d9ac6ff70eb33dded2c693529008cbb06ab96ed5de46169c9e43cef405f1cf0bafab51b4d7fdf04b44dabfaf538aab825375ef93902270b30f0f7
   languageName: node
   linkType: hard
 
