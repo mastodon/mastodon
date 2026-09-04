@@ -64,7 +64,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   showActions = true,
   scrollKey,
   children,
-  avatarSize = 40,
   withCounters,
   withDismiss,
   onOpen,
@@ -162,7 +161,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         />
       )}
 
-      <StatusRedesignHeader status={status} avatarSize={avatarSize}>
+      <StatusRedesignHeader status={status}>
         {headerContents}
       </StatusRedesignHeader>
 

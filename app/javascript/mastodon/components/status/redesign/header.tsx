@@ -18,14 +18,12 @@ interface StatusRedesignHeaderProps {
   status: Pick<AccountStatusShape, 'id' | 'account' | 'created_at'>;
   children?: React.ReactNode;
   className?: string;
-  avatarSize?: number;
 }
 
 export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
   status,
   children,
   className,
-  avatarSize = 40,
 }) => {
   const account = status.account;
   const handle = useAccountHandle(account);
@@ -44,8 +42,13 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
 
   return (
     <header className={classNames(className, classes.header)}>
-      <Link {...accountLinkProps} role='presentation' tabIndex={-1}>
-        <Avatar account={account} size={avatarSize} />
+      <Link
+        {...accountLinkProps}
+        role='presentation'
+        tabIndex={-1}
+        className={classes.headerAvatar}
+      >
+        <Avatar account={account} size={null} />
       </Link>
 
       <div className={classes.headerNameWrapper}>
