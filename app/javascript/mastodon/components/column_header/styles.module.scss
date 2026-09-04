@@ -2,6 +2,32 @@
 @use '@/styles/mastodon/variables';
 
 .root {
+  // Make bottom half of column header transparent to make the
+  // overlay gradient on the `.layout` class work
+  --column-header-gradient-start: 55%;
+
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-blend) var(--column-header-gradient-start),
+    transparent var(--column-header-gradient-start)
+  );
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-top: 0;
+
+  @media (width >= variables.$mobile-menu-breakpoint) {
+    border-top: 10px solid var(--color-bg-blend);
+  }
+
+  // Fix bg color for legacy column headers.
+  // Remove when new column headers are in.
+  & :global(.column-header) {
+    background: var(--color-bg-primary);
+  }
+}
+
+.layout {
   position: relative;
   display: grid;
 

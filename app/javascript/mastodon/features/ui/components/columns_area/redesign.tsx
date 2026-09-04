@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import classNames from 'classnames';
 
 import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
@@ -10,25 +8,9 @@ import { Footer } from 'mastodon/features/custom_homepage/components/footer';
 import { Header } from 'mastodon/features/custom_homepage/components/header';
 
 import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { useColumnsContext } from '../../util/columns_context';
 
 import { MultiColumnContent } from './multi_column_content';
 import classes from './redesign.module.scss';
-
-const TabsBarPortal: React.FC<React.ComponentProps<'div'>> = (props) => {
-  const { setTabsBarElement } = useColumnsContext();
-
-  const setRef = useCallback(
-    (element: HTMLDivElement | null) => {
-      if (element) {
-        setTabsBarElement(element);
-      }
-    },
-    [setTabsBarElement],
-  );
-
-  return <div {...props} ref={setRef} />;
-};
 
 export const ColumnsAreaRedesign: React.FC<{
   singleColumn?: boolean;
@@ -47,8 +29,6 @@ export const ColumnsAreaRedesign: React.FC<{
         <div className={classes.main}>
           <Header />
 
-          <TabsBarPortal className={classes.columnHeader} />
-
           <div className={classes.content}>{children}</div>
 
           <Footer />
@@ -65,11 +45,7 @@ export const ColumnsAreaRedesign: React.FC<{
         </div>
         {isMobile ? <RedesignMobileNavigation /> : <ComposeRedesignButton />}
 
-        <main className={classes.main}>
-          <TabsBarPortal className={classes.columnHeader} />
-
-          <div className={classes.content}>{children}</div>
-        </main>
+        <main className={classes.main}>{children}</main>
       </div>
     );
   }
