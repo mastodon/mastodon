@@ -263,6 +263,7 @@ en:
         create_domain_block_html: "%{name} blocked domain %{target}"
         create_email_domain_block_html: "%{name} blocked email domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
+        create_moderation_subscription_html: "%{name} created moderation subscription %{target}"
         create_relay_html: "%{name} created a relay %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         create_user_role_html: "%{name} created %{target} role"
@@ -277,6 +278,7 @@ en:
         destroy_email_domain_block_html: "%{name} unblocked email domain %{target}"
         destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
+        destroy_moderation_subscription_html: "%{name} deleted moderation subscription %{target}"
         destroy_relay_html: "%{name} deleted the relay %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
@@ -325,10 +327,17 @@ en:
         update_user_role_html: "%{name} changed %{target} role"
         update_username_block_html: "%{name} updated rule for usernames containing %{target}"
         usable_tag_html: can be used;
+      automated_actions:
+        create_domain_allow_html: Automatically allowed federation with domain %{target}
+        create_domain_block_html: Automatically blocked domain %{target}
+        destroy_domain_allow_html: Automatically disallowed federation with domain %{target}
+        destroy_domain_block_html: Automatically unblocked domain %{target}
+        update_domain_block_html: Automatically updated domain block for %{target}
       deleted_account: deleted account
       empty: No logs found.
       filter_by_action: Filter by action
       filter_by_user: Filter by user
+      suggested_by_html: Action suggested by %{subscription}
       title: Audit log
       unavailable_instance: "(domain name unavailable)"
     announcements:
@@ -444,6 +453,12 @@ en:
       undo: Disallow federation with domain
     domain_blocks:
       add_new: Add new domain block
+      confirm_downgrade:
+        cancel: Cancel
+        confirm: Downgrade
+        permanent_action: Undoing the suspension will not restore any data or relationship.
+        preamble_html: You are about to downgrade the existing block on <strong>%{domain}</strong> and its subdomains.
+        title: Confirm domain block downgrade for %{domain}
       confirm_suspension:
         cancel: Cancel
         confirm: Suspend
@@ -662,6 +677,7 @@ en:
         comment: Internal note
         description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
         limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
+        moderation_subscription: Moderation subscription
         policies:
           reject_media: Reject media
           reject_reports: Reject reports
@@ -742,6 +758,82 @@ en:
       reset: Reset
       search: Search
       title: IP rules
+    moderation_subscriptions:
+      add_new: Add subscription
+      advisories_count:
+        one: "%{count} advisory"
+        other: "%{count} advisories"
+      advisory_action: 'Action: %{action}'
+      advisory_actions:
+        accept: allow
+        limit: silence
+        reject: suspend
+      apply_automatically: Apply advisories automatically
+      apply_conditions:
+        always: Always
+        never: Never
+        safely: Only if it does not break relationships
+      delete: Delete
+      delete_confirm: Are you sure you want to delete this moderation subscription?
+      destroyed_msg: Successfully deleted moderation subscription
+      empty: No moderation list has been subscribed to yet.
+      empty_subscription: This subscription has no advisory yet.
+      last_synced_at: Last synced at
+      list_action: List action
+      list_actions:
+        accept: Subscribed as an allow-list
+        default: Advised actions decided by list
+        reject: Subscribed as a block-list
+      list_actions_short:
+        accept: Allow-list
+        default: Community Mod
+        reject: Block-list
+      name: Name
+      new:
+        create: Subscribe
+        title: New moderation subscription
+      policies:
+        apply_advisories: Automatically applies advisories
+        apply_advisories_safely: Automatically applies advisories that do not break relationships
+        apply_retractions: Automatically applies retractions
+      priority: Priority
+      priority_hint: Moderation subscriptions are evaluated in order of priority, subscriptions with a lower number override subscriptions with a higher one.
+      retract_automatically: Retract advisories automatically
+      show_title: 'Moderation subscription: %{name}'
+      tabs:
+        logs: Logs
+        subscriptions: Subscriptions
+        suggestions: Suggestions
+      title: Moderation subscriptions
+      type: Type
+      types:
+        csv_list: CSV list
+      url: URL
+    moderation_subscriptions_logs:
+      title: Moderation subscriptions logs
+    moderation_suggestions:
+      actions:
+        accept: Allow
+        limit: Limit
+        reject: Suspend
+        retract: Retract current policy
+      applied_msg: Successfully applied suggestion for %{target_key}
+      apply_accept: Allow
+      apply_limit: Limit
+      apply_reject: Suspend
+      apply_retract: Retract
+      current_states:
+        accept: currently allowed
+        limit: currently limited
+        reject: currently suspended
+      description: Below are suggestions from your moderation subscriptions, ordered by priority.
+      destroyed_msg: Successfully dismissed suggestion for %{target_key}
+      dismiss: Dismiss suggestions
+      empty: There is no moderation suggestion at this time.
+      retracted_msg: Successfully retracted policy for %{target_key}
+      suggested_from_html: Suggested by %{link}
+      title: Moderation suggestions
+      unable_to_apply_msg: Unable to apply suggestion for %{target_key}
     relationships:
       title: "%{acct}'s relationships"
     relays:
@@ -1315,6 +1407,9 @@ en:
     new_critical_software_updates:
       body: New critical versions of Mastodon have been released, you may want to update as soon as possible!
       subject: Critical Mastodon updates are available for %{instance}!
+    new_moderation_suggestions:
+      body: The moderation lists your server is subscribed to have published new suggestions.
+      subject: New moderation suggestions available on %{instance}!
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})

@@ -1,0 +1,34 @@
+.applications-list__item
+  - target_type, target_key = moderation_suggestion_target
+  - suggestions = moderation_suggestions_by_target[[target_type, target_key]]
+
+  = link_to admin_instance_path(target_key), class: 'announcements-list__item__title' do
+    = target_key
+    .information-badge{ class: current_state_by_target[[target_type, target_key]] }= t(current_state_by_target[[target_type, target_key]], scope: 'admin.moderation_suggestions.current_states')
+
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      = t('admin.moderation_suggestions.description')
+
+    .announcements-list__item__actions
+      = table_link_to 'close', t('admin.moderation_suggestions.dismiss'), admin_moderation_suggestion_path(suggestions.first), method: :delete
+
+  .announcements-list__item__permissions
+    %ul.permissions-list
+      - actions = (moderation_advisories_by_target[[target_type, target_key]] || []).pluck(:action).uniq
+      - actions = ['retract'] + actions if suggestions&.any? { |suggestion| suggestion.action == 'retract' }
+      - actions.map do |action|
+        :ruby
+          advisories = moderation_advisories_by_target.fetch([target_type, target_key], []).filter { |advisory| advisory.action == action }
+          moderation_suggestion = suggestions&.find { |suggestion| suggestion.action == action }
+          subscriptions = (advisories.map(&:moderation_subscription) + [moderation_suggestion&.moderation_subscription]).compact.uniq
+
+        %li.permissions-list__item
+          .permissions-list__item__icon{ class: "moderation_suggestion-#{action}" }
+            = advisory_action_icon(action)
+          .permissions-list__item__text
+            .permissions-list__item__text__title
+              = t(action, scope: 'admin.moderation_suggestions.actions')
+            .permissions-list__item__text__type
+              = t('admin.moderation_suggestions.suggested_from_html', link: to_sentence(subscriptions.map { |subscription| link_to(subscription.name, admin_moderation_subscription_path(subscription)) }))
+          = table_link_to 'check', t("admin.moderation_suggestions.apply_#{moderation_suggestion.action}"), apply_admin_moderation_suggestion_path(moderation_suggestion), method: :post if moderation_suggestion # TODO

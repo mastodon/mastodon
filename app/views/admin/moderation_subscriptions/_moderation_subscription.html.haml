@@ -1,0 +1,11 @@
+.applications-list__item
+  - list_action = moderation_subscription.list_action || 'default'
+  = link_to admin_moderation_subscription_path(moderation_subscription), class: 'announcements-list__item__title' do
+    = moderation_subscription.name
+    .information-badge{ class: list_action }= I18n.t(list_action, scope: 'admin.moderation_subscriptions.list_actions_short')
+
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      = moderation_subscription.url
+    .announcements-list__item__meta
+      = moderation_subscription_policy_list(moderation_subscription)

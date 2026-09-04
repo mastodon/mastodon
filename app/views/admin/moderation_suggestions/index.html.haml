@@ -1,0 +1,16 @@
+- content_for(:heading) do
+  .content__heading__row
+    %h1= t('admin.moderation_suggestions.title')
+
+  = render 'admin/moderation_subscriptions/shared/links'
+
+%hr.spacer/
+
+- if @moderation_suggestion_targets.empty?
+  .muted-hint.center-text
+    = t 'admin.moderation_suggestions.empty'
+- else
+  .applications-list
+    = render partial: 'moderation_suggestion_target',
+             collection: @moderation_suggestion_targets,
+             locals: { moderation_advisories_by_target: @moderation_advisories_by_target, moderation_suggestions_by_target: @moderation_suggestions_by_target, current_state_by_target: @current_state_by_target }

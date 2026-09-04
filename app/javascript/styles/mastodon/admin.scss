@@ -2511,3 +2511,45 @@ a.sparkline {
     }
   }
 }
+
+// TODO: Temporary hacks for moderation subscriptions interface, rework after design pass
+
+.information-badge {
+  &.accept {
+    color: var(--color-text-success);
+    background-color: var(--color-bg-success-softest);
+    border-color: var(--color-border-success-soft);
+  }
+
+  &.reject {
+    color: var(--color-text-error);
+    background-color: var(--color-bg-error-softest);
+    border-color: var(--color-border-error-soft);
+  }
+
+  &.limit {
+    color: var(--color-text-warning);
+    background-color: var(--color-bg-warning-softest);
+    border-color: var(--color-border-warning-soft);
+  }
+}
+
+.permissions-list__item__text__type a {
+  color: inherit;
+}
+
+.moderation_suggestion-retract {
+  color: inherit;
+}
+
+.moderation_suggestion-limit {
+  color: var(--color-text-warning);
+}
+
+.moderation_suggestion-reject {
+  color: var(--color-text-error);
+}
+
+.permissions-list__item .table-action-link {
+  padding: 0;
+}
