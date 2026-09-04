@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +30,8 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
   const account = status.account;
   const handle = useAccountHandle(account);
 
-  const linkProps = {
+  const nameId = useId();
+  const accountLinkProps = {
     to: {
       pathname: `/@${account.acct}`,
       state: { reference: 'status' },
@@ -41,14 +44,19 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
 
   return (
     <header className={classNames(className, classes.header)}>
-      <Link {...linkProps}>
+      <Link
+        {...accountLinkProps}
+        role='presentation'
+        tabIndex={-1}
+        aria-describedby={nameId}
+      >
         <Avatar account={account} size={avatarSize} />
       </Link>
 
       <div className={classes.headerNameWrapper}>
         <p className={classes.headerName}>
-          <Link {...linkProps} className={classes.headerNameLink}>
-            <DisplayName account={account} variant='noDomain' />
+          <Link {...accountLinkProps} className={classes.headerNameLink}>
+            <DisplayName account={account} variant='noDomain' id={nameId} />
           </Link>
           &bull;
           <Link
@@ -62,7 +70,14 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
         </p>
 
         <p className={classes.headerHandle}>
-          <Link {...linkProps}>{handle ?? <Skeleton width='7ch' />}</Link>
+          <Link
+            {...accountLinkProps}
+            role='presentation'
+            tabIndex={-1}
+            aria-describedby={nameId}
+          >
+            {handle ?? <Skeleton width='7ch' />}
+          </Link>
         </p>
       </div>
 

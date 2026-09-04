@@ -17,7 +17,8 @@
     }
   }
 
-  &:has([data-id]:hover) [data-id] {
+  // When hovering over any link with the account ID, underline them all.
+  &:has(a[data-id]:hover) a[data-id] {
     text-decoration: underline;
   }
 }
