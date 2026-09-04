@@ -107,8 +107,13 @@ RSpec.describe Form::AccountBatch do
 
     context 'when action is "unknown"' do
       let(:action) { 'unknown' }
+      let(:account_ids) { [account.id] }
+      let(:account) { Fabricate :account }
 
-      it { is_expected.to be_nil }
+      it 'does not change the supplied accounts' do
+        expect { subject }
+          .to_not(change { account.reload.updated_at })
+      end
     end
   end
 end
