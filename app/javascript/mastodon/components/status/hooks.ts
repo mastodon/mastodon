@@ -131,18 +131,6 @@ export function useStatusHandlers({
     [onOpenCallback],
   );
 
-  const onHeaderClick: React.MouseEventHandler = useCallback(
-    (event) => {
-      // Only handle clicks on the empty space above the content
-      if (event.target !== event.currentTarget && event.detail >= 1) {
-        return;
-      }
-
-      onOpenClick(event);
-    },
-    [onOpenClick],
-  );
-
   const acct = status?.account.acct;
   const onOpenProfile = useCallback(() => {
     if (acct) {
@@ -190,7 +178,6 @@ export function useStatusHandlers({
       onOpenClick,
       onExpandedToggle,
       onFilterToggle,
-      onHeaderClick,
       onMention,
       onOpen: () => {
         onOpenCallback();
@@ -208,7 +195,6 @@ export function useStatusHandlers({
       handlerFactory,
       onExpandedToggle,
       onFilterToggle,
-      onHeaderClick,
       onMention,
       onOpenCallback,
       onOpenClick,

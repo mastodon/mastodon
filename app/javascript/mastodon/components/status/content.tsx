@@ -1,173 +1,138 @@
 import type React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import classnames from 'classnames';
+import classNames from 'classnames';
 
-import { toggleStatusCollapse } from '@/mastodon/actions/statuses';
-import { useStatus } from '@/mastodon/hooks/useStatus';
+import { CaretRightIcon } from '@phosphor-icons/react';
+
 import { useIdentity } from '@/mastodon/identity_context';
 import { languages as preloadedLanguages } from '@/mastodon/initial_state';
-import type { StatusTranslation } from '@/mastodon/models/status';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import type {
+  ExpandedStatusShape,
+  StatusShape,
+  StatusTranslation,
+} from '@/mastodon/models/status';
+import { useAppSelector } from '@/mastodon/store';
 
+import { Button } from '../button/redesign';
 import { EmojiHTML } from '../emoji/html';
-import { Icon } from '../icon';
-import { Poll } from '../poll';
 
 import { useHandlersForStatus } from './hooks';
+import classes from './styles.module.scss';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
-export const StatusContent: React.FC<{
-  statusId: string;
-  statusContent?: string;
-  onClick?: React.MouseEventHandler;
-  onTranslate?: React.MouseEventHandler<HTMLButtonElement>;
-  collapsible?: boolean;
-}> = ({ statusId, statusContent, onClick, onTranslate, collapsible }) => {
-  const status = useStatus(statusId);
+export const StatusContent: React.FC<
+  {
+    status: StatusShape | ExpandedStatusShape;
+    statusContent?: string;
+    onTranslate?: () => void;
+    onReadMore?: () => void;
+    collapsible?: boolean;
+  } & React.ComponentPropsWithRef<'div'>
+> = ({
+  status,
+  statusContent,
+  onTranslate,
+  onReadMore,
+  collapsible,
+  children,
+  className,
+  ...props
+}) => {
   const { signedIn } = useIdentity();
   const targetLanguages = useAppSelector(
-    (state) =>
-      state.server.translationLanguages.item?.[status?.language ?? 'und'],
+    (state) => state.server.translationLanguages.item?.[status.language],
   );
   const intl = useIntl();
 
   // Determines if a long post should show the read more button.
-  const dispatch = useAppDispatch();
-  const handleCollapse = useCallback(
+  const [collapsed, setCollapsed] = useState(false);
+  const onRef = useCallback(
     (node: HTMLDivElement | null) => {
-      if (!node || status?.collapsed !== null || !collapsible) {
+      if (!node || collapsed) {
         return;
       }
 
-      const text = node.querySelector(':scope > .status__content__text');
-
-      const collapsed =
+      setCollapsed(
         (node.clientHeight > MAX_HEIGHT ||
-          (text !== null && text.scrollWidth > text.clientWidth)) &&
-        !status.spoiler_text;
-
-      dispatch(toggleStatusCollapse(status.id, collapsed));
+          node.scrollWidth > node.clientWidth) &&
+          !status.spoiler_text,
+      );
     },
-    [collapsible, status, dispatch],
-  );
-
-  // Trigger the click event if clicking outside a link, button, or label inside a status.
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = useCallback(
-    (event) => {
-      const { target } = event;
-      if (
-        !onClick ||
-        !(target instanceof Element) ||
-        target.closest(':is(a, button, label)')
-      ) {
-        return;
-      }
-      onClick(event);
-    },
-    [onClick],
+    [collapsed, status.spoiler_text],
   );
 
   const htmlHandlers = useHandlersForStatus(status);
 
-  if (!status) {
-    return null;
-  }
-
   const language = status.translation?.language ?? status.language;
 
-  const renderReadMore = !!onClick && status.collapsed;
-  const readMoreButton = renderReadMore && (
-    <button
-      className='status__content__read-more-button'
-      type='button'
-      onClick={onClick}
-      key='read-more'
-    >
-      <FormattedMessage id='status.read_more' defaultMessage='Read more' />
-      <Icon id='angle-right' icon={ChevronRightIcon} />
-    </button>
-  );
-
-  const renderTranslate =
-    !!onTranslate &&
+  const isCollapsed = !!onReadMore && collapsible && collapsed;
+  const renderTranslate = !!(
+    onTranslate &&
+    !isCollapsed &&
     signedIn &&
     ['public', 'unlisted'].includes(status.visibility) &&
-    status.search_index &&
-    status.search_index.trim().length > 0 &&
-    targetLanguages?.includes(intl.locale.replace(/[_-].*/, ''));
-  const translateButton = renderTranslate && (
-    <TranslateButton onClick={onTranslate} translation={status.translation} />
+    status.search_index?.trim().length &&
+    targetLanguages?.includes(intl.locale.replace(/[_-].*/, ''))
   );
 
-  const poll = !!status.poll && (
-    <Poll
-      pollId={status.poll}
-      statusUrl={status.uri}
-      accountId={status.account}
-      lang={language}
-    />
-  );
-
-  const content = (
+  return (
     <EmojiHTML
-      className='status__content__text status__content__text--visible translate'
+      {...props}
+      className={classNames(
+        className,
+        classes.content,
+        isCollapsed && classes.collapsed,
+      )}
+      ref={onRef}
       lang={language}
       htmlString={
         statusContent ?? status.translation?.contentHtml ?? status.contentHtml
       }
       extraEmojis={status.emojis}
       {...htmlHandlers}
-    />
+    >
+      {children}
+
+      {renderTranslate && (
+        <TranslateButton
+          translation={status.translation}
+          onTranslate={onTranslate}
+        />
+      )}
+
+      {isCollapsed && (
+        <Button
+          size='sm'
+          variant='ghost'
+          onClick={onReadMore}
+          trailingIcon={CaretRightIcon}
+          className={classNames(classes.contentReadMore, classes.buttonAlign)}
+        >
+          <FormattedMessage id='status.read_more' defaultMessage='Read more' />
+        </Button>
+      )}
+    </EmojiHTML>
   );
-
-  const classNames = classnames('status__content', {
-    'status__content--with-action': onClick,
-    'status__content--collapsed': renderReadMore,
-  });
-
-  if (!onClick) {
-    return (
-      <div className={classNames} ref={handleCollapse}>
-        {content}
-        {poll}
-        {translateButton}
-      </div>
-    );
-  }
-
-  /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
-  return (
-    <>
-      <div className={classNames} ref={handleCollapse} onClick={handleClick}>
-        {content}
-        {poll}
-        {translateButton}
-      </div>
-
-      {readMoreButton}
-    </>
-  );
-  /* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 };
 
 const TranslateButton: React.FC<{
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onTranslate: React.MouseEventHandler<HTMLButtonElement>;
   translation?: StatusTranslation;
-}> = ({ translation, onClick }) => {
+}> = ({ translation, onTranslate }) => {
   if (!translation) {
     return (
-      <button
-        type='button'
-        className='status__content__translate-button'
-        onClick={onClick}
+      <Button
+        size='sm'
+        variant='ghost'
+        onClick={onTranslate}
+        className={classes.buttonAlign}
       >
         <FormattedMessage id='status.translate' defaultMessage='Translate' />
-      </button>
+      </Button>
     );
   }
 
@@ -181,12 +146,12 @@ const TranslateButton: React.FC<{
 
   return (
     <div className='translate-button'>
-      <button type='button' className='link-button' onClick={onClick}>
+      <Button size='sm' variant='ghost' onClick={onTranslate}>
         <FormattedMessage
           id='status.show_original'
           defaultMessage='Show original'
         />
-      </button>
+      </Button>
 
       <div className='translate-button__meta'>
         <FormattedMessage

@@ -21,6 +21,7 @@ import type { StatusContextType } from './types';
 interface StatusStoryProps extends AttachmentArgs {
   // Contents
   text: string;
+  tags: string;
   visibility: StatusVisibility;
   isReblog?: boolean;
   isReply?: boolean;
@@ -169,6 +170,7 @@ const meta = {
     isPoll: categoryContents,
     isQuote: categoryContents,
     text: categoryContents,
+    tags: categoryContents,
     attachment1: {
       ...categoryContents,
       ...attachmentArgTypes.attachment1,
@@ -232,6 +234,7 @@ const meta = {
   },
   args: {
     text: 'This is a status',
+    tags: '',
     visibility: 'public',
     isReblog: false,
     isReply: false,
@@ -283,7 +286,8 @@ const meta = {
       },
     },
     stateFn({
-      text,
+      text: textBase,
+      tags: tagsStr,
       contentWarning,
       visibility,
       attachment1,
@@ -301,6 +305,28 @@ const meta = {
     }: StatusStoryProps) {
       const account = accountFactoryImmutable();
 
+      const tags = tagsStr
+        .split(',')
+        .map((tagStr) => {
+          const tag = tagStr.trim().replace(/^#/, '');
+          if (!tag) {
+            return null;
+          }
+          return {
+            name: tag,
+            url: `https://example.com/tags/${tag}`,
+          };
+        })
+        .filter((tag) => !!tag);
+
+      let text = textBase.trim();
+      if (tags.length > 0) {
+        const tagText = tags
+          .map((tag) => `<a href="${tag.url}" rel="tag">#${tag.name}</a>`)
+          .join(' ');
+        text += `\n${tagText}`;
+      }
+
       const status = statusFactoryImmutable({
         text,
         spoiler_text: contentWarning,
@@ -310,6 +336,7 @@ const meta = {
           attachment2,
           attachment3,
         ),
+        tags,
         reblogged: hasReblogged,
         favourited: hasFavourited,
         bookmarked: hasBookmarked,
