@@ -110,7 +110,7 @@ export const StatusContent: React.FC<
           variant='ghost'
           onClick={onReadMore}
           trailingIcon={CaretRightIcon}
-          className={classNames(classes.contentReadMore)}
+          className={classNames(classes.contentReadMore, classes.buttonAlign)}
         >
           <FormattedMessage id='status.read_more' defaultMessage='Read more' />
         </Button>
