@@ -20,7 +20,7 @@ import { useIdentity } from 'mastodon/identity_context';
 import { PERMISSION_MANAGE_TAXONOMIES } from 'mastodon/permissions';
 import { useAppDispatch } from 'mastodon/store';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   followHashtag: { id: 'hashtag.follow', defaultMessage: 'Follow hashtag' },
   unfollowHashtag: {
     id: 'hashtag.unfollow',
@@ -76,11 +76,7 @@ const usesTodayRenderer = (
   />
 );
 
-export const HashtagHeader: React.FC<{
-  tagId: string;
-}> = ({ tagId }) => {
-  const intl = useIntl();
-  const { signedIn, permissions } = useIdentity();
+export function useHashtag(tagId: string) {
   const dispatch = useAppDispatch();
   const [tag, setTag] = useState<ApiHashtagJSON>();
 
@@ -94,54 +90,32 @@ export const HashtagHeader: React.FC<{
     });
   }, [dispatch, tagId, setTag]);
 
-  const menu = useMemo(() => {
-    const arr = [];
-
-    if (tag && signedIn) {
-      const handleFeature = () => {
-        if (tag.featuring) {
-          void dispatch(unfeatureHashtag({ tagId })).then((result) => {
-            if (isFulfilled(result)) {
-              setTag(result.payload);
-            }
-
-            return '';
-          });
-        } else {
-          void dispatch(featureHashtag({ tagId })).then((result) => {
-            if (isFulfilled(result)) {
-              setTag(result.payload);
-            }
-
-            return '';
-          });
-        }
-      };
-
-      arr.push({
-        text: intl.formatMessage(
-          tag.featuring ? messages.unfeature : messages.feature,
-        ),
-        action: handleFeature,
-      });
-
-      arr.push(null);
-
-      if (
-        (permissions & PERMISSION_MANAGE_TAXONOMIES) ===
-        PERMISSION_MANAGE_TAXONOMIES
-      ) {
-        arr.push({
-          text: intl.formatMessage(messages.adminModeration, { name: tagId }),
-          href: `/admin/tags/${tag.id}`,
-        });
-      }
+  const toggleFeature = useCallback(() => {
+    if (!tag) {
+      return;
     }
+    if (tag.featuring) {
+      void dispatch(unfeatureHashtag({ tagId })).then((result) => {
+        if (isFulfilled(result)) {
+          setTag(result.payload);
+        }
 
-    return arr;
-  }, [setTag, dispatch, tagId, signedIn, permissions, intl, tag]);
+        return '';
+      });
+    } else {
+      void dispatch(featureHashtag({ tagId })).then((result) => {
+        if (isFulfilled(result)) {
+          setTag(result.payload);
+        }
 
-  const handleFollow = useCallback(() => {
+        return '';
+      });
+    }
+  }, [dispatch, tag, tagId]);
+
+  const { signedIn } = useIdentity();
+
+  const toggleFollow = useCallback(() => {
     if (!signedIn || !tag) {
       return;
     }
@@ -167,7 +141,44 @@ export const HashtagHeader: React.FC<{
         return '';
       });
     }
-  }, [dispatch, setTag, signedIn, tag, tagId]);
+  }, [dispatch, signedIn, tag, tagId]);
+
+  return { tag, toggleFollow, toggleFeature };
+}
+
+export const HashtagHeader: React.FC<{
+  tagId: string;
+}> = ({ tagId }) => {
+  const intl = useIntl();
+  const { signedIn, permissions } = useIdentity();
+  const { tag, toggleFeature, toggleFollow } = useHashtag(tagId);
+
+  const menu = useMemo(() => {
+    const arr = [];
+
+    if (tag && signedIn) {
+      arr.push({
+        text: intl.formatMessage(
+          tag.featuring ? messages.unfeature : messages.feature,
+        ),
+        action: toggleFeature,
+      });
+
+      arr.push(null);
+
+      if (
+        (permissions & PERMISSION_MANAGE_TAXONOMIES) ===
+        PERMISSION_MANAGE_TAXONOMIES
+      ) {
+        arr.push({
+          text: intl.formatMessage(messages.adminModeration, { name: tagId }),
+          href: `/admin/tags/${tag.id}`,
+        });
+      }
+    }
+
+    return arr;
+  }, [tag, signedIn, intl, toggleFeature, permissions, tagId]);
 
   if (!tag) {
     return null;
@@ -199,7 +210,7 @@ export const HashtagHeader: React.FC<{
 
           {signedIn && (
             <Button
-              onClick={handleFollow}
+              onClick={toggleFollow}
               text={intl.formatMessage(
                 tag.following
                   ? messages.unfollowHashtag
