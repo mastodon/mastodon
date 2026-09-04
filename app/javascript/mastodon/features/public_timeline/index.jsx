@@ -29,7 +29,7 @@ import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multic
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
-  title_redesign: { id: 'column.fediverse', defaultMessage: 'Other Servers' },
+  title_redesign: { id: 'column.other_servers', defaultMessage: 'Other Servers' },
 });
 
 const mapStateToProps = (state, { columnId }) => {
