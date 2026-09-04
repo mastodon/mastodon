@@ -112,7 +112,7 @@ az:
         manage_taxonomies_description: İstifadəçilərin trend məzmunu incələməsinə və mövzu etiketləri ayarlarını güncəlləməsinə icazə verir
         manage_user_access: İstifadəçi erişimini idarə et
         manage_user_access_description: İstifadəçilərin, digər istifadəçilərin iki faktorlu kimlik doğrulamasını sıradan çıxartmasına, onların e-poçt ünvanlarını dəyişdirməsinə və onların parolunu sıfırlamasına icazə verir
-        manage_users_description: İstifadəçilərin digər istifadəçilərin detallarını görməsinə və onlara qarşı moderasiya əməliyyatlarını icra etməsinə icazə verir
+        manage_users_description: İstifadəçilərin digər istifadəçilərin ayrıntılarını görməsinə və onlara qarşı moderasiya əməliyyatlarını icra etməsinə icazə verir
         view_dashboard_description: İstifadəçilərin idarəetmə lövhəsinə və müxtəlif metriklərə erişməsinə icazə verir
         view_devops_description: İstifadəçilərin Sidekiq və pgHero idarəetmə lövhələrinə erişməsinə icazə verir
     settings:
@@ -143,7 +143,7 @@ az:
       updated_msg: Mövzu etiketi ayarları uğurla güncəlləndi
     terms_of_service:
       generates:
-        chance_to_review_html: "<strong>Tərtib olunmuş xidmət şərtləri avtomatik olaraq dərc olunmayacaq.</strong> Nəticələri incələmə şansınız olacaq. Davam etmək üçün lütfən gərəkli məlumatları qeyd edin."
+        chance_to_review_html: "<strong>Tərtib olunmuş xidmət şərtləri avtomatik olaraq dərc olunmayacaq.</strong> Nəticələri incələmə şansınız olacaq. Davam etmək üçün lütfən gərəkli ayrıntıları qeyd edin."
     trends:
       tags:
         used_by_over_week:
@@ -156,6 +156,8 @@ az:
       body: "%{target}, %{date} tarixində %{action_taken_by} tərəfindən verilmiş %{type} moderasiya qərarına etiraz edir. Yazılanlar:"
       next_steps: Moderasiya qərarını geri almaq üçün etirazı təsdiqləyə, ya da etirazı yox saya bilərsiniz.
       subject: "%{username}, %{instance} üzərindəki bir moderasiya qərarına etiraz edir"
+    new_pending_account:
+      body: Yeni hesabın ayrıntıları aşağıdadır. Bu müraciəti təsdiqləyə və ya rədd edə bilərsiniz.
   appearance:
     advanced_settings: Qabaqcıl ayarlar
     animations_and_accessibility: Animasiyalar və erişiləbilənlik
@@ -184,6 +186,8 @@ az:
     link_to_otp: Telefonunuzdan iki faktorlu kodu və ya bir geri qaytarma kodunu daxil edin
     migrate_account: Fərqli bir hesaba daşı
     migrate_account_html: Bu hesabı başqa bir hesaba yönləndirmək istəyirsinizsə, <a href="%{path}">burada konfiqurasiya edə</a> bilərsiniz.
+    progress:
+      details: Məlumatlarınız
     resend_confirmation: Təsdiq keçidini təkrar göndər
     reset_password: Parolu sıfırla
     rules:
@@ -216,6 +220,7 @@ az:
     warning:
       data_removal: Göndərişləriniz və digər veriləriniz həmişəlik silinəcək
       irreversible: Hesabınızı bərpa edə və ya təkrar aktivləşdirə bilməyəcəksiniz
+      more_details_html: Daha çox ayrıntı üçün <a href="%{terms_path}">məxfilik siyasətinə</a> baxın.
   email_subscription_mailer:
     notification:
       footer:
@@ -377,8 +382,11 @@ az:
       subject: "%{date} tarixli etirazınız təsdiqlənib"
       subtitle: Hesabınız yenidən normal vəziyyətdədir.
       title: Etiraz təsdiqlənib
+    failed_2fa:
+      details: 'Daxil olma cəhdi üçün ayrıntılar:'
     suspicious_sign_in:
       change_password: parolu dəyişdir
+      details: 'Daxil olmaq üçün ayrıntılar:'
       subject: Hesabınıza yeni bir IP ünvanından erişildi
     terms_of_service_changed:
       title: Vacib güncəlləmə
