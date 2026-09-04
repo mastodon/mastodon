@@ -20,6 +20,7 @@ import { Button } from '../button/redesign';
 import { EmojiHTML } from '../emoji/html';
 
 import { useHandlersForStatus } from './hooks';
+import classes from './styles.module.scss';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -98,7 +99,12 @@ export const StatusContent: React.FC<
       )}
 
       {renderReadMore && (
-        <Button size='sm' variant='ghost' trailingIcon={CaretRightIcon}>
+        <Button
+          size='sm'
+          variant='ghost'
+          trailingIcon={CaretRightIcon}
+          className={classes.buttonAlign}
+        >
           <FormattedMessage id='status.read_more' defaultMessage='Read more' />
         </Button>
       )}
@@ -112,7 +118,12 @@ const TranslateButton: React.FC<{
 }> = ({ translation, onTranslate }) => {
   if (!translation) {
     return (
-      <Button size='sm' variant='ghost' onClick={onTranslate}>
+      <Button
+        size='sm'
+        variant='ghost'
+        onClick={onTranslate}
+        className={classes.buttonAlign}
+      >
         <FormattedMessage id='status.translate' defaultMessage='Translate' />
       </Button>
     );
