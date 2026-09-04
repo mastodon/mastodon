@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_125012) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_04_093734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -233,6 +233,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_125012) do
     t.string "action", default: "", null: false
     t.datetime "created_at", precision: nil, null: false
     t.string "human_identifier"
+    t.bigint "moderation_subscription_id"
     t.string "permalink"
     t.jsonb "recorded_changes"
     t.string "recorded_changes_format"
@@ -241,6 +242,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_125012) do
     t.string "target_type"
     t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id"], name: "index_admin_action_logs_on_account_id"
+    t.index ["moderation_subscription_id"], name: "index_admin_action_logs_on_moderation_subscription_id", where: "(moderation_subscription_id IS NOT NULL)"
     t.index ["target_type", "target_id"], name: "index_admin_action_logs_on_target_type_and_target_id"
   end
 
