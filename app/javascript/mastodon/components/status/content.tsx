@@ -21,13 +21,23 @@ import { useHandlersForStatus } from './hooks';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
-export const StatusContent: React.FC<{
-  statusId: string;
-  statusContent?: string;
-  onClick?: React.MouseEventHandler;
-  onTranslate?: React.MouseEventHandler<HTMLButtonElement>;
-  collapsible?: boolean;
-}> = ({ statusId, statusContent, onClick, onTranslate, collapsible }) => {
+export const StatusContent: React.FC<
+  {
+    statusId: string;
+    statusContent?: string;
+    onClick?: React.MouseEventHandler;
+    onTranslate?: React.MouseEventHandler<HTMLButtonElement>;
+    collapsible?: boolean;
+  } & React.ComponentPropsWithRef<'div'>
+> = ({
+  statusId,
+  statusContent,
+  onClick,
+  onTranslate,
+  collapsible,
+  className,
+  ...props
+}) => {
   const status = useStatus(statusId);
   const { signedIn } = useIdentity();
   const targetLanguages = useAppSelector(
@@ -125,14 +135,14 @@ export const StatusContent: React.FC<{
     />
   );
 
-  const classNames = classnames('status__content', {
+  const classNames = classnames('status__content', className, {
     'status__content--with-action': onClick,
     'status__content--collapsed': renderReadMore,
   });
 
   if (!onClick) {
     return (
-      <div className={classNames} ref={handleCollapse}>
+      <div {...props} className={classNames} ref={handleCollapse}>
         {content}
         {poll}
         {translateButton}
@@ -143,7 +153,12 @@ export const StatusContent: React.FC<{
   /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
   return (
     <>
-      <div className={classNames} ref={handleCollapse} onClick={handleClick}>
+      <div
+        {...props}
+        className={classNames}
+        ref={handleCollapse}
+        onClick={handleClick}
+      >
         {content}
         {poll}
         {translateButton}

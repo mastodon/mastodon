@@ -51,7 +51,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
         <Avatar account={account} size={null} />
       </Link>
 
-      <div className={classes.headerNameWrapper}>
+      <div>
         <p className={classes.headerName}>
           <Link
             {...accountLinkProps}

@@ -1,7 +1,22 @@
 .root {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
+  --col-gap: var(--space-xs);
+  --avatar-size: 40px;
+
+  display: grid;
+  grid-template-columns: calc(var(--avatar-size) + var(--col-gap)) auto;
+  grid-template-rows:
+    minmax(calc(var(--avatar-size) + var(--col-gap)), auto)
+    1fr auto;
+  row-gap: var(--space-xs);
+}
+
+.header {
+  grid-column: span 2;
+}
+
+.content,
+.actions {
+  grid-column: 2;
 }
 
 .actions {

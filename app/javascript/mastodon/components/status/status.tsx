@@ -53,8 +53,6 @@ const selectStatusReblog = createAppSelector(
 export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   id,
   muted,
-  rootId,
-  unread,
   skipPrepend,
   unfocusable,
   contextType,
@@ -138,17 +136,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   return (
     <StatusHotkeys
       {...hotkeysProps}
-      className={classNames(
-        classes.root,
-        'status__wrapper',
-        `status__wrapper-${status.visibility}`,
-        {
-          'status__wrapper-reply': !!status.in_reply_to_id,
-          'status__wrapper--in-thread': !!rootId,
-          unread,
-          focusable: !muted,
-        },
-      )}
+      className={classNames(classes.root)}
       data-featured={featured ? 'true' : null}
       aria-label={screenReaderText}
       data-nosnippet={status.account.noindex || undefined}
@@ -161,7 +149,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         />
       )}
 
-      <StatusRedesignHeader status={status}>
+      <StatusRedesignHeader status={status} className={classes.header}>
         {headerContents}
       </StatusRedesignHeader>
 
@@ -188,6 +176,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             statusContent={statusContent}
             onClick={onOpenClick}
             onTranslate={onTranslate}
+            className={classes.content}
             collapsible
           />
 
