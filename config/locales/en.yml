@@ -1003,7 +1003,15 @@ en:
         warning_hint: We recommend using “Approval required for sign up” unless you are confident your moderation team can handle spam and malicious registrations in a timely fashion.
       security:
         authorized_fetch: Require authentication from federated servers
-        authorized_fetch_hint: Requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. However, this comes at the cost of a performance penalty, reduces the reach of your replies, and may introduce compatibility issues with some federated services. In addition, this will not prevent dedicated actors from fetching your public posts and accounts.
+        authorized_fetch_hint: Decide when remote servers are required to authenticate when fetching content from this server.
+        authorized_fetch_hints:
+          actors: Requiring authentication for actors enables tracking of which server has ever discovered each of your local accounts, which can greatly reduce the number of unnecessary requests performed when notifying servers of an account deletion. This option comes at a slight performance cost when serving actors document due to that tracking and the inability for the reverse-proxy to cache responses for these requests. This might also introduce compatibility issues with some federated services.
+          all: In addition to the benefits from requiring authentication for signed actors, unconditionally requiring authentication from federated servers enables stricter enforcement of both user-level and server-level blocks. It has the same drawbacks as requiring authentication for actors, and also prevents caching most requests. It will also reduce the reach of your replies, as reply forwarding will be disabled.
+          none: Requiring authentication only when strictly necessary allows maximal compatibility, and allows your reverse proxy to cache more requests.
+        authorized_fetch_modes:
+          actors: For actors and private content
+          all: For every request
+          none: For private content only
         authorized_fetch_overridden_hint: You are currently unable to change this setting because it is overridden by an environment variable.
         federation_authentication: Federation authentication enforcement
       title: Server settings
