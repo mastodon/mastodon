@@ -49,6 +49,12 @@ class Admin::ModerationSubscriptionsController < Admin::BaseController
     redirect_to admin_moderation_subscriptions_path, notice: I18n.t('admin.moderation_subscriptions.destroyed_msg')
   end
 
+  def logs
+    authorize :moderation_subscription, :index?
+
+    @action_logs = Admin::ActionLog.latest.where.not(moderation_subscription_id: nil).page(params[:page])
+  end
+
   private
 
   def resource_params
