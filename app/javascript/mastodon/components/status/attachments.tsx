@@ -212,9 +212,9 @@ const MediaAttachments: React.FC<{
           alt={description}
           lang={language}
           poster={attachment.preview_url || defaultPosterUrl}
-          backgroundColor={colors.background}
-          foregroundColor={colors.foreground}
-          accentColor={colors.accent}
+          backgroundColor={colors?.background}
+          foregroundColor={colors?.foreground}
+          accentColor={colors?.accent}
           duration={original.duration}
           deployPictureInPicture={handleDeployPictureInPicture}
           sensitive={sensitive}
