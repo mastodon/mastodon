@@ -51,38 +51,6 @@
   container: column / inline-size;
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
-}
-
-.columnHeader {
-  // Make bottom half of column header transparent to make the
-  // overlay gradient of the nested `ColumnHeader` component work
-  --column-header-gradient-start: 55%;
-
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg-blend) var(--column-header-gradient-start),
-    transparent var(--column-header-gradient-start)
-  );
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  border-top: 0;
-
-  @media (width >= $mobile-menu-breakpoint) {
-    border-top: 10px solid var(--color-bg-blend);
-  }
-
-  // Fix bg color for legacy column headers.
-  // Remove when new column headers are in.
-  & :global(.column-header) {
-    background: var(--color-bg-primary);
-  }
-}
-
-.content {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
 
   :global(.column) {
     width: 100%;
