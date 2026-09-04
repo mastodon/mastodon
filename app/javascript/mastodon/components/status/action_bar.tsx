@@ -1,7 +1,16 @@
 import type React from 'react';
 import { useCallback, useMemo } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+
+import {
+  ArrowsClockwiseIcon,
+  BookmarkSimpleIcon,
+  ChatCircleTextIcon,
+  DotsThreeIcon,
+  HeartIcon,
+  ShareFatIcon,
+} from '@phosphor-icons/react';
 
 import {
   muteAccount,
@@ -40,20 +49,13 @@ import {
 } from '@/mastodon/selectors/statuses';
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import BookmarkIcon from '@/material-icons/400-24px/bookmark-fill.svg?react';
-import BookmarkBorderIcon from '@/material-icons/400-24px/bookmark.svg?react';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
-import ReplyAllIcon from '@/material-icons/400-24px/reply_all.svg?react';
-import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
-import StarBorderIcon from '@/material-icons/400-24px/star.svg?react';
 
+import { Button, IconButton } from '../button/redesign';
 import { Dropdown } from '../dropdown_menu';
-import { IconButton } from '../icon_button';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
-import { BoostButton } from './boost_button';
 import { quoteItemState } from './boost_button_utils';
+import classes from './styles.module.scss';
 import type { StatusContextType } from './types';
 
 interface StatusActionBarProps {
@@ -74,17 +76,11 @@ const messages = defineMessages({
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   share: { id: 'status.share', defaultMessage: 'Share' },
-  more: { id: 'status.more', defaultMessage: 'More' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
   removeFavourite: {
     id: 'status.remove_favourite',
     defaultMessage: 'Remove from favorites',
-  },
-  bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
-  removeBookmark: {
-    id: 'status.remove_bookmark',
-    defaultMessage: 'Remove bookmark',
   },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
@@ -150,11 +146,32 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       state.statuses.getIn([status?.quote?.quoted_status, 'account']) ?? null,
   );
   const currentAccountId = useCurrentAccountId();
+  const statusUrl = status?.url ?? status?.uri;
 
+  // Actions
   const dispatch = useAppDispatch();
   const handleReplyClick = useCallback(() => {
     dispatch(statusInteraction({ statusId, intent: 'reply' }));
   }, [dispatch, statusId]);
+  const handleBoostClick = useCallback(() => {
+    dispatch(statusInteraction({ statusId, intent: 'reblog' }));
+  }, [dispatch, statusId]);
+  const handleShareClick = useCallback(() => {
+    if (!statusUrl) {
+      return;
+    }
+
+    // We need to make this partial as by default share always is set, despite not being supported in FF.
+    const nav = navigator as Partial<Pick<Navigator, 'share'>> &
+      Pick<Navigator, 'clipboard'>;
+    if (nav.share) {
+      void nav.share({
+        url: statusUrl,
+      });
+    } else {
+      void nav.clipboard.writeText(statusUrl);
+    }
+  }, [statusUrl]);
   const handleFavouriteClick = useCallback(() => {
     dispatch(statusInteraction({ statusId, intent: 'favourite' }));
   }, [dispatch, statusId]);
@@ -168,17 +185,14 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
     return null;
   }
 
+  const isPublic =
+    status.visibility === 'public' || status.visibility === 'unlisted';
   const isReply =
     !status.in_reply_to_id || status.in_reply_to_account_id === status.account;
   const replyTitle = isReply
     ? intl.formatMessage(messages.reply)
     : intl.formatMessage(messages.replyAll);
-  const replyIcon = isReply ? 'reply' : 'reply-all';
-  const replyIconComponent = isReply ? ReplyIcon : ReplyAllIcon;
 
-  const bookmarkTitle = intl.formatMessage(
-    status.bookmarked ? messages.removeBookmark : messages.bookmark,
-  );
   const favouriteTitle = intl.formatMessage(
     status.favourited ? messages.removeFavourite : messages.favourite,
   );
@@ -188,43 +202,64 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
     isQuotingMe && contextType === 'notifications';
 
   return (
-    <div className='status__action-bar'>
-      <div className='status__action-bar__button-wrapper'>
+    <div className={classes.actions}>
+      <Button
+        size='sm'
+        variant='ghost'
+        title={replyTitle}
+        leadingIcon={ChatCircleTextIcon}
+        onClick={handleReplyClick}
+      >
+        {withCounters && status.replies_count}
+      </Button>
+
+      <Button
+        size='sm'
+        variant='ghost'
+        leadingIcon={ArrowsClockwiseIcon}
+        onClick={handleBoostClick}
+      >
+        {withCounters && status.reblogs_count}
+      </Button>
+
+      <Button
+        size='sm'
+        variant='ghost'
+        title={favouriteTitle}
+        leadingIcon={HeartIcon}
+        onClick={handleFavouriteClick}
+        className={classes.actionsButtonGap}
+      >
+        {withCounters && status.favourites_count}
+      </Button>
+
+      {isPublic && (
         <IconButton
-          className='status__action-bar__button'
-          title={replyTitle}
-          icon={replyIcon}
-          iconComponent={replyIconComponent}
-          onClick={handleReplyClick}
-          counter={status.replies_count}
-        />
-      </div>
-      <div className='status__action-bar__button-wrapper'>
-        <BoostButton statusId={statusId} counters={withCounters} />
-      </div>
-      <div className='status__action-bar__button-wrapper'>
-        <IconButton
-          className='status__action-bar__button star-icon'
-          animate
-          active={status.favourited}
-          title={favouriteTitle}
-          icon='star'
-          iconComponent={status.favourited ? StarIcon : StarBorderIcon}
-          onClick={handleFavouriteClick}
-          counter={withCounters ? status.favourites_count : undefined}
-        />
-      </div>
-      <div className='status__action-bar__button-wrapper'>
-        <IconButton
-          className='status__action-bar__button bookmark-icon'
-          disabled={!currentAccountId}
-          active={status.bookmarked}
-          title={bookmarkTitle}
-          icon='bookmark'
-          iconComponent={status.bookmarked ? BookmarkIcon : BookmarkBorderIcon}
-          onClick={handleBookmarkClick}
-        />
-      </div>
+          size='sm'
+          variant='ghost'
+          icon={ShareFatIcon}
+          onClick={handleShareClick}
+        >
+          <FormattedMessage id='status.share' defaultMessage='Share' />
+        </IconButton>
+      )}
+
+      <IconButton
+        size='sm'
+        variant='ghost'
+        icon={BookmarkSimpleIcon}
+        onClick={handleBookmarkClick}
+      >
+        {!status.bookmarked ? (
+          <FormattedMessage id='status.bookmark' defaultMessage='Bookmark' />
+        ) : (
+          <FormattedMessage
+            id='status.remove_bookmark'
+            defaultMessage='Remove bookmark'
+          />
+        )}
+      </IconButton>
+
       <RemoveQuoteHint
         className='status__action-bar__button-wrapper'
         canShowHint={shouldShowQuoteRemovalHint}
@@ -314,12 +349,9 @@ const StatusActionMenu: React.FC<{
 
   return (
     <Dropdown scrollKey={scrollKey} items={menu} onOpen={handleOpen}>
-      <IconButton
-        className='status__action-bar__button'
-        icon='ellipsis-h'
-        iconComponent={MoreHorizIcon}
-        title={intl.formatMessage(messages.more)}
-      />
+      <IconButton size='sm' variant='ghost' icon={DotsThreeIcon}>
+        <FormattedMessage id='status.more' defaultMessage='More' />
+      </IconButton>
     </Dropdown>
   );
 };

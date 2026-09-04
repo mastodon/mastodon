@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.actions {
+  display: flex;
+  margin-inline-start: calc(-1 * var(--space-sm));
+
+  button:not(:hover, :active) {
+    opacity: 0.7;
+  }
+}
+
+.actionsButtonGap {
+  margin-inline-end: auto;
+}

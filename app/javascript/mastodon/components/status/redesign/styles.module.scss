@@ -1,0 +1,50 @@
+@use '@/styles/mastodon/mixins';
+
+// Header
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-secondary);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // When hovering over any link with the account ID, underline them all.
+  &:has(a[data-id]:hover) a[data-id] {
+    text-decoration: underline;
+  }
+}
+
+.headerNameWrapper {
+  flex-grow: 1;
+}
+
+.headerName {
+  @include mixins.type-body;
+
+  display: flex;
+  gap: var(--space-2xs);
+
+  > .headerNameLink {
+    @include mixins.type-body-strong;
+
+    color: var(--color-text-primary);
+
+    // Overrides .display-name__html
+    strong {
+      font-weight: inherit;
+    }
+  }
+}
+
+.headerHandle {
+  @include mixins.type-label-md;
+}
