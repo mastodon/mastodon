@@ -30,7 +30,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
   const account = status.account;
   const handle = useAccountHandle(account);
 
-  const nameId = useId();
+  const handleId = useId();
   const accountLinkProps = {
     to: {
       pathname: `/@${account.acct}`,
@@ -44,19 +44,18 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
 
   return (
     <header className={classNames(className, classes.header)}>
-      <Link
-        {...accountLinkProps}
-        role='presentation'
-        tabIndex={-1}
-        aria-describedby={nameId}
-      >
+      <Link {...accountLinkProps} role='presentation' tabIndex={-1}>
         <Avatar account={account} size={avatarSize} />
       </Link>
 
       <div className={classes.headerNameWrapper}>
         <p className={classes.headerName}>
-          <Link {...accountLinkProps} className={classes.headerNameLink}>
-            <DisplayName account={account} variant='noDomain' id={nameId} />
+          <Link
+            {...accountLinkProps}
+            className={classes.headerNameLink}
+            aria-describedby={handleId}
+          >
+            <DisplayName account={account} variant='noDomain' />
           </Link>
           &bull;
           <Link
@@ -74,7 +73,7 @@ export const StatusRedesignHeader: React.FC<StatusRedesignHeaderProps> = ({
             {...accountLinkProps}
             role='presentation'
             tabIndex={-1}
-            aria-describedby={nameId}
+            id={handleId}
           >
             {handle ?? <Skeleton width='7ch' />}
           </Link>
