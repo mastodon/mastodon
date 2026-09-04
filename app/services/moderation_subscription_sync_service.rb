@@ -5,6 +5,8 @@ class ModerationSubscriptionSyncService < BaseService
     case subscription.type
     when 'csv_list'
       synchronize_csv_moderation_subscription!(subscription)
+    when 'json'
+      synchronize_json_moderation_subscription!(subscription)
     end
   end
 
@@ -43,7 +45,7 @@ class ModerationSubscriptionSyncService < BaseService
             target_key: TagManager.instance.normalize_domain(row['#domain']),
             target_type: :domain,
             moderation_subscription_id: subscription.id,
-            action: action_from_severity(subscription, row),
+            action: action_from_severity(subscription, row['#severity']),
           }
         end,
         unique_by: [:target_type, :target_key, :moderation_subscription_id]
@@ -61,10 +63,41 @@ class ModerationSubscriptionSyncService < BaseService
     false
   end
 
-  def action_from_severity(subscription, row)
+  def synchronize_json_moderation_subscription!(subscription)
+    Request.new(:get, subscription.url).add_headers('Accept' => 'application/json').perform do |res|
+      return false unless res.code == 200
+
+      data = JSON.parse(res.body_with_limit)
+      return false unless data.is_a?(Array)
+
+      SubscribedAdvisory.upsert_all(
+        data.map do |block|
+          {
+            target_key: TagManager.instance.normalize_domain(block['domain']),
+            target_type: :domain,
+            moderation_subscription_id: subscription.id,
+            action: action_from_severity(subscription, block['severity']),
+          }
+        end,
+        unique_by: [:target_type, :target_key, :moderation_subscription_id]
+      )
+
+      subscription.advisories.domain_target_type.where.not(target_key: data.map { |block| TagManager.instance.normalize_domain(block['domain']) }).delete_all
+
+      subscription.touch(:last_synced_at)
+
+      true
+    end
+  rescue JSON::ParserError, *Mastodon::HTTP_CONNECTION_ERRORS => e
+    Rails.logger.warn "Failed syncing moderation subscription #{subscription.url}: #{e}"
+
+    false
+  end
+
+  def action_from_severity(subscription, severity)
     return subscription.list_action if subscription.list_action.present?
 
-    case row['#severity']
+    case severity
     when 'accept', 'allow'
       'accept'
     when 'limit', 'silence'
