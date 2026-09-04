@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import type { Map as ImmutableMap } from 'immutable';
+
 import { SlidersHorizontalIcon } from '@phosphor-icons/react';
 
 import { ColumnSettingsMenu } from '@/mastodon/components/column_header';
@@ -16,7 +18,9 @@ export const HomeColumnSettings: React.FC<{
 }> = ({ children }) => {
   const dispatch = useAppDispatch();
 
-  const settings = useAppSelector((state) => state.settings.get('home'));
+  const settings = useAppSelector((state) =>
+    state.settings.get('home'),
+  ) as ImmutableMap<string, unknown>;
   const onChange = useCallback<MenuItemCheckboxChangeHandler>(
     ({ value, checked }) => {
       dispatch(changeSetting(['home', 'shows', value], checked));
@@ -24,14 +28,9 @@ export const HomeColumnSettings: React.FC<{
     [dispatch],
   );
 
-  /* eslint-disable @typescript-eslint/no-unsafe-call */
-  // @ts-expect-error settings isn't typed yet
   const showBoosts = settings.getIn(['shows', 'reblog']) as boolean;
-  // @ts-expect-error settings isn't typed yet
   const showQuotes = settings.getIn(['shows', 'quote']) as boolean;
-  // @ts-expect-error settings isn't typed yet
   const showReplies = settings.getIn(['shows', 'reply']) as boolean;
-  /* eslint-enable @typescript-eslint/no-unsafe-call */
 
   return (
     <ColumnSettingsMenu

@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import type {
   List as ImmutableList,
+  Map as ImmutableMap,
   Record as ImmutableRecord,
 } from 'immutable';
 
@@ -21,20 +22,24 @@ type Columns = ImmutableList<
   }>
 >;
 
-export const FeedColumnSettings: React.FC<{
-  columnId: string | undefined;
-  localOnly?: boolean;
-}> = ({ columnId, localOnly }) => {
-  const dispatch = useAppDispatch();
-
-  const settings = useAppSelector((state) => {
+export function useColumnSettings(columnId: string | undefined) {
+  return useAppSelector((state) => {
     const columns = state.settings.get('columns') as Columns;
     const index = columns.findIndex((c) => c.get('uuid') === columnId);
 
     return columnId && index >= 0
       ? columns.get(index)?.get('params')
       : state.settings.get('public');
-  });
+  }) as ImmutableMap<string, unknown>;
+}
+
+export const FeedColumnSettings: React.FC<{
+  columnId: string | undefined;
+  localOnly?: boolean;
+}> = ({ columnId, localOnly }) => {
+  const dispatch = useAppDispatch();
+
+  const settings = useColumnSettings(columnId);
 
   const onChange = useCallback<MenuItemCheckboxChangeHandler>(
     ({ value, checked }) => {
@@ -47,12 +52,8 @@ export const FeedColumnSettings: React.FC<{
     [columnId, dispatch],
   );
 
-  /* eslint-disable @typescript-eslint/no-unsafe-call */
-  // @ts-expect-error settings isn't typed yet
   const onlyMedia = settings.getIn(['other', 'onlyMedia']) as boolean;
-  // @ts-expect-error settings isn't typed yet
   const onlyRemote = settings.getIn(['other', 'onlyRemote']) as boolean;
-  /* eslint-enable @typescript-eslint/no-unsafe-call */
 
   return (
     <>
