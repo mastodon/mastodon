@@ -69,14 +69,15 @@ export const StatusContent: React.FC<
 
   const language = status.translation?.language ?? status.language;
 
+  const isCollapsed = !!onReadMore && collapsible && collapsed;
   const renderTranslate = !!(
     onTranslate &&
+    !isCollapsed &&
     signedIn &&
     ['public', 'unlisted'].includes(status.visibility) &&
     status.search_index?.trim().length &&
     targetLanguages?.includes(intl.locale.replace(/[_-].*/, ''))
   );
-  const isCollapsed = !!onReadMore && collapsible && collapsed;
 
   return (
     <EmojiHTML
