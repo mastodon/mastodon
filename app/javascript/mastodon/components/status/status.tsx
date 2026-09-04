@@ -84,7 +84,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     reblogAcct: parent?.account.acct,
     isQuote: isQuotedPost,
   });
-  const { statusContent, hashtagsInBar } = useMemo(
+  const { statusContent, hashtagsInBar = [] } = useMemo(
     (): Partial<ReturnType<typeof computeHashtagBarForStatus>> =>
       status ? computeHashtagBarForStatus(status) : {},
     [status],
@@ -166,46 +166,43 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       )}
 
       {expanded && (
-        <>
-          <StatusContent
-            status={status}
-            statusContent={statusContent}
-            onReadMore={handlers.onOpen}
-            onTranslate={onTranslate}
-            collapsible
-          >
-            {!!status.poll && (
-              <Poll
-                pollId={status.poll}
-                statusUrl={status.uri}
-                accountId={status.account.id}
-                lang={status.translation?.language ?? status.language}
-              />
-            )}
-
-            <StatusAttachments statusId={status.id} contextType={contextType} />
-          </StatusContent>
-
-          {hashtagsInBar && (
-            <HashtagBar
-              hashtags={hashtagsInBar}
+        <StatusContent
+          status={status}
+          statusContent={statusContent}
+          onReadMore={handlers.onOpen}
+          onTranslate={onTranslate}
+          collapsible
+        >
+          {!!status.poll && (
+            <Poll
+              pollId={status.poll}
+              statusUrl={status.uri}
               accountId={status.account.id}
+              lang={status.translation?.language ?? status.language}
             />
           )}
 
+          <StatusAttachments statusId={status.id} contextType={contextType} />
+
           {children}
-        </>
+        </StatusContent>
       )}
 
-      {showActions && !isQuotedPost && (
-        <StatusActionBar
-          scrollKey={scrollKey}
-          statusId={status.id}
-          contextType={contextType}
-          withDismiss={withDismiss}
-          withCounters={withCounters}
-        />
-      )}
+      <footer className={classes.footer}>
+        {expanded && hashtagsInBar.length > 0 && (
+          <HashtagBar hashtags={hashtagsInBar} accountId={status.account.id} />
+        )}
+
+        {showActions && !isQuotedPost && (
+          <StatusActionBar
+            scrollKey={scrollKey}
+            statusId={status.id}
+            contextType={contextType}
+            withDismiss={withDismiss}
+            withCounters={withCounters}
+          />
+        )}
+      </footer>
     </StatusHotkeys>
   );
 };
