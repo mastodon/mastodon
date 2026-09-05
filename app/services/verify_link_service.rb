@@ -17,12 +17,13 @@ class VerifyLinkService < BaseService
 
   private
 
+  # A non-200 response yields nil, which clears both so that a reused instance
+  # never verifies against a previous response.
   def perform_request!
-    Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
+    @body, @link_headers = Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
       next unless res.code == 200
 
-      @body         = res.truncated_body
-      @link_headers = res.headers.get('Link')
+      [res.truncated_body, res.headers.get('Link')]
     end
   end
 

@@ -372,4 +372,33 @@ RSpec.describe VerifyLinkService do
       end
     end
   end
+
+  context 'when the same service instance verifies several fields' do
+    let(:account)      { Fabricate(:account, username: 'alice') }
+    let(:link_back)    { ActivityPub::TagManager.instance.url_for(account) }
+    let(:first_field)  { Account::Field.new(account, 'name' => 'Website', 'value' => 'http://example.com') }
+    let(:second_field) { Account::Field.new(account, 'name' => 'Blog', 'value' => 'http://unavailable.example') }
+    let(:link_back_headers) { { 'Link' => "<#{link_back}>; rel=\"me\"" } }
+    let(:html) do
+      <<~HTML
+        <!doctype html>
+        <body>
+          <a href="#{link_back}" rel="me">Follow me on Mastodon</a>
+        </body>
+      HTML
+    end
+
+    before do
+      stub_request(:get, 'http://example.com').to_return(status: 200, body: html, headers: link_back_headers)
+      stub_request(:get, 'http://unavailable.example').to_return(status: 404, body: html, headers: link_back_headers)
+
+      subject.call(first_field)
+      subject.call(second_field)
+    end
+
+    it 'does not carry a successful response over to a later unsuccessful one' do
+      expect(first_field.verified?).to be true
+      expect(second_field.verified?).to be false
+    end
+  end
 end
