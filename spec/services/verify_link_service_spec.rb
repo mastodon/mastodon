@@ -8,11 +8,14 @@ RSpec.describe VerifyLinkService do
   context 'when given a local account' do
     let(:account) { Fabricate(:account, username: 'alice') }
     let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => 'http://example.com') }
+    let(:link_back) { ActivityPub::TagManager.instance.url_for(account) }
+    let(:response_status) { 200 }
+    let(:response_headers) { {} }
 
     before do
-      stub_request(:head, 'https://redirect.me/abc').to_return(status: 301, headers: { 'Location' => ActivityPub::TagManager.instance.url_for(account) })
+      stub_request(:head, 'https://redirect.me/abc').to_return(status: 301, headers: { 'Location' => link_back })
       stub_request(:head, 'http://unrelated-site.com').to_return(status: 301)
-      stub_request(:get, 'http://example.com').to_return(status: 200, body: html)
+      stub_request(:get, 'http://example.com').to_return(status: response_status, body: html, headers: response_headers)
       subject.call(field)
     end
 
@@ -159,15 +162,173 @@ RSpec.describe VerifyLinkService do
         expect(field.verified?).to be false
       end
     end
+
+    context 'when the response carries a Link header' do
+      let(:html) do
+        <<~HTML
+          <!doctype html>
+          <body>
+            <p>This page has no rel="me" links in its markup.</p>
+          </body>
+        HTML
+      end
+
+      context 'when the header has rel="me" back' do
+        let(:response_headers) { { 'Link' => "<#{link_back}>; rel=\"me\"" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the header quotes the rel value with single quotes' do
+        let(:response_headers) { { 'Link' => "<#{link_back}>; rel='me'" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the header uses uppercase REL="ME"' do
+        let(:response_headers) { { 'Link' => "<#{link_back}>; REL=\"ME\"" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the header URL differs from the link back only by case' do
+        let(:response_headers) { { 'Link' => "<#{link_back.upcase}>; rel=\"me\"" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when only one of several Link headers links back' do
+        let(:response_headers) { { 'Link' => ['<http://unrelated-site.com>; rel="me"', "<#{link_back}>; rel=\"me\""] } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the header links back with a rel other than me' do
+        let(:response_headers) { { 'Link' => "<#{link_back}>; rel=\"canonical\"" } }
+
+        it 'does not mark the field as verified' do
+          expect(field.verified?).to be false
+        end
+      end
+
+      context 'when the header links to an unexpected URL' do
+        let(:response_headers) { { 'Link' => '<http://unrelated-site.com>; rel="me"' } }
+
+        it 'does not mark the field as verified' do
+          expect(field.verified?).to be false
+        end
+      end
+
+      context 'when the header links to an unexpected URL but the markup links back' do
+        let(:response_headers) { { 'Link' => '<http://unrelated-site.com>; rel="me"' } }
+        let(:html) do
+          <<~HTML
+            <!doctype html>
+            <body>
+              <a href="#{link_back}" rel="me">Follow me on Mastodon</a>
+            </body>
+          HTML
+        end
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the response is not successful' do
+        let(:response_status) { 404 }
+        let(:response_headers) { { 'Link' => "<#{link_back}>; rel=\"me\"" } }
+
+        it 'does not mark the field as verified' do
+          expect(field.verified?).to be false
+        end
+      end
+
+      context 'when the header leaves the rel value unquoted' do
+        let(:response_headers) { { 'Link' => "<#{link_back}>; rel=me" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the header lists other parameters before rel' do
+        let(:response_headers) { { 'Link' => "<#{link_back}>; type=\"text/html\"; rel=\"me\"" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the header holds several comma-separated links and only the last links back' do
+        let(:response_headers) { { 'Link' => "<http://unrelated-site.com>; rel=\"me\", <#{link_back}>; rel=\"me\"" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the header rel lists me among other relation types' do
+        let(:response_headers) { { 'Link' => "<#{link_back}>; rel=\"me nofollow\"" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+
+      context 'when the header rel merely contains me as a substring' do
+        let(:response_headers) { { 'Link' => "<#{link_back}>; rel=\"home\"" } }
+
+        it 'does not mark the field as verified' do
+          expect(field.verified?).to be false
+        end
+      end
+
+      context 'when the header links back but the body is empty' do
+        let(:html) { '' }
+        let(:response_headers) { { 'Link' => "<#{link_back}>; rel=\"me\"" } }
+
+        it 'marks the field as verified' do
+          expect(field.verified?).to be true
+        end
+      end
+    end
   end
 
   context 'when given a remote account' do
     let(:account) { Fabricate(:account, username: 'alice', domain: 'example.com', url: 'https://profile.example.com/alice') }
     let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => '<a href="http://example.com" rel="me"><span class="invisible">http://</span><span class="">example.com</span><span class="invisible"></span></a>') }
+    let(:response_headers) { {} }
 
     before do
-      stub_request(:get, 'http://example.com').to_return(status: 200, body: html)
+      stub_request(:get, 'http://example.com').to_return(status: 200, body: html, headers: response_headers)
       subject.call(field)
+    end
+
+    context 'when the response carries a Link header with rel="me" back' do
+      let(:response_headers) { { 'Link' => '<https://profile.example.com/alice>; rel="me"' } }
+      let(:html) do
+        <<~HTML
+          <!doctype html>
+          <body>
+            <p>This page has no rel="me" links in its markup.</p>
+          </body>
+        HTML
+      end
+
+      it 'marks the field as verified' do
+        expect(field.verified?).to be true
+      end
     end
 
     context 'when a link contains an <a> back' do
