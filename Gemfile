@@ -107,7 +107,7 @@ gem 'prometheus_exporter', '~> 2.2', require: false
 gem 'opentelemetry-api', '~> 1.11.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.34.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.35.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.13.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.25.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.25.0', require: false
