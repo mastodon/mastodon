@@ -45,7 +45,7 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   end
 
   def dismiss_bulk
-    @requests.each(&:destroy!)
+    @requests.each { |request| DismissNotificationRequestService.new.call(request) }
     render_empty
   end
 
