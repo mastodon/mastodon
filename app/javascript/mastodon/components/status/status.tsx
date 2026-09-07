@@ -134,6 +134,11 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     );
   }
 
+  const showFooter =
+    (expanded && hashtagsInBar.length > 0) ||
+    variant === 'page' ||
+    (showActions && !isQuotedPost);
+
   return (
     <StatusHotkeys
       {...hotkeysProps}
@@ -141,6 +146,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         classes.root,
         variant === 'thread' && classes.variantThread,
         variant === 'page' && classes.variantPage,
+        isQuotedPost && classes.isQuote,
       )}
       data-featured={featured ? 'true' : null}
       aria-label={screenReaderText}
@@ -197,25 +203,30 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         </StatusContent>
       )}
 
-      <footer className={classes.footer}>
-        {expanded && hashtagsInBar.length > 0 && (
-          <HashtagBar hashtags={hashtagsInBar} accountId={status.account.id} />
-        )}
+      {showFooter && (
+        <footer className={classes.footer}>
+          {expanded && hashtagsInBar.length > 0 && (
+            <HashtagBar
+              hashtags={hashtagsInBar}
+              accountId={status.account.id}
+            />
+          )}
 
-        {variant === 'page' && (
-          <StatusMeta status={status} className={classes.meta} />
-        )}
+          {variant === 'page' && (
+            <StatusMeta status={status} className={classes.meta} />
+          )}
 
-        {showActions && !isQuotedPost && (
-          <StatusActionBar
-            scrollKey={scrollKey}
-            statusId={status.id}
-            contextType={contextType}
-            withDismiss={withDismiss}
-            withCounters={withCounters}
-          />
-        )}
-      </footer>
+          {showActions && !isQuotedPost && (
+            <StatusActionBar
+              scrollKey={scrollKey}
+              statusId={status.id}
+              contextType={contextType}
+              withDismiss={withDismiss}
+              withCounters={withCounters}
+            />
+          )}
+        </footer>
+      )}
     </StatusHotkeys>
   );
 };

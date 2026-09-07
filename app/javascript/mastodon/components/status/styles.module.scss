@@ -6,9 +6,8 @@
 
   display: grid;
   grid-template-columns: calc(var(--avatar-size) + var(--col-gap)) auto;
-  grid-template-rows:
-    minmax(calc(var(--avatar-size) + var(--col-gap)), auto)
-    1fr auto;
+  grid-template-rows: minmax(calc(var(--avatar-size) + var(--col-gap)), auto);
+  grid-auto-rows: auto;
   row-gap: var(--space-xs);
   padding: var(--space-md);
 }
@@ -21,7 +20,14 @@
 
 .variantPage {
   padding: 0;
+}
 
+.isQuote {
+  padding: var(--space-sm);
+}
+
+.variantPage,
+.isQuote {
   .content,
   .footer {
     grid-column: span 2;
