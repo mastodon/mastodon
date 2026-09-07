@@ -1,8 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAction } from '@reduxjs/toolkit';
 
 import {
   changeCompose,
   clearComposeSuggestions,
+  COMPOSE_DIRECT,
+  COMPOSE_FOCUS,
+  COMPOSE_MENTION,
+  COMPOSE_REPLY,
+  COMPOSE_SET_STATUS,
   directCompose,
   replyComposeById,
   resetCompose,
@@ -13,6 +18,7 @@ import {
   PRIVATE_QUOTE_MODAL_ID,
 } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
+import { REDRAFT } from '@/mastodon/actions/statuses';
 import type {
   ApiStatusJSON,
   StatusVisibility,
@@ -71,6 +77,23 @@ const composerSlice = createSlice({
       state.displayState = 'hidden';
     },
   },
+  extraReducers(builder) {
+    builder.addMatcher(
+      (action) =>
+        isAction(action) &&
+        [
+          COMPOSE_REPLY,
+          COMPOSE_FOCUS,
+          COMPOSE_MENTION,
+          COMPOSE_DIRECT,
+          COMPOSE_SET_STATUS,
+          REDRAFT,
+        ].includes(action.type),
+      (state) => {
+        state.displayState = 'showing';
+      },
+    );
+  },
 });
 
 export const composer = composerSlice.reducer;
@@ -126,6 +149,9 @@ type ComposeNewPayload = (
 
 export const openNewComposer = createAppThunk(
   (payload: ComposeNewPayload, { dispatch, getState }) => {
+    // Always show the composer if it is closed or minimized.
+    dispatch(composerSlice.actions.showComposer());
+
     if (!payload.force && selectComposerIsChanged(getState())) {
       dispatch(
         openModal({
@@ -150,7 +176,6 @@ export const openNewComposer = createAppThunk(
     } else if (payload.type === 'reply') {
       dispatch(replyComposeById(payload.toStatusId));
     }
-    dispatch(composerSlice.actions.showComposer());
 
     focusComposerTextarea(true);
   },
@@ -253,6 +278,9 @@ export const submitComposer = createAppThunk(
           if (redirectOnSuccess) {
             window.location.assign(status.url);
           }
+
+          // Hide composer on successful publish
+          dispatch(composerSlice.actions.hideComposer());
         }),
       );
     }
