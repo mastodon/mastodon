@@ -3,6 +3,7 @@
 .root {
   --col-gap: var(--space-xs);
   --avatar-size: 40px;
+  --content-col: 2;
 
   display: grid;
   grid-template-columns: calc(var(--avatar-size) + var(--col-gap)) auto;
@@ -28,10 +29,7 @@
 
 .variantPage,
 .isQuote {
-  .content,
-  .footer {
-    grid-column: span 2;
-  }
+  --content-col: span 2;
 }
 
 .header {
@@ -39,8 +37,10 @@
 }
 
 .content,
-.footer {
-  grid-column: 2;
+.footer,
+.root :global(.status__prepend),
+.root :global(.content-warning) {
+  grid-column: var(--content-col);
 }
 
 .content {
