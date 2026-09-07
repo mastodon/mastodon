@@ -13,6 +13,7 @@ import {
   statusFactoryImmutable,
 } from '@/testing/factories';
 
+import type { StatusVariant } from './status';
 import { StatusRedesign } from './status';
 import type { AttachmentArgs } from './testing';
 import { attachmentArgTypes, attachmentFactory } from './testing';
@@ -42,6 +43,7 @@ interface StatusStoryProps extends AttachmentArgs {
   // Display
   showThread?: boolean;
   contextType?: StatusContextType;
+  variant?: StatusVariant;
   showCounters?: boolean;
   favouriteCount?: number;
   reblogCount?: number;
@@ -67,6 +69,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
     disableActions = false,
 
     contextType,
+    variant,
     showThread,
     showCounters,
     hidden,
@@ -81,6 +84,7 @@ const StatusStoryComponent: FC<StatusStoryProps> = (props) => {
       isQuotedPost={isQuote}
       showActions={!disableActions}
       contextType={contextType}
+      variant={variant}
       withCounters={showCounters}
       // Either we are showing a thread (in a timeline) or it's a full reply chain view.
       showThread={isReply && showThread}
@@ -201,6 +205,11 @@ const meta = {
     showTranslate: categoryInteraction,
 
     // Display
+    variant: {
+      ...categoryDisplay,
+      control: 'inline-radio',
+      options: ['feed', 'thread', 'page'] satisfies StatusVariant[],
+    },
     showCounters: categoryDisplay,
     favouriteCount: categoryDisplay,
     reblogCount: categoryDisplay,
@@ -253,6 +262,7 @@ const meta = {
     disableActions: false,
     showTranslate: false,
 
+    variant: 'feed',
     favouriteCount: 0,
     reblogCount: 0,
     replyCount: 0,

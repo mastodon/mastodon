@@ -19,6 +19,7 @@ import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
 import type { StatusHandlers } from './hooks';
 import { useStatusHandlers, useTextForScreenReader } from './hooks';
+import { StatusMeta } from './meta';
 import { StatusPrepend } from './prepend';
 import { StatusRedesignHeader } from './redesign/header';
 import classes from './styles.module.scss';
@@ -30,8 +31,11 @@ type StatusRedesignProps = Merge<
     accountId?: string;
     contextType?: StatusContextType;
     headerContents?: React.ReactNode;
+    variant?: StatusVariant;
   }
 >;
+
+export type StatusVariant = 'feed' | 'thread' | 'page';
 
 const selectStatusReblog = createAppSelector(
   [(state, id?: string | null) => selectExpandedStatus(state, id ?? undefined)],
@@ -68,6 +72,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   onOpen,
   showThread,
   headerContents,
+  variant = contextToVariant(contextType),
 }) => {
   // Select data from store
   const { status, parent } = useAppSelector((state) =>
@@ -129,10 +134,20 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     );
   }
 
+  const showFooter =
+    (expanded && hashtagsInBar.length > 0) ||
+    variant === 'page' ||
+    (showActions && !isQuotedPost);
+
   return (
     <StatusHotkeys
       {...hotkeysProps}
-      className={classNames(classes.root)}
+      className={classNames(
+        classes.root,
+        variant === 'thread' && classes.variantThread,
+        variant === 'page' && classes.variantPage,
+        isQuotedPost && classes.isQuote,
+      )}
       data-featured={featured ? 'true' : null}
       aria-label={screenReaderText}
       data-nosnippet={status.account.noindex || undefined}
@@ -188,21 +203,30 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         </StatusContent>
       )}
 
-      <footer className={classes.footer}>
-        {expanded && hashtagsInBar.length > 0 && (
-          <HashtagBar hashtags={hashtagsInBar} accountId={status.account.id} />
-        )}
+      {showFooter && (
+        <footer className={classes.footer}>
+          {expanded && hashtagsInBar.length > 0 && (
+            <HashtagBar
+              hashtags={hashtagsInBar}
+              accountId={status.account.id}
+            />
+          )}
 
-        {showActions && !isQuotedPost && (
-          <StatusActionBar
-            scrollKey={scrollKey}
-            statusId={status.id}
-            contextType={contextType}
-            withDismiss={withDismiss}
-            withCounters={withCounters}
-          />
-        )}
-      </footer>
+          {variant === 'page' && (
+            <StatusMeta status={status} className={classes.meta} />
+          )}
+
+          {showActions && !isQuotedPost && (
+            <StatusActionBar
+              scrollKey={scrollKey}
+              statusId={status.id}
+              contextType={contextType}
+              withDismiss={withDismiss}
+              withCounters={withCounters}
+            />
+          )}
+        </footer>
+      )}
     </StatusHotkeys>
   );
 };
@@ -256,3 +280,17 @@ const StatusHotkeys = ({
     </Hotkeys>
   );
 };
+
+function contextToVariant(contextType?: StatusContextType): StatusVariant {
+  switch (contextType) {
+    case 'composer':
+    case 'detailed':
+    case 'notifications':
+    case undefined:
+      return 'page';
+    case 'thread':
+      return 'thread';
+    default:
+      return 'feed';
+  }
+}

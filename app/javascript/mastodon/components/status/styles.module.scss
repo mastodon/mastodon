@@ -3,13 +3,33 @@
 .root {
   --col-gap: var(--space-xs);
   --avatar-size: 40px;
+  --content-col: 2;
 
   display: grid;
   grid-template-columns: calc(var(--avatar-size) + var(--col-gap)) auto;
-  grid-template-rows:
-    minmax(calc(var(--avatar-size) + var(--col-gap)), auto)
-    1fr auto;
+  grid-template-rows: minmax(calc(var(--avatar-size) + var(--col-gap)), auto);
+  grid-auto-rows: auto;
   row-gap: var(--space-xs);
+  padding: var(--space-md);
+}
+
+.variantThread {
+  --avatar-size: 32px;
+
+  padding: var(--space-xs) 0;
+}
+
+.variantPage {
+  padding: 0;
+}
+
+.isQuote {
+  padding: var(--space-sm);
+}
+
+.variantPage,
+.isQuote {
+  --content-col: span 2;
 }
 
 .header {
@@ -17,8 +37,10 @@
 }
 
 .content,
-.footer {
-  grid-column: 2;
+.footer,
+.root :global(.status__prepend),
+.root :global(.content-warning) {
+  grid-column: var(--content-col);
 }
 
 .content {
@@ -58,6 +80,12 @@
   inset-block-end: 0;
   inset-inline-start: 0;
   z-index: 1;
+}
+
+.meta {
+  @include mixins.type-micro;
+
+  color: var(--color-text-secondary);
 }
 
 .actions {
