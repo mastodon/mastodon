@@ -738,7 +738,7 @@ nan-TW:
       disable: 停止使用
       disabled: 停止使用ê
       enable: 啟用
-      enable_hint: Lí ê服侍器tsi̍t-ē啟動，ē訂tuì tsit ê中繼逐ê公開PO文，mā ē開始送tsit ê服侍器ê公開PO文kàu hia。
+      enable_hint: Lí ê服侍器tsi̍t-ē啟動，ē訂tuì tsit ê中繼逐ê公開PO文，mā ē開始送tsit臺服侍器ê公開PO文kàu hia。
       enabled: 啟用ê
       inbox_url: 中繼 URL
       pending: Teh等中繼站允准
@@ -768,7 +768,7 @@ nan-TW:
       actions_no_posts: Tsit份檢舉無beh thâi掉ê相關PO文
       add_to_report: 加添其他ê內容kàu檢舉
       already_suspended_badges:
-        local: 已經佇tsit ê服侍器停止權限ah
+        local: 已經佇tsit臺服侍器停止權限ah
         remote: 已經佇in ê服侍器停止權限ah
       are_you_sure: Lí kám確定？
       assign_to_self: 分配hōo家kī
@@ -866,15 +866,15 @@ nan-TW:
         invite_bypass_approval: 邀請iáu bē審查ê用者
         invite_bypass_approval_description: 允准予tsiah ê用者邀請kàu tsit臺服侍器ê lâng làng過管理審查許可
         invite_users: 邀請用者
-        invite_users_description: 允准用者邀請新lâng來tsit ê服侍器
+        invite_users_description: 允准用者邀請新lâng來tsit臺服侍器
         manage_announcements: 管理公告
-        manage_announcements_description: 允准用者管理佇tsit ê服侍器ê公告
+        manage_announcements_description: 允准用者管理佇tsit臺服侍器ê公告
         manage_appeals: 管理投訴
         manage_appeals_description: 允准用者審查tuì管理動作ê投訴
         manage_blocks: 管理封鎖
         manage_blocks_description: 允准用者封鎖電子phue ê 提供者kap IP地址
         manage_custom_emojis: 管理自訂ê Emoji
-        manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
+        manage_custom_emojis_description: 允准用者管理佇tsit臺服侍器ê自訂Emoji
         manage_email_subscriptions: 管理訂電子phue
         manage_email_subscriptions_description: 允准有tsit ê權限ê用者，啟用in口座ê電子報功能
         manage_federation: 管理聯邦
@@ -898,7 +898,7 @@ nan-TW:
         manage_webhooks: 管理 Webhooks
         manage_webhooks_description: 允許用者kā管理ê事件設定 webhooks
         view_audit_log: 看審核ê日誌
-        view_audit_log_description: 允准用者看tsit ê服侍器ê管理行動ê歷史
+        view_audit_log_description: 允准用者看tsit臺服侍器ê管理行動ê歷史
         view_dashboard: 看La-jí-báng (Dashboard)
         view_dashboard_description: 允准用者接近使用tsit ê la-jí-báng kap tsē-tsē指標
         view_devops: DevOps
@@ -1415,7 +1415,7 @@ nan-TW:
       title: 登入 %{domain}
     sign_up:
       manual_review: 佇 %{domain} ê註冊ē經過guán ê管理員人工審查。為著tsān guán 進行lí ê註冊，寫tsi̍t點á關係lí家己kap想beh tī %{domain}註冊ê理由。
-      preamble: Nā是lí tī tsit ê服侍器有口座，lí ē當tuè別ê佇聯邦宇宙ê lâng，無論伊ê口座tī tó-tsi̍t站。
+      preamble: Nā是lí tī tsit臺服侍器有口座，lí ē當tuè別ê佇聯邦宇宙ê lâng，無論伊ê口座tī tó-tsi̍t站。
       title: Lán做伙設定 %{domain}。
     status:
       account_status: 口座ê狀態
@@ -1533,7 +1533,7 @@ nan-TW:
     notification:
       create_account: 建立Mastodon ê口座
       footer:
-        privacy_html: 電子phue是由Mastodon ê服侍器 %{domain} 送出。Beh了解tsit台服侍器án-tsuánn處理lí ê個人資料，請參考<a href="%{privacy_policy_path}">隱私權政策</a>。
+        privacy_html: 電子phue是由Mastodon ê服侍器 %{domain} 送出。Beh了解tsit臺服侍器án-tsuánn處理lí ê個人資料，請參考<a href="%{privacy_policy_path}">隱私權政策</a>。
         reason_for_email_html: 因為lí選擇收著對 %{name} 來ê電子phue更新，所以lí teh收著tsit張電子phue。Kám無beh收著tsiah ê電子phue？<a href="%{unsubscribe_path}">取消訂</a>
       interact_with_this_post:
         other: Kap tsit（tsiah）ê PO文互動，發現其他相siâng ê PO文。
@@ -1991,7 +1991,7 @@ nan-TW:
     too_soon: Tio̍h用未來ê日期。
   self_destruct:
     lead_html: "<strong>%{domain}</strong>不幸teh-beh永永關掉。Lí若佇hia有口座，lí bē當繼續用tse，但是lí iáu ē當請求lí ê資料ê備份。"
-    title: Tsit ê服侍器teh-beh關掉
+    title: Tsit臺服侍器teh-beh關ah
   sessions:
     activity: 上尾ê活動
     browser: 瀏覽器
@@ -2071,7 +2071,7 @@ nan-TW:
     lost_followers: 失去ê 跟tuè lí ê
     lost_follows: 失去ê lí 跟tuè ê
     preamble: Lí封鎖域名，á是lí ê管理員決定beh kā別ê服侍器停止權限ê時，Lí可能會失去跟tuè lí ê，á是lí跟tuè ê。若發生，lí會當kā中止聯絡ê ê列單載落去，來檢視或者有可能佇別站kā輸入。
-    purged: 關係tsit台服侍器有予lí ê服侍器管理員清掉ê資訊。
+    purged: 關係tsit臺服侍器有予lí ê服侍器管理員清掉ê資訊。
     type: 事件
   statuses:
     attached:
