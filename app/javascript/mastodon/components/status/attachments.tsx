@@ -20,6 +20,8 @@ import { compareUrls } from '@/mastodon/utils/compare_urls';
 
 import { PictureInPicturePlaceholder } from '../picture_in_picture_placeholder';
 
+import { StatusQuote } from './quote';
+
 export const StatusAttachments: React.FC<{
   statusId: string;
   contextType?: string;
@@ -48,7 +50,7 @@ export const StatusAttachments: React.FC<{
 
   // Don't display the card or collection if this is a quote.
   if (status.quote) {
-    return null;
+    return <StatusQuote {...status.quote} parentId={statusId} />;
   }
 
   const card = status.card;

@@ -82,6 +82,17 @@
   z-index: 1;
 }
 
+.quoteError {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quoteInfoPopup {
+  padding: var(--space-sm);
+}
+
 .meta {
   @include mixins.type-micro;
 

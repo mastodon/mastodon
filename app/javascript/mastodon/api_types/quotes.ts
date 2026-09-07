@@ -1,6 +1,20 @@
 import type { ApiStatusJSON } from './statuses';
 
-export type ApiQuoteState = 'accepted' | 'pending' | 'revoked' | 'unauthorized';
+export type ApiQuoteState =
+  | 'accepted'
+  | 'pending'
+  | 'revoked'
+  | 'unauthorized'
+  | 'deleted'
+  | 'rejected'
+  | 'blocked_account'
+  | 'blocked_domain'
+  | 'muted_account';
+export type ApiQuoteStateValid =
+  | 'accepted'
+  | 'blocked_account'
+  | 'blocked_domain'
+  | 'muted_account';
 export type ApiQuotePolicy =
   | 'public'
   | 'followers'
@@ -10,12 +24,12 @@ export type ApiQuotePolicy =
 export type ApiUserQuotePolicy = 'automatic' | 'manual' | 'denied' | 'unknown';
 
 interface ApiQuoteEmptyJSON {
-  state: Exclude<ApiQuoteState, 'accepted'>;
+  state: Exclude<ApiQuoteState, ApiQuoteStateValid>;
   quoted_status: null;
 }
 
 interface ApiNestedQuoteJSON {
-  state: 'accepted';
+  state: ApiQuoteStateValid;
   quoted_status_id: string;
 }
 
@@ -24,7 +38,7 @@ export type ApiQuotedStatusJSON = Omit<ApiStatusJSON, 'quote'> & {
 };
 
 interface ApiQuoteAcceptedJSON {
-  state: 'accepted';
+  state: ApiQuoteStateValid;
   quoted_status: ApiQuotedStatusJSON;
 }
 
