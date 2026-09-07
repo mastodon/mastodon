@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
@@ -19,8 +27,11 @@ import { getAccountHidden } from 'mastodon/selectors/accounts';
 import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { isRedesignEnabled } from '../utils/environment';
+
 import { Button } from './button';
 import { IconButton } from './icon_button';
+import { LoadingIndicator } from './loading_indicator';
 import type { StatusHeaderRenderFn } from './status/header';
 import { StatusHeader } from './status/header';
 import { TypedStatusContainer } from './status/types';
@@ -385,6 +396,14 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
   });
   const quote = status?.get('quote') as QuoteMap | undefined;
 
+  if (isRedesignEnabled()) {
+    return (
+      <Suspense fallback={<LoadingIndicator />}>
+        <LazyStatusRedesign {...props} />
+      </Suspense>
+    );
+  }
+
   if (quote) {
     return (
       <TypedStatusContainer {...props}>
@@ -399,3 +418,9 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
 
   return <TypedStatusContainer {...props} />;
 };
+
+const LazyStatusRedesign = lazy(() =>
+  import('./status/status').then(({ StatusRedesign }) => ({
+    default: StatusRedesign,
+  })),
+);
