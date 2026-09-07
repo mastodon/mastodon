@@ -3,10 +3,10 @@ import { defineMessages } from 'react-intl';
 import axios from 'axios';
 import { throttle } from 'lodash';
 
-import api from 'mastodon/api';
-import { browserHistory } from 'mastodon/components/router';
-import { countableText } from 'mastodon/features/compose/util/counter';
-import { tagHistory } from 'mastodon/settings';
+import api from '@/mastodon/api';
+import { browserHistory } from '@/mastodon/components/router';
+import { countableText } from '@/mastodon/features/compose/util/counter';
+import { tagHistory } from '@/mastodon/settings';
 import { emojiMartSearch } from '@/mastodon/features/emoji/picker';
 
 import { showAlert, showAlertForError } from './alerts';
@@ -15,6 +15,7 @@ import { importFetchedAccounts, importFetchedStatus } from './importer';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
 import { insertStatusIntoAccountTimelines } from './timelines_typed';
+import { isRedesignEnabled } from '../utils/environment';
 
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsAccountsController;
@@ -91,7 +92,7 @@ const messages = defineMessages({
 });
 
 export const ensureComposeIsVisible = (getState) => {
-  if (!getState().getIn(['compose', 'mounted'])) {
+  if (!getState().getIn(['compose', 'mounted']) && !isRedesignEnabled()) {
     browserHistory.push('/publish', { focusTarget: false });
   }
 };
