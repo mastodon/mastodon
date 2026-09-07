@@ -93,6 +93,11 @@ export type ExpandedStatusShape = Omit<AccountStatusShape, 'reblog'> & {
   reblog?: Omit<ExpandedStatusShape, 'reblog'>;
 };
 
+export type AnyStatusShape =
+  | StatusShape
+  | AccountStatusShape
+  | ExpandedStatusShape;
+
 export type CardShape = Omit<ApiPreviewCardJSON, 'authors'> & {
   authors: (Omit<ApiPreviewCardAuthorJSON, 'author'> & {
     accountId?: string;

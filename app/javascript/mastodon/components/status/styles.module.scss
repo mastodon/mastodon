@@ -60,6 +60,12 @@
   z-index: 1;
 }
 
+.meta {
+  @include mixins.type-micro;
+
+  color: var(--color-text-secondary);
+}
+
 .actions {
   display: flex;
 
