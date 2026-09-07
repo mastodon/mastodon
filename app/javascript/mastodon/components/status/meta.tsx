@@ -5,7 +5,10 @@ import { FormattedDate, FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import type { AnyStatusShape } from '@/mastodon/models/status';
+import type {
+  AnyStatusShape,
+  StatusVisibility,
+} from '@/mastodon/models/status';
 
 import { statusLink } from './utils';
 
@@ -13,7 +16,7 @@ export const StatusMeta: React.FC<
   {
     status: Pick<
       AnyStatusShape,
-      'account' | 'application' | 'created_at' | 'id'
+      'account' | 'application' | 'created_at' | 'id' | 'visibility'
     >;
   } & React.ComponentPropsWithRef<'span'>
 > = ({ status, ...props }) => {
@@ -26,6 +29,10 @@ export const StatusMeta: React.FC<
       return null;
     }
   }, [created_at]);
+  const visibility = useMemo(
+    () => statusVisibilityText(status.visibility),
+    [status.visibility],
+  );
 
   if (!createdAt) {
     return null;
@@ -48,7 +55,7 @@ export const StatusMeta: React.FC<
     <span {...props}>
       <FormattedMessage
         id='status.meta'
-        defaultMessage='{createdAt} on {source}'
+        defaultMessage='{createdAt} on {source} • {visibility}'
         values={{
           createdAt: (
             <Link to={statusLink(status)}>
@@ -63,8 +70,34 @@ export const StatusMeta: React.FC<
             </Link>
           ),
           source: applicationLink,
+          visibility,
         }}
       />
     </span>
   );
 };
+
+function statusVisibilityText(visibility: StatusVisibility) {
+  switch (visibility) {
+    case 'private':
+      return (
+        <FormattedMessage
+          id='privacy.private.short'
+          defaultMessage='Followers'
+        />
+      );
+    case 'direct':
+      return (
+        <FormattedMessage
+          id='privacy.message.short'
+          defaultMessage='Message'
+          description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
+        />
+      );
+
+    default:
+      return (
+        <FormattedMessage id='privacy.public.short' defaultMessage='Public' />
+      );
+  }
+}

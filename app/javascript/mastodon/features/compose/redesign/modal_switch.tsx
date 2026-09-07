@@ -45,6 +45,7 @@ const ComposerModalSwitch: React.FC = () => {
       <FormattedMessage
         id='compose.switch_modal.body'
         defaultMessage='Your message has limited visibility. If you convert to a post, it will switch to your default post visibility.'
+        description='Message refers to a direct message. For languages where this is confusing, "chat" or "direct message" can be used.'
       />
 
       <ModalActions>
