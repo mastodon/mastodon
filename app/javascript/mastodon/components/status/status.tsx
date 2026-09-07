@@ -12,6 +12,7 @@ import { ContentWarning } from '../content_warning';
 import { FilterWarning } from '../filter_warning';
 import { computeHashtagBarForStatus, HashtagBar } from '../hashtag_bar';
 import { Hotkeys } from '../hotkeys';
+import { Poll } from '../poll';
 
 import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
@@ -53,8 +54,6 @@ const selectStatusReblog = createAppSelector(
 export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   id,
   muted,
-  rootId,
-  unread,
   skipPrepend,
   unfocusable,
   contextType,
@@ -64,7 +63,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   showActions = true,
   scrollKey,
   children,
-  avatarSize = 40,
   withCounters,
   withDismiss,
   onOpen,
@@ -86,7 +84,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     reblogAcct: parent?.account.acct,
     isQuote: isQuotedPost,
   });
-  const { statusContent, hashtagsInBar } = useMemo(
+  const { statusContent, hashtagsInBar = [] } = useMemo(
     (): Partial<ReturnType<typeof computeHashtagBarForStatus>> =>
       status ? computeHashtagBarForStatus(status) : {},
     [status],
@@ -95,10 +93,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   // Handlers
   const {
     showDespiteFilter,
-    onHeaderClick,
     onExpandedToggle,
     onFilterToggle,
-    onOpenClick,
     onTranslate,
     ...handlers
   } = useStatusHandlers({ status, contextType, onOpen });
@@ -125,10 +121,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
   if (hidden) {
     return (
-      <StatusHotkeys
-        {...hotkeysProps}
-        className={classNames('status__wrapper', { focusable: !muted })}
-      >
+      <StatusHotkeys {...hotkeysProps}>
         <span>{status.account.display_name || status.account.username}</span>
         {status.spoiler_text && <span>{status.spoiler_text}</span>}
         {expanded && <span>{status.content}</span>}
@@ -139,17 +132,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   return (
     <StatusHotkeys
       {...hotkeysProps}
-      className={classNames(
-        classes.root,
-        'status__wrapper',
-        `status__wrapper-${status.visibility}`,
-        {
-          'status__wrapper-reply': !!status.in_reply_to_id,
-          'status__wrapper--in-thread': !!rootId,
-          unread,
-          focusable: !muted,
-        },
-      )}
+      className={classNames(classes.root)}
       data-featured={featured ? 'true' : null}
       aria-label={screenReaderText}
       data-nosnippet={status.account.noindex || undefined}
@@ -162,7 +145,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         />
       )}
 
-      <StatusRedesignHeader status={status} avatarSize={avatarSize}>
+      <StatusRedesignHeader status={status} className={classes.header}>
         {headerContents}
       </StatusRedesignHeader>
 
@@ -183,37 +166,43 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       )}
 
       {expanded && (
-        <>
-          <StatusContent
-            statusId={status.id}
-            statusContent={statusContent}
-            onClick={onOpenClick}
-            onTranslate={onTranslate}
-            collapsible
-          />
-
-          <StatusAttachments statusId={status.id} contextType={contextType} />
-
-          {hashtagsInBar && (
-            <HashtagBar
-              hashtags={hashtagsInBar}
+        <StatusContent
+          status={status}
+          statusContent={statusContent}
+          onReadMore={handlers.onOpen}
+          onTranslate={onTranslate}
+          collapsible
+        >
+          {!!status.poll && (
+            <Poll
+              pollId={status.poll}
+              statusUrl={status.uri}
               accountId={status.account.id}
+              lang={status.translation?.language ?? status.language}
             />
           )}
 
+          <StatusAttachments statusId={status.id} contextType={contextType} />
+
           {children}
-        </>
+        </StatusContent>
       )}
 
-      {showActions && !isQuotedPost && (
-        <StatusActionBar
-          scrollKey={scrollKey}
-          statusId={status.id}
-          contextType={contextType}
-          withDismiss={withDismiss}
-          withCounters={withCounters}
-        />
-      )}
+      <footer className={classes.footer}>
+        {expanded && hashtagsInBar.length > 0 && (
+          <HashtagBar hashtags={hashtagsInBar} accountId={status.account.id} />
+        )}
+
+        {showActions && !isQuotedPost && (
+          <StatusActionBar
+            scrollKey={scrollKey}
+            statusId={status.id}
+            contextType={contextType}
+            withDismiss={withDismiss}
+            withCounters={withCounters}
+          />
+        )}
+      </footer>
     </StatusHotkeys>
   );
 };

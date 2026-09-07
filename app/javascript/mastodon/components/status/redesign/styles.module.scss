@@ -3,9 +3,10 @@
 // Header
 
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: 1fr;
   align-items: center;
-  gap: var(--space-xs);
   color: var(--color-text-secondary);
 
   a {
@@ -23,8 +24,14 @@
   }
 }
 
-.headerNameWrapper {
-  flex-grow: 1;
+.headerAvatar {
+  padding-inline-end: var(--col-gap);
+
+  > span {
+    display: block;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+  }
 }
 
 .headerName {

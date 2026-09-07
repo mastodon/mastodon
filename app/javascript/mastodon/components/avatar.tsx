@@ -15,7 +15,7 @@ interface Props {
     'id' | 'acct' | 'avatar' | 'avatar_static'
   >;
   alt?: string;
-  size?: number;
+  size?: number | null;
   style?: React.CSSProperties;
   inline?: boolean;
   animate?: boolean;
@@ -41,11 +41,14 @@ export const Avatar: React.FC<Props> = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const style = {
-    ...styleFromParent,
-    width: `${size}px`,
-    height: `${size}px`,
-  };
+  const style =
+    size !== null
+      ? {
+          ...styleFromParent,
+          width: `${size}px`,
+          height: `${size}px`,
+        }
+      : styleFromParent;
 
   const src = hovering || animate ? account?.avatar : account?.avatar_static;
 
