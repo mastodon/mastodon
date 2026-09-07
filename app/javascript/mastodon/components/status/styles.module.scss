@@ -10,6 +10,22 @@
     minmax(calc(var(--avatar-size) + var(--col-gap)), auto)
     1fr auto;
   row-gap: var(--space-xs);
+  padding: var(--space-md);
+}
+
+.variantThread {
+  --avatar-size: 32px;
+
+  padding: var(--space-xs) 0;
+}
+
+.variantPage {
+  padding: 0;
+
+  .content,
+  .footer {
+    grid-column: span 2;
+  }
 }
 
 .header {
