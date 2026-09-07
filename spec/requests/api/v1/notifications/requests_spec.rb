@@ -122,7 +122,9 @@ RSpec.describe 'Requests' do
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
     it 'returns http success and destroys the notification request', :aggregate_failures do
-      expect { subject }.to change(NotificationRequest, :count).by(-1)
+      expect { subject }
+        .to change(NotificationRequest, :count).by(-1)
+        .and enqueue_sidekiq_job(FilteredNotificationCleanupWorker).with(user.account_id, be_a(Array))
 
       expect(response).to have_http_status(200)
       expect(response.content_type)
