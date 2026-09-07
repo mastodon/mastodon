@@ -68,6 +68,10 @@ en:
       deletion_reversible_hint_html: This account is pending deletion, and the data will be fully removed on %{date}.
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
+      discoverable:
+        disabled: Author has not opted-in to being discoverable
+        enabled: Author has opted-in to being discoverable
+        title: Discoverable
       disable: Freeze
       disable_sign_in_token_auth: Disable email token authentication
       disable_two_factor_authentication: Disable 2FA
@@ -82,6 +86,12 @@ en:
       enabled: Enabled
       enabled_msg: Successfully unfroze %{username}'s account
       followers: Followers
+      follow_recommendations:
+        allowed: Allowed
+        suppress: Suppress any follow recommendation
+        suppressed: Suppressed
+        title: Follow recommendations
+        unsuppress: Restore any follow recommendation
       follows: Follows
       header: Header
       inbox_url: Inbox URL
@@ -165,6 +175,12 @@ en:
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       title: Accounts
+      trends:
+        allow: Allow
+        allowed: Allowed
+        disallowed: Disallowed
+        disallow: Disallow
+        title: Treding posts
       unblock_email: Unblock email address
       unblocked_email_msg: Successfully unblocked %{username}'s email address
       unconfirmed_email: Unconfirmed email

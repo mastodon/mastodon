@@ -174,6 +174,14 @@ namespace :admin do
         post :resend
       end
     end
+
+    namespace :trends do
+      resource :approval, only: [:create, :destroy]
+    end
+
+    namespace :follow_recommendations do
+      resource :suppression, only: [:create, :destroy]
+    end
   end
 
   resources :users, only: [] do
