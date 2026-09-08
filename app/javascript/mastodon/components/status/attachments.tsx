@@ -4,7 +4,7 @@ import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
-import Card from '@/mastodon/features/status/components/card';
+import MediaCard from '@/mastodon/features/status/components/card';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
@@ -18,7 +18,9 @@ import { selectPictureInPicture } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { compareUrls } from '@/mastodon/utils/compare_urls';
 
+import { Card, CardBody, CardTitle } from '../card';
 import { PictureInPicturePlaceholder } from '../picture_in_picture_placeholder';
+import { RelativeTimestamp } from '../relative_timestamp';
 
 import { StatusQuote } from './quote';
 
@@ -58,12 +60,29 @@ export const StatusAttachments: React.FC<{
     ? status.tagged_collections.find(({ url }) => compareUrls(url, card.url))
     : status.tagged_collections[0];
   if (card && !collection) {
+    if (card.type === 'video') {
+      return (
+        <MediaCard
+          key={`${status.id}-${status.edited_at}`}
+          card={card}
+          sensitive={status.sensitive}
+        />
+      );
+    }
+
     return (
-      <Card
-        key={`${status.id}-${status.edited_at}`}
-        card={card}
-        sensitive={status.sensitive}
-      />
+      <Card as='a' href={card.url} target='_blank' rel='noopener'>
+        <CardTitle
+          afterContent={
+            card.published_at && (
+              <RelativeTimestamp timestamp={card.published_at} />
+            )
+          }
+        >
+          {card.title}
+        </CardTitle>
+        {card.description && <CardBody>{card.description}</CardBody>}
+      </Card>
     );
   }
 
