@@ -88,6 +88,13 @@
   z-index: 1;
 }
 
+// Overrides Card .body a:
+.quoteBody article {
+  a {
+    color: inherit;
+  }
+}
+
 .quoteError {
   display: flex;
   flex-direction: row;

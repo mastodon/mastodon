@@ -51,7 +51,7 @@ export const StatusQuote: React.FC<QuotedStatus & { parentId: string }> = ({
 
   return (
     <Card>
-      <CardBody>
+      <CardBody className={classes.quoteBody}>
         <StatusRedesign id={quotedId} variant='page' />
       </CardBody>
     </Card>
