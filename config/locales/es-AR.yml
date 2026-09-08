@@ -72,6 +72,10 @@ es-AR:
       disable_sign_in_token_auth: Deshabilitar autenticación de token por correo electrónico
       disable_two_factor_authentication: Deshabilitar 2FA
       disabled: Congelada
+      discoverable:
+        disabled: Esta persona prefirió no poder ser descubierta
+        enabled: Esta persona prefirió poder ser descubierta
+        title: Descubrible
       display_name: Nombre para mostrar
       domain: Dominio
       edit: Editar
@@ -81,6 +85,12 @@ es-AR:
       enable_sign_in_token_auth: Habilitar autenticación de token por correo electrónico
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
+      follow_recommendations:
+        allowed: Permitida
+        suppress: Suprimir cualquier recomendación de seguimiento
+        suppressed: Suprimida
+        title: Recomendaciones de seguimiento
+        unsuppress: Restablecer cualquier recomendación de seguimiento
       followers: Seguidores
       follows: Siguiendo
       header: Cabecera
@@ -165,6 +175,12 @@ es-AR:
       suspension_irreversible: Se eliminaron irreversiblemente los datos de esta cuenta. Podés dejar de suspenderla para hacerla utilizable, pero no se recuperarán los datos que tenía anteriormente.
       suspension_reversible_hint_html: La cuenta fue suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si querés eliminar todos los datos de la cuenta inmediatamente, podés hacerlo abajo.
       title: Cuentas
+      trends:
+        allow: Permitir
+        allowed: Permitida
+        disallow: Dejar de permitir
+        disallowed: No permitida
+        title: Mensajes en tendencia
       unblock_email: Desbloquear dirección de correo electrónico
       unblocked_email_msg: Se desbloqueó exitosamente la dirección de correo electrónico de %{username}
       unconfirmed_email: Correo electrónico sin confirmar
