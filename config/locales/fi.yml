@@ -72,6 +72,10 @@ fi:
       disable_sign_in_token_auth: Poista sähköpostitunnuksella todennus käytöstä
       disable_two_factor_authentication: Poista kaksivaiheinen todennus käytöstä
       disabled: Jäädytetty
+      discoverable:
+        disabled: Tekijä ei ole valinnut olevansa löydettävissä
+        enabled: Tekijä on valinnut olevansa löydettävissä
+        title: Löydettävissä
       display_name: Näyttönimi
       domain: Verkkotunnus
       edit: Muokkaa
@@ -81,6 +85,12 @@ fi:
       enable_sign_in_token_auth: Ota sähköpostitunnuksella todennus käyttöön
       enabled: Käytössä
       enabled_msg: Käyttäjän %{username} tilin jäädytys kumottiin onnistuneesti
+      follow_recommendations:
+        allowed: Sallittu
+        suppress: Hylkää seurantasuositus
+        suppressed: Hylätty
+        title: Seurantasuositukset
+        unsuppress: Palauta seurantasuositus
       followers: Seuraajat
       follows: Seurattavat
       header: Otsakekuva
@@ -165,6 +175,12 @@ fi:
       suspension_irreversible: Tämän tilin tiedot on poistettu peruuttamattomasti. Voit kumota tilin jäädytyksen, jolloin siitä tulee käyttökelpoinen, mutta toiminto ei palauta sillä aiemmin olleita tietoja.
       suspension_reversible_hint_html: Tili on jäädytetty, ja tiedot poistetaan kokonaan %{date}. Siihen asti tili voidaan palauttaa ongelmitta. Jos haluat poistaa kaikki tilin tiedot heti, onnistuu se alta.
       title: Tilit
+      trends:
+        allow: Salli
+        allowed: Sallittu
+        disallow: Kiellä
+        disallowed: Kielletty
+        title: Suositut julkaisut
       unblock_email: Kumoa sähköpostiosoitteen esto
       unblocked_email_msg: Käyttäjän %{username} sähköpostiosoitteen esto kumottiin
       unconfirmed_email: Vahvistamaton sähköpostiosoite

@@ -72,6 +72,10 @@ is:
       disable_sign_in_token_auth: Gera óvirka auðkenningu með teikni í tölvupósti
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
       disabled: Óvirkt
+      discoverable:
+        disabled: Höfundur hefur ekki beðið um að vera finnanlegur
+        enabled: Höfundur hefur beðið um að vera finnanlegur
+        title: Finnanlegt
       display_name: Birtingarnafn
       domain: Lén
       edit: Breyta
@@ -81,6 +85,12 @@ is:
       enable_sign_in_token_auth: Virkja auðkenningu með teikni í tölvupósti
       enabled: Virkt
       enabled_msg: Tókst að affrysta aðgang notandans %{username}
+      follow_recommendations:
+        allowed: Leyft
+        suppress: Bæla öll meðmæli um að fylgjast með
+        suppressed: Bælt
+        title: Meðmæli um að fylgjast með
+        unsuppress: Endurheimta öll meðmæli um að fylgjast með
       followers: Fylgjendur
       follows: Fylgist með
       header: Haus
@@ -165,6 +175,12 @@ is:
       suspension_irreversible: Gögnunum á þessum notandaaðgangi hefur verið eytt óafturkræft. Þú getur tekið aðganginn úr frysti svo hægt sé að nota hann, en það mun ekki endurheimta neitt af þeim gögnum sem á honum voru áður.
       suspension_reversible_hint_html: Notandaaðgangurinn hefur verið settur í frysti og gögnunum á honum verður eytt að fullu þann %{date}. Þangað til væri hægt að endurheimta aðganginn úr frysti án nokkurra breytinga. Ef þú vilt eyða öllum gögnum af honum strax, geturðu gert það hér fyrir neðan.
       title: Notandaaðgangar
+      trends:
+        allow: Leyfa
+        allowed: Leyft
+        disallow: Ekki leyfa
+        disallowed: Ekki leyft
+        title: Vinsælar færslur
       unblock_email: Aflétta útilokun tölvupóstfangs
       unblocked_email_msg: Tókst að afbanna tölvupóstfang notandans %{username}
       unconfirmed_email: Óstaðfestur tölvupóstur

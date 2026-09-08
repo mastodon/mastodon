@@ -69,6 +69,10 @@ zh-CN:
       disable_sign_in_token_auth: 禁用邮件令牌身份验证
       disable_two_factor_authentication: 停用双因素认证
       disabled: 已冻结
+      discoverable:
+        disabled: 作者选择不被发现
+        enabled: 作者选择被发现
+        title: 可发现
       display_name: 昵称
       domain: 域名
       edit: 编辑
@@ -78,6 +82,12 @@ zh-CN:
       enable_sign_in_token_auth: 启用邮件令牌身份验证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的账号
+      follow_recommendations:
+        allowed: 已允许
+        suppress: 禁用推荐关注
+        suppressed: 已禁用
+        title: 关注推荐
+        unsuppress: 恢复推荐关注
       followers: 关注者
       follows: 关注
       header: 封面图
@@ -161,6 +171,12 @@ zh-CN:
       suspension_irreversible: 该账号的数据已被不可逆转地删除。你可以取消暂停该账号以使其可用，但它不会恢复以前拥有的任何数据。
       suspension_reversible_hint_html: 账号已封禁，数据将在 %{date} 完全删除。 在此之前，账号仍可恢复，并且没有任何不良影响。 如果你想立即移除该账号的所有数据，可以在下面进行。
       title: 用户
+      trends:
+        allow: 允许
+        allowed: 已允许
+        disallow: 不允许
+        disallowed: 不允许
+        title: 热门嘟文
       unblock_email: 取消屏蔽邮件地址
       unblocked_email_msg: 成功取消屏蔽了 %{username} 的邮件地址
       unconfirmed_email: 待验证的邮箱地址
