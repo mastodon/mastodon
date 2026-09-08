@@ -1,5 +1,7 @@
 import type { RecordOf } from 'immutable';
 
+import type { Simplify } from 'type-fest';
+
 import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import type {
@@ -67,9 +69,7 @@ export interface StatusShape {
   media_attachments: MediaAttachmentShape[];
   mentions: ApiMentionJSON[];
   poll?: string;
-  quote?: Omit<ApiQuoteJSON, 'quoted_status'> & {
-    quoted_status?: string;
-  };
+  quote?: QuotedStatus;
   reblog?: string;
   tagged_collections: ApiCollectionJSON[];
   tags: ApiTagJSON[];
@@ -97,6 +97,12 @@ export type AnyStatusShape =
   | StatusShape
   | AccountStatusShape
   | ExpandedStatusShape;
+
+export type QuotedStatus = Simplify<
+  Omit<ApiQuoteJSON, 'quoted_status'> & {
+    quoted_status?: string;
+  }
+>;
 
 export type CardShape = Omit<ApiPreviewCardJSON, 'authors'> & {
   authors: (Omit<ApiPreviewCardAuthorJSON, 'author'> & {

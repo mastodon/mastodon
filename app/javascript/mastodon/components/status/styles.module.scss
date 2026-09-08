@@ -44,15 +44,9 @@
 }
 
 .content {
-  @include mixins.type-body;
-
-  p:not(:last-child) {
-    margin-block-end: 1em;
-  }
-
-  a {
-    color: var(--color-text-brand);
-  }
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
 
   &.collapsed {
     position: relative;
@@ -73,6 +67,32 @@
       pointer-events: none;
     }
   }
+}
+
+.contentText {
+  @include mixins.type-body;
+
+  p:not(:last-child) {
+    margin-block-end: 1em;
+  }
+
+  a {
+    color: var(--color-text-brand);
+  }
+}
+
+.contentImage {
+  border-radius: var(--radius-md);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.contentBlurHash {
+  width: 100%;
+  height: 100%;
 }
 
 .contentReadMore {
