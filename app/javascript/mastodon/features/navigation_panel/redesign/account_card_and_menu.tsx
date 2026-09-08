@@ -37,22 +37,11 @@ import { useAppDispatch } from '@/mastodon/store';
 import classes from './account_card_and_menu.module.scss';
 
 export const NavigationAccountCardAndMenu: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { accountId, permissions } = useIdentity();
-  const account = useAccount(accountId);
-
-  const confirmLogout = useCallback(() => {
-    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT', modalProps: {} }));
-  }, [dispatch]);
+  const { accountId } = useIdentity();
 
   if (!accountId) {
     return null;
   }
-
-  const isManager = canManageReports(permissions);
-  const isAdmin = canViewAdminDashboard(permissions);
-
-  const accountBasePath = `/@${account?.acct}`;
 
   return (
     <div className={classes.root}>
@@ -73,91 +62,109 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
           <FormattedMessage id='tabs_bar.more' defaultMessage='More' />
         </MenuTrigger>
         <MenuList placement='top' offset={8}>
-          <MenuItemLink to='/profile/edit' icon={UserIcon}>
-            <FormattedMessage
-              id='account.edit_profile'
-              defaultMessage='Edit profile'
-            />
-          </MenuItemLink>
-          <MenuItemLink as='a' href='/settings/preferences' icon={GearIcon}>
-            <FormattedMessage
-              id='tabs_bar.settings'
-              defaultMessage='Settings'
-            />
-          </MenuItemLink>
-
-          <MenuItemDivider />
-
-          <MenuItemLink
-            to={`${accountBasePath}/collections`}
-            icon={CirclesFourIcon}
-          >
-            <FormattedMessage
-              id='navigation_bar.collections'
-              defaultMessage='Collections'
-            />
-          </MenuItemLink>
-          <MenuItemLink to='/favourites' icon={HeartIcon}>
-            <FormattedMessage
-              id='navigation_bar.liked_posts'
-              defaultMessage='Liked Posts'
-            />
-          </MenuItemLink>
-
-          <MenuItemDivider />
-
-          <MenuItemLink as='a' href='/relationships' icon={UsersThreeIcon}>
-            <FormattedMessage
-              id='navigation_bar.followers_and_following'
-              defaultMessage='Followers & Following'
-            />
-          </MenuItemLink>
-
-          <MenuItemLink to='/blocks' icon={ProhibitIcon}>
-            <FormattedMessage
-              id='navigation_bar.blocked_accounts'
-              defaultMessage='Blocked accounts'
-            />
-          </MenuItemLink>
-
-          {(isManager || isAdmin) && (
-            <>
-              <MenuItemDivider />
-
-              {isAdmin && (
-                <MenuItemLink as='a' href='/admin/dashboard' icon={GavelIcon}>
-                  <FormattedMessage
-                    id='navigation_bar.administration'
-                    defaultMessage='Administration'
-                  />
-                </MenuItemLink>
-              )}
-
-              {isManager && (
-                <MenuItemLink
-                  as='a'
-                  href='/admin/reports'
-                  icon={ShieldStarIcon}
-                >
-                  <FormattedMessage
-                    id='navigation_bar.moderation'
-                    defaultMessage='Moderation'
-                  />
-                </MenuItemLink>
-              )}
-            </>
-          )}
-
-          <MenuItemDivider />
-
-          <MenuItem onClick={confirmLogout} icon={SignOutIcon}>
-            <FormattedMessage
-              id='navigation_bar.sign_out'
-              defaultMessage='Sign out'
-            />
-          </MenuItem>
+          <AccountMenuItems />
         </MenuList>
       </Menu>
     </div>
+  );
+};
+
+export const AccountMenuItems: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { accountId, permissions } = useIdentity();
+  const account = useAccount(accountId);
+
+  const confirmLogout = useCallback(() => {
+    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT', modalProps: {} }));
+  }, [dispatch]);
+
+  if (!accountId) {
+    return null;
+  }
+
+  const isManager = canManageReports(permissions);
+  const isAdmin = canViewAdminDashboard(permissions);
+
+  const accountBasePath = `/@${account?.acct}`;
+
+  return (
+    <>
+      <MenuItemLink to='/profile/edit' icon={UserIcon}>
+        <FormattedMessage
+          id='account.edit_profile'
+          defaultMessage='Edit profile'
+        />
+      </MenuItemLink>
+      <MenuItemLink as='a' href='/settings/preferences' icon={GearIcon}>
+        <FormattedMessage id='tabs_bar.settings' defaultMessage='Settings' />
+      </MenuItemLink>
+
+      <MenuItemDivider />
+
+      <MenuItemLink
+        to={`${accountBasePath}/collections`}
+        icon={CirclesFourIcon}
+      >
+        <FormattedMessage
+          id='navigation_bar.collections'
+          defaultMessage='Collections'
+        />
+      </MenuItemLink>
+      <MenuItemLink to='/favourites' icon={HeartIcon}>
+        <FormattedMessage
+          id='navigation_bar.liked_posts'
+          defaultMessage='Liked Posts'
+        />
+      </MenuItemLink>
+
+      <MenuItemDivider />
+
+      <MenuItemLink as='a' href='/relationships' icon={UsersThreeIcon}>
+        <FormattedMessage
+          id='navigation_bar.followers_and_following'
+          defaultMessage='Followers & Following'
+        />
+      </MenuItemLink>
+
+      <MenuItemLink to='/blocks' icon={ProhibitIcon}>
+        <FormattedMessage
+          id='navigation_bar.blocked_accounts'
+          defaultMessage='Blocked accounts'
+        />
+      </MenuItemLink>
+
+      {(isManager || isAdmin) && (
+        <>
+          <MenuItemDivider />
+
+          {isAdmin && (
+            <MenuItemLink as='a' href='/admin/dashboard' icon={GavelIcon}>
+              <FormattedMessage
+                id='navigation_bar.administration'
+                defaultMessage='Administration'
+              />
+            </MenuItemLink>
+          )}
+
+          {isManager && (
+            <MenuItemLink as='a' href='/admin/reports' icon={ShieldStarIcon}>
+              <FormattedMessage
+                id='navigation_bar.moderation'
+                defaultMessage='Moderation'
+              />
+            </MenuItemLink>
+          )}
+        </>
+      )}
+
+      <MenuItemDivider />
+
+      <MenuItem onClick={confirmLogout} icon={SignOutIcon}>
+        <FormattedMessage
+          id='navigation_bar.sign_out'
+          defaultMessage='Sign out'
+        />
+      </MenuItem>
+    </>
   );
 };
