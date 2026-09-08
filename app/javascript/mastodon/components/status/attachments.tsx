@@ -142,11 +142,16 @@ const MediaAttachments: React.FC<{
       dispatch(
         openModal({
           modalType: 'MEDIA',
-          modalProps: { statusId, media: attachment, index, lang: language },
+          modalProps: {
+            statusId,
+            media: immutableAttachments,
+            index,
+            lang: language,
+          },
         }),
       );
     },
-    [attachment, dispatch, language, statusId],
+    [immutableAttachments, dispatch, language, statusId],
   );
   const handleOpenVideo = useCallback(
     (options: {
