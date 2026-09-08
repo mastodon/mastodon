@@ -279,6 +279,7 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
   card,
   status,
 }) => {
+  // Use the old card if we have authors as the new design doesn't have attribution yet.
   if (card.type === 'video' || card.authors.length > 0) {
     return (
       <div>
