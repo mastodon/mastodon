@@ -410,6 +410,7 @@ function useQuoteError({
           onClick={onInfoToggle}
           ref={setReference}
           aria-expanded={showInfo}
+          className={classes.errorButton}
         >
           <FormattedMessage
             id='learn_more_link.learn_more'
@@ -518,7 +519,12 @@ function useQuoteError({
       {message}
 
       {action && (
-        <Button size='xs' variant='ghost' onClick={action}>
+        <Button
+          size='xs'
+          variant='ghost'
+          onClick={action}
+          className={classes.errorButton}
+        >
           <FormattedMessage
             id='status.quote_error.limited_account_hint.action'
             defaultMessage='Show anyway'
