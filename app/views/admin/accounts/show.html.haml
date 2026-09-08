@@ -31,6 +31,27 @@
           = render 'admin/accounts/local_account', account: @account
         - else
           = render 'admin/accounts/remote_account', account: @account, domain_block: @domain_block
+        %tr
+          %th= t('admin.accounts.discoverable.title')
+          %td= @account.discoverable? ? t('admin.accounts.discoverable.enabled') : t('admin.accounts.discoverable.disabled')
+          %td
+        %tr
+          %th= t('admin.accounts.trends.title')
+          %td= @account.trendable? ? t('admin.accounts.trends.allowed') : t('admin.accounts.trends.disallowed')
+          %td
+            - if can?(:review, @account)
+              - if @account.trendable?
+                = table_link_to 'close', t('admin.accounts.trends.disallow'), admin_account_trends_approval_path(@account.id), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+              - else
+                = table_link_to 'check', t('admin.accounts.trends.allow'), admin_account_trends_approval_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+        %tr
+          %th= t('admin.accounts.follow_recommendations.title')
+          %td= @account.follow_recommendation_suppression ? t('admin.accounts.follow_recommendations.suppressed') : t('admin.accounts.follow_recommendations.allowed')
+          %td
+            - if can?(:unsuppress, :follow_recommendation) && @account.follow_recommendation_suppression
+              = table_link_to 'check', t('admin.accounts.follow_recommendations.unsuppress'), admin_account_follow_recommendations_suppression_path(@account.id), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+            - elsif can?(:suppress, :follow_recommendation)
+              = table_link_to 'close', t('admin.accounts.follow_recommendations.suppress'), admin_account_follow_recommendations_suppression_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
 
   = render 'admin/accounts/buttons', account: @account, deletion_request: @deletion_request
 

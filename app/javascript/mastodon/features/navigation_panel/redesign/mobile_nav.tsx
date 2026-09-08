@@ -15,6 +15,7 @@ import { useDrag } from '@use-gesture/react';
 
 import { closeNavigation, openNavigation } from '@/mastodon/actions/navigation';
 import { Avatar } from '@/mastodon/components/avatar';
+import { Menu, MenuList, MenuTrigger } from '@/mastodon/components/menu';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { ComposeRedesignButton } from '@/mastodon/features/compose/redesign/trigger';
 import { useAccount } from '@/mastodon/hooks/useAccount';
@@ -23,8 +24,9 @@ import { selectUnreadNotificationGroupsCount } from '@/mastodon/selectors/notifi
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { RedesignNavigationPanel } from '.';
+import { AccountMenuItems } from './account_card_and_menu';
 import classes from './mobile_nav.module.scss';
-import { MobileNavLink } from './navigation_link';
+import { MobileNavLink, MobileNavProfileButton } from './navigation_link';
 
 export const RedesignMobileNavigation: React.FC = () => {
   const { accountId, signedIn } = useIdentity();
@@ -71,14 +73,26 @@ export const RedesignMobileNavigation: React.FC = () => {
               defaultMessage='Notifications'
             />
           </MobileNavLink>
-          <MobileNavLink
-            to={`/@${account?.acct}`}
-            customIcon={
-              <Avatar size={24} account={account} className={classes.avatar} />
-            }
-          >
-            <FormattedMessage id='tabs_bar.profile' defaultMessage='Profile' />
-          </MobileNavLink>
+          <Menu>
+            <MenuTrigger
+              as={MobileNavProfileButton}
+              avatar={
+                <Avatar
+                  size={24}
+                  account={account}
+                  className={classes.avatar}
+                />
+              }
+            >
+              <FormattedMessage
+                id='tabs_bar.account_settings'
+                defaultMessage='Account settings'
+              />
+            </MenuTrigger>
+            <MenuList placement='top-end' offset={8}>
+              <AccountMenuItems context='mobile' />
+            </MenuList>
+          </Menu>
         </ul>
         <ComposeRedesignButton inline />
       </nav>

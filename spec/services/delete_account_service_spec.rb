@@ -26,6 +26,7 @@ RSpec.describe DeleteAccountService do
     let!(:follow_notification) { Fabricate(:notification, account: local_follower, activity: active_relationship, type: :follow) }
 
     let!(:account_note) { Fabricate(:account_note, account: account) }
+    let!(:generated_annual_report) { Fabricate(:generated_annual_report, account: account) }
 
     it 'deletes associated owned and target records and target notifications' do
       subject
@@ -48,6 +49,7 @@ RSpec.describe DeleteAccountService do
       expect { poll_vote.reload }.to raise_error(ActiveRecord::RecordNotFound)
       expect { account_note.reload }.to raise_error(ActiveRecord::RecordNotFound)
       expect { collection.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { generated_annual_report.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     def expect_deletion_of_associated_target_records

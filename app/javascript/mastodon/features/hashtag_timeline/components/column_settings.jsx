@@ -12,6 +12,7 @@ import { Toggle } from '@/mastodon/components/form_fields/toggle_field';
 import { injectIntl } from '@/mastodon/components/intl';
 
 import SettingToggle from '../../notifications/components/setting_toggle';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 const messages = defineMessages({
   placeholder: { id: 'hashtag.column_settings.select.placeholder', defaultMessage: 'Enter hashtags…' },
@@ -108,6 +109,16 @@ class ColumnSettings extends PureComponent {
   render () {
     const { settings, onChange } = this.props;
 
+    if (isRedesignEnabled()) {
+      return (
+        <div className='column-settings column-settings__hashtags'>
+          {this.modeSelect('any')}
+          {this.modeSelect('all')}
+          {this.modeSelect('none')}
+        </div>
+      )
+    }
+
     return (
       <div className='column-settings'>
         <section>
@@ -115,7 +126,7 @@ class ColumnSettings extends PureComponent {
             <SettingToggle settings={settings} settingPath={['local']} onChange={onChange} label={<FormattedMessage id='community.column_settings.local_only' defaultMessage='Local only' />} />
 
             <div className='setting-toggle'>
-              <Toggle id='hashtag.column_settings.tag_toggle' onChange={this.onToggle} checked={this.state.open} />
+              <Toggle id='hashtag.column_settings.tag_toggle' onChange={this.onToggle} checked={this.state.open} size={16} />
 
               <span className='setting-toggle__label'>
                 <FormattedMessage id='hashtag.column_settings.tag_toggle' defaultMessage='Include additional tags in this column' />

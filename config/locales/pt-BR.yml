@@ -205,7 +205,7 @@ pt-BR:
         destroy_custom_emoji: Excluir emoji personalizado
         destroy_domain_allow: Excluir permissão de domínio
         destroy_domain_block: Excluir bloqueio de domínio
-        destroy_email_domain_block: Deletar bloqueio de domínio Email
+        destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
         destroy_instance: Limpar domínio
         destroy_ip_block: Excluir regra de IP
         destroy_relay: Excluir Retransmissão
@@ -321,9 +321,9 @@ pt-BR:
         update_ip_block_html: "%{name} alterou a regra para o IP %{target}"
         update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
-        update_tag_html: "%{name} alterou as opções de %{target} para: "
+        update_tag_html: "%{name} alterou as configurações de %{target} para: "
         update_user_role_html: "%{name} alterou o cargo %{target}"
-        update_username_block_html: Regra %{name} atualizada para nomes de usuários contendo %{target}
+        update_username_block_html: "%{name} Atualizou a regra para nomes de usuários contendo %{target}"
         usable_tag_html: pode ser usado;
       deleted_account: conta excluída
       empty: Nenhum registro encontrado.
@@ -475,13 +475,13 @@ pt-BR:
       obfuscate: Ofuscar nome de domínio
       obfuscate_hint: Ofuscar parcialmente o domínio na lista se a exibição da lista de domínios limitados estiver habilitada
       private_comment: Comentário privado
-      private_comment_hint: Comente sobre essa restrição ao domínio para uso interno dos moderadores.
+      private_comment_hint: Comente sobre esta restrição de domínio para uso interno dos moderadores.
       public_comment: Comentário público
-      public_comment_hint: Comente sobre essa restrição ao domínio para o público geral, caso a divulgação da lista de bloqueio esteja ativada.
+      public_comment_hint: Comente sobre esta restrição ao domínio para o público geral, caso a divulgação da lista de bloqueio esteja ativada.
       reject_media: Rejeitar arquivos de mídia
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa fazer download de qualquer um no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
-      reject_reports_hint: Ignora todas as denúncias vindo deste domínio. Irrelevante para suspensões
+      reject_reports_hint: Ignora todas as denúncias vindas deste domínio. Irrelevante para suspensões
       undo: Desfazer bloqueio de domínio
       view: Ver domínios bloqueados
     email_domain_blocks:
@@ -518,7 +518,7 @@ pt-BR:
         show:
           confirm_disable_feature: Desativar e-mails de notícia de %{name}? Os e-mails de notícia não serão mais enviados a esta conta. O usuário poderá reativar este recurso através das opções da conta. Para remover acesso permanente a este recurso, edite as permissões da conta em Cargos.
           confirm_remove_subscriber: "%{email} não receberá mais e-mails de %{name}. Esta ação não pode ser desfeita."
-          consent: Os inscritos só permitiram receber publicações por e-mail. Não use esta lista para outra coisa.
+          consent: Os inscritos consentiram somente o envio de publicações por e-mail. Não use esta lista para outra coisa.
           date: Data de registro
           disable_feature: Desativar recurso
           disabled: O recurso foi desativado e os e-mails não são mais enviados a esta lista.
@@ -604,7 +604,7 @@ pt-BR:
       debug:
         callbacks:
           created_at: Criado em
-          delete: Apagar
+          delete: Excluir
           ip: Endereço de IP
           request_body: Corpo da solicitação
           title: Depurar Callbacks
@@ -612,7 +612,7 @@ pt-BR:
         active: Ativo
         base_url: URL Base
         callback: Callback
-        delete: Apagar
+        delete: Excluir
         edit: Editar provedor
         finish_registration: Finalizar o cadastro
         name: Nome
@@ -632,16 +632,16 @@ pt-BR:
       title: FASP
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
-      language: Na língua
-      status: Situação
+      language: No idioma
+      status: Estado
       suppress: Remover recomendação de contas
       suppressed: Removida
       title: Recomendações de contas
       unsuppress: Restaurar recomendação de contas
     instances:
       audit_log:
-        title: Logs de auditoria recentes
-        view_all: Ver todos os logs de auditoria
+        title: Registros de auditoria recentes
+        view_all: Ver todos os registros de auditoria
       availability:
         description_html:
           one: Se a entrega ao domínio falhar em <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>do</em> domínio seja recebida.
@@ -650,7 +650,7 @@ pt-BR:
         failures_recorded:
           one: Falha na tentativa em %{count} dia.
           other: Tentativas falhas em %{count} dias diferentes.
-        no_failures_recorded: Sem falhas no registro.
+        no_failures_recorded: Sem falhas registradas.
         title: Disponibilidade
         warning: A última tentativa de se conectar a este servidor não foi bem sucedida
       back_to_all: Todas
@@ -1596,6 +1596,7 @@ pt-BR:
       content: Desculpe, algo deu errado por aqui.
       title: Esta página não está certa
     '503': A página não pôde ser carregada devido a uma falha temporária do servidor.
+    go_home: Ir à página principal
     noscript_html: Para usar o aplicativo web do Mastodon, ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">aplicativos nativos</a> para o Mastodon em sua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um usuário local com esse nome de usuário

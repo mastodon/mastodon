@@ -75,6 +75,10 @@ he:
       disable_sign_in_token_auth: ביטול הזדהות באמצעות אסימון דוא״ל
       disable_two_factor_authentication: ביטול הזדהות דו־שלבית
       disabled: מוקפא
+      discoverable:
+        disabled: המחבר/ת לא בחר/ה לאפשר את גילויים
+        enabled: המחבר/ת בחר/ה לאפשר את גילויים
+        title: ניתן לגילוי
       display_name: שם תצוגה
       domain: תחום
       edit: עריכה
@@ -84,6 +88,12 @@ he:
       enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא״ל
       enabled: מופעל
       enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
+      follow_recommendations:
+        allowed: מותר
+        suppress: השתקת המלצות מעקב
+        suppressed: מושתק
+        title: המלצות מעקב
+        unsuppress: שחזור המלצות מעקב
       followers: עוקבים
       follows: נעקבים
       header: תמונת נושא
@@ -169,6 +179,12 @@ he:
       suspension_irreversible: המידע בחשבון זה נמחק באופן בלתי הפיך. ניתן להסיר את ההשעיה מהחשבון על מנת להחזיר אותו למצב שמיש, אבל שום מידע שהיה בבעלותו לא ישוחזר.
       suspension_reversible_hint_html: חשבון זה הושעה, והמידע בו יוסר במלואו בתאריך %{date}. עד אז, ניתן לשחזר את החשבון ללא תופעות לוואי שליליות. אם ברצונך להסיר את כל המידע בחשבון באופן מידי, ניתן לעשות כן להלן.
       title: חשבונות
+      trends:
+        allow: לאפשר
+        allowed: מותר
+        disallow: לא לאשר
+        disallowed: לא מאושר
+        title: הודעות חמות
       unblock_email: ביטול חסימת כתובת דוא"ל
       unblocked_email_msg: הסרת חסימה מכתובת הדוא"ל של %{username} בוצעה בהצלחה
       unconfirmed_email: כתובת דוא"ל לא מאומתת
@@ -1618,6 +1634,7 @@ he:
       content: אנו מצטערות, אבל משהו השתבש בצד שלנו.
       title: דף זה אינו נכון
     '503': לא ניתן להציג דף זה עקב תקלת שרת זמנית.
+    go_home: הביתה
     noscript_html: על מנת להשתמש ביישום הווב של מסטודון, נא לאפשר שימוש בג'אווהסקריפט. לחילופין אפשר לנסות את אחת ה<a href="%{apps_path}">אפליקציות הילידיות</a> שלנו המתאימה לסביבתך.
   existing_username_validator:
     not_found: לא נמצא משתמש מקומי בשם זה

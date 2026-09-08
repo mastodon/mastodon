@@ -1,7 +1,6 @@
-import { createAppSelector } from 'mastodon/store';
-import { toServerSideType } from 'mastodon/utils/filters';
-
-import type { StatusContextType } from '../components/status/types';
+import type { StatusContextType } from '@/mastodon/components/status/types';
+import { createAppSelector } from '@/mastodon/store/typed_functions';
+import { toServerSideType } from '@/mastodon/utils/filters';
 
 import { selectExpandedStatus } from './statuses';
 
@@ -74,34 +73,6 @@ export const selectStatusFilters = createAppSelector(
     }
 
     return results;
-  },
-);
-
-export const selectStatusLoadingState = createAppSelector(
-  [
-    (state, { statusId }: { statusId?: string | null }) =>
-      selectExpandedStatus(state, statusId ?? undefined),
-    selectStatusFilters,
-    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
-      warnInsteadOfHide,
-  ],
-  (status, filters, warnInsteadOfHide) => {
-    if (!status) {
-      return { state: 'not-found', status: null };
-    }
-
-    if (status.isLoading) {
-      return { state: 'loading', status: null };
-    }
-
-    if (
-      !warnInsteadOfHide &&
-      filters.some((filter) => filter.filter_action === 'hide')
-    ) {
-      return { state: 'filtered', status: null };
-    }
-
-    return { state: 'loaded', status };
   },
 );
 

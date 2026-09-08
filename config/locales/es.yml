@@ -72,6 +72,10 @@ es:
       disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
       disable_two_factor_authentication: Desactivar autenticación de dos factores
       disabled: Deshabilitada
+      discoverable:
+        disabled: Esta persona no ha activado las opciones para ser descubierta
+        enabled: Esta persona ha activado las opciones para ser descubierta
+        title: Alcance
       display_name: Nombre para mostrar
       domain: Dominio
       edit: Editar
@@ -81,6 +85,12 @@ es:
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
+      follow_recommendations:
+        allowed: Permitido
+        suppress: Desactivar las recomendaciones de cuentas que seguir
+        suppressed: Desactivadas
+        title: Recomendaciones de cuentas que seguir
+        unsuppress: Activar las recomendaciones de cuentas que seguir
       followers: Seguidores
       follows: Sigue
       header: Cabecera
@@ -165,6 +175,12 @@ es:
       suspension_irreversible: Los datos de esta cuenta han sido irreversiblemente eliminados. Puedes deshacer la suspensión de la cuenta para hacerla utilizable, pero no recuperará los datos que tenías anteriormente.
       suspension_reversible_hint_html: La cuenta ha sido suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
       title: Cuentas
+      trends:
+        allow: Permitir
+        allowed: Activadas
+        disallow: Desactivar
+        disallowed: Desactivadas
+        title: Publicaciones en tendencia
       unblock_email: Desbloquear dirección de correo
       unblocked_email_msg: Se ha desbloqueado correctamente la dirección de correo de %{username}
       unconfirmed_email: Correo electrónico sin confirmar

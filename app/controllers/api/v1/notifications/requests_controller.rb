@@ -45,6 +45,7 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   end
 
   def dismiss_bulk
+    FilteredNotificationCleanupWorker.perform_async(current_account.id, @requests.map(&:from_account_id))
     @requests.each(&:destroy!)
     render_empty
   end

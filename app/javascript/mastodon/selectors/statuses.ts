@@ -8,6 +8,7 @@ import type {
 import { createAppSelector } from '@/mastodon/store/typed_functions';
 
 import { selectIsAccountLocal, selectPlainAccount } from './accounts';
+import { selectStatusFilters } from './filters';
 
 export const getStatusList = createAppSelector(
   [
@@ -69,6 +70,34 @@ export const selectExpandedStatus = createAppSelector(
       ...status,
       reblog: reblog ?? undefined,
     };
+  },
+);
+
+export const selectStatusLoadingState = createAppSelector(
+  [
+    (state, { statusId }: { statusId?: string | null }) =>
+      selectExpandedStatus(state, statusId ?? undefined),
+    selectStatusFilters,
+    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
+      warnInsteadOfHide,
+  ],
+  (status, filters, warnInsteadOfHide) => {
+    if (!status) {
+      return { state: 'not-found', status: null } as const;
+    }
+
+    if (status.isLoading) {
+      return { state: 'loading', status: null } as const;
+    }
+
+    if (
+      !warnInsteadOfHide &&
+      filters.some((filter) => filter.filter_action === 'hide')
+    ) {
+      return { state: 'filtered', status: null } as const;
+    }
+
+    return { state: 'loaded', status } as const;
   },
 );
 

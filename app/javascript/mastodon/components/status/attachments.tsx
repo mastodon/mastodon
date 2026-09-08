@@ -20,6 +20,8 @@ import { compareUrls } from '@/mastodon/utils/compare_urls';
 
 import { PictureInPicturePlaceholder } from '../picture_in_picture_placeholder';
 
+import { StatusQuote } from './quote';
+
 export const StatusAttachments: React.FC<{
   statusId: string;
   contextType?: string;
@@ -48,7 +50,7 @@ export const StatusAttachments: React.FC<{
 
   // Don't display the card or collection if this is a quote.
   if (status.quote) {
-    return null;
+    return <StatusQuote {...status.quote} parentId={statusId} />;
   }
 
   const card = status.card;
@@ -142,11 +144,16 @@ const MediaAttachments: React.FC<{
       dispatch(
         openModal({
           modalType: 'MEDIA',
-          modalProps: { statusId, media: attachment, index, lang: language },
+          modalProps: {
+            statusId,
+            media: immutableAttachments,
+            index,
+            lang: language,
+          },
         }),
       );
     },
-    [attachment, dispatch, language, statusId],
+    [immutableAttachments, dispatch, language, statusId],
   );
   const handleOpenVideo = useCallback(
     (options: {
@@ -212,9 +219,9 @@ const MediaAttachments: React.FC<{
           alt={description}
           lang={language}
           poster={attachment.preview_url || defaultPosterUrl}
-          backgroundColor={colors.background}
-          foregroundColor={colors.foreground}
-          accentColor={colors.accent}
+          backgroundColor={colors?.background}
+          foregroundColor={colors?.foreground}
+          accentColor={colors?.accent}
           duration={original.duration}
           deployPictureInPicture={handleDeployPictureInPicture}
           sensitive={sensitive}

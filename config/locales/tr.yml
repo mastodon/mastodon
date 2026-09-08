@@ -72,6 +72,10 @@ tr:
       disable_sign_in_token_auth: E-posta token doğrulamayı devre dışı bırak
       disable_two_factor_authentication: 2 aşamalı doğrulamayı kapat
       disabled: Kapalı
+      discoverable:
+        disabled: Yazar keşfedilebilir olmamayı seçiyor
+        enabled: Yazar keşfedilebilir olmayı seçiyor
+        title: Keşfedilebilir
       display_name: Görünen isim
       domain: Alan adı
       edit: Düzenle
@@ -81,6 +85,12 @@ tr:
       enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
+      follow_recommendations:
+        allowed: İzin verildi
+        suppress: Herhangi bir takip önerisini baskıla
+        suppressed: Baskılandı
+        title: Takip önerileri
+        unsuppress: Herhangi bir takip önerisini geri getir
       followers: Takipçi
       follows: Takip edilen
       header: Üstbilgi
@@ -165,6 +175,12 @@ tr:
       suspension_irreversible: Bu hesabın verileri geri dönüşümsüz olarak silindi. Hesabı kullanılabilir hale getirmek için hesabın askıya alınmasını kaldırabilirsiniz, ancak daha önce sahip olduğu herhangi bir veri kurtarılamaz.
       suspension_reversible_hint_html: Hesap askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, hesap herhangi bir olumsuz etki olmaksızın geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
       title: Hesaplar
+      trends:
+        allow: İzin ver
+        allowed: İzin verildi
+        disallow: İzin verilmesin
+        disallowed: İzin verilmedi
+        title: Öne çıkan gönderiler
       unblock_email: E-posta adresinin engelini kaldır
       unblocked_email_msg: "%{username} kişisinin e-posta adresinin engeli başarıyla kaldırıldı"
       unconfirmed_email: Onaylanmamış e-posta
@@ -1596,6 +1612,7 @@ tr:
       content: Üzgünüz, ancak bir şey ters gitti.
       title: Bu sayfa doğru değil
     '503': Geçici sunucu hatası nedeniyle sayfa görüntülenemedi.
+    go_home: Ana sayfaya git
     noscript_html: Mastodon web uygulamasını kullanmak için lütfen JavaScript'i etkinleştirin. Alternatif olarak, platformunuz için Mastodon <a href="%{apps_path}">yerel uygulamalardan</a> birini deneyin.
   existing_username_validator:
     not_found: bu kullanıcı adına sahip yerel bir kullanıcı bulunamadı

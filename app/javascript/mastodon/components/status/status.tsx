@@ -12,12 +12,14 @@ import { ContentWarning } from '../content_warning';
 import { FilterWarning } from '../filter_warning';
 import { computeHashtagBarForStatus, HashtagBar } from '../hashtag_bar';
 import { Hotkeys } from '../hotkeys';
+import { Poll } from '../poll';
 
 import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
 import type { StatusHandlers } from './hooks';
 import { useStatusHandlers, useTextForScreenReader } from './hooks';
+import { StatusMeta } from './meta';
 import { StatusPrepend } from './prepend';
 import { StatusRedesignHeader } from './redesign/header';
 import classes from './styles.module.scss';
@@ -29,8 +31,11 @@ type StatusRedesignProps = Merge<
     accountId?: string;
     contextType?: StatusContextType;
     headerContents?: React.ReactNode;
+    variant?: StatusVariant;
   }
 >;
+
+export type StatusVariant = 'feed' | 'thread' | 'page';
 
 const selectStatusReblog = createAppSelector(
   [(state, id?: string | null) => selectExpandedStatus(state, id ?? undefined)],
@@ -53,8 +58,6 @@ const selectStatusReblog = createAppSelector(
 export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   id,
   muted,
-  rootId,
-  unread,
   skipPrepend,
   unfocusable,
   contextType,
@@ -64,12 +67,12 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   showActions = true,
   scrollKey,
   children,
-  avatarSize = 40,
   withCounters,
   withDismiss,
   onOpen,
   showThread,
   headerContents,
+  variant = contextToVariant(contextType),
 }) => {
   // Select data from store
   const { status, parent } = useAppSelector((state) =>
@@ -86,7 +89,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     reblogAcct: parent?.account.acct,
     isQuote: isQuotedPost,
   });
-  const { statusContent, hashtagsInBar } = useMemo(
+  const { statusContent, hashtagsInBar = [] } = useMemo(
     (): Partial<ReturnType<typeof computeHashtagBarForStatus>> =>
       status ? computeHashtagBarForStatus(status) : {},
     [status],
@@ -95,10 +98,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   // Handlers
   const {
     showDespiteFilter,
-    onHeaderClick,
     onExpandedToggle,
     onFilterToggle,
-    onOpenClick,
     onTranslate,
     ...handlers
   } = useStatusHandlers({ status, contextType, onOpen });
@@ -125,10 +126,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
   if (hidden) {
     return (
-      <StatusHotkeys
-        {...hotkeysProps}
-        className={classNames('status__wrapper', { focusable: !muted })}
-      >
+      <StatusHotkeys {...hotkeysProps}>
         <span>{status.account.display_name || status.account.username}</span>
         {status.spoiler_text && <span>{status.spoiler_text}</span>}
         {expanded && <span>{status.content}</span>}
@@ -136,19 +134,19 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     );
   }
 
+  const showFooter =
+    (expanded && hashtagsInBar.length > 0) ||
+    variant === 'page' ||
+    (showActions && !isQuotedPost);
+
   return (
     <StatusHotkeys
       {...hotkeysProps}
       className={classNames(
         classes.root,
-        'status__wrapper',
-        `status__wrapper-${status.visibility}`,
-        {
-          'status__wrapper-reply': !!status.in_reply_to_id,
-          'status__wrapper--in-thread': !!rootId,
-          unread,
-          focusable: !muted,
-        },
+        variant === 'thread' && classes.variantThread,
+        variant === 'page' && classes.variantPage,
+        isQuotedPost && classes.isQuote,
       )}
       data-featured={featured ? 'true' : null}
       aria-label={screenReaderText}
@@ -162,7 +160,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         />
       )}
 
-      <StatusRedesignHeader status={status} avatarSize={avatarSize}>
+      <StatusRedesignHeader status={status} className={classes.header}>
         {headerContents}
       </StatusRedesignHeader>
 
@@ -183,36 +181,51 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       )}
 
       {expanded && (
-        <>
-          <StatusContent
-            statusId={status.id}
-            statusContent={statusContent}
-            onClick={onOpenClick}
-            onTranslate={onTranslate}
-            collapsible
-          />
+        <StatusContent
+          status={status}
+          statusContent={statusContent}
+          onReadMore={handlers.onOpen}
+          onTranslate={onTranslate}
+          collapsible
+        >
+          {!!status.poll && (
+            <Poll
+              pollId={status.poll}
+              statusUrl={status.uri}
+              accountId={status.account.id}
+              lang={status.translation?.language ?? status.language}
+            />
+          )}
 
           <StatusAttachments statusId={status.id} contextType={contextType} />
 
-          {hashtagsInBar && (
+          {children}
+        </StatusContent>
+      )}
+
+      {showFooter && (
+        <footer className={classes.footer}>
+          {expanded && hashtagsInBar.length > 0 && (
             <HashtagBar
               hashtags={hashtagsInBar}
               accountId={status.account.id}
             />
           )}
 
-          {children}
-        </>
-      )}
+          {variant === 'page' && (
+            <StatusMeta status={status} className={classes.meta} />
+          )}
 
-      {showActions && !isQuotedPost && (
-        <StatusActionBar
-          scrollKey={scrollKey}
-          statusId={status.id}
-          contextType={contextType}
-          withDismiss={withDismiss}
-          withCounters={withCounters}
-        />
+          {showActions && !isQuotedPost && (
+            <StatusActionBar
+              scrollKey={scrollKey}
+              statusId={status.id}
+              contextType={contextType}
+              withDismiss={withDismiss}
+              withCounters={withCounters}
+            />
+          )}
+        </footer>
       )}
     </StatusHotkeys>
   );
@@ -267,3 +280,17 @@ const StatusHotkeys = ({
     </Hotkeys>
   );
 };
+
+function contextToVariant(contextType?: StatusContextType): StatusVariant {
+  switch (contextType) {
+    case 'composer':
+    case 'detailed':
+    case 'notifications':
+    case undefined:
+      return 'page';
+    case 'thread':
+      return 'thread';
+    default:
+      return 'feed';
+  }
+}

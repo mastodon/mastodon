@@ -6,7 +6,6 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  min-height: 90px;
   overflow: hidden;
   padding: var(--space-sm);
   position: relative;
@@ -65,7 +64,10 @@ a.root {
 
   overflow-wrap: break-word;
   flex-grow: 1;
-  margin-block-start: var(--space-xs);
+
+  * + & {
+    margin-block-start: var(--space-xs);
+  }
 
   a {
     color: var(--color-text-brand);

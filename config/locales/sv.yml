@@ -72,6 +72,10 @@ sv:
       disable_sign_in_token_auth: Inaktivera autentisering med pollett via e-post
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: Inaktiverad
+      discoverable:
+        disabled: Författaren har inte valt att vara upptäckbar
+        enabled: Författaren har valt att vara upptäckbar
+        title: Upptäckbar
       display_name: Visningsnamn
       domain: Domän
       edit: Redigera
@@ -81,6 +85,12 @@ sv:
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}s konto lyckades
+      follow_recommendations:
+        allowed: Tillåtet
+        suppress: Tysta alla följrekommendationer
+        suppressed: Tystad
+        title: Följrekommendationer
+        unsuppress: Återställ alla följrekommendationer
       followers: Följare
       follows: Följs
       header: Rubrik
@@ -165,6 +175,12 @@ sv:
       suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp kontot om du vill att det ska gå att använda, men ingen data kommer finnas kvar.
       suspension_reversible_hint_html: Kontot har stängts av och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
+      trends:
+        allow: Tillåt
+        allowed: Tillåtet
+        disallow: Neka
+        disallowed: Nekat
+        title: Trendande inlägg
       unblock_email: Avblockera e-postadress
       unblocked_email_msg: "%{username}s e-postadress avblockerad"
       unconfirmed_email: Obekräftad e-postadress
