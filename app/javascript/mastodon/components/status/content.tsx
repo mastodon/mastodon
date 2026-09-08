@@ -90,7 +90,6 @@ export const StatusContent: React.FC<
       ref={onRef}
     >
       <EmojiHTML
-        {...props}
         className={classes.contentText}
         ref={onRef}
         lang={language}

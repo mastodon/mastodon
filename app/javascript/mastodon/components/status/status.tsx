@@ -71,7 +71,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   showActions = true,
   scrollKey,
   children,
-  withCounters,
+  withCounters = true,
   withDismiss,
   onOpen,
   showThread,

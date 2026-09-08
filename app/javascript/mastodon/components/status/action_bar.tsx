@@ -52,7 +52,7 @@ import {
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { Button, IconButton } from '../button/redesign';
+import { Button, IconButton, ToggleButton } from '../button/redesign';
 import { Dropdown } from '../dropdown_menu';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
@@ -182,6 +182,16 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
 
   const intl = useIntl();
 
+  const favouriteIcon = useCallback(
+    (props: React.SVGProps<SVGSVGElement>) =>
+      status?.favourited ? (
+        <HeartIcon {...props} weight='fill' />
+      ) : (
+        <HeartIcon {...props} />
+      ),
+    [status?.favourited],
+  );
+
   if (!status) {
     return null;
   }
@@ -214,25 +224,27 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         {withCounters && status.replies_count}
       </Button>
 
-      <Button
+      <ToggleButton
         size='sm'
         variant='ghost'
+        active={status.reblogged}
         leadingIcon={ArrowsClockwiseIcon}
         onClick={handleBoostClick}
       >
         {withCounters && status.reblogs_count}
-      </Button>
+      </ToggleButton>
 
-      <Button
+      <ToggleButton
         size='sm'
         variant='ghost'
+        active={status.favourited}
         title={favouriteTitle}
-        leadingIcon={HeartIcon}
+        leadingIcon={favouriteIcon}
         onClick={handleFavouriteClick}
         className={classes.actionsButtonGap}
       >
         {withCounters && status.favourites_count}
-      </Button>
+      </ToggleButton>
 
       {isPublic && (
         <IconButton
