@@ -46,7 +46,7 @@
 .content {
   @include mixins.type-body;
 
-  p:not(:last-child) {
+  > p:not(:last-child) {
     margin-block-end: 1em;
   }
 
