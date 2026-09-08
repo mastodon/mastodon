@@ -44,15 +44,9 @@
 }
 
 .content {
-  @include mixins.type-body;
-
-  > p:not(:last-child) {
-    margin-block-end: 1em;
-  }
-
-  a {
-    color: var(--color-text-brand);
-  }
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
 
   &.collapsed {
     position: relative;
@@ -72,6 +66,18 @@
       );
       pointer-events: none;
     }
+  }
+}
+
+.contentText {
+  @include mixins.type-body;
+
+  p:not(:last-child) {
+    margin-block-end: 1em;
+  }
+
+  a {
+    color: var(--color-text-brand);
   }
 }
 

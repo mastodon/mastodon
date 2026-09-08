@@ -80,7 +80,7 @@ export const StatusContent: React.FC<
   );
 
   return (
-    <EmojiHTML
+    <div
       {...props}
       className={classNames(
         className,
@@ -88,13 +88,19 @@ export const StatusContent: React.FC<
         isCollapsed && classes.collapsed,
       )}
       ref={onRef}
-      lang={language}
-      htmlString={
-        statusContent ?? status.translation?.contentHtml ?? status.contentHtml
-      }
-      extraEmojis={status.emojis}
-      {...htmlHandlers}
     >
+      <EmojiHTML
+        {...props}
+        className={classes.contentText}
+        ref={onRef}
+        lang={language}
+        htmlString={
+          statusContent ?? status.translation?.contentHtml ?? status.contentHtml
+        }
+        extraEmojis={status.emojis}
+        {...htmlHandlers}
+      />
+
       {children}
 
       {renderTranslate && (
@@ -115,7 +121,7 @@ export const StatusContent: React.FC<
           <FormattedMessage id='status.read_more' defaultMessage='Read more' />
         </Button>
       )}
-    </EmojiHTML>
+    </div>
   );
 };
 
