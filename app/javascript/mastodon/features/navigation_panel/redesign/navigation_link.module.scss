@@ -76,6 +76,14 @@
   justify-content: center;
   gap: 0;
   padding-block: var(--space-sm);
+  transition:
+    background-color 200ms,
+    color 200ms;
+
+  &[aria-expanded='true'] {
+    color: var(--color-text-inverted);
+    background-color: var(--color-bg-inverted);
+  }
 }
 
 .icon {
