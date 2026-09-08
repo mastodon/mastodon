@@ -65,7 +65,7 @@ a.root {
   overflow-wrap: break-word;
   flex-grow: 1;
 
-  + & {
+  * + & {
     margin-block-start: var(--space-xs);
   }
 
