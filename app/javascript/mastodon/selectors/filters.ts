@@ -1,7 +1,6 @@
-import { createAppSelector } from 'mastodon/store';
-import { toServerSideType } from 'mastodon/utils/filters';
-
-import type { StatusContextType } from '../components/status/types';
+import type { StatusContextType } from '@/mastodon/components/status/types';
+import { createAppSelector } from '@/mastodon/store/typed_functions';
+import { toServerSideType } from '@/mastodon/utils/filters';
 
 import { selectExpandedStatus } from './statuses';
 
