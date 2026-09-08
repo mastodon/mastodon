@@ -9,6 +9,8 @@ import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
 import type {
+  CardShape,
+  ExpandedStatusShape,
   MediaAttachment,
   MediaAttachmentShape,
 } from '@/mastodon/models/status';
@@ -60,30 +62,7 @@ export const StatusAttachments: React.FC<{
     ? status.tagged_collections.find(({ url }) => compareUrls(url, card.url))
     : status.tagged_collections[0];
   if (card && !collection) {
-    if (card.type === 'video') {
-      return (
-        <MediaCard
-          key={`${status.id}-${status.edited_at}`}
-          card={card}
-          sensitive={status.sensitive}
-        />
-      );
-    }
-
-    return (
-      <Card as='a' href={card.url} target='_blank' rel='noopener'>
-        <CardTitle
-          afterContent={
-            card.published_at && (
-              <RelativeTimestamp timestamp={card.published_at} />
-            )
-          }
-        >
-          {card.title}
-        </CardTitle>
-        {card.description && <CardBody>{card.description}</CardBody>}
-      </Card>
-    );
+    return <LinkCard card={card} status={status} />;
   }
 
   if (collection) {
@@ -293,5 +272,57 @@ const MediaAttachments: React.FC<{
         matchedFilters={mediaFilters}
       />
     </Suspense>
+  );
+};
+
+const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
+  card,
+  status,
+}) => {
+  if (card.type === 'video' || card.authors.length > 0) {
+    return (
+      <div>
+        <MediaCard
+          key={`${status.id}-${status.edited_at}`}
+          card={card}
+          sensitive={status.sensitive}
+        />
+      </div>
+    );
+  }
+
+  const providerUrl = new URL(card.provider_url || card.url);
+
+  const cardLinkProps = {
+    as: 'a',
+    href: card.url,
+    target: '_blank',
+    rel: 'noopener',
+  } as const;
+
+  return (
+    <Card>
+      <CardTitle
+        afterContent={
+          card.published_at && (
+            <RelativeTimestamp timestamp={card.published_at} />
+          )
+        }
+      >
+        <a
+          href={`${providerUrl.protocol}//${providerUrl.host}`}
+          target='_blank'
+          rel='noopener'
+        >
+          {card.author_name || card.provider_name || providerUrl.host}
+        </a>
+      </CardTitle>
+      <CardBody {...cardLinkProps}>{card.title}</CardBody>
+      {card.description && (
+        <CardBody {...cardLinkProps} description>
+          {card.description}
+        </CardBody>
+      )}
+    </Card>
   );
 };

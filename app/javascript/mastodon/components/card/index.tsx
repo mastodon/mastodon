@@ -107,6 +107,7 @@ type CardBodyProps<As extends React.ElementType> = PolymorphicProps<
   {
     children: React.ReactNode;
     className?: string;
+    description?: boolean;
     noClamp?: boolean;
   },
   As
@@ -116,6 +117,7 @@ export const CardBody = <As extends React.ElementType>({
   as: asComp,
   children,
   className,
+  description,
   noClamp,
   ...props
 }: CardBodyProps<As>) => {
@@ -123,7 +125,12 @@ export const CardBody = <As extends React.ElementType>({
   return (
     <Comp
       {...props}
-      className={classNames(className, classes.body, !noClamp && classes.clamp)}
+      className={classNames(
+        className,
+        classes.body,
+        !noClamp && classes.clamp,
+        description && classes.description,
+      )}
     >
       {children}
     </Comp>
