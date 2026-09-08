@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -9,18 +9,17 @@ import { Link } from 'react-router-dom';
 import { PlayIcon } from '@phosphor-icons/react';
 
 import { revealAccount } from '@/mastodon/actions/accounts_typed';
+import { fetchStatus } from '@/mastodon/actions/statuses';
 import type {
   ApiAudioAttachmentJSON,
   ApiGifvAttachmentJSON,
   ApiImageAttachmentJSON,
   ApiVideoAttachmentJSON,
 } from '@/mastodon/api_types/media_attachments';
-import type { ApiQuoteState } from '@/mastodon/api_types/quotes';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { domain } from '@/mastodon/initial_state';
 import type {
   AccountStatusShape,
-  ExpandedStatusShape,
   MediaAttachmentShape,
   QuotedStatus as TQuotedStatus,
 } from '@/mastodon/models/status';
@@ -48,20 +47,10 @@ import { RelativeTimestamp } from '../relative_timestamp';
 import { StatusImage } from './image';
 import classes from './quote.module.scss';
 
-export const StatusQuote: React.FC<TQuotedStatus & { parentId: string }> = ({
-  quoted_status: quotedId,
-  state: quoteState,
-  // parentId,
-}) => {
-  const { state: loadingState, status: quote } = useAppSelector((state) =>
-    selectStatusLoadingState(state, { statusId: quotedId }),
-  );
+type StatusQuoteProps = TQuotedStatus & { parentId: string };
 
-  const quoteError = useQuoteError({
-    quoteState,
-    loadingState,
-    quote,
-  });
+export const StatusQuote: React.FC<StatusQuoteProps> = (props) => {
+  const quoteError = useQuoteError(props);
 
   if (quoteError) {
     return (
@@ -73,6 +62,7 @@ export const StatusQuote: React.FC<TQuotedStatus & { parentId: string }> = ({
     );
   }
 
+  const quotedId = props.quoted_status;
   if (!quotedId) {
     return null;
   }
@@ -360,14 +350,13 @@ const onStatusLinks: OnElementHandler<AccountStatusShape> = (
 };
 
 function useQuoteError({
-  quote,
-  loadingState,
-  quoteState,
-}: {
-  quote?: ExpandedStatusShape | null;
-  loadingState: string;
-  quoteState: ApiQuoteState;
-}) {
+  quoted_status: quoteId,
+  state: quoteState,
+  parentId,
+}: StatusQuoteProps) {
+  const { state: loadingState, status: quote } = useAppSelector((state) =>
+    selectStatusLoadingState(state, { statusId: quoteId }),
+  );
   const accountId = quote?.account.id;
   const account = useAppSelector((state) =>
     selectPlainAccount(state, accountId),
@@ -391,6 +380,21 @@ function useQuoteError({
   const [revealed, { onTrue: onRevealQuote }] = useToggle();
   const [showInfo, { onFalse: onHideInfo, onToggle: onInfoToggle }] =
     useToggle();
+
+  const shouldFetchQuote =
+    !quote?.isLoading &&
+    quoteState !== 'deleted' &&
+    loadingState === 'not-found';
+  useEffect(() => {
+    if (shouldFetchQuote && quoteId) {
+      dispatch(
+        fetchStatus(quoteId, {
+          parentQuotePostId: parentId,
+          alsoFetchContext: false,
+        }),
+      );
+    }
+  }, [shouldFetchQuote, dispatch, quoteId, parentId]);
 
   if (quoteState === 'pending') {
     return (
