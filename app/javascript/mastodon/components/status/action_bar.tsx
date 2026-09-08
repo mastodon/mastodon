@@ -154,8 +154,11 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   // Actions
   const dispatch = useAppDispatch();
   const handleReplyClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'reply' }));
-  }, [dispatch, statusId]);
+    dispatch(statusInteraction({ statusId, intent: 'reply', contextType }));
+  }, [contextType, dispatch, statusId]);
+  const handleFavouriteClick = useCallback(() => {
+    dispatch(statusInteraction({ statusId, intent: 'favourite', contextType }));
+  }, [contextType, dispatch, statusId]);
   const handleShareClick = useCallback(() => {
     if (!statusUrl) {
       return;
@@ -172,12 +175,9 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       void nav.clipboard.writeText(statusUrl);
     }
   }, [statusUrl]);
-  const handleFavouriteClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'favourite' }));
-  }, [dispatch, statusId]);
   const handleBookmarkClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'bookmark' }));
-  }, [dispatch, statusId]);
+    dispatch(statusInteraction({ statusId, intent: 'bookmark', contextType }));
+  }, [contextType, dispatch, statusId]);
 
   const intl = useIntl();
 
@@ -197,11 +197,6 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
 
   const isPublic =
     status.visibility === 'public' || status.visibility === 'unlisted';
-  const isReply =
-    !status.in_reply_to_id || status.in_reply_to_account_id === status.account;
-  const replyTitle = isReply
-    ? intl.formatMessage(messages.reply)
-    : intl.formatMessage(messages.replyAll);
 
   const favouriteTitle = intl.formatMessage(
     status.favourited ? messages.removeFavourite : messages.favourite,
@@ -216,7 +211,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       <Button
         size='sm'
         variant='ghost'
-        title={replyTitle}
+        title={intl.formatMessage(messages.replyAll)}
         leadingIcon={ChatCircleTextIcon}
         onClick={handleReplyClick}
       >

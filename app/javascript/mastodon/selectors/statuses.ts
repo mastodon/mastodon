@@ -184,6 +184,7 @@ export const selectStatusInteractions = createAppSelector(
       reblog: addAllowed({ isLoggedIn }),
       redraft: addAllowed({ isMine }),
       reply: addAllowed({ isLoggedIn }),
+      replyPrivately: addAllowed({ isLoggedIn }),
       report: addAllowed({ isLoggedIn, isNotMine }),
       revokeQuote: addAllowed({ isQuoted, isNotMine }),
       translate: addAllowed({ isLoggedIn }),

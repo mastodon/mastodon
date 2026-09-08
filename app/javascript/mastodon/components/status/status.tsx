@@ -69,7 +69,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   isQuotedPost,
   hidden,
   showActions = true,
-  scrollKey,
   children,
   withCounters = true,
   withDismiss,
@@ -223,7 +222,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
             {showActions && !isQuotedPost && (
               <StatusActionBar
-                scrollKey={scrollKey}
                 statusId={status.id}
                 withDismiss={withDismiss}
                 withCounters={withCounters}
