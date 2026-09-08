@@ -178,6 +178,10 @@ a.base {
 
 // Toggle buttons
 .toggle {
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+
   &.solid {
     @include active {
       --bg: var(--color-bg-brand-base);

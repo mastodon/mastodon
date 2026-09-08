@@ -53,7 +53,12 @@ import {
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { Button, IconButton, ToggleButton } from '../button/redesign';
+import {
+  Button,
+  IconButton,
+  ToggleButton,
+  ToggleIconButton,
+} from '../button/redesign';
 import { Dropdown } from '../dropdown_menu';
 import { Menu, MenuItem, MenuList, MenuTrigger } from '../menu';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
@@ -190,6 +195,15 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       ),
     [status?.favourited],
   );
+  const bookmarkIcon = useCallback(
+    (props: React.SVGProps<SVGSVGElement>) =>
+      status?.bookmarked ? (
+        <BookmarkSimpleIcon {...props} weight='fill' />
+      ) : (
+        <BookmarkSimpleIcon {...props} />
+      ),
+    [status?.bookmarked],
+  );
 
   if (!status) {
     return null;
@@ -245,11 +259,13 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         </IconButton>
       )}
 
-      <IconButton
+      <ToggleIconButton
         size='sm'
         variant='ghost'
-        icon={BookmarkSimpleIcon}
+        active={status.bookmarked}
+        icon={bookmarkIcon}
         onClick={handleBookmarkClick}
+        aria-pressed={status.bookmarked}
       >
         {!status.bookmarked ? (
           <FormattedMessage id='status.bookmark' defaultMessage='Bookmark' />
@@ -259,7 +275,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
             defaultMessage='Remove bookmark'
           />
         )}
-      </IconButton>
+      </ToggleIconButton>
 
       <RemoveQuoteHint
         className='status__action-bar__button-wrapper'
