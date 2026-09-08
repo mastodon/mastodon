@@ -37,7 +37,7 @@ export interface StatusShape {
   account: string;
   created_at: string;
   edited_at?: string;
-  application: {
+  application?: {
     name: string;
     website?: string;
   };

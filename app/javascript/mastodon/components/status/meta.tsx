@@ -38,41 +38,52 @@ export const StatusMeta: React.FC<
     return null;
   }
 
-  let applicationLink: React.ReactNode = application.name;
-  if (application.website) {
+  const createdLink = (
+    <Link to={statusLink(status)}>
+      <FormattedDate
+        value={createdAt}
+        year='numeric'
+        month='short'
+        day='2-digit'
+        hour='2-digit'
+        minute='2-digit'
+      />
+    </Link>
+  );
+
+  let applicationLink: React.ReactNode = application?.name;
+  if (application?.website) {
     applicationLink = (
-      <a
-        href={status.application.website}
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        {status.application.name}
+      <a href={application.website} target='_blank' rel='noopener noreferrer'>
+        {application.name}
       </a>
     );
   }
 
   return (
     <span {...props}>
-      <FormattedMessage
-        id='status.meta'
-        defaultMessage='{createdAt} on {source} • {visibility}'
-        values={{
-          createdAt: (
-            <Link to={statusLink(status)}>
-              <FormattedDate
-                value={createdAt}
-                year='numeric'
-                month='short'
-                day='2-digit'
-                hour='2-digit'
-                minute='2-digit'
-              />
-            </Link>
-          ),
-          source: applicationLink,
-          visibility,
-        }}
-      />
+      {applicationLink ? (
+        <FormattedMessage
+          id='status.meta'
+          defaultMessage='{createdAt} on {source} {sep} {visibility}'
+          values={{
+            createdAt: createdLink,
+            source: applicationLink,
+            visibility,
+            sep: <>&bull;</>,
+          }}
+        />
+      ) : (
+        <FormattedMessage
+          id='status.meta.no_application'
+          defaultMessage='{createdAt} {sep} {visibility}'
+          values={{
+            createdAt: createdLink,
+            visibility,
+            sep: <>&bull;</>,
+          }}
+        />
+      )}
     </span>
   );
 };
