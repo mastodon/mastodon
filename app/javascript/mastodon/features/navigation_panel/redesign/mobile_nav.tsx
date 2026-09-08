@@ -90,7 +90,7 @@ export const RedesignMobileNavigation: React.FC = () => {
               />
             </MenuTrigger>
             <MenuList placement='top-end' offset={8}>
-              <AccountMenuItems />
+              <AccountMenuItems context='mobile' />
             </MenuList>
           </Menu>
         </ul>

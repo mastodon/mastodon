@@ -8,6 +8,7 @@ import {
   GearIcon,
   CirclesFourIcon,
   HeartIcon,
+  BookmarkSimpleIcon,
   UsersThreeIcon,
   ProhibitIcon,
   GavelIcon,
@@ -17,7 +18,14 @@ import {
 
 import { openModal } from '@/mastodon/actions/modal';
 import { Account } from '@/mastodon/components/account';
+import { Avatar } from '@/mastodon/components/avatar';
 import { IconButton } from '@/mastodon/components/button/redesign';
+import { DisplayName } from '@/mastodon/components/display_name';
+import { useAccountHandle } from '@/mastodon/components/display_name/default';
+import {
+  ListItemContent,
+  ListItemWrapper,
+} from '@/mastodon/components/list_item';
 import {
   Menu,
   MenuItem,
@@ -72,7 +80,9 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
   );
 };
 
-export const AccountMenuItems: React.FC = () => {
+export const AccountMenuItems: React.FC<{
+  context?: 'default' | 'mobile';
+}> = ({ context = 'default' }) => {
   const dispatch = useAppDispatch();
   const { accountId, permissions } = useIdentity();
   const account = useAccount(accountId);
@@ -92,12 +102,15 @@ export const AccountMenuItems: React.FC = () => {
 
   return (
     <>
+      {context === 'mobile' && <ProfileMenuItem />}
+
       <MenuItemLink to='/profile/edit' icon={UserIcon}>
         <FormattedMessage
           id='account.edit_profile'
           defaultMessage='Edit profile'
         />
       </MenuItemLink>
+
       <MenuItemLink as='a' href='/settings/preferences' icon={GearIcon}>
         <FormattedMessage id='tabs_bar.settings' defaultMessage='Settings' />
       </MenuItemLink>
@@ -113,12 +126,22 @@ export const AccountMenuItems: React.FC = () => {
           defaultMessage='Collections'
         />
       </MenuItemLink>
+
       <MenuItemLink to='/favourites' icon={HeartIcon}>
         <FormattedMessage
           id='navigation_bar.liked_posts'
           defaultMessage='Liked Posts'
         />
       </MenuItemLink>
+
+      {context === 'mobile' && (
+        <MenuItemLink to='/bookmarks' icon={BookmarkSimpleIcon}>
+          <FormattedMessage
+            id='navigation_bar.saved_posts'
+            defaultMessage='Saved Posts'
+          />
+        </MenuItemLink>
+      )}
 
       <MenuItemDivider />
 
@@ -169,5 +192,30 @@ export const AccountMenuItems: React.FC = () => {
         />
       </MenuItem>
     </>
+  );
+};
+
+const ProfileMenuItem: React.FC = () => {
+  const { accountId } = useIdentity();
+  const account = useAccount(accountId);
+  const handle = useAccountHandle(account);
+
+  if (!accountId) {
+    return null;
+  }
+
+  const accountBasePath = `/@${account?.acct}`;
+
+  return (
+    <MenuItemLink to={accountBasePath}>
+      <ListItemWrapper
+        icon={<Avatar account={account} size={40} />}
+        className={classes.profileMenuItem}
+      >
+        <ListItemContent subtitle={handle}>
+          <DisplayName variant='simple' account={account} />
+        </ListItemContent>
+      </ListItemWrapper>
+    </MenuItemLink>
   );
 };
