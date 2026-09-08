@@ -65,20 +65,22 @@ export const StatusMeta: React.FC<
       {applicationLink ? (
         <FormattedMessage
           id='status.meta'
-          defaultMessage='{createdAt} on {source} • {visibility}'
+          defaultMessage='{createdAt} on {source} {sep} {visibility}'
           values={{
             createdAt: createdLink,
             source: applicationLink,
             visibility,
+            sep: <>&bull;</>,
           }}
         />
       ) : (
         <FormattedMessage
           id='status.meta.no_application'
-          defaultMessage='{createdAt} • {visibility}'
+          defaultMessage='{createdAt} {sep} {visibility}'
           values={{
             createdAt: createdLink,
             visibility,
+            sep: <>&bull;</>,
           }}
         />
       )}
