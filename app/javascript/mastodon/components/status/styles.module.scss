@@ -81,6 +81,20 @@
   }
 }
 
+.contentImage {
+  border-radius: var(--radius-md);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.contentBlurHash {
+  width: 100%;
+  height: 100%;
+}
+
 .contentReadMore {
   position: absolute;
   inset-block-end: 0;
