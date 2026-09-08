@@ -11,6 +11,7 @@ import {
   ChatCircleTextIcon,
   DotsThreeIcon,
   HeartIcon,
+  QuotesIcon,
   ShareFatIcon,
 } from '@phosphor-icons/react';
 
@@ -34,7 +35,7 @@ import { useStatus } from '@/mastodon/hooks/useStatus';
 import { useIdentity } from '@/mastodon/identity_context';
 import { quickBoosting } from '@/mastodon/initial_state';
 import type { Account } from '@/mastodon/models/account';
-import type { MenuItem } from '@/mastodon/models/dropdown_menu';
+import type { MenuItem as DropdownItem } from '@/mastodon/models/dropdown_menu';
 import type { Relationship } from '@/mastodon/models/relationship';
 import type { StatusShape } from '@/mastodon/models/status';
 import {
@@ -54,9 +55,10 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { Button, IconButton, ToggleButton } from '../button/redesign';
 import { Dropdown } from '../dropdown_menu';
+import { Menu, MenuItem, MenuList, MenuTrigger } from '../menu';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
-import { quoteItemState } from './boost_button_utils';
+import { boostItemState, quoteItemState } from './boost_button_utils';
 import { useStatusContext } from './hooks';
 import classes from './styles.module.scss';
 
@@ -154,9 +156,6 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   const handleReplyClick = useCallback(() => {
     dispatch(statusInteraction({ statusId, intent: 'reply' }));
   }, [dispatch, statusId]);
-  const handleBoostClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'reblog' }));
-  }, [dispatch, statusId]);
   const handleShareClick = useCallback(() => {
     if (!statusUrl) {
       return;
@@ -224,15 +223,9 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         {withCounters && status.replies_count}
       </Button>
 
-      <ToggleButton
-        size='sm'
-        variant='ghost'
-        active={status.reblogged}
-        leadingIcon={ArrowsClockwiseIcon}
-        onClick={handleBoostClick}
-      >
+      <StatusReblogButton statusId={statusId}>
         {withCounters && status.reblogs_count}
-      </ToggleButton>
+      </StatusReblogButton>
 
       <ToggleButton
         size='sm'
@@ -289,6 +282,78 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
     </div>
   );
 };
+
+const StatusReblogButton: React.FC<{
+  statusId: string;
+  children: React.ReactNode;
+}> = ({ statusId, children }) => {
+  const conditions = useAppSelector((state) =>
+    selectStatusConditions(state, statusId),
+  );
+  const { isBoosted } = conditions;
+
+  const boostState = boostItemState(conditions);
+  const quoteState = quoteItemState(conditions);
+  const intl = useIntl();
+
+  const dispatch = useAppDispatch();
+  const onReblog = useCallback(() => {
+    dispatch(statusInteraction({ statusId, intent: 'reblog' }));
+  }, [dispatch, statusId]);
+  const onQuote = useCallback(() => {
+    dispatch(statusInteraction({ statusId, intent: 'quote' }));
+  }, [dispatch, statusId]);
+
+  if (quickBoosting) {
+    return (
+      <ToggleButton
+        size='sm'
+        variant='ghost'
+        active={isBoosted}
+        leadingIcon={ArrowsClockwiseIcon}
+        onClick={onReblog}
+        disabled={boostState.disabled}
+      >
+        {children}
+      </ToggleButton>
+    );
+  }
+
+  return (
+    <Menu>
+      <MenuTrigger
+        as={ToggleButton}
+        size='sm'
+        variant='ghost'
+        active={isBoosted}
+        leadingIcon={ArrowsClockwiseIcon}
+      >
+        {children}
+      </MenuTrigger>
+
+      <MenuList placement='bottom' maxWidth={180}>
+        <MenuItem
+          onClick={onReblog}
+          icon={ArrowsClockwiseIcon}
+          disabled={boostState.disabled}
+        >
+          {intl.formatMessage(boostState.title)}
+        </MenuItem>
+        <MenuItem
+          onClick={onQuote}
+          icon={QuotesFilledIcon}
+          disabled={quoteState.disabled}
+        >
+          {intl.formatMessage(quoteState.title)}
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  );
+};
+
+const QuotesFilledIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <QuotesIcon {...props} weight='fill' />
+);
 
 const StatusActionMenu: React.FC<{
   dismissQuoteHint: () => void;
@@ -393,7 +458,7 @@ function getMenuItems({
   relationship,
   dispatch,
 }: MenuItemsParams) {
-  const menu: MenuItem[] = [];
+  const menu: DropdownItem[] = [];
 
   const statusId = status.id;
   const statusUrl = status.url ?? status.uri;

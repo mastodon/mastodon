@@ -111,7 +111,7 @@
 .actions {
   display: flex;
 
-  button:not(:hover, :active, [aria-pressed='true']) {
+  > button:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
     opacity: 0.7;
   }
 }
