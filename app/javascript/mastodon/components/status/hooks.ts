@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { createContext, use, useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -22,6 +22,15 @@ import { FOCUS_TARGET } from '../navigation_focus_target';
 
 import { useElementHandledLink } from './handled_link';
 import type { StatusContextType } from './types';
+
+export const StatusContext = createContext<{
+  id?: string | null;
+  contextType?: StatusContextType;
+}>({});
+
+export function useStatusContext() {
+  return use(StatusContext);
+}
 
 const messages = defineMessages({
   quote_noun: {

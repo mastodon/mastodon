@@ -24,12 +24,12 @@ import { Card, CardBody, CardTitle } from '../card';
 import { PictureInPicturePlaceholder } from '../picture_in_picture_placeholder';
 import { RelativeTimestamp } from '../relative_timestamp';
 
+import { useStatusContext } from './hooks';
 import { StatusQuote } from './quote';
 
 export const StatusAttachments: React.FC<{
   statusId: string;
-  contextType?: string;
-}> = ({ statusId, contextType }) => {
+}> = ({ statusId }) => {
   const status = useExpandedStatus(statusId);
 
   if (!status) {
@@ -42,7 +42,6 @@ export const StatusAttachments: React.FC<{
       <MediaAttachments
         statusId={statusId}
         accountId={status.account.id}
-        contextType={contextType}
         sensitive={status.sensitive}
         language={status.translation?.language ?? status.language}
         attachment={attachment}
@@ -98,7 +97,6 @@ const Video = lazy(() => import('@/mastodon/features/video'));
 const MediaAttachments: React.FC<{
   statusId: string;
   accountId: string;
-  contextType?: string;
   sensitive: boolean;
   language: string;
   attachment: MediaAttachmentShape;
@@ -107,7 +105,6 @@ const MediaAttachments: React.FC<{
 }> = ({
   statusId,
   accountId,
-  contextType,
   sensitive,
   language,
   attachment,
@@ -122,6 +119,7 @@ const MediaAttachments: React.FC<{
       'media_attachments',
     ]) as Immutable.List<MediaAttachment>;
   });
+  const { contextType } = useStatusContext();
   const mediaFilters = useAppSelector((state) =>
     selectMediaFilters(state, { statusId, contextType }),
   );

@@ -57,12 +57,11 @@ import { Dropdown } from '../dropdown_menu';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
 import { quoteItemState } from './boost_button_utils';
+import { useStatusContext } from './hooks';
 import classes from './styles.module.scss';
-import type { StatusContextType } from './types';
 
 interface StatusActionBarProps {
   statusId: string;
-  contextType?: StatusContextType;
   withDismiss?: boolean;
   withCounters?: boolean;
   scrollKey?: string;
@@ -137,7 +136,6 @@ const messages = defineMessages({
 
 export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   statusId,
-  contextType,
   withDismiss,
   withCounters,
   scrollKey,
@@ -148,6 +146,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       state.statuses.getIn([status?.quote?.quoted_status, 'account']) ?? null,
   );
   const currentAccountId = useCurrentAccountId();
+  const { contextType } = useStatusContext();
   const statusUrl = status?.url ?? status?.uri;
 
   // Actions
@@ -270,7 +269,6 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
           <StatusActionMenu
             dismissQuoteHint={dismissQuoteHint}
             status={status}
-            contextType={contextType}
             withDismiss={withDismiss}
             scrollKey={scrollKey}
           />
@@ -283,11 +281,11 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
 const StatusActionMenu: React.FC<{
   dismissQuoteHint: () => void;
   status: StatusShape;
-  contextType?: StatusContextType;
   scrollKey?: string;
   withDismiss?: boolean;
-}> = ({ status, dismissQuoteHint, contextType, scrollKey, withDismiss }) => {
+}> = ({ status, dismissQuoteHint, scrollKey, withDismiss }) => {
   const account = useAppSelector((state) => state.accounts.get(status.account));
+  const { contextType } = useStatusContext();
   const { permissions } = useIdentity();
   const relationship = useRelationship(account?.id);
   const intl = useIntl();
