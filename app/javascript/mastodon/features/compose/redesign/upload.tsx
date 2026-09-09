@@ -47,7 +47,7 @@ export const ComposeUpload: React.FC<{
   return (
     <StatusImage
       attachment={attachment}
-      className={className}
+      className={classNames(className, classes.mediaUpload)}
       sensitive={sensitive}
     >
       {sensitive && attachment.blurhash && (
