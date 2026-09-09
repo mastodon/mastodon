@@ -320,7 +320,7 @@ const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
       </CardTitle>
       <CardBody {...cardLinkProps}>{card.title}</CardBody>
       {card.description && (
-        <CardBody {...cardLinkProps} description>
+        <CardBody {...cardLinkProps} isDescription>
           {card.description}
         </CardBody>
       )}
