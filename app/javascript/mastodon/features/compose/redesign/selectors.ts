@@ -22,15 +22,20 @@ export const selectComposeType = createAppSelector(
     (state) => state.compose.get('in_reply_to') as string | null,
     selectComposePrivacy,
   ],
-  (inReplyToId, privacy) => {
-    let type: ComposeType = 'post';
-    if (inReplyToId) {
-      type = 'reply';
-    } else if (privacy === 'direct') {
-      type = 'message';
+  (inReplyToId, privacy): ComposeType => {
+    if (inReplyToId && privacy === 'direct') {
+      return 'replyPrivate';
     }
 
-    return type;
+    if (privacy === 'direct') {
+      return 'message';
+    }
+
+    if (inReplyToId) {
+      return 'reply';
+    }
+
+    return 'post';
   },
 );
 
