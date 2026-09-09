@@ -5,6 +5,8 @@ class ModerationSubscriptionSyncService < BaseService
     case subscription.type
     when 'csv_list'
       synchronize_csv_moderation_subscription!(subscription)
+    when 'json'
+      synchronize_json_moderation_subscription!(subscription)
     end
   end
 
@@ -52,6 +54,35 @@ class ModerationSubscriptionSyncService < BaseService
       synchronize_advisories(subscription, advisories)
     end
   rescue *Mastodon::HTTP_CONNECTION_ERRORS => e
+    Rails.logger.warn "Failed syncing moderation subscription #{subscription.url}: #{e}"
+
+    false
+  end
+
+  def synchronize_json_moderation_subscription!(subscription)
+    Request.new(:get, subscription.url).add_headers('Accept' => 'application/json').perform do |res|
+      return false unless res.code == 200
+
+      data = JSON.parse(res.body_with_limit)
+      return false unless data.is_a?(Array)
+
+      advisories = data.filter_map do |block|
+        next if block['domain']&.include?('*')
+
+        action = action_from_severity(subscription, block['severity'])
+        next if action.blank?
+
+        {
+          target_key: TagManager.instance.normalize_domain(block['domain']),
+          target_type: 'domain',
+          moderation_subscription_id: subscription.id,
+          action: action,
+        }
+      end
+
+      synchronize_advisories(subscription, advisories)
+    end
+  rescue JSON::ParserError, *Mastodon::HTTP_CONNECTION_ERRORS => e
     Rails.logger.warn "Failed syncing moderation subscription #{subscription.url}: #{e}"
 
     false
