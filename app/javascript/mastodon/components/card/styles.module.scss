@@ -21,6 +21,9 @@
 
 // Handle cases where the root is a link
 a.root {
+  color: inherit;
+  text-decoration: none;
+
   &:hover {
     text-decoration: none;
   }
@@ -60,7 +63,7 @@ a.root {
 }
 
 .body {
-  @include mixins.type-body-compact;
+  @include mixins.type-label-lg;
 
   overflow-wrap: break-word;
   flex-grow: 1;
@@ -84,10 +87,16 @@ a.root {
 a.body {
   padding-inline: var(--space-sm);
   margin-inline: calc(-1 * var(--space-sm));
+  color: inherit;
+  text-decoration: none;
 
   .root:has(&:hover) {
     background-color: var(--color-bg-highlight);
   }
+}
+
+.description {
+  @include mixins.type-body-compact;
 }
 
 .image {
