@@ -102,7 +102,7 @@ export const ModalTitle: React.FC<
   return title;
 };
 
-export const ModalActions = <As extends React.ElementType>({
+export const ModalActions = <As extends React.ElementType = 'div'>({
   align,
   as: asComp,
   children,
@@ -110,7 +110,7 @@ export const ModalActions = <As extends React.ElementType>({
   ...props
 }: PolymorphicProps<
   {
-    align?: 'left' | 'right' | 'stretch';
+    align?: 'left' | 'right' | 'stretch' | 'vertical';
     children?: React.ReactNode;
     className?: string;
   },
@@ -126,6 +126,7 @@ export const ModalActions = <As extends React.ElementType>({
         classes.actions,
         align === 'left' && classes.actionsLeft,
         align === 'right' && classes.actionsRight,
+        align === 'vertical' && classes.actionsVertical,
       )}
     >
       {children}

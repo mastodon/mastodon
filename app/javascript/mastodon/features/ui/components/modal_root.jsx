@@ -109,6 +109,7 @@ export const MODAL_COMPONENTS = {
   'COMPOSER_DRAFT_DELETE': () => import('@/mastodon/features/compose/redesign/modal_cancel'),
   'COMPOSER_REARRANGE': () => import('@/mastodon/features/compose/redesign/modal_rearrange'),
   'COMPOSER_SWITCH_TO_POST': () => import('@/mastodon/features/compose/redesign/modal_switch'),
+  'COMPOSER_ADD_QUOTE': () => import('@/mastodon/features/compose/redesign/modal_quote'),
   'NOTIFICATION_SETTINGS': () => import('@/mastodon/features/notifications_v2/components/notification_settings_modal'),
   'HASHTAG_SETTINGS': () => import('@/mastodon/features/hashtag_timeline/components/column_settings_modal'),
 };
