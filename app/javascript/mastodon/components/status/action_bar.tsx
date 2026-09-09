@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -11,6 +11,7 @@ import {
   ChatCircleTextIcon,
   DotsThreeIcon,
   HeartIcon,
+  QuotesIcon,
   ShareFatIcon,
 } from '@phosphor-icons/react';
 
@@ -34,7 +35,7 @@ import { useStatus } from '@/mastodon/hooks/useStatus';
 import { useIdentity } from '@/mastodon/identity_context';
 import { quickBoosting } from '@/mastodon/initial_state';
 import type { Account } from '@/mastodon/models/account';
-import type { MenuItem } from '@/mastodon/models/dropdown_menu';
+import type { MenuItem as DropdownItem } from '@/mastodon/models/dropdown_menu';
 import type { Relationship } from '@/mastodon/models/relationship';
 import type { StatusShape } from '@/mastodon/models/status';
 import {
@@ -52,20 +53,30 @@ import {
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { Button, IconButton } from '../button/redesign';
-import { Dropdown } from '../dropdown_menu';
+import {
+  Button,
+  IconButton,
+  ToggleButton,
+  ToggleIconButton,
+} from '../button/redesign';
+import {
+  Menu,
+  MenuItem,
+  MenuItemDivider,
+  MenuItemLink,
+  MenuList,
+  MenuTrigger,
+} from '../menu';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
-import { quoteItemState } from './boost_button_utils';
+import { boostItemState, quoteItemState } from './boost_button_utils';
+import { useStatusContext } from './hooks';
 import classes from './styles.module.scss';
-import type { StatusContextType } from './types';
 
 interface StatusActionBarProps {
   statusId: string;
-  contextType?: StatusContextType;
   withDismiss?: boolean;
   withCounters?: boolean;
-  scrollKey?: string;
 }
 
 const messages = defineMessages({
@@ -137,10 +148,8 @@ const messages = defineMessages({
 
 export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   statusId,
-  contextType,
   withDismiss,
   withCounters,
-  scrollKey,
 }) => {
   const status = useStatus(statusId);
   const quotedAccountId = useAppSelector(
@@ -148,16 +157,17 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       state.statuses.getIn([status?.quote?.quoted_status, 'account']) ?? null,
   );
   const currentAccountId = useCurrentAccountId();
+  const { contextType } = useStatusContext();
   const statusUrl = status?.url ?? status?.uri;
 
   // Actions
   const dispatch = useAppDispatch();
   const handleReplyClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'reply' }));
-  }, [dispatch, statusId]);
-  const handleBoostClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'reblog' }));
-  }, [dispatch, statusId]);
+    dispatch(statusInteraction({ statusId, intent: 'reply', contextType }));
+  }, [contextType, dispatch, statusId]);
+  const handleFavouriteClick = useCallback(() => {
+    dispatch(statusInteraction({ statusId, intent: 'favourite', contextType }));
+  }, [contextType, dispatch, statusId]);
   const handleShareClick = useCallback(() => {
     if (!statusUrl) {
       return;
@@ -171,17 +181,33 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         url: statusUrl,
       });
     } else {
-      void nav.clipboard.writeText(statusUrl);
+      dispatch(statusInteraction({ statusId, intent: 'copy', contextType }));
     }
-  }, [statusUrl]);
-  const handleFavouriteClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'favourite' }));
-  }, [dispatch, statusId]);
+  }, [contextType, dispatch, statusId, statusUrl]);
   const handleBookmarkClick = useCallback(() => {
-    dispatch(statusInteraction({ statusId, intent: 'bookmark' }));
-  }, [dispatch, statusId]);
+    dispatch(statusInteraction({ statusId, intent: 'bookmark', contextType }));
+  }, [contextType, dispatch, statusId]);
 
   const intl = useIntl();
+
+  const favouriteIcon = useCallback(
+    (props: React.SVGProps<SVGSVGElement>) =>
+      status?.favourited ? (
+        <HeartIcon {...props} weight='fill' />
+      ) : (
+        <HeartIcon {...props} />
+      ),
+    [status?.favourited],
+  );
+  const bookmarkIcon = useCallback(
+    (props: React.SVGProps<SVGSVGElement>) =>
+      status?.bookmarked ? (
+        <BookmarkSimpleIcon {...props} weight='fill' />
+      ) : (
+        <BookmarkSimpleIcon {...props} />
+      ),
+    [status?.bookmarked],
+  );
 
   if (!status) {
     return null;
@@ -189,11 +215,6 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
 
   const isPublic =
     status.visibility === 'public' || status.visibility === 'unlisted';
-  const isReply =
-    !status.in_reply_to_id || status.in_reply_to_account_id === status.account;
-  const replyTitle = isReply
-    ? intl.formatMessage(messages.reply)
-    : intl.formatMessage(messages.replyAll);
 
   const favouriteTitle = intl.formatMessage(
     status.favourited ? messages.removeFavourite : messages.favourite,
@@ -208,32 +229,28 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
       <Button
         size='sm'
         variant='ghost'
-        title={replyTitle}
+        title={intl.formatMessage(messages.replyAll)}
         leadingIcon={ChatCircleTextIcon}
         onClick={handleReplyClick}
       >
         {withCounters && status.replies_count}
       </Button>
 
-      <Button
-        size='sm'
-        variant='ghost'
-        leadingIcon={ArrowsClockwiseIcon}
-        onClick={handleBoostClick}
-      >
+      <StatusReblogButton statusId={statusId}>
         {withCounters && status.reblogs_count}
-      </Button>
+      </StatusReblogButton>
 
-      <Button
+      <ToggleButton
         size='sm'
         variant='ghost'
+        active={status.favourited}
         title={favouriteTitle}
-        leadingIcon={HeartIcon}
+        leadingIcon={favouriteIcon}
         onClick={handleFavouriteClick}
         className={classes.actionsButtonGap}
       >
         {withCounters && status.favourites_count}
-      </Button>
+      </ToggleButton>
 
       {isPublic && (
         <IconButton
@@ -246,11 +263,13 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         </IconButton>
       )}
 
-      <IconButton
+      <ToggleIconButton
         size='sm'
         variant='ghost'
-        icon={BookmarkSimpleIcon}
+        active={status.bookmarked}
+        icon={bookmarkIcon}
         onClick={handleBookmarkClick}
+        aria-pressed={status.bookmarked}
       >
         {!status.bookmarked ? (
           <FormattedMessage id='status.bookmark' defaultMessage='Bookmark' />
@@ -260,7 +279,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
             defaultMessage='Remove bookmark'
           />
         )}
-      </IconButton>
+      </ToggleIconButton>
 
       <RemoveQuoteHint
         className='status__action-bar__button-wrapper'
@@ -270,9 +289,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
           <StatusActionMenu
             dismissQuoteHint={dismissQuoteHint}
             status={status}
-            contextType={contextType}
             withDismiss={withDismiss}
-            scrollKey={scrollKey}
           />
         )}
       </RemoveQuoteHint>
@@ -280,14 +297,99 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   );
 };
 
+const StatusReblogButton: React.FC<{
+  statusId: string;
+  children: React.ReactNode;
+}> = ({ statusId, children }) => {
+  const conditions = useAppSelector((state) =>
+    selectStatusConditions(state, statusId),
+  );
+  const { isBoosted } = conditions;
+
+  const boostState = boostItemState(conditions);
+  const quoteState = quoteItemState(conditions);
+  const intl = useIntl();
+
+  const dispatch = useAppDispatch();
+  const onReblog = useCallback(() => {
+    dispatch(statusInteraction({ statusId, intent: 'reblog' }));
+  }, [dispatch, statusId]);
+  const onQuote = useCallback(() => {
+    dispatch(statusInteraction({ statusId, intent: 'quote' }));
+  }, [dispatch, statusId]);
+
+  if (quickBoosting) {
+    return (
+      <ToggleButton
+        size='sm'
+        variant='ghost'
+        active={isBoosted}
+        leadingIcon={ArrowsClockwiseIcon}
+        onClick={onReblog}
+        disabled={boostState.disabled}
+      >
+        {children}
+      </ToggleButton>
+    );
+  }
+
+  return (
+    <Menu>
+      <MenuTrigger
+        as={ToggleButton}
+        size='sm'
+        variant='ghost'
+        active={isBoosted}
+        leadingIcon={ArrowsClockwiseIcon}
+      >
+        {children}
+      </MenuTrigger>
+
+      <MenuList placement='bottom' maxWidth={180} container={document.body}>
+        <MenuItem
+          onClick={onReblog}
+          icon={ArrowsClockwiseIcon}
+          disabled={boostState.disabled}
+        >
+          <p>
+            {intl.formatMessage(boostState.title)}
+            {boostState.meta && (
+              <span className={classes.actionDescription}>
+                {intl.formatMessage(boostState.meta)}
+              </span>
+            )}
+          </p>
+        </MenuItem>
+        <MenuItem
+          onClick={onQuote}
+          icon={QuotesFilledIcon}
+          disabled={quoteState.disabled}
+        >
+          <p>
+            {intl.formatMessage(quoteState.title)}
+            {quoteState.meta && (
+              <span className={classes.actionDescription}>
+                {intl.formatMessage(quoteState.meta)}
+              </span>
+            )}
+          </p>
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  );
+};
+
+const QuotesFilledIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <QuotesIcon {...props} weight='fill' />
+);
+
 const StatusActionMenu: React.FC<{
   dismissQuoteHint: () => void;
   status: StatusShape;
-  contextType?: StatusContextType;
-  scrollKey?: string;
   withDismiss?: boolean;
-}> = ({ status, dismissQuoteHint, contextType, scrollKey, withDismiss }) => {
+}> = ({ status, dismissQuoteHint, withDismiss }) => {
   const account = useAppSelector((state) => state.accounts.get(status.account));
+  const { contextType } = useStatusContext();
   const { permissions } = useIdentity();
   const relationship = useRelationship(account?.id);
   const intl = useIntl();
@@ -337,7 +439,7 @@ const StatusActionMenu: React.FC<{
       dispatch,
     ],
   );
-  const handleOpen = useCallback(() => {
+  const onOpen = useCallback(() => {
     // Replicates needsStatusRefresh of the Dropdown component.
     if (quickBoosting && !status.quote_approval) {
       dispatch(
@@ -350,12 +452,59 @@ const StatusActionMenu: React.FC<{
   }, [dismissQuoteHint, dispatch, status.id, status.quote_approval]);
 
   return (
-    <Dropdown scrollKey={scrollKey} items={menu} onOpen={handleOpen}>
-      <IconButton size='sm' variant='ghost' icon={DotsThreeIcon}>
+    <Menu>
+      <MenuTrigger
+        as={IconButton}
+        size='sm'
+        variant='ghost'
+        icon={DotsThreeIcon}
+      >
         <FormattedMessage id='status.more' defaultMessage='More' />
-      </IconButton>
-    </Dropdown>
+      </MenuTrigger>
+
+      <MenuList placement='top-end' container={document.body}>
+        {menu.map((item, index) => (
+          <StatusActionItem key={index} item={item} />
+        ))}
+        <StatusActionLoader onMount={onOpen} />
+      </MenuList>
+    </Menu>
   );
+};
+
+const StatusActionItem: React.FC<{ item: DropdownItem }> = ({ item }) => {
+  if (!item) {
+    return <MenuItemDivider />;
+  }
+
+  const commonProps = {
+    icon: item.icon,
+    disabled: item.disabled,
+    className: classNames(item.dangerous && classes.actionDangerous),
+    children: item.description ? (
+      <p>
+        {item.text}
+        <span className={classes.actionDescription}>{item.description}</span>
+      </p>
+    ) : (
+      item.text
+    ),
+  } as const;
+
+  if ('to' in item) {
+    return <MenuItemLink {...commonProps} to={item.to} as='link' />;
+  } else if ('href' in item) {
+    return <MenuItemLink {...commonProps} href={item.href} as='a' />;
+  }
+
+  return <MenuItem {...commonProps} onClick={item.action} />;
+};
+
+const StatusActionLoader = ({ onMount }: { onMount: () => void }) => {
+  useEffect(() => {
+    onMount();
+  }, [onMount]);
+  return null;
 };
 
 interface MenuItemsParams {
@@ -383,7 +532,7 @@ function getMenuItems({
   relationship,
   dispatch,
 }: MenuItemsParams) {
-  const menu: MenuItem[] = [];
+  const menu: DropdownItem[] = [];
 
   const statusId = status.id;
   const statusUrl = status.url ?? status.uri;
@@ -403,9 +552,7 @@ function getMenuItems({
 
   menu.push({
     text: intl.formatMessage(messages.copy),
-    action: () => {
-      void navigator.clipboard.writeText(statusUrl);
-    },
+    action: onStatusInteraction('copy'),
   });
 
   if (isPublic && 'share' in navigator) {

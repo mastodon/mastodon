@@ -266,7 +266,7 @@ export type MenuListProps<As extends React.ElementType> = Omit<
   'isOpen' | 'onClose' | 'reference' | 'popoverElement'
 >;
 
-export const MenuList = <As extends React.ElementType>({
+export const MenuList = <As extends React.ElementType = 'div'>({
   children,
   ...props
 }: MenuListProps<As>) => {

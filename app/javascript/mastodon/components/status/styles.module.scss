@@ -111,13 +111,28 @@
 .actions {
   display: flex;
 
-  button:not(:hover, :active) {
+  > button:not(:hover, :active, [aria-pressed='true'], [aria-expanded='true']) {
     opacity: 0.7;
   }
 }
 
 .actionsButtonGap {
   margin-inline-end: auto;
+}
+
+.actionDescription {
+  @include mixins.type-label-sm;
+
+  display: block;
+  color: var(--color-text-tertiary);
+
+  [data-menu-item='true'][aria-disabled='true'] & {
+    color: inherit;
+  }
+}
+
+.actionDangerous {
+  color: var(--color-text-error);
 }
 
 .buttonAlign {

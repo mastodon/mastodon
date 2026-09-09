@@ -18,7 +18,11 @@ import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
 import type { StatusHandlers } from './hooks';
-import { useStatusHandlers, useTextForScreenReader } from './hooks';
+import {
+  StatusContext,
+  useStatusHandlers,
+  useTextForScreenReader,
+} from './hooks';
 import { StatusMeta } from './meta';
 import { StatusPrepend } from './prepend';
 import { StatusRedesignHeader } from './redesign/header';
@@ -65,9 +69,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   isQuotedPost,
   hidden,
   showActions = true,
-  scrollKey,
   children,
-  withCounters,
+  withCounters = true,
   withDismiss,
   onOpen,
   showThread,
@@ -140,94 +143,94 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     (showActions && !isQuotedPost);
 
   return (
-    <StatusHotkeys
-      {...hotkeysProps}
-      className={classNames(
-        classes.root,
-        variant === 'thread' && classes.variantThread,
-        variant === 'page' && classes.variantPage,
-        isQuotedPost && classes.isQuote,
-      )}
-      data-featured={featured ? 'true' : null}
-      aria-label={screenReaderText}
-      data-nosnippet={status.account.noindex || undefined}
-    >
-      {!skipPrepend && (
-        <StatusPrepend
-          status={actualStatus}
-          isReblog={!!parent}
-          showThread={showThread}
-        />
-      )}
+    <StatusContext.Provider value={{ id, contextType }}>
+      <StatusHotkeys
+        {...hotkeysProps}
+        className={classNames(
+          classes.root,
+          variant === 'thread' && classes.variantThread,
+          variant === 'page' && classes.variantPage,
+          isQuotedPost && classes.isQuote,
+        )}
+        data-featured={featured ? 'true' : null}
+        aria-label={screenReaderText}
+        data-nosnippet={status.account.noindex || undefined}
+      >
+        {!skipPrepend && (
+          <StatusPrepend
+            status={actualStatus}
+            isReblog={!!parent}
+            showThread={showThread}
+          />
+        )}
 
-      <StatusRedesignHeader status={status} className={classes.header}>
-        {headerContents}
-      </StatusRedesignHeader>
+        <StatusRedesignHeader status={status} className={classes.header}>
+          {headerContents}
+        </StatusRedesignHeader>
 
-      {matchedFilters.length > 0 && (
-        <FilterWarning
-          title={matchedFilters.map((filter) => filter.title).join(', ')}
-          expanded={showDespiteFilter}
-          onClick={onFilterToggle}
-        />
-      )}
+        {matchedFilters.length > 0 && (
+          <FilterWarning
+            title={matchedFilters.map((filter) => filter.title).join(', ')}
+            expanded={showDespiteFilter}
+            onClick={onFilterToggle}
+          />
+        )}
 
-      {(matchedFilters.length === 0 || showDespiteFilter) && (
-        <ContentWarning
-          statusId={status.id}
-          expanded={expanded}
-          onClick={onExpandedToggle}
-        />
-      )}
+        {(matchedFilters.length === 0 || showDespiteFilter) && (
+          <ContentWarning
+            statusId={status.id}
+            expanded={expanded}
+            onClick={onExpandedToggle}
+          />
+        )}
 
-      {expanded && (
-        <StatusContent
-          status={status}
-          statusContent={statusContent}
-          onReadMore={handlers.onOpen}
-          onTranslate={onTranslate}
-          collapsible
-        >
-          {!!status.poll && (
-            <Poll
-              pollId={status.poll}
-              statusUrl={status.uri}
-              accountId={status.account.id}
-              lang={status.translation?.language ?? status.language}
-            />
-          )}
+        {expanded && (
+          <StatusContent
+            status={status}
+            statusContent={statusContent}
+            onReadMore={handlers.onOpen}
+            onTranslate={onTranslate}
+            collapsible
+          >
+            {!!status.poll && (
+              <Poll
+                pollId={status.poll}
+                statusUrl={status.uri}
+                accountId={status.account.id}
+                lang={status.translation?.language ?? status.language}
+              />
+            )}
 
-          <StatusAttachments statusId={status.id} contextType={contextType} />
+            <StatusAttachments statusId={status.id} />
 
-          {children}
-        </StatusContent>
-      )}
+            {children}
+          </StatusContent>
+        )}
 
-      {showFooter && (
-        <footer className={classes.footer}>
-          {expanded && hashtagsInBar.length > 0 && (
-            <HashtagBar
-              hashtags={hashtagsInBar}
-              accountId={status.account.id}
-            />
-          )}
+        {showFooter && (
+          <footer className={classes.footer}>
+            {expanded && hashtagsInBar.length > 0 && (
+              <HashtagBar
+                hashtags={hashtagsInBar}
+                accountId={status.account.id}
+              />
+            )}
 
-          {variant === 'page' && (
-            <StatusMeta status={status} className={classes.meta} />
-          )}
+            {variant === 'page' && (
+              <StatusMeta status={status} className={classes.meta} />
+            )}
 
-          {showActions && !isQuotedPost && (
-            <StatusActionBar
-              scrollKey={scrollKey}
-              statusId={status.id}
-              contextType={contextType}
-              withDismiss={withDismiss}
-              withCounters={withCounters}
-            />
-          )}
-        </footer>
-      )}
-    </StatusHotkeys>
+            {showActions && !isQuotedPost && (
+              <StatusActionBar
+                statusId={status.id}
+                withDismiss={withDismiss}
+                withCounters={withCounters}
+              />
+            )}
+          </footer>
+        )}
+      </StatusHotkeys>
+    </StatusContext.Provider>
   );
 };
 

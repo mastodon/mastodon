@@ -176,3 +176,15 @@ export const ToggleButton: React.FC<ButtonProps & { active?: boolean }> = ({
     className={classNames(className, classes.toggle)}
   />
 );
+
+export const ToggleIconButton: React.FC<
+  IconButtonProps & { active?: boolean }
+> = ({ active, className, ...props }) => (
+  <IconButton
+    aria-pressed={active}
+    {...props}
+    // Toggle buttons always have neutral until pressed.
+    color='neutral'
+    className={classNames(className, classes.toggle)}
+  />
+);
