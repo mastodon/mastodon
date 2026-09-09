@@ -351,14 +351,28 @@ const StatusReblogButton: React.FC<{
           icon={ArrowsClockwiseIcon}
           disabled={boostState.disabled}
         >
-          {intl.formatMessage(boostState.title)}
+          <p>
+            {intl.formatMessage(boostState.title)}
+            {boostState.meta && (
+              <span className={classes.actionDescription}>
+                {intl.formatMessage(boostState.meta)}
+              </span>
+            )}
+          </p>
         </MenuItem>
         <MenuItem
           onClick={onQuote}
           icon={QuotesFilledIcon}
           disabled={quoteState.disabled}
         >
-          {intl.formatMessage(quoteState.title)}
+          <p>
+            {intl.formatMessage(quoteState.title)}
+            {quoteState.meta && (
+              <span className={classes.actionDescription}>
+                {intl.formatMessage(quoteState.meta)}
+              </span>
+            )}
+          </p>
         </MenuItem>
       </MenuList>
     </Menu>
