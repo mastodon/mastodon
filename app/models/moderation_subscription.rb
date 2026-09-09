@@ -33,6 +33,7 @@ class ModerationSubscription < ApplicationRecord
 
   enum :type, {
     csv_list: 0,
+    json: 1,
   }
 
   enum :list_action, {
