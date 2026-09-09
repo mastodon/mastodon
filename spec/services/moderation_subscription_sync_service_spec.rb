@@ -76,4 +76,67 @@ RSpec.describe ModerationSubscriptionSyncService do
       end
     end
   end
+
+  context 'with a JSON subscription' do
+    let(:moderation_subscription) { Fabricate(:moderation_subscription, type: :json) }
+
+    context 'when the JSON list returns an error' do
+      before do
+        stub_request(:get, moderation_subscription.url)
+          .to_return(status: 500)
+      end
+
+      it 'does not update the list' do
+        expect { subject.call(moderation_subscription) }
+          .to not_change(moderation_subscription, :updated_at)
+          .and not_change(moderation_subscription, :advisories)
+      end
+    end
+
+    context 'when the JSON list exists' do
+      let(:raw_json) do
+        [
+          {
+            domain: 'evil.com',
+            severity: 'suspend',
+            comment: '',
+          },
+          {
+            domain: 'suspended.example.com',
+            severity: 'suspend',
+            comment: '',
+          },
+          {
+            domain: 'silenced.example.com',
+            severity: 'silence',
+            comment: '',
+          },
+          {
+            domain: 'allowed.example.com',
+            severity: 'allow',
+            comment: '',
+          },
+        ].to_json
+      end
+
+      before do
+        moderation_subscription.advisories.create!(target_type: :domain, target_key: 'benign.com', action: :reject)
+
+        stub_request(:get, moderation_subscription.url)
+          .to_return(status: 200, headers: { 'Content-Type': 'application/json' }, body: raw_json)
+      end
+
+      it 'updates the list accordingly' do
+        expect { subject.call(moderation_subscription) }
+          .to change(moderation_subscription, :last_synced_at)
+
+        expect(moderation_subscription.advisories.pluck(:target_type, :target_key, :action))
+          .to contain_exactly(
+            ['domain', 'suspended.example.com', 'reject'],
+            ['domain', 'silenced.example.com', 'limit'],
+            ['domain', 'evil.com', 'reject']
+          )
+      end
+    end
+  end
 end
