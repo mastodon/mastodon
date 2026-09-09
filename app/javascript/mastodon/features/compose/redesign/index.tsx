@@ -72,7 +72,9 @@ export const RedesignComposeForm: React.FC<
       aria-labelledby={titleId}
       className={classNames(className, classes.root)}
     >
-      {type === 'message' && <div className={classes.background} />}
+      {(type === 'message' || type === 'replyPrivate') && (
+        <div className={classes.background} />
+      )}
 
       <ComposeFormHeader id={titleId} noMinimize={noMinimize} />
 

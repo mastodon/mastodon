@@ -52,7 +52,7 @@ export function focusComposerTextarea(defer = false) {
 
 type DisplayState = 'hidden' | 'showing' | 'minimized';
 
-export type ComposeType = 'post' | 'message' | 'reply';
+export type ComposeType = 'post' | 'message' | 'reply' | 'replyPrivate';
 
 interface ComposerState {
   displayState: DisplayState;

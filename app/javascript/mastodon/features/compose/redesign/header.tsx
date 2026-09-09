@@ -36,8 +36,16 @@ const messages = defineMessages({
     defaultMessage: 'New reply',
   },
   replyEdit: {
-    id: 'compose_form.reply.title.edit',
+    id: 'compose.reply.title.edit',
     defaultMessage: 'Edit reply',
+  },
+  replyPrivateNew: {
+    id: 'compose.reply_private.title.new',
+    defaultMessage: 'New private reply',
+  },
+  replyPrivateEdit: {
+    id: 'compose.reply_private.title.edit',
+    defaultMessage: 'Edit private reply',
   },
   messageNew: {
     id: 'compose_form.message.title.new',
