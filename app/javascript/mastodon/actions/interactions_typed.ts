@@ -19,7 +19,7 @@ import { selectStatusInteractions } from '../selectors/statuses';
 
 import { showAlert, showGenericAlert } from './alerts';
 import { replyComposeById } from './compose';
-import { changeComposeVisibility, quoteComposeById } from './compose_typed';
+import { quoteComposeById } from './compose_typed';
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import {
   bookmark,
@@ -55,7 +55,6 @@ export type StatusInteractionIntent =
   | 'reblog'
   | 'redraft'
   | 'reply'
-  | 'replyPrivately'
   | 'report'
   | 'revokeQuote'
   | 'translate';
@@ -253,9 +252,6 @@ export const statusInteraction = createAppThunk(
       case 'reply':
         dispatch(replyComposeById(statusId));
         return;
-      case 'replyPrivately':
-        dispatch(replyPrivately(statusId));
-        return;
       case 'report':
         dispatch(
           openModal({
@@ -285,13 +281,6 @@ export const statusInteraction = createAppThunk(
           dispatch(translateStatus(statusId));
         }
     }
-  },
-);
-
-export const replyPrivately = createAppThunk(
-  (statusId: string, { dispatch }) => {
-    dispatch(replyComposeById(statusId));
-    dispatch(changeComposeVisibility('direct'));
   },
 );
 
