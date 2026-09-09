@@ -42,6 +42,7 @@ import {
 
 export type StatusInteractionIntent =
   | 'bookmark'
+  | 'copy'
   | 'delete'
   | 'editQuotePolicy'
   | 'edit'
@@ -60,6 +61,10 @@ export type StatusInteractionIntent =
   | 'translate';
 
 const messages = defineMessages({
+  copied: {
+    id: 'status.copied',
+    defaultMessage: 'Copied post link to clipboard',
+  },
   noEdits: {
     id: 'status.cannot_edit',
     defaultMessage: 'You are not allowed to edit this post',
@@ -136,6 +141,13 @@ export const statusInteraction = createAppThunk(
         } else {
           dispatch(bookmark(statusImmutable));
         }
+        return;
+      case 'copy':
+        void navigator.clipboard
+          .writeText(status.url ?? status.uri)
+          .then(() => {
+            dispatch(showAlert({ message: messages.copied }));
+          });
         return;
       case 'delete':
         if (!deleteModal) {
