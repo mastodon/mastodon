@@ -76,3 +76,7 @@
       interval: 1 hour
       class: Scheduler::CollectionItemCleanupScheduler
       queue: scheduler
+    moderation_list_synchronization_scheduler:
+      cron: '<%= Random.rand(0..59) %> <%= Random.rand(6..9) %> * * *'
+      class: ModerationListSynchronizationScheduler
+      queue: scheduler
