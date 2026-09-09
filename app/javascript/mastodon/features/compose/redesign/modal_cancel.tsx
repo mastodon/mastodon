@@ -69,5 +69,4 @@ const ComposerModalCancelConfirm: React.FC<{ openNew?: boolean }> = ({
   );
 };
 
-// eslint-disable-next-line import/no-default-export -- Modals import from default
 export default ComposerModalCancelConfirm;

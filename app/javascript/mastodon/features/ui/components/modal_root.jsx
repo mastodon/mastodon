@@ -113,7 +113,7 @@ export const MODAL_COMPONENTS = {
   'HASHTAG_SETTINGS': () => import('@/mastodon/features/hashtag_timeline/components/column_settings_modal'),
 };
 
-/** @arg {keyof import('@/mastodon/features/account_edit/modals')} type */
+/** @param {keyof import('@/mastodon/features/account_edit/modals')} type */
 function accountEditModal(type) {
   return () => import('@/mastodon/features/account_edit/modals').then(module => ({ default: module[type] }));
 }
