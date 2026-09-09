@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -59,8 +59,13 @@ import {
   ToggleButton,
   ToggleIconButton,
 } from '../button/redesign';
-import { Dropdown } from '../dropdown_menu';
-import { Menu, MenuItem, MenuList, MenuTrigger } from '../menu';
+import {
+  Menu,
+  MenuItem,
+  MenuItemDivider,
+  MenuList,
+  MenuTrigger,
+} from '../menu';
 import { RemoveQuoteHint } from '../status_action_bar/remove_quote_hint';
 
 import { boostItemState, quoteItemState } from './boost_button_utils';
@@ -71,7 +76,6 @@ interface StatusActionBarProps {
   statusId: string;
   withDismiss?: boolean;
   withCounters?: boolean;
-  scrollKey?: string;
 }
 
 const messages = defineMessages({
@@ -145,7 +149,6 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
   statusId,
   withDismiss,
   withCounters,
-  scrollKey,
 }) => {
   const status = useStatus(statusId);
   const quotedAccountId = useAppSelector(
@@ -286,7 +289,6 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
             dismissQuoteHint={dismissQuoteHint}
             status={status}
             withDismiss={withDismiss}
-            scrollKey={scrollKey}
           />
         )}
       </RemoveQuoteHint>
@@ -342,7 +344,7 @@ const StatusReblogButton: React.FC<{
         {children}
       </MenuTrigger>
 
-      <MenuList placement='bottom' maxWidth={180}>
+      <MenuList placement='bottom' maxWidth={180} container={document.body}>
         <MenuItem
           onClick={onReblog}
           icon={ArrowsClockwiseIcon}
@@ -369,9 +371,8 @@ const QuotesFilledIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const StatusActionMenu: React.FC<{
   dismissQuoteHint: () => void;
   status: StatusShape;
-  scrollKey?: string;
   withDismiss?: boolean;
-}> = ({ status, dismissQuoteHint, scrollKey, withDismiss }) => {
+}> = ({ status, dismissQuoteHint, withDismiss }) => {
   const account = useAppSelector((state) => state.accounts.get(status.account));
   const { contextType } = useStatusContext();
   const { permissions } = useIdentity();
@@ -423,7 +424,7 @@ const StatusActionMenu: React.FC<{
       dispatch,
     ],
   );
-  const handleOpen = useCallback(() => {
+  const onOpen = useCallback(() => {
     // Replicates needsStatusRefresh of the Dropdown component.
     if (quickBoosting && !status.quote_approval) {
       dispatch(
@@ -436,12 +437,37 @@ const StatusActionMenu: React.FC<{
   }, [dismissQuoteHint, dispatch, status.id, status.quote_approval]);
 
   return (
-    <Dropdown scrollKey={scrollKey} items={menu} onOpen={handleOpen}>
-      <IconButton size='sm' variant='ghost' icon={DotsThreeIcon}>
+    <Menu>
+      <MenuTrigger
+        as={IconButton}
+        size='sm'
+        variant='ghost'
+        icon={DotsThreeIcon}
+      >
         <FormattedMessage id='status.more' defaultMessage='More' />
-      </IconButton>
-    </Dropdown>
+      </MenuTrigger>
+
+      <MenuList placement='top-end'>
+        {menu.map((item, index) =>
+          item ? (
+            <MenuItem key={index} disabled={item.disabled} icon={item.icon}>
+              {item.text}
+            </MenuItem>
+          ) : (
+            <MenuItemDivider key={index} />
+          ),
+        )}
+        <StatusActionLoader onMount={onOpen} />
+      </MenuList>
+    </Menu>
   );
+};
+
+const StatusActionLoader = ({ onMount }: { onMount: () => void }) => {
+  useEffect(() => {
+    onMount();
+  }, [onMount]);
+  return null;
 };
 
 interface MenuItemsParams {
