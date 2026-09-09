@@ -1,7 +1,9 @@
 import classNames from 'classnames';
 
+import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
 import type { PolymorphicProps } from '@/types/polymorphic';
 
+import { BottomSheet } from '../bottom_sheet';
 import { Popover } from '../popover';
 import type { PopoverProps } from '../popover';
 
@@ -65,6 +67,16 @@ export const PopoverMenuCard = <As extends React.ElementType>({
   className,
   ...props
 }: PopoverMenuCardProps<As>) => {
+  const isMobile = useBreakpoint('openable');
+
+  if (isMobile && isOpen) {
+    return (
+      <BottomSheet {...props} onClose={onClose}>
+        {children}
+      </BottomSheet>
+    );
+  }
+
   return (
     <Popover
       isOpen={isOpen}
