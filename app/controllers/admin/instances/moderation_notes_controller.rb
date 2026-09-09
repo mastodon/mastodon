@@ -13,6 +13,8 @@ class Admin::Instances::ModerationNotesController < Admin::BaseController
       redirect_to admin_instance_path(@instance.domain, anchor: helpers.dom_id(@instance_moderation_note)), notice: I18n.t('admin.instances.moderation_notes.created_msg')
     else
       @instance_moderation_notes = @instance.moderation_notes.includes(:account).chronological
+      @advisories = SubscribedAdvisory.domain_target_type.where(target_key: @instance.domain).includes(:moderation_subscription).sort_by { |advisory| advisory.moderation_subscription.priority }
+      @suggestions = ModerationSuggestion.domain_target_type.where(state: ['new', 'mailed']).where(target_key: @instance.domain).includes(:moderation_subscription)
       @time_period = (6.days.ago.to_date..Time.now.utc.to_date)
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(5)
 
