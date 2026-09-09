@@ -63,6 +63,7 @@ import {
   Menu,
   MenuItem,
   MenuItemDivider,
+  MenuItemLink,
   MenuList,
   MenuTrigger,
 } from '../menu';
@@ -180,9 +181,9 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         url: statusUrl,
       });
     } else {
-      void nav.clipboard.writeText(statusUrl);
+      dispatch(statusInteraction({ statusId, intent: 'copy', contextType }));
     }
-  }, [statusUrl]);
+  }, [contextType, dispatch, statusId, statusUrl]);
   const handleBookmarkClick = useCallback(() => {
     dispatch(statusInteraction({ statusId, intent: 'bookmark', contextType }));
   }, [contextType, dispatch, statusId]);
@@ -447,20 +448,42 @@ const StatusActionMenu: React.FC<{
         <FormattedMessage id='status.more' defaultMessage='More' />
       </MenuTrigger>
 
-      <MenuList placement='top-end'>
-        {menu.map((item, index) =>
-          item ? (
-            <MenuItem key={index} disabled={item.disabled} icon={item.icon}>
-              {item.text}
-            </MenuItem>
-          ) : (
-            <MenuItemDivider key={index} />
-          ),
-        )}
+      <MenuList placement='top-end' container={document.body}>
+        {menu.map((item, index) => (
+          <StatusActionItem key={index} item={item} />
+        ))}
         <StatusActionLoader onMount={onOpen} />
       </MenuList>
     </Menu>
   );
+};
+
+const StatusActionItem: React.FC<{ item: DropdownItem }> = ({ item }) => {
+  if (!item) {
+    return <MenuItemDivider />;
+  }
+
+  const commonProps = {
+    icon: item.icon,
+    disabled: item.disabled,
+    className: classNames(item.dangerous && classes.actionDangerous),
+    children: item.description ? (
+      <p>
+        {item.text}
+        <span className={classes.actionDescription}>{item.description}</span>
+      </p>
+    ) : (
+      item.text
+    ),
+  } as const;
+
+  if ('to' in item) {
+    return <MenuItemLink {...commonProps} to={item.to} as='link' />;
+  } else if ('href' in item) {
+    return <MenuItemLink {...commonProps} href={item.href} as='a' />;
+  }
+
+  return <MenuItem {...commonProps} onClick={item.action} />;
 };
 
 const StatusActionLoader = ({ onMount }: { onMount: () => void }) => {
@@ -515,9 +538,7 @@ function getMenuItems({
 
   menu.push({
     text: intl.formatMessage(messages.copy),
-    action: () => {
-      void navigator.clipboard.writeText(statusUrl);
-    },
+    action: onStatusInteraction('copy'),
   });
 
   if (isPublic && 'share' in navigator) {
