@@ -4,6 +4,7 @@
   @include mixins.elevation-1;
 
   border-radius: var(--radius-xl);
+  box-sizing: border-box;
   background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
@@ -49,4 +50,9 @@
 
 .actionsRight {
   justify-content: flex-end;
+}
+
+.actionsVertical {
+  flex-direction: column;
+  align-items: stretch;
 }

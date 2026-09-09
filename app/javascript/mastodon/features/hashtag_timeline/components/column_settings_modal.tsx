@@ -44,5 +44,4 @@ const HashtagSettingsModal: React.FC<{ columnId: string; tagId: string }> = ({
   );
 };
 
-// eslint-disable-next-line import/no-default-export
 export default HashtagSettingsModal;
