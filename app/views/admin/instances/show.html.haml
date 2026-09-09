@@ -11,6 +11,14 @@
     %p
       = t('admin.instances.unknown_instance')
 
+- unless @advisories.empty?
+  %hr.spacer/
+
+  .applications-list__item
+    .announcements-list__item__title= t('admin.instances.advisories.title')
+
+    = render partial: 'admin/moderation_suggestions/moderation_suggestions', locals: { advisories: @advisories, suggestions: @suggestions }
+
 %hr.spacer/
 
 %h3= t('admin.instances.content_policies.title')
