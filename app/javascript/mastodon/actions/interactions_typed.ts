@@ -18,7 +18,7 @@ import { deleteModal } from '../initial_state';
 import { selectStatusInteractions } from '../selectors/statuses';
 
 import { showAlert, showGenericAlert } from './alerts';
-import { replyCompose, replyComposeById } from './compose';
+import { replyComposeById } from './compose';
 import { changeComposeVisibility, quoteComposeById } from './compose_typed';
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import {
@@ -239,7 +239,7 @@ export const statusInteraction = createAppThunk(
         }
         return;
       case 'reply':
-        dispatch(replyCompose(statusImmutable));
+        dispatch(replyComposeById(statusId));
         return;
       case 'replyPrivately':
         dispatch(replyPrivately(statusId));
