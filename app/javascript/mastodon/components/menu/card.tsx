@@ -19,6 +19,7 @@ export type MenuCardProps<As extends React.ElementType> = PolymorphicProps<
     elevation?: 1 | 2;
     maxWidth?: number | string;
     style?: React.CSSProperties;
+    popover?: React.HTMLAttributes<As>['popover'];
   },
   As
 >;
