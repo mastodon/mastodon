@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   padding: var(--space-2xs);
+  inset: unset; // override default [popover] UA styles
   border-radius: var(--radius-md);
   background: var(--color-bg-primary);
   overflow: hidden;
