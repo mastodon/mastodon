@@ -49,14 +49,14 @@ const ComposerModalSwitch: React.FC = () => {
       />
 
       <ModalActions>
-        <Button size='sm' onClick={handleBack}>
+        <Button onClick={handleBack}>
           <FormattedMessage
             id='compose.switch_modal.back'
             defaultMessage='Back'
           />
         </Button>
 
-        <Button size='sm' variant='solid' onClick={handleContinue}>
+        <Button variant='solid' onClick={handleContinue}>
           <FormattedMessage
             id='compose.switch_modal.continue'
             defaultMessage='Continue'
