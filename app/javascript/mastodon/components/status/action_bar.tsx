@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -436,11 +436,10 @@ const StatusActionMenu: React.FC<{
     }
 
     dismissQuoteHint();
-    return true;
   }, [dismissQuoteHint, dispatch, status.id, status.quote_approval]);
 
   return (
-    <Menu>
+    <Menu onOpen={onOpen}>
       <MenuTrigger
         as={IconButton}
         size='sm'
@@ -454,7 +453,6 @@ const StatusActionMenu: React.FC<{
         {menu.map((item, index) => (
           <StatusActionItem key={index} item={item} />
         ))}
-        <StatusActionLoader onMount={onOpen} />
       </MenuList>
     </Menu>
   );
@@ -480,13 +478,6 @@ const StatusActionItem: React.FC<{ item: DropdownItem }> = ({ item }) => {
   }
 
   return <MenuItem {...commonProps} onClick={item.action} />;
-};
-
-const StatusActionLoader = ({ onMount }: { onMount: () => void }) => {
-  useEffect(() => {
-    onMount();
-  }, [onMount]);
-  return null;
 };
 
 interface MenuItemsParams {
