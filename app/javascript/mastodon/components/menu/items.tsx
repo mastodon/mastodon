@@ -48,6 +48,7 @@ type MenuItemProps<As extends React.ElementType> =
     className?: string;
     active?: boolean;
     disabled?: boolean;
+    destructive?: boolean;
     icon?: IconProp | 'reserve-space';
     description?: React.ReactNode;
     trailingContent?: React.ReactNode;
@@ -59,6 +60,7 @@ type MenuItemProps<As extends React.ElementType> =
 const MenuItemBase = <As extends React.ElementType>({
   active,
   disabled,
+  destructive,
   as: AsComp,
   children,
   className,
@@ -101,6 +103,7 @@ const MenuItemBase = <As extends React.ElementType>({
         className,
         classes.item,
         active && classes.itemActive,
+        destructive && classes.itemDestructive,
       )}
       aria-disabled={disabled}
       // When a description is present, we expose it via aria-description

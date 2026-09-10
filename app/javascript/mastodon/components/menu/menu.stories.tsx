@@ -1,8 +1,10 @@
 import { useCallback, useState } from 'react';
 
 import {
+  BugBeetleIcon,
   MoonIcon,
   NumberCircleOneIcon,
+  NumberCircleThreeIcon,
   NumberCircleTwoIcon,
   SunIcon,
 } from '@phosphor-icons/react';
@@ -56,10 +58,18 @@ export const Default: Story = {
             </MenuItem>
             <MenuItem
               icon={NumberCircleTwoIcon}
-              description='Secretly, this is the third option.'
+              description='Some informative hint text'
               onClick={handleMenuItemClick}
             >
               Second item
+            </MenuItem>
+            <MenuItemDivider />
+            <MenuItem
+              destructive
+              icon={NumberCircleThreeIcon}
+              onClick={handleMenuItemClick}
+            >
+              Third item
             </MenuItem>
           </MenuList>
         </Menu>
@@ -83,8 +93,12 @@ export const Complex: Story = {
           <MenuTrigger>World settings</MenuTrigger>
 
           <MenuList {...args}>
-            <MenuItem onClick={handleMenuItemClick} keepMenuOpenOnClick>
-              First item
+            <MenuItem
+              icon={BugBeetleIcon}
+              onClick={handleMenuItemClick}
+              keepMenuOpenOnClick
+            >
+              Spawn new insect species
             </MenuItem>
 
             <MenuItemDivider />
@@ -127,6 +141,7 @@ export const Complex: Story = {
             </MenuItemGroup>
             <MenuItemDivider />
             <MenuItem
+              destructive
               onClick={handleMenuItemClick}
               description='This action can not be undone'
             >

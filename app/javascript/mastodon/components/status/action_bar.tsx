@@ -468,7 +468,7 @@ const StatusActionItem: React.FC<{ item: DropdownItem }> = ({ item }) => {
   const commonProps = {
     icon: item.icon,
     disabled: item.disabled,
-    className: classNames(item.dangerous && classes.actionDangerous),
+    destructive: item.dangerous,
     children: item.text,
     description: item.description,
   } as const;

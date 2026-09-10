@@ -104,6 +104,10 @@
   }
 }
 
+.itemDestructive {
+  color: var(--color-text-error);
+}
+
 .itemDescription {
   @include mixins.type-label-sm;
 
@@ -113,7 +117,8 @@
 
   .item[aria-disabled='true'] &,
   .item:active &,
-  .itemActive & {
+  .itemActive &,
+  .itemDestructive & {
     color: inherit;
   }
 }
