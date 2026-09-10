@@ -201,7 +201,7 @@ class Form::Import
 
   def validate_json_data
     return errors.add(:data, I18n.t('imports.errors.incompatible_type')) unless allowed_type_for_json?
-    return errors.add(:date, I18n.t('imports.errors.no_data')) if json_data.empty?
+    return errors.add(:data, I18n.t('imports.errors.no_data')) if json_data.empty?
 
     errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if json_data.count > ROWS_PROCESSING_LIMIT
   end
