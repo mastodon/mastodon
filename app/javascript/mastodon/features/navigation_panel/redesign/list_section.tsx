@@ -33,11 +33,7 @@ export const ListSection: React.FC<{
   const storageKey = `ListSection-${id}-toggle-state-${accountId}`;
   const [isOpen, setIsOpen] = useStorageState<boolean>(storageKey, true);
   const toggleIsOpen = useCallback(() => {
-    if (isOpen) {
-      setIsOpen(false);
-    } else {
-      setIsOpen(true);
-    }
+    setIsOpen(!isOpen);
   }, [isOpen, setIsOpen]);
 
   return (
