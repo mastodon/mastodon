@@ -48,7 +48,9 @@ type MenuItemProps<As extends React.ElementType> =
     className?: string;
     active?: boolean;
     disabled?: boolean;
+    destructive?: boolean;
     icon?: IconProp | 'reserve-space';
+    description?: React.ReactNode;
     trailingContent?: React.ReactNode;
     iconClassName?: string;
     keepMenuOpenOnClick?: boolean;
@@ -58,10 +60,12 @@ type MenuItemProps<As extends React.ElementType> =
 const MenuItemBase = <As extends React.ElementType>({
   active,
   disabled,
+  destructive,
   as: AsComp,
   children,
   className,
   icon,
+  description,
   trailingContent,
   iconClassName,
   keepMenuOpenOnClick,
@@ -71,8 +75,10 @@ const MenuItemBase = <As extends React.ElementType>({
   const Component = AsComp ?? 'div';
   const { popover } = useMenuContext();
 
-  const closeMenuOnClick = useCallback<React.MouseEventHandler>(
+  const handleItemClick = useCallback<React.MouseEventHandler>(
     (e) => {
+      if (disabled) return;
+
       if (!keepMenuOpenOnClick) {
         // Closing with a short delay feels nicer than an instant close
         setTimeout(() => {
@@ -82,8 +88,12 @@ const MenuItemBase = <As extends React.ElementType>({
 
       onClick?.(e);
     },
-    [keepMenuOpenOnClick, onClick, popover],
+    [disabled, keepMenuOpenOnClick, onClick, popover],
   );
+
+  const id = useId();
+  const titleId = `${id}-title`;
+  const descId = `${id}-desc`;
 
   return (
     <Component
@@ -95,9 +105,14 @@ const MenuItemBase = <As extends React.ElementType>({
         className,
         classes.item,
         active && classes.itemActive,
+        destructive && classes.itemDestructive,
       )}
       aria-disabled={disabled}
-      onClick={closeMenuOnClick}
+      // When a description is present, we expose it via aria-description
+      // instead of making it part of the item's accessible name
+      aria-labelledby={description ? titleId : undefined}
+      aria-describedby={description ? descId : undefined}
+      onClick={handleItemClick}
     >
       {icon && icon !== 'reserve-space' && (
         <Icon
@@ -108,12 +123,37 @@ const MenuItemBase = <As extends React.ElementType>({
       )}
       {icon === 'reserve-space' && <div className={classes.itemIcon} />}
 
-      {children}
+      <MenuItemContent
+        description={description}
+        descId={descId}
+        titleId={titleId}
+      >
+        {children}
+      </MenuItemContent>
 
       {trailingContent && (
         <span className={classes.itemTrailingContent}>{trailingContent}</span>
       )}
     </Component>
+  );
+};
+
+const MenuItemContent: React.FC<{
+  children: React.ReactNode;
+  description?: React.ReactNode;
+  titleId: string;
+  descId: string;
+}> = ({ children, description, titleId, descId }) => {
+  if (!description) {
+    return children;
+  }
+  return (
+    <span>
+      <span id={titleId}>{children}</span>
+      <span id={descId} className={classes.itemDescription}>
+        {description}
+      </span>
+    </span>
   );
 };
 

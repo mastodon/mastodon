@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   padding: var(--space-2xs);
+  inset: unset; // override default [popover] UA styles
   border-radius: var(--radius-md);
   background: var(--color-bg-primary);
   overflow: hidden;
@@ -100,6 +101,25 @@
     --cursor: not-allowed;
 
     opacity: 0.5;
+  }
+}
+
+.itemDestructive {
+  color: var(--color-text-error);
+}
+
+.itemDescription {
+  @include mixins.type-label-sm;
+
+  display: block;
+  margin-top: var(--space-3xs);
+  color: var(--color-text-secondary);
+
+  .item[aria-disabled='true'] &,
+  .item:active &,
+  .itemActive &,
+  .itemDestructive & {
+    color: inherit;
   }
 }
 

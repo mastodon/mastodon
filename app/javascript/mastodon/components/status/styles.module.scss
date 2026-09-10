@@ -120,21 +120,6 @@
   margin-inline-end: auto;
 }
 
-.actionDescription {
-  @include mixins.type-label-sm;
-
-  display: block;
-  color: var(--color-text-tertiary);
-
-  [data-menu-item='true'][aria-disabled='true'] & {
-    color: inherit;
-  }
-}
-
-.actionDangerous {
-  color: var(--color-text-error);
-}
-
 .buttonAlign {
   margin-inline-start: calc(-1 * var(--space-sm));
 }

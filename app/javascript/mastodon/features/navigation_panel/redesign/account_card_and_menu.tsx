@@ -72,7 +72,7 @@ export const NavigationAccountCardAndMenu: React.FC = () => {
             defaultMessage='Account settings'
           />
         </MenuTrigger>
-        <MenuList placement='top' offset={8}>
+        <MenuList placement='top' offset={8} strategy='fixed'>
           <AccountMenuItems />
         </MenuList>
       </Menu>

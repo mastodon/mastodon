@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -345,34 +345,22 @@ const StatusReblogButton: React.FC<{
         {children}
       </MenuTrigger>
 
-      <MenuList placement='bottom' maxWidth={180} container={document.body}>
+      <MenuList placement='bottom' maxWidth={180}>
         <MenuItem
           onClick={onReblog}
           icon={ArrowsClockwiseIcon}
           disabled={boostState.disabled}
+          description={boostState.meta && intl.formatMessage(boostState.meta)}
         >
-          <p>
-            {intl.formatMessage(boostState.title)}
-            {boostState.meta && (
-              <span className={classes.actionDescription}>
-                {intl.formatMessage(boostState.meta)}
-              </span>
-            )}
-          </p>
+          {intl.formatMessage(boostState.title)}
         </MenuItem>
         <MenuItem
           onClick={onQuote}
           icon={QuotesFilledIcon}
           disabled={quoteState.disabled}
+          description={quoteState.meta && intl.formatMessage(quoteState.meta)}
         >
-          <p>
-            {intl.formatMessage(quoteState.title)}
-            {quoteState.meta && (
-              <span className={classes.actionDescription}>
-                {intl.formatMessage(quoteState.meta)}
-              </span>
-            )}
-          </p>
+          {intl.formatMessage(quoteState.title)}
         </MenuItem>
       </MenuList>
     </Menu>
@@ -448,11 +436,10 @@ const StatusActionMenu: React.FC<{
     }
 
     dismissQuoteHint();
-    return true;
   }, [dismissQuoteHint, dispatch, status.id, status.quote_approval]);
 
   return (
-    <Menu>
+    <Menu onOpen={onOpen}>
       <MenuTrigger
         as={IconButton}
         size='sm'
@@ -462,11 +449,10 @@ const StatusActionMenu: React.FC<{
         <FormattedMessage id='status.more' defaultMessage='More' />
       </MenuTrigger>
 
-      <MenuList placement='top-end' container={document.body}>
+      <MenuList placement='top-end'>
         {menu.map((item, index) => (
           <StatusActionItem key={index} item={item} />
         ))}
-        <StatusActionLoader onMount={onOpen} />
       </MenuList>
     </Menu>
   );
@@ -480,15 +466,9 @@ const StatusActionItem: React.FC<{ item: DropdownItem }> = ({ item }) => {
   const commonProps = {
     icon: item.icon,
     disabled: item.disabled,
-    className: classNames(item.dangerous && classes.actionDangerous),
-    children: item.description ? (
-      <p>
-        {item.text}
-        <span className={classes.actionDescription}>{item.description}</span>
-      </p>
-    ) : (
-      item.text
-    ),
+    destructive: item.dangerous,
+    children: item.text,
+    description: item.description,
   } as const;
 
   if ('to' in item) {
@@ -498,13 +478,6 @@ const StatusActionItem: React.FC<{ item: DropdownItem }> = ({ item }) => {
   }
 
   return <MenuItem {...commonProps} onClick={item.action} />;
-};
-
-const StatusActionLoader = ({ onMount }: { onMount: () => void }) => {
-  useEffect(() => {
-    onMount();
-  }, [onMount]);
-  return null;
 };
 
 interface MenuItemsParams {
