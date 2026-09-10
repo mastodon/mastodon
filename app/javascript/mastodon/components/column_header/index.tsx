@@ -25,7 +25,7 @@ import classes from './styles.module.scss';
 export { ColumnSettingsMenu } from './column_settings_menu';
 
 export interface ColumnHeaderProps {
-  title: string;
+  title: React.ReactNode;
   // Set to auto to display the back button based on
   // the `fromMastodon` location state
   withBackButton?: boolean | 'auto';

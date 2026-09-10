@@ -343,6 +343,12 @@ export default tseslint.config([
     },
   },
   {
+    files: ['**/*modal*.{j,t}sx'],
+    rules: {
+      'import/no-default-export': 'off',
+    },
+  },
+  {
     files: ['**/__tests__/*.js', '**/__tests__/*.jsx'],
 
     languageOptions: {

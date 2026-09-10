@@ -1,8 +1,10 @@
 import { useCallback, useState } from 'react';
 
 import {
+  BugBeetleIcon,
   MoonIcon,
   NumberCircleOneIcon,
+  NumberCircleThreeIcon,
   NumberCircleTwoIcon,
   SunIcon,
 } from '@phosphor-icons/react';
@@ -54,8 +56,20 @@ export const Default: Story = {
             <MenuItem icon={NumberCircleOneIcon} onClick={handleMenuItemClick}>
               First item
             </MenuItem>
-            <MenuItem icon={NumberCircleTwoIcon} onClick={handleMenuItemClick}>
+            <MenuItem
+              icon={NumberCircleTwoIcon}
+              description='Some informative hint text'
+              onClick={handleMenuItemClick}
+            >
               Second item
+            </MenuItem>
+            <MenuItemDivider />
+            <MenuItem
+              destructive
+              icon={NumberCircleThreeIcon}
+              onClick={handleMenuItemClick}
+            >
+              Third item
             </MenuItem>
           </MenuList>
         </Menu>
@@ -79,8 +93,12 @@ export const Complex: Story = {
           <MenuTrigger>World settings</MenuTrigger>
 
           <MenuList {...args}>
-            <MenuItem onClick={handleMenuItemClick} keepMenuOpenOnClick>
-              First item
+            <MenuItem
+              icon={BugBeetleIcon}
+              onClick={handleMenuItemClick}
+              keepMenuOpenOnClick
+            >
+              Spawn new insect species
             </MenuItem>
 
             <MenuItemDivider />
@@ -121,6 +139,14 @@ export const Complex: Story = {
                 Snow
               </MenuItemRadio>
             </MenuItemGroup>
+            <MenuItemDivider />
+            <MenuItem
+              destructive
+              onClick={handleMenuItemClick}
+              description='This action can not be undone'
+            >
+              Turn the world off
+            </MenuItem>
           </MenuList>
         </Menu>
       </div>

@@ -189,5 +189,4 @@ const ComposeRearrangeItemDisplay: React.FC<
   );
 };
 
-// eslint-disable-next-line import/no-default-export -- Modals import from default
 export default ComposerModalRearrange;

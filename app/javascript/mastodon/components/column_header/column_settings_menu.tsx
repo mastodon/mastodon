@@ -38,7 +38,7 @@ export const ColumnSettingsMenu: React.FC<ColumnSettingsMenuProps> = ({
           />
         )}
       </MenuTrigger>
-      <MenuList placement='bottom-end' strategy='absolute'>
+      <MenuList placement='bottom-end' strategy='fixed'>
         {children}
       </MenuList>
     </Menu>

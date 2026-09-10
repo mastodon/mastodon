@@ -1,4 +1,5 @@
 @use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
 
 .card {
   @include mixins.elevation-1;
@@ -6,6 +7,7 @@
   display: flex;
   flex-direction: column;
   padding: var(--space-2xs);
+  inset: unset; // override default [popover] UA styles
   border-radius: var(--radius-md);
   background: var(--color-bg-primary);
   overflow: hidden;
@@ -41,6 +43,7 @@
 
   --cursor: pointer;
 
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   border-radius: var(--radius-sm);
@@ -59,6 +62,10 @@
     border: none;
     width: 100%;
     text-align: start;
+  }
+
+  @media (width < variables.$mobile-menu-breakpoint) {
+    min-height: 48px;
   }
 
   &:hover {
@@ -97,6 +104,25 @@
   }
 }
 
+.itemDestructive {
+  color: var(--color-text-error);
+}
+
+.itemDescription {
+  @include mixins.type-label-sm;
+
+  display: block;
+  margin-top: var(--space-3xs);
+  color: var(--color-text-secondary);
+
+  .item[aria-disabled='true'] &,
+  .item:active &,
+  .itemActive &,
+  .itemDestructive & {
+    color: inherit;
+  }
+}
+
 .itemIcon {
   width: var(--space-lg);
   height: var(--space-lg);
@@ -104,4 +130,7 @@
 
 .itemTrailingContent {
   margin-inline-start: auto;
+
+  // Add additional space after the text.
+  padding-inline-start: var(--space-xs);
 }

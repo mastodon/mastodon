@@ -20,6 +20,7 @@ import {
   MenuItem,
 } from '@/mastodon/components/menu';
 import { MenuCard } from '@/mastodon/components/menu/card';
+import { useIdentity } from '@/mastodon/identity_context';
 import { openNewComposer } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '@/mastodon/utils/environment';
@@ -69,7 +70,9 @@ export const ComposeRedesignButton: React.FC<{
       [dispatch],
     );
 
-  if (!isRedesignEnabled()) {
+  const { signedIn } = useIdentity();
+
+  if (!isRedesignEnabled() || !signedIn) {
     return null;
   }
 

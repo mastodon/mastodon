@@ -4,11 +4,13 @@ import { openModal } from '@/mastodon/actions/modal';
 import type { DeployPictureInPictureCallback } from '@/mastodon/actions/picture_in_picture';
 import { deployPictureInPicture } from '@/mastodon/actions/picture_in_picture';
 import { CollectionPreviewCard } from '@/mastodon/features/collections/components/collection_preview_card';
-import Card from '@/mastodon/features/status/components/card';
+import MediaCard from '@/mastodon/features/status/components/card';
 import { useExpandedStatus } from '@/mastodon/hooks/useStatus';
 import { useToggle } from '@/mastodon/hooks/useToggle';
 import { displayMedia } from '@/mastodon/initial_state';
 import type {
+  CardShape,
+  ExpandedStatusShape,
   MediaAttachment,
   MediaAttachmentShape,
 } from '@/mastodon/models/status';
@@ -18,14 +20,16 @@ import { selectPictureInPicture } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { compareUrls } from '@/mastodon/utils/compare_urls';
 
+import { Card, CardBody, CardTitle } from '../card';
 import { PictureInPicturePlaceholder } from '../picture_in_picture_placeholder';
+import { RelativeTimestamp } from '../relative_timestamp';
 
+import { useStatusContext } from './hooks';
 import { StatusQuote } from './quote';
 
 export const StatusAttachments: React.FC<{
   statusId: string;
-  contextType?: string;
-}> = ({ statusId, contextType }) => {
+}> = ({ statusId }) => {
   const status = useExpandedStatus(statusId);
 
   if (!status) {
@@ -38,7 +42,6 @@ export const StatusAttachments: React.FC<{
       <MediaAttachments
         statusId={statusId}
         accountId={status.account.id}
-        contextType={contextType}
         sensitive={status.sensitive}
         language={status.translation?.language ?? status.language}
         attachment={attachment}
@@ -58,13 +61,7 @@ export const StatusAttachments: React.FC<{
     ? status.tagged_collections.find(({ url }) => compareUrls(url, card.url))
     : status.tagged_collections[0];
   if (card && !collection) {
-    return (
-      <Card
-        key={`${status.id}-${status.edited_at}`}
-        card={card}
-        sensitive={status.sensitive}
-      />
-    );
+    return <LinkCard card={card} status={status} />;
   }
 
   if (collection) {
@@ -100,7 +97,6 @@ const Video = lazy(() => import('@/mastodon/features/video'));
 const MediaAttachments: React.FC<{
   statusId: string;
   accountId: string;
-  contextType?: string;
   sensitive: boolean;
   language: string;
   attachment: MediaAttachmentShape;
@@ -109,7 +105,6 @@ const MediaAttachments: React.FC<{
 }> = ({
   statusId,
   accountId,
-  contextType,
   sensitive,
   language,
   attachment,
@@ -124,6 +119,7 @@ const MediaAttachments: React.FC<{
       'media_attachments',
     ]) as Immutable.List<MediaAttachment>;
   });
+  const { contextType } = useStatusContext();
   const mediaFilters = useAppSelector((state) =>
     selectMediaFilters(state, { statusId, contextType }),
   );
@@ -274,5 +270,58 @@ const MediaAttachments: React.FC<{
         matchedFilters={mediaFilters}
       />
     </Suspense>
+  );
+};
+
+const LinkCard: React.FC<{ card: CardShape; status: ExpandedStatusShape }> = ({
+  card,
+  status,
+}) => {
+  // Use the old card if we have authors as the new design doesn't have attribution yet.
+  if (card.type === 'video' || card.authors.length > 0) {
+    return (
+      <div>
+        <MediaCard
+          key={`${status.id}-${status.edited_at}`}
+          card={card}
+          sensitive={status.sensitive}
+        />
+      </div>
+    );
+  }
+
+  const providerUrl = new URL(card.provider_url || card.url);
+
+  const cardLinkProps = {
+    as: 'a',
+    href: card.url,
+    target: '_blank',
+    rel: 'noopener',
+  } as const;
+
+  return (
+    <Card>
+      <CardTitle
+        afterContent={
+          card.published_at && (
+            <RelativeTimestamp timestamp={card.published_at} />
+          )
+        }
+      >
+        <a
+          href={`${providerUrl.protocol}//${providerUrl.host}`}
+          target='_blank'
+          rel='noopener'
+        >
+          {card.author_name || card.provider_name || providerUrl.host}
+        </a>
+      </CardTitle>
+      <CardBody {...cardLinkProps}>{card.title}</CardBody>
+      {card.description && (
+        <CardBody {...cardLinkProps} isDescription>
+          {card.description}
+        </CardBody>
+      )}
+    </Card>
   );
 };
