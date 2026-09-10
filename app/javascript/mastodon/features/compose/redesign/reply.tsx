@@ -34,7 +34,7 @@ export const ComposeReply: React.FC = () => {
           displayProps={{ account: status.account, variant: 'simple' }}
         />
         <span className={classes.replyTime}>
-          &middot;&nbsp;
+          &nbsp;&bull;&nbsp;
           <Link to={`/@${status.account.acct}/${status.id}`}>
             <RelativeTimestamp timestamp={status.created_at} />
           </Link>
