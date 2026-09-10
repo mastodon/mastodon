@@ -220,7 +220,13 @@ textarea.textarea {
 
 .replyAccount {
   display: flex;
+  align-items: center;
   margin-bottom: var(--space-2xs);
+
+  > a,
+  > span {
+    display: block;
+  }
 
   a {
     color: inherit;
