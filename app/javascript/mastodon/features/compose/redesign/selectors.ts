@@ -59,19 +59,46 @@ export const selectComposeCharsCount = createAppSelector(
   },
 );
 
+export const selectComposeHasAttachments = createAppSelector(
+  [
+    (state) => !!state.compose.get('poll'),
+    (state) => state.compose.get('quoted_status_id') as string | null,
+    (state) =>
+      state.compose.get('media_attachments') as
+        | Immutable.List<unknown>
+        | undefined,
+    (state) => Number(state.compose.get('pending_media_attachments')),
+  ],
+  (hasPoll, quotedStatusId, attachments, pendingAttachments) => {
+    return {
+      hasPoll,
+      hasAttachments:
+        (attachments && attachments.size > 0) || pendingAttachments > 0,
+      quotedStatusId,
+    };
+  },
+);
+
 export const selectComposeCanSubmit = createAppSelector(
   [
     (state) => !!state.compose.get('is_submitting'),
     (state) => !!state.compose.get('is_uploading'),
     (state) => !!state.compose.get('is_changing_upload'),
+    selectComposeHasAttachments,
     selectComposeCharsCount,
   ],
-  (isSubmitting, isUploading, isChangingUpload, { text, max }) =>
+  (
+    isSubmitting,
+    isUploading,
+    isChangingUpload,
+    { hasAttachments, hasPoll, quotedStatusId },
+    { text, max },
+  ) =>
     !isSubmitting &&
     !isUploading &&
     !isChangingUpload &&
     text.trim().length <= max &&
-    text.trim().length > 0,
+    (hasAttachments || hasPoll || quotedStatusId || text.trim().length > 0),
 );
 
 export const selectComposeMentions = createAppSelector(
@@ -160,26 +187,6 @@ export const selectFrequentlyUsedEmoji = createAppSelector(
     }
 
     return emojis;
-  },
-);
-
-export const selectComposeHasAttachments = createAppSelector(
-  [
-    (state) => !!state.compose.get('poll'),
-    (state) => state.compose.get('quoted_status_id') as string | null,
-    (state) =>
-      state.compose.get('media_attachments') as
-        | Immutable.List<unknown>
-        | undefined,
-    (state) => Number(state.compose.get('pending_media_attachments')),
-  ],
-  (hasPoll, quotedStatusId, attachments, pendingAttachments) => {
-    return {
-      hasPoll,
-      hasAttachments:
-        (attachments && attachments.size > 0) || pendingAttachments > 0,
-      quotedStatusId,
-    };
   },
 );
 
