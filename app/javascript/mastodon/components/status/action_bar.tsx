@@ -345,7 +345,7 @@ const StatusReblogButton: React.FC<{
         {children}
       </MenuTrigger>
 
-      <MenuList placement='bottom' maxWidth={180} container={document.body}>
+      <MenuList placement='bottom' maxWidth={180}>
         <MenuItem
           onClick={onReblog}
           icon={ArrowsClockwiseIcon}
@@ -462,7 +462,7 @@ const StatusActionMenu: React.FC<{
         <FormattedMessage id='status.more' defaultMessage='More' />
       </MenuTrigger>
 
-      <MenuList placement='top-end' container={document.body}>
+      <MenuList placement='top-end'>
         {menu.map((item, index) => (
           <StatusActionItem key={index} item={item} />
         ))}
