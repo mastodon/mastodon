@@ -42,12 +42,18 @@ export function getComposerTextarea() {
  */
 export function focusComposerTextarea(defer = false) {
   if (defer) {
-    requestAnimationFrame(() => {
-      getComposerTextarea()?.focus();
-    });
-  } else {
-    getComposerTextarea()?.focus();
+    setTimeout(() => {
+      focusComposerTextarea();
+    }, 1);
+    return;
   }
+
+  const textArea = getComposerTextarea();
+  if (!textArea) {
+    return;
+  }
+
+  textArea.focus({ preventScroll: true });
 }
 
 type DisplayState = 'hidden' | 'showing' | 'minimized';

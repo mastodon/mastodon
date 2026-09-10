@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -19,6 +19,7 @@ import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/ho
 import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
+import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
   COMPOSER_TEXTAREA_ID,
@@ -63,6 +64,10 @@ const selectComposeTextState = createAppSelector(
     text: compose.get('text') as string,
     lang: compose.get('language') as string,
     isSubmitting: !!compose.get('is_submitting'),
+    focusDate: compose.get('focusDate') as Date | null,
+    preselectDate: compose.get('preselectDate') as Date | null,
+    caretPosition: compose.get('caretPosition') as number | null,
+    isReply: compose.get('in_reply_to') !== null,
   }),
 );
 
@@ -77,7 +82,15 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
   // Selectors
   const type = useAppSelector(selectComposeType);
-  const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
+  const {
+    text,
+    lang,
+    isSubmitting,
+    focusDate,
+    preselectDate,
+    caretPosition,
+    isReply,
+  } = useAppSelector(selectComposeTextState);
   const dispatch = useAppDispatch();
 
   // Suggestion logic
@@ -104,6 +117,40 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
   const suggestions = useAppSelector(selectSuggestions);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  // This statement does several things:
+  // - If we're beginning a reply, and,
+  //     - Replying to zero or one users, places the cursor at the end of the textbox.
+  //     - Replying to more than one user, selects any usernames past the first;
+  //       this provides a convenient shortcut to drop everyone else from the conversation.
+  const prevFocusDate = usePrevious(focusDate);
+  const prevPreselectDate = usePrevious(preselectDate);
+  useEffect(() => {
+    if (!focusDate || focusDate === prevFocusDate) {
+      return;
+    }
+
+    let selectionStart = text.length,
+      selectionEnd = text.length;
+    if (preselectDate !== prevPreselectDate && isReply) {
+      selectionStart = text.search(/\s/) + 1;
+    } else if (caretPosition !== null) {
+      selectionStart = selectionEnd = caretPosition;
+    }
+
+    setTimeout(() => {
+      textAreaRef.current?.setSelectionRange(selectionStart, selectionEnd);
+      textAreaRef.current?.focus();
+    }, 1);
+  }, [
+    caretPosition,
+    focusDate,
+    isReply,
+    preselectDate,
+    prevFocusDate,
+    prevPreselectDate,
+    text,
+  ]);
 
   const {
     onTextChange,
