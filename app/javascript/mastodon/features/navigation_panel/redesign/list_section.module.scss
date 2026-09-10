@@ -21,9 +21,8 @@
 }
 
 .toggleButton {
-  // Compensate for the button's outer spacing, subtracting a mystery
-  // pixel that I can't explain, but is needed for proper alignment.
-  --button-padding: calc(var(--space-xs) - 1px);
+  // Compensate for the button's outer spacing
+  --button-padding: calc(var(--space-xs) - var(--space-3xs));
 
   margin: calc(-1 * var(--button-padding));
   margin-inline-end: var(--button-padding);

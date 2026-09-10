@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import type { ReactNode } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -6,7 +7,8 @@ import { CaretDownIcon } from '@phosphor-icons/react';
 
 import { Button, IconButton } from '@/mastodon/components/button/redesign';
 import type { MastodonLocationDescriptor } from '@/mastodon/components/router';
-import { useToggle } from '@/mastodon/hooks/useToggle';
+import { useStorageState } from '@/mastodon/hooks/useStorage';
+import { useIdentity } from '@/mastodon/identity_context';
 import { hasReactChildren } from '@/mastodon/utils/has_react_children';
 
 import classes from './list_section.module.scss';
@@ -17,11 +19,22 @@ export const ListSection: React.FC<{
     label: ReactNode;
     link: MastodonLocationDescriptor;
   };
+  /**
+   * Unique identifier of this section, used for storing the
+   * open/close state of the section in localStorage
+   */
+  id: string;
   children: ReactNode;
   emptyMessage?: ReactNode;
-}> = ({ title, action, children, emptyMessage }) => {
+}> = ({ title, action, id, children, emptyMessage }) => {
   const hasContent = hasReactChildren(children);
-  const [isOpen, { onToggle }] = useToggle(true);
+
+  const { accountId } = useIdentity();
+  const storageKey = `ListSection-${id}-toggle-state-${accountId}`;
+  const [isOpen, setIsOpen] = useStorageState<boolean>(storageKey, true);
+  const toggleIsOpen = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen, setIsOpen]);
 
   return (
     <li className={classes.root}>
@@ -31,7 +44,7 @@ export const ListSection: React.FC<{
             size='sm'
             variant='ghost'
             icon={CaretDownIcon}
-            onClick={onToggle}
+            onClick={toggleIsOpen}
             noActiveHighlight
             aria-expanded={isOpen}
             className={classes.toggleButton}
