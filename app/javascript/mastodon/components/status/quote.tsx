@@ -32,7 +32,6 @@ import {
   selectStatusLoadingState,
 } from '@/mastodon/selectors/statuses';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import type { OnElementHandler } from '@/mastodon/utils/html';
 
 import { Avatar } from '../avatar';
 import { Button } from '../button/redesign';
@@ -44,6 +43,7 @@ import { Icon } from '../icon';
 import { PopoverMenuCard } from '../menu/card';
 import { RelativeTimestamp } from '../relative_timestamp';
 
+import { onStatusLinksDisabled } from './hooks';
 import { StatusImage } from './image';
 import classes from './quote.module.scss';
 
@@ -212,7 +212,7 @@ const QuotedStatusBody: React.FC<{
         htmlString={status.translation?.contentHtml ?? status.contentHtml}
         extraEmojis={status.emojis}
         lang={status.translation?.language ?? status.language}
-        onElement={onStatusLinks}
+        onElement={onStatusLinksDisabled}
         extraArgs={status}
       />
 
@@ -324,29 +324,6 @@ const QuotedStatusLink: React.FC<{ status: AccountStatusShape }> = ({
   }
 
   return <CardBody>{link}</CardBody>;
-};
-
-const onStatusLinks: OnElementHandler<AccountStatusShape> = (
-  element,
-  { key, href },
-  children,
-  status,
-) => {
-  // If this is a paragraph with just a link and it matches the card, don't add it.
-  if (
-    element instanceof HTMLParagraphElement &&
-    element.children.length === 1 &&
-    element.firstChild instanceof HTMLAnchorElement &&
-    element.firstChild.href === status.card?.url
-  ) {
-    return null;
-  } else if (element instanceof HTMLAnchorElement) {
-    if (href === status.card?.url) {
-      return null;
-    }
-    return <strong key={key as string}>{children}</strong>;
-  }
-  return undefined;
 };
 
 function useQuoteError({

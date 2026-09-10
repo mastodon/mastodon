@@ -216,6 +216,11 @@ textarea.textarea {
 .reply {
   border-inline-start: 0.5px solid var(--color-border-primary);
   padding: 0 var(--space-md);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 .replyAccount {
@@ -226,11 +231,6 @@ textarea.textarea {
   > a,
   > span {
     display: block;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
   }
 }
 
@@ -248,17 +248,13 @@ textarea.textarea {
   @include mixins.line-clamp(2);
   @include mixins.type-body-compact;
 
+  display: block;
+
   // Round two lines to the nearest 5px.
   max-height: round(2lh, 5px);
 
-  a {
-    color: var(--color-text-brand);
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
+  strong {
+    font-weight: bold;
   }
 }
 
