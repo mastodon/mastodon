@@ -54,7 +54,11 @@ export const Default: Story = {
             <MenuItem icon={NumberCircleOneIcon} onClick={handleMenuItemClick}>
               First item
             </MenuItem>
-            <MenuItem icon={NumberCircleTwoIcon} onClick={handleMenuItemClick}>
+            <MenuItem
+              icon={NumberCircleTwoIcon}
+              description='Secretly, this is the third option.'
+              onClick={handleMenuItemClick}
+            >
               Second item
             </MenuItem>
           </MenuList>
@@ -121,6 +125,13 @@ export const Complex: Story = {
                 Snow
               </MenuItemRadio>
             </MenuItemGroup>
+            <MenuItemDivider />
+            <MenuItem
+              onClick={handleMenuItemClick}
+              description='This action can not be undone'
+            >
+              Turn the world off
+            </MenuItem>
           </MenuList>
         </Menu>
       </div>

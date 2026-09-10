@@ -49,6 +49,7 @@ type MenuItemProps<As extends React.ElementType> =
     active?: boolean;
     disabled?: boolean;
     icon?: IconProp | 'reserve-space';
+    description?: React.ReactNode;
     trailingContent?: React.ReactNode;
     iconClassName?: string;
     keepMenuOpenOnClick?: boolean;
@@ -62,6 +63,7 @@ const MenuItemBase = <As extends React.ElementType>({
   children,
   className,
   icon,
+  description,
   trailingContent,
   iconClassName,
   keepMenuOpenOnClick,
@@ -85,6 +87,10 @@ const MenuItemBase = <As extends React.ElementType>({
     [keepMenuOpenOnClick, onClick, popover],
   );
 
+  const id = useId();
+  const titleId = `${id}-title`;
+  const descId = `${id}-desc`;
+
   return (
     <Component
       // If it's a button, set the type by default or it will submit forms.
@@ -97,6 +103,10 @@ const MenuItemBase = <As extends React.ElementType>({
         active && classes.itemActive,
       )}
       aria-disabled={disabled}
+      // When a description is present, we expose it via aria-description
+      // instead of making it part of the item's accessible name
+      aria-labelledby={description ? titleId : undefined}
+      aria-describedby={description ? descId : undefined}
       onClick={closeMenuOnClick}
     >
       {icon && icon !== 'reserve-space' && (
@@ -108,12 +118,37 @@ const MenuItemBase = <As extends React.ElementType>({
       )}
       {icon === 'reserve-space' && <div className={classes.itemIcon} />}
 
-      {children}
+      <MenuItemContent
+        description={description}
+        descId={descId}
+        titleId={titleId}
+      >
+        {children}
+      </MenuItemContent>
 
       {trailingContent && (
         <span className={classes.itemTrailingContent}>{trailingContent}</span>
       )}
     </Component>
+  );
+};
+
+const MenuItemContent: React.FC<{
+  children: React.ReactNode;
+  description?: React.ReactNode;
+  titleId: string;
+  descId: string;
+}> = ({ children, description, titleId, descId }) => {
+  if (!description) {
+    return children;
+  }
+  return (
+    <span>
+      <span id={titleId}>{children}</span>
+      <span id={descId} className={classes.itemDescription}>
+        {description}
+      </span>
+    </span>
   );
 };
 

@@ -350,29 +350,17 @@ const StatusReblogButton: React.FC<{
           onClick={onReblog}
           icon={ArrowsClockwiseIcon}
           disabled={boostState.disabled}
+          description={boostState.meta && intl.formatMessage(boostState.meta)}
         >
-          <p>
-            {intl.formatMessage(boostState.title)}
-            {boostState.meta && (
-              <span className={classes.actionDescription}>
-                {intl.formatMessage(boostState.meta)}
-              </span>
-            )}
-          </p>
+          {intl.formatMessage(boostState.title)}
         </MenuItem>
         <MenuItem
           onClick={onQuote}
           icon={QuotesFilledIcon}
           disabled={quoteState.disabled}
+          description={quoteState.meta && intl.formatMessage(quoteState.meta)}
         >
-          <p>
-            {intl.formatMessage(quoteState.title)}
-            {quoteState.meta && (
-              <span className={classes.actionDescription}>
-                {intl.formatMessage(quoteState.meta)}
-              </span>
-            )}
-          </p>
+          {intl.formatMessage(quoteState.title)}
         </MenuItem>
       </MenuList>
     </Menu>
@@ -481,14 +469,8 @@ const StatusActionItem: React.FC<{ item: DropdownItem }> = ({ item }) => {
     icon: item.icon,
     disabled: item.disabled,
     className: classNames(item.dangerous && classes.actionDangerous),
-    children: item.description ? (
-      <p>
-        {item.text}
-        <span className={classes.actionDescription}>{item.description}</span>
-      </p>
-    ) : (
-      item.text
-    ),
+    children: item.text,
+    description: item.description,
   } as const;
 
   if ('to' in item) {

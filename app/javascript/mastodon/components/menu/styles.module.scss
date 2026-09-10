@@ -104,6 +104,20 @@
   }
 }
 
+.itemDescription {
+  @include mixins.type-label-sm;
+
+  display: block;
+  margin-top: var(--space-3xs);
+  color: var(--color-text-secondary);
+
+  .item[aria-disabled='true'] &,
+  .item:active &,
+  .itemActive & {
+    color: inherit;
+  }
+}
+
 .itemIcon {
   width: var(--space-lg);
   height: var(--space-lg);
