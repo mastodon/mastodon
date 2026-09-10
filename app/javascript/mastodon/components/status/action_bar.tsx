@@ -52,6 +52,7 @@ import {
 } from '@/mastodon/selectors/statuses';
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import {
   Button,
@@ -580,7 +581,7 @@ function getMenuItems({
       ),
       action: onStatusInteraction('mute'),
     });
-    if (interactions.editQuotePolicy) {
+    if (interactions.editQuotePolicy && !isRedesignEnabled()) {
       menu.push({
         text: intl.formatMessage(messages.quotePolicyChange),
         action: onStatusInteraction('editQuotePolicy'),
