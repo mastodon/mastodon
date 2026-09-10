@@ -113,7 +113,7 @@ export const Menu: React.FC<MenuProps> = ({
       if (element && type === 'actions' && !noFocus) {
         const menuItems = getAllMenuItems(element);
         const elementToFocus = menuItems[0] ?? element;
-        elementToFocus.focus();
+        elementToFocus.focus({ preventScroll: true });
       }
     },
     [noFocus, type],
