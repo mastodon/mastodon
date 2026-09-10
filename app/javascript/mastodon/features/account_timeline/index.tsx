@@ -15,18 +15,23 @@ import {
 import { AccountHeader } from '@/mastodon/components/account_header';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column/back_button';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import StatusList from '@/mastodon/components/status_list';
 import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
+import { useAccount } from '@/mastodon/hooks/useAccount';
 import {
   useAccountId,
   useCurrentAccountId,
 } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
+import type { Account } from '@/mastodon/models/account';
 import { selectTimelineByKey } from '@/mastodon/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 import { FeaturedTags } from './components/featured_tags';
 import { AccountFilters } from './components/filters';
@@ -45,13 +50,14 @@ const emptyList = ImmutableList<string>();
 const AccountTimeline: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
   const accountContext = useAccountContextValue(accountId);
+  const account = useAccount(accountId);
 
   // Null means accountId does not exist (e.g. invalid acct). Undefined means loading.
   if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
   }
 
-  if (!accountId) {
+  if (!accountId || !account) {
     return (
       <Column bindToDocument={!multiColumn}>
         <LoadingIndicator />
@@ -63,7 +69,7 @@ const AccountTimeline: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   return (
     <AccountTimelineContext.Provider value={accountContext}>
       <InnerTimeline
-        accountId={accountId}
+        account={account}
         key={accountId}
         multiColumn={multiColumn}
       />
@@ -71,10 +77,11 @@ const AccountTimeline: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   );
 };
 
-const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
-  accountId,
+const InnerTimeline: FC<{ account: Account; multiColumn: boolean }> = ({
+  account,
   multiColumn,
 }) => {
+  const accountId = account.id;
   const { tagged } = useParams<{ tagged?: string }>();
   const { boosts, replies } = useAccountContext();
   const key = timelineKey({
@@ -112,7 +119,14 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
 
   return (
     <Column bindToDocument={!multiColumn}>
-      <ColumnBackButton />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={<DisplayNameSimple account={account} />}
+        />
+      ) : (
+        <ColumnBackButton />
+      )}
 
       <StatusList
         alwaysPrepend

@@ -4,7 +4,7 @@
 .root {
   // Make bottom half of column header transparent to make the
   // overlay gradient on the `.layout` class work
-  --column-header-gradient-start: 55%;
+  --column-header-gradient-start: calc(100% - var(--space-sm));
 
   background: linear-gradient(
     to bottom,
