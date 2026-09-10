@@ -6,7 +6,7 @@
   background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-xs);
   padding: var(--space-md);
   z-index: 1; // To cover the sidebar
 
@@ -44,6 +44,7 @@
 }
 
 .toolbar {
+  margin-top: var(--space-xs);
   display: flex;
   gap: var(--space-xs);
   align-items: center;
