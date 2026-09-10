@@ -83,7 +83,7 @@ export const selectComposeMentions = createAppSelector(
   (accountsMap, text, localDomain) => {
     const accounts = new Set<string>();
     const potentialAccounts = text.matchAll(
-      /@(?<username>[a-zA-Z0-9_.-]+)(?<domain>@[a-zA-Z0-9_.-]+)?/g,
+      /(?<!:\/\/[^\s]+)@(?<username>[a-zA-Z0-9_.-]+)(?<domain>@[a-zA-Z0-9_.-]+)?/g,
     );
     for (const match of potentialAccounts) {
       const { username, domain } = match.groups ?? {};
