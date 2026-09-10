@@ -151,6 +151,7 @@ export const RedesignNavigationPanel: React.FC<{
               />
             </NavigationLink>
             <ListSection
+              id='custom-feeds'
               title={
                 <FormattedMessage
                   id='tabs_bar.custom_feeds'
@@ -186,6 +187,7 @@ export const RedesignNavigationPanel: React.FC<{
 
             {followedHashtags.length > 0 && (
               <ListSection
+                id='followed-hashtags'
                 title={
                   <FormattedMessage
                     id='tabs_bar.followed_hashtags'
