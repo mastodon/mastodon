@@ -8,6 +8,8 @@ import type {
   ForwardRefExoticComponent,
 } from 'react';
 
+import type { DistributedOmit } from 'type-fest';
+
 // This complicated type file is based on the following posts:
 // - https://www.tsteele.dev/posts/react-polymorphic-forwardref
 // - https://www.kripod.dev/blog/behind-the-as-prop-polymorphism-done-well/
@@ -83,5 +85,8 @@ export type PolymorphicProps<
   As extends React.ElementType,
 > = {
   as?: As;
-} & Omit<React.ComponentPropsWithRef<As>, keyof AdditionalProps | 'as'> &
+} & DistributedOmit<
+  React.ComponentPropsWithRef<As>,
+  keyof AdditionalProps | 'as'
+> &
   AdditionalProps;

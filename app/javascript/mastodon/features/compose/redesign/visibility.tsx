@@ -17,7 +17,7 @@ import {
 import { openModal } from '@/mastodon/actions/modal';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
-import { CaretIcon } from '@/mastodon/components/button/redesign';
+import { Button, CaretIcon } from '@/mastodon/components/button/redesign';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import {
   Menu,
@@ -38,6 +38,7 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
   className,
 }) => {
   const privacy = useAppSelector(selectComposePrivacy);
+  const isEditing = useAppSelector((state) => !!state.compose.get('id'));
 
   return (
     <div className={className}>
@@ -47,7 +48,12 @@ export const ComposeVisibility: React.FC<{ className?: string }> = ({
         description='Before button that indicates who a post is for (Public, Followers, mentioned people)'
       />
       <Menu>
-        <MenuTrigger size='sm' trailingIcon={CaretIcon}>
+        <MenuTrigger
+          as={Button}
+          size='sm'
+          trailingIcon={CaretIcon}
+          disabled={isEditing}
+        >
           <ComposeVisibilityButtonText privacy={privacy} />
         </MenuTrigger>
 
