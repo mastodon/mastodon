@@ -150,8 +150,10 @@ export const Menu: React.FC<MenuProps> = ({
     if (shouldClose === false) return;
 
     setIsMenuOpen(false);
-    triggerElement?.focus();
-  }, [triggerElement, onClose]);
+    if (listElement?.contains(document.activeElement)) {
+      triggerElement?.focus();
+    }
+  }, [listElement, triggerElement, onClose]);
 
   const toggleMenu = isMenuOpen ? closeMenu : openMenu;
 
