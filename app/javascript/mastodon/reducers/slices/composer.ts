@@ -1,4 +1,5 @@
 import { createSlice, isAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 import {
   changeCompose,
@@ -36,18 +37,13 @@ export function getComposerTextarea() {
   }
   return null;
 }
-/**
- * Focuses on the composer textarea.
- * @param defer Waits before focusing. Useful if the composer may not be focusable immediately.
- */
-export function focusComposerTextarea(defer = false) {
-  if (defer) {
-    requestAnimationFrame(() => {
-      getComposerTextarea()?.focus();
-    });
-  } else {
-    getComposerTextarea()?.focus();
-  }
+export interface ComposerTextareaSelection {
+  start: number;
+  end: number;
+}
+
+interface PendingFocus {
+  selection: ComposerTextareaSelection | null;
 }
 
 type DisplayState = 'hidden' | 'showing' | 'minimized';
@@ -56,10 +52,12 @@ export type ComposeType = 'post' | 'message' | 'reply' | 'replyPrivate';
 
 interface ComposerState {
   displayState: DisplayState;
+  pendingFocus: PendingFocus | null;
 }
 
 const initialState: ComposerState = {
   displayState: 'hidden',
+  pendingFocus: null,
 };
 
 const composerSlice = createSlice({
@@ -75,6 +73,15 @@ const composerSlice = createSlice({
     },
     hideComposer(state) {
       state.displayState = 'hidden';
+    },
+    requestFocus(
+      state,
+      action: PayloadAction<ComposerTextareaSelection | undefined>,
+    ) {
+      state.pendingFocus = { selection: action.payload ?? null };
+    },
+    clearPendingFocus(state) {
+      state.pendingFocus = null;
     },
   },
   extraReducers(builder) {
@@ -97,6 +104,11 @@ const composerSlice = createSlice({
 });
 
 export const composer = composerSlice.reducer;
+
+export const {
+  requestFocus: requestComposerFocus,
+  clearPendingFocus: clearComposerFocusRequest,
+} = composerSlice.actions;
 
 export const minimizeComposerToggle = createAppThunk(
   (_arg, { dispatch, getState }) => {
@@ -172,12 +184,13 @@ export const openNewComposer = createAppThunk(
         dispatch(directCompose(account));
       } else {
         dispatch(changeComposeVisibility('direct'));
+        dispatch(requestComposerFocus());
       }
     } else if (payload.type === 'reply') {
       dispatch(replyComposeById(payload.toStatusId));
+    } else {
+      dispatch(requestComposerFocus());
     }
-
-    focusComposerTextarea(true);
   },
 );
 

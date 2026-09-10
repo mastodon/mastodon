@@ -16,8 +16,8 @@ import { ToggleButton } from '@/mastodon/components/button/redesign';
 import { TextInputField } from '@/mastodon/components/form_fields/redesign';
 import { Icon } from '@/mastodon/components/icon';
 import {
-  focusComposerTextarea,
   getComposerTextarea,
+  requestComposerFocus,
   submitComposer,
 } from '@/mastodon/reducers/slices/composer';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -143,9 +143,9 @@ function useComposeHandlers(redirectOnSuccess?: boolean) {
   const isSensitive = useAppSelector((state) => !!state.compose.get('spoiler'));
   useEffect(() => {
     if (!isSensitive) {
-      focusComposerTextarea();
+      dispatch(requestComposerFocus());
     }
-  }, [isSensitive]);
+  }, [isSensitive, dispatch]);
 
   const onSensitiveChange = useCallback(() => {
     dispatch(changeComposeSpoilerness());

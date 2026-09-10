@@ -16,6 +16,7 @@ import { openModal } from './modal';
 import { updateTimeline } from './timelines';
 import { insertStatusIntoAccountTimelines } from './timelines_typed';
 import { isRedesignEnabled } from '../utils/environment';
+import { requestComposerFocus } from '../reducers/slices/composer';
 
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsAccountsController;
@@ -126,6 +127,12 @@ export function replyCompose(status) {
     });
 
     ensureComposeIsVisible(getState);
+
+    if (isRedesignEnabled()) {
+      const text = getState().getIn(['compose', 'text'], '');
+      // Preselect any mentions past the first, mirroring the reply text's leading `@user `.
+      dispatch(requestComposerFocus({ start: text.search(/\s/) + 1, end: text.length }));
+    }
   };
 }
 
@@ -161,6 +168,11 @@ export const focusCompose = (defaultText = '', caretStart = false) => (dispatch,
   });
 
   ensureComposeIsVisible(getState);
+
+  if (isRedesignEnabled()) {
+    const position = caretStart ? 0 : getState().getIn(['compose', 'text'], '').length;
+    dispatch(requestComposerFocus({ start: position, end: position }));
+  }
 };
 
 export function mentionCompose(account) {
@@ -171,6 +183,11 @@ export function mentionCompose(account) {
     });
 
     ensureComposeIsVisible(getState);
+
+    if (isRedesignEnabled()) {
+      const position = getState().getIn(['compose', 'text'], '').length;
+      dispatch(requestComposerFocus({ start: position, end: position }));
+    }
   };
 }
 
@@ -188,6 +205,11 @@ export function directCompose(account) {
     });
 
     ensureComposeIsVisible(getState);
+
+    if (isRedesignEnabled()) {
+      const position = getState().getIn(['compose', 'text'], '').length;
+      dispatch(requestComposerFocus({ start: position, end: position }));
+    }
   };
 }
 
@@ -654,7 +676,9 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
 
     // We don't want to replace hashtags that vary only in case due to accessibility, but we need to fire off an event so that
     // the suggestions are dismissed and the cursor moves forward.
-    if (suggestion.type !== 'hashtag' || token.slice(1).localeCompare(suggestion.name, undefined, { sensitivity: 'accent' }) !== 0) {
+    const inserted = suggestion.type !== 'hashtag' || token.slice(1).localeCompare(suggestion.name, undefined, { sensitivity: 'accent' }) !== 0;
+
+    if (inserted) {
       dispatch({
         type: COMPOSE_SUGGESTION_SELECT,
         position: startPosition,
@@ -670,6 +694,11 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
         completion,
         path,
       });
+    }
+
+    if (isRedesignEnabled() && path.length === 1 && path[0] === 'text') {
+      const caretPosition = startPosition + (inserted ? completion.length : token.length) + 1;
+      dispatch(requestComposerFocus({ start: caretPosition, end: caretPosition }));
     }
   };
 }
