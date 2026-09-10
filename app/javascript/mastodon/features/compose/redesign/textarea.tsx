@@ -19,11 +19,10 @@ import { useAutosuggestFloatingMenu } from '@/mastodon/components/autosuggest/ho
 import { AutosuggestMenu } from '@/mastodon/components/autosuggest/list';
 import { TextArea } from '@/mastodon/components/form_fields';
 import { normalizeKey } from '@/mastodon/components/hotkeys/utils';
-import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
 import {
+  clearComposerFocusRequest,
   COMPOSER_TEXTAREA_ID,
-  focusComposerTextarea,
 } from '@/mastodon/reducers/slices/composer';
 import {
   createAppSelector,
@@ -64,10 +63,6 @@ const selectComposeTextState = createAppSelector(
     text: compose.get('text') as string,
     lang: compose.get('language') as string,
     isSubmitting: !!compose.get('is_submitting'),
-    focusDate: compose.get('focusDate') as Date | null,
-    preselectDate: compose.get('preselectDate') as Date | null,
-    caretPosition: compose.get('caretPosition') as number | null,
-    isReply: compose.get('in_reply_to') !== null,
   }),
 );
 
@@ -82,15 +77,7 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
 
   // Selectors
   const type = useAppSelector(selectComposeType);
-  const {
-    text,
-    lang,
-    isSubmitting,
-    focusDate,
-    preselectDate,
-    caretPosition,
-    isReply,
-  } = useAppSelector(selectComposeTextState);
+  const { text, lang, isSubmitting } = useAppSelector(selectComposeTextState);
   const dispatch = useAppDispatch();
 
   // Suggestion logic
@@ -106,7 +93,6 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
       dispatch(
         selectComposeSuggestion(tokenStart, token, suggestion, ['text']),
       );
-      focusComposerTextarea(true);
     },
     [dispatch],
   );
@@ -118,39 +104,21 @@ export const ComposeTextarea: React.FC<ComposeTextareaProps> = ({
   const suggestions = useAppSelector(selectSuggestions);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  // This statement does several things:
-  // - If we're beginning a reply, and,
-  //     - Replying to zero or one users, places the cursor at the end of the textbox.
-  //     - Replying to more than one user, selects any usernames past the first;
-  //       this provides a convenient shortcut to drop everyone else from the conversation.
-  const prevFocusDate = usePrevious(focusDate);
-  const prevPreselectDate = usePrevious(preselectDate);
+  // Applies a focus/selection requested from elsewhere (e.g. reply, mention) once this textarea exists,
+  // which also covers it not being mounted yet when the request was made (it's lazy-loaded).
+  const pendingFocus = useAppSelector((state) => state.composer.pendingFocus);
   useEffect(() => {
-    if (!focusDate || focusDate === prevFocusDate) {
+    if (!pendingFocus) {
       return;
     }
 
-    let selectionStart = text.length,
-      selectionEnd = text.length;
-    if (preselectDate !== prevPreselectDate && isReply) {
-      selectionStart = text.search(/\s/) + 1;
-    } else if (caretPosition !== null) {
-      selectionStart = selectionEnd = caretPosition;
+    const { selection } = pendingFocus;
+    if (selection) {
+      textAreaRef.current?.setSelectionRange(selection.start, selection.end);
     }
-
-    setTimeout(() => {
-      textAreaRef.current?.setSelectionRange(selectionStart, selectionEnd);
-      textAreaRef.current?.focus();
-    }, 1);
-  }, [
-    caretPosition,
-    focusDate,
-    isReply,
-    preselectDate,
-    prevFocusDate,
-    prevPreselectDate,
-    text,
-  ]);
+    textAreaRef.current?.focus({ preventScroll: true });
+    dispatch(clearComposerFocusRequest());
+  }, [pendingFocus, dispatch]);
 
   const {
     onTextChange,
