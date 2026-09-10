@@ -70,6 +70,8 @@ function useFollowedHashtags() {
   return { followedHashtags: tags };
 }
 
+const MAX_HASHTAG_COUNT = 5;
+
 export const RedesignNavigationPanel: React.FC<{
   siteName?: string;
   /**
@@ -195,17 +197,19 @@ export const RedesignNavigationPanel: React.FC<{
                   />
                 }
               >
-                {followedHashtags.slice(0, 4).map((tag) => (
+                {followedHashtags.slice(0, MAX_HASHTAG_COUNT).map((tag) => (
                   <NavigationLink key={tag.name} to={`/tags/${tag.name}`}>
                     #{tag.name}
                   </NavigationLink>
                 ))}
-                <NavigationLink key='view-all' to='/followed_tags'>
-                  <FormattedMessage
-                    id='tabs_bar.followed_tags_view_all'
-                    defaultMessage='View all'
-                  />
-                </NavigationLink>
+                {followedHashtags.length > MAX_HASHTAG_COUNT && (
+                  <NavigationLink key='view-all' to='/followed_tags'>
+                    <FormattedMessage
+                      id='tabs_bar.followed_tags_view_all'
+                      defaultMessage='View all'
+                    />
+                  </NavigationLink>
+                )}
               </ListSection>
             )}
           </ul>
