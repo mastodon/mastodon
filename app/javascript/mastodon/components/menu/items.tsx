@@ -75,8 +75,10 @@ const MenuItemBase = <As extends React.ElementType>({
   const Component = AsComp ?? 'div';
   const { popover } = useMenuContext();
 
-  const closeMenuOnClick = useCallback<React.MouseEventHandler>(
+  const handleItemClick = useCallback<React.MouseEventHandler>(
     (e) => {
+      if (disabled) return;
+
       if (!keepMenuOpenOnClick) {
         // Closing with a short delay feels nicer than an instant close
         setTimeout(() => {
@@ -86,7 +88,7 @@ const MenuItemBase = <As extends React.ElementType>({
 
       onClick?.(e);
     },
-    [keepMenuOpenOnClick, onClick, popover],
+    [disabled, keepMenuOpenOnClick, onClick, popover],
   );
 
   const id = useId();
@@ -110,7 +112,7 @@ const MenuItemBase = <As extends React.ElementType>({
       // instead of making it part of the item's accessible name
       aria-labelledby={description ? titleId : undefined}
       aria-describedby={description ? descId : undefined}
-      onClick={closeMenuOnClick}
+      onClick={handleItemClick}
     >
       {icon && icon !== 'reserve-space' && (
         <Icon
