@@ -5,7 +5,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { LockSimpleOpenIcon, PepperIcon } from '@phosphor-icons/react';
+import { FlagIcon, LockSimpleOpenIcon } from '@phosphor-icons/react';
 
 import {
   changeComposeSpoilerness,
@@ -14,7 +14,7 @@ import {
 } from '@/mastodon/actions/compose';
 import { ToggleButton } from '@/mastodon/components/button/redesign';
 import { TextInputField } from '@/mastodon/components/form_fields/redesign';
-import { Icon } from '@/mastodon/components/icon';
+import { Icon, useIconWeight } from '@/mastodon/components/icon';
 import {
   getComposerTextarea,
   requestComposerFocus,
@@ -64,6 +64,8 @@ export const RedesignComposeForm: React.FC<
   const intl = useIntl();
   const titleId = useId();
 
+  const sensitiveIcon = useIconWeight(FlagIcon, sensitive && 'fill');
+
   return (
     <form
       {...props}
@@ -89,7 +91,7 @@ export const RedesignComposeForm: React.FC<
           size='sm'
           active={sensitive}
           onClick={onSensitiveChange}
-          leadingIcon={PepperIcon}
+          leadingIcon={sensitiveIcon}
         >
           <FormattedMessage id='compose.sensitive' defaultMessage='Sensitive' />
         </ToggleButton>
