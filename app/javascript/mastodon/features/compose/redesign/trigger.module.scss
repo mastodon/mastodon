@@ -49,6 +49,7 @@
   width: min(320px, calc(100vw - var(--space-md) * 2));
   padding: var(--space-md);
   margin: var(--space-md);
+  border-radius: var(--radius-xl);
 
   @media (width < #{variables.$mobile-menu-breakpoint}) {
     bottom: var(--mobile-bottom-nav-height);
