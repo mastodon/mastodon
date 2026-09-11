@@ -24,6 +24,7 @@
 #  fields                        :jsonb
 #  followers_url                 :string           default(""), not null
 #  following_url                 :string           default(""), not null
+#  has_federated                 :boolean          default(TRUE), not null
 #  header_content_type           :string
 #  header_description            :string           default(""), not null
 #  header_file_name              :string
@@ -532,6 +533,7 @@ class Account < ApplicationRecord
 
   before_validation :prepare_contents, if: :local?
   before_create :generate_keys
+  before_create :set_federated, if: :local?
   before_destroy :clean_feed_manager
 
   def ensure_keys!
@@ -559,6 +561,10 @@ class Account < ApplicationRecord
 
     keypair = OpenSSL::PKey::RSA.new(2048)
     keypairs << keypairs.build(local_fragment: "#rsa-#{SecureRandom.hex(8)}", type: :rsa, public_key: keypair.public_key.to_pem, private_key: keypair.to_pem)
+  end
+
+  def set_federated
+    self.has_federated = false
   end
 
   def normalize_domain
