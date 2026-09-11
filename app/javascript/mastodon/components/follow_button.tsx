@@ -5,14 +5,6 @@ import { useIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import {
-  ArrowCounterClockwiseIcon,
-  PencilSimpleIcon,
-  SpeakerHighIcon,
-  UserMinusIcon,
-  UserPlusIcon,
-} from '@phosphor-icons/react';
-
 import { useIdentity } from '@/mastodon/identity_context';
 import {
   fetchRelationships,
@@ -30,7 +22,6 @@ import { isRedesignEnabled } from '../utils/environment';
 
 import { Button as RedesignButton } from './button/redesign';
 import type { ButtonProps as RedesignButtonProps } from './button/redesign';
-import type { IconProp } from './icon';
 import type { MastodonLocationDescriptor } from './router';
 
 const longMessages = defineMessages({
@@ -78,7 +69,6 @@ interface FollowButtonOptions {
 
 interface FollowButtonReturn {
   label: React.ReactNode;
-  icon: IconProp;
   onClick: (() => void) | undefined;
   link: MastodonLocationDescriptor | undefined;
   disabled: boolean;
@@ -174,7 +164,6 @@ export function useFollowButton({
     : messages.follow;
 
   let label: React.ReactNode;
-  let icon = UserPlusIcon;
   let disabled =
     relationship?.blocked_by || account?.suspended || !!account?.moved;
 
@@ -182,24 +171,19 @@ export function useFollowButton({
     label = intl.formatMessage(followMessage);
   } else if (accountId === me) {
     label = intl.formatMessage(messages.editProfile);
-    icon = PencilSimpleIcon;
   } else if (!relationship) {
     label = <LoadingIndicator />;
   } else if (relationship.muting && withUnmute) {
     label = intl.formatMessage(messages.unmute);
-    icon = SpeakerHighIcon;
     disabled = false;
   } else if (relationship.following) {
     label = intl.formatMessage(messages.unfollow);
-    icon = UserMinusIcon;
     disabled = false;
   } else if (relationship.blocking) {
     label = intl.formatMessage(messages.unblock);
-    icon = ArrowCounterClockwiseIcon;
     disabled = false;
   } else if (relationship.requested) {
     label = intl.formatMessage(messages.followRequestCancel);
-    icon = UserMinusIcon;
     disabled = false;
   } else if (relationship.followed_by && !account?.locked) {
     label = intl.formatMessage(messages.followBack);
@@ -214,7 +198,6 @@ export function useFollowButton({
     onClick,
     link,
     label,
-    icon,
     disabled,
     following,
     secondary,
