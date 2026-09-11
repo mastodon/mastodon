@@ -144,7 +144,6 @@ RUN \
   libvorbisenc2 \
   libvorbisfile3 \
   libvpx9 \
-  libx264-164 \
   libx265-215 \
   ; \
   # Patch Ruby to use jemalloc
@@ -201,7 +200,6 @@ RUN \
   libsnappy-dev \
   libvorbis-dev \
   libvpx-dev \
-  libx264-dev \
   libx265-dev \
   ;
 
@@ -229,8 +227,45 @@ WORKDIR /usr/local/libvips/src/vips-${VIPS_VERSION}/build
 # Compile and install libvips
 RUN ninja && ninja install
 
-# Create temporary ffmpeg specific build layer
+# Create temporary x264 specific build layer
+FROM media-build AS x264
+
+ARG TARGETPLATFORM
+
+# x264 has no versioned releases; it is distributed as a rolling git repository.
+# renovate: datasource=git-refs depName=x264 packageName=https://code.videolan.org/videolan/x264.git currentValue=master
+ARG X264_VERSION=31e19f92f00c7003fa115047ce50978bc98c3a0d
+ARG X264_URL=https://code.videolan.org/videolan/x264.git
+
+RUN \
+  --mount=type=cache,id=apt-native-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,id=apt-native-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+  apt-get update; \
+  apt-get install -y --no-install-recommends git ca-certificates;
+
+WORKDIR /usr/local/x264/src
+RUN \
+  git clone "${X264_URL}" x264; \
+  cd x264; \
+  git checkout "${X264_VERSION}";
+
+WORKDIR /usr/local/x264/src/x264
+
+RUN \
+  ./configure \
+  --prefix=/usr/local/x264 \
+  --enable-shared \
+  --enable-pic \
+  --disable-cli \
+  ; \
+  make -j"$(nproc)"; \
+  make install;
+
 FROM media-build AS ffmpeg
+
+COPY --from=x264 /usr/local/x264 /usr/local/x264
+ENV PKG_CONFIG_PATH=/usr/local/x264/lib/pkgconfig
+ENV LD_LIBRARY_PATH=/usr/local/x264/lib
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=github-tags depName=FFmpeg/FFmpeg extractVersion=^n(?<version>\d+\.\d+(\.\d+)?)$
@@ -270,6 +305,8 @@ RUN \
   --enable-libx265 \
   --enable-shared \
   --enable-version3 \
+  --extra-cflags="-I/usr/local/x264/include" \
+  --extra-ldflags="-L/usr/local/x264/lib" \
   ; \
   make -j"$(nproc)"; \
   make install;
@@ -386,6 +423,8 @@ COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 # Copy libvips components to layer
 COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
 COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
+# Copy source-compiled x264 shared library (ffmpeg links against it at runtime)
+COPY --from=x264 /usr/local/x264/lib /usr/local/lib
 # Copy ffpmeg components to layer
 COPY --from=ffmpeg /usr/local/ffmpeg/bin /usr/local/bin
 COPY --from=ffmpeg /usr/local/ffmpeg/lib /usr/local/lib
