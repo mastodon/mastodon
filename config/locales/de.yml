@@ -72,6 +72,10 @@ de:
       disable_sign_in_token_auth: E-Mail-Token-Authentisierung deaktivieren
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
       disabled: Eingefroren
+      discoverable:
+        disabled: Autor*in hat sich dafür entschieden, nicht entdeckt zu werden
+        enabled: Autor*in hat sich dafür entschieden, entdeckt zu werden
+        title: Entdecken
       display_name: Anzeigename
       domain: Domain
       edit: Bearbeiten
@@ -83,6 +87,10 @@ de:
       enabled_msg: Konto von %{username} erfolgreich freigegeben
       follow_recommendations:
         allowed: Erlaubt
+        suppress: Follower-Empfehlungen unterbinden
+        suppressed: Unterbunden
+        title: Follower-Empfehlungen
+        unsuppress: Follower-Empfehlungen wiederherstellen
       followers: Follower
       follows: Folge ich
       header: Titelbild
@@ -645,7 +653,7 @@ de:
       suppress: Folgeempfehlung unterbinden
       suppressed: Unterdrückt
       title: Follower-Empfehlungen
-      unsuppress: Folgeempfehlung nicht mehr unterbinden
+      unsuppress: Follower-Empfehlungen wiederherstellen
     instances:
       audit_log:
         title: Neueste Protokolle
@@ -1701,6 +1709,7 @@ de:
       incompatible_type: Inkompatibel mit dem ausgewählten Importtyp
       invalid_csv_file: 'Ungültige CSV-Datei. Fehler: %{error}'
       invalid_json_file: 'Ungültige JSON-Datei. Fehler: %{error}'
+      no_data: Diese Datei enthält keinerlei Daten, die zu diesem Dateitypen passen
       over_rows_processing_limit: enthält mehr als %{count} Zeilen
       status_not_found_warning: Einige deiner Filter blenden bestimmte Beiträge aus, die diesem Server nicht bekannt sind. Diese Beiträge werden nicht automatisch gefiltert, wenn sie dem Server später bekannt werden.
       too_large: Datei ist zu groß
