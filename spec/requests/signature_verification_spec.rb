@@ -181,10 +181,13 @@ RSpec.describe 'signature verification concern' do
         end
       end
 
-      context 'when the query string is missing from the signature verification (compatibility quirk)' do
+      context 'when the query string is missing from the signature verification (dropped compatibility quirk)' do
         let(:signature_header) do
           'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="' # rubocop:disable Layout/LineLength
         end
+
+        # Signature verification will fail, so the key will be refetched
+        before { stub_key_requests }
 
         it 'successfuly verifies signature', :aggregate_failures do
           expect(signature_header).to eq build_signature_string(actor_keypair, 'https://remote.domain/users/bob#main-key', 'get /activitypub/success', { 'Date' => 'Wed, 20 Dec 2023 10:00:00 GMT', 'Host' => 'www.example.com' })
@@ -195,10 +198,10 @@ RSpec.describe 'signature verification concern' do
             'Signature' => signature_header,
           }
 
-          expect(response).to have_http_status(200)
           expect(response.parsed_body).to match(
             signed_request: true,
-            signature_actor_id: actor.id.to_s
+            signature_actor_id: nil,
+            error: anything
           )
         end
       end
