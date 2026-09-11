@@ -1,20 +1,16 @@
 import type React from 'react';
 import { useCallback, useState } from 'react';
 
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
 import { CaretRightIcon } from '@phosphor-icons/react';
 
-import { useIdentity } from '@/mastodon/identity_context';
-import { languages as preloadedLanguages } from '@/mastodon/initial_state';
 import type {
   ExpandedStatusShape,
   StatusShape,
-  StatusTranslation,
 } from '@/mastodon/models/status';
-import { useAppSelector } from '@/mastodon/store';
 
 import { Button } from '../button/redesign';
 import { EmojiHTML } from '../emoji/html';
@@ -42,12 +38,6 @@ export const StatusContent: React.FC<
   className,
   ...props
 }) => {
-  const { signedIn } = useIdentity();
-  const targetLanguages = useAppSelector(
-    (state) => state.server.translationLanguages.item?.[status.language],
-  );
-  const intl = useIntl();
-
   // Determines if a long post should show the read more button.
   const [collapsed, setCollapsed] = useState(false);
   const onRef = useCallback(
@@ -70,14 +60,6 @@ export const StatusContent: React.FC<
   const language = status.translation?.language ?? status.language;
 
   const isCollapsed = !!onReadMore && collapsible && collapsed;
-  const renderTranslate = !!(
-    onTranslate &&
-    !isCollapsed &&
-    signedIn &&
-    ['public', 'unlisted'].includes(status.visibility) &&
-    status.search_index?.trim().length &&
-    targetLanguages?.includes(intl.locale.replace(/[_-].*/, ''))
-  );
 
   return (
     <div
@@ -102,13 +84,6 @@ export const StatusContent: React.FC<
 
       {children}
 
-      {renderTranslate && (
-        <TranslateButton
-          translation={status.translation}
-          onTranslate={onTranslate}
-        />
-      )}
-
       {isCollapsed && (
         <Button
           size='sm'
@@ -120,51 +95,6 @@ export const StatusContent: React.FC<
           <FormattedMessage id='status.read_more' defaultMessage='Read more' />
         </Button>
       )}
-    </div>
-  );
-};
-
-const TranslateButton: React.FC<{
-  onTranslate: React.MouseEventHandler<HTMLButtonElement>;
-  translation?: StatusTranslation;
-}> = ({ translation, onTranslate }) => {
-  if (!translation) {
-    return (
-      <Button
-        size='sm'
-        variant='ghost'
-        onClick={onTranslate}
-        className={classes.buttonAlign}
-      >
-        <FormattedMessage id='status.translate' defaultMessage='Translate' />
-      </Button>
-    );
-  }
-
-  const language = preloadedLanguages?.find(
-    (lang) => lang[0] === translation.detected_source_language,
-  );
-  const languageName = language
-    ? language[1]
-    : translation.detected_source_language;
-  const provider = translation.provider;
-
-  return (
-    <div className='translate-button'>
-      <Button size='sm' variant='ghost' onClick={onTranslate}>
-        <FormattedMessage
-          id='status.show_original'
-          defaultMessage='Show original'
-        />
-      </Button>
-
-      <div className='translate-button__meta'>
-        <FormattedMessage
-          id='status.translated_from_with'
-          defaultMessage='Translated from {lang} using {provider}'
-          values={{ lang: languageName, provider }}
-        />
-      </div>
     </div>
   );
 };
