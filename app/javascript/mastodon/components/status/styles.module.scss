@@ -39,8 +39,21 @@
 .content,
 .footer,
 .root :global(.status__prepend),
-.root :global(.content-warning) {
+.root :global(.content-warning),
+.translate {
   grid-column: var(--content-col);
+}
+
+.translate {
+  display: flex;
+  align-items: center;
+}
+
+.translateInfo {
+  @include mixins.type-label-md;
+
+  color: var(--color-text-secondary);
+  margin-inline-start: auto;
 }
 
 .content {
@@ -148,8 +161,4 @@
 
 .actionsButtonGap {
   margin-inline-end: auto;
-}
-
-.buttonAlign {
-  margin-inline-start: calc(-1 * var(--space-sm));
 }

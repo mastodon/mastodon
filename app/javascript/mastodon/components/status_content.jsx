@@ -41,7 +41,7 @@ class TranslateButton extends PureComponent {
   render () {
     const { translation, onClick } = this.props;
 
-    if (translation) {
+    if (translation && !translation.get('isLoading')) {
       const language     = preloadedLanguages.find(lang => lang[0] === translation.get('detected_source_language'));
       const languageName = language ? language[1] : translation.get('detected_source_language');
       const provider     = translation.get('provider');
