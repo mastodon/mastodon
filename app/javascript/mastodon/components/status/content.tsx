@@ -87,10 +87,11 @@ export const StatusContent: React.FC<
       {isCollapsed && (
         <Button
           size='sm'
+          clipPadding
           variant='ghost'
           onClick={onReadMore}
           trailingIcon={CaretRightIcon}
-          className={classNames(classes.contentReadMore, classes.buttonAlign)}
+          className={classes.contentReadMore}
         >
           <FormattedMessage id='status.read_more' defaultMessage='Read more' />
         </Button>

@@ -37,11 +37,11 @@ export const TranslateButton: React.FC<{
       <div className={classes.translate}>
         <Button
           size='sm'
+          clipPadding
           color='accent'
           variant='ghost'
           onClick={onTranslate}
           leadingIcon={TranslateIcon}
-          className={classes.buttonAlign}
           loading={translation?.isLoading}
         >
           <FormattedMessage id='status.translate' defaultMessage='Translate' />
@@ -62,11 +62,11 @@ export const TranslateButton: React.FC<{
     <div className={classes.translate}>
       <Button
         size='sm'
+        clipPadding
         color='accent'
         variant='ghost'
         onClick={onTranslate}
         leadingIcon={TranslateIcon}
-        className={classes.buttonAlign}
       >
         <FormattedMessage
           id='status.show_original'

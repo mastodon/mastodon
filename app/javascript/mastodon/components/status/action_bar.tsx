@@ -3,8 +3,6 @@ import { useCallback, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import classNames from 'classnames';
-
 import {
   ArrowsClockwiseIcon,
   BookmarkSimpleIcon,
@@ -214,9 +212,10 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
     isQuotingMe && contextType === 'notifications';
 
   return (
-    <div className={classNames(classes.actions, classes.buttonAlign)}>
+    <div className={classes.actions}>
       <Button
         size='sm'
+        clipPadding
         variant='ghost'
         title={intl.formatMessage(messages.replyAll)}
         leadingIcon={ChatCircleTextIcon}
