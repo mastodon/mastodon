@@ -51,7 +51,7 @@ class Importer::BaseImporter
       raise ActiveRecord::UnknownPrimaryKey, index.adapter.target if primary_key.nil?
 
       ids           = documents.pluck('_id')
-      existence_map = index.adapter.target.where(primary_key => ids).pluck(primary_key).each_with_object({}) { |id, map| map[id.to_s] = true }
+      existence_map = index.adapter.target.where(primary_key => ids).pluck(primary_key).to_h { |id| [id.to_s, true] }
       tmp           = ids.reject { |id| existence_map[id] }
 
       next if tmp.empty?

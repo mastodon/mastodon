@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column/header';
+import { injectIntl } from '@/mastodon/components/intl';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
@@ -63,7 +64,11 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.boost' defaultMessage='to boost' /></td>
               </tr>
               <tr>
-                <td><kbd>enter</kbd>, <kbd>o</kbd></td>
+                <td><kbd>q</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.quote' defaultMessage='Quote post' /></td>
+              </tr>
+              <tr>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.enter' defaultMessage='Enter' tagName='kbd' />, <kbd>o</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>
               </tr>
               <tr>
@@ -83,31 +88,39 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.toggle_sensitivity' defaultMessage='to show/hide media' /></td>
               </tr>
               <tr>
-                <td><kbd>up</kbd>, <kbd>k</kbd></td>
+                <td><kbd>k</kbd>, <FormattedMessage id='keyboard_shortcuts.keys.alt' defaultMessage='Alt' tagName='kbd' />+<FormattedMessage id='keyboard_shortcuts.keys.page_up' defaultMessage='Page Up' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.up' defaultMessage='to move up in the list' /></td>
               </tr>
               <tr>
-                <td><kbd>down</kbd>, <kbd>j</kbd></td>
+                <td><kbd>j</kbd>, <FormattedMessage id='keyboard_shortcuts.keys.alt' defaultMessage='Alt' tagName='kbd' />+<FormattedMessage id='keyboard_shortcuts.keys.page_down' defaultMessage='Page Down' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.down' defaultMessage='to move down in the list' /></td>
+              </tr>
+              <tr>
+                <td><kbd>0</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.top' defaultMessage='Move to top of list' /></td>
               </tr>
               <tr>
                 <td><kbd>1</kbd>-<kbd>9</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.column' defaultMessage='to focus a status in one of the columns' /></td>
               </tr>
               <tr>
+                <td><kbd>l</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.load_more' defaultMessage='Focus "Load more" button' /></td>
+              </tr>
+              <tr>
                 <td><kbd>n</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.compose' defaultMessage='to focus the compose textarea' /></td>
               </tr>
               <tr>
-                <td><kbd>alt</kbd>+<kbd>n</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.alt' defaultMessage='Alt' tagName='kbd' />+<kbd>n</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.toot' defaultMessage='to start a brand new post' /></td>
               </tr>
               <tr>
-                <td><kbd>alt</kbd>+<kbd>x</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.alt' defaultMessage='Alt' tagName='kbd' />+<kbd>x</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.spoilers' defaultMessage='to show/hide CW field' /></td>
               </tr>
               <tr>
-                <td><kbd>backspace</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.backspace' defaultMessage='Backspace' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.back' defaultMessage='to navigate back' /></td>
               </tr>
               <tr>
@@ -115,12 +128,16 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.search' defaultMessage='to focus search' /></td>
               </tr>
               <tr>
-                <td><kbd>esc</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.keys.esc' defaultMessage='Esc' tagName='kbd' /></td>
                 <td><FormattedMessage id='keyboard_shortcuts.unfocus' defaultMessage='to un-focus compose textarea/search' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>h</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.home' defaultMessage='to open home timeline' /></td>
+              </tr>
+              <tr>
+                <td><kbd>g</kbd>+<kbd>e</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.explore' defaultMessage='to open trending timeline' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>n</kbd></td>

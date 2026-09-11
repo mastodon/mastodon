@@ -2,7 +2,7 @@
 
 class Admin::DistributeTermsOfServiceNotificationWorker
   include Sidekiq::IterableJob
-  include BulkMailer
+  include BulkMailingConcern
 
   def build_enumerator(terms_of_service_id, cursor:)
     @terms_of_service = TermsOfService.find(terms_of_service_id)

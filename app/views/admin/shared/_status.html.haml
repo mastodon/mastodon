@@ -1,0 +1,56 @@
+-# locals: (status:, is_quote: false)
+.status__card{ class: status_classnames(status, is_quote) }
+  - if status.reblog?
+    .status__prepend
+      = material_symbol('repeat')
+      = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(status.proper.account, path: admin_account_status_path(status.proper.account.id, status.proper.id)))
+  - elsif status.reply? && status.in_reply_to_id.present?
+    .status__prepend
+      = material_symbol('reply')
+      = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(status.in_reply_to_account, path: status.thread.present? ? admin_account_status_path(status.thread.account_id, status.in_reply_to_id) : nil))
+
+  - if is_quote
+    .status__info
+      = conditional_link_to can?(:show, status), admin_account_status_path(status.account.id, status), class: 'status__relative-time' do
+        %span.status__visibility-icon{ title: t("statuses.visibilities.#{status.visibility}") }><
+          = material_symbol(visibility_icon(status), whitespace: false)
+        %time.relative-formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }><= l(status.created_at)
+      = link_to admin_account_path(status.account.id), class: 'status__display-name' do
+        .status__avatar
+          .account__avatar
+            = image_tag status.account.avatar.url(:original), alt: '', width: 46, height: 46, class: 'avatar'
+        .display-name
+          %bdi
+            %strong.display-name__html.emojify.p-name= display_name(status.account, custom_emojify: true)
+          %span.display-name__account
+            = acct(status.account)
+
+  = render partial: 'admin/shared/status_content', locals: { status: status.proper, is_quote: is_quote }
+
+  - unless is_quote
+    .detailed-status__meta
+      = conditional_link_to can?(:show, status), admin_account_status_path(status.account.id, status), class: 'detailed-status__datetime' do
+        %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }><= l(status.created_at)
+      - if status.edited?
+        &nbsp;·
+        = conditional_link_to can?(:show, status), admin_account_status_path(status.account.id, status, { anchor: 'history' }), class: 'detailed-status__datetime' do
+          %span><= t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'relative-formatted'))
+      - if status.discarded?
+        &nbsp;·
+        %span.negative-hint= t('admin.statuses.deleted')
+      - if status.application
+        &nbsp;·
+        = status.application.name
+      - unless status.reblog?
+        &nbsp;·
+        %span<
+          = material_symbol(visibility_icon(status))
+          = t("statuses.visibilities.#{status.visibility}")
+      - if status.proper.sensitive?
+        &nbsp;·
+        = material_symbol('visibility_off')
+        = t('stream_entries.sensitive_content')
+      - unless status.direct_visibility?
+        &nbsp;·
+        = link_to ActivityPub::TagManager.instance.url_for(status.proper), class: 'detailed-status__link', target: 'blank', rel: 'noopener' do
+          = t('admin.statuses.view_publicly')

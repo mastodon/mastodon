@@ -98,22 +98,32 @@ br:
           notice: Skarzhet eo bet an arload.
     grouped_scopes:
       title:
+        accounts: Kontoù
+        admin/accounts: Merañ ar c'hontoù
+        admin/all: An holl berzhioù merañ
         blocks: Re stanket
         bookmarks: Sinedoù
+        conversations: Kaozeadennoù
+        crypto: Enrinegañ a-benn-da-benn
+        favourites: Embannadurioù muiañ-karet
         filters: Siloù
+        follows: Tud heuliet
         lists: Listennoù
         media: Restroù media stag
         mutes: Kuzhet
+        notifications: Kemennoù
         profile: Ho profil Mastodon
+        push: Kemennoù push
+        reports: Disklêriadennoù
         search: Klask
-        statuses: Toudoù
+        statuses: Embannadurioù
     layouts:
       admin:
         nav:
           applications: Arloadoù
           oauth2_provider: OAuth2 Pourvezer
       application:
-        title: OAuth aotre rekis
+        title: Aotre OAuth rekis
     scopes:
       admin:read: lenn holl titouroù ar servijer
       admin:read:accounts: lenn titouroù kizidik an holl kontoù
@@ -121,23 +131,26 @@ br:
       admin:write: kemmañ holl titouroù ar servijer
       admin:write:accounts: ober evezherezh war ar c'hontoù
       admin:write:reports: ober evezherezh war an danevelloù
+      crypto: implijout an enrinegañ a-benn-da-benn
       follow: kemmañ darempredoù ho kont
       push: resev ho kemennoù push
       read: lenn holl titouroù ho kont
-      read:accounts: gwelout titouroù ar c'hontoù
-      read:blocks: gwelout ar pezh a zo stanket ganeoc'h
-      read:bookmarks: gwelout ho sinedoù
-      read:filters: gwelout ho siloù
-      read:follows: gwelout ar pezh a zo heuliet ganeoc'h
-      read:lists: gwelout ho listennoù
-      read:mutes: gwelout traoù pe kontoù kuzhet ganeoc'h
+      read:accounts: gwelet titouroù ar c'hontoù
+      read:blocks: gwelet ar pezh a zo stanket ganeoc'h
+      read:bookmarks: gwelet ho sinedoù
+      read:favourites: gwelet hoc'h embannadurioù muiañ-karet
+      read:filters: gwelet ho siloù
+      read:follows: gwelet ar pezh a zo heuliet ganeoc'h
+      read:lists: gwelet ho listennoù
+      read:mutes: gwelet traoù pe kontoù kuzhet ganeoc'h
       read:notifications: gwellout ho kemennoù
-      read:reports: gwelout ho tanevelloù
-      read:statuses: gwelout an holl toudoù
+      read:reports: gwelet ho tanevelloù
+      read:statuses: gwelet an holl embannadurioù
       write: kemmañ holl titouroù ho kont
       write:accounts: kemmañ ho profil
-      write:blocks: berzañ kontoù ha domanioù
-      write:bookmarks: toudoù enrollet evel sinedoù
+      write:blocks: stankañ kontoù ha domanioù
+      write:bookmarks: enrollañ embannadurioù evel sinedoù
+      write:favourites: merkañ embannadurioù evel muiañ-karet
       write:filters: krouiñ siloù
       write:follows: heuliañ an dud
       write:lists: krouiñ listennoù
@@ -145,4 +158,4 @@ br:
       write:mutes: kuzhat tud ha kaozeadennoù
       write:notifications: skarzhañ ho kemennoù
       write:reports: danevellañ tud all
-      write:statuses: embann toudoù
+      write:statuses: embann

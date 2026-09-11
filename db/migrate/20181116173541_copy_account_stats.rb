@@ -31,7 +31,7 @@ class CopyAccountStats < ActiveRecord::Migration[5.2]
     say 'Upsert is available, importing counters using the fast method'
 
     MigrationAccount.unscoped.select('id').find_in_batches(batch_size: 5_000) do |accounts|
-      execute <<-SQL.squish
+      execute <<~SQL.squish
         INSERT INTO account_stats (account_id, statuses_count, following_count, followers_count, created_at, updated_at)
         SELECT id, statuses_count, following_count, followers_count, created_at, updated_at
         FROM accounts

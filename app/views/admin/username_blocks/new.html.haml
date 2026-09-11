@@ -1,0 +1,10 @@
+- content_for :page_title do
+  = t('admin.username_blocks.new.title')
+
+= simple_form_for [:admin, @username_block] do |form|
+  = render 'shared/error_messages', object: @username_block
+
+  = render form
+
+  .actions
+    = form.button :button, t('admin.username_blocks.new.create'), type: :submit

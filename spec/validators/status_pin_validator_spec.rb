@@ -3,55 +3,37 @@
 require 'rails_helper'
 
 RSpec.describe StatusPinValidator do
-  describe '#validate' do
-    before do
-      subject.validate(pin)
-    end
+  subject { Fabricate.build :status_pin }
 
-    let(:pin) { instance_double(StatusPin, account: account, errors: errors, status: status, account_id: pin_account_id) }
-    let(:status) { instance_double(Status, reblog?: reblog, account_id: status_account_id, visibility: visibility, direct_visibility?: visibility == 'direct') }
-    let(:account)     { instance_double(Account, status_pins: status_pins, local?: local) }
-    let(:status_pins) { instance_double(Array, count: count) }
-    let(:errors)      { instance_double(ActiveModel::Errors, add: nil) }
-    let(:pin_account_id)    { 1 }
-    let(:status_account_id) { 1 }
-    let(:visibility)  { 'public' }
-    let(:local)       { false }
-    let(:reblog)      { false }
-    let(:count)       { 0 }
+  context 'when status is a reblog' do
+    let(:status) { Fabricate.build :status, reblog: Fabricate(:status) }
 
-    context 'when pin.status.reblog?' do
-      let(:reblog) { true }
+    it { is_expected.to_not allow_value(status).for(:status).against(:base).with_message(I18n.t('statuses.pin_errors.reblog')) }
+  end
 
-      it 'calls errors.add' do
-        expect(errors).to have_received(:add).with(:base, I18n.t('statuses.pin_errors.reblog'))
-      end
-    end
+  context 'when pin account is not status account' do
+    before { subject.save }
 
-    context 'when pin.account_id != pin.status.account_id' do
-      let(:pin_account_id)    { 1 }
-      let(:status_account_id) { 2 }
+    let(:status) { Fabricate :status, account: Fabricate(:account) }
 
-      it 'calls errors.add' do
-        expect(errors).to have_received(:add).with(:base, I18n.t('statuses.pin_errors.ownership'))
-      end
-    end
+    it { is_expected.to_not allow_value(status).for(:status).against(:base).with_message(I18n.t('statuses.pin_errors.ownership')) }
+  end
 
-    context 'when pin.status.direct_visibility?' do
-      let(:visibility) { 'direct' }
+  context 'when status visibility is direct' do
+    let(:status) { Fabricate.build :status, visibility: :direct }
 
-      it 'calls errors.add' do
-        expect(errors).to have_received(:add).with(:base, I18n.t('statuses.pin_errors.direct'))
-      end
-    end
+    it { is_expected.to_not allow_value(status).for(:status).against(:base).with_message(I18n.t('statuses.pin_errors.direct')) }
+  end
 
-    context 'when pin account is local and has too many pins' do
-      let(:count) { described_class::PIN_LIMIT + 1 }
-      let(:local) { true }
+  describe 'status pin limits' do
+    before { stub_const 'StatusPinValidator::PIN_LIMIT', 2 }
 
-      it 'calls errors.add' do
-        expect(errors).to have_received(:add).with(:base, I18n.t('statuses.pin_errors.limit'))
-      end
+    context 'when account has reached the limit' do
+      before { Fabricate.times 2, :status_pin, account: }
+
+      let(:account) { subject.account }
+
+      it { is_expected.to_not allow_value(account).for(:account).against(:base).with_message(I18n.t('statuses.pin_errors.limit')) }
     end
   end
 end

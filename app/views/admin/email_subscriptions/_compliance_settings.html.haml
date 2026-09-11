@@ -1,0 +1,22 @@
+.subheading-with-action
+  .subheading-with-action__subheading
+    %h3= t('.title')
+    %p= t('.lead')
+
+.actions-list
+  .actions-list__item
+    .actions-list__item__label
+      .actions-list__item__label__label
+        = t('.privacy_policy.title')
+      .actions-list__item__label__hint
+        = t('.privacy_policy.hint')
+    .actions-list__item__action
+      = link_to t('.privacy_policy.action'), admin_settings_about_path, class: 'button button-secondary'
+  .actions-list__item
+    .actions-list__item__label
+      .actions-list__item__label__label
+        = t('.additional_footer_text.title')
+      .actions-list__item__label__hint
+        = t('.additional_footer_text.hint')
+    .actions-list__item__action
+      = link_to t('.additional_footer_text.action'), admin_email_subscriptions_additional_footer_text_path, class: 'button button-secondary'

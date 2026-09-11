@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Oauth Userinfo Endpoint' do
+RSpec.describe 'OAuth Userinfo Endpoint' do
   include RoutingHelper
 
   let(:user)     { Fabricate(:user) }
@@ -19,7 +19,7 @@ RSpec.describe 'Oauth Userinfo Endpoint' do
       expect(response.content_type).to start_with('application/json')
       expect(response.parsed_body).to include({
         iss: root_url,
-        sub: account_url(account),
+        sub: ActivityPub::TagManager.instance.uri_for(account),
         name: account.display_name,
         preferred_username: account.username,
         profile: short_account_url(account),

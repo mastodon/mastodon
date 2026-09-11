@@ -4,12 +4,12 @@ require 'rails_helper'
 
 RSpec.describe IpBlock do
   it_behaves_like 'Expireable'
+  it_behaves_like 'InetContainer'
 
   describe 'Validations' do
     subject { Fabricate.build :ip_block }
 
-    it { is_expected.to validate_presence_of(:ip) }
-    it { is_expected.to validate_presence_of(:severity) }
+    it { is_expected.to validate_presence_of(:ip, :severity) }
 
     it { is_expected.to validate_uniqueness_of(:ip) }
 
@@ -23,6 +23,22 @@ RSpec.describe IpBlock do
       result = ip_block.to_log_human_identifier
 
       expect(result).to eq('192.168.0.1/32')
+    end
+  end
+
+  describe '#to_cidr' do
+    subject { Fabricate.build(:ip_block, ip:).to_cidr }
+
+    context 'with an IP and a specified prefix' do
+      let(:ip) { '192.168.1.0/24' }
+
+      it { is_expected.to eq('192.168.1.0/24') }
+    end
+
+    context 'with an IP and a default prefix' do
+      let(:ip) { '192.168.1.0' }
+
+      it { is_expected.to eq('192.168.1.0/32') }
     end
   end
 

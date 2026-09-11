@@ -14,8 +14,8 @@ RSpec.describe 'Admin::CustomEmojis' do
       visit admin_custom_emojis_path
 
       expect(page)
-        .to have_content(I18n.t('admin.custom_emojis.title'))
-        .and have_content(custom_emoji.shortcode)
+        .to have_text(I18n.t('admin.custom_emojis.title'))
+        .and have_text(custom_emoji.shortcode)
     end
   end
 
@@ -23,12 +23,12 @@ RSpec.describe 'Admin::CustomEmojis' do
     it 'saves a new emoji record with valid attributes' do
       visit new_admin_custom_emoji_path
       expect(page)
-        .to have_content(I18n.t('admin.custom_emojis.title'))
+        .to have_text(I18n.t('admin.custom_emojis.title'))
 
       expect { submit_form }
         .to_not change(CustomEmoji, :count)
       expect(page)
-        .to have_content(/errors below/)
+        .to have_text(/errors below/)
 
       fill_in I18n.t('admin.custom_emojis.shortcode'),
               with: 'test'
@@ -53,7 +53,7 @@ RSpec.describe 'Admin::CustomEmojis' do
       it 'displays a notice about selection' do
         click_on button_for_enable
 
-        expect(page).to have_content(selection_error_text)
+        expect(page).to have_text(selection_error_text)
       end
     end
 

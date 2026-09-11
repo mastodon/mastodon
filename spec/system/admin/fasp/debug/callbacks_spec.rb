@@ -15,14 +15,14 @@ RSpec.describe 'Debug FASP Callback Management', feature: :fasp do
     it 'displays callbacks and allows to delete them' do
       visit admin_fasp_debug_callbacks_path
 
-      expect(page).to have_css('h2', text: I18n.t('admin.fasp.debug.callbacks.title'))
+      expect(page).to have_css('h1', text: I18n.t('admin.fasp.debug.callbacks.title'))
       expect(page).to have_css('td', text: 'debug prov')
       expect(page).to have_css('code', text: 'called back')
 
       expect do
         click_on I18n.t('admin.fasp.debug.callbacks.delete')
 
-        expect(page).to have_css('h2', text: I18n.t('admin.fasp.debug.callbacks.title'))
+        expect(page).to have_css('h1', text: I18n.t('admin.fasp.debug.callbacks.title'))
       end.to change(Fasp::DebugCallback, :count).by(-1)
     end
   end

@@ -6,7 +6,7 @@ class NotificationMailer < ApplicationMailer
          :routing
 
   before_action :process_params
-  with_options only: %i(mention favourite reblog) do
+  with_options only: %i(mention favourite reblog quote) do
     before_action :set_status
     after_action :thread_by_conversation!
   end
@@ -15,44 +15,36 @@ class NotificationMailer < ApplicationMailer
 
   before_deliver :verify_functional_user
 
+  around_action :set_locale
+
   default to: -> { email_address_with_name(@user.email, @me.username) }
+
+  rescue_from(ActiveRecord::RecordNotFound) { false }
 
   layout 'mailer'
 
   def mention
-    return if @status.blank?
+    mail subject: default_i18n_subject(name: @status.account.acct)
+  end
 
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @status.account.acct)
-    end
+  def quote
+    mail subject: default_i18n_subject(name: @status.account.acct)
   end
 
   def follow
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    mail subject: default_i18n_subject(name: @account.acct)
   end
 
   def favourite
-    return if @status.blank?
-
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    mail subject: default_i18n_subject(name: @account.acct)
   end
 
   def reblog
-    return if @status.blank?
-
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    mail subject: default_i18n_subject(name: @account.acct)
   end
 
   def follow_request
-    locale_for_account(@me) do
-      mail subject: default_i18n_subject(name: @account.acct)
-    end
+    mail subject: default_i18n_subject(name: @account.acct)
   end
 
   private
@@ -66,11 +58,15 @@ class NotificationMailer < ApplicationMailer
   end
 
   def set_status
-    @status = @notification.target_status
+    @status = @notification.target_status || raise(ActiveRecord::RecordNotFound)
   end
 
   def set_account
     @account = @notification.from_account
+  end
+
+  def set_locale(&block)
+    locale_for_account(@me, &block)
   end
 
   def verify_functional_user

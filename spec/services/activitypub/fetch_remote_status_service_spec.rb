@@ -11,7 +11,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
   let(:follower) { Fabricate(:account, username: 'alice') }
   let(:follow) { nil }
-  let(:response) { { body: Oj.dump(object), headers: { 'content-type': 'application/activity+json' } } }
+  let(:response) { { body: object.to_json, headers: { 'content-type': 'application/activity+json' } } }
   let(:existing_status) { nil }
 
   let(:note) do
@@ -316,6 +316,23 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
           expect(existing_status.edits).to_not be_empty
         end
       end
+
+      context 'with an implicit update to quoting policy' do
+        let(:object) do
+          note.merge({
+            'content' => existing_status.text,
+            'interactionPolicy' => {
+              'canQuote' => {
+                'automaticApproval' => ['https://www.w3.org/ns/activitystreams#Public'],
+              },
+            },
+          })
+        end
+
+        it 'updates status' do
+          expect(existing_status.reload.quote_approval_policy).to eq(InteractionPolicy::POLICY_FLAGS[:public] << 16)
+        end
+      end
     end
   end
 
@@ -352,7 +369,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       it 'creates statuses but not more than limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+        expect { subject.call(object[:id], prefetched_body: object.to_json) }
           .to change { sender.statuses.count }.by_at_least(2)
           .and change { sender.statuses.count }.by_at_most(3)
       end
@@ -402,7 +419,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       it 'creates statuses but not more than limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+        expect { subject.call(object[:id], prefetched_body: object.to_json) }
           .to change { sender.statuses.count }.by_at_least(2)
           .and change { sender.statuses.count }.by_at_most(3)
       end

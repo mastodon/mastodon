@@ -1,0 +1,6 @@
+- if %w(lurker booster pollster replier oracle).include?(report.data['archetype'])
+  = opengraph 'og:image', frontend_asset_url("images/archetypes/previews/#{report.data['archetype']}.jpg")
+  = opengraph 'og:image:type', 'image/jpeg'
+  = opengraph 'og:image:width', 1200
+  = opengraph 'og:image:height', 630
+  = opengraph 'twitter:card', 'summary_large_image'

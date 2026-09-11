@@ -20,6 +20,7 @@ export const RegenerationIndicator: React.FC = () => (
       <FormattedMessage
         id='regeneration_indicator.please_stand_by'
         defaultMessage='Please stand by.'
+        tagName='span'
       />
     </div>
   </div>

@@ -14,9 +14,16 @@ end
 
 if Rake::Task.task_defined?('assets:precompile')
   Rake::Task['assets:precompile'].enhance do
+    # Vite integration
+    Vite.tasks.precompile
+
     Rake::Task['assets:generate_static_pages'].invoke
   end
 end
 
-# We don't want vite_ruby to run yarn, we do that in a separate step
-Rake::Task['vite:install_dependencies'].clear
+if Rake::Task.task_defined?('assets:clobber')
+  Rake::Task['assets:clobber'].enhance do
+    # Vite integration
+    Vite.tasks.clobber
+  end
+end

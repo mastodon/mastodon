@@ -6,6 +6,7 @@ export const NotSignedInIndicator: React.FC = () => (
       <FormattedMessage
         id='not_signed_in_indicator.not_signed_in'
         defaultMessage='You need to login to access this resource.'
+        tagName='span'
       />
     </div>
   </div>

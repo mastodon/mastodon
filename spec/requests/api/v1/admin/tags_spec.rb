@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Tags' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:scopes)  { 'admin:read admin:write' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read admin:write'
+
   let(:tag)     { Fabricate(:tag) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
@@ -19,6 +17,7 @@ RSpec.describe 'Tags' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when there are no tags' do
       it 'returns an empty list' do
@@ -76,6 +75,7 @@ RSpec.describe 'Tags' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns http success and expected tag content' do
       subject
@@ -113,6 +113,7 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong scope', 'admin:read'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns http success and updates tag' do
       subject

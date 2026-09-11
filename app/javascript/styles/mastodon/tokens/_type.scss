@@ -1,0 +1,25 @@
+@mixin font-size {
+  --fs-3xs: 0.6875rem; // 11px
+  --fs-2xs: 0.75rem; // 12px
+  --fs-xs: 0.8125rem; // 13px
+  --fs-sm: 0.875rem; // 14px
+  --fs-md: 0.9375rem; // 15px
+  --fs-lg: 1rem; // 16px
+  --fs-xl: 1.25rem; // 20px
+  --fs-2xl: 1.375rem; // 22px
+  --fs-3xl: 1.625rem; // 26px
+}
+
+@mixin line-height {
+  --lh-tighter: 1.3;
+  --lh-tight: 1.4;
+  --lh-normal: 1.6;
+}
+
+@mixin letter-spacing {
+  --ls-tighter: -0.02em;
+  --ls-tight: -0.01em;
+  --ls-normal: 0;
+  --ls-loose: 0.01em;
+  --ls-looser: 0.02em;
+}

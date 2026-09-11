@@ -6,6 +6,7 @@ RSpec.describe AccountableConcern do
   let(:hoge_class) do
     Class.new do
       include AccountableConcern
+
       attr_reader :current_account
 
       def initialize(current_account)

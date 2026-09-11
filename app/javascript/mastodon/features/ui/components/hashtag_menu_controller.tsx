@@ -1,16 +1,13 @@
-import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
 import { useLocation } from 'react-router-dom';
 
-import Overlay from 'react-overlays/Overlay';
-import type {
-  OffsetValue,
-  UsePopperOptions,
-} from 'react-overlays/esm/usePopper';
-
 import { DropdownMenu } from 'mastodon/components/dropdown_menu';
+import { Popover } from 'mastodon/components/popover';
+import { useIdentity } from 'mastodon/identity_context';
+import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
@@ -25,9 +22,6 @@ const messages = defineMessages({
   muteHashtag: { id: 'hashtag.mute', defaultMessage: 'Mute #{hashtag}' },
 });
 
-const offset = [5, 5] as OffsetValue;
-const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
-
 const isHashtagLink = (
   element: HTMLAnchorElement | null,
 ): element is HTMLAnchorElement => {
@@ -39,39 +33,44 @@ const isHashtagLink = (
 };
 
 interface TargetParams {
-  hashtag?: string;
-  accountId?: string;
+  element: HTMLAnchorElement | null;
+  hashtag: string;
+  accountId: string;
 }
 
 export const HashtagMenuController: React.FC = () => {
   const intl = useIntl();
-  const [open, setOpen] = useState(false);
-  const [{ accountId, hashtag }, setTargetParams] = useState<TargetParams>({});
-  const targetRef = useRef<HTMLAnchorElement | null>(null);
-  const location = useLocation();
+  const { signedIn } = useIdentity();
+
+  const [target, setTarget] = useState<TargetParams | null>(null);
+  const { element = null, accountId, hashtag } = target ?? {};
+  const open = !!element;
+
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
   );
 
-  useEffect(() => {
-    setOpen(false);
-    targetRef.current = null;
-  }, [setOpen, location]);
+  const location = useLocation();
+  const [previousLocation, setPreviousLocation] = useState(location);
+  if (location !== previousLocation) {
+    setPreviousLocation(location);
+    setTarget(null);
+  }
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest('a');
+      const targetElement = (e.target as HTMLElement).closest('a');
 
       if (e.button !== 0 || e.ctrlKey || e.metaKey) {
         return;
       }
 
-      if (!isHashtagLink(target)) {
+      if (!isHashtagLink(targetElement)) {
         return;
       }
 
-      const hashtag = target.text.replace(/^#/, '');
-      const accountId = target.getAttribute('data-menu-hashtag');
+      const hashtag = targetElement.text.replace(/^#/, '');
+      const accountId = targetElement.getAttribute('data-menu-hashtag');
 
       if (!hashtag || !accountId) {
         return;
@@ -79,9 +78,7 @@ export const HashtagMenuController: React.FC = () => {
 
       e.preventDefault();
       e.stopPropagation();
-      targetRef.current = target;
-      setOpen(true);
-      setTargetParams({ hashtag, accountId });
+      setTarget({ element: targetElement, hashtag, accountId });
     };
 
     document.addEventListener('click', handleClick, { capture: true });
@@ -89,15 +86,14 @@ export const HashtagMenuController: React.FC = () => {
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  }, [setTargetParams, setOpen]);
+  }, []);
 
   const handleClose = useCallback(() => {
-    setOpen(false);
-    targetRef.current = null;
-  }, [setOpen]);
+    setTarget(null);
+  }, []);
 
-  const menu = useMemo(
-    () => [
+  const menu = useMemo(() => {
+    const arr: MenuItem[] = [
       {
         text: intl.formatMessage(messages.browseHashtag, {
           hashtag,
@@ -111,47 +107,39 @@ export const HashtagMenuController: React.FC = () => {
         }),
         to: `/@${account?.acct}/tagged/${hashtag}`,
       },
-      null,
-      {
+    ];
+
+    if (signedIn) {
+      arr.push(null, {
         text: intl.formatMessage(messages.muteHashtag, {
           hashtag,
         }),
         href: '/filters',
         dangerous: true,
-      },
-    ],
-    [intl, hashtag, account],
-  );
+      });
+    }
+
+    return arr;
+  }, [intl, hashtag, account, signedIn]);
 
   if (!open) {
     return null;
   }
 
   return (
-    <Overlay
-      show={open}
-      offset={offset}
-      placement='bottom'
-      flip
-      target={targetRef}
-      popperConfig={popperConfig}
-    >
-      {({ props, arrowProps, placement }) => (
-        <div {...props}>
-          <div className={`dropdown-animation dropdown-menu ${placement}`}>
-            <div
-              className={`dropdown-menu__arrow ${placement}`}
-              {...arrowProps}
-            />
-
-            <DropdownMenu
-              items={menu}
-              onClose={handleClose}
-              openedViaKeyboard={false}
-            />
-          </div>
+    <Popover isOpen={open} offset={5} reference={element} onClose={handleClose}>
+      {({ props, placement }) => (
+        <div
+          {...props}
+          className={`dropdown-animation dropdown-menu ${placement}`}
+        >
+          <DropdownMenu
+            items={menu}
+            onClose={handleClose}
+            openedViaKeyboard={false}
+          />
         </div>
       )}
-    </Overlay>
+    </Popover>
   );
 };

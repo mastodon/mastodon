@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'singleton'
-require 'yaml'
-
 class Themes
   include Singleton
 
@@ -16,6 +13,6 @@ class Themes
   end
 
   def names
-    ['system'] + @conf.keys
+    @conf.keys
   end
 end

@@ -54,12 +54,44 @@ RSpec.describe TagManager do
   end
 
   describe '#normalize_domain' do
-    it 'returns nil if the given parameter is nil' do
-      expect(described_class.instance.normalize_domain(nil)).to be_nil
+    subject { described_class.instance.normalize_domain(domain) }
+
+    context 'with a nil value' do
+      let(:domain) { nil }
+
+      it { is_expected.to be_nil }
     end
 
-    it 'returns normalized domain' do
-      expect(described_class.instance.normalize_domain('DoMaIn.Example.com/')).to eq 'domain.example.com'
+    context 'with a blank value' do
+      let(:domain) { '' }
+
+      it { is_expected.to be_blank }
+    end
+
+    context 'with a mixed case string' do
+      let(:domain) { 'DoMaIn.Example.com' }
+
+      it { is_expected.to eq('domain.example.com') }
+    end
+
+    context 'with a trailing slash string' do
+      let(:domain) { 'domain.example.com/' }
+
+      it { is_expected.to eq('domain.example.com') }
+    end
+
+    context 'with a space padded string' do
+      let(:domain) { '  domain.example.com  ' }
+
+      it { is_expected.to eq('domain.example.com') }
+    end
+
+    context 'with an invalid domain string' do
+      let(:domain) { '  !@#$@#$@$@#  ' }
+
+      it 'raises invalid uri error' do
+        expect { subject }.to raise_error(Addressable::URI::InvalidURIError)
+      end
     end
   end
 

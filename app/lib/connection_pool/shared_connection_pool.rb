@@ -4,7 +4,7 @@ require 'connection_pool'
 require_relative 'shared_timed_stack'
 
 class ConnectionPool::SharedConnectionPool < ConnectionPool
-  def initialize(options = {}, &block)
+  def initialize(**, &block)
     super
 
     @available = ConnectionPool::SharedTimedStack.new(@size, &block)
@@ -41,12 +41,17 @@ class ConnectionPool::SharedConnectionPool < ConnectionPool
       # ConnectionPool 2.4+ calls `checkin(force: true)` after fork.
       # When this happens, we should remove all connections from Thread.current
 
-      ::Thread.current.keys.each do |name| # rubocop:disable Style/HashEachMethods
-        next unless name.to_s.start_with?("#{@key}-")
+      connection_keys = ::Thread.current.keys.select { |key| key.to_s.start_with?("#{@key}-") && !key.to_s.start_with?("#{@key_count}-") }
+      count_keys = ::Thread.current.keys.select { |key| key.to_s.start_with?("#{@key_count}-") }
 
-        @available.push(::Thread.current[name])
-        ::Thread.current[name] = nil
+      connection_keys.each do |key|
+        @available.push(::Thread.current[key])
+        ::Thread.current[key] = nil
       end
+      count_keys.each do |key|
+        ::Thread.current[key] = nil
+      end
+
     elsif ::Thread.current[key(preferred_tag)]
       if ::Thread.current[key_count(preferred_tag)] == 1
         @available.push(::Thread.current[key(preferred_tag)])

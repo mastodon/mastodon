@@ -24,7 +24,7 @@ RSpec.describe 'Admin::Accounts' do
       it 'displays a notice about account selection' do
         click_on button_for_suspend
 
-        expect(page).to have_content(selection_error_text)
+        expect(page).to have_text(selection_error_text)
       end
     end
 

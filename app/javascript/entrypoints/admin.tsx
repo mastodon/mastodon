@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
-import Rails from '@rails/ujs';
+import { decode, ValidationError } from 'blurhash';
+import { on } from 'delegated-events';
 
 import ready from '../mastodon/ready';
 
@@ -23,10 +24,9 @@ const setAnnouncementEndsAttributes = (target: HTMLInputElement) => {
   }
 };
 
-Rails.delegate(
-  document,
-  'input[type="datetime-local"]#announcement_starts_at',
+on(
   'change',
+  'input[type="datetime-local"]#announcement_starts_at',
   ({ target }) => {
     if (target instanceof HTMLInputElement)
       setAnnouncementEndsAttributes(target);
@@ -62,15 +62,16 @@ const hideSelectAll = () => {
   if (hiddenField) hiddenField.value = '0';
 };
 
-Rails.delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
+on('change', '#batch_checkbox_all', ({ target }) => {
   if (!(target instanceof HTMLInputElement)) return;
 
   const selectAllMatchingElement = document.querySelector(
     '.batch-table__select-all',
   );
 
-  document
-    .querySelectorAll<HTMLInputElement>(batchCheckboxClassName)
+  target
+    .closest('.batch-table')
+    ?.querySelectorAll<HTMLInputElement>(batchCheckboxClassName)
     .forEach((content) => {
       content.checked = target.checked;
     });
@@ -84,7 +85,7 @@ Rails.delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
   }
 });
 
-Rails.delegate(document, '.batch-table__select-all button', 'click', () => {
+on('click', '.batch-table__select-all button', () => {
   const hiddenField = document.querySelector<HTMLInputElement>(
     '#select_all_matching',
   );
@@ -112,17 +113,20 @@ Rails.delegate(document, '.batch-table__select-all button', 'click', () => {
   }
 });
 
-Rails.delegate(document, batchCheckboxClassName, 'change', () => {
-  const checkAllElement = document.querySelector<HTMLInputElement>(
+on('change', batchCheckboxClassName, (event) => {
+  const targetTable = (event.target as HTMLElement).closest('.batch-table');
+  if (!targetTable) return;
+
+  const checkAllElement = targetTable.querySelector<HTMLInputElement>(
     'input#batch_checkbox_all',
   );
-  const selectAllMatchingElement = document.querySelector(
+  const selectAllMatchingElement = targetTable.querySelector(
     '.batch-table__select-all',
   );
 
   if (checkAllElement) {
     const allCheckboxes = Array.from(
-      document.querySelectorAll<HTMLInputElement>(batchCheckboxClassName),
+      targetTable.querySelectorAll<HTMLInputElement>(batchCheckboxClassName),
     );
     checkAllElement.checked = allCheckboxes.every((content) => content.checked);
     checkAllElement.indeterminate =
@@ -139,14 +143,9 @@ Rails.delegate(document, batchCheckboxClassName, 'change', () => {
   }
 });
 
-Rails.delegate(
-  document,
-  '.filter-subset--with-select select',
-  'change',
-  ({ target }) => {
-    if (target instanceof HTMLSelectElement) target.form?.submit();
-  },
-);
+on('change', '.filter-subset--with-select select', ({ target }) => {
+  if (target instanceof HTMLSelectElement) target.form?.submit();
+});
 
 const onDomainBlockSeverityChange = (target: HTMLSelectElement) => {
   const rejectMediaDiv = document.querySelector(
@@ -167,11 +166,43 @@ const onDomainBlockSeverityChange = (target: HTMLSelectElement) => {
   }
 };
 
-Rails.delegate(document, '#domain_block_severity', 'change', ({ target }) => {
+on('change', '#domain_block_severity', ({ target }) => {
   if (target instanceof HTMLSelectElement) onDomainBlockSeverityChange(target);
 });
 
-const onEnableBootstrapTimelineAccountsChange = (target: HTMLInputElement) => {
+const onChangeInviteUsersPermission = (target: HTMLInputElement) => {
+  const inviteBypassApprovalCheckbox = document.querySelector<HTMLInputElement>(
+    'input#user_role_permissions_as_keys_invite_bypass_approval',
+  );
+
+  if (inviteBypassApprovalCheckbox) {
+    inviteBypassApprovalCheckbox.disabled = !target.checked;
+
+    if (target.checked) {
+      inviteBypassApprovalCheckbox.parentElement?.classList.remove('disabled');
+      inviteBypassApprovalCheckbox.parentElement?.parentElement?.classList.remove(
+        'disabled',
+      );
+    } else {
+      inviteBypassApprovalCheckbox.parentElement?.classList.add('disabled');
+      inviteBypassApprovalCheckbox.parentElement?.parentElement?.classList.add(
+        'disabled',
+      );
+    }
+  }
+};
+
+on(
+  'change',
+  'input#user_role_permissions_as_keys_invite_users',
+  ({ target }) => {
+    if (target instanceof HTMLInputElement) {
+      onChangeInviteUsersPermission(target);
+    }
+  },
+);
+
+function onEnableBootstrapTimelineAccountsChange(target: HTMLInputElement) {
   const bootstrapTimelineAccountsField =
     document.querySelector<HTMLInputElement>(
       '#form_admin_settings_bootstrap_timeline_accounts',
@@ -193,12 +224,11 @@ const onEnableBootstrapTimelineAccountsChange = (target: HTMLInputElement) => {
       );
     }
   }
-};
+}
 
-Rails.delegate(
-  document,
-  '#form_admin_settings_enable_bootstrap_timeline_accounts',
+on(
   'change',
+  '#form_admin_settings_enable_bootstrap_timeline_accounts',
   ({ target }) => {
     if (target instanceof HTMLInputElement)
       onEnableBootstrapTimelineAccountsChange(target);
@@ -238,11 +268,11 @@ const onChangeRegistrationMode = (target: HTMLSelectElement) => {
     });
 };
 
-const convertUTCDateTimeToLocal = (value: string) => {
+function convertUTCDateTimeToLocal(value: string) {
   const date = new Date(value + 'Z');
   const twoChars = (x: number) => x.toString().padStart(2, '0');
   return `${date.getFullYear()}-${twoChars(date.getMonth() + 1)}-${twoChars(date.getDate())}T${twoChars(date.getHours())}:${twoChars(date.getMinutes())}`;
-};
+}
 
 function convertLocalDatetimeToUTC(value: string) {
   const date = new Date(value);
@@ -250,14 +280,9 @@ function convertLocalDatetimeToUTC(value: string) {
   return fullISO8601.slice(0, fullISO8601.indexOf('T') + 6);
 }
 
-Rails.delegate(
-  document,
-  '#form_admin_settings_registrations_mode',
-  'change',
-  ({ target }) => {
-    if (target instanceof HTMLSelectElement) onChangeRegistrationMode(target);
-  },
-);
+on('change', '#form_admin_settings_registrations_mode', ({ target }) => {
+  if (target instanceof HTMLSelectElement) onChangeRegistrationMode(target);
+});
 
 async function mountReactComponent(element: Element) {
   const componentName = element.getAttribute('data-admin-component');
@@ -267,9 +292,8 @@ async function mountReactComponent(element: Element) {
 
   const componentProps = JSON.parse(stringProps) as object;
 
-  const { default: AdminComponent } = await import(
-    '@/mastodon/containers/admin_component'
-  );
+  const { default: AdminComponent } =
+    await import('@/mastodon/containers/admin_component');
 
   const { default: Component } = (await import(
     `@/mastodon/components/admin/${componentName}.jsx`
@@ -303,8 +327,15 @@ ready(() => {
   );
   if (registrationMode) onChangeRegistrationMode(registrationMode);
 
+  const inviteUsersPermissionChecbkox =
+    document.querySelector<HTMLInputElement>(
+      'input#user_role_permissions_as_keys_invite_users',
+    );
+  if (inviteUsersPermissionChecbkox)
+    onChangeInviteUsersPermission(inviteUsersPermissionChecbkox);
+
   const checkAllElement = document.querySelector<HTMLInputElement>(
-    'input#batch_checkbox_all',
+    '#batch_checkbox_all',
   );
   if (checkAllElement) {
     const allCheckboxes = Array.from(
@@ -317,7 +348,7 @@ ready(() => {
   }
 
   document
-    .querySelector('a#add-instance-button')
+    .querySelector<HTMLAnchorElement>('a#add-instance-button')
     ?.addEventListener('click', (e) => {
       const domain = document.querySelector<HTMLInputElement>(
         'input[type="text"]#by_domain',
@@ -341,7 +372,7 @@ ready(() => {
       }
     });
 
-  Rails.delegate(document, 'form', 'submit', ({ target }) => {
+  on('submit', 'form', ({ target }) => {
     if (target instanceof HTMLFormElement)
       target
         .querySelectorAll<HTMLInputElement>('input[type="datetime-local"]')
@@ -362,6 +393,46 @@ ready(() => {
   document.querySelectorAll('[data-admin-component]').forEach((element) => {
     void mountReactComponent(element);
   });
+
+  document
+    .querySelectorAll<HTMLCanvasElement>('canvas[data-blurhash]')
+    .forEach((canvas) => {
+      const blurhash = canvas.dataset.blurhash;
+      if (blurhash) {
+        try {
+          // decode returns a Uint8ClampedArray<ArrayBufferLike> not Uint8ClampedArray<ArrayBuffer>
+          const pixels = decode(
+            blurhash,
+            32,
+            32,
+          ) as Uint8ClampedArray<ArrayBuffer>;
+          const ctx = canvas.getContext('2d');
+          const imageData = new ImageData(pixels, 32, 32);
+
+          ctx?.putImageData(imageData, 0, 0);
+        } catch (err) {
+          if (err instanceof ValidationError) {
+            // ignore blurhash validation errors
+            return;
+          }
+
+          throw err;
+        }
+      }
+    });
+
+  document
+    .querySelectorAll<HTMLDivElement>('.preview-card')
+    .forEach((previewCard) => {
+      const spoilerButton = previewCard.querySelector('.spoiler-button');
+      if (!spoilerButton) {
+        return;
+      }
+
+      spoilerButton.addEventListener('click', () => {
+        previewCard.classList.toggle('preview-card--image-visible');
+      });
+    });
 }).catch((reason: unknown) => {
   throw reason;
 });

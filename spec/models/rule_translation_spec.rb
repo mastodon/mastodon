@@ -10,8 +10,7 @@ RSpec.describe RuleTranslation do
   describe 'Validations' do
     subject { Fabricate.build :rule_translation }
 
-    it { is_expected.to validate_presence_of(:language) }
-    it { is_expected.to validate_presence_of(:text) }
+    it { is_expected.to validate_presence_of(:language, :text) }
     it { is_expected.to validate_length_of(:text).is_at_most(Rule::TEXT_SIZE_LIMIT) }
     it { is_expected.to validate_uniqueness_of(:language).scoped_to(:rule_id) }
   end
@@ -50,6 +49,24 @@ RSpec.describe RuleTranslation do
         expect(described_class.by_language_length)
           .to eq([sub_level, top_level])
       end
+    end
+  end
+
+  describe '.languages' do
+    let(:discarded_rule) { Fabricate :rule, deleted_at: 5.days.ago }
+    let(:kept_rule) { Fabricate :rule }
+
+    before do
+      Fabricate :rule_translation, rule: discarded_rule, language: 'en'
+      Fabricate :rule_translation, rule: kept_rule, language: 'es'
+      Fabricate :rule_translation, language: 'fr'
+      Fabricate :rule_translation, language: 'es'
+    end
+
+    it 'returns ordered distinct languages connected to non-discarded rules' do
+      expect(described_class.languages)
+        .to be_an(Array)
+        .and eq(%w(es fr))
     end
   end
 end

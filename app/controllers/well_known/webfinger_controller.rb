@@ -18,23 +18,7 @@ module WellKnown
     private
 
     def set_account
-      username = username_from_resource
-
-      @account = begin
-        if username == Rails.configuration.x.local_domain || username == Rails.configuration.x.web_domain
-          Account.representative
-        else
-          Account.find_local!(username)
-        end
-      end
-    end
-
-    def username_from_resource
-      resource_user    = resource_param
-      username, domain = resource_user.split('@')
-      resource_user    = "#{username}@#{Rails.configuration.x.local_domain}" if Rails.configuration.x.alternate_domains.include?(domain)
-
-      WebfingerResource.new(resource_user).username
+      @account = WebfingerResource.new(resource_param).account
     end
 
     def resource_param

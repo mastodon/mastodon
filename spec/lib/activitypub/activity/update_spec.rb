@@ -46,7 +46,7 @@ RSpec.describe ActivityPub::Activity::Update do
           type: 'Update',
           actor: sender.uri,
           object: actor_json,
-        }.with_indifferent_access
+        }.deep_stringify_keys
       end
 
       before do
@@ -55,12 +55,67 @@ RSpec.describe ActivityPub::Activity::Update do
         stub_request(:get, actor_json[:following]).to_return(status: 404)
         stub_request(:get, actor_json[:featured]).to_return(status: 404)
         stub_request(:get, actor_json[:featuredTags]).to_return(status: 404)
-
-        subject.perform
       end
 
       it 'updates profile' do
-        expect(sender.reload.display_name).to eq 'Totally modified now'
+        expect { subject.perform }
+          .to change { sender.reload.display_name }.to('Totally modified now')
+      end
+
+      context 'when the actor changes username through preferredUsername' do
+        let(:actor_json) do
+          {
+            '@context': [
+              'https://www.w3.org/ns/activitystreams',
+              'https://w3id.org/security/v1',
+              {
+                manuallyApprovesFollowers: 'as:manuallyApprovesFollowers',
+                toot: 'http://joinmastodon.org/ns#',
+                featured: { '@id': 'toot:featured', '@type': '@id' },
+                featuredTags: { '@id': 'toot:featuredTags', '@type': '@id' },
+              },
+            ],
+            id: sender.uri,
+            type: 'Person',
+            following: 'https://example.com/users/dfsdf/following',
+            followers: 'https://example.com/users/dfsdf/followers',
+            inbox: sender.inbox_url,
+            outbox: sender.outbox_url,
+            featured: 'https://example.com/users/dfsdf/featured',
+            featuredTags: 'https://example.com/users/dfsdf/tags',
+            preferredUsername: 'new_username',
+            name: 'Totally modified now',
+            publicKey: {
+              id: "#{sender.uri}#main-key",
+              owner: sender.uri,
+              publicKeyPem: sender.public_key,
+            },
+          }
+        end
+
+        let(:webfinger) do
+          {
+            subject: 'acct:new_username@example.com',
+            links: [
+              {
+                rel: 'self',
+                href: actor_json[:id],
+                type: 'application/activity+json',
+              },
+            ],
+          }
+        end
+
+        before do
+          stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:new_username@example.com')
+            .to_return_json(status: 200, body: webfinger, headers: { 'Content-Type': 'application/jrd+json' })
+        end
+
+        it 'updates the profile with the new username' do
+          expect { subject.perform }
+            .to change { sender.reload.display_name }.to('Totally modified now')
+            .and change { sender.reload.username }.to('new_username')
+        end
       end
     end
 
@@ -149,18 +204,17 @@ RSpec.describe ActivityPub::Activity::Update do
 
       shared_examples 'updates counts' do
         it 'updates the reblog count' do
-          expect(status.untrusted_reblogs_count).to eq reblogs
+          expect { subject.perform }.to change { status.reload.untrusted_reblogs_count }.to(reblogs)
         end
 
         it 'updates the favourites count' do
-          expect(status.untrusted_favourites_count).to eq favourites
+          expect { subject.perform }.to change { status.reload.untrusted_favourites_count }.to(favourites)
         end
       end
 
       context 'with an implicit update' do
         before do
           status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
-          subject.perform
         end
 
         it_behaves_like 'updates counts'
@@ -173,10 +227,162 @@ RSpec.describe ActivityPub::Activity::Update do
 
         before do
           status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
-          subject.perform
         end
 
         it_behaves_like 'updates counts'
+      end
+    end
+
+    context 'with an Article object' do
+      let(:updated) { nil }
+      let(:favourites) { 50 }
+      let(:reblogs) { 100 }
+
+      let!(:status) do
+        Fabricate(
+          :status,
+          uri: 'https://example.com/statuses/article',
+          account: sender,
+          text: "<h2>Future of the Fediverse</h2>\n\n<p>Guest article by John Mastodon</p><p>The fediverse is great reading this you will find out why!</p>"
+        )
+      end
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Update',
+          actor: sender.uri,
+          object: {
+            type: 'Article',
+            id: status.uri,
+            name: 'Future of the Fediverse',
+            summary: '<p>Guest article by Jane Mastodon</p><p>The fediverse is great reading this you will find out why!</p>',
+            content: 'Foo',
+            updated: updated,
+            likes: {
+              id: "#{status.uri}/likes",
+              type: 'Collection',
+              totalItems: favourites,
+            },
+            shares: {
+              id: "#{status.uri}/shares",
+              type: 'Collection',
+              totalItems: reblogs,
+            },
+          },
+        }.with_indifferent_access
+      end
+
+      shared_examples 'updates counts' do
+        it 'updates the reblog count' do
+          expect { subject.perform }.to change { status.reload.untrusted_reblogs_count }.to(reblogs)
+        end
+
+        it 'updates the favourites count' do
+          expect { subject.perform }.to change { status.reload.untrusted_favourites_count }.to(favourites)
+        end
+      end
+
+      context 'with an implicit update' do
+        before do
+          status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
+        end
+
+        it_behaves_like 'updates counts'
+      end
+
+      context 'with an explicit update' do
+        let(:favourites) { 150 }
+        let(:reblogs) { 200 }
+        let(:updated) { Time.now.utc.iso8601 }
+
+        before do
+          status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
+        end
+
+        it_behaves_like 'updates counts'
+
+        it 'changes the contents as expected' do
+          expect { subject.perform }
+            .to(change { status.reload.text })
+
+          expect(status.text).to start_with("<h2>Future of the Fediverse</h2>\n\n<p>Guest article by Jane Mastodon</p><p>The fediverse is great reading this you will find out why!</p>")
+        end
+      end
+    end
+
+    context 'with a `FeaturedCollection` object' do
+      let(:collection) { Fabricate(:remote_collection, account: sender, name: 'old name', discoverable: false) }
+      let(:account) { Fabricate(:account) }
+      let!(:collection_item) { Fabricate(:collection_item, account:, collection:, uri: 'https://example.com/featured_stamps/1') }
+
+      let(:featured_collection_json) do
+        {
+          '@context' => 'https://www.w3.org/ns/activitystreams',
+          'id' => collection.uri,
+          'type' => 'FeaturedCollection',
+          'attributedTo' => sender.uri,
+          'name' => 'Cool people',
+          'summary' => 'People you should follow.',
+          'totalItems' => 1,
+          'sensitive' => false,
+          'discoverable' => true,
+          'published' => '2026-03-09T15:19:25Z',
+          'updated' => Time.zone.now.iso8601,
+          'orderedItems' => [
+            {
+              'type' => 'FeaturedItem',
+              'id' => ActivityPub::TagManager.instance.uri_for(collection_item),
+              'object' => ActivityPub::TagManager.instance.uri_for(account),
+            },
+          ],
+        }
+      end
+
+      let(:json) do
+        {
+          '@context' => 'https://www.w3.org/ns/activitystreams',
+          'type' => 'Update',
+          'actor' => sender.uri,
+          'object' => featured_collection_json,
+        }
+      end
+
+      it 'updates the collection and notifies local user' do
+        expect { subject.perform }
+          .to change { collection.reload.name }.to(featured_collection_json['name'])
+          .and enqueue_sidekiq_job(LocalNotificationWorker).with(account.id, collection.id, 'Collection', 'collection_update')
+      end
+
+      context 'when the metadata does not actually change' do
+        let(:featured_collection_json) do
+          {
+            '@context' => 'https://www.w3.org/ns/activitystreams',
+            'id' => collection.uri,
+            'type' => 'FeaturedCollection',
+            'attributedTo' => sender.uri,
+            'name' => collection.name,
+            'summary' => collection.description_html,
+            'totalItems' => 1,
+            'sensitive' => false,
+            'discoverable' => true,
+            'published' => '2026-03-09T15:19:25Z',
+            'updated' => Time.zone.now.iso8601,
+            'orderedItems' => [
+              {
+                'type' => 'FeaturedItem',
+                'id' => ActivityPub::TagManager.instance.uri_for(collection_item),
+                'object' => ActivityPub::TagManager.instance.uri_for(account),
+              },
+            ],
+          }
+        end
+
+        it 'does not notify the local user' do
+          expect { subject.perform }
+            .to_not enqueue_sidekiq_job(LocalNotificationWorker)
+        end
       end
     end
   end

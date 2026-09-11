@@ -28,7 +28,7 @@
           = t('doorkeeper.authorized_applications.index.authorized_at', date: l(application.created_at.to_date))
 
         - unless application.superapp? || current_account.unavailable?
-          %div
+          .announcements-list__item__actions
             = table_link_to 'close', t('doorkeeper.authorized_applications.buttons.revoke'), oauth_authorized_application_path(application), method: :delete, data: { confirm: t('doorkeeper.authorized_applications.confirmations.revoke') }
 
       .announcements-list__item__permissions

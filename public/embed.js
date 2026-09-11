@@ -21,7 +21,9 @@
    * @param {Map} map
    */
   var generateId = function (map) {
-    var id = 0, failCount = 0, idBuffer = new Uint32Array(1);
+    var id = 0,
+      failCount = 0,
+      idBuffer = new Uint32Array(1);
 
     while (id === 0 || map.has(id)) {
       id = crypto.getRandomValues(idBuffer)[0];
@@ -44,7 +46,11 @@
     window.addEventListener('message', function (e) {
       var data = e.data || {};
 
-      if (typeof data !== 'object' || data.type !== 'setHeight' || !embeds.has(data.id)) {
+      if (
+        typeof data !== 'object' ||
+        data.type !== 'setHeight' ||
+        !embeds.has(data.id)
+      ) {
         return;
       }
 
@@ -72,7 +78,7 @@
     });
 
     // Legacy embeds
-    document.querySelectorAll('iframe.mastodon-embed').forEach(iframe => {
+    document.querySelectorAll('iframe.mastodon-embed').forEach((iframe) => {
       var id = generateId(embeds);
 
       embeds.set(id, iframe);
@@ -84,44 +90,64 @@
       iframe.style.display = 'block';
 
       iframe.onload = function () {
-        iframe.contentWindow.postMessage({
-          type: 'setHeight',
-          id: id,
-        }, '*');
+        iframe.contentWindow.postMessage(
+          {
+            type: 'setHeight',
+            id: id,
+          },
+          '*',
+        );
       };
 
       iframe.onload(); // In case the script is executing after the iframe has already loaded
     });
 
     // New generation of embeds
-    document.querySelectorAll('blockquote.mastodon-embed').forEach(container => {
-      var id = generateId(embeds);
+    document
+      .querySelectorAll('blockquote.mastodon-embed')
+      .forEach((container) => {
+        var id = generateId(embeds);
 
-      embeds.set(id, container);
+        embeds.set(id, container);
 
-      var iframe = document.createElement('iframe');
-      var embedUrl = new URL(container.getAttribute('data-embed-url'));
+        var iframe = document.createElement('iframe');
+        var embedUrl = new URL(container.getAttribute('data-embed-url'));
 
-      if (embedUrl.protocol !== 'https:' && embedUrl.protocol !== 'http:') return;
-      if (allowedPrefixes.every((allowedPrefix) => !embedUrl.toString().startsWith(allowedPrefix))) return;
+        if (embedUrl.protocol !== 'https:' && embedUrl.protocol !== 'http:')
+          return;
+        if (
+          allowedPrefixes.every(
+            (allowedPrefix) => !embedUrl.toString().startsWith(allowedPrefix),
+          )
+        )
+          return;
 
-      iframe.src = embedUrl.toString();
-      iframe.width = container.clientWidth;
-      iframe.height = 0;
-      iframe.allow = 'fullscreen';
-      iframe.sandbox = 'allow-scripts allow-same-origin allow-popups';
-      iframe.style.border = 0;
-      iframe.style.overflow = 'hidden';
-      iframe.style.display = 'block';
+        iframe.src = embedUrl.toString();
+        iframe.width = container.clientWidth;
+        iframe.height = 0;
+        iframe.allow = 'fullscreen';
+        iframe.sandbox = 'allow-scripts allow-same-origin allow-popups';
+        iframe.style.border = 0;
+        iframe.style.overflow = 'hidden';
+        iframe.style.display = 'block';
 
-      iframe.onload = function () {
-        iframe.contentWindow.postMessage({
-          type: 'setHeight',
-          id: id,
-        }, '*');
-      };
+        iframe.onload = function () {
+          iframe.contentWindow.postMessage(
+            {
+              type: 'setHeight',
+              id: id,
+            },
+            '*',
+          );
+        };
 
-      container.appendChild(iframe);
-    });
+        container.appendChild(iframe);
+      });
   });
-})((document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT' && document.currentScript.dataset.allowedPrefixes) ? document.currentScript.dataset.allowedPrefixes.split(' ') : []);
+})(
+  document.currentScript &&
+    document.currentScript.tagName.toUpperCase() === 'SCRIPT' &&
+    document.currentScript.dataset.allowedPrefixes
+    ? document.currentScript.dataset.allowedPrefixes.split(' ')
+    : [],
+);

@@ -21,7 +21,7 @@ RSpec.describe AccountConversation do
 
     it 'appends to old record when there is a match' do
       last_status  = Fabricate(:status, account: alice, visibility: :direct)
-      conversation = described_class.create!(account: alice, conversation: last_status.conversation, participant_account_ids: [bob.id], status_ids: [last_status.id])
+      conversation = described_class.create!(account: alice, conversation_id: last_status.conversation_id, participant_account_ids: [bob.id], status_ids: [last_status.id])
 
       status = Fabricate(:status, account: bob, visibility: :direct, thread: last_status)
       status.mentions.create(account: alice)
@@ -36,7 +36,7 @@ RSpec.describe AccountConversation do
 
     it 'creates new record when new participants are added' do
       last_status  = Fabricate(:status, account: alice, visibility: :direct)
-      conversation = described_class.create!(account: alice, conversation: last_status.conversation, participant_account_ids: [bob.id], status_ids: [last_status.id])
+      conversation = described_class.create!(account: alice, conversation_id: last_status.conversation_id, participant_account_ids: [bob.id], status_ids: [last_status.id])
 
       status = Fabricate(:status, account: bob, visibility: :direct, thread: last_status)
       status.mentions.create(account: alice)
@@ -55,7 +55,7 @@ RSpec.describe AccountConversation do
     it 'updates last status to a previous value' do
       last_status  = Fabricate(:status, account: alice, visibility: :direct)
       status       = Fabricate(:status, account: alice, visibility: :direct)
-      conversation = described_class.create!(account: alice, conversation: last_status.conversation, participant_account_ids: [bob.id], status_ids: [status.id, last_status.id])
+      conversation = described_class.create!(account: alice, conversation_id: last_status.conversation_id, participant_account_ids: [bob.id], status_ids: [status.id, last_status.id])
       last_status.mentions.create(account: bob)
       last_status.destroy!
       conversation.reload
@@ -65,7 +65,7 @@ RSpec.describe AccountConversation do
 
     it 'removes the record if no other statuses are referenced' do
       last_status  = Fabricate(:status, account: alice, visibility: :direct)
-      conversation = described_class.create!(account: alice, conversation: last_status.conversation, participant_account_ids: [bob.id], status_ids: [last_status.id])
+      conversation = described_class.create!(account: alice, conversation_id: last_status.conversation_id, participant_account_ids: [bob.id], status_ids: [last_status.id])
       last_status.mentions.create(account: bob)
       last_status.destroy!
       expect(described_class.where(id: conversation.id).count).to eq 0

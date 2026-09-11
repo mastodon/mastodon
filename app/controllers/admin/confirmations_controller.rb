@@ -19,15 +19,13 @@ module Admin
 
       log_action :resend, @user
 
-      flash[:notice] = I18n.t('admin.accounts.resend_confirmation.success')
-      redirect_to admin_accounts_path
+      redirect_to admin_accounts_path, notice: t('admin.accounts.resend_confirmation.success')
     end
 
     private
 
     def redirect_confirmed_user
-      flash[:error] = I18n.t('admin.accounts.resend_confirmation.already_confirmed')
-      redirect_to admin_accounts_path
+      redirect_to admin_accounts_path, flash: { error: t('admin.accounts.resend_confirmation.already_confirmed') }
     end
 
     def user_confirmed?

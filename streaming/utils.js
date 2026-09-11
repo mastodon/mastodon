@@ -13,11 +13,15 @@ const FALSE_VALUES = [
 ];
 
 /**
- * @param {any} value
+ * @typedef {typeof FALSE_VALUES[number]} FalseValue
+ */
+
+/**
+ * @param {unknown} value
  * @returns {boolean}
  */
 export function isTruthy(value) {
-  return value && !FALSE_VALUES.includes(value);
+  return !!value && !FALSE_VALUES.includes(/** @type {FalseValue} */ (value));
 }
 
 /**
@@ -26,15 +30,13 @@ export function isTruthy(value) {
  */
 const NON_ASCII_CHARS        = 'ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž';
 const EQUIVALENT_ASCII_CHARS = 'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz';
-
+const FOLDTOASCII_REGEX = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
 /**
  * @param {string} str
  * @returns {string}
  */
 export function foldToASCII(str) {
-  const regex = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
-
-  return str.replace(regex, function(match) {
+  return str.replace(FOLDTOASCII_REGEX, function(match) {
     const index = NON_ASCII_CHARS.indexOf(match);
     return EQUIVALENT_ASCII_CHARS[index];
   });

@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Accounts' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:scopes)  { 'admin:read:accounts admin:write:accounts' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read:accounts admin:write:accounts'
 
   describe 'GET /api/v1/admin/accounts' do
     subject do
@@ -34,6 +30,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts admin:write admin:write:accounts'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when requesting active local staff accounts' do
       let(:expected_results) { [admin_account] }
@@ -111,6 +108,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts admin:write admin:write:accounts'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns the requested account successfully', :aggregate_failures do
       subject
@@ -148,6 +146,7 @@ RSpec.describe 'Accounts' do
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for disabled user'
 
       it 'approves the user successfully', :aggregate_failures do
         subject
@@ -206,6 +205,7 @@ RSpec.describe 'Accounts' do
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for disabled user'
 
       it 'removes the user successfully and logs action', :aggregate_failures do
         subject
@@ -259,6 +259,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'enables the user successfully', :aggregate_failures do
       subject
@@ -294,6 +295,7 @@ RSpec.describe 'Accounts' do
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for disabled user'
 
       it 'unsuspends the account successfully', :aggregate_failures do
         subject
@@ -339,6 +341,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'unsensitizes the account successfully', :aggregate_failures do
       subject
@@ -373,6 +376,7 @@ RSpec.describe 'Accounts' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'unsilences the account successfully', :aggregate_failures do
       subject
@@ -408,6 +412,7 @@ RSpec.describe 'Accounts' do
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for disabled user'
 
       it 'deletes the account successfully', :aggregate_failures do
         allow(Admin::AccountDeletionWorker).to receive(:perform_async)

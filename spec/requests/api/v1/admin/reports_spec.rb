@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Reports' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:scopes)  { 'admin:read:reports admin:write:reports' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read:reports admin:write:reports'
 
   describe 'GET /api/v1/admin/reports' do
     subject do
@@ -18,6 +14,7 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when there are no reports' do
       it 'returns an empty list' do
@@ -82,6 +79,17 @@ RSpec.describe 'Reports' do
         end
       end
 
+      context 'with both resolved and unresolved params' do
+        let(:params) { { resolved: true, unresolved: true } }
+        let(:scope)  { Report.all }
+
+        it 'returns all reports' do
+          subject
+
+          expect(response.parsed_body).to match_array(expected_response)
+        end
+      end
+
       context 'with account_id param' do
         let(:params) { { account_id: reporter.id } }
         let(:scope)  { Report.unresolved.where(account: reporter) }
@@ -125,6 +133,7 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns the requested report content', :aggregate_failures do
       subject
@@ -192,6 +201,7 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'marks report as resolved', :aggregate_failures do
       expect { subject }
@@ -212,6 +222,7 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'marks report as unresolved', :aggregate_failures do
       expect { subject }
@@ -232,6 +243,7 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'assigns report to the requesting user', :aggregate_failures do
       expect { subject }
@@ -252,6 +264,7 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for disabled user'
 
     it 'unassigns report from assignee', :aggregate_failures do
       expect { subject }

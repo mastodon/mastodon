@@ -26,6 +26,7 @@ RSpec.describe DeleteAccountService do
     let!(:follow_notification) { Fabricate(:notification, account: local_follower, activity: active_relationship, type: :follow) }
 
     let!(:account_note) { Fabricate(:account_note, account: account) }
+    let!(:generated_annual_report) { Fabricate(:generated_annual_report, account: account) }
 
     it 'deletes associated owned and target records and target notifications' do
       subject
@@ -47,6 +48,8 @@ RSpec.describe DeleteAccountService do
       expect { poll.reload }.to raise_error(ActiveRecord::RecordNotFound)
       expect { poll_vote.reload }.to raise_error(ActiveRecord::RecordNotFound)
       expect { account_note.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { collection.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { generated_annual_report.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     def expect_deletion_of_associated_target_records
@@ -62,6 +65,12 @@ RSpec.describe DeleteAccountService do
     end
   end
 
+  describe 'ASSOCIATIONS_WITHOUT_SIDE_EFFECTS' do
+    it 'is a subset of ASSOCIATIONS_ON_PURGE' do
+      expect(described_class::ASSOCIATIONS_WITHOUT_SIDE_EFFECTS - described_class::ASSOCIATIONS_ON_PURGE).to eq []
+    end
+  end
+
   describe '#call on local account', :inline_jobs do
     before do
       stub_request(:post, remote_alice.inbox_url).to_return(status: 201)
@@ -74,6 +83,7 @@ RSpec.describe DeleteAccountService do
     it_behaves_like 'common behavior' do
       let(:account) { Fabricate(:account) }
       let(:local_follower) { Fabricate(:account) }
+      let!(:collection) { Fabricate(:collection, account:) } # rubocop:disable RSpec/LetSetup
 
       it 'sends a delete actor activity to all known inboxes' do
         subject
@@ -91,6 +101,8 @@ RSpec.describe DeleteAccountService do
     it_behaves_like 'common behavior' do
       let(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
       let(:local_follower) { Fabricate(:account) }
+
+      let!(:collection) { Fabricate(:remote_collection, account:) } # rubocop:disable RSpec/LetSetup
 
       it 'sends expected activities to followed and follower inboxes' do
         subject

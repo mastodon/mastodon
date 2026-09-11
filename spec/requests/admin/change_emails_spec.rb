@@ -14,5 +14,17 @@ RSpec.describe 'Admin Account Change Email' do
       expect(response)
         .to have_http_status(400)
     end
+
+    context 'when email is not changed' do
+      subject { put admin_account_change_email_path(user.account_id, user: { unconfirmed_email: 'original@host.example' }) }
+
+      let(:user) { Fabricate :user, email: 'original@host.example' }
+
+      it 'does not updated the user record' do
+        expect { expect { subject }.to_not send_email }
+          .to not_change { user.reload.unconfirmed_email }
+          .and(not_change { user.reload.updated_at })
+      end
+    end
   end
 end

@@ -5,6 +5,7 @@ module Admin
     before_action :set_tag, except: [:index]
 
     PER_PAGE = 20
+    PERIOD_DAYS = 6.days
 
     def index
       authorize :tag, :index?
@@ -15,16 +16,19 @@ module Admin
     def show
       authorize @tag, :show?
 
-      @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+      @time_period = report_range
+      @action_logs = Admin::ActionLogFilter.new(target_tag: @tag.formatted_name).results.limit(5)
     end
 
     def update
       authorize @tag, :update?
 
       if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
+        log_action_from_change if @tag.saved_changes?
+
         redirect_to admin_tag_path(@tag.id), notice: I18n.t('admin.tags.updated_msg')
       else
-        @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+        @time_period = report_range
 
         render :show
       end
@@ -32,8 +36,19 @@ module Admin
 
     private
 
+    def log_action_from_change
+      action_log = current_account.action_logs.new(action: 'update', target: @tag)
+      action_log.recorded_changes = @tag.saved_changes.slice('usable', 'trendable', 'listable').transform_values(&:last)
+      action_log.recorded_changes_format = 'tags_format_1.0'
+      action_log.save
+    end
+
     def set_tag
       @tag = Tag.find(params[:id])
+    end
+
+    def report_range
+      (PERIOD_DAYS.ago.to_date..Time.now.utc.to_date)
     end
 
     def tag_params

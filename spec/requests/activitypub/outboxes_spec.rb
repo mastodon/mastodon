@@ -61,6 +61,33 @@ RSpec.describe 'ActivityPub Outboxes' do
               .to have_http_status(403)
           end
         end
+
+        context 'when account is permanently deleted' do
+          before do
+            account.mark_deleted!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            subject
+
+            expect(response)
+              .to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            account.mark_deleted!
+          end
+
+          it 'returns http forbidden' do
+            subject
+
+            expect(response)
+              .to have_http_status(403)
+          end
+        end
       end
 
       context 'with page requested' do
@@ -81,8 +108,8 @@ RSpec.describe 'ActivityPub Outboxes' do
           expect(response.parsed_body)
             .to include(
               orderedItems: be_an(Array)
-              .and(have_attributes(size: 2))
-              .and(all(satisfy { |item| targets_public_collection?(item) }))
+                .and(have_attributes(size: 2))
+                .and(all(satisfy { |item| targets_public_collection?(item) }))
             )
         end
 
@@ -102,6 +129,33 @@ RSpec.describe 'ActivityPub Outboxes' do
 
         context 'when account is temporarily suspended' do
           before { account.suspend! }
+
+          it 'returns http forbidden' do
+            subject
+
+            expect(response)
+              .to have_http_status(403)
+          end
+        end
+
+        context 'when account is permanently deleted' do
+          before do
+            account.mark_deleted!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            subject
+
+            expect(response)
+              .to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            account.mark_deleted!
+          end
 
           it 'returns http forbidden' do
             subject
@@ -133,8 +187,8 @@ RSpec.describe 'ActivityPub Outboxes' do
           expect(response.parsed_body)
             .to include(
               orderedItems: be_an(Array)
-              .and(have_attributes(size: 2))
-              .and(all(satisfy { |item| targets_public_collection?(item) }))
+                .and(have_attributes(size: 2))
+                .and(all(satisfy { |item| targets_public_collection?(item) }))
             )
         end
       end
@@ -155,8 +209,8 @@ RSpec.describe 'ActivityPub Outboxes' do
           expect(response.parsed_body)
             .to include(
               orderedItems: be_an(Array)
-              .and(have_attributes(size: 3))
-              .and(all(satisfy { |item| targets_public_collection?(item) || targets_followers_collection?(item, account) }))
+                .and(have_attributes(size: 3))
+                .and(all(satisfy { |item| targets_public_collection?(item) || targets_followers_collection?(item, account) }))
             )
         end
       end
@@ -215,7 +269,7 @@ RSpec.describe 'ActivityPub Outboxes' do
 
   def targets_followers_collection?(item, account)
     item[:to].include?(
-      account_followers_url(account, ActionMailer::Base.default_url_options)
+      ActivityPub::TagManager.instance.followers_uri_for(account)
     )
   end
 end

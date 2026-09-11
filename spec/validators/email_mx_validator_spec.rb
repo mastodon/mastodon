@@ -3,89 +3,105 @@
 require 'rails_helper'
 
 RSpec.describe EmailMxValidator do
-  describe '#validate' do
-    let(:user) { instance_double(User, email: 'foo@example.com', sign_up_ip: '1.2.3.4', errors: instance_double(ActiveModel::Errors, add: nil)) }
+  subject { record_class.new }
+
+  context 'with no options' do
+    let(:record_class) do
+      Class.new do
+        include ActiveModel::Validations
+
+        def self.name = 'Record'
+
+        attr_accessor :email
+
+        validates :email, email_mx: true
+      end
+    end
+
+    let(:user) { Fabricate.build :user, email: }
+    let(:email) { 'foo@example.com' }
     let(:resolv_dns_double) { instance_double(Resolv::DNS) }
 
     context 'with an e-mail domain that is explicitly allowed' do
-      around do |block|
-        tmp = Rails.configuration.x.email_domains_allowlist
+      around do |example|
+        original = Rails.configuration.x.email_domains_allowlist
         Rails.configuration.x.email_domains_allowlist = 'example.com'
-        block.call
-        Rails.configuration.x.email_domains_allowlist = tmp
+        example.run
+        Rails.configuration.x.email_domains_allowlist = original
       end
 
-      it 'does not add errors if there are no DNS records' do
-        configure_resolver('example.com')
+      context 'when there are not DNS records' do
+        before { configure_resolver('example.com') }
 
-        subject.validate(user)
-        expect(user.errors).to_not have_received(:add)
+        it { is_expected.to allow_value(email).for(:email) }
       end
     end
 
-    it 'adds no error if there are DNS records for the e-mail domain' do
-      configure_resolver('example.com', a: resolv_double_a('192.0.2.42'))
+    context 'when there are DNS records for the domain' do
+      before { configure_resolver('example.com', a: resolv_double_a('192.0.2.42')) }
 
-      subject.validate(user)
-      expect(user.errors).to_not have_received(:add)
+      it { is_expected.to allow_value(email).for(:email) }
     end
 
-    it 'adds an error if the TagManager fails to normalize domain' do
-      double = instance_double(TagManager)
-      allow(TagManager).to receive(:instance).and_return(double)
-      allow(double).to receive(:normalize_domain).with('example.com').and_raise(Addressable::URI::InvalidURIError)
+    context 'when the TagManager fails to normalize the domain' do
+      before do
+        allow(TagManager).to receive(:instance).and_return(tag_manage_double)
+        allow(tag_manage_double).to receive(:normalize_domain).with('example.com').and_raise(Addressable::URI::InvalidURIError)
+      end
 
-      user = instance_double(User, email: 'foo@example.com', errors: instance_double(ActiveModel::Errors, add: nil))
-      subject.validate(user)
-      expect(user.errors).to have_received(:add)
+      let(:tag_manage_double) { instance_double(TagManager) }
+
+      it { is_expected.to_not allow_value(email).for(:email) }
     end
 
-    it 'adds an error if the domain email portion is blank' do
-      user = instance_double(User, email: 'foo@', errors: instance_double(ActiveModel::Errors, add: nil))
-      subject.validate(user)
-      expect(user.errors).to have_received(:add)
+    context 'when the email portion is blank' do
+      let(:email) { 'foo@' }
+
+      it { is_expected.to_not allow_value(email).for(:email) }
     end
 
-    it 'adds an error if the email domain name contains empty labels' do
-      configure_resolver('example..com', a: resolv_double_a('192.0.2.42'))
+    context 'when the email domain contains empty labels' do
+      let(:email) { 'foo@example..com' }
 
-      user = instance_double(User, email: 'foo@example..com', sign_up_ip: '1.2.3.4', errors: instance_double(ActiveModel::Errors, add: nil))
-      subject.validate(user)
-      expect(user.errors).to have_received(:add)
+      before { configure_resolver('example..com', a: resolv_double_a('192.0.2.42')) }
+
+      it { is_expected.to_not allow_value(email).for(:email) }
     end
 
-    it 'adds an error if there are no DNS records for the e-mail domain' do
-      configure_resolver('example.com')
+    context 'when there are no DNS records for the email domain' do
+      before { configure_resolver('example.com') }
 
-      subject.validate(user)
-      expect(user.errors).to have_received(:add)
+      it { is_expected.to_not allow_value(email).for(:email) }
     end
 
-    it 'adds an error if a MX record does not lead to an IP' do
-      configure_resolver('example.com', mx: resolv_double_mx('mail.example.com'))
-      configure_resolver('mail.example.com')
+    context 'when MX record does not lead to an IP' do
+      before do
+        configure_resolver('example.com', mx: resolv_double_mx('mail.example.com'))
+        configure_resolver('mail.example.com')
+      end
 
-      subject.validate(user)
-      expect(user.errors).to have_received(:add)
+      it { is_expected.to_not allow_value(email).for(:email) }
     end
 
-    it 'adds an error if the MX record has an email domain block' do
-      EmailDomainBlock.create!(domain: 'mail.example.com')
+    context 'when the MX record has an email domain block' do
+      before do
+        Fabricate :email_domain_block, domain: 'mail.example.com'
+        configure_resolver(
+          'example.com',
+          mx: resolv_double_mx('mail.example.com')
+        )
+        configure_resolver(
+          'mail.example.com',
+          a: instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5'),
+          aaaa: instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2')
+        )
+      end
 
-      configure_resolver(
-        'example.com',
-        mx: resolv_double_mx('mail.example.com')
-      )
-      configure_resolver(
-        'mail.example.com',
-        a: instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5'),
-        aaaa: instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2')
-      )
-
-      subject.validate(user)
-      expect(user.errors).to have_received(:add)
+      it { is_expected.to_not allow_value(email).for(:email) }
     end
   end
+
+  private
 
   def configure_resolver(domain, options = {})
     allow(resolv_dns_double)

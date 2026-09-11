@@ -1,9 +1,12 @@
 - content_for :page_title do
   = t('settings.two_factor_authentication')
 
+- if current_user.role.require_2fa?
+  .flash-message= t('two_factor_authentication.role_requirement', domain: site_hostname)
+
 .simple_form
   %p.hint= t('otp_authentication.description_html')
 
   %hr.spacer/
 
-  = link_to t('otp_authentication.setup'), settings_otp_authentication_path, data: { method: :post }, class: 'button button--block'
+  = link_to t('otp_authentication.setup'), settings_otp_authentication_path(params.permit(:oauth)), data: { method: :post }, class: 'button button--block'

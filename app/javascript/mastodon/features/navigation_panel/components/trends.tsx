@@ -37,21 +37,21 @@ export const Trends: React.FC = () => {
   }
 
   return (
-    <div className='navigation-panel__portal'>
+    <aside className='navigation-panel__portal'>
       <div className='getting-started__trends'>
-        <h4>
+        <h2 className='getting-started__trends-heading'>
           <Link to={'/explore/tags'}>
             <FormattedMessage
               id='trends.trending_now'
               defaultMessage='Trending now'
             />
           </Link>
-        </h4>
+        </h2>
 
         {trends.take(4).map((hashtag) => (
           <Hashtag key={hashtag.get('name') as string} hashtag={hashtag} />
         ))}
       </div>
-    </div>
+    </aside>
   );
 };

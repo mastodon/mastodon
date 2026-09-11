@@ -29,15 +29,12 @@ class Web::PushSubscription < ApplicationRecord
   validates_with WebPushKeyValidator
 
   delegate :locale, to: :user
+  delegate :token, to: :access_token, prefix: :associated_access
 
   generates_token_for :unsubscribe, expires_in: Web::PushNotificationWorker::TTL
 
   def pushable?(notification)
     policy_allows_notification?(notification) && alert_enabled_for_notification_type?(notification)
-  end
-
-  def associated_access_token
-    access_token.token
   end
 
   class << self

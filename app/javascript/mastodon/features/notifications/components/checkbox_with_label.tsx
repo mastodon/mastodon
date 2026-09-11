@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { useCallback } from 'react';
 
-import Toggle from 'react-toggle';
+import { Toggle } from '@/mastodon/components/form_fields/toggle_field';
 
 interface Props {
   checked: boolean;

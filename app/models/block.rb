@@ -5,11 +5,11 @@
 # Table name: blocks
 #
 #  id                :bigint(8)        not null, primary key
+#  uri               :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  account_id        :bigint(8)        not null
 #  target_account_id :bigint(8)        not null
-#  uri               :string
 #
 
 class Block < ApplicationRecord
@@ -25,7 +25,7 @@ class Block < ApplicationRecord
     false # Force uri_for to use uri attribute
   end
 
-  before_validation :set_uri, only: :create
+  before_validation :set_uri, on: :create
   after_commit :invalidate_blocking_cache
   after_commit :invalidate_follow_recommendations_cache
 

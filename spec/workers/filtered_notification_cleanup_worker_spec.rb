@@ -20,5 +20,20 @@ RSpec.describe FilteredNotificationCleanupWorker do
         .to change { recipient.notifications.where(from_account: sender).count }.from(2).to(0)
         .and(not_change { recipient.notifications.where(from_account: bystander).count })
     end
+
+    context 'when given an array of IDs as parameter' do
+      let(:other_sender) { Fabricate(:account) }
+
+      before do
+        Fabricate(:notification, account: recipient, activity: Fabricate(:favourite, account: other_sender), filtered: true)
+      end
+
+      it 'deletes all filtered notifications to the account' do
+        expect { described_class.new.perform(recipient.id, [sender.id, other_sender.id]) }
+          .to change { recipient.notifications.where(from_account: sender).count }.from(2).to(0)
+          .and change { recipient.notifications.where(from_account: other_sender).count }.from(1).to(0)
+          .and(not_change { recipient.notifications.where(from_account: bystander).count })
+      end
+    end
   end
 end

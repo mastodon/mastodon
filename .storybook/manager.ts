@@ -1,7 +1,11 @@
 import { addons } from 'storybook/manager-api';
-
-import theme from './storybook-theme';
+import { themes } from 'storybook/theming';
 
 addons.setConfig({
-  theme,
+  theme: {
+    ...themes.normal,
+    brandTitle: 'Mastodon Storybook',
+    brandImage: 'logo.svg',
+    colorSecondary: '#6364FF',
+  },
 });

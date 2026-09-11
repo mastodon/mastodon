@@ -25,12 +25,23 @@ RSpec.describe ActivityPub::DeliveryWorker do
           .to have_been_made.once
       end
 
+      context 'when using a numeric ID based scheme' do
+        let(:sender) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+        it 'performs a request to synchronize collection' do
+          subject.perform(payload, sender.id, url, { synchronize_followers: true })
+
+          expect(request_to_url)
+            .to have_been_made.once
+        end
+      end
+
       def request_to_url
         a_request(:post, url)
           .with(
             headers: {
               'Collection-Synchronization' => <<~VALUES.squish,
-                collectionId="#{account_followers_url(sender)}", digest="somehash", url="#{account_followers_synchronization_url(sender)}"
+                collectionId="#{ActivityPub::TagManager.instance.followers_uri_for(sender)}", digest="somehash", url="#{account_followers_synchronization_url(sender)}"
               VALUES
             }
           )

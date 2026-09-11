@@ -33,6 +33,33 @@ RSpec.describe 'Statuses' do
         end
       end
 
+      context 'when account is permanently deleted' do
+        before do
+          account.mark_deleted!
+          account.deletion_request.destroy
+        end
+
+        it 'returns http gone' do
+          get "/@#{account.username}/#{status.id}"
+
+          expect(response)
+            .to have_http_status(410)
+        end
+      end
+
+      context 'when account is temporarily deleted' do
+        before do
+          account.mark_deleted!
+        end
+
+        it 'returns http forbidden' do
+          get "/@#{account.username}/#{status.id}"
+
+          expect(response)
+            .to have_http_status(403)
+        end
+      end
+
       context 'when status is a reblog' do
         let(:original_account) { Fabricate(:account, domain: 'example.com') }
         let(:original_status) { Fabricate(:status, account: original_account, url: 'https://example.com/123') }
@@ -344,6 +371,30 @@ RSpec.describe 'Statuses' do
         end
 
         context 'with JSON' do
+          let(:format) { 'json' }
+
+          it 'renders ActivityPub Note object successfully', :aggregate_failures do
+            subject
+
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+            expect(response.headers).to include(
+              'Content-Type' => include('application/activity+json'),
+              'Link' => include('activity+json')
+            )
+            expect(response.parsed_body)
+              .to include(content: include(status.text))
+          end
+        end
+
+        context 'with JSON and querying the new paths' do
+          subject do
+            get ap_account_status_path(account_id: status.account_id, id: status.id),
+                headers: { 'Accept' => 'application/activity+json' },
+                sign_with: remote_account
+          end
+
           let(:format) { 'json' }
 
           it 'renders ActivityPub Note object successfully', :aggregate_failures do

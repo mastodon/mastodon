@@ -9,7 +9,7 @@ export const SearchSection: React.FC<{
     <div className='search-results__section__header'>
       <h3>{title}</h3>
       {onClickMore && (
-        <button onClick={onClickMore}>
+        <button onClick={onClickMore} type='button'>
           <FormattedMessage
             id='search_results.see_all'
             defaultMessage='See all'

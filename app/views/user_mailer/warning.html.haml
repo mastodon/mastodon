@@ -35,11 +35,11 @@
               %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                 %tr
                   %td.email-border-top
-                    - @statuses.each_with_index do |status, i|
+                    - @statuses.each do |status|
                       %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                         %tr
                           %td.email-border-bottom.email-padding-24
-                            = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true, time_zone: @resource.time_zone.presence
+                            = render 'notification_mailer/status', status: status, time_zone: @resource.time_zone.presence
 
             %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr

@@ -1,0 +1,18 @@
+.item {
+  touch-action: manipulation;
+}
+
+.handle {
+  cursor: grab;
+}
+
+.active {
+  cursor: grabbing;
+}
+
+.defaultHandle {
+  appearance: none;
+  border: none;
+  background: none;
+  vertical-align: middle;
+}

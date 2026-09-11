@@ -8,8 +8,7 @@ class Settings::SessionsController < Settings::BaseController
 
   def destroy
     @session.destroy!
-    flash[:notice] = I18n.t('sessions.revoke_success')
-    redirect_to edit_user_registration_path
+    redirect_to edit_user_registration_path, notice: t('sessions.revoke_success')
   end
 
   private

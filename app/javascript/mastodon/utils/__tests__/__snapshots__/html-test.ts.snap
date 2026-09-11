@@ -1,0 +1,72 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`html > htmlStringToComponents > copies attributes to props 1`] = `
+[
+  <a
+    href="https://example.com"
+    rel="nofollow"
+    target="_blank"
+  >
+    link
+  </a>,
+]
+`;
+
+exports[`html > htmlStringToComponents > handles nested elements 1`] = `
+[
+  <p>
+    lorem 
+    <strong>
+      ipsum
+    </strong>
+  </p>,
+]
+`;
+
+exports[`html > htmlStringToComponents > ignores empty text nodes 1`] = `
+[
+  <p>
+       
+    <span>
+      lorem     ipsum
+    </span>
+       
+  </p>,
+]
+`;
+
+exports[`html > htmlStringToComponents > respects allowedTags option 1`] = `
+[
+  <p>
+    lorem 
+     
+    <em>
+      dolor
+    </em>
+  </p>,
+]
+`;
+
+exports[`html > htmlStringToComponents > respects maxDepth option 1`] = `
+[
+  <p>
+    <span />
+  </p>,
+]
+`;
+
+exports[`html > htmlStringToComponents > returns converted nodes from string 1`] = `
+[
+  <p>
+    lorem ipsum
+  </p>,
+]
+`;
+
+exports[`html > htmlStringToComponents > uses default parsing if onElement returns undefined 1`] = `
+[
+  <p>
+    lorem ipsum
+  </p>,
+]
+`;

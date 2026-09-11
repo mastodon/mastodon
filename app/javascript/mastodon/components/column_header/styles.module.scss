@@ -1,0 +1,96 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables';
+
+.root {
+  // Make bottom half of column header transparent to make the
+  // overlay gradient on the `.layout` class work
+  --column-header-gradient-start: calc(100% - var(--space-sm));
+
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-blend) var(--column-header-gradient-start),
+    transparent var(--column-header-gradient-start)
+  );
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-top: 0;
+
+  @media (width >= variables.$mobile-menu-breakpoint) {
+    border-top: 10px solid var(--color-bg-blend);
+  }
+
+  // Fix bg color for legacy column headers.
+  // Remove when new column headers are in.
+  & :global(.column-header) {
+    background: var(--color-bg-primary);
+  }
+}
+
+.layout {
+  position: relative;
+  display: grid;
+
+  // Ensure title is centered regardless of side-content
+  grid-template-columns:
+    minmax(min-content, 1fr)
+    minmax(0, auto)
+    minmax(min-content, 1fr);
+  align-items: center;
+  min-height: 40px;
+  padding: var(--space-sm);
+  text-align: center;
+  color: var(--color-text-primary);
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-primary) var(--column-header-gradient-start, 55%),
+    transparent
+  );
+
+  @media (width >= variables.$mobile-menu-breakpoint) {
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+  }
+
+  &[data-has-unread='true']::after {
+    content: '';
+    grid-row: 1;
+    grid-column: 2;
+    width: var(--space-xs);
+    height: var(--space-xs);
+    background-color: var(--color-text-brand);
+    border-radius: var(--radius-round);
+    justify-self: center;
+    align-self: end;
+  }
+}
+
+.title {
+  @include mixins.type-heading-sm;
+
+  grid-area: 1 / 2;
+  white-space: nowrap;
+  min-width: 0;
+
+  > button {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    border: none;
+    font: inherit;
+    background: transparent;
+  }
+}
+
+.leftButton {
+  grid-area: 1 / 1;
+  justify-self: start;
+}
+
+.rightButtons {
+  grid-area: 1 / 3;
+  display: flex;
+  align-items: center;
+  justify-self: end;
+}

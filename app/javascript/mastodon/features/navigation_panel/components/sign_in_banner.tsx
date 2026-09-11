@@ -20,10 +20,7 @@ export const SignInBanner: React.FC = () => {
   let signupButton: React.ReactNode;
 
   const signupUrl = useAppSelector(
-    (state) =>
-      (state.server.getIn(['server', 'registrations', 'url'], null) as
-        | string
-        | null) ?? '/auth/sign_up',
+    (state) => state.server.server.item?.registrations.url ?? '/auth/sign_up',
   );
 
   if (sso_redirect) {
@@ -46,7 +43,7 @@ export const SignInBanner: React.FC = () => {
         <a
           href={sso_redirect}
           data-method='post'
-          className='button button--block button-tertiary'
+          className='button button--block button-secondary'
         >
           <FormattedMessage
             id='sign_in_banner.sso_redirect'
@@ -71,6 +68,7 @@ export const SignInBanner: React.FC = () => {
       <button
         className='button button--block'
         onClick={openClosedRegistrationsModal}
+        type='button'
       >
         <FormattedMessage
           id='sign_in_banner.create_account'
@@ -97,7 +95,7 @@ export const SignInBanner: React.FC = () => {
         />
       </p>
       {signupButton}
-      <a href='/auth/sign_in' className='button button--block button-tertiary'>
+      <a href='/auth/sign_in' className='button button--block button-secondary'>
         <FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' />
       </a>
     </div>

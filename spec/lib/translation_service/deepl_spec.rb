@@ -19,6 +19,19 @@ RSpec.describe TranslationService::DeepL do
   end
 
   describe '#translate' do
+    context 'with invalid body response' do
+      before do
+        stub_request(:post, 'https://api.deepl.com/v2/translate')
+          .with(body: 'text=Hasta+la+vista&source_lang=ES&target_lang=en&tag_handling=html')
+          .to_return(body: 'XXX')
+      end
+
+      it 'handles error and re-raises' do
+        expect { service.translate(['Hasta la vista'], 'es', 'en') }
+          .to raise_error(TranslationService::UnexpectedResponseError)
+      end
+    end
+
     it 'returns translation with specified source language' do
       stub_request(:post, 'https://api.deepl.com/v2/translate')
         .with(body: 'text=Hasta+la+vista&source_lang=ES&target_lang=en&tag_handling=html')

@@ -36,7 +36,7 @@ module Admin
     end
 
     def edit
-      authorize :domain_block, :create?
+      authorize :domain_block, :update?
     end
 
     def create
@@ -54,7 +54,7 @@ module Admin
       end
 
       # Allow transparently upgrading a domain block
-      if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
+      if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain)
         @domain_block = existing_domain_block
         @domain_block.assign_attributes(resource_params)
       end
@@ -129,7 +129,7 @@ module Admin
     end
 
     def requires_confirmation?
-      @domain_block.valid? && (@domain_block.new_record? || @domain_block.severity_changed?) && @domain_block.severity.to_s == 'suspend' && !params[:confirm]
+      @domain_block.valid? && (@domain_block.new_record? || @domain_block.severity_changed?) && @domain_block.suspend? && !params[:confirm]
     end
   end
 end

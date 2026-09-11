@@ -3,7 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe REST::Admin::AccountSerializer do
-  subject { serialized_record_json(record, described_class) }
+  subject { serialized_record_json(record, described_class, options: { scope: current_user, scope_name: :current_user }) }
+
+  let(:current_user) { Fabricate(:admin_user) }
 
   context 'when created_at is populated' do
     let(:record) { Fabricate :account, user: Fabricate(:user) }

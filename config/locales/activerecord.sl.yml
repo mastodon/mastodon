@@ -32,6 +32,12 @@ sl:
           attributes:
             url:
               invalid: ni veljaven URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: je preveč, dovoljenih je največ %{count}
+            tag:
+              unusable: ni možno uporabiti
         doorkeeper/application:
           attributes:
             website:

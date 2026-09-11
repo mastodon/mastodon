@@ -20,6 +20,19 @@ RSpec.describe 'ActivityPub Inboxes' do
         end
       end
 
+      context 'with an excessively large payload' do
+        subject { post inbox_path, params: { this: :that, those: :these }.to_json, sign_with: remote_account }
+
+        before { stub_const('ActivityPub::Activity::MAX_JSON_SIZE', 1.byte) }
+
+        it 'returns http content too large' do
+          subject
+
+          expect(response)
+            .to have_http_status(413)
+        end
+      end
+
       context 'with a specific account' do
         subject { post account_inbox_path(account_username: account.username), params: {}.to_json, sign_with: remote_account }
 
@@ -41,6 +54,33 @@ RSpec.describe 'ActivityPub Inboxes' do
 
         context 'when account is temporarily suspended' do
           before { account.suspend! }
+
+          it 'returns http accepted' do
+            subject
+
+            expect(response)
+              .to have_http_status(202)
+          end
+        end
+
+        context 'when account is permanently deleted' do
+          before do
+            account.mark_deleted!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            subject
+
+            expect(response)
+              .to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            account.mark_deleted!
+          end
 
           it 'returns http accepted' do
             subject
@@ -123,6 +163,30 @@ RSpec.describe 'ActivityPub Inboxes' do
           .to have_http_status(202)
       end
 
+      context 'with OpenTelemetry traces' do
+        subject { post inbox_path, params: activity.to_json, headers:, sign_with: remote_account }
+
+        let(:activity) { { id: 'https://example.net/~mallory/87374', type: 'Like' } }
+
+        let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
+
+        let(:span) { instance_double(OpenTelemetry::Trace::Span) }
+
+        before do
+          allow(OpenTelemetry::Trace).to receive(:current_span).and_return(span)
+          allow(span).to receive(:recording?).and_return(true)
+          allow(span).to receive(:set_attribute)
+        end
+
+        it 'adds attributes to current span' do
+          subject
+
+          expect(response).to have_http_status(202)
+          expect(span).to have_received(:set_attribute).with('activitypub.activity.id', activity[:id])
+          expect(span).to have_received(:set_attribute).with('activitypub.activity.type', activity[:type])
+        end
+      end
+
       def stub_follow_sync_worker
         allow(ActivityPub::FollowersSynchronizationWorker)
           .to receive(:perform_async)
@@ -142,6 +206,24 @@ RSpec.describe 'ActivityPub Inboxes' do
 
         expect(response)
           .to have_http_status(401)
+      end
+
+      context 'when sending an unknown account' do
+        let(:unknown_actor) do
+          {
+            actor: 'https://unknown-actor.host',
+            object: 'https://unknown-actor.host',
+            type: 'Update',
+          }
+        end
+        let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
+
+        it 'returns http accepted' do
+          post(inbox_path, params: unknown_actor.to_json, headers:)
+
+          expect(response)
+            .to have_http_status(202)
+        end
       end
     end
   end

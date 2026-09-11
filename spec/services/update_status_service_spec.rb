@@ -40,6 +40,37 @@ RSpec.describe UpdateStatusService do
         )
       expect(status.edits.ordered.pluck(:text)).to eq %w(Foo Bar)
     end
+
+    context 'when the status has a quote' do
+      before { Fabricate(:quote, status: status) }
+
+      it 'updates text, resets card, saves edit history' do
+        subject.call(status, status.account_id, text: 'Bar')
+
+        expect(status.reload)
+          .to have_attributes(
+            text: 'Bar',
+            preview_card: be_nil
+          )
+        expect(status.edits.ordered.pluck(:text)).to eq %w(Foo Bar)
+      end
+    end
+
+    context 'when the status has a quote and has a spoiler' do
+      before { Fabricate(:quote, status: status) }
+
+      it 'updates text, resets card, saves edit history' do
+        subject.call(status, status.account_id, spoiler_text: 'Bar', text: '')
+
+        expect(status.reload)
+          .to have_attributes(
+            text: '',
+            spoiler_text: 'Bar',
+            preview_card: be_nil
+          )
+        expect(status.edits.ordered.pluck(:text)).to eq ['Foo', '']
+      end
+    end
   end
 
   context 'when content warning changes' do
@@ -158,6 +189,19 @@ RSpec.describe UpdateStatusService do
         .to eq [alice.id]
       expect(status.mentions.pluck(:account_id))
         .to contain_exactly(alice.id, bob.id)
+    end
+  end
+
+  context 'when tagged objects in text change' do
+    let!(:old_collection) { Fabricate(:collection) }
+    let!(:new_collection) { Fabricate(:collection) }
+
+    let!(:account) { Fabricate(:account) }
+    let!(:status) { PostStatusService.new.call(account, text: "Check out #{ActivityPub::TagManager.instance.uri_for(old_collection)}") }
+
+    it 'changes tagged objects' do
+      expect { subject.call(status, status.account_id, text: "Check out #{ActivityPub::TagManager.instance.uri_for(new_collection)} #{ActivityPub::TagManager.instance.uri_for(new_collection)}") }
+        .to change { status.reload.tagged_objects.map(&:object) }.from([old_collection]).to([new_collection])
     end
   end
 

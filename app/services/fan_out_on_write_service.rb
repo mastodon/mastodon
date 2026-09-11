@@ -14,7 +14,8 @@ class FanOutOnWriteService < BaseService
     @account   = status.account
     @options   = options
 
-    check_race_condition!
+    return if @status.proper.account.suspended?
+
     warm_payload_cache!
 
     fan_out_to_local_recipients!
@@ -24,22 +25,11 @@ class FanOutOnWriteService < BaseService
 
   private
 
-  def check_race_condition!
-    # I don't know why but at some point we had an issue where
-    # this service was being executed with status objects
-    # that had a null visibility - which should not be possible
-    # since the column in the database is not nullable.
-    #
-    # This check re-queues the service to be run at a later time
-    # with the full object, if something like it occurs
-
-    raise Mastodon::RaceConditionError if @status.visibility.nil?
-  end
-
   def fan_out_to_local_recipients!
     deliver_to_self!
 
     unless @options[:skip_notifications]
+      notify_quoted_account!
       notify_mentioned_accounts!
       notify_about_update! if update?
     end
@@ -69,10 +59,18 @@ class FanOutOnWriteService < BaseService
     FeedManager.instance.push_to_home(@account, @status, update: update?) if @account.local?
   end
 
+  def notify_quoted_account!
+    return unless @status.quote&.quoted_account&.local? && @status.quote&.accepted?
+
+    LocalNotificationWorker.perform_async(@status.quote.quoted_account_id, @status.quote.id, 'Quote', 'quote')
+  end
+
   def notify_mentioned_accounts!
-    @status.active_mentions.where.not(id: @options[:silenced_account_ids] || []).joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
+    @status.active_mentions.joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       LocalNotificationWorker.push_bulk(mentions) do |mention|
-        [mention.account_id, mention.id, 'Mention', 'mention']
+        options = { 'silenced' => true } if @options[:silenced_account_ids]&.include?(mention.account_id)
+
+        [mention.account_id, mention.id, 'Mention', 'mention', options].compact
       end
 
       next unless update?
@@ -90,6 +88,12 @@ class FanOutOnWriteService < BaseService
     @status.reblogged_by_accounts.merge(Account.local).select(:id).reorder(nil).find_in_batches do |accounts|
       LocalNotificationWorker.push_bulk(accounts) do |account|
         [account.id, @status.id, 'Status', 'update']
+      end
+    end
+
+    @status.quotes.accepted.find_in_batches do |quotes|
+      LocalNotificationWorker.push_bulk(quotes) do |quote|
+        [quote.account_id, quote.status_id, 'Status', 'quoted_update']
       end
     end
   end
@@ -154,10 +158,10 @@ class FanOutOnWriteService < BaseService
   end
 
   def anonymous_payload
-    @anonymous_payload ||= Oj.dump(
+    @anonymous_payload ||= JSON.generate({
       event: update? ? :'status.update' : :update,
-      payload: rendered_status
-    )
+      payload: rendered_status,
+    }.as_json)
   end
 
   def rendered_status

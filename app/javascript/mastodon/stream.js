@@ -13,9 +13,9 @@ let sharedConnection;
  * @typedef Subscription
  * @property {string} channelName
  * @property {Object.<string, string>} params
- * @property {function(): void} onConnect
- * @property {function(StreamEvent): void} onReceive
- * @property {function(): void} onDisconnect
+ * @property {() => void} onConnect
+ * @property {(event: StreamEvent) => void} onReceive
+ * @property {() => void} onDisconnect
  */
 
 /**
@@ -139,14 +139,18 @@ const channelNameWithInlineParams = (channelName, params) => {
 };
 
 /**
+ * @typedef {import('mastodon/store').AppDispatch} Dispatch
+ * @typedef {import('mastodon/store').GetState} GetState
+ */
+
+/**
  * @param {string} channelName
  * @param {Object.<string, string>} params
- * @param {function(Function, Function): { onConnect: (function(): void), onReceive: (function(StreamEvent): void), onDisconnect: (function(): void) }} callbacks
- * @returns {function(): void}
+ * @param {(dispatch: Dispatch, getState: GetState) => { onConnect: () => void, onReceive: (event: StreamEvent) => void, onDisconnect: () => void }} callbacks
+ * @returns {(dispatch: Dispatch, getState: GetState) => () => void}
  */
-// @ts-expect-error
 export const connectStream = (channelName, params, callbacks) => (dispatch, getState) => {
-  const streamingAPIBaseURL = getState().getIn(['meta', 'streaming_api_base_url']);
+  const streamingAPIBaseURL = getState().meta.get('streaming_api_base_url');
   const accessToken = getAccessToken();
   const { onConnect, onReceive, onDisconnect } = callbacks(dispatch, getState);
 
@@ -216,7 +220,7 @@ const KNOWN_EVENT_TYPES = [
 
 /**
  * @param {MessageEvent} e
- * @param {function(StreamEvent): void} received
+ * @param {(event: StreamEvent) => void} received
  */
 const handleEventSourceMessage = (e, received) => {
   received({
@@ -229,7 +233,7 @@ const handleEventSourceMessage = (e, received) => {
  * @param {string} streamingAPIBaseURL
  * @param {string} accessToken
  * @param {string} channelName
- * @param {{ connected: Function, received: function(StreamEvent): void, disconnected: Function, reconnected: Function }} callbacks
+ * @param {{ connected: () => void, received: (event: StreamEvent) => void, disconnected: () => void, reconnected: () => void }} callbacks
  * @returns {WebSocketClient | EventSource}
  */
 const createConnection = (streamingAPIBaseURL, accessToken, channelName, { connected, received, disconnected, reconnected }) => {
@@ -242,12 +246,9 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
     // @ts-expect-error
     const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
 
-    // @ts-expect-error
     ws.onopen = connected;
     ws.onmessage = e => received(JSON.parse(e.data));
-    // @ts-expect-error
     ws.onclose = disconnected;
-    // @ts-expect-error
     ws.onreconnect = reconnected;
 
     return ws;
@@ -272,7 +273,7 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
     es.addEventListener(type, e => handleEventSourceMessage(/** @type {MessageEvent} */(e), received));
   });
 
-  es.onerror = /** @type {function(): void} */ (disconnected);
+  es.onerror = /** @type {() => void} */ (disconnected);
 
   return es;
 };

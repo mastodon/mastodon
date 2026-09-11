@@ -2,7 +2,7 @@
 
 class Admin::DistributeAnnouncementNotificationWorker
   include Sidekiq::IterableJob
-  include BulkMailer
+  include BulkMailingConcern
 
   def build_enumerator(announcement_id, cursor:)
     @announcement = Announcement.find(announcement_id)

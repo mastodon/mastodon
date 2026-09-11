@@ -112,6 +112,11 @@ RSpec.describe JsonLdHelper do
       expect(fetch_resource_without_id_validation('https://host.test/')).to be_nil
     end
 
+    it 'returns nil if the body is not parsable' do
+      stub_request(:get, 'https://host.test/').to_return(status: 200, body: 'XXX', headers: { 'Content-Type': 'application/activity+json' })
+      expect(fetch_resource_without_id_validation('https://host.test/')).to be_nil
+    end
+
     it 'returns hash' do
       stub_request(:get, 'https://host.test/').to_return(status: 200, body: '{}', headers: { 'Content-Type': 'application/activity+json' })
       expect(fetch_resource_without_id_validation('https://host.test/')).to eq({})
@@ -179,6 +184,14 @@ RSpec.describe JsonLdHelper do
         expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
         expect(compacted.dig('object', 'tag', 0, 'href')).to eq ['foo']
         expect(safe_for_forwarding?(json, compacted)).to be true
+      end
+
+      context 'when array size mismatch exists' do
+        subject { helper.patch_for_forwarding!(json, alternate) }
+
+        let(:alternate) { json.merge('to' => %w(one two three)) }
+
+        it { is_expected.to be_nil }
       end
     end
 

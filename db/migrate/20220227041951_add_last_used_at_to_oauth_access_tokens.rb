@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddLastUsedAtToOauthAccessTokens < ActiveRecord::Migration[6.1]
+class AddLastUsedAtToOAuthAccessTokens < ActiveRecord::Migration[6.1]
   def change
     safety_assured do
       change_table(:oauth_access_tokens, bulk: true) do |t|

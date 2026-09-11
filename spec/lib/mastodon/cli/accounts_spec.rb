@@ -32,13 +32,14 @@ RSpec.describe Mastodon::CLI::Accounts do
 
   describe '#create' do
     let(:action) { :create }
+    let(:username) { 'tootctl_username' }
 
     shared_examples 'a new user with given email address and username' do
       it 'creates user and accounts from options and displays success message' do
-        allow(SecureRandom).to receive(:hex).and_return('test_password')
+        allow(SecureRandom).to receive(:hex).and_return('0abcdef0')
 
         expect { subject }
-          .to output_results('OK', 'New password: test_password')
+          .to output_results('OK', 'New password: 0abcdef0')
         expect(user_from_options).to be_present
         expect(account_from_options).to be_present
       end
@@ -48,17 +49,23 @@ RSpec.describe Mastodon::CLI::Accounts do
       end
 
       def account_from_options
-        Account.find_local('tootctl_username')
+        Account.find_local(username)
       end
     end
 
     context 'when required USERNAME and --email are provided' do
-      let(:arguments) { ['tootctl_username'] }
+      let(:arguments) { [username] }
 
       context 'with USERNAME and --email only' do
         let(:options) { { email: 'tootctl@example.com' } }
 
         it_behaves_like 'a new user with given email address and username'
+
+        context 'with a reserved username' do
+          let(:username) { 'security' }
+
+          it_behaves_like 'a new user with given email address and username'
+        end
 
         context 'with invalid --email value' do
           let(:options) { { email: 'invalid' } }
@@ -186,6 +193,20 @@ RSpec.describe Mastodon::CLI::Accounts do
           end
 
           it_behaves_like 'a new user with given email address and username'
+        end
+
+        context "when account's user is not present and account was previously deleted" do
+          let(:options) { { email: 'tootctl@example.com', reattach: true } }
+
+          before do
+            Fabricate(:account, username: 'tootctl_username', user: nil, requested_deletion_at: 10.days.ago)
+          end
+
+          it 'removes requested deletion timestamp' do
+            expect { subject }
+              .to output_results('OK')
+              .and change { Account.find_local('tootctl_username').requested_deletion_at }.to(nil)
+          end
         end
       end
     end
@@ -354,11 +375,20 @@ RSpec.describe Mastodon::CLI::Accounts do
       context 'with --reset-password option' do
         let(:options) { { reset_password: true } }
 
+        let(:user) { Fabricate(:user, password: original_password) }
+        let(:original_password) { 'foobar12345' }
+        let(:new_password) { '0abcdef0' }
+
         it 'returns a new password for the user' do
-          allow(SecureRandom).to receive(:hex).and_return('new_password')
+          allow(SecureRandom).to receive(:hex).and_return(new_password)
+          allow(Account).to receive(:find_local).and_return(user.account)
+          allow(user).to receive(:change_password!).and_call_original
 
           expect { subject }
-            .to output_results('new_password')
+            .to output_results(new_password)
+
+          expect(user).to have_received(:change_password!).with(new_password)
+          expect(user.reload).to_not be_valid_password(original_password)
         end
       end
 
@@ -628,25 +658,6 @@ RSpec.describe Mastodon::CLI::Accounts do
         expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
-      end
-    end
-  end
-
-  describe '#fix_duplicates' do
-    let(:action) { :fix_duplicates }
-    let(:service_double) { instance_double(ActivityPub::FetchRemoteAccountService, call: nil) }
-    let(:uri) { 'https://host.example/same/value' }
-
-    context 'when there are duplicate URI accounts' do
-      before do
-        Fabricate.times(2, :account, domain: 'host.example', uri: uri)
-        allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(service_double)
-      end
-
-      it 'finds the duplicates and calls fetch remote account service' do
-        expect { subject }
-          .to output_results('Duplicates found')
-        expect(service_double).to have_received(:call).with(uri)
       end
     end
   end
@@ -935,15 +946,15 @@ RSpec.describe Mastodon::CLI::Accounts do
       let(:arguments) { [account.username] }
 
       it 'correctly rotates keys for the specified account' do
-        old_private_key = account.private_key
-        old_public_key = account.public_key
+        old_private_key = account.keypair.private_key
+        old_public_key = account.keypair.public_key
 
         expect { subject }
           .to output_results('OK')
         account.reload
 
-        expect(account.private_key).to_not eq(old_private_key)
-        expect(account.public_key).to_not eq(old_public_key)
+        expect(account.keypair.private_key).to_not eq(old_private_key)
+        expect(account.keypair.public_key).to_not eq(old_public_key)
       end
 
       it 'broadcasts the new keys for the specified account' do
@@ -970,15 +981,15 @@ RSpec.describe Mastodon::CLI::Accounts do
       let(:options) { { all: true } }
 
       it 'correctly rotates keys for all local accounts' do
-        old_private_keys = accounts.map(&:private_key)
-        old_public_keys = accounts.map(&:public_key)
+        old_private_keys = accounts.map { |account| account.keypair.private_key }
+        old_public_keys = accounts.map { |account| account.keypair.public_key }
 
         expect { subject }
           .to output_results('rotated')
         accounts.each(&:reload)
 
-        expect(accounts.map(&:private_key)).to_not eq(old_private_keys)
-        expect(accounts.map(&:public_key)).to_not eq(old_public_keys)
+        expect(accounts.map { |account| account.keypair.private_key }).to_not eq(old_private_keys)
+        expect(accounts.map { |account| account.keypair.public_key }).to_not eq(old_public_keys)
       end
 
       it 'broadcasts the new keys for each account' do
@@ -1288,49 +1299,64 @@ RSpec.describe Mastodon::CLI::Accounts do
 
   describe '#prune' do
     let(:action) { :prune }
-    let!(:local_account)     { Fabricate(:account) }
-    let!(:bot_account)       { Fabricate(:account, bot: true, domain: 'example.com') }
-    let!(:group_account)     { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
-    let!(:mentioned_account) { Fabricate(:account, domain: 'example.com') }
-    let!(:prunable_accounts) do
-      Fabricate.times(2, :account, domain: 'example.com', bot: false, suspended_at: nil, silenced_at: nil)
-    end
+    let(:viable_attrs) { { domain: 'example.com', bot: false, suspended: false, silenced: false } }
+    let!(:local_account) { Fabricate(:account) }
+    let!(:bot_account) { Fabricate(:account, bot: true, domain: 'example.com') }
+    let!(:group_account) { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
+    let!(:account_mentioned) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_favourite) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_status) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_follow) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_follow) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_block) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_block) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_mute) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_report) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_follow_request) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_follow_request) { Fabricate(:account, viable_attrs) }
+    let!(:prunable_accounts) { Fabricate.times(2, :account, viable_attrs) }
 
     before do
-      Fabricate(:mention, account: mentioned_account, status: Fabricate(:status, account: Fabricate(:account)))
+      Fabricate :mention, account: account_mentioned, status: Fabricate(:status, account: Fabricate(:account))
+      Fabricate :favourite, account: account_with_favourite
+      Fabricate :status, account: account_with_status
+      Fabricate :follow, account: account_with_follow
+      Fabricate :follow, target_account: account_targeted_follow
+      Fabricate :block, account: account_with_block
+      Fabricate :block, target_account: account_targeted_block
+      Fabricate :mute, target_account: account_targeted_mute
+      Fabricate :report, target_account: account_targeted_report
+      Fabricate :follow_request, account: account_with_follow_request
+      Fabricate :follow_request, target_account: account_targeted_follow_request
       stub_parallelize_with_progress!
-    end
-
-    def expect_prune_remote_accounts_without_interaction
-      prunable_account_ids = prunable_accounts.pluck(:id)
-
-      expect(Account.where(id: prunable_account_ids).count).to eq(0)
     end
 
     it 'displays a successful message and handles accounts correctly' do
       expect { subject }
         .to output_results("OK, pruned #{prunable_accounts.size} accounts")
-      expect_prune_remote_accounts_without_interaction
-      expect_not_prune_local_accounts
-      expect_not_prune_bot_accounts
-      expect_not_prune_group_accounts
-      expect_not_prune_mentioned_accounts
+      expect(prunable_account_records)
+        .to have_attributes(count: eq(0))
+      expect(Account.all)
+        .to include(local_account)
+        .and include(bot_account)
+        .and include(group_account)
+        .and include(account_mentioned)
+        .and include(account_with_favourite)
+        .and include(account_with_status)
+        .and include(account_with_follow)
+        .and include(account_targeted_follow)
+        .and include(account_with_block)
+        .and include(account_targeted_block)
+        .and include(account_targeted_mute)
+        .and include(account_targeted_report)
+        .and include(account_with_follow_request)
+        .and include(account_targeted_follow_request)
+        .and not_include(prunable_accounts.first)
+        .and not_include(prunable_accounts.last)
     end
 
-    def expect_not_prune_local_accounts
-      expect(Account.exists?(id: local_account.id)).to be(true)
-    end
-
-    def expect_not_prune_bot_accounts
-      expect(Account.exists?(id: bot_account.id)).to be(true)
-    end
-
-    def expect_not_prune_group_accounts
-      expect(Account.exists?(id: group_account.id)).to be(true)
-    end
-
-    def expect_not_prune_mentioned_accounts
-      expect(Account.exists?(id: mentioned_account.id)).to be true
+    def prunable_account_records
+      Account.where(id: prunable_accounts.pluck(:id))
     end
 
     context 'with --dry-run option' do

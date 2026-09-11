@@ -62,16 +62,16 @@ export const NotificationFollowRequest: React.FC<{
   const actions = (
     <>
       <IconButton
-        title={intl.formatMessage(messages.reject)}
-        icon='times'
-        iconComponent={CloseIcon}
-        onClick={onReject}
-      />
-      <IconButton
         title={intl.formatMessage(messages.authorize)}
         icon='check'
         iconComponent={CheckIcon}
         onClick={onAuthorize}
+      />
+      <IconButton
+        title={intl.formatMessage(messages.reject)}
+        icon='times'
+        iconComponent={CloseIcon}
+        onClick={onReject}
       />
     </>
   );

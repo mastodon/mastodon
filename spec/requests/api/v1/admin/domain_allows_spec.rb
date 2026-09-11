@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Domain Allows' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:scopes)  { 'admin:read admin:write' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read admin:write'
 
   describe 'GET /api/v1/admin/domain_allows' do
     subject do
@@ -19,6 +15,7 @@ RSpec.describe 'Domain Allows' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     context 'when there is no allowed domains' do
       it 'returns an empty body' do
@@ -77,6 +74,7 @@ RSpec.describe 'Domain Allows' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'returns the expected allowed domain name', :aggregate_failures do
       subject
@@ -108,6 +106,7 @@ RSpec.describe 'Domain Allows' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     context 'with a valid domain name' do
       it 'returns the expected domain name', :aggregate_failures do
@@ -168,6 +167,7 @@ RSpec.describe 'Domain Allows' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
+    it_behaves_like 'forbidden for disabled user'
 
     it 'deletes the allowed domain', :aggregate_failures do
       subject

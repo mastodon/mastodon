@@ -1,9 +1,8 @@
 import escapeTextContentForBrowser from 'escape-html';
 
-import { makeEmojiMap } from 'mastodon/models/custom_emoji';
-
-import emojify from '../../features/emoji/emoji';
 import { expandSpoilers } from '../../initial_state';
+
+import { importCustomEmoji } from './emoji';
 
 const domParser = new DOMParser();
 
@@ -21,8 +20,20 @@ export function normalizeFilterResult(result) {
   return normalResult;
 }
 
-export function normalizeStatus(status, normalOldStatus) {
+function stripQuoteFallback(text) {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = text;
+
+  wrapper.querySelector('.quote-inline')?.remove();
+
+  return wrapper.innerHTML;
+}
+
+export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = false }) {
   const normalStatus   = { ...status };
+
+  if (bogusQuotePolicy)
+    normalStatus.quote_approval = null;
 
   normalStatus.account = status.account.id;
 
@@ -72,19 +83,23 @@ export function normalizeStatus(status, normalOldStatus) {
   } else {
     // If the status has a CW but no contents, treat the CW as if it were the
     // status' contents, to avoid having a CW toggle with seemingly no effect.
-    if (normalStatus.spoiler_text && !normalStatus.content) {
+    if (normalStatus.spoiler_text && !normalStatus.content && !normalStatus.quote) {
       normalStatus.content = normalStatus.spoiler_text;
       normalStatus.spoiler_text = '';
     }
 
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
-    const emojiMap      = makeEmojiMap(normalStatus.emojis);
 
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
-    normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
-    normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
+    normalStatus.contentHtml  = normalStatus.content;
+    normalStatus.spoilerHtml  = escapeTextContentForBrowser(spoilerText);
     normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
+
+    // Remove quote fallback link from the DOM so it doesn't mess with paragraph margins
+    if (normalStatus.quote) {
+      normalStatus.contentHtml = stripQuoteFallback(normalStatus.contentHtml);
+    }
 
     if (normalStatus.url && !(normalStatus.url.startsWith('http://') || normalStatus.url.startsWith('https://'))) {
       normalStatus.url = null;
@@ -99,6 +114,8 @@ export function normalizeStatus(status, normalOldStatus) {
   }
 
   if (normalOldStatus) {
+    normalStatus.quote_approval ||= normalOldStatus.get('quote_approval');
+
     const list = normalOldStatus.get('media_attachments');
     if (normalStatus.media_attachments && list) {
       normalStatus.media_attachments.forEach(item => {
@@ -114,25 +131,31 @@ export function normalizeStatus(status, normalOldStatus) {
 }
 
 export function normalizeStatusTranslation(translation, status) {
-  const emojiMap = makeEmojiMap(status.get('emojis').toJS());
-
   const normalTranslation = {
     detected_source_language: translation.detected_source_language,
     language: translation.language,
     provider: translation.provider,
-    contentHtml: emojify(translation.content, emojiMap),
-    spoilerHtml: emojify(escapeTextContentForBrowser(translation.spoiler_text), emojiMap),
+    contentHtml: translation.content,
+    spoilerHtml: escapeTextContentForBrowser(translation.spoiler_text),
     spoiler_text: translation.spoiler_text,
   };
+
+  // Remove quote fallback link from the DOM so it doesn't mess with paragraph margins
+  if (status.get('quote')) {
+    normalTranslation.contentHtml = stripQuoteFallback(normalTranslation.contentHtml);
+  }
 
   return normalTranslation;
 }
 
 export function normalizeAnnouncement(announcement) {
   const normalAnnouncement = { ...announcement };
-  const emojiMap = makeEmojiMap(normalAnnouncement.emojis);
 
-  normalAnnouncement.contentHtml = emojify(normalAnnouncement.content, emojiMap);
+  normalAnnouncement.contentHtml = normalAnnouncement.content;
+
+  if (normalAnnouncement.emojis) {
+    importCustomEmoji(normalAnnouncement.emojis);
+  }
 
   return normalAnnouncement;
 }

@@ -14,7 +14,7 @@ class RemoveStatusService < BaseService
   # @option  [Boolean] :original_removed
   # @option  [Boolean] :skip_streaming
   def call(status, **options)
-    @payload  = Oj.dump(event: :delete, payload: status.id.to_s)
+    @payload  = { event: :delete, payload: status.id.to_s }.to_json
     @status   = status
     @account  = status.account
     @options  = options
@@ -46,6 +46,9 @@ class RemoveStatusService < BaseService
         remove_from_media if @status.with_media?
         remove_media
       end
+
+      # Revoke the quote while we get a chance… maybe this should be a `before_destroy` hook?
+      RevokeQuoteService.new.call(@status.quote) if @status.quote&.quoted_account&.local? && @status.quote&.accepted?
 
       @status.destroy! if permanently?
     end
@@ -100,7 +103,7 @@ class RemoveStatusService < BaseService
   end
 
   def signed_activity_json
-    @signed_activity_json ||= Oj.dump(serialize_payload(@status, @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer, signer: @account, always_sign: true))
+    @signed_activity_json ||= serialize_payload(@status, @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteNoteSerializer, signer: @account, always_sign: true).to_json
   end
 
   def remove_reblogs

@@ -5,8 +5,9 @@ require 'action_dispatch/middleware/static'
 module Mastodon
   module Middleware
     class PublicFileServer
+      CACHE_TTL = 28.days.to_i
+      SERVICE_WORKER_PATH = '/sw.js'
       SERVICE_WORKER_TTL = 7.days.to_i
-      CACHE_TTL          = 28.days.to_i
 
       def initialize(app)
         @app = app
@@ -22,12 +23,11 @@ module Mastodon
         status, headers, response = file
 
         # Set cache headers on static files. Some paths require different cache headers
-        headers['Cache-Control'] = begin
-          request_path = env['REQUEST_PATH']
-
-          if request_path.start_with?('/sw.js')
+        request = Rack::Request.new env
+        headers['cache-control'] = begin
+          if request.path.start_with?(SERVICE_WORKER_PATH)
             "public, max-age=#{SERVICE_WORKER_TTL}, must-revalidate"
-          elsif request_path.start_with?(paperclip_root_url)
+          elsif request.path.start_with?(paperclip_root_url)
             "public, max-age=#{CACHE_TTL}, immutable"
           else
             "public, max-age=#{CACHE_TTL}, must-revalidate"
@@ -35,9 +35,9 @@ module Mastodon
         end
 
         # Override the default CSP header set by the CSP middleware
-        headers['Content-Security-Policy'] = "default-src 'none'; form-action 'none'" if request_path.start_with?(paperclip_root_url)
+        headers['content-security-policy'] = "default-src 'none'; form-action 'none'" if request.path.start_with?(paperclip_root_url)
 
-        headers['X-Content-Type-Options'] = 'nosniff'
+        headers['x-content-type-options'] = 'nosniff'
 
         [status, headers, response]
       end

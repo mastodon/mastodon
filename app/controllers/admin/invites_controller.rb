@@ -40,7 +40,7 @@ module Admin
 
     def resource_params
       params
-        .expect(invite: [:max_uses, :expires_in])
+        .expect(invite: [:max_uses, :expires_in, :autofollow])
     end
 
     def filtered_invites

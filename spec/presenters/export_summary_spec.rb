@@ -52,6 +52,14 @@ RSpec.describe ExportSummary do
     end
   end
 
+  describe '#total_custom_filters' do
+    before { Fabricate.times(2, :custom_filter, account: account) }
+
+    it 'returns the total number of lists' do
+      expect(subject.total_custom_filters).to eq(2)
+    end
+  end
+
   describe '#total_followers' do
     before { target_accounts.each { |target_account| target_account.follow!(account) } }
 

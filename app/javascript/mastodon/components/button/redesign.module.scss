@@ -1,0 +1,227 @@
+@use '@/styles/mastodon/mixins';
+
+.base {
+  --bg: transparent;
+  --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
+  --fg: var(--color-text-primary);
+
+  background-color: var(--bg);
+  border-radius: var(--radius-round);
+  color: var(--fg);
+  transition:
+    background-color 200ms,
+    color 200ms,
+    opacity 200ms;
+  border: 0;
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: var(--space-2xs);
+  @include mixins.type-label-lg;
+
+  box-sizing: border-box;
+
+  &:hover:not(
+      :active,
+      :disabled,
+      [aria-pressed='true'],
+      [aria-expanded='true']
+    ) {
+    background-color: var(--bg-hover);
+  }
+
+  &:focus-visible,
+  &:focus-within {
+    outline: 2px solid var(--color-bg-brand-base);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// Override default anchor styles
+a.base {
+  text-decoration: none;
+
+  &:focus {
+    border-radius: var(--radius-round);
+  }
+
+  &:hover {
+    text-decoration: inherit;
+  }
+}
+
+@mixin active {
+  &:active,
+  &[aria-pressed='true']:not(.noActiveHighlight),
+  &[aria-expanded='true']:not(.noActiveHighlight) {
+    @content;
+  }
+}
+
+// Sizes
+
+.xs {
+  padding-inline: var(--space-xs);
+  min-height: 20px;
+}
+
+.sm {
+  padding: var(--space-2xs) var(--space-sm);
+  min-height: 32px;
+}
+
+.md {
+  padding: var(--space-xs) var(--space-md);
+  min-height: 40px;
+}
+
+.lg {
+  padding: var(--space-sm) var(--space-lg);
+  min-height: 48px;
+}
+
+// Solid variant
+
+.solid {
+  --bg: var(--color-bg-inverted);
+  --fg: var(--color-text-inverted);
+
+  &.accent {
+    --bg: var(--color-bg-brand-base);
+    --fg: var(--color-text-on-brand-base);
+  }
+
+  &.destructive {
+    --bg: var(--color-bg-error-base);
+    --fg: var(--color-text-on-error-base);
+  }
+}
+
+// Tonal
+
+.tonal {
+  --bg-color: var(--color-text-primary);
+  --bg-opacity: 4%;
+  --bg: rgb(from var(--bg-color) r g b / var(--bg-opacity));
+  --bg-hover-opacity: 10%;
+  --bg-hover: rgb(from var(--bg-color) r g b / var(--bg-hover-opacity));
+
+  &.neutral {
+    @include active {
+      --bg: var(--color-bg-inverted);
+      --fg: var(--color-text-inverted);
+    }
+  }
+
+  &.accent,
+  &.destructive {
+    --bg-opacity: 10%;
+    --bg-hover-opacity: 20%;
+
+    @include active {
+      --bg-opacity: 100%;
+    }
+  }
+
+  &.accent {
+    --bg-color: var(--color-bg-brand-base);
+    --fg: var(--color-text-brand);
+
+    @include active {
+      --fg: var(--color-text-on-brand-base);
+    }
+  }
+
+  &.destructive {
+    --bg-color: var(--color-bg-error-base);
+    --fg: var(--color-text-error);
+
+    @include active {
+      --fg: var(--color-text-on-error-base);
+    }
+  }
+}
+
+// Ghost
+
+.ghost {
+  @include active {
+    --bg: var(--color-bg-inverted);
+    --fg: var(--color-text-inverted);
+  }
+
+  &.accent {
+    --fg: var(--color-text-brand);
+
+    @include active {
+      --bg: var(--color-bg-brand-base);
+      --fg: var(--color-text-on-brand-base);
+    }
+  }
+
+  &.destructive {
+    --fg: var(--color-text-error);
+
+    @include active {
+      --bg: var(--color-bg-error-base);
+      --fg: var(--color-text-on-error-base);
+    }
+  }
+}
+
+// Toggle buttons
+.toggle {
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+
+  &.solid {
+    @include active {
+      --bg: var(--color-bg-brand-base);
+      --fg: var(--color-text-on-brand-base);
+    }
+  }
+
+  &.tonal {
+    @include active {
+      --bg: rgb(from var(--color-bg-brand-base) r g b / 10%);
+      --fg: var(--color-text-brand);
+    }
+  }
+
+  &.ghost {
+    @include active {
+      --bg: transparent;
+      --fg: var(--color-text-brand);
+    }
+  }
+}
+
+// Helper classes
+
+.icon,
+.loading {
+  width: var(--fs-xl);
+  height: var(--fs-xl);
+}
+
+.iconCustom {
+  width: inherit;
+  height: inherit;
+}
+
+.iconOnly {
+  aspect-ratio: 1;
+  padding: 0;
+}
+
+.loading {
+  color: inherit;
+}

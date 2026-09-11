@@ -1,12 +1,30 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
-
+import { GearIcon } from '@phosphor-icons/react';
+import { Helmet } from '@unhead/react/helmet';
 import { isEqual } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
+import {
+  addColumn,
+  removeColumn,
+  moveColumn,
+} from '@/mastodon/actions/columns';
+import { submitMarkers } from '@/mastodon/actions/markers';
+import { openModal } from '@/mastodon/actions/modal';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import {
+  ColumnHeader,
+  ColumnHeaderButton,
+  ColumnSettingsMenu,
+} from '@/mastodon/components/column_header';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
+import { LoadGap } from '@/mastodon/components/load_gap';
+import ScrollableList from '@/mastodon/components/scrollable_list';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import DoneAllIcon from '@/material-icons/400-24px/done_all.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import {
@@ -34,13 +52,6 @@ import {
 } from 'mastodon/selectors/settings';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
-import { submitMarkers } from '../../actions/markers';
-import { Column } from '../../components/column';
-import type { ColumnRef } from '../../components/column';
-import { ColumnHeader } from '../../components/column_header';
-import { LoadGap } from '../../components/load_gap';
-import ScrollableList from '../../components/scrollable_list';
 import {
   FilteredNotificationsBanner,
   FilteredNotificationsIconButton,
@@ -96,31 +107,6 @@ export const Notifications: React.FC<{
   const needsNotificationPermission = useAppSelector(
     selectNeedsNotificationPermission,
   );
-
-  const columnRef = useRef<ColumnRef>(null);
-
-  const selectChild = useCallback((index: number, alignTop: boolean) => {
-    const container = columnRef.current?.node as HTMLElement | undefined;
-
-    if (!container) return;
-
-    const element = container.querySelector<HTMLElement>(
-      `article:nth-of-type(${index + 1}) .focusable`,
-    );
-
-    if (element) {
-      if (alignTop && container.scrollTop > element.offsetTop) {
-        element.scrollIntoView(true);
-      } else if (
-        !alignTop &&
-        container.scrollTop + container.clientHeight <
-          element.offsetTop + element.offsetHeight
-      ) {
-        element.scrollIntoView(false);
-      }
-      element.focus();
-    }
-  }, []);
 
   // Keep track of mounted components for unread notification handling
   useEffect(() => {
@@ -183,35 +169,18 @@ export const Notifications: React.FC<{
     [dispatch, columnId],
   );
 
-  const handleHeaderClick = useCallback(() => {
-    columnRef.current?.scrollTop();
-  }, []);
-
-  const handleMoveUp = useCallback(
-    (id: string) => {
-      const elementIndex =
-        notifications.findIndex(
-          (item) => item.type !== 'gap' && item.group_key === id,
-        ) - 1;
-      selectChild(elementIndex, true);
-    },
-    [notifications, selectChild],
-  );
-
-  const handleMoveDown = useCallback(
-    (id: string) => {
-      const elementIndex =
-        notifications.findIndex(
-          (item) => item.type !== 'gap' && item.group_key === id,
-        ) + 1;
-      selectChild(elementIndex, false);
-    },
-    [notifications, selectChild],
-  );
-
   const handleMarkAsRead = useCallback(() => {
     dispatch(markNotificationsAsRead());
     void dispatch(submitMarkers({ immediate: true }));
+  }, [dispatch]);
+
+  const openSettingsModal = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'NOTIFICATION_SETTINGS',
+        modalProps: {},
+      }),
+    );
   }, [dispatch]);
 
   const pinned = !!columnId;
@@ -241,8 +210,6 @@ export const Notifications: React.FC<{
         <NotificationGroup
           key={item.group_key}
           notificationGroupId={item.group_key}
-          onMoveUp={handleMoveUp}
-          onMoveDown={handleMoveDown}
           unread={
             lastReadId !== '0' &&
             !!item.page_max_id &&
@@ -251,15 +218,7 @@ export const Notifications: React.FC<{
         />
       ),
     );
-  }, [
-    notifications,
-    isLoading,
-    hasMore,
-    lastReadId,
-    handleLoadGap,
-    handleMoveUp,
-    handleMoveDown,
-  ]);
+  }, [notifications, isLoading, hasMore, lastReadId, handleLoadGap]);
 
   const prepend = (
     <>
@@ -300,6 +259,7 @@ export const Notifications: React.FC<{
           title={intl.formatMessage(messages.markAsRead)}
           onClick={handleMarkAsRead}
           className='column-header__button'
+          type='button'
         >
           <Icon id='done-all' icon={DoneAllIcon} />
         </button>
@@ -310,23 +270,51 @@ export const Notifications: React.FC<{
   return (
     <Column
       bindToDocument={!multiColumn}
-      ref={columnRef}
       label={intl.formatMessage(messages.title)}
     >
-      <ColumnHeader
-        icon='bell'
-        iconComponent={NotificationsIcon}
-        active={isUnread}
-        title={intl.formatMessage(messages.title)}
-        onPin={handlePin}
-        onMove={handleMove}
-        onClick={handleHeaderClick}
-        pinned={pinned}
-        multiColumn={multiColumn}
-        extraButton={extraButton}
-      >
-        <ColumnSettingsContainer />
-      </ColumnHeader>
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          title={intl.formatMessage(messages.title)}
+          withUnreadMarker={isUnread}
+          withBackButton={multiColumn && !pinned && 'auto'}
+          extraButtons={
+            <>
+              <ColumnHeaderButton icon={GearIcon} onClick={openSettingsModal}>
+                <FormattedMessage
+                  id='notifications.settings'
+                  defaultMessage='Notification Settings'
+                />
+              </ColumnHeaderButton>
+              {multiColumn && (
+                <ColumnSettingsMenu
+                  labelPrefix={intl.formatMessage(messages.title)}
+                >
+                  <MultiColumnMenuItems
+                    pinned={pinned}
+                    onPin={handlePin}
+                    onMove={handleMove}
+                  />
+                </ColumnSettingsMenu>
+              )}
+            </>
+          }
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='bell'
+          iconComponent={NotificationsIcon}
+          active={isUnread}
+          title={intl.formatMessage(messages.title)}
+          onPin={handlePin}
+          onMove={handleMove}
+          pinned={pinned}
+          multiColumn={multiColumn}
+          extraButton={extraButton}
+          scrollTopOnClick
+        >
+          <ColumnSettingsContainer />
+        </LegacyColumnHeader>
+      )}
 
       {filterBar}
 

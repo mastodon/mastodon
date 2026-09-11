@@ -3,8 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  it_behaves_like 'Account::Search'
   it_behaves_like 'Reviewable'
+
+  describe 'Associations' do
+    it { is_expected.to have_many(:account_notes).inverse_of(:account) }
+    it { is_expected.to have_many(:action_logs).class_name('Admin::ActionLog') }
+    it { is_expected.to have_many(:targeted_account_notes).inverse_of(:target_account) }
+  end
 
   context 'with an account record' do
     subject { Fabricate(:account) }
@@ -241,9 +246,10 @@ RSpec.describe Account do
   end
 
   describe '#keypair' do
-    it 'returns an RSA key pair' do
+    it 'returns a Keypair object with a RSA key pair' do
       account = Fabricate(:account)
-      expect(account.keypair).to be_instance_of OpenSSL::PKey::RSA
+      expect(account.keypair).to be_instance_of Keypair
+      expect(account.keypair.keypair).to be_instance_of OpenSSL::PKey::RSA
     end
   end
 
@@ -506,6 +512,8 @@ RSpec.describe Account do
     context 'when account is local' do
       subject { Fabricate.build :account, domain: nil }
 
+      let(:domains_limit) { described_class::ATTRIBUTION_DOMAINS_LIMIT }
+
       context 'with an existing differently-cased username account' do
         before { Fabricate :account, username: 'the_doctor' }
 
@@ -539,16 +547,10 @@ RSpec.describe Account do
 
       it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
-      it { is_expected.to allow_value(fields_empty_name_value).for(:fields) }
-      it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
+      it { is_expected.to validate_absence_of(:inbox_url, :followers_url, :shared_inbox_url, :uri).on(:create) }
 
-      it { is_expected.to validate_absence_of(:followers_url).on(:create) }
-      it { is_expected.to validate_absence_of(:inbox_url).on(:create) }
-      it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
-      it { is_expected.to validate_absence_of(:uri).on(:create) }
-
-      it { is_expected.to allow_values([], ['example.com'], (1..100).to_a).for(:attribution_domains) }
-      it { is_expected.to_not allow_values(['example com'], ['@'], (1..101).to_a).for(:attribution_domains) }
+      it { is_expected.to allow_values([], ['example.com'], (1..domains_limit).to_a).for(:attribution_domains) }
+      it { is_expected.to_not allow_values(['example com'], ['@'], (1..(domains_limit + 1)).to_a).for(:attribution_domains) }
     end
 
     context 'when account is remote' do
@@ -561,6 +563,8 @@ RSpec.describe Account do
 
         it { is_expected.to_not allow_values('username', 'Username').for(:username) }
       end
+
+      it { is_expected.to validate_length_of(:username).is_at_most(described_class::USERNAME_LENGTH_HARD_LIMIT) }
 
       it { is_expected.to allow_values('the-doctor', username_over_limit).for(:username) }
       it { is_expected.to_not allow_values('the doctor').for(:username) }
@@ -580,18 +584,6 @@ RSpec.describe Account do
 
     def account_note_over_limit
       'a' * described_class::NOTE_LENGTH_LIMIT * 2
-    end
-
-    def fields_empty_name_value
-      Array.new(4) { { 'name' => '', 'value' => '' } }
-    end
-
-    def fields_over_limit
-      Array.new(described_class::DEFAULT_FIELDS_SIZE + 1) { { 'name' => 'Name', 'value' => 'Value', 'verified_at' => '01/01/1970' } }
-    end
-
-    def fields_empty_name
-      [{ 'name' => '', 'value' => 'Value', 'verified_at' => '01/01/1970' }]
     end
   end
 
@@ -637,19 +629,6 @@ RSpec.describe Account do
         expect(results)
           .to include(alice)
           .and not_include(bob)
-      end
-    end
-
-    describe 'alphabetic' do
-      it 'sorts by alphabetic order of domain and username' do
-        matches = [
-          { username: 'a', domain: 'a' },
-          { username: 'b', domain: 'a' },
-          { username: 'a', domain: 'b' },
-          { username: 'b', domain: 'b' },
-        ].map(&method(:Fabricate).curry(2).call(:account))
-
-        expect(described_class.without_internal.alphabetic).to eq matches
       end
     end
 
@@ -754,10 +733,10 @@ RSpec.describe Account do
     it 'generates keys' do
       account = described_class.create!(domain: nil, username: 'user_without_keys')
 
-      expect(account)
-        .to be_private_key
-        .and be_public_key
-      expect(account.keypair)
+      expect(account.private_key).to be_nil
+      expect(account.public_key).to eq ''
+
+      expect(account.keypair.keypair)
         .to be_private
         .and be_public
     end
@@ -767,7 +746,7 @@ RSpec.describe Account do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
       account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: 'remote_user_with_public', public_key: key.to_pem)
-      expect(account.keypair.params).to eq key.params
+      expect(account.keypair.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
@@ -775,9 +754,6 @@ RSpec.describe Account do
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end
-
-  it_behaves_like 'AccountAvatar', :account
-  it_behaves_like 'AccountHeader', :account
 
   describe '#increment_count!' do
     subject { Fabricate(:account) }
@@ -790,6 +766,118 @@ RSpec.describe Account do
       end
 
       expect(subject.reload.followers_count).to eq 15
+    end
+  end
+
+  describe '#featureable_by?' do
+    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:, locked:, feature_approval_policy:) }
+
+    let(:locked) { false }
+    let(:local_account) { Fabricate(:account) }
+
+    context 'when account is local' do
+      let(:local) { true }
+      let(:feature_approval_policy) { 0 }
+
+      context 'when account is discoverable' do
+        let(:discoverable) { true }
+
+        context 'when the account is not locked' do
+          let(:locked) { false }
+
+          it 'returns `true`' do
+            expect(subject.featureable_by?(local_account)).to be true
+          end
+        end
+
+        context 'when the account is locked' do
+          let(:locked) { true }
+
+          it 'returns `false`' do
+            expect(subject.featureable_by?(local_account)).to be false
+          end
+
+          context 'when the other account is a follower' do
+            before do
+              local_account.follow!(subject)
+            end
+
+            it 'returns `true`' do
+              expect(subject.featureable_by?(local_account)).to be true
+            end
+          end
+        end
+      end
+
+      context 'when account is not discoverable' do
+        let(:discoverable) { false }
+
+        it 'returns `false`' do
+          expect(subject.featureable_by?(local_account)).to be false
+        end
+      end
+    end
+
+    context 'when account is remote' do
+      let(:local) { false }
+      let(:discoverable) { true }
+      let(:feature_approval_policy) { (0b10 << 16) | 0 }
+
+      context 'when the policy allows it' do
+        it 'returns `true`' do
+          expect(subject.featureable_by?(local_account)).to be true
+        end
+      end
+
+      context 'when the policy forbids it' do
+        let(:feature_approval_policy) { 0 }
+
+        it 'returns `false`' do
+          expect(subject.featureable_by?(local_account)).to be false
+        end
+      end
+    end
+  end
+
+  describe '#needs_background_refresh?' do
+    subject { account.needs_background_refresh? }
+
+    context 'when account is local' do
+      let(:account) { Fabricate(:account) }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when account is remote' do
+      let(:account) { Fabricate(:remote_account, last_webfingered_at:) }
+
+      context 'when account has never been updated or last update is unknown' do
+        let(:last_webfingered_at) { nil }
+
+        it { is_expected.to be true }
+      end
+
+      context 'when account has not been updated for over a week' do
+        let(:last_webfingered_at) { 8.days.ago }
+
+        it { is_expected.to be true }
+      end
+
+      context 'when account has been updated in the last week' do
+        let(:last_webfingered_at) { 4.days.ago }
+
+        context 'when there is no other account from the same domain with an feature approval policy' do
+          it { is_expected.to be false }
+        end
+
+        context 'when there is another account from the same domain with a feature approval policy' do
+          before do
+            Fabricate(:remote_account, domain: account.domain, feature_approval_policy: 1)
+          end
+
+          it { is_expected.to be true }
+        end
+      end
     end
   end
 end

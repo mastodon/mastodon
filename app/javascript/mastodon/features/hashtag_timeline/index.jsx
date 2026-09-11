@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
@@ -13,18 +13,29 @@ import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
 import { connectHashtagStream } from 'mastodon/actions/streaming';
 import { expandHashtagTimeline, clearTimeline } from 'mastodon/actions/timelines';
-import Column from 'mastodon/components/column';
-import ColumnHeader from 'mastodon/components/column_header';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
+import { remoteTopicFeedAccess, me, localTopicFeedAccess } from 'mastodon/initial_state';
 
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import { HashtagHeader } from './components/hashtag_header';
 import ColumnSettingsContainer from './containers/column_settings_container';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { HashtagColumnMenu } from './components/hashtag_column_menu';
 
-const mapStateToProps = (state, props) => ({
-  hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}${props.params.local ? ':local' : ''}`, 'unread']) > 0,
-});
+const mapStateToProps = (state, props) => {
+  const local = props.params.local || (!me && remoteTopicFeedAccess !== 'public');
+  const hasFeedAccess = !!me || localTopicFeedAccess === 'public';
+
+  return ({
+    local,
+    hasFeedAccess,
+    hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}${local ? ':local' : ''}`, 'unread']) > 0,
+  });
+};
 
 class HashtagTimeline extends PureComponent {
   disconnects = [];
@@ -82,10 +93,6 @@ class HashtagTimeline extends PureComponent {
     dispatch(moveColumn(columnId, dir));
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
   _subscribe (dispatch, id, tags = {}, local) {
     const { signedIn } = this.props.identity;
 
@@ -113,19 +120,21 @@ class HashtagTimeline extends PureComponent {
   }
 
   _unload () {
-    const { dispatch } = this.props;
-    const { id, local } = this.props.params;
+    const { dispatch, local } = this.props;
+    const { id } = this.props.params;
 
     this._unsubscribe();
     dispatch(clearTimeline(`hashtag:${id}${local ? ':local' : ''}`));
   }
 
   _load() {
-    const { dispatch } = this.props;
-    const { id, tags, local } = this.props.params;
+    const { dispatch, local, hasFeedAccess } = this.props;
+    const { id, tags } = this.props.params;
 
-    this._subscribe(dispatch, id, tags, local);
-    dispatch(expandHashtagTimeline(id, { tags, local }));
+    if (hasFeedAccess) {
+      this._subscribe(dispatch, id, tags, local);
+      dispatch(expandHashtagTimeline(id, { tags, local }));
+    }
   }
 
   componentDidMount () {
@@ -133,10 +142,10 @@ class HashtagTimeline extends PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    const { params } = this.props;
-    const { id, tags, local } = prevProps.params;
+    const { params, local } = this.props;
+    const { id, tags } = prevProps.params;
 
-    if (id !== params.id || !isEqual(tags, params.tags) || !isEqual(local, params.local)) {
+    if (id !== params.id || !isEqual(tags, params.tags) || !isEqual(local, prevProps.local)) {
       this._unload();
       this._load();
     }
@@ -146,52 +155,79 @@ class HashtagTimeline extends PureComponent {
     this._unsubscribe();
   }
 
-  setRef = c => {
-    this.column = c;
-  };
-
   handleLoadMore = maxId => {
-    const { dispatch, params } = this.props;
-    const { id, tags, local }  = params;
+    const { dispatch, params, local } = this.props;
+    const { id, tags }  = params;
 
     dispatch(expandHashtagTimeline(id, { maxId, tags, local }));
   };
 
   render () {
-    const { hasUnread, columnId, multiColumn } = this.props;
-    const { id, local } = this.props.params;
+    const { hasUnread, columnId, multiColumn, local, hasFeedAccess } = this.props;
+    const { id } = this.props.params;
     const pinned = !!columnId;
+    const withHeadingSection = !isRedesignEnabled() && !pinned;
+
+    const title = <>#{this.title()}</>;
+    const titleAsString = `#${id}`;
 
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={`#${id}`}>
-        <ColumnHeader
-          icon='hashtag'
-          iconComponent={TagIcon}
-          active={hasUnread}
-          title={this.title()}
-          onPin={this.handlePin}
-          onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
-          pinned={pinned}
-          multiColumn={multiColumn}
-          showBackButton
-        >
-          {columnId && <ColumnSettingsContainer columnId={columnId} />}
-        </ColumnHeader>
+      <Column bindToDocument={!multiColumn} label={titleAsString}>
+        {isRedesignEnabled() ? (
+          <ColumnHeader
+            title={title}
+            withUnreadMarker={hasUnread}
+            withBackButton={multiColumn && !pinned && 'auto'}
+            extraButtons={
+              <HashtagColumnMenu
+                tagId={id}
+                multiColumn={multiColumn}
+                columnId={columnId}
+                onPin={this.handlePin}
+                onMove={this.handleMove}
+              />
+            }
+          />
+        ) : (
+          <LegacyColumnHeader
+            icon='hashtag'
+            iconComponent={TagIcon}
+            active={hasUnread}
+            title={this.title()}
+            multiColumn={multiColumn}
+            showBackButton
+            scrollTopOnClick
+          >
+            {columnId && <ColumnSettingsContainer columnId={columnId} />}
+          </LegacyColumnHeader>
+        )}
 
         <StatusListContainer
-          prepend={pinned ? null : <HashtagHeader tagId={id} />}
+          prepend={withHeadingSection && <HashtagHeader tagId={id} />}
           alwaysPrepend
           trackScroll={!pinned}
           scrollKey={`hashtag_timeline-${columnId}`}
           timelineId={`hashtag:${id}${local ? ':local' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
+          initialLoadingState={hasFeedAccess}
+          emptyMessage={
+            hasFeedAccess ? (
+              <FormattedMessage
+                id='empty_column.hashtag'
+                defaultMessage='There is nothing in this hashtag yet.'
+              />
+            ) : (
+              <FormattedMessage
+                id='error.no_hashtag_feed_access'
+                defaultMessage='Join or log in to view and follow this hashtag.'
+              />
+            )
+          }
           bindToDocument={!multiColumn}
         />
 
         <Helmet>
-          <title>#{id}</title>
+          <title>{titleAsString}</title>
           <meta name='robots' content='noindex' />
         </Helmet>
       </Column>

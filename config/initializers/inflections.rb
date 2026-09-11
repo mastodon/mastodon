@@ -20,14 +20,17 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'DeepL'
   inflect.acronym 'DSL'
   inflect.acronym 'JsonLd'
+  inflect.acronym 'OAuth'
   inflect.acronym 'OEmbed'
   inflect.acronym 'OStatus'
   inflect.acronym 'PubSubHubbub'
   inflect.acronym 'REST'
   inflect.acronym 'RSS'
   inflect.acronym 'StatsD'
+  inflect.acronym 'SEO'
   inflect.acronym 'TOC'
   inflect.acronym 'URL'
+  inflect.acronym 'OpenTelemetry'
 
   inflect.singular 'data', 'data'
 end

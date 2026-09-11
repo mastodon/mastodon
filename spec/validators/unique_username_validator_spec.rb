@@ -3,72 +3,63 @@
 require 'rails_helper'
 
 RSpec.describe UniqueUsernameValidator do
-  describe '#validate' do
-    context 'when local account' do
-      it 'does not add errors if username is nil' do
-        account = instance_double(Account, username: nil, domain: nil, persisted?: false, errors: activemodel_errors)
-        subject.validate(account)
-        expect(account.errors).to_not have_received(:add)
-      end
+  subject { Fabricate.build :account, username: 'abcdef', domain: }
 
-      it 'does not add errors when existing one is subject itself' do
-        account = Fabricate(:account, username: 'abcdef')
-        expect(account).to be_valid
-      end
+  context 'when local account' do
+    let(:domain) { nil }
 
-      it 'adds an error when the username is already used with ignoring cases' do
-        Fabricate(:account, username: 'ABCdef')
-        account = instance_double(Account, username: 'abcDEF', domain: nil, persisted?: false, errors: activemodel_errors)
-        subject.validate(account)
-        expect(account.errors).to have_received(:add)
-      end
+    context 'when record is persisted and checking own name' do
+      before { subject.save }
 
-      it 'does not add errors when same username remote account exists' do
-        Fabricate(:account, username: 'abcdef', domain: 'example.com')
-        account = instance_double(Account, username: 'abcdef', domain: nil, persisted?: false, errors: activemodel_errors)
-        subject.validate(account)
-        expect(account.errors).to_not have_received(:add)
-      end
+      it { is_expected.to allow_value(subject.username).for(:username) }
+    end
+
+    context 'when username case insensitive in use already' do
+      before { Fabricate :account, username: 'ABCdef' }
+
+      it { is_expected.to_not allow_value('abcDEF').for(:username).with_message(:taken) }
+    end
+
+    context 'when username on remote account is in use' do
+      before { Fabricate :account, username: 'ABCdef', domain: 'host.example' }
+
+      it { is_expected.to allow_value('abcDEF').for(:username) }
     end
   end
 
   context 'when remote account' do
-    it 'does not add errors if username is nil' do
-      account = instance_double(Account, username: nil, domain: 'example.com', persisted?: false, errors: activemodel_errors)
-      subject.validate(account)
-      expect(account.errors).to_not have_received(:add)
+    let(:domain) { 'host.example' }
+
+    context 'when record is persisted and checking own name' do
+      before { subject.save }
+
+      it { is_expected.to allow_value('abcdef').for(:username) }
     end
 
-    it 'does not add errors when existing one is subject itself' do
-      account = Fabricate(:account, username: 'abcdef', domain: 'example.com')
-      expect(account).to be_valid
+    context 'when username case insensitive in use already' do
+      before { Fabricate :account, username: 'ABCdef', domain: 'host.example' }
+
+      it { is_expected.to_not allow_value('abcDEF').for(:username) }
     end
 
-    it 'adds an error when the username is already used with ignoring cases' do
-      Fabricate(:account, username: 'ABCdef', domain: 'example.com')
-      account = instance_double(Account, username: 'abcDEF', domain: 'example.com', persisted?: false, errors: activemodel_errors)
-      subject.validate(account)
-      expect(account.errors).to have_received(:add)
+    context 'when domain case insensitive in use already' do
+      before { Fabricate :account, username: 'ABCdef', domain: 'HOST.EXAMPLE' }
+
+      it { is_expected.to_not allow_value('abcDEF').for(:username) }
     end
 
-    it 'adds an error when the domain is already used with ignoring cases' do
-      Fabricate(:account, username: 'ABCdef', domain: 'example.com')
-      account = instance_double(Account, username: 'ABCdef', domain: 'EXAMPLE.COM', persisted?: false, errors: activemodel_errors)
-      subject.validate(account)
-      expect(account.errors).to have_received(:add)
-    end
+    context 'when same username on other domain is in use already' do
+      before { Fabricate :account, username: 'abcdef', domain: 'other.example' }
 
-    it 'does not add errors when account with the same username and another domain exists' do
-      Fabricate(:account, username: 'abcdef', domain: 'example.com')
-      account = instance_double(Account, username: 'abcdef', domain: 'example2.com', persisted?: false, errors: activemodel_errors)
-      subject.validate(account)
-      expect(account.errors).to_not have_received(:add)
+      it { is_expected.to allow_value('abcdef').for(:username) }
     end
   end
 
-  private
+  context 'when account has blank username' do
+    subject { described_class.new.validate(account) }
 
-  def activemodel_errors
-    instance_double(ActiveModel::Errors, add: nil)
+    let(:account) { Fabricate.build :account, username: nil }
+
+    it { is_expected.to be_nil }
   end
 end

@@ -16,18 +16,18 @@ RSpec.describe 'Admin::AccountModerationNotes' do
       expect { submit_form }
         .to not_change(AccountModerationNote, :count)
       expect(page)
-        .to have_content(/error below/)
+        .to have_text(/error below/)
 
       fill_in 'account_moderation_note_content', with: 'Test message'
       expect { submit_form }
         .to change(AccountModerationNote, :count).by(1)
       expect(page)
-        .to have_content(I18n.t('admin.account_moderation_notes.created_msg'))
+        .to have_text(I18n.t('admin.account_moderation_notes.created_msg'))
 
       expect { delete_note }
         .to change(AccountModerationNote, :count).by(-1)
       expect(page)
-        .to have_content(I18n.t('admin.account_moderation_notes.destroyed_msg'))
+        .to have_text(I18n.t('admin.account_moderation_notes.destroyed_msg'))
     end
 
     def submit_form
@@ -35,7 +35,7 @@ RSpec.describe 'Admin::AccountModerationNotes' do
     end
 
     def delete_note
-      within('.report-notes__item__actions') do
+      within('.report-notes__item:first-child .report-notes__item__actions') do
         click_on I18n.t('admin.reports.notes.delete')
       end
     end

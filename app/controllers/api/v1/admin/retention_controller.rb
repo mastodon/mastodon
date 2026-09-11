@@ -2,24 +2,25 @@
 
 class Api::V1::Admin::RetentionController < Api::BaseController
   include Authorization
+  include Admin::PermissionsConcern
 
   before_action -> { authorize_if_got_token! :'admin:read' }
-  before_action :set_cohorts
+  before_action :set_retention
 
   after_action :verify_authorized
 
   def create
     authorize :dashboard, :index?
-    render json: @cohorts, each_serializer: REST::Admin::CohortSerializer
+    render json: @retention.cohorts, each_serializer: REST::Admin::CohortSerializer
   end
 
   private
 
-  def set_cohorts
-    @cohorts = Admin::Metrics::Retention.new(
-      params[:start_at],
-      params[:end_at],
+  def set_retention
+    @retention = Admin::Metrics::Retention.new(
+      params.require(:start_at),
+      params.require(:end_at),
       params[:frequency]
-    ).cohorts
+    )
   end
 end

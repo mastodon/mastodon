@@ -1,6 +1,8 @@
-import { useState, useEffect, useCallback, forwardRef } from 'react';
+import { useCallback, forwardRef } from 'react';
 
 import classNames from 'classnames';
+
+import { usePrevious } from '../hooks/usePrevious';
 
 import { AnimatedNumber } from './animated_number';
 import type { IconProp } from './icon';
@@ -14,7 +16,6 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
-  onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
   active?: boolean;
   expanded?: boolean;
   style?: React.CSSProperties;
@@ -45,7 +46,6 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
       activeStyle,
       onClick,
       onKeyDown,
-      onKeyPress,
       onMouseDown,
       active = false,
       disabled = false,
@@ -57,23 +57,6 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
     },
     buttonRef,
   ) => {
-    const [activate, setActivate] = useState(false);
-    const [deactivate, setDeactivate] = useState(false);
-
-    useEffect(() => {
-      if (!animate) {
-        return;
-      }
-
-      if (activate && !active) {
-        setActivate(false);
-        setDeactivate(true);
-      } else if (!activate && active) {
-        setActivate(true);
-        setDeactivate(false);
-      }
-    }, [setActivate, setDeactivate, animate, active, activate]);
-
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
       (e) => {
         e.preventDefault();
@@ -84,16 +67,6 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
       },
       [disabled, onClick],
     );
-
-    const handleKeyPress: React.KeyboardEventHandler<HTMLButtonElement> =
-      useCallback(
-        (e) => {
-          if (!disabled) {
-            onKeyPress?.(e);
-          }
-        },
-        [disabled, onKeyPress],
-      );
 
     const handleMouseDown: React.MouseEventHandler<HTMLButtonElement> =
       useCallback(
@@ -120,12 +93,15 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
       ...(active ? activeStyle : {}),
     };
 
+    const previousActive = usePrevious(active) ?? active;
+    const shouldAnimate = animate && active !== previousActive;
+
     const classes = classNames(className, 'icon-button', {
       active,
       disabled,
       inverted,
-      activate,
-      deactivate,
+      activate: shouldAnimate && active,
+      deactivate: shouldAnimate && !active,
       overlayed: overlay,
       'icon-button--with-counter': typeof counter !== 'undefined',
     });
@@ -161,7 +137,6 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
         onClick={handleClick}
         onMouseDown={handleMouseDown}
         onKeyDown={handleKeyDown}
-        onKeyPress={handleKeyPress} // eslint-disable-line @typescript-eslint/no-deprecated
         style={buttonStyle}
         tabIndex={tabIndex}
         disabled={disabled}

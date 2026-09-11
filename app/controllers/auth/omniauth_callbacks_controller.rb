@@ -38,8 +38,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def record_login_activity
-    LoginActivity.create(
-      user: @user,
+    @user.login_activities.create(
       success: true,
       authentication_method: :omniauth,
       provider: @provider,

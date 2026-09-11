@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 
 import { fetchServer } from 'mastodon/actions/server';
 import { domain } from 'mastodon/initial_state';
+import { NavigationFocusTarget } from '@/mastodon/components/navigation_focus_target';
 
 const mapStateToProps = state => ({
-  message: state.getIn(['server', 'server', 'registrations', 'message']),
+  message: state.getIn(['server', 'server', 'item', 'registrations', 'message']),
 });
 
 class ClosedRegistrationsModal extends ImmutablePureComponent {
@@ -42,7 +43,9 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
     return (
       <div className='modal-root__modal interaction-modal'>
         <div className='interaction-modal__lead'>
-          <h3><FormattedMessage id='closed_registrations_modal.title' defaultMessage='Signing up on Mastodon' /></h3>
+          <NavigationFocusTarget as='h1'>
+            <FormattedMessage id='closed_registrations_modal.title' defaultMessage='Signing up on Mastodon' />
+          </NavigationFocusTarget>
           <p>
             <FormattedMessage
               id='closed_registrations_modal.preamble'
@@ -53,12 +56,12 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
 
         <div className='interaction-modal__choices'>
           <div className='interaction-modal__choices__choice'>
-            <h3><FormattedMessage id='interaction_modal.on_this_server' defaultMessage='On this server' /></h3>
+            <h2><FormattedMessage id='interaction_modal.on_this_server' defaultMessage='On this server' /></h2>
             {closedRegistrationsMessage}
           </div>
 
           <div className='interaction-modal__choices__choice'>
-            <h3><FormattedMessage id='interaction_modal.on_another_server' defaultMessage='On a different server' /></h3>
+            <h2><FormattedMessage id='interaction_modal.on_another_server' defaultMessage='On a different server' /></h2>
             <p className='prose'>
               <FormattedMessage
                 id='closed_registrations.other_server_instructions'

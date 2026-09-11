@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 /**
  * Returns the previous state of the passed in value.
@@ -6,11 +6,21 @@ import { useRef, useEffect } from 'react';
  */
 
 export function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T>();
+  const [{ previous, current }, setMemory] = useState<{
+    previous: T | undefined;
+    current: T;
+  }>(() => ({ previous: undefined, current: value }));
 
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
+  let result = previous;
 
-  return ref.current;
+  if (value !== current) {
+    setMemory({
+      previous: current,
+      current: value,
+    });
+    // Ensure that the returned result updates synchronously
+    result = current;
+  }
+
+  return result;
 }

@@ -13,5 +13,5 @@
 # https://rossta.net/blog/using-the-web-push-api-with-vapid.html
 #
 shared:
-  private_key: <%= ENV.fetch('VAPID_PRIVATE_KEY', nil) %>
-  public_key: <%= ENV.fetch('VAPID_PUBLIC_KEY', nil) %>
+  private_key: <%= ENV.fetch('VAPID_PRIVATE_KEY', nil)&.to_json %>
+  public_key: <%= ENV.fetch('VAPID_PUBLIC_KEY', nil)&.to_json %>

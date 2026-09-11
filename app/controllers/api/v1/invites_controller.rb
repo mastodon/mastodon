@@ -7,6 +7,7 @@ class Api::V1::InvitesController < Api::BaseController
   skip_around_action :set_locale
 
   before_action :set_invite
+  before_action :check_valid_usage!
   before_action :check_enabled_registrations!
 
   # Override `current_user` to avoid reading session cookies
@@ -22,9 +23,11 @@ class Api::V1::InvitesController < Api::BaseController
     @invite = Invite.find_by!(code: params[:invite_code])
   end
 
-  def check_enabled_registrations!
-    return render json: { error: I18n.t('invites.invalid') }, status: 401 unless @invite.valid_for_use?
+  def check_valid_usage!
+    render json: { error: I18n.t('invites.invalid') }, status: 401 unless @invite.valid_for_use?
+  end
 
+  def check_enabled_registrations!
     raise Mastodon::NotPermittedError unless allowed_registration?(request.remote_ip, @invite)
   end
 end

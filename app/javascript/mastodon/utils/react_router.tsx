@@ -18,7 +18,7 @@ export const WithOptionalRouterPropTypes = {
 
 export interface OptionalRouterProps {
   ref: unknown;
-  wrappedComponentRef: unknown;
+  wrappedComponentRef?: string | ((...args: unknown[]) => unknown) | object;
 }
 
 // This is copied from https://github.com/remix-run/react-router/blob/v5.3.4/packages/react-router/modules/withRouter.js
@@ -54,14 +54,6 @@ export function withOptionalRouter<
 
   C.displayName = displayName;
   C.WrappedComponent = Component;
-  C.propTypes = {
-    ...Component.propTypes,
-    wrappedComponentRef: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-      PropTypes.object,
-    ]),
-  };
 
   return hoistStatics(C, Component);
 }

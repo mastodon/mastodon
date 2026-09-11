@@ -8,9 +8,8 @@ import { createSelector } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
 
 import fuzzysort from 'fuzzysort';
-import Overlay from 'react-overlays/Overlay';
-import type { State, Placement } from 'react-overlays/usePopper';
 
+import { Popover } from '@/mastodon/components/popover';
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
@@ -39,7 +38,7 @@ type Language = [string, string, string];
 const getFrequentlyUsedLanguages = createSelector(
   [
     (state: RootState) =>
-      (state.settings as ImmutableMap<string, unknown>).get(
+      state.settings.get(
         'frequentlyUsedLanguages',
         ImmutableMap(),
       ) as ImmutableMap<string, number>,
@@ -55,13 +54,17 @@ const getFrequentlyUsedLanguages = createSelector(
       .toArray(),
 );
 
-const LanguageDropdownMenu: React.FC<{
+const isTextLongEnoughForGuess = (text: string) => text.length > 20;
+
+const emptyArray: Language[] = [];
+
+export const LanguageDropdownMenu: React.FC<{
   value: string;
-  guess?: string;
+  guess: string;
   onClose: () => void;
   onChange: (arg0: string) => void;
 }> = ({ value, guess, onClose, onChange }) => {
-  const languages = preloadedLanguages as Language[];
+  const languages = preloadedLanguages ?? emptyArray;
   const intl = useIntl();
   const [searchValue, setSearchValue] = useState('');
   const nodeRef = useRef<HTMLDivElement>(null);
@@ -201,34 +204,13 @@ const LanguageDropdownMenu: React.FC<{
   const isSearching = searchValue !== '';
 
   useEffect(() => {
-    const handleDocumentClick = (e: MouseEvent) => {
-      if (
-        nodeRef.current &&
-        e.target instanceof HTMLElement &&
-        !nodeRef.current.contains(e.target)
-      ) {
-        onClose();
-        e.stopPropagation();
-      }
-    };
-
-    document.addEventListener('click', handleDocumentClick, { capture: true });
-
-    // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
-    // to wait for a frame before focusing
-    requestAnimationFrame(() => {
-      if (nodeRef.current) {
-        const element = nodeRef.current.querySelector<HTMLInputElement>(
-          'input[type="search"]',
-        );
-        if (element) element.focus();
-      }
-    });
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-    };
-  }, [onClose]);
+    if (nodeRef.current) {
+      const element = nodeRef.current.querySelector<HTMLInputElement>(
+        'input[type="search"]',
+      );
+      if (element) element.focus();
+    }
+  }, []);
 
   const results = useMemo(() => {
     if (searchValue === '') {
@@ -324,10 +306,9 @@ const LanguageDropdownMenu: React.FC<{
 
 export const LanguageDropdown: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState<Placement | undefined>('bottom');
   const [guess, setGuess] = useState('');
   const activeElementRef = useRef<HTMLElement | null>(null);
-  const targetRef = useRef(null);
+  const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
 
   const intl = useIntl();
 
@@ -338,7 +319,7 @@ export const LanguageDropdown: React.FC = () => {
   const text = useAppSelector((state) => state.compose.get('text') as string);
 
   const current =
-    (preloadedLanguages as Language[]).find((lang) => lang[0] === value) ?? [];
+    (preloadedLanguages ?? []).find((lang) => lang[0] === value) ?? [];
 
   const handleMouseDown = useCallback(() => {
     if (!open && document.activeElement instanceof HTMLElement) {
@@ -367,26 +348,33 @@ export const LanguageDropdown: React.FC = () => {
     [dispatch],
   );
 
-  const handleOverlayEnter = useCallback(
-    (state: Partial<State>) => {
-      setPlacement(state.placement);
-    },
-    [setPlacement],
-  );
-
   useEffect(() => {
-    if (text.length > 20) {
+    if (isTextLongEnoughForGuess(text)) {
       debouncedGuess(text, setGuess);
     } else {
       debouncedGuess.cancel();
-      setGuess('');
     }
   }, [text, setGuess]);
 
+  // Keeping track of the previous render's text length here
+  // to be able to reset the guess when the text length drops
+  // below the threshold needed to make a guess
+  const [wasLongText, setWasLongText] = useState(() =>
+    isTextLongEnoughForGuess(text),
+  );
+  if (wasLongText !== isTextLongEnoughForGuess(text)) {
+    setWasLongText(isTextLongEnoughForGuess(text));
+
+    if (wasLongText) {
+      setGuess('');
+    }
+  }
+
   return (
-    <div ref={targetRef}>
+    <>
       <button
         type='button'
+        ref={setTargetElement}
         title={intl.formatMessage(messages.changeLanguage)}
         aria-expanded={open}
         onClick={handleToggle}
@@ -396,17 +384,15 @@ export const LanguageDropdown: React.FC = () => {
           warning: guess !== '' && guess !== value,
         })}
       >
-        <Icon id='' icon={TranslateIcon} />
+        <Icon id='translate' icon={TranslateIcon} />
         <span className='dropdown-button__label'>{current[2] ?? value}</span>
       </button>
 
-      <Overlay
-        show={open}
-        offset={[5, 5]}
-        placement={placement}
-        flip
-        target={targetRef}
-        popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}
+      <Popover
+        isOpen={open}
+        onClose={handleClose}
+        offset={5}
+        reference={targetElement}
       >
         {({ props, placement }) => (
           <div {...props}>
@@ -422,7 +408,7 @@ export const LanguageDropdown: React.FC = () => {
             </div>
           </div>
         )}
-      </Overlay>
-    </div>
+      </Popover>
+    </>
   );
 };

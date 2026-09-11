@@ -25,8 +25,8 @@ RSpec.describe PlainTextFormatter do
         end
       end
 
-      context 'when text contains <p> tags' do
-        let(:status) { Fabricate.build(:status, account: remote_account, text: '<p>Lorem</p><p>ipsum</p>') }
+      context 'when text contains mixed case <p> tags' do
+        let(:status) { Fabricate.build(:status, account: remote_account, text: '<P>Lorem</P><p>ipsum</p>') }
 
         it 'inserts a newline' do
           expect(subject).to eq "Lorem\nipsum"

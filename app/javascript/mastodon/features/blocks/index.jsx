@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -8,16 +8,21 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { injectIntl } from '@/mastodon/components/intl';
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
-import { Account } from 'mastodon/components/account';
-
-import { fetchBlocks, expandBlocks } from '../../actions/blocks';
-import { LoadingIndicator } from '../../components/loading_indicator';
-import ScrollableList from '../../components/scrollable_list';
-import Column from '../ui/components/column';
+import { fetchBlocks, expandBlocks } from '@/mastodon/actions/blocks';
+import { Account } from '@/mastodon/components/account';
+import { Column } from '@/mastodon/components/column';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import ScrollableList from '@/mastodon/components/scrollable_list';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { Helmet } from '@unhead/react/helmet';
 
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
+  heading_redesign: { id: 'column.blocked_accounts', defaultMessage: 'Blocked Accounts' },
 });
 
 const mapStateToProps = state => ({
@@ -38,7 +43,7 @@ class Blocks extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  componentDidMount () {
     this.props.dispatch(fetchBlocks());
   }
 
@@ -60,7 +65,12 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='ban' iconComponent={BlockIcon} heading={intl.formatMessage(messages.heading)} alwaysShowBackButton>
+      <Column bindToDocument={!multiColumn}>
+        {isRedesignEnabled() ? (
+          <ColumnHeader withBackButton={multiColumn && 'auto'} title={intl.formatMessage(messages.heading_redesign)} />
+        ) : (
+          <LegacyColumnHeader icon='ban' iconComponent={BlockIcon} title={intl.formatMessage(messages.heading)} showBackButton />
+        )}
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}
@@ -73,6 +83,13 @@ class Blocks extends ImmutablePureComponent {
             <Account key={id} id={id} defaultAction='block' />,
           )}
         </ScrollableList>
+
+        <Helmet>
+          <title>
+            {intl.formatMessage(isRedesignEnabled() ? messages.heading_redesign : messages.heading)}
+          </title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

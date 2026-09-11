@@ -29,3 +29,8 @@ export const deployPictureInPicture = createAppAsyncThunk(
     }
   },
 );
+
+export type DeployPictureInPictureCallback = (
+  type: 'audio' | 'video',
+  props: PIPMediaProps,
+) => void;

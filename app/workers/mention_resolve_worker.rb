@@ -22,11 +22,7 @@ class MentionResolveWorker
   rescue Mastodon::UnexpectedResponseError => e
     response = e.response
 
-    if response_error_unsalvageable?(response)
-      # Give up
-    else
-      raise e
-    end
+    raise(e) unless response_error_unsalvageable?(response)
   end
 
   private

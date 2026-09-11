@@ -1,17 +1,21 @@
 ---
 Metrics/AbcSize:
-  Exclude:
-    - lib/mastodon/cli/*.rb
+  Enabled: false
 
 Metrics/BlockLength:
+  Enabled: false
+
+Metrics/BlockNesting:
   Enabled: false
 
 Metrics/ClassLength:
   Enabled: false
 
+Metrics/CollectionLiteralLength:
+  Enabled: false
+
 Metrics/CyclomaticComplexity:
-  Exclude:
-    - lib/mastodon/cli/*.rb
+  Enabled: false
 
 Metrics/MethodLength:
   Enabled: false
@@ -20,4 +24,7 @@ Metrics/ModuleLength:
   Enabled: false
 
 Metrics/ParameterLists:
-  CountKeywordArgs: false
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false

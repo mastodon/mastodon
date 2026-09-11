@@ -5,8 +5,8 @@ class Admin::Fasp::Debug::CallbacksController < Admin::BaseController
     authorize [:admin, :fasp, :provider], :update?
 
     @callbacks = Fasp::DebugCallback
-                 .includes(:fasp_provider)
-                 .order(created_at: :desc)
+      .includes(:fasp_provider)
+      .order(created_at: :desc)
   end
 
   def destroy

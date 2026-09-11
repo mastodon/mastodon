@@ -120,8 +120,8 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const doubleClickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
-  const zoomMatrixRef = useRef<ZoomMatrix | null>(null);
+  const doubleClickTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const zoomMatrixRef = useRef<ZoomMatrix>(null);
 
   const [style, api] = useSpring(() => ({
     x: 0,
@@ -306,10 +306,8 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({
 
       <animated.img
         style={{ transform }}
-        role='presentation'
         ref={imageRef}
         alt={alt}
-        title={alt}
         lang={lang}
         src={src}
         width={width}

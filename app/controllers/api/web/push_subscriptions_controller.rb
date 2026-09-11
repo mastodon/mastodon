@@ -6,6 +6,8 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :destroy_previous_subscriptions, only: :create, if: :prior_subscriptions?
   after_action :update_session_with_subscription, only: :create
 
+  skip_forgery_protection only: :destroy
+
   def create
     @push_subscription = ::Web::PushSubscription.create!(web_push_subscription_params)
 
@@ -49,7 +51,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
     {
       policy: 'all',
       alerts: Notification::TYPES.index_with { alerts_enabled },
-    }
+    }.deep_stringify_keys
   end
 
   def alerts_enabled
@@ -62,7 +64,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   end
 
   def set_push_subscription
-    @push_subscription = ::Web::PushSubscription.find(params[:id])
+    @push_subscription = ::Web::PushSubscription.where(user_id: active_session.user_id).find(params[:id])
   end
 
   def subscription_params

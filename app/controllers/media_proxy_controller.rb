@@ -11,9 +11,7 @@ class MediaProxyController < ApplicationController
   before_action :authenticate_user!, if: :limited_federation_mode?
   before_action :set_media_attachment
 
-  rescue_from ActiveRecord::RecordInvalid, with: :not_found
-  rescue_from Mastodon::UnexpectedResponseError, with: :not_found
-  rescue_from Mastodon::NotPermittedError, with: :not_found
+  rescue_from ActiveRecord::RecordInvalid, Mastodon::NotPermittedError, Mastodon::UnexpectedResponseError, with: :not_found
   rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
 
   def show
@@ -58,7 +56,7 @@ class MediaProxyController < ApplicationController
   end
 
   def media_attachment_file_path
-    if @media_attachment.discarded?
+    if @media_attachment.on_hold?
       expiring_asset_url(media_attachment_file, 10.minutes)
     else
       full_asset_url(media_attachment_file.url(attachment_style))
@@ -78,6 +76,6 @@ class MediaProxyController < ApplicationController
   end
 
   def requires_file_streaming?
-    Paperclip::Attachment.default_options[:storage] == :filesystem && @media_attachment.discarded?
+    Paperclip::Attachment.default_options[:storage] == :filesystem && @media_attachment.on_hold?
   end
 end

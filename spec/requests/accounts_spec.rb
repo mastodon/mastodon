@@ -5,6 +5,24 @@ require 'rails_helper'
 RSpec.describe 'Accounts show response' do
   let(:account) { Fabricate(:account) }
 
+  context 'with numeric-based identifiers' do
+    context 'with JSON format' do
+      it 'returns http success' do
+        get "/ap/users/#{account.id}", headers: { 'ACCEPT' => 'application/json' }
+
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'with HTML format' do
+      it 'redirects to success' do
+        get "/ap/users/#{account.id}", as: 'html'
+
+        expect(response).to redirect_to("/@#{account.username}")
+      end
+    end
+  end
+
   context 'with an unapproved account' do
     before { account.user.update(approved: false) }
 
@@ -37,6 +55,33 @@ RSpec.describe 'Accounts show response' do
 
     it 'returns appropriate http response code' do
       { html: 403, json: 200, rss: 403 }.each do |format, code|
+        get short_account_path(username: account.username), as: format
+
+        expect(response).to have_http_status(code)
+      end
+    end
+  end
+
+  describe 'permanently deleted account check' do
+    before do
+      account.mark_deleted!
+      account.deletion_request.destroy
+    end
+
+    it 'returns appropriate http response code' do
+      { html: 410, json: 410, rss: 410 }.each do |format, code|
+        get short_account_path(username: account.username), as: format
+
+        expect(response).to have_http_status(code)
+      end
+    end
+  end
+
+  describe 'pending deletion account check' do
+    before { account.mark_deleted! }
+
+    it 'returns appropriate http response code' do
+      { html: 403, json: 403, rss: 403 }.each do |format, code|
         get short_account_path(username: account.username), as: format
 
         expect(response).to have_http_status(code)

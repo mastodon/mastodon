@@ -1,0 +1,11 @@
+@mixin border-widths {
+  --border-w-thin: 0.5px;
+  --border-w-normal: 1px;
+  --border-w-strong: 2px;
+}
+
+@mixin borders {
+  --border-thin: var(--border-w-thin) solid var(--color-border-primary);
+  --border-normal: var(--border-w-normal) solid var(--color-border-primary);
+  --border-strong: var(--border-w-strong) solid var(--color-border-strong);
+}

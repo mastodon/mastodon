@@ -14,6 +14,7 @@ on:
       - config/locales/devise.en.yml
       - config/locales/doorkeeper.en.yml
       - .github/workflows/crowdin-upload.yml
+  workflow_dispatch:
 
 jobs:
   upload-translations:
@@ -22,10 +23,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: crowdin action
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@c7af9bc98b01694653031fef2a0dc6c7888ce9bc # v2
         with:
           upload_sources: true
           upload_translations: false

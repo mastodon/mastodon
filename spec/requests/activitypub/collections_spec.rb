@@ -14,7 +14,7 @@ RSpec.describe 'ActivityPub Collections' do
   end
 
   describe 'GET #show' do
-    subject { get account_collection_path(id: id, account_username: account.username), headers: nil, sign_with: remote_account }
+    subject { get account_actor_collection_path(id: id, account_username: account.username), headers: nil, sign_with: remote_account }
 
     context 'when id is "featured"' do
       let(:id) { 'featured' }
@@ -54,6 +54,33 @@ RSpec.describe 'ActivityPub Collections' do
 
         context 'when account is temporarily suspended' do
           before { account.suspend! }
+
+          it 'returns http forbidden' do
+            subject
+
+            expect(response)
+              .to have_http_status(403)
+          end
+        end
+
+        context 'when account is permanently deleted' do
+          before do
+            account.mark_deleted!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            subject
+
+            expect(response)
+              .to have_http_status(410)
+          end
+        end
+
+        context 'when account is pending deletion' do
+          before do
+            account.mark_deleted!
+          end
 
           it 'returns http forbidden' do
             subject
@@ -129,17 +156,6 @@ RSpec.describe 'ActivityPub Collections' do
             end
           end
         end
-      end
-    end
-
-    context 'when id is not "featured"' do
-      let(:id) { 'hoge' }
-
-      it 'returns http not found' do
-        subject
-
-        expect(response)
-          .to have_http_status(404)
       end
     end
   end

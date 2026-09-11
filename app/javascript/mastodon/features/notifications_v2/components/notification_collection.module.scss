@@ -1,0 +1,17 @@
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.menuButton {
+  box-sizing: content-box;
+  margin-inline-start: auto;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border-primary);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

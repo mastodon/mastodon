@@ -12,9 +12,17 @@ RSpec.describe Admin::Metrics::Measure::NewUsersMeasure do
   describe '#data' do
     context 'with user records' do
       before do
-        3.times { Fabricate :user, created_at: 2.days.ago }
-        2.times { Fabricate :user, created_at: 1.day.ago }
-        Fabricate :user, created_at: 0.days.ago
+        travel_to 2.days.ago do
+          # We specify the `id` because `travel_to` doesn't affect the database
+          3.times { Fabricate :account, id: Mastodon::Snowflake.id_at(Time.now.utc) }
+        end
+
+        travel_to 1.day.ago do
+          # We specify the `id` because `travel_to` doesn't affect the database
+          2.times { Fabricate :account, id: Mastodon::Snowflake.id_at(Time.now.utc) }
+        end
+
+        Fabricate :user
       end
 
       it 'returns correct user counts' do

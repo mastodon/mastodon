@@ -16,6 +16,7 @@ class UserSettings
   setting :default_sensitive, default: false
   setting :default_privacy, default: nil, in: %w(public unlisted private)
   setting :default_quote_policy, default: 'public', in: %w(public followers nobody)
+  setting :email_subscriptions, default: false
 
   setting_inverse_alias :indexable, :noindex
 
@@ -30,11 +31,15 @@ class UserSettings
     setting :disable_hover_cards, default: false
     setting :delete_modal, default: true
     setting :reblog_modal, default: false
+    setting :quick_boosting, default: false
     setting :missing_alt_text_modal, default: true
     setting :reduce_motion, default: false
     setting :expand_content_warnings, default: false
-    setting :display_media, default: 'default', in: %w(default show_all hide_all)
+    setting :display_media, default: 'default', in: %w(hide_all default show_all)
     setting :auto_play, default: false
+    setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
+    setting :color_scheme, default: 'auto', in: %w(auto light dark)
+    setting :contrast, default: 'auto', in: %w(auto high)
   end
 
   namespace :notification_emails do
@@ -42,12 +47,14 @@ class UserSettings
     setting :reblog, default: false
     setting :favourite, default: false
     setting :mention, default: true
+    setting :quote, default: true
     setting :follow_request, default: true
     setting :report, default: true
     setting :pending_account, default: true
     setting :trends, default: true
     setting :appeal, default: true
     setting :software_updates, default: 'critical', in: %w(none critical patch all)
+    setting :end_of_support, default: true
   end
 
   namespace :interactions do

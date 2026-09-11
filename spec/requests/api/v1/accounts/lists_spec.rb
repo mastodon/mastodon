@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Accounts Lists API' do
-  let(:user)     { Fabricate(:user) }
-  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)   { 'read:lists' }
-  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:lists'
+
   let(:account) { Fabricate(:account) }
   let(:list)    { Fabricate(:list, account: user.account) }
 
@@ -22,6 +20,31 @@ RSpec.describe 'Accounts Lists API' do
       expect(response).to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
+    end
+  end
+
+  context 'when requested account is permanently deleted' do
+    before do
+      account.mark_deleted!
+      account.deletion_request.destroy
+    end
+
+    it 'returns http not found' do
+      get "/api/v1/accounts/#{account.id}/lists", headers: headers
+
+      expect(response).to have_http_status(404)
+    end
+  end
+
+  context 'when requested account is pending deletion' do
+    before do
+      account.mark_deleted!
+    end
+
+    it 'returns http not found' do
+      get "/api/v1/accounts/#{account.id}/lists", headers: headers
+
+      expect(response).to have_http_status(404)
     end
   end
 end

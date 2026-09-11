@@ -32,6 +32,12 @@ hu:
           attributes:
             url:
               invalid: nem érvényes URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: túl sok, legfeljebb %{count} engedélyezett
+            tag:
+              unusable: nem használható
         doorkeeper/application:
           attributes:
             website:

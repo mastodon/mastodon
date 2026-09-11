@@ -5,9 +5,9 @@
 # Table name: relationship_severance_events
 #
 #  id          :bigint(8)        not null, primary key
-#  type        :integer          not null
-#  target_name :string           not null
 #  purged      :boolean          default(FALSE), not null
+#  target_name :string           not null
+#  type        :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

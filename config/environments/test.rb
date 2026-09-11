@@ -92,3 +92,6 @@ end
 Sidekiq.strict_args!
 
 Redis.raise_deprecations = true
+
+# Silence deprecation warning from json-schema
+JSON::Validator.use_multi_json = false

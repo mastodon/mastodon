@@ -1,0 +1,16 @@
+.fields-group
+  = form.input :username,
+               wrapper: :with_block_label,
+               input_html: { autocomplete: 'new-password', pattern: '[a-zA-Z0-9_]+', maxlength: Account::USERNAME_LENGTH_LIMIT }
+
+.fields-group
+  = form.input :comparison,
+               as: :select,
+               wrapper: :with_block_label,
+               collection: %w(equals contains),
+               include_blank: false,
+               label_method: ->(type) { I18n.t(type, scope: 'admin.username_blocks.comparison') }
+
+.fields-group
+  = form.input :allow_with_approval,
+               wrapper: :with_label

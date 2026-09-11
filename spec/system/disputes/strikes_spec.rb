@@ -6,8 +6,11 @@ RSpec.describe 'Disputes Strikes' do
   before { sign_in(current_user) }
 
   describe 'viewing strike disputes' do
+    let!(:strike) { Fabricate(:account_warning, target_account: current_user.account, report:, status_ids: [status.id]) }
     let(:current_user) { Fabricate(:user) }
-    let!(:strike) { Fabricate(:account_warning, target_account: current_user.account) }
+    let(:report) { Fabricate :report, category: :violation, rule_ids: rules.map(&:id), target_account: current_user.account }
+    let(:rules) { Fabricate.times 2, :rule }
+    let(:status) { Fabricate :status, account: current_user.account, text: 'Offensive text' }
 
     it 'shows a list of strikes and details for each' do
       visit disputes_strikes_path
@@ -17,7 +20,9 @@ RSpec.describe 'Disputes Strikes' do
       find('.strike-entry').click
       expect(page)
         .to have_title(strike_page_title)
-        .and have_content(strike.text)
+        .and have_text(strike.text)
+        .and have_text(rules.last.text)
+        .and have_text(status.text)
     end
 
     def strike_page_title

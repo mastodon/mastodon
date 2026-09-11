@@ -1,0 +1,44 @@
+@use '@/styles/mastodon/mixins';
+
+.dialog {
+  width: 100%;
+  max-width: unset;
+  max-height: 100dvh;
+  margin: initial;
+  margin-top: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  overscroll-behavior: contain;
+
+  &::backdrop {
+    opacity: 0.9;
+    background-color: var(--color-bg-overlay);
+  }
+
+  &::after {
+    @include mixins.scroll-gradient(bottom);
+
+    position: fixed;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity ease 250ms;
+  }
+}
+
+.withGradient::after {
+  opacity: 1;
+}
+
+.sheet {
+  padding: var(--space-md);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--color-bg-primary);
+  overflow: hidden;
+  text-align: start;
+
+  @include mixins.elevation-1;
+
+  border-inline: none;
+  border-bottom: none;
+}

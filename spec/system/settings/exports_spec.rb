@@ -13,7 +13,7 @@ RSpec.describe 'Export page' do
         visit settings_export_path
 
         expect(page)
-          .to have_content(takeout_summary)
+          .to have_text(takeout_summary)
           .and have_private_cache_control
       end
     end
@@ -26,7 +26,7 @@ RSpec.describe 'Export page' do
       expect { request_archive }
         .to change(BackupWorker.jobs, :size).by(1)
       expect(page)
-        .to have_content(takeout_summary)
+        .to have_text(takeout_summary)
     end
 
     def request_archive

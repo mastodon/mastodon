@@ -16,10 +16,12 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
     let!(:jerk) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:larry) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:morty) { Fabricate(:account, discoverable: true, hide_collections: false, memorial: true) }
+    let!(:joyce) { Fabricate(:account, discoverable: true, hide_collections: false) }
 
     context 'with follows and blocks' do
       before do
         bob.block!(jerk)
+        bob.request_follow!(joyce)
         FollowRecommendationMute.create!(account: bob, target_account: neil)
 
         # bob follows eugen, alice and larry
@@ -28,8 +30,8 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
         # alice follows eve and mallory
         [john, mallory].each { |account| alice.follow!(account) }
 
-        # eugen follows eve, john, jerk, larry, neil and morty
-        [eve, mallory, jerk, larry, neil, morty].each { |account| eugen.follow!(account) }
+        # eugen follows eve, john, jerk, larry, neil, morty and joyce
+        [eve, mallory, jerk, larry, neil, morty, joyce].each { |account| eugen.follow!(account) }
       end
 
       it 'returns eligible accounts', :aggregate_failures do
@@ -55,6 +57,9 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
 
         # morty is not included because his account is in memoriam
         expect(results).to_not include([morty.id, :friends_of_friends])
+
+        # joyce is not included because there is already a pending follow request
+        expect(results).to_not include([joyce.id, :friends_of_friends])
       end
     end
 

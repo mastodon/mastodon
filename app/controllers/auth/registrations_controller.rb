@@ -23,11 +23,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     super(&:build_invite_request)
   end
 
-  def edit # rubocop:disable Lint/UselessMethodDefinition
+  def edit
     super
   end
 
-  def create # rubocop:disable Lint/UselessMethodDefinition
+  def create
     super
   end
 
@@ -89,7 +89,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path unless allowed_registration?(request.remote_ip, @invite)
+    redirect_to new_user_session_path, alert: I18n.t('devise.failure.closed_registrations', email: Setting.site_contact_email) unless allowed_registration?(request.remote_ip, @invite)
   end
 
   def invite_code
@@ -130,12 +130,17 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def require_rules_acceptance!
-    return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
+    return if @rules.empty? || validated_accept_token?
 
     @accept_token = session[:accept_token] = SecureRandom.hex
-    @invite_code  = invite_code
+    @invite_code = invite_code
+    @rule_translations = @rules.map { |rule| rule.translation_for(I18n.locale) }
 
-    set_locale { render :rules }
+    render :rules
+  end
+
+  def validated_accept_token?
+    session[:accept_token].present? && params[:accept] == session[:accept_token]
   end
 
   def is_flashing_format? # rubocop:disable Naming/PredicatePrefix

@@ -10,7 +10,6 @@ on:
       - '.rubocop*.yml'
       - '.ruby-version'
       - 'bin/rubocop'
-      - 'config/brakeman.ignore'
       - '**/*.rb'
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
@@ -21,7 +20,6 @@ on:
       - '.rubocop*.yml'
       - '.ruby-version'
       - 'bin/rubocop'
-      - 'config/brakeman.ignore'
       - '**/*.rb'
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
@@ -29,24 +27,22 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     env:
       BUNDLE_ONLY: development
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@6e5d382445ae5590b7449d8b3bc8cb1c2c27f617 # v1
         with:
           bundler-cache: true
 
-      - name: Set-up RuboCop Problem Matcher
-        uses: r7kamura/rubocop-problem-matchers-action@v1
-
       - name: Run rubocop
-        run: bin/rubocop
+        run: bin/rubocop --format github
 
       - name: Run brakeman
         if: always() # Run both checks, even if the first failed

@@ -1,0 +1,15 @@
+@use '@/styles/mastodon/mixins';
+
+.description {
+  margin-bottom: var(--space-md);
+
+  @include mixins.type-body-compact;
+
+  color: var(--color-text-secondary);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}

@@ -1,0 +1,101 @@
+{
+  "mastodon/locales/en-GB.json": {
+    "file": "intl/en-GB.js",
+    "name": "en-GB",
+    "src": "mastodon/locales/en-GB.json",
+    "isDynamicEntry": true,
+    "integrity": "abc-1"
+  },
+  "entrypoints/application.ts": {
+    "file": "application.js",
+    "name": "application",
+    "src": "entrypoints/application.ts",
+    "isEntry": true,
+    "imports": ["_no-deps.js", "_dep-1.js", "_dep-2.js"],
+    "css": ["assets/main.css", "assets/unlisted.css"],
+    "integrity": "abc-2"
+  },
+  "entrypoints/admin.ts": {
+    "file": "admin.js",
+    "name": "admin",
+    "src": "entrypoints/admin.ts",
+    "isEntry": true,
+    "imports": ["_no-deps.js", "_dep-1.js", "_dep-2.js", "_dep-3.js"],
+    "css": ["assets/main.css", "assets/unlisted.css"],
+    "integrity": "cba-2"
+  },
+  "_no-deps.js": {
+    "file": "no-deps.js",
+    "name": "no-deps",
+    "integrity": "abc-3"
+  },
+  "_dep-1.js": {
+    "file": "dep-1.js",
+    "name": "dep-1",
+    "imports": ["_dep-1-1.js", "_dep-1-2.js"],
+    "css": ["assets/dep-1.css", "assets/dep-2.css"],
+    "integrity": "abc-4"
+  },
+  "_dep-2.js": {
+    "file": "dep-2.js",
+    "name": "dep-2",
+    "imports": ["_dep-1-1.js"],
+    "css": ["assets/dep-2.css"],
+    "integrity": "abc-5"
+  },
+  "_dep-3.js": {
+    "file": "dep-3.js",
+    "name": "dep-3",
+    "integrity": "cba-5"
+  },
+  "_dep-1-1.js": {
+    "file": "dep-1-1.js",
+    "name": "dep-1-1",
+    "css": ["assets/dep-1-1.css"],
+    "integrity": "abc-6"
+  },
+  "_dep-1-2.js": {
+    "file": "dep-1-2.js",
+    "name": "dep-1-2",
+    "integrity": "abc-7"
+  },
+  "../legacy/polyfills.js": {
+    "file": "polyfills.js",
+    "name": "polyfills",
+    "isEntry": true,
+    "integrity": "abc-8"
+  },
+  "styles/entrypoints/inert.scss": {
+    "file": "assets/inert-xyz.css",
+    "name": "inert",
+    "names": ["inert.css"],
+    "src": "styles/entrypoints/inert.scss",
+    "isEntry": true,
+    "integrity": "abc-10"
+  },
+  "_main.css": {
+    "file": "assets/main.css",
+    "src": "_main.css",
+    "integrity": "abc-11"
+  },
+  "_dep-1.css": {
+    "file": "assets/dep-1.css",
+    "src": "_dep-1.css",
+    "integrity": "abc-12"
+  },
+  "_dep-2.css": {
+    "file": "assets/dep-2.css",
+    "src": "_dep-2.css",
+    "integrity": "abc-13"
+  },
+  "_dep-1-1.css": {
+    "file": "assets/dep-1-1.css",
+    "src": "_dep-1-1.css",
+    "integrity": "abc-14"
+  },
+  "node_modules/somepackage.js": {
+    "file": "package.js",
+    "src": "node_modules/somepackage.js",
+    "integrity": "noop"
+  }
+}

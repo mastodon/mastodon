@@ -19,11 +19,13 @@ RSpec.describe 'Share page', :js, :streaming do
       .to have_css('.modal-layout__mastodon')
       .and have_css('div#mastodon-compose')
       .and have_css('.compose-form__submit')
+    expect(find_by_id('mastodon-compose')['data-props'])
+      .to eq('{"locale":"en"}')
 
     fill_in_form
 
     expect(page)
-      .to have_css('.notification-bar-message', text: frontend_translations('compose.published.body'))
+      .to have_current_path(%r{/@bob/[0-9]+})
   end
 
   def fill_in_form

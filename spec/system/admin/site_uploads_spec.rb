@@ -20,7 +20,7 @@ RSpec.describe 'Admin SiteUploads' do
       expect { site_upload.reload }
         .to raise_error(ActiveRecord::RecordNotFound)
       expect(page)
-        .to have_content(I18n.t('admin.site_uploads.destroyed_msg'))
+        .to have_text(I18n.t('admin.site_uploads.destroyed_msg'))
         .and have_title(I18n.t('admin.settings.branding.title'))
     end
   end

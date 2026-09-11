@@ -5,9 +5,10 @@ import type { IntlShape } from 'react-intl';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { createSelector } from '@reduxjs/toolkit';
-import type { List as ImmutableList } from 'immutable';
 
+import type { ApiRuleJSON } from '@/mastodon/api_types/instance';
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
+import { Select } from '@/mastodon/components/form_fields';
 import type { RootState } from '@/mastodon/store';
 import { useAppSelector } from '@/mastodon/store';
 
@@ -32,16 +33,38 @@ interface Rule extends BaseRule {
   translations?: Record<string, BaseRule>;
 }
 
+function getDefaultSelectedLocale(
+  currentUiLocale: string,
+  localeOptions: SelectItem[],
+) {
+  const preciseMatch = localeOptions.find(
+    (option) => option.value === currentUiLocale,
+  );
+  if (preciseMatch) {
+    return preciseMatch.value;
+  }
+
+  const partialLocale = currentUiLocale.split('-')[0];
+  const partialMatch = localeOptions.find(
+    (option) => option.value.split('-')[0] === partialLocale,
+  );
+
+  return partialMatch?.value ?? 'default';
+}
+
 export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
   const intl = useIntl();
-  const [locale, setLocale] = useState(intl.locale);
-  const rules = useAppSelector((state) => rulesSelector(state, locale));
   const localeOptions = useAppSelector((state) =>
     localeOptionsSelector(state, intl),
   );
+  const [selectedLocale, setSelectedLocale] = useState(() =>
+    getDefaultSelectedLocale(intl.locale, localeOptions),
+  );
+  const rules = useAppSelector((state) => rulesSelector(state, selectedLocale));
+
   const handleLocaleChange: ChangeEventHandler<HTMLSelectElement> = useCallback(
     (e) => {
-      setLocale(e.currentTarget.value);
+      setSelectedLocale(e.currentTarget.value);
     },
     [],
   );
@@ -74,39 +97,35 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
         ))}
       </ol>
 
-      <div className='rules-languages'>
-        <label htmlFor='language-select'>
-          <FormattedMessage
-            id='about.language_label'
-            defaultMessage='Language'
-          />
-        </label>
-        <select onChange={handleLocaleChange} id='language-select'>
-          {localeOptions.map((option) => (
-            <option
-              key={option.value}
-              value={option.value}
-              selected={option.value === locale}
-            >
-              {option.text}
-            </option>
-          ))}
-        </select>
-      </div>
+      {localeOptions.length > 1 && (
+        <div className='rules-languages'>
+          <label htmlFor='language-select'>
+            <FormattedMessage
+              id='about.language_label'
+              defaultMessage='Language'
+            />
+          </label>
+          <Select
+            onChange={handleLocaleChange}
+            id='language-select'
+            value={selectedLocale}
+          >
+            {localeOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.text}
+              </option>
+            ))}
+          </Select>
+        </div>
+      )}
     </Section>
   );
 };
 
-const selectRules = (state: RootState) => {
-  const rules = state.server.getIn([
-    'server',
-    'rules',
-  ]) as ImmutableList<Rule> | null;
-  if (!rules) {
-    return [];
-  }
-  return rules.toJS() as Rule[];
-};
+const selectRules = createSelector(
+  [(state: RootState) => state.server.server.item],
+  (item) => item?.rules ?? [],
+);
 
 const rulesSelector = createSelector(
   [selectRules, (_state, locale: string) => locale],
@@ -119,18 +138,19 @@ const rulesSelector = createSelector(
         return rule;
       }
 
+      const translatedRule: ApiRuleJSON = { ...rule };
       const partialLocale = locale.split('-')[0];
       if (partialLocale && translations[partialLocale]) {
-        rule.text = translations[partialLocale].text;
-        rule.hint = translations[partialLocale].hint;
+        translatedRule.text = translations[partialLocale].text;
+        translatedRule.hint = translations[partialLocale].hint;
       }
 
       if (translations[locale]) {
-        rule.text = translations[locale].text;
-        rule.hint = translations[locale].hint;
+        translatedRule.text = translations[locale].text;
+        translatedRule.hint = translations[locale].hint;
       }
 
-      return rule;
+      return translatedRule;
     });
   },
 );
@@ -145,9 +165,13 @@ const localeOptionsSelector = createSelector(
       },
     };
     // Use the default locale as a target to translate language names.
-    const intlLocale = new Intl.DisplayNames(intl.locale, {
-      type: 'language',
-    });
+    const intlLocale =
+      // Intl.DisplayNames can be undefined in old browsers
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      Intl.DisplayNames &&
+      (new Intl.DisplayNames(intl.locale, {
+        type: 'language',
+      }) as Intl.DisplayNames | undefined);
     for (const { translations } of rules) {
       for (const locale in translations) {
         if (langs[locale]) {
@@ -155,7 +179,7 @@ const localeOptionsSelector = createSelector(
         }
         langs[locale] = {
           value: locale,
-          text: intlLocale.of(locale) ?? locale,
+          text: intlLocale?.of(locale) ?? locale,
         };
       }
     }

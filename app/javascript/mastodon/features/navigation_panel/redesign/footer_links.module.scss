@@ -1,0 +1,33 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-xl);
+
+  @include mixins.type-label-sm;
+}
+
+.heading {
+  margin-inline-end: auto;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs);
+
+  a {
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+}

@@ -25,3 +25,9 @@ end
 Fabricator(:owner_user, from: :user) do
   role UserRole.find_by(name: 'Owner')
 end
+
+Fabricator(:private_user, from: :user) do
+  account_attributes do
+    { discoverable: false, locked: true, indexable: false }
+  end
+end

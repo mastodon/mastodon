@@ -15,6 +15,8 @@ class REST::PreviewCardSerializer < ActiveModel::Serializer
 
   has_many :authors, serializer: AuthorSerializer
 
+  attribute :missing_attribution, if: :current_user?
+
   def url
     object.original_url.presence || object.url
   end
@@ -25,5 +27,13 @@ class REST::PreviewCardSerializer < ActiveModel::Serializer
 
   def html
     Sanitize.fragment(object.html, Sanitize::Config::MASTODON_OEMBED)
+  end
+
+  def missing_attribution
+    object.unverified_author_account_id.present? && object.unverified_author_account_id == current_user.account_id
+  end
+
+  def current_user?
+    !current_user.nil?
   end
 end

@@ -1,32 +1,177 @@
-@use 'variables' as *;
+/**
+ * Type styles
+ */
+
+@mixin type-heading-lg {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  font-weight: 500;
+  font-variation-settings: 'GEOM' 50;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-tighter);
+}
+
+@mixin type-heading-md {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  font-variation-settings: 'GEOM' 50;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-tight);
+}
+
+@mixin type-heading-sm {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  font-variation-settings: 'GEOM' 50;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+}
+
+@mixin type-body-lg {
+  font-family: var(--font-body);
+  font-size: var(--fs-lg);
+  font-weight: normal;
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-body-strong {
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  font-weight: bold;
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-body {
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  font-weight: normal;
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-body-compact {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: normal;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-label-lg {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: bold;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+}
+
+@mixin type-label-md {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: normal;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-loose);
+}
+
+@mixin type-label-sm {
+  font-family: var(--font-body);
+  font-size: var(--fs-2xs);
+  font-weight: normal;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-loose);
+}
+
+@mixin type-micro {
+  font-family: var(--font-body);
+  font-size: var(--fs-3xs);
+  font-weight: normal;
+  line-height: var(--lh-tighter);
+  letter-spacing: var(--ls-looser);
+}
+
+/**
+ * Elevation styles
+ */
+
+@mixin elevation-1 {
+  border: var(--border-w-normal) solid var(--color-border-strong);
+  box-shadow: 0 1px 0 var(--color-border-strong);
+}
+
+@mixin elevation-2 {
+  border: var(--border-w-normal) solid var(--color-border-strong);
+  box-shadow: 1px 2px 0 var(--color-border-strong);
+}
+
+/**
+ * Focus styles
+ */
+
+@mixin focus($offset: false) {
+  outline: var(--border-w-strong) solid var(--color-border-brand);
+
+  @if $offset not false {
+    outline-offset: var(--border-w-strong);
+  }
+}
+
+/**
+ * Scroll gradient
+ */
+
+@mixin scroll-gradient($position, $background-color: var(--color-bg-primary)) {
+  content: '';
+  position: absolute;
+  @if $position == 'top' {
+    top: 100%;
+  } @else {
+    bottom: 100%;
+  }
+
+  inset-inline: 0;
+  height: calc(var(--space-4xl) * 2);
+  background: linear-gradient(to $position, transparent, $background-color);
+  pointer-events: none;
+}
+
+/**
+ * Search input styles
+ */
 
 @mixin search-input {
-  outline: 0;
   box-sizing: border-box;
   width: 100%;
   box-shadow: none;
   font-family: inherit;
-  background: var(--input-background-color);
-  color: $darker-text-color;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
   border-radius: 4px;
-  border: 1px solid var(--background-border-color);
+  border: var(--border-w-normal) solid var(--color-border-primary);
   font-size: 17px;
   line-height: normal;
   margin: 0;
+  outline: var(--outline-focus-default);
+  outline-color: transparent;
+  outline-offset: -1px;
+  transition: outline-color 0.15s ease-out;
 }
 
 @mixin search-popout {
-  background: $simple-background-color;
+  background: var(--color-bg-primary);
   border-radius: 4px;
   padding: 10px 14px;
   padding-bottom: 14px;
   margin-top: 10px;
-  color: $light-text-color;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  color: var(--color-text-secondary);
+  box-shadow: 2px 4px 15px var(--color-shadow-primary);
 
   h4 {
     text-transform: uppercase;
-    color: $light-text-color;
+    color: var(--color-text-secondary);
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -42,6 +187,18 @@
 
   em {
     font-weight: 500;
-    color: $inverted-text-color;
+    color: var(--color-text-primary);
   }
+}
+
+/**
+ * Utilities
+ */
+
+@mixin line-clamp($lines) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
 }

@@ -1,0 +1,107 @@
+// Radio
+
+.radioWrapper {
+  [data-input] {
+    position: relative;
+  }
+
+  .icon {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+      color 200ms,
+      opacity 200ms;
+  }
+
+  .icon:has(+ :checked) {
+    opacity: 1;
+  }
+
+  input {
+    opacity: 0;
+  }
+
+  label {
+    font-size: var(--fs-sm);
+  }
+}
+
+.icon {
+  width: var(--space-lg);
+  height: var(--space-lg);
+}
+
+// Text Input
+
+.inputWrapper {
+  label {
+    font-size: var(--fs-sm);
+  }
+
+  span {
+    color: var(--color-text-tertiary);
+    font-size: var(--fs-2xs);
+    line-height: var(--fs-lg);
+  }
+}
+
+input.input {
+  font-size: var(--fs-lg);
+  background: none;
+  border-radius: var(--space-xs);
+  border: 0.5px solid var(--color-text-tertiary);
+  padding: var(--space-xs);
+  transition:
+    background 200ms,
+    border 200ms,
+    opacity 200ms;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 1px var(--space-2xs) 0
+      rgb(from var(--color-text-primary) r g b / 10%);
+    background: var(--color-bg-highlight);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-border-brand);
+  }
+
+  &:disabled {
+    border-color: var(--color-bg-disabled);
+    opacity: 0.5;
+  }
+}
+
+.inputIcon {
+  svg {
+    width: 20px;
+    height: 20px;
+    inset-inline-start: var(--space-xs);
+    inset-block-start: var(--space-xs);
+  }
+}
+
+// Toggles
+
+.toggle > span {
+  background: var(--color-text-tertiary);
+
+  &::before {
+    box-shadow: none;
+    background: var(--color-bg-primary);
+  }
+}
+
+.toggle.toggleSmall {
+  --padding: 2px;
+  --diameter: 14px;
+
+  > span {
+    width: 32px;
+  }
+
+  > input:checked + span::before {
+    transform: translateX(var(--diameter));
+  }
+}

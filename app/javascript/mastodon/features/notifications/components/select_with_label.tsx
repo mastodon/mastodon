@@ -1,11 +1,9 @@
 import type { PropsWithChildren } from 'react';
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useId } from 'react';
 
 import classNames from 'classnames';
 
-import type { Placement, State as PopperState } from '@popperjs/core';
-import Overlay from 'react-overlays/Overlay';
-
+import { Popover } from '@/mastodon/components/popover';
 import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
 import type { SelectItem } from 'mastodon/components/dropdown_selector';
 import { DropdownSelector } from 'mastodon/components/dropdown_selector';
@@ -16,7 +14,8 @@ interface DropdownProps {
   options: SelectItem[];
   disabled?: boolean;
   onChange: (value: string) => void;
-  placement?: Placement;
+  'aria-labelledby': string;
+  'aria-describedby'?: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -24,98 +23,76 @@ const Dropdown: React.FC<DropdownProps> = ({
   options,
   disabled,
   onChange,
-  placement: initialPlacement = 'bottom-end',
+  'aria-labelledby': ariaLabelledBy,
+  'aria-describedby': ariaDescribedBy,
 }) => {
-  const activeElementRef = useRef<Element | null>(null);
-  const containerRef = useRef(null);
-  const [isOpen, setOpen] = useState<boolean>(false);
-  const [placement, setPlacement] = useState<Placement>(initialPlacement);
-
-  const handleToggle = useCallback(() => {
-    if (
-      isOpen &&
-      activeElementRef.current &&
-      activeElementRef.current instanceof HTMLElement
-    ) {
-      activeElementRef.current.focus({ preventScroll: true });
-    }
-
-    setOpen(!isOpen);
-  }, [isOpen, setOpen]);
-
-  const handleMouseDown = useCallback(() => {
-    if (!isOpen) activeElementRef.current = document.activeElement;
-  }, [isOpen]);
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      switch (e.key) {
-        case ' ':
-        case 'Enter':
-          if (!isOpen) activeElementRef.current = document.activeElement;
-          break;
-      }
-    },
-    [isOpen],
+  const [buttonElement, setButtonElement] = useState<HTMLButtonElement | null>(
+    null,
   );
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const uniqueId = useId();
+  const menuId = `${uniqueId}-menu`;
+  const buttonLabelId = `${uniqueId}-button`;
 
   const handleClose = useCallback(() => {
-    if (
-      isOpen &&
-      activeElementRef.current &&
-      activeElementRef.current instanceof HTMLElement
-    )
-      activeElementRef.current.focus({ preventScroll: true });
+    if (isOpen && buttonElement) {
+      buttonElement.focus({ preventScroll: true });
+    }
     setOpen(false);
-  }, [isOpen]);
+  }, [isOpen, buttonElement]);
 
-  const handleOverlayEnter = useCallback(
-    (state: Partial<PopperState>) => {
-      if (state.placement) setPlacement(state.placement);
-    },
-    [setPlacement],
-  );
+  const handleToggle = useCallback(() => {
+    if (isOpen) {
+      handleClose();
+    } else {
+      setOpen(true);
+    }
+  }, [isOpen, handleClose]);
 
   const valueOption = options.find((item) => item.value === value);
 
   return (
-    <div ref={containerRef}>
+    <div>
       <button
         type='button'
+        ref={setButtonElement}
         onClick={handleToggle}
-        onMouseDown={handleMouseDown}
-        onKeyDown={handleKeyDown}
         disabled={disabled}
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        aria-labelledby={`${ariaLabelledBy} ${buttonLabelId}`}
+        aria-describedby={ariaDescribedBy}
         className={classNames('dropdown-button', { active: isOpen })}
       >
-        <span className='dropdown-button__label'>{valueOption?.text}</span>
+        <span id={buttonLabelId} className='dropdown-button__label'>
+          {valueOption?.text}
+        </span>
         <Icon id='down' icon={ArrowDropDownIcon} />
       </button>
 
-      <Overlay
-        show={isOpen}
-        offset={[5, 5]}
-        placement={placement}
-        flip
-        target={containerRef}
-        popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}
+      <Popover
+        isOpen={isOpen}
+        offset={5}
+        placement='bottom-end'
+        reference={buttonElement}
+        onClose={handleClose}
       >
         {({ props, placement }) => (
-          <div {...props}>
-            <div
-              className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}
-            >
-              <DropdownSelector
-                items={options}
-                value={value}
-                onClose={handleClose}
-                onChange={onChange}
-                classNamePrefix='privacy-dropdown'
-              />
-            </div>
+          <div
+            {...props}
+            id={menuId}
+            className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}
+          >
+            <DropdownSelector
+              items={options}
+              value={value}
+              onClose={handleClose}
+              onChange={onChange}
+              classNamePrefix='privacy-dropdown'
+            />
           </div>
         )}
-      </Overlay>
+      </Popover>
     </div>
   );
 };
@@ -123,6 +100,8 @@ const Dropdown: React.FC<DropdownProps> = ({
 interface Props {
   value: string;
   options: SelectItem[];
+  label: string | React.ReactElement;
+  hint: string | React.ReactElement;
   disabled?: boolean;
   onChange: (value: string) => void;
 }
@@ -130,23 +109,36 @@ interface Props {
 export const SelectWithLabel: React.FC<PropsWithChildren<Props>> = ({
   value,
   options,
+  label,
+  hint,
   disabled,
-  children,
   onChange,
 }) => {
+  const uniqueId = useId();
+  const labelId = `${uniqueId}-label`;
+  const descId = `${uniqueId}-desc`;
+
   return (
+    // This label is only used for its click-forwarding behaviour,
+    // accessible names are assigned manually
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label className='app-form__toggle'>
-      <div className='app-form__toggle__label'>{children}</div>
+      <div className='app-form__toggle__label'>
+        <strong id={labelId}>{label}</strong>
+        <span className='hint' id={descId}>
+          {hint}
+        </span>
+      </div>
 
       <div className='app-form__toggle__toggle'>
-        <div>
-          <Dropdown
-            value={value}
-            onChange={onChange}
-            disabled={disabled}
-            options={options}
-          />
-        </div>
+        <Dropdown
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          aria-labelledby={labelId}
+          aria-describedby={descId}
+          options={options}
+        />
       </div>
     </label>
   );

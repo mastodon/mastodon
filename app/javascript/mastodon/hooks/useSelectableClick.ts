@@ -6,7 +6,7 @@ export const useSelectableClick = (
   onClick: React.MouseEventHandler,
   maxDelta = 5,
 ) => {
-  const clickPositionRef = useRef<Position | null>(null);
+  const clickPositionRef = useRef<Position>(null);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     clickPositionRef.current = [e.clientX, e.clientY];

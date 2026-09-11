@@ -19,7 +19,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
         resource '/users/:username'
       end
       resource '/api/*',
-               expose: %w(Link X-RateLimit-Reset X-RateLimit-Limit X-RateLimit-Remaining X-Request-Id),
+               expose: %w(Link Mastodon-Async-Refresh X-RateLimit-Reset X-RateLimit-Limit X-RateLimit-Remaining X-Request-Id),
                methods: %i(post put delete get patch options)
       resource '/oauth/token', methods: [:post]
       resource '/oauth/revoke', methods: [:post]

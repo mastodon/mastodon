@@ -1,28 +1,35 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@unhead/react/helmet';
 
 import { connect } from 'react-redux';
 
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
+import { Column } from '@/mastodon/components/column';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
+import { injectIntl } from '@/mastodon/components/intl';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { domain } from 'mastodon/initial_state';
+import { domain, localLiveFeedAccess } from 'mastodon/initial_state';
+import { canViewFeed } from 'mastodon/permissions';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectCommunityStream } from '../../actions/streaming';
 import { expandCommunityTimeline } from '../../actions/timelines';
-import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import StatusListContainer from '../ui/containers/status_list_container';
 
 import ColumnSettingsContainer from './containers/column_settings_container';
+import { ColumnHeader, ColumnSettingsMenu } from '@/mastodon/components/column_header';
+import { FeedColumnSettings } from '../public_timeline/components/feed_column_settings';
+import { MultiColumnMenuItems } from '@/mastodon/components/column_header/multicolumn_settings';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
+  title_redesign: { id: 'column.this_server', defaultMessage: 'This Server' },
 });
 
 const mapStateToProps = (state, { columnId }) => {
@@ -68,10 +75,6 @@ class CommunityTimeline extends PureComponent {
     dispatch(moveColumn(columnId, dir));
   };
 
-  handleHeaderClick = () => {
-    this.column.scrollTop();
-  };
-
   componentDidMount () {
     const { dispatch, onlyMedia } = this.props;
     const { signedIn } = this.props.identity;
@@ -108,10 +111,6 @@ class CommunityTimeline extends PureComponent {
     }
   }
 
-  setRef = c => {
-    this.column = c;
-  };
-
   handleLoadMore = maxId => {
     const { dispatch, onlyMedia } = this.props;
 
@@ -120,23 +119,60 @@ class CommunityTimeline extends PureComponent {
 
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
+    const { signedIn, permissions } = this.props.identity;
     const pinned = !!columnId;
 
+    const emptyMessage = canViewFeed(signedIn, permissions, localLiveFeedAccess) ? (
+      <FormattedMessage
+        id='empty_column.community'
+        defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
+      />
+    ) : (
+      <FormattedMessage
+        id='empty_column.disabled_feed'
+        defaultMessage='This feed has been disabled by your server administrators.'
+      />
+    );
+
+    const title = intl.formatMessage(isRedesignEnabled() ? messages.title_redesign : messages.title)
+
     return (
-      <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
-        <ColumnHeader
-          icon='users'
-          iconComponent={PeopleIcon}
-          active={hasUnread}
-          title={intl.formatMessage(messages.title)}
-          onPin={this.handlePin}
-          onMove={this.handleMove}
-          onClick={this.handleHeaderClick}
-          pinned={pinned}
-          multiColumn={multiColumn}
-        >
-          <ColumnSettingsContainer columnId={columnId} />
-        </ColumnHeader>
+      <Column bindToDocument={!multiColumn} label={title}>
+        {isRedesignEnabled() ? (
+          <ColumnHeader
+            title={title}
+            withUnreadMarker={hasUnread}
+            extraButtons={
+              <ColumnSettingsMenu
+                labelPrefix={title}
+              >
+                <FeedColumnSettings localOnly columnId={columnId} />
+                {multiColumn && (
+                  <MultiColumnMenuItems
+                    withDivider
+                    pinned={pinned}
+                    onPin={this.handlePin}
+                    onMove={this.handleMove}
+                  />
+                )}
+              </ColumnSettingsMenu>
+            }
+          />
+        ) : (
+          <LegacyColumnHeader
+            icon='users'
+            iconComponent={PeopleIcon}
+            active={hasUnread}
+            title={title}
+            onPin={this.handlePin}
+            onMove={this.handleMove}
+            pinned={pinned}
+            multiColumn={multiColumn}
+            scrollTopOnClick
+          >
+            <ColumnSettingsContainer columnId={columnId} />
+          </LegacyColumnHeader>
+        )}
 
         <StatusListContainer
           prepend={<DismissableBanner id='community_timeline'><FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} /></DismissableBanner>}
@@ -144,7 +180,7 @@ class CommunityTimeline extends PureComponent {
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         />
 

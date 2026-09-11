@@ -1,9 +1,10 @@
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import { connect } from 'react-redux';
 
 import { openModal } from 'mastodon/actions/modal';
 import { fetchNotifications , setNotificationsFilter } from 'mastodon/actions/notification_groups';
+import { injectIntl } from '@/mastodon/components/intl';
 
 import { showAlert } from '../../../actions/alerts';
 import { requestBrowserPermission } from '../../../actions/notifications';
@@ -43,7 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
       }
     } else if (path[0] === 'quickFilter') {
       dispatch(changeSetting(['notifications', ...path], checked));
-      dispatch(setNotificationsFilter('all'));
+      dispatch(setNotificationsFilter({ filterType: 'all' }));
     } else if (path[0] === 'alerts' && checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
       if (checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
         dispatch(requestBrowserPermission((permission) => {

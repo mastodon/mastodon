@@ -1,7 +1,16 @@
-import { createSelector } from '@reduxjs/toolkit';
+import type { StatusContextType } from '@/mastodon/components/status/types';
+import { createAppSelector } from '@/mastodon/store/typed_functions';
+import { toServerSideType } from '@/mastodon/utils/filters';
 
-import type { RootState } from 'mastodon/store';
-import { toServerSideType } from 'mastodon/utils/filters';
+import { selectExpandedStatus } from './statuses';
+
+export interface FilterShape {
+  id: string;
+  title: string;
+  context: string[];
+  expires_at: string | null;
+  filter_action: 'hide' | 'blur' | 'warn';
+}
 
 // TODO: move to `app/javascript/mastodon/models` and use more globally
 type Filter = Immutable.Map<string, unknown>;
@@ -9,10 +18,10 @@ type Filter = Immutable.Map<string, unknown>;
 // TODO: move to `app/javascript/mastodon/models` and use more globally
 type FilterResult = Immutable.Map<string, unknown>;
 
-export const getFilters = createSelector(
+export const getFilters = createAppSelector(
   [
-    (state: RootState) => state.filters as Immutable.Map<string, Filter>,
-    (_, { contextType }: { contextType: string }) => contextType,
+    (state) => state.filters as Immutable.Map<string, Filter>,
+    (_, { contextType }: { contextType?: string }) => contextType,
   ],
   (filters, contextType) => {
     if (!contextType) {
@@ -33,18 +42,65 @@ export const getFilters = createSelector(
   },
 );
 
-export const getStatusHidden = (
-  state: RootState,
-  { id, contextType }: { id: string; contextType: string },
-) => {
-  const filters = getFilters(state, { contextType });
-  if (filters === null) return false;
+export const selectPlainFilters = createAppSelector([getFilters], (filters) => {
+  if (!filters) {
+    return null;
+  }
+  return filters.toJS() as unknown as Record<string, FilterShape>;
+});
 
-  const filtered = state.statuses.getIn([id, 'filtered']) as
-    | Immutable.List<FilterResult>
-    | undefined;
-  return filtered?.some(
-    (result) =>
-      filters.getIn([result.get('filter'), 'filter_action']) === 'hide',
-  );
-};
+export const selectStatusFilters = createAppSelector(
+  [
+    (state, { statusId }: { statusId?: string | null }) =>
+      selectExpandedStatus(state, statusId ?? undefined),
+    selectPlainFilters,
+    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
+      warnInsteadOfHide,
+  ],
+  (status, filters) => {
+    const results: FilterShape[] = [];
+    if (!status || !filters) {
+      return results;
+    }
+    const filtered = status.reblog?.filtered ?? status.filtered;
+    for (const result of filtered) {
+      const filter = filters[result.filter];
+      if (!filter) {
+        continue;
+      }
+
+      results.push(filter);
+    }
+
+    return results;
+  },
+);
+
+export const selectMediaFilters = createAppSelector(
+  [selectStatusFilters],
+  (filters) =>
+    filters
+      .filter((filter) => filter.filter_action === 'blur')
+      .map((filter) => filter.title),
+);
+
+export const getStatusHidden = createAppSelector(
+  [
+    (state, { contextType }: { contextType: StatusContextType }) =>
+      getFilters(state, { contextType }),
+    (state, { id }: { id: string }) =>
+      state.statuses.getIn([id, 'filtered']) as
+        | Immutable.List<FilterResult>
+        | undefined,
+  ],
+  (filters, filtered) => {
+    if (!filters) {
+      return false;
+    }
+
+    return filtered?.some(
+      (result) =>
+        filters.getIn([result.get('filter'), 'filter_action']) === 'hide',
+    );
+  },
+);

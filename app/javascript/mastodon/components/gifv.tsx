@@ -37,7 +37,6 @@ export const GIFV = forwardRef<HTMLVideoElement, Props>(
             role='button'
             tabIndex={0}
             aria-label={alt}
-            title={alt}
             lang={lang}
             onClick={handleClick}
           />
@@ -49,7 +48,6 @@ export const GIFV = forwardRef<HTMLVideoElement, Props>(
           role='button'
           tabIndex={0}
           aria-label={alt}
-          title={alt}
           lang={lang}
           width={width}
           height={height}

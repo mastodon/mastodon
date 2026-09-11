@@ -1,0 +1,61 @@
+{
+  "global": {
+    "class": "className",
+    "id": true,
+    "title": true,
+    "dir": true,
+    "lang": true
+  },
+  "tags": {
+    "p": {},
+    "br": {
+      "children": false
+    },
+    "span": {
+      "attributes": {
+        "translate": true
+      }
+    },
+    "a": {
+      "attributes": {
+        "href": true,
+        "rel": true,
+        "translate": true,
+        "target": true
+      }
+    },
+    "del": {},
+    "s": {},
+    "pre": {},
+    "blockquote": {},
+    "code": {},
+    "b": {},
+    "strong": {},
+    "u": {},
+    "i": {},
+    "img": {
+      "children": false,
+      "attributes": {
+        "src": true,
+        "alt": true,
+        "title": true
+      }
+    },
+    "em": {},
+    "ul": {},
+    "ol": {
+      "attributes": {
+        "start": true,
+        "reversed": true
+      }
+    },
+    "li": {
+      "attributes": {
+        "value": true
+      }
+    },
+    "ruby": {},
+    "rt": {},
+    "rp": {}
+  }
+}

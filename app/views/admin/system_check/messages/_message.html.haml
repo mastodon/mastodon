@@ -1,0 +1,4 @@
+.flash-message{ class: message.critical ? 'alert' : 'warning' }
+  = t("admin.system_checks.#{message.key}.message_html", value: message.value ? tag.strong(message.value) : nil)
+  - if message.action
+    = link_to t("admin.system_checks.#{message.key}.action"), message.action

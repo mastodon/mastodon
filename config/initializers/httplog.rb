@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Disable httplog in production unless log_level is `debug`
-if !Rails.env.production? || Rails.configuration.log_level == :debug
+# Disable in production unless log level is `debug`
+if Rails.env.local? || Rails.logger.debug?
   require 'httplog'
 
   HttpLog.configure do |config|

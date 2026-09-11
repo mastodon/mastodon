@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { createRef } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -15,10 +15,9 @@ import { missingAltTextModal } from 'mastodon/initial_state';
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import AutosuggestTextarea from 'mastodon/components/autosuggest_textarea';
 import { Button } from 'mastodon/components/button';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { injectIntl } from '@/mastodon/components/intl';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { countableText } from '../util/counter';
@@ -31,6 +30,9 @@ import { PollForm } from "./poll_form";
 import { ReplyIndicator } from './reply_indicator';
 import { UploadForm } from './upload_form';
 import { Warning } from './warning';
+import { ComposeQuotedStatus } from './quoted_post';
+import { VisibilityButton } from './visibility_button';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -64,6 +66,7 @@ class ComposeForm extends ImmutablePureComponent {
     onSuggestionSelected: PropTypes.func.isRequired,
     onChangeSpoilerText: PropTypes.func.isRequired,
     onPaste: PropTypes.func.isRequired,
+    onDrop: PropTypes.func.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
     autoFocus: PropTypes.bool,
     withoutNavigation: PropTypes.bool,
@@ -73,14 +76,11 @@ class ComposeForm extends ImmutablePureComponent {
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
     maxChars: PropTypes.number,
+    redirectOnSuccess: PropTypes.bool,
   };
 
   static defaultProps = {
     autoFocus: false,
-  };
-
-  state = {
-    highlighted: false,
   };
 
   constructor(props) {
@@ -92,10 +92,30 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onChange(e.target.value);
   };
 
-  handleKeyDown = (e) => {
-    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
-      this.handleSubmit();
+  blurOnEscape = (e) => {
+    if (['esc', 'escape'].includes(e.key.toLowerCase())) {
+      e.target.blur();
     }
+  }
+
+  handleKeyDownPost = (e) => {
+    if (e.key.toLowerCase() === 'enter' && (e.ctrlKey || e.metaKey)) {
+        this.handleSubmit();
+        e.preventDefault();
+    }
+    this.blurOnEscape(e);
+  };
+
+  handleKeyDownSpoiler = (e) => {
+    if (e.key.toLowerCase() === 'enter') {
+      if (e.ctrlKey || e.metaKey) {
+        this.handleSubmit();
+      } else {
+        e.preventDefault();
+        this.textareaRef.current?.focus();
+      }
+    }
+    this.blurOnEscape(e);
   };
 
   getFulltextForCharacterCounting = () => {
@@ -103,11 +123,10 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   canSubmit = () => {
-    const { isSubmitting, isChangingUpload, isUploading, anyMedia, maxChars } = this.props;
+    const { isSubmitting, isChangingUpload, isUploading, maxChars } = this.props;
     const fulltext = this.getFulltextForCharacterCounting();
-    const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars);
   };
 
   handleSubmit = (e) => {
@@ -121,7 +140,10 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(missingAltTextModal && this.props.missingAltText && this.props.privacy !== 'direct');
+    this.props.onSubmit({
+      missingAltText: missingAltTextModal && this.props.missingAltText && this.props.privacy !== 'direct',
+      quoteToPrivate: this.props.quoteToPrivate,
+    });
 
     if (e) {
       e.preventDefault();
@@ -166,6 +188,9 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   componentDidUpdate (prevProps) {
+    if (isRedesignEnabled()) {
+      return;
+    }
     this._updateFocusAndSelection(prevProps);
   }
 
@@ -195,13 +220,13 @@ class ComposeForm extends ImmutablePureComponent {
       Promise.resolve().then(() => {
         this.textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
         this.textareaRef.current.focus();
-        this.setState({ highlighted: true });
-        this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
       }).catch(console.error);
     } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
       this.textareaRef.current.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
-      if (this.props.spoiler) {
+      const mediaJustAdded = this.props.anyMedia && !prevProps.anyMedia;
+
+      if (this.props.spoiler && !mediaJustAdded) {
         this.spoilerText.input.focus();
       } else if (prevProps.spoiler) {
         this.textareaRef.current.focus();
@@ -226,72 +251,80 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, onPaste, autoFocus, withoutNavigation, maxChars, isSubmitting } = this.props;
-    const { highlighted } = this.state;
+    const { intl, onPaste, onDrop, autoFocus, withoutNavigation, maxChars, isSubmitting } = this.props;
 
     return (
-      <form className='compose-form' onSubmit={this.handleSubmit}>
+      <form
+        className='compose-form'
+        role='region'
+        aria-label={intl.formatMessage({
+          id: 'tabs_bar.publish',
+          defaultMessage: 'New Post'
+        })}
+        onSubmit={this.handleSubmit}
+      >
         <ReplyIndicator />
         {!withoutNavigation && <NavigationBar />}
         <Warning />
 
-        <div className={classNames('compose-form__highlightable', { active: highlighted })} ref={this.setRef}>
-          <div className='compose-form__scrollable'>
-            <EditIndicator />
+        <div className='compose-form__highlightable' ref={this.setRef}>
+          <EditIndicator />
 
-            {this.props.spoiler && (
-              <div className='spoiler-input'>
-                <div className='spoiler-input__border' />
-
-                <AutosuggestInput
-                  placeholder={intl.formatMessage(messages.spoiler_placeholder)}
-                  value={this.props.spoilerText}
-                  disabled={isSubmitting}
-                  onChange={this.handleChangeSpoilerText}
-                  onKeyDown={this.handleKeyDown}
-                  ref={this.setSpoilerText}
-                  suggestions={this.props.suggestions}
-                  onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                  onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                  onSuggestionSelected={this.onSpoilerSuggestionSelected}
-                  searchTokens={[':']}
-                  id='cw-spoiler-input'
-                  className='spoiler-input__input'
-                  lang={this.props.lang}
-                  spellCheck
-                />
-
-                <div className='spoiler-input__border' />
-              </div>
-            )}
-
-            <AutosuggestTextarea
-              ref={this.textareaRef}
-              placeholder={intl.formatMessage(messages.placeholder)}
-              disabled={isSubmitting}
-              value={this.props.text}
-              onChange={this.handleChange}
-              suggestions={this.props.suggestions}
-              onFocus={this.handleFocus}
-              onKeyDown={this.handleKeyDown}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              onSuggestionSelected={this.onSuggestionSelected}
-              onPaste={onPaste}
-              autoFocus={autoFocus}
-              lang={this.props.lang}
-            />
+          <div className='compose-form__dropdowns'>
+            <VisibilityButton disabled={this.props.isEditing} />
+            <LanguageDropdown />
           </div>
 
-          <UploadForm />
+          {this.props.spoiler && (
+            <div className='spoiler-input'>
+              <div className='spoiler-input__border' />
+
+              <AutosuggestInput
+                placeholder={intl.formatMessage(messages.spoiler_placeholder)}
+                value={this.props.spoilerText}
+                disabled={isSubmitting}
+                onChange={this.handleChangeSpoilerText}
+                onKeyDown={this.handleKeyDownSpoiler}
+                ref={this.setSpoilerText}
+                suggestions={this.props.suggestions}
+                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                onSuggestionSelected={this.onSpoilerSuggestionSelected}
+                searchTokens={[':']}
+                id='cw-spoiler-input'
+                className='spoiler-input__input'
+                lang={this.props.lang}
+                spellCheck
+              />
+
+              <div className='spoiler-input__border' />
+            </div>
+          )}
+
+          <AutosuggestTextarea
+            ref={this.textareaRef}
+            placeholder={intl.formatMessage(messages.placeholder)}
+            disabled={isSubmitting}
+            value={this.props.text}
+            onChange={this.handleChange}
+            suggestions={this.props.suggestions}
+            onFocus={this.handleFocus}
+            onKeyDown={this.handleKeyDownPost}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onSuggestionSelected}
+            onPaste={onPaste}
+            onDrop={onDrop}
+            autoFocus={autoFocus}
+            lang={this.props.lang}
+            className='compose-form__input'
+          />
+
           <PollForm />
+          <UploadForm />
+          <ComposeQuotedStatus />
 
           <div className='compose-form__footer'>
-            <div className='compose-form__dropdowns'>
-              <PrivacyDropdownContainer disabled={this.props.isEditing} />
-              <LanguageDropdown />
-            </div>
-
             <div className='compose-form__actions'>
               <div className='compose-form__buttons'>
                 <UploadButtonContainer />
@@ -310,7 +343,7 @@ class ComposeForm extends ImmutablePureComponent {
                 >
                   {intl.formatMessage(
                     this.props.isEditing ?
-                      messages.saveChanges : 
+                      messages.saveChanges :
                       (this.props.isInReply ? messages.reply : messages.publish)
                   )}
                 </Button>

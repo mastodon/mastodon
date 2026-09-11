@@ -1,31 +1,53 @@
 name: 'Chromatic'
+permissions:
+  contents: read
 
 on:
   push:
     branches-ignore:
       - renovate/*
       - stable-*
-    paths:
-      - 'package.json'
-      - 'yarn.lock'
-      - '**/*.js'
-      - '**/*.jsx'
-      - '**/*.ts'
-      - '**/*.tsx'
-      - '**/*.css'
-      - '**/*.scss'
-      - '.github/workflows/chromatic.yml'
 
 jobs:
+  pathcheck:
+    name: Check for relevant changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      changed: ${{ steps.filter.outputs.src }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+
+      - uses: dorny/paths-filter@0e4a8c6effa4802afeda77dc8d303f8176d7dfad # v3
+        id: filter
+        with:
+          filters: |
+            src:
+              - 'package.json'
+              - 'yarn.lock'
+              - '**/*.js'
+              - '**/*.jsx'
+              - '**/*.ts'
+              - '**/*.tsx'
+              - '**/*.css'
+              - '**/*.scss'
+              - '.github/workflows/chromatic.yml'
+
   chromatic:
     name: Run Chromatic
     runs-on: ubuntu-latest
-    if: github.repository == 'mastodon/mastodon'
+    timeout-minutes: 15
+    needs: pathcheck
+    if: github.repository == 'mastodon/mastodon' && needs.pathcheck.outputs.changed == 'true'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
+
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
@@ -33,9 +55,10 @@ jobs:
         run: yarn build-storybook
 
       - name: Run Chromatic
-        uses: chromaui/action@v12
+        uses: chromaui/action@98132da0fca2211fb41b3af7b49ce85176007851 # v17
         with:
-          # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           zip: true
           storybookBuildDir: 'storybook-static'
+          exitOnceUploaded: true # Exit immediately after upload
+          autoAcceptChanges: 'main' # Auto-accept changes on main branch only

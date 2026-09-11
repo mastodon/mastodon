@@ -19,9 +19,10 @@ permissions:
 jobs:
   check-i18n:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -38,12 +39,11 @@ jobs:
         run: bin/i18n-tasks check-normalized
 
       - name: Check for unused strings
-        run: bin/i18n-tasks unused
+        run: bin/i18n-tasks unused -l en
 
       - name: Check for missing strings in English YML
         run: |
-          bin/i18n-tasks add-missing -l en
-          git diff --exit-code
+          bin/i18n-tasks missing -t used -l en
 
       - name: Check for wrong string interpolations
         run: bin/i18n-tasks check-consistent-interpolations

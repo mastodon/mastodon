@@ -2,10 +2,10 @@
   = t('admin.settings.about.title')
 
 - content_for :heading do
-  %h2= t('admin.settings.title')
+  %h1= t('admin.settings.title')
   = render partial: 'admin/settings/shared/links'
 
-= simple_form_for @admin_settings, url: admin_settings_about_path, html: { method: :patch } do |f|
+= simple_form_for @admin_settings, url: admin_settings_about_path do |f|
   = render 'shared/error_messages', object: @admin_settings
 
   %p.lead= t('admin.settings.about.preamble')
@@ -24,7 +24,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :show_domain_blocks,
                 collection_wrapper_tag: 'ul',
-                collection: %i(disabled users all),
+                collection: f.object.class::DOMAIN_BLOCK_AUDIENCES,
                 include_blank: false,
                 item_wrapper_tag: 'li',
                 label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") },
@@ -32,7 +32,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :show_domain_blocks_rationale,
                 collection_wrapper_tag: 'ul',
-                collection: %i(disabled users all),
+                collection: f.object.class::DOMAIN_BLOCK_AUDIENCES,
                 include_blank: false,
                 item_wrapper_tag: 'li',
                 label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") },

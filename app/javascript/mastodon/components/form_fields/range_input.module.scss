@@ -1,0 +1,129 @@
+/*
+  Inspired by:
+  https://danielstern.ca/range.css
+  https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+*/
+
+.input {
+  --color-bg-thumb: var(--color-bg-brand-base);
+  --color-bg-thumb-hover: var(--color-bg-brand-base-hover);
+  --color-bg-track: var(--color-bg-secondary);
+
+  width: 100%;
+  margin: 6px 0;
+  background-color: transparent;
+  appearance: none;
+  display: block;
+
+  &:focus {
+    outline: none;
+  }
+
+  // Thumb
+
+  &::-webkit-slider-thumb {
+    margin-top: -6px;
+    width: 16px;
+    height: 16px;
+    background: var(--color-bg-thumb);
+    border: 0;
+    border-radius: 50px;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--color-bg-thumb);
+    border: 0;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+
+  &::-ms-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--color-bg-thumb);
+    border: 0;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 0; // Needed to keep the Edge thumb centred
+  }
+
+  &:focus,
+  &:hover {
+    &::-webkit-slider-thumb {
+      background: var(--color-bg-thumb-hover);
+    }
+
+    &::-moz-range-thumb {
+      background: var(--color-bg-thumb-hover);
+    }
+
+    &::-ms-thumb {
+      background: var(--color-bg-thumb-hover);
+    }
+  }
+
+  &:focus-visible {
+    &::-webkit-slider-thumb {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
+
+    &::-moz-range-thumb {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
+
+    &::-ms-thumb {
+      outline: var(--outline-focus-default);
+      outline-offset: 2px;
+    }
+  }
+
+  // Track
+
+  &::-webkit-slider-runnable-track {
+    background: var(--color-bg-track);
+    border: 0;
+    border-radius: 1.3px;
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+  }
+
+  &::-moz-range-track {
+    background: var(--color-bg-track);
+    border: 0;
+    border-radius: 1.3px;
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+  }
+
+  &::-ms-track {
+    background: var(--color-bg-track);
+    border: 0;
+    color: transparent;
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+  }
+}
+
+.markers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 100%;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  user-select: none;
+
+  option {
+    padding: 0;
+  }
+}

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Oauth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicationsController
+class OAuth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicationsController
   skip_before_action :authenticate_resource_owner!
 
   before_action :store_current_location
@@ -10,6 +10,8 @@ class Oauth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicatio
   before_action :set_last_used_at_by_app, only: :index, unless: -> { request.format == :json }
 
   skip_before_action :require_functional!
+
+  layout 'admin'
 
   include Localized
 

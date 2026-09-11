@@ -1,0 +1,47 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  &:not(:last-child) {
+    margin-bottom: var(--space-md);
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  padding-inline: var(--space-xs);
+  padding-block: calc(var(--space-xs) - var(--space-3xs));
+}
+
+.title {
+  @include mixins.type-label-sm;
+
+  color: var(--color-text-secondary);
+  cursor: default;
+}
+
+.toggleButton {
+  // Compensate for the button's outer spacing
+  --button-padding: calc(var(--space-xs) - var(--space-3xs));
+
+  margin: calc(-1 * var(--button-padding));
+  margin-inline-end: var(--button-padding);
+
+  svg {
+    transition: rotate 100ms ease-in;
+  }
+
+  &[aria-expanded='false'] svg {
+    rotate: -90deg;
+  }
+}
+
+.action {
+  margin-inline-start: auto;
+}
+
+.emptyState {
+  @include mixins.type-label-sm;
+
+  padding-inline: var(--space-xs);
+}

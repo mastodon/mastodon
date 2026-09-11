@@ -13,8 +13,8 @@ RSpec.describe 'Admin Warning Presets' do
         visit admin_warning_presets_path
 
         expect(page)
-          .to have_content(I18n.t('admin.warning_presets.title'))
-          .and have_content(account_warning_preset.text)
+          .to have_text(I18n.t('admin.warning_presets.title'))
+          .and have_text(account_warning_preset.text)
       end
     end
 
@@ -27,14 +27,14 @@ RSpec.describe 'Admin Warning Presets' do
         expect { submit_form }
           .to_not change(AccountWarningPreset, :count)
         expect(page)
-          .to have_content(/error below/)
+          .to have_text(/error below/)
 
         # Valid submission
         fill_in 'account_warning_preset_text', with: 'You cant do that here'
         expect { submit_form }
           .to change(AccountWarningPreset, :count).by(1)
         expect(page)
-          .to have_content(I18n.t('admin.warning_presets.title'))
+          .to have_text(I18n.t('admin.warning_presets.title'))
       end
 
       def submit_form

@@ -1,0 +1,56 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+
+  // Approximate height of fixed navigation elements
+  // to ensure focused elements are scrolled into view
+  // as needed.
+  --header-height: 80px;
+  --footer-height: 200px;
+
+  scroll-padding-block: var(--header-height) var(--footer-height);
+
+  --navigation-background-color: var(--color-bg-blend);
+
+  &[data-mode='slide-out'] {
+    --navigation-background-color: var(--color-bg-primary);
+  }
+}
+
+.list {
+  margin-top: var(--space-xl);
+  margin-inline: var(--space-md);
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+  padding: var(--space-xl);
+  padding-top: var(--space-2xs);
+  background-color: var(--navigation-background-color);
+
+  &::before {
+    @include mixins.scroll-gradient(bottom, var(--navigation-background-color));
+
+    opacity: 0;
+    transition: opacity ease 250ms;
+  }
+
+  &[data-stuck='true']::before {
+    opacity: 1;
+  }
+}
+
+.footerNav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-xs);
+}

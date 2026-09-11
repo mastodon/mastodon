@@ -1,6 +1,5 @@
-import { fromJS } from 'immutable';
+import { mediaAttachmentFactoryAPI } from '@/testing/factories';
 
-import type { StatusLike } from '../hashtag_bar';
 import { computeHashtagBarForStatus } from '../hashtag_bar';
 
 function createStatus(
@@ -9,25 +8,27 @@ function createStatus(
   hasMedia = false,
   spoilerText?: string,
 ) {
-  return fromJS({
-    tags: hashtags.map((name) => ({ name })),
+  return {
+    tags: hashtags.map((name) => ({
+      name,
+      url: `https://example.com/tag/${name}`,
+    })),
     contentHtml: content,
-    media_attachments: hasMedia ? ['fakeMedia'] : [],
+    media_attachments: hasMedia
+      ? [{ ...mediaAttachmentFactoryAPI(), remote_url: null }]
+      : [],
     spoiler_text: spoilerText,
-  }) as unknown as StatusLike; // need to force the type here, as it is not properly defined
+  };
 }
 
 describe('computeHashtagBarForStatus', () => {
   it('does nothing when there are no tags', () => {
     const status = createStatus('<p>Simple text</p>', []);
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual([]);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p>Simple text</p>"`,
-    );
+    expect(statusContent).toMatchInlineSnapshot(`"<p>Simple text</p>"`);
   });
 
   it('displays out of band hashtags in the bar', () => {
@@ -36,11 +37,10 @@ describe('computeHashtagBarForStatus', () => {
       ['hashtag', 'test'],
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual(['test']);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+    expect(statusContent).toMatchInlineSnapshot(
       `"<p>Simple text <a href="test">#hashtag</a></p>"`,
     );
   });
@@ -51,11 +51,10 @@ describe('computeHashtagBarForStatus', () => {
       ['test'],
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual([]);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+    expect(statusContent).toMatchInlineSnapshot(
       `"this is a #<a class="zrl" href="https://example.com/search?tag=test">test</a>. Some more text"`,
     );
   });
@@ -66,13 +65,10 @@ describe('computeHashtagBarForStatus', () => {
       ['hashtag'],
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual(['hashtag']);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p>Simple text</p>"`,
-    );
+    expect(statusContent).toMatchInlineSnapshot(`"<p>Simple text</p>"`);
   });
 
   it('does not include tags from content', () => {
@@ -81,11 +77,10 @@ describe('computeHashtagBarForStatus', () => {
       ['hashtag'],
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual([]);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+    expect(statusContent).toMatchInlineSnapshot(
       `"<p>Simple text with a <a href="test">#hashtag</a></p>"`,
     );
   });
@@ -96,11 +91,10 @@ describe('computeHashtagBarForStatus', () => {
       ['hashtag', 'test'],
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual([]);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+    expect(statusContent).toMatchInlineSnapshot(
       `"<p><a href="test">#test</a>. And another <a href="test">#hashtag</a></p>"`,
     );
   });
@@ -111,13 +105,10 @@ describe('computeHashtagBarForStatus', () => {
       ['éaa'],
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual(['Éaa']);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p>Text</p>"`,
-    );
+    expect(statusContent).toMatchInlineSnapshot(`"<p>Text</p>"`);
   });
 
   it('handles server-side normalized tags with accentuated characters', () => {
@@ -126,13 +117,10 @@ describe('computeHashtagBarForStatus', () => {
       ['eaa'], // The server may normalize the hashtags in the `tags` attribute
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual(['Éaa']);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
-      `"<p>Text</p>"`,
-    );
+    expect(statusContent).toMatchInlineSnapshot(`"<p>Text</p>"`);
   });
 
   it('does not display in bar a hashtag in content with a case difference', () => {
@@ -141,11 +129,10 @@ describe('computeHashtagBarForStatus', () => {
       ['éaa'],
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual([]);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+    expect(statusContent).toMatchInlineSnapshot(
       `"<p>Text <a href="test">#Éaa</a></p>"`,
     );
   });
@@ -156,11 +143,10 @@ describe('computeHashtagBarForStatus', () => {
       ['test', 'hashtag'],
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual([]);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+    expect(statusContent).toMatchInlineSnapshot(
       `"<p><a href="test">#test</a>  <a href="test">#hashtag</a></p>"`,
     );
   });
@@ -172,11 +158,10 @@ describe('computeHashtagBarForStatus', () => {
       true,
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual([]);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+    expect(statusContent).toMatchInlineSnapshot(
       `"<p>This is my content! <a href="test">#hashtag</a></p>"`,
     );
   });
@@ -188,11 +173,10 @@ describe('computeHashtagBarForStatus', () => {
       true,
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual(['test', 'hashtag']);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(`""`);
+    expect(statusContent).toMatchInlineSnapshot(`""`);
   });
 
   it('does not use the hashtag bar if the status content is only hashtags, has a CW and a media', () => {
@@ -203,11 +187,10 @@ describe('computeHashtagBarForStatus', () => {
       'My CW text',
     );
 
-    const { hashtagsInBar, statusContentProps } =
-      computeHashtagBarForStatus(status);
+    const { hashtagsInBar, statusContent } = computeHashtagBarForStatus(status);
 
     expect(hashtagsInBar).toEqual([]);
-    expect(statusContentProps.statusContent).toMatchInlineSnapshot(
+    expect(statusContent).toMatchInlineSnapshot(
       `"<p><a href="test">#test</a>  <a href="test">#hashtag</a></p>"`,
     );
   });

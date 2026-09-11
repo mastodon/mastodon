@@ -242,11 +242,11 @@ class MediaGallery extends PureComponent {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
-      this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
-    } else if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
-      this.setState({ visible: nextProps.visible });
+  componentDidUpdate (prevProps) {
+    if (!is(prevProps.media, this.props.media) && this.props.visible === undefined) {
+      this.setState({ visible: displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all' });
+    } else if (!is(prevProps.visible, this.props.visible) && this.props.visible !== undefined) {
+      this.setState({ visible: this.props.visible });
     }
   }
 

@@ -1,0 +1,38 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe ActivityPub::FeaturedItemSerializer do
+  include RoutingHelper
+
+  subject { serialized_record_json(collection_item, described_class, adapter: ActivityPub::Adapter) }
+
+  let(:collection_item) { Fabricate(:collection_item, created_at: Time.utc(2026, 4, 16, 1)) }
+
+  context 'when a local account is featured' do
+    it 'serializes to the expected structure' do
+      expect(subject).to include({
+        'type' => 'FeaturedItem',
+        'id' => ActivityPub::TagManager.instance.uri_for(collection_item),
+        'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_item.account),
+        'featureAuthorization' => ap_account_feature_authorization_url(collection_item.account_id, collection_item),
+        'published' => '2026-04-16T01:00:00Z',
+      })
+    end
+  end
+
+  context 'when a remote account is featured' do
+    let(:collection) { Fabricate(:collection) }
+    let(:account) { Fabricate(:remote_account) }
+    let(:collection_item) { Fabricate(:collection_item, collection:, account:, approval_uri: 'https://example.com/auth/1') }
+
+    it 'serializes to the expected structure' do
+      expect(subject).to include({
+        'type' => 'FeaturedItem',
+        'id' => ActivityPub::TagManager.instance.uri_for(collection_item),
+        'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_item.account),
+        'featureAuthorization' => 'https://example.com/auth/1',
+      })
+    end
+  end
+end

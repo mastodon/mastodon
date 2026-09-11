@@ -251,12 +251,12 @@ RSpec.describe Mastodon::CLI::IpBlocks do
 
       it 'exports blocked IPs with "no_access" severity in plain format' do
         expect { subject }
-          .to output_results("#{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}\n#{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix}")
+          .to output_results("#{first_ip_range_block.to_cidr}\n#{second_ip_range_block.to_cidr}")
       end
 
       it 'does not export blocked IPs with different severities' do
         expect { subject }
-          .to_not output_results("#{third_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}")
+          .to_not output_results(third_ip_range_block.to_cidr)
       end
     end
 
@@ -265,19 +265,19 @@ RSpec.describe Mastodon::CLI::IpBlocks do
 
       it 'exports blocked IPs with "no_access" severity in plain format' do
         expect { subject }
-          .to output_results("deny #{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix};\ndeny #{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix};")
+          .to output_results("deny #{first_ip_range_block.to_cidr};\ndeny #{second_ip_range_block.to_cidr};")
       end
 
       it 'does not export blocked IPs with different severities' do
         expect { subject }
-          .to_not output_results("deny #{third_ip_range_block.ip}/#{first_ip_range_block.ip.prefix};")
+          .to_not output_results("deny #{third_ip_range_block.to_cidr};")
       end
     end
 
     context 'when --format option is not provided' do
       it 'exports blocked IPs in plain format by default' do
         expect { subject }
-          .to output_results("#{first_ip_range_block.ip}/#{first_ip_range_block.ip.prefix}\n#{second_ip_range_block.ip}/#{second_ip_range_block.ip.prefix}")
+          .to output_results("#{first_ip_range_block.to_cidr}\n#{second_ip_range_block.to_cidr}")
       end
     end
   end

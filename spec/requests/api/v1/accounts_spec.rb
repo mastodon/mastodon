@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe '/api/v1/accounts' do
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { '' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication'
 
   describe 'GET /api/v1/accounts?id[]=:id' do
     let(:account) { Fabricate(:account) }
@@ -48,6 +45,31 @@ RSpec.describe '/api/v1/accounts' do
         expect(response.content_type)
           .to start_with('application/json')
         expect(response.parsed_body[:error]).to eq('Record not found')
+      end
+    end
+
+    context 'when requesting a permanently deleted account' do
+      let(:other_account) { Fabricate(:account, requested_deletion: true) }
+
+      before do
+        get "/api/v1/accounts/#{other_account.id}"
+      end
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when requesting an account pending deletion' do
+      let(:other_account) { Fabricate(:account) }
+
+      before do
+        other_account.mark_deleted!
+        get "/api/v1/accounts/#{other_account.id}"
+      end
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
       end
     end
 
@@ -99,6 +121,28 @@ RSpec.describe '/api/v1/accounts' do
       end
     end
 
+    context 'when missing username value' do
+      subject do
+        post '/api/v1/accounts', headers: headers, params: { password: '12345678', email: 'hello@world.tld', agreement: 'true' }
+      end
+
+      it 'returns http unprocessable entity with username error message' do
+        expect { subject }
+          .to not_change(User, :count)
+          .and not_change(Account, :count)
+
+        expect(response)
+          .to have_http_status(422)
+        expect(response.media_type)
+          .to eq('application/json')
+        expect(response.parsed_body)
+          .to include(
+            error: /Validation failed/,
+            details: include(username: contain_exactly(include(error: 'ERR_BLANK', description: /can't be blank/)))
+          )
+      end
+    end
+
     context 'when age verification is enabled' do
       before do
         Setting.min_age = 16
@@ -110,11 +154,19 @@ RSpec.describe '/api/v1/accounts' do
         let(:date_of_birth) { 13.years.ago.strftime('%d.%m.%Y') }
 
         it 'returns http unprocessable entity' do
-          subject
+          expect { subject }
+            .to not_change(User, :count)
+            .and not_change(Account, :count)
 
-          expect(response).to have_http_status(422)
+          expect(response)
+            .to have_http_status(422)
           expect(response.content_type)
             .to start_with('application/json')
+          expect(response.parsed_body)
+            .to include(
+              error: /Validation failed/,
+              details: include(date_of_birth: contain_exactly(include(error: 'ERR_BELOW_LIMIT', description: /below the age limit/)))
+            )
         end
       end
 
@@ -122,9 +174,27 @@ RSpec.describe '/api/v1/accounts' do
         let(:date_of_birth) { 17.years.ago.strftime('%d.%m.%Y') }
 
         it 'creates a user', :aggregate_failures do
-          subject
+          expect { subject }
+            .to change(User, :count).by(1)
+            .and change(Account, :count).by(1)
 
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+
+      context 'when date of birth is over age limit in ISO-8601 format' do
+        let(:date_of_birth) { 17.years.ago.to_date.iso8601 }
+
+        it 'creates a user', :aggregate_failures do
+          expect { subject }
+            .to change(User, :count).by(1)
+            .and change(Account, :count).by(1)
+
+          expect(response)
+            .to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
         end
@@ -140,7 +210,12 @@ RSpec.describe '/api/v1/accounts' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body[:access_token]).to_not be_blank
+        expect(response.parsed_body)
+          .to include(
+            access_token: be_present,
+            created_at: be_a(Integer),
+            token_type: 'Bearer'
+          )
 
         user = User.find_by(email: 'hello@world.tld')
         expect(user).to_not be_nil

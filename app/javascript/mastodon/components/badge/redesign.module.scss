@@ -1,0 +1,11 @@
+@use '@/styles/mastodon/mixins';
+
+.badge.badge {
+  @include mixins.type-micro;
+
+  line-height: 1.1;
+
+  &:not(.badgeWithoutIcon) {
+    padding-inline: var(--space-3xs) var(--space-2xs);
+  }
+}

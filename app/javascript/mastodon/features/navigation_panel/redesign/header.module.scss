@@ -1,0 +1,79 @@
+@use '@/styles/mastodon/mixins';
+
+.root {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+
+  // We're distributing the bottom spacing between padding and margin so that
+  // not too much of it overlaps the navigation links when scrolled down
+  --half-bottom-spacing: calc(var(--space-xl) / 2);
+
+  padding: var(--space-xl) var(--space-lg) var(--half-bottom-spacing);
+  margin-bottom: var(--half-bottom-spacing);
+  background: var(--navigation-background-color);
+
+  &::after {
+    @include mixins.scroll-gradient(top, var(--navigation-background-color));
+
+    opacity: 0;
+    transition: opacity ease 250ms;
+  }
+
+  &[data-stuck='true']::after {
+    opacity: 1;
+  }
+}
+
+.siteNameLink {
+  --app-icon-size: 40px;
+
+  display: flex;
+  align-items: center;
+  column-gap: var(--space-xs);
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  outline-offset: var(--space-3xs);
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.appIcon {
+  align-self: center;
+  width: var(--app-icon-size);
+  aspect-ratio: 1;
+}
+
+.serverName {
+  @include mixins.type-heading-sm;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.poweredBy {
+  @include mixins.type-label-sm;
+
+  grid-column: 2;
+  color: var(--color-text-tertiary);
+
+  svg {
+    width: 1em;
+    height: 1em;
+    margin-inline-end: var(--space-3xs);
+    vertical-align: middle;
+    color: inherit;
+  }
+}

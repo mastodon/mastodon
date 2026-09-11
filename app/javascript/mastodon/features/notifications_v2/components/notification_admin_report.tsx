@@ -2,6 +2,7 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { DisplayName } from '@/mastodon/components/display_name';
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
@@ -42,11 +43,9 @@ export const NotificationAdminReport: React.FC<{
 
   if (!account || !targetAccount) return null;
 
-  const domain = account.acct.split('@')[1];
-
   const values = {
-    name: <bdi>{domain ?? `@${account.acct}`}</bdi>,
-    target: <bdi>@{targetAccount.acct}</bdi>,
+    name: <DisplayName account={account} variant='simple' />,
+    target: <DisplayName account={targetAccount} variant='simple' />,
     category: intl.formatMessage(messages[report.category]),
     count: report.status_ids.length,
   };
@@ -107,10 +106,10 @@ export const NotificationAdminReport: React.FC<{
 
       <div className='notification-group__main'>
         <div className='notification-group__main__header'>
-          <div className='notification-group__main__header__label'>
+          <h2 className='notification-group__main__header__label'>
             {message}
             <RelativeTimestamp timestamp={report.created_at} />
-          </div>
+          </h2>
         </div>
 
         {report.comment.length > 0 && (

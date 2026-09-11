@@ -46,7 +46,7 @@ export const ModalPlaceholder: React.FC<{
                   defaultMessage='Try again'
                 />
               </Button>
-              <Button onClick={handleClose} className='button button-tertiary'>
+              <Button onClick={handleClose} className='button button-secondary'>
                 <FormattedMessage
                   id='bundle_modal_error.close'
                   defaultMessage='Close'

@@ -10,10 +10,13 @@ import type { Map as ImmutableMap } from 'immutable';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
+import { useAccount } from '@/mastodon/hooks/useAccount';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
+import CollectionsActiveIcon from '@/material-icons/400-24px/category-fill.svg?react';
+import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
@@ -33,12 +36,21 @@ import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { Search } from 'mastodon/features/compose/components/search';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
+import { getNavigationSkipLinkId } from 'mastodon/features/ui/components/skip_links';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
-import { timelinePreview, trendsEnabled, me } from 'mastodon/initial_state';
+import {
+  localLiveFeedAccess,
+  remoteLiveFeedAccess,
+  trendsEnabled,
+  me,
+} from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
+import { canViewFeed } from 'mastodon/permissions';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
+
+import { AnnualReportNavItem } from '../annual_report/nav_item';
 
 import { DisabledAccountBanner } from './components/disabled_account_banner';
 import { FollowedTagsPanel } from './components/followed_tags_panel';
@@ -55,9 +67,23 @@ const messages = defineMessages({
   },
   explore: { id: 'explore.title', defaultMessage: 'Trending' },
   firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
+  firehose_singular: {
+    id: 'column.firehose_singular',
+    defaultMessage: 'Live feed',
+  },
+  main: {
+    id: 'navigation_bar.main',
+    defaultMessage: 'Main',
+    description:
+      'Label for the main navigation; should not contain the word "navigation".',
+  },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  collections: {
+    id: 'navigation_bar.collections',
+    defaultMessage: 'Collections',
+  },
   preferences: {
     id: 'navigation_bar.preferences',
     defaultMessage: 'Preferences',
@@ -189,9 +215,10 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
   multiColumn = false,
 }) => {
   const intl = useIntl();
-  const { signedIn, disabledAccountId } = useIdentity();
+  const { signedIn, permissions, disabledAccountId } = useIdentity();
   const location = useLocation();
   const showSearch = useBreakpoint('full') && !multiColumn;
+  const account = useAccount(me);
 
   let banner: React.ReactNode;
 
@@ -210,9 +237,16 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
   }
 
   return (
-    <div className='navigation-panel'>
+    <nav
+      className='navigation-panel'
+      aria-label={intl.formatMessage(messages.main)}
+    >
       <div className='navigation-panel__logo'>
-        <Link to='/' className='column-link column-link--logo'>
+        <Link
+          to='/'
+          className='column-link column-link--logo'
+          id={getNavigationSkipLinkId()}
+        >
           <WordmarkLogo />
         </Link>
       </div>
@@ -223,102 +257,148 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 
       {banner && <div className='navigation-panel__banner'>{banner}</div>}
 
-      <div className='navigation-panel__menu'>
+      <ul className='navigation-panel__menu'>
         {signedIn && (
           <>
             {!multiColumn && (
-              <ColumnLink
-                to='/publish'
-                icon='plus'
-                iconComponent={AddIcon}
-                activeIconComponent={AddIcon}
-                text={intl.formatMessage(messages.compose)}
-                className='button navigation-panel__compose-button'
-              />
+              <li>
+                <ColumnLink
+                  to={{ pathname: '/publish', state: { focusTarget: false } }}
+                  icon='plus'
+                  iconComponent={AddIcon}
+                  activeIconComponent={AddIcon}
+                  text={intl.formatMessage(messages.compose)}
+                  className='button navigation-panel__compose-button'
+                />
+              </li>
             )}
-            <ColumnLink
-              transparent
-              to='/home'
-              icon='home'
-              iconComponent={HomeIcon}
-              activeIconComponent={HomeActiveIcon}
-              text={intl.formatMessage(messages.home)}
-            />
+            <li>
+              <ColumnLink
+                transparent
+                to='/home'
+                icon='home'
+                iconComponent={HomeIcon}
+                activeIconComponent={HomeActiveIcon}
+                text={intl.formatMessage(messages.home)}
+              />
+            </li>
           </>
         )}
 
         {trendsEnabled && (
-          <ColumnLink
-            transparent
-            to='/explore'
-            icon='explore'
-            iconComponent={TrendingUpIcon}
-            text={intl.formatMessage(messages.explore)}
-          />
+          <li>
+            <ColumnLink
+              transparent
+              to='/explore'
+              icon='explore'
+              iconComponent={TrendingUpIcon}
+              text={intl.formatMessage(messages.explore)}
+            />
+          </li>
         )}
 
-        {(signedIn || timelinePreview) && (
-          <ColumnLink
-            transparent
-            to='/public/local'
-            icon='globe'
-            iconComponent={PublicIcon}
-            isActive={isFirehoseActive}
-            text={intl.formatMessage(messages.firehose)}
-          />
+        {(canViewFeed(signedIn, permissions, localLiveFeedAccess) ||
+          canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
+          <li>
+            <ColumnLink
+              transparent
+              to={
+                canViewFeed(signedIn, permissions, localLiveFeedAccess)
+                  ? '/public/local'
+                  : '/public/remote'
+              }
+              icon='globe'
+              iconComponent={PublicIcon}
+              isActive={isFirehoseActive}
+              text={intl.formatMessage(
+                canViewFeed(signedIn, permissions, localLiveFeedAccess) &&
+                  canViewFeed(signedIn, permissions, remoteLiveFeedAccess)
+                  ? messages.firehose
+                  : messages.firehose_singular,
+              )}
+            />
+          </li>
         )}
 
         {signedIn && (
           <>
-            <NotificationsLink />
+            <li>
+              <NotificationsLink />
+            </li>
 
-            <FollowRequestsLink />
+            <li>
+              <FollowRequestsLink />
+            </li>
 
-            <hr />
+            <li>
+              <AnnualReportNavItem />
+            </li>
+
+            <li role='separator' />
 
             <ListPanel />
 
             <FollowedTagsPanel />
 
-            <ColumnLink
-              transparent
-              to='/favourites'
-              icon='star'
-              iconComponent={StarIcon}
-              activeIconComponent={StarActiveIcon}
-              text={intl.formatMessage(messages.favourites)}
-            />
-            <ColumnLink
-              transparent
-              to='/bookmarks'
-              icon='bookmarks'
-              iconComponent={BookmarksIcon}
-              activeIconComponent={BookmarksActiveIcon}
-              text={intl.formatMessage(messages.bookmarks)}
-            />
-            <ColumnLink
-              transparent
-              to='/conversations'
-              icon='at'
-              iconComponent={AlternateEmailIcon}
-              text={intl.formatMessage(messages.direct)}
-            />
+            <li>
+              <ColumnLink
+                transparent
+                to='/favourites'
+                icon='star'
+                iconComponent={StarIcon}
+                activeIconComponent={StarActiveIcon}
+                text={intl.formatMessage(messages.favourites)}
+              />
+            </li>
+            <li>
+              <ColumnLink
+                transparent
+                to='/bookmarks'
+                icon='bookmarks'
+                iconComponent={BookmarksIcon}
+                activeIconComponent={BookmarksActiveIcon}
+                text={intl.formatMessage(messages.bookmarks)}
+              />
+            </li>
+            <li>
+              <ColumnLink
+                transparent
+                to={`/@${account?.acct}/collections`}
+                icon='collections'
+                iconComponent={CollectionsIcon}
+                activeIconComponent={CollectionsActiveIcon}
+                text={intl.formatMessage(messages.collections)}
+              />
+            </li>
+            <li>
+              <ColumnLink
+                transparent
+                to='/conversations'
+                icon='at'
+                iconComponent={AlternateEmailIcon}
+                text={intl.formatMessage(messages.direct)}
+              />
+            </li>
 
-            <hr />
+            <li role='separator' />
 
-            <ColumnLink
-              transparent
-              href='/settings/preferences'
-              icon='cog'
-              iconComponent={SettingsIcon}
-              text={intl.formatMessage(messages.preferences)}
-            />
+            <li>
+              <ColumnLink
+                transparent
+                href='/settings/preferences'
+                icon='cog'
+                iconComponent={SettingsIcon}
+                text={intl.formatMessage(messages.preferences)}
+              />
+            </li>
 
-            <MoreLink />
+            <li>
+              <MoreLink />
+            </li>
           </>
         )}
 
-        <div className='navigation-panel__legal'>
+        <li className='navigation-panel__legal'>
           <ColumnLink
             transparent
             to='/about'
@@ -326,21 +406,21 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             iconComponent={InfoIcon}
             text={intl.formatMessage(messages.about)}
           />
-        </div>
+        </li>
 
         {!signedIn && (
-          <div className='navigation-panel__sign-in-banner'>
+          <li className='navigation-panel__sign-in-banner'>
             <hr />
 
             {disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner />}
-          </div>
+          </li>
         )}
-      </div>
+      </ul>
 
       <div className='flex-spacer' />
 
       <Trends />
-    </div>
+    </nav>
   );
 };
 
@@ -349,7 +429,7 @@ export const CollapsibleNavigationPanel: React.FC = () => {
   const dispatch = useAppDispatch();
   const openable = useBreakpoint('openable');
   const location = useLocation();
-  const overlayRef = useRef<HTMLDivElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     dispatch(closeNavigation());
@@ -388,7 +468,7 @@ export const CollapsibleNavigationPanel: React.FC = () => {
         x({ value }: { value: number }) {
           if (value === 0) {
             dispatch(openNavigation());
-          } else if (isLtrDir ? value > 0 : value < 0) {
+          } else if (value === OPEN_MENU_OFFSET) {
             dispatch(closeNavigation());
           }
         },
@@ -428,13 +508,15 @@ export const CollapsibleNavigationPanel: React.FC = () => {
     },
     {
       from: () => [x.get(), 0],
+      axis: 'x',
       filterTaps: true,
       bounds: isLtrDir ? { left: 0 } : { right: 0 },
       rubberband: true,
+      enabled: openable,
     },
   );
 
-  const previouslyFocusedElementRef = useRef<HTMLElement | null>();
+  const previouslyFocusedElementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (open) {

@@ -65,7 +65,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
       const description = audio.getIn(['translation', 'description']) || audio.get('description');
 
       return (
-        <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
+        <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} key='audio'>
           {Component => (
             <Component
               src={audio.get('url')}
@@ -87,7 +87,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
       const description = video.getIn(['translation', 'description']) || video.get('description');
 
       return (
-        <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
+        <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} key='video'>
           {Component => (
             <Component
               preview={video.get('preview_url')}
@@ -108,7 +108,7 @@ export default class MediaAttachments extends ImmutablePureComponent {
       );
     } else {
       return (
-        <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
+        <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} key='gallery'>
           {Component => (
             <Component
               media={mediaAttachments}

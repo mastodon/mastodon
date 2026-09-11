@@ -26,6 +26,7 @@ class AccountSuggestions::FriendsOfFriendsSource < AccountSuggestions::Source
         AND NOT EXISTS (SELECT 1 FROM mutes m WHERE m.target_account_id = follows.target_account_id AND m.account_id = :id)
         AND (accounts.domain IS NULL OR NOT EXISTS (SELECT 1 FROM account_domain_blocks b WHERE b.account_id = :id AND b.domain = accounts.domain))
         AND NOT EXISTS (SELECT 1 FROM follows f WHERE f.target_account_id = follows.target_account_id AND f.account_id = :id)
+        AND NOT EXISTS (SELECT 1 FROM follow_requests f WHERE f.target_account_id = follows.target_account_id AND f.account_id = :id)
         AND follows.target_account_id <> :id
         AND accounts.discoverable
         AND accounts.suspended_at IS NULL

@@ -1,6 +1,6 @@
 // import { shouldPolyfill as shouldPolyfillCanonicalLocales } from '@formatjs/intl-getcanonicallocales/should-polyfill';
 // import { shouldPolyfill as shouldPolyfillLocale } from '@formatjs/intl-locale/should-polyfill';
-import { shouldPolyfill as shoudPolyfillPluralRules } from '@formatjs/intl-pluralrules/should-polyfill';
+import { shouldPolyfill as shoudPolyfillPluralRules } from '@formatjs/intl-pluralrules/should-polyfill.js';
 // import { shouldPolyfill as shouldPolyfillNumberFormat } from '@formatjs/intl-numberformat/should-polyfill';
 // import { shouldPolyfill as shouldPolyfillIntlDateTimeFormat } from '@formatjs/intl-datetimeformat/should-polyfill';
 // import { shouldPolyfill as shouldPolyfillIntlRelativeTimeFormat } from '@formatjs/intl-relativetimeformat/should-polyfill';
@@ -54,7 +54,7 @@ async function loadIntlPluralRulesPolyfills(locale: string) {
     return;
   }
   // Load the polyfill 1st BEFORE loading data
-  await import('@formatjs/intl-pluralrules/polyfill-force');
+  await import('@formatjs/intl-pluralrules/polyfill-force.js');
   await import(
     `../../../../node_modules/@formatjs/intl-pluralrules/locale-data/${unsupportedLocale}.js`
   );

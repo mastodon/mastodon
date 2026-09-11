@@ -14,15 +14,15 @@ class Admin::Disputes::AppealsController < Admin::BaseController
     authorize @appeal, :approve?
     log_action :approve, @appeal
     ApproveAppealService.new.call(@appeal, current_account)
-    redirect_to disputes_strike_path(@appeal.strike)
+    redirect_to admin_disputes_strike_path(@appeal.strike)
   end
 
   def reject
-    authorize @appeal, :approve?
+    authorize @appeal, :reject?
     log_action :reject, @appeal
     @appeal.reject!(current_account)
     UserMailer.appeal_rejected(@appeal.account.user, @appeal).deliver_later
-    redirect_to disputes_strike_path(@appeal.strike)
+    redirect_to admin_disputes_strike_path(@appeal.strike)
   end
 
   private

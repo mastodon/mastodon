@@ -38,14 +38,14 @@ class Api::V1::AccountsController < Api::BaseController
 
     headers.merge!(response.headers)
 
-    self.response_body = Oj.dump(response.body)
+    self.response_body = response.body.to_json
     self.status        = response.status
   rescue ActiveRecord::RecordInvalid => e
     render json: ValidationErrorFormatter.new(e, 'account.username': :username, 'invite_request.text': :reason).as_json, status: 422
   end
 
   def follow
-    follow  = FollowService.new.call(current_user.account, @account, reblogs: params.key?(:reblogs) ? truthy_param?(:reblogs) : nil, notify: params.key?(:notify) ? truthy_param?(:notify) : nil, languages: params.key?(:languages) ? params[:languages] : nil, with_rate_limit: true)
+    follow  = FollowService.new.call(current_user.account, @account, reblogs: params.key?(:reblogs) ? truthy_param?(:reblogs) : nil, notify: params.key?(:notify) ? truthy_param?(:notify) : nil, languages: params.key?(:languages) ? params[:languages] : nil, with_rate_limit: true, ref: params[:ref])
     options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify?, languages: follow.languages } }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(**options)
@@ -84,11 +84,11 @@ class Api::V1::AccountsController < Api::BaseController
   private
 
   def set_account
-    @account = Account.find(params[:id])
+    @account = Account.without_requested_deletion.find(params[:id])
   end
 
   def set_accounts
-    @accounts = Account.where(id: account_ids).without_unapproved
+    @accounts = Account.where(id: account_ids).without_unapproved.without_requested_deletion
   end
 
   def check_account_approval

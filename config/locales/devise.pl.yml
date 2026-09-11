@@ -7,6 +7,7 @@ pl:
       send_paranoid_instructions: Jeśli Twój adres e-mail już istnieje w naszej bazie danych, w ciągu kilku minut otrzymasz wiadomość e-mail z instrukcją jak potwierdzić Twój adres e-mail. Jeżeli nie otrzymano wiadomości, sprawdź folder ze spamem.
     failure:
       already_authenticated: Jesteś już zalogowany(-a).
+      closed_registrations: Twoja próba rejestracji została zablokowana ze względu na politykę sieciową. Jeśli uważasz, że jest to błąd, skontaktuj się z %{email}.
       inactive: Twoje konto nie zostało jeszcze aktywowane.
       invalid: Nieprawidłowy %{authentication_keys} lub hasło.
       last_attempt: Masz jeszcze jedną próbę; Twoje konto zostanie zablokowane jeśli się nie powiedzie.

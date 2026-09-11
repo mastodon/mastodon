@@ -1,19 +1,17 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-
 import { supportsPassiveEvents } from 'detect-passive-events';
-import Overlay from 'react-overlays/Overlay';
 
 import MoodIcon from '@/material-icons/400-20px/mood.svg?react';
-import { IconButton } from 'mastodon/components/icon_button';
+import { IconButton } from '@/mastodon/components/icon_button';
+import { injectIntl } from '@/mastodon/components/intl';
+import { Popover } from '@/mastodon/components/popover';
 
-import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
 
 const messages = defineMessages({
@@ -61,8 +59,14 @@ class ModifierPickerMenu extends PureComponent {
     this.props.onSelect(e.currentTarget.getAttribute('data-index') * 1);
   };
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.active) {
+  componentDidMount() {
+    if (this.props.active) {
+      this.attachListeners();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.active) {
       this.attachListeners();
     } else {
       this.removeListeners();
@@ -149,7 +153,6 @@ class ModifierPicker extends PureComponent {
 class EmojiPickerMenuImpl extends PureComponent {
 
   static propTypes = {
-    custom_emojis: ImmutablePropTypes.list,
     frequentlyUsedEmojis: PropTypes.arrayOf(PropTypes.string),
     loading: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
@@ -172,16 +175,7 @@ class EmojiPickerMenuImpl extends PureComponent {
     readyToFocus: false,
   };
 
-  handleDocumentClick = e => {
-    if (this.node && !this.node.contains(e.target) && !this.props.pickerButtonRef.contains(e.target)) {
-      this.props.onClose();
-    }
-  };
-
   componentDidMount() {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-
     // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
     // to wait for a frame before focusing
     requestAnimationFrame(() => {
@@ -191,11 +185,6 @@ class EmojiPickerMenuImpl extends PureComponent {
         if (element) element.focus();
       }
     });
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
   }
 
   setRef = c => {
@@ -225,7 +214,7 @@ class EmojiPickerMenuImpl extends PureComponent {
 
   handleClick = (emoji, event) => {
     if (!emoji.native) {
-      emoji.native = emoji.colons;
+      emoji.native = `:${emoji.id}:`;
     }
     if (!(event.ctrlKey || event.metaKey)) {
 
@@ -247,7 +236,7 @@ class EmojiPickerMenuImpl extends PureComponent {
   };
 
   render() {
-    const { loading, style, intl, custom_emojis, skinTone, frequentlyUsedEmojis } = this.props;
+    const { loading, style, intl, skinTone, frequentlyUsedEmojis } = this.props;
 
     if (loading) {
       return <div style={{ width: 299 }} />;
@@ -257,32 +246,16 @@ class EmojiPickerMenuImpl extends PureComponent {
 
     const { modifierOpen } = this.state;
 
-    const categoriesSort = [
-      'recent',
-      'people',
-      'nature',
-      'foods',
-      'activity',
-      'places',
-      'objects',
-      'symbols',
-      'flags',
-    ];
-
-    categoriesSort.splice(1, 0, ...Array.from(categoriesFromEmojis(custom_emojis)).sort());
-
     return (
       <div className={classNames('emoji-picker-dropdown__menu', { selecting: modifierOpen })} style={style} ref={this.setRef}>
         <EmojiPicker
           perLine={8}
           emojiSize={22}
-          custom={buildCustomEmojis(custom_emojis)}
           color=''
           emoji=''
           title={title}
           i18n={this.getI18n()}
           onClick={this.handleClick}
-          include={categoriesSort}
           recent={frequentlyUsedEmojis}
           skin={skinTone}
           showPreview={false}
@@ -308,20 +281,19 @@ class EmojiPickerMenuImpl extends PureComponent {
 const EmojiPickerMenu = injectIntl(EmojiPickerMenuImpl);
 
 class EmojiPickerDropdown extends PureComponent {
-
   static propTypes = {
-    custom_emojis: ImmutablePropTypes.list,
     frequentlyUsedEmojis: PropTypes.arrayOf(PropTypes.string),
     intl: PropTypes.object.isRequired,
     onPickEmoji: PropTypes.func.isRequired,
     onSkinTone: PropTypes.func.isRequired,
     skinTone: PropTypes.number.isRequired,
+    disabled: PropTypes.bool,
   };
 
   state = {
     active: false,
     loading: false,
-    placement: 'bottom',
+    target: null,
   };
 
   setRef = (c) => {
@@ -337,7 +309,6 @@ class EmojiPickerDropdown extends PureComponent {
       EmojiPickerAsync().then(EmojiMart => {
         EmojiPicker = EmojiMart.Picker;
         Emoji = EmojiMart.Emoji;
-
         this.setState({ loading: false });
       }).catch(() => {
         this.setState({ loading: false, active: false });
@@ -359,58 +330,47 @@ class EmojiPickerDropdown extends PureComponent {
     }
   };
 
-  handleKeyDown = e => {
-    if (e.key === 'Escape') {
-      this.onHideDropdown();
-    }
-  };
-
   setTargetRef = c => {
-    this.target = c;
-  };
-
-  findTarget = () => {
-    return this.target;
-  };
-
-  handleOverlayEnter = (state) => {
-    this.setState({ placement: state.placement });
+    this.setState({ target: c });
   };
 
   render() {
-    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis } = this.props;
+    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, disabled } = this.props;
     const title = intl.formatMessage(messages.emoji);
-    const { active, loading, placement } = this.state;
+    const { active, loading, target } = this.state;
 
     return (
-      <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown} ref={this.setTargetRef}>
+      <div className='emoji-picker-dropdown' ref={this.setTargetRef}>
         <IconButton
           title={title}
           aria-expanded={active}
           active={active}
           iconComponent={MoodIcon}
           onClick={this.onToggle}
+          disabled={disabled}
+          id="emoji"
           inverted
         />
 
-        <Overlay show={active} placement={placement} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
+        <Popover
+          isOpen={active}
+          reference={target}
+          onClose={this.onHideDropdown}
+        >
           {({ props, placement }) => (
-            <div {...props} style={{ ...props.style }}>
-              <div className={`dropdown-animation ${placement}`}>
-                <EmojiPickerMenu
-                  custom_emojis={this.props.custom_emojis}
-                  loading={loading}
-                  onClose={this.onHideDropdown}
-                  onPick={onPickEmoji}
-                  onSkinTone={onSkinTone}
-                  skinTone={skinTone}
-                  frequentlyUsedEmojis={frequentlyUsedEmojis}
-                  pickerButtonRef={this.target}
-                />
-              </div>
+            <div  {...props} className={`dropdown-animation ${placement}`}>
+              <EmojiPickerMenu
+                loading={loading}
+                onClose={this.onHideDropdown}
+                onPick={onPickEmoji}
+                onSkinTone={onSkinTone}
+                skinTone={skinTone}
+                frequentlyUsedEmojis={frequentlyUsedEmojis}
+                pickerButtonRef={this.target}
+              />
             </div>
           )}
-        </Overlay>
+        </Popover>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { useAppSelector } from 'mastodon/store';
+import { useAccount } from 'mastodon/hooks/useAccount';
 
 import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
@@ -23,7 +23,7 @@ export const ConfirmFollowToListModal: React.FC<
   } & BaseConfirmationModalProps
 > = ({ accountId, onConfirm, onClose }) => {
   const intl = useIntl();
-  const account = useAppSelector((state) => state.accounts.get(accountId));
+  const account = useAccount(accountId);
 
   return (
     <ConfirmationModal

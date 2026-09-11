@@ -3,7 +3,11 @@
 class ActivityPub::UndoAnnounceSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor, :to
 
-  has_one :virtual_object, key: :object, serializer: ActivityPub::ActivitySerializer
+  has_one :virtual_object, key: :object, serializer: ActivityPub::AnnounceNoteSerializer do |serializer|
+    serializer.send(:instance_options)[:allow_inlining] = false
+
+    object
+  end
 
   def id
     [ActivityPub::TagManager.instance.uri_for(object.account), '#announces/', object.id, '/undo'].join
@@ -22,6 +26,6 @@ class ActivityPub::UndoAnnounceSerializer < ActivityPub::Serializer
   end
 
   def virtual_object
-    ActivityPub::ActivityPresenter.from_status(object, allow_inlining: false)
+    object
   end
 end

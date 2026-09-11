@@ -1,0 +1,80 @@
+@use '@/styles/mastodon/mixins';
+@use '@/styles/mastodon/variables' as *;
+
+.root {
+  position: fixed;
+  bottom: env(safe-area-inset-bottom);
+  inset-inline: 0;
+  padding: 0 var(--space-md) var(--space-md);
+  z-index: 100;
+  display: flex;
+
+  // This moves the compose FAB above the navigation,
+  // which somehow makes more sense for the focus order
+  flex-direction: column-reverse;
+  align-items: end;
+  gap: var(--space-xs);
+
+  // Allow clicking through this container
+  pointer-events: none;
+
+  & > * {
+    pointer-events: initial;
+  }
+
+  @media (width > $mobile-menu-breakpoint) {
+    display: none;
+  }
+}
+
+.list {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding: var(--space-2xs);
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-round);
+  @include mixins.elevation-1;
+
+  > li {
+    flex-grow: 1;
+  }
+}
+
+.avatar,
+.avatar img {
+  border-radius: var(--radius-round);
+}
+
+.slideOutWrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  background: rgb(from var(--color-bg-overlay) r g b/50%);
+  opacity: 0;
+  transition: opacity 250ms ease;
+
+  &[data-is-open='true'] {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
+
+.slideOut {
+  // We extend the size of the slideOut to go beyond the viewport
+  // so that when it's pulled away from the side it was opened from,
+  // the background underneath the menu isn't revealed
+  --pull-tolerance: 70px;
+
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: calc(-1 * var(--pull-tolerance));
+  width: var(--navigation-max-width);
+  max-width: calc(100vw - var(--space-3xl));
+  padding-inline-start: var(--pull-tolerance);
+  touch-action: pan-y;
+  background: var(--color-bg-primary);
+  box-shadow: var(--dropdown-shadow);
+}

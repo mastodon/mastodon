@@ -19,19 +19,19 @@
 
 %hr.spacer/
 
-%h3= t('auth.migrate_account')
+%h3.heading-medium= t('auth.migrate_account')
 
 = simple_form_for @migration, url: settings_migration_path do |f|
   - if on_cooldown?
     %p.hint
-      %span.warning-hint= t('migrations.on_cooldown', count: ((@cooldown.cooldown_at - Time.now.utc) / 1.day.seconds).ceil)
+      %span.warning-hint= t('migrations.on_cooldown', count: @cooldown.remaining_cooldown_days)
   - else
     %p.hint= t('migrations.warning.before')
 
     %ul.hint
       %li.warning-hint= t('migrations.warning.followers')
-      %li.warning-hint= t('migrations.warning.redirect')
       %li.warning-hint= t('migrations.warning.other_data')
+      %li.warning-hint= t('migrations.warning.redirect')
       %li.warning-hint= t('migrations.warning.backreference_required')
       %li.warning-hint= t('migrations.warning.cooldown')
       %li.warning-hint= t('migrations.warning.disabled_account')
@@ -58,7 +58,7 @@
 - unless @migrations.empty?
   %hr.spacer/
 
-  %h3= t 'migrations.past_migrations'
+  %h3.heading-medium= t 'migrations.past_migrations'
 
   %hr.spacer/
 
@@ -85,5 +85,5 @@
 
 %hr.spacer/
 
-%h3= t 'migrations.incoming_migrations'
+%h3.heading-medium= t 'migrations.incoming_migrations'
 %p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)

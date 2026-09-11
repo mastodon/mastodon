@@ -22,13 +22,13 @@ class ActivityPub::SharesController < ActivityPub::BaseController
   def set_status
     @status = @account.statuses.find(params[:status_id])
     authorize @status, :show?
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 
   def shares_collection_presenter
     ActivityPub::CollectionPresenter.new(
-      id: account_status_shares_url(@account, @status),
+      id: ActivityPub::TagManager.instance.shares_uri_for(@status),
       type: :unordered,
       size: @status.reblogs_count
     )

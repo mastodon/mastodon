@@ -10,7 +10,7 @@ class Webhooks::PayloadRenderer
 
     def get(path)
       value  = @document.dig(*parse_path(path))
-      string = Oj.dump(value)
+      string = JSON.generate(value)
 
       # We want to make sure people can use the variable inside
       # other strings, so it can't be wrapped in quotes.
@@ -39,7 +39,7 @@ class Webhooks::PayloadRenderer
     rule(:digit) { match('[0-9]') }
     rule(:property_name) { match('[a-z_]').repeat(1) }
     rule(:array_index) { digit.repeat(1) }
-    rule(:segment) { (property_name | array_index) }
+    rule(:segment) { property_name | array_index }
     rule(:path) { property_name >> (dot >> segment).repeat }
     rule(:variable) { (str('}}').absent? >> path).repeat.as(:variable) }
     rule(:expression) { str('{{') >> variable >> str('}}') }
@@ -58,7 +58,7 @@ class Webhooks::PayloadRenderer
   /iox
 
   def initialize(json)
-    @document = DocumentTraverser.new(Oj.load(json))
+    @document = DocumentTraverser.new(JSON.parse(json))
   end
 
   def render(template)

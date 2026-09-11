@@ -1,0 +1,170 @@
+.wrapper {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.bioField {
+  // 160px is approx the height of the modal header and footer
+  max-height: calc(80vh - 160px);
+}
+
+.toggleInputWrapper {
+  > div {
+    padding: 12px 0;
+
+    &:not(:first-child) {
+      border-top: 1px solid var(--color-border-primary);
+    }
+  }
+}
+
+.field {
+  padding: 12px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  touch-action: none;
+  position: relative;
+}
+
+.fieldNotFirst::before,
+.fieldActiveUnder::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border-primary);
+}
+
+.fieldNotFirst::before {
+  top: 0;
+}
+
+.fieldActiveUnder::after {
+  bottom: -1px; // -1px to cover the border of the next field
+}
+
+.fieldHandle {
+  grid-row: span 2;
+  padding: 8px 0;
+  align-self: center;
+  border-radius: 4px;
+  background: var(--color-bg-secondary);
+  cursor: grab;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: var(--color-bg-brand-softest);
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: 2px;
+  }
+}
+
+.fieldDragging {
+  cursor: grabbing;
+
+  p {
+    opacity: 0.7;
+  }
+
+  .fieldHandle {
+    cursor: grabbing;
+    background: var(--color-bg-brand-soft);
+  }
+}
+
+.uploadWrapper {
+  min-height: min(400px, 70vh);
+  justify-content: center;
+}
+
+.uploadStepSelect {
+  text-align: center;
+
+  h2 {
+    color: var(--color-text-primary);
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
+}
+
+.cropContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.cropActions {
+  margin-top: 8px; // 16px gap from DialogModal, plus 8px = 24px to look like normal action buttons.
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.zoomControl {
+  margin-right: auto;
+  font-size: 13px;
+
+  input {
+    width: min(100%, 200px);
+  }
+}
+
+.altImage {
+  max-height: 150px;
+  object-fit: contain;
+  align-self: flex-start;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--avatar-border-radius);
+}
+
+.altHint {
+  ul {
+    padding-left: 1em;
+    list-style: disc;
+    margin-bottom: 1em;
+  }
+}
+
+.verifiedSteps {
+  font-size: 15px;
+
+  li {
+    counter-increment: steps;
+    padding-left: 34px;
+    margin-top: 24px;
+    position: relative;
+
+    h2 {
+      font-weight: 600;
+    }
+
+    &::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      border: 1px solid var(--color-border-primary);
+      border-radius: 9999px;
+      font-weight: 600;
+      padding: 4px;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+    }
+  }
+}

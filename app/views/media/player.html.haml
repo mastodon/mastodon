@@ -14,7 +14,7 @@
                     detailed: true,
                     editable: true,
                     frameRate: meta.dig('original', 'frame_rate'),
-                    height: 380,
+                    height: MediaPlayerHelper::PLAYER_HEIGHT,
                     inline: true,
                     media: [ActiveModelSerializers::SerializableResource.new(@media_attachment, serializer: REST::MediaAttachmentSerializer)].as_json,
                     preview: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.file.url(:small),
@@ -25,7 +25,7 @@
 - elsif @media_attachment.gifv?
   = react_component :media_gallery,
                     autoplay: true,
-                    height: 380,
+                    height: MediaPlayerHelper::PLAYER_HEIGHT,
                     media: [ActiveModelSerializers::SerializableResource.new(@media_attachment, serializer: REST::MediaAttachmentSerializer).as_json],
                     standalone: true do
     %video{ autoplay: 'autoplay', muted: 'muted', loop: 'loop' }
@@ -38,9 +38,9 @@
                     duration: meta.dig(:original, :duration),
                     foregroundColor: meta.dig('colors', 'foreground'),
                     fullscreen: true,
-                    height: 380,
+                    height: MediaPlayerHelper::PLAYER_HEIGHT,
                     poster: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.account.avatar_static_url,
                     src: @media_attachment.file.url(:original),
-                    width: 670 do
+                    width: MediaPlayerHelper::PLAYER_WIDTH do
     %audio{ controls: 'controls' }
       %source{ src: @media_attachment.file.url(:original) }

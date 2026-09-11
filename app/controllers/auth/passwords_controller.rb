@@ -19,8 +19,7 @@ class Auth::PasswordsController < Devise::PasswordsController
   private
 
   def redirect_invalid_reset_token
-    flash[:error] = I18n.t('auth.invalid_reset_password_token')
-    redirect_to new_password_path(resource_name)
+    redirect_to new_password_path(resource_name), flash: { error: t('auth.invalid_reset_password_token') }
   end
 
   def reset_password_token_is_valid?

@@ -18,7 +18,7 @@ RSpec.describe 'Admin::Settings::Registrations' do
     click_on submit_button
 
     expect(page)
-      .to have_content(success_message)
+      .to have_text(success_message)
   end
 
   def open_mode_option

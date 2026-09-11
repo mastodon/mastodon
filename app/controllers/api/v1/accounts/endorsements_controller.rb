@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Accounts::EndorsementsController < Api::BaseController
+class Api::V1::Accounts::EndorsementsController < Api::V1::Accounts::BaseController
   include Authorization
 
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }, only: :index
@@ -27,10 +27,6 @@ class Api::V1::Accounts::EndorsementsController < Api::BaseController
   end
 
   private
-
-  def set_account
-    @account = Account.find(params[:account_id])
-  end
 
   def set_endorsed_accounts
     @endorsed_accounts = @account.unavailable? ? [] : paginated_endorsed_accounts

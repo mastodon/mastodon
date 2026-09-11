@@ -144,6 +144,12 @@ RSpec.describe Admin::Reports::ActionsController do
           expect(media_attached_status.reload.sensitive).to be true
         end
       end
+
+      context 'when the action is "invalid_action"' do
+        let(:action) { 'invalid_action' }
+
+        it { is_expected.to redirect_to(admin_report_path(report)) }
+      end
     end
 
     context 'with action as submit button' do

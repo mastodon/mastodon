@@ -47,7 +47,7 @@ export const NotificationAnnualReport: React.FC<{
             values={{ year }}
           />
         </p>
-        <button onClick={handleClick} className='link-button'>
+        <button onClick={handleClick} className='link-button' type='button'>
           <FormattedMessage
             id='notification.annual_report.view'
             defaultMessage='View #Wrapstodon'

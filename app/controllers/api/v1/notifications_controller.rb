@@ -16,7 +16,7 @@ class Api::V1::NotificationsController < Api::BaseController
       @relationships = StatusRelationshipsPresenter.new(target_statuses_from_notifications, current_user&.account_id)
     end
 
-    render json: @notifications, each_serializer: REST::NotificationSerializer, relationships: @relationships
+    render json: @notifications, each_serializer: REST::NotificationSerializer, relationships: @relationships, supported_notification_types: params[:supported_types]
   end
 
   def unread_count
@@ -29,7 +29,7 @@ class Api::V1::NotificationsController < Api::BaseController
 
   def show
     @notification = current_account.notifications.without_suspended.find(params[:id])
-    render json: @notification, serializer: REST::NotificationSerializer
+    render json: @notification, serializer: REST::NotificationSerializer, supported_notification_types: params[:supported_types]
   end
 
   def clear
@@ -89,6 +89,8 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def pagination_params(core_params)
-    params.slice(:limit, :account_id, :types, :exclude_types, :include_filtered).permit(:limit, :account_id, :include_filtered, types: [], exclude_types: []).merge(core_params)
+    params.slice(:limit, :account_id, :types, :exclude_types, :include_filtered, :supported_types)
+      .permit(:limit, :account_id, :include_filtered, types: [], exclude_types: [], supported_types: [])
+      .merge(core_params)
   end
 end

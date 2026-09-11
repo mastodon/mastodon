@@ -1,5 +1,5 @@
 !!!
-%html{ lang: I18n.locale }
+%html{ lang: I18n.locale, 'data-contrast': 'auto', 'data-color-scheme': 'auto' }
   %head
     %meta{ 'content' => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %meta{ charset: 'utf-8' }/
@@ -8,11 +8,13 @@
     = vite_client_tag
     = vite_react_refresh_tag
     = vite_polyfills_tag
+    = vite_typescript_tag 'theme-selection.ts', crossorigin: 'anonymous', blocking: 'render'
     = theme_style_tags Setting.default_settings['theme']
     = vite_typescript_tag 'error.ts', crossorigin: 'anonymous'
   %body.error
-    .dialog
+    %main.dialog
       .dialog__illustration
         %img{ alt: Setting.default_settings['site_title'], src: '/oops.png' }/
       .dialog__message
         %h1= yield :content
+        %a{ class: 'button button-secondary', href: '/' }= t('errors.go_home')

@@ -5,8 +5,8 @@ class ActivityPub::DeliveryWorker
   include RoutingHelper
   include JsonLdHelper
 
+  STOPLIGHT_COOL_OFF_TIME = 60
   STOPLIGHT_FAILURE_THRESHOLD = 10
-  STOPLIGHT_COOLDOWN = 60
 
   sidekiq_options queue: 'push', retry: 16, dead: false
 
@@ -38,7 +38,7 @@ class ActivityPub::DeliveryWorker
     if @inbox_url.present?
       if @performed
         failure_tracker.track_success!
-      else
+      elsif !@unsalvageable
         failure_tracker.track_failure!
       end
     end
@@ -48,23 +48,27 @@ class ActivityPub::DeliveryWorker
 
   def build_request(http_client)
     Request.new(:post, @inbox_url, body: @json, http_client: http_client).tap do |request|
-      request.on_behalf_of(@source_account, sign_with: @options[:sign_with])
+      request.on_behalf_of(@source_account, sign_with: sign_with)
       request.add_headers(HEADERS)
       request.add_headers({ 'Collection-Synchronization' => synchronization_header }) if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] != 'true' && @options[:synchronize_followers]
     end
   end
 
   def synchronization_header
-    "collectionId=\"#{account_followers_url(@source_account)}\", digest=\"#{@source_account.remote_followers_hash(@inbox_url)}\", url=\"#{account_followers_synchronization_url(@source_account)}\""
+    "collectionId=\"#{ActivityPub::TagManager.instance.followers_uri_for(@source_account)}\", digest=\"#{@source_account.remote_followers_hash(@inbox_url)}\", url=\"#{account_followers_synchronization_url(@source_account)}\""
   end
 
   def perform_request
     stoplight_wrapper.run do
       request_pool.with(@host) do |http_client|
         build_request(http_client).perform do |response|
-          raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || unsalvageable_authorization_failure?(response)
-
-          @performed = true
+          if response_successful?(response)
+            @performed = true
+          elsif response_error_unsalvageable?(response) || unsalvageable_authorization_failure?(response)
+            @unsalvageable = true
+          else
+            raise Mastodon::UnexpectedResponseError, response
+          end
         end
       end
     end
@@ -75,9 +79,11 @@ class ActivityPub::DeliveryWorker
   end
 
   def stoplight_wrapper
-    Stoplight(@inbox_url)
-      .with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
-      .with_cool_off_time(STOPLIGHT_COOLDOWN)
+    Stoplight(
+      @inbox_url,
+      cool_off_time: STOPLIGHT_COOL_OFF_TIME,
+      threshold: STOPLIGHT_FAILURE_THRESHOLD
+    )
   end
 
   def failure_tracker
@@ -86,5 +92,9 @@ class ActivityPub::DeliveryWorker
 
   def request_pool
     RequestPool.current
+  end
+
+  def sign_with
+    @options[:sign_with].presence && Keypair.from_worker_arg(@source_account, @options[:sign_with])
   end
 end

@@ -1,0 +1,12 @@
+- content_for :page_title do
+  = t('.title')
+
+.simple_form
+  %h1.title= t('.title')
+  %p.lead
+    - if @scope == :email_subscription
+      = t('.email_subscription.confirmation_html', name: display_name(@recipient.account))
+    - elsif @scope == :user
+      = t('.user.confirmation_html', type: I18n.t(@type, scope: 'unsubscriptions.notification_emails'), domain: site_hostname)
+
+  = link_to t('.action'), root_path, class: 'btn'

@@ -17,7 +17,7 @@ RSpec.describe 'Admin::Trends::Links::PreviewCardProviders' do
         click_on button_for_allow
 
         expect(page)
-          .to have_content(selection_error_text)
+          .to have_text(selection_error_text)
       end
     end
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PlainTextFormatter
-  NEWLINE_TAGS_RE = %r{(<br />|<br>|</p>)+}
+  NEWLINE_TAGS_RE = %r{(<br />|<br>|</p>)+}i
 
   attr_reader :text, :local
 

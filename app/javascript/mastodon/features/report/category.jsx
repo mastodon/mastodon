@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
-import { List as ImmutableList } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { Button } from 'mastodon/components/button';
+import { NavigationFocusTarget } from 'mastodon/components/navigation_focus_target';
+import { injectIntl } from '@/mastodon/components/intl';
 
 import Option from './components/option';
 
@@ -22,19 +22,20 @@ const messages = defineMessages({
   violation_description: { id: 'report.reasons.violation_description', defaultMessage: 'You are aware that it breaks specific rules' },
   other: { id: 'report.reasons.other', defaultMessage: 'It\'s something else' },
   other_description: { id: 'report.reasons.other_description', defaultMessage: 'The issue does not fit into other categories' },
-  status: { id: 'report.category.title_status', defaultMessage: 'post' },
-  account: { id: 'report.category.title_account', defaultMessage: 'profile' },
+  status: { id: 'report.category.title_status', defaultMessage: "Tell us what's going on with this post" },
+  account: { id: 'report.category.title_account', defaultMessage: "Tell us what's going on with this profile" },
+  collection: { id: 'report.category.title_collection', defaultMessage: "Tell us what's going on with this collection"}
 });
 
 const mapStateToProps = state => ({
-  rules: state.getIn(['server', 'server', 'rules'], ImmutableList()),
+  rules: state.getIn(['server', 'server', 'item', 'rules'], []),
 });
 
 class Category extends PureComponent {
 
   static propTypes = {
     onNextStep: PropTypes.func.isRequired,
-    rules: ImmutablePropTypes.list,
+    rules: PropTypes.arrayOf(PropTypes.object),
     category: PropTypes.string,
     onChangeCategory: PropTypes.func.isRequired,
     startedFrom: PropTypes.oneOf(['status', 'account']),
@@ -68,7 +69,7 @@ class Category extends PureComponent {
   render () {
     const { category, startedFrom, rules, intl } = this.props;
 
-    const options = rules.size > 0 ? [
+    let options = rules.length > 0 ? [
       'dislike',
       'spam',
       'legal',
@@ -81,9 +82,15 @@ class Category extends PureComponent {
       'other',
     ];
 
+    if (startedFrom === 'collection') {
+      options = options.filter(item => item !== 'dislike');
+    }
+
     return (
       <>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.category.title' defaultMessage="Tell us what's going on with this {type}" values={{ type: intl.formatMessage(messages[startedFrom]) }} /></h3>
+        <NavigationFocusTarget as='h1' className='report-dialog-modal__title'>
+          {intl.formatMessage(messages[startedFrom])}
+        </NavigationFocusTarget>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.category.subtitle' defaultMessage='Choose the best match' /></p>
 
         <div>

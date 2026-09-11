@@ -27,8 +27,8 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[4.2]
     add_index :oauth_access_grants, :token, unique: true
 
     create_table :oauth_access_tokens do |t|
-      t.integer  :resource_owner_id
-      t.integer  :application_id
+      t.integer :resource_owner_id
+      t.integer :application_id
 
       # If you use a custom token generator you may need to change this column
       # from string to text, so that it accepts tokens larger than 255
