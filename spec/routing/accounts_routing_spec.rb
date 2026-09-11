@@ -107,35 +107,35 @@ RSpec.describe 'Routes under accounts/' do
     let(:username) { 'alice@example.com' }
 
     it 'routes /@:username' do
-      expect(get("/@#{username}")).to route_to('home#index', username_with_domain: username)
+      expect(get("/@#{username}")).to route_to('remote_accounts#index', username_with_domain: username)
     end
 
     it 'routes /@:username/:id' do
-      expect(get("/@#{username}/123")).to route_to('home#index', username_with_domain: username, any: '123')
+      expect(get("/@#{username}/123")).to route_to('remote_accounts#index', username_with_domain: username, any: '123')
     end
 
     it 'routes /@:username/:id/embed' do
-      expect(get("/@#{username}/123/embed")).to route_to('home#index', username_with_domain: username, any: '123/embed')
+      expect(get("/@#{username}/123/embed")).to route_to('remote_accounts#index', username_with_domain: username, any: '123/embed')
     end
 
     it 'routes /@:username/following' do
-      expect(get("/@#{username}/following")).to route_to('home#index', username_with_domain: username, any: 'following')
+      expect(get("/@#{username}/following")).to route_to('remote_accounts#index', username_with_domain: username, any: 'following')
     end
 
     it 'routes /@:username/followers' do
-      expect(get("/@#{username}/followers")).to route_to('home#index', username_with_domain: username, any: 'followers')
+      expect(get("/@#{username}/followers")).to route_to('remote_accounts#index', username_with_domain: username, any: 'followers')
     end
 
     it 'routes /@:username/with_replies' do
-      expect(get("/@#{username}/with_replies")).to route_to('home#index', username_with_domain: username, any: 'with_replies')
+      expect(get("/@#{username}/with_replies")).to route_to('remote_accounts#index', username_with_domain: username, any: 'with_replies')
     end
 
     it 'routes /@:username/media' do
-      expect(get("/@#{username}/media")).to route_to('home#index', username_with_domain: username, any: 'media')
+      expect(get("/@#{username}/media")).to route_to('remote_accounts#index', username_with_domain: username, any: 'media')
     end
 
     it 'routes /@:username/tagged/:tag' do
-      expect(get("/@#{username}/tagged/foo")).to route_to('home#index', username_with_domain: username, any: 'tagged/foo')
+      expect(get("/@#{username}/tagged/foo")).to route_to('remote_accounts#index', username_with_domain: username, any: 'tagged/foo')
     end
   end
 
