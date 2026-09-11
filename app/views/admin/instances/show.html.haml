@@ -11,6 +11,14 @@
     %p
       = t('admin.instances.unknown_instance')
 
+- unless @advisories.empty?
+  %hr.spacer/
+
+  .applications-list__item
+    .announcements-list__item__title= t('admin.instances.advisories.title')
+
+    = render partial: 'admin/moderation_suggestions/moderation_suggestions', locals: { advisories: @advisories, suggestions: @suggestions }
+
 %hr.spacer/
 
 %h3= t('admin.instances.content_policies.title')
@@ -38,6 +46,10 @@
           %tr
             %th= t('admin.instances.content_policies.policy')
             %td= policy_list(@instance.domain_block)
+          - if @instance.domain_block.moderation_subscription
+            %tr
+              %th= t('admin.instances.content_policies.moderation_subscription')
+              %td= link_to @instance.domain_block.moderation_subscription.name, admin_moderation_subscription_path(@instance.domain_block.moderation_subscription)
 
     = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
     = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
