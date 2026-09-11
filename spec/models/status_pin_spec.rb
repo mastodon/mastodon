@@ -67,9 +67,9 @@ RSpec.describe StatusPin do
     describe 'Invalidating status via policy' do
       subject { Fabricate :status_pin, status: Fabricate(:status, account: account), account: account }
 
-      context 'with a local account that owns the status and has a policy' do
-        let(:account) { Fabricate :account, domain: nil }
+      let(:account) { Fabricate(:account, domain: nil) }
 
+      context 'with a local account that owns the status and has a policy' do
         before do
           Fabricate :account_statuses_cleanup_policy, account: account
           account.statuses_cleanup_policy.record_last_inspected(subject.status.id + 1_024)
@@ -82,11 +82,63 @@ RSpec.describe StatusPin do
       end
 
       context 'with a local account that owns the status and does not have a policy' do
-        let(:account) { Fabricate :account, domain: nil }
-
         it 'does not call the invalidator on destroy' do
           expect { subject.destroy }
             .to_not change(account, :updated_at)
+        end
+      end
+
+      context 'when the status belongs to another account' do
+        subject(:status_pin) do
+          described_class.new(
+            account: account,
+            status: Fabricate(:status)
+          )
+        end
+
+        let(:policy) { instance_spy(AccountStatusesCleanupPolicy) }
+
+        before do
+          status_pin.save(validate: false)
+          allow(AccountStatusesCleanupPolicy)
+            .to receive(:new)
+            .and_return(policy)
+        end
+
+        it 'does not invalidate last inspected on destroy' do
+          expect(status_pin.status.account_id).to_not eq(account.id)
+
+          expect { status_pin.destroy }.to_not raise_error
+
+          expect(policy)
+            .to_not have_received(:invalidate_last_inspected)
+        end
+      end
+
+      context 'when the status is missing during destruction' do
+        subject(:status_pin) do
+          Fabricate(:status_pin, account: account, status: status)
+        end
+
+        let(:status) { Fabricate(:status, account: account) }
+        let(:policy) { instance_spy(AccountStatusesCleanupPolicy) }
+
+        before do
+          allow(AccountStatusesCleanupPolicy)
+            .to receive(:new)
+            .and_return(policy)
+        end
+
+        it 'does not invalidate last inspected on destroy' do
+          status_pin.id
+
+          status.destroy!
+          status_pin.association(:status).reset
+
+          expect { status_pin.destroy }.to_not raise_error
+
+          expect(policy)
+            .to_not have_received(:invalidate_last_inspected)
         end
       end
 
