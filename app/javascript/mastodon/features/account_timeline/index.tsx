@@ -160,7 +160,12 @@ const InnerTimeline: FC<{ account: Account; multiColumn: boolean }> = ({
 const ColumnHeaderFollowButton: FC<{ accountId: string }> = ({ accountId }) => {
   const reference = useFollowReference('profile');
   const { onClick, link, label, icon, disabled, secondary, hidden } =
-    useFollowButton({ accountId, labelLength: 'long', reference });
+    useFollowButton({
+      accountId,
+      withUnmute: false,
+      labelLength: 'long',
+      reference,
+    });
 
   if (hidden) {
     return null;
