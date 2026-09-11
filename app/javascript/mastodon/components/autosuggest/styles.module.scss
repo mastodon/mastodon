@@ -52,10 +52,21 @@
 
 .itemAccountName {
   @include mixins.type-label-lg;
+
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2xs);
 }
 
 .itemAccountHandle {
   @include mixins.type-label-sm;
 
   color: var(--color-text-tertiary);
+}
+
+.itemAccountVerified {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-brand);
+  font-weight: normal;
 }
