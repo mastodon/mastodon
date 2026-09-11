@@ -3,10 +3,9 @@ import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { useLocation } from 'react-router-dom';
-
 import { followAccount } from '@/mastodon/actions/accounts';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
@@ -83,10 +82,8 @@ const AccountButtonsOther: FC<
       });
     }
   }, [accountUrl]);
-  const { state } = useLocation<{
-    reference?: string;
-  } | null>();
-  const reference = state?.reference ?? 'profile';
+
+  const reference = useFollowReference('profile');
 
   if (!account) {
     return null;
