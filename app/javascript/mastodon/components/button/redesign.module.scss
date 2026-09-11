@@ -225,3 +225,21 @@ a.base {
 .loading {
   color: inherit;
 }
+
+.clipPadding {
+  --start-padding: var(--space-xs);
+
+  margin-inline-start: calc(-1 * var(--start-padding));
+
+  &.sm {
+    --start-padding: var(--space-sm);
+  }
+
+  &.md {
+    --start-padding: var(--space-md);
+  }
+
+  &.lg {
+    --start-padding: var(--space-lg);
+  }
+}
