@@ -60,4 +60,51 @@ RSpec.describe UsernameBlock do
       end
     end
   end
+
+  describe '#comparison' do
+    subject { username_block.comparison }
+
+    let(:username_block) { Fabricate.build(:username_block, exact: exact) }
+
+    context 'when exact is true' do
+      let(:exact) { true }
+
+      it { is_expected.to eq('equals') }
+    end
+
+    context 'when exact is false' do
+      let(:exact) { false }
+
+      it { is_expected.to eq('contains') }
+    end
+  end
+
+  describe '#comparison=' do
+    subject do
+      username_block.comparison = comparison
+      username_block.exact
+    end
+
+    let(:username_block) { Fabricate.build(:username_block) }
+
+    context 'when comparison is equals' do
+      let(:comparison) { 'equals' }
+
+      it { is_expected.to be(true) }
+    end
+
+    context 'when comparison is contains' do
+      let(:comparison) { 'contains' }
+
+      it { is_expected.to be(false) }
+    end
+  end
+
+  describe '#to_log_human_identifier' do
+    subject { username_block.to_log_human_identifier }
+
+    let(:username_block) { Fabricate.build(:username_block, username: 'harry') }
+
+    it { is_expected.to eq('harry') }
+  end
 end
