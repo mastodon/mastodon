@@ -285,6 +285,7 @@ RUN \
   ./configure \
   --prefix=/usr/local/ffmpeg \
   --toolchain=hardened \
+  --enable-lto \
   --disable-debug \
   --disable-devices \
   --disable-doc \
