@@ -233,8 +233,8 @@ FROM media-build AS x264
 ARG TARGETPLATFORM
 
 # x264 has no versioned releases; it is distributed as a rolling git repository.
-# renovate: datasource=git-refs depName=x264 packageName=https://code.videolan.org/videolan/x264.git currentValue=master
-ARG X264_VERSION=31e19f92f00c7003fa115047ce50978bc98c3a0d
+# renovate: datasource=git-refs depName=x264 packageName=https://code.videolan.org/videolan/x264.git currentValue=stable
+ARG X264_VERSION=b35605ace3ddf7c1a5d67a2eb553f034aef41d55
 ARG X264_URL=https://code.videolan.org/videolan/x264.git
 
 RUN \
