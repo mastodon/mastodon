@@ -10,6 +10,15 @@ export function setupLinkListeners() {
   on('click', ':not(form) button[data-confirm]:not([form])', handleConfirmLink);
 }
 
+export function urlToDomain(input: string | URL) {
+  try {
+    const url = new URL(input);
+    return url.hostname;
+  } catch {
+    return null;
+  }
+}
+
 function handleConfirmLink(event: MouseEvent) {
   const target = event.currentTarget;
   if (

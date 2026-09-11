@@ -1,5 +1,4 @@
-import type React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -116,6 +115,11 @@ const ComposeVisibilityMenu: React.FC = () => {
   const defaultQuotePolicy = useAppSelector(
     (state) => state.compose.get('default_quote_policy') as ApiQuotePolicy,
   );
+
+  // Track the last public quote policy, so the picker remembers what was last used before quoting was disabled.
+  const [lastQuotePolicy, setLastQuotePolicy] = useState(
+    defaultQuotePolicy !== 'nobody' ? defaultQuotePolicy : 'public',
+  );
   const quotePolicy = currentQuotePolicy ?? defaultQuotePolicy;
 
   const isReply = useAppSelector((state) => !!state.compose.get('in_reply_to'));
@@ -146,22 +150,23 @@ const ComposeVisibilityMenu: React.FC = () => {
       switch (value) {
         case 'public':
           newQuotePolicy = 'public';
+          setLastQuotePolicy(newQuotePolicy);
           break;
         case 'followers':
           newQuotePolicy = 'followers';
+          setLastQuotePolicy(newQuotePolicy);
           break;
         case 'others':
           // If it's not checked, then it's nobody.
           if (checked) {
             // Only use the default if it's not nobody, as then it'll never be enabled.
-            newQuotePolicy =
-              defaultQuotePolicy !== 'nobody' ? defaultQuotePolicy : 'public';
+            newQuotePolicy = lastQuotePolicy;
           }
           break;
       }
       dispatch(setComposeQuotePolicy(newQuotePolicy));
     },
-    [defaultQuotePolicy, dispatch],
+    [dispatch, lastQuotePolicy],
   );
 
   const handleSwitchToMessage: React.MouseEventHandler<HTMLButtonElement> =
