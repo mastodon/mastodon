@@ -102,6 +102,12 @@
   z-index: 1;
 }
 
+.hashtags {
+  display: flex;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) 0;
+}
+
 .meta {
   @include mixins.type-micro;
 
