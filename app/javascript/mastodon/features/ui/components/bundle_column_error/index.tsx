@@ -79,7 +79,7 @@ export const BundleColumnError: React.FC<BundleColumnErrorProps> = ({
       {isRedesignEnabled() && <ColumnHeader title={title} />}
       <EmptyState
         image='error'
-        title={isRedesignEnabled() ? undefined : title}
+        title={isRedesignEnabled() ? null : title}
         message={body}
         className={classNames(
           classes.error,
