@@ -15,8 +15,12 @@ import {
 import { AccountHeader } from '@/mastodon/components/account_header';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column/back_button';
-import { ColumnHeader } from '@/mastodon/components/column_header';
+import {
+  ColumnHeader,
+  ColumnHeaderButton,
+} from '@/mastodon/components/column_header';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
+import { useFollowButton } from '@/mastodon/components/follow_button';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
@@ -28,6 +32,7 @@ import {
   useCurrentAccountId,
 } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
+import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import type { Account } from '@/mastodon/models/account';
 import { selectTimelineByKey } from '@/mastodon/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -123,6 +128,7 @@ const InnerTimeline: FC<{ account: Account; multiColumn: boolean }> = ({
         <ColumnHeader
           withBackButton
           title={<DisplayNameSimple account={account} />}
+          extraButtons={<ColumnHeaderFollowButton accountId={accountId} />}
         />
       ) : (
         <ColumnBackButton />
@@ -148,6 +154,42 @@ const InnerTimeline: FC<{ account: Account; multiColumn: boolean }> = ({
         statusProps={{ headerRenderFn: renderPinnedStatusHeader }}
       />
     </Column>
+  );
+};
+
+const ColumnHeaderFollowButton: FC<{ accountId: string }> = ({ accountId }) => {
+  const reference = useFollowReference('profile');
+  const { onClick, link, label, icon, disabled, secondary, hidden } =
+    useFollowButton({ accountId, labelLength: 'long', reference });
+
+  if (hidden) {
+    return null;
+  }
+
+  if (link) {
+    return (
+      <ColumnHeaderButton
+        showTextOnDesktop
+        as='link'
+        variant='solid'
+        to={link}
+        icon={icon}
+      >
+        {label}
+      </ColumnHeaderButton>
+    );
+  }
+
+  return (
+    <ColumnHeaderButton
+      showTextOnDesktop
+      onClick={onClick}
+      disabled={disabled}
+      variant={secondary ? 'tonal' : 'solid'}
+      icon={icon}
+    >
+      {label}
+    </ColumnHeaderButton>
   );
 };
 
