@@ -158,6 +158,9 @@ class DeleteAccountService < BaseService
     purge_feeds!
     purge_other_associations!
 
+    # This needs to happen *after* delivery of `Delete` activities is scheduled
+    @account.reach_filter&.destroy
+
     @account.destroy unless keep_account_record?
   end
 
@@ -302,7 +305,9 @@ class DeleteAccountService < BaseService
   end
 
   def low_priority_delivery_inboxes
-    Account.inboxes - delivery_inboxes
+    inboxes = Account.inboxes - delivery_inboxes
+    inboxes = @account.reach_filter.filter_inboxes(inboxes) if @account.reach_filter.present?
+    inboxes
   end
 
   def reported_status_ids
