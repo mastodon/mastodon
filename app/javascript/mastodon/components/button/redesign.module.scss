@@ -4,6 +4,9 @@
   --bg: transparent;
   --bg-hover: color-mix(in srgb, var(--bg) 90%, var(--fg));
   --fg: var(--color-text-primary);
+  --inline-padding: var(--space-xs);
+
+  @include mixins.type-label-lg;
 
   background-color: var(--bg);
   border-radius: var(--radius-round);
@@ -19,8 +22,7 @@
   justify-content: center;
   align-items: center;
   column-gap: var(--space-2xs);
-  @include mixins.type-label-lg;
-
+  padding-inline: var(--inline-padding);
   box-sizing: border-box;
 
   &:hover:not(
@@ -68,22 +70,27 @@ a.base {
 // Sizes
 
 .xs {
-  padding-inline: var(--space-xs);
   min-height: 20px;
 }
 
 .sm {
-  padding: var(--space-2xs) var(--space-sm);
+  --inline-padding: var(--space-sm);
+
+  padding-block: var(--space-2xs);
   min-height: 32px;
 }
 
 .md {
-  padding: var(--space-xs) var(--space-md);
+  --inline-padding: var(--space-md);
+
+  padding-block: var(--space-xs);
   min-height: 40px;
 }
 
 .lg {
-  padding: var(--space-sm) var(--space-lg);
+  --inline-padding: var(--space-lg);
+
+  padding-block: var(--space-sm);
   min-height: 48px;
 }
 
@@ -224,4 +231,8 @@ a.base {
 
 .loading {
   color: inherit;
+}
+
+.clipPadding {
+  margin-inline-start: calc(-1 * var(--inline-padding));
 }

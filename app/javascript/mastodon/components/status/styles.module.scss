@@ -102,6 +102,36 @@
   z-index: 1;
 }
 
+.footer {
+  overflow: hidden;
+}
+
+.hashtagsWrapper,
+.hashtags {
+  display: flex;
+  gap: var(--space-2xs);
+  flex-wrap: nowrap;
+}
+
+.hashtagsWrapper {
+  padding: var(--space-2xs) 0;
+}
+
+.hashtags {
+  overflow: hidden;
+  position: relative;
+
+  > button {
+    flex-shrink: 0;
+  }
+}
+
+.hashtagsShowAll {
+  flex-wrap: wrap;
+  overflow: visible;
+  max-width: none !important;
+}
+
 .meta {
   @include mixins.type-micro;
 

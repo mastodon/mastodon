@@ -29,6 +29,11 @@ interface ButtonPropsBase<As extends 'a' | 'button'> {
    * or `aria-pressed` are used.
    */
   noActiveHighlight?: boolean;
+  /**
+   * Adds a negative margin to a button to align the text
+   * with the starting edge of its parent.
+   */
+  clipPadding?: boolean;
   children: ReactNode;
 }
 
@@ -50,6 +55,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   className,
   onClick,
   loading,
+  clipPadding,
   noActiveHighlight,
   'aria-disabled': ariaDisabled,
   'aria-live': ariaLive,
@@ -85,6 +91,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         classes[size],
         classes[color],
         classes[variant],
+        clipPadding && classes.clipPadding,
         noActiveHighlight && classes.noActiveHighlight,
       )}
       onClick={handleClick}
