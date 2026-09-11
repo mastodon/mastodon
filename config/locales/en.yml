@@ -1206,7 +1206,9 @@ en:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
         title: Trending links
-        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+        usage_comparison:
+          one: Shared %{count} time today, compared to %{yesterday} yesterday
+          other: Shared %{count} times today, compared to %{yesterday} yesterday
       not_allowed_to_trend: Not allowed to trend
       only_allowed: Only allowed
       pending_review: Pending review
@@ -1251,7 +1253,9 @@ en:
         trendable: Can appear under trends
         trending_rank: 'Trending #%{rank}'
         usable: Can be used
-        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        usage_comparison:
+          one: Used %{count} time today, compared to %{yesterday} yesterday
+          other: Used %{count} times today, compared to %{yesterday} yesterday
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
@@ -1710,7 +1714,9 @@ en:
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       invalid_json_file: 'Invalid JSON file. Error: %{error}'
       no_data: This file does not contain any data matching the given import type
-      over_rows_processing_limit: contains more than %{count} rows
+      over_rows_processing_limit:
+        one: contains more than %{count} row
+        other: contains more than %{count} rows
       status_not_found_warning: Some of your filters hide specific posts that are not known by this server. These posts will not be automatically filtered if they are discovered later by the server.
       too_large: File is too large
     failures: Failures
@@ -1861,7 +1867,9 @@ en:
     incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
     moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
     not_redirecting: Your account is not redirecting to any other account currently.
-    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
+    on_cooldown:
+      one: You have recently migrated your account. This function will become available again in %{count} day.
+      other: You have recently migrated your account. This function will become available again in %{count} days.
     past_migrations: Past migrations
     proceed_with_move: Move followers
     redirected_msg: Your account is now redirecting to %{acct}.
@@ -2050,8 +2058,12 @@ en:
       account: Public posts from @%{acct}
       tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
-    over_total_limit: You have exceeded the limit of %{limit} scheduled posts
+    over_daily_limit:
+      one: You have exceeded the limit of %{count} scheduled post for today
+      other: You have exceeded the limit of %{count} scheduled posts for today
+    over_total_limit:
+      one: You have exceeded the limit of %{count} scheduled post
+      other: You have exceeded the limit of %{count} scheduled posts
     too_soon: date must be in the future
   self_destruct:
     lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
