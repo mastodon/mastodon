@@ -46,7 +46,7 @@ class Importer::BaseImporter
 
   # Remove documents from the index that no longer exist in the database
   def clean_up!
-    index.scroll_batches do |documents|
+    index.track_total_hits(true).scroll_batches(batch_size: @batch_size) do |documents|
       primary_key = index.adapter.target.primary_key
       raise ActiveRecord::UnknownPrimaryKey, index.adapter.target if primary_key.nil?
 
