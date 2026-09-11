@@ -243,13 +243,12 @@ RUN \
   apt-get update; \
   apt-get install -y --no-install-recommends git ca-certificates;
 
-WORKDIR /usr/local/x264/src
-RUN \
-  git clone "${X264_URL}" x264; \
-  cd x264; \
-  git checkout "${X264_VERSION}";
-
 WORKDIR /usr/local/x264/src/x264
+RUN \
+  git init -q; \
+  git remote add origin "${X264_URL}"; \
+  git fetch -q --depth 1 origin "${X264_VERSION}"; \
+  git checkout -q FETCH_HEAD;
 
 RUN \
   ./configure \
