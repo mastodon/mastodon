@@ -12,7 +12,6 @@ import {
 } from '@phosphor-icons/react';
 
 import { IconButton } from '@/mastodon/components/button/redesign';
-import { CircularProgress } from '@/mastodon/components/circular_progress';
 import {
   Menu,
   MenuTrigger,
@@ -90,7 +89,25 @@ export const ComposeRedesignButton: React.FC<{
       '--viewport-height': viewportHeight ? `${viewportHeight}px` : undefined,
     } as React.CSSProperties;
     return (
-      <Suspense fallback={<CircularProgress strokeWidth={2} size={50} />}>
+      <Suspense
+        fallback={
+          <IconButton
+            loading
+            icon={PenNibIcon}
+            className={classNames(
+              classes.button,
+              inline && classes.buttonInline,
+            )}
+            variant='solid'
+            size='lg'
+          >
+            <FormattedMessage
+              id='compose.new'
+              defaultMessage='Write a new post or messsage'
+            />
+          </IconButton>
+        }
+      >
         <ComposeLazyForm autoFocus className={classes.composer} style={style} />
       </Suspense>
     );
