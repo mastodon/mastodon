@@ -8,7 +8,6 @@ import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useFollowReference } from '@/mastodon/hooks/useFollowReference';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
@@ -95,10 +94,11 @@ const AccountButtonsOther: FC<
 
   return (
     <>
-      {!isMovedAndUnfollowedAccount && !isRedesignEnabled() && (
+      {!isMovedAndUnfollowedAccount && (
         <FollowButton
           accountId={accountId}
           className={classes.followButton}
+          withUnmute={false}
           labelLength='long'
           reference={reference}
         />
