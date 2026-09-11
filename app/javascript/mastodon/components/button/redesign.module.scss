@@ -68,22 +68,30 @@ a.base {
 // Sizes
 
 .xs {
-  padding-inline: var(--space-xs);
+  --inline-padding: var(--space-xs);
+
+  padding-inline: var(--inline-padding);
   min-height: 20px;
 }
 
 .sm {
-  padding: var(--space-2xs) var(--space-sm);
+  --inline-padding: var(--space-sm);
+
+  padding-block: var(--space-2xs);
   min-height: 32px;
 }
 
 .md {
-  padding: var(--space-xs) var(--space-md);
+  --inline-padding: var(--space-md);
+
+  padding-block: var(--space-xs);
   min-height: 40px;
 }
 
 .lg {
-  padding: var(--space-sm) var(--space-lg);
+  --inline-padding: var(--space-lg);
+
+  padding-block: var(--space-sm);
   min-height: 48px;
 }
 
@@ -227,19 +235,5 @@ a.base {
 }
 
 .clipPadding {
-  --start-padding: var(--space-xs);
-
-  margin-inline-start: calc(-1 * var(--start-padding));
-
-  &.sm {
-    --start-padding: var(--space-sm);
-  }
-
-  &.md {
-    --start-padding: var(--space-md);
-  }
-
-  &.lg {
-    --start-padding: var(--space-lg);
-  }
+  margin-inline-start: calc(-1 * var(--inline-padding));
 }

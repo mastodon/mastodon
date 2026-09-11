@@ -31,7 +31,7 @@ interface ButtonPropsBase<As extends 'a' | 'button'> {
   noActiveHighlight?: boolean;
   /**
    * Adds a negative margin to a button to align the text
-   * with the starting edge of it's parent.
+   * with the starting edge of its parent.
    */
   clipPadding?: boolean;
   children: ReactNode;
