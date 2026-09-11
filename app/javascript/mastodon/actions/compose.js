@@ -354,14 +354,23 @@ export function uploadCompose(files) {
       dispatch(showAlert({ message: messages.uploadQuote }));
       return;
     }
-    const uploadLimit = getState().getIn(['server', 'server', 'item', 'configuration', 'statuses', 'max_media_attachments']);
+
     const media = getState().getIn(['compose', 'media_attachments']);
     const pending = getState().getIn(['compose', 'pending_media_attachments']);
+    const serverConfiguration = getState().getIn(['server', 'server', 'item', 'configuration']);
+    const maxMediaAttachments = serverConfiguration?.statuses.max_media_attachments ?? 4;
+    const videoSizeLimit = serverConfiguration?.media_attachments.video_size_limit;
+    const imageSizeLimit = serverConfiguration?.media_attachments.image_size_limit;
+
+    const filesArray = Array.from(files);
     const progress = new Array(files.length).fill(0);
+    const total = filesArray.reduce((a, v) => a + v.size, 0);
 
-    let total = Array.from(files).reduce((a, v) => a + v.size, 0);
-
-    if (files.length + media.size + pending > uploadLimit) {
+    if (files.length + media.size + pending > maxMediaAttachments
+      || filesArray.some(file => (
+        file.type.startsWith('video/') && videoSizeLimit && file.size > videoSizeLimit)
+        || (file.type.startsWith('image/') && imageSizeLimit && file.size > imageSizeLimit)))
+    {
       dispatch(showAlert({ message: messages.uploadErrorLimit }));
       return;
     }
@@ -369,7 +378,7 @@ export function uploadCompose(files) {
     dispatch(uploadComposeRequest());
 
     for (const [i, file] of Array.from(files).entries()) {
-      if (media.size + i > (uploadLimit - 1)) break;
+      if (media.size + i > (maxMediaAttachments - 1)) break;
 
       const data = new FormData();
       data.append('file', file);
