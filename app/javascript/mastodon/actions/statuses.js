@@ -322,7 +322,11 @@ export function toggleStatusCollapse(id, isCollapsed) {
   };
 }
 
-export const translateStatus = id => (dispatch) => {
+export const translateStatus = id => (dispatch, getState) => {
+  if (getState().statuses.getIn([id, 'isTranslating'])) {
+    return;
+  }
+
   dispatch(translateStatusRequest(id));
 
   api().post(`/api/v1/statuses/${id}/translate`).then(response => {
