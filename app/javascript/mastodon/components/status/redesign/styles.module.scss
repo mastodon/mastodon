@@ -39,16 +39,17 @@
 
   display: flex;
   gap: var(--space-2xs);
+}
 
-  > .headerNameLink {
-    @include mixins.type-body-strong;
+// Overrides .header a
+a.headerNameLink {
+  @include mixins.type-body-strong;
 
-    color: var(--color-text-primary);
+  color: var(--color-text-primary);
 
-    // Overrides .display-name__html
-    strong {
-      font-weight: inherit;
-    }
+  // Overrides .display-name
+  > span {
+    display: inline;
   }
 }
 
