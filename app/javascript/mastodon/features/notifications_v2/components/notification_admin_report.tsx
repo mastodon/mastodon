@@ -43,11 +43,14 @@ export const NotificationAdminReport: React.FC<{
 
   if (!account || !targetAccount) return null;
 
+  const isLocal = !targetAccount.acct.includes('@');
+
   const values = {
     name: <DisplayName account={account} variant='simple' />,
     target: <DisplayName account={targetAccount} variant='simple' />,
     category: intl.formatMessage(messages[report.category]),
     count: report.status_ids.length,
+    isLocal: isLocal ? 'Local' : 'Remote',
   };
 
   let message;
@@ -57,7 +60,7 @@ export const NotificationAdminReport: React.FC<{
       message = (
         <FormattedMessage
           id='notification.admin.report_account_other'
-          defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target}'
+          defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target} ({isLocal})'
           values={values}
         />
       );
@@ -65,7 +68,7 @@ export const NotificationAdminReport: React.FC<{
       message = (
         <FormattedMessage
           id='notification.admin.report_account'
-          defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target} for {category}'
+          defaultMessage='{name} reported {count, plural, one {one post} other {# posts}} from {target} ({isLocal}) for {category}'
           values={values}
         />
       );
@@ -75,7 +78,7 @@ export const NotificationAdminReport: React.FC<{
       message = (
         <FormattedMessage
           id='notification.admin.report_statuses_other'
-          defaultMessage='{name} reported {target}'
+          defaultMessage='{name} reported {target} ({isLocal})'
           values={values}
         />
       );
@@ -83,7 +86,7 @@ export const NotificationAdminReport: React.FC<{
       message = (
         <FormattedMessage
           id='notification.admin.report_statuses'
-          defaultMessage='{name} reported {target} for {category}'
+          defaultMessage='{name} reported {target} ({isLocal}) for {category}'
           values={values}
         />
       );
