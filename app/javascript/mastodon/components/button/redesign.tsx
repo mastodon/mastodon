@@ -100,7 +100,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   );
 };
 
-type ButtonProps = BaseButtonProps & {
+export type ButtonProps = BaseButtonProps & {
   leadingIcon?: IconProp;
   trailingIcon?: IconProp;
 };
