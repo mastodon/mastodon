@@ -17,6 +17,10 @@ class REST::Admin::ReportSerializer < ActiveModel::Serializer
   end
 
   def statuses
-    object.statuses.with_includes
+    instance_options[:report_statuses]&.fetch(object.id) { object.statuses.with_includes } || object.statuses.with_includes
+  end
+
+  def rules
+    instance_options[:report_rules]&.fetch(object.id) { object.rules } || object.rules
   end
 end
