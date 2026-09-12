@@ -55,7 +55,9 @@ const addReply = (
 
   if (!state.inReplyTos[id]) {
     const siblings = (state.replies[in_reply_to_id] ??= []);
-    const index = siblings.findIndex((sibling) => compareId(sibling, id) < 0);
+    const index = siblings.findLastIndex(
+      (sibling) => compareId(sibling, id) < 0,
+    );
     siblings.splice(index + 1, 0, id);
     state.inReplyTos[id] = in_reply_to_id;
   }
