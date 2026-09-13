@@ -15,6 +15,12 @@ RSpec.describe EmailSubscriptionMailer do
           subject: I18n.t('email_subscription_mailer.confirmation.subject')
         )
     end
+
+    it 'includes an absolute URL for the privacy policy' do
+      expect(mail.html_part.body.decoded).to include(
+        "href=\"#{Rails.application.routes.url_helpers.privacy_policy_url(**described_class.default_url_options)}\""
+      )
+    end
   end
 
   describe '.notification' do
@@ -32,6 +38,12 @@ RSpec.describe EmailSubscriptionMailer do
             from: 'notifications@localhost',
             subject: I18n.t('email_subscription_mailer.notification.subject.singular', name: email_subscription.account.display_name, excerpt: statuses.first.text.truncate(17))
           )
+      end
+
+      it 'includes an absolute URL for the privacy policy' do
+        expect(mail.html_part.body.decoded).to include(
+          "href=\"#{Rails.application.routes.url_helpers.privacy_policy_url(**described_class.default_url_options)}\""
+        )
       end
     end
 
