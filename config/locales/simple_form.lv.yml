@@ -49,12 +49,12 @@ lv:
         header: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
         inbox_url: Releja, kuru vēlies izmantot, sākumlapas URL jāievieto starpliktuvē
         irreversible: Filtrētās ziņas neatgriezeniski pazudīs, pat ja filtrs vēlāk tiks noņemts
-        locale: Lietotāja saskarnes, e-pasta ziņojumu un push paziņojumu valoda
+        locale: Lietotāja saskarnes, e-pasta ziņojumu un pašpiegādes paziņojumu valoda
         password: Izmanto vismaz 8 rakstzīmes
         phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
         scopes: Kuriem API lietotnei būs ļauts piekļūt. Ja atlasa augstākā līmeņa tvērumu, nav nepieciešamas atlasīt atsevišķus.
         setting_aggregate_reblogs: Nerādīt jaunus pastiprinājumus ierakstiem, kas nesen tikuši pastiprināti (ietekmēs tikai turpmāk saņemtos pastiprinājumus)
-        setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
+        setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad bieži izmanto Mastodon
         setting_default_sensitive: Pēc noklusējuma jūtīgi informācijas nesēji ir paslēpti, un tos var atklāt ar klikšķi
         setting_use_blurhash: Pāreju pamatā ir paslēpto uzskatāmo līdzekļu krāsas, bet saturs tiek padarīts neskaidrs
         setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis ar automātisku plūsmas ritināšanu
@@ -63,7 +63,7 @@ lv:
       domain_allow:
         domain: Šis domēns varēs izgūt datus no šī servera, un no tā ienākošie dati tiks apstrādāti un saglabāti
       email_domain_block:
-        domain: Tas var būt domēna nosaukums, kas tiek parādīts e-pasta adresē vai izmantotajā MX ierakstā. Tie tiks pārbaudīti reģistrācijas laikā.
+        domain: Tas var būt domēna nosaukums, kas tiek parādīts e-pasta adresē vai izmantotajā MX ierakstā. Tie tiks pārbaudīti reģistrēšanās laikā.
         with_dns_records: Tiks mēģināts atrisināt dotā domēna DNS ierakstus, un rezultāti arī tiks bloķēti
       featured_tag:
         name: 'Šeit ir daži no pēdējiem lietotajiem tēmturiem:'
@@ -128,7 +128,7 @@ lv:
         effective_date: Saprātīgs laika logs var būt no 10 līdz 30 dienām no dienas, kad lietotāji tiek apziņoti.
         text: Var veidot ar Markdown pierakstu.
       terms_of_service_generator:
-        arbitration_address: Var būt tāda pati kā augstāk esošā fiziskā adrese vai "N/A", ja tiek izmantota e-pasta adrese.
+        arbitration_address: Var būt tāda pati kā augstāk esošā fiziskā adrese vai “N/A”, ja tiek izmantota e-pasta adrese.
         arbitration_website: Var būt tīmekļa veidlapa vai "N/A", ja tiek izmantots e-pasts.
         domain: Sniegtā tiešsaistas pakalpojuma neatkārtojama identifikācija.
       user:
@@ -209,6 +209,7 @@ lv:
         setting_always_send_emails: Vienmēr sūtīt e-pasta paziņojumus
         setting_auto_play_gif: Automātiski atskaņot animētos GIF
         setting_default_language: Ierakstu pievienošanas valoda
+        setting_default_privacy: Ierakstu redzamība
         setting_default_quote_policy: Kas var citēt
         setting_default_sensitive: Vienmēr atzīmēt informācijas nesējus kā jūtīgus
         setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
@@ -289,23 +290,24 @@ lv:
           sign_up_requires_approval: Ierobežot reģistrēšanos
         severity: Noteikumi
       notification_emails:
-        appeal: Kāds pārsūdz moderatora lēmumu
+        appeal: Kāds pārsūdz satura pārraudzītāja lēmumu
         digest: Sūtīt kopsavilkumu e-pastus
-        favourite: Kāds izcēla tavu ziņu
+        end_of_support: Pašreizējā Mastodon versija tuvojas atbalsta beigām
+        favourite: Kāds izlasē pievienoja Tavu ierakstu
         follow: Kāds uzsāka Tev sekot
         follow_request: Kāds vēlas Tev sekot
         mention: Kāds pieminēja tevi
-        pending_account: Jāpārskata jaunu kontu
-        quote: Kāds tevi citēja
-        reblog: Kāds izcēla tavu ierakstu
+        pending_account: Nepieciešama izskatīšana jaunam kontam
+        quote: Kāds Tevi citēja
+        reblog: Kāds pastiprināja Tavu ierakstu
         report: Tika iesniegts jauns ziņojums
         software_updates:
           all: Paziņot par visiem atjauninājumiem
-          critical: Paziņot tikai par kritiskajiem atjauninājumiem
+          critical: Paziņot tikai par nozīmīgiem atjauninājumiem
           label: Ir pieejama jauna Mastodon versija
           none: Nekad neziņot par atjauninājumiem (nav ieteicams)
           patch: Paziņot par novērsto kļūdu atjauninājumiem
-        trending_tag: Jaunā tendence ir jāpārskata
+        trending_tag: Nepieciešama izskatīšana jaunai tendencei
       rule:
         hint: Papildu informācija
         text: Noteikumi

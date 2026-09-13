@@ -86,10 +86,10 @@ fr:
       enabled: Activé
       enabled_msg: Le compte de %{username} a été activé avec succès
       follow_recommendations:
-        allowed: Autorisé
-        suppress: Supprimer toute recommandation de suivi
-        suppressed: Supprimée
-        title: Suivre les recommandations
+        allowed: Autorisées
+        suppress: Supprimer les recommandations d'abonnement
+        suppressed: Supprimées
+        title: Recommandations d'abonnement
         unsuppress: Rétablir les recommandations d'abonnement
       followers: Abonné·e·s
       follows: Abonnements
@@ -1709,6 +1709,7 @@ fr:
       incompatible_type: Incompatible avec le type d’import sélectionné
       invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
       invalid_json_file: 'Fichier JSON non valide. Erreur : %{error}'
+      no_data: Ce fichier ne contient aucune donnée correspondant au type d'import sélectionné
       over_rows_processing_limit: contient plus de %{count} lignes
       status_not_found_warning: Certains de vos filtres masquent des messages spécifiques qui ne sont pas connus par ce serveur. Ces messages ne seront pas filtrés automatiquement s'ils sont découverts plus tard par le serveur.
       too_large: Le fichier est trop lourd
