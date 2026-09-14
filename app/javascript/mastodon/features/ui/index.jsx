@@ -580,10 +580,6 @@ class UI extends PureComponent {
     this.props.history.push('/favourites');
   };
 
-  handleHotkeyGoToPinned = () => {
-    this.props.history.push('/pinned');
-  };
-
   handleHotkeyGoToProfile = () => {
     this.props.history.push(`/@${this.props.username}`);
   };
@@ -624,7 +620,6 @@ class UI extends PureComponent {
       goToDirect: this.handleHotkeyGoToDirect,
       goToStart: this.handleHotkeyGoToStart,
       goToFavourites: this.handleHotkeyGoToFavourites,
-      goToPinned: this.handleHotkeyGoToPinned,
       goToProfile: this.handleHotkeyGoToProfile,
       goToBlocked: this.handleHotkeyGoToBlocked,
       goToMuted: this.handleHotkeyGoToMuted,
