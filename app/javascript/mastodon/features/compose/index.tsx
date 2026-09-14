@@ -17,7 +17,11 @@ import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
-import { mountCompose, unmountCompose } from 'mastodon/actions/compose';
+import {
+  changeComposing,
+  mountCompose,
+  unmountCompose,
+} from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
@@ -61,6 +65,10 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     return () => {
       dispatch(unmountCompose());
     };
+  }, [dispatch]);
+
+  const handleFocus = useCallback(() => {
+    dispatch(changeComposing(true));
   }, [dispatch]);
 
   const handleLogoutClick = useCallback(
@@ -164,7 +172,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           role='region'
           aria-label={intl.formatMessage(navbarMessages.publish)}
         >
-          <div className='drawer__inner'>
+          <div className='drawer__inner' onFocus={handleFocus}>
             <ComposeFormContainer />
 
             <div className='drawer__inner__mastodon with-zig-zag-decoration'>
