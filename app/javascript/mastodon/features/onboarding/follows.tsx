@@ -8,8 +8,10 @@ import { Helmet } from '@unhead/react/helmet';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { ColumnSearchHeader } from '@/mastodon/components/column/search_header';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import { importFetchedAccounts } from 'mastodon/actions/importer';
@@ -116,12 +118,19 @@ export const Follows: React.FC<{
       bindToDocument={!multiColumn}
       label={intl.formatMessage(messages.title)}
     >
-      <ColumnHeader
-        title={intl.formatMessage(messages.title)}
-        icon='person'
-        iconComponent={PersonIcon}
-        multiColumn={multiColumn}
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={intl.formatMessage(messages.title)}
+        />
+      ) : (
+        <LegacyColumnHeader
+          title={intl.formatMessage(messages.title)}
+          icon='person'
+          iconComponent={PersonIcon}
+          multiColumn={multiColumn}
+        />
+      )}
 
       <ColumnSearchHeader
         placeholder={intl.formatMessage(messages.search)}
