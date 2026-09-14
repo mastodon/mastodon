@@ -28,6 +28,7 @@ import { StatusMeta } from './meta';
 import { StatusPrepend } from './prepend';
 import { StatusRedesignHeader } from './redesign/header';
 import classes from './styles.module.scss';
+import { TranslateButton } from './translate';
 import type { StatusContainerProps, StatusContextType } from './types';
 
 type StatusRedesignProps = Merge<
@@ -184,6 +185,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
             onClick={onExpandedToggle}
           />
         )}
+
+        <TranslateButton status={status} onTranslate={onTranslate} />
 
         {expanded && (
           <StatusContent
