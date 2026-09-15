@@ -165,13 +165,13 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           {headerContents}
         </StatusRedesignHeader>
 
+        <TranslateButton status={status} onTranslate={onTranslate} />
+
         <StatusWarning
           statusId={actualStatus.id}
           dismissedFilter={showDespiteFilter}
           onFilterToggle={onFilterToggle}
         />
-
-        <TranslateButton status={status} onTranslate={onTranslate} />
 
         <div className={classes.contentWrapper}>
           <StatusContent
