@@ -36,12 +36,12 @@
   grid-column: span 2;
 }
 
-.content,
-.footer,
 .root :global(.status__prepend),
-.root :global(.content-warning),
+.spoiler,
 .translate,
-.contentReadMore {
+.content,
+.contentReadMore,
+.footer {
   grid-column: var(--content-col);
 }
 
@@ -55,6 +55,19 @@
 
   color: var(--color-text-secondary);
   margin-inline-start: auto;
+}
+
+.spoiler {
+  display: flex;
+  padding-block: var(--space-md);
+  align-items: center;
+}
+
+.spoilerContent {
+  @include mixins.type-body-strong;
+
+  font-style: italic;
+  flex-grow: 1;
 }
 
 .content {
