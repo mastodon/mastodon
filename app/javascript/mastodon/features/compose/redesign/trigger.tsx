@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import {
-  ChatCircleIcon,
+  ChatCircleDotsIcon,
   NewspaperIcon,
   PenNibIcon,
 } from '@phosphor-icons/react';
@@ -136,7 +136,7 @@ export const ComposeRedesignButton: React.FC<{
         <MenuItem
           name='message'
           onClick={handleComposerOpen}
-          icon={ChatCircleIcon}
+          icon={ChatCircleDotsIcon}
         >
           <FormattedMessage
             id='compose.new.message'

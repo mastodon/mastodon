@@ -8,7 +8,7 @@ import {
   MagnifyingGlassIcon,
   RssSimpleIcon,
   BellIcon,
-  ChatCircleIcon,
+  ChatCircleDotsIcon,
   BookmarkSimpleIcon,
 } from '@phosphor-icons/react';
 
@@ -231,7 +231,7 @@ export const RedesignNavigationPanel: React.FC<{
                   <NavigationLink
                     stacked
                     to='/conversations'
-                    iconComponent={ChatCircleIcon}
+                    iconComponent={ChatCircleDotsIcon}
                   >
                     <FormattedMessage
                       id='tabs_bar.messages'

@@ -6,7 +6,7 @@ import { useLocation } from 'react-router';
 
 import {
   BellIcon,
-  ChatCircleIcon,
+  ChatCircleDotsIcon,
   HouseIcon,
   MagnifyingGlassIcon,
 } from '@phosphor-icons/react';
@@ -56,7 +56,7 @@ export const RedesignMobileNavigation: React.FC = () => {
           >
             <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
           </MobileNavLink>
-          <MobileNavLink to='/conversations' iconComponent={ChatCircleIcon}>
+          <MobileNavLink to='/conversations' iconComponent={ChatCircleDotsIcon}>
             <FormattedMessage
               id='tabs_bar.messages'
               defaultMessage='Messages'

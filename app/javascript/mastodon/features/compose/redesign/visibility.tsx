@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import {
-  ChatCircleIcon,
+  ChatCircleDotsIcon,
   MagnifyingGlassIcon,
   NewspaperIcon,
   QuotesIcon,
@@ -277,7 +277,7 @@ const ComposeVisibilityMenu: React.FC = () => {
 
       <MenuItemDivider />
 
-      <MenuItem icon={ChatCircleIcon} onClick={handleSwitchToMessage}>
+      <MenuItem icon={ChatCircleDotsIcon} onClick={handleSwitchToMessage}>
         {isReply ? (
           <FormattedMessage
             id='compose.post.to_private_reply'
