@@ -59,6 +59,23 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({
     [dispatch, status, statusId, statusState.isLoggedIn],
   );
 
+  const handleLongPress = useCallback(() => {
+    if (statusState.isLoggedIn) {
+      dispatch(toggleReblog(statusId, true));
+    } else {
+      dispatch(
+        openModal({
+          modalType: 'INTERACTION',
+          modalProps: {
+            intent: 'reblog',
+            accountId: status?.account,
+            url: status?.uri,
+          },
+        }),
+      );
+    }
+  }, [dispatch, status, statusId, statusState.isLoggedIn]);
+
   return (
     <IconButton
       disabled={disabled}
@@ -68,6 +85,7 @@ const StandaloneBoostButton: FC<ReblogButtonProps> = ({
       iconComponent={iconComponent}
       className='status__action-bar__button'
       onClick={!disabled ? handleClick : undefined}
+      onLongPress={!disabled ? handleLongPress : undefined}
       counter={
         counters && status
           ? status.reblogs_count + status.quotes_count
@@ -184,6 +202,15 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
     [dispatch, isLoggedIn, showLoginPrompt, quoteApproval, statusId],
   );
 
+  const handleLongPress = useCallback(() => {
+    if (isMenuDisabled) return;
+    if (!isLoggedIn) {
+      showLoginPrompt();
+      return;
+    }
+    dispatch(toggleReblog(statusId, true));
+  }, [dispatch, isLoggedIn, showLoginPrompt, statusId, isMenuDisabled]);
+
   return (
     <Dropdown
       placement='bottom-start'
@@ -206,6 +233,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ statusId, counters }) => {
             : undefined
         }
         active={isBoosted}
+        onLongPress={!isMenuDisabled ? handleLongPress : undefined}
       />
     </Dropdown>
   );
