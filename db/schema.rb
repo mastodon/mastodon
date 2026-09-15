@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_21_130820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -178,6 +178,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_154114) do
     t.jsonb "fields"
     t.string "followers_url", default: "", null: false
     t.string "following_url", default: "", null: false
+    t.boolean "has_federated", default: true, null: false
     t.string "header_content_type"
     t.string "header_description", default: "", null: false
     t.string "header_file_name"

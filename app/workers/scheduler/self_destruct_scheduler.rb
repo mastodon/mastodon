@@ -54,13 +54,15 @@ class Scheduler::SelfDestructScheduler
   end
 
   def delete_account!(account)
-    json = ActivityPub::LinkedDataSignature
-      .new(deletion_payload(account))
-      .sign!(account)
-      .to_json
+    if account.has_federated?
+      json = ActivityPub::LinkedDataSignature
+        .new(deletion_payload(account))
+        .sign!(account)
+        .to_json
 
-    ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
-      [json, account.id, inbox_url]
+      ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
+        [json, account.id, inbox_url]
+      end
     end
 
     # Do not call `Account#mark_deleted!` because we don't want to issue a deletion request
