@@ -18,12 +18,15 @@ import {
   dismissNotificationRequest,
 } from 'mastodon/actions/notification_requests';
 import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column/header';
+import { ColumnHeader as LegacyColumnHeader } from '@/mastodon/components/column/header';
 import { IconButton } from 'mastodon/components/icon_button';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { SensitiveMediaContextProvider } from 'mastodon/features/ui/util/sensitive_media_context';
 
 import NotificationContainer from './containers/notification_container';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
+import { ColumnHeader, ColumnHeaderButton } from '@/mastodon/components/column_header';
+import { CheckIcon, XIcon } from '@phosphor-icons/react';
 
 const messages = defineMessages({
   title: { id: 'notification_requests.notifications_from', defaultMessage: 'Notifications from {name}' },
@@ -85,20 +88,41 @@ export const NotificationRequest = ({ multiColumn, params: { id } }) => {
 
   return (
     <Column bindToDocument={!multiColumn} label={columnTitle}>
-      <ColumnHeader
-        icon='archive'
-        iconComponent={InventoryIcon}
-        title={columnTitle}
-        multiColumn={multiColumn}
-        showBackButton
-        scrollTopOnClick
-        extraButton={!removed && (
-          <>
-            <IconButton className='column-header__button' iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-            <IconButton className='column-header__button' iconComponent={DoneIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
-          </>
-        )}
-      />
+      {isRedesignEnabled() ? (
+        <ColumnHeader
+          withBackButton
+          title={columnTitle}
+          extraButtons={
+            <>
+              <ColumnHeaderButton icon={XIcon} onClick={handleDismiss}>
+                {intl.formatMessage(messages.dismiss)}
+              </ColumnHeaderButton>
+              <ColumnHeaderButton
+                icon={CheckIcon}
+                variant='solid'
+                onClick={handleAccept}
+              >
+                {intl.formatMessage(messages.accept)}
+              </ColumnHeaderButton>
+            </>
+          }
+        />
+      ) : (
+        <LegacyColumnHeader
+          icon='archive'
+          iconComponent={InventoryIcon}
+          title={columnTitle}
+          multiColumn={multiColumn}
+          showBackButton
+          scrollTopOnClick
+          extraButton={!removed && (
+            <>
+              <IconButton className='column-header__button' iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
+              <IconButton className='column-header__button' iconComponent={DoneIcon} onClick={handleAccept} title={intl.formatMessage(messages.accept)} />
+            </>
+          )}
+        />
+      )}
 
       <SensitiveMediaContextProvider hideMediaByDefault>
         <ScrollableList

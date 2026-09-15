@@ -31,6 +31,7 @@ export interface ColumnHeaderProps {
   withBackButton?: boolean | 'auto';
   withUnreadMarker?: boolean;
   extraButtons?: React.ReactNode;
+  extraStickyContent?: React.ReactNode;
   className?: string;
 }
 
@@ -39,6 +40,7 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   withBackButton,
   withUnreadMarker,
   extraButtons,
+  extraStickyContent,
   className,
   ...props
 }: ColumnHeaderProps) => {
@@ -48,9 +50,17 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   const hasBackButton =
     withBackButton === true ||
     (withBackButton === 'auto' && location.state?.fromMastodon);
+  const hasExtraStickyContent = hasReactChildren(extraStickyContent);
 
   return (
-    <header {...props} className={classNames(className, classes.root)}>
+    <header
+      {...props}
+      className={classNames(
+        className,
+        classes.root,
+        hasExtraStickyContent && classes.withStickyContent,
+      )}
+    >
       <div className={classes.layout} data-has-unread={withUnreadMarker}>
         {hasBackButton ? <BackButton /> : <MobileMenuButton />}
         <NavigationFocusTarget className={classes.title}>
@@ -75,6 +85,9 @@ export const ColumnHeader: React.FC<ColumnHeaderProps> = ({
           <div className={classes.rightButtons}>{extraButtons}</div>
         )}
       </div>
+      {hasExtraStickyContent && (
+        <div className={classes.extraStickyContent}>{extraStickyContent}</div>
+      )}
     </header>
   );
 };
