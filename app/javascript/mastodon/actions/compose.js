@@ -90,6 +90,8 @@ const messages = defineMessages({
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
   blankPostError: { id: 'compose.error.blank_post', defaultMessage: 'Post can\'t be blank.' },
+  messagePublished: { id: 'compose.message.published.body', defaultMessage: 'Message sent' },
+  messageSaved: { id: 'compose.message.saved.body', defaultMessage: 'Message saved' },
 });
 
 export const ensureComposeIsVisible = (getState) => {
@@ -310,10 +312,15 @@ export function submitCompose(successCallback) {
         insertIfOnline(`account:${response.data.account.id}`);
       }
 
-      dispatch(insertStatusIntoAccountTimelines({ ...response.data }))
+      dispatch(insertStatusIntoAccountTimelines({ ...response.data }));
+
+      let message = statusId === null ? messages.published : messages.saved;
+      if (isRedesignEnabled() && response.data.visibility === 'direct') {
+        message = statusId === null ? messages.messagePublished : messages.messageSaved;
+      }
 
       dispatch(showAlert({
-        message: statusId === null ? messages.published : messages.saved,
+        message,
         action: messages.open,
         dismissAfter: 10000,
         onClick: () => browserHistory.push(
