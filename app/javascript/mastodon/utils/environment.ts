@@ -12,7 +12,7 @@ export function isProduction() {
   else return import.meta.env.PROD;
 }
 
-export type ServerFeatures = 'fasp';
+export type ServerFeatures = 'fasp' | 'redesign';
 
 export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
@@ -33,7 +33,9 @@ export function isClientFeatureEnabled(feature: ClientFeatures) {
 
 /* Checks if the 5.0 redesign features are enabled or not. */
 export function isRedesignEnabled() {
-  return isClientFeatureEnabled('redesign');
+  return (
+    isServerFeatureEnabled('redesign') || isClientFeatureEnabled('redesign')
+  );
 }
 
 export function isRedesignStatusEnabled() {
