@@ -3006,6 +3006,7 @@ __metadata:
   resolution: "@mastodon/streaming@workspace:streaming"
   dependencies:
     "@eslint/js": "npm:9.39.2"
+    "@prometheus-io/client": "npm:^0.16.1"
     "@types/cors": "npm:2.8.19"
     "@types/express": "npm:5.0.6"
     "@types/pg": "npm:8.21.0"
@@ -3022,7 +3023,6 @@ __metadata:
     pino: "npm:10.3.1"
     pino-http: "npm:11.0.0"
     pino-pretty: "npm:13.1.3"
-    prom-client: "npm:15.1.3"
     typescript: "npm:@typescript/typescript6@6.0.2"
     typescript-eslint: "npm:8.65.0"
     uuid: "npm:14.0.2"
@@ -3576,6 +3576,16 @@ __metadata:
   version: 1.0.0-next.29
   resolution: "@polka/url@npm:1.0.0-next.29"
   checksum: 10c0/0d58e081844095cb029d3c19a659bfefd09d5d51a2f791bc61eba7ea826f13d6ee204a8a448c2f5a855c17df07b37517373ff916dd05801063c0568ae9937684
+  languageName: node
+  linkType: hard
+
+"@prometheus-io/client@npm:^0.16.1":
+  version: 0.16.1
+  resolution: "@prometheus-io/client@npm:0.16.1"
+  dependencies:
+    "@opentelemetry/api": "npm:^1.4.0"
+    tdigest: "npm:^0.1.1"
+  checksum: 10c0/a6068cab1140329de0d1b86ceeeb589ce7eeba7133c370a33e0ce08d78dd2c30629012dba6444a7c1c780d2a4419991403234b200cb406a3d55a66a3f83509c8
   languageName: node
   linkType: hard
 
@@ -11496,16 +11506,6 @@ __metadata:
   version: 5.1.0
   resolution: "process-warning@npm:5.1.0"
   checksum: 10c0/2a48d48b575f4e7888fd4735a6604acd89914efa909f3db5dd20ae56e8a8cdd3c32a3c738bba539b46d1c5096630e15286bcb7c7fca18dfbf04cc7d00fe34a0f
-  languageName: node
-  linkType: hard
-
-"prom-client@npm:15.1.3":
-  version: 15.1.3
-  resolution: "prom-client@npm:15.1.3"
-  dependencies:
-    "@opentelemetry/api": "npm:^1.4.0"
-    tdigest: "npm:^0.1.1"
-  checksum: 10c0/816525572e5799a2d1d45af78512fb47d073c842dc899c446e94d17cfc343d04282a1627c488c7ca1bcd47f766446d3e49365ab7249f6d9c22c7664a5bce7021
   languageName: node
   linkType: hard
 
