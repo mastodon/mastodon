@@ -40,7 +40,8 @@
 .footer,
 .root :global(.status__prepend),
 .root :global(.content-warning),
-.translate {
+.translate,
+.contentReadMore {
   grid-column: var(--content-col);
 }
 
@@ -57,28 +58,20 @@
 }
 
 .content {
+  --mask-height: 80px;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
 
   &.collapsed {
-    position: relative;
-    max-height: 15lh;
+    max-height: var(--max-height); // Set via JS.
     overflow-y: clip;
-
-    &::after {
-      content: '';
-      position: absolute;
-      inset-inline: 0;
-      inset-block-end: 0;
-      height: calc(var(--space-4xl) * 2);
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        var(--color-bg-blend)
-      );
-      pointer-events: none;
-    }
+    mask-image: linear-gradient(
+      to bottom,
+      black calc(100% - var(--mask-height)),
+      transparent
+    );
   }
 }
 
@@ -109,14 +102,7 @@
 }
 
 .contentReadMore {
-  position: absolute;
-  inset-block-end: 0;
-  inset-inline-start: 0;
-  z-index: 1;
-}
-
-.footer {
-  overflow: hidden;
+  width: max-content;
 }
 
 .hashtagsWrapper,

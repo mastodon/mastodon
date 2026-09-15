@@ -6,7 +6,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import {
   ArrowsClockwiseIcon,
   BookmarkSimpleIcon,
-  ChatCircleTextIcon,
+  ChatCircleIcon,
   DotsThreeIcon,
   HeartIcon,
   QuotesIcon,
@@ -218,7 +218,7 @@ export const StatusActionBar: React.FC<StatusActionBarProps> = ({
         clipPadding
         variant='ghost'
         title={intl.formatMessage(messages.replyAll)}
-        leadingIcon={ChatCircleTextIcon}
+        leadingIcon={ChatCircleIcon}
         onClick={handleReplyClick}
       >
         {withCounters && status.replies_count}
