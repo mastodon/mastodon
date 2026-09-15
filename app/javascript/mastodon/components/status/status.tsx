@@ -134,10 +134,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
     );
   }
 
-  const showFooter =
-    hashtagsInBar.length > 0 ||
-    variant === 'page' ||
-    (showActions && !isQuotedPost);
+  const showFooter = variant === 'page' || (showActions && !isQuotedPost);
 
   return (
     <StatusContext.Provider value={{ id, contextType }}>
@@ -176,34 +173,36 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
         <TranslateButton status={status} onTranslate={onTranslate} />
 
-        <StatusContent
-          status={status}
-          statusContent={statusContent}
-          onReadMore={handlers.onOpen}
-          onTranslate={onTranslate}
-          collapsible
-        >
-          {!!status.poll && (
-            <Poll
-              pollId={status.poll}
-              statusUrl={status.uri}
-              accountId={status.account.id}
-              lang={status.translation?.language ?? status.language}
-            />
-          )}
+        <div className={classes.contentWrapper}>
+          <StatusContent
+            status={status}
+            statusContent={statusContent}
+            onReadMore={handlers.onOpen}
+            onTranslate={onTranslate}
+            collapsible
+          >
+            {!!status.poll && (
+              <Poll
+                pollId={status.poll}
+                statusUrl={status.uri}
+                accountId={status.account.id}
+                lang={status.translation?.language ?? status.language}
+              />
+            )}
 
-          <StatusAttachments statusId={status.id} />
+            <StatusAttachments statusId={status.id} />
 
-          {children}
-        </StatusContent>
+            {children}
+          </StatusContent>
+
+          <StatusHashtagBar
+            hashtags={hashtagsInBar}
+            accountId={status.account.id}
+          />
+        </div>
 
         {showFooter && (
           <footer className={classes.footer}>
-            <StatusHashtagBar
-              hashtags={hashtagsInBar}
-              accountId={status.account.id}
-            />
-
             {variant === 'page' && (
               <StatusMeta status={status} className={classes.meta} />
             )}
