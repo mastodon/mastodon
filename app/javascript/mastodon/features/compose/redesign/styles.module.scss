@@ -214,8 +214,22 @@ textarea.textarea {
 // Reply
 
 .reply {
-  border-inline-start: 0.5px solid var(--color-border-primary);
-  padding: 0 var(--space-md);
+  column-gap: var(--space-2xs);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+
+  &::before {
+    border-block-start: 2px solid var(--color-border-primary);
+    border-inline-start: 2px solid var(--color-border-primary);
+    border-top-left-radius: var(--radius-md);
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    grid-row: span 2;
+    margin: var(--space-xs) var(--space-2xs) 0;
+    width: 20px;
+  }
 
   a {
     color: inherit;

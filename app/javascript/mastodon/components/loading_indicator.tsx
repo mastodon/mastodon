@@ -36,7 +36,7 @@ export const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({
       {...a11yProps}
       aria-label={intl.formatMessage(messages.loading)}
     >
-      <CircularProgress size={50} strokeWidth={6} />
+      <CircularProgress size={50} strokeWidth={2} />
     </div>
   );
 };

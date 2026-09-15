@@ -151,7 +151,6 @@ const hotkeyMatcherMap = {
   goToDirect: sequence('g', 'd'),
   goToStart: sequence('g', 's'),
   goToFavourites: sequence('g', 'f'),
-  goToPinned: sequence('g', 'p'),
   goToProfile: sequence('g', 'u'),
   goToBlocked: sequence('g', 'b'),
   goToMuted: sequence('g', 'm'),

@@ -162,6 +162,8 @@ lt:
       suspension_irreversible: Šios paskyros duomenys negrįžtamai ištrinti. Gali atšaukti paskyros pristabdymą, kad ja būtų galima naudotis, bet nebus atkurti jokie anksčiau turėti duomenys.
       suspension_reversible_hint_html: Paskyra pristabdyta, o duomenys bus visiškai pašalinti %{date}. Iki to laiko paskyrą galima atkurti be jokių neigiamų pasekmių. Jei nori iš karto pašalinti visus paskyros duomenis, gali tai padaryti toliau.
       title: Naudotojai
+      trends:
+        title: Tendencingi įrašai
       unblock_email: Atblokuoti el. pašto adresą
       unblocked_email_msg: Sėkmingai atblokuotas %{username} el. pašto adresas.
       unconfirmed_email: Nepatvirtintas el. pašto adresas.
@@ -1049,6 +1051,7 @@ lt:
     today: šiandien
   imports:
     errors:
+      no_data: Šiame faile nėra jokių duomenų, atitinkančių nurodytą importo tipą.
       too_large: Failas per didelis.
     modes:
       merge: Sujungti

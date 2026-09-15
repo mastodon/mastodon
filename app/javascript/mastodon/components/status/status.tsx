@@ -10,13 +10,14 @@ import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
 import { ContentWarning } from '../content_warning';
 import { FilterWarning } from '../filter_warning';
-import { computeHashtagBarForStatus, HashtagBar } from '../hashtag_bar';
+import { computeHashtagBarForStatus } from '../hashtag_bar';
 import { Hotkeys } from '../hotkeys';
 import { Poll } from '../poll';
 
 import { StatusActionBar } from './action_bar';
 import { StatusAttachments } from './attachments';
 import { StatusContent } from './content';
+import { StatusHashtagBar } from './hashtag_bar';
 import type { StatusHandlers } from './hooks';
 import {
   StatusContext,
@@ -27,6 +28,7 @@ import { StatusMeta } from './meta';
 import { StatusPrepend } from './prepend';
 import { StatusRedesignHeader } from './redesign/header';
 import classes from './styles.module.scss';
+import { TranslateButton } from './translate';
 import type { StatusContainerProps, StatusContextType } from './types';
 
 type StatusRedesignProps = Merge<
@@ -184,6 +186,8 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           />
         )}
 
+        <TranslateButton status={status} onTranslate={onTranslate} />
+
         {expanded && (
           <StatusContent
             status={status}
@@ -210,7 +214,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
         {showFooter && (
           <footer className={classes.footer}>
             {expanded && hashtagsInBar.length > 0 && (
-              <HashtagBar
+              <StatusHashtagBar
                 hashtags={hashtagsInBar}
                 accountId={status.account.id}
               />

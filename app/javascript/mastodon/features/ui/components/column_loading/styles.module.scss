@@ -1,0 +1,19 @@
+@use '@/styles/mastodon/mixins';
+
+.loadingWrapper {
+  @include mixins.type-label-md;
+
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  height: 100%;
+  gap: var(--space-sm);
+  opacity: 0;
+  animation: fade-in 300ms ease-in 1.2s forwards;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}

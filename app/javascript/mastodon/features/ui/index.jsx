@@ -72,7 +72,6 @@ import {
   Blocks,
   DomainBlocks,
   Mutes,
-  PinnedStatuses,
   Directory,
   OnboardingProfile,
   OnboardingFollows,
@@ -222,7 +221,6 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
-            <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
             <WrappedRoute path='/start/profile' exact component={OnboardingProfile} content={children} />
             <WrappedRoute path={['/start', '/start/follows']} exact component={OnboardingFollows} content={children} />
@@ -582,10 +580,6 @@ class UI extends PureComponent {
     this.props.history.push('/favourites');
   };
 
-  handleHotkeyGoToPinned = () => {
-    this.props.history.push('/pinned');
-  };
-
   handleHotkeyGoToProfile = () => {
     this.props.history.push(`/@${this.props.username}`);
   };
@@ -626,7 +620,6 @@ class UI extends PureComponent {
       goToDirect: this.handleHotkeyGoToDirect,
       goToStart: this.handleHotkeyGoToStart,
       goToFavourites: this.handleHotkeyGoToFavourites,
-      goToPinned: this.handleHotkeyGoToPinned,
       goToProfile: this.handleHotkeyGoToProfile,
       goToBlocked: this.handleHotkeyGoToBlocked,
       goToMuted: this.handleHotkeyGoToMuted,

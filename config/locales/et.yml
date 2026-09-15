@@ -4,12 +4,12 @@ et:
     about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse jälitamiseta, eetiline kujundus ning hajutatus! Mastodonis omad sa enda andmeid ka päriselt!'
     contact_missing: Määramata
     contact_unavailable: Pole saadaval
-    default_thumbnail_description: Kaks naeratavat mammutit (kes näevad tavaliste londiste moodi välja) loobivad omavahel paberlennukit. Nende taustal on sinine taevas ning ringilendavad planeedid, igal planeedil on puud ja veel palju teisi mastodone.
+    default_thumbnail_description: Kaks naeratavat mammutit (kes näevad tavaliste londiste moodi välja) loobivad omavahel paberlennukit. Nende taustal on sinine taevas ning ringilendavad planeedid, igal planeedil on puud ja veel palju teisi mammuteid.
     hosted_on: Mastodoni teenus serveris %{domain}
     title: Veebirakenduse teave
   accounts:
     errors:
-      cannot_be_added_to_collections: Seda kontot ei saa kogumikku lisada.
+      cannot_be_added_to_collections: Seda kasutajakontot ei saa kogumikku lisada.
     followers:
       one: Jälgija
       other: Jälgijaid
@@ -72,6 +72,10 @@ et:
       disable_sign_in_token_auth: E-posti võtme abil autentimise väljalülitamine
       disable_two_factor_authentication: Keela 2FA
       disabled: Keelatud
+      discoverable:
+        disabled: Autor pole soovinud olla leitav
+        enabled: Autor on soovinud olla mitteleitav
+        title: Leitav
       display_name: Kuvanimi
       domain: Domeen
       edit: Muuda
@@ -81,6 +85,12 @@ et:
       enable_sign_in_token_auth: Luba e-posti võtme abil autentimine
       enabled: Lubatud
       enabled_msg: Kasutaja %{username} konto taastatud
+      follow_recommendations:
+        allowed: Lubatud
+        suppress: Ära kuva ühtegi jälgimissoovitust
+        suppressed: Mittekuvatav
+        title: Järgi soovitusi
+        unsuppress: Taasta kõik jälgimissoovitused
       followers: Jälgijad
       follows: Jälgib
       header: Päis
@@ -165,6 +175,12 @@ et:
       suspension_irreversible: Selle konto andmed on taastamatult kustutatud. Konto taastamisel on see taas kasutatav, aga eelmisi andmeid pole võimalik taastada.
       suspension_reversible_hint_html: Konto on lukustatud ja andmed kustutatakse täielikult %{date}. Seni on võimalik kontot täielikult taastada. Soovi korral on võimalik allpool kõik konto andmed kustutada koheselt.
       title: Kontod
+      trends:
+        allow: Luba
+        allowed: Lubatud
+        disallow: Ära luba
+        disallowed: Pole lubatud
+        title: Hetkel populaarsed postitused
       unblock_email: Lõpeta e-posti aadressi blokeerimine
       unblocked_email_msg: Kasutaja %{username} e-posti aadressi blokeerimine on lõpetatud
       unconfirmed_email: Kinnitamata e-post
@@ -1596,6 +1612,7 @@ et:
       content: Palume vabandust, midagi läks valesti meie pool.
       title: See lehekülg pole õige
     '503': Lehekülge ei saanud serveerida ajutise serveri vea tõttu.
+    go_home: Mine avalehele
     noscript_html: Et kasutada Mastodoni veebirakendust, palun luba JavaScript. Teise võimalusena proovi mõnda <a href="%{apps_path}">rakendust</a> su platvormile.
   existing_username_validator:
     not_found: ei suutnud leida kohalikku kasutajat selle kasutajanimega
@@ -1692,6 +1709,7 @@ et:
       incompatible_type: Ei sobi kokku valitud importimistüübiga
       invalid_csv_file: 'Vigane CSV-fail. Veateade: %{error}'
       invalid_json_file: 'Vigane JSON-fail. Viga: %{error}'
+      no_data: See fail ei sisalda mitte mingisuguseid andmeid, mis vastaksid antud importtüübile
       over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
       status_not_found_warning: Mõned sinu filtrid peidavad teatavaid postitusi, mis pole sellele serverile teada. Kui server neid tuvastab, siis nad jäävad automaatselt filtreerimata.
       too_large: Fail on liiga suur
