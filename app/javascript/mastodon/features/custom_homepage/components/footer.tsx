@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { fetchServer } from 'mastodon/actions/server';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -19,7 +21,12 @@ export const Footer = () => {
   }, [dispatch]);
 
   return (
-    <footer className={classes.minimalFooter}>
+    <footer
+      className={classNames(
+        classes.minimalFooter,
+        isRedesignEnabled() && classes.minimalFooterRedesign,
+      )}
+    >
       <div className={classes.contact}>
         <FormattedMessage
           id='custom_homepage.contact'

@@ -27,6 +27,12 @@
   }
 }
 
+.rootMinimal {
+  // In `minimalShell` layout, no sidebar navigation is shown,
+  // so we allow the column to collapse
+  --navigation-min-width: 0;
+}
+
 .navigationWrapper {
   position: sticky;
   top: 0;
