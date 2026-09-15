@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
         expires_in 1.minute, public: true
 
         limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
-        @statuses = filtered_statuses.without_reblogs.limit(limit)
+        @statuses = params[:boosts].present? && params[:boosts] == 'yes' ? filtered_statuses.limit(limit) : filtered_statuses.without_reblogs.limit(limit)
         @statuses = preload_collection(@statuses, Status)
       end
 
