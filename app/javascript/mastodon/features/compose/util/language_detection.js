@@ -1,7 +1,5 @@
-import lande from 'lande';
-import { debounce } from 'lodash';
-
-import { urlRegex } from './url_regex';
+const languageDetectorInGlobalThis = 'LanguageDetector' in globalThis;
+let languageDetectorSupportedAndReady = languageDetectorInGlobalThis && await globalThis.LanguageDetector.availability() === 'available';
 
 const ISO_639_MAP = {
   afr: 'af', // Afrikaans
@@ -56,21 +54,23 @@ const ISO_639_MAP = {
   vie: 'vi', // Vietnamese
 };
 
-const guessLanguage = (text) => {
-  text = text
-    .replace(urlRegex, '')
-    .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig, '');
-
-  if (text.length > 20) {
-    const [lang, confidence] = lande(text)[0];
-  
-    if (confidence > 0.8)
-      return ISO_639_MAP[lang];
-  }
-
-  return '';
+const countLetters = (text) => {
+  const segmenter = new Intl.Segmenter('und', { granularity: 'grapheme' })
+  const letters = [...segmenter.segment(text)]
+  return letters.length
 };
 
-export const debouncedGuess = debounce((text, setGuess) => {
-  setGuess(guessLanguage(text));
-}, 500, { maxWait: 1500, leading: true, trailing: true });
+let module;
+// If the API is supported, but the model not loaded yet…
+if (languageDetectorInGlobalThis) {
+  if (!languageDetectorSupportedAndReady) {
+    // …trigger the model download
+    globalThis.LanguageDetector.create();
+  }
+  module = await import('./language_detection_with_languagedetector');
+} else {
+  module = await import('./language_detection_with_lande');
+}
+const debouncedGuess = module.debouncedGuess;
+
+export { debouncedGuess, countLetters, ISO_639_MAP };
