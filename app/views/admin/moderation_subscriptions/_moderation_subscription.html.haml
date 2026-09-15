@@ -1,0 +1,10 @@
+.applications-list__item
+  = link_to admin_moderation_subscription_path(moderation_subscription), class: 'announcements-list__item__title' do
+    = moderation_subscription.name
+    = moderation_subscription_badge(moderation_subscription)
+
+  .announcements-list__item__permissions
+    .announcements-list__item__meta
+      = moderation_subscription.url
+    .announcements-list__item__meta
+      = moderation_subscription_policy_list(moderation_subscription)

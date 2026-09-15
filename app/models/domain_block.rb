@@ -4,16 +4,17 @@
 #
 # Table name: domain_blocks
 #
-#  id              :bigint(8)        not null, primary key
-#  domain          :string           default(""), not null
-#  obfuscate       :boolean          default(FALSE), not null
-#  private_comment :text
-#  public_comment  :text
-#  reject_media    :boolean          default(FALSE), not null
-#  reject_reports  :boolean          default(FALSE), not null
-#  severity        :integer          default("silence")
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                         :bigint(8)        not null, primary key
+#  domain                     :string           default(""), not null
+#  obfuscate                  :boolean          default(FALSE), not null
+#  private_comment            :text
+#  public_comment             :text
+#  reject_media               :boolean          default(FALSE), not null
+#  reject_reports             :boolean          default(FALSE), not null
+#  severity                   :integer          default("silence")
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  moderation_subscription_id :bigint(8)
 #
 
 class DomainBlock < ApplicationRecord
@@ -25,6 +26,7 @@ class DomainBlock < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
+  belongs_to :moderation_subscription, optional: true
   has_many :accounts, foreign_key: :domain, primary_key: :domain, inverse_of: false, dependent: nil
   delegate :count, to: :accounts, prefix: true
 

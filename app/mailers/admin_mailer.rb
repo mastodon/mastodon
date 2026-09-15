@@ -79,6 +79,10 @@ class AdminMailer < ApplicationMailer
     mail subject: default_i18n_subject(instance: @instance)
   end
 
+  def new_moderation_suggestions
+    mail subject: default_i18n_subject(instance: @instance)
+  end
+
   private
 
   def process_params
