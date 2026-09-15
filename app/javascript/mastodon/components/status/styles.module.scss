@@ -82,6 +82,8 @@
 }
 
 .contentWrapper {
+  --fade-time: 100ms;
+
   overflow: clip;
   border-radius: var(--radius-xs);
 
@@ -89,21 +91,35 @@
     content: '';
     position: absolute;
     inset: 0;
-    backdrop-filter: blur(20px);
     background-image: radial-gradient(
       var(--color-bg-highlight) 1px,
       transparent 0
     );
     background-size: var(--space-xs) var(--space-xs);
     background-repeat: repeat;
-    opacity: 0;
-    transition: opacity 100ms ease-in-out;
-    pointer-events: none;
 
-    .isFiltered & {
-      opacity: 1;
-      pointer-events: all;
+    // See: https://css-tricks.com/snippets/css/toggle-visibility-when-hiding-elements/
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 0s linear var(--fade-time),
+      opacity var(--fade-time) ease-in-out;
+
+    // Show only if backdrop-filter is unsupported.
+    background-color: var(--color-bg-blend);
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
     }
+  }
+
+  &.isFiltered::after {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 0s linear 0s,
+      opacity var(--fade-time) ease-in-out;
   }
 }
 
