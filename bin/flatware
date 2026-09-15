@@ -12,5 +12,11 @@ ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
 
 require "rubygems"
 require "bundler/setup"
+require "etc"
+
+if ARGV.first == "rspec"
+  # Avoid Redis DB access errors when cores exceed default DB count limit
+  ARGV.push("--workers", [Etc.nprocessors, 15].min)
+end
 
 load Gem.bin_path("flatware", "flatware")
