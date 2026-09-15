@@ -175,6 +175,7 @@ export function useStatusHandlers({
 
   return useMemo(
     () => ({
+      isFiltered: !!filterAction,
       showDespiteFilter,
       onOpenClick,
       onFilterToggle,
@@ -192,6 +193,7 @@ export function useStatusHandlers({
       onTranslate: handlerFactory('translate'),
     }),
     [
+      filterAction,
       handlerFactory,
       onFilterToggle,
       onMention,
