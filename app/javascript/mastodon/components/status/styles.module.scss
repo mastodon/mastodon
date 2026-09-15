@@ -43,7 +43,7 @@
 .root :global(.status__prepend),
 .spoiler,
 .translate,
-.content,
+.contentWrapper,
 .contentReadMore,
 .footer {
   grid-column: var(--content-col);
@@ -73,11 +73,17 @@
   flex-grow: 1;
 }
 
-.content,
-.hashtagsWrapper {
+.contentWrapper,
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  position: relative;
+}
+
+.contentWrapper {
   overflow: clip;
   border-radius: var(--radius-xs);
-  position: relative;
 
   &::after {
     content: '';
@@ -104,10 +110,7 @@
 .content {
   --mask-height: 80px;
 
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  position: relative;
+  overflow-y: clip;
 
   &.collapsed {
     max-height: var(--max-height); // Set via JS.
