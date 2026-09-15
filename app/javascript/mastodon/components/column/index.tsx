@@ -5,9 +5,11 @@ import classNames from 'classnames';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { getColumnSkipLinkId } from '@/mastodon/features/ui/components/skip_links';
+import { isRedesignEnabled } from '@/mastodon/utils/environment';
 import { scrollTop } from 'mastodon/scroll';
 
 import { ColumnContext, useColumnIndexContext } from './context';
+import classes from './styles.module.scss';
 
 interface ColumnProps {
   children?: React.ReactNode;
@@ -66,7 +68,10 @@ export const Column: React.FC<ColumnProps> = ({
       role='region'
       ref={nodeRef}
       onScroll={handleScroll}
-      className={classNames('column', className)}
+      className={classNames(
+        isRedesignEnabled() ? classes.root : 'column',
+        className,
+      )}
       aria-label={label}
       aria-labelledby={
         label === undefined ? getColumnSkipLinkId(columnIndex) : undefined
