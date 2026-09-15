@@ -1,0 +1,28 @@
+@use '@/styles/mastodon/variables' as *;
+
+.root {
+  --multi-column-navigation-width: 320px;
+  --multi-column-gap: var(--space-xs);
+
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  gap: var(--multi-column-gap);
+  padding-inline-end: var(--multi-column-gap);
+  overflow-x: auto;
+}
+
+.navigationWrapper {
+  position: sticky;
+  inset-inline-start: 0;
+  top: 0;
+  z-index: 100;
+  min-width: var(--multi-column-navigation-width);
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--color-bg-blend);
+
+  @media (max-width: ($mobile-menu-breakpoint - 1)) {
+    display: none;
+  }
+}
