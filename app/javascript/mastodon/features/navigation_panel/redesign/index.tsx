@@ -14,6 +14,7 @@ import {
 
 import FediIcon from '@/images/icons/icon_fediverse.svg?react';
 import { fetchLists } from '@/mastodon/actions/lists';
+import { closeNavigation } from '@/mastodon/actions/navigation';
 import { fetchFollowedHashtags } from '@/mastodon/actions/tags_typed';
 import { FOCUS_TARGET } from '@/mastodon/components/navigation_focus_target';
 import { useScrollSensor } from '@/mastodon/hooks/useScrollSensor';
@@ -88,6 +89,7 @@ export const RedesignNavigationPanel: React.FC<{
   );
 
   const openComposer = useCallback(() => {
+    dispatch(closeNavigation());
     dispatch(openNewComposer({ type: 'post' }));
   }, [dispatch]);
 
