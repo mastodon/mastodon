@@ -58,7 +58,6 @@
 }
 
 .content {
-  --max-height: 624px;
   --mask-height: 80px;
 
   display: flex;
@@ -66,7 +65,7 @@
   gap: var(--space-xs);
 
   &.collapsed {
-    max-height: var(--max-height);
+    max-height: var(--max-height); // Set via JS.
     overflow-y: clip;
     mask-image: linear-gradient(
       to bottom,

@@ -18,7 +18,7 @@ import { EmojiHTML } from '../emoji/html';
 import { useHandlersForStatus } from './hooks';
 import classes from './styles.module.scss';
 
-const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
+const MAX_LINES = 35;
 
 export const StatusContent: React.FC<
   {
@@ -46,8 +46,12 @@ export const StatusContent: React.FC<
         return;
       }
 
+      const { lineHeight } = getComputedStyle(node);
+      const lineHeightPx = parseFloat(lineHeight);
+      const maxHeight = lineHeightPx * MAX_LINES;
+
       setCollapsed(
-        (node.clientHeight > MAX_HEIGHT ||
+        (node.clientHeight > maxHeight ||
           node.scrollWidth > node.clientWidth) &&
           !status.spoiler_text,
       );
@@ -61,6 +65,11 @@ export const StatusContent: React.FC<
 
   const isCollapsed = !!onReadMore && collapsible && collapsed;
 
+  const style = {
+    '--max-height': `${MAX_LINES}lh`,
+    ...props.style,
+  } as React.CSSProperties;
+
   return (
     <>
       <div
@@ -70,6 +79,7 @@ export const StatusContent: React.FC<
           classes.content,
           isCollapsed && classes.collapsed,
         )}
+        style={style}
         ref={onRef}
       >
         <EmojiHTML
