@@ -2,9 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.18] - 2026-09-15
+
+### Security
+
+- Temporarily disable HEIF support
+
+### Fixes
+
+- Fix canonical email blocks interfering with freezing or approving users (#40463 by @ClearlyClaire)
+- Fix account deletion not deleting generated annual reports (#40394 by @ClearlyClaire)
+- Fix notifications not being cleaned up when notification requests are deleted in bulk (#40393 by @ClearlyClaire)
+
 ## [4.5.17] - 2026-09-01
 
-## Security
+### Security
 
 - Update dependencies
 - Fix password authentication bypass in 2FA auth for LDAP/PAM/SSO accounts ([GHSA-vx32-x96w-qq65](https://github.com/mastodon/mastodon/security/advisories/GHSA-vx32-x96w-qq65))

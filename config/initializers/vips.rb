@@ -18,7 +18,6 @@ if Rails.configuration.x.use_vips
     VipsForeignLoadJpeg
     VipsForeignLoadPng
     VipsForeignLoadWebp
-    VipsForeignLoadHeif
     VipsForeignSavePng
     VipsForeignSaveSpng
     VipsForeignSaveJpeg
