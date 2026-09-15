@@ -15,6 +15,7 @@ import { StatusQuoteManager } from '../components/status_quoted';
 
 import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';
+import { disableInfiniteScroll } from 'mastodon/initial_state';
 
 
 export default class StatusList extends ImmutablePureComponent {
@@ -112,7 +113,7 @@ export default class StatusList extends ImmutablePureComponent {
     }
 
     return (
-      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef} infiniteScroll={!disableInfiniteScroll} >
         {scrollableContent}
       </ScrollableList>
     );
