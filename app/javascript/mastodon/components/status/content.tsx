@@ -62,40 +62,45 @@ export const StatusContent: React.FC<
   const isCollapsed = !!onReadMore && collapsible && collapsed;
 
   return (
-    <div
-      {...props}
-      className={classNames(
-        className,
-        classes.content,
-        isCollapsed && classes.collapsed,
-      )}
-      ref={onRef}
-    >
-      <EmojiHTML
-        className={classes.contentText}
+    <>
+      <div
+        {...props}
+        className={classNames(
+          className,
+          classes.content,
+          isCollapsed && classes.collapsed,
+        )}
         ref={onRef}
-        lang={language}
-        htmlString={
-          statusContent ?? status.translation?.contentHtml ?? status.contentHtml
-        }
-        extraEmojis={status.emojis}
-        {...htmlHandlers}
-      />
+      >
+        <EmojiHTML
+          className={classes.contentText}
+          ref={onRef}
+          lang={language}
+          htmlString={
+            statusContent ??
+            status.translation?.contentHtml ??
+            status.contentHtml
+          }
+          extraEmojis={status.emojis}
+          {...htmlHandlers}
+        />
 
-      {children}
+        {children}
+      </div>
 
       {isCollapsed && (
         <Button
           size='sm'
-          clipPadding
-          variant='ghost'
           onClick={onReadMore}
           trailingIcon={CaretRightIcon}
           className={classes.contentReadMore}
         >
-          <FormattedMessage id='status.read_more' defaultMessage='Read more' />
+          <FormattedMessage
+            id='status.view_post'
+            defaultMessage='View full post'
+          />
         </Button>
       )}
-    </div>
+    </>
   );
 };
