@@ -1,0 +1,3138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://joinmastodon.org/schemas/environment-config",
+  "title": "Mastodon environment configuration",
+  "description": "Environment variables recognised by a Mastodon instance.",
+  "type": "object",
+  "properties": {
+    "LOCAL_DOMAIN": {
+      "type": "string",
+      "description": "This is the unique identifier of your server in the network. It cannot be safely changed later, as changing it will cause remote servers to confuse your existing accounts with entirely new ones. It has to be the domain name you are running the server under (without the protocol part, e.g. just `example.com`).\n",
+      "x-group": "federation",
+      "examples": [
+        "mastodon.example.com"
+      ]
+    },
+    "WEB_DOMAIN": {
+      "type": "string",
+      "description": "`WEB_DOMAIN` is an optional environment variable allowing the installation of Mastodon on one domain, while having the users' handles on a different domain, e.g. addressing users as `@alice@example.com` but accessing Mastodon on `mastodon.example.com`. This may be useful if your domain name is already used for a different website but you still want to use it as a Mastodon identifier because it looks better or shorter.\n\nAs with `LOCAL_DOMAIN`, `WEB_DOMAIN` cannot be safely changed once set, as this will confuse remote servers that know of your previous settings and may break communication with them or make it unreliable. As the issues lie with remote servers' understanding of your accounts, re-installing Mastodon from scratch will not fix the issue. Therefore, please be extremely cautious when setting up `LOCAL_DOMAIN` and `WEB_DOMAIN`.\n\nTo install Mastodon on `mastodon.example.com` in such a way it can serve `@alice@example.com`, set `LOCAL_DOMAIN` to `example.com` and `WEB_DOMAIN` to `mastodon.example.com`. This also requires additional configuration on the server hosting `example.com` to redirect requests from `https://example.com/.well-known/webfinger` to `https://mastodon.example.com/.well-known/webfinger`. For instance, with nginx, the configuration could look like the following:\n\n```nginx\nlocation /.well-known/webfinger {\n  add_header Access-Control-Allow-Origin '*';\n  return 301 https://mastodon.example.com$request_uri;\n}\n```\n",
+      "x-group": "federation",
+      "examples": [
+        "social.example.com"
+      ],
+      "x-hints": [
+        {
+          "style": "info",
+          "body": "You must serve the redirect with CORS headers; otherwise, some functions of Mastodon's web UI will not work. For example: `Access-Control-Allow-Origin: *`\n"
+        }
+      ]
+    },
+    "ALTERNATE_DOMAINS": {
+      "type": "string",
+      "description": "If you have multiple domains pointed at your Mastodon server, this setting will allow Mastodon to recognize itself when users are addressed using those other domains. Separate the domains by commas, e.g. `foo.com,bar.com`\n",
+      "x-group": "federation",
+      "default": ""
+    },
+    "ALLOWED_PRIVATE_ADDRESSES": {
+      "type": "string",
+      "description": "Comma-separated list of private IP addresses/subnets that are allowed in outgoing HTTP requests. Mastodon blocks HTTP requests to hosts on private IP address ranges (like `127.0.0.1` or `192.168.1.1/16`) to prevent [Server-side request forgeries](https://en.wikipedia.org/wiki/Server-side_request_forgery). This setting removes the specified IP addresses/subnets from being blocked.\n",
+      "x-group": "federation",
+      "default": ""
+    },
+    "AUTHORIZED_FETCH": {
+      "type": "boolean",
+      "description": "Also called \"secure mode\". When set to `true`, the following changes occur:\n\n- Mastodon will stop generating linked-data signatures for public posts, which prevents them from being re-distributed efficiently but without precise control. Since a linked-data object with a signature is entirely self-contained, it can be passed around without making extra requests to the server where it originates.\n- Mastodon will require HTTP signature authentication on ActivityPub representations of public posts and profiles, which are normally available without any authentication. Profiles will only return barebones technical information when no authentication is supplied.\n- Prior to v4.0.0: Mastodon will require any REST/streaming API access to have a user context (i.e. having gone through an OAuth authorization screen with an active user) when normally some API endpoints are available without any authentication.\n\nAs a result, through the authentication mechanism and avoiding re-distribution mechanisms that do not have your server in the loop, it becomes possible to enforce who can and cannot retrieve even public content from your server, e.g. servers whose domains you have blocked.\n",
+      "x-group": "features",
+      "default": false,
+      "x-restart-required": false,
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "Unfortunately, secure mode is not without its drawbacks, which is why it is not enabled by default. Not all software in the fediverse can support it fully, in particular, some functionality will be broken with Mastodon servers older than 3.0; you lose some useful functionality even with up-to-date servers since linked-data signatures are used to make public conversation threads more complete; and because an authentication mechanism on public content means no caching is possible, it comes with an increased computational cost.\n"
+        },
+        {
+          "style": "warning",
+          "body": "Secure mode does not hide HTML representations of public posts and profiles. HTML is a more lossy format compared to first-class ActivityPub representations or the REST API but it is still a potential vector for scraping content.\n"
+        }
+      ]
+    },
+    "LIMITED_FEDERATION_MODE": {
+      "type": "boolean",
+      "description": "When set to `true`, Mastodon will restrict federation to servers you have manually approved only, as well as disable all public pages and some REST APIs. Limited federation mode is based on secure mode (`AUTHORIZED_FETCH`).\n\nConsider the impact of this feature on other features:\n\n- When limited federation mode is enabled, domain blocks are ignored and domain allows are enabled. When switching an existing instance to limited federation mode, the following command should be used to remove any already existent data on non-allowed domains:\n\n    ```bash\n    tootctl domain purge --limited-federation-mode\n    ```\n\n- When limited federation mode is disabled, domain allows are ignored and domain blocks are enabled. When disabling this mode (thus placing the server in a wider network) you may want to first import a domain blocklist to reduce the possibility of accidentally exposing your community to bad actors.\n",
+      "x-group": "federation",
+      "default": false,
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "This mode is intended for private use only, such as in academic institutions or internal company networks, as it effectively creates a data silo, which is contrary to Mastodon's mission of decentralization.\n"
+        },
+        {
+          "style": "info",
+          "body": "This setting was known as `WHITELIST_MODE` prior to 3.1.5.\n"
+        }
+      ]
+    },
+    "DISALLOW_UNAUTHENTICATED_API_ACCESS": {
+      "type": "boolean",
+      "description": "As of Mastodon v4.0.0, the web app is now used to render all requests, even for logged-out viewers. To make these views work, the web app makes public API requests to fetch accounts and statuses. If you would like to disallow this, then set this variable to `true`. Note that disallowing unauthenticated API access will cause profile and post permalinks to return an error to logged-out users, essentially making it so that the only way to view content is to either log in locally or fetch it via ActivityPub.\n",
+      "x-group": "features",
+      "default": false
+    },
+    "SINGLE_USER_MODE": {
+      "type": "boolean",
+      "description": "If set to `true`, the front page of your Mastodon server will always redirect to the first profile in the database and registrations will be disabled.\n",
+      "x-group": "federation",
+      "default": false
+    },
+    "SELF_DESTRUCT": {
+      "type": "string",
+      "description": "When set, puts the instance into self-destruct mode: all local content is removed and federation partners are notified. The value must match a token generated by the CLI. Cannot be undone.\n",
+      "x-group": "federation"
+    },
+    "EXPERIMENTAL_FEATURES": {
+      "type": "string",
+      "description": "Space-separated list of opt-in experimental feature flags to enable.\n",
+      "x-group": "federation"
+    },
+    "UPDATE_CHECK_URL": {
+      "type": "string",
+      "description": "URL polled to check for new Mastodon releases. Set to an empty string to disable update checks.\n",
+      "x-group": "federation",
+      "default": "https://api.joinmastodon.org/update-check",
+      "format": "uri"
+    },
+    "DONATION_CAMPAIGNS_URL": {
+      "type": "string",
+      "description": "URL of the donation campaigns API. When set, Mastodon may display fundraising notices to admins.\n",
+      "x-group": "federation",
+      "format": "uri"
+    },
+    "DONATION_CAMPAIGNS_ENVIRONMENT": {
+      "type": "string",
+      "description": "Environment tag sent with donation-campaign API requests.\n",
+      "x-group": "federation"
+    },
+    "SOURCE_TAG": {
+      "type": "string",
+      "description": "Git tag of the running source code. Shown in the about page and version API.\n",
+      "x-group": "federation"
+    },
+    "SOURCE_BASE_URL": {
+      "type": "string",
+      "description": "Base URL of the source code repository. Used to construct links on the about page. Defaults to `https://github.com/$GITHUB_REPOSITORY`.\n",
+      "x-group": "federation",
+      "format": "uri"
+    },
+    "GITHUB_REPOSITORY": {
+      "type": "string",
+      "description": "The source repository containing the application code. Used to construct source code links. Defaults to `mastodon/mastodon`.\n",
+      "x-group": "federation",
+      "default": "mastodon/mastodon"
+    },
+    "SOURCE_COMMIT": {
+      "type": "string",
+      "description": "Git commit SHA of the running source code. Shown in the version API.\n",
+      "x-group": "federation"
+    },
+    "MASTODON_VERSION_PRERELEASE": {
+      "type": "string",
+      "description": "Prerelease suffix appended to the Mastodon version string (e.g. \"beta.1\").\n",
+      "x-group": "federation"
+    },
+    "MASTODON_VERSION_METADATA": {
+      "type": "string",
+      "description": "Build metadata appended to the Mastodon version string (e.g. a commit SHA).\n",
+      "x-group": "federation"
+    },
+    "DEFAULT_LOCALE": {
+      "type": "string",
+      "description": "By default, Mastodon will automatically detect the visitor's language from browser headers and display the Mastodon interface in that language (if it's supported) and otherwise fall back to English.\nIf you are running a language-specific or regional server, that behavior may mislead visitors who do not speak your language into signing up on your server. For this reason, you may want to set this variable to a specific language.\n\nAs of Mastodon 4.4.0, this environment variable does not override the visitor's browser language. To do that, also set `FORCE_DEFAULT_LOCALE=true`.\n",
+      "x-group": "features",
+      "default": "en",
+      "examples": [
+        "en",
+        "de",
+        "ja",
+        "pt-BR"
+      ],
+      "x-version-history": [
+        {
+          "version": "4.4.0",
+          "change": "changed to only affect the fallback/default language"
+        }
+      ],
+      "x-example-value": "de",
+      "x-trailing": "The [list of supported languages](https://github.com/mastodon/mastodon/blob/main/config/initializers/i18n.rb) sometimes changes between versions, so make sure the version you are running supports the locale you want to use.\n\nTo see the full list of locales supported, run:\n\n```bash\nbin/rails runner 'puts Rails.application.config.i18n.available_locales.sort'\n```\n"
+    },
+    "FORCE_DEFAULT_LOCALE": {
+      "type": "boolean",
+      "description": "When set to `true`, skips the visitor's browser language detection feature and use `DEFAULT_LOCALE` (or English) instead, corresponding to the behavior of `DEFAULT_LOCALE` prior to Mastodon 4.4.0.\n",
+      "x-group": "features",
+      "x-version-history": [
+        {
+          "version": "4.4.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SECRET_KEY_BASE": {
+      "type": "string",
+      "description": "Generate with `rails secret`. Changing it will break all active browser sessions.\n",
+      "x-group": "secrets",
+      "x-secret": true
+    },
+    "OTP_SECRET": {
+      "type": "string",
+      "description": "Generate with `rails secret`. Changing it will break two-factor authentication.\n",
+      "x-group": "secrets",
+      "x-secret": true
+    },
+    "ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY": {
+      "type": "string",
+      "description": "Active Record Encryption deterministic key. Generate with `bin/rails db:encryption:init`. Must remain constant for the lifetime of the database.\n",
+      "x-group": "secrets",
+      "x-secret": true
+    },
+    "ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT": {
+      "type": "string",
+      "description": "Active Record Encryption key-derivation salt. Must remain constant for the lifetime of the database.\n",
+      "x-group": "secrets",
+      "x-secret": true
+    },
+    "ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY": {
+      "type": "string",
+      "description": "Active Record Encryption primary key. Must remain constant for the lifetime of the database.\n",
+      "x-group": "secrets",
+      "x-secret": true
+    },
+    "VAPID_PRIVATE_KEY": {
+      "type": "string",
+      "description": "Generate with `rake mastodon:webpush:generate_vapid_key`. Changing it will break push notifications.\n",
+      "x-group": "secrets",
+      "x-secret": true
+    },
+    "VAPID_PUBLIC_KEY": {
+      "type": "string",
+      "description": "Generate with `rake mastodon:webpush:generate_vapid_key`. Changing it will break push notifications.\n",
+      "x-group": "secrets"
+    },
+    "RAILS_ENV": {
+      "type": "string",
+      "description": "Environment. Can be `production`, `development`, or `test`. If you are running Mastodon on your personal computer for development purposes, use `development`. That is also the default. If you are running Mastodon online, use `production`. Mastodon will load different configuration defaults based on the environment.\n",
+      "x-group": "deployment",
+      "default": "development",
+      "enum": [
+        "production",
+        "development",
+        "test"
+      ],
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "This variable cannot be defined in dotenv (`.env`) files as it's used before they are loaded.\n"
+        }
+      ]
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "type": "boolean",
+      "description": "If set to true, Mastodon will answer requests for files in its `public` directory. This may be necessary if the reverse proxy (e.g. nginx) has no file system access to the `public` directory itself, such as in a containerized environment. It is a suboptimal setting because serving static files directly from the file system will always be much faster than serving them through the Ruby on Rails process.\n",
+      "x-group": "deployment",
+      "default": false
+    },
+    "RAILS_LOG_LEVEL": {
+      "type": "string",
+      "description": "Determines the amount of logs generated by Mastodon for the web and Sidekiq processes. Defaults to `info`, which generates a log entry about every request served by Mastodon and every background job processed by Mastodon. This can be useful but can get quite noisy and strain the I/O of your machine if there is a lot of traffic/activity. In that case, `warn` is recommended, which will only output information about things that are going wrong, and otherwise stay quiet. Possible values are `debug`, `info`, `warn`, `error`, `fatal` and `unknown`.\n",
+      "x-group": "deployment",
+      "default": "info",
+      "enum": [
+        "debug",
+        "info",
+        "warn",
+        "error",
+        "fatal",
+        "unknown"
+      ]
+    },
+    "LOG_LEVEL": {
+      "type": "string",
+      "description": "Determines the amount of logs generated by Mastodon for the streaming processes. Defaults to `info`. Possible values are `debug` and `info`.\n",
+      "x-group": "deployment",
+      "default": "info",
+      "enum": [
+        "debug",
+        "info"
+      ]
+    },
+    "TRUSTED_PROXY_IP": {
+      "type": "string",
+      "description": "Tells the Mastodon web and streaming processes which IPs act as your trusted reverse proxy (e.g. nginx, Cloudflare). It affects how Mastodon determines the source IP of each request, which is used for important rate limits and security functions. If the value is set incorrectly then Mastodon could use the IP of the reverse proxy instead of the actual source.\n\nBy default, the loopback and private network address ranges are trusted. Specifically:\n\n- `127.0.0.1/8`\n- `::1/128`\n- `10.0.0.0/8`\n- `172.16.0.0/12`\n- `192.168.0.0/16`\n- `fc00::/7`\n\nIf you're using a single reverse proxy and it runs on the same machine or is in the same private network as your Mastodon web and streaming processes then you most likely don't need to modify this setting and can use the default. Or if you're using multiple reverse proxy servers and they're all in the same private network as your Mastodon web and streaming processes then, again, the default should be fine. However, if you're using a reverse proxy server that reaches your Mastodon web and streaming servers via a public IP address (for example if you're using Cloudflare or a similar proxy) then you'll need to set this variable. It should be the IPs of all reverse proxies in use, as a comma-separated list of IPs or IP ranges using [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). Note that when this variable is set the default ranges (mentioned above) will no longer be trusted, so if you have both an external reverse proxy _and_ a proxy on localhost then you must include the IPs (or IP ranges) of both.\n\nAdministrators and moderators can find what Mastodon sees as the source IP for each user by navigating to the Settings > Moderation > Accounts tab. You can use a tool like [IPInfo](https://ipinfo.io) to gauge whether the IP is being used by an end-user ISP, or by a server hosting your proxy.\n",
+      "x-group": "deployment"
+    },
+    "SOCKET": {
+      "type": "string",
+      "description": "Instead of binding to an IP address like `127.0.0.1`, you may bind to a Unix socket. This variable is process-specific, e.g. you need different values for every process, and it works for both web (Puma) processes and streaming API (Node.js) processes.\n",
+      "x-group": "deployment",
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "This variable cannot be defined in dotenv (`.env`) files as it's used before they are loaded.\n"
+        }
+      ]
+    },
+    "PORT": {
+      "type": "integer",
+      "description": "If you are not using Unix sockets, this defines which port the process will listen on. This variable is process-specific, e.g. you need different values for every process, and it works for both web (Puma) processes and streaming API (Node.js) processes. By default, web listens on `3000` and streaming API on `4000`.\n",
+      "x-group": "deployment",
+      "default": 3000,
+      "minimum": 1,
+      "maximum": 65535,
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "This variable cannot be defined in dotenv (`.env`) files as it's used before they are loaded.\n"
+        }
+      ]
+    },
+    "BIND": {
+      "type": "string",
+      "description": "If you are not using Unix sockets, this defines the IP to which the process will bind. Multiple processes can bind to the same IP as long as they listen on different ports. Defaults to `127.0.0.1`.\n",
+      "x-group": "deployment",
+      "default": "127.0.0.1",
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "This variable cannot be defined in dotenv (`.env`) files as it's used before they are loaded.\n"
+        }
+      ]
+    },
+    "SIDEKIQ_CONCURRENCY": {
+      "type": "integer",
+      "description": "Added in 4.1. Specific to Sidekiq, this variable determines how many different processes Sidekiq forks into. Defaults to `5`.\n",
+      "x-group": "scaling",
+      "default": 5,
+      "minimum": 1
+    },
+    "WEB_CONCURRENCY": {
+      "type": "integer",
+      "description": "Specific to Puma, this variable determines how many different processes Puma forks into. Defaults to `2`.\n",
+      "x-group": "scaling",
+      "default": 2,
+      "minimum": 1
+    },
+    "MAX_THREADS": {
+      "type": "integer",
+      "description": "Specific to Puma, this variable determines how many threads each Puma process maintains. Defaults to `5`.\n",
+      "x-group": "scaling",
+      "default": 5,
+      "minimum": 1
+    },
+    "MIN_THREADS": {
+      "type": "integer",
+      "description": "Minimum number of threads per Puma worker. Defaults to MAX_THREADS.\n",
+      "x-group": "scaling",
+      "minimum": 1
+    },
+    "PERSISTENT_TIMEOUT": {
+      "type": "integer",
+      "description": "Specific to Puma, this variable determines how long Puma should wait before closing a connection. Defaults to `20`.\n",
+      "x-group": "scaling",
+      "default": 20
+    },
+    "PREPARED_STATEMENTS": {
+      "type": "boolean",
+      "description": "By default, Mastodon uses the prepared statements feature of PostgreSQL, which offers some performance advantages. This feature is not available if you are using a connection pool where connections are shared between transactions and must thus be set to `false`. When you are scaling up, the advantages of having a transaction-based connection pool outweigh those provided by prepared statements.\n",
+      "x-group": "scaling",
+      "default": true
+    },
+    "STREAMING_API_BASE_URL": {
+      "type": "string",
+      "description": "The streaming API can be deployed to a different domain/subdomain. This may improve the performance of the streaming API as in the default configuration long-lived streaming API requests are proxied through nginx, while serving the streaming API from a different domain/subdomain would allow one to skip nginx entirely.\n",
+      "x-group": "scaling",
+      "x-example-value": "wss://streaming.example.com"
+    },
+    "DB_HOST": {
+      "type": "string",
+      "description": "Defaults to `localhost`.\n",
+      "x-group": "database",
+      "default": "/var/run/postgresql"
+    },
+    "DB_USER": {
+      "type": "string",
+      "description": "Defaults to `mastodon`.\n",
+      "x-group": "database"
+    },
+    "DB_NAME": {
+      "type": "string",
+      "description": "Defaults to `mastodon_production`.\n",
+      "x-group": "database",
+      "default": "mastodon_production"
+    },
+    "DB_PASS": {
+      "type": "string",
+      "description": "No default.\n",
+      "x-group": "database",
+      "default": "",
+      "x-secret": true
+    },
+    "DB_PORT": {
+      "type": "integer",
+      "description": "Defaults to `5432`.\n",
+      "x-group": "database",
+      "default": 5432,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "DB_POOL": {
+      "type": "integer",
+      "description": "Defines how many database connections to pool in the process. This value should cover every thread in the process, for this reason, it defaults to the value of `MAX_THREADS`.\n",
+      "x-group": "database"
+    },
+    "DB_SSLMODE": {
+      "type": "string",
+      "description": "PostgreSQL [SSL mode](https://www.postgresql.org/docs/10/libpq-ssl.html). Defaults to `prefer`.\n",
+      "x-group": "database",
+      "default": "prefer",
+      "enum": [
+        "disable",
+        "allow",
+        "prefer",
+        "require",
+        "verify-ca",
+        "verify-full"
+      ]
+    },
+    "DATABASE_URL": {
+      "type": "string",
+      "description": "If provided, takes precedence over `DB_HOST`, `DB_USER`, `DB_NAME`, `DB_PASS` and `DB_PORT`.\n",
+      "x-group": "database",
+      "x-example-value": "postgresql://user:password@localhost:5432"
+    },
+    "QUERY_LOG_TAGS_ENABLED": {
+      "type": "boolean",
+      "description": "If set to `true`, then ActiveRecord will insert comments at the end of every SQL statement, which can help analyzing the performance of the application.\n\nThe comments are formatted using the SqlCommenter format and the following attributes:\n- `namespaced_controller`: full name of the controller for the HTTP request that generated this SQL statement\n- `action`: name of the action for the HTTP request that generated this SQL statement\n- `sidekiq_job_class`: class name of the Sidekiq job that generated this SQL statement\n",
+      "x-group": "database",
+      "default": false,
+      "x-version-history": [
+        {
+          "version": "4.4.0",
+          "change": "added"
+        }
+      ],
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "Enabling this option will disable prepared statements\n"
+        }
+      ],
+      "x-extra": "Defaults to `false`.\n"
+    },
+    "REPLICA_DB_HOST": {
+      "type": "string",
+      "description": "No default.\n",
+      "x-group": "database"
+    },
+    "REPLICA_DB_PORT": {
+      "type": "integer",
+      "description": "No default.\n",
+      "x-group": "database",
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "REPLICA_DB_NAME": {
+      "type": "string",
+      "description": "No default.\n",
+      "x-group": "database"
+    },
+    "REPLICA_DB_USER": {
+      "type": "string",
+      "description": "No default.\n",
+      "x-group": "database"
+    },
+    "REPLICA_DB_PASS": {
+      "type": "string",
+      "description": "No default.\n",
+      "x-group": "database",
+      "x-secret": true
+    },
+    "REPLICA_DATABASE_URL": {
+      "type": "string",
+      "description": "If provided, takes precedence over `REPLICA_DB_HOST`, `REPLICA_DB_PORT`, `REPLICA_DB_NAME`, `REPLICA_DB_USER` and `REPLICA_DB_PASS`\n\nNo default.\n",
+      "x-group": "database"
+    },
+    "REPLICA_PREPARED_STATEMENTS": {
+      "type": "boolean",
+      "description": "Use prepared statements on the read replica. Falls back to PREPARED_STATEMENTS.\n",
+      "x-group": "database"
+    },
+    "REPLICA_DB_TASKS": {
+      "type": "boolean",
+      "description": "Run database schema tasks (e.g. db:schema:load) against the read replica as well as the primary.\n",
+      "x-group": "database",
+      "default": true
+    },
+    "REDIS_HOST": {
+      "type": "string",
+      "description": "Defaults to `localhost`.\n",
+      "x-group": "redis",
+      "default": "localhost"
+    },
+    "REDIS_PORT": {
+      "type": "integer",
+      "description": "Defaults to `6379`.\n",
+      "x-group": "redis",
+      "default": 6379,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "REDIS_DB": {
+      "type": "integer",
+      "description": "Main Redis: database number.",
+      "x-group": "redis",
+      "default": 0,
+      "minimum": 0
+    },
+    "REDIS_USER": {
+      "type": "string",
+      "description": "Optional. The username used to connect to Redis.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "REDIS_PASSWORD": {
+      "type": "string",
+      "description": "Optional. The password used to connect to Redis.\n",
+      "x-group": "redis",
+      "x-secret": true
+    },
+    "REDIS_URL": {
+      "type": "string",
+      "description": "If provided, takes precedence over `REDIS_HOST`, `REDIS_PORT`, `REDIS_USER`, `REDIS_PASSWORD` and sentinel settings.\n",
+      "x-group": "redis",
+      "examples": [
+        "redis://localhost:6379/0",
+        "rediss://user:pass@redis.example.com:6380/1"
+      ],
+      "x-example-value": "redis://user:password@localhost:6379",
+      "x-trailing": "If you need to use TLS to connect to your Redis server, you must use `REDIS_URL` with the protocol scheme `rediss://` and set `REDIS_DRIVER` as described below.\n"
+    },
+    "REDIS_DRIVER": {
+      "type": "string",
+      "description": "If provided, the driver for Redis connections is changed from using the Mastodon default hiredis driver to the standard Ruby driver. Using the Ruby driver is required to connect to Redis using TLS. Note that use of the Ruby driver may have an impact on Redis performance in some environments.\n\nDefaults to `hiredis`, accepted values are `hiredis` or `ruby`.\n",
+      "x-group": "redis",
+      "default": "hiredis",
+      "enum": [
+        "hiredis",
+        "ruby"
+      ],
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "REDIS_NAMESPACE": {
+      "type": "string",
+      "description": "If provided, namespaces all Redis keys. This allows the sharing of the same Redis database between different projects or Mastodon servers.\n",
+      "x-group": "redis",
+      "x-status": "deprecated",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "deprecated"
+        }
+      ],
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "This option is deprecated. Sidekiq 7 removes support for namespaces, and so will a future version of Mastodon. We will attempt to document a clear migration path by the time that happens. If you are setting up a new instance, using this option is highly discouraged.\n"
+        }
+      ]
+    },
+    "REDIS_SENTINELS": {
+      "type": "string",
+      "description": "A comma-delimited list of Redis Sentinel instance HOST:PORTs. The port number is optional, if omitted it will use the value given in `REDIS_SENTINEL_PORT` or the default of `26379`.\n\nPlease note that if you would like to use Redis Sentinel you also need to specify `REDIS_SENTINEL_MASTER`.\n",
+      "x-group": "redis",
+      "examples": [
+        "sentinel1:26379,sentinel2:26379"
+      ],
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "REDIS_SENTINEL_MASTER": {
+      "type": "string",
+      "description": "The name of the Redis Sentinel master to connect to.\n\nPlease note that if you would like to use Redis Sentinel you also need to specify `REDIS_SENTINELS`.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "REDIS_SENTINEL_PORT": {
+      "type": "integer",
+      "description": "The default port for the sentinels given in `REDIS_SENTINELS`.\n",
+      "x-group": "redis",
+      "default": 26379,
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "REDIS_SENTINEL_USERNAME": {
+      "type": "string",
+      "description": "The username used to authenticate with sentinels.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "REDIS_SENTINEL_PASSWORD": {
+      "type": "string",
+      "description": "The password used to authenticate with sentinels.\n",
+      "x-group": "redis",
+      "x-secret": true,
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "CACHE_REDIS_HOST": {
+      "type": "string",
+      "description": "Defaults to the value of `REDIS_HOST`.\n",
+      "x-group": "redis",
+      "default": "localhost"
+    },
+    "CACHE_REDIS_PORT": {
+      "type": "integer",
+      "description": "Defaults to the value of `REDIS_PORT`.\n",
+      "x-group": "redis",
+      "default": 6379,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "CACHE_REDIS_DB": {
+      "type": "integer",
+      "description": "Cache Redis: database number.",
+      "x-group": "redis",
+      "default": 0,
+      "minimum": 0
+    },
+    "CACHE_REDIS_USER": {
+      "type": "string",
+      "description": "Optional. The username used to connect to Redis.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "CACHE_REDIS_PASSWORD": {
+      "type": "string",
+      "description": "Optional. The password used to connect to Redis.\n",
+      "x-group": "redis",
+      "x-secret": true
+    },
+    "CACHE_REDIS_URL": {
+      "type": "string",
+      "description": "If provided, takes precedence over `CACHE_REDIS_HOST` and `CACHE_REDIS_PORT`. Defaults to the value of `REDIS_URL`.\n",
+      "x-group": "redis",
+      "examples": [
+        "redis://localhost:6379/0",
+        "rediss://user:pass@redis.example.com:6380/1"
+      ]
+    },
+    "CACHE_REDIS_SENTINELS": {
+      "type": "string",
+      "description": "A comma-delimited list of Redis Sentinel instance HOST:PORTs. The port number is optional, if omitted it will use a default of `26379`.\n\nPlease note that if you would like to use Redis Sentinel you also need to specify `CACHE_REDIS_SENTINEL_MASTER`.\n",
+      "x-group": "redis",
+      "examples": [
+        "sentinel1:26379,sentinel2:26379"
+      ],
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "CACHE_REDIS_SENTINEL_MASTER": {
+      "type": "string",
+      "description": "The name of the Redis Sentinel master to connect to.\n\nPlease note that if you would like to use Redis Sentinel you also need to specify `CACHE_REDIS_SENTINELS`.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "CACHE_REDIS_SENTINEL_PORT": {
+      "type": "integer",
+      "description": "The default port for the sentinels given in `CACHE_REDIS_SENTINELS`.\n",
+      "x-group": "redis",
+      "default": 26379,
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "CACHE_REDIS_SENTINEL_USERNAME": {
+      "type": "string",
+      "description": "The username used to authenticate with sentinels.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "CACHE_REDIS_SENTINEL_PASSWORD": {
+      "type": "string",
+      "description": "The password used to authenticate with sentinels.\n",
+      "x-group": "redis",
+      "x-secret": true,
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SIDEKIQ_REDIS_HOST": {
+      "type": "string",
+      "description": "Defaults to the value of `REDIS_HOST`.\n",
+      "x-group": "redis",
+      "default": "localhost"
+    },
+    "SIDEKIQ_REDIS_PORT": {
+      "type": "integer",
+      "description": "Defaults to the value of `REDIS_PORT`.\n",
+      "x-group": "redis",
+      "default": 6379,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "SIDEKIQ_REDIS_DB": {
+      "type": "integer",
+      "description": "Sidekiq Redis: database number.",
+      "x-group": "redis",
+      "default": 0,
+      "minimum": 0
+    },
+    "SIDEKIQ_REDIS_USER": {
+      "type": "string",
+      "description": "Optional. The username used to connect to Redis.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SIDEKIQ_REDIS_PASSWORD": {
+      "type": "string",
+      "description": "Optional. The password used to connect to Redis.\n",
+      "x-group": "redis",
+      "x-secret": true
+    },
+    "SIDEKIQ_REDIS_URL": {
+      "type": "string",
+      "description": "If provided, takes precedence over `SIDEKIQ_REDIS_HOST` and `SIDEKIQ_REDIS_PORT`. Defaults to the value of `REDIS_URL`.\n",
+      "x-group": "redis",
+      "examples": [
+        "redis://localhost:6379/0",
+        "rediss://user:pass@redis.example.com:6380/1"
+      ]
+    },
+    "SIDEKIQ_REDIS_SENTINELS": {
+      "type": "string",
+      "description": "A comma-delimited list of Redis Sentinel instance HOST:PORTs. The port number is optional, if omitted it will use a default of `26379`.\n\nPlease note that if you would like to use Redis Sentinel you also need to specify `SIDEKIQ_REDIS_SENTINEL_MASTER`.\n",
+      "x-group": "redis",
+      "examples": [
+        "sentinel1:26379,sentinel2:26379"
+      ],
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SIDEKIQ_REDIS_SENTINEL_MASTER": {
+      "type": "string",
+      "description": "The name of the Redis Sentinel master to connect to.\n\nPlease note that if you would like to use Redis Sentinel you also need to specify `SIDEKIQ_REDIS_SENTINELS`.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SIDEKIQ_REDIS_SENTINEL_PORT": {
+      "type": "integer",
+      "description": "The default port for the sentinels given in `SIDEKIQ_REDIS_SENTINELS`.\n",
+      "x-group": "redis",
+      "default": 26379,
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SIDEKIQ_REDIS_SENTINEL_USERNAME": {
+      "type": "string",
+      "description": "The username used to authenticate with sentinels.\n",
+      "x-group": "redis",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SIDEKIQ_REDIS_SENTINEL_PASSWORD": {
+      "type": "string",
+      "description": "The password used to authenticate with sentinels.\n",
+      "x-group": "redis",
+      "x-secret": true,
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "ES_ENABLED": {
+      "type": "boolean",
+      "description": "If set to `true`, Mastodon will use Elasticsearch for its search functions.\n",
+      "x-group": "search",
+      "default": false
+    },
+    "ES_PRESET": {
+      "type": "string",
+      "description": "It controls the Elasticsearch indices configuration (number of shards and replica).\n\nPossible values are:\n\n- `single_node_cluster` (default)\n- `small_cluster`\n- `large_cluster`\n\nSee the [Elasticsearch setup page for details on each setting](../elasticsearch#choosing-the-correct-preset).\n",
+      "x-group": "search",
+      "enum": [
+        "single_node_cluster",
+        "small_cluster",
+        "large_cluster"
+      ]
+    },
+    "ES_HOST": {
+      "type": "string",
+      "description": "Host of the Elasticsearch server. Defaults to `localhost`. If using TLS, prepend the hostname with `https://`. For example: `https://elastic.example.com`.\n",
+      "x-group": "search",
+      "default": "localhost"
+    },
+    "ES_PORT": {
+      "type": "integer",
+      "description": "Port of the Elasticsearch server. Defaults to `9200`\n",
+      "x-group": "search",
+      "default": 9200,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "ES_USER": {
+      "type": "string",
+      "description": "Used for optionally authenticating with Elasticsearch\n",
+      "x-group": "search"
+    },
+    "ES_PASS": {
+      "type": "string",
+      "description": "Used for optionally authenticating with Elasticsearch\n",
+      "x-group": "search",
+      "x-secret": true
+    },
+    "ES_PREFIX": {
+      "type": "string",
+      "description": "Useful if the Elasticsearch server is shared between multiple projects or different Mastodon servers. Defaults to the value of `REDIS_NAMESPACE`.\n",
+      "x-group": "search"
+    },
+    "ES_CA_FILE": {
+      "type": "string",
+      "description": "Override Certificate Authority bundle file to use. Useful when using self-signed certificates.\n",
+      "x-group": "search",
+      "x-version-history": [
+        {
+          "version": "4.3.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SMTP_SERVER": {
+      "type": "string",
+      "description": "",
+      "x-group": "email"
+    },
+    "SMTP_PORT": {
+      "type": "integer",
+      "description": "",
+      "x-group": "email",
+      "default": 587,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "SMTP_LOGIN": {
+      "type": "string",
+      "description": "",
+      "x-group": "email"
+    },
+    "SMTP_PASSWORD": {
+      "type": "string",
+      "description": "",
+      "x-group": "email",
+      "x-secret": true
+    },
+    "SMTP_FROM_ADDRESS": {
+      "type": "string",
+      "description": "",
+      "x-group": "email",
+      "default": "notifications@localhost",
+      "format": "email"
+    },
+    "SMTP_DOMAIN": {
+      "type": "string",
+      "description": "",
+      "x-group": "email"
+    },
+    "SMTP_DELIVERY_METHOD": {
+      "type": "string",
+      "description": "",
+      "x-group": "email",
+      "default": "smtp",
+      "enum": [
+        "smtp",
+        "sendmail",
+        "letter_opener",
+        "test"
+      ]
+    },
+    "SMTP_AUTH_METHOD": {
+      "type": "string",
+      "description": "",
+      "x-group": "email",
+      "default": "plain",
+      "enum": [
+        "plain",
+        "login",
+        "cram_md5",
+        "none"
+      ]
+    },
+    "SMTP_CA_FILE": {
+      "type": "string",
+      "description": "",
+      "x-group": "email",
+      "default": "/etc/ssl/certs/ca-certificates.crt"
+    },
+    "SMTP_OPENSSL_VERIFY_MODE": {
+      "type": "string",
+      "description": "",
+      "x-group": "email",
+      "enum": [
+        "none",
+        "peer",
+        "client_once",
+        "fail_if_no_peer_cert"
+      ]
+    },
+    "SMTP_ENABLE_STARTTLS_AUTO": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "email",
+      "default": true
+    },
+    "SMTP_ENABLE_STARTTLS": {
+      "type": "string",
+      "description": "Set to `auto` (default), `always`, or `never`.\n",
+      "x-group": "email",
+      "enum": [
+        "auto",
+        "always",
+        "never"
+      ],
+      "x-version-history": [
+        {
+          "version": "4.0.0",
+          "change": "added"
+        }
+      ]
+    },
+    "SMTP_TLS": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "email",
+      "default": false
+    },
+    "SMTP_SSL": {
+      "type": "boolean",
+      "description": "Email configuration is based on the *action_mailer* component of the *Ruby on Rails* framework that Mastodon is built on. Complete documentation on action_mailer is available [here](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration). The client uses SMTP or derivatives: StartTLS + SMTP or SMTPS (SMTP over TLS).\n",
+      "x-group": "email",
+      "default": false
+    },
+    "SMTP_REPLY_TO": {
+      "type": "string",
+      "description": "SMTP: Reply-To address.",
+      "x-group": "email",
+      "format": "email"
+    },
+    "SMTP_RETURN_PATH": {
+      "type": "string",
+      "description": "SMTP: Return-Path address.",
+      "x-group": "email",
+      "format": "email"
+    },
+    "BULK_SMTP_SERVER": {
+      "type": "string",
+      "description": "Bulk SMTP: server hostname.",
+      "x-group": "email"
+    },
+    "BULK_SMTP_PORT": {
+      "type": "integer",
+      "description": "Bulk SMTP: server port.",
+      "x-group": "email",
+      "default": 587,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "BULK_SMTP_LOGIN": {
+      "type": "string",
+      "description": "Bulk SMTP: authentication username.",
+      "x-group": "email"
+    },
+    "BULK_SMTP_PASSWORD": {
+      "type": "string",
+      "description": "Bulk SMTP: authentication password.",
+      "x-group": "email",
+      "x-secret": true
+    },
+    "BULK_SMTP_DOMAIN": {
+      "type": "string",
+      "description": "Bulk SMTP: HELO domain. Defaults to LOCAL_DOMAIN.",
+      "x-group": "email"
+    },
+    "BULK_SMTP_AUTH_METHOD": {
+      "type": "string",
+      "description": "Bulk SMTP: SASL authentication method.",
+      "x-group": "email",
+      "default": "plain",
+      "enum": [
+        "plain",
+        "login",
+        "cram_md5",
+        "none"
+      ]
+    },
+    "BULK_SMTP_ENABLE_STARTTLS": {
+      "type": "string",
+      "description": "Bulk SMTP: STARTTLS mode.",
+      "x-group": "email",
+      "enum": [
+        "auto",
+        "always",
+        "never"
+      ]
+    },
+    "BULK_SMTP_ENABLE_STARTTLS_AUTO": {
+      "type": "boolean",
+      "description": "Bulk SMTP: automatically negotiate STARTTLS if the server advertises it. Superseded by BULK_SMTP_ENABLE_STARTTLS when that is set.\n",
+      "x-group": "email",
+      "default": true
+    },
+    "BULK_SMTP_TLS": {
+      "type": "boolean",
+      "description": "Bulk SMTP: use implicit TLS (port 465 style).",
+      "x-group": "email",
+      "default": false
+    },
+    "BULK_SMTP_SSL": {
+      "type": "boolean",
+      "description": "Bulk SMTP: alias for BULK_SMTP_TLS.",
+      "x-group": "email",
+      "default": false
+    },
+    "BULK_SMTP_CA_FILE": {
+      "type": "string",
+      "description": "Bulk SMTP: path to the CA bundle used to verify the server certificate.",
+      "x-group": "email",
+      "default": "/etc/ssl/certs/ca-certificates.crt"
+    },
+    "BULK_SMTP_OPENSSL_VERIFY_MODE": {
+      "type": "string",
+      "description": "Bulk SMTP: OpenSSL peer verification mode.",
+      "x-group": "email",
+      "enum": [
+        "none",
+        "peer",
+        "client_once",
+        "fail_if_no_peer_cert"
+      ]
+    },
+    "MASTODON_PROMETHEUS_EXPORTER_ENABLED": {
+      "type": "boolean",
+      "description": "If set to `true`, Mastodon's Ruby processes (web & Sidekiq) will enable the Prometheus instrumentation.\n",
+      "x-group": "observability",
+      "default": false
+    },
+    "MASTODON_PROMETHEUS_EXPORTER_WEB_DETAILED_METRICS": {
+      "type": "boolean",
+      "description": "If set to `true`, the instrumentation will collect and expose per-controller/action metrics for every web request. Note that this might cause some resource overhead.\n",
+      "x-group": "observability",
+      "default": false
+    },
+    "MASTODON_PROMETHEUS_EXPORTER_SIDEKIQ_DETAILED_METRICS": {
+      "type": "boolean",
+      "description": "If set to `true`, the instrumentation will collect and expose per job metrics for every Sidekiq job. Note that this might cause some resource overhead.\n",
+      "x-group": "observability",
+      "default": false
+    },
+    "MASTODON_PROMETHEUS_EXPORTER_LOCAL": {
+      "type": "boolean",
+      "description": "If set to `true`, an in-process server will be started to expose the metrics, rather than trying to send them to an external `prometheus_exporter` server. This can be useful when running Sidekiq in a containerized environment to avoid the overhead of the external exporter. Metrics will be exposed on `http://host:port/metrics`\n\nImportant: this will not work for multi-process servers, like Puma, as every process will try to listen on the same port and will fail.\n",
+      "x-group": "observability",
+      "default": false
+    },
+    "PROMETHEUS_EXPORTER_HOST": {
+      "type": "string",
+      "description": "If the in-process server is not enabled, the metrics will be sent to this host (which should be running a `prometheus_exporter` server). Defaults to `localhost`.\n",
+      "x-group": "observability",
+      "default": "localhost"
+    },
+    "PROMETHEUS_EXPORTER_PORT": {
+      "type": "integer",
+      "description": "If the in-process server is not enabled, the metrics will be sent to this host (which should be running a `prometheus_exporter` server). Defaults to `9394`.\n",
+      "x-group": "observability",
+      "default": 9394,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "MASTODON_PROMETHEUS_EXPORTER_HOST": {
+      "type": "string",
+      "description": "If the in-process server is enabled, the in-process exporter will listen on this host. Defaults to `localhost`\n",
+      "x-group": "observability",
+      "default": "localhost"
+    },
+    "MASTODON_PROMETHEUS_EXPORTER_PORT": {
+      "type": "integer",
+      "description": "If the in-process server is enabled, the in-process exporter will listen on this port. Defaults to `9394`\n",
+      "x-group": "observability",
+      "default": 9394,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "OTEL_SERVICE_NAME_PREFIX": {
+      "type": "string",
+      "description": "Prefix for the OTEL service names. The services names will be `$prefix/web` and `$prefix/sidekiq`. Defaults to `mastodon`.\n",
+      "x-group": "observability",
+      "default": "mastodon"
+    },
+    "OTEL_SERVICE_NAME_SEPARATOR": {
+      "type": "string",
+      "description": "What character to use in service names when differentiating between different services. Defaults to `/` (i.e. `mastodon/web`).\n",
+      "x-group": "observability",
+      "default": "/"
+    },
+    "CDN_HOST": {
+      "type": "string",
+      "description": "You can serve static assets (logos, emojis, CSS, JS, etc) from a separate host, like a CDN (Content Delivery Network) as it can decrease loading times for your users.\n\nExample value: `https://assets.example.com`\n",
+      "x-group": "storage",
+      "x-hints": [
+        {
+          "style": "info",
+          "body": "You must serve the files with CORS headers, otherwise some functions of Mastodon's web UI will not work. For example, `Access-Control-Allow-Origin: *`\n"
+        }
+      ]
+    },
+    "PAPERCLIP_ROOT_PATH": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "default": "public/system"
+    },
+    "PAPERCLIP_ROOT_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "default": "/system"
+    },
+    "S3_ENABLED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "storage",
+      "default": false
+    },
+    "S3_REGION": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "default": "us-east-1"
+    },
+    "S3_ENDPOINT": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "examples": [
+        "https://s3.example.com"
+      ]
+    },
+    "S3_BUCKET": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "x-secret": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "x-secret": true
+    },
+    "S3_SIGNATURE_VERSION": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "default": "v4",
+      "enum": [
+        "v2",
+        "v4"
+      ]
+    },
+    "S3_OVERRIDE_PATH_STYLE": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "storage",
+      "default": false
+    },
+    "S3_PROTOCOL": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "default": "https",
+      "enum": [
+        "http",
+        "https"
+      ]
+    },
+    "S3_HOSTNAME": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "S3_ALIAS_HOST": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "S3_CLOUDFRONT_HOST": {
+      "type": "string",
+      "description": "Alias for S3_ALIAS_HOST, kept for backwards compatibility.\n",
+      "x-group": "storage"
+    },
+    "S3_KEY_PREFIX": {
+      "type": "string",
+      "description": "Prefix prepended to all S3 object keys.\n",
+      "x-group": "storage"
+    },
+    "EXTRA_MEDIA_HOSTS": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "default": "",
+      "x-version-history": [
+        {
+          "version": "4.4.0",
+          "change": "added"
+        }
+      ]
+    },
+    "S3_OPEN_TIMEOUT": {
+      "type": "integer",
+      "description": "",
+      "x-group": "storage",
+      "default": 5
+    },
+    "S3_READ_TIMEOUT": {
+      "type": "integer",
+      "description": "",
+      "x-group": "storage",
+      "default": 5
+    },
+    "S3_RETRY_LIMIT": {
+      "type": "integer",
+      "description": "",
+      "x-group": "storage",
+      "default": 0
+    },
+    "S3_FORCE_SINGLE_REQUEST": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "storage",
+      "default": false
+    },
+    "S3_ENABLE_CHECKSUM_MODE": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "storage",
+      "default": false
+    },
+    "S3_STORAGE_CLASS": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "enum": [
+        "STANDARD",
+        "REDUCED_REDUNDANCY",
+        "STANDARD_IA",
+        "ONEZONE_IA",
+        "INTELLIGENT_TIERING",
+        "GLACIER",
+        "DEEP_ARCHIVE"
+      ]
+    },
+    "S3_MULTIPART_THRESHOLD": {
+      "type": "integer",
+      "description": "",
+      "x-group": "storage",
+      "default": 15728640
+    },
+    "S3_PERMISSION": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "default": "public-read",
+      "enum": [
+        "private",
+        "public-read",
+        "authenticated-read"
+      ]
+    },
+    "S3_BATCH_DELETE_LIMIT": {
+      "type": "integer",
+      "description": "Maximum number of objects deleted in a single S3 batch-delete request.\n",
+      "x-group": "media",
+      "default": 1000,
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "S3_BATCH_DELETE_RETRY": {
+      "type": "integer",
+      "description": "Number of retries for failed S3 batch-delete operations.\n",
+      "x-group": "media",
+      "default": 3,
+      "minimum": 0
+    },
+    "SWIFT_ENABLED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "storage",
+      "default": false
+    },
+    "SWIFT_USERNAME": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "SWIFT_TENANT": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "SWIFT_PASSWORD": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "x-secret": true
+    },
+    "SWIFT_PROJECT_ID": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "SWIFT_AUTH_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "SWIFT_CONTAINER": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "SWIFT_OBJECT_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "SWIFT_REGION": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage"
+    },
+    "SWIFT_DOMAIN_NAME": {
+      "type": "string",
+      "description": "",
+      "x-group": "storage",
+      "default": "default"
+    },
+    "SWIFT_TEMP_URL_KEY": {
+      "type": "string",
+      "description": "Swift temporary URL signing key.\n",
+      "x-group": "storage",
+      "x-secret": true
+    },
+    "SWIFT_CACHE_TTL": {
+      "type": "integer",
+      "description": "",
+      "x-group": "storage",
+      "default": 60
+    },
+    "AZURE_ENABLED": {
+      "type": "boolean",
+      "description": "Use Azure Blob Storage for media files.\n",
+      "x-group": "storage",
+      "default": false
+    },
+    "AZURE_STORAGE_ACCOUNT": {
+      "type": "string",
+      "description": "Azure storage account name.\n",
+      "x-group": "storage"
+    },
+    "AZURE_STORAGE_ACCESS_KEY": {
+      "type": "string",
+      "description": "Azure storage account access key.\n",
+      "x-group": "storage",
+      "x-secret": true
+    },
+    "AZURE_CONTAINER_NAME": {
+      "type": "string",
+      "description": "Azure blob container name.\n",
+      "x-group": "storage"
+    },
+    "AZURE_ALIAS_HOST": {
+      "type": "string",
+      "description": "Custom hostname for public Azure media URLs.\n",
+      "x-group": "storage"
+    },
+    "CACHE_BUSTER_ENABLED": {
+      "type": "boolean",
+      "description": "If set to `true`, then Mastodon will send a cache-busting request to the media URL when deleting the file so the file can be purged from the cache.\n",
+      "x-group": "cache-buster",
+      "default": false,
+      "x-extra": "Defaults to `false`\n"
+    },
+    "CACHE_BUSTER_HTTP_METHOD": {
+      "type": "string",
+      "description": "",
+      "x-group": "cache-buster",
+      "default": "GET",
+      "enum": [
+        "GET",
+        "POST",
+        "PURGE"
+      ],
+      "x-extra": "Defaults to `GET`\n"
+    },
+    "CACHE_BUSTER_SECRET_HEADER": {
+      "type": "string",
+      "description": "Name of the header containing the secret defined in `CACHE_BUSTER_SECRET`.\n",
+      "x-group": "cache-buster",
+      "x-extra": "Defaults to an empty value, meaning no header will be added\n"
+    },
+    "CACHE_BUSTER_SECRET": {
+      "type": "string",
+      "description": "Value of the `CACHE_BUSTER_SECRET_HEADER` header configured above.\n",
+      "x-group": "cache-buster",
+      "x-secret": true
+    },
+    "OMNIAUTH_ONLY": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "ONE_CLICK_SSO_LOGIN": {
+      "type": "boolean",
+      "description": "Enables the `Login or Register` button.\nUseful for instances where all authentication takes place using a single\nexternal provider (CAS, SAML or OIDC).\n\nEnabling this will prevent caching for anonymous sessions.\nAnd, when using OIDC discovery, the identity provider has to be available\nbefore Mastodon starts.\n",
+      "x-group": "authentication",
+      "default": false
+    },
+    "ALLOW_UNSAFE_AUTH_PROVIDER_REATTACH": {
+      "type": "boolean",
+      "description": "Allow existing users to log in using external authentication providers they have not previously used, provided they use the same e-mail address. This can be useful if you want to offer users the ability to migrate from one external provider to another, but this is a potential security risk, as this allows attackers to hijack an account if they manage to create a new identity with their target's e-mail address on any of your configured providers.\n",
+      "x-group": "authentication",
+      "default": false,
+      "x-version-history": [
+        {
+          "version": "4.2.6",
+          "change": "added"
+        }
+      ]
+    },
+    "SSO_ACCOUNT_SIGN_UP": {
+      "type": "string",
+      "description": "URL of an external sign-up page shown to users whose SSO account does not yet exist in Mastodon.\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "SSO_ACCOUNT_SETTINGS": {
+      "type": "string",
+      "description": "URL of an external account-settings page linked to in the Mastodon UI when SSO is active.\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "LDAP_ENABLED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "LDAP_HOST": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "localhost"
+    },
+    "LDAP_PORT": {
+      "type": "integer",
+      "description": "",
+      "x-group": "authentication",
+      "default": 389,
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "LDAP_METHOD": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "simple_tls",
+      "enum": [
+        "simple_tls",
+        "start_tls",
+        "plain"
+      ]
+    },
+    "LDAP_BASE": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "examples": [
+        "dc=example,dc=com"
+      ]
+    },
+    "LDAP_BIND_DN": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "LDAP_PASSWORD": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "x-secret": true
+    },
+    "LDAP_UID": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "cn"
+    },
+    "LDAP_SEARCH_FILTER": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "LDAP_MAIL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "mail"
+    },
+    "LDAP_TLS_NO_VERIFY": {
+      "type": "boolean",
+      "description": "Skip TLS certificate verification when connecting to the LDAP server.\n",
+      "x-group": "authentication",
+      "default": false
+    },
+    "LDAP_UID_CONVERSION_ENABLED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "LDAP_UID_CONVERSION_SEARCH": {
+      "type": "string",
+      "description": "Characters in LDAP UIDs that should be replaced when UID conversion is enabled.\n",
+      "x-group": "authentication",
+      "default": ".,- "
+    },
+    "LDAP_UID_CONVERSION_REPLACE": {
+      "type": "string",
+      "description": "Replacement character used when converting LDAP UIDs.\n",
+      "x-group": "authentication",
+      "default": "_"
+    },
+    "PAM_ENABLED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "PAM_EMAIL_DOMAIN": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "PAM_DEFAULT_SERVICE": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "rpam"
+    },
+    "PAM_CONTROLLED_SERVICE": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "CAS_ENABLED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "CAS_DISPLAY_NAME": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "CAS_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "CAS_HOST": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "CAS_PORT": {
+      "type": "integer",
+      "description": "",
+      "x-group": "authentication",
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "CAS_SSL": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "CAS_VALIDATE_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "CAS_CALLBACK_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "CAS_LOGOUT_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "CAS_LOGIN_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "CAS_UID_FIELD": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "user"
+    },
+    "CAS_CA_PATH": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "CAS_DISABLE_SSL_VERIFICATION": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "CAS_UID_KEY": {
+      "type": "string",
+      "description": "The key to the username to use for the account.\nThe created account will be `@uid@domain.tld`.\n",
+      "x-group": "authentication",
+      "default": "user"
+    },
+    "CAS_NAME_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "name"
+    },
+    "CAS_EMAIL_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "email"
+    },
+    "CAS_NICKNAME_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "nickname"
+    },
+    "CAS_FIRST_NAME_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "firstname"
+    },
+    "CAS_LAST_NAME_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "lastname"
+    },
+    "CAS_LOCATION_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "location"
+    },
+    "CAS_IMAGE_KEY": {
+      "type": "string",
+      "description": "The key to the image to use as account avatar.\nThe value in this key must be a URL to the image file.\nIt is important to use a supported file format (JPEG or PNG, not SVG).\n",
+      "x-group": "authentication",
+      "default": "image"
+    },
+    "CAS_PHONE_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "default": "phone"
+    },
+    "CAS_SECURITY_ASSUME_EMAIL_IS_VERIFIED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "SAML_ENABLED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "SAML_DISPLAY_NAME": {
+      "type": "string",
+      "description": "Label shown on the SAML sign-in button.\n",
+      "x-group": "authentication"
+    },
+    "SAML_ACS_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "SAML_ISSUER": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_IDP_SSO_TARGET_URL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "SAML_IDP_CERT": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_IDP_CERT_FINGERPRINT": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_NAME_IDENTIFIER_FORMAT": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "examples": [
+        "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+      ]
+    },
+    "SAML_CERT": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_PRIVATE_KEY": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication",
+      "x-secret": true
+    },
+    "SAML_SECURITY_WANT_ASSERTION_SIGNED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "SAML_SECURITY_WANT_ASSERTION_ENCRYPTED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "SAML_SECURITY_ASSUME_EMAIL_IS_VERIFIED": {
+      "type": "boolean",
+      "description": "",
+      "x-group": "authentication",
+      "default": false
+    },
+    "SAML_ATTRIBUTES_STATEMENTS_UID": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_ATTRIBUTES_STATEMENTS_EMAIL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_ATTRIBUTES_STATEMENTS_FULL_NAME": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_ATTRIBUTES_STATEMENTS_LAST_NAME": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_UID_ATTRIBUTE": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_ATTRIBUTES_STATEMENTS_VERIFIED": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL": {
+      "type": "string",
+      "description": "",
+      "x-group": "authentication"
+    },
+    "SAML_IDP_CERT_FINGERPRINT_VALIDATOR": {
+      "type": "string",
+      "description": "Ruby expression or proc used to validate the IdP certificate fingerprint dynamically.\n",
+      "x-group": "authentication"
+    },
+    "SAML_IDP_SSO_TARGET_PARAMS": {
+      "type": "string",
+      "description": "Extra query parameters appended to the IdP SSO URL at runtime.\n",
+      "x-group": "authentication"
+    },
+    "SAML_ALLOWED_CLOCK_DRIFT": {
+      "type": "integer",
+      "description": "Permitted clock skew in seconds when validating SAML assertion timestamps.\n",
+      "x-group": "authentication",
+      "default": 0
+    },
+    "OIDC_ENABLED": {
+      "type": "boolean",
+      "description": "Enable OpenID Connect authentication.\n",
+      "x-group": "authentication",
+      "default": false
+    },
+    "OIDC_DISPLAY_NAME": {
+      "type": "string",
+      "description": "Label shown on the OIDC sign-in button.\n",
+      "x-group": "authentication"
+    },
+    "OIDC_ISSUER": {
+      "type": "string",
+      "description": "OIDC issuer URL.\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "OIDC_DISCOVERY": {
+      "type": "boolean",
+      "description": "Fetch OIDC endpoints from the issuer's discovery document.\n",
+      "x-group": "authentication",
+      "default": false
+    },
+    "OIDC_SCOPE": {
+      "type": "string",
+      "description": "Space-separated list of OIDC scopes to request.\n",
+      "x-group": "authentication",
+      "examples": [
+        "openid email profile"
+      ]
+    },
+    "OIDC_UID_FIELD": {
+      "type": "string",
+      "description": "ID token / userinfo claim used as the stable unique identifier.\n",
+      "x-group": "authentication",
+      "examples": [
+        "sub"
+      ]
+    },
+    "OIDC_CLIENT_ID": {
+      "type": "string",
+      "description": "OIDC client identifier.\n",
+      "x-group": "authentication"
+    },
+    "OIDC_CLIENT_SECRET": {
+      "type": "string",
+      "description": "OIDC client secret.\n",
+      "x-group": "authentication",
+      "x-secret": true
+    },
+    "OIDC_REDIRECT_URI": {
+      "type": "string",
+      "description": "OIDC redirect / callback URI registered with the provider.\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "OIDC_AUTH_ENDPOINT": {
+      "type": "string",
+      "description": "Authorization endpoint URL (overrides discovery).\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "OIDC_TOKEN_ENDPOINT": {
+      "type": "string",
+      "description": "Token endpoint URL (overrides discovery).\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "OIDC_USER_INFO_ENDPOINT": {
+      "type": "string",
+      "description": "Userinfo endpoint URL (overrides discovery).\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "OIDC_JWKS_URI": {
+      "type": "string",
+      "description": "JWKS endpoint URL (overrides discovery).\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "OIDC_END_SESSION_ENDPOINT": {
+      "type": "string",
+      "description": "RP-initiated logout endpoint (overrides discovery).\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "OIDC_IDP_LOGOUT_REDIRECT_URI": {
+      "type": "string",
+      "description": "URI to redirect to after the IdP logs the user out.\n",
+      "x-group": "authentication",
+      "format": "uri"
+    },
+    "OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED": {
+      "type": "boolean",
+      "description": "Treat the OIDC e-mail claim as verified even when the email_verified claim is absent or false.\n",
+      "x-group": "authentication",
+      "default": false
+    },
+    "OIDC_CLIENT_AUTH_METHOD": {
+      "type": "string",
+      "description": "Method used to authenticate the client with the token endpoint.\n",
+      "x-group": "authentication",
+      "default": "client_secret_basic",
+      "enum": [
+        "client_secret_basic",
+        "client_secret_post",
+        "private_key_jwt"
+      ]
+    },
+    "OIDC_USE_PKCE": {
+      "type": "boolean",
+      "description": "Use PKCE (Proof Key for Code Exchange) when requesting tokens.\n",
+      "x-group": "authentication",
+      "default": false
+    },
+    "OIDC_SEND_NONCE": {
+      "type": "boolean",
+      "description": "Include a nonce in the OIDC authorization request.\n",
+      "x-group": "authentication",
+      "default": true
+    },
+    "OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT": {
+      "type": "boolean",
+      "description": "Include the scope parameter when calling the OIDC token endpoint.\n",
+      "x-group": "authentication",
+      "default": true
+    },
+    "OIDC_RESPONSE_TYPE": {
+      "type": "string",
+      "description": "OIDC response type.\n",
+      "x-group": "authentication",
+      "default": "code",
+      "enum": [
+        "code",
+        "token",
+        "id_token"
+      ]
+    },
+    "OIDC_RESPONSE_MODE": {
+      "type": "string",
+      "description": "OIDC response mode.\n",
+      "x-group": "authentication",
+      "default": "query",
+      "enum": [
+        "query",
+        "form_post",
+        "fragment"
+      ]
+    },
+    "OIDC_DISPLAY": {
+      "type": "string",
+      "description": "Hint to the OIDC provider about the display type for the authentication UI.\n",
+      "x-group": "authentication",
+      "default": "page",
+      "enum": [
+        "page",
+        "popup",
+        "touch",
+        "wap"
+      ]
+    },
+    "OIDC_PROMPT": {
+      "type": "string",
+      "description": "Space-separated list of OIDC prompt values sent to the provider.\n",
+      "x-group": "authentication",
+      "examples": [
+        "consent",
+        "login consent"
+      ]
+    },
+    "OIDC_HOST": {
+      "type": "string",
+      "description": "OIDC provider hostname (used when discovery is disabled and individual endpoints are not set).\n",
+      "x-group": "authentication"
+    },
+    "OIDC_PORT": {
+      "type": "integer",
+      "description": "OIDC provider port.\n",
+      "x-group": "authentication",
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "OIDC_HTTP_SCHEME": {
+      "type": "string",
+      "description": "HTTP scheme used to construct OIDC endpoint URLs when OIDC_HOST is set.\n",
+      "x-group": "authentication",
+      "default": "https",
+      "enum": [
+        "http",
+        "https"
+      ]
+    },
+    "http_proxy": {
+      "type": "string",
+      "description": "HTTP/HTTPS proxy URL used by Mastodon for all outgoing requests. Set when running behind a Tor SOCKS proxy or another general-purpose forward proxy.\n",
+      "x-group": "tor",
+      "format": "uri",
+      "x-anchor": "http_proxy"
+    },
+    "http_hidden_proxy": {
+      "type": "string",
+      "description": "Proxy URL used specifically for outgoing requests to `.onion` and `.i2p` hostnames. Allows separating clearnet traffic from hidden-service traffic.\n",
+      "x-group": "tor",
+      "format": "uri",
+      "x-anchor": "http_hidden_proxy"
+    },
+    "ALLOW_ACCESS_TO_HIDDEN_SERVICE": {
+      "type": "boolean",
+      "description": "Allow Mastodon to connect to `.onion` and `.i2p` addresses via the HTTP proxy.\n",
+      "x-group": "tor",
+      "default": false
+    },
+    "HCAPTCHA_SITE_KEY": {
+      "type": "string",
+      "description": "hCaptcha site key (public, sent to the browser).\n",
+      "x-group": "captcha"
+    },
+    "HCAPTCHA_SECRET_KEY": {
+      "type": "string",
+      "description": "If set, registrations confirm page will display a captcha, see [Captcha](https://docs.joinmastodon.org/admin/optional/captcha/)\n",
+      "x-group": "captcha",
+      "x-secret": true
+    },
+    "EMAIL_DOMAIN_ALLOWLIST": {
+      "type": "string",
+      "description": "If set, registrations will not be possible with any emails **except** those from the specified domains. Pipe-separated values, e.g.: `foo.com|bar.com`\n",
+      "x-group": "features",
+      "default": ""
+    },
+    "EMAIL_DOMAIN_DENYLIST": {
+      "type": "string",
+      "description": "If set, registrations will not be possible with any emails from the specified domains. Pipe-separated values, e.g.: `foo.com|bar.com`\n",
+      "x-group": "features",
+      "default": "",
+      "x-status": "deprecated",
+      "x-hints": [
+        {
+          "style": "warning",
+          "body": "This option is deprecated. You can dynamically block email domains from the admin interface or the `tootctl` command-line interface.\n"
+        }
+      ]
+    },
+    "EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION": {
+      "type": "boolean",
+      "description": "When set to `true`, causes a check of user email address against the blocked list after confirmation (by default this only happens before confirmation).\n",
+      "x-group": "features",
+      "default": false
+    },
+    "MAX_SESSION_ACTIVATIONS": {
+      "type": "integer",
+      "description": "Defines the maximum number of browser sessions allowed per user, which defaults to 10. If a new browser session is created and the limit is exceeded, the oldest session is deleted, resulting in the user being logged out of that session.\n",
+      "x-group": "features",
+      "default": 10,
+      "minimum": 1
+    },
+    "USER_ACTIVE_DAYS": {
+      "type": "integer",
+      "description": "Mastodon stores home feeds in RAM (specifically, in the Redis database). This makes them very fast to access and update, but it also means that you don't want to keep them there if they're not used, and you don't want to spend resources on inserting new items into home feeds that will not be accessed. For this reason, Mastodon periodically clears out home feeds of users who haven't been online in a while, and if they re-appear, it regenerates those home feeds from database data. By default, users are considered active if they have been online in the past `7` days.\n\nRegeneration of home feeds is computationally expensive, if your Sidekiq is constantly doing it because your users come online every 3 days but your `USER_ACTIVE_DAYS` is set to 2, then consider adjusting it up.\n",
+      "x-group": "features",
+      "default": 7,
+      "minimum": 1,
+      "x-hints": [
+        {
+          "style": "info",
+          "body": "This setting has no relation to which users are considered active for the purposes of statistics, such as the Monthly Active Users number.\n"
+        }
+      ]
+    },
+    "DISABLE_FOLLOWERS_SYNCHRONIZATION": {
+      "type": "boolean",
+      "description": "When set to `true`, disables the follower synchronization action which occurs after some events.\n",
+      "x-group": "features",
+      "default": false
+    },
+    "MAX_FOLLOWS_THRESHOLD": {
+      "type": "integer",
+      "description": "Limit the number of (unauthorized) follows or follow requests of an account. Defaults to `7500`.\n",
+      "x-group": "features",
+      "default": 7500
+    },
+    "MAX_FOLLOWS_RATIO": {
+      "type": "number",
+      "description": "For accounts over the `MAX_FOLLOWS_THRESHOLD` limit of authorized follows, limits new unauthorized follows to follower count times this ratio. Defaults to `1.1`.\n",
+      "x-group": "features",
+      "default": 1.1,
+      "minimum": 1
+    },
+    "DISABLE_AUTOMATIC_SWITCHING_TO_APPROVED_REGISTRATIONS": {
+      "type": "boolean",
+      "description": "In order to prevent abandoned Mastodon servers from being used for spam, harassment and other malicious activity, Mastodon will automatically switch new user registrations to require moderator approval whenever they are left open and no activity (including non-moderation actions from apps) from any logged-in user with permission to access moderation reports has been detected in a full week. When this happens, users with the permission to change server settings will receive an email notification.\n\nSetting `DISABLE_AUTOMATIC_SWITCHING_TO_APPROVED_REGISTRATIONS=true` disables this behavior.\n",
+      "x-group": "features",
+      "default": false,
+      "x-version-history": [
+        {
+          "version": "4.2.8",
+          "change": "added"
+        }
+      ]
+    },
+    "VIPS_BLOCK_UNTRUSTED": {
+      "type": "boolean",
+      "description": "Block untrusted/complex libvips image operations (security hardening).\n",
+      "x-group": "features",
+      "default": true
+    },
+    "PROXY_PROTO_V1": {
+      "type": "boolean",
+      "description": "Enable PROXY protocol v1 support for the streaming server.\n",
+      "x-group": "features",
+      "default": false
+    },
+    "SENDFILE_HEADER": {
+      "type": "string",
+      "description": "Header used by the web server to serve files directly (e.g. \"X-Accel-Redirect\" for nginx).\n",
+      "x-group": "web-server",
+      "enum": [
+        "X-Sendfile",
+        "X-Accel-Redirect"
+      ]
+    },
+    "LOCAL_HTTPS": {
+      "type": "boolean",
+      "description": "In production environments, HTTPS is always enabled. In other environments, this config value enables HTTPS when set to `true`.\n",
+      "x-group": "web-server",
+      "default": false
+    },
+    "MAX_REQUEST_POOL_SIZE": {
+      "type": "integer",
+      "description": "Limits the maximum size of the HTTP request pool used to interact with other servers. Defaults to `512`.\n",
+      "x-group": "web-server",
+      "default": 512,
+      "minimum": 1
+    },
+    "MASTODON_SIDEKIQ_READY_FILENAME": {
+      "type": "string",
+      "description": "Path to a file created by Sidekiq when it is ready to process jobs. Used for Kubernetes readiness probes.\n",
+      "x-group": "web-server"
+    },
+    "IP_RETENTION_PERIOD": {
+      "type": "integer",
+      "description": "Controls how long IP Address data connected to user records is preserved in the database. Defaults to `31536000` (1 year)\n",
+      "x-group": "retention",
+      "default": 31556952
+    },
+    "SESSION_RETENTION_PERIOD": {
+      "type": "integer",
+      "description": "Controls how long authentication sessions are kept valid without activity. Defaults to `31536000` (1 year)\n",
+      "x-group": "retention",
+      "default": 31556952
+    },
+    "DEEPL_API_KEY": {
+      "type": "string",
+      "description": "When using DeepL, the API key used to access the translation service.\n",
+      "x-group": "translation",
+      "x-secret": true
+    },
+    "DEEPL_PLAN": {
+      "type": "string",
+      "description": "When using DeepL, the name of the configured plan.\n",
+      "x-group": "translation",
+      "default": "free",
+      "enum": [
+        "free",
+        "pro"
+      ],
+      "x-version-history": [
+        {
+          "version": "4.2.6",
+          "change": "added"
+        }
+      ]
+    },
+    "LIBRE_TRANSLATE_ENDPOINT": {
+      "type": "string",
+      "description": "The endpoint (URL) with a running Libre Translate service.\n",
+      "x-group": "translation",
+      "format": "uri"
+    },
+    "LIBRE_TRANSLATE_API_KEY": {
+      "type": "string",
+      "description": "When using Libre Translate, the API key used to access the translation service.\n",
+      "x-group": "translation",
+      "x-secret": true
+    },
+    "FFMPEG_BINARY": {
+      "type": "string",
+      "description": "",
+      "x-group": "media",
+      "default": "ffmpeg",
+      "x-extra": "Defaults to empty value (not enabled)\n"
+    },
+    "FFPROBE_BINARY": {
+      "type": "string",
+      "description": "Path to the ffprobe binary used to inspect video files.\n",
+      "x-group": "media",
+      "default": "ffprobe"
+    },
+    "SKIP_POST_DEPLOYMENT_MIGRATIONS": {
+      "type": "boolean",
+      "description": "This variable only has any effect when running `rake db:migrate` and it is extremely specific to the Mastodon upgrade process. There are two types of database migrations, those that run before new code is deployed and running, and those that run after. By default, both types of migrations are executed. If you shut down all Mastodon processes before running migrations, then there is no difference. The variable makes sense for zero-downtime upgrades. You will see in the upgrade instructions of a specific Mastodon version if you need to use it or not.\n",
+      "x-group": "other",
+      "default": false
+    },
+    "BUNDLE_GEMFILE": {
+      "type": "string",
+      "description": "Instructs bundler (ruby package manager) on how to build the application.\n",
+      "x-group": "other"
+    },
+    "BACKTRACE": {
+      "type": "string",
+      "description": "Set to `1` to allow backtracing to Rails framework code.\n",
+      "x-group": "other"
+    },
+    "GITHUB_API_TOKEN": {
+      "type": "string",
+      "description": "Used in a rake task for generating AUTHORS.md from GitHub commit history.\n",
+      "x-group": "other",
+      "x-secret": true
+    }
+  },
+  "x-docs-layout": {
+    "frontmatter": {
+      "title": "Configuring your environment",
+      "description": "Setting environment variables for your Mastodon installation.",
+      "menu": {
+        "docs": {
+          "weight": 30,
+          "parent": "admin"
+        }
+      }
+    },
+    "intro": "Mastodon uses environment variables as its configuration.\n\nFor convenience, it can read them from a flat file called `.env.production` in the Mastodon directory (called a \"dotenv\" file), but they can always be overridden by a specific process. For example, systemd service files can read environment variables from an `EnvironmentFile` or inline definitions with `Environment`, so you can have different configuration parameters for specific services. They can also be specified when calling Mastodon from the command line.\n",
+    "sections": [
+      {
+        "title": "Basic",
+        "anchor": "basic",
+        "subsections": [
+          {
+            "title": "Federation and display",
+            "anchor": "federation",
+            "variables": [
+              "LOCAL_DOMAIN",
+              "WEB_DOMAIN",
+              "ALTERNATE_DOMAINS",
+              "ALLOWED_PRIVATE_ADDRESSES",
+              "AUTHORIZED_FETCH",
+              "LIMITED_FEDERATION_MODE",
+              "DISALLOW_UNAUTHENTICATED_API_ACCESS",
+              "SINGLE_USER_MODE",
+              "DISABLE_AUTOMATIC_SWITCHING_TO_APPROVED_REGISTRATIONS",
+              "DEFAULT_LOCALE",
+              "FORCE_DEFAULT_LOCALE",
+              "SELF_DESTRUCT",
+              "EXPERIMENTAL_FEATURES",
+              "UPDATE_CHECK_URL",
+              "DONATION_CAMPAIGNS_URL",
+              "DONATION_CAMPAIGNS_ENVIRONMENT",
+              "SOURCE_TAG",
+              "GITHUB_REPOSITORY",
+              "SOURCE_BASE_URL",
+              "SOURCE_COMMIT",
+              "MASTODON_VERSION_PRERELEASE",
+              "MASTODON_VERSION_METADATA"
+            ]
+          },
+          {
+            "title": "Secrets",
+            "anchor": "secrets",
+            "variables": [
+              "SECRET_KEY_BASE",
+              "OTP_SECRET",
+              "VAPID_PRIVATE_KEY",
+              "VAPID_PUBLIC_KEY"
+            ]
+          },
+          {
+            "title": "Deployment",
+            "anchor": "deployment",
+            "variables": [
+              "RAILS_ENV",
+              "RAILS_SERVE_STATIC_FILES",
+              "RAILS_LOG_LEVEL",
+              "LOG_LEVEL",
+              "TRUSTED_PROXY_IP",
+              "SOCKET",
+              "PORT",
+              "NODE_ENV",
+              "BIND",
+              "MASTODON_USE_LIBVIPS"
+            ]
+          },
+          {
+            "title": "Scaling options",
+            "anchor": "scaling",
+            "page_refs": [
+              "admin/scaling"
+            ],
+            "variables": [
+              "SIDEKIQ_CONCURRENCY",
+              "WEB_CONCURRENCY",
+              "MAX_THREADS",
+              "MIN_THREADS",
+              "PERSISTENT_TIMEOUT",
+              "PREPARED_STATEMENTS",
+              "STREAMING_API_BASE_URL",
+              "STREAMING_CLUSTER_NUM"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Backend",
+        "anchor": "backend",
+        "subsections": [
+          {
+            "title": "PostgreSQL",
+            "anchor": "postgresql",
+            "variables": [
+              "DB_HOST",
+              "DB_USER",
+              "DB_NAME",
+              "DB_PASS",
+              "DB_PORT",
+              "DB_POOL",
+              "DB_SSLMODE",
+              "DATABASE_URL",
+              "QUERY_LOG_TAGS_ENABLED"
+            ]
+          },
+          {
+            "title": "PostgreSQL (read-only replica)",
+            "anchor": "postgresql-replica",
+            "hints": [
+              {
+                "style": "info",
+                "body": "If you want to use a read-only database replica, you can have more details [on this page](../scaling/#read-replicas)\n"
+              }
+            ],
+            "variables": [
+              "REPLICA_DB_HOST",
+              "REPLICA_DB_PORT",
+              "REPLICA_DB_NAME",
+              "REPLICA_DB_USER",
+              "REPLICA_DB_PASS",
+              "REPLICA_DATABASE_URL",
+              "REPLICA_PREPARED_STATEMENTS",
+              "REPLICA_DB_TASKS"
+            ]
+          },
+          {
+            "title": "Redis",
+            "anchor": "redis",
+            "intro": "Mastodon uses Redis in three different ways:\n\n* The web application itself uses redis to store data and communicate with the streaming server.\n* Redis is used as cache backend for Rails' built-in caching functionality.\n* Sidekiq, which we use to process background jobs, stores job data in redis.\n\nYou can use a single Redis instance for all three use cases. Simple use the appropriate `REDIS_*` variables mentioned below. But you can\nalso use two or even three distinct Redis instances by using the variables prefixed with `CACHE_` and `SIDEKIQ_`.\n",
+            "hints": [
+              {
+                "style": "info",
+                "body": "It is advisable to use a separate Redis server for volatile cache. You may wish to do so if your single Redis server starts getting overwhelmed.\n"
+              }
+            ],
+            "variables": [
+              "REDIS_HOST",
+              "REDIS_PORT",
+              "REDIS_DB",
+              "REDIS_USER",
+              "REDIS_PASSWORD",
+              "REDIS_URL",
+              "REDIS_DRIVER",
+              "REDIS_NAMESPACE",
+              "REDIS_SENTINELS",
+              "REDIS_SENTINEL_MASTER",
+              "REDIS_SENTINEL_PORT",
+              "REDIS_SENTINEL_USERNAME",
+              "REDIS_SENTINEL_PASSWORD",
+              "CACHE_REDIS_HOST",
+              "CACHE_REDIS_PORT",
+              "CACHE_REDIS_DB",
+              "CACHE_REDIS_USER",
+              "CACHE_REDIS_PASSWORD",
+              "CACHE_REDIS_URL",
+              "CACHE_REDIS_NAMESPACE",
+              "CACHE_REDIS_SENTINELS",
+              "CACHE_REDIS_SENTINEL_MASTER",
+              "CACHE_REDIS_SENTINEL_PORT",
+              "CACHE_REDIS_SENTINEL_USERNAME",
+              "CACHE_REDIS_SENTINEL_PASSWORD",
+              "SIDEKIQ_REDIS_HOST",
+              "SIDEKIQ_REDIS_PORT",
+              "SIDEKIQ_REDIS_DB",
+              "SIDEKIQ_REDIS_USER",
+              "SIDEKIQ_REDIS_PASSWORD",
+              "SIDEKIQ_REDIS_URL",
+              "SIDEKIQ_REDIS_NAMESPACE",
+              "SIDEKIQ_REDIS_SENTINELS",
+              "SIDEKIQ_REDIS_SENTINEL_MASTER",
+              "SIDEKIQ_REDIS_SENTINEL_PORT",
+              "SIDEKIQ_REDIS_SENTINEL_USERNAME",
+              "SIDEKIQ_REDIS_SENTINEL_PASSWORD"
+            ]
+          },
+          {
+            "title": "Elasticsearch",
+            "anchor": "elasticsearch",
+            "page_refs": [
+              "admin/elasticsearch"
+            ],
+            "variables": [
+              "ES_ENABLED",
+              "ES_PRESET",
+              "ES_HOST",
+              "ES_PORT",
+              "ES_USER",
+              "ES_PASS",
+              "ES_PREFIX",
+              "ES_CA_FILE"
+            ]
+          },
+          {
+            "title": "SMTP email delivery",
+            "anchor": "smtp",
+            "variables": [
+              "SMTP_SERVER",
+              "SMTP_PORT",
+              "SMTP_LOGIN",
+              "SMTP_PASSWORD",
+              "SMTP_FROM_ADDRESS",
+              "SMTP_DOMAIN",
+              "SMTP_DELIVERY_METHOD",
+              "SMTP_AUTH_METHOD",
+              "SMTP_CA_FILE",
+              "SMTP_OPENSSL_VERIFY_MODE",
+              "SMTP_ENABLE_STARTTLS_AUTO",
+              "SMTP_ENABLE_STARTTLS",
+              "SMTP_TLS",
+              "SMTP_SSL",
+              "SMTP_REPLY_TO",
+              "SMTP_RETURN_PATH"
+            ],
+            "subsections": [
+              {
+                "title": "Basic configuration",
+                "anchor": "basic",
+                "intro": "* `SMTP_SERVER`: Specify the server to use. For example `sub.domain.tld`.\n* `SMTP_PORT`: By default, the value is `25` (the usual port for SMTP). If StartTLS is detected, it may be switched to port 587.\n* `SMTP_DOMAIN`: Only required if a HELO domain is needed. Will be set to the `SMTP_SERVER` domain by default.\n* `SMTP_FROM_ADDRESS`: Specify a sender address.\n* `SMTP_DELIVERY_METHOD`: By default, the value is `smtp` (can also be `sendmail`).\n"
+              },
+              {
+                "title": "Authentication for the SMTP server",
+                "anchor": "smtpauthentication",
+                "intro": "* `SMTP_LOGIN`: Login for the SMTP user.\n* `SMTP_PASSWORD`:  Password for the SMTP user.\n* `SMTP_AUTH_METHOD`: Either `plain` (default; the password is transmitted in the clear), `login` (password will be base64 encoded) or `cram_md5`.\n"
+              },
+              {
+                "title": "Secured SMTP",
+                "intro": "By default, a StartTLS connection will be attempted to the specified SMTP server.\n\n* `SMTP_ENABLE_STARTTLS_AUTO`: Default `true`.\n* `SMTP_CA_FILE`: A value may be specified, but on many Linux distros (e.g. Debian-based) this will be `/etc/ssl/certs/ca-certificates.crt`.\n* `SMTP_OPENSSL_VERIFY_MODE`: `none` or `peer`. When using TLS, it may be useful to accept connections with a self-signed certificate.\n* `SMTP_TLS`: `true` or `false` (default `false`)\n* `SMTP_SSL`: `true` or `false` (default `false`)\n\nNote that `TLSv1.3` and `TLSv1.2` are the only SSL/TLS protocols currently considered to be secure.\n"
+              },
+              {
+                "title": "Optional bulk email settings",
+                "intro": "Some transactional email providers require customers to use a separate set of SMTP credentials to send emails that are not transactional in nature. In Mastodon this applies to server announcements and terms of service changes that can result in a lot of emails to the server's users.\n\nThere is a second set of SMTP configuration environment variables for this. These variables are all prefixed with `BULK_`, so you have `BULK_SMTP_SERVER`, `BULK_SMTP_PORT` etc. These work exactly like their non-prefixed counterparts described above.\n\nUsage of the bulk mail settings is completely optional. If you do not set these variables, the same SMTP settings are used for all outgoing emails.\n",
+                "version_history": [
+                  {
+                    "version": "4.4.0",
+                    "change": "added support for optional bulk email settings"
+                  }
+                ],
+                "variables": [
+                  "BULK_SMTP_SERVER",
+                  "BULK_SMTP_PORT",
+                  "BULK_SMTP_LOGIN",
+                  "BULK_SMTP_PASSWORD",
+                  "BULK_SMTP_DOMAIN",
+                  "BULK_SMTP_AUTH_METHOD",
+                  "BULK_SMTP_CA_FILE",
+                  "BULK_SMTP_OPENSSL_VERIFY_MODE",
+                  "BULK_SMTP_ENABLE_STARTTLS_AUTO",
+                  "BULK_SMTP_ENABLE_STARTTLS",
+                  "BULK_SMTP_TLS",
+                  "BULK_SMTP_SSL"
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Prometheus Metrics",
+            "anchor": "prometheus",
+            "intro": "Mastodon optionally supports exposing some metrics using the Prometheus format.\n\nFor the Ruby processes, it is using the [`prometheus_exporter` gem](https://github.com/discourse/prometheus_exporter). Please refer to their documentation for more details.\n\nBy default, you will need to run a `prometheus_exporter` server (using `./bin/prometheus_exporter`) to collect the metrics and expose them to be scraped. See `MASTODON_PROMETHEUS_EXPORTER_LOCAL` if you want to change this behaviour.\n\nNote that metrics in the Prometheus format are always enabled for the streaming server, and can be accessed at `http://streaming-server-host:port/metrics`\n",
+            "version_history": [
+              {
+                "version": "4.4.0",
+                "change": "added support for the Ruby processes"
+              }
+            ],
+            "variables": [
+              "MASTODON_PROMETHEUS_EXPORTER_ENABLED",
+              "MASTODON_PROMETHEUS_EXPORTER_WEB_DETAILED_METRICS",
+              "MASTODON_PROMETHEUS_EXPORTER_SIDEKIQ_DETAILED_METRICS",
+              "MASTODON_PROMETHEUS_EXPORTER_LOCAL",
+              "PROMETHEUS_EXPORTER_HOST",
+              "PROMETHEUS_EXPORTER_PORT",
+              "MASTODON_PROMETHEUS_EXPORTER_HOST",
+              "MASTODON_PROMETHEUS_EXPORTER_PORT"
+            ]
+          },
+          {
+            "title": "OpenTelemetry",
+            "anchor": "otel",
+            "intro": "Mastodon supports exporting tracing data using the OpenTelemetry protocol. The instrumentation uses the standard OTEL Ruby SDK, and should support the [standard OTEL environment configuration variables](https://opentelemetry.io/docs/languages/sdk-configuration/general/), with the exception of `OTEL_SERVICE_NAME` (see `OTEL_SERVICE_NAME_PREFIX` below). Mastodon currently only ships with the OLTP exporter.\n",
+            "version_history": [
+              {
+                "version": "4.3.0",
+                "change": "added support for the Ruby backend"
+              }
+            ],
+            "variables": [
+              "OTEL_SERVICE_NAME_PREFIX",
+              "OTEL_SERVICE_NAME_SEPARATOR",
+              "OTEL_EXPORTER_OTLP_ENDPOINT"
+            ]
+          },
+          {
+            "title": "Translation services",
+            "anchor": "translation",
+            "intro": "Mastodon supports integration with [DeepL] and [LibreTranslate] as backend language translation engines. Both services require separate setup and for configuration of Mastodon (via environment variables) to understand how to use them.\n\n- DeepL needs `DEEPL_API_KEY` and `DEEPL_PLAN` (defaults to \"free\")\n- LibreTranslate needs `LIBRE_TRANSLATE_API_KEY` and `LIBRE_TRANSLATE_ENDPOINT`\n\n[DeepL]: https://www.deepl.com\n[LibreTranslate]: https://libretranslate.com\n",
+            "variables": [
+              "DEEPL_API_KEY",
+              "DEEPL_PLAN",
+              "LIBRE_TRANSLATE_ENDPOINT",
+              "LIBRE_TRANSLATE_API_KEY"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "File storage",
+        "anchor": "files",
+        "subsections": [
+          {
+            "title": "CDN",
+            "anchor": "cdn",
+            "variables": [
+              "CDN_HOST"
+            ]
+          },
+          {
+            "title": "Local file storage",
+            "anchor": "paperclip",
+            "variables": [
+              "PAPERCLIP_ROOT_PATH",
+              "PAPERCLIP_ROOT_URL"
+            ]
+          },
+          {
+            "title": "AWS S3 and compatible",
+            "anchor": "s3",
+            "page_refs": [
+              "admin/optional/object-storage"
+            ],
+            "intro": "The bucket must support access control lists (ACLs). For AWS S3, this means setting the \"Object Ownership\" setting to \"ACLs enabled\". For Google Cloud Storage, this means setting the \"Access control\" setting to \"Fine-grained\".\n",
+            "variables": [
+              "S3_ENABLED",
+              "S3_REGION",
+              "S3_ENDPOINT",
+              "S3_BUCKET",
+              "AWS_ACCESS_KEY_ID",
+              "AWS_SECRET_ACCESS_KEY",
+              "S3_SIGNATURE_VERSION",
+              "S3_OVERRIDE_PATH_STYLE",
+              "S3_PROTOCOL",
+              "S3_HOSTNAME",
+              "S3_ALIAS_HOST",
+              "S3_CLOUDFRONT_HOST",
+              "S3_KEY_PREFIX",
+              "EXTRA_MEDIA_HOSTS",
+              "S3_OPEN_TIMEOUT",
+              "S3_READ_TIMEOUT",
+              "S3_RETRY_LIMIT",
+              "S3_FORCE_SINGLE_REQUEST",
+              "S3_ENABLE_CHECKSUM_MODE",
+              "S3_STORAGE_CLASS",
+              "S3_MULTIPART_THRESHOLD",
+              "S3_PERMISSION",
+              "S3_BATCH_DELETE_LIMIT",
+              "S3_BATCH_DELETE_RETRY"
+            ]
+          },
+          {
+            "title": "Swift",
+            "anchor": "swift",
+            "variables": [
+              "SWIFT_ENABLED",
+              "SWIFT_USERNAME",
+              "SWIFT_TENANT",
+              "SWIFT_PASSWORD",
+              "SWIFT_PROJECT_ID",
+              "SWIFT_AUTH_URL",
+              "SWIFT_CONTAINER",
+              "SWIFT_OBJECT_URL",
+              "SWIFT_REGION",
+              "SWIFT_DOMAIN_NAME",
+              "SWIFT_TEMP_URL_KEY",
+              "SWIFT_CACHE_TTL"
+            ]
+          },
+          {
+            "title": "Azure Blob Storage",
+            "anchor": "azure",
+            "variables": [
+              "AZURE_ENABLED",
+              "AZURE_STORAGE_ACCOUNT",
+              "AZURE_STORAGE_ACCESS_KEY",
+              "AZURE_CONTAINER_NAME",
+              "AZURE_ALIAS_HOST"
+            ]
+          },
+          {
+            "title": "HTTP Cache Buster",
+            "intro": "If configured, the Cache Buster feature will send a request to invalidate the cache for media files when they are deleted or made unavailable from your origin. This allows you to ensure that your caching layer / CDN is purged from any content that is removed from Mastodon.\n",
+            "hints": [
+              {
+                "style": "info",
+                "body": "The way to achieve this is very dependent of your proxy/CDN provider and will require configuration. If you are using nginx for HTTP caching, you will want to look at the `proxy_cache_purge` configuration directive.\n"
+              }
+            ],
+            "variables": [
+              "CACHE_BUSTER_ENABLED",
+              "CACHE_BUSTER_HTTP_METHOD",
+              "CACHE_BUSTER_SECRET_HEADER",
+              "CACHE_BUSTER_SECRET"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "External authentication",
+        "anchor": "external-authentication",
+        "subsections": [
+          {
+            "title": "OmniAuth",
+            "variables": [
+              "ALLOW_UNSAFE_AUTH_PROVIDER_REATTACH",
+              "OMNIAUTH_ONLY",
+              "ONE_CLICK_SSO_LOGIN",
+              "SSO_ACCOUNT_SIGN_UP",
+              "SSO_ACCOUNT_SETTINGS"
+            ]
+          },
+          {
+            "title": "LDAP",
+            "anchor": "ldap",
+            "variables": [
+              "LDAP_ENABLED",
+              "LDAP_HOST",
+              "LDAP_PORT",
+              "LDAP_METHOD",
+              "LDAP_BASE",
+              "LDAP_BIND_DN",
+              "LDAP_PASSWORD",
+              "LDAP_UID",
+              "LDAP_SEARCH_FILTER",
+              "LDAP_MAIL",
+              "LDAP_TLS_NO_VERIFY",
+              "LDAP_UID_CONVERSION_ENABLED",
+              "LDAP_UID_CONVERSION_SEARCH",
+              "LDAP_UID_CONVERSION_REPLACE"
+            ]
+          },
+          {
+            "title": "PAM",
+            "anchor": "pam",
+            "variables": [
+              "PAM_ENABLED",
+              "PAM_EMAIL_DOMAIN",
+              "PAM_DEFAULT_SERVICE",
+              "PAM_CONTROLLED_SERVICE"
+            ]
+          },
+          {
+            "title": "CAS",
+            "anchor": "cas",
+            "variables": [
+              "CAS_ENABLED",
+              "CAS_DISPLAY_NAME",
+              "CAS_URL",
+              "CAS_HOST",
+              "CAS_PORT",
+              "CAS_SSL",
+              "CAS_VALIDATE_URL",
+              "CAS_CALLBACK_URL",
+              "CAS_LOGOUT_URL",
+              "CAS_LOGIN_URL",
+              "CAS_UID_FIELD",
+              "CAS_CA_PATH",
+              "CAS_DISABLE_SSL_VERIFICATION",
+              "CAS_UID_KEY",
+              "CAS_NAME_KEY",
+              "CAS_EMAIL_KEY",
+              "CAS_NICKNAME_KEY",
+              "CAS_FIRST_NAME_KEY",
+              "CAS_LAST_NAME_KEY",
+              "CAS_LOCATION_KEY",
+              "CAS_IMAGE_KEY",
+              "CAS_PHONE_KEY",
+              "CAS_SECURITY_ASSUME_EMAIL_IS_VERIFIED"
+            ]
+          },
+          {
+            "title": "SAML",
+            "anchor": "saml",
+            "variables": [
+              "SAML_ENABLED",
+              "SAML_DISPLAY_NAME",
+              "SAML_ACS_URL",
+              "SAML_ISSUER",
+              "SAML_IDP_SSO_TARGET_URL",
+              "SAML_IDP_CERT",
+              "SAML_IDP_CERT_FINGERPRINT",
+              "SAML_IDP_CERT_FINGERPRINT_VALIDATOR",
+              "SAML_IDP_SSO_TARGET_PARAMS",
+              "SAML_NAME_IDENTIFIER_FORMAT",
+              "SAML_CERT",
+              "SAML_PRIVATE_KEY",
+              "SAML_SECURITY_WANT_ASSERTION_SIGNED",
+              "SAML_SECURITY_WANT_ASSERTION_ENCRYPTED",
+              "SAML_SECURITY_ASSUME_EMAIL_IS_VERIFIED",
+              "SAML_ATTRIBUTES_STATEMENTS_UID",
+              "SAML_ATTRIBUTES_STATEMENTS_EMAIL",
+              "SAML_ATTRIBUTES_STATEMENTS_FULL_NAME",
+              "SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME",
+              "SAML_ATTRIBUTES_STATEMENTS_LAST_NAME",
+              "SAML_UID_ATTRIBUTE",
+              "SAML_ATTRIBUTES_STATEMENTS_VERIFIED",
+              "SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL",
+              "SAML_ALLOWED_CLOCK_DRIFT"
+            ]
+          },
+          {
+            "title": "OIDC",
+            "anchor": "oidc",
+            "variables": [
+              "OIDC_ENABLED",
+              "OIDC_DISPLAY_NAME",
+              "OIDC_ISSUER",
+              "OIDC_DISCOVERY",
+              "OIDC_SCOPE",
+              "OIDC_UID_FIELD",
+              "OIDC_CLIENT_ID",
+              "OIDC_CLIENT_SECRET",
+              "OIDC_REDIRECT_URI",
+              "OIDC_AUTH_ENDPOINT",
+              "OIDC_TOKEN_ENDPOINT",
+              "OIDC_USER_INFO_ENDPOINT",
+              "OIDC_JWKS_URI",
+              "OIDC_END_SESSION_ENDPOINT",
+              "OIDC_IDP_LOGOUT_REDIRECT_URI",
+              "OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED",
+              "OIDC_CLIENT_AUTH_METHOD",
+              "OIDC_USE_PKCE",
+              "OIDC_SEND_NONCE",
+              "OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT",
+              "OIDC_RESPONSE_TYPE",
+              "OIDC_RESPONSE_MODE",
+              "OIDC_DISPLAY",
+              "OIDC_PROMPT",
+              "OIDC_HOST",
+              "OIDC_PORT",
+              "OIDC_HTTP_SCHEME"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Hidden services",
+        "anchor": "hidden-services",
+        "subsections": [
+          {
+            "title": "TOR",
+            "anchor": "tor",
+            "page_refs": [
+              "admin/optional/tor"
+            ],
+            "variables": [
+              "http_proxy",
+              "http_hidden_proxy",
+              "ALLOW_ACCESS_TO_HIDDEN_SERVICE"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Limits",
+        "anchor": "limits",
+        "subsections": [
+          {
+            "title": "Anti Spam / Abuse",
+            "variables": [
+              "HCAPTCHA_SITE_KEY",
+              "HCAPTCHA_SECRET_KEY"
+            ]
+          },
+          {
+            "title": "Email domains",
+            "variables": [
+              "EMAIL_DOMAIN_ALLOWLIST",
+              "EMAIL_DOMAIN_DENYLIST",
+              "EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION"
+            ]
+          },
+          {
+            "title": "Sessions",
+            "variables": [
+              "MAX_SESSION_ACTIVATIONS"
+            ]
+          },
+          {
+            "title": "Home feeds",
+            "variables": [
+              "USER_ACTIVE_DAYS"
+            ]
+          },
+          {
+            "title": "Other limits",
+            "variables": [
+              "DISABLE_FOLLOWERS_SYNCHRONIZATION",
+              "MAX_FOLLOWS_THRESHOLD",
+              "MAX_FOLLOWS_RATIO",
+              "MAX_REQUEST_POOL_SIZE",
+              "VIPS_BLOCK_UNTRUSTED",
+              "PROXY_PROTO_V1",
+              "LOCAL_HTTPS",
+              "SENDFILE_HEADER",
+              "MASTODON_SIDEKIQ_READY_FILENAME",
+              "IP_RETENTION_PERIOD",
+              "SESSION_RETENTION_PERIOD"
+            ]
+          },
+          {
+            "title": "Fetch All Replies",
+            "anchor": "fetch-all-replies",
+            "pre_version_history": [
+              {
+                "version": "4.4.0",
+                "change": "added"
+              },
+              {
+                "version": "4.5.0",
+                "change": "removed"
+              }
+            ],
+            "pre_hints": [
+              {
+                "style": "danger",
+                "body": "Fetch All Replies has been enabled unconditionally in 4.5. The related configuration variables have consequently been removed.\n"
+              }
+            ],
+            "intro": "Fetch all replies fetches the tree of replies beneath an expanded post by recursively requesting the [replies collections](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-replies) of each of the statuses, and then requesting the status itself. Fetching replies is triggered by requesting the status's `context` - so will be triggered both from the web interface and external apps.\n\nSpecifically, posts will be fetched if\n- The remote server correctly implements [ActivityPub/ActivityStreams Collections](https://www.w3.org/TR/activitypub/#collections), including [paging](https://www.w3.org/TR/activitystreams-core/#paging)\n- The remote server allows requests for replies collections to be made from the default instance actor.\n- Either\n  - A status with a matching URI does not exist in the database OR\n  - The status has not been fetched in `FETCH_REPLIES_COOLDOWN_MINUTES` AND\n  - The status was created more than `FETCH_REPLIES_INITIAL_WAIT_MINUTES` ago\n\nAll visibility systems still apply - fetched replies will not be visible to accounts that are e.g. blocked by the post author if the fetching server is well behaved.\n\nWhen fetching, posts from accounts that have no local followers are refetched as well, even if they are not listed in the parent status's `replies` collection. Since the account has no local followers, the fetching instance would not have received a `Delete` activity, so if on refetching the remote instance returns a `404`, the previously fetched status will be removed.\n\nThe need for and cost of fetching replies is likely to vary dramatically for servers of different sizes, so these configuration options allow server admins to tune resource usage: smaller instances may want to increase the limits, while larger instances may want to decrease them or lengthen the cooldown intervals.\n",
+            "variables": [
+              "FETCH_REPLIES_ENABLED",
+              "FETCH_REPLIES_COOLDOWN_MINUTES",
+              "FETCH_REPLIES_INITIAL_WAIT_MINUTES",
+              "FETCH_REPLIES_MAX_GLOBAL",
+              "FETCH_REPLIES_MAX_SINGLE",
+              "FETCH_REPLIES_MAX_PAGES"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Other",
+        "anchor": "other",
+        "subsections": [
+          {
+            "title": "DB migrations",
+            "anchor": "migrations",
+            "variables": [
+              "SKIP_POST_DEPLOYMENT_MIGRATIONS"
+            ]
+          },
+          {
+            "title": "DB Encryption support",
+            "intro": "These three environment variables must be set to enable the Active Record\nEncryption feature within Rails that Mastodon uses to encrypt and decrypt some\ndatabase attributes.\n\nTo generate values for these variables, you can run:\n`bundle exec rake db:encryption:init`\n",
+            "version_history": [
+              {
+                "version": "4.3.0",
+                "change": "added"
+              }
+            ],
+            "variables": [
+              "ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY",
+              "ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY",
+              "ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT"
+            ]
+          },
+          {
+            "title": "StatsD (removed in 4.3.0)",
+            "anchor": "statsd",
+            "hints": [
+              {
+                "style": "danger",
+                "body": "StatsD support has been deprecated in Mastodon 4.2.0, and remove entirely in 4.3.0.\n"
+              }
+            ],
+            "variables": [
+              "STATSD_ADDR",
+              "STATSD_NAMESPACE",
+              "STATSD_SIDEKIQ"
+            ]
+          },
+          {
+            "title": "Media processing",
+            "variables": [
+              "FFMPEG_BINARY",
+              "FFPROBE_BINARY"
+            ]
+          },
+          {
+            "title": "Uncategorized or unsorted",
+            "variables": [
+              "BUNDLE_GEMFILE",
+              "PATH",
+              "BACKTRACE",
+              "GITHUB_API_TOKEN"
+            ]
+          }
+        ]
+      }
+    ],
+    "docs_only_variables": {
+      "NODE_ENV": {
+        "type": "string",
+        "description": "Equivalent to `RAILS_ENV`, but for the streaming API (Node.js).\n",
+        "x-group": "deployment",
+        "x-hints": [
+          {
+            "style": "warning",
+            "body": "This variable cannot be defined in dotenv (`.env`) files as it's used before they are loaded.\n"
+          }
+        ]
+      },
+      "MASTODON_USE_LIBVIPS": {
+        "type": "boolean",
+        "description": "By default, Mastodon uses ImageMagick to process images in posts. As an alternative, [libvips](https://www.libvips.org) 8.13+ can be utilized, which has better performance and lower resource utilization.\n\nWhen installing Mastodon from source, this defaults to `false`, set to `true` to enable.\n\nWhen deploying the Mastodon project container image, this is hardcoded to `true` and should not be overridden.\n",
+        "x-group": "deployment",
+        "x-version-history": [
+          {
+            "version": "4.3.0",
+            "change": "added"
+          }
+        ]
+      },
+      "CACHE_REDIS_NAMESPACE": {
+        "type": "string",
+        "description": "Defaults to the value of `REDIS_NAMESPACE`.\n",
+        "x-group": "redis"
+      },
+      "SIDEKIQ_REDIS_NAMESPACE": {
+        "type": "string",
+        "description": "Defaults to the value of `REDIS_NAMESPACE`.\n",
+        "x-group": "redis"
+      },
+      "OTEL_EXPORTER_OTLP_ENDPOINT": {
+        "type": "string",
+        "description": "URL of the OLTP server to send the traces to. OpenTelemetry instrumentation is disabled if this variable is not set. No default (empty value).\n",
+        "x-group": "observability"
+      },
+      "PATH": {
+        "type": "string",
+        "description": "",
+        "x-group": "other"
+      },
+      "STREAMING_CLUSTER_NUM": {
+        "type": "string",
+        "description": "**Removed:**\\\nThe streaming server process now only uses a single Node.js process, to scale it further, you'll need to follow the documentation in the [scaling guide](/admin/scaling#streaming)\n",
+        "x-group": "scaling",
+        "x-status": "removed",
+        "x-anchor": "streaming_cluster_num",
+        "x-extra": "Specific to the streaming API, this variable determines how many different processes the streaming API forks into. Defaults to the number of CPU cores minus one.\n"
+      },
+      "STATSD_ADDR": {
+        "type": "string",
+        "description": "If set, Mastodon will log some events and metrics into a StatsD instance identified by its hostname and port.\n",
+        "x-group": "other",
+        "x-example-value": "localhost:8125"
+      },
+      "STATSD_NAMESPACE": {
+        "type": "string",
+        "description": "If set, all StatsD keys will be prefixed with this. Defaults to `Mastodon.production` when `RAILS_ENV` is `production`, `Mastodon.development` when it's `development`, etc.\n",
+        "x-group": "other"
+      },
+      "STATSD_SIDEKIQ": {
+        "type": "boolean",
+        "description": "If set to `true`, Mastodon will log some Sidekiq metrics into StatsD. Defaults to `false`.\n",
+        "x-group": "other"
+      },
+      "FETCH_REPLIES_ENABLED": {
+        "type": "boolean",
+        "description": "**Default:** `false`\n\nEnable or disable fetching additional replies when a post's detailed view is expanded.\n",
+        "x-group": "features",
+        "default": false,
+        "x-status": "removed",
+        "x-anchor": "",
+        "x-suppress-removed-hint": true
+      },
+      "FETCH_REPLIES_COOLDOWN_MINUTES": {
+        "type": "integer",
+        "description": "**Default:** `15`\n\nThe amount of time to wait since the last fetch of a post and its replies since the last fetch.\n\nNote that this applies per-status: triggering a fetch for a parent status and then triggering a reply for a child within the reply tree will not double-fetch the status.\n",
+        "x-group": "features",
+        "default": 15,
+        "x-status": "removed",
+        "x-anchor": "",
+        "x-suppress-removed-hint": true
+      },
+      "FETCH_REPLIES_INITIAL_WAIT_MINUTES": {
+        "type": "integer",
+        "description": "**Default:** `5`\n\nThe amount of time after a post was created to wait before it is eligible for fetching replies\n",
+        "x-group": "features",
+        "default": 5,
+        "x-status": "removed",
+        "x-anchor": "",
+        "x-suppress-removed-hint": true
+      },
+      "FETCH_REPLIES_MAX_GLOBAL": {
+        "type": "integer",
+        "description": "**Default:** `1000`\n\nThe maximum number of replies to fetch - total, recursively through a whole reply tree, per fetch action.\n",
+        "x-group": "features",
+        "default": 1000,
+        "x-status": "removed",
+        "x-anchor": "",
+        "x-suppress-removed-hint": true
+      },
+      "FETCH_REPLIES_MAX_SINGLE": {
+        "type": "integer",
+        "description": "**Default:** `500`\n\nThe maximum number of replies to fetch for a single status within a reply tree.\n",
+        "x-group": "features",
+        "default": 500,
+        "x-status": "removed",
+        "x-anchor": "",
+        "x-suppress-removed-hint": true
+      },
+      "FETCH_REPLIES_MAX_PAGES": {
+        "type": "integer",
+        "description": "**Default:** `500`\n\nThe total number of ActivityPub `Collection` pages to fetch from a whole reply tree, per fetch action.\n",
+        "x-group": "features",
+        "default": 500,
+        "x-status": "removed",
+        "x-anchor": "",
+        "x-suppress-removed-hint": true
+      }
+    }
+  }
+}
