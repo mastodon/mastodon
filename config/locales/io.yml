@@ -970,7 +970,6 @@ io:
           one: Partigesis da 1 persono de pos antea semano
           other: Partigesis da %{count} personi de pos antea semano
         title: Populara ligili
-        usage_comparison: Partigesis %{today} foyi hodie, la nombro esas %{yesterday} hiere
       not_allowed_to_trend: Ne permisita quale popularo
       only_allowed: Nur permisato
       pending_review: Vartas kontrolo
@@ -1015,7 +1014,6 @@ io:
         trendable: Povas aparar en populari
         trending_rank: 'Popularo #%{rank}'
         usable: Povas uzesar
-        usage_comparison: Uzesis %{today} foyi hodie, la nombro esas %{yesterday} hiere
         used_by_over_week:
           one: Uzesis da 1 persono de pos 1 semano
           other: Uzesis da %{count} personi de pos 1 semano
@@ -1379,7 +1377,6 @@ io:
     errors:
       empty: CSV-dosiero vakua
       invalid_csv_file: 'Nevalida CSV-dosiero. Eroro: %{error}'
-      over_rows_processing_limit: kontenas plu kam %{count} horizontala lineo
       too_large: Dosiero es tro granda
     failures: Falii
     imported: Importacita
@@ -1476,7 +1473,6 @@ io:
     incoming_migrations_html: Por transferar de irga konto a to, unesme vu bezonas <a href="%{path}">krear kontoalternativnomo</a>.
     moved_msg: Vua konto nun ridirektesas a %{acct} e vua sequanti transferesas.
     not_redirecting: Vua konto ne ridirektesas a irga altra konto nun.
-    on_cooldown: Vu recente migrigis vua konto. Ca funciono divenos disponebla itere pos %{count} dii.
     past_migrations: Antea migri
     proceed_with_move: Transferez sequanti
     redirected_msg: Vua konto nun ridirektesas a %{acct}.
@@ -1619,9 +1615,6 @@ io:
     descriptions:
       account: Publika posti de @%{acct}
       tag: 'Publika posti kun tago #%{hashtag}'
-  scheduled_statuses:
-    over_daily_limit: Vu ecesas limito quale esas %{limit} projetita posti por hodio
-    over_total_limit: Vu ecesas limito quale esas %{limit} projetita posti
   self_destruct:
     lead_html: Desfortunoze, <strong>%{domain}</strong> balde klozos. Se vu havis konto ibe, vu ne plus povas uzar it, ma vu ankore povas demandar exportacajo de vua datumi.
     title: Ca servilo balde klozos

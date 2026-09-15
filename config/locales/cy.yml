@@ -1277,7 +1277,6 @@ cy:
           two: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
           zero: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
         title: Dolenni sy'n trendio
-        usage_comparison: Wedi'i rannu %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
       not_allowed_to_trend: Dim caniatâd i trendio
       only_allowed: Derbyniwyd yn unig
       pending_review: Yn aros am adolygiad
@@ -1326,7 +1325,6 @@ cy:
         trendable: Gall ymddangos o dan trendiau
         trending_rank: 'Yn trendio #%{rank}'
         usable: Mae modd ei ddefnyddio
-        usage_comparison: Wedi'i ddefnyddio %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
         used_by_over_week:
           few: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
           many: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
@@ -1824,7 +1822,6 @@ cy:
       incompatible_type: Nid yw'n gydnaws â'r math mewnforio a ddewiswyd
       invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
       invalid_json_file: 'Ffeil JSON annilys. Gwall: %{error}'
-      over_rows_processing_limit: yn cynnwys mwy na %{count} o resi
       status_not_found_warning: Mae rhai o'ch hidlau yn cuddio postiadau penodol nad yw'r gweinydd hwn yn eu hadnabod. Fydd y cofnodion hyn ddim yn cael eu hidlo'n awtomatig os fyddan nhw'n cael eu darganfod yn ddiweddarach gan y gweinydd.
       too_large: Mae'r ffeil yn rhy fawr
     failures: Methiannau
@@ -2035,7 +2032,6 @@ cy:
     incoming_migrations_html: I symud o gyfrif arall i'r un hwn, yn gyntaf mae angen i chi <a href="%{path}">greu enwarall (alias) cyfrif</a>.
     moved_msg: Mae eich cyfrif bellach yn ailgyfeirio i %{acct} ac mae eich dilynwyr yn cael eu symud drosodd.
     not_redirecting: Nid yw eich cyfrif yn ailgyfeirio i unrhyw gyfrif arall ar hyn o bryd.
-    on_cooldown: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
     past_migrations: Mudo'r gorffennol
     proceed_with_move: Symud dilynwyr
     redirected_msg: Mae eich cyfrif yn awr yn ailgyfeirio at %{acct}.
@@ -2227,8 +2223,6 @@ cy:
       account: Postiadau cyhoeddus gan @%{acct}
       tag: 'Postiadau cyhoeddus wedi''u tagio #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd ar gyfer heddiw
-    over_total_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd
     too_soon: rhaid i'r dyddiad fod yn y dyfodol
   self_destruct:
     lead_html: Yn anffodus mae <strong>%{domain}</strong> yn cau'n barhaol. Os oedd gennych gyfrif yno, ni fydd modd i chi barhau i'w ddefnyddio, ond mae dal modd gofyn i gael copi wrth gefn o'ch data.

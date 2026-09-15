@@ -1190,7 +1190,6 @@ pt-PT:
           one: Partilhado por uma pessoa na última semana
           other: Partilhado por %{count} pessoas na última semana
         title: Hiperligações em destaque
-        usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
       not_allowed_to_trend: Não permitido para destaque
       only_allowed: Apenas permitidos
       pending_review: Pendente de revisão
@@ -1235,7 +1234,6 @@ pt-PT:
         trendable: Pode aparecer nos destaques
         trending_rank: 'Tendência #%{rank}'
         usable: Pode ser utilizada
-        usage_comparison: Utilizada %{today} vezes hoje, em comparação com %{yesterday} ontem
         used_by_over_week:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
@@ -1692,7 +1690,6 @@ pt-PT:
       incompatible_type: Incompatível com o tipo de importação selecionado
       invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
       invalid_json_file: 'Ficheiro JSON inválido. Erro: %{error}'
-      over_rows_processing_limit: contém mais de %{count} linhas
       status_not_found_warning: Alguns dos teus filtros ocultam publicações específicas que não são conhecidas por este servidor. Estas publicações não serão filtradas automaticamente se forem descobertas mais tarde pelo servidor.
       too_large: O ficheiro é demasiado grande
     failures: Falhas
@@ -1843,7 +1840,6 @@ pt-PT:
     incoming_migrations_html: Para passar de outra conta para esta, primeiro é necessário <a href="%{path}">criar um pseudónimo de conta</a>.
     moved_msg: A tua conta está agora a ser redirecionada para %{acct} e os teus seguidores estão a ser transferidos.
     not_redirecting: A rua conta não está atualmente a ser redirecionada para nenhuma outra conta.
-    on_cooldown: Migraste recentemente a tua conta. Esta função ficará disponível novamente em %{count} dias.
     past_migrations: Migrações anteriores
     proceed_with_move: Migrar seguidores
     redirected_msg: A tua conta está agora a redirecionar para %{acct}.
@@ -2031,8 +2027,6 @@ pt-PT:
       account: Publicações públicas de @%{acct}
       tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Excedeste o limite de %{limit} publicações agendadas para hoje
-    over_total_limit: Excedeste o limite de %{limit} publicações agendadas
     too_soon: a data tem de ser no futuro
   self_destruct:
     lead_html: Infelizmente, <strong>%{domain}</strong> vai fechar definitivamente. Se tinhas conta nele, não podes continuar a usá-lo, mas ainda podes pedir uma cópia dos teus dados.

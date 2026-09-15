@@ -1206,7 +1206,6 @@ hu:
           one: Egy ember osztotta meg a múlt héten
           other: "%{count} ember osztotta meg a múlt héten"
         title: Felkapott hivatkozások
-        usage_comparison: "%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
       not_allowed_to_trend: Nem engedélyezett a trendekben
       only_allowed: Csak engedélyezett
       pending_review: Áttekintésre vár
@@ -1251,7 +1250,6 @@ hu:
         trendable: Megjelenhet a trendek alatt
         trending_rank: "%{rank}. felkapott"
         usable: Használható
-        usage_comparison: "%{today} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest"
         used_by_over_week:
           one: Egy ember használta a múlt héten
           other: "%{count} ember használta a múlt héten"
@@ -1710,7 +1708,6 @@ hu:
       invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
       invalid_json_file: 'Érvénytelen JSON-fájl. Hiba: %{error}'
       no_data: Ez a fájl nem tartalmaz az adott importálási típusnak megfelelő adatot
-      over_rows_processing_limit: több mint %{count} sort tartalmaz
       status_not_found_warning: A szűrőid olyan bejegyzéseket rejtenek el, melyeket ez a kiszolgáló nem ismer. Ezek a bejegyzések nem lesznek automatikusan kiszűrve, ha a kiszolgáló később felfedezi őket.
       too_large: A fájl túl nagy
     failures: Hibák
@@ -1861,7 +1858,6 @@ hu:
     incoming_migrations_html: Ahhoz, hogy egy másik fiókból ebbe költözz, először <a href="%{path}">hozz létre egy fiókálnevet</a>.
     moved_msg: A fiókod mostantól ide %{acct} irányít át, a követőidet átköltöztetjük.
     not_redirecting: A fiókod nincs átirányítva jelenleg sehová sem.
-    on_cooldown: Nemrég költöztetted a fiókod. Ez a funkció %{count} nap múlva lesz megint elérhető.
     past_migrations: Eddigi költözések
     proceed_with_move: Követők átköltöztetése
     redirected_msg: A fiókodat ide irányítjuk át %{acct}.
@@ -2049,8 +2045,6 @@ hu:
       account: Nyilvános bejegyzések a(z) @%{acct} fióktól
       tag: 'Ezzel jelölt nyilvános bejegyzések: #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
-    over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
     too_soon: a dátumnak a jövőben kell lennie
   self_destruct:
     lead_html: Sajnos a <strong>%{domain}</strong> végleg bezár. Ha volt itt fiókod, nem fogod tudni tovább használni, de kérheted majd az adataid biztonsági mentését.

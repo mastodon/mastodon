@@ -1206,7 +1206,9 @@ tr:
           one: Geçen hafta bir kişi paylaştı
           other: Geçen hafta %{count} kişi paylaştı
         title: Öne çıkan bağlantılar
-        usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+        usage_comparison:
+          one: Bugün %{count} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+          other: Bugün %{count} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
       not_allowed_to_trend: Öne çıkma izni yok
       only_allowed: Sadece izin verilenler
       pending_review: İnceleme bekliyor
@@ -1251,7 +1253,9 @@ tr:
         trendable: Öne çıkanlar altında görünebilir
         trending_rank: 'Öne çıkanlar #%{rank}'
         usable: Kullanılabilir
-        usage_comparison: Bugün %{today} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
+        usage_comparison:
+          one: Bugün %{count} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
+          other: Bugün %{count} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
         used_by_over_week:
           one: Geçen hafta bir kişi tarafından kullanıldı
           other: Geçen hafta %{count} kişi tarafından kullanıldı
@@ -1710,7 +1714,9 @@ tr:
       invalid_csv_file: 'Geçersiz CSV dosyası. Hata: %{error}'
       invalid_json_file: 'Geçersiz JSON dosyası. Hata: %{error}'
       no_data: Bu dosya, belirtilen içe aktarma türüne uyan herhangi bir veri içermemektedir
-      over_rows_processing_limit: "%{count} satırdan fazlasını içeriyor"
+      over_rows_processing_limit:
+        one: "%{count} satırdan fazlasını içeriyor"
+        other: "%{count} satırdan fazlasını içeriyor"
       status_not_found_warning: Filtrelerinizden bazıları, bu sunucu tarafından tanınmayan belirli gönderileri gizler. Bu gönderiler, daha sonra sunucu tarafından tespit edildiklerinde otomatik olarak filtrelenmeyecektir.
       too_large: Dosya çok büyük
     failures: Başarısızlıklar
@@ -1861,7 +1867,9 @@ tr:
     incoming_migrations_html: Başka bir hesaptan bu hesaba taşınmak için önce bir <a href="%{path}">hesap takma adı oluşturmanız</a> gerekmektedir.
     moved_msg: Hesabınız şimdi %{acct} adresine yönlendiriliyor ve takipçileriniz taşınıyor.
     not_redirecting: Hesabınız şu anda başka bir hesaba yönlendirilmemektedir.
-    on_cooldown: Son zamanlarda hesabınızı taşıdınız. Bu işlev %{count} gün içinde tekrar kullanılabilir olacaktır.
+    on_cooldown:
+      one: Son zamanlarda hesabınızı taşıdınız. Bu işlev %{count} gün içinde tekrar kullanılabilir olacaktır.
+      other: Son zamanlarda hesabınızı taşıdınız. Bu işlev %{count} gün içinde tekrar kullanılabilir olacaktır.
     past_migrations: Geçmiş taşınmalar
     proceed_with_move: Takipçileri taşı
     redirected_msg: Hesabınız artık %{acct} adresine yönlendiriliyor.
@@ -2049,8 +2057,12 @@ tr:
       account: "@%{acct} hesabından herkese açık gönderiler"
       tag: "#%{hashtag} etiketli herkese açık gönderiler"
   scheduled_statuses:
-    over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
-    over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
+    over_daily_limit:
+      one: Bugün için %{count} zamanlanmış gönderi sınırını aştınız
+      other: Bugün için %{count} zamanlanmış gönderi sınırını aştınız
+    over_total_limit:
+      one: "%{count} zamanlanmış gönderi sınırını aştınız"
+      other: "%{count} zamanlanmış gönderi sınırını aştınız"
     too_soon: tarih ileri bir tarih olmalıdır
   self_destruct:
     lead_html: Maalesef <strong>%{domain}</strong> kalıcı olarak kapanıyor. Eğer orada hesabınız varsa, onu kullanmaya devam edemeyeceksiniz, ancak yine de verinizin bir yedeğini isteyebilirsiniz.

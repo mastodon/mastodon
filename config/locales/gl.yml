@@ -1206,7 +1206,6 @@ gl:
           one: Compartido por unha persoa na última semana
           other: Compartido por %{count} persoas na última semana
         title: Ligazóns en voga
-        usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
       not_allowed_to_trend: Non permitido como tendencia
       only_allowed: Só as permitidas
       pending_review: Revisión pendente
@@ -1251,7 +1250,6 @@ gl:
         trendable: Pode aparecer nas tendencias
         trending_rank: 'En voga #%{rank}'
         usable: Pode ser usado
-        usage_comparison: Utilizado %{today} veces hoxe, comparado coas %{yesterday} de onte
         used_by_over_week:
           one: Utilizado por unha persoa na última semana
           other: Utilizado por %{count} persoas na última semana
@@ -1710,7 +1708,6 @@ gl:
       invalid_csv_file: 'Ficheiro CSV non válido. Erro: %{error}'
       invalid_json_file: 'Ficheiro JSON non válido. Erro: %{error}'
       no_data: Este ficheiro non contén datos que concorden co tipo de importación indicado
-      over_rows_processing_limit: contén máis de %{count} filas
       status_not_found_warning: Algún dos teus filtros oculta publicacións concretas que non son coñecidas por este servidor. Estas publicacións non se van filtrar automaticamente se son descubertas máis tarde polo servidor.
       too_large: O ficheiro é demasiado grande
     failures: Erros
@@ -1861,7 +1858,6 @@ gl:
     incoming_migrations_html: Para migrar doutra conta cara esta, primeiro debes <a href="%{path}">crear un alcume da conta</a>.
     moved_msg: A túa conta foi redirixida a %{acct} e os teus seguimentos movéronse alí.
     not_redirecting: Neste momento a túa conta non está redirixindo cara a ningunha outra.
-    on_cooldown: Migraches recentemente a conta. Esta función estará dispoñible de novo en %{count} días.
     past_migrations: Migracións pasadas
     proceed_with_move: Mover seguidoras
     redirected_msg: Agora a conta redirixe a %{acct}.
@@ -2049,8 +2045,6 @@ gl:
       account: Publicacións públicas de @%{acct}
       tag: 'Publicacións públicas con #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Excedeches o límite de %{limit} publicacións programadas para ese día
-    over_total_limit: Excedeches o límite de %{limit} publicacións programadas
     too_soon: a data ten que estar no futuro
   self_destruct:
     lead_html: Desafortunadamente, <strong>%{domain}</strong> vai deixar de dar servizo. Se tes unha conta aquí non poderás seguir usándoa, mais podes solicitar un ficheiro cos teus datos.
