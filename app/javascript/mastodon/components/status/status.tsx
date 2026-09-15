@@ -4,7 +4,6 @@ import classNames from 'classnames';
 
 import type { Merge } from 'type-fest';
 
-import { selectStatusFilters } from '@/mastodon/selectors/filters';
 import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
@@ -82,9 +81,6 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   const { status, parent } = useAppSelector((state) =>
     selectStatusReblog(state, id),
   );
-  const { filterAction } = useAppSelector((state) =>
-    selectStatusFilters(state, { contextType, statusId: parent?.id ?? id }),
-  );
   const statusId = status?.id;
 
   // Display
@@ -100,22 +96,23 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   );
 
   // Handlers
-  const { showDespiteFilter, onFilterToggle, onTranslate, ...handlers } =
-    useStatusHandlers({
-      status,
-      contextType,
-      onOpen,
-    });
+  const {
+    isFiltered,
+    showDespiteFilter,
+    onFilterToggle,
+    onTranslate,
+    ...handlers
+  } = useStatusHandlers({
+    status,
+    contextType,
+    onOpen,
+  });
 
   if (!status) {
     return null; // loading state
   }
 
   const actualStatus = parent ?? status;
-
-  const expanded =
-    (!filterAction || showDespiteFilter) &&
-    (!status.hidden || !status.spoiler_text);
 
   const hotkeysProps = {
     handlers: {
@@ -132,13 +129,13 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
       <StatusHotkeys {...hotkeysProps}>
         <span>{status.account.display_name || status.account.username}</span>
         {status.spoiler_text && <span>{status.spoiler_text}</span>}
-        {expanded && <span>{status.content}</span>}
+        <span>{status.content}</span>
       </StatusHotkeys>
     );
   }
 
   const showFooter =
-    (expanded && hashtagsInBar.length > 0) ||
+    hashtagsInBar.length > 0 ||
     variant === 'page' ||
     (showActions && !isQuotedPost);
 
@@ -151,6 +148,9 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           variant === 'thread' && classes.variantThread,
           variant === 'page' && classes.variantPage,
           isQuotedPost && classes.isQuote,
+          ((!showDespiteFilter && isFiltered) ||
+            (status.spoiler_text && status.hidden)) &&
+            classes.isFiltered,
         )}
         data-featured={featured ? 'true' : null}
         aria-label={screenReaderText}
@@ -176,37 +176,33 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
 
         <TranslateButton status={status} onTranslate={onTranslate} />
 
-        {expanded && (
-          <StatusContent
-            status={status}
-            statusContent={statusContent}
-            onReadMore={handlers.onOpen}
-            onTranslate={onTranslate}
-            collapsible
-          >
-            {!!status.poll && (
-              <Poll
-                pollId={status.poll}
-                statusUrl={status.uri}
-                accountId={status.account.id}
-                lang={status.translation?.language ?? status.language}
-              />
-            )}
+        <StatusContent
+          status={status}
+          statusContent={statusContent}
+          onReadMore={handlers.onOpen}
+          onTranslate={onTranslate}
+          collapsible
+        >
+          {!!status.poll && (
+            <Poll
+              pollId={status.poll}
+              statusUrl={status.uri}
+              accountId={status.account.id}
+              lang={status.translation?.language ?? status.language}
+            />
+          )}
 
-            <StatusAttachments statusId={status.id} />
+          <StatusAttachments statusId={status.id} />
 
-            {children}
-          </StatusContent>
-        )}
+          {children}
+        </StatusContent>
 
         {showFooter && (
           <footer className={classes.footer}>
-            {expanded && hashtagsInBar.length > 0 && (
-              <StatusHashtagBar
-                hashtags={hashtagsInBar}
-                accountId={status.account.id}
-              />
-            )}
+            <StatusHashtagBar
+              hashtags={hashtagsInBar}
+              accountId={status.account.id}
+            />
 
             {variant === 'page' && (
               <StatusMeta status={status} className={classes.meta} />
@@ -232,6 +228,7 @@ interface StatusHotkeysProps {
   children: React.ReactNode;
   handlers: Omit<
     StatusHandlers,
+    | 'isFiltered'
     | 'showDespiteFilter'
     | 'onOpenClick'
     | 'onHeaderClick'

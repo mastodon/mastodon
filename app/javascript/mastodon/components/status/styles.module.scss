@@ -32,6 +32,10 @@
   --content-col: span 2;
 }
 
+.isFiltered {
+  content: '';
+}
+
 .header {
   grid-column: span 2;
 }
@@ -59,7 +63,6 @@
 
 .spoiler {
   display: flex;
-  padding-block: var(--space-md);
   align-items: center;
 }
 
@@ -70,12 +73,41 @@
   flex-grow: 1;
 }
 
+.content,
+.hashtagsWrapper {
+  overflow: clip;
+  border-radius: var(--radius-xs);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(20px);
+    background-image: radial-gradient(
+      var(--color-bg-highlight) 1px,
+      transparent 0
+    );
+    background-size: var(--space-xs) var(--space-xs);
+    background-repeat: repeat;
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+    pointer-events: none;
+
+    .isFiltered & {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
 .content {
   --mask-height: 80px;
 
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  position: relative;
 
   &.collapsed {
     max-height: var(--max-height); // Set via JS.
