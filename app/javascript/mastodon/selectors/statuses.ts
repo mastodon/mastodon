@@ -78,10 +78,8 @@ export const selectStatusLoadingState = createAppSelector(
     (state, { statusId }: { statusId?: string | null }) =>
       selectExpandedStatus(state, statusId ?? undefined),
     selectStatusFilters,
-    (_, { warnInsteadOfHide }: { warnInsteadOfHide?: boolean }) =>
-      warnInsteadOfHide,
   ],
-  (status, filters, warnInsteadOfHide) => {
+  (status, { filterAction }) => {
     if (!status) {
       return { state: 'not-found', status: null } as const;
     }
@@ -90,10 +88,7 @@ export const selectStatusLoadingState = createAppSelector(
       return { state: 'loading', status: null } as const;
     }
 
-    if (
-      !warnInsteadOfHide &&
-      filters.some((filter) => filter.filter_action === 'hide')
-    ) {
+    if (filterAction === 'hide') {
       return { state: 'filtered', status: null } as const;
     }
 

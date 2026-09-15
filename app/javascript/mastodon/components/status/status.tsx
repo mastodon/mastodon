@@ -8,8 +8,6 @@ import { selectStatusFilters } from '@/mastodon/selectors/filters';
 import { selectExpandedStatus } from '@/mastodon/selectors/statuses';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 
-import { ContentWarning } from '../content_warning';
-import { FilterWarning } from '../filter_warning';
 import { computeHashtagBarForStatus } from '../hashtag_bar';
 import { Hotkeys } from '../hotkeys';
 import { Poll } from '../poll';
@@ -30,6 +28,7 @@ import { StatusRedesignHeader } from './redesign/header';
 import classes from './styles.module.scss';
 import { TranslateButton } from './translate';
 import type { StatusContainerProps, StatusContextType } from './types';
+import { StatusWarning } from './warning';
 
 type StatusRedesignProps = Merge<
   Omit<StatusContainerProps, 'account'>,
@@ -83,7 +82,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   const { status, parent } = useAppSelector((state) =>
     selectStatusReblog(state, id),
   );
-  const matchedFilters = useAppSelector((state) =>
+  const { filterAction } = useAppSelector((state) =>
     selectStatusFilters(state, { contextType, statusId: parent?.id ?? id }),
   );
   const statusId = status?.id;
@@ -101,13 +100,12 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   );
 
   // Handlers
-  const {
-    showDespiteFilter,
-    onExpandedToggle,
-    onFilterToggle,
-    onTranslate,
-    ...handlers
-  } = useStatusHandlers({ status, contextType, onOpen });
+  const { showDespiteFilter, onFilterToggle, onTranslate, ...handlers } =
+    useStatusHandlers({
+      status,
+      contextType,
+      onOpen,
+    });
 
   if (!status) {
     return null; // loading state
@@ -116,7 +114,7 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
   const actualStatus = parent ?? status;
 
   const expanded =
-    (matchedFilters.length === 0 || showDespiteFilter) &&
+    (!filterAction || showDespiteFilter) &&
     (!status.hidden || !status.spoiler_text);
 
   const hotkeysProps = {
@@ -170,21 +168,11 @@ export const StatusRedesign: React.FC<StatusRedesignProps> = ({
           {headerContents}
         </StatusRedesignHeader>
 
-        {matchedFilters.length > 0 && (
-          <FilterWarning
-            title={matchedFilters.map((filter) => filter.title).join(', ')}
-            expanded={showDespiteFilter}
-            onClick={onFilterToggle}
-          />
-        )}
-
-        {(matchedFilters.length === 0 || showDespiteFilter) && (
-          <ContentWarning
-            statusId={status.id}
-            expanded={expanded}
-            onClick={onExpandedToggle}
-          />
-        )}
+        <StatusWarning
+          statusId={actualStatus.id}
+          dismissedFilter={showDespiteFilter}
+          onFilterToggle={onFilterToggle}
+        />
 
         <TranslateButton status={status} onTranslate={onTranslate} />
 
