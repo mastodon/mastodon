@@ -6,7 +6,7 @@ class PostStatusService < BaseService
   include LanguagesHelper
 
   # How much to delay sending an e-mail about a new post, to allow grouping multiple posts
-  EMAIL_DISTRIBUTION_DELAY = 5.minutes.freeze
+  EMAIL_DISTRIBUTION_DELAY = ENV.fetch('EMAIL_SUBSCRIPTION_DISTRIBUTION_DELAY') { 5 }.to_i.minutes.freeze
 
   # If the job is not executed within this timeframe, it will lose its arguments
   EMAIL_DISTRIBUTION_TTL = 1.hour.to_i
