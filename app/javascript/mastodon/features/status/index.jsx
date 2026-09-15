@@ -575,20 +575,30 @@ class Status extends ImmutablePureComponent {
       onTranslate: this.handleHotkeyTranslate,
     };
 
+    const pageTitle = status.visibility === 'direct' ? (
+      <FormattedMessage
+        id='status.title'
+        defaultMessage='Post by {name}'
+        values={{
+          name: <DisplayNameSimple account={account} />
+        }}
+      />
+    ) : (
+      <FormattedMessage
+        id='status.title.message'
+        defaultMessage='Message by {name}'
+        values={{
+          name: <DisplayNameSimple account={account} />
+        }}
+      />
+    );
+
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.detailedStatus)}>
         {isRedesignEnabled() ? (
           <ColumnHeader
             withBackButton
-            title={
-              <FormattedMessage
-                id='status.title'
-                defaultMessage='Post by {name}'
-                values={{
-                  name: <DisplayNameSimple account={account} />
-                }}
-              />
-            }
+            title={pageTitle}
             extraButtons={
               <ColumnSettingsMenu
                 label={
