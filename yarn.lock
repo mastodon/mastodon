@@ -2505,12 +2505,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/icu-messageformat-parser@npm:3.5.17":
-  version: 3.5.17
-  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.17"
+"@formatjs/icu-messageformat-parser@npm:3.5.18":
+  version: 3.5.18
+  resolution: "@formatjs/icu-messageformat-parser@npm:3.5.18"
   dependencies:
     "@formatjs/icu-skeleton-parser": "npm:2.1.11"
-  checksum: 10c0/ad22981a2a96da0256aa8aa4990e540a03e1eb0c8f61c4ac94e8c91f3af1819b5cd9204ccf209433857b11a2d8afc5c66332768d5ea92e5c9523074ce6cbfb36
+  checksum: 10c0/4c4ecfb9e99e4f644c934279f91f034dc607e1935d0116e7fc7524c70f2708e9847ab2b335baeb2fbecb21da6f5cb629d2d713c56cd545f189ea0f45673028e9
   languageName: node
   linkType: hard
 
@@ -2569,11 +2569,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ts-transformer@npm:4.4.19":
-  version: 4.4.19
-  resolution: "@formatjs/ts-transformer@npm:4.4.19"
+"@formatjs/ts-transformer@npm:4.4.20":
+  version: 4.4.20
+  resolution: "@formatjs/ts-transformer@npm:4.4.20"
   dependencies:
-    "@formatjs/icu-messageformat-parser": "npm:3.5.17"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.18"
     "@types/babel__core": "npm:7"
     "@types/node": "npm:22 || 24"
     json-stable-stringify: "npm:1"
@@ -2583,17 +2583,17 @@ __metadata:
   peerDependenciesMeta:
     ts-jest:
       optional: true
-  checksum: 10c0/a21cb7a8590bce9ba14d79cc1948c0ff397e7cc4690add5054c972b4de059d64d5dc117188882e81aa40fe1af4b1d69d3d547e1e545df999cb1baaba60c63d25
+  checksum: 10c0/28aa1f5c167433bc347e68cf39421963355c8b8e5d8fbb75be4cfa8580aa6aa171cb56a27f50a87e2fda39fb72232bed839a12d458855dc61a93ca0e3644e814
   languageName: node
   linkType: hard
 
-"@formatjs/unplugin@npm:1.2.9":
-  version: 1.2.9
-  resolution: "@formatjs/unplugin@npm:1.2.9"
+"@formatjs/unplugin@npm:1.2.10":
+  version: 1.2.10
+  resolution: "@formatjs/unplugin@npm:1.2.10"
   dependencies:
     "@bazel/runfiles": "npm:6"
-    "@formatjs/icu-messageformat-parser": "npm:3.5.17"
-    "@formatjs/ts-transformer": "npm:4.4.19"
+    "@formatjs/icu-messageformat-parser": "npm:3.5.18"
+    "@formatjs/ts-transformer": "npm:4.4.20"
     "@types/node": "npm:22 || 24"
     decode-named-character-reference: "npm:1"
     magic-string: "npm:1"
@@ -2616,7 +2616,7 @@ __metadata:
       optional: true
     webpack:
       optional: true
-  checksum: 10c0/324d07f4890b3caba25dc7582af68474ebde6bafaff2767c5a7e14c2e7224be355ebbe280ad3a23a108a3e4ed0349c114f0e7fca4042ddc8ecef7c68fb361702
+  checksum: 10c0/78765f43aaa5f950bc246492e446538e4f686b8d5cb1a5a598e02763d9db241820166132330197926a4e2b06b23f55028d25e8099c4ecb94161b08ebedcbe037
   languageName: node
   linkType: hard
 
@@ -2857,7 +2857,7 @@ __metadata:
     "@floating-ui/react-dom": "npm:2.1.9"
     "@formatjs/cli": "npm:6.14.4"
     "@formatjs/intl-pluralrules": "npm:6.3.13"
-    "@formatjs/unplugin": "npm:1.2.9"
+    "@formatjs/unplugin": "npm:1.2.10"
     "@gamestdio/websocket": "npm:0.3.2"
     "@github/webauthn-json": "npm:2.1.1"
     "@optimize-lodash/rollup-plugin": "npm:6.0.0"
